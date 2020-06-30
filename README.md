@@ -11,7 +11,7 @@ intrinsic.
 The manpage source is maintained as flat-text files which are 
    
 * run thru txt2man(1) to create the *roff file as a manpage 
-* and then thru groff (typically) to create an additional HTML file in as collected in
+* and then thru groff (typically) to create an additional HTML file as collected in
    - [BOOK_FORTRAN](https://urbanjost.github.io/fortran-intrinsic-manpages/BOOK_FORTRAN.html).
    - [index](https://urbanjost.github.io/fortran-intrinsic-manpages/)
 
