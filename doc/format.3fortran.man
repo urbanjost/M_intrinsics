@@ -1,0 +1,31 @@
+NAME
+     FORMAT(3f) - [FORTRAN:INTRINSIC:I/O] Format statement
+     
+SYNOPSIS
+ Format Statements
+
+    fmt = "(F10.3,A,ES14.7)"        format string
+    101 format(f10.3,a,es14.7))     format statement
+    Iw Iw.m                         integer form
+    Bw.m Ow.m Zw.m                  binary, octal, hex integer form
+    Fw.d                            decimal form real format
+    Ew.d                            exponential form (0.12E-11)
+    Ew.dEe                          specified exponent length
+    ESw.d ESw.dEe                   scientific form (1.2E-10)
+    ENw.d ENw.dEe                   engineer. form (123.4E-12)
+    Gw.d                            generalized form
+    Gw.dEe                          generalized exponent form
+    Lw                              logical format (T, F)
+    A Aw                            characters format
+    nX                              horizontal positioning (skip)
+    Tc TLc TRc                      move (absolute, left, right)
+    r/                              vert. positioning (skip lines)
+    r(...)                          grouping / repetition
+    :                               format scanning control
+    S SP SS                         sign control
+    BN BZ                           blank control (blanks as zeros)
+
+ w full length, m minimum digits, d dec. places, e exponent
+ length, n positions to skip, c positions to move, r repetitions
+DESCRIPTION
+EXAMPLE

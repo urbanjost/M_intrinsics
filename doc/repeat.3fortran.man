@@ -1,0 +1,37 @@
+NAME
+     repeat(3f) - [FORTRAN:INTRINSIC:CHARACTER] Repeated string concatenation
+     
+SYNTAX
+   result = repeat(string, ncopies)
+
+DESCRIPTION
+   Concatenates NCOPIES copies of a string.
+
+ARGUMENTS
+   STRING    Shall be scalar and of type CHARACTER.
+   NCOPIES   Shall be scalar and of type INTEGER.
+
+RETURN VALUE
+   A new scalar of type CHARACTER built up from NCOPIES copies
+   of STRING.
+
+EXAMPLE
+  Sample program:
+
+    program demo_repeat
+      write(*,*) repeat("x", 5)   ! "xxxxx"
+    end program demo_repeat
+
+STANDARD
+   [[Fortran 95]] and later
+
+CLASS
+   Transformational function
+
+SEE ALSO
+   Functions that perform operations on character strings, return lengths
+   of arguments, and search for certain arguments:
+
+   Elemental:     ADJUSTL, ADJUSTR, INDEX, LEN_TRIM, SCAN, VERIFY;
+   Nonelemental:  REPEAT, TRIM
+
