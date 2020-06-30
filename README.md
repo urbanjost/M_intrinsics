@@ -1,8 +1,8 @@
-#NAME
+# NAME
 
    INTRINSICS_PROJECT(7f) - [FORTRAN] intrinsic manpages
    
-#DESCRIPTION
+# DESCRIPTION
 
    This is a project to provide a standard set of man(1) pages for the
    Fortran intrinsics, with a tested working example program for each
