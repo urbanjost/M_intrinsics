@@ -12,8 +12,9 @@ The manpage source is maintained as flat-text files which are
    
 * run thru txt2man(1) to create the *roff file as a manpage 
 * and then thru groff (typically) to create an additional HTML file in 
-   - [FORTRAN_BOOK.html](https://urbanjost.github.io/fortran-intrinsics-manpages/FORTRAN_BOOK.html).
-   - [index](https://urbanjost.github.io/fortran-intrinsics-manpages/index.html).
+   - [FORTRAN_BOOK](https://urbanjost.github.io/fortran-intrinsic-manpages/FORTRAN_BOOK.html).
+   - [index](https://urbanjost.github.io/fortran-intrinsic-manpages/)
+
 
 * the example programs are extracted into the src/ directory.
 
