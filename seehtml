@@ -5,4 +5,4 @@ git branch gh-pages
 git push -u origin gh-pages # Push the new branch back to github
 }
 #Go to
-cygstart http://urbanjost.github.io/fortran-intrinsics-manpages
+cygstart http://urbanjost.github.io/fortran-intrinsic-manpages/BOOK_FORTRAN.html
