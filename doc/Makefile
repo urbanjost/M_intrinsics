@@ -16,6 +16,7 @@ MANS=$(addprefix $(MANDIR)/man3/,$(MANSIMPLE) )
 all: $(MANS)
 	bash ../scripts/book.sh FORTRAN fortran
 	mandb -q -c `pwd`/man
+	bash ../scripts/mank.sh 
 	: all done. Look in $(MANDIR)
 
 $(MANS): $(SRCS)
@@ -24,7 +25,7 @@ $(MANS): $(SRCS)
 	txt2man -s 3fortran -t "`basename $*`" `basename $*.3fortran.man` |tee $*.3fortran|\
 	bash ../scripts/man2html >../docs/`basename $*`.3fortran.html
 	bash ../scripts/man2f90 `basename $*`
-	env MANPATH=$(MANDIR) man -s 3fortran `basename $*`
+#	env MANPATH=$(MANDIR) man -s 3fortran `basename $*`
 
 .PHONY : clean
 clean:
