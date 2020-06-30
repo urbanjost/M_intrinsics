@@ -10,9 +10,9 @@
 
    The manpage source is maintained as flat-text files which are 
    
-    * run thru txt2man(1) to create the *roff file as a manpage 
-    * and then thru groff (typically) to create an additional HTML file in html/.
-    * the example program is extracted into the src/ directory.
+    + run thru txt2man(1) to create the *roff file as a manpage 
+    + and then thru groff (typically) to create an additional HTML file in html/.
+    + the example program is extracted into the src/ directory.
 
    The man(1) interface is available for all *nix systems and Cygwin as
    well as other platforms.
