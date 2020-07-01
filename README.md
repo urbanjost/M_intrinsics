@@ -39,12 +39,14 @@ alternative is nothing", but are still actively being completed.
 Discussion is welcome here as well as at
  - [Fortran Discourse](https://fortran-lang.discourse.group/t/fortran-intrinsic-manpages/160/)
  - [Fortran Wiki](http://fortranwiki.org)
- - [Google Fortran newsgroup]( https://groups.google.com/forum/#!forum/comp.lang.fortran)
+ - [Google Fortran newsgroup](https://groups.google.com/forum/#!forum/comp.lang.fortran)
 
 # REFERENCES
- - The [Fortran 2018 Standard] (https://j3-fortran.org/doc/year/18/18-007r1.pdf) 
+ - The [Fortran 2018 Standard](https://j3-fortran.org/doc/year/18/18-007r1.pdf) 
    as described at https://j3-fortran.org/doc/year/18/18-007r1.pdf
+
  - Intrisic descriptions from Jason Blevins at the 
    [Fortran Wiki](http://fortranwiki.org) http://fortranwiki.org
+
  - [GNU gfortran intrinsic descriptions](https://gcc.gnu.org/onlinedocs/gfortran/Intrinsic-Procedures.html)
    at https://gcc.gnu.org/onlinedocs/gfortran/Intrinsic-Procedures.html
