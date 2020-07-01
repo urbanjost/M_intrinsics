@@ -17,6 +17,7 @@ all: $(MANS)
 	bash ../scripts/book.sh FORTRAN fortran
 	mandb -q -c `pwd`/man
 	bash ../scripts/mank.sh 
+	cd ../src;make -k
 	: all done. Look in $(MANDIR)
 
 $(MANS): $(SRCS)
@@ -31,12 +32,15 @@ $(MANS): $(SRCS)
 clean:
 	cd $(MANDIR)/man3 && rm -f $(MANSIMPLE) 
 	cd ../docs/ && rm -f $(HTMLSIMPLE) 
-	cd ../src/ && rm -f demo_*.f90
+	cd ../src/ && make clean
 list:
 	env MANPATH=$(MANDIR) man -s 3fortran -k .|cat -n|more
 getlatest:
 	: get txtman script from github
 	git clone https://github.com/mvertes/txt2man.git
+install:
+	: put the stuff in /usr/share/man/man3 as gzipped files that are world readable
+	man -s 3fortran -k .
 help:
 	: all   -- update all manpages and force update of manpage index
 	: clean -- remote built files

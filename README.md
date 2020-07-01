@@ -12,9 +12,10 @@ The manpage source is maintained as flat-text files which are
    
 * run thru txt2man(1) to create the *roff file as a manpage 
 * and then thru groff (typically) to create an additional HTML file as collected in
-   - [BOOK_FORTRAN](https://urbanjost.github.io/fortran-intrinsic-manpages/BOOK_FORTRAN.html).
-   - [index](https://urbanjost.github.io/fortran-intrinsic-manpages/)
-
+   - a simple [index](https://urbanjost.github.io/fortran-intrinsic-manpages/) to
+     the individual pages in HTML form
+   - A single page that uses javascript to combine all the HTML 
+     descriptions of the manpages is at [BOOK_FORTRAN](https://urbanjost.github.io/fortran-intrinsic-manpages/BOOK_FORTRAN.html).
 
 * the example programs are extracted into the src/ directory.
 
@@ -30,10 +31,20 @@ if the letter "K" is pressed over the word and the manpage directory
 is in the searchpath (among other ways, append the man/ pathname to
 the environment variable MANPATH -see man(1) for more information).
 
-*Note*: In many cases the descriptions of these intrinsics were
-derived from the [[GFortran|GNU Fortran]] and the Fortran Wiki by
-Jason Blevins. These documents were under the [[GNU Free Documentation
-License]]; as are these documents currently.
-
 These documents are at the state of "good enough considering the
 alternative is nothing", but are still actively being completed.
+
+# RESPONSES
+
+Discussion is welcome here as well as at
+ - [Fortran Discourse](https://fortran-lang.discourse.group/t/fortran-intrinsic-manpages/160/)
+ - [Fortran Wiki](http://fortranwiki.org)
+ - [Google Fortran newsgroup]( https://groups.google.com/forum/#!forum/comp.lang.fortran)
+
+# REFERENCES
+ - The [Fortran 2018 Standard] (https://j3-fortran.org/doc/year/18/18-007r1.pdf) 
+   as described at https://j3-fortran.org/doc/year/18/18-007r1.pdf
+ - Intrisic descriptions from Jason Blevins at the 
+   [Fortran Wiki](http://fortranwiki.org) http://fortranwiki.org
+ - [GNU gfortran intrinsic descriptions](https://gcc.gnu.org/onlinedocs/gfortran/Intrinsic-Procedures.html)
+   at https://gcc.gnu.org/onlinedocs/gfortran/Intrinsic-Procedures.html
