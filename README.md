@@ -16,6 +16,8 @@ The manpages are available as archive files:
    - [manpages.zip](https://github.com/urbanjost/fortran-intrinsic-manpages/blob/master/ship/manpages.tgz)
    - [manpages.tgz](https://github.com/urbanjost/fortran-intrinsic-manpages/ship/manpages.zip)
    - [manpages.zip](https://github.com/urbanjost/fortran-intrinsic-manpages/ship/manpages.tgz)
+   - [manpages.tgz](ship/manpages.zip)
+   - [manpages.zip](ship/manpages.tgz)
 
 The man(1) interface is available for all *nix systems and Cygwin as
 well as other platforms.
