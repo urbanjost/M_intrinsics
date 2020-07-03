@@ -9,7 +9,6 @@ VPATH=../md
 VPATH=../man/man3
 FULLMANS=$(patsubst %3fortran.man,../man/man3/%3fortran,$(SRCS))
 FULLHTMLS=$(patsubst %3fortran.man,%3fortran.html,$(SRCS))
-FULLF90S=$(patsubst %3fortran.man,%3fortran.html,$(SRCS))
 
 .SUFFIXES:
 .SUFFIXES: $(SUFFIXES) .3fortran.man .3fortran .html
@@ -20,6 +19,11 @@ all: roff
 	bash scripts/book.sh FORTRAN fortran
 	mandb -q -c ../man
 	bash scripts/mank.sh 
+	: checking for empty files in src/
+	@for NAME in ../src/*.f90;\
+	do\
+	   [ -s "$$NAME" ] || echo $$(basename $$NAME .f90);\
+	done|xargs -n 5|column -t
 	: that is all folks!
 
 roff: $(FULLMANS)
