@@ -32,8 +32,8 @@ EXAMPLE
    program demo_count
    integer, dimension(2,3) :: a, b
    logical, dimension(2,3) :: mymask
-      a = reshape( (/ 1, 2, 3, 4, 5, 6 /), (/ 2, 3 /))
-      b = reshape( (/ 0, 7, 3, 4, 5, 8 /), (/ 2, 3 /))
+      a = reshape( [ 1, 2, 3, 4, 5, 6 ], [ 2, 3 ])
+      b = reshape( [ 0, 7, 3, 4, 5, 8 ], [ 2, 3 ])
       print '(3i3)', a(1,:)
       print '(3i3)', a(2,:)
       print *

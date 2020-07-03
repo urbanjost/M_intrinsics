@@ -1,7 +1,7 @@
            program demo_verify
            character(len=12):: c1='Howdy There!'
-           character(len=6) :: c2(2)=(/"Howdy ","there!"/)
-           character(len=2) :: c3(2)=(/"de","gh"/)
+           character(len=6) :: c2(2)=["Howdy ","there!"]
+           character(len=2) :: c3(2)=["de","gh"]
            !=======================================================
            !! LOCATION OF FIRST NONBLANK CHARACTER
            write(*,*)'nonblank ',verify('  Hello World! ', ' ')
@@ -11,7 +11,7 @@
            write(*,*) verify(c1,'de')                  ! writes 1
            write(*,*) verify(c2,c3)                    ! writes 1 1
            write(*,*) verify(c1,'de',back=.true.)      ! writes 12
-           write(*,*) verify(c2,c3,(/.true.,.false./)) ! writes 6 1
+           write(*,*) verify(c2,c3,[.true.,.false.]) ! writes 6 1
            !=======================================================
            write(*,*) verify("fortran", "ao")           ! 1, found 'f'
            write(*,*) verify("fortran", "fo")           ! 3, found 'r'

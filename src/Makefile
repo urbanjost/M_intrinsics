@@ -10,15 +10,17 @@ F90LDFLAGS=
 .SUFFIXES: .f90
 
 all: $(PROGRAMS)
-	echo $(PROGRAMS)|xargs -n 10|column -t
+#	echo $(SRCS)
+#	echo $(PROGRAMS)
 	: that is all, folks!
 
 # The built-in default rules for make then work already
 # Behind the scenes, make(1) is using the POSIX-mandated built-in single suffix rule
 
 .f90:
-	$(FC90) $(F90FLAGS) $(LDFLAGS) $(TARGET_ARCH) -o $@ $<
+	[ ! -z $< ] && $(FC90) $(F90FLAGS) $(LDFLAGS) $(TARGET_ARCH) -o $@ $< || echo $@ 
 
-.PHONY : clean
+.phony : clean
 clean:
-	rm -f $(PROGRAMS) 
+	rm -f $(PROGRAMS)
+

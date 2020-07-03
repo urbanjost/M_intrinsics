@@ -58,7 +58,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </B></BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=8>
+<A name=9>
 
      <H3>SYNTAX</H3>
 
@@ -73,11 +73,97 @@ result = <B>cmplx</B>(x [, y [, kind]])
 
 </A>
 <BLOCKQUOTE>
+To convert numeric variables to complex, use the CMPLX function.
+Constants can be used to define a complex variable using the syntax
 <P>
-<B>cmplx</B>(x [, y [, kind]]) returns a complex number where X is converted to
-the real component. If Y is present it is converted to the imaginary
-component. If Y is not present then the imaginary component is set to
-0.0. If X is complex then Y must not be present.
+<PRE>
+      z8 = (1.2345678901234567d0, 1.2345678901234567d0) 
+<P>
+</PRE>
+but this will not work for variables. You must use the CMPLX function.
+<P>
+<B>CMPLX</B>(X [, Y [, KIND]]) returns a complex number where X is converted
+<TABLE cellpadding=3><!-- tsb: <B>CMPLX</B>(X [, Y [, KIND]]) returns a complex number where X is converted
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B>to the real component.</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+If X is complex then Y must not be present.
+If Y is present it is converted to the imaginary component. If Y is
+not present then the imaginary component is set to 0.0.
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; CMPLX AND DOUBLE PRECISION</H4>
+</A>
+<BLOCKQUOTE>
+<P>
+The Fortran 90 language defines <B>CMPLX</B>() as always returning a result
+that is type <B>COMPLEX</B>(KIND=KIND(0.0)).
+<P>
+This means &#145;<B>CMPLX</B>(D1,D2)&#146;, where &#145;D1&#146; and &#145;D2&#146; are DOUBLEPRECISION,
+is treated as:
+<P>
+<PRE>
+      CMPLX(SNGL(D1), SNGL(D2))
+<P>
+</PRE>
+DOUBLEPRECISION complex numbers require specifying a precision.
+<P>
+It was necessary for Fortran 90 to specify this behavior for
+DOUBLEPRECISION arguments, since that is the behavior mandated by
+FORTRAN 77.
+<P>
+So Fortran 90 extends the <B>CMPLX</B>() intrinsic by adding an extra argument
+used to specify the desired kind of complex result.
+<P>
+<PRE>
+      integer,parameter :: dp=kind(0.0d0)
+      complex(kind=dp) :: z8
+      !
+      ! NO: result is just the precision of default REAL values
+      !     because KIND parameter is not specified
+      !
+      ! note this was stored with default real precision
+      z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0) 
+      print *, &#146;NO, Z8=&#146;,z8,real(z8),aimag(z8)
+      z8 = cmplx(1.2345678901234567e0_dp, 1.2345678901234567e0_dp)
+      print *, &#146;NO, Z8=&#146;,z8,real(z8),aimag(z8) ! again, note components are just REAL
+      !
+      ! YES
+      !
+      z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0,kind=dp) ! kind= makes it work
+      print *, &#146;YES, Z8=&#146;,z8,real(z8),aimag(z8)
+<P>
+</PRE>
+F2018 COMPONENT SYNTAX
+The real and imaginary parts of a complex entity can be accessed
+independently with a component-like syntax in f2018:
+<P>
+A complex-part-designator is
+<P>
+<PRE>
+      designator % RE
+      or
+      designator % IM.
+<P>
+</PRE>
+Where the designator is of complex type.
+<P>
+So designator%RE designates the real part of a complex value,
+designator%IM designates the imaginary part of complex value. The
+type of a complex-part-designator is REAL, and its kind and shape
+are those of the designator.
+<P>
+The following are examples of complex part designators:
+<P>
+<PRE>
+       impedance%re           !-- Same value as REAL(impedance)
+       fft%im                 !-- Same value as AIMAG(fft)
+       x%im = 0.0             !-- Sets the imaginary part of X to zero
+<P>
+</PRE>
 </BLOCKQUOTE>
 <A name=3>
 
@@ -114,27 +200,72 @@ KIND if it is specified. If KIND is not specified, the
 result is of the default COMPLEX kind, regardless of the kinds of
 X and Y.
 </BLOCKQUOTE>
+<P>
+<P>
 <A name=5>
 
      <H3>EXAMPLE</H3>
 
 </A>
 <BLOCKQUOTE>
-<P>
 Sample program:
 <P>
 <PRE>
-    program demo_cmplx
-        integer :: i = 42
-        real :: x = 3.14
-        complex :: z
-        z = cmplx(i, x)
-        print *, z, cmplx(x)
-    end program demo_cmplx
+   program demo_aimag
+   integer,parameter :: dp=kind(0.0d0)
+   complex          :: z4
+   complex(kind=dp) :: z8
+      z4 = cmplx(1.23456789, 1.23456789)
+      print *, &#146;Z4=&#146;,z4
+      ! using kind=dp makes it keep DOUBLEPRECISION precision
+      z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0,kind=dp)
+      print *, &#146;Z8=&#146;,z8
+      ! NOTE:
+      ! The following is intuitive and works without calling cmplx(3f)
+      ! but does not work for variables just constants
+      z8 = (1.2345678901234567d0 , 1.2345678901234567d0 )
+      print *, &#146;Z8 defined with constants=&#146;,z8
+   end program demo_aimag
+<P>
+</PRE>
+Typical Results:
+<P>
+<PRE>
+    Z4= (1.23456788,1.23456788)
+    Z8= (1.2345678901234567,1.2345678901234567)
+    Z8 defined with constants= (1.2345678901234567,1.2345678901234567)
 <P>
 </PRE>
 </BLOCKQUOTE>
 <A name=6>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+<B>aimag</B>(3f) - Imaginary part of complex number
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+<B>cmplx</B>(3f) - Complex conversion function
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+<B>conjg</B>(3f) - Complex conjugate function
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+<B>real</B>(3f) - Convert to real type
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=7>
 
      <H3>STANDARD</H3>
 
@@ -143,7 +274,7 @@ Sample program:
 <P>
 [[FORTRAN 77]] and later
 </BLOCKQUOTE>
-<A name=7>
+<A name=8>
 
      <H3>CLASS</H3>
 
@@ -153,7 +284,7 @@ Sample program:
 [[Elemental procedure|Elemental function]]
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>cmplx (3fortran)</TD> <TD align=right width=33%><I>July 01, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 2437353f-d2d4-4d66-b879-b39dcbd76a0b using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>cmplx (3fortran)</TD> <TD align=right width=33%><I>July 02, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 2eefddaa-eaf7-45f1-bdbe-c9c5e8992906 using man macros.</FONT>
 <br><br><center><img src="images/IMAGE.gif"></center>
 </div>
 </div>

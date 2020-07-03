@@ -86,7 +86,6 @@ append("extends_type_of.3fortran.html");
 append("findloc.3fortran.html");
 append("float.3fortran.html");
 append("floor.3fortran.html");
-append("format.3fortran.html");
 append("fraction.3fortran.html");
 append("gamma.3fortran.html");
 append("get_command.3fortran.html");

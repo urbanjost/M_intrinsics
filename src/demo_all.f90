@@ -1,6 +1,6 @@
            program demo_all
              logical l
-             l = all((/.true., .true., .true./))
+             l = all([.true., .true., .true.])
              print *, l
              call section
            contains

@@ -1,6 +1,6 @@
            program demo_any
              logical l
-             l = any((/.true., .true., .true./))
+             l = any([.true., .true., .true.])
              print *, l
              call section
              contains

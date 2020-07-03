@@ -13,7 +13,7 @@ ARGUMENTS
 
 RETURN VALUE
    The result has the same type as MATRIX, and has shape
-   (/ m, n /) if MATRIX has shape (/ n, m /).
+   [ m, n ] if MATRIX has shape [ n, m ].
 
 EXAMPLE
    Sample program:
