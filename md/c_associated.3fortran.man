@@ -44,5 +44,5 @@ CLASS
 
 SEE ALSO
 
-   [[c_loc]], [[c_funloc]], [[iso_c_binding]]
+   c_loc(3), c_funloc(3), iso_c_binding(3)
 

@@ -27,5 +27,5 @@ CLASS
    [[Inquiry function]]
 
 SEE ALSO
-   [[selected_real_kind]], [[precision]]
+   selected_real_kind(3), precision(3)
 

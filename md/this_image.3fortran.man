@@ -65,5 +65,5 @@ CLASS
 
 SEE ALSO
 
-   [[num_images]], [[image_index]]
+   num_images(3), image_index(3)
 

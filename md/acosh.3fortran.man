@@ -39,5 +39,5 @@ CLASS
 
 SEE ALSO
 
-Inverse function: [[cosh]]
+Inverse function: cosh(3)
 

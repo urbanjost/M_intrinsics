@@ -40,5 +40,5 @@ CLASS
 
 SEE ALSO
 
-   Inverse function: [[sin]]
+   Inverse function: sin(3)
 

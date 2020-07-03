@@ -32,4 +32,4 @@ CLASS
 
 SEE ALSO
 
-   [[shifta]], [[shiftr]]
+   shifta(3), shiftr(3)

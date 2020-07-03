@@ -40,5 +40,5 @@ CLASS
 
 SEE ALSO
 
-   [[max]], [[minloc]], [[minval]]
+   max(3), minloc(3), minval(3)
 

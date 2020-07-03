@@ -22,5 +22,5 @@ CLASS
    [[Inquiry function]]
 
 SEE ALSO
-   [[extends_type_of]]
+   extends_type_of(3)
 

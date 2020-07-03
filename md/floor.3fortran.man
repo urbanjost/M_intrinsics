@@ -42,5 +42,5 @@ CLASS
 
 SEE ALSO
 
-   [[ceiling]], [[nint]]
+   ceiling(3), nint(3)
 

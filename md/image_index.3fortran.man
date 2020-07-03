@@ -39,5 +39,5 @@ CLASS
 
 SEE ALSO
 
-   [[this_image]], [[num_images]]
+   this_image(3), num_images(3)
 

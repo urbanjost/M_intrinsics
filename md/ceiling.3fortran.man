@@ -41,5 +41,5 @@ CLASS
 
 SEE ALSO
 
-   [[floor]], [[nint]]
+   floor(3), nint(3)
 

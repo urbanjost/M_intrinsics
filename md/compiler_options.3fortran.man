@@ -53,5 +53,5 @@ CLASS
 
 SEE ALSO
 
-   [[compiler_version]], [[iso_fortran_env]]
+   compiler_version(3), iso_fortran_env(3)
 

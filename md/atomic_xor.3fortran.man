@@ -44,6 +44,6 @@ Atomic subroutine
 
 SEE ALSO
 
-   [[atomic_define]], [[atomic_fetch_xor]], [[iso_fortran_env]],
-   [[atomic_add]], [[atomic_or]], [[atomic_xor]]
+   atomic_define(3), atomic_fetch_xor(3), iso_fortran_env(3),
+   atomic_add(3), atomic_or(3), atomic_xor(3)
 

@@ -68,4 +68,4 @@ CLASS
 
 SEE ALSO
 
-   [[cpu_time]], [[system_clock]]
+   cpu_time(3), system_clock(3)

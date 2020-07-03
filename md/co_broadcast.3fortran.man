@@ -43,5 +43,5 @@ EXAMPLE
 
 SEE ALSO
 
-   [[co_max]], [[co_min]], [[co_sum]], [[co_reduce]]
+   co_max(3), co_min(3), co_sum(3), co_reduce(3)
 

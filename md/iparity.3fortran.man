@@ -54,5 +54,5 @@ CLASS
 
 SEE ALSO
 
-   [[iany]], [[iall]], [[ieor]], [[parity]]
+   iany(3), iall(3), ieor(3), parity(3)
 

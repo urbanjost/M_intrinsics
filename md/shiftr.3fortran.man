@@ -31,4 +31,4 @@ CLASS
 
 SEE ALSO
 
-   [[shifta]], [[shiftl]]
+   shifta(3), shiftl(3)

@@ -51,6 +51,6 @@ SEE ALSO
    Functions that perform operations on character strings, return lengths
    of arguments, and search for certain arguments:
 
-   Elemental:     ADJUSTL, ADJUSTR, INDEX, LEN_TRIM, SCAN, VERIFY;
-   Nonelemental:  REPEAT, TRIM
+   Elemental:     ADJUSTL(3), ADJUSTR(3), INDEX(3), LEN_TRIM(3), SCAN(3), VERIFY(3)
+   Nonelemental:  REPEAT(3), TRIM(3)
 

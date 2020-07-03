@@ -26,4 +26,4 @@ CLASS
    [[Elemental function]]
 
 SEE ALSO
-   [[shiftl]], [[shiftr]]
+   shiftl(3), shiftr(3)

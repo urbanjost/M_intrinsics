@@ -43,5 +43,5 @@ CLASS
 
 SEE ALSO
 
-   [[popcnt]], [[leadz]], [[trailz]]
+   popcnt(3), leadz(3), trailz(3)
 

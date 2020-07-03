@@ -41,5 +41,5 @@ CLASS
 
 SEE ALSO
 
-   [[rrspacing]]
+   rrspacing(3)
 

@@ -57,5 +57,5 @@ Pure subroutine
 
 SEE ALSO
 
-   [[allocated]]
+   allocated(3)
 

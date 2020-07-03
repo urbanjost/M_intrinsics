@@ -52,5 +52,5 @@ CLASS
 
 SEE ALSO
 
-   [[compiler_options]], [[iso_fortran_env]]
+   compiler_options(3), iso_fortran_env(3)
 

@@ -50,5 +50,5 @@ CLASS
    Transformational function
 SEE ALSO
 
-   [[shape]]
+   shape(3)
 

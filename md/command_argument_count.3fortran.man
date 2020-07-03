@@ -49,6 +49,6 @@ CLASS
 
 SEE ALSO
 
-   [[get_command]],
-   [[get_command_argument]]
+   get_command(3),
+   get_command_argument(3)
 

@@ -39,5 +39,5 @@ CLASS
 
 SEE ALSO
 
-   [[float]], [[real]]
+   float(3), real(3)
 

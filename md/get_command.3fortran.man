@@ -62,6 +62,6 @@ CLASS
 
 SEE ALSO
 
-   [[get_command_argument]],
-   [[command_argument_count]]
+   get_command_argument(3),
+   command_argument_count(3)
 

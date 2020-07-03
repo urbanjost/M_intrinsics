@@ -162,5 +162,5 @@ CLASS
 
 SEE ALSO
 
-   [[shape]], [[reshape]]
+   shape(3), reshape(3)
 

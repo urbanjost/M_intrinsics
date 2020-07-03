@@ -43,5 +43,5 @@ CLASS
 
 SEE ALSO
 
-   [[product]], [[sum]], [[hypot]]
+   product(3), sum(3), hypot(3)
 

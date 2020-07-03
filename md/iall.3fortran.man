@@ -53,5 +53,5 @@ CLASS
 
 SEE ALSO
 
-   [[iany]], [[iparity]], [[iand]]
+   iany(3), iparity(3), iand(3)
 

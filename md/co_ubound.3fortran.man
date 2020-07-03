@@ -36,5 +36,5 @@ CLASS
 
 SEE ALSO
 
-   [[co_lbound]], [[lbound]], [[ubound]]
+   co_lbound(3), lbound(3), ubound(3)
 

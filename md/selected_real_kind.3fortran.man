@@ -69,5 +69,5 @@ CLASS
 
 SEE ALSO
 
-   [[precision]], [[range]], [[radix]]
+   precision(3), range(3), radix(3)
 

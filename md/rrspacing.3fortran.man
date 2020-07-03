@@ -17,4 +17,4 @@ STANDARD
 CLASS
    [[Elemental procedure|Elemental function]]
 SEE ALSO
-   [[spacing]]
+   spacing(3)

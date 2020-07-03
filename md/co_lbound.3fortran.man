@@ -28,5 +28,5 @@ CLASS
    Inquiry function
 
 SEE ALSO
-   [[co_ubound]], [[lbound]]
+   co_ubound(3), lbound(3)
 

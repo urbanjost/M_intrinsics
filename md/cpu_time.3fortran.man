@@ -62,5 +62,5 @@ CLASS
 
 SEE ALSO
 
-   [[system_clock]], [[date_and_time]]
+   system_clock(3), date_and_time(3)
 

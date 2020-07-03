@@ -53,5 +53,5 @@ CLASS
 
 SEE ALSO
 
-   [[random_number]]
+   random_number(3)
 

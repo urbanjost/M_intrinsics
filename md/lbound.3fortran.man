@@ -79,4 +79,4 @@ CLASS
    [[Inquiry function]]
 
 SEE ALSO
-   [[ubound]], [[co_lbound]]
+   ubound(3), co_lbound(3)

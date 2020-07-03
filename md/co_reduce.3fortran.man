@@ -79,5 +79,5 @@ CLASS
 
 SEE ALSO
 
-   [[co_min]], [[co_max]], [[co_sum]], [[co_broadcast]]
+   co_min(3), co_max(3), co_sum(3), co_broadcast(3)
 

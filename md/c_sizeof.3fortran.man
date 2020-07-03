@@ -47,5 +47,5 @@ CLASS
 
 SEE ALSO
 
-   [[storage_size]]
+   storage_size(3)
 

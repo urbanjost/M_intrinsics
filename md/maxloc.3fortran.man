@@ -62,5 +62,5 @@ CLASS
 
 SEE ALSO
 
-   [[max]], [[maxval]]
+   max(3), maxval(3)
 

@@ -101,5 +101,5 @@ CLASS
 
 SEE ALSO
 
-   unpack(3f)
+   unpack(3)
 

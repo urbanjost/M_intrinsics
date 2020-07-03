@@ -32,6 +32,6 @@ CLASS
 
 SEE ALSO
 
-   [[btest]], [[ibclr]], [[ibits]], [[iand]], [[ior]], [[ieor]],
-   [[mvbits]]
+   btest(3), ibclr(3), ibits(3), iand(3), ior(3), ieor(3),
+   mvbits(3)
 

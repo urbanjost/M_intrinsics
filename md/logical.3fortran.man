@@ -32,5 +32,5 @@ CLASS
 
 SEE ALSO
 
-   [[int]], [[real]], [[cmplx]]
+   int(3), real(3), cmplx(3)
 

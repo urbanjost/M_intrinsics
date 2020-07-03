@@ -94,6 +94,6 @@ CLASS
 
 SEE ALSO
 
-   [[get_command]],
-   [[command_argument_count]]
+   get_command(3),
+   command_argument_count(3)
 

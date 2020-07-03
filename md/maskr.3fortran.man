@@ -31,5 +31,5 @@ CLASS
 
 SEE ALSO
 
-   [[maskl]]
+   maskl(3)
 

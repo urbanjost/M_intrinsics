@@ -29,6 +29,7 @@ RESULTS
    variable is its declared type.
 
 EXAMPLE
+
 CLASS
    Inquiry function.
 

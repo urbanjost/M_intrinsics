@@ -51,5 +51,5 @@ CLASS
 
 SEE ALSO
 
-   [[this_image]], [[image_index]]
+   this_image(3), image_index(3)
 

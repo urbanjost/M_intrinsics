@@ -36,5 +36,5 @@ CLASS
 
 SEE ALSO
 
-Gamma function: [[gamma]]
+Gamma function: gamma(3)
 

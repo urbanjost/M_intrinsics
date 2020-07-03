@@ -44,5 +44,5 @@ CLASS
 
 SEE ALSO
 
-   [[ceiling]], [[floor]]
+   ceiling(3), floor(3)
 

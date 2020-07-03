@@ -44,6 +44,6 @@ CLASS
 
 SEE ALSO
 
-   [[atomic_ref]], [[atomic_cas]], [[iso_fortran_env]],
-   [[atomic_add]], [[atomic_and]], [[atomic_or]], [[atomic_xor]]
+   atomic_ref(3), atomic_cas(3), iso_fortran_env(3),
+   atomic_add(3), atomic_and(3), atomic_or(3), atomic_xor(3)
 

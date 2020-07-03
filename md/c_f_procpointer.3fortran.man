@@ -54,5 +54,5 @@ CLASS
 
 SEE ALSO
 
-   [[c_loc]], [[c_f_pointer]], [[iso_c_binding]]
+   c_loc(3), c_f_pointer(3), iso_c_binding(3)
 

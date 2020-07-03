@@ -68,7 +68,7 @@ CLASS
 
 SEE ALSO
 
-   [[max]], [[maxloc]]
+   max(3), maxloc(3)
 
 CATEGORY
 

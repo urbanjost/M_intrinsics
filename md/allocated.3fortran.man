@@ -43,5 +43,5 @@ CLASS
 
 SEE ALSO
 
-   [[move_alloc]]
+   move_alloc(3)
 

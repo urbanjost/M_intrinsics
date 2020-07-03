@@ -34,6 +34,6 @@ CLASS
 
 SEE ALSO
 
-   [[bit_size]], [[ibclr]], [[ibset]],
-   [[iand]], [[ior]], [[ieor]]
+   bit_size(3), ibclr(3), ibset(3),
+   iand(3), ior(3), ieor(3)
 

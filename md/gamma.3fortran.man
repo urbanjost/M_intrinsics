@@ -43,5 +43,5 @@ CLASS
 
 SEE ALSO
 
-   Logarithm of the Gamma function: [[log_gamma]]
+   Logarithm of the Gamma function: [[log_gamma(3)
 

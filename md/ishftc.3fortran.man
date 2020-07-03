@@ -38,5 +38,5 @@ CLASS
 
 SEE ALSO
 
-   [[ishft]]
+   ishft(3)
 

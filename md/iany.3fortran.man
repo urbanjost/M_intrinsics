@@ -54,5 +54,5 @@ CLASS
 
 SEE ALSO
 
-   [[iparity]], [[iall]], [[ior]]
+   iparity(3), iall(3), ior(3)
 

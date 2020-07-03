@@ -42,5 +42,5 @@ CLASS
 
 SEE ALSO
 
-   [[atanh]]
+   atanh(3)
 

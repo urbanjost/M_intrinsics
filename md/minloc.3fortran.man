@@ -63,5 +63,5 @@ CLASS
 
 SEE ALSO
 
-   [[min]], [[minval]]
+   min(3), minval(3)
 

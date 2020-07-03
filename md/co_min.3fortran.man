@@ -50,5 +50,5 @@ CLASS
 
 SEE ALSO
 
-   [[co_max]], [[co_sum]], [[co_reduce]], [[co_broadcast]]
+   co_max(3), co_sum(3), co_reduce(3), co_broadcast(3)
 

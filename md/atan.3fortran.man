@@ -45,5 +45,5 @@ CLASS
 
 SEE ALSO
 
-   [[atan2]], [[tan]]
+   atan2(3), tan(3)
 

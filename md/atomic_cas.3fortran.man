@@ -48,5 +48,5 @@ Atomic subroutine
 
 SEE ALSO
 
-   [[atomic_define]], [[atomic_ref]], [[iso_fortran_env]]
+   atomic_define(3), atomic_ref(3), iso_fortran_env(3)
 

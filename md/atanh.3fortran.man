@@ -39,5 +39,5 @@ CLASS
 
 SEE ALSO
 
-Inverse function: [[tanh]]
+Inverse function: tanh(3)
 

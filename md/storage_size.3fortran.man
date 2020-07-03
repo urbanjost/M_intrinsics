@@ -42,5 +42,5 @@ CLASS
 
 SEE ALSO
 
-   [[c_sizeof]]
+   c_sizeof(3)
 

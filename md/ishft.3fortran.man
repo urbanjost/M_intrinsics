@@ -34,5 +34,5 @@ CLASS
 
 SEE ALSO
 
-   [[ishftc]]
+   ishftc(3)
 

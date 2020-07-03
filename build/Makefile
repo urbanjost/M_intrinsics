@@ -1,10 +1,12 @@
 #@(#) Makefile make *roff and html from markdown files using txt2man 2020-06-28 23:36:42
 
+# you must have write permission to the install directory
+MANDIR=/usr/share/man
+
 FULLSRCS := $(wildcard ../md/*3fortran.man)
 SRCS=$(notdir $(FULLSRCS))
 VPATH=../md
 VPATH=../man/man3
-
 FULLMANS=$(patsubst %3fortran.man,../man/man3/%3fortran,$(SRCS))
 FULLHTMLS=$(patsubst %3fortran.man,%3fortran.html,$(SRCS))
 FULLF90S=$(patsubst %3fortran.man,%3fortran.html,$(SRCS))
@@ -30,13 +32,23 @@ $(FULLMANS) : ../man/man3/%.3fortran : ../md/%.3fortran.man
 	bash scripts/man2html >../docs/$*.3fortran.html
 	env MANPATH=../man bash scripts/man2f90 $*
 
+.PHONY: install
+install:
+	@test -w $(MANDIR)||(echo install : cannot write to $(MANDIR);exit 1)
+	for NAME in $(FULLMANS); \
+	do \
+	   gzip --force --keep --stdout $$NAME > $(MANDIR)/$$(basename $$NAME).gz \
+	   && chmod a=r,u+w $(MANDIR)/$$(basename $$NAME).gz; \
+	done
+
 .PHONY : demos
 demos:
 	cd ../src;make
 
 .PHONY : clean
 clean:
-	rm -f $(FULLMANS) $(FULLHTMLS) 
+	rm -f $(FULLMANS) 
+	cd ../docs &&rm -f $(FULLHTMLS)
 	cd ../src/ && make clean
 
 .PHONY : list
@@ -47,11 +59,12 @@ list:
 
 .PHONY: help
 help:
-	@echo 'all   -- build all manpages, html pages, and write demo programs'
-	@echo 'list  -- list all manpages to stdout'
-	@echo 'demos -- build demo programs'
-	@echo 'clean -- remove output files built by this makefile'
-	@echo 'help  -- display this message'
+	@echo 'all      -- build all manpages, html pages, and write demo programs'
+	@echo 'list     -- list all manpages to stdout'
+	@echo 'demos    -- build demo programs'
+	@echo 'clean    -- remove output files built by this makefile'
+	@echo 'help     -- display this message'
+	@echo 'install  -- display this message'
 
 .PHONY: debug
 debug:
@@ -73,3 +86,4 @@ debug:
 	:+F $(+F) 
 	:?D $(?D) 
 	:?F $(?F):'
+

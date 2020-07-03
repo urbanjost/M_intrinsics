@@ -32,4 +32,4 @@ CLASS
 
 SEE ALSO
 
-   [[dshiftl]]
+   dshiftl(3)

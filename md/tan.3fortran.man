@@ -38,5 +38,5 @@ CLASS
 
 SEE ALSO
 
-   [[atan]], [[cos]], [[sin]]
+   atan(3), cos(3), sin(3)
 

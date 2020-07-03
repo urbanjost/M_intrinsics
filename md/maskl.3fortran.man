@@ -33,5 +33,5 @@ CLASS
 
 SEE ALSO
 
-   [[maskr]]
+   maskr(3)
 

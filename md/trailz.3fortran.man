@@ -37,5 +37,5 @@ CLASS
 
 SEE ALSO
 
-   [[bit_size]], [[popcnt]], [[poppar]], [[leadz]]
+   bit_size(3), popcnt(3), poppar(3), leadz(3)
 

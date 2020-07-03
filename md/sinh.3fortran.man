@@ -38,5 +38,5 @@ CLASS
 
 SEE ALSO
 
-   [[asinh]]
+   asinh(3)
 

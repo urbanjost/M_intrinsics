@@ -35,5 +35,5 @@ CLASS
    [[Elemental procedure|Elemental function]]
 
 SEE ALSO
-   [[radix]]
+   radix(3)
 

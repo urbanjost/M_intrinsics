@@ -71,4 +71,4 @@ CLASS
    Subroutine
 
 SEE ALSO
-   [[random_seed]]
+   random_seed(3)

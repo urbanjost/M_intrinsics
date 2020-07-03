@@ -83,5 +83,5 @@ CLASS
 
 SEE ALSO
 
-   [[date_and_time]], [[cpu_time]]
+   date_and_time(3), cpu_time(3)
 

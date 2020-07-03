@@ -22,4 +22,4 @@ CLASS
    Elemental function
 
 SEE ALSO
-   [[dble]]
+   dble(3)

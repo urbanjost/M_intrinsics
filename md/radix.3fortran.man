@@ -38,5 +38,5 @@ CLASS
 
 SEE ALSO
 
-   [[scale]], [[selected_real_kind]]
+   scale(3), selected_real_kind(3)
 

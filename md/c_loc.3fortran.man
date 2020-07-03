@@ -43,7 +43,7 @@ CLASS
    [[Inquiry function]]
 SEE ALSO
 
-   [[c_associated]], [[c_funloc]],
-   [[c_f_pointer]], [[c_f_procpointer]],
-   [[iso_c_binding]]
+   c_associated(3), c_funloc(3),
+   c_f_pointer(3), c_f_procpointer(3),
+   iso_c_binding(3)
 

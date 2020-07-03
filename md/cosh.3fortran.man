@@ -39,5 +39,5 @@ CLASS
 
 SEE ALSO
 
-   Inverse function: [[acosh]]
+   Inverse function: acosh(3)
 

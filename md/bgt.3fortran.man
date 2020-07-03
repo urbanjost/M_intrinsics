@@ -30,5 +30,5 @@ CLASS
 
 SEE ALSO
 
-   [[bge]], [[ble]], [[blt]]
+   bge(3), ble(3), blt(3)
 

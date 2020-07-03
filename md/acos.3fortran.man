@@ -39,5 +39,5 @@ CLASS
 
 SEE ALSO
 
-Inverse function: [[cos]]
+Inverse function: cos(3)
 

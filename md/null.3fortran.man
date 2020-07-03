@@ -40,5 +40,5 @@ CLASS
 
 SEE ALSO
 
-   [[associated]]
+   associated(3)
 

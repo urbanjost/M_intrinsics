@@ -55,5 +55,5 @@ CLASS
 
 SEE ALSO
 
-   [[dble]], [[float]]
+   dble(3), float(3)
 

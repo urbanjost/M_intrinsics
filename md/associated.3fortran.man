@@ -82,5 +82,5 @@ CLASS
 
 SEE ALSO
 
-   [[null]]
+   null(3)
 

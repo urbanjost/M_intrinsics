@@ -52,5 +52,5 @@ CLASS
 
 SEE ALSO
 
-   [[mod]]
+   mod(3)
 

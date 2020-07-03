@@ -88,5 +88,5 @@ CLASS
 
 SEE ALSO
 
-   [[lbound]], [[co_ubound]], [[co_lbound]]
+   lbound(3), co_ubound(3), co_lbound(3)
 

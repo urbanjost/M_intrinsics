@@ -52,5 +52,5 @@ CLASS
 
 SEE ALSO
 
-   [[modulo]]
+   modulo(3)
 
