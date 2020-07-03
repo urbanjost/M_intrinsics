@@ -61,7 +61,7 @@ Sample program:
       write(*,'(*(a))')(char(i),i=32,126)
         write(*,*) lle('abc','ABC')                 ! F lowercase is > uppercase
         write(*,*) lle('abc','abc  ')               ! T trailing spaces
-        If both strings are of zero length the result is true.
+        ! If both strings are of zero length the result is true.
         write(*,*) lle('','')                       ! T
         write(*,*) lle('','a')                      ! T the null string is padded
         write(*,*) lle('a','')                      ! F
@@ -94,13 +94,13 @@ Results:
 .SH CLASS
 [[Elemental procedure|Elemental function]]
 .SH SEE ALSO
-(lge(3), (lgt(3), (llt(3)
+\fBlge\fP(3), \fBlgt\fP(3), \fBllt\fP(3)
 .PP
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 .TP
 .B Elemental:
-\fBADJUSTL\fP(3), \fBADJUSTR\fP(3), \fBINDEX\fP(3), \fBLEN_TRIM\fP(3), \fBSCAN\fP(3), \fBVERIFY\fP(3)
+\fBadjustl\fP(3), \fBadjustr\fP(3), \fBindex\fP(3), \fBlen_trim\fP(3), \fBscan\fP(3), \fBverify\fP(3)
 .TP
 .B Nonelemental:
-\fBREPEAT\fP(3), \fBTRIM\fP(3)
+\fBrepeat\fP(3), \fBtrim\fP(3)

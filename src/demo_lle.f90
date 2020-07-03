@@ -4,7 +4,7 @@
              write(*,'(*(a))')(char(i),i=32,126)
                write(*,*) lle('abc','ABC')                 ! F lowercase is > uppercase
                write(*,*) lle('abc','abc  ')               ! T trailing spaces
-               If both strings are of zero length the result is true.
+               ! If both strings are of zero length the result is true.
                write(*,*) lle('','')                       ! T
                write(*,*) lle('','a')                      ! T the null string is padded
                write(*,*) lle('a','')                      ! F

@@ -43,7 +43,7 @@ EXAMPLE
       write(*,'(*(a))')(char(i),i=32,126)
         write(*,*) lle('abc','ABC')                 ! F lowercase is > uppercase
         write(*,*) lle('abc','abc  ')               ! T trailing spaces
-        If both strings are of zero length the result is true.
+        ! If both strings are of zero length the result is true.
         write(*,*) lle('','')                       ! T
         write(*,*) lle('','a')                      ! T the null string is padded
         write(*,*) lle('a','')                      ! F
@@ -71,11 +71,10 @@ CLASS
    [[Elemental procedure|Elemental function]]
 
 SEE ALSO
-   (lge(3), (lgt(3), (llt(3)
+   lge(3), lgt(3), llt(3)
 
    Functions that perform operations on character strings, return lengths
    of arguments, and search for certain arguments:
 
-   Elemental:     ADJUSTL(3), ADJUSTR(3), INDEX(3), LEN_TRIM(3), SCAN(3), VERIFY(3)
-   Nonelemental:  REPEAT(3), TRIM(3)
-
+   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), scan(3), verify(3)
+   Nonelemental:  repeat(3), trim(3)
