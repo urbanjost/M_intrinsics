@@ -51,6 +51,12 @@ clean:
 	cd ../docs &&rm -f $(FULLHTMLS)
 	cd ../src/ && make clean
 
+.PHONY : vi
+vi:
+#	vi -c 'set keywordprg=env\ MANPATH=$$MANPATH:../man::\ man\ -s\ 3fortran\ -a' ../src/*.f90
+	: test K command in vim just using the manpages in ../man
+	vim -c 'set keywordprg=env\ MANPATH=../man\ man\ -s\ 3fortran\ -a' ../src/*.f90
+
 .PHONY : list
 list:
 	env MANPATH=../man man -k .
@@ -65,6 +71,18 @@ help:
 	@echo 'clean    -- remove output files built by this makefile'
 	@echo 'help     -- display this message'
 	@echo 'install  -- display this message'
+.PHONY: distros
+
+distros:
+	git clone https://github.com/mvertes/txt2man
+
+.PHONY: ship
+ship:
+	cd ../man/man3;\
+	   gzip *.3fortran;\
+	   zip -r ../../ship/manpages.zip *gz;\
+	   tar cvfz ../../ship/manpages.tgz *gz;\
+	   gunzip *.3fortran.gz
 
 .PHONY: debug
 debug:
