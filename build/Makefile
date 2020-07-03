@@ -33,10 +33,27 @@ $(FULLMANS) : ../man/man3/%.3fortran : ../md/%.3fortran.man
 .PHONY : demos
 demos:
 	cd ../src;make
+
 .PHONY : clean
 clean:
 	rm -f $(FULLMANS) $(FULLHTMLS) 
 	cd ../src/ && make clean
+
+.PHONY : list
+list:
+	env MANPATH=../man man -k .
+	env MANWIDTH=80 MANPATH=../man man --regex '.*'|col -b
+	env MANWIDTH=80 MANPATH=../man man --regex '.*'|bash scripts/spell.sh
+
+.PHONY: help
+help:
+	@echo 'all   -- build all manpages, html pages, and write demo programs'
+	@echo 'list  -- list all manpages to stdout'
+	@echo 'demos -- build demo programs'
+	@echo 'clean -- remove output files built by this makefile'
+	@echo 'help  -- display this message'
+
+.PHONY: debug
 debug:
 	@printf '%s', 'automatic variables
 	:< $< 
