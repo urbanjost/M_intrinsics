@@ -40,159 +40,200 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 .byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
 </style> 
 </head>
-<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<body>
 <h5><a href="index.html">[UP]</a></h5>
 <div id="Container">
 <div id="Content">
-<CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>transfer (3fortran)</NOBR><HR></H1>
-</CENTER>
-<A name=0>
 
-     <H3>NAME</H3>
+<h1 align="center">transfer</h1>
 
-</A>
-<BLOCKQUOTE>
-<B>
-</B><B>transfer(3f) </B>- [FORTRAN:INTRINSIC:BIT MANIPULATION] Transfer bit patterns
-<B>
-</B></BLOCKQUOTE>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=9>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNTAX">SYNTAX</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#ARGUMENTS">ARGUMENTS</a><br>
+<a href="#RETURN VALUE">RETURN VALUE</a><br>
+<a href="#EXAMPLE">EXAMPLE</a><br>
+<a href="#COMMENTS">COMMENTS</a><br>
+<a href="#STANDARD">STANDARD</a><br>
+<a href="#CLASS">CLASS</a><br>
 
-     <H3>SYNTAX</H3>
+<hr>
 
-</A>
-<BLOCKQUOTE>
-<P>
-result = <B>transfer</B>(source, mold[, size])
-</BLOCKQUOTE>
-<A name=2>
 
-     <H3>DESCRIPTION</H3>
+<h2>NAME
+<a name="NAME"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Interprets the bitwise representation of SOURCE in memory as if it
-is the representation of a variable or array of the same type and
-type parameters as MOLD.
-<P>
-This is approximately equivalent to the C concept of *casting* one
-type to another.
-</BLOCKQUOTE>
-<A name=3>
 
-     <H3>ARGUMENTS</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>SOURCE</B> </TD><TD valign=bottom>
-Shall be a scalar or an array of any type.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>MOLD</B> </TD><TD valign=bottom>
-Shall be a scalar or an array of any type.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>SIZE</B> </TD><TD valign=bottom>
-(Optional) shall be a scalar of type INTEGER.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=4>
+<p style="margin-left:11%; margin-top: 1em"><b>transfer(3f)
+- [FORTRAN:INTRINSIC:BIT MANIPULATION] Transfer bit
+patterns</b></p>
 
-     <H3>RETURN VALUE</H3>
+<h2>SYNTAX
+<a name="SYNTAX"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-The result has the same type as MOLD, with the bit level representation
-of SOURCE. If SIZE is present, the result is a one-dimensional array
-of length SIZE. If SIZE is absent but MOLD is an array (of any size or
-shape), the result is a one-dimensional array of the minimum length
-needed to contain the entirety of the bitwise representation of
-SOURCE. If SIZE is absent and MOLD is a scalar, the result is a scalar.
-<P>
-If the bitwise representation of the result is longer than that of
-SOURCE, then the leading bits of the result correspond to those of
-SOURCE and any trailing bits are filled arbitrarily.
-<P>
-When the resulting bit representation does not correspond to a valid
-representation of a variable of the same type as MOLD, the results are
-undefined, and subsequent operations on the result cannot be guaranteed
-to produce sensible behavior. For example, it is possible to create
-LOGICAL variables for which VAR and .not. var both appear to be true.
-</BLOCKQUOTE>
-<A name=5>
 
-     <H3>EXAMPLE</H3>
+<p style="margin-left:11%; margin-top: 1em">result =
+<b>transfer</b>(source, mold[, size])</p>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Sample program:
-<P>
-<PRE>
-    program demo_transfer
-      integer :: x = 2143289344
-      print *, transfer(x, 1.0)    ! prints "nan" on i686
-    end program demo_transfer
-<P>
-</PRE>
-</BLOCKQUOTE>
-<A name=6>
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
 
-     <H3>COMMENTS</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-[[Joe Krahn]]: Fortran uses **molding** rather than **casting**.
-<P>
-Casting, as in C, is an in-place reinterpretation. A cast is a device
-that is built around an object to change its shape.
-<P>
-Fortran TRANSFER reinterprets data out-of-place. It can be considered
-**molding** rather than casting. A **mold** is a device that confers
-a shape onto an object placed into it.
-<P>
-The advantage of molding is that data is always valid in the context
-of the variable that holds it. For many cases, a decent compiler
-should optimize TRANSFER into a simple assignment.
-<P>
-There are disadvantages of this approach. It is problematic to
-define a union of data types because you must know the largest data
-object, which can vary by compiler or compile options. In many cases,
-an EQUIVALENCE would be far more effective, but Fortran Standards
-committees seem oblivious to the benefits of EQUIVALENCEs when used
-sparingly.
-</BLOCKQUOTE>
-<A name=7>
+<p style="margin-left:11%; margin-top: 1em">Interprets the
+bitwise representation of SOURCE in memory as if it is the
+representation of a variable or array of the same type and
+type parameters as MOLD.</p>
 
-     <H3>STANDARD</H3>
+<p style="margin-left:11%; margin-top: 1em">This is
+approximately equivalent to the C concept of *casting* one
+type to another.</p>
 
-</A>
-<BLOCKQUOTE>
-<P>
-[[Fortran 90]] and later
-</BLOCKQUOTE>
-<A name=8>
+<h2>ARGUMENTS
+<a name="ARGUMENTS"></a>
+</h2>
 
-     <H3>CLASS</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Transformational function
-</BLOCKQUOTE>
-<P><HR>
-<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>transfer (3fortran)</TD> <TD align=right width=33%><I>July 03, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from adc8638c-46cc-45eb-8c8b-d1b1ace00737 using man macros.</FONT>
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p style="margin-top: 1em"><b>SOURCE</b></p></td>
+<td width="2%"></td>
+<td width="69%">
+
+
+<p style="margin-top: 1em">Shall be a scalar or an array of
+any type.</p></td>
+<td width="9%">
+</td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>MOLD</b></p></td>
+<td width="2%"></td>
+<td width="69%">
+
+
+<p>Shall be a scalar or an array of any type.</p></td>
+<td width="9%">
+</td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>SIZE</b></p></td>
+<td width="2%"></td>
+<td width="69%">
+
+
+<p>(Optional) shall be a scalar of type INTEGER.</p></td>
+<td width="9%">
+</td></tr>
+</table>
+
+<h2>RETURN VALUE
+<a name="RETURN VALUE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The result has
+the same type as MOLD, with the bit level representation of
+SOURCE. If SIZE is present, the result is a one-dimensional
+array of length SIZE. If SIZE is absent but MOLD is an array
+(of any size or shape), the result is a one-dimensional
+array of the minimum length needed to contain the entirety
+of the bitwise representation of SOURCE. If SIZE is absent
+and MOLD is a scalar, the result is a scalar.</p>
+
+<p style="margin-left:11%; margin-top: 1em">If the bitwise
+representation of the result is longer than that of SOURCE,
+then the leading bits of the result correspond to those of
+SOURCE and any trailing bits are filled arbitrarily.</p>
+
+<p style="margin-left:11%; margin-top: 1em">When the
+resulting bit representation does not correspond to a valid
+representation of a variable of the same type as MOLD, the
+results are undefined, and subsequent operations on the
+result cannot be guaranteed to produce sensible behavior.
+For example, it is possible to create LOGICAL variables for
+which VAR and .not. var both appear to be true.</p>
+
+<h2>EXAMPLE
+<a name="EXAMPLE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Sample
+program:</p>
+
+<p style="margin-left:11%; margin-top: 1em">program
+demo_transfer <br>
+integer :: x = 2143289344 <br>
+print *, transfer(x, 1.0) ! prints &quot;nan&quot; on i686
+<br>
+end program demo_transfer</p>
+
+<h2>COMMENTS
+<a name="COMMENTS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[Joe Krahn]]:
+Fortran uses **molding** rather than **casting**.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Casting, as in
+C, is an in-place reinterpretation. A cast is a device that
+is built around an object to change its shape.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Fortran
+TRANSFER reinterprets data out-of-place. It can be
+considered **molding** rather than casting. A **mold** is a
+device that confers a shape onto an object placed into
+it.</p>
+
+<p style="margin-left:11%; margin-top: 1em">The advantage
+of molding is that data is always valid in the context of
+the variable that holds it. For many cases, a decent
+compiler should optimize TRANSFER into a simple
+assignment.</p>
+
+<p style="margin-left:11%; margin-top: 1em">There are
+disadvantages of this approach. It is problematic to define
+a union of data types because you must know the largest data
+object, which can vary by compiler or compile options. In
+many cases, an EQUIVALENCE would be far more effective, but
+Fortran Standards committees seem oblivious to the benefits
+of EQUIVALENCEs when used sparingly.</p>
+
+<h2>STANDARD
+<a name="STANDARD"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[Fortran 90]]
+and later</p>
+
+<h2>CLASS
+<a name="CLASS"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em">Transformational
+function</p>
+<hr>
 <br><br><center><img src="images/IMAGE.gif"></center>
 </div>
 </div>
 </body>
-</HTML>
+</html>

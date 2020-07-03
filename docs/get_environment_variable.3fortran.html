@@ -40,163 +40,205 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 .byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
 </style> 
 </head>
-<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<body>
 <h5><a href="index.html">[UP]</a></h5>
 <div id="Container">
 <div id="Content">
-<CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>get_environment_variable (3fortran)</NOBR><HR></H1>
-</CENTER>
-<A name=0>
 
-     <H3>NAME</H3>
+<h1 align="center">get_environment_variable</h1>
 
-</A>
-<BLOCKQUOTE>
-<B>
-</B><B>get_environment_variable(3f) </B>- [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get an environmental variable
-<B>
-</B></BLOCKQUOTE>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=8>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNTAX">SYNTAX</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#ARGUMENTS">ARGUMENTS</a><br>
+<a href="#RETURN VALUE">RETURN VALUE</a><br>
+<a href="#EXAMPLE">EXAMPLE</a><br>
+<a href="#STANDARD">STANDARD</a><br>
+<a href="#CLASS">CLASS</a><br>
 
-     <H3>SYNTAX</H3>
+<hr>
 
-</A>
-<BLOCKQUOTE>
-<P>
-call <B>get_environment_variable</B>(NAME[, VALUE, LENGTH, STATUS, TRIM_NAME)
-</BLOCKQUOTE>
-<A name=2>
 
-     <H3>DESCRIPTION</H3>
+<h2>NAME
+<a name="NAME"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Get the VALUE of the environmental variable NAME.
-<P>
-Note that get_environment_variable need not be thread-safe. It is
-the responsibility of the user to ensure that the environment is not
-being updated concurrently.
-</BLOCKQUOTE>
-<A name=3>
 
-     <H3>ARGUMENTS</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>NAME</B> </TD><TD valign=bottom>
-(Optional) Shall be a scalar of type CHARACTER and of default kind.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>VALUE</B> </TD><TD valign=bottom>
-(Optional) Shall be a scalar of type CHARACTER and of default kind.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>LENGTH</B> </TD><TD valign=bottom>
-(Optional) Shall be a scalar of type INTEGER and of default kind.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>STATUS</B> </TD><TD valign=bottom>
-(Optional) Shall be a scalar of type INTEGER and of default kind.
-</TD></TR>
-<TR valign=top><TD colspan=2>
-<B>TRIM_NAME</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-(Optional) Shall be a scalar of type LOGICAL and of default kind.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=4>
+<p style="margin-left:11%; margin-top: 1em"><b>get_environment_variable(3f)
+- [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get an
+environmental variable</b></p>
 
-     <H3>RETURN VALUE</H3>
+<h2>SYNTAX
+<a name="SYNTAX"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Stores the value of NAME in VALUE.
-If VALUE is not large enough to hold the data, it is truncated.
-If NAME is not set, VALUE will be filled with blanks.
-<P>
-Argument LENGTH contains the length needed for storing the environment
-variable NAME or zero if it is not present.
-<P>
-STATUS is
-<B>-1</B> if VALUE is present but too short for the environment variable;
-it is 1 if the environment variable does not exist
-and 2 if the processor does not support environment variables;
-in all other cases STATUS is zero.
-<P>
-If TRIM_NAME is present with the value .FALSE.,
-the trailing blanks in NAME are significant;
-otherwise they are not part of the environment variable name.
-</BLOCKQUOTE>
-<A name=5>
 
-     <H3>EXAMPLE</H3>
+<p style="margin-left:11%; margin-top: 1em">call
+<b>get_environment_variable</b>(NAME[, VALUE, LENGTH,
+STATUS, TRIM_NAME)</p>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Sample program:
-<P>
-<PRE>
-   program demo_getenv
-     implicit none
-     character(len=:),allocatable :: var
-     character(len=:),allocatable :: homedir
-     integer :: howbig, stat
-     var=&#146;HOME&#146;
-     ! get length required to hold value
-     call get_environment_variable(var, length=howbig,status=stat)
-     select case (stat)
-     case (1)
-        print *, "HOME is not defined in the environment.  Strange&#46;&#46;&#46;"
-     case (2)
-        print *, "This processor doesn&#146;t support environment variables.  Boooh!"
-     case default
-        ! make string to hold value of sufficient size
-        allocate(character(len=howbig) :: homedir)
-        ! get value
-        call get_environment_variable(var, homedir)
-        ! print environment variable name value
-        write (*,&#146;(a,"=""",a,"""")&#146;)var,trim(homedir)
-     end select
-   end program demo_getenv
-<P>
-</PRE>
-</BLOCKQUOTE>
-Typical Results:
-<P>
-<PRE>
-   HOME="/home/urbanjs"
-<P>
-</PRE>
-<A name=6>
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
 
-     <H3>STANDARD</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-[[Fortran 2003]] and later
-</BLOCKQUOTE>
-<A name=7>
+<p style="margin-left:11%; margin-top: 1em">Get the VALUE
+of the environmental variable NAME.</p>
 
-     <H3>CLASS</H3>
+<p style="margin-left:11%; margin-top: 1em">Note that
+get_environment_variable need not be thread-safe. It is the
+responsibility of the user to ensure that the environment is
+not being updated concurrently.</p>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Subroutine
-</BLOCKQUOTE>
-<P><HR>
-<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>get_environment_variable (3fortran)</TD> <TD align=right width=33%><I>July 03, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from f85c94c6-66df-4316-98e9-6a00708afe40 using man macros.</FONT>
+<h2>ARGUMENTS
+<a name="ARGUMENTS"></a>
+</h2>
+
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p style="margin-top: 1em"><b>NAME</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">(Optional) Shall be a scalar of
+type CHARACTER and of default kind.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>VALUE</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p>(Optional) Shall be a scalar of type CHARACTER and of
+default kind.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>LENGTH</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p>(Optional) Shall be a scalar of type INTEGER and of
+default kind.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>STATUS</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p>(Optional) Shall be a scalar of type INTEGER and of
+default kind.</p></td></tr>
+</table>
+
+<p style="margin-left:11%;"><b>TRIM_NAME</b></p>
+
+<p style="margin-left:22%;">(Optional) Shall be a scalar of
+type LOGICAL and of default kind.</p>
+
+<h2>RETURN VALUE
+<a name="RETURN VALUE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Stores the
+value of NAME in VALUE. If VALUE is not large enough to hold
+the data, it is truncated. If NAME is not set, VALUE will be
+filled with blanks.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Argument LENGTH
+contains the length needed for storing the environment
+variable NAME or zero if it is not present.</p>
+
+<p style="margin-left:11%; margin-top: 1em">STATUS is
+<b>-1</b> if VALUE is present but too short for the
+environment variable; it is 1 if the environment variable
+does not exist and 2 if the processor does not support
+environment variables; in all other cases STATUS is
+zero.</p>
+
+<p style="margin-left:11%; margin-top: 1em">If TRIM_NAME is
+present with the value .FALSE., the trailing blanks in NAME
+are significant; otherwise they are not part of the
+environment variable name.</p>
+
+<h2>EXAMPLE
+<a name="EXAMPLE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Sample
+program:</p>
+
+<p style="margin-left:11%; margin-top: 1em">program
+demo_getenv <br>
+implicit none <br>
+character(len=:),allocatable :: var <br>
+character(len=:),allocatable :: homedir <br>
+integer :: howbig, stat <br>
+var=&rsquo;HOME&rsquo; <br>
+! get length required to hold value <br>
+call get_environment_variable(var,
+length=howbig,status=stat) <br>
+select case (stat) <br>
+case (1) <br>
+print *, &quot;HOME is not defined in the environment.
+Strange...&quot; <br>
+case (2) <br>
+print *, &quot;This processor doesn&rsquo;t support
+environment variables. Boooh!&quot; <br>
+case default <br>
+! make string to hold value of sufficient size <br>
+allocate(character(len=howbig) :: homedir) <br>
+! get value <br>
+call get_environment_variable(var, homedir) <br>
+! print environment variable name value <br>
+write
+(*,&rsquo;(a,&quot;=&quot;&quot;&quot;,a,&quot;&quot;&quot;&quot;)&rsquo;)var,trim(homedir)
+<br>
+end select <br>
+end program demo_getenv</p>
+
+<p style="margin-left:11%; margin-top: 1em">Typical
+Results:</p>
+
+
+<p style="margin-left:11%; margin-top: 1em">HOME=&quot;/home/urbanjs&quot;</p>
+
+<h2>STANDARD
+<a name="STANDARD"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[Fortran
+2003]] and later</p>
+
+<h2>CLASS
+<a name="CLASS"></a>
+</h2>
+
+ 
+<p style="margin-left:11%; margin-top: 1em">Subroutine</p>
+<hr>
 <br><br><center><img src="images/IMAGE.gif"></center>
 </div>
 </div>
 </body>
-</HTML>
+</html>

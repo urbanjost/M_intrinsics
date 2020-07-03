@@ -40,204 +40,247 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 .byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
 </style> 
 </head>
-<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<body>
 <h5><a href="index.html">[UP]</a></h5>
 <div id="Container">
 <div id="Content">
-<CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>all (3fortran)</NOBR><HR></H1>
-</CENTER>
-<A name=0>
 
-     <H3>NAME</H3>
+<h1 align="center">all</h1>
 
-</A>
-<BLOCKQUOTE>
-<B>ALL(3f) </B>- [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines if all the values are true
-<B>
-</B></BLOCKQUOTE>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=8>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNTAX">SYNTAX</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#ARGUMENTS">ARGUMENTS</a><br>
+<a href="#RETURN VALUE">RETURN VALUE</a><br>
+<a href="#EXAMPLE">EXAMPLE</a><br>
+<a href="#STANDARD">STANDARD</a><br>
+<a href="#CLASS">CLASS</a><br>
 
-     <H3>SYNTAX</H3>
+<hr>
 
-</A>
-<BLOCKQUOTE>
-<P>
-result = <B>ALL</B>(MASK [, DIM])
-</BLOCKQUOTE>
-<A name=2>
 
-     <H3>DESCRIPTION</H3>
+<h2>NAME
+<a name="NAME"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Logical conjunction of elements of MASK along dimension DIM.
-<P>
-"<B>ALL</B>(MASK [, DIM])" determines if all the values are true in MASK
-in the array along dimension DIM.
-</BLOCKQUOTE>
-<A name=3>
 
-     <H3>ARGUMENTS</H3>
+<p style="margin-left:11%; margin-top: 1em"><b>ALL(3f)</b>
+- [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines if all the
+values are true</p>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>MASK</B> </TD><TD valign=bottom>
-shall be a logical array. That is,
-the type of the argument shall be LOGICAL and it shall
-not be scalar.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>DIM</B> </TD><TD valign=bottom>
-(optional) DIM shall be a scalar integer with a value
-that lies between one and the rank of MASK.
-The corresponding actual argument shall not be an optional
-dummy argument.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=4>
+<h2>SYNTAX
+<a name="SYNTAX"></a>
+</h2>
 
-     <H3>RETURN VALUE</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-"<B>ALL</B>(MASK)" returns a scalar value of type LOGICAL where the kind
-type parameter is the same as the kind type parameter of MASK. If
-DIM is present, then <B>ALL</B>(MASK, DIM) returns an array with the rank
-of MASK minus 1. The shape is determined from the shape of MASK
-where the DIM dimension is elided.
-<BLOCKQUOTE>
-<TABLE cellpadding=3><!-- tsb: "<B>ALL</B>(MASK)" returns a scalar value of type LOGICAL where the kind
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD width=4%>
-1.
-</TD><TD>
-<B>ALL</B>(MASK) is true if all elements of MASK are true.
-It also is true if MASK has zero size; otherwise, it is false.
-</TD></TR>
-<TR valign=top><TD width=4%>
-2.
-</TD><TD>
-If the rank of MASK is one, then <B>ALL</B>(MASK, DIM) is equivalent
-to <B>ALL</B>(MASK). If the rank is greater than one, then <B>ALL</B>(MASK,
-DIM) is determined by applying ALL to the array sections.
-</TD></TR>
-<TR valign=top><TD width=4%>
-4.
-</TD><TD>
-Result Characteristics. The result is of type logical with the same
-kind type parameter as MASK. It is scalar
-if DIM is absent or n = 1; otherwise, the result has rank n - 1 and
-shape [d1 , d2 , . . . , dDIM-1 , dDIM+1 , . . . , dn ] where [d1 ,
-d2 , . . . , dn ] is the shape of MASK.
-</TD></TR>
-<TR valign=top><TD width=4%>
-5.
-</TD><TD>
-Result Value.
-</TD></TR>
-<TR></TR></TABLE><!-- .nf -->
-<PRE>
-       Case (i):   The result of ALL (MASK) has the value true if all
-                   elements of MASK are true or if MASK has
-                   size zero, and the result has value false if any element
-                   of MASK is false.
-<P>
-       Case (ii):  If MASK has rank one, ALL(MASK,DIM) is equal to
-                   ALL(MASK). Otherwise, the value of element
-                   (s1 , s2 , . . . , sDIM-1 , sDIM+1 , . . . , sn ) of ALL
-                   (MASK, DIM) is equal to ALL (MASK (s1 , s2 , . . . ,
-                   sDIM-1 , :, sDIM+1 , . . . , sn )).
-<P>
-</PRE>
-</BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=5>
+<p style="margin-left:11%; margin-top: 1em">result =
+<b>ALL</b>(MASK [, DIM])</p>
 
-     <H3>EXAMPLE</H3>
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Sample program:
-<P>
-<PRE>
-    program demo_all
-      logical l
-      l = all([.true., .true., .true.])
-      print *, l
-      call section
-    contains
-       subroutine section
-          integer a(2,3), b(2,3)
-          a = 1
-          b = 1
-          b(2,2) = 2
-          print *, all(a .eq. b, 1)
-          print *, all(a .eq. b, 2)
-       end subroutine section
-    end program demo_all
-<P>
-</PRE>
-Case (i):
-<P>
-<PRE>
-     The value of ALL ([.TRUE., .FALSE., .TRUE.]) is false.
-<P>
-</PRE>
-Case (ii):
-<P>
-<PRE>
-     &gt;                        1|3|5
-     &gt; If B is the array      -+-+-
-     &gt;                        2|4|6
-     &gt;
-     &gt;                        0|3|5
-     &gt; and C is the array     -+-+-
-     &gt;                        7|4|8
-<P>
-     then ALL (B /= C, DIM = 1) is
-<P>
-        [true, false, false]
-<P>
-</PRE>
-<BLOCKQUOTE>
-and ALL (B /= C, DIM = 2) is
-<P>
-<PRE>
-        [false, false].
-<P>
-</PRE>
-</BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=6>
 
-     <H3>STANDARD</H3>
+<p style="margin-left:11%; margin-top: 1em">Logical
+conjunction of elements of MASK along dimension DIM.</p>
 
-</A>
-<BLOCKQUOTE>
-[[Fortran 95]] and later
-</BLOCKQUOTE>
-<A name=7>
 
-     <H3>CLASS</H3>
+<p style="margin-left:11%; margin-top: 1em">&quot;<b>ALL</b>(MASK
+[, DIM])&quot; determines if all the values are true in MASK
+in the array along dimension DIM.</p>
 
-</A>
-<BLOCKQUOTE>
-Transformational function.
-</BLOCKQUOTE>
-<P><HR>
-<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>all (3fortran)</TD> <TD align=right width=33%><I>July 03, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 76937acc-3baf-48ab-9ee2-584393b06581 using man macros.</FONT>
+<h2>ARGUMENTS
+<a name="ARGUMENTS"></a>
+</h2>
+
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="6%">
+
+
+<p style="margin-top: 1em"><b>MASK</b></p></td>
+<td width="5%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">shall be a logical array. That
+is, the type of the argument shall be LOGICAL and it shall
+not be scalar.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="6%">
+
+
+<p><b>DIM</b></p></td>
+<td width="5%"></td>
+<td width="78%">
+
+
+<p>(optional) DIM shall be a scalar integer with a value
+that lies between one and the rank of MASK. The
+corresponding actual argument shall not be an optional dummy
+argument.</p> </td></tr>
+</table>
+
+<h2>RETURN VALUE
+<a name="RETURN VALUE"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em">&quot;<b>ALL</b>(MASK)&quot;
+returns a scalar value of type LOGICAL where the kind type
+parameter is the same as the kind type parameter of MASK. If
+DIM is present, then <b>ALL</b>(MASK, DIM) returns an array
+with the rank of MASK minus 1. The shape is determined from
+the shape of MASK where the DIM dimension is elided.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p style="margin-top: 1em">1.</p></td>
+<td width="3%"></td>
+<td width="72%">
+
+
+<p style="margin-top: 1em"><b>ALL</b>(MASK) is true if all
+elements of MASK are true. It also is true if MASK has zero
+size; otherwise, it is false.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p>2.</p></td>
+<td width="3%"></td>
+<td width="72%">
+
+
+<p>If the rank of MASK is one, then <b>ALL</b>(MASK, DIM)
+is equivalent to <b>ALL</b>(MASK). If the rank is greater
+than one, then <b>ALL</b>(MASK, DIM) is determined by
+applying ALL to the array sections.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p>4.</p></td>
+<td width="3%"></td>
+<td width="72%">
+
+
+<p>Result Characteristics. The result is of type logical
+with the same kind type parameter as MASK. It is scalar if
+DIM is absent or n = 1; otherwise, the result has rank n - 1
+and shape [d1 , d2 , . . . , dDIM-1 , dDIM+1 , . . . , dn ]
+where [d1 , d2 , . . . , dn ] is the shape of MASK.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p>5.</p></td>
+<td width="3%"></td>
+<td width="72%">
+
+
+<p>Result Value.</p></td></tr>
+</table>
+
+<p style="margin-left:22%; margin-top: 1em">Case (i): The
+result of ALL (MASK) has the value true if all <br>
+elements of MASK are true or if MASK has <br>
+size zero, and the result has value false if any element
+<br>
+of MASK is false.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Case (ii): If
+MASK has rank one, ALL(MASK,DIM) is equal to <br>
+ALL(MASK). Otherwise, the value of element <br>
+(s1 , s2 , . . . , sDIM-1 , sDIM+1 , . . . , sn ) of ALL
+<br>
+(MASK, DIM) is equal to ALL (MASK (s1 , s2 , . . . , <br>
+sDIM-1 , :, sDIM+1 , . . . , sn )).</p>
+
+<h2>EXAMPLE
+<a name="EXAMPLE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Sample
+program:</p>
+
+<p style="margin-left:11%; margin-top: 1em">program
+demo_all <br>
+logical l <br>
+l = all([.true., .true., .true.]) <br>
+print *, l <br>
+call section <br>
+contains <br>
+subroutine section <br>
+integer a(2,3), b(2,3) <br>
+a = 1 <br>
+b = 1 <br>
+b(2,2) = 2 <br>
+print *, all(a .eq. b, 1) <br>
+print *, all(a .eq. b, 2) <br>
+end subroutine section <br>
+end program demo_all</p>
+
+<p style="margin-left:11%; margin-top: 1em">Case (i):</p>
+
+<p style="margin-left:11%; margin-top: 1em">The value of
+ALL ([.TRUE., .FALSE., .TRUE.]) is false.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Case (ii):</p>
+
+<p style="margin-left:11%; margin-top: 1em">&gt; 1|3|5 <br>
+&gt; If B is the array -+-+- <br>
+&gt; 2|4|6 <br>
+&gt; <br>
+&gt; 0|3|5 <br>
+&gt; and C is the array -+-+- <br>
+&gt; 7|4|8</p>
+
+<p style="margin-left:11%; margin-top: 1em">then ALL (B /=
+C, DIM = 1) is</p>
+
+<p style="margin-left:11%; margin-top: 1em">[true, false,
+false]</p>
+
+<p style="margin-left:22%; margin-top: 1em">and ALL (B /=
+C, DIM = 2) is</p>
+
+<p style="margin-left:22%; margin-top: 1em">[false,
+false].</p>
+
+<h2>STANDARD
+<a name="STANDARD"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[Fortran 95]]
+and later</p>
+
+<h2>CLASS
+<a name="CLASS"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em">Transformational
+function.</p>
+<hr>
 <br><br><center><img src="images/IMAGE.gif"></center>
 </div>
 </div>
 </body>
-</HTML>
+</html>

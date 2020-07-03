@@ -40,182 +40,235 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 .byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
 </style> 
 </head>
-<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<body>
 <h5><a href="index.html">[UP]</a></h5>
 <div id="Container">
 <div id="Content">
-<CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>get_command_argument (3fortran)</NOBR><HR></H1>
-</CENTER>
-<A name=0>
 
-     <H3>NAME</H3>
+<h1 align="center">get_command_argument</h1>
 
-</A>
-<BLOCKQUOTE>
-<B>get_command_argument(3f) </B>- [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get command line arguments
-<B>
-</B></BLOCKQUOTE>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=9>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNTAX">SYNTAX</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#ARGUMENTS">ARGUMENTS</a><br>
+<a href="#RETURN VALUE">RETURN VALUE</a><br>
+<a href="#EXAMPLE">EXAMPLE</a><br>
+<a href="#STANDARD">STANDARD</a><br>
+<a href="#CLASS">CLASS</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
 
-     <H3>SYNTAX</H3>
+<hr>
 
-</A>
-<BLOCKQUOTE>
-call <B>get_command_argument</B>(number [, value, length, status])
-</BLOCKQUOTE>
-<A name=2>
 
-     <H3>DESCRIPTION</H3>
+<h2>NAME
+<a name="NAME"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-Retrieve the NUMBER-th argument that was passed on the command line
-when the containing program was invoked.
-<P>
-There is not anything specifically stated about what an argument is but
-in practice the arguments are split on whitespace unless the arguments
-are quoted and IFS values (Internal Field Separators) used by common
-shells are ignored.
-</BLOCKQUOTE>
-<A name=3>
 
-     <H3>ARGUMENTS</H3>
 
-</A>
-<BLOCKQUOTE>
-<TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>NUMBER</B> </TD><TD valign=bottom>
-Shall be a scalar of type <B>integer</B>(4), NUMBER &gt;= 0.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>VALUE</B> </TD><TD valign=bottom>
-Shall be a scalar of type CHARACTER and of default kind.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>LENGTH</B> </TD><TD valign=bottom>
-(Optional) Shall be a scalar of type <B>integer</B>(4).
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>STATUS</B> </TD><TD valign=bottom>
-(Optional) Shall be a scalar of type <B>integer</B>(4).
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=4>
+<p style="margin-left:11%; margin-top: 1em"><b>get_command_argument(3f)</b>
+- [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get command line
+arguments</p>
 
-     <H3>RETURN VALUE</H3>
+<h2>SYNTAX
+<a name="SYNTAX"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-After get_command_argument returns, the VALUE argument holds the
-NUMBER-th command line argument. If VALUE can not hold the argument, it is
-truncated to fit the length of VALUE. If there are less than NUMBER
-arguments specified at the command line, VALUE will be filled with blanks.
-If NUMBER = 0, VALUE is set to the name of the program (on systems
-that support this feature).
-<P>
-The LENGTH argument contains the length of the
-NUMBER-th command line argument.
-<P>
-If the argument retrieval fails, STATUS
-is a positive number; if VALUE contains a truncated command line argument,
-STATUS is <B>-1</B>; and otherwise the STATUS is zero.
-</BLOCKQUOTE>
-<A name=5>
 
-     <H3>EXAMPLE</H3>
+<p style="margin-left:11%; margin-top: 1em">call
+<b>get_command_argument</b>(number [, value, length,
+status])</p>
 
-</A>
-<BLOCKQUOTE>
-Sample program:
-<P>
-<PRE>
-   program demo_get_command_argument
-   implicit none
-   character(len=255)           :: progname
-   integer                      :: stat
-   integer                      :: count,i, longest, argument_length
-   integer,allocatable          :: istat(:), ilen(:)
-   character(len=:),allocatable :: arguments(:)
-     ! get number of arguments
-     count = command_argument_count()
-     write(*,*)&#146;The number of arguments is &#146;,count
-     ! simple usage
-     call get_command_argument (0, progname, status=stat)
-     if (stat == 0) then
-        print *, "The program&#146;s name is " // trim (progname)
-     endif
-     ! showing how to make an array to hold any argument list
-     ! find longest argument
-     longest=0
-     do i=0,count
-        call get_command_argument(number=i,length=argument_length)
-        longest=max(longest,argument_length)
-     enddo
-     ! allocate string array big enough to hold command line argument strings and related information
-     allocate(character(len=longest) :: arguments(0:count))
-     allocate(istat(0:count))
-     allocate(ilen(0:count))
-     ! read the arguments into the array
-     do i=0,count
-       call get_command_argument(i, arguments(i),status=istat(i),length=ilen(i))
-     enddo
-     ! show the results
-     write (*,&#146;(i3.3,1x,i0.5,1x,i0.5,1x,"[",a,"]")&#146;) (i,istat(i),ilen(i),arguments(i)(:ilen(i)),i=0,count)
-   end program demo_get_command_argument
-<P>
-</PRE>
-</BLOCKQUOTE>
-Sample output:
-<P>
-<PRE>
-   ./test_get_command_argument a    simple      test    &#146;of getting   arguments  &#146; "  from the command"
-<P>
-   &gt; The number of arguments is            5
-   &gt; The program&#146;s name is xxx
-   &gt;000 00000 00003 [./test_get_command_argument]
-   &gt;001 00000 00001 [a]
-   &gt;002 00000 00006 [simple]
-   &gt;003 00000 00004 [test]
-   &gt;004 00000 00024 [of getting   arguments  ]
-   &gt;005 00000 00018 [  from the command]
-<P>
-</PRE>
-<A name=6>
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
 
-     <H3>STANDARD</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-[[Fortran 2003]] and later
-</BLOCKQUOTE>
-<A name=7>
+<p style="margin-left:11%; margin-top: 1em">Retrieve the
+NUMBER-th argument that was passed on the command line when
+the containing program was invoked.</p>
 
-     <H3>CLASS</H3>
+<p style="margin-left:11%; margin-top: 1em">There is not
+anything specifically stated about what an argument is but
+in practice the arguments are split on whitespace unless the
+arguments are quoted and IFS values (Internal Field
+Separators) used by common shells are ignored.</p>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Subroutine
-</BLOCKQUOTE>
-<A name=8>
+<h2>ARGUMENTS
+<a name="ARGUMENTS"></a>
+</h2>
 
-     <H3>SEE ALSO</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<B>get_command</B>(3),
-<B>command_argument_count</B>(3)
-</BLOCKQUOTE>
-<P><HR>
-<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>get_command_argument (3fortran)</TD> <TD align=right width=33%><I>July 03, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from c4d12ab1-713e-41b8-9377-3814490c837c using man macros.</FONT>
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p style="margin-top: 1em"><b>NUMBER</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">Shall be a scalar of type
+<b>integer</b>(4), NUMBER &gt;= 0.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>VALUE</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p>Shall be a scalar of type CHARACTER and of default
+kind.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>LENGTH</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p>(Optional) Shall be a scalar of type
+<b>integer</b>(4).</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>STATUS</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p>(Optional) Shall be a scalar of type
+<b>integer</b>(4).</p> </td></tr>
+</table>
+
+<h2>RETURN VALUE
+<a name="RETURN VALUE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">After
+get_command_argument returns, the VALUE argument holds the
+NUMBER-th command line argument. If VALUE can not hold the
+argument, it is truncated to fit the length of VALUE. If
+there are less than NUMBER arguments specified at the
+command line, VALUE will be filled with blanks. If NUMBER =
+0, VALUE is set to the name of the program (on systems that
+support this feature).</p>
+
+<p style="margin-left:11%; margin-top: 1em">The LENGTH
+argument contains the length of the NUMBER-th command line
+argument.</p>
+
+<p style="margin-left:11%; margin-top: 1em">If the argument
+retrieval fails, STATUS is a positive number; if VALUE
+contains a truncated command line argument, STATUS is
+<b>-1</b>; and otherwise the STATUS is zero.</p>
+
+<h2>EXAMPLE
+<a name="EXAMPLE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Sample
+program:</p>
+
+<p style="margin-left:11%; margin-top: 1em">program
+demo_get_command_argument <br>
+implicit none <br>
+character(len=255) :: progname <br>
+integer :: stat <br>
+integer :: count,i, longest, argument_length <br>
+integer,allocatable :: istat(:), ilen(:) <br>
+character(len=:),allocatable :: arguments(:) <br>
+! get number of arguments <br>
+count = command_argument_count() <br>
+write(*,*)&rsquo;The number of arguments is &rsquo;,count
+<br>
+! simple usage <br>
+call get_command_argument (0, progname, status=stat) <br>
+if (stat == 0) then <br>
+print *, &quot;The program&rsquo;s name is &quot; // trim
+(progname) <br>
+endif <br>
+! showing how to make an array to hold any argument list
+<br>
+! find longest argument <br>
+longest=0 <br>
+do i=0,count <br>
+call get_command_argument(number=i,length=argument_length)
+<br>
+longest=max(longest,argument_length) <br>
+enddo <br>
+! allocate string array big enough to hold command line
+argument strings and related information <br>
+allocate(character(len=longest) :: arguments(0:count)) <br>
+allocate(istat(0:count)) <br>
+allocate(ilen(0:count)) <br>
+! read the arguments into the array <br>
+do i=0,count <br>
+call get_command_argument(i,
+arguments(i),status=istat(i),length=ilen(i)) <br>
+enddo <br>
+! show the results <br>
+write
+(*,&rsquo;(i3.3,1x,i0.5,1x,i0.5,1x,&quot;[&quot;,a,&quot;]&quot;)&rsquo;)
+(i,istat(i),ilen(i),arguments(i)(:ilen(i)),i=0,count) <br>
+end program demo_get_command_argument</p>
+
+<p style="margin-left:11%; margin-top: 1em">Sample
+output:</p>
+
+
+<p style="margin-left:11%; margin-top: 1em">./test_get_command_argument
+a simple test &rsquo;of getting arguments &rsquo; &quot;
+from the command&quot;</p>
+
+<p style="margin-left:11%; margin-top: 1em">&gt; The number
+of arguments is 5 <br>
+&gt; The program&rsquo;s name is xxx <br>
+&gt;000 00000 00003 [./test_get_command_argument] <br>
+&gt;001 00000 00001 [a] <br>
+&gt;002 00000 00006 [simple] <br>
+&gt;003 00000 00004 [test] <br>
+&gt;004 00000 00024 [of getting arguments ] <br>
+&gt;005 00000 00018 [ from the command]</p>
+
+<h2>STANDARD
+<a name="STANDARD"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[Fortran
+2003]] and later</p>
+
+<h2>CLASS
+<a name="CLASS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Subroutine</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>get_command</b>(3),
+<b>command_argument_count</b>(3)</p>
+<hr>
 <br><br><center><img src="images/IMAGE.gif"></center>
 </div>
 </div>
 </body>
-</HTML>
+</html>

@@ -40,163 +40,182 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 .byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
 </style> 
 </head>
-<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<body>
 <h5><a href="index.html">[UP]</a></h5>
 <div id="Container">
 <div id="Content">
-<CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>iachar (3fortran)</NOBR><HR></H1>
-</CENTER>
-<A name=0>
 
-     <H3>NAME</H3>
+<h1 align="center">iachar</h1>
 
-</A>
-<BLOCKQUOTE>
-<B>
-</B><B>iachar(3f) </B>- [FORTRAN:INTRINSIC:CHARACTER] Code in ASCII collating sequence
-<B>
-</B></BLOCKQUOTE>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=10>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNTAX">SYNTAX</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#ARGUMENTS">ARGUMENTS</a><br>
+<a href="#RETURN VALUE">RETURN VALUE</a><br>
+<a href="#EXAMPLE">EXAMPLE</a><br>
+<a href="#NOTE">NOTE</a><br>
+<a href="#STANDARD">STANDARD</a><br>
+<a href="#CLASS">CLASS</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
 
-     <H3>SYNTAX</H3>
+<hr>
 
-</A>
-<BLOCKQUOTE>
-<P>
-result = <B>iachar</B>(c [, kind])
-</BLOCKQUOTE>
-<A name=2>
 
-     <H3>DESCRIPTION</H3>
+<h2>NAME
+<a name="NAME"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<B>iachar</B>(c) returns the code for the ASCII character
-in the first character position of C.
-</BLOCKQUOTE>
-<A name=3>
 
-     <H3>ARGUMENTS</H3>
+<p style="margin-left:11%; margin-top: 1em"><b>iachar(3f) -
+[FORTRAN:INTRINSIC:CHARACTER] Code in ASCII collating
+sequence</b></p>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>C</B> </TD><TD valign=bottom>
-Shall be a scalar CHARACTER, with <B>intent</B>(in)
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>KIND</B> </TD><TD valign=bottom>
-(Optional) An INTEGER initialization
-expression indicating the kind parameter of the result.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=4>
+<h2>SYNTAX
+<a name="SYNTAX"></a>
+</h2>
 
-     <H3>RETURN VALUE</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-The return value is of type INTEGER and of kind KIND. If
-KIND is absent, the return value is of default integer kind.
-</BLOCKQUOTE>
-<A name=5>
+<p style="margin-left:11%; margin-top: 1em">result =
+<b>iachar</b>(c [, kind])</p>
 
-     <H3>EXAMPLE</H3>
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Sample program:
-<P>
-<PRE>
-   program demo_iachar
-   ! create function to convert uppercase letters to lowercase
-   implicit none
-      write(*,&#146;(a)&#146;)lower(&#146;abcdefg ABCDEFG&#146;)
-   contains
-   !
-   elemental pure function lower(str) result (string)
-   ! Changes a string to lowercase
-   character(*), intent(In)     :: str
-   character(len(str))          :: string
-   integer                      :: i
-      string = str
-      ! step thru each letter in the string in specified range
-      do i = 1, len(str)
-         select case (str(i:i))
-         case (&#146;A&#146;:&#146;Z&#146;) ! change letter to miniscule
-            string(i:i) = char(iachar(str(i:i))+32)
-         case default
-         end select
-      end do
-   end function lower
-   !
-   end program demo_iachar
-<P>
-</PRE>
-</BLOCKQUOTE>
-<A name=6>
 
-     <H3>NOTE</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-See [[ichar]] for a discussion of converting between numerical
-values and formatted string representations.
-</BLOCKQUOTE>
-<A name=7>
+<p style="margin-left:11%; margin-top: 1em"><b>iachar</b>(c)
+returns the code for the ASCII character in the first
+character position of C.</p>
 
-     <H3>STANDARD</H3>
+<h2>ARGUMENTS
+<a name="ARGUMENTS"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-[[Fortran 95]] and later, with KIND argument [[Fortran 2003]] and later
-</BLOCKQUOTE>
-<A name=8>
 
-     <H3>CLASS</H3>
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="6%">
 
-</A>
-<BLOCKQUOTE>
-<P>
-[[Elemental procedure|Elemental function]]
-</BLOCKQUOTE>
-<A name=9>
 
-     <H3>SEE ALSO</H3>
+<p style="margin-top: 1em"><b>C</b></p></td>
+<td width="5%"></td>
+<td width="78%">
 
-</A>
-<BLOCKQUOTE>
-<P>
-[[achar]], [[char]], [[ichar]]
-<P>
-Functions that perform operations on character strings, return lengths
-of arguments, and search for certain arguments:
-<TABLE cellpadding=3><!-- tsb: Functions that perform operations on character strings, return lengths
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD colspan=2>
-<B>Elemental:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-<B>ADJUSTL</B>(3), <B>ADJUSTR</B>(3), <B>INDEX</B>(3), <B>LEN_TRIM</B>(3), <B>SCAN</B>(3), <B>VERIFY</B>(3)
-</TD></TR>
-<TR valign=top><TD colspan=2>
-<B>Nonelemental:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-<B>REPEAT</B>(3), <B>TRIM</B>(3)
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<P><HR>
-<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>iachar (3fortran)</TD> <TD align=right width=33%><I>July 03, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 34bcf2e6-f9b6-4ff8-a9a2-cecf34eb336e using man macros.</FONT>
+
+<p style="margin-top: 1em">Shall be a scalar CHARACTER,
+with <b>intent</b>(in)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="6%">
+
+
+<p><b>KIND</b></p></td>
+<td width="5%"></td>
+<td width="78%">
+
+
+<p>(Optional) An INTEGER initialization expression
+indicating the kind parameter of the result.</p></td></tr>
+</table>
+
+<h2>RETURN VALUE
+<a name="RETURN VALUE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The return
+value is of type INTEGER and of kind KIND. If KIND is
+absent, the return value is of default integer kind.</p>
+
+<h2>EXAMPLE
+<a name="EXAMPLE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Sample
+program:</p>
+
+<p style="margin-left:11%; margin-top: 1em">program
+demo_iachar <br>
+! create function to convert uppercase letters to lowercase
+<br>
+implicit none <br>
+write(*,&rsquo;(a)&rsquo;)lower(&rsquo;abcdefg
+ABCDEFG&rsquo;) <br>
+contains <br>
+! <br>
+elemental pure function lower(str) result (string) <br>
+! Changes a string to lowercase <br>
+character(*), intent(In) :: str <br>
+character(len(str)) :: string <br>
+integer :: i <br>
+string = str <br>
+! step thru each letter in the string in specified range
+<br>
+do i = 1, len(str) <br>
+select case (str(i:i)) <br>
+case (&rsquo;A&rsquo;:&rsquo;Z&rsquo;) ! change letter to
+miniscule <br>
+string(i:i) = char(iachar(str(i:i))+32) <br>
+case default <br>
+end select <br>
+end do <br>
+end function lower <br>
+! <br>
+end program demo_iachar</p>
+
+<h2>NOTE
+<a name="NOTE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">See [[ichar]]
+for a discussion of converting between numerical values and
+formatted string representations.</p>
+
+<h2>STANDARD
+<a name="STANDARD"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[Fortran 95]]
+and later, with KIND argument [[Fortran 2003]] and later</p>
+
+<h2>CLASS
+<a name="CLASS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[Elemental
+procedure|Elemental function]]</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[achar]],
+[[char]], [[ichar]]</p>
+
+<p style="margin-left:11%; margin-top: 1em">Functions that
+perform operations on character strings, return lengths of
+arguments, and search for certain arguments: <b><br>
+Elemental:</b></p>
+
+<p style="margin-left:22%;"><b>ADJUSTL</b>(3),
+<b>ADJUSTR</b>(3), <b>INDEX</b>(3), <b>LEN_TRIM</b>(3),
+<b>SCAN</b>(3), <b>VERIFY</b>(3)</p>
+
+<p style="margin-left:11%;"><b>Nonelemental:</b></p>
+
+<p style="margin-left:22%;"><b>REPEAT</b>(3),
+<b>TRIM</b>(3)</p>
+<hr>
 <br><br><center><img src="images/IMAGE.gif"></center>
 </div>
 </div>
 </body>
-</HTML>
+</html>

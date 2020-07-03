@@ -40,166 +40,210 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 .byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
 </style> 
 </head>
-<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<body>
 <h5><a href="index.html">[UP]</a></h5>
 <div id="Container">
 <div id="Content">
-<CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>lbound (3fortran)</NOBR><HR></H1>
-</CENTER>
-<A name=0>
 
-     <H3>NAME</H3>
+<h1 align="center">lbound</h1>
 
-</A>
-<BLOCKQUOTE>
-<B>lbound(3f) </B>- [FORTRAN:INTRINSIC:ARRAY INQUIRY] Lower dimension bounds of an array
-<B>
-</B></BLOCKQUOTE>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=9>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNTAX">SYNTAX</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#ARGUMENTS">ARGUMENTS</a><br>
+<a href="#RETURN VALUE">RETURN VALUE</a><br>
+<a href="#EXAMPLE">EXAMPLE</a><br>
+<a href="#STANDARD">STANDARD</a><br>
+<a href="#CLASS">CLASS</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
 
-     <H3>SYNTAX</H3>
+<hr>
 
-</A>
-<BLOCKQUOTE>
-result = <B>lbound</B>(array [, dim [, kind]])
-</BLOCKQUOTE>
-<A name=2>
 
-     <H3>DESCRIPTION</H3>
+<h2>NAME
+<a name="NAME"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-Returns the lower bounds of an array, or a single lower bound
-along the DIM dimension.
-</BLOCKQUOTE>
-<A name=3>
 
-     <H3>ARGUMENTS</H3>
 
-</A>
-<BLOCKQUOTE>
-<TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>ARRAY</B> </TD><TD valign=bottom>
-Shall be an array, of any type.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>DIM</B> </TD><TD valign=bottom>
-(Optional) Shall be a scalar INTEGER.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>KIND</B> </TD><TD valign=bottom>
-(Optional) An INTEGER initialization
-expression indicating the kind parameter of the result.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=4>
+<p style="margin-left:11%; margin-top: 1em"><b>lbound(3f)</b>
+- [FORTRAN:INTRINSIC:ARRAY INQUIRY] Lower dimension bounds
+of an array</p>
 
-     <H3>RETURN VALUE</H3>
+<h2>SYNTAX
+<a name="SYNTAX"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-The return value is of type INTEGER and of kind KIND. If
-KIND is absent, the return value is of default integer kind.
-If DIM is absent, the result is an array of the lower bounds of
+
+<p style="margin-left:11%; margin-top: 1em">result =
+<b>lbound</b>(array [, dim [, kind]])</p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Returns the
+lower bounds of an array, or a single lower bound along the
+DIM dimension.</p>
+
+<h2>ARGUMENTS
+<a name="ARGUMENTS"></a>
+</h2>
+
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p style="margin-top: 1em"><b>ARRAY</b></p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">Shall be an array, of any
+type.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p><b>DIM</b></p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>(Optional) Shall be a scalar INTEGER.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p><b>KIND</b></p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>(Optional) An INTEGER initialization expression
+indicating the kind parameter of the result.</p></td></tr>
+</table>
+
+<h2>RETURN VALUE
+<a name="RETURN VALUE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The return
+value is of type INTEGER and of kind KIND. If KIND is
+absent, the return value is of default integer kind. If DIM
+is absent, the result is an array of the lower bounds of
 ARRAY. If DIM is present, the result is a scalar
-corresponding to the lower bound of the array along that dimension. If
-ARRAY is an expression rather than a whole array or array
-structure component, or if it has a zero extent along the relevant
-dimension, the lower bound is taken to be 1.
-</BLOCKQUOTE>
-<A name=5>
+corresponding to the lower bound of the array along that
+dimension. If ARRAY is an expression rather than a whole
+array or array structure component, or if it has a zero
+extent along the relevant dimension, the lower bound is
+taken to be 1.</p>
 
-     <H3>EXAMPLE</H3>
+<h2>EXAMPLE
+<a name="EXAMPLE"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-Note that in my opinion this function should not be used on assumed-size arrays
-or in any function without an explicit interface. Errors can occur if there is
-no interface defined.
-</BLOCKQUOTE>
-<P>
-Sample program
-<P>
-<PRE>
-   ! program demo_lbound
-   module m_bounds
-    contains
-       subroutine msub(arr)
-          !!integer,intent(in) :: arr(*)  ! cannot be assumed-size array
-          integer,intent(in) :: arr(:)
-          write(*,*)&#146;MSUB: LOWER=&#146;,lbound(arr),&#146;UPPER=&#146;,ubound(arr),&#146;SIZE=&#146;,size(arr)
-       end subroutine msub
-    end module m_bounds
-<P>
-    use m_bounds, only : msub
-    implicit none
-    interface
-       subroutine esub(arr)
-       integer,intent(in) :: arr(:)
-       end subroutine esub
-    end interface
-    integer :: arr(-10:10)
-       write(*,*)&#146;MAIN: LOWER=&#146;,lbound(arr),&#146;UPPER=&#146;,ubound(arr),&#146;SIZE=&#146;,size(arr)
-       call csub()
-       call msub(arr)
-       call esub(arr)
-    contains
-       subroutine csub
-          write(*,*)&#146;CSUB: LOWER=&#146;,lbound(arr),&#146;UPPER=&#146;,ubound(arr),&#146;SIZE=&#146;,size(arr)
-       end subroutine csub
-    end
-<P>
-    subroutine esub(arr)
-    integer,intent(in) :: arr(:)
-       ! WARNING: IF CALLED WITHOUT AN EXPLICIT INTERFACE THIS WILL GIVE UNDEFINED ANSWERS (like 0,0,0)
-       write(*,*)&#146;ESUB: LOWER=&#146;,lbound(arr),&#146;UPPER=&#146;,ubound(arr),&#146;SIZE=&#146;,size(arr)
-    end subroutine esub
-   !end program demo_lbound
-<P>
-</PRE>
-<BLOCKQUOTE>
-Expected output
-<P>
-<PRE>
-   MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
-   CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
-   MSUB: LOWER=           1 UPPER=          21 SIZE=          21
-   ESUB: LOWER=           1 UPPER=          21 SIZE=          21
-<P>
-</PRE>
-</BLOCKQUOTE>
-<A name=6>
 
-     <H3>STANDARD</H3>
+<p style="margin-left:11%; margin-top: 1em">Note that in my
+opinion this function should not be used on assumed-size
+arrays or in any function without an explicit interface.
+Errors can occur if there is no interface defined.</p>
 
-</A>
-<BLOCKQUOTE>
-[[Fortran 95]] and later, with KIND argument [[Fortran 2003]] and later
-</BLOCKQUOTE>
-<A name=7>
+<p style="margin-left:11%; margin-top: 1em">Sample
+program</p>
 
-     <H3>CLASS</H3>
+<p style="margin-left:11%; margin-top: 1em">! program
+demo_lbound <br>
+module m_bounds <br>
+contains <br>
+subroutine msub(arr) <br>
+!!integer,intent(in) :: arr(*) ! cannot be assumed-size
+array <br>
+integer,intent(in) :: arr(:) <br>
+write(*,*)&rsquo;MSUB:
+LOWER=&rsquo;,lbound(arr),&rsquo;UPPER=&rsquo;,ubound(arr),&rsquo;SIZE=&rsquo;,size(arr)
+<br>
+end subroutine msub <br>
+end module m_bounds</p>
 
-</A>
-<BLOCKQUOTE>
-[[Inquiry function]]
-</BLOCKQUOTE>
-<A name=8>
+<p style="margin-left:11%; margin-top: 1em">use m_bounds,
+only : msub <br>
+implicit none <br>
+interface <br>
+subroutine esub(arr) <br>
+integer,intent(in) :: arr(:) <br>
+end subroutine esub <br>
+end interface <br>
+integer :: arr(-10:10) <br>
+write(*,*)&rsquo;MAIN:
+LOWER=&rsquo;,lbound(arr),&rsquo;UPPER=&rsquo;,ubound(arr),&rsquo;SIZE=&rsquo;,size(arr)
+<br>
+call csub() <br>
+call msub(arr) <br>
+call esub(arr) <br>
+contains <br>
+subroutine csub <br>
+write(*,*)&rsquo;CSUB:
+LOWER=&rsquo;,lbound(arr),&rsquo;UPPER=&rsquo;,ubound(arr),&rsquo;SIZE=&rsquo;,size(arr)
+<br>
+end subroutine csub <br>
+end</p>
 
-     <H3>SEE ALSO</H3>
+<p style="margin-left:11%; margin-top: 1em">subroutine
+esub(arr) <br>
+integer,intent(in) :: arr(:) <br>
+! WARNING: IF CALLED WITHOUT AN EXPLICIT INTERFACE THIS WILL
+GIVE UNDEFINED ANSWERS (like 0,0,0) <br>
+write(*,*)&rsquo;ESUB:
+LOWER=&rsquo;,lbound(arr),&rsquo;UPPER=&rsquo;,ubound(arr),&rsquo;SIZE=&rsquo;,size(arr)
+<br>
+end subroutine esub <br>
+!end program demo_lbound</p>
 
-</A>
-<BLOCKQUOTE>
-<B>ubound</B>(3), <B>co_lbound</B>(3)
-</BLOCKQUOTE>
-<P><HR>
-<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>lbound (3fortran)</TD> <TD align=right width=33%><I>July 03, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from ce7d66fa-61ca-41fd-ae8f-36e2051cba5f using man macros.</FONT>
+<p style="margin-left:22%; margin-top: 1em">Expected
+output</p>
+
+<p style="margin-left:22%; margin-top: 1em">MAIN: LOWER=
+-10 UPPER= 10 SIZE= 21 <br>
+CSUB: LOWER= -10 UPPER= 10 SIZE= 21 <br>
+MSUB: LOWER= 1 UPPER= 21 SIZE= 21 <br>
+ESUB: LOWER= 1 UPPER= 21 SIZE= 21</p>
+
+<h2>STANDARD
+<a name="STANDARD"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[Fortran 95]]
+and later, with KIND argument [[Fortran 2003]] and later</p>
+
+<h2>CLASS
+<a name="CLASS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[Inquiry
+function]]</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>ubound</b>(3),
+<b>co_lbound</b>(3)</p>
+<hr>
 <br><br><center><img src="images/IMAGE.gif"></center>
 </div>
 </div>
 </body>
-</HTML>
+</html>

@@ -40,194 +40,242 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 .byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
 </style> 
 </head>
-<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<body>
 <h5><a href="index.html">[UP]</a></h5>
 <div id="Container">
 <div id="Content">
-<CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>verify (3fortran)</NOBR><HR></H1>
-</CENTER>
-<A name=0>
 
-     <H3>NAME</H3>
+<h1 align="center">verify</h1>
 
-</A>
-<BLOCKQUOTE>
-<B>
-</B><B>verify(3f) </B>- [FORTRAN:INTRINSIC:CHARACTER] Scan a string for the absence of a set of characters
-<B>
-</B></BLOCKQUOTE>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=9>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNTAX">SYNTAX</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#ARGUMENTS">ARGUMENTS</a><br>
+<a href="#RETURN VALUE">RETURN VALUE</a><br>
+<a href="#EXAMPLE">EXAMPLE</a><br>
+<a href="#STANDARD">STANDARD</a><br>
+<a href="#CLASS">CLASS</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
 
-     <H3>SYNTAX</H3>
+<hr>
 
-</A>
-<BLOCKQUOTE>
-<P>
-result = <B>verify</B>(string, set[, back [, kind]])
-</BLOCKQUOTE>
-<A name=2>
 
-     <H3>DESCRIPTION</H3>
+<h2>NAME
+<a name="NAME"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Verifies that all the characters in STRING belong to the set of
-characters in SET.
-<P>
-If BACK is either absent or equals FALSE, this function returns
-the position of the leftmost character of STRING that is not in
-SET. If BACK equals TRUE, the rightmost position is returned. If
-all characters of STRING are found in SET, the result is zero.
-</BLOCKQUOTE>
-<A name=3>
 
-     <H3>ARGUMENTS</H3>
+<p style="margin-left:11%; margin-top: 1em"><b>verify(3f) -
+[FORTRAN:INTRINSIC:CHARACTER] Scan a string for the absence
+of a set of characters</b></p>
 
-</A>
-<BLOCKQUOTE>
-<TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>STRING</B> </TD><TD valign=bottom>
-Shall be of type CHARACTER.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>SET</B> </TD><TD valign=bottom>
-Shall be of type CHARACTER.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>BACK</B> </TD><TD valign=bottom>
-(Optional) shall be of type LOGICAL.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>KIND</B> </TD><TD valign=bottom>
-(Optional) An INTEGER initialization expression
-indicating the kind parameter of the result.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=4>
+<h2>SYNTAX
+<a name="SYNTAX"></a>
+</h2>
 
-     <H3>RETURN VALUE</H3>
 
-</A>
-<BLOCKQUOTE>
-The return value is of type INTEGER and of kind KIND. If KIND is
-absent, the return value is of default integer kind.
-</BLOCKQUOTE>
-<A name=5>
+<p style="margin-left:11%; margin-top: 1em">result =
+<b>verify</b>(string, set[, back [, kind]])</p>
 
-     <H3>EXAMPLE</H3>
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-Sample program:
-<P>
-<PRE>
-    program demo_verify
-    character(len=12):: c1=&#146;Howdy There!&#146;
-    character(len=6) :: c2(2)=["Howdy ","there!"]
-    character(len=2) :: c3(2)=["de","gh"]
-    !=======================================================
-    !! LOCATION OF FIRST NONBLANK CHARACTER
-    write(*,*)&#146;nonblank &#146;,verify(&#146;  Hello World! &#146;, &#146; &#146;)
-    !! SAME AS LEN_TRIM()
-    write(*,*)&#146;length &#146;,verify(&#146;  Hello World!    &#146;, &#146; &#146;, back = .true.)
-    !! ARRAYS
-    write(*,*) verify(c1,&#146;de&#146;)                  ! writes 1
-    write(*,*) verify(c2,c3)                    ! writes 1 1
-    write(*,*) verify(c1,&#146;de&#146;,back=.true.)      ! writes 12
-    write(*,*) verify(c2,c3,[.true.,.false.]) ! writes 6 1
-    !=======================================================
-    write(*,*) verify("fortran", "ao")           ! 1, found &#146;f&#146;
-    write(*,*) verify("fortran", "fo")           ! 3, found &#146;r&#146;
-    write(*,*) verify("fortran", "c++")          ! 1, found &#146;f&#146;
-    write(*,*) verify("fortran", "c++", .true.)  ! 7, found &#146;n&#146;
-    write(*,*) verify("fortran", "nartrof")      ! 0&#146; found none
-    !=======================================================
-    !! CHECK IF STRING IS OF FORM NN-HHHHH
-    check : block
-    logical                    :: lout
-    character(len=*),parameter :: int=&#146;0123456789&#146;
-    character(len=*),parameter :: hex=&#146;abcdef0123456789&#146;
-    character(len=80)          :: chars
-<P>
-    chars=&#146;32-af43d&#146;
-    lout=.true.
-    lout = lout.and.(verify(chars(1:2), int) == 0)
-    lout = lout.and.(verify(chars(3:3), &#146;-&#146;) == 0)
-    lout = lout.and.(verify(chars(4:8), hex) == 0)
-    if(lout)then
-       write(*,*)trim(chars),&#146; passed&#146;
-    endif
-<P>
-    endblock check
-    end program demo_verify
-<P>
-</PRE>
-Results:
-<P>
-<PRE>
-    nonblank            3
-    length           14
-              1
-              1           1
-             12
-              6           1
-              1
-              3
-              1
-              7
-              0
-    32-af43d passed
-<P>
-</PRE>
-</BLOCKQUOTE>
-<A name=6>
 
-     <H3>STANDARD</H3>
+<p style="margin-left:11%; margin-top: 1em">Verifies that
+all the characters in STRING belong to the set of characters
+in SET.</p>
 
-</A>
-<BLOCKQUOTE>
-<P>
-[[Fortran 95]] and later, with KIND argument [[Fortran 2003]] and later
-</BLOCKQUOTE>
-<A name=7>
+<p style="margin-left:11%; margin-top: 1em">If BACK is
+either absent or equals FALSE, this function returns the
+position of the leftmost character of STRING that is not in
+SET. If BACK equals TRUE, the rightmost position is
+returned. If all characters of STRING are found in SET, the
+result is zero.</p>
 
-     <H3>CLASS</H3>
+<h2>ARGUMENTS
+<a name="ARGUMENTS"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Elemental function
-</BLOCKQUOTE>
-<A name=8>
 
-     <H3>SEE ALSO</H3>
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
 
-</A>
-<BLOCKQUOTE>
-<P>
-Functions that perform operations on character strings, return lengths
-of arguments, and search for certain arguments:
-<TABLE cellpadding=3><!-- tsb: Functions that perform operations on character strings, return lengths
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD colspan=2>
-<B>Elemental:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-<B>ADJUSTL</B>(3), <B>ADJUSTR</B>(3), <B>INDEX</B>(3), <B>LEN_TRIM</B>(3), <B>SCAN</B>(3), <B>VERIFY</B>(3)
-</TD></TR>
-<TR valign=top><TD colspan=2>
-<B>Nonelemental:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-<B>REPEAT</B>(3), <B>TRIM</B>(3)
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<P><HR>
-<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>verify (3fortran)</TD> <TD align=right width=33%><I>July 03, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 2462dd26-b159-4769-a9d9-9e535df91f58 using man macros.</FONT>
+
+<p style="margin-top: 1em"><b>STRING</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">Shall be of type CHARACTER.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>SET</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p>Shall be of type CHARACTER.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>BACK</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p>(Optional) shall be of type LOGICAL.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>KIND</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p>(Optional) An INTEGER initialization expression
+indicating the kind parameter of the result.</p></td></tr>
+</table>
+
+<h2>RETURN VALUE
+<a name="RETURN VALUE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The return
+value is of type INTEGER and of kind KIND. If KIND is
+absent, the return value is of default integer kind.</p>
+
+<h2>EXAMPLE
+<a name="EXAMPLE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Sample
+program:</p>
+
+<p style="margin-left:11%; margin-top: 1em">program
+demo_verify <br>
+character(len=12):: c1=&rsquo;Howdy There!&rsquo; <br>
+character(len=6) :: c2(2)=[&quot;Howdy
+&quot;,&quot;there!&quot;] <br>
+character(len=2) :: c3(2)=[&quot;de&quot;,&quot;gh&quot;]
+<br>
+!=======================================================
+<br>
+!! LOCATION OF FIRST NONBLANK CHARACTER <br>
+write(*,*)&rsquo;nonblank &rsquo;,verify(&rsquo; Hello
+World! &rsquo;, &rsquo; &rsquo;) <br>
+!! SAME AS LEN_TRIM() <br>
+write(*,*)&rsquo;length &rsquo;,verify(&rsquo; Hello World!
+&rsquo;, &rsquo; &rsquo;, back = .true.) <br>
+!! ARRAYS <br>
+write(*,*) verify(c1,&rsquo;de&rsquo;) ! writes 1 <br>
+write(*,*) verify(c2,c3) ! writes 1 1 <br>
+write(*,*) verify(c1,&rsquo;de&rsquo;,back=.true.) ! writes
+12 <br>
+write(*,*) verify(c2,c3,[.true.,.false.]) ! writes 6 1 <br>
+!=======================================================
+<br>
+write(*,*) verify(&quot;fortran&quot;, &quot;ao&quot;) ! 1,
+found &rsquo;f&rsquo; <br>
+write(*,*) verify(&quot;fortran&quot;, &quot;fo&quot;) ! 3,
+found &rsquo;r&rsquo; <br>
+write(*,*) verify(&quot;fortran&quot;, &quot;c++&quot;) ! 1,
+found &rsquo;f&rsquo; <br>
+write(*,*) verify(&quot;fortran&quot;, &quot;c++&quot;,
+.true.) ! 7, found &rsquo;n&rsquo; <br>
+write(*,*) verify(&quot;fortran&quot;, &quot;nartrof&quot;)
+! 0&rsquo; found none <br>
+!=======================================================
+<br>
+!! CHECK IF STRING IS OF FORM NN-HHHHH <br>
+check : block <br>
+logical :: lout <br>
+character(len=*),parameter :: int=&rsquo;0123456789&rsquo;
+<br>
+character(len=*),parameter ::
+hex=&rsquo;abcdef0123456789&rsquo; <br>
+character(len=80) :: chars</p>
+
+
+<p style="margin-left:11%; margin-top: 1em">chars=&rsquo;32-af43d&rsquo;
+<br>
+lout=.true. <br>
+lout = lout.and.(verify(chars(1:2), int) == 0) <br>
+lout = lout.and.(verify(chars(3:3), &rsquo;-&rsquo;) == 0)
+<br>
+lout = lout.and.(verify(chars(4:8), hex) == 0) <br>
+if(lout)then <br>
+write(*,*)trim(chars),&rsquo; passed&rsquo; <br>
+endif</p>
+
+<p style="margin-left:11%; margin-top: 1em">endblock check
+<br>
+end program demo_verify</p>
+
+<p style="margin-left:11%; margin-top: 1em">Results:</p>
+
+<p style="margin-left:11%; margin-top: 1em">nonblank 3 <br>
+length 14 <br>
+1 <br>
+1 1 <br>
+12 <br>
+6 1 <br>
+1 <br>
+3 <br>
+1 <br>
+7 <br>
+0 <br>
+32-af43d passed</p>
+
+<h2>STANDARD
+<a name="STANDARD"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[Fortran 95]]
+and later, with KIND argument [[Fortran 2003]] and later</p>
+
+<h2>CLASS
+<a name="CLASS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Elemental
+function</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Functions that
+perform operations on character strings, return lengths of
+arguments, and search for certain arguments: <b><br>
+Elemental:</b></p>
+
+<p style="margin-left:22%;"><b>ADJUSTL</b>(3),
+<b>ADJUSTR</b>(3), <b>INDEX</b>(3), <b>LEN_TRIM</b>(3),
+<b>SCAN</b>(3), <b>VERIFY</b>(3)</p>
+
+<p style="margin-left:11%;"><b>Nonelemental:</b></p>
+
+<p style="margin-left:22%;"><b>REPEAT</b>(3),
+<b>TRIM</b>(3)</p>
+<hr>
 <br><br><center><img src="images/IMAGE.gif"></center>
 </div>
 </div>
 </body>
-</HTML>
+</html>

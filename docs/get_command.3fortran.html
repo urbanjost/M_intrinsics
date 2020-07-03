@@ -40,147 +40,180 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 .byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
 </style> 
 </head>
-<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<body>
 <h5><a href="index.html">[UP]</a></h5>
 <div id="Container">
 <div id="Content">
-<CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>get_command (3fortran)</NOBR><HR></H1>
-</CENTER>
-<A name=0>
 
-     <H3>NAME</H3>
+<h1 align="center">get_command</h1>
 
-</A>
-<BLOCKQUOTE>
-<B>get_command(3f) </B>- [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get the entire command line
-<B>
-</B></BLOCKQUOTE>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=9>
+<a href="#NAME">NAME</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#SYNTAX">SYNTAX</a><br>
+<a href="#ARGUMENTS">ARGUMENTS</a><br>
+<a href="#RETURN VALUE">RETURN VALUE</a><br>
+<a href="#EXAMPLE">EXAMPLE</a><br>
+<a href="#STANDARD">STANDARD</a><br>
+<a href="#CLASS">CLASS</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
 
-     <H3>DESCRIPTION</H3>
+<hr>
 
-</A>
-<BLOCKQUOTE>
-Retrieve the entire command line that was used to invoke the program.
-</BLOCKQUOTE>
-<A name=2>
 
-     <H3>SYNTAX</H3>
+<h2>NAME
+<a name="NAME"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-call <B>get_command</B>([command, length, status])
-</BLOCKQUOTE>
-<A name=3>
 
-     <H3>ARGUMENTS</H3>
 
-</A>
-<BLOCKQUOTE>
-<TABLE cellpadding=3>
-<TR valign=top><TD colspan=2>
-<B>COMMAND</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-(Optional) shall be of type CHARACTER and of default kind.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>LENGTH</B> </TD><TD valign=bottom>
-(Optional) Shall be of type INTEGER and of default kind.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>STATUS</B> </TD><TD valign=bottom>
-(Optional) Shall be of type INTEGER and of default kind.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=4>
+<p style="margin-left:11%; margin-top: 1em"><b>get_command(3f)</b>
+- [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get the entire
+command line</p>
 
-     <H3>RETURN VALUE</H3>
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-If COMMAND is present, stores the entire command line that was used
-to invoke the program in COMMAND. If LENGTH is present, it is
-assigned the length of the command line. If STATUS is present, it is
-assigned 0 upon success of the command, <B>-1</B> if COMMAND is too short
-to store the command line, or a positive value in case of an error.
-<P>
-Note that what is typed on the command line is often processed by
-a shell. The shell often processes special characters and white
-space before passing it to the program. The processing can typically
-be turned off by turning off globbing or quoting the command line
-arguments with quote characters and/or changing the default field
-separators, but this should rarely be necessary.
-</BLOCKQUOTE>
-<A name=5>
 
-     <H3>EXAMPLE</H3>
+<p style="margin-left:11%; margin-top: 1em">Retrieve the
+entire command line that was used to invoke the program.</p>
 
-</A>
-<BLOCKQUOTE>
-Sample program:
-<P>
-<PRE>
-   program demo_get_command
-   implicit none
-   integer                      :: COMMAND_LINE_LENGTH
-   character(len=:),allocatable :: COMMAND_LINE
-      ! get command line length
-      call get_command(length=COMMAND_LINE_LENGTH)
-      ! allocate string big enough to hold command line
-      allocate(character(len=COMMAND_LINE_LENGTH) :: COMMAND_LINE)
-      ! get command line as a string
-      call get_command(command=COMMAND_LINE)
-      ! JIC:: trim leading spaces just in case
-      COMMAND_LINE=adjustl(COMMAND_LINE)
-      write(*,&#146;(a)&#146;)COMMAND_LINE
-   end program demo_get_command
-<P>
-</PRE>
-Sample execution:
-<P>
-<PRE>
-     ./test_get_command  arguments    on the    command   line to   echo
-     ./test_get_command arguments on the command line to echo
-     # using the bash shell
-     ./test_get_command  &#146;arguments  *&gt;&lt;&#145;~[]!{}?"#146;| on the    command   line to   echo&#146;
-     ./test_get_command arguments  *&gt;&lt;&#145;~[]!{}?"&#146;| on the    command   line to   echo
-<P>
-</PRE>
-</BLOCKQUOTE>
-<A name=6>
+<h2>SYNTAX
+<a name="SYNTAX"></a>
+</h2>
 
-     <H3>STANDARD</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-[[Fortran 2003]] and later
-</BLOCKQUOTE>
-<A name=7>
+<p style="margin-left:11%; margin-top: 1em">call
+<b>get_command</b>([command, length, status])</p>
 
-     <H3>CLASS</H3>
+<h2>ARGUMENTS
+<a name="ARGUMENTS"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Subroutine
-</BLOCKQUOTE>
-<A name=8>
 
-     <H3>SEE ALSO</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<B>get_command_argument</B>(3),
-<B>command_argument_count</B>(3)
-</BLOCKQUOTE>
-<P><HR>
-<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>get_command (3fortran)</TD> <TD align=right width=33%><I>July 03, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from c55f6fca-67a4-4c92-a0b8-76679e22ca7a using man macros.</FONT>
+<p style="margin-left:11%; margin-top: 1em"><b>COMMAND</b></p>
+
+<p style="margin-left:22%;">(Optional) shall be of type
+CHARACTER and of default kind.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>LENGTH</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p>(Optional) Shall be of type INTEGER and of default
+kind.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>STATUS</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p>(Optional) Shall be of type INTEGER and of default
+kind.</p> </td></tr>
+</table>
+
+<h2>RETURN VALUE
+<a name="RETURN VALUE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">If COMMAND is
+present, stores the entire command line that was used to
+invoke the program in COMMAND. If LENGTH is present, it is
+assigned the length of the command line. If STATUS is
+present, it is assigned 0 upon success of the command,
+<b>-1</b> if COMMAND is too short to store the command line,
+or a positive value in case of an error.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Note that what
+is typed on the command line is often processed by a shell.
+The shell often processes special characters and white space
+before passing it to the program. The processing can
+typically be turned off by turning off globbing or quoting
+the command line arguments with quote characters and/or
+changing the default field separators, but this should
+rarely be necessary.</p>
+
+<h2>EXAMPLE
+<a name="EXAMPLE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Sample
+program:</p>
+
+<p style="margin-left:11%; margin-top: 1em">program
+demo_get_command <br>
+implicit none <br>
+integer :: COMMAND_LINE_LENGTH <br>
+character(len=:),allocatable :: COMMAND_LINE <br>
+! get command line length <br>
+call get_command(length=COMMAND_LINE_LENGTH) <br>
+! allocate string big enough to hold command line <br>
+allocate(character(len=COMMAND_LINE_LENGTH) :: COMMAND_LINE)
+<br>
+! get command line as a string <br>
+call get_command(command=COMMAND_LINE) <br>
+! JIC:: trim leading spaces just in case <br>
+COMMAND_LINE=adjustl(COMMAND_LINE) <br>
+write(*,&rsquo;(a)&rsquo;)COMMAND_LINE <br>
+end program demo_get_command</p>
+
+<p style="margin-left:11%; margin-top: 1em">Sample
+execution:</p>
+
+
+<p style="margin-left:11%; margin-top: 1em">./test_get_command
+arguments on the command line to echo <br>
+./test_get_command arguments on the command line to echo
+<br>
+# using the bash shell <br>
+./test_get_command &rsquo;arguments
+*&gt;&lt;&lsquo;~[]!{}?&quot;\&rsquo;| on the command line
+to echo&rsquo; <br>
+./test_get_command arguments
+*&gt;&lt;&lsquo;~[]!{}?&quot;&rsquo;| on the command line to
+echo</p>
+
+<h2>STANDARD
+<a name="STANDARD"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[Fortran
+2003]] and later</p>
+
+<h2>CLASS
+<a name="CLASS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Subroutine</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>get_command_argument</b>(3),
+<b>command_argument_count</b>(3)</p>
+<hr>
 <br><br><center><img src="images/IMAGE.gif"></center>
 </div>
 </div>
 </body>
-</HTML>
+</html>

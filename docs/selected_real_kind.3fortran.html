@@ -40,175 +40,246 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 .byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
 </style> 
 </head>
-<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<body>
 <h5><a href="index.html">[UP]</a></h5>
 <div id="Container">
 <div id="Content">
-<CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>selected_real_kind (3fortran)</NOBR><HR></H1>
-</CENTER>
-<A name=0>
 
-     <H3>NAME</H3>
+<h1 align="center">selected_real_kind</h1>
 
-</A>
-<BLOCKQUOTE>
-<B>
-</B><B>selected_real_kind(3f) </B>- [FORTRAN:INTRINSIC] Choose real kind
-<B>
-</B></BLOCKQUOTE>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=9>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNTAX">SYNTAX</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#ARGUMENTS">ARGUMENTS</a><br>
+<a href="#RETURN VALUE">RETURN VALUE</a><br>
+<a href="#EXAMPLE">EXAMPLE</a><br>
+<a href="#STANDARD">STANDARD</a><br>
+<a href="#CLASS">CLASS</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
 
-     <H3>SYNTAX</H3>
+<hr>
 
-</A>
-<BLOCKQUOTE>
-<P>
-result = <B>selected_real_kind</B>([p, r, radix])
-</BLOCKQUOTE>
-<A name=2>
 
-     <H3>DESCRIPTION</H3>
+<h2>NAME
+<a name="NAME"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<B>selected_real_kind</B>(p, r, radix) return the kind value of a real data
-type with decimal precision of at least P digits, exponent range of
-at least R, and with a radix of RADIX.
-</BLOCKQUOTE>
-<A name=3>
 
-     <H3>ARGUMENTS</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>P</B> </TD><TD valign=bottom>
-(Optional) shall be a scalar and of type INTEGER.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>R</B> </TD><TD valign=bottom>
-(Optional) shall be a scalar and of type INTEGER.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>RADIX</B> </TD><TD valign=bottom>
-(Optional) shall be a scalar and of type INTEGER.
-</TD></TR>
-<TR></TR></TABLE>Before [[Fortran 2008]], at least one of the arguments R or P
-shall be present; since [[Fortran 2008]], they are assumed to be zero
-if absent.
-</BLOCKQUOTE>
-<A name=4>
+<p style="margin-left:11%; margin-top: 1em"><b>selected_real_kind(3f)
+- [FORTRAN:INTRINSIC] Choose real kind</b></p>
 
-     <H3>RETURN VALUE</H3>
+<h2>SYNTAX
+<a name="SYNTAX"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-selected_real_kind returns the value of the kind type parameter of
-a real data type with decimal precision of at least P digits, a
-decimal exponent range of at least R, and with the requested
-RADIX. If the RADIX parameter is absent, real kinds with
-any radix can be returned. If more than one real data type meet the
-criteria, the kind of the data type with the smallest decimal precision
-is returned. If no real data type matches the criteria, the result is
-</BLOCKQUOTE>
-<TABLE cellpadding=3><!-- tsb: selected_real_kind returns the value of the kind type parameter of
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-<B>-1</B> if the processor does not support a real data type with a
-precision greater than or equal to P, but the R and RADIX
-requirements can be fulfilled
-<TABLE width=100% cellpadding=3><!-- tsb: <B>-1</B> if the processor does not support a real data type with a
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-<B>-2</B> if the processor does not support a real type with an exponent
-range greater than or equal to R, but P and RADIX are
-fulfillable
-</TD></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-<B>-3</B> if RADIX but not P and R requirements are fulfillable
-</TD></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-<B>-4</B> if RADIX and either P or R requirements are fulfillable
-</TD></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-<B>-5</B> if there is no real type with the given RADIX
-</TD></TR>
-<TR></TR></TABLE></TD></TR>
-<TR></TR></TABLE><A name=5>
 
-     <H3>EXAMPLE</H3>
+<p style="margin-left:11%; margin-top: 1em">result =
+<b>selected_real_kind</b>([p, r, radix])</p>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Sample program:
-<P>
-<PRE>
-   program demo_selected_real_kind
-     integer,parameter :: p6 = selected_real_kind(6)
-     integer,parameter :: p10r100 = selected_real_kind(10,100)
-     integer,parameter :: r400 = selected_real_kind(r=400)
-     real(kind=p6) :: x
-     real(kind=p10r100) :: y
-     real(kind=r400) :: z
-<P>
-     print *, precision(x), range(x)
-     print *, precision(y), range(y)
-     print *, precision(z), range(z)
-   end program demo_selected_real_kind
-<P>
-</PRE>
-</BLOCKQUOTE>
-<A name=6>
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
 
-     <H3>STANDARD</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-[[Fortran 95]] and later; with RADIX [[Fortran 2008]] and later
-</BLOCKQUOTE>
-<A name=7>
 
-     <H3>CLASS</H3>
+<p style="margin-left:11%; margin-top: 1em"><b>selected_real_kind</b>(p,
+r, radix) return the kind value of a real data type with
+decimal precision of at least P digits, exponent range of at
+least R, and with a radix of RADIX.</p>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Transformational function
-</BLOCKQUOTE>
-<A name=8>
+<h2>ARGUMENTS
+<a name="ARGUMENTS"></a>
+</h2>
 
-     <H3>SEE ALSO</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<B>precision</B>(3), <B>range</B>(3), <B>radix</B>(3)
-</BLOCKQUOTE>
-<P><HR>
-<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>selected_real_kind (3fortran)</TD> <TD align=right width=33%><I>July 03, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from d57161ab-8de2-494c-bb42-421dec1e9aad using man macros.</FONT>
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p style="margin-top: 1em"><b>P</b></p></td>
+<td width="4%"></td>
+<td width="75%">
+
+
+<p style="margin-top: 1em">(Optional) shall be a scalar and
+of type INTEGER.</p></td>
+<td width="3%">
+</td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p><b>R</b></p></td>
+<td width="4%"></td>
+<td width="75%">
+
+
+<p>(Optional) shall be a scalar and of type INTEGER.</p></td>
+<td width="3%">
+</td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p><b>RADIX</b></p></td>
+<td width="4%"></td>
+<td width="75%">
+
+
+<p>(Optional) shall be a scalar and of type INTEGER.</p></td>
+<td width="3%">
+</td></tr>
+</table>
+
+<p style="margin-left:11%; margin-top: 1em">Before
+[[Fortran 2008]], at least one of the arguments R or P shall
+be present; since [[Fortran 2008]], they are assumed to be
+zero if absent.</p>
+
+<h2>RETURN VALUE
+<a name="RETURN VALUE"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em">selected_real_kind
+returns the value of the kind type parameter of a real data
+type with decimal precision of at least P digits, a decimal
+exponent range of at least R, and with the requested RADIX.
+If the RADIX parameter is absent, real kinds with any radix
+can be returned. If more than one real data type meet the
+criteria, the kind of the data type with the smallest
+decimal precision is returned. If no real data type matches
+the criteria, the result is</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p style="margin-top: 1em">&bull;</p></td>
+<td width="3%"></td>
+<td width="85%">
+
+
+<p style="margin-top: 1em"><b>-1</b> if the processor does
+not support a real data type with a precision greater than
+or equal to P, but the R and RADIX requirements can be
+fulfilled</p> </td></tr>
+</table>
+
+<p style="margin-left:15%;">&bull;</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="15%"></td>
+<td width="2%"></td>
+<td width="3%"></td>
+<td width="80%">
+
+
+<p style="margin-top: 1em"><b>-2</b> if the processor does
+not support a real type with an exponent range greater than
+or equal to R, but P and RADIX are fulfillable</p></td></tr>
+<tr valign="top" align="left">
+<td width="15%"></td>
+<td width="2%">
+
+
+<p>&bull;</p></td>
+<td width="3%"></td>
+<td width="80%">
+
+
+<p><b>-3</b> if RADIX but not P and R requirements are
+fulfillable</p> </td></tr>
+<tr valign="top" align="left">
+<td width="15%"></td>
+<td width="2%">
+
+
+<p>&bull;</p></td>
+<td width="3%"></td>
+<td width="80%">
+
+
+<p><b>-4</b> if RADIX and either P or R requirements are
+fulfillable</p> </td></tr>
+<tr valign="top" align="left">
+<td width="15%"></td>
+<td width="2%">
+
+
+<p>&bull;</p></td>
+<td width="3%"></td>
+<td width="80%">
+
+
+<p><b>-5</b> if there is no real type with the given
+RADIX</p> </td></tr>
+</table>
+
+<h2>EXAMPLE
+<a name="EXAMPLE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Sample
+program:</p>
+
+<p style="margin-left:11%; margin-top: 1em">program
+demo_selected_real_kind <br>
+integer,parameter :: p6 = selected_real_kind(6) <br>
+integer,parameter :: p10r100 = selected_real_kind(10,100)
+<br>
+integer,parameter :: r400 = selected_real_kind(r=400) <br>
+real(kind=p6) :: x <br>
+real(kind=p10r100) :: y <br>
+real(kind=r400) :: z</p>
+
+<p style="margin-left:11%; margin-top: 1em">print *,
+precision(x), range(x) <br>
+print *, precision(y), range(y) <br>
+print *, precision(z), range(z) <br>
+end program demo_selected_real_kind</p>
+
+<h2>STANDARD
+<a name="STANDARD"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[Fortran 95]]
+and later; with RADIX [[Fortran 2008]] and later</p>
+
+<h2>CLASS
+<a name="CLASS"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em">Transformational
+function</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>precision</b>(3),
+<b>range</b>(3), <b>radix</b>(3)</p>
+<hr>
 <br><br><center><img src="images/IMAGE.gif"></center>
 </div>
 </div>
 </body>
-</HTML>
+</html>

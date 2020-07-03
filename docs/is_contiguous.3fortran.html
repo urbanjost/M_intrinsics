@@ -40,209 +40,354 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 .byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
 </style> 
 </head>
-<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<body>
 <h5><a href="index.html">[UP]</a></h5>
 <div id="Container">
 <div id="Content">
-<CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>is_contiguous (3fortran)</NOBR><HR></H1>
-</CENTER>
-<A name=0>
 
-     <H3>NAME</H3>
+<h1 align="center">is_contiguous</h1>
 
-</A>
-<BLOCKQUOTE>
-<B>is_contiguous(3f) </B>- [FORTRAN:INTRINSIC:ARRAY INQUIRY] test if object is contiguous
-<B>
-</B></BLOCKQUOTE>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=8>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNTAX">SYNTAX</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#ARGUMENTS">ARGUMENTS</a><br>
+<a href="#RETURN VALUE">RETURN VALUE</a><br>
+<a href="#EXAMPLE">EXAMPLE</a><br>
+<a href="#STANDARD">STANDARD</a><br>
+<a href="#CLASS">CLASS</a><br>
 
-     <H3>SYNTAX</H3>
+<hr>
 
-</A>
-<BLOCKQUOTE>
-result = <B>is_contiguous</B>(A)
-</BLOCKQUOTE>
-<A name=2>
 
-     <H3>DESCRIPTION</H3>
+<h2>NAME
+<a name="NAME"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-True if and only if an object is contiguous.
-<P>
-An object is contiguous if it is
-<BLOCKQUOTE>
-<TABLE cellpadding=3><!-- tsb: An object is contiguous if it is
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>(1)</B> </TD><TD valign=bottom>
-an object with the CONTIGUOUS attribute,
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>(2)</B> </TD><TD valign=bottom>
-a nonpointer whole array that is not assumed-shape,
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>(3)</B> </TD><TD valign=bottom>
-an assumed-shape array that is argument associated with an array that is contiguous,
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>(4)</B> </TD><TD valign=bottom>
-an array allocated by an ALLOCATE statement,
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>(5)</B> </TD><TD valign=bottom>
-a pointer associated with a contiguous target, or
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>(6)</B> </TD><TD valign=bottom>
-a nonzero-sized array section provided that
-<TABLE width=100% cellpadding=3><!-- tsb: a nonzero-sized array section provided that
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>(a)</B> </TD><TD valign=bottom>
-its base object is contiguous,
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>(b)</B> </TD><TD valign=bottom>
-it does not have a vector subscript,
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>(c)</B> </TD><TD valign=bottom>
-the elements of the section, in array element order, are a subset of the base object elements
-that are consecutive in array element order,
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>(d)</B> </TD><TD valign=bottom>
-if the array is of type character and a substring-range appears, the substring-range specifies all
-of the characters of the parent-string,
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>(e)</B> </TD><TD valign=bottom>
-only its final part-ref has nonzero rank, and
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>(f)</B> </TD><TD valign=bottom>
-it is not the real or imaginary part of an array of type complex.
-</TD></TR>
-<TR></TR></TABLE><!-- .RE -->
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<P>
-An object is not contiguous if it is an array subobject, and
-<BLOCKQUOTE>
-<TABLE cellpadding=3><!-- tsb: An object is not contiguous if it is an array subobject, and
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-the object has two or more elements,
-</TD></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-the elements of the object in array element order are not consecutive in the elements of the base object,
-</TD></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-the object is not of type character with length zero, and
-</TD></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-the object is not of a derived type that has no ultimate components other than zero-sized arrays and
-</TD></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-characters with length zero.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<P>
-It is processor-dependent whether any other object is contiguous.
-</BLOCKQUOTE>
-<A name=3>
 
-     <H3>ARGUMENTS</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>A</B> </TD><TD valign=bottom>
-may be of any type. It shall be an array. If it is a
-pointer it shall be associated.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=4>
+<p style="margin-left:11%; margin-top: 1em"><b>is_contiguous(3f)</b>
+- [FORTRAN:INTRINSIC:ARRAY INQUIRY] test if object is
+contiguous</p>
 
-     <H3>RETURN VALUE</H3>
+<h2>SYNTAX
+<a name="SYNTAX"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>Result</B> </TD><TD valign=bottom>
-of type Default logical scalar.
-The result has the value true if A is contiguous, and false otherwise.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=5>
 
-     <H3>EXAMPLE</H3>
+<p style="margin-left:11%; margin-top: 1em">result =
+<b>is_contiguous</b>(A)</p>
 
-</A>
-<BLOCKQUOTE>
-Sample program:
-<P>
-<PRE>
-   program demo_is_contiguous
-   implicit none
-   intrinsic is_contiguous
-   REAL, DIMENSION (1000, 1000), TARGET :: A
-   REAL, DIMENSION (:, :), POINTER       :: IN, OUT
-   IN =&gt; A              ! Associate IN with target A
-   OUT =&gt; A(1:1000:2,:) ! Associate OUT with subset of target A
-   !
-   write(*,*)&#146;IN is &#146;,IS_CONTIGUOUS(IN)
-   write(*,*)&#146;OUT is &#146;,IS_CONTIGUOUS(OUT)
-   !
-   end program demo_is_contiguous
-<P>
-</PRE>
-</BLOCKQUOTE>
-<A name=6>
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
 
-     <H3>STANDARD</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-[[Fortran 2008]] and later
-</BLOCKQUOTE>
-<A name=7>
+<p style="margin-left:11%; margin-top: 1em">True if and
+only if an object is contiguous.</p>
 
-     <H3>CLASS</H3>
+<p style="margin-left:11%; margin-top: 1em">An object is
+contiguous if it is</p>
 
-</A>
-<BLOCKQUOTE>
-<P>
-[[Inquiry function]]
-</BLOCKQUOTE>
-<P><HR>
-<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>is_contiguous (3fortran)</TD> <TD align=right width=33%><I>July 03, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from cbc7437a-810e-43ae-9a62-a7042d14b9b4 using man macros.</FONT>
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="4%">
+
+
+<p><b>(1)</b></p></td>
+<td width="6%"></td>
+<td width="68%">
+
+
+<p>an object with the CONTIGUOUS attribute,</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="4%">
+
+
+<p><b>(2)</b></p></td>
+<td width="6%"></td>
+<td width="68%">
+
+
+<p>a nonpointer whole array that is not assumed-shape,</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="4%">
+
+
+<p><b>(3)</b></p></td>
+<td width="6%"></td>
+<td width="68%">
+
+
+<p>an assumed-shape array that is argument associated with
+an array that is contiguous,</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="4%">
+
+
+<p><b>(4)</b></p></td>
+<td width="6%"></td>
+<td width="68%">
+
+
+<p>an array allocated by an ALLOCATE statement,</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="4%">
+
+
+<p><b>(5)</b></p></td>
+<td width="6%"></td>
+<td width="68%">
+
+
+<p>a pointer associated with a contiguous target, or</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="4%">
+
+
+<p><b>(6)</b></p></td>
+<td width="6%"></td>
+<td width="68%">
+
+
+<p>a nonzero-sized array section provided that</p></td></tr>
+</table>
+
+<p style="margin-left:32%;"><b>(a)</b></p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="32%"></td>
+<td width="5%"></td>
+<td width="6%"></td>
+<td width="57%">
+
+
+<p style="margin-top: 1em">its base object is
+contiguous,</p> </td></tr>
+<tr valign="top" align="left">
+<td width="32%"></td>
+<td width="5%">
+
+
+<p><b>(b)</b></p></td>
+<td width="6%"></td>
+<td width="57%">
+
+
+<p>it does not have a vector subscript,</p></td></tr>
+<tr valign="top" align="left">
+<td width="32%"></td>
+<td width="5%">
+
+
+<p><b>(c)</b></p></td>
+<td width="6%"></td>
+<td width="57%">
+
+
+<p>the elements of the section, in array element order, are
+a subset of the base object elements that are consecutive in
+array element order,</p></td></tr>
+<tr valign="top" align="left">
+<td width="32%"></td>
+<td width="5%">
+
+
+<p><b>(d)</b></p></td>
+<td width="6%"></td>
+<td width="57%">
+
+
+<p>if the array is of type character and a substring-range
+appears, the substring-range specifies all of the characters
+of the parent-string,</p></td></tr>
+<tr valign="top" align="left">
+<td width="32%"></td>
+<td width="5%">
+
+
+<p><b>(e)</b></p></td>
+<td width="6%"></td>
+<td width="57%">
+
+
+<p>only its final part-ref has nonzero rank, and</p></td></tr>
+<tr valign="top" align="left">
+<td width="32%"></td>
+<td width="5%">
+
+
+<p><b>(f)</b></p></td>
+<td width="6%"></td>
+<td width="57%">
+
+
+<p>it is not the real or imaginary part of an array of type
+complex.</p> </td></tr>
+</table>
+
+<p style="margin-left:11%; margin-top: 1em">An object is
+not contiguous if it is an array subobject, and</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="1%">
+
+
+<p style="margin-top: 1em">&bull;</p></td>
+<td width="3%"></td>
+<td width="74%">
+
+
+<p style="margin-top: 1em">the object has two or more
+elements,</p> </td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="1%">
+
+
+<p>&bull;</p></td>
+<td width="3%"></td>
+<td width="74%">
+
+
+<p>the elements of the object in array element order are
+not consecutive in the elements of the base object,</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="1%">
+
+
+<p>&bull;</p></td>
+<td width="3%"></td>
+<td width="74%">
+
+
+<p>the object is not of type character with length zero,
+and</p> </td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="1%">
+
+
+<p>&bull;</p></td>
+<td width="3%"></td>
+<td width="74%">
+
+
+<p>the object is not of a derived type that has no ultimate
+components other than zero-sized arrays and</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="1%">
+
+
+<p>&bull;</p></td>
+<td width="3%"></td>
+<td width="74%">
+
+
+<p>characters with length zero.</p></td></tr>
+</table>
+
+<p style="margin-left:11%; margin-top: 1em">It is
+processor-dependent whether any other object is
+contiguous.</p>
+
+<h2>ARGUMENTS
+<a name="ARGUMENTS"></a>
+</h2>
+
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p style="margin-top: 1em"><b>A</b></p></td>
+<td width="10%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">may be of any type. It shall be
+an array. If it is a pointer it shall be associated.</p></td></tr>
+</table>
+
+<h2>RETURN VALUE
+<a name="RETURN VALUE"></a>
+</h2>
+
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p style="margin-top: 1em"><b>Result</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">of type Default logical scalar.
+The result has the value true if A is contiguous, and false
+otherwise.</p> </td></tr>
+</table>
+
+<h2>EXAMPLE
+<a name="EXAMPLE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Sample
+program:</p>
+
+<p style="margin-left:11%; margin-top: 1em">program
+demo_is_contiguous <br>
+implicit none <br>
+intrinsic is_contiguous <br>
+REAL, DIMENSION (1000, 1000), TARGET :: A <br>
+REAL, DIMENSION (:, :), POINTER :: IN, OUT <br>
+IN =&gt; A ! Associate IN with target A <br>
+OUT =&gt; A(1:1000:2,:) ! Associate OUT with subset of
+target A <br>
+! <br>
+write(*,*)&rsquo;IN is &rsquo;,IS_CONTIGUOUS(IN) <br>
+write(*,*)&rsquo;OUT is &rsquo;,IS_CONTIGUOUS(OUT) <br>
+! <br>
+end program demo_is_contiguous</p>
+
+<h2>STANDARD
+<a name="STANDARD"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[Fortran
+2008]] and later</p>
+
+<h2>CLASS
+<a name="CLASS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[Inquiry
+function]]</p>
+<hr>
 <br><br><center><img src="images/IMAGE.gif"></center>
 </div>
 </div>
 </body>
-</HTML>
+</html>

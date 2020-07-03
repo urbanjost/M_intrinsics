@@ -40,156 +40,214 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 .byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
 </style> 
 </head>
-<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<body>
 <h5><a href="index.html">[UP]</a></h5>
 <div id="Container">
 <div id="Content">
-<CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>eoshift (3fortran)</NOBR><HR></H1>
-</CENTER>
-<A name=0>
 
-     <H3>NAME</H3>
+<h1 align="center">eoshift</h1>
 
-</A>
-<BLOCKQUOTE>
-<B>
-</B><B>eoshift(3f) </B>- [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] End-off shift elements of an array
-<B>
-</B></BLOCKQUOTE>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=8>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNTAX">SYNTAX</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#ARGUMENTS">ARGUMENTS</a><br>
+<a href="#RETURN VALUE">RETURN VALUE</a><br>
+<a href="#EXAMPLE">EXAMPLE</a><br>
+<a href="#STANDARD">STANDARD</a><br>
+<a href="#CLASS">CLASS</a><br>
 
-     <H3>SYNTAX</H3>
+<hr>
 
-</A>
-<BLOCKQUOTE>
-<P>
-result = <B>eoshift</B>(array, shift [, boundary, dim])
-</BLOCKQUOTE>
-<A name=2>
 
-     <H3>DESCRIPTION</H3>
+<h2>NAME
+<a name="NAME"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<B>eoshift</B>(array, shift[, boundary, dim]) performs an end-off shift on
+
+<p style="margin-left:11%; margin-top: 1em"><b>eoshift(3f)
+- [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] End-off
+shift elements of an array</b></p>
+
+<h2>SYNTAX
+<a name="SYNTAX"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">result =
+<b>eoshift</b>(array, shift [, boundary, dim])</p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>eoshift</b>(array,
+shift[, boundary, dim]) performs an end-off shift on
 elements of ARRAY along the dimension of DIM. If DIM is
-omitted it is taken to be 1. DIM is a scalar of type
-INTEGER in the range of 1 &lt;= DIM &lt;= n where "n" is the
-rank of ARRAY. If the rank of ARRAY is one, then all elements of
-ARRAY are shifted by SHIFT places. If rank is greater than one,
-then all complete rank one sections of ARRAY along the given dimension are
-shifted. Elements shifted out one end of each rank one section are dropped. If
-BOUNDARY is present then the corresponding value of from BOUNDARY
-is copied back in the other end. If BOUNDARY is not present then the
-following are copied in depending on the type of ARRAY.
-</BLOCKQUOTE>
-<P>
-*Array Type* - *Boundary Value*
-<BLOCKQUOTE>
-<TABLE cellpadding=3><!-- tsb: *Array Type* - *Boundary Value*
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-Numeric 0 of the type and kind of ARRAY
-</TD></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-Logical .false.
-</TD></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-<B>Character</B>(LEN) LEN blanks
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=3>
+omitted it is taken to be 1. DIM is a scalar of type INTEGER
+in the range of 1 &lt;= DIM &lt;= n where &quot;n&quot; is
+the rank of ARRAY. If the rank of ARRAY is one, then all
+elements of ARRAY are shifted by SHIFT places. If rank is
+greater than one, then all complete rank one sections of
+ARRAY along the given dimension are shifted. Elements
+shifted out one end of each rank one section are dropped. If
+BOUNDARY is present then the corresponding value of from
+BOUNDARY is copied back in the other end. If BOUNDARY is not
+present then the following are copied in depending on the
+type of ARRAY.</p>
 
-     <H3>ARGUMENTS</H3>
+<p style="margin-left:11%; margin-top: 1em">*Array Type* -
+*Boundary Value*</p>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<TABLE cellpadding=3>
-<TR valign=top><TD colspan=2>
-<B>ARRAY</B> </TD></TR><TR valign=top><TD width=3%>&nbsp;</TD><TD>
-May be any type, not scalar.
-</TD></TR>
-<TR valign=top><TD colspan=2>
-<B>SHIFT</B> </TD></TR><TR valign=top><TD width=3%>&nbsp;</TD><TD>
-The type shall be INTEGER.
-</TD></TR>
-<TR valign=top><TD colspan=2>
-<B>BOUNDARY</B> </TD></TR><TR valign=top><TD width=3%>&nbsp;</TD><TD>
-Same type as ARRAY.
-</TD></TR>
-<TR valign=top><TD width=3% nowrap>
-<B>DIM</B> </TD><TD valign=bottom>
-The type shall be INTEGER.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=4>
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="1%">
 
-     <H3>RETURN VALUE</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Returns an array of same type and rank as the ARRAY argument.
-</BLOCKQUOTE>
-<A name=5>
+<p>&bull;</p></td>
+<td width="3%"></td>
+<td width="60%">
 
-     <H3>EXAMPLE</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Sample program:
-<P>
-<PRE>
-    program demo_eoshift
-        integer, dimension(3,3) :: a
-        a = reshape( [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], [ 3, 3 ])
-        print &#146;(3i3)&#146;, a(1,:)
-        print &#146;(3i3)&#146;, a(2,:)
-        print &#146;(3i3)&#146;, a(3,:)
-        a = eoshift(a, SHIFT=[1, 2, 1], BOUNDARY=-5, DIM=2)
-        print *
-        print &#146;(3i3)&#146;, a(1,:)
-        print &#146;(3i3)&#146;, a(2,:)
-        print &#146;(3i3)&#146;, a(3,:)
-    end program demo_eoshift
-<P>
-</PRE>
-</BLOCKQUOTE>
-<A name=6>
+<p>Numeric 0 of the type and kind of ARRAY</p></td>
+<td width="14%">
+</td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="1%">
 
-     <H3>STANDARD</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-[[Fortran 95]] and later
-</BLOCKQUOTE>
-<A name=7>
+<p>&bull;</p></td>
+<td width="3%"></td>
+<td width="60%">
 
-     <H3>CLASS</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Transformational function
-</BLOCKQUOTE>
-<P><HR>
-<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>eoshift (3fortran)</TD> <TD align=right width=33%><I>July 03, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 2b80c50b-52fc-453d-a6fd-9b44cf019cad using man macros.</FONT>
+<p>Logical .false.</p></td>
+<td width="14%">
+</td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="1%">
+
+
+<p>&bull;</p></td>
+<td width="3%"></td>
+<td width="60%">
+
+
+<p><b>Character</b>(LEN) LEN blanks</p></td>
+<td width="14%">
+</td></tr>
+</table>
+
+<h2>ARGUMENTS
+<a name="ARGUMENTS"></a>
+</h2>
+
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p style="margin-top: 1em"><b>ARRAY</b></p></td>
+<td width="4%"></td>
+<td width="43%">
+
+
+<p style="margin-top: 1em">May be any type, not scalar.</p></td>
+<td width="35%">
+</td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p><b>SHIFT</b></p></td>
+<td width="4%"></td>
+<td width="43%">
+
+
+<p>The type shall be INTEGER.</p></td>
+<td width="35%">
+</td></tr>
+</table>
+
+<p style="margin-left:11%;"><b>BOUNDARY</b></p>
+
+<p style="margin-left:22%;">Same type as ARRAY.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="4%">
+
+
+<p><b>DIM</b></p></td>
+<td width="7%"></td>
+<td width="40%">
+
+
+<p>The type shall be INTEGER.</p></td>
+<td width="38%">
+</td></tr>
+</table>
+
+<h2>RETURN VALUE
+<a name="RETURN VALUE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Returns an
+array of same type and rank as the ARRAY argument.</p>
+
+<h2>EXAMPLE
+<a name="EXAMPLE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Sample
+program:</p>
+
+<p style="margin-left:11%; margin-top: 1em">program
+demo_eoshift <br>
+integer, dimension(3,3) :: a <br>
+a = reshape( [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], [ 3, 3 ]) <br>
+print &rsquo;(3i3)&rsquo;, a(1,:) <br>
+print &rsquo;(3i3)&rsquo;, a(2,:) <br>
+print &rsquo;(3i3)&rsquo;, a(3,:) <br>
+a = eoshift(a, SHIFT=[1, 2, 1], BOUNDARY=-5, DIM=2) <br>
+print * <br>
+print &rsquo;(3i3)&rsquo;, a(1,:) <br>
+print &rsquo;(3i3)&rsquo;, a(2,:) <br>
+print &rsquo;(3i3)&rsquo;, a(3,:) <br>
+end program demo_eoshift</p>
+
+<h2>STANDARD
+<a name="STANDARD"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[Fortran 95]]
+and later</p>
+
+<h2>CLASS
+<a name="CLASS"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em">Transformational
+function</p>
+<hr>
 <br><br><center><img src="images/IMAGE.gif"></center>
 </div>
 </div>
 </body>
-</HTML>
+</html>

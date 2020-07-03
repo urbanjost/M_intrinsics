@@ -40,178 +40,235 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 .byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
 </style> 
 </head>
-<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<body>
 <h5><a href="index.html">[UP]</a></h5>
 <div id="Container">
 <div id="Content">
-<CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>associated (3fortran)</NOBR><HR></H1>
-</CENTER>
-<A name=0>
 
-     <H3>NAME</H3>
+<h1 align="center">associated</h1>
 
-</A>
-<BLOCKQUOTE>
-<B>associated(3f) </B>- [FORTRAN:INTRINSIC] Status of a pointer or pointer/target pair
-<B>
-</B></BLOCKQUOTE>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=9>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNTAX">SYNTAX</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#ARGUMENTS">ARGUMENTS</a><br>
+<a href="#RETURN VALUE">RETURN VALUE</a><br>
+<a href="#EXAMPLE">EXAMPLE</a><br>
+<a href="#STANDARD">STANDARD</a><br>
+<a href="#CLASS">CLASS</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
 
-     <H3>SYNTAX</H3>
+<hr>
 
-</A>
-<BLOCKQUOTE>
-<P>
-result = <B>associated</B>(pointer [, target])
-</BLOCKQUOTE>
-<A name=2>
 
-     <H3>DESCRIPTION</H3>
+<h2>NAME
+<a name="NAME"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<B>associated</B>(pointer [, target]) determines the status of the pointer
-POINTER or if POINTER is associated with the target TARGET.
-</BLOCKQUOTE>
-<A name=3>
 
-     <H3>ARGUMENTS</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<TABLE cellpadding=3>
-<TR valign=top><TD colspan=2>
-<B>POINTER</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-POINTER shall have the POINTER attribute
-and it can be of any type.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>TARGET</B> </TD><TD valign=bottom>
-(Optional) TARGET shall be a pointer or
-a target. It must have the same type, kind type parameter, and
-array rank as POINTER.
-</TD></TR>
-<TR></TR></TABLE>The association status of neither POINTER nor TARGET shall be
-undefined.
-</BLOCKQUOTE>
-<A name=4>
+<p style="margin-left:11%; margin-top: 1em"><b>associated(3f)</b>
+- [FORTRAN:INTRINSIC] Status of a pointer or pointer/target
+pair</p>
 
-     <H3>RETURN VALUE</H3>
+<h2>SYNTAX
+<a name="SYNTAX"></a>
+</h2>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<B>associated</B>(pointer) returns a scalar value of type <B>logical</B>(4). There are
-several cases:
-<TABLE cellpadding=3><!-- tsb: <B>associated</B>(pointer) returns a scalar value of type <B>logical</B>(4). There are
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD width=4%>
-1.
-</TD><TD>
-When the optional TARGET is not present then
-<B>associated</B>(pointer) is true if POINTER is associated with a
-target; otherwise, it returns false.
-</TD></TR>
-<TR valign=top><TD width=4%>
-2.
-</TD><TD>
-If TARGET is present and a scalar target, the result is true if
-TARGET is not a zero-sized storage sequence and the target
-associated with POINTER occupies the same storage units. If
-POINTER is disassociated, the result is false.
-</TD></TR>
-<TR valign=top><TD width=4%>
-3.
-</TD><TD>
-If TARGET is present and an array target, the result is true if
-TARGET and POINTER have the same shape, are not zero-sized
-arrays, are arrays whose elements are not zero-sized storage
-sequences, and TARGET and POINTER occupy the same storage
-units in array element order.
-<P>
-As in case 2, the result is false, if POINTER is disassociated.
-</TD></TR>
-<TR valign=top><TD width=4%>
-4.
-</TD><TD>
-If TARGET is present and an scalar pointer, the result is true
-if TARGET is associated with POINTER, the target associated
-with TARGET are not zero-sized storage sequences and occupy the
-same storage units.
-<P>
-The result is false, if either TARGET or POINTER is
-disassociated.
-</TD></TR>
-<TR valign=top><TD width=4%>
-5.
-</TD><TD>
-If TARGET is present and an array pointer, the result is true if
-target associated with POINTER and the target associated with
-TARGET have the same shape, are not zero-sized arrays, are
-arrays whose elements are not zero-sized storage sequences, and
-TARGET and POINTER occupy the same storage units in array
-element order. The result is false, if either TARGET or
-POINTER is disassociated.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=5>
 
-     <H3>EXAMPLE</H3>
+<p style="margin-left:11%; margin-top: 1em">result =
+<b>associated</b>(pointer [, target])</p>
 
-</A>
-<BLOCKQUOTE>
-<P>
-Sample program:
-<P>
-<PRE>
-    program demo_associated
-       implicit none
-       real, target  :: tgt(2) = [1., 2.]
-       real, pointer :: ptr(:)
-       ptr =&gt; tgt
-       if (associated(ptr)     .eqv. .false.) stop &#146;POINTER NOT ASSOCIATED&#146;
-       if (associated(ptr,tgt) .eqv. .false.) stop &#146;POINTER NOT ASSOCIATED TO TARGET&#146;
-    end program demo_associated
-<P>
-</PRE>
-</BLOCKQUOTE>
-<A name=6>
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
 
-     <H3>STANDARD</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-[[Fortran 95]] and later
-</BLOCKQUOTE>
-<A name=7>
 
-     <H3>CLASS</H3>
+<p style="margin-left:11%; margin-top: 1em"><b>associated</b>(pointer
+[, target]) determines the status of the pointer POINTER or
+if POINTER is associated with the target TARGET.</p>
 
-</A>
-<BLOCKQUOTE>
-<P>
-[[Inquiry function]]
-</BLOCKQUOTE>
-<A name=8>
+<h2>ARGUMENTS
+<a name="ARGUMENTS"></a>
+</h2>
 
-     <H3>SEE ALSO</H3>
 
-</A>
-<BLOCKQUOTE>
-<P>
-<B>null</B>(3)
-</BLOCKQUOTE>
-<P><HR>
-<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>associated (3fortran)</TD> <TD align=right width=33%><I>July 03, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from dd995e9f-4a2c-48b2-926e-a0b024d83a9f using man macros.</FONT>
+
+<p style="margin-left:11%; margin-top: 1em"><b>POINTER</b></p>
+
+<p style="margin-left:22%;">POINTER shall have the POINTER
+attribute and it can be of any type.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>TARGET</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p>(Optional) TARGET shall be a pointer or a target. It
+must have the same type, kind type parameter, and array rank
+as POINTER.</p></td></tr>
+</table>
+
+<p style="margin-left:11%; margin-top: 1em">The association
+status of neither POINTER nor TARGET shall be undefined.</p>
+
+<h2>RETURN VALUE
+<a name="RETURN VALUE"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>associated</b>(pointer)
+returns a scalar value of type <b>logical</b>(4). There are
+several cases:</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p style="margin-top: 1em">1.</p></td>
+<td width="3%"></td>
+<td width="83%">
+
+
+<p style="margin-top: 1em">When the optional TARGET is not
+present then <b>associated</b>(pointer) is true if POINTER
+is associated with a target; otherwise, it returns
+false.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>2.</p></td>
+<td width="3%"></td>
+<td width="83%">
+
+
+<p>If TARGET is present and a scalar target, the result is
+true if TARGET is not a zero-sized storage sequence and the
+target associated with POINTER occupies the same storage
+units. If POINTER is disassociated, the result is false.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>3.</p></td>
+<td width="3%"></td>
+<td width="83%">
+
+
+<p>If TARGET is present and an array target, the result is
+true if TARGET and POINTER have the same shape, are not
+zero-sized arrays, are arrays whose elements are not
+zero-sized storage sequences, and TARGET and POINTER occupy
+the same storage units in array element order.</p></td></tr>
+</table>
+
+<p style="margin-left:17%; margin-top: 1em">As in case 2,
+the result is false, if POINTER is disassociated.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p style="margin-top: 1em">4.</p></td>
+<td width="3%"></td>
+<td width="83%">
+
+
+<p style="margin-top: 1em">If TARGET is present and an
+scalar pointer, the result is true if TARGET is associated
+with POINTER, the target associated with TARGET are not
+zero-sized storage sequences and occupy the same storage
+units.</p> </td></tr>
+</table>
+
+<p style="margin-left:17%; margin-top: 1em">The result is
+false, if either TARGET or POINTER is disassociated.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p style="margin-top: 1em">5.</p></td>
+<td width="3%"></td>
+<td width="83%">
+
+
+<p style="margin-top: 1em">If TARGET is present and an
+array pointer, the result is true if target associated with
+POINTER and the target associated with TARGET have the same
+shape, are not zero-sized arrays, are arrays whose elements
+are not zero-sized storage sequences, and TARGET and POINTER
+occupy the same storage units in array element order. The
+result is false, if either TARGET or POINTER is
+disassociated.</p> </td></tr>
+</table>
+
+<h2>EXAMPLE
+<a name="EXAMPLE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Sample
+program:</p>
+
+<p style="margin-left:11%; margin-top: 1em">program
+demo_associated <br>
+implicit none <br>
+real, target :: tgt(2) = [1., 2.] <br>
+real, pointer :: ptr(:) <br>
+ptr =&gt; tgt <br>
+if (associated(ptr) .eqv. .false.) stop &rsquo;POINTER NOT
+ASSOCIATED&rsquo; <br>
+if (associated(ptr,tgt) .eqv. .false.) stop &rsquo;POINTER
+NOT ASSOCIATED TO TARGET&rsquo; <br>
+end program demo_associated</p>
+
+<h2>STANDARD
+<a name="STANDARD"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[Fortran 95]]
+and later</p>
+
+<h2>CLASS
+<a name="CLASS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">[[Inquiry
+function]]</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>null</b>(3)</p>
+<hr>
 <br><br><center><img src="images/IMAGE.gif"></center>
 </div>
 </div>
 </body>
-</HTML>
+</html>
