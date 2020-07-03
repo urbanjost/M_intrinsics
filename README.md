@@ -8,19 +8,22 @@ This is a project to provide a set of man(1) pages for the standard
 Fortran intrinsics, with a secondary goal of providing a tested working
 example program for each intrinsic.
 
+The man(1) interface is available for all *nix systems and Cygwin as well
+as other platforms; and is used to view documentation on-line in a CLI
+(Command Line Interface) environment.
+
 These documents are at the state of "good enough considering the
 alternative is nothing", but are still actively being edited.
 
 The manpages are available as archive files:
-   - [manpages.tgz](https://github.com/urbanjost/fortran-intrinsic-manpages/blob/master/ship/manpages.zip)
-   - [manpages.zip](https://github.com/urbanjost/fortran-intrinsic-manpages/blob/master/ship/manpages.tgz)
-   - [manpages.tgz](https://github.com/urbanjost/fortran-intrinsic-manpages/ship/manpages.zip)
-   - [manpages.zip](https://github.com/urbanjost/fortran-intrinsic-manpages/ship/manpages.tgz)
+
    - [manpages.tgz](ship/manpages.zip)
    - [manpages.zip](ship/manpages.tgz)
 
-The man(1) interface is available for all *nix systems and Cygwin as
-well as other platforms.
+These links will take you into the filefinder where you will want to
+enter the ship/ directory to download them.
+
+# USE AND INSTALLATION
 
 As manpages the documents can often be integrated with editors or
 IDEs. This is a powerful tool when inspecting code that uses unfamiliar
