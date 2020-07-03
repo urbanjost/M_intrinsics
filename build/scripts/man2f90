@@ -1,0 +1,9 @@
+#!/bin/bash
+export MANPATH=`pwd`/../man
+for TOPIC in $*
+do
+man -s 3fortran $TOPIC|
+   col -b|
+   expand|
+   sed -n -e '\%^[ !]*program  *demo_%,\%^[ !]*end  *program  *demo_%{p}' >../src/demo_$TOPIC.f90
+done
