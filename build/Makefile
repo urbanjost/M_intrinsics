@@ -34,6 +34,7 @@ $(FULLMANS) : ../man/man3/%.3fortran : ../md/%.3fortran.man
 
 .PHONY: install
 install:
+	: example of installing manpages on a system
 	@test -w $(MANDIR)||(echo install : cannot write to $(MANDIR);exit 1)
 	for NAME in $(FULLMANS); \
 	do \
@@ -43,22 +44,26 @@ install:
 
 .PHONY : demos
 demos:
+	: compile and load example programs from manpages
 	cd ../src;make
 
 .PHONY : clean
 clean:
 	rm -f $(FULLMANS) 
 	cd ../docs &&rm -f $(FULLHTMLS)
+	rm ../ship/manpages.zip ../ship/manpages.tgz
 	cd ../src/ && make clean
 
 .PHONY : vi
 vi:
+	: test manpages with vim K command by editing manpage demo programs
 #	vi -c 'set keywordprg=env\ MANPATH=$$MANPATH:../man::\ man\ -s\ 3fortran\ -a' ../src/*.f90
 	: test K command in vim just using the manpages in ../man
 	vim -c 'set keywordprg=env\ MANPATH=../man\ man\ -s\ 3fortran\ -a' ../src/*.f90
 
 .PHONY : list
 list:
+	: list all the manpages and run a simplistic spellcheck
 	env MANPATH=../man man -k .
 	env MANWIDTH=80 MANPATH=../man man --regex '.*'|col -b
 	env MANWIDTH=80 MANPATH=../man man --regex '.*'|bash scripts/spell.sh
@@ -71,13 +76,16 @@ help:
 	@echo 'clean    -- remove output files built by this makefile'
 	@echo 'help     -- display this message'
 	@echo 'install  -- display this message'
+	@echo 'ship     -- rebuild archive files of manpages'
 .PHONY: distros
 
 distros:
+	: get utilities required to rebuild the distribution
 	git clone https://github.com/mvertes/txt2man
 
 .PHONY: ship
 ship:
+	: make easily distributed archive files of manpages
 	cd ../man/man3;\
 	   gzip *.3fortran;\
 	   zip -r ../../ship/manpages.zip *gz;\
@@ -104,4 +112,3 @@ debug:
 	:+F $(+F) 
 	:?D $(?D) 
 	:?F $(?F):'
-
