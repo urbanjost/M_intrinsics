@@ -14,6 +14,8 @@ alternative is nothing", but are still actively being edited.
 The manpages are available as archive files:
    - [manpages.tgz](https://github.com/urbanjost/fortran-intrinsic-manpages/blob/master/ship/manpages.zip)
    - [manpages.zip](https://github.com/urbanjost/fortran-intrinsic-manpages/blob/master/ship/manpages.tgz)
+   - [manpages.tgz](https://github.com/urbanjost/fortran-intrinsic-manpages/ship/manpages.zip)
+   - [manpages.zip](https://github.com/urbanjost/fortran-intrinsic-manpages/ship/manpages.tgz)
 
 The man(1) interface is available for all *nix systems and Cygwin as
 well as other platforms.
@@ -64,8 +66,9 @@ an example, try:
 
 # CONTRIBUTING
 
-This is a public github repository. Anyone can contribute, and is encouraged to
-do so. First, obtain a copy of the repository:
+_Collaborators are welcome_.  This is a public github repository. Anyone
+can contribute, and is encouraged to do so. First, obtain a copy of
+the repository:
 
     git clone https://github.com/urbanjost/FUNIX.git
 
@@ -102,8 +105,6 @@ and the demo program in src/.
 
 The makefile is set up to do other things; and is a work in progress so
 this might change.
-
-_Collaborators are welcome_.
 
 # RESPONSES
 
