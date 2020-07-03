@@ -12,8 +12,8 @@ These documents are at the state of "good enough considering the
 alternative is nothing", but are still actively being edited.
 
 The manpages are available as archive files:
-   - [manpages.tgz](https://urbanjost.github.io/fortran-intrinsic-manpages/ship/manpages.zip)
-   - [manpages.zip](https://urbanjost.github.io/fortran-intrinsic-manpages/ship/manpages.tgz)
+   - [manpages.tgz](https://github.com/urbanjost/fortran-intrinsic-manpages/blob/master/ship/manpages.zip)
+   - [manpages.zip](https://github.com/urbanjost/fortran-intrinsic-manpages/blob/master/ship/manpages.tgz)
 
 The man(1) interface is available for all *nix systems and Cygwin as
 well as other platforms.
@@ -36,20 +36,21 @@ manpages. For example:
 
 # HTML VERSIONS
 
-The manpage source is maintained as flat-text files which are
+manpage source is maintained as flat-text files which are
 
 * run thru txt2man(1) to create the *roff file as a manpage
 * and then thru groff (typically) to create an additional HTML file as collected in
    - a simple [index](https://urbanjost.github.io/fortran-intrinsic-manpages/) to
      the individual pages in HTML form
    - A single page that uses javascript to combine all the HTML
-     descriptions of the manpages is at [BOOK_FORTRAN](https://urbanjost.github.io/fortran-intrinsic-manpages/BOOK_FORTRAN.html).
+     descriptions of the manpages is at 
+     [BOOK_FORTRAN](https://urbanjost.github.io/fortran-intrinsic-manpages/BOOK_FORTRAN.html).
 
 * the example programs are extracted into the src/ directory.
 
 # BASIC VIM USAGE
 
-Tthe vim(1) editor will call up a man(1) page for a word
+The vim(1) editor will call up a man(1) page for a word
 if the letter "K" is pressed over the word and the manpage directory
 is in the searchpath (among other ways, append the man/ pathname to
 the environment variable MANPATH -see man(1) for more information).
@@ -70,39 +71,39 @@ do so. First, obtain a copy of the repository:
 
 ## MINIMAL CHANGES
 
-    At a minimum, you can cd(1) into the md/ directory and change a flat-text
-    markdown file found there. Check it out with
+At a minimum, you can cd(1) into the md/ directory and change a flat-text
+markdown file found there. Check it out with
 
-       build/scripts/txt2man -T $MYFILE
+    build/scripts/txt2man -T $MYFILE
 
-    You can get help on the markdown rules by entering
+You can get help on the markdown rules by entering
 
-       build/scripts/txt2man -h
+    build/scripts/txt2man -h
 
-    Then send your proposed change in using
+Then send your proposed change in using
 
-       git push
+    git push
 
-    A moderator can then accept your change and rebuild the distribution files
-    and HTML documents
+A moderator can periodically then accept your change and rebuild
+the distribution files and HTML documents
 
 ## USING THE MAKE FILE
 
-    If you are familiar with git(1) and gmake(1) (and other GNU tools) and 
-    are in a *nix or CygWin environment it 
-    would be even better if after you change your files you cd(1) into the
-    build directory and enter:
+If you are familiar with git(1) and gmake(1) (and other GNU tools) and 
+are in a *nix or CygWin environment it 
+would be even better if after you change your files you cd(1) into the
+build directory and enter:
 
-        make
-	make ship
+    make
+    make ship
 
-    and check out the HTML page generated in docs/, the manpage in man/man3/
-    and the demo program in src/.
+and check out the HTML page generated in docs/, the manpage in man/man3/
+and the demo program in src/.
 
-    The makefile is set up to do other things; and is a work in progress so
-    this might change.
+The makefile is set up to do other things; and is a work in progress so
+this might change.
 
-    Collaborators are welcome.
+_Collaborators are welcome_.
 
 # RESPONSES
 
