@@ -1,5 +1,6 @@
 #!/bin/bash
 #@(#) given a topic string for current man(1) path build document
+export MANPATH=$(dirname $0)/../../man
 ####################################################################################################################################
 INDX(){
 #set -x
