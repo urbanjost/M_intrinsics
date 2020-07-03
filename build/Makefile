@@ -32,7 +32,7 @@ roff: $(FULLMANS)
 #-- rule for files in ../md ending in .man assumed to be txt2man(1) input 
 #$(filter %.man,$(FULLMANS)) : ../man/man3/%.3fortran : ../md/%.3fortran.man
 $(FULLMANS) : ../man/man3/%.3fortran : ../md/%.3fortran.man
-	txt2man -s 3fortran -t "$*" $< |tee $@ |\
+	scripts/txt2man -s 3fortran -t "$*" $< |tee $@ |\
 	bash scripts/man2html >../docs/$*.3fortran.html
 	env MANPATH=../man bash scripts/man2f90 $*
 
