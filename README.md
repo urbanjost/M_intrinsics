@@ -8,6 +8,15 @@ This is a project to provide a set of man(1) pages for the standard
 Fortran intrinsics, with a secondary goal of providing a tested working
 example program for each intrinsic.
 
+Unlike many parts of a language, intrinsics can naturally be described
+in discrete units using manpages. If we get enough momentum going here
+using a "divide and conquer" approach, a finished product can quickly
+be produced and transferred to
+
+   [https://fortran-lang.org](https://fortran-lang.org)
+
+in an HTML format as well.
+
 The man(1) interface is available for all *nix systems and Cygwin as well
 as other platforms; and is used to view documentation on-line in a CLI
 (Command Line Interface) environment.
@@ -20,7 +29,7 @@ The manpages are available as archive files:
    - [manpages.tgz](ship/manpages.zip)
    - [manpages.zip](ship/manpages.tgz)
 
-These links will take you into the filefinder where you will want to
+These links will take you into the "filefinder" where you will want to
 enter the ship/ directory to download them.
 
 # USE AND INSTALLATION
@@ -30,10 +39,10 @@ IDEs. This is a powerful tool when inspecting code that uses unfamiliar
 procedures and to verify correct usage when creating code in a CLI
 environment.
 
-Installing manpages can vary. Check your system documention, but at a
-minimum if you create the directory $HOME/man/man3 and place the manpages
-there and add $HOME/man to your $MANPATH you should be able to use the
-manpages. For example:
+The process of installing manpages can vary. Check your system
+documention, but at a minimum if you create the directory $HOME/man/man3
+and place the manpages there and add $HOME/man to your $MANPATH you
+should be able to use the manpages. For example:
 
         mkdir -p $HOME/man/man3
         cd $HOME/man/man3
@@ -75,7 +84,7 @@ _Collaborators are welcome_.  This is a public github repository. Anyone
 can contribute, and is encouraged to do so. First, obtain a copy of
 the repository:
 
-    git clone https://github.com/urbanjost/FUNIX.git
+    git clone https://github.com/urbanjost/fortran-intrinsic-manpages.git
 
 ## MINIMAL CHANGES
 
@@ -94,6 +103,7 @@ Then send your proposed change in using
 
 A moderator can periodically then accept your change and rebuild
 the distribution files and HTML documents
+
 
 ## USING THE MAKE FILE
 
