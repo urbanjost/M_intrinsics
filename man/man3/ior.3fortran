@@ -11,23 +11,53 @@
 \fBior(3f) \fP- [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise logical inclusive or
 \fB
 .SH SYNTAX
-
 result = \fBior\fP(i, j)
+.PP
+.nf
+.fam C
+    integer,intent(in) :: i
+    integer,intent(in) :: j
+
+.fam T
+.fi
 .SH DESCRIPTION
-
-IOR returns the bitwise Boolean inclusive-OR of I and J.
+IOR returns the bit-wise Boolean inclusive-OR of I and J.
 .SH ARGUMENTS
-
 .TP
 .B I
-The type shall be INTEGER.
+an INTEGER scalar or array. 
 .TP
 .B J
-The type shall be INTEGER, of the same kind as I.
+INTEGER scalar or array, of the same kind as I.
 .SH RETURN VALUE
-
 The return type is INTEGER, of the same kind as the arguments. (If the
 argument kinds differ, it is of the same kind as the larger argument.)
+.SH EXAMPLE
+Sample program:
+.PP
+.nf
+.fam C
+   program demo_ior
+   implicit none
+   integer :: i, j, k
+      i=53       ! i=00110101 binary (lowest order byte)
+      j=45       ! j=00101101 binary (lowest order byte)
+      k=ior(i,j) ! k=00111101 binary (lowest order byte) , k=61 decimal
+      write(*,'(i8,1x,b8.8)')i,i,j,j,k,k
+   end program demo_ior
+
+.fam T
+.fi
+Results:
+.PP
+.nf
+.fam C
+         53 00110101
+         45 00101101
+         61 00111101
+
+.fam T
+.fi
 .SH STANDARD
 
 [[Fortran 95]] and later
