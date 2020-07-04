@@ -75,14 +75,14 @@ list:
 .PHONY: help
 help:
 	@echo 'all      -- build all manpages, html pages, and write demo programs'
-	@echo 'list     -- list all manpages to stdout'
+	@echo 'ship     -- rebuild archive files of manpages'
 	@echo 'demos    -- build demo programs'
 	@echo 'clean    -- remove output files built by this makefile'
+	@echo 'list     -- list all manpages to stdout'
 	@echo 'help     -- display this message'
-	@echo 'install  -- display this message'
-	@echo 'ship     -- rebuild archive files of manpages'
-.PHONY: distros
+	@echo 'install  -- install in $(MANDIR)'
 
+.PHONY: distros
 distros:
 	: get utilities required to rebuild the distribution
 	git clone https://github.com/mvertes/txt2man
