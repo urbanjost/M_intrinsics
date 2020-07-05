@@ -71,6 +71,8 @@ list:
 	env MANPATH=../man man -k .
 	env MANWIDTH=80 MANPATH=../man man --regex '.*'|col -b
 	env MANWIDTH=80 MANPATH=../man man --regex '.*'|bash scripts/spell.sh
+        : to look up a word from the command line try
+	: curl --silent dict://dict.org/d:"WORD:all"|more
 
 .PHONY: help
 help:

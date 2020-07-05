@@ -55,7 +55,8 @@ should be able to use the manpages. For example:
 manpage source is maintained as flat-text files which are
 
 * run thru txt2man(1) to create the *roff file as a manpage
-* and then thru groff (typically) to create an additional HTML file as collected in
+* and then thru manserver(1) or groff (typically) to create an additional
+  HTML file as collected in
    - a simple [index](https://urbanjost.github.io/fortran-intrinsic-manpages/) to
      the individual pages in HTML form
    - A single page that uses javascript to combine all the HTML
@@ -99,11 +100,16 @@ You can get help on the markdown rules by entering
 
 Then send your proposed change in using
 
+    git add $FILENAME
+    git commit -m 'changed $FILENAME because it needed it'
     git push
 
 A moderator can periodically then accept your change and rebuild
 the distribution files and HTML documents
 
+The repository is set up as public, so I believe anyone with a github ID
+can change these files but it is unclear to me exactly how this should
+work, or whether a branch is required. Looking for more information ...
 
 ## USING THE MAKE FILE
 
