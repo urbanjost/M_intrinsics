@@ -18,7 +18,7 @@ all: $(PROGRAMS)
 # Behind the scenes, make(1) is using the POSIX-mandated built-in single suffix rule
 
 .f90:
-	[ ! -z $< ] && $(FC90) $(F90FLAGS) $(LDFLAGS) $(TARGET_ARCH) -o $@ $< || echo $@ 
+	[ -s $< ] && $(FC90) $(F90FLAGS) $(LDFLAGS) $(TARGET_ARCH) -o $@ $< || echo $@ 
 
 .phony : clean
 clean:
