@@ -1,5 +1,5 @@
 NAME
-     ADJUSTL(3f) - [FORTRAN:INTRINSIC:CHARACTER] Left adjust a string
+     adjustl(3f) - [FORTRAN:INTRINSIC:CHARACTER] Left adjust a string
      
 SYNTAX
 
@@ -7,7 +7,7 @@ SYNTAX
 
 DESCRIPTION
 
-   ADJUSTL(STRING) will left adjust a string by removing leading spaces.
+   adjustl(STRING) will left adjust a string by removing leading spaces.
    Spaces are inserted at the end of the string as needed.
 
 ARGUMENTS

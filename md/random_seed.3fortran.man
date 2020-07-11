@@ -1,6 +1,6 @@
 NAME
 
-     random_seed(3f) - [FORTRAN:INTRINSIC] Initialize a pseudo-random number sequence
+     random_seed(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:RANDOM] Initialize a pseudo-random number sequence
      
 SYNTAX
 

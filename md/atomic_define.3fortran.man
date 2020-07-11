@@ -1,5 +1,5 @@
 NAME
-     atomic_define(3f) - [FORTRAN:INTRINSIC] Setting a variable atomically
+     atomic_define(3f) - [FORTRAN:INTRINSIC:ATOMIC] Setting a variable atomically
      
 SYNTAX
 

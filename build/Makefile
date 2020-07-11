@@ -76,6 +76,7 @@ list:
 
 .PHONY: help
 help:
+	@echo '         -- build changed manpages, html pages, and write demo programs'
 	@echo 'all      -- build all manpages, html pages, and write demo programs'
 	@echo 'ship     -- rebuild archive files of manpages'
 	@echo 'demos    -- build demo programs'

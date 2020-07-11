@@ -1,6 +1,6 @@
 NAME
 
-     DIM(3f) - [FORTRAN:INTRINSIC:NUMERIC] Positive difference
+     dim(3f) - [FORTRAN:INTRINSIC:NUMERIC] Positive difference
      
 SYNTAX
 

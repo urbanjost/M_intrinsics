@@ -1,5 +1,5 @@
 NAME
-     ALLOCATED(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Status of an allocatable entity
+     allocated(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Status of an allocatable entity
      
 SYNTAX
 

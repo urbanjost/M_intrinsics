@@ -1,5 +1,5 @@
 NAME
-     maxexponent(3f) - [FORTRAN:INTRINSIC] Maximum exponent of a real kind
+     maxexponent(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Maximum exponent of a real kind
      
 SYNTAX
 

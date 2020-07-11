@@ -1,5 +1,5 @@
 NAME
-     int(3f) - [FORTRAN:INTRINSIC:NUMERIC] Convert to integer type
+     int(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Convert to integer type
      
 SYNTAX
 

@@ -1,6 +1,6 @@
 NAME
 
-     tan(3f) - [FORTRAN:INTRINSIC:TRIGONOMETRIC] Tangent function
+     tan(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Tangent function
      
 SYNTAX
 

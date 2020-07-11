@@ -1,6 +1,5 @@
 NAME
-
-     selected_real_kind(3f) - [FORTRAN:INTRINSIC] Choose real kind
+     selected_real_kind(3f) - [FORTRAN:INTRINSIC:KIND] Choose real kind
      
 SYNTAX
 

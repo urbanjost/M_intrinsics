@@ -1,5 +1,5 @@
 NAME
-   FINDLOC(3f) - [FORTRAN:INTRINSIC] Location of the first element of ARRAY identified by MASK along dimension DIM having a value
+   findloc(3f) - [FORTRAN:INTRINSIC] Location of the first element of ARRAY identified by MASK along dimension DIM having a value
    
 SYNOPSIS
   FINDLOC (ARRAY, VALUE, DIM [, MASK, KIND, BACK])
@@ -10,7 +10,6 @@ DESCRIPTION
   Location of the first element of ARRAY identified by MASK along
   dimension DIM having a value equal to VALUE.
 
-  Class. Transformational function.
 
   If both ARRAY and VALUE are of type logical, the comparison is performed
   with the .EQV. operator; otherwise, the comparison is performed with
@@ -137,3 +136,5 @@ EXAMPLE
                  FINDLOC (B, VALUE = 2, DIM = 2)
 
                 has the value [2, 1]. This is independent of the declared lower bounds for B.
+CLASS
+   Transformational function.

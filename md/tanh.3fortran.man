@@ -1,6 +1,6 @@
 NAME
 
-     tanh(3f) - [FORTRAN:INTRINSIC:TRIGONOMETRIC] Hyperbolic tangent function
+   tanh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Hyperbolic tangent function
      
 SYNTAX
 
@@ -8,7 +8,7 @@ x = tanh(x)
 
 DESCRIPTION
 
-   tanh(x) computes the hyperbolic tangent of X.
+   tanh(X) computes the hyperbolic tangent of X.
 
 ARGUMENTS
 

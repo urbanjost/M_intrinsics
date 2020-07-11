@@ -1,5 +1,5 @@
 NAME
-     AINT(3f) - [FORTRAN:INTRINSIC:NUMERIC] Truncate to a whole number
+     aint(3f) - [FORTRAN:INTRINSIC:NUMERIC] Truncate to a whole number
      
 SYNTAX
 

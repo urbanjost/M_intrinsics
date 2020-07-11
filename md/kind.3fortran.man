@@ -1,5 +1,5 @@
 NAME
-     kind(3f) - [FORTRAN:INTRINSIC] Kind of an entity
+     kind(3f) - [FORTRAN:INTRINSIC:KIND INQUIRY] Kind of an entity
      
 SYNTAX
    k = kind(x)

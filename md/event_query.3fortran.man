@@ -1,6 +1,6 @@
 NAME
 
-     EVENT_QUERY(3f) - [FORTRAN:INTRINSIC] Query whether a coarray event has occurred
+     event_query(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Query whether a coarray event has occurred
      
 SYNTAX
 

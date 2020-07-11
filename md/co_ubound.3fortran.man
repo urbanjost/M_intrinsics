@@ -1,6 +1,6 @@
 NAME
 
-     CO_UBOUND(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Upper codimension bounds of an array
+     co_ubound(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Upper codimension bounds of an array
      
 SYNTAX
 

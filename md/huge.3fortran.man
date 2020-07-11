@@ -1,6 +1,6 @@
 NAME
 
-     huge(3f) - [FORTRAN:INTRINSIC] Largest number of a kind
+     huge(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Largest number of a kind
      
 SYNTAX
 

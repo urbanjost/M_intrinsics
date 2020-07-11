@@ -1,6 +1,6 @@
 NAME
 
-    DSHIFTL(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] combines bits of arguments I and J
+    dshiftl(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] combines bits of arguments I and J
     
 SYNTAX
 

@@ -1,5 +1,5 @@
 NAME
-     new_line(3f) - [FORTRAN:INTRINSIC] New line character
+     new_line(3f) - [FORTRAN:INTRINSIC:CHARACTER] New line character
      
 SYNTAX
    result = new_line(c)

@@ -1,6 +1,6 @@
 NAME
 
-     this_image(3f) - [FORTRAN:INTRINSIC] Cosubscript index of this image
+     this_image(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Cosubscript index of this image
      
 SYNTAX
 
@@ -41,16 +41,18 @@ EXAMPLE
 
   Sample program:
 
+   program demo_this_image
    integer :: value[*]
    integer :: i
-   value = this_image()
-   sync all
-   if (this_image() == 1) then
-     do i = 1, num_images()
-       write(*,'(2(a,i0))') 'value[', i, '] is ', value[i]
-     end do
-   end if
-
+      value = this_image()
+      sync all
+      if (this_image() == 1) then
+        do i = 1, num_images()
+          write(*,'(2(a,i0))') 'value[', i, '] is ', value[i]
+        end do
+      end if
+   end program demo_this_image
+   !
    ! Check whether the current image is the initial image
    if (this_image(huge(1)) /= this_image())
    error stop "something is rotten here"
@@ -66,4 +68,3 @@ CLASS
 SEE ALSO
 
    num_images(3), image_index(3)
-

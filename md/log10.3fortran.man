@@ -1,5 +1,5 @@
 NAME
-     LOG10(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Base 10 logarithm function
+     log10(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Base 10 logarithm function
      
 SYNTAX
    result = LOG10(x)

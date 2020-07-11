@@ -1,5 +1,5 @@
 NAME
-     image_index(3f) - [FORTRAN:INTRINSIC] Cosubscript to image index conversion
+     image_index(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Cosubscript to image index conversion
      
 SYNTAX
 
@@ -24,10 +24,11 @@ EXAMPLE
 
   Sample program:
 
+   program demo image_index
    integer :: array[2,-1:4,8,*]
-   ! Writes  28 (or 0 if there are fewer than 28 images)
-   write (*,*) image_index(array, [2,0,3,1])
-   end
+      ! Writes  28 (or 0 if there are fewer than 28 images)
+      write (*,*) image_index(array, [2,0,3,1])
+   end demo image_index
 
 STANDARD
 

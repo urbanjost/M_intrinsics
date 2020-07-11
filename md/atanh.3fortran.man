@@ -1,5 +1,5 @@
 NAME
-     atanh(3f) - [FORTRAN:INTRINSIC:TRIGONOMETRIC] Inverse hyperbolic tangent function
+     atanh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Inverse hyperbolic tangent function
      
 SYNTAX
 

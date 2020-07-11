@@ -1,5 +1,5 @@
 NAME
-   sngl(3f) - [FORTRAN:INTRINSIC] Convert double precision real to default real
+   sngl(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Convert double precision real to default real
    
 SYNTAX
    result = sngl(a)

@@ -1,11 +1,11 @@
 NAME
-     ACOS(3f) - [FORTRAN:INTRINSIC:TRIGONOMETRIC] Arccosine function
+     acos(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Arccosine function
 
 SYNTAX
    result = ACOS(X)
 
 DESCRIPTION
-   ACOS(X) computes the arccosine of X (inverse of cos(x)).
+   acos(X) computes the arccosine of X (inverse of cos(x)).
 
 ARGUMENTS
 

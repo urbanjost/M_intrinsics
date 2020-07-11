@@ -1,11 +1,11 @@
 NAME
-     ABS(3f) - [FORTRAN:INTRINSIC:NUMERIC] Absolute value
+     abs(3f) - [FORTRAN:INTRINSIC:NUMERIC] Absolute value
 
 SYNTAX
    result = ABS(A)
 
 DESCRIPTION
-   ABS(A) computes the absolute value of A.
+   abs(A) computes the absolute value of A.
 
 ARGUMENTS
   A    the type of the argument shall be an INTEGER, REAL, or

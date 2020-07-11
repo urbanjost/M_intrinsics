@@ -1,5 +1,5 @@
 NAME
-     asin(3f) - [FORTRAN:INTRINSIC:TRIGONOMETRIC] Arcsine function
+     asin(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Arcsine function
      
 SYNTAX
 

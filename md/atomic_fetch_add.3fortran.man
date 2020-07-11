@@ -1,5 +1,5 @@
 NAME
-     atomic_fetch_add(3f) - [FORTRAN:INTRINSIC] Atomic ADD operation with prior fetch
+     atomic_fetch_add(3f) - [FORTRAN:INTRINSIC:ATOMIC] Atomic ADD operation with prior fetch
      
 SYNTAX
 

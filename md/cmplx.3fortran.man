@@ -1,5 +1,5 @@
 NAME
-     cmplx(3f) - [FORTRAN:INTRINSIC:NUMERIC] Complex conversion function
+     cmplx(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Complex conversion function
      
 SYNTAX
 

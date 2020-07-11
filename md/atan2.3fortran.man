@@ -1,5 +1,5 @@
 NAME
-     atan2(3f) - [FORTRAN:INTRINSIC:TRIGONOMETRIC] Arctangent function
+     atan2(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Arctangent function
      
 SYNTAX
    result = atan2(y, x)

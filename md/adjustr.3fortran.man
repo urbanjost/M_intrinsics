@@ -1,5 +1,5 @@
 NAME
-     ADJUSTR(3f) - [FORTRAN:INTRINSIC:CHARACTER] Right adjust a string
+     adjustr(3f) - [FORTRAN:INTRINSIC:CHARACTER] Right adjust a string
      
 SYNTAX
 
@@ -7,7 +7,7 @@ SYNTAX
 
 DESCRIPTION
 
-   ADJUSTR(STRING) will right adjust a string by removing trailing spaces.
+   adjustr(STRING) will right adjust a string by removing trailing spaces.
    Spaces are inserted at the start of the string as needed.
 
 ARGUMENTS

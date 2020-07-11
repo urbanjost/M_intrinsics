@@ -1,5 +1,5 @@
 NAME
-     null(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] Function that returns an disassociated pointer
+     null(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] Function that returns a disassociated pointer
      
 SYNTAX
 

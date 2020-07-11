@@ -1,5 +1,5 @@
 NAME
-     atomic_add(3f) - [FORTRAN:INTRINSIC] Atomic ADD operation
+     atomic_add(3f) - [FORTRAN:INTRINSIC:ATOMIC] Atomic ADD operation
      
 SYNTAX
 

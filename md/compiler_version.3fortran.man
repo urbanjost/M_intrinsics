@@ -1,18 +1,18 @@
 NAME
-     compiler_version(3f) - [FORTRAN:INTRINSIC] Compiler version string
+     compiler_version(3f) - [FORTRAN:INTRINSIC:COMPILER INQUIRY] Compiler version string
      
 SYNTAX
 
-str = compiler_version()
+   str = compiler_version()
 
 DESCRIPTION
 
-   compiler_version returns a string with the name and the
-   version of the compiler.
+   compiler_version(3f) returns a string containing the name and version
+   of the compiler.
 
 ARGUMENTS
 
-None.
+   None.
 
 RETURN VALUE
 
@@ -24,7 +24,7 @@ EXAMPLE
   Sample program:
 
    program demo_compiler_version
-   use iso_fortran_env
+   use, intrinsic :: iso_fortran_env, only : compiler_version, compiler_options
    implicit none
    print '(4a)', &
       'This file was compiled by ', &
@@ -52,5 +52,4 @@ CLASS
 
 SEE ALSO
 
-   compiler_options(3), iso_fortran_env(3)
-
+   compiler_options(3), iso_fortran_env(7)

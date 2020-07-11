@@ -1,5 +1,5 @@
 NAME
-     cos(3f) - [FORTRAN:INTRINSIC:TRIGONOMETRIC] Cosine function
+     cos(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Cosine function
      
 SYNTAX
 

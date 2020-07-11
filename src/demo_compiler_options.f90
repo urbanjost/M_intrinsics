@@ -1,5 +1,5 @@
           program demo_compiler_version
-          use iso_fortran_env
+          use, intrinsic :: iso_fortran_env, only : compiler_version, compiler_options
           implicit none
           print '(4a)', &
              'This file was compiled by ', &

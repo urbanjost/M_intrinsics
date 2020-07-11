@@ -1,5 +1,5 @@
 NAME
-     precision(3f) - [FORTRAN:INTRINSIC] Decimal precision of a real kind
+     precision(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Decimal precision of a real kind
      
 SYNTAX
 
