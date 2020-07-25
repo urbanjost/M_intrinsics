@@ -1,5 +1,6 @@
            program demo_dprod
            use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128
+           implicit none
            integer,parameter :: dp=kind(0.0d0)
            real :: x = 5.2
            real :: y = 2.3

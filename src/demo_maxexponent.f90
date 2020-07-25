@@ -1,4 +1,5 @@
            program demo_maxexponent
+           implicit none
              real(kind=4) :: x
              real(kind=8) :: y
 

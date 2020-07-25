@@ -1,4 +1,5 @@
           program demo_co_broadcast
+          implicit none
             integer :: val(3)
             if (this_image() == 1) then
               val = [1, 5, 3]

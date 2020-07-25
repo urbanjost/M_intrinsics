@@ -1,4 +1,5 @@
            program demo_present
+           implicit none
              write(*,*) f(), f(42)      ! "f t"
            contains
              logical function f(x)

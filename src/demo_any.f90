@@ -1,4 +1,5 @@
            program demo_any
+           implicit none
              logical l
              l = any([.true., .true., .true.])
              print *, l

@@ -24,7 +24,6 @@ RETURN VALUE
    KIND is absent, the return value is of default integer kind.
 
 EXAMPLE
-
   Sample program:
 
    program demo_ichar

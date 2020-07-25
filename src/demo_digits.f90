@@ -1,4 +1,5 @@
            program demo_digits
+           implicit none
                integer :: i = 12345
                real :: x = 3.143
                doubleprecision :: y = 2.33d0

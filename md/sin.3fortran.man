@@ -28,6 +28,7 @@ EXAMPLE
   Sample program:
 
     program sample_sin
+    implicit none
       real :: x = 0.0
       x = sin(x)
     end program sample_sin

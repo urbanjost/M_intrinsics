@@ -22,6 +22,7 @@ EXAMPLE
   Sample program:
 
    program demo_selected_int_kind
+   implicit none
      integer,parameter :: k5 = selected_int_kind(5)
      integer,parameter :: k15 = selected_int_kind(15)
      integer(kind=k5) :: i5

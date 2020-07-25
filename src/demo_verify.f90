@@ -1,4 +1,5 @@
            program demo_verify
+           implicit none
            character(len=12):: c1='Howdy There!'
            character(len=6) :: c2(2)=["Howdy ","there!"]
            character(len=2) :: c3(2)=["de","gh"]

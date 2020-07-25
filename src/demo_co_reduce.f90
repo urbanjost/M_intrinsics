@@ -1,4 +1,5 @@
           program demo_co_reduce
+          implicit none
             integer :: val
             val = this_image()
             call co_reduce(val, result_image=1, operator=myprod)

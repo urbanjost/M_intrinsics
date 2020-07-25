@@ -1,4 +1,5 @@
           program demo_aimag
+          implicit none
           integer,parameter :: dp=kind(0.0d0)
           complex          :: z4
           complex(kind=dp) :: z8

@@ -1,4 +1,5 @@
            program demo_exponent
+           implicit none
              real :: x = 1.0
              integer :: i
              i = exponent(x)

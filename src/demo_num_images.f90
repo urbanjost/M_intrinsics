@@ -1,4 +1,5 @@
           program demo_num_images
+          implicit none
           integer :: value[*]
           integer :: i
           value = this_image()

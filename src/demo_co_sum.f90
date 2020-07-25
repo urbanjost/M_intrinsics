@@ -1,4 +1,5 @@
           program demo_co_sum
+          implicit none
             integer :: val
             val = this_image()
             call co_sum(val, result_image=1)

@@ -1,4 +1,5 @@
           program demo_rank
+          implicit none
             integer :: a
             real, allocatable :: b(:,:)
             real  :: c(10,20,30)

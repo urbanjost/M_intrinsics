@@ -25,6 +25,7 @@ EXAMPLES
   Sample program
 
     program demo_storage_size
+    implicit none
        write(*,*)'size of integer ',storage_size(0)
        write(*,*)'size of real    ',storage_size(0.0)
        write(*,*)'size of logical ',storage_size(.true.)

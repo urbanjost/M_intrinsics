@@ -1,4 +1,5 @@
            program demo_ceiling
+           implicit none
                real :: x = 63.29
                real :: y = -63.59
                print *, ceiling(x) ! returns 64

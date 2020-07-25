@@ -1,4 +1,5 @@
           program demo_exec
+          implicit none
             integer :: i
 
             call execute_command_line("external_prog.exe", exitstat=i)

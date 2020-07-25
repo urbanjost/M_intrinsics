@@ -49,7 +49,7 @@ install:
 .PHONY : demos
 demos:
 	: compile and load example programs from manpages
-	cd ../demos;make
+	cd ../src;make
 
 .PHONY : clean
 clean:

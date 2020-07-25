@@ -1,4 +1,5 @@
           program demo_co_min
+          implicit none
             integer :: val
             val = this_image()
             call co_min(val, result_image=1)

@@ -1,4 +1,5 @@
            program demo_precision
+           implicit none
              real(kind=4) :: x(2)
              complex(kind=8) :: y
 

@@ -1,4 +1,5 @@
           program demo_modulo
+          implicit none
             print *, modulo(17,3)        ! yields 2
             print *, modulo(17.5,5.5)    ! yields 1.0
 

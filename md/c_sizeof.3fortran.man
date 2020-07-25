@@ -28,14 +28,15 @@ EXAMPLE
 
   Sample program:
 
+   program demo_c_sizeof
    use iso_c_binding
-   integer(c_int) :: i
+   implicit none
    real(c_float) :: r, s(5)
-   print *, (c_sizeof(s)/c_sizeof(r) == 5)
-   end
+      print *, (c_sizeof(s)/c_sizeof(r) == 5)
+   end program demo_c_sizeof
 
-   The example will print .true. unless you are using a platform
-   where default REAL variables are unusually padded.
+  The example will print .true. unless you are using a platform
+  where default REAL variables are unusually padded.
 
 STANDARD
 

@@ -1,4 +1,5 @@
           program demo_co_max
+          implicit none
             integer :: val
             val = this_image()
             call co_max(val, result_image=1)

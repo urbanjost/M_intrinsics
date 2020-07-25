@@ -1,6 +1,6 @@
           program demo_iachar
-          ! create function to convert uppercase letters to lowercase
           implicit none
+          ! create function to convert uppercase letters to lowercase
              write(*,'(a)')lower('abcdefg ABCDEFG')
           contains
           !

@@ -1,4 +1,5 @@
           program demo_count
+          implicit none
           integer, dimension(2,3) :: a, b
           logical, dimension(2,3) :: mymask
              a = reshape( [ 1, 2, 3, 4, 5, 6 ], [ 2, 3 ])

@@ -1,5 +1,6 @@
          ! program demo_ubound
          module m_bounds
+         implicit none
           contains
              subroutine msub(arr)
                 !!integer,intent(in) :: arr(*)  ! cannot be assumed-size array
@@ -27,6 +28,7 @@
           end
 
           subroutine esub(arr)
+          implicit none
           integer,intent(in) :: arr(:)
              ! WARNING: IF CALLED WITHOUT AN EXPLICIT INTERFACE THIS WILL GIVE UNDEFINED ANSWERS (like 0,0,0)
              write(*,*)'ESUB: LOWER=',lbound(arr),'UPPER=',ubound(arr),'SIZE=',size(arr)
