@@ -4,6 +4,7 @@
 #@(#)man2html: call commands to convert man(1) page to HTML if man2html(1) is missing
 #
 ################################################################################
+export MANPATH=$(dirname $0)/../../man/
 PATH=$PATH:$(dirname $0)
 # try to find a command to change file to HTML
 if inpath manserver

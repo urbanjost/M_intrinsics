@@ -1,8 +1,8 @@
           program demo_getenv
-            implicit none
-            character(len=:),allocatable :: var
-            character(len=:),allocatable :: homedir
-            integer :: howbig, stat
+          implicit none
+          character(len=:),allocatable :: var
+          character(len=:),allocatable :: homedir
+          integer :: howbig, stat
             var='HOME'
             ! get length required to hold value
             call get_environment_variable(var, length=howbig,status=stat)

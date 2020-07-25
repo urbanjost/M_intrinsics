@@ -59,7 +59,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </B></BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=8>
+<A name=9>
 
      <H3>SYNTAX</H3>
 
@@ -67,7 +67,27 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 <BLOCKQUOTE>
 <P>
 call <B>get_environment_variable</B>(NAME[, VALUE, LENGTH, STATUS, TRIM_NAME)
-</BLOCKQUOTE>
+<TABLE cellpadding=3><!-- tsb: call <B>get_environment_variable</B>(NAME[, VALUE, LENGTH, STATUS, TRIM_NAME)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>character</B>(len=*),intent(in) </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+:: NAME
+<B>character</B>(len=*),intent(out),optional :: VALUE
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>integer,intent</B>(out),optional </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+:: LENGTH
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>integer,intent</B>(out),optional </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+:: STATUS
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>logical,intent</B>(out),optional </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+:: TRIM_NAME
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=2>
 
      <H3>DESCRIPTION</H3>
@@ -77,13 +97,13 @@ call <B>get_environment_variable</B>(NAME[, VALUE, LENGTH, STATUS, TRIM_NAME)
 <P>
 Get the VALUE of the environmental variable NAME.
 <P>
-Note that get_environment_variable need not be thread-safe. It is
+Note that <B>get_environment_variable</B>(3f) need not be thread-safe. It is
 the responsibility of the user to ensure that the environment is not
 being updated concurrently.
 </BLOCKQUOTE>
-<A name=3>
+<A name=>
 
-     <H3>ARGUMENTS</H3>
+     <H3>OPTIONS</H3>
 
 </A>
 <BLOCKQUOTE>
@@ -93,22 +113,6 @@ being updated concurrently.
 <B>NAME</B> </TD><TD valign=bottom>
 (Optional) Shall be a scalar of type CHARACTER and of default kind.
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>VALUE</B> </TD><TD valign=bottom>
-(Optional) Shall be a scalar of type CHARACTER and of default kind.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>LENGTH</B> </TD><TD valign=bottom>
-(Optional) Shall be a scalar of type INTEGER and of default kind.
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>STATUS</B> </TD><TD valign=bottom>
-(Optional) Shall be a scalar of type INTEGER and of default kind.
-</TD></TR>
-<TR valign=top><TD colspan=2>
-<B>TRIM_NAME</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-(Optional) Shall be a scalar of type LOGICAL and of default kind.
-</TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
 
@@ -116,24 +120,36 @@ being updated concurrently.
 
 </A>
 <BLOCKQUOTE>
-<P>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+<B>VALUE</B> </TD><TD valign=bottom>
+(Optional) Shall be a scalar of type CHARACTER and of default kind.
 Stores the value of NAME in VALUE.
 If VALUE is not large enough to hold the data, it is truncated.
 If NAME is not set, VALUE will be filled with blanks.
-<P>
-Argument LENGTH contains the length needed for storing the environment
-variable NAME or zero if it is not present.
-<P>
-STATUS is
-<B>-1</B> if VALUE is present but too short for the environment variable;
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>LENGTH</B> </TD><TD valign=bottom>
+(Optional) Shall be a scalar of type INTEGER and of default kind.
+Argument LENGTH contains the length needed for storing
+the environment variable NAME or zero if it is not present.
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>STATUS</B> </TD><TD valign=bottom>
+(Optional) Shall be a scalar of type INTEGER and of default kind.
+STATUS is <B>-1</B> if VALUE is present but too short for the environment variable;
 it is 1 if the environment variable does not exist
 and 2 if the processor does not support environment variables;
 in all other cases STATUS is zero.
-<P>
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>TRIM_NAME</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+(Optional) Shall be a scalar of type LOGICAL and of default kind.
 If TRIM_NAME is present with the value .FALSE.,
 the trailing blanks in NAME are significant;
 otherwise they are not part of the environment variable name.
-</BLOCKQUOTE>
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
 
      <H3>EXAMPLE</H3>
@@ -145,10 +161,10 @@ Sample program:
 <P>
 <PRE>
    program demo_getenv
-     implicit none
-     character(len=:),allocatable :: var
-     character(len=:),allocatable :: homedir
-     integer :: howbig, stat
+   implicit none
+   character(len=:),allocatable :: var
+   character(len=:),allocatable :: homedir
+   integer :: howbig, stat
      var=&#146;HOME&#146;
      ! get length required to hold value
      call get_environment_variable(var, length=howbig,status=stat)
@@ -193,9 +209,16 @@ Typical Results:
 <P>
 Subroutine
 </BLOCKQUOTE>
+<A name=8>
+
+     <H3>JSU</H3>
+
+</A>
+<BLOCKQUOTE>
+</BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>get_environment_variable (3fortran)</TD> <TD align=right width=33%><I>July 03, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from a63cb8a0-8a10-4520-baec-a66aebbef2d2 using man macros.</FONT>
-<br><br><center><img src="images/IMAGE.gif"></center>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>get_environment_variable (3fortran)</TD> <TD align=right width=33%><I>July 25, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 7a194e83-5ecf-4d03-8e12-aba5ba3d9366 using man macros.</FONT>
+<br><br><center><img src="images/get_environment_variable.3fortran.gif"></center>
 </div>
 </div>
 </body>

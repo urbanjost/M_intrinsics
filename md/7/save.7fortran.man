@@ -1,0 +1,97 @@
+NAME
+   SAVE(7f) - [FORTRAN:STATEMENT:ATTRIBUTE] specifies that a local variable retains its status and value after a RETURN
+   (LICENSE:PD)
+
+SYNOPSIS
+   SAVE [ [ :: ] saved-entity-list ]
+
+      saved-entity                 is object-name
+                                   or proc-pointer-name
+                                   or / common-block-name /
+
+      proc-pointer-name            is   name
+
+   or as an attribute of a data entity declaration. For example,
+
+      INTEGER,SAVE :: II
+
+DESCRIPTION
+
+1 The SAVE attribute specifies that a local variable of a program unit or subprogram retains its association status,
+  allocation status, definition status, and value after execution of a RETURN or END statement unless it is a
+  pointer and its target becomes undefined. If it is a local variable of a subprogram it is shared by all
+  instances of the subprogram.
+
+  An entity with the SAVE attribute shall be a common block, variable, or procedure pointer.
+
+  The SAVE attribute shall not be specified for a dummy argument, a function result, an automatic data
+  object, or an object that is in a common block.
+
+  If a SAVE statement with an omitted saved entity list appears in a scoping unit, no other
+  appearance of the SAVE attr-spec or SAVE statement is permitted in that scoping unit.
+
+  A local variable of a pure subprogram, or of a BLOCK construct within
+  a pure subprogram, shall not have the SAVE attribute. Variable
+  initialization in a type-declaration-stmt or a data-stmt implies the
+  SAVE attribute; therefore, such initialization is also disallowed in
+  a pure subprogram.
+
+2 The SAVE attribute specifies that a local variable of a BLOCK construct retains its association status, allocation
+  status, definition status, and value after termination of the construct unless it is a pointer and its target becomes
+  undefined (16.5.2.5(6)). If the BLOCK construct is within a subprogram the variable is shared by all instances
+  (12.6.2.4) of the subprogram.
+
+3 Giving a common block the SAVE attribute confers the attribute on all entities in the common block.
+
+4 A variable, common block, or procedure pointer declared in the scoping unit of a main program, module, or
+  submodule implicitly has the SAVE attribute, which may be confirmed by explicit specification. If a common
+  block has the SAVE attribute in any other kind of scoping unit, it shall have the SAVE attribute in every scoping
+  unit that is not a main program, module, or submodule.
+
+SAVE ATTRIBUTE
+
+1 A blank common block has the same properties as a named common block, except for the following.
+
+      Execution of a RETURN or END statement might cause data objects
+      in a named common block to become
+      undefined unless the common block has the SAVE attribute, but
+      never causes data objects in blank common to become undefined.
+
+ 2 When the execution of a procedure is terminated by execution of a RETURN or END statement, an unsaved
+   allocatable local variable of the procedure retains its allocation and definition status if it is a function result
+   variable or a subobject thereof; otherwise, it is deallocated.
+
+ 3 When a BLOCK construct terminates, an unsaved allocatable local variable of the construct is deallocated.
+
+1 A SAVE statement with a saved entity list specifies the SAVE attribute (5.3.16) for a list of entities. A SAVE
+  statement without a saved entity list is treated as though it contained the names of all allowed items in the same
+  scoping unit.
+
+3 Explicit initialization of a variable that is not in a common block implies the SAVE attribute, which may be
+   confirmed by explicit specification.
+3 The BIND attribute for a variable or common block implies the SAVE attribute, which may be confirmed by
+  explicit specification.
+
+EXAMPLE
+   To assign the SAVE attribute to all local variables in a subprogram
+
+    SAVE
+
+   An example of a typical SAVE statement is:
+
+    SAVE A, B, C, / BLOCKA /, D
+
+   Example with an allocatable variable
+
+    subroutine process
+      real, allocatable :: temp(:)
+      real, allocatable, save :: x(:)
+      ...
+    end subroutine process
+
+   on return from subroutine PROCESS, the allocation status of X is
+   preserved because X has the SAVE attribute. TEMP does not have the
+   SAVE attribute, so it will be deallocated if it was allocated. On
+   the next invocation of PROCESS, TEMP will have an allocation status
+   of unallocated.
+

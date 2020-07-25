@@ -2,14 +2,19 @@ NAME
      execute_command_line(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Execute a shell command
      
 SYNTAX
-
      call execute_command_line(command [, wait, exitstat, cmdstat, cmdmsg ])
+
+     character(len=*),intent(in)  :: command
+     logical,intent(in),optional  :: wait
+     integer,intent(out),optional :: exitstat
+     integer,intent(out),optional :: cmdstat
+     character(len=*),intent(out),optional :: cmdmsg
 
 DESCRIPTION
 
    The COMMAND argument is passed to the shell and executed. (The shell
    is generally sh(1) on Unix systems, and cmd.exe on Windows.) If WAIT
-   is present and has the value false, the execution of the command is
+   is present and has the value .FALSE., the execution of the command is
    asynchronous if the system supports it; otherwise, the command is
    executed synchronously.
 
@@ -79,8 +84,8 @@ NOTE
 
    Because this intrinsic is making a system call, it is very system
    dependent.Its behavior with respect to signaling is processor
-   dependent.In particular, on POSIX-compliant systems, the SIGINT and
-   SIGQUIT signals will be ignored, and the SIGCHLD will be blocked.As
+   dependent. In particular, on POSIX-compliant systems, the SIGINT and
+   SIGQUIT signals will be ignored, and the SIGCHLD will be blocked. As
    such, if the parent process is terminated, the child process might
    not be terminated alongside.
 
@@ -91,4 +96,3 @@ STANDARD
 CLASS
 
    Subroutine
-

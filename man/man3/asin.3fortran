@@ -11,38 +11,83 @@
 \fBasin(3f) \fP- [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Arcsine function
 \fB
 .SH SYNTAX
-result = \fBasin\fP(x)
+result = \fBasin\fP(X)
 .SH DESCRIPTION
-\fBasin\fP(x) computes the arcsine of its X (inverse of \fBsin\fP(x)).
+\fBasin\fP(x) computes the arcsine of its argument X.
+.PP
+The arcsine is the inverse function of the sine function. It is
+commonly used in trigonometry when trying to find the angle when the
+lengths of the hypotenuse and the opposite side of a right triangle
+are known.
 .SH ARGUMENTS
 .TP
 .B X
 The type shall be either REAL and a magnitude that is less
-than or equal to one or be COMPLEX.
+than or equal to one; or be COMPLEX.
 .SH RETURN VALUE
+.TP
+.B RESULT
 The return value is of the same type and kind as X.
 The real part of the result is in radians and lies in the
 range \fB-PI\fP/2 <= \fBasin\fP(x) <= PI/2.
 .SH EXAMPLE
-Sample program:
+The arcsine will allow you to find the measure of a right angle when
+you know the ratio of the side opposite the angle to the hypotenuse.
+.PP
+So if you knew that a train track rose 1.25 vertical miles on a track
+that was 50 miles long, you could determine the average angle of
+incline of the track using the arcsine. Given
 .PP
 .nf
 .fam C
+    sin(Θ) = 1.25 miles/50 miles (opposite/hypotenuse) 
+
     program demo_asin
-    use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128
+    use, intrinsic :: iso_fortran_env, only : dp=>real64
     implicit none
-      real(kind=real64) :: x = 0.866_real64
-      x = asin(x)
+    ! value to convert degrees to radians
+    real(kind=dp),parameter :: D2R=acos(-1.0_dp)/180.0_dp
+    real(kind=dp)           :: angle, rise, run 
+      ! given sine(Θ) = 1.25 miles/50 miles (opposite/hypotenuse) 
+      ! then taking the arcsine of both sides of the equality yields
+      ! Θ = arcsine(1.25 miles/50 miles) ie. arcsine(opposite/hypotenuse) 
+      rise=1.250_dp
+      run=50.00_dp
+      angle = asin(rise/run)
+      write(*,*)'angle of incline(radians) = ', angle
+      angle = angle/D2R
+      write(*,*)'angle of incline(degrees) = ', angle
+
+      write(*,*)'percent grade=',rise/run*100.0_dp
     end program demo_asin
+.fam T
+.fi
+Results:
+.PP
+.nf
+.fam C
+    angle of incline(radians) =    2.5002604899361139E-002
+    angle of incline(degrees) =    1.4325437375665075     
+    percent grade=   2.5000000000000000     
 
 .fam T
 .fi
+.RE
+The percentage grade is the slope, written as a percent. To calculate
+the slope you divide the rise by the run. In the example the rise
+is 1.25 mile over a run of 50 miles so the slope is 1.25/50 =
+0.025. Written as a percent this is 2.5 %.
+.RS
+.PP
+for the US, two and 1/2 percent is generally thought of as the upper
+limit. This means a rise of 2.5 feet when going 100 feet forward. In
+the US this was the maximum grade on the first major US railroad,
+the Baltimore and Ohio. Note curves increase the frictional drag on
+a train reducing the allowable grade.
 .SH STANDARD
-
 [[FORTRAN 77]] and later, for a complex argument [[Fortran 2008]] or later
 .SH CLASS
-
 [[Elemental procedure|Elemental function]]
 .SH SEE ALSO
-
 Inverse function: \fBsin\fP(3)
+.SH JSU

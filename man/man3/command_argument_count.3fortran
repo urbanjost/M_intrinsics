@@ -11,18 +11,25 @@
 \fBcommand_argument_count(3f) \fP- [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get number of command line arguments
 \fB
 .SH SYNTAX
-
 result = \fBcommand_argument_count\fP()
-.SH DESCRIPTION
+.PP
+.nf
+.fam C
+     integer :: result
 
+.fam T
+.fi
+.SH DESCRIPTION
 command_argument_count returns the number of arguments passed on the
 command line when the containing program was invoked.
 .SH ARGUMENTS
-
 None
 .SH RETURN VALUE
-
-The return value is of type \fBinteger\fP(4)
+.TP
+.B RESULT
+The return value is of type default integer.
+It is the number of arguments passed on the command line
+when the program was invoked.
 .SH EXAMPLE
 
 Sample program:
@@ -44,12 +51,12 @@ Sample output:
 .fam C
    # the command verb does not count
    ./test_command_argument_count
-           0
+       0
    # quoted strings may count as one argument
    ./test_command_argument_count count arguments
-           2
+       2
    ./test_command_argument_count 'count arguments'
-           1
+       1
 
 .fam T
 .fi
@@ -57,9 +64,8 @@ Sample output:
 
 [[Fortran 2003]] and later
 .SH CLASS
-
 [[Inquiry function]]
 .SH SEE ALSO
 
-\fBget_command\fP(3),
-\fBget_command_argument\fP(3)
+\fBget_command\fP(3), \fBget_command_argument\fP(3)
+.SH JSU

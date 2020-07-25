@@ -1,0 +1,117 @@
+NAME
+    pure(7f) - [FORTRAN:SPECIFICATION ATTRIBUTE] Pure procedures
+    (LICENSE:PD)
+SYNOPSIS
+    pure subroutine()
+    pure function()
+
+DESCRIPTION
+
+  A pure procedure is
+
+     o a pure intrinsic procedure (13.1), defined by a pure subprogram,
+     o a dummy procedure that has been specified to be PURE, or
+     o a statement function that references only pure functions.
+
+  A pure subprogram is a subprogram that has the prefix-spec PURE, or
+  has the prefix-spec ELEMENTAL and does not have the prefix-spec
+  IMPURE. The following additional constraints apply to pure subprograms.
+
+    o  The specification-part of a pure function subprogram shall specify
+       that all its nonpointer dummy data objects have INTENT(IN).
+
+    o  The specification-part of a pure subroutine subprogram shall
+       specify the intents of all its nonpointer dummy data objects.
+
+    o  A local variable of a pure subprogram, or of a BLOCK construct
+       within a pure subprogram, shall not have the SAVE attribute.
+
+       Variable initialization in a type-declaration-stmt or a data-stmt
+       implies the SAVE attribute; therefore, such initialization is
+       also disallowed.
+
+    o  The specification-part of a pure subprogram shall specify that
+       all its dummy procedures are pure.
+
+    o  If a procedure that is neither an intrinsic procedure nor a
+       statement function is used in a context that requires
+       it to be pure, then its interface shall be explicit in the scope of
+       that use. The interface shall specify that the procedure is pure.
+
+    o  All internal subprograms in a pure subprogram shall be pure.
+
+    o  In a pure subprogram any designator with a base object that is
+       in common or accessed by host or use
+       association, is a dummy argument of a pure function, is a dummy
+       argument with INTENT(IN) of a pure subroutine, is a coindexed
+       object, or an object that is storage associated with any such
+       variable, shall not be used
+
+       1. in a variable definition context (16.6.7),
+       2. as the data-target in a pointer-assignment-stmt,
+       3. as the expr corresponding to a component with the POINTER
+          attribute in a structure-constructor ,
+       4. as the expr of an intrinsic assignment statement in which
+          the variable is of a derived type if the derived type has a
+          pointer component at any level of component selection, or
+       5. as an actual argument corresponding to a dummy argument with
+          INTENT(OUT) or INTENT(INOUT) or with the POINTER attribute.
+
+     NOTE 12.50
+     Item 3 requires that processors be able to determine if entities
+     with the PRIVATE attribute or with private components have a
+     pointer component.
+
+    o   Any procedure referenced in a pure subprogram, including one
+        referenced via a defined operation, defined assignment, defined
+        input/output, or finalization, shall be pure.
+
+    o   A pure subprogram shall not contain a print-stmt, open-stmt,
+        close-stmt, backspace-stmt, endfile-stmt, rewind-stmt, flush-stmt,
+        wait-stmt, or inquire-stmt.
+
+    o   A pure subprogram shall not contain a read-stmt or write-stmt
+        whose io-unit is a file-unit-number or *.
+
+    o   A pure subprogram shall not contain a stop-stmt or allstop-stmt.
+
+    o   A pure subprogram shall not contain an image control statement
+        (8.5.1).
+
+     NOTE 12.51
+
+     The above constraints are designed to guarantee that a pure procedure
+     is free from side effects (modifications of data visible outside
+     the procedure), which means that it is safe to reference it in
+     constructs such as a FORALL assignment-stmt or a DO CONCURRENT
+     construct, where there is no explicit order of evaluation.
+
+     The constraints on pure subprograms may appear complicated, but it
+     is not necessary for a programmer to be intimately familiar with
+     them. From the programmer's point of view, these constraints can
+     be summarized as follows: a pure subprogram shall not contain any
+     operation that could conceivably result in an assignment or pointer
+     assignment to a common variable, a variable accessed by use or host
+     association, or an INTENT (IN) dummy argument; nor shall a pure
+     subprogram contain any operation that could conceivably perform any
+     external file input/output or STOP operation. Note the use of the
+     word conceivably; it is not sufficient for a pure subprogram merely
+     to be side-effect free in practice. For example, a function that
+     contains an assignment to a global variable but in a block that
+     is not executed in any invocation of the function is nevertheless
+     not a pure function. The exclusion of functions of this nature is
+     required if strict compile-time checking is to be used.
+
+     It is expected that most library procedures will conform to the
+     constraints required of pure procedures, and so can be declared pure
+     and referenced in FORALL statements and constructs, DO CONCURRENT
+     constructs, and within user-defined pure procedures.
+
+     NOTE 12.52
+
+     Pure subroutines are included to allow subroutine calls from pure
+     procedures in a safe way, and to allow forall-assignment-stmts to
+     be defined assignments. The constraints for pure subroutines are
+     based on the same principles as for pure functions, except that
+     side effects to INTENT (OUT), INTENT (INOUT), and pointer dummy
+     arguments are permitted.

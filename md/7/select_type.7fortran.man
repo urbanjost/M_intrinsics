@@ -1,0 +1,57 @@
+NAME
+     select_type(7f) - [FORTRAN:EXECUTION_CONTROL] select_type
+     (LICENSE:PD)
+SYNOPSIS
+     select_type(VARIABLE)
+DESCRIPTION
+EXAMPLE
+Sample program
+
+   program select_type
+
+   type :: point
+      real :: x, y
+   end type point
+
+   type, extends(point) :: point_3d
+      real :: z
+   end type point_3d
+
+   type, extends(point) :: color_point
+      integer :: color
+   end type color_point
+
+   type(point), target :: p
+   type(point_3d), target :: p3
+   type(color_point), target :: c
+
+   class(point), pointer :: p_or_c_or_p3
+
+   do i=1,3
+
+      select case(i)
+      case(1);p_or_c_or_p3 => c
+      case(2);p_or_c_or_p3 => p
+      case(3);p_or_c_or_p3 => p3
+      end select
+
+      select type ( a => p_or_c_or_p3 )
+         class is ( point )  ! any type of the class without a specific "TYPE IS"
+              ! "CLASS ( POINT ) :: A" implied here
+              print *, 'CLASS POINT ',A%X, A%Y ! This block gets executed
+         type is ( point )
+                      print *, 'POINT ', A%X, A%Y
+         type is ( point_3d )
+              ! "type ( POINT_3D ) :: A" implied here
+                      print *, 'POINT_3D ',A%X, A%Y, A%Z
+      end select
+
+   enddo
+
+   end program select_type
+   ! Output
+   !
+   !  CLASS POINT    3.54248252E-40   8.40779079E-45
+   !  POINT    0.00000000       0.00000000
+   !  POINT_3D    0.00000000       3.53541997E-40   8.40779079E-45
+

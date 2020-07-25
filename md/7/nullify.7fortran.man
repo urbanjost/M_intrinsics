@@ -1,0 +1,20 @@
+NAME
+   NULLIFY(7f) - [FORTRAN:STATEMENT] causes pointers to be disassociated
+   (LICENSE:PD)
+SYNOPSIS
+  NULLIFY ( pointer-object-list )
+
+   pointer-object               is variable-name
+                                or structure-component
+                                or proc-pointer-name
+
+   Each pointer-object shall have the POINTER attribute.
+
+DESCRIPTION
+
+  A pointer-object shall not depend on the value, bounds, or association status of another pointer-object in the
+  same NULLIFY statement.
+
+  When a NULLIFY statement is applied to a polymorphic pointer, its dynamic type becomes the declared type.
+
+EXAMPLE

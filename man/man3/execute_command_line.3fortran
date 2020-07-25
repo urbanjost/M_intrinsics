@@ -11,13 +11,21 @@
 \fBexecute_command_line(3f) \fP- [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Execute a shell command
 \fB
 .SH SYNTAX
-
 call \fBexecute_command_line\fP(command [, wait, exitstat, cmdstat, cmdmsg ])
+.TP
+.B \fBcharacter\fP(len=*),intent(in)
+:: command
+.TP
+.B \fBlogical,intent\fP(in),optional
+:: wait
+\fBinteger,intent\fP(out),optional :: exitstat
+\fBinteger,intent\fP(out),optional :: cmdstat
+\fBcharacter\fP(len=*),intent(out),optional :: cmdmsg
 .SH DESCRIPTION
 
 The COMMAND argument is passed to the shell and executed. (The shell
 is generally \fBsh\fP(1) on Unix systems, and cmd.exe on Windows.) If WAIT
-is present and has the value false, the execution of the command is
+is present and has the value .FALSE., the execution of the command is
 asynchronous if the system supports it; otherwise, the command is
 executed synchronously.
 .PP
@@ -97,8 +105,8 @@ Sample program:
 
 Because this intrinsic is making a system call, it is very system
 dependent.Its behavior with respect to signaling is processor
-dependent.In particular, on POSIX-compliant systems, the SIGINT and
-SIGQUIT signals will be ignored, and the SIGCHLD will be blocked.As
+dependent. In particular, on POSIX-compliant systems, the SIGINT and
+SIGQUIT signals will be ignored, and the SIGCHLD will be blocked. As
 such, if the parent process is terminated, the child process might
 not be terminated alongside.
 .SH STANDARD

@@ -1,0 +1,100 @@
+NAME
+     if(7f) - [FORTRAN:EXECUTION CONTROL] selects a block based on a sequence of logical expressions.
+     (LICENSE:PD)
+
+SYNOPSIS
+
+     [if_construct_name:] IF (scalar-logical-expr) THEN
+        block
+     ELSEIF (scalar-logical-expr) THEN [if_construct_name]
+        block
+     ELSE [if_construct_name]
+        block
+     ENDIF [if_construct_name]
+
+        or
+
+     IF (scalar-logical-expression) action-statement
+
+DESCRIPTION
+
+   The IF construct selects for execution at most one of its constituent
+   blocks. The selection is based on a sequence of logical expressions.
+
+   If an if-construct-name is specified, both the IF and ENDIF must use
+   that same name. If an ELSE or ELSEIF uses an if-construct-name it must
+   be the same as the one specified on the corresponding IF/ENDIF.
+
+   Execution of an IF construct
+
+   At most one of the blocks in the IF construct is executed. If there
+   is an ELSE statement in the construct, exactly one of the blocks
+   in the construct is executed. The scalar logical expressions are
+   evaluated in the order of their appearance in the construct until
+   a true value is found or an ELSE statement or ENDIF statement is
+   encountered. If a true value or an ELSE statement is found, the block
+   immediately following is executed and this completes the execution
+   of the construct. The scalar logical expressions in any remaining
+   ELSEIF statements of the IF construct are not evaluated. If none
+   of the evaluated expressions is true and there is no ELSE statement,
+   the execution of the construct is completed without the execution of
+   any block within the construct.
+
+   It is permissible to branch to an ENDIF statement only from within
+   its IF construct. Execution of an ENDIF statement has no effect.
+
+   Execution of an IF statement
+
+   The IF statement controls the execution of a single action statement
+   based on a single logical expression.
+
+   The action-stmt in the if-stmt shall not be an end-function-stmt,
+   end-mp-subprogram-stmt, end-program-stmt, end-subroutine-stmt,
+   or if-stmt.
+
+   Execution of an IF statement causes evaluation of the scalar logical
+   expression. If the value of the expression is true, the action statement
+   is executed. If the value is false, the action statement is not executed
+   and execution continues.
+
+   The execution of a function reference in the scalar logical expression
+   may affect entities in the action statement.
+
+   An example of an IF statement is:
+
+       IF (A > 0.0) A = LOG (A)
+
+EXAMPLES
+
+  Sample IF constructs:
+
+     if (cvar == 'RESET') then
+        i = 0; j = 0; k = 0
+
+endif
+
+     OUTER: if (case.eq.0)then
+        PROOF_DONE: if (PROP) then
+           write (3, '(''QED'')')
+           exit OUTER
+        else
+           PROP = nextprop
+        endif PROOF_DONE
+        write(*,*)'END OF PROOF_DONE'
+     else OUTER
+             write(*,*)'else outer'
+     endif OUTER
+
+     if (a > 0) then
+        b = c/a
+        if (b > 0) then
+           d = 1.0
+        end if
+     elseif (c > 0) then
+        b = a/c
+        d = -1.0
+     else
+        b = abs (max (a, c))
+        d = 0
+     endif
+
