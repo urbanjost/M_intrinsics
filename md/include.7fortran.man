@@ -25,23 +25,60 @@ DESCRIPTION
   It is generally implemented  as a filename containing text to be
   included, but could be interpreted as a URL or a system command that
   generates text or a database query, or a list of files, for example.
-  That being said, all current implementations appear to treat it as a
-  simple filename.
+  That being said, all current implementations appear to at 
+  least treat it as a simple filename.
 
-  An INCLUDE line must appear on a single source line (no continuation)
-  where a statement may appear; it must be the only nonblank text on
-  this line other than an optional trailing comment (no statment label
-  is allowed).
+  Where the compiler searches for the filename is
+  implementation-dependent.  All current implementations appear to at
+  least search for the file in the same directory as the file containing
+  the INCLUDE statement if it is not a complete filepath specification. It
+  is common but not required that other directories are searched as
+  specified with the common -I switch found on most compiler commands.
+
+  The char-literal-constant shall not have a kind type parameter value
+  that is a named-constant. That is, it must be a quoted string. It cannot
+  be something like
+
+      character(len=*),parameter :: filename='willnotwork.inc'
+      include filename
+
+  An INCLUDE line shall appear on a single source line where a statement
+  may appear (many compilers support an extension allowing continuation
+  lines to be supported); it must be the only nonblank text on the line
+  other than an optional trailing comment (no statment label is allowed).
+  So here are some bad ideas
+
+      INCLUDE "filename";I=10 ! NO: multiple statements on line
+      100 INCLUDE 'filename'  ! NO: statement label not allowed
+      ! continuation often works but is non-standard
+      INCLUDE &
+      & 'filename'   
+      INCLUDE 'file&
+      &name'
 
   When an INCLUDE line is resolved, the first included statement line
   cannot be a continuation line and the last included statement line
   cannot be continued.
+
+  PREPROCESSING
 
   Note that an INCLUDE line is generally processed after any preprocessor
   so the INCLUDE file should not include preprocessor directives such as
   cpp(1) or fpp(1) directives. If that is required you probably need to
   use an equivalent preprocessor directive such as a cpp(1) "#include"
   directive instead of a Fortran INCLUDE.
+
+  SUMMARY
+
+  So it is a de-facto standard that an INCLUDE at least supports a simple
+  filename pointing to a file in the directory where the file containing
+  the INCLUDE file resides or a full path name in single or double quotes.
+
+  An INCLUDE statement was a common way to ensure a COMMONBLOCK was
+  declared the same in multiple files (at least if every file with the
+  INCLUDE was recompiled). It should generally be avoided and a MODULE
+  should be used instead of a COMMONBLOCK in the vast majority of cases
+  in new code.
 
   RULES FOR FIXED AND FREE FILE FORMAT PORTABILITY
 
