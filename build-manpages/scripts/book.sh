@@ -197,7 +197,8 @@ function append_doc(target){
    /* document.write('<xmp>');
    */
    document.write('<br class="newpage"/>');
-   document.write('<a name="DOCUMENT'+ FRAMECOUNT  + '"><a href="#TOP"> &nbsp;INDEX</a></a>\n');
+   #document.write('<a name="DOCUMENT'+ FRAMECOUNT  + '"><a href="#TOP"> &nbsp;INDEX</a></a>\n');
+   document.write('<button type="button" onclick="javascript:history.back()">Index</button>\n');
 
    document.write('<div id="display' + FRAMECOUNT + '"></div>');
    document.write('<iframe width="0" height="0" id="buffer' + FRAMECOUNT + '" name="buffer' + FRAMECOUNT + '" src="' + target + '" ');

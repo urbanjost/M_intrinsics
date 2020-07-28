@@ -1,6 +1,6 @@
 NAME
    IMPLICIT(7f) - [FORTRAN:STATEMENT]  specify default type (if any) associated to a starting letter
-   (LICENSE:PD)
+   
 SYNOPSIS
     IMPLICIT [NONE]|[declaration-type-spec (letter-spec-list)]
     determine default mapping between between the first letter of a data entity and a type.

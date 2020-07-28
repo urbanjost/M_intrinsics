@@ -1,6 +1,6 @@
 NAME
    SAVE(7f) - [FORTRAN:STATEMENT:ATTRIBUTE] specifies that a local variable retains its status and value after a RETURN
-   (LICENSE:PD)
+   
 
 SYNOPSIS
    SAVE [ [ :: ] saved-entity-list ]

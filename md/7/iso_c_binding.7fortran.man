@@ -1,6 +1,6 @@
 NAME
 iso_c_binding(7f) - [FORTRAN] standard intrinsic module which defines named constants, types, and procedures for C interoperability
-(LICENSE:PD)
+
 
 SYNOPSIS
 

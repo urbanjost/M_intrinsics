@@ -1,6 +1,6 @@
 NAME
    fortran_recursion(7f) - [FORTRAN] Examples of recursion
-   (LICENSE:PD)
+   
 SYNOPSIS
 DESCRIPTION
 EXAMPLE

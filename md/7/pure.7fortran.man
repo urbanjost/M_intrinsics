@@ -1,6 +1,6 @@
 NAME
     pure(7f) - [FORTRAN:SPECIFICATION ATTRIBUTE] Pure procedures
-    (LICENSE:PD)
+    
 SYNOPSIS
     pure subroutine()
     pure function()

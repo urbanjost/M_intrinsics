@@ -1,6 +1,6 @@
 NAME
    OPEN(7f) - [FORTRAN:IO] Initiates or modifies a connection between an external file and a specified unit.
-   (LICENSE:PD)
+   
 SYNOPSIS
 
   OPEN (connect-spec-list)

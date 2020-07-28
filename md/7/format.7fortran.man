@@ -1,6 +1,6 @@
 NAME
      FORMAT(3f) - [FORTRAN:INTRINSIC:I/O] Format statement
-     (LICENSE:PD)
+     
 SYNOPSIS
  Format Statements
 

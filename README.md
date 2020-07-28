@@ -1,8 +1,8 @@
-# NAME
+## NAME
 
-   ## INTRINSICS_PROJECT(7f) - [FORTRAN] intrinsic manpages
+   # INTRINSICS_PROJECT(7f) - [FORTRAN] intrinsic manpages
 
-# DESCRIPTION
+## DESCRIPTION
 
 This is a project to provide a set of man(1) pages for the standard
 Fortran intrinsics, with a secondary goal of providing a tested working
@@ -32,7 +32,7 @@ The manpages are available as archive files:
 These links will take you into the "filefinder" where you will want to
 enter the ship/ directory to download them.
 
-# USE AND INSTALLATION
+## USE AND INSTALLATION
 
 As manpages the documents can often be integrated with editors or
 IDEs. This is a powerful tool when inspecting code that uses unfamiliar
@@ -50,22 +50,21 @@ should be able to use the manpages. For example:
         export MANPATH=$HOME/man:$MANPATH
         man -s 3fortran -k .
 ```
-# HTML VERSIONS
+## DOCUMENTATION
 
 manpage source is maintained as flat-text files which are
 
 * run thru txt2man(1) to create the *roff file as a manpage
 * and then thru manserver(1) or groff (typically) to create an additional
   HTML file as collected in
-   - a simple [index](https://urbanjost.github.io/fortran-intrinsic-manpages/) to
-     the individual pages in HTML form
-   - A single page that uses javascript to combine all the HTML
-     descriptions of the manpages is at 
+   - a simple [index of intrinsics](https://urbanjost.github.io/fortran-intrinsic-manpages/index3.html)
+     and [index of statements](https://urbanjost.github.io/fortran-intrinsic-manpages/index7.html)
+   - These are collected into a single document using javascript:
      [BOOK_FORTRAN](https://urbanjost.github.io/fortran-intrinsic-manpages/BOOK_FORTRAN.html).
 
 * the example programs are extracted into the src/ directory.
 
-# BASIC VIM USAGE
+## BASIC VIM USAGE
 
 The vim(1) editor will call up a man(1) page for a word
 if the letter "K" is pressed over the word and the manpage directory
@@ -79,7 +78,7 @@ an example, try:
 ```bash
    vim -c 'set keywordprg=env\ MANPATH=$HOME/man\ man\ -s\ 3fortran\ -a' test.f90
 ```
-# CONTRIBUTING
+## CONTRIBUTING
 
 _Collaborators are welcome_.  This is a public github repository. Anyone
 can contribute, and is encouraged to do so. First, obtain a copy of
@@ -87,7 +86,7 @@ the repository:
 ```bash
     git clone https://github.com/urbanjost/fortran-intrinsic-manpages.git
 ```
-## MINIMAL CHANGES
+### MINIMAL CHANGES
 
 At a minimum, you can cd(1) into the md/ directory and change a flat-text
 markdown file found there. Verify it converts properly to a man page with
@@ -111,7 +110,7 @@ The repository is set up as public, so I believe anyone with a github ID
 can change these files but it is unclear to me exactly how this should
 work, or whether a branch is required. Looking for more information ...
 
-## USING THE MAKE FILE
+### USING THE MAKE FILE
 
 If you are familiar with git(1) and gmake(1) (and other GNU tools) and 
 are in a *nix or CygWin environment it 
@@ -127,14 +126,14 @@ and the demo program in src/.
 The makefile is set up to do other things; and is a work in progress so
 this might change.
 
-# RESPONSES
+## RESPONSES
 
 Discussion is welcome here as well as at
  - [Fortran Discourse](https://fortran-lang.discourse.group/t/fortran-intrinsic-manpages/160/)
  - [Fortran Wiki](http://fortranwiki.org)
  - [Google Fortran newsgroup](https://groups.google.com/forum/#!forum/comp.lang.fortran)
 
-# REFERENCES
+## REFERENCES
  - The [Fortran 2018 Standard](https://j3-fortran.org/doc/year/18/18-007r1.pdf)
    as described at https://j3-fortran.org/doc/year/18/18-007r1.pdf
 

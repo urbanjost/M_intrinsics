@@ -1,6 +1,6 @@
 NAME
    select(7f) - [FORTRAN:EXECUTION CONTROL] select a block based on the value of an expression (a case)
-   (LICENSE:PD)
+   
 SYNOPSIS
 1 The CASE construct selects for execution at most one of its constituent blocks. The selection is based on the
   value of an expression.

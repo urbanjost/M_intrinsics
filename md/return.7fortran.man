@@ -1,6 +1,5 @@
 NAME
    return(7f) - [FORTRAN:STATEMENT] completes execution of the instance of the subprogram in which it appears
-   (LICENSE:PD)
 
 SYNOPSIS
    RETURN [scalar-int-expr]
@@ -9,15 +8,17 @@ DESCRIPTION
    Execution of the RETURN statement completes execution of the instance
    of the subprogram in which it appears.
 
-   The return-stmt shall be in the scoping unit of a function or
+   It is generally considered good practice to avoid having multiple
+   RETURN statements in a single subprogram. A RETURN is not required
+   in a subprogram as reaching the end of the subprogram is equivalent
+   to execution of a RETURN statement with no expression.
+
+   The RETURN statement must appear in the scoping unit of a function or
    subroutine subprogram.
 
-   Execution of an end-function-stmt, end-mp-subprogram-stmt, or
-   end-subroutine-stmt is equivalent to execution of a RETURN statement
-   with no expression.
-
 OPTIONS
-   scalar-int-expr  If the expression appears and has a value n between
+   scalar-int-expr  Alternate returns are deprecated!
+                    If the expression appears and has a value n between
                     1 and the number of asterisks in the dummy argument
                     list, the CALL statement that invoked the subroutine
                     transfers control to the statement identified by
@@ -99,3 +100,4 @@ EXAMPLE
 
     second alternate return selected
     picked second alternate return
+ JSU

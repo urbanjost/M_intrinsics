@@ -1,6 +1,6 @@
 NAME
 initialize_arrays(7f) - [FORTRAN:FAQ] Initializing small 2D numeric arrays with array constructors
-(LICENSE:PD)
+
 DESCRIPTION
 
 Intuitively, one might assume that if one wants to initialize a

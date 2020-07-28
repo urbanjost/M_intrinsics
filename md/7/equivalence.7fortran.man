@@ -1,6 +1,6 @@
 NAME
      equivalence(7f) - [FORTRAN:INTRINSICS]  used to specify the sharing of storage units by two or more objects in a storage unit
-     (LICENSE:PD)
+     
 SYNOPSIS
      equivalence(object1,object2)
 DESCRIPTION

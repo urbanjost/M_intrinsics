@@ -1,6 +1,6 @@
 NAME
    common(7f) - [FORTRAN:INTRINSICS] specifies blocks of variables that can be accessed by any scoping unit in the program
-   (LICENSE:PD)
+   
 SYNOPSIS
    common /common-block-name/ variables, /common-block-name/ variables, ...
 DESCRIPTION

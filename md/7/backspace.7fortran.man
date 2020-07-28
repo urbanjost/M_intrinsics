@@ -1,6 +1,6 @@
 NAME
    BACKSPACE(7f) - [FORTRAN:FILE_POSITIONING] - backspace one record on specified I/O unit
-   (LICENSE:PD)
+   
 SYNOPSIS
    BACKSPACE file-unit-number
    BACKSPACE ([UNIT=]file-unit-number][,IOMSG=iomsg-variable][,IOSTAT=scalar-int-variable][,ERR=label])

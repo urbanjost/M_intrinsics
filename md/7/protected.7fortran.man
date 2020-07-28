@@ -1,6 +1,6 @@
 NAME
    protected(7f) - [FORTRAN:SPECIFICATION ATTRIBUTE] protect use associated module objects from change outside of the module
-   (LICENSE:PD)
+   
 SYNOPSIS
    module ANY_MODULE
    specification, PROTECTED :: variable_declaration

@@ -1,6 +1,6 @@
 NAME
    sign(7f) - [FORTRAN:IO] option to force optional plus sign on output values
-   (LICENSE:PD)
+   
 
 SYNOPSIS
 DESCRIPTION

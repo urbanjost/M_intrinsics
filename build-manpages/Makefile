@@ -3,15 +3,24 @@
 # you must have write permission to the install directory
 MANDIR=/usr/share/man
 
-FULLSRCS := $(wildcard ../md/*3fortran.man)
-SRCS=$(notdir $(FULLSRCS))
+FULLSRC3 := $(wildcard ../md/*3fortran.man)
+FULLSRC7 := $(wildcard ../md/*7fortran.man)
+SRC3=$(notdir $(FULLSRC3))
+SRC7=$(notdir $(FULLSRC7))
 VPATH=../md
 VPATH=../man/man3
-FULLMANS=$(patsubst %3fortran.man,../man/man3/%3fortran,$(SRCS))
-FULLHTMLS=$(patsubst %3fortran.man,%3fortran.html,$(SRCS))
+VPATH=../man/man7
+
+FULLMAN3=$(patsubst %3fortran.man,../man/man3/%3fortran,$(SRC3))
+FULLHTML3=$(patsubst %3fortran.man,%3fortran.html,$(SRC3))
+
+FULLMAN7=$(patsubst %7fortran.man,../man/man7/%7fortran,$(SRC7))
+FULLHTML7=$(patsubst %7fortran.man,%7fortran.html,$(SRC7))
+
+FULLMANS=$(FULLMAN3) $(FULLMAN7)
 
 .SUFFIXES:
-.SUFFIXES: $(SUFFIXES) .3fortran.man .3fortran .html
+.SUFFIXES: $(SUFFIXES) .3fortran.man .3fortran .html .7fortran.man .7fortran
 
 .phony : roff
 
@@ -27,14 +36,21 @@ all: roff
 	: that is all folks!
 
 roff: $(FULLMANS)
+	mandb ../man
 	: rebuilt manpages, html, and demo f90 programs
 
 #-- rule for files in ../md ending in .man assumed to be txt2man(1) input 
 #$(filter %.man,$(FULLMANS)) : ../man/man3/%.3fortran : ../md/%.3fortran.man
-$(FULLMANS) : ../man/man3/%.3fortran : ../md/%.3fortran.man
+
+$(FULLMAN3) : ../man/man3/%.3fortran : ../md/%.3fortran.man
 	scripts/txt2man -s 3fortran -t "$*" $< |tee $@ |\
 	env AUX_FILENAME=$< bash scripts/man2html >../docs/$*.3fortran.html
-	env MANPATH=../man bash scripts/man2f90 $*
+	bash scripts/man2f90 $*
+
+$(FULLMAN7) : ../man/man7/%.7fortran : ../md/%.7fortran.man
+	scripts/txt2man -s 7fortran -t "$*" $< |tee $@ |\
+	env AUX_FILENAME=$< bash scripts/man2html >../docs/$*.7fortran.html
+	bash scripts/man2f90 $*
 
 .PHONY: install
 install:
@@ -54,8 +70,8 @@ demos:
 .PHONY : clean
 clean:
 	rm -f $(FULLMANS) 
-	cd ../docs &&rm -f $(FULLHTMLS)
-	rm ../ship/manpages.zip ../ship/manpages.tgz
+	cd ../docs &&rm -f $(FULLHTML3) $(FULLHTML7)
+	rm -f ../ship/manpages.zip ../ship/manpages.tgz
 	cd ../src/ && make clean
 
 .PHONY : vi

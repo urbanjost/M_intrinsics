@@ -1,6 +1,6 @@
 NAME
   iso_fortran_env(7f) - [FORTRAN] standard intrinsic module provides public entities related to the Fortran environment
-  (LICENSE:PD)
+  
 SYNOPSIS
    use, intrinsic :: iso_fortran_env, only : integer_kinds, int8, int16, int32, int64
    use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128

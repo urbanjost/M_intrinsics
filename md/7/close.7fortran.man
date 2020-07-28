@@ -1,6 +1,6 @@
 NAME
    CLOSE(7f) - [FORTRAN:IO] terminate the connection of a specified unit to an external file.
-   (LICENSE:PD)
+   
 
 SYNOPSIS
    CLOSE ( [UNIT= ] file-unit-number, [IOSTAT= scalar-int-variable,]

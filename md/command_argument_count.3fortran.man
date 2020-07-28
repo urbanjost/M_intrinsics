@@ -50,4 +50,4 @@ CLASS
 SEE ALSO
 
    get_command(3), get_command_argument(3)
-JSU
+ JSU

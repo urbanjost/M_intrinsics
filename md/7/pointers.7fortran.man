@@ -1,6 +1,6 @@
 NAME
     pointers(7f) - [FORTRAN] Pointers and targets methods
-    (LICENSE:PD)
+    
 
 DESCRIPTION
    In Fortran, the concept of pointers differs from that in C-like

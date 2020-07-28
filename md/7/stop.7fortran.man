@@ -1,6 +1,6 @@
 NAME
   STOP(7f),ALLSTOP(7f)  - [FORTRAN:STATEMENT] initiates termination of execution
-  (LICENSE:PD)
+  
 
 SYNOPSIS
   STOP [ stop-code ]

@@ -1,6 +1,6 @@
 NAME
    flush(7f) - [FORTRAN:IO] flush I/O buffers of specified files
-   (LICENSE:PD)
+   
 
 SYNOPSIS
    flush file-unit-number

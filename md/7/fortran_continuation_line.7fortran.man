@@ -1,6 +1,6 @@
 NAME
    fortran_continuation_line(7f) - [FORTRAN] Fortran Continuation Lines
-   (LICENSE:PD)
+   
 
 DESCRIPTION
 

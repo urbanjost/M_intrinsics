@@ -67,4 +67,4 @@ CLASS
 
 SEE ALSO
    get_command_argument(3), command_argument_count(3)
-JSU
+ JSU

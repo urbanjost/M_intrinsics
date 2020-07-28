@@ -1,6 +1,6 @@
 NAME
   wait(7f) - [FORTRAN:IO] statement performs a wait operation for specified pending asynchronous data transfer operations
-  (LICENSE:PD)
+  
 SYNOPSIS
     WAIT( [UNIT=] file-unit-number,
 

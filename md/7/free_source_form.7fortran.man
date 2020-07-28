@@ -1,6 +1,6 @@
 NAME
    free_source_form(7f) - [FORTRAN] syntax of free source form statements, comments, and continuation lines
-   (LICENSE:PD)
+   
 SYNOPSIS
    [label] statement [! comment]
 DESCRIPTION
@@ -12,18 +12,23 @@ DESCRIPTION
   the need to use fixed-form INCLUDE files, or where it is required to
   be compatible with very old compilers.
 
-  Free form and fixed form may not be mixed in the same program unit.
-  The means for specifying the source form of a program unit are
-  processor dependent. Most commonly, if the file ends if .F or .f it
-  is assumed to be fixed-form; a suffix of .f90 or .F90 indicates the
-  file is free-format.
+  Free form and fixed form may not be mixed in the same program unit
+  (_there are often compiler-specific extensions that allow this but
+  it is non-standard_).  The means for specifying the source form of
+  a program unit are processor dependent. Most commonly, if the file
+  ends if .F or .f it is assumed to be fixed-form; a suffix of .f90
+  or .F90 typically indicates the file is free-format. The upper-case
+  suffix usually additionally indicates the file should be run through
+  a pre-processor (which one -- cpp, fpp, m4, ... varies with different
+  programming environments).
 
-  In free source form there are no restrictions on where a statement (or
-  portion of a statement) may appear within a line. A line may contain
-  zero characters. If a line consists entirely of characters of default
-  kind, it may contain at most 132 characters. If a line contains any
-  character that is not of default kind, the maximum number of characters
-  allowed on the line is processor dependent.
+  In free source form there are no restrictions on where a statement
+  (or portion of a statement) may appear within a line. A line may
+  contain zero characters. If a line consists entirely of characters of
+  default kind, it may contain at most 132 characters. If a line contains
+  any character that is not of default kind (like a tab character or
+  unicode), the maximum number of characters allowed on the line is
+  processor dependent.
 
   BLANK CHARACTERS IN FREE FORM
 

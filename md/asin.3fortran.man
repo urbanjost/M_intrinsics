@@ -74,4 +74,4 @@ CLASS
 
 SEE ALSO
    Inverse function: sin(3)
-JSU
+ JSU

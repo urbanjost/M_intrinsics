@@ -1,6 +1,6 @@
 NAME
    where(7f) - [FORTRAN:ASSIGNMENT] masked array assignment
-           (LICENSE:PD)
+           
 SYNTAX
 
   WHERE statement:

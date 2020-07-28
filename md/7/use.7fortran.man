@@ -1,6 +1,6 @@
 NAME
-     use(7f) - [FORTRAN] gives a program unit accessibility to public entities in a module.
-     (LICENSE:PD)
+     use(7f) - [FORTRAN] gives a program unit access to public entities in a module.
+     
 SYNOPSIS
    USE [, mode-nature ::] namespace [, rename-list]
    USE [, mode-nature ::] namespace [,ONLY: only-list]
@@ -9,6 +9,9 @@ DESCRIPTION
    The USE statement makes the specified namespace accessible to the
    current scoping unit. It also provides a means of renaming or limiting
    the accessibility of entities in the namespace.
+
+   If more than one USE statement appears in a scoping unit, the rename-lists
+   and only-lists are treated as one concatenated rename-list.
 
    WHERE:
 
@@ -24,37 +27,37 @@ DESCRIPTION
    rename-list  is a comma-separated list of local-name => use-name
    only-list    is a comma-separated list of access-id or [local-name => use-name]
 
-                 local-name      is the local name for the entity specified by use-name
-                                 Is the name of the entity in the program unit using the module or is
-                                 "OPERATOR (op-name)", where op-name is the name of a defined operator
-                                 in the program unit using the module.
-                 use-name        is the name of a public entity in the specified namespace
-                 access-id       is use-name or generic-spec
-                 generic-spec    is generic-name
-                                 or OPERATOR (defined-operator)
-                                 or ASSIGNMENT (=)
+   A USE statement with ONLY provides access only to those entities that
+   appear in the only-list.
 
-                               generic-name is the name of a generic procedure
+   A USE statement without ONLY provides access to all PUBLIC entities in
+   the specified namespace.
 
-                               defined-operator is one of the intrinsic operators
+   where
 
-                               or .op-name.
+         local-name      is the local name for the entity specified by use-name
+                         Is the name of the entity in the program unit using the module or is
+                         "OPERATOR (op-name)", where op-name is the name of a defined operator
+                         in the program unit using the module.
+         use-name        is the name of a public entity in the specified namespace
+         access-id       is use-name or generic-spec
+         generic-spec    is generic-name
+                         or OPERATOR (defined-operator)
+                         or ASSIGNMENT (=)
 
-                               .op-name. is a user-defined name for the operation
+         generic-name is the name of a generic procedure
+
+         defined-operator is one of the intrinsic operators
+
+         or .op-name.
+
+         .op-name. is a user-defined name for the operation
 
    REMARKS
 
    rename-list and ONLY: only-list may only appear if the namespace being
    used was implemented with Fortran for .NET
 
-   A USE statement without ONLY provides access to all PUBLIC entities in
-   the specified namespace.
-
-   A USE statement with ONLY provides access only to those entities that
-   appear in the only-list.
-
-   If more than one USE statement appears in a scoping unit, the rename-lists
-   and only-lists are treated as one concatenated rename-list.
 
    If two or more generic interfaces that are accessible in the same
    scoping unit have the same name, same operator, or are assignments,
@@ -80,32 +83,39 @@ EXAMPLES
  Samples:
 
    module example ! example is the namespace name
+
       type type1 ! type1 is the class prototype name
       contains
          procedure, nopass :: static_method1
       end type type1
+
       type type2 ! type1 is the class prototype name
       contains
          procedure, nopass :: static_method2
       end type type2
+
    contains
+
       subroutine static_method1(arg)
          integer :: arg
          ! code to implement method goes here
       end subroutine static_method1
+
       subroutine static_method2(arg)
          integer :: arg
          ! code to implement method goes here
       end subroutine static_method2
+
    end module example
-
+   !==============================================================
    use example ! all public objects in namespace example available
-
+   !==============================================================
    use example, only: type1 ! class prototype type1 available,
                             ! class prototype type2 not available
-
+   !==============================================================
    ! within this scoping unit, type1 is referred to as "mytype"
    use example, mytype => type1
+   !==============================================================
 
 SEE ALSO
 

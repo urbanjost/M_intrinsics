@@ -1,9 +1,13 @@
 #!/bin/bash
-export MANPATH=`pwd`/../man
+export MANPATH=$(dirname $0)/../../man
 for TOPIC in $*
 do
-man -s 3fortran $TOPIC|
-   col -b|
-   expand|
-   sed -n -e '\%^[ !]*program  *demo_%,\%^[ !]*end  *program  *demo_%{p}' >../src/demo_$TOPIC.f90
+   case "$(man -w $TOPIC)" in
+   *.3fortran*) SECTION=3fortran ;;
+   *.7fortran*) SECTION=7fortran ;;
+   esac
+   man -s $SECTION $TOPIC|
+      col -b|
+      expand|
+      sed -n -e '\%^[ !]*program  *demo_%,\%^[ !]*end  *program  *demo_%{p}' >../src/demo_$TOPIC.f90
 done

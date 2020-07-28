@@ -1,6 +1,6 @@
 NAME
    data(7f) - [FORTRAN] DATA statement
-   (LICENSE:PD)
+   
 
 SYNOPSIS
    data-stmt is   DATA data-stmt-set [ [ , ] data-stmt-set ] ...

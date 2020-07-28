@@ -1,6 +1,6 @@
 NAME
    fortran(7f) - [FORTRAN] Fortran Example
-   (LICENSE:PD)
+   
 SYNOPSIS
 DESCRIPTION
 

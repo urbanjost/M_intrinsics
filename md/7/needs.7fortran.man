@@ -1,6 +1,6 @@
 NAME
    needs(3f) - rough notes on what is missing from standard Fortran
-   (LICENSE:PD)
+   
 SYNOPSIS
 DESCRIPTION
 A list of what Fortran needs and where to find some of it

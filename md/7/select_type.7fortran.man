@@ -1,6 +1,6 @@
 NAME
      select_type(7f) - [FORTRAN:EXECUTION_CONTROL] select_type
-     (LICENSE:PD)
+     
 SYNOPSIS
      select_type(VARIABLE)
 DESCRIPTION

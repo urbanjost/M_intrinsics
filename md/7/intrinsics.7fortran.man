@@ -1,6 +1,6 @@
 NAME
    intrinsics(7f) - [FORTRAN] intrinsic man(1) pages
-   (LICENSE:PD)
+   
 
 DESCRIPTION
 

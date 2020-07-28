@@ -198,4 +198,8 @@ append("trim.3fortran.html");
 append("ubound.3fortran.html");
 append("unpack.3fortran.html");
 append("verify.3fortran.html");
+append("continue.7fortran.html");
+append("include.7fortran.html");
+append("return.7fortran.html");
+append("rewind.7fortran.html");
 }

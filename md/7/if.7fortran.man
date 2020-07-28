@@ -1,6 +1,6 @@
 NAME
      if(7f) - [FORTRAN:EXECUTION CONTROL] selects a block based on a sequence of logical expressions.
-     (LICENSE:PD)
+     
 
 SYNOPSIS
 

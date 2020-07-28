@@ -1,12 +1,12 @@
 NAME
     scratch(7f) - [FORTRAN:OPEN] where scratch files are typically written by OPEN(3f)
-    (LICENSE:PD)
+    
 SYNOPSIS
     open( .... status='scratch')
 DESCRIPTION
     Where files opened with status='scratch' are written is implementation-dependent.
     Often the file is unlinked so that it goes away unconditionally when the program
-    starts, so in many *nix environments you cannot see the scratch file that is often
+    exits, so in many *nix environments you cannot see the scratch file that is often
     used. So the compiler documentation should be referred to, but typically
     a scratch file is opened with a unique filename in one of the following directories:
 

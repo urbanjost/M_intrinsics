@@ -1,6 +1,6 @@
 NAME
   DEALLOCATE(7f) - [FORTRAN:STATEMENT] causes allocated variables and targets to be deallocated
-  (LICENSE:PD)
+  
 
 SYNOPSIS
   DEALLOCATE(allocate-object-list [,STAT=stat-variable][,ERRMSG=errmsg-variable] )

@@ -1,6 +1,6 @@
 NAME
    implied_do(7f) - [FORTRAN] documentation on usage of implied do in Fortran
-   (LICENSE:PD)
+   
 
 SYNOPSIS
 

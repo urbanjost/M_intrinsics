@@ -1,6 +1,6 @@
 NAME
     NAMELIST(7f) - [FORTRAN:STATEMENT] specify a group of data to be referred to by a single name in data input/output
-    (LICENSE:PD)
+    
 SYNOPSIS
    NAMELIST /namelist-group-name/ namelist-group-object-list [[,] /namelist-group-name/
             namelist-group-object-list ] ...

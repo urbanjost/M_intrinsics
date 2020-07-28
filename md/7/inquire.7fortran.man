@@ -1,6 +1,6 @@
 NAME
    inquire(7f) - [FORTRAN:FILE_INQUIRE] File inquiry statement
-   (LICENSE:PD)
+   
 
 SYNOPSIS
 
@@ -233,7 +233,7 @@ OUTPUTS
    OPENED
 
    .true.   if the file specified is connected to a unit
-   .false. otherwise
+   .false.  otherwise
 
    PAD
 

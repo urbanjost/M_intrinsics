@@ -23,7 +23,7 @@ ARGUMENTS
    DIM     (Optional) Shall be a scalar of type
            INTEGER, with a value between one and the rank of ARRAY,
            inclusive. It may not be an optional dummy argument.
-   MASK    Shall be an array of type LOGICAL,
+   MASK    (Optional) Shall be an array of type LOGICAL,
            and conformable with ARRAY.
 
 RETURN VALUE

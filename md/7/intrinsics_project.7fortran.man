@@ -1,6 +1,6 @@
 NAME
    INTRINSICS_PROJECT(7f) - [FORTRAN] intrinsic man(1) pages
-   (LICENSE:PD)
+   
 
 DESCRIPTION
 

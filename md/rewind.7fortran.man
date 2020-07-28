@@ -1,6 +1,5 @@
 NAME
     REWIND(7f) - [FORTRAN:FILE_POSITIONING] rewind specified sequential access I/O unit
-    (LICENSE:PD)
 SYNOPSIS
    REWIND file-unit-number
 
@@ -17,13 +16,16 @@ DESCRIPTION
    not exist is permitted and has no effect on any file.
 
 OPTIONS
-   UNIT     unit number of file to rewound.
-            A unit open for direct access or unformatted access cannot
-            be referenced by a REWIND.
-   IOSTAT   a compiler-specific number that indicates an error occurred
-            if non-zero.
-   IOMSG    a message describing error IOSTAT if IOSTAT is not zero.
-   ERR      a label number to jump to if an error occurs
+   UNIT     unit number of file to rewind. A unit open for direct access
+	    or stream access cannot be referenced by a REWIND (e.g. you
+	    cannot typically rewind stdin and stdout as they would
+	    be streams).
+   IOSTAT   (Optional) a compiler-specific number that indicates an
+            error occurred if non-zero. If not present and an error
+            occurs the program terminates.
+   IOMSG    (Optional) a message describing error IOSTAT if IOSTAT is
+            not zero.
+   ERR      (Optional) a label number to jump to if an error occurs
 
 EXAMPLE
   An example of a REWIND statement is:
@@ -54,3 +56,18 @@ EXAMPLE
       write(*,'(a)')line
       close(10,status='delete')
    end program demo_rewind
+
+SEE ALSO
+   The input/output statements are the OPEN, CLOSE, READ, WRITE, PRINT,
+   BACKSPACE, ENDFILE, REWIND, FLUSH, WAIT, and INQUIRE statements.
+
+   * The READ statement is a data transfer input statement. 
+   * The WRITE statement and the PRINT statement are data transfer
+     output statements.
+   * The OPEN statement and the CLOSE statement are file connection
+     statements.
+   * The INQUIRE statement is a file inquiry statement. 
+   * The BACKSPACE, ENDFILE, and REWIND statements are file positioning
+     statements.
+
+   JSU

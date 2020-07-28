@@ -75,7 +75,10 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }\
 </head>
 }' -e '/^ *<[bB][oO][dD][yY].*/{
 a\
+<!--\
 <h5><a href="index.html">[UP]</a></h5>\
+-->\
+<button type="button" onclick="javascript:history.back()">Back</button>\
 <div id="Container">\
 <div id="Content">
 }' -e '/^<\/[bB][oO][dD][yY]/{
