@@ -17,18 +17,21 @@ DESCRIPTION
    being updated concurrently.
 
 OPTIONS  
-   NAME        (Optional) Shall be a scalar of type CHARACTER and of default kind.
+   NAME        (Optional) Shall be a scalar of type CHARACTER and of
+               default kind.
 
 RETURN VALUE
-   VALUE       (Optional) Shall be a scalar of type CHARACTER and of default kind.
-               Stores the value of NAME in VALUE.
+   VALUE       (Optional) Shall be a scalar of type CHARACTER and of
+               default kind.
+               The value of NAME is stored in VALUE.
                If VALUE is not large enough to hold the data, it is truncated.
                If NAME is not set, VALUE will be filled with blanks.
    LENGTH      (Optional) Shall be a scalar of type INTEGER and of default kind.
                Argument LENGTH contains the length needed for storing
                the environment variable NAME or zero if it is not present.
-   STATUS      (Optional) Shall be a scalar of type INTEGER and of default kind.
-               STATUS is -1 if VALUE is present but too short for the environment variable;
+   STATUS      (Optional) Shall be a scalar of type INTEGER and of
+               default kind.  STATUS is -1 if VALUE is present but too
+               short for the environment variable;
                it is 1 if the environment variable does not exist
                and 2 if the processor does not support environment variables;
                in all other cases STATUS is zero.

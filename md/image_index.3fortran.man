@@ -9,7 +9,8 @@ DESCRIPTION
 
 ARGUMENTS
    COARRAY   Coarray of any type.
-   SUB       default integer rank-1 array of a size equal to the corank of COARRAY.
+   SUB       default integer rank-1 array of a size equal to the corank
+             of COARRAY.
 
 RETURN VALUE
    Scalar default integer with the value of the image index which

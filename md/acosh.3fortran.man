@@ -1,6 +1,6 @@
 NAME
      acosh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Inverse hyperbolic cosine function
-     
+
 SYNTAX
    result = acosh(x)
 
@@ -11,8 +11,8 @@ ARGUMENTS
    X    the type shall be REAL or COMPLEX.
 
 RETURN VALUE
-   The return value has the same type and kind as X.
-   If X is complex, the imaginary part of the result is in radians and lies between
+  The return value has the same type and kind as X.  If X is complex,
+  the imaginary part of the result is in radians and lies between
 
       0 <= AIMAG(ACOSH(X)) <= PI.
 
@@ -33,4 +33,3 @@ CLASS
 
 SEE ALSO
    Inverse function: cosh(3)
-

@@ -16,7 +16,8 @@
 .PP
 .nf
 .fam C
-    REWIND ( [UNIT=]file-unit-number][,IOMSG=iomsg-variable][,IOSTAT=scalar-int-variable][,ERR=label] )
+    REWIND ( [UNIT=]file-unit-number][,IOMSG=iomsg-variable] &
+    & [,IOSTAT=scalar-int-variable][,ERR=label] )
 .fam T
 .fi
 .fam T

@@ -13,7 +13,8 @@
            end subroutine test1
            !
            subroutine test2()
-           ! Gathering nonzero elements from an array and appending elements from VECTOR:
+           ! Gathering nonzero elements from an array and appending elements
+           ! from VECTOR:
            integer :: m(4)
              m = [ 1, 0, 0, 2 ]
              write(*, fmt="(*(i0, ' '))") pack(m, m /= 0, [ 0, 0, 3, 4 ])  ! "1 2 3 4"

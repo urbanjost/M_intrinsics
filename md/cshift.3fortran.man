@@ -5,14 +5,14 @@ SYNTAX
    result = cshift(array, shift [, dim])
 
 DESCRIPTION
-   cshift(array, shift [, dim]) performs a circular shift on elements of
-   ARRAY along the dimension of DIM. If DIM is omitted it is
-   taken to be 1. DIM is a scalar of type INTEGER in the
-   range of 1 <= DIM <= n, where "n" is the rank of ARRAY.
-   If the rank of ARRAY is one, then all elements of ARRAY are shifted
-   by SHIFT places. If rank is greater than one, then all complete rank one
-   sections of ARRAY along the given dimension are shifted. Elements
-   shifted out one end of each rank one section are shifted back in the other end.
+   cshift(array, shift [, dim]) performs a circular shift on elements
+   of ARRAY along the dimension of DIM. If DIM is omitted it is taken
+   to be 1. DIM is a scalar of type INTEGER in the range of 1 <= DIM <=
+   n, where "n" is the rank of ARRAY.  If the rank of ARRAY is one,
+   then all elements of ARRAY are shifted by SHIFT places. If rank is
+   greater than one, then all complete rank one sections of ARRAY along
+   the given dimension are shifted. Elements shifted out one end of each
+   rank one section are shifted back in the other end.
 
 ARGUMENTS
    ARRAY   Shall be an array of any type.
@@ -44,4 +44,3 @@ STANDARD
 
 CLASS
    Transformational function
-

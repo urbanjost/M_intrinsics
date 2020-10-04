@@ -27,7 +27,8 @@ EXAMPLE
   Sample program:
 
    program demo_besjn
-   use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128
+   use, intrinsic :: iso_fortran_env, only : real_kinds, &
+   & real32, real64, real128
    implicit none
    real(kind=real64) :: x = 1.0_real64
      x = bessel_jn(5,x)
@@ -37,8 +38,8 @@ STANDARD
    [[Fortran 2008]] and later
 
 CLASS
-   [[Elemental function]], except for the transformational variant bessel_jn(n1, n2, x).
+   [[Elemental function]], 
+   except for the transformational variant bessel_jn(n1, n2, x).
 
 SEE ALSO
    bessel_j0(3), bessel_j1(3), bessel_y0(3), bessel_y1(3), bessel_yn(3)
-

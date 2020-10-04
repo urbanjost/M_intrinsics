@@ -1,5 +1,6 @@
           program demo_popcnt
-          use, intrinsic :: iso_fortran_env, only : integer_kinds, int8, int16, int32, int64
+          use, intrinsic :: iso_fortran_env, only : integer_kinds, &
+          & int8, int16, int32, int64
           implicit none
             print *, popcnt(127),       poppar(127)
             print *, popcnt(huge(0)), poppar(huge(0))

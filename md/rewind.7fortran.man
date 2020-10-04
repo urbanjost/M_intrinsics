@@ -3,7 +3,8 @@ NAME
 SYNOPSIS
    REWIND file-unit-number
 
-    REWIND ( [UNIT=]file-unit-number][,IOMSG=iomsg-variable][,IOSTAT=scalar-int-variable][,ERR=label] )
+    REWIND ( [UNIT=]file-unit-number][,IOMSG=iomsg-variable] &
+    & [,IOSTAT=scalar-int-variable][,ERR=label] )
 DESCRIPTION
    Execution of a REWIND statement causes the file connected to the
    specified unit to be positioned at the beginning of the file (its

@@ -1,5 +1,6 @@
            program demo_trailz
-           use, intrinsic :: iso_fortran_env, only : integer_kinds, int8, int16, int32, int64
+           use, intrinsic :: iso_fortran_env, only : integer_kinds, &
+           & int8, int16, int32, int64
            implicit none
            integer(kind=int64) :: i, value
              write(*,*)'Default integer:'
@@ -15,5 +16,6 @@
                 write(*,'(i19,1x,i3,1x,b64.64)')value,trailz(value),value
              enddo
              value=huge(i)
-             write(*,'(i19,1x,i3,1x,b64.64,"(huge(0_int64))")')value,trailz(value),value
+             write(*,'(i19,1x,i3,1x,b64.64,"(huge(0_int64))")') &
+             & value,trailz(value),value
            end program demo_trailz

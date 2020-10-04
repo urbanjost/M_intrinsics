@@ -6,9 +6,9 @@ SYNTAX
 
 DESCRIPTION
    ichar(c) returns the code for the character in the first character
-   position of C in the system's native character set.
-   The correspondence between characters and their codes is not necessarily
-   the same across different GNU Fortran implementations.
+   position of C in the system's native character set. The correspondence
+   between characters and their codes is not necessarily the same across
+   different GNU Fortran implementations.
 
 ARGUMENTS
    C       Shall be a scalar CHARACTER, with intent(in)
@@ -75,5 +75,6 @@ SEE ALSO
    Functions that perform operations on character strings, return lengths
    of arguments, and search for certain arguments:
 
-   Elemental:     ADJUSTL(3), ADJUSTR(3), INDEX(3), LEN_TRIM(3), SCAN(3), VERIFY(3)
-   Nonelemental:  REPEAT(3), TRIM(3)
+   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), 
+                  scan(3), verify(3)
+   Nonelemental:  repeat(3), trim(3)

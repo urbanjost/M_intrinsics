@@ -10,25 +10,31 @@ DESCRIPTION
    An object is contiguous if it is
       (1)     an object with the CONTIGUOUS attribute,
       (2)     a nonpointer whole array that is not assumed-shape,
-      (3)     an assumed-shape array that is argument associated with an array that is contiguous,
+      (3)     an assumed-shape array that is argument associated with
+              an array that is contiguous,
       (4)     an array allocated by an ALLOCATE statement,
       (5)     a pointer associated with a contiguous target, or
       (6)     a nonzero-sized array section provided that
           (a)   its base object is contiguous,
           (b)   it does not have a vector subscript,
-          (c)   the elements of the section, in array element order, are a subset of the base object elements
+          (c)   the elements of the section, in array element order,
+                are a subset of the base object elements
                 that are consecutive in array element order,
-          (d)   if the array is of type character and a substring-range appears, the substring-range specifies all
-                of the characters of the parent-string,
+          (d)   if the array is of type character and a substring-range
+                appears, the substring-range specifies all of the
+                characters of the parent-string,
           (e)   only its final part-ref has nonzero rank, and
-          (f)   it is not the real or imaginary part of an array of type complex.
+          (f)   it is not the real or imaginary part of an array of
+                type complex.
 
    An object is not contiguous if it is an array subobject, and
 
       o the object has two or more elements,
-      o the elements of the object in array element order are not consecutive in the elements of the base object,
+      o the elements of the object in array element order are not
+        consecutive in the elements of the base object,
       o the object is not of type character with length zero, and
-      o the object is not of a derived type that has no ultimate components other than zero-sized arrays and
+      o the object is not of a derived type that has no ultimate
+        components other than zero-sized arrays and
       o characters with length zero.
 
    It is processor-dependent whether any other object is contiguous.
@@ -39,7 +45,8 @@ ARGUMENTS
 
 RETURN VALUE
     Result    of type Default logical scalar.
-              The result has the value true if A is contiguous, and false otherwise.
+              The result has the value true if A is contiguous, and
+              false otherwise.
 
 EXAMPLE
   Sample program:

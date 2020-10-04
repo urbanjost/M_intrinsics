@@ -5,7 +5,8 @@ SYNTAX
    result = LOG(X)
 
 DESCRIPTION
-   LOG(X) computes the natural logarithm of X, i.e. the logarithm to the base "e".
+   LOG(X) computes the natural logarithm of X, i.e. the logarithm to
+   the base "e".
 
 ARGUMENTS
    X    The type shall be REAL or COMPLEX.

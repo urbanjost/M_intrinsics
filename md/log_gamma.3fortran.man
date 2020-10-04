@@ -5,7 +5,8 @@ SYNTAX
     x = log_gamma(x)
 
 DESCRIPTION
-   log_gamma(x) computes the natural logarithm of the absolute value of the [[Gamma function]].
+   log_gamma(x) computes the natural logarithm of the absolute value of
+   the [[Gamma function]].
 
 ARGUMENTS
    X    Shall be of type REAL and neither zero nor a negative integer.

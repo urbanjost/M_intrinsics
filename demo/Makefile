@@ -22,5 +22,5 @@ all: $(PROGRAMS)
 
 .phony : clean
 clean:
-	rm -f $(PROGRAMS)
+	rm -f $(PROGRAMS) *.mod
 

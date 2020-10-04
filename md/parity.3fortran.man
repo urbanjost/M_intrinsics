@@ -5,7 +5,8 @@ SYNTAX
    result = parity(mask[, dim])
 
 DESCRIPTION
-   Calculates the parity (i.e. the reduction using .xor.) of MASK along dimension DIM.
+   Calculates the parity (i.e. the reduction using .xor.) of MASK along
+   dimension DIM.
 
 ARGUMENTS
    MASK    Shall be an array of type LOGICAL.

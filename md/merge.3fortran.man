@@ -5,8 +5,8 @@ SYNTAX
      result = merge(tsource, fsource, mask)
 
 DESCRIPTION
-   Select values from two arrays or scalars according to a logical mask. The result
-   is equal to TSOURCE if MASK is .true., or equal to
+   Select values from two arrays or scalars according to a logical
+   mask. The result is equal to TSOURCE if MASK is .true., or equal to
    FSOURCE if it is .false. .
 
 ARGUMENTS
@@ -15,8 +15,8 @@ ARGUMENTS
    MASK       Shall be of type LOGICAL.
 
 RETURN VALUE
-   The result is of the same type and type parameters as TSOURCE.
-   For any element the result is TSOURCE if MASK is true and FSOURCE otherwise.
+   The result is of the same type and type parameters as TSOURCE.  For any
+   element the result is TSOURCE if MASK is true and FSOURCE otherwise.
 
 EXAMPLES
   The value of
@@ -32,8 +32,10 @@ EXAMPLES
    integer :: tsrc(2,3), fsrc(2,3), answer(2,3)
    logical :: mask(2,3)
    integer :: i
-      tsrc(1,:)=[ 1,6,5 ]; fsrc(1,:)=[ 0,3,2 ]; mask(1,:)=[.true., .false.,.true.]
-      tsrc(2,:)=[ 2,4,6 ]; fsrc(2,:)=[ 7,4,8 ]; mask(2,:)=[.false.,.false.,.true.]
+      tsrc(1,:)=[ 1,6,5 ]; fsrc(1,:)=[ 0,3,2 ]; &
+      & mask(1,:)=[.true., .false.,.true.]
+      tsrc(2,:)=[ 2,4,6 ]; fsrc(2,:)=[ 7,4,8 ]; &
+      & mask(2,:)=[.false.,.false.,.true.]
       answer=merge(tsrc,fsrc,mask)
       write(*,'(3i2)')(answer(i,:),i=1,size(answer,dim=1))
    end program demo_merge

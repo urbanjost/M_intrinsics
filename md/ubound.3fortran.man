@@ -25,9 +25,9 @@ RETURN VALUE
    elements along the relevant dimension.
 
 EXAMPLE
-   Note that in my opinion this function should not be used on assumed-size arrays
-   or in any function without an explicit interface. Errors can occur if there is
-   no interface defined.
+   Note that in my opinion this function should not be used on
+   assumed-size arrays or in any function without an explicit
+   interface. Errors can occur if there is no interface defined.
 
  Sample program
 
@@ -38,7 +38,8 @@ EXAMPLE
       subroutine msub(arr)
          !!integer,intent(in) :: arr(*)  ! cannot be assumed-size array
          integer,intent(in) :: arr(:)
-         write(*,*)'MSUB: LOWER=',lbound(arr),'UPPER=',ubound(arr),'SIZE=',size(arr)
+         write(*,*)'MSUB: LOWER=',lbound(arr),'UPPER=',ubound(arr), &
+	 & 'SIZE=',size(arr)
       end subroutine msub
    end module m_bounds
 
@@ -50,21 +51,25 @@ EXAMPLE
       end subroutine esub
    end interface
    integer :: arr(-10:10)
-      write(*,*)'MAIN: LOWER=',lbound(arr),'UPPER=',ubound(arr),'SIZE=',size(arr)
+      write(*,*)'MAIN: LOWER=',lbound(arr),'UPPER=',ubound(arr), &
+      & 'SIZE=',size(arr)
       call csub()
       call msub(arr)
       call esub(arr)
    contains
       subroutine csub
-         write(*,*)'CSUB: LOWER=',lbound(arr),'UPPER=',ubound(arr),'SIZE=',size(arr)
+         write(*,*)'CSUB: LOWER=',lbound(arr),'UPPER=',ubound(arr), &
+	 & 'SIZE=',size(arr)
       end subroutine csub
    end
 
    subroutine esub(arr)
    implicit none
    integer,intent(in) :: arr(:)
-      ! WARNING: IF CALLED WITHOUT AN EXPLICIT INTERFACE THIS WILL GIVE UNDEFINED ANSWERS (like 0,0,0)
-      write(*,*)'ESUB: LOWER=',lbound(arr),'UPPER=',ubound(arr),'SIZE=',size(arr)
+      ! WARNING: IF CALLED WITHOUT AN EXPLICIT INTERFACE 
+      ! THIS WILL GIVE UNDEFINED ANSWERS (like 0,0,0)
+      write(*,*)'ESUB: LOWER=',lbound(arr),'UPPER=',ubound(arr), &
+      & 'SIZE=',size(arr)
    end subroutine esub
   !end program demo_ubound
 

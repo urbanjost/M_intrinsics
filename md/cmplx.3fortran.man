@@ -46,11 +46,13 @@ DESCRIPTION
       z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0)  
       print *, 'NO, Z8=',z8,real(z8),aimag(z8) 
       z8 = cmplx(1.2345678901234567e0_dp, 1.2345678901234567e0_dp) 
-      print *, 'NO, Z8=',z8,real(z8),aimag(z8) ! again, note components are just REAL
+      ! again, note components are just REAL
+      print *, 'NO, Z8=',z8,real(z8),aimag(z8)
       !
       ! YES
       !
-      z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0,kind=dp) ! kind= makes it work
+      ! kind= makes it work
+      z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0,kind=dp)
       print *, 'YES, Z8=',z8,real(z8),aimag(z8)
 
    F2018 COMPONENT SYNTAX

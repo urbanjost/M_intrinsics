@@ -8,7 +8,7 @@
              ! show output for various integer values
              value=0
              do i=0,bit_size(value)-1
-                write (*,'("LEADING ZERO BITS=",i3,1x)',advance='no') leadz(value)
+                write (*,'("LEADING ZERO BITS=",i3,1x)') leadz(value)
                 write (*,'(" FOR VALUE ")',advance='no')
                 write(*,f,advance='no') value
                 write(*,'(*(1x,g0))') "OR",value

@@ -12,15 +12,16 @@ DESCRIPTION
    the product of X and Y. It is recommended that the processor compute
    the product in double precision, rather than in single precision and
    then converted to double precision.
-   X             shall be default real.
-   Y             shall be default real.
+
+   X   shall be default real.
+   Y   shall be default real.
 
    The setting of compiler options specifying REAL size can affect
    this function.
 
 ARGUMENTS
-   X  Must be of default REAL(kind=kind(0.0)) type
-   Y  Must have the same type and kind parameters as X
+   X   Must be of default REAL(kind=kind(0.0)) type
+   Y   Must have the same type and kind parameters as X
 
 RETURN VALUE
    The return value is of type real(kind=kind(0.0d0)).
@@ -29,7 +30,8 @@ EXAMPLE
   Sample program:
 
     program demo_dprod
-    use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128
+    use, intrinsic :: iso_fortran_env, only : real_kinds, &
+    & real32, real64, real128
     implicit none
     integer,parameter :: dp=kind(0.0d0)
     real :: x = 5.2

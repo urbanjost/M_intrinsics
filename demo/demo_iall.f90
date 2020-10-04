@@ -1,5 +1,6 @@
           program demo_iall
-          use, intrinsic :: iso_fortran_env, only : integer_kinds, int8, int16, int32, int64
+          use, intrinsic :: iso_fortran_env, only : integer_kinds, &
+          & int8, int16, int32, int64
           implicit none
           integer(kind=int8) :: a(2)
 

@@ -10,9 +10,9 @@
              grid = [ (real (i), i=1,n) ]
 
              ! initialize TEMPGRID which will be used to replace GRID
-             allocate (tempgrid(1:2*n))           ! Allocate bigger grid
-             tempgrid(::2)  = grid                ! Distribute values to new locations
-             tempgrid(2::2) = grid + 0.5          ! initialize other values
+             allocate (tempgrid(1:2*n))    ! Allocate bigger grid
+             tempgrid(::2)  = grid         ! Distribute values to new locations
+             tempgrid(2::2) = grid + 0.5   ! initialize other values
 
              ! move TEMPGRID to GRID
              call MOVE_ALLOC (from=tempgrid, to=grid)

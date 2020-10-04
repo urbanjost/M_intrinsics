@@ -169,7 +169,7 @@ case('3','acos')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'   acos(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Arccosine function', &
+'   acos(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] arccosine function', &
 '', &
 'SYNTAX', &
 '   result = ACOS(X)', &
@@ -190,15 +190,16 @@ textblock=[character(len=132) :: &
 'EXAMPLE', &
 '  Sample program:', &
 '', &
-'    program demo_acos', &
-'    use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
-'    implicit none', &
-'    real(kind=real64) :: x = 0.866_real64', &
-'    real(kind=real64),parameter :: D2R=acos(-1.0_real64)/180.0_real64', &
-'      write(*,*)''acos('',x,'') is '', acos(x)', &
-'      write(*,*)''90 degrees is '', d2r*90.0_real64, '' radians''', &
-'      write(*,*)''180 degrees is '', d2r*180.0_real64, '' radians''', &
-'      write(*,*)''for reference PI= 3.14159265358979323846264338327950288419716939937510''', &
+'   program demo_acos', &
+'   use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128', &
+'   implicit none', &
+'   real(kind=real64) :: x = 0.866_real64', &
+'   real(kind=real64),parameter :: D2R=acos(-1.0_real64)/180.0_real64', &
+'     write(*,*)''acos('',x,'') is '', acos(x)', &
+'     write(*,*)''90 degrees is '', d2r*90.0_real64, '' radians''', &
+'     write(*,*)''180 degrees is '', d2r*180.0_real64, '' radians''', &
+'     write(*,*)''for reference &', &
+'     &PI= 3.14159265358979323846264338327950288419716939937510''', &
 '    end program demo_acos', &
 '', &
 '  Results:', &
@@ -224,7 +225,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '     acosh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Inverse hyperbolic cosine function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = acosh(x)', &
 '', &
@@ -235,8 +236,8 @@ textblock=[character(len=132) :: &
 '   X    the type shall be REAL or COMPLEX.', &
 '', &
 'RETURN VALUE', &
-'   The return value has the same type and kind as X.', &
-'   If X is complex, the imaginary part of the result is in radians and lies between', &
+'  The return value has the same type and kind as X.  If X is complex,', &
+'  the imaginary part of the result is in radians and lies between', &
 '', &
 '      0 <= AIMAG(ACOSH(X)) <= PI.', &
 '', &
@@ -257,7 +258,6 @@ textblock=[character(len=132) :: &
 '', &
 'SEE ALSO', &
 '   Inverse function: cosh(3)', &
-'', &
 '']
 
 case('5','adjustl') 
@@ -266,7 +266,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '     adjustl(3f) - [FORTRAN:INTRINSIC:CHARACTER] Left adjust a string', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = ADJUSTL(STRING)', &
 '', &
@@ -302,7 +302,8 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), scan(3), verify(3)', &
+'   elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'                  scan(3), verify(3)', &
 '   nonelemental:  repeat(3), trim(3)', &
 '', &
 '']
@@ -349,7 +350,8 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), scan(3), verify(3)', &
+'   elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'                  scan(3), verify(3)', &
 '   nonelemental:  repeat(3), trim(3)', &
 '', &
 '']
@@ -381,7 +383,8 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '    program demo_aimag', &
-'    use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
+'    use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'    & real32, real64, real128', &
 '    implicit none', &
 '      complex(kind=real32) z4', &
 '      complex(kind=real64) z8', &
@@ -427,7 +430,8 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '    program demo_aint', &
-'    use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
+'    use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'    & real32, real64, real128', &
 '    implicit none', &
 '    real ::  x4', &
 '    real(kind=real64) :: x8', &
@@ -620,15 +624,16 @@ textblock=[character(len=132) :: &
 'RETURN VALUE', &
 '   The return value is of type real with the kind type parameter of the', &
 '   argument if the optional KIND is absent; otherwise, the kind type', &
-'   parameter will be given by KIND. If A is greater than zero,', &
-'   anint(a) returns aint(x + 0.5). If A is less than or equal to', &
-'   zero then it returns aint(x - 0.5).', &
+'   parameter will be given by KIND. If A is greater than zero, anint(a)', &
+'   returns aint(x + 0.5). If A is less than or equal to zero then it', &
+'   returns aint(x - 0.5).', &
 '', &
 'EXAMPLE', &
 '  Sample program:', &
 '', &
 '    program demo_anint', &
-'    use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
+'    use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'    & real32, real64, real128', &
 '    implicit none', &
 '      real(kind=real32) :: x4', &
 '      real(kind=real64) :: x8', &
@@ -899,8 +904,10 @@ textblock=[character(len=132) :: &
 '       real, target  :: tgt(2) = [1., 2.]', &
 '       real, pointer :: ptr(:)', &
 '       ptr => tgt', &
-'       if (associated(ptr)     .eqv. .false.) stop ''POINTER NOT ASSOCIATED''', &
-'       if (associated(ptr,tgt) .eqv. .false.) stop ''POINTER NOT ASSOCIATED TO TARGET''', &
+'       if (associated(ptr)     .eqv. .false.) &', &
+'       & stop ''POINTER NOT ASSOCIATED''', &
+'       if (associated(ptr,tgt) .eqv. .false.) &', &
+'       & stop ''POINTER NOT ASSOCIATED TO TARGET''', &
 '    end program demo_associated', &
 '', &
 'STANDARD', &
@@ -1004,14 +1011,16 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '   program demo_atan', &
-'   use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
+'   use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'   & real32, real64, real128', &
 '   implicit none', &
 '     real(kind=real64) :: x = 2.866_real64', &
 '     x = atan(x)', &
 '   end program demo_atan', &
 '', &
 'STANDARD', &
-'   [[FORTRAN 77]] and later; for a complex argument and for two arguments [[Fortran 2008]] or later', &
+'   [[FORTRAN 77]] and later; ', &
+'   for a complex argument and for two arguments [[Fortran 2008]] or later', &
 '', &
 'CLASS', &
 '   [[Elemental function]]', &
@@ -1372,14 +1381,14 @@ textblock=[character(len=132) :: &
 '   call atomic_fetch_or(atom, value, old [, stat])', &
 '', &
 'DESCRIPTION', &
-'   atomic_fetch_or(atom, value, old) atomically stores the value of ATOM in', &
-'   OLD and defines ATOM with the bitwise OR between the values of', &
-'   ATOM and VALUE. When STAT is present and the invocation was', &
-'   successful, it is assigned the value 0. If it is present and the invocation has', &
-'   failed, it is assigned a positive value; in particular, for a coindexed', &
-'   ATOM, if the remote image has stopped, it is assigned the value of', &
-'   iso_fortran_env''s stat_stopped_image and if the remote image has', &
-'   failed, the value stat_failed_image.', &
+'   atomic_fetch_or(atom, value, old) atomically stores the value of ATOM', &
+'   in OLD and defines ATOM with the bitwise OR between the values of ATOM', &
+'   and VALUE. When STAT is present and the invocation was successful,', &
+'   it is assigned the value 0. If it is present and the invocation', &
+'   has failed, it is assigned a positive value; in particular, for a', &
+'   coindexed ATOM, if the remote image has stopped, it is assigned the', &
+'   value of iso_fortran_env''s stat_stopped_image and if the remote image', &
+'   has failed, the value stat_failed_image.', &
 '', &
 'ARGUMENTS', &
 '  ATOM     Scalar coarray or coindexed variable of integer', &
@@ -1633,14 +1642,16 @@ textblock=[character(len=132) :: &
 '  X    The type shall be REAL.', &
 '', &
 'RETURN VALUE', &
-'   The return value is of type REAL and lies in the range -0.4027 <= Bessel(0,x) <= 1.', &
+'   The return value is of type REAL and lies in the ', &
+'   range -0.4027 <= Bessel(0,x) <= 1.', &
 '   It has the same kind as X.', &
 '', &
 'EXAMPLE', &
 '  Sample program:', &
 '', &
 '   program demo_besj0', &
-'   use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
+'   use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'   & real32, real64, real128', &
 '     implicit none', &
 '     real(kind=real64) :: x = 0.0_real64', &
 '     x = bessel_j0(x)', &
@@ -1654,7 +1665,6 @@ textblock=[character(len=132) :: &
 '', &
 'SEE ALSO', &
 '   bessel_j1(3), bessel_jn(3), bessel_y0(3), bessel_y1(3), bessel_yn(3)', &
-'', &
 '']
 
 case('31','bessel_j1') 
@@ -1733,7 +1743,8 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '   program demo_besjn', &
-'   use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
+'   use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'   & real32, real64, real128', &
 '   implicit none', &
 '   real(kind=real64) :: x = 1.0_real64', &
 '     x = bessel_jn(5,x)', &
@@ -1743,11 +1754,11 @@ textblock=[character(len=132) :: &
 '   [[Fortran 2008]] and later', &
 '', &
 'CLASS', &
-'   [[Elemental function]], except for the transformational variant bessel_jn(n1, n2, x).', &
+'   [[Elemental function]], ', &
+'   except for the transformational variant bessel_jn(n1, n2, x).', &
 '', &
 'SEE ALSO', &
 '   bessel_j0(3), bessel_j1(3), bessel_y0(3), bessel_y1(3), bessel_yn(3)', &
-'', &
 '']
 
 case('33','bessel_y0') 
@@ -1865,7 +1876,8 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '   program demo_besyn', &
-'   use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
+'   use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'   & real32, real64, real128', &
 '   implicit none', &
 '     real(kind=real64) :: x = 1.0_real64', &
 '     x = bessel_yn(5,x)', &
@@ -1875,7 +1887,8 @@ textblock=[character(len=132) :: &
 '   [[Fortran 2008]] and later', &
 '', &
 'CLASS', &
-'   [[Elemental function]], except for the transformational function bessel_yn(n1, n2, x)', &
+'   [[Elemental function]],', &
+'   except for the transformational function bessel_yn(n1, n2, x)', &
 '', &
 'SEE ALSO', &
 '   bessel_j0(3), bessel_j1(3), bessel_jn(3), bessel_y0(3), bessel_y1(3)', &
@@ -1927,11 +1940,13 @@ textblock=[character(len=132) :: &
 '', &
 'ARGUMENTS', &
 '  I    Shall be of INTEGER type or a BOZ literal constant.', &
-'  J    Shall be of INTEGER type, and of the same kind as I; or a BOZ literal constant.', &
+'  J    Shall be of INTEGER type, and of the same kind as I; ', &
+'       or a BOZ literal constant.', &
 '', &
 'RETURN VALUE', &
 '  The return value is of type LOGICAL and of the default kind.', &
-'  The result is true if the sequence of bits represented by I is greater than the sequence of bits', &
+'  The result is true if the sequence of bits represented by I is greater', &
+'  than the sequence of bits', &
 '  represented by J, otherwise the result is false.', &
 '', &
 'STANDARD', &
@@ -2078,7 +2093,8 @@ textblock=[character(len=132) :: &
 '', &
 'ARGUMENTS', &
 '   I    The type shall be INTEGER.', &
-'   POS  The type shall be INTEGER. A value of zero refers to the least significant bit.', &
+'   POS  The type shall be INTEGER. A value of zero refers to the least', &
+'        significant bit.', &
 '', &
 'RETURN VALUE', &
 '   The return value is of type LOGICAL', &
@@ -2106,7 +2122,6 @@ textblock=[character(len=132) :: &
 'SEE ALSO', &
 '   ibclr(3), ibits(3), ibset(3), iand(3), ior(3), ieor(3),', &
 '   mvbits(3)', &
-'', &
 '']
 
 case('42','c_associated') 
@@ -2418,8 +2433,9 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     ADJUSTL(3), ADJUSTR,(3) INDEX,(3) LEN_TRIM,(3) SCAN,(3) VERIFY(3)', &
-'   Nonelemental:  REPEAT(3), TRIM(3)', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
+'                  scan(3), verify(3)', &
+'   Nonelemental:  repeat(3), trim(3)', &
 '']
 
 case('48','c_loc') 
@@ -2521,11 +2537,13 @@ textblock=[character(len=132) :: &
 '      z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0)  ', &
 '      print *, ''NO, Z8='',z8,real(z8),aimag(z8) ', &
 '      z8 = cmplx(1.2345678901234567e0_dp, 1.2345678901234567e0_dp) ', &
-'      print *, ''NO, Z8='',z8,real(z8),aimag(z8) ! again, note components are just REAL', &
+'      ! again, note components are just REAL', &
+'      print *, ''NO, Z8='',z8,real(z8),aimag(z8)', &
 '      !', &
 '      ! YES', &
 '      !', &
-'      z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0,kind=dp) ! kind= makes it work', &
+'      ! kind= makes it work', &
+'      z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0,kind=dp)', &
 '      print *, ''YES, Z8='',z8,real(z8),aimag(z8)', &
 '', &
 '   F2018 COMPONENT SYNTAX', &
@@ -2984,10 +3002,13 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '    program demo_conjg', &
-'    use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
+'    use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'    & real32, real64, real128', &
 '    implicit none', &
 '    complex :: z = (2.0, 3.0)', &
-'    complex(kind=real64) :: dz = (1.2345678901234567_real64, -1.2345678901234567_real64)', &
+'    complex(kind=real64) :: dz = (&', &
+'    &  1.2345678901234567_real64, &', &
+'    & -1.2345678901234567_real64)', &
 '        z= conjg(z)', &
 '        print *, z', &
 '        dz = conjg(dz)', &
@@ -3256,8 +3277,9 @@ textblock=[character(len=132) :: &
 '     val = this_image()', &
 '     call co_sum(val, result_image=1)', &
 '     if (this_image() == 1) then', &
-'       write(*,*) "The sum is ", val ! prints (n**2 + n)/2, with n = num_images()', &
-'     end if', &
+'       ! prints (n**2 + n)/2, with n = num_images()', &
+'       write(*,*) "The sum is ", val ', &
+'     endif', &
 '   end program demo_co_sum', &
 '', &
 'STANDARD', &
@@ -3465,14 +3487,14 @@ textblock=[character(len=132) :: &
 '   result = cshift(array, shift [, dim])', &
 '', &
 'DESCRIPTION', &
-'   cshift(array, shift [, dim]) performs a circular shift on elements of', &
-'   ARRAY along the dimension of DIM. If DIM is omitted it is', &
-'   taken to be 1. DIM is a scalar of type INTEGER in the', &
-'   range of 1 <= DIM <= n, where "n" is the rank of ARRAY.', &
-'   If the rank of ARRAY is one, then all elements of ARRAY are shifted', &
-'   by SHIFT places. If rank is greater than one, then all complete rank one', &
-'   sections of ARRAY along the given dimension are shifted. Elements', &
-'   shifted out one end of each rank one section are shifted back in the other end.', &
+'   cshift(array, shift [, dim]) performs a circular shift on elements', &
+'   of ARRAY along the dimension of DIM. If DIM is omitted it is taken', &
+'   to be 1. DIM is a scalar of type INTEGER in the range of 1 <= DIM <=', &
+'   n, where "n" is the rank of ARRAY.  If the rank of ARRAY is one,', &
+'   then all elements of ARRAY are shifted by SHIFT places. If rank is', &
+'   greater than one, then all complete rank one sections of ARRAY along', &
+'   the given dimension are shifted. Elements shifted out one end of each', &
+'   rank one section are shifted back in the other end.', &
 '', &
 'ARGUMENTS', &
 '   ARRAY   Shall be an array of any type.', &
@@ -3504,7 +3526,6 @@ textblock=[character(len=132) :: &
 '', &
 'CLASS', &
 '   Transformational function', &
-'', &
 '']
 
 case('67','c_sizeof') 
@@ -3742,7 +3763,8 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '    program demo_dim', &
-'    use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
+'    use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'    & real32, real64, real128', &
 '    implicit none', &
 '    integer :: i', &
 '    real(kind=real64) :: x', &
@@ -3772,16 +3794,18 @@ textblock=[character(len=132) :: &
 'DESCRIPTION', &
 '   dot_product(vector_a, vector_b) computes the dot product multiplication', &
 '   of two vectors vector_a and vector_b. The two vectors may be', &
-'   either numeric or logical and must be arrays of rank one and of equal size. If', &
-'   the vectors are INTEGER or REAL, the result is', &
-'   sum(vector_a*vector_b). If the vectors are COMPLEX, the result', &
-'   is sum(conjg(vector_a)*vector_b). If the vectors are LOGICAL,', &
-'   the result is any(vector_a .and. vector_b).', &
+'   either numeric or logical and must be arrays of rank one and of', &
+'   equal size. If the vectors are INTEGER or REAL, the result is', &
+'   sum(vector_a*vector_b). If the vectors are COMPLEX, the result is', &
+'   sum(conjg(vector_a)*vector_b). If the vectors are LOGICAL, the result', &
+'   is any(vector_a .and. vector_b).', &
 '', &
 'ARGUMENTS', &
 '   vector_a    The type shall be numeric or LOGICAL, rank 1.', &
-'   vector_b    The type shall be numeric if vector_a is of numeric type or LOGICAL', &
-'               if vector_a is of type LOGICAL. vector_b shall be a rank-one array.', &
+'   vector_b    The type shall be numeric if vector_a is of numeric type ', &
+'               or LOGICAL', &
+'               if vector_a is of type LOGICAL. vector_b shall be a ', &
+'	       rank-one array.', &
 '', &
 'RETURN VALUE', &
 '   If the arguments are numeric, the return value is a scalar of numeric type,', &
@@ -3828,15 +3852,16 @@ textblock=[character(len=132) :: &
 '   the product of X and Y. It is recommended that the processor compute', &
 '   the product in double precision, rather than in single precision and', &
 '   then converted to double precision.', &
-'   X             shall be default real.', &
-'   Y             shall be default real.', &
+'', &
+'   X   shall be default real.', &
+'   Y   shall be default real.', &
 '', &
 '   The setting of compiler options specifying REAL size can affect', &
 '   this function.', &
 '', &
 'ARGUMENTS', &
-'   X  Must be of default REAL(kind=kind(0.0)) type', &
-'   Y  Must have the same type and kind parameters as X', &
+'   X   Must be of default REAL(kind=kind(0.0)) type', &
+'   Y   Must have the same type and kind parameters as X', &
 '', &
 'RETURN VALUE', &
 '   The return value is of type real(kind=kind(0.0d0)).', &
@@ -3845,7 +3870,8 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '    program demo_dprod', &
-'    use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
+'    use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'    & real32, real64, real128', &
 '    implicit none', &
 '    integer,parameter :: dp=kind(0.0d0)', &
 '    real :: x = 5.2', &
@@ -3956,16 +3982,16 @@ textblock=[character(len=132) :: &
 '', &
 'DESCRIPTION', &
 '   eoshift(array, shift[, boundary, dim]) performs an end-off shift on', &
-'   elements of ARRAY along the dimension of DIM. If DIM is', &
-'   omitted it is taken to be 1. DIM is a scalar of type', &
-'   INTEGER in the range of 1 <= DIM <= n where "n" is the', &
-'   rank of ARRAY. If the rank of ARRAY is one, then all elements of', &
-'   ARRAY are shifted by SHIFT places. If rank is greater than one,', &
-'   then all complete rank one sections of ARRAY along the given dimension are', &
-'   shifted. Elements shifted out one end of each rank one section are dropped. If', &
-'   BOUNDARY is present then the corresponding value of from BOUNDARY', &
-'   is copied back in the other end. If BOUNDARY is not present then the', &
-'   following are copied in depending on the type of ARRAY.', &
+'   elements of ARRAY along the dimension of DIM. If DIM is omitted it is', &
+'   taken to be 1. DIM is a scalar of type INTEGER in the range of 1 <=', &
+'   DIM <= n where "n" is the rank of ARRAY. If the rank of ARRAY is one,', &
+'   then all elements of ARRAY are shifted by SHIFT places. If rank is', &
+'   greater than one, then all complete rank one sections of ARRAY along', &
+'   the given dimension are shifted. Elements shifted out one end of', &
+'   each rank one section are dropped. If BOUNDARY is present then the', &
+'   corresponding value of from BOUNDARY is copied back in the other', &
+'   end. If BOUNDARY is not present then the following are copied in', &
+'   depending on the type of ARRAY.', &
 '', &
 '*Array Type* - *Boundary Value*', &
 '', &
@@ -4070,7 +4096,8 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '    program demo_erf', &
-'    use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
+'    use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'    & real32, real64, real128', &
 '    implicit none', &
 '    real(kind=real64) :: x = 0.17_real64', &
 '      x = erf(x)', &
@@ -4254,8 +4281,9 @@ textblock=[character(len=132) :: &
 '   EXECUTE_COMMAND_LINE returns without waiting.', &
 '', &
 'ARGUMENTS', &
-'   COMMAND     a default CHARACTER scalar containing the command line to be', &
-'               executed. The interpretation is programming-environment dependent.', &
+'   COMMAND     a default CHARACTER scalar containing the command line', &
+'               to be executed. The interpretation is', &
+'               programming-environment dependent.', &
 '', &
 '   WAIT        (Optional) a default LOGICAL scalar.', &
 '               If WAIT is present with the value .false., and the', &
@@ -4399,8 +4427,8 @@ textblock=[character(len=132) :: &
 '   RESULT=EXTENDS_TYPE_OF (A, MOLD)', &
 '', &
 'DESCRIPTION', &
-'   extends_type_of(3f) is TRUE if and only if the dynamic type of A is an extension', &
-'   of the dynamic type of MOLD.', &
+'   extends_type_of(3f) is TRUE if and only if the dynamic type of A is', &
+'   an extension of the dynamic type of MOLD.', &
 '', &
 'OPTIONS', &
 '  A      shall be an object of extensible type. If it is a pointer,', &
@@ -4411,12 +4439,13 @@ textblock=[character(len=132) :: &
 'RESULTS', &
 '  RESULT   Default logical scalar.', &
 '', &
-'  VALUE    If MOLD is unlimited polymorphic and is either a disassociated pointer', &
-'           or unallocated allocatable variable, the result is true; otherwise if', &
-'           A is unlimited polymorphic and is either a disassociated pointer or', &
-'           unallocated allocatable variable, the result is false; otherwise the', &
-'           result is true if and only if the dynamic type of A is an extension', &
-'           type of the dynamic type of MOLD.', &
+'  VALUE    If MOLD is unlimited polymorphic and is either a disassociated', &
+'           pointer or unallocated allocatable variable, the result is', &
+'           true; otherwise if A is unlimited polymorphic and is either', &
+'           a disassociated pointer or unallocated allocatable variable,', &
+'           the result is false; otherwise the result is true if and only', &
+'           if the dynamic type of A is an extension type of the dynamic', &
+'           type of MOLD.', &
 '', &
 '   The dynamic type of a disassociated pointer or unallocated allocatable', &
 '   variable is its declared type.', &
@@ -4458,11 +4487,14 @@ textblock=[character(len=132) :: &
 '', &
 'OPTIONS', &
 '  ARRAY   shall be an array of intrinsic type.', &
-'  VALUE   shall be scalar and in type conformance with ARRAY, as specified in Table 7.3 for relational intrinsic', &
-'          operations 7.1.5.5.2).', &
-'  DIM     shall be an integer scalar with a value in the range 1 DIM n, where n is the rank of ARRAY.', &
-'          The corresponding actual argument shall not be an optional dummy argument.', &
-'  MASK    (optional) shall be of type logical and shall be conformable with ARRAY.', &
+'  VALUE   shall be scalar and in type conformance with ARRAY, as specified', &
+'          in Table 7.3 for relational intrinsic operations 7.1.5.5.2).', &
+'  DIM     shall be an integer scalar with a value in the range 1 DIM n,', &
+'          where n is the rank of ARRAY.', &
+'          The corresponding actual argument shall not be an optional dummy ', &
+'	  argument.', &
+'  MASK    (optional) shall be of type logical and shall be conformable ', &
+'          with ARRAY.', &
 '  KIND    (optional) shall be a scalar integer initialization expression.', &
 '  BACK    (optional) shall be a logical scalar.', &
 '', &
@@ -4516,7 +4548,8 @@ textblock=[character(len=132) :: &
 '               of the result is equal to', &
 '', &
 '                 findloc (array (s1, s2, ..., sdim-1, :, sdim+1, ..., sn ), &', &
-'                 value, dim=1 [, mask = mask (s1, s2, ..., sdim-1, :, sdim+1 ,... , sn )]).', &
+'                 value, dim=1 [, mask = mask (s1, s2, ..., sdim-1, :, ', &
+'		                 sdim+1 ,... , sn )]).', &
 '', &
 'EXAMPLE', &
 '  Case (i):  The value of', &
@@ -4566,7 +4599,8 @@ textblock=[character(len=132) :: &
 '', &
 '                 FINDLOC (B, VALUE = 2, DIM = 2)', &
 '', &
-'                has the value [2, 1]. This is independent of the declared lower bounds for B.', &
+'                has the value [2, 1]. This is independent of the declared', &
+'                lower bounds for B.', &
 'CLASS', &
 '   Transformational function.', &
 '']
@@ -4765,8 +4799,8 @@ textblock=[character(len=132) :: &
 '', &
 'RETURNS', &
 '  COMMAND   (Optional) shall be of type CHARACTER and of default kind.', &
-'            If COMMAND is present, stores the entire command line that was used', &
-'            to invoke the program in COMMAND.', &
+'            If COMMAND is present, stores the entire command line that', &
+'            was used to invoke the program in COMMAND.', &
 '  LENGTH    (Optional) Shall be of type INTEGER and of default kind.', &
 '            If LENGTH is present, it is assigned the length of the', &
 '            command line.', &
@@ -4795,14 +4829,16 @@ textblock=[character(len=132) :: &
 '', &
 '  Sample execution:', &
 '', &
-'     # note that shell expansion removes some of the whitespace ', &
+'     # note that shell expansion removes some of the whitespace', &
 '     # without quotes', &
 '     ./test_get_command  arguments    on the    command   line to   echo', &
+'', &
 '     OUTPUT:./test_get_command arguments on the command line to echo', &
 '', &
 '     # using the bash shell with single quotes', &
-'     ./test_get_command  ''arguments  *><`~[]!{}?"\''| on the    command   line to   echo''', &
-'     OUTPUT:./test_get_command arguments  *><`~[]!{}?"''| on the    command   line to   echo', &
+'     ./test_get_command  ''arguments  *><`~[]!{}?"\''| on the    command   line ''', &
+'', &
+'     OUTPUT:./test_get_command arguments  *><`~[]!{}?"''| on the   command   line', &
 '', &
 'STANDARD', &
 '   [[Fortran 2003]] and later', &
@@ -4884,7 +4920,8 @@ textblock=[character(len=132) :: &
 '        call get_command_argument(number=i,length=argument_length)', &
 '        longest=max(longest,argument_length)', &
 '     enddo', &
-'     ! allocate string array big enough to hold command line argument strings and related information', &
+'     ! allocate string array big enough to hold command line argument strings ', &
+'     ! and related information', &
 '     allocate(character(len=longest) :: arguments(0:count))', &
 '     allocate(istat(0:count))', &
 '     allocate(ilen(0:count))', &
@@ -4893,21 +4930,21 @@ textblock=[character(len=132) :: &
 '       call get_command_argument(i, arguments(i),status=istat(i),length=ilen(i))', &
 '     enddo', &
 '     ! show the results', &
-'     write (*,''(i3.3,1x,i0.5,1x,i0.5,1x,"[",a,"]")'') (i,istat(i),ilen(i),arguments(i)(:ilen(i)),i=0,count)', &
+'     write (*,''(i3.3,1x,i0.5,1x,i0.5,1x,"[",a,"]")'') &', &
+'     & (i,istat(i),ilen(i),arguments(i)(:ilen(i)),i=0,count)', &
 '   end program demo_get_command_argument', &
 '', &
 ' Sample output:', &
 '', &
-'   ./test_get_command_argument a    simple      test    ''of getting   arguments  '' "  from the command"', &
+'   ./test_get_command_argument a    test  ''of getting   arguments  '' "  leading"', &
 '', &
 '   > The number of arguments is            5', &
 '   > The program''s name is xxx', &
 '   >000 00000 00003 [./test_get_command_argument]', &
 '   >001 00000 00001 [a]', &
-'   >002 00000 00006 [simple]', &
 '   >003 00000 00004 [test]', &
 '   >004 00000 00024 [of getting   arguments  ]', &
-'   >005 00000 00018 [  from the command]', &
+'   >005 00000 00018 [  leading]', &
 '', &
 'STANDARD', &
 '   [[Fortran 2003]] and later', &
@@ -4943,18 +4980,21 @@ textblock=[character(len=132) :: &
 '   being updated concurrently.', &
 '', &
 'OPTIONS  ', &
-'   NAME        (Optional) Shall be a scalar of type CHARACTER and of default kind.', &
+'   NAME        (Optional) Shall be a scalar of type CHARACTER and of', &
+'               default kind.', &
 '', &
 'RETURN VALUE', &
-'   VALUE       (Optional) Shall be a scalar of type CHARACTER and of default kind.', &
-'               Stores the value of NAME in VALUE.', &
+'   VALUE       (Optional) Shall be a scalar of type CHARACTER and of', &
+'               default kind.', &
+'               The value of NAME is stored in VALUE.', &
 '               If VALUE is not large enough to hold the data, it is truncated.', &
 '               If NAME is not set, VALUE will be filled with blanks.', &
 '   LENGTH      (Optional) Shall be a scalar of type INTEGER and of default kind.', &
 '               Argument LENGTH contains the length needed for storing', &
 '               the environment variable NAME or zero if it is not present.', &
-'   STATUS      (Optional) Shall be a scalar of type INTEGER and of default kind.', &
-'               STATUS is -1 if VALUE is present but too short for the environment variable;', &
+'   STATUS      (Optional) Shall be a scalar of type INTEGER and of', &
+'               default kind.  STATUS is -1 if VALUE is present but too', &
+'               short for the environment variable;', &
 '               it is 1 if the environment variable does not exist', &
 '               and 2 if the processor does not support environment variables;', &
 '               in all other cases STATUS is zero.', &
@@ -5141,7 +5181,8 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), scan(3), verify(3)', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
 
@@ -5179,7 +5220,8 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '   program demo_iall', &
-'   use, intrinsic :: iso_fortran_env, only : integer_kinds, int8, int16, int32, int64', &
+'   use, intrinsic :: iso_fortran_env, only : integer_kinds, &', &
+'   & int8, int16, int32, int64', &
 '   implicit none', &
 '   integer(kind=int8) :: a(2)', &
 '', &
@@ -5198,7 +5240,6 @@ textblock=[character(len=132) :: &
 '', &
 'SEE ALSO', &
 '   iany(3), iparity(3), iand(3)', &
-'', &
 '']
 
 case('98','iand') 
@@ -5279,7 +5320,8 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '   program demo_iany', &
-'   use, intrinsic :: iso_fortran_env, only : integer_kinds, int8, int16, int32, int64', &
+'   use, intrinsic :: iso_fortran_env, only : integer_kinds, &', &
+'   & int8, int16, int32, int64', &
 '   implicit none', &
 '   integer(kind=int8) :: a(2)', &
 '     a(1) = int(b''00100100'')', &
@@ -5421,9 +5463,9 @@ textblock=[character(len=132) :: &
 '', &
 'DESCRIPTION', &
 '   ichar(c) returns the code for the character in the first character', &
-'   position of C in the system''s native character set.', &
-'   The correspondence between characters and their codes is not necessarily', &
-'   the same across different GNU Fortran implementations.', &
+'   position of C in the system''s native character set. The correspondence', &
+'   between characters and their codes is not necessarily the same across', &
+'   different GNU Fortran implementations.', &
 '', &
 'ARGUMENTS', &
 '   C       Shall be a scalar CHARACTER, with intent(in)', &
@@ -5490,8 +5532,9 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     ADJUSTL(3), ADJUSTR(3), INDEX(3), LEN_TRIM(3), SCAN(3), VERIFY(3)', &
-'   Nonelemental:  REPEAT(3), TRIM(3)', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'                  scan(3), verify(3)', &
+'   Nonelemental:  repeat(3), trim(3)', &
 '']
 
 case('104','ieor') 
@@ -5542,7 +5585,8 @@ textblock=[character(len=132) :: &
 '', &
 'ARGUMENTS', &
 '   COARRAY   Coarray of any type.', &
-'   SUB       default integer rank-1 array of a size equal to the corank of COARRAY.', &
+'   SUB       default integer rank-1 array of a size equal to the corank', &
+'             of COARRAY.', &
 '', &
 'RETURN VALUE', &
 '   Scalar default integer with the value of the image index which', &
@@ -5749,7 +5793,8 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), scan(3), verify(3)', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
+'                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
 
@@ -5928,25 +5973,31 @@ textblock=[character(len=132) :: &
 '   An object is contiguous if it is', &
 '      (1)     an object with the CONTIGUOUS attribute,', &
 '      (2)     a nonpointer whole array that is not assumed-shape,', &
-'      (3)     an assumed-shape array that is argument associated with an array that is contiguous,', &
+'      (3)     an assumed-shape array that is argument associated with', &
+'              an array that is contiguous,', &
 '      (4)     an array allocated by an ALLOCATE statement,', &
 '      (5)     a pointer associated with a contiguous target, or', &
 '      (6)     a nonzero-sized array section provided that', &
 '          (a)   its base object is contiguous,', &
 '          (b)   it does not have a vector subscript,', &
-'          (c)   the elements of the section, in array element order, are a subset of the base object elements', &
+'          (c)   the elements of the section, in array element order,', &
+'                are a subset of the base object elements', &
 '                that are consecutive in array element order,', &
-'          (d)   if the array is of type character and a substring-range appears, the substring-range specifies all', &
-'                of the characters of the parent-string,', &
+'          (d)   if the array is of type character and a substring-range', &
+'                appears, the substring-range specifies all of the', &
+'                characters of the parent-string,', &
 '          (e)   only its final part-ref has nonzero rank, and', &
-'          (f)   it is not the real or imaginary part of an array of type complex.', &
+'          (f)   it is not the real or imaginary part of an array of', &
+'                type complex.', &
 '', &
 '   An object is not contiguous if it is an array subobject, and', &
 '', &
 '      o the object has two or more elements,', &
-'      o the elements of the object in array element order are not consecutive in the elements of the base object,', &
+'      o the elements of the object in array element order are not', &
+'        consecutive in the elements of the base object,', &
 '      o the object is not of type character with length zero, and', &
-'      o the object is not of a derived type that has no ultimate components other than zero-sized arrays and', &
+'      o the object is not of a derived type that has no ultimate', &
+'        components other than zero-sized arrays and', &
 '      o characters with length zero.', &
 '', &
 '   It is processor-dependent whether any other object is contiguous.', &
@@ -5957,7 +6008,8 @@ textblock=[character(len=132) :: &
 '', &
 'RETURN VALUE', &
 '    Result    of type Default logical scalar.', &
-'              The result has the value true if A is contiguous, and false otherwise.', &
+'              The result has the value true if A is contiguous, and', &
+'              false otherwise.', &
 '', &
 'EXAMPLE', &
 '  Sample program:', &
@@ -6207,18 +6259,17 @@ textblock=[character(len=132) :: &
 '            expression indicating the kind parameter of the result.', &
 '', &
 'RETURN VALUE', &
-'   The return value is of type INTEGER and of kind KIND. If', &
-'   KIND is absent, the return value is of default integer kind.', &
-'   If DIM is absent, the result is an array of the lower bounds of', &
-'   ARRAY. If DIM is present, the result is a scalar', &
-'   corresponding to the lower bound of the array along that dimension. If', &
-'   ARRAY is an expression rather than a whole array or array', &
-'   structure component, or if it has a zero extent along the relevant', &
-'   dimension, the lower bound is taken to be 1.', &
+'   The return value is of type INTEGER and of kind KIND. If KIND is', &
+'   absent, the return value is of default integer kind.  If DIM is absent,', &
+'   the result is an array of the lower bounds of ARRAY. If DIM is present,', &
+'   the result is a scalar corresponding to the lower bound of the array', &
+'   along that dimension. If ARRAY is an expression rather than a whole', &
+'   array or array structure component, or if it has a zero extent along', &
+'   the relevant dimension, the lower bound is taken to be 1.', &
 'EXAMPLE', &
-'   Note that in my opinion this function should not be used on assumed-size arrays', &
-'   or in any function without an explicit interface. Errors can occur if there is', &
-'   no interface defined.', &
+'   Note that in my opinion this function should not be used on', &
+'   assumed-size arrays or in any function without an explicit', &
+'   interface. Errors can occur if there is no interface defined.', &
 '', &
 '  Sample program', &
 '', &
@@ -6229,7 +6280,9 @@ textblock=[character(len=132) :: &
 '       subroutine msub(arr)', &
 '          !!integer,intent(in) :: arr(*)  ! cannot be assumed-size array', &
 '          integer,intent(in) :: arr(:)', &
-'          write(*,*)''MSUB: LOWER='',lbound(arr),''UPPER='',ubound(arr),''SIZE='',size(arr)', &
+'          write(*,*)''MSUB: LOWER='',lbound(arr), &', &
+'	  & ''UPPER='',ubound(arr), &', &
+'	  & ''SIZE='',size(arr)', &
 '       end subroutine msub', &
 '    end module m_bounds', &
 '', &
@@ -6241,21 +6294,28 @@ textblock=[character(len=132) :: &
 '       end subroutine esub', &
 '    end interface', &
 '    integer :: arr(-10:10)', &
-'       write(*,*)''MAIN: LOWER='',lbound(arr),''UPPER='',ubound(arr),''SIZE='',size(arr)', &
+'       write(*,*)''MAIN: LOWER='',lbound(arr), &', &
+'       & ''UPPER='',ubound(arr), &', &
+'       & ''SIZE='',size(arr)', &
 '       call csub()', &
 '       call msub(arr)', &
 '       call esub(arr)', &
 '    contains', &
 '       subroutine csub', &
-'          write(*,*)''CSUB: LOWER='',lbound(arr),''UPPER='',ubound(arr),''SIZE='',size(arr)', &
+'          write(*,*)''CSUB: LOWER='',lbound(arr), &', &
+'	  & ''UPPER='',ubound(arr), &', &
+'	  & ''SIZE='',size(arr)', &
 '       end subroutine csub', &
 '    end', &
 '', &
 '    subroutine esub(arr)', &
 '    implicit none', &
 '    integer,intent(in) :: arr(:)', &
-'       ! WARNING: IF CALLED WITHOUT AN EXPLICIT INTERFACE THIS WILL GIVE UNDEFINED ANSWERS (like 0,0,0)', &
-'       write(*,*)''ESUB: LOWER='',lbound(arr),''UPPER='',ubound(arr),''SIZE='',size(arr)', &
+'       ! WARNING: IF CALLED WITHOUT AN EXPLICIT INTERFACE ', &
+'       ! THIS WILL GIVE UNDEFINED ANSWERS (like 0,0,0)', &
+'       write(*,*)''ESUB: LOWER='',lbound(arr), &', &
+'       & ''UPPER='',ubound(arr), &', &
+'       & ''SIZE='',size(arr)', &
 '    end subroutine esub', &
 '   !end program demo_lbound', &
 '', &
@@ -6282,7 +6342,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '     leadz(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Number of leading zero bits of an integer', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = leadz(i)', &
 '', &
@@ -6309,7 +6369,7 @@ textblock=[character(len=132) :: &
 '      ! show output for various integer values', &
 '      value=0', &
 '      do i=0,bit_size(value)-1', &
-'         write (*,''("LEADING ZERO BITS=",i3,1x)'',advance=''no'') leadz(value)', &
+'         write (*,''("LEADING ZERO BITS=",i3,1x)'') leadz(value)', &
 '         write (*,''(" FOR VALUE ")'',advance=''no'')', &
 '         write(*,f,advance=''no'') value', &
 '         write(*,''(*(1x,g0))'') "OR",value', &
@@ -6319,38 +6379,70 @@ textblock=[character(len=132) :: &
 '  Results:', &
 '', &
 '   BIT_SIZE=32', &
-'   LEADING ZERO BITS= 32  FOR VALUE 00000000000000000000000000000000 OR 0', &
-'   LEADING ZERO BITS= 31  FOR VALUE 00000000000000000000000000000001 OR 1', &
-'   LEADING ZERO BITS= 30  FOR VALUE 00000000000000000000000000000011 OR 3', &
-'   LEADING ZERO BITS= 29  FOR VALUE 00000000000000000000000000000111 OR 7', &
-'   LEADING ZERO BITS= 28  FOR VALUE 00000000000000000000000000001111 OR 15', &
-'   LEADING ZERO BITS= 27  FOR VALUE 00000000000000000000000000011111 OR 31', &
-'   LEADING ZERO BITS= 26  FOR VALUE 00000000000000000000000000111111 OR 63', &
-'   LEADING ZERO BITS= 25  FOR VALUE 00000000000000000000000001111111 OR 127', &
-'   LEADING ZERO BITS= 24  FOR VALUE 00000000000000000000000011111111 OR 255', &
-'   LEADING ZERO BITS= 23  FOR VALUE 00000000000000000000000111111111 OR 511', &
-'   LEADING ZERO BITS= 22  FOR VALUE 00000000000000000000001111111111 OR 1023', &
-'   LEADING ZERO BITS= 21  FOR VALUE 00000000000000000000011111111111 OR 2047', &
-'   LEADING ZERO BITS= 20  FOR VALUE 00000000000000000000111111111111 OR 4095', &
-'   LEADING ZERO BITS= 19  FOR VALUE 00000000000000000001111111111111 OR 8191', &
-'   LEADING ZERO BITS= 18  FOR VALUE 00000000000000000011111111111111 OR 16383', &
-'   LEADING ZERO BITS= 17  FOR VALUE 00000000000000000111111111111111 OR 32767', &
-'   LEADING ZERO BITS= 16  FOR VALUE 00000000000000001111111111111111 OR 65535', &
-'   LEADING ZERO BITS= 15  FOR VALUE 00000000000000011111111111111111 OR 131071', &
-'   LEADING ZERO BITS= 14  FOR VALUE 00000000000000111111111111111111 OR 262143', &
-'   LEADING ZERO BITS= 13  FOR VALUE 00000000000001111111111111111111 OR 524287', &
-'   LEADING ZERO BITS= 12  FOR VALUE 00000000000011111111111111111111 OR 1048575', &
-'   LEADING ZERO BITS= 11  FOR VALUE 00000000000111111111111111111111 OR 2097151', &
-'   LEADING ZERO BITS= 10  FOR VALUE 00000000001111111111111111111111 OR 4194303', &
-'   LEADING ZERO BITS=  9  FOR VALUE 00000000011111111111111111111111 OR 8388607', &
-'   LEADING ZERO BITS=  8  FOR VALUE 00000000111111111111111111111111 OR 16777215', &
-'   LEADING ZERO BITS=  7  FOR VALUE 00000001111111111111111111111111 OR 33554431', &
-'   LEADING ZERO BITS=  6  FOR VALUE 00000011111111111111111111111111 OR 67108863', &
-'   LEADING ZERO BITS=  5  FOR VALUE 00000111111111111111111111111111 OR 134217727', &
-'   LEADING ZERO BITS=  4  FOR VALUE 00001111111111111111111111111111 OR 268435455', &
-'   LEADING ZERO BITS=  3  FOR VALUE 00011111111111111111111111111111 OR 536870911', &
-'   LEADING ZERO BITS=  2  FOR VALUE 00111111111111111111111111111111 OR 1073741823', &
-'   LEADING ZERO BITS=  1  FOR VALUE 01111111111111111111111111111111 OR 2147483647', &
+'   LEADING ZERO BITS= 32', &
+'    FOR VALUE 00000000000000000000000000000000 OR 0', &
+'   LEADING ZERO BITS= 31', &
+'    FOR VALUE 00000000000000000000000000000001 OR 1', &
+'   LEADING ZERO BITS= 30', &
+'    FOR VALUE 00000000000000000000000000000011 OR 3', &
+'   LEADING ZERO BITS= 29', &
+'    FOR VALUE 00000000000000000000000000000111 OR 7', &
+'   LEADING ZERO BITS= 28', &
+'    FOR VALUE 00000000000000000000000000001111 OR 15', &
+'   LEADING ZERO BITS= 27', &
+'    FOR VALUE 00000000000000000000000000011111 OR 31', &
+'   LEADING ZERO BITS= 26', &
+'    FOR VALUE 00000000000000000000000000111111 OR 63', &
+'   LEADING ZERO BITS= 25', &
+'    FOR VALUE 00000000000000000000000001111111 OR 127', &
+'   LEADING ZERO BITS= 24', &
+'    FOR VALUE 00000000000000000000000011111111 OR 255', &
+'   LEADING ZERO BITS= 23', &
+'    FOR VALUE 00000000000000000000000111111111 OR 511', &
+'   LEADING ZERO BITS= 22', &
+'    FOR VALUE 00000000000000000000001111111111 OR 1023', &
+'   LEADING ZERO BITS= 21', &
+'    FOR VALUE 00000000000000000000011111111111 OR 2047', &
+'   LEADING ZERO BITS= 20', &
+'    FOR VALUE 00000000000000000000111111111111 OR 4095', &
+'   LEADING ZERO BITS= 19', &
+'    FOR VALUE 00000000000000000001111111111111 OR 8191', &
+'   LEADING ZERO BITS= 18', &
+'    FOR VALUE 00000000000000000011111111111111 OR 16383', &
+'   LEADING ZERO BITS= 17', &
+'    FOR VALUE 00000000000000000111111111111111 OR 32767', &
+'   LEADING ZERO BITS= 16', &
+'    FOR VALUE 00000000000000001111111111111111 OR 65535', &
+'   LEADING ZERO BITS= 15', &
+'    FOR VALUE 00000000000000011111111111111111 OR 131071', &
+'   LEADING ZERO BITS= 14', &
+'    FOR VALUE 00000000000000111111111111111111 OR 262143', &
+'   LEADING ZERO BITS= 13', &
+'    FOR VALUE 00000000000001111111111111111111 OR 524287', &
+'   LEADING ZERO BITS= 12', &
+'    FOR VALUE 00000000000011111111111111111111 OR 1048575', &
+'   LEADING ZERO BITS= 11', &
+'    FOR VALUE 00000000000111111111111111111111 OR 2097151', &
+'   LEADING ZERO BITS= 10', &
+'    FOR VALUE 00000000001111111111111111111111 OR 4194303', &
+'   LEADING ZERO BITS=  9', &
+'    FOR VALUE 00000000011111111111111111111111 OR 8388607', &
+'   LEADING ZERO BITS=  8', &
+'    FOR VALUE 00000000111111111111111111111111 OR 16777215', &
+'   LEADING ZERO BITS=  7', &
+'    FOR VALUE 00000001111111111111111111111111 OR 33554431', &
+'   LEADING ZERO BITS=  6', &
+'    FOR VALUE 00000011111111111111111111111111 OR 67108863', &
+'   LEADING ZERO BITS=  5', &
+'    FOR VALUE 00000111111111111111111111111111 OR 134217727', &
+'   LEADING ZERO BITS=  4', &
+'    FOR VALUE 00001111111111111111111111111111 OR 268435455', &
+'   LEADING ZERO BITS=  3', &
+'    FOR VALUE 00011111111111111111111111111111 OR 536870911', &
+'   LEADING ZERO BITS=  2', &
+'    FOR VALUE 00111111111111111111111111111111 OR 1073741823', &
+'   LEADING ZERO BITS=  1', &
+'    FOR VALUE 01111111111111111111111111111111 OR 2147483647', &
 '', &
 'STANDARD', &
 '   [[Fortran 2008]] and later', &
@@ -6409,8 +6501,9 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     ADJUSTL(3), ADJUSTR(3), INDEX(3), LEN_TRIM(3), SCAN(3), VERIFY(3)', &
-'   Nonelemental:  REPEAT(3), TRIM(3)', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'                  scan(3), verify(3)', &
+'   Nonelemental:  repeat(3), trim(3)', &
 '']
 
 case('120','len_trim') 
@@ -6457,8 +6550,9 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     ADJUSTL(3), ADJUSTR(3), INDEX(3), LEN_TRIM(3), SCAN(3), VERIFY(3)', &
-'   Nonelemental:  REPEAT(3), TRIM(3)', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'                  scan(3), verify(3)', &
+'   Nonelemental:  repeat(3), trim(3)', &
 '']
 
 case('121','lge') 
@@ -6504,8 +6598,9 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     ADJUSTL(3), ADJUSTR(3), INDEX(3), LEN_TRIM(3), SCAN(3), VERIFY(3)', &
-'   Nonelemental:  REPEAT(3), TRIM(3)', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'                  scan(3), verify(3)', &
+'   Nonelemental:  repeat(3), trim(3)', &
 '']
 
 case('122','lgt') 
@@ -6547,13 +6642,14 @@ textblock=[character(len=132) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '', &
 'SEE ALSO', &
-'   [[lge(3), [[lle(3), [[llt(3)', &
+'   lge(3), lle(3), llt(3)', &
 '', &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     ADJUSTL(3), ADJUSTR(3), INDEX(3), LEN_TRIM(3), SCAN(3), VERIFY(3)', &
-'   Nonelemental:  REPEAT(3), TRIM(3)', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'                  scan(3), verify(3)', &
+'   Nonelemental:  repeat(3), trim(3)', &
 '']
 
 case('123','lle') 
@@ -6603,20 +6699,21 @@ textblock=[character(len=132) :: &
 '   implicit none', &
 '   integer             :: i', &
 '      write(*,''(*(a))'')(char(i),i=32,126)', &
-'        write(*,*) lle(''abc'',''ABC'')                 ! F lowercase is > uppercase', &
-'        write(*,*) lle(''abc'',''abc  '')               ! T trailing spaces', &
+'        write(*,*) lle(''abc'',''ABC'')              ! F lowercase is > uppercase', &
+'        write(*,*) lle(''abc'',''abc  '')            ! T trailing spaces', &
 '        ! If both strings are of zero length the result is true.', &
-'        write(*,*) lle('''','''')                       ! T', &
-'        write(*,*) lle('''',''a'')                      ! T the null string is padded', &
-'        write(*,*) lle(''a'','''')                      ! F', &
-'        write(*,*) lle(''abc'',[''abc'',''123''])         ! [T,F] scalar and array', &
-'        write(*,*) lle([''cba'', ''123''],''abc'')        ! [F,T]', &
+'        write(*,*) lle('''','''')                    ! T', &
+'        write(*,*) lle('''',''a'')                   ! T the null string is padded', &
+'        write(*,*) lle(''a'','''')                   ! F', &
+'        write(*,*) lle(''abc'',[''abc'',''123''])      ! [T,F] scalar and array', &
+'        write(*,*) lle([''cba'', ''123''],''abc'')     ! [F,T]', &
 '        write(*,*) lle([''abc'',''123''],[''cba'',''123'']) ! [T,T] both arrays', &
 '   end program demo_lle', &
 '', &
 '  Results:', &
 '', &
-'   > !"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~', &
+'   > !"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ', &
+'   > [\]^_`abcdefghijklmnopqrstuvwxyz{|}~', &
 '   > F', &
 '   > T', &
 '   > T', &
@@ -6638,7 +6735,8 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), scan(3), verify(3)', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
 
@@ -6686,8 +6784,9 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     ADJUSTL(3), ADJUSTR(3), INDEX(3), LEN_TRIM(3), SCAN(3), VERIFY(3)', &
-'   Nonelemental:  REPEAT(3), TRIM(3)', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'                  scan(3), verify(3)', &
+'   Nonelemental:  repeat(3), trim(3)', &
 '']
 
 case('125','log10') 
@@ -6714,7 +6813,8 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '    program demo_log10', &
-'    use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
+'    use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'    & real32, real64, real128', &
 '    implicit none', &
 '    real(kind=real64) :: x = 10.0_real64', &
 '      x = log10(x)', &
@@ -6738,7 +6838,8 @@ textblock=[character(len=132) :: &
 '   result = LOG(X)', &
 '', &
 'DESCRIPTION', &
-'   LOG(X) computes the natural logarithm of X, i.e. the logarithm to the base "e".', &
+'   LOG(X) computes the natural logarithm of X, i.e. the logarithm to', &
+'   the base "e".', &
 '', &
 'ARGUMENTS', &
 '   X    The type shall be REAL or COMPLEX.', &
@@ -6780,7 +6881,8 @@ textblock=[character(len=132) :: &
 '    x = log_gamma(x)', &
 '', &
 'DESCRIPTION', &
-'   log_gamma(x) computes the natural logarithm of the absolute value of the [[Gamma function]].', &
+'   log_gamma(x) computes the natural logarithm of the absolute value of', &
+'   the [[Gamma function]].', &
 '', &
 'ARGUMENTS', &
 '   X    Shall be of type REAL and neither zero nor a negative integer.', &
@@ -6982,37 +7084,54 @@ textblock=[character(len=132) :: &
 '    real :: arr1(4)= [10.0,11.0,30.0,-100.0]', &
 '    real :: arr2(5)= [20.0,21.0,32.0,-200.0,2200.0]', &
 '', &
-'       !! this is simple enough because it is not being called elementally because all arguments are scalar', &
+'       !! this is simple enough because it is not being called elementally ', &
+'       !! because all arguments are scalar', &
 '       !!', &
+'', &
 '       write(*,*)''scalars:'',max(10.0,11.0,30.0,-100.0)', &
+'', &
 '       !!', &
-'       !! this is all max(3f) could do before it became an elemental function and is the most intuitive', &
-'       !! except that it can take an arbitrary number of options, which is not common in Fortran without', &
+'       !! this is all max(3f) could do before it became an elemental ', &
+'       !! function and is the most intuitive', &
+'       !! except that it can take an arbitrary number of options,', &
+'       !! which is not common in Fortran without', &
 '       !! declaring a lot of optional parameters.', &
 '       !!', &
 '       !! That is it unless you want to use the elemental features of max(3f)! ', &
 '', &
 '       !! Error: Intrinsic ‘max’ at (1) must have at least two arguments', &
 '       !!write(*,*)max(arr1)', &
-'       !! This does not work because it is like trying to return [(max(arr1(i)),i=1,size(arr1))]', &
-'       !! so it is trying to take the max of a single value. To find the largest element of an array', &
+'       !! This does not work because it is like trying to return ', &
+'       !! [(max(arr1(i)),i=1,size(arr1))]', &
+'       !! so it is trying to take the max of a single value.', &
+'       !! To find the largest element of an array', &
 '       !! call maxloc(3f) or maxval(3f).', &
 '', &
-'       !! Error: Different shape for arguments ''a1'' and ''a2'' for intrinsic ''max'' at (1) on dimension 1 (4 and 5)', &
+'       !! Error: Different shape for arguments ''a1'' and ''a2'' for intrinsic', &
+'       !! ''max'' at (1) on dimension 1 (4 and 5)', &
 '       !!write(*,*)max(arr1,arr2)', &
-'       !! but this will return an array of [(max(arr1(N),arr2(N),N=1,size(arr1))]', &
+'       !! but this will return an array of', &
+'       !! [(max(arr1(N),arr2(N),N=1,size(arr1))]', &
+'', &
 '       write(*,*)max(arr1,arr2(1:4))', &
-'       !! so this works only if all the arrays are the same size an you want an array of the largest Nth elements', &
+'', &
+'       !! so this works only if all the arrays are the same size and ', &
+'       !! you want an array of the largest Nth elements', &
 '       !! from the input arrays.', &
-'       !! maybe you wanted to do maxval([arr1,arr2]) or equivalently max(maxval(arr1),maxval(arr2))', &
+'       !! maybe you wanted to do maxval([arr1,arr2]) or ', &
+'       !! equivalently max(maxval(arr1),maxval(arr2))', &
 '       !! to find the single largest element in both arrays?', &
 '', &
-'       !! compares all scalars to each member of array and returns array of size arr2', &
+'       !! compares all scalars to each member of array and ', &
+'       !! returns array of size arr2', &
+'', &
 '       write(*,*)''scalars and array:'',max(10.0,11.0,30.0,-100.0,arr2)', &
 '', &
-'       !! Error: Different shape for arguments ''a5'' and ''a6'' for intrinsic ''max'' at (1) on dimension 1 (5 and 4)', &
+'       !! Error: Different shape for arguments ''a5'' and ''a6'' ', &
+'       !! for intrinsic ''max'' at (1) on dimension 1 (5 and 4)', &
 '       !! write(*,*)''scalars and array:'',max(10.0,11.0,30.0,-100.0,arr2,arr1)', &
-'       !! as the same reason above when arrays are used (without scalar values) all the arrays must be the same size', &
+'       !! as the same reason above when arrays are used ', &
+'       !! (without scalar values) all the arrays must be the same size', &
 '', &
 '       write(*,*)''scalars and array:'',max(40.0,11.0,30.0,-100.0,arr2(:4),arr1)', &
 '', &
@@ -7020,10 +7139,10 @@ textblock=[character(len=132) :: &
 '', &
 '  Results:', &
 '', &
-'    scalars:   30.0000000    ', &
-'      20.0000000       21.0000000       32.0000000      -100.000000    ', &
-'    scalars and array:   30.0000000       30.0000000       32.0000000       30.0000000       2200.00000    ', &
-'    scalars and array:   40.0000000       40.0000000       40.0000000       40.0000000    ', &
+'    scalars:   30.000000    ', &
+'      20.0000000  21.000000  32.000000 -100.00000    ', &
+'    scalars and array:   30.000000  30.000000  32.000000  30.000000  2200.0000    ', &
+'    scalars and array:   40.000000  40.000000  40.000000  40.000000    ', &
 '', &
 'STANDARD', &
 '   [[FORTRAN 77]] and later', &
@@ -7226,8 +7345,8 @@ textblock=[character(len=132) :: &
 '     result = merge(tsource, fsource, mask)', &
 '', &
 'DESCRIPTION', &
-'   Select values from two arrays or scalars according to a logical mask. The result', &
-'   is equal to TSOURCE if MASK is .true., or equal to', &
+'   Select values from two arrays or scalars according to a logical', &
+'   mask. The result is equal to TSOURCE if MASK is .true., or equal to', &
 '   FSOURCE if it is .false. .', &
 '', &
 'ARGUMENTS', &
@@ -7236,8 +7355,8 @@ textblock=[character(len=132) :: &
 '   MASK       Shall be of type LOGICAL.', &
 '', &
 'RETURN VALUE', &
-'   The result is of the same type and type parameters as TSOURCE.', &
-'   For any element the result is TSOURCE if MASK is true and FSOURCE otherwise.', &
+'   The result is of the same type and type parameters as TSOURCE.  For any', &
+'   element the result is TSOURCE if MASK is true and FSOURCE otherwise.', &
 '', &
 'EXAMPLES', &
 '  The value of', &
@@ -7253,8 +7372,10 @@ textblock=[character(len=132) :: &
 '   integer :: tsrc(2,3), fsrc(2,3), answer(2,3)', &
 '   logical :: mask(2,3)', &
 '   integer :: i', &
-'      tsrc(1,:)=[ 1,6,5 ]; fsrc(1,:)=[ 0,3,2 ]; mask(1,:)=[.true., .false.,.true.]', &
-'      tsrc(2,:)=[ 2,4,6 ]; fsrc(2,:)=[ 7,4,8 ]; mask(2,:)=[.false.,.false.,.true.]', &
+'      tsrc(1,:)=[ 1,6,5 ]; fsrc(1,:)=[ 0,3,2 ]; &', &
+'      & mask(1,:)=[.true., .false.,.true.]', &
+'      tsrc(2,:)=[ 2,4,6 ]; fsrc(2,:)=[ 7,4,8 ]; &', &
+'      & mask(2,:)=[.false.,.false.,.true.]', &
 '      answer=merge(tsrc,fsrc,mask)', &
 '      write(*,''(3i2)'')(answer(i,:),i=1,size(answer,dim=1))', &
 '   end program demo_merge', &
@@ -7635,7 +7756,8 @@ textblock=[character(len=132) :: &
 '', &
 'ARGUMENTS', &
 '   SRC    ALLOCATABLE, intent(inout), may be of any type and kind.', &
-'   DEST   ALLOCATABLE, intent(out), shall be of the same type, kind and rank as SRC.', &
+'   DEST   ALLOCATABLE, intent(out), shall be of the same type, kind and', &
+'          rank as SRC.', &
 '', &
 'EXAMPLE', &
 '  Basic Sample program to allocate a bigger grid', &
@@ -7652,9 +7774,9 @@ textblock=[character(len=132) :: &
 '      grid = [ (real (i), i=1,n) ]', &
 '', &
 '      ! initialize TEMPGRID which will be used to replace GRID', &
-'      allocate (tempgrid(1:2*n))           ! Allocate bigger grid', &
-'      tempgrid(::2)  = grid                ! Distribute values to new locations', &
-'      tempgrid(2::2) = grid + 0.5          ! initialize other values', &
+'      allocate (tempgrid(1:2*n))    ! Allocate bigger grid', &
+'      tempgrid(::2)  = grid         ! Distribute values to new locations', &
+'      tempgrid(2::2) = grid + 0.5   ! initialize other values', &
 '', &
 '      ! move TEMPGRID to GRID', &
 '      call MOVE_ALLOC (from=tempgrid, to=grid)', &
@@ -7677,7 +7799,6 @@ textblock=[character(len=132) :: &
 '', &
 'SEE ALSO', &
 '   allocated(3)', &
-'', &
 '']
 
 case('145','mvbits') 
@@ -8002,7 +8123,8 @@ textblock=[character(len=132) :: &
 '   end program demo_num_images', &
 '', &
 'STANDARD', &
-'   [[Fortran 2008]] and later. With DISTANCE or FAILED argument, [[TS 18508]] or later', &
+'   [[Fortran 2008]] and later. With DISTANCE or FAILED argument, ', &
+'   [[TS 18508]] or later', &
 '', &
 'CLASS', &
 '   Transformational function', &
@@ -8062,7 +8184,8 @@ textblock=[character(len=132) :: &
 '    end subroutine test1', &
 '    !', &
 '    subroutine test2()', &
-'    ! Gathering nonzero elements from an array and appending elements from VECTOR:', &
+'    ! Gathering nonzero elements from an array and appending elements ', &
+'    ! from VECTOR:', &
 '    integer :: m(4)', &
 '      m = [ 1, 0, 0, 2 ]', &
 '      write(*, fmt="(*(i0, '' ''))") pack(m, m /= 0, [ 0, 0, 3, 4 ])  ! "1 2 3 4"', &
@@ -8105,7 +8228,8 @@ textblock=[character(len=132) :: &
 '   result = parity(mask[, dim])', &
 '', &
 'DESCRIPTION', &
-'   Calculates the parity (i.e. the reduction using .xor.) of MASK along dimension DIM.', &
+'   Calculates the parity (i.e. the reduction using .xor.) of MASK along', &
+'   dimension DIM.', &
 '', &
 'ARGUMENTS', &
 '   MASK    Shall be an array of type LOGICAL.', &
@@ -8160,7 +8284,8 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '   program demo_popcnt', &
-'   use, intrinsic :: iso_fortran_env, only : integer_kinds, int8, int16, int32, int64', &
+'   use, intrinsic :: iso_fortran_env, only : integer_kinds, &', &
+'   & int8, int16, int32, int64', &
 '   implicit none', &
 '     print *, popcnt(127),       poppar(127)', &
 '     print *, popcnt(huge(0)), poppar(huge(0))', &
@@ -8215,7 +8340,8 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '   program demo_popcnt', &
-'   use, intrinsic :: iso_fortran_env, only : integer_kinds, int8, int16, int32, int64', &
+'   use, intrinsic :: iso_fortran_env, only : integer_kinds, &', &
+'   & int8, int16, int32, int64', &
 '   implicit none', &
 '      print  *,  popcnt(127),            poppar(127)', &
 '      print  *,  popcnt(huge(0_int8)),   poppar(huge(0_int8))', &
@@ -8367,7 +8493,8 @@ textblock=[character(len=132) :: &
 '   Transformational function', &
 '', &
 'SEE ALSO', &
-'   sum(3), note that an element by element multiplication is done directly using the star character.', &
+'   sum(3), note that an element by element multiplication is done directly', &
+'   using the star character.', &
 '']
 
 case('160','radix') 
@@ -8450,10 +8577,12 @@ textblock=[character(len=132) :: &
 '   !', &
 '   ! One way is:', &
 '   !   call random_number(rand_val)', &
-'   !   rand_int = first + FLOOR((last+1-first)*rand_val)  ! choose one from last-first+1 integers', &
+'   ! choose one from last-first+1 integers', &
+'   !   rand_int = first + FLOOR((last+1-first)*rand_val) ', &
 '      count=0', &
 '   ! generate a lot of random integers from 1 to 10 and count them.', &
-'   ! with a large number of values you should get about the same number of each value', &
+'   ! with a large number of values you should get about the same number', &
+'   ! of each value', &
 '      do i=1,100000000', &
 '         call random_number(rand_val)', &
 '         rand_int=first+floor((last+1-first)*rand_val)', &
@@ -8664,11 +8793,12 @@ textblock=[character(len=132) :: &
 '', &
 '      write(*,*)xd,real(xd,kind=kind(0.0d0)),dble(xd)', &
 '   end program demo_real', &
+'', &
 '  Results:', &
 '', &
-'      1.00000000       2.00000000', &
-'      4.0000000000000000        5.0000000000000000', &
-'      1.7976931348623157E+308   1.7976931348623157E+308   1.7976931348623157E+308', &
+'   1.00000000       2.00000000', &
+'   4.0000000000000000        5.0000000000000000', &
+'   1.7976931348623157E+308   1.7976931348623157E+308   1.7976931348623157E+308', &
 '', &
 'STANDARD', &
 '   [[FORTRAN 77]] and later', &
@@ -8678,7 +8808,6 @@ textblock=[character(len=132) :: &
 '', &
 'SEE ALSO', &
 '   dble(3), float(3)', &
-'', &
 '']
 
 case('166','repeat') 
@@ -8720,8 +8849,9 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     ADJUSTL(3), ADJUSTR(3), INDEX(3), LEN_TRIM(3), SCAN(3), VERIFY(3)', &
-'   Nonelemental:  REPEAT(3), TRIM(3)', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'                  scan(3), verify(3)', &
+'   Nonelemental:  repeat(3), trim(3)', &
 '']
 
 case('167','reshape') 
@@ -8896,7 +9026,8 @@ textblock=[character(len=132) :: &
 'SYNOPSIS', &
 '   REWIND file-unit-number', &
 '', &
-'    REWIND ( [UNIT=]file-unit-number][,IOMSG=iomsg-variable][,IOSTAT=scalar-int-variable][,ERR=label] )', &
+'    REWIND ( [UNIT=]file-unit-number][,IOMSG=iomsg-variable] &', &
+'    & [,IOSTAT=scalar-int-variable][,ERR=label] )', &
 'DESCRIPTION', &
 '   Execution of a REWIND statement causes the file connected to the', &
 '   specified unit to be positioned at the beginning of the file (its', &
@@ -9120,8 +9251,9 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     ADJUSTL(3), ADJUSTR(3), INDEX(3), LEN_TRIM(3), SCAN(3), VERIFY(3)', &
-'   Nonelemental:  REPEAT(3), TRIM(3)', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'                  scan(3), verify(3)', &
+'   Nonelemental:  repeat(3), trim(3)', &
 '']
 
 case('174','selected_char_kind') 
@@ -9696,7 +9828,8 @@ textblock=[character(len=132) :: &
 '    implicit none', &
 '    integer :: i, j', &
 '    integer :: arr(0:2,-5:5)=reshape([(((i-1)*11+j,i=1,3),j=1,11)],[3,11])', &
-'       write(*,*) ''SIZE of simple one-dimensional array='',size([ 11, 22, 33 ])    ! 3', &
+'       write(*,*) ''SIZE of simple one-dimensional array='', &', &
+'       & size([ 11, 22, 33 ])    ! 3', &
 '', &
 '       write(*,*)''body''', &
 '       write(*,*)''SHAPE(arr)       :'',shape(arr)', &
@@ -9721,23 +9854,28 @@ textblock=[character(len=132) :: &
 '       !', &
 '       write(*,*)''interfaced assumed-shape arr2ay''', &
 '       !', &
-'       !!write(*,*)''SHAPE(arr2)       :'',shape(arr2) ! ‘source’ argument of ‘shape’ intrinsic at (1) must not be ', &
-'                                                     ! an assumed size array', &
-'       !!write(*,*)''SIZE(arr2)        :'',size(arr2)  ! The upper bound in the last dimension must appear in the reference', &
-'                                                     ! to the assumed size array ‘arr2’ at (1)', &
+'       ! ‘source’ argument of ‘shape’ intrinsic at (1) must not be ', &
+'       ! an assumed size array', &
+'       !!write(*,*)''SHAPE(arr2)       :'',shape(arr2) ', &
+'       ! The upper bound in the last dimension must appear in the reference', &
+'       ! to the assumed size array ‘arr2’ at (1)', &
+'       !!write(*,*)''SIZE(arr2)        :'',size(arr2) ', &
 '       write(*,*)''SIZE(arr2,DIM=1)  :'',size(arr2,dim=1)', &
-'       ! ‘dim’ argument of ‘size’ intrinsic at (1) is not a valid dimension index', &
+'       ! ‘dim’ argument of ‘size’ intrinsic at (1) is not ', &
+'       !a valid dimension index', &
 '       !!write(*,*)''SIZE(arr2,DIM=2)  :'',size(arr2,dim=2)', &
 '       write(*,*)''note lower bound is "1"''', &
 '       write(*,*)''LBOUND(arr2)      :'',lbound(arr2)', &
 '       write(*,*)''LBOUND(arr2)      :'',lbound(arr2)', &
-'       !!write(*,*)''UBOUND(arr2)      :'',ubound(arr2)  ! The upper bound in the last dimension must appear in the ', &
-'                                                       ! reference to the assumed size array ‘arr2’ at (1)', &
+'       ! The upper bound in the last dimension must appear in the ', &
+'       ! reference to the assumed size array ‘arr2’ at (1)', &
+'       !!write(*,*)''UBOUND(arr2)      :'',ubound(arr2)', &
 '       write(*,*)''LBOUND(arr2,DIM=1):'',lbound(arr2,dim=1)', &
 '       write(*,*)''UBOUND(arr2,DIM=1):'',ubound(arr2,dim=1)', &
 '       write(*,*)''LBOUND(arr2,DIM=2):'',lbound(arr2,dim=2)', &
-'       !!write(*,*)''UBOUND(arr2,DIM=2):'',ubound(arr2,dim=2) ! ‘dim’ argument of ‘ubound’ intrinsic at (1) is not', &
-'                                                            ! a valid dimension index', &
+'       ! ‘dim’ argument of ‘ubound’ intrinsic at (1) is not', &
+'       ! a valid dimension index', &
+'       !!write(*,*)''UBOUND(arr2,DIM=2):'',ubound(arr2,dim=2)', &
 '       !', &
 '       write(*,*)''interfaced''', &
 '       !', &
@@ -9756,16 +9894,19 @@ textblock=[character(len=132) :: &
 '       !', &
 '    end subroutine interfaced', &
 '    !!', &
-'    ! NOTE: If NOINTERFACE(3f) had an assumed-shape argument with : for dimensions it', &
-'    !       could only be properly called with an explicit interface', &
+'    ! NOTE: If NOINTERFACE(3f) had an assumed-shape argument with : ', &
+'    !       for dimensions it could only be properly called with ', &
+'    !       an explicit interface', &
 '    !!', &
 '    subroutine nointerface(arr)', &
 '    integer,intent(in) :: arr(3,*)', &
 '       write(*,*)''nointerface''', &
-'     !!write(*,*)''SHAPE(arr)       :'',shape(arr)  ! SHAPE(3f) CANNOT BE USED ON AN ASSUMED SIZE ARRAY', &
+'     ! SHAPE(3f) CANNOT BE USED ON AN ASSUMED SIZE ARRAY', &
+'     !!write(*,*)''SHAPE(arr)       :'',shape(arr) ', &
 '     !!write(*,*)''SIZE(arr)        :'',size(arr)', &
 '       write(*,*)''SIZE(arr,DIM=1)  :'',size(arr,dim=1)', &
-'     !!write(*,*)''SIZE(arr,DIM=2)  :'',size(arr,dim=2) ! CANNOT DETERMINE SIZE OF ASSUMED SIZE ARRAY LAST DIMENSION', &
+'     ! CANNOT DETERMINE SIZE OF ASSUMED SIZE ARRAY LAST DIMENSION', &
+'     !!write(*,*)''SIZE(arr,DIM=2)  :'',size(arr,dim=2)', &
 '       write(*,*)''note lower bound is "1"''', &
 '       write(*,*)''LBOUND(arr)      :'',lbound(arr)', &
 '     !!write(*,*)''UBOUND(arr)      :'',ubound(arr)', &
@@ -10031,7 +10172,8 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '    program demo_sqrt', &
-'    use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
+'    use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'    & real32, real64, real128', &
 '    implicit none', &
 '      real(kind=real64) :: x = 2.0_real64', &
 '      complex :: z = (1.0, 2.0)', &
@@ -10147,7 +10289,8 @@ textblock=[character(len=132) :: &
 '      cbpsum= sum(c(1:nd),mask=b.gt.0.0)', &
 '      print *, ''Sum of all elements in c = '' , csum', &
 '      print *, ''Sum of Positive elements in c = '', cpsum', &
-'      print *, ''Sum of elements in c when corresponding elements in b>0'' ,'' ='',cbpsum', &
+'      print *, ''Sum of elements in c when corresponding elements in b>0'', &', &
+'      & '' ='',cbpsum', &
 '      end', &
 '', &
 'STANDARD', &
@@ -10457,7 +10600,8 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '    program demo_trailz', &
-'    use, intrinsic :: iso_fortran_env, only : integer_kinds, int8, int16, int32, int64', &
+'    use, intrinsic :: iso_fortran_env, only : integer_kinds, &', &
+'    & int8, int16, int32, int64', &
 '    implicit none', &
 '    integer(kind=int64) :: i, value', &
 '      write(*,*)''Default integer:''', &
@@ -10473,7 +10617,8 @@ textblock=[character(len=132) :: &
 '         write(*,''(i19,1x,i3,1x,b64.64)'')value,trailz(value),value', &
 '      enddo', &
 '      value=huge(i)', &
-'      write(*,''(i19,1x,i3,1x,b64.64,"(huge(0_int64))")'')value,trailz(value),value', &
+'      write(*,''(i19,1x,i3,1x,b64.64,"(huge(0_int64))")'') &', &
+'      & value,trailz(value),value', &
 '    end program demo_trailz', &
 '  Results:', &
 '', &
@@ -10485,20 +10630,35 @@ textblock=[character(len=132) :: &
 '   huge(0)=2147483647 0 1111111111111111111111111111111', &
 '  ', &
 '   integer(kind=int64):', &
-'                      0  64 0000000000000000000000000000000000000000000000000000000000000000', &
-'                     16   4 0000000000000000000000000000000000000000000000000000000000010000', &
-'                    512   9 0000000000000000000000000000000000000000000000000000001000000000', &
-'                  16384  14 0000000000000000000000000000000000000000000000000100000000000000', &
-'                 524288  19 0000000000000000000000000000000000000000000010000000000000000000', &
-'               16777216  24 0000000000000000000000000000000000000001000000000000000000000000', &
-'              536870912  29 0000000000000000000000000000000000100000000000000000000000000000', &
-'            17179869184  34 0000000000000000000000000000010000000000000000000000000000000000', &
-'           549755813888  39 0000000000000000000000001000000000000000000000000000000000000000', &
-'         17592186044416  44 0000000000000000000100000000000000000000000000000000000000000000', &
-'        562949953421312  49 0000000000000010000000000000000000000000000000000000000000000000', &
-'      18014398509481984  54 0000000001000000000000000000000000000000000000000000000000000000', &
-'     576460752303423488  59 0000100000000000000000000000000000000000000000000000000000000000', &
-'    9223372036854775807   0 0111111111111111111111111111111111111111111111111111111111111111(huge(0_int64))', &
+'                      0  64 \', &
+'             00000000000000000000000000000000000000000000000000000000000000', &
+'                     16   4 \', &
+'             00000000000000000000000000000000000000000000000000000000010000', &
+'                    512   9 \', &
+'             00000000000000000000000000000000000000000000000000001000000000', &
+'                  16384  14 \', &
+'             00000000000000000000000000000000000000000000000100000000000000', &
+'                 524288  19 \', &
+'             00000000000000000000000000000000000000000010000000000000000000', &
+'               16777216  24 \', &
+'             00000000000000000000000000000000000001000000000000000000000000', &
+'              536870912  29 \', &
+'             00000000000000000000000000000000100000000000000000000000000000', &
+'            17179869184  34 \', &
+'             00000000000000000000000000010000000000000000000000000000000000', &
+'           549755813888  39 \', &
+'             00000000000000000000001000000000000000000000000000000000000000', &
+'         17592186044416  44 \', &
+'             00000000000000000100000000000000000000000000000000000000000000', &
+'        562949953421312  49 \', &
+'             00000000000010000000000000000000000000000000000000000000000000', &
+'      18014398509481984  54 \', &
+'             00000001000000000000000000000000000000000000000000000000000000', &
+'     576460752303423488  59 \', &
+'             00100000000000000000000000000000000000000000000000000000000000', &
+'    9223372036854775807   0 \', &
+'    0111111111111111111111111111111111111111111111111111111111111111\', &
+'    (huge(0_int64))', &
 '', &
 'STANDARD', &
 '   [[Fortran 2008]] and later', &
@@ -10703,8 +10863,9 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     ADJUSTL(3), ADJUSTR(3), INDEX(3), LEN_TRIM(3), SCAN(3), VERIFY(3)', &
-'   Nonelemental:  REPEAT,(3) TRIM(3)', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'                  scan(3), verify(3)', &
+'   Nonelemental:  repeat(3), trim(3)', &
 '']
 
 case('201','ubound') 
@@ -10738,9 +10899,9 @@ textblock=[character(len=132) :: &
 '   elements along the relevant dimension.', &
 '', &
 'EXAMPLE', &
-'   Note that in my opinion this function should not be used on assumed-size arrays', &
-'   or in any function without an explicit interface. Errors can occur if there is', &
-'   no interface defined.', &
+'   Note that in my opinion this function should not be used on', &
+'   assumed-size arrays or in any function without an explicit', &
+'   interface. Errors can occur if there is no interface defined.', &
 '', &
 ' Sample program', &
 '', &
@@ -10751,7 +10912,8 @@ textblock=[character(len=132) :: &
 '      subroutine msub(arr)', &
 '         !!integer,intent(in) :: arr(*)  ! cannot be assumed-size array', &
 '         integer,intent(in) :: arr(:)', &
-'         write(*,*)''MSUB: LOWER='',lbound(arr),''UPPER='',ubound(arr),''SIZE='',size(arr)', &
+'         write(*,*)''MSUB: LOWER='',lbound(arr),''UPPER='',ubound(arr), &', &
+'	 & ''SIZE='',size(arr)', &
 '      end subroutine msub', &
 '   end module m_bounds', &
 '', &
@@ -10763,21 +10925,25 @@ textblock=[character(len=132) :: &
 '      end subroutine esub', &
 '   end interface', &
 '   integer :: arr(-10:10)', &
-'      write(*,*)''MAIN: LOWER='',lbound(arr),''UPPER='',ubound(arr),''SIZE='',size(arr)', &
+'      write(*,*)''MAIN: LOWER='',lbound(arr),''UPPER='',ubound(arr), &', &
+'      & ''SIZE='',size(arr)', &
 '      call csub()', &
 '      call msub(arr)', &
 '      call esub(arr)', &
 '   contains', &
 '      subroutine csub', &
-'         write(*,*)''CSUB: LOWER='',lbound(arr),''UPPER='',ubound(arr),''SIZE='',size(arr)', &
+'         write(*,*)''CSUB: LOWER='',lbound(arr),''UPPER='',ubound(arr), &', &
+'	 & ''SIZE='',size(arr)', &
 '      end subroutine csub', &
 '   end', &
 '', &
 '   subroutine esub(arr)', &
 '   implicit none', &
 '   integer,intent(in) :: arr(:)', &
-'      ! WARNING: IF CALLED WITHOUT AN EXPLICIT INTERFACE THIS WILL GIVE UNDEFINED ANSWERS (like 0,0,0)', &
-'      write(*,*)''ESUB: LOWER='',lbound(arr),''UPPER='',ubound(arr),''SIZE='',size(arr)', &
+'      ! WARNING: IF CALLED WITHOUT AN EXPLICIT INTERFACE ', &
+'      ! THIS WILL GIVE UNDEFINED ANSWERS (like 0,0,0)', &
+'      write(*,*)''ESUB: LOWER='',lbound(arr),''UPPER='',ubound(arr), &', &
+'      & ''SIZE='',size(arr)', &
 '   end subroutine esub', &
 '  !end program demo_ubound', &
 '', &
@@ -10944,8 +11110,9 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     ADJUSTL(3), ADJUSTR(3), INDEX(3), LEN_TRIM(3), SCAN(3), VERIFY(3)', &
-'   Nonelemental:  REPEAT(3), TRIM(3)', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
+'                  scan(3), verify(3)', &
+'   Nonelemental:  repeat(3), trim(3)', &
 '']
 case default
     allocate (character(len=132) :: textblock(0))
