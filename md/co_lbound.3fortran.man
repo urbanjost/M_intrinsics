@@ -29,4 +29,3 @@ CLASS
 
 SEE ALSO
    co_ubound(3), lbound(3)
-

@@ -28,4 +28,3 @@ CLASS
 
 SEE ALSO
    selected_real_kind(3), precision(3)
-

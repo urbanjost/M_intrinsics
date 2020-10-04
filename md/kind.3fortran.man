@@ -28,10 +28,7 @@ EXAMPLE
     end program demo_kind
 
 STANDARD
-
    [[Fortran 95]] and later
 
 CLASS
-
    [[Inquiry function]]
-

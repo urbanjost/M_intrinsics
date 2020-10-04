@@ -12,7 +12,6 @@ ARGUMENTS
        COMPLEX scalar or array with INTENT(IN).
 
 RETURN VALUE
-
    If A is of type INTEGER or REAL, the value of the result is |A| and
    of the same type and kind as the input argument.
 
@@ -50,9 +49,7 @@ AUTHOR
    John S. Urban
 
 STANDARD
-
    [[FORTRAN 77]] and later
 
 CLASS
-
    Elemental function

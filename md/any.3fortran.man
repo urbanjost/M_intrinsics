@@ -9,14 +9,12 @@ DESCRIPTION
    array MASK along dimension DIM are .TRUE..
 
 ARGUMENTS
-
    MASK    the type of the argument shall be LOGICAL and
            it shall not be scalar.
    DIM     (optional) DIM shall be a scalar integer with a value
            that lies between one and the rank of MASK.
 
 RETURN VALUE
-
    ANY(MASK) returns a scalar value of type LOGICAL where the kind
    type parameter is the same as the kind type parameter of MASK. If
    DIM is present, then ANY(MASK, DIM) returns an array with the rank
@@ -31,7 +29,6 @@ RETURN VALUE
       DIM) is determined by applying ANY to the array sections.
 
 EXAMPLE
-
 Sample program:
 
     program demo_any
@@ -52,10 +49,7 @@ Sample program:
     end program demo_any
 
 STANDARD
-
    [[Fortran 95]] and later
 
 CLASS
-
    Transformational function
-

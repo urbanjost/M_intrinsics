@@ -2,7 +2,6 @@ NAME
      cmplx(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Complex conversion function
      
 SYNTAX
-
    result = cmplx(x [, y [, kind]])
 
 DESCRIPTION
@@ -78,7 +77,6 @@ DESCRIPTION
        x%im = 0.0             !-- Sets the imaginary part of X to zero
 
 ARGUMENTS
-
    X       The type may be INTEGER, REAL, or COMPLEX.
    Y       (Optional; only allowed if X is not COMPLEX.).
            May be INTEGER or REAL.
@@ -86,7 +84,6 @@ ARGUMENTS
            indicating the kind parameter of the result.
 
 RETURN VALUE
-
    The return value is of COMPLEX type, with a kind equal to
    KIND if it is specified. If KIND is not specified, the
    result is of the default COMPLEX kind, regardless of the kinds of
@@ -126,9 +123,7 @@ SEE ALSO
    o real(3f)  -  Convert to real type
 
 STANDARD
-
    [[FORTRAN 77]] and later
 
 CLASS
-
    [[Elemental procedure|Elemental function]]

@@ -1,9 +1,7 @@
 NAME
-
      get_environment_variable(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get an environmental variable
      
 SYNTAX
-
    call get_environment_variable(NAME[, VALUE, LENGTH, STATUS, TRIM_NAME)
    character(len=*),intent(in)           :: NAME
    character(len=*),intent(out),optional :: VALUE
@@ -12,7 +10,6 @@ SYNTAX
    logical,intent(out),optional          :: TRIM_NAME
 
 DESCRIPTION
-
    Get the VALUE of the environmental variable NAME.
 
    Note that get_environment_variable(3f) need not be thread-safe. It is
@@ -20,7 +17,6 @@ DESCRIPTION
    being updated concurrently.
 
 OPTIONS  
-
    NAME        (Optional) Shall be a scalar of type CHARACTER and of default kind.
 
 RETURN VALUE
@@ -42,7 +38,6 @@ RETURN VALUE
                otherwise they are not part of the environment variable name.
 
 EXAMPLE
-
   Sample program:
 
    program demo_getenv
@@ -73,10 +68,8 @@ Typical Results:
    HOME="/home/urbanjs"
 
 STANDARD
-
    [[Fortran 2003]] and later
 
 CLASS
-
    Subroutine
  JSU

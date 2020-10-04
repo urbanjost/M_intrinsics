@@ -2,11 +2,9 @@ NAME
      co_sum(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Sum of values on the current set of images
      
 SYNTAX
-
    call co_sum(a [, result_image, stat, errmsg])
 
 DESCRIPTION
-
    co_sum sums up the values of each element of A on all images of
    the current team. If result_image is present, the summed-up values
    are returned in A on the specified image only and the value of A
@@ -17,7 +15,6 @@ DESCRIPTION
    present, ERRMSG gets assigned a value describing the occurred error.
 
 ARGUMENTS
-
   A    shall be an integer, real or complex variable, which has the same
        type and type parameters on all images of the team.
 
@@ -30,7 +27,6 @@ ARGUMENTS
   ERRMSG   (optional) a scalar character variable
 
 EXAMPLE
-
   Sample program:
 
    program demo_co_sum
@@ -44,14 +40,11 @@ EXAMPLE
    end program demo_co_sum
 
 STANDARD
-
    [[TS 18508]] or later
 
 CLASS
-
    [[Collective subroutine]]
 
 SEE ALSO
-
    co_max(3), co_min(3), co_reduce(3), co_broadcast(3)
 

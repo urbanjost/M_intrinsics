@@ -1,13 +1,10 @@
 NAME
-
      sin(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Sine function
 
 SYNTAX
-
    result = sin(x)
 
 DESCRIPTION
-
    sin(3f) computes the sine of an angle given the size of the angle
    in radians.
 
@@ -16,15 +13,12 @@ DESCRIPTION
    the hypotenuse.
 
 ARGUMENTS
-
    X       The type shall be REAL or COMPLEX in radians.
 
 RETURN VALUE
-
    RESULT  The return value has the same type and kind as X.
 
 EXAMPLE
-
   Sample program:
 
     program sample_sin
@@ -91,17 +85,12 @@ EXAMPLE
    distance: 2886.4446 km
 
 STANDARD
-
    [[FORTRAN 77]] and later
 
 CLASS
-
    [[Elemental function]]
 
-AUTHOR
-
-   John S. Urban
-
 SEE ALSO
-
    asin(3), cos(3), tan(3)
+ 
+ JSU

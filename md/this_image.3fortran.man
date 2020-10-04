@@ -1,19 +1,15 @@
 NAME
-
      this_image(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Cosubscript index of this image
      
 SYNTAX
-
    result = this_image()
    result = this_image(distance)
    result = this_image(coarray [, dim])
 
 DESCRIPTION
-
-Returns the cosubscript for this image.
+   Returns the cosubscript for this image.
 
 ARGUMENTS
-
   DISTANCE  (optional, intent(in)) Nonnegative scalar integer
             (not permitted together with COARRAY).
 
@@ -24,7 +20,6 @@ ARGUMENTS
             be between one and the corank of COARRAY.
 
 RETURN VALUE
-
    Default integer. If COARRAY is not present, it is scalar; if DISTANCE
    is not present or has value 0, its value is the image index on the
    invoking image for the current team, for values smaller or equal
@@ -38,7 +33,6 @@ RETURN VALUE
    with the value of the DIM element of this_image(coarray).
 
 EXAMPLE
-
   Sample program:
 
    program demo_this_image
@@ -59,13 +53,10 @@ EXAMPLE
    error stop "something is rotten here"
 
 STANDARD
-
    [[Fortran 2008]] and later. With DISTANCE argument, [[TS 18508]] or later
 
 CLASS
-
    Transformational function
 
 SEE ALSO
-
    num_images(3), image_index(3)

@@ -12,7 +12,6 @@ DESCRIPTION
    false, then the result is 0.
 
 ARGUMENTS
-
    MASK    The type shall be LOGICAL.
    DIM     (Optional) The type shall be INTEGER.
    KIND    (Optional) An INTEGER initialization
@@ -26,7 +25,6 @@ RETURN VALUE
    of ARRAY with the DIM dimension removed.
 
 EXAMPLE
-
   Sample program:
 
    program demo_count
@@ -70,10 +68,7 @@ EXAMPLE
      > 1  2
 
 STANDARD
-
    [[Fortran 95]] and later, with KIND argument [[Fortran 2003]] and later
 
 CLASS
-
    Transformational function
-

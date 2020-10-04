@@ -4,7 +4,7 @@
 <meta name="generator" content="vi(1)/vim(1)" />
 <meta name="description" content="@(#)FORTRAN::BOOK_FORTRAN: BOOK composed of pages for man(1) topic FORTRAN"/>
 <meta name="author"      content="urbanjs" />
-<meta name="date"        content="2020-07-28" />
+<meta name="date"        content="2020-10-03" />
 <meta name="keywords"    content="Fortran, Fortran code, source code repository, Fortran library, Fortran archive, source code" />
 <!--
    Pick your favorite style sheet from among the eight offerings:
@@ -134,7 +134,7 @@ function append_index(target){
    if( COLUMNS == 1 ){
 	   document.write('<tr>\n');
    }
-   document.write('<td><a href="#DOCUMENT'+ FRAMECOUNT  + '">' + baseName(baseName(target)) + '</a></td>\n');
+   document.write('<td><a href="#DOCUMENT'+ FRAMECOUNT  + '">' + baseName(target) + '</a></td>\n');
 }
 /* ============================================================================================================================== */
 //alert('START');
@@ -143,8 +143,10 @@ function append_doc(target){
    /* document.write('<xmp>');
    */
    document.write('<br class="newpage"/>');
-   #document.write('<a name="DOCUMENT'+ FRAMECOUNT  + '"><a href="#TOP"> &nbsp;INDEX</a></a>\n');
+   /*
+   document.write('<a name="DOCUMENT'+ FRAMECOUNT  + '"><a href="#TOP"> &nbsp;INDEX</a></a>\n');
    document.write('<button type="button" onclick="javascript:history.back()">Index</button>\n');
+   */
 
    document.write('<div id="display' + FRAMECOUNT + '"></div>');
    document.write('<iframe width="0" height="0" id="buffer' + FRAMECOUNT + '" name="buffer' + FRAMECOUNT + '" src="' + target + '" ');

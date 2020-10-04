@@ -2,11 +2,9 @@ NAME
      atomic_add(3f) - [FORTRAN:INTRINSIC:ATOMIC] Atomic ADD operation
      
 SYNTAX
-
    call atomic_add (atom, value [, stat])
 
 DESCRIPTION
-
    atomic_add(atom, value) atomically adds the value of VAR to the
    variable ATOM. When STAT is present and the invocation was
    successful, it is assigned the value 0. If it is present and the
@@ -16,7 +14,6 @@ DESCRIPTION
    the remote image has failed, the value stat_failed_image.
 
 ARGUMENTS
-
   ATOM     Scalar coarray or coindexed variable of integer
            type with atomic_int_kind kind.
   VALUE    Scalar of the same type as ATOM. If the kind
@@ -24,7 +21,6 @@ ARGUMENTS
   STAT     (optional) Scalar default-kind integer variable.
 
 EXAMPLE
-
   Sample program:
 
    program demo_atomic_add
@@ -35,15 +31,12 @@ EXAMPLE
    end program demo_atomic_add
 
 STANDARD
-
    [[TS 18508]] or later
 
 CLASS
-
-Atomic subroutine
+   Atomic subroutine
 
 SEE ALSO
-
    atomic_define(3), atomic_fetch_add(3), iso_fortran_env(3),
    atomic_and(3), atomic_or(3), atomic_xor(3)
 

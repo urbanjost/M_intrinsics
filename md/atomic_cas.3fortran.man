@@ -2,11 +2,9 @@ NAME
      atomic_cas(3f) - [FORTRAN:INTRINSIC:ATOMIC] Atomic compare and swap
      
 SYNTAX
-
    call atomic_cas (atom, old, compare, new [, stat])
 
 DESCRIPTION
-
    atomic_cas compares the variable ATOM with the value of COMPARE;
    if the value is the same, ATOM is set to the value of
    NEW. Additionally, OLD is set to the value of ATOM that was used
@@ -18,7 +16,6 @@ DESCRIPTION
    the remote image has failed, the value stat_failed_image.
 
 ARGUMENTS
-
   ATOM       Scalar coarray or coindexed variable of either integer type
              with atomic_int_kind kind or logical type with
              atomic_logical_kind kind.
@@ -29,7 +26,6 @@ ARGUMENTS
   STAT       (optional) Scalar default-kind integer variable.
 
 EXAMPLE
-
   Sample program:
 
    program demo_atomic_cas
@@ -40,14 +36,11 @@ EXAMPLE
    end program demo_atomic_cas
 
 STANDARD
-
    [[TS 18508]] or later
 
 CLASS
-
-Atomic subroutine
+   Atomic subroutine
 
 SEE ALSO
-
    atomic_define(3), atomic_ref(3), iso_fortran_env(3)
 

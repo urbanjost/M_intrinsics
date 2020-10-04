@@ -1,25 +1,19 @@
 NAME
-
      epsilon(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Epsilon function
      
 SYNTAX
-
    result = epsilon(x)
 
 DESCRIPTION
-
    epsilon(x) returns a nearly negligible number relative to 1.
 
 ARGUMENTS
-
    X    The type shall be REAL.
 
 RETURN VALUE
-
    The return value is of same type as the argument.
 
 EXAMPLE
-
   Sample program:
 
     program demo_epsilon
@@ -31,10 +25,7 @@ EXAMPLE
     end program demo_epsilon
 
 STANDARD
-
    [[Fortran 95]] and later
 
 CLASS
-
    [[Inquiry function]]
-

@@ -2,17 +2,14 @@ NAME
      iany(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise or of array elements
      
 SYNTAX
-
-* result = iany(array[, mask])
-* result = iany(array, dim[, mask])
+   * result = iany(array[, mask])
+   * result = iany(array, dim[, mask])
 
 DESCRIPTION
-
    Reduces with bitwise or (inclusive or) the elements of ARRAY along
    dimension DIM if the corresponding element in MASK is TRUE.
 
 ARGUMENTS
-
   ARRAY  Shall be an array of type INTEGER
   DIM    (Optional) shall be a scalar of type INTEGER with a value
          in the range from "1" to "n", where "n" equals the rank of ARRAY.
@@ -20,7 +17,6 @@ ARGUMENTS
          scalar or an array of the same shape as ARRAY.
 
 RETURN VALUE
-
    The result is of the same type as ARRAY.
 
    If DIM is absent, a scalar with the bitwise OR of all elements in
@@ -29,7 +25,6 @@ RETURN VALUE
    with dimension DIM dropped is returned.
 
 EXAMPLE
-
   Sample program:
 
    program demo_iany
@@ -46,14 +41,10 @@ EXAMPLE
    01101110
 
 STANDARD
-
    [[Fortran 2008]] and later
 
 CLASS
-
    Transformational function
 
 SEE ALSO
-
    iparity(3), iall(3), ior(3)
-

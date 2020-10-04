@@ -2,11 +2,9 @@ NAME
      pack(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Pack an array into an array of rank one
      
 SYNTAX
-
    result = pack(array, mask[,vector])
 
 DESCRIPTION
-
    Stores the elements of ARRAY in an array of rank one.
 
    The beginning of the resulting array is made up of elements whose MASK
@@ -14,7 +12,6 @@ DESCRIPTION
    VECTOR.
 
 ARGUMENTS
-
    ARRAY    Shall be an array of any type.
    MASK     Shall be an array of type LOGICAL and of the same size
             as ARRAY. Alternatively, it may be a LOGICAL scalar.
@@ -26,13 +23,11 @@ ARGUMENTS
             ARRAY.
 
 RETURN VALUE
-
    The result is an array of rank one and the same type as that of ARRAY.
    If VECTOR is present, the result size is that of VECTOR, the
    number of TRUE values in MASK otherwise.
 
 EXAMPLE
-
   Sample program:
 
     program demo_pack
@@ -72,14 +67,11 @@ EXAMPLE
    bat        cat        
 
 STANDARD
-
    [[Fortran 95]] and later
 
 CLASS
-
    Transformational function
 
 SEE ALSO
-
    unpack(3)
 

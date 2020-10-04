@@ -188,7 +188,7 @@ function append_index(target){
    if( COLUMNS == 1 ){
 	   document.write('<tr>\n');
    }
-   document.write('<td><a href="#DOCUMENT'+ FRAMECOUNT  + '">' + baseName(baseName(target)) + '</a></td>\n');
+   document.write('<td><a href="#DOCUMENT'+ FRAMECOUNT  + '">' + baseName(target) + '</a></td>\n');
 }
 /* ============================================================================================================================== */
 //alert('START');
@@ -197,8 +197,10 @@ function append_doc(target){
    /* document.write('<xmp>');
    */
    document.write('<br class="newpage"/>');
-   #document.write('<a name="DOCUMENT'+ FRAMECOUNT  + '"><a href="#TOP"> &nbsp;INDEX</a></a>\n');
+   /*
+   document.write('<a name="DOCUMENT'+ FRAMECOUNT  + '"><a href="#TOP"> &nbsp;INDEX</a></a>\n');
    document.write('<button type="button" onclick="javascript:history.back()">Index</button>\n');
+   */
 
    document.write('<div id="display' + FRAMECOUNT + '"></div>');
    document.write('<iframe width="0" height="0" id="buffer' + FRAMECOUNT + '" name="buffer' + FRAMECOUNT + '" src="' + target + '" ');
@@ -276,3 +278,13 @@ SECTION=$2
 ####################################################################################################################################
 exit
 ####################################################################################################################################
+137c217
+<    document.write('<td><a href="#DOCUMENT'+ FRAMECOUNT  + '">' + baseName(baseName(target)) + '</a></td>\n');
+---
+>    document.write('<td><a href="#DOCUMENT'+ FRAMECOUNT  + '">' + baseName(target) + '</a></td>\n');
+
+146,147c226
+<    #document.write('<a name="DOCUMENT'+ FRAMECOUNT  + '"><a href="#TOP"> &nbsp;INDEX</a></a>\n');
+<    document.write('<button type="button" onclick="javascript:history.back()">Index</button>\n');
+---
+>    document.write('<a name="DOCUMENT'+ FRAMECOUNT  + '"><a href="#TOP"> &nbsp;INDEX</a></a>\n');

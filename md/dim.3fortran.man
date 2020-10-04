@@ -1,27 +1,21 @@
 NAME
-
      dim(3f) - [FORTRAN:INTRINSIC:NUMERIC] Positive difference
      
 SYNTAX
-
    result = DIM(X, Y)
 
 DESCRIPTION
-
    DIM(X,Y) returns the difference X-Y if the result is positive;
    otherwise returns zero.
 
 ARGUMENTS
-
    X    The type shall be INTEGER or REAL
    Y    The type shall be the same type and kind as X.
 
 RETURN VALUE
-
    The return value is of type INTEGER or REAL.
 
 EXAMPLE
-
   Sample program:
 
     program demo_dim
@@ -36,10 +30,7 @@ EXAMPLE
     end program demo_dim
 
 STANDARD
-
    [[FORTRAN 77]] and later
 
 CLASS
-
    [[Elemental procedure|Elemental function]]
-

@@ -2,24 +2,20 @@ NAME
      c_f_procpointer(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Convert C into Fortran procedure pointer
      
 SYNTAX
-
    call c_f_procpointer(cptr, fptr)
 
 DESCRIPTION
-
    c_f_procpointer(cptr, fptr) assigns the target of the C
    function pointer CPTR to the Fortran procedure pointer
    FPTR.
 
 ARGUMENTS
-
   CPTR    scalar of the type c_funptr.
           It is intent(in).
   FPTR    procedure pointer interoperable with CPTR.
           It is intent(out).
 
 EXAMPLE
-
   Sample program:
 
     program demo_c_f_procpointer
@@ -45,14 +41,10 @@ EXAMPLE
     end program demo_c_f_procpointer
 
 STANDARD
-
    [[Fortran 2003]] and later
 
 CLASS
-
    Subroutine
 
 SEE ALSO
-
    c_loc(3), c_f_pointer(3), iso_c_binding(3)
-

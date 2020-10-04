@@ -2,11 +2,9 @@ NAME
      atomic_fetch_and(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic bitwise AND operation with prior fetch
      
 SYNTAX
-
-call atomic_fetch_and(atom, value, old [, stat])
+   call atomic_fetch_and(atom, value, old [, stat])
 
 DESCRIPTION
-
    atomic_fetch_and(atom, value, old) atomically stores the value of
    ATOM in OLD and defines ATOM with the bitwise AND between the
    values of ATOM and VALUE. When STAT is present and the
@@ -18,7 +16,6 @@ DESCRIPTION
    stat_failed_image.
 
 ARGUMENTS
-
   ATOM     Scalar coarray or coindexed variable of integer type with
            atomic_int_kind kind.
   VALUE    Scalar of the same type as ATOM. If the kind is
@@ -27,7 +24,6 @@ ARGUMENTS
   STAT     (optional) Scalar default-kind integer variable.
 
 EXAMPLE
-
   Sample program:
 
    program demo_atomic_fetch_and
@@ -38,15 +34,12 @@ EXAMPLE
    end program demo_atomic_fetch_and
 
 STANDARD
-
    [[TS 18508]] or later
 
 CLASS
-
-Atomic subroutine
+   Atomic subroutine
 
 SEE ALSO
-
    atomic_define(3), atomic_and(3), iso_fortran_env(3),
    atomic_fetch_add(3), atomic_fetch_or(3), atomic_fetch_xor(3)
 

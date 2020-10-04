@@ -2,18 +2,15 @@ NAME
      all(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines if all the values are true
      
 SYNTAX
-
    result = ALL(MASK [, DIM])
 
 DESCRIPTION
-
    Logical conjunction of elements of MASK along dimension DIM.
 
    "ALL(MASK [, DIM])" determines if all the values are true in MASK
    in the array along dimension DIM.
 
 ARGUMENTS
-
    MASK    shall be a logical array. That is,
            the type of the argument shall be LOGICAL and it shall
            not be scalar.
@@ -23,7 +20,6 @@ ARGUMENTS
            dummy argument.
 
 RETURN VALUE
-
    "ALL(MASK)" returns a scalar value of type LOGICAL where the kind
    type parameter is the same as the kind type parameter of MASK. If
    DIM is present, then ALL(MASK, DIM) returns an array with the rank
@@ -57,7 +53,6 @@ RETURN VALUE
                    sDIM-1 , :, sDIM+1 , . . . , sn )).
 
 EXAMPLE
-
   Sample program:
 
     program demo_all

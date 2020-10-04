@@ -1,0 +1,34 @@
+program testit
+use,intrinsic :: iso_fortran_env, only : stdin=>input_unit, stdout=>output_unit, stderr=>error_unit
+use M_intrinsics,            only : help_intrinsics
+use M_escape,                     only : attr, esc_mode
+use M_strings,                    only : atleast
+implicit none
+character(len=132), allocatable :: manual(:)
+integer                         :: i,j
+integer                         :: count
+character(len=30)               :: argument
+    count=command_argument_count()
+    if(count.eq.0)then
+        manual = help_intrinsics('')
+        write(*,'(g0)') ( trim(manual(i)), i=1, size(manual) )
+    else
+        if(isatty(stdout))then  ! COMMON FORTRAN EXTENSION
+           call esc_mode('color')
+        else
+           call esc_mode('plain')
+        endif
+        do i=1, count
+            call get_command_argument (count,argument) 
+            manual = help_intrinsics(argument)
+            do j=1,size(manual)
+                if(verify(manual(j)(1:1), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' ) == 0 .and. &
+                & verify(manual(j), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ _') == 0 )then
+                    write(*,'(g0)') attr('bold:BLACK:yellow',atleast(trim(manual(j)),80))
+                else
+                    write(*,'(g0)') attr('GREEN:black',atleast(trim(manual(j)),80))
+                endif
+            enddo
+        enddo
+    endif
+end program testit

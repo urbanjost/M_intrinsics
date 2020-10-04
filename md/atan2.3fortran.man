@@ -22,13 +22,11 @@ DESCRIPTION
    $$
 
 ARGUMENTS
-
    Y    The type shall be REAL.
    X    The type and kind type parameter shall be the same as Y.
         If Y is zero, then X must be nonzero.
 
 RETURN VALUE
-
    The return value has the same type and kind type parameter as Y.
    It is the principal value of the complex number (X + i, Y). If
    X is nonzero, then it lies in the range -PI <= atan(x) <= PI.
@@ -40,7 +38,6 @@ RETURN VALUE
    magnitude of the result is PI/2.
 
 EXAMPLE
-
   Sample program:
 
    program demo_atan2
@@ -50,10 +47,8 @@ EXAMPLE
    end program demo_atan2
 
 STANDARD
-
    [[FORTRAN 77]] and later
 
 CLASS
-
    [[Elemental procedure|Elemental function]]
 

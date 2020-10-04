@@ -2,24 +2,19 @@ NAME
      tiny(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Smallest positive number of a real kind
      
 SYNTAX
-
    result = tiny(x)
 
 DESCRIPTION
-
    tiny(x) returns the smallest positive (non zero) number
    in the model of the type of X.
 
 ARGUMENTS
-
    X    Shall be of type REAL.
 
 RETURN VALUE
-
    The return value is of the same type and kind as X
 
 EXAMPLE
-
   Sample program:
 
     program demo_huge_tiny
@@ -29,10 +24,7 @@ EXAMPLE
     end program demo_huge_tiny
 
 STANDARD
-
    [[Fortran 95]] and later
 
 CLASS
-
    [[Inquiry function]]
-

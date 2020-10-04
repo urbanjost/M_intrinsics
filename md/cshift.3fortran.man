@@ -2,11 +2,9 @@ NAME
      cshift(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] Circular shift elements of an array
      
 SYNTAX
-
    result = cshift(array, shift [, dim])
 
 DESCRIPTION
-
    cshift(array, shift [, dim]) performs a circular shift on elements of
    ARRAY along the dimension of DIM. If DIM is omitted it is
    taken to be 1. DIM is a scalar of type INTEGER in the
@@ -17,17 +15,14 @@ DESCRIPTION
    shifted out one end of each rank one section are shifted back in the other end.
 
 ARGUMENTS
-
    ARRAY   Shall be an array of any type.
    SHIFT   The type shall be INTEGER.
    DIM     The type shall be INTEGER.
 
 RETURN VALUE
-
    Returns an array of same type and rank as the ARRAY argument.
 
 EXAMPLE
-
   Sample program:
 
     program demo_cshift
@@ -45,10 +40,8 @@ EXAMPLE
     end program demo_cshift
 
 STANDARD
-
    [[Fortran 95]] and later
 
 CLASS
-
    Transformational function
 

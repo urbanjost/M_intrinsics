@@ -2,11 +2,9 @@ NAME
      co_reduce(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Reduction of values on the current set of images
      
 SYNTAX
-
    call co_reduce(a, operator, [, result_image, stat, errmsg])
 
 DESCRIPTION
-
    co_reduce determines element-wise the reduction of the value of A
    on all images of the current team. The pure function passed as
    OPERATOR is used to pairwise reduce the values of A by passing
@@ -21,7 +19,6 @@ DESCRIPTION
    present, ERRMSG gets assigned a value describing the occurred error.
 
 ARGUMENTS
-
   A  - is an intent(inout) argument and shall be nonpolymorphic. If
   it is allocatable, it shall be allocated; if it is a pointer, it
   shall be associated. A shall have the same type and type
@@ -44,7 +41,6 @@ ARGUMENTS
   ERRMSG  - (optional) a scalar character variable
 
 EXAMPLE
-
   Sample program:
 
    program demo_co_reduce
@@ -64,21 +60,17 @@ EXAMPLE
    end program demo_co_reduce
 
 NOTE
-
    While the rules permit in principle an intrinsic function, none of the
    intrinsics in the standard fulfill the criteria of having a specific
    function, which takes two arguments of the same type and returning
    that type as result.
 
 STANDARD
-
    [[TS 18508]] or later
 
 CLASS
-
    [[Collective subroutine]]
 
 SEE ALSO
-
    co_min(3), co_max(3), co_sum(3), co_broadcast(3)
 

@@ -28,11 +28,12 @@ all: roff
 	bash scripts/book.sh FORTRAN fortran
 	mandb -q -c ../man
 	bash scripts/mank.sh 
-	: checking for empty files in src/
-	@for NAME in ../src/*.f90;\
+	: checking for empty files in demo/
+	@for NAME in ../demo/*.f90;\
 	do\
 	   [ -s "$$NAME" ] || echo $$(basename $$NAME .f90);\
 	done|xargs -n 5|column -t
+	bash scripts/build_module.sh > ../src/M_intrinsics.f90
 	: that is all folks!
 
 roff: $(FULLMANS)
@@ -65,21 +66,21 @@ install:
 .PHONY : demos
 demos:
 	: compile and load example programs from manpages
-	cd ../src;make
+	cd ../demo;make
 
 .PHONY : clean
 clean:
 	rm -f $(FULLMANS) 
 	cd ../docs &&rm -f $(FULLHTML3) $(FULLHTML7)
 	rm -f ../ship/manpages.zip ../ship/manpages.tgz
-	cd ../src/ && make clean
+	cd ../demo/ && make clean
 
 .PHONY : vi
 vi:
 	: test manpages with vim K command by editing manpage demo programs
-#	vi -c 'set keywordprg=env\ MANPATH=$$MANPATH:../man::\ man\ -s\ 3fortran\ -a' ../src/*.f90
+#	vi -c 'set keywordprg=env\ MANPATH=$$MANPATH:../man::\ man\ -s\ 3fortran\ -a' ../demo/*.f90
 	: test K command in vim just using the manpages in ../man
-	vim -c 'set keywordprg=env\ MANPATH=../man\ man\ -s\ 3fortran\ -a' ../src/*.f90
+	vim -c 'set keywordprg=env\ MANPATH=../man\ man\ -s\ 3fortran\ -a' ../demo/*.f90
 
 .PHONY : list
 list:

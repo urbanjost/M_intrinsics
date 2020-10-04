@@ -1,21 +1,17 @@
 NAME
-
      sum(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] sum the elements of an array
      
 SYNTAX
-
  Calling sequence:
 
    result = sum(array[, mask])
    result = sum(array, dim[, mask])
 
 DESCRIPTION
-
    Adds the elements of ARRAY along dimension DIM if the
    corresponding element in MASK is TRUE.
 
 ARGUMENTS
-
    array    Shall be an array of type INTEGER, REAL or COMPLEX.
    dim      (Optional) shall be a scalar of type INTEGER with a value
             in the range from 1 to n, where n equals the rank of ARRAY.
@@ -23,7 +19,6 @@ ARGUMENTS
             scalar or an array of the same shape as ARRAY.
 
 RETURN VALUE
-
    The result is of the same type as ARRAY.
 
    If dim(3f) is absent, a scalar with the sum of all elements in ARRAY
@@ -32,7 +27,6 @@ RETURN VALUE
    dropped is returned.
 
 EXAMPLE
-
   Sample program:
 
     program demo_sum
@@ -60,14 +54,10 @@ EXAMPLE
       end
 
 STANDARD
-
    [[Fortran 95]] and later
 
 CLASS
-
    Transformational function
 
 SEE ALSO
-
    intrinsics
-

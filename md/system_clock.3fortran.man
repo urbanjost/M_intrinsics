@@ -1,9 +1,7 @@
 NAME
-
      system_clock(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Return numeric data from a real-time clock.
      
 SYNTAX
-
   subroutine system_clock([count, count_rate, count_max])
 
    integer,intent(out),optional  :: count
@@ -13,7 +11,6 @@ SYNTAX
    integer,intent(out,optional   :: count_max
 
 DESCRIPTION
-
    system_clock lets you measure durations of time with the precision
    of the smallest time increment generally available on a system by
    returning processor-dependent values based on the current value of the
@@ -35,7 +32,6 @@ DESCRIPTION
    the time spent in code blocks in lieu of using profiling tools.
 
 ARGUMENTS
-
     COUNT        (optional) shall be an integer scalar.
                  It is assigned a processor-dependent value based on the
                  current value of the processor clock, or -HUGE (COUNT)
@@ -53,7 +49,6 @@ ARGUMENTS
                  no clock.
 
 EXAMPLE
-
    Sample program:
 
       program demo_system_clock
@@ -75,14 +70,10 @@ EXAMPLE
       M = 24*3600*18.20648193-1 = 1573039.
 
 STANDARD
-
    [[Fortran 95]] and later
 
 CLASS
-
    Subroutine
 
 SEE ALSO
-
    date_and_time(3), cpu_time(3)
-

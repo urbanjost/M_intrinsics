@@ -62,7 +62,7 @@ manpage source is maintained as flat-text files which are
    - These are collected into a single document using javascript:
      [BOOK_FORTRAN](https://urbanjost.github.io/fortran-intrinsic-manpages/BOOK_FORTRAN.html).
 
-* the example programs are extracted into the src/ directory.
+* the example programs are extracted into the test/ directory.
 
 ## BASIC VIM USAGE
 
@@ -113,7 +113,7 @@ work, or whether a branch is required. Looking for more information ...
 ### USING THE MAKE FILE
 
 If you are familiar with git(1) and gmake(1) (and other GNU tools) and 
-are in a *nix or CygWin environment it 
+are in a \*nix or CygWin environment it 
 would be even better if after you change your files you cd(1) into the
 build-manpages/ directory and enter:
 ```bash
@@ -121,7 +121,7 @@ build-manpages/ directory and enter:
     make ship
 ```
 and check out the HTML page generated in docs/, the manpage in man/man3/
-and the demo program in src/.
+and the demo program in test/.
 
 The makefile is set up to do other things; and is a work in progress so
 this might change.

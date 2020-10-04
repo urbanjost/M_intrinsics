@@ -5,13 +5,11 @@ SYNTAX
    result = reshape(source, shape[, pad, order])
 
 DESCRIPTION
-
    Reshapes array SOURCE to correspond to SHAPE. If necessary,
    the new array may be padded with elements from PAD or permuted
    as defined by ORDER.
 
 ARGUMENTS
-
    SOURCE    an array of any type.
    SHAPE     an array of rank one and type INTEGER. Its
              values must be positive or zero.
@@ -22,11 +20,9 @@ ARGUMENTS
              ORDER is absent, the natural ordering shall be assumed.
 
 RETURN VALUE
-
    The result is an array of shape SHAPE with the same type as SOURCE.
 
 EXAMPLE
-
   Sample program:
 
     program demo_reshape
@@ -44,13 +40,9 @@ EXAMPLE
            2           2
 
 STANDARD
-
    [[Fortran 95]] and later
 
 CLASS
-
    Transformational function
 SEE ALSO
-
    shape(3)
-

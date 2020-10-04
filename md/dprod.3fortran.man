@@ -1,5 +1,4 @@
 NAME
-
      dprod(3f) - [FORTRAN:INTRINSIC:NUMERIC] Double product function
      
 SYNTAX
@@ -27,7 +26,6 @@ RETURN VALUE
    The return value is of type real(kind=kind(0.0d0)).
 
 EXAMPLE
-
   Sample program:
 
     program demo_dprod
@@ -57,10 +55,7 @@ EXAMPLE
     end program demo_dprod
 
 STANDARD
-
    [[FORTRAN 77]] and later
 
 CLASS
-
    [[Elemental procedure|Elemental function]]
-

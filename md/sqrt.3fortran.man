@@ -2,24 +2,19 @@ NAME
      sqrt(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Square-root function
      
 SYNTAX
-
    result = sqrt(x)
    
 DESCRIPTION
-
-sqrt(x) computes the square root of X.
+    sqrt(x) computes the square root of X.
 
 ARGUMENTS
-
    X    The type shall be REAL or COMPLEX.
 
 RETURN VALUE
-
    The return value is of type REAL or COMPLEX. The kind type
    parameter is the same as X.
 
 EXAMPLE
-
   Sample program:
 
     program demo_sqrt
@@ -32,10 +27,7 @@ EXAMPLE
     end program demo_sqrt
 
 STANDARD
-
    [[FORTRAN 77]] and later
 
 CLASS
-
    Elemental function
-

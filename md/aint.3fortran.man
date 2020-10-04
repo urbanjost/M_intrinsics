@@ -2,21 +2,17 @@ NAME
      aint(3f) - [FORTRAN:INTRINSIC:NUMERIC] Truncate to a whole number
      
 SYNTAX
-
    result = AINT(A [, KIND])
 
 DESCRIPTION
-
    AINT(A [, KIND]) truncates its argument to a whole number.
 
 ARGUMENTS
-
    A       the type of the argument shall be REAL.
    KIND    (optional) an INTEGER initialization expression
            indicating the kind parameter of the result.
 
 RETURN VALUE
-
    The return value is of type REAL with the kind type parameter of the
    argument if the optional KIND is absent; otherwise, the kind type
    parameter will be given by KIND. If the magnitude of X is less
@@ -25,7 +21,6 @@ RETURN VALUE
    not exceed its magnitude. The sign is the same as the sign of X.
 
 EXAMPLE
-
   Sample program:
 
     program demo_aint
@@ -40,10 +35,8 @@ EXAMPLE
     end program demo_aint
 
 STANDARD
-
    [[FORTRAN 77]] and later
 
 CLASS
-
    Elemental function
 

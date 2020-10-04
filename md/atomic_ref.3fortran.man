@@ -2,7 +2,6 @@ NAME
      atomic_ref(3f) - [FORTRAN:INTRINSIC:ATOMIC] Obtaining the value of a variable atomically
      
 SYNTAX
-
    call atomic_ref(value, atom [, stat])
 
 DESCRIPTION
@@ -16,7 +15,6 @@ DESCRIPTION
    the remote image has failed, the value stat_failed_image.
 
 ARGUMENTS
-
   VALUE    Scalar of the same type as ATOM. If the kind
            is different, the value is converted to the kind of ATOM.
   ATOM     Scalar coarray or coindexed variable of either integer type
@@ -25,7 +23,6 @@ ARGUMENTS
   STAT     (optional) Scalar default-kind integer variable.
 
 EXAMPLE
-
   Sample program:
 
    program demo_atomic_ref
@@ -42,15 +39,12 @@ EXAMPLE
    end program demo_atomic_ref
 
 STANDARD
-
    [[Fortran 2008]] and later; with STAT, [[TS 18508]] or later
 
 CLASS
-
-Atomic subroutine
+   Atomic subroutine
 
 SEE ALSO
-
    atomic_define(3), atomic_cas(3), iso_fortran_env(3),
    atomic_fetch_add(3), atomic_fetch_and(3), atomic_fetch_or(3),
    atomic_fetch_xor(3)

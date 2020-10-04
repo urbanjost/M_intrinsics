@@ -35,4 +35,3 @@ SEE ALSO
 
    Elemental:     ADJUSTL(3), ADJUSTR(3), INDEX(3), LEN_TRIM(3), SCAN(3), VERIFY(3)
    Nonelemental:  REPEAT(3), TRIM(3)
-

@@ -67,4 +67,3 @@ STANDARD
 
 CLASS
    Transformational function
-

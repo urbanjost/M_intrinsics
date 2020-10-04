@@ -2,21 +2,17 @@ NAME
      modulo(3f) - [FORTRAN:INTRINSIC:NUMERIC] Modulo function
      
 SYNTAX
-
    result = modulo(a, p)
 
 DESCRIPTION
-
    modulo(a,p) computes the A modulo P.
 
 ARGUMENTS
-
   A    Shall be a scalar of type INTEGER or REAL.
   P    Shall be a scalar of the same type and kind as A. It shall
   not be zero.
 
 RETURN VALUE
-
    The type and kind of the result are those of the arguments.
 
    * If A and P are of type INTEGER:
@@ -28,7 +24,6 @@ RETURN VALUE
    the magnitude of P.
 
 EXAMPLE
-
   Sample program:
 
    program demo_modulo
@@ -44,14 +39,10 @@ EXAMPLE
    end program demo_modulo
 
 STANDARD
-
    [[Fortran 95]] and later
 
 CLASS
-
    [[Elemental procedure|Elemental function]]
 
 SEE ALSO
-
    mod(3)
-

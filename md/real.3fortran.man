@@ -47,14 +47,11 @@ EXAMPLE
       1.7976931348623157E+308   1.7976931348623157E+308   1.7976931348623157E+308
 
 STANDARD
-
    [[FORTRAN 77]] and later
 
 CLASS
-
    Elemental function
 
 SEE ALSO
-
    dble(3), float(3)
 

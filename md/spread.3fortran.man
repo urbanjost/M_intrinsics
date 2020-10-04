@@ -1,18 +1,14 @@
 NAME
-
      spread(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Add a dimension to an array
      
 SYNTAX
-
    result = spread(source, dim, ncopies)
 
 DESCRIPTION
-
    Replicates a SOURCE array NCOPIES times along a specified
    dimension DIM.
 
 ARGUMENTS
-
    SOURCE    Shall be a scalar or an array of any type and
              a rank less than seven.
    DIM       Shall be a scalar of type INTEGER with a
@@ -21,12 +17,10 @@ ARGUMENTS
    NCOPIES   Shall be a scalar of type INTEGER.
 
 RETURN VALUE
-
    The result is an array of the same type as SOURCE and has rank n+1
    where n equals the rank of SOURCE.
 
 EXAMPLE
-
   Sample program:
 
     program demo_spread
@@ -93,14 +87,10 @@ EXAMPLE
      end program example_spread
 
 STANDARD
-
    [[Fortran 95]] and later
 
 CLASS
-
    Transformational function
 
 SEE ALSO
-
    unpack(3)
-

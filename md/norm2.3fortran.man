@@ -2,21 +2,17 @@ NAME
      norm2(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Euclidean vector norm
      
 SYNTAX
-
    result = norm2(array[, dim])
 
 DESCRIPTION
-
    Calculates the Euclidean vector norm (L_2 norm) of ARRAY along dimension DIM.
 
 ARGUMENTS
-
   ARRAY    Shall be an array of type REAL.
   DIM      (Optional) shall be a scalar of type INTEGER with a value
            in the range from 1 to n, where n equals the rank of ARRAY.
 
 RETURN VALUE
-
    The result is of the same type as ARRAY.
 
    If DIM is absent, a scalar with the square root of the sum of
@@ -25,7 +21,6 @@ RETURN VALUE
    to that of ARRAY with dimension DIM dropped is returned.
 
 EXAMPLE
-
   Sample program:
 
    program demo_norm2
@@ -35,14 +30,10 @@ EXAMPLE
    end program demo_norm2
 
 STANDARD
-
    [[Fortran 2008]] and later
 
 CLASS
-
    Transformational function
 
 SEE ALSO
-
    product(3), sum(3), hypot(3)
-

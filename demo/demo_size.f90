@@ -32,7 +32,8 @@
               !!write(*,*)'SIZE(arr2)        :',size(arr2)  ! The upper bound in the last dimension must appear in the reference
                                                             ! to the assumed size array ‘arr2’ at (1)
               write(*,*)'SIZE(arr2,DIM=1)  :',size(arr2,dim=1)
-              !!write(*,*)'SIZE(arr2,DIM=2)  :',size(arr2,dim=2) ! ‘dim’ argument of ‘size’ intrinsic at (1) is not a valid dimension index
+              ! ‘dim’ argument of ‘size’ intrinsic at (1) is not a valid dimension index
+              !!write(*,*)'SIZE(arr2,DIM=2)  :',size(arr2,dim=2)
               write(*,*)'note lower bound is "1"'
               write(*,*)'LBOUND(arr2)      :',lbound(arr2)
               write(*,*)'LBOUND(arr2)      :',lbound(arr2)

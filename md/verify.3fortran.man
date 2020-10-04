@@ -1,13 +1,10 @@
 NAME
-
    verify(3f) - [FORTRAN:INTRINSIC:CHARACTER] Scan a string for the absence of a set of characters
    
 SYNTAX
-
    result = verify(string, set[, back [, kind]])
 
 DESCRIPTION
-
    Verifies that all the characters in STRING belong to the set of
    characters in SET.
 
@@ -87,18 +84,14 @@ EXAMPLE
     32-af43d passed
 
 STANDARD
-
    [[Fortran 95]] and later, with KIND argument [[Fortran 2003]] and later
 
 CLASS
-
    Elemental function
 
 SEE ALSO
-
    Functions that perform operations on character strings, return lengths
    of arguments, and search for certain arguments:
 
    Elemental:     ADJUSTL(3), ADJUSTR(3), INDEX(3), LEN_TRIM(3), SCAN(3), VERIFY(3)
    Nonelemental:  REPEAT(3), TRIM(3)
-

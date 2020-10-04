@@ -2,12 +2,10 @@ NAME
      maxloc(3f) - [FORTRAN:INTRINSIC:ARRAY LOCATION] Location of the maximum value within an array
      
 SYNTAX
-
    result = maxloc(array, dim [, mask])
    result = maxloc(array [, mask])
 
 DESCRIPTION
-
    Determines the location of the element in the array with the maximum
    value, or, if the DIM argument is supplied, determines the
    locations of the maximum element along each row of the array in the
@@ -21,7 +19,6 @@ DESCRIPTION
    result value for that row is zero.
 
 ARGUMENTS
-
    ARRAY    Shall be an array of type INTEGER, REAL, or CHARACTER.
    DIM      (Optional) Shall be a scalar of type
             INTEGER, with a value between one and the rank of ARRAY,
@@ -29,7 +26,6 @@ ARGUMENTS
    MASK     Shall be an array of type LOGICAL, and conformable with ARRAY.
 
 RETURN VALUE
-
    If DIM is absent, the result is a rank-one array with a length
    equal to the rank of ARRAY. If DIM is present, the result
    is an array with a rank one less than the rank of ARRAY, and a
@@ -54,14 +50,10 @@ EXAMPLE
     end program demo_maxloc
 
 STANDARD
-
    [[Fortran 95]] and later
 
 CLASS
-
    Transformational function
 
 SEE ALSO
-
    max(3), maxval(3)
-

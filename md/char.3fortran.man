@@ -2,11 +2,9 @@ NAME
      char(3f) - [FORTRAN:INTRINSIC:CHARACTER] Character conversion function
      
 SYNTAX
-
    result = char(i [, kind])
 
 DESCRIPTION
-
    char(i [, kind]) returns the character represented by the integer I.
    ARGUMENTS
 
@@ -15,11 +13,9 @@ DESCRIPTION
           expression indicating the kind parameter of the result.
 
 RETURN VALUE
-
    The return value is of type character(1)
 
 EXAMPLE
-
   Sample program:
 
     program demo_char
@@ -31,20 +27,16 @@ EXAMPLE
     end program demo_char
 
 NOTE
-
    See [[ichar]] for a discussion of converting between numerical values
    and formatted string representations.
 
 STANDARD
-
    [[FORTRAN 77]] and later
 
 CLASS
-
    [[Elemental procedure|Elemental function]]
 
 SEE ALSO
-
    [[achar]], [[iachar]], [[ichar]]
 
    Functions that perform operations on character strings, return lengths
@@ -52,4 +44,3 @@ SEE ALSO
 
    Elemental:     ADJUSTL(3), ADJUSTR,(3) INDEX,(3) LEN_TRIM,(3) SCAN,(3) VERIFY(3)
    Nonelemental:  REPEAT(3), TRIM(3)
-

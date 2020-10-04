@@ -37,4 +37,3 @@ STANDARD
 
 CLASS
    [[Elemental function]]
-

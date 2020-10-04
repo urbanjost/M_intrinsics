@@ -2,16 +2,13 @@ NAME
      associated(3f) - [FORTRAN:INTRINSIC] Status of a pointer or pointer/target pair
      
 SYNTAX
-
    result = associated(pointer [, target])
 
 DESCRIPTION
-
    associated(pointer [, target]) determines the status of the pointer
    POINTER or if POINTER is associated with the target TARGET.
 
 ARGUMENTS
-
    POINTER    POINTER shall have the POINTER attribute
               and it can be of any type.
    TARGET     (Optional) TARGET shall be a pointer or
@@ -22,7 +19,6 @@ ARGUMENTS
    undefined.
 
 RETURN VALUE
-
  associated(pointer) returns a scalar value of type logical(4). There are
  several cases:
 
@@ -60,7 +56,6 @@ RETURN VALUE
     POINTER is disassociated.
 
 EXAMPLE
-
   Sample program:
 
     program demo_associated
@@ -73,14 +68,10 @@ EXAMPLE
     end program demo_associated
 
 STANDARD
-
    [[Fortran 95]] and later
 
 CLASS
-
    [[Inquiry function]]
 
 SEE ALSO
-
    null(3)
-

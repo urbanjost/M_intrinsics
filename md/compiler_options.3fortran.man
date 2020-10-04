@@ -2,26 +2,21 @@ NAME
      compiler_options(3f) - [FORTRAN:INTRINSIC:COMPILER INQUIRY] Options passed to the compiler
      
 SYNTAX
-
    str = compiler_options()
 
 DESCRIPTION
-
    compiler_options returns a string with the options used for
    compiling.
 
 ARGUMENTS
-
    None.
 
 RETURN VALUE
-
    The return value is a default-kind string with system-dependent
    length. It contains the compiler flags used to compile the file,
    which called the compiler_options intrinsic.
 
 EXAMPLE
-
   Sample program:
 
    program demo_compiler_version
@@ -44,13 +39,10 @@ EXAMPLE
    -J /home/urbanjs/V600/lib/CYGWIN64_GFORTRAN
 
 STANDARD
-
    [[Fortran 2008]]
 
 CLASS
-
    Inquiry function of the module [[iso_fortran_env]]
 
 SEE ALSO
-
    compiler_version(3), iso_fortran_env(7)

@@ -11,7 +11,6 @@ SYNTAX
      character(len=*),intent(out),optional :: cmdmsg
 
 DESCRIPTION
-
    The COMMAND argument is passed to the shell and executed. (The shell
    is generally sh(1) on Unix systems, and cmd.exe on Windows.) If WAIT
    is present and has the value .FALSE., the execution of the command is
@@ -33,7 +32,6 @@ DESCRIPTION
    EXECUTE_COMMAND_LINE returns without waiting.
 
 ARGUMENTS
-
    COMMAND     a default CHARACTER scalar containing the command line to be
                executed. The interpretation is programming-environment dependent.
 
@@ -66,7 +64,6 @@ ARGUMENTS
                message.Otherwise, it is unchanged.
 
 EXAMPLE
-
   Sample program:
 
    program demo_exec
@@ -81,7 +78,6 @@ EXAMPLE
    end program demo_exec
 
 NOTE
-
    Because this intrinsic is making a system call, it is very system
    dependent.Its behavior with respect to signaling is processor
    dependent. In particular, on POSIX-compliant systems, the SIGINT and
@@ -90,9 +86,7 @@ NOTE
    not be terminated alongside.
 
 STANDARD
-
    [[Fortran 2008]] and later
 
 CLASS
-
    Subroutine

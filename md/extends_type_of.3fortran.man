@@ -1,11 +1,11 @@
 NAME
-   extends_type_of(3f) - [FORTRAN:INTRINSIC] True if and only if the dynamic type of A is an extension of the dynamic type of MOLD.
+   extends_type_of(3f) - [FORTRAN:INTRINSIC] determine if the dynamic type of A is an extension of the dynamic type of MOLD.
    
 SYNOPSIS
    RESULT=EXTENDS_TYPE_OF (A, MOLD)
 
 DESCRIPTION
-   True if and only if the dynamic type of A is an extension
+   extends_type_of(3f) is TRUE if and only if the dynamic type of A is an extension
    of the dynamic type of MOLD.
 
 OPTIONS
@@ -15,7 +15,6 @@ OPTIONS
          it shall not have an undefined association status.
 
 RESULTS
-
   RESULT   Default logical scalar.
 
   VALUE    If MOLD is unlimited polymorphic and is either a disassociated pointer
@@ -32,4 +31,3 @@ EXAMPLE
 
 CLASS
    Inquiry function.
-

@@ -1,13 +1,10 @@
 NAME
-
      event_query(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Query whether a coarray event has occurred
      
 SYNTAX
-
    call EVENT_QUERY(EVENT, COUNT [, STAT])
 
 DESCRIPTION
-
    EVENT_QUERY assigns the number of events to COUNT which have been
    posted to the EVENT variable and not yet been removed by calling
    EVENT_WAIT. When STAT is present and the invocation was
@@ -16,7 +13,6 @@ DESCRIPTION
    assigned the value -1.
 
 ARGUMENTS
-
   EVENT   (intent(in)) Scalar of type event_type, defined in
           iso_fortran_env; shall not be coindexed.
   COUNT   (intent(out))Scalar integer with at least the precision of
@@ -24,7 +20,6 @@ ARGUMENTS
   STAT    (OPTIONAL) Scalar default-kind integer variable.
 
 EXAMPLE
-
   Sample program:
 
    program demo_event_query
@@ -41,10 +36,8 @@ EXAMPLE
    end program demo_event_query
 
 STANDARD
-
    [[TS 18508]] or later
 
 CLASS
-
    Subroutine
 

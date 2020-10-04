@@ -2,27 +2,22 @@ NAME
      aimag(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Imaginary part of complex number
      
 SYNTAX
-
    result = AIMAG(Z)
 
 DESCRIPTION
-
    AIMAG(Z) yields the imaginary part of complex argument Z.
    The IMAG(Z) and IMAGPART(Z) intrinsic functions are provided
    for compatibility with G77, and their use in new code is
    strongly discouraged.
 
 ARGUMENTS
-
    Z    The type of the argument shall be COMPLEX.
 
 RETURN VALUE
-
    The return value is of type REAL with the
    kind type parameter of the argument.
 
 EXAMPLE
-
   Sample program:
 
     program demo_aimag
@@ -36,10 +31,7 @@ EXAMPLE
     end program demo_aimag
 
 STANDARD
-
    [[FORTRAN 77]] and later
 
 CLASS
-
    Elemental function
-

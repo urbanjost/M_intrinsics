@@ -13,12 +13,10 @@ ARGUMENTS
    I    Shall be of type INTEGER.
 
 RETURN VALUE
-
    The type of the return value is the default INTEGER.
    If all the bits of I are zero, the result value is bit_size(I).
 
 EXAMPLE
-
   Sample program:
 
     program demo_trailz
@@ -66,14 +64,11 @@ EXAMPLE
     9223372036854775807   0 0111111111111111111111111111111111111111111111111111111111111111(huge(0_int64))
 
 STANDARD
-
    [[Fortran 2008]] and later
 
 CLASS
-
    [[Elemental function]]
 
 SEE ALSO
-
    bit_size(3), popcnt(3), poppar(3), leadz(3)
  JSU

@@ -9,5 +9,5 @@ do
    man -s $SECTION $TOPIC|
       col -b|
       expand|
-      sed -n -e '\%^[ !]*program  *demo_%,\%^[ !]*end  *program  *demo_%{p}' >../src/demo_$TOPIC.f90
+      sed -n -e '\%^[ !]*program  *demo_%,\%^[ !]*end  *program  *demo_%{p}' >../demo/demo_$TOPIC.f90
 done

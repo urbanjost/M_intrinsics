@@ -78,4 +78,3 @@ CLASS
 
 SEE ALSO
    bit_size(3), popcnt(3), poppar(3), trailz(3)
-

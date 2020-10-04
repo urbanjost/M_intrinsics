@@ -2,17 +2,14 @@ NAME
      c_f_pointer(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Convert C into Fortran pointer
      
 SYNTAX
-
     call c_f_pointer(cptr, fptr[, shape])
 
 DESCRIPTION
-
    c_f_pointer(cptr, fptr[, shape]) Assign the target, the C pointer,
    CPTR to the Fortran pointer FPTR and specify its
    shape.
 
 ARGUMENTS
-
    CPTR    scalar of the type c_ptr. It is
            intent(in).
    FPTR    pointer interoperable with CPTR. It is
@@ -23,7 +20,6 @@ ARGUMENTS
            must be equal to the rank of FPTR.
 
 EXAMPLE
-
   Sample program:
 
     program demo_c_f_pointer
@@ -42,14 +38,10 @@ EXAMPLE
     end program demo_c_f_pointer
 
 STANDARD
-
    [[Fortran 2003]] and later
 
 CLASS
-
    Subroutine
 
 SEE ALSO
-
    c_loc(3), c_f_procpointer(3), iso_c_binding(3)
-

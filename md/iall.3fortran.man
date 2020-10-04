@@ -2,17 +2,14 @@ NAME
      iall(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise and of array elements
      
 SYNTAX
-
-* result = iall(array[, mask])
-* result = iall(array, dim[, mask])
+   * result = iall(array[, mask])
+   * result = iall(array, dim[, mask])
 
 DESCRIPTION
-
    Reduces with bitwise AND the elements of ARRAY along dimension DIM
    if the corresponding element in MASK is TRUE.
 
 ARGUMENTS
-
   ARRAY   Shall be an array of type INTEGER
   DIM    (Optional) shall be a scalar of type INTEGER with a value
          in the range from 1 to "n", where "n" equals the rank of ARRAY.
@@ -20,7 +17,6 @@ ARGUMENTS
          scalar or an array of the same shape as ARRAY.
 
 RETURN VALUE
-
    The result is of the same type as ARRAY.
 
    If DIM is absent, a scalar with the bitwise ALL of all elements in
@@ -29,7 +25,6 @@ RETURN VALUE
    dimension DIM dropped is returned.
 
 EXAMPLE
-
   Sample program:
 
    program demo_iall
@@ -45,14 +40,11 @@ EXAMPLE
    end program demo_iall
 
 STANDARD
-
    [[Fortran 2008]] and later
 
 CLASS
-
    Transformational function
 
 SEE ALSO
-
    iany(3), iparity(3), iand(3)
 

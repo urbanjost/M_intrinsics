@@ -11,19 +11,15 @@ DESCRIPTION
    $$
 
 SYNTAX
-
    result = erfc_scaled(x)
 
 ARGUMENTS
-
    X    The type shall be REAL.
 
 RETURN VALUE
-
    The return value is of type REAL and of the same kind as X.
 
 EXAMPLE
-
   Sample program:
 
    program demo_erfc_scaled
@@ -34,10 +30,7 @@ EXAMPLE
    end program demo_erfc_scaled
 
 STANDARD
-
    [[Fortran 2008]] and later
 
 CLASS
-
    [[Elemental function]]
-

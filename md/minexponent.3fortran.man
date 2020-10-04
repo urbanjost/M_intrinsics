@@ -16,16 +16,12 @@ RETURN VALUE
    kind.
 
 EXAMPLE
-
   Sample program:
 
    See [[maxexponent]] for an example.
 
 STANDARD
-
    [[Fortran 95]] and later
 
 CLASS
-
    [[Inquiry function]]
-

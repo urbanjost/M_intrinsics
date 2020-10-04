@@ -34,12 +34,10 @@ DESCRIPTION
    It is processor-dependent whether any other object is contiguous.
 
 ARGUMENTS
-
     A         may be of any type. It shall be an array. If it is a
               pointer it shall be associated.
 
 RETURN VALUE
-
     Result    of type Default logical scalar.
               The result has the value true if A is contiguous, and false otherwise.
 
@@ -60,10 +58,7 @@ EXAMPLE
    end program demo_is_contiguous
 
 STANDARD
-
    [[Fortran 2008]] and later
 
 CLASS
-
    [[Inquiry function]]
-

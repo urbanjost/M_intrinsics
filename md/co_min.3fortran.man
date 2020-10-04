@@ -1,9 +1,8 @@
 NAME
-     co_min(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Minimal value on the current set of images
+   co_min(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Minimal value on the current set of images
      
 SYNTAX
-
-call co_min(a [, result_image, stat, errmsg])
+   call co_min(a [, result_image, stat, errmsg])
 
 DESCRIPTION
 
@@ -17,7 +16,6 @@ DESCRIPTION
    present, ERRMSG gets assigned a value describing the occurred error.
 
 ARGUMENTS
-
   A              shall be an integer, real or character variable, which
                  has the same type and type parameters on all images of
                  the team.
@@ -28,7 +26,6 @@ ARGUMENTS
   ERRMSG         (optional) a scalar character variable
 
 EXAMPLE
-
   Sample program:
 
    program demo_co_min
@@ -42,14 +39,10 @@ EXAMPLE
    end program demo_co_min
 
 STANDARD
-
    [[TS 18508]] or later
 
 CLASS
-
    [[Collective subroutine]]
 
 SEE ALSO
-
    co_max(3), co_sum(3), co_reduce(3), co_broadcast(3)
-

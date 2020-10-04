@@ -8,19 +8,16 @@ DESCRIPTION
    acos(X) computes the arccosine of X (inverse of cos(x)).
 
 ARGUMENTS
-
    X    The type shall be REAL with a magnitude that is
         less than one.
 
 RETURN VALUE
-
    The return value is of the same type and kind as X.
    The real part of the result is in radians and lies in the range
 
       0 <= ACOS(X) <= PI.
 
 EXAMPLE
-
   Sample program:
 
     program demo_acos
@@ -42,13 +39,10 @@ EXAMPLE
     for reference PI= 3.14159265358979323846264338327950288419716939937510
 
 STANDARD
-
    [[FORTRAN 77]] and later; for a complex argument [[Fortran 2008]] and later
 
 CLASS
-
    Elemental function
 
 SEE ALSO
-
-Inverse function: cos(3)
+   Inverse function: cos(3)

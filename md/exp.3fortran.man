@@ -2,23 +2,18 @@ NAME
      exp(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Exponential function
      
 SYNTAX
-
    result = exp(x)
 
 DESCRIPTION
-
    exp(x) computes the base "e" exponential of X.
 
 ARGUMENTS
-
    X    The type shall be REAL or COMPLEX.
 
 RETURN VALUE
-
    The return value has same type and kind as X.
 
 EXAMPLE
-
   Sample program:
 
     program demo_exp
@@ -28,10 +23,7 @@ EXAMPLE
     end program demo_exp
 
 STANDARD
-
    [[FORTRAN 77]] and later
 
 CLASS
-
    [[Elemental procedure|Elemental function]]
-

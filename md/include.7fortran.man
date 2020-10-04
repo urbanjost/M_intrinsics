@@ -102,12 +102,11 @@ DESCRIPTION
 EXAMPLE
   Sample program:
 
-     program demo_include
-     impicit none
+     program show_include
+     implicit none
      include "declarations.inc"
         write(*,*)'Hello World!'
         include "somecode.inc"
      includes
         include "somemorecode.inc"
-     end program demo_include
-  JSU
+     end program show_include

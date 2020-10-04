@@ -1,6 +1,5 @@
 NAME
      if(7f) - [FORTRAN:EXECUTION CONTROL] selects a block based on a sequence of logical expressions.
-     
 
 SYNOPSIS
 
@@ -25,25 +24,26 @@ DESCRIPTION
    that same name. If an ELSE or ELSEIF uses an if-construct-name it must
    be the same as the one specified on the corresponding IF/ENDIF.
 
-   Execution of an IF construct
+   EXECUTION OF AN IF CONSTRUCT
 
-   At most one of the blocks in the IF construct is executed. If there
-   is an ELSE statement in the construct, exactly one of the blocks
-   in the construct is executed. The scalar logical expressions are
-   evaluated in the order of their appearance in the construct until
-   a true value is found or an ELSE statement or ENDIF statement is
-   encountered. If a true value or an ELSE statement is found, the block
-   immediately following is executed and this completes the execution
-   of the construct. The scalar logical expressions in any remaining
-   ELSEIF statements of the IF construct are not evaluated. If none
-   of the evaluated expressions is true and there is no ELSE statement,
+   If there is an ELSE statement in the construct it acts as a default
+   if all the preceding conditionals on the IF or ELSEIF where false,
+   ensuring exactly one of the blocks in the construct is executed. The
+   scalar logical expressions are evaluated in the order of their
+   appearance in the construct until a true value is found or an ELSE
+   statement or ENDIF statement is encountered. IF an ELSE statement is
+   found, the block immediately following is executed and this completes
+   the execution of the construct. That is, an ELSE should follow any
+   ELSEIF statements.  The scalar logical expressions in any remaining
+   ELSEIF statements of the IF construct are not evaluated. If none of
+   the evaluated expressions is true and there is no ELSE statement,
    the execution of the construct is completed without the execution of
    any block within the construct.
 
    It is permissible to branch to an ENDIF statement only from within
    its IF construct. Execution of an ENDIF statement has no effect.
 
-   Execution of an IF statement
+   STANDALONE IF
 
    The IF statement controls the execution of a single action statement
    based on a single logical expression.
@@ -53,12 +53,34 @@ DESCRIPTION
    or if-stmt.
 
    Execution of an IF statement causes evaluation of the scalar logical
-   expression. If the value of the expression is true, the action statement
-   is executed. If the value is false, the action statement is not executed
-   and execution continues.
+   expression. If the value of the expression is true, the action
+   statement is executed. If the value is false, the action statement
+   is not executed and execution continues.
 
    The execution of a function reference in the scalar logical expression
-   may affect entities in the action statement.
+   may affect entities in the action statement. That is, if values are
+   changed by the functions used in the logical expressions the selected
+   block will use those values. It is generally a bad idea to use functions
+   changing the values, but what would you expect this to produce?
+
+        program change
+	i=1
+	if(increment(i).gt.10)then
+	   write(*,*)'IF',i
+	elseif(increment(i).gt.20)then
+	   write(*,*)'ELSEIF',i
+	else
+	   write(*,*)'ELSE',i
+	endif
+	contains
+	function increment(i)
+	   i=i+1
+	end function increment(i)
+        end program change
+
+       
+
+
 
    An example of an IF statement is:
 
@@ -68,11 +90,16 @@ EXAMPLES
 
   Sample IF constructs:
 
+    program demo_if
+     !
+     ! basic IF
+     !
      if (cvar == 'RESET') then
         i = 0; j = 0; k = 0
-
-endif
-
+     endif
+     !
+     ! labeled and nested IF constructs
+     !
      OUTER: if (case.eq.0)then
         PROOF_DONE: if (PROP) then
            write (3, '(''QED'')')
@@ -84,12 +111,14 @@ endif
      else OUTER
              write(*,*)'else outer'
      endif OUTER
-
+     !
+     ! if-elseif-endif
+     !
      if (a > 0) then
         b = c/a
         if (b > 0) then
            d = 1.0
-        end if
+        endif
      elseif (c > 0) then
         b = a/c
         d = -1.0
@@ -97,4 +126,5 @@ endif
         b = abs (max (a, c))
         d = 0
      endif
-
+     !
+    end program demo_if

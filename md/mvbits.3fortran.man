@@ -2,11 +2,9 @@ NAME
      mvbits(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Move bits from one integer to another
      
 SYNTAX
-
    call mvbits(from, frompos, len, to, topos)
 
 DESCRIPTION
-
    Moves LEN bits from positions FROMPOS through
    frompos+len-1 of FROM to positions TOPOS through
    topos+len-1 of TO. The portion of argument TO not
@@ -15,7 +13,6 @@ DESCRIPTION
    bit_size(from).
 
 ARGUMENTS
-
    FROM      The type shall be INTEGER.
    FROMPOS   The type shall be INTEGER.
    LEN       The type shall be INTEGER.
@@ -24,15 +21,11 @@ ARGUMENTS
    TOPOS     The type shall be INTEGER.
 
 STANDARD
-
    [[Fortran 95]] and later
 
 CLASS
-
    [[Elemental subroutine]]
 
 SEE ALSO
-
    ibclr(3), ibset(3), ibits(3),
    iand(3), ior(3)
-

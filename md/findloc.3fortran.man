@@ -1,5 +1,5 @@
 NAME
-   findloc(3f) - [FORTRAN:INTRINSIC] Location of the first element of ARRAY identified by MASK along dimension DIM having a value
+   findloc(3f) - [FORTRAN:INTRINSIC] Location of first element of ARRAY identified by MASK along dimension DIM having a value
    
 SYNOPSIS
   FINDLOC (ARRAY, VALUE, DIM [, MASK, KIND, BACK])
@@ -24,7 +24,6 @@ DESCRIPTION
   returned is the last such element, taken in array element order.
 
 OPTIONS
-
   ARRAY   shall be an array of intrinsic type.
   VALUE   shall be scalar and in type conformance with ARRAY, as specified in Table 7.3 for relational intrinsic
           operations 7.1.5.5.2).
@@ -35,7 +34,6 @@ OPTIONS
   BACK    (optional) shall be a logical scalar.
 
 RESULT
-
   Result Characteristics. Integer. If KIND is present, the kind type
   parameter is that specified by the value of KIND; otherwise the kind
   type parameter is that of default integer type. If DIM does not appear,

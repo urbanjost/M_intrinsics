@@ -2,17 +2,14 @@ NAME
      selected_real_kind(3f) - [FORTRAN:INTRINSIC:KIND] Choose real kind
      
 SYNTAX
-
    result = selected_real_kind([p, r, radix])
 
 DESCRIPTION
-
    selected_real_kind(p, r, radix) return the kind value of a real data
    type with decimal precision of at least P digits, exponent range of
    at least R, and with a radix of RADIX.
 
 ARGUMENTS
-
    P      (Optional) shall be a scalar and of type INTEGER.
    R      (Optional) shall be a scalar and of type INTEGER.
    RADIX  (Optional) shall be a scalar and of type INTEGER.
@@ -22,7 +19,6 @@ ARGUMENTS
    if absent.
 
 RETURN VALUE
-
    selected_real_kind returns the value of the kind type parameter of
    a real data type with decimal precision of at least P digits, a
    decimal exponent range of at least R, and with the requested
@@ -42,7 +38,6 @@ RETURN VALUE
 * -5 if there is no real type with the given RADIX
 
 EXAMPLE
-
   Sample program:
 
    program demo_selected_real_kind
@@ -60,14 +55,10 @@ EXAMPLE
    end program demo_selected_real_kind
 
 STANDARD
-
    [[Fortran 95]] and later; with RADIX [[Fortran 2008]] and later
 
 CLASS
-
    Transformational function
 
 SEE ALSO
-
    precision(3), range(3), radix(3)
-

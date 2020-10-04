@@ -1,6 +1,6 @@
 NAME
      command_argument_count(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get number of command line arguments
-     
+
 SYNTAX
    result = command_argument_count()
 
@@ -16,10 +16,9 @@ ARGUMENTS
 RETURN VALUE
    RESULT  The return value is of type default integer.
            It is the number of arguments passed on the command line
-	   when the program was invoked.
+           when the program was invoked.
 
 EXAMPLE
-
   Sample program:
 
    program demo_command_argument_count
@@ -41,13 +40,11 @@ EXAMPLE
        1
 
 STANDARD
-
    [[Fortran 2003]] and later
 
 CLASS
    [[Inquiry function]]
 
 SEE ALSO
-
    get_command(3), get_command_argument(3)
  JSU

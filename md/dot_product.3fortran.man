@@ -1,13 +1,10 @@
 NAME
-
      dot_product(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] Dot product function
      
 SYNTAX
-
    result = dot_product(vector_a, vector_b)
 
 DESCRIPTION
-
    dot_product(vector_a, vector_b) computes the dot product multiplication
    of two vectors vector_a and vector_b. The two vectors may be
    either numeric or logical and must be arrays of rank one and of equal size. If
@@ -17,19 +14,16 @@ DESCRIPTION
    the result is any(vector_a .and. vector_b).
 
 ARGUMENTS
-
    vector_a    The type shall be numeric or LOGICAL, rank 1.
    vector_b    The type shall be numeric if vector_a is of numeric type or LOGICAL
                if vector_a is of type LOGICAL. vector_b shall be a rank-one array.
 
 RETURN VALUE
-
    If the arguments are numeric, the return value is a scalar of numeric type,
    INTEGER, REAL, or COMPLEX. If the arguments are
    LOGICAL, the return value is .true. or .false..
 
 EXAMPLE
-
   Sample program:
 
     program demo_dot_prod
@@ -45,10 +39,7 @@ EXAMPLE
     end program demo_dot_prod
 
 STANDARD
-
    [[Fortran 95]] and later
 
 CLASS
-
    Transformational function
-

@@ -2,20 +2,16 @@ NAME
      num_images(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Number of images
      
 SYNTAX
-
    result = num_images(distance, failed)
 
 DESCRIPTION
-
    Returns the number of images.
 
 ARGUMENTS
-
    DISTANCE   (optional, intent(in)) Nonnegative scalar integer
    FAILED     (optional, intent(in)) Scalar logical expression
 
 RETURN VALUE
-
    Scalar default-kind integer. If DISTANCE is not present or has
    value 0, the number of images in the current team is returned. For
    values smaller or equal distance to the initial team, it returns the
@@ -28,7 +24,6 @@ RETURN VALUE
    status.
 
 EXAMPLE
-
   Sample program:
 
    program demo_num_images
@@ -45,14 +40,10 @@ EXAMPLE
    end program demo_num_images
 
 STANDARD
-
    [[Fortran 2008]] and later. With DISTANCE or FAILED argument, [[TS 18508]] or later
 
 CLASS
-
    Transformational function
 
 SEE ALSO
-
    this_image(3), image_index(3)
-

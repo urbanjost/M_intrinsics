@@ -2,7 +2,6 @@ NAME
      index(3f) - [FORTRAN:INTRINSIC:CHARACTER] Position of a substring within a string
      
 SYNTAX
-
     index(STRING, SUBSTRING [, BACK [, KIND]]) result(START)
 
      character(len=*),intent(in) :: STRING
@@ -12,13 +11,11 @@ SYNTAX
      integer(kind=KIND)          :: START
 
 DESCRIPTION
-
    Returns the position of the start of the leftmost or rightmost
    occurrence of string SUBSTRING in STRING, counting from one. If
    SUBSTRING is not present in STRING, zero is returned.
 
 ARGUMENTS
-
   STRING       string to be searched
   SUBSTRING    string to attempt to locate in STRING
   BACK         If the BACK argument is present and true, the return
@@ -28,17 +25,14 @@ ARGUMENTS
                the kind parameter of the result.
 
 RETURN VALUE
-
   START        The return value is of type INTEGER and of kind KIND.
                If KIND is absent, the return value is of default integer
                kind.
 
 STANDARD
-
    [[FORTRAN 77]] and later, with KIND argument [[Fortran 2003]] and later
 
 CLASS
-
    [[Elemental function]]
 
 EXAMPLE
@@ -59,10 +53,8 @@ EXAMPLE
    > T T T
 
 SEE ALSO
-
    Functions that perform operations on character strings, return lengths
    of arguments, and search for certain arguments:
 
    Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), scan(3), verify(3)
    Nonelemental:  repeat(3), trim(3)
-

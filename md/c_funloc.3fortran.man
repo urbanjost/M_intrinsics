@@ -2,24 +2,19 @@ NAME
      c_funloc(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Obtain the C address of a procedure
      
 SYNTAX
-
     result = c_funloc(x)
 
 DESCRIPTION
-
    c_funloc(x) determines the C address of the argument.
 
 ARGUMENTS
-
    X    Interoperable function or pointer to such function.
 
 RETURN VALUE
-
    The return value is of type c_funptr and contains the C address
    of the argument.
 
 EXAMPLE
-
   Sample program:
 
     ! program demo_c_funloc and module
@@ -48,16 +43,12 @@ EXAMPLE
     end program demo_c_funloc
 
 STANDARD
-
    [[Fortran 2003]] and later
 
 CLASS
-
    [[Inquiry function]]
 
 SEE ALSO
-
    c_associated(3), c_loc(3),
    c_f_pointer(3), c_f_procpointer(3),
    iso_c_binding(3)
-
