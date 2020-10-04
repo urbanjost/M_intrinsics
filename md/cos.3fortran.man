@@ -1,5 +1,5 @@
 NAME
-     cos(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Cosine function
+   cos(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Cosine function
      
 SYNTAX
    result = cos(x)
@@ -13,16 +13,16 @@ ARGUMENTS
 RETURN VALUE
    The return value is of the same type and kind as X. The real part
    of the result is in radians. If X is of the type REAL, the return
-   value lies in the range -1 <= \cos (x) <= 1.
+   value lies in the range -1 <= cos(x) <= 1.
 
 EXAMPLE
-  Sample program:
+   Sample program:
 
-   program demo_cos
-   implicit none
-     real :: x = 0.0
-     x = cos(x)
-   end program demo_cos
+    program demo_cos
+    implicit none
+      real :: x = 0.0
+      x = cos(x)
+    end program demo_cos
 
 STANDARD
    [[FORTRAN 77]] and later

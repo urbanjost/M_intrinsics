@@ -11,7 +11,7 @@ ARGUMENTS
    X    The type shall be REAL or COMPLEX.
 
 RETURN VALUE
-   The return value has same type and kind as X.
+   The return value has the same type and kind as X.
 
 EXAMPLE
   Sample program:
