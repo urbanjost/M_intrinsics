@@ -1,5 +1,6 @@
 NAME
-     move_alloc(3f) - [FORTRAN:INTRINSIC] Move allocation from one object to another
+   move_alloc(3f) - [FORTRAN:INTRINSIC] Move allocation from one object
+   to another
      
 SYNTAX
    call move_alloc(src, dest)

@@ -1,5 +1,5 @@
 NAME
-     radix(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Base of a model number
+   radix(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Base of a model number
      
 SYNTAX
     result = radix(x)

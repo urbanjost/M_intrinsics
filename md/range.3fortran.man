@@ -1,5 +1,6 @@
 NAME
-     range(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Decimal exponent range of a real kind
+   range(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Decimal exponent range
+   of a real kind
      
 SYNTAX
    result = range(x)

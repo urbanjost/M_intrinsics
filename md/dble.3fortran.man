@@ -1,6 +1,5 @@
 NAME
-
-     dble(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Double conversion function
+   dble(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Double conversion function
      
 SYNTAX
    result = DBLE(A)

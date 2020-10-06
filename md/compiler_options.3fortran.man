@@ -1,5 +1,6 @@
 NAME
-     compiler_options(3f) - [FORTRAN:INTRINSIC:COMPILER INQUIRY] Options passed to the compiler
+   compiler_options(3f) - [FORTRAN:INTRINSIC:COMPILER INQUIRY] Options passed
+   to the compiler
      
 SYNTAX
    str = compiler_options()

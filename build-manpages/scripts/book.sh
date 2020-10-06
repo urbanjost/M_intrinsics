@@ -288,3 +288,30 @@ exit
 <    document.write('<button type="button" onclick="javascript:history.back()">Index</button>\n');
 ---
 >    document.write('<a name="DOCUMENT'+ FRAMECOUNT  + '"><a href="#TOP"> &nbsp;INDEX</a></a>\n');
+############
+2a3
+> export MANPATH=$(dirname $0)/../../man
+8,9c9,10
+< export TOPHTML=${TOPHTML:-tmp/html}
+< export MAN_CMD=${MAN_CMD:-mank}
+---
+> export TOPHTML=${TOPHTML:-../docs}
+> export MAN_CMD=${MAN_CMD:-man}
+278a200
+>    /*
+279a202,203
+>    document.write('<button type="button" onclick="javascript:history.back()">Index</button>\n');
+>    */
+353d276
+<    banner.sh $BOOKNAME
+357a281,290
+> 137c217
+> <    document.write('<td><a href="#DOCUMENT'+ FRAMECOUNT  + '">' + baseName(baseName(target)) + '</a></td>\n');
+> ---
+> >    document.write('<td><a href="#DOCUMENT'+ FRAMECOUNT  + '">' + baseName(target) + '</a></td>\n');
+> 
+> 146,147c226
+> <    #document.write('<a name="DOCUMENT'+ FRAMECOUNT  + '"><a href="#TOP"> &nbsp;INDEX</a></a>\n');
+> <    document.write('<button type="button" onclick="javascript:history.back()">Index</button>\n');
+> ---
+> >    document.write('<a name="DOCUMENT'+ FRAMECOUNT  + '"><a href="#TOP"> &nbsp;INDEX</a></a>\n');

@@ -1,5 +1,5 @@
 NAME
-     conjg(3f) - [FORTRAN:INTRINSIC:NUMERIC] Complex conjugate function
+   conjg(3f) - [FORTRAN:INTRINSIC:NUMERIC] Complex conjugate function
      
 SYNTAX
    z = conjg(z)

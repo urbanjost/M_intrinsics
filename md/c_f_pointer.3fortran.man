@@ -1,5 +1,6 @@
 NAME
-     c_f_pointer(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Convert C into Fortran pointer
+   c_f_pointer(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Convert C into
+   Fortran pointer
      
 SYNTAX
     call c_f_pointer(cptr, fptr[, shape])

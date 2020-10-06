@@ -1,5 +1,5 @@
 NAME
-     epsilon(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Epsilon function
+   epsilon(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Epsilon function
      
 SYNTAX
    result = epsilon(x)

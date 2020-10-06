@@ -1,5 +1,6 @@
 NAME
-     ichar(3f) - [FORTRAN:INTRINSIC:CHARACTER] Character-to-integer conversion function
+   ichar(3f) - [FORTRAN:INTRINSIC:CHARACTER] Character-to-integer conversion
+   function
      
 SYNTAX
    result = ichar(c [, kind])

@@ -1,5 +1,6 @@
 NAME
-     command_argument_count(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get number of command line arguments
+   command_argument_count(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get
+   number of command line arguments
 
 SYNTAX
    result = command_argument_count()

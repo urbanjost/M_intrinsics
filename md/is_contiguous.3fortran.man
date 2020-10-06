@@ -1,5 +1,6 @@
 NAME
-     is_contiguous(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] test if object is contiguous
+   is_contiguous(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] test if object is
+   contiguous
      
 SYNTAX
     result = is_contiguous(A)

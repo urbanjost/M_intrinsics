@@ -1,5 +1,5 @@
 NAME
-     modulo(3f) - [FORTRAN:INTRINSIC:NUMERIC] Modulo function
+   modulo(3f) - [FORTRAN:INTRINSIC:NUMERIC] Modulo function
      
 SYNTAX
    result = modulo(a, p)

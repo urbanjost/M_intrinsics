@@ -1,5 +1,6 @@
 NAME
-     logical(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Converts one kind of LOGICAL variable to another
+     logical(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Converts one
+     kind of LOGICAL variable to another
      
 SYNTAX
    result = logical(l [, kind])

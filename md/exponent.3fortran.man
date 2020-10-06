@@ -1,5 +1,5 @@
 NAME
-     exponent(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Exponent function
+   exponent(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Exponent function
      
 SYNTAX
    result = exponent(x)

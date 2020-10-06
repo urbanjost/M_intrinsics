@@ -1,5 +1,5 @@
 NAME
-     sum(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] sum the elements of an array
+   sum(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] sum the elements of an array
      
 SYNTAX
  Calling sequence:

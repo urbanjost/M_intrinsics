@@ -1,5 +1,5 @@
 NAME
-    shiftl(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] shift bits left
+   shiftl(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] shift bits left
     
 SYNTAX
    result = SHIFTL(I, SHIFT)

@@ -9,8 +9,10 @@
                zout = abs(z)
                dout = abs(r8)
                write(*,*)'OUTPUTS:',iout,xout,zout,dout
-               write ( *, '(a,f12.4,12x,f12.4)' ) ' Double precision  ', r8, abs(r8)
+               write ( *, '(a,f12.4,12x,f12.4)' ) ' Double precision  ', -r8, abs(r8)
+               ! COMPLEX
                ! 3 - 4 -5 right triangle test :
                write(*,*)'The abs() of (3.0,4.0) should be 5.0',abs((3.0,4.0))
+               ! ELEMENTAL
                write(*,*)'abs is ELEMENTAL: ',abs([-10, 20, 0, -1, -3, 100])
             end program demo_abs

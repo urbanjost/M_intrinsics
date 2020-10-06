@@ -1,5 +1,5 @@
 NAME
-     iall(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise and of array elements
+   iall(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise and of array elements
      
 SYNTAX
    * result = iall(array[, mask])

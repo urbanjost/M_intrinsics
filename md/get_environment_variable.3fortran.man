@@ -1,5 +1,6 @@
 NAME
-     get_environment_variable(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get an environmental variable
+   get_environment_variable(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get
+   an environmental variable
      
 SYNTAX
    call get_environment_variable(NAME[, VALUE, LENGTH, STATUS, TRIM_NAME)

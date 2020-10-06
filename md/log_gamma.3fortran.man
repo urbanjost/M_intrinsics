@@ -1,5 +1,6 @@
 NAME
-   log_gamma(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Logarithm of the Gamma function
+   log_gamma(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Logarithm of the
+   Gamma function
      
 SYNTAX
     x = log_gamma(x)

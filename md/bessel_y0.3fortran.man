@@ -1,5 +1,6 @@
 NAME
-     bessel_y0(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the second kind of order 0
+   bessel_y0(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the 
+   second kind of order 0
      
 SYNTAX
    result = bessel_y0(x)

@@ -1,5 +1,6 @@
 NAME
-     eoshift(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] End-off shift elements of an array
+   eoshift(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] End-off shift
+   elements of an array
      
 SYNTAX
    result = eoshift(array, shift [, boundary, dim])

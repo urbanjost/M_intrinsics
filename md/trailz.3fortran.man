@@ -1,5 +1,6 @@
 NAME
-     trailz(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Number of trailing zero bits of an integer
+   trailz(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Number of trailing zero
+   bits of an integer
      
 SYNTAX
    result = trailz(i)

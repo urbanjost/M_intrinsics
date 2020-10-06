@@ -1,5 +1,5 @@
 NAME
-     bgt(3f) - [FORTRAN:INTRINSIC:BIT COMPARE] Bitwise greater than
+   bgt(3f) - [FORTRAN:INTRINSIC:BIT COMPARE] Bitwise greater than
      
 SYNTAX
    result = bgt(i, j)

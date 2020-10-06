@@ -1,5 +1,5 @@
 NAME
-     ior(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise logical inclusive or
+   ior(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise logical inclusive or
 
 SYNTAX
    result = ior(i, j)

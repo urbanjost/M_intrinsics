@@ -1,5 +1,6 @@
 NAME
-     any(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines if any of the values in the logical array are true.
+     any(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines if any of the
+     values in the logical array are true.
      
 SYNTAX
    result = any(mask [, dim])

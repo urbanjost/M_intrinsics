@@ -1,5 +1,5 @@
 NAME
-     blt(3f) - [FORTRAN:INTRINSIC:BIT COMPARE] Bitwise less than
+   blt(3f) - [FORTRAN:INTRINSIC:BIT COMPARE] Bitwise less than
      
 SYNTAX
    result = blt(i, j)

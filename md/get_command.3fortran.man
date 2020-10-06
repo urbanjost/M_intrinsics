@@ -1,5 +1,6 @@
 NAME
-     get_command(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get the entire command line
+   get_command(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get the entire
+   command line
 
 SYNTAX
    call get_command([command, length, status])

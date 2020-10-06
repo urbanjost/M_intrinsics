@@ -1,5 +1,6 @@
 NAME
-     acosh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Inverse hyperbolic cosine function
+     acosh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Inverse
+     hyperbolic cosine function
 
 SYNTAX
    result = acosh(x)

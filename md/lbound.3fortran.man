@@ -1,6 +1,7 @@
 NAME
-     lbound(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Lower dimension bounds of an array
-     
+   lbound(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Lower dimension bounds of
+   an array
+
 SYNTAX
    result = lbound(array [, dim [, kind]])
 
@@ -37,8 +38,8 @@ EXAMPLE
           !!integer,intent(in) :: arr(*)  ! cannot be assumed-size array
           integer,intent(in) :: arr(:)
           write(*,*)'MSUB: LOWER=',lbound(arr), &
-	  & 'UPPER=',ubound(arr), &
-	  & 'SIZE=',size(arr)
+          & 'UPPER=',ubound(arr), &
+          & 'SIZE=',size(arr)
        end subroutine msub
     end module m_bounds
 
@@ -59,15 +60,15 @@ EXAMPLE
     contains
        subroutine csub
           write(*,*)'CSUB: LOWER=',lbound(arr), &
-	  & 'UPPER=',ubound(arr), &
-	  & 'SIZE=',size(arr)
+          & 'UPPER=',ubound(arr), &
+          & 'SIZE=',size(arr)
        end subroutine csub
     end
 
     subroutine esub(arr)
     implicit none
     integer,intent(in) :: arr(:)
-       ! WARNING: IF CALLED WITHOUT AN EXPLICIT INTERFACE 
+       ! WARNING: IF CALLED WITHOUT AN EXPLICIT INTERFACE
        ! THIS WILL GIVE UNDEFINED ANSWERS (like 0,0,0)
        write(*,*)'ESUB: LOWER=',lbound(arr), &
        & 'UPPER=',ubound(arr), &

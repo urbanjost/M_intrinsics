@@ -1,5 +1,5 @@
 NAME
-     erf(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Error function
+   erf(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Error function
      
 DESCRIPTION
    erf(x) computes the error function of X, defined as

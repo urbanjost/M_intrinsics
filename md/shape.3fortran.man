@@ -1,5 +1,6 @@
 NAME
-     shape(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Determine the shape of an array
+   shape(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Determine the shape of
+   an array
      
 SYNTAX
    result = shape(source[, kind])

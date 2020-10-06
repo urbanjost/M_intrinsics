@@ -1,5 +1,5 @@
 NAME
-     iachar(3f) - [FORTRAN:INTRINSIC:CHARACTER] Code in ASCII collating sequence
+   iachar(3f) - [FORTRAN:INTRINSIC:CHARACTER] Code in ASCII collating sequence
      
 SYNTAX
    result = iachar(c [, kind])

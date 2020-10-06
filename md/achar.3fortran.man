@@ -1,5 +1,6 @@
 NAME
-     achar(3f) - [FORTRAN:INTRINSIC:CHARACTER] returns a character in a specified position in the ASCII collating sequence
+   achar(3f) - [FORTRAN:INTRINSIC:CHARACTER] returns a character in a specified
+   position in the ASCII collating sequence
 
 SYNTAX
    result = ACHAR(I [, KIND])
@@ -28,7 +29,7 @@ EXAMPLE
     integer :: i
       c = achar(blank)
       write(*,'(i0,1x,a,1x,b0,1x,o0,1x,z0)')blank,c,c,c,c
-      write(*,'(32(a))')(achar(i),i=32,126)
+      write(*,'(32(a))') (achar(i),i=32,126)
     end program demo_achar
 
   Results:
@@ -56,4 +57,3 @@ SEE ALSO
 
    elemental:  adjustl(3), adjustr(3), index(3), len_trim(3), scan(3), verify(3)
    nonelemental:  repeat(3), trim(3)
-

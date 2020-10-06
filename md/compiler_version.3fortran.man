@@ -1,5 +1,6 @@
 NAME
-     compiler_version(3f) - [FORTRAN:INTRINSIC:COMPILER INQUIRY] Compiler version string
+   compiler_version(3f) - [FORTRAN:INTRINSIC:COMPILER INQUIRY] Compiler version
+   string
      
 SYNTAX
    str = compiler_version()

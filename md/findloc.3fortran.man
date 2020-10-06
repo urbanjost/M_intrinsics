@@ -1,6 +1,7 @@
 NAME
-   findloc(3f) - [FORTRAN:INTRINSIC] Location of first element of ARRAY identified by MASK along dimension DIM having a value
-   
+   findloc(3f) - [FORTRAN:INTRINSIC] Location of first element of ARRAY
+   identified by MASK along dimension DIM having a value
+
 SYNOPSIS
   FINDLOC (ARRAY, VALUE, DIM [, MASK, KIND, BACK])
    or
@@ -29,9 +30,9 @@ OPTIONS
           in Table 7.3 for relational intrinsic operations 7.1.5.5.2).
   DIM     shall be an integer scalar with a value in the range 1 DIM n,
           where n is the rank of ARRAY.
-          The corresponding actual argument shall not be an optional dummy 
-	  argument.
-  MASK    (optional) shall be of type logical and shall be conformable 
+          The corresponding actual argument shall not be an optional dummy
+          argument.
+  MASK    (optional) shall be of type logical and shall be conformable
           with ARRAY.
   KIND    (optional) shall be a scalar integer initialization expression.
   BACK    (optional) shall be a logical scalar.
@@ -86,8 +87,8 @@ RESULT
                of the result is equal to
 
                  findloc (array (s1, s2, ..., sdim-1, :, sdim+1, ..., sn ), &
-                 value, dim=1 [, mask = mask (s1, s2, ..., sdim-1, :, 
-		                 sdim+1 ,... , sn )]).
+                 value, dim=1 [, mask = mask (s1, s2, ..., sdim-1, :,
+                                 sdim+1 ,... , sn )]).
 
 EXAMPLE
   Case (i):  The value of

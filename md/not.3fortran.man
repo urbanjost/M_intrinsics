@@ -1,5 +1,5 @@
 NAME
-     not(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Logical negation
+   not(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Logical negation
      
 SYNTAX
    result = not(i)

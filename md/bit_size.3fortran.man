@@ -1,5 +1,5 @@
 NAME
-     bit_size(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Bit size inquiry function
+   bit_size(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Bit size inquiry function
      
 SYNTAX
    result = bit_size(i)

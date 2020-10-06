@@ -1,5 +1,5 @@
 NAME
-     atomic_cas(3f) - [FORTRAN:INTRINSIC:ATOMIC] Atomic compare and swap
+   atomic_cas(3f) - [FORTRAN:INTRINSIC:ATOMIC] Atomic compare and swap
      
 SYNTAX
    call atomic_cas (atom, old, compare, new [, stat])

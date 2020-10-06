@@ -1,5 +1,6 @@
 NAME
-     cosh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Hyperbolic cosine function
+   cosh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Hyperbolic cosine
+   function
      
 SYNTAX
    x = cosh(x)

@@ -1,5 +1,5 @@
 NAME
-     dim(3f) - [FORTRAN:INTRINSIC:NUMERIC] Positive difference
+   dim(3f) - [FORTRAN:INTRINSIC:NUMERIC] Positive difference
      
 SYNTAX
    result = DIM(X, Y)

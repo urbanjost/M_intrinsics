@@ -1,5 +1,6 @@
 NAME
-     pack(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Pack an array into an array of rank one
+   pack(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Pack an array into
+   an array of rank one
      
 SYNTAX
    result = pack(array, mask[,vector])

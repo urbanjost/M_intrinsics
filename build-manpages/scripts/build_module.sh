@@ -34,7 +34,10 @@ done) > /dev/null # help_names.f90
 cd $(dirname $0)
 cd ../../md
 cat <<\EOF
-module M_help_intrinsics
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
+!===================================================================================================================================
+module M_intrinsics
 implicit none
 private
 public help_intrinsics
@@ -43,32 +46,89 @@ public help_intrinsics
 !   module procedure help_intrinsics_one
 !end interface help_intrinsics
 contains
-function help_intrinsics(name) result (textblock)
-character(len=*),intent(in)    :: name
-character(len=:),allocatable  :: textblock(:)
-    if(name.eq.'')then
-       textblock=help_intrinsics_all()
-    else
-       textblock=help_intrinsics_one(name)
-    endif
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
+!===================================================================================================================================
+function help_intrinsics(name,section) result (textblock)
+character(len=*),intent(in)          :: name
+character(len=*),intent(in),optional :: section
+character(len=:),allocatable         :: textblock(:)
+character(len=:),allocatable         :: local_name
+   if(present(section))then
+      local_name='-'//section
+   else
+      local_name=name
+   endif
+   select case(name)
+   case('','fortran','intrinsics')
+      textblock=help_intrinsics_all()
+   case('-name')
+      textblock=help_intrinsics_section()
+   case default
+      textblock=help_intrinsics_one(name)
+   end select
 end function help_intrinsics
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
+!===================================================================================================================================
+function help_intrinsics_section() result (textblock)
 
+!@(#) grab lines in NAME section and append them to generate an index of manpages
+
+character(len=256),allocatable  :: textblock(:)
+character(len=132),allocatable  :: add(:)
+character(len=256),allocatable  :: label
+character(len=10)               :: cnum
+integer                         :: i
+integer                         :: icount
+logical                         :: is_label
+logical                         :: grab
+   allocate(textblock(0))
+   icount=1
+   do
+      write(cnum,'(i0)') icount
+      add=help_intrinsics_one(cnum)
+      if( size(add) .eq. 0 ) exit
+      label=''
+      grab=.false.
+      is_label=.false.
+      do i=1,size(add)
+         if(add(i).ne.'')then
+            is_label=verify(add(i)(1:1),'ABCDEFGHIJKLMNOPQRSTUVWXYZ') == 0
+	 endif
+         if(is_label.and.add(i).eq.'NAME')then
+	    grab=.true.
+         elseif(is_label)then
+            exit
+         elseif(grab)then
+	    label=adjustl(trim(label))//' '//adjustl(trim(add(i)))
+         endif
+      enddo
+      textblock=[character(len=256) :: textblock,label]
+      icount=icount + 1
+   enddo
+end function help_intrinsics_section
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
+!===================================================================================================================================
 function help_intrinsics_all() result (textblock)
 character(len=132),allocatable  :: textblock(:)
 character(len=132),allocatable  :: add(:)
 character(len=10)               :: cnum
 integer                         :: icount
-    allocate(textblock(0))
-    icount=1
-    do
-        write(cnum,'(i0)') icount
-	add=help_intrinsics_one(cnum)
-        if( size(add) .eq. 0 ) exit
-	textblock=[character(len=132) :: textblock,add]
-        icount=icount + 1
-    enddo
+   allocate(textblock(0))
+   icount=1
+   do
+      write(cnum,'(i0)') icount
+      add=help_intrinsics_one(cnum)
+      if( size(add) .eq. 0 ) exit
+      textblock=[character(len=132) :: textblock,add]
+      icount=icount + 1
+   enddo
 end function help_intrinsics_all
-
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
+!===================================================================================================================================
 function help_intrinsics_one(name) result (textblock)
 character(len=*),intent(in)    :: name
 character(len=:),allocatable   :: textblock(:)
@@ -81,7 +141,7 @@ do
    COUNT=$((COUNT+1))
    cat <<EOF
 
-case('$COUNT','$SHORTNAME') 
+case('$COUNT','$SHORTNAME')
 
 textblock=[character(len=132) :: &
 '', &
@@ -91,13 +151,18 @@ EOF
 done
    cat <<\EOF
 case default
-    allocate (character(len=132) :: textblock(0))
+   allocate (character(len=132) :: textblock(0))
 end select
 end function help_intrinsics_one
-
-end module M_help_intrinsics
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
+!===================================================================================================================================
+end module M_intrinsics
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
+!===================================================================================================================================
 EOF
-) #> M_help_intrinsics.f90
+) #> M_intrinsics.f90
 ###########################
 exit
 ###########################

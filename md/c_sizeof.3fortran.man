@@ -1,5 +1,6 @@
 NAME
-   c_sizeof(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Size in bytes of an expression
+   c_sizeof(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Size in bytes of an 
+   expression
      
 SYNTAX
     n = c_sizeof(x)

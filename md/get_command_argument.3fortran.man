@@ -1,5 +1,6 @@
 NAME
-     get_command_argument(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get command line arguments
+   get_command_argument(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get 
+   command line arguments
      
 SYNTAX
    call get_command_argument(number [, value, length, status])

@@ -1,5 +1,6 @@
 NAME
-   verify(3f) - [FORTRAN:INTRINSIC:CHARACTER] Scan a string for the absence of a set of characters
+   verify(3f) - [FORTRAN:INTRINSIC:CHARACTER] Scan a string for the
+   absence of a set of characters
    
 SYNTAX
    result = verify(string, set[, back [, kind]])

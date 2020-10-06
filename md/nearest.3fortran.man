@@ -1,5 +1,6 @@
 NAME
-     nearest(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Nearest representable number
+   nearest(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Nearest
+   representable number
      
 SYNTAX
    result = nearest(x, s)

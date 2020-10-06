@@ -1,5 +1,5 @@
 NAME
-     ishftc(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Shift bits circularly
+   ishftc(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Shift bits circularly
      
 SYNTAX
    result = ishftc(i, shift [, size])

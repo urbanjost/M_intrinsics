@@ -1,5 +1,6 @@
 NAME
-     len_trim(3f) - [FORTRAN:INTRINSIC:CHARACTER] Length of a character entity without trailing blank characters
+     len_trim(3f) - [FORTRAN:INTRINSIC:CHARACTER] Length of a character
+     entity without trailing blank characters
      
 SYNTAX
    result = len_trim(string [, kind])

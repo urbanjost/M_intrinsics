@@ -1,6 +1,7 @@
 NAME
-     unpack(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Store the elements of a vector in an array of higher rank
-     
+   unpack(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Store the elements
+   of a vector in an array of higher rank
+
 SYNTAX
    result = unpack(vector, mask, field)
 

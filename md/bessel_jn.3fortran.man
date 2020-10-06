@@ -1,5 +1,6 @@
 NAME
-     bessel_jn(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the first kind
+   bessel_jn(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the first
+   kind
      
 SYNTAX
 * result = bessel_jn(n, x)

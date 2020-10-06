@@ -1,5 +1,6 @@
 NAME
-     c_funloc(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Obtain the C address of a procedure
+   c_funloc(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Obtain the C address 
+   of a procedure
      
 SYNTAX
     result = c_funloc(x)

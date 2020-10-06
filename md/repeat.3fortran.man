@@ -1,5 +1,5 @@
 NAME
-     repeat(3f) - [FORTRAN:INTRINSIC:CHARACTER] Repeated string concatenation
+   repeat(3f) - [FORTRAN:INTRINSIC:CHARACTER] Repeated string concatenation
      
 SYNTAX
    result = repeat(string, ncopies)

@@ -1,5 +1,6 @@
 NAME
-     associated(3f) - [FORTRAN:INTRINSIC] Status of a pointer or pointer/target pair
+     associated(3f) - [FORTRAN:INTRINSIC] Status of a pointer or 
+     pointer/target pair
      
 SYNTAX
    result = associated(pointer [, target])

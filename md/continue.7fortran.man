@@ -1,5 +1,6 @@
 NAME
-   CONTINUE(7f) - [FORTRAN:EXECUTION_CONTROL] execution of a CONTINUE statement has no effect
+   CONTINUE(7f) - [FORTRAN:EXECUTION_CONTROL] execution of a CONTINUE statement
+   has no effect
 
 SYNOPSIS
    NNNNN continue

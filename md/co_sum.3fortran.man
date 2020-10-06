@@ -1,5 +1,6 @@
 NAME
-     co_sum(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Sum of values on the current set of images
+   co_sum(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Sum of values on the current set
+   of images
      
 SYNTAX
    call co_sum(a [, result_image, stat, errmsg])

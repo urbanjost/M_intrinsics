@@ -1,5 +1,5 @@
 NAME
-     selected_real_kind(3f) - [FORTRAN:INTRINSIC:KIND] Choose real kind
+   selected_real_kind(3f) - [FORTRAN:INTRINSIC:KIND] Choose real kind
      
 SYNTAX
    result = selected_real_kind([p, r, radix])

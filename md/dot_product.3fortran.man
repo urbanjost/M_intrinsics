@@ -1,6 +1,7 @@
 NAME
-     dot_product(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] Dot product function
-     
+   dot_product(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] Dot product
+   function
+
 SYNTAX
    result = dot_product(vector_a, vector_b)
 
@@ -15,10 +16,10 @@ DESCRIPTION
 
 ARGUMENTS
    vector_a    The type shall be numeric or LOGICAL, rank 1.
-   vector_b    The type shall be numeric if vector_a is of numeric type 
+   vector_b    The type shall be numeric if vector_a is of numeric type
                or LOGICAL
-               if vector_a is of type LOGICAL. vector_b shall be a 
-	       rank-one array.
+               if vector_a is of type LOGICAL. vector_b shall be a
+               rank-one array.
 
 RETURN VALUE
    If the arguments are numeric, the return value is a scalar of numeric type,

@@ -1,5 +1,5 @@
 NAME
-     ieor(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise logical exclusive or
+   ieor(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise logical exclusive or
      
 SYNTAX
    result = ieor(i, j)

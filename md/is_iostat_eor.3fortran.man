@@ -1,5 +1,5 @@
 NAME
-     is_iostat_eor(3f) - [FORTRAN:INTRINSIC] Test for end-of-record value
+   is_iostat_eor(3f) - [FORTRAN:INTRINSIC] Test for end-of-record value
      
 SYNTAX
    result = is_iostat_eor(i)

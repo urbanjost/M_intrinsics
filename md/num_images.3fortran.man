@@ -1,5 +1,5 @@
 NAME
-     num_images(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Number of images
+   num_images(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Number of images
      
 SYNTAX
    result = num_images(distance, failed)

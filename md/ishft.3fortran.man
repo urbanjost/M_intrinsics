@@ -1,5 +1,5 @@
 NAME
-     ishft(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Shift bits
+   ishft(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Shift bits
      
 SYNTAX
    result = ishft(i, shift)

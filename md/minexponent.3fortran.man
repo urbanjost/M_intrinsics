@@ -1,5 +1,6 @@
 NAME
-     minexponent(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Minimum exponent of a real kind
+   minexponent(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Minimum exponent
+   of a real kind
      
 SYNTAX
    result = minexponent(x)

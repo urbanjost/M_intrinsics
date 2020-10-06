@@ -1,5 +1,6 @@
 NAME
-     trim(3f) - [FORTRAN:INTRINSIC:CHARACTER] Remove trailing blank characters of a string
+   trim(3f) - [FORTRAN:INTRINSIC:CHARACTER] Remove trailing blank
+   characters of a string
      
 SYNTAX
    result = trim(string)

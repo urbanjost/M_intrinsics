@@ -1,5 +1,6 @@
 NAME
-     co_lbound(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Lower codimension bounds of an array
+   co_lbound(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Lower codimension bounds of
+   an array
      
 SYNTAX
    result = CO_LBOUND(coarray [, dim [, kind]])

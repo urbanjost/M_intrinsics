@@ -1,5 +1,5 @@
 NAME
-     minval(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] Minimum value of an array
+   minval(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] Minimum value of an array
      
 SYNTAX
    result = minval(array, dim [, mask])

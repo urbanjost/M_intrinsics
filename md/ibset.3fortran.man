@@ -1,5 +1,5 @@
 NAME
-     ibset(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Set bit
+   ibset(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Set bit
      
 SYNTAX
    result = ibset(i, pos)

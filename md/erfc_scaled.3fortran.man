@@ -1,5 +1,5 @@
 NAME
-     erfc_scaled(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Error function
+   erfc_scaled(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Error function
      
 DESCRIPTION
 

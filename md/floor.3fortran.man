@@ -1,5 +1,5 @@
 NAME
-     floor(3f) - [FORTRAN:INTRINSIC:NUMERIC] Integer floor function
+   floor(3f) - [FORTRAN:INTRINSIC:NUMERIC] Integer floor function
      
 DESCRIPTION
    floor(a) returns the greatest integer less than or equal to X.

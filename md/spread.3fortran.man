@@ -1,5 +1,6 @@
 NAME
-     spread(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Add a dimension to an array
+   spread(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Add a dimension
+   to an array
      
 SYNTAX
    result = spread(source, dim, ncopies)

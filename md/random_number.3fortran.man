@@ -1,5 +1,6 @@
 NAME
-     random_number(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:RANDOM] Pseudo-random number
+   random_number(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:RANDOM]
+   Pseudo-random number
      
 SYNTAX
    random_number(harvest)

@@ -1,5 +1,6 @@
 NAME
-     system_clock(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Return numeric data from a real-time clock.
+   system_clock(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Return
+   numeric data from a real-time clock.
      
 SYNTAX
   subroutine system_clock([count, count_rate, count_max])

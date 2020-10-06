@@ -1,5 +1,6 @@
 NAME
-   return(7f) - [FORTRAN:STATEMENT] completes execution of the instance of the subprogram in which it appears
+   return(7f) - [FORTRAN:STATEMENT] completes execution of the instance
+   of the subprogram in which it appears
 
 SYNOPSIS
    RETURN [scalar-int-expr]

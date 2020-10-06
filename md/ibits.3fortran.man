@@ -1,5 +1,5 @@
 NAME
-     ibits(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bit extraction
+   ibits(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bit extraction
      
 SYNTAX
    result = ibits(i, pos, len)

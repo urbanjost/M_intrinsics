@@ -1,5 +1,5 @@
 NAME
-     is_iostat_end(3f) - [FORTRAN:INTRINSIC] Test for end-of-file value
+   is_iostat_end(3f) - [FORTRAN:INTRINSIC] Test for end-of-file value
      
 SYNTAX
   function is_iostat_end(i)

@@ -1,5 +1,5 @@
 NAME
-     rank(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Rank of a data object
+   rank(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Rank of a data object
      
 SYNTAX
    result = rank(a)

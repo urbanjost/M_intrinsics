@@ -1,5 +1,6 @@
 NAME
-     atomic_ref(3f) - [FORTRAN:INTRINSIC:ATOMIC] Obtaining the value of a variable atomically
+   atomic_ref(3f) - [FORTRAN:INTRINSIC:ATOMIC] Obtaining the value of a 
+   variable atomically
      
 SYNTAX
    call atomic_ref(value, atom [, stat])

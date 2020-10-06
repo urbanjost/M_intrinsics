@@ -1,5 +1,5 @@
 NAME
-     iand(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise logical and
+   iand(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise logical and
 
 SYNTAX
    result = iand(i, j)

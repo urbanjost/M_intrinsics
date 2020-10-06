@@ -1,5 +1,5 @@
 NAME
-     storage_size(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Storage size in bits
+   storage_size(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Storage size in bits
      
 SYNTAX
    result = storage_size(a [, kind])

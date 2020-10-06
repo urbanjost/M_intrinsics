@@ -1,5 +1,6 @@
 NAME
-     scan(3f) - [FORTRAN:INTRINSIC:CHARACTER] Scan a string for the presence of a set of characters
+   scan(3f) - [FORTRAN:INTRINSIC:CHARACTER] Scan a string for the presence
+   of a set of characters
      
 SYNTAX
    result = scan(string, set[, back [, kind]])

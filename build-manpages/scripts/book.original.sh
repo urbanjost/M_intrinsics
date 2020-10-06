@@ -1,11 +1,58 @@
+#!/bin/bash
+#@(#) given a topic string for current man(1) path build document
+####################################################################################################################################
+INDX(){
+#set -x
+export TOPIC="$1" NAME
+export SECTION="$2"
+export TOPHTML=${TOPHTML:-tmp/html}
+export MAN_CMD=${MAN_CMD:-mank}
+HTML >$TOPHTML/BOOK_$TOPIC.html
+(
+   echo 'function loadthem(){'
+   if [ "$TOPIC" = 'INDEX' ]
+   then
+      (
+         cd $TOPHTML
+         # make sure sort(1) does not sort case-insensitive
+         find . -type f -name 'BOOK_*.html' |env LC_ALL=C /usr/bin/sort
+      )
+   else
+      # make sure sort(1) does not sort case-insensitive
+      (
+        echo "$TOPIC.3${SECTION}.html"
+	# put section 3 topics first
+        $MAN_CMD -k "\[${TOPIC}\>"|env LC_ALL=C /usr/bin/sort -k 2r,2r -k 1,1|grep -i "(3${TOPIC})"
+	# put non-section 3 topics next
+        $MAN_CMD -k "\[${TOPIC}\>"|env LC_ALL=C /usr/bin/sort -k 2r,2r -k 1,1|grep -vi "(3${TOPIC})"
+      )|tr -d '()'| awk '{printf "%s.%s.html\n",$1,$2}'
+   fi| uniq|while read NAME
+   do
+      if [ -r "$TOPHTML/$NAME" ]
+      then
+         echo "append(\"$NAME\");"
+      fi
+   done
+   echo '}'
+) > $TOPHTML/$TOPIC.js
+}
+####################################################################################################################################
+HTML(){
+cat <<\EOF
 <html>
 <head>
 <meta name="Copyright" content="Images, text, datasets, and content (c) Copyright John S. Urban, 2002. All rights reserved.">
 <meta name="generator" content="vi(1)/vim(1)" />
-<meta name="description" content="@(#)M_time::BOOK_M_time: BOOK composed of pages for man(1) topic M_time"/>
-<meta name="author"      content="urbanjs" />
-<meta name="date"        content="2020-07-05" />
+EOF
+####################################################################################################################################
+cat <<EOF
+<meta name="description" content="@(#)$TOPIC::BOOK_$TOPIC: BOOK composed of pages for man(1) topic $TOPIC"/>
+<meta name="author"      content="$(logname)" />
+<meta name="date"        content="$(date +%Y-%m-%d)" />
 <meta name="keywords"    content="Fortran, Fortran code, source code repository, Fortran library, Fortran archive, source code" />
+EOF
+####################################################################################################################################
+cat <<\EOF
 <!--
    Pick your favorite style sheet from among the eight offerings:
    Chocolate, Midnight, Modernist, Oldstyle, Steely, Swiss, Traditional, and Ultramarine.
@@ -172,7 +219,13 @@ function get_cookie ( cookie_name )
 <!--
 -->
 
-<script language="JavaScript" type="text/javascript" src="M_time.js"> </script>
+EOF
+
+cat <<EOF
+<script language="JavaScript" type="text/javascript" src="$TOPIC.js"> </script>
+EOF
+
+cat <<\EOF
 <script language="JavaScript1.1"  type="text/javascript">
 //<![CDATA[
 /* ============================================================================================================================== */
@@ -291,3 +344,14 @@ loadthem();
 </script>
 </div>
 </body>
+EOF
+}
+####################################################################################################################################
+BOOKNAME=$1
+SECTION=$2
+   echo 'Creating book '"$BOOKNAME"
+   banner.sh $BOOKNAME
+   INDX $BOOKNAME $SECTION
+####################################################################################################################################
+exit
+####################################################################################################################################

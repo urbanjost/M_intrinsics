@@ -1,5 +1,6 @@
 NAME
-     atomic_or(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic bitwise OR operation
+   atomic_or(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic bitwise
+   OR operation
      
 SYNTAX
    call atomic_or(atom, value [, stat])

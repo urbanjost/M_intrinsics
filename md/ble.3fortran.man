@@ -1,5 +1,5 @@
 NAME
-     ble(3f) - [FORTRAN:INTRINSIC:BIT COMPARE] Bitwise less than or equal to
+   ble(3f) - [FORTRAN:INTRINSIC:BIT COMPARE] Bitwise less than or equal to
      
 DESCRIPTION
    Determines whether an integer is bitwise less than or equal to another.

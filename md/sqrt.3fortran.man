@@ -1,5 +1,5 @@
 NAME
-     sqrt(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Square-root function
+   sqrt(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Square-root function
      
 SYNTAX
    result = sqrt(x)

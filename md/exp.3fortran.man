@@ -1,5 +1,5 @@
 NAME
-     exp(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Exponential function
+   exp(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Exponential function
      
 SYNTAX
    result = exp(x)

@@ -1,5 +1,5 @@
 NAME
-     nint(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Nearest whole number
+   nint(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Nearest whole number
      
 SYNTAX
    result = nint(x [, kind])

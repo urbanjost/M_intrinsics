@@ -1,8 +1,8 @@
 NAME
-    include(7f) - [FORTRAN] including source text
+   include(7f) - [FORTRAN] including source text
   
 SYNOPSIS
-    INCLUDE char-literal-constant
+   INCLUDE char-literal-constant
 DESCRIPTION
   Additional text may be incorporated into the source text of a program
   unit during processing. This is accomplished with the INCLUDE line,

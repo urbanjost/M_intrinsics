@@ -1,5 +1,5 @@
 NAME
-     selected_int_kind(3f) - [FORTRAN:INTRINSIC:KIND] Choose integer kind
+   selected_int_kind(3f) - [FORTRAN:INTRINSIC:KIND] Choose integer kind
      
 SYNTAX
    result = selected_int_kind(r)

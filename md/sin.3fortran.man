@@ -1,5 +1,5 @@
 NAME
-     sin(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Sine function
+   sin(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Sine function
 
 SYNTAX
    result = sin(x)

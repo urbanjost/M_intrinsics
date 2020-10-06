@@ -1,5 +1,5 @@
 NAME
-    shiftr(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] shift bits right
+   shiftr(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] shift bits right
     
 SYNTAX
    result = SHIFTR(I, SHIFT)

@@ -1,5 +1,5 @@
 NAME
-     char(3f) - [FORTRAN:INTRINSIC:CHARACTER] Character conversion function
+   char(3f) - [FORTRAN:INTRINSIC:CHARACTER] Character conversion function
      
 SYNTAX
    result = char(i [, kind])
