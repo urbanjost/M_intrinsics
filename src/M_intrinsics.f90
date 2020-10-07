@@ -1178,10 +1178,10 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '   program demo_atomic_add', &
-'     use iso_fortran_env', &
-'     implicit none', &
-'     integer(atomic_int_kind) :: atom[*]', &
-'     call atomic_add (atom[1], this_image())', &
+'   use iso_fortran_env', &
+'   implicit none', &
+'   integer(atomic_int_kind) :: atom[*]', &
+'      call atomic_add (atom[1], this_image())', &
 '   end program demo_atomic_add', &
 '', &
 'STANDARD', &
@@ -1228,10 +1228,10 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '   program demo_atomic_and', &
-'     use iso_fortran_env', &
-'     implicit none', &
-'     integer(atomic_int_kind) :: atom[*]', &
-'     call atomic_and(atom[1], int(b''10100011101''))', &
+'   use iso_fortran_env', &
+'   implicit none', &
+'   integer(atomic_int_kind) :: atom[*]', &
+'      call atomic_and(atom[1], int(b''10100011101''))', &
 '   end program demo_atomic_and', &
 '', &
 'STANDARD', &
@@ -1281,10 +1281,10 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '   program demo_atomic_cas', &
-'     use iso_fortran_env', &
-'     implicit none', &
-'     logical(atomic_logical_kind) :: atom[*], prev', &
-'     call atomic_cas(atom[1], prev, .false., .true.)', &
+'   use iso_fortran_env', &
+'   implicit none', &
+'   logical(atomic_logical_kind) :: atom[*], prev', &
+'      call atomic_cas(atom[1], prev, .false., .true.)', &
 '   end program demo_atomic_cas', &
 '', &
 'STANDARD', &
@@ -1329,10 +1329,10 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '   program demo_atomic_define', &
-'     use iso_fortran_env', &
-'     implicit none', &
-'     integer(atomic_int_kind) :: atom[*]', &
-'     call atomic_define(atom[1], this_image())', &
+'   use iso_fortran_env', &
+'   implicit none', &
+'   integer(atomic_int_kind) :: atom[*]', &
+'      call atomic_define(atom[1], this_image())', &
 '   end program demo_atomic_define', &
 '', &
 'STANDARD', &
@@ -1383,7 +1383,7 @@ textblock=[character(len=132) :: &
 '   use iso_fortran_env', &
 '   implicit none', &
 '   integer(atomic_int_kind) :: atom[*], old', &
-'     call atomic_add(atom[1], this_image(), old)', &
+'      call atomic_add(atom[1], this_image(), old)', &
 '   end program demo_atomic_fetch_add', &
 '', &
 'STANDARD', &
@@ -1435,7 +1435,7 @@ textblock=[character(len=132) :: &
 '   use iso_fortran_env', &
 '   implicit none', &
 '   integer(atomic_int_kind) :: atom[*], old', &
-'     call atomic_fetch_and (atom[1], int(b''10100011101''), old)', &
+'      call atomic_fetch_and (atom[1], int(b''10100011101''), old)', &
 '   end program demo_atomic_fetch_and', &
 '', &
 'STANDARD', &
@@ -1486,7 +1486,7 @@ textblock=[character(len=132) :: &
 '   use iso_fortran_env', &
 '   implicit none', &
 '   integer(atomic_int_kind) :: atom[*], old', &
-'     call atomic_fetch_or(atom[1], int(b''10100011101''), old)', &
+'      call atomic_fetch_or(atom[1], int(b''10100011101''), old)', &
 '   end program demo_atomic_fetch_or', &
 '', &
 'STANDARD', &
@@ -1537,7 +1537,7 @@ textblock=[character(len=132) :: &
 '   use iso_fortran_env', &
 '   implicit none', &
 '   integer(atomic_int_kind) :: atom[*], old', &
-'     call atomic_fetch_xor (atom[1], int(b''10100011101''), old)', &
+'      call atomic_fetch_xor (atom[1], int(b''10100011101''), old)', &
 '   end program demo_atomic_fetch_xor', &
 '', &
 'STANDARD', &
@@ -1584,10 +1584,10 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '   program demo_atomic_or', &
-'     use iso_fortran_env', &
-'     implicit none', &
-'     integer(atomic_int_kind) :: atom[*]', &
-'     call atomic_or(atom[1], int(b''10100011101''))', &
+'   use iso_fortran_env', &
+'   implicit none', &
+'   integer(atomic_int_kind) :: atom[*]', &
+'      call atomic_or(atom[1], int(b''10100011101''))', &
 '   end program demo_atomic_or', &
 '', &
 'STANDARD', &
@@ -1615,13 +1615,13 @@ textblock=[character(len=132) :: &
 '', &
 'DESCRIPTION', &
 '', &
-'   atomic_ref(atom, value) atomically assigns the value of the variable', &
+'   atomic_ref(VALUE, ATOM ) atomically assigns the value of the variable', &
 '   ATOM to VALUE. When STAT is present and the invocation was', &
 '   successful, it is assigned the value 0. If it is present and the', &
 '   invocation has failed, it is assigned a positive value; in particular,', &
 '   for a coindexed ATOM, if the remote image has stopped, it is', &
-'   assigned the value of iso_fortran_env''s stat_stopped_image and if', &
-'   the remote image has failed, the value stat_failed_image.', &
+'   assigned the value of iso_fortran_env''s STAT_STOPPED_IMAGE and if', &
+'   the remote image has failed, the value STAT_FAILED_IMAGE.', &
 '', &
 'ARGUMENTS', &
 '  VALUE    Scalar of the same type as ATOM. If the kind', &
@@ -1635,16 +1635,16 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '   program demo_atomic_ref', &
-'     use iso_fortran_env', &
-'     implicit none', &
-'     logical(atomic_logical_kind) :: atom[*]', &
-'     logical :: val', &
-'     call atomic_ref(atom, .false.)', &
-'     ! ...', &
-'     call atomic_ref(atom, val)', &
-'     if (val) then', &
-'       print *, "Obtained"', &
-'     end if', &
+'   use iso_fortran_env', &
+'   implicit none', &
+'   logical(atomic_logical_kind) :: atom[*]', &
+'   logical :: val', &
+'      call atomic_ref( val, atom[1] )', &
+'      ! ...', &
+'      call atomic_ref( val, atom[1] )', &
+'      if (val) then', &
+'         print *, "Obtained"', &
+'      endif', &
 '   end program demo_atomic_ref', &
 '', &
 'STANDARD', &
@@ -1692,10 +1692,10 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '   program demo_atomic_xor', &
-'     use iso_fortran_env', &
-'     implicit none', &
-'     integer(atomic_int_kind) :: atom[*]', &
-'     call atomic_xor(atom[1], int(b''10100011101''))', &
+'   use iso_fortran_env', &
+'   implicit none', &
+'   integer(atomic_int_kind) :: atom[*]', &
+'      call atomic_xor(atom[1], int(b''10100011101''))', &
 '   end program demo_atomic_xor', &
 '', &
 'STANDARD', &
@@ -10588,8 +10588,8 @@ textblock=[character(len=132) :: &
 ' Sample:', &
 '', &
 '  program demo_stop', &
-'  implicit none', &
 '  use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT', &
+'  implicit none', &
 '  integer :: stopcode', &
 '  ! Normal terminations', &
 '     ! A STOP with no parameter is a normal termination and generally', &
@@ -10693,12 +10693,12 @@ textblock=[character(len=132) :: &
 'EXAMPLE', &
 '  Sample program:', &
 '', &
-'    program demo_sum', &
+'    program simple_sum', &
 '    implicit none', &
 '      integer :: x(5) = [ 1, 2, 3, 4 ,5 ]', &
 '      print *, sum(x)                        ! all elements, sum = 15', &
 '      print *, sum(x, mask=mod(x, 2)==1)     ! odd elements, sum = 9', &
-'    end program demo_sum', &
+'    end program simple_sum', &
 '', &
 '  Demonstrate Fortran 90 SUM function with MASK option', &
 '', &

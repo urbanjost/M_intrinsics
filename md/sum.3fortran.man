@@ -29,12 +29,12 @@ RETURN VALUE
 EXAMPLE
   Sample program:
 
-    program demo_sum
+    program simple_sum
     implicit none
       integer :: x(5) = [ 1, 2, 3, 4 ,5 ]
       print *, sum(x)                        ! all elements, sum = 15
       print *, sum(x, mask=mod(x, 2)==1)     ! odd elements, sum = 9
-    end program demo_sum
+    end program simple_sum
 
   Demonstrate Fortran 90 SUM function with MASK option
 

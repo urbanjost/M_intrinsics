@@ -1,6 +1,6 @@
          program demo_stop
-         implicit none
          use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT
+         implicit none
          integer :: stopcode
          ! Normal terminations
             ! A STOP with no parameter is a normal termination and generally
