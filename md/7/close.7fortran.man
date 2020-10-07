@@ -1,11 +1,14 @@
 NAME
-   CLOSE(7f) - [FORTRAN:IO] terminate the connection of a specified unit to an external file.
+   CLOSE(7f) - [FORTRAN:IO] terminate the connection of a specified unit
+   to an external file.
    
-
 SYNOPSIS
-   CLOSE ( [UNIT= ] file-unit-number, [IOSTAT= scalar-int-variable,]
+   CLOSE ( [UNIT= ] file-unit-number,
 
-    [IOMSG= iomsg-variable,] [ERR= label,] [STATUS= scalar-default-char-expr]
+    [IOSTAT= scalar-int-variable,]
+    [IOMSG= iomsg-variable,] 
+    [ERR= label,] 
+    [STATUS= scalar-default-char-expr]
    )
 
 DESCRIPTION
@@ -129,4 +132,3 @@ EXAMPLE
          stop 2
       endif
    end program demo_close
-

@@ -1,10 +1,13 @@
 NAME
-   IMPLICIT(7f) - [FORTRAN:STATEMENT]  specify default type (if any) associated to a starting letter
+   IMPLICIT(7f) - [FORTRAN:STATEMENT]  specify default type (if any) 
+   associated to a starting letter
    
 SYNOPSIS
     IMPLICIT [NONE]|[declaration-type-spec (letter-spec-list)]
-    determine default mapping between between the first letter of a data entity and a type.
+
 DESCRIPTION
+   Determine default mapping between the first letter of a data entity
+   and a type.
 
    Every data entity has a type. If a type is not explicitly assigned to
    a variable or function it will (by default) be assigned one according
@@ -26,9 +29,9 @@ DESCRIPTION
    rules to determine what type names are that have not been explicitly
    declared).
 
-   In most new code implicit typing is turned off either with an "IMPLICIT
-   NONE" or sometimes by a compiler switch. On the other hand, the majority
-   of pre-fortran90 code depends on implicit defaults.
+   In most new code implicit typing is turned off either with an
+   "IMPLICIT NONE" or sometimes by a compiler switch. On the other hand,
+   the majority of pre-fortran90 code depends on implicit defaults.
 
    Each prefix letter may have the type assigned to it declared only
    once in a unit.
@@ -73,26 +76,29 @@ DESCRIPTION
   function subprogram.
 
 OPTIONS
-    NONE            If IMPLICIT NONE is specified in a scoping unit, it shall precede any PARAMETER statements
-                    that appear in the scoping unit and there shall be no other IMPLICIT statements in the scoping unit.
-      or
-    declaration-type-spec
+    NONE         If IMPLICIT NONE is specified in a scoping unit,
+                 it shall precede any PARAMETER statements
+                 that appear in the scoping unit and there shall be
+                 no other IMPLICIT statements in the scoping unit.
 
-    letter-spec      is (letter-or-range[,letter-or-range] [,letter-or-range] )
-                     If the minus and second letter appear, the second
-                     letter shall follow the first letter alphabetically.
-                     A letter-spec consisting of two letter s separated by
-                     a minus is equivalent to writing a list containing
-                     all of the letters in alphabetical order in the
-                     alphabetic sequence from the first letter through
-                     the second letter. For example, A-C is equivalent
-                     to A, B, C. The same letter shall not appear as a
-                     single letter, or be included in a range of letters,
-                     more than once in all of the IMPLICIT statements
-                     in a scoping unit.
+                  or
+
+                 declaration-type-spec
+
+    letter-spec  is (letter-or-range[,letter-or-range] [,letter-or-range] )
+                 If the minus and second letter appear, the second
+                 letter shall follow the first letter alphabetically.
+                 A letter-spec consisting of two letter s separated by
+                 a minus is equivalent to writing a list containing
+                 all of the letters in alphabetical order in the
+                 alphabetic sequence from the first letter through
+                 the second letter. For example, A-C is equivalent
+                 to A, B, C. The same letter shall not appear as a
+                 single letter, or be included in a range of letters,
+                 more than once in all of the IMPLICIT statements
+                 in a scoping unit.
 
 EXAMPLE
-
   The following are examples of the use of IMPLICIT statements:
 
         module example_module
@@ -138,7 +144,8 @@ EXAMPLE
            end subroutine sub3
         end subroutine sub
 
-        The following is an example of a mapping to a derived type that is inaccessible in the local scope:
+   The following is an example of a mapping to a derived type that is
+   inaccessible in the local scope:
 
               program main
                 implicit type(blob) (a)
@@ -156,6 +163,7 @@ EXAMPLE
                 end subroutine steve
               end program main
 
-        In the subroutine STEVE, it is not possible to explicitly declare a variable to be of type BLOB because
-        BLOB has been given a different meaning, but implicit mapping for the letter A still maps to type BLOB,
-        so AA is of type BLOB.
+   In the subroutine STEVE, it is not possible to explicitly declare a
+   variable to be of type BLOB because BLOB has been given a different
+   meaning, but implicit mapping for the letter A still maps to type BLOB,
+   so AA is of type BLOB.

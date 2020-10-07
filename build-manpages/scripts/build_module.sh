@@ -49,21 +49,28 @@ contains
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
-function help_intrinsics(name,section) result (textblock)
-character(len=*),intent(in)          :: name
-character(len=*),intent(in),optional :: section
-character(len=:),allocatable         :: textblock(:)
-character(len=:),allocatable         :: local_name
-   if(present(section))then
-      local_name='-'//section
-   else
-      local_name=name
-   endif
+function help_intrinsics(name) result (textblock)
+character(len=*),intent(in)    :: name
+character(len=:),allocatable   :: textblock(:)
+character(len=:),allocatable   :: a, b, c
+character(len=:),allocatable   :: local_name
+integer                        :: i, p, pg
    select case(name)
-   case('','fortran','intrinsics')
+   case('','manual','intrinsics')
       textblock=help_intrinsics_all()
-   case('-name')
+   case('fortran','toc')
       textblock=help_intrinsics_section()
+      do i=1,size(textblock)
+         p = index(textblock(i), '[') 
+	 pg = index(textblock(i), ']') 
+	 if(p.gt.0.and.pg.gt.p)then
+	  a=textblock(i)(:p-1)
+	  b=textblock(i)(p:pg)
+	  c=textblock(i)(pg+1:)
+	  textblock(i)=b//' '//a//c
+	 endif
+      enddo
+      call sort_name(textblock)
    case default
       textblock=help_intrinsics_one(name)
    end select
@@ -154,6 +161,59 @@ case default
    allocate (character(len=132) :: textblock(0))
 end select
 end function help_intrinsics_one
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
+!===================================================================================================================================
+subroutine sort_name(lines)
+!@(#) sort_name(3fp):sort strings(a-z) over specified field using shell sort starting with [ character
+character(len = *)                :: lines(:)
+   character(len = :),allocatable :: ihold
+   integer                        :: n, igap, i, j, k, jg 
+   n = size(lines)
+   if(n.gt.0)then
+      allocate(character(len = len(lines(1))) :: ihold)
+   else
+      ihold = ''
+   endif
+   igap = n
+   INFINITE: do
+      igap = igap/2
+      if(igap.eq.0) exit INFINITE
+      k = n-igap
+      i = 1
+      INNER: do
+         j = i
+         INSIDE: do
+            jg = j+igap
+            if( lle( lower(lines(j)), lower(lines(jg)) ) )exit INSIDE
+            ihold = lines(j)
+            lines(j) = lines(jg)
+            lines(jg) = ihold
+            j = j-igap
+            if(j.lt.1) exit INSIDE
+         enddo INSIDE
+         i = i+1
+         if(i.gt.k) exit INNER
+      enddo INNER
+   enddo INFINITE
+end subroutine sort_name
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
+!===================================================================================================================================
+elemental pure function lower(str) result (string)
+!@(#) M_strings::lower(3f): Changes a string to lowercase over specified range
+character(*), intent(In)     :: str
+character(len(str))          :: string
+integer                      :: i
+   string = str
+   do i = 1, len_trim(str)     ! step thru each letter in the string 
+      select case (str(i:i))
+      case ('A':'Z')
+         string(i:i) = char(iachar(str(i:i))+32) ! change letter to miniscule
+      case default
+      end select
+   end do
+end function lower
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================

@@ -2,7 +2,6 @@ NAME
    where(7f) - [FORTRAN:ASSIGNMENT] masked array assignment
            
 SYNTAX
-
   WHERE statement:
 
    WHERE ( mask-expr ) where-assignment-stmt
@@ -26,11 +25,10 @@ SYNTAX
      END WHERE [where-construct-name]
 
 DESCRIPTION
-
    A masked array assignment is either a WHERE statement or a WHERE
    construct. It is used to mask the evaluation of expressions and
-   assignment of values in array assignment statements, according to the
-   value of a logical array expression.
+   assignment of values in array assignment statements, according to
+   the value of a logical array expression.
 
    where-assignment-stmt that is a defined assignment shall be elemental.
 
