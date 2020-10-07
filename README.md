@@ -1,6 +1,6 @@
 ## NAME
 
-   # INTRINSICS_PROJECT(7f) - [FORTRAN] intrinsic manpages
+   # M_intrinsics(7f) - [FORTRAN] intrinsic manpages
 
 ## DESCRIPTION
 
