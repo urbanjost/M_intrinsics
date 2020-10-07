@@ -1,0 +1,71 @@
+From INTEL.
+An abbreviation for the value of an expression that does not change or an alias for a long variable name
+Just like A=value if an expression, stays constant
+If variable can actually have value changed.
+Confusing.
+
+
+ASSOCIATE
+Statement:
+Marks the beginning of an ASSOCIATE construct. The ASSOCIATE construct creates a temporary association between a named entity and a variable or the value of an expression. The association lasts for the duration of the block.
+[
+name
+:]
+ASSOCIATE
+(
+assoc-entity
+[,
+assoc-entity
+]
+...
+)
+   
+block
+END ASSOCIATE
+[
+name
+]
+
+name
+    (Optional) Is the name of the ASSOCIATE construct.
+assoc-entity
+    Is associate-name
+    => selector
+
+    associate-name
+        Is an identifier that becomes associated with the selector. It becomes the associating entity. The identifier name must be unique within the construct.
+    selector
+        Is an expression or variable. It becomes the associated entity.
+
+block
+    Is a sequence of zero or more statements or constructs.
+
+Description
+If a construct name is specified at the beginning of an ASSOCIATE statement, the same name must appear in the corresponding END ASSOCIATE statement. The same construct name must not be used for different named constructs in the same scoping unit. If no name is specified at the beginning of an ASSOCIATE statement, you cannot specify one following the END ASSOCIATE statement.
+During execution of the block within the construct, each associate-name
+identifies an entity, which is associated with the corresponding selector
+. The associating entity assumes the declared type and type parameters of the selector.
+You can only branch to an END ASSOCIATE statement from within its ASSOCIATE construct.
+This construct is useful when you want to simplify multiple accesses to a variable that has a lengthy description; for example, if the variable contains multiple subscripts and component names.
+Example
+The following shows an expression as a selector:
+
+ASSOCIATE (O => (A-F)**2 + (B+G)**2)
+  PRINT *, SQRT (O)
+END ASSOCIATE
+
+The following shows association with an array section:
+
+ASSOCIATE (ARRAY => AB % D (I, :) % X)
+  ARRAY (3) = ARRAY (1) + ARRAY (2)
+END ASSOCIATE
+
+Without the ASSOCIATE construct, this is what you would need to write:
+
+AB % D (I, 3) % X = AB % D (I, 1) % X + AB % D (I, 2) % X
+
+Construct Association
+Additional Attributes Of Associate Names
+Assignment - Intrinsic
+ASSOCIATED
+

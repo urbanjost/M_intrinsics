@@ -20,7 +20,7 @@ character(len=:),allocatable   :: a, b, c
 character(len=:),allocatable   :: local_name
 integer                        :: i, p, pg
    select case(name)
-   case('','manual','intrinsics')
+   case('','manual','intrinsics','fortranmanual')
       textblock=help_intrinsics_all()
    case('fortran','toc')
       textblock=help_intrinsics_section()
