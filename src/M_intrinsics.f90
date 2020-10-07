@@ -2846,7 +2846,7 @@ textblock=[character(len=132) :: &
 '     integer :: val(3)', &
 '     if (this_image() == 1) then', &
 '       val = [1, 5, 3]', &
-'     end if', &
+'     endif', &
 '     call co_broadcast (val, source_image=1)', &
 '     print *, this_image(), ":", val', &
 '   end program demo_co_broadcast', &
@@ -2935,7 +2935,7 @@ textblock=[character(len=132) :: &
 '     call co_max(val, result_image=1)', &
 '     if (this_image() == 1) then', &
 '       write(*,*) "Maximal value", val  ! prints num_images()', &
-'     end if', &
+'     endif', &
 '   end program demo_co_max', &
 '', &
 'STANDARD', &
@@ -2990,7 +2990,7 @@ textblock=[character(len=132) :: &
 '     call co_min(val, result_image=1)', &
 '     if (this_image() == 1) then', &
 '       write(*,*) "Minimal value", val  ! prints 1', &
-'     end if', &
+'     endif', &
 '   end program demo_co_min', &
 '', &
 'STANDARD', &
@@ -3321,7 +3321,7 @@ textblock=[character(len=132) :: &
 '     call co_reduce(val, result_image=1, operator=myprod)', &
 '     if (this_image() == 1) then', &
 '       write(*,*) "Product value", val  ! prints num_images() factorial', &
-'     end if', &
+'     endif', &
 '   contains', &
 '     pure function myprod(a, b)', &
 '       integer, value :: a, b', &
@@ -4434,7 +4434,7 @@ textblock=[character(len=132) :: &
 '       if (cnt > 0) write(*,*) "Value has been set"', &
 '     elseif (this_image() == 2) then', &
 '       event post(event_value_has_been_set[1])', &
-'     end if', &
+'     endif', &
 '   end program demo_event_query', &
 '', &
 'STANDARD', &
@@ -8432,7 +8432,7 @@ textblock=[character(len=132) :: &
 '        do i = 1, num_images()', &
 '          write(*,''(2(a,i0))'') ''value['', i, ''] is '', value[i]', &
 '        end do', &
-'      end if', &
+'      endif', &
 '   end program demo_num_images', &
 '', &
 'STANDARD', &
@@ -10958,7 +10958,7 @@ textblock=[character(len=132) :: &
 '        do i = 1, num_images()', &
 '          write(*,''(2(a,i0))'') ''value['', i, ''] is '', value[i]', &
 '        end do', &
-'      end if', &
+'      endif', &
 '   end program demo_this_image', &
 '   !', &
 '   ! Check whether the current image is the initial image', &

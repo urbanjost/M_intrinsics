@@ -33,7 +33,7 @@ EXAMPLE
        if (cnt > 0) write(*,*) "Value has been set"
      elseif (this_image() == 2) then
        event post(event_value_has_been_set[1])
-     end if
+     endif
    end program demo_event_query
 
 STANDARD

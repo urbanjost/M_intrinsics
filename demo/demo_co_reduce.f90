@@ -5,7 +5,7 @@
             call co_reduce(val, result_image=1, operator=myprod)
             if (this_image() == 1) then
               write(*,*) "Product value", val  ! prints num_images() factorial
-            end if
+            endif
           contains
             pure function myprod(a, b)
               integer, value :: a, b
