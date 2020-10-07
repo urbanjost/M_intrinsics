@@ -1,0 +1,83 @@
+NAME
+   BACKSPACE(7f) - [FORTRAN:FILE_POSITIONING] - backspace one record on 
+   specified I/O unit
+   
+SYNOPSIS
+   BACKSPACE file-unit-number
+   BACKSPACE ([UNIT=]file-unit-number][,IOMSG=iomsg-variable]
+   [,IOSTAT=scalar-int-variable][,ERR=label])
+DESCRIPTION
+   Execution of a BACKSPACE statement causes the file connected to the
+   specified unit to be positioned before the current record if there
+   is a current record, or before the preceding record if there is no
+   current record. If the file is at its initial point, the position of
+   the file is not changed.
+
+   BACKSPACE works with typical files being accessed sequential but
+   does not work with standard input from a terminal and other similiar
+   file types.
+
+   It is usually used when a program has partially read a line and
+   then wants to go back and reread the line using the information
+   from the first read.  Backspacing can be very inefficient (Note that
+   positioning to specific records in direct access files is typically
+   much faster). It is usually better to read the line into a CHARACTER
+   variable and then read from the variable multiple times using an
+   internal READ, or parsing the string.
+
+   Backspacing over records written using list-directed or namelist
+   formatting is prohibited. It will usually work, but since the compiler
+   is free to write list-directed or namelist output on a varying number
+   of lines it is not supported, as it is not certain what data is on
+   which line.
+
+   Backspacing a file that is connected but does not exist is prohibited.
+
+   If a BACKSPACE statement causes the implicit writing of an endfile
+   record, the file is positioned before the record that precedes the
+   endfile record.
+
+   If the preceding record is an endfile record, the file is positioned
+   before the endfile record.
+
+OPTIONS
+   UNIT     unit number of file to backspace one line on.
+            A unit open for direct access or unformatted access cannot
+            be referenced by a BACKSPACE.
+   IOSTAT   a compiler-specific number that indicates an error occurred
+            if non-zero.
+   IOMSG    a message describing error IOSTAT if IOSTAT is not zero.
+   ERR      a label number to jump to if an error occurs
+
+EXAMPLE
+  An example of a BACKSPACE statement is:
+
+   program demo_backspace
+   implicit none
+   character(len=256) :: line
+   character(len=256) :: mssge
+   integer            :: i
+   integer            :: ios
+      open(10,file='demo_backspace.txt') ! open a file
+      do i=1,100                         ! write lines to it
+         write(10,'(a,i0)') 'line ',i
+      enddo
+      do i=1,10                          ! back up several lines
+         backspace(10, iostat=ios,iomsg=mssge)
+         if(ios.ne.0)then
+                 write(*,'(*(a))') '*demo_backspace* ERROR:',mssge
+         endif
+      enddo
+      read(10,'(a)')line
+      write(*,*)'back at a previous record !'
+      write(*,'(1x,a)')line
+      !! writing new line will truncate file to current record position
+      close(10,status='delete')
+   end program demo_backspace
+
+  Expected Results:
+
+    back at a previous record !
+    line 91
+
+ JSU
