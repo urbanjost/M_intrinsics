@@ -57,10 +57,10 @@ manpage source is maintained as flat-text files which are
 * run thru txt2man(1) to create the *roff file as a manpage
 * and then thru manserver(1) or groff (typically) to create an additional
   HTML file as collected in
-   - a simple [index of intrinsics](https://urbanjost.github.io/fortran-intrinsic-manpages/index3.html)
-     and [index of statements](https://urbanjost.github.io/fortran-intrinsic-manpages/index7.html)
+   - a simple [index of intrinsics](https://urbanjost.github.io/M_intrinsics/index3.html)
+     and [index of statements](https://urbanjost.github.io/M_intrinsics/index7.html)
    - These are collected into a single document using javascript:
-     [BOOK_FORTRAN](https://urbanjost.github.io/fortran-intrinsic-manpages/BOOK_FORTRAN.html).
+     [BOOK_FORTRAN](https://urbanjost.github.io/M_intrinsics/BOOK_FORTRAN.html).
 
 * the example programs are extracted into the test/ directory.
 
@@ -84,7 +84,7 @@ _Collaborators are welcome_.  This is a public github repository. Anyone
 can contribute, and is encouraged to do so. First, obtain a copy of
 the repository:
 ```bash
-    git clone https://github.com/urbanjost/fortran-intrinsic-manpages.git
+    git clone https://github.com/urbanjost/M_intrinsics.git
 ```
 ### MINIMAL CHANGES
 
@@ -129,7 +129,7 @@ this might change.
 ## RESPONSES
 
 Discussion is welcome here as well as at
- - [Fortran Discourse](https://fortran-lang.discourse.group/t/fortran-intrinsic-manpages/160/)
+ - [Fortran Discourse](https://fortran-lang.discourse.group/t/M_intrinsics/160/)
  - [Fortran Wiki](http://fortranwiki.org)
  - [Google Fortran newsgroup](https://groups.google.com/forum/#!forum/comp.lang.fortran)
 

@@ -33,7 +33,7 @@ all: roff
 	do\
 	   [ -s "$$NAME" ] || echo $$(basename $$NAME .f90);\
 	done|xargs -n 5|column -t
-	bash scripts/build_module.sh > ../src/M_intrinsics.f90
+	bash scripts/build_module.sh|expand|sed -e 's/  *$//' > ../src/M_intrinsics.f90
 	make.one libGPF
 	: that is all folks!
 

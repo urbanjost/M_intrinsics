@@ -53,7 +53,6 @@ function help_intrinsics(name) result (textblock)
 character(len=*),intent(in)    :: name
 character(len=:),allocatable   :: textblock(:)
 character(len=:),allocatable   :: a, b, c
-character(len=:),allocatable   :: local_name
 integer                        :: i, p, pg
    select case(name)
    case('','manual','intrinsics','fortranmanual')
@@ -61,14 +60,14 @@ integer                        :: i, p, pg
    case('fortran','toc')
       textblock=help_intrinsics_section()
       do i=1,size(textblock)
-         p = index(textblock(i), '[') 
-	 pg = index(textblock(i), ']') 
-	 if(p.gt.0.and.pg.gt.p)then
-	  a=textblock(i)(:p-1)
-	  b=textblock(i)(p:pg)
-	  c=textblock(i)(pg+1:)
-	  textblock(i)=b//' '//a//c
-	 endif
+         p = index(textblock(i), '[')
+         pg = index(textblock(i), ']')
+         if(p.gt.0.and.pg.gt.p)then
+          a=textblock(i)(:p-1)
+          b=textblock(i)(p:pg)
+          c=textblock(i)(pg+1:)
+          textblock(i)=b//' '//a//c
+         endif
       enddo
       call sort_name(textblock)
    case default
@@ -102,13 +101,13 @@ logical                         :: grab
       do i=1,size(add)
          if(add(i).ne.'')then
             is_label=verify(add(i)(1:1),'ABCDEFGHIJKLMNOPQRSTUVWXYZ') == 0
-	 endif
+         endif
          if(is_label.and.add(i).eq.'NAME')then
-	    grab=.true.
+            grab=.true.
          elseif(is_label)then
             exit
          elseif(grab)then
-	    label=adjustl(trim(label))//' '//adjustl(trim(add(i)))
+            label=adjustl(trim(label))//' '//adjustl(trim(add(i)))
          endif
       enddo
       textblock=[character(len=256) :: textblock,label]
@@ -168,7 +167,7 @@ subroutine sort_name(lines)
 !@(#) sort_name(3fp):sort strings(a-z) over specified field using shell sort starting with [ character
 character(len = *)                :: lines(:)
    character(len = :),allocatable :: ihold
-   integer                        :: n, igap, i, j, k, jg 
+   integer                        :: n, igap, i, j, k, jg
    n = size(lines)
    if(n.gt.0)then
       allocate(character(len = len(lines(1))) :: ihold)
@@ -206,7 +205,7 @@ character(*), intent(In)     :: str
 character(len(str))          :: string
 integer                      :: i
    string = str
-   do i = 1, len_trim(str)     ! step thru each letter in the string 
+   do i = 1, len_trim(str)     ! step thru each letter in the string
       select case (str(i:i))
       case ('A':'Z')
          string(i:i) = char(iachar(str(i:i))+32) ! change letter to miniscule

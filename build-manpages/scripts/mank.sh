@@ -15,7 +15,7 @@ SECTION=${1:-3}
 header.sh # create header for document including CSS style
 #----------------------------------------------------------------------------------------------------------------------------------#
 cat <<EOF
-<a href="https://github.com/urbanjost/fortran-intrinsic-manpages">[UP]</a>
+<a href="https://github.com/urbanjost/M_intrinsics">[UP]</a>
 <h1>$DOCUMENT_HEADER</h1>
 EOF
 #----------------------------------------------------------------------------------------------------------------------------------#
