@@ -7,7 +7,7 @@ SYNTAX
 
      character(len=*),intent(in) :: STRING
      character(len=*),intent(in) :: SUBSTRING
-     logical,intent(in),optional :: bACK
+     logical,intent(in),optional :: BACK
      integer,intent(in),optional :: KIND
      integer(kind=KIND)          :: START
 

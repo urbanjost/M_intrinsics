@@ -7,7 +7,7 @@
                   function haversine(latA,lonA,latB,lonB) result (dist)
                   !
                   ! calculate great circle distance in kilometers
-                  ! given latitute and longitude in degrees
+                  ! given latitude and longitude in degrees
                   !
                   real,intent(in) :: latA,lonA,latB,lonB
                   real :: a,c,dist,delta_lat,delta_lon,lat1,lat2

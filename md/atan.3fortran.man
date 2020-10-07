@@ -17,7 +17,7 @@ ARGUMENTS
 RETURN VALUE
    The return value is of the same type and kind as X.
    If Y is present, the result is identical to atan2(y,x).
-   Otherwise, it the arcus tangent of X, where the real part of
+   Otherwise, it the arc tangent of X, where the real part of
    the result is in radians and lies in the range
 
    -PI/2 <= atan(x) <= PI/2.

@@ -46,7 +46,7 @@ EXAMPLES
       enddo
       write(*,*)'I=',i,' J=',j
    
-      ! EXIT an outmost loop from inner loop by using a construct name
+      ! EXIT an outermost loop from inner loop by using a construct name
       OUTER: do i=1,10
          INNER: do j=100, 200
             if(j .eq. 150) exit OUTER ! exit named loop "i"

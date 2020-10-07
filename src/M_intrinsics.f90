@@ -17,7 +17,6 @@ function help_intrinsics(name) result (textblock)
 character(len=*),intent(in)    :: name
 character(len=:),allocatable   :: textblock(:)
 character(len=:),allocatable   :: a, b, c
-character(len=:),allocatable   :: local_name
 integer                        :: i, p, pg
    select case(name)
    case('','manual','intrinsics','fortranmanual')
@@ -1079,7 +1078,7 @@ textblock=[character(len=132) :: &
 'RETURN VALUE', &
 '   The return value is of the same type and kind as X.', &
 '   If Y is present, the result is identical to atan2(y,x).', &
-'   Otherwise, it the arcus tangent of X, where the real part of', &
+'   Otherwise, it the arc tangent of X, where the real part of', &
 '   the result is in radians and lies in the range', &
 '', &
 '   -PI/2 <= atan(x) <= PI/2.', &
@@ -1730,7 +1729,7 @@ textblock=[character(len=132) :: &
 '   the file is not changed.', &
 '', &
 '   BACKSPACE works with typical files being accessed sequential but', &
-'   does not work with standard input from a terminal and other similiar', &
+'   does not work with standard input from a terminal and other similar', &
 '   file types.', &
 '', &
 '   It is usually used when a program has partially read a line and', &
@@ -4598,7 +4597,7 @@ textblock=[character(len=132) :: &
 '      enddo', &
 '      write(*,*)''I='',i,'' J='',j', &
 '   ', &
-'      ! EXIT an outmost loop from inner loop by using a construct name', &
+'      ! EXIT an outermost loop from inner loop by using a construct name', &
 '      OUTER: do i=1,10', &
 '         INNER: do j=100, 200', &
 '            if(j .eq. 150) exit OUTER ! exit named loop "i"', &
@@ -5959,7 +5958,7 @@ textblock=[character(len=132) :: &
 '  An INCLUDE line shall appear on a single source line where a statement', &
 '  may appear (many compilers support an extension allowing continuation', &
 '  lines to be supported); it must be the only nonblank text on the line', &
-'  other than an optional trailing comment (no statment label is allowed).', &
+'  other than an optional trailing comment (no statement label is allowed).', &
 '  So here are some bad ideas', &
 '', &
 '      INCLUDE "filename";I=10 ! NO: multiple statements on line', &
@@ -6039,7 +6038,7 @@ textblock=[character(len=132) :: &
 '', &
 '     character(len=*),intent(in) :: STRING', &
 '     character(len=*),intent(in) :: SUBSTRING', &
-'     logical,intent(in),optional :: bACK', &
+'     logical,intent(in),optional :: BACK', &
 '     integer,intent(in),optional :: KIND', &
 '     integer(kind=KIND)          :: START', &
 '', &
@@ -10040,7 +10039,7 @@ textblock=[character(len=132) :: &
 '', &
 '   which converted to floating-point values in degrees is:', &
 '', &
-'          Latitute Longitude', &
+'          Latitude Longitude', &
 '     BNA   36.12,   -86.67', &
 '     LAX   33.94,   -118.40', &
 '', &
@@ -10058,7 +10057,7 @@ textblock=[character(len=132) :: &
 '    function haversine(latA,lonA,latB,lonB) result (dist)', &
 '    !', &
 '    ! calculate great circle distance in kilometers', &
-'    ! given latitute and longitude in degrees', &
+'    ! given latitude and longitude in degrees', &
 '    !', &
 '    real,intent(in) :: latA,lonA,latB,lonB', &
 '    real :: a,c,dist,delta_lat,delta_lon,lat1,lat2', &

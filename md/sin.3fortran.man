@@ -45,7 +45,7 @@ EXAMPLE
 
    which converted to floating-point values in degrees is:
 
-          Latitute Longitude
+          Latitude Longitude
      BNA   36.12,   -86.67
      LAX   33.94,   -118.40
 
@@ -63,7 +63,7 @@ EXAMPLE
     function haversine(latA,lonA,latB,lonB) result (dist)
     !
     ! calculate great circle distance in kilometers
-    ! given latitute and longitude in degrees
+    ! given latitude and longitude in degrees
     !
     real,intent(in) :: latA,lonA,latB,lonB
     real :: a,c,dist,delta_lat,delta_lon,lat1,lat2

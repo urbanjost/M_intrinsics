@@ -45,7 +45,7 @@ DESCRIPTION
   An INCLUDE line shall appear on a single source line where a statement
   may appear (many compilers support an extension allowing continuation
   lines to be supported); it must be the only nonblank text on the line
-  other than an optional trailing comment (no statment label is allowed).
+  other than an optional trailing comment (no statement label is allowed).
   So here are some bad ideas
 
       INCLUDE "filename";I=10 ! NO: multiple statements on line
