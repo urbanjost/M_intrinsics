@@ -15,7 +15,7 @@ ARGUMENTS
    MASK       Shall be of type LOGICAL.
 
 RETURN VALUE
-   The result is of the same type and type parameters as TSOURCE.  For any
+   The result is of the same type and type parameters as TSOURCE. For any
    element the result is TSOURCE if MASK is true and FSOURCE otherwise.
 
 EXAMPLES

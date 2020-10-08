@@ -29,7 +29,7 @@ DESCRIPTION
   least treat it as a simple filename.
 
   Where the compiler searches for the filename is
-  implementation-dependent.  All current implementations appear to at
+  implementation-dependent. All current implementations appear to at
   least search for the file in the same directory as the file containing
   the INCLUDE statement if it is not a complete filepath specification. It
   is common but not required that other directories are searched as

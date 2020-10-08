@@ -8,7 +8,7 @@ SYNTAX
 
 DESCRIPTION
    bessel_jn(n, x) computes the [[Bessel function]] of the first kind
-   of order N of X.  If N and X are arrays, their ranks and shapes
+   of order N of X. If N and X are arrays, their ranks and shapes
    shall conform.
 
    bessel_jn(n1, n2, x) returns an array with the [[Bessel function|Bessel

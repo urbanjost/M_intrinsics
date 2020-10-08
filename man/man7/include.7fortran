@@ -48,9 +48,7 @@ That being said, all current implementations appear to at
 least treat it as a simple filename.
 .PP
 Where the compiler searches for the filename is
-.TP
-.B implementation-dependent.
-All current implementations appear to at
+implementation-dependent. All current implementations appear to at
 least search for the file in the same directory as the file containing
 the \fBINCLUDE\fP statement if it is not a complete filepath specification. It
 is common but not required that other directories are searched as

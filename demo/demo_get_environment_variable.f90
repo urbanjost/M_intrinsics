@@ -8,9 +8,9 @@
             call get_environment_variable(var, length=howbig,status=stat)
             select case (stat)
             case (1)
-               print *, "HOME is not defined in the environment.  Strange..."
+               print *, "HOME is not defined in the environment. Strange..."
             case (2)
-               print *, "This processor doesn't support environment variables.  Boooh!"
+               print *, "This processor doesn't support environment variables. Boooh!"
             case default
                ! make string to hold value of sufficient size
                allocate(character(len=howbig) :: homedir)

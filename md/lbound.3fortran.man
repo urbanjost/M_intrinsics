@@ -17,7 +17,7 @@ ARGUMENTS
 
 RETURN VALUE
    The return value is of type INTEGER and of kind KIND. If KIND is
-   absent, the return value is of default integer kind.  If DIM is absent,
+   absent, the return value is of default integer kind. If DIM is absent,
    the result is an array of the lower bounds of ARRAY. If DIM is present,
    the result is a scalar corresponding to the lower bound of the array
    along that dimension. If ARRAY is an expression rather than a whole

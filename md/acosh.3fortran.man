@@ -12,7 +12,7 @@ ARGUMENTS
    X    the type shall be REAL or COMPLEX.
 
 RETURN VALUE
-  The return value has the same type and kind as X.  If X is complex,
+  The return value has the same type and kind as X. If X is complex,
   the imaginary part of the result is in radians and lies between
 
       0 <= AIMAG(ACOSH(X)) <= PI.

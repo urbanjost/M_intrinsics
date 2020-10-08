@@ -304,7 +304,7 @@ textblock=[character(len=132) :: &
 '   X    the type shall be REAL or COMPLEX.', &
 '', &
 'RETURN VALUE', &
-'  The return value has the same type and kind as X.  If X is complex,', &
+'  The return value has the same type and kind as X. If X is complex,', &
 '  the imaginary part of the result is in radians and lies between', &
 '', &
 '      0 <= AIMAG(ACOSH(X)) <= PI.', &
@@ -1734,7 +1734,7 @@ textblock=[character(len=132) :: &
 '', &
 '   It is usually used when a program has partially read a line and', &
 '   then wants to go back and reread the line using the information', &
-'   from the first read.  Backspacing can be very inefficient (Note that', &
+'   from the first read. Backspacing can be very inefficient (Note that', &
 '   positioning to specific records in direct access files is typically', &
 '   much faster). It is usually better to read the line into a CHARACTER', &
 '   variable and then read from the variable multiple times using an', &
@@ -1900,7 +1900,7 @@ textblock=[character(len=132) :: &
 '', &
 'DESCRIPTION', &
 '   bessel_jn(n, x) computes the [[Bessel function]] of the first kind', &
-'   of order N of X.  If N and X are arrays, their ranks and shapes', &
+'   of order N of X. If N and X are arrays, their ranks and shapes', &
 '   shall conform.', &
 '', &
 '   bessel_jn(n1, n2, x) returns an array with the [[Bessel function|Bessel', &
@@ -2688,7 +2688,7 @@ textblock=[character(len=132) :: &
 '   but this will not work for variables. You must use the CMPLX function.', &
 '', &
 '   CMPLX(X [, Y [, KIND]]) returns a complex number where X is converted', &
-'   to the real component.  If X is complex then Y must not be present.', &
+'   to the real component. If X is complex then Y must not be present.', &
 '   If Y is present it is converted to the imaginary component. If Y is', &
 '   not present then the imaginary component is set to 0.0.', &
 '', &
@@ -3688,7 +3688,7 @@ textblock=[character(len=132) :: &
 '   cshift(array, shift [, dim]) performs a circular shift on elements', &
 '   of ARRAY along the dimension of DIM. If DIM is omitted it is taken', &
 '   to be 1. DIM is a scalar of type INTEGER in the range of 1 <= DIM <=', &
-'   n, where "n" is the rank of ARRAY.  If the rank of ARRAY is one,', &
+'   n, where "n" is the rank of ARRAY. If the rank of ARRAY is one,', &
 '   then all elements of ARRAY are shifted by SHIFT places. If rank is', &
 '   greater than one, then all complete rank one sections of ARRAY along', &
 '   the given dimension are shifted. Elements shifted out one end of each', &
@@ -5285,7 +5285,7 @@ textblock=[character(len=132) :: &
 '               Argument LENGTH contains the length needed for storing', &
 '               the environment variable NAME or zero if it is not present.', &
 '   STATUS      (Optional) Shall be a scalar of type INTEGER and of', &
-'               default kind.  STATUS is -1 if VALUE is present but too', &
+'               default kind. STATUS is -1 if VALUE is present but too', &
 '               short for the environment variable;', &
 '               it is 1 if the environment variable does not exist', &
 '               and 2 if the processor does not support environment variables;', &
@@ -5308,9 +5308,9 @@ textblock=[character(len=132) :: &
 '     call get_environment_variable(var, length=howbig,status=stat)', &
 '     select case (stat)', &
 '     case (1)', &
-'        print *, "HOME is not defined in the environment.  Strange..."', &
+'        print *, "HOME is not defined in the environment. Strange..."', &
 '     case (2)', &
-'        print *, "This processor doesn''t support environment variables.  Boooh!"', &
+'        print *, "This processor doesn''t support environment variables. Boooh!"', &
 '     case default', &
 '        ! make string to hold value of sufficient size', &
 '        allocate(character(len=howbig) :: homedir)', &
@@ -5942,7 +5942,7 @@ textblock=[character(len=132) :: &
 '  least treat it as a simple filename.', &
 '', &
 '  Where the compiler searches for the filename is', &
-'  implementation-dependent.  All current implementations appear to at', &
+'  implementation-dependent. All current implementations appear to at', &
 '  least search for the file in the same directory as the file containing', &
 '  the INCLUDE statement if it is not a complete filepath specification. It', &
 '  is common but not required that other directories are searched as', &
@@ -6558,7 +6558,7 @@ textblock=[character(len=132) :: &
 '', &
 'RETURN VALUE', &
 '   The return value is of type INTEGER and of kind KIND. If KIND is', &
-'   absent, the return value is of default integer kind.  If DIM is absent,', &
+'   absent, the return value is of default integer kind. If DIM is absent,', &
 '   the result is an array of the lower bounds of ARRAY. If DIM is present,', &
 '   the result is a scalar corresponding to the lower bound of the array', &
 '   along that dimension. If ARRAY is an expression rather than a whole', &
@@ -7661,7 +7661,7 @@ textblock=[character(len=132) :: &
 '   MASK       Shall be of type LOGICAL.', &
 '', &
 'RETURN VALUE', &
-'   The result is of the same type and type parameters as TSOURCE.  For any', &
+'   The result is of the same type and type parameters as TSOURCE. For any', &
 '   element the result is TSOURCE if MASK is true and FSOURCE otherwise.', &
 '', &
 'EXAMPLES', &
