@@ -32,7 +32,7 @@ Get the VALUE of the environmental variable NAME.
 Note that \fBget_environment_variable\fP(3f) need not be thread-safe. It is
 the responsibility of the user to ensure that the environment is not
 being updated concurrently.
-.SH OPTIONS  
+.SH OPTIONS
 .TP
 .B NAME
 (Optional) Shall be a scalar of type CHARACTER and of

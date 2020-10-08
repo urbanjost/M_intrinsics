@@ -1,6 +1,6 @@
            program demo_cshift
            implicit none
-               integer, dimension(3,3) :: a
+           integer, dimension(3,3) :: a
                a = reshape( [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], [ 3, 3 ])
                print '(3i3)', a(1,:)
                print '(3i3)', a(2,:)

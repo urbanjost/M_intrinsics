@@ -45,7 +45,7 @@ Samples:
    implicit none
    integer :: i, j
    logical :: big
-      ! EXIT a simple loop 
+      ! EXIT a simple loop
       do i=1, 10
          if(i .eq. 4) exit ! exit loop
       enddo

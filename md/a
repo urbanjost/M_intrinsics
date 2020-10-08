@@ -1,6 +1,0 @@
-IFS=''
-while read LINE
-do
-read LINE
-echo "$LINE"
-done

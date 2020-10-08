@@ -57,7 +57,7 @@ Sample program:
 .SH STANDARD
 [[Fortran 2008]] and later
 .SH CLASS
-[[Elemental function]], 
+[[Elemental function]],
 except for the transformational variant \fBbessel_jn\fP(n1, n2, x).
 .SH SEE ALSO
 \fBbessel_j0\fP(3), \fBbessel_j1\fP(3), \fBbessel_y0\fP(3), \fBbessel_y1\fP(3), \fBbessel_yn\fP(3)

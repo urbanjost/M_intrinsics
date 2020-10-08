@@ -53,7 +53,7 @@ Sample program:
 .fam T
 .fi
 .SH STANDARD
-[[Fortran 2008]] and later. With DISTANCE or FAILED argument, 
+[[Fortran 2008]] and later. With DISTANCE or FAILED argument,
 [[TS 18508]] or later
 .SH CLASS
 Transformational function

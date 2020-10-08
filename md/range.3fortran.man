@@ -19,7 +19,13 @@ RETURN VALUE
 EXAMPLE
   Sample program:
 
-   See [[precision]] for an example.
+    program demo_range
+    implicit none
+    real(kind=4) :: x(2)
+    complex(kind=8) :: y
+       print *, precision(x), range(x)
+       print *, precision(y), range(y)
+    end program demo_range
 
 STANDARD
    [[Fortran 95]] and later
@@ -29,3 +35,4 @@ CLASS
 
 SEE ALSO
    selected_real_kind(3), precision(3)
+

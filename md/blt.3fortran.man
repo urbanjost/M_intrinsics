@@ -22,4 +22,3 @@ CLASS
 
 SEE ALSO
    bge(3), bgt(3), ble(3)
-

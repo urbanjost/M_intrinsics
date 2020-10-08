@@ -109,7 +109,7 @@ case('1','abs')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     abs(3f) - [FORTRAN:INTRINSIC:NUMERIC] Absolute value', &
+'   abs(3f) - [FORTRAN:INTRINSIC:NUMERIC] Absolute value', &
 '', &
 'SYNTAX', &
 '   result = ABS(A)', &
@@ -271,7 +271,7 @@ textblock=[character(len=132) :: &
 '', &
 '  Results:', &
 '', &
-'    acos(  0.86599999999999999      ) is   0.52364958093182890     ', &
+'    acos(  0.86599999999999999      ) is   0.52364958093182890', &
 '    90 degrees is    1.5707963267948966       radians', &
 '    180 degrees is    3.1415926535897931       radians', &
 '    for reference PI= 3.14159265358979323846264338327950288419716939937510', &
@@ -291,8 +291,8 @@ case('4','acosh')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     acosh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Inverse', &
-'     hyperbolic cosine function', &
+'   acosh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Inverse', &
+'   hyperbolic cosine function', &
 '', &
 'SYNTAX', &
 '   result = acosh(x)', &
@@ -304,8 +304,8 @@ textblock=[character(len=132) :: &
 '   X    the type shall be REAL or COMPLEX.', &
 '', &
 'RETURN VALUE', &
-'  The return value has the same type and kind as X. If X is complex,', &
-'  the imaginary part of the result is in radians and lies between', &
+'   The return value has the same type and kind as X. If X is complex,', &
+'   the imaginary part of the result is in radians and lies between', &
 '', &
 '      0 <= AIMAG(ACOSH(X)) <= PI.', &
 '', &
@@ -333,7 +333,7 @@ case('5','adjustl')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     adjustl(3f) - [FORTRAN:INTRINSIC:CHARACTER] Left adjust a string', &
+'   adjustl(3f) - [FORTRAN:INTRINSIC:CHARACTER] Left adjust a string', &
 '', &
 'SYNTAX', &
 '   result = ADJUSTL(STRING)', &
@@ -355,9 +355,9 @@ textblock=[character(len=132) :: &
 '', &
 '    program demo_adjustl', &
 '    implicit none', &
-'      character(len=20) :: str = ''   gfortran''', &
-'      str = adjustl(str)', &
-'      print *, str', &
+'    character(len=20) :: str = ''   gfortran''', &
+'       str = adjustl(str)', &
+'       print *, str', &
 '    end program demo_adjustl', &
 '', &
 'STANDARD', &
@@ -370,7 +370,7 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'   elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
 '                  scan(3), verify(3)', &
 '   nonelemental:  repeat(3), trim(3)', &
 '', &
@@ -381,8 +381,8 @@ case('6','adjustr')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     adjustr(3f) - [FORTRAN:INTRINSIC:CHARACTER] Right adjust a string', &
-'     ', &
+'   adjustr(3f) - [FORTRAN:INTRINSIC:CHARACTER] Right adjust a string', &
+'', &
 'SYNTAX', &
 '   result = ADJUSTR(STRING)', &
 '', &
@@ -403,9 +403,9 @@ textblock=[character(len=132) :: &
 '', &
 '    program demo_adjustr', &
 '    implicit none', &
-'      character(len=20) :: str = ''gfortran''', &
-'      str = adjustr(str)', &
-'      print *, str', &
+'    character(len=20) :: str = ''gfortran''', &
+'       str = adjustr(str)', &
+'       print *, str', &
 '    end program demo_adjustr', &
 '', &
 'STANDARD', &
@@ -418,7 +418,7 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'   elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
 '                  scan(3), verify(3)', &
 '   nonelemental:  repeat(3), trim(3)', &
 '', &
@@ -429,9 +429,9 @@ case('7','aimag')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     aimag(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Imaginary part of complex', &
-'     number', &
-'     ', &
+'   aimag(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Imaginary part of complex', &
+'   number', &
+'', &
 'SYNTAX', &
 '   result = AIMAG(Z)', &
 '', &
@@ -455,11 +455,11 @@ textblock=[character(len=132) :: &
 '    use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
 '    & real32, real64, real128', &
 '    implicit none', &
-'      complex(kind=real32) z4', &
-'      complex(kind=real64) z8', &
-'      z4 = cmplx(1.e0, 0.e0)', &
-'      z8 = cmplx(0.e0_real64, 1.e0_real64,kind=real64)', &
-'      print *, aimag(z4), aimag(z8)', &
+'    complex(kind=real32) z4', &
+'    complex(kind=real64) z8', &
+'       z4 = cmplx(1.e0, 0.e0)', &
+'       z8 = cmplx(0.e0_real64, 1.e0_real64,kind=real64)', &
+'       print *, aimag(z4), aimag(z8)', &
 '    end program demo_aimag', &
 '', &
 'STANDARD', &
@@ -474,8 +474,8 @@ case('8','aint')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     aint(3f) - [FORTRAN:INTRINSIC:NUMERIC] Truncate to a whole number', &
-'     ', &
+'   aint(3f) - [FORTRAN:INTRINSIC:NUMERIC] Truncate to a whole number', &
+'', &
 'SYNTAX', &
 '   result = AINT(A [, KIND])', &
 '', &
@@ -504,10 +504,10 @@ textblock=[character(len=132) :: &
 '    implicit none', &
 '    real ::  x4', &
 '    real(kind=real64) :: x8', &
-'      x4 = 1.234E0_4', &
-'      x8 = 4.321_real64', &
-'      print *, aint(x4), dint(x8)', &
-'      x8 = aint(x4,kind=real64)', &
+'       x4 = 1.234E0_4', &
+'       x8 = 4.321_real64', &
+'       print *, aint(x4), dint(x8)', &
+'       x8 = aint(x4,kind=real64)', &
 '    end program demo_aint', &
 '', &
 'STANDARD', &
@@ -523,9 +523,9 @@ case('9','all')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     all(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines if all the ', &
-'     values are true', &
-'     ', &
+'   all(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines if all the', &
+'   values are true', &
+'', &
 'SYNTAX', &
 '   result = ALL(MASK [, DIM])', &
 '', &
@@ -582,13 +582,13 @@ textblock=[character(len=132) :: &
 '', &
 '    program demo_all', &
 '    implicit none', &
-'      logical l', &
-'      l = all([.true., .true., .true.])', &
-'      print *, l', &
-'      call section', &
+'    logical l', &
+'       l = all([.true., .true., .true.])', &
+'       print *, l', &
+'       call section', &
 '    contains', &
 '       subroutine section', &
-'          integer a(2,3), b(2,3)', &
+'       integer a(2,3), b(2,3)', &
 '          a = 1', &
 '          b = 1', &
 '          b(2,2) = 2', &
@@ -632,9 +632,9 @@ case('10','allocated')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     allocated(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Status of an ', &
-'     allocatable entity', &
-'     ', &
+'   allocated(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Status of an', &
+'   allocatable entity', &
+'', &
 'SYNTAX', &
 '   * result = ALLOCATED(ARRAY)', &
 '   * result = ALLOCATED(SCALAR)', &
@@ -657,9 +657,9 @@ textblock=[character(len=132) :: &
 '', &
 '    program demo_allocated', &
 '    implicit none', &
-'      integer :: i = 4', &
-'      real(4), allocatable :: x(:)', &
-'      if (allocated(x) .eqv. .false.) allocate(x(i))', &
+'    integer :: i = 4', &
+'    real(4), allocatable :: x(:)', &
+'       if (allocated(x) .eqv. .false.) allocate(x(i))', &
 '    end program demo_allocated', &
 '', &
 'STANDARD', &
@@ -679,8 +679,8 @@ case('11','anint')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     anint(3f) - [FORTRAN:INTRINSIC:NUMERIC] Nearest whole number', &
-'     ', &
+'   anint(3f) - [FORTRAN:INTRINSIC:NUMERIC] Nearest whole number', &
+'', &
 'SYNTAX', &
 '   result = anint(a [, kind])', &
 '', &
@@ -706,12 +706,12 @@ textblock=[character(len=132) :: &
 '    use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
 '    & real32, real64, real128', &
 '    implicit none', &
-'      real(kind=real32) :: x4', &
-'      real(kind=real64) :: x8', &
-'      x4 = 1.234E0_real32', &
-'      x8 = 4.321_real64', &
-'      print *, anint(x4), dnint(x8)', &
-'      x8 = anint(x4,kind=real64)', &
+'    real(kind=real32) :: x4', &
+'    real(kind=real64) :: x8', &
+'       x4 = 1.234E0_real32', &
+'       x8 = 4.321_real64', &
+'       print *, anint(x4), dnint(x8)', &
+'       x8 = anint(x4,kind=real64)', &
 '    end program demo_anint', &
 '', &
 'STANDARD', &
@@ -726,9 +726,9 @@ case('12','any')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     any(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines if any of the', &
-'     values in the logical array are true.', &
-'     ', &
+'   any(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines if any of the', &
+'   values in the logical array are true.', &
+'', &
 'SYNTAX', &
 '   result = any(mask [, dim])', &
 '', &
@@ -761,19 +761,19 @@ textblock=[character(len=132) :: &
 '', &
 '    program demo_any', &
 '    implicit none', &
-'      logical l', &
-'      l = any([.true., .true., .true.])', &
-'      print *, l', &
-'      call section', &
-'      contains', &
-'        subroutine section', &
-'          integer a(2,3), b(2,3)', &
-'          a = 1', &
-'          b = 1', &
-'          b(2,2) = 2', &
-'          print *, any(a .eq. b, 1)', &
-'          print *, any(a .eq. b, 2)', &
-'        end subroutine section', &
+'    logical l', &
+'       l = any([.true., .true., .true.])', &
+'       print *, l', &
+'       call section', &
+'       contains', &
+'         subroutine section', &
+'         integer a(2,3), b(2,3)', &
+'           a = 1', &
+'           b = 1', &
+'           b(2,2) = 2', &
+'           print *, any(a .eq. b, 1)', &
+'           print *, any(a .eq. b, 2)', &
+'         end subroutine section', &
 '    end program demo_any', &
 '', &
 'STANDARD', &
@@ -789,13 +789,13 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   asin(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Arcsine function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = asin(X)', &
 '', &
 'DESCRIPTION', &
 '   asin(x) computes the arcsine of its argument X.', &
-'   ', &
+'', &
 '   The arcsine is the inverse function of the sine function. It is', &
 '   commonly used in trigonometry when trying to find the angle when the', &
 '   lengths of the hypotenuse and the opposite side of a right triangle', &
@@ -814,21 +814,21 @@ textblock=[character(len=132) :: &
 '   The arcsine will allow you to find the measure of a right angle when', &
 '   you know the ratio of the side opposite the angle to the hypotenuse.', &
 '', &
-'   So if you knew that a train track rose 1.25 vertical miles on a track', &
-'   that was 50 miles long, you could determine the average angle of', &
-'   incline of the track using the arcsine. Given', &
-'  ', &
-'    sin(Θ) = 1.25 miles/50 miles (opposite/hypotenuse) ', &
+'   So if you knew that a train track rose 1.25 vertical miles on a', &
+'   track that was 50 miles long, you could determine the average angle', &
+'   of incline of the track using the arcsine. Given', &
+'', &
+'    sin(Θ) = 1.25 miles/50 miles (opposite/hypotenuse)', &
 '', &
 '    program demo_asin', &
 '    use, intrinsic :: iso_fortran_env, only : dp=>real64', &
 '    implicit none', &
 '    ! value to convert degrees to radians', &
 '    real(kind=dp),parameter :: D2R=acos(-1.0_dp)/180.0_dp', &
-'    real(kind=dp)           :: angle, rise, run ', &
-'      ! given sine(Θ) = 1.25 miles/50 miles (opposite/hypotenuse) ', &
+'    real(kind=dp)           :: angle, rise, run', &
+'      ! given sine(Θ) = 1.25 miles/50 miles (opposite/hypotenuse)', &
 '      ! then taking the arcsine of both sides of the equality yields', &
-'      ! Θ = arcsine(1.25 miles/50 miles) ie. arcsine(opposite/hypotenuse) ', &
+'      ! Θ = arcsine(1.25 miles/50 miles) ie. arcsine(opposite/hypotenuse)', &
 '      rise=1.250_dp', &
 '      run=50.00_dp', &
 '      angle = asin(rise/run)', &
@@ -841,8 +841,8 @@ textblock=[character(len=132) :: &
 '  Results:', &
 '', &
 '    angle of incline(radians) =    2.5002604899361139E-002', &
-'    angle of incline(degrees) =    1.4325437375665075     ', &
-'    percent grade=   2.5000000000000000     ', &
+'    angle of incline(degrees) =    1.4325437375665075', &
+'    percent grade=   2.5000000000000000', &
 '', &
 '  The percentage grade is the slope, written as a percent. To calculate', &
 '  the slope you divide the rise by the run. In the example the rise', &
@@ -871,9 +871,9 @@ case('14','asinh')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     asinh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Inverse', &
-'     hyperbolic sine function', &
-'     ', &
+'   asinh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Inverse', &
+'   hyperbolic sine function', &
+'', &
 'SYNTAX', &
 '    result = asinh(x)', &
 '', &
@@ -893,8 +893,8 @@ textblock=[character(len=132) :: &
 '', &
 '   program demo_asinh', &
 '   implicit none', &
-'     real(8), dimension(3) :: x = [ -1.0, 0.0, 1.0 ]', &
-'     write (*,*) asinh(x)', &
+'   real(8), dimension(3) :: x = [ -1.0, 0.0, 1.0 ]', &
+'      write (*,*) asinh(x)', &
 '   end program demo_asinh', &
 '', &
 'STANDARD', &
@@ -913,9 +913,9 @@ case('15','associated')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     associated(3f) - [FORTRAN:INTRINSIC] Status of a pointer or ', &
-'     pointer/target pair', &
-'     ', &
+'   associated(3f) - [FORTRAN:INTRINSIC] Status of a pointer or', &
+'   pointer/target pair', &
+'', &
 'SYNTAX', &
 '   result = associated(pointer [, target])', &
 '', &
@@ -974,9 +974,9 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '    program demo_associated', &
-'       implicit none', &
-'       real, target  :: tgt(2) = [1., 2.]', &
-'       real, pointer :: ptr(:)', &
+'    implicit none', &
+'    real, target  :: tgt(2) = [1., 2.]', &
+'    real, pointer :: ptr(:)', &
 '       ptr => tgt', &
 '       if (associated(ptr)     .eqv. .false.) &', &
 '       & stop ''POINTER NOT ASSOCIATED''', &
@@ -999,9 +999,9 @@ case('16','atan2')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     atan2(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Arctangent ', &
-'     function', &
-'     ', &
+'   atan2(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Arctangent', &
+'   function', &
+'', &
 'SYNTAX', &
 '   result = atan2(y, x)', &
 '', &
@@ -1043,8 +1043,8 @@ textblock=[character(len=132) :: &
 '', &
 '   program demo_atan2', &
 '   implicit none', &
-'     real(4) :: x = 1.e0_4, y = 0.5e0_4', &
-'     x = atan2(y,x)', &
+'   real(4) :: x = 1.e0_4, y = 0.5e0_4', &
+'      x = atan2(y,x)', &
 '   end program demo_atan2', &
 '', &
 'STANDARD', &
@@ -1060,9 +1060,9 @@ case('17','atan')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     atan(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Arctangent', &
-'     function', &
-'     ', &
+'   atan(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Arctangent', &
+'   function', &
+'', &
 'SYNTAX', &
 '   * result = atan(x)', &
 '   * result = atan(y, x)', &
@@ -1090,12 +1090,12 @@ textblock=[character(len=132) :: &
 '   use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
 '   & real32, real64, real128', &
 '   implicit none', &
-'     real(kind=real64) :: x = 2.866_real64', &
-'     x = atan(x)', &
+'   real(kind=real64) :: x = 2.866_real64', &
+'      x = atan(x)', &
 '   end program demo_atan', &
 '', &
 'STANDARD', &
-'   [[FORTRAN 77]] and later; ', &
+'   [[FORTRAN 77]] and later;', &
 '   for a complex argument and for two arguments [[Fortran 2008]] or later', &
 '', &
 'CLASS', &
@@ -1112,7 +1112,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   atanh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Inverse', &
 '   hyperbolic tangent function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = atanh(x)', &
 '', &
@@ -1133,8 +1133,8 @@ textblock=[character(len=132) :: &
 '', &
 '    program demo_atanh', &
 '    implicit none', &
-'      real, dimension(3) :: x = [ -1.0, 0.0, 1.0 ]', &
-'      write (*,*) atanh(x)', &
+'    real, dimension(3) :: x = [ -1.0, 0.0, 1.0 ]', &
+'       write (*,*) atanh(x)', &
 '    end program demo_atanh', &
 '', &
 'STANDARD', &
@@ -1154,7 +1154,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   atomic_add(3f) - [FORTRAN:INTRINSIC:ATOMIC] Atomic ADD operation', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call atomic_add (atom, value [, stat])', &
 '', &
@@ -1203,7 +1203,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   atomic_and(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic bitwise', &
 '   AND operation', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call atomic_and(atom, value [, stat])', &
 '', &
@@ -1252,7 +1252,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   atomic_cas(3f) - [FORTRAN:INTRINSIC:ATOMIC] Atomic compare and swap', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call atomic_cas (atom, old, compare, new [, stat])', &
 '', &
@@ -1304,7 +1304,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   atomic_define(3f) - [FORTRAN:INTRINSIC:ATOMIC] Setting a variable atomically', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call atomic_define (atom, value [, stat])', &
 '', &
@@ -1351,9 +1351,9 @@ case('23','atomic_fetch_add')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'   atomic_fetch_add(3f) - [FORTRAN:INTRINSIC:ATOMIC] Atomic ADD operation ', &
+'   atomic_fetch_add(3f) - [FORTRAN:INTRINSIC:ATOMIC] Atomic ADD operation', &
 '   with prior fetch', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call atomic_fetch_add(atom, value, old [, stat])', &
 '', &
@@ -1405,7 +1405,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   atomic_fetch_and(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic', &
 '   bitwise AND operation with prior fetch', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call atomic_fetch_and(atom, value, old [, stat])', &
 '', &
@@ -1455,9 +1455,9 @@ case('25','atomic_fetch_or')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'   atomic_fetch_or(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic ', &
+'   atomic_fetch_or(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic', &
 '   bitwise OR operation with prior fetch', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call atomic_fetch_or(atom, value, old [, stat])', &
 '', &
@@ -1507,7 +1507,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   atomic_fetch_xor(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic', &
 '   bitwise XOR operation with prior fetch', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call atomic_fetch_xor (atom, value, old [, stat])', &
 '', &
@@ -1559,7 +1559,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   atomic_or(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic bitwise', &
 '   OR operation', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call atomic_or(atom, value [, stat])', &
 '', &
@@ -1607,9 +1607,9 @@ case('28','atomic_ref')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'   atomic_ref(3f) - [FORTRAN:INTRINSIC:ATOMIC] Obtaining the value of a ', &
+'   atomic_ref(3f) - [FORTRAN:INTRINSIC:ATOMIC] Obtaining the value of a', &
 '   variable atomically', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call atomic_ref(value, atom [, stat])', &
 '', &
@@ -1667,7 +1667,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   atomic_xor(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic bitwise', &
 '   OR operation', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call atomic_xor(atom, value [, stat])', &
 '', &
@@ -1714,13 +1714,14 @@ case('30','backspace')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'   BACKSPACE(7f) - [FORTRAN:FILE_POSITIONING] - backspace one record on ', &
+'   BACKSPACE(7f) - [FORTRAN:FILE_POSITIONING] - backspace one record on', &
 '   specified I/O unit', &
-'   ', &
+'', &
 'SYNOPSIS', &
 '   BACKSPACE file-unit-number', &
 '   BACKSPACE ([UNIT=]file-unit-number][,IOMSG=iomsg-variable]', &
 '   [,IOSTAT=scalar-int-variable][,ERR=label])', &
+'', &
 'DESCRIPTION', &
 '   Execution of a BACKSPACE statement causes the file connected to the', &
 '   specified unit to be positioned before the current record if there', &
@@ -1805,7 +1806,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   bessel_j0(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the first', &
 '   kind of order 0', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = bessel_j0(x)', &
 '', &
@@ -1817,7 +1818,7 @@ textblock=[character(len=132) :: &
 '  X    The type shall be REAL.', &
 '', &
 'RETURN VALUE', &
-'   The return value is of type REAL and lies in the ', &
+'   The return value is of type REAL and lies in the', &
 '   range -0.4027 <= Bessel(0,x) <= 1.', &
 '   It has the same kind as X.', &
 '', &
@@ -1827,9 +1828,9 @@ textblock=[character(len=132) :: &
 '   program demo_besj0', &
 '   use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
 '   & real32, real64, real128', &
-'     implicit none', &
-'     real(kind=real64) :: x = 0.0_real64', &
-'     x = bessel_j0(x)', &
+'      implicit none', &
+'      real(kind=real64) :: x = 0.0_real64', &
+'      x = bessel_j0(x)', &
 '   end program demo_besj0', &
 '', &
 'STANDARD', &
@@ -1849,7 +1850,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   bessel_j1(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the first', &
 '   kind of order 1', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = bessel_j1(x)', &
 '', &
@@ -1869,10 +1870,11 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '   program demo_besj1', &
-'   use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
-'     implicit none', &
-'     real(kind=real64) :: x = 1.0_real64', &
-'     x = bessel_j1(x)', &
+'   use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'   & real32, real64, real128', &
+'      implicit none', &
+'      real(kind=real64) :: x = 1.0_real64', &
+'      x = bessel_j1(x)', &
 '   end program demo_besj1', &
 '', &
 'STANDARD', &
@@ -1893,7 +1895,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   bessel_jn(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the first', &
 '   kind', &
-'     ', &
+'', &
 'SYNTAX', &
 '* result = bessel_jn(n, x)', &
 '* result = bessel_jn(n1, n2, x)', &
@@ -1931,7 +1933,7 @@ textblock=[character(len=132) :: &
 '   [[Fortran 2008]] and later', &
 '', &
 'CLASS', &
-'   [[Elemental function]], ', &
+'   [[Elemental function]],', &
 '   except for the transformational variant bessel_jn(n1, n2, x).', &
 '', &
 'SEE ALSO', &
@@ -1943,9 +1945,9 @@ case('34','bessel_y0')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'   bessel_y0(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the ', &
+'   bessel_y0(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the', &
 '   second kind of order 0', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = bessel_y0(x)', &
 '', &
@@ -1963,7 +1965,8 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '   program demo_besy0', &
-'   use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
+'   use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'   & real32, real64, real128', &
 '   implicit none', &
 '     real(kind=real64) :: x = 0.0_real64', &
 '     x = bessel_y0(x)', &
@@ -1987,7 +1990,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   bessel_y1(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the', &
 '   second kind of order 1', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = bessel_y1(x)', &
 '', &
@@ -2005,7 +2008,8 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '   program demo_besy1', &
-'   use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
+'   use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'   & real32, real64, real128', &
 '   implicit none', &
 '     real(kind=real64) :: x = 1.0_real64', &
 '     x = bessel_y1(x)', &
@@ -2028,7 +2032,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   bessel_yn(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the', &
 '   second kind', &
-'     ', &
+'', &
 'SYNTAX', &
 '* result = bessel_yn(n, x)', &
 '* result = bessel_yn(n1, n2, x)', &
@@ -2059,7 +2063,7 @@ textblock=[character(len=132) :: &
 '   use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
 '   & real32, real64, real128', &
 '   implicit none', &
-'     real(kind=real64) :: x = 1.0_real64', &
+'   real(kind=real64) :: x = 1.0_real64', &
 '     x = bessel_yn(5,x)', &
 '   end program demo_besyn', &
 '', &
@@ -2080,7 +2084,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   bge(3f) - [FORTRAN:INTRINSIC:BIT COMPARE] Bitwise greater than or equal to', &
-'     ', &
+'', &
 'DESCRIPTION', &
 '   Determines whether an integer is a bitwise greater than or equal to another.', &
 '', &
@@ -2111,7 +2115,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   bgt(3f) - [FORTRAN:INTRINSIC:BIT COMPARE] Bitwise greater than', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = bgt(i, j)', &
 '', &
@@ -2120,7 +2124,7 @@ textblock=[character(len=132) :: &
 '', &
 'ARGUMENTS', &
 '  I    Shall be of INTEGER type or a BOZ literal constant.', &
-'  J    Shall be of INTEGER type, and of the same kind as I; ', &
+'  J    Shall be of INTEGER type, and of the same kind as I;', &
 '       or a BOZ literal constant.', &
 '', &
 'RETURN VALUE', &
@@ -2145,7 +2149,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   bit_size(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Bit size inquiry function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = bit_size(i)', &
 '', &
@@ -2201,7 +2205,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   ble(3f) - [FORTRAN:INTRINSIC:BIT COMPARE] Bitwise less than or equal to', &
-'     ', &
+'', &
 'DESCRIPTION', &
 '   Determines whether an integer is bitwise less than or equal to another.', &
 '', &
@@ -2232,7 +2236,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   blt(3f) - [FORTRAN:INTRINSIC:BIT COMPARE] Bitwise less than', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = blt(i, j)', &
 '', &
@@ -2254,7 +2258,6 @@ textblock=[character(len=132) :: &
 '', &
 'SEE ALSO', &
 '   bge(3), bgt(3), ble(3)', &
-'', &
 '']
 
 case('42','btest')
@@ -2263,7 +2266,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   btest(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bit test function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = btest(i, pos)', &
 '', &
@@ -2284,9 +2287,9 @@ textblock=[character(len=132) :: &
 '', &
 '    program demo_btest', &
 '    implicit none', &
-'        integer :: i = 32768 + 1024 + 64', &
-'        integer :: pos', &
-'        logical :: bool', &
+'    integer :: i = 32768 + 1024 + 64', &
+'    integer :: pos', &
+'    logical :: bool', &
 '        do pos=0,16', &
 '            bool = btest(i, pos)', &
 '            print *, pos, bool', &
@@ -2310,7 +2313,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   c_associated(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Status of a C pointer', &
-'     ', &
+'', &
 'SYNTAX', &
 '    result = c_associated(c_prt_1[, c_ptr_2])', &
 '', &
@@ -2333,12 +2336,12 @@ textblock=[character(len=132) :: &
 '    program demo_c_associated', &
 '    contains', &
 '    subroutine association_test(a,b)', &
-'      use iso_c_binding, only: c_associated, c_loc, c_ptr', &
-'      implicit none', &
-'      real, pointer :: a', &
-'      type(c_ptr) :: b', &
-'      if(c_associated(b, c_loc(a))) &', &
-'         stop ''b and a do not point to same target''', &
+'    use iso_c_binding, only: c_associated, c_loc, c_ptr', &
+'    implicit none', &
+'    real, pointer :: a', &
+'    type(c_ptr) :: b', &
+'       if(c_associated(b, c_loc(a))) &', &
+'          stop ''b and a do not point to same target''', &
 '    end subroutine association_test', &
 '    end program demo_c_associated', &
 '', &
@@ -2359,7 +2362,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   ceiling(3f) - [FORTRAN:INTRINSIC:NUMERIC] Integer ceiling function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = ceiling(a [, kind])', &
 '', &
@@ -2380,10 +2383,10 @@ textblock=[character(len=132) :: &
 '', &
 '    program demo_ceiling', &
 '    implicit none', &
-'        real :: x = 63.29', &
-'        real :: y = -63.59', &
-'        print *, ceiling(x) ! returns 64', &
-'        print *, ceiling(y) ! returns -63', &
+'    real :: x = 63.29', &
+'    real :: y = -63.59', &
+'       print *, ceiling(x) ! returns 64', &
+'       print *, ceiling(y) ! returns -63', &
 '    end program demo_ceiling', &
 '', &
 'STANDARD', &
@@ -2403,7 +2406,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   c_f_pointer(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Convert C into', &
 '   Fortran pointer', &
-'     ', &
+'', &
 'SYNTAX', &
 '    call c_f_pointer(cptr, fptr[, shape])', &
 '', &
@@ -2455,9 +2458,9 @@ case('46','c_f_procpointer')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'   c_f_procpointer(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Convert C into ', &
+'   c_f_procpointer(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Convert C into', &
 '   Fortran procedure pointer', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call c_f_procpointer(cptr, fptr)', &
 '', &
@@ -2476,25 +2479,25 @@ textblock=[character(len=132) :: &
 '  Sample program:', &
 '', &
 '    program demo_c_f_procpointer', &
-'      use iso_c_binding', &
-'      implicit none', &
-'      abstract interface', &
-'        function func(a)', &
-'          import :: c_float', &
-'          real(c_float), intent(in) :: a', &
-'          real(c_float) :: func', &
-'        end function', &
-'      end interface', &
-'      interface', &
-'         function getIterFunc() bind(c,name="getIterFunc")', &
-'           import :: c_funptr', &
-'           type(c_funptr) :: getIterFunc', &
-'         end function', &
-'      end interface', &
-'      type(c_funptr) :: cfunptr', &
-'      procedure(func), pointer :: myFunc', &
-'      cfunptr = getIterFunc()', &
-'      call c_f_procpointer(cfunptr, myFunc)', &
+'    use iso_c_binding', &
+'    implicit none', &
+'    abstract interface', &
+'       function func(a)', &
+'       import :: c_float', &
+'       real(c_float), intent(in) :: a', &
+'       real(c_float) :: func', &
+'       end function', &
+'    end interface', &
+'    interface', &
+'       function getIterFunc() bind(c,name="getIterFunc")', &
+'       import :: c_funptr', &
+'       type(c_funptr) :: getIterFunc', &
+'       end function', &
+'    end interface', &
+'    type(c_funptr) :: cfunptr', &
+'    procedure(func), pointer :: myFunc', &
+'       cfunptr = getIterFunc()', &
+'       call c_f_procpointer(cfunptr, myFunc)', &
 '    end program demo_c_f_procpointer', &
 '', &
 'STANDARD', &
@@ -2512,9 +2515,9 @@ case('47','c_funloc')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'   c_funloc(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Obtain the C address ', &
+'   c_funloc(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Obtain the C address', &
 '   of a procedure', &
-'     ', &
+'', &
 'SYNTAX', &
 '    result = c_funloc(x)', &
 '', &
@@ -2574,7 +2577,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   char(3f) - [FORTRAN:INTRINSIC:CHARACTER] Character conversion function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = char(i [, kind])', &
 '', &
@@ -2594,8 +2597,8 @@ textblock=[character(len=132) :: &
 '', &
 '    program demo_char', &
 '    implicit none', &
-'        integer :: i = 74', &
-'        character(1) :: c', &
+'    integer :: i = 74', &
+'    character(1) :: c', &
 '        c = char(i)', &
 '        print *, i, c ! returns ''J''', &
 '    end program demo_char', &
@@ -2626,9 +2629,9 @@ case('49','c_loc')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'   c_loc(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Obtain the C address of ', &
+'   c_loc(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Obtain the C address of', &
 '   an object', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = c_loc(x)', &
 '', &
@@ -2675,7 +2678,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   cmplx(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Complex conversion function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = cmplx(x [, y [, kind]])', &
 '', &
@@ -2683,7 +2686,7 @@ textblock=[character(len=132) :: &
 '   To convert numeric variables to complex, use the CMPLX function.', &
 '   Constants can be used to define a complex variable using the syntax', &
 '', &
-'      z8 = (1.2345678901234567d0, 1.2345678901234567d0)  ', &
+'      z8 = (1.2345678901234567d0, 1.2345678901234567d0)', &
 '', &
 '   but this will not work for variables. You must use the CMPLX function.', &
 '', &
@@ -2718,9 +2721,9 @@ textblock=[character(len=132) :: &
 '      !     because KIND parameter is not specified', &
 '      !', &
 '      ! note this was stored with default real precision', &
-'      z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0)  ', &
-'      print *, ''NO, Z8='',z8,real(z8),aimag(z8) ', &
-'      z8 = cmplx(1.2345678901234567e0_dp, 1.2345678901234567e0_dp) ', &
+'      z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0)', &
+'      print *, ''NO, Z8='',z8,real(z8),aimag(z8)', &
+'      z8 = cmplx(1.2345678901234567e0_dp, 1.2345678901234567e0_dp)', &
 '      ! again, note components are just REAL', &
 '      print *, ''NO, Z8='',z8,real(z8),aimag(z8)', &
 '      !', &
@@ -2775,10 +2778,10 @@ textblock=[character(len=132) :: &
 '   integer,parameter :: dp=kind(0.0d0)', &
 '   complex          :: z4', &
 '   complex(kind=dp) :: z8', &
-'      z4 = cmplx(1.23456789, 1.23456789) ', &
+'      z4 = cmplx(1.23456789, 1.23456789)', &
 '      print *, ''Z4='',z4', &
 '      ! using kind=dp makes it keep DOUBLEPRECISION precision', &
-'      z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0,kind=dp) ', &
+'      z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0,kind=dp)', &
 '      print *, ''Z8='',z8', &
 '      ! NOTE:', &
 '      ! The following is intuitive and works without calling cmplx(3f)', &
@@ -2813,7 +2816,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   co_broadcast(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Copy a value to all images', &
 '   the current set of images', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call co_broadcast(A, SOURCE_IMAGE [, STAT, ERRMSG])', &
 '', &
@@ -2843,12 +2846,12 @@ textblock=[character(len=132) :: &
 '', &
 '   program demo_co_broadcast', &
 '   implicit none', &
-'     integer :: val(3)', &
-'     if (this_image() == 1) then', &
-'       val = [1, 5, 3]', &
-'     endif', &
-'     call co_broadcast (val, source_image=1)', &
-'     print *, this_image(), ":", val', &
+'   integer :: val(3)', &
+'      if (this_image() == 1) then', &
+'        val = [1, 5, 3]', &
+'      endif', &
+'      call co_broadcast (val, source_image=1)', &
+'      print *, this_image(), ":", val', &
 '   end program demo_co_broadcast', &
 '', &
 'SEE ALSO', &
@@ -2863,7 +2866,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   co_lbound(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Lower codimension bounds of', &
 '   an array', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = CO_LBOUND(coarray [, dim [, kind]])', &
 '', &
@@ -2901,7 +2904,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   co_max(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Maximal value on the current', &
 '   set of images', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call co_max(a [, result_image, stat, errmsg])', &
 '', &
@@ -2930,12 +2933,12 @@ textblock=[character(len=132) :: &
 '', &
 '   program demo_co_max', &
 '   implicit none', &
-'     integer :: val', &
-'     val = this_image()', &
-'     call co_max(val, result_image=1)', &
-'     if (this_image() == 1) then', &
-'       write(*,*) "Maximal value", val  ! prints num_images()', &
-'     endif', &
+'   integer :: val', &
+'      val = this_image()', &
+'      call co_max(val, result_image=1)', &
+'      if (this_image() == 1) then', &
+'        write(*,*) "Maximal value", val  ! prints num_images()', &
+'      endif', &
 '   end program demo_co_max', &
 '', &
 'STANDARD', &
@@ -2953,9 +2956,9 @@ case('54','co_min')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'  co_min(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Minimal value on the current set', &
-'  of images', &
-'     ', &
+'   co_min(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Minimal value on the current set', &
+'   of images', &
+'', &
 'SYNTAX', &
 '   call co_min(a [, result_image, stat, errmsg])', &
 '', &
@@ -2985,12 +2988,12 @@ textblock=[character(len=132) :: &
 '', &
 '   program demo_co_min', &
 '   implicit none', &
-'     integer :: val', &
-'     val = this_image()', &
-'     call co_min(val, result_image=1)', &
-'     if (this_image() == 1) then', &
-'       write(*,*) "Minimal value", val  ! prints 1', &
-'     endif', &
+'   integer :: val', &
+'      val = this_image()', &
+'      call co_min(val, result_image=1)', &
+'      if (this_image() == 1) then', &
+'        write(*,*) "Minimal value", val  ! prints 1', &
+'      endif', &
 '   end program demo_co_min', &
 '', &
 'STANDARD', &
@@ -3033,7 +3036,7 @@ textblock=[character(len=132) :: &
 '', &
 '   program demo_command_argument_count', &
 '   implicit none', &
-'       integer :: count', &
+'   integer :: count', &
 '       count = command_argument_count()', &
 '       print *, count', &
 '   end program demo_command_argument_count', &
@@ -3067,7 +3070,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   compiler_options(3f) - [FORTRAN:INTRINSIC:COMPILER INQUIRY] Options passed', &
 '   to the compiler', &
-'     ', &
+'', &
 'SYNTAX', &
 '   str = compiler_options()', &
 '', &
@@ -3089,11 +3092,11 @@ textblock=[character(len=132) :: &
 '   program demo_compiler_version', &
 '   use, intrinsic :: iso_fortran_env, only : compiler_version, compiler_options', &
 '   implicit none', &
-'   print ''(4a)'', &', &
-'      ''This file was compiled by '', &', &
-'      compiler_version(),           &', &
-'      '' using the options '',        &', &
-'      compiler_options()', &
+'      print ''(4a)'', &', &
+'         ''This file was compiled by '', &', &
+'         compiler_version(),           &', &
+'         '' using the options '',        &', &
+'         compiler_options()', &
 '   end program demo_compiler_version', &
 '', &
 '  Example results:', &
@@ -3122,7 +3125,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   compiler_version(3f) - [FORTRAN:INTRINSIC:COMPILER INQUIRY] Compiler version', &
 '   string', &
-'     ', &
+'', &
 'SYNTAX', &
 '   str = compiler_version()', &
 '', &
@@ -3143,11 +3146,11 @@ textblock=[character(len=132) :: &
 '   program demo_compiler_version', &
 '   use, intrinsic :: iso_fortran_env, only : compiler_version, compiler_options', &
 '   implicit none', &
-'   print ''(4a)'', &', &
-'      ''This file was compiled by '', &', &
-'      compiler_version(),           &', &
-'      '' using the options '',        &', &
-'      compiler_options()', &
+'      print ''(4a)'', &', &
+'         ''This file was compiled by '', &', &
+'         compiler_version(),           &', &
+'         '' using the options '',        &', &
+'         compiler_options()', &
 '   end program demo_compiler_version', &
 '', &
 '  Example results:', &
@@ -3175,7 +3178,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   conjg(3f) - [FORTRAN:INTRINSIC:NUMERIC] Complex conjugate function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   z = conjg(z)', &
 '', &
@@ -3248,7 +3251,7 @@ textblock=[character(len=132) :: &
 '      if(i.lt.5)goto 100', &
 '         j=3', &
 '      100 write(*,*)''J='',j', &
-'   end ', &
+'   end', &
 '', &
 '   program demo_continue', &
 '   implicit none', &
@@ -3271,7 +3274,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   co_reduce(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Reduction of values on the', &
 '   current set of images', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call co_reduce(a, operator, [, result_image, stat, errmsg])', &
 '', &
@@ -3319,9 +3322,9 @@ textblock=[character(len=132) :: &
 '     integer :: val', &
 '     val = this_image()', &
 '     call co_reduce(val, result_image=1, operator=myprod)', &
-'     if (this_image() == 1) then', &
-'       write(*,*) "Product value", val  ! prints num_images() factorial', &
-'     endif', &
+'        if (this_image() == 1) then', &
+'          write(*,*) "Product value", val  ! prints num_images() factorial', &
+'        endif', &
 '   contains', &
 '     pure function myprod(a, b)', &
 '       integer, value :: a, b', &
@@ -3353,7 +3356,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   cos(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Cosine function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = cos(x)', &
 '', &
@@ -3373,8 +3376,8 @@ textblock=[character(len=132) :: &
 '', &
 '    program demo_cos', &
 '    implicit none', &
-'      real :: x = 0.0', &
-'      x = cos(x)', &
+'    real :: x = 0.0', &
+'       x = cos(x)', &
 '    end program demo_cos', &
 '', &
 'STANDARD', &
@@ -3394,7 +3397,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   cosh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Hyperbolic cosine', &
 '   function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   x = cosh(x)', &
 '', &
@@ -3415,8 +3418,8 @@ textblock=[character(len=132) :: &
 '   program demo_cosh', &
 '   use, intrinsic :: iso_fortran_env, only : real_kinds, real32, real64, real128', &
 '   implicit none', &
-'     real(kind=real64) :: x = 1.0_real64', &
-'     x = cosh(x)', &
+'   real(kind=real64) :: x = 1.0_real64', &
+'      x = cosh(x)', &
 '   end program demo_cosh', &
 '', &
 'STANDARD', &
@@ -3437,7 +3440,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   co_sum(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Sum of values on the current set', &
 '   of images', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call co_sum(a [, result_image, stat, errmsg])', &
 '', &
@@ -3468,13 +3471,13 @@ textblock=[character(len=132) :: &
 '', &
 '   program demo_co_sum', &
 '   implicit none', &
-'     integer :: val', &
-'     val = this_image()', &
-'     call co_sum(val, result_image=1)', &
-'     if (this_image() == 1) then', &
-'       ! prints (n**2 + n)/2, with n = num_images()', &
-'       write(*,*) "The sum is ", val ', &
-'     endif', &
+'   integer :: val', &
+'      val = this_image()', &
+'      call co_sum(val, result_image=1)', &
+'      if (this_image() == 1) then', &
+'         ! prints (n**2 + n)/2, with n = num_images()', &
+'         write(*,*) "The sum is ", val', &
+'      endif', &
 '   end program demo_co_sum', &
 '', &
 'STANDARD', &
@@ -3495,7 +3498,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   co_ubound(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Upper codimension bounds of', &
 '   an array', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = CO_UBOUND(coarray [, dim [, kind]])', &
 '', &
@@ -3532,7 +3535,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   count(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] Count function', &
-'   ', &
+'', &
 'SYNTAX', &
 '   result = count(mask [, dim, kind])', &
 '', &
@@ -3613,7 +3616,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   cpu_time(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] return CPU processor', &
 '   time in seconds', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call cpu_time(time)', &
 '', &
@@ -3654,7 +3657,7 @@ textblock=[character(len=132) :: &
 '', &
 '    program demo_cpu_time', &
 '    implicit none', &
-'       real :: start, finish', &
+'    real :: start, finish', &
 '       call cpu_time(start)', &
 '       ! put code to test here', &
 '       call cpu_time(finish)', &
@@ -3680,7 +3683,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   cshift(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] Circular shift', &
 '   elements of an array', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = cshift(array, shift [, dim])', &
 '', &
@@ -3707,7 +3710,7 @@ textblock=[character(len=132) :: &
 '', &
 '    program demo_cshift', &
 '    implicit none', &
-'        integer, dimension(3,3) :: a', &
+'    integer, dimension(3,3) :: a', &
 '        a = reshape( [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], [ 3, 3 ])', &
 '        print ''(3i3)'', a(1,:)', &
 '        print ''(3i3)'', a(2,:)', &
@@ -3731,9 +3734,9 @@ case('68','c_sizeof')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'   c_sizeof(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Size in bytes of an ', &
+'   c_sizeof(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Size in bytes of an', &
 '   expression', &
-'     ', &
+'', &
 'SYNTAX', &
 '    n = c_sizeof(x)', &
 '', &
@@ -3783,7 +3786,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   date_and_time(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] gets current time', &
-'     ', &
+'', &
 'SYNTAX', &
 '    call date_and_time([date, time, zone, values])', &
 '', &
@@ -3853,7 +3856,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   dble(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Double conversion function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = DBLE(A)', &
 '', &
@@ -3871,10 +3874,10 @@ textblock=[character(len=132) :: &
 '', &
 '    program demo_dble', &
 '    implicit none', &
-'        real    :: x = 2.18', &
-'        integer :: i = 5', &
-'        complex :: z = (2.3,1.14)', &
-'        print *, dble(x), dble(i), dble(z)', &
+'    real    :: x = 2.18', &
+'    integer :: i = 5', &
+'    complex :: z = (2.3,1.14)', &
+'       print *, dble(x), dble(i), dble(z)', &
 '    end program demo_dble', &
 '', &
 'STANDARD', &
@@ -3893,7 +3896,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   digits(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Significant digits function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = digits(x)', &
 '', &
@@ -3941,7 +3944,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   dim(3f) - [FORTRAN:INTRINSIC:NUMERIC] Positive difference', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = DIM(X, Y)', &
 '', &
@@ -4038,7 +4041,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   dprod(3f) - [FORTRAN:INTRINSIC:NUMERIC] Double product function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = dprod(x, y)', &
 '', &
@@ -4106,9 +4109,9 @@ case('75','dshiftl')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'   dshiftl(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] combines bits of ', &
+'   dshiftl(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] combines bits of', &
 '   arguments I and J', &
-'    ', &
+'', &
 'SYNTAX', &
 '   result = DSHIFTL(I, J, SHIFT)', &
 '', &
@@ -4141,9 +4144,9 @@ case('76','dshiftr')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'   dshiftr(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] combines bits of ', &
+'   dshiftr(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] combines bits of', &
 '   arguments I and J', &
-'    ', &
+'', &
 'SYNTAX', &
 '   result = DSHIFTL(I, J, SHIFT)', &
 '', &
@@ -4177,7 +4180,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   eoshift(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] End-off shift', &
 '   elements of an array', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = eoshift(array, shift [, boundary, dim])', &
 '', &
@@ -4239,7 +4242,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   epsilon(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Epsilon function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = epsilon(x)', &
 '', &
@@ -4276,7 +4279,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   erf(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Error function', &
-'     ', &
+'', &
 'DESCRIPTION', &
 '   erf(x) computes the error function of X, defined as', &
 '   $$', &
@@ -4317,7 +4320,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   erfc(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Complementary error function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = erfc(x)', &
 '', &
@@ -4359,7 +4362,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   erfc_scaled(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Error function', &
-'     ', &
+'', &
 'DESCRIPTION', &
 '', &
 '   erfc_scaled(x) computes the exponentially-scaled complementary', &
@@ -4402,7 +4405,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   event_query(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Query whether a coarray', &
 '   event has occurred', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call EVENT_QUERY(EVENT, COUNT [, STAT])', &
 '', &
@@ -4452,7 +4455,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   execute_command_line(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Execute', &
 '   a shell command', &
-'     ', &
+'', &
 'SYNTAX', &
 '     call execute_command_line(command [, wait, exitstat, cmdstat, cmdmsg ])', &
 '', &
@@ -4583,12 +4586,12 @@ textblock=[character(len=132) :: &
 '   implicit none', &
 '   integer :: i, j', &
 '   logical :: big', &
-'      ! EXIT a simple loop ', &
+'      ! EXIT a simple loop', &
 '      do i=1, 10', &
 '         if(i .eq. 4) exit ! exit loop', &
 '      enddo', &
 '      write(*,*)''I='',i', &
-'   ', &
+'', &
 '      ! EXIT only exits an innermost loop', &
 '      do i=1,10', &
 '         do j=100, 200', &
@@ -4596,7 +4599,7 @@ textblock=[character(len=132) :: &
 '         enddo', &
 '      enddo', &
 '      write(*,*)''I='',i,'' J='',j', &
-'   ', &
+'', &
 '      ! EXIT an outermost loop from inner loop by using a construct name', &
 '      OUTER: do i=1,10', &
 '         INNER: do j=100, 200', &
@@ -4604,7 +4607,7 @@ textblock=[character(len=132) :: &
 '         enddo INNER', &
 '      enddo OUTER', &
 '      write(*,*)''I='',i,'' J='',j', &
-'   ', &
+'', &
 '      ! EXIT a BLOCK not just a DO loop', &
 '      MYBLOCK: block', &
 '         big = .false.', &
@@ -4634,7 +4637,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   exp(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Exponential function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = exp(x)', &
 '', &
@@ -4669,7 +4672,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   exponent(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Exponent function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = exponent(x)', &
 '', &
@@ -4709,7 +4712,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   extends_type_of(3f) - [FORTRAN:INTRINSIC] determine if the dynamic type of', &
 '   A is an extension of the dynamic type of MOLD.', &
-'   ', &
+'', &
 'SYNOPSIS', &
 '   RESULT=EXTENDS_TYPE_OF (A, MOLD)', &
 '', &
@@ -4899,7 +4902,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   float(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Convert integer to default real', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = float(a)', &
 '', &
@@ -4937,7 +4940,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   floor(3f) - [FORTRAN:INTRINSIC:NUMERIC] Integer floor function', &
-'     ', &
+'', &
 'DESCRIPTION', &
 '   floor(a) returns the greatest integer less than or equal to X.', &
 '', &
@@ -4982,7 +4985,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   fraction(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Fractional part of the', &
 '   model representation', &
-'     ', &
+'', &
 'DESCRIPTION', &
 '   fraction(x) returns the fractional part of the model', &
 '   representation of X.', &
@@ -5022,7 +5025,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   gamma(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Gamma function', &
-'     ', &
+'', &
 'DESCRIPTION', &
 '   gamma(x) computes Gamma of X. For positive,', &
 '   integer values of X the Gamma function simplifies to the factorial', &
@@ -5146,12 +5149,12 @@ case('94','get_command_argument')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'   get_command_argument(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get ', &
+'   get_command_argument(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get', &
 '   command line arguments', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call get_command_argument(number [, value, length, status])', &
-'     ', &
+'', &
 '     integer,intent(in)                    :: number', &
 '     character(len=*),intent(out),optional :: value', &
 '     integer,intent(out),optional          :: length', &
@@ -5166,7 +5169,7 @@ textblock=[character(len=132) :: &
 '   are quoted and IFS values (Internal Field Separators) used by common', &
 '   shells are ignored.', &
 '', &
-'OPTIONS   ', &
+'OPTIONS', &
 '   NUMBER    Shall be a scalar of type integer(4), NUMBER >= 0.', &
 '             If NUMBER = 0, VALUE is set to the name of the program', &
 '             (on systems that support this feature).', &
@@ -5211,7 +5214,7 @@ textblock=[character(len=132) :: &
 '        call get_command_argument(number=i,length=argument_length)', &
 '        longest=max(longest,argument_length)', &
 '     enddo', &
-'     ! allocate string array big enough to hold command line argument strings ', &
+'     ! allocate string array big enough to hold command line argument strings', &
 '     ! and related information', &
 '     allocate(character(len=longest) :: arguments(0:count))', &
 '     allocate(istat(0:count))', &
@@ -5255,7 +5258,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   get_environment_variable(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get', &
 '   an environmental variable', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call get_environment_variable(NAME[, VALUE, LENGTH, STATUS, TRIM_NAME)', &
 '   character(len=*),intent(in)           :: NAME', &
@@ -5271,7 +5274,7 @@ textblock=[character(len=132) :: &
 '   the responsibility of the user to ensure that the environment is not', &
 '   being updated concurrently.', &
 '', &
-'OPTIONS  ', &
+'OPTIONS', &
 '   NAME        (Optional) Shall be a scalar of type CHARACTER and of', &
 '               default kind.', &
 '', &
@@ -5339,7 +5342,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   huge(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Largest number of a kind', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = huge(x)', &
 '', &
@@ -5375,7 +5378,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   hypot(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Euclidean distance function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = hypot(x, y)', &
 '', &
@@ -5413,7 +5416,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   iachar(3f) - [FORTRAN:INTRINSIC:CHARACTER] Code in ASCII collating sequence', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = iachar(c [, kind])', &
 '', &
@@ -5446,10 +5449,10 @@ textblock=[character(len=132) :: &
 '   integer                      :: i', &
 '      string = str', &
 '      ! step thru each letter in the string in specified range', &
-'      do i = 1, len(str) ', &
+'      do i = 1, len(str)', &
 '         select case (str(i:i))', &
 '         case (''A'':''Z'') ! change letter to miniscule', &
-'            string(i:i) = char(iachar(str(i:i))+32) ', &
+'            string(i:i) = char(iachar(str(i:i))+32)', &
 '         case default', &
 '         end select', &
 '      end do', &
@@ -5473,7 +5476,7 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
@@ -5484,7 +5487,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   iall(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise and of array elements', &
-'     ', &
+'', &
 'SYNTAX', &
 '   * result = iall(array[, mask])', &
 '   * result = iall(array, dim[, mask])', &
@@ -5584,7 +5587,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   iany(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise or of array elements', &
-'     ', &
+'', &
 'SYNTAX', &
 '   * result = iany(array[, mask])', &
 '   * result = iany(array, dim[, mask])', &
@@ -5641,7 +5644,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   ibclr(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Clear bit', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = ibclr(i, pos)', &
 '', &
@@ -5677,7 +5680,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   ibits(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bit extraction', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = ibits(i, pos, len)', &
 '', &
@@ -5714,7 +5717,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   ibset(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Set bit', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = ibset(i, pos)', &
 '', &
@@ -5750,7 +5753,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   ichar(3f) - [FORTRAN:INTRINSIC:CHARACTER] Character-to-integer conversion', &
 '   function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = ichar(c [, kind])', &
 '', &
@@ -5825,7 +5828,7 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
@@ -5836,7 +5839,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   ieor(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise logical exclusive or', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = ieor(i, j)', &
 '', &
@@ -5870,7 +5873,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   image_index(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Cosubscript to image', &
 '   index conversion', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = image_index(coarray, sub)', &
 '', &
@@ -5913,7 +5916,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   include(7f) - [FORTRAN] including source text', &
-'  ', &
+'', &
 'SYNOPSIS', &
 '   INCLUDE char-literal-constant', &
 'DESCRIPTION', &
@@ -5938,7 +5941,7 @@ textblock=[character(len=132) :: &
 '  It is generally implemented  as a filename containing text to be', &
 '  included, but could be interpreted as a URL or a system command that', &
 '  generates text or a database query, or a list of files, for example.', &
-'  That being said, all current implementations appear to at ', &
+'  That being said, all current implementations appear to at', &
 '  least treat it as a simple filename.', &
 '', &
 '  Where the compiler searches for the filename is', &
@@ -5965,7 +5968,7 @@ textblock=[character(len=132) :: &
 '      100 INCLUDE ''filename''  ! NO: statement label not allowed', &
 '      ! continuation often works but is non-standard', &
 '      INCLUDE &', &
-'      & ''filename''   ', &
+'      & ''filename''', &
 '      INCLUDE ''file&', &
 '      &name''', &
 '', &
@@ -6030,9 +6033,9 @@ case('109','index')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'   index(3f) - [FORTRAN:INTRINSIC:CHARACTER] Position of a substring within ', &
+'   index(3f) - [FORTRAN:INTRINSIC:CHARACTER] Position of a substring within', &
 '   a string', &
-'     ', &
+'', &
 'SYNTAX', &
 '    index(STRING, SUBSTRING [, BACK [, KIND]]) result(START)', &
 '', &
@@ -6099,7 +6102,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   int(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Convert to integer type', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = int(a [, kind))', &
 '', &
@@ -6160,7 +6163,7 @@ textblock=[character(len=132) :: &
 '   IOR returns the bit-wise Boolean inclusive-OR of I and J.', &
 '', &
 'ARGUMENTS', &
-'   I   an INTEGER scalar or array. ', &
+'   I   an INTEGER scalar or array.', &
 '   J   INTEGER scalar or array, of the same kind as I.', &
 '', &
 'RETURN VALUE', &
@@ -6203,7 +6206,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   iparity(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise exclusive or of', &
 '   array elements', &
-'     ', &
+'', &
 'SYNTAX', &
 '   * result = iparity(array[, mask])', &
 '   * result = iparity(array, dim[, mask])', &
@@ -6260,7 +6263,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   is_contiguous(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] test if object is', &
 '   contiguous', &
-'     ', &
+'', &
 'SYNTAX', &
 '    result = is_contiguous(A)', &
 '', &
@@ -6337,7 +6340,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   ishft(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Shift bits', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = ishft(i, shift)', &
 '', &
@@ -6373,7 +6376,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   ishftc(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Shift bits circularly', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = ishftc(i, shift [, size])', &
 '', &
@@ -6414,7 +6417,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   is_iostat_end(3f) - [FORTRAN:INTRINSIC] Test for end-of-file value', &
-'     ', &
+'', &
 'SYNTAX', &
 '  function is_iostat_end(i)', &
 '', &
@@ -6459,7 +6462,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   is_iostat_eor(3f) - [FORTRAN:INTRINSIC] Test for end-of-record value', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = is_iostat_eor(i)', &
 '', &
@@ -6501,7 +6504,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   kind(3f) - [FORTRAN:INTRINSIC:KIND INQUIRY] Kind of an entity', &
-'     ', &
+'', &
 'SYNTAX', &
 '   k = kind(x)', &
 '', &
@@ -6639,8 +6642,8 @@ case('120','leadz')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     leadz(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Number of leading zero', &
-'     bits of an integer', &
+'   leadz(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Number of leading zero', &
+'   bits of an integer', &
 '', &
 'SYNTAX', &
 '   result = leadz(i)', &
@@ -6758,8 +6761,8 @@ case('121','len')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     len(3f) - [FORTRAN:INTRINSIC:CHARACTER] Length of a character entity', &
-'     ', &
+'   len(3f) - [FORTRAN:INTRINSIC:CHARACTER] Length of a character entity', &
+'', &
 'SYNTAX', &
 '   l = len(string [, kind])', &
 '', &
@@ -6800,7 +6803,7 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
@@ -6810,9 +6813,9 @@ case('122','len_trim')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     len_trim(3f) - [FORTRAN:INTRINSIC:CHARACTER] Length of a character', &
-'     entity without trailing blank characters', &
-'     ', &
+'   len_trim(3f) - [FORTRAN:INTRINSIC:CHARACTER] Length of a character', &
+'   entity without trailing blank characters', &
+'', &
 'SYNTAX', &
 '   result = len_trim(string [, kind])', &
 '', &
@@ -6850,7 +6853,7 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
@@ -6860,8 +6863,8 @@ case('123','lge')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     lge(3f) - [FORTRAN:INTRINSIC:CHARACTER] Lexical greater than or equal', &
-'     ', &
+'   lge(3f) - [FORTRAN:INTRINSIC:CHARACTER] Lexical greater than or equal', &
+'', &
 'SYNTAX', &
 '   result = lge(string_a, string_b)', &
 '', &
@@ -6898,7 +6901,7 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
@@ -6908,8 +6911,8 @@ case('124','lgt')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     lgt(3f) - [FORTRAN:INTRINSIC:CHARACTER] Lexical greater than', &
-'     ', &
+'   lgt(3f) - [FORTRAN:INTRINSIC:CHARACTER] Lexical greater than', &
+'', &
 'SYNTAX', &
 '   result = lgt(string_a, string_b)', &
 '', &
@@ -6947,7 +6950,7 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
@@ -6957,7 +6960,7 @@ case('125','lle')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     lle(3f) - [FORTRAN:INTRINSIC:CHARACTER] Lexical less than or equal', &
+'   lle(3f) - [FORTRAN:INTRINSIC:CHARACTER] Lexical less than or equal', &
 '', &
 'SYNTAX', &
 '   result = lle(STR_A, STR_B)', &
@@ -7035,7 +7038,7 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
@@ -7045,8 +7048,8 @@ case('126','llt')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     llt(3f) - [FORTRAN:INTRINSIC:CHARACTER] Lexical less than', &
-'     ', &
+'   llt(3f) - [FORTRAN:INTRINSIC:CHARACTER] Lexical less than', &
+'', &
 'SYNTAX', &
 '   result = llt(string_a, string_b)', &
 '', &
@@ -7084,7 +7087,7 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
@@ -7094,8 +7097,8 @@ case('127','log10')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     log10(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Base 10 logarithm function', &
-'     ', &
+'   log10(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Base 10 logarithm function', &
+'', &
 'SYNTAX', &
 '   result = LOG10(x)', &
 '', &
@@ -7132,8 +7135,8 @@ case('128','log')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     log(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Logarithm function', &
-'     ', &
+'   log(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Logarithm function', &
+'', &
 'SYNTAX', &
 '   result = LOG(X)', &
 '', &
@@ -7177,7 +7180,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   log_gamma(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Logarithm of the', &
 '   Gamma function', &
-'     ', &
+'', &
 'SYNTAX', &
 '    x = log_gamma(x)', &
 '', &
@@ -7215,9 +7218,9 @@ case('130','logical')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     logical(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Converts one', &
-'     kind of LOGICAL variable to another', &
-'     ', &
+'   logical(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Converts one', &
+'    kind of LOGICAL variable to another', &
+'', &
 'SYNTAX', &
 '   result = logical(l [, kind])', &
 '', &
@@ -7249,8 +7252,8 @@ case('131','maskl')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     maskl(3f) - [FORTRAN:INTRINSIC] Left justified mask', &
-'     ', &
+'   maskl(3f) - [FORTRAN:INTRINSIC] Left justified mask', &
+'', &
 'SYNOPSIS', &
 '   result = maskl(i[, kind])', &
 '', &
@@ -7284,8 +7287,8 @@ case('132','maskr')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     maskr(3f) - [FORTRAN:INTRINSIC] Right justified mask', &
-'     ', &
+'   maskr(3f) - [FORTRAN:INTRINSIC] Right justified mask', &
+'', &
 'SYNTAX', &
 '   result = maskr(i[, kind])', &
 '', &
@@ -7318,9 +7321,9 @@ case('133','matmul')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     matmul(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] matrix', &
-'     multiplication', &
-'     ', &
+'   matmul(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] matrix', &
+'   multiplication', &
+'', &
 'SYNTAX', &
 '   result = matmul(matrix_a, matrix_b)', &
 '', &
@@ -7353,7 +7356,7 @@ case('134','max')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     max(3f) - [FORTRAN:INTRINSIC:NUMERIC] Maximum value of an argument list', &
+'   max(3f) - [FORTRAN:INTRINSIC:NUMERIC] Maximum value of an argument list', &
 '', &
 'SYNTAX', &
 '   result = max(a1, a2 [, a3 [, ...]])', &
@@ -7387,24 +7390,24 @@ textblock=[character(len=132) :: &
 '    real :: arr1(4)= [10.0,11.0,30.0,-100.0]', &
 '    real :: arr2(5)= [20.0,21.0,32.0,-200.0,2200.0]', &
 '', &
-'       !! this is simple enough because it is not being called elementally ', &
+'       !! this is simple enough because it is not being called elementally', &
 '       !! because all arguments are scalar', &
 '       !!', &
 '', &
 '       write(*,*)''scalars:'',max(10.0,11.0,30.0,-100.0)', &
 '', &
 '       !!', &
-'       !! this is all max(3f) could do before it became an elemental ', &
+'       !! this is all max(3f) could do before it became an elemental', &
 '       !! function and is the most intuitive', &
 '       !! except that it can take an arbitrary number of options,', &
 '       !! which is not common in Fortran without', &
 '       !! declaring a lot of optional parameters.', &
 '       !!', &
-'       !! That is it unless you want to use the elemental features of max(3f)! ', &
+'       !! That is it unless you want to use the elemental features of max(3f)!', &
 '', &
 '       !! Error: Intrinsic ‘max’ at (1) must have at least two arguments', &
 '       !!write(*,*)max(arr1)', &
-'       !! This does not work because it is like trying to return ', &
+'       !! This does not work because it is like trying to return', &
 '       !! [(max(arr1(i)),i=1,size(arr1))]', &
 '       !! so it is trying to take the max of a single value.', &
 '       !! To find the largest element of an array', &
@@ -7418,22 +7421,22 @@ textblock=[character(len=132) :: &
 '', &
 '       write(*,*)max(arr1,arr2(1:4))', &
 '', &
-'       !! so this works only if all the arrays are the same size and ', &
+'       !! so this works only if all the arrays are the same size and', &
 '       !! you want an array of the largest Nth elements', &
 '       !! from the input arrays.', &
-'       !! maybe you wanted to do maxval([arr1,arr2]) or ', &
+'       !! maybe you wanted to do maxval([arr1,arr2]) or', &
 '       !! equivalently max(maxval(arr1),maxval(arr2))', &
 '       !! to find the single largest element in both arrays?', &
 '', &
-'       !! compares all scalars to each member of array and ', &
+'       !! compares all scalars to each member of array and', &
 '       !! returns array of size arr2', &
 '', &
 '       write(*,*)''scalars and array:'',max(10.0,11.0,30.0,-100.0,arr2)', &
 '', &
-'       !! Error: Different shape for arguments ''a5'' and ''a6'' ', &
+'       !! Error: Different shape for arguments ''a5'' and ''a6''', &
 '       !! for intrinsic ''max'' at (1) on dimension 1 (5 and 4)', &
 '       !! write(*,*)''scalars and array:'',max(10.0,11.0,30.0,-100.0,arr2,arr1)', &
-'       !! as the same reason above when arrays are used ', &
+'       !! as the same reason above when arrays are used', &
 '       !! (without scalar values) all the arrays must be the same size', &
 '', &
 '       write(*,*)''scalars and array:'',max(40.0,11.0,30.0,-100.0,arr2(:4),arr1)', &
@@ -7442,10 +7445,10 @@ textblock=[character(len=132) :: &
 '', &
 '  Results:', &
 '', &
-'    scalars:   30.000000    ', &
-'      20.0000000  21.000000  32.000000 -100.00000    ', &
-'    scalars and array:   30.000000  30.000000  32.000000  30.000000  2200.0000    ', &
-'    scalars and array:   40.000000  40.000000  40.000000  40.000000    ', &
+'    scalars:   30.000000', &
+'      20.0000000  21.000000  32.000000 -100.00000', &
+'    scalars and array:   30.000000  30.000000  32.000000  30.000000  2200.0000', &
+'    scalars and array:   40.000000  40.000000  40.000000  40.000000', &
 '', &
 'STANDARD', &
 '   [[FORTRAN 77]] and later', &
@@ -7462,9 +7465,9 @@ case('135','maxexponent')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     maxexponent(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Maximum exponent', &
-'     of a real kind', &
-'     ', &
+'   maxexponent(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Maximum exponent', &
+'   of a real kind', &
+'', &
 'SYNTAX', &
 '   result = maxexponent(x)', &
 '', &
@@ -7503,9 +7506,9 @@ case('136','maxloc')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     maxloc(3f) - [FORTRAN:INTRINSIC:ARRAY LOCATION] Location of the', &
-'     maximum value within an array', &
-'     ', &
+'   maxloc(3f) - [FORTRAN:INTRINSIC:ARRAY LOCATION] Location of the', &
+'   maximum value within an array', &
+'', &
 'SYNTAX', &
 '   result = maxloc(array, dim [, mask])', &
 '   result = maxloc(array [, mask])', &
@@ -7571,7 +7574,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   maxval(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines the', &
 '   maximum value in an array or row', &
-'   ', &
+'', &
 'SYNTAX', &
 '   result = maxval(array, dim [, mask])', &
 '', &
@@ -7645,8 +7648,8 @@ case('138','merge')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     merge(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Merge variables', &
-'     ', &
+'   merge(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Merge variables', &
+'', &
 'SYNTAX', &
 '     result = merge(tsource, fsource, mask)', &
 '', &
@@ -7704,7 +7707,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   merge_bits(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Merge of bits', &
 '   under mask', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = merge_bits(i, j, mask)', &
 '', &
@@ -7735,7 +7738,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   min(3f) - [FORTRAN:INTRINSIC:NUMERIC] Minimum value of an argument list', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = min(a1, a2 [, a3, ...])', &
 '', &
@@ -7779,7 +7782,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   minexponent(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Minimum exponent', &
 '   of a real kind', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = minexponent(x)', &
 '', &
@@ -7797,13 +7800,21 @@ textblock=[character(len=132) :: &
 'EXAMPLE', &
 '  Sample program:', &
 '', &
-'   See [[maxexponent]] for an example.', &
+'    program demo_minexponent', &
+'    implicit none', &
+'    real(kind=4) :: x', &
+'    real(kind=8) :: y', &
+'       print *, minexponent(x), maxexponent(x)', &
+'       print *, minexponent(y), maxexponent(y)', &
+'    end program demo_minexponent', &
 '', &
 'STANDARD', &
 '   [[Fortran 95]] and later', &
 '', &
 'CLASS', &
 '   [[Inquiry function]]', &
+'', &
+'', &
 '']
 
 case('142','minloc')
@@ -7813,7 +7824,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   minloc(3f) - [FORTRAN:INTRINSIC:ARRAY LOCATION] Location of the', &
 '   minimum value within an array', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = minloc(array, dim [, mask])', &
 '   result = minloc(array [, mask])', &
@@ -7879,7 +7890,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   minval(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] Minimum value of an array', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = minval(array, dim [, mask])', &
 '   result = minval(array [, mask])', &
@@ -7947,7 +7958,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   mod(3f) - [FORTRAN:INTRINSIC:NUMERIC] Remainder function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = mod(a, p)', &
 '', &
@@ -8001,7 +8012,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   modulo(3f) - [FORTRAN:INTRINSIC:NUMERIC] Modulo function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = modulo(a, p)', &
 '', &
@@ -8056,7 +8067,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   move_alloc(3f) - [FORTRAN:INTRINSIC] Move allocation from one object', &
 '   to another', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call move_alloc(src, dest)', &
 '', &
@@ -8118,7 +8129,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   mvbits(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Move bits from one', &
 '   integer to another', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call mvbits(from, frompos, len, to, topos)', &
 '', &
@@ -8156,7 +8167,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   nearest(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Nearest', &
 '   representable number', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = nearest(x, s)', &
 '', &
@@ -8198,7 +8209,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   new_line(3f) - [FORTRAN:INTRINSIC:CHARACTER] New line character', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = new_line(c)', &
 '', &
@@ -8233,7 +8244,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   nint(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Nearest whole number', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = nint(x [, kind])', &
 '', &
@@ -8279,7 +8290,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   norm2(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Euclidean vector norm', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = norm2(array[, dim])', &
 '', &
@@ -8324,7 +8335,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   not(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Logical negation', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = not(i)', &
 '', &
@@ -8355,7 +8366,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   null(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] Function', &
 '   that returns a disassociated pointer', &
-'     ', &
+'', &
 'SYNTAX', &
 '    ptr => null([mold])', &
 '', &
@@ -8396,7 +8407,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   num_images(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Number of images', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = num_images(distance, failed)', &
 '', &
@@ -8436,7 +8447,7 @@ textblock=[character(len=132) :: &
 '   end program demo_num_images', &
 '', &
 'STANDARD', &
-'   [[Fortran 2008]] and later. With DISTANCE or FAILED argument, ', &
+'   [[Fortran 2008]] and later. With DISTANCE or FAILED argument,', &
 '   [[TS 18508]] or later', &
 '', &
 'CLASS', &
@@ -8453,7 +8464,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   pack(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Pack an array into', &
 '   an array of rank one', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = pack(array, mask[,vector])', &
 '', &
@@ -8498,7 +8509,7 @@ textblock=[character(len=132) :: &
 '    end subroutine test1', &
 '    !', &
 '    subroutine test2()', &
-'    ! Gathering nonzero elements from an array and appending elements ', &
+'    ! Gathering nonzero elements from an array and appending elements', &
 '    ! from VECTOR:', &
 '    integer :: m(4)', &
 '      m = [ 1, 0, 0, 2 ]', &
@@ -8516,9 +8527,9 @@ textblock=[character(len=132) :: &
 '', &
 '  Results:', &
 '', &
-'   1 5 ', &
-'   1 2 3 4 ', &
-'   bat        cat        ', &
+'   1 5', &
+'   1 2 3 4', &
+'   bat        cat', &
 '', &
 'STANDARD', &
 '   [[Fortran 95]] and later', &
@@ -8538,7 +8549,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   parity(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] Reduction', &
 '   with exclusive OR()', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = parity(mask[, dim])', &
 '', &
@@ -8636,7 +8647,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   poppar(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Parity of the number of', &
 '   bits set', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = poppar(i)', &
 '', &
@@ -8683,7 +8694,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   precision(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Decimal precision', &
 '   of a real kind', &
-'     ', &
+'', &
 'SYNTAX', &
 '    result = precision(x)', &
 '', &
@@ -8727,7 +8738,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   present(3f) - [FORTRAN:INTRINSIC] Determine whether an optional dummy', &
 '   argument is specified', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = present(a)', &
 '', &
@@ -8770,7 +8781,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   product(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] Product of array elements', &
-'        ', &
+'', &
 'SYNTAX', &
 '   * result = product(array[, mask])', &
 '   * result = product(array, dim[, mask])', &
@@ -8821,7 +8832,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   radix(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Base of a model number', &
-'     ', &
+'', &
 'SYNTAX', &
 '    result = radix(x)', &
 '', &
@@ -8861,7 +8872,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   random_number(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:RANDOM]', &
 '   Pseudo-random number', &
-'     ', &
+'', &
 'SYNTAX', &
 '   random_number(harvest)', &
 '', &
@@ -8897,7 +8908,7 @@ textblock=[character(len=132) :: &
 '   ! One way is:', &
 '   !   call random_number(rand_val)', &
 '   ! choose one from last-first+1 integers', &
-'   !   rand_int = first + FLOOR((last+1-first)*rand_val) ', &
+'   !   rand_int = first + FLOOR((last+1-first)*rand_val)', &
 '      count=0', &
 '   ! generate a lot of random integers from 1 to 10 and count them.', &
 '   ! with a large number of values you should get about the same number', &
@@ -8944,7 +8955,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   random_seed(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:RANDOM] Initialize', &
 '   a pseudo-random number sequence', &
-'     ', &
+'', &
 'SYNTAX', &
 '   call random_seed([size, put, get])', &
 '', &
@@ -8999,7 +9010,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   range(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Decimal exponent range', &
 '   of a real kind', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = range(x)', &
 '', &
@@ -9017,7 +9028,13 @@ textblock=[character(len=132) :: &
 'EXAMPLE', &
 '  Sample program:', &
 '', &
-'   See [[precision]] for an example.', &
+'    program demo_range', &
+'    implicit none', &
+'    real(kind=4) :: x(2)', &
+'    complex(kind=8) :: y', &
+'       print *, precision(x), range(x)', &
+'       print *, precision(y), range(y)', &
+'    end program demo_range', &
 '', &
 'STANDARD', &
 '   [[Fortran 95]] and later', &
@@ -9027,6 +9044,7 @@ textblock=[character(len=132) :: &
 '', &
 'SEE ALSO', &
 '   selected_real_kind(3), precision(3)', &
+'', &
 '']
 
 case('166','rank')
@@ -9035,7 +9053,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   rank(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Rank of a data object', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = rank(a)', &
 'DESCRIPTION', &
@@ -9074,7 +9092,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   real(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Convert to real type', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = real(x [, kind])', &
 '', &
@@ -9137,7 +9155,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   repeat(3f) - [FORTRAN:INTRINSIC:CHARACTER] Repeated string concatenation', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = repeat(string, ncopies)', &
 '', &
@@ -9170,7 +9188,7 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
@@ -9181,7 +9199,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   reshape(3f) - [FORTRAN:INTRINSIC:ARRAY RESHAPE] Function to reshape an array', &
-'   ', &
+'', &
 'SYNTAX', &
 '   result = reshape(source, shape[, pad, order])', &
 '', &
@@ -9429,7 +9447,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   rrspacing(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Reciprocal of', &
 '   the relative spacing', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = rrspacing(x)', &
 '', &
@@ -9460,8 +9478,8 @@ case('173','same_type_as')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'     same_type_as(3f) - [FORTRAN:INTRINSIC] Query dynamic types for equality', &
-'     ', &
+'   same_type_as(3f) - [FORTRAN:INTRINSIC] Query dynamic types for equality', &
+'', &
 'SYNTAX', &
 '   result = same_type_as(a, b)', &
 '', &
@@ -9493,7 +9511,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   scale(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Scale a real value', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = scale(x, i)', &
 '', &
@@ -9539,7 +9557,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   scan(3f) - [FORTRAN:INTRINSIC:CHARACTER] Scan a string for the presence', &
 '   of a set of characters', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = scan(string, set[, back [, kind]])', &
 '', &
@@ -9584,7 +9602,7 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
@@ -9596,7 +9614,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   selected_char_kind(3f) - [FORTRAN:INTRINSIC:KIND] Choose character', &
 '   kind such as "Unicode"', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = selected_char_kind(name)', &
 '', &
@@ -9646,7 +9664,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   selected_int_kind(3f) - [FORTRAN:INTRINSIC:KIND] Choose integer kind', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = selected_int_kind(r)', &
 '', &
@@ -9689,7 +9707,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   selected_real_kind(3f) - [FORTRAN:INTRINSIC:KIND] Choose real kind', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = selected_real_kind([p, r, radix])', &
 '', &
@@ -9760,7 +9778,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   set_exponent(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Set the', &
 '   exponent of the model', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = set_exponent(x, i)', &
 '', &
@@ -9802,7 +9820,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   shape(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Determine the shape of', &
 '   an array', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = shape(source[, kind])', &
 '', &
@@ -9849,8 +9867,8 @@ case('181','shifta')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'  shifta(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] shift bits right with fill', &
-'    ', &
+'   shifta(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] shift bits right with fill', &
+'', &
 'SYNTAX', &
 '   result = SHIFTA(I, SHIFT)', &
 '', &
@@ -9885,7 +9903,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   shiftl(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] shift bits left', &
-'    ', &
+'', &
 'SYNTAX', &
 '   result = SHIFTL(I, SHIFT)', &
 '', &
@@ -9918,7 +9936,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   shiftr(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] shift bits right', &
-'    ', &
+'', &
 'SYNTAX', &
 '   result = SHIFTR(I, SHIFT)', &
 '', &
@@ -9951,7 +9969,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   sign(3f) - [FORTRAN:INTRINSIC:NUMERIC] Sign copying function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = sign(a, b)', &
 '', &
@@ -10052,7 +10070,7 @@ textblock=[character(len=132) :: &
 '    implicit none', &
 '    real :: d', &
 '        d = haversine(36.12,-86.67, 33.94,-118.40) ! BNA to LAX', &
-'        print ''(A,F9.4,A)'', ''distance: '',d,'' km'' ', &
+'        print ''(A,F9.4,A)'', ''distance: '',d,'' km''', &
 '    contains', &
 '    function haversine(latA,lonA,latB,lonB) result (dist)', &
 '    !', &
@@ -10086,7 +10104,7 @@ textblock=[character(len=132) :: &
 '', &
 'SEE ALSO', &
 '   asin(3), cos(3), tan(3)', &
-' ', &
+'', &
 ' JSU', &
 '']
 
@@ -10097,7 +10115,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   sinh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Hyperbolic', &
 '   sine function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = sinh(x)', &
 '', &
@@ -10136,7 +10154,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   size(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Determine the size of an array', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = size(array[, dim [, kind]])', &
 '', &
@@ -10145,7 +10163,6 @@ textblock=[character(len=132) :: &
 '   or the total number of elements in ARRAY if DIM is absent.', &
 '', &
 'ARGUMENTS', &
-'', &
 '   ARRAY   Shall be an array of any type. If ARRAY is a pointer it', &
 '           must be associated and allocatable arrays must be allocated.', &
 '   DIM     (Optional) shall be a scalar of type INTEGER and its', &
@@ -10191,20 +10208,20 @@ textblock=[character(len=132) :: &
 '       !', &
 '       write(*,*)''interfaced assumed-shape arr2ay''', &
 '       !', &
-'       ! ‘source’ argument of ‘shape’ intrinsic at (1) must not be ', &
+'       ! ‘source’ argument of ‘shape’ intrinsic at (1) must not be', &
 '       ! an assumed size array', &
-'       !!write(*,*)''SHAPE(arr2)       :'',shape(arr2) ', &
+'       !!write(*,*)''SHAPE(arr2)       :'',shape(arr2)', &
 '       ! The upper bound in the last dimension must appear in the reference', &
 '       ! to the assumed size array ‘arr2’ at (1)', &
-'       !!write(*,*)''SIZE(arr2)        :'',size(arr2) ', &
+'       !!write(*,*)''SIZE(arr2)        :'',size(arr2)', &
 '       write(*,*)''SIZE(arr2,DIM=1)  :'',size(arr2,dim=1)', &
-'       ! ‘dim’ argument of ‘size’ intrinsic at (1) is not ', &
+'       ! ‘dim’ argument of ‘size’ intrinsic at (1) is not', &
 '       !a valid dimension index', &
 '       !!write(*,*)''SIZE(arr2,DIM=2)  :'',size(arr2,dim=2)', &
 '       write(*,*)''note lower bound is "1"''', &
 '       write(*,*)''LBOUND(arr2)      :'',lbound(arr2)', &
 '       write(*,*)''LBOUND(arr2)      :'',lbound(arr2)', &
-'       ! The upper bound in the last dimension must appear in the ', &
+'       ! The upper bound in the last dimension must appear in the', &
 '       ! reference to the assumed size array ‘arr2’ at (1)', &
 '       !!write(*,*)''UBOUND(arr2)      :'',ubound(arr2)', &
 '       write(*,*)''LBOUND(arr2,DIM=1):'',lbound(arr2,dim=1)', &
@@ -10231,15 +10248,15 @@ textblock=[character(len=132) :: &
 '       !', &
 '    end subroutine interfaced', &
 '    !!', &
-'    ! NOTE: If NOINTERFACE(3f) had an assumed-shape argument with : ', &
-'    !       for dimensions it could only be properly called with ', &
+'    ! NOTE: If NOINTERFACE(3f) had an assumed-shape argument with :', &
+'    !       for dimensions it could only be properly called with', &
 '    !       an explicit interface', &
 '    !!', &
 '    subroutine nointerface(arr)', &
 '    integer,intent(in) :: arr(3,*)', &
 '       write(*,*)''nointerface''', &
 '     ! SHAPE(3f) CANNOT BE USED ON AN ASSUMED SIZE ARRAY', &
-'     !!write(*,*)''SHAPE(arr)       :'',shape(arr) ', &
+'     !!write(*,*)''SHAPE(arr)       :'',shape(arr)', &
 '     !!write(*,*)''SIZE(arr)        :'',size(arr)', &
 '       write(*,*)''SIZE(arr,DIM=1)  :'',size(arr,dim=1)', &
 '     ! CANNOT DETERMINE SIZE OF ASSUMED SIZE ARRAY LAST DIMENSION', &
@@ -10317,7 +10334,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   sngl(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Convert double precision', &
 '   real to default real', &
-'   ', &
+'', &
 'SYNTAX', &
 '   result = sngl(a)', &
 '', &
@@ -10349,7 +10366,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   spacing(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Smallest distance', &
 '   between two numbers of a given type', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = spacing(x)', &
 '', &
@@ -10392,7 +10409,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   spread(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Add a dimension', &
 '   to an array', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = spread(source, dim, ncopies)', &
 '', &
@@ -10494,10 +10511,10 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   sqrt(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Square-root function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = sqrt(x)', &
-'   ', &
+'', &
 'DESCRIPTION', &
 '    sqrt(x) computes the square root of X.', &
 '', &
@@ -10533,11 +10550,12 @@ case('192','stop')
 textblock=[character(len=132) :: &
 '', &
 'NAME', &
-'  STOP(7f),ALLSTOP(7f)  - [FORTRAN:STATEMENT] initiates termination of execution', &
+'   STOP(7f),ALLSTOP(7f)  - [FORTRAN:STATEMENT] initiates termination of', &
+'   execution', &
 '', &
 'SYNOPSIS', &
 '  STOP [ stop-code ]', &
-'  ALL STOP [ stop-code ]', &
+'  ERROR STOP [ stop-code ]', &
 '', &
 '  stop-code    is  scalar-char-initialization-expr', &
 '               or  scalar-int-initialization-expr', &
@@ -10549,26 +10567,26 @@ textblock=[character(len=132) :: &
 'DESCRIPTION', &
 '  A STOP statement will cause the program to terminate normally. It may', &
 '  provide additional information in the form of output or a system status', &
-'  code, depending on the system. ', &
+'  code, depending on the system.', &
 '', &
 '  Any messages generated appear on the ERROR_UNIT file, as identified in', &
 '  the intrinsic module ISO_FORTRAN_ENV. This unit is often referred to as', &
 '  "stderr". It is recommended that systems write the value of the stop', &
 '  code whether numeric or a string.', &
-'  ', &
+'', &
 '  Note that although STOP is a "normal" termination system status codes', &
 '  or "exit codes" are often used for error processing in many scripting', &
 '  languages. This code may be detectable by EXECUTE_SYSTEM_COMMAND(3f).', &
 '', &
-'  Execution of an ALL STOP statement initiates error termination of', &
+'  Execution of an ERROR STOP statement initiates error termination of', &
 '  an execution, which on several systems includes the output from', &
 '  a traceback.', &
 '', &
-'  So when an image is terminated by a STOP or ALL STOP statement, its', &
+'  So when an image is terminated by a STOP or ERROR STOP statement, its', &
 '  stop code, if any, is made available in a processor-dependent manner.', &
 '', &
 '  If any exception is signaling on a stopped image, the processor issues a', &
-'  warning indicating which exceptions are signaling; ', &
+'  warning indicating which exceptions are signaling;', &
 '', &
 '  When normal termination occurs on more than one image, it is expected', &
 '  that a processor-dependent summary of any stop codes and signaling', &
@@ -10585,30 +10603,29 @@ textblock=[character(len=132) :: &
 '  that concept.', &
 '', &
 'EXAMPLE', &
-' Sample:', &
+'  Sample:', &
 '', &
-'  program demo_stop', &
-'  use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT', &
-'  implicit none', &
-'  integer :: stopcode', &
-'  ! Normal terminations', &
-'     ! A STOP with no parameter is a normal termination and generally', &
-'     ! returns a zero status value if the system supports return statuses', &
-'     stop', &
-'     ! All other stops are error stops', &
-'     stop 10', &
-'     stop ''That is all, folks!''', &
-'     stopcode=11', &
-'     stop stopcode', &
-'  ! Error terminations', &
-'     ! ALL STOP is always an error stop, even without a stop-code', &
-'     all stop', &
-'     ! ALL STOP often displays a traceback but that is not required', &
-'     all stop 10', &
-'     all stop ''That is all, folks!''', &
-'     all stopcode=11', &
-'     all stop stopcode', &
-'  end program demo_stop', &
+'   program demo_stop', &
+'   use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT', &
+'   implicit none', &
+'   integer :: stopcode', &
+'   ! Normal terminations', &
+'      ! A STOP with no parameter is a normal termination and generally', &
+'      ! returns a zero status value if the system supports return statuses', &
+'      stop', &
+'      ! All other stops are error stops', &
+'      stop 10', &
+'      stop ''That is all, folks!''', &
+'      stopcode=11', &
+'      stop stopcode', &
+'   ! Error terminations', &
+'      ! ERROR STOP is always an error stop, even without a stop-code', &
+'      error stop', &
+'      ! ERROR STOP often displays a traceback but that is not required', &
+'      error stop 10', &
+'      error stop ''That is all, folks!''', &
+'      error stop stopcode', &
+'   end program demo_stop', &
 '', &
 ' JSU', &
 '']
@@ -10619,7 +10636,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   storage_size(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Storage size in bits', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = storage_size(a [, kind])', &
 '', &
@@ -10664,7 +10681,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   sum(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] sum the elements of an array', &
-'     ', &
+'', &
 'SYNTAX', &
 ' Calling sequence:', &
 '', &
@@ -10721,9 +10738,9 @@ textblock=[character(len=132) :: &
 '', &
 '  Results:', &
 '', &
-'    Sum of all elements in c =    35.0000000    ', &
-'    Sum of Positive elements in c =    36.0000000    ', &
-'    Sum of elements in c when corresponding elements in b>0 =   30.0000000    ', &
+'    Sum of all elements in c =    35.0000000', &
+'    Sum of Positive elements in c =    36.0000000', &
+'    Sum of elements in c when corresponding elements in b>0 =   30.0000000', &
 '', &
 'STANDARD', &
 '   [[Fortran 95]] and later', &
@@ -10742,7 +10759,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   system_clock(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Return', &
 '   numeric data from a real-time clock.', &
-'     ', &
+'', &
 'SYNTAX', &
 '  subroutine system_clock([count, count_rate, count_max])', &
 '', &
@@ -10827,7 +10844,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   tan(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Tangent function', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = tan(x)', &
 '', &
@@ -10869,7 +10886,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   tanh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Hyperbolic', &
 '   tangent function', &
-'     ', &
+'', &
 'SYNTAX', &
 '    x = tanh(x)', &
 '', &
@@ -10913,7 +10930,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   this_image(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Cosubscript index of', &
 '   this image', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = this_image()', &
 '   result = this_image(distance)', &
@@ -10982,7 +10999,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   tiny(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Smallest positive number', &
 '   of a real kind', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = tiny(x)', &
 '', &
@@ -11019,7 +11036,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   trailz(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Number of trailing zero', &
 '   bits of an integer', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = trailz(i)', &
 '     integer :: result', &
@@ -11067,7 +11084,7 @@ textblock=[character(len=132) :: &
 '     0  32 0', &
 '     1   0 1', &
 '   huge(0)=2147483647 0 1111111111111111111111111111111', &
-'  ', &
+'', &
 '   integer(kind=int64):', &
 '                      0  64 \', &
 '             00000000000000000000000000000000000000000000000000000000000000', &
@@ -11116,7 +11133,7 @@ textblock=[character(len=132) :: &
 '', &
 'NAME', &
 '   transfer(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Transfer bit patterns', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = transfer(source, mold[, size])', &
 '', &
@@ -11195,7 +11212,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   transpose(3f) - [FORTRAN:INTRINSIC:ARRAY MANIPULATION] Transpose an', &
 '   array of rank two', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = transpose(matrix)', &
 '', &
@@ -11271,7 +11288,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   trim(3f) - [FORTRAN:INTRINSIC:CHARACTER] Remove trailing blank', &
 '   characters of a string', &
-'     ', &
+'', &
 'SYNTAX', &
 '   result = trim(string)', &
 '', &
@@ -11304,7 +11321,7 @@ textblock=[character(len=132) :: &
 '   Functions that perform operations on character strings, return lengths', &
 '   of arguments, and search for certain arguments:', &
 '', &
-'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), ', &
+'   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
@@ -11461,7 +11478,7 @@ textblock=[character(len=132) :: &
 'NAME', &
 '   verify(3f) - [FORTRAN:INTRINSIC:CHARACTER] Scan a string for the', &
 '   absence of a set of characters', &
-'   ', &
+'', &
 'SYNTAX', &
 '   result = verify(string, set[, back [, kind]])', &
 '', &

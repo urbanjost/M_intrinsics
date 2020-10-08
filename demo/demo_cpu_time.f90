@@ -1,6 +1,6 @@
            program demo_cpu_time
            implicit none
-              real :: start, finish
+           real :: start, finish
               call cpu_time(start)
               ! put code to test here
               call cpu_time(finish)

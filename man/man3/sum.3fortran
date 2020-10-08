@@ -83,9 +83,9 @@ Results:
 .PP
 .nf
 .fam C
-    Sum of all elements in c =    35.0000000    
-    Sum of Positive elements in c =    36.0000000    
-    Sum of elements in c when corresponding elements in b>0 =   30.0000000    
+    Sum of all elements in c =    35.0000000
+    Sum of Positive elements in c =    36.0000000
+    Sum of elements in c when corresponding elements in b>0 =   30.0000000
 
 .fam T
 .fi

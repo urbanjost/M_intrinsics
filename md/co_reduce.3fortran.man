@@ -49,9 +49,9 @@ EXAMPLE
      integer :: val
      val = this_image()
      call co_reduce(val, result_image=1, operator=myprod)
-     if (this_image() == 1) then
-       write(*,*) "Product value", val  ! prints num_images() factorial
-     endif
+        if (this_image() == 1) then
+          write(*,*) "Product value", val  ! prints num_images() factorial
+        endif
    contains
      pure function myprod(a, b)
        integer, value :: a, b
