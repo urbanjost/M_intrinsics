@@ -137,7 +137,8 @@ end function help_intrinsics_all
 !===================================================================================================================================
 function help_intrinsics_one(name) result (textblock)
 character(len=*),intent(in)    :: name
-character(len=:),allocatable   :: textblock(:)
+!!character(len=:),allocatable   :: textblock(:)
+character(len=132),allocatable   :: textblock(:)
 select case(name)
 EOF
 COUNT=0
