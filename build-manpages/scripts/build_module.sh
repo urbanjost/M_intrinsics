@@ -19,8 +19,8 @@ SHORTNAME=${NAME/.*}
 (
 cat <<EOF
 function help_${SHORTNAME}() result (textblock)
-character(len=:),allocatable   :: textblock(:)
-textblock=[character(len=132) :: &
+character(len=256),allocatable   :: textblock(:)
+textblock=[character(len=256) :: &
 '', &
 $(TOCHARACTER)
 '']
@@ -51,7 +51,7 @@ contains
 !===================================================================================================================================
 function help_intrinsics(name) result (textblock)
 character(len=*),intent(in)    :: name
-character(len=:),allocatable   :: textblock(:)
+character(len=256),allocatable   :: textblock(:)
 character(len=:),allocatable   :: a, b, c
 integer                        :: i, p, pg
    select case(name)
@@ -82,7 +82,7 @@ function help_intrinsics_section() result (textblock)
 !@(#) grab lines in NAME section and append them to generate an index of manpages
 
 character(len=256),allocatable  :: textblock(:)
-character(len=132),allocatable  :: add(:)
+character(len=256),allocatable  :: add(:)
 character(len=256),allocatable  :: label
 character(len=10)               :: cnum
 integer                         :: i
@@ -118,8 +118,8 @@ end function help_intrinsics_section
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
 function help_intrinsics_all() result (textblock)
-character(len=132),allocatable  :: textblock(:)
-character(len=132),allocatable  :: add(:)
+character(len=256),allocatable  :: textblock(:)
+character(len=256),allocatable  :: add(:)
 character(len=10)               :: cnum
 integer                         :: icount
    allocate(textblock(0))
@@ -128,7 +128,7 @@ integer                         :: icount
       write(cnum,'(i0)') icount
       add=help_intrinsics_one(cnum)
       if( size(add) .eq. 0 ) exit
-      textblock=[character(len=132) :: textblock,add]
+      textblock=[character(len=256) :: textblock,add]
       icount=icount + 1
    enddo
 end function help_intrinsics_all
@@ -137,8 +137,7 @@ end function help_intrinsics_all
 !===================================================================================================================================
 function help_intrinsics_one(name) result (textblock)
 character(len=*),intent(in)    :: name
-!!character(len=:),allocatable   :: textblock(:)
-character(len=132),allocatable   :: textblock(:)
+character(len=256),allocatable   :: textblock(:)
 select case(name)
 EOF
 COUNT=0
@@ -150,7 +149,7 @@ do
 
 case('$COUNT','$SHORTNAME')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 $(TOCHARACTER)
 '']
@@ -158,7 +157,7 @@ EOF
 done
    cat <<\EOF
 case default
-   allocate (character(len=132) :: textblock(0))
+   allocate (character(len=256) :: textblock(0))
 end select
 end function help_intrinsics_one
 !===================================================================================================================================

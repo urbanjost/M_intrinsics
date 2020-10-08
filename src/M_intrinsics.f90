@@ -15,7 +15,7 @@ contains
 !===================================================================================================================================
 function help_intrinsics(name) result (textblock)
 character(len=*),intent(in)    :: name
-character(len=:),allocatable   :: textblock(:)
+character(len=256),allocatable   :: textblock(:)
 character(len=:),allocatable   :: a, b, c
 integer                        :: i, p, pg
    select case(name)
@@ -46,7 +46,7 @@ function help_intrinsics_section() result (textblock)
 !@(#) grab lines in NAME section and append them to generate an index of manpages
 
 character(len=256),allocatable  :: textblock(:)
-character(len=132),allocatable  :: add(:)
+character(len=256),allocatable  :: add(:)
 character(len=256),allocatable  :: label
 character(len=10)               :: cnum
 integer                         :: i
@@ -82,8 +82,8 @@ end function help_intrinsics_section
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
 function help_intrinsics_all() result (textblock)
-character(len=132),allocatable  :: textblock(:)
-character(len=132),allocatable  :: add(:)
+character(len=256),allocatable  :: textblock(:)
+character(len=256),allocatable  :: add(:)
 character(len=10)               :: cnum
 integer                         :: icount
    allocate(textblock(0))
@@ -92,7 +92,7 @@ integer                         :: icount
       write(cnum,'(i0)') icount
       add=help_intrinsics_one(cnum)
       if( size(add) .eq. 0 ) exit
-      textblock=[character(len=132) :: textblock,add]
+      textblock=[character(len=256) :: textblock,add]
       icount=icount + 1
    enddo
 end function help_intrinsics_all
@@ -101,13 +101,12 @@ end function help_intrinsics_all
 !===================================================================================================================================
 function help_intrinsics_one(name) result (textblock)
 character(len=*),intent(in)    :: name
-!!character(len=:),allocatable   :: textblock(:)
-character(len=132),allocatable   :: textblock(:)
+character(len=256),allocatable   :: textblock(:)
 select case(name)
 
 case('1','abs')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   abs(3f) - [FORTRAN:INTRINSIC:NUMERIC] Absolute value', &
@@ -169,7 +168,7 @@ textblock=[character(len=132) :: &
 
 case('2','achar')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   achar(3f) - [FORTRAN:INTRINSIC:CHARACTER] returns a character in a specified', &
@@ -234,7 +233,7 @@ textblock=[character(len=132) :: &
 
 case('3','acos')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   acos(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] arccosine function', &
@@ -289,7 +288,7 @@ textblock=[character(len=132) :: &
 
 case('4','acosh')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   acosh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Inverse', &
@@ -331,7 +330,7 @@ textblock=[character(len=132) :: &
 
 case('5','adjustl')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   adjustl(3f) - [FORTRAN:INTRINSIC:CHARACTER] Left adjust a string', &
@@ -379,7 +378,7 @@ textblock=[character(len=132) :: &
 
 case('6','adjustr')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   adjustr(3f) - [FORTRAN:INTRINSIC:CHARACTER] Right adjust a string', &
@@ -427,7 +426,7 @@ textblock=[character(len=132) :: &
 
 case('7','aimag')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   aimag(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Imaginary part of complex', &
@@ -472,7 +471,7 @@ textblock=[character(len=132) :: &
 
 case('8','aint')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   aint(3f) - [FORTRAN:INTRINSIC:NUMERIC] Truncate to a whole number', &
@@ -521,7 +520,7 @@ textblock=[character(len=132) :: &
 
 case('9','all')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   all(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines if all the', &
@@ -630,7 +629,7 @@ textblock=[character(len=132) :: &
 
 case('10','allocated')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   allocated(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Status of an', &
@@ -677,7 +676,7 @@ textblock=[character(len=132) :: &
 
 case('11','anint')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   anint(3f) - [FORTRAN:INTRINSIC:NUMERIC] Nearest whole number', &
@@ -724,7 +723,7 @@ textblock=[character(len=132) :: &
 
 case('12','any')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   any(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines if any of the', &
@@ -786,7 +785,7 @@ textblock=[character(len=132) :: &
 
 case('13','asin')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   asin(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Arcsine function', &
@@ -869,7 +868,7 @@ textblock=[character(len=132) :: &
 
 case('14','asinh')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   asinh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Inverse', &
@@ -911,7 +910,7 @@ textblock=[character(len=132) :: &
 
 case('15','associated')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   associated(3f) - [FORTRAN:INTRINSIC] Status of a pointer or', &
@@ -997,7 +996,7 @@ textblock=[character(len=132) :: &
 
 case('16','atan2')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   atan2(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Arctangent', &
@@ -1058,7 +1057,7 @@ textblock=[character(len=132) :: &
 
 case('17','atan')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   atan(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Arctangent', &
@@ -1108,7 +1107,7 @@ textblock=[character(len=132) :: &
 
 case('18','atanh')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   atanh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Inverse', &
@@ -1151,7 +1150,7 @@ textblock=[character(len=132) :: &
 
 case('19','atomic_add')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   atomic_add(3f) - [FORTRAN:INTRINSIC:ATOMIC] Atomic ADD operation', &
@@ -1199,7 +1198,7 @@ textblock=[character(len=132) :: &
 
 case('20','atomic_and')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   atomic_and(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic bitwise', &
@@ -1249,7 +1248,7 @@ textblock=[character(len=132) :: &
 
 case('21','atomic_cas')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   atomic_cas(3f) - [FORTRAN:INTRINSIC:ATOMIC] Atomic compare and swap', &
@@ -1301,7 +1300,7 @@ textblock=[character(len=132) :: &
 
 case('22','atomic_define')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   atomic_define(3f) - [FORTRAN:INTRINSIC:ATOMIC] Setting a variable atomically', &
@@ -1349,7 +1348,7 @@ textblock=[character(len=132) :: &
 
 case('23','atomic_fetch_add')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   atomic_fetch_add(3f) - [FORTRAN:INTRINSIC:ATOMIC] Atomic ADD operation', &
@@ -1401,7 +1400,7 @@ textblock=[character(len=132) :: &
 
 case('24','atomic_fetch_and')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   atomic_fetch_and(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic', &
@@ -1453,7 +1452,7 @@ textblock=[character(len=132) :: &
 
 case('25','atomic_fetch_or')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   atomic_fetch_or(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic', &
@@ -1503,7 +1502,7 @@ textblock=[character(len=132) :: &
 
 case('26','atomic_fetch_xor')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   atomic_fetch_xor(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic', &
@@ -1555,7 +1554,7 @@ textblock=[character(len=132) :: &
 
 case('27','atomic_or')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   atomic_or(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic bitwise', &
@@ -1605,7 +1604,7 @@ textblock=[character(len=132) :: &
 
 case('28','atomic_ref')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   atomic_ref(3f) - [FORTRAN:INTRINSIC:ATOMIC] Obtaining the value of a', &
@@ -1663,7 +1662,7 @@ textblock=[character(len=132) :: &
 
 case('29','atomic_xor')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   atomic_xor(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic bitwise', &
@@ -1712,7 +1711,7 @@ textblock=[character(len=132) :: &
 
 case('30','backspace')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   BACKSPACE(7f) - [FORTRAN:FILE_POSITIONING] - backspace one record on', &
@@ -1802,7 +1801,7 @@ textblock=[character(len=132) :: &
 
 case('31','bessel_j0')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   bessel_j0(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the first', &
@@ -1846,7 +1845,7 @@ textblock=[character(len=132) :: &
 
 case('32','bessel_j1')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   bessel_j1(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the first', &
@@ -1891,7 +1890,7 @@ textblock=[character(len=132) :: &
 
 case('33','bessel_jn')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   bessel_jn(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the first', &
@@ -1943,7 +1942,7 @@ textblock=[character(len=132) :: &
 
 case('34','bessel_y0')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   bessel_y0(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the', &
@@ -1986,7 +1985,7 @@ textblock=[character(len=132) :: &
 
 case('35','bessel_y1')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   bessel_y1(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the', &
@@ -2028,7 +2027,7 @@ textblock=[character(len=132) :: &
 
 case('36','bessel_yn')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   bessel_yn(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the', &
@@ -2081,7 +2080,7 @@ textblock=[character(len=132) :: &
 
 case('37','bge')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   bge(3f) - [FORTRAN:INTRINSIC:BIT COMPARE] Bitwise greater than or equal to', &
@@ -2112,7 +2111,7 @@ textblock=[character(len=132) :: &
 
 case('38','bgt')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   bgt(3f) - [FORTRAN:INTRINSIC:BIT COMPARE] Bitwise greater than', &
@@ -2146,7 +2145,7 @@ textblock=[character(len=132) :: &
 
 case('39','bit_size')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   bit_size(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Bit size inquiry function', &
@@ -2202,7 +2201,7 @@ textblock=[character(len=132) :: &
 
 case('40','ble')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   ble(3f) - [FORTRAN:INTRINSIC:BIT COMPARE] Bitwise less than or equal to', &
@@ -2233,7 +2232,7 @@ textblock=[character(len=132) :: &
 
 case('41','blt')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   blt(3f) - [FORTRAN:INTRINSIC:BIT COMPARE] Bitwise less than', &
@@ -2263,7 +2262,7 @@ textblock=[character(len=132) :: &
 
 case('42','btest')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   btest(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bit test function', &
@@ -2310,7 +2309,7 @@ textblock=[character(len=132) :: &
 
 case('43','c_associated')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   c_associated(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Status of a C pointer', &
@@ -2359,7 +2358,7 @@ textblock=[character(len=132) :: &
 
 case('44','ceiling')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   ceiling(3f) - [FORTRAN:INTRINSIC:NUMERIC] Integer ceiling function', &
@@ -2402,7 +2401,7 @@ textblock=[character(len=132) :: &
 
 case('45','c_f_pointer')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   c_f_pointer(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Convert C into', &
@@ -2456,7 +2455,7 @@ textblock=[character(len=132) :: &
 
 case('46','c_f_procpointer')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   c_f_procpointer(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Convert C into', &
@@ -2513,7 +2512,7 @@ textblock=[character(len=132) :: &
 
 case('47','c_funloc')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   c_funloc(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Obtain the C address', &
@@ -2574,7 +2573,7 @@ textblock=[character(len=132) :: &
 
 case('48','char')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   char(3f) - [FORTRAN:INTRINSIC:CHARACTER] Character conversion function', &
@@ -2627,7 +2626,7 @@ textblock=[character(len=132) :: &
 
 case('49','c_loc')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   c_loc(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Obtain the C address of', &
@@ -2675,7 +2674,7 @@ textblock=[character(len=132) :: &
 
 case('50','cmplx')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   cmplx(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Complex conversion function', &
@@ -2812,7 +2811,7 @@ textblock=[character(len=132) :: &
 
 case('51','co_broadcast')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   co_broadcast(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Copy a value to all images', &
@@ -2862,7 +2861,7 @@ textblock=[character(len=132) :: &
 
 case('52','co_lbound')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   co_lbound(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Lower codimension bounds of', &
@@ -2900,7 +2899,7 @@ textblock=[character(len=132) :: &
 
 case('53','co_max')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   co_max(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Maximal value on the current', &
@@ -2954,7 +2953,7 @@ textblock=[character(len=132) :: &
 
 case('54','co_min')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   co_min(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Minimal value on the current set', &
@@ -3009,7 +3008,7 @@ textblock=[character(len=132) :: &
 
 case('55','command_argument_count')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   command_argument_count(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get', &
@@ -3066,7 +3065,7 @@ textblock=[character(len=132) :: &
 
 case('56','compiler_options')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   compiler_options(3f) - [FORTRAN:INTRINSIC:COMPILER INQUIRY] Options passed', &
@@ -3121,7 +3120,7 @@ textblock=[character(len=132) :: &
 
 case('57','compiler_version')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   compiler_version(3f) - [FORTRAN:INTRINSIC:COMPILER INQUIRY] Compiler version', &
@@ -3175,7 +3174,7 @@ textblock=[character(len=132) :: &
 
 case('58','conjg')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   conjg(3f) - [FORTRAN:INTRINSIC:NUMERIC] Complex conjugate function', &
@@ -3219,7 +3218,7 @@ textblock=[character(len=132) :: &
 
 case('59','continue')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   CONTINUE(7f) - [FORTRAN:EXECUTION_CONTROL] execution of a CONTINUE statement', &
@@ -3270,7 +3269,7 @@ textblock=[character(len=132) :: &
 
 case('60','co_reduce')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   co_reduce(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Reduction of values on the', &
@@ -3353,7 +3352,7 @@ textblock=[character(len=132) :: &
 
 case('61','cos')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   cos(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Cosine function', &
@@ -3393,7 +3392,7 @@ textblock=[character(len=132) :: &
 
 case('62','cosh')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   cosh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Hyperbolic cosine', &
@@ -3436,7 +3435,7 @@ textblock=[character(len=132) :: &
 
 case('63','co_sum')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   co_sum(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Sum of values on the current set', &
@@ -3494,7 +3493,7 @@ textblock=[character(len=132) :: &
 
 case('64','co_ubound')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   co_ubound(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Upper codimension bounds of', &
@@ -3532,7 +3531,7 @@ textblock=[character(len=132) :: &
 
 case('65','count')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   count(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] Count function', &
@@ -3612,7 +3611,7 @@ textblock=[character(len=132) :: &
 
 case('66','cpu_time')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   cpu_time(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] return CPU processor', &
@@ -3679,7 +3678,7 @@ textblock=[character(len=132) :: &
 
 case('67','cshift')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   cshift(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] Circular shift', &
@@ -3732,7 +3731,7 @@ textblock=[character(len=132) :: &
 
 case('68','c_sizeof')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   c_sizeof(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Size in bytes of an', &
@@ -3783,7 +3782,7 @@ textblock=[character(len=132) :: &
 
 case('69','date_and_time')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   date_and_time(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] gets current time', &
@@ -3853,7 +3852,7 @@ textblock=[character(len=132) :: &
 
 case('70','dble')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   dble(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Double conversion function', &
@@ -3893,7 +3892,7 @@ textblock=[character(len=132) :: &
 
 case('71','digits')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   digits(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Significant digits function', &
@@ -3941,7 +3940,7 @@ textblock=[character(len=132) :: &
 
 case('72','dim')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   dim(3f) - [FORTRAN:INTRINSIC:NUMERIC] Positive difference', &
@@ -3984,7 +3983,7 @@ textblock=[character(len=132) :: &
 
 case('73','dot_product')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   dot_product(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] Dot product', &
@@ -4038,7 +4037,7 @@ textblock=[character(len=132) :: &
 
 case('74','dprod')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   dprod(3f) - [FORTRAN:INTRINSIC:NUMERIC] Double product function', &
@@ -4107,7 +4106,7 @@ textblock=[character(len=132) :: &
 
 case('75','dshiftl')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   dshiftl(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] combines bits of', &
@@ -4142,7 +4141,7 @@ textblock=[character(len=132) :: &
 
 case('76','dshiftr')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   dshiftr(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] combines bits of', &
@@ -4176,7 +4175,7 @@ textblock=[character(len=132) :: &
 
 case('77','eoshift')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   eoshift(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] End-off shift', &
@@ -4239,7 +4238,7 @@ textblock=[character(len=132) :: &
 
 case('78','epsilon')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   epsilon(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Epsilon function', &
@@ -4276,7 +4275,7 @@ textblock=[character(len=132) :: &
 
 case('79','erf')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   erf(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Error function', &
@@ -4317,7 +4316,7 @@ textblock=[character(len=132) :: &
 
 case('80','erfc')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   erfc(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Complementary error function', &
@@ -4359,7 +4358,7 @@ textblock=[character(len=132) :: &
 
 case('81','erfc_scaled')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   erfc_scaled(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Error function', &
@@ -4401,7 +4400,7 @@ textblock=[character(len=132) :: &
 
 case('82','event_query')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   event_query(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Query whether a coarray', &
@@ -4451,7 +4450,7 @@ textblock=[character(len=132) :: &
 
 case('83','execute_command_line')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   execute_command_line(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Execute', &
@@ -4551,7 +4550,7 @@ textblock=[character(len=132) :: &
 
 case('84','exit')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   EXIT(7f) - [FORTRAN:EXECUTION CONTROL] statement (LICENSE:PD)', &
@@ -4634,7 +4633,7 @@ textblock=[character(len=132) :: &
 
 case('85','exp')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   exp(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Exponential function', &
@@ -4669,7 +4668,7 @@ textblock=[character(len=132) :: &
 
 case('86','exponent')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   exponent(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Exponent function', &
@@ -4708,7 +4707,7 @@ textblock=[character(len=132) :: &
 
 case('87','extends_type_of')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   extends_type_of(3f) - [FORTRAN:INTRINSIC] determine if the dynamic type of', &
@@ -4749,7 +4748,7 @@ textblock=[character(len=132) :: &
 
 case('88','findloc')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   findloc(3f) - [FORTRAN:INTRINSIC] Location of first element of ARRAY', &
@@ -4899,7 +4898,7 @@ textblock=[character(len=132) :: &
 
 case('89','float')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   float(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Convert integer to default real', &
@@ -4937,7 +4936,7 @@ textblock=[character(len=132) :: &
 
 case('90','floor')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   floor(3f) - [FORTRAN:INTRINSIC:NUMERIC] Integer floor function', &
@@ -4981,7 +4980,7 @@ textblock=[character(len=132) :: &
 
 case('91','fraction')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   fraction(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Fractional part of the', &
@@ -5022,7 +5021,7 @@ textblock=[character(len=132) :: &
 
 case('92','gamma')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   gamma(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Gamma function', &
@@ -5068,7 +5067,7 @@ textblock=[character(len=132) :: &
 
 case('93','get_command')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   get_command(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get the entire', &
@@ -5147,7 +5146,7 @@ textblock=[character(len=132) :: &
 
 case('94','get_command_argument')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   get_command_argument(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get', &
@@ -5254,7 +5253,7 @@ textblock=[character(len=132) :: &
 
 case('95','get_environment_variable')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   get_environment_variable(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get', &
@@ -5339,7 +5338,7 @@ textblock=[character(len=132) :: &
 
 case('96','huge')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   huge(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Largest number of a kind', &
@@ -5375,7 +5374,7 @@ textblock=[character(len=132) :: &
 
 case('97','hypot')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   hypot(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Euclidean distance function', &
@@ -5413,7 +5412,7 @@ textblock=[character(len=132) :: &
 
 case('98','iachar')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   iachar(3f) - [FORTRAN:INTRINSIC:CHARACTER] Code in ASCII collating sequence', &
@@ -5484,7 +5483,7 @@ textblock=[character(len=132) :: &
 
 case('99','iall')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   iall(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise and of array elements', &
@@ -5540,7 +5539,7 @@ textblock=[character(len=132) :: &
 
 case('100','iand')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   iand(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise logical and', &
@@ -5584,7 +5583,7 @@ textblock=[character(len=132) :: &
 
 case('101','iany')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   iany(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise or of array elements', &
@@ -5641,7 +5640,7 @@ textblock=[character(len=132) :: &
 
 case('102','ibclr')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   ibclr(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Clear bit', &
@@ -5677,7 +5676,7 @@ textblock=[character(len=132) :: &
 
 case('103','ibits')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   ibits(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bit extraction', &
@@ -5714,7 +5713,7 @@ textblock=[character(len=132) :: &
 
 case('104','ibset')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   ibset(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Set bit', &
@@ -5749,7 +5748,7 @@ textblock=[character(len=132) :: &
 
 case('105','ichar')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   ichar(3f) - [FORTRAN:INTRINSIC:CHARACTER] Character-to-integer conversion', &
@@ -5836,7 +5835,7 @@ textblock=[character(len=132) :: &
 
 case('106','ieor')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   ieor(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise logical exclusive or', &
@@ -5869,7 +5868,7 @@ textblock=[character(len=132) :: &
 
 case('107','image_index')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   image_index(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Cosubscript to image', &
@@ -5913,7 +5912,7 @@ textblock=[character(len=132) :: &
 
 case('108','include')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   include(7f) - [FORTRAN] including source text', &
@@ -6031,7 +6030,7 @@ textblock=[character(len=132) :: &
 
 case('109','index')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   index(3f) - [FORTRAN:INTRINSIC:CHARACTER] Position of a substring within', &
@@ -6099,7 +6098,7 @@ textblock=[character(len=132) :: &
 
 case('110','int')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   int(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Convert to integer type', &
@@ -6149,7 +6148,7 @@ textblock=[character(len=132) :: &
 
 case('111','ior')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   ior(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise logical inclusive or', &
@@ -6202,7 +6201,7 @@ textblock=[character(len=132) :: &
 
 case('112','iparity')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   iparity(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise exclusive or of', &
@@ -6259,7 +6258,7 @@ textblock=[character(len=132) :: &
 
 case('113','is_contiguous')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   is_contiguous(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] test if object is', &
@@ -6337,7 +6336,7 @@ textblock=[character(len=132) :: &
 
 case('114','ishft')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   ishft(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Shift bits', &
@@ -6373,7 +6372,7 @@ textblock=[character(len=132) :: &
 
 case('115','ishftc')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   ishftc(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Shift bits circularly', &
@@ -6414,7 +6413,7 @@ textblock=[character(len=132) :: &
 
 case('116','is_iostat_end')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   is_iostat_end(3f) - [FORTRAN:INTRINSIC] Test for end-of-file value', &
@@ -6459,7 +6458,7 @@ textblock=[character(len=132) :: &
 
 case('117','is_iostat_eor')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   is_iostat_eor(3f) - [FORTRAN:INTRINSIC] Test for end-of-record value', &
@@ -6501,7 +6500,7 @@ textblock=[character(len=132) :: &
 
 case('118','kind')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   kind(3f) - [FORTRAN:INTRINSIC:KIND INQUIRY] Kind of an entity', &
@@ -6541,7 +6540,7 @@ textblock=[character(len=132) :: &
 
 case('119','lbound')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   lbound(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Lower dimension bounds of', &
@@ -6640,7 +6639,7 @@ textblock=[character(len=132) :: &
 
 case('120','leadz')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   leadz(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Number of leading zero', &
@@ -6759,7 +6758,7 @@ textblock=[character(len=132) :: &
 
 case('121','len')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   len(3f) - [FORTRAN:INTRINSIC:CHARACTER] Length of a character entity', &
@@ -6811,7 +6810,7 @@ textblock=[character(len=132) :: &
 
 case('122','len_trim')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   len_trim(3f) - [FORTRAN:INTRINSIC:CHARACTER] Length of a character', &
@@ -6861,7 +6860,7 @@ textblock=[character(len=132) :: &
 
 case('123','lge')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   lge(3f) - [FORTRAN:INTRINSIC:CHARACTER] Lexical greater than or equal', &
@@ -6909,7 +6908,7 @@ textblock=[character(len=132) :: &
 
 case('124','lgt')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   lgt(3f) - [FORTRAN:INTRINSIC:CHARACTER] Lexical greater than', &
@@ -6958,7 +6957,7 @@ textblock=[character(len=132) :: &
 
 case('125','lle')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   lle(3f) - [FORTRAN:INTRINSIC:CHARACTER] Lexical less than or equal', &
@@ -7046,7 +7045,7 @@ textblock=[character(len=132) :: &
 
 case('126','llt')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   llt(3f) - [FORTRAN:INTRINSIC:CHARACTER] Lexical less than', &
@@ -7095,7 +7094,7 @@ textblock=[character(len=132) :: &
 
 case('127','log10')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   log10(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Base 10 logarithm function', &
@@ -7133,7 +7132,7 @@ textblock=[character(len=132) :: &
 
 case('128','log')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   log(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Logarithm function', &
@@ -7176,7 +7175,7 @@ textblock=[character(len=132) :: &
 
 case('129','log_gamma')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   log_gamma(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Logarithm of the', &
@@ -7216,7 +7215,7 @@ textblock=[character(len=132) :: &
 
 case('130','logical')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   logical(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Converts one', &
@@ -7250,7 +7249,7 @@ textblock=[character(len=132) :: &
 
 case('131','maskl')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   maskl(3f) - [FORTRAN:INTRINSIC] Left justified mask', &
@@ -7285,7 +7284,7 @@ textblock=[character(len=132) :: &
 
 case('132','maskr')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   maskr(3f) - [FORTRAN:INTRINSIC] Right justified mask', &
@@ -7319,7 +7318,7 @@ textblock=[character(len=132) :: &
 
 case('133','matmul')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   matmul(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] matrix', &
@@ -7354,7 +7353,7 @@ textblock=[character(len=132) :: &
 
 case('134','max')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   max(3f) - [FORTRAN:INTRINSIC:NUMERIC] Maximum value of an argument list', &
@@ -7463,7 +7462,7 @@ textblock=[character(len=132) :: &
 
 case('135','maxexponent')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   maxexponent(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Maximum exponent', &
@@ -7504,7 +7503,7 @@ textblock=[character(len=132) :: &
 
 case('136','maxloc')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   maxloc(3f) - [FORTRAN:INTRINSIC:ARRAY LOCATION] Location of the', &
@@ -7570,7 +7569,7 @@ textblock=[character(len=132) :: &
 
 case('137','maxval')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   maxval(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines the', &
@@ -7646,7 +7645,7 @@ textblock=[character(len=132) :: &
 
 case('138','merge')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   merge(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Merge variables', &
@@ -7703,7 +7702,7 @@ textblock=[character(len=132) :: &
 
 case('139','merge_bits')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   merge_bits(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Merge of bits', &
@@ -7735,7 +7734,7 @@ textblock=[character(len=132) :: &
 
 case('140','min')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   min(3f) - [FORTRAN:INTRINSIC:NUMERIC] Minimum value of an argument list', &
@@ -7778,7 +7777,7 @@ textblock=[character(len=132) :: &
 
 case('141','minexponent')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   minexponent(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Minimum exponent', &
@@ -7820,7 +7819,7 @@ textblock=[character(len=132) :: &
 
 case('142','minloc')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   minloc(3f) - [FORTRAN:INTRINSIC:ARRAY LOCATION] Location of the', &
@@ -7887,7 +7886,7 @@ textblock=[character(len=132) :: &
 
 case('143','minval')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   minval(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] Minimum value of an array', &
@@ -7955,7 +7954,7 @@ textblock=[character(len=132) :: &
 
 case('144','mod')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   mod(3f) - [FORTRAN:INTRINSIC:NUMERIC] Remainder function', &
@@ -8009,7 +8008,7 @@ textblock=[character(len=132) :: &
 
 case('145','modulo')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   modulo(3f) - [FORTRAN:INTRINSIC:NUMERIC] Modulo function', &
@@ -8063,7 +8062,7 @@ textblock=[character(len=132) :: &
 
 case('146','move_alloc')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   move_alloc(3f) - [FORTRAN:INTRINSIC] Move allocation from one object', &
@@ -8125,7 +8124,7 @@ textblock=[character(len=132) :: &
 
 case('147','mvbits')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   mvbits(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Move bits from one', &
@@ -8163,7 +8162,7 @@ textblock=[character(len=132) :: &
 
 case('148','nearest')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   nearest(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Nearest', &
@@ -8206,7 +8205,7 @@ textblock=[character(len=132) :: &
 
 case('149','new_line')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   new_line(3f) - [FORTRAN:INTRINSIC:CHARACTER] New line character', &
@@ -8241,7 +8240,7 @@ textblock=[character(len=132) :: &
 
 case('150','nint')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   nint(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Nearest whole number', &
@@ -8287,7 +8286,7 @@ textblock=[character(len=132) :: &
 
 case('151','norm2')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   norm2(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Euclidean vector norm', &
@@ -8332,7 +8331,7 @@ textblock=[character(len=132) :: &
 
 case('152','not')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   not(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Logical negation', &
@@ -8362,7 +8361,7 @@ textblock=[character(len=132) :: &
 
 case('153','null')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   null(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] Function', &
@@ -8404,7 +8403,7 @@ textblock=[character(len=132) :: &
 
 case('154','num_images')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   num_images(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Number of images', &
@@ -8460,7 +8459,7 @@ textblock=[character(len=132) :: &
 
 case('155','pack')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   pack(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Pack an array into', &
@@ -8545,7 +8544,7 @@ textblock=[character(len=132) :: &
 
 case('156','parity')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   parity(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] Reduction', &
@@ -8590,7 +8589,7 @@ textblock=[character(len=132) :: &
 
 case('157','popcnt')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   popcnt(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Number of bits set', &
@@ -8643,7 +8642,7 @@ textblock=[character(len=132) :: &
 
 case('158','poppar')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   poppar(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Parity of the number of', &
@@ -8690,7 +8689,7 @@ textblock=[character(len=132) :: &
 
 case('159','precision')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   precision(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Decimal precision', &
@@ -8734,7 +8733,7 @@ textblock=[character(len=132) :: &
 
 case('160','present')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   present(3f) - [FORTRAN:INTRINSIC] Determine whether an optional dummy', &
@@ -8778,7 +8777,7 @@ textblock=[character(len=132) :: &
 
 case('161','product')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   product(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] Product of array elements', &
@@ -8829,7 +8828,7 @@ textblock=[character(len=132) :: &
 
 case('162','radix')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   radix(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Base of a model number', &
@@ -8868,7 +8867,7 @@ textblock=[character(len=132) :: &
 
 case('163','random_number')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   random_number(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:RANDOM]', &
@@ -8951,7 +8950,7 @@ textblock=[character(len=132) :: &
 
 case('164','random_seed')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   random_seed(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:RANDOM] Initialize', &
@@ -9006,7 +9005,7 @@ textblock=[character(len=132) :: &
 
 case('165','range')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   range(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Decimal exponent range', &
@@ -9050,7 +9049,7 @@ textblock=[character(len=132) :: &
 
 case('166','rank')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   rank(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Rank of a data object', &
@@ -9089,7 +9088,7 @@ textblock=[character(len=132) :: &
 
 case('167','real')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   real(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Convert to real type', &
@@ -9152,7 +9151,7 @@ textblock=[character(len=132) :: &
 
 case('168','repeat')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   repeat(3f) - [FORTRAN:INTRINSIC:CHARACTER] Repeated string concatenation', &
@@ -9196,7 +9195,7 @@ textblock=[character(len=132) :: &
 
 case('169','reshape')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   reshape(3f) - [FORTRAN:INTRINSIC:ARRAY RESHAPE] Function to reshape an array', &
@@ -9250,7 +9249,7 @@ textblock=[character(len=132) :: &
 
 case('170','return')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   return(7f) - [FORTRAN:STATEMENT] completes execution of the instance', &
@@ -9360,7 +9359,7 @@ textblock=[character(len=132) :: &
 
 case('171','rewind')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   REWIND(7f) - [FORTRAN:FILE_POSITIONING] rewind specified sequential', &
@@ -9443,7 +9442,7 @@ textblock=[character(len=132) :: &
 
 case('172','rrspacing')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   rrspacing(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Reciprocal of', &
@@ -9476,7 +9475,7 @@ textblock=[character(len=132) :: &
 
 case('173','same_type_as')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   same_type_as(3f) - [FORTRAN:INTRINSIC] Query dynamic types for equality', &
@@ -9508,7 +9507,7 @@ textblock=[character(len=132) :: &
 
 case('174','scale')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   scale(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Scale a real value', &
@@ -9553,7 +9552,7 @@ textblock=[character(len=132) :: &
 
 case('175','scan')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   scan(3f) - [FORTRAN:INTRINSIC:CHARACTER] Scan a string for the presence', &
@@ -9610,7 +9609,7 @@ textblock=[character(len=132) :: &
 
 case('176','selected_char_kind')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   selected_char_kind(3f) - [FORTRAN:INTRINSIC:KIND] Choose character', &
@@ -9661,7 +9660,7 @@ textblock=[character(len=132) :: &
 
 case('177','selected_int_kind')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   selected_int_kind(3f) - [FORTRAN:INTRINSIC:KIND] Choose integer kind', &
@@ -9704,7 +9703,7 @@ textblock=[character(len=132) :: &
 
 case('178','selected_real_kind')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   selected_real_kind(3f) - [FORTRAN:INTRINSIC:KIND] Choose real kind', &
@@ -9774,7 +9773,7 @@ textblock=[character(len=132) :: &
 
 case('179','set_exponent')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   set_exponent(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Set the', &
@@ -9816,7 +9815,7 @@ textblock=[character(len=132) :: &
 
 case('180','shape')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   shape(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Determine the shape of', &
@@ -9865,7 +9864,7 @@ textblock=[character(len=132) :: &
 
 case('181','shifta')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   shifta(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] shift bits right with fill', &
@@ -9900,7 +9899,7 @@ textblock=[character(len=132) :: &
 
 case('182','shiftl')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   shiftl(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] shift bits left', &
@@ -9933,7 +9932,7 @@ textblock=[character(len=132) :: &
 
 case('183','shiftr')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   shiftr(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] shift bits right', &
@@ -9966,7 +9965,7 @@ textblock=[character(len=132) :: &
 
 case('184','sign')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   sign(3f) - [FORTRAN:INTRINSIC:NUMERIC] Sign copying function', &
@@ -10009,7 +10008,7 @@ textblock=[character(len=132) :: &
 
 case('185','sin')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   sin(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Sine function', &
@@ -10111,7 +10110,7 @@ textblock=[character(len=132) :: &
 
 case('186','sinh')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   sinh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Hyperbolic', &
@@ -10151,7 +10150,7 @@ textblock=[character(len=132) :: &
 
 case('187','size')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   size(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Determine the size of an array', &
@@ -10330,7 +10329,7 @@ textblock=[character(len=132) :: &
 
 case('188','sngl')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   sngl(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Convert double precision', &
@@ -10362,7 +10361,7 @@ textblock=[character(len=132) :: &
 
 case('189','spacing')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   spacing(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Smallest distance', &
@@ -10405,7 +10404,7 @@ textblock=[character(len=132) :: &
 
 case('190','spread')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   spread(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Add a dimension', &
@@ -10508,7 +10507,7 @@ textblock=[character(len=132) :: &
 
 case('191','sqrt')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   sqrt(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Square-root function', &
@@ -10548,7 +10547,7 @@ textblock=[character(len=132) :: &
 
 case('192','stop')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   STOP(7f),ALLSTOP(7f)  - [FORTRAN:STATEMENT] initiates termination of', &
@@ -10633,7 +10632,7 @@ textblock=[character(len=132) :: &
 
 case('193','storage_size')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   storage_size(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Storage size in bits', &
@@ -10678,7 +10677,7 @@ textblock=[character(len=132) :: &
 
 case('194','sum')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   sum(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] sum the elements of an array', &
@@ -10755,7 +10754,7 @@ textblock=[character(len=132) :: &
 
 case('195','system_clock')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   system_clock(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Return', &
@@ -10841,7 +10840,7 @@ textblock=[character(len=132) :: &
 
 case('196','tan')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   tan(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Tangent function', &
@@ -10882,7 +10881,7 @@ textblock=[character(len=132) :: &
 
 case('197','tanh')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   tanh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Hyperbolic', &
@@ -10926,7 +10925,7 @@ textblock=[character(len=132) :: &
 
 case('198','this_image')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   this_image(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Cosubscript index of', &
@@ -10995,7 +10994,7 @@ textblock=[character(len=132) :: &
 
 case('199','tiny')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   tiny(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Smallest positive number', &
@@ -11032,7 +11031,7 @@ textblock=[character(len=132) :: &
 
 case('200','trailz')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   trailz(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Number of trailing zero', &
@@ -11130,7 +11129,7 @@ textblock=[character(len=132) :: &
 
 case('201','transfer')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   transfer(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Transfer bit patterns', &
@@ -11208,7 +11207,7 @@ textblock=[character(len=132) :: &
 
 case('202','transpose')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   transpose(3f) - [FORTRAN:INTRINSIC:ARRAY MANIPULATION] Transpose an', &
@@ -11284,7 +11283,7 @@ textblock=[character(len=132) :: &
 
 case('203','trim')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   trim(3f) - [FORTRAN:INTRINSIC:CHARACTER] Remove trailing blank', &
@@ -11329,7 +11328,7 @@ textblock=[character(len=132) :: &
 
 case('204','ubound')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   ubound(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Upper dimension bounds', &
@@ -11426,7 +11425,7 @@ textblock=[character(len=132) :: &
 
 case('205','unpack')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   unpack(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Store the elements', &
@@ -11474,7 +11473,7 @@ textblock=[character(len=132) :: &
 
 case('206','verify')
 
-textblock=[character(len=132) :: &
+textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '   verify(3f) - [FORTRAN:INTRINSIC:CHARACTER] Scan a string for the', &
@@ -11577,7 +11576,7 @@ textblock=[character(len=132) :: &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
 case default
-   allocate (character(len=132) :: textblock(0))
+   allocate (character(len=256) :: textblock(0))
 end select
 end function help_intrinsics_one
 !===================================================================================================================================
