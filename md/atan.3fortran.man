@@ -1,7 +1,7 @@
 NAME
-     atan(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Arctangent
-     function
-     
+   atan(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Arctangent
+   function
+
 SYNTAX
    * result = atan(x)
    * result = atan(y, x)
@@ -29,12 +29,12 @@ EXAMPLE
    use, intrinsic :: iso_fortran_env, only : real_kinds, &
    & real32, real64, real128
    implicit none
-     real(kind=real64) :: x = 2.866_real64
-     x = atan(x)
+      real(kind=real64) :: x = 2.866_real64
+      x = atan(x)
    end program demo_atan
 
 STANDARD
-   [[FORTRAN 77]] and later; 
+   [[FORTRAN 77]] and later;
    for a complex argument and for two arguments [[Fortran 2008]] or later
 
 CLASS

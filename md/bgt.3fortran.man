@@ -1,6 +1,6 @@
 NAME
    bgt(3f) - [FORTRAN:INTRINSIC:BIT COMPARE] Bitwise greater than
-     
+
 SYNTAX
    result = bgt(i, j)
 
@@ -9,7 +9,7 @@ DESCRIPTION
 
 ARGUMENTS
   I    Shall be of INTEGER type or a BOZ literal constant.
-  J    Shall be of INTEGER type, and of the same kind as I; 
+  J    Shall be of INTEGER type, and of the same kind as I;
        or a BOZ literal constant.
 
 RETURN VALUE

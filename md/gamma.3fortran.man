@@ -1,6 +1,6 @@
 NAME
    gamma(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Gamma function
-     
+
 DESCRIPTION
    gamma(x) computes Gamma of X. For positive,
    integer values of X the Gamma function simplifies to the factorial

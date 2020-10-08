@@ -1,7 +1,7 @@
 NAME
-     any(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines if any of the
-     values in the logical array are true.
-     
+   any(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines if any of the
+   values in the logical array are true.
+
 SYNTAX
    result = any(mask [, dim])
 
@@ -34,7 +34,7 @@ Sample program:
 
     program demo_any
     implicit none
-      logical l
+    logical l
       l = any([.true., .true., .true.])
       print *, l
       call section

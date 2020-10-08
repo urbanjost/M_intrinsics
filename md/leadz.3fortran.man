@@ -1,6 +1,6 @@
 NAME
-     leadz(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Number of leading zero
-     bits of an integer
+   leadz(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Number of leading zero
+   bits of an integer
 
 SYNTAX
    result = leadz(i)

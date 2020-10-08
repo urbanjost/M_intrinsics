@@ -1,6 +1,6 @@
 NAME
-     llt(3f) - [FORTRAN:INTRINSIC:CHARACTER] Lexical less than
-     
+   llt(3f) - [FORTRAN:INTRINSIC:CHARACTER] Lexical less than
+
 SYNTAX
    result = llt(string_a, string_b)
 
@@ -38,6 +38,6 @@ SEE ALSO
    Functions that perform operations on character strings, return lengths
    of arguments, and search for certain arguments:
 
-   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), 
+   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),
                   scan(3), verify(3)
    Nonelemental:  repeat(3), trim(3)

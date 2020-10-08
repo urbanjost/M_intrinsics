@@ -1,6 +1,6 @@
 NAME
    iall(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise and of array elements
-     
+
 SYNTAX
    * result = iall(array[, mask])
    * result = iall(array, dim[, mask])

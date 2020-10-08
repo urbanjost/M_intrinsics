@@ -1,6 +1,6 @@
 NAME
    num_images(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Number of images
-     
+
 SYNTAX
    result = num_images(distance, failed)
 
@@ -40,7 +40,7 @@ EXAMPLE
    end program demo_num_images
 
 STANDARD
-   [[Fortran 2008]] and later. With DISTANCE or FAILED argument, 
+   [[Fortran 2008]] and later. With DISTANCE or FAILED argument,
    [[TS 18508]] or later
 
 CLASS

@@ -1,6 +1,6 @@
 NAME
    erfc(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Complementary error function
-     
+
 SYNTAX
    result = erfc(x)
 

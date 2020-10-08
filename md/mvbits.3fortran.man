@@ -1,7 +1,7 @@
 NAME
    mvbits(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Move bits from one
    integer to another
-     
+
 SYNTAX
    call mvbits(from, frompos, len, to, topos)
 

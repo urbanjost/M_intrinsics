@@ -1,7 +1,7 @@
 NAME
-     aimag(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Imaginary part of complex
-     number
-     
+   aimag(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Imaginary part of complex
+   number
+
 SYNTAX
    result = AIMAG(Z)
 

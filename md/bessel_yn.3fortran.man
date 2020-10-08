@@ -1,7 +1,7 @@
 NAME
    bessel_yn(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the
    second kind
-     
+
 SYNTAX
 * result = bessel_yn(n, x)
 * result = bessel_yn(n1, n2, x)

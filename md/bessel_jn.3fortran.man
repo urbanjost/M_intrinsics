@@ -1,7 +1,7 @@
 NAME
    bessel_jn(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Bessel function of the first
    kind
-     
+
 SYNTAX
 * result = bessel_jn(n, x)
 * result = bessel_jn(n1, n2, x)
@@ -39,7 +39,7 @@ STANDARD
    [[Fortran 2008]] and later
 
 CLASS
-   [[Elemental function]], 
+   [[Elemental function]],
    except for the transformational variant bessel_jn(n1, n2, x).
 
 SEE ALSO

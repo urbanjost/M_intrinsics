@@ -1,7 +1,7 @@
 NAME
    ichar(3f) - [FORTRAN:INTRINSIC:CHARACTER] Character-to-integer conversion
    function
-     
+
 SYNTAX
    result = ichar(c [, kind])
 
@@ -76,6 +76,6 @@ SEE ALSO
    Functions that perform operations on character strings, return lengths
    of arguments, and search for certain arguments:
 
-   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), 
+   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),
                   scan(3), verify(3)
    Nonelemental:  repeat(3), trim(3)

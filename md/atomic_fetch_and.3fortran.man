@@ -1,7 +1,7 @@
 NAME
    atomic_fetch_and(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic
    bitwise AND operation with prior fetch
-     
+
 SYNTAX
    call atomic_fetch_and(atom, value, old [, stat])
 

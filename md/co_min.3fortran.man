@@ -1,7 +1,7 @@
 NAME
-  co_min(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Minimal value on the current set
-  of images
-     
+   co_min(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Minimal value on the current set
+   of images
+
 SYNTAX
    call co_min(a [, result_image, stat, errmsg])
 

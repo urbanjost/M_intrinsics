@@ -1,6 +1,6 @@
 NAME
    dprod(3f) - [FORTRAN:INTRINSIC:NUMERIC] Double product function
-     
+
 SYNTAX
    result = dprod(x, y)
 

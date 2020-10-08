@@ -11,7 +11,7 @@ DESCRIPTION
    IOR returns the bit-wise Boolean inclusive-OR of I and J.
 
 ARGUMENTS
-   I   an INTEGER scalar or array. 
+   I   an INTEGER scalar or array.
    J   INTEGER scalar or array, of the same kind as I.
 
 RETURN VALUE

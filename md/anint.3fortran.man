@@ -1,6 +1,6 @@
 NAME
-     anint(3f) - [FORTRAN:INTRINSIC:NUMERIC] Nearest whole number
-     
+   anint(3f) - [FORTRAN:INTRINSIC:NUMERIC] Nearest whole number
+
 SYNTAX
    result = anint(a [, kind])
 

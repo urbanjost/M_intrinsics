@@ -1,7 +1,7 @@
 NAME
    rrspacing(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Reciprocal of
    the relative spacing
-     
+
 SYNTAX
    result = rrspacing(x)
 

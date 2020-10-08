@@ -1,6 +1,6 @@
 NAME
    sign(3f) - [FORTRAN:INTRINSIC:NUMERIC] Sign copying function
-     
+
 SYNTAX
    result = sign(a, b)
 

@@ -1,6 +1,6 @@
 NAME
-     maskl(3f) - [FORTRAN:INTRINSIC] Left justified mask
-     
+   maskl(3f) - [FORTRAN:INTRINSIC] Left justified mask
+
 SYNOPSIS
    result = maskl(i[, kind])
 

@@ -1,7 +1,7 @@
 NAME
-     matmul(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] matrix
-     multiplication
-     
+   matmul(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] matrix
+   multiplication
+
 SYNTAX
    result = matmul(matrix_a, matrix_b)
 

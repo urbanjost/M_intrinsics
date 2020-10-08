@@ -1,7 +1,7 @@
 NAME
    sinh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Hyperbolic
    sine function
-     
+
 SYNTAX
    result = sinh(x)
 

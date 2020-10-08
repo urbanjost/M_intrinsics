@@ -1,6 +1,6 @@
 NAME
    scale(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Scale a real value
-     
+
 SYNTAX
    result = scale(x, i)
 

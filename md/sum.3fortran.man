@@ -1,6 +1,6 @@
 NAME
    sum(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] sum the elements of an array
-     
+
 SYNTAX
  Calling sequence:
 
@@ -57,9 +57,9 @@ EXAMPLE
 
   Results:
 
-    Sum of all elements in c =    35.0000000    
-    Sum of Positive elements in c =    36.0000000    
-    Sum of elements in c when corresponding elements in b>0 =   30.0000000    
+    Sum of all elements in c =    35.0000000
+    Sum of Positive elements in c =    36.0000000
+    Sum of elements in c when corresponding elements in b>0 =   30.0000000
 
 STANDARD
    [[Fortran 95]] and later

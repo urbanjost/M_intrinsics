@@ -1,7 +1,7 @@
 NAME
    set_exponent(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Set the
    exponent of the model
-     
+
 SYNTAX
    result = set_exponent(x, i)
 

@@ -1,7 +1,7 @@
 NAME
    transpose(3f) - [FORTRAN:INTRINSIC:ARRAY MANIPULATION] Transpose an
    array of rank two
-     
+
 SYNTAX
    result = transpose(matrix)
 

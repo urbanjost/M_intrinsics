@@ -1,7 +1,7 @@
 NAME
    random_number(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:RANDOM]
    Pseudo-random number
-     
+
 SYNTAX
    random_number(harvest)
 
@@ -37,7 +37,7 @@ EXAMPLE
    ! One way is:
    !   call random_number(rand_val)
    ! choose one from last-first+1 integers
-   !   rand_int = first + FLOOR((last+1-first)*rand_val) 
+   !   rand_int = first + FLOOR((last+1-first)*rand_val)
       count=0
    ! generate a lot of random integers from 1 to 10 and count them.
    ! with a large number of values you should get about the same number

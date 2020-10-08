@@ -1,6 +1,6 @@
 NAME
    digits(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Significant digits function
-     
+
 SYNTAX
    result = digits(x)
 

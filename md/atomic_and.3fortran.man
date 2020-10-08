@@ -1,7 +1,7 @@
 NAME
    atomic_and(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic bitwise
    AND operation
-     
+
 SYNTAX
    call atomic_and(atom, value [, stat])
 

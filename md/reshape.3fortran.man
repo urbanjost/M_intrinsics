@@ -1,6 +1,6 @@
 NAME
    reshape(3f) - [FORTRAN:INTRINSIC:ARRAY RESHAPE] Function to reshape an array
-   
+
 SYNTAX
    result = reshape(source, shape[, pad, order])
 

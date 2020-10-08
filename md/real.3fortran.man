@@ -1,6 +1,6 @@
 NAME
    real(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Convert to real type
-     
+
 SYNTAX
    result = real(x [, kind])
 

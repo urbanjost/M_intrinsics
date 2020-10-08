@@ -1,6 +1,6 @@
 NAME
    float(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Convert integer to default real
-     
+
 SYNTAX
    result = float(a)
 

@@ -1,6 +1,6 @@
 NAME
    ceiling(3f) - [FORTRAN:INTRINSIC:NUMERIC] Integer ceiling function
-     
+
 SYNTAX
    result = ceiling(a [, kind])
 

@@ -1,7 +1,7 @@
 NAME
    co_broadcast(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Copy a value to all images
    the current set of images
-     
+
 SYNTAX
    call co_broadcast(A, SOURCE_IMAGE [, STAT, ERRMSG])
 

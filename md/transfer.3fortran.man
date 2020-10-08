@@ -1,6 +1,6 @@
 NAME
    transfer(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Transfer bit patterns
-     
+
 SYNTAX
    result = transfer(source, mold[, size])
 

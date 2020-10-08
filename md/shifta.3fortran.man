@@ -1,6 +1,6 @@
 NAME
-  shifta(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] shift bits right with fill
-    
+   shifta(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] shift bits right with fill
+
 SYNTAX
    result = SHIFTA(I, SHIFT)
 

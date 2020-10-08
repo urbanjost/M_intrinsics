@@ -1,6 +1,6 @@
 NAME
    ibclr(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Clear bit
-     
+
 SYNTAX
    result = ibclr(i, pos)
 

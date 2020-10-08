@@ -1,6 +1,6 @@
 NAME
-     merge(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Merge variables
-     
+   merge(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Merge variables
+
 SYNTAX
      result = merge(tsource, fsource, mask)
 

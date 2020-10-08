@@ -1,7 +1,7 @@
 NAME
    cshift(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] Circular shift
    elements of an array
-     
+
 SYNTAX
    result = cshift(array, shift [, dim])
 

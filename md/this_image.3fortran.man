@@ -1,7 +1,7 @@
 NAME
    this_image(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Cosubscript index of
    this image
-     
+
 SYNTAX
    result = this_image()
    result = this_image(distance)

@@ -1,7 +1,7 @@
 NAME
-     maxloc(3f) - [FORTRAN:INTRINSIC:ARRAY LOCATION] Location of the
-     maximum value within an array
-     
+   maxloc(3f) - [FORTRAN:INTRINSIC:ARRAY LOCATION] Location of the
+   maximum value within an array
+
 SYNTAX
    result = maxloc(array, dim [, mask])
    result = maxloc(array [, mask])

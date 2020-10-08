@@ -1,6 +1,6 @@
 NAME
    iany(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise or of array elements
-     
+
 SYNTAX
    * result = iany(array[, mask])
    * result = iany(array, dim[, mask])

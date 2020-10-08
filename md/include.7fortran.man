@@ -1,6 +1,6 @@
 NAME
    include(7f) - [FORTRAN] including source text
-  
+
 SYNOPSIS
    INCLUDE char-literal-constant
 DESCRIPTION
@@ -25,7 +25,7 @@ DESCRIPTION
   It is generally implemented  as a filename containing text to be
   included, but could be interpreted as a URL or a system command that
   generates text or a database query, or a list of files, for example.
-  That being said, all current implementations appear to at 
+  That being said, all current implementations appear to at
   least treat it as a simple filename.
 
   Where the compiler searches for the filename is
@@ -52,7 +52,7 @@ DESCRIPTION
       100 INCLUDE 'filename'  ! NO: statement label not allowed
       ! continuation often works but is non-standard
       INCLUDE &
-      & 'filename'   
+      & 'filename'
       INCLUDE 'file&
       &name'
 

@@ -1,6 +1,6 @@
 NAME
    norm2(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Euclidean vector norm
-     
+
 SYNTAX
    result = norm2(array[, dim])
 

@@ -1,7 +1,7 @@
 NAME
    co_sum(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Sum of values on the current set
    of images
-     
+
 SYNTAX
    call co_sum(a [, result_image, stat, errmsg])
 
@@ -37,7 +37,7 @@ EXAMPLE
      call co_sum(val, result_image=1)
      if (this_image() == 1) then
        ! prints (n**2 + n)/2, with n = num_images()
-       write(*,*) "The sum is ", val 
+       write(*,*) "The sum is ", val
      endif
    end program demo_co_sum
 

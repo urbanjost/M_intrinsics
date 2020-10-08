@@ -1,7 +1,7 @@
 NAME
    maxval(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines the
    maximum value in an array or row
-   
+
 SYNTAX
    result = maxval(array, dim [, mask])
 

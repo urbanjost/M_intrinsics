@@ -1,6 +1,6 @@
 NAME
    atomic_define(3f) - [FORTRAN:INTRINSIC:ATOMIC] Setting a variable atomically
-     
+
 SYNTAX
    call atomic_define (atom, value [, stat])
 

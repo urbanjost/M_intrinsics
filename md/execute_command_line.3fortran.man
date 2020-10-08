@@ -1,7 +1,7 @@
 NAME
    execute_command_line(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Execute
    a shell command
-     
+
 SYNTAX
      call execute_command_line(command [, wait, exitstat, cmdstat, cmdmsg ])
 

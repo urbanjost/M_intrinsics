@@ -1,7 +1,7 @@
 NAME
    get_environment_variable(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get
    an environmental variable
-     
+
 SYNTAX
    call get_environment_variable(NAME[, VALUE, LENGTH, STATUS, TRIM_NAME)
    character(len=*),intent(in)           :: NAME
@@ -17,7 +17,7 @@ DESCRIPTION
    the responsibility of the user to ensure that the environment is not
    being updated concurrently.
 
-OPTIONS  
+OPTIONS
    NAME        (Optional) Shall be a scalar of type CHARACTER and of
                default kind.
 

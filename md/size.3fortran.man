@@ -1,6 +1,6 @@
 NAME
    size(3f) - [FORTRAN:INTRINSIC:ARRAY INQUIRY] Determine the size of an array
-     
+
 SYNTAX
    result = size(array[, dim [, kind]])
 
@@ -9,7 +9,6 @@ DESCRIPTION
    or the total number of elements in ARRAY if DIM is absent.
 
 ARGUMENTS
-
    ARRAY   Shall be an array of any type. If ARRAY is a pointer it
            must be associated and allocatable arrays must be allocated.
    DIM     (Optional) shall be a scalar of type INTEGER and its
@@ -55,20 +54,20 @@ EXAMPLE
        !
        write(*,*)'interfaced assumed-shape arr2ay'
        !
-       ! ‘source’ argument of ‘shape’ intrinsic at (1) must not be 
+       ! ‘source’ argument of ‘shape’ intrinsic at (1) must not be
        ! an assumed size array
-       !!write(*,*)'SHAPE(arr2)       :',shape(arr2) 
+       !!write(*,*)'SHAPE(arr2)       :',shape(arr2)
        ! The upper bound in the last dimension must appear in the reference
        ! to the assumed size array ‘arr2’ at (1)
-       !!write(*,*)'SIZE(arr2)        :',size(arr2) 
+       !!write(*,*)'SIZE(arr2)        :',size(arr2)
        write(*,*)'SIZE(arr2,DIM=1)  :',size(arr2,dim=1)
-       ! ‘dim’ argument of ‘size’ intrinsic at (1) is not 
+       ! ‘dim’ argument of ‘size’ intrinsic at (1) is not
        !a valid dimension index
        !!write(*,*)'SIZE(arr2,DIM=2)  :',size(arr2,dim=2)
        write(*,*)'note lower bound is "1"'
        write(*,*)'LBOUND(arr2)      :',lbound(arr2)
        write(*,*)'LBOUND(arr2)      :',lbound(arr2)
-       ! The upper bound in the last dimension must appear in the 
+       ! The upper bound in the last dimension must appear in the
        ! reference to the assumed size array ‘arr2’ at (1)
        !!write(*,*)'UBOUND(arr2)      :',ubound(arr2)
        write(*,*)'LBOUND(arr2,DIM=1):',lbound(arr2,dim=1)
@@ -95,15 +94,15 @@ EXAMPLE
        !
     end subroutine interfaced
     !!
-    ! NOTE: If NOINTERFACE(3f) had an assumed-shape argument with : 
-    !       for dimensions it could only be properly called with 
+    ! NOTE: If NOINTERFACE(3f) had an assumed-shape argument with :
+    !       for dimensions it could only be properly called with
     !       an explicit interface
     !!
     subroutine nointerface(arr)
     integer,intent(in) :: arr(3,*)
        write(*,*)'nointerface'
      ! SHAPE(3f) CANNOT BE USED ON AN ASSUMED SIZE ARRAY
-     !!write(*,*)'SHAPE(arr)       :',shape(arr) 
+     !!write(*,*)'SHAPE(arr)       :',shape(arr)
      !!write(*,*)'SIZE(arr)        :',size(arr)
        write(*,*)'SIZE(arr,DIM=1)  :',size(arr,dim=1)
      ! CANNOT DETERMINE SIZE OF ASSUMED SIZE ARRAY LAST DIMENSION

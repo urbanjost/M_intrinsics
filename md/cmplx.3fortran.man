@@ -1,6 +1,6 @@
 NAME
    cmplx(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Complex conversion function
-     
+
 SYNTAX
    result = cmplx(x [, y [, kind]])
 
@@ -8,7 +8,7 @@ DESCRIPTION
    To convert numeric variables to complex, use the CMPLX function.
    Constants can be used to define a complex variable using the syntax
 
-      z8 = (1.2345678901234567d0, 1.2345678901234567d0)  
+      z8 = (1.2345678901234567d0, 1.2345678901234567d0)
 
    but this will not work for variables. You must use the CMPLX function.
 
@@ -43,9 +43,9 @@ DESCRIPTION
       !     because KIND parameter is not specified
       !
       ! note this was stored with default real precision
-      z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0)  
-      print *, 'NO, Z8=',z8,real(z8),aimag(z8) 
-      z8 = cmplx(1.2345678901234567e0_dp, 1.2345678901234567e0_dp) 
+      z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0)
+      print *, 'NO, Z8=',z8,real(z8),aimag(z8)
+      z8 = cmplx(1.2345678901234567e0_dp, 1.2345678901234567e0_dp)
       ! again, note components are just REAL
       print *, 'NO, Z8=',z8,real(z8),aimag(z8)
       !
@@ -100,10 +100,10 @@ EXAMPLE
    integer,parameter :: dp=kind(0.0d0)
    complex          :: z4
    complex(kind=dp) :: z8
-      z4 = cmplx(1.23456789, 1.23456789) 
+      z4 = cmplx(1.23456789, 1.23456789)
       print *, 'Z4=',z4
       ! using kind=dp makes it keep DOUBLEPRECISION precision
-      z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0,kind=dp) 
+      z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0,kind=dp)
       print *, 'Z8=',z8
       ! NOTE:
       ! The following is intuitive and works without calling cmplx(3f)

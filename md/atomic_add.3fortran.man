@@ -1,6 +1,6 @@
 NAME
    atomic_add(3f) - [FORTRAN:INTRINSIC:ATOMIC] Atomic ADD operation
-     
+
 SYNTAX
    call atomic_add (atom, value [, stat])
 

@@ -1,6 +1,6 @@
 NAME
    mod(3f) - [FORTRAN:INTRINSIC:NUMERIC] Remainder function
-     
+
 SYNTAX
    result = mod(a, p)
 

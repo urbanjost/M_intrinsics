@@ -1,7 +1,7 @@
 NAME
    poppar(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Parity of the number of
    bits set
-     
+
 SYNTAX
    result = poppar(i)
 

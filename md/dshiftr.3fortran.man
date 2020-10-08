@@ -1,7 +1,7 @@
 NAME
-   dshiftr(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] combines bits of 
+   dshiftr(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] combines bits of
    arguments I and J
-    
+
 SYNTAX
    result = DSHIFTL(I, J, SHIFT)
 

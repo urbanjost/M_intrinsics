@@ -1,7 +1,7 @@
 NAME
    random_seed(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:RANDOM] Initialize
    a pseudo-random number sequence
-     
+
 SYNTAX
    call random_seed([size, put, get])
 

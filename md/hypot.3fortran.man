@@ -1,6 +1,6 @@
 NAME
    hypot(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Euclidean distance function
-     
+
 SYNTAX
    result = hypot(x, y)
 

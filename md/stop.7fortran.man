@@ -1,5 +1,6 @@
 NAME
-  STOP(7f),ALLSTOP(7f)  - [FORTRAN:STATEMENT] initiates termination of execution
+   STOP(7f),ALLSTOP(7f)  - [FORTRAN:STATEMENT] initiates termination of
+   execution
 
 SYNOPSIS
   STOP [ stop-code ]
@@ -15,13 +16,13 @@ SYNOPSIS
 DESCRIPTION
   A STOP statement will cause the program to terminate normally. It may
   provide additional information in the form of output or a system status
-  code, depending on the system. 
+  code, depending on the system.
 
   Any messages generated appear on the ERROR_UNIT file, as identified in
   the intrinsic module ISO_FORTRAN_ENV. This unit is often referred to as
   "stderr". It is recommended that systems write the value of the stop
   code whether numeric or a string.
-  
+
   Note that although STOP is a "normal" termination system status codes
   or "exit codes" are often used for error processing in many scripting
   languages. This code may be detectable by EXECUTE_SYSTEM_COMMAND(3f).
@@ -34,7 +35,7 @@ DESCRIPTION
   stop code, if any, is made available in a processor-dependent manner.
 
   If any exception is signaling on a stopped image, the processor issues a
-  warning indicating which exceptions are signaling; 
+  warning indicating which exceptions are signaling;
 
   When normal termination occurs on more than one image, it is expected
   that a processor-dependent summary of any stop codes and signaling

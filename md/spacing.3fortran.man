@@ -1,7 +1,7 @@
 NAME
    spacing(3f) - [FORTRAN:INTRINSIC:MODEL_COMPONENTS] Smallest distance
    between two numbers of a given type
-     
+
 SYNTAX
    result = spacing(x)
 

@@ -1,6 +1,6 @@
 NAME
-     maskr(3f) - [FORTRAN:INTRINSIC] Right justified mask
-     
+   maskr(3f) - [FORTRAN:INTRINSIC] Right justified mask
+
 SYNTAX
    result = maskr(i[, kind])
 

@@ -1,7 +1,7 @@
 NAME
    tiny(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Smallest positive number
    of a real kind
-     
+
 SYNTAX
    result = tiny(x)
 

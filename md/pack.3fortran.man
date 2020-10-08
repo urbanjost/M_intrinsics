@@ -1,7 +1,7 @@
 NAME
    pack(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Pack an array into
    an array of rank one
-     
+
 SYNTAX
    result = pack(array, mask[,vector])
 
@@ -46,7 +46,7 @@ EXAMPLE
     end subroutine test1
     !
     subroutine test2()
-    ! Gathering nonzero elements from an array and appending elements 
+    ! Gathering nonzero elements from an array and appending elements
     ! from VECTOR:
     integer :: m(4)
       m = [ 1, 0, 0, 2 ]
@@ -64,9 +64,9 @@ EXAMPLE
 
   Results:
 
-   1 5 
-   1 2 3 4 
-   bat        cat        
+   1 5
+   1 2 3 4
+   bat        cat
 
 STANDARD
    [[Fortran 95]] and later

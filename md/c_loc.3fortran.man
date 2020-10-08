@@ -1,7 +1,7 @@
 NAME
-   c_loc(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Obtain the C address of 
+   c_loc(3f) - [FORTRAN:INTRINSIC:ISO_C_BINDING] Obtain the C address of
    an object
-     
+
 SYNTAX
    result = c_loc(x)
 

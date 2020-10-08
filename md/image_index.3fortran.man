@@ -1,7 +1,7 @@
 NAME
    image_index(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Cosubscript to image
    index conversion
-     
+
 SYNTAX
    result = image_index(coarray, sub)
 

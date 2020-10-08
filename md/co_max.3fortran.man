@@ -1,7 +1,7 @@
 NAME
    co_max(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Maximal value on the current
    set of images
-     
+
 SYNTAX
    call co_max(a [, result_image, stat, errmsg])
 

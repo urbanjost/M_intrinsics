@@ -32,12 +32,12 @@ EXAMPLES
    implicit none
    integer :: i, j
    logical :: big
-      ! EXIT a simple loop 
+      ! EXIT a simple loop
       do i=1, 10
          if(i .eq. 4) exit ! exit loop
       enddo
       write(*,*)'I=',i
-   
+
       ! EXIT only exits an innermost loop
       do i=1,10
          do j=100, 200
@@ -45,7 +45,7 @@ EXAMPLES
          enddo
       enddo
       write(*,*)'I=',i,' J=',j
-   
+
       ! EXIT an outermost loop from inner loop by using a construct name
       OUTER: do i=1,10
          INNER: do j=100, 200
@@ -53,7 +53,7 @@ EXAMPLES
          enddo INNER
       enddo OUTER
       write(*,*)'I=',i,' J=',j
-   
+
       ! EXIT a BLOCK not just a DO loop
       MYBLOCK: block
          big = .false.

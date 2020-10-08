@@ -1,7 +1,7 @@
 NAME
    parity(3f) - [FORTRAN:INTRINSIC:TRANSFORMATIONAL FUNCTION] Reduction
    with exclusive OR()
-     
+
 SYNTAX
    result = parity(mask[, dim])
 

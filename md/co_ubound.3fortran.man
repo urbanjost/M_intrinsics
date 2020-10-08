@@ -1,7 +1,7 @@
 NAME
    co_ubound(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Upper codimension bounds of
    an array
-     
+
 SYNTAX
    result = CO_UBOUND(coarray [, dim [, kind]])
 

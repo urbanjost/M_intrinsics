@@ -1,6 +1,6 @@
 NAME
-     log(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Logarithm function
-     
+   log(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Logarithm function
+
 SYNTAX
    result = LOG(X)
 

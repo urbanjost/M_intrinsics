@@ -1,7 +1,7 @@
 NAME
-   atomic_fetch_or(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic 
+   atomic_fetch_or(3f) - [FORTRAN:INTRINSIC:ATOMIC:BIT MANIPULATION] Atomic
    bitwise OR operation with prior fetch
-     
+
 SYNTAX
    call atomic_fetch_or(atom, value, old [, stat])
 

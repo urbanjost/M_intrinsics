@@ -1,6 +1,6 @@
 NAME
    iachar(3f) - [FORTRAN:INTRINSIC:CHARACTER] Code in ASCII collating sequence
-     
+
 SYNTAX
    result = iachar(c [, kind])
 
@@ -33,10 +33,10 @@ EXAMPLE
    integer                      :: i
       string = str
       ! step thru each letter in the string in specified range
-      do i = 1, len(str) 
+      do i = 1, len(str)
          select case (str(i:i))
          case ('A':'Z') ! change letter to miniscule
-            string(i:i) = char(iachar(str(i:i))+32) 
+            string(i:i) = char(iachar(str(i:i))+32)
          case default
          end select
       end do
@@ -60,6 +60,6 @@ SEE ALSO
    Functions that perform operations on character strings, return lengths
    of arguments, and search for certain arguments:
 
-   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3), 
+   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),
                   scan(3), verify(3)
    Nonelemental:  repeat(3), trim(3)

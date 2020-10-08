@@ -1,7 +1,7 @@
 NAME
    event_query(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Query whether a coarray
    event has occurred
-     
+
 SYNTAX
    call EVENT_QUERY(EVENT, COUNT [, STAT])
 

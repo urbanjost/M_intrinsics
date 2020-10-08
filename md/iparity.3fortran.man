@@ -1,7 +1,7 @@
 NAME
    iparity(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bitwise exclusive or of
    array elements
-     
+
 SYNTAX
    * result = iparity(array[, mask])
    * result = iparity(array, dim[, mask])

@@ -1,6 +1,6 @@
 NAME
    min(3f) - [FORTRAN:INTRINSIC:NUMERIC] Minimum value of an argument list
-     
+
 SYNTAX
    result = min(a1, a2 [, a3, ...])
 

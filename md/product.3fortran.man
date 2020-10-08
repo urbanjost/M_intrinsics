@@ -1,6 +1,6 @@
 NAME
    product(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] Product of array elements
-        
+
 SYNTAX
    * result = product(array[, mask])
    * result = product(array, dim[, mask])

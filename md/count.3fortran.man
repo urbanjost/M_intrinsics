@@ -1,6 +1,6 @@
 NAME
    count(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] Count function
-   
+
 SYNTAX
    result = count(mask [, dim, kind])
 

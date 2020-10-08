@@ -1,7 +1,7 @@
 NAME
-     asinh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Inverse
-     hyperbolic sine function
-     
+   asinh(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Inverse
+   hyperbolic sine function
+
 SYNTAX
     result = asinh(x)
 

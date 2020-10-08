@@ -1,11 +1,12 @@
 NAME
-   BACKSPACE(7f) - [FORTRAN:FILE_POSITIONING] - backspace one record on 
+   BACKSPACE(7f) - [FORTRAN:FILE_POSITIONING] - backspace one record on
    specified I/O unit
-   
+
 SYNOPSIS
    BACKSPACE file-unit-number
    BACKSPACE ([UNIT=]file-unit-number][,IOMSG=iomsg-variable]
    [,IOSTAT=scalar-int-variable][,ERR=label])
+
 DESCRIPTION
    Execution of a BACKSPACE statement causes the file connected to the
    specified unit to be positioned before the current record if there

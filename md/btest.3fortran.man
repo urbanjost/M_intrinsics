@@ -1,6 +1,6 @@
 NAME
    btest(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Bit test function
-     
+
 SYNTAX
    result = btest(i, pos)
 

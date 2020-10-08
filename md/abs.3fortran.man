@@ -1,5 +1,5 @@
 NAME
-     abs(3f) - [FORTRAN:INTRINSIC:NUMERIC] Absolute value
+   abs(3f) - [FORTRAN:INTRINSIC:NUMERIC] Absolute value
 
 SYNTAX
    result = ABS(A)

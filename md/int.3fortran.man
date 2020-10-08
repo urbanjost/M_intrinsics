@@ -1,6 +1,6 @@
 NAME
    int(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Convert to integer type
-     
+
 SYNTAX
    result = int(a [, kind))
 

@@ -1,7 +1,7 @@
 NAME
-     all(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines if all the 
-     values are true
-     
+   all(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines if all the
+   values are true
+
 SYNTAX
    result = ALL(MASK [, DIM])
 

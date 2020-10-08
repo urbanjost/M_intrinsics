@@ -1,7 +1,7 @@
 NAME
    present(3f) - [FORTRAN:INTRINSIC] Determine whether an optional dummy
    argument is specified
-     
+
 SYNTAX
    result = present(a)
 

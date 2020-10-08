@@ -1,7 +1,7 @@
 NAME
    merge_bits(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Merge of bits
    under mask
-     
+
 SYNTAX
    result = merge_bits(i, j, mask)
 

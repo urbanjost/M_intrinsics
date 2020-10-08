@@ -1,6 +1,6 @@
 NAME
    cos(3f) - [FORTRAN:INTRINSIC:MATHEMATICS:TRIGONOMETRIC] Cosine function
-     
+
 SYNTAX
    result = cos(x)
 

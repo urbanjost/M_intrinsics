@@ -1,6 +1,6 @@
 NAME
-     same_type_as(3f) - [FORTRAN:INTRINSIC] Query dynamic types for equality
-     
+   same_type_as(3f) - [FORTRAN:INTRINSIC] Query dynamic types for equality
+
 SYNTAX
    result = same_type_as(a, b)
 

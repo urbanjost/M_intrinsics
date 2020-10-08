@@ -58,7 +58,7 @@ EXAMPLE
     implicit none
     real :: d
         d = haversine(36.12,-86.67, 33.94,-118.40) ! BNA to LAX
-        print '(A,F9.4,A)', 'distance: ',d,' km' 
+        print '(A,F9.4,A)', 'distance: ',d,' km'
     contains
     function haversine(latA,lonA,latB,lonB) result (dist)
     !
@@ -92,5 +92,5 @@ CLASS
 
 SEE ALSO
    asin(3), cos(3), tan(3)
- 
+
  JSU

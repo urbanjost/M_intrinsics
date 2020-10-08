@@ -1,7 +1,7 @@
 NAME
    cpu_time(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] return CPU processor
    time in seconds
-     
+
 SYNTAX
    call cpu_time(time)
 

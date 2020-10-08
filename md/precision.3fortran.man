@@ -1,7 +1,7 @@
 NAME
    precision(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Decimal precision
    of a real kind
-     
+
 SYNTAX
     result = precision(x)
 

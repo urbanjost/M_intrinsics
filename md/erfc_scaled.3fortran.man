@@ -1,6 +1,6 @@
 NAME
    erfc_scaled(3f) - [FORTRAN:INTRINSIC:MATHEMATICS] Error function
-     
+
 DESCRIPTION
 
    erfc_scaled(x) computes the exponentially-scaled complementary

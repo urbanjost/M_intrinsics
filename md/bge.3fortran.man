@@ -1,6 +1,6 @@
 NAME
    bge(3f) - [FORTRAN:INTRINSIC:BIT COMPARE] Bitwise greater than or equal to
-     
+
 DESCRIPTION
    Determines whether an integer is a bitwise greater than or equal to another.
 

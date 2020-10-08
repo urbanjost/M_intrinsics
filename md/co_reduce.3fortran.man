@@ -1,7 +1,7 @@
 NAME
    co_reduce(3f) - [FORTRAN:INTRINSIC:COLLECTIVE] Reduction of values on the
    current set of images
-     
+
 SYNTAX
    call co_reduce(a, operator, [, result_image, stat, errmsg])
 

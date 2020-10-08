@@ -1,7 +1,7 @@
 NAME
-   index(3f) - [FORTRAN:INTRINSIC:CHARACTER] Position of a substring within 
+   index(3f) - [FORTRAN:INTRINSIC:CHARACTER] Position of a substring within
    a string
-     
+
 SYNTAX
     index(STRING, SUBSTRING [, BACK [, KIND]]) result(START)
 

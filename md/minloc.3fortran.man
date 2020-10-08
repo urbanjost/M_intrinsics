@@ -1,7 +1,7 @@
 NAME
    minloc(3f) - [FORTRAN:INTRINSIC:ARRAY LOCATION] Location of the
    minimum value within an array
-     
+
 SYNTAX
    result = minloc(array, dim [, mask])
    result = minloc(array [, mask])
