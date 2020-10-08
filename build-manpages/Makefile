@@ -35,7 +35,8 @@ all: roff
 	done|xargs -n 5|column -t
 	bash scripts/build_module.sh|expand|sed -e 's/  *$$//' > ../src/M_intrinsics.f90
 	cd ../demo/;make -k;make clean
-	make.one libGPF
+	#cp ../md/*.man $$HOME/LIBRARY/libGPF/download/doc/
+	which make.one >/dev/null 2>&1 && make.one libGPF
 	: that is all folks!
 
 roff: $(FULLMANS)
