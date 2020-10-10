@@ -55,7 +55,7 @@ character(len=256),allocatable   :: textblock(:)
 character(len=:),allocatable   :: a, b, c
 integer                        :: i, p, pg
    select case(name)
-   case('','manual','intrinsics','fortranmanual')
+   case('','manual','intrinsics','fortranmanual','fortran_manual')
       textblock=help_intrinsics_all()
    case('fortran','toc')
       textblock=help_intrinsics_section()

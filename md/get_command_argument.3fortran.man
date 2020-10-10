@@ -78,7 +78,7 @@ EXAMPLE
      & (i,istat(i),ilen(i),arguments(i)(:ilen(i)),i=0,count)
    end program demo_get_command_argument
 
- Sample output:
+  Sample output:
 
    ./test_get_command_argument a    test  'of getting   arguments  ' "  leading"
 

@@ -19,7 +19,7 @@ character(len=256),allocatable   :: textblock(:)
 character(len=:),allocatable   :: a, b, c
 integer                        :: i, p, pg
    select case(name)
-   case('','manual','intrinsics','fortranmanual')
+   case('','manual','intrinsics','fortranmanual','fortran_manual')
       textblock=help_intrinsics_all()
    case('fortran','toc')
       textblock=help_intrinsics_section()
@@ -5228,7 +5228,7 @@ textblock=[character(len=256) :: &
 '     & (i,istat(i),ilen(i),arguments(i)(:ilen(i)),i=0,count)', &
 '   end program demo_get_command_argument', &
 '', &
-' Sample output:', &
+'  Sample output:', &
 '', &
 '   ./test_get_command_argument a    test  ''of getting   arguments  '' "  leading"', &
 '', &

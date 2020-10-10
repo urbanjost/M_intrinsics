@@ -15,6 +15,7 @@ logical                         :: program_text
     else
         !if(isatty(stdout))then  ! COMMON FORTRAN EXTENSION
            call esc_mode('color')
+           call esc_mode('raw')
         !else
         !   call esc_mode('plain')
         !endif
@@ -29,7 +30,7 @@ logical                         :: program_text
                    lead=indent(manual(j))
                 endif
                 if(program_text .eqv. .true.)then
-                    write(*,'(g0)')esc('<C>'//repeat(' ',lead)//'<b><W>'//atleast(manual(j)(lead:),80-lead) )
+                    write(*,'(g0)')esc('<C>'//repeat(' ',lead)//'<b><W>'//atleast(manual(j)(lead+1:),80-lead) )
                 elseif(verify(manual(j)(1:1), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' ) == 0 .and. &
                 & verify(manual(j), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ _') == 0 )then
                     ilen=len(trim(manual(j)))
