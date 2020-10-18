@@ -15,7 +15,7 @@ logical                         :: program_text
     else
         !if(isatty(stdout))then  ! COMMON FORTRAN EXTENSION
            call esc_mode('color')
-           call esc_mode('raw')
+        !   call esc_mode('raw')
         !else
         !   call esc_mode('plain')
         !endif

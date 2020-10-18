@@ -80,7 +80,7 @@ an example, try:
 ```
 ## CONTRIBUTING
 
-_Collaborators are welcome_.  This is a public github repository. Anyone
+_Collaborators are welcome_. This is a public github repository. Anyone
 can contribute, and is encouraged to do so. First, obtain a copy of
 the repository:
 ```bash

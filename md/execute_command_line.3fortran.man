@@ -3,19 +3,19 @@ NAME
    a shell command
 
 SYNTAX
-     call execute_command_line(command [, wait, exitstat, cmdstat, cmdmsg ])
+   subroutine execute_command_line(command, wait, exitstat, cmdstat, cmdmsg)
 
-     character(len=*),intent(in)  :: command
-     logical,intent(in),optional  :: wait
-     integer,intent(out),optional :: exitstat
-     integer,intent(out),optional :: cmdstat
-     character(len=*),intent(out),optional :: cmdmsg
+    character(len=*),intent(in)  :: command
+    logical,intent(in),optional  :: wait
+    integer,intent(out),optional :: exitstat
+    integer,intent(out),optional :: cmdstat
+    character(len=*),intent(out),optional :: cmdmsg
 
 DESCRIPTION
    The COMMAND argument is passed to the shell and executed. (The shell
    is generally sh(1) on Unix systems, and cmd.exe on Windows.) If WAIT
-   is present and has the value .FALSE., the execution of the command is
-   asynchronous if the system supports it; otherwise, the command is
+   is present and has the value .FALSE., the execution of the command
+   is asynchronous if the system supports it; otherwise, the command is
    executed synchronously.
 
    The three last arguments allow the user to get status information.
@@ -37,20 +37,20 @@ ARGUMENTS
                to be executed. The interpretation is
                programming-environment dependent.
 
-   WAIT        (Optional) a default LOGICAL scalar.
-               If WAIT is present with the value .false., and the
-               processor supports asynchronous execution of the command,
-               the command is executed asynchronously; otherwise it is
-               executed synchronously.
+   WAIT        (Optional) a default LOGICAL scalar. If WAIT is present
+               with the value .false., and the processor supports
+               asynchronous execution of the command, the command
+               is executed asynchronously; otherwise it is executed
+               synchronously.
 
-   EXITSTAT    (Optional) an INTEGER of the default kind with intent(INOUT).
-               If the command is executed synchronously, it is
-               assigned the value of the processor-dependent exit
+   EXITSTAT    (Optional) an INTEGER of the default kind with
+               intent(INOUT).  If the command is executed synchronously,
+               it is assigned the value of the processor-dependent exit
                status. Otherwise, the value of EXITSTAT is unchanged.
 
    CMDSTAT     (Optional) an INTEGER of default kind with intent(INOUT).
-               If an error condition occurs and CMDSTAT is not present, error
-               termination of execution of the image is initiated.
+               If an error condition occurs and CMDSTAT is not present,
+               error termination of execution of the image is initiated.
 
                It is assigned the value -1 if the processor does not
                support command line execution, a processor-dependent
@@ -81,7 +81,7 @@ EXAMPLE
 
 NOTE
    Because this intrinsic is making a system call, it is very system
-   dependent.Its behavior with respect to signaling is processor
+   dependent. Its behavior with respect to signaling is processor
    dependent. In particular, on POSIX-compliant systems, the SIGINT and
    SIGQUIT signals will be ignored, and the SIGCHLD will be blocked. As
    such, if the parent process is terminated, the child process might
