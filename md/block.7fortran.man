@@ -1,0 +1,64 @@
+NAME
+   block(7f) - [FORTRAN:EXECUTION CONTROL] block construct
+   (LICENSE:PD)
+
+SYNOPSIS
+  [block-construct-name:] BLOCK
+
+   [specification-part]
+
+   ENDBLOCK [block-construct-name]
+
+DESCRIPTION
+   The BLOCK construct is an executable construct which may contain
+   declarations, and may be exited using the EXIT statement.
+
+   The specification-part of a BLOCK construct cannot contain a COMMON,
+   EQUIVALENCE, IMPLICIT, INTENT, NAMELIST, or OPTIONAL statement.
+
+   A SAVE of a common-block-name is not allowed in a BLOCK construct.
+
+   Except for the ASYNCHRONOUS and VOLATILE statements, specifications
+   in a BLOCK construct declare construct entities whose scope is that
+   of the BLOCK construct.
+
+EXAMPLES
+  Sample programs:
+
+   program demo_block
+   implicit none
+   integer,parameter :: arr1(*)=[1,2,3,4,5,6,7]
+   integer,parameter :: arr2(*)=[0,1,2,3,4,5,6,7]
+     call showme(arr1)
+     call showme(arr2)
+     contains
+   subroutine showme(a)
+   integer,intent(in) :: a(:)
+   integer :: i=-100
+   integer :: tan
+     tan=20 ! intentionally cause a conflict with intrinsic
+     TESTFORZERO: block
+        integer :: I  ! local block variable
+	intrinsic :: tan  ! can use the TAN intrinsic in the block
+        do i=1,size(a)
+           if(a(i).eq.0) then
+              write(*,*)'found zero at index',i
+	      exit TESTFORZERO
+	   endif
+        enddo
+        write(*,*)'Never found a zero, tried ',i-1,' times'
+        return
+      endblock TESTFORZERO
+      ! note the variable I in the block is local to the block
+      write(*,*)'this is the variable in the main scope of the program, I=',i
+   end subroutine showme
+
+   end program demo_block
+
+  Results:
+
+    Never found a zero, tried 7 times
+    found zero at index 1
+    this is the variable in the main scope of the program, I= -100
+
+ JSU

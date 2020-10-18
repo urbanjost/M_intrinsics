@@ -199,6 +199,7 @@ append("ubound.3fortran.html");
 append("unpack.3fortran.html");
 append("verify.3fortran.html");
 append("backspace.7fortran.html");
+append("block.7fortran.html");
 append("continue.7fortran.html");
 append("exit.7fortran.html");
 append("include.7fortran.html");

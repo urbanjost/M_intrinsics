@@ -2230,7 +2230,77 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('41','blt')
+case('41','block')
+
+textblock=[character(len=256) :: &
+'', &
+'NAME', &
+'   block(7f) - [FORTRAN:EXECUTION CONTROL] block construct', &
+'   (LICENSE:PD)', &
+'', &
+'SYNOPSIS', &
+'  [block-construct-name:] BLOCK', &
+'', &
+'   [specification-part]', &
+'', &
+'   ENDBLOCK [block-construct-name]', &
+'', &
+'DESCRIPTION', &
+'   The BLOCK construct is an executable construct which may contain', &
+'   declarations, and may be exited using the EXIT statement.', &
+'', &
+'   The specification-part of a BLOCK construct cannot contain a COMMON,', &
+'   EQUIVALENCE, IMPLICIT, INTENT, NAMELIST, or OPTIONAL statement.', &
+'', &
+'   A SAVE of a common-block-name is not allowed in a BLOCK construct.', &
+'', &
+'   Except for the ASYNCHRONOUS and VOLATILE statements, specifications', &
+'   in a BLOCK construct declare construct entities whose scope is that', &
+'   of the BLOCK construct.', &
+'', &
+'EXAMPLES', &
+'  Sample programs:', &
+'', &
+'   program demo_block', &
+'   implicit none', &
+'   integer,parameter :: arr1(*)=[1,2,3,4,5,6,7]', &
+'   integer,parameter :: arr2(*)=[0,1,2,3,4,5,6,7]', &
+'     call showme(arr1)', &
+'     call showme(arr2)', &
+'     contains', &
+'   subroutine showme(a)', &
+'   integer,intent(in) :: a(:)', &
+'   integer :: i=-100', &
+'   integer :: tan', &
+'     tan=20 ! intentionally cause a conflict with intrinsic', &
+'     TESTFORZERO: block', &
+'        integer :: I  ! local block variable', &
+'       intrinsic :: tan  ! can use the TAN intrinsic in the block', &
+'        do i=1,size(a)', &
+'           if(a(i).eq.0) then', &
+'              write(*,*)''found zero at index'',i', &
+'             exit TESTFORZERO', &
+'          endif', &
+'        enddo', &
+'        write(*,*)''Never found a zero, tried '',i-1,'' times''', &
+'        return', &
+'      endblock TESTFORZERO', &
+'      ! note the variable I in the block is local to the block', &
+'      write(*,*)''this is the variable in the main scope of the program, I='',i', &
+'   end subroutine showme', &
+'', &
+'   end program demo_block', &
+'', &
+'  Results:', &
+'', &
+'    Never found a zero, tried 7 times', &
+'    found zero at index 1', &
+'    this is the variable in the main scope of the program, I= -100', &
+'', &
+' JSU', &
+'']
+
+case('42','blt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2260,7 +2330,7 @@ textblock=[character(len=256) :: &
 '   bge(3), bgt(3), ble(3)', &
 '']
 
-case('42','btest')
+case('43','btest')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2307,7 +2377,7 @@ textblock=[character(len=256) :: &
 '   mvbits(3)', &
 '']
 
-case('43','c_associated')
+case('44','c_associated')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2356,7 +2426,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('44','ceiling')
+case('45','ceiling')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2399,7 +2469,7 @@ textblock=[character(len=256) :: &
 '   floor(3), nint(3)', &
 '']
 
-case('45','c_f_pointer')
+case('46','c_f_pointer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2453,7 +2523,7 @@ textblock=[character(len=256) :: &
 '   c_loc(3), c_f_procpointer(3), iso_c_binding(3)', &
 '']
 
-case('46','c_f_procpointer')
+case('47','c_f_procpointer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2510,7 +2580,7 @@ textblock=[character(len=256) :: &
 '   c_loc(3), c_f_pointer(3), iso_c_binding(3)', &
 '']
 
-case('47','c_funloc')
+case('48','c_funloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2571,7 +2641,7 @@ textblock=[character(len=256) :: &
 '   iso_c_binding(3)', &
 '']
 
-case('48','char')
+case('49','char')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2624,7 +2694,7 @@ textblock=[character(len=256) :: &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
 
-case('49','c_loc')
+case('50','c_loc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2672,7 +2742,7 @@ textblock=[character(len=256) :: &
 '   iso_c_binding(3)', &
 '']
 
-case('50','cmplx')
+case('51','cmplx')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2809,7 +2879,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '']
 
-case('51','co_broadcast')
+case('52','co_broadcast')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2859,7 +2929,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('52','co_lbound')
+case('53','co_lbound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2897,7 +2967,7 @@ textblock=[character(len=256) :: &
 '   co_ubound(3), lbound(3)', &
 '']
 
-case('53','co_max')
+case('54','co_max')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2951,7 +3021,7 @@ textblock=[character(len=256) :: &
 '   co_min(3), co_sum(3), co_reduce(3), co_broadcast(3)', &
 '']
 
-case('54','co_min')
+case('55','co_min')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3006,7 +3076,7 @@ textblock=[character(len=256) :: &
 '   co_max(3), co_sum(3), co_reduce(3), co_broadcast(3)', &
 '']
 
-case('55','command_argument_count')
+case('56','command_argument_count')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3063,7 +3133,7 @@ textblock=[character(len=256) :: &
 ' JSU', &
 '']
 
-case('56','compiler_options')
+case('57','compiler_options')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3118,7 +3188,7 @@ textblock=[character(len=256) :: &
 '   compiler_version(3), iso_fortran_env(7)', &
 '']
 
-case('57','compiler_version')
+case('58','compiler_version')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3172,7 +3242,7 @@ textblock=[character(len=256) :: &
 '   compiler_options(3), iso_fortran_env(7)', &
 '']
 
-case('58','conjg')
+case('59','conjg')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3216,7 +3286,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '']
 
-case('59','continue')
+case('60','continue')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3267,7 +3337,7 @@ textblock=[character(len=256) :: &
 ' JSU', &
 '']
 
-case('60','co_reduce')
+case('61','co_reduce')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3350,7 +3420,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('61','cos')
+case('62','cos')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3390,7 +3460,7 @@ textblock=[character(len=256) :: &
 '   acos(3), sin(3), tan(3)', &
 '']
 
-case('62','cosh')
+case('63','cosh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3433,7 +3503,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('63','co_sum')
+case('64','co_sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3491,7 +3561,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('64','co_ubound')
+case('65','co_ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3529,7 +3599,7 @@ textblock=[character(len=256) :: &
 '   co_lbound(3), lbound(3), ubound(3)', &
 '']
 
-case('65','count')
+case('66','count')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3609,7 +3679,7 @@ textblock=[character(len=256) :: &
 '   Transformational function', &
 '']
 
-case('66','cpu_time')
+case('67','cpu_time')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3676,7 +3746,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('67','cshift')
+case('68','cshift')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3729,7 +3799,7 @@ textblock=[character(len=256) :: &
 '   Transformational function', &
 '']
 
-case('68','c_sizeof')
+case('69','c_sizeof')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3780,7 +3850,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('69','date_and_time')
+case('70','date_and_time')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3850,7 +3920,7 @@ textblock=[character(len=256) :: &
 '   cpu_time(3), system_clock(3)', &
 '']
 
-case('70','dble')
+case('71','dble')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3890,7 +3960,7 @@ textblock=[character(len=256) :: &
 '   float(3), real(3)', &
 '']
 
-case('71','digits')
+case('72','digits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3938,7 +4008,7 @@ textblock=[character(len=256) :: &
 '   [[Inquiry function]]', &
 '']
 
-case('72','dim')
+case('73','dim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3981,7 +4051,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '']
 
-case('73','dot_product')
+case('74','dot_product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4035,7 +4105,7 @@ textblock=[character(len=256) :: &
 '   Transformational function', &
 '']
 
-case('74','dprod')
+case('75','dprod')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4104,7 +4174,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '']
 
-case('75','dshiftl')
+case('76','dshiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4139,7 +4209,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('76','dshiftr')
+case('77','dshiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4173,7 +4243,7 @@ textblock=[character(len=256) :: &
 '   dshiftl(3)', &
 '']
 
-case('77','eoshift')
+case('78','eoshift')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4236,7 +4306,7 @@ textblock=[character(len=256) :: &
 '   Transformational function', &
 '']
 
-case('78','epsilon')
+case('79','epsilon')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4273,7 +4343,7 @@ textblock=[character(len=256) :: &
 '   [[Inquiry function]]', &
 '']
 
-case('79','erf')
+case('80','erf')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4314,7 +4384,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '']
 
-case('80','erfc')
+case('81','erfc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4356,7 +4426,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental function]]', &
 '']
 
-case('81','erfc_scaled')
+case('82','erfc_scaled')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4398,7 +4468,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental function]]', &
 '']
 
-case('82','event_query')
+case('83','event_query')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4448,7 +4518,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('83','execute_command_line')
+case('84','execute_command_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4457,19 +4527,19 @@ textblock=[character(len=256) :: &
 '   a shell command', &
 '', &
 'SYNTAX', &
-'     call execute_command_line(command [, wait, exitstat, cmdstat, cmdmsg ])', &
+'   subroutine execute_command_line(command, wait, exitstat, cmdstat, cmdmsg)', &
 '', &
-'     character(len=*),intent(in)  :: command', &
-'     logical,intent(in),optional  :: wait', &
-'     integer,intent(out),optional :: exitstat', &
-'     integer,intent(out),optional :: cmdstat', &
-'     character(len=*),intent(out),optional :: cmdmsg', &
+'    character(len=*),intent(in)  :: command', &
+'    logical,intent(in),optional  :: wait', &
+'    integer,intent(out),optional :: exitstat', &
+'    integer,intent(out),optional :: cmdstat', &
+'    character(len=*),intent(out),optional :: cmdmsg', &
 '', &
 'DESCRIPTION', &
 '   The COMMAND argument is passed to the shell and executed. (The shell', &
 '   is generally sh(1) on Unix systems, and cmd.exe on Windows.) If WAIT', &
-'   is present and has the value .FALSE., the execution of the command is', &
-'   asynchronous if the system supports it; otherwise, the command is', &
+'   is present and has the value .FALSE., the execution of the command', &
+'   is asynchronous if the system supports it; otherwise, the command is', &
 '   executed synchronously.', &
 '', &
 '   The three last arguments allow the user to get status information.', &
@@ -4491,20 +4561,20 @@ textblock=[character(len=256) :: &
 '               to be executed. The interpretation is', &
 '               programming-environment dependent.', &
 '', &
-'   WAIT        (Optional) a default LOGICAL scalar.', &
-'               If WAIT is present with the value .false., and the', &
-'               processor supports asynchronous execution of the command,', &
-'               the command is executed asynchronously; otherwise it is', &
-'               executed synchronously.', &
+'   WAIT        (Optional) a default LOGICAL scalar. If WAIT is present', &
+'               with the value .false., and the processor supports', &
+'               asynchronous execution of the command, the command', &
+'               is executed asynchronously; otherwise it is executed', &
+'               synchronously.', &
 '', &
-'   EXITSTAT    (Optional) an INTEGER of the default kind with intent(INOUT).', &
-'               If the command is executed synchronously, it is', &
-'               assigned the value of the processor-dependent exit', &
+'   EXITSTAT    (Optional) an INTEGER of the default kind with', &
+'               intent(INOUT).  If the command is executed synchronously,', &
+'               it is assigned the value of the processor-dependent exit', &
 '               status. Otherwise, the value of EXITSTAT is unchanged.', &
 '', &
 '   CMDSTAT     (Optional) an INTEGER of default kind with intent(INOUT).', &
-'               If an error condition occurs and CMDSTAT is not present, error', &
-'               termination of execution of the image is initiated.', &
+'               If an error condition occurs and CMDSTAT is not present,', &
+'               error termination of execution of the image is initiated.', &
 '', &
 '               It is assigned the value -1 if the processor does not', &
 '               support command line execution, a processor-dependent', &
@@ -4535,7 +4605,7 @@ textblock=[character(len=256) :: &
 '', &
 'NOTE', &
 '   Because this intrinsic is making a system call, it is very system', &
-'   dependent.Its behavior with respect to signaling is processor', &
+'   dependent. Its behavior with respect to signaling is processor', &
 '   dependent. In particular, on POSIX-compliant systems, the SIGINT and', &
 '   SIGQUIT signals will be ignored, and the SIGCHLD will be blocked. As', &
 '   such, if the parent process is terminated, the child process might', &
@@ -4548,7 +4618,7 @@ textblock=[character(len=256) :: &
 '   Subroutine', &
 '']
 
-case('84','exit')
+case('85','exit')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4631,7 +4701,7 @@ textblock=[character(len=256) :: &
 ' JSU', &
 '']
 
-case('85','exp')
+case('86','exp')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4666,7 +4736,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '']
 
-case('86','exponent')
+case('87','exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4705,7 +4775,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '']
 
-case('87','extends_type_of')
+case('88','extends_type_of')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4746,7 +4816,7 @@ textblock=[character(len=256) :: &
 '   Inquiry function.', &
 '']
 
-case('88','findloc')
+case('89','findloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4896,7 +4966,7 @@ textblock=[character(len=256) :: &
 '   Transformational function.', &
 '']
 
-case('89','float')
+case('90','float')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4934,7 +5004,7 @@ textblock=[character(len=256) :: &
 '   dble(3), real(3)', &
 '']
 
-case('90','floor')
+case('91','floor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4978,7 +5048,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('91','fraction')
+case('92','fraction')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5019,7 +5089,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('92','gamma')
+case('93','gamma')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5065,7 +5135,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('93','get_command')
+case('94','get_command')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5144,7 +5214,7 @@ textblock=[character(len=256) :: &
 ' JSU', &
 '']
 
-case('94','get_command_argument')
+case('95','get_command_argument')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5251,7 +5321,7 @@ textblock=[character(len=256) :: &
 ' JSU', &
 '']
 
-case('95','get_environment_variable')
+case('96','get_environment_variable')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5336,7 +5406,7 @@ textblock=[character(len=256) :: &
 ' JSU', &
 '']
 
-case('96','huge')
+case('97','huge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5372,7 +5442,7 @@ textblock=[character(len=256) :: &
 '   [[Inquiry function]]', &
 '']
 
-case('97','hypot')
+case('98','hypot')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5410,7 +5480,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '']
 
-case('98','iachar')
+case('99','iachar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5481,7 +5551,7 @@ textblock=[character(len=256) :: &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
 
-case('99','iall')
+case('100','iall')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5537,7 +5607,7 @@ textblock=[character(len=256) :: &
 '   iany(3), iparity(3), iand(3)', &
 '']
 
-case('100','iand')
+case('101','iand')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5581,7 +5651,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('101','iany')
+case('102','iany')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5638,7 +5708,7 @@ textblock=[character(len=256) :: &
 '   iparity(3), iall(3), ior(3)', &
 '']
 
-case('102','ibclr')
+case('103','ibclr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5674,7 +5744,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('103','ibits')
+case('104','ibits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5711,7 +5781,7 @@ textblock=[character(len=256) :: &
 '   iand(3), ior(3), ieor(3)', &
 '']
 
-case('104','ibset')
+case('105','ibset')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5746,7 +5816,7 @@ textblock=[character(len=256) :: &
 '   mvbits(3)', &
 '']
 
-case('105','ichar')
+case('106','ichar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5833,7 +5903,7 @@ textblock=[character(len=256) :: &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
 
-case('106','ieor')
+case('107','ieor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5866,7 +5936,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('107','image_index')
+case('108','image_index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5910,7 +5980,7 @@ textblock=[character(len=256) :: &
 '   this_image(3), num_images(3)', &
 '']
 
-case('108','include')
+case('109','include')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6028,7 +6098,7 @@ textblock=[character(len=256) :: &
 '     end program show_include', &
 '']
 
-case('109','index')
+case('110','index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6096,7 +6166,7 @@ textblock=[character(len=256) :: &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
 
-case('110','int')
+case('111','int')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6146,7 +6216,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '']
 
-case('111','ior')
+case('112','ior')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6199,7 +6269,7 @@ textblock=[character(len=256) :: &
 '   ibclr(3), not(3)', &
 '']
 
-case('112','iparity')
+case('113','iparity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6256,7 +6326,7 @@ textblock=[character(len=256) :: &
 '   iany(3), iall(3), ieor(3), parity(3)', &
 '']
 
-case('113','is_contiguous')
+case('114','is_contiguous')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6334,7 +6404,7 @@ textblock=[character(len=256) :: &
 '   [[Inquiry function]]', &
 '']
 
-case('114','ishft')
+case('115','ishft')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6370,7 +6440,7 @@ textblock=[character(len=256) :: &
 '   ishftc(3)', &
 '']
 
-case('115','ishftc')
+case('116','ishftc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6411,7 +6481,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('116','is_iostat_end')
+case('117','is_iostat_end')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6456,7 +6526,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental function]]', &
 '']
 
-case('117','is_iostat_eor')
+case('118','is_iostat_eor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6498,7 +6568,7 @@ textblock=[character(len=256) :: &
 '   Elemental function', &
 '']
 
-case('118','kind')
+case('119','kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6538,7 +6608,7 @@ textblock=[character(len=256) :: &
 '   [[Inquiry function]]', &
 '']
 
-case('119','lbound')
+case('120','lbound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6637,7 +6707,7 @@ textblock=[character(len=256) :: &
 '   ubound(3), co_lbound(3)', &
 '']
 
-case('120','leadz')
+case('121','leadz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6756,7 +6826,7 @@ textblock=[character(len=256) :: &
 '   bit_size(3), popcnt(3), poppar(3), trailz(3)', &
 '']
 
-case('121','len')
+case('122','len')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6808,7 +6878,7 @@ textblock=[character(len=256) :: &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
 
-case('122','len_trim')
+case('123','len_trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6858,7 +6928,7 @@ textblock=[character(len=256) :: &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
 
-case('123','lge')
+case('124','lge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6906,7 +6976,7 @@ textblock=[character(len=256) :: &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
 
-case('124','lgt')
+case('125','lgt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6955,7 +7025,7 @@ textblock=[character(len=256) :: &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
 
-case('125','lle')
+case('126','lle')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7043,7 +7113,7 @@ textblock=[character(len=256) :: &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
 
-case('126','llt')
+case('127','llt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7092,7 +7162,7 @@ textblock=[character(len=256) :: &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
 
-case('127','log10')
+case('128','log10')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7130,7 +7200,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '']
 
-case('128','log')
+case('129','log')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7173,7 +7243,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('129','log_gamma')
+case('130','log_gamma')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7213,7 +7283,7 @@ textblock=[character(len=256) :: &
 '   Gamma function: gamma(3)', &
 '']
 
-case('130','logical')
+case('131','logical')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7247,7 +7317,7 @@ textblock=[character(len=256) :: &
 '   int(3), real(3), cmplx(3)', &
 '']
 
-case('131','maskl')
+case('132','maskl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7282,7 +7352,7 @@ textblock=[character(len=256) :: &
 '   maskr(3)', &
 '']
 
-case('132','maskr')
+case('133','maskr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7316,7 +7386,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('133','matmul')
+case('134','matmul')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7351,7 +7421,7 @@ textblock=[character(len=256) :: &
 '   Transformational function', &
 '']
 
-case('134','max')
+case('135','max')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7460,7 +7530,7 @@ textblock=[character(len=256) :: &
 '   maxloc(3), maxval(3), min(3)', &
 '']
 
-case('135','maxexponent')
+case('136','maxexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7501,7 +7571,7 @@ textblock=[character(len=256) :: &
 '   [[Inquiry function]]', &
 '']
 
-case('136','maxloc')
+case('137','maxloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7567,7 +7637,7 @@ textblock=[character(len=256) :: &
 '   max(3), maxval(3)', &
 '']
 
-case('137','maxval')
+case('138','maxval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7643,7 +7713,7 @@ textblock=[character(len=256) :: &
 '   intrinsics', &
 '']
 
-case('138','merge')
+case('139','merge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7700,7 +7770,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '']
 
-case('139','merge_bits')
+case('140','merge_bits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7732,7 +7802,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental function]]', &
 '']
 
-case('140','min')
+case('141','min')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7775,7 +7845,7 @@ textblock=[character(len=256) :: &
 '   max(3), minloc(3), minval(3)', &
 '']
 
-case('141','minexponent')
+case('142','minexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7817,7 +7887,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('142','minloc')
+case('143','minloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7884,7 +7954,7 @@ textblock=[character(len=256) :: &
 '   min(3), minval(3)', &
 '']
 
-case('143','minval')
+case('144','minval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7952,7 +8022,7 @@ textblock=[character(len=256) :: &
 '   min(3), minloc(3)', &
 '']
 
-case('144','mod')
+case('145','mod')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8006,7 +8076,7 @@ textblock=[character(len=256) :: &
 '   modulo(3)', &
 '']
 
-case('145','modulo')
+case('146','modulo')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8060,7 +8130,7 @@ textblock=[character(len=256) :: &
 '   mod(3)', &
 '']
 
-case('146','move_alloc')
+case('147','move_alloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8122,7 +8192,7 @@ textblock=[character(len=256) :: &
 '   allocated(3)', &
 '']
 
-case('147','mvbits')
+case('148','mvbits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8160,7 +8230,7 @@ textblock=[character(len=256) :: &
 '   iand(3), ior(3)', &
 '']
 
-case('148','nearest')
+case('149','nearest')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8203,7 +8273,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '']
 
-case('149','new_line')
+case('150','new_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8238,7 +8308,7 @@ textblock=[character(len=256) :: &
 '   [[Inquiry function]]', &
 '']
 
-case('150','nint')
+case('151','nint')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8284,7 +8354,7 @@ textblock=[character(len=256) :: &
 '   ceiling(3), floor(3)', &
 '']
 
-case('151','norm2')
+case('152','norm2')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8329,7 +8399,7 @@ textblock=[character(len=256) :: &
 '   product(3), sum(3), hypot(3)', &
 '']
 
-case('152','not')
+case('153','not')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8359,7 +8429,7 @@ textblock=[character(len=256) :: &
 '   ibset(3), ibclr(3)', &
 '']
 
-case('153','null')
+case('154','null')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8401,7 +8471,7 @@ textblock=[character(len=256) :: &
 '   associated(3)', &
 '']
 
-case('154','num_images')
+case('155','num_images')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8457,7 +8527,7 @@ textblock=[character(len=256) :: &
 '   this_image(3), image_index(3)', &
 '']
 
-case('155','pack')
+case('156','pack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8542,7 +8612,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('156','parity')
+case('157','parity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8587,7 +8657,7 @@ textblock=[character(len=256) :: &
 '   Transformational function', &
 '']
 
-case('157','popcnt')
+case('158','popcnt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8640,7 +8710,7 @@ textblock=[character(len=256) :: &
 '   poppar(3), leadz(3), trailz(3)', &
 '']
 
-case('158','poppar')
+case('159','poppar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8687,7 +8757,7 @@ textblock=[character(len=256) :: &
 '   popcnt(3), leadz(3), trailz(3)', &
 '']
 
-case('159','precision')
+case('160','precision')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8731,7 +8801,7 @@ textblock=[character(len=256) :: &
 '   selected_real_kind(3), range(3)', &
 '']
 
-case('160','present')
+case('161','present')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8775,7 +8845,7 @@ textblock=[character(len=256) :: &
 '   [[Inquiry function]]', &
 '']
 
-case('161','product')
+case('162','product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8826,7 +8896,7 @@ textblock=[character(len=256) :: &
 '   using the star character.', &
 '']
 
-case('162','radix')
+case('163','radix')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8865,7 +8935,7 @@ textblock=[character(len=256) :: &
 '   scale(3), selected_real_kind(3)', &
 '']
 
-case('163','random_number')
+case('164','random_number')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8948,7 +9018,7 @@ textblock=[character(len=256) :: &
 '   random_seed(3)', &
 '']
 
-case('164','random_seed')
+case('165','random_seed')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9003,7 +9073,7 @@ textblock=[character(len=256) :: &
 '   random_number(3)', &
 '']
 
-case('165','range')
+case('166','range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9047,7 +9117,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('166','rank')
+case('167','rank')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9086,7 +9156,7 @@ textblock=[character(len=256) :: &
 '   Inquiry function', &
 '']
 
-case('167','real')
+case('168','real')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9149,7 +9219,7 @@ textblock=[character(len=256) :: &
 '   dble(3), float(3)', &
 '']
 
-case('168','repeat')
+case('169','repeat')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9193,7 +9263,7 @@ textblock=[character(len=256) :: &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
 
-case('169','reshape')
+case('170','reshape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9247,7 +9317,7 @@ textblock=[character(len=256) :: &
 '   shape(3)', &
 '']
 
-case('170','return')
+case('171','return')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9357,7 +9427,7 @@ textblock=[character(len=256) :: &
 ' JSU', &
 '']
 
-case('171','rewind')
+case('172','rewind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9440,7 +9510,7 @@ textblock=[character(len=256) :: &
 '   JSU', &
 '']
 
-case('172','rrspacing')
+case('173','rrspacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9473,7 +9543,7 @@ textblock=[character(len=256) :: &
 '   spacing(3)', &
 '']
 
-case('173','same_type_as')
+case('174','same_type_as')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9505,7 +9575,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('174','scale')
+case('175','scale')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9550,7 +9620,7 @@ textblock=[character(len=256) :: &
 '', &
 '']
 
-case('175','scan')
+case('176','scan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9607,7 +9677,7 @@ textblock=[character(len=256) :: &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
 
-case('176','selected_char_kind')
+case('177','selected_char_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9658,7 +9728,7 @@ textblock=[character(len=256) :: &
 '   Transformational function', &
 '']
 
-case('177','selected_int_kind')
+case('178','selected_int_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9701,7 +9771,7 @@ textblock=[character(len=256) :: &
 '   Transformational function', &
 '']
 
-case('178','selected_real_kind')
+case('179','selected_real_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9771,7 +9841,7 @@ textblock=[character(len=256) :: &
 '   precision(3), range(3), radix(3)', &
 '']
 
-case('179','set_exponent')
+case('180','set_exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9813,7 +9883,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '']
 
-case('180','shape')
+case('181','shape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9862,7 +9932,7 @@ textblock=[character(len=256) :: &
 '   reshape(3), size(3)', &
 '']
 
-case('181','shifta')
+case('182','shifta')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9897,7 +9967,7 @@ textblock=[character(len=256) :: &
 '   shiftl(3), shiftr(3)', &
 '']
 
-case('182','shiftl')
+case('183','shiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9930,7 +10000,7 @@ textblock=[character(len=256) :: &
 '   shifta(3), shiftr(3)', &
 '']
 
-case('183','shiftr')
+case('184','shiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9963,7 +10033,7 @@ textblock=[character(len=256) :: &
 '   shifta(3), shiftl(3)', &
 '']
 
-case('184','sign')
+case('185','sign')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10006,7 +10076,7 @@ textblock=[character(len=256) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '']
 
-case('185','sin')
+case('186','sin')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10108,7 +10178,7 @@ textblock=[character(len=256) :: &
 ' JSU', &
 '']
 
-case('186','sinh')
+case('187','sinh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10148,7 +10218,7 @@ textblock=[character(len=256) :: &
 '   asinh(3)', &
 '']
 
-case('187','size')
+case('188','size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10327,7 +10397,7 @@ textblock=[character(len=256) :: &
 '   shape(3), reshape(3)', &
 '']
 
-case('188','sngl')
+case('189','sngl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10359,7 +10429,7 @@ textblock=[character(len=256) :: &
 '   dble(3)', &
 '']
 
-case('189','spacing')
+case('190','spacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10402,7 +10472,7 @@ textblock=[character(len=256) :: &
 '   rrspacing(3)', &
 '']
 
-case('190','spread')
+case('191','spread')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10505,7 +10575,7 @@ textblock=[character(len=256) :: &
 '   unpack(3)', &
 '']
 
-case('191','sqrt')
+case('192','sqrt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10545,7 +10615,7 @@ textblock=[character(len=256) :: &
 '   Elemental function', &
 '']
 
-case('192','stop')
+case('193','stop')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10630,7 +10700,7 @@ textblock=[character(len=256) :: &
 ' JSU', &
 '']
 
-case('193','storage_size')
+case('194','storage_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10675,7 +10745,7 @@ textblock=[character(len=256) :: &
 '   c_sizeof(3)', &
 '']
 
-case('194','sum')
+case('195','sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10752,7 +10822,7 @@ textblock=[character(len=256) :: &
 '   intrinsics', &
 '']
 
-case('195','system_clock')
+case('196','system_clock')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10838,7 +10908,7 @@ textblock=[character(len=256) :: &
 '   date_and_time(3), cpu_time(3)', &
 '']
 
-case('196','tan')
+case('197','tan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10879,7 +10949,7 @@ textblock=[character(len=256) :: &
 '   atan(3), cos(3), sin(3)', &
 '']
 
-case('197','tanh')
+case('198','tanh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10923,7 +10993,7 @@ textblock=[character(len=256) :: &
 '   atanh(3)', &
 '']
 
-case('198','this_image')
+case('199','this_image')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10992,7 +11062,7 @@ textblock=[character(len=256) :: &
 '   num_images(3), image_index(3)', &
 '']
 
-case('199','tiny')
+case('200','tiny')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11029,7 +11099,7 @@ textblock=[character(len=256) :: &
 '   [[Inquiry function]]', &
 '']
 
-case('200','trailz')
+case('201','trailz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11065,56 +11135,65 @@ textblock=[character(len=256) :: &
 '      write(*,''(1x,i3,1x,i3,1x,b0)'')-1,trailz(1),-1', &
 '      write(*,''(1x,i3,1x,i3,1x,b0)'')0,trailz(0),0', &
 '      write(*,''(1x,i3,1x,i3,1x,b0)'')1,trailz(1),1', &
-'      write(*,''(" huge(0)=",i0,1x,i0,1x,b0)'')huge(0),trailz(huge(0)),huge(0)', &
+'      write(*,''(" huge(0)=",i0,1x,i0,1x,b0)'') &', &
+'      & huge(0),trailz(huge(0)),huge(0)', &
 '      write(*,*)', &
 '      write(*,*)''integer(kind=int64):''', &
+'', &
 '      do i=-1,62,5', &
 '         value=2**i', &
-'         write(*,''(i19,1x,i3,1x,b64.64)'')value,trailz(value),value', &
+'         write(*,''(1x,i19,1x,i3)'')value,trailz(value)', &
 '      enddo', &
 '      value=huge(i)', &
-'      write(*,''(i19,1x,i3,1x,b64.64,"(huge(0_int64))")'') &', &
-'      & value,trailz(value),value', &
+'      write(*,''(1x,i19,1x,i3,"(huge(0_int64))")'')value,trailz(value)', &
+'', &
+'      do i=-1,62,5', &
+'         value=2**i', &
+'         write(*,''(1x,i3,2x,b64.64)'')i,value', &
+'      enddo', &
+'      value=huge(i)', &
+'      write(*,''(1x,a,1x,b64.64)'') "huge",value', &
+'', &
 '    end program demo_trailz', &
+'', &
 '  Results:', &
 '', &
-'   Default integer:', &
-'   bit_size=          32', &
-'    -1   0 11111111111111111111111111111111', &
-'     0  32 0', &
-'     1   0 1', &
-'   huge(0)=2147483647 0 1111111111111111111111111111111', &
-'', &
-'   integer(kind=int64):', &
-'                      0  64 \', &
-'             00000000000000000000000000000000000000000000000000000000000000', &
-'                     16   4 \', &
-'             00000000000000000000000000000000000000000000000000000000010000', &
-'                    512   9 \', &
-'             00000000000000000000000000000000000000000000000000001000000000', &
-'                  16384  14 \', &
-'             00000000000000000000000000000000000000000000000100000000000000', &
-'                 524288  19 \', &
-'             00000000000000000000000000000000000000000010000000000000000000', &
-'               16777216  24 \', &
-'             00000000000000000000000000000000000001000000000000000000000000', &
-'              536870912  29 \', &
-'             00000000000000000000000000000000100000000000000000000000000000', &
-'            17179869184  34 \', &
-'             00000000000000000000000000010000000000000000000000000000000000', &
-'           549755813888  39 \', &
-'             00000000000000000000001000000000000000000000000000000000000000', &
-'         17592186044416  44 \', &
-'             00000000000000000100000000000000000000000000000000000000000000', &
-'        562949953421312  49 \', &
-'             00000000000010000000000000000000000000000000000000000000000000', &
-'      18014398509481984  54 \', &
-'             00000001000000000000000000000000000000000000000000000000000000', &
-'     576460752303423488  59 \', &
-'             00100000000000000000000000000000000000000000000000000000000000', &
-'    9223372036854775807   0 \', &
-'    0111111111111111111111111111111111111111111111111111111111111111\', &
-'    (huge(0_int64))', &
+'    Default integer:', &
+'    bit_size=          32', &
+'     -1   0 11111111111111111111111111111111', &
+'      0  32 0', &
+'      1   0 1', &
+'    huge(0)=2147483647 0 1111111111111111111111111111111', &
+'   ', &
+'    integer(kind=int64):', &
+'                      0  64', &
+'                     16   4', &
+'                    512   9', &
+'                  16384  14', &
+'                 524288  19', &
+'               16777216  24', &
+'              536870912  29', &
+'            17179869184  34', &
+'           549755813888  39', &
+'         17592186044416  44', &
+'        562949953421312  49', &
+'      18014398509481984  54', &
+'     576460752303423488  59', &
+'    9223372036854775807   0(huge(0_int64))', &
+'     -1  0000000000000000000000000000000000000000000000000000000000000000', &
+'      4  0000000000000000000000000000000000000000000000000000000000010000', &
+'      9  0000000000000000000000000000000000000000000000000000001000000000', &
+'     14  0000000000000000000000000000000000000000000000000100000000000000', &
+'     19  0000000000000000000000000000000000000000000010000000000000000000', &
+'     24  0000000000000000000000000000000000000001000000000000000000000000', &
+'     29  0000000000000000000000000000000000100000000000000000000000000000', &
+'     34  0000000000000000000000000000010000000000000000000000000000000000', &
+'     39  0000000000000000000000001000000000000000000000000000000000000000', &
+'     44  0000000000000000000100000000000000000000000000000000000000000000', &
+'     49  0000000000000010000000000000000000000000000000000000000000000000', &
+'     54  0000000001000000000000000000000000000000000000000000000000000000', &
+'     59  0000100000000000000000000000000000000000000000000000000000000000', &
+'    huge 0111111111111111111111111111111111111111111111111111111111111111', &
 '', &
 'STANDARD', &
 '   [[Fortran 2008]] and later', &
@@ -11127,7 +11206,7 @@ textblock=[character(len=256) :: &
 ' JSU', &
 '']
 
-case('201','transfer')
+case('202','transfer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11205,7 +11284,7 @@ textblock=[character(len=256) :: &
 '   Transformational function', &
 '']
 
-case('202','transpose')
+case('203','transpose')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11281,7 +11360,7 @@ textblock=[character(len=256) :: &
 '   Transformational function', &
 '']
 
-case('203','trim')
+case('204','trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11326,7 +11405,7 @@ textblock=[character(len=256) :: &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
 
-case('204','ubound')
+case('205','ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11423,7 +11502,7 @@ textblock=[character(len=256) :: &
 '   lbound(3), co_ubound(3), co_lbound(3)', &
 '']
 
-case('205','unpack')
+case('206','unpack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11471,7 +11550,7 @@ textblock=[character(len=256) :: &
 '   pack(3), spread(3)', &
 '']
 
-case('206','verify')
+case('207','verify')
 
 textblock=[character(len=256) :: &
 '', &
