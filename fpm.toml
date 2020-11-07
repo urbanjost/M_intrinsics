@@ -1,3 +1,4 @@
+# TOML file for fpm as described at https://github.com/fortran-lang/fpm/blob/master/manifest-reference.md
 name = "M_intrinsics"
 version = "0.1.0"
 license = "Public Domain"
