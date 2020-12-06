@@ -5,7 +5,7 @@ NAME
 SYNOPSIS
    BACKSPACE file-unit-number
    BACKSPACE ([UNIT=]file-unit-number][,IOMSG=iomsg-variable]
-   [,IOSTAT=scalar-int-variable][,ERR=label])
+              [,IOSTAT=scalar-int-variable][,ERR=label])
 
 DESCRIPTION
    Execution of a BACKSPACE statement causes the file connected to the
@@ -59,14 +59,14 @@ EXAMPLE
    character(len=256) :: mssge
    integer            :: i
    integer            :: ios
-      open(10,file='demo_backspace.txt') ! open a file
+      open(10,file='dem_backspace.txt') ! open a file
       do i=1,100                         ! write lines to it
          write(10,'(a,i0)') 'line ',i
       enddo
       do i=1,10                          ! back up several lines
          backspace(10, iostat=ios,iomsg=mssge)
          if(ios.ne.0)then
-                 write(*,'(*(a))') '*demo_backspace* ERROR:',mssge
+                 write(*,'(*(a))') '*dem_backspace* ERROR:',mssge
          endif
       enddo
       read(10,'(a)')line
