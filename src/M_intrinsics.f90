@@ -183,9 +183,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -263,9 +265,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -333,9 +337,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -390,9 +396,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -453,9 +461,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -516,9 +526,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -576,9 +588,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -640,9 +654,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -764,9 +780,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -826,9 +844,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -888,9 +908,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -965,9 +987,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -1063,9 +1087,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -1120,9 +1146,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -1221,9 +1249,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -1297,9 +1327,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -1362,9 +1394,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -1420,9 +1454,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -1483,9 +1519,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -1548,9 +1586,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -1615,9 +1655,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -1678,9 +1720,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -1745,9 +1789,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -1812,9 +1858,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -1877,9 +1925,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -1944,9 +1994,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -2009,9 +2061,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -2082,9 +2136,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -2146,9 +2202,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -2251,9 +2309,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -2310,9 +2370,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -2370,9 +2432,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -2437,9 +2501,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -2495,9 +2561,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -2552,9 +2620,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -2620,9 +2690,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -2666,9 +2738,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -2715,9 +2789,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -2786,9 +2862,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -2832,9 +2910,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -2917,9 +2997,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -2962,9 +3044,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -3024,9 +3108,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -3088,9 +3174,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -3146,9 +3234,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -3215,9 +3305,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -3287,9 +3379,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -3363,9 +3457,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -3431,9 +3527,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -3494,9 +3592,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -3646,9 +3746,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -3711,9 +3813,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -3764,9 +3868,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -3833,9 +3939,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -3903,9 +4011,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -3975,9 +4085,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -4045,9 +4157,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -4114,9 +4228,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -4173,9 +4289,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -4239,9 +4357,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -4337,9 +4457,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -4392,9 +4514,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -4450,9 +4574,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -4523,9 +4649,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -4576,9 +4704,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -4671,9 +4801,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -4753,9 +4885,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -4821,9 +4955,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -4887,9 +5023,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -4972,9 +5110,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -5027,9 +5167,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -5090,9 +5232,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -5148,9 +5292,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -5217,9 +5363,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -5301,9 +5449,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -5351,9 +5501,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -5400,9 +5552,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -5478,9 +5632,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -5530,9 +5686,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -5586,9 +5744,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -5643,9 +5803,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -5700,9 +5862,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -5765,9 +5929,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -5880,9 +6046,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -5978,9 +6146,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -6028,9 +6198,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -6082,9 +6254,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -6138,9 +6312,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -6303,9 +6479,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -6356,9 +6534,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -6415,9 +6595,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -6471,9 +6653,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -6532,9 +6716,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -6626,9 +6812,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -6748,9 +6936,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -6848,9 +7038,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -6899,9 +7091,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -6952,9 +7146,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -7038,9 +7234,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -7109,9 +7307,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -7168,9 +7368,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -7240,9 +7442,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -7291,9 +7495,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -7343,9 +7549,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -7393,9 +7601,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -7495,9 +7705,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -7543,9 +7755,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -7602,9 +7816,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -7735,9 +7951,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -7818,9 +8036,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -7883,9 +8103,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -7951,9 +8173,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -8023,9 +8247,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -8116,9 +8342,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -8167,9 +8395,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -8223,9 +8453,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -8283,9 +8515,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -8340,9 +8574,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -8395,9 +8631,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -8509,9 +8747,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -8643,9 +8883,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -8710,9 +8952,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -8785,9 +9029,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -8848,9 +9094,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -8912,9 +9160,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -9015,9 +9265,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -9079,9 +9331,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -9132,9 +9386,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -9190,9 +9446,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -9245,9 +9503,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -9294,9 +9554,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -9344,9 +9606,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -9393,9 +9657,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -9443,9 +9709,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -9567,9 +9835,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -9623,9 +9893,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -9704,9 +9976,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -9795,9 +10069,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -9867,9 +10143,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -9914,9 +10192,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -9972,9 +10252,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -10029,9 +10311,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -10121,9 +10405,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -10204,9 +10490,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -10273,9 +10561,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -10342,9 +10632,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -10419,9 +10711,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -10472,9 +10766,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -10530,9 +10826,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -10580,9 +10878,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -10641,9 +10941,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -10701,9 +11003,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -10746,9 +11050,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -10803,9 +11109,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -10874,9 +11182,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -10974,9 +11284,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -11034,9 +11346,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -11102,9 +11416,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -11164,9 +11480,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -11223,9 +11541,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -11282,9 +11602,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -11348,9 +11670,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -11402,9 +11726,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -11500,9 +11826,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -11570,9 +11898,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -11629,9 +11959,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -11683,9 +12015,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -11761,9 +12095,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -11820,9 +12156,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -11889,9 +12227,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -12014,9 +12354,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -12112,9 +12454,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -12160,9 +12504,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -12207,9 +12553,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -12267,9 +12615,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -12339,9 +12689,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -12405,9 +12757,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -12463,9 +12817,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -12548,9 +12904,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -12605,9 +12963,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -12669,9 +13029,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -12719,9 +13081,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -12767,9 +13131,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -12815,9 +13181,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -12873,9 +13241,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -12990,9 +13360,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -13045,9 +13417,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -13239,9 +13613,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -13286,9 +13662,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -13344,9 +13722,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -13462,9 +13842,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -13517,9 +13899,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -13617,9 +14001,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -13677,9 +14063,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -13769,9 +14157,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -13870,9 +14260,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -13926,9 +14318,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -13985,9 +14379,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -14069,9 +14465,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -14121,9 +14519,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -14243,9 +14643,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -14336,9 +14738,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -14427,9 +14831,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -14487,9 +14893,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -14599,9 +15007,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -14662,9 +15072,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 
@@ -14782,9 +15194,11 @@ if(present(topic))then
 endif
 
 if(present(prefix))then
-   do i=1,size(textblock)
-      textblock(i)= shortname//':'//trim(textblock(i))
-   enddo
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 endif
 
 case default
