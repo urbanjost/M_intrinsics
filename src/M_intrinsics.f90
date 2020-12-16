@@ -13,15 +13,16 @@ contains
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
-function help_intrinsics(name,prefix) result (textblock)
-character(len=*),intent(in)     :: name
-logical,intent(in),optional     :: prefix
-character(len=256),allocatable  :: textblock(:)
-character(len=:),allocatable    :: a, b, c
-integer                         :: i, p, pg
+function help_intrinsics(name,prefix,topic) result (textblock)
+character(len=*),intent(in)                       :: name
+logical,intent(in),optional                       :: prefix
+logical,intent(in),optional                       :: topic
+character(len=256),allocatable                    :: textblock(:)
+character(len=:),allocatable                      :: a, b, c
+integer                                           :: i, p, pg
    select case(name)
    case('','manual','intrinsics','fortranmanual','fortran_manual')
-      textblock=help_intrinsics_all()
+      textblock=help_intrinsics_all(prefix,topic)
    case('fortran','toc')
       textblock=help_intrinsics_section()
       do i=1,size(textblock)
@@ -36,7 +37,7 @@ integer                         :: i, p, pg
       enddo
       call sort_name(textblock)
    case default
-      textblock=help_intrinsics_one(name,prefix)
+      textblock=help_intrinsics_one(name,prefix,topic)
    end select
 end function help_intrinsics
 !===================================================================================================================================
@@ -82,8 +83,9 @@ end function help_intrinsics_section
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
-function help_intrinsics_all(prefix) result (textblock)
+function help_intrinsics_all(prefix,topic) result (textblock)
 logical,intent(in),optional     :: prefix
+logical,intent(in),optional     :: topic
 character(len=256),allocatable  :: textblock(:)
 character(len=256),allocatable  :: add(:)
 character(len=10)               :: cnum
@@ -92,7 +94,7 @@ integer                         :: icount
    icount=1
    do
       write(cnum,'(i0)') icount
-      add=help_intrinsics_one(cnum,prefix)
+      add=help_intrinsics_one(cnum,prefix,topic)
       if( size(add) .eq. 0 ) exit
       textblock=[character(len=256) :: textblock,add]
       icount=icount + 1
@@ -103,10 +105,10 @@ end function help_intrinsics_all
 !===================================================================================================================================
 function help_intrinsics_one(name,prefix,topic) result (textblock)
 character(len=*),intent(in)      :: name
-character(len=256),allocatable   :: textblock(:)
-character(len=:),allocatable,intent(out),optional     :: topic
-character(len=:),allocatable     :: shortname
 logical,intent(in),optional      :: prefix
+logical,intent(in),optional      :: topic
+character(len=256),allocatable   :: textblock(:)
+character(len=:),allocatable     :: shortname
 integer                          :: i
 select case(name)
 
@@ -171,13 +173,21 @@ textblock=[character(len=256) :: &
 '   Elemental function', &
 ' JSU', &
 '']
-   shortname="abs"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="abs"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('2','achar')
 
@@ -243,13 +253,21 @@ textblock=[character(len=256) :: &
 '   elemental:  adjustl(3), adjustr(3), index(3), len_trim(3), scan(3), verify(3)', &
 '   nonelemental:  repeat(3), trim(3)', &
 '']
-   shortname="achar"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="achar"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('3','acos')
 
@@ -305,13 +323,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   Inverse function: cos(3)', &
 '']
-   shortname="acos"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="acos"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('4','acosh')
 
@@ -354,13 +380,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   Inverse function: cosh(3)', &
 '']
-   shortname="acosh"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="acosh"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('5','adjustl')
 
@@ -409,13 +443,21 @@ textblock=[character(len=256) :: &
 '   nonelemental:  repeat(3), trim(3)', &
 '', &
 '']
-   shortname="adjustl"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="adjustl"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('6','adjustr')
 
@@ -464,13 +506,21 @@ textblock=[character(len=256) :: &
 '   nonelemental:  repeat(3), trim(3)', &
 '', &
 '']
-   shortname="adjustr"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="adjustr"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('7','aimag')
 
@@ -516,13 +566,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Elemental function', &
 '']
-   shortname="aimag"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="aimag"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('8','aint')
 
@@ -572,13 +630,21 @@ textblock=[character(len=256) :: &
 '   Elemental function', &
 '', &
 '']
-   shortname="aint"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="aint"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('9','all')
 
@@ -688,13 +754,21 @@ textblock=[character(len=256) :: &
 '   Transformational function.', &
 '', &
 '']
-   shortname="all"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="all"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('10','allocated')
 
@@ -742,13 +816,21 @@ textblock=[character(len=256) :: &
 '   move_alloc(3)', &
 '', &
 '']
-   shortname="allocated"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="allocated"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('11','anint')
 
@@ -796,13 +878,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental procedure|Elemental function]]', &
 '']
-   shortname="anint"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="anint"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('12','any')
 
@@ -865,13 +955,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Transformational function', &
 '']
-   shortname="any"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="any"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('13','asin')
 
@@ -955,13 +1053,21 @@ textblock=[character(len=256) :: &
 '   Inverse function: sin(3)', &
 'JSU', &
 '']
-   shortname="asin"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="asin"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('14','asinh')
 
@@ -1004,13 +1110,21 @@ textblock=[character(len=256) :: &
 '   Inverse function: sinh(3)', &
 '', &
 '']
-   shortname="asinh"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="asinh"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('15','associated')
 
@@ -1097,13 +1211,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   null(3)', &
 '']
-   shortname="associated"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="associated"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('16','atan2')
 
@@ -1165,13 +1287,21 @@ textblock=[character(len=256) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '', &
 '']
-   shortname="atan2"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="atan2"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('17','atan')
 
@@ -1222,13 +1352,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   atan2(3), tan(3)', &
 '']
-   shortname="atan"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="atan"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('18','atanh')
 
@@ -1272,13 +1410,21 @@ textblock=[character(len=256) :: &
 '   Inverse function: tanh(3)', &
 '', &
 '']
-   shortname="atanh"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="atanh"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('19','atomic_add')
 
@@ -1327,13 +1473,21 @@ textblock=[character(len=256) :: &
 '   atomic_and(3), atomic_or(3), atomic_xor(3)', &
 '', &
 '']
-   shortname="atomic_add"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="atomic_add"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('20','atomic_and')
 
@@ -1384,13 +1538,21 @@ textblock=[character(len=256) :: &
 '   atomic_add(3), atomic_or(3), atomic_xor(3)', &
 '', &
 '']
-   shortname="atomic_and"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="atomic_and"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('21','atomic_cas')
 
@@ -1443,13 +1605,21 @@ textblock=[character(len=256) :: &
 '   atomic_define(3), atomic_ref(3), iso_fortran_env(3)', &
 '', &
 '']
-   shortname="atomic_cas"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="atomic_cas"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('22','atomic_define')
 
@@ -1498,13 +1668,21 @@ textblock=[character(len=256) :: &
 '   atomic_ref(3), atomic_cas(3), iso_fortran_env(3),', &
 '   atomic_add(3), atomic_and(3), atomic_or(3), atomic_xor(3)', &
 '']
-   shortname="atomic_define"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="atomic_define"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('23','atomic_fetch_add')
 
@@ -1557,13 +1735,21 @@ textblock=[character(len=256) :: &
 '   atomic_fetch_and(3), atomic_fetch_or(3), atomic_fetch_xor(3)', &
 '', &
 '']
-   shortname="atomic_fetch_add"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="atomic_fetch_add"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('24','atomic_fetch_and')
 
@@ -1616,13 +1802,21 @@ textblock=[character(len=256) :: &
 '   atomic_fetch_add(3), atomic_fetch_or(3), atomic_fetch_xor(3)', &
 '', &
 '']
-   shortname="atomic_fetch_and"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="atomic_fetch_and"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('25','atomic_fetch_or')
 
@@ -1673,13 +1867,21 @@ textblock=[character(len=256) :: &
 '   atomic_define(3), atomic_or(3), iso_fortran_env(3),', &
 '   atomic_fetch_add(3), atomic_fetch_and(3), atomic_fetch_xor(3)', &
 '']
-   shortname="atomic_fetch_or"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="atomic_fetch_or"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('26','atomic_fetch_xor')
 
@@ -1732,13 +1934,21 @@ textblock=[character(len=256) :: &
 '   atomic_fetch_add(3), atomic_fetch_and(3), atomic_fetch_or(3)', &
 '', &
 '']
-   shortname="atomic_fetch_xor"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="atomic_fetch_xor"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('27','atomic_or')
 
@@ -1789,13 +1999,21 @@ textblock=[character(len=256) :: &
 '   atomic_add(3), atomic_or(3), atomic_xor(3)', &
 '', &
 '']
-   shortname="atomic_or"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="atomic_or"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('28','atomic_ref')
 
@@ -1854,13 +2072,21 @@ textblock=[character(len=256) :: &
 '   atomic_fetch_xor(3)', &
 '', &
 '']
-   shortname="atomic_ref"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="atomic_ref"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('29','atomic_xor')
 
@@ -1910,13 +2136,21 @@ textblock=[character(len=256) :: &
 '   atomic_define(3), atomic_fetch_xor(3), iso_fortran_env(3),', &
 '   atomic_add(3), atomic_or(3), atomic_xor(3)', &
 '']
-   shortname="atomic_xor"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="atomic_xor"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('30','backspace')
 
@@ -2007,13 +2241,21 @@ textblock=[character(len=256) :: &
 '', &
 ' JSU', &
 '']
-   shortname="backspace"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="backspace"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('31','bessel_j0')
 
@@ -2058,13 +2300,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   bessel_j1(3), bessel_jn(3), bessel_y0(3), bessel_y1(3), bessel_yn(3)', &
 '']
-   shortname="bessel_j0"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="bessel_j0"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('32','bessel_j1')
 
@@ -2110,13 +2360,21 @@ textblock=[character(len=256) :: &
 '   bessel_j0(3), bessel_jn(3), bessel_y0(3), bessel_y1(3), bessel_yn(3)', &
 '', &
 '']
-   shortname="bessel_j1"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="bessel_j1"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('33','bessel_jn')
 
@@ -2169,13 +2427,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   bessel_j0(3), bessel_j1(3), bessel_y0(3), bessel_y1(3), bessel_yn(3)', &
 '']
-   shortname="bessel_jn"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="bessel_jn"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('34','bessel_y0')
 
@@ -2219,13 +2485,21 @@ textblock=[character(len=256) :: &
 '   bessel_j0(3), bessel_j1(3), bessel_jn(3), bessel_y1(3), bessel_yn(3)', &
 '', &
 '']
-   shortname="bessel_y0"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="bessel_y0"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('35','bessel_y1')
 
@@ -2268,13 +2542,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   bessel_j0(3), bessel_j1(3), bessel_jn(3), bessel_y0(3), bessel_yn(3)', &
 '']
-   shortname="bessel_y1"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="bessel_y1"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('36','bessel_yn')
 
@@ -2328,13 +2610,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   bessel_j0(3), bessel_j1(3), bessel_jn(3), bessel_y0(3), bessel_y1(3)', &
 '']
-   shortname="bessel_yn"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="bessel_yn"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('37','bge')
 
@@ -2366,13 +2656,21 @@ textblock=[character(len=256) :: &
 '   bgt(3), ble(3), blt(3)', &
 '', &
 '']
-   shortname="bge"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="bge"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('38','bgt')
 
@@ -2407,13 +2705,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   bge(3), ble(3), blt(3)', &
 '']
-   shortname="bgt"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="bgt"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('39','bit_size')
 
@@ -2470,13 +2776,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Inquiry function]]', &
 '']
-   shortname="bit_size"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="bit_size"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('40','ble')
 
@@ -2508,13 +2822,21 @@ textblock=[character(len=256) :: &
 '   bge(3), bgt(3), blt(3)', &
 '', &
 '']
-   shortname="ble"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="ble"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('41','block')
 
@@ -2585,13 +2907,21 @@ textblock=[character(len=256) :: &
 '', &
 ' JSU', &
 '']
-   shortname="block"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="block"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('42','blt')
 
@@ -2622,13 +2952,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   bge(3), bgt(3), ble(3)', &
 '']
-   shortname="blt"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="blt"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('43','btest')
 
@@ -2676,13 +3014,21 @@ textblock=[character(len=256) :: &
 '   ibclr(3), ibits(3), ibset(3), iand(3), ior(3), ieor(3),', &
 '   mvbits(3)', &
 '']
-   shortname="btest"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="btest"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('44','c_associated')
 
@@ -2732,13 +3078,21 @@ textblock=[character(len=256) :: &
 '   c_loc(3), c_funloc(3), iso_c_binding(3)', &
 '', &
 '']
-   shortname="c_associated"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="c_associated"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('45','ceiling')
 
@@ -2782,13 +3136,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   floor(3), nint(3)', &
 '']
-   shortname="ceiling"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="ceiling"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('46','c_f_pointer')
 
@@ -2843,13 +3205,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   c_loc(3), c_f_procpointer(3), iso_c_binding(3)', &
 '']
-   shortname="c_f_pointer"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="c_f_pointer"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('47','c_f_procpointer')
 
@@ -2907,13 +3277,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   c_loc(3), c_f_pointer(3), iso_c_binding(3)', &
 '']
-   shortname="c_f_procpointer"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="c_f_procpointer"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('48','c_funloc')
 
@@ -2975,13 +3353,21 @@ textblock=[character(len=256) :: &
 '   c_f_pointer(3), c_f_procpointer(3),', &
 '   iso_c_binding(3)', &
 '']
-   shortname="c_funloc"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="c_funloc"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('49','char')
 
@@ -3035,13 +3421,21 @@ textblock=[character(len=256) :: &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
-   shortname="char"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="char"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('50','c_loc')
 
@@ -3090,13 +3484,21 @@ textblock=[character(len=256) :: &
 '   c_f_pointer(3), c_f_procpointer(3),', &
 '   iso_c_binding(3)', &
 '']
-   shortname="c_loc"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="c_loc"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('51','cmplx')
 
@@ -3234,13 +3636,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental procedure|Elemental function]]', &
 '']
-   shortname="cmplx"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="cmplx"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('52','co_broadcast')
 
@@ -3291,13 +3701,21 @@ textblock=[character(len=256) :: &
 '   co_max(3), co_min(3), co_sum(3), co_reduce(3)', &
 '', &
 '']
-   shortname="co_broadcast"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="co_broadcast"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('53','co_lbound')
 
@@ -3336,13 +3754,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   co_ubound(3), lbound(3)', &
 '']
-   shortname="co_lbound"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="co_lbound"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('54','co_max')
 
@@ -3397,13 +3823,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   co_min(3), co_sum(3), co_reduce(3), co_broadcast(3)', &
 '']
-   shortname="co_max"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="co_max"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('55','co_min')
 
@@ -3459,13 +3893,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   co_max(3), co_sum(3), co_reduce(3), co_broadcast(3)', &
 '']
-   shortname="co_min"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="co_min"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('56','command_argument_count')
 
@@ -3523,13 +3965,21 @@ textblock=[character(len=256) :: &
 '   get_command(3), get_command_argument(3)', &
 ' JSU', &
 '']
-   shortname="command_argument_count"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="command_argument_count"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('57','compiler_options')
 
@@ -3585,13 +4035,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   compiler_version(3), iso_fortran_env(7)', &
 '']
-   shortname="compiler_options"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="compiler_options"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('58','compiler_version')
 
@@ -3646,13 +4104,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   compiler_options(3), iso_fortran_env(7)', &
 '']
-   shortname="compiler_version"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="compiler_version"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('59','conjg')
 
@@ -3697,13 +4163,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental procedure|Elemental function]]', &
 '']
-   shortname="conjg"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="conjg"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('60','continue')
 
@@ -3755,13 +4229,21 @@ textblock=[character(len=256) :: &
 '', &
 ' JSU', &
 '']
-   shortname="continue"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="continue"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('61','co_reduce')
 
@@ -3845,13 +4327,21 @@ textblock=[character(len=256) :: &
 '   co_min(3), co_max(3), co_sum(3), co_broadcast(3)', &
 '', &
 '']
-   shortname="co_reduce"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="co_reduce"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('62','cos')
 
@@ -3892,13 +4382,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   acos(3), sin(3), tan(3)', &
 '']
-   shortname="cos"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="cos"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('63','cosh')
 
@@ -3942,13 +4440,21 @@ textblock=[character(len=256) :: &
 '   Inverse function: acosh(3)', &
 '', &
 '']
-   shortname="cosh"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="cosh"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('64','co_sum')
 
@@ -4007,13 +4513,21 @@ textblock=[character(len=256) :: &
 '   co_max(3), co_min(3), co_reduce(3), co_broadcast(3)', &
 '', &
 '']
-   shortname="co_sum"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="co_sum"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('65','co_ubound')
 
@@ -4052,13 +4566,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   co_lbound(3), lbound(3), ubound(3)', &
 '']
-   shortname="co_ubound"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="co_ubound"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('66','count')
 
@@ -4139,13 +4661,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Transformational function', &
 '']
-   shortname="count"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="count"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('67','cpu_time')
 
@@ -4213,13 +4743,21 @@ textblock=[character(len=256) :: &
 '   system_clock(3), date_and_time(3)', &
 '', &
 '']
-   shortname="cpu_time"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="cpu_time"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('68','cshift')
 
@@ -4273,13 +4811,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Transformational function', &
 '']
-   shortname="cshift"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="cshift"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('69','c_sizeof')
 
@@ -4331,13 +4877,21 @@ textblock=[character(len=256) :: &
 '   storage_size(3)', &
 '', &
 '']
-   shortname="c_sizeof"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="c_sizeof"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('70','date_and_time')
 
@@ -4408,13 +4962,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   cpu_time(3), system_clock(3)', &
 '']
-   shortname="date_and_time"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="date_and_time"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('71','dble')
 
@@ -4455,13 +5017,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   float(3), real(3)', &
 '']
-   shortname="dble"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="dble"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('72','digits')
 
@@ -4510,13 +5080,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Inquiry function]]', &
 '']
-   shortname="digits"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="digits"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('73','dim')
 
@@ -4560,13 +5138,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental procedure|Elemental function]]', &
 '']
-   shortname="dim"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="dim"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('74','dot_product')
 
@@ -4621,13 +5207,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Transformational function', &
 '']
-   shortname="dot_product"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="dot_product"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('75','dprod')
 
@@ -4697,13 +5291,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental procedure|Elemental function]]', &
 '']
-   shortname="dprod"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="dprod"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('76','dshiftl')
 
@@ -4739,13 +5341,21 @@ textblock=[character(len=256) :: &
 '   dshiftr(3)', &
 '', &
 '']
-   shortname="dshiftl"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="dshiftl"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('77','dshiftr')
 
@@ -4780,13 +5390,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   dshiftl(3)', &
 '']
-   shortname="dshiftr"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="dshiftr"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('78','eoshift')
 
@@ -4850,13 +5468,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Transformational function', &
 '']
-   shortname="eoshift"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="eoshift"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('79','epsilon')
 
@@ -4894,13 +5520,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Inquiry function]]', &
 '']
-   shortname="epsilon"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="epsilon"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('80','erf')
 
@@ -4942,13 +5576,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental procedure|Elemental function]]', &
 '']
-   shortname="erf"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="erf"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('81','erfc')
 
@@ -4991,13 +5633,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental function]]', &
 '']
-   shortname="erfc"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="erfc"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('82','erfc_scaled')
 
@@ -5040,13 +5690,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental function]]', &
 '']
-   shortname="erfc_scaled"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="erfc_scaled"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('83','event_query')
 
@@ -5097,13 +5755,21 @@ textblock=[character(len=256) :: &
 '   Subroutine', &
 '', &
 '']
-   shortname="event_query"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="event_query"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('84','execute_command_line')
 
@@ -5204,13 +5870,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Subroutine', &
 '']
-   shortname="execute_command_line"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="execute_command_line"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('85','exit')
 
@@ -5294,13 +5968,21 @@ textblock=[character(len=256) :: &
 '', &
 ' JSU', &
 '']
-   shortname="exit"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="exit"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('86','exp')
 
@@ -5336,13 +6018,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental procedure|Elemental function]]', &
 '']
-   shortname="exp"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="exp"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('87','exponent')
 
@@ -5382,13 +6072,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental procedure|Elemental function]]', &
 '']
-   shortname="exponent"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="exponent"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('88','extends_type_of')
 
@@ -5430,13 +6128,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Inquiry function.', &
 '']
-   shortname="extends_type_of"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="extends_type_of"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('89','findloc')
 
@@ -5587,13 +6293,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Transformational function.', &
 '']
-   shortname="findloc"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="findloc"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('90','float')
 
@@ -5632,13 +6346,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   dble(3), real(3)', &
 '']
-   shortname="float"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="float"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('91','floor')
 
@@ -5683,13 +6405,21 @@ textblock=[character(len=256) :: &
 '   ceiling(3), nint(3)', &
 '', &
 '']
-   shortname="floor"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="floor"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('92','fraction')
 
@@ -5731,13 +6461,21 @@ textblock=[character(len=256) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '', &
 '']
-   shortname="fraction"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="fraction"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('93','gamma')
 
@@ -5784,13 +6522,21 @@ textblock=[character(len=256) :: &
 '   Logarithm of the Gamma function: [[log_gamma(3)', &
 '', &
 '']
-   shortname="gamma"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="gamma"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('94','get_command')
 
@@ -5870,13 +6616,21 @@ textblock=[character(len=256) :: &
 '   get_command_argument(3), command_argument_count(3)', &
 ' JSU', &
 '']
-   shortname="get_command"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="get_command"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('95','get_command_argument')
 
@@ -5984,13 +6738,21 @@ textblock=[character(len=256) :: &
 '   get_command(3), command_argument_count(3)', &
 ' JSU', &
 '']
-   shortname="get_command_argument"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="get_command_argument"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('96','get_environment_variable')
 
@@ -6076,13 +6838,21 @@ textblock=[character(len=256) :: &
 '   Subroutine', &
 ' JSU', &
 '']
-   shortname="get_environment_variable"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="get_environment_variable"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('97','huge')
 
@@ -6119,13 +6889,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Inquiry function]]', &
 '']
-   shortname="huge"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="huge"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('98','hypot')
 
@@ -6164,13 +6942,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental procedure|Elemental function]]', &
 '']
-   shortname="hypot"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="hypot"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('99','iachar')
 
@@ -6242,13 +7028,21 @@ textblock=[character(len=256) :: &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
-   shortname="iachar"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="iachar"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('100','iall')
 
@@ -6305,13 +7099,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   iany(3), iparity(3), iand(3)', &
 '']
-   shortname="iall"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="iall"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('101','iand')
 
@@ -6356,13 +7158,21 @@ textblock=[character(len=256) :: &
 '   not(3)', &
 '', &
 '']
-   shortname="iand"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="iand"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('102','iany')
 
@@ -6420,13 +7230,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   iparity(3), iall(3), ior(3)', &
 '']
-   shortname="iany"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="iany"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('103','ibclr')
 
@@ -6463,13 +7281,21 @@ textblock=[character(len=256) :: &
 '   mvbits(3)', &
 '', &
 '']
-   shortname="ibclr"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="ibclr"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('104','ibits')
 
@@ -6507,13 +7333,21 @@ textblock=[character(len=256) :: &
 '   bit_size(3), ibclr(3), ibset(3),', &
 '   iand(3), ior(3), ieor(3)', &
 '']
-   shortname="ibits"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="ibits"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('105','ibset')
 
@@ -6549,13 +7383,21 @@ textblock=[character(len=256) :: &
 '   btest(3), ibclr(3), ibits(3), iand(3), ior(3), ieor(3),', &
 '   mvbits(3)', &
 '']
-   shortname="ibset"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="ibset"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('106','ichar')
 
@@ -6643,13 +7485,21 @@ textblock=[character(len=256) :: &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
-   shortname="ichar"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="ichar"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('107','ieor')
 
@@ -6683,13 +7533,21 @@ textblock=[character(len=256) :: &
 '   ibclr(3), not(3)', &
 '', &
 '']
-   shortname="ieor"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="ieor"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('108','image_index')
 
@@ -6734,13 +7592,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   this_image(3), num_images(3)', &
 '']
-   shortname="image_index"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="image_index"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('109','include')
 
@@ -6859,13 +7725,21 @@ textblock=[character(len=256) :: &
 '        include "somemorecode.inc"', &
 '     end program show_include', &
 '']
-   shortname="include"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="include"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('110','index')
 
@@ -6934,13 +7808,21 @@ textblock=[character(len=256) :: &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
-   shortname="index"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="index"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('111','int')
 
@@ -6991,13 +7873,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental procedure|Elemental function]]', &
 '']
-   shortname="int"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="int"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('112','ior')
 
@@ -7051,13 +7941,21 @@ textblock=[character(len=256) :: &
 '   ieor(3), iand(3), ibits(3), ibset(3),', &
 '   ibclr(3), not(3)', &
 '']
-   shortname="ior"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="ior"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('113','iparity')
 
@@ -7115,13 +8013,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   iany(3), iall(3), ieor(3), parity(3)', &
 '']
-   shortname="iparity"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="iparity"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('114','is_contiguous')
 
@@ -7200,13 +8106,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Inquiry function]]', &
 '']
-   shortname="is_contiguous"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="is_contiguous"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('115','ishft')
 
@@ -7243,13 +8157,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   ishftc(3)', &
 '']
-   shortname="ishft"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="ishft"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('116','ishftc')
 
@@ -7291,13 +8213,21 @@ textblock=[character(len=256) :: &
 '   ishft(3)', &
 '', &
 '']
-   shortname="ishftc"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="ishftc"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('117','is_iostat_end')
 
@@ -7343,13 +8273,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental function]]', &
 '']
-   shortname="is_iostat_end"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="is_iostat_end"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('118','is_iostat_eor')
 
@@ -7392,13 +8330,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Elemental function', &
 '']
-   shortname="is_iostat_eor"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="is_iostat_eor"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('119','kind')
 
@@ -7439,13 +8385,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Inquiry function]]', &
 '']
-   shortname="kind"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="kind"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('120','lbound')
 
@@ -7545,13 +8499,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   ubound(3), co_lbound(3)', &
 '']
-   shortname="lbound"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="lbound"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('121','leadz')
 
@@ -7671,13 +8633,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   bit_size(3), popcnt(3), poppar(3), trailz(3)', &
 '']
-   shortname="leadz"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="leadz"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('122','len')
 
@@ -7730,13 +8700,21 @@ textblock=[character(len=256) :: &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
-   shortname="len"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="len"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('123','len_trim')
 
@@ -7797,13 +8775,21 @@ textblock=[character(len=256) :: &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
-   shortname="len_trim"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="len_trim"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('124','lge')
 
@@ -7852,13 +8838,21 @@ textblock=[character(len=256) :: &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
-   shortname="lge"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="lge"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('125','lgt')
 
@@ -7908,13 +8902,21 @@ textblock=[character(len=256) :: &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
-   shortname="lgt"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="lgt"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('126','lle')
 
@@ -8003,13 +9005,21 @@ textblock=[character(len=256) :: &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
-   shortname="lle"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="lle"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('127','llt')
 
@@ -8059,13 +9069,21 @@ textblock=[character(len=256) :: &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
-   shortname="llt"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="llt"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('128','log10')
 
@@ -8104,13 +9122,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental procedure|Elemental function]]', &
 '']
-   shortname="log10"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="log10"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('129','log')
 
@@ -8154,13 +9180,21 @@ textblock=[character(len=256) :: &
 '   [[Elemental procedure|Elemental function]]', &
 '', &
 '']
-   shortname="log"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="log"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('130','log_gamma')
 
@@ -8201,13 +9235,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   Gamma function: gamma(3)', &
 '']
-   shortname="log_gamma"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="log_gamma"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('131','logical')
 
@@ -8242,13 +9284,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   int(3), real(3), cmplx(3)', &
 '']
-   shortname="logical"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="logical"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('132','maskl')
 
@@ -8284,13 +9334,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   maskr(3)', &
 '']
-   shortname="maskl"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="maskl"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('133','maskr')
 
@@ -8325,13 +9383,21 @@ textblock=[character(len=256) :: &
 '   maskl(3)', &
 '', &
 '']
-   shortname="maskr"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="maskr"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('134','matmul')
 
@@ -8367,13 +9433,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Transformational function', &
 '']
-   shortname="matmul"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="matmul"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('135','max')
 
@@ -8483,13 +9557,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   maxloc(3), maxval(3), min(3)', &
 '']
-   shortname="max"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="max"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('136','maxexponent')
 
@@ -8531,13 +9613,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Inquiry function]]', &
 '']
-   shortname="maxexponent"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="maxexponent"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('137','maxloc')
 
@@ -8604,13 +9694,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   max(3), maxval(3)', &
 '']
-   shortname="maxloc"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="maxloc"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('138','maxval')
 
@@ -8687,13 +9785,21 @@ textblock=[character(len=256) :: &
 '', &
 '   intrinsics', &
 '']
-   shortname="maxval"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="maxval"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('139','merge')
 
@@ -8751,13 +9857,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental procedure|Elemental function]]', &
 '']
-   shortname="merge"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="merge"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('140','merge_bits')
 
@@ -8790,13 +9904,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental function]]', &
 '']
-   shortname="merge_bits"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="merge_bits"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('141','min')
 
@@ -8840,13 +9962,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   max(3), minloc(3), minval(3)', &
 '']
-   shortname="min"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="min"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('142','minexponent')
 
@@ -8889,13 +10019,21 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '']
-   shortname="minexponent"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="minexponent"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('143','minloc')
 
@@ -8973,13 +10111,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   min(3), minval(3)', &
 '']
-   shortname="minloc"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="minloc"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('144','minval')
 
@@ -9048,13 +10194,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   min(3), minloc(3)', &
 '']
-   shortname="minval"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="minval"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('145','mod')
 
@@ -9109,13 +10263,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   modulo(3)', &
 '']
-   shortname="mod"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="mod"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('146','modulo')
 
@@ -9170,13 +10332,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   mod(3)', &
 '']
-   shortname="modulo"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="modulo"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('147','move_alloc')
 
@@ -9239,13 +10409,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   allocated(3)', &
 '']
-   shortname="move_alloc"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="move_alloc"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('148','mvbits')
 
@@ -9284,13 +10462,21 @@ textblock=[character(len=256) :: &
 '   ibclr(3), ibset(3), ibits(3),', &
 '   iand(3), ior(3)', &
 '']
-   shortname="mvbits"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="mvbits"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('149','nearest')
 
@@ -9334,13 +10520,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental procedure|Elemental function]]', &
 '']
-   shortname="nearest"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="nearest"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('150','new_line')
 
@@ -9376,13 +10570,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Inquiry function]]', &
 '']
-   shortname="new_line"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="new_line"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('151','nint')
 
@@ -9429,13 +10631,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   ceiling(3), floor(3)', &
 '']
-   shortname="nint"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="nint"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('152','norm2')
 
@@ -9481,13 +10691,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   product(3), sum(3), hypot(3)', &
 '']
-   shortname="norm2"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="norm2"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('153','not')
 
@@ -9518,13 +10736,21 @@ textblock=[character(len=256) :: &
 '   iand(3), ior(3), ieor(3), ibits(3),', &
 '   ibset(3), ibclr(3)', &
 '']
-   shortname="not"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="not"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('154','null')
 
@@ -9567,13 +10793,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   associated(3)', &
 '']
-   shortname="null"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="null"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('155','num_images')
 
@@ -9630,13 +10864,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   this_image(3), image_index(3)', &
 '']
-   shortname="num_images"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="num_images"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('156','pack')
 
@@ -9722,13 +10964,21 @@ textblock=[character(len=256) :: &
 '   unpack(3)', &
 '', &
 '']
-   shortname="pack"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="pack"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('157','parity')
 
@@ -9774,13 +11024,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Transformational function', &
 '']
-   shortname="parity"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="parity"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('158','popcnt')
 
@@ -9834,13 +11092,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   poppar(3), leadz(3), trailz(3)', &
 '']
-   shortname="popcnt"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="popcnt"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('159','poppar')
 
@@ -9888,13 +11154,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   popcnt(3), leadz(3), trailz(3)', &
 '']
-   shortname="poppar"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="poppar"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('160','precision')
 
@@ -9939,13 +11213,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   selected_real_kind(3), range(3)', &
 '']
-   shortname="precision"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="precision"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('161','present')
 
@@ -9990,13 +11272,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Inquiry function]]', &
 '']
-   shortname="present"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="present"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('162','product')
 
@@ -10048,13 +11338,21 @@ textblock=[character(len=256) :: &
 '   sum(3), note that an element by element multiplication is done directly', &
 '   using the star character.', &
 '']
-   shortname="product"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="product"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('163','radix')
 
@@ -10094,13 +11392,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   scale(3), selected_real_kind(3)', &
 '']
-   shortname="radix"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="radix"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('164','random_number')
 
@@ -10184,13 +11490,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   random_seed(3)', &
 '']
-   shortname="random_number"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="random_number"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('165','random_seed')
 
@@ -10246,13 +11560,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   random_number(3)', &
 '']
-   shortname="random_seed"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="random_seed"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('166','range')
 
@@ -10297,13 +11619,21 @@ textblock=[character(len=256) :: &
 '   selected_real_kind(3), precision(3)', &
 '', &
 '']
-   shortname="range"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="range"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('167','rank')
 
@@ -10343,13 +11673,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Inquiry function', &
 '']
-   shortname="rank"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="rank"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('168','real')
 
@@ -10413,13 +11751,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   dble(3), float(3)', &
 '']
-   shortname="real"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="real"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('169','repeat')
 
@@ -10464,13 +11810,21 @@ textblock=[character(len=256) :: &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
-   shortname="repeat"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="repeat"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('170','reshape')
 
@@ -10525,13 +11879,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   shape(3)', &
 '']
-   shortname="reshape"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="reshape"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('171','return')
 
@@ -10642,13 +12004,21 @@ textblock=[character(len=256) :: &
 '    picked second alternate return', &
 ' JSU', &
 '']
-   shortname="return"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="return"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('172','rewind')
 
@@ -10732,13 +12102,21 @@ textblock=[character(len=256) :: &
 '', &
 '   JSU', &
 '']
-   shortname="rewind"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="rewind"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('173','rrspacing')
 
@@ -10772,13 +12150,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   spacing(3)', &
 '']
-   shortname="rrspacing"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="rrspacing"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('174','same_type_as')
 
@@ -10811,13 +12197,21 @@ textblock=[character(len=256) :: &
 '   extends_type_of(3)', &
 '', &
 '']
-   shortname="same_type_as"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="same_type_as"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('175','scale')
 
@@ -10863,13 +12257,21 @@ textblock=[character(len=256) :: &
 '   radix(3)', &
 '', &
 '']
-   shortname="scale"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="scale"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('176','scan')
 
@@ -10927,13 +12329,21 @@ textblock=[character(len=256) :: &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
-   shortname="scan"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="scan"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('177','selected_char_kind')
 
@@ -10985,13 +12395,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Transformational function', &
 '']
-   shortname="selected_char_kind"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="selected_char_kind"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('178','selected_int_kind')
 
@@ -11035,13 +12453,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Transformational function', &
 '']
-   shortname="selected_int_kind"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="selected_int_kind"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('179','selected_real_kind')
 
@@ -11112,13 +12538,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   precision(3), range(3), radix(3)', &
 '']
-   shortname="selected_real_kind"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="selected_real_kind"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('180','set_exponent')
 
@@ -11161,13 +12595,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental procedure|Elemental function]]', &
 '']
-   shortname="set_exponent"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="set_exponent"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('181','shape')
 
@@ -11217,13 +12659,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   reshape(3), size(3)', &
 '']
-   shortname="shape"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="shape"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('182','shifta')
 
@@ -11259,13 +12709,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   shiftl(3), shiftr(3)', &
 '']
-   shortname="shifta"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="shifta"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('183','shiftl')
 
@@ -11299,13 +12757,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   shifta(3), shiftr(3)', &
 '']
-   shortname="shiftl"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="shiftl"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('184','shiftr')
 
@@ -11339,13 +12805,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   shifta(3), shiftl(3)', &
 '']
-   shortname="shiftr"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="shiftr"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('185','sign')
 
@@ -11389,13 +12863,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Elemental procedure|Elemental function]]', &
 '']
-   shortname="sign"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="sign"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('186','sin')
 
@@ -11498,13 +12980,21 @@ textblock=[character(len=256) :: &
 '', &
 ' JSU', &
 '']
-   shortname="sin"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="sin"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('187','sinh')
 
@@ -11545,13 +13035,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   asinh(3)', &
 '']
-   shortname="sinh"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="sinh"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('188','size')
 
@@ -11731,13 +13229,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   shape(3), reshape(3)', &
 '']
-   shortname="size"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="size"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('189','sngl')
 
@@ -11770,13 +13276,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   dble(3)', &
 '']
-   shortname="sngl"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="sngl"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('190','spacing')
 
@@ -11820,13 +13334,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   rrspacing(3)', &
 '']
-   shortname="spacing"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="spacing"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('191','spread')
 
@@ -11930,13 +13452,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   unpack(3)', &
 '']
-   shortname="spread"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="spread"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('192','sqrt')
 
@@ -11977,13 +13507,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Elemental function', &
 '']
-   shortname="sqrt"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="sqrt"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('193','stop')
 
@@ -12069,13 +13607,21 @@ textblock=[character(len=256) :: &
 '', &
 ' JSU', &
 '']
-   shortname="stop"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="stop"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('194','storage_size')
 
@@ -12121,13 +13667,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   c_sizeof(3)', &
 '']
-   shortname="storage_size"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="storage_size"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('195','sum')
 
@@ -12205,13 +13759,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   intrinsics', &
 '']
-   shortname="sum"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="sum"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('196','system_clock')
 
@@ -12298,13 +13860,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   date_and_time(3), cpu_time(3)', &
 '']
-   shortname="system_clock"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="system_clock"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('197','tan')
 
@@ -12346,13 +13916,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   atan(3), cos(3), sin(3)', &
 '']
-   shortname="tan"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="tan"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('198','tanh')
 
@@ -12397,13 +13975,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   atanh(3)', &
 '']
-   shortname="tanh"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="tanh"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('199','this_image')
 
@@ -12473,13 +14059,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   num_images(3), image_index(3)', &
 '']
-   shortname="this_image"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="this_image"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('200','tiny')
 
@@ -12517,13 +14111,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   [[Inquiry function]]', &
 '']
-   shortname="tiny"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="tiny"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('201','trailz')
 
@@ -12631,13 +14233,21 @@ textblock=[character(len=256) :: &
 '   bit_size(3), popcnt(3), poppar(3), leadz(3)', &
 ' JSU', &
 '']
-   shortname="trailz"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="trailz"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('202','transfer')
 
@@ -12716,13 +14326,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Transformational function', &
 '']
-   shortname="transfer"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="transfer"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('203','transpose')
 
@@ -12799,13 +14417,21 @@ textblock=[character(len=256) :: &
 'CLASS', &
 '   Transformational function', &
 '']
-   shortname="transpose"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="transpose"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('204','trim')
 
@@ -12851,13 +14477,21 @@ textblock=[character(len=256) :: &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
-   shortname="trim"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="trim"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('205','ubound')
 
@@ -12955,13 +14589,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   lbound(3), co_ubound(3), co_lbound(3)', &
 '']
-   shortname="ubound"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="ubound"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('206','unpack')
 
@@ -13010,13 +14652,21 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   pack(3), spread(3)', &
 '']
-   shortname="unpack"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="unpack"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 
 case('207','verify')
 
@@ -13122,13 +14772,21 @@ textblock=[character(len=256) :: &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
 '']
-   shortname="verify"
-   if(present(prefix))then
-      do i=1,size(textblock)
-         textblock(i)= shortname//':'//trim(textblock(i))
-      enddo
+
+shortname="verify"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
    endif
-   if(present(topic))topic=shortname
+endif
+
+if(present(prefix))then
+   do i=1,size(textblock)
+      textblock(i)= shortname//':'//trim(textblock(i))
+   enddo
+endif
+
 case default
    allocate (character(len=256) :: textblock(0))
 end select
