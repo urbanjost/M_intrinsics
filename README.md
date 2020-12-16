@@ -26,11 +26,11 @@ alternative is nothing", but are still actively being edited.
 
 The manpages are available as archive files:
 
-   - [manpages.tgz](ship/manpages.zip)
-   - [manpages.zip](ship/manpages.tgz)
+   - [manpages.tgz](docs/manpages.zip)
+   - [manpages.zip](docs/manpages.tgz)
 
 These links will take you into the "filefinder" where you will want to
-enter the ship/ directory to download them.
+enter the docs/ directory to download them.
 
 ## USE AND INSTALLATION
 

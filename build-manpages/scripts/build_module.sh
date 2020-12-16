@@ -18,12 +18,25 @@ do
 SHORTNAME=${NAME/.*}
 (
 cat <<EOF
-function help_${SHORTNAME}() result (textblock)
+function help_${SHORTNAME}(prefix,name) result (textblock)
 character(len=256),allocatable   :: textblock(:)
-textblock=[character(len=256) :: &
+logical,intent(in),optional      :: prefix
+character(len=*),parameter       :: shortname="$SHORTNAME"
+character(len=:),allocatable,intent(out),optional :: name
+textblock=[character(len=256)    :: &
 '', &
 $(TOCHARACTER)
 '']
+   if(present(prefix))then
+      if(prefix)then
+       do i=1,size(textblock)
+          textblock(i)=shortname//':'//trim(textblock(i))
+       enddo
+      endif
+   endif
+   if(present(name))then
+      name=shortname
+   endif
 end function help_${SHORTNAME}
 EOF
 )
@@ -49,11 +62,12 @@ contains
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
-function help_intrinsics(name) result (textblock)
-character(len=*),intent(in)    :: name
-character(len=256),allocatable   :: textblock(:)
-character(len=:),allocatable   :: a, b, c
-integer                        :: i, p, pg
+function help_intrinsics(name,prefix) result (textblock)
+character(len=*),intent(in)     :: name
+logical,intent(in),optional     :: prefix
+character(len=256),allocatable  :: textblock(:)
+character(len=:),allocatable    :: a, b, c
+integer                         :: i, p, pg
    select case(name)
    case('','manual','intrinsics','fortranmanual','fortran_manual')
       textblock=help_intrinsics_all()
@@ -71,7 +85,7 @@ integer                        :: i, p, pg
       enddo
       call sort_name(textblock)
    case default
-      textblock=help_intrinsics_one(name)
+      textblock=help_intrinsics_one(name,prefix)
    end select
 end function help_intrinsics
 !===================================================================================================================================
@@ -135,9 +149,12 @@ end function help_intrinsics_all
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
-function help_intrinsics_one(name) result (textblock)
-character(len=*),intent(in)    :: name
+function help_intrinsics_one(name,prefix) result (textblock)
+character(len=*),intent(in)      :: name
 character(len=256),allocatable   :: textblock(:)
+character(len=:),allocatable     :: shortname
+logical,intent(in),optional      :: prefix
+integer                          :: i
 select case(name)
 EOF
 COUNT=0
@@ -153,6 +170,12 @@ textblock=[character(len=256) :: &
 '', &
 $(TOCHARACTER)
 '']
+   shortname="$SHORTNAME"
+   if(present(prefix))then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
 EOF
 done
    cat <<\EOF

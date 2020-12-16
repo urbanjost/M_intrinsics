@@ -28,8 +28,8 @@ all: roff
 	bash scripts/book.sh FORTRAN fortran
 	mandb -q -c ../man
 	bash scripts/mank.sh 
-	: checking for empty files in demo/
-	@for NAME in ../demo/*.f90;\
+	: checking for empty files in example/
+	@for NAME in ../example/*.f90;\
 	do\
 	   [ -s "$$NAME" ] || echo $$(basename $$NAME .f90);\
 	done|xargs -n 5|column -t
@@ -66,21 +66,21 @@ install:
 .PHONY : demos
 demos:
 	: compile and load example programs from manpages
-	cd ../demo;make
+	cd ../example;make
 
 .PHONY : clean
 clean:
 	rm -f $(FULLMANS) 
 	cd ../docs &&rm -f $(FULLHTML3) $(FULLHTML7)
-	rm -f ../ship/manpages.zip ../ship/manpages.tgz
-	cd ../demo/ && make clean
+	rm -f ../docs/manpages.zip ../docs/manpages.tgz
+	cd ../example/ && make clean
 
 .PHONY : vi
 vi:
 	: test manpages with vim K command by editing manpage demo programs
-#	vi -c 'set keywordprg=env\ MANPATH=$$MANPATH:../man::\ man\ -s\ 3fortran\ -a' ../demo/*.f90
+#	vi -c 'set keywordprg=env\ MANPATH=$$MANPATH:../man::\ man\ -s\ 3fortran\ -a' ../example/*.f90
 	: test K command in vim just using the manpages in ../man
-	vim -c 'set keywordprg=env\ MANPATH=../man\ man\ -s\ 3fortran\ -a' ../demo/*.f90
+	vim -c 'set keywordprg=env\ MANPATH=../man\ man\ -s\ 3fortran\ -a' ../example/*.f90
 
 .PHONY : list
 list:
@@ -110,10 +110,11 @@ distros:
 .PHONY: ship
 ship:
 	: make easily distributed archive files of manpages
+	mkdir -p ../man/man3
 	cd ../man/man3;\
 	   gzip *.3fortran;\
-	   zip -r ../../ship/manpages.zip *gz;\
-	   tar cvfz ../../ship/manpages.tgz *gz;\
+	   zip -r ../../docs/manpages.zip *gz;\
+	   tar cvfz ../../docs/manpages.tgz *gz;\
 	   gunzip *.3fortran.gz
 
 .PHONY: debug

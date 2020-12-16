@@ -4,7 +4,7 @@ NAME
 
 SYNOPSIS
    BACKSPACE file-unit-number
-   BACKSPACE ([UNIT=]file-unit-number][,IOMSG=iomsg-variable]
+   BACKSPACE([UNIT=]file-unit-number][,IOMSG=iomsg-variable]
               [,IOSTAT=scalar-int-variable][,ERR=label])
 
 DESCRIPTION
