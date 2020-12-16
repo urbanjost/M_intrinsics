@@ -82,7 +82,8 @@ end function help_intrinsics_section
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
-function help_intrinsics_all() result (textblock)
+function help_intrinsics_all(prefix) result (textblock)
+logical,intent(in),optional     :: prefix
 character(len=256),allocatable  :: textblock(:)
 character(len=256),allocatable  :: add(:)
 character(len=10)               :: cnum
@@ -91,7 +92,7 @@ integer                         :: icount
    icount=1
    do
       write(cnum,'(i0)') icount
-      add=help_intrinsics_one(cnum)
+      add=help_intrinsics_one(cnum,prefix)
       if( size(add) .eq. 0 ) exit
       textblock=[character(len=256) :: textblock,add]
       icount=icount + 1
@@ -100,9 +101,10 @@ end function help_intrinsics_all
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
-function help_intrinsics_one(name,prefix) result (textblock)
+function help_intrinsics_one(name,prefix,topic) result (textblock)
 character(len=*),intent(in)      :: name
 character(len=256),allocatable   :: textblock(:)
+character(len=:),allocatable,intent(out),optional     :: topic
 character(len=:),allocatable     :: shortname
 logical,intent(in),optional      :: prefix
 integer                          :: i
@@ -175,6 +177,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('2','achar')
 
@@ -246,6 +249,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('3','acos')
 
@@ -307,6 +311,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('4','acosh')
 
@@ -355,6 +360,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('5','adjustl')
 
@@ -409,6 +415,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('6','adjustr')
 
@@ -463,6 +470,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('7','aimag')
 
@@ -514,6 +522,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('8','aint')
 
@@ -569,6 +578,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('9','all')
 
@@ -684,6 +694,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('10','allocated')
 
@@ -737,6 +748,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('11','anint')
 
@@ -790,6 +802,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('12','any')
 
@@ -858,6 +871,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('13','asin')
 
@@ -947,6 +961,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('14','asinh')
 
@@ -995,6 +1010,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('15','associated')
 
@@ -1087,6 +1103,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('16','atan2')
 
@@ -1154,6 +1171,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('17','atan')
 
@@ -1210,6 +1228,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('18','atanh')
 
@@ -1259,6 +1278,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('19','atomic_add')
 
@@ -1313,6 +1333,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('20','atomic_and')
 
@@ -1369,6 +1390,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('21','atomic_cas')
 
@@ -1427,6 +1449,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('22','atomic_define')
 
@@ -1481,6 +1504,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('23','atomic_fetch_add')
 
@@ -1539,6 +1563,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('24','atomic_fetch_and')
 
@@ -1597,6 +1622,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('25','atomic_fetch_or')
 
@@ -1653,6 +1679,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('26','atomic_fetch_xor')
 
@@ -1711,6 +1738,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('27','atomic_or')
 
@@ -1767,6 +1795,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('28','atomic_ref')
 
@@ -1831,6 +1860,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('29','atomic_xor')
 
@@ -1886,6 +1916,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('30','backspace')
 
@@ -1982,6 +2013,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('31','bessel_j0')
 
@@ -2032,6 +2064,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('32','bessel_j1')
 
@@ -2083,6 +2116,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('33','bessel_jn')
 
@@ -2141,6 +2175,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('34','bessel_y0')
 
@@ -2190,6 +2225,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('35','bessel_y1')
 
@@ -2238,6 +2274,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('36','bessel_yn')
 
@@ -2297,6 +2334,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('37','bge')
 
@@ -2334,6 +2372,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('38','bgt')
 
@@ -2374,6 +2413,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('39','bit_size')
 
@@ -2436,6 +2476,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('40','ble')
 
@@ -2473,6 +2514,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('41','block')
 
@@ -2549,6 +2591,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('42','blt')
 
@@ -2585,6 +2628,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('43','btest')
 
@@ -2638,6 +2682,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('44','c_associated')
 
@@ -2693,6 +2738,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('45','ceiling')
 
@@ -2742,6 +2788,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('46','c_f_pointer')
 
@@ -2802,6 +2849,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('47','c_f_procpointer')
 
@@ -2865,6 +2913,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('48','c_funloc')
 
@@ -2932,6 +2981,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('49','char')
 
@@ -2991,6 +3041,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('50','c_loc')
 
@@ -3045,6 +3096,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('51','cmplx')
 
@@ -3188,6 +3240,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('52','co_broadcast')
 
@@ -3244,6 +3297,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('53','co_lbound')
 
@@ -3288,6 +3342,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('54','co_max')
 
@@ -3348,6 +3403,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('55','co_min')
 
@@ -3409,6 +3465,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('56','command_argument_count')
 
@@ -3472,6 +3529,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('57','compiler_options')
 
@@ -3533,6 +3591,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('58','compiler_version')
 
@@ -3593,6 +3652,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('59','conjg')
 
@@ -3643,6 +3703,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('60','continue')
 
@@ -3700,6 +3761,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('61','co_reduce')
 
@@ -3789,6 +3851,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('62','cos')
 
@@ -3835,6 +3898,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('63','cosh')
 
@@ -3884,6 +3948,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('64','co_sum')
 
@@ -3948,6 +4013,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('65','co_ubound')
 
@@ -3992,6 +4058,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('66','count')
 
@@ -4078,6 +4145,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('67','cpu_time')
 
@@ -4151,6 +4219,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('68','cshift')
 
@@ -4210,6 +4279,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('69','c_sizeof')
 
@@ -4267,6 +4337,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('70','date_and_time')
 
@@ -4343,6 +4414,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('71','dble')
 
@@ -4389,6 +4461,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('72','digits')
 
@@ -4443,6 +4516,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('73','dim')
 
@@ -4492,6 +4566,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('74','dot_product')
 
@@ -4552,6 +4627,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('75','dprod')
 
@@ -4627,6 +4703,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('76','dshiftl')
 
@@ -4668,6 +4745,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('77','dshiftr')
 
@@ -4708,6 +4786,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('78','eoshift')
 
@@ -4777,6 +4856,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('79','epsilon')
 
@@ -4820,6 +4900,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('80','erf')
 
@@ -4867,6 +4948,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('81','erfc')
 
@@ -4915,6 +4997,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('82','erfc_scaled')
 
@@ -4963,6 +5046,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('83','event_query')
 
@@ -5019,6 +5103,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('84','execute_command_line')
 
@@ -5125,6 +5210,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('85','exit')
 
@@ -5214,6 +5300,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('86','exp')
 
@@ -5255,6 +5342,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('87','exponent')
 
@@ -5300,6 +5388,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('88','extends_type_of')
 
@@ -5347,6 +5436,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('89','findloc')
 
@@ -5503,6 +5593,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('90','float')
 
@@ -5547,6 +5638,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('91','floor')
 
@@ -5597,6 +5689,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('92','fraction')
 
@@ -5644,6 +5737,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('93','gamma')
 
@@ -5696,6 +5790,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('94','get_command')
 
@@ -5781,6 +5876,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('95','get_command_argument')
 
@@ -5894,6 +5990,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('96','get_environment_variable')
 
@@ -5985,6 +6082,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('97','huge')
 
@@ -6027,6 +6125,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('98','hypot')
 
@@ -6071,6 +6170,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('99','iachar')
 
@@ -6148,6 +6248,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('100','iall')
 
@@ -6210,6 +6311,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('101','iand')
 
@@ -6260,6 +6362,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('102','iany')
 
@@ -6323,6 +6426,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('103','ibclr')
 
@@ -6365,6 +6469,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('104','ibits')
 
@@ -6408,6 +6513,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('105','ibset')
 
@@ -6449,6 +6555,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('106','ichar')
 
@@ -6542,6 +6649,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('107','ieor')
 
@@ -6581,6 +6689,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('108','image_index')
 
@@ -6631,6 +6740,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('109','include')
 
@@ -6755,6 +6865,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('110','index')
 
@@ -6829,6 +6940,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('111','int')
 
@@ -6885,6 +6997,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('112','ior')
 
@@ -6944,6 +7057,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('113','iparity')
 
@@ -7007,6 +7121,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('114','is_contiguous')
 
@@ -7091,6 +7206,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('115','ishft')
 
@@ -7133,6 +7249,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('116','ishftc')
 
@@ -7180,6 +7297,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('117','is_iostat_end')
 
@@ -7231,6 +7349,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('118','is_iostat_eor')
 
@@ -7279,6 +7398,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('119','kind')
 
@@ -7325,6 +7445,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('120','lbound')
 
@@ -7430,6 +7551,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('121','leadz')
 
@@ -7555,6 +7677,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('122','len')
 
@@ -7613,6 +7736,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('123','len_trim')
 
@@ -7679,6 +7803,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('124','lge')
 
@@ -7733,6 +7858,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('125','lgt')
 
@@ -7788,6 +7914,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('126','lle')
 
@@ -7882,6 +8009,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('127','llt')
 
@@ -7937,6 +8065,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('128','log10')
 
@@ -7981,6 +8110,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('129','log')
 
@@ -8030,6 +8160,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('130','log_gamma')
 
@@ -8076,6 +8207,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('131','logical')
 
@@ -8116,6 +8248,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('132','maskl')
 
@@ -8157,6 +8290,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('133','maskr')
 
@@ -8197,6 +8331,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('134','matmul')
 
@@ -8238,6 +8373,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('135','max')
 
@@ -8353,6 +8489,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('136','maxexponent')
 
@@ -8400,6 +8537,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('137','maxloc')
 
@@ -8472,6 +8610,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('138','maxval')
 
@@ -8554,6 +8693,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('139','merge')
 
@@ -8617,6 +8757,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('140','merge_bits')
 
@@ -8655,6 +8796,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('141','min')
 
@@ -8704,6 +8846,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('142','minexponent')
 
@@ -8752,6 +8895,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('143','minloc')
 
@@ -8835,6 +8979,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('144','minval')
 
@@ -8909,6 +9054,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('145','mod')
 
@@ -8969,6 +9115,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('146','modulo')
 
@@ -9029,6 +9176,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('147','move_alloc')
 
@@ -9097,6 +9245,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('148','mvbits')
 
@@ -9141,6 +9290,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('149','nearest')
 
@@ -9190,6 +9340,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('150','new_line')
 
@@ -9231,6 +9382,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('151','nint')
 
@@ -9283,6 +9435,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('152','norm2')
 
@@ -9334,6 +9487,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('153','not')
 
@@ -9370,6 +9524,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('154','null')
 
@@ -9418,6 +9573,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('155','num_images')
 
@@ -9480,6 +9636,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('156','pack')
 
@@ -9571,6 +9728,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('157','parity')
 
@@ -9622,6 +9780,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('158','popcnt')
 
@@ -9681,6 +9840,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('159','poppar')
 
@@ -9734,6 +9894,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('160','precision')
 
@@ -9784,6 +9945,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('161','present')
 
@@ -9834,6 +9996,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('162','product')
 
@@ -9891,6 +10054,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('163','radix')
 
@@ -9936,6 +10100,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('164','random_number')
 
@@ -10025,6 +10190,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('165','random_seed')
 
@@ -10086,6 +10252,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('166','range')
 
@@ -10136,6 +10303,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('167','rank')
 
@@ -10181,6 +10349,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('168','real')
 
@@ -10250,6 +10419,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('169','repeat')
 
@@ -10300,6 +10470,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('170','reshape')
 
@@ -10360,6 +10531,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('171','return')
 
@@ -10476,6 +10648,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('172','rewind')
 
@@ -10565,6 +10738,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('173','rrspacing')
 
@@ -10604,6 +10778,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('174','same_type_as')
 
@@ -10642,6 +10817,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('175','scale')
 
@@ -10693,6 +10869,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('176','scan')
 
@@ -10756,6 +10933,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('177','selected_char_kind')
 
@@ -10813,6 +10991,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('178','selected_int_kind')
 
@@ -10862,6 +11041,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('179','selected_real_kind')
 
@@ -10938,6 +11118,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('180','set_exponent')
 
@@ -10986,6 +11167,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('181','shape')
 
@@ -11041,6 +11223,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('182','shifta')
 
@@ -11082,6 +11265,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('183','shiftl')
 
@@ -11121,6 +11305,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('184','shiftr')
 
@@ -11160,6 +11345,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('185','sign')
 
@@ -11209,6 +11395,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('186','sin')
 
@@ -11317,6 +11504,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('187','sinh')
 
@@ -11363,6 +11551,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('188','size')
 
@@ -11548,6 +11737,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('189','sngl')
 
@@ -11586,6 +11776,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('190','spacing')
 
@@ -11635,6 +11826,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('191','spread')
 
@@ -11744,6 +11936,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('192','sqrt')
 
@@ -11790,6 +11983,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('193','stop')
 
@@ -11881,6 +12075,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('194','storage_size')
 
@@ -11932,6 +12127,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('195','sum')
 
@@ -12015,6 +12211,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('196','system_clock')
 
@@ -12107,6 +12304,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('197','tan')
 
@@ -12154,6 +12352,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('198','tanh')
 
@@ -12204,6 +12403,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('199','this_image')
 
@@ -12279,6 +12479,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('200','tiny')
 
@@ -12322,6 +12523,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('201','trailz')
 
@@ -12435,6 +12637,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('202','transfer')
 
@@ -12519,6 +12722,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('203','transpose')
 
@@ -12601,6 +12805,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('204','trim')
 
@@ -12652,6 +12857,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('205','ubound')
 
@@ -12755,6 +12961,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('206','unpack')
 
@@ -12809,6 +13016,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 
 case('207','verify')
 
@@ -12920,6 +13128,7 @@ textblock=[character(len=256) :: &
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+   if(present(topic))topic=shortname
 case default
    allocate (character(len=256) :: textblock(0))
 end select
