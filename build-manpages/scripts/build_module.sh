@@ -18,24 +18,24 @@ do
 SHORTNAME=${NAME/.*}
 (
 cat <<EOF
-function help_${SHORTNAME}(prefix,name) result (textblock)
+function help_${SHORTNAME}(prefix,topic) result (textblock)
 character(len=256),allocatable   :: textblock(:)
 logical,intent(in),optional      :: prefix
+logical,intent(in),optional      :: topic
 character(len=*),parameter       :: shortname="$SHORTNAME"
 character(len=:),allocatable,intent(out),optional :: name
 textblock=[character(len=256)    :: &
 '', &
 $(TOCHARACTER)
 '']
-   if(present(prefix))then
+   if(present(topic))then
+      textblock=[shortname]
+   elseif(present(prefix))then
       if(prefix)then
-       do i=1,size(textblock)
-          textblock(i)=shortname//':'//trim(textblock(i))
-       enddo
+         do i=1,size(textblock)
+            textblock(i)=shortname//':'//trim(textblock(i))
+         enddo
       endif
-   endif
-   if(present(name))then
-      name=shortname
    endif
 end function help_${SHORTNAME}
 EOF
@@ -62,15 +62,16 @@ contains
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
-function help_intrinsics(name,prefix) result (textblock)
-character(len=*),intent(in)     :: name
-logical,intent(in),optional     :: prefix
-character(len=256),allocatable  :: textblock(:)
-character(len=:),allocatable    :: a, b, c
-integer                         :: i, p, pg
+function help_intrinsics(name,prefix,topic) result (textblock)
+character(len=*),intent(in)                       :: name
+logical,intent(in),optional                       :: prefix
+logical,intent(in),optional                       :: topic
+character(len=256),allocatable                    :: textblock(:)
+character(len=:),allocatable                      :: a, b, c
+integer                                           :: i, p, pg
    select case(name)
    case('','manual','intrinsics','fortranmanual','fortran_manual')
-      textblock=help_intrinsics_all()
+      textblock=help_intrinsics_all(prefix,topic)
    case('fortran','toc')
       textblock=help_intrinsics_section()
       do i=1,size(textblock)
@@ -85,7 +86,7 @@ integer                         :: i, p, pg
       enddo
       call sort_name(textblock)
    case default
-      textblock=help_intrinsics_one(name,prefix)
+      textblock=help_intrinsics_one(name,prefix,topic)
    end select
 end function help_intrinsics
 !===================================================================================================================================
@@ -131,7 +132,9 @@ end function help_intrinsics_section
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
-function help_intrinsics_all() result (textblock)
+function help_intrinsics_all(prefix,topic) result (textblock)
+logical,intent(in),optional     :: prefix
+logical,intent(in),optional     :: topic
 character(len=256),allocatable  :: textblock(:)
 character(len=256),allocatable  :: add(:)
 character(len=10)               :: cnum
@@ -140,7 +143,7 @@ integer                         :: icount
    icount=1
    do
       write(cnum,'(i0)') icount
-      add=help_intrinsics_one(cnum)
+      add=help_intrinsics_one(cnum,prefix,topic)
       if( size(add) .eq. 0 ) exit
       textblock=[character(len=256) :: textblock,add]
       icount=icount + 1
@@ -149,11 +152,12 @@ end function help_intrinsics_all
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
-function help_intrinsics_one(name,prefix) result (textblock)
+function help_intrinsics_one(name,prefix,topic) result (textblock)
 character(len=*),intent(in)      :: name
+logical,intent(in),optional      :: prefix
+logical,intent(in),optional      :: topic
 character(len=256),allocatable   :: textblock(:)
 character(len=:),allocatable     :: shortname
-logical,intent(in),optional      :: prefix
 integer                          :: i
 select case(name)
 EOF
@@ -170,12 +174,23 @@ textblock=[character(len=256) :: &
 '', &
 $(TOCHARACTER)
 '']
-   shortname="$SHORTNAME"
-   if(present(prefix))then
+
+shortname="$SHORTNAME"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
+   endif
+endif
+
+if(present(prefix))then
+   if(prefix)then
       do i=1,size(textblock)
          textblock(i)= shortname//':'//trim(textblock(i))
       enddo
    endif
+endif
+
 EOF
 done
    cat <<\EOF

@@ -1,8 +1,11 @@
 NAME
-   adjustl(3f) - [FORTRAN:INTRINSIC:CHARACTER] Left adjust a string
+   adjustl(3f) - [FORTRAN:INTRINSIC:CHARACTER] Left-adjust a string
 
 SYNTAX
-   result = ADJUSTL(STRING)
+   result = adjustl(string)
+
+     character(len=*),intent(in) :: string
+     character(len=len(string))  :: result
 
 DESCRIPTION
    adjustl(STRING) will left adjust a string by removing leading spaces.
@@ -21,10 +24,25 @@ EXAMPLE
 
     program demo_adjustl
     implicit none
-    character(len=20) :: str = '   gfortran'
+    character(len=20) :: str = '   sample string'
+    character(len=:),allocatable :: astr
+       !
+       ! basic use
        str = adjustl(str)
-       print *, str
+       write(*,'("[",a"]")') str, trim(str)
+       !
+       ! an allocatable string stays the same length
+       ! and is not trimmed.
+       astr='    allocatable string   '
+       write(*,'("[",a"]")') adjustl(astr)
+       !
     end program demo_adjustl
+
+  Results:
+
+   [sample string       ]
+   [sample string]
+   [allocatable string       ]
 
 STANDARD
    [[Fortran 95]] and later
@@ -39,4 +57,4 @@ SEE ALSO
    elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),
                   scan(3), verify(3)
    nonelemental:  repeat(3), trim(3)
-
+ JSU

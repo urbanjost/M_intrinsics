@@ -409,10 +409,13 @@ case('5','adjustl')
 textblock=[character(len=256) :: &
 '', &
 'NAME', &
-'   adjustl(3f) - [FORTRAN:INTRINSIC:CHARACTER] Left adjust a string', &
+'   adjustl(3f) - [FORTRAN:INTRINSIC:CHARACTER] Left-adjust a string', &
 '', &
 'SYNTAX', &
-'   result = ADJUSTL(STRING)', &
+'   result = adjustl(string)', &
+'', &
+'     character(len=*),intent(in) :: string', &
+'     character(len=len(string))  :: result', &
 '', &
 'DESCRIPTION', &
 '   adjustl(STRING) will left adjust a string by removing leading spaces.', &
@@ -431,10 +434,25 @@ textblock=[character(len=256) :: &
 '', &
 '    program demo_adjustl', &
 '    implicit none', &
-'    character(len=20) :: str = ''   gfortran''', &
+'    character(len=20) :: str = ''   sample string''', &
+'    character(len=:),allocatable :: astr', &
+'       !', &
+'       ! basic use', &
 '       str = adjustl(str)', &
-'       print *, str', &
+'       write(*,''("[",a"]")'') str, trim(str)', &
+'       !', &
+'       ! an allocatable string stays the same length', &
+'       ! and is not trimmed.', &
+'       astr=''    allocatable string   ''', &
+'       write(*,''("[",a"]")'') adjustl(astr)', &
+'       !', &
 '    end program demo_adjustl', &
+'', &
+'  Results:', &
+'', &
+'   [sample string       ]', &
+'   [sample string]', &
+'   [allocatable string       ]', &
 '', &
 'STANDARD', &
 '   [[Fortran 95]] and later', &
@@ -449,7 +467,7 @@ textblock=[character(len=256) :: &
 '   elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
 '                  scan(3), verify(3)', &
 '   nonelemental:  repeat(3), trim(3)', &
-'', &
+' JSU', &
 '']
 
 shortname="adjustl"
@@ -474,10 +492,13 @@ case('6','adjustr')
 textblock=[character(len=256) :: &
 '', &
 'NAME', &
-'   adjustr(3f) - [FORTRAN:INTRINSIC:CHARACTER] Right adjust a string', &
+'   adjustr(3f) - [FORTRAN:INTRINSIC:CHARACTER] Right-adjust a string', &
 '', &
 'SYNTAX', &
 '   result = ADJUSTR(STRING)', &
+'', &
+'     character(len=*),intent(in) :: string', &
+'     character(len=len(string))  :: result', &
 '', &
 'DESCRIPTION', &
 '   adjustr(STRING) will right adjust a string by removing trailing spaces.', &
@@ -487,19 +508,49 @@ textblock=[character(len=256) :: &
 '   STRING    the type shall be CHARACTER.', &
 '', &
 'RETURN VALUE', &
-'   The return value is of type CHARACTER and of the same kind as', &
-'   STRING where trailing spaces are removed and the same number of', &
-'   spaces are inserted at the start of STRING.', &
+'   The return value is of type CHARACTER and of the same kind as STRING', &
+'   where trailing spaces are removed and the same number of spaces are', &
+'   inserted at the start of STRING.', &
 '', &
 'EXAMPLE', &
 '  Sample program:', &
 '', &
 '    program demo_adjustr', &
 '    implicit none', &
-'    character(len=20) :: str = ''gfortran''', &
+'    integer :: right', &
+'    character(len=*),parameter :: bracket=''("[",a,"]")''', &
+'    character(len=20) :: str = '' sample string ''', &
+'    character(len=:),allocatable :: astr ', &
+'       call number_line()', &
+'       !', &
+'       ! basic usage', &
 '       str = adjustr(str)', &
-'       print *, str', &
+'       write(*,bracket) str', &
+'', &
+'       ! exploring usage:', &
+'       ! An allocatable string and arbitrary margin.', &
+'       ! Set a right margin and adjust to it. Note', &
+'       ! this would truncate if the margin is less', &
+'       ! than the length of STR', &
+'       right=50', &
+'       astr=adjustr(str//repeat('' '',max(0,right-len(str))))', &
+'       write(*,bracket) astr ', &
+'       !', &
+'       call number_line()', &
+'       !', &
+'    contains', &
+'       subroutine number_line()', &
+'       ! print a short number line', &
+'          write(*,bracket)repeat(''1234567890'',5)', &
+'       end subroutine number_line', &
 '    end program demo_adjustr', &
+'', &
+'  Results:', &
+'', &
+'   [12345678901234567890123456789012345678901234567890]', &
+'   [       sample string]', &
+'   [                                     sample string]', &
+'   [12345678901234567890123456789012345678901234567890]', &
 '', &
 'STANDARD', &
 '   [[Fortran 95]] and later', &
@@ -515,6 +566,7 @@ textblock=[character(len=256) :: &
 '                  scan(3), verify(3)', &
 '   nonelemental:  repeat(3), trim(3)', &
 '', &
+' JSU', &
 '']
 
 shortname="adjustr"
@@ -1030,7 +1082,7 @@ textblock=[character(len=256) :: &
 '   track that was 50 miles long, you could determine the average angle', &
 '   of incline of the track using the arcsine. Given', &
 '', &
-'    sin(Θ) = 1.25 miles/50 miles (opposite/hypotenuse)', &
+'    sin(theta) = 1.25 miles/50 miles (opposite/hypotenuse)', &
 '', &
 '    program demo_asin', &
 '    use, intrinsic :: iso_fortran_env, only : dp=>real64', &
@@ -1038,9 +1090,9 @@ textblock=[character(len=256) :: &
 '    ! value to convert degrees to radians', &
 '    real(kind=dp),parameter :: D2R=acos(-1.0_dp)/180.0_dp', &
 '    real(kind=dp)           :: angle, rise, run', &
-'      ! given sine(Θ) = 1.25 miles/50 miles (opposite/hypotenuse)', &
+'      ! given sine(theta) = 1.25 miles/50 miles (opposite/hypotenuse)', &
 '      ! then taking the arcsine of both sides of the equality yields', &
-'      ! Θ = arcsine(1.25 miles/50 miles) ie. arcsine(opposite/hypotenuse)', &
+'      ! theta = arcsine(1.25 miles/50 miles) ie. arcsine(opposite/hypotenuse)', &
 '      rise=1.250_dp', &
 '      run=50.00_dp', &
 '      angle = asin(rise/run)', &
@@ -2230,7 +2282,7 @@ textblock=[character(len=256) :: &
 '   current record. If the file is at its initial point, the position of', &
 '   the file is not changed.', &
 '', &
-'   BACKSPACE works with typical files being accessed sequential but', &
+'   BACKSPACE works with typical files being accessed sequentially but', &
 '   does not work with standard input from a terminal and other similar', &
 '   file types.', &
 '', &
@@ -4327,22 +4379,22 @@ textblock=[character(len=256) :: &
 '', &
 '   program oldstyle', &
 '   integer :: i,j', &
-'      i=10', &
-'      j=5', &
-'      if(i.lt.5)goto 100', &
+'         i=10', &
+'         j=5', &
+'         if(i.lt.5)goto 100', &
 '         j=3', &
-'      100 write(*,*)''J='',j', &
+'   100   write(*,*)''J='',j', &
 '   end', &
 '', &
 '   program demo_continue', &
 '   implicit none', &
 '   integer :: i,j', &
-'      i=10', &
-'      j=5', &
-'      if(i.lt.5)goto 100', &
+'         i=10', &
+'         j=5', &
+'         if(i.lt.5)goto 100', &
 '         j=3', &
-'      100  continue', &
-'      write(*,*)''J='',j', &
+'   100   continue', &
+'         write(*,*)''J='',j', &
 '   end program demo_continue', &
 '', &
 ' JSU', &
@@ -4823,34 +4875,31 @@ textblock=[character(len=256) :: &
 '      real,intent(out) :: time', &
 '', &
 'DESCRIPTION', &
-'   Returns a REAL value representing the elapsed CPU time in', &
-'   seconds. This is useful for testing segments of code to determine', &
-'   execution time.', &
+'   Returns a REAL value representing the elapsed CPU time in seconds. This', &
+'   is useful for testing segments of code to determine execution time.', &
 '', &
 '   The exact definition of time is left imprecise because of the', &
 '   variability in what different processors are able to provide.', &
 '', &
-'   for gfortran(1) If a time source is available, time will be reported', &
-'   with microsecond resolution. If no time source is available, TIME is', &
-'   set to -1.0.', &
+'   If no time source is available, TIME is set to a negative value.', &
 '', &
 '   Note that TIME may contain a system dependent, arbitrary offset', &
-'   and may not start with 0.0. For cpu_time the absolute', &
-'   value is meaningless. Only differences between subsequent calls,', &
-'   as shown in the example below, should be used.', &
+'   and may not start with 0.0. For cpu_time the absolute value is', &
+'   meaningless. Only differences between subsequent calls, as shown in', &
+'   the example below, should be used.', &
 '', &
 '   A processor for which a single result is inadequate (for example,', &
 '   a parallel processor) might choose to provide an additional version', &
 '   for which time is an array.', &
 '', &
 'RETURN VALUE', &
-'   TIME    The type shall be REAL with intent(out).', &
-'           It is assigned a processor-dependent approximation to the', &
-'           processor time in seconds. If the processor cannot return', &
-'           a meaningful time, a processor-dependent negative value is returned.', &
-'           The start time is left imprecise because the purpose is to', &
-'           time sections of code, as in the example.', &
-'           This might or might not include system overhead time.', &
+'   TIME  The type shall be REAL with intent(out).', &
+'         It is assigned a processor-dependent approximation to the', &
+'         processor time in seconds. If the processor cannot return', &
+'         a meaningful time, a processor-dependent negative value', &
+'         is returned.  The start time is left imprecise because the', &
+'         purpose is to time sections of code, as in the example.', &
+'         This might or might not include system overhead time.', &
 '', &
 'EXAMPLE', &
 '  Sample program:', &
@@ -4858,9 +4907,11 @@ textblock=[character(len=256) :: &
 '    program demo_cpu_time', &
 '    implicit none', &
 '    real :: start, finish', &
+'       !', &
 '       call cpu_time(start)', &
 '       ! put code to test here', &
 '       call cpu_time(finish)', &
+'       !', &
 '       ! writes processor time taken by the piece of code.', &
 '       print ''("Processor Time = ",f6.3," seconds.")'',finish-start', &
 '    end program demo_cpu_time', &
@@ -4874,6 +4925,7 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '   system_clock(3), date_and_time(3)', &
 '', &
+' JSU', &
 '']
 
 shortname="cpu_time"
@@ -5041,6 +5093,11 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '    call date_and_time([date, time, zone, values])', &
 '', &
+'     character(len=8),intent(out) :: date', &
+'     character(len=10),intent(out) :: time', &
+'     character(len=5),intent(out) :: zone', &
+'     integer,intent(out) :: values', &
+'', &
 'DESCRIPTION', &
 '   date_and_time(date, time, zone, values) gets the corresponding date and', &
 '   time information from the real-time system clock. DATE is intent(out)', &
@@ -5069,27 +5126,42 @@ textblock=[character(len=256) :: &
 '             and of default kind.', &
 '   VALUES    (Optional) The type shall be integer(8).', &
 '', &
-'RETURN VALUE', &
-'   None', &
-'', &
 'EXAMPLE', &
 '  Sample program:', &
 '', &
 '    program demo_time_and_date', &
 '    implicit none', &
-'    character(8)  :: date', &
-'    character(10) :: time', &
-'    character(5)  :: zone', &
+'    character(len=8)  :: date', &
+'    character(len=10) :: time', &
+'    character(len=5)  :: zone', &
 '    integer,dimension(8) :: values', &
-'        ! using keyword arguments', &
 '        call date_and_time(date,time,zone,values)', &
-'        call date_and_time(DATE=date,ZONE=zone)', &
-'        call date_and_time(TIME=time)', &
+'        ! using keyword arguments', &
+'        call date_and_time(DATE=date,TIME=time,ZONE=zone)', &
 '        call date_and_time(VALUES=values)', &
 '        print ''(a,2x,a,2x,a)'', date, time, zone', &
-'        print ''(8i5)'', values', &
-'', &
+'       write(*,''(i5,a)'') &', &
+'         & values(1),'' - The year'', &', &
+'         & values(2),'' - The month'', &', &
+'         & values(3),'' - The day of the month'', &', &
+'         & values(4),'' - Time difference with UTC in minutes'', &', &
+'         & values(5),'' - The hour of the day'', &', &
+'         & values(6),'' - The minutes of the hour'', &', &
+'         & values(7),'' - The seconds of the minute'', &', &
+'         & values(8),'' - The milliseconds of the second''', &
 '    end program demo_time_and_date', &
+'', &
+'  Results:', &
+'', &
+'   20201217  182848.791  -0500', &
+'    2020 - The year', &
+'      12 - The month', &
+'      17 - The day of the month', &
+'    -300 - Time difference with UTC in minutes', &
+'      18 - The hour of the day', &
+'      28 - The minutes of the hour', &
+'      48 - The seconds of the minute', &
+'     791 - The milliseconds of the second', &
 '', &
 'STANDARD', &
 '   [[Fortran 95]] and later', &
@@ -5099,6 +5171,7 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '   cpu_time(3), system_clock(3)', &
+' JSU', &
 '']
 
 shortname="date_and_time"
@@ -8971,24 +9044,20 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '   result = len_trim(string [, kind])', &
 '', &
+'    character(len=*),intent(in) :: string', &
+'    integer,intent(in) :: kind', &
+'', &
 'DESCRIPTION', &
 '   Returns the length of a character string, ignoring any trailing blanks.', &
 '', &
 'ARGUMENTS', &
-'   STRING    Shall be a scalar of type CHARACTER,', &
-'             with intent(in)', &
+'   STRING    Shall be a scalar of type CHARACTER, with intent(in)', &
 '   KIND      (Optional) An INTEGER initialization', &
 '             expression indicating the kind parameter of the result.', &
 '', &
 'RETURN VALUE', &
 '   The return value is of type INTEGER and of kind KIND. If', &
 '   KIND is absent, the return value is of default integer kind.', &
-'', &
-'STANDARD', &
-'   [[Fortran 95]] and later, with KIND argument [[Fortran 2003]] and later', &
-'', &
-'CLASS', &
-'   [[Elemental procedure|Elemental function]]', &
 '', &
 'EXAMPLE', &
 '  Sample program', &
@@ -9009,7 +9078,19 @@ textblock=[character(len=256) :: &
 '     endblock ELE', &
 '     !', &
 '     end program demo_len_trim', &
-'          ', &
+'  Results:', &
+'', &
+'    LENGTH=          30', &
+'    TRIMMED LENGTH=          25', &
+'    LENGTH=         256', &
+'    TRIMMED LENGTH=          25          13', &
+'    SUM TRIMMED LENGTH=          38', &
+'', &
+'STANDARD', &
+'   [[Fortran 95]] and later, with KIND argument [[Fortran 2003]] and later', &
+'', &
+'CLASS', &
+'   [[Elemental procedure|Elemental function]]', &
 '', &
 'SEE ALSO', &
 '   Functions that perform operations on character strings, return lengths', &
@@ -9018,6 +9099,7 @@ textblock=[character(len=256) :: &
 '   Elemental:     adjustl(3), adjustr(3), index(3), len_trim(3),', &
 '                  scan(3), verify(3)', &
 '   Nonelemental:  repeat(3), trim(3)', &
+' JSU', &
 '']
 
 shortname="len_trim"
@@ -9771,7 +9853,7 @@ textblock=[character(len=256) :: &
 '       !!', &
 '       !! That is it unless you want to use the elemental features of max(3f)!', &
 '', &
-'       !! Error: Intrinsic ‘max’ at (1) must have at least two arguments', &
+'       !! Error: Intrinsic    max    at (1) must have at least two arguments', &
 '       !!write(*,*)max(arr1)', &
 '       !! This does not work because it is like trying to return', &
 '       !! [(max(arr1(i)),i=1,size(arr1))]', &
@@ -13485,26 +13567,26 @@ textblock=[character(len=256) :: &
 '       !', &
 '       write(*,*)''interfaced assumed-shape arr2ay''', &
 '       !', &
-'       ! ‘source’ argument of ‘shape’ intrinsic at (1) must not be', &
+'       !    source    argument of    shape    intrinsic at (1) must not be', &
 '       ! an assumed size array', &
 '       !!write(*,*)''SHAPE(arr2)       :'',shape(arr2)', &
 '       ! The upper bound in the last dimension must appear in the reference', &
-'       ! to the assumed size array ‘arr2’ at (1)', &
+'       ! to the assumed size array    arr2    at (1)', &
 '       !!write(*,*)''SIZE(arr2)        :'',size(arr2)', &
 '       write(*,*)''SIZE(arr2,DIM=1)  :'',size(arr2,dim=1)', &
-'       ! ‘dim’ argument of ‘size’ intrinsic at (1) is not', &
+'       !    dim    argument of    size    intrinsic at (1) is not', &
 '       !a valid dimension index', &
 '       !!write(*,*)''SIZE(arr2,DIM=2)  :'',size(arr2,dim=2)', &
 '       write(*,*)''note lower bound is "1"''', &
 '       write(*,*)''LBOUND(arr2)      :'',lbound(arr2)', &
 '       write(*,*)''LBOUND(arr2)      :'',lbound(arr2)', &
 '       ! The upper bound in the last dimension must appear in the', &
-'       ! reference to the assumed size array ‘arr2’ at (1)', &
+'       ! reference to the assumed size array    arr2    at (1)', &
 '       !!write(*,*)''UBOUND(arr2)      :'',ubound(arr2)', &
 '       write(*,*)''LBOUND(arr2,DIM=1):'',lbound(arr2,dim=1)', &
 '       write(*,*)''UBOUND(arr2,DIM=1):'',ubound(arr2,dim=1)', &
 '       write(*,*)''LBOUND(arr2,DIM=2):'',lbound(arr2,dim=2)', &
-'       ! ‘dim’ argument of ‘ubound’ intrinsic at (1) is not', &
+'       !    dim    argument of    ubound    intrinsic at (1) is not', &
 '       ! a valid dimension index', &
 '       !!write(*,*)''UBOUND(arr2,DIM=2):'',ubound(arr2,dim=2)', &
 '       !', &

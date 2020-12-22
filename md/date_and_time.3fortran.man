@@ -4,6 +4,11 @@ NAME
 SYNTAX
     call date_and_time([date, time, zone, values])
 
+     character(len=8),intent(out) :: date
+     character(len=10),intent(out) :: time
+     character(len=5),intent(out) :: zone
+     integer,intent(out) :: values
+
 DESCRIPTION
    date_and_time(date, time, zone, values) gets the corresponding date and
    time information from the real-time system clock. DATE is intent(out)
@@ -32,27 +37,42 @@ ARGUMENTS
              and of default kind.
    VALUES    (Optional) The type shall be integer(8).
 
-RETURN VALUE
-   None
-
 EXAMPLE
   Sample program:
 
     program demo_time_and_date
     implicit none
-    character(8)  :: date
-    character(10) :: time
-    character(5)  :: zone
+    character(len=8)  :: date
+    character(len=10) :: time
+    character(len=5)  :: zone
     integer,dimension(8) :: values
-        ! using keyword arguments
         call date_and_time(date,time,zone,values)
-        call date_and_time(DATE=date,ZONE=zone)
-        call date_and_time(TIME=time)
+        ! using keyword arguments
+        call date_and_time(DATE=date,TIME=time,ZONE=zone)
         call date_and_time(VALUES=values)
         print '(a,2x,a,2x,a)', date, time, zone
-        print '(8i5)', values
-
+	write(*,'(i5,a)') &
+         & values(1),' - The year', &
+         & values(2),' - The month', &
+         & values(3),' - The day of the month', &
+         & values(4),' - Time difference with UTC in minutes', &
+         & values(5),' - The hour of the day', &
+         & values(6),' - The minutes of the hour', &
+         & values(7),' - The seconds of the minute', &
+         & values(8),' - The milliseconds of the second'
     end program demo_time_and_date
+
+  Results:
+
+   20201217  182848.791  -0500
+    2020 - The year
+      12 - The month
+      17 - The day of the month
+    -300 - Time difference with UTC in minutes
+      18 - The hour of the day
+      28 - The minutes of the hour
+      48 - The seconds of the minute
+     791 - The milliseconds of the second
 
 STANDARD
    [[Fortran 95]] and later
@@ -62,3 +82,4 @@ CLASS
 
 SEE ALSO
    cpu_time(3), system_clock(3)
+ JSU

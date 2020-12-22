@@ -14,7 +14,7 @@ DESCRIPTION
    current record. If the file is at its initial point, the position of
    the file is not changed.
 
-   BACKSPACE works with typical files being accessed sequential but
+   BACKSPACE works with typical files being accessed sequentially but
    does not work with standard input from a terminal and other similar
    file types.
 
