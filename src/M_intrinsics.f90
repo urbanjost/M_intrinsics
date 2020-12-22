@@ -5091,7 +5091,7 @@ textblock=[character(len=256) :: &
 '   date_and_time(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] gets current time', &
 '', &
 'SYNTAX', &
-'    call date_and_time([date, time, zone, values])', &
+'    subroutine date_and_time([date, time, zone, values])', &
 '', &
 '     character(len=8),intent(out) :: date', &
 '     character(len=10),intent(out) :: time', &
@@ -5099,47 +5099,45 @@ textblock=[character(len=256) :: &
 '     integer,intent(out) :: values', &
 '', &
 'DESCRIPTION', &
-'   date_and_time(date, time, zone, values) gets the corresponding date and', &
-'   time information from the real-time system clock. DATE is intent(out)', &
-'   and has form ccyymmdd. TIME is intent(out) and has form hhmmss.sss.', &
-'   ZONE is intent(out) and has form (+-)hhmm, representing the difference', &
-'   with respect to Coordinated Universal Time (UTC). Unavailable time and', &
-'   date parameters return blanks.', &
+'   DATE_AND_TIME(date, time, zone, values) gets the corresponding date', &
+'   and time information from the real-time system clock.', &
 '', &
-'   VALUES is intent(out) and provides the following:', &
-'', &
-'   * value(1): - The year', &
-'   * value(2): - The month', &
-'   * value(3): - The day of the month', &
-'   * value(4): - Time difference with UTC in minutes', &
-'   * value(5): - The hour of the day', &
-'   * value(6): - The minutes of the hour', &
-'   * value(7): - The seconds of the minute', &
-'   * value(8): - The milliseconds of the second', &
+'   Unavailable time and date parameters return blanks.', &
 '', &
 'ARGUMENTS', &
-'   DATE      (Optional) The type shall be character(len=8) or larger,', &
-'             and of default kind.', &
-'   TIME      (Optional) The type shall be character(len=10) or', &
-'             larger, and of default kind.', &
-'   ZONE      (Optional) The type shall be character(len=5) or larger,', &
-'             and of default kind.', &
-'   VALUES    (Optional) The type shall be integer(8).', &
+'   DATE      The type shall be character(len=8) or larger,', &
+'             and of default kind.  DATE has form ccyymmdd.', &
+'   TIME      The type shall be character(len=10) or', &
+'             larger, and of default kind.  TIME has form hhmmss.sss.', &
+'   ZONE      The type shall be character(len=5) or larger,', &
+'             and of default kind.  ZONE has form (+-)hhmm, representing', &
+'             the difference', &
+'             with respect to Coordinated Universal Time (UTC). ', &
+'   VALUES    The type shall be integer(8). VALUES provide the following:', &
+'', &
+'               * value(1): - The year', &
+'               * value(2): - The month', &
+'               * value(3): - The day of the month', &
+'               * value(4): - Time difference with UTC in minutes', &
+'               * value(5): - The hour of the day', &
+'               * value(6): - The minutes of the hour', &
+'               * value(7): - The seconds of the minute', &
+'               * value(8): - The milliseconds of the second', &
 '', &
 'EXAMPLE', &
 '  Sample program:', &
 '', &
 '    program demo_time_and_date', &
 '    implicit none', &
-'    character(len=8)  :: date', &
-'    character(len=10) :: time', &
-'    character(len=5)  :: zone', &
+'    character(len=8)     :: date', &
+'    character(len=10)    :: time', &
+'    character(len=5)     :: zone', &
 '    integer,dimension(8) :: values', &
 '        call date_and_time(date,time,zone,values)', &
 '        ! using keyword arguments', &
 '        call date_and_time(DATE=date,TIME=time,ZONE=zone)', &
 '        call date_and_time(VALUES=values)', &
-'        print ''(a,2x,a,2x,a)'', date, time, zone', &
+'        print ''(*(g0))'',''DATE="'',date,''" TIME="'',time,''" ZONE="'',zone,''"''', &
 '       write(*,''(i5,a)'') &', &
 '         & values(1),'' - The year'', &', &
 '         & values(2),'' - The month'', &', &
@@ -5153,21 +5151,18 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'   20201217  182848.791  -0500', &
+'   DATE="20201222" TIME="165738.779" ZONE="-0500"', &
 '    2020 - The year', &
 '      12 - The month', &
-'      17 - The day of the month', &
+'      22 - The day of the month', &
 '    -300 - Time difference with UTC in minutes', &
-'      18 - The hour of the day', &
-'      28 - The minutes of the hour', &
-'      48 - The seconds of the minute', &
-'     791 - The milliseconds of the second', &
+'      16 - The hour of the day', &
+'      57 - The minutes of the hour', &
+'      38 - The seconds of the minute', &
+'     779 - The milliseconds of the second', &
 '', &
 'STANDARD', &
 '   [[Fortran 95]] and later', &
-'', &
-'CLASS', &
-'   Subroutine', &
 '', &
 'SEE ALSO', &
 '   cpu_time(3), system_clock(3)', &
@@ -9065,18 +9060,20 @@ textblock=[character(len=256) :: &
 '     program demo_len_trim', &
 '     implicit none', &
 '     character(len=:),allocatable :: string', &
-'     string='' how long is this string?     ''', &
-'     write(*,*)''LENGTH='',len(string)', &
-'     write(*,*)''TRIMMED LENGTH='',len_trim(string)', &
-'     !', &
-'     ELE:block ! elemental example', &
-'     character(len=:),allocatable :: tablet(:)', &
-'     tablet=[character(len=256) :: '' how long is this string?     '',''and this one?'']', &
-'        write(*,*)''LENGTH='',len(tablet)', &
-'        write(*,*)''TRIMMED LENGTH='',len_trim(tablet)', &
-'        write(*,*)''SUM TRIMMED LENGTH='',sum(len_trim(tablet))', &
-'     endblock ELE', &
-'     !', &
+'        string='' how long is this string?     ''', &
+'        write(*,*)''LENGTH='',len(string)', &
+'        write(*,*)''TRIMMED LENGTH='',len_trim(string)', &
+'        !', &
+'        ELE:block ! elemental example', &
+'        character(len=:),allocatable :: tablet(:)', &
+'        tablet=[character(len=256) :: &', &
+'        & '' how long is this string?     '',&', &
+'        & ''and this one?'']', &
+'           write(*,*)''LENGTH='',len(tablet)', &
+'           write(*,*)''TRIMMED LENGTH='',len_trim(tablet)', &
+'           write(*,*)''SUM TRIMMED LENGTH='',sum(len_trim(tablet))', &
+'        endblock ELE', &
+'        !', &
 '     end program demo_len_trim', &
 '  Results:', &
 '', &

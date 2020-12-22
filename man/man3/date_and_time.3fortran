@@ -11,7 +11,7 @@
 \fBdate_and_time(3f) \fP- [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] gets current time
 \fB
 .SH SYNTAX
-call \fBdate_and_time\fP([date, time, zone, values])
+subroutine \fBdate_and_time\fP([date, time, zone, values])
 .PP
 .nf
 .fam C
@@ -23,14 +23,41 @@ call \fBdate_and_time\fP([date, time, zone, values])
 .fam T
 .fi
 .SH DESCRIPTION
-\fBdate_and_time\fP(date, time, zone, values) gets the corresponding date and
-time information from the real-time system clock. DATE is \fBintent\fP(out)
-and has form ccyymmdd. TIME is \fBintent\fP(out) and has form hhmmss.sss.
-ZONE is \fBintent\fP(out) and has form (+-)hhmm, representing the difference
-with respect to Coordinated Universal Time (UTC). Unavailable time and
-date parameters return blanks.
+\fBDATE_AND_TIME\fP(date, time, zone, values) gets the corresponding date
+and time information from the real-time system clock.
 .PP
-VALUES is \fBintent\fP(out) and provides the following:
+Unavailable time and date parameters return blanks.
+.SH ARGUMENTS
+.TP
+.B DATE
+The type shall be \fBcharacter\fP(len=8) or larger,
+.RS
+.TP
+.B and of default kind.
+DATE has form ccyymmdd.
+.RE
+.TP
+.B TIME
+The type shall be \fBcharacter\fP(len=10) or
+.RS
+.TP
+.B larger, and of default kind.
+TIME has form hhmmss.sss.
+.RE
+.TP
+.B ZONE
+The type shall be \fBcharacter\fP(len=5) or larger,
+.RS
+.TP
+.B and of default kind.
+ZONE has form (+-)hhmm, representing
+the difference
+with respect to Coordinated Universal Time (UTC). 
+.RE
+.TP
+.B VALUES
+The type shall be \fBinteger\fP(8). VALUES provide the following:
+.RS
 .IP \(bu 3
 \fBvalue\fP(1): - The year
 .IP \(bu 3
@@ -47,22 +74,6 @@ VALUES is \fBintent\fP(out) and provides the following:
 \fBvalue\fP(7): - The seconds of the minute
 .IP \(bu 3
 \fBvalue\fP(8): - The milliseconds of the second
-.SH ARGUMENTS
-.TP
-.B DATE
-(Optional) The type shall be \fBcharacter\fP(len=8) or larger,
-and of default kind.
-.TP
-.B TIME
-(Optional) The type shall be \fBcharacter\fP(len=10) or
-larger, and of default kind.
-.TP
-.B ZONE
-(Optional) The type shall be \fBcharacter\fP(len=5) or larger,
-and of default kind.
-.TP
-.B VALUES
-(Optional) The type shall be \fBinteger\fP(8).
 .SH EXAMPLE
 Sample program:
 .PP
@@ -70,15 +81,15 @@ Sample program:
 .fam C
     program demo_time_and_date
     implicit none
-    character(len=8)  :: date
-    character(len=10) :: time
-    character(len=5)  :: zone
+    character(len=8)     :: date
+    character(len=10)    :: time
+    character(len=5)     :: zone
     integer,dimension(8) :: values
         call date_and_time(date,time,zone,values)
         ! using keyword arguments
         call date_and_time(DATE=date,TIME=time,ZONE=zone)
         call date_and_time(VALUES=values)
-        print '(a,2x,a,2x,a)', date, time, zone
+        print '(*(g0))','DATE="',date,'" TIME="',time,'" ZONE="',zone,'"'
         write(*,'(i5,a)') &
          & values(1),' - The year', &
          & values(2),' - The month', &
@@ -96,22 +107,20 @@ Results:
 .PP
 .nf
 .fam C
-   20201217  182848.791  -0500
+   DATE="20201222" TIME="165738.779" ZONE="-0500"
     2020 - The year
       12 - The month
-      17 - The day of the month
+      22 - The day of the month
     -300 - Time difference with UTC in minutes
-      18 - The hour of the day
-      28 - The minutes of the hour
-      48 - The seconds of the minute
-     791 - The milliseconds of the second
+      16 - The hour of the day
+      57 - The minutes of the hour
+      38 - The seconds of the minute
+     779 - The milliseconds of the second
 
 .fam T
 .fi
 .SH STANDARD
 [[Fortran 95]] and later
-.SH CLASS
-Subroutine
 .SH SEE ALSO
 \fBcpu_time\fP(3), \fBsystem_clock\fP(3)
 .SS JSU
