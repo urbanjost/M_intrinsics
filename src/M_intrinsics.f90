@@ -11013,30 +11013,76 @@ textblock=[character(len=256) :: &
 '   result = nint(x [, kind])', &
 '', &
 'DESCRIPTION', &
-'   nint(x) rounds its argument to the nearest whole number.', &
+'   NINT(X) rounds its argument to the nearest whole number and with its', &
+'   sign preserved, The user must ensure the value is a valid value for', &
+'   the range of the KIND returned.', &
 '', &
 'ARGUMENTS', &
-'   X        The type of the argument shall be REAL.', &
-'   KIND    (Optional) An INTEGER initialization', &
-'           expression indicating the kind parameter of the result.', &
+'   X       The type of the argument shall be REAL.', &
+'', &
+'   KIND    (Optional) A constant INTEGER expression indicating', &
+'           the kind parameter of the result. Otherwise, the kind type', &
+'           parameter is that of default INTEGER type.', &
 '', &
 'RETURN VALUE', &
-'   Returns A with the fractional portion of its magnitude eliminated by', &
-'   rounding to the nearest whole number and with its sign preserved,', &
-'   converted to an INTEGER of the default kind.', &
+'', &
+'  RESULT   The result is the integer nearest X, or if there are two', &
+'           integers equally near A, the result is whichever such integer', &
+'           has the greater magnitude.', &
+'', &
+'6 Example. NINT (2.783) has the value 3.', &
 '', &
 'EXAMPLE', &
 '  Sample program:', &
 '', &
 '    program demo_nint', &
+'    use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64', &
 '    implicit none', &
 '    integer,parameter :: dp=kind(0.0d0)', &
-'      real ::  x4', &
-'      real(kind=dp) :: x8', &
-'      x4 = 1.234E0', &
-'      x8 = 4.321_dp', &
-'      print *, nint(x4), idnint(x8)', &
+'    integer :: icheck', &
+'    real ::  x4', &
+'    real(kind=dp) :: x8', &
+'    ! basic use', &
+'', &
+'       x4 = 1.234E0', &
+'       x8 = 4.721_dp', &
+'       print *, nint(x4), nint(x8),nint(-x8)', &
+'', &
+'    ! issues', &
+'', &
+'       ! make sure input is in range for the type returned', &
+'       write(*,*)''Range limits for typical KINDS:''', &
+'       write(*,''(1x,g0,1x,g0)'')  &', &
+'       & int8,huge(0_int8),   &', &
+'       & int16,huge(0_int16), &', &
+'       & int32,huge(0_int32), &', &
+'       & int64,huge(0_int64)', &
+'', &
+'       ! the standard does not require this to be an error ...', &
+'       x8=12345.67e15 ! too big of a number', &
+'       icheck=selected_int_kind(ceiling(log10(x8)))', &
+'       write(*,*)''Any KIND big enough? ICHECK='',icheck', &
+'       print *, ''These are all wrong answers for '',x8', &
+'       print *, nint(x8,kind=int8)', &
+'       print *, nint(x8,kind=int16)', &
+'       print *, nint(x8,kind=int32)', &
+'       print *, nint(x8,kind=int64)', &
 '    end program demo_nint', &
+'', &
+'  Results', &
+'', &
+'     > 1 5 -5', &
+'     > Range limits for typical KINDS:', &
+'     > 1 127', &
+'     > 2 32767', &
+'     > 4 2147483647', &
+'     > 8 9223372036854775807', &
+'     > Any KIND big enough? ICHECK=          -1', &
+'     > These are all wrong answers for   1.234566949990144E+019', &
+'     > 0', &
+'     > 0', &
+'     > -2147483648', &
+'     > -9223372036854775808', &
 '', &
 'STANDARD', &
 '   [[FORTRAN 77]] and later, with KIND argument [[Fortran 90]] and later', &
@@ -11046,6 +11092,7 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '   ceiling(3), floor(3)', &
+' JSU', &
 '']
 
 shortname="nint"
