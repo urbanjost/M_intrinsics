@@ -11,11 +11,26 @@
 \fBnint(3f) \fP- [FORTRAN:INTRINSIC:NUMERIC:TYPE] Nearest whole number
 \fB
 .SH SYNTAX
-result = \fBnint\fP(x [, kind])
+elemental function \fBnint\fP(x [, kind=NN]) \fBresult\fP(ANSWER)
+.PP
+.nf
+.fam C
+     real(kind=??),intent(in) :: X
+     integer(kind=NN) :: ANSWER
+
+.fam T
+.fi
 .SH DESCRIPTION
-\fBNINT\fP(X) rounds its argument to the nearest whole number and with its
-sign preserved, The user must ensure the value is a valid value for
-the range of the KIND returned.
+\fBNINT\fP(X) rounds its argument to the nearest whole number with its
+sign preserved.
+.PP
+The user must ensure the value is a valid value for the range of the
+KIND returned. If the processor cannot represent the result in the
+kind specified, the result is undefined.
+.PP
+If X is greater than zero, \fBNINT\fP(X) has the value \fBINT\fP(X+0.5).
+.PP
+If X is less than or equal to zero, \fBNINT\fP(X) has the value \fBINT\fP(a-0.5).
 .SH ARGUMENTS
 .TP
 .B X
@@ -28,40 +43,27 @@ parameter is that of default INTEGER type.
 .SH RETURN VALUE
 
 .TP
-.B RESULT
+.B ANSWER
 The result is the integer nearest X, or if there are two
-integers equally near A, the result is whichever such integer
+integers equally near X, the result is whichever such integer
 has the greater magnitude.
-.RE
-.PP
-6 Example. NINT (2.783) has the value 3.
 .SH EXAMPLE
 Sample program:
 .PP
 .nf
 .fam C
-    program demo_nint
-    use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
-    implicit none
+    program demo_nint implicit none
     integer,parameter :: dp=kind(0.0d0)
-    integer :: icheck
-    real ::  x4
-    real(kind=dp) :: x8
-    ! basic use
+    real              :: x4 = 1.234E0
+    real(kind=dp)     :: x8 = 4.721_dp
 
-.nf
-.fam C
-       x4 = 1.234E0
-       x8 = 4.721_dp
+    ! basic use
        print *, nint(x4), nint(x8),nint(-x8)
 
-.fam T
-.fi
-.RS
-! issues
-.PP
-.nf
-.fam C
+    ! issues
+    ISSUES: block
+    use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+    integer :: icheck
        ! make sure input is in range for the type returned
        write(*,*)'Range limits for typical KINDS:'
        write(*,'(1x,g0,1x,g0)')  &
@@ -79,11 +81,12 @@ Sample program:
        print *, nint(x8,kind=int16)
        print *, nint(x8,kind=int32)
        print *, nint(x8,kind=int64)
+    endblock ISSUES
+
+    end program demo_nint
+
 .fam T
 .fi
-end program demo_nint
-.RE
-.PP
 Results
 .PP
 .nf
@@ -105,8 +108,6 @@ Results
 .fi
 .SH STANDARD
 [[FORTRAN 77]] and later, with KIND argument [[Fortran 90]] and later
-.SH CLASS
-[[Elemental procedure|Elemental function]]
 .SH SEE ALSO
 \fBceiling\fP(3), \fBfloor\fP(3)
 .SS JSU

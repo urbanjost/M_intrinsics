@@ -11010,12 +11010,22 @@ textblock=[character(len=256) :: &
 '   nint(3f) - [FORTRAN:INTRINSIC:NUMERIC:TYPE] Nearest whole number', &
 '', &
 'SYNTAX', &
-'   result = nint(x [, kind])', &
+'    elemental function nint(x [, kind=NN]) result(ANSWER)', &
+'', &
+'     real(kind=??),intent(in) :: X', &
+'     integer(kind=NN) :: ANSWER', &
 '', &
 'DESCRIPTION', &
-'   NINT(X) rounds its argument to the nearest whole number and with its', &
-'   sign preserved, The user must ensure the value is a valid value for', &
-'   the range of the KIND returned.', &
+'   NINT(X) rounds its argument to the nearest whole number with its', &
+'   sign preserved.', &
+'', &
+'   The user must ensure the value is a valid value for the range of the', &
+'   KIND returned. If the processor cannot represent the result in the', &
+'   kind specified, the result is undefined.', &
+'', &
+'   If X is greater than zero, NINT(X) has the value INT(X+0.5).', &
+'', &
+'   If X is less than or equal to zero, NINT(X) has the value INT(a-0.5).', &
 '', &
 'ARGUMENTS', &
 '   X       The type of the argument shall be REAL.', &
@@ -11026,30 +11036,25 @@ textblock=[character(len=256) :: &
 '', &
 'RETURN VALUE', &
 '', &
-'  RESULT   The result is the integer nearest X, or if there are two', &
-'           integers equally near A, the result is whichever such integer', &
+'  ANSWER   The result is the integer nearest X, or if there are two', &
+'           integers equally near X, the result is whichever such integer', &
 '           has the greater magnitude.', &
-'', &
-'6 Example. NINT (2.783) has the value 3.', &
 '', &
 'EXAMPLE', &
 '  Sample program:', &
 '', &
-'    program demo_nint', &
-'    use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64', &
-'    implicit none', &
+'    program demo_nint implicit none', &
 '    integer,parameter :: dp=kind(0.0d0)', &
-'    integer :: icheck', &
-'    real ::  x4', &
-'    real(kind=dp) :: x8', &
-'    ! basic use', &
+'    real              :: x4 = 1.234E0', &
+'    real(kind=dp)     :: x8 = 4.721_dp', &
 '', &
-'       x4 = 1.234E0', &
-'       x8 = 4.721_dp', &
+'    ! basic use', &
 '       print *, nint(x4), nint(x8),nint(-x8)', &
 '', &
 '    ! issues', &
-'', &
+'    ISSUES: block', &
+'    use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64', &
+'    integer :: icheck', &
 '       ! make sure input is in range for the type returned', &
 '       write(*,*)''Range limits for typical KINDS:''', &
 '       write(*,''(1x,g0,1x,g0)'')  &', &
@@ -11067,6 +11072,8 @@ textblock=[character(len=256) :: &
 '       print *, nint(x8,kind=int16)', &
 '       print *, nint(x8,kind=int32)', &
 '       print *, nint(x8,kind=int64)', &
+'    endblock ISSUES', &
+'', &
 '    end program demo_nint', &
 '', &
 '  Results', &
@@ -11086,9 +11093,6 @@ textblock=[character(len=256) :: &
 '', &
 'STANDARD', &
 '   [[FORTRAN 77]] and later, with KIND argument [[Fortran 90]] and later', &
-'', &
-'CLASS', &
-'   [[Elemental procedure|Elemental function]]', &
 '', &
 'SEE ALSO', &
 '   ceiling(3), floor(3)', &
