@@ -206,6 +206,27 @@ textblock=[character(len=256) :: &
 '   achar(I) returns the character located at position I in the ASCII', &
 '   collating sequence.', &
 '', &
+'   The ADEs (ASCII Decimal Equivalents) for ASCII are', &
+'', &
+'    *-------*-------*-------*-------*-------*-------*-------*-------*', &
+'    | 00 nul| 01 soh| 02 stx| 03 etx| 04 eot| 05 enq| 06 ack| 07 bel|', &
+'    | 08 bs | 09 ht | 10 nl | 11 vt | 12 np | 13 cr | 14 so | 15 si |', &
+'    | 16 dle| 17 dc1| 18 dc2| 19 dc3| 20 dc4| 21 nak| 22 syn| 23 etb|', &
+'    | 24 can| 25 em | 26 sub| 27 esc| 28 fs | 29 gs | 30 rs | 31 us |', &
+'    | 32 sp | 33  ! | 34  " | 35  # | 36  $ | 37  % | 38  & | 39  '' |', &
+'    | 40  ( | 41  ) | 42  * | 43  + | 44  , | 45  - | 46  . | 47  / |', &
+'    | 48  0 | 49  1 | 50  2 | 51  3 | 52  4 | 53  5 | 54  6 | 55  7 |', &
+'    | 56  8 | 57  9 | 58  : | 59  ; | 60  < | 61  = | 62  > | 63  ? |', &
+'    | 64  @ | 65  A | 66  B | 67  C | 68  D | 69  E | 70  F | 71  G |', &
+'    | 72  H | 73  I | 74  J | 75  K | 76  L | 77  M | 78  N | 79  O |', &
+'    | 80  P | 81  Q | 82  R | 83  S | 84  T | 85  U | 86  V | 87  W |', &
+'    | 88  X | 89  Y | 90  Z | 91  [ | 92  \ | 93  ] | 94  ^ | 95  _ |', &
+'    | 96  ` | 97  a | 98  b | 99  c |100  d |101  e |102  f |103  g |', &
+'    |104  h |105  i |106  j |107  k |108  l |109  m |110  n |111  o |', &
+'    |112  p |113  q |114  r |115  s |116  t |117  u |118  v |119  w |', &
+'    |120  x |121  y |122  z |123  { |124  | |125  } |126  ~ |127 del|', &
+'    *-------*-------*-------*-------*-------*-------*-------*-------*', &
+'', &
 'ARGUMENTS', &
 '   I       the type shall be INTEGER.', &
 '   KIND    (optional) an INTEGER initialization expression', &
@@ -223,6 +244,8 @@ textblock=[character(len=256) :: &
 '    implicit none', &
 '    character(len=1) :: c', &
 '    integer,parameter :: blank=32', &
+'    integer,parameter :: horizonal_tab=11', &
+'    integer,parameter :: escape=27', &
 '    integer :: i', &
 '      c = achar(blank)', &
 '      write(*,''(i0,1x,a,1x,b0,1x,o0,1x,z0)'')blank,c,c,c,c', &
@@ -439,12 +462,12 @@ textblock=[character(len=256) :: &
 '       !', &
 '       ! basic use', &
 '       str = adjustl(str)', &
-'       write(*,''("[",a"]")'') str, trim(str)', &
+'       write(*,''("[",a,"]")'') str, trim(str)', &
 '       !', &
 '       ! an allocatable string stays the same length', &
 '       ! and is not trimmed.', &
 '       astr=''    allocatable string   ''', &
-'       write(*,''("[",a"]")'') adjustl(astr)', &
+'       write(*,''("[",a,"]")'') adjustl(astr)', &
 '       !', &
 '    end program demo_adjustl', &
 '', &
@@ -599,16 +622,14 @@ textblock=[character(len=256) :: &
 '', &
 'DESCRIPTION', &
 '   AIMAG(Z) yields the imaginary part of complex argument Z.', &
-'   The IMAG(Z) and IMAGPART(Z) intrinsic functions are provided', &
-'   for compatibility with G77, and their use in new code is', &
-'   strongly discouraged.', &
 '', &
 'ARGUMENTS', &
 '   Z    The type of the argument shall be COMPLEX.', &
 '', &
 'RETURN VALUE', &
-'   The return value is of type REAL with the', &
-'   kind type parameter of the argument.', &
+'', &
+'   The return value is of type REAL with the kind type parameter of', &
+'   the argument.', &
 '', &
 'EXAMPLE', &
 '  Sample program:', &
@@ -619,10 +640,24 @@ textblock=[character(len=256) :: &
 '    implicit none', &
 '    complex(kind=real32) z4', &
 '    complex(kind=real64) z8', &
-'       z4 = cmplx(1.e0, 0.e0)', &
-'       z8 = cmplx(0.e0_real64, 1.e0_real64,kind=real64)', &
+'       z4 = cmplx(1.e0, 2.e0)', &
+'       z8 = cmplx(3.e0_real64, 4.e0_real64,kind=real64)', &
 '       print *, aimag(z4), aimag(z8)', &
+'       ! an elemental function can be passed an array', &
+'       print *', &
+'       print *, [z4,z4/2.0,z4+z4,z4**3]', &
+'       print *', &
+'       print *, aimag([z4,z4/2.0,z4+z4,z4**3])', &
 '    end program demo_aimag', &
+'', &
+'  Results:', &
+'', &
+'      2.000000       4.00000000000000     ', &
+'', &
+'    (1.000000,2.000000) (0.5000000,1.000000) (2.000000,4.000000)', &
+'    (-11.00000,-2.000000)', &
+'', &
+'      2.000000       1.000000       4.000000      -2.000000    ', &
 '', &
 'STANDARD', &
 '   [[FORTRAN 77]] and later', &
@@ -3652,7 +3687,164 @@ if(present(prefix))then
 endif
 
 
-case('51','cmplx')
+case('51','close')
+
+textblock=[character(len=256) :: &
+'', &
+'NAME', &
+'   CLOSE(7f) - [FORTRAN:IO] terminate the connection of a specified unit', &
+'   to an external file.', &
+'   ', &
+'SYNOPSIS', &
+'   CLOSE ( [UNIT= ] file-unit-number,', &
+'', &
+'    [IOSTAT= scalar-int-variable,]', &
+'    [IOMSG= iomsg-variable,] ', &
+'    [ERR= label,] ', &
+'    [STATUS= scalar-default-char-expr]', &
+'   )', &
+'', &
+'DESCRIPTION', &
+'', &
+'   The CLOSE statement is used to terminate the connection of a specified', &
+'   unit to an external file.', &
+'', &
+'   Execution of a CLOSE statement for a unit may occur in any program', &
+'   unit of a program and need not occur in the same program unit as the', &
+'   execution of an OPEN statement referring to that unit.', &
+'', &
+'   Execution of a CLOSE statement performs a wait operation for any', &
+'   pending asynchronous data transfer operations for the specified unit.', &
+'', &
+'   Execution of a CLOSE statement specifying a unit that does not exist or', &
+'   has no file connected to it is permitted and affects no file or unit.', &
+'', &
+'   After a unit has been disconnected by execution of a CLOSE statement,', &
+'   it may be connected again within the same program, either to the same', &
+'   file or to a different file. After a named file has been disconnected', &
+'   by execution of a CLOSE statement, it may be connected again within', &
+'   the same program, either to the same unit or to a different unit,', &
+'   provided that the file still exists.', &
+'', &
+'   The input/output statements are the OPEN, CLOSE, READ, WRITE, PRINT,', &
+'   BACKSPACE, ENDFILE, REWIND, FLUSH, WAIT, and INQUIRE statements.', &
+'', &
+'   OPEN, CLOSE, BACKSPACE, ENDFILE, and REWIND statements shall not be', &
+'   executed while a parent data transfer statement is active.', &
+'', &
+'   A pure subprogram shall not contain a print-stmt, open-stmt,', &
+'   close-stmt, backspace-stmt, endfile-stmt, rewind-stmt, flush-stmt,', &
+'   wait-stmt, or inquire-stmt.', &
+'', &
+'   The READ statement is a data transfer input statement. The', &
+'   WRITE statement and the PRINT statement are data transfer output', &
+'   statements. The OPEN statement and the CLOSE statement are file', &
+'   connection statements. The INQUIRE statement is a file inquiry', &
+'   statement. The BACKSPACE, ENDFILE, and REWIND statements are file', &
+'   positioning statements.', &
+'', &
+'   All input/output statements may refer to files that exist. An INQUIRE,', &
+'   OPEN, CLOSE, WRITE, PRINT, REWIND, FLUSH, or ENDFILE statement', &
+'   also may refer to a file that does not exist. Execution of a WRITE,', &
+'   PRINT, or ENDFILE statement referring to a preconnected file that', &
+'   does not exist creates the file. This file is a different file from', &
+'   one preconnected on any other image.', &
+'', &
+'   AT PROGRAM TERMINATION', &
+'   During the completion step of termination of execution of a program,', &
+'   all units that are connected are closed. Each unit is closed with', &
+'   status KEEP unless the file status prior to termination of execution', &
+'   was SCRATCH, in which case the unit is closed with status DELETE.', &
+'', &
+'     The effect is as though a CLOSE statement without a STATUS=', &
+'     specifier were executed on each connected unit.', &
+'', &
+'OPTIONS', &
+'  No specifier shall appear more than once in a given close-spec-list.', &
+'', &
+'  UNIT=file-unit-number            A file-unit-number shall be specified', &
+'                                   in a close-spec-list; if the', &
+'                                   optional characters UNIT= are omitted,', &
+'                                   the file-unit-number shall be the', &
+'                                   first item in the close-spec-list.', &
+'  IOSTAT=scalar-int-variable       0 means no error occurred', &
+'  IOMSG=iomsg-variable             Character variable to hold message', &
+'                                   if an error occurred.', &
+'  ERR=label                        The label used in the ERR= specifier', &
+'                                   shall be the statement label of a', &
+'                                   branch target statement that appears', &
+'                                   in the same scoping unit as the', &
+'                                   CLOSE statement.', &
+'  STATUS=scalar-default-char-expr  The expression has a limited list of', &
+'                                   character values. Any trailing blanks', &
+'                                   are ignored. The value specified is', &
+'                                   without regard to case.', &
+'', &
+'                                   The scalar-default-char-expr shall', &
+'                                   evaluate to KEEP or DELETE. The', &
+'                                   STATUS= specifier determines the', &
+'                                   disposition of the file that is', &
+'                                   connected to the specified unit. KEEP', &
+'                                   shall not be specified for a file', &
+'                                   whose status prior to execution of a', &
+'                                   CLOSE statement is SCRATCH. If KEEP', &
+'                                   is specified for a file that exists,', &
+'                                   the file continues to exist after the', &
+'                                   execution of a CLOSE statement. If KEEP', &
+'                                   is specified for a file that does not', &
+'                                   exist, the file will not exist after', &
+'                                   the execution of a CLOSE statement. If', &
+'                                   DELETE is specified, the file will', &
+'                                   not exist after the execution of a', &
+'                                   CLOSE statement. If this specifier', &
+'                                   is omitted, the default value is', &
+'                                   KEEP, unless the file status prior', &
+'                                   to execution of the CLOSE statement', &
+'                                   is SCRATCH, in which case the default', &
+'                                   value is DELETE.', &
+'', &
+'EXAMPLE', &
+'  sample program:', &
+'', &
+'   program demo_close', &
+'   implicit none', &
+'   character(len=256) :: message', &
+'   integer            :: ios', &
+'      open (10, file=''employee.names'', action=''read'', iostat=ios,iomsg=message)', &
+'      if (ios < 0) then', &
+'         ! perform end-of-file processing on the file connected to unit 10.', &
+'', &
+'         close (10, status=''keep'',iostat=ios,iomsg=message)', &
+'         if(ios.ne.0)then', &
+'            write(*,''(*(a))'')''*demo_close* close error: '',trim(message)', &
+'            stop 1', &
+'         endif', &
+'      elseif (ios > 0) then', &
+'         ! perform error processing on open', &
+'         write(*,''(*(a))'')''*demo_close* open error: '',trim(message)', &
+'         stop 2', &
+'      endif', &
+'   end program demo_close', &
+'']
+
+shortname="close"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
+   endif
+endif
+
+if(present(prefix))then
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
+endif
+
+
+case('52','cmplx')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3806,7 +3998,7 @@ if(present(prefix))then
 endif
 
 
-case('52','co_broadcast')
+case('53','co_broadcast')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3873,7 +4065,7 @@ if(present(prefix))then
 endif
 
 
-case('53','co_lbound')
+case('54','co_lbound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3928,7 +4120,7 @@ if(present(prefix))then
 endif
 
 
-case('54','co_max')
+case('55','co_max')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3999,7 +4191,7 @@ if(present(prefix))then
 endif
 
 
-case('55','co_min')
+case('56','co_min')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4071,7 +4263,7 @@ if(present(prefix))then
 endif
 
 
-case('56','command_argument_count')
+case('57','command_argument_count')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4145,7 +4337,7 @@ if(present(prefix))then
 endif
 
 
-case('57','compiler_options')
+case('58','compiler_options')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4217,7 +4409,7 @@ if(present(prefix))then
 endif
 
 
-case('58','compiler_version')
+case('59','compiler_version')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4288,7 +4480,7 @@ if(present(prefix))then
 endif
 
 
-case('59','conjg')
+case('60','conjg')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4349,7 +4541,7 @@ if(present(prefix))then
 endif
 
 
-case('60','continue')
+case('61','continue')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4417,7 +4609,7 @@ if(present(prefix))then
 endif
 
 
-case('61','co_reduce')
+case('62','co_reduce')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4517,7 +4709,7 @@ if(present(prefix))then
 endif
 
 
-case('62','cos')
+case('63','cos')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4574,7 +4766,7 @@ if(present(prefix))then
 endif
 
 
-case('63','cosh')
+case('64','cosh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4634,7 +4826,7 @@ if(present(prefix))then
 endif
 
 
-case('64','co_sum')
+case('65','co_sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4709,7 +4901,7 @@ if(present(prefix))then
 endif
 
 
-case('65','co_ubound')
+case('66','co_ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4764,7 +4956,7 @@ if(present(prefix))then
 endif
 
 
-case('66','count')
+case('67','count')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4861,7 +5053,7 @@ if(present(prefix))then
 endif
 
 
-case('67','cpu_time')
+case('68','cpu_time')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4945,7 +5137,7 @@ if(present(prefix))then
 endif
 
 
-case('68','cshift')
+case('69','cshift')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5015,7 +5207,7 @@ if(present(prefix))then
 endif
 
 
-case('69','c_sizeof')
+case('70','c_sizeof')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5083,7 +5275,7 @@ if(present(prefix))then
 endif
 
 
-case('70','date_and_time')
+case('71','date_and_time')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5186,7 +5378,7 @@ if(present(prefix))then
 endif
 
 
-case('71','dble')
+case('72','dble')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5243,7 +5435,7 @@ if(present(prefix))then
 endif
 
 
-case('72','digits')
+case('73','digits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5308,7 +5500,7 @@ if(present(prefix))then
 endif
 
 
-case('73','dim')
+case('74','dim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5368,7 +5560,7 @@ if(present(prefix))then
 endif
 
 
-case('74','dot_product')
+case('75','dot_product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5439,7 +5631,7 @@ if(present(prefix))then
 endif
 
 
-case('75','dprod')
+case('76','dprod')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5525,7 +5717,7 @@ if(present(prefix))then
 endif
 
 
-case('76','dshiftl')
+case('77','dshiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5577,7 +5769,7 @@ if(present(prefix))then
 endif
 
 
-case('77','dshiftr')
+case('78','dshiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5628,7 +5820,7 @@ if(present(prefix))then
 endif
 
 
-case('78','eoshift')
+case('79','eoshift')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5708,7 +5900,7 @@ if(present(prefix))then
 endif
 
 
-case('79','epsilon')
+case('80','epsilon')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5762,7 +5954,7 @@ if(present(prefix))then
 endif
 
 
-case('80','erf')
+case('81','erf')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5820,7 +6012,7 @@ if(present(prefix))then
 endif
 
 
-case('81','erfc')
+case('82','erfc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5879,7 +6071,7 @@ if(present(prefix))then
 endif
 
 
-case('82','erfc_scaled')
+case('83','erfc_scaled')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5938,7 +6130,7 @@ if(present(prefix))then
 endif
 
 
-case('83','event_query')
+case('84','event_query')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6005,7 +6197,7 @@ if(present(prefix))then
 endif
 
 
-case('84','execute_command_line')
+case('85','execute_command_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6122,7 +6314,7 @@ if(present(prefix))then
 endif
 
 
-case('85','exit')
+case('86','exit')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6222,7 +6414,7 @@ if(present(prefix))then
 endif
 
 
-case('86','exp')
+case('87','exp')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6274,7 +6466,7 @@ if(present(prefix))then
 endif
 
 
-case('87','exponent')
+case('88','exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6330,7 +6522,7 @@ if(present(prefix))then
 endif
 
 
-case('88','extends_type_of')
+case('89','extends_type_of')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6388,7 +6580,7 @@ if(present(prefix))then
 endif
 
 
-case('89','findloc')
+case('90','findloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6555,7 +6747,7 @@ if(present(prefix))then
 endif
 
 
-case('90','float')
+case('91','float')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6610,7 +6802,7 @@ if(present(prefix))then
 endif
 
 
-case('91','floor')
+case('92','floor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6671,7 +6863,98 @@ if(present(prefix))then
 endif
 
 
-case('92','fraction')
+case('93','flush')
+
+textblock=[character(len=256) :: &
+'', &
+'NAME', &
+'   flush(7f) - [FORTRAN:IO] flush I/O buffers of specified files', &
+'', &
+'', &
+'SYNOPSIS', &
+'   flush file-unit-number', &
+'', &
+'    or', &
+'', &
+'   flush([UNIT=]file_unit_number,[iostat=i],[iomsg=str],[err=label_number])', &
+'', &
+'DESCRIPTION', &
+'  The actions of FLUSH(3f) are processor dependent because the Fortran', &
+'  standard does not specify the mechanism of file storage. However,', &
+'  the intention is', &
+'', &
+'  1. The FLUSH(3f) operation should make all data written to an external', &
+'     file available to other processes or devices.', &
+'', &
+'  2. It is also intended that it will cause data placed in an external', &
+'     file by means other than the current Fortran process to be available', &
+'     to the process in a subsequent READ statement.', &
+'', &
+'  Together, this is commonly called "flushing I/O buffers".', &
+'', &
+'  Note that execution of a FLUSH(3f) statement performs a wait operation', &
+'  for all pending asynchronous data transfer operations for the specified', &
+'  unit.', &
+'', &
+'  Execution of a FLUSH(3f) statement for a file that is connected but does', &
+'  not exist is permitted and has no effect on any file.', &
+'', &
+'  A FLUSH(3f) statement has no effect on file position.', &
+'', &
+'  No specifier shall appear more than once in a given FLUSH(3f) statement.', &
+'', &
+'OPTIONS', &
+'   [UNIT=]file-unit-number  Required. If the optional characters', &
+'                            UNIT= are omitted from the unit specifier,', &
+'                            the file-unit-number must be the first item.', &
+'', &
+'   ERR=label                The label must branch to a target statement', &
+'                            in the same scoping unit as the FLUSH(3f)', &
+'                            statement.', &
+'', &
+'RETURNS', &
+'   IOSTAT=scalar-int-variable  variable is set to a processor-dependent', &
+'                               positive value if an error occurs, to zero', &
+'                               if the flush operation was successful, or', &
+'                               to a processor-dependent negative value', &
+'                               if the flush operation is not supported', &
+'                               for the unit specified.', &
+'', &
+'   IOMSG=iomsg-variable    message describing any error that occurred', &
+'', &
+'EXAMPLE', &
+'  Sample program:', &
+'', &
+'   program demo_flush', &
+'   implicit none', &
+'   character(len=256) :: msg', &
+'   integer :: ios, lun', &
+'      lun=10', &
+'      flush (unit=lun, iostat=ios, iomsg=msg)', &
+'      if(ios.ne.0)then', &
+'         write(*,''(a)'')''<ERROR>*flush*:''//trim(msg)', &
+'      endif', &
+'   end program demo_flush', &
+'']
+
+shortname="flush"
+
+if(present(topic))then
+   if(topic)then
+      textblock=[shortname]
+   endif
+endif
+
+if(present(prefix))then
+   if(prefix)then
+      do i=1,size(textblock)
+         textblock(i)= shortname//':'//trim(textblock(i))
+      enddo
+   endif
+endif
+
+
+case('94','fraction')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6729,7 +7012,7 @@ if(present(prefix))then
 endif
 
 
-case('93','gamma')
+case('95','gamma')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6792,7 +7075,7 @@ if(present(prefix))then
 endif
 
 
-case('94','get_command')
+case('96','get_command')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6888,7 +7171,7 @@ if(present(prefix))then
 endif
 
 
-case('95','get_command_argument')
+case('97','get_command_argument')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7012,7 +7295,7 @@ if(present(prefix))then
 endif
 
 
-case('96','get_environment_variable')
+case('98','get_environment_variable')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7114,7 +7397,7 @@ if(present(prefix))then
 endif
 
 
-case('97','huge')
+case('99','huge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7204,7 +7487,7 @@ if(present(prefix))then
 endif
 
 
-case('98','hypot')
+case('100','hypot')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7259,7 +7542,7 @@ if(present(prefix))then
 endif
 
 
-case('99','iachar')
+case('101','iachar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7347,7 +7630,7 @@ if(present(prefix))then
 endif
 
 
-case('100','iall')
+case('102','iall')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7420,7 +7703,7 @@ if(present(prefix))then
 endif
 
 
-case('101','iand')
+case('103','iand')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7481,7 +7764,7 @@ if(present(prefix))then
 endif
 
 
-case('102','iany')
+case('104','iany')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7555,7 +7838,7 @@ if(present(prefix))then
 endif
 
 
-case('103','ibclr')
+case('105','ibclr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7608,7 +7891,7 @@ if(present(prefix))then
 endif
 
 
-case('104','ibits')
+case('106','ibits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7662,7 +7945,7 @@ if(present(prefix))then
 endif
 
 
-case('105','ibset')
+case('107','ibset')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7714,7 +7997,7 @@ if(present(prefix))then
 endif
 
 
-case('106','ichar')
+case('108','ichar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7726,10 +8009,13 @@ textblock=[character(len=256) :: &
 '   result = ichar(c [, kind])', &
 '', &
 'DESCRIPTION', &
-'   ichar(c) returns the code for the character in the first character', &
-'   position of C in the system''s native character set. The correspondence', &
-'   between characters and their codes is not necessarily the same across', &
-'   different GNU Fortran implementations.', &
+'   ICHAR(C) returns the code for the character in the system''s native', &
+'   character set. The correspondence between characters and their codes', &
+'   is not necessarily the same across different Fortran implementations.', &
+'   Therefore, a platform using EBCDIC would return different values than', &
+'   an ASCII platform, for example.', &
+'', &
+'   See IACHAR(3f) for specifically working with the ASCII character set.', &
 '', &
 'ARGUMENTS', &
 '   C       Shall be a scalar CHARACTER, with intent(in)', &
@@ -7818,7 +8104,7 @@ if(present(prefix))then
 endif
 
 
-case('107','ieor')
+case('109','ieor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7868,7 +8154,7 @@ if(present(prefix))then
 endif
 
 
-case('108','image_index')
+case('110','image_index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7929,7 +8215,7 @@ if(present(prefix))then
 endif
 
 
-case('109','include')
+case('111','include')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8064,7 +8350,7 @@ if(present(prefix))then
 endif
 
 
-case('110','index')
+case('112','index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8149,7 +8435,7 @@ if(present(prefix))then
 endif
 
 
-case('111','int')
+case('113','int')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8216,7 +8502,7 @@ if(present(prefix))then
 endif
 
 
-case('112','ior')
+case('114','ior')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8286,7 +8572,7 @@ if(present(prefix))then
 endif
 
 
-case('113','iparity')
+case('115','iparity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8360,7 +8646,7 @@ if(present(prefix))then
 endif
 
 
-case('114','is_contiguous')
+case('116','is_contiguous')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8455,7 +8741,7 @@ if(present(prefix))then
 endif
 
 
-case('115','ishft')
+case('117','ishft')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8508,7 +8794,7 @@ if(present(prefix))then
 endif
 
 
-case('116','ishftc')
+case('118','ishftc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8566,7 +8852,7 @@ if(present(prefix))then
 endif
 
 
-case('117','is_iostat_end')
+case('119','is_iostat_end')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8628,7 +8914,7 @@ if(present(prefix))then
 endif
 
 
-case('118','is_iostat_eor')
+case('120','is_iostat_eor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8687,7 +8973,7 @@ if(present(prefix))then
 endif
 
 
-case('119','kind')
+case('121','kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8744,7 +9030,7 @@ if(present(prefix))then
 endif
 
 
-case('120','lbound')
+case('122','lbound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8860,7 +9146,7 @@ if(present(prefix))then
 endif
 
 
-case('121','leadz')
+case('123','leadz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8996,7 +9282,7 @@ if(present(prefix))then
 endif
 
 
-case('122','len')
+case('124','len')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9065,7 +9351,7 @@ if(present(prefix))then
 endif
 
 
-case('123','len_trim')
+case('125','len_trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9153,7 +9439,7 @@ if(present(prefix))then
 endif
 
 
-case('124','lge')
+case('126','lge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9218,7 +9504,7 @@ if(present(prefix))then
 endif
 
 
-case('125','lgt')
+case('127','lgt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9284,7 +9570,7 @@ if(present(prefix))then
 endif
 
 
-case('126','lle')
+case('128','lle')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9389,7 +9675,7 @@ if(present(prefix))then
 endif
 
 
-case('127','llt')
+case('129','llt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9455,7 +9741,7 @@ if(present(prefix))then
 endif
 
 
-case('128','log10')
+case('130','log10')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9510,7 +9796,7 @@ if(present(prefix))then
 endif
 
 
-case('129','log')
+case('131','log')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9570,7 +9856,7 @@ if(present(prefix))then
 endif
 
 
-case('130','log_gamma')
+case('132','log_gamma')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9627,7 +9913,7 @@ if(present(prefix))then
 endif
 
 
-case('131','logical')
+case('133','logical')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9678,7 +9964,7 @@ if(present(prefix))then
 endif
 
 
-case('132','maskl')
+case('134','maskl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9730,7 +10016,7 @@ if(present(prefix))then
 endif
 
 
-case('133','maskr')
+case('135','maskr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9781,7 +10067,7 @@ if(present(prefix))then
 endif
 
 
-case('134','matmul')
+case('136','matmul')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9833,7 +10119,7 @@ if(present(prefix))then
 endif
 
 
-case('135','max')
+case('137','max')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9959,7 +10245,7 @@ if(present(prefix))then
 endif
 
 
-case('136','maxexponent')
+case('138','maxexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10017,7 +10303,7 @@ if(present(prefix))then
 endif
 
 
-case('137','maxloc')
+case('139','maxloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10100,7 +10386,7 @@ if(present(prefix))then
 endif
 
 
-case('138','maxval')
+case('140','maxval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10193,7 +10479,7 @@ if(present(prefix))then
 endif
 
 
-case('139','merge')
+case('141','merge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10267,7 +10553,7 @@ if(present(prefix))then
 endif
 
 
-case('140','merge_bits')
+case('142','merge_bits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10316,7 +10602,7 @@ if(present(prefix))then
 endif
 
 
-case('141','min')
+case('143','min')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10376,7 +10662,7 @@ if(present(prefix))then
 endif
 
 
-case('142','minexponent')
+case('144','minexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10435,7 +10721,7 @@ if(present(prefix))then
 endif
 
 
-case('143','minloc')
+case('145','minloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10529,7 +10815,7 @@ if(present(prefix))then
 endif
 
 
-case('144','minval')
+case('146','minval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10614,7 +10900,7 @@ if(present(prefix))then
 endif
 
 
-case('145','mod')
+case('147','mod')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10685,7 +10971,7 @@ if(present(prefix))then
 endif
 
 
-case('146','modulo')
+case('148','modulo')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10756,7 +11042,7 @@ if(present(prefix))then
 endif
 
 
-case('147','move_alloc')
+case('149','move_alloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10835,7 +11121,7 @@ if(present(prefix))then
 endif
 
 
-case('148','mvbits')
+case('150','mvbits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10890,7 +11176,7 @@ if(present(prefix))then
 endif
 
 
-case('149','nearest')
+case('151','nearest')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10950,7 +11236,7 @@ if(present(prefix))then
 endif
 
 
-case('150','new_line')
+case('152','new_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11002,7 +11288,7 @@ if(present(prefix))then
 endif
 
 
-case('151','nint')
+case('153','nint')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11043,7 +11329,8 @@ textblock=[character(len=256) :: &
 'EXAMPLE', &
 '  Sample program:', &
 '', &
-'    program demo_nint implicit none', &
+'    program demo_nint ', &
+'    implicit none', &
 '    integer,parameter :: dp=kind(0.0d0)', &
 '    real              :: x4 = 1.234E0', &
 '    real(kind=dp)     :: x8 = 4.721_dp', &
@@ -11116,7 +11403,7 @@ if(present(prefix))then
 endif
 
 
-case('152','norm2')
+case('154','norm2')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11178,7 +11465,7 @@ if(present(prefix))then
 endif
 
 
-case('153','not')
+case('155','not')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11241,7 +11528,7 @@ if(present(prefix))then
 endif
 
 
-case('154','null')
+case('156','null')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11300,7 +11587,7 @@ if(present(prefix))then
 endif
 
 
-case('155','num_images')
+case('157','num_images')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11373,7 +11660,7 @@ if(present(prefix))then
 endif
 
 
-case('156','pack')
+case('158','pack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11475,7 +11762,7 @@ if(present(prefix))then
 endif
 
 
-case('157','parity')
+case('159','parity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11537,7 +11824,7 @@ if(present(prefix))then
 endif
 
 
-case('158','popcnt')
+case('160','popcnt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11607,7 +11894,7 @@ if(present(prefix))then
 endif
 
 
-case('159','poppar')
+case('161','poppar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11671,7 +11958,7 @@ if(present(prefix))then
 endif
 
 
-case('160','precision')
+case('162','precision')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11732,7 +12019,7 @@ if(present(prefix))then
 endif
 
 
-case('161','present')
+case('163','present')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11793,7 +12080,7 @@ if(present(prefix))then
 endif
 
 
-case('162','product')
+case('164','product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11861,7 +12148,7 @@ if(present(prefix))then
 endif
 
 
-case('163','radix')
+case('165','radix')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11917,7 +12204,7 @@ if(present(prefix))then
 endif
 
 
-case('164','random_number')
+case('166','random_number')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12017,7 +12304,7 @@ if(present(prefix))then
 endif
 
 
-case('165','random_seed')
+case('167','random_seed')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12089,7 +12376,7 @@ if(present(prefix))then
 endif
 
 
-case('166','range')
+case('168','range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12150,7 +12437,7 @@ if(present(prefix))then
 endif
 
 
-case('167','rank')
+case('169','rank')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12206,7 +12493,7 @@ if(present(prefix))then
 endif
 
 
-case('168','real')
+case('170','real')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12286,7 +12573,7 @@ if(present(prefix))then
 endif
 
 
-case('169','repeat')
+case('171','repeat')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12347,7 +12634,7 @@ if(present(prefix))then
 endif
 
 
-case('170','reshape')
+case('172','reshape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12418,7 +12705,7 @@ if(present(prefix))then
 endif
 
 
-case('171','return')
+case('173','return')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12545,7 +12832,7 @@ if(present(prefix))then
 endif
 
 
-case('172','rewind')
+case('174','rewind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12573,8 +12860,7 @@ textblock=[character(len=256) :: &
 'OPTIONS', &
 '   UNIT     unit number of file to rewind. A unit open for direct access', &
 '            or stream access cannot be referenced by a REWIND (e.g. you', &
-'            cannot typically rewind stdin and stdout as they would', &
-'            be streams).', &
+'            cannot typically rewind stdin and stdout). ', &
 '   IOSTAT   (Optional) a compiler-specific number that indicates an', &
 '            error occurred if non-zero. If not present and an error', &
 '            occurs the program terminates.', &
@@ -12645,7 +12931,7 @@ if(present(prefix))then
 endif
 
 
-case('173','rrspacing')
+case('175','rrspacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12695,7 +12981,7 @@ if(present(prefix))then
 endif
 
 
-case('174','same_type_as')
+case('176','same_type_as')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12744,7 +13030,7 @@ if(present(prefix))then
 endif
 
 
-case('175','scale')
+case('177','scale')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12806,7 +13092,7 @@ if(present(prefix))then
 endif
 
 
-case('176','scan')
+case('178','scan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12880,7 +13166,7 @@ if(present(prefix))then
 endif
 
 
-case('177','selected_char_kind')
+case('179','selected_char_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12948,7 +13234,7 @@ if(present(prefix))then
 endif
 
 
-case('178','selected_int_kind')
+case('180','selected_int_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13008,7 +13294,7 @@ if(present(prefix))then
 endif
 
 
-case('179','selected_real_kind')
+case('181','selected_real_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13095,7 +13381,7 @@ if(present(prefix))then
 endif
 
 
-case('180','set_exponent')
+case('182','set_exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13154,7 +13440,7 @@ if(present(prefix))then
 endif
 
 
-case('181','shape')
+case('183','shape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13220,7 +13506,7 @@ if(present(prefix))then
 endif
 
 
-case('182','shifta')
+case('184','shifta')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13272,7 +13558,7 @@ if(present(prefix))then
 endif
 
 
-case('183','shiftl')
+case('185','shiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13322,7 +13608,7 @@ if(present(prefix))then
 endif
 
 
-case('184','shiftr')
+case('186','shiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13372,7 +13658,7 @@ if(present(prefix))then
 endif
 
 
-case('185','sign')
+case('187','sign')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13432,7 +13718,7 @@ if(present(prefix))then
 endif
 
 
-case('186','sin')
+case('188','sin')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13551,7 +13837,7 @@ if(present(prefix))then
 endif
 
 
-case('187','sinh')
+case('189','sinh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13608,7 +13894,7 @@ if(present(prefix))then
 endif
 
 
-case('188','size')
+case('190','size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13804,7 +14090,7 @@ if(present(prefix))then
 endif
 
 
-case('189','sngl')
+case('191','sngl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13853,7 +14139,7 @@ if(present(prefix))then
 endif
 
 
-case('190','spacing')
+case('192','spacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13913,7 +14199,7 @@ if(present(prefix))then
 endif
 
 
-case('191','spread')
+case('193','spread')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14033,7 +14319,7 @@ if(present(prefix))then
 endif
 
 
-case('192','sqrt')
+case('194','sqrt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14090,7 +14376,7 @@ if(present(prefix))then
 endif
 
 
-case('193','stop')
+case('195','stop')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14192,7 +14478,7 @@ if(present(prefix))then
 endif
 
 
-case('194','storage_size')
+case('196','storage_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14254,7 +14540,7 @@ if(present(prefix))then
 endif
 
 
-case('195','sum')
+case('197','sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14348,7 +14634,7 @@ if(present(prefix))then
 endif
 
 
-case('196','system_clock')
+case('198','system_clock')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14451,7 +14737,7 @@ if(present(prefix))then
 endif
 
 
-case('197','tan')
+case('199','tan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14509,7 +14795,7 @@ if(present(prefix))then
 endif
 
 
-case('198','tanh')
+case('200','tanh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14570,7 +14856,7 @@ if(present(prefix))then
 endif
 
 
-case('199','this_image')
+case('201','this_image')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14656,7 +14942,7 @@ if(present(prefix))then
 endif
 
 
-case('200','tiny')
+case('202','tiny')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14710,7 +14996,7 @@ if(present(prefix))then
 endif
 
 
-case('201','trailz')
+case('203','trailz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14834,7 +15120,7 @@ if(present(prefix))then
 endif
 
 
-case('202','transfer')
+case('204','transfer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14929,7 +15215,7 @@ if(present(prefix))then
 endif
 
 
-case('203','transpose')
+case('205','transpose')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15022,7 +15308,7 @@ if(present(prefix))then
 endif
 
 
-case('204','trim')
+case('206','trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15084,7 +15370,7 @@ if(present(prefix))then
 endif
 
 
-case('205','ubound')
+case('207','ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15198,7 +15484,7 @@ if(present(prefix))then
 endif
 
 
-case('206','unpack')
+case('208','unpack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15263,7 +15549,7 @@ if(present(prefix))then
 endif
 
 
-case('207','verify')
+case('209','verify')
 
 textblock=[character(len=256) :: &
 '', &

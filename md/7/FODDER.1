@@ -1,0 +1,5716 @@
+DESCRIPTION
+
+   Got tired of not having the Fortran intrinsics available as man(1) pages,
+   especially when looking at code in the vim(1) editor and wanting to use the
+   "K" command to evoke the man(1) page.
+
+   So, as a start I took the closest thing I knew, which was descriptions on the
+   Fortran Wiki, and am slowly turning them into man(1) pages and sometimes
+   altering them.
+
+   *Note*: In many cases the descriptions of these intrinsics were originally
+   taken from the [[GFortran|GNU Fortran]] manual to make descriptions
+   on the Fortran Wiki by Jason Blevins (which were then used to start this
+   collection). Like the Fortran Wiki itself, the [[GFortran|GNU Fortran]]
+   manual is licensed under the [[GNU Free Documentation License]].
+
+   These are at the state of "good enough considering the alternative is nothing",
+   but are still actively being completed.
+
+CONTENTS
+
+Inquiry intrinsic functions
+
+The result of an inquiry function depends on the properties of its
+principal argument, not on the value of the argument. The value of the
+argument does not have to be defined.
+
+   * [[allocated]]--Status of an allocatable entity
+   * [[associated]]--Status of a pointer or pointer/target pair
+   * [[bit_size]]--Bit size inquiry function
+   * [[command_argument_count]]--Get number of command line arguments
+   * [[digits]]--Significant digits function
+   * [[epsilon]]--Epsilon function
+   * [[extends_type_of]]--Type extension inquiry
+   * [[huge]]--Largest number of a kind
+   * [[is_contiguous]]--True if and only if an object is contiguous
+   * [[kind]]--Kind of an entity
+   * [[lbound]]--Lower dimension bounds of an array
+   * [[len]]--Length of a character entity
+   * [[maxexponent]]--Maximum exponent of a real kind
+   * [[minexponent]]--Minimum exponent of a real kind
+   * [[new_line]]--New line character
+   * [[precision]]--Decimal precision of a real kind
+   * [[present]]--Determine whether an optional dummy argument is specified
+   * [[radix]]--Base of a model number
+   * [[range]]--Decimal exponent range of a real kind
+   * [[same_type_as]]--Query dynamic types for equality
+   * [[shape]]--Determine the shape of an array
+   * [[size]]--Determine the size of an array
+   * [[tiny]]--Smallest positive number of a real kind
+   * [[ubound]]--Upper dimension bounds of an array
+
+Math functions
+
+   * [[abs]]--Absolute value
+   * [[acos]]--Arccosine function
+   * [[acosh]]--Inverse hyperbolic cosine function
+   * [[asin]]--Arcsine function
+   * [[asinh]]--Inverse hyperbolic sine function
+   * [[atan]]--Arctangent function
+   * [[atan2]]--Arctangent function
+   * [[atanh]]--Inverse hyperbolic tangent function
+   * [[bessel_j0]]--Bessel function of the first kind of order 0
+   * [[bessel_j1]]--Bessel function of the first kind of order 1
+   * [[bessel_jn]]--Bessel function of the first kind
+   * [[bessel_y0]]--Bessel function of the second kind of order 0
+   * [[bessel_y1]]--Bessel function of the second kind of order 1
+   * [[bessel_yn]]--Bessel function of the second kind
+   * [[cos]]--Cosine function
+   * [[cosh]]--Hyperbolic cosine function
+   * [[erf]]--Error function
+   * [[erfc]]--Complementary error function
+   * [[erfc_scaled]]--Error function
+   * [[gamma]]--Gamma function
+   * [[hypot]]--Euclidean distance function
+   * [[log]]--Logarithm function
+   * [[log10]]--Base 10 logarithm function
+   * [[log_gamma]]--Logarithm of the Gamma function
+   * [[sin]]--Sine function
+   * [[sinh]]--Hyperbolic sine function
+   * [[sqrt]]--Square-root function
+   * [[tan]]--Tangent function
+   * [[tanh]]--Hyperbolic tangent function
+
+   * [[aimag]]--Imaginary part of complex number
+   * [[aint]]--Truncate to a whole number
+   * [[anint]]--Nearest whole number
+
+
+   * [[achar]]--Character in ASCII collating sequence
+   * [[adjustl]]--Left adjust a string
+   * [[adjustr]]--Right adjust a string
+   * [[all]]--All values in MASK along DIM are true
+   * [[any]]--Any value in MASK along DIM is true
+   * [[atomic_add]]--Atomic ADD operation
+   * [[atomic_and]]--Atomic bitwise AND operation
+   * [[atomic_cas]]--Atomic compare and swap
+   * [[atomic_define]]--Setting a variable atomically
+   * [[atomic_fetch_add]]--Atomic ADD operation with prior fetch
+   * [[atomic_fetch_and]]--Atomic bitwise AND operation with prior fetch
+   * [[atomic_fetch_or]]--Atomic bitwise OR operation with prior fetch
+   * [[atomic_fetch_xor]]--Atomic bitwise XOR operation with prior fetch
+   * [[atomic_or]]--Atomic bitwise OR operation
+   * [[atomic_ref]]--Obtaining the value of a variable atomically
+   * [[atomic_xor]]--Atomic bitwise OR operation
+   * [[bge]]--Bitwise greater than or equal to
+   * [[bgt]]--Bitwise greater than
+   * [[ble]]--Bitwise less than or equal to
+   * [[blt]]--Bitwise less than
+   * [[btest]]--Bit test function
+   * [[c_associated]]--Status of a C pointer
+   * [[c_funloc]]--Obtain the C address of a procedure
+   * [[c_f_procpointer]]--Convert C into Fortran procedure pointer
+   * [[c_f_pointer]]--Convert C into Fortran pointer
+   * [[c_loc]]--Obtain the C address of an object
+   * [[c_sizeof]]--Size in bytes of an expression
+   * [[ceiling]]--Integer ceiling function
+   * [[char]]--Character conversion function
+   * [[cmplx]]--Complex conversion function
+   * [[co_broadcast]]--Copy a value to all images the current set of images
+   * [[co_max]]--Maximal value on the current set of images
+   * [[co_min]]--Minimal value on the current set of images
+   * [[co_reduce]]--Reduction of values on the current set of images
+   * [[co_sum]]--Sum of values on the current set of images
+   * [[compiler_options]]--Options passed to the compiler
+   * [[compiler_version]]--Compiler version string
+   * [[conjg]]--Complex conjugate function
+   * [[count]]--Count function
+   * [[cpu_time]]--CPU elapsed time in seconds
+   * [[cshift]]--Circular shift elements of an array
+   * [[date_and_time]]--Date and time subroutine
+   * [[dble]]--Double conversion function
+   * [[dim]]--Positive difference
+   * [[dot_product]]--Dot product function
+   * [[dprod]]--Double product function
+   * [[dshiftl]]--Combined left shift
+   * [[dshiftr]]--Combined right shift
+   * [[eoshift]]--End-off shift elements of an array
+   * [[event_query]]--Query whether a coarray event has occurred
+   * [[execute_command_line]]--Execute a shell command
+   * [[exp]]--Exponential function
+   * [[exponent]]--Exponent function
+   * [[float]]--Convert integer to default real
+   * [[floor]]--Integer floor function
+   * [[fraction]]--Fractional part of the model representation
+   * [[get_command]]--Get the entire command line
+   * [[get_command_argument]]--Get command line arguments
+   * [[get_environment_variable]]--Get an environmental variable
+   * [[iachar]]--Code in ASCII collating sequence
+   * [[iall]]--Bitwise and of array elements
+   * [[iand]]--Bitwise logical and
+   * [[iany]]--Bitwise or of array elements
+   * [[ibclr]]--Clear bit
+   * [[ibits]]--Bit extraction
+   * [[ibset]]--Set bit
+   * [[ichar]]--Character-to-integer conversion function
+   * [[ieor]]--Bitwise logical exclusive or
+   * [[image_index]]--Cosubscript to image index conversion
+   * [[index]]--Position of a substring within a string
+   * [[int]]--Convert to integer type
+   * [[ior]]--Bitwise logical inclusive or
+   * [[iparity]]--Bitwise exclusive or of array elements
+   * [[is_iostat_end]]--Test for end-of-file value
+   * [[is_iostat_eor]]--Test for end-of-record value
+   * [[ishft]]--Shift bits
+   * [[ishftc]]--Shift bits circularly
+   * [[co_lbound]]--Lower codimension bounds of an array
+   * [[leadz]]--Number of leading zero bits of an integer
+   * [[len_trim]]--Length of a character entity without trailing blank characters
+   * [[lge]]--Lexical greater than or equal
+   * [[lgt]]--Lexical greater than
+   * [[lle]]--Lexical less than or equal
+   * [[llt]]--Lexical less than
+   * [[logical]]--Convert to logical type
+   * [[maskl]]--Left justified mask
+   * [[maskr]]--Right justified mask
+   * [[matmul]]--matrix multiplication
+   * [[max]]--Maximum value of an argument list
+   * [[maxloc]]--Location of the maximum value within an array
+   * [[maxval]]--Maximum value of an array
+   * [[merge]]--Merge variables
+   * [[merge_bits]]--Merge of bits under mask
+   * [[min]]--Minimum value of an argument list
+   * [[minloc]]--Location of the minimum value within an array
+   * [[minval]]--Minimum value of an array
+   * [[mod]]--Remainder function
+   * [[modulo]]--Modulo function
+   * [[move_alloc]]--Move allocation from one object to another
+   * [[mvbits]]--Move bits from one integer to another
+   * [[nearest]]--Nearest representable number
+   * [[nint]]--Nearest whole number
+   * [[not]]--Logical negation
+   * [[norm2]]--Euclidean vector norm
+   * [[null]]--Function that returns an disassociated pointer
+   * [[num_images]]--Number of images
+   * [[pack]]--Pack an array into an array of rank one
+   * [[parity]]--Reduction with exclusive or
+   * [[popcnt]]--Number of bits set
+   * [[poppar]]--Parity of the number of bits set
+   * [[product]]--Product of array elements
+   * [[random_number]]--Pseudo-random number
+   * [[random_seed]]--Initialize a pseudo-random number sequence
+   * [[rank]]--Rank of a data object
+   * [[real]]--Convert to real type
+   * [[repeat]]--Repeated string concatenation
+   * [[reshape]]--Function to reshape an array
+   * [[rrspacing]]--Reciprocal of the relative spacing
+   * [[scale]]--Scale a real value
+   * [[scan]]--Scan a string for the presence of a set of characters
+   * [[selected_char_kind]]--Choose character kind
+   * [[selected_int_kind]]--Choose integer kind
+   * [[selected_real_kind]]--Choose real kind
+   * [[set_exponent]]--Set the exponent of the model
+   * [[shifta]]--Right shift with fill
+   * [[shiftl]]--Left shift
+   * [[shiftr]]--Right shift
+   * [[sign]]--Sign copying function
+   * [[sngl]]--Convert double precision real to default real
+   * [[spacing]]--Smallest distance between two numbers of a given type
+   * [[spread]]--Add a dimension to an array
+   * [[storage_size]]--Storage size in bits
+   * [[sum]]--Sum of array elements
+   * [[system_clock]]--Time function
+   * [[this_image]]--Cosubscript index of this image
+   * [[trailz]]--Number of trailing zero bits of an integer
+   * [[transfer]]--Transfer bit patterns
+   * [[transpose]]--Transpose an array of rank two
+   * [[trim]]--Remove trailing blank characters of a string
+   * [[co_ubound]]--Upper codimension bounds of an array
+   * [[unpack]]--Store the elements of a vector in an array of higher rank
+   * [[verify]]--Scan a string for the absence of a set of characters
+
+$DOCUMENT END
+$!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+$DOCUMENT WRITE -file intrinsics_project.7fortran.man
+NAME
+   INTRINSICS_PROJECT(7f) - [FORTRAN] intrinsic man(1) pages
+   (LICENSE:PD)
+
+DESCRIPTION
+
+   This is a project to provide a standard set of man(1) pages for Fortran
+   and the Fortran intrinsics, ultimately with a working example program
+   for each intrinsic.
+
+   The manpage source is maintained as a single flat-text file
+   (intrinsics.ff) which is run thru ufpp(1) and filters like txt2man(1)
+   to create the program intrinsics(1f). That program generates all
+   the text as plain text as well as being used as the source for the
+   man(1) pages. The program intrinsics(1f) is very useful for scanning
+   for keywords.
+
+   Note that the vim(1) editor will call up a man(1) page for a word if
+   the letter "K" is pressed over the word.
+
+   Integration with the editor is a powerful tool when inspecting code
+   that uses unfamiliar procedures and to verify correct usage when
+   creating code.
+
+   *Note*: In many cases the descriptions of these intrinsics were
+   originally taken from the [[GFortran|GNU Fortran]] manual to make
+   descriptions on the Fortran Wiki by Jason Blevins (which were then
+   used to start this collection). Like the Fortran Wiki itself, the
+   [[GFortran|GNU Fortran]] manual is licensed under the [[GNU Free
+   Documentation License]].
+
+   These documents are at the state of "good enough considering the
+   alternative is nothing", but are still actively being completed.
+
+$DOCUMENT END
+$!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+$!<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+$DOCUMENT NULL
+cygstart https://wg5-fortran.org/
+cygstart http://www.hsl.rl.ac.uk; echo 'HSL(2013). A collection of Fortran codes for large scale scientific computation.'
+exit
+FORMAT TO WRITE SPECIFIED NUMBER OF SIGNIFICANT DIGITS
+PRINT WITH SPECIFIED NUMBER OF SIGNIFICANT DIGITS
+
+o unsigned integer for use with ISO_C_BINDING interfaces into C
+######################################################################################
+o block text for comments and write statements
+######################################################################################
+
+New WG5 web site and Fortran 2020 feature survey!
+
+Jul 19, 2017
+
+Steve Lionel For many years, the "web home" of ISO/IEC JTC1/SC22/WG5
+(the international Fortran standards committee, or WG5 for short) has
+been graciously hosted by NAG. I am pleased to announce that WG5 now
+has its own web site:
+https://wg5-fortran.org/
+The site is served over https and is "mobile friendly".
+
+Stefano Zaghi Dear Steve, thank you very much this initiative, it is
+really appreciated. I have not yet tested all the website, but the survey
+seems to work well: I completed it, but I have not proposed nothing on
+my own (point 4). On GitHub we are trying to
+
+>
+> I welcome all comments on the web site, and especially if you discover
+> any problems. Not yet done are the email list indexes and news older
+> than 2016.
+> --
+
+No words can describe how great it is to find WG5 Fortran group have its
+own dedicated website and to contemplate all the communication channels
+this can open up over time - starting with your survey - for all the
+regular users of Fortran.
+
+Fortran truly enters the modern era!
+
+For the Fortranners out there Steve, "this is the beginning of a beautiful" thing!
+
+Thank you.
+
+spectrum Dear Steve, Thanks very much for making such a new web site
+(with a nice color scheme :) I will definitely participate in the survey
+and also send comments/requests about the web site as necessary. And one
+(immediate) possible idea for
+michael siehl
+
+Jul 26
+
+- show quoted text -
+The survey worked well for me. Here is what I filed to the questions:
+
+
+3. If you have a suggestion not listed above, please describe it
+here. Include references to other languages, if any, that have a similar
+feature. How would you use it in your applications? Have you used this
+feature in applications written in other languages?
+
+I would like to suggest a very simple coarray-related extension
+to the Fortran 2008 language: A build-in counter to track
+the execution segments, just counting locally on each coarray
+image (i.e. the number of times the SYNC MEMORY statement gets
+executed - explicitly as well as implicitly - ): Something like
+a THIS_SEGMENT intrinsic. I did develop such a counter myself,
+easily in less than 5 minutes using few lines of F2008 syntax. (The
+working code can be found here, see STEP 1 and the 161125_src subfolder:
+https://github.com/MichaelSiehl/Using-Atomic-Subroutines-and-Sync-Memory-to-Restore-Segment-Ordering
+). It works, but the disadvantage is that the whole application can only
+make use of a single SYNC MEMORY statement (not really a disadvantage)
+and no other build-in synchronization method can be used (that is a minor
+disadvantage). The main disadvantage of the user-defined implementation of
+such a segment counter is that it does prevent independent development
+of the distinct parts of a parallel application (e.g. independent
+coarray-based library development) which is my main reason for demanding
+such a feature: All parts of a parallel application must use the same
+user-defined segment counter. A build-in segment counter could allow
+largely independent development of the distinct parts of a coarray-based
+parallel application.
+
+
+2. For the feature you ranked highest, how would it help in development
+of your applications? Have you used this feature in applications written
+in other languages?
+
+Practical use for a segment counter: The practical use of such
+a segment counter is strongly related to the use of SYNC MEMORY
+and atomic subroutines and thus, also to the implementation of
+customized synchronization procedures. In practice, tracking the
+execution segments on the images is required for checking and for
+restoring the segment order among coarray images. A simple but
+working example program to restore segment ordering among a number
+of coarray images, using Fortran 2008 source code, can be found here:
+https://github.com/MichaelSiehl/Atomic_Subroutines--How_the_Parallel_Codes_may_look_like--Part_1
+. Here, the segment order among the images gets restored just by executing
+the SYNC MEMORY statement the required times, like this:
+...
+! restore the segment order (among the involved images) for this image:
+    do intCount = 1, intNumberOfSyncMemoryStatementsToExecute
+      !
+      call OOOPimsc_subSyncMemory (Object_CA) ! execute sync memory
+      !
+    end do
+...
+
+
+4. Any general comments for the Fortran committee?
+
+The Fortran 95 base language together with (only a small subset of) the Fortran 2008 coarray-related language features might be already the promise for an highly flexible and nearly unlimited parallel programming. Applying some simple programming 'tricks' does already allow to make safe use of the SYNC MEMORY statement together with atomic subroutines to implement customized synchronizations programmed as procedures.
+Moreover, due to a simple programming technique, we can easily transmit two (limited-size) integer values within a single call to an atomic subroutine. This allows, at the same time, to transmit and to synchronize the remote transfer of an atomic (limited-size) integer value. We should be able to use this to process (integer) array data atomically, just by synchronizing each array element separately. And with the ability to process array data atomically, even with unordered (customized) segment ordering, there are virtually no limitations for the development of parallel applications using Fortran 2008 already. (The only hardware-related limitation might be that atomicity may not be guaranteed between distinct processor types).
+With, otherwise, safe use of SYNC MEMORY and atomic subroutines, the implementation of all the required synchronization primitives can be accomplished by the Fortran 2008 programmer her-/himself.
+Further research is required for the design of spin-wait loop synchronizations: nested spin-wait loops do allow for the implementation of NON-BLOCKING customized synchronization primitives.
+
+michael siehl
+
+Jul 27
+
+Dear all,
+I think that some improuvement can be done on the Fortran Object Oriented
+part, but tell me if I am wrong.
+
+Once I created a Fortran user defined type around a C++ class,
+that means storing inside a user defined type a C pointer, creating some C
+wrappers that will call the C++ methods, etc. I'm not presentig the real
+example as it was not complete, but I want to discuss some features that
+whould help in wrapping a Fortran uerd defined type around a C++ class.
+
+let's say we have:
+
+type t_myCclass
+    type(C_PTR) :: ptr
+end type
+
+Now in order to make everything working you need to define the final subroutine,
+that will call the C++ destructor, and make it impure elemental.
+That way it will also work for arrays of your objects.
+
+Then you need a defined assignment, that will call a C++ assignment method.
+
+Now we may have the following problems, assume you have:
+
+type(t_myCclass) :: a(10)
+
+a(2:10) = a(1:9)
+
+With an intrinsic assigment the compiler may reorganize the loop and if
+necessary call the final routine or even create a temporary.
+
+But with a defined assignment you have to check everything by yourself and
+that statement may even be illegal.
+
+My proposal is:
+
+1. add an "elemental_assignment" as:
+
+  type t_myCclass
+      ...
+  contains
+      generic :: elemental_assignment(=) => myCclass_assign
+      procedure,private :: myCclass_assign
+  end type
+  ...
+  impure elemental myCclass_assign(...
+
+  where the procedure pointed by an elemental_assignment should be elemental
+  (pure or impure) and the order of the assignment will be decided by the
+  compiler, so one have to change the rule that an impure elemental procedure should
+  only process array elements in Fortran order.
+
+  Second the compiler should be able to create a temporary if needed, so one also
+  needs a copy constructor (using C++ terminology).
+
+2. Add a copy constructor, that may be called "initial" (as in Fortran we
+   use "final" for the destructor).
+   
+   type t_myCclass
+      ...
+   contains
+      ...
+      initial :: myCclass_initial
+   end type
+ 
+   where myCclass_initial will basically be a copy constructor:
+
+   function  myCclass_initial(obj) result(r)
+      type(t_myCclass),intent(inout) :: obj     ! intent(inout) Some reference counting may be present
+      type(t_myCclass) :: r
+      ! copy obj in r
+   end function
+   
+3. Some sintactic sugar: many time I'm writing:
+   type   mytype
+     ...
+   contains
+      generic :: my_generic_name => name_1, name_2, name_3
+      procedure, private :: name_1, name_2, name_3
+   end type
+   
+   So I'd like to drop the second line and just write:
+   
+   type   mytype
+     ...
+   contains
+      generic :: my_generic_name => name_1, name_2, name_3
+   end type
+   
+   that is to make a rule that if some specific name
+   in a generic statement is not present in a corresponding
+   procedure statement (inside a type definition), it will be equivalent
+   of being present as a private procedure.
+
+
+In C++, they have also introduced the move constructor and move semantic
+to avoid unnecessary calls of copy constructors and the destructors,
+but now I'm lost, so I'm certain that people smarter than me will figure
+out how to make everything as fast as possible.
+
+Of course, as usual, my proposals may have a lot of problems I've not
+thought about, I'm not a compiler writer, so I hope you apologize me
+if I have been too naive.
+
+Do you have comments, do you think they may be useful, or there could be simpler
+way to achieve the same?
+
+Of course if you put just allocatables inside a user defined type you don't have
+to worry at all, as everything will be automatic, you just use the intrinsic assigment
+and the compiler will do all the machinery.
+
+Cheers,
+
+FortranFan
+
+Jul 27
+
+On Thursday, July 27, 2017 at 9:21:02 AM UTC-4, edmondo.g...@gmail.com wrote:
+
+> Dear all,
+> I think that some improuvement can be done on the Fortran Object Oriented
+> part, but tell me if I am wrong.
+>
+> ..
+
+@edmondo.g...@gmail.com,
+
+You certainly have a lot of good ideas but please keep in mind as things
+stand, Fortran only has interoperability with a companion C processor
+and that's how things may remain.  And given the legacy, constructs and
+semantics, and direction of Fortran and C++ languages, getting classes
+in C++ to interoperate better with derived types in Fortran may always
+present challenges.
+
+By the way, I assume you have reviewed the book by Rouson
+et al. (http://dl.acm.org/citation.cfm?id=2018862) and the work
+by Rouson and Morris, especially at Sandia with Trilinos (e.g.,
+http://aip.scitation.org/doi/abs/10.1109/MCSE.2012.33) that discuss a lot
+of aspects of C++ classes working with Fortran code.  As far as I know,
+they are both involved in the Fortran standards committee and you may
+want to communicate with them on your ideas.
+
+Your point about "In C++, they have also introduced the move
+constructor and move semantic to avoid unnecessary calls of copy
+constructors and the destructors, but now I'm lost, so I'm certain
+that people smarter than me will figure out how to make everything
+as fast as possible." is a good one.  Please see this thread:
+https://groups.google.com/d/msg/comp.lang.fortran/Xn-ax-YzEwE/sFnmK-lnBwAJ
+
+I too hope the Fortran standards committee will make a positive movement
+on "move semantics" in the next standard revision.
+
+I appreciate highly your interest in using Fortran and seeking newer
+facilities in it.  I hope you will succeed greatly in learning what
+changes in Fortran will be good for you and other users and what aspects,
+if any, you should avoid in your code design and in influencing newer
+revisions of the language.
+
+All the best,
+
+$DOCUMENT END
+$!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+$!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+$!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+$DOCUMENT NULL
+
+mod-name     Is the name of a public entity in the module or is "OPERATOR (op-name)",
+             where op-name is the name of a public entity in the module.
+
+only-list    Is one or more items, separated by commas, where each item is the name
+             of a public entity in the module or a generic identifier (a generic
+             name, a defined operator specified as "OPERATOR (op-name)", or defined
+             assignment).
+
+             An entity in the only-list can also take the form:
+
+                [local-name =>] mod-name
+
+Description
+
+   If the USE statement is specified without the ONLY option, the program
+   unit has access to all public entities in the named module.
+
+   If the USE statement is specified with the ONLY option, the program unit
+   has access to only those entities following the option.
+
+   If more than one USE statement for a given module appears in a scoping
+   unit, the following rules apply:
+
+   If one USE statement does not have the ONLY option, all public entities
+   in the module are accessible, and any rename-lists and only-lists are
+   interpreted as a single, concatenated rename-list.
+
+   If all the USE statements have ONLY options, all the only-lists are
+   interpreted as a single, concatenated only-list. Only those entities
+   named in one or more of the only-lists are accessible.
+
+   If two or more generic interfaces that are accessible in a scoping
+   unit have the same name, the same operator, or are both assignments,
+   they are interpreted as a single generic interface. Otherwise, multiple
+   accessible entities can have the same name only if no reference to the
+   name is made in the scoping unit.
+
+   The local names of entities made accessible by a USE statement must
+   not be respecified with any attribute other than PUBLIC or PRIVATE. The
+   local names can appear in namelist group lists, but not in a COMMON or
+   EQUIVALENCE statement.
+
+EXAMPLE
+
+The following shows examples of the USE statement:
+
+   01 MODULE MOD_A
+   02   INTEGER :: B, C
+   03   REAL E(25,5), D(100)
+   04 END MODULE MOD_A
+   05 ...
+   06 SUBROUTINE SUB_Y
+   07   USE MOD_A, DX => D, EX => E   ! Array D has been renamed DX and array E
+   08   ...                           ! has been renamed EX. Scalar variables B
+   09 END SUBROUTINE SUB_Y            ! and C are also available to this
+   10 ...                             ! subroutine (using their module names).
+   11 SUBROUTINE SUB_Z
+   12   USE MOD_A, ONLY: B, C         ! Only scalar variables B and C are
+   13   ...                           !   available to this subroutine
+   14 END SUBROUTINE SUB_Z
+   15 ...
+
+You must not specify a user module and an intrinsic module of the same
+name in the same program unit. For example, if you specify a user module
+named ISO_FORTRAN_ENV, then it is illegal to specify the following in
+the same program unit:
+
+   1 USE :: ISO_FORTRAN_ENV
+   2 USE, INTRINSIC :: ISO_FORTRAN_ENV
+
+The following example shows a module containing common blocks:
+
+   01 MODULE COLORS
+   02   COMMON /BLOCKA/ C, D(15)
+   03   COMMON /BLOCKB/ E, F
+   04   ...
+   05 END MODULE COLORS
+   06 ...
+   07 FUNCTION HUE(A, B)
+   08   USE COLORS
+   09   ...
+   10 END FUNCTION HUE
+
+The USE statement makes all of the variables in the common blocks in
+module COLORS available to the function HUE.
+
+To provide data abstraction, a user-defined data type and operations
+to be performed on values of this type can be packaged together in a
+module. The following example shows such a module:
+
+   01 MODULE CALCULATION
+   02   TYPE ITEM
+   03     REAL :: X, Y
+   04   END TYPE ITEM
+   05
+   06   INTERFACE OPERATOR (+)
+   07     MODULE PROCEDURE ITEM_CALC
+   08   END INTERFACE
+   09
+   10 CONTAINS
+   11   FUNCTION ITEM_CALC (A1, A2)
+   12     TYPE(ITEM) A1, A2, ITEM_CALC
+   13     ...
+   14   END FUNCTION ITEM_CALC
+   15   ...
+   16 END MODULE CALCULATION
+   17
+   18 PROGRAM TOTALS
+   19 USE CALCULATION
+   20 TYPE(ITEM) X, Y, Z
+   21   ...
+   22   X = Y + Z
+   23   ...
+   24 END
+
+The USE statement allows program TOTALS access to both the type ITEM
+and the extended intrinsic operator + to perform calculations.
+The following shows another example:
+
+   01 ! Module containing original type declarations
+   02 MODULE geometry
+   03 type square
+   04    real side
+   05    integer border
+   06 end type
+   07 type circle
+   08    real radius
+   09    integer border
+   10 end type
+   11 END MODULE
+   12
+   13 ! Program renames module types for local use.
+   14 PROGRAM test
+   15 USE GEOMETRY,LSQUARE=>SQUARE,LCIRCLE=>CIRCLE
+   16 ! Now use these types in declarations
+   17 type (LSQUARE) s1,s2
+   18 type (LCIRCLE) c1,c2,c3
+
+The following shows a defined operator in a USE statement:
+
+   1 USE mymod, OPERATOR(.localop.) => OPERATOR(.moduleop.)
+
+Entities in modules can be accessed either through their given name,
+or through aliases declared in the USE statement of the main program
+unit. For example:
+
+   1 USE MODULE_LIB, XTABS => CROSSTABS
+
+This statement accesses the routine called CROSSTABS in MODULE_LIB by
+the name XTABS. This way, if two modules have routines called CROSSTABS,
+one program can use them both simultaneously by assigning a local name
+in its USE statement.
+
+When a program or subprogram renames a module entity, the local name
+(XTABS, in the preceding example) is accessible throughout the scope of
+the program unit that names it.
+
+The ONLY option also allows public variables to be renamed. Consider the following:
+
+   1 USE MODULE_A, ONLY: VARIABLE_A => VAR_A
+
+In this case, the host program accesses only VAR_A from module A, and refers to it by the name VARIABLE_A.
+Consider the following example:
+
+   1 MODULE FOO
+   2    integer foos_integer
+   3  PRIVATE
+   4    integer foos_my_integer
+   5 END MODULE FOO
+
+PRIVATE, in this case, makes the PRIVATE attribute the default for the
+entire module FOO. To make foos_integer accessible to other program units,
+add the line:
+
+1 PUBLIC :: FOOS_INTEGER
+
+Alternatively, to make only foos_my_integer inaccessible outside the module, rewrite the module as follows:
+
+   1 MODULE FOO
+   2   integer foos_integer
+   3   integer, private::foos_my_integer
+   4 END MODULE FOO
+$DOCUMENT END
+$!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+$DOCUMENT NULL
+
+From Fortran newsgroup:
+
+Hello,
+I hope this is not considered SPAM.
+This may seem strange but I have done a good deal of programming with
+the BLAS1 numerical linear algebra subroutines
+http://www.netlib.org/blas/
+(via. incorporating calls to them in my own programs). This was done
+to avoid having to rewrite much of the functionality they posses
+myself. Initially, I had a bit of a difficult time in learning how to
+call them from my own code ... I had to experiment to make sure I
+understood such things as the "stride" argument etc when using
+multidimensional arrays.
+In addition, there seemed to be no online (i.e. man) reference that
+gave a high level overview of the available functions. So in hopes of
+improving this situation, I wrote a man page to introduce the BLAS1
+subroutines. As I am quite new at this I would appreciate it if
+anyone with more expertise than me would look it over for potential
+mistakes. I did this in hope that it would be helpful to the larger
+numerical analysis software community in quickly allowing subroutine
+look up and inclusion of calls from the BLAS1 library in other peoples
+codes.
+Thanks very much,
+John Weatherwax
+Man page included below...
+
+$DOCUMENT END
+$!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+$DOCUMENT NULL -file intro_blas1.3.txt
+."
+." An introductory man page for the BLAS1 subroutines. Contains a
+brief description of
+." each subroutine and many examples of how to correctly call the
+subroutines.
+." This was written as a quick reference to determine the available
+BLAS routines and
+." how to call them.
+."
+." To view this file use:
+." $ groff -man -Tascii intro_blas1.man | less
+."
+." To install this man page for system wide access (as root):
+." # cp intro_blas1.man /usr/local/man/man1/intro_blas1.1
+." # chmod +r /usr/local/man/man1/intro_blas1.1
+."
+." Groups that maybe interested in this man page:
+."
+." comp.lang.fortran
+." sci.math.num-analysis
+." lap...@cs.utk.edu
+."
+.TH INTRO_BLAS1 l "12 August 05"
+.SH NAME
+INTRO_BLAS1 - Introduction to vector-vector linear algebra (matrix) (LICENSE:PD)
+subprograms
+.SH DESCRIPTION
+The Level 1 BLAS perform basic vector-vector operations. The
+following three types of vector-vector operations are available:
+Routines for scaling, copying, swapping, and computing linear
+combination of vectors.
+Routines for computing dot products between vectors and various vector
+norms.
+Routines for generating or applying plane or modified plane rotations.
+The Basic Linear Algebra Subprograms (BLAS) were developed to enhance
+the portability of published linear algebra codes. Because these
+subprograms are portable, modular, self-documenting, and efficient,
+you can incorporate them into your programs.
+To realize the full power of the BLAS you must understand the
+following three subjects:
+- FORTRAN storage of arrays
+- FORTRAN array argument association
+- BLAS indexing conventions
+.SS FORTRAN storage of arrays
+Arrays in FORTRAN are stored in column major order. This means that
+the eariler indexes in an array declaration toggle first. Consider
+the following specifications:
+DIMENSION A(N1,N2),B(N3)
+.RS 0
+EQUIVALENCE (A,B)
+where N3 = N1 * N2. Then A(I,J) is associated with the same memory
+location as B(K) where
+K = I + (J-1) * N1
+This means that successive elements of a column of A are adjacent in
+memory, while successive elements of a row of A are stored with a
+difference of N1 storage units between them. Remember that the size
+of a storage unit depends on the data type.
+.SS FORTRAN array argument association
+When a FORTRAN subprogram is called with an array element as argument,
+the value is not passed. Instead, the subprogram receives the address
+in memory of the element. Consider the following code segment:
+.nf
+M=11
+N=13
+REAL A(M,N)
+COL = 3
+CALL SUBR (A(1,COL),M)
+ .
+ .
+ .
+SUBROUTINE SUBR (X,N)
+REAL X(N)
+ .
+ .
+ .
+.fi
+In this example, the subroutine SUBR is given the address of the first
+element of the third column of A. Because it treats that argument as a
+one-dimensional array, successive elements X(1), X(2), ..., occupy the
+same memory locations as successive elements of the \fIthird\fP column
+of A: that is, A(1,3), A(2,3), .... Hence, the entire third column of
+A is available to the subprogram.
+.SS BLAS Indexing Conventions
+The rest of this section describes the topics of manipulating array
+sections, dealing with stride arguments, and handling backward storage.
+
+A vector description in BLAS is defined by three quantities:
+- array or starting element within an array, for instance the variable
+X or X(I,J)
+- vector length or number of elements, for instance the variable N
+- the increment, sometimes called the stride, that defines the number
+of storage units \fIbetween\fP successive vector elements, for
+instance the variable INCX.
+The notation for describing a BLAS vector in calling a BLAS subroutine
+is the triad (N,X,INCX). A few very brief examples follow. If X is a
+one dimensional array of length N, then (N,X,1) represents forward
+storage of X i.e. X(1), X(2), ..., X(N) and (N,X,-1) represents
+backward
+storage of X i.e. X(N), X(N-1), ..., X(1). If A is an M by N array,
+then (M,A(1,J),1) represents column J and (N,A(I,1),M) represents row
+I. Finally, if an M by N matrix is embedded in the upper left-hand
+corner of an array B of size LDB by NMAX, then column J is
+(M,B(1,J),1) and row I is (N,B(I,1),LDB). More specific details
+follow.
+.SS Forward Storage
+As an example of the BLAS vector declaration using the above, suppose
+that X represents a declared real array. Let N be the vector length
+and let INCX be the increment. Suppose that a logical vector x with
+components x(i), i = 1, 2,..., N, is to be stored in X. If INCX >= 0,
+then x(i) is stored in X(1 + (I-1) * INCX). This is known as forward
+array storage starting at X(1) with stride equal to INCX, ending with
+X(1 - (N-1) * INCX). Thus, if N = 4 and INCX = 2, the logical vector
+x with components x(1), x(2), x(3), and x(4) are stored in memory in
+the array elements X(1), X(3), X(5), and X(7), respectively.
+This method of indexing, using a starting element, a number of
+elements, and a stride, is especially useful for accessing
+one-dimensional vectors in multidimensional arrays. For instance, if
+A is defined as
+REAL A(M,N)
+Then to access the 2nd row of A, one uses forward storage with an
+stride of M. Thus a BLAS routine call with
+X=A(2,1)
+and increment/stride of
+INCX=M
+will access A(2,i) for i = 1,2,...,N. To access the third column of A
+in a BLAS routine call with
+X=A(1,3)
+and increment/stride of
+INCX=1
+This approach also works with multidimensional arrays. As an example,
+if A is defined as
+REAL A(M,N,P)
+to access the P elements of A at row 3 and column 4 one could call a
+BLAS routine with starting address X of
+X=A(3,4,1)
+and increment/stride of
+INCX=M*N
+.SS Backward Storage
+Some BLAS routines permit backward storage of vectors, which is
+specified by using a negative increment INCX. If INCX < 0, then x(i)
+is stored "backwards" in X. Specifically x(i) is stored in X(1 +
+(N-I) * |INCX|) or equivalently in X(1 - (N-I) * INCX). This is
+called backward storage starting from X(1 - (N-1) * INCX) with stride
+equal to INCX, ending with X(1). Thus, if N = 4 and INCX = -2, the
+logical vector components x(1), x(2), x(3), and x(4) are stored in the
+array elements X(7), X(5), X(3), and X(1), respectively.
+Note: INCX = 0 is permitted by some BLAS routines and is not permitted
+by others. When it is allowed, it means that logical vector x is a
+vector of length N, all whose components are equal the value of X(1).
+.SS Further Stride
+
+EXAMPLES
+
+The following examples illustrate how to use increment arguments to
+perform different operations with the same subprogram. These
+
+EXAMPLES
+
+use the BLAS function SDOT, with the following declarations:
+.nf
+INTEGER*4 N,INCX,INCY
+REAL*4 SDOT,S,X(1+(N-1)*|INCX|),Y(1+(N-1)*|INCY|)
+S = SDOT (N, X,INCX, Y,INCY)
+.fi
+This sets S to the dot product of the vectors (N,X,INCX) and
+(N,Y,INCY).
+Example 1: Compute the dot product T = X(1)*Y(1) + X(2)*Y(2) +
+X(3)*Y(3) + X(4)*Y(4):
+.nf
+REAL*4 SDOT,T,X(4),Y(4)
+T = SDOT (4, X,1, Y,1)
+.fi
+Example 2: Compute the convolution T = X(1)*Y(4) + X(2)*Y(3) +
+X(3)*Y(2) + X(4)*Y(1):
+.nf
+REAL*4 SDOT,T,X(4),Y(4)
+T = SDOT (4, X,1, Y,-1)
+.fi
+Example 3: Compute the dot product Y(2) = A(2,1)*X(1) + A(2,2)*X(2) +
+A(2,3)*X(3),
+which is the dot product of the second row of an M by 3 matrix A,
+stored in a
+10 by 3 array, with a 3-element vector X:
+.nf
+INTEGER*4 N,LDA
+PARAMETER (LDA = 10)
+REAL*4 SDOT,A(LDA,3),X(3),Y(LDA)
+N = 3
+Y(2) = SDOT (N, A(2,1),LDA, X,1)
+.fi
+.SS BLAS Data Types
+The following data types are used in the BLAS routines:
+- REAL: Fortran "real" data type, 32-bit floating point; these routine
+names begin with S.
+- COMPLEX: Fortran "complex" data type, two 32-bit floating point
+reals; these routine names begin with C.
+- DOUBLE PRECISION: Fortran "double precision" data type, 64-bit
+floating point; these routine names begin with D.
+- DOUBLE COMPLEX: Fortran "double complex" data type, two 64-bit
+floating point doubles; these routine names begin with Z.
+.SS BLAS Naming Conventions
+The following table describes the naming conventions for these
+routines:
+.nf
+-------------------------------------------------------------
+                                                  64-bit
+                                                  complex
+                      64-bit real                 (double
+                      (double       32-bit        complex
+        32-bit real   precision)    complex       precision)
+-------------------------------------------------------------
+form:   Sname         Dname        Cname         Zname
+example:SAXPY         DAXPY        CAXPY         ZAXPY
+-------------------------------------------------------------
+.fi
+.SS FORTRAN type declaration for functions
+Always declare the data type of external functions. Declaring the
+data type of the complex Level 1 BLAS functions is particularly
+important because, based on the first letter of their names and the
+Fortran data typing rules, the default implied data type would be
+REAL.
+Fortran type declarations for function names follow:
+.nf
+Type                  Function Name
+REAL                  SASUM, SCASUM, SCNRM2, SDOT, SNRM2, SSUM
+COMPLEX               CDOTC, CDOTU, CSUM
+DOUBLE PRECISION      DASUM, DZASUM, DDOT, DNRM2, DZNRM2, DSUM
+DOUBLE COMPLEX        ZDOTC, ZDOTU, ZSUM
+INTEGER               ISAMAX, IDAMAX, ICAMAX, IZAMAX, ISAMIN, IDAMIN,
+                      ISMAX, IDMAX, ISMIN, IDMIN
+.fi
+.SS Summary Table of Level 1 BLAS Routines
+The following table contains the purpose, operation, and name of each
+Level 1 BLAS routine. The first routine name listed in each table
+block is the name of the manual page that contains documentation for
+any routines listed in that block. The routines marked with an
+asterisk (*) are extensions to the standard set of Level 1 BLAS
+routines. For the complete details about each operation, see the
+individual man pages. Note: functions marked with an asterisk [*] are
+extensions to the standard set of Level 1 BLAS routines that may not
+be present on all systems.
+The man(1) command can find a man page online by either the real,
+complex, double precision, or double complex name.
+.nf
+--------------------------------------------------------------
+Purpose                  Operation
+--------------------------------------------------------------
+Sums the absolute                          n             SASUM
+values of the elements   sasum <- ||x|| = Sum |x |       DASUM
+of a real vector (also                 1  i=1   i
+called the l1 norm)
+Sums the absolute        scasum <- ||Real[x]||  +        SCASUM
+values of the real and                        1          DZASUM
+imaginary parts of the            ||Imag[x]||  =
+elements of a complex                        1
+vector                             n
+                                  Sum |Real[x ]| +
+                                  i=1        i
+                                   n
+                                  Sum |Imag[x ]|
+                                  i=1        i
+Adds a scalar multiple   y <- alpha*x + beta*y           SAXPBY*
+of a real or complex                                     DAXPBY*
+vector to a scalar                                       CAXPBY*
+multiple of another                                      ZAXPBY*
+vector
+Adds a scalar multiple   y <- alpha*x + y                SAXPY
+of a real or complex                                     DAXPY
+vector to another                                        CAXPY
+vector                                                   ZAXPY
+Copies a real or         y <- x                          SCOPY
+complex vector into                                      DCOPY
+another vector                                           CCOPY
+                                                         ZCOPY
+Computes a dot product            T       n              SDOT
+of two real or complex   sdot <- x  y  = Sum x y         DDOT
+vectors                                  i=1  i i
+                                   H      n  _           CDOTC
+                         cdotc <- x  y = Sum x y         ZDOTC
+                                         i=1  i i
+                                   T       n             CDOTU
+                         cdotu <- x  y  = Sum x y        ZDOTU
+                                          i=1  i i
+Computes the Hadamard    z(i):=alpha x(i) y(i) + beta    SHAD*
+product of two vectors   z(i)                            DHAD*
+                                                         CHAD*
+                                                         ZHAD*
+Computes the Euclidean   snrm2 <- ||x|| =                SNRM2
+norm (also called l2                   2                 DNRM2
+norm) of a real or             n     2
+complex vector           sqrt(Sum (x  )
+                              i=1   i
+                         scnrm2 <- ||x|| =               SCNRM2
+                                        2                DZNRM2
+                               n   _
+                         sqrt(Sum (x  x )
+                              i=1   i  i
+
+Applies a real plane                                     CSROT*
+rotation to a pair of                                    ZDROT*
+complex vectors
+Applies an orthogonal                                    SROT
+plane rotation                                           DROT
+Constructs a Givens                                      SROTG
+plane rotation                                           DROTG
+                                                         CROTG*
+                                                         ZROTG*
+Applies a modified                                       SROTM
+Givens plane rotation                                    DROTM
+Constructs a modified                                    SROTMG
+Givens plane rotation                                    DROTMG
+Scales a real or         x <- alpha x                    SSCAL
+complex vector                                           DSCAL
+                                                         CSCAL
+                                                         ZSCAL
+                                                         CSSCAL
+                                                         ZDSCAL
+Sums the elements of a           n                       SSUM*
+real or complex vector   sum <- Sum x                    DSUM*
+                                i=1  i                   CSUM*
+                                                         ZSUM*
+Swaps two real or two    x <-> y                         SSWAP
+complex vectors                                          DSWAP
+                                                         CSWAP
+                                                         ZSWAP
+Searches a vector for    isamax <- MAX |x |              ISAMAX
+the first occurrence of                  j               IDAMAX
+the maximum absolute                                     ICAMAX
+value                                                    IZAMAX
+Searches a vector for    isamin <- MIN |x |              ISAMIN*
+the first occurrence of                  j               IDAMIN*
+the minimum absolute
+value
+Searches a vector for    ismax <- MAX  x                 ISMAX*
+the first occurrence of                 j                IDMAX*
+the minimum absolute
+value
+Searches a vector for    ismin <- MIN x                  ISMIN*
+the first occurrence of                j                 IDMIN*
+the minimum absolute
+value
+--------------------------------------------------------------
+.fi
+In addition to the mathematical functions defined above, several
+search functions are a part of Level 1 BLAS; these functions are
+listed below:
+.nf
+ISAMAX, ICAMAX, ISAMIN*, ISMAX*, ISMIN*
+IDAMAX  IZAMAX, IDAMIN*, IDMAX*, IDMIN*
+.fi
+.SH TO DO
+Many of the stared functions have not been implemented yet in a free
+software.
+.SH SEE ALSO
+intro_blas2(1), intro_blas3(1)
+.SH REFERENCES
+Lawson, C., Hanson, R., Kincaid, D., and Krogh, F., "Basic Linear
+Algebra Subprograms for Fortran Usage," ACM Transactions on
+Mathematical Software, 5 (1979), pp. 308 - 325.
+.SH IMPLEMENTATION
+See the individual man pages for implementation details and full
+argument listings
+.SH AUTHOR
+John L. Weatherwax
+$DOCUMENT END
+$!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+$!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+$!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+$DOCUMENT NULL
++---------------------------------------------+
+| Generic Intrinsic Name  |    Description    |
+|-------------------------+-------------------|
+| PRESENT                 | Argument presence |
++---------------------------------------------+
+Kind Functions
++-----------------------------------------------------------------------------------------+
+|   Generic Intrinsic Name    |                        Description                        |
+|-----------------------------+-----------------------------------------------------------|
+| KIND (X)                    | Kind type parameter value                                 |
+| SELECTED_INT_KIND (R)       | Integer kind type parameter value, given range            |
+| SELECTED_REAL_KIND ([P, R]) | Real kind type parameter value, given precision and range |
++-----------------------------------------------------------------------------------------+
+Logical Function
++------------------------------------------------------------------------------------------------------+
+| Generic Intrinsic Name |                                 Description                                 |
+|------------------------+-----------------------------------------------------------------------------|
+| LOGICAL (L [, KIND])   | Convert between objects of type logical with different kind type parameters |
++------------------------------------------------------------------------------------------------------+
+Numeric Inquiry Functions
++----------------------------------------------------------------------------+
+| Generic Intrinsic Name |                    Description                    |
+|------------------------+---------------------------------------------------|
+| DIGITS (X)             | Number of significant digits of the model         |
+| EPSILON (X)            | Number that is almost negligible compared to one  |
+| HUGE (X)               | Largest number of the model                       |
+| MAXEXPONENT (X)        | Maximum exponent of the model                     |
+| MINEXPONENT (X)        | Minimum exponent of the model                     |
+| PRECISION (X)          | Decimal precision                                 |
+| RADIX (X)              | Base of the model                                 |
+| RANGE (X)              | Decimal exponent range                            |
+| TINY (X)               | Smallest positive number of the model             |
++----------------------------------------------------------------------------+
+Bit Inquiry Function
++-------------------------------------------------------+
+| Generic Intrinsic Name |         Description          |
+|------------------------+------------------------------|
+| BIT_SIZE (I)           | Number of bits of the model  |
++-------------------------------------------------------+
+Transfer Function
++------------------------------------------------------------------------------------------+
+|      Generic Intrinsic Name      |                      Description                      |
+|----------------------------------+-------------------------------------------------------|
+| TRANSFER (SOURCE, MOLD [, SIZE]) | Treat first argument as if of type of second argument |
++------------------------------------------------------------------------------------------+
+Floating-Point Manipulation Functions
++------------------------------------------------------------------------------------------------+
+| Generic Intrinsic Name |                              Description                              |
+|------------------------+-----------------------------------------------------------------------|
+| EXPONENT (X)           | Exponent part of a model number                                       |
+| FRACTION (X)           | Fractional part of a number                                           |
+| NEAREST (X, S)         | Nearest different processor number in given direction                 |
+| RRSPACING (X)          | Reciprocal of the relative spacing of model numbers near given number |
+| SCALE (X, I)           | Multiply a real by its base to an integer power                       |
+| SET_EXPONENT (X, I)    | Set exponent part of a number                                         |
+| SPACING (X)            | Absolute spacing of model numbers near given number                   |
++------------------------------------------------------------------------------------------------+
+Vector and Matrix Multiply Functions
++------------------------------------------------------------------------+
+|      Generic Intrinsic Name      |             Description             |
+|----------------------------------+-------------------------------------|
+| DOT_PRODUCT (VECTOR_A, VECTOR_B) | Dot product of two rank-one arrays  |
+|----------------------------------+-------------------------------------|
+| MATMUL (MATRIX_A, MATRIX_B)      | Matrix multiplication               |
++------------------------------------------------------------------------+
+Pointer Association Status Functions
++-----------------------------------------------------------------------------+
+|     Generic Intrinsic Name      |                Description                |
+|---------------------------------+-------------------------------------------|
+| ASSOCIATED (POINTER [, TARGET]) | Association status inquiry or comparison  |
+|---------------------------------+-------------------------------------------|
+| NULL ([MOLD])                   | Returns disassociated pointer             |
++-----------------------------------------------------------------------------+
+Intrinsic Subroutines jsu
++--------------------------------------------------------------------------------------------+
+|     Generic Intrinsic Name     |                        Description                        |
+|--------------------------------+-----------------------------------------------------------|
+| CPU_TIME (TIME)                | Obtain processor time                                     |
+|--------------------------------+-----------------------------------------------------------|
+| DATE_AND_TIME ([DATE, TIME,    |                                                           |
+|                                |Obtain date and time                                       |
+| ZONE, VALUES])                 |                                                           |
+|--------------------------------+-----------------------------------------------------------|
+| MVBITS (FROM, FROMPOS,         |                                                           |
+|                                |Copies bits from one integer to another                    |
+| LEN, TO, TOPOS)                |                                                           |
+|--------------------------------+-----------------------------------------------------------|
+| RANDOM_NUMBER (HARVEST)        | Returns pseudorandom number                               |
+|--------------------------------+-----------------------------------------------------------|
+| RANDOM_SEED ([SIZE, PUT, GET]) | Initializes or restarts the pseudorandom number generator |
+|--------------------------------+-----------------------------------------------------------|
+| SYSTEM_CLOCK ([COUNT,          |                                                           |
+|                                | Obtain data from the system clock                         |
+| COUNT_RATE, COUNT_MAX])        |                                                           |
++--------------------------------------------------------------------------------------------+
+
+Specific Names for Intrinsic Functions
+
+Specific and Generic Names for Fortran 95 Intrinsic Functions
++-------------------------------------------------------------------------------------+
+|   |       Specific Name       |          Generic Name           |   Argument Type   |
+|---+---------------------------+---------------------------------+-------------------|
+|   | ABS (A)                   | ABS (A)                         | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | ACOS (X)                  | ACOS (X)                        | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | AIMAG (Z)                 | AIMAG (Z)                       | default complex   |
+|---+---------------------------+---------------------------------+-------------------|
+|   | AINT (A)                  | AINT (A)                        | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | ALOG (X)                  | LOG (X)                         | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | ALOG10 (X)                | LOG10 (X)                       | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+| # | AMAX0 (A1, A2 [, A3,...]) | REAL (MAX (A1, A2 [, A3,...]))  | default integer   |
+|---+---------------------------+---------------------------------+-------------------|
+| # | AMAX1 (A1, A2 [, A3,...]) | MAX (A1, A2 [, A3,...])         | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+| # | AMIN0 (A1, A2 [, A3,...]) | REAL (MIN (A1, A2 [, A3,...]))  | default integer   |
+|---+---------------------------+---------------------------------+-------------------|
+| # | AMIN1 (A1, A2 [, A3,...]) | MIN (A1, A2 [, A3,...])         | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | AMOD (A, P)               | MOD (A, P)                      | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | ANINT (A)                 | ANINT (A)                       | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | ASIN (X)                  | ASIN (X)                        | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | ATAN (X)                  | ATAN (X)                        | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | ATAN2 (Y, X)              | ATAN2 (Y, X)                    | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | CABS (A)                  | ABS (A)                         | default complex   |
+|---+---------------------------+---------------------------------+-------------------|
+|   | CCOS (X)                  | COS (X)                         | default complex   |
+|---+---------------------------+---------------------------------+-------------------|
+|   | CEXP (X)                  | EXP (X)                         | default complex   |
+|---+---------------------------+---------------------------------+-------------------|
+| # | CHAR (I)                  | CHAR (I)                        | default integer   |
+|---+---------------------------+---------------------------------+-------------------|
+|   | CLOG (X)                  | LOG (X)                         | default complex   |
+|---+---------------------------+---------------------------------+-------------------|
+|   | CONJG (Z)                 | CONJG (Z)                       | default complex   |
+|---+---------------------------+---------------------------------+-------------------|
+|   | COS (X)                   | COS (X)                         | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | COSH (X)                  | COSH (X)                        | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | CSIN (X)                  | SIN (X)                         | default complex   |
+|---+---------------------------+---------------------------------+-------------------|
+|   | CSQRT (X)                 | SQRT (X)                        | default complex   |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DABS (A)                  | ABS (A)                         | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DACOS (X)                 | ACOS (X)                        | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DASIN (X)                 | ASIN (X)                        | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DATAN (X)                 | ATAN (X)                        | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DATAN2 (Y, X)             | ATAN2 (Y, X)                    | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DCOS (X)                  | COS (X)                         | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DCOSH (X)                 | COSH (X)                        | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DDIM (X, Y)               | DIM (X, Y)                      | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DEXP (X)                  | EXP (X)                         | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DIM (X, Y)                | DIM (X, Y)                      | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DINT (A)                  | AINT (A)                        | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DLOG (X)                  | LOG (X)                         | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DLOG10 (X)                | LOG10 (X)                       | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+| # | DMAX1 (A1, A2 [, A3,...]) | MAX (A1, A2 [, A3,...])         | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+| # | DMIN1 (A1, A2 [, A3,...]) | MIN (A1, A2 [, A3,...])         | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DMOD (A, P)               | MOD (A, P)                      | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DNINT (A)                 | ANINT (A)                       | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DPROD (X, Y)              | DPROD (X, Y)                    | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DSIGN (A, B)              | SIGN (A, B)                     | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DSIN (X)                  | SIN (X)                         | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DSINH (X)                 | SINH (X)                        | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DSQRT (X)                 | SQRT (X)                        | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DTAN (X)                  | TAN (X)                         | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | DTANH (X)                 | TANH (X)                        | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | EXP (X)                   | EXP (X)                         | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+| # | FLOAT (A)                 | REAL (A)                        | default integer   |
+|---+---------------------------+---------------------------------+-------------------|
+|   | IABS (A)                  | ABS (A)                         | default integer   |
+|---+---------------------------+---------------------------------+-------------------|
+| # | ICHAR (C)                 | ICHAR (C)                       | default character |
+|---+---------------------------+---------------------------------+-------------------|
+|   | IDIM (X, Y)               | DIM (X, Y)                      | default integer   |
+|---+---------------------------+---------------------------------+-------------------|
+| # | IDINT (A)                 | INT (A)                         | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | IDNINT (A)                | NINT (A)                        | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+| # | IFIX (A)                  | INT (A)                         | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | INDEX (STRING, SUBSTRING) | INDEX (STRING, SUBSTRING)       | default character |
+|---+---------------------------+---------------------------------+-------------------|
+| # | INT (A)                   | INT (A)                         | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | ISIGN (A, B)              | SIGN (A, B)                     | default integer   |
+|---+---------------------------+---------------------------------+-------------------|
+|   | LEN (STRING)              | LEN (STRING)                    | default character |
+|---+---------------------------+---------------------------------+-------------------|
+| # | LGE (STRING_A, STRING_B)  | LGE (STRING_A, STRING_B)        | default character |
+|---+---------------------------+---------------------------------+-------------------|
+| # | LGT (STRING_A, STRING_B)  | LGT (STRING_A, STRING_B)        | default character |
+|---+---------------------------+---------------------------------+-------------------|
+| # | LLE (STRING_A, STRING_B)  | LLE (STRING_A, STRING_B)        | default character |
+|---+---------------------------+---------------------------------+-------------------|
+| # | LLT (STRING_A, STRING_B)  | LLT (STRING_A, STRING_B)        | default character |
+|---+---------------------------+---------------------------------+-------------------|
+| # | MAX0 (A1, A2 [, A3,...])  | MAX (A1, A2 [, A3,...])         | default integer   |
+|---+---------------------------+---------------------------------+-------------------|
+| # | MAX1 (A1, A2 [, A3,...])  | INT (MAX (A1, A2 [, A3,...]))   | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+| # | MIN0 (A1, A2 [, A3,...])  | MIN (A1, A2 [, A3,...])         | default integer   |
+|---+---------------------------+---------------------------------+-------------------|
+| # | MIN1 (A1, A2 [, A3,...])  | INT (MIN (A1, A2 [, A3,...]))   | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | MOD (A, P)                | MOD (A, P)                      | default integer   |
+|---+---------------------------+---------------------------------+-------------------|
+|   | NINT (A)                  | NINT (A)                        | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+| # | REAL (A)                  | REAL (A)                        | default integer   |
+|---+---------------------------+---------------------------------+-------------------|
+|   | SIGN (A, B)               | SIGN (A, B)                     | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | SIN (X)                   | SIN (X)                         | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | SINH (X)                  | SINH (X)                        | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+| # | SNGL (A)                  | REAL (A)                        | double precision  |
+|---+---------------------------+---------------------------------+-------------------|
+|   | SQRT (X)                  | SQRT (X)                        | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | TAN (X)                   | TAN (X)                         | default real      |
+|---+---------------------------+---------------------------------+-------------------|
+|   | TANH (X)                  | TANH (X)                        | default real      |
++-------------------------------------------------------------------------------------+
+
+
+Functions marked with # cannot be used as an actual argument.
+"double precision" means double-precision real.
+
+$DOCUMENT
+$DOCUMENT NULL
+Category
+Subcategory
+Description
+Numeric
+Computation
+
+Elemental functions that perform type conversions or simple numeric operations:
+
+ABS, AIMAG, AINT, AMAX0, AMIN0, ANINT, CEILING, CMPLX, CONJG,
+DBLE, DCMPLX, DFLOAT, DIM, DNUM, DPROD, DREAL, FLOAT, FLOOR, IFIX, IMAG,
+INT, INUM, JNUM, KNUM MAX, MAX1, MIN, MIN1, MOD, MODULO, NINT, QCMPLX,
+QEXT, QFLOAT, QNUM, QREAL, REAL, RNUM, SIGN, SNGL, ZEXT
+
+Nonelemental function that provides a pseudorandom number: RAN
+Elemental function that generates a random number: RANF
+
+   Manipulation1
+
+   Elemental functions that return values related to the components of the
+   model values associated with the actual value of the argument:
+
+   EXPONENT, FRACTION, NEAREST, RRSPACING, SCALE, SET_EXPONENT, SPACING
+
+Inquiry1
+
+Functions that return scalar values from the models associated with the
+type and kind parameters of their arguments2:
+
+DIGITS, EPSILON, HUGE, ILEN, MAXEXPONENT, MINEXPONENT, PRECISION, RADIX, RANGE, SIZEOF, TINY
+
+   Transformational
+   Functions that perform vector and matrix multiplication: DOT_PRODUCT, MATMUL
+
+System
+Functions that return information about a process or processor: MCLOCK, SECNDS
+Kind type
+
+Functions that return kind type parameters: KIND, SELECTED_CHAR_KIND, SELECTED_INT_KIND, SELECTED_REAL_KIND
+Mathematical
+
+Elemental functions that perform mathematical operations:
+
+ACOS, ACOSD, ACOSH, ASIN, ASIND, ASINH, ATAN, ATAN2, ATAN2D,ATAND, ATANH,
+BESSEL_J0, BESSEL_J1, BESSEL_JN, BESSEL_Y0, BESSEL_Y1, BESSEL_YN, COS,
+COSD, COSH,COTAN, COTAND, EXP, GAMMA, HYPOT, LOG, LOG10, LOG_GAMMA, SIN,
+SIND, SINH, SQRT, TAN, TAND, TANH
+
+Bit Manipulation
+
+Elemental functions that perform bit operations, such as single-bit
+processing, logical and shift operations, and allowing bit subfields to
+be referenced:
+
+AND, BGE, BGT, BLE, BLT, BTEST, DSHIFTL, DSHIFTR, IAND, IBCHNG, IBCLR,
+IBITS, IBSET, IEOR, IOR, ISHA, ISHC, ISHFT, ISHFTC, ISHL, IXOR,LSHIFT,
+MASKL, MASKR, MERGE_BITS, NOT, OR, RSHIFT, SHIFTA, SHIFTL, SHIFTR, XOR
+
+Inquiry
+Function that lets you determine bit size and storage size: BIT_SIZE, STORAGE_SIZE
+
+Representation
+
+Elemental functions that return information on bit representation of integers:
+
+LEADZ, POPCNT, POPPAR, TRAILZ
+
+Character Comparison
+
+Elemental functions that make a lexical comparison of the character-string
+arguments and return a default logical result:
+
+LGE, LGT, LLE, LLT
+
+Conversion
+
+Elemental functions that take character arguments and return integer,
+ASCII, or character values4:
+
+ACHAR, CHAR, IACHAR, ICHAR
+
+String handling
+
+   Functions that perform operations on character strings, return lengths
+   of arguments, and search for certain arguments:
+
+   Elemental:     ADJUSTL, ADJUSTR, INDEX, LEN_TRIM, SCAN, VERIFY;
+   Nonelemental:  REPEAT, TRIM
+
+Inquiry
+
+Functions that return the length of an argument or information about
+command-line arguments: COMMAND_ARGUMENT_COUNT, IARG, IARGC, LEN,
+NARGS, NUMARG
+
+Array Construction
+
+Functions that construct new arrays from the elements of existing arrays:
+Elemental: MERGE; Nonelemental: PACK, SPREAD, UNPACK
+
+   Inquiry
+
+   Functions that let you determine if an array argument is allocated,
+   and return the size or shape of an array, and the lower and upper
+   bounds of subscripts along each dimension: ALLOCATED, COSHAPE,
+
+   IS_CONTIGUOUS, LBOUND, RANK, SHAPE, SIZE, UBOUND
+
+Location
+
+Transformational functions that find the geometric locations of the
+maximum and minimum values of an array: MAXLOC, MINLOC
+
+Manipulation
+
+Transformational functions that shift an array, transpose an array,
+or change the shape of an array: CSHIFT, EOSHIFT, RESHAPE, TRANSPOSE
+
+Reduction
+
+Transformational functions that perform operations on arrays. The
+functions "reduce" elements of a whole array to produce a scalar result,
+or they can be applied to a specific dimension of an array to produce
+a result array with a rank reduced by one: ALL, ANY, COUNT, IALL, IANY,
+IPARITY, MAXVAL, MINVAL, NORM2, PARITY, PRODUCT, SUM
+
+Coarray
+Inquiry
+
+Functions that convert cosubscripts or return lower or upper cobounds:
+IMAGE_INDEX, CO_LBOUND, CO_UBOUND
+
+Transformational
+
+Functions that return the number of images or cosubscripts: NUM_IMAGES, THIS_IMAGE
+
+Polymorphic
+Inquiry
+
+Functions that let you determine the dynamic type of an object:
+EXTENDS_TYPE_OF, SAME_TYPE_AS
+
+Miscellaneous
+
+Functions that do the following:
+
+Check for pointer association (ASSOCIATED)
+Return an address (BADDRESS or IADDR)
+Return the size of a level of the memory cache (CACHESIZE)
+Check for end-of-file (EOF)
+Return error functions (ERF, ERFC,and ERFC_SCALED)
+Return the class of a floating-point argument (FP_CLASS)
+Return the INTEGER KIND that will hold an address (INT_PTR_KIND)
+Test for Not-a-Number values (ISNAN)
+Return the internal address of a storage item (LOC)
+Return a logical value of an argument (LOGICAL)
+Allocate memory (MALLOC)
+Return a new line character (NEW_LINE)
+Return a disassociated pointer (NULL)
+Check for argument presence (PRESENT)
+Convert a bit pattern (TRANSFER)
+Check for end-of-file condition (IS_IOSTAT_END)
+Check for end-of-record condition (IS_IOSTAT_EOR)
+
+ 1. All of the numeric manipulation, and many of the numeric inquiry functions are defined by the model sets for integers and reals.
+ 2. The value of the argument does not have to be defined.
+ 3. For more information on bit functions, see Bit functions.
+ 4. The Intel Fortran processor character set is ASCII, so ACHAR = CHAR and IACHAR = ICHAR.
+
+The following table summarizes the generic intrinsic functions and
+indicates whether they are elemental, inquiry, or transformational
+functions. Optional arguments are shown within square brackets.
+
+Some intrinsic functions are specific with no generic association. These functions are listed below.
+Summary of Generic Intrinsic Functions
+Generic Function
+Class
+Value Returned
+ABS (A)
+E
+The absolute value of an argument
+ACHAR (I [,KIND])
+E
+The character in the specified position of the ASCII character set
+ACOS (X)
+E
+The arccosine (in radians) of the argument
+ACOSD (X)
+E
+The arccosine (in degrees) of the argument
+ACOSH (X)
+E
+The hyperbolic arccosine of the argument
+ADJUSTL (STRING)
+E
+The specified string with leading blanks removed and placed at the end of the string
+ADJUSTR (STRING)
+E
+The specified string with trailing blanks removed and placed at the beginning of the string
+AIMAG (Z)
+E
+The imaginary part of a complex argument
+AINT (A [,KIND])
+E
+A real value truncated to a whole number
+ALL (MASK [,DIM])
+T
+.TRUE. if all elements of the masked array are true
+ALLOCATED ([ARRAY=]array) or ALLOCATED ([SCALAR=]scalar)
+I
+The allocation status of the argument array or scalar
+AMAX0 (A1, A2 [, A3,...])
+E
+The maximum value in a list of integers (returned as a real value)
+AMIN0 (A1, A2 [, A3,...])
+E
+The minimum value in a list of integers (returned as a real value)
+AND (I, J)
+E
+See IAND
+ANINT (A [, KIND])
+E
+A real value rounded to a whole number
+ANY (MASK [, DIM])
+T
+.TRUE. if any elements of the masked array are true
+ASIN (X)
+E
+The arcsine (in radians) of the argument
+ASIND (X)
+E
+The arcsine (in degrees) of the argument
+ASINH (X)
+E
+The hyperbolic arcsine of the argument
+ASSOCIATED (POINTER [,TARGET])
+I
+.TRUE. if the pointer argument is associated or the pointer is associated with the specified target
+ATAN (X)
+E
+The arctangent (in radians) of the argument
+ATAN2 (Y, X)
+E
+The arctangent (in radians) of the arguments
+ATAN2D (Y, X)
+E
+The arctangent (in degrees) of the arguments
+ATAND (X)
+E
+The arctangent (in degrees) of the argument
+ATANH (X)
+E
+The hyperbolic arctangent of the argument
+BADDRESS (X)
+I
+The address of the argument
+BESSEL_J0 (X)
+E
+A Bessel function of the first kind, order 0
+BESSEL_J1 (X)
+E
+A Bessel function of the first kind, order 1
+BESSEL_JN (N, X)
+E
+A Bessel function of the first kind, order N
+BESSEL_JN (N1, N2, X)
+T
+A Bessel function of the first kind
+BESSEL_Y0 (X)
+E
+A Bessel function of the second kind, order 0
+BESSEL_Y1 (X)
+E
+A Bessel function of the second kind, order 1
+BESSEL_YN (N, X)
+E
+A Bessel function of the second kind, order N
+BESSEL_YN (N1, N2, X)
+T
+A Bessel function of the second kind
+BGE (I, J)
+E
+Bitwise greater than or equal to
+BGT (I, J)
+E
+Bitwise greater than
+BIT_SIZE (I)
+I
+The number of bits (s) in the bit model
+BLE (I, J)
+E
+Bitwise less than or equal to
+BLT (I, J)
+E
+Bitwise less than
+BTEST (I, POS)
+E
+.TRUE. if the specified position of argument I is one
+CEILING (A [,KIND])
+E
+The smallest integer greater than or equal to the argument value
+CHAR (I [,KIND])
+E
+The character in the specified position of the processor character set
+COMMAND_ARGUMENT_COUNT ()
+I
+The number of command arguments
+CONJG (Z)
+E
+The conjugate of a complex number
+COS (X)
+E
+The cosine of the argument, which is in radians
+COSD (X)
+E
+The cosine of the argument, which is in degrees
+COSH (X)
+E
+The hyperbolic cosine of the argument
+COSHAPE (COARRAY [,KIND])
+I
+The sizes of codimensions of a coarray.
+COTAN (X)
+E
+The cotangent of the argument, which is in radians
+COTAND (X)
+E
+The cotangent of the argument, which is in degrees
+COUNT (MASK [,DIM] [,KIND] )
+T
+The number of .TRUE. elements in the argument array
+CSHIFT (ARRAY, SHIFT [,DIM])
+T
+An array that has the elements of the argument array circularly shifted
+DBLE (A)
+E
+The corresponding double precision value of the argument
+DFLOAT (A)
+E
+The corresponding double precision value of the integer argument
+DIGITS (X)
+I
+The number of significant digits in the model for the argument
+DIM (X, Y)
+E
+The positive difference between the two arguments
+DOT_PRODUCT (VECTOR_A, VECTOR_B)
+T
+The dot product of two rank-one arrays (also called a vector multiply function)
+DREAL (A)
+E
+The corresponding double-precision value of the double complex argument
+DSHIFTL (ILEFT, IRIGHT, ISHIFT)
+E
+The upper (leftmost) 64 bits of a left-shifted 128-bit integer
+DSHIFTR (ILEFT, IRIGHT, ISHIFT)
+E
+The lower (rightmost) 64 bits of a right-shifted 128-bit integer
+EOF (A)
+I
+.TRUE. or .FALSE. depending on whether a file is beyond the end-of-file record
+EOSHIFT (ARRAY, SHIFT [,BOUNDARY] [,DIM])
+T
+An array that has the elements of the argument array end-off shifted
+EPSILON (X)
+I
+The number that is almost negligible when compared to one
+ERF (X)
+E
+The error function of an argument
+ERFC (X)
+E
+The complementary error function of an argument
+ERFC_SCALED (X)
+E
+The scaled complementary error function of an argument
+EXP (X)
+E
+The exponential ex for the argument x
+EXPONENT (X)
+E
+The value of the exponent part of a real argument
+EXTENDS_TYPE_OF (A, MOLD)
+I
+Whether one dynamic type is an extension of another dynamic type.
+FLOAT (X)
+E
+The corresponding real value of the integer argument
+FLOOR (A [,KIND])
+E
+The largest integer less than or equal to the argument value
+FP_CLASS (X)
+E
+The class of the IEEE floating-point argument
+FRACTION (X)
+E
+The fractional part of a real argument
+GAMMA (X)
+E
+A gamma function
+HUGE (X)
+I
+The largest number in the model for the argument
+HYPOT (X, Y)
+E
+A Euclidean distance function
+IACHAR (C [,KIND])
+E
+The position of the specified character in the ASCII character set
+IADDR (X)
+E
+See BADDRESS
+IAND (I, J)
+E
+The logical AND of the two arguments
+IALL (ARRAY, DIM [, MASK]) or IALL (ARRAY [, MASK])
+T
+The result of a bitwise AND operation
+IANY (ARRAY, DIM [, MASK]) or IANY (ARRAY [, MASK])
+T
+The result of a bitwise OR operation
+IBCLR (I, POS)
+E
+The specified position of argument I cleared (set to zero)
+IBCHNG (I, POS)
+E
+The reversed value of a specified bit
+IBITS (I, POS, LEN)
+E
+The specified substring of bits of argument I
+IBSET (I, POS)
+E
+The specified bit in argument I set to one
+ICHAR (C [, KIND])
+E
+The position of the specified character in the processor character set
+IEOR (I, J)
+E
+The logical exclusive OR of the corresponding bit arguments
+IFIX (X)
+E
+The corresponding integer value of the real argument rounded as if it were an implied conversion in an assignment
+ILEN (I)
+I
+The length (in bits) in the two's complement representation of an integer
+IMAG (Z)
+E
+See AIMAG
+IMAGE_INDEX (COARRAY, SUB)
+I
+The index of the corresponding image
+INDEX (STRING, SUBSTRING [, BACK] [,KIND])
+E
+The position of the specified substring in a character expression
+INT (A [, KIND])
+E
+The corresponding integer value (truncated) of the argument
+IOR (I, J)
+E
+The logical inclusive OR of the corresponding bit arguments
+IPARITY (ARRAY, DIM [, MASK]) or IPARITY (ARRAY [, MASK])
+T
+The result of a bitwise exclusive OR operation
+IS_CONTIGUOUS (ARRAY)
+I
+The contiguity of an array
+IS_IOSTAT_END (I)
+E
+.TRUE. for an end-of-file condition
+IS_IOSTAT_EOR (I)
+E
+.TRUE. for an end-of-record condition
+ISHA (I, SHIFT)
+E
+Argument I shifted left or right by a specified number of bits
+ISHC (I, SHIFT)
+E
+Argument I rotated left or right by a specified number of bits
+ISHFT (I, SHIFT)
+E
+The logical end-off shift of the bits in argument I
+ISHFTC (I, SHIFT [,SIZE])
+E
+The logical circular shift of the bits in argument I
+ISHL (I, SHIFT)
+E
+Argument I logically shifted left or right by a specified number of bits
+ISNAN (X)
+E
+Tests for Not-a-Number (NaN) values
+IXOR (I, J)
+E
+See IEOR
+KIND (X)
+I
+The kind type parameter of the argument
+LBOUND (ARRAY [,DIM] [,KIND])
+I
+The lower bounds of an array (or one of its dimensions)
+LEADZ (I)
+E
+The number of leading zero bits in an integer
+LEN (STRING [,KIND])
+I
+The length (number of characters) of the argument character string
+LEN_TRIM (STRING [,KIND])
+E
+The length of the specified string without trailing blanks
+LGE (STRING_A, STRING_B)
+E
+A logical value determined by a > or = comparison of the arguments
+LGT (STRING_A, STRING_ B)
+E
+A logical value determined by a > comparison of the arguments
+LLE (STRING_A, STRING_B)
+E
+A logical value determined by a < or = comparison of the arguments
+LLT (STRING_A, STRING_B)
+E
+A logical value determined by a < comparison of the arguments
+LOC (A)
+I
+The internal address of the argument.
+LOG (X)
+E
+The natural logarithm of the argument
+LOG10 (X)
+E
+The common logarithm (base 10) of the argument
+LOG_GAMMA (X)
+E
+The logarithm of the absolute value of the gamma function
+LOGICAL (L [,KIND])
+E
+The logical value of the argument converted to a logical of type KIND
+LSHIFT (I, POSITIVE_SHIFT)
+E
+See ISHFT
+LSHFT (I, POSITIVE_SHIFT)
+E
+Same as LSHIFT; see ISHFT
+MALLOC (I)
+E
+The starting address for the block of memory allocated
+MASKL (I [,KIND])
+E
+A left-justified mask
+MASKR (I [,KIND])
+E
+A right-justified mask
+MATMUL (MATRIX_A, MATRIX_B)
+T
+The result of matrix multiplication (also called a matrix multiply function)
+MAX (A1, A2 [, A3,...])
+E
+The maximum value in the set of arguments
+MAX1 (A1, A2 [, A3,...])
+E
+The maximum value in the set of real arguments (returned as an integer)
+MAXEXPONENT (X)
+I
+The maximum exponent in the model for the argument
+MAXLOC (ARRAY [,DIM] [,MASK] [,KIND])
+T
+The rank-one array that has the location of the maximum element in the argument array
+MAXVAL (ARRAY [,DIM] [,MASK])
+T
+The maximum value of the elements in the argument array
+MERGE (TSOURCE, FSOURCE, MASK)
+E
+An array that is the combination of two conformable arrays (under a mask)
+MERGE_BITS (I, J, MASK)
+E
+The merge of bits under a mask
+MIN (A1, A2 [, A3,...])
+E
+The minimum value in the set of arguments
+MIN1 (A1, A2 [, A3,...])
+E
+The minimum value in the set of real arguments (returned as an integer)
+MINEXPONENT (X)
+I
+The minimum exponent in the model for the argument
+MINLOC (ARRAY [,DIM] [,MASK] [,KIND])
+T
+The rank-one array that has the location of the minimum element in the argument array
+MINVAL (ARRAY [,DIM] [,MASK])
+T
+The minimum value of the elements in the argument array
+MOD (A, P)
+E
+The remainder of the arguments (has the sign of the first argument)
+MODULO (A, P)
+E
+The modulo of the arguments (has the sign of the second argument)
+NEAREST (X, S)
+E
+The nearest different machine-representable number in a given direction
+NEW_LINE (A)
+I
+A new line character
+NINT (A [,KIND])
+E
+A real value rounded to the nearest integer
+NORM2 (X [,DIM])
+T
+The L2 norm of an array
+NOT (I)
+E
+The logical complement of the argument
+NULL ([MOLD])
+T
+A disassociated pointer
+NUM_IMAGES ()
+T
+The number of images
+OR (I, J)
+E
+See IOR
+PACK (ARRAY, MASK [,VECTOR])
+T
+A packed array of rank one (under a mask)
+PARITY (MASK [, DIM])
+T
+The result of an exclusive OR operation
+POPCNT (I)
+E
+The number of 1 bits in the integer argument
+POPPAR (I)
+E
+The parity of the integer argument
+PRECISION (X)
+I
+The decimal precision (real or complex) of the argument
+PRESENT (A)
+I
+.TRUE. if an actual argument has been provided for an optional dummy argument
+PRODUCT (ARRAY [,DIM] [,MASK])
+T
+The product of the elements of the argument array
+QEXT (A)
+E
+The corresponding REAL(16) precision value of the argument
+QFLOAT (A)
+E
+The corresponding REAL(16) precision value of the integer argument
+RADIX (X)
+I
+The base of the model for the argument
+RANGE (X)
+I
+The decimal exponent range of the model for the argument
+RANF ()
+E
+A random number between 0.0 and RAND_MAX
+RANK (A)
+I
+The rank of a data object
+REAL (A [, KIND])
+E
+The corresponding real value of the argument
+REPEAT (STRING, NCOPIES)
+T
+The concatenation of zero or more copies of the specified string
+RESHAPE (SOURCE, SHAPE [,PAD] [,ORDER])
+T
+An array that has a different shape than the argument array, but the same elements
+RRSPACING (X)
+E
+The reciprocal of the relative spacing near the argument
+RSHIFT (I, NEGATIVE_SHIFT)
+E
+See ISHFT
+RSHFT (I, N EGATIVE_SHIFT)
+E
+Same as RSHIFT; see ISHFT
+SAME_TYPE_AS (A, B)
+I
+Whether two dynamic types are the same.
+SCALE (X, I)
+E
+The value of the exponent part (of the model for the argument) changed by a specified value
+SCAN (STRING, SET [,BACK] [,KIND])
+E
+The position of the specified character (or set of characters) within a string
+SELECTED_CHAR_KIND (NAME)
+T
+The value of the kind type parameter of the character set named by the argument
+SELECTED_INT_KIND (R)
+T
+The integer kind parameter of the argument
+SELECTED_REAL_KIND ([P] [, R])
+T
+The real kind parameter of the argument; one of the optional arguments must be specified
+SET_EXPONENT (X, I)
+E
+The value of the exponent part (of the model for the argument) set to a specified value
+SHAPE (SOURCE [,KIND])
+I
+The shape (rank and extents) of an array or scalar
+SHIFTA (I, SHIFT)
+E
+A right shift with fill
+SHIFTL (I, SHIFT)
+E
+Argument IVALUE shifted left by a specified number of bits
+SHIFTR (I, SHIFT)
+E
+Argument IVALUE shifted right by a specified number of bits
+SIGN (A, B)
+E
+A value with the sign transferred from its second argument
+SIN (X)
+E
+The sine of the argument, which is in radians
+SIND (X)
+E
+The sine of the argument, which is in degreess
+SINH (X)
+E
+The hyperbolic sine of the argument
+SIZE (ARRAY [,DIM] [,KIND])
+I
+The size (total number of elements) of the argument array (or one of its dimensions)
+SIZEOF (X)
+I
+The bytes of storage used by the argument
+SNGL (X)
+E
+The corresponding real value of the argument
+SPACING (X)
+E
+The value of the absolute spacing of model numbers near the argument
+SPREAD (SOURCE, DIM, NCOPIES)
+T
+A replicated array that has an added dimension
+SQRT (X)
+E
+The square root of the argument
+STORAGE_SIZE (A [,KIND])
+I
+The storage size in bits
+SUM (ARRAY [,DIM] [,MASK])
+T
+The sum of the elements of the argument array
+TAN (X)
+E
+The tangent of the argument, which is in radians
+TAND (X)
+E
+The tangent of the argument, which is in degrees
+TANH (X)
+E
+The hyperbolic tangent of the argument
+THIS_IMAGE ([COARRAY [, DIM]])
+T
+The index of the invoking image or the cosubscripts for the image
+TINY (X)
+I
+The smallest positive number in the model for the argument
+TRAILZ (I)
+E
+The number of trailing zero bits in an integer
+TRANSFER (SOURCE, MOLD [,SIZE])
+T
+The bit pattern of SOURCE converted to the type and kind parameters of MOLD
+TRANSPOSE (MATRIX)
+T
+The matrix transpose for the rank-two argument array
+TRIM (STRING)
+T
+The argument with trailing blanks removed
+UBOUND (ARRAY [,DIM] [,KIND])
+I
+The upper bounds of an array (or one of its dimensions)
+UNPACK (VECTOR, MASK, FIELD)
+T
+An array (under a mask) unpacked from a rank-one array
+VERIFY (STRING, SET [,BACK][,KIND])
+E
+The position of the first character in a string that does not appear in the given set of characters
+XOR (I, J)
+E
+See IEOR
+ZEXT (X [,KIND])
+E
+A zero-extended value of the argument
+Key to Classes
+E-Elemental
+I-Inquiry
+T-Transformational
+
+The following table lists specific functions that have no generic
+function associated with them and indicates whether they are elemental,
+nonelemental, or inquiry functions. Optional arguments are shown within
+square brackets.
+
+Specific Functions with No Generic Association
+Generic Function
+Class
+Value Returned
+CACHESIZE (N)
+I
+The size of a level of the memory cache
+CMPLX (X [,Y] [,KIND])
+E
+The corresponding complex value of the argument
+DCMPLX (X, Y)
+E
+The corresponding double complex value of the argument
+DNUM (I)
+E
+The corresponding REAL(8) value of a character string
+DPROD (X, Y)
+E
+The double-precision product of two real arguments
+DREAL (A)
+E
+The corresponding double-precision value of the double-complex argument
+IARG ( )
+I
+See IARGC
+IARGC ( )
+I
+The index of the last command-line argument
+INT_PTR_KIND ( )
+I
+The INTEGER kind that will hold an address
+INUM (I)
+E
+The corresponding INTEGER(2) value of a character string
+JNUM (I)
+E
+The corresponding INTEGER(4) value of a character string
+KNUM (I)
+E
+The corresponding INTEGER(8) value of a character string
+MCLOCK ( )
+I
+The sum of the current process's user time and the user and system time of all its child processes
+NARGS ( )
+I
+The total number of command-line arguments, including the command
+NUMARG ( )
+I
+See IARGC
+QCMPLX (X, Y)
+E
+The corresponding COMPLEX(16) value of the argument
+QNUM (I)
+E
+The corresponding REAL(16) value of a character string
+QREAL (A)
+E
+The corresponding REAL(16) value of the real part of a COMPLEX(16) argument
+RAN (I)
+N
+The next number from a sequence of pseudorandom numbers (uniformly distributed in the range 0 to 1)
+RNUM (I)
+E
+The corresponding REAL(4) value of a character string
+SECNDS (X)
+E
+The system time of day (or elapsed time) as a floating-point value in seconds
+Key to Classes
+E-Elemental
+I-Inquiry
+N-Nonelemental
+
+$DOCUMENT NULL
+$!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+jsujsu
+      call demo_acos
+      call demo_aimag
+      call demo_aint
+      call demo_anint
+      call demo_asin
+      call demo_atan
+      call demo_atan2
+      call demo_btest
+      call demo_char
+      call demo_cmplx
+      call demo_conjg
+      call demo_cos_c4
+      call demo_cos_r8
+      call demo_cosh
+      call demo_dble
+      call demo_dim
+      call demo_dprod
+      call demo_exp
+      call demo_iand_i4
+      call demo_ibclr
+      call demo_ibits
+      call demo_ibset
+      call demo_ichar
+      call demo_ieor_i4
+      call demo_index
+      call demo_int
+      call demo_ior_i4
+      call demo_ishft
+      call demo_ishftc
+      call demo_len
+      call demo_len_trim
+      call demo_lge
+      call demo_lgt
+      call demo_lle
+      call demo_llt
+      call demo_log
+      call demo_log10
+      call demo_max
+      call demo_min
+      call demo_mod_i4
+      call demo_mod_r4
+      call demo_mvbits
+      call demo_nint
+      call demo_not_i4
+      call demo_real_c4
+      call demo_sign
+      call demo_sin_r8
+      call demo_sinh
+      call demo_sqrt
+      call demo_tan
+      call demo_tanh
+c
+c  Terminate.
+c
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'F77_INTRINSICS'
+      write ( *, '(a)' ) '  Normal end of execution.'
+
+      write ( *, '(a)' ) ' '
+      call timestamp ( )
+
+      stop
+      end
+      subroutine demo_acos
+
+c*********************************************************************72
+c
+cc demo_ACOS tests ACOS.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function ACOS returns the inverse cosine of a number X.
+c    assuming -1 <= X <= 1.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer i
+      double precision r8_uniform
+      integer seed
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      double precision y
+      double precision z
+
+      seed = 123456789
+      x_hi = 1.0D+00
+      x_lo = -1.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_ACOS'
+      write ( *, '(a)' ) '  ACOS is a FORTRAN77 function which returns'
+      write ( *, '(a)' )
+     &  '  the inverse cosine of a value between -1 and 1'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' )
+     &  '      X               ACOS(X)     COS(ACOS(X))'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        y = acos ( x )
+        z = cos ( y )
+        write ( *, '(2x,g14.6,2x,g14.6,2x,g14.6)' ) x, y, z
+      end do
+
+      return
+      end
+      subroutine demo_aimag
+
+c*********************************************************************72
+c
+cc demo_AIMAG tests AIMAG.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function AIMAG returns the imaginary part of a
+c    complex number.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      complex c4_uniform_01
+      complex c
+      integer i
+      integer seed
+      real r
+
+      seed = 123456789
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_AIMAG'
+      write ( *, '(a)' )
+     &  '  AIMAG is a FORTRAN77 function which returns the'
+      write ( *, '(a)' ) '  imaginary part of a complex number.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' )
+     &  '                  X                      AIMAG(X)'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        c = c4_uniform_01 ( seed )
+        r = aimag ( c )
+        write ( *, '(2x,f14.6,f14.6,6x,f14.6,f14.6)' ) c, r
+      end do
+
+      return
+      end
+      subroutine demo_aint
+
+c*********************************************************************72
+c
+cc demo_AINT tests AINT.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function AINT returns a real number rounded towards
+c    zero.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer i
+      double precision r8_uniform
+      integer seed
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      double precision y
+
+      seed = 123456789
+      x_lo = -10.0D+00
+      x_hi =  10.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_AINT'
+      write ( *, '(a)' )
+     &  '  AINT is a FORTRAN77 function which returns the'
+      write ( *, '(a)' )
+     &  '  value of a real number rounded towards zero.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '       X              AINT(X)'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        y = aint ( x )
+        write ( *, '(2x,g14.6,2x,g14.6)' ) x, y
+      end do
+
+      return
+      end
+      subroutine demo_anint
+
+c*********************************************************************72
+c
+cc demo_ANINT tests ANINT.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function ANINT returns, as a real value, the nearest
+c    integer to a given real value.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer i
+      double precision r8_uniform
+      integer seed
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      double precision y
+
+      seed = 123456789
+      x_lo = -10.0D+00
+      x_hi =  10.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_ANINT'
+      write ( *, '(a)' )
+     &  '  ANINT is a FORTRAN77 function which returns,'
+      write ( *, '(a)' ) '  as a real value, the nearest integer to a '
+      write ( *, '(a)' ) '  given real number.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '       X             ANINT(X)'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        y = anint ( x )
+        write ( *, '(2x,g14.6,2x,g14.6)' ) x, y
+      end do
+
+      return
+      end
+      subroutine demo_asin
+
+c*********************************************************************72
+c
+cc demo_ASIN tests ASIN.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function ASIN returns the inverse sine of a number X.
+c    assuming -1 <= X <= 1.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer i
+      double precision r8_uniform
+      integer seed
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      double precision y
+      double precision z
+
+      seed = 123456789
+      x_lo = -1.0D+00
+      x_hi =  1.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_ASIN'
+      write ( *, '(a)' )
+     &  '  ASIN is a FORTRAN77 function which returns the'
+      write ( *, '(a)' ) '  inverse sine of a value between -1 and 1'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' )
+     &  '      X               ASIN(X)     SIN(ASIN(X))'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        y = asin ( x )
+        z = sin ( y )
+        write ( *, '(2x,g14.6,2x,g14.6,2x,g14.6)' ) x, y, z
+      end do
+
+      return
+      end
+      subroutine demo_atan
+
+c*********************************************************************72
+c
+cc demo_ATAN tests ATAN.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function ATAN returns the inverse tangent of a number X.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer i
+      double precision r8_uniform
+      integer seed
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      double precision y
+      double precision z
+
+      seed = 123456789
+      x_lo = -10.0D+00
+      x_hi =  10.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_ATAN'
+      write ( *, '(a)' )
+     &  '  ATAN is a FORTRAN77 function which returns the'
+      write ( *, '(a)' ) '  inverse tangent of a value'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' )
+     &  '      X               ATAN(X)     TAN(ATAN(X))'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        y = atan ( x )
+        z = tan ( y )
+        write ( *, '(2x,g14.6,2x,g14.6,2x,g14.6)' ) x, y, z
+      end do
+
+      return
+      end
+      subroutine demo_atan2
+
+c*********************************************************************72
+c
+cc demo_ATAN2 tests ATAN2.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function ATAN2 returns the inverse tangent of a number X.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      double precision r8_uniform
+      integer i
+      integer seed
+      double precision w
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      double precision y
+      double precision z
+
+      seed = 123456789
+      x_lo = -10.0D+00
+      x_hi =  10.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_ATAN2'
+      write ( *, '(a)' )
+     &  '  ATAN2 is a FORTRAN77 function which returns the'
+      write ( *, '(a)' ) '  inverse tangent of a value'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' )
+     &  '       X               Y           ATAN2(Y,X)  TAN(ATAN2(Y,X))'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        y = r8_uniform ( x_lo, x_hi, seed )
+        z = atan2 ( y, x )
+        w = tan ( z )
+        write ( *, '(2x,g14.6,2x,g14.6,2x,g14.6,2x,g14.6)' ) x, y, z, w
+      end do
+
+      return
+      end
+      subroutine demo_btest
+
+c*********************************************************************72
+c
+cc demo_BTEST tests BTEST.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function BTEST reports whether a given bit is 0 or 1
+c    in an integer word.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer i1
+      integer i2
+      logical l
+      integer pos
+      integer pos_high
+      character*32 s
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_BTEST'
+      write ( *, '(a)' )
+     &  '  BTEST(I,POS) is a FORTRAN77 function which is TRUE'
+      write ( *, '(a)' ) '  if bit POS of I is 1.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' )
+     &  '  Here, we are only going to check the lowest 32 bits.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '         I       POS    BTEST(I,POS)'
+      write ( *, '(a)' ) ' '
+
+      i1 = 213456
+      pos_high = min ( 32, bit_size(i1) )
+
+      do pos = 0, pos_high - 1
+
+        l = btest ( i1, pos )
+
+        if ( l ) then
+          s(pos_high-pos:pos_high-pos) = '1'
+        else
+          s(pos_high-pos:pos_high-pos) = '0'
+        end if
+
+        write ( *, '(2x,i8,2x,i8,10x,l1)' ) i1, pos, l
+
+      end do
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,i12,a)' )
+     &  '  The binary representation of ', i1, ' is:'
+      write ( *, '(a)' ) '  "' // s //'".'
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '         I       POS    BTEST(I,POS)'
+      write ( *, '(a)' ) ' '
+
+      i1 = -28
+
+      do pos = 0, pos_high - 1
+
+        l = btest ( i1, pos )
+
+        if ( l ) then
+          s(pos_high-pos:pos_high-pos) = '1'
+        else
+          s(pos_high-pos:pos_high-pos) = '0'
+        end if
+
+        write ( *, '(2x,i8,2x,i8,10x,l1)' ) i1, pos, l
+
+      end do
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,i12,a)' )
+     &  '  The binary representation of ', i1, ' is:'
+      write ( *, '(a)' ) '  "' // s //'".'
+
+      return
+      end
+      subroutine demo_char
+
+c*********************************************************************72
+c
+cc demo_CHAR tests CHAR
+c
+c  Discussion:
+c
+c    The FORTRAN77 function CHAR returns the character corresponding
+c    to the given character index, between 0 and 255.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      character c
+      logical ch_is_printable
+      integer i
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_CHAR'
+      write ( *, '(a)' )
+     &  '  CHAR is a FORTRAN77 function which returns the'
+      write ( *, '(a)' ) '  character of given character index.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '         I     CHAR(I)'
+      write ( *, '(a)' ) ' '
+
+      do i = 0, 255
+
+        c = char ( i )
+
+        if ( ch_is_printable ( c ) ) then
+          write ( *, '(2x,i8,8x,a1)' ) i, c
+        end if
+
+      end do
+
+      return
+      end
+      subroutine demo_cmplx
+
+c*********************************************************************72
+c
+cc demo_CMPLX tests CMPLX.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function CMPLX returns a complex number given its
+c    real and imaginary parts.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_CMPLX'
+      write ( *, '(a)' )
+     &  '  CMPLX is a FORTRAN77 function which returns the'
+      write ( *, '(a)' )
+     &  '  complex number formed by real and imaginary parts.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,f14.6,f14.6)' ) '  CMPLX(1)        ', cmplx ( 1 )
+      write ( *, '(a,f14.6,f14.6)' )
+     &  '  CMPLX(2,3)      ', cmplx ( 2, 3 )
+      write ( *, '(a,f14.6,f14.6)' )
+     &  '  CMPLX(4.5)      ', cmplx ( 4.5 )
+      write ( *, '(a,f14.6,f14.6)' )
+     &  '  CMPLX(6.7, 8.9 )', cmplx ( 6.7, 8.9 )
+
+      return
+      end
+      subroutine demo_conjg
+
+c*********************************************************************72
+c
+cc demo_CONJG tests CONJG.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function CONJG returns the conjugate of a complex number.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      complex c4_uniform_01
+      complex c1
+      complex c2
+      integer i
+      integer seed
+
+      seed = 123456789
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_CONJG'
+      write ( *, '(a)' ) '  CONJG is a FORTRAN77 function which'
+      write ( *, '(a)' ) '  returns the conjugate of a complex number.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,a)' ) '                  X ',
+     &  '                            CONJG(X)'
+      write ( *, '(a,a)' )
+     &  '     --------------------------      ',
+     &  '----------------------------'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        c1 = c4_uniform_01 ( seed )
+        c2 = conjg ( c1 )
+        write ( *, '(2x,f14.6,f14.6,6x,f14.6,f14.6)' ) c1, c2
+      end do
+
+      return
+      end
+      subroutine demo_cos_c4
+
+c*********************************************************************72
+c
+cc demo_COS_C4 tests COS on complex arguments.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function COS returns the cosine of a real or complex number.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      complex c4_uniform_01
+      integer i
+      integer seed
+      complex x_c4
+      complex y_c4
+
+      seed = 123456789
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_COS_C4'
+      write ( *, '(a)' ) '  COS is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the cosine of a real or complex number.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '  Here we use complex arguments.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,a)' ) '              X',
+     &  '                          COS(X)'
+      write ( *, '(a,a)' )
+     &  '    --------------------------  ',
+     &  '----------------------------'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x_c4 = c4_uniform_01 ( seed )
+        y_c4 = cos ( x_c4 )
+        write ( *, '(2x,2g14.6,2x,2g14.6)' ) x_c4, y_c4
+      end do
+
+      return
+      end
+      subroutine demo_cos_r8
+
+c*********************************************************************72
+c
+cc demo_COS_R8 tests COS on double precision arguments.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function COS returns the cosine of a real or complex number.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      double precision r8_uniform
+      integer i
+      integer seed
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      double precision y
+
+      seed = 123456789
+      x_lo = -10.0D+00
+      x_hi =  10.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_COS_R8'
+      write ( *, '(a)' ) '  COS is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the cosine of a real or complex number.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '  Here we use double precision arguments.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '       X              COS(X)'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        y = cos ( x )
+        write ( *, '(2x,g14.6,2x,g14.6)' ) x, y
+      end do
+
+      return
+      end
+      subroutine demo_cosh
+
+c*********************************************************************72
+c
+cc demo_COSH tests COSH.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function COSH returns the hyperbolic cosine of a real number.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      double precision r8_uniform
+      integer i
+      integer seed
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      double precision y
+
+      seed = 123456789
+      x_lo = -10.0D+00
+      x_hi =  10.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_COSH'
+      write ( *, '(a)' ) '  COSH is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the hyperbolic cosine of a real number.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '       X              COSH(X)'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        y = cosh ( x )
+        write ( *, '(2x,g14.6,2x,g14.6)' ) x, y
+      end do
+
+      return
+      end
+      subroutine demo_dble
+
+c*********************************************************************72
+c
+cc demo_DBLE tests DBLE.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function DBLE converts a numeric value to double precision.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      complex x_c4
+      integer x_i4
+      real x_r4
+      double precision x_r8
+
+      x_c4 = ( 1.1E+00, 2.2E+00 )
+      x_i4 = 5
+      x_r4 = 7.7E+00
+      x_r8 = 8.8D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_DBLE'
+      write ( *, '(a)' ) '  DBLE is a FORTRAN77 function which converts'
+      write ( *, '(a)' )
+     &  '  a complex, integer or real value to double precision'
+      write ( *, '(a)' ) '  real'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' )
+     &  '  Type                   X             DBLE(X)'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,f6.4,2x,f6.4,2x,f6.4)' ) '  complex           ',
+     & x_c4, dble ( x_c4 )
+      write ( *, '(a,i6,10x,f6.4)'          ) '  integer           ',
+     & x_i4, dble ( x_i4 )
+      write ( *, '(a,f6.4,10x,f6.4)'        ) '  real              ',
+     & x_r4, dble ( x_r4 )
+      write ( *, '(a,f6.4,10x,f6.4)'        ) '  double precision  ',
+     & x_r8, dble ( x_r8 )
+
+      return
+      end
+      subroutine demo_dim
+
+c*********************************************************************72
+c
+cc demo_DIM tests DIM
+c
+c  Discussion:
+c
+c    The FORTRAN77 function DIM(X,Y) returns the maximum of (X-Y) and 0.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer i4_uniform
+      real r
+      integer seed
+      integer test
+      integer demo_num
+      parameter ( demo_num = 5 )
+      integer x
+      integer y
+      integer z
+
+      seed = 123456789
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_DIM'
+      write ( *, '(a)' ) '  DIM is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the maximum of X-Y or 0.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '  Arithmetic type: integer X, Y'
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '       X       Y  DIM(X,Y)'
+      write ( *, '(a)' ) ' '
+
+      do test = 1, demo_num
+
+        x = i4_uniform ( 0, 100, seed )
+        y = i4_uniform ( 0, 100, seed )
+
+        z = dim ( x, y )
+
+        write ( *, '(2x,i6,2x,i6,2x,i6)' ) x, y, z
+
+      end do
+
+      return
+      end
+      subroutine demo_exp
+
+c*********************************************************************72
+c
+cc demo_EXP tests EXP.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function EXP returns the exponential of a real number.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      double precision r8_uniform
+      integer i
+      integer seed
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      double precision y
+
+      seed = 123456789
+      x_lo = -10.0D+00
+      x_hi =  10.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_EXP'
+      write ( *, '(a)' )
+     &  '  EXP is a FORTRAN77 function which returns the'
+      write ( *, '(a)' ) '  exponential of a real number.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '       X              EXP(X)'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        y = exp ( x )
+        write ( *, '(2x,g14.6,2x,g14.6)' ) x, y
+      end do
+
+      return
+      end
+      subroutine demo_iand_i4
+
+c*********************************************************************72
+c
+cc demo_IAND_I4 tests IAND on integer arguments.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function IAND returns the bitwise AND
+c    of two integers.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer i
+      integer i4_uniform
+      integer j
+      integer k
+      integer seed
+      integer test
+
+      seed = 123456789
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_IAND_I4'
+      write ( *, '(a)' )
+     &  '  IAND is a FORTRAN77 function which returns the'
+      write ( *, '(a)' ) '  bitwise AND of two integers.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '  Here, I and J are integers.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '         I         J    IAND(I,J)'
+      write ( *, '(a)' ) ' '
+
+      do test = 1, 10
+        i = i4_uniform ( 0, 100, seed )
+        j = i4_uniform ( 0, 100, seed )
+        k = iand ( i, j )
+        write ( *, '(2x,i8,2x,i8,2x,i8)' ) i, j, k
+      end do
+
+      return
+      end
+      subroutine demo_ibclr
+
+c*********************************************************************72
+c
+cc demo_IBCLR tests IBCLR.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function IBCLR sets a given bit to zero in an integer word.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer i1
+      integer i2
+      integer pos
+c
+c  Put 11 consecutive 1's into I1.
+c
+      i1 = 0
+      do pos = 0, 10
+        i1 = 2 * i1 + 1
+      end do
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_IBCLR'
+      write ( *, '(a)' )
+     &  '  IBCLR is a FORTRAN77 function which sets a given'
+      write ( *, '(a)' ) '  bit to zero in an integer word.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '         I       POS    IBCLR(I,POS)'
+      write ( *, '(a)' ) ' '
+      do pos = 0, 10
+        i2 = ibclr ( i1, pos )
+        write ( *, '(2x,i8,2x,i8,2x,i8)' ) i1, pos, i2
+      end do
+
+      return
+      end
+      subroutine demo_ibits
+
+c*********************************************************************72
+c
+cc demo_IBITS tests IBITS.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function IBITS extracts a sequence of bits from
+c    an integer word.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer byte
+      integer i
+      integer i1
+      integer i2
+      integer i4
+      integer len
+      integer pos
+
+      i1 = 1396
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_IBITS'
+      write ( *, '(a)' )
+     &  '  IBITS is a FORTRAN77 function which extracts'
+      write ( *, '(a)' ) '  LEN bits from word I start at position POS.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' )
+     &  '         I       POS    LEN    IBITS(I,POS,LEN)'
+      write ( *, '(a)' ) ' '
+      len = 3
+      do pos = 0, 10
+        i2 = ibits ( i1, pos, len )
+        write ( *, '(2x,i8,2x,i8,2x,i8,2x,i8)' ) i1, pos, len, i2
+      end do
+
+      write ( *, '(a)' ) ' '
+
+      pos = 2
+      do len = 1, 10
+        i2 = ibits ( i1, pos, len )
+        write ( *, '(2x,i8,2x,i8,2x,i8,2x,i8)' ) i1, pos, len, i2
+      end do
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' )
+     &  '  Use IBITS to extract the 4 bytes that make up'
+      write ( *, '(a)' ) '  an integer word.'
+      write ( *, '(a)' ) ' '
+c
+c  3: 00111110 =  62
+c
+c  2: 00000100 =   4
+c
+c  1: 11010010 = 210
+c
+c  0: 00001111 =  15
+c
+      i4 = 2**29 + 2**28 + 2**27 + 2**26 + 2**25
+     &   + 2**18
+     &   + 2**15 + 2**14 + 2**12 + 2**9
+     &   + 2**3 + 2**2 + 2**1 + 2**0
+
+      write ( *, '(a,i12)' ) '  I4 = ', i4
+      write ( *, '(a)' ) ' '
+      len = 8
+      do i = 0, 3
+        pos = i * len
+        byte = ibits ( i4, pos, len )
+        write ( *, '(a,i8,a,i8)' ) '  Byte ', i, ' = ', byte
+      end do
+
+      return
+      end
+      subroutine demo_ibset
+
+c*********************************************************************72
+c
+cc demo_IBSET tests IBSET.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function IBSET sets a given bit to one in an integer word.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer i1
+      integer i2
+      integer pos
+
+      i1 = 0
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_IBSET'
+      write ( *, '(a)' )
+     &  '  IBSET is a FORTRAN77 function which sets a given'
+      write ( *, '(a)' ) '  bit to one in an integer word.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '         I       POS    IBSET(I,POS)'
+      write ( *, '(a)' ) ' '
+      do pos = 0, 10
+        i2 = ibset ( i1, pos )
+        write ( *, '(2x,i8,2x,i8,2x,i8)' ) i1, pos, i2
+        i1 = i2
+      end do
+
+      return
+      end
+      subroutine demo_ichar
+
+c*********************************************************************72
+c
+cc demo_ICHAR tests ICHAR
+c
+c  Discussion:
+c
+c    The FORTRAN77 function ICHAR returns the character index (between 0
+c    and 255) of a character.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      character c1
+      character c2
+      integer i
+      integer i1
+      character*25 string
+
+      string = 'This is a string of text!'
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_ICHAR'
+      write ( *, '(a)' )
+     &  '  ICHAR is a FORTRAN77 function which returns the'
+      write ( *, '(a)' ) '  character index of a given character'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '  C        ICHAR(C)    CHAR(ICHAR(C))'
+      write ( *, '(a)' ) ' '
+
+      do i = 1, len ( string )
+
+        c1 = string (i:i)
+
+        i1 = ichar ( c1 )
+
+        c2 = char ( i1 )
+
+        write ( *, '(2x,a1,8x,i8,8x,a1)' ) c1, i1, c2
+
+      end do
+
+      return
+      end
+      subroutine demo_ieor_i4
+
+c*********************************************************************72
+c
+cc demo_IEOR_I4 tests IEOR on integer arguments.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function IEOR returns the bitwise exclusive OR
+c    of two integers.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer i
+      integer i4_uniform
+      integer j
+      integer k
+      real r
+      integer seed
+      integer test
+
+      seed = 123456789
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_IEOR_I4'
+      write ( *, '(a)' ) '  IEOR is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the bitwise exclusive OR of two integers.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '  Here, I and J are integers.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '         I         J    IEOR(I,J)'
+      write ( *, '(a)' ) ' '
+
+      do test = 1, 10
+        i = i4_uniform ( 0, 100, seed )
+        j = i4_uniform ( 0, 100, seed )
+        k = ieor ( i, j )
+        write ( *, '(2x,i8,2x,i8,2x,i8)' ) i, j, k
+      end do
+
+      return
+      end
+      subroutine demo_index
+
+c*********************************************************************72
+c
+cc demo_INDEX tests INDEX.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function INDEX determines the first occurrence
+c    of a substring in a string.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_INDEX'
+      write ( *, '(a)' ) '  INDEX(S,SUB) is a FORTRAN77 function which'
+      write ( *, '(a)' )
+     &  '  returns the location of the first occurrence'
+      write ( *, '(a)' ) '  of substring SUB in string S.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,i8)' )
+     &  '  index ( ''THE CATATONIC CAT'', ''CAT'' )',
+     &  index ( 'THE CATATONIC CAT', 'CAT' )
+      write ( *, '(a,i8)' )
+     &  '  index ( ''THE CATATONIC CAT'', ''cat'' )',
+     &  index ( 'THE CATATONIC CAT', 'cat' )
+
+      return
+      end
+      subroutine demo_int
+
+c*********************************************************************72
+c
+cc demo_INT tests INT.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function INT converts a numeric value to an integer.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      complex x_c4
+      integer x_i4
+      real x_r4
+      double precision x_r8
+
+      x_c4 = ( 1.1E+00, 2.2E+00 )
+      x_i4 = 5
+      x_r4 = 7.7E+00
+      x_r8 = 8.8D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_INT'
+      write ( *, '(a)' ) '  INT is a FORTRAN77 function which converts'
+      write ( *, '(a)' )
+     &  '  a complex, integer or real value to integer.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '  Type                   X             INT(X)'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,f6.4,2x,f6.4,2x,i6)' ) '  complex             ',
+     &  x_c4, int ( x_c4 )
+      write ( *, '(a,i6,10x,i6)'          ) '  integer             ',
+     &  x_i4, int ( x_i4 )
+      write ( *, '(a,f6.4,10x,i6)'        ) '  real                ',
+     &  x_r4, int ( x_r4 )
+      write ( *, '(a,f6.4,10x,i6)'        ) '  double precision    ',
+     &  x_r8, int ( x_r8 )
+
+      return
+      end
+      subroutine demo_ior_i4
+
+c*********************************************************************72
+c
+cc demo_IOR_I4 tests IOR on integer arguments.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function IOR returns the bitwise inclusive OR
+c    of two integers.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer i
+      integer i4_uniform
+      integer j
+      integer k
+      integer seed
+      integer test
+
+      seed = 123456789
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_IOR_I4'
+      write ( *, '(a)' ) '  IOR is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the bitwise inclusive OR of two integers.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '  Here, I and J are integers.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '         I         J     IOR(I,J)'
+      write ( *, '(a)' ) ' '
+
+      do test = 1, 10
+        i = i4_uniform ( 0, 100, seed )
+        j = i4_uniform ( 0, 100, seed )
+        k = ior ( i, j )
+        write ( *, '(2x,i8,2x,i8,2x,i8)' ) i, j, k
+      end do
+
+      return
+      end
+      subroutine demo_ishft
+
+c*********************************************************************72
+c
+cc demo_ISHFT tests ISHFT.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function ISHFT shifts the bits in an integer word.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer i1
+      integer i2
+      integer shift
+
+      i1 = 89
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_ISHFT'
+      write ( *, '(a)' ) '  ISHFT is a FORTRAN77 function which shifts'
+      write ( *, '(a)' ) '  the bits in an integer word.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '         I       SHIFT    ISHFT(I,SHIFT)'
+      write ( *, '(a)' ) ' '
+      do shift = -5, 5
+        i2 = ishft ( i1, shift )
+        write ( *, '(2x,i8,2x,i8,2x,i8)' ) i1, shift, i2
+      end do
+
+      return
+      end
+      subroutine demo_ishftc
+
+c*********************************************************************72
+c
+cc demo_ISHFTC tests ISHFTC.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function ISHFTC circular-shifts the bits in an integer word.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer i1
+      integer i2
+      integer shift
+      integer size
+
+      i1 = 89
+      size = 32
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_ISHFTC'
+      write ( *, '(a)' ) '  ISHFTC is a FORTRAN77 function which'
+      write ( *, '(a)' )
+     &  '  circular-shifts the bits in an integer word.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' )
+     &  '         I       SHIFT    ISHFTC(I,SHIFT,SIZE)'
+      write ( *, '(a)' ) ' '
+      do shift = -5, 5
+        i2 = ishftc ( i1, shift, size )
+        write ( *, '(2x,i8,2x,i8,2x,i12)' ) i1, shift, i2
+      end do
+
+      return
+      end
+      subroutine demo_len
+
+c*********************************************************************72
+c
+cc demo_LEN tests LEN.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function LEN returns the declared length of a
+c    character string.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      character*1 s1
+      character*2 s2
+      character*4 s4
+      character*8 s8
+      character*16 s16
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_LEN'
+      write ( *, '(a)' )
+     &  '  LEN is a FORTRAN77 function which returns the'
+      write ( *, '(a)' )
+     &  '  declared length of a string variable, or the length of'
+      write ( *, '(a)' ) '  a string constant'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '      S                     LEN(S)'
+      write ( *, '(a)' ) '   ----------               -----'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,i8)' ) '  character*1            ', len ( s1 )
+      write ( *, '(a,i8)' ) '  character*2            ', len ( s2 )
+      write ( *, '(a,i8)' ) '  character*4            ', len ( s4 )
+      write ( *, '(a,i8)' ) '  character*8            ', len ( s8 )
+      write ( *, '(a,i8)' ) '  character*16           ', len ( s16 )
+      write ( *, '(a,i8)' )
+     &  ' "A STRING"              ', len ( 'A STRING' )
+
+      return
+      end
+      subroutine demo_len_trim
+
+c*********************************************************************72
+c
+cc demo_LEN_TRIM tests LEN_TRIM.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function LEN_TRIM returns the "used" length of a
+c    character string, up to the last non_blank.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      character*10 s
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_LEN_TRIM'
+      write ( *, '(a)' )
+     &  '  LEN_TRIM is a FORTRAN77 function which returns the'
+      write ( *, '(a)' )
+     &  '  "used" length of a string variable up to the last'
+      write ( *, '(a)' ) '  nonblank.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '      S          LEN_TRIM(S)'
+      write ( *, '(a)' ) '   ----------    ----------'
+      write ( *, '(a)' ) ' '
+      s = '1234567890'
+      write ( *, '(a,i8)' ) '  "' // s // '"', len_trim(s)
+      s = '12345     '
+      write ( *, '(a,i8)' ) '  "' // s // '"', len_trim(s)
+      s = '     67890'
+      write ( *, '(a,i8)' ) '  "' // s // '"', len_trim(s)
+      s = '    5     '
+      write ( *, '(a,i8)' ) '  "' // s // '"', len_trim(s)
+      s = '1 3 5 7 9 '
+      write ( *, '(a,i8)' ) '  "' // s // '"', len_trim(s)
+
+      return
+      end
+      subroutine demo_lge
+
+c*********************************************************************72
+c
+cc demo_LGE tests LGE.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function LGE(S1,S2) returns the value of
+c    "string S1 is lexically greater than or equal to string S2".
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      character*3 s4
+      character*3 s5
+      character*4 s6
+      character*3 s7
+      character*3 s8
+
+      s4 = 'boy'
+      s5 = 'cat'
+      s6 = 'cats'
+      s7 = 'dog'
+      s8 = 'CAT'
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_LGE'
+      write ( *, '(a)' )
+     &  '  LGE is a FORTRAN77 function which returns the value'
+      write ( *, '(a)' ) '  of "S1 >= S2" where S1 and S2 are strings.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '    S1    S2   LGE(S1,S2)'
+      write ( *, '(a)' ) '   ---   ---   ----------'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s4 // '"  "' // s4 // '"  ', lge ( s4, s4 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s4 // '"  "' // s5 // '"  ', lge ( s4, s5 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s5 // '"  "' // s4 // '"  ', lge ( s5, s4 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s5 // '"  "' // s7 // '"  ', lge ( s5, s7 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s5 // '"  "' // s8 // '"  ', lge ( s5, s8 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s5 // '"  "' // s6 //  '" ', lge ( s5, s6 )
+
+      return
+      end
+      subroutine demo_lgt
+
+c*********************************************************************72
+c
+cc demo_LGT tests LGT.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function LGT(S1,S2) returns the value of
+c    "string S1 is lexically greater than string S2".
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    05 July 2006
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      character*3 s4
+      character*3 s5
+      character*4 s6
+      character*3 s7
+      character*3 s8
+
+      s4 = 'boy'
+      s5 = 'cat'
+      s6 = 'cats'
+      s7 = 'dog'
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_LGT'
+      write ( *, '(a)' )
+     &  '  LGT is a FORTRAN77 function which returns the value'
+      write ( *, '(a)' ) '  of "S1 > S2" where S1 and S2 are strings.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '    S1    S2   LGT(S1,S2)'
+      write ( *, '(a)' ) '   ---   ---   ----------'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s4 // '"  "' // s4 // '"  ', lgt ( s4, s4 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s4 // '"  "' // s5 // '"  ', lgt ( s4, s5 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s5 // '"  "' // s4 // '"  ', lgt ( s5, s4 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s5 // '"  "' // s7 // '"  ', lgt ( s5, s7 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s5 // '"  "' // s8 // '"  ', lgt ( s5, s8 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s5 // '"  "' // s6 //  '" ', lgt ( s5, s6 )
+
+      return
+      end
+      subroutine demo_lle
+
+c*********************************************************************72
+c
+cc demo_LLE tests LLE.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function LLE(S1,S2) returns the value of
+c    "string S1 is lexically less than or equal to string S2".
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      character*3 s4
+      character*3 s5
+      character*4 s6
+      character*3 s7
+      character*3 s8
+
+      s4 = 'boy'
+      s5 = 'cat'
+      s6 = 'cats'
+      s7 = 'dog'
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_LLE'
+      write ( *, '(a)' )
+     &  '  LLE is a FORTRAN77 function which returns the value'
+      write ( *, '(a)' ) '  of "S1 <= S2" where S1 and S2 are strings.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '    S1    S2   LLE(S1,S2)'
+      write ( *, '(a)' ) '   ---   ---   ----------'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s4 // '"  "' // s4 // '"  ', lle ( s4, s4 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s4 // '"  "' // s5 // '"  ', lle ( s4, s5 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s5 // '"  "' // s4 // '"  ', lle ( s5, s4 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s5 // '"  "' // s7 // '"  ', lle ( s5, s7 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s5 // '"  "' // s8 // '"  ', lle ( s5, s8 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s5 // '"  "' // s6 //  '" ', lle ( s5, s6 )
+
+      return
+      end
+      subroutine demo_llt
+
+c*********************************************************************72
+c
+cc demo_LLT tests LLT.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function LLT(S1,S2) returns the value of
+c    "string S1 is lexically less than string S2".
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      character*3 s4
+      character*3 s5
+      character*4 s6
+      character*3 s7
+      character*3 s8
+
+      s4 = 'boy'
+      s5 = 'cat'
+      s6 = 'cats'
+      s7 = 'dog'
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_LGT'
+      write ( *, '(a)' )
+     &  '  LLT is a FORTRAN77 function which returns the'
+      write ( *, '(a)' )
+     &  '  value of "S1 < S2" where S1 and S2 are strings.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '    S1    S2   LLT(S1,S2)'
+      write ( *, '(a)' ) '   ---   ---   ----------'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s4 // '"  "' // s4 // '"  ', llt ( s4, s4 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s4 // '"  "' // s5 // '"  ', llt ( s4, s5 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s5 // '"  "' // s4 // '"  ', llt ( s5, s4 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s5 // '"  "' // s7 // '"  ', llt ( s5, s7 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s5 // '"  "' // s8 // '"  ', llt ( s5, s8 )
+      write ( *, '(a,8x,l1)' )
+     &  '  "' // s5 // '"  "' // s6 //  '" ', llt ( s5, s6 )
+
+      return
+      end
+      subroutine demo_log
+
+c*********************************************************************72
+c
+cc demo_LOG tests LOG.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function LOG returns the natural logarithm of a real number.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      double precision r8_uniform
+      integer i
+      integer seed
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      double precision y
+      double precision z
+
+      seed = 123456789
+      x_lo =   0.0D+00
+      x_hi =  10.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_LOG'
+      write ( *, '(a)' ) '  LOG is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the natural logarithm of a real number.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '       X              LOG(X)     EXP(LOG(X))'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        y = log ( x )
+        z = exp ( y )
+        write ( *, '(2x,g14.6,2x,g14.6,2x,g14.6)' ) x, y, z
+      end do
+
+      return
+      end
+      subroutine demo_log10
+
+c*********************************************************************72
+c
+cc demo_LOG10 tests LOG10.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function LOG10 returns the base 10 logarithm of a
+c    real number.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      double precision r8_uniform
+      integer i
+      integer seed
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      double precision y
+      double precision z
+
+      seed = 123456789
+      x_lo =   0.0D+00
+      x_hi =  10.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_LOG10'
+      write ( *, '(a)' ) '  LOG10 is a FORTRAN77 function which'
+      write ( *, '(a)' ) '  returns the base 10 logarithm '
+      write ( *, '(a)' ) '  of a real number.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' )
+     &  '       X              LOG10(X)     10**(LOG(X))'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        y = log10 ( x )
+        z = 10.0D+00**y
+        write ( *, '(2x,g14.6,2x,g14.6,2x,g14.6)' ) x, y, z
+      end do
+
+      return
+      end
+      subroutine demo_max
+
+c*********************************************************************72
+c
+cc demo_MAX tests MAX.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function MAX returns the maximum value in a list.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_MAX'
+      write ( *, '(a)' ) '  MAX is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the maximum value in a list.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,i8)' ) '  max(2,1) =     ', max ( 2, 1 )
+      write ( *, '(a,i8)' ) '  max(1,3,2) =   ', max ( 1, 3, 2 )
+      write ( *, '(a,i8)' ) '  max(3,2,4,1) = ', max ( 3, 2, 4, 1 )
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,f4.1)' )
+     &  '  max(2.1, 1.2) =           ', max ( 2.1, 1.2 )
+      write ( *, '(a,f4.1)' )
+     &  '  max(1.1, 3.2, 2.3) =      ', max ( 1.1, 3.2, 2.3 )
+      write ( *, '(a,f4.1)' )
+     &  '  max(3.1, 2.2, 4.3, 1.4) = ', max ( 3.1, 2.2, 4.3, 1.4 )
+
+      return
+      end
+      subroutine demo_min
+
+c*********************************************************************72
+c
+cc demo_MIN tests MIN.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function MIN returns the minimum value in a list.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_MIN'
+      write ( *, '(a)' ) '  MIN is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the minimum value in a list.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,i8)' ) '  min(3, 4) =       ', min ( 3, 4 )
+      write ( *, '(a,i8)' ) '  min(4, 2, 3) =    ', min ( 4, 2, 3 )
+      write ( *, '(a,i8)' ) '  min(2, 3, 1, 4) = ', min ( 2, 3, 1, 4 )
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,f4.1)' )
+     &  '  min(3.1, 4.2) =           ', min ( 3.1, 4.2 )
+      write ( *, '(a,f4.1)' )
+     &  '  min(4.1. 2.2, 3.3) =      ', min ( 4.1, 2.2, 3.3 )
+      write ( *, '(a,f4.1)' )
+     &  '  min(2.1, 3.2, 1.3, 4.4) = ', min ( 2.1, 3.2, 1.3, 4.4 )
+
+      return
+      end
+      subroutine demo_mod_i4
+
+c*********************************************************************72
+c
+cc demo_MOD_I4 tests MOD on integers.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function MOD(A,B) returns the remainder after division.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer i
+      integer i_hi
+      integer i_lo
+      integer i4_uniform
+      integer j
+      integer k
+      integer seed
+      integer test
+
+      seed = 123456789
+      i_lo = -10
+      i_hi =  20
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_MOD_I4'
+      write ( *, '(a)' ) '  MOD is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the remainder after division.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '  Here, the arguments are integers.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '         I         J       MOD(I,J)'
+      write ( *, '(a)' ) ' '
+      do test = 1, 10
+
+        i = i4_uniform ( i_lo, i_hi, seed )
+        j = i4_uniform ( i_lo, i_hi, seed )
+
+        if ( j == 0 ) then
+          write ( *, '(2x,i8,2x,i8,2x,a)' ) i, j, 'Undefined'
+        else
+          k = mod ( i, j )
+          write ( *, '(2x,i8,2x,i8,2x,i8)' ) i, j, k
+        end if
+
+      end do
+
+      return
+      end
+      subroutine demo_mod_r4
+
+c*********************************************************************72
+c
+cc demo_MOD_R4 tests MOD on reals.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function MOD(A,B) returns the remainder after division.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      real r4_uniform
+      integer seed
+      integer test
+      real x
+      real x_hi
+      real x_lo
+      real y
+      real z
+
+      seed = 123456789
+      x_lo = -10.0D+00
+      x_hi =  20.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_MOD_R4'
+      write ( *, '(a)' ) '  MOD is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the remainder after division.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '  Here, the arguments are reals.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' )
+     &  '          X               Y              MOD(X,Y)'
+      write ( *, '(a)' ) ' '
+      do test = 1, 10
+        x = r4_uniform ( x_lo, x_hi, seed )
+        y = r4_uniform ( x_lo, x_hi, seed )
+        z = mod ( x, y )
+        write ( *, '(2x,f14.6,2x,f14.6,2x,f14.6)' ) x, y, z
+      end do
+
+      return
+      end
+      subroutine demo_mvbits
+
+c*********************************************************************72
+c
+cc demo_MVBITS tests MVBITS.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function MVBITS copies a sequence of bits.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer i1
+      integer i2
+
+      i1 = 1396
+      i2 = 0
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_MVBITS'
+      write ( *, '(a)' ) '  MVBITS is a FORTRAN77 function which'
+      write ( *, '(a)' ) '  extracts bits from one place and copies'
+      write ( *, '(a)' ) '  them elsewhere.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '  CALL MVBITS(FROM,FROMPOS,LEN,TO,TOPOS)'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a,i8)' ) '  We will always use I1 =        ', i1
+      write ( *, '(a,i8)' ) '  We will always start with I2 = ', i2
+
+      write ( *, '(a)' ) ' '
+      call mvbits ( i1, 0, 5, i2, 0 )
+      write ( *, '(a,i12)' ) '  CALL MVBITS(I1,0, 5,I2,0): I2 = ', i2
+
+      i2 = 0
+      call mvbits ( i1, 0, 32, i2, 0 )
+      write ( *, '(a,i12)' ) '  CALL MVBITS(I1,0,32,I2,0): I2 = ', i2
+
+      i2 = 0
+      call mvbits ( i1, 5, 5, i2, 0 )
+      write ( *, '(a,i12)' ) '  CALL MVBITS(I1,5, 5,I2,0): I2 = ', i2
+
+      i2 = 0
+      call mvbits ( i1, 5, 5, i2, 5 )
+      write ( *, '(a,i12)' ) '  CALL MVBITS(I1,5, 5,I2,5): I2 = ', i2
+
+      return
+      end
+      subroutine demo_nint
+
+c*********************************************************************72
+c
+cc demo_NINT tests NINT.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function NINT returns, as an integer, the nearest
+c    integer to a given real value.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      double precision r8_uniform
+      integer i
+      integer j
+      integer seed
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      integer y
+
+      seed = 123456789
+      x_lo = -10.0D+00
+      x_hi =  10.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_NINT'
+      write ( *, '(a)' ) '  NINT is a FORTRAN77 function which returns,'
+      write ( *, '(a)' ) '  as an integer, the nearest integer to a '
+      write ( *, '(a)' ) '  given real number.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '       X             NINT(X)'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        j = nint ( x )
+        write ( *, '(2x,g14.6,2x,i8)' ) x, j
+      end do
+
+      return
+      end
+      subroutine demo_not_i4
+
+c*********************************************************************72
+c
+cc demo_NOT_I4 tests NOT on integer arguments.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function NOT returns the bitwise NOT of an integer.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      integer i
+      integer i4_uniform
+      integer j
+      integer seed
+      integer test
+
+      seed = 123456789
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_NOT_I4'
+      write ( *, '(a)' ) '  NOT is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the bitwise NOT of an integer.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '  Here, I is an integer.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '             I         NOT(I)'
+      write ( *, '(a)' ) ' '
+
+      do test = 1, 10
+        i = i4_uniform ( 0, 100, seed )
+        j = not ( i )
+        write ( *, '(2x,i12,2x,i12)' ) i, j
+      end do
+
+      return
+      end
+      subroutine demo_real_c4
+
+c*********************************************************************72
+c
+cc demo_REAL_C4 tests REAL as applied to complex numbers.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function REAL can return the real part of a complex number.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      complex c4_uniform_01
+      complex c
+      integer i
+      real r
+      integer seed
+
+      seed = 123456789
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_REAL_C4'
+      write ( *, '(a)' ) '  REAL is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the real part of a complex number.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' )
+     &  '                  X                         REAL(X)'
+      write ( *, '(a)' )
+     &  '       ------------------------    ----------------'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        c = c4_uniform_01 ( seed )
+        r = real ( c )
+        write ( *, '(2x,f14.6,f14.6,6x,f14.6)' ) c, r
+      end do
+
+      return
+      end
+      subroutine demo_sign
+
+c*********************************************************************72
+c
+cc demo_SIGN tests SIGN.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function SIGN(X,Y) transfers the sign of Y to the
+c    magnitude of X.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      double precision r8_uniform
+      integer i
+      integer seed
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      double precision y
+      double precision z
+
+      seed = 123456789
+      x_lo = -10.0D+00
+      x_hi =  10.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_SIGN'
+      write ( *, '(a)' ) '  SIGN is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the sign of Y times the magnitude of X.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '       X               Y           SIGN(X,Y)'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        y = r8_uniform ( x_lo, x_hi, seed )
+        z = sign ( x, y )
+        write ( *, '(2x,g14.6,2x,g14.6,2x,g14.6)' ) x, y, z
+      end do
+
+      return
+      end
+      subroutine demo_sin_r8
+
+c*********************************************************************72
+c
+cc demo_SIN_R8 tests SIN on double precision arguments.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function SIN returns the sine of a real or complex number.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      double precision r8_uniform
+      integer i
+      integer seed
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      double precision y
+
+      seed = 123456789
+      x_lo = -10.0D+00
+      x_hi =  10.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_SIN_R8'
+      write ( *, '(a)' ) '  SIN is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the sine of a real or complex number.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '  Here we use double precision arguments.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '       X              SIN(X)'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        y = sin ( x )
+        write ( *, '(2x,g14.6,2x,g14.6)' ) x, y
+      end do
+
+      return
+      end
+      subroutine demo_sinh
+
+c*********************************************************************72
+c
+cc demo_SINH tests SINH.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function SINH returns the hyperbolic sine of a real number.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      double precision r8_uniform
+      integer i
+      integer seed
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      double precision y
+
+      seed = 123456789
+      x_lo = -10.0D+00
+      x_hi =  10.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_SINH'
+      write ( *, '(a)' ) '  SINH is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the hyperbolic sine of a real number.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '       X              SINH(X)'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        y = sinh ( x )
+        write ( *, '(2x,g14.6,2x,g14.6)' ) x, y
+      end do
+
+      return
+      end
+      subroutine demo_sqrt
+
+c*********************************************************************72
+c
+cc demo_SQRT tests SQRT.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function SQRT returns the square root of a real number.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      double precision r8_uniform
+      integer i
+      integer seed
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      double precision y
+      double precision z
+
+      seed = 123456789
+      x_lo =   0.0D+00
+      x_hi =  10.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_SQRT'
+      write ( *, '(a)' ) '  SQRT is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the square root of a real number.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' )
+     &  '       X              SQRT(X)        (SQRT(X))**2'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        y = sqrt ( x )
+        z = y * y
+        write ( *, '(2x,g14.6,2x,g14.6,2x,g14.6)' ) x, y, z
+      end do
+
+      return
+      end
+      subroutine demo_tan
+
+c*********************************************************************72
+c
+cc demo_TAN tests TAN.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function TAN returns the tangent of a real number.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      double precision r8_uniform
+      integer i
+      integer seed
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      double precision y
+
+      seed = 123456789
+      x_lo = -10.0D+00
+      x_hi =  10.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_TAN'
+      write ( *, '(a)' ) '  TAN is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the tangent of a real number.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '       X              TAN(X)'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        y = tan ( x )
+        write ( *, '(2x,g14.6,2x,g14.6)' ) x, y
+      end do
+
+      return
+      end
+      subroutine demo_tanh
+
+c*********************************************************************72
+c
+cc demo_TANH tests TANH.
+c
+c  Discussion:
+c
+c    The FORTRAN77 function TANH returns the hyperbolic tangent of a
+c    real number.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    02 June 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+      implicit none
+
+      double precision r8_uniform
+      integer i
+      integer seed
+      double precision x
+      double precision x_hi
+      double precision x_lo
+      double precision y
+
+      seed = 123456789
+      x_lo = -10.0D+00
+      x_hi =  10.0D+00
+
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) 'demo_TANH'
+      write ( *, '(a)' ) '  TANH is a FORTRAN77 function which returns'
+      write ( *, '(a)' ) '  the hyperbolic tangent of a real number.'
+      write ( *, '(a)' ) ' '
+      write ( *, '(a)' ) '       X              TANH(X)'
+      write ( *, '(a)' ) ' '
+      do i = 1, 10
+        x = r8_uniform ( x_lo, x_hi, seed )
+        y = tanh ( x )
+        write ( *, '(2x,g14.6,2x,g14.6)' ) x, y
+      end do
+
+      return
+      end
+      function c4_uniform_01 ( seed )
+
+c*********************************************************************72
+c
+cc C4_UNIFORM_01 returns a unit pseudorandom C4.
+c
+c  Discussion:
+c
+c    A C4 is a complex single precision value.
+c
+c    The angle should be uniformly distributed between 0 and 2 * PI,
+c    the square root of the radius uniformly distributed between 0 and 1.
+c
+c    This results in a uniform distribution of values in the unit circle.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    15 March 2005
+c
+c  Author:
+c
+c    John Burkardt
+c
+c  Parameters:
+c
+c    Input/output, integer SEED, the "seed" value, which should NOT be 0.
+c    On output, SEED has been updated.
+c
+c    Output, complex C4_UNIFORM_01, a pseudorandom complex value.
+c
+      implicit none
+
+      complex c4_uniform_01
+      integer i4_huge
+      integer k
+      real pi
+      parameter ( pi = 3.1415926E+00 )
+      real r
+      integer seed
+      real theta
+
+      if ( seed .eq. 0 ) then
+        write ( *, '(a)' ) ' '
+        write ( *, '(a)' ) 'C4_UNIFORM_01 - Fatal error!'
+        write ( *, '(a)' ) '  Input value of SEED = 0.'
+        stop
+      end if
+
+      k = seed / 127773
+
+      seed = 16807 * ( seed - k * 127773 ) - k * 2836
+
+      if ( seed .lt. 0 ) then
+        seed = seed + i4_huge ( )
+      end if
+
+      r = sqrt ( real ( dble ( seed ) * 4.656612875D-10 ) )
+
+      k = seed / 127773
+
+      seed = 16807 * ( seed - k * 127773 ) - k * 2836
+
+      if ( seed .lt. 0 ) then
+        seed = seed + i4_huge ( )
+      end if
+
+      theta = 2.0E+00 * pi
+     &  * real ( dble ( seed ) * 4.656612875D-10 )
+
+      c4_uniform_01 = r * cmplx ( cos ( theta ), sin ( theta ) )
+
+      return
+      end
+      function ch_is_printable ( ch )
+
+c*********************************************************************72
+c
+cc CH_IS_PRINTABLE is TRUE if C is printable.
+c
+c  Discussion:
+c
+c    Instead of ICHAR, we now use the IACHAR function, which
+c    guarantees the ASCII collating sequence.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    31 October 2001
+c
+c  Author:
+c
+c    John Burkardt
+c
+c  Parameters:
+c
+c    Input, character CH, a character to check.
+c
+c    Output, logical CH_IS_PRINTABLE is TRUE if C is a printable character.
+c
+      implicit none
+
+      character ch
+      logical ch_is_printable
+      integer i
+
+      i = ichar ( ch )
+
+      if ( 32 <= i .and. i <= 126 ) then
+        ch_is_printable = .true.
+      else
+        ch_is_printable = .false.
+      end if
+
+      return
+      end
+      function i4_huge ( )
+
+c*********************************************************************72
+c
+cc I4_HUGE returns a "huge" I4.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    13 November 2006
+c
+c  Author:
+c
+c    John Burkardt
+c
+c  Parameters:
+c
+c    Output, integer I4_HUGE, a huge number.
+c
+      implicit none
+
+      integer i4_huge
+
+      i4_huge = 2147483647
+
+      return
+      end
+      function i4_uniform ( a, b, seed )
+
+c*********************************************************************72
+c
+cc I4_UNIFORM returns a scaled pseudorandom I4.
+c
+c  Discussion:
+c
+c    An I4 is an integer value.
+c
+c    The pseudorandom number should be uniformly distributed
+c    between A and B.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    12 November 2006
+c
+c  Author:
+c
+c    John Burkardt
+c
+c  Reference:
+c
+c    Paul Bratley, Bennett Fox, Linus Schrage,
+c    A Guide to Simulation,
+c    Springer Verlag, pages 201-202, 1983.
+c
+c    Pierre L'Ecuyer,
+c    Random Number Generation,
+c    in Handbook of Simulation,
+c    edited by Jerry Banks,
+c    Wiley Interscience, page 95, 1998.
+c
+c    Bennett Fox,
+c    Algorithm 647:
+c    Implementation and Relative Efficiency of Quasirandom
+c    Sequence Generators,
+c    ACM Transactions on Mathematical Software,
+c    Volume 12, Number 4, pages 362-376, 1986.
+c
+c    Peter Lewis, Allen Goodman, James Miller
+c    A Pseudo-Random Number Generator for the System/360,
+c    IBM Systems Journal,
+c    Volume 8, pages 136-143, 1969.
+c
+c  Parameters:
+c
+c    Input, integer A, B, the limits of the interval.
+c
+c    Input/output, integer SEED, the "seed" value, which should NOT be 0.
+c    On output, SEED has been updated.
+c
+c    Output, integer I4_UNIFORM, a number between A and B.
+c
+      implicit none
+
+      integer a
+      integer b
+      integer i4_huge
+      integer i4_uniform
+      integer k
+      real r
+      integer seed
+      integer value
+
+      if ( seed .eq. 0 ) then
+        write ( *, '(a)' ) ' '
+        write ( *, '(a)' ) 'I4_UNIFORM - Fatal error!'
+        write ( *, '(a)' ) '  Input value of SEED = 0.'
+        stop
+      end if
+
+      k = seed / 127773
+
+      seed = 16807 * ( seed - k * 127773 ) - k * 2836
+
+      if ( seed .lt. 0 ) then
+        seed = seed + i4_huge ( )
+      end if
+
+      r = real ( seed ) * 4.656612875E-10
+c
+c  Scale R to lie between A-0.5 and B+0.5.
+c
+      r = ( 1.0E+00 - r ) * ( real ( min ( a, b ) ) - 0.5E+00 )
+     &  +             r   * ( real ( max ( a, b ) ) + 0.5E+00 )
+c
+c  Use rounding to convert R to an integer between A and B.
+c
+      value = nint ( r )
+
+      value = max ( value, min ( a, b ) )
+      value = min ( value, max ( a, b ) )
+
+      i4_uniform = value
+
+      return
+      end
+      function r4_uniform ( a, b, seed )
+
+c*********************************************************************72
+c
+cc R4_UNIFORM returns a scaled pseudorandom R4.
+c
+c  Discussion:
+c
+c    The pseudorandom number should be uniformly distributed
+c    between A and B.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    29 January 2005
+c
+c  Author:
+c
+c    John Burkardt
+c
+c  Parameters:
+c
+c    Input, real A, B, the limits of the interval.
+c
+c    Input/output, integer SEED, the "seed" value, which should NOT be 0.
+c    On output, SEED has been updated.
+c
+c    Output, real R4_UNIFORM, a number strictly between A and B.
+c
+      implicit none
+
+      real a
+      real b
+      integer i4_huge
+      integer k
+      integer seed
+      real r4_uniform
+
+      if ( seed .eq. 0 ) then
+        write ( *, '(a)' ) ' '
+        write ( *, '(a)' ) 'R4_UNIFORM - Fatal error!'
+        write ( *, '(a)' ) '  Input value of SEED = 0.'
+        stop
+      end if
+
+      k = seed / 127773
+
+      seed = 16807 * ( seed - k * 127773 ) - k * 2836
+
+      if ( seed .lt. 0 ) then
+        seed = seed + i4_huge ( )
+      end if
+c
+c  Although SEED can be represented exactly as a 32 bit integer,
+c  it generally cannot be represented exactly as a 32 bit real number!
+c
+      r4_uniform = a + ( b - a )
+     &  * real ( dble ( seed ) * 4.656612875D-10 )
+
+      return
+      end
+      function r4_uniform_01 ( seed )
+
+c*********************************************************************72
+c
+cc R4_UNIFORM_01 returns a unit pseudorandom R4.
+c
+c  Discussion:
+c
+c    This routine implements the recursion
+c
+c      seed = 16807 * seed mod ( 2**31 - 1 )
+c      r4_uniform_01 = seed / ( 2**31 - 1 )
+c
+c    The integer arithmetic never requires more than 32 bits,
+c    including a sign bit.
+c
+c    If the initial seed is 12345, then the first three computations are
+c
+c      Input     Output      R4_UNIFORM_01
+c      SEED      SEED
+c
+c         12345   207482415  0.096616
+c     207482415  1790989824  0.833995
+c    1790989824  2035175616  0.947702
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    11 August 2004
+c
+c  Author:
+c
+c    John Burkardt
+c
+c  Reference:
+c
+c    Paul Bratley, Bennett Fox, Linus Schrage,
+c    A Guide to Simulation,
+c    Springer Verlag, pages 201-202, 1983.
+c
+c    Pierre L'Ecuyer,
+c    Random Number Generation,
+c    in Handbook of Simulation,
+c    edited by Jerry Banks,
+c    Wiley Interscience, page 95, 1998.
+c
+c    Bennett Fox,
+c    Algorithm 647:
+c    Implementation and Relative Efficiency of Quasirandom
+c    Sequence Generators,
+c    ACM Transactions on Mathematical Software,
+c    Volume 12, Number 4, pages 362-376, 1986.
+c
+c    Peter Lewis, Allen Goodman, James Miller,
+c    A Pseudo-Random Number Generator for the System/360,
+c    IBM Systems Journal,
+c    Volume 8, pages 136-143, 1969.
+c
+c  Parameters:
+c
+c    Input/output, integer SEED, the "seed" value, which should NOT be 0.
+c    On output, SEED has been updated.
+c
+c    Output, real R4_UNIFORM_01, a new pseudorandom variate,
+c    strictly between 0 and 1.
+c
+      implicit none
+
+      integer i4_huge
+      integer k
+      integer seed
+      real r4_uniform_01
+
+      if ( seed .eq. 0 ) then
+        write ( *, '(a)' ) ' '
+        write ( *, '(a)' ) 'R4_UNIFORM_01 - Fatal error!'
+        write ( *, '(a)' ) '  Input value of SEED = 0.'
+        stop
+      end if
+
+      k = seed / 127773
+
+      seed = 16807 * ( seed - k * 127773 ) - k * 2836
+
+      if ( seed .lt. 0 ) then
+        seed = seed + i4_huge ( )
+      end if
+c
+c  Although SEED can be represented exactly as a 32 bit integer,
+c  it generally cannot be represented exactly as a 32 bit real number!
+c
+      r4_uniform_01 = real ( dble ( seed ) * 4.656612875D-10 )
+
+      return
+      end
+      function r8_uniform ( a, b, seed )
+
+c*********************************************************************72
+c
+cc R8_UNIFORM returns a scaled pseudorandom R8.
+c
+c  Discussion:
+c
+c    The pseudorandom number should be uniformly distributed
+c    between A and B.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    06 January 2006
+c
+c  Author:
+c
+c    John Burkardt
+c
+c  Parameters:
+c
+c    Input, double precision A, B, the limits of the interval.
+c
+c    Input/output, integer SEED, the "seed" value, which should NOT be 0.
+c    On output, SEED has been updated.
+c
+c    Output, double precision R8_UNIFORM, a number strictly between A and B.
+c
+      implicit none
+
+      double precision a
+      double precision b
+      integer i4_huge
+      integer k
+      double precision r8_uniform
+      integer seed
+
+      if ( seed .eq. 0 ) then
+        write ( *, '(a)' ) ' '
+        write ( *, '(a)' ) 'R8_UNIFORM - Fatal error!'
+        write ( *, '(a)' ) '  Input value of SEED = 0.'
+        stop
+      end if
+
+      k = seed / 127773
+
+      seed = 16807 * ( seed - k * 127773 ) - k * 2836
+
+      if ( seed .lt. 0 ) then
+        seed = seed + i4_huge ( )
+      end if
+c
+c  Although SEED can be represented exactly as a 32 bit integer,
+c  it generally cannot be represented exactly as a 32 bit real number!
+c
+      r8_uniform = a + ( b - a ) * dble ( seed ) * 4.656612875D-10
+
+      return
+      end
+      function r8_uniform_01 ( seed )
+
+c*********************************************************************72
+c
+cc R8_UNIFORM_01 returns a unit pseudorandom R8.
+c
+c  Discussion:
+c
+c    This routine implements the recursion
+c
+c      seed = 16807 * seed mod ( 2**31 - 1 )
+c      r8_uniform_01 = seed / ( 2**31 - 1 )
+c
+c    The integer arithmetic never requires more than 32 bits,
+c    including a sign bit.
+c
+c    If the initial seed is 12345, then the first three computations are
+c
+c      Input     Output      R8_UNIFORM_01
+c      SEED      SEED
+c
+c         12345   207482415  0.096616
+c     207482415  1790989824  0.833995
+c    1790989824  2035175616  0.947702
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    11 August 2004
+c
+c  Author:
+c
+c    John Burkardt
+c
+c  Reference:
+c
+c    Paul Bratley, Bennett Fox, Linus Schrage,
+c    A Guide to Simulation,
+c    Springer Verlag, pages 201-202, 1983.
+c
+c    Pierre L'Ecuyer,
+c    Random Number Generation,
+c    in Handbook of Simulation,
+c    edited by Jerry Banks,
+c    Wiley Interscience, page 95, 1998.
+c
+c    Bennett Fox,
+c    Algorithm 647:
+c    Implementation and Relative Efficiency of Quasirandom
+c    Sequence Generators,
+c    ACM Transactions on Mathematical Software,
+c    Volume 12, Number 4, pages 362-376, 1986.
+c
+c    Peter Lewis, Allen Goodman, James Miller,
+c    A Pseudo-Random Number Generator for the System/360,
+c    IBM Systems Journal,
+c    Volume 8, pages 136-143, 1969.
+c
+c  Parameters:
+c
+c    Input/output, integer SEED, the "seed" value, which should NOT be 0.
+c    On output, SEED has been updated.
+c
+c    Output, double precision R8_UNIFORM_01, a new pseudorandom variate,
+c    strictly between 0 and 1.
+c
+      implicit none
+
+      integer i4_huge
+      integer k
+      double precision r8_uniform_01
+      integer seed
+
+      if ( seed .eq. 0 ) then
+        write ( *, '(a)' ) ' '
+        write ( *, '(a)' ) 'R8_UNIFORM_01 - Fatal error!'
+        write ( *, '(a)' ) '  Input value of SEED = 0.'
+        stop
+      end if
+
+      k = seed / 127773
+
+      seed = 16807 * ( seed - k * 127773 ) - k * 2836
+
+      if ( seed .lt. 0 ) then
+        seed = seed + i4_huge ( )
+      end if
+c
+c  Although SEED can be represented exactly as a 32 bit integer,
+c  it generally cannot be represented exactly as a 32 bit real number!
+c
+      r8_uniform_01 = dble ( seed ) * 4.656612875D-10
+
+      return
+      end
+      subroutine timestamp ( )
+
+c*********************************************************************72
+c
+cc TIMESTAMP prints out the current YMDHMS date as a timestamp.
+c
+c  Discussion:
+c
+c    This FORTRAN77 version is made available for cases where the
+c    FORTRAN90 version cannot be used.
+c
+c  Licensing:
+c
+c    This code is distributed under the GNU LGPL license.
+c
+c  Modified:
+c
+c    12 January 2007
+c
+c  Author:
+c
+c    John Burkardt
+c
+c  Parameters:
+c
+c    None
+c
+      implicit none
+
+      character * ( 8 ) ampm
+      integer d
+      character * ( 8 ) date
+      integer h
+      integer m
+      integer mm
+      character * ( 9 ) month(12)
+      integer n
+      integer s
+      character * ( 10 ) time
+      integer y
+
+      save month
+
+      data month /
+     &  'January  ', 'February ', 'March    ', 'April    ',
+     &  'May      ', 'June     ', 'July     ', 'August   ',
+     &  'September', 'October  ', 'November ', 'December ' /
+
+      call date_and_time ( date, time )
+
+      read ( date, '(i4,i2,i2)' ) y, m, d
+      read ( time, '(i2,i2,i2,1x,i3)' ) h, n, s, mm
+
+      if ( h .lt. 12 ) then
+        ampm = 'AM'
+      else if ( h .eq. 12 ) then
+        if ( n .eq. 0 .and. s .eq. 0 ) then
+          ampm = 'Noon'
+        else
+          ampm = 'PM'
+        end if
+      else
+        h = h - 12
+        if ( h .lt. 12 ) then
+          ampm = 'PM'
+        else if ( h .eq. 12 ) then
+          if ( n .eq. 0 .and. s .eq. 0 ) then
+            ampm = 'Midnight'
+          else
+            ampm = 'AM'
+          end if
+        end if
+      end if
+
+      write ( *,
+     &  '(i2,1x,a,1x,i4,2x,i2,a1,i2.2,a1,i2.2,a1,i3.3,1x,a)' )
+     &  d, month(m), y, h, ':', n, ':', s, '.', mm, ampm
+
+      return
+      end
+$DOCUMENT END
+$!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

@@ -5,11 +5,11 @@
               !
               ! basic use
               str = adjustl(str)
-              write(*,'("[",a"]")') str, trim(str)
+              write(*,'("[",a,"]")') str, trim(str)
               !
               ! an allocatable string stays the same length
               ! and is not trimmed.
               astr='    allocatable string   '
-              write(*,'("[",a"]")') adjustl(astr)
+              write(*,'("[",a,"]")') adjustl(astr)
               !
            end program demo_adjustl

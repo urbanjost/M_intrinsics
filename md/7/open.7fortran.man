@@ -83,15 +83,8 @@ OPEN statement.
 
 If a NEWUNIT= specifier appears, a file-unit-number shall not appear.
 
-STATUS   If the STATUS= specifier has the value NEW or REPLACE, the FILE= specifier shall appear. If the STATUS=
-         specifier has the value SCRATCH, the FILE= specifier shall not appear. If the STATUS= specifier has the value
-         OLD, the FILE= specifier shall appear unless the unit is connected and the file connected to the unit exists.
-
-NEWUNIT  If the NEWUNIT= specifier appears in an OPEN statement, either the FILE= specifier shall appear, or the
-         STATUS= specifier shall appear with a value of SCRATCH. The unit identified by a NEWUNIT value shall not
-         be preconnected.
-
 IOSTAT=, ERR=, and IOMSG=   specifiers are described in 9.11.
+
 
 ACCESS   The scalar-default-char-expr shall evaluate to SEQUENTIAL, DIRECT, or STREAM. The ACCESS= specifier
          specifies the access method for the connection of the file as being sequential, direct, or stream. If this specifier is
@@ -147,13 +140,18 @@ FORM   The scalar-default-char-expr shall evaluate to FORMATTED or UNFORMATTED. 
        form shall be included in the set of allowed forms for the file. For a new file, the processor creates the file with a
        set of allowed forms that includes the specified form.
 
-NEWUNIT   The variable is defined with a processor determined NEWUNIT value if no error occurs during the execution of
-          the OPEN statement. If an error occurs, the processor shall not change the value of the variable.
+NEWUNIT  If the NEWUNIT= specifier appears in an OPEN statement, either the FILE= specifier shall appear, or the
+         STATUS= specifier shall appear with a value of SCRATCH. The unit identified by a NEWUNIT value shall not
+         be preconnected.
 
-          A NEWUNIT value is a negative number, and shall not be equal to -1, any of the named constants ERROR_UNIT,
-          INPUT_UNIT, or OUTPUT_UNIT from the intrinsic module ISO_FORTRAN_ENV (13.8.2), any value
-          used by the processor for the unit argument to a defined input/output procedure, nor any previous NEWUNIT
-          value that identifies a file that is currently connected.
+         The variable is defined with a processor determined NEWUNIT value if no error occurs during the execution of
+         the OPEN statement. If an error occurs, the processor shall not change the value of the variable.
+
+         A NEWUNIT value is a negative number, and shall not be equal to -1, any of the named constants ERROR_UNIT,
+         INPUT_UNIT, or OUTPUT_UNIT from the intrinsic module ISO_FORTRAN_ENV (13.8.2), any value
+         used by the processor for the unit argument to a defined input/output procedure, nor any previous NEWUNIT
+         value that identifies a file that is currently connected.
+
 
 PAD    The scalar-default-char-expr shall evaluate to YES or NO. The PAD= specifier is permitted only for a connection
        for formatted input/output. It specifies the current value of the pad mode (9.6.4.4.3, 9.6.2.10) for input for this
@@ -192,20 +190,24 @@ SIGN       The scalar-default-char-expr shall evaluate to one of PLUS, SUPPRESS,
           the sign mode (10.8.4, 9.6.2.14) for this connection. This is a changeable mode (9.5.2). If this specifier is omitted
           in an OPEN statement that initiates a connection, the default value is PROCESSOR DEFINED.
 
-STATUS    The scalar-default-char-expr shall evaluate to OLD, NEW, SCRATCH, REPLACE, or UNKNOWN. If OLD is
-          specified, the file shall exist. If NEW is specified, the file shall not exist.
+STATUS   If the STATUS= specifier has the value NEW or REPLACE, the FILE= specifier shall appear. If the STATUS=
+         specifier has the value SCRATCH, the FILE= specifier shall not appear. If the STATUS= specifier has the value
+         OLD, the FILE= specifier shall appear unless the unit is connected and the file connected to the unit exists.
 
-          Successful execution of an OPEN statement with NEW specified creates the file and changes the status to OLD.
-          If REPLACE is specified and the file does not already exist, the file is created and the status is changed to OLD.
-          If REPLACE is specified and the file does exist, the file is deleted, a new file is created with the same name, and
-          the status is changed to OLD. If SCRATCH is specified, the file is created and connected to the specified unit
-          for use by the program but is deleted at the execution of a CLOSE statement referring to the same unit or at
-          the normal termination of the program.
+         The scalar-default-char-expr shall evaluate to OLD, NEW, SCRATCH, REPLACE, or UNKNOWN. If OLD is
+         specified, the file shall exist. If NEW is specified, the file shall not exist.
 
-          SCRATCH shall not be specified with a named file.
+         Successful execution of an OPEN statement with NEW specified creates the file and changes the status to OLD.
+         If REPLACE is specified and the file does not already exist, the file is created and the status is changed to OLD.
+         If REPLACE is specified and the file does exist, the file is deleted, a new file is created with the same name, and
+         the status is changed to OLD. If SCRATCH is specified, the file is created and connected to the specified unit
+         for use by the program but is deleted at the execution of a CLOSE statement referring to the same unit or at
+         the normal termination of the program.
 
-          If UNKNOWN is specified, the status is processor dependent. If this specifier is omitted, the default value is
-          UNKNOWN.
+         SCRATCH shall not be specified with a named file.
+
+         If UNKNOWN is specified, the status is processor dependent. If this specifier is omitted, the default value is
+         UNKNOWN.
 
 EXAMPLES
 

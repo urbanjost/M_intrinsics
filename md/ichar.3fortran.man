@@ -6,10 +6,13 @@ SYNTAX
    result = ichar(c [, kind])
 
 DESCRIPTION
-   ichar(c) returns the code for the character in the first character
-   position of C in the system's native character set. The correspondence
-   between characters and their codes is not necessarily the same across
-   different GNU Fortran implementations.
+   ICHAR(C) returns the code for the character in the system's native
+   character set. The correspondence between characters and their codes
+   is not necessarily the same across different Fortran implementations.
+   Therefore, a platform using EBCDIC would return different values than
+   an ASCII platform, for example.
+
+   See IACHAR(3f) for specifically working with the ASCII character set.
 
 ARGUMENTS
    C       Shall be a scalar CHARACTER, with intent(in)

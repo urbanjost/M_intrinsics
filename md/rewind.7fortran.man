@@ -22,8 +22,7 @@ DESCRIPTION
 OPTIONS
    UNIT     unit number of file to rewind. A unit open for direct access
             or stream access cannot be referenced by a REWIND (e.g. you
-            cannot typically rewind stdin and stdout as they would
-            be streams).
+            cannot typically rewind stdin and stdout). 
    IOSTAT   (Optional) a compiler-specific number that indicates an
             error occurred if non-zero. If not present and an error
             occurs the program terminates.

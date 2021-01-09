@@ -1,4 +1,5 @@
-           program demo_nint implicit none
+           program demo_nint
+           implicit none
            integer,parameter :: dp=kind(0.0d0)
            real              :: x4 = 1.234E0
            real(kind=dp)     :: x8 = 4.721_dp
