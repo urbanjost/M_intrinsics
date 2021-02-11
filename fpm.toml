@@ -5,6 +5,9 @@ license = "Public Domain"
 author = "John S. Urban"
 maintainer = "urbanjost@comcast.net"
 copyright = "2020 John S. Urban"
+categories = ["Fortran Intrinsic descriptions"]
+keywords = ["fortran", "manpages", "intrinsics"]
+homepage = "https://github.com/urbanjost/M_intrinsics.git"
 
 [[executable]]
 name="bull"

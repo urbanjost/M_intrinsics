@@ -1,0 +1,227 @@
+<html> 
+<head> 
+<title> </title>
+<style> 
+px {font-family: "Lucida Console", Monaco, monospace}
+p { font-size:100%; line-height:1.1em; }
+body {xfont-style: sans-serif}
+body {
+color:#333; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:1em; line-height:1.3em; }
+a:visited { color:#666; }
+h1,h2,h3,h4,h5,h6 { color:#333; font-family:georgia, verdana, sans-serif; }
+h1 { font-size:150%; page-break-before:auto;background-color: #aaaaff}
+h2 { font-size:143%;color:teal; }
+h3 { font-size:134%;color:blue; }
+h4 { font-size:120%;color:gray; }
+img { max-width: 55em}
+p{ padding: 0;margin:0; }
+p{ padding-right:1.4em; }
+p{ padding-bottom:1em; }
+p{ padding-top:1em; }
+p{ whitespace: pre-wrap; }
+h5,h6 { font-size:100% }
+a.nav,a:link.nav, a:visited.nav { background-color:#FFF; color:#000; }
+XXtable { border:double #000; border-collapse:collapse; }
+XXtable { border-collapse:collapse; }
+XXtd { border:thin solid #888; }
+XXtd { border:none; }
+li { margin-bottom:0.5em; }
+blockquote { display:block; font-size:100%; line-height:1.1em; margin:0 0 1.5em; padding:0 2.5em; }
+pre { background-color:#DDD; font-size:100%; overflow:auto; padding:1em; }
+a,li span { color:#000; }
+a:hover, a.nav:hover, a:hover math { background-color:#000; color:#FFF; }
+#Container { margin:0 10px; text-align:center; background-color: #BBB}
+#Content { border-top:none; margin:auto; padding:0.3em; text-align:left; width:100%; max-width:55em; background:#FFF}
+span.webName { font-size:.5em; }
+textarea#content { font-size: 1em; line-height: 1.125; }
+h1#pageName { line-height:1em; margin:0.2em 0 0.2em 0; padding:0; }
+.property { color:#666; font-size:100%; }
+a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
+.byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
+</style> 
+</head>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!--
+<h5><a href="index.html">[UP]</a></h5>
+-->
+<button type="button" onclick="javascript:history.back()">Back</button>
+<div id="Container">
+<div id="Content">
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>huge (3fortran)</NOBR><HR></H1>
+</CENTER>
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>huge(3f) </B>- [FORTRAN:INTRINSIC:NUMERIC MODEL] Largest number of a kind
+<B>
+</B></BLOCKQUOTE>
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=8>
+
+     <H3>SYNTAX</H3>
+
+</A>
+<BLOCKQUOTE>
+result = <B>huge</B>(x)
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<B>huge</B>(x) returns the largest number that is not an infinity in
+the model of the type of X.
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>ARGUMENTS</H3>
+
+</A>
+<BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+<B>X</B> </TD><TD valign=bottom>
+Shall be of type REAL or INTEGER.
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>RETURN VALUE</H3>
+
+</A>
+<BLOCKQUOTE>
+The return value is of the same type and kind as X
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>EXAMPLE</H3>
+
+</A>
+<BLOCKQUOTE>
+Sample program:
+<P>
+<PRE>
+    program demo_huge_tiny
+    ! or, "why I have my own NINT function"
+    implicit none
+    character(len=*),parameter :: f=&#146;(i2,1x,2(i11,1x),f14.0:,1x,l1,1x,a)&#146;
+    integer :: i,j,k,biggest
+    real :: v, w
+      ! basic
+      print *, huge(0), huge(0.0), huge(0.0d0)
+      print *, tiny(0.0), tiny(0.0d0)
+<P>
+      ! advanced
+      biggest=huge(0)
+      ! be careful when using integers in computation
+      do i=1,14
+         j=6**i   ! Danger, Danger
+         w=6**i   ! Danger, Danger
+         v=6.0**i
+         k=v      ! Danger, Danger
+         if(v.gt.biggest)then
+            write(*,f) i, j, k, v, v.eq.w, &#146;wrong j and k and w&#146;
+         else
+            write(*,f) i, j, k, v, v.eq.w
+         endif
+      enddo
+    end program demo_huge_tiny
+<P>
+     2147483647  3.4028235E+38  1.797693134862316E+308
+     1.1754944E-38  2.225073858507201E-308
+</PRE>
+<BLOCKQUOTE>
+<TABLE cellpadding=3><!-- tsb:      2147483647  3.4028235E+38  1.797693134862316E+308
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>1</B> </TD><TD valign=bottom>
+6           6             6. T
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>2</B> </TD><TD valign=bottom>
+36          36            36. T
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>3</B> </TD><TD valign=bottom>
+216         216           216. T
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>4</B> </TD><TD valign=bottom>
+1296        1296          1296. T
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>5</B> </TD><TD valign=bottom>
+7776        7776          7776. T
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>6</B> </TD><TD valign=bottom>
+46656       46656         46656. T
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>7</B> </TD><TD valign=bottom>
+279936      279936        279936. T
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>8</B> </TD><TD valign=bottom>
+1679616     1679616       1679616. T
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>9</B> </TD><TD valign=bottom>
+10077696    10077696      10077696. T
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+<B>10</B> </TD><TD valign=bottom>
+60466176    60466176      60466176. T
+<TABLE width=100% cellpadding=3><!-- tsb: 60466176    60466176      60466176. T
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>11</B> </TD><TD valign=bottom>
+362797056   362797056     362797056. T
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>12 </B><B>-2118184960</B> <B>-2147483648</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+2176782336. F wrong for j and k and w
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>13</B> </TD><TD valign=bottom>
+175792128 <B>-2147483648</B>   13060694016. F wrong for j and k and w
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>14</B> </TD><TD valign=bottom>
+1054752768 <B>-2147483648</B>   78364164096. F wrong for j and k and w
+</TD></TR>
+<TR></TR></TABLE></TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=6>
+
+     <H3>STANDARD</H3>
+
+</A>
+<BLOCKQUOTE>
+[[Fortran 95]] and later
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>CLASS</H3>
+
+</A>
+<BLOCKQUOTE>
+[[Inquiry function]]
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>huge (3fortran)</TD> <TD align=right width=33%><I>February 11, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from ad53b5c1-bf7f-4e08-ad7e-3451fa7aec38 using man macros.</FONT>
+<br><br><center><img src="images/huge.3fortran.gif"></center>
+</div>
+</div>
+</body>
+</HTML>

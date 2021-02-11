@@ -1,38 +1,179 @@
+NAME
+   ASSOCIATE(7f) - [FORTRAN:EXECUTION CONTROL] associate construct
+           (LICENSE:PD)
+
+SYNTAX
+  [ associate-construct-name : ] ASSOCIATE ( associate-name => expr|variable, ...)
+
+DESCRIPTION
+
+  Basically, ASSOCIATE allows you to
+
+  1. create an alias for a variable
+
+     This construct is useful when you want to simplify multiple accesses
+     to a variable that has a lengthy description; for example, if the
+     variable contains multiple subscripts and component names.
+
+  2. evaluate an expression at the top of the block and use a variable name
+     as a substitute for the constant, much like a parameter declaration.
+
+  It is _NOT_ equivalent to a function macro.
+
+  The ASSOCIATE construct associates named entities with expressions or
+  variables during the execution of its block. These "named construct
+  entities" (16.4) are "associating entities" (16.5.1.6). The names are
+  "associate names".
+
+  o If selector is not a variable or is a variable that
+    has a vector subscript, associate-name shall not appear in
+    a variable definition context(16.6.7).
+
+  o An associate-name shall not be the same as another
+    associate-name in the same associate-stmt.
+
+  o variable shall not be a coindexed object.
+
+  o expr shall not be a variable.
+
+  o end-associate-stmt is END ASSOCIATE [ associate-construct-name ]
+
+  o (R806) If the associate-stmt of an associate-construct
+    specifies an associate-construct-name, the
+    corresponding end-associate-stmt shall specify the
+    same associate-construct-name. If the associate-stmt
+    of an associate-construct does not specify an
+    associate-construct-name, the corresponding end-associate-stmt
+    shall not specify an associate-construct-name.
+
+  EXECUTION OF THE ASSOCIATE CONSTRUCT
+
+  Execution of an ASSOCIATE construct causes evaluation of every
+  expression within every selector that is a variable designator and
+  evaluation of every other selector , followed by execution of its
+  block. During execution of that block each associate name identifies an
+  entity which is associated (16.5.1.6) with the corresponding selector.
+  The associating entity assumes the declared type and type parameters
+  of the selector. If and only if the selector is polymorphic, the
+  associating entity is polymorphic.
+
+  It is permissible to branch to an end-associate-stmt only from within
+  its ASSOCIATE construct.
+
+  ATTRIBUTES OF ASSOCIATE NAMES
+
+  Within an ASSOCIATE or SELECT TYPE construct, each associating entity
+  has the same rank and corank as its associated selector. The lower
+  bound of each dimension is the result of the intrinsic function LBOUND
+  (13.7.90) applied to the corresponding dimension of selector . The upper
+  bound of each dimension is one less than the sum of the lower bound
+  and the extent. The cobounds of each codimension of the associating
+  entity are the same as those of the selector. The associating entity
+  has the ASYNCHRONOUS or VOLATILE attribute if and only if the selector
+  is a variable and has the attribute. The associating entity has the
+  TARGET attribute if and only if the selector is a variable and has
+  either the TARGET or POINTER attribute. If the associating entity is
+  polymorphic, it assumes the dynamic type and type parameter values of
+  the selector. If the selector has the OPTIONAL attribute, it shall
+  be present. The associating entity is contiguous if and only if the
+  selector is contiguous.
+
+  If the selector is not permitted to appear in a variable definition
+  context (16.6.7), the associate name shall not appear in a variable
+  definition context.
+
+EXAMPLES
+
+  The following example illustrates an association with an expression.
+
+       associate ( z => exp(-(x**2+y**2)) * cos(theta) )
+         print *, a+z, a-z
+       end associate
+
+  The following example illustrates an association with a
+  derived-type variable.
+
+       associate ( xc => ax%b(i,j)%c )
+         xc%dv = xc%dv + product(xc%ev(1:n))
+       end associate
+
+  The following example illustrates association with an array section.
+
+       associate ( array => ax%b(i,:)%c )
+         array(n)%ev = array(n-1)%ev
+       end associate
+
+  The following example illustrates multiple associations.
+
+       associate ( w => result(i,j)%w, zx => ax%b(i,j)%d, zy => ay%b(i,j)%d )
+         w = zx*x + zy*y
+       end associate
+
+   The following example uses the ASSOCIATE construct as a shorthand for a
+   complex expression and renames an existing variable, MYREAL. After the
+   end of the ASSOCIATE construct, any change within the construct to the
+   value of the associating entity that associates with MYREAL is reflected.
+
+      program demo_associate
+      real :: myreal, x, y, theta, a
+      x = 0.42
+      y = 0.35
+      myreal = 9.1
+      theta = 1.5
+      a = 0.4
+      associate ( z => exp(-(x**2+y**2)) * cos(theta), v => myreal)
+         print *, a+z, a-z, v
+         v = v * 4.6
+      end associate
+      print *, myreal
+      end program demo_associate
+
+  See if you know what the following produces ...
+
+      program dustycorner
+      implicit none
+      real :: a = 42
+      associate (a => a, b => 2 * a)
+         print *, a, b
+         a = 0
+         print *, a, b
+      end associate
+      print *, a
+
+      a=42
+      associate (aa => a, b => 2 * a)
+         print *, a, aa, b
+         aa = 0
+         print *, a, aa, b
+         a=-1
+         print *, a, aa, b
+      end associate
+      print *, a
+      end program dustycorner
+
+  Did you expect the following?
+
+      42.0000000       84.0000000
+      0.00000000       84.0000000
+      0.00000000
+      42.0000000       42.0000000       84.0000000
+      0.00000000       0.00000000       84.0000000
+     -1.00000000      -1.00000000       84.0000000
+     -1.00000000
+
+
 From INTEL.
-An abbreviation for the value of an expression that does not change or an alias for a long variable name
-Just like A=value if an expression, stays constant
-If variable can actually have value changed.
+An abbreviation for the value of an expression that does not change or
+an alias for a long variable name
+
+Just like A=value if an expression, stays constant If variable can
+actually have value changed.
+
 Confusing.
 
-
-ASSOCIATE
-Statement:
-Marks the beginning of an ASSOCIATE construct. The ASSOCIATE construct creates a temporary association between a named entity and a variable or the value of an expression. The association lasts for the duration of the block.
-[
-name
-:]
-ASSOCIATE
-(
-assoc-entity
-[,
-assoc-entity
-]
-...
-)
-   
-block
-END ASSOCIATE
-[
 name
 ]
 
-name
-    (Optional) Is the name of the ASSOCIATE construct.
-assoc-entity
-    Is associate-name
-    => selector
-
-    associate-name
         Is an identifier that becomes associated with the selector. It becomes the associating entity. The identifier name must be unique within the construct.
     selector
         Is an expression or variable. It becomes the associated entity.
@@ -41,12 +182,25 @@ block
     Is a sequence of zero or more statements or constructs.
 
 Description
-If a construct name is specified at the beginning of an ASSOCIATE statement, the same name must appear in the corresponding END ASSOCIATE statement. The same construct name must not be used for different named constructs in the same scoping unit. If no name is specified at the beginning of an ASSOCIATE statement, you cannot specify one following the END ASSOCIATE statement.
+If a construct name is specified at the beginning of an ASSOCIATE
+statement, the same name must appear in the corresponding END ASSOCIATE
+statement.
+
+The same construct name must not be used for different named constructs
+in the same scoping unit. If no name is specified at the beginning of an
+ASSOCIATE statement, you cannot specify one following the END ASSOCIATE
+statement.
+
 During execution of the block within the construct, each associate-name
-identifies an entity, which is associated with the corresponding selector
-. The associating entity assumes the declared type and type parameters of the selector.
-You can only branch to an END ASSOCIATE statement from within its ASSOCIATE construct.
-This construct is useful when you want to simplify multiple accesses to a variable that has a lengthy description; for example, if the variable contains multiple subscripts and component names.
+identifies an entity, which is associated with the corresponding
+selector.
+
+The associating entity assumes the declared type and type parameters of
+the selector.
+
+You can only branch to an END ASSOCIATE statement from within its
+ASSOCIATE construct.
+
 Example
 The following shows an expression as a selector:
 
@@ -68,4 +222,5 @@ Construct Association
 Additional Attributes Of Associate Names
 Assignment - Intrinsic
 ASSOCIATED
+
 

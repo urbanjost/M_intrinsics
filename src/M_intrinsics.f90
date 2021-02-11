@@ -12227,13 +12227,14 @@ textblock=[character(len=256) :: &
 '', &
 '   program demo_random_number', &
 '   implicit none', &
+'   intrinsic :: iso_fortran_env, only : dp=>real64', &
 '   integer, allocatable :: seed(:)', &
 '   integer              :: n', &
 '   integer              :: first,last', &
 '   integer              :: i', &
 '   integer              :: rand_int', &
 '   integer,allocatable  :: count(:)', &
-'   real                 :: rand_val', &
+'   real(kind=dp)        :: rand_val', &
 '   call random_seed(size = n)', &
 '   allocate(seed(n))', &
 '   call random_seed(get=seed)', &
