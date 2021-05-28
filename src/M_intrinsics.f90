@@ -195,7 +195,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -307,7 +308,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -386,7 +388,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -452,7 +455,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -542,7 +546,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -648,7 +653,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -729,7 +735,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -802,7 +809,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -935,7 +943,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -1006,7 +1015,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -1077,7 +1087,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -1163,7 +1174,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -1270,7 +1282,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -1336,7 +1349,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -1446,7 +1460,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -1531,7 +1546,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -1605,7 +1621,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -1672,7 +1689,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -1744,7 +1762,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -1818,7 +1837,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -1894,7 +1914,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -1966,7 +1987,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -2042,7 +2064,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -2118,7 +2141,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -2192,7 +2216,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -2268,7 +2293,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -2342,7 +2368,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -2424,7 +2451,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -2497,7 +2525,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -2611,7 +2640,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -2679,7 +2709,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -2748,7 +2779,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -2824,7 +2856,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -2891,7 +2924,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -2957,7 +2991,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -3034,7 +3069,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -3089,7 +3125,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -3147,7 +3184,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -3227,7 +3265,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -3282,7 +3321,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -3376,7 +3416,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -3430,7 +3471,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -3501,7 +3543,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -3574,7 +3617,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -3641,7 +3685,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -3719,7 +3764,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -3800,7 +3846,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -3885,7 +3932,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -3962,7 +4010,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -4034,7 +4083,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -4198,7 +4248,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -4359,7 +4410,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -4433,7 +4485,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -4495,7 +4548,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -4573,7 +4627,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -4652,7 +4707,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -4733,7 +4789,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -4812,7 +4869,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -4890,7 +4948,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -4958,7 +5017,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -5033,7 +5093,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -5140,7 +5201,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -5220,7 +5282,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -5287,7 +5350,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -5369,7 +5433,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -5431,7 +5496,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -5535,7 +5601,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -5626,7 +5693,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -5703,7 +5771,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -5778,7 +5847,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -5888,7 +5958,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -5952,7 +6023,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -6024,7 +6096,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -6091,7 +6164,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -6169,7 +6243,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -6262,7 +6337,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -6321,7 +6397,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -6379,7 +6456,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -6466,7 +6544,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -6527,7 +6606,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -6592,7 +6672,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -6658,7 +6739,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -6724,7 +6806,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -6798,7 +6881,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -6922,7 +7006,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -7029,7 +7114,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -7088,7 +7174,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -7151,7 +7238,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -7216,7 +7304,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -7390,7 +7479,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -7452,7 +7542,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -7520,7 +7611,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -7618,7 +7710,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -7683,7 +7776,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -7753,7 +7847,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -7856,7 +7951,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -7987,7 +8083,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -8096,7 +8193,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -8193,7 +8291,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -8255,7 +8354,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -8350,7 +8450,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -8430,7 +8531,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -8498,7 +8600,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -8579,7 +8682,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -8639,7 +8743,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -8700,7 +8805,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -8759,7 +8865,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -8877,7 +8984,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -8934,7 +9042,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -9002,7 +9111,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -9144,7 +9254,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -9236,7 +9347,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -9310,7 +9422,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -9387,7 +9500,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -9468,7 +9582,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -9570,7 +9685,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -9630,7 +9746,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -9695,7 +9812,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -9764,7 +9882,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -9830,7 +9949,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -9894,7 +10014,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -10017,7 +10138,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -10160,7 +10282,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -10236,7 +10359,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -10331,7 +10455,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -10403,7 +10528,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -10476,7 +10602,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -10588,7 +10715,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -10661,7 +10789,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -10723,7 +10852,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -10790,7 +10920,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -10854,7 +10985,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -10912,7 +11044,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -10971,7 +11104,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -11029,7 +11163,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -11088,7 +11223,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -11221,7 +11357,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -11286,7 +11423,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -11376,7 +11514,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -11476,7 +11615,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -11557,7 +11697,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -11613,7 +11754,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -11680,7 +11822,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -11746,7 +11889,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -11847,7 +11991,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -11939,7 +12084,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -12017,7 +12163,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -12095,7 +12242,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -12181,7 +12329,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -12243,7 +12392,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -12310,7 +12460,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -12369,7 +12520,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -12491,7 +12643,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -12560,7 +12713,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -12630,7 +12784,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -12696,7 +12851,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -12776,7 +12932,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -12885,7 +13042,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -12954,7 +13112,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -13031,7 +13190,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -13102,7 +13262,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -13170,7 +13331,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -13238,7 +13400,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -13313,7 +13476,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -13376,7 +13540,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -13484,7 +13649,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -13563,7 +13729,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -13631,7 +13798,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -13694,7 +13862,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -13781,7 +13950,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -13849,7 +14019,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -13927,7 +14098,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -14061,7 +14233,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -14167,7 +14340,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -14224,7 +14398,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -14280,7 +14455,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -14349,7 +14525,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -14430,7 +14607,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -14505,7 +14683,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -14572,7 +14751,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -14666,7 +14846,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -14732,7 +14913,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -14805,7 +14987,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -14864,7 +15047,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -14921,7 +15105,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -14978,7 +15163,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -15045,7 +15231,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -15171,7 +15358,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -15235,7 +15423,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -15438,7 +15627,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -15494,7 +15684,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -15561,7 +15752,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -15688,7 +15880,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -15752,7 +15945,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -15861,7 +16055,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -15930,7 +16125,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -16031,7 +16227,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -16141,7 +16338,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -16206,7 +16404,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -16274,7 +16473,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -16367,7 +16567,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -16428,7 +16629,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -16559,7 +16761,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -16661,7 +16864,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -16761,7 +16965,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -16830,7 +17035,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -16951,7 +17157,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -17023,7 +17230,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
@@ -17152,7 +17360,8 @@ endif
 
 if(present(m_help))then
    if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! shift to right by one character and add blank line
+      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
+      textblock=' '//textblock                                     ! shift to right by one character
       textblock(1)=shortname
    endif
 endif
