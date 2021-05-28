@@ -1,6 +1,6 @@
           program demo_random_number
+          use, intrinsic :: iso_fortran_env, only : dp=>real64
           implicit none
-          intrinsic :: iso_fortran_env, only : dp=>real64
           integer, allocatable :: seed(:)
           integer              :: n
           integer              :: first,last

@@ -3,14 +3,17 @@ NAME
    function
 
 SYNTAX
-   result = ichar(c [, kind])
+   elemental function ichar(c,kind)
+
+    character(len=1),intent(in) :: c
+    integer,intent(in),optional :: kind
 
 DESCRIPTION
    ICHAR(C) returns the code for the character in the system's native
    character set. The correspondence between characters and their codes
    is not necessarily the same across different Fortran implementations.
-   Therefore, a platform using EBCDIC would return different values than
-   an ASCII platform, for example.
+   For example, a platform using EBCDIC would return different values
+   than an ASCII platform.
 
    See IACHAR(3f) for specifically working with the ASCII character set.
 
@@ -29,6 +32,7 @@ EXAMPLE
    program demo_ichar
    implicit none
    integer i
+      write(*,*)ichar(['a','z','A','Z'])
       do i=0,127
          call printme()
       enddo

@@ -67,19 +67,17 @@ DESCRIPTION
 	i=1
 	if(increment(i).gt.10)then
 	   write(*,*)'IF',i
-	elseif(increment(i).gt.20)then
+	elseif(increment(i).ge.20)then
 	   write(*,*)'ELSEIF',i
 	else
 	   write(*,*)'ELSE',i
 	endif
 	contains
 	function increment(i)
-	   i=i+1
-	end function increment(i)
+	   increment=i*5
+	   i=i+3
+	end function increment
         end program change
-
-       
-
 
 
    An example of an IF statement is:
@@ -91,9 +89,12 @@ EXAMPLES
   Sample IF constructs:
 
     program demo_if
+    character(len=:),allocatable :: cvar
+    logical :: PROP
      !
      ! basic IF
      !
+     cvar='NO'
      if (cvar == 'RESET') then
         i = 0; j = 0; k = 0
      endif
