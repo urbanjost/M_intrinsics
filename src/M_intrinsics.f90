@@ -5327,6 +5327,16 @@ textblock=[character(len=256) :: &
 '  the next such line and the statement continues with the next character', &
 '  following that “&”.', &
 '', &
+'  SUMMARY', &
+'', &
+'  Splitting a line with the sequence "&\n&" where "\n" represents a newline', &
+'  will continue a Fortran line onto two lines. Comments can go onto continued', &
+'  lines just like they do on other statements. The beginning ampersand on the', &
+'  second line is optional if you are not splitting a constant or lexical token', &
+'  or quoted string, otherwise it is required. Any modern compiler supports at', &
+'  least 39 continuation lines, and probably much more. Spaces before the leading', &
+'  amersand on the second part of the split line are ignored.', &
+'', &
 '  JSU', &
 '']
 
