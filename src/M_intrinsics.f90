@@ -5327,7 +5327,7 @@ textblock=[character(len=256) :: &
 '  the next such line and the statement continues with the next character', &
 '  following that “&”.', &
 '', &
-'  SUMMARY', &
+'SUMMARY', &
 '', &
 '  Splitting a line with the sequence "&\n&" where "\n" represents a newline', &
 '  will continue a Fortran line onto two lines. Comments can go onto continued', &

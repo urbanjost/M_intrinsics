@@ -216,7 +216,7 @@ So, to put it another way, here is part of what the f2018 standard draft
   the next such line and the statement continues with the next character
   following that “&”.
 
-  SUMMARY
+SUMMARY
 
   Splitting a line with the sequence "&\n&" where "\n" represents a newline
   will continue a Fortran line onto two lines. Comments can go onto continued
