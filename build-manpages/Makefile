@@ -4,23 +4,29 @@
 MANDIR=/usr/share/man
 
 FULLSRC3 := $(wildcard ../md/*3fortran.man)
+FULLSRC5 := $(wildcard ../md/*5fortran.man)
 FULLSRC7 := $(wildcard ../md/*7fortran.man)
 SRC3=$(notdir $(FULLSRC3))
 SRC7=$(notdir $(FULLSRC7))
+SRC5=$(notdir $(FULLSRC5))
 VPATH=../md
 VPATH=../man/man3
 VPATH=../man/man7
+VPATH=../man/man5
 
 FULLMAN3=$(patsubst %3fortran.man,../man/man3/%3fortran,$(SRC3))
 FULLHTML3=$(patsubst %3fortran.man,%3fortran.html,$(SRC3))
 
+FULLMAN5=$(patsubst %5fortran.man,../man/man5/%5fortran,$(SRC5))
+FULLHTML5=$(patsubst %5fortran.man,%5fortran.html,$(SRC5))
+
 FULLMAN7=$(patsubst %7fortran.man,../man/man7/%7fortran,$(SRC7))
 FULLHTML7=$(patsubst %7fortran.man,%7fortran.html,$(SRC7))
 
-FULLMANS=$(FULLMAN3) $(FULLMAN7)
+FULLMANS=$(FULLMAN3) $(FULLMAN7) $(FULLMAN5)
 
 .SUFFIXES:
-.SUFFIXES: $(SUFFIXES) .3fortran.man .3fortran .html .7fortran.man .7fortran
+.SUFFIXES: $(SUFFIXES) .3fortran.man .3fortran .html .7fortran.man .7fortran .5fortran.man .5fortran
 
 .phony : roff
 
@@ -48,6 +54,11 @@ $(FULLMAN3) : ../man/man3/%.3fortran : ../md/%.3fortran.man
 	env AUX_FILENAME=$< bash scripts/man2html >../docs/$*.3fortran.html
 	bash scripts/man2f90 $*
 
+$(FULLMAN5) : ../man/man5/%.5fortran : ../md/%.5fortran.man
+	scripts/txt2man -s 5fortran -t "$*" $< |tee $@ |\
+	env AUX_FILENAME=$< bash scripts/man2html >../docs/$*.5fortran.html
+	bash scripts/man2f90 $*
+
 $(FULLMAN7) : ../man/man7/%.7fortran : ../md/%.7fortran.man
 	scripts/txt2man -s 7fortran -t "$*" $< |tee $@ |\
 	env AUX_FILENAME=$< bash scripts/man2html >../docs/$*.7fortran.html
@@ -71,7 +82,7 @@ demos:
 .PHONY : clean
 clean:
 	rm -f $(FULLMANS) 
-	cd ../docs &&rm -f $(FULLHTML3) $(FULLHTML7)
+	cd ../docs &&rm -f $(FULLHTML3) $(FULLHTML7) $(FULLHTML5)
 	rm -f ../docs/manpages.zip ../docs/manpages.tgz
 	cd ../example/ && make clean
 

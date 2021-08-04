@@ -93,14 +93,14 @@ export MANPATH=../man
 #----------------------------------------------------------------------------------------------------------------------------------E
 # index skipping anything without '[FORTRAN' in the description
 export FILTER="grep '\[FORTRAN.*\]'"
-for SUBDIR in 3 7
+for SUBDIR in 3 5 7
 do
    echo "making HTML index for Fortran Intrinsics for section $SUBDIR in $WHERE/man${SUBDIR}i.html" # 1>&2
    DOCUMENT_HEADER="man(${SUBDIR}) pages for Fortran Intrinsics"
    MAKE_MANK "${SUBDIR}" > $WHERE/index$SUBDIR.html
 done
 # remove content index from html documents
-sed -i -e '/HREF=#/d' -e '/name=contents/d' $WHERE/*.[37]fortran.html
+sed -i -e '/HREF=#/d' -e '/name=contents/d' $WHERE/*.[357]fortran.html
 ####################################################################################################################################
 exit
 ####################################################################################################################################

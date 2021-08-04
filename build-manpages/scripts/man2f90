@@ -5,6 +5,7 @@ do
    case "$(man -w $TOPIC)" in
    *.3fortran*) SECTION=3fortran ;;
    *.7fortran*) SECTION=7fortran ;;
+   *.5fortran*) SECTION=5fortran ;;
    esac
    man -s $SECTION $TOPIC|
       col -b|
