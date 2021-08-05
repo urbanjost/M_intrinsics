@@ -5119,7 +5119,8 @@ textblock=[character(len=256) :: &
 '', &
 '   becomes', &
 '', &
-'   original&\n&statement', &
+'   original&', &
+'   & statement', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -5201,6 +5202,7 @@ textblock=[character(len=256) :: &
 '    character(len=*), parameter :: str1=''my first str'', str2=''my second str''', &
 '', &
 'could be written as', &
+'', &
 '    char&', &
 '    &acter(len=*), para&', &
 '    &meter :: str1=''my fi&', &
@@ -5210,7 +5212,9 @@ textblock=[character(len=256) :: &
 'where things were split in two in a haphazard way as long as no spaces', &
 'are introduced before the ending amersand and after the leading amersand', &
 'that would make the statement illegal if all appearing on one line', &
-'(but try to never split constants or lexical words!).', &
+'(ignoring length for the moment).', &
+'', &
+'But try to never split constants or lexical words!', &
 '', &
 '   NB.: To reiterate, it is bad practice to split strings and words and', &
 '   constants in their middles onto two lines, with the possible exception', &
@@ -5227,8 +5231,9 @@ textblock=[character(len=256) :: &
 '', &
 'So lines can be broken within a string constant or lexical word or', &
 'constant, in which case the initiating ampersand on the second line is', &
-'mandatory and spaces preceeding the ampersand at the end of the first', &
-'line are significant (and retained if part of a split string).', &
+'mandatory and inside of split strings spaces preceeding the ampersand at', &
+'the end of the first line and after the second ampersand are significant', &
+'(and retained if part of a split string).', &
 '', &
 'HOW LONG YOU CAN CONTINUE', &
 '', &
@@ -5240,6 +5245,10 @@ textblock=[character(len=256) :: &
 'still has a limit, but it is probably at least a few hundred lines.', &
 '', &
 'FIXED FORMAT AND INTERSECTION FORMAT INCLUDE FILES', &
+'', &
+'NOTE:', &
+'Skip this session if you do not need to deal with (typically old) ', &
+'fixed-format Fortran files.', &
 '', &
 'Fixed-format Fortran has a very different continuation rule where the', &
 'first line has nothing added to it except an optional zero in column', &
@@ -5258,20 +5267,24 @@ textblock=[character(len=256) :: &
 'So here is how to make an "intersection format" INCLUDE file:', &
 '', &
 '   If every line being continued has an ampersand in column 73 or further', &
-'   the ampersand will be ignored by standard fixed-format Fortran and', &
-'   if the second amersand is always present and in column six both rules', &
-'   are satisfied.', &
+'   the ampersand will be ignored by standard fixed-format Fortran and if', &
+'   the second ampersand is always present and in column six both rules', &
+'   are satisfied (so fixed-format files can use most printable characters', &
+'   in column six to indicate a continued line, but you have to use', &
+'   an ampersand in this case, because that is the only continuation', &
+'   character in free-format files).', &
 '', &
 'So, to summarize "intersection" continued line format in an example,', &
-'the following line is equivalent in fixed and free-format parsing:', &
+'the following is equivalent in fixed and free-format parsing:', &
 '', &
 '     12345 continue', &
 '           character(len=*), parameter :: string1="hello world", string2="hel&', &
 '          &lo world"', &
 '', &
 'Obviously, this is not compatible with extended length fixed-format', &
-'source files unless the ampersand is shifted beyond the extended limit', &
-'(which in standard fixed-format files would be past column 72).', &
+'source files (which some compilers support as an extension) unless', &
+'the ampersand is shifted beyond the extended limit (which in standard', &
+'fixed-format files would be past column 72).', &
 '', &
 'You may want to look for a compiler option to disable long-line warnings', &
 'when using "intersection format" INCLUDE files.', &
@@ -5294,7 +5307,7 @@ textblock=[character(len=256) :: &
 '', &
 '  NOTE', &
 '', &
-'  This document does not restrict the number of consecutive comment lines.', &
+'  The standard does not restrict the number of consecutive comment lines.', &
 '', &
 '', &
 '  FREE FORM STATEMENT CONTINUATION', &
@@ -5370,12 +5383,14 @@ textblock=[character(len=256) :: &
 '   >     ! use this format to write a row', &
 '   >     biggest=''("   |",*(i''//trim(biggest)//'':," |"))''', &
 '   >     ! print one row of array at a time', &
-'   >     write(*,''(*(g0))'')''   #'',(repeat(''-'',size_needed),''-#'',i=1,size(arr,dim=2))', &
+'   >     write(*,''(*(g0))'')&', &
+'   >     &''   #'',(repeat(''-'',size_needed),''-#'',i=1,size(arr,dim=2))', &
 '   >     do i=1,size(arr,dim=1)', &
 '   >        write(*,fmt=biggest,advance=''no'')arr(i,:)', &
 '   >        write(*,''(" |")'')', &
 '   >     enddo', &
-'   >     write(*,''(*(g0))'')''   #'',(repeat(''-'',size_needed),''-#'',i=1,size(arr,dim=2))', &
+'   >     write(*,''(*(g0))'')&', &
+'   >     &''   #'',(repeat(''-'',size_needed),''-#'',i=1,size(arr,dim=2))', &
 '   >   end subroutine print_matrix_int', &
 '   >   end program demo_continuation', &
 '', &
@@ -5395,14 +5410,14 @@ textblock=[character(len=256) :: &
 '      #-------#-------#-------#-------#-------#', &
 '', &
 'SUMMARY', &
-'', &
-'  Splitting a line with the sequence "&\n&" where "\n" represents a newline', &
-'  will continue a Fortran line onto two lines. Comments can go onto continued', &
-'  lines just like they do on other statements. The beginning ampersand on the', &
-'  second line is optional if you are not splitting a constant or lexical token', &
-'  or quoted string, otherwise it is required. Any modern compiler supports at', &
-'  least 39 continuation lines, and probably much more. Spaces before the leading', &
-'  amersand on the second part of the split line are ignored.', &
+'  Splitting a line with the sequence "&\n&" where "\n" represents a', &
+'  newline will continue a Fortran line onto two lines. Comments can', &
+'  go onto continued lines just like they do on other statements. The', &
+'  beginning ampersand on the second line is optional if you are not', &
+'  splitting a constant or lexical token or quoted string (but required', &
+'  if you are). Any modern compiler supports at least 39 continuation', &
+'  lines, and probably much more. Spaces before the leading amersand on', &
+'  the second part of the split line are ignored.', &
 '', &
 '  JSU', &
 '']

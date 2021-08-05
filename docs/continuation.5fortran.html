@@ -74,7 +74,8 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 <P>
 <B>becomes</B>
 <P>
-<B>original</B>&\n&<I>statement</I>
+<B>original</B>&
+& <I>statement</I>
 </PRE>
 </BLOCKQUOTE>
 <A name=2>
@@ -195,16 +196,21 @@ quoted strings or lexical words or values in the middle. So this line
 <P>
 </PRE>
 could be written as
-char&
-&acter(len=*), para&
-&meter :: str1=&#146;my fi&
-&rst str&#146;, str2=&#146;my se&
-&cond str&#146;
 <P>
+<PRE>
+    char&
+    &acter(len=*), para&
+    &meter :: str1=&#146;my fi&
+    &rst str&#146;, str2=&#146;my se&
+    &cond str&#146;
+<P>
+</PRE>
 where things were split in two in a haphazard way as long as no spaces
 are introduced before the ending amersand and after the leading amersand
 that would make the <I>statement</I> illegal if all appearing on one line
-(but try to never split constants or lexical words!).
+(ignoring length for the moment).
+<P>
+But try to never split constants or lexical words!
 <P>
 <PRE>
    NB.: To reiterate, it is bad practice to split strings and words and
@@ -225,8 +231,9 @@ This is a more realistic example (a very long string):
 </PRE>
 So lines can be broken within a string constant or lexical word or
 constant, in which case the initiating ampersand on the second line is
-mandatory and spaces preceeding the ampersand at the end of the first
-line are significant (and retained if part of a split string).
+mandatory and inside of split strings spaces preceeding the ampersand at
+the end of the first line and after the second ampersand are significant
+(and retained if part of a split string).
 </BLOCKQUOTE>
 <A name=6>
 
@@ -249,6 +256,10 @@ still has a limit, but it is probably at least a few hundred lines.
 </A>
 <BLOCKQUOTE>
 <P>
+NOTE:
+Skip this session if you do not need to deal with (typically old)
+fixed-format Fortran files.
+<P>
 Fixed-format Fortran has a very different continuation rule where the
 first line has nothing added to it except an optional zero in column
 six and all continuations have a non-space non-zero character that is
@@ -267,13 +278,16 @@ So here is how to make an "intersection format" INCLUDE file:
 <P>
 <PRE>
    If every line being continued has an ampersand in column 73 or further
-   the ampersand will be ignored by standard fixed-format Fortran and
-   if the second amersand is always present and in column six both rules
-   are satisfied.
+   the ampersand will be ignored by standard fixed-format Fortran and if
+   the second ampersand is always present and in column six both rules
+   are satisfied (so fixed-format files can use most printable characters
+   in column six to indicate a continued line, but you have to use
+   an ampersand in this case, because that is the only continuation
+   character in free-format files).
 <P>
 </PRE>
 So, to summarize "intersection" continued line format in an example,
-the following line is equivalent in fixed and free-format parsing:
+the following is equivalent in fixed and free-format parsing:
 <P>
 <PRE>
      12345 continue
@@ -282,8 +296,9 @@ the following line is equivalent in fixed and free-format parsing:
 <P>
 </PRE>
 Obviously, this is not compatible with extended length fixed-format
-source files unless the ampersand is shifted beyond the extended limit
-(which in standard fixed-format files would be past column 72).
+source files (which some compilers support as an extension) unless
+the ampersand is shifted beyond the extended limit (which in standard
+fixed-format files would be past column 72).
 <P>
 You may want to look for a compiler option to disable long-line warnings
 when using "intersection format" INCLUDE files.
@@ -319,7 +334,7 @@ on the interpretation of the program unit.
 </A>
 <BLOCKQUOTE>
 <P>
-This document does not restrict the number of consecutive comment lines.
+The standard does not restrict the number of consecutive comment lines.
 </BLOCKQUOTE>
 <P>
 <P>
@@ -406,12 +421,14 @@ Example program
    &gt;     ! use this format to write a row
    &gt;     biggest=&#146;("   |",*(i&#146;//trim(biggest)//&#146;:," |"))&#146;
    &gt;     ! print one row of array at a time
-   &gt;     write(*,&#146;(*(g0))&#146;)&#146;   #&#146;,(repeat(&#146;-&#146;,size_needed),&#146;-#&#146;,i=1,size(arr,dim=2))
+   &gt;     write(*,&#146;(*(g0))&#146;)&
+   &gt;     &&#146;   #&#146;,(repeat(&#146;-&#146;,size_needed),&#146;-#&#146;,i=1,size(arr,dim=2))
    &gt;     do i=1,size(arr,dim=1)
    &gt;        write(*,fmt=biggest,advance=&#146;no&#146;)arr(i,:)
    &gt;        write(*,&#146;(" |")&#146;)
    &gt;     enddo
-   &gt;     write(*,&#146;(*(g0))&#146;)&#146;   #&#146;,(repeat(&#146;-&#146;,size_needed),&#146;-#&#146;,i=1,size(arr,dim=2))
+   &gt;     write(*,&#146;(*(g0))&#146;)&
+   &gt;     &&#146;   #&#146;,(repeat(&#146;-&#146;,size_needed),&#146;-#&#146;,i=1,size(arr,dim=2))
    &gt;   end subroutine print_matrix_int
    &gt;   end program demo_continuation
 <P>
@@ -440,14 +457,14 @@ Results:
 
 </A>
 <BLOCKQUOTE>
-<P>
-Splitting a line with the sequence "&\n&" where "\n" represents a newline
-will continue a Fortran line onto two lines. Comments can go onto continued
-lines just like they do on other statements. The beginning ampersand on the
-second line is optional if you are not splitting a constant or lexical token
-or quoted string, otherwise it is required. Any modern compiler supports at
-least 39 continuation lines, and probably much more. Spaces before the leading
-amersand on the second part of the split line are ignored.
+Splitting a line with the sequence "&\n&" where "\n" represents a
+newline will continue a Fortran line onto two lines. Comments can
+go onto continued lines just like they do on other statements. The
+beginning ampersand on the second line is optional if you are not
+splitting a constant or lexical token or quoted string (but required
+if you are). Any modern compiler supports at least 39 continuation
+lines, and probably much more. Spaces before the leading amersand on
+the second part of the split line are ignored.
 </BLOCKQUOTE>
 <A name=>
 
@@ -456,7 +473,7 @@ amersand on the second part of the split line are ignored.
 <BLOCKQUOTE>
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>continuation (5fortran)</TD> <TD align=right width=33%><I>August 04, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 4c2d6094-cbd1-4c5a-87e2-383b7d488b6b using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>continuation (5fortran)</TD> <TD align=right width=33%><I>August 04, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from eb517d6f-921e-45a5-ad65-e008ad5c438b using man macros.</FONT>
 <br><br><center><img src="images/continuation.5fortran.gif"></center>
 </div>
 </div>
