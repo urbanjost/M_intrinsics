@@ -5124,9 +5124,9 @@ textblock=[character(len=256) :: &
 'DESCRIPTION', &
 '', &
 'You may split almost any free-format Fortran statement into multiple lines', &
-'by inserting the sequence "&\n&", where "\n" represents a newline. That is, ', &
+'by inserting the sequence "&\n&", where "\n" represents a newline. That is,', &
 'split the line into two lines and place an ampersand at the right end of the', &
-'first line and as the first (non-space) character in the second line. ', &
+'first line and as the first (non-space) character in the second line.', &
 '', &
 'So for example, the line', &
 '', &
@@ -5155,7 +5155,7 @@ textblock=[character(len=256) :: &
 'Now there is the issue of whether comments are allowed after the trailing', &
 'ampersands. They are! So lets explain why we wanted this line to be split up:', &
 '', &
-'    integer,save :: xx(2,3)= reshape([& ! define array in row-column order ', &
+'    integer,save :: xx(2,3)= reshape([& ! define array in row-column order', &
 '       & 1, 2, 3,  &                    ! row 1', &
 '       & 4, 5, 6   &                    ! row 2', &
 '    ],shape(xx),order=[2,1])', &
@@ -5163,7 +5163,7 @@ textblock=[character(len=256) :: &
 'Continuation lines may be separated by blank or comment lines as well. So', &
 'the following is still equivalent to the first example line:', &
 '', &
-'    integer,save :: xx(2,3)= reshape([& ! define array in row-column order ', &
+'    integer,save :: xx(2,3)= reshape([& ! define array in row-column order', &
 '', &
 '       !===========!', &
 '       & 1, 2, 3,  &', &
@@ -5188,7 +5188,7 @@ textblock=[character(len=256) :: &
 'space would be allowed (we will get to the opposite issue - when the', &
 'second ampersand is required, next).', &
 '', &
-'    integer,save :: xx(2,3)= reshape([& ! define array in row-column order ', &
+'    integer,save :: xx(2,3)= reshape([& ! define array in row-column order', &
 '         1, 2, 3,  &', &
 '         4, 5, 6   &', &
 '    ],shape(xx),order=[2,1])', &
@@ -5196,7 +5196,7 @@ textblock=[character(len=256) :: &
 'YOU HAVE TO HAVE THE LEADING AMPERSANDS WHEN SPLITTING IN A BAD PLACE', &
 '', &
 'But you have to have the leading amersand on continued lines when splitting', &
-'quoted strings or lexical words or values in the middle. So this line ', &
+'quoted strings or lexical words or values in the middle. So this line', &
 '', &
 '    character(len=*), parameter :: str1=''my first str'', str2=''my second str''', &
 '', &
@@ -5214,7 +5214,7 @@ textblock=[character(len=256) :: &
 '', &
 '   NB.: To reiterate, it is bad practice to split strings and words and', &
 '   constants in their middles onto two lines, with the possible exception', &
-'   of long string constants. ', &
+'   of long string constants.', &
 '', &
 'This is a more realistic example (a very long string):', &
 '', &
@@ -5256,19 +5256,19 @@ textblock=[character(len=256) :: &
 'that cannot be split across multiple lines!).', &
 '', &
 'So here is how to make an "intersection format" INCLUDE file:', &
-'   ', &
+'', &
 '   If every line being continued has an ampersand in column 73 or further', &
 '   the ampersand will be ignored by standard fixed-format Fortran and', &
 '   if the second amersand is always present and in column six both rules', &
 '   are satisfied.', &
-'   ', &
+'', &
 'So, to summarize "intersection" continued line format in an example,', &
 'the following line is equivalent in fixed and free-format parsing:', &
-'   ', &
+'', &
 '     12345 continue', &
 '           character(len=*), parameter :: string1="hello world", string2="hel&', &
 '          &lo world"', &
-'   ', &
+'', &
 'Obviously, this is not compatible with extended length fixed-format', &
 'source files unless the ampersand is shifted beyond the extended limit', &
 '(which in standard fixed-format files would be past column 72).', &
@@ -5282,7 +5282,7 @@ textblock=[character(len=256) :: &
 '(J3/18-007r1WD 1539-12018-08-286.3.2.3) says:', &
 '', &
 '  FREE FORM COMMENTARY', &
-' ', &
+'', &
 '  The character “!” initiates a comment except where it appears', &
 '  within a character context. The comment extends to the end of the line.', &
 '  If the first nonblank character on a line is an “!”, the line', &
@@ -5292,12 +5292,12 @@ textblock=[character(len=256) :: &
 '  follow the last statement of a program unit. Comments have no effect', &
 '  on the interpretation of the program unit.', &
 '', &
-'  NOTE ', &
+'  NOTE', &
 '', &
 '  This document does not restrict the number of consecutive comment lines.', &
 '', &
 '', &
-'  FREE FORM STATEMENT CONTINUATION ', &
+'  FREE FORM STATEMENT CONTINUATION', &
 '', &
 '  Per (6.3.2.4):', &
 '', &
@@ -5326,6 +5326,73 @@ textblock=[character(len=256) :: &
 '  is not a comment; an “&” shall be the first nonblank character on', &
 '  the next such line and the statement continues with the next character', &
 '  following that “&”.', &
+'', &
+'EXAMPLE', &
+'  Example program', &
+'', &
+'   > program demo_continuation', &
+'   >', &
+'   >  implicit none', &
+'   >  ! one statement using continuation:', &
+'   >', &
+'   >  integer,save :: xx(3,5)= reshape([& ! define in row-column order', &
+'   >', &
+'   >   !-------------------------!', &
+'   >    1,    2,   3,   4,   5,  &  ! row 1', &
+'   >    10,  20,  30,  40,  50,  &  ! row 2', &
+'   >    11,  22,  33,  44,  55   &  ! row 3', &
+'   >   !-------------------------!', &
+'   >', &
+'   >   ],shape(xx),order=[2,1])', &
+'   >', &
+'   >   ! and for fun, print it in row-column order too', &
+'   >', &
+'   >  call print_matrix_int(''xx array:'',xx)', &
+'   >  xx(3,5)= -1051', &
+'   >  call print_matrix_int(''xx array:'',xx)', &
+'   >', &
+'   >  contains', &
+'   >  subroutine print_matrix_int(title,arr)', &
+'   >  ! bonus points -- print an integer array in RC order with bells on.', &
+'   >  ! ie. It calculates the width needed for the longest variable and', &
+'   >  ! puts a frame around the array', &
+'   >  implicit none', &
+'   >  character(len=*),intent(in)  :: title', &
+'   >  integer,intent(in)           :: arr(:,:)', &
+'   >  integer                      :: i', &
+'   >  integer                      :: size_needed', &
+'   >  character(len=:),allocatable :: biggest', &
+'   >     write(*,*)trim(title)', &
+'   >     biggest=''           ''  ! make buffer to write integer into', &
+'   >     ! find how many characters to use for integers', &
+'   >     size_needed=ceiling(log10(real(maxval(abs(arr)))))+2', &
+'   >     write(biggest,''(i0)'')size_needed', &
+'   >     ! use this format to write a row', &
+'   >     biggest=''("   |",*(i''//trim(biggest)//'':," |"))''', &
+'   >     ! print one row of array at a time', &
+'   >     write(*,''(*(g0))'')''   #'',(repeat(''-'',size_needed),''-#'',i=1,size(arr,dim=2))', &
+'   >     do i=1,size(arr,dim=1)', &
+'   >        write(*,fmt=biggest,advance=''no'')arr(i,:)', &
+'   >        write(*,''(" |")'')', &
+'   >     enddo', &
+'   >     write(*,''(*(g0))'')''   #'',(repeat(''-'',size_needed),''-#'',i=1,size(arr,dim=2))', &
+'   >   end subroutine print_matrix_int', &
+'   >   end program demo_continuation', &
+'', &
+'  Results:', &
+'', &
+'    xx array:', &
+'      #-----#-----#-----#-----#-----#', &
+'      |   1 |   2 |   3 |   4 |   5 |', &
+'      |  10 |  20 |  30 |  40 |  50 |', &
+'      |  11 |  22 |  33 |  44 |  55 |', &
+'      #-----#-----#-----#-----#-----#', &
+'    xx array:', &
+'      #-------#-------#-------#-------#-------#', &
+'      |     1 |     2 |     3 |     4 |     5 |', &
+'      |    10 |    20 |    30 |    40 |    50 |', &
+'      |    11 |    22 |    33 |    44 | -1051 |', &
+'      #-------#-------#-------#-------#-------#', &
 '', &
 'SUMMARY', &
 '', &
