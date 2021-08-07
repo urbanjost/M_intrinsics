@@ -1,8 +1,8 @@
 NAME
    implied_do(7f) - [FORTRAN] documentation on usage of implied do in Fortran
-   
 
 SYNOPSIS
+     (values,i=start,end,increment)
 
 DESCRIPTION
 
@@ -26,7 +26,7 @@ EXAMPLES
 
  Examples of array constructors containing an implied DO are:
 
-   (/ (I, I = 1, 1075) /)
+   [ (I, I = 1, 1075) ]
 
  and
 
@@ -37,4 +37,3 @@ EXAMPLES
  An example of an output list with an implied DO is:
 
    WRITE (LP, FMT = '(10F8.2)') (LOG (A (I)), I = 1, N + 9, K), G
-

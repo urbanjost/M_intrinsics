@@ -44,7 +44,7 @@ ARGUMENTS
                synchronously.
 
    EXITSTAT    (Optional) an INTEGER of the default kind with
-               intent(INOUT).  If the command is executed synchronously,
+               intent(INOUT). If the command is executed synchronously,
                it is assigned the value of the processor-dependent exit
                status. Otherwise, the value of EXITSTAT is unchanged.
 
@@ -57,7 +57,7 @@ ARGUMENTS
                positive value if an error condition occurs, or the
                value -2 if no error condition occurs but WAIT is present
                with the value false and the processor does not support
-               asynchronous execution.Otherwise it is assigned the
+               asynchronous execution. Otherwise it is assigned the
                value 0.
 
    CMDMSG      (Optional) a CHARACTER scalar of the default kind.

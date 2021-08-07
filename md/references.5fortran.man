@@ -1,0 +1,29 @@
+NAME
+   references(5f - FORTRAN:SUPPLEMENT] www references for Fortran
+
+SYNTAX
+   browser URL
+
+DESCRIPTION
+   Some popular WWW reference sites for Fortran
+
+   DOCUMENTATION
+     o Fortran 2018 Standard  https://j3-fortran.org/doc/year/18/18-007r1.pdf
+     o Modern Fortran  http://cyber.dabamos.de/programming/modernfortran
+   STANDARDS
+     o J3  https://j3-fortran.org
+   COMPILERS
+     o GNU gcc  http://gcc.gnu.org
+   REPOSITORIES
+     o netlib  http://www.netlib.org
+     o Fortran Standard Library project  https://github.com/fortran-lang/stdlib/issues/229
+   EXAMPLES
+     o Rosetta Code  https://rosettacode.org
+     o Fortran Package Manager 
+       o fpm  https://github.com/fortran-lang/fpm
+       o repository  https://github.com/fortran-lang/fpm-registry
+       o package listing  https://fortran-lang.org/packages.
+   DISCUSSION
+    o Fortran Discourse  https://fortran-lang.discourse.group
+    o Google Fortran newsgroup  https://groups.google.com/forum/#!forum/comp.lang.fortran
+    o Fortran Wiki  http://fortranwiki.org
