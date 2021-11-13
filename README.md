@@ -126,13 +126,6 @@ and the demo program in test/.
 The makefile is set up to do other things; and is a work in progress so
 this might change.
 
-## RESPONSES
-
-Discussion is welcome here as well as at
- - [Fortran Discourse](https://fortran-lang.discourse.group/t/M_intrinsics/160/)
- - [Fortran Wiki](http://fortranwiki.org)
- - [Google Fortran newsgroup](https://groups.google.com/forum/#!forum/comp.lang.fortran)
-
 ## REFERENCES
  - The [Fortran 2018 Standard](https://j3-fortran.org/doc/year/18/18-007r1.pdf)
    as described at https://j3-fortran.org/doc/year/18/18-007r1.pdf

@@ -4,6 +4,8 @@ NAME
 SYNTAX
    result = ACOS(X)
 
+    real(kind=*),elemental :: x
+
 DESCRIPTION
    acos(X) computes the arccosine of X (inverse of cos(x)).
 

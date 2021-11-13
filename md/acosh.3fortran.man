@@ -5,6 +5,8 @@ NAME
 SYNTAX
    result = acosh(x)
 
+    [real|complex](kind=*),elemental :: x
+
 DESCRIPTION
    ACOSH(X) computes the inverse hyperbolic cosine of X.
 

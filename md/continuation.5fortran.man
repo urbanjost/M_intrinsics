@@ -120,7 +120,7 @@ This is a more realistic example (a very long string):
 
 So lines can be broken within a string constant or lexical word or
 constant, in which case the initiating ampersand on the second line is
-mandatory and inside of split strings spaces preceeding the ampersand at
+mandatory and inside of split strings spaces preceding the ampersand at
 the end of the first line and after the second ampersand are significant
 (and retained if part of a split string).
 

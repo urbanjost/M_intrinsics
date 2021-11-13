@@ -4,6 +4,8 @@ NAME
 SYNTAX
    result = ABS(A)
 
+    [real|integer|complex](kind=*),elemental :: a
+
 DESCRIPTION
    abs(A) computes the absolute value of numeric argument A.
 
