@@ -1,1 +1,96 @@
-pandoc --from man --to gfm
+# NAME
+
+**REWIND**(7f) - \[FORTRAN:FILE\_POSITIONING\] rewind specified
+sequential access I/O unit
+
+# SYNOPSIS
+
+**REWIND** *file-unit-number*
+
+``` 
+    REWIND ( [UNIT=]file-unit-number][,IOMSG=iomsg-variable] &
+    & [,IOSTAT=scalar-int-variable][,ERR=label] )
+```
+
+# DESCRIPTION
+
+Execution of a **REWIND** statement causes the file connected to the
+specified unit to be positioned at the beginning of the file (its
+initial point).
+
+If the file is already positioned at its initial point, execution of
+this statement has no effect on the position of the file.
+
+Execution of a **REWIND** statement for a file that is connected but
+does not exist is permitted and has no effect on any file.
+
+# OPTIONS
+
+  - **UNIT**  
+    unit number of file to rewind. A unit open for direct access or
+    stream access cannot be referenced by a **REWIND** (e.g. you cannot
+    typically rewind stdin and stdout). 
+
+  - **IOSTAT**  
+    (Optional) a compiler-specific number that indicates an error
+    occurred if non-zero. If not present and an error occurs the program
+    terminates.
+
+  - **IOMSG**  
+    (Optional) a message describing error IOSTAT if IOSTAT is not zero.
+
+  - **ERR**  
+    (Optional) a label number to jump to if an error occurs
+
+# EXAMPLE
+
+An example of a **REWIND** statement is:
+
+```` 
+   program demo_rewind
+   implicit none
+   character(len=256) :: line
+   character(len=256) :: mssge
+   integer            :: i
+   integer            :: ios
+      open(10,file='demo_rewind.txt') ! open a file
+      do i=1,100                      ! write lines to it
+         write(10,'(a,i0)') 'line ',i
+      enddo
+      rewind(10, iostat=ios,iomsg=mssge)
+      if(ios.ne.0)then
+         write(*,*)'*error* ',trim(mssge)
+         stop
+      endif
+      write(*,*)'wrote 100 lines, but now at line ```'
+      read(10,'(a)')line
+      write(*,'(a)')line
+      read(10)
+      read(10)
+      read(10)
+      write(*,*)'skipped a few lines, now at ```'
+      read(10,'(a)')line
+      write(*,'(a)')line
+      close(10,status='delete')
+   end program demo_rewind
+````
+
+# SEE ALSO
+
+The input/output statements are the OPEN, CLOSE, READ, WRITE, PRINT,
+BACKSPACE, ENDFILE, **REWIND**, FLUSH, WAIT, and INQUIRE statements.
+
+  - The READ statement is a data transfer input statement.
+
+  - The WRITE statement and the PRINT statement are data transfer output
+    statements.
+
+  - The OPEN statement and the CLOSE statement are file connection
+    statements.
+
+  - The INQUIRE statement is a file inquiry statement.
+
+  - The BACKSPACE, ENDFILE, and **REWIND** statements are file
+    positioning statements.
+
+## JSU

@@ -10,6 +10,6 @@ find man/man* -type f -name '*.*fortran' -printf '%p\n' |
 while read NAME
 do
    echo "$NAME"
-   echo pandoc --from man --to gfm < $NAME > gfm/$(basename $NAME).md
+   pandoc --from man --to gfm < $NAME > gfm/$(basename $NAME).md
 done
 exit
