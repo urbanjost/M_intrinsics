@@ -267,7 +267,16 @@ $(TOCHARACTER)
 '']
 
 shortname="$SHORTNAME"
+call process()
 
+EOF
+done
+   cat <<\EOF
+case default
+   allocate (character(len=256) :: textblock(0))
+end select
+contains
+subroutine process()
 if(present(topic))then
    if(topic)then
       textblock=[shortname]
@@ -289,13 +298,7 @@ if(present(m_help))then
       textblock(1)=shortname
    endif
 endif
-
-EOF
-done
-   cat <<\EOF
-case default
-   allocate (character(len=256) :: textblock(0))
-end select
+end subroutine process
 end function help_intrinsics_one
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
