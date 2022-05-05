@@ -1,0 +1,25 @@
+wipe
+sz 800 300
+# make cosine curve
+create 301 -start -10 -end 10
+math cos(c(PUT))
+# set axis range
+#set PI=abs(atan(-1)*4)
+ymin (-1)
+ymax 1
+#exact
+# styles and labels
+xlabel X -ch 45 -w 20
+ylabel COS(X) -ch 45 -w 20
+title -off -w 20 
+id 1 -w 20 -t cosine -tw 20
+id 2 3 -w 10 -off -c 7 -d 0
+id 0 -w 20
+# make crosshairs
+create 100 -start -1 -end 1
+math c(PUT)-c(PUT)
+create 100 -start 0 -end 0
+math c(PUT)-2+ic/25
+# plot to GIF file using netpbm+
+plot 2 4 6
+hcopy p6 -sz 2400 900 -f |ppmtogif >cos.3fortran.gif

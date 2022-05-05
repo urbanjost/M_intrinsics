@@ -1,0 +1,26 @@
+sz 550 550
+makeobj 1234  # URBAN ART
+   page -50 50 -50 50
+   circleprecision 60
+   linewidth 200
+   color 7
+   circle 0 0 45
+   color 4
+   polyfill TRUE
+   circle 0 0 45
+   polyfill FALSE
+   color 7
+   linewidth 400
+   circle X=14 Y=14 R=18
+   move2 X+cosd(225)*R Y+sind(225)*R   
+   draw2 X+cosd(225)*R*3 Y+sind(225)*R*3
+   linewidth 800
+   move2 X+cosd(225)*R*1.4 Y+sind(225)*R*1.4
+   draw2 X+cosd(225)*R*3 Y+sind(225)*R*3
+   linewidth 150
+   arc X Y R-6 45-30 45+30
+closeobj
+rm -f search.p6
+hcopy p6 -obj 1234 -f search.p6 -sz 550 550
+page
+callobj 1234

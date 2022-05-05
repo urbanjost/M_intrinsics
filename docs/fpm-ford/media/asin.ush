@@ -1,0 +1,24 @@
+wipe
+# make arcsine curve
+create 101 -start -1 -end 1
+math asin(c(PUT))
+# set axis range
+set PI=abs(atan(-1)*4)
+ymin (-PI/2)
+ymax PI/2
+exact
+# styles and labels
+xlabel X -ch 30 -w 10
+ylabel ASIN(X) -ch 30 -w 10
+title -off
+id 1 -w 20 -t arcsine
+id 2 3 -w 10 -off -c 7 -d 0
+id 0 -w 20
+# make crosshairs
+create 100 -start -1 -end 1
+math c(PUT)-c(PUT)
+create 100 -start 0 -end 0
+math c(PUT)-2+ic/25
+# plot to GIF file using netpbm+
+plot 2 4 6
+hcopy p6 -sz 3000 3000 -f |ppmtogif >asin.3fortran.gif
