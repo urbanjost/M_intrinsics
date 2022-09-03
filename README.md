@@ -1,6 +1,6 @@
 ## NAME
 
-   # M_intrinsics(7f) - [FORTRAN] intrinsic manpages
+   # M_intrinsics(7f) - [FORTRAN] intrinsic man-pages
 
 ## DESCRIPTION
 
@@ -9,7 +9,7 @@ Fortran intrinsics, with a secondary goal of providing a tested working
 example program for each intrinsic.
 
 Unlike many parts of a language, intrinsics can naturally be described
-in discrete units using manpages. If we get enough momentum going here
+in discrete units using man-pages. If we get enough momentum going here
 using a "divide and conquer" approach, a finished product can quickly
 be produced and transferred to
 
@@ -24,7 +24,7 @@ as other platforms; and is used to view documentation on-line in a CLI
 These documents are at the state of "good enough considering the
 alternative is nothing", but are still actively being edited.
 
-The manpages are available as archive files:
+The man-pages are available as archive files:
 
    - [manpages.tgz](docs/manpages.zip)
    - [manpages.zip](docs/manpages.tgz)
@@ -34,15 +34,15 @@ enter the docs/ directory to download them.
 
 ## USE AND INSTALLATION
 
-As manpages the documents can often be integrated with editors or
+As man-pages the documents can often be integrated with editors or
 IDEs. This is a powerful tool when inspecting code that uses unfamiliar
 procedures and to verify correct usage when creating code in a CLI
 environment.
 
-The process of installing manpages can vary. Check your system
+The process of installing man-pages can vary. Check your system
 documentation, but at a minimum if you create the directory $HOME/man/man3
-and place the manpages there and add $HOME/man to your $MANPATH you
-should be able to use the manpages. For example:
+and place the man-pages there and add $HOME/man to your $MANPATH you
+should be able to use the man-pages. For example:
 ```bash
         mkdir -p $HOME/man/man3
         cd $HOME/man/man3
@@ -50,7 +50,7 @@ should be able to use the manpages. For example:
         export MANPATH=$HOME/man:$MANPATH
         man -s 3fortran -k .
 ```
-## DOCUMENTATION
+## DOCUMENTATION   ![docs](docs/images/docs.gif)
 
 manpage source is maintained as flat-text files which are
 

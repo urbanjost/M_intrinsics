@@ -36,7 +36,7 @@ EXAMPLE
       do i = 1, len(str)
          select case (str(i:i))
          case ('A':'Z') ! change letter to miniscule
-            string(i:i) = char(iachar(str(i:i))+32)
+            string(i:i) = achar(iachar(str(i:i))+32)
          case default
          end select
       end do
