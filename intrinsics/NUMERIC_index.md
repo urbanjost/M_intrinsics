@@ -1,4 +1,4 @@
-### Manipulation and properties of numeric values
+#### Manipulation and properties of numeric values
 
 |-----------------|||||----------------------------------------------------------||------------------------------------------------|
 | category        ||||| page                                                     || description                                    |

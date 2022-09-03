@@ -1,9 +1,9 @@
-## __Name__
+### **Name**
 
-__random\_init(3)__ - \[MATHEMATICS:RANDOM\] control multi-image
+**random\_init(3)** - \[MATHEMATICS:RANDOM\] control multi-image
 pseudorandom number generator initialization.
 
-## __Syntax__
+### **Syntax**
 ```fortran
    call random_init (repeatable, image_distinct)
 
@@ -11,7 +11,7 @@ pseudorandom number generator initialization.
      logical,intent(in) :: repeatable
      logical,intent(in) :: image_distinct
 ```
-## __Description__
+### **Description**
 
 Pseudorandom generators produce a deterministic sequence of numbers
 that pass statistical tests that show they appear sufficiently random
@@ -34,10 +34,10 @@ will want to use your own generator or review the specific generators used
 by your compiler.  There are many packages available for such situations.
 
 But the standard procedures available are sufficient for many use
-cases. They consist of __random\_number(3f)__, __random\_seed(3f)__,
-and __random\_init(3f)__.
+cases. They consist of **random\_number(3f)**, **random\_seed(3f)**,
+and **random\_init(3f)__.
 
-__random\_number(3f)__ calls a generator and returns a psuedorandom scalar
+**random\_number(3f)** calls a generator and returns a psuedorandom scalar
 or array. This simple-to-use function does not directly define how to
 seed or initialize the generator, however. So if you do not call one
 of the other two initializer procedures it is implementation dependent
@@ -45,15 +45,15 @@ as to whether the initial seed is always the same or changes with each
 program start, or whether all images in a parallel program start with
 the same seed or unique seeds for each image, for instance.
 
-So you need to either set the seed with __random\_seed(3)__ yourself
+So you need to either set the seed with **random\_seed(3)** yourself
 and optionally the behavior when running in parallel with coarrays with
-__random\_init(3f) if you do not want to just depend on your particular
+**random\_init(3f) if you do not want to just depend on your particular
 compiler behavior.
 
-__random\_init(3f)__
+**random\_init(3f)**
 Initializes the state of the pseudorandom number generator procedure
-__random\_number(3f)__.  random\_init(3f) is equivalent to invoking
-__random\_seed(3f)__ with no parameters but considers parallel images and
+**random\_number(3f)__.  random\_init(3f) is equivalent to invoking
+**random\_seed(3f)** with no parameters but considers parallel images and
 otherwise processor-dependent behaviors as well.
 
 Not every compiler vendor gives a unique seed for random\_seed(),
@@ -61,9 +61,9 @@ for example.
 
 The initial behavior of the pseudorandom number generator random\_number()
 procedure is processor-dependent if not initialized. Even if initialized
-with __random\_seed()__  if a specific seed array is not specified
+with **random\_seed()**  if a specific seed array is not specified
 behavior is still processor-dependent for multiple image codes unless
-specific modes are selected with __random\_init()__.
+specific modes are selected with **random\_init()__.
 
 There are four combinations of REPEATABLE and IMAGE_DISTINCT. The behavior
 is as follows:
@@ -146,11 +146,11 @@ is as follows:
 In each of these cases, a different processor-dependent value for PUT
 shall result in a different sequence of pseudorandom numbers.
 
-## __Arguments__
+### **Arguments**
 
-  - __repeatable
+  - **repeatable
     : If .true., the seed is set to a processor-dependent value
-    that is the same each time __random_init(3f)__ is called from the
+    that is the same each time **random_init(3f)** is called from the
     same program execution (or the same image???).
 
     The sequence of random numbers is different for repeated execution
@@ -158,14 +158,14 @@ shall result in a different sequence of pseudorandom numbers.
 
     If it is .false., the seed is set to a processor-dependent value.
 
-    : when .true. init the seed used by __random\_number__
+    : when .true. init the seed used by **random\_number**
                   differently on every invoking image.
 
      If it is .true., the seed is set to a processor-dependent
     value that is the same each time random_init is called from the same
     image.
 
-  - __image\_distinct__
+  - **image\_distinct**
 
     image_distinct
     : If .true., the seed is set to a processor-dependent
@@ -180,7 +180,7 @@ shall result in a different sequence of pseudorandom numbers.
     does not use co-arrays or only a single image is instantiated,
     then IMAGE_DISTINCT is irrelevant.
 
-## __Examples__
+### **Examples**
 
 Sample program:
 
@@ -208,13 +208,13 @@ end program test_random_seed
   Results:
 ```text
 ```
-## __Standard__
+### **Standard**
 
 Fortran 2018 and later
 
-## __See Also__
+### **See Also**
 
-[__random\_seed__(3)](RANDOM_SEED),
+[__random\_seed**(3)](RANDOM_SEED),
 [__random\_init(3)](RANDOM_SEED)
 
 ###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

@@ -1,4 +1,4 @@
-### information about compiler and compiler options used for building
+#### information about compiler and compiler options used for building
 
 |-----------------------|||||-------------------------------------------------------------------------------||-----------------------------------------|
 | category              ||||| page                                                                          || description                             |

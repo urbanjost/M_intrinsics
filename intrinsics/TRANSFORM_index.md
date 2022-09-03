@@ -1,4 +1,4 @@
-### Matrix multiplication, Dot product, array shifts,
+#### Matrix multiplication, Dot product, array shifts,
 
 |-----------------------|||||-------------------------------------------------------------------||------------------------------------------------------------------|
 | category              ||||| page                                                              || description                                                      |

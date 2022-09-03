@@ -1,34 +1,30 @@
-## __Name__
+## radix
 
-__radix__(3) - \[NUMERIC MODEL\] Base of a model number
+### **Name**
 
-## __Syntax__
+**radix**(3) - \[NUMERIC MODEL\] Base of a model number
+
+### **Syntax**
+
 ```fortran
 result = radix(x)
-
-   function radix(x) result(r)
-   TYPE(kind=KIND),intent(in) :: x(..)
-   integer :: r
 ```
-where TYPE is _integer_ or _real_ and KIND is any kind supported by
-the type.
-## __Description__
 
-__radix(x)__ returns the base of the model representing the entity __x__.
-This helps to allow for a generic model to be modeled in general, but
-on a binary computer will just always return 2.
+### **Description**
 
-## __Arguments__
+**radix(x)** returns the base of the model representing the entity **x**.
 
-  - __x__
-    : The type of this value (a scalar or array) is used to determine
-    which type model to query
+### **Arguments**
 
-## __Returns__
+- **x**
+  : Shall be of type _integer_ or _real_
 
-the base of the model for values the same type as __x__
+### **Returns**
 
-## __Examples__
+The return value is a scalar of type _integer_ and of the default integer
+kind.
+
+### **Examples**
 
 Sample program:
 
@@ -40,33 +36,35 @@ implicit none
    print *, "The radix for the doubleprecsion real kind is", radix(0.0d0)
 end program demo_radix
 ```
-  Results:
+
+Results:
+
 ```text
     The radix for the default integer kind is           2
     The radix for the default real kind is           2
     The radix for the doubleprecsion real kind is           2
 ```
 
-## __Standard__
+### **Standard**
 
 Fortran 95 and later
 
-## __See Also__
+### **See Also**
 
-[__digits__(3)](DIGITS),
-[__epsilon__(3)](EPSILON),
-[__exponent__(3)](EXPONENT),
-[__fraction__(3)](FRACTION),
-[__huge__(3)](HUGE),
-[__maxexponent__(3)](MAXEXPONENT),
-[__minexponent__(3)](MINEXPONENT),
-[__nearest__(3)](NEAREST),
-[__precision__(3)](PRECISION),
-[__range__(3)](RANGE),
-[__rrspacing__(3)](RRSPACING),
-[__scale__(3)](SCALE),
-[__set\_exponent__(3)](SET_EXPONENT),
-[__spacing__(3)](SPACING),
-[__tiny__(3)](TINY)
+[**digits**(3)](DIGITS),
+[**epsilon**(3)](EPSILON),
+[**exponent**(3)](EXPONENT),
+[**fraction**(3)](FRACTION),
+[**huge**(3)](HUGE),
+[**maxexponent**(3)](MAXEXPONENT),
+[**minexponent**(3)](MINEXPONENT),
+[**nearest**(3)](NEAREST),
+[**precision**(3)](PRECISION),
+[**range**(3)](RANGE),
+[**rrspacing**(3)](RRSPACING),
+[**scale**(3)](SCALE),
+[**set_exponent**(3)](SET_EXPONENT),
+[**spacing**(3)](SPACING),
+[**tiny**(3)](TINY)
 
-###### fortran-lang intrinsic descriptions (license:MIT) @urbanjost
+###### fortran-lang intrinsic descriptions

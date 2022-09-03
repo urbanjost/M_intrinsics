@@ -1,55 +1,41 @@
-## __Name__
+## iachar
 
-__iachar__(3) - \[CHARACTER:CONVERSION\] Code in ASCII collating sequence
-```fortran
-   elemental function iachar(c,KIND) result(i)
-   integer(kind=KIND) :: i
-   character(len=1),intent(in) :: c
-   integer,intent(in),optional :: KIND
-```
-The return value is of type _integer_ and of kind __KIND__. If __KIND__ is absent,
-the return value is of default integer kind.
+### **Name**
 
-## __Syntax__
+**iachar**(3) - \[CHARACTER:CONVERSION\] Code in ASCII collating sequence
+
+### **Syntax**
+
 ```fortran
 result = iachar(c, kind)
 ```
-## __Description__
 
-__iachar__(c) returns the code for the ASCII character in the first
-character position of __c__.
+### **Description**
 
-   If __c__ is an ASCII character (ie. in the collating sequence defined
-   by ISO 646:1983) the result is the position of __c__ in that sequence
-   and is in the range 0 to 127.
+**iachar**(c) returns the code for the ASCII character in the first
+character position of C.
 
-   An undefined value is returned if __c__ is not in the ASCII collating
-   sequence.
+### **Arguments**
 
-## __Arguments__
+- **c**
+  : Shall be a scalar _character_, with _intent(in)_
 
-  - __c__
-    : The character determines the value of the ADE
-    (ASCII Decimal Equivalent) that will be returned.
+- **kind**
+  : (Optional) An _integer_ initialization expression indicating the kind
+  parameter of the result.
 
-  - __kind__
-    :  An _integer_ initialization expression indicating the kind
-    parameter of the result.
+### **Returns**
 
-## __Returns__
-   The _integer_ code for the first character in __c__. It represents
-   the position of the character in the ASCII collating sequence.
+The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
+the return value is of default integer kind.
 
-## __Examples__
+### **Examples**
 
 Sample program:
 
 ```fortran
 program demo_iachar
 implicit none
-
-write(*,*)iachar(['a','z','A','Z'])
-
 ! create function to convert uppercase letters to lowercase
    write(*,'(a)')lower('abcdefg ABCDEFG')
 contains
@@ -64,7 +50,7 @@ integer                      :: i
    do i = 1, len(str)
       select case (str(i:i))
       case ('A':'Z') ! change letter to miniscule
-         string(i:i) = achar(iachar(str(i:i))+32)
+         string(i:i) = char(iachar(str(i:i))+32)
       case default
       end select
    end do
@@ -72,36 +58,38 @@ end function lower
 !
 end program demo_iachar
 ```
-  Results:
+
+Results:
+
 ```text
-             97         122          65          90
    abcdefg abcdefg
 ```
-## __Note__
 
-See [__ichar__(3)](ICHAR) for a discussion of converting between numerical
+### **Note**
+
+See [**ichar**(3)](ICHAR) for a discussion of converting between numerical
 values and formatted string representations.
 
-## __Standard__
+### **Standard**
 
 Fortran 95 and later, with KIND argument - Fortran 2003 and later
 
-## __See Also__
+### **See Also**
 
-[__achar__(3)](ACHAR),
-[__char__(3)](CHAR),
-[__ichar__(3)](ICHAR)
+[**achar**(3)](ACHAR),
+[**char**(3)](CHAR),
+[**ichar**(3)](ICHAR)
 
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
-  - __Elemental:__
-    [__adjustl__(3)](ADJUSTL), [__adjustr__(3)](ADJUSTR), [__index__(3)](INDEX), 
-    [__scan__(3)](SCAN), [__verify__(3)](VERIFY)
+- **Elemental:**
+  [**adjustl**(3)](ADJUSTL), [**adjustr**(3)](ADJUSTR), [**index**(3)](INDEX),
+  [**scan**(3)](SCAN), [**verify**(3)](VERIFY)
 
-  - __Nonelemental:__
-    [__len\_trim__(3)](LEN_TRIM),
-    [__len__(3)](LEN),
-    [__repeat__(3)](REPEAT), [__trim__(3)](TRIM)
+- **Nonelemental:**
+  [**len_trim**(3)](LEN_TRIM),
+  [**len**(3)](LEN),
+  [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
 
-###### fortran-lang intrinsic descriptions (license MIT) @urbanjost
+###### fortran-lang intrinsic descriptions

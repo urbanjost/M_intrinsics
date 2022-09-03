@@ -1,4 +1,4 @@
-### Types and kinds
+#### Types and kinds
 
 |-----------------||||----------------------------------------------------------------------------------||-------------------------------------------------------------|
 | category        |||| page                                                                             || description                                                 |
@@ -41,7 +41,7 @@ Fortran provides five basic intrinsic data types:
     : There are only two logical values: .true. and .false.
   * Character type
     : The character type stores strings. The length of the string
-    can be specified by the __len__ specifier. If no length is specified, it is 1.
+    can be specified by the **len** specifier. If no length is specified, it is 1.
 
 These "types" can be of many "kinds". Often different numeric kinds
 take up different storage sizes and therefore can represent
@@ -57,7 +57,7 @@ Fortran allows a feature called implicit typing, i.e., you do not have
 to declare some variables before use. By default if a variable is not declared,
 then the first letter of its name will determine its type:
 
-1. Variable names starting with __i-n__ (the first two letters of
+1. Variable names starting with **i-n** (the first two letters of
    "integer") specify _integer_ variables.
 
 2. All other variable names default to _real_.
@@ -70,6 +70,6 @@ the statement
 ```fortran
 implicit none
 ```
-For more information refer to the __implicit__ statement.
+For more information refer to the **implicit** statement.
 
 ###### fortran-lang intrinsic descriptions

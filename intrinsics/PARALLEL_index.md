@@ -1,4 +1,4 @@
-### These routines support parallel programming using co_arrays and co_indexed arrays.
+#### These routines support parallel programming using co_arrays and co_indexed arrays.
 
 |----------------------------||||-----------------------------------------------------------------------------||---------------------------------------------------------------|
 | category                   |||| page                                                                        || description                                                   |

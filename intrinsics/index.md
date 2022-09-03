@@ -3,33 +3,33 @@ based on the reference document
 "[Current F2018 Working Document as of April 2018](http://isotc.iso.org/livelink/livelink?func=ll&objId=19442438&objAction=Open)".
 Vendor-specific extensions are not included.
 
-### &#9755;[Array Operations]({{site.baseurl}}/learn/intrinsics/ARRAY_index) 
+#### &#9755;[Array Operations]({{site.baseurl}}/learn/intrinsics/ARRAY_index) 
 #### Properties and attributes of arrays
-### &#9755;[Mathematics]({{site.baseurl}}/learn/intrinsics/MATH_index) 
+#### &#9755;[Mathematics]({{site.baseurl}}/learn/intrinsics/MATH_index) 
 #### General mathematical functions
-### &#9755;[Type and Kind]({{site.baseurl}}/learn/intrinsics/TYPE_index) 
-### &#9755;[Numeric]({{site.baseurl}}/learn/intrinsics/NUMERIC_index) 
+#### &#9755;[Type and Kind]({{site.baseurl}}/learn/intrinsics/TYPE_index) 
+#### &#9755;[Numeric]({{site.baseurl}}/learn/intrinsics/NUMERIC_index) 
 #### Manipulation and properties of numeric values
-### &#9755;[Transformational]({{site.baseurl}}/learn/intrinsics/TRANSFORM_index) 
+#### &#9755;[Transformational]({{site.baseurl}}/learn/intrinsics/TRANSFORM_index) 
 #### Matrix multiplication, Dot product, array shifts,
-### &#9755;[General State]({{site.baseurl}}/learn/intrinsics/STATE_index) 
+#### &#9755;[General State]({{site.baseurl}}/learn/intrinsics/STATE_index) 
 #### General and miscellaneous intrinsics on state of variables and I/O
-### &#9755;[Character]({{site.baseurl}}/learn/intrinsics/CHARACTER_index) 
+#### &#9755;[Character]({{site.baseurl}}/learn/intrinsics/CHARACTER_index) 
 #### basic procedures specifically for manipulating _character_ variables
-### &#9755;[System Environment]({{site.baseurl}}/learn/intrinsics/SYSTEM_index) 
+#### &#9755;[System Environment]({{site.baseurl}}/learn/intrinsics/SYSTEM_index) 
 #### accessing external system information such as environmental variables, command line arguments, date and timing data ...
-### &#9755;[C Interface]({{site.baseurl}}/learn/intrinsics/C_index) 
+#### &#9755;[C Interface]({{site.baseurl}}/learn/intrinsics/C_index) 
 #### procedures useful for binding to C interfaces
-### &#9755;[Bit-level]({{site.baseurl}}/learn/intrinsics/BIT_index) 
+#### &#9755;[Bit-level]({{site.baseurl}}/learn/intrinsics/BIT_index) 
 #### bit-level manipulation and inquiry of values0
-### &#9755;[Parallel Programming]({{site.baseurl}}/learn/intrinsics/PARALLEL_index) 
+#### &#9755;[Parallel Programming]({{site.baseurl}}/learn/intrinsics/PARALLEL_index) 
 #### Parallel programming using co-arrays and co-indexing
-### &#9755;[Numeric Model]({{site.baseurl}}/learn/intrinsics/MODEL_index) 
+#### &#9755;[Numeric Model]({{site.baseurl}}/learn/intrinsics/MODEL_index) 
 #### numeric compiler-specific numeric model information
-### &#9755;[Compiler Information]({{site.baseurl}}/learn/intrinsics/COMPILER_index) 
+#### &#9755;[Compiler Information]({{site.baseurl}}/learn/intrinsics/COMPILER_index) 
 #### information about compiler version and compiler options used for building
 
-## Overview
+### Overview
 The standard documents and most vendor-supplied descriptions of
 the intrinsics are often very brief and concise to the point of the
 functionality of the intrinsics being obscure, particularly to someone
@@ -49,11 +49,11 @@ to the documents. For contribution guidelines see
 [MINIBOOKS](https://github.com/fortran-lang/fortran-lang.org/blob/master/MINIBOOKS.md)
 and the following Copyright guidelines.
 
-## See Also
+### See Also
    - The [Fortran stdlib](https://stdlib.fortran-lang.org/) project
    - [fpm(1)](https://fortran-lang.org/packages/fpm) packages, many of which are general-purpose libraries/modules
 
-## Experimental
+### Experimental
 
    - [review by procedure ](http://www.urbanjost.altervista.org/SUPPLEMENTS/slidy_byprocedure.html)
 
@@ -99,7 +99,7 @@ and the following Copyright guidelines.
      characters is worth-while so these formats can be generated, and
      still having issues converting the markdown to the proper formats.
 
-## Text Content Copyrights
+### Text Content Copyrights
 
 Many of the documents presented here are modified versions of man-pages from the
 [Fortran Wiki](https://fortranwiki.org)

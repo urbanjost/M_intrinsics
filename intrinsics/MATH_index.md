@@ -1,4 +1,4 @@
-### General mathematical functions
+#### General mathematical functions
 
 |--------------------|||||-----------------------------------------------------------------------||------------------------------------------------------------------|
 | category           ||||| page                                                                  || description                                                      |
@@ -19,7 +19,7 @@
 |--------------------|||||-----------------------------------------------------------------------||------------------------------------------------------------------|
 | *MATH:RANDOM*      ||||| [__random\_number__]({{site.baseurl}}/learn/intrinsics/RANDOM_NUMBER) || &#9679; Pseudorandom number                                      |
 | *MATH:RANDOM*      ||||| [__random\_seed__]({{site.baseurl}}/learn/intrinsics/RANDOM_SEED)     || &#9679; Initialize a pseudorandom number sequence                |
-| *MATH:RANDOM*      ||||| [__random\_init__]({{site.baseurl}}/learn/intrinsics/RANDOM_INIT)     || &#9679; Equivalent to __random\_seed__ but considers parallel images and specification of otherwise processor-dependent behavior |
+| *MATH:RANDOM*      ||||| [__random\_init__]({{site.baseurl}}/learn/intrinsics/RANDOM_INIT)     || &#9679; Equivalent to **random\_seed** but considers parallel images and specification of otherwise processor-dependent behavior |
 |--------------------|||||-----------------------------------------------------------------------||------------------------------------------------------------------|
 | *MATH:BASIC*       ||||| [__exp__]({{site.baseurl}}/learn/intrinsics/EXP)                      || &#9679; Exponential function                                     |
 | *MATH:BASIC*       ||||| [__log__]({{site.baseurl}}/learn/intrinsics/LOG)                      || &#9679; Logarithm function                                       |
