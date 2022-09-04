@@ -1,0 +1,90 @@
+#<*ush* version 6.0.0> Feb 11 2022
+read sort.ush
+# ==> read sort.ush
+set W=0.15 F=0.15 arrow=1111 x=1
+makeobj arrow
+!
+! 1   ------
+!     |    |
+!     |    |
+!     |    |
+!     |    |
+!     |    |
+! 0 __________
+!   \        /
+!    \      /
+!     \    /
+!      \  /
+! -1    \/
+!
+!
+!
+makepoly
+move2 (-W) 1
+draw2 W 1
+draw2 W 0
+draw2 W+F 0
+draw2 0 (-.8)
+draw2 (-W-F) 0
+draw2 (-W) 0
+draw2 (-W) 1
+closepoly
+closeobj
+###############################################################################
+makeobj 1234  # URBAN ART
+page (-x) x (-x) x
+linewidth 100
+polyfill TRUE
+color 9
+circle 0 0 x
+polyfill FALSE
+circleprecision 200
+color 7
+circle 0 0 x
+polyfill TRUE
+#callobj arrow
+color 1
+invokeobj    W+.04 (-0.5)+0.88  0 1 .7 1 0 0 180 arrow
+color 2
+invokeobj  (-W)-.04  0.5-0.88   0 1 .7 1 0 0 0   arrow
+color 8
+circle 0 0 0.03
+closeobj
+###############################################################################
+rm -f sort.p6
+hcopy p6 -obj 1234 -f sort.p6 -sz 550 550
+# *hcopy* creating sort.p6 with device p6 550 550
+page
+callobj 1234
+###############################################################################
+dt
+display sort.p6
+dt
+zero
+dt
+cp sort.gif /tmp
+cd
+cd github/
+dt
+cd prep
+git status
+git push
+cd ../index
+git push
+git status
+cat x
+rm x
+cd ..
+pwd
+dt
+pwd
+dt
+cd orderpack/docs/images
+dt
+cp /tmp/sort.gif .
+git status
+dt *.gif
+cd ..
+pwd
+cygstart man3.html
+goo mount DECUSLIB.iso on linux

@@ -56,19 +56,20 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
-<B>associated</B>(3f) - [FORTRAN:INTRINSIC] Status of a pointer or
-pointer/target pair
+<P>
+<B>ASSOCIATED</B>(3) - [STATE] Status of a pointer or pointer/target pair
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=9>
+<A name=8>
 
      <H3>SYNTAX</H3>
 
 </A>
 <BLOCKQUOTE>
-result = <B>associated</B>(pointer [, target])
+<P>
+result = <B>associated</B>(pointer, target)
 </BLOCKQUOTE>
 <A name=2>
 
@@ -76,7 +77,8 @@ result = <B>associated</B>(pointer [, target])
 
 </A>
 <BLOCKQUOTE>
-<B>associated</B>(pointer [, target]) determines the status of the pointer
+<P>
+<B>ASSOCIATED</B>(POINTER [, TARGET]) determines the status of the pointer
 POINTER or if POINTER is associated with the target TARGET.
 </BLOCKQUOTE>
 <A name=3>
@@ -85,87 +87,88 @@ POINTER or if POINTER is associated with the target TARGET.
 
 </A>
 <BLOCKQUOTE>
+<P>
 <TABLE cellpadding=3>
-<TR valign=top><TD colspan=2>
-<B>POINTER</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-POINTER shall have the POINTER attribute
-and it can be of any type.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+POINTER : POINTER shall have the _pointer_ attribute and it can be
+of any type.
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>TARGET</B> </TD><TD valign=bottom>
-(Optional) TARGET shall be a pointer or
-a target. It must have the same type, kind type parameter, and
-array rank as POINTER.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+TARGET : (Optional) TARGET shall be a pointer or a target. It must
+have the same type, kind type parameter, and array rank as POINTER.
 </TD></TR>
-<TR></TR></TABLE>The association status of neither POINTER nor TARGET shall be
-undefined.
+<TR></TR></TABLE>The association status of neither POINTER nor TARGET shall be undefined.
 </BLOCKQUOTE>
 <A name=4>
 
-     <H3>RETURN VALUE</H3>
+     <H3>RETURNS</H3>
 
 </A>
 <BLOCKQUOTE>
-<B>associated</B>(pointer) returns a scalar value of type <B>logical</B>(4). There are
+<P>
+<B>ASSOCIATED</B>(POINTER) returns a scalar value of type _logical_. There are
 several cases:
-<TABLE cellpadding=3><!-- tsb: <B>associated</B>(pointer) returns a scalar value of type <B>logical</B>(4). There are
+<TABLE cellpadding=3><!-- tsb: <B>ASSOCIATED</B>(POINTER) returns a scalar value of type _logical_. There are
  -->
 <TR></TR><TR></TR>
 <TR valign=top><TD width=4%>
 1.
 </TD><TD>
-When the optional TARGET is not present then
-<B>associated</B>(pointer) is true if POINTER is associated with a
-target; otherwise, it returns false.
+When the optional TARGET is not present then <B>ASSOCIATED</B>(POINTER) is
+true if POINTER is associated with a target; otherwise, it returns
+false.
 </TD></TR>
 <TR valign=top><TD width=4%>
 2.
 </TD><TD>
 If TARGET is present and a scalar target, the result is true if
 TARGET is not a zero-sized storage sequence and the target
-associated with POINTER occupies the same storage units. If
-POINTER is disassociated, the result is false.
+associated with POINTER occupies the same storage units. If POINTER
+is disassociated, the result is false.
 </TD></TR>
 <TR valign=top><TD width=4%>
 3.
 </TD><TD>
 If TARGET is present and an array target, the result is true if
-TARGET and POINTER have the same shape, are not zero-sized
-arrays, are arrays whose elements are not zero-sized storage
-sequences, and TARGET and POINTER occupy the same storage
-units in array element order.
+TARGET and POINTER have the same shape, are not zero-sized arrays,
+are arrays whose elements are not zero-sized storage sequences, and
+TARGET and POINTER occupy the same storage units in array element
+order.
 <P>
 As in case 2, the result is false, if POINTER is disassociated.
 </TD></TR>
 <TR valign=top><TD width=4%>
 4.
 </TD><TD>
-If TARGET is present and an scalar pointer, the result is true
-if TARGET is associated with POINTER, the target associated
-with TARGET are not zero-sized storage sequences and occupy the
-same storage units.
+If TARGET is present and an scalar pointer, the result is true if
+TARGET is associated with POINTER, the target associated with TARGET
+are not zero-sized storage sequences and occupy the same storage
+units.
 <P>
-The result is false, if either TARGET or POINTER is
-disassociated.
+The result is .FALSE., if either TARGET or POINTER is disassociated.
 </TD></TR>
 <TR valign=top><TD width=4%>
 5.
 </TD><TD>
 If TARGET is present and an array pointer, the result is true if
-target associated with POINTER and the target associated with
-TARGET have the same shape, are not zero-sized arrays, are
-arrays whose elements are not zero-sized storage sequences, and
-TARGET and POINTER occupy the same storage units in array
-element order. The result is false, if either TARGET or
-POINTER is disassociated.
+target associated with POINTER and the target associated with TARGET
+have the same shape, are not zero-sized arrays, are arrays whose
+elements are not zero-sized storage sequences, and TARGET and
+POINTER occupy the same storage units in array element order. The
+result is false, if either TARGET or POINTER is disassociated.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
 
-     <H3>EXAMPLE</H3>
+     <H3>EXAMPLES</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 Sample program:
 <P>
 <PRE>
@@ -188,26 +191,22 @@ Sample program:
 
 </A>
 <BLOCKQUOTE>
-[[Fortran 95]] and later
+<P>
+Fortran 95 and later
 </BLOCKQUOTE>
 <A name=7>
-
-     <H3>CLASS</H3>
-
-</A>
-<BLOCKQUOTE>
-[[Inquiry function]]
-</BLOCKQUOTE>
-<A name=8>
 
      <H3>SEE ALSO</H3>
 
 </A>
 <BLOCKQUOTE>
-<B>null</B>(3)
+<P>
+<B>NULL</B>(3)
+<P>
+fortran-lang intrinsic descriptions
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>associated (3fortran)</TD> <TD align=right width=33%><I>November 21, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from a7d09751-f4a1-4888-be37-f93f6ee19717 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>associated (3fortran)</TD> <TD align=right width=33%><I>September 04, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from c78a1ce1-6a92-47d6-82b5-4ba0ee829f7f using man macros.</FONT>
 <br><br><center><img src="images/associated.3fortran.gif"></center>
 </div>
 </div>

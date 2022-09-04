@@ -1,0 +1,50 @@
+NAME
+
+FRACTION(3) - [MODEL_COMPONENTS] Fractional part of the model
+representation
+
+SYNTAX
+
+    y = fraction(x)
+
+DESCRIPTION
+
+FRACTION(X) returns the fractional part of the model representation of
+X.
+
+ARGUMENTS
+
+-   X : The type of the argument shall be a _real_.
+
+RETURNS
+
+The return value is of the same type and kind as the argument. The
+fractional part of the model representation of X is returned; it is X *
+RADIX(X)**(-EXPONENT(X)).
+
+EXAMPLES
+
+Sample program:
+
+    program demo_fraction
+    implicit none
+    real :: x
+       x = 178.1387e-4
+       print *, fraction(x), x * radix(x)**(-exponent(x))
+    end program demo_fraction
+
+Results:
+
+         0.570043862      0.570043862
+
+STANDARD
+
+Fortran 95 and later
+
+SEE ALSO
+
+DIGITS(3), EPSILON(3), EXPONENT(3), HUGE(3), MAXEXPONENT(3),
+MINEXPONENT(3), NEAREST(3), PRECISION(3), RADIX(3), RANGE(3),
+RRSPACING(3), SCALE(3), SET_EXPONENT(3), SPACING(3), TINY(3)
+
+fortran-lang intrinsic descriptions

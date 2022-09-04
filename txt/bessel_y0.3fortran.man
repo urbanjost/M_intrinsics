@@ -1,0 +1,48 @@
+NAME
+
+BESSEL_Y0(3) - [MATHEMATICS] Bessel function of the second kind of order
+0
+
+SYNTAX
+
+        result = bessel_y0(x)
+
+DESCRIPTION
+
+BESSEL_Y0(X) computes the Bessel function of the second kind of order 0
+of X.
+
+ARGUMENTS
+
+-   X : The type shall be _real_.
+
+RETURNS
+
+The return value is of type _real_. It has the same kind as X.
+
+EXAMPLES
+
+Sample program:
+
+    program demo_besy0
+    use, intrinsic :: iso_fortran_env, only : real_kinds, &
+    & real32, real64, real128
+    implicit none
+      real(kind=real64) :: x = 0.0_real64
+      x = bessel_y0(x)
+      write(*,*)x
+    end program demo_besy0
+
+Results:
+
+                        -Infinity
+
+STANDARD
+
+Fortran 2008 and later
+
+SEE ALSO
+
+BESSEL_J0(3), BESSEL_J1(3), BESSEL_JN(3), BESSEL_Y1(3), BESSEL_YN(3)
+
+fortran-lang intrinsic descriptions

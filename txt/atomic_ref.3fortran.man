@@ -1,0 +1,59 @@
+NAME
+
+ATOMIC_REF(3) - [ATOMIC] Obtaining the value of a variable atomically
+
+SYNTAX
+
+    call atomic_ref(value, atom, stat)
+
+DESCRIPTION
+
+ATOMIC_REF(VALUE, ATOM) atomically assigns the value of the variable
+ATOM to VALUE. When STAT is present and the invocation was successful,
+it is assigned the value 0. If it is present and the invocation has
+failed, it is assigned a positive value; in particular, for a coindexed
+ATOM, if the remote image has stopped, it is assigned the value of
+iso_fortran_env's STAT_STOPPED_IMAGE and if the remote image has failed,
+the value STAT_FAILED_IMAGE.
+
+ARGUMENTS
+
+-   VALUE : Scalar of the same type as ATOM. If the kind is different,
+    the value is converted to the kind of ATOM.
+
+-   ATOM : Scalar coarray or coindexed variable of either integer type
+    with atomic_int_kind kind or logical type with atomic_logical_kind
+    kind.
+
+-   STAT : (optional) Scalar default-kind integer variable.
+
+EXAMPLES
+
+Sample program:
+
+    program demo_atomic_ref
+    use iso_fortran_env
+    implicit none
+    logical(atomic_logical_kind) :: atom[*]
+    logical :: val
+       call atomic_ref( val, atom[1] )
+       ! ```
+       call atomic_ref( val, atom[1] )
+       if (val) then
+          print *, "Obtained"
+       endif
+    end program demo_atomic_ref
+
+STANDARD
+
+Fortran 2008 and later; with STAT, TS 18508 or later
+
+SEE ALSO
+
+ATOMIC_DEFINE(3), ATOMIC_CAS(3), ISO_FORTRAN_ENV(3),
+
+ATOMIC_FETCH_ADD(3), ATOMIC_FETCH_AND(3),
+
+ATOMIC_FETCH_OR(3), ATOMIC_FETCH_XOR(3)
+
+fortran-lang intrinsic descriptions

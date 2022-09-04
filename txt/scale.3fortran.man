@@ -1,0 +1,53 @@
+NAME
+
+SCALE(3) - [MODEL_COMPONENTS] Scale a real value by a whole power of the
+radix
+
+SYNTAX
+
+    result = scale(x, i)
+
+       real(kind=KIND),intent(in) :: x
+       integer,intent(in)         :: i
+
+DESCRIPTION
+
+SCALE(X,I) returns x * RADIX(X)**I.
+
+ARGUMENTS
+
+-   X : The type of the argument shall be a _real_.
+
+-   I : The type of the argument shall be a _integer_.
+
+RETURNS
+
+The return value is of the same type and kind as X. Its value is X *
+RADIX(X)**I.
+
+EXAMPLES
+
+Sample program:
+
+    program demo_scale
+    implicit none
+    real :: x = 178.1387e-4
+    integer :: i = 5
+       print *, scale(x,i), x*radix(x)**i
+    end program demo_scale
+
+Results:
+
+        0.570043862      0.570043862
+
+STANDARD
+
+Fortran 95 and later
+
+SEE ALSO
+
+DIGITS(3), EPSILON(3), EXPONENT(3), FRACTION(3), HUGE(3),
+MAXEXPONENT(3), MINEXPONENT(3), NEAREST(3), PRECISION(3), RADIX(3),
+RANGE(3), RRSPACING(3), SET_EXPONENT(3), SPACING(3), TINY(3)
+
+fortran-lang intrinsic descriptions

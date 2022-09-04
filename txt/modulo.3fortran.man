@@ -1,0 +1,66 @@
+NAME
+
+MODULO(3) - [NUMERIC] Modulo function
+
+SYNTAX
+
+    result = modulo(a, p)
+
+DESCRIPTION
+
+MODULO(A,P) computes the A modulo P.
+
+ARGUMENTS
+
+-   A : Shall be a scalar of type _integer_ or _real_.
+
+-   P : Shall be a scalar of the same type and kind as A. It shall not
+    be zero.
+
+RETURNS
+
+The type and kind of the result are those of the arguments.
+
+-   If A and P are of type _integer_: MODULO(A,P) has the value of A -
+    FLOOR (REAL(A) / REAL(P)) * P.
+
+-   If A and P are of type _real_: MODULO(A,P) has the value of A -
+    FLOOR (A / P) * P.
+
+The returned value has the same sign as P and a magnitude less than the
+magnitude of P.
+
+EXAMPLES
+
+Sample program:
+
+    program demo_modulo
+    implicit none
+         print *, modulo(17,3)        ! yields 2
+         print *, modulo(17.5,5.5)    ! yields 1.0
+
+         print *, modulo(-17,3)       ! yields 1
+         print *, modulo(-17.5,5.5)   ! yields 4.5
+
+         print *, modulo(17,-3)       ! yields -1
+         print *, modulo(17.5,-5.5)   ! yields -4.5
+    end program demo_modulo
+
+Results:
+
+                  2
+          1.00000000
+                  1
+          4.50000000
+                 -1
+         -4.50000000
+
+STANDARD
+
+Fortran 95 and later
+
+SEE ALSO
+
+MOD(3)
+
+fortran-lang intrinsic descriptions

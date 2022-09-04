@@ -56,8 +56,8 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
-<B>index</B>(3f) - [FORTRAN:INTRINSIC:CHARACTER] Position of a substring within
-a string
+<P>
+<B>INDEX</B>(3) - [CHARACTER:SEARCH] Position of a substring within a string
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
@@ -68,14 +68,15 @@ a string
 
 </A>
 <BLOCKQUOTE>
-<B>index</B>(STRING, SUBSTRING [, BACK [, KIND]]) <B>result</B>(START)
+<P>
+<B>index</B>(string, substring, back, kind) <B>result</B>(start)
 <P>
 <PRE>
-     character(len=*),intent(in) :: STRING
-     character(len=*),intent(in) :: SUBSTRING
-     logical,intent(in),optional :: BACK
-     integer,intent(in),optional :: KIND
-     integer(kind=KIND)          :: START
+         character(len=*),intent(in) :: string
+         character(len=*),intent(in) :: substring
+         logical,intent(in),optional :: back
+         integer,intent(in),optional :: kind
+         integer(kind=KIND)          :: start
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -85,6 +86,7 @@ a string
 
 </A>
 <BLOCKQUOTE>
+<P>
 Returns the position of the start of the leftmost or rightmost
 occurrence of string SUBSTRING in STRING, counting from one. If
 SUBSTRING is not present in STRING, zero is returned.
@@ -95,70 +97,78 @@ SUBSTRING is not present in STRING, zero is returned.
 
 </A>
 <BLOCKQUOTE>
+<P>
 <TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>STRING</B> </TD><TD valign=bottom>
-string to be searched
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+STRING : string to be searched
 </TD></TR>
-<TR valign=top><TD colspan=2>
-<B>SUBSTRING</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-string to attempt to locate in STRING
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+SUBSTRING : string to attempt to locate in STRING
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>BACK</B> </TD><TD valign=bottom>
-If the BACK argument is present and true, the return
-value is the start of the rightmost occurrence rather than the
-leftmost.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+BACK : If the BACK argument is present and true, the return value is
+the start of the rightmost occurrence rather than the leftmost.
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>KIND</B> </TD><TD valign=bottom>
-An INTEGER initialization expression indicating
-the kind parameter of the result.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+KIND : An _integer_ initialization expression indicating the kind
+parameter of the result.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
 
-     <H3>RETURN VALUE</H3>
+     <H3>RETURNS</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 <TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>START</B> </TD><TD valign=bottom>
-The return value is of type INTEGER and of kind KIND.
-If KIND is absent, the return value is of default integer
-kind.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+START : The return value is of type _integer_ and of kind KIND. If
+KIND is absent, the return value is of default integer kind.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
 
-     <H3>EXAMPLE</H3>
+     <H3>EXAMPLES</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 Example program
 <P>
 <PRE>
-   program demo_index
-   implicit none
-   character(len=*),parameter :: str=&
-   &#146;Search this string for this expression&#146;
-   !1234567890123456789012345678901234567890
-   write(*,*)&
-      index(str,&#146;this&#146;).eq.8,              &
-      ! return value is counted from the left end even if BACK=.TRUE.
-      index(str,&#146;this&#146;,back=.true.).eq.24, &
-      ! INDEX is case-sensitive
-      index(str,&#146;This&#146;).eq.0 
-   end program demo_index
+    program demo_index
+    implicit none
+    character(len=*),parameter :: str=&
+       &#146;Search this string for this expression&#146;
+       !1234567890123456789012345678901234567890
+       write(*,*)&
+          index(str,&#146;this&#146;).eq.8,              &
+          ! return value is counted from the left end even if BACK=.TRUE.
+          index(str,&#146;this&#146;,back=.true.).eq.24, &
+          ! INDEX is case-sensitive
+          index(str,&#146;This&#146;).eq.0
+    end program demo_index
 <P>
 </PRE>
 Expected Results:
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; T T T</H4>
+</A>
+<BLOCKQUOTE>
 <P>
-<PRE>
-   &gt; T T T
-<P>
-</PRE>
 </BLOCKQUOTE>
 <A name=6>
 
@@ -166,7 +176,8 @@ Expected Results:
 
 </A>
 <BLOCKQUOTE>
-[[FORTRAN 77]] and later, with KIND argument [[Fortran 2003]] and later
+<P>
+FORTRAN 77 and later, with KIND argument Fortran 2003 and later
 </BLOCKQUOTE>
 <A name=7>
 
@@ -174,23 +185,26 @@ Expected Results:
 
 </A>
 <BLOCKQUOTE>
+<P>
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 <TABLE cellpadding=3><!-- tsb: Functions that perform operations on character strings, return lengths
  -->
 <TR></TR><TR></TR>
-<TR valign=top><TD colspan=2>
-<B>Elemental:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-<B>adjustl</B>(3), <B>adjustr</B>(3), <B>index</B>(3), <B>len_trim</B>(3),
-<B>scan</B>(3), <B>verify</B>(3)
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+ELEMENTAL: <B>ADJUSTL</B>(3), <B>ADJUSTR</B>(3), <B>INDEX</B>(3), <B>SCAN</B>(3), <B>VERIFY</B>(3)
 </TD></TR>
-<TR valign=top><TD colspan=2>
-<B>Nonelemental:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-<B>repeat</B>(3), <B>trim</B>(3)
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+NONELEMENTAL: <B>LEN_TRIM</B>(3), <B>LEN</B>(3), <B>REPEAT</B>(3), <B>TRIM</B>(3)
 </TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
+<TR></TR></TABLE>fortran-lang intrinsic descriptions
+</BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>index (3fortran)</TD> <TD align=right width=33%><I>November 21, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 8da9c014-1de4-4da9-a9ce-1d0d97adea3c using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>index (3fortran)</TD> <TD align=right width=33%><I>September 04, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 670c739c-2c1c-40f2-8b04-e44a2c308859 using man macros.</FONT>
 <br><br><center><img src="images/index.3fortran.gif"></center>
 </div>
 </div>

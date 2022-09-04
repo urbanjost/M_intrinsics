@@ -1,0 +1,46 @@
+NAME
+
+KIND(3) - [KIND INQUIRY] Kind of an entity
+
+SYNTAX
+
+    k = kind(x)
+
+DESCRIPTION
+
+KIND(X) returns the kind value of the entity X.
+
+ARGUMENTS
+
+-   X : Shall be of type _logical_, _integer_, _real_, _complex_ or
+    _character_.
+
+RETURNS
+
+The return value is a scalar of type _integer_ and of the default
+integer kind.
+
+EXAMPLES
+
+Sample program:
+
+    program demo_kind
+    implicit none
+    integer,parameter :: kc = kind(' ')
+    integer,parameter :: kl = kind(.true.)
+
+       print *, "The default character kind is ", kc
+       print *, "The default logical kind is ", kl
+
+    end program demo_kind
+
+Results:
+
+        The default character kind is            1
+        The default logical kind is            4
+
+STANDARD
+
+Fortran 95 and later
+
+fortran-lang intrinsic descriptions

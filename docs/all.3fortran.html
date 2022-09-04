@@ -56,19 +56,20 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
-<B>all</B>(3f) - [FORTRAN:INTRINSIC:ARRAY REDUCTION] determines if all the
-values are true
+<P>
+<B>ALL</B>(3) - [ARRAY REDUCTION] determines if all the values are true
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=8>
+<A name=7>
 
      <H3>SYNTAX</H3>
 
 </A>
 <BLOCKQUOTE>
-result = <B>ALL</B>(MASK [, DIM])
+<P>
+result = <B>all</B>(mask, dim)
 </BLOCKQUOTE>
 <A name=2>
 
@@ -76,10 +77,11 @@ result = <B>ALL</B>(MASK [, DIM])
 
 </A>
 <BLOCKQUOTE>
+<P>
 Logical conjunction of elements of MASK along dimension DIM.
 <P>
-"<B>ALL</B>(MASK [, DIM])" determines if all the values are true in MASK
-in the array along dimension DIM.
+"<B>ALL</B>(MASK, DIM)" determines if all the values are true in MASK in the
+array along dimension DIM.
 </BLOCKQUOTE>
 <A name=3>
 
@@ -87,85 +89,84 @@ in the array along dimension DIM.
 
 </A>
 <BLOCKQUOTE>
+<P>
 <TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>MASK</B> </TD><TD valign=bottom>
-shall be a logical array. That is,
-the type of the argument shall be LOGICAL and it shall
-not be scalar.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+MASK : shall be a logical array. That is, the type of the argument
+shall be _logical_ and it shall not be scalar.
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>DIM</B> </TD><TD valign=bottom>
-(optional) DIM shall be a scalar integer with a value
-that lies between one and the rank of MASK.
-The corresponding actual argument shall not be an optional
-dummy argument.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+DIM : (optional) DIM shall be a scalar integer with a value that
+lies between one and the rank of MASK. The corresponding actual
+argument shall not be an optional dummy argument.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
 
-     <H3>RETURN VALUE</H3>
+     <H3>RETURNS</H3>
 
 </A>
 <BLOCKQUOTE>
-"<B>ALL</B>(MASK)" returns a scalar value of type LOGICAL where the kind
-type parameter is the same as the kind type parameter of MASK. If
-DIM is present, then <B>ALL</B>(MASK, DIM) returns an array with the rank
-of MASK minus 1. The shape is determined from the shape of MASK
-where the DIM dimension is elided.
-<BLOCKQUOTE>
-<TABLE cellpadding=3><!-- tsb: "<B>ALL</B>(MASK)" returns a scalar value of type LOGICAL where the kind
+<P>
+"<B>ALL</B>(MASK)" returns a scalar value of type _logical_ where the kind type
+parameter is the same as the kind type parameter of MASK. If DIM is
+present, then <B>ALL</B>(MASK, DIM) returns an array with the rank of MASK
+minus 1. The shape is determined from the shape of MASK where the DIM
+dimension is elided.
+<TABLE cellpadding=3><!-- tsb: "<B>ALL</B>(MASK)" returns a scalar value of type _logical_ where the kind type
  -->
 <TR></TR><TR></TR>
 <TR valign=top><TD width=4%>
 1.
 </TD><TD>
-<B>ALL</B>(MASK) is true if all elements of MASK are true.
-It also is true if MASK has zero size; otherwise, it is false.
+<B>ALL</B>(MASK) is true if all elements of MASK are true. It also is true
+if MASK has zero size; otherwise, it is false.
 </TD></TR>
 <TR valign=top><TD width=4%>
 2.
 </TD><TD>
-If the rank of MASK is one, then <B>ALL</B>(MASK, DIM) is equivalent
-to <B>ALL</B>(MASK). If the rank is greater than one, then <B>ALL</B>(MASK,
-DIM) is determined by applying ALL to the array sections.
+If the rank of MASK is one, then <B>ALL</B>(MASK, DIM) is equivalent to
+<B>ALL</B>(MASK). If the rank is greater than one, then <B>ALL</B>(MASK, DIM) is
+determined by applying <B>ALL</B>() to the array sections.
+</TD></TR>
+<TR valign=top><TD width=4%>
+3.
+</TD><TD>
+Result Characteristics. The result is of type _logical_ with the
+same kind type parameter as MASK. It is scalar if DIM is absent or N
+= 1; otherwise, the result has rank N - 1 and shape [D1 , D2 , . . .
+, DDIM-1 , DDIM+1 , . . . , DN ] where [D1 , D2 , . . . , DN ] is
+the shape of MASK.
 </TD></TR>
 <TR valign=top><TD width=4%>
 4.
-</TD><TD>
-Result Characteristics. The result is of type logical with the same
-kind type parameter as MASK. It is scalar
-if DIM is absent or n = 1; otherwise, the result has rank n - 1 and
-shape [d1 , d2 , . . . , dDIM-1 , dDIM+1 , . . . , dn ] where [d1 ,
-d2 , . . . , dn ] is the shape of MASK.
-</TD></TR>
-<TR valign=top><TD width=4%>
-5.
 </TD><TD>
 Result Value.
 </TD></TR>
 <TR></TR></TABLE><!-- .nf -->
 <PRE>
-       Case (i):   The result of ALL (MASK) has the value true if all
-                   elements of MASK are true or if MASK has
-                   size zero, and the result has value false if any element
-                   of MASK is false.
+    Case (i): : The result of ALL(MASK) has the value true if all
+    elements of MASK are true or if MASK has size zero, and the result
+    has value false if any element of MASK is false.
 <P>
-       Case (ii):  If MASK has rank one, ALL(MASK,DIM) is equal to
-                   ALL(MASK). Otherwise, the value of element
-                   (s1 , s2 , . . . , sDIM-1 , sDIM+1 , . . . , sn ) of ALL
-                   (MASK, DIM) is equal to ALL (MASK (s1 , s2 , . . . ,
-                   sDIM-1 , :, sDIM+1 , . . . , sn )).
+    Case (ii): : If MASK has rank one, ALL(MASK,DIM) is equal to
+    ALL(MASK). Otherwise, the value of element (S1 , S2 , . . . , SDIM-1
+    , SDIM+1 , . . . , SN ) of all (MASK, DIM) is equal to ALL(MASK (S1
+    , S2 , . . . , SDIM-1 , :, SDIM+1 , . . . , SN )).
 <P>
 </PRE>
 </BLOCKQUOTE>
-</BLOCKQUOTE>
 <A name=5>
 
-     <H3>EXAMPLE</H3>
+     <H3>EXAMPLES</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 Sample program:
 <P>
 <PRE>
@@ -175,48 +176,80 @@ Sample program:
        l = all([.true., .true., .true.])
        print *, l
        call section
+<P>
     contains
-       subroutine section
-       integer a(2,3), b(2,3)
-          a = 1
-          b = 1
-          b(2,2) = 2
-          print *, all(a .eq. b, 1)
-          print *, all(a .eq. b, 2)
-       end subroutine section
+<P>
+    subroutine section
+    integer a(2,3), b(2,3)
+      a = 1
+      b = 1
+      b(2,2) = 2
+      print *, all(a .eq. b, 1)
+      print *, all(a .eq. b, 2)
+    end subroutine section
     end program demo_all
 <P>
 </PRE>
+Results:
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; T</H4>
+</A>
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; T F T</H4>
+</A>
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; T F</H4>
+</A>
+<BLOCKQUOTE>
+<P>
 Case (i):
 <P>
 <PRE>
-     The value of ALL ([.TRUE., .FALSE., .TRUE.]) is false.
+         The value of all([.TRUE., .FALSE., .TRUE.]) is false.
 <P>
 </PRE>
 Case (ii):
 <P>
 <PRE>
-     &gt;                        1|3|5
-     &gt; If B is the array      -+-+-
-     &gt;                        2|4|6
-     &gt;
-     &gt;                        0|3|5
-     &gt; and C is the array     -+-+-
-     &gt;                        7|4|8
-<P>
-     then ALL (B /= C, DIM = 1) is
-<P>
-        [true, false, false]
-<P>
+                              1|3|5
 </PRE>
 <BLOCKQUOTE>
-and ALL (B /= C, DIM = 2) is
+<TABLE cellpadding=3><!-- tsb:                               1|3|5
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B>If B is the array</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+-+-+-
+2|4|6
+<P>
+0|3|5
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>and C is the array</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+-+-+-
+7|4|8
+</TD></TR>
+<TR></TR></TABLE>then <B>all</B>(B /= C, DIM = 1) is
 <P>
 <PRE>
-        [false, false].
+          [true, false, false]
 <P>
 </PRE>
 </BLOCKQUOTE>
+and <B>ALL</B>(B /= C, DIM = 2) is
+<P>
+<PRE>
+            [false, false].
+<P>
+</PRE>
 </BLOCKQUOTE>
 <A name=6>
 
@@ -224,18 +257,13 @@ and ALL (B /= C, DIM = 2) is
 
 </A>
 <BLOCKQUOTE>
-[[Fortran 95]] and later
-</BLOCKQUOTE>
-<A name=7>
-
-     <H3>CLASS</H3>
-
-</A>
-<BLOCKQUOTE>
-Transformational function.
+<P>
+Fortran 95 and later
+<P>
+fortran-lang intrinsic descriptions
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>all (3fortran)</TD> <TD align=right width=33%><I>November 21, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 4c23876e-1ccb-43c5-b926-799084e24f29 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>all (3fortran)</TD> <TD align=right width=33%><I>September 04, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 149ab46f-0fc1-4e58-a210-baf8909ce3a0 using man macros.</FONT>
 <br><br><center><img src="images/all.3fortran.gif"></center>
 </div>
 </div>

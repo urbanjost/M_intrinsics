@@ -56,20 +56,20 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
-<B>trailz</B>(3f) - [FORTRAN:INTRINSIC:BIT INQUIRY] Number of trailing zero
-bits of an integer
+<P>
+<B>TRAILZ</B>(3) - [BIT:COUNT] Number of trailing zero bits of an integer
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=10>
+<A name=8>
 
      <H3>SYNTAX</H3>
 
 </A>
 <BLOCKQUOTE>
-result = <B>trailz</B>(i)
-integer :: result
+<P>
+result = <B>trailz</B>(i) integer :: result
 <B>integer</B>(kind=NNN),intent(in) :: i
 </BLOCKQUOTE>
 <A name=2>
@@ -78,7 +78,8 @@ integer :: result
 
 </A>
 <BLOCKQUOTE>
-TRAILZ returns the number of trailing zero bits of an INTEGER value
+<P>
+<B>TRAILZ</B>(3) returns the number of trailing zero bits of an _integer_ value
 </BLOCKQUOTE>
 <A name=3>
 
@@ -86,27 +87,31 @@ TRAILZ returns the number of trailing zero bits of an INTEGER value
 
 </A>
 <BLOCKQUOTE>
+<P>
 <TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>I</B> </TD><TD valign=bottom>
-Shall be of type INTEGER.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+I : Shall be of type _integer_.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
 
-     <H3>RETURN VALUE</H3>
+     <H3>RETURNS</H3>
 
 </A>
 <BLOCKQUOTE>
-The type of the return value is the default INTEGER.
-If all the bits of I are zero, the result value is <B>bit_size</B>(I).
+<P>
+The type of the return value is the default _integer_. If all the bits
+of I are zero, the result value is <B>BIT_SIZE</B>(I).
 </BLOCKQUOTE>
 <A name=5>
 
-     <H3>EXAMPLE</H3>
+     <H3>EXAMPLES</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 Sample program:
 <P>
 <PRE>
@@ -115,29 +120,29 @@ Sample program:
     & int8, int16, int32, int64
     implicit none
     integer(kind=int64) :: i, value
-      write(*,*)&#146;Default integer:&#146;
-      write(*,*)&#146;bit_size=&#146;,bit_size(0)
-      write(*,&#146;(1x,i3,1x,i3,1x,b0)&#146;)-1,trailz(1),-1
-      write(*,&#146;(1x,i3,1x,i3,1x,b0)&#146;)0,trailz(0),0
-      write(*,&#146;(1x,i3,1x,i3,1x,b0)&#146;)1,trailz(1),1
-      write(*,&#146;(" huge(0)=",i0,1x,i0,1x,b0)&#146;) &
-      & huge(0),trailz(huge(0)),huge(0)
-      write(*,*)
-      write(*,*)&#146;integer(kind=int64):&#146;
+       write(*,*)&#146;Default integer:&#146;
+       write(*,*)&#146;bit_size=&#146;,bit_size(0)
+       write(*,&#146;(1x,i3,1x,i3,1x,b0)&#146;)-1,trailz(1),-1
+       write(*,&#146;(1x,i3,1x,i3,1x,b0)&#146;)0,trailz(0),0
+       write(*,&#146;(1x,i3,1x,i3,1x,b0)&#146;)1,trailz(1),1
+       write(*,&#146;(" huge(0)=",i0,1x,i0,1x,b0)&#146;) &
+       & huge(0),trailz(huge(0)),huge(0)
+       write(*,*)
+       write(*,*)&#146;integer(kind=int64):&#146;
 <P>
-      do i=-1,62,5
-         value=2**i
-         write(*,&#146;(1x,i19,1x,i3)&#146;)value,trailz(value)
-      enddo
-      value=huge(i)
-      write(*,&#146;(1x,i19,1x,i3,"(huge(0_int64))")&#146;)value,trailz(value)
+       do i=-1,62,5
+          value=2**i
+          write(*,&#146;(1x,i19,1x,i3)&#146;)value,trailz(value)
+       enddo
+       value=huge(i)
+       write(*,&#146;(1x,i19,1x,i3,"(huge(0_int64))")&#146;)value,trailz(value)
 <P>
-      do i=-1,62,5
-         value=2**i
-         write(*,&#146;(1x,i3,2x,b64.64)&#146;)i,value
-      enddo
-      value=huge(i)
-      write(*,&#146;(1x,a,1x,b64.64)&#146;) "huge",value
+       do i=-1,62,5
+          value=2**i
+          write(*,&#146;(1x,i3,2x,b64.64)&#146;)i,value
+       enddo
+       value=huge(i)
+       write(*,&#146;(1x,a,1x,b64.64)&#146;) "huge",value
 <P>
     end program demo_trailz
 <P>
@@ -145,42 +150,42 @@ Sample program:
 Results:
 <P>
 <PRE>
-    Default integer:
-    bit_size=          32
-     -1   0 11111111111111111111111111111111
-      0  32 0
-      1   0 1
-    huge(0)=2147483647 0 1111111111111111111111111111111
+     Default integer:
+     bit_size=          32
+      -1   0 11111111111111111111111111111111
+       0  32 0
+       1   0 1
+     huge(0)=2147483647 0 1111111111111111111111111111111
 <P>
-    integer(kind=int64):
-                      0  64
-                     16   4
-                    512   9
-                  16384  14
-                 524288  19
-               16777216  24
-              536870912  29
-            17179869184  34
-           549755813888  39
-         17592186044416  44
-        562949953421312  49
-      18014398509481984  54
-     576460752303423488  59
-    9223372036854775807   0(huge(0_int64))
-     -1  0000000000000000000000000000000000000000000000000000000000000000
-      4  0000000000000000000000000000000000000000000000000000000000010000
-      9  0000000000000000000000000000000000000000000000000000001000000000
-     14  0000000000000000000000000000000000000000000000000100000000000000
-     19  0000000000000000000000000000000000000000000010000000000000000000
-     24  0000000000000000000000000000000000000001000000000000000000000000
-     29  0000000000000000000000000000000000100000000000000000000000000000
-     34  0000000000000000000000000000010000000000000000000000000000000000
-     39  0000000000000000000000001000000000000000000000000000000000000000
-     44  0000000000000000000100000000000000000000000000000000000000000000
-     49  0000000000000010000000000000000000000000000000000000000000000000
-     54  0000000001000000000000000000000000000000000000000000000000000000
-     59  0000100000000000000000000000000000000000000000000000000000000000
-    huge 0111111111111111111111111111111111111111111111111111111111111111
+     integer(kind=int64):
+                       0  64
+                      16   4
+                     512   9
+                   16384  14
+                  524288  19
+                16777216  24
+               536870912  29
+             17179869184  34
+            549755813888  39
+          17592186044416  44
+         562949953421312  49
+       18014398509481984  54
+      576460752303423488  59
+     9223372036854775807   0(huge(0_int64))
+      -1  0000000000000000000000000000000000000000000000000000000000000000
+       4  0000000000000000000000000000000000000000000000000000000000010000
+       9  0000000000000000000000000000000000000000000000000000001000000000
+      14  0000000000000000000000000000000000000000000000000100000000000000
+      19  0000000000000000000000000000000000000000000010000000000000000000
+      24  0000000000000000000000000000000000000001000000000000000000000000
+      29  0000000000000000000000000000000000100000000000000000000000000000
+      34  0000000000000000000000000000010000000000000000000000000000000000
+      39  0000000000000000000000001000000000000000000000000000000000000000
+      44  0000000000000000000100000000000000000000000000000000000000000000
+      49  0000000000000010000000000000000000000000000000000000000000000000
+      54  0000000001000000000000000000000000000000000000000000000000000000
+      59  0000100000000000000000000000000000000000000000000000000000000000
+     huge 0111111111111111111111111111111111111111111111111111111111111111
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -190,32 +195,22 @@ Results:
 
 </A>
 <BLOCKQUOTE>
-[[Fortran 2008]] and later
+<P>
+Fortran 2008 and later
 </BLOCKQUOTE>
 <A name=7>
-
-     <H3>CLASS</H3>
-
-</A>
-<BLOCKQUOTE>
-[[Elemental function]]
-</BLOCKQUOTE>
-<A name=8>
 
      <H3>SEE ALSO</H3>
 
 </A>
 <BLOCKQUOTE>
-<B>bit_size</B>(3), <B>popcnt</B>(3), <B>poppar</B>(3), <B>leadz</B>(3)
-</BLOCKQUOTE>
-<A name=9>
-
-    <H4>&nbsp; &nbsp; JSU</H4>
-</A>
-<BLOCKQUOTE>
+<P>
+<B>BIT_SIZE</B>(3), <B>POPCNT</B>(3), <B>POPPAR</B>(3), <B>LEADZ</B>(3)
+<P>
+fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>trailz (3fortran)</TD> <TD align=right width=33%><I>November 21, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 3e473362-4df4-4d13-9718-04f9323e6d1c using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>trailz (3fortran)</TD> <TD align=right width=33%><I>September 04, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 5ee5dc2c-1120-42be-ac15-679032514f28 using man macros.</FONT>
 <br><br><center><img src="images/trailz.3fortran.gif"></center>
 </div>
 </div>

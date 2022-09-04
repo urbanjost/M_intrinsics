@@ -10,7 +10,17 @@ categories = ["Fortran Intrinsic descriptions"]
 keywords = ["fortran", "manpages", "intrinsics"]
 homepage = "https://github.com/urbanjost/M_intrinsics.git"
 
+[build]
+auto-executables = true
+auto-tests = true
+auto-examples = false
+
 [[executable]]
 name="bull"
 source-dir="app"
 main="main.f90"
+[dependencies]
+M_CLI2        =  {  git  =  "https://github.com/urbanjost/M_CLI2.git"        }
+M_match       =  {  git  =  "https://github.com/urbanjost/M_match.git"       }
+M_strings     =  {  git  =  "https://github.com/urbanjost/M_strings.git"     }
+M_escape      =  {  git  =  "https://github.com/urbanjost/M_escape.git"      }

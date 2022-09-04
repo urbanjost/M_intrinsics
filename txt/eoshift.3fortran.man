@@ -1,0 +1,77 @@
+NAME
+
+EOSHIFT(3) - [TRANSFORMATIONAL] End-off shift elements of an array
+
+SYNTAX
+
+    result = eoshift(array, shift, boundary, dim)
+
+DESCRIPTION
+
+EOSHIFT(ARRAY, SHIFT[, BOUNDARY, DIM]) performs an end-off shift on
+elements of ARRAY along the dimension of DIM. If DIM is omitted it is
+taken to be 1. DIM is a scalar of type _integer_ in the range of 1 <=
+DIM <= N where "N" is the rank of ARRAY. If the rank of ARRAY is one,
+then all elements of ARRAY are shifted by SHIFT places. If rank is
+greater than one, then all complete rank one sections of ARRAY along the
+given dimension are shifted. Elements shifted out one end of each rank
+one section are dropped. If BOUNDARY is present then the corresponding
+value of from BOUNDARY is copied back in the other end. If BOUNDARY is
+not present then the following are copied in depending on the type of
+ARRAY.
+
+*Array Type* - *Boundary Value*
+
+-   Numeric 0 of the type and kind of ARRAY
+
+-   Logical .false.
+
+-   CHARACTER(LEN) LEN blanks
+
+ARGUMENTS
+
+-   ARRAY : May be any type, not scalar.
+
+-   SHIFT : The type shall be _integer_.
+
+-   BOUNDARY : Same type as ARRAY.
+
+-   DIM : The type shall be _integer_.
+
+RETURNS
+
+Returns an array of same type and rank as the ARRAY argument.
+
+EXAMPLES
+
+Sample program:
+
+    program demo_eoshift
+    implicit none
+        integer, dimension(3,3) :: a
+        a = reshape( [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], [ 3, 3 ])
+        print '(3i3)', a(1,:)
+        print '(3i3)', a(2,:)
+        print '(3i3)', a(3,:)
+        a = eoshift(a, SHIFT=[1, 2, 1], BOUNDARY=-5, DIM=2)
+        print *
+        print '(3i3)', a(1,:)
+        print '(3i3)', a(2,:)
+        print '(3i3)', a(3,:)
+    end program demo_eoshift
+
+Results:
+
+         1  4  7
+         2  5  8
+         3  6  9
+
+         4  7 -5
+         8 -5 -5
+         6  9 -5
+
+STANDARD
+
+Fortran 95 and later
+
+fortran-lang intrinsic descriptions

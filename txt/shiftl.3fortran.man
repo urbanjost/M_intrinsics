@@ -1,0 +1,34 @@
+NAME
+
+SHIFTL(3) - [BIT:SHIFT] shift bits left
+
+SYNTAX
+
+    result = shiftl(i, shift)
+
+DESCRIPTION
+
+Returns a value corresponding to I with all of the bits shifted left by
+SHIFT places. If the absolute value of SHIFT is greater than
+BIT_SIZE(I), the value is undefined. Bits shifted out from the left end
+are lost, and bits shifted in from the right end are set to 0.
+
+ARGUMENTS
+
+-   I : The type shall be _integer_.
+
+-   SHIFT : The type shall be _integer_.
+
+RETURNS
+
+The return value is of type _integer_ and of the same kind as I.
+
+STANDARD
+
+Fortran 2008 and later
+
+SEE ALSO
+
+SHIFTA(3), SHIFTR(3)
+
+fortran-lang intrinsic descriptions

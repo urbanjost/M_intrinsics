@@ -1,0 +1,44 @@
+NAME
+
+LOG_GAMMA(3) - [MATHEMATICS] Logarithm of the Gamma function
+
+SYNTAX
+
+    x = log_gamma(x)
+
+DESCRIPTION
+
+LOG_GAMMA(X) computes the natural logarithm of the absolute value of the
+Gamma function.
+
+ARGUMENTS
+
+-   X : Shall be of type _real_ and neither zero nor a negative integer.
+
+RETURNS
+
+The return value is of type _real_ of the same kind as X.
+
+EXAMPLES
+
+Sample program:
+
+    program demo_log_gamma
+    implicit none
+    real :: x = 1.0
+       write(*,*)x,log_gamma(x) ! returns 0.0
+    end program demo_log_gamma
+
+Results:
+
+          1.00000000       0.00000000
+
+STANDARD
+
+Fortran 2008 and later
+
+SEE ALSO
+
+Gamma function: GAMMA(3)
+
+fortran-lang intrinsic descriptions

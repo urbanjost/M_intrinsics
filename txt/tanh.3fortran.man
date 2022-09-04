@@ -1,0 +1,51 @@
+NAME
+
+TANH(3) - [MATHEMATICS:TRIGONOMETRIC] Hyperbolic tangent function
+
+SYNTAX
+
+    x = tanh(x)
+
+DESCRIPTION
+
+TANH(X) computes the hyperbolic tangent of X.
+
+ARGUMENTS
+
+-   X : The type shall be _real_ or _complex_.
+
+RETURNS
+
+The return value has same type and kind as X. If X is complex, the
+imaginary part of the result is in radians. If X is _real_, the return
+value lies in the range
+
+          -1 <= tanh(x) <= 1.
+
+EXAMPLES
+
+Sample program:
+
+    program demo_tanh
+    use, intrinsic :: iso_fortran_env, only : &
+    & real_kinds, real32, real64, real128
+    implicit none
+    real(kind=real64) :: x = 2.1_real64
+       write(*,*)x, tanh(x)
+    end program demo_tanh
+
+Results:
+
+          2.1000000000000001       0.97045193661345386
+
+STANDARD
+
+FORTRAN 77 and later, for a complex argument Fortran 2008 or later
+
+SEE ALSO
+
+-   Wikipedia:hyperbolic functions
+
+ATANH(3)
+
+fortran-lang intrinsic descriptions

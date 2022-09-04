@@ -1,0 +1,59 @@
+NAME
+
+BESSEL_JN(3) - [MATHEMATICS] Bessel function of the first kind
+
+SYNTAX
+
+      result = bessel_jn(n, x)
+
+      result = bessel_jn(n1, n2, x)
+
+DESCRIPTION
+
+BESSEL_JN(N, X) computes the Bessel function of the first kind of order
+N of X. If N and X are arrays, their ranks and shapes shall conform.
+
+BESSEL_JN(N1, N2, X) returns an array with the Bessel function|Bessel
+functions of the first kind of the orders N1 to N2.
+
+ARGUMENTS
+
+-   N : Shall be a scalar or an array of type _integer_.
+
+-   N1 : Shall be a non-negative scalar of type _integer_.
+
+-   N2 : Shall be a non-negative scalar of type _integer_.
+
+-   X : Shall be a scalar or an array of type _real_. For BESSEL_JN(N1,
+    N2, X) it shall be scalar.
+
+RETURNS
+
+The return value is a scalar of type _real_. It has the same kind as X.
+
+EXAMPLES
+
+Sample program:
+
+    program demo_besjn
+    use, intrinsic :: iso_fortran_env, only : real_kinds, &
+       & real32, real64, real128
+    implicit none
+    real(kind=real64) :: x = 1.0_real64
+        x = bessel_jn(5,x)
+        write(*,*)x
+    end program demo_besjn
+
+Results:
+
+          2.4975773021123450E-004
+
+STANDARD
+
+Fortran 2008 and later
+
+SEE ALSO
+
+BESSEL_J0(3), BESSEL_J1(3), BESSEL_Y0(3), BESSEL_Y1(3), BESSEL_YN(3)
+
+fortran-lang intrinsic descriptions

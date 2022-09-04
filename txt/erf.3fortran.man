@@ -1,0 +1,50 @@
+NAME
+
+ERF(3) - [MATHEMATICS] Error function
+
+SYNTAX
+
+    result = erf(x)
+
+DESCRIPTION
+
+ERF(x) computes the error function of X, defined as
+
+$$ \text{erf}(x) = \frac{2}{\sqrt{\pi}} \int_0^x e^{-T^2} dt. $$
+
+ARGUMENTS
+
+-   X : The type shall be _real_.
+
+RETURNS
+
+The return value is of type _real_, of the same kind as X and lies in
+the range -1 <= ERF(x) <= 1 .
+
+EXAMPLES
+
+Sample program:
+
+    program demo_erf
+    use, intrinsic :: iso_fortran_env, only : real_kinds, &
+     & real32, real64, real128
+    implicit none
+    real(kind=real64) :: x = 0.17_real64
+        write(*,*)x, erf(x)
+    end program demo_erf
+
+Results:
+
+         0.17000000000000001       0.18999246120180879
+
+STANDARD
+
+Fortran 2008 and later
+
+See also
+
+ERFC(3)
+
+-   Wikipedia:error function
+
+fortran-lang intrinsic descriptions

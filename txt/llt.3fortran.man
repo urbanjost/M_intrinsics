@@ -1,0 +1,49 @@
+NAME
+
+LLT(3) - [CHARACTER:COMPARE] Lexical less than
+
+SYNTAX
+
+    result = llt(string_a, string_b)
+
+DESCRIPTION
+
+Determines whether one string is lexically less than another string,
+where the two strings are interpreted as containing ASCII character
+codes. If the STRING_A and STRING_B are not the same length, the shorter
+is compared as if spaces were appended to it to form a value that has
+the same length as the longer.
+
+In general, the lexical comparison intrinsics LGE, LGT, LLE, and LLT
+differ from the corresponding intrinsic operators .ge., .gt., .le., and
+.lt., in that the latter use the processor's character ordering (which
+is not ASCII on some targets), whereas the former always use the ASCII
+ordering.
+
+ARGUMENTS
+
+-   STRING_A : Shall be of default _character_ type.
+
+-   STRING_B : Shall be of default _character_ type.
+
+RETURNS
+
+Returns .true. if string_a <= string_b, and .false. otherwise, based on
+the ASCII ordering.
+
+STANDARD
+
+FORTRAN 77 and later
+
+SEE ALSO
+
+LGE(3), LGT(3), LLE(3)
+
+Functions that perform operations on character strings, return lengths
+of arguments, and search for certain arguments:
+
+-   ELEMENTAL: ADJUSTL(3), ADJUSTR(3), INDEX(3), SCAN(3), VERIFY(3)
+
+-   NONELEMENTAL: LEN_TRIM(3), LEN(3), REPEAT(3), TRIM(3)
+
+fortran-lang intrinsic descriptions

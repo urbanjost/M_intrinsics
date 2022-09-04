@@ -1,0 +1,61 @@
+NAME
+
+DOT_PRODUCT(3) - [TRANSFORMATIONAL] Dot product function
+
+SYNTAX
+
+    result = dot_product(vector_a, vector_b)
+
+DESCRIPTION
+
+DOT_PRODUCT(VECTOR_A, VECTOR_B) computes the dot product multiplication
+of two vectors vector_a and vector_b. The two vectors may be either
+numeric or logical and must be arrays of rank one and of equal size. If
+the vectors are _integer_ or _real_, the result is
+SUM(VECTOR_A*VECTOR_B). If the vectors are _complex_, the result is
+SUM(CONJG(VECTOR_A)*VECTOR_B). If the vectors are _logical_, the result
+is ANY(VECTOR_A .AND. VECTOR_B).
+
+ARGUMENTS
+
+-   VECTOR_A : The type shall be numeric or _logical_, rank 1.
+
+-   VECTOR_B : The type shall be numeric if vector_a is of numeric type
+    or _logical_ if vector_a is of type _logical_. vector_b shall be a
+    rank-one array.
+
+RETURNS
+
+If the arguments are numeric, the return value is a scalar of numeric
+type, _integer_, _real_, or _complex_. If the arguments are _logical_,
+the return value is .true. or .false..
+
+EXAMPLES
+
+Sample program:
+
+    program demo_dot_prod
+    implicit none
+        integer, dimension(3) :: a, b
+        a = [ 1, 2, 3 ]
+        b = [ 4, 5, 6 ]
+        print '(3i3)', a
+        print *
+        print '(3i3)', b
+        print *
+        print *, dot_product(a,b)
+    end program demo_dot_prod
+
+Results:
+
+         1  2  3
+
+         4  5  6
+
+                 32
+
+STANDARD
+
+Fortran 95 and later
+
+fortran-lang intrinsic descriptions

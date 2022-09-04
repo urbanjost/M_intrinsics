@@ -56,18 +56,20 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
-<B>selected_real_kind</B>(3f) - [FORTRAN:INTRINSIC:KIND] Choose real kind
+<P>
+<B>SELECTED_REAL_KIND</B>(3) - [KIND] Choose real kind
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=9>
+<A name=8>
 
      <H3>SYNTAX</H3>
 
 </A>
 <BLOCKQUOTE>
-result = <B>selected_real_kind</B>([p, r, radix])
+<P>
+result = <B>selected_real_kind</B>(p, r, radix)
 </BLOCKQUOTE>
 <A name=2>
 
@@ -75,9 +77,10 @@ result = <B>selected_real_kind</B>([p, r, radix])
 
 </A>
 <BLOCKQUOTE>
-<B>selected_real_kind</B>(p, r, radix) return the kind value of a real data
-type with decimal precision of at least P digits, exponent range of
-at least R, and with a radix of RADIX.
+<P>
+<B>SELECTED_REAL_KIND</B>(P, R, RADIX) return the kind value of a real data
+type with decimal precision of at least P digits, exponent range of at
+least R, and with a radix of RADIX.
 </BLOCKQUOTE>
 <A name=3>
 
@@ -85,38 +88,41 @@ at least R, and with a radix of RADIX.
 
 </A>
 <BLOCKQUOTE>
+<P>
 <TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>P</B> </TD><TD valign=bottom>
-(Optional) shall be a scalar and of type INTEGER.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+P : (Optional) shall be a scalar and of type _integer_.
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>R</B> </TD><TD valign=bottom>
-(Optional) shall be a scalar and of type INTEGER.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+R : (Optional) shall be a scalar and of type _integer_.
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>RADIX</B> </TD><TD valign=bottom>
-(Optional) shall be a scalar and of type INTEGER.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+RADIX : (Optional) shall be a scalar and of type _integer_.
 </TD></TR>
-<TR></TR></TABLE>Before [[Fortran 2008]], at least one of the arguments R or P
-shall be present; since [[Fortran 2008]], they are assumed to be zero
-if absent.
+<TR></TR></TABLE>Before FORTRAN 2008, at least one of the arguments R or P shall be
+present; since FORTRAN 2008, they are assumed to be zero if absent.
 </BLOCKQUOTE>
 <A name=4>
 
-     <H3>RETURN VALUE</H3>
+     <H3>RETURNS</H3>
 
 </A>
 <BLOCKQUOTE>
-selected_real_kind returns the value of the kind type parameter of
-a real data type with decimal precision of at least P digits, a
-decimal exponent range of at least R, and with the requested
-RADIX. If the RADIX parameter is absent, real kinds with
-any radix can be returned. If more than one real data type meet the
-criteria, the kind of the data type with the smallest decimal precision
-is returned. If no real data type matches the criteria, the result is
-</BLOCKQUOTE>
-<TABLE cellpadding=3><!-- tsb: selected_real_kind returns the value of the kind type parameter of
+<P>
+selected_real_kind returns the value of the kind type parameter of a
+real data type with decimal precision of at least P digits, a decimal
+exponent range of at least R, and with the requested RADIX. If the RADIX
+parameter is absent, real kinds with any radix can be returned. If more
+than one real data type meet the criteria, the kind of the data type
+with the smallest decimal precision is returned. If no real data type
+matches the criteria, the result is
+<TABLE cellpadding=3><!-- tsb: selected_real_kind returns the value of the kind type parameter of a
  -->
 <TR></TR><TR></TR>
 <TR valign=top><TD width=3%>
@@ -131,8 +137,8 @@ requirements can be fulfilled
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-<B>-2</B> if the processor does not support a real type with an exponent
-range greater than or equal to R, but P and RADIX are
+<B>-2</B> if the processor does not support a real type with an
+exponent range greater than or equal to R, but P and RADIX are
 fulfillable
 </TD></TR>
 <TR valign=top><TD width=3%>
@@ -151,57 +157,77 @@ o
 <B>-5</B> if there is no real type with the given RADIX
 </TD></TR>
 <TR></TR></TABLE></TD></TR>
-<TR></TR></TABLE><A name=5>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=5>
 
-     <H3>EXAMPLE</H3>
+     <H3>EXAMPLES</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 Sample program:
 <P>
 <PRE>
-   program demo_selected_real_kind
-   implicit none
-     integer,parameter :: p6 = selected_real_kind(6)
-     integer,parameter :: p10r100 = selected_real_kind(10,100)
-     integer,parameter :: r400 = selected_real_kind(r=400)
-     real(kind=p6) :: x
-     real(kind=p10r100) :: y
-     real(kind=r400) :: z
+    program demo_selected_real_kind
+    implicit none
+    integer,parameter :: p6 = selected_real_kind(6)
+    integer,parameter :: p10r100 = selected_real_kind(10,100)
+    integer,parameter :: r400 = selected_real_kind(r=400)
+    real(kind=p6) :: x
+    real(kind=p10r100) :: y
+    real(kind=r400) :: z
 <P>
-     print *, precision(x), range(x)
-     print *, precision(y), range(y)
-     print *, precision(z), range(z)
-   end program demo_selected_real_kind
-<P>
+       print *, precision(x), range(x)
+       print *, precision(y), range(y)
+       print *, precision(z), range(z)
 </PRE>
-</BLOCKQUOTE>
+end program demo_selected_real_kind
+<P>
+Results:
+<BLOCKQUOTE>
+<TABLE cellpadding=3><!-- tsb: Results:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>6</B> </TD><TD valign=bottom>
+37
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+<B>15</B> </TD><TD valign=bottom>
+307
+<TABLE width=100% cellpadding=3><!-- tsb: 307
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>18</B> </TD><TD valign=bottom>
+4931
+</TD></TR>
+<TR></TR></TABLE></TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=6>
 
      <H3>STANDARD</H3>
 
 </A>
 <BLOCKQUOTE>
-[[Fortran 95]] and later; with RADIX [[Fortran 2008]] and later
+<P>
+Fortran 95 and later; with RADIX - Fortran 2008 and later
 </BLOCKQUOTE>
 <A name=7>
-
-     <H3>CLASS</H3>
-
-</A>
-<BLOCKQUOTE>
-Transformational function
-</BLOCKQUOTE>
-<A name=8>
 
      <H3>SEE ALSO</H3>
 
 </A>
 <BLOCKQUOTE>
-<B>precision</B>(3), <B>range</B>(3), <B>radix</B>(3)
+<P>
+<B>PRECISION</B>(3), <B>RANGE</B>(3), <B>RADIX</B>(3)
+<P>
+fortran-lang intrinsic descriptions
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>selected_real_kind (3fortran)</TD> <TD align=right width=33%><I>November 21, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from b6862366-7fe1-480c-8e21-d900ebe6c92b using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>selected_real_kind (3fortran)</TD> <TD align=right width=33%><I>September 04, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from b9f415c2-de68-4223-9a8b-2eadb147f68b using man macros.</FONT>
 <br><br><center><img src="images/selected_real_kind.3fortran.gif"></center>
 </div>
 </div>

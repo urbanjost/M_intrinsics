@@ -1,0 +1,58 @@
+NAME
+
+ATAN2(3) - [MATHEMATICS:TRIGONOMETRIC] Arctangent function
+
+SYNTAX
+
+    result = atan2(y, x)
+
+DESCRIPTION
+
+ATAN2(Y, X) computes the arctangent of the complex number ( X + i Y ) .
+
+This function can be used to transform from Cartesian into polar
+coordinates and allows to determine the angle in the correct quadrant.
+To convert from Cartesian Coordinates (X,Y) to polar coordinates
+
+(r,theta): $$ \begin{aligned} r &= \sqrt{x2 + Y2} \ \theta &=
+\tan**{-1}(y / x) \end{aligned} $$
+
+ARGUMENTS
+
+-   Y : The type shall be _real_.
+
+-   X : The type and kind type parameter shall be the same as Y. If Y is
+    zero, then X must be nonzero.
+
+RETURNS
+
+The return value has the same type and kind type parameter as Y. It is
+the principal value of the complex number (X + I, Y). If x is nonzero,
+then it lies in the range -PI <= ATAN(X) <= PI. The sign is positive if
+Y is positive. If Y is zero, then the return value is zero if X is
+strictly positive, PI if X is negative and Y is positive zero (or the
+processor does not handle signed zeros), and -PI if X is negative and Y
+is negative zero. Finally, if X is zero, then the magnitude of the
+result is PI/2.
+
+EXAMPLES
+
+Sample program:
+
+    program demo_atan2
+    use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
+    implicit none
+    real(kind=sp) :: x = 1.e0_sp, y = 0.5e0_sp, z
+       z = atan2(y,x)
+       write(*,*)x,y,z
+    end program demo_atan2
+
+Results:
+
+          1.00000000      0.500000000      0.463647604
+
+STANDARD
+
+FORTRAN 77 and later
+
+fortran-lang intrinsic descriptions

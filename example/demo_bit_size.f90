@@ -1,17 +1,15 @@
-          program demo_bit_size
-          use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
-          implicit none
-          integer(kind=int64)          :: answer
-          integer                      :: ilen
-             write(*,'(i0)')bit_size(bit_size(0_int8))
-             write(*,'(i0)')bit_size(bit_size(0_int16))
-             write(*,'(i0)')bit_size(bit_size(0_int32))
-             write(*,'(i0)')bit_size(bit_size(0_int64))
-             answer=0_int64
-             ilen=999
-             ! notice use of INT(3f)
-             ilen=min(ilen,int(bit_size(answer)))
-             ! arguments to MIN(3f) would be of different TYPES
-             !ilen=min(ilen,bit_size(answer))
-             write(*,'(i0)')ilen
-          end program demo_bit_size
+      program demo_bit_size
+      use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+      implicit none
+      integer(kind=int64)          :: answer
+      integer                      :: ilen
+      character(len=*),parameter   :: fmt='(*(g0,1x))'
+          write(*,fmt)'default integer size is',bit_size(0),'bits'
+          write(*,fmt)bit_size(bit_size(0_int8)), 'which is kind=',kind(0_int8)
+          write(*,fmt)bit_size(bit_size(0_int16)),'which is kind=',kind(0_int16)
+          write(*,fmt)bit_size(bit_size(0_int32)),'which is kind=',kind(0_int32)
+          write(*,fmt)bit_size(bit_size(0_int64)),'which is kind=',kind(0_int64)
+
+          ! Check size of value not explicitly defined.
+          write(*,fmt) int(bit_size(answer))
+      end program demo_bit_size

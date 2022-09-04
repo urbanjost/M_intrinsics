@@ -1,0 +1,57 @@
+NAME
+
+RANGE(3) - [NUMERIC MODEL] Decimal exponent range of a real kind
+
+SYNTAX
+
+    result = range(x)
+
+          function range (x)
+          integer :: range
+          type(TYPE,kind=KIND),intent(in) :: x
+
+where TYPE is _real_ or _complex_ and KIND is any kind supported by
+TYPE.
+
+DESCRIPTION
+
+RANGE(X) returns the decimal exponent range in the model of the type of
+X.
+
+ARGUMENTS
+
+-   X : Shall be of type _real_ or _complex_.
+
+RETURNS
+
+The return value is of type _integer_ and of the default integer kind.
+
+EXAMPLES
+
+Sample program:
+
+    program demo_range
+    use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
+    implicit none
+    real(kind=sp)    :: x(2)
+    complex(kind=dp) :: y
+       print *, precision(x), range(x)
+       print *, precision(y), range(y)
+    end program demo_range
+
+Results:
+
+                  6          37
+                 15         307
+
+STANDARD
+
+Fortran 95 and later
+
+SEE ALSO
+
+DIGITS(3), EPSILON(3), EXPONENT(3), FRACTION(3), HUGE(3),
+MAXEXPONENT(3), MINEXPONENT(3), NEAREST(3), PRECISION(3), RADIX(3),
+RRSPACING(3), SCALE(3), SET_EXPONENT(3), SPACING(3), TINY(3)
+
+fortran-lang intrinsic descriptions

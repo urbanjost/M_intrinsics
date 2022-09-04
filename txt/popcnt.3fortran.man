@@ -1,0 +1,55 @@
+NAME
+
+POPCNT(3) - [BIT:COUNT] Number of bits set
+
+SYNTAX
+
+    result = popcnt(i)
+
+DESCRIPTION
+
+Returns the number of bits set in the binary representation of an
+_integer_.
+
+ARGUMENTS
+
+-   I : Shall be of type _integer_.
+
+RETURNS
+
+The return value is of type _integer_ and of the default integer kind.
+
+EXAMPLES
+
+Sample program:
+
+    program demo_popcnt
+    use, intrinsic :: iso_fortran_env, only : integer_kinds, &
+       & int8, int16, int32, int64
+    implicit none
+         print *, popcnt(127),       poppar(127)
+         print *, popcnt(huge(0)), poppar(huge(0))
+         print *, popcnt(huge(0_int8)), poppar(huge(0_int8))
+         print *, popcnt(huge(0_int16)), poppar(huge(0_int16))
+         print *, popcnt(huge(0_int32)), poppar(huge(0_int32))
+         print *, popcnt(huge(0_int64)), poppar(huge(0_int64))
+    end program demo_popcnt
+
+Results:
+
+            7           1
+           31           1
+            7           1
+           15           1
+           31           1
+           63           1
+
+STANDARD
+
+Fortran 2008 and later
+
+SEE ALSO
+
+POPPAR(3), LEADZ(3), TRAILZ(3)
+
+fortran-lang intrinsic descriptions

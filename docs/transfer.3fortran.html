@@ -56,18 +56,20 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
-<B>transfer</B>(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Transfer bit patterns
+<P>
+<B>TRANSFER</B>(3) - [TYPE:MOLD] Transfer bit patterns
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=9>
+<A name=8>
 
      <H3>SYNTAX</H3>
 
 </A>
 <BLOCKQUOTE>
-result = <B>transfer</B>(source, mold[, size])
+<P>
+result = <B>transfer</B>(source, mold, size)
 </BLOCKQUOTE>
 <A name=2>
 
@@ -75,12 +77,13 @@ result = <B>transfer</B>(source, mold[, size])
 
 </A>
 <BLOCKQUOTE>
-Interprets the bitwise representation of SOURCE in memory as if it
-is the representation of a variable or array of the same type and
-type parameters as MOLD.
 <P>
-This is approximately equivalent to the C concept of *casting* one
-type to another.
+Interprets the bitwise representation of SOURCE in memory as if it is
+the representation of a variable or array of the same type and type
+parameters as MOLD.
+<P>
+This is approximately equivalent to the C concept of *casting* one type
+to another.
 </BLOCKQUOTE>
 <A name=3>
 
@@ -88,32 +91,37 @@ type to another.
 
 </A>
 <BLOCKQUOTE>
+<P>
 <TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>SOURCE</B> </TD><TD valign=bottom>
-Shall be a scalar or an array of any type.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+SOURCE : Shall be a scalar or an array of any type.
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>MOLD</B> </TD><TD valign=bottom>
-Shall be a scalar or an array of any type.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+MOLD : Shall be a scalar or an array of any type.
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>SIZE</B> </TD><TD valign=bottom>
-(Optional) shall be a scalar of type INTEGER.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+SIZE : (Optional) shall be a scalar of type _integer_.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
 
-     <H3>RETURN VALUE</H3>
+     <H3>RETURNS</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 The result has the same type as MOLD, with the bit level representation
-of SOURCE. If SIZE is present, the result is a one-dimensional array
-of length SIZE. If SIZE is absent but MOLD is an array (of any size or
+of SOURCE. If SIZE is present, the result is a one-dimensional array of
+length SIZE. If SIZE is absent but MOLD is an array (of any size or
 shape), the result is a one-dimensional array of the minimum length
-needed to contain the entirety of the bitwise representation of
-SOURCE. If SIZE is absent and MOLD is a scalar, the result is a scalar.
+needed to contain the entirety of the bitwise representation of SOURCE.
+If SIZE is absent and MOLD is a scalar, the result is a scalar.
 <P>
 If the bitwise representation of the result is longer than that of
 SOURCE, then the leading bits of the result correspond to those of
@@ -123,22 +131,44 @@ When the resulting bit representation does not correspond to a valid
 representation of a variable of the same type as MOLD, the results are
 undefined, and subsequent operations on the result cannot be guaranteed
 to produce sensible behavior. For example, it is possible to create
-LOGICAL variables for which VAR and .not. var both appear to be true.
+_logical_ variables for which VAR and .not. var both appear to be true.
 </BLOCKQUOTE>
 <A name=5>
 
-     <H3>EXAMPLE</H3>
+     <H3>EXAMPLES</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 Sample program:
 <P>
 <PRE>
     program demo_transfer
-    implicit none
-      integer :: x = 2143289344
-      print *, transfer(x, 1.0)    ! prints "nan" on i686
+    use,intrinsic :: iso_fortran_env, only : int32, real32
+    integer(kind=int32) :: i = 2143289344
+    real(kind=real32)   :: x
+    character(len=10)   :: string
+    character(len=1)    :: chars(10)
+       x=transfer(i, 1.0)    ! prints "nan" on i686
+       ! the bit patterns are the same
+       write(*,&#146;(b0,1x,g0)&#146;)x,x ! create a NaN
+       write(*,&#146;(b0,1x,g0)&#146;)i,i
+<P>
+       ! a string to an array of characters
+       string=&#146;abcdefghij&#146;
+       chars=transfer(string,chars)
+       write(*,&#146;(*("[",a,"]":,1x))&#146;)string
+       write(*,&#146;(*("[",a,"]":,1x))&#146;)chars
     end program demo_transfer
+<P>
+</PRE>
+Results:
+<P>
+<PRE>
+       1111111110000000000000000000000 NaN
+       1111111110000000000000000000000 2143289344
+       [abcdefghij]
+       [a] [b] [c] [d] [e] [f] [g] [h] [i] [j]
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -148,25 +178,25 @@ Sample program:
 
 </A>
 <BLOCKQUOTE>
-[[Joe Krahn]]: Fortran uses **molding** rather than **casting**.
+<P>
+_Joe Krahn_: Fortran uses MOLDING rather than CASTING.
 <P>
 Casting, as in C, is an in-place reinterpretation. A cast is a device
 that is built around an object to change its shape.
 <P>
 Fortran TRANSFER reinterprets data out-of-place. It can be considered
-**molding** rather than casting. A **mold** is a device that confers
-a shape onto an object placed into it.
+MOLDING rather than casting. A MOLD is a device that confers a shape
+onto an object placed into it.
 <P>
-The advantage of molding is that data is always valid in the context
-of the variable that holds it. For many cases, a decent compiler
-should optimize TRANSFER into a simple assignment.
+The advantage of molding is that data is always valid in the context of
+the variable that holds it. For many cases, a decent compiler should
+optimize TRANSFER into a simple assignment.
 <P>
-There are disadvantages of this approach. It is problematic to
-define a union of data types because you must know the largest data
-object, which can vary by compiler or compile options. In many cases,
-an EQUIVALENCE would be far more effective, but Fortran Standards
-committees seem oblivious to the benefits of EQUIVALENCEs when used
-sparingly.
+There are disadvantages of this approach. It is problematic to define a
+union of data types because you must know the largest data object, which
+can vary by compiler or compile options. In many cases, an EQUIVALENCE
+would be far more effective, but Fortran Standards committees seem
+oblivious to the benefits of EQUIVALENCEs when used sparingly.
 </BLOCKQUOTE>
 <A name=7>
 
@@ -174,18 +204,13 @@ sparingly.
 
 </A>
 <BLOCKQUOTE>
-[[Fortran 90]] and later
-</BLOCKQUOTE>
-<A name=8>
-
-     <H3>CLASS</H3>
-
-</A>
-<BLOCKQUOTE>
-Transformational function
+<P>
+Fortran 90 and later
+<P>
+fortran-lang intrinsic descriptions
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>transfer (3fortran)</TD> <TD align=right width=33%><I>November 21, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 8f6e20e1-7cb6-4978-bb63-485d3e78a3bb using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>transfer (3fortran)</TD> <TD align=right width=33%><I>September 04, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 060824e3-1d27-4826-93db-82923af3b6f4 using man macros.</FONT>
 <br><br><center><img src="images/transfer.3fortran.gif"></center>
 </div>
 </div>

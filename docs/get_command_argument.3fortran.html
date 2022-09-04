@@ -56,36 +56,49 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
-<B>get_command_argument</B>(3f) - [FORTRAN:INTRINSIC:SYSTEM ENVIRONMENT] Get
-command line arguments
+<P>
+<B>GET_COMMAND_ARGUMENT</B>(3) - [SYSTEM:COMMAND LINE] Get command line
+arguments
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=10>
+<A name=8>
 
      <H3>SYNTAX</H3>
 
 </A>
 <BLOCKQUOTE>
-call <B>get_command_argument</B>(number [, value, length, status])
 <P>
-<PRE>
-     integer,intent(in)                    :: number
-     character(len=*),intent(out),optional :: value
-     integer,intent(out),optional          :: length
-     integer,intent(out),optional          :: status
+call <B>get_command_argument</B>(number, value, length, status)
 <P>
-</PRE>
-</BLOCKQUOTE>
+subroutine <B>get_command_argument</B>(number,value,length.status)
+<TABLE cellpadding=3><!-- tsb: subroutine <B>get_command_argument</B>(number,value,length.status)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>integer,intent</B>(in) </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+:: number
+<B>character</B>(len=*),intent(out),optional :: value
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>integer,intent</B>(out),optional </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+:: length
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>integer,intent</B>(out),optional </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+:: status
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=2>
 
      <H3>DESCRIPTION</H3>
 
 </A>
 <BLOCKQUOTE>
-Retrieve the NUMBER-th argument that was passed on the command line
-when the containing program was invoked.
+<P>
+Retrieve the NUMBER-th argument that was passed on the command line when
+the containing program was invoked.
 <P>
 There is not anything specifically stated about what an argument is but
 in practice the arguments are split on whitespace unless the arguments
@@ -98,12 +111,14 @@ shells are ignored.
 
 </A>
 <BLOCKQUOTE>
+<P>
 <TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>NUMBER</B> </TD><TD valign=bottom>
-Shall be a scalar of type <B>integer</B>(4), NUMBER &gt;= 0.
-If NUMBER = 0, VALUE is set to the name of the program
-(on systems that support this feature).
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+NUMBER : Shall be a scalar of type INTEGER, NUMBER &gt;= 0. If NUMBER =
+0, VALUE is set to the name of the program (on systems that support
+this feature).
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
@@ -112,90 +127,116 @@ If NUMBER = 0, VALUE is set to the name of the program
 
 </A>
 <BLOCKQUOTE>
+<P>
 <TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>VALUE</B> </TD><TD valign=bottom>
-Shall be a scalar of type CHARACTER and of default kind.
-After get_command_argument returns, the VALUE argument
-holds the NUMBER-th command line argument. If VALUE can
-not hold the argument, it is truncated to fit the length
-of VALUE. If there are less than NUMBER arguments specified
-at the command line, VALUE will be filled with blanks.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+VALUE :Shall be a scalar of type _character_ and of default kind.
+After get_command_argument returns, the VALUE argument holds the
+NUMBER-th command line argument. If VALUE can not hold the argument,
+it is truncated to fit the length of VALUE. If there are less than
+NUMBER arguments specified at the command line, VALUE will be filled
+with blanks.
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>LENGTH</B> </TD><TD valign=bottom>
-(Optional) Shall be a scalar of type <B>integer</B>(4).
-The LENGTH argument contains the length of the
-NUMBER-th command line argument.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+LENGTH :(Optional) Shall be a scalar of type _integer_. The LENGTH
+argument contains the length of the NUMBER-th command line argument.
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>STATUS</B> </TD><TD valign=bottom>
-(Optional) Shall be a scalar of type <B>integer</B>(4).
-If the argument retrieval fails, STATUS is a positive number;
-if VALUE contains a truncated command line argument, STATUS
-is <B>-1</B>; and otherwise the STATUS is zero.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+STATUS :(Optional) Shall be a scalar of type _integer_. If the
+argument retrieval fails, STATUS is a positive number; if VALUE
+contains a truncated command line argument, STATUS is <B>-1</B>; and
+otherwise the STATUS is zero.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
 
-     <H3>EXAMPLE</H3>
+     <H3>EXAMPLES</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 Sample program:
 <P>
 <PRE>
-   program demo_get_command_argument
-   implicit none
-   character(len=255)           :: progname
-   integer                      :: stat
-   integer                      :: count,i, longest, argument_length
-   integer,allocatable          :: istat(:), ilen(:)
-   character(len=:),allocatable :: arguments(:)
-     ! get number of arguments
-     count = command_argument_count()
-     write(*,*)&#146;The number of arguments is &#146;,count
-     ! simple usage
-     call get_command_argument (0, progname, status=stat)
-     if (stat == 0) then
-        print *, "The program&#146;s name is " // trim (progname)
-     endif
-     ! showing how to make an array to hold any argument list
-     ! find longest argument
-     longest=0
-     do i=0,count
-        call get_command_argument(number=i,length=argument_length)
-        longest=max(longest,argument_length)
-     enddo
-     ! allocate string array big enough to hold command line argument strings
-     ! and related information
-     allocate(character(len=longest) :: arguments(0:count))
-     allocate(istat(0:count))
-     allocate(ilen(0:count))
-     ! read the arguments into the array
-     do i=0,count
-       call get_command_argument(i, arguments(i),status=istat(i),length=ilen(i))
-     enddo
-     ! show the results
-     write (*,&#146;(i3.3,1x,i0.5,1x,i0.5,1x,"[",a,"]")&#146;) &
-     & (i,istat(i),ilen(i),arguments(i)(:ilen(i)),i=0,count)
-   end program demo_get_command_argument
+    program demo_get_command_argument
+    implicit none
+    character(len=255)           :: progname
+    integer                      :: stat
+    integer                      :: count,i, longest, argument_length
+    integer,allocatable          :: istat(:), ilen(:)
+    character(len=:),allocatable :: args(:)
+      !
+      ! get number of arguments
+      count = command_argument_count()
+      write(*,*)&#146;The number of arguments is &#146;,count
+      !
+      ! simple usage
+      !
+      call get_command_argument (0, progname, status=stat)
+      if (stat == 0) then
+         print *, "The program&#146;s name is " // trim (progname)
+      endif
+      !
+      ! showing how to make an array to hold any argument list
+      !
+      ! find longest argument
+      !
+      longest=0
+      do i=0,count
+         call get_command_argument(number=i,length=argument_length)
+         longest=max(longest,argument_length)
+      enddo
+      !
+      ! allocate string array big enough to hold command line
+      ! argument strings and related information
+      !
+      allocate(character(len=longest) :: args(0:count))
+      allocate(istat(0:count))
+      allocate(ilen(0:count))
+      !
+      ! read the arguments into the array
+      !
+      do i=0,count
+        call get_command_argument(i, args(i),status=istat(i),length=ilen(i))
+      enddo
+      !
+      ! show the results
+      !
+      write (*,&#146;(i3.3,1x,i0.5,1x,i0.5,1x,"[",a,"]")&#146;) &
+      & (i,istat(i),ilen(i),args(i)(:ilen(i)),i=0,count)
+    end program demo_get_command_argument
 <P>
 </PRE>
-Sample output:
+Results:
 <P>
 <PRE>
-   ./test_get_command_argument a    test  &#146;of getting   arguments  &#146; "  leading"
+    /demo_get_command_argument a    test  &#146;of getting   arguments  &#146; "  leading"
 <P>
-   &gt; The number of arguments is            5
-   &gt; The program&#146;s name is xxx
-   &gt;000 00000 00003 [./test_get_command_argument]
-   &gt;001 00000 00001 [a]
-   &gt;003 00000 00004 [test]
-   &gt;004 00000 00024 [of getting   arguments  ]
-   &gt;005 00000 00018 [  leading]
-<P>
+     The number of arguments is            5
+     The program&#146;s name is xxx
 </PRE>
+000 00000 00003 [./test_get_command_argument]
+001 00000 00001 [a]
+003 00000 00004 [test]
+<BLOCKQUOTE>
+<TABLE cellpadding=3><!-- tsb:      The number of arguments is            5
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B>004 00000 00024 [of getting</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+arguments  ]
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>005 00000 00018 [</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+leading]
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 </BLOCKQUOTE>
 <A name=6>
 
@@ -203,32 +244,22 @@ Sample output:
 
 </A>
 <BLOCKQUOTE>
-[[Fortran 2003]] and later
+<P>
+Fortran 2003 and later
 </BLOCKQUOTE>
 <A name=7>
-
-     <H3>CLASS</H3>
-
-</A>
-<BLOCKQUOTE>
-Subroutine
-</BLOCKQUOTE>
-<A name=8>
 
      <H3>SEE ALSO</H3>
 
 </A>
 <BLOCKQUOTE>
-<B>get_command</B>(3), <B>command_argument_count</B>(3)
-</BLOCKQUOTE>
-<A name=9>
-
-    <H4>&nbsp; &nbsp; JSU</H4>
-</A>
-<BLOCKQUOTE>
+<P>
+<B>GET_COMMAND</B>(3), <B>COMMAND_ARGUMENT_COUNT</B>(3)
+<P>
+fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>get_command_argument (3fortran)</TD> <TD align=right width=33%><I>November 21, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 07f13f2d-bfa1-45cb-8bdc-d4f780c5278d using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>get_command_argument (3fortran)</TD> <TD align=right width=33%><I>September 04, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 7e1a13f3-dc9e-4874-a88f-6478b1ca30f8 using man macros.</FONT>
 <br><br><center><img src="images/get_command_argument.3fortran.gif"></center>
 </div>
 </div>

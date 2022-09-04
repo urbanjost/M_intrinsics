@@ -56,7 +56,8 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
-<B>epsilon</B>(3f) - [FORTRAN:INTRINSIC:NUMERIC MODEL] Epsilon function
+<P>
+<B>EPSILON</B>(3) - [NUMERIC MODEL] Epsilon function
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
@@ -67,6 +68,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
+<P>
 result = <B>epsilon</B>(x)
 </BLOCKQUOTE>
 <A name=2>
@@ -75,7 +77,24 @@ result = <B>epsilon</B>(x)
 
 </A>
 <BLOCKQUOTE>
-<B>epsilon</B>(x) returns a nearly negligible number relative to 1.
+<P>
+<B>EPSILON</B>(X) returns the floating point relative accuracy. It is the
+nearly negligible number relative to 1 such that 1+ LITTLE_NUMBER is not
+equal to 1; or more precisely
+<P>
+<PRE>
+       real( 1.0, kind(x)) + epsilon(x) /=  real( 1.0, kind(x))
+<P>
+</PRE>
+It may be thought of as the distance from 1.0 to the next largest
+floating point number.
+<P>
+One use of <B>EPSILON</B>(3) is to select a _delta_ value for algorithms that
+search until the calculation is within _delta_ of an estimate.
+<P>
+If _delta_ is too small the algorithm might never halt, as a computation
+summing values smaller than the decimal resolution of the data type does
+not change.
 </BLOCKQUOTE>
 <A name=3>
 
@@ -83,38 +102,121 @@ result = <B>epsilon</B>(x)
 
 </A>
 <BLOCKQUOTE>
+<P>
 <TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>X</B> </TD><TD valign=bottom>
-The type shall be REAL.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+X : The type shall be _real_.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
 
-     <H3>RETURN VALUE</H3>
+     <H3>RETURNS</H3>
 
 </A>
 <BLOCKQUOTE>
-The return value is of same type as the argument.
+<P>
+The return value is of the same type as the argument.
 </BLOCKQUOTE>
 <A name=5>
 
-     <H3>EXAMPLE</H3>
+     <H3>EXAMPLES</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 Sample program:
 <P>
 <PRE>
     program demo_epsilon
+    use,intrinsic :: iso_fortran_env, only : dp=&gt;real64,sp=&gt;real32
     implicit none
-        real :: x = 3.143
-        real(8) :: y = 2.33
-        print *, epsilon(x)
-        print *, epsilon(y)
-    end program demo_epsilon
+    real(kind=sp) :: x = 3.143
+    real(kind=dp) :: y = 2.33d0
+<P>
+       ! so if x is of type real32, epsilon(x) has the value 2**-23
+       print *, epsilon(x)
+       ! note just the type and kind of x matter, not the value
+       print *, epsilon(huge(x))
+       print *, epsilon(tiny(x))
+<P>
+       ! the value changes with the kind of the real value though
+       print *, epsilon(y)
+<P>
+       ! adding and subtracting epsilon(x) changes x
+       write(*,*)x == x + epsilon(x)
+       write(*,*)x == x - epsilon(x)
+<P>
+       ! these next two comparisons will be .true. !
+       write(*,*)x == x + epsilon(x) * 0.999999
+       write(*,*)x == x - epsilon(x) * 0.999999
+<P>
+       ! you can calculate epsilon(1.0d0)
+       write(*,*)my_dp_eps()
 <P>
 </PRE>
+<BLOCKQUOTE>
+contains
+<P>
+function <B>my_dp_eps</B>()
+! calculate the epsilon value of a machine the hard way
+<B>real</B>(kind=dp) :: t
+<B>real</B>(kind=dp) :: my_dp_eps
+<P>
+<PRE>
+       ! starting with a value of 1, keep dividing the value
+       ! by 2 until no change is detected. Note that with
+       ! infinite precision this would be an infinite loop,
+       ! but floating point values in Fortran have a defined
+       ! and limited precision.
+       my_dp_eps = 1.0d0
+       SET_ST: do
+          my_dp_eps = my_dp_eps/2.0d0
+          t = 1.0d0 + my_dp_eps
+          if (t &lt;= 1.0d0) exit
+       enddo SET_ST
+       my_dp_eps = 2.0d0*my_dp_eps
+<P>
+</PRE>
+end function my_dp_eps
+<P>
+end program demo_epsilon
+</BLOCKQUOTE>
+<P>
+Results:
+<P>
+<PRE>
+      1.1920929E-07
+      1.1920929E-07
+      1.1920929E-07
+      2.220446049250313E-016
+</PRE>
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; F</H4>
+</A>
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; F</H4>
+</A>
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; T</H4>
+</A>
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; T</H4>
+</A>
+<BLOCKQUOTE>
+2.220446049250313E-016
 </BLOCKQUOTE>
 <A name=6>
 
@@ -122,18 +224,24 @@ Sample program:
 
 </A>
 <BLOCKQUOTE>
-[[Fortran 95]] and later
+<P>
+Fortran 95 and later
 </BLOCKQUOTE>
 <A name=7>
 
-     <H3>CLASS</H3>
+     <H3>SEE ALSO</H3>
 
 </A>
 <BLOCKQUOTE>
-[[Inquiry function]]
+<P>
+<B>DIGITS</B>(3), <B>EXPONENT</B>(3), <B>FRACTION</B>(3), <B>HUGE</B>(3), <B>MAXEXPONENT</B>(3),
+<B>MINEXPONENT</B>(3), <B>NEAREST</B>(3), <B>PRECISION</B>(3), <B>RADIX</B>(3), <B>RANGE</B>(3),
+<B>RRSPACING</B>(3), <B>SCALE</B>(3), <B>SET_EXPONENT</B>(3), <B>SPACING</B>(3), <B>TINY</B>(3)
+<P>
+fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>epsilon (3fortran)</TD> <TD align=right width=33%><I>November 21, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from ae0a6560-1038-4933-8ec8-bd77663cbdd2 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>epsilon (3fortran)</TD> <TD align=right width=33%><I>September 04, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 3618e965-96c3-4814-b64e-7417a71e3bda using man macros.</FONT>
 <br><br><center><img src="images/epsilon.3fortran.gif"></center>
 </div>
 </div>

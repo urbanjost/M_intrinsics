@@ -56,19 +56,31 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
-<B>verify</B>(3f) - [FORTRAN:INTRINSIC:CHARACTER] Scan a string for the
-absence of a set of characters
+<P>
+<B>VERIFY</B>(3) - [CHARACTER:SEARCH] Scan a string for the absence of a set of
+characters
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=9>
+<A name=8>
 
      <H3>SYNTAX</H3>
 
 </A>
 <BLOCKQUOTE>
-result = <B>verify</B>(string, set[, back [, kind]])
+<P>
+result = <B>verify</B>(string, set, back, kind)
+<P>
+<PRE>
+      integer(kind=KIND) elemental function verify(string,set,back,kind)
+<P>
+       character(len=*),intent(in) :: string
+       character(len=*),intent(in) :: set
+       logical,intent(in),optional :: back
+       integer,intent(in),optional :: KIND
+<P>
+</PRE>
 </BLOCKQUOTE>
 <A name=2>
 
@@ -76,13 +88,24 @@ result = <B>verify</B>(string, set[, back [, kind]])
 
 </A>
 <BLOCKQUOTE>
-Verifies that all the characters in STRING belong to the set of
-characters in SET.
 <P>
-If BACK is either absent or equals FALSE, this function returns
-the position of the leftmost character of STRING that is not in
-SET. If BACK equals TRUE, the rightmost position is returned. If
-all characters of STRING are found in SET, the result is zero.
+Verifies that all the characters in STRING belong to the set of
+characters in SET by identifying the first character in the <B>string</B>(s)
+that is not in the <B>set</B>(s).
+<P>
+If BACK is either absent or equals .FALSE., this function returns the
+position of the leftmost character of STRING that is not in SET.
+<P>
+If BACK equals .TRUE., the rightmost position is returned.
+<P>
+If all characters of STRING are found in SET, the result is zero.
+<P>
+This makes it easy to verify strings are all uppercase or lowercase,
+follow a basic syntax, only contain printable characters, and many of
+the conditions tested for with the C routines <B>ISALNUM</B>(3c), <B>ISALPHA</B>(3c),
+<B>ISASCII</B>(3c), <B>ISBLANK</B>(3c), <B>ISCNTRL</B>(3c), <B>ISDIGIT</B>(3c), <B>ISGRAPH</B>(3c),
+<B>ISLOWER</B>(3c), <B>ISPRINT</B>(3c), <B>ISPUNCT</B>(3c), <B>ISSPACE</B>(3c), <B>ISUPPER</B>(3c), and
+<B>ISXDIGIT</B>(3c); but for a string as well an an array of characters.
 </BLOCKQUOTE>
 <A name=3>
 
@@ -90,100 +113,288 @@ all characters of STRING are found in SET, the result is zero.
 
 </A>
 <BLOCKQUOTE>
+<P>
 <TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>STRING</B> </TD><TD valign=bottom>
-Shall be of type CHARACTER.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+STRING : Shall be of type _character_.
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>SET</B> </TD><TD valign=bottom>
-Shall be of type CHARACTER.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+SET : Shall be of type _character_.
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>BACK</B> </TD><TD valign=bottom>
-(Optional) shall be of type LOGICAL.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+BACK : shall be of type _logical_.
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>KIND</B> </TD><TD valign=bottom>
-(Optional) An INTEGER initialization expression
-indicating the kind parameter of the result.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+KIND : An _integer_ initialization expression indicating the kind
+parameter of the result.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
 
-     <H3>RETURN VALUE</H3>
+     <H3>RETURNS</H3>
 
 </A>
 <BLOCKQUOTE>
-The return value is of type INTEGER and of kind KIND. If KIND is
+<P>
+The return value is of type _integer_ and of kind KIND. If KIND is
 absent, the return value is of default integer kind.
 </BLOCKQUOTE>
 <A name=5>
 
-     <H3>EXAMPLE</H3>
+     <H3>EXAMPLES</H3>
 
 </A>
 <BLOCKQUOTE>
-Sample program:
+<P>
+Sample program I:
 <P>
 <PRE>
     program demo_verify
     implicit none
-    character(len=12):: c1=&#146;Howdy There!&#146;
-    character(len=6) :: c2(2)=["Howdy ","there!"]
-    character(len=2) :: c3(2)=["de","gh"]
-    !=======================================================
-    !! LOCATION OF FIRST NONBLANK CHARACTER
-    write(*,*)&#146;nonblank &#146;,verify(&#146;  Hello World! &#146;, &#146; &#146;)
-    !! SAME AS LEN_TRIM()
-    write(*,*)&#146;length &#146;,verify(&#146;  Hello World!    &#146;, &#146; &#146;, back = .true.)
-    !! ARRAYS
-    write(*,*) verify(c1,&#146;de&#146;)                  ! writes 1
-    write(*,*) verify(c2,c3)                    ! writes 1 1
-    write(*,*) verify(c1,&#146;de&#146;,back=.true.)      ! writes 12
-    write(*,*) verify(c2,c3,[.true.,.false.]) ! writes 6 1
-    !=======================================================
-    write(*,*) verify("fortran", "ao")           ! 1, found &#146;f&#146;
-    write(*,*) verify("fortran", "fo")           ! 3, found &#146;r&#146;
-    write(*,*) verify("fortran", "c++")          ! 1, found &#146;f&#146;
-    write(*,*) verify("fortran", "c++", .true.)  ! 7, found &#146;n&#146;
-    write(*,*) verify("fortran", "nartrof")      ! 0&#146; found none
-    !=======================================================
-    !! CHECK IF STRING IS OF FORM NN-HHHHH
-    check : block
-    logical                    :: lout
     character(len=*),parameter :: int=&#146;0123456789&#146;
     character(len=*),parameter :: hex=&#146;abcdef0123456789&#146;
-    character(len=80)          :: chars
+    character(len=*),parameter :: low=&#146;abcdefghijklmnopqrstuvwxyz&#146;
+    character(len=*),parameter :: upp=&#146;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#146;
+    character(len=20):: string=&#146;   Howdy There!&#146;
+    character(len=6) :: strings(2)=["Howdy ","there!"]
+    character(len=2) :: sets(2)=["de","gh"]
 <P>
-    chars=&#146;32-af43d&#146;
-    lout=.true.
-    lout = lout.and.(verify(chars(1:2), int) == 0)
-    lout = lout.and.(verify(chars(3:3), &#146;-&#146;) == 0)
-    lout = lout.and.(verify(chars(4:8), hex) == 0)
-    if(lout)then
-       write(*,*)trim(chars),&#146; passed&#146;
-    endif
+       write(*,*)&#146;first non-blank character &#146;,verify(string, &#146; &#146;)
+       ! NOTE: same as len_trim(3)
+       write(*,*)&#146;last non-blank character&#146;,verify(string, &#146; &#146;,back=.true.)
 <P>
-    endblock check
-    end program demo_verify
+       ! first non-lowercase non-blank character
+       write(*,*) verify(string,low//&#146; &#146;)
 <P>
+       !! elemental -- using arrays for both strings and for sets
+<P>
+       ! first character in "Howdy" not in "de", and first letter in "there!"
+       ! not in "gh"
+       write(*,*) verify(strings,sets)
+<P>
+       ! check each string from right to left for non-letter
+       write(*,*) &#146;last non-letter&#146;,verify(strings,upp//low,back=.true.)
+<P>
+       ! note character variables in an array have to be of same length
+       ! find last non-uppercase character in "Howdy"
+       ! and first non-lowercase in "There!"
+       write(*,*) verify(strings,[upp,low],back=[.true.,.false.])
+<P>
+       write(*,*) verify("fortran", "", .true.)  ! 7, found &#146;n&#146;
+       ! 0&#146; found none unmatched
+       write(*,*) verify("fortran", "nartrof")
+<P>
+<P>
+        !! CHECK IF STRING IS OF FORM NN-HHHHH
+        CHECK : block
+           logical                    :: lout
+           character(len=80)          :: chars
+<P>
+           chars=&#146;32-af43d&#146;
+           lout=.true.
+<P>
+           ! are the first two characters integer characters?
+           lout = lout.and.(verify(chars(1:2), int) == 0)
+<P>
+           ! is the third character a dash?
+           lout = lout.and.(verify(chars(3:3), &#146;-&#146;) == 0)
+<P>
+           ! is remaining string a valid representation of a hex value?
+           lout = lout.and.(verify(chars(4:8), hex) == 0)
+<P>
+           if(lout)then
+              write(*,*)trim(chars),&#146; passed&#146;
+           endif
+<P>
+        endblock CHECK
 </PRE>
+end program demo_verify
+<P>
 Results:
 <P>
 <PRE>
-    nonblank            3
-    length           14
-              1
-              1           1
-             12
-              6           1
-              1
-              3
-              1
-              7
-              0
-    32-af43d passed
+        first non-blank character            4
+        last non-blank character          15
+                  4
+                  1           1
+        last non-letter           6           6
+                  6           6
+                  7
+                  0
+        32-af43d passed
+<P>
+</PRE>
+Sample program II:
+<P>
+Determine if strings are valid integer representations
+<P>
+<PRE>
+    program fortran_ints
+    implicit none
+    integer :: i
+    character(len=*),parameter :: ints(*)=[character(len=10) :: &
+     &#146;+1 &#146;, &
+     &#146;3044848 &#146;, &
+     &#146;30.40 &#146;, &
+     &#146;September &#146;, &
+     &#146;1 2 3&#146;, &
+     &#146;  -3000 &#146;, &
+     &#146; &#146;]
+<P>
+       write(*,&#146;("|",*(g0,"|"))&#146;) ints
+       write(*,&#146;("|",*(1x,l1,8x,"|"))&#146;) isint(ints)
+<P>
+</PRE>
+<BLOCKQUOTE>
+contains
+<P>
+elemental function <B>isint</B>(line) result (lout)
+!
+! determine if string is a valid integer representation
+! ignoring trailing spaces and leading spaces
+!
+<TABLE cellpadding=3><!-- tsb: elemental function <B>isint</B>(line) result (lout)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>character</B>(len=*),parameter </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+:: digits=&#146;0123456789&#146;
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>character</B>(len=*),intent(in) </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+:: line
+<B>character</B>(len=:),allocatable :: name
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>logical</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+:: lout
+lout=.false.
+! make sure at least two characters long to simplify tests
+<TABLE width=100% cellpadding=3><!-- tsb: :: lout
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>name=adjustl</B>(line)//&#146; </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+! blank string
+<B>if</B>( name .eq. &#146;&#146; )return
+! allow one leading sign
+<B>if</B>( <B>verify</B>(name(1:1),&#146;+-&#146;) == 0 ) <B>name=name</B>(2:)
+! was just a sign
+<B>if</B>( name .eq. &#146;&#146; )return
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>lout=</B><B>verify</B>(trim(name), digits) </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+== 0
+end function isint
+</TD></TR>
+<TR></TR></TABLE><!-- .PP -->
+</TD></TR>
+<TR></TR></TABLE>end program fortran_ints
+</BLOCKQUOTE>
+<P>
+Results:
+<P>
+<PRE>
+    |+1       |3044848  |30.40    |September|1 2 3    |  -3000  |         |
+    | T       | T       | F       | F       | F       | T       | F       |
+<P>
+</PRE>
+Sample program III:
+<P>
+Determine if strings represent valid Fortran symbol names
+<P>
+<PRE>
+    program fortran_symbol_name
+    implicit none
+    integer :: i
+    character(len=*),parameter :: symbols(*)=[character(len=10) :: &
+     &#146;A_ &#146;, &
+     &#146;10 &#146;, &
+     &#146;September &#146;, &
+     &#146;A B&#146;, &
+     &#146;_A &#146;, &
+     &#146; &#146;]
+<P>
+       write(*,&#146;("|",*(g0,"|"))&#146;) symbols
+       write(*,&#146;("|",*(1x,l1,8x,"|"))&#146;) fortran_name(symbols)
+<P>
+</PRE>
+<BLOCKQUOTE>
+contains
+<P>
+elemental function <B>fortran_name</B>(line) result (lout)
+!
+! determine if a string is a valid Fortran name
+! ignoring trailing spaces (but not leading spaces)
+!
+<TABLE cellpadding=3><!-- tsb: elemental function <B>fortran_name</B>(line) result (lout)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>character</B>(len=*),parameter </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+:: int=&#146;0123456789&#146;
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>character</B>(len=*),parameter </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+:: lower=&#146;abcdefghijklmnopqrstuvwxyz&#146;
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>character</B>(len=*),parameter </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+:: upper=&#146;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#146;
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>character</B>(len=*),parameter </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+:: allowed=upper//lower//int//&#146;_&#146;
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>character</B>(len=*),intent(in) </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+:: line
+<B>character</B>(len=:),allocatable :: name
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>logical</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+:: lout
+<B>name=trim</B>(line)
+<B>if</B>(len(name).ne.0)then
+! first character is alphameric
+<TABLE width=100% cellpadding=3><!-- tsb: :: lout
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B>lout = </B><B>verify</B>(name(1:1), lower//upper) == 0 </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+! other characters are allowed in a symbol name
+<TABLE width=100% cellpadding=3><!-- tsb: ! other characters are allowed in a symbol name
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B>& .and. </B><B>verify</B>(name,allowed) == 0 </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+! allowable length
+& .and. <B>len</B>(name) &lt;= 63
+else
+lout = .false.
+endif
+end function fortran_name
+</TD></TR>
+<TR></TR></TABLE><!-- .RE -->
+</TD></TR>
+<TR></TR></TABLE><!-- .PP -->
+</TD></TR>
+<TR></TR></TABLE>end program fortran_symbol_name
+</BLOCKQUOTE>
+<P>
+Results:
+<P>
+<PRE>
+    |A_        |10        |September |A B       |_A        |          |
+    | T        | F        | T        | F        | F        | F        |
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -193,39 +404,35 @@ Results:
 
 </A>
 <BLOCKQUOTE>
-[[Fortran 95]] and later, with KIND argument [[Fortran 2003]] and later
+<P>
+Fortran 95 and later, with KIND argument - Fortran 2003 and later
 </BLOCKQUOTE>
 <A name=7>
-
-     <H3>CLASS</H3>
-
-</A>
-<BLOCKQUOTE>
-Elemental function
-</BLOCKQUOTE>
-<A name=8>
 
      <H3>SEE ALSO</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 <TABLE cellpadding=3><!-- tsb: Functions that perform operations on character strings, return lengths
  -->
 <TR></TR><TR></TR>
-<TR valign=top><TD colspan=2>
-<B>Elemental:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-<B>adjustl</B>(3), <B>adjustr</B>(3), <B>index</B>(3), <B>len_trim</B>(3),
-<B>scan</B>(3), <B>verify</B>(3)
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+ELEMENTAL: <B>ADJUSTL</B>(3), <B>ADJUSTR</B>(3), <B>INDEX</B>(3), <B>SCAN</B>(3), <B>VERIFY</B>(3)
 </TD></TR>
-<TR valign=top><TD colspan=2>
-<B>Nonelemental:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-<B>repeat</B>(3), <B>trim</B>(3)
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+NONELEMENTAL: <B>LEN_TRIM</B>(3), <B>LEN</B>(3), <B>REPEAT</B>(3), <B>TRIM</B>(3)
 </TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
+<TR></TR></TABLE>fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+</BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>verify (3fortran)</TD> <TD align=right width=33%><I>November 21, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 8ae9ec44-88f1-4096-b81d-63b11ea192a0 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>verify (3fortran)</TD> <TD align=right width=33%><I>September 04, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from e722ece3-3ba1-46bc-af16-4efab5f662ab using man macros.</FONT>
 <br><br><center><img src="images/verify.3fortran.gif"></center>
 </div>
 </div>

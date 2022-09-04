@@ -1,0 +1,56 @@
+NAME
+
+ASINH(3) - [MATHEMATICS:TRIGONOMETRIC] Inverse hyperbolic sine function
+
+SYNTAX
+
+    result = asinh(x)
+
+        elemental TYPE(kind=KIND) function asinh(x)
+        TYPE(kind=KIND) :: x
+
+Where the returned value has the kind of the input value and TYPE may be
+_real_ or _complex_
+
+DESCRIPTION
+
+ASINH(X) computes the inverse hyperbolic sine of X.
+
+ARGUMENTS
+
+-   X : The type shall be _real_ or _complex_.
+
+RETURNS
+
+The return value is of the same type and kind as X. If X is _complex_,
+the imaginary part of the result is in radians and lies between -PI/2 <=
+AIMAG(ASINH(X)) <= PI/2.
+
+EXAMPLES
+
+Sample program:
+
+    program demo_asinh
+    use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
+    implicit none
+    real(kind=dp), dimension(3) :: x = [ -1.0d0, 0.0d0, 1.0d0 ]
+
+        write (*,*) asinh(x)
+
+    end program demo_asinh
+
+Results:
+
+      -0.88137358701954305  0.0000000000000000  0.88137358701954305
+
+STANDARD
+
+Fortran 2008 and later
+
+SEE ALSO
+
+-   Wikipedia:hyperbolic functions
+
+Inverse function: SINH(3)
+
+fortran-lang intrinsic descriptions

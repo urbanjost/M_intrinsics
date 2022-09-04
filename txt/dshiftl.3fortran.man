@@ -1,0 +1,35 @@
+NAME
+
+DSHIFTL(3) - [BIT:COPY] combines bits of arguments I and J
+
+SYNTAX
+
+    result = dshiftl(i, j, shift)
+
+DESCRIPTION
+
+DSHIFTL(I, J, SHIFT) combines bits of I and J. The rightmost SHIFT bits
+of the result are the leftmost SHIFT bits of J, and the remaining bits
+are the rightmost bits of I.
+
+ARGUMENTS
+
+-   I : Shall be of type _integer_.
+
+-   J : Shall be of type _integer_, and of the same kind as I.
+
+-   SHIFT : Shall be of type _integer_.
+
+RETURNS
+
+The return value has same type and kind as I.
+
+STANDARD
+
+Fortran 2008 and later
+
+SEE ALSO
+
+DSHIFTR(3)
+
+fortran-lang intrinsic descriptions

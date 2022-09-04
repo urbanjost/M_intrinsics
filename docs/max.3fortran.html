@@ -56,18 +56,20 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
-<B>max</B>(3f) - [FORTRAN:INTRINSIC:NUMERIC] Maximum value of an argument list
+<P>
+<B>MAX</B>(3) - [NUMERIC] Maximum value of an argument list
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=9>
+<A name=8>
 
      <H3>SYNTAX</H3>
 
 </A>
 <BLOCKQUOTE>
-result = <B>max</B>(a1, a2 [, a3 [, &#46;&#46;&#46;]])
+<P>
+result = <B>max</B>(a1, a2, a3, &#46;&#46;&#46;)
 </BLOCKQUOTE>
 <A name=2>
 
@@ -75,6 +77,7 @@ result = <B>max</B>(a1, a2 [, a3 [, &#46;&#46;&#46;]])
 
 </A>
 <BLOCKQUOTE>
+<P>
 Returns the argument with the largest (most positive) value.
 </BLOCKQUOTE>
 <A name=3>
@@ -83,42 +86,44 @@ Returns the argument with the largest (most positive) value.
 
 </A>
 <BLOCKQUOTE>
+<P>
 <TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>A1</B> </TD><TD valign=bottom>
-The type shall be INTEGER or REAL.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+A1 : The type shall be _integer_ or _real_.
 </TD></TR>
-<TR valign=top><TD colspan=2>
-<B>A2,A3,&#46;&#46;&#46;</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-An expression of the same type and kind as A1.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+A2,A3,&#46;&#46;&#46; : An expression of the same type and kind as A1.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
-<P>
-<P>
 <A name=4>
 
-     <H3>RETURN VALUE</H3>
+     <H3>RETURNS</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 The return value corresponds to the maximum value among the arguments,
 and has the same type and kind as the first argument.
 <P>
 The function is both elemental and allows for an arbitrary number of
 arguments. This means if some elements are scalar and some are arrays
 that all the arrays must be of the same size, and the returned value
-will be an array that is the result as if multiple calls were made
-with all scalar values with a single element of each array used in
-each call. If called with all arrays the returned array is the same
-as if multiple calls were made with <B>max</B>(arr1(1),arr2(1), &#46;&#46;&#46;) to
-<B>max</B>(arr1(N),arr2(N)).
+will be an array that is the result as if multiple calls were made with
+all scalar values with a single element of each array used in each call.
+If called with all arrays the returned array is the same as if multiple
+calls were made with <B>MAX</B>(ARR1(1),ARR2(1), &#46;&#46;&#46;) to <B>MAX</B>(ARR1(N),ARR2(N)).
 </BLOCKQUOTE>
 <A name=5>
 
-     <H3>EXAMPLE</H3>
+     <H3>EXAMPLES</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 Sample program
 <P>
 <PRE>
@@ -127,69 +132,67 @@ Sample program
     real :: arr1(4)= [10.0,11.0,30.0,-100.0]
     real :: arr2(5)= [20.0,21.0,32.0,-200.0,2200.0]
 <P>
-       !! this is simple enough because it is not being called elementally
-       !! because all arguments are scalar
-       !!
+      !! this is simple enough because it is not being called elementally
+      !! because all arguments are scalar
+      !!
 <P>
-       write(*,*)&#146;scalars:&#146;,max(10.0,11.0,30.0,-100.0)
+      write(*,*)&#146;scalars:&#146;,max(10.0,11.0,30.0,-100.0)
 <P>
-       !!
-       !! this is all max(3f) could do before it became an elemental
-       !! function and is the most intuitive
-       !! except that it can take an arbitrary number of options,
-       !! which is not common in Fortran without
-       !! declaring a lot of optional parameters.
-       !!
-       !! That is it unless you want to use the elemental features of max(3f)!
+      !!
+      !! this is all max(3) could do before it became an elemental
+      !! function and is the most intuitive
+      !! except that it can take an arbitrary number of options,
+      !! which is not common in Fortran without
+      !! declaring a lot of optional parameters.
+      !!
+      !! That is it unless you want to use the elemental features of max(3)!
 <P>
-       !! Error: Intrinsic    max    at (1) must have at least two arguments
-       !!write(*,*)max(arr1)
-       !! This does not work because it is like trying to return
-       !! [(max(arr1(i)),i=1,size(arr1))]
-       !! so it is trying to take the max of a single value.
-       !! To find the largest element of an array
-       !! call maxloc(3f) or maxval(3f).
+      !! Error: Intrinsic    max    at (1) must have at least two arguments
+      !!write(*,*)max(arr1)
+      !! This does not work because it is like trying to return
+      !! [(max(arr1(i)),i=1,size(arr1))]
+      !! so it is trying to take the max of a single value.
+      !! To find the largest element of an array
+      !! call maxloc(3) or maxval(3).
 <P>
-       !! Error: Different shape for arguments &#146;a1&#146; and &#146;a2&#146; for intrinsic
-       !! &#146;max&#146; at (1) on dimension 1 (4 and 5)
-       !!write(*,*)max(arr1,arr2)
-       !! but this will return an array of
-       !! [(max(arr1(N),arr2(N),N=1,size(arr1))]
+      !! Error: Different shape for arguments &#146;a1&#146; and &#146;a2&#146; for intrinsic
+      !! &#146;max&#146; at (1) on dimension 1 (4 and 5)
+      !!write(*,*)max(arr1,arr2)
+      !! but this will return an array of
+      !! [(max(arr1(N),arr2(N),N=1,size(arr1))]
 <P>
-       write(*,*)max(arr1,arr2(1:4))
+      write(*,*)max(arr1,arr2(1:4))
 <P>
-       !! so this works only if all the arrays are the same size and
-       !! you want an array of the largest Nth elements
-       !! from the input arrays.
-       !! maybe you wanted to do maxval([arr1,arr2]) or
-       !! equivalently max(maxval(arr1),maxval(arr2))
-       !! to find the single largest element in both arrays?
+      !! so this works only if all the arrays are the same size and
+      !! you want an array of the largest Nth elements
+      !! from the input arrays.
+      !! maybe you wanted to do maxval([arr1,arr2]) or
+      !! equivalently max(maxval(arr1),maxval(arr2))
+      !! to find the single largest element in both arrays?
 <P>
-       !! compares all scalars to each member of array and
-       !! returns array of size arr2
+      !! compares all scalars to each member of array and
+      !! returns array of size arr2
 <P>
-       write(*,*)&#146;scalars and array:&#146;,max(10.0,11.0,30.0,-100.0,arr2)
+      write(*,*)&#146;scalars and array:&#146;,max(10.0,11.0,30.0,-100.0,arr2)
 <P>
-       !! Error: Different shape for arguments &#146;a5&#146; and &#146;a6&#146;
-       !! for intrinsic &#146;max&#146; at (1) on dimension 1 (5 and 4)
-       !! write(*,*)&#146;scalars and array:&#146;,max(10.0,11.0,30.0,-100.0,arr2,arr1)
-       !! as the same reason above when arrays are used
-       !! (without scalar values) all the arrays must be the same size
+      !! Error: Different shape for arguments &#146;a5&#146; and &#146;a6&#146;
+      !! for intrinsic &#146;max&#146; at (1) on dimension 1 (5 and 4)
+      !! write(*,*)&#146;scalars and array:&#146;,max(10.0,11.0,30.0,-100.0,arr2,arr1)
+      !! as the same reason above when arrays are used
+      !! (without scalar values) all the arrays must be the same size
 <P>
-       write(*,*)&#146;scalars and array:&#146;,max(40.0,11.0,30.0,-100.0,arr2(:4),arr1)
-<P>
+      write(*,*)&#146;scalars and array:&#146;,&
+      & max(40.0,11.0,30.0,-100.0,arr2(:4),arr1)
 </PRE>
-<BLOCKQUOTE>
 end program demo_max
-</BLOCKQUOTE>
 <P>
 Results:
 <P>
 <PRE>
-    scalars:   30.000000
-      20.0000000  21.000000  32.000000 -100.00000
-    scalars and array:   30.000000  30.000000  32.000000  30.000000  2200.0000
-    scalars and array:   40.000000  40.000000  40.000000  40.000000
+        scalars:   30.000000
+          20.0000000  21.000000  32.000000 -100.00000
+        scalars and array: 30.000000 30.000000 32.000000 30.000000 2200.0000
+        scalars and array: 40.000000 40.000000 40.000000 40.000000
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -199,26 +202,22 @@ Results:
 
 </A>
 <BLOCKQUOTE>
-[[FORTRAN 77]] and later
+<P>
+FORTRAN 77 and later
 </BLOCKQUOTE>
 <A name=7>
-
-     <H3>CLASS</H3>
-
-</A>
-<BLOCKQUOTE>
-[[Elemental procedure|Elemental function]]
-</BLOCKQUOTE>
-<A name=8>
 
      <H3>SEE ALSO</H3>
 
 </A>
 <BLOCKQUOTE>
-<B>maxloc</B>(3), <B>maxval</B>(3), <B>min</B>(3)
+<P>
+<B>MAXLOC</B>(3), <B>MAXVAL</B>(3), <B>MIN</B>(3)
+<P>
+fortran-lang intrinsic descriptions
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>max (3fortran)</TD> <TD align=right width=33%><I>November 21, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from e1d692e6-62df-47b6-953f-1921c869a842 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>max (3fortran)</TD> <TD align=right width=33%><I>September 04, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 2b4c4014-8fe0-4ec1-b156-3da43e5882fb using man macros.</FONT>
 <br><br><center><img src="images/max.3fortran.gif"></center>
 </div>
 </div>

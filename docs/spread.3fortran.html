@@ -56,19 +56,29 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
-<B>spread</B>(3f) - [FORTRAN:INTRINSIC:ARRAY CONSTRUCTION] Add a dimension
-to an array
+<P>
+<B>SPREAD</B>(3) - [ARRAY CONSTRUCTION] Add a dimension to an array
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=9>
+<A name=8>
 
      <H3>SYNTAX</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 result = <B>spread</B>(source, dim, ncopies)
+<P>
+<PRE>
+      TYPE(kind=KIND) function spread(source, dim, ncopies)
+<P>
+       TYPE(kind=KIND)    :: source(..)
+       integer,intent(in) :: dim
+       integer,intent(in) :: ncopies
+<P>
+</PRE>
 </BLOCKQUOTE>
 <A name=2>
 
@@ -76,8 +86,11 @@ result = <B>spread</B>(source, dim, ncopies)
 
 </A>
 <BLOCKQUOTE>
-Replicates a SOURCE array NCOPIES times along a specified
-dimension DIM.
+<P>
+Replicates a SOURCE array NCOPIES times along a specified dimension DIM.
+<P>
+If SOURCE is scalar, the shape of the result is (MAX (NCOPIES, 0)). and
+each element of the result has a value equal to SOURCE.
 </BLOCKQUOTE>
 <A name=3>
 
@@ -85,105 +98,155 @@ dimension DIM.
 
 </A>
 <BLOCKQUOTE>
+<P>
 <TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>SOURCE</B> </TD><TD valign=bottom>
-Shall be a scalar or an array of any type and
-a rank less than seven.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+SOURCE : Shall be a scalar or an array of any type and a rank less
+than fifteen.
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>DIM</B> </TD><TD valign=bottom>
-Shall be a scalar of type INTEGER with a
-value in the range from 1 to n+1, where n equals the rank
-of SOURCE.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+DIM : Shall be a scalar of type _integer_ with a value in the range
+from 1 to N+1, where N equals the rank of SOURCE.
 </TD></TR>
-<TR valign=top><TD colspan=2>
-<B>NCOPIES</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-Shall be a scalar of type INTEGER.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+NCOPIES : Shall be a scalar of type _integer_.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
 
-     <H3>RETURN VALUE</H3>
+     <H3>RETURNS</H3>
 
 </A>
 <BLOCKQUOTE>
-The result is an array of the same type as SOURCE and has rank n+1
-where n equals the rank of SOURCE.
+<P>
+The result is an array of the same type as SOURCE and has rank N+1 where
+N equals the rank of SOURCE.
 </BLOCKQUOTE>
 <A name=5>
 
-     <H3>EXAMPLE</H3>
+     <H3>EXAMPLES</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 Sample program:
 <P>
 <PRE>
     program demo_spread
     implicit none
-      integer :: a = 1, b(2) = [ 1, 2 ]
-      write(*,*) spread(a, 1, 2)            ! "1 1"
-      write(*,*) spread(b, 1, 2)            ! "1 1 2 2"
-    end program demo_spread
+    integer :: a = 1, b(2) = [ 1, 2 ]
 <P>
-     program example_spread
-     !  Author:
-     !    John Burkardt, 03 July 2006
-     implicit none
-     !
-     integer ( kind = 4 ) a1(4,3)
-     integer ( kind = 4 ) a2(3,4)
-     integer i
-     integer ( kind = 4 ) s
-     integer ( kind = 4 ) v(4)
-     !
-     write ( *, &#146;(a)&#146; ) &#146; &#146;
-     write ( *, &#146;(a)&#146; ) &#146;TEST_SPREAD&#146;
-     write ( *, &#146;(a)&#146; ) &#146;  SPREAD is a FORTRAN90 function which replicates&#146;
-     write ( *, &#146;(a)&#146; ) &#146;  an array by adding a dimension.&#146;
-     write ( *, &#146;(a)&#146; ) &#146; &#146;
-     !
-     s = 99
-     !
-     write ( *, &#146;(a,i6)&#146; ) &#146;  Suppose we have a scalar S = &#146;, s
-     write ( *, &#146;(a)&#146; ) &#146; &#146;
-     !
-     v = spread ( s, 1, 4 )
-     !
-     write ( *, &#146;(a)&#146; ) &#146;  V = spread ( s, 1, 4 )&#146;
-     write ( *, &#146;(a)&#146; ) &#146; &#146;
-     write ( *, &#146;(a)&#146; ) &#146;  adds a new dimension (1) of extent 4&#146;
-     write ( *, &#146;(a)&#146; ) &#146; &#146;
-     write ( *, &#146;(4i6)&#146; ) v(1:4)
-     write ( *, &#146;(a)&#146; ) &#146; &#146;
-     write ( *, &#146;(a)&#146; ) &#146;  Now first reset V to (1,2,3,4)&#146;
-     v = [ 1, 2, 3, 4 ]
-     !
-     a1 = spread ( v, 2, 3 )
-     !
-     write ( *, &#146;(a)&#146; ) &#146; &#146;
-     write ( *, &#146;(a)&#146; ) &#146;  A1 = spread ( v, 2, 3 )&#146;
-     write ( *, &#146;(a)&#146; ) &#146; &#146;
-     write ( *, &#146;(a)&#146; ) &#146;  adds a new dimension (2) of extent 3&#146;
-     write ( *, &#146;(a)&#146; ) &#146; &#146;
-     do i = 1, 4
-       write ( *, &#146;(3i6)&#146; ) a1(i,1:3)
-     end do
-     !
-     a2 = spread ( v, 1, 3 )
-     !
-     write ( *, &#146;(a)&#146; ) &#146; &#146;
-     write ( *, &#146;(a)&#146; ) &#146;  A2 = spread ( v, 1, 3 )&#146;
-     write ( *, &#146;(a)&#146; ) &#146; &#146;
-     write ( *, &#146;(a)&#146; ) &#146;  adds a new dimension (1) of extent 3&#146;
-     write ( *, &#146;(a)&#146; ) &#146; &#146;
-     do i = 1, 3
-       write ( *, &#146;(4i6)&#146; ) a2(i,1:4)
-     end do
-     end program example_spread
+       write(*,*) spread(a, 1, 2)            ! "1 1"
+       write(*,*) spread(b, 1, 2)            ! "1 1 2 2"
 <P>
 </PRE>
+<BLOCKQUOTE>
+end program demo_spread
+<P>
+program example_spread
+<TABLE cellpadding=3><!-- tsb: program example_spread
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>!</B> </TD><TD valign=bottom>
+Author:
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>!</B> </TD><TD valign=bottom>
+John Burkardt, 03 July 2006
+implicit none
+!
+integer ( kind = 4 ) <B>a1</B>(4,3)
+integer ( kind = 4 ) <B>a2</B>(3,4)
+integer i
+integer ( kind = 4 ) s
+integer ( kind = 4 ) <B>v</B>(4)
+!
+write ( *, &#146;(a)&#146; ) &#146; &#146;
+write ( *, &#146;(a)&#146; ) &#146;TEST_SPREAD&#146;
+<TABLE width=100% cellpadding=3><!-- tsb: John Burkardt, 03 July 2006
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B>write ( *, &#146;(a)&#146; ) &#146;</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+SPREAD is a FORTRAN90 function which replicates&#146;
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>write ( *, &#146;(a)&#146; ) &#146;</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+an array by adding a dimension.&#146;
+write ( *, &#146;(a)&#146; ) &#146; &#146;
+!
+s = 99
+!
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>write ( *, &#146;(a,i6)&#146; ) &#146;</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Suppose we have a scalar S = &#146;, s
+write ( *, &#146;(a)&#146; ) &#146; &#146;
+!
+v = spread ( s, 1, 4 )
+!
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>write ( *, &#146;(a)&#146; ) &#146;</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+V = spread ( s, 1, 4 )&#146;
+write ( *, &#146;(a)&#146; ) &#146; &#146;
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>write ( *, &#146;(a)&#146; ) &#146;</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+adds a new dimension (1) of extent 4&#146;
+write ( *, &#146;(a)&#146; ) &#146; &#146;
+write ( *, &#146;(4i6)&#146; ) <B>v</B>(1:4)
+write ( *, &#146;(a)&#146; ) &#146; &#146;
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>write ( *, &#146;(a)&#146; ) &#146;</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Now first reset V to (1,2,3,4)&#146;
+v = [ 1, 2, 3, 4 ]
+!
+a1 = spread ( v, 2, 3 )
+!
+write ( *, &#146;(a)&#146; ) &#146; &#146;
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>write ( *, &#146;(a)&#146; ) &#146;</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+A1 = spread ( v, 2, 3 )&#146;
+write ( *, &#146;(a)&#146; ) &#146; &#146;
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>write ( *, &#146;(a)&#146; ) &#146;</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+adds a new dimension (2) of extent 3&#146;
+write ( *, &#146;(a)&#146; ) &#146; &#146;
+do i = 1, 4
+write ( *, &#146;(3i6)&#146; ) <B>a1</B>(i,1:3)
+end do
+!
+a2 = spread ( v, 1, 3 )
+!
+write ( *, &#146;(a)&#146; ) &#146; &#146;
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>write ( *, &#146;(a)&#146; ) &#146;</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+A2 = spread ( v, 1, 3 )&#146;
+write ( *, &#146;(a)&#146; ) &#146; &#146;
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>write ( *, &#146;(a)&#146; ) &#146;</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+adds a new dimension (1) of extent 3&#146;
+write ( *, &#146;(a)&#146; ) &#146; &#146;
+do i = 1, 3
+write ( *, &#146;(4i6)&#146; ) <B>a2</B>(i,1:4)
+end do
+end program example_spread
+</TD></TR>
+<TR></TR></TABLE></TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 </BLOCKQUOTE>
 <A name=6>
 
@@ -191,26 +254,22 @@ Sample program:
 
 </A>
 <BLOCKQUOTE>
-[[Fortran 95]] and later
+<P>
+Fortran 95 and later
 </BLOCKQUOTE>
 <A name=7>
-
-     <H3>CLASS</H3>
-
-</A>
-<BLOCKQUOTE>
-Transformational function
-</BLOCKQUOTE>
-<A name=8>
 
      <H3>SEE ALSO</H3>
 
 </A>
 <BLOCKQUOTE>
-<B>unpack</B>(3)
+<P>
+<B>PACK</B>(3), <B>UNPACK</B>(3), <B>MERGE</B>(3), <B>PACK</B>(3), <B>UNPACK</B>(3)
+<P>
+fortran-lang intrinsic descriptions
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>spread (3fortran)</TD> <TD align=right width=33%><I>November 21, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from fe9ca601-1905-4ee0-80dc-d5ab096c1a5a using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>spread (3fortran)</TD> <TD align=right width=33%><I>September 04, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 6f1746f4-b456-4452-a412-6fa695ee65c7 using man macros.</FONT>
 <br><br><center><img src="images/spread.3fortran.gif"></center>
 </div>
 </div>

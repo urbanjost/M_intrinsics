@@ -1,0 +1,34 @@
+NAME
+
+MATMUL(3) - [TRANSFORMATIONAL] matrix multiplication
+
+SYNTAX
+
+    result = matmul(matrix_a, matrix_b)
+
+DESCRIPTION
+
+Performs a matrix multiplication on numeric or logical arguments.
+
+ARGUMENTS
+
+-   MATRIX_A : An array of _integer_, _real_, _complex_, or _logical_
+    type, with a rank of one or two.
+
+-   MATRIX_B : An array of _integer_, _real_, or _complex_ type if
+    MATRIX_A is of a numeric type; otherwise, an array of _logical_
+    type. The rank shall be one or two, and the first (or only)
+    dimension of MATRIX_B shall be equal to the last (or only) dimension
+    of MATRIX_A.
+
+RETURNS
+
+The matrix product of MATRIX_A and MATRIX_B. The type and kind of the
+result follow the usual type and kind promotion rules, as for the * or
+.and. operators.
+
+STANDARD
+
+Fortran 95 and later
+
+fortran-lang intrinsic descriptions

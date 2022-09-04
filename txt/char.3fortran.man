@@ -1,0 +1,64 @@
+NAME
+
+CHAR(3) - [CHARACTER] Character conversion function
+
+SYNTAX
+
+    result = char(i, kind)
+       elemental integer function char(i,kind)
+
+        integer(kind=KIND),intent(in) :: c
+        integer,intent(in),optional :: KIND
+
+DESCRIPTION
+
+CHAR(I, KIND) returns the character represented by the integer I.
+
+ARGUMENTS
+
+-   I : The type shall be _integer_.
+
+-   KIND : (Optional) An _integer_ initialization expression indicating
+    the kind parameter of the result.
+
+RETURNS
+
+The return value is of type _character_
+
+EXAMPLES
+
+Sample program:
+
+    program demo_char
+    implicit none
+    integer :: i = 74
+    character(1) :: c
+        c = char(i)
+        print *, i, c ! returns 'J'
+    end program demo_char
+
+Results:
+
+                 74 J
+
+NOTE
+
+See ICHAR(3) for a discussion of converting between numerical values and
+formatted string representations.
+
+STANDARD
+
+FORTRAN 77 and later
+
+SEE ALSO
+
+ACHAR(3), IACHAR(3), ICHAR(3)
+
+Functions that perform operations on character strings, return lengths
+of arguments, and search for certain arguments:
+
+-   ELEMENTAL: ADJUSTL(3), ADJUSTR(3), INDEX(3), SCAN(3), VERIFY(3)
+
+-   NONELEMENTAL: LEN_TRIM(3), LEN(3), REPEAT(3), TRIM(3)
+
+fortran-lang intrinsic descriptions

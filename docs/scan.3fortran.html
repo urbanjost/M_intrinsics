@@ -56,18 +56,20 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
-<B>scan</B>(3f) - [FORTRAN:INTRINSIC:CHARACTER] Scan a string for the presence
-of a set of characters
+<P>
+<B>SCAN</B>(3) - [CHARACTER:SEARCH] Scan a string for the presence of a set of
+characters
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=9>
+<A name=8>
 
      <H3>SYNTAX</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 result = <B>scan</B>(string, set[, back [, kind]])
 </BLOCKQUOTE>
 <A name=2>
@@ -76,14 +78,13 @@ result = <B>scan</B>(string, set[, back [, kind]])
 
 </A>
 <BLOCKQUOTE>
-Scans a STRING for any of the characters in a SET
-of characters.
 <P>
-If BACK is either absent or equals FALSE, this function
-returns the position of the leftmost character of STRING that is
-in SET. If BACK equals TRUE, the rightmost position
-is returned. If no character of SET is found in STRING, the
-result is zero.
+Scans a STRING for any of the characters in a SET of characters.
+<P>
+If BACK is either absent or equals .FALSE., this function returns the
+position of the leftmost character of STRING that is in SET. If BACK
+equals .TRUE., the rightmost position is returned. If no character of
+SET is found in STRING, the result is zero.
 </BLOCKQUOTE>
 <A name=3>
 
@@ -91,51 +92,65 @@ result is zero.
 
 </A>
 <BLOCKQUOTE>
+<P>
 <TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>STRING</B> </TD><TD valign=bottom>
-Shall be of type CHARACTER.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+STRING : Shall be of type _character_.
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>SET</B> </TD><TD valign=bottom>
-Shall be of type CHARACTER.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+SET : Shall be of type _character_.
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>BACK</B> </TD><TD valign=bottom>
-(Optional) shall be of type LOGICAL.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+BACK : (Optional) shall be of type _logical_.
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>KIND</B> </TD><TD valign=bottom>
-(Optional) An INTEGER initialization expression
-indicating the kind parameter of the result.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+KIND : (Optional) An _integer_ initialization expression indicating
+the kind parameter of the result.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
 
-     <H3>RETURN VALUE</H3>
+     <H3>RETURNS</H3>
 
 </A>
 <BLOCKQUOTE>
-The return value is of type INTEGER and of kind KIND. If
-KIND is absent, the return value is of default integer kind.
+<P>
+The return value is of type _integer_ and of kind KIND. If KIND is
+absent, the return value is of default integer kind.
 </BLOCKQUOTE>
 <A name=5>
 
-     <H3>EXAMPLE</H3>
+     <H3>EXAMPLES</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 Sample program:
 <P>
 <PRE>
     program demo_scan
     implicit none
-      write(*,*) scan("fortran", "ao")          ! 2, found &#146;o&#146;
-      write(*,*) scan("fortran", "ao", .true.)  ! 6, found &#146;a&#146;
-      write(*,*) scan("fortran", "c++")         ! 0, found none
+       write(*,*) scan("fortran", "ao")          ! 2, found &#146;o&#146;
+       write(*,*) scan("fortran", "ao", .true.)  ! 6, found &#146;a&#146;
+       write(*,*) scan("fortran", "c++")         ! 0, found none
     end program demo_scan
 <P>
 </PRE>
+Results:
+<BLOCKQUOTE>
+<P>
+2
+6
+0
+</BLOCKQUOTE>
 </BLOCKQUOTE>
 <A name=6>
 
@@ -143,39 +158,35 @@ Sample program:
 
 </A>
 <BLOCKQUOTE>
-[[Fortran 95]] and later, with KIND argument [[Fortran 2003]] and later
+<P>
+Fortran 95 and later, with KIND argument - Fortran 2003 and later
 </BLOCKQUOTE>
 <A name=7>
-
-     <H3>CLASS</H3>
-
-</A>
-<BLOCKQUOTE>
-[[Elemental procedure|Elemental function]]
-</BLOCKQUOTE>
-<A name=8>
 
      <H3>SEE ALSO</H3>
 
 </A>
 <BLOCKQUOTE>
+<P>
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 <TABLE cellpadding=3><!-- tsb: Functions that perform operations on character strings, return lengths
  -->
 <TR></TR><TR></TR>
-<TR valign=top><TD colspan=2>
-<B>Elemental:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-<B>adjustl</B>(3), <B>adjustr</B>(3), <B>index</B>(3), <B>len_trim</B>(3),
-<B>scan</B>(3), <B>verify</B>(3)
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+ELEMENTAL: <B>ADJUSTL</B>(3), <B>ADJUSTR</B>(3), <B>INDEX</B>(3), <B>SCAN</B>(3), <B>VERIFY</B>(3)
 </TD></TR>
-<TR valign=top><TD colspan=2>
-<B>Nonelemental:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-<B>repeat</B>(3), <B>trim</B>(3)
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+NONELEMENTAL: <B>LEN_TRIM</B>(3), <B>LEN</B>(3), <B>REPEAT</B>(3), <B>TRIM</B>(3)
 </TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
+<TR></TR></TABLE>fortran-lang intrinsic descriptions
+</BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>scan (3fortran)</TD> <TD align=right width=33%><I>November 21, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 2c43d05f-ac84-44c0-84cd-7a887e2f6788 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>scan (3fortran)</TD> <TD align=right width=33%><I>September 04, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 89ceb301-e30b-412f-9a43-56d8b7892713 using man macros.</FONT>
 <br><br><center><img src="images/scan.3fortran.gif"></center>
 </div>
 </div>

@@ -56,8 +56,8 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
-<B>merge_bits</B>(3f) - [FORTRAN:INTRINSIC:BIT MANIPULATION] Merge of bits
-under mask
+<P>
+<B>MERGE_BITS</B>(3) - [BIT:COPY] Merge bits using a mask
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
@@ -68,18 +68,47 @@ under mask
 
 </A>
 <BLOCKQUOTE>
+<P>
 result = <B>merge_bits</B>(i, j, mask)
+<P>
+<PRE>
+        elemental function merge_bits(i,j,mask) result(r)
+        integer(kind=KIND) ,intent(in) :: i, j, mask
+        integer(kind=KIND) :: r
+<P>
+</PRE>
 </BLOCKQUOTE>
+where the result and all input values have the same _integer_ type and
+KIND with the exception that the mask and either I or J may be a BOZ
+constant.
 <A name=2>
 
      <H3>DESCRIPTION</H3>
 
 </A>
 <BLOCKQUOTE>
-<B>merge_bits</B>(i, j, mask) merges the bits of I and J as determined by
-the mask. The k-th bit of the result is equal to the k-th bit of
-I if the k-th bit of MASK is 1; it is equal to the k-th bit of
-J otherwise.
+<P>
+A common graphics operation in Ternary Raster Operations is to combine
+bits from two different sources, generally referred to as bit-blending.
+MERGE_BITS performs a masked bit-blend of I and J using the bits of the
+MASK value to determine which of the input values to copy bits from.
+<P>
+Specifically, The k-th bit of the result is equal to the k-th bit of I
+if the k-th bit of MASK is 1; it is equal to the k-th bit of J otherwise
+(so all three input values must have the same number of bits).
+<P>
+The resulting value is the same as would result from
+<P>
+<PRE>
+    __ior (iand (i, mask),iand (j, not (mask)))__
+<P>
+</PRE>
+An exception to all values being of the same _integer_ type is that I or
+J and/or the mask may be a BOZ constant (A BOZ constant means it is
+either a Binary, Octal, or Hexadecimal literal constant). The BOZ values
+are converted to the _integer_ type of the non-BOZ <B>value</B>(s) as if called
+by the intrinsic function <B>INT</B>() with the kind of the non-BOZ <B>value</B>(s),
+so the BOZ values must be in the range of the type of the result.
 </BLOCKQUOTE>
 <A name=3>
 
@@ -87,46 +116,133 @@ J otherwise.
 
 </A>
 <BLOCKQUOTE>
+<P>
 <TABLE cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>I</B> </TD><TD valign=bottom>
-Shall be of type INTEGER.
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+I : value to select bits from when the associated bit in the mask is
+<TABLE width=100% cellpadding=3><!-- tsb: I : value to select bits from when the associated bit in the mask is
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=4%>
+1.
+</TD><TD>
+<P>
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>J</B> </TD><TD valign=bottom>
-Shall be of type INTEGER and of the same kind as I.
+<TR></TR></TABLE><!-- .IP \(bu 3 -->
 </TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>MASK</B> </TD><TD valign=bottom>
-Shall be of type INTEGER and of the same kind as I.
+<TR valign=top><TD width=4%>
+o
+</TD><TD>
+J : value to select bits from when the associated bit in the mask is
+<TABLE width=100% cellpadding=3><!-- tsb: J : value to select bits from when the associated bit in the mask is
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=4%>
+0.
+</TD><TD>
+<P>
+</TD></TR>
+<TR></TR></TABLE><!-- .IP \(bu 3 -->
+</TD></TR>
+<TR valign=top><TD width=4%>
+o
+</TD><TD>
+MASK : a value whose bits are used as a mask to select bits from I
+and J
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
 
-     <H3>RETURN VALUE</H3>
+     <H3>RETURNS</H3>
 
 </A>
 <BLOCKQUOTE>
-The result is of the same type and kind as I.
+<P>
+The bits blended from I and J using the mask MASK. It is the same type
+as I if I is of type _integer_, otherwise the same type as J.
 </BLOCKQUOTE>
 <A name=5>
+
+     <H3>EXAMPLE</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+program demo_merge_bits
+<TABLE cellpadding=3><!-- tsb: program demo_merge_bits
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B>use,intrinsic :: iso_fortran_env,</B> </TD></TR><TR valign=top><TD width=3%>&nbsp;</TD><TD>
+only : int8, int16, int32, int64
+implicit none
+<B>integer</B>(kind=int16) :: if_one,if_zero,msk
+<B>character</B>(len=*),parameter :: <B>fmt=&#146;</B>(*(g0, 1X))&#146;
+</TD></TR>
+<TR></TR></TABLE><!-- .nf -->
+<PRE>
+       ! basic usage
+       print *,&#146;MERGE_BITS( 5,10,41) should be 3.=&gt;&#146;,merge_bits(5,10,41)
+       print *,&#146;MERGE_BITS(13,18,22) should be 4.=&gt;&#146;,merge_bits(13,18,22)
+<P>
+       ! use some values in base2 illustratively:
+       if_one =int(b&#146;1010101010101010&#146;,kind=int16)
+       if_zero=int(b&#146;0101010101010101&#146;,kind=int16)
+<P>
+       msk=int(b&#146;0101010101010101&#146;,kind=int16)
+       print &#146;("should get all zero bits =&gt;",b16.16)&#146;, &
+       & merge_bits(if_one,if_zero,msk)
+<P>
+       msk=int(b&#146;1010101010101010&#146;,kind=int16)
+       print &#146;("should get all ones bits =&gt;",b16.16)&#146;, &
+       & merge_bits(if_one,if_zero,msk)
+<P>
+       ! using BOZ values
+       print fmt, &
+       & merge_bits(32767_int16,    o&#146;12345&#146;,         32767_int16), &
+       & merge_bits(o&#146;12345&#146;   , 32767_int16, b&#146;0000000000010101&#146;), &
+       & merge_bits(32767_int16,    o&#146;12345&#146;,             z&#146;1234&#146;)
+<P>
+       ! a do-it-yourself equivalent for comparison and validation
+       print fmt, &
+       & ior(iand(32767_int16, 32767_int16),                   &
+       &   iand(o&#146;12345&#146;, not(32767_int16))),                  &
+<P>
+       & ior(iand(o&#146;12345&#146;, int(o&#146;12345&#146;, kind=int16)),        &
+       &   iand(32767_int16, not(int(o&#146;12345&#146;, kind=int16)))), &
+<P>
+       & ior(iand(32767_int16, z&#146;1234&#146;),                       &
+       &   iand(o&#146;12345&#146;, not(int( z&#146;1234&#146;, kind=int16))))
+<P>
+</PRE>
+end program demo_merge_bits
+</BLOCKQUOTE>
+<P>
+Results:
+<P>
+<PRE>
+        MERGE_BITS( 5,10,41) should be 3.=&gt;           3
+        MERGE_BITS(13,18,22) should be 4.=&gt;           4
+</PRE>
+should get all zero bits =&gt;0000000000000000
+should get all ones bits =&gt;1111111111111111
+32767 32751 5877
+32767 32767 5877
+<A name=6>
 
      <H3>STANDARD</H3>
 
 </A>
 <BLOCKQUOTE>
-[[Fortran 2008]] and later
-</BLOCKQUOTE>
-<A name=6>
-
-     <H3>CLASS</H3>
-
-</A>
-<BLOCKQUOTE>
-[[Elemental function]]
+<P>
+Fortran 2008 and later
+<P>
+fortran-lang intrinsic descriptions (license MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>merge_bits (3fortran)</TD> <TD align=right width=33%><I>November 21, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 37cfcfe8-eee7-429c-8eae-8296ecd28cdf using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>merge_bits (3fortran)</TD> <TD align=right width=33%><I>September 04, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 32de109c-c891-497d-8cf1-f3f560822047 using man macros.</FONT>
 <br><br><center><img src="images/merge_bits.3fortran.gif"></center>
 </div>
 </div>
