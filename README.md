@@ -11,12 +11,13 @@ as the current translator does not handle the *roff syntax for tables,
 graphics, and formulas; and those features do not typically display well
 if at all with the man(1) command.
 
-This page allows you to generate the CLI (Command Line Interface) command
-fpm-man (which is often renamed to fman(1)) that allows the fpm command
-to display the documents with "fpm man TOPIC" and provides an archive 
-file with the intrinsic manpages on *nix machines (ie. on machines with
-the man(1) command) so it will continue to be maintained, but the on-line
-pages may become more extensive as time goes on.
+This page allows you to generate the CLI (Command Line Interface)
+command fpm-man (which is often renamed to fman(1)) that allows the
+fpm command to display the documents with "fpm man TOPIC" and provides
+an archive file with the intrinsic manpages on *nix machines (ie. on
+machines with the man(1) command) so it will continue to be maintained,
+but the differences between these and the on-line fortran-lang.org pages
+may become more extensive as time goes on.
 
 ## NAME
 
@@ -34,7 +35,7 @@ This is a project to
 + extract demo programs from each document into an fpm(1) package for easy verification
 + generate a platform-independent Fortran program for displaying the documents
 
-## MANPAGES
+## MANPAGES AND STANDALONE SOURCE
 
 The man-pages can be used on *nix systems and Cygwin as well as other
 platforms; providing a convenient CLI (Command Line Interface).
@@ -44,11 +45,16 @@ The man-pages are available as archive files:
    - [manpages.tgz](docs/manpages.zip)
    - [manpages.zip](docs/manpages.tgz)
 
+A single-file version of the CLI program fpm-man(1) is in 
+(fman.f90)[https://raw.githubusercontent.com/urbanjost/M_intrinsics/master/standalone/fpm-man.f90).
+
+## PROJECT INFORMATION
+
 ### USE AND INSTALLATION
 
 The man-pages can often be integrated with editors or IDEs. This is a
 powerful reference when inspecting code that uses unfamiliar procedures and
-to verify correct usage when creating code in a CLI environment.
+to verify correct usage when creating code in a CLI environm1ent.
 
 The process of installing man-pages can vary. Check your system
 documentation, but at a minimum if you create the directory $HOME/man/man3
