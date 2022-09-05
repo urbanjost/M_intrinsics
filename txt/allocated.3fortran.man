@@ -20,17 +20,17 @@ ARGUMENTS
 -   
 
     ARRAY
-        the argument shall be an _allocatable_ array.
+        the argument shall be an allocatable array.
 
 -   
 
     SCALAR
-        the argument shall be an _allocatable_ scalar.
+        the argument shall be an allocatable scalar.
 
 RETURNS
 
-The return value is a scalar _logical_ with the default logical kind
-type parameter. If the argument is allocated then the result is .true.;
+The return value is a scalar logical with the default logical kind type
+parameter. If the argument is allocated then the result is .true.;
 otherwise, it returns .false..
 
 EXAMPLES

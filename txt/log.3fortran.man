@@ -16,13 +16,12 @@ ARGUMENTS
 -   
 
     X
-        The type shall be _real_ or _complex_.
+        The type shall be real or complex.
 
 RETURNS
 
-The return value is of type _real_ or _complex_. The kind type parameter
-is the same as X. If X is _complex_, the imaginary part OMEGA is in the
-range
+The return value is of type real or complex. The kind type parameter is
+the same as X. If X is complex, the imaginary part OMEGA is in the range
 
 -PI < OMEGA <= PI.
 

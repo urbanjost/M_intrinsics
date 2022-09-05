@@ -17,16 +17,16 @@ ARGUMENTS
 -   
 
     I
-        an _integer_ scalar or array.
+        an integer scalar or array.
 
 -   
 
     J
-        _integer_ scalar or array, of the same kind as I.
+        integer scalar or array, of the same kind as I.
 
 RETURNS
 
-The return type is _integer_, of the same kind as the arguments. (If the
+The return type is integer, of the same kind as the arguments. (If the
 argument kinds differ, it is of the same kind as the larger argument.)
 
 EXAMPLES

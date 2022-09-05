@@ -15,11 +15,11 @@ ARGUMENTS
 -   
 
     I
-        The type shall be _integer_.
+        The type shall be integer.
 
 RETURNS
 
-The return type is _integer_, of the same kind as the argument.
+The return type is integer, of the same kind as the argument.
 
 EXAMPLES
 

@@ -9,7 +9,7 @@ SYNTAX
         type(integer(kind=kind(0)))      :: digits
         type(TYPE(kind=KIND)),intent(in) :: x(..)
 
-where TYPE may be _integer_ or _real_ and KIND is any kind supported by
+where TYPE may be integer or real and KIND is any kind supported by
 TYPE.
 
 DESCRIPTION
@@ -23,11 +23,11 @@ ARGUMENTS
 -   
 
     X
-        The type may be a scalar or array of type _integer_ or _real_.
+        The type may be a scalar or array of type integer or real.
 
 RETURNS
 
-The return value is of type _integer_ of default kind.
+The return value is of type integer of default kind.
 
 EXAMPLES
 

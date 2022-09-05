@@ -15,15 +15,15 @@ ARGUMENTS
 -   
 
     MATRIX_A
-        An array of _integer_, _real_, _complex_, or _logical_ type,
-        with a rank of one or two.
+        An array of integer, real, complex, or logical type, with a rank
+        of one or two.
 
 -   
 
     MATRIX_B
-        An array of _integer_, _real_, or _complex_ type if MATRIX_A is
-        of a numeric type; otherwise, an array of _logical_ type. The
-        rank shall be one or two, and the first (or only) dimension of
+        An array of integer, real, or complex type if MATRIX_A is of a
+        numeric type; otherwise, an array of logical type. The rank
+        shall be one or two, and the first (or only) dimension of
         MATRIX_B shall be equal to the last (or only) dimension of
         MATRIX_A.
 

@@ -21,13 +21,13 @@ ARGUMENTS
 -   
 
     ARRAY
-        Shall be an array of type _real_.
+        Shall be an array of type real.
 
 -   
 
     DIM
-        shall be a scalar of type _integer_ with a value in the range
-        from 1 to RANK(ARRAY).
+        shall be a scalar of type integer with a value in the range from
+        1 to RANK(ARRAY).
 
 RETURNS
 

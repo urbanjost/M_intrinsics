@@ -12,12 +12,12 @@ SYNTAX
         integer(kind=KIND),intent(in) :: i
         integer(kind=KIND),intent(in),optional :: kind
 
-where KIND may be any supported kind value for _integer_ types.
+where KIND may be any supported kind value for integer types.
 
 DESCRIPTION
 
 ACHAR(I) returns the character located at position I (commonly called
-the _ADE_ or ASCII Decimal Equivalent) in the ASCII collating sequence.
+the ADE or ASCII Decimal Equivalent) in the ASCII collating sequence.
 
 The ACHAR(3) function is often used for generating in-band escape
 sequences to control terminal attributes.
@@ -32,18 +32,18 @@ ARGUMENTS
 -   
 
     I
-        the _integer_ value to convert to an ASCII character, in the
-        range 0 to 127.
+        the integer value to convert to an ASCII character, in the range
+        0 to 127.
 
 -   
 
     KIND
-        (optional) an _integer_ initialization expression indicating the
+        (optional) an integer initialization expression indicating the
         kind parameter of the result.
 
 RETURNS
 
-The return value is the requested character of type _character_ with a
+The return value is the requested character of type character with a
 length of one. If the KIND argument is present, the return value is of
 the specified kind and of the default kind otherwise.
 

@@ -10,8 +10,8 @@ SYNTAX
        TYPE(kind=KIND,intent(in) :: x
        TYPE(kind=KIND,intent(in),optional :: y
 
-where TYPE may be _real_ or _complex_ and KIND may be any KIND supported
-by the associated type. If Y is present X is _real`.
+where TYPE may be real or complex and KIND may be any KIND supported by
+the associated type. If Y is present X is _real`.
 
 DESCRIPTION
 
@@ -22,8 +22,8 @@ ARGUMENTS
 -   
 
     X
-        The type shall be _real_ or _complex_; if Y is present, X shall
-        be _real_.
+        The type shall be real or complex; if Y is present, X shall be
+        real.
 
 -   
 

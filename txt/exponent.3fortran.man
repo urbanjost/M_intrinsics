@@ -16,11 +16,11 @@ ARGUMENTS
 -   
 
     X
-        The type shall be _real_.
+        The type shall be real.
 
 RETURNS
 
-The return value is of type default _integer_.
+The return value is of type default integer.
 
 EXAMPLES
 

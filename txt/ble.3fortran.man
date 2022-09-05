@@ -15,16 +15,16 @@ ARGUMENTS
 -   
 
     I
-        Shall be of _integer_ type.
+        Shall be of integer type.
 
 -   
 
     J
-        Shall be of _integer_ type, and of the same kind as I.
+        Shall be of integer type, and of the same kind as I.
 
 RETURNS
 
-The return value is of type _logical_ and of the default kind.
+The return value is of type logical and of the default kind.
 
 STANDARD
 

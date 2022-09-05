@@ -11,7 +11,7 @@ SYNTAX
 
 DESCRIPTION
 
-MASKL(I[, _KIND_]) has its leftmost I bits set to 1, and the remaining
+MASKL(I[, KIND]) has its leftmost I bits set to 1, and the remaining
 bits set to 0.
 
 ARGUMENTS
@@ -19,18 +19,18 @@ ARGUMENTS
 -   
 
     I
-        Shall be of type _integer_. Its value must be non-negative, and
+        Shall be of type integer. Its value must be non-negative, and
         less than or equal to the number of bits for the kind of the
         result.
 
 -   
 
     KIND
-        Shall be a scalar constant expression of type _integer_.
+        Shall be a scalar constant expression of type integer.
 
 RETURNS
 
-The return value is of type _integer_. If KIND is present, it specifies
+The return value is of type integer. If KIND is present, it specifies
 the kind value of the return type; otherwise, it is of the default
 integer kind.
 

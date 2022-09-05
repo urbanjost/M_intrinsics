@@ -15,27 +15,27 @@ ARGUMENTS
 -   
 
     X
-        Shall be _integer_, _real_, or _complex_.
+        Shall be integer, real, or complex.
 
 -   
 
     KIND
-        (Optional) An _integer_ initialization expression indicating the
+        (Optional) An integer initialization expression indicating the
         kind parameter of the result.
 
 RETURNS
 
-These functions return a _real_ variable or array under the following
+These functions return a real variable or array under the following
 rules:
 
-1.  REAL(x) is converted to a default _real_ type if X is an _integer_
-    or _real_ variable.
+1.  REAL(x) is converted to a default real type if X is an integer or
+    real variable.
 
 2.  REAL(x) is converted to a real type with the kind type parameter of
-    X if X is a _complex_ variable.
+    X if X is a complex variable.
 
-3.  REAL(X, KIND) is converted to a _real_ type with kind type parameter
-    KIND if X is a _complex_, _integer_, or _real_ variable.
+3.  REAL(X, KIND) is converted to a real type with kind type parameter
+    KIND if X is a complex, integer, or real variable.
 
 EXAMPLES
 

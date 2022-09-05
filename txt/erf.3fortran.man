@@ -17,12 +17,12 @@ ARGUMENTS
 -   
 
     X
-        The type shall be _real_.
+        The type shall be real.
 
 RETURNS
 
-The return value is of type _real_, of the same kind as X and lies in
-the range -1 <= ERF(x) <= 1 .
+The return value is of type real, of the same kind as X and lies in the
+range -1 <= ERF(x) <= 1 .
 
 EXAMPLES
 

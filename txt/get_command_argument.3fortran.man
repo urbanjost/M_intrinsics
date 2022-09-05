@@ -34,17 +34,17 @@ OPTIONS
 
 RETURNS
 
--   VALUE :Shall be a scalar of type _character_ and of default kind.
+-   VALUE :Shall be a scalar of type character and of default kind.
     After get_command_argument returns, the VALUE argument holds the
     NUMBER-th command line argument. If VALUE can not hold the argument,
     it is truncated to fit the length of VALUE. If there are less than
     NUMBER arguments specified at the command line, VALUE will be filled
     with blanks.
 
--   LENGTH :(Optional) Shall be a scalar of type _integer_. The LENGTH
+-   LENGTH :(Optional) Shall be a scalar of type integer. The LENGTH
     argument contains the length of the NUMBER-th command line argument.
 
--   STATUS :(Optional) Shall be a scalar of type _integer_. If the
+-   STATUS :(Optional) Shall be a scalar of type integer. If the
     argument retrieval fails, STATUS is a positive number; if VALUE
     contains a truncated command line argument, STATUS is -1; and
     otherwise the STATUS is zero.

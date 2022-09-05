@@ -11,10 +11,10 @@ SYNTAX
        TYPE(kind=KIND),intent(in) :: a
 
 where the TYPE and KIND is determined by the type and type attributes of
-A, which may be any _real_, _integer_, or _complex_ value.
+A, which may be any real, integer, or complex value.
 
-If the type of A is _cmplx_ the type returned will be _real_ with the
-same kind as the _real_ part of the input value.
+If the type of A is cmplx the type returned will be real with the same
+kind as the real part of the input value.
 
 Otherwise the returned type will be the same type as A.
 
@@ -26,25 +26,25 @@ In mathematics, the absolute value or modulus of a real number X,
 denoted |X|, is the magnitude of X without regard to its sign.
 
 The absolute value of a number may be thought of as its distance from
-zero, which is the definition used by ABS(3) when dealing with _complex_
-values (_see below_).
+zero, which is the definition used by ABS(3) when dealing with complex
+values (see below).
 
 ARGUMENTS
 
 -   
 
     A
-        the type of the argument shall be an _integer_, _real_, or
-        _complex_ scalar or array.
+        the type of the argument shall be an integer, real, or complex
+        scalar or array.
 
 RETURNS
 
-If A is of type _integer_ or _real_, the value of the result is |A| and
-of the same type and kind as the input argument.
+If A is of type integer or real, the value of the result is |A| and of
+the same type and kind as the input argument.
 
-(Take particular note) if A is _complex_ with value (X, Y), the result
-is a _real_ equal to a processor-dependent approximation to SQRT(X**2 +
-Y**2) computed without undue overflow or underflow.
+(Take particular note) if A is complex with value (X, Y), the result is
+a real equal to a processor-dependent approximation to SQRT(X**2 + Y**2)
+computed without undue overflow or underflow.
 
 EXAMPLES
 

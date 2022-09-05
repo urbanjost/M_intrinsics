@@ -12,7 +12,7 @@ SYNTAX
 
 DESCRIPTION
 
-Reduces with bitwise _and_ the elements of ARRAY along dimension DIM if
+Reduces with bitwise and the elements of ARRAY along dimension DIM if
 the corresponding element in MASK is .TRUE..
 
 ARGUMENTS
@@ -20,28 +20,28 @@ ARGUMENTS
 -   
 
     ARRAY
-        Shall be an array of type _integer_
+        Shall be an array of type integer
 
 -   
 
     DIM
-        (Optional) shall be a scalar of type _integer_ with a value in
-        the range from 1 TO N, where N equals the rank of ARRAY.
+        (Optional) shall be a scalar of type integer with a value in the
+        range from 1 TO N, where N equals the rank of ARRAY.
 
 -   
 
     MASK
-        (Optional) shall be of type _logical_ and either be a scalar or
-        an array of the same shape as ARRAY.
+        (Optional) shall be of type logical and either be a scalar or an
+        array of the same shape as ARRAY.
 
 RETURNS
 
 The result is of the same type as ARRAY.
 
-If DIM is absent, a scalar with the bitwise _all_ of all elements in
-ARRAY is returned. Otherwise, an array of rank N-1, where N equals the
-rank of ARRAY, and a shape similar to that of ARRAY with dimension DIM
-dropped is returned.
+If DIM is absent, a scalar with the bitwise all of all elements in ARRAY
+is returned. Otherwise, an array of rank N-1, where N equals the rank of
+ARRAY, and a shape similar to that of ARRAY with dimension DIM dropped
+is returned.
 
 EXAMPLES
 

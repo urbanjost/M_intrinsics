@@ -55,9 +55,9 @@ ARGUMENTS
 -   
 
     MASK
-        Shall be of type _logical_.
+        Shall be of type logical.
 
-Note that (currently) _character_ values must be of the same length.
+Note that (currently) character values must be of the same length.
 
 RETURNS
 

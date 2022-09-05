@@ -25,9 +25,8 @@ ARGUMENTS
 
 RETURNS
 
-The return value is of type _logical_; it is .false. if either c_ptr_1
-is a C NULL pointer or if c_ptr1 and c_ptr_2 point to different
-addresses.
+The return value is of type logical; it is .false. if either c_ptr_1 is
+a C NULL pointer or if c_ptr1 and c_ptr_2 point to different addresses.
 
 EXAMPLES
 

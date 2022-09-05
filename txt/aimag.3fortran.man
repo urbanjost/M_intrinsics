@@ -19,11 +19,11 @@ ARGUMENTS
 -   
 
     Z
-        The type of the argument shall be _complex_.
+        The type of the argument shall be complex.
 
 RETURNS
 
-The return value is of type _real_ with the kind type parameter of the
+The return value is of type real with the kind type parameter of the
 argument.
 
 EXAMPLES

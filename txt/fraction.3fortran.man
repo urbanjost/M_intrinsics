@@ -17,7 +17,7 @@ ARGUMENTS
 -   
 
     X
-        The type of the argument shall be a _real_.
+        The type of the argument shall be a real.
 
 RETURNS
 

@@ -17,17 +17,17 @@ ARGUMENTS
 -   
 
     P
-        (Optional) shall be a scalar and of type _integer_.
+        (Optional) shall be a scalar and of type integer.
 
 -   
 
     R
-        (Optional) shall be a scalar and of type _integer_.
+        (Optional) shall be a scalar and of type integer.
 
 -   
 
     RADIX
-        (Optional) shall be a scalar and of type _integer_.
+        (Optional) shall be a scalar and of type integer.
 
 Before FORTRAN 2008, at least one of the arguments R or P shall be
 present; since FORTRAN 2008, they are assumed to be zero if absent.

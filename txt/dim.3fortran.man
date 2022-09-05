@@ -10,8 +10,8 @@ SYNTAX
         type(TYPE(kind=KIND))            :: dim
         type(TYPE(kind=KIND)),intent(in) :: x, y
 
-where TYPE may be _real_ or _integer_ and KIND is any supported kind for
-the type.
+where TYPE may be real or integer and KIND is any supported kind for the
+type.
 
 DESCRIPTION
 
@@ -23,7 +23,7 @@ ARGUMENTS
 -   
 
     X
-        The type shall be _integer_ or _real_
+        The type shall be integer or real
 
 -   
 

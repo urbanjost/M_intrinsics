@@ -15,16 +15,16 @@ ARGUMENTS
 -   
 
     I
-        The type shall be _integer_.
+        The type shall be integer.
 
 -   
 
     J
-        The type shall be _integer_, of the same kind as I.
+        The type shall be integer, of the same kind as I.
 
 RETURNS
 
-The return type is _integer_, of the same kind as the arguments. (If the
+The return type is integer, of the same kind as the arguments. (If the
 argument kinds differ, it is of the same kind as the larger argument.)
 
 STANDARD

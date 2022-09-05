@@ -25,19 +25,19 @@ ARGUMENTS
 -   
 
     ARRAY
-        Shall be an array of type _integer_, _real_, or _character_.
+        Shall be an array of type integer, real, or character.
 
 -   
 
     DIM
-        (Optional) Shall be a scalar of type _integer_, with a value
+        (Optional) Shall be a scalar of type integer, with a value
         between one and the rank of ARRAY, inclusive. It may not be an
         optional dummy argument.
 
 -   
 
     MASK
-        Shall be an array of type _logical_, and conformable with ARRAY.
+        Shall be an array of type logical, and conformable with ARRAY.
 
 RETURNS
 
@@ -46,7 +46,7 @@ the rank of ARRAY. If DIM is present, the result is an array with a rank
 one less than the rank of ARRAY, and a size corresponding to the size of
 ARRAY with the DIM dimension removed. If DIM is present and ARRAY has a
 rank of one, the result is a scalar. In all cases, the result is of
-default _integer_ type.
+default integer type.
 
 The value returned is reference to the offset from the beginning of the
 array, not necessarily the subscript value if the array subscripts do

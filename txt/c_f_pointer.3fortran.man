@@ -26,7 +26,7 @@ ARGUMENTS
 -   
 
     SHAPE
-        (Optional) Rank-one array of type _integer_ with INTENT(IN) . It
+        (Optional) Rank-one array of type integer with INTENT(IN) . It
         shall be present if and only if FPTR is an array. The size must
         be equal to the rank of FPTR.
 

@@ -10,7 +10,7 @@ SYNTAX
         integer(kind=KIND) ,intent(in) :: i, j, mask
         integer(kind=KIND) :: r
 
-where the result and all input values have the same _integer_ type and
+where the result and all input values have the same integer type and
 KIND with the exception that the mask and either I or J may be a BOZ
 constant.
 
@@ -29,12 +29,12 @@ The resulting value is the same as would result from
 
     __ior (iand (i, mask),iand (j, not (mask)))__
 
-An exception to all values being of the same _integer_ type is that I or
-J and/or the mask may be a BOZ constant (A BOZ constant means it is
-either a Binary, Octal, or Hexadecimal literal constant). The BOZ values
-are converted to the _integer_ type of the non-BOZ value(s) as if called
-by the intrinsic function INT() with the kind of the non-BOZ value(s),
-so the BOZ values must be in the range of the type of the result.
+An exception to all values being of the same integer type is that I or J
+and/or the mask may be a BOZ constant (A BOZ constant means it is either
+a Binary, Octal, or Hexadecimal literal constant). The BOZ values are
+converted to the integer type of the non-BOZ value(s) as if called by
+the intrinsic function INT() with the kind of the non-BOZ value(s), so
+the BOZ values must be in the range of the type of the result.
 
 ARGUMENTS
 
@@ -59,7 +59,7 @@ ARGUMENTS
 RETURNS
 
 The bits blended from I and J using the mask MASK. It is the same type
-as I if I is of type _integer_, otherwise the same type as J.
+as I if I is of type integer, otherwise the same type as J.
 
 EXAMPLE
 

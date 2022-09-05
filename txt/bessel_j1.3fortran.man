@@ -17,11 +17,11 @@ ARGUMENTS
 -   
 
     X
-        The type shall be _real_.
+        The type shall be real.
 
 RETURNS
 
-The return value is of type _real_ and lies in the range -0.5818 <=
+The return value is of type real and lies in the range -0.5818 <=
 BESSEL(0,X) <= 0.5818 . It has the same kind as X.
 
 EXAMPLES

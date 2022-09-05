@@ -25,18 +25,18 @@ ARGUMENTS
 -   
 
     C
-        Shall be a scalar _character_, with INTENT(IN)
+        Shall be a scalar character, with INTENT(IN)
 
 -   
 
     KIND
-        (Optional) An _integer_ initialization expression indicating the
+        (Optional) An integer initialization expression indicating the
         kind parameter of the result.
 
 RETURNS
 
-The return value is of type _integer_ and of kind KIND. If KIND is
-absent, the return value is of default _integer_ kind.
+The return value is of type integer and of kind KIND. If KIND is absent,
+the return value is of default integer kind.
 
 EXAMPLES
 
@@ -71,9 +71,9 @@ Sample program:
 NOTE
 
 No intrinsic exists to convert between a numeric value and a formatted
-character string representation -- for instance, given the _character_
-value '154', obtaining an _integer_ or _real_ value with the value 154,
-or vice versa. Instead, this functionality is provided by internal-file
+character string representation -- for instance, given the character
+value '154', obtaining an integer or real value with the value 154, or
+vice versa. Instead, this functionality is provided by internal-file
 I/O, as in the following example:
 
     program read_val

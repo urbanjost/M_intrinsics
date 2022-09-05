@@ -10,8 +10,8 @@ SYNTAX
 DESCRIPTION
 
 MVBITS(3F) copies a bit pattern found in a range of adjacent bits in the
-_integer_ FROM to a specified position in another integer TO (which is
-of the same kind as FROM). It otherwise leaves the bits in TO as-is.
+integer FROM to a specified position in another integer TO (which is of
+the same kind as FROM). It otherwise leaves the bits in TO as-is.
 
 The bit positions copied must exist within the value of FROM. That is,
 the values of FROMPOS+LEN-1 and TOPOS+LEN-1 must be nonnegative and less
@@ -24,26 +24,26 @@ ARGUMENTS
 -   
 
     FROM
-        An _integer_ to read bits from.
+        An integer to read bits from.
 
 -   
 
     FROMPOS
         FROMPOS is the position of the first bit to copy. It is a
-        nonnegative _integer_ value < BIT_SIZE(FROM).
+        nonnegative integer value < BIT_SIZE(FROM).
 
 -   
 
     LEN
-        A nonnegative _integer_ value that indicates how many bits to
-        copy from FROM. It must not specify copying bits past the end of
+        A nonnegative integer value that indicates how many bits to copy
+        from FROM. It must not specify copying bits past the end of
         FROM. That is, FROMPOS + LEN must be less than or equal to
         BIT_SIZE(FROM).
 
 -   
 
     TO
-        The _integer_ variable to place the copied bits into. It must be
+        The integer variable to place the copied bits into. It must be
         of the same kind as FROM and may even be the same variable as
         FROM.
 
@@ -57,8 +57,8 @@ ARGUMENTS
 -   
 
     TOPOS
-        A nonnegative _integer_ value indicating the starting location
-        in TO to place the specified copy of bits from FROM. TOPOS + LEN
+        A nonnegative integer value indicating the starting location in
+        TO to place the specified copy of bits from FROM. TOPOS + LEN
         must be less than or equal to BIT_SIZE(TO).
 
 EXAMPLE

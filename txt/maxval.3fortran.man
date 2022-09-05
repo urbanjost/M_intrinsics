@@ -26,19 +26,19 @@ ARGUMENTS
 -   
 
     ARRAY
-        Shall be an array of type _integer_, _real_, or _character_.
+        Shall be an array of type integer, real, or character.
 
 -   
 
     DIM
-        (Optional) Shall be a scalar of type _integer_, with a value
+        (Optional) Shall be a scalar of type integer, with a value
         between one and the rank of ARRAY, inclusive. It may not be an
         optional dummy argument.
 
 -   
 
     MASK
-        (Optional) Shall be an array of type _logical_, and conformable
+        (Optional) Shall be an array of type logical, and conformable
         with ARRAY.
 
 RETURNS

@@ -19,18 +19,18 @@ ARGUMENTS
 -   
 
     A
-        The type shall be _real_.
+        The type shall be real.
 
 -   
 
     KIND
-        An _integer_ initialization expression indicating the kind
+        An integer initialization expression indicating the kind
         parameter of the result.
 
 RETURNS
 
 The return value is of type INTEGER(kind) if KIND is present and a
-default-kind _integer_ otherwise.
+default-kind integer otherwise.
 
 The result is undefined if it cannot be represented in the specified
 integer type.

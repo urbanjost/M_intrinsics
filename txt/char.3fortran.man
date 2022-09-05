@@ -19,17 +19,17 @@ ARGUMENTS
 -   
 
     I
-        The type shall be _integer_.
+        The type shall be integer.
 
 -   
 
     KIND
-        (Optional) An _integer_ initialization expression indicating the
+        (Optional) An integer initialization expression indicating the
         kind parameter of the result.
 
 RETURNS
 
-The return value is of type _character_
+The return value is of type character
 
 EXAMPLES
 

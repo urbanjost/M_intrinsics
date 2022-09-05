@@ -15,11 +15,11 @@ ARGUMENTS
 -   
 
     I
-        Shall be of type _integer_.
+        Shall be of type integer.
 
 RETURNS
 
-The type of the return value is the same as a default _integer_. If all
+The type of the return value is the same as a default integer. If all
 the bits of I are zero, the result value is BIT_SIZE(I).
 
 EXAMPLES

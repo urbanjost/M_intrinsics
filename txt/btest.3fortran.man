@@ -1,6 +1,6 @@
 NAME
 
-BTEST(3) - [BIT:INQUIRY] Tests a bit of an _integer_ value.
+BTEST(3) - [BIT:INQUIRY] Tests a bit of an integer value.
 
 SYNTAX
 
@@ -10,8 +10,7 @@ SYNTAX
         integer,intent(in)  :: i
         logical,intent(out) :: pos
 
-where KIND is any _integer_ kind supported by the programming
-environment.
+where KIND is any integer kind supported by the programming environment.
 
 DESCRIPTION
 
@@ -22,7 +21,7 @@ ARGUMENTS
 -   
 
     I
-        The type shall be _integer_.
+        The type shall be integer.
 
 -   
 
@@ -34,9 +33,8 @@ ARGUMENTS
 
 RETURNS
 
-The result is a _logical_ that has the value .TRUE. if bit position POS
-of I has the value 1 and the value .FALSE. if bit POS of I has the value
-0.
+The result is a logical that has the value .TRUE. if bit position POS of
+I has the value 1 and the value .FALSE. if bit POS of I has the value 0.
 
 EXAMPLES
 

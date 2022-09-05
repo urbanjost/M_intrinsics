@@ -19,7 +19,7 @@ ARGUMENTS
 
     MASK
         shall be a logical array. That is, the type of the argument
-        shall be _logical_ and it shall not be scalar.
+        shall be logical and it shall not be scalar.
 
 -   
 
@@ -30,7 +30,7 @@ ARGUMENTS
 
 RETURNS
 
-"ALL(MASK)" returns a scalar value of type _logical_ where the kind type
+"ALL(MASK)" returns a scalar value of type logical where the kind type
 parameter is the same as the kind type parameter of MASK. If DIM is
 present, then ALL(MASK, DIM) returns an array with the rank of MASK
 minus 1. The shape is determined from the shape of MASK where the DIM
@@ -43,11 +43,11 @@ dimension is elided.
     ALL(MASK). If the rank is greater than one, then ALL(MASK, DIM) is
     determined by applying ALL() to the array sections.
 
-3.  Result Characteristics. The result is of type _logical_ with the
-    same kind type parameter as MASK. It is scalar if DIM is absent or N
-    = 1; otherwise, the result has rank N - 1 and shape [D1 , D2 , . . .
-    , DDIM-1 , DDIM+1 , . . . , DN ] where [D1 , D2 , . . . , DN ] is
-    the shape of MASK.
+3.  Result Characteristics. The result is of type logical with the same
+    kind type parameter as MASK. It is scalar if DIM is absent or N = 1;
+    otherwise, the result has rank N - 1 and shape [D1 , D2 , . . . ,
+    DDIM-1 , DDIM+1 , . . . , DN ] where [D1 , D2 , . . . , DN ] is the
+    shape of MASK.
 
 4.  Result Value.
 

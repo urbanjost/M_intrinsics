@@ -22,7 +22,7 @@ ARGUMENTS
 -   
 
     Y
-        The type shall be _real_.
+        The type shall be real.
 
 -   
 

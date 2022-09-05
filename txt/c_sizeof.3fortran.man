@@ -21,12 +21,12 @@ ARGUMENTS
 RETURNS
 
 The return value is of type integer and of the system-dependent kind
-c_size_t (from the _iso_c_binding_ module). Its value is the number of
-bytes occupied by the argument. If the argument has the _pointer_
+csize_t (from the _iso_c_binding module). Its value is the number of
+bytes occupied by the argument. If the argument has the pointer
 attribute, the number of bytes of the storage area pointed to is
-returned. If the argument is of a derived type with _pointer_ or
-_allocatable_ components, the return value does not account for the
-sizes of the data pointed to by these components.
+returned. If the argument is of a derived type with pointer or
+allocatable components, the return value does not account for the sizes
+of the data pointed to by these components.
 
 EXAMPLES
 
@@ -44,7 +44,7 @@ Results:
         T
 
 The example will print .true. unless you are using a platform where
-default _real_ variables are unusually padded.
+default real variables are unusually padded.
 
 STANDARD
 

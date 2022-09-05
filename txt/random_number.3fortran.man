@@ -16,7 +16,7 @@ ARGUMENTS
 -   
 
     HARVEST
-        Shall be a scalar or an array of type _real_.
+        Shall be a scalar or an array of type real.
 
 EXAMPLES
 

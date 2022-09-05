@@ -9,32 +9,31 @@ SYNTAX
 DESCRIPTION
 
 DOT_PRODUCT(VECTOR_A, VECTOR_B) computes the dot product multiplication
-of two vectors vector_a and vector_b. The two vectors may be either
+of two vectors vectora and vector_b. The two vectors may be either
 numeric or logical and must be arrays of rank one and of equal size. If
-the vectors are _integer_ or _real_, the result is
-SUM(VECTOR_A*VECTOR_B). If the vectors are _complex_, the result is
-SUM(CONJG(VECTOR_A)*VECTOR_B). If the vectors are _logical_, the result
-is ANY(VECTOR_A .AND. VECTOR_B).
+the vectors are _integer or real, the result is SUM(VECTOR_A*VECTOR_B).
+If the vectors are complex, the result is SUM(CONJG(VECTOR_A)*VECTOR_B).
+If the vectors are logical, the result is ANY(VECTOR_A .AND. VECTOR_B).
 
 ARGUMENTS
 
 -   
 
     VECTOR_A
-        The type shall be numeric or _logical_, rank 1.
+        The type shall be numeric or logical, rank 1.
 
 -   
 
     VECTOR_B
-        The type shall be numeric if vector_a is of numeric type or
-        _logical_ if vector_a is of type _logical_. vector_b shall be a
+        The type shall be numeric if vectora is of numeric type or
+        _logical if vectora is of type _logical. vector_b shall be a
         rank-one array.
 
 RETURNS
 
 If the arguments are numeric, the return value is a scalar of numeric
-type, _integer_, _real_, or _complex_. If the arguments are _logical_,
-the return value is .true. or .false..
+type, integer, real, or complex. If the arguments are logical, the
+return value is .true. or .false..
 
 EXAMPLES
 

@@ -23,11 +23,11 @@ ARGUMENTS
 -   
 
     X
-        Shall be of type _real_ and neither zero nor a negative integer.
+        Shall be of type real and neither zero nor a negative integer.
 
 RETURNS
 
-The return value is of type _real_ of the same kind as _x_.
+The return value is of type real of the same kind as x.
 
 EXAMPLES
 

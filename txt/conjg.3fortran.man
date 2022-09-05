@@ -13,7 +13,7 @@ where K is the kind of the parameter Z
 
 DESCRIPTION
 
-CONJG(Z) returns the complex conjugate of the _complex_ value Z.
+CONJG(Z) returns the complex conjugate of the complex value Z.
 
 In mathematics, the complex conjugate of a complex_ number is the number
 with an equal real part and an imaginary part equal in magnitude but
@@ -30,11 +30,11 @@ ARGUMENTS
 -   
 
     Z
-        The type shall be _complex_.
+        The type shall be complex.
 
 RETURNS
 
-The return value is of type _complex_.
+The return value is of type complex.
 
 EXAMPLES
 

@@ -15,12 +15,12 @@ ARGUMENTS
 -   
 
     A
-        the type of the argument shall be _real_.
+        the type of the argument shall be real.
 
 -   
 
     KIND
-        (optional) an _integer_ initialization expression indicating the
+        (optional) an integer initialization expression indicating the
         kind parameter of the result.
 
 RETURNS

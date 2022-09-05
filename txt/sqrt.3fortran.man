@@ -10,8 +10,8 @@ SYNTAX
        TYPE(kind=KIND),intent(in) :: x
        TYPE(kind=KIND) :: value
 
-Where TYPE may be _real_ or _complex_ and KIND may be any kind valid for
-the declared type.
+Where TYPE may be real or complex and KIND may be any kind valid for the
+declared type.
 
 DESCRIPTION
 
@@ -21,19 +21,19 @@ In mathematics, a square root of a number X is a number Y such that Y*Y
 = X.
 
 The number whose square root is being considered is known as the
-_radicand_.
+radicand.
 
-Every nonnegative number _x_ has two square roots of the same unique
+Every nonnegative number x has two square roots of the same unique
 magnitude, one positive and one negative. The nonnegative square root is
 called the principal square root.
 
 The principal square root of 9 is 3, for example, even though (-3)*(-3)
 is also 9.
 
-A _real_, _radicand_ must be positive.
+A real, radicand must be positive.
 
 Square roots of negative numbers are a special case of complex numbers,
-where the components of the _radicand_ need not be positive in order to
+where the components of the radicand need not be positive in order to
 have a valid square root.
 
 ARGUMENTS
@@ -42,12 +42,12 @@ ARGUMENTS
 
     X
         If X is real its value must be greater than or equal to zero.
-        The type shall be _real_ or _complex_.
+        The type shall be real or complex.
 
 RETURNS
 
-The return value is of type _real_ or _complex_. The kind type parameter
-is the same as X.
+The return value is of type real or complex. The kind type parameter is
+the same as X.
 
 EXAMPLES
 

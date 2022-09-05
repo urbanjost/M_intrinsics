@@ -16,7 +16,7 @@ ARGUMENTS
 -   
 
     POINTER
-        POINTER shall have the _pointer_ attribute and it can be of any
+        POINTER shall have the pointer attribute and it can be of any
         type.
 
 -   
@@ -29,7 +29,7 @@ The association status of neither POINTER nor TARGET shall be undefined.
 
 RETURNS
 
-ASSOCIATED(POINTER) returns a scalar value of type _logical_. There are
+ASSOCIATED(POINTER) returns a scalar value of type logical. There are
 several cases:
 
 1.  When the optional TARGET is not present then ASSOCIATED(POINTER) is

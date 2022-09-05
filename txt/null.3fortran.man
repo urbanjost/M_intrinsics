@@ -14,8 +14,8 @@ Returns a disassociated pointer.
 If MOLD is present, a disassociated pointer of the same type is
 returned, otherwise the type is determined by context.
 
-In _Fortran 95_, MOLD is optional. Please note that _Fortran 2003_
-includes cases where it is required.
+In Fortran 95, MOLD is optional. Please note that Fortran 2003 includes
+cases where it is required.
 
 ARGUMENTS
 

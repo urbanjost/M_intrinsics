@@ -19,11 +19,11 @@ ARGUMENTS
 -   
 
     X
-        A _real_ value > 0 to take the log of.
+        A real value > 0 to take the log of.
 
 RETURNS
 
-The return value is of type _real_ . The kind type parameter is the same
+The return value is of type real . The kind type parameter is the same
 as X.
 
 EXAMPLES

@@ -20,34 +20,33 @@ ARGUMENTS
 -   
 
     A
-        Shall be of type _integer_, _real_, or _complex_ or a
+        Shall be of type integer, real, or complex or a
         BOZ-literal-constant.
 
 -   
 
     KIND
-        An _integer_ initialization expression indicating the kind
+        An integer initialization expression indicating the kind
         parameter of the result.
 
     If not present the returned type is that of default integer type.
 
 RETURNS
 
-returns an _integer_ variable or array applying the following rules:
+returns an integer variable or array applying the following rules:
 
 CASE:
 
-1.  If A is of type _integer_, INT(a) = a
+1.  If A is of type integer, INT(a) = a
 
-2.  If A is of type _real_ and |A| < 1, INT(A) equals 0. If |A| >= 1,
-    then INT(A) equals the integer whose magnitude does not exceed A and
+2.  If A is of type real and |A| < 1, INT(A) equals 0. If |A| >= 1, then
+    INT(A) equals the integer whose magnitude does not exceed A and
     whose sign is the same as the sign of A.
 
-3.  If A is of type _complex_, rule 2 is applied to the _real_ part of
-    A.
+3.  If A is of type complex, rule 2 is applied to the real part of A.
 
-4.  If _a_ is a boz-literal constant, it is treated as an _integer_ with
-    the _kind_ specified.
+4.  If a is a boz-literal constant, it is treated as an integer with the
+    kind specified.
 
     The interpretation of a bit sequence whose most significant bit is 1
     is processor dependent.

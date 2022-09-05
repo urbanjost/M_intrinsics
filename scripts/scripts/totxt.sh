@@ -11,7 +11,7 @@ do
    echo $NAME
    tail -n +3 $NAME|pandoc -f $MD -t man -i - -o ../man/man3/$SHORTNAME.3fortran
    #tail -n +3 $NAME|pandoc -f $MD --wrap preserve -t plain -i - -o ../txt/$SHORTNAME.3fortran.man
-   tail -n +3 $NAME|pandoc -f $MD -t plain -i - -o ../txt/$SHORTNAME.3fortran.man
+   tail -n +3 $NAME|pandoc --lua-filter ../scripts/deEmph.lua -f $MD -t plain -i - -o ../txt/$SHORTNAME.3fortran.man
    tail -n +3 $NAME|pandoc -f $MD -t html -i - -o ../docs/$SHORTNAME.3fortran.html
 done
 exit

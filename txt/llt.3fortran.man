@@ -25,12 +25,12 @@ ARGUMENTS
 -   
 
     STRING_A
-        Shall be of default _character_ type.
+        Shall be of default character type.
 
 -   
 
     STRING_B
-        Shall be of default _character_ type.
+        Shall be of default character type.
 
 RETURNS
 

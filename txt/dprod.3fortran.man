@@ -8,7 +8,7 @@ SYNTAX
 
 DESCRIPTION
 
-DPROD(X,Y) produces a higher _doubleprecision_ product of default _real_
+DPROD(X,Y) produces a higher doubleprecision product of default real
 numbers X and Y.
 
 The result has a value equal to a processor-dependent approximation to
@@ -26,7 +26,7 @@ converted to double precision.
     Y
         shall be default real.
 
-The setting of compiler options specifying _real_ size can affect this
+The setting of compiler options specifying real size can affect this
 function.
 
 ARGUMENTS
@@ -34,7 +34,7 @@ ARGUMENTS
 -   
 
     X
-        Must be of default _real(kind=kind(0.0))_ type
+        Must be of default real(kind=kind(0.0)) type
 
 -   
 
@@ -43,7 +43,7 @@ ARGUMENTS
 
 RETURNS
 
-The return value is of type _real(kind=kind(0.0d0))_.
+The return value is of type real(kind=kind(0.0d0)).
 
 EXAMPLES
 

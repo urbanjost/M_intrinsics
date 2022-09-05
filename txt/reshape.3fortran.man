@@ -22,7 +22,7 @@ ARGUMENTS
 -   
 
     SHAPE
-        an array of rank one and type _integer_. Its values must be
+        an array of rank one and type integer. Its values must be
         positive or zero.
 
 -   
@@ -33,10 +33,10 @@ ARGUMENTS
 -   
 
     ORDER
-        (Optional) an array of type _integer_ and the same shape as
-        SHAPE. Its values shall be a permutation of the numbers from 1
-        to n, where n is the size of SHAPE. If ORDER is absent, the
-        natural ordering shall be assumed.
+        (Optional) an array of type integer and the same shape as SHAPE.
+        Its values shall be a permutation of the numbers from 1 to n,
+        where n is the size of SHAPE. If ORDER is absent, the natural
+        ordering shall be assumed.
 
 RETURNS
 

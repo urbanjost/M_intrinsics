@@ -15,7 +15,7 @@ ARGUMENTS
 -   
 
     A
-        Shall be a scalar of type _integer_ or _real_.
+        Shall be a scalar of type integer or real.
 
 -   
 
@@ -27,11 +27,11 @@ RETURNS
 
 The type and kind of the result are those of the arguments.
 
--   If A and P are of type _integer_: MODULO(A,P) has the value of A -
+-   If A and P are of type integer: MODULO(A,P) has the value of A -
     FLOOR (REAL(A) / REAL(P)) * P.
 
--   If A and P are of type _real_: MODULO(A,P) has the value of A -
-    FLOOR (A / P) * P.
+-   If A and P are of type real: MODULO(A,P) has the value of A - FLOOR
+    (A / P) * P.
 
 The returned value has the same sign as P and a magnitude less than the
 magnitude of P.

@@ -16,11 +16,11 @@ ARGUMENTS
 -   
 
     STRING
-        Shall be a scalar of type _character_.
+        Shall be a scalar of type character.
 
 RETURNS
 
-A scalar of type _character_ which length is that of STRING less the
+A scalar of type character which length is that of STRING less the
 number of trailing blanks.
 
 EXAMPLES

@@ -15,13 +15,12 @@ ARGUMENTS
 -   
 
     X
-        Shall be of type _logical_, _integer_, _real_, _complex_ or
-        _character_.
+        Shall be of type logical, integer, real, complex or character.
 
 RETURNS
 
-The return value is a scalar of type _integer_ and of the default
-integer kind.
+The return value is a scalar of type integer and of the default integer
+kind.
 
 EXAMPLES
 

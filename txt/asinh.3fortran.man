@@ -10,7 +10,7 @@ SYNTAX
         TYPE(kind=KIND) :: x
 
 Where the returned value has the kind of the input value and TYPE may be
-_real_ or _complex_
+real or complex
 
 DESCRIPTION
 
@@ -21,12 +21,12 @@ ARGUMENTS
 -   
 
     X
-        The type shall be _real_ or _complex_.
+        The type shall be real or complex.
 
 RETURNS
 
-The return value is of the same type and kind as X. If X is _complex_,
-the imaginary part of the result is in radians and lies between -PI/2 <=
+The return value is of the same type and kind as X. If X is complex, the
+imaginary part of the result is in radians and lies between -PI/2 <=
 AIMAG(ASINH(X)) <= PI/2.
 
 EXAMPLES

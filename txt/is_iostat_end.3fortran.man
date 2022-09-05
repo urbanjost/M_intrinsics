@@ -22,11 +22,11 @@ ARGUMENTS
 -   
 
     I
-        An _integer_ status value to test if indicating end of file.
+        An integer status value to test if indicating end of file.
 
 RETURNS
 
-Returns a _logical_ of the default kind, .TRUE. if I has the value which
+Returns a logical of the default kind, .TRUE. if I has the value which
 indicates an end of file condition for IOSTAT= specifiers, and is
 .FALSE. otherwise.
 

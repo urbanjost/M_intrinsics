@@ -10,7 +10,7 @@ SYNTAX
         TYPE(kind=KIND) :: x
 
 where the returned value has the kind of the input value and TYPE may be
-_real_ or _complex_
+real or complex
 
 DESCRIPTION
 
@@ -25,8 +25,8 @@ ARGUMENTS
 -   
 
     X
-        The type shall be either _real_ and a magnitude that is less
-        than or equal to one; or be _complex_.
+        The type shall be either real and a magnitude that is less than
+        or equal to one; or be complex.
 
 RETURNS
 

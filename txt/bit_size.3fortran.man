@@ -12,15 +12,14 @@ SYNTAX
 DESCRIPTION
 
 BIT_SIZE(I) returns the number of bits (integer precision plus sign bit)
-represented by the type of the _integer_ I. I can be a scalar or an
-array.
+represented by the type of the integer I. I can be a scalar or an array.
 
 ARGUMENTS
 
 -   
 
     I
-        An _integer_ value of any kind to determine the size of in bits.
+        An integer value of any kind to determine the size of in bits.
         Because only the type of the argument is examined, the argument
         need not be defined.
 

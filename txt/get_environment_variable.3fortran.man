@@ -28,7 +28,7 @@ OPTIONS
     NAME
         The name of the environment variable to query.
 
-    Shall be a scalar of type _character_ and of default kind.
+    Shall be a scalar of type character and of default kind.
 
 RETURNS
 
@@ -37,7 +37,7 @@ RETURNS
     VALUE
         The value of the environment variable being queried.
 
-    Shall be a scalar of type _character_ and of default kind. The value
+    Shall be a scalar of type character and of default kind. The value
     of NAME is stored in VALUE. If VALUE is not large enough to hold the
     data, it is truncated. If NAME is not set, VALUE will be filled with
     blanks.
@@ -48,7 +48,7 @@ RETURNS
         Argument LENGTH contains the length needed for storing the
         environment variable NAME or zero if it is not present.
 
-    Shall be a scalar of type _integer_ and of default kind.
+    Shall be a scalar of type integer and of default kind.
 
 -   
 
@@ -58,7 +58,7 @@ RETURNS
         not exist and 2 if the processor does not support environment
         variables; in all other cases STATUS is zero.
 
-    Shall be a scalar of type _integer_ and of default kind.
+    Shall be a scalar of type integer and of default kind.
 
 -   
 
@@ -67,7 +67,7 @@ RETURNS
         blanks in NAME are significant; otherwise they are not part of
         the environment variable name.
 
-    Shall be a scalar of type _logical_ and of default kind.
+    Shall be a scalar of type logical and of default kind.
 
 EXAMPLES
 

@@ -22,7 +22,7 @@ ARGUMENTS
 -   
 
     MASK
-        Shall be an array of type _logical_.
+        Shall be an array of type logical.
 
 -   
 

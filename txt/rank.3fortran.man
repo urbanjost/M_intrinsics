@@ -19,8 +19,8 @@ ARGUMENTS
 
 RETURNS
 
-The return value is of type _integer_ and of the default integer kind.
-For arrays, their rank is returned; for scalars zero is returned.
+The return value is of type integer and of the default integer kind. For
+arrays, their rank is returned; for scalars zero is returned.
 
 EXAMPLES
 

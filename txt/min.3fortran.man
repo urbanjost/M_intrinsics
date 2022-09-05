@@ -15,7 +15,7 @@ ARGUMENTS
 -   
 
     A1
-        The type shall be _integer_ or _real_.
+        The type shall be integer or real.
 
 -   
 

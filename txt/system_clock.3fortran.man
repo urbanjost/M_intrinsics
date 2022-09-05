@@ -40,7 +40,7 @@ ARGUMENTS
 -   
 
     COUNT
-        (optional) shall be an _integer_ scalar. It is assigned a
+        (optional) shall be an integer scalar. It is assigned a
         processor-dependent value based on the current value of the
         processor clock, or -HUGE(COUNT) if there is no clock. The
         processor-dependent value is incremented by one for each clock
@@ -51,14 +51,14 @@ ARGUMENTS
 -   
 
     COUNT_RATE
-        (optional) shall be an _integer_ or _real_ scalar. It is
-        assigned a processor-dependent approximation to the number of
-        processor clock counts per second, or zero if there is no clock.
+        (optional) shall be an integer or real scalar. It is assigned a
+        processor-dependent approximation to the number of processor
+        clock counts per second, or zero if there is no clock.
 
 -   
 
     COUNT_MAX
-        (optional) shall be an _integer_ scalar. It is assigned the
+        (optional) shall be an integer scalar. It is assigned the
         maximum value that COUNT can have, or zero if there is no clock.
 
 EXAMPLES

@@ -17,11 +17,11 @@ ARGUMENTS
 -   
 
     I
-        Shall be of the type _integer_.
+        Shall be of the type integer.
 
 RETURNS
 
-Returns a _logical_ of the default kind, which .true. if I has the value
+Returns a logical of the default kind, which .true. if I has the value
 which indicates an end of file condition for iostat= specifiers, and is
 .false. otherwise.
 

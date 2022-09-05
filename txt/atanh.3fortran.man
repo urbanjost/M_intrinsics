@@ -16,11 +16,11 @@ ARGUMENTS
 -   
 
     X
-        The type shall be _real_ or _complex_.
+        The type shall be real or complex.
 
 RETURNS
 
-The return value has same type and kind as X. If X is _complex_, the
+The return value has same type and kind as X. If X is complex, the
 imaginary part of the result is in radians and lies between
 
 -PI/2 <= AIMAG(ATANH(X)) <= PI/2

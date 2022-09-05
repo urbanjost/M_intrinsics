@@ -10,8 +10,8 @@ SYNTAX
        TYPE(kind=KIND),intent(in) :: x
        TYPE(kind=KIND) :: answer
 
-where TYPE may be _real_ or _integer_ and KIND is any supported
-associated _kind_.
+where TYPE may be real or integer and KIND is any supported associated
+kind.
 
 DESCRIPTION
 
@@ -23,13 +23,13 @@ ARGUMENTS
 -   
 
     X
-        Shall be an arbitrary value of type _real_ or _integer_. The
-        value is used merely to determine what _kind_ and _type_ of
-        scalar is being queried.
+        Shall be an arbitrary value of type real or integer. The value
+        is used merely to determine what kind and type of scalar is
+        being queried.
 
 RETURNS
 
-The return value is of the same type and kind as _x_ and is the largest
+The return value is of the same type and kind as x and is the largest
 value supported by the specified model.
 
 EXAMPLES

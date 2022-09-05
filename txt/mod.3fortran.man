@@ -15,7 +15,7 @@ ARGUMENTS
 -   
 
     A
-        Shall be a scalar of type _integer_ or _real_.
+        Shall be a scalar of type integer or real.
 
 -   
 

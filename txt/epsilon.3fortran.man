@@ -17,10 +17,10 @@ equal to 1; or more precisely
 It may be thought of as the distance from 1.0 to the next largest
 floating point number.
 
-One use of EPSILON(3) is to select a _delta_ value for algorithms that
-search until the calculation is within _delta_ of an estimate.
+One use of EPSILON(3) is to select a delta value for algorithms that
+search until the calculation is within delta of an estimate.
 
-If _delta_ is too small the algorithm might never halt, as a computation
+If delta is too small the algorithm might never halt, as a computation
 summing values smaller than the decimal resolution of the data type does
 not change.
 
@@ -29,7 +29,7 @@ ARGUMENTS
 -   
 
     X
-        The type shall be _real_.
+        The type shall be real.
 
 RETURNS
 

@@ -9,18 +9,18 @@ SYNTAX
 DESCRIPTION
 
 Returns the number of bits set in the binary representation of an
-_integer_.
+integer.
 
 ARGUMENTS
 
 -   
 
     I
-        Shall be of type _integer_.
+        Shall be of type integer.
 
 RETURNS
 
-The return value is of type _integer_ and of the default integer kind.
+The return value is of type integer and of the default integer kind.
 
 EXAMPLES
 

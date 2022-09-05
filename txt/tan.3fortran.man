@@ -15,7 +15,7 @@ ARGUMENTS
 -   
 
     X
-        The type shall be _real_ or _complex_.
+        The type shall be real or complex.
 
 RETURNS
 

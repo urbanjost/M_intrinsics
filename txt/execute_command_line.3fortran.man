@@ -39,31 +39,31 @@ ARGUMENTS
 -   
 
     COMMAND
-        a default _character_ scalar containing the command line to be
+        a default character scalar containing the command line to be
         executed. The interpretation is programming-environment
         dependent.
 
 -   
 
     WAIT
-        (Optional) a default _logical_ scalar. If WAIT is present with
-        the value .false., and the processor supports asynchronous
-        execution of the command, the command is executed
-        asynchronously; otherwise it is executed synchronously.
+        (Optional) a default logical scalar. If WAIT is present with the
+        value .false., and the processor supports asynchronous execution
+        of the command, the command is executed asynchronously;
+        otherwise it is executed synchronously.
 
 -   
 
     EXITSTAT
-        (Optional) an _integer_ of the default kind with INTENT(INOUT).
-        If the command is executed synchronously, it is assigned the
-        value of the processor-dependent exit status. Otherwise, the
-        value of EXITSTAT is unchanged.
+        (Optional) an integer of the default kind with INTENT(INOUT). If
+        the command is executed synchronously, it is assigned the value
+        of the processor-dependent exit status. Otherwise, the value of
+        EXITSTAT is unchanged.
 
 -   
 
     CMDSTAT
-        (Optional) an _integer_ of default kind with INTENT(INOUT). If
-        an error condition occurs and CMDSTAT is not present, error
+        (Optional) an integer of default kind with INTENT(INOUT). If an
+        error condition occurs and CMDSTAT is not present, error
         termination of execution of the image is initiated.
 
     It is assigned the value -1 if the processor does not support
@@ -76,7 +76,7 @@ ARGUMENTS
 -   
 
     CMDMSG
-        (Optional) a _character_ scalar of the default kind. It is an
+        (Optional) a character scalar of the default kind. It is an
         INTENT (INOUT) argument.If an error condition occurs, it is
         assigned a processor-dependent explanatory message.Otherwise, it
         is unchanged.

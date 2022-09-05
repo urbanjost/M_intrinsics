@@ -16,7 +16,7 @@ DESCRIPTION
 DATE_AND_TIME(DATE, TIME, ZONE, VALUES) gets the corresponding date and
 time information from the real-time system clock.
 
-Unavailable time and date _character_ parameters return blanks.
+Unavailable time and date character parameters return blanks.
 
 ARGUMENTS
 
@@ -42,7 +42,7 @@ ARGUMENTS
 -   
 
     VALUES
-        An _integer_ array of eight elements that contains:
+        An integer array of eight elements that contains:
 
     - VALUES(1)
         The year

@@ -17,11 +17,11 @@ ARGUMENTS
 -   
 
     X
-        The type shall be _real_.
+        The type shall be real.
 
 RETURNS
 
-The return value is of type _real_. It has the same kind as X.
+The return value is of type real. It has the same kind as X.
 
 EXAMPLES
 

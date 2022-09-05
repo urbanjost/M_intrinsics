@@ -33,8 +33,8 @@ ARGUMENTS
 -   
 
     MASK
-        Shall be an array of type _logical_ and of the same size as
-        ARRAY. Alternatively, it may be a _logical_ scalar.
+        Shall be an array of type logical and of the same size as ARRAY.
+        Alternatively, it may be a logical scalar.
 
 -   
 

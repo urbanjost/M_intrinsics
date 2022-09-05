@@ -26,12 +26,12 @@ ARGUMENTS
 
     COUNT
         (intent(out))Scalar integer with at least the precision of
-        default _integer_.
+        default integer.
 
 -   
 
     STAT
-        (OPTIONAL) Scalar default-kind _integer_ variable.
+        (OPTIONAL) Scalar default-kind integer variable.
 
 EXAMPLES
 

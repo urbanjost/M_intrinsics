@@ -17,7 +17,7 @@ ARGUMENTS
 -   
 
     X
-        Shall be of type _real_.
+        Shall be of type real.
 
 RETURNS
 

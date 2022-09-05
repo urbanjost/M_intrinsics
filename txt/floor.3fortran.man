@@ -25,18 +25,18 @@ ARGUMENTS
 -   
 
     A
-        The type shall be _real_.
+        The type shall be real.
 
 -   
 
     KIND
-        (Optional) A scalar _integer_ constant initialization expression
+        (Optional) A scalar integer constant initialization expression
         indicating the kind parameter of the result.
 
 RETURNS
 
-The return value is of type _integer(kind)_ if KIND is present and of
-default-kind _integer_ otherwise.
+The return value is of type integer(kind) if KIND is present and of
+default-kind integer otherwise.
 
 The result is undefined if it cannot be represented in the specified
 integer type.

@@ -28,17 +28,17 @@ ARGUMENTS
 -   
 
     X
-        the type of the argument shall be _real_.
+        the type of the argument shall be real.
 
 -   
 
     KIND
-        (optional) an _integer_ initialization expression indicating the
+        (optional) an integer initialization expression indicating the
         kind parameter of the result.
 
 RETURNS
 
-The return value is of type _real_ with the kind type parameter of the
+The return value is of type real with the kind type parameter of the
 argument if the optional KIND is absent; otherwise, the kind type
 parameter will be given by KIND. If the magnitude of X is less than one,
 AINT(X) returns zero. If the magnitude is equal to or greater than one

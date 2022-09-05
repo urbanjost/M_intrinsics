@@ -30,7 +30,7 @@ ARGUMENTS
 -   
 
     SIZE
-        (Optional) shall be a scalar of type _integer_.
+        (Optional) shall be a scalar of type integer.
 
 RETURNS
 
@@ -49,7 +49,7 @@ When the resulting bit representation does not correspond to a valid
 representation of a variable of the same type as MOLD, the results are
 undefined, and subsequent operations on the result cannot be guaranteed
 to produce sensible behavior. For example, it is possible to create
-_logical_ variables for which VAR and .not. var both appear to be true.
+logical variables for which VAR and .not. var both appear to be true.
 
 EXAMPLES
 
@@ -82,7 +82,7 @@ Results:
 
 COMMENTS
 
-_Joe Krahn_: Fortran uses MOLDING rather than CASTING.
+Joe Krahn: Fortran uses MOLDING rather than CASTING.
 
 Casting, as in C, is an in-place reinterpretation. A cast is a device
 that is built around an object to change its shape.

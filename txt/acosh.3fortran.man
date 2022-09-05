@@ -11,8 +11,8 @@ SYNTAX
 
        TYPE(kind=KIND,intent(in) :: x
 
-where TYPE may be _real_ or _complex_ and KIND may be any KIND supported
-by the associated type.
+where TYPE may be real or complex and KIND may be any KIND supported by
+the associated type.
 
 DESCRIPTION
 
@@ -23,14 +23,14 @@ ARGUMENTS
 -   
 
     X
-        the type shall be _real_ or _complex_.
+        the type shall be real or complex.
 
 RETURNS
 
 The return value has the same type and kind as X.
 
-If X is _complex_, the imaginary part of the result is in radians and
-lies between
+If X is complex, the imaginary part of the result is in radians and lies
+between
 
   0 <= AIMAG(ACOSH(X)) <= PI
 
