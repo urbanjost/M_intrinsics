@@ -16,4 +16,4 @@
 
          open (output_unit, encoding='UTF-8')
          write (*,*) trim (hello_world)
-  end program demo_selected_char_kind
+      end program demo_selected_char_kind

@@ -6,4 +6,4 @@
          print *, "The default character kind is ", kc
          print *, "The default logical kind is ", kl
 
-    end program demo_kind
+      end program demo_kind

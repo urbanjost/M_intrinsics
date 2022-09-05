@@ -54,6 +54,8 @@ as I if I is of type _integer_, otherwise the same type as J.
 
 EXAMPLE
 
+Sample program:
+
     program demo_merge_bits
     use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64
     implicit none

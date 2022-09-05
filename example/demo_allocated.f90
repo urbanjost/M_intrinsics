@@ -26,4 +26,4 @@
              write(*,*)'note it was allocated in calling program',allocated(arr)
          end subroutine intentout
 
-    end program demo_allocated
+      end program demo_allocated

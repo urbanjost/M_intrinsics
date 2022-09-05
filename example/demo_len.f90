@@ -6,29 +6,31 @@
       integer :: ii
 
          ii=len(string)
-  write(*,*)'length =',ii
+        write(*,*)'length =',ii
 
-    ! the string length will be constant for the fixed-length variable string=' How long is this string? ' write(*,'(a)')'
-    ',string,repeat('=',len(string))
+        ! the string length will be constant for the fixed-length variable
+        string=' How long is this string? '
+        write(*,'(a)')' ',string,repeat('=',len(string))
 
-    ! the allocatable string length will be the length of LHS expression astring=' How long is this string? ' write(*,'(a)')'
-    ',astring,repeat('=',len(astring))
+        ! the allocatable string length will be the length of LHS expression
+        astring=' How long is this string? '
+        write(*,'(a)')' ',astring,repeat('=',len(astring))
 
-           ! you can also query the length (and other attributes) of a string
-           ! using a "type parameter inquiry:" (available since fortran 2018)
-           write(*,*)'length from type parameter inquiry=',string%len
+         ! you can also query the length (and other attributes) of a string
+         ! using a "type parameter inquiry:" (available since fortran 2018)
+         write(*,*)'length from type parameter inquiry=',string%len
 
-           ! a scalar is returned for an array, as all values in a Fortran
-           ! character array must be of the same length:
+         ! a scalar is returned for an array, as all values in a Fortran
+         ! character array must be of the same length:
 
-           ! define an allocatable array with a constructor ...
-             many_strings = [ character(len=7) :: 'Takata', 'Tanaka', 'Hayashi' ]
-           write(*,*)
-           write(*,*)'length of ALL elements of array=',len(many_strings)
+         ! define an allocatable array with a constructor ...
+           many_strings = [ character(len=7) :: 'Takata', 'Tanaka', 'Hayashi' ]
+         write(*,*)
+         write(*,*)'length of ALL elements of array=',len(many_strings)
 
-           call proc_star(' how long? ')
+         call proc_star(' how long? ')
 
-  contains
+      contains
 
          subroutine proc_star(str)
          character(len=*),intent(in)  :: str
@@ -45,6 +47,6 @@
             str2=str
             str2=repeat(' ',len(str))
 
-    end subroutine proc_star
+         end subroutine proc_star
 
-  end program demo_len
+      end program demo_len

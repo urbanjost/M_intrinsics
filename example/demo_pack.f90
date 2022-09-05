@@ -12,31 +12,26 @@
          m = [ 1, 0, 0, 0, 5, 0 ]
          write(*, fmt="(*(i0, ' '))") pack(m, m /= 0)  ! "1 5"
 
-    end subroutine test1 !  subroutine test2() ! Gathering nonzero elements from an array and appending elements ! from VECTOR
-    till the size of the mask array (or array size if the ! mask is scalar): integer :: m(4)
+      end subroutine test1
+      !
+      subroutine test2()
+      ! Gathering nonzero elements from an array and appending elements
+      ! from VECTOR till the size of the mask array (or array size if the
+      ! mask is scalar):
+      integer :: m(4)
 
-           m = [ 1, 0, 0, 2 ]
-           write(*, fmt="(*(i0, ' '))") pack(m, m /= 0, [ 0, 0, 3, 4 ])
+         m = [ 1, 0, 0, 2 ]
+         write(*, fmt="(*(i0, ' '))") pack(m, m /= 0, [ 0, 0, 3, 4 ])
 
-    end subroutine test2 !  subroutine test3() ! select strings whose second character is "a" character(len=10) :: m(4)
+      end subroutine test2
+      !
+      subroutine test3()
+      ! select strings whose second character is "a"
+      character(len=10) :: m(4)
 
-    m = [ character(len=10) :: 'ape', 'bat', 'cat', 'dog'] write(*, fmt="(*(g0, ' '))") pack(m, m(:)(2:2) == 'a' )
+      m = [ character(len=10) :: 'ape', 'bat', 'cat', 'dog']
+         write(*, fmt="(*(g0, ' '))") pack(m, m(:)(2:2) == 'a' )
 
-    end subroutine test3 !  end program demo_pack
-
-  Results:
-
-    1 5 1 2 3 4
-
-    bat
-      cat
-
-STANDARD
-  Fortran 95 and later
-
-SEE ALSO
-  UNPACK(3), MERGE(3), PACK(3), SPREAD(3), UNPACK(3)
-
-  fortran-lang intrinsic descriptions (license: MIT) @urbanjost
-
-                                                       September 04, 2022                                         pack(3fortran)
+      end subroutine test3
+      !
+      end program demo_pack

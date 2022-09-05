@@ -40,7 +40,7 @@ $(TOCHARACTER)
    elseif(present(m_help))then
       if(m_help)then
          textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname in
-	 textblock=' '//textblock ! shift to right by one character 
+	 textblock=' '//textblock ! shift to right by one character
          textblock(1)=shortname
       endif
    endif
@@ -125,7 +125,7 @@ logical                         :: grab
       ! and assume that is the beginning of the next section to extract the NAME section as one line
       do i=1,size(add)
          if(add(i).eq.'')cycle
-         is_label=verify(trim(add),'ABCDEFGHIJKLMNOPQRSTUVWXYZ _') == 0
+	    is_label=verify(trim(add(i)),'ABCDEFGHIJKLMNOPQRSTUVWXYZ _') == 0
          if(is_label.and.add(i).eq.'NAME')then
             grab=.true.
          elseif(is_label)then

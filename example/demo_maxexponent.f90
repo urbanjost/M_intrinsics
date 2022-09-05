@@ -6,4 +6,4 @@
 
          print *, minexponent(x), maxexponent(x)
          print *, minexponent(y), maxexponent(y)
-  end program demo_maxexponent
+      end program demo_maxexponent

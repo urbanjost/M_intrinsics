@@ -1,8 +1,8 @@
-  program demo_merge_bits
-
-  use,intrinsic :: iso_fortran_env,
-    only : int8, int16, int32, int64 implicit none integer(kind=int16) :: if_one,if_zero,msk character(len=*),parameter ::
-    fmt='(*(g0, 1X))'
+      program demo_merge_bits
+      use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64
+      implicit none
+      integer(kind=int16) :: if_one,if_zero,msk
+      character(len=*),parameter :: fmt='(*(g0, 1X))'
 
          ! basic usage
          print *,'MERGE_BITS( 5,10,41) should be 3.=>',merge_bits(5,10,41)
@@ -37,4 +37,4 @@
          & ior(iand(32767_int16, z'1234'),                       &
          &   iand(o'12345', not(int( z'1234', kind=int16))))
 
-  end program demo_merge_bits
+      end program demo_merge_bits

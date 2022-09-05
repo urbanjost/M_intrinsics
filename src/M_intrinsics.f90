@@ -60,19 +60,19 @@ logical                         :: grab
    icount=1
    do
       write(cnum,'(i0)') icount
-      add=help_intrinsics_one(cnum)
+      add=help_intrinsics_one(cnum) ! get a document by number
       if( size(add) .eq. 0 ) exit
       label=''
       grab=.false.
       is_label=.false.
+      ! look for NAME then append everything together till a line starting in column 1 that is all uppercase letters
+      ! and assume that is the beginning of the next section to extract the NAME section as one line
       do i=1,size(add)
          if(add(i).eq.'')cycle
-         is_label=verify(trim(add(i)),'ABCDEFGHIJKLMNOPQRSTUVWXYZ') == 0
-         write(*,*)'GOT HERE A:',is_label,trim(add(i)), verify(trim(add(i)),'ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+            is_label=verify(trim(add(i)),'ABCDEFGHIJKLMNOPQRSTUVWXYZ _') == 0
          if(is_label.and.add(i).eq.'NAME')then
             grab=.true.
          elseif(is_label)then
-            write(*,*)'GOT HERE B:',is_label,trim(add(i))
             exit
          elseif(grab)then
             label=adjustl(trim(label))//' '//adjustl(trim(add(i)))
@@ -375,6 +375,8 @@ textblock=[character(len=256) :: &
 'the specified kind and of the default kind otherwise.', &
 '', &
 'EXAMPLES', &
+'', &
+'Sample program:', &
 '', &
 '    program demo_achar', &
 '    use,intrinsic::iso_fortran_env,only:int8,int16,int32,int64', &
@@ -1377,6 +1379,8 @@ textblock=[character(len=256) :: &
 'of the track using the arcsine. Given', &
 '', &
 '     sin(theta) = 1.25 miles/50 miles (opposite/hypotenuse)', &
+'', &
+'Sample program:', &
 '', &
 '    program demo_asin', &
 '    use, intrinsic :: iso_fortran_env, only : dp=>real64', &
@@ -5807,26 +5811,25 @@ textblock=[character(len=256) :: &
 '', &
 '    contains', &
 '', &
-'    function my_dp_eps()', &
-'    ! calculate the epsilon value of a machine the hard way', &
-'    real(kind=dp) :: t', &
-'    real(kind=dp) :: my_dp_eps', &
-'', &
-'       ! starting with a value of 1, keep dividing the value', &
-'       ! by 2 until no change is detected. Note that with', &
-'       ! infinite precision this would be an infinite loop,', &
-'       ! but floating point values in Fortran have a defined', &
-'       ! and limited precision.', &
-'       my_dp_eps = 1.0d0', &
-'       SET_ST: do', &
-'          my_dp_eps = my_dp_eps/2.0d0', &
-'          t = 1.0d0 + my_dp_eps', &
-'          if (t <= 1.0d0) exit', &
-'       enddo SET_ST', &
-'       my_dp_eps = 2.0d0*my_dp_eps', &
-'', &
-'    end function my_dp_eps', &
-'', &
+'       function my_dp_eps()', &
+'       ! calculate the epsilon value of a machine the hard way', &
+'       real(kind=dp) :: t', &
+'       real(kind=dp) :: my_dp_eps', &
+'       ', &
+'          ! starting with a value of 1, keep dividing the value', &
+'          ! by 2 until no change is detected. Note that with', &
+'          ! infinite precision this would be an infinite loop,', &
+'          ! but floating point values in Fortran have a defined', &
+'          ! and limited precision.', &
+'          my_dp_eps = 1.0d0', &
+'          SET_ST: do', &
+'             my_dp_eps = my_dp_eps/2.0d0', &
+'             t = 1.0d0 + my_dp_eps', &
+'             if (t <= 1.0d0) exit', &
+'          enddo SET_ST', &
+'          my_dp_eps = 2.0d0*my_dp_eps', &
+'       ', &
+'       end function my_dp_eps', &
 '    end program demo_epsilon', &
 '', &
 'Results:', &
@@ -5936,7 +5939,7 @@ textblock=[character(len=256) :: &
 '', &
 'DESCRIPTION', &
 '', &
-'ERFC(x) computes the complementary error function of X. Simpy put this', &
+'ERFC(x) computes the complementary error function of X. Simply put this', &
 'is equivalent to 1 - ERF(X), but ERFC is provided because of the extreme', &
 'loss of relative accuracy if ERF(X) is called for large X and the result', &
 'is subtracted from 1.', &
@@ -8285,18 +8288,18 @@ textblock=[character(len=256) :: &
 '', &
 '    contains', &
 '', &
-'    subroutine printme()', &
-'    character(len=1) :: letter', &
-'', &
-'       letter=char(i)', &
-'       select case(i)', &
-'       case (:31,127:)', &
-'          write(*,''(1x,i0.3,1x,"HEX=",z2.2,1x,i0)'')i,letter,ichar(letter)', &
-'       case default', &
-'          write(*,''(1x,i0.3,1x,a,1x,i0)'')i,letter,ichar(letter)', &
-'       end select', &
-'', &
-'    end subroutine printme', &
+'       subroutine printme()', &
+'       character(len=1) :: letter', &
+'       ', &
+'          letter=char(i)', &
+'          select case(i)', &
+'          case (:31,127:)', &
+'             write(*,''(1x,i0.3,1x,"HEX=",z2.2,1x,i0)'')i,letter,ichar(letter)', &
+'          case default', &
+'             write(*,''(1x,i0.3,1x,a,1x,i0)'')i,letter,ichar(letter)', &
+'          end select', &
+'       ', &
+'       end subroutine printme', &
 '', &
 '    end program demo_ichar', &
 '', &
@@ -10129,6 +10132,8 @@ textblock=[character(len=256) :: &
 '', &
 'EXAMPLES', &
 '', &
+'Sample program:', &
+'', &
 '    program demo_logical', &
 '    ! Access array containing the kind type parameter values supported by this', &
 '    ! compiler for entities of logical type', &
@@ -11001,6 +11006,8 @@ textblock=[character(len=256) :: &
 '', &
 'EXAMPLE', &
 '', &
+'Sample program:', &
+'', &
 '    program demo_merge_bits', &
 '    use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64', &
 '    implicit none', &
@@ -11711,65 +11718,66 @@ textblock=[character(len=256) :: &
 'Sample program that populates a new 32-bit integer with its bytes in', &
 'reverse order (ie. changes the Endian of the integer).', &
 '', &
-'      program demo_mvbits', &
-'      use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64', &
-'      implicit none', &
-'      integer(kind=int32) :: intfrom, intto, abcd_int', &
-'      character(len=*),parameter :: bits= ''(g0,t30,b32.32)''', &
-'      character(len=*),parameter :: fmt= ''(g0,t30,a,t40,b32.32)''', &
+'    program demo_mvbits', &
+'    use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64', &
+'    implicit none', &
+'    integer(kind=int32) :: intfrom, intto, abcd_int', &
+'    character(len=*),parameter :: bits= ''(g0,t30,b32.32)''', &
+'    character(len=*),parameter :: fmt= ''(g0,t30,a,t40,b32.32)''', &
 '', &
-'         intfrom=huge(0)  ! all bits are 1 accept the sign bit', &
-'     intto=0          ! all bits are 0', &
+'        intfrom=huge(0)  ! all bits are 1 accept the sign bit', &
+'        intto=0          ! all bits are 0', &
 '', &
-'         !! CHANGE BIT 0', &
-'         ! show the value and bit pattern', &
-'         write(*,bits)intfrom,intfrom', &
-'         write(*,bits)intto,intto', &
+'        !! CHANGE BIT 0', &
+'        ! show the value and bit pattern', &
+'        write(*,bits)intfrom,intfrom', &
+'        write(*,bits)intto,intto', &
 '', &
-'         ! copy bit 0 from intfrom to intto to show the rightmost bit changes', &
-'         !          (from,    frompos, len,    to, topos)', &
-'         call mvbits(intfrom,       0,   1, intto,     0) ! change bit 0', &
-'         write(*,bits)intto,intto', &
+'        ! copy bit 0 from intfrom to intto to show the rightmost bit changes', &
+'        !          (from,    frompos, len,    to, topos)', &
+'        call mvbits(intfrom,       0,   1, intto,     0) ! change bit 0', &
+'        write(*,bits)intto,intto', &
 '', &
-'         !! COPY PART OF A VALUE TO ITSELF', &
-'     call mvbits(intfrom,0,1,intfrom,31) ! can copy bit from a value to itself', &
-'         write(*,bits)intfrom,intfrom', &
+'        !! COPY PART OF A VALUE TO ITSELF', &
+'        ! can copy bit from a value to itself', &
+'        call mvbits(intfrom,0,1,intfrom,31) ', &
+'        write(*,bits)intfrom,intfrom', &
 '', &
-'         !! MOVING BYTES AT A TIME', &
-'         ! make native integer value with bit patterns', &
-'         ! that happen to be the same as the beginning of the alphabet', &
-'     ! to make it easy to see the bytes are reversed', &
-'         abcd_int=transfer(''abcd'',0)', &
-'         ! show the value and bit pattern', &
-'         write(*,*)''native''', &
-'         write(*,fmt)abcd_int,abcd_int,abcd_int', &
+'        !! MOVING BYTES AT A TIME', &
+'        ! make native integer value with bit patterns', &
+'        ! that happen to be the same as the beginning of the alphabet', &
+'        ! to make it easy to see the bytes are reversed', &
+'        abcd_int=transfer(''abcd'',0)', &
+'        ! show the value and bit pattern', &
+'        write(*,*)''native''', &
+'        write(*,fmt)abcd_int,abcd_int,abcd_int', &
 '', &
-'         ! change endian of the value', &
-'         abcd_int=int_swap32(abcd_int)', &
-'         ! show the values and their bit pattern', &
-'         write(*,*)''non-native''', &
-'         write(*,fmt)abcd_int,abcd_int,abcd_int', &
+'        ! change endian of the value', &
+'        abcd_int=int_swap32(abcd_int)', &
+'        ! show the values and their bit pattern', &
+'        write(*,*)''non-native''', &
+'        write(*,fmt)abcd_int,abcd_int,abcd_int', &
 '', &
-'      contains', &
+'     contains', &
 '', &
-'      pure elemental function int_swap32(intin) result(intout)', &
-'      ! Convert a 32 bit integer from big Endian to little Endian,', &
-'      ! or conversely from little Endian to big Endian.', &
-'      !', &
-'      integer(kind=int32), intent(in)  :: intin', &
-'      integer(kind=int32) :: intout', &
-'         ! copy bytes from input value to new position in output value', &
-'         !          (from,  frompos, len,     to, topos)', &
-'         call mvbits(intin,       0,   8, intout,    24) ! byte1 to byte4', &
-'         call mvbits(intin,       8,   8, intout,    16) ! byte2 to byte3', &
-'         call mvbits(intin,      16,   8, intout,     8) ! byte3 to byte2', &
-'         call mvbits(intin,      24,   8, intout,     0) ! byte4 to byte1', &
-'      end function int_swap32', &
+'     pure elemental function int_swap32(intin) result(intout)', &
+'     ! Convert a 32 bit integer from big Endian to little Endian,', &
+'     ! or conversely from little Endian to big Endian.', &
+'     !', &
+'     integer(kind=int32), intent(in)  :: intin', &
+'     integer(kind=int32) :: intout', &
+'        ! copy bytes from input value to new position in output value', &
+'        !          (from,  frompos, len,     to, topos)', &
+'        call mvbits(intin,       0,   8, intout,    24) ! byte1 to byte4', &
+'        call mvbits(intin,       8,   8, intout,    16) ! byte2 to byte3', &
+'        call mvbits(intin,      16,   8, intout,     8) ! byte3 to byte2', &
+'        call mvbits(intin,      24,   8, intout,     0) ! byte4 to byte1', &
+'     end function int_swap32', &
 '', &
-'      end program demo_mvbits', &
+'     end program demo_mvbits', &
 '', &
-'      Results:', &
-'    ```text', &
+'Results:', &
+'', &
 '', &
 '       2147483647                   01111111111111111111111111111111', &
 '       0                            00000000000000000000000000000000', &
@@ -11779,7 +11787,6 @@ textblock=[character(len=256) :: &
 '       1684234849                   abcd      01100100011000110110001001100001', &
 '        non-native', &
 '       1633837924                   dcba      01100001011000100110001101100100', &
-'    ================================================================================', &
 '', &
 'STANDARD', &
 '', &
@@ -12562,12 +12569,12 @@ textblock=[character(len=256) :: &
 '', &
 '    The result is of the same type as __mask__.', &
 '', &
-'    If __dim__ is absent, a scalar with the parity of all elements in __mask__ is', &
-'    returned: __.true.__ if an odd number of elements are __.true.__ and __.false.__', &
-'    otherwise.', &
+'    If __dim__ is absent, a scalar with the parity of all elements in __mask__', &
+'    is returned: __.true.__ if an odd number of elements are __.true.__', &
+'    and __.false.__ otherwise.', &
 '', &
-'    When __dim__ is specified the returned shape is similar to that of __mask__', &
-'    with dimension __dim__ dropped.', &
+'    When __dim__ is specified the returned shape is similar to that of', &
+'    __mask__ with dimension __dim__ dropped.', &
 '', &
 '    ### __Examples__', &
 '', &
@@ -12982,30 +12989,30 @@ textblock=[character(len=256) :: &
 '', &
 '    contains', &
 '', &
-'    subroutine print_matrix_int(title,arr)', &
-'    implicit none', &
-'', &
-'    !@(#) print small 2d integer arrays in row-column format', &
-'', &
-'    character(len=*),intent(in)  :: title', &
-'    integer,intent(in)           :: arr(:,:)', &
-'    integer                      :: i', &
-'    character(len=:),allocatable :: biggest', &
-'', &
-'       print all', &
-'       print all, trim(title),'':('',shape(arr),'')''  ! print title', &
-'       biggest=''           ''  ! make buffer to write integer into', &
-'       ! find how many characters to use for integers', &
-'       write(biggest,''(i0)'')ceiling(log10(real(maxval(abs(arr)))))+2', &
-'       ! use this format to write a row', &
-'       biggest=''(" > [",*(i''//trim(biggest)//'':,","))''', &
-'       ! print one row of array at a time', &
-'       do i=1,size(arr,dim=1)', &
-'          write(*,fmt=biggest,advance=''no'')arr(i,:)', &
-'          write(*,''(" ]")'')', &
-'       enddo', &
-'', &
-'    end subroutine print_matrix_int', &
+'       subroutine print_matrix_int(title,arr)', &
+'       implicit none', &
+'       ', &
+'       !@(#) print small 2d integer arrays in row-column format', &
+'       ', &
+'       character(len=*),intent(in)  :: title', &
+'       integer,intent(in)           :: arr(:,:)', &
+'       integer                      :: i', &
+'       character(len=:),allocatable :: biggest', &
+'       ', &
+'          print all', &
+'          print all, trim(title),'':('',shape(arr),'')''  ! print title', &
+'          biggest=''           ''  ! make buffer to write integer into', &
+'          ! find how many characters to use for integers', &
+'          write(biggest,''(i0)'')ceiling(log10(real(maxval(abs(arr)))))+2', &
+'          ! use this format to write a row', &
+'          biggest=''(" > [",*(i''//trim(biggest)//'':,","))''', &
+'          ! print one row of array at a time', &
+'          do i=1,size(arr,dim=1)', &
+'             write(*,fmt=biggest,advance=''no'')arr(i,:)', &
+'             write(*,''(" ]")'')', &
+'          enddo', &
+'       ', &
+'       end subroutine print_matrix_int', &
 '', &
 '    end program demo_product', &
 '', &
@@ -13119,14 +13126,14 @@ textblock=[character(len=256) :: &
 '    implicit none', &
 '       print *, "The radix for the default integer kind is", radix(0)', &
 '       print *, "The radix for the default real kind is", radix(0.0)', &
-'       print *, "The radix for the doubleprecsion real kind is", radix(0.0d0)', &
+'       print *, "The radix for the doubleprecision real kind is", radix(0.0d0)', &
 '    end program demo_radix', &
 '', &
 'Results:', &
 '', &
 '        The radix for the default integer kind is           2', &
 '        The radix for the default real kind is           2', &
-'        The radix for the doubleprecsion real kind is           2', &
+'        The radix for the doubleprecision real kind is          2', &
 '', &
 'STANDARD', &
 '', &
@@ -14601,9 +14608,10 @@ textblock=[character(len=256) :: &
 '    __sign__(a,b) returns the value of __a__ with the sign of __b__.', &
 '', &
 '', &
-'    For processors that distinguish between positive and negative zeros  __sign()__ may be used to', &
-'    distinguish between __real__ values 0.0 and −0.0. SIGN (1.0, -0.0) will', &
-'    return −1.0 when a negative zero is distinguishable.', &
+'    For processors that distinguish between positive and negative zeros', &
+'    __sign()__ may be used to distinguish between __real__ values 0.0 and', &
+'    −0.0. SIGN (1.0, -0.0) will return −1.0 when a negative zero is', &
+'    distinguishable.', &
 '', &
 '        29  1 Description. Magnitude of A with the sign of B.', &
 '', &
@@ -14619,11 +14627,13 @@ textblock=[character(len=256) :: &
 '', &
 '    ### __Returns__', &
 '', &
-'    The kind of the return value is the magnitude of __a__ with the sign of  __b__. That is,', &
+'    The kind of the return value is the magnitude of __a__ with the sign of', &
+'    __b__. That is,', &
 '', &
 '         -  If __b \>= 0__ then the result is __abs(a)__', &
 '         -  else if __b < 0__ it is -__abs(a)__.', &
-'         - if __b__ is _real_ and the processor distinguishes between __-0.0__ and __0.0__ then the', &
+'         - if __b__ is _real_ and the processor distinguishes between __-0.0__', &
+'         and __0.0__ then the', &
 '           result is __-abs(a)__', &
 '', &
 '    ### __Examples__', &
@@ -14639,7 +14649,8 @@ textblock=[character(len=256) :: &
 '', &
 '       print *,  sign( -12.0, [1.0, 0.0, -1.0] )', &
 '', &
-'       print *,  ''can I distinguise 0 from -0? '', sign( 1.0, -0.0 ) .ne. sign( 1.0, 0.0 )', &
+'       print *,  ''can I distinguish 0 from -0? '', &', &
+'       &  sign( 1.0, -0.0 ) .ne. sign( 1.0, 0.0 )', &
 '    end program demo_sign', &
 '', &
 'Results:', &
@@ -14648,7 +14659,7 @@ textblock=[character(len=256) :: &
 '                 12', &
 '                -12', &
 '          12.00000       12.00000      -12.00000', &
-'        can I distinguise 0 from -0?  F', &
+'        can I distinguish 0 from -0?  F', &
 '', &
 'STANDARD', &
 '', &

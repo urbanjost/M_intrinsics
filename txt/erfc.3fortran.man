@@ -12,7 +12,7 @@ SYNTAX
 
 DESCRIPTION
 
-ERFC(x) computes the complementary error function of X. Simpy put this
+ERFC(x) computes the complementary error function of X. Simply put this
 is equivalent to 1 - ERF(X), but ERFC is provided because of the extreme
 loss of relative accuracy if ERF(X) is called for large X and the result
 is subtracted from 1.

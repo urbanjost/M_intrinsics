@@ -61,6 +61,8 @@ as **j**.
 
 ### **Example**
 
+Sample program:
+
 ```fortran
 program demo_merge_bits
 use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64
@@ -103,7 +105,6 @@ character(len=*),parameter :: fmt='(*(g0, 1X))'
 
 end program demo_merge_bits
 ```
-
 Results:
 
 ```text
@@ -114,7 +115,6 @@ Results:
    32767 32751 5877
    32767 32767 5877
 ```
-
 ### **Standard**
 
 Fortran 2008 and later

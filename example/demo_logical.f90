@@ -1,5 +1,7 @@
-  program demo_logical ! Access array containing the kind type parameter values supported by this ! compiler for entities of
-  logical type use iso_fortran_env, only : logical_kinds
+      program demo_logical
+      ! Access array containing the kind type parameter values supported by this
+      ! compiler for entities of logical type
+      use iso_fortran_env, only : logical_kinds
 
          ! list kind values supported on this platform, which generally vary
          ! in storage size
@@ -7,4 +9,4 @@
             write(*,*)logical_kinds(i)
          enddo
 
-  end program demo_logical
+      end program demo_logical

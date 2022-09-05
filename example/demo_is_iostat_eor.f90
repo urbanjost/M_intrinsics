@@ -7,4 +7,4 @@
 
         if(is_iostat_eor(stat)) stop 'end of record'
 
-    end program demo_is_iostat_eor
+      end program demo_is_iostat_eor

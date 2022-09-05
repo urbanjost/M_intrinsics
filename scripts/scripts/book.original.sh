@@ -6,7 +6,7 @@ INDX(){
 export TOPIC="$1" NAME
 export SECTION="$2"
 export TOPHTML=${TOPHTML:-tmp/html}
-export MAN_CMD=${MAN_CMD:-mank}
+export MAN_CMD=${MAN_CMD:-man}
 HTML >$TOPHTML/BOOK_$TOPIC.html
 (
    echo 'function loadthem(){'
@@ -24,7 +24,7 @@ HTML >$TOPHTML/BOOK_$TOPIC.html
 	# put section 3 topics first
         $MAN_CMD -k "\[${TOPIC}\>"|env LC_ALL=C /usr/bin/sort -k 2r,2r -k 1,1|grep -i "(3${TOPIC})"
 	# put non-section 3 topics next
-        $MAN_CMD -k "\[${TOPIC}\>"|env LC_ALL=C /usr/bin/sort -k 2r,2r -k 1,1|grep -vi "(3${TOPIC})"
+        $MAN_CMD -k "\[${TOPIC}\>"|env LC_ALL=C /usr/bin/sort -k 2r,2r -k 1,1|grep -i "(3${TOPIC})"
       )|tr -d '()'| awk '{printf "%s.%s.html\n",$1,$2}'
    fi| uniq|while read NAME
    do

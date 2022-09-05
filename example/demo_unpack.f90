@@ -8,4 +8,4 @@
          unity = unpack(vector, reshape(mask, [2,2]), field)
          write(*,*)unity,size(unity),shape(unity)
 
-    end program demo_unpack
+      end program demo_unpack

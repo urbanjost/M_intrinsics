@@ -36,8 +36,10 @@
          chooseleft=.true.
          write(*, '(3i4)')merge([1,2,3],[10,20,30],chooseleft)
 
-    contains
+      contains
 
-    subroutine printme() write(*, '(3i4)')(answer(i, :), i=1, size(answer, dim=1)) end subroutine printme
+      subroutine printme()
+            write(*, '(3i4)')(answer(i, :), i=1, size(answer, dim=1))
+      end subroutine printme
 
-    end program demo_merge
+      end program demo_merge

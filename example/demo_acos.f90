@@ -12,4 +12,4 @@
           &PI ~ 3.14159265358979323846264338327950288419716939937510'
           print all,'elemental',acos([-1.0,-0.5,0.0,0.50,1.0])
 
-    end program demo_acos
+      end program demo_acos

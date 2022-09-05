@@ -55,4 +55,4 @@
              endif
 
           endblock CHECK
-  end program demo_verify
+      end program demo_verify

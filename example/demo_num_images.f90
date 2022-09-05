@@ -11,4 +11,4 @@
            end do
          endif
 
-    end program demo_num_images
+      end program demo_num_images

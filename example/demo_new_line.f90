@@ -9,4 +9,4 @@
          write(*,'(*(a))',advance='no') &
             nl,'This is record 1.',nl,'This is record 2.',nl
 
-    end program demo_new_line
+      end program demo_new_line
