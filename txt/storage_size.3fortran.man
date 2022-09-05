@@ -12,9 +12,15 @@ Returns the storage size of argument A in bits.
 
 ARGUMENTS
 
--   A : Shall be a scalar or array of any type.
+-   
 
--   KIND : (Optional) shall be a scalar integer constant expression.
+    A
+        Shall be a scalar or array of any type.
+
+-   
+
+    KIND
+        (Optional) shall be a scalar integer constant expression.
 
 RETURNS
 

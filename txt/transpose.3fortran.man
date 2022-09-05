@@ -13,7 +13,10 @@ value MATRIX(J, I), for all i, j.
 
 ARGUMENTS
 
--   MATRIX : Shall be an array of any type and have a rank of two.
+-   
+
+    MATRIX
+        Shall be an array of any type and have a rank of two.
 
 RETURNS
 

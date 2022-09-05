@@ -22,14 +22,20 @@ the hypotenuse and the opposite side of a right triangle are known.
 
 ARGUMENTS
 
--   X : The type shall be either _real_ and a magnitude that is less
-    than or equal to one; or be _complex_.
+-   
+
+    X
+        The type shall be either _real_ and a magnitude that is less
+        than or equal to one; or be _complex_.
 
 RETURNS
 
--   RESULT : The return value is of the same type and kind as X. The
-    real part of the result is in radians and lies in the range -PI/2 <=
-    ASIN(X) <= PI/2.
+-   
+
+    RESULT
+        The return value is of the same type and kind as X. The real
+        part of the result is in radians and lies in the range -PI/2 <=
+        ASIN(X) <= PI/2.
 
 EXAMPLES
 

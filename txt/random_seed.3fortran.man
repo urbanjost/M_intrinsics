@@ -17,17 +17,26 @@ data retrieved from the operating system.
 
 ARGUMENTS
 
--   SIZE : (Optional) Shall be a scalar and of type default _integer_,
-    with INTENT(OUT). It specifies the minimum size of the arrays used
-    with the PUT and GET arguments.
+-   
 
--   PUT : (Optional) Shall be an array of type default _integer_ and
-    rank one. It is INTENT(IN) and the size of the array must be larger
-    than or equal to the number returned by the SIZE argument.
+    SIZE
+        (Optional) Shall be a scalar and of type default _integer_, with
+        INTENT(OUT). It specifies the minimum size of the arrays used
+        with the PUT and GET arguments.
 
--   GET : (Optional) Shall be an array of type default _integer_ and
-    rank one. It is INTENT(OUT) and the size of the array must be larger
-    than or equal to the number returned by the SIZE argument.
+-   
+
+    PUT
+        (Optional) Shall be an array of type default _integer_ and rank
+        one. It is INTENT(IN) and the size of the array must be larger
+        than or equal to the number returned by the SIZE argument.
+
+-   
+
+    GET
+        (Optional) Shall be an array of type default _integer_ and rank
+        one. It is INTENT(OUT) and the size of the array must be larger
+        than or equal to the number returned by the SIZE argument.
 
 EXAMPLES
 

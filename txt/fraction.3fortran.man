@@ -14,7 +14,10 @@ X.
 
 ARGUMENTS
 
--   X : The type of the argument shall be a _real_.
+-   
+
+    X
+        The type of the argument shall be a _real_.
 
 RETURNS
 

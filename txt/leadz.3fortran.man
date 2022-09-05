@@ -12,7 +12,10 @@ LEADZ returns the number of leading zero bits of an integer.
 
 ARGUMENTS
 
--   I : Shall be of type _integer_.
+-   
+
+    I
+        Shall be of type _integer_.
 
 RETURNS
 

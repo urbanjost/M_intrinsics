@@ -18,14 +18,26 @@ SET is found in STRING, the result is zero.
 
 ARGUMENTS
 
--   STRING : Shall be of type _character_.
+-   
 
--   SET : Shall be of type _character_.
+    STRING
+        Shall be of type _character_.
 
--   BACK : (Optional) shall be of type _logical_.
+-   
 
--   KIND : (Optional) An _integer_ initialization expression indicating
-    the kind parameter of the result.
+    SET
+        Shall be of type _character_.
+
+-   
+
+    BACK
+        (Optional) shall be of type _logical_.
+
+-   
+
+    KIND
+        (Optional) An _integer_ initialization expression indicating the
+        kind parameter of the result.
 
 RETURNS
 

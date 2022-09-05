@@ -14,7 +14,10 @@ number of the same type.
 
 ARGUMENTS
 
--   X : Shall be of type _real_.
+-   
+
+    X
+        Shall be of type _real_.
 
 RETURNS
 

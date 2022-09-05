@@ -18,7 +18,10 @@ original length.
 
 ARGUMENTS
 
--   STRING : the type shall be _character_.
+-   
+
+    STRING
+        the type shall be _character_.
 
 RETURNS
 

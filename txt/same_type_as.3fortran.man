@@ -12,11 +12,17 @@ Query dynamic types for equality.
 
 ARGUMENTS
 
--   A : Shall be an object of extensible declared type or unlimited
-    polymorphic.
+-   
 
--   B : Shall be an object of extensible declared type or unlimited
-    polymorphic.
+    A
+        Shall be an object of extensible declared type or unlimited
+        polymorphic.
+
+-   
+
+    B
+        Shall be an object of extensible declared type or unlimited
+        polymorphic.
 
 RETURNS
 

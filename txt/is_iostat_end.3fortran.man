@@ -19,7 +19,10 @@ parameter of the intrinsic module ISO_FORTRAN_ENV.
 
 ARGUMENTS
 
--   I : An _integer_ status value to test if indicating end of file.
+-   
+
+    I
+        An _integer_ status value to test if indicating end of file.
 
 RETURNS
 

@@ -20,8 +20,11 @@ ACOS(X) computes the arccosine of X (inverse of COS(X)).
 
 ARGUMENTS
 
--   X : Must be type _real_ or _complex_. If the type is _real_, the
-    value must satisfy |X| <= 1.
+-   
+
+    X
+        Must be type _real_ or _complex_. If the type is _real_, the
+        value must satisfy |X| <= 1.
 
 RETURNS
 

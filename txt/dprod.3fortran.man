@@ -16,18 +16,30 @@ the product of X and Y. It is recommended that the processor compute the
 product in double precision, rather than in single precision and then
 converted to double precision.
 
--   X : shall be default real.
+-   
 
--   Y : shall be default real.
+    X
+        shall be default real.
+
+-   
+
+    Y
+        shall be default real.
 
 The setting of compiler options specifying _real_ size can affect this
 function.
 
 ARGUMENTS
 
--   X : Must be of default _real(kind=kind(0.0))_ type
+-   
 
--   Y : Must have the same type and kind parameters as X
+    X
+        Must be of default _real(kind=kind(0.0))_ type
+
+-   
+
+    Y
+        Must have the same type and kind parameters as X
 
 RETURNS
 

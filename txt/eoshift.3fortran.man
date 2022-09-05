@@ -30,13 +30,25 @@ ARRAY.
 
 ARGUMENTS
 
--   ARRAY : May be any type, not scalar.
+-   
 
--   SHIFT : The type shall be _integer_.
+    ARRAY
+        May be any type, not scalar.
 
--   BOUNDARY : Same type as ARRAY.
+-   
 
--   DIM : The type shall be _integer_.
+    SHIFT
+        The type shall be _integer_.
+
+-   
+
+    BOUNDARY
+        Same type as ARRAY.
+
+-   
+
+    DIM
+        The type shall be _integer_.
 
 RETURNS
 

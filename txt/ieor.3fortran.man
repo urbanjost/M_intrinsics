@@ -12,9 +12,15 @@ IEOR returns the bitwise Boolean exclusive-OR of I and J.
 
 ARGUMENTS
 
--   I : The type shall be _integer_.
+-   
 
--   J : The type shall be _integer_, of the same kind as I.
+    I
+        The type shall be _integer_.
+
+-   
+
+    J
+        The type shall be _integer_, of the same kind as I.
 
 RETURNS
 

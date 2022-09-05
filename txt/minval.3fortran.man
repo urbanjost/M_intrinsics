@@ -21,14 +21,22 @@ CHAR(LEN=255) characters if ARRAY is of character type.
 
 ARGUMENTS
 
--   ARRAY : Shall be an array of type _integer_, _real_, or _character_.
+-   
 
--   DIM : (Optional) Shall be a scalar of type _integer_, with a value
-    between one and the rank of ARRAY, inclusive. It may not be an
-    optional dummy argument.
+    ARRAY
+        Shall be an array of type _integer_, _real_, or _character_.
 
--   MASK : Shall be an array of type _logical_, and conformable with
-    ARRAY.
+-   
+
+    DIM
+        (Optional) Shall be a scalar of type _integer_, with a value
+        between one and the rank of ARRAY, inclusive. It may not be an
+        optional dummy argument.
+
+-   
+
+    MASK
+        Shall be an array of type _logical_, and conformable with ARRAY.
 
 RETURNS
 

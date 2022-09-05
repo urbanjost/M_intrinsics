@@ -19,11 +19,17 @@ ATAN(X) computes the arctangent of X.
 
 ARGUMENTS
 
--   X : The type shall be _real_ or _complex_; if Y is present, X shall
-    be _real_.
+-   
 
--   Y : Shall be of the same type and kind as X. If X is zero, Y must
-    not be zero.
+    X
+        The type shall be _real_ or _complex_; if Y is present, X shall
+        be _real_.
+
+-   
+
+    Y
+        Shall be of the same type and kind as X. If X is zero, Y must
+        not be zero.
 
 RETURNS
 

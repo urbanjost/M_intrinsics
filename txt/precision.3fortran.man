@@ -13,7 +13,10 @@ X.
 
 ARGUMENTS
 
--   X : Shall be of type _real_ or _complex_.
+-   
+
+    X
+        Shall be of type _real_ or _complex_.
 
 RETURNS
 

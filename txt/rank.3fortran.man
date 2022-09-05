@@ -12,7 +12,10 @@ RANK(A) returns the rank of a scalar or array data object.
 
 ARGUMENTS
 
--   A : can be of any type
+-   
+
+    A
+        can be of any type
 
 RETURNS
 

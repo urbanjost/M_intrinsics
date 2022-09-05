@@ -18,10 +18,16 @@ DIM.
 
 ARGUMENTS
 
--   ARRAY : Shall be an array of type _real_.
+-   
 
--   DIM : shall be a scalar of type _integer_ with a value in the range
-    from 1 to RANK(ARRAY).
+    ARRAY
+        Shall be an array of type _real_.
+
+-   
+
+    DIM
+        shall be a scalar of type _integer_ with a value in the range
+        from 1 to RANK(ARRAY).
 
 RETURNS
 

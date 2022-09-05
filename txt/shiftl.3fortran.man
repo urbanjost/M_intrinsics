@@ -15,9 +15,15 @@ are lost, and bits shifted in from the right end are set to 0.
 
 ARGUMENTS
 
--   I : The type shall be _integer_.
+-   
 
--   SHIFT : The type shall be _integer_.
+    I
+        The type shall be _integer_.
+
+-   
+
+    SHIFT
+        The type shall be _integer_.
 
 RETURNS
 

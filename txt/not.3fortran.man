@@ -12,7 +12,10 @@ NOT returns the bitwise Boolean inverse of I.
 
 ARGUMENTS
 
--   I : The type shall be _integer_.
+-   
+
+    I
+        The type shall be _integer_.
 
 RETURNS
 

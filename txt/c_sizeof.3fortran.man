@@ -13,7 +13,10 @@ occupies.
 
 ARGUMENTS
 
--   X : The argument shall be an interoperable data entity.
+-   
+
+    X
+        The argument shall be an interoperable data entity.
 
 RETURNS
 

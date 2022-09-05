@@ -16,10 +16,16 @@ CHAR(I, KIND) returns the character represented by the integer I.
 
 ARGUMENTS
 
--   I : The type shall be _integer_.
+-   
 
--   KIND : (Optional) An _integer_ initialization expression indicating
-    the kind parameter of the result.
+    I
+        The type shall be _integer_.
+
+-   
+
+    KIND
+        (Optional) An _integer_ initialization expression indicating the
+        kind parameter of the result.
 
 RETURNS
 

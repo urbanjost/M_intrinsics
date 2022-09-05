@@ -13,22 +13,29 @@ DESCRIPTION
 
 NEW_LINE(C) returns the new-line character.
 
-Case (i) : If A is default _character_ and the character in position 10
-of the ASCII collating sequence is representable in the default
-character set, then the result is ACHAR(10).
+Case (i)
+    If A is default _character_ and the character in position 10 of the
+    ASCII collating sequence is representable in the default character
+    set, then the result is ACHAR(10).
 
-Case (ii) : If A is an ASCII character or an ISO 10646 character, then
-the result is CHAR(10, KIND (A)).
+Case (ii)
+    If A is an ASCII character or an ISO 10646 character, then the
+    result is CHAR(10, KIND (A)).
 
-Case (iii) : Otherwise, the result is a processor-dependent character
-that represents a newline in output to files connected for formatted
-stream output if there is such a character.
+Case (iii)
+    Otherwise, the result is a processor-dependent character that
+    represents a newline in output to files connected for formatted
+    stream output if there is such a character.
 
-Case (iv) : Otherwise, the result is the blank character.
+Case (iv)
+    Otherwise, the result is the blank character.
 
 ARGUMENTS
 
--   C : The argument shall be a scalar or array of the type _character_.
+-   
+
+    C
+        The argument shall be a scalar or array of the type _character_.
 
 RETURNS
 

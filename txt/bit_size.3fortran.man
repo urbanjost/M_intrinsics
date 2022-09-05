@@ -17,9 +17,12 @@ array.
 
 ARGUMENTS
 
--   I : An _integer_ value of any kind to determine the size of in bits.
-    Because only the type of the argument is examined, the argument need
-    not be defined.
+-   
+
+    I
+        An _integer_ value of any kind to determine the size of in bits.
+        Because only the type of the argument is examined, the argument
+        need not be defined.
 
 RETURNS
 

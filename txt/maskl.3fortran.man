@@ -16,10 +16,17 @@ bits set to 0.
 
 ARGUMENTS
 
--   I : Shall be of type _integer_. Its value must be non-negative, and
-    less than or equal to the number of bits for the kind of the result.
+-   
 
--   KIND : Shall be a scalar constant expression of type _integer_.
+    I
+        Shall be of type _integer_. Its value must be non-negative, and
+        less than or equal to the number of bits for the kind of the
+        result.
+
+-   
+
+    KIND
+        Shall be a scalar constant expression of type _integer_.
 
 RETURNS
 

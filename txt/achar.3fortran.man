@@ -29,11 +29,17 @@ example.
 
 ARGUMENTS
 
--   I : the _integer_ value to convert to an ASCII character, in the
-    range 0 to 127.
+-   
 
--   KIND : (optional) an _integer_ initialization expression indicating
-    the kind parameter of the result.
+    I
+        the _integer_ value to convert to an ASCII character, in the
+        range 0 to 127.
+
+-   
+
+    KIND
+        (optional) an _integer_ initialization expression indicating the
+        kind parameter of the result.
 
 RETURNS
 

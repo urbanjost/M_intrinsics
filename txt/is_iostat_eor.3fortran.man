@@ -14,7 +14,10 @@ with the iostat_eor parameter of the intrinsic module ISO_FORTRAN_ENV.
 
 ARGUMENTS
 
--   I : Shall be of the type _integer_.
+-   
+
+    I
+        Shall be of the type _integer_.
 
 RETURNS
 

@@ -12,12 +12,18 @@ IBCLR returns the value of I with the bit at position POS set to zero.
 
 ARGUMENTS
 
--   I : The type shall be _integer_.
+-   
 
--   POS : The type shall be _integer_. A value of zero refers to the
-    least significant bit. POS is an INTENT(IN) scalar or array of type
-    _integer_. The value of POS must be within the range zero to
-    (BIT_SIZE(I)-1).
+    I
+        The type shall be _integer_.
+
+-   
+
+    POS
+        The type shall be _integer_. A value of zero refers to the least
+        significant bit. POS is an INTENT(IN) scalar or array of type
+        _integer_. The value of POS must be within the range zero to
+        (BIT_SIZE(I)-1).
 
 RETURNS
 

@@ -22,10 +22,16 @@ it picks the whole number at or to the left of the value on the scale
 
 ARGUMENTS
 
--   A : The type shall be _real_.
+-   
 
--   KIND : (Optional) A scalar _integer_ constant initialization
-    expression indicating the kind parameter of the result.
+    A
+        The type shall be _real_.
+
+-   
+
+    KIND
+        (Optional) A scalar _integer_ constant initialization expression
+        indicating the kind parameter of the result.
 
 RETURNS
 

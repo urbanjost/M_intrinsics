@@ -92,7 +92,8 @@ export WHERE=../docs
 export MANPATH=../man
 #----------------------------------------------------------------------------------------------------------------------------------E
 # index skipping anything without '[FORTRAN' in the description
-export FILTER="grep '\[FORTRAN.*\]'"
+export FILTER="grep '\[.*\].*\]'"
+export FILTER="cat"
 for SUBDIR in 3 5 7
 do
    echo "making HTML index for Fortran Intrinsics for section $SUBDIR in $WHERE/man${SUBDIR}i.html" # 1>&2

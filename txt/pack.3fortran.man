@@ -25,16 +25,25 @@ VECTOR.
 
 ARGUMENTS
 
--   ARRAY : Shall be an array of any type.
+-   
 
--   MASK : Shall be an array of type _logical_ and of the same size as
-    ARRAY. Alternatively, it may be a _logical_ scalar.
+    ARRAY
+        Shall be an array of any type.
 
--   VECTOR : (Optional) shall be an array of the same type as ARRAY and
-    of rank one. If present, the number of elements in VECTOR shall be
-    equal to or greater than the number of true elements in MASK. If
-    MASK is scalar, the number of elements in VECTOR shall be equal to
-    or greater than the number of elements in ARRAY.
+-   
+
+    MASK
+        Shall be an array of type _logical_ and of the same size as
+        ARRAY. Alternatively, it may be a _logical_ scalar.
+
+-   
+
+    VECTOR
+        (Optional) shall be an array of the same type as ARRAY and of
+        rank one. If present, the number of elements in VECTOR shall be
+        equal to or greater than the number of true elements in MASK. If
+        MASK is scalar, the number of elements in VECTOR shall be equal
+        to or greater than the number of elements in ARRAY.
 
 RETURNS
 

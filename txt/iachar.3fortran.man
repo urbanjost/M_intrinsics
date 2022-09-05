@@ -13,10 +13,16 @@ character position of C.
 
 ARGUMENTS
 
--   C : Shall be a scalar _character_, with _intent(in)_
+-   
 
--   KIND : (Optional) An _integer_ initialization expression indicating
-    the kind parameter of the result.
+    C
+        Shall be a scalar _character_, with _intent(in)_
+
+-   
+
+    KIND
+        (Optional) An _integer_ initialization expression indicating the
+        kind parameter of the result.
 
 RETURNS
 

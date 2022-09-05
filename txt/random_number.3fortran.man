@@ -13,7 +13,10 @@ from the uniform distribution over the range 0 <= x < 1.
 
 ARGUMENTS
 
--   HARVEST : Shall be a scalar or an array of type _real_.
+-   
+
+    HARVEST
+        Shall be a scalar or an array of type _real_.
 
 EXAMPLES
 

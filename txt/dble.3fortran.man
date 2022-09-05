@@ -19,7 +19,10 @@ DBLE(A) Converts A to double precision _real_ type.
 
 ARGUMENTS
 
--   A : The type shall be _integer_, _real_, or _complex_.
+-   
+
+    A
+        The type shall be _integer_, _real_, or _complex_.
 
 RETURNS
 

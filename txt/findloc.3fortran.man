@@ -30,23 +30,39 @@ returned is the last such element, taken in array element order.
 
 OPTIONS
 
--   ARRAY : shall be an array of intrinsic type.
+-   
 
--   VALUE : shall be scalar and in type conformance with ARRAY, as
-    specified in Table 7.3 for relational intrinsic operations
-    7.1.5.5.2).
+    ARRAY
+        shall be an array of intrinsic type.
 
--   DIM : shall be an integer scalar with a value in the range 1 DIM n,
-    where n is the rank of ARRAY. The corresponding actual argument
-    shall not be an optional dummy argument.
+-   
 
--   MASK : (optional) shall be of type logical and shall be conformable
-    with ARRAY.
+    VALUE
+        shall be scalar and in type conformance with ARRAY, as specified
+        in Table 7.3 for relational intrinsic operations 7.1.5.5.2).
 
--   KIND : (optional) shall be a scalar integer initialization
-    expression.
+-   
 
--   BACK : (optional) shall be a logical scalar.
+    DIM
+        shall be an integer scalar with a value in the range 1 DIM n,
+        where n is the rank of ARRAY. The corresponding actual argument
+        shall not be an optional dummy argument.
+
+-   
+
+    MASK
+        (optional) shall be of type logical and shall be conformable
+        with ARRAY.
+
+-   
+
+    KIND
+        (optional) shall be a scalar integer initialization expression.
+
+-   
+
+    BACK
+        (optional) shall be a logical scalar.
 
 RETURNS
 

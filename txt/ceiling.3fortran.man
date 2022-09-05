@@ -16,10 +16,16 @@ CEILING(A) returns the least integer greater than or equal to A.
 
 ARGUMENTS
 
--   A : The type shall be _real_.
+-   
 
--   KIND : An _integer_ initialization expression indicating the kind
-    parameter of the result.
+    A
+        The type shall be _real_.
+
+-   
+
+    KIND
+        An _integer_ initialization expression indicating the kind
+        parameter of the result.
 
 RETURNS
 

@@ -24,17 +24,26 @@ necessary.
 
 RETURNS
 
--   COMMAND : Shall be of type _character_ and of default kind. If
-    COMMAND is present, stores the entire command line that was used to
-    invoke the program in COMMAND.
+-   
 
--   LENGTH : Shall be of type _integer_ and of default kind. If LENGTH
-    is present, it is assigned the length of the command line.
+    COMMAND
+        Shall be of type _character_ and of default kind. If COMMAND is
+        present, stores the entire command line that was used to invoke
+        the program in COMMAND.
 
--   STATUS : Shall be of type _integer_ and of default kind. If STATUS
-    is present, it is assigned 0 upon success of the command, -1 if
-    COMMAND is too short to store the command line, or a positive value
-    in case of an error.
+-   
+
+    LENGTH
+        Shall be of type _integer_ and of default kind. If LENGTH is
+        present, it is assigned the length of the command line.
+
+-   
+
+    STATUS
+        Shall be of type _integer_ and of default kind. If STATUS is
+        present, it is assigned 0 upon success of the command, -1 if
+        COMMAND is too short to store the command line, or a positive
+        value in case of an error.
 
 EXAMPLES
 

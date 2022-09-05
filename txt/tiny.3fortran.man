@@ -17,7 +17,10 @@ kind of X.
 
 ARGUMENTS
 
--   X : Shall be of type _real_.
+-   
+
+    X
+        Shall be of type _real_.
 
 RETURNS
 

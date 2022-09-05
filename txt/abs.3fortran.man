@@ -31,8 +31,11 @@ values (_see below_).
 
 ARGUMENTS
 
--   A : the type of the argument shall be an _integer_, _real_, or
-    _complex_ scalar or array.
+-   
+
+    A
+        the type of the argument shall be an _integer_, _real_, or
+        _complex_ scalar or array.
 
 RETURNS
 

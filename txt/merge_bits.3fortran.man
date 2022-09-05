@@ -38,14 +38,23 @@ so the BOZ values must be in the range of the type of the result.
 
 ARGUMENTS
 
--   I : value to select bits from when the associated bit in the mask is
-    1.
+-   
 
--   J : value to select bits from when the associated bit in the mask is
-    0.
+    I
+        value to select bits from when the associated bit in the mask is
+        1.
 
--   MASK : a value whose bits are used as a mask to select bits from I
-    and J
+-   
+
+    J
+        value to select bits from when the associated bit in the mask is
+        0.
+
+-   
+
+    MASK
+        a value whose bits are used as a mask to select bits from I and
+        J
 
 RETURNS
 

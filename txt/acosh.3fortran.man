@@ -20,7 +20,10 @@ ACOSH(X) computes the inverse hyperbolic cosine of X in radians.
 
 ARGUMENTS
 
--   X : the type shall be _real_ or _complex_.
+-   
+
+    X
+        the type shall be _real_ or _complex_.
 
 RETURNS
 

@@ -16,7 +16,10 @@ AIMAG(Z) yields the imaginary part of complex argument Z.
 
 ARGUMENTS
 
--   Z : The type of the argument shall be _complex_.
+-   
+
+    Z
+        The type of the argument shall be _complex_.
 
 RETURNS
 

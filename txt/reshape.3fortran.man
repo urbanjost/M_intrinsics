@@ -14,17 +14,29 @@ ORDER.
 
 ARGUMENTS
 
--   SOURCE : an array of any type.
+-   
 
--   SHAPE : an array of rank one and type _integer_. Its values must be
-    positive or zero.
+    SOURCE
+        an array of any type.
 
--   PAD : (Optional) an array of the same type as SOURCE.
+-   
 
--   ORDER : (Optional) an array of type _integer_ and the same shape as
-    SHAPE. Its values shall be a permutation of the numbers from 1 to n,
-    where n is the size of SHAPE. If ORDER is absent, the natural
-    ordering shall be assumed.
+    SHAPE
+        an array of rank one and type _integer_. Its values must be
+        positive or zero.
+
+-   
+
+    PAD
+        (Optional) an array of the same type as SOURCE.
+
+-   
+
+    ORDER
+        (Optional) an array of type _integer_ and the same shape as
+        SHAPE. Its values shall be a permutation of the numbers from 1
+        to n, where n is the size of SHAPE. If ORDER is absent, the
+        natural ordering shall be assumed.
 
 RETURNS
 

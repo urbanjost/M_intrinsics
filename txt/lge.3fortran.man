@@ -22,9 +22,15 @@ use the ASCII ordering.
 
 ARGUMENTS
 
--   STRING_A : Shall be of default _character_ type.
+-   
 
--   STRING_B : Shall be of default _character_ type.
+    STRING_A
+        Shall be of default _character_ type.
+
+-   
+
+    STRING_B
+        Shall be of default _character_ type.
 
 RETURNS
 

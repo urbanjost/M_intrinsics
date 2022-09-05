@@ -13,13 +13,22 @@ Returns the cosubscript for this image.
 
 ARGUMENTS
 
--   DISTANCE : (optional, INTENT(IN)) Nonnegative scalar integer (not
-    permitted together with COARRAY).
+-   
 
--   COARRAY : Coarray of any type (optional; if DIM present, required).
+    DISTANCE
+        (optional, INTENT(IN)) Nonnegative scalar integer (not permitted
+        together with COARRAY).
 
--   DIM : default integer scalar (optional). If present, DIM shall be
-    between one and the corank of COARRAY.
+-   
+
+    COARRAY
+        Coarray of any type (optional; if DIM present, required).
+
+-   
+
+    DIM
+        default integer scalar (optional). If present, DIM shall be
+        between one and the corank of COARRAY.
 
 RETURNS
 

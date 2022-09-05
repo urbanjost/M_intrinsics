@@ -16,13 +16,22 @@ assigned a positive value and COUNT is assigned the value -1.
 
 ARGUMENTS
 
--   EVENT : (intent(in)) Scalar of type event_type, defined in
-    iso_fortran_env; shall not be coindexed.
+-   
 
--   COUNT : (intent(out))Scalar integer with at least the precision of
-    default _integer_.
+    EVENT
+        (intent(in)) Scalar of type event_type, defined in
+        iso_fortran_env; shall not be coindexed.
 
--   STAT : (OPTIONAL) Scalar default-kind _integer_ variable.
+-   
+
+    COUNT
+        (intent(out))Scalar integer with at least the precision of
+        default _integer_.
+
+-   
+
+    STAT
+        (OPTIONAL) Scalar default-kind _integer_ variable.
 
 EXAMPLES
 

@@ -21,13 +21,22 @@ each element of the result has a value equal to SOURCE.
 
 ARGUMENTS
 
--   SOURCE : Shall be a scalar or an array of any type and a rank less
-    than fifteen.
+-   
 
--   DIM : Shall be a scalar of type _integer_ with a value in the range
-    from 1 to N+1, where N equals the rank of SOURCE.
+    SOURCE
+        Shall be a scalar or an array of any type and a rank less than
+        fifteen.
 
--   NCOPIES : Shall be a scalar of type _integer_.
+-   
+
+    DIM
+        Shall be a scalar of type _integer_ with a value in the range
+        from 1 to N+1, where N equals the rank of SOURCE.
+
+-   
+
+    NCOPIES
+        Shall be a scalar of type _integer_.
 
 RETURNS
 

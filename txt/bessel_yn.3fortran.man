@@ -18,14 +18,26 @@ functions of the first kind of the orders N1 to N2.
 
 ARGUMENTS
 
--   N : Shall be a scalar or an array of type _integer_.
+-   
 
--   N1 : Shall be a non-negative scalar of type _integer_.
+    N
+        Shall be a scalar or an array of type _integer_.
 
--   N2 : Shall be a non-negative scalar of type _integer_.
+-   
 
--   X : Shall be a scalar or an array of type _real_; for BESSEL_YN(N1,
-    N2, X) it shall be scalar.
+    N1
+        Shall be a non-negative scalar of type _integer_.
+
+-   
+
+    N2
+        Shall be a non-negative scalar of type _integer_.
+
+-   
+
+    X
+        Shall be a scalar or an array of type _real_; for BESSEL_YN(N1,
+        N2, X) it shall be scalar.
 
 RETURNS
 

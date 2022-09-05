@@ -38,8 +38,11 @@ have a valid square root.
 
 ARGUMENTS
 
--   X : If X is real its value must be greater than or equal to zero.
-    The type shall be _real_ or _complex_.
+-   
+
+    X
+        If X is real its value must be greater than or equal to zero.
+        The type shall be _real_ or _complex_.
 
 RETURNS
 

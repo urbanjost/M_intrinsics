@@ -2,8 +2,8 @@
 ! https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html  Sphinx uses reST.
 
 cd md
-MD=markdown_mmd
 MD=commonmark
+MD=markdown_mmd
 for NAME in *.md
 do
    SHORTNAME=$(basename $NAME .md)

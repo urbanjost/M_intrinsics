@@ -12,8 +12,11 @@ KIND(X) returns the kind value of the entity X.
 
 ARGUMENTS
 
--   X : Shall be of type _logical_, _integer_, _real_, _complex_ or
-    _character_.
+-   
+
+    X
+        Shall be of type _logical_, _integer_, _real_, _complex_ or
+        _character_.
 
 RETURNS
 

@@ -19,10 +19,16 @@ To convert from Cartesian Coordinates (X,Y) to polar coordinates
 
 ARGUMENTS
 
--   Y : The type shall be _real_.
+-   
 
--   X : The type and kind type parameter shall be the same as Y. If Y is
-    zero, then X must be nonzero.
+    Y
+        The type shall be _real_.
+
+-   
+
+    X
+        The type and kind type parameter shall be the same as Y. If Y is
+        zero, then X must be nonzero.
 
 RETURNS
 

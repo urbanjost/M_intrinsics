@@ -14,9 +14,15 @@ IOR returns the bit-wise Boolean inclusive-OR of I and J.
 
 ARGUMENTS
 
--   I : an _integer_ scalar or array.
+-   
 
--   J : _integer_ scalar or array, of the same kind as I.
+    I
+        an _integer_ scalar or array.
+
+-   
+
+    J
+        _integer_ scalar or array, of the same kind as I.
 
 RETURNS
 

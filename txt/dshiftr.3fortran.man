@@ -14,11 +14,20 @@ are the leftmost bits of J.
 
 ARGUMENTS
 
--   I : Shall be of type _integer_.
+-   
 
--   J : Shall be of type _integer_, and of the same kind as I.
+    I
+        Shall be of type _integer_.
 
--   SHIFT : Shall be of type _integer_.
+-   
+
+    J
+        Shall be of type _integer_, and of the same kind as I.
+
+-   
+
+    SHIFT
+        Shall be of type _integer_.
 
 RETURNS
 

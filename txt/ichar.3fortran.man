@@ -22,10 +22,16 @@ See IACHAR(3) for specifically working with the ASCII character set.
 
 ARGUMENTS
 
--   C : Shall be a scalar _character_, with INTENT(IN)
+-   
 
--   KIND : (Optional) An _integer_ initialization expression indicating
-    the kind parameter of the result.
+    C
+        Shall be a scalar _character_, with INTENT(IN)
+
+-   
+
+    KIND
+        (Optional) An _integer_ initialization expression indicating the
+        kind parameter of the result.
 
 RETURNS
 

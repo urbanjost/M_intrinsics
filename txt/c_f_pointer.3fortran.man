@@ -13,13 +13,22 @@ to the Fortran pointer FPTR and specify its shape.
 
 ARGUMENTS
 
--   CPTR : scalar of the type c_ptr. It is INTENT(IN).
+-   
 
--   FPTR : pointer interoperable with CPTR. it is INTENT(OUT).
+    CPTR
+        scalar of the type c_ptr. It is INTENT(IN).
 
--   SHAPE : (Optional) Rank-one array of type _integer_ with INTENT(IN)
-    . It shall be present if and only if FPTR is an array. The size must
-    be equal to the rank of FPTR.
+-   
+
+    FPTR
+        pointer interoperable with CPTR. it is INTENT(OUT).
+
+-   
+
+    SHAPE
+        (Optional) Rank-one array of type _integer_ with INTENT(IN) . It
+        shall be present if and only if FPTR is an array. The size must
+        be equal to the rank of FPTR.
 
 EXAMPLES
 

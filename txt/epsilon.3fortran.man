@@ -26,7 +26,10 @@ not change.
 
 ARGUMENTS
 
--   X : The type shall be _real_.
+-   
+
+    X
+        The type shall be _real_.
 
 RETURNS
 

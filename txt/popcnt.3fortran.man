@@ -13,7 +13,10 @@ _integer_.
 
 ARGUMENTS
 
--   I : Shall be of type _integer_.
+-   
+
+    I
+        Shall be of type _integer_.
 
 RETURNS
 

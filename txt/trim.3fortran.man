@@ -13,7 +13,10 @@ Removes trailing blank characters of a string.
 
 ARGUMENTS
 
--   STRING : Shall be a scalar of type _character_.
+-   
+
+    STRING
+        Shall be a scalar of type _character_.
 
 RETURNS
 

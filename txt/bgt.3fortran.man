@@ -12,10 +12,16 @@ Determines whether an integer is bitwise greater than another.
 
 ARGUMENTS
 
--   I : Shall be of _integer_ type or a BOZ literal constant.
+-   
 
--   J : Shall be of _integer_ type, and of the same kind as I; or a BOZ
-    literal constant.
+    I
+        Shall be of _integer_ type or a BOZ literal constant.
+
+-   
+
+    J
+        Shall be of _integer_ type, and of the same kind as I; or a BOZ
+        literal constant.
 
 RETURNS
 

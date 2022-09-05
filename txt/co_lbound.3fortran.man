@@ -13,12 +13,21 @@ the DIM codimension.
 
 ARGUMENTS
 
--   ARRAY : Shall be an coarray, of any type.
+-   
 
--   DIM : (Optional) Shall be a scalar _integer_.
+    ARRAY
+        Shall be an coarray, of any type.
 
--   KIND : (Optional) An _integer_ initialization expression indicating
-    the kind parameter of the result.
+-   
+
+    DIM
+        (Optional) Shall be a scalar _integer_.
+
+-   
+
+    KIND
+        (Optional) An _integer_ initialization expression indicating the
+        kind parameter of the result.
 
 RETURNS
 

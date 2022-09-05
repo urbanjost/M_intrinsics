@@ -20,20 +20,35 @@ SUBSTRING is not present in STRING, zero is returned.
 
 ARGUMENTS
 
--   STRING : string to be searched
+-   
 
--   SUBSTRING : string to attempt to locate in STRING
+    STRING
+        string to be searched
 
--   BACK : If the BACK argument is present and true, the return value is
-    the start of the rightmost occurrence rather than the leftmost.
+-   
 
--   KIND : An _integer_ initialization expression indicating the kind
-    parameter of the result.
+    SUBSTRING
+        string to attempt to locate in STRING
+
+-   
+
+    BACK
+        If the BACK argument is present and true, the return value is
+        the start of the rightmost occurrence rather than the leftmost.
+
+-   
+
+    KIND
+        An _integer_ initialization expression indicating the kind
+        parameter of the result.
 
 RETURNS
 
--   START : The return value is of type _integer_ and of kind KIND. If
-    KIND is absent, the return value is of default integer kind.
+-   
+
+    START
+        The return value is of type _integer_ and of kind KIND. If KIND
+        is absent, the return value is of default integer kind.
 
 EXAMPLES
 

@@ -17,11 +17,20 @@ to another.
 
 ARGUMENTS
 
--   SOURCE : Shall be a scalar or an array of any type.
+-   
 
--   MOLD : Shall be a scalar or an array of any type.
+    SOURCE
+        Shall be a scalar or an array of any type.
 
--   SIZE : (Optional) shall be a scalar of type _integer_.
+-   
+
+    MOLD
+        Shall be a scalar or an array of any type.
+
+-   
+
+    SIZE
+        (Optional) shall be a scalar of type _integer_.
 
 RETURNS
 

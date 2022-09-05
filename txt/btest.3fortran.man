@@ -19,10 +19,16 @@ BTEST(I,POS) returns logical .TRUE. if the bit at POS in I is set.
 
 ARGUMENTS
 
--   I : The type shall be _integer_.
+-   
 
--   POS : The bit position to query. it must be a valid position for the
-    value I; ie. 0 <= POS <= BIT_SIZE(I) .
+    I
+        The type shall be _integer_.
+
+-   
+
+    POS
+        The bit position to query. it must be a valid position for the
+        value I; ie. 0 <= POS <= BIT_SIZE(I) .
 
     A value of zero refers to the least significant bit.
 

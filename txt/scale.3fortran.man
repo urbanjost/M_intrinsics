@@ -16,9 +16,15 @@ SCALE(X,I) returns x * RADIX(X)**I.
 
 ARGUMENTS
 
--   X : The type of the argument shall be a _real_.
+-   
 
--   I : The type of the argument shall be a _integer_.
+    X
+        The type of the argument shall be a _real_.
+
+-   
+
+    I
+        The type of the argument shall be a _integer_.
 
 RETURNS
 

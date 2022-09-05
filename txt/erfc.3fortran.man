@@ -20,11 +20,14 @@ is subtracted from 1.
 ERFC(X) is defined as
 
 $$ \text{erfc}(x) = 1 - \text{erf}(x) = 1 - \frac{2}{\sqrt{\pi}}
-\int_x^{\infty} e^{-t^2} dt. $$
+\int_x^{\infty} e^({-t)2} dt. $$
 
 ARGUMENTS
 
--   X : The type shall be _real_.
+-   
+
+    X
+        The type shall be _real_.
 
 RETURNS
 

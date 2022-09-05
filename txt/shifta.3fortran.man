@@ -17,9 +17,15 @@ is the sign bit.
 
 ARGUMENTS
 
--   I : The type shall be _integer_.
+-   
 
--   SHIFT : The type shall be _integer_.
+    I
+        The type shall be _integer_.
+
+-   
+
+    SHIFT
+        The type shall be _integer_.
 
 RETURNS
 

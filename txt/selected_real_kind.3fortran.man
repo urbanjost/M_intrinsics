@@ -14,11 +14,20 @@ least R, and with a radix of RADIX.
 
 ARGUMENTS
 
--   P : (Optional) shall be a scalar and of type _integer_.
+-   
 
--   R : (Optional) shall be a scalar and of type _integer_.
+    P
+        (Optional) shall be a scalar and of type _integer_.
 
--   RADIX : (Optional) shall be a scalar and of type _integer_.
+-   
+
+    R
+        (Optional) shall be a scalar and of type _integer_.
+
+-   
+
+    RADIX
+        (Optional) shall be a scalar and of type _integer_.
 
 Before FORTRAN 2008, at least one of the arguments R or P shall be
 present; since FORTRAN 2008, they are assumed to be zero if absent.

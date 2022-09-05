@@ -25,10 +25,16 @@ only the length (not the content) of STRING is needed.
 
 ARGUMENTS
 
--   STRING : Shall be a scalar or array of type _character_.
+-   
 
--   KIND : An _integer_ initialization expression indicating the kind
-    parameter of the result.
+    STRING
+        Shall be a scalar or array of type _character_.
+
+-   
+
+    KIND
+        An _integer_ initialization expression indicating the kind
+        parameter of the result.
 
 RETURNS
 
@@ -97,7 +103,6 @@ Sample program
     end program demo_len
 
 Results:
-
 
 SEE ALSO
 

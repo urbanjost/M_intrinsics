@@ -15,7 +15,10 @@ selected_int_kind returns -1.
 
 ARGUMENTS
 
--   R : Shall be a scalar and of type _integer_.
+-   
+
+    R
+        Shall be a scalar and of type _integer_.
 
 EXAMPLES
 

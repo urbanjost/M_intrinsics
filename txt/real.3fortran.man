@@ -12,10 +12,16 @@ REAL(X, KIND) converts its argument X to a real type.
 
 ARGUMENTS
 
--   X : Shall be _integer_, _real_, or _complex_.
+-   
 
--   KIND : (Optional) An _integer_ initialization expression indicating
-    the kind parameter of the result.
+    X
+        Shall be _integer_, _real_, or _complex_.
+
+-   
+
+    KIND
+        (Optional) An _integer_ initialization expression indicating the
+        kind parameter of the result.
 
 RETURNS
 

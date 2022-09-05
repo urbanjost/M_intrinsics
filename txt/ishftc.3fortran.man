@@ -18,12 +18,21 @@ it is taken to be equivalent to BIT_SIZE(I).
 
 ARGUMENTS
 
--   I : The type shall be _integer_.
+-   
 
--   SHIFT : The type shall be _integer_.
+    I
+        The type shall be _integer_.
 
--   SIZE : (Optional) The type shall be _integer_; the value must be
-    greater than zero and less than or equal to BIT_SIZE(i).
+-   
+
+    SHIFT
+        The type shall be _integer_.
+
+-   
+
+    SIZE
+        (Optional) The type shall be _integer_; the value must be
+        greater than zero and less than or equal to BIT_SIZE(i).
 
 RETURNS
 

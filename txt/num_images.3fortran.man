@@ -12,9 +12,15 @@ Returns the number of images.
 
 ARGUMENTS
 
--   DISTANCE : (optional, INTENT(IN)) Nonnegative scalar integer
+-   
 
--   FAILED : (optional, INTENT(IN)) Scalar logical expression
+    DISTANCE
+        (optional, INTENT(IN)) Nonnegative scalar integer
+
+-   
+
+    FAILED
+        (optional, INTENT(IN)) Scalar logical expression
 
 RETURNS
 

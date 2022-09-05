@@ -18,11 +18,17 @@ is ANY(VECTOR_A .AND. VECTOR_B).
 
 ARGUMENTS
 
--   VECTOR_A : The type shall be numeric or _logical_, rank 1.
+-   
 
--   VECTOR_B : The type shall be numeric if vector_a is of numeric type
-    or _logical_ if vector_a is of type _logical_. vector_b shall be a
-    rank-one array.
+    VECTOR_A
+        The type shall be numeric or _logical_, rank 1.
+
+-   
+
+    VECTOR_B
+        The type shall be numeric if vector_a is of numeric type or
+        _logical_ if vector_a is of type _logical_. vector_b shall be a
+        rank-one array.
 
 RETURNS
 

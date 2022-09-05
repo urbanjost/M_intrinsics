@@ -12,7 +12,10 @@ TAN(X) computes the tangent of X.
 
 ARGUMENTS
 
--   X : The type shall be _real_ or _complex_.
+-   
+
+    X
+        The type shall be _real_ or _complex_.
 
 RETURNS
 

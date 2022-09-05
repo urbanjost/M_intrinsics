@@ -14,9 +14,15 @@ CPTR to the Fortran procedure pointer FPTR.
 
 ARGUMENTS
 
--   CPTR : scalar of the type c_funptr. It is INTENT(IN).
+-   
 
--   FPTR : procedure pointer interoperable with CPTR. It is INTENT(OUT).
+    CPTR
+        scalar of the type c_funptr. It is INTENT(IN).
+
+-   
+
+    FPTR
+        procedure pointer interoperable with CPTR. It is INTENT(OUT).
 
 EXAMPLES
 

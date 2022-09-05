@@ -17,9 +17,15 @@ ARRAY and SCALAR, respectively.
 
 ARGUMENTS
 
--   ARRAY : the argument shall be an _allocatable_ array.
+-   
 
--   SCALAR : the argument shall be an _allocatable_ scalar.
+    ARRAY
+        the argument shall be an _allocatable_ array.
+
+-   
+
+    SCALAR
+        the argument shall be an _allocatable_ scalar.
 
 RETURNS
 

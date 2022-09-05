@@ -13,9 +13,15 @@ c_ptr_1 or if c_ptr_1 is associated with the target c_ptr_2.
 
 ARGUMENTS
 
--   C_PTR_1 : Scalar of the type c_ptr or c_funptr.
+-   
 
--   C_PTR_2 : (Optional) Scalar of the same type as c_ptr_1.
+    C_PTR_1
+        Scalar of the type c_ptr or c_funptr.
+
+-   
+
+    C_PTR_2
+        (Optional) Scalar of the same type as c_ptr_1.
 
 RETURNS
 

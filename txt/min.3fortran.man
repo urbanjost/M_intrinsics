@@ -12,9 +12,15 @@ Returns the argument with the smallest (most negative) value.
 
 ARGUMENTS
 
--   A1 : The type shall be _integer_ or _real_.
+-   
 
--   A2, A3, ``` : An expression of the same type and kind as A1.
+    A1
+        The type shall be _integer_ or _real_.
+
+-   
+
+    A2, A3, ```
+        An expression of the same type and kind as A1.
 
 RETURNS
 

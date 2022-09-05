@@ -137,26 +137,30 @@ shall result in a different sequence of pseudorandom numbers.
 
 ARGUMENTS
 
--   **repeatable : If .true., the seed is set to a processor-dependent
-    value that is the same each time RANDOM_INIT(3F) is called from the
-    same program execution (or the same image???).
+-   
+
+    **repeatable
+        If .true., the seed is set to a processor-dependent value that
+        is the same each time RANDOM_INIT(3F) is called from the same
+        program execution (or the same image???).
 
     The sequence of random numbers is different for repeated execution
     of the program.
 
     If it is .false., the seed is set to a processor-dependent value.
 
-    : when .true. init the seed used by RANDOM_NUMBER differently on
-    every invoking image.
+        when .true. init the seed used by RANDOM_NUMBER differently on
+        every invoking image.
 
     If it is .true., the seed is set to a processor-dependent value that
     is the same each time random_init is called from the same image.
 
 -   IMAGE_DISTINCT
 
-    image_distinct : If .true., the seed is set to a processor-dependent
-    value that is distinct from the seed set by a call to random_init in
-    another image.
+    image_distinct
+        If .true., the seed is set to a processor-dependent value that
+        is distinct from the seed set by a call to random_init in
+        another image.
 
     If it is .false., the seed is set to a value that does depend which
     image called random_init.

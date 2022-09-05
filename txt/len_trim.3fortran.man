@@ -18,11 +18,17 @@ Returns the length of a character string, ignoring any trailing blanks.
 
 ARGUMENTS
 
--   STRING : The input string whose length is to be measured. Shall be a
-    scalar of type _character_
+-   
 
--   KIND : (Optional) An _integer_ initialization expression indicating
-    the kind parameter of the result.
+    STRING
+        The input string whose length is to be measured. Shall be a
+        scalar of type _character_
+
+-   
+
+    KIND
+        (Optional) An _integer_ initialization expression indicating the
+        kind parameter of the result.
 
 RETURNS
 

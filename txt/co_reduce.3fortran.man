@@ -24,19 +24,25 @@ the occurred error.
 
 ARGUMENTS
 
--   A : is an INTENT(INOUT) argument and shall be nonpolymorphic. If it
-    is allocatable, it shall be allocated; if it is a pointer, it shall
-    be associated. A shall have the same type and type parameters on all
-    images of the team; if it is an array, it shall have the same shape
-    on all images.
+-   
 
--   OPERATION : pure function with two scalar nonallocatable arguments,
-    which shall be nonpolymorphic and have the same type and type
-    parameters as A. The function shall return a nonallocatable scalar
-    of the same type and type parameters as A. The function shall be the
-    same on all images and with regards to the arguments mathematically
-    commutative and associative. Note that OPERATION may not be an
-    elemental
+    A
+        is an INTENT(INOUT) argument and shall be nonpolymorphic. If it
+        is allocatable, it shall be allocated; if it is a pointer, it
+        shall be associated. A shall have the same type and type
+        parameters on all images of the team; if it is an array, it
+        shall have the same shape on all images.
+
+-   
+
+    OPERATION
+        pure function with two scalar nonallocatable arguments, which
+        shall be nonpolymorphic and have the same type and type
+        parameters as A. The function shall return a nonallocatable
+        scalar of the same type and type parameters as A. The function
+        shall be the same on all images and with regards to the
+        arguments mathematically commutative and associative. Note that
+        OPERATION may not be an elemental
 
     -   FUNCTION, UNLESS IT IS AN INTRINSIC FUNCTION. result_image
 
@@ -44,9 +50,15 @@ ARGUMENTS
         have the same the same value on all images and refer to an image
         of the current team.
 
--   STAT : (optional) a scalar integer variable
+-   
 
--   ERRMSG : (optional) a scalar character variable
+    STAT
+        (optional) a scalar integer variable
+
+-   
+
+    ERRMSG
+        (optional) a scalar character variable
 
 EXAMPLES
 

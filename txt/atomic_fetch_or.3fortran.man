@@ -20,15 +20,27 @@ the value stat_failed_image.
 
 ARGUMENTS
 
--   ATOM : Scalar coarray or coindexed variable of integer type with
-    atomic_int_kind kind.
+-   
 
--   VALUE : Scalar of the same type as ATOM. If the kind is different,
-    the value is converted to the kind of ATOM.
+    ATOM
+        Scalar coarray or coindexed variable of integer type with
+        atomic_int_kind kind.
 
--   OLD : Scalar of the same type and kind as ATOM.
+-   
 
--   STAT : (optional) Scalar default-kind integer variable.
+    VALUE
+        Scalar of the same type as ATOM. If the kind is different, the
+        value is converted to the kind of ATOM.
+
+-   
+
+    OLD
+        Scalar of the same type and kind as ATOM.
+
+-   
+
+    STAT
+        (optional) Scalar default-kind integer variable.
 
 EXAMPLES
 
