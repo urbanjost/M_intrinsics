@@ -4,4 +4,5 @@ HOLD/
 src/source
 syntax.
 man/*
+archive/*
 WORKING_ON/*
