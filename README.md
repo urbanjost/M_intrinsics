@@ -75,7 +75,8 @@ Using pandoc(1) they are then converted to flat-text files which are
      and [index of statements](https://urbanjost.github.io/M_intrinsics/index7.html)
    - These are collected into a single document using javascript:
      [BOOK_FORTRAN](https://urbanjost.github.io/M_intrinsics/BOOK_FORTRAN.html).
-   - All pages in a single [slidy HTML file](docs/intrinsics_slidy.html)
+   - All pages in a single [slidy HTML file](https://urbanjost.github.io/M_intrinsics/intrinsics_slidy.html)
+   - [documentation shortcuts](https://urbanjost.github.io/M_intrinsics)
 
 * the example programs are extracted into the example/ directory.
 
