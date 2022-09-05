@@ -97,7 +97,7 @@ is as follows:
    then each image accesses a repeatable distinct sequence of random
    numbers. Technically, the Standard states that a distinct seed is
    used in each image (with the tacit assumption that the sequences
-   are distinct, but this is not guaranteed). Also, the repeatibility
+   are distinct, but this is not guaranteed). Also, the repeatability
    is guaranteed for the currently executing image. Rerunning the
    executable does not require the same distinct seeds, but I have
    chose to use the same seeds.

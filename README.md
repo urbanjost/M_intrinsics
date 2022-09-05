@@ -46,7 +46,7 @@ The man-pages are available as archive files:
    - [manpages.zip](docs/manpages.tgz)
 
 A single-file version of the CLI program fpm-man(1) is in 
-(fman.f90)[https://raw.githubusercontent.com/urbanjost/M_intrinsics/master/standalone/fpm-man.f90).
+(fman.f90)[https://raw.githubusercontent.com/urbanjost/M_intrinsics/master/standalone/fman.f90).
 
 ## PROJECT INFORMATION
 
