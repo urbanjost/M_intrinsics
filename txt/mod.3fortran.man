@@ -12,16 +12,10 @@ MOD(a,p) computes the remainder of the division of A by P.
 
 ARGUMENTS
 
--   
+-   A : Shall be a scalar of type integer or real.
 
-    A
-        Shall be a scalar of type integer or real.
-
--   
-
-    P
-        Shall be a scalar of the same type and kind as A and not equal
-        to zero.
+-   P : Shall be a scalar of the same type and kind as A and not equal
+    to zero.
 
 RETURNS
 

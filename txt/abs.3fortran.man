@@ -31,11 +31,8 @@ values (see below).
 
 ARGUMENTS
 
--   
-
-    A
-        the type of the argument shall be an integer, real, or complex
-        scalar or array.
+-   A : the type of the argument shall be an integer, real, or complex
+    scalar or array.
 
 RETURNS
 

@@ -13,10 +13,7 @@ parity of the number of bits set).
 
 ARGUMENTS
 
--   
-
-    I
-        Shall be of type integer.
+-   I : Shall be of type integer.
 
 RETURNS
 

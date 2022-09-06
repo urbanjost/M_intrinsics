@@ -15,18 +15,12 @@ array along dimension DIM.
 
 ARGUMENTS
 
--   
+-   MASK : shall be a logical array. That is, the type of the argument
+    shall be logical and it shall not be scalar.
 
-    MASK
-        shall be a logical array. That is, the type of the argument
-        shall be logical and it shall not be scalar.
-
--   
-
-    DIM
-        (optional) DIM shall be a scalar integer with a value that lies
-        between one and the rank of MASK. The corresponding actual
-        argument shall not be an optional dummy argument.
+-   DIM : (optional) DIM shall be a scalar integer with a value that
+    lies between one and the rank of MASK. The corresponding actual
+    argument shall not be an optional dummy argument.
 
 RETURNS
 
@@ -51,16 +45,14 @@ dimension is elided.
 
 4.  Result Value.
 
-    Case (i):
-        The result of ALL(MASK) has the value true if all elements of
-        MASK are true or if MASK has size zero, and the result has value
-        false if any element of MASK is false.
+    Case (i): : The result of ALL(MASK) has the value true if all
+    elements of MASK are true or if MASK has size zero, and the result
+    has value false if any element of MASK is false.
 
-    Case (ii):
-        If MASK has rank one, ALL(MASK,DIM) is equal to ALL(MASK).
-        Otherwise, the value of element (S1 , S2 , . . . , SDIM-1 ,
-        SDIM+1 , . . . , SN ) of all (MASK, DIM) is equal to ALL(MASK
-        (S1 , S2 , . . . , SDIM-1 , :, SDIM+1 , . . . , SN )).
+    Case (ii): : If MASK has rank one, ALL(MASK,DIM) is equal to
+    ALL(MASK). Otherwise, the value of element (S1 , S2 , . . . , SDIM-1
+    , SDIM+1 , . . . , SN ) of all (MASK, DIM) is equal to ALL(MASK (S1
+    , S2 , . . . , SDIM-1 , :, SDIM+1 , . . . , SN )).
 
 EXAMPLES
 

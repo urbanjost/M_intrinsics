@@ -15,21 +15,12 @@ equal to the value BIT_SIZE(I).
 
 ARGUMENTS
 
--   
+-   I : The type shall be integer.
 
-    I
-        The type shall be integer.
+-   POS : The type shall be integer. A value of zero refers to the least
+    significant bit.
 
--   
-
-    POS
-        The type shall be integer. A value of zero refers to the least
-        significant bit.
-
--   
-
-    LEN
-        The type shall be integer.
+-   LEN : The type shall be integer.
 
 RETURNS
 

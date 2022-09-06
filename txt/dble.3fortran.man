@@ -19,10 +19,7 @@ DBLE(A) Converts A to double precision real type.
 
 ARGUMENTS
 
--   
-
-    A
-        The type shall be integer, real, or complex.
+-   A : The type shall be integer, real, or complex.
 
 RETURNS
 

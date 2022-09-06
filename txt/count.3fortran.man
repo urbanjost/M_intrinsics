@@ -15,21 +15,12 @@ the elements of MASK are false, then the result is 0.
 
 ARGUMENTS
 
--   
+-   MASK : The type shall be logical.
 
-    MASK
-        The type shall be logical.
+-   DIM : (Optional) The type shall be integer.
 
--   
-
-    DIM
-        (Optional) The type shall be integer.
-
--   
-
-    KIND
-        (Optional) An integer initialization expression indicating the
-        kind parameter of the result.
+-   KIND : (Optional) An integer initialization expression indicating
+    the kind parameter of the result.
 
 RETURNS
 

@@ -13,10 +13,7 @@ the value returned is zero.
 
 ARGUMENTS
 
--   
-
-    X
-        The type shall be real.
+-   X : The type shall be real.
 
 RETURNS
 

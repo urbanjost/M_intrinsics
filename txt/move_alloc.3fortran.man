@@ -13,16 +13,10 @@ become deallocated in the process.
 
 ARGUMENTS
 
--   
+-   SRC : allocatable, INTENT(INOUT), may be of any type and kind.
 
-    SRC
-        allocatable, INTENT(INOUT), may be of any type and kind.
-
--   
-
-    DEST
-        allocatable, INTENT(OUT), shall be of the same type, kind and
-        rank as SRC.
+-   DEST : allocatable, INTENT(OUT), shall be of the same type, kind and
+    rank as SRC.
 
 EXAMPLES
 

@@ -34,8 +34,7 @@ used by your compiler. There are many packages available for such
 situations.
 
 But the standard procedures available are sufficient for many use cases.
-They consist of RANDOM_NUMBER(3F), RANDOM_SEED(3F), and
-**random_init(3f)__.
+They consist of RANDOM_NUMBER(3F), RANDOM_SEED(3F), and RANDOM_INIT(3F).
 
 RANDOM_NUMBER(3F) calls a generator and returns a psuedorandom scalar or
 array. This simple-to-use function does not directly define how to seed
@@ -51,8 +50,8 @@ optionally the behavior when running in parallel with coarrays with
 compiler behavior.
 
 RANDOM_INIT(3F) Initializes the state of the pseudorandom number
-generator procedure **random_number(3f)__. random_init(3f) is equivalent
-to invoking RANDOM_SEED(3F) with no parameters but considers parallel
+generator procedure RANDOM_NUMBER(3F). RANDOM_INIT(3f) is equivalent to
+invoking RANDOM_SEED(3F) with no parameters but considers parallel
 images and otherwise processor-dependent behaviors as well.
 
 Not every compiler vendor gives a unique seed for random_seed(), for
@@ -62,7 +61,7 @@ The initial behavior of the pseudorandom number generator
 random_number() procedure is processor-dependent if not initialized.
 Even if initialized with RANDOM_SEED() if a specific seed array is not
 specified behavior is still processor-dependent for multiple image codes
-unless specific modes are selected with **random_init()__.
+unless specific modes are selected with RANDOM_INIT().
 
 There are four combinations of REPEATABLE and IMAGE_DISTINCT. The
 behavior is as follows:
@@ -137,30 +136,26 @@ shall result in a different sequence of pseudorandom numbers.
 
 ARGUMENTS
 
--   
-
-    **repeatable
-        If .true., the seed is set to a processor-dependent value that
-        is the same each time RANDOM_INIT(3F) is called from the same
-        program execution (or the same image???).
+-   **repeatable : If .true., the seed is set to a processor-dependent
+    value that is the same each time RANDOM_INIT(3F) is called from the
+    same program execution (or the same image???).
 
     The sequence of random numbers is different for repeated execution
     of the program.
 
     If it is .false., the seed is set to a processor-dependent value.
 
-        when .true. init the seed used by RANDOM_NUMBER differently on
-        every invoking image.
+    : when .true. init the seed used by RANDOM_NUMBER differently on
+    every invoking image.
 
     If it is .true., the seed is set to a processor-dependent value that
     is the same each time random_init is called from the same image.
 
 -   IMAGE_DISTINCT
 
-    image_distinct
-        If .true., the seed is set to a processor-dependent value that
-        is distinct from the seed set by a call to random_init in
-        another image.
+    image_distinct : If .true., the seed is set to a processor-dependent
+    value that is distinct from the seed set by a call to random_init in
+    another image.
 
     If it is .false., the seed is set to a value that does depend which
     image called random_init.
@@ -202,6 +197,6 @@ Fortran 2018 and later
 
 SEE ALSO
 
-__random_seed**(3), __random_init(3)
+*_random_seed**(3), *_random_init**(3)
 
 fortran-lang intrinsic descriptions (license: MIT) @urbanjost

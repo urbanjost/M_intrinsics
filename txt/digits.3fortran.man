@@ -20,10 +20,7 @@ point representation, a default real number would likely return 24.
 
 ARGUMENTS
 
--   
-
-    X
-        The type may be a scalar or array of type integer or real.
+-   X : The type may be a scalar or array of type integer or real.
 
 RETURNS
 

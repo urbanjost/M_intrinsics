@@ -20,10 +20,7 @@ $$
 
 ARGUMENTS
 
--   
-
-    X
-        Shall be of type real and neither zero nor a negative integer.
+-   X : Shall be of type real and neither zero nor a negative integer.
 
 RETURNS
 

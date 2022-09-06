@@ -17,22 +17,13 @@ dimension DIM if the corresponding element in MASK is .TRUE..
 
 ARGUMENTS
 
--   
+-   ARRAY : Shall be an array of type integer
 
-    ARRAY
-        Shall be an array of type integer
+-   DIM : (Optional) shall be a scalar of type integer with a value in
+    the range from "1" TO "N", where "N" equals the rank of ARRAY.
 
--   
-
-    DIM
-        (Optional) shall be a scalar of type integer with a value in the
-        range from "1" TO "N", where "N" equals the rank of ARRAY.
-
--   
-
-    MASK
-        (Optional) shall be of type logical and either be a scalar or an
-        array of the same shape as ARRAY.
+-   MASK : (Optional) shall be of type logical and either be a scalar or
+    an array of the same shape as ARRAY.
 
 RETURNS
 

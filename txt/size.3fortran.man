@@ -13,23 +13,14 @@ total number of elements in ARRAY if DIM is absent.
 
 ARGUMENTS
 
--   
+-   ARRAY : be an array of any type. If ARRAY is a pointer it must be
+    associated and allocatable arrays must be allocated.
 
-    ARRAY
-        be an array of any type. If ARRAY is a pointer it must be
-        associated and allocatable arrays must be allocated.
+-   DIM : shall be a scalar of type integer and its value shall be in
+    the range from 1 to n, where n equals the rank of ARRAY.
 
--   
-
-    DIM
-        shall be a scalar of type integer and its value shall be in the
-        range from 1 to n, where n equals the rank of ARRAY.
-
--   
-
-    KIND
-        An integer initialization expression indicating the kind
-        parameter of the result.
+-   KIND : An integer initialization expression indicating the kind
+    parameter of the result.
 
 RETURNS
 

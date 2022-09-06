@@ -12,20 +12,13 @@ Performs a matrix multiplication on numeric or logical arguments.
 
 ARGUMENTS
 
--   
+-   MATRIX_A : An array of integer, real, complex, or logical type, with
+    a rank of one or two.
 
-    MATRIX_A
-        An array of integer, real, complex, or logical type, with a rank
-        of one or two.
-
--   
-
-    MATRIX_B
-        An array of integer, real, or complex type if MATRIX_A is of a
-        numeric type; otherwise, an array of logical type. The rank
-        shall be one or two, and the first (or only) dimension of
-        MATRIX_B shall be equal to the last (or only) dimension of
-        MATRIX_A.
+-   MATRIX_B : An array of integer, real, or complex type if MATRIX_A is
+    of a numeric type; otherwise, an array of logical type. The rank
+    shall be one or two, and the first (or only) dimension of MATRIX_B
+    shall be equal to the last (or only) dimension of MATRIX_A.
 
 RETURNS
 

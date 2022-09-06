@@ -17,10 +17,7 @@ kind of X.
 
 ARGUMENTS
 
--   
-
-    X
-        Shall be of type real.
+-   X : Shall be of type real.
 
 RETURNS
 

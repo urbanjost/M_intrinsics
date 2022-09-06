@@ -18,15 +18,9 @@ opposite end.
 
 ARGUMENTS
 
--   
+-   I : The type shall be integer.
 
-    I
-        The type shall be integer.
-
--   
-
-    SHIFT
-        The type shall be integer.
+-   SHIFT : The type shall be integer.
 
 RETURNS
 

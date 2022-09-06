@@ -17,16 +17,10 @@ Converts one kind of logical variable to another.
 
 ARGUMENTS
 
--   
+-   L : The type shall be logical.
 
-    L
-        The type shall be logical.
-
--   
-
-    KIND
-        (Optional) An integer initialization expression indicating the
-        kind parameter of the result.
+-   KIND : (Optional) An integer initialization expression indicating
+    the kind parameter of the result.
 
 RETURNS
 

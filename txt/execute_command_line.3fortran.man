@@ -36,35 +36,23 @@ EXECUTE_COMMAND_LINE returns without waiting.
 
 ARGUMENTS
 
--   
+-   COMMAND : a default character scalar containing the command line to
+    be executed. The interpretation is programming-environment
+    dependent.
 
-    COMMAND
-        a default character scalar containing the command line to be
-        executed. The interpretation is programming-environment
-        dependent.
+-   WAIT : (Optional) a default logical scalar. If WAIT is present with
+    the value .false., and the processor supports asynchronous execution
+    of the command, the command is executed asynchronously; otherwise it
+    is executed synchronously.
 
--   
+-   EXITSTAT : (Optional) an integer of the default kind with
+    INTENT(INOUT). If the command is executed synchronously, it is
+    assigned the value of the processor-dependent exit status.
+    Otherwise, the value of EXITSTAT is unchanged.
 
-    WAIT
-        (Optional) a default logical scalar. If WAIT is present with the
-        value .false., and the processor supports asynchronous execution
-        of the command, the command is executed asynchronously;
-        otherwise it is executed synchronously.
-
--   
-
-    EXITSTAT
-        (Optional) an integer of the default kind with INTENT(INOUT). If
-        the command is executed synchronously, it is assigned the value
-        of the processor-dependent exit status. Otherwise, the value of
-        EXITSTAT is unchanged.
-
--   
-
-    CMDSTAT
-        (Optional) an integer of default kind with INTENT(INOUT). If an
-        error condition occurs and CMDSTAT is not present, error
-        termination of execution of the image is initiated.
+-   CMDSTAT : (Optional) an integer of default kind with INTENT(INOUT).
+    If an error condition occurs and CMDSTAT is not present, error
+    termination of execution of the image is initiated.
 
     It is assigned the value -1 if the processor does not support
     command line execution, a processor-dependent positive value if an
@@ -73,13 +61,10 @@ ARGUMENTS
     support asynchronous execution. Otherwise it is assigned the
     value 0.
 
--   
-
-    CMDMSG
-        (Optional) a character scalar of the default kind. It is an
-        INTENT (INOUT) argument.If an error condition occurs, it is
-        assigned a processor-dependent explanatory message.Otherwise, it
-        is unchanged.
+-   CMDMSG : (Optional) a character scalar of the default kind. It is an
+    INTENT (INOUT) argument.If an error condition occurs, it is assigned
+    a processor-dependent explanatory message.Otherwise, it is
+    unchanged.
 
 EXAMPLES
 

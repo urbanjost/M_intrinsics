@@ -25,16 +25,10 @@ AINT(X, KIND) truncates its argument to a whole number.
 
 ARGUMENTS
 
--   
+-   X : the type of the argument shall be real.
 
-    X
-        the type of the argument shall be real.
-
--   
-
-    KIND
-        (optional) an integer initialization expression indicating the
-        kind parameter of the result.
+-   KIND : (optional) an integer initialization expression indicating
+    the kind parameter of the result.
 
 RETURNS
 

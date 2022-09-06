@@ -15,7 +15,7 @@ where X,Y,VALUE shall all be of the same KIND.
 DESCRIPTION
 
 HYPOT(X,Y) is referred to as the Euclidean distance function. It is
-equal to $\sqrt{x^(2+y)2}$ , without undue underflow or overflow.
+equal to $\sqrt{x^2+y^2}$ , without undue underflow or overflow.
 
 In mathematics, the Euclidean distance between two points in Euclidean
 space is the length of a line segment between two points.
@@ -24,15 +24,9 @@ HYPOT(X,Y) returns the distance between the point <X,Y> and the origin.
 
 ARGUMENTS
 
--   
+-   X : The type shall be real.
 
-    X
-        The type shall be real.
-
--   
-
-    Y
-        The type and kind type parameter shall be the same as X.
+-   Y : The type and kind type parameter shall be the same as X.
 
 RETURNS
 

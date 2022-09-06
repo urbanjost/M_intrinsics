@@ -23,17 +23,11 @@ hypotenuse.
 
 ARGUMENTS
 
--   
-
-    X
-        The type shall be real or complex in radians.
+-   X : The type shall be real or complex in radians.
 
 RETURNS
 
--   
-
-    RESULT
-        The return value has the same type and kind as X.
+-   RESULT : The return value has the same type and kind as X.
 
 EXAMPLES
 

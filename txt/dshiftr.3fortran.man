@@ -14,20 +14,11 @@ are the leftmost bits of J.
 
 ARGUMENTS
 
--   
+-   I : Shall be of type integer.
 
-    I
-        Shall be of type integer.
+-   J : Shall be of type integer, and of the same kind as I.
 
--   
-
-    J
-        Shall be of type integer, and of the same kind as I.
-
--   
-
-    SHIFT
-        Shall be of type integer.
+-   SHIFT : Shall be of type integer.
 
 RETURNS
 

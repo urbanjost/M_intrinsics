@@ -16,17 +16,11 @@ Concatenates NCOPIES copies of a string.
 
 ARGUMENTS
 
--   
+-   STRING : The input string to repeatedly generate. Shall be scalar
+    and of type character.
 
-    STRING
-        The input string to repeatedly generate. Shall be scalar and of
-        type character.
-
--   
-
-    NCOPIES
-        Number of copies to make of string, greater than or equal to
-        zero (0). Shall be scalar and of type integer.
+-   NCOPIES : Number of copies to make of string, greater than or equal
+    to zero (0). Shall be scalar and of type integer.
 
 RETURNS
 

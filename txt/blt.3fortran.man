@@ -12,15 +12,9 @@ Determines whether an integer is bitwise less than another.
 
 ARGUMENTS
 
--   
+-   I : Shall be of integer type.
 
-    I
-        Shall be of integer type.
-
--   
-
-    J
-        Shall be of integer type, and of the same kind as I.
+-   J : Shall be of integer type, and of the same kind as I.
 
 RETURNS
 

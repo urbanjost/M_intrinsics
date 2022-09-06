@@ -1,10 +1,10 @@
 ## NOTE
 [https://fortran-lang.org](https://fortran-lang.org)
 now includes these documents. They may be changed using the instructions
-found there.
+found in the [webpage](https://github.com/fortran-lang/webpage) repository.
 
 Keeping these original documents synced with those may be complicated by
-the fact that graphics and math expressions may be included in Kramdown
+the fact that graphics, Unicode  and math expressions may be included in Kramdown
 markdown, so further development there might create documentation
 difficult to maintain as man-pages that display well with man(1),
 as the current translator does not handle the *roff syntax for tables,
@@ -18,6 +18,34 @@ an archive file with the intrinsic manpages on *nix machines (ie. on
 machines with the man(1) command) so it will continue to be maintained,
 but the differences between these and the on-line fortran-lang.org pages
 may become more extensive as time goes on.
+
+## TODO
+
+Additional descriptions of procedures from the standard modules
+
+Descriptions of most statements (READ, WRITE, EXIT, ...)
+
+Converting from the primary source in txt/ in txt2man(1) format and
+generating the markdown to the Kramdown markdown in md/ being used to
+generate the txt/ directory with pandoc made sense as the primary
+target became fortran-lang.org documents instead of man-pages but the
+pandoc(1) conversion to /txt and then manpages leaves the plain text
+without proper indentation. Other conversion paths like going straight
+to manpages and generating text from them for the CLI interface are
+being explored to provide better formatting.
+
+Add
+
+o XOR
+o REDUCE
+o COSHAPE
+o FAILED_IMAGES
+o GET_TEAM
+o IMAGE_STATUS
+o LCOBOUND
+o STOPPED_IMAGES
+o TEAM_NUMBER
+o UCOBOUND
 
 ## NAME
 
@@ -64,9 +92,29 @@ should be able to use the man-pages. For example:
         mkdir -p $HOME/man/man3
         cd $HOME/man/man3
         tar xvfz $WHERE_YOU_PUT_TARFILE/manpages.tgz
+	cd man
+        mandb -c
         export MANPATH=$HOME/man:$MANPATH
+	export MANWIDTH=80 # optional, displays manpages in columns 1 to 80
         man -s 3fortran -k .
 ```
+
+Typical installation on a Linux platform as an administrator ( but it varies) :
+```bash
+     # as the administrator
+     cd /usr/share
+     tar xvfz /tmp/fortran.tgz
+     cd man
+     mandb -c
+```
+     then anyone on that plaform can enter commands like 
+```bash
+     man sinh.3fortran     # specifically show Fortran sinh(3) documentation
+     man -k . -s 3fortran  # list all fortran pages
+     man -s 3fortran --regex '.*' |col -b # show all Fortran intrinsics
+```
+    See man(1) (ie. enter "man man") for more information.
+    
 ## DOCUMENTATION FORMATS  ![docs](docs/images/docs.gif)
 
 The documents are maintained as Kramdown markdown files to be compatible

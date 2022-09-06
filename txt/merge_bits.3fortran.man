@@ -27,7 +27,7 @@ if the k-th bit of MASK is 1; it is equal to the k-th bit of J otherwise
 
 The resulting value is the same as would result from
 
-    __ior (iand (i, mask),iand (j, not (mask)))__
+        ior (iand (i, mask),iand (j, not (mask)))
 
 An exception to all values being of the same integer type is that I or J
 and/or the mask may be a BOZ constant (A BOZ constant means it is either
@@ -38,23 +38,14 @@ the BOZ values must be in the range of the type of the result.
 
 ARGUMENTS
 
--   
+-   I : value to select bits from when the associated bit in the mask is
+    1.
 
-    I
-        value to select bits from when the associated bit in the mask is
-        1.
+-   J : value to select bits from when the associated bit in the mask is
+    0.
 
--   
-
-    J
-        value to select bits from when the associated bit in the mask is
-        0.
-
--   
-
-    MASK
-        a value whose bits are used as a mask to select bits from I and
-        J
+-   MASK : a value whose bits are used as a mask to select bits from I
+    and J
 
 RETURNS
 

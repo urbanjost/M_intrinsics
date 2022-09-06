@@ -18,10 +18,7 @@ ASINH(X) computes the inverse hyperbolic sine of X.
 
 ARGUMENTS
 
--   
-
-    X
-        The type shall be real or complex.
+-   X : The type shall be real or complex.
 
 RETURNS
 

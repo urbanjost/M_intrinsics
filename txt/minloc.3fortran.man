@@ -26,22 +26,14 @@ result value for that row is zero.
 
 ARGUMENTS
 
--   
+-   ARRAY : Shall be an array of type integer, real, or character.
 
-    ARRAY
-        Shall be an array of type integer, real, or character.
+-   DIM : (Optional) Shall be a scalar of type integer, with a value
+    between one and the rank of ARRAY, inclusive. It may not be an
+    optional dummy argument.
 
--   
-
-    DIM
-        (Optional) Shall be a scalar of type integer, with a value
-        between one and the rank of ARRAY, inclusive. It may not be an
-        optional dummy argument.
-
--   
-
-    MASK
-        Shall be an array of type logical, and conformable with ARRAY.
+-   MASK : Shall be an array of type logical, and conformable with
+    ARRAY.
 
 RETURNS
 

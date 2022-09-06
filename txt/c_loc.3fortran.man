@@ -12,13 +12,10 @@ C_LOC(X) determines the C address of the argument.
 
 ARGUMENTS
 
--   
-
-    X
-        Shall have either the pointer or target attribute. It shall not
-        be a coindexed object. It shall either be a variable with
-        interoperable type and kind type parameters, or be a scalar,
-        nonpolymorphic variable with no length type parameters.
+-   X : Shall have either the pointer or target attribute. It shall not
+    be a coindexed object. It shall either be a variable with
+    interoperable type and kind type parameters, or be a scalar,
+    nonpolymorphic variable with no length type parameters.
 
 RETURNS
 

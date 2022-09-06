@@ -13,15 +13,9 @@ of X and whose exponent part is I.
 
 ARGUMENTS
 
--   
+-   X : Shall be of type real.
 
-    X
-        Shall be of type real.
-
--   
-
-    I
-        Shall be of type integer.
+-   I : Shall be of type integer.
 
 RETURNS
 

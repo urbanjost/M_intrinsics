@@ -36,26 +36,14 @@ ISXDIGIT(3c); but for a string as well an an array of characters.
 
 ARGUMENTS
 
--   
+-   STRING : Shall be of type character.
 
-    STRING
-        Shall be of type character.
+-   SET : Shall be of type character.
 
--   
+-   BACK : shall be of type logical.
 
-    SET
-        Shall be of type character.
-
--   
-
-    BACK
-        shall be of type logical.
-
--   
-
-    KIND
-        An integer initialization expression indicating the kind
-        parameter of the result.
+-   KIND : An integer initialization expression indicating the kind
+    parameter of the result.
 
 RETURNS
 

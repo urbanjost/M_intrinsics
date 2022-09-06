@@ -4,8 +4,10 @@ THIS_IMAGE(3) - [COLLECTIVE] Cosubscript index of this image
 
 SYNTAX
 
-    result = this_image() result = this_image(distance) &
-             & result = this_image(coarray, dim)
+       result = this_image() 
+       !or
+       result = this_image(distance) 
+       result = this_image(coarray, dim)
 
 DESCRIPTION
 
@@ -13,22 +15,13 @@ Returns the cosubscript for this image.
 
 ARGUMENTS
 
--   
+-   DISTANCE : (optional, INTENT(IN)) Nonnegative scalar integer (not
+    permitted together with COARRAY).
 
-    DISTANCE
-        (optional, INTENT(IN)) Nonnegative scalar integer (not permitted
-        together with COARRAY).
+-   COARRAY : Coarray of any type (optional; if DIM present, required).
 
--   
-
-    COARRAY
-        Coarray of any type (optional; if DIM present, required).
-
--   
-
-    DIM
-        default integer scalar (optional). If present, DIM shall be
-        between one and the corank of COARRAY.
+-   DIM : default integer scalar (optional). If present, DIM shall be
+    between one and the corank of COARRAY.
 
 RETURNS
 
@@ -65,19 +58,14 @@ Results:
 
        value[1] is 1
 
-! ! Check whether the current image is the initial image if
-(this_image(huge(1)) /= this_image()) error stop "something is rotten
-here"
+STANDARD
+
+Fortran 2008 and later. With DISTANCE argument, TS 18508 or later
+
+SEE ALSO
+
+NUM_IMAGES(3), IMAGE_INDEX(3)
+
+fortran-lang intrinsic descriptions
 
 
-    ### __Standard__
-
-    Fortran 2008 and later. With DISTANCE argument, TS 18508
-    or later
-
-    ### __See Also__
-
-    [__num\_images__(3)](NUM_IMAGES),
-    [__image\_index__(3)](IMAGE_INDEX)
-
-    ###### fortran-lang intrinsic descriptions

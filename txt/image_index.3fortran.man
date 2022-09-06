@@ -12,16 +12,10 @@ Returns the image index belonging to a cosubscript.
 
 ARGUMENTS
 
--   
+-   COARRAY : Coarray of any type.
 
-    COARRAY
-        Coarray of any type.
-
--   
-
-    SUB
-        default integer rank-1 array of a size equal to the corank of
-        COARRAY.
+-   SUB : default integer rank-1 array of a size equal to the corank of
+    COARRAY.
 
 RETURNS
 

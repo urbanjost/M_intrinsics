@@ -148,6 +148,7 @@ append("norm2.3fortran.html");
 append("not.3fortran.html");
 append("null.3fortran.html");
 append("num_images.3fortran.html");
+append("out_of_range.3fortran.html");
 append("pack.3fortran.html");
 append("parity.3fortran.html");
 append("popcnt.3fortran.html");

@@ -42,20 +42,11 @@ instead of the more obscure
 
 ARGUMENTS
 
--   
+-   TSOURCE : May be of any type, including user-defined.
 
-    TSOURCE
-        May be of any type, including user-defined.
+-   FSOURCE : Shall be of the same type and type parameters as TSOURCE.
 
--   
-
-    FSOURCE
-        Shall be of the same type and type parameters as TSOURCE.
-
--   
-
-    MASK
-        Shall be of type logical.
+-   MASK : Shall be of type logical.
 
 Note that (currently) character values must be of the same length.
 

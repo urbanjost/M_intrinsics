@@ -13,15 +13,9 @@ the direction indicated by the sign of S.
 
 ARGUMENTS
 
--   
+-   X : Shall be of type real.
 
-    X
-        Shall be of type real.
-
--   
-
-    S
-        Shall be of type real and not equal to zero.
+-   S : Shall be of type real and not equal to zero.
 
 RETURNS
 

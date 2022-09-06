@@ -60,19 +60,19 @@ logical                         :: grab
    icount=1
    do
       write(cnum,'(i0)') icount
-      add=help_intrinsics_one(cnum)
+      add=help_intrinsics_one(cnum) ! get a document by number
       if( size(add) .eq. 0 ) exit
       label=''
       grab=.false.
       is_label=.false.
+      ! look for NAME then append everything together till a line starting in column 1 that is all uppercase letters
+      ! and assume that is the beginning of the next section to extract the NAME section as one line
       do i=1,size(add)
          if(add(i).eq.'')cycle
-         is_label=verify(trim(add(i)),'ABCDEFGHIJKLMNOPQRSTUVWXYZ') == 0
-         write(*,*)'GOT HERE A:',is_label,trim(add(i)), verify(trim(add(i)),'ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+            is_label=verify(trim(add(i)),'ABCDEFGHIJKLMNOPQRSTUVWXYZ _') == 0
          if(is_label.and.add(i).eq.'NAME')then
             grab=.true.
          elseif(is_label)then
-            write(*,*)'GOT HERE B:',is_label,trim(add(i))
             exit
          elseif(grab)then
             label=adjustl(trim(label))//' '//adjustl(trim(add(i)))
@@ -214,10 +214,10 @@ textblock=[character(len=256) :: &
 '       TYPE(kind=KIND),intent(in) :: a', &
 '', &
 'where the TYPE and KIND is determined by the type and type attributes of', &
-'A, which may be any _real_, _integer_, or _complex_ value.', &
+'A, which may be any real, integer, or complex value.', &
 '', &
-'If the type of A is _cmplx_ the type returned will be _real_ with the', &
-'same kind as the _real_ part of the input value.', &
+'If the type of A is cmplx the type returned will be real with the same', &
+'kind as the real part of the input value.', &
 '', &
 'Otherwise the returned type will be the same type as A.', &
 '', &
@@ -229,22 +229,22 @@ textblock=[character(len=256) :: &
 'denoted |X|, is the magnitude of X without regard to its sign.', &
 '', &
 'The absolute value of a number may be thought of as its distance from', &
-'zero, which is the definition used by ABS(3) when dealing with _complex_', &
-'values (_see below_).', &
+'zero, which is the definition used by ABS(3) when dealing with complex', &
+'values (see below).', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   A : the type of the argument shall be an _integer_, _real_, or', &
-'    _complex_ scalar or array.', &
+'-   A : the type of the argument shall be an integer, real, or complex', &
+'    scalar or array.', &
 '', &
 'RETURNS', &
 '', &
-'If A is of type _integer_ or _real_, the value of the result is |A| and', &
-'of the same type and kind as the input argument.', &
+'If A is of type integer or real, the value of the result is |A| and of', &
+'the same type and kind as the input argument.', &
 '', &
-'(Take particular note) if A is _complex_ with value (X, Y), the result', &
-'is a _real_ equal to a processor-dependent approximation to SQRT(X**2 +', &
-'Y**2) computed without undue overflow or underflow.', &
+'(Take particular note) if A is complex with value (X, Y), the result is', &
+'a real equal to a processor-dependent approximation to SQRT(X**2 + Y**2)', &
+'computed without undue overflow or underflow.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -345,12 +345,12 @@ textblock=[character(len=256) :: &
 '        integer(kind=KIND),intent(in) :: i', &
 '        integer(kind=KIND),intent(in),optional :: kind', &
 '', &
-'where KIND may be any supported kind value for _integer_ types.', &
+'where KIND may be any supported kind value for integer types.', &
 '', &
 'DESCRIPTION', &
 '', &
 'ACHAR(I) returns the character located at position I (commonly called', &
-'the _ADE_ or ASCII Decimal Equivalent) in the ASCII collating sequence.', &
+'the ADE or ASCII Decimal Equivalent) in the ASCII collating sequence.', &
 '', &
 'The ACHAR(3) function is often used for generating in-band escape', &
 'sequences to control terminal attributes.', &
@@ -362,19 +362,21 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : the _integer_ value to convert to an ASCII character, in the', &
-'    range 0 to 127.', &
+'-   I : the integer value to convert to an ASCII character, in the range', &
+'    0 to 127.', &
 '', &
-'-   KIND : (optional) an _integer_ initialization expression indicating', &
+'-   KIND : (optional) an integer initialization expression indicating', &
 '    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is the requested character of type _character_ with a', &
+'The return value is the requested character of type character with a', &
 'length of one. If the KIND argument is present, the return value is of', &
 'the specified kind and of the default kind otherwise.', &
 '', &
 'EXAMPLES', &
+'', &
+'Sample program:', &
 '', &
 '    program demo_achar', &
 '    use,intrinsic::iso_fortran_env,only:int8,int16,int32,int64', &
@@ -510,8 +512,8 @@ textblock=[character(len=256) :: &
 '', &
 '       TYPE(kind=KIND,intent(in) :: x', &
 '', &
-'where TYPE may be _real_ or _complex_ and KIND may be any KIND supported', &
-'by the associated type.', &
+'where TYPE may be real or complex and KIND may be any KIND supported by', &
+'the associated type.', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -519,13 +521,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Must be type _real_ or _complex_. If the type is _real_, the', &
-'    value must satisfy |X| <= 1.', &
+'-   X : Must be type real or complex. If the type is real, the value', &
+'    must satisfy |X| <= 1.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of the same type and kind as X. The _real_ part of', &
-'the result is in radians and lies in the range 0 <= ACOS(X%RE) <= PI .', &
+'The return value is of the same type and kind as X. The real part of the', &
+'result is in radians and lies in the range 0 <= ACOS(X%RE) <= PI .', &
 '', &
 'EXAMPLES', &
 '', &
@@ -557,7 +559,7 @@ textblock=[character(len=256) :: &
 '', &
 'STANDARD', &
 '', &
-'FORTRAN 77 and later; for a _complex_ argument - Fortran 2008 and later', &
+'FORTRAN 77 and later; for a complex argument - Fortran 2008 and later', &
 '', &
 'SEE ALSO', &
 '', &
@@ -589,8 +591,8 @@ textblock=[character(len=256) :: &
 '', &
 '       TYPE(kind=KIND,intent(in) :: x', &
 '', &
-'where TYPE may be _real_ or _complex_ and KIND may be any KIND supported', &
-'by the associated type.', &
+'where TYPE may be real or complex and KIND may be any KIND supported by', &
+'the associated type.', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -598,14 +600,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : the type shall be _real_ or _complex_.', &
+'-   X : the type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
 'The return value has the same type and kind as X.', &
 '', &
-'If X is _complex_, the imaginary part of the result is in radians and', &
-'lies between', &
+'If X is complex, the imaginary part of the result is in radians and lies', &
+'between', &
 '', &
 '  0 <= AIMAG(ACOSH(X)) <= PI', &
 '', &
@@ -664,11 +666,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   STRING : the type shall be _character_.', &
+'-   STRING : the type shall be character.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _character_ and of the same kind as STRING', &
+'The return value is of type character and of the same kind as STRING', &
 'where leading spaces are removed and the same number of spaces are', &
 'inserted on the end of STRING.', &
 '', &
@@ -737,11 +739,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   STRING : the type shall be _character_.', &
+'-   STRING : the type shall be character.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _character_ and of the same kind as STRING', &
+'The return value is of type character and of the same kind as STRING', &
 'where trailing spaces are removed and the same number of spaces are', &
 'inserted at the start of STRING.', &
 '', &
@@ -820,11 +822,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   Z : The type of the argument shall be _complex_.', &
+'-   Z : The type of the argument shall be complex.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _real_ with the kind type parameter of the', &
+'The return value is of type real with the kind type parameter of the', &
 'argument.', &
 '', &
 'EXAMPLES', &
@@ -898,14 +900,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : the type of the argument shall be _real_.', &
+'-   X : the type of the argument shall be real.', &
 '', &
-'-   KIND : (optional) an _integer_ initialization expression indicating', &
+'-   KIND : (optional) an integer initialization expression indicating', &
 '    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _real_ with the kind type parameter of the', &
+'The return value is of type real with the kind type parameter of the', &
 'argument if the optional KIND is absent; otherwise, the kind type', &
 'parameter will be given by KIND. If the magnitude of X is less than one,', &
 'AINT(X) returns zero. If the magnitude is equal to or greater than one', &
@@ -980,7 +982,7 @@ textblock=[character(len=256) :: &
 'ARGUMENTS', &
 '', &
 '-   MASK : shall be a logical array. That is, the type of the argument', &
-'    shall be _logical_ and it shall not be scalar.', &
+'    shall be logical and it shall not be scalar.', &
 '', &
 '-   DIM : (optional) DIM shall be a scalar integer with a value that', &
 '    lies between one and the rank of MASK. The corresponding actual', &
@@ -988,7 +990,7 @@ textblock=[character(len=256) :: &
 '', &
 'RETURNS', &
 '', &
-'"ALL(MASK)" returns a scalar value of type _logical_ where the kind type', &
+'"ALL(MASK)" returns a scalar value of type logical where the kind type', &
 'parameter is the same as the kind type parameter of MASK. If DIM is', &
 'present, then ALL(MASK, DIM) returns an array with the rank of MASK', &
 'minus 1. The shape is determined from the shape of MASK where the DIM', &
@@ -1001,11 +1003,11 @@ textblock=[character(len=256) :: &
 '    ALL(MASK). If the rank is greater than one, then ALL(MASK, DIM) is', &
 '    determined by applying ALL() to the array sections.', &
 '', &
-'3.  Result Characteristics. The result is of type _logical_ with the', &
-'    same kind type parameter as MASK. It is scalar if DIM is absent or N', &
-'    = 1; otherwise, the result has rank N - 1 and shape [D1 , D2 , . . .', &
-'    , DDIM-1 , DDIM+1 , . . . , DN ] where [D1 , D2 , . . . , DN ] is', &
-'    the shape of MASK.', &
+'3.  Result Characteristics. The result is of type logical with the same', &
+'    kind type parameter as MASK. It is scalar if DIM is absent or N = 1;', &
+'    otherwise, the result has rank N - 1 and shape [D1 , D2 , . . . ,', &
+'    DDIM-1 , DDIM+1 , . . . , DN ] where [D1 , D2 , . . . , DN ] is the', &
+'    shape of MASK.', &
 '', &
 '4.  Result Value.', &
 '', &
@@ -1103,14 +1105,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ARRAY : the argument shall be an _allocatable_ array.', &
+'-   ARRAY : the argument shall be an allocatable array.', &
 '', &
-'-   SCALAR : the argument shall be an _allocatable_ scalar.', &
+'-   SCALAR : the argument shall be an allocatable scalar.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is a scalar _logical_ with the default logical kind', &
-'type parameter. If the argument is allocated then the result is .true.;', &
+'The return value is a scalar logical with the default logical kind type', &
+'parameter. If the argument is allocated then the result is .true.;', &
 'otherwise, it returns .false..', &
 '', &
 'EXAMPLES', &
@@ -1188,9 +1190,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   A : the type of the argument shall be _real_.', &
+'-   A : the type of the argument shall be real.', &
 '', &
-'-   KIND : (optional) an _integer_ initialization expression indicating', &
+'-   KIND : (optional) an integer initialization expression indicating', &
 '    the kind parameter of the result.', &
 '', &
 'RETURNS', &
@@ -1271,15 +1273,15 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   MASK : the type of the argument shall be _logical_ and it shall not', &
-'    be scalar.', &
+'-   MASK : the type of the argument shall be logical and it shall not be', &
+'    scalar.', &
 '', &
 '-   DIM : (optional) dim shall be a scalar integer with a value that', &
 '    lies between one and the rank of mask.', &
 '', &
 'RETURNS', &
 '', &
-'ANY(MASK) returns a scalar value of type _logical_ where the kind type', &
+'ANY(MASK) returns a scalar value of type logical where the kind type', &
 'parameter is the same as the kind type parameter of MASK. If DIM is', &
 'present, then ANY(MASK, DIM) returns an array with the rank of MASK', &
 'minus 1. The shape is determined from the shape of MASK where the DIM', &
@@ -1346,7 +1348,7 @@ textblock=[character(len=256) :: &
 '        TYPE(kind=KIND) :: x', &
 '', &
 'where the returned value has the kind of the input value and TYPE may be', &
-'_real_ or _complex_', &
+'real or complex', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -1358,8 +1360,8 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be either _real_ and a magnitude that is less', &
-'    than or equal to one; or be _complex_.', &
+'-   X : The type shall be either real and a magnitude that is less than', &
+'    or equal to one; or be complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -1377,6 +1379,8 @@ textblock=[character(len=256) :: &
 'of the track using the arcsine. Given', &
 '', &
 '     sin(theta) = 1.25 miles/50 miles (opposite/hypotenuse)', &
+'', &
+'Sample program:', &
 '', &
 '    program demo_asin', &
 '    use, intrinsic :: iso_fortran_env, only : dp=>real64', &
@@ -1448,7 +1452,7 @@ textblock=[character(len=256) :: &
 '        TYPE(kind=KIND) :: x', &
 '', &
 'Where the returned value has the kind of the input value and TYPE may be', &
-'_real_ or _complex_', &
+'real or complex', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -1456,12 +1460,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_ or _complex_.', &
+'-   X : The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of the same type and kind as X. If X is _complex_,', &
-'the imaginary part of the result is in radians and lies between -PI/2 <=', &
+'The return value is of the same type and kind as X. If X is complex, the', &
+'imaginary part of the result is in radians and lies between -PI/2 <=', &
 'AIMAG(ASINH(X)) <= PI/2.', &
 '', &
 'EXAMPLES', &
@@ -1517,8 +1521,8 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   POINTER : POINTER shall have the _pointer_ attribute and it can be', &
-'    of any type.', &
+'-   POINTER : POINTER shall have the pointer attribute and it can be of', &
+'    any type.', &
 '', &
 '-   TARGET : (Optional) TARGET shall be a pointer or a target. It must', &
 '    have the same type, kind type parameter, and array rank as POINTER.', &
@@ -1527,7 +1531,7 @@ textblock=[character(len=256) :: &
 '', &
 'RETURNS', &
 '', &
-'ASSOCIATED(POINTER) returns a scalar value of type _logical_. There are', &
+'ASSOCIATED(POINTER) returns a scalar value of type logical. There are', &
 'several cases:', &
 '', &
 '1.  When the optional TARGET is not present then ASSOCIATED(POINTER) is', &
@@ -1616,7 +1620,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   Y : The type shall be _real_.', &
+'-   Y : The type shall be real.', &
 '', &
 '-   X : The type and kind type parameter shall be the same as Y. If Y is', &
 '    zero, then X must be nonzero.', &
@@ -1669,14 +1673,14 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '', &
-'      - result = __atan(y, x)__', &
+'       result = atan(y, x)', &
 '', &
-'       TYPE(kind=KIND):: atan', &
-'       TYPE(kind=KIND,intent(in) :: x', &
-'       TYPE(kind=KIND,intent(in),optional :: y', &
+'        TYPE(kind=KIND):: atan', &
+'        TYPE(kind=KIND,intent(in) :: x', &
+'        TYPE(kind=KIND,intent(in),optional :: y', &
 '', &
-'where TYPE may be _real_ or _complex_ and KIND may be any KIND supported', &
-'by the associated type. If Y is present X is _real`.', &
+'where TYPE may be real or complex and KIND may be any KIND supported by', &
+'the associated type. If Y is present X is _real`.', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -1684,8 +1688,8 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_ or _complex_; if Y is present, X shall', &
-'    be _real_.', &
+'-   X : The type shall be real or complex; if Y is present, X shall be', &
+'    real.', &
 '', &
 '-   Y : Shall be of the same type and kind as X. If X is zero, Y must', &
 '    not be zero.', &
@@ -1764,11 +1768,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_ or _complex_.', &
+'-   X : The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
-'The return value has same type and kind as X. If X is _complex_, the', &
+'The return value has same type and kind as X. If X is complex, the', &
 'imaginary part of the result is in radians and lies between', &
 '', &
 '-PI/2 <= AIMAG(ATANH(X)) <= PI/2', &
@@ -2527,11 +2531,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _real_ and lies in the range -0.4027 <=', &
+'The return value is of type real and lies in the range -0.4027 <=', &
 'BESSEL(0,X) <= 1. It has the same kind as X.', &
 '', &
 'EXAMPLES', &
@@ -2586,11 +2590,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _real_ and lies in the range -0.5818 <=', &
+'The return value is of type real and lies in the range -0.5818 <=', &
 'BESSEL(0,X) <= 0.5818 . It has the same kind as X.', &
 '', &
 'EXAMPLES', &
@@ -2649,18 +2653,18 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   N : Shall be a scalar or an array of type _integer_.', &
+'-   N : Shall be a scalar or an array of type integer.', &
 '', &
-'-   N1 : Shall be a non-negative scalar of type _integer_.', &
+'-   N1 : Shall be a non-negative scalar of type integer.', &
 '', &
-'-   N2 : Shall be a non-negative scalar of type _integer_.', &
+'-   N2 : Shall be a non-negative scalar of type integer.', &
 '', &
-'-   X : Shall be a scalar or an array of type _real_. For BESSEL_JN(N1,', &
+'-   X : Shall be a scalar or an array of type real. For BESSEL_JN(N1,', &
 '    N2, X) it shall be scalar.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is a scalar of type _real_. It has the same kind as X.', &
+'The return value is a scalar of type real. It has the same kind as X.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -2714,11 +2718,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _real_. It has the same kind as X.', &
+'The return value is of type real. It has the same kind as X.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -2772,11 +2776,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is _real_. It has the same kind as X.', &
+'The return value is real. It has the same kind as X.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -2829,18 +2833,18 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   N : Shall be a scalar or an array of type _integer_.', &
+'-   N : Shall be a scalar or an array of type integer.', &
 '', &
-'-   N1 : Shall be a non-negative scalar of type _integer_.', &
+'-   N1 : Shall be a non-negative scalar of type integer.', &
 '', &
-'-   N2 : Shall be a non-negative scalar of type _integer_.', &
+'-   N2 : Shall be a non-negative scalar of type integer.', &
 '', &
-'-   X : Shall be a scalar or an array of type _real_; for BESSEL_YN(N1,', &
+'-   X : Shall be a scalar or an array of type real; for BESSEL_YN(N1,', &
 '    N2, X) it shall be scalar.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is _real_. It has the same kind as X.', &
+'The return value is real. It has the same kind as X.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -2892,13 +2896,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : Shall be of _integer_ type.', &
+'-   I : Shall be of integer type.', &
 '', &
-'-   J : Shall be of _integer_ type, and of the same kind as I.', &
+'-   J : Shall be of integer type, and of the same kind as I.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _logical_ and of the default kind.', &
+'The return value is of type logical and of the default kind.', &
 '', &
 'STANDARD', &
 '', &
@@ -2933,17 +2937,16 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : Shall be of _integer_ type or a BOZ literal constant.', &
+'-   I : Shall be of integer type or a BOZ literal constant.', &
 '', &
-'-   J : Shall be of _integer_ type, and of the same kind as I; or a BOZ', &
+'-   J : Shall be of integer type, and of the same kind as I; or a BOZ', &
 '    literal constant.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _logical_ and of the default kind. The', &
-'result is true if the sequence of bits represented by _i_ is greater', &
-'than the sequence of bits represented by _j_, otherwise the result is', &
-'false.', &
+'The return value is of type logical and of the default kind. The result', &
+'is true if the sequence of bits represented by i is greater than the', &
+'sequence of bits represented by j, otherwise the result is false.', &
 '', &
 'STANDARD', &
 '', &
@@ -2978,12 +2981,11 @@ textblock=[character(len=256) :: &
 'DESCRIPTION', &
 '', &
 'BIT_SIZE(I) returns the number of bits (integer precision plus sign bit)', &
-'represented by the type of the _integer_ I. I can be a scalar or an', &
-'array.', &
+'represented by the type of the integer I. I can be a scalar or an array.', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : An _integer_ value of any kind to determine the size of in bits.', &
+'-   I : An integer value of any kind to determine the size of in bits.', &
 '    Because only the type of the argument is examined, the argument need', &
 '    not be defined.', &
 '', &
@@ -3050,13 +3052,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : Shall be of _integer_ type.', &
+'-   I : Shall be of integer type.', &
 '', &
-'-   J : Shall be of _integer_ type, and of the same kind as I.', &
+'-   J : Shall be of integer type, and of the same kind as I.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _logical_ and of the default kind.', &
+'The return value is of type logical and of the default kind.', &
 '', &
 'STANDARD', &
 '', &
@@ -3091,13 +3093,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : Shall be of _integer_ type.', &
+'-   I : Shall be of integer type.', &
 '', &
-'-   J : Shall be of _integer_ type, and of the same kind as I.', &
+'-   J : Shall be of integer type, and of the same kind as I.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _logical_ and of the default kind.', &
+'The return value is of type logical and of the default kind.', &
 '', &
 'STANDARD', &
 '', &
@@ -3120,7 +3122,7 @@ textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '', &
-'BTEST(3) - [BIT:INQUIRY] Tests a bit of an _integer_ value.', &
+'BTEST(3) - [BIT:INQUIRY] Tests a bit of an integer value.', &
 '', &
 'SYNTAX', &
 '', &
@@ -3130,8 +3132,7 @@ textblock=[character(len=256) :: &
 '        integer,intent(in)  :: i', &
 '        logical,intent(out) :: pos', &
 '', &
-'where KIND is any _integer_ kind supported by the programming', &
-'environment.', &
+'where KIND is any integer kind supported by the programming environment.', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -3139,7 +3140,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : The type shall be _integer_.', &
+'-   I : The type shall be integer.', &
 '', &
 '-   POS : The bit position to query. it must be a valid position for the', &
 '    value I; ie. 0 <= POS <= BIT_SIZE(I) .', &
@@ -3148,9 +3149,8 @@ textblock=[character(len=256) :: &
 '', &
 'RETURNS', &
 '', &
-'The result is a _logical_ that has the value .TRUE. if bit position POS', &
-'of I has the value 1 and the value .FALSE. if bit POS of I has the value', &
-'0.', &
+'The result is a logical that has the value .TRUE. if bit position POS of', &
+'I has the value 1 and the value .FALSE. if bit POS of I has the value 0.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -3268,9 +3268,8 @@ textblock=[character(len=256) :: &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _logical_; it is .false. if either c_ptr_1', &
-'is a C NULL pointer or if c_ptr1 and c_ptr_2 point to different', &
-'addresses.', &
+'The return value is of type logical; it is .false. if either c_ptr_1 is', &
+'a C NULL pointer or if c_ptr1 and c_ptr_2 point to different addresses.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -3328,15 +3327,15 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   A : The type shall be _real_.', &
+'-   A : The type shall be real.', &
 '', &
-'-   KIND : An _integer_ initialization expression indicating the kind', &
+'-   KIND : An integer initialization expression indicating the kind', &
 '    parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
 'The return value is of type INTEGER(kind) if KIND is present and a', &
-'default-kind _integer_ otherwise.', &
+'default-kind integer otherwise.', &
 '', &
 'The result is undefined if it cannot be represented in the specified', &
 'integer type.', &
@@ -3406,8 +3405,8 @@ textblock=[character(len=256) :: &
 '', &
 '-   FPTR : pointer interoperable with CPTR. it is INTENT(OUT).', &
 '', &
-'-   SHAPE : (Optional) Rank-one array of type _integer_ with INTENT(IN)', &
-'    . It shall be present if and only if FPTR is an array. The size must', &
+'-   SHAPE : (Optional) Rank-one array of type integer with INTENT(IN) .', &
+'    It shall be present if and only if FPTR is an array. The size must', &
 '    be equal to the rank of FPTR.', &
 '', &
 'EXAMPLES', &
@@ -3602,14 +3601,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : The type shall be _integer_.', &
+'-   I : The type shall be integer.', &
 '', &
-'-   KIND : (Optional) An _integer_ initialization expression indicating', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
 '    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _character_', &
+'The return value is of type character', &
 '', &
 'EXAMPLES', &
 '', &
@@ -3672,8 +3671,8 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Shall have either the _pointer_ or _target_ attribute. It shall', &
-'    not be a coindexed object. It shall either be a variable with', &
+'-   X : Shall have either the pointer or target attribute. It shall not', &
+'    be a coindexed object. It shall either be a variable with', &
 '    interoperable type and kind type parameters, or be a scalar,', &
 '    nonpolymorphic variable with no length type parameters.', &
 '', &
@@ -3740,24 +3739,24 @@ textblock=[character(len=256) :: &
 'function.', &
 '', &
 'CMPLX(X [, Y [, KIND]]) returns a complex number where X is converted to', &
-'the _real_ component. If X is _complex_ then Y must not be present. If Y', &
-'is present it is converted to the imaginary component. If Y is not', &
-'present then the imaginary component is set to 0.0.', &
+'the real component. If X is complex then Y must not be present. If Y is', &
+'present it is converted to the imaginary component. If Y is not present', &
+'then the imaginary component is set to 0.0.', &
 '', &
 'CMPLX(3) AND DOUBLE PRECISION', &
 '', &
 'The Fortran 90 language defines CMPLX(3) as always returning a result', &
 'that is type COMPLEX(KIND=KIND(0.0)).', &
 '', &
-'This means `CMPLX(D1,D2)'', where `D1'' and `D2'' are _doubleprecision_, is', &
+'This means `CMPLX(D1,D2)'', where `D1'' and `D2'' are doubleprecision, is', &
 'treated as: fortran', &
 '', &
 '          cmplx(sngl(d1), sngl(d2))', &
 '', &
-'_doubleprecision complex_ numbers require specifying a precision.', &
+'doubleprecision complex numbers require specifying a precision.', &
 '', &
 'It was necessary for Fortran 90 to specify this behavior for', &
-'_doubleprecision_ arguments, since that is the behavior mandated by', &
+'doubleprecision arguments, since that is the behavior mandated by', &
 'FORTRAN 77.', &
 '', &
 'So Fortran 90 extends the CMPLX(3) intrinsic by adding an extra argument', &
@@ -3806,19 +3805,19 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X The type may be _integer_, _real_, or _complex_.', &
+'-   X The type may be integer, real, or complex.', &
 '', &
-'-   Y (Optional; only allowed if X is not _complex_.). May be _integer_', &
-'    or _real_.', &
+'-   Y (Optional; only allowed if X is not complex.). May be integer or', &
+'    real.', &
 '', &
-'-   KIND (Optional) An _integer_ initialization expression indicating', &
-'    the kind parameter of the result.', &
+'-   KIND (Optional) An integer initialization expression indicating the', &
+'    kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of _complex_ type, with a kind equal to KIND if it', &
-'is specified. If KIND is not specified, the result is of the default', &
-'_complex_ kind, regardless of the kinds of X and Y.', &
+'The return value is of complex type, with a kind equal to KIND if it is', &
+'specified. If KIND is not specified, the result is of the default', &
+'complex kind, regardless of the kinds of X and Y.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -3950,18 +3949,18 @@ textblock=[character(len=256) :: &
 '', &
 '-   ARRAY : Shall be an coarray, of any type.', &
 '', &
-'-   DIM : (Optional) Shall be a scalar _integer_.', &
+'-   DIM : (Optional) Shall be a scalar integer.', &
 '', &
-'-   KIND : (Optional) An _integer_ initialization expression indicating', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
 '    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of kind KIND. If KIND is', &
-'absent, the return value is of default integer kind. If DIM is absent,', &
-'the result is an array of the lower cobounds of COARRAY. If DIM is', &
-'present, the result is a scalar corresponding to the lower cobound of', &
-'the array along that codimension.', &
+'The return value is of type integer and of kind KIND. If KIND is absent,', &
+'the return value is of default integer kind. If DIM is absent, the', &
+'result is an array of the lower cobounds of COARRAY. If DIM is present,', &
+'the result is a scalar corresponding to the lower cobound of the array', &
+'along that codimension.', &
 '', &
 'STANDARD', &
 '', &
@@ -4139,7 +4138,7 @@ textblock=[character(len=256) :: &
 '', &
 'RETURNS', &
 '', &
-'-   COUNT : The return value is of type default _integer_. It is the', &
+'-   COUNT : The return value is of type default integer. It is the', &
 '    number of arguments passed on the command line when the program was', &
 '    invoked.', &
 '', &
@@ -4327,7 +4326,7 @@ textblock=[character(len=256) :: &
 '', &
 'DESCRIPTION', &
 '', &
-'CONJG(Z) returns the complex conjugate of the _complex_ value Z.', &
+'CONJG(Z) returns the complex conjugate of the complex value Z.', &
 '', &
 'In mathematics, the complex conjugate of a complex_ number is the number', &
 'with an equal real part and an imaginary part equal in magnitude but', &
@@ -4341,11 +4340,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   Z : The type shall be _complex_.', &
+'-   Z : The type shall be complex.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _complex_.', &
+'The return value is of type complex.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -4529,27 +4528,27 @@ textblock=[character(len=256) :: &
 '       TYPE(kind=KIND),elemental :: cos', &
 '       TYPE(kind=KIND,intent(in) :: x', &
 '', &
-'where TYPE may be _real_ or _complex_ and KIND may be any KIND supported', &
-'by the associated type.', &
+'where TYPE may be real or complex and KIND may be any KIND supported by', &
+'the associated type.', &
 '', &
 'DESCRIPTION', &
 '', &
 'COS(X) computes the cosine of an angle X given the size of the angle in', &
 'radians.', &
 '', &
-'The cosine of a _real_ value is the ratio of the adjacent side to the', &
+'The cosine of a real value is the ratio of the adjacent side to the', &
 'hypotenuse of a right-angled triangle.', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_ or _complex_. X is assumed to be in', &
+'-   X : The type shall be real or complex. X is assumed to be in', &
 '    radians.', &
 '', &
 'RETURNS', &
 '', &
 'The return value is of the same type and kind as X.', &
 '', &
-'If X is of the type _real_, the return value lies in the range -1 <=', &
+'If X is of the type real, the return value lies in the range -1 <=', &
 'COS(X) <= 1 .', &
 '', &
 'EXAMPLES', &
@@ -4610,9 +4609,9 @@ textblock=[character(len=256) :: &
 '         TYPE(kind=KIND) elemental function cosh(x)', &
 '         TYPE(kind=KIND),intent(in) :: x', &
 '', &
-'where TYPE may be _real_ or _complex_ and KIND may be any supported kind', &
-'for the associated type. The returned VALUE will be the same type and', &
-'kind as the input value X.', &
+'where TYPE may be real or complex and KIND may be any supported kind for', &
+'the associated type. The returned VALUE will be the same type and kind', &
+'as the input value X.', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -4620,14 +4619,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_ or _complex_.', &
+'-   X : The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
-'The return value has same type and kind as X. If X is _complex_, the', &
+'The return value has same type and kind as X. If X is complex, the', &
 'imaginary part of the result is in radians.', &
 '', &
-'If X is _real_, the return value has a lower bound of one, COSH(X) >= 1.', &
+'If X is real, the return value has a lower bound of one, COSH(X) >= 1.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -4749,18 +4748,18 @@ textblock=[character(len=256) :: &
 '', &
 '-   ARRAY : Shall be an coarray, of any type.', &
 '', &
-'-   DIM : (Optional) Shall be a scalar _integer_.', &
+'-   DIM : (Optional) Shall be a scalar integer.', &
 '', &
-'-   KIND : (Optional) An _integer_ initialization expression indicating', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
 '    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of kind KIND. If KIND is', &
-'absent, the return value is of default integer kind. If DIM is absent,', &
-'the result is an array of the lower cobounds of COARRAY. If DIM is', &
-'present, the result is a scalar corresponding to the lower cobound of', &
-'the array along that codimension.', &
+'The return value is of type integer and of kind KIND. If KIND is absent,', &
+'the return value is of default integer kind. If DIM is absent, the', &
+'result is an array of the lower cobounds of COARRAY. If DIM is present,', &
+'the result is a scalar corresponding to the lower cobound of the array', &
+'along that codimension.', &
 '', &
 'STANDARD', &
 '', &
@@ -4798,20 +4797,19 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   MASK : The type shall be _logical_.', &
+'-   MASK : The type shall be logical.', &
 '', &
-'-   DIM : (Optional) The type shall be _integer_.', &
+'-   DIM : (Optional) The type shall be integer.', &
 '', &
-'-   KIND : (Optional) An _integer_ initialization expression indicating', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
 '    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of kind KIND. If KIND is', &
-'absent, the return value is of default integer kind. If DIM is present,', &
-'the result is an array with a rank one less than the rank of ARRAY, and', &
-'a size corresponding to the shape of ARRAY with the DIM dimension', &
-'removed.', &
+'The return value is of type integer and of kind KIND. If KIND is absent,', &
+'the return value is of default integer kind. If DIM is present, the', &
+'result is an array with a rank one less than the rank of ARRAY, and a', &
+'size corresponding to the shape of ARRAY with the DIM dimension removed.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -4883,8 +4881,8 @@ textblock=[character(len=256) :: &
 '', &
 'DESCRIPTION', &
 '', &
-'Returns a _real_ value representing the elapsed CPU time in seconds.', &
-'This is useful for testing segments of code to determine execution time.', &
+'Returns a real value representing the elapsed CPU time in seconds. This', &
+'is useful for testing segments of code to determine execution time.', &
 '', &
 'The exact definition of time is left imprecise because of the', &
 'variability in what different processors are able to provide.', &
@@ -4902,7 +4900,7 @@ textblock=[character(len=256) :: &
 '', &
 'RETURNS', &
 '', &
-'-   TIME : The type shall be _real_ with INTENT(OUT). It is assigned a', &
+'-   TIME : The type shall be real with INTENT(OUT). It is assigned a', &
 '    processor-dependent approximation to the processor time in seconds.', &
 '    If the processor cannot return a meaningful time, a', &
 '    processor-dependent negative value', &
@@ -4962,10 +4960,10 @@ textblock=[character(len=256) :: &
 '', &
 'CSHIFT(ARRAY, SHIFT [, DIM]) performs a circular shift on elements of', &
 'ARRAY along the dimension of DIM. If DIM is omitted it is taken to be 1.', &
-'DIM is a scalar of type _integer_ in the range of 1 <= DIM <= N, where', &
-'"n" is the rank of ARRAY. If the rank of ARRAY is one, then all elements', &
-'of ARRAY are shifted by SHIFT places. If rank is greater than one, then', &
-'all complete rank one sections of ARRAY along the given dimension are', &
+'DIM is a scalar of type integer in the range of 1 <= DIM <= N, where "n"', &
+'is the rank of ARRAY. If the rank of ARRAY is one, then all elements of', &
+'ARRAY are shifted by SHIFT places. If rank is greater than one, then all', &
+'complete rank one sections of ARRAY along the given dimension are', &
 'shifted. Elements shifted out one end of each rank one section are', &
 'shifted back in the other end.', &
 '', &
@@ -4973,9 +4971,9 @@ textblock=[character(len=256) :: &
 '', &
 '-   ARRAY : Shall be an array of any type.', &
 '', &
-'-   SHIFT : The type shall be _integer_.', &
+'-   SHIFT : The type shall be integer.', &
 '', &
-'-   DIM : The type shall be _integer_.', &
+'-   DIM : The type shall be integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -5044,12 +5042,12 @@ textblock=[character(len=256) :: &
 'RETURNS', &
 '', &
 'The return value is of type integer and of the system-dependent kind', &
-'c_size_t (from the _iso_c_binding_ module). Its value is the number of', &
-'bytes occupied by the argument. If the argument has the _pointer_', &
+'csize_t (from the _iso_c_binding module). Its value is the number of', &
+'bytes occupied by the argument. If the argument has the pointer', &
 'attribute, the number of bytes of the storage area pointed to is', &
-'returned. If the argument is of a derived type with _pointer_ or', &
-'_allocatable_ components, the return value does not account for the', &
-'sizes of the data pointed to by these components.', &
+'returned. If the argument is of a derived type with pointer or', &
+'allocatable components, the return value does not account for the sizes', &
+'of the data pointed to by these components.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -5067,7 +5065,7 @@ textblock=[character(len=256) :: &
 '        T', &
 '', &
 'The example will print .true. unless you are using a platform where', &
-'default _real_ variables are unusually padded.', &
+'default real variables are unusually padded.', &
 '', &
 'STANDARD', &
 '', &
@@ -5106,7 +5104,7 @@ textblock=[character(len=256) :: &
 'DATE_AND_TIME(DATE, TIME, ZONE, VALUES) gets the corresponding date and', &
 'time information from the real-time system clock.', &
 '', &
-'Unavailable time and date _character_ parameters return blanks.', &
+'Unavailable time and date character parameters return blanks.', &
 '', &
 'ARGUMENTS', &
 '', &
@@ -5120,7 +5118,7 @@ textblock=[character(len=256) :: &
 '    length 5 or larger, representing the difference with respect to', &
 '    Coordinated Universal Time (UTC).', &
 '', &
-'-   VALUES : An _integer_ array of eight elements that contains:', &
+'-   VALUES : An integer array of eight elements that contains:', &
 '', &
 '    -   VALUES(1) : The year', &
 '    -   VALUES(2) : The month', &
@@ -5211,20 +5209,20 @@ textblock=[character(len=256) :: &
 '        type(real(kind=kind(0.0d0)))     :: dble', &
 '        type(TYPE(kind=KIND)),intent(in) :: a', &
 '', &
-'where TYPE may be _integer_, _real_, or _complex_ and KIND any kind', &
-'supported by the TYPE.', &
+'where TYPE may be integer, real, or complex and KIND any kind supported', &
+'by the TYPE.', &
 '', &
 'DESCRIPTION', &
 '', &
-'DBLE(A) Converts A to double precision _real_ type.', &
+'DBLE(A) Converts A to double precision real type.', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   A : The type shall be _integer_, _real_, or _complex_.', &
+'-   A : The type shall be integer, real, or complex.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _doubleprecision_. For _complex_ input, the', &
+'The return value is of type doubleprecision. For complex input, the', &
 'returned value has the magnitude and sign of the real component of the', &
 'input value.', &
 '', &
@@ -5274,7 +5272,7 @@ textblock=[character(len=256) :: &
 '        type(integer(kind=kind(0)))      :: digits', &
 '        type(TYPE(kind=KIND)),intent(in) :: x(..)', &
 '', &
-'where TYPE may be _integer_ or _real_ and KIND is any kind supported by', &
+'where TYPE may be integer or real and KIND is any kind supported by', &
 'TYPE.', &
 '', &
 'DESCRIPTION', &
@@ -5285,11 +5283,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type may be a scalar or array of type _integer_ or _real_.', &
+'-   X : The type may be a scalar or array of type integer or real.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ of default kind.', &
+'The return value is of type integer of default kind.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -5344,8 +5342,8 @@ textblock=[character(len=256) :: &
 '        type(TYPE(kind=KIND))            :: dim', &
 '        type(TYPE(kind=KIND)),intent(in) :: x, y', &
 '', &
-'where TYPE may be _real_ or _integer_ and KIND is any supported kind for', &
-'the type.', &
+'where TYPE may be real or integer and KIND is any supported kind for the', &
+'type.', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -5354,7 +5352,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _integer_ or _real_', &
+'-   X : The type shall be integer or real', &
 '', &
 '-   Y : The type shall be the same type and kind as X.', &
 '', &
@@ -5416,26 +5414,25 @@ textblock=[character(len=256) :: &
 'DESCRIPTION', &
 '', &
 'DOT_PRODUCT(VECTOR_A, VECTOR_B) computes the dot product multiplication', &
-'of two vectors vector_a and vector_b. The two vectors may be either', &
+'of two vectors vectora and vector_b. The two vectors may be either', &
 'numeric or logical and must be arrays of rank one and of equal size. If', &
-'the vectors are _integer_ or _real_, the result is', &
-'SUM(VECTOR_A*VECTOR_B). If the vectors are _complex_, the result is', &
-'SUM(CONJG(VECTOR_A)*VECTOR_B). If the vectors are _logical_, the result', &
-'is ANY(VECTOR_A .AND. VECTOR_B).', &
+'the vectors are _integer or real, the result is SUM(VECTOR_A*VECTOR_B).', &
+'If the vectors are complex, the result is SUM(CONJG(VECTOR_A)*VECTOR_B).', &
+'If the vectors are logical, the result is ANY(VECTOR_A .AND. VECTOR_B).', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   VECTOR_A : The type shall be numeric or _logical_, rank 1.', &
+'-   VECTOR_A : The type shall be numeric or logical, rank 1.', &
 '', &
-'-   VECTOR_B : The type shall be numeric if vector_a is of numeric type', &
-'    or _logical_ if vector_a is of type _logical_. vector_b shall be a', &
+'-   VECTOR_B : The type shall be numeric if vectora is of numeric type', &
+'    or _logical if vectora is of type _logical. vector_b shall be a', &
 '    rank-one array.', &
 '', &
 'RETURNS', &
 '', &
 'If the arguments are numeric, the return value is a scalar of numeric', &
-'type, _integer_, _real_, or _complex_. If the arguments are _logical_,', &
-'the return value is .true. or .false..', &
+'type, integer, real, or complex. If the arguments are logical, the', &
+'return value is .true. or .false..', &
 '', &
 'EXAMPLES', &
 '', &
@@ -5486,7 +5483,7 @@ textblock=[character(len=256) :: &
 '', &
 'DESCRIPTION', &
 '', &
-'DPROD(X,Y) produces a higher _doubleprecision_ product of default _real_', &
+'DPROD(X,Y) produces a higher doubleprecision product of default real', &
 'numbers X and Y.', &
 '', &
 'The result has a value equal to a processor-dependent approximation to', &
@@ -5498,18 +5495,18 @@ textblock=[character(len=256) :: &
 '', &
 '-   Y : shall be default real.', &
 '', &
-'The setting of compiler options specifying _real_ size can affect this', &
+'The setting of compiler options specifying real size can affect this', &
 'function.', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Must be of default _real(kind=kind(0.0))_ type', &
+'-   X : Must be of default real(kind=kind(0.0)) type', &
 '', &
 '-   Y : Must have the same type and kind parameters as X', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _real(kind=kind(0.0d0))_.', &
+'The return value is of type real(kind=kind(0.0d0)).', &
 '', &
 'EXAMPLES', &
 '', &
@@ -5580,11 +5577,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : Shall be of type _integer_.', &
+'-   I : Shall be of type integer.', &
 '', &
-'-   J : Shall be of type _integer_, and of the same kind as I.', &
+'-   J : Shall be of type integer, and of the same kind as I.', &
 '', &
-'-   SHIFT : Shall be of type _integer_.', &
+'-   SHIFT : Shall be of type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -5625,11 +5622,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : Shall be of type _integer_.', &
+'-   I : Shall be of type integer.', &
 '', &
-'-   J : Shall be of type _integer_, and of the same kind as I.', &
+'-   J : Shall be of type integer, and of the same kind as I.', &
 '', &
-'-   SHIFT : Shall be of type _integer_.', &
+'-   SHIFT : Shall be of type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -5666,15 +5663,14 @@ textblock=[character(len=256) :: &
 '', &
 'EOSHIFT(ARRAY, SHIFT[, BOUNDARY, DIM]) performs an end-off shift on', &
 'elements of ARRAY along the dimension of DIM. If DIM is omitted it is', &
-'taken to be 1. DIM is a scalar of type _integer_ in the range of 1 <=', &
-'DIM <= N where "N" is the rank of ARRAY. If the rank of ARRAY is one,', &
-'then all elements of ARRAY are shifted by SHIFT places. If rank is', &
-'greater than one, then all complete rank one sections of ARRAY along the', &
-'given dimension are shifted. Elements shifted out one end of each rank', &
-'one section are dropped. If BOUNDARY is present then the corresponding', &
-'value of from BOUNDARY is copied back in the other end. If BOUNDARY is', &
-'not present then the following are copied in depending on the type of', &
-'ARRAY.', &
+'taken to be 1. DIM is a scalar of type integer in the range of 1 <= DIM', &
+'<= N where "N" is the rank of ARRAY. If the rank of ARRAY is one, then', &
+'all elements of ARRAY are shifted by SHIFT places. If rank is greater', &
+'than one, then all complete rank one sections of ARRAY along the given', &
+'dimension are shifted. Elements shifted out one end of each rank one', &
+'section are dropped. If BOUNDARY is present then the corresponding value', &
+'of from BOUNDARY is copied back in the other end. If BOUNDARY is not', &
+'present then the following are copied in depending on the type of ARRAY.', &
 '', &
 '*Array Type* - *Boundary Value*', &
 '', &
@@ -5688,11 +5684,11 @@ textblock=[character(len=256) :: &
 '', &
 '-   ARRAY : May be any type, not scalar.', &
 '', &
-'-   SHIFT : The type shall be _integer_.', &
+'-   SHIFT : The type shall be integer.', &
 '', &
 '-   BOUNDARY : Same type as ARRAY.', &
 '', &
-'-   DIM : The type shall be _integer_.', &
+'-   DIM : The type shall be integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -5760,16 +5756,16 @@ textblock=[character(len=256) :: &
 'It may be thought of as the distance from 1.0 to the next largest', &
 'floating point number.', &
 '', &
-'One use of EPSILON(3) is to select a _delta_ value for algorithms that', &
-'search until the calculation is within _delta_ of an estimate.', &
+'One use of EPSILON(3) is to select a delta value for algorithms that', &
+'search until the calculation is within delta of an estimate.', &
 '', &
-'If _delta_ is too small the algorithm might never halt, as a computation', &
+'If delta is too small the algorithm might never halt, as a computation', &
 'summing values smaller than the decimal resolution of the data type does', &
 'not change.', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
@@ -5807,26 +5803,25 @@ textblock=[character(len=256) :: &
 '', &
 '    contains', &
 '', &
-'    function my_dp_eps()', &
-'    ! calculate the epsilon value of a machine the hard way', &
-'    real(kind=dp) :: t', &
-'    real(kind=dp) :: my_dp_eps', &
-'', &
-'       ! starting with a value of 1, keep dividing the value', &
-'       ! by 2 until no change is detected. Note that with', &
-'       ! infinite precision this would be an infinite loop,', &
-'       ! but floating point values in Fortran have a defined', &
-'       ! and limited precision.', &
-'       my_dp_eps = 1.0d0', &
-'       SET_ST: do', &
-'          my_dp_eps = my_dp_eps/2.0d0', &
-'          t = 1.0d0 + my_dp_eps', &
-'          if (t <= 1.0d0) exit', &
-'       enddo SET_ST', &
-'       my_dp_eps = 2.0d0*my_dp_eps', &
-'', &
-'    end function my_dp_eps', &
-'', &
+'       function my_dp_eps()', &
+'       ! calculate the epsilon value of a machine the hard way', &
+'       real(kind=dp) :: t', &
+'       real(kind=dp) :: my_dp_eps', &
+'       ', &
+'          ! starting with a value of 1, keep dividing the value', &
+'          ! by 2 until no change is detected. Note that with', &
+'          ! infinite precision this would be an infinite loop,', &
+'          ! but floating point values in Fortran have a defined', &
+'          ! and limited precision.', &
+'          my_dp_eps = 1.0d0', &
+'          SET_ST: do', &
+'             my_dp_eps = my_dp_eps/2.0d0', &
+'             t = 1.0d0 + my_dp_eps', &
+'             if (t <= 1.0d0) exit', &
+'          enddo SET_ST', &
+'          my_dp_eps = 2.0d0*my_dp_eps', &
+'       ', &
+'       end function my_dp_eps', &
 '    end program demo_epsilon', &
 '', &
 'Results:', &
@@ -5878,12 +5873,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _real_, of the same kind as X and lies in', &
-'the range -1 <= ERF(x) <= 1 .', &
+'The return value is of type real, of the same kind as X and lies in the', &
+'range -1 <= ERF(x) <= 1 .', &
 '', &
 'EXAMPLES', &
 '', &
@@ -5936,7 +5931,7 @@ textblock=[character(len=256) :: &
 '', &
 'DESCRIPTION', &
 '', &
-'ERFC(x) computes the complementary error function of X. Simpy put this', &
+'ERFC(x) computes the complementary error function of X. Simply put this', &
 'is equivalent to 1 - ERF(X), but ERFC is provided because of the extreme', &
 'loss of relative accuracy if ERF(X) is called for large X and the result', &
 'is subtracted from 1.', &
@@ -5948,11 +5943,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _real_ and of the same kind as X. It lies in', &
+'The return value is of type real and of the same kind as X. It lies in', &
 'the range', &
 '', &
 '  0 <= ERFC(x) <= 2.', &
@@ -6011,11 +6006,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _real_ and of the same kind as X.', &
+'The return value is of type real and of the same kind as X.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -6069,9 +6064,9 @@ textblock=[character(len=256) :: &
 '    iso_fortran_env; shall not be coindexed.', &
 '', &
 '-   COUNT : (intent(out))Scalar integer with at least the precision of', &
-'    default _integer_.', &
+'    default integer.', &
 '', &
-'-   STAT : (OPTIONAL) Scalar default-kind _integer_ variable.', &
+'-   STAT : (OPTIONAL) Scalar default-kind integer variable.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -6143,23 +6138,23 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   COMMAND : a default _character_ scalar containing the command line', &
-'    to be executed. The interpretation is programming-environment', &
+'-   COMMAND : a default character scalar containing the command line to', &
+'    be executed. The interpretation is programming-environment', &
 '    dependent.', &
 '', &
-'-   WAIT : (Optional) a default _logical_ scalar. If WAIT is present', &
-'    with the value .false., and the processor supports asynchronous', &
-'    execution of the command, the command is executed asynchronously;', &
-'    otherwise it is executed synchronously.', &
+'-   WAIT : (Optional) a default logical scalar. If WAIT is present with', &
+'    the value .false., and the processor supports asynchronous execution', &
+'    of the command, the command is executed asynchronously; otherwise it', &
+'    is executed synchronously.', &
 '', &
-'-   EXITSTAT : (Optional) an _integer_ of the default kind with', &
+'-   EXITSTAT : (Optional) an integer of the default kind with', &
 '    INTENT(INOUT). If the command is executed synchronously, it is', &
 '    assigned the value of the processor-dependent exit status.', &
 '    Otherwise, the value of EXITSTAT is unchanged.', &
 '', &
-'-   CMDSTAT : (Optional) an _integer_ of default kind with', &
-'    INTENT(INOUT). If an error condition occurs and CMDSTAT is not', &
-'    present, error termination of execution of the image is initiated.', &
+'-   CMDSTAT : (Optional) an integer of default kind with INTENT(INOUT).', &
+'    If an error condition occurs and CMDSTAT is not present, error', &
+'    termination of execution of the image is initiated.', &
 '', &
 '    It is assigned the value -1 if the processor does not support', &
 '    command line execution, a processor-dependent positive value if an', &
@@ -6168,9 +6163,9 @@ textblock=[character(len=256) :: &
 '    support asynchronous execution. Otherwise it is assigned the', &
 '    value 0.', &
 '', &
-'-   CMDMSG : (Optional) a _character_ scalar of the default kind. It is', &
-'    an INTENT (INOUT) argument.If an error condition occurs, it is', &
-'    assigned a processor-dependent explanatory message.Otherwise, it is', &
+'-   CMDMSG : (Optional) a character scalar of the default kind. It is an', &
+'    INTENT (INOUT) argument.If an error condition occurs, it is assigned', &
+'    a processor-dependent explanatory message.Otherwise, it is', &
 '    unchanged.', &
 '', &
 'EXAMPLES', &
@@ -6222,20 +6217,20 @@ textblock=[character(len=256) :: &
 '', &
 'DESCRIPTION', &
 '', &
-'EXP(x) computes the base "_e_" exponential of X where "_e_" is _Euler''s', &
-'constant_.', &
+'EXP(x) computes the base "e" exponential of X where "e" is Euler''s', &
+'constant.', &
 '', &
-'If X is of type _complex_, its imaginary part is regarded as a value in', &
-'radians such that (see _Euler''s formula_):', &
+'If X is of type complex, its imaginary part is regarded as a value in', &
+'radians such that (see Euler''s formula):', &
 '', &
 'if CX=(RE,IM) then EXP(CX)=EXP(RE)*CMPLX(COS(IM),SIN(IM),KIND=KIND(CX))', &
 '', &
 'Since EXP(3) is the inverse function of LOG(3) the maximum valid', &
-'magnitude of the _real_ component of X is LOG(HUGE(X)).', &
+'magnitude of the real component of X is LOG(HUGE(X)).', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_ or _complex_.', &
+'-   X : The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -6324,11 +6319,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type default _integer_.', &
+'The return value is of type default integer.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -6596,7 +6591,7 @@ textblock=[character(len=256) :: &
 '        real(kind=kind(a)),intent(in) :: a', &
 '        integer(kind=IKIND),intent(in),optional :: KIND', &
 '', &
-'    where __KIND__ is any valid value for type _integer_.', &
+'where KIND is any valid value for type integer.', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -6606,15 +6601,15 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   A : The type shall be _real_.', &
+'-   A : The type shall be real.', &
 '', &
-'-   KIND : (Optional) A scalar _integer_ constant initialization', &
+'-   KIND : (Optional) A scalar integer constant initialization', &
 '    expression indicating the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer(kind)_ if KIND is present and of', &
-'default-kind _integer_ otherwise.', &
+'The return value is of type integer(kind) if KIND is present and of', &
+'default-kind integer otherwise.', &
 '', &
 'The result is undefined if it cannot be represented in the specified', &
 'integer type.', &
@@ -6689,7 +6684,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type of the argument shall be a _real_.', &
+'-   X : The type of the argument shall be a real.', &
 '', &
 'RETURNS', &
 '', &
@@ -6755,11 +6750,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Shall be of type _real_ and neither zero nor a negative integer.', &
+'-   X : Shall be of type real and neither zero nor a negative integer.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _real_ of the same kind as _x_.', &
+'The return value is of type real of the same kind as x.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -6890,17 +6885,17 @@ textblock=[character(len=256) :: &
 '', &
 'RETURNS', &
 '', &
-'-   COMMAND : Shall be of type _character_ and of default kind. If', &
-'    COMMAND is present, stores the entire command line that was used to', &
-'    invoke the program in COMMAND.', &
+'-   COMMAND : Shall be of type character and of default kind. If COMMAND', &
+'    is present, stores the entire command line that was used to invoke', &
+'    the program in COMMAND.', &
 '', &
-'-   LENGTH : Shall be of type _integer_ and of default kind. If LENGTH', &
-'    is present, it is assigned the length of the command line.', &
+'-   LENGTH : Shall be of type integer and of default kind. If LENGTH is', &
+'    present, it is assigned the length of the command line.', &
 '', &
-'-   STATUS : Shall be of type _integer_ and of default kind. If STATUS', &
-'    is present, it is assigned 0 upon success of the command, -1 if', &
-'    COMMAND is too short to store the command line, or a positive value', &
-'    in case of an error.', &
+'-   STATUS : Shall be of type integer and of default kind. If STATUS is', &
+'    present, it is assigned 0 upon success of the command, -1 if COMMAND', &
+'    is too short to store the command line, or a positive value in case', &
+'    of an error.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -6986,17 +6981,17 @@ textblock=[character(len=256) :: &
 '', &
 'RETURNS', &
 '', &
-'-   VALUE :Shall be a scalar of type _character_ and of default kind.', &
+'-   VALUE :Shall be a scalar of type character and of default kind.', &
 '    After get_command_argument returns, the VALUE argument holds the', &
 '    NUMBER-th command line argument. If VALUE can not hold the argument,', &
 '    it is truncated to fit the length of VALUE. If there are less than', &
 '    NUMBER arguments specified at the command line, VALUE will be filled', &
 '    with blanks.', &
 '', &
-'-   LENGTH :(Optional) Shall be a scalar of type _integer_. The LENGTH', &
+'-   LENGTH :(Optional) Shall be a scalar of type integer. The LENGTH', &
 '    argument contains the length of the NUMBER-th command line argument.', &
 '', &
-'-   STATUS :(Optional) Shall be a scalar of type _integer_. If the', &
+'-   STATUS :(Optional) Shall be a scalar of type integer. If the', &
 '    argument retrieval fails, STATUS is a positive number; if VALUE', &
 '    contains a truncated command line argument, STATUS is -1; and', &
 '    otherwise the STATUS is zero.', &
@@ -7111,13 +7106,13 @@ textblock=[character(len=256) :: &
 '', &
 '-   NAME : The name of the environment variable to query.', &
 '', &
-'    Shall be a scalar of type _character_ and of default kind.', &
+'    Shall be a scalar of type character and of default kind.', &
 '', &
 'RETURNS', &
 '', &
 '-   VALUE : The value of the environment variable being queried.', &
 '', &
-'    Shall be a scalar of type _character_ and of default kind. The value', &
+'    Shall be a scalar of type character and of default kind. The value', &
 '    of NAME is stored in VALUE. If VALUE is not large enough to hold the', &
 '    data, it is truncated. If NAME is not set, VALUE will be filled with', &
 '    blanks.', &
@@ -7125,20 +7120,20 @@ textblock=[character(len=256) :: &
 '-   LENGTH : Argument LENGTH contains the length needed for storing the', &
 '    environment variable NAME or zero if it is not present.', &
 '', &
-'    Shall be a scalar of type _integer_ and of default kind.', &
+'    Shall be a scalar of type integer and of default kind.', &
 '', &
 '-   STATUS : STATUS is -1 if VALUE is present but too short for the', &
 '    environment variable; it is 1 if the environment variable does not', &
 '    exist and 2 if the processor does not support environment variables;', &
 '    in all other cases STATUS is zero.', &
 '', &
-'    Shall be a scalar of type _integer_ and of default kind.', &
+'    Shall be a scalar of type integer and of default kind.', &
 '', &
 '-   TRIM_NAME : If TRIM_NAME is present with the value .FALSE., the', &
 '    trailing blanks in NAME are significant; otherwise they are not part', &
 '    of the environment variable name.', &
 '', &
-'    Shall be a scalar of type _logical_ and of default kind.', &
+'    Shall be a scalar of type logical and of default kind.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -7384,55 +7379,55 @@ textblock=[character(len=256) :: &
 'modification of the Modified Version to whoever possesses a copy of it.', &
 'In addition, you must do these things in the Modified Version:', &
 '', &
-'-   **A__. Use in the Title Page (and on the covers, if any) a title', &
+'-   A. Use in the Title Page (and on the covers, if any) a title', &
 '    distinct from that of the Document, and from those of previous', &
 '    versions (which should, if there were any, be listed in the History', &
 '    section of the Document). You may use the same title as a previous', &
 '    version if the original publisher of that version gives permission.', &
-'-   **B__. List on the Title Page, as authors, one or more persons or', &
+'-   B. List on the Title Page, as authors, one or more persons or', &
 '    entities responsible for authorship of the modifications in the', &
 '    Modified Version, together with at least five of the principal', &
 '    authors of the Document (all of its principal authors, if it has', &
 '    fewer than five), unless they release you from this requirement.', &
-'-   **C__. State on the Title page the name of the publisher of the', &
-'    Modified Version, as the publisher.', &
-'-   **D__. Preserve all the copyright notices of the Document.', &
-'-   **E__. Add an appropriate copyright notice for your modifications', &
+'-   C. State on the Title page the name of the publisher of the Modified', &
+'    Version, as the publisher.', &
+'-   D. Preserve all the copyright notices of the Document.', &
+'-   E. Add an appropriate copyright notice for your modifications', &
 '    adjacent to the other copyright notices.', &
-'-   **F__. Include, immediately after the copyright notices, a license', &
+'-   F. Include, immediately after the copyright notices, a license', &
 '    notice giving the public permission to use the Modified Version', &
 '    under the terms of this License, in the form shown in the Addendum', &
 '    below.', &
-'-   **G__. Preserve in that license notice the full lists of Invariant', &
+'-   G. Preserve in that license notice the full lists of Invariant', &
 '    Sections and required Cover Texts given in the Document''s license', &
 '    notice.', &
-'-   **H__. Include an unaltered copy of this License.', &
-'-   **I__. Preserve the section Entitled "History", Preserve its Title,', &
-'    and add to it an item stating at least the title, year, new authors,', &
-'    and publisher of the Modified Version as given on the Title Page. If', &
+'-   H. Include an unaltered copy of this License.', &
+'-   I. Preserve the section Entitled "History", Preserve its Title, and', &
+'    add to it an item stating at least the title, year, new authors, and', &
+'    publisher of the Modified Version as given on the Title Page. If', &
 '    there is no section Entitled "History" in the Document, create one', &
 '    stating the title, year, authors, and publisher of the Document as', &
 '    given on its Title Page, then add an item describing the Modified', &
 '    Version as stated in the previous sentence.', &
-'-   **J__. Preserve the network location, if any, given in the Document', &
-'    for public access to a Transparent copy of the Document, and', &
-'    likewise the network locations given in the Document for previous', &
-'    versions it was based on. These may be placed in the "History"', &
-'    section. You may omit a network location for a work that was', &
-'    published at least four years before the Document itself, or if the', &
-'    original publisher of the version it refers to gives permission.', &
-'-   **K__. For any section Entitled "Acknowledgements" or "Dedications",', &
+'-   J. Preserve the network location, if any, given in the Document for', &
+'    public access to a Transparent copy of the Document, and likewise', &
+'    the network locations given in the Document for previous versions it', &
+'    was based on. These may be placed in the "History" section. You may', &
+'    omit a network location for a work that was published at least four', &
+'    years before the Document itself, or if the original publisher of', &
+'    the version it refers to gives permission.', &
+'-   K. For any section Entitled "Acknowledgements" or "Dedications",', &
 '    Preserve the Title of the section, and preserve in the section all', &
 '    the substance and tone of each of the contributor acknowledgements', &
 '    and/or dedications given therein.', &
-'-   **L__. Preserve all the Invariant Sections of the Document,', &
-'    unaltered in their text and in their titles. Section numbers or the', &
-'    equivalent are not considered part of the section titles.', &
-'-   **M__. Delete any section Entitled "Endorsements". Such a section', &
-'    may not be included in the Modified Version.', &
-'-   **N__. Do not retitle any existing section to be Entitled', &
-'    "Endorsements" or to conflict in title with any Invariant Section.', &
-'-   **O__. Preserve any Warranty Disclaimers.', &
+'-   L. Preserve all the Invariant Sections of the Document, unaltered in', &
+'    their text and in their titles. Section numbers or the equivalent', &
+'    are not considered part of the section titles.', &
+'-   M. Delete any section Entitled "Endorsements". Such a section may', &
+'    not be included in the Modified Version.', &
+'-   N. Do not retitle any existing section to be Entitled "Endorsements"', &
+'    or to conflict in title with any Invariant Section.', &
+'-   O. Preserve any Warranty Disclaimers.', &
 '', &
 'If the Modified Version includes new front-matter sections or appendices', &
 'that qualify as Secondary Sections and contain no material copied from', &
@@ -7613,8 +7608,8 @@ textblock=[character(len=256) :: &
 '       TYPE(kind=KIND),intent(in) :: x', &
 '       TYPE(kind=KIND) :: answer', &
 '', &
-'where TYPE may be _real_ or _integer_ and KIND is any supported', &
-'associated _kind_.', &
+'where TYPE may be real or integer and KIND is any supported associated', &
+'kind.', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -7623,13 +7618,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Shall be an arbitrary value of type _real_ or _integer_. The', &
-'    value is used merely to determine what _kind_ and _type_ of scalar', &
-'    is being queried.', &
+'-   X : Shall be an arbitrary value of type real or integer. The value', &
+'    is used merely to determine what kind and type of scalar is being', &
+'    queried.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of the same type and kind as _x_ and is the largest', &
+'The return value is of the same type and kind as x and is the largest', &
 'value supported by the specified model.', &
 '', &
 'EXAMPLES', &
@@ -7721,14 +7716,14 @@ textblock=[character(len=256) :: &
 'HYPOT(X,Y) is referred to as the Euclidean distance function. It is', &
 'equal to $\sqrt{x^2+y^2}$ , without undue underflow or overflow.', &
 '', &
-'In mathematics, the _Euclidean distance_ between two points in Euclidean', &
+'In mathematics, the Euclidean distance between two points in Euclidean', &
 'space is the length of a line segment between two points.', &
 '', &
 'HYPOT(X,Y) returns the distance between the point <X,Y> and the origin.', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_.', &
+'-   X : The type shall be real.', &
 '', &
 '-   Y : The type and kind type parameter shall be the same as X.', &
 '', &
@@ -7818,15 +7813,15 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   C : Shall be a scalar _character_, with _intent(in)_', &
+'-   C : Shall be a scalar character, with intent(in)', &
 '', &
-'-   KIND : (Optional) An _integer_ initialization expression indicating', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
 '    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of kind KIND. If KIND is', &
-'absent, the return value is of default integer kind.', &
+'The return value is of type integer and of kind KIND. If KIND is absent,', &
+'the return value is of default integer kind.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -7905,27 +7900,27 @@ textblock=[character(len=256) :: &
 '', &
 'DESCRIPTION', &
 '', &
-'Reduces with bitwise _and_ the elements of ARRAY along dimension DIM if', &
+'Reduces with bitwise and the elements of ARRAY along dimension DIM if', &
 'the corresponding element in MASK is .TRUE..', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ARRAY : Shall be an array of type _integer_', &
+'-   ARRAY : Shall be an array of type integer', &
 '', &
-'-   DIM : (Optional) shall be a scalar of type _integer_ with a value in', &
+'-   DIM : (Optional) shall be a scalar of type integer with a value in', &
 '    the range from 1 TO N, where N equals the rank of ARRAY.', &
 '', &
-'-   MASK : (Optional) shall be of type _logical_ and either be a scalar', &
-'    or an array of the same shape as ARRAY.', &
+'-   MASK : (Optional) shall be of type logical and either be a scalar or', &
+'    an array of the same shape as ARRAY.', &
 '', &
 'RETURNS', &
 '', &
 'The result is of the same type as ARRAY.', &
 '', &
-'If DIM is absent, a scalar with the bitwise _all_ of all elements in', &
-'ARRAY is returned. Otherwise, an array of rank N-1, where N equals the', &
-'rank of ARRAY, and a shape similar to that of ARRAY with dimension DIM', &
-'dropped is returned.', &
+'If DIM is absent, a scalar with the bitwise all of all elements in ARRAY', &
+'is returned. Otherwise, an array of rank N-1, where N equals the rank of', &
+'ARRAY, and a shape similar to that of ARRAY with dimension DIM dropped', &
+'is returned.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -7981,13 +7976,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : The type shall be _integer_.', &
+'-   I : The type shall be integer.', &
 '', &
-'-   J : The type shall be _integer_, of the same kind as I.', &
+'-   J : The type shall be integer, of the same kind as I.', &
 '', &
 'RETURNS', &
 '', &
-'The return type is _integer_, of the same kind as the arguments. (If the', &
+'The return type is integer, of the same kind as the arguments. (If the', &
 'argument kinds differ, it is of the same kind as the larger argument.)', &
 '', &
 'EXAMPLES', &
@@ -8044,22 +8039,22 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ARRAY : Shall be an array of type _integer_', &
+'-   ARRAY : Shall be an array of type integer', &
 '', &
-'-   DIM : (Optional) shall be a scalar of type _integer_ with a value in', &
+'-   DIM : (Optional) shall be a scalar of type integer with a value in', &
 '    the range from 1 TO N, where N equals the rank of ARRAY.', &
 '', &
-'-   MASK : (Optional) shall be of type _logical_ and either be a scalar', &
-'    or an array of the same shape as ARRAY.', &
+'-   MASK : (Optional) shall be of type logical and either be a scalar or', &
+'    an array of the same shape as ARRAY.', &
 '', &
 'RETURNS', &
 '', &
 'The result is of the same type as ARRAY.', &
 '', &
-'If DIM is absent, a scalar with the bitwise _or_ of all elements in', &
-'ARRAY is returned. Otherwise, an array of rank N-1, where N equals the', &
-'rank of ARRAY, and a shape similar to that of ARRAY with dimension DIM', &
-'dropped is returned.', &
+'If DIM is absent, a scalar with the bitwise or of all elements in ARRAY', &
+'is returned. Otherwise, an array of rank N-1, where N equals the rank of', &
+'ARRAY, and a shape similar to that of ARRAY with dimension DIM dropped', &
+'is returned.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -8112,16 +8107,16 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : The type shall be _integer_.', &
+'-   I : The type shall be integer.', &
 '', &
-'-   POS : The type shall be _integer_. A value of zero refers to the', &
-'    least significant bit. POS is an INTENT(IN) scalar or array of type', &
-'    _integer_. The value of POS must be within the range zero to', &
+'-   POS : The type shall be integer. A value of zero refers to the least', &
+'    significant bit. POS is an INTENT(IN) scalar or array of type', &
+'    integer. The value of POS must be within the range zero to', &
 '    (BIT_SIZE(I)-1).', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of the same kind as I.', &
+'The return value is of type integer and of the same kind as I.', &
 '', &
 'STANDARD', &
 '', &
@@ -8160,16 +8155,16 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : The type shall be _integer_.', &
+'-   I : The type shall be integer.', &
 '', &
-'-   POS : The type shall be _integer_. A value of zero refers to the', &
-'    least significant bit.', &
+'-   POS : The type shall be integer. A value of zero refers to the least', &
+'    significant bit.', &
 '', &
-'-   LEN : The type shall be _integer_.', &
+'-   LEN : The type shall be integer.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of the same kind as I.', &
+'The return value is of type integer and of the same kind as I.', &
 '', &
 'STANDARD', &
 '', &
@@ -8205,16 +8200,16 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : The type shall be _integer_.', &
+'-   I : The type shall be integer.', &
 '', &
-'-   POS : The type shall be _integer_. A value of zero refers to the', &
-'    least significant bit. pos is an INTENT(IN) scalar or array of type', &
-'    _integer_. The value of pos must be within the range zero to', &
+'-   POS : The type shall be integer. A value of zero refers to the least', &
+'    significant bit. pos is an INTENT(IN) scalar or array of type', &
+'    integer. The value of pos must be within the range zero to', &
 '    (BIT_SIZE(I)-1).', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of the same kind as I.', &
+'The return value is of type integer and of the same kind as I.', &
 '', &
 'STANDARD', &
 '', &
@@ -8260,15 +8255,15 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   C : Shall be a scalar _character_, with INTENT(IN)', &
+'-   C : Shall be a scalar character, with INTENT(IN)', &
 '', &
-'-   KIND : (Optional) An _integer_ initialization expression indicating', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
 '    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of kind KIND. If KIND is', &
-'absent, the return value is of default _integer_ kind.', &
+'The return value is of type integer and of kind KIND. If KIND is absent,', &
+'the return value is of default integer kind.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -8285,27 +8280,27 @@ textblock=[character(len=256) :: &
 '', &
 '    contains', &
 '', &
-'    subroutine printme()', &
-'    character(len=1) :: letter', &
-'', &
-'       letter=char(i)', &
-'       select case(i)', &
-'       case (:31,127:)', &
-'          write(*,''(1x,i0.3,1x,"HEX=",z2.2,1x,i0)'')i,letter,ichar(letter)', &
-'       case default', &
-'          write(*,''(1x,i0.3,1x,a,1x,i0)'')i,letter,ichar(letter)', &
-'       end select', &
-'', &
-'    end subroutine printme', &
+'       subroutine printme()', &
+'       character(len=1) :: letter', &
+'       ', &
+'          letter=char(i)', &
+'          select case(i)', &
+'          case (:31,127:)', &
+'             write(*,''(1x,i0.3,1x,"HEX=",z2.2,1x,i0)'')i,letter,ichar(letter)', &
+'          case default', &
+'             write(*,''(1x,i0.3,1x,a,1x,i0)'')i,letter,ichar(letter)', &
+'          end select', &
+'       ', &
+'       end subroutine printme', &
 '', &
 '    end program demo_ichar', &
 '', &
 'NOTE', &
 '', &
 'No intrinsic exists to convert between a numeric value and a formatted', &
-'character string representation -- for instance, given the _character_', &
-'value ''154'', obtaining an _integer_ or _real_ value with the value 154,', &
-'or vice versa. Instead, this functionality is provided by internal-file', &
+'character string representation -- for instance, given the character', &
+'value ''154'', obtaining an integer or real value with the value 154, or', &
+'vice versa. Instead, this functionality is provided by internal-file', &
 'I/O, as in the following example:', &
 '', &
 '    program read_val', &
@@ -8369,13 +8364,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : The type shall be _integer_.', &
+'-   I : The type shall be integer.', &
 '', &
-'-   J : The type shall be _integer_, of the same kind as I.', &
+'-   J : The type shall be integer, of the same kind as I.', &
 '', &
 'RETURNS', &
 '', &
-'The return type is _integer_, of the same kind as the arguments. (If the', &
+'The return type is integer, of the same kind as the arguments. (If the', &
 'argument kinds differ, it is of the same kind as the larger argument.)', &
 '', &
 'STANDARD', &
@@ -8482,12 +8477,12 @@ textblock=[character(len=256) :: &
 '-   BACK : If the BACK argument is present and true, the return value is', &
 '    the start of the rightmost occurrence rather than the leftmost.', &
 '', &
-'-   KIND : An _integer_ initialization expression indicating the kind', &
+'-   KIND : An integer initialization expression indicating the kind', &
 '    parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'-   START : The return value is of type _integer_ and of kind KIND. If', &
+'-   START : The return value is of type integer and of kind KIND. If', &
 '    KIND is absent, the return value is of default integer kind.', &
 '', &
 'EXAMPLES', &
@@ -8554,31 +8549,30 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   A : Shall be of type _integer_, _real_, or _complex_ or a', &
+'-   A : Shall be of type integer, real, or complex or a', &
 '    BOZ-literal-constant.', &
 '', &
-'-   KIND : An _integer_ initialization expression indicating the kind', &
+'-   KIND : An integer initialization expression indicating the kind', &
 '    parameter of the result.', &
 '', &
 '    If not present the returned type is that of default integer type.', &
 '', &
 'RETURNS', &
 '', &
-'returns an _integer_ variable or array applying the following rules:', &
+'returns an integer variable or array applying the following rules:', &
 '', &
 'CASE:', &
 '', &
-'1.  If A is of type _integer_, INT(a) = a', &
+'1.  If A is of type integer, INT(a) = a', &
 '', &
-'2.  If A is of type _real_ and |A| < 1, INT(A) equals 0. If |A| >= 1,', &
-'    then INT(A) equals the integer whose magnitude does not exceed A and', &
+'2.  If A is of type real and |A| < 1, INT(A) equals 0. If |A| >= 1, then', &
+'    INT(A) equals the integer whose magnitude does not exceed A and', &
 '    whose sign is the same as the sign of A.', &
 '', &
-'3.  If A is of type _complex_, rule 2 is applied to the _real_ part of', &
-'    A.', &
+'3.  If A is of type complex, rule 2 is applied to the real part of A.', &
 '', &
-'4.  If _a_ is a boz-literal constant, it is treated as an _integer_ with', &
-'    the _kind_ specified.', &
+'4.  If a is a boz-literal constant, it is treated as an integer with the', &
+'    kind specified.', &
 '', &
 '    The interpretation of a bit sequence whose most significant bit is 1', &
 '    is processor dependent.', &
@@ -8681,13 +8675,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : an _integer_ scalar or array.', &
+'-   I : an integer scalar or array.', &
 '', &
-'-   J : _integer_ scalar or array, of the same kind as I.', &
+'-   J : integer scalar or array, of the same kind as I.', &
 '', &
 'RETURNS', &
 '', &
-'The return type is _integer_, of the same kind as the arguments. (If the', &
+'The return type is integer, of the same kind as the arguments. (If the', &
 'argument kinds differ, it is of the same kind as the larger argument.)', &
 '', &
 'EXAMPLES', &
@@ -8743,27 +8737,27 @@ textblock=[character(len=256) :: &
 '', &
 'DESCRIPTION', &
 '', &
-'Reduces with bitwise _xor_ (exclusive _or_) the elements of ARRAY along', &
+'Reduces with bitwise xor (exclusive or) the elements of ARRAY along', &
 'dimension DIM if the corresponding element in MASK is .TRUE..', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ARRAY : Shall be an array of type _integer_', &
+'-   ARRAY : Shall be an array of type integer', &
 '', &
-'-   DIM : (Optional) shall be a scalar of type _integer_ with a value in', &
+'-   DIM : (Optional) shall be a scalar of type integer with a value in', &
 '    the range from "1" TO "N", where "N" equals the rank of ARRAY.', &
 '', &
-'-   MASK : (Optional) shall be of type _logical_ and either be a scalar', &
-'    or an array of the same shape as ARRAY.', &
+'-   MASK : (Optional) shall be of type logical and either be a scalar or', &
+'    an array of the same shape as ARRAY.', &
 '', &
 'RETURNS', &
 '', &
 'The result is of the same type as ARRAY.', &
 '', &
-'If DIM is absent, a scalar with the bitwise _xor_ of all elements in', &
-'ARRAY is returned. Otherwise, an array of rank N-1, where N equals the', &
-'rank of ARRAY, and a shape similar to that of ARRAY with dimension DIM', &
-'dropped is returned.', &
+'If DIM is absent, a scalar with the bitwise xor of all elements in ARRAY', &
+'is returned. Otherwise, an array of rank N-1, where N equals the rank of', &
+'ARRAY, and a shape similar to that of ARRAY with dimension DIM dropped', &
+'is returned.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -8927,13 +8921,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : The type shall be _integer_.', &
+'-   I : The type shall be integer.', &
 '', &
-'-   SHIFT : The type shall be _integer_.', &
+'-   SHIFT : The type shall be integer.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of the same kind as I.', &
+'The return value is of type integer and of the same kind as I.', &
 '', &
 'STANDARD', &
 '', &
@@ -8974,16 +8968,16 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : The type shall be _integer_.', &
+'-   I : The type shall be integer.', &
 '', &
-'-   SHIFT : The type shall be _integer_.', &
+'-   SHIFT : The type shall be integer.', &
 '', &
-'-   SIZE : (Optional) The type shall be _integer_; the value must be', &
+'-   SIZE : (Optional) The type shall be integer; the value must be', &
 '    greater than zero and less than or equal to BIT_SIZE(i).', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of the same kind as I.', &
+'The return value is of type integer and of the same kind as I.', &
 '', &
 'STANDARD', &
 '', &
@@ -9025,11 +9019,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : An _integer_ status value to test if indicating end of file.', &
+'-   I : An integer status value to test if indicating end of file.', &
 '', &
 'RETURNS', &
 '', &
-'Returns a _logical_ of the default kind, .TRUE. if I has the value which', &
+'Returns a logical of the default kind, .TRUE. if I has the value which', &
 'indicates an end of file condition for IOSTAT= specifiers, and is', &
 '.FALSE. otherwise.', &
 '', &
@@ -9087,11 +9081,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : Shall be of the type _integer_.', &
+'-   I : Shall be of the type integer.', &
 '', &
 'RETURNS', &
 '', &
-'Returns a _logical_ of the default kind, which .true. if I has the value', &
+'Returns a logical of the default kind, which .true. if I has the value', &
 'which indicates an end of file condition for iostat= specifiers, and is', &
 '.false. otherwise.', &
 '', &
@@ -9139,13 +9133,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Shall be of type _logical_, _integer_, _real_, _complex_ or', &
-'    _character_.', &
+'-   X : Shall be of type logical, integer, real, complex or character.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is a scalar of type _integer_ and of the default', &
-'integer kind.', &
+'The return value is a scalar of type integer and of the default integer', &
+'kind.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -9203,20 +9196,20 @@ textblock=[character(len=256) :: &
 '', &
 '-   ARRAY : Shall be an array, of any type.', &
 '', &
-'-   DIM : Shall be a scalar _integer_.', &
+'-   DIM : Shall be a scalar integer.', &
 '', &
-'-   KIND : An _integer_ initialization expression indicating the kind', &
+'-   KIND : An integer initialization expression indicating the kind', &
 '    parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of kind KIND. If KIND is', &
-'absent, the return value is of default integer kind. If DIM is absent,', &
-'the result is an array of the lower bounds of ARRAY. If DIM is present,', &
-'the result is a scalar corresponding to the lower bound of the array', &
-'along that dimension. If ARRAY is an expression rather than a whole', &
-'array or array structure component, or if it has a zero extent along the', &
-'relevant dimension, the lower bound is taken to be 1.', &
+'The return value is of type integer and of kind KIND. If KIND is absent,', &
+'the return value is of default integer kind. If DIM is absent, the', &
+'result is an array of the lower bounds of ARRAY. If DIM is present, the', &
+'result is a scalar corresponding to the lower bound of the array along', &
+'that dimension. If ARRAY is an expression rather than a whole array or', &
+'array structure component, or if it has a zero extent along the relevant', &
+'dimension, the lower bound is taken to be 1.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -9313,11 +9306,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : Shall be of type _integer_.', &
+'-   I : Shall be of type integer.', &
 '', &
 'RETURNS', &
 '', &
-'The type of the return value is the same as a default _integer_. If all', &
+'The type of the return value is the same as a default integer. If all', &
 'the bits of I are zero, the result value is BIT_SIZE(I).', &
 '', &
 'EXAMPLES', &
@@ -9447,7 +9440,7 @@ textblock=[character(len=256) :: &
 '', &
 'DESCRIPTION', &
 '', &
-'LEN(3) Returns the length of a _character_ string.', &
+'LEN(3) Returns the length of a character string.', &
 '', &
 'If STRING is an array, the length of an element of STRING is returned.', &
 '', &
@@ -9456,15 +9449,15 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   STRING : Shall be a scalar or array of type _character_.', &
+'-   STRING : Shall be a scalar or array of type character.', &
 '', &
-'-   KIND : An _integer_ initialization expression indicating the kind', &
+'-   KIND : An integer initialization expression indicating the kind', &
 '    parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of kind KIND. If KIND is', &
-'absent, the return value is of default integer kind.', &
+'The return value is of type integer and of kind KIND. If KIND is absent,', &
+'the return value is of default integer kind.', &
 '', &
 'STANDARD', &
 '', &
@@ -9574,15 +9567,15 @@ textblock=[character(len=256) :: &
 'ARGUMENTS', &
 '', &
 '-   STRING : The input string whose length is to be measured. Shall be a', &
-'    scalar of type _character_', &
+'    scalar of type character', &
 '', &
-'-   KIND : (Optional) An _integer_ initialization expression indicating', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
 '    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of kind KIND. If KIND is', &
-'absent, the return value is of default _integer_ kind.', &
+'The return value is of type integer and of kind KIND. If KIND is absent,', &
+'the return value is of default integer kind.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -9663,9 +9656,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   STRING_A : Shall be of default _character_ type.', &
+'-   STRING_A : Shall be of default character type.', &
 '', &
-'-   STRING_B : Shall be of default _character_ type.', &
+'-   STRING_B : Shall be of default character type.', &
 '', &
 'RETURNS', &
 '', &
@@ -9724,9 +9717,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   STRING_A : Shall be of default _character_ type.', &
+'-   STRING_A : Shall be of default character type.', &
 '', &
-'-   STRING_B : Shall be of default _character_ type.', &
+'-   STRING_B : Shall be of default character type.', &
 '', &
 'RETURNS', &
 '', &
@@ -9791,9 +9784,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   STR_A : variable or array of default _character_ type.', &
+'-   STR_A : variable or array of default character type.', &
 '', &
-'-   STR_B : variable or array of default _character_ type.', &
+'-   STR_B : variable or array of default character type.', &
 '', &
 '    if STR_A and STR_B are both arrays they must be of the same shape.', &
 '', &
@@ -9886,9 +9879,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   STRING_A : Shall be of default _character_ type.', &
+'-   STRING_A : Shall be of default character type.', &
 '', &
-'-   STRING_B : Shall be of default _character_ type.', &
+'-   STRING_B : Shall be of default character type.', &
 '', &
 'RETURNS', &
 '', &
@@ -9939,11 +9932,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : A _real_ value > 0 to take the log of.', &
+'-   X : A real value > 0 to take the log of.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _real_ . The kind type parameter is the same', &
+'The return value is of type real . The kind type parameter is the same', &
 'as X.', &
 '', &
 'EXAMPLES', &
@@ -10001,13 +9994,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_ or _complex_.', &
+'-   X : The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _real_ or _complex_. The kind type parameter', &
-'is the same as X. If X is _complex_, the imaginary part OMEGA is in the', &
-'range', &
+'The return value is of type real or complex. The kind type parameter is', &
+'the same as X. If X is complex, the imaginary part OMEGA is in the range', &
 '', &
 '-PI < OMEGA <= PI.', &
 '', &
@@ -10058,11 +10050,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Shall be of type _real_ and neither zero nor a negative integer.', &
+'-   X : Shall be of type real and neither zero nor a negative integer.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _real_ of the same kind as X.', &
+'The return value is of type real of the same kind as X.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -10099,7 +10091,7 @@ textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '', &
-'LOGICAL(3) - [TYPE:LOGICAL] Converts one kind of _logical_ variable to', &
+'LOGICAL(3) - [TYPE:LOGICAL] Converts one kind of logical variable to', &
 'another', &
 '', &
 'SYNTAX', &
@@ -10112,22 +10104,24 @@ textblock=[character(len=256) :: &
 '', &
 'DESCRIPTION', &
 '', &
-'Converts one kind of _logical_ variable to another.', &
+'Converts one kind of logical variable to another.', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   L : The type shall be _logical_.', &
+'-   L : The type shall be logical.', &
 '', &
-'-   KIND : (Optional) An _integer_ initialization expression indicating', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
 '    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is a _logical_ value equal to L, with a kind', &
+'The return value is a logical value equal to L, with a kind', &
 'corresponding to KIND, or of the default logical kind if KIND is not', &
 'given.', &
 '', &
 'EXAMPLES', &
+'', &
+'Sample program:', &
 '', &
 '    program demo_logical', &
 '    ! Access array containing the kind type parameter values supported by this', &
@@ -10182,19 +10176,19 @@ textblock=[character(len=256) :: &
 '', &
 'DESCRIPTION', &
 '', &
-'MASKL(I[, _KIND_]) has its leftmost I bits set to 1, and the remaining', &
+'MASKL(I[, KIND]) has its leftmost I bits set to 1, and the remaining', &
 'bits set to 0.', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : Shall be of type _integer_. Its value must be non-negative, and', &
+'-   I : Shall be of type integer. Its value must be non-negative, and', &
 '    less than or equal to the number of bits for the kind of the result.', &
 '', &
-'-   KIND : Shall be a scalar constant expression of type _integer_.', &
+'-   KIND : Shall be a scalar constant expression of type integer.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_. If KIND is present, it specifies', &
+'The return value is of type integer. If KIND is present, it specifies', &
 'the kind value of the return type; otherwise, it is of the default', &
 'integer kind.', &
 '', &
@@ -10288,14 +10282,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : Shall be of type _integer_. Its value must be non-negative, and', &
+'-   I : Shall be of type integer. Its value must be non-negative, and', &
 '    less than or equal to the number of bits for the kind of the result.', &
 '', &
-'-   KIND : Shall be a scalar constant expression of type _integer_.', &
+'-   KIND : Shall be a scalar constant expression of type integer.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_. If KIND is present, it specifies', &
+'The return value is of type integer. If KIND is present, it specifies', &
 'the kind value of the return type; otherwise, it is of the default', &
 'integer kind.', &
 '', &
@@ -10393,14 +10387,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   MATRIX_A : An array of _integer_, _real_, _complex_, or _logical_', &
-'    type, with a rank of one or two.', &
+'-   MATRIX_A : An array of integer, real, complex, or logical type, with', &
+'    a rank of one or two.', &
 '', &
-'-   MATRIX_B : An array of _integer_, _real_, or _complex_ type if', &
-'    MATRIX_A is of a numeric type; otherwise, an array of _logical_', &
-'    type. The rank shall be one or two, and the first (or only)', &
-'    dimension of MATRIX_B shall be equal to the last (or only) dimension', &
-'    of MATRIX_A.', &
+'-   MATRIX_B : An array of integer, real, or complex type if MATRIX_A is', &
+'    of a numeric type; otherwise, an array of logical type. The rank', &
+'    shall be one or two, and the first (or only) dimension of MATRIX_B', &
+'    shall be equal to the last (or only) dimension of MATRIX_A.', &
 '', &
 'RETURNS', &
 '', &
@@ -10437,7 +10430,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   A1 : The type shall be _integer_ or _real_.', &
+'-   A1 : The type shall be integer or real.', &
 '', &
 '-   A2,A3,... : An expression of the same type and kind as A1.', &
 '', &
@@ -10557,11 +10550,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Shall be of type _real_.', &
+'-   X : Shall be of type real.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of the default integer kind.', &
+'The return value is of type integer and of the default integer kind.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -10627,13 +10620,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ARRAY : Shall be an array of type _integer_, _real_, or _character_.', &
+'-   ARRAY : Shall be an array of type integer, real, or character.', &
 '', &
-'-   DIM : (Optional) Shall be a scalar of type _integer_, with a value', &
+'-   DIM : (Optional) Shall be a scalar of type integer, with a value', &
 '    between one and the rank of ARRAY, inclusive. It may not be an', &
 '    optional dummy argument.', &
 '', &
-'-   MASK : Shall be an array of type _logical_, and conformable with', &
+'-   MASK : Shall be an array of type logical, and conformable with', &
 '    ARRAY.', &
 '', &
 'RETURNS', &
@@ -10643,7 +10636,7 @@ textblock=[character(len=256) :: &
 'one less than the rank of ARRAY, and a size corresponding to the size of', &
 'ARRAY with the DIM dimension removed. If DIM is present and ARRAY has a', &
 'rank of one, the result is a scalar. In all cases, the result is of', &
-'default _integer_ type.', &
+'default integer type.', &
 '', &
 'The value returned is reference to the offset from the beginning of the', &
 'array, not necessarily the subscript value if the array subscripts do', &
@@ -10735,14 +10728,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ARRAY : Shall be an array of type _integer_, _real_, or _character_.', &
+'-   ARRAY : Shall be an array of type integer, real, or character.', &
 '', &
-'-   DIM : (Optional) Shall be a scalar of type _integer_, with a value', &
+'-   DIM : (Optional) Shall be a scalar of type integer, with a value', &
 '    between one and the rank of ARRAY, inclusive. It may not be an', &
 '    optional dummy argument.', &
 '', &
-'-   MASK : (Optional) Shall be an array of type _logical_, and', &
-'    conformable with ARRAY.', &
+'-   MASK : (Optional) Shall be an array of type logical, and conformable', &
+'    with ARRAY.', &
 '', &
 'RETURNS', &
 '', &
@@ -10845,9 +10838,9 @@ textblock=[character(len=256) :: &
 '', &
 '-   FSOURCE : Shall be of the same type and type parameters as TSOURCE.', &
 '', &
-'-   MASK : Shall be of type _logical_.', &
+'-   MASK : Shall be of type logical.', &
 '', &
-'Note that (currently) _character_ values must be of the same length.', &
+'Note that (currently) character values must be of the same length.', &
 '', &
 'RETURNS', &
 '', &
@@ -10957,7 +10950,7 @@ textblock=[character(len=256) :: &
 '        integer(kind=KIND) ,intent(in) :: i, j, mask', &
 '        integer(kind=KIND) :: r', &
 '', &
-'where the result and all input values have the same _integer_ type and', &
+'where the result and all input values have the same integer type and', &
 'KIND with the exception that the mask and either I or J may be a BOZ', &
 'constant.', &
 '', &
@@ -10974,14 +10967,14 @@ textblock=[character(len=256) :: &
 '', &
 'The resulting value is the same as would result from', &
 '', &
-'    __ior (iand (i, mask),iand (j, not (mask)))__', &
+'        ior (iand (i, mask),iand (j, not (mask)))', &
 '', &
-'An exception to all values being of the same _integer_ type is that I or', &
-'J and/or the mask may be a BOZ constant (A BOZ constant means it is', &
-'either a Binary, Octal, or Hexadecimal literal constant). The BOZ values', &
-'are converted to the _integer_ type of the non-BOZ value(s) as if called', &
-'by the intrinsic function INT() with the kind of the non-BOZ value(s),', &
-'so the BOZ values must be in the range of the type of the result.', &
+'An exception to all values being of the same integer type is that I or J', &
+'and/or the mask may be a BOZ constant (A BOZ constant means it is either', &
+'a Binary, Octal, or Hexadecimal literal constant). The BOZ values are', &
+'converted to the integer type of the non-BOZ value(s) as if called by', &
+'the intrinsic function INT() with the kind of the non-BOZ value(s), so', &
+'the BOZ values must be in the range of the type of the result.', &
 '', &
 'ARGUMENTS', &
 '', &
@@ -10997,9 +10990,11 @@ textblock=[character(len=256) :: &
 'RETURNS', &
 '', &
 'The bits blended from I and J using the mask MASK. It is the same type', &
-'as I if I is of type _integer_, otherwise the same type as J.', &
+'as I if I is of type integer, otherwise the same type as J.', &
 '', &
 'EXAMPLE', &
+'', &
+'Sample program:', &
 '', &
 '    program demo_merge_bits', &
 '    use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64', &
@@ -11080,7 +11075,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   A1 : The type shall be _integer_ or _real_.', &
+'-   A1 : The type shall be integer or real.', &
 '', &
 '-   A2, A3, ``` : An expression of the same type and kind as A1.', &
 '', &
@@ -11136,11 +11131,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Shall be of type _real_.', &
+'-   X : Shall be of type real.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of the default integer kind.', &
+'The return value is of type integer and of the default integer kind.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -11210,13 +11205,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ARRAY : Shall be an array of type _integer_, _real_, or _character_.', &
+'-   ARRAY : Shall be an array of type integer, real, or character.', &
 '', &
-'-   DIM : (Optional) Shall be a scalar of type _integer_, with a value', &
+'-   DIM : (Optional) Shall be a scalar of type integer, with a value', &
 '    between one and the rank of ARRAY, inclusive. It may not be an', &
 '    optional dummy argument.', &
 '', &
-'-   MASK : Shall be an array of type _logical_, and conformable with', &
+'-   MASK : Shall be an array of type logical, and conformable with', &
 '    ARRAY.', &
 '', &
 'RETURNS', &
@@ -11226,7 +11221,7 @@ textblock=[character(len=256) :: &
 'one less than the rank of ARRAY, and a size corresponding to the size of', &
 'ARRAY with the DIM dimension removed. If DIM is present and ARRAY has a', &
 'rank of one, the result is a scalar. In all cases, the result is of', &
-'default _integer_ type.', &
+'default integer type.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -11298,13 +11293,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ARRAY : Shall be an array of type _integer_, _real_, or _character_.', &
+'-   ARRAY : Shall be an array of type integer, real, or character.', &
 '', &
-'-   DIM : (Optional) Shall be a scalar of type _integer_, with a value', &
+'-   DIM : (Optional) Shall be a scalar of type integer, with a value', &
 '    between one and the rank of ARRAY, inclusive. It may not be an', &
 '    optional dummy argument.', &
 '', &
-'-   MASK : Shall be an array of type _logical_, and conformable with', &
+'-   MASK : Shall be an array of type logical, and conformable with', &
 '    ARRAY.', &
 '', &
 'RETURNS', &
@@ -11439,7 +11434,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   A : Shall be a scalar of type _integer_ or _real_.', &
+'-   A : Shall be a scalar of type integer or real.', &
 '', &
 '-   P : Shall be a scalar of the same type and kind as A and not equal', &
 '    to zero.', &
@@ -11521,7 +11516,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   A : Shall be a scalar of type _integer_ or _real_.', &
+'-   A : Shall be a scalar of type integer or real.', &
 '', &
 '-   P : Shall be a scalar of the same type and kind as A. It shall not', &
 '    be zero.', &
@@ -11530,11 +11525,11 @@ textblock=[character(len=256) :: &
 '', &
 'The type and kind of the result are those of the arguments.', &
 '', &
-'-   If A and P are of type _integer_: MODULO(A,P) has the value of A -', &
+'-   If A and P are of type integer: MODULO(A,P) has the value of A -', &
 '    FLOOR (REAL(A) / REAL(P)) * P.', &
 '', &
-'-   If A and P are of type _real_: MODULO(A,P) has the value of A -', &
-'    FLOOR (A / P) * P.', &
+'-   If A and P are of type real: MODULO(A,P) has the value of A - FLOOR', &
+'    (A / P) * P.', &
 '', &
 'The returned value has the same sign as P and a magnitude less than the', &
 'magnitude of P.', &
@@ -11671,8 +11666,8 @@ textblock=[character(len=256) :: &
 'DESCRIPTION', &
 '', &
 'MVBITS(3F) copies a bit pattern found in a range of adjacent bits in the', &
-'_integer_ FROM to a specified position in another integer TO (which is', &
-'of the same kind as FROM). It otherwise leaves the bits in TO as-is.', &
+'integer FROM to a specified position in another integer TO (which is of', &
+'the same kind as FROM). It otherwise leaves the bits in TO as-is.', &
 '', &
 'The bit positions copied must exist within the value of FROM. That is,', &
 'the values of FROMPOS+LEN-1 and TOPOS+LEN-1 must be nonnegative and less', &
@@ -11682,19 +11677,18 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   FROM : An _integer_ to read bits from.', &
+'-   FROM : An integer to read bits from.', &
 '', &
 '-   FROMPOS : FROMPOS is the position of the first bit to copy. It is a', &
-'    nonnegative _integer_ value < BIT_SIZE(FROM).', &
+'    nonnegative integer value < BIT_SIZE(FROM).', &
 '', &
-'-   LEN : A nonnegative _integer_ value that indicates how many bits to', &
+'-   LEN : A nonnegative integer value that indicates how many bits to', &
 '    copy from FROM. It must not specify copying bits past the end of', &
 '    FROM. That is, FROMPOS + LEN must be less than or equal to', &
 '    BIT_SIZE(FROM).', &
 '', &
-'-   TO : The _integer_ variable to place the copied bits into. It must', &
-'    be of the same kind as FROM and may even be the same variable as', &
-'    FROM.', &
+'-   TO : The integer variable to place the copied bits into. It must be', &
+'    of the same kind as FROM and may even be the same variable as FROM.', &
 '', &
 '    TO : is set by copying the sequence of bits of length LEN, starting', &
 '    at position FROMPOS of FROM to position TOPOS of TO. No other bits', &
@@ -11702,74 +11696,75 @@ textblock=[character(len=256) :: &
 '    are equal to the value that the LEN bits of FROM starting at FROMPOS', &
 '    had on entry.', &
 '', &
-'-   TOPOS : A nonnegative _integer_ value indicating the starting', &
-'    location in TO to place the specified copy of bits from FROM.', &
-'    TOPOS + LEN must be less than or equal to BIT_SIZE(TO).', &
+'-   TOPOS : A nonnegative integer value indicating the starting location', &
+'    in TO to place the specified copy of bits from FROM. TOPOS + LEN', &
+'    must be less than or equal to BIT_SIZE(TO).', &
 '', &
 'EXAMPLE', &
 '', &
 'Sample program that populates a new 32-bit integer with its bytes in', &
 'reverse order (ie. changes the Endian of the integer).', &
 '', &
-'      program demo_mvbits', &
-'      use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64', &
-'      implicit none', &
-'      integer(kind=int32) :: intfrom, intto, abcd_int', &
-'      character(len=*),parameter :: bits= ''(g0,t30,b32.32)''', &
-'      character(len=*),parameter :: fmt= ''(g0,t30,a,t40,b32.32)''', &
+'    program demo_mvbits', &
+'    use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64', &
+'    implicit none', &
+'    integer(kind=int32) :: intfrom, intto, abcd_int', &
+'    character(len=*),parameter :: bits= ''(g0,t30,b32.32)''', &
+'    character(len=*),parameter :: fmt= ''(g0,t30,a,t40,b32.32)''', &
 '', &
-'         intfrom=huge(0)  ! all bits are 1 accept the sign bit', &
-'     intto=0          ! all bits are 0', &
+'        intfrom=huge(0)  ! all bits are 1 accept the sign bit', &
+'        intto=0          ! all bits are 0', &
 '', &
-'         !! CHANGE BIT 0', &
-'         ! show the value and bit pattern', &
-'         write(*,bits)intfrom,intfrom', &
-'         write(*,bits)intto,intto', &
+'        !! CHANGE BIT 0', &
+'        ! show the value and bit pattern', &
+'        write(*,bits)intfrom,intfrom', &
+'        write(*,bits)intto,intto', &
 '', &
-'         ! copy bit 0 from intfrom to intto to show the rightmost bit changes', &
-'         !          (from,    frompos, len,    to, topos)', &
-'         call mvbits(intfrom,       0,   1, intto,     0) ! change bit 0', &
-'         write(*,bits)intto,intto', &
+'        ! copy bit 0 from intfrom to intto to show the rightmost bit changes', &
+'        !          (from,    frompos, len,    to, topos)', &
+'        call mvbits(intfrom,       0,   1, intto,     0) ! change bit 0', &
+'        write(*,bits)intto,intto', &
 '', &
-'         !! COPY PART OF A VALUE TO ITSELF', &
-'     call mvbits(intfrom,0,1,intfrom,31) ! can copy bit from a value to itself', &
-'         write(*,bits)intfrom,intfrom', &
+'        !! COPY PART OF A VALUE TO ITSELF', &
+'        ! can copy bit from a value to itself', &
+'        call mvbits(intfrom,0,1,intfrom,31) ', &
+'        write(*,bits)intfrom,intfrom', &
 '', &
-'         !! MOVING BYTES AT A TIME', &
-'         ! make native integer value with bit patterns', &
-'         ! that happen to be the same as the beginning of the alphabet', &
-'     ! to make it easy to see the bytes are reversed', &
-'         abcd_int=transfer(''abcd'',0)', &
-'         ! show the value and bit pattern', &
-'         write(*,*)''native''', &
-'         write(*,fmt)abcd_int,abcd_int,abcd_int', &
+'        !! MOVING BYTES AT A TIME', &
+'        ! make native integer value with bit patterns', &
+'        ! that happen to be the same as the beginning of the alphabet', &
+'        ! to make it easy to see the bytes are reversed', &
+'        abcd_int=transfer(''abcd'',0)', &
+'        ! show the value and bit pattern', &
+'        write(*,*)''native''', &
+'        write(*,fmt)abcd_int,abcd_int,abcd_int', &
 '', &
-'         ! change endian of the value', &
-'         abcd_int=int_swap32(abcd_int)', &
-'         ! show the values and their bit pattern', &
-'         write(*,*)''non-native''', &
-'         write(*,fmt)abcd_int,abcd_int,abcd_int', &
+'        ! change endian of the value', &
+'        abcd_int=int_swap32(abcd_int)', &
+'        ! show the values and their bit pattern', &
+'        write(*,*)''non-native''', &
+'        write(*,fmt)abcd_int,abcd_int,abcd_int', &
 '', &
-'      contains', &
+'     contains', &
 '', &
-'      pure elemental function int_swap32(intin) result(intout)', &
-'      ! Convert a 32 bit integer from big Endian to little Endian,', &
-'      ! or conversely from little Endian to big Endian.', &
-'      !', &
-'      integer(kind=int32), intent(in)  :: intin', &
-'      integer(kind=int32) :: intout', &
-'         ! copy bytes from input value to new position in output value', &
-'         !          (from,  frompos, len,     to, topos)', &
-'         call mvbits(intin,       0,   8, intout,    24) ! byte1 to byte4', &
-'         call mvbits(intin,       8,   8, intout,    16) ! byte2 to byte3', &
-'         call mvbits(intin,      16,   8, intout,     8) ! byte3 to byte2', &
-'         call mvbits(intin,      24,   8, intout,     0) ! byte4 to byte1', &
-'      end function int_swap32', &
+'     pure elemental function int_swap32(intin) result(intout)', &
+'     ! Convert a 32 bit integer from big Endian to little Endian,', &
+'     ! or conversely from little Endian to big Endian.', &
+'     !', &
+'     integer(kind=int32), intent(in)  :: intin', &
+'     integer(kind=int32) :: intout', &
+'        ! copy bytes from input value to new position in output value', &
+'        !          (from,  frompos, len,     to, topos)', &
+'        call mvbits(intin,       0,   8, intout,    24) ! byte1 to byte4', &
+'        call mvbits(intin,       8,   8, intout,    16) ! byte2 to byte3', &
+'        call mvbits(intin,      16,   8, intout,     8) ! byte3 to byte2', &
+'        call mvbits(intin,      24,   8, intout,     0) ! byte4 to byte1', &
+'     end function int_swap32', &
 '', &
-'      end program demo_mvbits', &
+'     end program demo_mvbits', &
 '', &
-'      Results:', &
-'    ```text', &
+'Results:', &
+'', &
 '', &
 '       2147483647                   01111111111111111111111111111111', &
 '       0                            00000000000000000000000000000000', &
@@ -11779,7 +11774,6 @@ textblock=[character(len=256) :: &
 '       1684234849                   abcd      01100100011000110110001001100001', &
 '        non-native', &
 '       1633837924                   dcba      01100001011000100110001101100100', &
-'    ================================================================================', &
 '', &
 'STANDARD', &
 '', &
@@ -11816,9 +11810,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Shall be of type _real_.', &
+'-   X : Shall be of type real.', &
 '', &
-'-   S : Shall be of type _real_ and not equal to zero.', &
+'-   S : Shall be of type real and not equal to zero.', &
 '', &
 'RETURNS', &
 '', &
@@ -11891,9 +11885,9 @@ textblock=[character(len=256) :: &
 '', &
 'NEW_LINE(C) returns the new-line character.', &
 '', &
-'Case (i) : If A is default _character_ and the character in position 10', &
-'of the ASCII collating sequence is representable in the default', &
-'character set, then the result is ACHAR(10).', &
+'Case (i) : If A is default character and the character in position 10 of', &
+'the ASCII collating sequence is representable in the default character', &
+'set, then the result is ACHAR(10).', &
 '', &
 'Case (ii) : If A is an ASCII character or an ISO 10646 character, then', &
 'the result is CHAR(10, KIND (A)).', &
@@ -11906,12 +11900,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   C : The argument shall be a scalar or array of the type _character_.', &
+'-   C : The argument shall be a scalar or array of the type character.', &
 '', &
 'RETURNS', &
 '', &
-'Returns a _character_ scalar of length one with the new-line character', &
-'of the same kind as parameter C.', &
+'Returns a character scalar of length one with the new-line character of', &
+'the same kind as parameter C.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -11978,16 +11972,16 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type of the argument shall be _real_.', &
+'-   X : The type of the argument shall be real.', &
 '', &
-'-   KIND : (Optional) A constant _integer_ expression indicating the', &
-'    kind parameter of the result. Otherwise, the kind type parameter is', &
-'    that of default _integer_ type.', &
+'-   KIND : (Optional) A constant integer expression indicating the kind', &
+'    parameter of the result. Otherwise, the kind type parameter is that', &
+'    of default integer type.', &
 '', &
 'RETURNS', &
 '', &
 '-   ANSWER : The result is the integer nearest X, or if there are two', &
-'    integers equally near X, the result is whichever such _integer_ has', &
+'    integers equally near X, the result is whichever such integer has', &
 '    the greater magnitude.', &
 '', &
 '    The result is undefined if it cannot be represented in the specified', &
@@ -12093,9 +12087,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ARRAY : Shall be an array of type _real_.', &
+'-   ARRAY : Shall be an array of type real.', &
 '', &
-'-   DIM : shall be a scalar of type _integer_ with a value in the range', &
+'-   DIM : shall be a scalar of type integer with a value in the range', &
 '    from 1 to RANK(ARRAY).', &
 '', &
 'RETURNS', &
@@ -12179,11 +12173,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : The type shall be _integer_.', &
+'-   I : The type shall be integer.', &
 '', &
 'RETURNS', &
 '', &
-'The return type is _integer_, of the same kind as the argument.', &
+'The return type is integer, of the same kind as the argument.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -12241,8 +12235,8 @@ textblock=[character(len=256) :: &
 'If MOLD is present, a disassociated pointer of the same type is', &
 'returned, otherwise the type is determined by context.', &
 '', &
-'In _Fortran 95_, MOLD is optional. Please note that _Fortran 2003_', &
-'includes cases where it is required.', &
+'In Fortran 95, MOLD is optional. Please note that Fortran 2003 includes', &
+'cases where it is required.', &
 '', &
 'ARGUMENTS', &
 '', &
@@ -12369,15 +12363,15 @@ textblock=[character(len=256) :: &
 '', &
 'RETURNS', &
 '', &
-'Scalar default-kind _integer_. If DISTANCE is not present or has value', &
-'0, the number of images in the current team is returned. For values', &
-'smaller or equal distance to the initial team, it returns the number of', &
-'images index on the ancestor team which has a distance of DISTANCE from', &
-'the invoking team. If DISTANCE is larger than the distance to the', &
-'initial team, the number of images of the initial team is returned. If', &
-'FAILED is not present the total number of images is returned; if it has', &
-'the value .true., the number of failed images is returned, otherwise,', &
-'the number of images which do have not the failed status.', &
+'Scalar default-kind integer. If DISTANCE is not present or has value 0,', &
+'the number of images in the current team is returned. For values smaller', &
+'or equal distance to the initial team, it returns the number of images', &
+'index on the ancestor team which has a distance of DISTANCE from the', &
+'invoking team. If DISTANCE is larger than the distance to the initial', &
+'team, the number of images of the initial team is returned. If FAILED is', &
+'not present the total number of images is returned; if it has the value', &
+'.true., the number of failed images is returned, otherwise, the number', &
+'of images which do have not the failed status.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -12414,7 +12408,132 @@ shortname="num_images"
 call process()
 
 
-case('151','pack')
+case('151','out_of_range')
+
+textblock=[character(len=256) :: &
+'', &
+'NAME', &
+'', &
+'OUT_OF_RANGE(3) - [TYPE:NUMERIC] Whether a value cannot be converted', &
+'safely.', &
+'', &
+'SYNTAX', &
+'', &
+'      result = OUT_OF_RANGE (X, MOLD [, ROUND])', &
+'', &
+'       logical,elemental               :: out_of_range', &
+'       type(TYPE,kind=KIND),intent(in) :: x', &
+'       type(TYPE,kind=KIND),intent(in) :: mold', &
+'       logical,intent(in),optional     :: round', &
+'', &
+'       where TYPE may be _real_ or _integer_ of any available KIND.', &
+'', &
+'DESCRIPTION', &
+'', &
+'OUT_OF_RANGE(3) determines whether a value X can be converted safely to', &
+'a real or integer variable the same type and kind as MOLD.', &
+'', &
+'ARGUMENTS', &
+'', &
+'     - **x**           ', &
+'       : a scalar of type _integer_ or _real_ to be tested for whether', &
+'       it can be stored in a variable of the type and kind of **mold**', &
+'', &
+'     - **mold**        ', &
+'       : shall be an _integer_ or _real_ scalar. If it is a variable, it', &
+'       need not be defined, as only the type and kind are queried.', &
+'', &
+'     - **round** ', &
+'       : flag whether to round the value of **xx** before validating it as', &
+'       an integer value like **mold**.', &
+'', &
+'       **round** can only be present if **x** is of type', &
+'       _real_ and **mold** is of type _integer_.', &
+'', &
+'RETURNS', &
+'', &
+'From the standard:', &
+'', &
+'Case (i): If MOLD is of type integer, and ROUND is absent or present', &
+'with the value false, the result is true if and only if the value of X', &
+'is an IEEE infinity or NaN, or if the integer with largest magnitude', &
+'that lies between zero and X inclusive is not representable by objects', &
+'with the type and kind of MOLD.', &
+'', &
+'Case (ii): If MOLD is of type integer, and ROUND is present with the', &
+'value true, the result is true if and only if the value of X is an IEEE', &
+'in nity or NaN, or if the integer nearest X, or the integer of greater', &
+'magnitude if two integers are equally near to X, is not representable by', &
+'objects with the type and kind of MOLD.', &
+'', &
+'Case (iii): Otherwise, the result is true if and only if the value of X', &
+'is an IEEE in nity or NaN that is not supported by objects of the type', &
+'and kind of MOLD, or if X is a finite number and the result of rounding', &
+'the value of X (according to the IEEE rounding mode if appropriate) to', &
+'the extended model for the kind of MOLD has magnitude larger than that', &
+'of the largest finite number with the same sign as X that is', &
+'representable by objects with the type and kind of MOLD.', &
+'', &
+'NOTE', &
+'', &
+'MOLD is required to be a scalar because the only information taken from', &
+'it is its type and kind. Allowing an array MOLD would require that it be', &
+'conformable with X. ROUND is scalar because allowing an array rounding', &
+'mode would have severe performance di culties on many processors.', &
+'', &
+'EXAMPLES', &
+'', &
+'Sample program:', &
+'', &
+'    program demo_out_of_range', &
+'    use, intrinsic :: iso_fortran_env, only : int8, int16, int32, int64', &
+'    use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
+'    implicit none', &
+'    integer            :: i', &
+'    integer(kind=int8) :: i8, j8', &
+'', &
+'        ! compilers are not required to produce an error on out of range.', &
+'        ! here storing the default integers into 1-byte integers ', &
+'        ! incorrectly can have unexpected results', &
+'        do i=127,130', &
+'           i8=i', &
+'           j8=-i', &
+'           ! OUT_OF_RANGE(3f) can let you check if the value will fit', &
+'           write(*,*)i8,j8,'' might have expected'',i,-i, &', &
+'            & out_of_range( i,i8), &', &
+'            & out_of_range(-i,i8)', &
+'        enddo', &
+'        write(*,*) ''RANGE IS '',-1-huge(0_int8),''TO'',huge(0_int8)', &
+'        ! the real -128.5 is truncated to -128 and is in range', &
+'        write(*,*) out_of_range (  -128.5, 0_int8)         ! false', &
+'', &
+'        ! the real -128.5 is rounded to -129 and is not in range', &
+'        write(*,*) out_of_range (  -128.5, 0_int8, .true.) ! true', &
+'', &
+'    end program demo_out_of_range', &
+'', &
+'Results:', &
+'', &
+'      >  127 -127  might have expected         127        -127 F F', &
+'      > -128 -128  might have expected         128        -128 T F', &
+'      > -127  127  might have expected         129        -129 T T', &
+'      > -126  126  might have expected         130        -130 T T', &
+'      > RANGE IS         -128 TO  127', &
+'      > F', &
+'      > T', &
+'', &
+'STANDARD', &
+'', &
+'FORTRAN 2018 and later', &
+'', &
+'fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
+'']
+
+shortname="out_of_range"
+call process()
+
+
+case('152','pack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12447,8 +12566,8 @@ textblock=[character(len=256) :: &
 '', &
 '-   ARRAY : Shall be an array of any type.', &
 '', &
-'-   MASK : Shall be an array of type _logical_ and of the same size as', &
-'    ARRAY. Alternatively, it may be a _logical_ scalar.', &
+'-   MASK : Shall be an array of type logical and of the same size as', &
+'    ARRAY. Alternatively, it may be a logical scalar.', &
 '', &
 '-   VECTOR : (Optional) shall be an array of the same type as ARRAY and', &
 '    of rank one. If present, the number of elements in VECTOR shall be', &
@@ -12525,7 +12644,7 @@ shortname="pack"
 call process()
 
 
-case('152','parity')
+case('153','parity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12544,36 +12663,33 @@ textblock=[character(len=256) :: &
 '', &
 'where KIND and LKIND are any supported kind for the type.', &
 '', &
-'    ### __Description__', &
+'DESCRIPTION', &
 '', &
-'    Calculates the parity (i.e. the reduction using .xor.) of __mask__ along', &
-'    dimension __dim__.', &
+'Calculates the parity (i.e. the reduction using .xor.) of MASK along', &
+'dimension DIM.', &
 '', &
-'    ### __Arguments__', &
+'ARGUMENTS', &
 '', &
-'      - __mask__', &
-'        : Shall be an array of type _logical_.', &
+'-   MASK : Shall be an array of type logical.', &
 '', &
-'      - __dim__', &
-'        : (Optional) shall be a scalar of type _integer_ with a value in the', &
-'        range from __1 to n__, where __n__ equals the rank of __mask__.', &
+'-   DIM : (Optional) shall be a scalar of type integer with a value in', &
+'    the range from 1 TO N, where N equals the rank of MASK.', &
 '', &
-'    ### __Returns__', &
+'RETURNS', &
 '', &
-'    The result is of the same type as __mask__.', &
+'The result is of the same type as MASK.', &
 '', &
-'    If __dim__ is absent, a scalar with the parity of all elements in __mask__ is', &
-'    returned: __.true.__ if an odd number of elements are __.true.__ and __.false.__', &
-'    otherwise.', &
+'If DIM is absent, a scalar with the parity of all elements in MASK is', &
+'returned: .TRUE. if an odd number of elements are .TRUE. and .FALSE.', &
+'otherwise.', &
 '', &
-'    When __dim__ is specified the returned shape is similar to that of __mask__', &
-'    with dimension __dim__ dropped.', &
+'When DIM is specified the returned shape is similar to that of MASK with', &
+'dimension DIM dropped.', &
 '', &
-'    ### __Examples__', &
+'EXAMPLES', &
 '', &
-'    Sample program:', &
+'Sample program:', &
 '', &
-'    ```fortran', &
 '    program demo_parity', &
 '    implicit none', &
 '    logical :: x(2) = [ .true., .false. ]', &
@@ -12595,7 +12711,7 @@ shortname="parity"
 call process()
 
 
-case('153','popcnt')
+case('154','popcnt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12610,15 +12726,15 @@ textblock=[character(len=256) :: &
 'DESCRIPTION', &
 '', &
 'Returns the number of bits set in the binary representation of an', &
-'_integer_.', &
+'integer.', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : Shall be of type _integer_.', &
+'-   I : Shall be of type integer.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of the default integer kind.', &
+'The return value is of type integer and of the default integer kind.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -12660,7 +12776,7 @@ shortname="popcnt"
 call process()
 
 
-case('154','poppar')
+case('155','poppar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12679,14 +12795,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : Shall be of type _integer_.', &
+'-   I : Shall be of type integer.', &
 '', &
 'RETURNS', &
 '', &
 'The return value is equal to 0 if I has an even number of bits set and 1', &
 'if an odd number of bits are set.', &
 '', &
-'It is of type _integer_ and of the default _integer_ kind.', &
+'It is of type integer and of the default integer kind.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -12726,7 +12842,7 @@ shortname="poppar"
 call process()
 
 
-case('155','precision')
+case('156','precision')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12745,11 +12861,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Shall be of type _real_ or _complex_.', &
+'-   X : Shall be of type real or complex.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of the default integer kind.', &
+'The return value is of type integer and of the default integer kind.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -12787,7 +12903,7 @@ shortname="precision"
 call process()
 
 
-case('156','present')
+case('157','present')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12853,7 +12969,7 @@ shortname="present"
 call process()
 
 
-case('157','product')
+case('158','product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12886,12 +13002,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ARRAY : Shall be an array of type _integer_, _real_ or _complex_.', &
+'-   ARRAY : Shall be an array of type integer, real or complex.', &
 '', &
-'-   DIM : shall be a scalar of type _integer_ with a value in the range', &
+'-   DIM : shall be a scalar of type integer with a value in the range', &
 '    from 1 TO N, where N equals the rank of ARRAY.', &
 '', &
-'-   MASK : shall be of type _logical_ and either be a scalar or an array', &
+'-   MASK : shall be of type logical and either be a scalar or an array', &
 '    of the same shape as ARRAY.', &
 '', &
 'RETURNS', &
@@ -12982,30 +13098,30 @@ textblock=[character(len=256) :: &
 '', &
 '    contains', &
 '', &
-'    subroutine print_matrix_int(title,arr)', &
-'    implicit none', &
-'', &
-'    !@(#) print small 2d integer arrays in row-column format', &
-'', &
-'    character(len=*),intent(in)  :: title', &
-'    integer,intent(in)           :: arr(:,:)', &
-'    integer                      :: i', &
-'    character(len=:),allocatable :: biggest', &
-'', &
-'       print all', &
-'       print all, trim(title),'':('',shape(arr),'')''  ! print title', &
-'       biggest=''           ''  ! make buffer to write integer into', &
-'       ! find how many characters to use for integers', &
-'       write(biggest,''(i0)'')ceiling(log10(real(maxval(abs(arr)))))+2', &
-'       ! use this format to write a row', &
-'       biggest=''(" > [",*(i''//trim(biggest)//'':,","))''', &
-'       ! print one row of array at a time', &
-'       do i=1,size(arr,dim=1)', &
-'          write(*,fmt=biggest,advance=''no'')arr(i,:)', &
-'          write(*,''(" ]")'')', &
-'       enddo', &
-'', &
-'    end subroutine print_matrix_int', &
+'       subroutine print_matrix_int(title,arr)', &
+'       implicit none', &
+'       ', &
+'       !@(#) print small 2d integer arrays in row-column format', &
+'       ', &
+'       character(len=*),intent(in)  :: title', &
+'       integer,intent(in)           :: arr(:,:)', &
+'       integer                      :: i', &
+'       character(len=:),allocatable :: biggest', &
+'       ', &
+'          print all', &
+'          print all, trim(title),'':('',shape(arr),'')''  ! print title', &
+'          biggest=''           ''  ! make buffer to write integer into', &
+'          ! find how many characters to use for integers', &
+'          write(biggest,''(i0)'')ceiling(log10(real(maxval(abs(arr)))))+2', &
+'          ! use this format to write a row', &
+'          biggest=''(" > [",*(i''//trim(biggest)//'':,","))''', &
+'          ! print one row of array at a time', &
+'          do i=1,size(arr,dim=1)', &
+'             write(*,fmt=biggest,advance=''no'')arr(i,:)', &
+'             write(*,''(" ]")'')', &
+'          enddo', &
+'       ', &
+'       end subroutine print_matrix_int', &
 '', &
 '    end program demo_product', &
 '', &
@@ -13086,7 +13202,7 @@ shortname="product"
 call process()
 
 
-case('158','radix')
+case('159','radix')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13104,12 +13220,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Shall be of type _integer_ or _real_', &
+'-   X : Shall be of type integer or real', &
 '', &
 'RETURNS', &
 '', &
-'The return value is a scalar of type _integer_ and of the default', &
-'integer kind.', &
+'The return value is a scalar of type integer and of the default integer', &
+'kind.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -13119,14 +13235,14 @@ textblock=[character(len=256) :: &
 '    implicit none', &
 '       print *, "The radix for the default integer kind is", radix(0)', &
 '       print *, "The radix for the default real kind is", radix(0.0)', &
-'       print *, "The radix for the doubleprecsion real kind is", radix(0.0d0)', &
+'       print *, "The radix for the doubleprecision real kind is", radix(0.0d0)', &
 '    end program demo_radix', &
 '', &
 'Results:', &
 '', &
 '        The radix for the default integer kind is           2', &
 '        The radix for the default real kind is           2', &
-'        The radix for the doubleprecsion real kind is           2', &
+'        The radix for the doubleprecision real kind is          2', &
 '', &
 'STANDARD', &
 '', &
@@ -13145,7 +13261,7 @@ shortname="radix"
 call process()
 
 
-case('159','random_init')
+case('160','random_init')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13185,8 +13301,7 @@ textblock=[character(len=256) :: &
 'situations.', &
 '', &
 'But the standard procedures available are sufficient for many use cases.', &
-'They consist of RANDOM_NUMBER(3F), RANDOM_SEED(3F), and', &
-'**random_init(3f)__.', &
+'They consist of RANDOM_NUMBER(3F), RANDOM_SEED(3F), and RANDOM_INIT(3F).', &
 '', &
 'RANDOM_NUMBER(3F) calls a generator and returns a psuedorandom scalar or', &
 'array. This simple-to-use function does not directly define how to seed', &
@@ -13202,8 +13317,8 @@ textblock=[character(len=256) :: &
 'compiler behavior.', &
 '', &
 'RANDOM_INIT(3F) Initializes the state of the pseudorandom number', &
-'generator procedure **random_number(3f)__. random_init(3f) is equivalent', &
-'to invoking RANDOM_SEED(3F) with no parameters but considers parallel', &
+'generator procedure RANDOM_NUMBER(3F). RANDOM_INIT(3f) is equivalent to', &
+'invoking RANDOM_SEED(3F) with no parameters but considers parallel', &
 'images and otherwise processor-dependent behaviors as well.', &
 '', &
 'Not every compiler vendor gives a unique seed for random_seed(), for', &
@@ -13213,7 +13328,7 @@ textblock=[character(len=256) :: &
 'random_number() procedure is processor-dependent if not initialized.', &
 'Even if initialized with RANDOM_SEED() if a specific seed array is not', &
 'specified behavior is still processor-dependent for multiple image codes', &
-'unless specific modes are selected with **random_init()__.', &
+'unless specific modes are selected with RANDOM_INIT().', &
 '', &
 'There are four combinations of REPEATABLE and IMAGE_DISTINCT. The', &
 'behavior is as follows:', &
@@ -13243,7 +13358,7 @@ textblock=[character(len=256) :: &
 'accesses a repeatable distinct sequence of random numbers. Technically,', &
 'the Standard states that a distinct seed is used in each image (with the', &
 'tacit assumption that the sequences are distinct, but this is not', &
-'guaranteed). Also, the repeatibility is guaranteed for the currently', &
+'guaranteed). Also, the repeatability is guaranteed for the currently', &
 'executing image. Rerunning the executable does not require the same', &
 'distinct seeds, but I have chose to use the same seeds.', &
 '', &
@@ -13349,7 +13464,7 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'__random_seed**(3), __random_init(3)', &
+'*_random_seed**(3), *_random_init**(3)', &
 '', &
 'fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '']
@@ -13358,7 +13473,7 @@ shortname="random_init"
 call process()
 
 
-case('160','random_number')
+case('161','random_number')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13377,7 +13492,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   HARVEST : Shall be a scalar or an array of type _real_.', &
+'-   HARVEST : Shall be a scalar or an array of type real.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -13452,7 +13567,7 @@ shortname="random_number"
 call process()
 
 
-case('161','random_seed')
+case('162','random_seed')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13475,17 +13590,17 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   SIZE : (Optional) Shall be a scalar and of type default _integer_,', &
+'-   SIZE : (Optional) Shall be a scalar and of type default integer,', &
 '    with INTENT(OUT). It specifies the minimum size of the arrays used', &
 '    with the PUT and GET arguments.', &
 '', &
-'-   PUT : (Optional) Shall be an array of type default _integer_ and', &
-'    rank one. It is INTENT(IN) and the size of the array must be larger', &
-'    than or equal to the number returned by the SIZE argument.', &
+'-   PUT : (Optional) Shall be an array of type default integer and rank', &
+'    one. It is INTENT(IN) and the size of the array must be larger than', &
+'    or equal to the number returned by the SIZE argument.', &
 '', &
-'-   GET : (Optional) Shall be an array of type default _integer_ and', &
-'    rank one. It is INTENT(OUT) and the size of the array must be larger', &
-'    than or equal to the number returned by the SIZE argument.', &
+'-   GET : (Optional) Shall be an array of type default integer and rank', &
+'    one. It is INTENT(OUT) and the size of the array must be larger than', &
+'    or equal to the number returned by the SIZE argument.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -13523,7 +13638,7 @@ shortname="random_seed"
 call process()
 
 
-case('162','range')
+case('163','range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13539,8 +13654,7 @@ textblock=[character(len=256) :: &
 '          integer :: range', &
 '          type(TYPE,kind=KIND),intent(in) :: x', &
 '', &
-'where TYPE is _real_ or _complex_ and KIND is any kind supported by', &
-'TYPE.', &
+'where TYPE is real or complex and KIND is any kind supported by TYPE.', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -13549,11 +13663,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Shall be of type _real_ or _complex_.', &
+'-   X : Shall be of type real or complex.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of the default integer kind.', &
+'The return value is of type integer and of the default integer kind.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -13590,7 +13704,7 @@ shortname="range"
 call process()
 
 
-case('163','rank')
+case('164','rank')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13612,8 +13726,8 @@ textblock=[character(len=256) :: &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of the default integer kind.', &
-'For arrays, their rank is returned; for scalars zero is returned.', &
+'The return value is of type integer and of the default integer kind. For', &
+'arrays, their rank is returned; for scalars zero is returned.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -13642,7 +13756,7 @@ shortname="rank"
 call process()
 
 
-case('164','real')
+case('165','real')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13660,24 +13774,24 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Shall be _integer_, _real_, or _complex_.', &
+'-   X : Shall be integer, real, or complex.', &
 '', &
-'-   KIND : (Optional) An _integer_ initialization expression indicating', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
 '    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'These functions return a _real_ variable or array under the following', &
+'These functions return a real variable or array under the following', &
 'rules:', &
 '', &
-'1.  REAL(x) is converted to a default _real_ type if X is an _integer_', &
-'    or _real_ variable.', &
+'1.  REAL(x) is converted to a default real type if X is an integer or', &
+'    real variable.', &
 '', &
 '2.  REAL(x) is converted to a real type with the kind type parameter of', &
-'    X if X is a _complex_ variable.', &
+'    X if X is a complex variable.', &
 '', &
-'3.  REAL(X, KIND) is converted to a _real_ type with kind type parameter', &
-'    KIND if X is a _complex_, _integer_, or _real_ variable.', &
+'3.  REAL(X, KIND) is converted to a real type with kind type parameter', &
+'    KIND if X is a complex, integer, or real variable.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -13717,7 +13831,7 @@ shortname="real"
 call process()
 
 
-case('165','repeat')
+case('166','repeat')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13740,14 +13854,14 @@ textblock=[character(len=256) :: &
 'ARGUMENTS', &
 '', &
 '-   STRING : The input string to repeatedly generate. Shall be scalar', &
-'    and of type _character_.', &
+'    and of type character.', &
 '', &
-'-   NCOPIES : Number of copies to make of _string_, greater than or', &
-'    equal to zero (0). Shall be scalar and of type _integer_.', &
+'-   NCOPIES : Number of copies to make of string, greater than or equal', &
+'    to zero (0). Shall be scalar and of type integer.', &
 '', &
 'RETURNS', &
 '', &
-'A new scalar of type _character_ built up from NCOPIES copies of STRING.', &
+'A new scalar of type character built up from NCOPIES copies of STRING.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -13791,7 +13905,7 @@ shortname="repeat"
 call process()
 
 
-case('166','reshape')
+case('167','reshape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13813,12 +13927,12 @@ textblock=[character(len=256) :: &
 '', &
 '-   SOURCE : an array of any type.', &
 '', &
-'-   SHAPE : an array of rank one and type _integer_. Its values must be', &
+'-   SHAPE : an array of rank one and type integer. Its values must be', &
 '    positive or zero.', &
 '', &
 '-   PAD : (Optional) an array of the same type as SOURCE.', &
 '', &
-'-   ORDER : (Optional) an array of type _integer_ and the same shape as', &
+'-   ORDER : (Optional) an array of type integer and the same shape as', &
 '    SHAPE. Its values shall be a permutation of the numbers from 1 to n,', &
 '    where n is the size of SHAPE. If ORDER is absent, the natural', &
 '    ordering shall be assumed.', &
@@ -13868,7 +13982,7 @@ shortname="reshape"
 call process()
 
 
-case('167','rrspacing')
+case('168','rrspacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13887,7 +14001,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Shall be of type _real_.', &
+'-   X : Shall be of type real.', &
 '', &
 'RETURNS', &
 '', &
@@ -13911,7 +14025,7 @@ shortname="rrspacing"
 call process()
 
 
-case('168','same_type_as')
+case('169','same_type_as')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13955,7 +14069,7 @@ shortname="same_type_as"
 call process()
 
 
-case('169','scale')
+case('170','scale')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13977,9 +14091,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type of the argument shall be a _real_.', &
+'-   X : The type of the argument shall be a real.', &
 '', &
-'-   I : The type of the argument shall be a _integer_.', &
+'-   I : The type of the argument shall be a integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -14018,7 +14132,7 @@ shortname="scale"
 call process()
 
 
-case('170','scan')
+case('171','scan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14042,19 +14156,19 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   STRING : Shall be of type _character_.', &
+'-   STRING : Shall be of type character.', &
 '', &
-'-   SET : Shall be of type _character_.', &
+'-   SET : Shall be of type character.', &
 '', &
-'-   BACK : (Optional) shall be of type _logical_.', &
+'-   BACK : (Optional) shall be of type logical.', &
 '', &
-'-   KIND : (Optional) An _integer_ initialization expression indicating', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
 '    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of kind KIND. If KIND is', &
-'absent, the return value is of default integer kind.', &
+'The return value is of type integer and of kind KIND. If KIND is absent,', &
+'the return value is of default integer kind.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -14093,7 +14207,7 @@ shortname="scan"
 call process()
 
 
-case('171','selected_char_kind')
+case('172','selected_char_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14157,7 +14271,7 @@ shortname="selected_char_kind"
 call process()
 
 
-case('172','selected_int_kind')
+case('173','selected_int_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14178,7 +14292,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   R : Shall be a scalar and of type _integer_.', &
+'-   R : Shall be a scalar and of type integer.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -14219,7 +14333,7 @@ shortname="selected_int_kind"
 call process()
 
 
-case('173','selected_real_kind')
+case('174','selected_real_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14239,11 +14353,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   P : (Optional) shall be a scalar and of type _integer_.', &
+'-   P : (Optional) shall be a scalar and of type integer.', &
 '', &
-'-   R : (Optional) shall be a scalar and of type _integer_.', &
+'-   R : (Optional) shall be a scalar and of type integer.', &
 '', &
-'-   RADIX : (Optional) shall be a scalar and of type _integer_.', &
+'-   RADIX : (Optional) shall be a scalar and of type integer.', &
 '', &
 'Before FORTRAN 2008, at least one of the arguments R or P shall be', &
 'present; since FORTRAN 2008, they are assumed to be zero if absent.', &
@@ -14311,7 +14425,7 @@ shortname="selected_real_kind"
 call process()
 
 
-case('174','set_exponent')
+case('175','set_exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14330,9 +14444,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Shall be of type _real_.', &
+'-   X : Shall be of type real.', &
 '', &
-'-   I : Shall be of type _integer_.', &
+'-   I : Shall be of type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -14372,7 +14486,7 @@ shortname="set_exponent"
 call process()
 
 
-case('175','shape')
+case('176','shape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14394,12 +14508,12 @@ textblock=[character(len=256) :: &
 '    pointer it must be associated and allocatable arrays must be', &
 '    allocated.', &
 '', &
-'-   KIND : (Optional) An _integer_ initialization expression indicating', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
 '    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'An _integer_ array of rank one with as many elements as SOURCE has', &
+'An integer array of rank one with as many elements as SOURCE has', &
 'dimensions. The elements of the resulting array correspond to the extend', &
 'of SOURCE along the respective dimensions. If SOURCE is a scalar, the', &
 'result is the rank one array of size zero. If KIND is absent, the return', &
@@ -14443,7 +14557,7 @@ shortname="shape"
 call process()
 
 
-case('176','shifta')
+case('177','shifta')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14466,13 +14580,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : The type shall be _integer_.', &
+'-   I : The type shall be integer.', &
 '', &
-'-   SHIFT : The type shall be _integer_.', &
+'-   SHIFT : The type shall be integer.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of the same kind as I.', &
+'The return value is of type integer and of the same kind as I.', &
 '', &
 'STANDARD', &
 '', &
@@ -14489,7 +14603,7 @@ shortname="shifta"
 call process()
 
 
-case('177','shiftl')
+case('178','shiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14510,13 +14624,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : The type shall be _integer_.', &
+'-   I : The type shall be integer.', &
 '', &
-'-   SHIFT : The type shall be _integer_.', &
+'-   SHIFT : The type shall be integer.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of the same kind as I.', &
+'The return value is of type integer and of the same kind as I.', &
 '', &
 'STANDARD', &
 '', &
@@ -14533,7 +14647,7 @@ shortname="shiftl"
 call process()
 
 
-case('178','shiftr')
+case('179','shiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14554,13 +14668,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : The type shall be _integer_.', &
+'-   I : The type shall be integer.', &
 '', &
-'-   SHIFT : The type shall be _integer_.', &
+'-   SHIFT : The type shall be integer.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of the same kind as I.', &
+'The return value is of type integer and of the same kind as I.', &
 '', &
 'STANDARD', &
 '', &
@@ -14577,7 +14691,7 @@ shortname="shiftr"
 call process()
 
 
-case('179','sign')
+case('180','sign')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14593,44 +14707,37 @@ textblock=[character(len=256) :: &
 '        type(TYPE(kind=KIND))            :: sign', &
 '        type(TYPE(kind=KIND)),intent(in) :: a, b', &
 '', &
-'where TYPE may be _real_ or _integer_ and KIND is any supported kind for', &
-'the type.', &
+'where TYPE may be real or integer and KIND is any supported kind for the', &
+'type.', &
 '', &
-'    ### __Description__', &
+'DESCRIPTION', &
 '', &
-'    __sign__(a,b) returns the value of __a__ with the sign of __b__.', &
+'SIGN(a,b) return a value with the magnitude of A but with the sign of B.', &
 '', &
+'For processors that distinguish between positive and negative zeros', &
+'SIGN() may be used to distinguish between REAL values 0.0 and −0.0. SIGN', &
+'(1.0, -0.0) will return −1.0 when a negative zero is distinguishable.', &
 '', &
-'    For processors that distinguish between positive and negative zeros  __sign()__ may be used to', &
-'    distinguish between __real__ values 0.0 and −0.0. SIGN (1.0, -0.0) will', &
-'    return −1.0 when a negative zero is distinguishable.', &
+'ARGUMENTS', &
 '', &
-'        29  1 Description. Magnitude of A with the sign of B.', &
+'-   A : Shall be of type integer or real', &
 '', &
+'-   B : Shall be of the same type and kind as A', &
 '', &
+'RETURNS', &
 '', &
-'    ### __Arguments__', &
+'The kind of the return value is the magnitude of A with the sign of B.', &
+'That is,', &
 '', &
-'      - __a__', &
-'        : Shall be of type _integer_ or _real_', &
+'-   If B >= 0 then the result is ABS(A)', &
+'-   else if B < 0 it is -ABS(A).', &
+'-   if B is real and the processor distinguishes between -0.0 and 0.0', &
+'    then the result is -ABS(A)', &
 '', &
-'      - __b__', &
-'        : Shall be of the same type and kind as __a__', &
+'EXAMPLES', &
 '', &
-'    ### __Returns__', &
+'Sample program:', &
 '', &
-'    The kind of the return value is the magnitude of __a__ with the sign of  __b__. That is,', &
-'', &
-'         -  If __b \>= 0__ then the result is __abs(a)__', &
-'         -  else if __b < 0__ it is -__abs(a)__.', &
-'         - if __b__ is _real_ and the processor distinguishes between __-0.0__ and __0.0__ then the', &
-'           result is __-abs(a)__', &
-'', &
-'    ### __Examples__', &
-'', &
-'    Sample program:', &
-'', &
-'    ```fortran', &
 '    program demo_sign', &
 '    implicit none', &
 '       print *,  sign( -12,  1 )', &
@@ -14639,7 +14746,8 @@ textblock=[character(len=256) :: &
 '', &
 '       print *,  sign( -12.0, [1.0, 0.0, -1.0] )', &
 '', &
-'       print *,  ''can I distinguise 0 from -0? '', sign( 1.0, -0.0 ) .ne. sign( 1.0, 0.0 )', &
+'       print *,  ''can I distinguish 0 from -0? '', &', &
+'       &  sign( 1.0, -0.0 ) .ne. sign( 1.0, 0.0 )', &
 '    end program demo_sign', &
 '', &
 'Results:', &
@@ -14648,7 +14756,7 @@ textblock=[character(len=256) :: &
 '                 12', &
 '                -12', &
 '          12.00000       12.00000      -12.00000', &
-'        can I distinguise 0 from -0?  F', &
+'        can I distinguish 0 from -0?  F', &
 '', &
 'STANDARD', &
 '', &
@@ -14661,7 +14769,7 @@ shortname="sign"
 call process()
 
 
-case('180','sin')
+case('181','sin')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14677,7 +14785,7 @@ textblock=[character(len=256) :: &
 '        TYPE(kind=KIND) :: x', &
 '', &
 'Where the returned value has the kind of the input value and TYPE may be', &
-'_real_ or _complex_', &
+'real or complex', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -14690,7 +14798,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_ or _complex_ in radians.', &
+'-   X : The type shall be real or complex in radians.', &
 '', &
 'RETURNS', &
 '', &
@@ -14787,7 +14895,7 @@ shortname="sin"
 call process()
 
 
-case('181','sinh')
+case('182','sinh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14803,7 +14911,7 @@ textblock=[character(len=256) :: &
 '        TYPE(kind=KIND) :: x', &
 '', &
 'Where the returned value has the kind of the input value and TYPE may be', &
-'_real_ or _complex_', &
+'real or complex', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -14813,12 +14921,12 @@ textblock=[character(len=256) :: &
 '', &
 'SINH(X) = (EXP(X) - EXP(-X)) / 2.0', &
 '', &
-'If X is of type _complex_ its imaginary part is regarded as a value in', &
+'If X is of type complex its imaginary part is regarded as a value in', &
 'radians.', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_ or _complex_.', &
+'-   X : The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -14884,7 +14992,7 @@ shortname="sinh"
 call process()
 
 
-case('182','size')
+case('183','size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14906,16 +15014,16 @@ textblock=[character(len=256) :: &
 '-   ARRAY : be an array of any type. If ARRAY is a pointer it must be', &
 '    associated and allocatable arrays must be allocated.', &
 '', &
-'-   DIM : shall be a scalar of type _integer_ and its value shall be in', &
+'-   DIM : shall be a scalar of type integer and its value shall be in', &
 '    the range from 1 to n, where n equals the rank of ARRAY.', &
 '', &
-'-   KIND : An _integer_ initialization expression indicating the kind', &
+'-   KIND : An integer initialization expression indicating the kind', &
 '    parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of kind KIND. If KIND is', &
-'absent, the return value is of default _integer_ kind.', &
+'The return value is of type integer and of kind KIND. If KIND is absent,', &
+'the return value is of default integer kind.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -15074,7 +15182,7 @@ shortname="size"
 call process()
 
 
-case('183','spacing')
+case('184','spacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15094,7 +15202,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Shall be of type _real_.', &
+'-   X : Shall be of type real.', &
 '', &
 'RETURNS', &
 '', &
@@ -15135,7 +15243,7 @@ shortname="spacing"
 call process()
 
 
-case('184','spread')
+case('185','spread')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15165,10 +15273,10 @@ textblock=[character(len=256) :: &
 '-   SOURCE : Shall be a scalar or an array of any type and a rank less', &
 '    than fifteen.', &
 '', &
-'-   DIM : Shall be a scalar of type _integer_ with a value in the range', &
+'-   DIM : Shall be a scalar of type integer with a value in the range', &
 '    from 1 to N+1, where N equals the rank of SOURCE.', &
 '', &
-'-   NCOPIES : Shall be a scalar of type _integer_.', &
+'-   NCOPIES : Shall be a scalar of type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -15259,7 +15367,7 @@ shortname="spread"
 call process()
 
 
-case('185','sqrt')
+case('186','sqrt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15275,8 +15383,8 @@ textblock=[character(len=256) :: &
 '       TYPE(kind=KIND),intent(in) :: x', &
 '       TYPE(kind=KIND) :: value', &
 '', &
-'Where TYPE may be _real_ or _complex_ and KIND may be any kind valid for', &
-'the declared type.', &
+'Where TYPE may be real or complex and KIND may be any kind valid for the', &
+'declared type.', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -15286,30 +15394,30 @@ textblock=[character(len=256) :: &
 '= X.', &
 '', &
 'The number whose square root is being considered is known as the', &
-'_radicand_.', &
+'radicand.', &
 '', &
-'Every nonnegative number _x_ has two square roots of the same unique', &
+'Every nonnegative number x has two square roots of the same unique', &
 'magnitude, one positive and one negative. The nonnegative square root is', &
 'called the principal square root.', &
 '', &
 'The principal square root of 9 is 3, for example, even though (-3)*(-3)', &
 'is also 9.', &
 '', &
-'A _real_, _radicand_ must be positive.', &
+'A real, radicand must be positive.', &
 '', &
 'Square roots of negative numbers are a special case of complex numbers,', &
-'where the components of the _radicand_ need not be positive in order to', &
+'where the components of the radicand need not be positive in order to', &
 'have a valid square root.', &
 '', &
 'ARGUMENTS', &
 '', &
 '-   X : If X is real its value must be greater than or equal to zero.', &
-'    The type shall be _real_ or _complex_.', &
+'    The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _real_ or _complex_. The kind type parameter', &
-'is the same as X.', &
+'The return value is of type real or complex. The kind type parameter is', &
+'the same as X.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -15353,7 +15461,7 @@ shortname="sqrt"
 call process()
 
 
-case('186','storage_size')
+case('187','storage_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15418,7 +15526,7 @@ shortname="storage_size"
 call process()
 
 
-case('187','sum')
+case('188','sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15438,13 +15546,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ARRAY : Shall be an array of type _integer_, _real_ or _complex_.', &
+'-   ARRAY : Shall be an array of type integer, real or complex.', &
 '', &
-'-   DIM : (Optional) shall be a scalar of type _integer_ with a value in', &
+'-   DIM : (Optional) shall be a scalar of type integer with a value in', &
 '    the range from 1 to n, where n equals the rank of ARRAY.', &
 '', &
-'-   MASK : (Optional) shall be of type _logical_ and either be a scalar', &
-'    or an array of the same shape as ARRAY.', &
+'-   MASK : (Optional) shall be of type logical and either be a scalar or', &
+'    an array of the same shape as ARRAY.', &
 '', &
 'RETURNS', &
 '', &
@@ -15506,7 +15614,7 @@ shortname="sum"
 call process()
 
 
-case('188','system_clock')
+case('189','system_clock')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15549,18 +15657,18 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   COUNT : (optional) shall be an _integer_ scalar. It is assigned a', &
+'-   COUNT : (optional) shall be an integer scalar. It is assigned a', &
 '    processor-dependent value based on the current value of the', &
 '    processor clock, or -HUGE(COUNT) if there is no clock. The', &
 '    processor-dependent value is incremented by one for each clock count', &
 '    until the value COUNT_MAX is reached and is reset to zero at the', &
 '    next count. It lies in the range 0 to COUNT_MAX if there is a clock.', &
 '', &
-'-   COUNT_RATE : (optional) shall be an _integer_ or _real_ scalar. It', &
-'    is assigned a processor-dependent approximation to the number of', &
+'-   COUNT_RATE : (optional) shall be an integer or real scalar. It is', &
+'    assigned a processor-dependent approximation to the number of', &
 '    processor clock counts per second, or zero if there is no clock.', &
 '', &
-'-   COUNT_MAX : (optional) shall be an _integer_ scalar. It is assigned', &
+'-   COUNT_MAX : (optional) shall be an integer scalar. It is assigned', &
 '    the maximum value that COUNT can have, or zero if there is no clock.', &
 '', &
 'EXAMPLES', &
@@ -15611,7 +15719,7 @@ shortname="system_clock"
 call process()
 
 
-case('189','tan')
+case('190','tan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15629,7 +15737,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_ or _complex_.', &
+'-   X : The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -15666,7 +15774,7 @@ shortname="tan"
 call process()
 
 
-case('190','tanh')
+case('191','tanh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15684,12 +15792,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : The type shall be _real_ or _complex_.', &
+'-   X : The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
 'The return value has same type and kind as X. If X is complex, the', &
-'imaginary part of the result is in radians. If X is _real_, the return', &
+'imaginary part of the result is in radians. If X is real, the return', &
 'value lies in the range', &
 '', &
 '          -1 <= tanh(x) <= 1.', &
@@ -15727,7 +15835,7 @@ shortname="tanh"
 call process()
 
 
-case('191','this_image')
+case('192','this_image')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15737,8 +15845,10 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '', &
-'    result = this_image() result = this_image(distance) &', &
-'             & result = this_image(coarray, dim)', &
+'       result = this_image() ', &
+'       !or', &
+'       result = this_image(distance) ', &
+'       result = this_image(coarray, dim)', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -15789,29 +15899,24 @@ textblock=[character(len=256) :: &
 '', &
 '       value[1] is 1', &
 '', &
-'! ! Check whether the current image is the initial image if', &
-'(this_image(huge(1)) /= this_image()) error stop "something is rotten', &
-'here"', &
+'STANDARD', &
+'', &
+'Fortran 2008 and later. With DISTANCE argument, TS 18508 or later', &
+'', &
+'SEE ALSO', &
+'', &
+'NUM_IMAGES(3), IMAGE_INDEX(3)', &
+'', &
+'fortran-lang intrinsic descriptions', &
 '', &
 '', &
-'    ### __Standard__', &
-'', &
-'    Fortran 2008 and later. With DISTANCE argument, TS 18508', &
-'    or later', &
-'', &
-'    ### __See Also__', &
-'', &
-'    [__num\_images__(3)](NUM_IMAGES),', &
-'    [__image\_index__(3)](IMAGE_INDEX)', &
-'', &
-'    ###### fortran-lang intrinsic descriptions', &
 '']
 
 shortname="this_image"
 call process()
 
 
-case('192','tiny')
+case('193','tiny')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15825,7 +15930,7 @@ textblock=[character(len=256) :: &
 '       real(kind=KIND) function(x)', &
 '       real(kind=KIND) :: x', &
 '', &
-'where KIND may be any kind supported by type _real_', &
+'where KIND may be any kind supported by type real', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -15834,11 +15939,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X : Shall be of type _real_.', &
+'-   X : Shall be of type real.', &
 '', &
 'RETURNS', &
 '', &
-'The smallest positive value for the _real_ type of the specified kind.', &
+'The smallest positive value for the real type of the specified kind.', &
 '', &
 'The return value is of the same type and kind as X.', &
 '', &
@@ -15874,7 +15979,7 @@ shortname="tiny"
 call process()
 
 
-case('193','trailz')
+case('194','trailz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15889,16 +15994,16 @@ textblock=[character(len=256) :: &
 '', &
 'DESCRIPTION', &
 '', &
-'TRAILZ(3) returns the number of trailing zero bits of an _integer_ value', &
+'TRAILZ(3) returns the number of trailing zero bits of an integer value', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   I : Shall be of type _integer_.', &
+'-   I : Shall be of type integer.', &
 '', &
 'RETURNS', &
 '', &
-'The type of the return value is the default _integer_. If all the bits', &
-'of I are zero, the result value is BIT_SIZE(I).', &
+'The type of the return value is the default integer. If all the bits of', &
+'I are zero, the result value is BIT_SIZE(I).', &
 '', &
 'EXAMPLES', &
 '', &
@@ -15989,7 +16094,7 @@ shortname="trailz"
 call process()
 
 
-case('194','transfer')
+case('195','transfer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16016,7 +16121,7 @@ textblock=[character(len=256) :: &
 '', &
 '-   MOLD : Shall be a scalar or an array of any type.', &
 '', &
-'-   SIZE : (Optional) shall be a scalar of type _integer_.', &
+'-   SIZE : (Optional) shall be a scalar of type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -16035,7 +16140,7 @@ textblock=[character(len=256) :: &
 'representation of a variable of the same type as MOLD, the results are', &
 'undefined, and subsequent operations on the result cannot be guaranteed', &
 'to produce sensible behavior. For example, it is possible to create', &
-'_logical_ variables for which VAR and .not. var both appear to be true.', &
+'logical variables for which VAR and .not. var both appear to be true.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -16068,7 +16173,7 @@ textblock=[character(len=256) :: &
 '', &
 'COMMENTS', &
 '', &
-'_Joe Krahn_: Fortran uses MOLDING rather than CASTING.', &
+'Joe Krahn: Fortran uses MOLDING rather than CASTING.', &
 '', &
 'Casting, as in C, is an in-place reinterpretation. A cast is a device', &
 'that is built around an object to change its shape.', &
@@ -16098,7 +16203,7 @@ shortname="transfer"
 call process()
 
 
-case('195','transpose')
+case('196','transpose')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16187,7 +16292,7 @@ shortname="transpose"
 call process()
 
 
-case('196','trim')
+case('197','trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16206,11 +16311,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   STRING : Shall be a scalar of type _character_.', &
+'-   STRING : Shall be a scalar of type character.', &
 '', &
 'RETURNS', &
 '', &
-'A scalar of type _character_ which length is that of STRING less the', &
+'A scalar of type character which length is that of STRING less the', &
 'number of trailing blanks.', &
 '', &
 'EXAMPLES', &
@@ -16258,7 +16363,7 @@ shortname="trim"
 call process()
 
 
-case('197','ubound')
+case('198','ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16279,15 +16384,15 @@ textblock=[character(len=256) :: &
 '', &
 '-   ARRAY : Shall be an array, of any type.', &
 '', &
-'-   DIM : (Optional) Shall be a scalar _integer_.', &
+'-   DIM : (Optional) Shall be a scalar integer.', &
 '', &
-'-   KIND : (Optional) An _integer_ initialization expression indicating', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
 '    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of kind KIND. If KIND is', &
-'absent, the return value is of default integer kind.', &
+'The return value is of type integer and of kind KIND. If KIND is absent,', &
+'the return value is of default integer kind.', &
 '', &
 'If DIM is absent, the result is an array of the upper bounds of ARRAY.', &
 '', &
@@ -16375,7 +16480,7 @@ shortname="ubound"
 call process()
 
 
-case('198','unpack')
+case('199','unpack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16397,7 +16502,7 @@ textblock=[character(len=256) :: &
 '-   VECTOR : Shall be an array of any type and rank one. It shall have', &
 '    at least as many elements as MASK has .TRUE. values.', &
 '', &
-'-   MASK : Shall be an array of type _logical_.', &
+'-   MASK : Shall be an array of type logical.', &
 '', &
 '-   FIELD : Shall be of the same type as VECTOR and have the same shape', &
 '    as MASK.', &
@@ -16443,7 +16548,7 @@ shortname="unpack"
 call process()
 
 
-case('199','verify')
+case('200','verify')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16485,19 +16590,19 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   STRING : Shall be of type _character_.', &
+'-   STRING : Shall be of type character.', &
 '', &
-'-   SET : Shall be of type _character_.', &
+'-   SET : Shall be of type character.', &
 '', &
-'-   BACK : shall be of type _logical_.', &
+'-   BACK : shall be of type logical.', &
 '', &
-'-   KIND : An _integer_ initialization expression indicating the kind', &
+'-   KIND : An integer initialization expression indicating the kind', &
 '    parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'The return value is of type _integer_ and of kind KIND. If KIND is', &
-'absent, the return value is of default integer kind.', &
+'The return value is of type integer and of kind KIND. If KIND is absent,', &
+'the return value is of default integer kind.', &
 '', &
 'EXAMPLES', &
 '', &

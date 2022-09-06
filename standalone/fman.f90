@@ -236,11 +236,8 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    A', &
-'        the type of the argument shall be an integer, real, or complex', &
-'        scalar or array.', &
+'-   A : the type of the argument shall be an integer, real, or complex', &
+'    scalar or array.', &
 '', &
 'RETURNS', &
 '', &
@@ -367,17 +364,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : the integer value to convert to an ASCII character, in the range', &
+'    0 to 127.', &
 '', &
-'    I', &
-'        the integer value to convert to an ASCII character, in the range', &
-'        0 to 127.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (optional) an integer initialization expression indicating the', &
-'        kind parameter of the result.', &
+'-   KIND : (optional) an integer initialization expression indicating', &
+'    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -532,11 +523,8 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        Must be type real or complex. If the type is real, the value', &
-'        must satisfy |X| <= 1.', &
+'-   X : Must be type real or complex. If the type is real, the value', &
+'    must satisfy |X| <= 1.', &
 '', &
 'RETURNS', &
 '', &
@@ -614,10 +602,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        the type shall be real or complex.', &
+'-   X : the type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -683,10 +668,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    STRING', &
-'        the type shall be character.', &
+'-   STRING : the type shall be character.', &
 '', &
 'RETURNS', &
 '', &
@@ -759,10 +741,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    STRING', &
-'        the type shall be character.', &
+'-   STRING : the type shall be character.', &
 '', &
 'RETURNS', &
 '', &
@@ -845,10 +824,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    Z', &
-'        The type of the argument shall be complex.', &
+'-   Z : The type of the argument shall be complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -926,16 +902,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   X : the type of the argument shall be real.', &
 '', &
-'    X', &
-'        the type of the argument shall be real.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (optional) an integer initialization expression indicating the', &
-'        kind parameter of the result.', &
+'-   KIND : (optional) an integer initialization expression indicating', &
+'    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -1013,18 +983,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   MASK : shall be a logical array. That is, the type of the argument', &
+'    shall be logical and it shall not be scalar.', &
 '', &
-'    MASK', &
-'        shall be a logical array. That is, the type of the argument', &
-'        shall be logical and it shall not be scalar.', &
-'', &
-'-   ', &
-'', &
-'    DIM', &
-'        (optional) DIM shall be a scalar integer with a value that lies', &
-'        between one and the rank of MASK. The corresponding actual', &
-'        argument shall not be an optional dummy argument.', &
+'-   DIM : (optional) DIM shall be a scalar integer with a value that', &
+'    lies between one and the rank of MASK. The corresponding actual', &
+'    argument shall not be an optional dummy argument.', &
 '', &
 'RETURNS', &
 '', &
@@ -1049,16 +1013,14 @@ textblock=[character(len=256) :: &
 '', &
 '4.  Result Value.', &
 '', &
-'    Case (i):', &
-'        The result of ALL(MASK) has the value true if all elements of', &
-'        MASK are true or if MASK has size zero, and the result has value', &
-'        false if any element of MASK is false.', &
+'    Case (i): : The result of ALL(MASK) has the value true if all', &
+'    elements of MASK are true or if MASK has size zero, and the result', &
+'    has value false if any element of MASK is false.', &
 '', &
-'    Case (ii):', &
-'        If MASK has rank one, ALL(MASK,DIM) is equal to ALL(MASK).', &
-'        Otherwise, the value of element (S1 , S2 , . . . , SDIM-1 ,', &
-'        SDIM+1 , . . . , SN ) of all (MASK, DIM) is equal to ALL(MASK', &
-'        (S1 , S2 , . . . , SDIM-1 , :, SDIM+1 , . . . , SN )).', &
+'    Case (ii): : If MASK has rank one, ALL(MASK,DIM) is equal to', &
+'    ALL(MASK). Otherwise, the value of element (S1 , S2 , . . . , SDIM-1', &
+'    , SDIM+1 , . . . , SN ) of all (MASK, DIM) is equal to ALL(MASK (S1', &
+'    , S2 , . . . , SDIM-1 , :, SDIM+1 , . . . , SN )).', &
 '', &
 'EXAMPLES', &
 '', &
@@ -1145,15 +1107,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : the argument shall be an allocatable array.', &
 '', &
-'    ARRAY', &
-'        the argument shall be an allocatable array.', &
-'', &
-'-   ', &
-'', &
-'    SCALAR', &
-'        the argument shall be an allocatable scalar.', &
+'-   SCALAR : the argument shall be an allocatable scalar.', &
 '', &
 'RETURNS', &
 '', &
@@ -1236,16 +1192,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   A : the type of the argument shall be real.', &
 '', &
-'    A', &
-'        the type of the argument shall be real.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (optional) an integer initialization expression indicating the', &
-'        kind parameter of the result.', &
+'-   KIND : (optional) an integer initialization expression indicating', &
+'    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -1325,17 +1275,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   MASK : the type of the argument shall be logical and it shall not be', &
+'    scalar.', &
 '', &
-'    MASK', &
-'        the type of the argument shall be logical and it shall not be', &
-'        scalar.', &
-'', &
-'-   ', &
-'', &
-'    DIM', &
-'        (optional) dim shall be a scalar integer with a value that lies', &
-'        between one and the rank of mask.', &
+'-   DIM : (optional) dim shall be a scalar integer with a value that', &
+'    lies between one and the rank of mask.', &
 '', &
 'RETURNS', &
 '', &
@@ -1418,20 +1362,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be either real and a magnitude that is less than', &
-'        or equal to one; or be complex.', &
+'-   X : The type shall be either real and a magnitude that is less than', &
+'    or equal to one; or be complex.', &
 '', &
 'RETURNS', &
 '', &
-'-   ', &
-'', &
-'    RESULT', &
-'        The return value is of the same type and kind as X. The real', &
-'        part of the result is in radians and lies in the range -PI/2 <=', &
-'        ASIN(X) <= PI/2.', &
+'-   RESULT : The return value is of the same type and kind as X. The', &
+'    real part of the result is in radians and lies in the range -PI/2 <=', &
+'    ASIN(X) <= PI/2.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -1524,10 +1462,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real or complex.', &
+'-   X : The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -1588,17 +1523,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   POINTER : POINTER shall have the pointer attribute and it can be of', &
+'    any type.', &
 '', &
-'    POINTER', &
-'        POINTER shall have the pointer attribute and it can be of any', &
-'        type.', &
-'', &
-'-   ', &
-'', &
-'    TARGET', &
-'        (Optional) TARGET shall be a pointer or a target. It must have', &
-'        the same type, kind type parameter, and array rank as POINTER.', &
+'-   TARGET : (Optional) TARGET shall be a pointer or a target. It must', &
+'    have the same type, kind type parameter, and array rank as POINTER.', &
 '', &
 'The association status of neither POINTER nor TARGET shall be undefined.', &
 '', &
@@ -1693,16 +1622,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   Y : The type shall be real.', &
 '', &
-'    Y', &
-'        The type shall be real.', &
-'', &
-'-   ', &
-'', &
-'    X', &
-'        The type and kind type parameter shall be the same as Y. If Y is', &
-'        zero, then X must be nonzero.', &
+'-   X : The type and kind type parameter shall be the same as Y. If Y is', &
+'    zero, then X must be nonzero.', &
 '', &
 'RETURNS', &
 '', &
@@ -1752,11 +1675,11 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '', &
-'      - result = __atan(y, x)__', &
+'       result = atan(y, x)', &
 '', &
-'       TYPE(kind=KIND):: atan', &
-'       TYPE(kind=KIND,intent(in) :: x', &
-'       TYPE(kind=KIND,intent(in),optional :: y', &
+'        TYPE(kind=KIND):: atan', &
+'        TYPE(kind=KIND,intent(in) :: x', &
+'        TYPE(kind=KIND,intent(in),optional :: y', &
 '', &
 'where TYPE may be real or complex and KIND may be any KIND supported by', &
 'the associated type. If Y is present X is _real`.', &
@@ -1767,17 +1690,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   X : The type shall be real or complex; if Y is present, X shall be', &
+'    real.', &
 '', &
-'    X', &
-'        The type shall be real or complex; if Y is present, X shall be', &
-'        real.', &
-'', &
-'-   ', &
-'', &
-'    Y', &
-'        Shall be of the same type and kind as X. If X is zero, Y must', &
-'        not be zero.', &
+'-   Y : Shall be of the same type and kind as X. If X is zero, Y must', &
+'    not be zero.', &
 '', &
 'RETURNS', &
 '', &
@@ -1853,10 +1770,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real or complex.', &
+'-   X : The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -1922,22 +1836,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ATOM : Scalar coarray or coindexed variable of integer type with', &
+'    atomic_int_kind kind.', &
 '', &
-'    ATOM', &
-'        Scalar coarray or coindexed variable of integer type with', &
-'        atomic_int_kind kind.', &
+'-   VALUE : Scalar of the same type as ATOM. If the kind is different,', &
+'    the value is converted to the kind of ATOM.', &
 '', &
-'-   ', &
-'', &
-'    VALUE', &
-'        Scalar of the same type as ATOM. If the kind is different, the', &
-'        value is converted to the kind of ATOM.', &
-'', &
-'-   ', &
-'', &
-'    STAT', &
-'        (optional) Scalar default-kind integer variable.', &
+'-   STAT : (optional) Scalar default-kind integer variable.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -1990,22 +1895,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ATOM : Scalar coarray or coindexed variable of integer type with', &
+'    atomic_int_kind kind.', &
 '', &
-'    ATOM', &
-'        Scalar coarray or coindexed variable of integer type with', &
-'        atomic_int_kind kind.', &
+'-   VALUE : Scalar of the same type as ATOM. If the kind is different,', &
+'    the value is converted to the kind of ATOM.', &
 '', &
-'-   ', &
-'', &
-'    VALUE', &
-'        Scalar of the same type as ATOM. If the kind is different, the', &
-'        value is converted to the kind of ATOM.', &
-'', &
-'-   ', &
-'', &
-'    STAT', &
-'        (optional) Scalar default-kind integer variable.', &
+'-   STAT : (optional) Scalar default-kind integer variable.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -2060,33 +1956,18 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ATOM : Scalar coarray or coindexed variable of either integer type', &
+'    with atomic_int_kind kind or logical type with atomic_logical_kind', &
+'    kind.', &
 '', &
-'    ATOM', &
-'        Scalar coarray or coindexed variable of either integer type with', &
-'        atomic_int_kind kind or logical type with atomic_logical_kind', &
-'        kind.', &
+'-   OLD : Scalar of the same type and kind as ATOM.', &
 '', &
-'-   ', &
+'-   COMPARE : Scalar variable of the same type and kind as ATOM.', &
 '', &
-'    OLD', &
-'        Scalar of the same type and kind as ATOM.', &
+'-   NEW : Scalar variable of the same type as ATOM. If kind is', &
+'    different, the value is converted to the kind of ATOM.', &
 '', &
-'-   ', &
-'', &
-'    COMPARE', &
-'        Scalar variable of the same type and kind as ATOM.', &
-'', &
-'-   ', &
-'', &
-'    NEW', &
-'        Scalar variable of the same type as ATOM. If kind is different,', &
-'        the value is converted to the kind of ATOM.', &
-'', &
-'-   ', &
-'', &
-'    STAT', &
-'        (optional) Scalar default-kind integer variable.', &
+'-   STAT : (optional) Scalar default-kind integer variable.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -2143,23 +2024,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ATOM : Scalar coarray or coindexed variable of either integer type', &
+'    with atomic_int_kind kind or logical type with atomic_logical_kind', &
+'    kind.', &
 '', &
-'    ATOM', &
-'        Scalar coarray or coindexed variable of either integer type with', &
-'        atomic_int_kind kind or logical type with atomic_logical_kind', &
-'        kind.', &
+'-   VALUE : Scalar of the same type as ATOM. If the kind is different,', &
+'    the value is converted to the kind of ATOM.', &
 '', &
-'-   ', &
-'', &
-'    VALUE', &
-'        Scalar of the same type as ATOM. If the kind is different, the', &
-'        value is converted to the kind of ATOM.', &
-'', &
-'-   ', &
-'', &
-'    STAT', &
-'        (optional) Scalar default-kind integer variable.', &
+'-   STAT : (optional) Scalar default-kind integer variable.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -2213,27 +2085,15 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ATOM : Scalar coarray or coindexed variable of integer type with', &
+'    atomic_int_kind kind. atomic_logical_kind kind.', &
 '', &
-'    ATOM', &
-'        Scalar coarray or coindexed variable of integer type with', &
-'        atomic_int_kind kind. atomic_logical_kind kind.', &
+'-   VALUE : Scalar of the same type as ATOM. If the kind is different,', &
+'    the value is converted to the kind of ATOM.', &
 '', &
-'-   ', &
+'-   OLD : Scalar of the same type and kind as ATOM.', &
 '', &
-'    VALUE', &
-'        Scalar of the same type as ATOM. If the kind is different, the', &
-'        value is converted to the kind of ATOM.', &
-'', &
-'-   ', &
-'', &
-'    OLD', &
-'        Scalar of the same type and kind as ATOM.', &
-'', &
-'-   ', &
-'', &
-'    STAT', &
-'        (optional) Scalar default-kind integer variable.', &
+'-   STAT : (optional) Scalar default-kind integer variable.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -2291,27 +2151,15 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ATOM : Scalar coarray or coindexed variable of integer type with', &
+'    atomic_int_kind kind.', &
 '', &
-'    ATOM', &
-'        Scalar coarray or coindexed variable of integer type with', &
-'        atomic_int_kind kind.', &
+'-   VALUE : Scalar of the same type as ATOM. If the kind is different,', &
+'    the value is converted to the kind of ATOM.', &
 '', &
-'-   ', &
+'-   OLD : Scalar of the same type and kind as ATOM.', &
 '', &
-'    VALUE', &
-'        Scalar of the same type as ATOM. If the kind is different, the', &
-'        value is converted to the kind of ATOM.', &
-'', &
-'-   ', &
-'', &
-'    OLD', &
-'        Scalar of the same type and kind as ATOM.', &
-'', &
-'-   ', &
-'', &
-'    STAT', &
-'        (optional) Scalar default-kind integer variable.', &
+'-   STAT : (optional) Scalar default-kind integer variable.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -2369,27 +2217,15 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ATOM : Scalar coarray or coindexed variable of integer type with', &
+'    atomic_int_kind kind.', &
 '', &
-'    ATOM', &
-'        Scalar coarray or coindexed variable of integer type with', &
-'        atomic_int_kind kind.', &
+'-   VALUE : Scalar of the same type as ATOM. If the kind is different,', &
+'    the value is converted to the kind of ATOM.', &
 '', &
-'-   ', &
+'-   OLD : Scalar of the same type and kind as ATOM.', &
 '', &
-'    VALUE', &
-'        Scalar of the same type as ATOM. If the kind is different, the', &
-'        value is converted to the kind of ATOM.', &
-'', &
-'-   ', &
-'', &
-'    OLD', &
-'        Scalar of the same type and kind as ATOM.', &
-'', &
-'-   ', &
-'', &
-'    STAT', &
-'        (optional) Scalar default-kind integer variable.', &
+'-   STAT : (optional) Scalar default-kind integer variable.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -2447,27 +2283,15 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ATOM : Scalar coarray or coindexed variable of integer type with', &
+'    atomic_int_kind kind.', &
 '', &
-'    ATOM', &
-'        Scalar coarray or coindexed variable of integer type with', &
-'        atomic_int_kind kind.', &
+'-   VALUE : Scalar of the same type as ATOM. If the kind is different,', &
+'    the value is converted to the kind of ATOM.', &
 '', &
-'-   ', &
+'-   OLD : Scalar of the same type and kind as ATOM.', &
 '', &
-'    VALUE', &
-'        Scalar of the same type as ATOM. If the kind is different, the', &
-'        value is converted to the kind of ATOM.', &
-'', &
-'-   ', &
-'', &
-'    OLD', &
-'        Scalar of the same type and kind as ATOM.', &
-'', &
-'-   ', &
-'', &
-'    STAT', &
-'        (optional) Scalar default-kind integer variable.', &
+'-   STAT : (optional) Scalar default-kind integer variable.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -2523,22 +2347,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ATOM : Scalar coarray or coindexed variable of integer type with', &
+'    atomic_int_kind kind.', &
 '', &
-'    ATOM', &
-'        Scalar coarray or coindexed variable of integer type with', &
-'        atomic_int_kind kind.', &
+'-   VALUE : Scalar of the same type as ATOM. If the kind is different,', &
+'    the value is converted to the kind of ATOM.', &
 '', &
-'-   ', &
-'', &
-'    VALUE', &
-'        Scalar of the same type as ATOM. If the kind is different, the', &
-'        value is converted to the kind of ATOM.', &
-'', &
-'-   ', &
-'', &
-'    STAT', &
-'        (optional) Scalar default-kind integer variable.', &
+'-   STAT : (optional) Scalar default-kind integer variable.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -2594,23 +2409,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   VALUE : Scalar of the same type as ATOM. If the kind is different,', &
+'    the value is converted to the kind of ATOM.', &
 '', &
-'    VALUE', &
-'        Scalar of the same type as ATOM. If the kind is different, the', &
-'        value is converted to the kind of ATOM.', &
+'-   ATOM : Scalar coarray or coindexed variable of either integer type', &
+'    with atomic_int_kind kind or logical type with atomic_logical_kind', &
+'    kind.', &
 '', &
-'-   ', &
-'', &
-'    ATOM', &
-'        Scalar coarray or coindexed variable of either integer type with', &
-'        atomic_int_kind kind or logical type with atomic_logical_kind', &
-'        kind.', &
-'', &
-'-   ', &
-'', &
-'    STAT', &
-'        (optional) Scalar default-kind integer variable.', &
+'-   STAT : (optional) Scalar default-kind integer variable.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -2672,22 +2478,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ATOM : Scalar coarray or coindexed variable of integer type with', &
+'    atomic_int_kind kind.', &
 '', &
-'    ATOM', &
-'        Scalar coarray or coindexed variable of integer type with', &
-'        atomic_int_kind kind.', &
+'-   VALUE : Scalar of the same type as ATOM. If the kind is different,', &
+'    the value is converted to the kind of ATOM.', &
 '', &
-'-   ', &
-'', &
-'    VALUE', &
-'        Scalar of the same type as ATOM. If the kind is different, the', &
-'        value is converted to the kind of ATOM.', &
-'', &
-'-   ', &
-'', &
-'    STAT', &
-'        (optional) Scalar default-kind integer variable.', &
+'-   STAT : (optional) Scalar default-kind integer variable.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -2736,10 +2533,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
@@ -2798,10 +2592,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
@@ -2864,26 +2655,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   N : Shall be a scalar or an array of type integer.', &
 '', &
-'    N', &
-'        Shall be a scalar or an array of type integer.', &
+'-   N1 : Shall be a non-negative scalar of type integer.', &
 '', &
-'-   ', &
+'-   N2 : Shall be a non-negative scalar of type integer.', &
 '', &
-'    N1', &
-'        Shall be a non-negative scalar of type integer.', &
-'', &
-'-   ', &
-'', &
-'    N2', &
-'        Shall be a non-negative scalar of type integer.', &
-'', &
-'-   ', &
-'', &
-'    X', &
-'        Shall be a scalar or an array of type real. For BESSEL_JN(N1,', &
-'        N2, X) it shall be scalar.', &
+'-   X : Shall be a scalar or an array of type real. For BESSEL_JN(N1,', &
+'    N2, X) it shall be scalar.', &
 '', &
 'RETURNS', &
 '', &
@@ -2941,10 +2720,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
@@ -3002,10 +2778,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
@@ -3062,26 +2835,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   N : Shall be a scalar or an array of type integer.', &
 '', &
-'    N', &
-'        Shall be a scalar or an array of type integer.', &
+'-   N1 : Shall be a non-negative scalar of type integer.', &
 '', &
-'-   ', &
+'-   N2 : Shall be a non-negative scalar of type integer.', &
 '', &
-'    N1', &
-'        Shall be a non-negative scalar of type integer.', &
-'', &
-'-   ', &
-'', &
-'    N2', &
-'        Shall be a non-negative scalar of type integer.', &
-'', &
-'-   ', &
-'', &
-'    X', &
-'        Shall be a scalar or an array of type real; for BESSEL_YN(N1,', &
-'        N2, X) it shall be scalar.', &
+'-   X : Shall be a scalar or an array of type real; for BESSEL_YN(N1,', &
+'    N2, X) it shall be scalar.', &
 '', &
 'RETURNS', &
 '', &
@@ -3137,15 +2898,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : Shall be of integer type.', &
 '', &
-'    I', &
-'        Shall be of integer type.', &
-'', &
-'-   ', &
-'', &
-'    J', &
-'        Shall be of integer type, and of the same kind as I.', &
+'-   J : Shall be of integer type, and of the same kind as I.', &
 '', &
 'RETURNS', &
 '', &
@@ -3184,16 +2939,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : Shall be of integer type or a BOZ literal constant.', &
 '', &
-'    I', &
-'        Shall be of integer type or a BOZ literal constant.', &
-'', &
-'-   ', &
-'', &
-'    J', &
-'        Shall be of integer type, and of the same kind as I; or a BOZ', &
-'        literal constant.', &
+'-   J : Shall be of integer type, and of the same kind as I; or a BOZ', &
+'    literal constant.', &
 '', &
 'RETURNS', &
 '', &
@@ -3238,12 +2987,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    I', &
-'        An integer value of any kind to determine the size of in bits.', &
-'        Because only the type of the argument is examined, the argument', &
-'        need not be defined.', &
+'-   I : An integer value of any kind to determine the size of in bits.', &
+'    Because only the type of the argument is examined, the argument need', &
+'    not be defined.', &
 '', &
 'RETURNS', &
 '', &
@@ -3308,15 +3054,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : Shall be of integer type.', &
 '', &
-'    I', &
-'        Shall be of integer type.', &
-'', &
-'-   ', &
-'', &
-'    J', &
-'        Shall be of integer type, and of the same kind as I.', &
+'-   J : Shall be of integer type, and of the same kind as I.', &
 '', &
 'RETURNS', &
 '', &
@@ -3355,15 +3095,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : Shall be of integer type.', &
 '', &
-'    I', &
-'        Shall be of integer type.', &
-'', &
-'-   ', &
-'', &
-'    J', &
-'        Shall be of integer type, and of the same kind as I.', &
+'-   J : Shall be of integer type, and of the same kind as I.', &
 '', &
 'RETURNS', &
 '', &
@@ -3408,16 +3142,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : The type shall be integer.', &
 '', &
-'    I', &
-'        The type shall be integer.', &
-'', &
-'-   ', &
-'', &
-'    POS', &
-'        The bit position to query. it must be a valid position for the', &
-'        value I; ie. 0 <= POS <= BIT_SIZE(I) .', &
+'-   POS : The bit position to query. it must be a valid position for the', &
+'    value I; ie. 0 <= POS <= BIT_SIZE(I) .', &
 '', &
 '    A value of zero refers to the least significant bit.', &
 '', &
@@ -3536,15 +3264,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   C_PTR_1 : Scalar of the type c_ptr or c_funptr.', &
 '', &
-'    C_PTR_1', &
-'        Scalar of the type c_ptr or c_funptr.', &
-'', &
-'-   ', &
-'', &
-'    C_PTR_2', &
-'        (Optional) Scalar of the same type as c_ptr_1.', &
+'-   C_PTR_2 : (Optional) Scalar of the same type as c_ptr_1.', &
 '', &
 'RETURNS', &
 '', &
@@ -3607,16 +3329,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   A : The type shall be real.', &
 '', &
-'    A', &
-'        The type shall be real.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        An integer initialization expression indicating the kind', &
-'        parameter of the result.', &
+'-   KIND : An integer initialization expression indicating the kind', &
+'    parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -3687,22 +3403,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   CPTR : scalar of the type c_ptr. It is INTENT(IN).', &
 '', &
-'    CPTR', &
-'        scalar of the type c_ptr. It is INTENT(IN).', &
+'-   FPTR : pointer interoperable with CPTR. it is INTENT(OUT).', &
 '', &
-'-   ', &
-'', &
-'    FPTR', &
-'        pointer interoperable with CPTR. it is INTENT(OUT).', &
-'', &
-'-   ', &
-'', &
-'    SHAPE', &
-'        (Optional) Rank-one array of type integer with INTENT(IN) . It', &
-'        shall be present if and only if FPTR is an array. The size must', &
-'        be equal to the rank of FPTR.', &
+'-   SHAPE : (Optional) Rank-one array of type integer with INTENT(IN) .', &
+'    It shall be present if and only if FPTR is an array. The size must', &
+'    be equal to the rank of FPTR.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -3758,15 +3465,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   CPTR : scalar of the type c_funptr. It is INTENT(IN).', &
 '', &
-'    CPTR', &
-'        scalar of the type c_funptr. It is INTENT(IN).', &
-'', &
-'-   ', &
-'', &
-'    FPTR', &
-'        procedure pointer interoperable with CPTR. It is INTENT(OUT).', &
+'-   FPTR : procedure pointer interoperable with CPTR. It is INTENT(OUT).', &
 '', &
 'EXAMPLES', &
 '', &
@@ -3827,10 +3528,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        Interoperable function or pointer to such function.', &
+'-   X : Interoperable function or pointer to such function.', &
 '', &
 'RETURNS', &
 '', &
@@ -3905,16 +3603,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : The type shall be integer.', &
 '', &
-'    I', &
-'        The type shall be integer.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (Optional) An integer initialization expression indicating the', &
-'        kind parameter of the result.', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
+'    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -3981,13 +3673,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        Shall have either the pointer or target attribute. It shall not', &
-'        be a coindexed object. It shall either be a variable with', &
-'        interoperable type and kind type parameters, or be a scalar,', &
-'        nonpolymorphic variable with no length type parameters.', &
+'-   X : Shall have either the pointer or target attribute. It shall not', &
+'    be a coindexed object. It shall either be a variable with', &
+'    interoperable type and kind type parameters, or be a scalar,', &
+'    nonpolymorphic variable with no length type parameters.', &
 '', &
 'RETURNS', &
 '', &
@@ -4204,28 +3893,17 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   A : INTENT(INOUT) argument; shall have the same dynamic type and', &
+'    type parameters on all images of the current team. If it is an', &
+'    array, it shall have the same shape on all images.', &
 '', &
-'    A', &
-'        INTENT(INOUT) argument; shall have the same dynamic type and', &
-'        type parameters on all images of the current team. If it is an', &
-'        array, it shall have the same shape on all images.', &
+'-   SOURCE_IMAGE : a scalar integer expression. It shall have the same', &
+'    the same value on all images and refer to an image of the current', &
+'    team.', &
 '', &
-'-   ', &
+'-   STAT : (optional) a scalar integer variable', &
 '', &
-'    SOURCE_IMAGE', &
-'        a scalar integer expression. It shall have the same the same', &
-'        value on all images and refer to an image of the current team.', &
-'', &
-'-   ', &
-'', &
-'    STAT', &
-'        (optional) a scalar integer variable', &
-'', &
-'-   ', &
-'', &
-'    ERRMSG', &
-'        (optional) a scalar character variable', &
+'-   ERRMSG : (optional) a scalar character variable', &
 '', &
 'EXAMPLES', &
 '', &
@@ -4271,21 +3949,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : Shall be an coarray, of any type.', &
 '', &
-'    ARRAY', &
-'        Shall be an coarray, of any type.', &
+'-   DIM : (Optional) Shall be a scalar integer.', &
 '', &
-'-   ', &
-'', &
-'    DIM', &
-'        (Optional) Shall be a scalar integer.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (Optional) An integer initialization expression indicating the', &
-'        kind parameter of the result.', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
+'    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -4335,28 +4004,16 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   A : shall be an integer, real or character variable, which has the', &
+'    same type and type parameters on all images of the team.', &
 '', &
-'    A', &
-'        shall be an integer, real or character variable, which has the', &
-'        same type and type parameters on all images of the team.', &
+'-   RESULT_IMAGE : (optional) a scalar integer expression; if present,', &
+'    it shall have the same the same value on all images and refer to an', &
+'    image of the current team.', &
 '', &
-'-   ', &
+'-   STAT : (optional) a scalar integer variable', &
 '', &
-'    RESULT_IMAGE', &
-'        (optional) a scalar integer expression; if present, it shall', &
-'        have the same the same value on all images and refer to an image', &
-'        of the current team.', &
-'', &
-'-   ', &
-'', &
-'    STAT', &
-'        (optional) a scalar integer variable', &
-'', &
-'-   ', &
-'', &
-'    ERRMSG', &
-'        (optional) a scalar character variable', &
+'-   ERRMSG : (optional) a scalar character variable', &
 '', &
 'EXAMPLES', &
 '', &
@@ -4416,28 +4073,16 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   A : shall be an integer, real or character variable, which has the', &
+'    same type and type parameters on all images of the team.', &
 '', &
-'    A', &
-'        shall be an integer, real or character variable, which has the', &
-'        same type and type parameters on all images of the team.', &
+'-   RESULT_IMAGE : (optional) a scalar integer expression; if present,', &
+'    it shall have the same the same value on all images and refer to an', &
+'    image of the current team.', &
 '', &
-'-   ', &
+'-   STAT : (optional) a scalar integer variable', &
 '', &
-'    RESULT_IMAGE', &
-'        (optional) a scalar integer expression; if present, it shall', &
-'        have the same the same value on all images and refer to an image', &
-'        of the current team.', &
-'', &
-'-   ', &
-'', &
-'    STAT', &
-'        (optional) a scalar integer variable', &
-'', &
-'-   ', &
-'', &
-'    ERRMSG', &
-'        (optional) a scalar character variable', &
+'-   ERRMSG : (optional) a scalar character variable', &
 '', &
 'EXAMPLES', &
 '', &
@@ -4495,12 +4140,9 @@ textblock=[character(len=256) :: &
 '', &
 'RETURNS', &
 '', &
-'-   ', &
-'', &
-'    COUNT', &
-'        The return value is of type default integer. It is the number of', &
-'        arguments passed on the command line when the program was', &
-'        invoked.', &
+'-   COUNT : The return value is of type default integer. It is the', &
+'    number of arguments passed on the command line when the program was', &
+'    invoked.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -4700,10 +4342,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    Z', &
-'        The type shall be complex.', &
+'-   Z : The type shall be complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -4806,25 +4445,19 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   A : is an INTENT(INOUT) argument and shall be nonpolymorphic. If it', &
+'    is allocatable, it shall be allocated; if it is a pointer, it shall', &
+'    be associated. A shall have the same type and type parameters on all', &
+'    images of the team; if it is an array, it shall have the same shape', &
+'    on all images.', &
 '', &
-'    A', &
-'        is an INTENT(INOUT) argument and shall be nonpolymorphic. If it', &
-'        is allocatable, it shall be allocated; if it is a pointer, it', &
-'        shall be associated. A shall have the same type and type', &
-'        parameters on all images of the team; if it is an array, it', &
-'        shall have the same shape on all images.', &
-'', &
-'-   ', &
-'', &
-'    OPERATION', &
-'        pure function with two scalar nonallocatable arguments, which', &
-'        shall be nonpolymorphic and have the same type and type', &
-'        parameters as A. The function shall return a nonallocatable', &
-'        scalar of the same type and type parameters as A. The function', &
-'        shall be the same on all images and with regards to the', &
-'        arguments mathematically commutative and associative. Note that', &
-'        OPERATION may not be an elemental', &
+'-   OPERATION : pure function with two scalar nonallocatable arguments,', &
+'    which shall be nonpolymorphic and have the same type and type', &
+'    parameters as A. The function shall return a nonallocatable scalar', &
+'    of the same type and type parameters as A. The function shall be the', &
+'    same on all images and with regards to the arguments mathematically', &
+'    commutative and associative. Note that OPERATION may not be an', &
+'    elemental', &
 '', &
 '    -   FUNCTION, UNLESS IT IS AN INTRINSIC FUNCTION. result_image', &
 '', &
@@ -4832,15 +4465,9 @@ textblock=[character(len=256) :: &
 '        have the same the same value on all images and refer to an image', &
 '        of the current team.', &
 '', &
-'-   ', &
+'-   STAT : (optional) a scalar integer variable', &
 '', &
-'    STAT', &
-'        (optional) a scalar integer variable', &
-'', &
-'-   ', &
-'', &
-'    ERRMSG', &
-'        (optional) a scalar character variable', &
+'-   ERRMSG : (optional) a scalar character variable', &
 '', &
 'EXAMPLES', &
 '', &
@@ -4916,11 +4543,8 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real or complex. X is assumed to be in', &
-'        radians.', &
+'-   X : The type shall be real or complex. X is assumed to be in', &
+'    radians.', &
 '', &
 'RETURNS', &
 '', &
@@ -4997,10 +4621,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real or complex.', &
+'-   X : The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -5063,28 +4684,16 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   A : shall be an integer, real or complex variable, which has the', &
+'    same type and type parameters on all images of the team.', &
 '', &
-'    A', &
-'        shall be an integer, real or complex variable, which has the', &
-'        same type and type parameters on all images of the team.', &
+'-   RESULT_IMAGE : (optional) a scalar integer expression; if present,', &
+'    it shall have the same the same value on all images and refer to an', &
+'    image of the current team.', &
 '', &
-'-   ', &
+'-   STAT : (optional) a scalar integer variable', &
 '', &
-'    RESULT_IMAGE', &
-'        (optional) a scalar integer expression; if present, it shall', &
-'        have the same the same value on all images and refer to an image', &
-'        of the current team.', &
-'', &
-'-   ', &
-'', &
-'    STAT', &
-'        (optional) a scalar integer variable', &
-'', &
-'-   ', &
-'', &
-'    ERRMSG', &
-'        (optional) a scalar character variable', &
+'-   ERRMSG : (optional) a scalar character variable', &
 '', &
 'EXAMPLES', &
 '', &
@@ -5139,21 +4748,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : Shall be an coarray, of any type.', &
 '', &
-'    ARRAY', &
-'        Shall be an coarray, of any type.', &
+'-   DIM : (Optional) Shall be a scalar integer.', &
 '', &
-'-   ', &
-'', &
-'    DIM', &
-'        (Optional) Shall be a scalar integer.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (Optional) An integer initialization expression indicating the', &
-'        kind parameter of the result.', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
+'    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -5199,21 +4799,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   MASK : The type shall be logical.', &
 '', &
-'    MASK', &
-'        The type shall be logical.', &
+'-   DIM : (Optional) The type shall be integer.', &
 '', &
-'-   ', &
-'', &
-'    DIM', &
-'        (Optional) The type shall be integer.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (Optional) An integer initialization expression indicating the', &
-'        kind parameter of the result.', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
+'    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -5311,13 +4902,10 @@ textblock=[character(len=256) :: &
 '', &
 'RETURNS', &
 '', &
-'-   ', &
-'', &
-'    TIME', &
-'        The type shall be real with INTENT(OUT). It is assigned a', &
-'        processor-dependent approximation to the processor time in', &
-'        seconds. If the processor cannot return a meaningful time, a', &
-'        processor-dependent negative value', &
+'-   TIME : The type shall be real with INTENT(OUT). It is assigned a', &
+'    processor-dependent approximation to the processor time in seconds.', &
+'    If the processor cannot return a meaningful time, a', &
+'    processor-dependent negative value', &
 '', &
 '    -   IS RETURNED. The start time is left imprecise because the', &
 '        purpose is to time sections of code, as in the example. This', &
@@ -5383,20 +4971,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : Shall be an array of any type.', &
 '', &
-'    ARRAY', &
-'        Shall be an array of any type.', &
+'-   SHIFT : The type shall be integer.', &
 '', &
-'-   ', &
-'', &
-'    SHIFT', &
-'        The type shall be integer.', &
-'', &
-'-   ', &
-'', &
-'    DIM', &
-'        The type shall be integer.', &
+'-   DIM : The type shall be integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -5460,10 +5039,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The argument shall be an interoperable data entity.', &
+'-   X : The argument shall be an interoperable data entity.', &
 '', &
 'RETURNS', &
 '', &
@@ -5534,53 +5110,26 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   DATE : A character string of default kind of the form CCYYMMDD, of', &
+'    length 8 or larger.', &
 '', &
-'    DATE', &
-'        A character string of default kind of the form CCYYMMDD, of', &
-'        length 8 or larger.', &
+'-   TIME : A character string of default kind of the form HHMMSS.SSS, of', &
+'    length 10 or larger.', &
 '', &
-'-   ', &
+'-   ZONE : A character string of default kind of the form (+-)HHMM, of', &
+'    length 5 or larger, representing the difference with respect to', &
+'    Coordinated Universal Time (UTC).', &
 '', &
-'    TIME', &
-'        A character string of default kind of the form HHMMSS.SSS, of', &
-'        length 10 or larger.', &
+'-   VALUES : An integer array of eight elements that contains:', &
 '', &
-'-   ', &
-'', &
-'    ZONE', &
-'        A character string of default kind of the form (+-)HHMM, of', &
-'        length 5 or larger, representing the difference with respect to', &
-'        Coordinated Universal Time (UTC).', &
-'', &
-'-   ', &
-'', &
-'    VALUES', &
-'        An integer array of eight elements that contains:', &
-'', &
-'    - VALUES(1)', &
-'        The year', &
-'        -   VALUES(2)', &
-'', &
-'        The month', &
-'        -   VALUES(3)', &
-'', &
-'        The day of the month', &
-'        -   VALUES(4)', &
-'', &
-'        Time difference with UTC in minutes', &
-'        -   VALUES(5)', &
-'', &
-'        The hour of the day', &
-'        -   VALUES(6)', &
-'', &
-'        The minutes of the hour', &
-'        -   VALUES(7)', &
-'', &
-'        The seconds of the minute', &
-'        -   VALUES(8)', &
-'', &
-'        The milliseconds of the second', &
+'    -   VALUES(1) : The year', &
+'    -   VALUES(2) : The month', &
+'    -   VALUES(3) : The day of the month', &
+'    -   VALUES(4) : Time difference with UTC in minutes', &
+'    -   VALUES(5) : The hour of the day', &
+'    -   VALUES(6) : The minutes of the hour', &
+'    -   VALUES(7) : The seconds of the minute', &
+'    -   VALUES(8) : The milliseconds of the second', &
 '', &
 'EXAMPLES', &
 '', &
@@ -5671,10 +5220,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    A', &
-'        The type shall be integer, real, or complex.', &
+'-   A : The type shall be integer, real, or complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -5739,10 +5285,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type may be a scalar or array of type integer or real.', &
+'-   X : The type may be a scalar or array of type integer or real.', &
 '', &
 'RETURNS', &
 '', &
@@ -5811,15 +5354,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   X : The type shall be integer or real', &
 '', &
-'    X', &
-'        The type shall be integer or real', &
-'', &
-'-   ', &
-'', &
-'    Y', &
-'        The type shall be the same type and kind as X.', &
+'-   Y : The type shall be the same type and kind as X.', &
 '', &
 'RETURNS', &
 '', &
@@ -5887,17 +5424,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   VECTOR_A : The type shall be numeric or logical, rank 1.', &
 '', &
-'    VECTOR_A', &
-'        The type shall be numeric or logical, rank 1.', &
-'', &
-'-   ', &
-'', &
-'    VECTOR_B', &
-'        The type shall be numeric if vectora is of numeric type or', &
-'        _logical if vectora is of type _logical. vector_b shall be a', &
-'        rank-one array.', &
+'-   VECTOR_B : The type shall be numeric if vectora is of numeric type', &
+'    or _logical if vectora is of type _logical. vector_b shall be a', &
+'    rank-one array.', &
 '', &
 'RETURNS', &
 '', &
@@ -5962,30 +5493,18 @@ textblock=[character(len=256) :: &
 'product in double precision, rather than in single precision and then', &
 'converted to double precision.', &
 '', &
-'-   ', &
+'-   X : shall be default real.', &
 '', &
-'    X', &
-'        shall be default real.', &
-'', &
-'-   ', &
-'', &
-'    Y', &
-'        shall be default real.', &
+'-   Y : shall be default real.', &
 '', &
 'The setting of compiler options specifying real size can affect this', &
 'function.', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   X : Must be of default real(kind=kind(0.0)) type', &
 '', &
-'    X', &
-'        Must be of default real(kind=kind(0.0)) type', &
-'', &
-'-   ', &
-'', &
-'    Y', &
-'        Must have the same type and kind parameters as X', &
+'-   Y : Must have the same type and kind parameters as X', &
 '', &
 'RETURNS', &
 '', &
@@ -6060,20 +5579,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : Shall be of type integer.', &
 '', &
-'    I', &
-'        Shall be of type integer.', &
+'-   J : Shall be of type integer, and of the same kind as I.', &
 '', &
-'-   ', &
-'', &
-'    J', &
-'        Shall be of type integer, and of the same kind as I.', &
-'', &
-'-   ', &
-'', &
-'    SHIFT', &
-'        Shall be of type integer.', &
+'-   SHIFT : Shall be of type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -6114,20 +5624,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : Shall be of type integer.', &
 '', &
-'    I', &
-'        Shall be of type integer.', &
+'-   J : Shall be of type integer, and of the same kind as I.', &
 '', &
-'-   ', &
-'', &
-'    J', &
-'        Shall be of type integer, and of the same kind as I.', &
-'', &
-'-   ', &
-'', &
-'    SHIFT', &
-'        Shall be of type integer.', &
+'-   SHIFT : Shall be of type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -6183,25 +5684,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : May be any type, not scalar.', &
 '', &
-'    ARRAY', &
-'        May be any type, not scalar.', &
+'-   SHIFT : The type shall be integer.', &
 '', &
-'-   ', &
+'-   BOUNDARY : Same type as ARRAY.', &
 '', &
-'    SHIFT', &
-'        The type shall be integer.', &
-'', &
-'-   ', &
-'', &
-'    BOUNDARY', &
-'        Same type as ARRAY.', &
-'', &
-'-   ', &
-'', &
-'    DIM', &
-'        The type shall be integer.', &
+'-   DIM : The type shall be integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -6278,10 +5767,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
@@ -6385,14 +5871,11 @@ textblock=[character(len=256) :: &
 '', &
 'ERF(x) computes the error function of X, defined as', &
 '', &
-'$$ \text{erf}(x) = \frac{2}{\sqrt{\pi}} \int_0^x e^({-T)2} dt. $$', &
+'$$ \text{erf}(x) = \frac{2}{\sqrt{\pi}} \int_0^x e^{-T^2} dt. $$', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
@@ -6458,14 +5941,11 @@ textblock=[character(len=256) :: &
 'ERFC(X) is defined as', &
 '', &
 '$$ \text{erfc}(x) = 1 - \text{erf}(x) = 1 - \frac{2}{\sqrt{\pi}}', &
-'\int_x^{\infty} e^({-t)2} dt. $$', &
+'\int_x^{\infty} e^{-t^2} dt. $$', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
@@ -6524,14 +6004,11 @@ textblock=[character(len=256) :: &
 'ERFC_SCALED(x) computes the exponentially-scaled complementary error', &
 'function of X:', &
 '', &
-'$$ e^({x)2} \frac{2}{\sqrt{\pi}} \int_{x}^({\infty}\ e){-t^2} dt. $$', &
+'$$ e^{x^2} \frac{2}{\sqrt{\pi}} \int_{x}^{\infty} e^{-t^2} dt. $$', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
@@ -6585,22 +6062,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   EVENT : (intent(in)) Scalar of type event_type, defined in', &
+'    iso_fortran_env; shall not be coindexed.', &
 '', &
-'    EVENT', &
-'        (intent(in)) Scalar of type event_type, defined in', &
-'        iso_fortran_env; shall not be coindexed.', &
+'-   COUNT : (intent(out))Scalar integer with at least the precision of', &
+'    default integer.', &
 '', &
-'-   ', &
-'', &
-'    COUNT', &
-'        (intent(out))Scalar integer with at least the precision of', &
-'        default integer.', &
-'', &
-'-   ', &
-'', &
-'    STAT', &
-'        (OPTIONAL) Scalar default-kind integer variable.', &
+'-   STAT : (OPTIONAL) Scalar default-kind integer variable.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -6672,35 +6140,23 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   COMMAND : a default character scalar containing the command line to', &
+'    be executed. The interpretation is programming-environment', &
+'    dependent.', &
 '', &
-'    COMMAND', &
-'        a default character scalar containing the command line to be', &
-'        executed. The interpretation is programming-environment', &
-'        dependent.', &
+'-   WAIT : (Optional) a default logical scalar. If WAIT is present with', &
+'    the value .false., and the processor supports asynchronous execution', &
+'    of the command, the command is executed asynchronously; otherwise it', &
+'    is executed synchronously.', &
 '', &
-'-   ', &
+'-   EXITSTAT : (Optional) an integer of the default kind with', &
+'    INTENT(INOUT). If the command is executed synchronously, it is', &
+'    assigned the value of the processor-dependent exit status.', &
+'    Otherwise, the value of EXITSTAT is unchanged.', &
 '', &
-'    WAIT', &
-'        (Optional) a default logical scalar. If WAIT is present with the', &
-'        value .false., and the processor supports asynchronous execution', &
-'        of the command, the command is executed asynchronously;', &
-'        otherwise it is executed synchronously.', &
-'', &
-'-   ', &
-'', &
-'    EXITSTAT', &
-'        (Optional) an integer of the default kind with INTENT(INOUT). If', &
-'        the command is executed synchronously, it is assigned the value', &
-'        of the processor-dependent exit status. Otherwise, the value of', &
-'        EXITSTAT is unchanged.', &
-'', &
-'-   ', &
-'', &
-'    CMDSTAT', &
-'        (Optional) an integer of default kind with INTENT(INOUT). If an', &
-'        error condition occurs and CMDSTAT is not present, error', &
-'        termination of execution of the image is initiated.', &
+'-   CMDSTAT : (Optional) an integer of default kind with INTENT(INOUT).', &
+'    If an error condition occurs and CMDSTAT is not present, error', &
+'    termination of execution of the image is initiated.', &
 '', &
 '    It is assigned the value -1 if the processor does not support', &
 '    command line execution, a processor-dependent positive value if an', &
@@ -6709,13 +6165,10 @@ textblock=[character(len=256) :: &
 '    support asynchronous execution. Otherwise it is assigned the', &
 '    value 0.', &
 '', &
-'-   ', &
-'', &
-'    CMDMSG', &
-'        (Optional) a character scalar of the default kind. It is an', &
-'        INTENT (INOUT) argument.If an error condition occurs, it is', &
-'        assigned a processor-dependent explanatory message.Otherwise, it', &
-'        is unchanged.', &
+'-   CMDMSG : (Optional) a character scalar of the default kind. It is an', &
+'    INTENT (INOUT) argument.If an error condition occurs, it is assigned', &
+'    a processor-dependent explanatory message.Otherwise, it is', &
+'    unchanged.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -6779,10 +6232,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real or complex.', &
+'-   X : The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -6871,10 +6321,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real.', &
+'-   X : The type shall be real.', &
 '', &
 'RETURNS', &
 '', &
@@ -6935,35 +6382,22 @@ textblock=[character(len=256) :: &
 '', &
 'OPTIONS', &
 '', &
-'-   ', &
+'-   A : shall be an object of extensible type. If it is a pointer, it', &
+'    shall not have an undefined association status.', &
 '', &
-'    A', &
-'        shall be an object of extensible type. If it is a pointer, it', &
-'        shall not have an undefined association status.', &
-'', &
-'-   ', &
-'', &
-'    MOLD', &
-'        shall be an object of extensible type. If it is a pointer, it', &
-'        shall not have an undefined association status.', &
+'-   MOLD : shall be an object of extensible type. If it is a pointer, it', &
+'    shall not have an undefined association status.', &
 '', &
 'RETURNS', &
 '', &
-'-   ', &
+'-   RESULT : Default logical scalar.', &
 '', &
-'    RESULT', &
-'        Default logical scalar.', &
-'', &
-'-   ', &
-'', &
-'    VALUE', &
-'        If MOLD is unlimited polymorphic and is either a disassociated', &
-'        pointer or unallocated allocatable variable, the result is true;', &
-'        otherwise if A is unlimited polymorphic and is either a', &
-'        disassociated pointer or unallocated allocatable variable, the', &
-'        result is false; otherwise the result is true if and only if the', &
-'        dynamic type of A is an extension type of the dynamic type of', &
-'        MOLD.', &
+'-   VALUE : If MOLD is unlimited polymorphic and is either a', &
+'    disassociated pointer or unallocated allocatable variable, the', &
+'    result is true; otherwise if A is unlimited polymorphic and is', &
+'    either a disassociated pointer or unallocated allocatable variable,', &
+'    the result is false; otherwise the result is true if and only if the', &
+'    dynamic type of A is an extension type of the dynamic type of MOLD.', &
 '', &
 '    The dynamic type of a disassociated pointer or unallocated', &
 '    allocatable variable is its declared type.', &
@@ -7013,39 +6447,23 @@ textblock=[character(len=256) :: &
 '', &
 'OPTIONS', &
 '', &
-'-   ', &
+'-   ARRAY : shall be an array of intrinsic type.', &
 '', &
-'    ARRAY', &
-'        shall be an array of intrinsic type.', &
+'-   VALUE : shall be scalar and in type conformance with ARRAY, as', &
+'    specified in Table 7.3 for relational intrinsic operations', &
+'    7.1.5.5.2).', &
 '', &
-'-   ', &
+'-   DIM : shall be an integer scalar with a value in the range 1 DIM n,', &
+'    where n is the rank of ARRAY. The corresponding actual argument', &
+'    shall not be an optional dummy argument.', &
 '', &
-'    VALUE', &
-'        shall be scalar and in type conformance with ARRAY, as specified', &
-'        in Table 7.3 for relational intrinsic operations 7.1.5.5.2).', &
+'-   MASK : (optional) shall be of type logical and shall be conformable', &
+'    with ARRAY.', &
 '', &
-'-   ', &
+'-   KIND : (optional) shall be a scalar integer initialization', &
+'    expression.', &
 '', &
-'    DIM', &
-'        shall be an integer scalar with a value in the range 1 DIM n,', &
-'        where n is the rank of ARRAY. The corresponding actual argument', &
-'        shall not be an optional dummy argument.', &
-'', &
-'-   ', &
-'', &
-'    MASK', &
-'        (optional) shall be of type logical and shall be conformable', &
-'        with ARRAY.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (optional) shall be a scalar integer initialization expression.', &
-'', &
-'-   ', &
-'', &
-'    BACK', &
-'        (optional) shall be a logical scalar.', &
+'-   BACK : (optional) shall be a logical scalar.', &
 '', &
 'RETURNS', &
 '', &
@@ -7175,7 +6593,7 @@ textblock=[character(len=256) :: &
 '        real(kind=kind(a)),intent(in) :: a', &
 '        integer(kind=IKIND),intent(in),optional :: KIND', &
 '', &
-'    where __KIND__ is any valid value for type _integer_.', &
+'where KIND is any valid value for type integer.', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -7185,16 +6603,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   A : The type shall be real.', &
 '', &
-'    A', &
-'        The type shall be real.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (Optional) A scalar integer constant initialization expression', &
-'        indicating the kind parameter of the result.', &
+'-   KIND : (Optional) A scalar integer constant initialization', &
+'    expression indicating the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -7274,10 +6686,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type of the argument shall be a real.', &
+'-   X : The type of the argument shall be a real.', &
 '', &
 'RETURNS', &
 '', &
@@ -7343,10 +6752,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        Shall be of type real and neither zero nor a negative integer.', &
+'-   X : Shall be of type real and neither zero nor a negative integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -7481,26 +6887,17 @@ textblock=[character(len=256) :: &
 '', &
 'RETURNS', &
 '', &
-'-   ', &
+'-   COMMAND : Shall be of type character and of default kind. If COMMAND', &
+'    is present, stores the entire command line that was used to invoke', &
+'    the program in COMMAND.', &
 '', &
-'    COMMAND', &
-'        Shall be of type character and of default kind. If COMMAND is', &
-'        present, stores the entire command line that was used to invoke', &
-'        the program in COMMAND.', &
+'-   LENGTH : Shall be of type integer and of default kind. If LENGTH is', &
+'    present, it is assigned the length of the command line.', &
 '', &
-'-   ', &
-'', &
-'    LENGTH', &
-'        Shall be of type integer and of default kind. If LENGTH is', &
-'        present, it is assigned the length of the command line.', &
-'', &
-'-   ', &
-'', &
-'    STATUS', &
-'        Shall be of type integer and of default kind. If STATUS is', &
-'        present, it is assigned 0 upon success of the command, -1 if', &
-'        COMMAND is too short to store the command line, or a positive', &
-'        value in case of an error.', &
+'-   STATUS : Shall be of type integer and of default kind. If STATUS is', &
+'    present, it is assigned 0 upon success of the command, -1 if COMMAND', &
+'    is too short to store the command line, or a positive value in case', &
+'    of an error.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -7580,12 +6977,9 @@ textblock=[character(len=256) :: &
 '', &
 'OPTIONS', &
 '', &
-'-   ', &
-'', &
-'    NUMBER', &
-'        Shall be a scalar of type INTEGER, NUMBER >= 0. If NUMBER = 0,', &
-'        VALUE is set to the name of the program (on systems that support', &
-'        this feature).', &
+'-   NUMBER : Shall be a scalar of type INTEGER, NUMBER >= 0. If NUMBER =', &
+'    0, VALUE is set to the name of the program (on systems that support', &
+'    this feature).', &
 '', &
 'RETURNS', &
 '', &
@@ -7712,49 +7106,34 @@ textblock=[character(len=256) :: &
 '', &
 'OPTIONS', &
 '', &
-'-   ', &
-'', &
-'    NAME', &
-'        The name of the environment variable to query.', &
+'-   NAME : The name of the environment variable to query.', &
 '', &
 '    Shall be a scalar of type character and of default kind.', &
 '', &
 'RETURNS', &
 '', &
-'-   ', &
-'', &
-'    VALUE', &
-'        The value of the environment variable being queried.', &
+'-   VALUE : The value of the environment variable being queried.', &
 '', &
 '    Shall be a scalar of type character and of default kind. The value', &
 '    of NAME is stored in VALUE. If VALUE is not large enough to hold the', &
 '    data, it is truncated. If NAME is not set, VALUE will be filled with', &
 '    blanks.', &
 '', &
-'-   ', &
-'', &
-'    LENGTH', &
-'        Argument LENGTH contains the length needed for storing the', &
-'        environment variable NAME or zero if it is not present.', &
+'-   LENGTH : Argument LENGTH contains the length needed for storing the', &
+'    environment variable NAME or zero if it is not present.', &
 '', &
 '    Shall be a scalar of type integer and of default kind.', &
 '', &
-'-   ', &
-'', &
-'    STATUS', &
-'        STATUS is -1 if VALUE is present but too short for the', &
-'        environment variable; it is 1 if the environment variable does', &
-'        not exist and 2 if the processor does not support environment', &
-'        variables; in all other cases STATUS is zero.', &
+'-   STATUS : STATUS is -1 if VALUE is present but too short for the', &
+'    environment variable; it is 1 if the environment variable does not', &
+'    exist and 2 if the processor does not support environment variables;', &
+'    in all other cases STATUS is zero.', &
 '', &
 '    Shall be a scalar of type integer and of default kind.', &
 '', &
-'-   ', &
-'', &
-'    TRIM_NAME', &
-'        If TRIM_NAME is present with the value .FALSE., the trailing', &
-'        blanks in NAME are significant; otherwise they are not part of', &
-'        the environment variable name.', &
+'-   TRIM_NAME : If TRIM_NAME is present with the value .FALSE., the', &
+'    trailing blanks in NAME are significant; otherwise they are not part', &
+'    of the environment variable name.', &
 '', &
 '    Shall be a scalar of type logical and of default kind.', &
 '', &
@@ -8002,55 +7381,55 @@ textblock=[character(len=256) :: &
 'modification of the Modified Version to whoever possesses a copy of it.', &
 'In addition, you must do these things in the Modified Version:', &
 '', &
-'-   **A__. Use in the Title Page (and on the covers, if any) a title', &
+'-   A. Use in the Title Page (and on the covers, if any) a title', &
 '    distinct from that of the Document, and from those of previous', &
 '    versions (which should, if there were any, be listed in the History', &
 '    section of the Document). You may use the same title as a previous', &
 '    version if the original publisher of that version gives permission.', &
-'-   **B__. List on the Title Page, as authors, one or more persons or', &
+'-   B. List on the Title Page, as authors, one or more persons or', &
 '    entities responsible for authorship of the modifications in the', &
 '    Modified Version, together with at least five of the principal', &
 '    authors of the Document (all of its principal authors, if it has', &
 '    fewer than five), unless they release you from this requirement.', &
-'-   **C__. State on the Title page the name of the publisher of the', &
-'    Modified Version, as the publisher.', &
-'-   **D__. Preserve all the copyright notices of the Document.', &
-'-   **E__. Add an appropriate copyright notice for your modifications', &
+'-   C. State on the Title page the name of the publisher of the Modified', &
+'    Version, as the publisher.', &
+'-   D. Preserve all the copyright notices of the Document.', &
+'-   E. Add an appropriate copyright notice for your modifications', &
 '    adjacent to the other copyright notices.', &
-'-   **F__. Include, immediately after the copyright notices, a license', &
+'-   F. Include, immediately after the copyright notices, a license', &
 '    notice giving the public permission to use the Modified Version', &
 '    under the terms of this License, in the form shown in the Addendum', &
 '    below.', &
-'-   **G__. Preserve in that license notice the full lists of Invariant', &
+'-   G. Preserve in that license notice the full lists of Invariant', &
 '    Sections and required Cover Texts given in the Document''s license', &
 '    notice.', &
-'-   **H__. Include an unaltered copy of this License.', &
-'-   **I__. Preserve the section Entitled "History", Preserve its Title,', &
-'    and add to it an item stating at least the title, year, new authors,', &
-'    and publisher of the Modified Version as given on the Title Page. If', &
+'-   H. Include an unaltered copy of this License.', &
+'-   I. Preserve the section Entitled "History", Preserve its Title, and', &
+'    add to it an item stating at least the title, year, new authors, and', &
+'    publisher of the Modified Version as given on the Title Page. If', &
 '    there is no section Entitled "History" in the Document, create one', &
 '    stating the title, year, authors, and publisher of the Document as', &
 '    given on its Title Page, then add an item describing the Modified', &
 '    Version as stated in the previous sentence.', &
-'-   **J__. Preserve the network location, if any, given in the Document', &
-'    for public access to a Transparent copy of the Document, and', &
-'    likewise the network locations given in the Document for previous', &
-'    versions it was based on. These may be placed in the "History"', &
-'    section. You may omit a network location for a work that was', &
-'    published at least four years before the Document itself, or if the', &
-'    original publisher of the version it refers to gives permission.', &
-'-   **K__. For any section Entitled "Acknowledgements" or "Dedications",', &
+'-   J. Preserve the network location, if any, given in the Document for', &
+'    public access to a Transparent copy of the Document, and likewise', &
+'    the network locations given in the Document for previous versions it', &
+'    was based on. These may be placed in the "History" section. You may', &
+'    omit a network location for a work that was published at least four', &
+'    years before the Document itself, or if the original publisher of', &
+'    the version it refers to gives permission.', &
+'-   K. For any section Entitled "Acknowledgements" or "Dedications",', &
 '    Preserve the Title of the section, and preserve in the section all', &
 '    the substance and tone of each of the contributor acknowledgements', &
 '    and/or dedications given therein.', &
-'-   **L__. Preserve all the Invariant Sections of the Document,', &
-'    unaltered in their text and in their titles. Section numbers or the', &
-'    equivalent are not considered part of the section titles.', &
-'-   **M__. Delete any section Entitled "Endorsements". Such a section', &
-'    may not be included in the Modified Version.', &
-'-   **N__. Do not retitle any existing section to be Entitled', &
-'    "Endorsements" or to conflict in title with any Invariant Section.', &
-'-   **O__. Preserve any Warranty Disclaimers.', &
+'-   L. Preserve all the Invariant Sections of the Document, unaltered in', &
+'    their text and in their titles. Section numbers or the equivalent', &
+'    are not considered part of the section titles.', &
+'-   M. Delete any section Entitled "Endorsements". Such a section may', &
+'    not be included in the Modified Version.', &
+'-   N. Do not retitle any existing section to be Entitled "Endorsements"', &
+'    or to conflict in title with any Invariant Section.', &
+'-   O. Preserve any Warranty Disclaimers.', &
 '', &
 'If the Modified Version includes new front-matter sections or appendices', &
 'that qualify as Secondary Sections and contain no material copied from', &
@@ -8241,12 +7620,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        Shall be an arbitrary value of type real or integer. The value', &
-'        is used merely to determine what kind and type of scalar is', &
-'        being queried.', &
+'-   X : Shall be an arbitrary value of type real or integer. The value', &
+'    is used merely to determine what kind and type of scalar is being', &
+'    queried.', &
 '', &
 'RETURNS', &
 '', &
@@ -8340,7 +7716,7 @@ textblock=[character(len=256) :: &
 'DESCRIPTION', &
 '', &
 'HYPOT(X,Y) is referred to as the Euclidean distance function. It is', &
-'equal to $\sqrt{x^(2+y)2}$ , without undue underflow or overflow.', &
+'equal to $\sqrt{x^2+y^2}$ , without undue underflow or overflow.', &
 '', &
 'In mathematics, the Euclidean distance between two points in Euclidean', &
 'space is the length of a line segment between two points.', &
@@ -8349,15 +7725,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   X : The type shall be real.', &
 '', &
-'    X', &
-'        The type shall be real.', &
-'', &
-'-   ', &
-'', &
-'    Y', &
-'        The type and kind type parameter shall be the same as X.', &
+'-   Y : The type and kind type parameter shall be the same as X.', &
 '', &
 'RETURNS', &
 '', &
@@ -8445,16 +7815,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   C : Shall be a scalar character, with intent(in)', &
 '', &
-'    C', &
-'        Shall be a scalar character, with intent(in)', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (Optional) An integer initialization expression indicating the', &
-'        kind parameter of the result.', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
+'    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -8543,22 +7907,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : Shall be an array of type integer', &
 '', &
-'    ARRAY', &
-'        Shall be an array of type integer', &
+'-   DIM : (Optional) shall be a scalar of type integer with a value in', &
+'    the range from 1 TO N, where N equals the rank of ARRAY.', &
 '', &
-'-   ', &
-'', &
-'    DIM', &
-'        (Optional) shall be a scalar of type integer with a value in the', &
-'        range from 1 TO N, where N equals the rank of ARRAY.', &
-'', &
-'-   ', &
-'', &
-'    MASK', &
-'        (Optional) shall be of type logical and either be a scalar or an', &
-'        array of the same shape as ARRAY.', &
+'-   MASK : (Optional) shall be of type logical and either be a scalar or', &
+'    an array of the same shape as ARRAY.', &
 '', &
 'RETURNS', &
 '', &
@@ -8623,15 +7978,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : The type shall be integer.', &
 '', &
-'    I', &
-'        The type shall be integer.', &
-'', &
-'-   ', &
-'', &
-'    J', &
-'        The type shall be integer, of the same kind as I.', &
+'-   J : The type shall be integer, of the same kind as I.', &
 '', &
 'RETURNS', &
 '', &
@@ -8692,22 +8041,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : Shall be an array of type integer', &
 '', &
-'    ARRAY', &
-'        Shall be an array of type integer', &
+'-   DIM : (Optional) shall be a scalar of type integer with a value in', &
+'    the range from 1 TO N, where N equals the rank of ARRAY.', &
 '', &
-'-   ', &
-'', &
-'    DIM', &
-'        (Optional) shall be a scalar of type integer with a value in the', &
-'        range from 1 TO N, where N equals the rank of ARRAY.', &
-'', &
-'-   ', &
-'', &
-'    MASK', &
-'        (Optional) shall be of type logical and either be a scalar or an', &
-'        array of the same shape as ARRAY.', &
+'-   MASK : (Optional) shall be of type logical and either be a scalar or', &
+'    an array of the same shape as ARRAY.', &
 '', &
 'RETURNS', &
 '', &
@@ -8769,18 +8109,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : The type shall be integer.', &
 '', &
-'    I', &
-'        The type shall be integer.', &
-'', &
-'-   ', &
-'', &
-'    POS', &
-'        The type shall be integer. A value of zero refers to the least', &
-'        significant bit. POS is an INTENT(IN) scalar or array of type', &
-'        integer. The value of POS must be within the range zero to', &
-'        (BIT_SIZE(I)-1).', &
+'-   POS : The type shall be integer. A value of zero refers to the least', &
+'    significant bit. POS is an INTENT(IN) scalar or array of type', &
+'    integer. The value of POS must be within the range zero to', &
+'    (BIT_SIZE(I)-1).', &
 '', &
 'RETURNS', &
 '', &
@@ -8823,21 +8157,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : The type shall be integer.', &
 '', &
-'    I', &
-'        The type shall be integer.', &
+'-   POS : The type shall be integer. A value of zero refers to the least', &
+'    significant bit.', &
 '', &
-'-   ', &
-'', &
-'    POS', &
-'        The type shall be integer. A value of zero refers to the least', &
-'        significant bit.', &
-'', &
-'-   ', &
-'', &
-'    LEN', &
-'        The type shall be integer.', &
+'-   LEN : The type shall be integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -8877,18 +8202,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : The type shall be integer.', &
 '', &
-'    I', &
-'        The type shall be integer.', &
-'', &
-'-   ', &
-'', &
-'    POS', &
-'        The type shall be integer. A value of zero refers to the least', &
-'        significant bit. pos is an INTENT(IN) scalar or array of type', &
-'        integer. The value of pos must be within the range zero to', &
-'        (BIT_SIZE(I)-1).', &
+'-   POS : The type shall be integer. A value of zero refers to the least', &
+'    significant bit. pos is an INTENT(IN) scalar or array of type', &
+'    integer. The value of pos must be within the range zero to', &
+'    (BIT_SIZE(I)-1).', &
 '', &
 'RETURNS', &
 '', &
@@ -8938,16 +8257,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   C : Shall be a scalar character, with INTENT(IN)', &
 '', &
-'    C', &
-'        Shall be a scalar character, with INTENT(IN)', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (Optional) An integer initialization expression indicating the', &
-'        kind parameter of the result.', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
+'    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -9053,15 +8366,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : The type shall be integer.', &
 '', &
-'    I', &
-'        The type shall be integer.', &
-'', &
-'-   ', &
-'', &
-'    J', &
-'        The type shall be integer, of the same kind as I.', &
+'-   J : The type shall be integer, of the same kind as I.', &
 '', &
 'RETURNS', &
 '', &
@@ -9102,16 +8409,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   COARRAY : Coarray of any type.', &
 '', &
-'    COARRAY', &
-'        Coarray of any type.', &
-'', &
-'-   ', &
-'', &
-'    SUB', &
-'        default integer rank-1 array of a size equal to the corank of', &
-'        COARRAY.', &
+'-   SUB : default integer rank-1 array of a size equal to the corank of', &
+'    COARRAY.', &
 '', &
 'RETURNS', &
 '', &
@@ -9171,35 +8472,20 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   STRING : string to be searched', &
 '', &
-'    STRING', &
-'        string to be searched', &
+'-   SUBSTRING : string to attempt to locate in STRING', &
 '', &
-'-   ', &
+'-   BACK : If the BACK argument is present and true, the return value is', &
+'    the start of the rightmost occurrence rather than the leftmost.', &
 '', &
-'    SUBSTRING', &
-'        string to attempt to locate in STRING', &
-'', &
-'-   ', &
-'', &
-'    BACK', &
-'        If the BACK argument is present and true, the return value is', &
-'        the start of the rightmost occurrence rather than the leftmost.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        An integer initialization expression indicating the kind', &
-'        parameter of the result.', &
+'-   KIND : An integer initialization expression indicating the kind', &
+'    parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
-'-   ', &
-'', &
-'    START', &
-'        The return value is of type integer and of kind KIND. If KIND is', &
-'        absent, the return value is of default integer kind.', &
+'-   START : The return value is of type integer and of kind KIND. If', &
+'    KIND is absent, the return value is of default integer kind.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -9265,17 +8551,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   A : Shall be of type integer, real, or complex or a', &
+'    BOZ-literal-constant.', &
 '', &
-'    A', &
-'        Shall be of type integer, real, or complex or a', &
-'        BOZ-literal-constant.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        An integer initialization expression indicating the kind', &
-'        parameter of the result.', &
+'-   KIND : An integer initialization expression indicating the kind', &
+'    parameter of the result.', &
 '', &
 '    If not present the returned type is that of default integer type.', &
 '', &
@@ -9397,15 +8677,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : an integer scalar or array.', &
 '', &
-'    I', &
-'        an integer scalar or array.', &
-'', &
-'-   ', &
-'', &
-'    J', &
-'        integer scalar or array, of the same kind as I.', &
+'-   J : integer scalar or array, of the same kind as I.', &
 '', &
 'RETURNS', &
 '', &
@@ -9470,22 +8744,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : Shall be an array of type integer', &
 '', &
-'    ARRAY', &
-'        Shall be an array of type integer', &
+'-   DIM : (Optional) shall be a scalar of type integer with a value in', &
+'    the range from "1" TO "N", where "N" equals the rank of ARRAY.', &
 '', &
-'-   ', &
-'', &
-'    DIM', &
-'        (Optional) shall be a scalar of type integer with a value in the', &
-'        range from "1" TO "N", where "N" equals the rank of ARRAY.', &
-'', &
-'-   ', &
-'', &
-'    MASK', &
-'        (Optional) shall be of type logical and either be a scalar or an', &
-'        array of the same shape as ARRAY.', &
+'-   MASK : (Optional) shall be of type logical and either be a scalar or', &
+'    an array of the same shape as ARRAY.', &
 '', &
 'RETURNS', &
 '', &
@@ -9593,19 +8858,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    A', &
-'        may be of any type. It shall be an array. If it is a pointer it', &
-'        shall be associated.', &
+'-   A : may be of any type. It shall be an array. If it is a pointer it', &
+'    shall be associated.', &
 '', &
 'RETURNS', &
 '', &
-'-   ', &
-'', &
-'    RESULT', &
-'        of type Default logical scalar. The result has the value true if', &
-'        A is contiguous, and false otherwise.', &
+'-   RESULT : of type Default logical scalar. The result has the value', &
+'    true if A is contiguous, and false otherwise.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -9664,15 +8923,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : The type shall be integer.', &
 '', &
-'    I', &
-'        The type shall be integer.', &
-'', &
-'-   ', &
-'', &
-'    SHIFT', &
-'        The type shall be integer.', &
+'-   SHIFT : The type shall be integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -9717,21 +8970,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : The type shall be integer.', &
 '', &
-'    I', &
-'        The type shall be integer.', &
+'-   SHIFT : The type shall be integer.', &
 '', &
-'-   ', &
-'', &
-'    SHIFT', &
-'        The type shall be integer.', &
-'', &
-'-   ', &
-'', &
-'    SIZE', &
-'        (Optional) The type shall be integer; the value must be greater', &
-'        than zero and less than or equal to BIT_SIZE(i).', &
+'-   SIZE : (Optional) The type shall be integer; the value must be', &
+'    greater than zero and less than or equal to BIT_SIZE(i).', &
 '', &
 'RETURNS', &
 '', &
@@ -9777,10 +9021,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    I', &
-'        An integer status value to test if indicating end of file.', &
+'-   I : An integer status value to test if indicating end of file.', &
 '', &
 'RETURNS', &
 '', &
@@ -9842,10 +9083,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    I', &
-'        Shall be of the type integer.', &
+'-   I : Shall be of the type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -9897,10 +9135,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        Shall be of type logical, integer, real, complex or character.', &
+'-   X : Shall be of type logical, integer, real, complex or character.', &
 '', &
 'RETURNS', &
 '', &
@@ -9961,21 +9196,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : Shall be an array, of any type.', &
 '', &
-'    ARRAY', &
-'        Shall be an array, of any type.', &
+'-   DIM : Shall be a scalar integer.', &
 '', &
-'-   ', &
-'', &
-'    DIM', &
-'        Shall be a scalar integer.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        An integer initialization expression indicating the kind', &
-'        parameter of the result.', &
+'-   KIND : An integer initialization expression indicating the kind', &
+'    parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -10082,10 +9308,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    I', &
-'        Shall be of type integer.', &
+'-   I : Shall be of type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -10228,16 +9451,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   STRING : Shall be a scalar or array of type character.', &
 '', &
-'    STRING', &
-'        Shall be a scalar or array of type character.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        An integer initialization expression indicating the kind', &
-'        parameter of the result.', &
+'-   KIND : An integer initialization expression indicating the kind', &
+'    parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -10307,6 +9524,7 @@ textblock=[character(len=256) :: &
 '', &
 'Results:', &
 '', &
+'', &
 'SEE ALSO', &
 '', &
 'len_trim(3), adjustr(3), trim(3), and adjustl(3) are related routines', &
@@ -10350,17 +9568,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   STRING : The input string whose length is to be measured. Shall be a', &
+'    scalar of type character', &
 '', &
-'    STRING', &
-'        The input string whose length is to be measured. Shall be a', &
-'        scalar of type character', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (Optional) An integer initialization expression indicating the', &
-'        kind parameter of the result.', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
+'    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -10446,15 +9658,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   STRING_A : Shall be of default character type.', &
 '', &
-'    STRING_A', &
-'        Shall be of default character type.', &
-'', &
-'-   ', &
-'', &
-'    STRING_B', &
-'        Shall be of default character type.', &
+'-   STRING_B : Shall be of default character type.', &
 '', &
 'RETURNS', &
 '', &
@@ -10513,15 +9719,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   STRING_A : Shall be of default character type.', &
 '', &
-'    STRING_A', &
-'        Shall be of default character type.', &
-'', &
-'-   ', &
-'', &
-'    STRING_B', &
-'        Shall be of default character type.', &
+'-   STRING_B : Shall be of default character type.', &
 '', &
 'RETURNS', &
 '', &
@@ -10586,15 +9786,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   STR_A : variable or array of default character type.', &
 '', &
-'    STR_A', &
-'        variable or array of default character type.', &
-'', &
-'-   ', &
-'', &
-'    STR_B', &
-'        variable or array of default character type.', &
+'-   STR_B : variable or array of default character type.', &
 '', &
 '    if STR_A and STR_B are both arrays they must be of the same shape.', &
 '', &
@@ -10687,15 +9881,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   STRING_A : Shall be of default character type.', &
 '', &
-'    STRING_A', &
-'        Shall be of default character type.', &
-'', &
-'-   ', &
-'', &
-'    STRING_B', &
-'        Shall be of default character type.', &
+'-   STRING_B : Shall be of default character type.', &
 '', &
 'RETURNS', &
 '', &
@@ -10746,10 +9934,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        A real value > 0 to take the log of.', &
+'-   X : A real value > 0 to take the log of.', &
 '', &
 'RETURNS', &
 '', &
@@ -10811,10 +9996,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real or complex.', &
+'-   X : The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -10870,10 +10052,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        Shall be of type real and neither zero nor a negative integer.', &
+'-   X : Shall be of type real and neither zero nor a negative integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -10931,16 +10110,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   L : The type shall be logical.', &
 '', &
-'    L', &
-'        The type shall be logical.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (Optional) An integer initialization expression indicating the', &
-'        kind parameter of the result.', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
+'    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -11010,17 +10183,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : Shall be of type integer. Its value must be non-negative, and', &
+'    less than or equal to the number of bits for the kind of the result.', &
 '', &
-'    I', &
-'        Shall be of type integer. Its value must be non-negative, and', &
-'        less than or equal to the number of bits for the kind of the', &
-'        result.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        Shall be a scalar constant expression of type integer.', &
+'-   KIND : Shall be a scalar constant expression of type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -11118,17 +10284,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : Shall be of type integer. Its value must be non-negative, and', &
+'    less than or equal to the number of bits for the kind of the result.', &
 '', &
-'    I', &
-'        Shall be of type integer. Its value must be non-negative, and', &
-'        less than or equal to the number of bits for the kind of the', &
-'        result.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        Shall be a scalar constant expression of type integer.', &
+'-   KIND : Shall be a scalar constant expression of type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -11230,20 +10389,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   MATRIX_A : An array of integer, real, complex, or logical type, with', &
+'    a rank of one or two.', &
 '', &
-'    MATRIX_A', &
-'        An array of integer, real, complex, or logical type, with a rank', &
-'        of one or two.', &
-'', &
-'-   ', &
-'', &
-'    MATRIX_B', &
-'        An array of integer, real, or complex type if MATRIX_A is of a', &
-'        numeric type; otherwise, an array of logical type. The rank', &
-'        shall be one or two, and the first (or only) dimension of', &
-'        MATRIX_B shall be equal to the last (or only) dimension of', &
-'        MATRIX_A.', &
+'-   MATRIX_B : An array of integer, real, or complex type if MATRIX_A is', &
+'    of a numeric type; otherwise, an array of logical type. The rank', &
+'    shall be one or two, and the first (or only) dimension of MATRIX_B', &
+'    shall be equal to the last (or only) dimension of MATRIX_A.', &
 '', &
 'RETURNS', &
 '', &
@@ -11280,15 +10432,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   A1 : The type shall be integer or real.', &
 '', &
-'    A1', &
-'        The type shall be integer or real.', &
-'', &
-'-   ', &
-'', &
-'    A2,A3,...', &
-'        An expression of the same type and kind as A1.', &
+'-   A2,A3,... : An expression of the same type and kind as A1.', &
 '', &
 'RETURNS', &
 '', &
@@ -11406,10 +10552,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        Shall be of type real.', &
+'-   X : Shall be of type real.', &
 '', &
 'RETURNS', &
 '', &
@@ -11479,22 +10622,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : Shall be an array of type integer, real, or character.', &
 '', &
-'    ARRAY', &
-'        Shall be an array of type integer, real, or character.', &
+'-   DIM : (Optional) Shall be a scalar of type integer, with a value', &
+'    between one and the rank of ARRAY, inclusive. It may not be an', &
+'    optional dummy argument.', &
 '', &
-'-   ', &
-'', &
-'    DIM', &
-'        (Optional) Shall be a scalar of type integer, with a value', &
-'        between one and the rank of ARRAY, inclusive. It may not be an', &
-'        optional dummy argument.', &
-'', &
-'-   ', &
-'', &
-'    MASK', &
-'        Shall be an array of type logical, and conformable with ARRAY.', &
+'-   MASK : Shall be an array of type logical, and conformable with', &
+'    ARRAY.', &
 '', &
 'RETURNS', &
 '', &
@@ -11595,23 +10730,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : Shall be an array of type integer, real, or character.', &
 '', &
-'    ARRAY', &
-'        Shall be an array of type integer, real, or character.', &
+'-   DIM : (Optional) Shall be a scalar of type integer, with a value', &
+'    between one and the rank of ARRAY, inclusive. It may not be an', &
+'    optional dummy argument.', &
 '', &
-'-   ', &
-'', &
-'    DIM', &
-'        (Optional) Shall be a scalar of type integer, with a value', &
-'        between one and the rank of ARRAY, inclusive. It may not be an', &
-'        optional dummy argument.', &
-'', &
-'-   ', &
-'', &
-'    MASK', &
-'        (Optional) Shall be an array of type logical, and conformable', &
-'        with ARRAY.', &
+'-   MASK : (Optional) Shall be an array of type logical, and conformable', &
+'    with ARRAY.', &
 '', &
 'RETURNS', &
 '', &
@@ -11710,20 +10836,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   TSOURCE : May be of any type, including user-defined.', &
 '', &
-'    TSOURCE', &
-'        May be of any type, including user-defined.', &
+'-   FSOURCE : Shall be of the same type and type parameters as TSOURCE.', &
 '', &
-'-   ', &
-'', &
-'    FSOURCE', &
-'        Shall be of the same type and type parameters as TSOURCE.', &
-'', &
-'-   ', &
-'', &
-'    MASK', &
-'        Shall be of type logical.', &
+'-   MASK : Shall be of type logical.', &
 '', &
 'Note that (currently) character values must be of the same length.', &
 '', &
@@ -11852,7 +10969,7 @@ textblock=[character(len=256) :: &
 '', &
 'The resulting value is the same as would result from', &
 '', &
-'    __ior (iand (i, mask),iand (j, not (mask)))__', &
+'        ior (iand (i, mask),iand (j, not (mask)))', &
 '', &
 'An exception to all values being of the same integer type is that I or J', &
 'and/or the mask may be a BOZ constant (A BOZ constant means it is either', &
@@ -11863,23 +10980,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : value to select bits from when the associated bit in the mask is', &
+'    1.', &
 '', &
-'    I', &
-'        value to select bits from when the associated bit in the mask is', &
-'        1.', &
+'-   J : value to select bits from when the associated bit in the mask is', &
+'    0.', &
 '', &
-'-   ', &
-'', &
-'    J', &
-'        value to select bits from when the associated bit in the mask is', &
-'        0.', &
-'', &
-'-   ', &
-'', &
-'    MASK', &
-'        a value whose bits are used as a mask to select bits from I and', &
-'        J', &
+'-   MASK : a value whose bits are used as a mask to select bits from I', &
+'    and J', &
 '', &
 'RETURNS', &
 '', &
@@ -11969,15 +11077,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   A1 : The type shall be integer or real.', &
 '', &
-'    A1', &
-'        The type shall be integer or real.', &
-'', &
-'-   ', &
-'', &
-'    A2, A3, ```', &
-'        An expression of the same type and kind as A1.', &
+'-   A2, A3, ``` : An expression of the same type and kind as A1.', &
 '', &
 'RETURNS', &
 '', &
@@ -12031,10 +11133,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        Shall be of type real.', &
+'-   X : Shall be of type real.', &
 '', &
 'RETURNS', &
 '', &
@@ -12108,22 +11207,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : Shall be an array of type integer, real, or character.', &
 '', &
-'    ARRAY', &
-'        Shall be an array of type integer, real, or character.', &
+'-   DIM : (Optional) Shall be a scalar of type integer, with a value', &
+'    between one and the rank of ARRAY, inclusive. It may not be an', &
+'    optional dummy argument.', &
 '', &
-'-   ', &
-'', &
-'    DIM', &
-'        (Optional) Shall be a scalar of type integer, with a value', &
-'        between one and the rank of ARRAY, inclusive. It may not be an', &
-'        optional dummy argument.', &
-'', &
-'-   ', &
-'', &
-'    MASK', &
-'        Shall be an array of type logical, and conformable with ARRAY.', &
+'-   MASK : Shall be an array of type logical, and conformable with', &
+'    ARRAY.', &
 '', &
 'RETURNS', &
 '', &
@@ -12204,22 +11295,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : Shall be an array of type integer, real, or character.', &
 '', &
-'    ARRAY', &
-'        Shall be an array of type integer, real, or character.', &
+'-   DIM : (Optional) Shall be a scalar of type integer, with a value', &
+'    between one and the rank of ARRAY, inclusive. It may not be an', &
+'    optional dummy argument.', &
 '', &
-'-   ', &
-'', &
-'    DIM', &
-'        (Optional) Shall be a scalar of type integer, with a value', &
-'        between one and the rank of ARRAY, inclusive. It may not be an', &
-'        optional dummy argument.', &
-'', &
-'-   ', &
-'', &
-'    MASK', &
-'        Shall be an array of type logical, and conformable with ARRAY.', &
+'-   MASK : Shall be an array of type logical, and conformable with', &
+'    ARRAY.', &
 '', &
 'RETURNS', &
 '', &
@@ -12353,16 +11436,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   A : Shall be a scalar of type integer or real.', &
 '', &
-'    A', &
-'        Shall be a scalar of type integer or real.', &
-'', &
-'-   ', &
-'', &
-'    P', &
-'        Shall be a scalar of the same type and kind as A and not equal', &
-'        to zero.', &
+'-   P : Shall be a scalar of the same type and kind as A and not equal', &
+'    to zero.', &
 '', &
 'RETURNS', &
 '', &
@@ -12441,16 +11518,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   A : Shall be a scalar of type integer or real.', &
 '', &
-'    A', &
-'        Shall be a scalar of type integer or real.', &
-'', &
-'-   ', &
-'', &
-'    P', &
-'        Shall be a scalar of the same type and kind as A. It shall not', &
-'        be zero.', &
+'-   P : Shall be a scalar of the same type and kind as A. It shall not', &
+'    be zero.', &
 '', &
 'RETURNS', &
 '', &
@@ -12524,16 +11595,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   SRC : allocatable, INTENT(INOUT), may be of any type and kind.', &
 '', &
-'    SRC', &
-'        allocatable, INTENT(INOUT), may be of any type and kind.', &
-'', &
-'-   ', &
-'', &
-'    DEST', &
-'        allocatable, INTENT(OUT), shall be of the same type, kind and', &
-'        rank as SRC.', &
+'-   DEST : allocatable, INTENT(OUT), shall be of the same type, kind and', &
+'    rank as SRC.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -12614,45 +11679,28 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   FROM : An integer to read bits from.', &
 '', &
-'    FROM', &
-'        An integer to read bits from.', &
+'-   FROMPOS : FROMPOS is the position of the first bit to copy. It is a', &
+'    nonnegative integer value < BIT_SIZE(FROM).', &
 '', &
-'-   ', &
+'-   LEN : A nonnegative integer value that indicates how many bits to', &
+'    copy from FROM. It must not specify copying bits past the end of', &
+'    FROM. That is, FROMPOS + LEN must be less than or equal to', &
+'    BIT_SIZE(FROM).', &
 '', &
-'    FROMPOS', &
-'        FROMPOS is the position of the first bit to copy. It is a', &
-'        nonnegative integer value < BIT_SIZE(FROM).', &
+'-   TO : The integer variable to place the copied bits into. It must be', &
+'    of the same kind as FROM and may even be the same variable as FROM.', &
 '', &
-'-   ', &
+'    TO : is set by copying the sequence of bits of length LEN, starting', &
+'    at position FROMPOS of FROM to position TOPOS of TO. No other bits', &
+'    of TO are altered. On return, the LEN bits of TO starting at TOPOS', &
+'    are equal to the value that the LEN bits of FROM starting at FROMPOS', &
+'    had on entry.', &
 '', &
-'    LEN', &
-'        A nonnegative integer value that indicates how many bits to copy', &
-'        from FROM. It must not specify copying bits past the end of', &
-'        FROM. That is, FROMPOS + LEN must be less than or equal to', &
-'        BIT_SIZE(FROM).', &
-'', &
-'-   ', &
-'', &
-'    TO', &
-'        The integer variable to place the copied bits into. It must be', &
-'        of the same kind as FROM and may even be the same variable as', &
-'        FROM.', &
-'', &
-'    TO', &
-'        is set by copying the sequence of bits of length LEN, starting', &
-'        at position FROMPOS of FROM to position TOPOS of TO. No other', &
-'        bits of TO are altered. On return, the LEN bits of TO starting', &
-'        at TOPOS are equal to the value that the LEN bits of FROM', &
-'        starting at FROMPOS had on entry.', &
-'', &
-'-   ', &
-'', &
-'    TOPOS', &
-'        A nonnegative integer value indicating the starting location in', &
-'        TO to place the specified copy of bits from FROM. TOPOS + LEN', &
-'        must be less than or equal to BIT_SIZE(TO).', &
+'-   TOPOS : A nonnegative integer value indicating the starting location', &
+'    in TO to place the specified copy of bits from FROM. TOPOS + LEN', &
+'    must be less than or equal to BIT_SIZE(TO).', &
 '', &
 'EXAMPLE', &
 '', &
@@ -12764,15 +11812,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   X : Shall be of type real.', &
 '', &
-'    X', &
-'        Shall be of type real.', &
-'', &
-'-   ', &
-'', &
-'    S', &
-'        Shall be of type real and not equal to zero.', &
+'-   S : Shall be of type real and not equal to zero.', &
 '', &
 'RETURNS', &
 '', &
@@ -12845,29 +11887,22 @@ textblock=[character(len=256) :: &
 '', &
 'NEW_LINE(C) returns the new-line character.', &
 '', &
-'Case (i)', &
-'    If A is default character and the character in position 10 of the', &
-'    ASCII collating sequence is representable in the default character', &
-'    set, then the result is ACHAR(10).', &
+'Case (i) : If A is default character and the character in position 10 of', &
+'the ASCII collating sequence is representable in the default character', &
+'set, then the result is ACHAR(10).', &
 '', &
-'Case (ii)', &
-'    If A is an ASCII character or an ISO 10646 character, then the', &
-'    result is CHAR(10, KIND (A)).', &
+'Case (ii) : If A is an ASCII character or an ISO 10646 character, then', &
+'the result is CHAR(10, KIND (A)).', &
 '', &
-'Case (iii)', &
-'    Otherwise, the result is a processor-dependent character that', &
-'    represents a newline in output to files connected for formatted', &
-'    stream output if there is such a character.', &
+'Case (iii) : Otherwise, the result is a processor-dependent character', &
+'that represents a newline in output to files connected for formatted', &
+'stream output if there is such a character.', &
 '', &
-'Case (iv)', &
-'    Otherwise, the result is the blank character.', &
+'Case (iv) : Otherwise, the result is the blank character.', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    C', &
-'        The argument shall be a scalar or array of the type character.', &
+'-   C : The argument shall be a scalar or array of the type character.', &
 '', &
 'RETURNS', &
 '', &
@@ -12939,26 +11974,17 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   X : The type of the argument shall be real.', &
 '', &
-'    X', &
-'        The type of the argument shall be real.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (Optional) A constant integer expression indicating the kind', &
-'        parameter of the result. Otherwise, the kind type parameter is', &
-'        that of default integer type.', &
+'-   KIND : (Optional) A constant integer expression indicating the kind', &
+'    parameter of the result. Otherwise, the kind type parameter is that', &
+'    of default integer type.', &
 '', &
 'RETURNS', &
 '', &
-'-   ', &
-'', &
-'    ANSWER', &
-'        The result is the integer nearest X, or if there are two', &
-'        integers equally near X, the result is whichever such integer', &
-'        has the greater magnitude.', &
+'-   ANSWER : The result is the integer nearest X, or if there are two', &
+'    integers equally near X, the result is whichever such integer has', &
+'    the greater magnitude.', &
 '', &
 '    The result is undefined if it cannot be represented in the specified', &
 '    integer type.', &
@@ -13063,16 +12089,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : Shall be an array of type real.', &
 '', &
-'    ARRAY', &
-'        Shall be an array of type real.', &
-'', &
-'-   ', &
-'', &
-'    DIM', &
-'        shall be a scalar of type integer with a value in the range from', &
-'        1 to RANK(ARRAY).', &
+'-   DIM : shall be a scalar of type integer with a value in the range', &
+'    from 1 to RANK(ARRAY).', &
 '', &
 'RETURNS', &
 '', &
@@ -13155,10 +12175,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    I', &
-'        The type shall be integer.', &
+'-   I : The type shall be integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -13225,11 +12242,8 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    MOLD', &
-'        (Optional) shall be a pointer of any association status and of', &
-'        any type.', &
+'-   MOLD : (Optional) shall be a pointer of any association status and', &
+'    of any type.', &
 '', &
 'RETURNS', &
 '', &
@@ -13345,15 +12359,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   DISTANCE : (optional, INTENT(IN)) Nonnegative scalar integer', &
 '', &
-'    DISTANCE', &
-'        (optional, INTENT(IN)) Nonnegative scalar integer', &
-'', &
-'-   ', &
-'', &
-'    FAILED', &
-'        (optional, INTENT(IN)) Scalar logical expression', &
+'-   FAILED : (optional, INTENT(IN)) Scalar logical expression', &
 '', &
 'RETURNS', &
 '', &
@@ -13402,7 +12410,132 @@ shortname="num_images"
 call process()
 
 
-case('151','pack')
+case('151','out_of_range')
+
+textblock=[character(len=256) :: &
+'', &
+'NAME', &
+'', &
+'OUT_OF_RANGE(3) - [TYPE:NUMERIC] Whether a value cannot be converted', &
+'safely.', &
+'', &
+'SYNTAX', &
+'', &
+'      result = OUT_OF_RANGE (X, MOLD [, ROUND])', &
+'', &
+'       logical,elemental               :: out_of_range', &
+'       type(TYPE,kind=KIND),intent(in) :: x', &
+'       type(TYPE,kind=KIND),intent(in) :: mold', &
+'       logical,intent(in),optional     :: round', &
+'', &
+'       where TYPE may be _real_ or _integer_ of any available KIND.', &
+'', &
+'DESCRIPTION', &
+'', &
+'OUT_OF_RANGE(3) determines whether a value X can be converted safely to', &
+'a real or integer variable the same type and kind as MOLD.', &
+'', &
+'ARGUMENTS', &
+'', &
+'     - **x**           ', &
+'       : a scalar of type _integer_ or _real_ to be tested for whether', &
+'       it can be stored in a variable of the type and kind of **mold**', &
+'', &
+'     - **mold**        ', &
+'       : shall be an _integer_ or _real_ scalar. If it is a variable, it', &
+'       need not be defined, as only the type and kind are queried.', &
+'', &
+'     - **round** ', &
+'       : flag whether to round the value of **xx** before validating it as', &
+'       an integer value like **mold**.', &
+'', &
+'       **round** can only be present if **x** is of type', &
+'       _real_ and **mold** is of type _integer_.', &
+'', &
+'RETURNS', &
+'', &
+'From the standard:', &
+'', &
+'Case (i): If MOLD is of type integer, and ROUND is absent or present', &
+'with the value false, the result is true if and only if the value of X', &
+'is an IEEE infinity or NaN, or if the integer with largest magnitude', &
+'that lies between zero and X inclusive is not representable by objects', &
+'with the type and kind of MOLD.', &
+'', &
+'Case (ii): If MOLD is of type integer, and ROUND is present with the', &
+'value true, the result is true if and only if the value of X is an IEEE', &
+'in nity or NaN, or if the integer nearest X, or the integer of greater', &
+'magnitude if two integers are equally near to X, is not representable by', &
+'objects with the type and kind of MOLD.', &
+'', &
+'Case (iii): Otherwise, the result is true if and only if the value of X', &
+'is an IEEE in nity or NaN that is not supported by objects of the type', &
+'and kind of MOLD, or if X is a finite number and the result of rounding', &
+'the value of X (according to the IEEE rounding mode if appropriate) to', &
+'the extended model for the kind of MOLD has magnitude larger than that', &
+'of the largest finite number with the same sign as X that is', &
+'representable by objects with the type and kind of MOLD.', &
+'', &
+'NOTE', &
+'', &
+'MOLD is required to be a scalar because the only information taken from', &
+'it is its type and kind. Allowing an array MOLD would require that it be', &
+'conformable with X. ROUND is scalar because allowing an array rounding', &
+'mode would have severe performance di culties on many processors.', &
+'', &
+'EXAMPLES', &
+'', &
+'Sample program:', &
+'', &
+'    program demo_out_of_range', &
+'    use, intrinsic :: iso_fortran_env, only : int8, int16, int32, int64', &
+'    use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
+'    implicit none', &
+'    integer            :: i', &
+'    integer(kind=int8) :: i8, j8', &
+'', &
+'        ! compilers are not required to produce an error on out of range.', &
+'        ! here storing the default integers into 1-byte integers ', &
+'        ! incorrectly can have unexpected results', &
+'        do i=127,130', &
+'           i8=i', &
+'           j8=-i', &
+'           ! OUT_OF_RANGE(3f) can let you check if the value will fit', &
+'           write(*,*)i8,j8,'' might have expected'',i,-i, &', &
+'            & out_of_range( i,i8), &', &
+'            & out_of_range(-i,i8)', &
+'        enddo', &
+'        write(*,*) ''RANGE IS '',-1-huge(0_int8),''TO'',huge(0_int8)', &
+'        ! the real -128.5 is truncated to -128 and is in range', &
+'        write(*,*) out_of_range (  -128.5, 0_int8)         ! false', &
+'', &
+'        ! the real -128.5 is rounded to -129 and is not in range', &
+'        write(*,*) out_of_range (  -128.5, 0_int8, .true.) ! true', &
+'', &
+'    end program demo_out_of_range', &
+'', &
+'Results:', &
+'', &
+'      >  127 -127  might have expected         127        -127 F F', &
+'      > -128 -128  might have expected         128        -128 T F', &
+'      > -127  127  might have expected         129        -129 T T', &
+'      > -126  126  might have expected         130        -130 T T', &
+'      > RANGE IS         -128 TO  127', &
+'      > F', &
+'      > T', &
+'', &
+'STANDARD', &
+'', &
+'FORTRAN 2018 and later', &
+'', &
+'fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
+'']
+
+shortname="out_of_range"
+call process()
+
+
+case('152','pack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13433,25 +12566,16 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : Shall be an array of any type.', &
 '', &
-'    ARRAY', &
-'        Shall be an array of any type.', &
+'-   MASK : Shall be an array of type logical and of the same size as', &
+'    ARRAY. Alternatively, it may be a logical scalar.', &
 '', &
-'-   ', &
-'', &
-'    MASK', &
-'        Shall be an array of type logical and of the same size as ARRAY.', &
-'        Alternatively, it may be a logical scalar.', &
-'', &
-'-   ', &
-'', &
-'    VECTOR', &
-'        (Optional) shall be an array of the same type as ARRAY and of', &
-'        rank one. If present, the number of elements in VECTOR shall be', &
-'        equal to or greater than the number of true elements in MASK. If', &
-'        MASK is scalar, the number of elements in VECTOR shall be equal', &
-'        to or greater than the number of elements in ARRAY.', &
+'-   VECTOR : (Optional) shall be an array of the same type as ARRAY and', &
+'    of rank one. If present, the number of elements in VECTOR shall be', &
+'    equal to or greater than the number of true elements in MASK. If', &
+'    MASK is scalar, the number of elements in VECTOR shall be equal to', &
+'    or greater than the number of elements in ARRAY.', &
 '', &
 'RETURNS', &
 '', &
@@ -13522,7 +12646,7 @@ shortname="pack"
 call process()
 
 
-case('152','parity')
+case('153','parity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13541,36 +12665,33 @@ textblock=[character(len=256) :: &
 '', &
 'where KIND and LKIND are any supported kind for the type.', &
 '', &
-'    ### __Description__', &
+'DESCRIPTION', &
 '', &
-'    Calculates the parity (i.e. the reduction using .xor.) of __mask__ along', &
-'    dimension __dim__.', &
+'Calculates the parity (i.e. the reduction using .xor.) of MASK along', &
+'dimension DIM.', &
 '', &
-'    ### __Arguments__', &
+'ARGUMENTS', &
 '', &
-'      - __mask__', &
-'        : Shall be an array of type _logical_.', &
+'-   MASK : Shall be an array of type logical.', &
 '', &
-'      - __dim__', &
-'        : (Optional) shall be a scalar of type _integer_ with a value in the', &
-'        range from __1 to n__, where __n__ equals the rank of __mask__.', &
+'-   DIM : (Optional) shall be a scalar of type integer with a value in', &
+'    the range from 1 TO N, where N equals the rank of MASK.', &
 '', &
-'    ### __Returns__', &
+'RETURNS', &
 '', &
-'    The result is of the same type as __mask__.', &
+'The result is of the same type as MASK.', &
 '', &
-'    If __dim__ is absent, a scalar with the parity of all elements in __mask__', &
-'    is returned: __.true.__ if an odd number of elements are __.true.__', &
-'    and __.false.__ otherwise.', &
+'If DIM is absent, a scalar with the parity of all elements in MASK is', &
+'returned: .TRUE. if an odd number of elements are .TRUE. and .FALSE.', &
+'otherwise.', &
 '', &
-'    When __dim__ is specified the returned shape is similar to that of', &
-'    __mask__ with dimension __dim__ dropped.', &
+'When DIM is specified the returned shape is similar to that of MASK with', &
+'dimension DIM dropped.', &
 '', &
-'    ### __Examples__', &
+'EXAMPLES', &
 '', &
-'    Sample program:', &
+'Sample program:', &
 '', &
-'    ```fortran', &
 '    program demo_parity', &
 '    implicit none', &
 '    logical :: x(2) = [ .true., .false. ]', &
@@ -13592,7 +12713,7 @@ shortname="parity"
 call process()
 
 
-case('153','popcnt')
+case('154','popcnt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13611,10 +12732,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    I', &
-'        Shall be of type integer.', &
+'-   I : Shall be of type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -13660,7 +12778,7 @@ shortname="popcnt"
 call process()
 
 
-case('154','poppar')
+case('155','poppar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13679,10 +12797,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    I', &
-'        Shall be of type integer.', &
+'-   I : Shall be of type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -13729,7 +12844,7 @@ shortname="poppar"
 call process()
 
 
-case('155','precision')
+case('156','precision')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13748,10 +12863,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        Shall be of type real or complex.', &
+'-   X : Shall be of type real or complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -13793,7 +12905,7 @@ shortname="precision"
 call process()
 
 
-case('156','present')
+case('157','present')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13815,12 +12927,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    A', &
-'        May be of any type and may be a pointer, scalar or array value,', &
-'        or a dummy procedure. It shall be the name of an optional dummy', &
-'        argument accessible within the current subroutine or function.', &
+'-   A : May be of any type and may be a pointer, scalar or array value,', &
+'    or a dummy procedure. It shall be the name of an optional dummy', &
+'    argument accessible within the current subroutine or function.', &
 '', &
 'RETURNS', &
 '', &
@@ -13862,7 +12971,7 @@ shortname="present"
 call process()
 
 
-case('157','product')
+case('158','product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13895,22 +13004,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : Shall be an array of type integer, real or complex.', &
 '', &
-'    ARRAY', &
-'        Shall be an array of type integer, real or complex.', &
+'-   DIM : shall be a scalar of type integer with a value in the range', &
+'    from 1 TO N, where N equals the rank of ARRAY.', &
 '', &
-'-   ', &
-'', &
-'    DIM', &
-'        shall be a scalar of type integer with a value in the range from', &
-'        1 TO N, where N equals the rank of ARRAY.', &
-'', &
-'-   ', &
-'', &
-'    MASK', &
-'        shall be of type logical and either be a scalar or an array of', &
-'        the same shape as ARRAY.', &
+'-   MASK : shall be of type logical and either be a scalar or an array', &
+'    of the same shape as ARRAY.', &
 '', &
 'RETURNS', &
 '', &
@@ -14104,7 +13204,7 @@ shortname="product"
 call process()
 
 
-case('158','radix')
+case('159','radix')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14122,10 +13222,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        Shall be of type integer or real', &
+'-   X : Shall be of type integer or real', &
 '', &
 'RETURNS', &
 '', &
@@ -14166,7 +13263,7 @@ shortname="radix"
 call process()
 
 
-case('159','random_init')
+case('160','random_init')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14206,8 +13303,7 @@ textblock=[character(len=256) :: &
 'situations.', &
 '', &
 'But the standard procedures available are sufficient for many use cases.', &
-'They consist of RANDOM_NUMBER(3F), RANDOM_SEED(3F), and', &
-'**random_init(3f)__.', &
+'They consist of RANDOM_NUMBER(3F), RANDOM_SEED(3F), and RANDOM_INIT(3F).', &
 '', &
 'RANDOM_NUMBER(3F) calls a generator and returns a psuedorandom scalar or', &
 'array. This simple-to-use function does not directly define how to seed', &
@@ -14223,8 +13319,8 @@ textblock=[character(len=256) :: &
 'compiler behavior.', &
 '', &
 'RANDOM_INIT(3F) Initializes the state of the pseudorandom number', &
-'generator procedure **random_number(3f)__. random_init(3f) is equivalent', &
-'to invoking RANDOM_SEED(3F) with no parameters but considers parallel', &
+'generator procedure RANDOM_NUMBER(3F). RANDOM_INIT(3f) is equivalent to', &
+'invoking RANDOM_SEED(3F) with no parameters but considers parallel', &
 'images and otherwise processor-dependent behaviors as well.', &
 '', &
 'Not every compiler vendor gives a unique seed for random_seed(), for', &
@@ -14234,7 +13330,7 @@ textblock=[character(len=256) :: &
 'random_number() procedure is processor-dependent if not initialized.', &
 'Even if initialized with RANDOM_SEED() if a specific seed array is not', &
 'specified behavior is still processor-dependent for multiple image codes', &
-'unless specific modes are selected with **random_init()__.', &
+'unless specific modes are selected with RANDOM_INIT().', &
 '', &
 'There are four combinations of REPEATABLE and IMAGE_DISTINCT. The', &
 'behavior is as follows:', &
@@ -14309,30 +13405,26 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    **repeatable', &
-'        If .true., the seed is set to a processor-dependent value that', &
-'        is the same each time RANDOM_INIT(3F) is called from the same', &
-'        program execution (or the same image???).', &
+'-   **repeatable : If .true., the seed is set to a processor-dependent', &
+'    value that is the same each time RANDOM_INIT(3F) is called from the', &
+'    same program execution (or the same image???).', &
 '', &
 '    The sequence of random numbers is different for repeated execution', &
 '    of the program.', &
 '', &
 '    If it is .false., the seed is set to a processor-dependent value.', &
 '', &
-'        when .true. init the seed used by RANDOM_NUMBER differently on', &
-'        every invoking image.', &
+'    : when .true. init the seed used by RANDOM_NUMBER differently on', &
+'    every invoking image.', &
 '', &
 '    If it is .true., the seed is set to a processor-dependent value that', &
 '    is the same each time random_init is called from the same image.', &
 '', &
 '-   IMAGE_DISTINCT', &
 '', &
-'    image_distinct', &
-'        If .true., the seed is set to a processor-dependent value that', &
-'        is distinct from the seed set by a call to random_init in', &
-'        another image.', &
+'    image_distinct : If .true., the seed is set to a processor-dependent', &
+'    value that is distinct from the seed set by a call to random_init in', &
+'    another image.', &
 '', &
 '    If it is .false., the seed is set to a value that does depend which', &
 '    image called random_init.', &
@@ -14374,7 +13466,7 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'__random_seed**(3), __random_init(3)', &
+'*_random_seed**(3), *_random_init**(3)', &
 '', &
 'fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '']
@@ -14383,7 +13475,7 @@ shortname="random_init"
 call process()
 
 
-case('160','random_number')
+case('161','random_number')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14402,10 +13494,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    HARVEST', &
-'        Shall be a scalar or an array of type real.', &
+'-   HARVEST : Shall be a scalar or an array of type real.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -14480,7 +13569,7 @@ shortname="random_number"
 call process()
 
 
-case('161','random_seed')
+case('162','random_seed')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14503,26 +13592,17 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   SIZE : (Optional) Shall be a scalar and of type default integer,', &
+'    with INTENT(OUT). It specifies the minimum size of the arrays used', &
+'    with the PUT and GET arguments.', &
 '', &
-'    SIZE', &
-'        (Optional) Shall be a scalar and of type default integer, with', &
-'        INTENT(OUT). It specifies the minimum size of the arrays used', &
-'        with the PUT and GET arguments.', &
+'-   PUT : (Optional) Shall be an array of type default integer and rank', &
+'    one. It is INTENT(IN) and the size of the array must be larger than', &
+'    or equal to the number returned by the SIZE argument.', &
 '', &
-'-   ', &
-'', &
-'    PUT', &
-'        (Optional) Shall be an array of type default integer and rank', &
-'        one. It is INTENT(IN) and the size of the array must be larger', &
-'        than or equal to the number returned by the SIZE argument.', &
-'', &
-'-   ', &
-'', &
-'    GET', &
-'        (Optional) Shall be an array of type default integer and rank', &
-'        one. It is INTENT(OUT) and the size of the array must be larger', &
-'        than or equal to the number returned by the SIZE argument.', &
+'-   GET : (Optional) Shall be an array of type default integer and rank', &
+'    one. It is INTENT(OUT) and the size of the array must be larger than', &
+'    or equal to the number returned by the SIZE argument.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -14560,7 +13640,7 @@ shortname="random_seed"
 call process()
 
 
-case('162','range')
+case('163','range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14585,10 +13665,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        Shall be of type real or complex.', &
+'-   X : Shall be of type real or complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -14629,7 +13706,7 @@ shortname="range"
 call process()
 
 
-case('163','rank')
+case('164','rank')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14647,10 +13724,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    A', &
-'        can be of any type', &
+'-   A : can be of any type', &
 '', &
 'RETURNS', &
 '', &
@@ -14684,7 +13758,7 @@ shortname="rank"
 call process()
 
 
-case('164','real')
+case('165','real')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14702,16 +13776,10 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   X : Shall be integer, real, or complex.', &
 '', &
-'    X', &
-'        Shall be integer, real, or complex.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (Optional) An integer initialization expression indicating the', &
-'        kind parameter of the result.', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
+'    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -14765,7 +13833,7 @@ shortname="real"
 call process()
 
 
-case('165','repeat')
+case('166','repeat')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14787,17 +13855,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   STRING : The input string to repeatedly generate. Shall be scalar', &
+'    and of type character.', &
 '', &
-'    STRING', &
-'        The input string to repeatedly generate. Shall be scalar and of', &
-'        type character.', &
-'', &
-'-   ', &
-'', &
-'    NCOPIES', &
-'        Number of copies to make of string, greater than or equal to', &
-'        zero (0). Shall be scalar and of type integer.', &
+'-   NCOPIES : Number of copies to make of string, greater than or equal', &
+'    to zero (0). Shall be scalar and of type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -14845,7 +13907,7 @@ shortname="repeat"
 call process()
 
 
-case('166','reshape')
+case('167','reshape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14865,29 +13927,17 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   SOURCE : an array of any type.', &
 '', &
-'    SOURCE', &
-'        an array of any type.', &
+'-   SHAPE : an array of rank one and type integer. Its values must be', &
+'    positive or zero.', &
 '', &
-'-   ', &
+'-   PAD : (Optional) an array of the same type as SOURCE.', &
 '', &
-'    SHAPE', &
-'        an array of rank one and type integer. Its values must be', &
-'        positive or zero.', &
-'', &
-'-   ', &
-'', &
-'    PAD', &
-'        (Optional) an array of the same type as SOURCE.', &
-'', &
-'-   ', &
-'', &
-'    ORDER', &
-'        (Optional) an array of type integer and the same shape as SHAPE.', &
-'        Its values shall be a permutation of the numbers from 1 to n,', &
-'        where n is the size of SHAPE. If ORDER is absent, the natural', &
-'        ordering shall be assumed.', &
+'-   ORDER : (Optional) an array of type integer and the same shape as', &
+'    SHAPE. Its values shall be a permutation of the numbers from 1 to n,', &
+'    where n is the size of SHAPE. If ORDER is absent, the natural', &
+'    ordering shall be assumed.', &
 '', &
 'RETURNS', &
 '', &
@@ -14934,7 +13984,7 @@ shortname="reshape"
 call process()
 
 
-case('167','rrspacing')
+case('168','rrspacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14953,10 +14003,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        Shall be of type real.', &
+'-   X : Shall be of type real.', &
 '', &
 'RETURNS', &
 '', &
@@ -14980,7 +14027,7 @@ shortname="rrspacing"
 call process()
 
 
-case('168','same_type_as')
+case('169','same_type_as')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14998,17 +14045,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   A : Shall be an object of extensible declared type or unlimited', &
+'    polymorphic.', &
 '', &
-'    A', &
-'        Shall be an object of extensible declared type or unlimited', &
-'        polymorphic.', &
-'', &
-'-   ', &
-'', &
-'    B', &
-'        Shall be an object of extensible declared type or unlimited', &
-'        polymorphic.', &
+'-   B : Shall be an object of extensible declared type or unlimited', &
+'    polymorphic.', &
 '', &
 'RETURNS', &
 '', &
@@ -15030,7 +14071,7 @@ shortname="same_type_as"
 call process()
 
 
-case('169','scale')
+case('170','scale')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15052,15 +14093,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   X : The type of the argument shall be a real.', &
 '', &
-'    X', &
-'        The type of the argument shall be a real.', &
-'', &
-'-   ', &
-'', &
-'    I', &
-'        The type of the argument shall be a integer.', &
+'-   I : The type of the argument shall be a integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -15099,7 +14134,7 @@ shortname="scale"
 call process()
 
 
-case('170','scan')
+case('171','scan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15123,26 +14158,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   STRING : Shall be of type character.', &
 '', &
-'    STRING', &
-'        Shall be of type character.', &
+'-   SET : Shall be of type character.', &
 '', &
-'-   ', &
+'-   BACK : (Optional) shall be of type logical.', &
 '', &
-'    SET', &
-'        Shall be of type character.', &
-'', &
-'-   ', &
-'', &
-'    BACK', &
-'        (Optional) shall be of type logical.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (Optional) An integer initialization expression indicating the', &
-'        kind parameter of the result.', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
+'    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -15186,7 +14209,7 @@ shortname="scan"
 call process()
 
 
-case('171','selected_char_kind')
+case('172','selected_char_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15208,10 +14231,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    NAME', &
-'        Shall be a scalar and of the default character type.', &
+'-   NAME : Shall be a scalar and of the default character type.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -15253,7 +14273,7 @@ shortname="selected_char_kind"
 call process()
 
 
-case('172','selected_int_kind')
+case('173','selected_int_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15274,10 +14294,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    R', &
-'        Shall be a scalar and of type integer.', &
+'-   R : Shall be a scalar and of type integer.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -15318,7 +14335,7 @@ shortname="selected_int_kind"
 call process()
 
 
-case('173','selected_real_kind')
+case('174','selected_real_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15338,20 +14355,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   P : (Optional) shall be a scalar and of type integer.', &
 '', &
-'    P', &
-'        (Optional) shall be a scalar and of type integer.', &
+'-   R : (Optional) shall be a scalar and of type integer.', &
 '', &
-'-   ', &
-'', &
-'    R', &
-'        (Optional) shall be a scalar and of type integer.', &
-'', &
-'-   ', &
-'', &
-'    RADIX', &
-'        (Optional) shall be a scalar and of type integer.', &
+'-   RADIX : (Optional) shall be a scalar and of type integer.', &
 '', &
 'Before FORTRAN 2008, at least one of the arguments R or P shall be', &
 'present; since FORTRAN 2008, they are assumed to be zero if absent.', &
@@ -15419,7 +14427,7 @@ shortname="selected_real_kind"
 call process()
 
 
-case('174','set_exponent')
+case('175','set_exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15438,15 +14446,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   X : Shall be of type real.', &
 '', &
-'    X', &
-'        Shall be of type real.', &
-'', &
-'-   ', &
-'', &
-'    I', &
-'        Shall be of type integer.', &
+'-   I : Shall be of type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -15486,7 +14488,7 @@ shortname="set_exponent"
 call process()
 
 
-case('175','shape')
+case('176','shape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15504,17 +14506,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   SOURCE : Shall be an array or scalar of any type. If SOURCE is a', &
+'    pointer it must be associated and allocatable arrays must be', &
+'    allocated.', &
 '', &
-'    SOURCE', &
-'        Shall be an array or scalar of any type. If SOURCE is a pointer', &
-'        it must be associated and allocatable arrays must be allocated.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (Optional) An integer initialization expression indicating the', &
-'        kind parameter of the result.', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
+'    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -15562,7 +14559,7 @@ shortname="shape"
 call process()
 
 
-case('176','shifta')
+case('177','shifta')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15585,15 +14582,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : The type shall be integer.', &
 '', &
-'    I', &
-'        The type shall be integer.', &
-'', &
-'-   ', &
-'', &
-'    SHIFT', &
-'        The type shall be integer.', &
+'-   SHIFT : The type shall be integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -15614,7 +14605,7 @@ shortname="shifta"
 call process()
 
 
-case('177','shiftl')
+case('178','shiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15635,15 +14626,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : The type shall be integer.', &
 '', &
-'    I', &
-'        The type shall be integer.', &
-'', &
-'-   ', &
-'', &
-'    SHIFT', &
-'        The type shall be integer.', &
+'-   SHIFT : The type shall be integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -15664,7 +14649,7 @@ shortname="shiftl"
 call process()
 
 
-case('178','shiftr')
+case('179','shiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15685,15 +14670,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   I : The type shall be integer.', &
 '', &
-'    I', &
-'        The type shall be integer.', &
-'', &
-'-   ', &
-'', &
-'    SHIFT', &
-'        The type shall be integer.', &
+'-   SHIFT : The type shall be integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -15714,7 +14693,7 @@ shortname="shiftr"
 call process()
 
 
-case('179','sign')
+case('180','sign')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15733,44 +14712,34 @@ textblock=[character(len=256) :: &
 'where TYPE may be real or integer and KIND is any supported kind for the', &
 'type.', &
 '', &
-'    ### __Description__', &
+'DESCRIPTION', &
 '', &
-'    __sign__(a,b) returns the value of __a__ with the sign of __b__.', &
+'SIGN(a,b) return a value with the magnitude of A but with the sign of B.', &
 '', &
+'For processors that distinguish between positive and negative zeros', &
+'SIGN() may be used to distinguish between REAL values 0.0 and −0.0. SIGN', &
+'(1.0, -0.0) will return −1.0 when a negative zero is distinguishable.', &
 '', &
-'    For processors that distinguish between positive and negative zeros', &
-'    __sign()__ may be used to distinguish between __real__ values 0.0 and', &
-'    −0.0. SIGN (1.0, -0.0) will return −1.0 when a negative zero is', &
-'    distinguishable.', &
+'ARGUMENTS', &
 '', &
-'        29  1 Description. Magnitude of A with the sign of B.', &
+'-   A : Shall be of type integer or real', &
 '', &
+'-   B : Shall be of the same type and kind as A', &
 '', &
+'RETURNS', &
 '', &
-'    ### __Arguments__', &
+'The kind of the return value is the magnitude of A with the sign of B.', &
+'That is,', &
 '', &
-'      - __a__', &
-'        : Shall be of type _integer_ or _real_', &
+'-   If B >= 0 then the result is ABS(A)', &
+'-   else if B < 0 it is -ABS(A).', &
+'-   if B is real and the processor distinguishes between -0.0 and 0.0', &
+'    then the result is -ABS(A)', &
 '', &
-'      - __b__', &
-'        : Shall be of the same type and kind as __a__', &
+'EXAMPLES', &
 '', &
-'    ### __Returns__', &
+'Sample program:', &
 '', &
-'    The kind of the return value is the magnitude of __a__ with the sign of', &
-'    __b__. That is,', &
-'', &
-'         -  If __b \>= 0__ then the result is __abs(a)__', &
-'         -  else if __b < 0__ it is -__abs(a)__.', &
-'         - if __b__ is _real_ and the processor distinguishes between __-0.0__', &
-'         and __0.0__ then the', &
-'           result is __-abs(a)__', &
-'', &
-'    ### __Examples__', &
-'', &
-'    Sample program:', &
-'', &
-'    ```fortran', &
 '    program demo_sign', &
 '    implicit none', &
 '       print *,  sign( -12,  1 )', &
@@ -15802,7 +14771,7 @@ shortname="sign"
 call process()
 
 
-case('180','sin')
+case('181','sin')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15831,17 +14800,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real or complex in radians.', &
+'-   X : The type shall be real or complex in radians.', &
 '', &
 'RETURNS', &
 '', &
-'-   ', &
-'', &
-'    RESULT', &
-'        The return value has the same type and kind as X.', &
+'-   RESULT : The return value has the same type and kind as X.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -15934,7 +14897,7 @@ shortname="sin"
 call process()
 
 
-case('181','sinh')
+case('182','sinh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15965,10 +14928,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real or complex.', &
+'-   X : The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -16034,7 +14994,7 @@ shortname="sinh"
 call process()
 
 
-case('182','size')
+case('183','size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16053,23 +15013,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : be an array of any type. If ARRAY is a pointer it must be', &
+'    associated and allocatable arrays must be allocated.', &
 '', &
-'    ARRAY', &
-'        be an array of any type. If ARRAY is a pointer it must be', &
-'        associated and allocatable arrays must be allocated.', &
+'-   DIM : shall be a scalar of type integer and its value shall be in', &
+'    the range from 1 to n, where n equals the rank of ARRAY.', &
 '', &
-'-   ', &
-'', &
-'    DIM', &
-'        shall be a scalar of type integer and its value shall be in the', &
-'        range from 1 to n, where n equals the rank of ARRAY.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        An integer initialization expression indicating the kind', &
-'        parameter of the result.', &
+'-   KIND : An integer initialization expression indicating the kind', &
+'    parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -16233,7 +15184,7 @@ shortname="size"
 call process()
 
 
-case('183','spacing')
+case('184','spacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16253,10 +15204,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        Shall be of type real.', &
+'-   X : Shall be of type real.', &
 '', &
 'RETURNS', &
 '', &
@@ -16297,7 +15245,7 @@ shortname="spacing"
 call process()
 
 
-case('184','spread')
+case('185','spread')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16324,22 +15272,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   SOURCE : Shall be a scalar or an array of any type and a rank less', &
+'    than fifteen.', &
 '', &
-'    SOURCE', &
-'        Shall be a scalar or an array of any type and a rank less than', &
-'        fifteen.', &
+'-   DIM : Shall be a scalar of type integer with a value in the range', &
+'    from 1 to N+1, where N equals the rank of SOURCE.', &
 '', &
-'-   ', &
-'', &
-'    DIM', &
-'        Shall be a scalar of type integer with a value in the range from', &
-'        1 to N+1, where N equals the rank of SOURCE.', &
-'', &
-'-   ', &
-'', &
-'    NCOPIES', &
-'        Shall be a scalar of type integer.', &
+'-   NCOPIES : Shall be a scalar of type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -16430,7 +15369,7 @@ shortname="spread"
 call process()
 
 
-case('185','sqrt')
+case('186','sqrt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16474,11 +15413,8 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        If X is real its value must be greater than or equal to zero.', &
-'        The type shall be real or complex.', &
+'-   X : If X is real its value must be greater than or equal to zero.', &
+'    The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -16527,7 +15463,7 @@ shortname="sqrt"
 call process()
 
 
-case('186','storage_size')
+case('187','storage_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16545,15 +15481,9 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   A : Shall be a scalar or array of any type.', &
 '', &
-'    A', &
-'        Shall be a scalar or array of any type.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (Optional) shall be a scalar integer constant expression.', &
+'-   KIND : (Optional) shall be a scalar integer constant expression.', &
 '', &
 'RETURNS', &
 '', &
@@ -16598,7 +15528,7 @@ shortname="storage_size"
 call process()
 
 
-case('187','sum')
+case('188','sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16618,22 +15548,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : Shall be an array of type integer, real or complex.', &
 '', &
-'    ARRAY', &
-'        Shall be an array of type integer, real or complex.', &
+'-   DIM : (Optional) shall be a scalar of type integer with a value in', &
+'    the range from 1 to n, where n equals the rank of ARRAY.', &
 '', &
-'-   ', &
-'', &
-'    DIM', &
-'        (Optional) shall be a scalar of type integer with a value in the', &
-'        range from 1 to n, where n equals the rank of ARRAY.', &
-'', &
-'-   ', &
-'', &
-'    MASK', &
-'        (Optional) shall be of type logical and either be a scalar or an', &
-'        array of the same shape as ARRAY.', &
+'-   MASK : (Optional) shall be of type logical and either be a scalar or', &
+'    an array of the same shape as ARRAY.', &
 '', &
 'RETURNS', &
 '', &
@@ -16695,7 +15616,7 @@ shortname="sum"
 call process()
 
 
-case('188','system_clock')
+case('189','system_clock')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16738,29 +15659,19 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   COUNT : (optional) shall be an integer scalar. It is assigned a', &
+'    processor-dependent value based on the current value of the', &
+'    processor clock, or -HUGE(COUNT) if there is no clock. The', &
+'    processor-dependent value is incremented by one for each clock count', &
+'    until the value COUNT_MAX is reached and is reset to zero at the', &
+'    next count. It lies in the range 0 to COUNT_MAX if there is a clock.', &
 '', &
-'    COUNT', &
-'        (optional) shall be an integer scalar. It is assigned a', &
-'        processor-dependent value based on the current value of the', &
-'        processor clock, or -HUGE(COUNT) if there is no clock. The', &
-'        processor-dependent value is incremented by one for each clock', &
-'        count until the value COUNT_MAX is reached and is reset to zero', &
-'        at the next count. It lies in the range 0 to COUNT_MAX if there', &
-'        is a clock.', &
+'-   COUNT_RATE : (optional) shall be an integer or real scalar. It is', &
+'    assigned a processor-dependent approximation to the number of', &
+'    processor clock counts per second, or zero if there is no clock.', &
 '', &
-'-   ', &
-'', &
-'    COUNT_RATE', &
-'        (optional) shall be an integer or real scalar. It is assigned a', &
-'        processor-dependent approximation to the number of processor', &
-'        clock counts per second, or zero if there is no clock.', &
-'', &
-'-   ', &
-'', &
-'    COUNT_MAX', &
-'        (optional) shall be an integer scalar. It is assigned the', &
-'        maximum value that COUNT can have, or zero if there is no clock.', &
+'-   COUNT_MAX : (optional) shall be an integer scalar. It is assigned', &
+'    the maximum value that COUNT can have, or zero if there is no clock.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -16810,7 +15721,7 @@ shortname="system_clock"
 call process()
 
 
-case('189','tan')
+case('190','tan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16828,10 +15739,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real or complex.', &
+'-   X : The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -16868,7 +15776,7 @@ shortname="tan"
 call process()
 
 
-case('190','tanh')
+case('191','tanh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16886,10 +15794,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        The type shall be real or complex.', &
+'-   X : The type shall be real or complex.', &
 '', &
 'RETURNS', &
 '', &
@@ -16932,7 +15837,7 @@ shortname="tanh"
 call process()
 
 
-case('191','this_image')
+case('192','this_image')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16942,8 +15847,10 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '', &
-'    result = this_image() result = this_image(distance) &', &
-'             & result = this_image(coarray, dim)', &
+'       result = this_image() ', &
+'       !or', &
+'       result = this_image(distance) ', &
+'       result = this_image(coarray, dim)', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -16951,22 +15858,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   DISTANCE : (optional, INTENT(IN)) Nonnegative scalar integer (not', &
+'    permitted together with COARRAY).', &
 '', &
-'    DISTANCE', &
-'        (optional, INTENT(IN)) Nonnegative scalar integer (not permitted', &
-'        together with COARRAY).', &
+'-   COARRAY : Coarray of any type (optional; if DIM present, required).', &
 '', &
-'-   ', &
-'', &
-'    COARRAY', &
-'        Coarray of any type (optional; if DIM present, required).', &
-'', &
-'-   ', &
-'', &
-'    DIM', &
-'        default integer scalar (optional). If present, DIM shall be', &
-'        between one and the corank of COARRAY.', &
+'-   DIM : default integer scalar (optional). If present, DIM shall be', &
+'    between one and the corank of COARRAY.', &
 '', &
 'RETURNS', &
 '', &
@@ -17003,29 +15901,24 @@ textblock=[character(len=256) :: &
 '', &
 '       value[1] is 1', &
 '', &
-'! ! Check whether the current image is the initial image if', &
-'(this_image(huge(1)) /= this_image()) error stop "something is rotten', &
-'here"', &
+'STANDARD', &
+'', &
+'Fortran 2008 and later. With DISTANCE argument, TS 18508 or later', &
+'', &
+'SEE ALSO', &
+'', &
+'NUM_IMAGES(3), IMAGE_INDEX(3)', &
+'', &
+'fortran-lang intrinsic descriptions', &
 '', &
 '', &
-'    ### __Standard__', &
-'', &
-'    Fortran 2008 and later. With DISTANCE argument, TS 18508', &
-'    or later', &
-'', &
-'    ### __See Also__', &
-'', &
-'    [__num\_images__(3)](NUM_IMAGES),', &
-'    [__image\_index__(3)](IMAGE_INDEX)', &
-'', &
-'    ###### fortran-lang intrinsic descriptions', &
 '']
 
 shortname="this_image"
 call process()
 
 
-case('192','tiny')
+case('193','tiny')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17048,10 +15941,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    X', &
-'        Shall be of type real.', &
+'-   X : Shall be of type real.', &
 '', &
 'RETURNS', &
 '', &
@@ -17091,7 +15981,7 @@ shortname="tiny"
 call process()
 
 
-case('193','trailz')
+case('194','trailz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17110,10 +16000,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    I', &
-'        Shall be of type integer.', &
+'-   I : Shall be of type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -17209,7 +16096,7 @@ shortname="trailz"
 call process()
 
 
-case('194','transfer')
+case('195','transfer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17232,20 +16119,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   SOURCE : Shall be a scalar or an array of any type.', &
 '', &
-'    SOURCE', &
-'        Shall be a scalar or an array of any type.', &
+'-   MOLD : Shall be a scalar or an array of any type.', &
 '', &
-'-   ', &
-'', &
-'    MOLD', &
-'        Shall be a scalar or an array of any type.', &
-'', &
-'-   ', &
-'', &
-'    SIZE', &
-'        (Optional) shall be a scalar of type integer.', &
+'-   SIZE : (Optional) shall be a scalar of type integer.', &
 '', &
 'RETURNS', &
 '', &
@@ -17327,7 +16205,7 @@ shortname="transfer"
 call process()
 
 
-case('195','transpose')
+case('196','transpose')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17346,10 +16224,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    MATRIX', &
-'        Shall be an array of any type and have a rank of two.', &
+'-   MATRIX : Shall be an array of any type and have a rank of two.', &
 '', &
 'RETURNS', &
 '', &
@@ -17419,7 +16294,7 @@ shortname="transpose"
 call process()
 
 
-case('196','trim')
+case('197','trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17438,10 +16313,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
-'', &
-'    STRING', &
-'        Shall be a scalar of type character.', &
+'-   STRING : Shall be a scalar of type character.', &
 '', &
 'RETURNS', &
 '', &
@@ -17493,7 +16365,7 @@ shortname="trim"
 call process()
 
 
-case('197','ubound')
+case('198','ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17512,21 +16384,12 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   ARRAY : Shall be an array, of any type.', &
 '', &
-'    ARRAY', &
-'        Shall be an array, of any type.', &
+'-   DIM : (Optional) Shall be a scalar integer.', &
 '', &
-'-   ', &
-'', &
-'    DIM', &
-'        (Optional) Shall be a scalar integer.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        (Optional) An integer initialization expression indicating the', &
-'        kind parameter of the result.', &
+'-   KIND : (Optional) An integer initialization expression indicating', &
+'    the kind parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -17619,7 +16482,7 @@ shortname="ubound"
 call process()
 
 
-case('198','unpack')
+case('199','unpack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17638,22 +16501,13 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   VECTOR : Shall be an array of any type and rank one. It shall have', &
+'    at least as many elements as MASK has .TRUE. values.', &
 '', &
-'    VECTOR', &
-'        Shall be an array of any type and rank one. It shall have at', &
-'        least as many elements as MASK has .TRUE. values.', &
+'-   MASK : Shall be an array of type logical.', &
 '', &
-'-   ', &
-'', &
-'    MASK', &
-'        Shall be an array of type logical.', &
-'', &
-'-   ', &
-'', &
-'    FIELD', &
-'        Shall be of the same type as VECTOR and have the same shape as', &
-'        MASK.', &
+'-   FIELD : Shall be of the same type as VECTOR and have the same shape', &
+'    as MASK.', &
 '', &
 'RETURNS', &
 '', &
@@ -17696,7 +16550,7 @@ shortname="unpack"
 call process()
 
 
-case('199','verify')
+case('200','verify')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17738,26 +16592,14 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ', &
+'-   STRING : Shall be of type character.', &
 '', &
-'    STRING', &
-'        Shall be of type character.', &
+'-   SET : Shall be of type character.', &
 '', &
-'-   ', &
+'-   BACK : shall be of type logical.', &
 '', &
-'    SET', &
-'        Shall be of type character.', &
-'', &
-'-   ', &
-'', &
-'    BACK', &
-'        shall be of type logical.', &
-'', &
-'-   ', &
-'', &
-'    KIND', &
-'        An integer initialization expression indicating the kind', &
-'        parameter of the result.', &
+'-   KIND : An integer initialization expression indicating the kind', &
+'    parameter of the result.', &
 '', &
 'RETURNS', &
 '', &
@@ -37001,7 +35843,6 @@ end module M_list2
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
- 
 !>>>>> build/dependencies/M_escape/src/M_escape.f90
 !>
 !!##NAME

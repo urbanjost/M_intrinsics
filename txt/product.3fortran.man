@@ -27,22 +27,13 @@ dimension DIM dropped is returned.
 
 ARGUMENTS
 
--   
+-   ARRAY : Shall be an array of type integer, real or complex.
 
-    ARRAY
-        Shall be an array of type integer, real or complex.
+-   DIM : shall be a scalar of type integer with a value in the range
+    from 1 TO N, where N equals the rank of ARRAY.
 
--   
-
-    DIM
-        shall be a scalar of type integer with a value in the range from
-        1 TO N, where N equals the rank of ARRAY.
-
--   
-
-    MASK
-        shall be of type logical and either be a scalar or an array of
-        the same shape as ARRAY.
+-   MASK : shall be of type logical and either be a scalar or an array
+    of the same shape as ARRAY.
 
 RETURNS
 

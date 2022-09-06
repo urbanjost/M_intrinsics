@@ -12,10 +12,7 @@ C_FUNLOC(X) determines the C address of the argument.
 
 ARGUMENTS
 
--   
-
-    X
-        Interoperable function or pointer to such function.
+-   X : Interoperable function or pointer to such function.
 
 RETURNS
 

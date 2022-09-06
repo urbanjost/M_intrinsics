@@ -28,15 +28,9 @@ ordering.
 
 ARGUMENTS
 
--   
+-   STR_A : variable or array of default character type.
 
-    STR_A
-        variable or array of default character type.
-
--   
-
-    STR_B
-        variable or array of default character type.
+-   STR_B : variable or array of default character type.
 
     if STR_A and STR_B are both arrays they must be of the same shape.
 

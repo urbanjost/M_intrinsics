@@ -35,7 +35,7 @@ by your compiler.  There are many packages available for such situations.
 
 But the standard procedures available are sufficient for many use
 cases. They consist of **random\_number(3f)**, **random\_seed(3f)**,
-and **random\_init(3f)__.
+and **random\_init(3f)**.
 
 **random\_number(3f)** calls a generator and returns a psuedorandom scalar
 or array. This simple-to-use function does not directly define how to
@@ -52,7 +52,7 @@ compiler behavior.
 
 **random\_init(3f)**
 Initializes the state of the pseudorandom number generator procedure
-**random\_number(3f)__.  random\_init(3f) is equivalent to invoking
+**random\_number(3f)**. **random\_init**(3f) is equivalent to invoking
 **random\_seed(3f)** with no parameters but considers parallel images and
 otherwise processor-dependent behaviors as well.
 
@@ -63,7 +63,7 @@ The initial behavior of the pseudorandom number generator random\_number()
 procedure is processor-dependent if not initialized. Even if initialized
 with **random\_seed()**  if a specific seed array is not specified
 behavior is still processor-dependent for multiple image codes unless
-specific modes are selected with **random\_init()__.
+specific modes are selected with **random\_init()**.
 
 There are four combinations of REPEATABLE and IMAGE_DISTINCT. The behavior
 is as follows:
@@ -214,7 +214,7 @@ Fortran 2018 and later
 
 ### **See Also**
 
-[__random\_seed**(3)](RANDOM_SEED),
-[__random\_init(3)](RANDOM_SEED)
+[*_random\_seed**(3)](RANDOM_SEED),
+[*_random\_init**(3)](RANDOM_INIT)
 
 ###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

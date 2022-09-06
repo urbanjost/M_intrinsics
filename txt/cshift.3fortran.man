@@ -19,20 +19,11 @@ shifted back in the other end.
 
 ARGUMENTS
 
--   
+-   ARRAY : Shall be an array of any type.
 
-    ARRAY
-        Shall be an array of any type.
+-   SHIFT : The type shall be integer.
 
--   
-
-    SHIFT
-        The type shall be integer.
-
--   
-
-    DIM
-        The type shall be integer.
+-   DIM : The type shall be integer.
 
 RETURNS
 

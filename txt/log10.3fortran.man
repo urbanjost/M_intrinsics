@@ -16,10 +16,7 @@ the "common logarithm".
 
 ARGUMENTS
 
--   
-
-    X
-        A real value > 0 to take the log of.
+-   X : A real value > 0 to take the log of.
 
 RETURNS
 

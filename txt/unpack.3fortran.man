@@ -13,22 +13,13 @@ Store the elements of VECTOR in an array of higher rank.
 
 ARGUMENTS
 
--   
+-   VECTOR : Shall be an array of any type and rank one. It shall have
+    at least as many elements as MASK has .TRUE. values.
 
-    VECTOR
-        Shall be an array of any type and rank one. It shall have at
-        least as many elements as MASK has .TRUE. values.
+-   MASK : Shall be an array of type logical.
 
--   
-
-    MASK
-        Shall be an array of type logical.
-
--   
-
-    FIELD
-        Shall be of the same type as VECTOR and have the same shape as
-        MASK.
+-   FIELD : Shall be of the same type as VECTOR and have the same shape
+    as MASK.
 
 RETURNS
 

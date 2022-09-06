@@ -13,21 +13,12 @@ DIM dimension.
 
 ARGUMENTS
 
--   
+-   ARRAY : Shall be an array, of any type.
 
-    ARRAY
-        Shall be an array, of any type.
+-   DIM : (Optional) Shall be a scalar integer.
 
--   
-
-    DIM
-        (Optional) Shall be a scalar integer.
-
--   
-
-    KIND
-        (Optional) An integer initialization expression indicating the
-        kind parameter of the result.
+-   KIND : (Optional) An integer initialization expression indicating
+    the kind parameter of the result.
 
 RETURNS
 

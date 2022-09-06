@@ -132,39 +132,70 @@ website:
 <h2 id="note">NOTE</h2>
 <p><a href="https://fortran-lang.org">https://fortran-lang.org</a>
 now includes these documents. They may be changed using the instructions
-found there. If anyone else edits the documents there, the intent is to
-sync them with this site.</p>
-<p>This may be complicated by the fact that graphics and math expressions
-may be included in Kramdown markdown, so further development there might
-create documentation difficult to maintain as man-pages that display
-well with man(1), as the current translator does not handle the *roff
-syntax for tables, graphics, and formulas; and those features do not
-typically display well if at all with the man(1) command.</p>
+found in the <a href="https://github.com/fortran-lang/webpage">webpage</a> repository.</p>
+<p>Keeping these original documents synced with those may be complicated by
+the fact that graphics and math expressions may be included in Kramdown
+markdown, so further development there might create documentation
+difficult to maintain as man-pages that display well with man(1),
+as the current translator does not handle the *roff syntax for tables,
+graphics, and formulas; and those features do not typically display well
+if at all with the man(1) command.</p>
+<p>This page allows you to generate the CLI (Command Line Interface)
+command fpm-man (which is often renamed to fman(1)) that allows the
+fpm command to display the documents with &ldquo;fpm man TOPIC&rdquo; and provides
+an archive file with the intrinsic manpages on *nix machines (ie. on
+machines with the man(1) command) so it will continue to be maintained,
+but the differences between these and the on-line fortran-lang.org pages
+may become more extensive as time goes on.</p>
+<h2 id="todo">TODO</h2>
+<p>Additional descriptions of procedures from the standard modules</p>
+<p>Descriptions of most statements (READ, WRITE, EXIT, &hellip;)</p>
+<p>Converting from the primary source in txt/ in txt2man(1) format and
+generating the markdown to the Kramdown markdown in md/ being used to
+generate the txt/ directory with pandoc made sense as the primary
+target became fortran-lang.org documents instead of man-pages but the
+pandoc(1) conversion to /txt and then manpages leaves the plain text
+without proper indentation. Other conversion paths like going straight
+to manpages and generating text from them for the CLI interface are
+being explored to provide better formatting.</p>
+<p>Add</p>
+<p>o XOR
+o REDUCE
+o COSHAPE
+o FAILED_IMAGES
+o GET_TEAM
+o IMAGE_STATUS
+o LCOBOUND
+o STOPPED_IMAGES
+o TEAM_NUMBER
+o UCOBOUND</p>
 <h2 id="name">NAME</h2>
 <p># M_intrinsics(7f) - [FORTRAN] intrinsic man-pages</p>
 <h2 id="description">DESCRIPTION</h2>
+<p>Unlike many parts of a language, intrinsics can naturally be described
+in discrete units using man-page-like descriptions. </p>
 <p>This is a project to </p>
 <ul>
-<li>provide standard Fortran intrinsic for the fortran-lang.org site</li>
-<li>generate a set of man-page and HTML documents from these descriptions</li>
+<li>provide standard Fortran intrinsic markdown descriptions for the fortran-lang.org site </li>
+<li>generate a set of man-page and HTML Fortran intrinsic documents</li>
 <li>extract demo programs from each document into an fpm(1) package for easy verification</li>
 <li>generate a platform-independent Fortran program for displaying the documents</li>
 </ul>
-<p>Unlike many parts of a language, intrinsics can naturally be described
-in discrete units using man-pages. </p>
+<h2 id="manpages-and-standalone-source">MANPAGES AND STANDALONE SOURCE</h2>
 <p>The man-pages can be used on *nix systems and Cygwin as well as other
-platforms; providing the documentation in CLI (Command Line Interface)
-environment.</p>
+platforms; providing a convenient CLI (Command Line Interface).</p>
 <p>The man-pages are available as archive files:</p>
 <ul>
 <li><a href="docs/manpages.zip">manpages.tgz</a></li>
 <li><a href="docs/manpages.tgz">manpages.zip</a></li>
 </ul>
-<h2 id="use-and-installation">USE AND INSTALLATION</h2>
-<p>As man-pages the documents can often be integrated with editors or
-IDEs. This is a powerful tool when inspecting code that uses unfamiliar
-procedures and to verify correct usage when creating code in a CLI
-environment.</p>
+<p>A single-file version of the CLI program fpm-man(1) is in 
+<a href="https://raw.githubusercontent.com/urbanjost/M_intrinsics/master/standalone/fman.f90">fman.f90</a>.</p>
+<h2 id="project-information">PROJECT INFORMATION</h2>
+<h3 id="use-and-installation">USE AND INSTALLATION</h3>
+<p>The man-pages can often be integrated with editors or IDEs. This is a
+powerful reference when inspecting code that uses unfamiliar procedures and
+to verify correct usage when creating code in a CLI environm1ent.</p>
 <p>The process of installing man-pages can vary. Check your system
 documentation, but at a minimum if you create the directory $HOME/man/man3
 and place the man-pages there and add $HOME/man to your $MANPATH you
@@ -176,19 +207,21 @@ should be able to use the man-pages. For example:</p>
         man -s 3fortran -k .
 </code></pre></div>
 
-<h2 id="documentation">DOCUMENTATION   <img alt="docs" src="docs/images/docs.gif"></h2>
+<h2 id="documentation-formats">DOCUMENTATION FORMATS  <img alt="docs" src="docs/images/docs.gif"></h2>
 <p>The documents are maintained as Kramdown markdown files to be compatible
 with the fortran-lang.org site.</p>
-<p>Using pandoc they are then converted to flat-txt files which are</p>
+<p>Using pandoc(1) they are then converted to flat-text files which are</p>
 <ul>
 <li>run thru txt2man(1) to create the *roff file as a manpage</li>
 <li>and then thru manserver(1) or groff (typically) to create an additional
   HTML file as collected in</li>
 <li>a simple <a href="https://urbanjost.github.io/M_intrinsics/index3.html">index of intrinsics</a>
      and <a href="https://urbanjost.github.io/M_intrinsics/index7.html">index of statements</a></li>
+<li>These are collected into a single document using javascript:
+     <a href="https://urbanjost.github.io/M_intrinsics/BOOK_FORTRAN.html">BOOK_FORTRAN</a>.</li>
+<li>All pages in a single <a href="https://urbanjost.github.io/M_intrinsics/intrinsics_slidy.html">slidy HTML file</a></li>
 <li>
-<p>These are collected into a single document using javascript:
-     <a href="https://urbanjost.github.io/M_intrinsics/BOOK_FORTRAN.html">BOOK_FORTRAN</a>.</p>
+<p><a href="https://urbanjost.github.io/M_intrinsics">documentation shortcuts</a></p>
 </li>
 <li>
 <p>the example programs are extracted into the example/ directory.</p>
@@ -219,40 +252,25 @@ there. Then push the git repository back to your fork and make a pull
 request. </p>
 <p>If you are not familiar with this method, you can just post your changes
 on this site as an &ldquo;Issue&rdquo;.</p>
-<p>Better yet, if you install pandoc(1) and are on a *nix system, you can run
-the scripts to generate all the files and verify they appear correctly as
-HTML and manpages.</p>
-<p>Verify it converts properly to a man page with</p>
-<div class="codehilite"><pre><span></span><code>    build-manpages/scripts/txt2man -T <span class="nv">$MYFILE</span>
-</code></pre></div>
-
-<p>You can get help on the markdown rules for txt2man(1) by entering</p>
-<div class="codehilite"><pre><span></span><code>    build-manpages/scripts/txt2man -h
-<span class="sb">```</span>re
-Then send your proposed change <span class="k">in</span> using
-<span class="sb">```</span>bash
-    git add <span class="nv">$FILENAME</span>
-    git commit -m <span class="s1">&#39;changed $FILENAME because it needed it&#39;</span>
-    git push
-</code></pre></div>
-
 <p>A moderator can periodically then accept your change and rebuild
 the distribution files and HTML documents.</p>
 <p>The repository is set up as public, so I believe anyone with a github ID
 can change these files but it is unclear to me exactly how this should
 work, or whether a branch is required. Looking for more information &hellip;</p>
 <h3 id="using-the-make-file">USING THE MAKE FILE</h3>
-<p>If you are familiar with git(1) and gmake(1) (and other GNU tools) and
-are in a *nix or CygWin environment it would be even better if after you
-change your files you cd(1) into the build-manpages/ directory and enter:</p>
-<div class="codehilite"><pre><span></span><code>    make
-    make ship
+<p>You have to have a Fortran compiler, fpm(1) and pandoc(1) installed to
+use the method used here to convert the markdown files to man-pages,
+a Fortran utility program, and HTML. For reference</p>
+<div class="codehilite"><pre><span></span><code># use pandoc to convert the markdown files to text
+scripts/scripts/totxt.sh
+# run make(1) to generate all the other files
+cd scripts
+make
+make ship
 </code></pre></div>
 
-<p>and check out the HTML page generated in docs/, the manpage in man/man3/
-and the demo program in test/.</p>
-<p>The makefile is set up to do other things; and is a work in progress so
-this might change.</p>
+<p>and check out the HTML page generated in docs/, the manpages in man/man3/
+and the demo programs in example</p>
 <h2 id="references">REFERENCES</h2>
 <ul>
 <li>
@@ -355,7 +373,7 @@ exit</li>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2022-09-04 03:20  
+             on 2022-09-05 23:44  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> M_intrinsics was developed by John S. Urban</p></div>

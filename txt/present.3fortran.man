@@ -16,12 +16,9 @@ Determines whether an optional dummy argument is present.
 
 ARGUMENTS
 
--   
-
-    A
-        May be of any type and may be a pointer, scalar or array value,
-        or a dummy procedure. It shall be the name of an optional dummy
-        argument accessible within the current subroutine or function.
+-   A : May be of any type and may be a pointer, scalar or array value,
+    or a dummy procedure. It shall be the name of an optional dummy
+    argument accessible within the current subroutine or function.
 
 RETURNS
 

@@ -13,17 +13,11 @@ POINTER or if POINTER is associated with the target TARGET.
 
 ARGUMENTS
 
--   
+-   POINTER : POINTER shall have the pointer attribute and it can be of
+    any type.
 
-    POINTER
-        POINTER shall have the pointer attribute and it can be of any
-        type.
-
--   
-
-    TARGET
-        (Optional) TARGET shall be a pointer or a target. It must have
-        the same type, kind type parameter, and array rank as POINTER.
+-   TARGET : (Optional) TARGET shall be a pointer or a target. It must
+    have the same type, kind type parameter, and array rank as POINTER.
 
 The association status of neither POINTER nor TARGET shall be undefined.
 

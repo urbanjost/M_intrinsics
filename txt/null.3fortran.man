@@ -19,11 +19,8 @@ cases where it is required.
 
 ARGUMENTS
 
--   
-
-    MOLD
-        (Optional) shall be a pointer of any association status and of
-        any type.
+-   MOLD : (Optional) shall be a pointer of any association status and
+    of any type.
 
 RETURNS
 

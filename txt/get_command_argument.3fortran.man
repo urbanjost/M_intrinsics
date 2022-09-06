@@ -25,12 +25,9 @@ shells are ignored.
 
 OPTIONS
 
--   
-
-    NUMBER
-        Shall be a scalar of type INTEGER, NUMBER >= 0. If NUMBER = 0,
-        VALUE is set to the name of the program (on systems that support
-        this feature).
+-   NUMBER : Shall be a scalar of type INTEGER, NUMBER >= 0. If NUMBER =
+    0, VALUE is set to the name of the program (on systems that support
+    this feature).
 
 RETURNS
 

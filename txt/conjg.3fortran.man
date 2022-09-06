@@ -27,10 +27,7 @@ ARRAY .
 
 ARGUMENTS
 
--   
-
-    Z
-        The type shall be complex.
+-   Z : The type shall be complex.
 
 RETURNS
 

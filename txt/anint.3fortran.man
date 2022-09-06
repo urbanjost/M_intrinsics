@@ -12,16 +12,10 @@ ANINT(A [, KIND]) rounds its argument to the nearest whole number.
 
 ARGUMENTS
 
--   
+-   A : the type of the argument shall be real.
 
-    A
-        the type of the argument shall be real.
-
--   
-
-    KIND
-        (optional) an integer initialization expression indicating the
-        kind parameter of the result.
+-   KIND : (optional) an integer initialization expression indicating
+    the kind parameter of the result.
 
 RETURNS
 

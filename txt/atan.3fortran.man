@@ -4,11 +4,11 @@ ATAN(3) - [MATHEMATICS:TRIGONOMETRIC] Arctangent function
 
 SYNTAX
 
-      - result = __atan(y, x)__
+       result = atan(y, x)
 
-       TYPE(kind=KIND):: atan
-       TYPE(kind=KIND,intent(in) :: x
-       TYPE(kind=KIND,intent(in),optional :: y
+        TYPE(kind=KIND):: atan
+        TYPE(kind=KIND,intent(in) :: x
+        TYPE(kind=KIND,intent(in),optional :: y
 
 where TYPE may be real or complex and KIND may be any KIND supported by
 the associated type. If Y is present X is _real`.
@@ -19,17 +19,11 @@ ATAN(X) computes the arctangent of X.
 
 ARGUMENTS
 
--   
+-   X : The type shall be real or complex; if Y is present, X shall be
+    real.
 
-    X
-        The type shall be real or complex; if Y is present, X shall be
-        real.
-
--   
-
-    Y
-        Shall be of the same type and kind as X. If X is zero, Y must
-        not be zero.
+-   Y : Shall be of the same type and kind as X. If X is zero, Y must
+    not be zero.
 
 RETURNS
 

@@ -16,10 +16,7 @@ Set, UCS-4) which is commonly known as "Unicode".
 
 ARGUMENTS
 
--   
-
-    NAME
-        Shall be a scalar and of the default character type.
+-   NAME : Shall be a scalar and of the default character type.
 
 EXAMPLES
 

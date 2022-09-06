@@ -21,45 +21,28 @@ The bits are numbered 0 to BIT_SIZE(I)-1, from right to left.
 
 ARGUMENTS
 
--   
+-   FROM : An integer to read bits from.
 
-    FROM
-        An integer to read bits from.
+-   FROMPOS : FROMPOS is the position of the first bit to copy. It is a
+    nonnegative integer value < BIT_SIZE(FROM).
 
--   
+-   LEN : A nonnegative integer value that indicates how many bits to
+    copy from FROM. It must not specify copying bits past the end of
+    FROM. That is, FROMPOS + LEN must be less than or equal to
+    BIT_SIZE(FROM).
 
-    FROMPOS
-        FROMPOS is the position of the first bit to copy. It is a
-        nonnegative integer value < BIT_SIZE(FROM).
+-   TO : The integer variable to place the copied bits into. It must be
+    of the same kind as FROM and may even be the same variable as FROM.
 
--   
+    TO : is set by copying the sequence of bits of length LEN, starting
+    at position FROMPOS of FROM to position TOPOS of TO. No other bits
+    of TO are altered. On return, the LEN bits of TO starting at TOPOS
+    are equal to the value that the LEN bits of FROM starting at FROMPOS
+    had on entry.
 
-    LEN
-        A nonnegative integer value that indicates how many bits to copy
-        from FROM. It must not specify copying bits past the end of
-        FROM. That is, FROMPOS + LEN must be less than or equal to
-        BIT_SIZE(FROM).
-
--   
-
-    TO
-        The integer variable to place the copied bits into. It must be
-        of the same kind as FROM and may even be the same variable as
-        FROM.
-
-    TO
-        is set by copying the sequence of bits of length LEN, starting
-        at position FROMPOS of FROM to position TOPOS of TO. No other
-        bits of TO are altered. On return, the LEN bits of TO starting
-        at TOPOS are equal to the value that the LEN bits of FROM
-        starting at FROMPOS had on entry.
-
--   
-
-    TOPOS
-        A nonnegative integer value indicating the starting location in
-        TO to place the specified copy of bits from FROM. TOPOS + LEN
-        must be less than or equal to BIT_SIZE(TO).
+-   TOPOS : A nonnegative integer value indicating the starting location
+    in TO to place the specified copy of bits from FROM. TOPOS + LEN
+    must be less than or equal to BIT_SIZE(TO).
 
 EXAMPLE
 

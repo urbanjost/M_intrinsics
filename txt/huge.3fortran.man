@@ -20,12 +20,9 @@ and type of X.
 
 ARGUMENTS
 
--   
-
-    X
-        Shall be an arbitrary value of type real or integer. The value
-        is used merely to determine what kind and type of scalar is
-        being queried.
+-   X : Shall be an arbitrary value of type real or integer. The value
+    is used merely to determine what kind and type of scalar is being
+    queried.
 
 RETURNS
 

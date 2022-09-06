@@ -14,10 +14,7 @@ X.
 
 ARGUMENTS
 
--   
-
-    X
-        The type of the argument shall be a real.
+-   X : The type of the argument shall be a real.
 
 RETURNS
 

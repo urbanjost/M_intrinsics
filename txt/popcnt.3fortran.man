@@ -13,10 +13,7 @@ integer.
 
 ARGUMENTS
 
--   
-
-    I
-        Shall be of type integer.
+-   I : Shall be of type integer.
 
 RETURNS
 

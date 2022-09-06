@@ -60,19 +60,13 @@ It is processor-dependent whether any other object is contiguous.
 
 ARGUMENTS
 
--   
-
-    A
-        may be of any type. It shall be an array. If it is a pointer it
-        shall be associated.
+-   A : may be of any type. It shall be an array. If it is a pointer it
+    shall be associated.
 
 RETURNS
 
--   
-
-    RESULT
-        of type Default logical scalar. The result has the value true if
-        A is contiguous, and false otherwise.
+-   RESULT : of type Default logical scalar. The result has the value
+    true if A is contiguous, and false otherwise.
 
 EXAMPLES
 

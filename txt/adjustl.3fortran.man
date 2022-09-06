@@ -17,10 +17,7 @@ Spaces are inserted at the end of the string as needed.
 
 ARGUMENTS
 
--   
-
-    STRING
-        the type shall be character.
+-   STRING : the type shall be character.
 
 RETURNS
 

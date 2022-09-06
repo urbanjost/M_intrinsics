@@ -13,10 +13,7 @@ TRAILZ(3) returns the number of trailing zero bits of an integer value
 
 ARGUMENTS
 
--   
-
-    I
-        Shall be of type integer.
+-   I : Shall be of type integer.
 
 RETURNS
 

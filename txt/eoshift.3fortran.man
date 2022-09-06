@@ -29,25 +29,13 @@ present then the following are copied in depending on the type of ARRAY.
 
 ARGUMENTS
 
--   
+-   ARRAY : May be any type, not scalar.
 
-    ARRAY
-        May be any type, not scalar.
+-   SHIFT : The type shall be integer.
 
--   
+-   BOUNDARY : Same type as ARRAY.
 
-    SHIFT
-        The type shall be integer.
-
--   
-
-    BOUNDARY
-        Same type as ARRAY.
-
--   
-
-    DIM
-        The type shall be integer.
+-   DIM : The type shall be integer.
 
 RETURNS
 

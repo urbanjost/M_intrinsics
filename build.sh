@@ -5,8 +5,10 @@
 # fpm-standalone
 # fpm
 # fortran compiler, defaults to gfortran
+cd $(dirname $0)
 (
 exec 2>&1
+set -x
 ######################################
 scripts/scripts/totxt.sh
 ######################################
@@ -18,12 +20,13 @@ make ship
 )
 ######################################
 (
-cd examples
+cd example
 make clean
 )
 ######################################
 scripts/scripts/slidy.sh
 fpm build
+ford ford.md
 ######################################
 (
 fpm standalone

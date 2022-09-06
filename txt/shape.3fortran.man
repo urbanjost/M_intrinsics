@@ -12,17 +12,12 @@ Determines the shape of an array.
 
 ARGUMENTS
 
--   
+-   SOURCE : Shall be an array or scalar of any type. If SOURCE is a
+    pointer it must be associated and allocatable arrays must be
+    allocated.
 
-    SOURCE
-        Shall be an array or scalar of any type. If SOURCE is a pointer
-        it must be associated and allocatable arrays must be allocated.
-
--   
-
-    KIND
-        (Optional) An integer initialization expression indicating the
-        kind parameter of the result.
+-   KIND : (Optional) An integer initialization expression indicating
+    the kind parameter of the result.
 
 RETURNS
 

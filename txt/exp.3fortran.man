@@ -21,10 +21,7 @@ magnitude of the real component of X is LOG(HUGE(X)).
 
 ARGUMENTS
 
--   
-
-    X
-        The type shall be real or complex.
+-   X : The type shall be real or complex.
 
 RETURNS
 

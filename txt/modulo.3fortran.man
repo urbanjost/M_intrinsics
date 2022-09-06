@@ -12,16 +12,10 @@ MODULO(A,P) computes the A modulo P.
 
 ARGUMENTS
 
--   
+-   A : Shall be a scalar of type integer or real.
 
-    A
-        Shall be a scalar of type integer or real.
-
--   
-
-    P
-        Shall be a scalar of the same type and kind as A. It shall not
-        be zero.
+-   P : Shall be a scalar of the same type and kind as A. It shall not
+    be zero.
 
 RETURNS
 

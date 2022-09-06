@@ -12,7 +12,7 @@ SYNTAX
         real(kind=kind(a)),intent(in) :: a
         integer(kind=IKIND),intent(in),optional :: KIND
 
-    where __KIND__ is any valid value for type _integer_.
+where KIND is any valid value for type integer.
 
 DESCRIPTION
 
@@ -22,16 +22,10 @@ it picks the whole number at or to the left of the value on the scale
 
 ARGUMENTS
 
--   
+-   A : The type shall be real.
 
-    A
-        The type shall be real.
-
--   
-
-    KIND
-        (Optional) A scalar integer constant initialization expression
-        indicating the kind parameter of the result.
+-   KIND : (Optional) A scalar integer constant initialization
+    expression indicating the kind parameter of the result.
 
 RETURNS
 

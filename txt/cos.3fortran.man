@@ -22,11 +22,8 @@ hypotenuse of a right-angled triangle.
 
 ARGUMENTS
 
--   
-
-    X
-        The type shall be real or complex. X is assumed to be in
-        radians.
+-   X : The type shall be real or complex. X is assumed to be in
+    radians.
 
 RETURNS
 

@@ -17,17 +17,11 @@ Convert to integer type by truncating towards zero.
 
 ARGUMENTS
 
--   
+-   A : Shall be of type integer, real, or complex or a
+    BOZ-literal-constant.
 
-    A
-        Shall be of type integer, real, or complex or a
-        BOZ-literal-constant.
-
--   
-
-    KIND
-        An integer initialization expression indicating the kind
-        parameter of the result.
+-   KIND : An integer initialization expression indicating the kind
+    parameter of the result.
 
     If not present the returned type is that of default integer type.
 

@@ -19,10 +19,7 @@ COSH(X) computes the hyperbolic cosine of X.
 
 ARGUMENTS
 
--   
-
-    X
-        The type shall be real or complex.
+-   X : The type shall be real or complex.
 
 RETURNS
 

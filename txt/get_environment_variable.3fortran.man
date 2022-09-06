@@ -23,49 +23,34 @@ updated concurrently.
 
 OPTIONS
 
--   
-
-    NAME
-        The name of the environment variable to query.
+-   NAME : The name of the environment variable to query.
 
     Shall be a scalar of type character and of default kind.
 
 RETURNS
 
--   
-
-    VALUE
-        The value of the environment variable being queried.
+-   VALUE : The value of the environment variable being queried.
 
     Shall be a scalar of type character and of default kind. The value
     of NAME is stored in VALUE. If VALUE is not large enough to hold the
     data, it is truncated. If NAME is not set, VALUE will be filled with
     blanks.
 
--   
-
-    LENGTH
-        Argument LENGTH contains the length needed for storing the
-        environment variable NAME or zero if it is not present.
+-   LENGTH : Argument LENGTH contains the length needed for storing the
+    environment variable NAME or zero if it is not present.
 
     Shall be a scalar of type integer and of default kind.
 
--   
-
-    STATUS
-        STATUS is -1 if VALUE is present but too short for the
-        environment variable; it is 1 if the environment variable does
-        not exist and 2 if the processor does not support environment
-        variables; in all other cases STATUS is zero.
+-   STATUS : STATUS is -1 if VALUE is present but too short for the
+    environment variable; it is 1 if the environment variable does not
+    exist and 2 if the processor does not support environment variables;
+    in all other cases STATUS is zero.
 
     Shall be a scalar of type integer and of default kind.
 
--   
-
-    TRIM_NAME
-        If TRIM_NAME is present with the value .FALSE., the trailing
-        blanks in NAME are significant; otherwise they are not part of
-        the environment variable name.
+-   TRIM_NAME : If TRIM_NAME is present with the value .FALSE., the
+    trailing blanks in NAME are significant; otherwise they are not part
+    of the environment variable name.
 
     Shall be a scalar of type logical and of default kind.
 

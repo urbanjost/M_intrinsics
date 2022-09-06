@@ -12,18 +12,12 @@ IBSET returns the value of I with the bit at position POS set to one.
 
 ARGUMENTS
 
--   
+-   I : The type shall be integer.
 
-    I
-        The type shall be integer.
-
--   
-
-    POS
-        The type shall be integer. A value of zero refers to the least
-        significant bit. pos is an INTENT(IN) scalar or array of type
-        integer. The value of pos must be within the range zero to
-        (BIT_SIZE(I)-1).
+-   POS : The type shall be integer. A value of zero refers to the least
+    significant bit. pos is an INTENT(IN) scalar or array of type
+    integer. The value of pos must be within the range zero to
+    (BIT_SIZE(I)-1).
 
 RETURNS
 

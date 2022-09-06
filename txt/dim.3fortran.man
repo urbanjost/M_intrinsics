@@ -20,15 +20,9 @@ otherwise it returns zero.
 
 ARGUMENTS
 
--   
+-   X : The type shall be integer or real
 
-    X
-        The type shall be integer or real
-
--   
-
-    Y
-        The type shall be the same type and kind as X.
+-   Y : The type shall be the same type and kind as X.
 
 RETURNS
 

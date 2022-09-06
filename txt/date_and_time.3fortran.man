@@ -20,53 +20,26 @@ Unavailable time and date character parameters return blanks.
 
 ARGUMENTS
 
--   
+-   DATE : A character string of default kind of the form CCYYMMDD, of
+    length 8 or larger.
 
-    DATE
-        A character string of default kind of the form CCYYMMDD, of
-        length 8 or larger.
+-   TIME : A character string of default kind of the form HHMMSS.SSS, of
+    length 10 or larger.
 
--   
+-   ZONE : A character string of default kind of the form (+-)HHMM, of
+    length 5 or larger, representing the difference with respect to
+    Coordinated Universal Time (UTC).
 
-    TIME
-        A character string of default kind of the form HHMMSS.SSS, of
-        length 10 or larger.
+-   VALUES : An integer array of eight elements that contains:
 
--   
-
-    ZONE
-        A character string of default kind of the form (+-)HHMM, of
-        length 5 or larger, representing the difference with respect to
-        Coordinated Universal Time (UTC).
-
--   
-
-    VALUES
-        An integer array of eight elements that contains:
-
-    - VALUES(1)
-        The year
-        -   VALUES(2)
-
-        The month
-        -   VALUES(3)
-
-        The day of the month
-        -   VALUES(4)
-
-        Time difference with UTC in minutes
-        -   VALUES(5)
-
-        The hour of the day
-        -   VALUES(6)
-
-        The minutes of the hour
-        -   VALUES(7)
-
-        The seconds of the minute
-        -   VALUES(8)
-
-        The milliseconds of the second
+    -   VALUES(1) : The year
+    -   VALUES(2) : The month
+    -   VALUES(3) : The day of the month
+    -   VALUES(4) : Time difference with UTC in minutes
+    -   VALUES(5) : The hour of the day
+    -   VALUES(6) : The minutes of the hour
+    -   VALUES(7) : The seconds of the minute
+    -   VALUES(8) : The milliseconds of the second
 
 EXAMPLES
 

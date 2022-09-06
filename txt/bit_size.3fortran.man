@@ -16,12 +16,9 @@ represented by the type of the integer I. I can be a scalar or an array.
 
 ARGUMENTS
 
--   
-
-    I
-        An integer value of any kind to determine the size of in bits.
-        Because only the type of the argument is examined, the argument
-        need not be defined.
+-   I : An integer value of any kind to determine the size of in bits.
+    Because only the type of the argument is examined, the argument need
+    not be defined.
 
 RETURNS
 

@@ -13,36 +13,33 @@ SYNTAX
 
 where KIND and LKIND are any supported kind for the type.
 
-    ### __Description__
+DESCRIPTION
 
-    Calculates the parity (i.e. the reduction using .xor.) of __mask__ along
-    dimension __dim__.
+Calculates the parity (i.e. the reduction using .xor.) of MASK along
+dimension DIM.
 
-    ### __Arguments__
+ARGUMENTS
 
-      - __mask__
-        : Shall be an array of type _logical_.
+-   MASK : Shall be an array of type logical.
 
-      - __dim__
-        : (Optional) shall be a scalar of type _integer_ with a value in the
-        range from __1 to n__, where __n__ equals the rank of __mask__.
+-   DIM : (Optional) shall be a scalar of type integer with a value in
+    the range from 1 TO N, where N equals the rank of MASK.
 
-    ### __Returns__
+RETURNS
 
-    The result is of the same type as __mask__.
+The result is of the same type as MASK.
 
-    If __dim__ is absent, a scalar with the parity of all elements in __mask__
-    is returned: __.true.__ if an odd number of elements are __.true.__
-    and __.false.__ otherwise.
+If DIM is absent, a scalar with the parity of all elements in MASK is
+returned: .TRUE. if an odd number of elements are .TRUE. and .FALSE.
+otherwise.
 
-    When __dim__ is specified the returned shape is similar to that of
-    __mask__ with dimension __dim__ dropped.
+When DIM is specified the returned shape is similar to that of MASK with
+dimension DIM dropped.
 
-    ### __Examples__
+EXAMPLES
 
-    Sample program:
+Sample program:
 
-    ```fortran
     program demo_parity
     implicit none
     logical :: x(2) = [ .true., .false. ]

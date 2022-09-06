@@ -10,14 +10,11 @@ DESCRIPTION
 
 ERF(x) computes the error function of X, defined as
 
-$$ \text{erf}(x) = \frac{2}{\sqrt{\pi}} \int_0^x e^({-T)2} dt. $$
+$$ \text{erf}(x) = \frac{2}{\sqrt{\pi}} \int_0^x e^{-T^2} dt. $$
 
 ARGUMENTS
 
--   
-
-    X
-        The type shall be real.
+-   X : The type shall be real.
 
 RETURNS
 
