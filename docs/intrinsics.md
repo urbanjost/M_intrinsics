@@ -1585,11 +1585,11 @@ Inverse function: [**tanh**(3)](TANH)
 ### **Syntax**
 
 ```fortran
-  - result = __atan(y, x)__
+   result = atan(y, x)
 
-   TYPE(kind=KIND):: atan
-   TYPE(kind=KIND,intent(in) :: x
-   TYPE(kind=KIND,intent(in),optional :: y
+    TYPE(kind=KIND):: atan
+    TYPE(kind=KIND,intent(in) :: x
+    TYPE(kind=KIND,intent(in),optional :: y
 ```
 
 where **TYPE** may be _real_ or _complex_ and **KIND** may be any **KIND** supported
@@ -2225,7 +2225,7 @@ TS 18508 or later
 ### **Syntax**
 
 ```fortran
-call atomic_or__(atom, value, stat)
+call atomic_or(atom, value, stat)
 ```
 
 ### **Description**
@@ -2934,8 +2934,8 @@ scalar or an array.
 
 ### **Returns**
 
-    Returns the number of bits used to represent a value of the type
-    of __i__.  The result is a _integer_ scalar of the same kind as __i__.
+Returns the number of bits used to represent a value of the type
+of __i__.  The result is a _integer_ scalar of the same kind as __i__.
 
 ### **Examples**
 
@@ -6744,8 +6744,7 @@ result = floor(a, KIND)
     real(kind=kind(a)),intent(in) :: a
     integer(kind=IKIND),intent(in),optional :: KIND
 ```
-
-    where __KIND__ is any valid value for type _integer_.
+where _KIND_ is any valid value for type _integer_.
 
 ### **Description**
 
@@ -10838,9 +10837,9 @@ of **j** otherwise (so all three input values must have the same number
 of bits).
 
 The resulting value is the same as would result from
-
-    __ior (iand (i, mask),iand (j, not (mask)))__
-
+```fortran
+    ior (iand (i, mask),iand (j, not (mask)))
+```
 An exception to all values being of the same _integer_ type is that **i**
 or **j** and/or the mask may be a BOZ constant (A BOZ constant means it is
 either a Binary, Octal, or Hexadecimal literal constant). The BOZ values
@@ -12517,6 +12516,131 @@ Fortran 2008 and later. With DISTANCE or FAILED argument, TS 18508 or later
 [**image_index**(3)](THIS_INDEX)
 
 ###### fortran-lang intrinsic descriptions
+# OUT\_OF\_RANGE
+
+## out_of_range
+
+### **Name**
+**out_of_range**(3) - \[TYPE:NUMERIC\] Whether a value cannot be converted safely.
+
+### **Syntax**
+```fortran
+  result = OUT_OF_RANGE (X, MOLD [, ROUND])
+
+   logical,elemental               :: out_of_range
+   type(TYPE,kind=KIND),intent(in) :: x
+   type(TYPE,kind=KIND),intent(in) :: mold
+   logical,intent(in),optional     :: round
+
+   where TYPE may be _real_ or _integer_ of any available KIND.
+```
+### **Description**
+   **out_of_range**(3) determines whether a value **x** can be converted
+   safely to a _real_ or _integer_ variable the same type and kind as
+   **mold**.
+
+### **Arguments**
+   - **x**
+     : a scalar of type _integer_ or _real_ to be tested for whether
+     it can be stored in a variable of the type and kind of **mold**
+
+   - **mold**
+     : shall be an _integer_ or _real_ scalar. If it is a variable, it
+     need not be defined, as only the type and kind are queried.
+
+   - **round**
+     : flag whether to round the value of **xx** before validating it as
+     an integer value like **mold**.
+
+     **round** can only be present if **x** is of type
+     _real_ and **mold** is of type _integer_.
+
+### **Returns**
+
+From the standard:
+
+   Case (i):     If MOLD is of type integer, and ROUND is absent or
+                 present with the value false, the result is true
+                 if and only if the value of X is an IEEE infinity or
+                 NaN, or if the integer with largest magnitude that lies
+                 between zero and X inclusive is not representable by
+                 objects with the type and kind of MOLD.
+
+   Case (ii):    If MOLD is of type integer, and ROUND is present with
+                 the value true, the result is true if and only
+                 if the value of X is an IEEE in   nity or NaN, or
+                 if the integer nearest X, or the integer of greater
+                 magnitude if two integers are equally near to X, is not
+                 representable by objects with the type and kind of MOLD.
+
+   Case (iii):   Otherwise, the result is true if and only if the value
+                 of X is an IEEE in   nity or NaN that is not
+                 supported by objects of the type and kind of MOLD,
+                 or if X is a finite number and the result of rounding
+                 the value of X (according to the IEEE rounding mode if
+                 appropriate) to the extended model for the kind of MOLD
+                 has magnitude larger than that of the largest finite
+                 number with the same sign as X that is representable
+                 by objects with the type and kind of MOLD.
+
+   NOTE
+
+   MOLD is required to be a scalar because the only information
+   taken from it is its type and kind. Allowing an array MOLD would
+   require that it be conformable with X. ROUND is scalar because
+   allowing an array rounding mode would have severe performance
+   di   culties on many processors.
+
+### **Examples**
+
+Sample program:
+
+```fortran
+program demo_out_of_range
+use, intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
+implicit none
+integer            :: i
+integer(kind=int8) :: i8, j8
+
+    ! compilers are not required to produce an error on out of range.
+    ! here storing the default integers into 1-byte integers
+    ! incorrectly can have unexpected results
+    do i=127,130
+       i8=i
+       j8=-i
+       ! OUT_OF_RANGE(3f) can let you check if the value will fit
+       write(*,*)i8,j8,' might have expected',i,-i, &
+        & out_of_range( i,i8), &
+        & out_of_range(-i,i8)
+    enddo
+    write(*,*) 'RANGE IS ',-1-huge(0_int8),'TO',huge(0_int8)
+    ! the real -128.5 is truncated to -128 and is in range
+    write(*,*) out_of_range (  -128.5, 0_int8)         ! false
+
+    ! the real -128.5 is rounded to -129 and is not in range
+    write(*,*) out_of_range (  -128.5, 0_int8, .true.) ! true
+
+end program demo_out_of_range
+```
+
+Results:
+
+```text
+  >  127 -127  might have expected         127        -127 F F
+  > -128 -128  might have expected         128        -128 T F
+  > -127  127  might have expected         129        -129 T T
+  > -126  126  might have expected         130        -130 T T
+  > RANGE IS         -128 TO  127
+  > F
+  > T
+```
+
+### **Standard**
+
+   FORTRAN 2018 and later
+
+###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 # PACK
 
 ## pack
@@ -12656,13 +12780,12 @@ result = parity(mask, dim)
 
 where KIND and LKIND are any supported kind for the type.
 
-````
-### __Description__
+### **Description**
 
 Calculates the parity (i.e. the reduction using .xor.) of __mask__ along
 dimension __dim__.
 
-### __Arguments__
+### **Arguments**
 
   - __mask__
     : Shall be an array of type _logical_.
@@ -12671,7 +12794,7 @@ dimension __dim__.
     : (Optional) shall be a scalar of type _integer_ with a value in the
     range from __1 to n__, where __n__ equals the rank of __mask__.
 
-### __Returns__
+### **Returns**
 
 The result is of the same type as __mask__.
 
@@ -12682,7 +12805,7 @@ and __.false.__ otherwise.
 When __dim__ is specified the returned shape is similar to that of
 __mask__ with dimension __dim__ dropped.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -13291,228 +13414,6 @@ Fortran 95 and later
 [**tiny**(3)](TINY)
 
 ###### fortran-lang intrinsic descriptions
-# RANDOM\_INIT
-
-### **Name**
-
-**random\_init(3)** - \[MATHEMATICS:RANDOM\] control multi-image
-pseudorandom number generator initialization.
-
-### **Syntax**
-```fortran
-   call random_init (repeatable, image_distinct)
-
-     subroutine random_init(repeatable, image_distinct)
-     logical,intent(in) :: repeatable
-     logical,intent(in) :: image_distinct
-```
-### **Description**
-
-Pseudorandom generators produce a deterministic sequence of numbers
-that pass statistical tests that show they appear sufficiently random
-to be treated as such. So they are numbers that are generated by a
-repeatable computation that appear random if you do know what algorithm
-is being used.
-
-To get different sets of random numbers you give them a different starting
-point called a "seed"; which is often an array of whole numbers.
-
-External values (often time-related) are frequently used to automatically
-generate different seed values so you can get different sequences of
-random values without manually generating a seed each time you want a
-different set of values.
-
-The standard Fortran procedures do not specify a specific generator
-algorithm. If you require a generator that produces the same values or a
-specific quality independent of the compiler or platform being used you
-will want to use your own generator or review the specific generators used
-by your compiler.  There are many packages available for such situations.
-
-But the standard procedures available are sufficient for many use
-cases. They consist of **random\_number(3f)**, **random\_seed(3f)**,
-and **random\_init(3f)__.
-
-**random\_number(3f)** calls a generator and returns a psuedorandom scalar
-or array. This simple-to-use function does not directly define how to
-seed or initialize the generator, however. So if you do not call one
-of the other two initializer procedures it is implementation dependent
-as to whether the initial seed is always the same or changes with each
-program start, or whether all images in a parallel program start with
-the same seed or unique seeds for each image, for instance.
-
-So you need to either set the seed with **random\_seed(3)** yourself
-and optionally the behavior when running in parallel with coarrays with
-**random\_init(3f) if you do not want to just depend on your particular
-compiler behavior.
-
-**random\_init(3f)**
-Initializes the state of the pseudorandom number generator procedure
-**random\_number(3f)__.  random\_init(3f) is equivalent to invoking
-**random\_seed(3f)** with no parameters but considers parallel images and
-otherwise processor-dependent behaviors as well.
-
-Not every compiler vendor gives a unique seed for random\_seed(),
-for example.
-
-The initial behavior of the pseudorandom number generator random\_number()
-procedure is processor-dependent if not initialized. Even if initialized
-with **random\_seed()**  if a specific seed array is not specified
-behavior is still processor-dependent for multiple image codes unless
-specific modes are selected with **random\_init()__.
-
-There are four combinations of REPEATABLE and IMAGE_DISTINCT. The behavior
-is as follows:
-
-   Case (i) : REPEATABLE=.true.,IMAGE\_DISTINCT=.true.
-
-   PUT different on every invoking image.  In each execution of the
-   program with the same execution environment, if the invoking image
-   index value in the initial team is the same, the value for PUT shall
-   be the same.
-
-   PROGRAM main
-   REAL,DIMENSION(1000) :: y
-   CALL RANDOM_INIT (REPEATABLE=.TRUE., IMAGE_DISTINCT=.TRUE.)
-   CALL RANDOM_NUMBER (y)
-   . . .
-   END
-
-   After executing the above code, the array y contains a different sequence
-   of pseudorandom numbers on each image that executes the code. If the
-   program is executed multiple times, for an image that has the same
-   image index in the initial team, the value of y is the same each time
-   the program is run.
-
-   Consider the following:
-
-   CALL RANDOM_INIT(.TRUE., .TRUE.)
-
-   The sequence of random numbers is repeatable. If the program is
-   compiled with -fcoarray=lib and multiple images are instantiated,
-   then each image accesses a repeatable distinct sequence of random
-   numbers. Technically, the Standard states that a distinct seed is
-   used in each image (with the tacit assumption that the sequences
-   are distinct, but this is not guaranteed). Also, the repeatibility
-   is guaranteed for the currently executing image. Rerunning the
-   executable does not require the same distinct seeds, but I have
-   chose to use the same seeds.
-
-   Case (ii) :  REPEATABLE=.true.,IMAGE\_DISTINCT=.false.
-
-   PUT is the same on every invoking image.
-   In each execution of the program with the same execution
-   environment, the value for PUT shall be the same.
-
-   Case (iii) : REPEATABLE=.false., IMAGE\_DISTINCT=.true.
-
-   PUT is different on every invoking image.
-   Different values for PUT shall be used for subsequent
-   invocations, and for each execution of the program.
-
-   Case (iv) : REPEATABLE=.false.,IMAGE\_DISTINCT=.false.
-
-   PUT that is the same on every invoking image.
-   Different values for PUT shall be used for subsequent
-   invocations, and for each execution of the program.
-
-   the array y contains the same sequence
-   of pseudorandom numbers on each image that executes the code. If the
-   program is executed multiple times, the value of y is different each
-   time the program is run.
-
-   Consider another example:
-
-   PROGRAM main
-   REAL,DIMENSION(1000) :: y
-   CALL RANDOM_INIT (REPEATABLE=.FALSE., IMAGE_DISTINCT=.FALSE.)
-   CALL RANDOM_NUMBER (y)
-   . . .
-   END
-
-   The pseudorandom number generator used by RANDOM_NUMBER maintains
-   a seed on each image that is updated during the execution of
-   RANDOM_NUMBER and that can be retrieved or changed by RANDOM_INIT
-   or RANDOM_SEED . Computation of the seed from the argument PUT
-   is performed in a processor-dependent manner. The value assigned
-   to GET need not be the same as the value of PUT in an immediately
-   preceding reference to RANDOM_SEED. For example, following execution
-   of the statements
-
-In each of these cases, a different processor-dependent value for PUT
-shall result in a different sequence of pseudorandom numbers.
-
-### **Arguments**
-
-  - **repeatable
-    : If .true., the seed is set to a processor-dependent value
-    that is the same each time **random_init(3f)** is called from the
-    same program execution (or the same image???).
-
-    The sequence of random numbers is different for repeated execution
-    of the program.
-
-    If it is .false., the seed is set to a processor-dependent value.
-
-    : when .true. init the seed used by **random\_number**
-                  differently on every invoking image.
-
-     If it is .true., the seed is set to a processor-dependent
-    value that is the same each time random_init is called from the same
-    image.
-
-  - **image\_distinct**
-
-    image_distinct
-    : If .true., the seed is set to a processor-dependent
-    value that is distinct from the seed set by a call to random_init
-    in another image.
-
-    If it is .false., the seed is set to a value that does
-    depend which image called random_init.
-
-    IMAGE_DISTINCT is clearly meant for a program that uses co-arrays
-    where upon execution multiple images are instantiated. If a program
-    does not use co-arrays or only a single image is instantiated,
-    then IMAGE_DISTINCT is irrelevant.
-
-### **Examples**
-
-Sample program:
-
-```fortran
-program demo_random_init
-   ! random_number(3f) on this invoking image will generate a sequence
-   ! that differs form other images that invoke a similar statement, as
-   ! well as being different on subsequent program execution.
-   call random_init (repeatable=.false., image_distinct=.true.)
-
-end program demo_random_init
-Example
-
-program test_random_seed
-implicit none
-real x(3), y(3)
-   call random_init   (repeatable=.true., image_distinct=.true.)
-   call random_number (x)
-   call random_init   (repeatable=.true., image_distinct=.true.)
-   call random_number (y)
-   ! x and y are the same sequence
-   if (any(x /= y)) stop "x(:) and y(:) not all equal"
-end program test_random_seed
-```
-  Results:
-```text
-```
-### **Standard**
-
-Fortran 2018 and later
-
-### **See Also**
-
-[__random\_seed**(3)](RANDOM_SEED),
-[__random\_init(3)](RANDOM_SEED)
-
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 # RANDOM\_NUMBER
 
 ## random_number
@@ -14842,38 +14743,36 @@ result = sign(a, b)
 where TYPE may be _real_ or _integer_ and KIND is any supported kind
 for the type.
 
-````
-### __Description__
+### **Description**
 
-__sign__(a,b) returns the value of __a__ with the sign of __b__.
+__sign__(a,b) return a value with the magnitude of __a__ but with the
+sign of __b__.
 
 For processors that distinguish between positive and negative zeros
 __sign()__ may be used to distinguish between __real__ values 0.0 and
 −0.0. SIGN (1.0, -0.0) will return −1.0 when a negative zero is
 distinguishable.
 
-    29  1 Description. Magnitude of A with the sign of B.
+### **Arguments**
 
-### __Arguments__
-
-  - __a__
+  - **a**
     : Shall be of type _integer_ or _real_
 
-  - __b__
-    : Shall be of the same type and kind as __a__
+  - **b**
+    : Shall be of the same type and kind as **a**
 
-### __Returns__
+### **Returns**
 
 The kind of the return value is the magnitude of __a__ with the sign of
 __b__. That is,
 
-     -  If __b \>= 0__ then the result is __abs(a)__
-     -  else if __b < 0__ it is -__abs(a)__.
-     - if __b__ is _real_ and the processor distinguishes between __-0.0__
-     and __0.0__ then the
-       result is __-abs(a)__
+  - If __b \>= 0__ then the result is __abs(a)__
+  - else if __b < 0__ it is -__abs(a)__.
+  - if __b__ is _real_ and the processor distinguishes between __-0.0__
+    and __0.0__ then the
+    result is __-abs(a)__
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -16038,8 +15937,10 @@ FORTRAN 77 and later. For a complex argument, Fortran 2008 or later.
 ### **Syntax**
 
 ```fortran
-result = this_image() result = this_image(distance) &
-         & result = this_image(coarray, dim)
+   result = this_image()
+   !or
+   result = this_image(distance)
+   result = this_image(coarray, dim)
 ```
 
 ### **Description**
@@ -16098,22 +15999,15 @@ Results:
    value[1] is 1
 ```
 
-!
-! Check whether the current image is the initial image
-if (this_image(huge(1)) /= this_image())
-error stop "something is rotten here"
-
-```
-
-### __Standard__
+### **Standard**
 
 Fortran 2008 and later. With DISTANCE argument, TS 18508
 or later
 
-### __See Also__
+### **See Also**
 
-[__num\_images__(3)](NUM_IMAGES),
-[__image\_index__(3)](IMAGE_INDEX)
+[**num\_images**(3)](NUM_IMAGES),
+[**image\_index**(3)](IMAGE_INDEX)
 
 ###### fortran-lang intrinsic descriptions
 ```

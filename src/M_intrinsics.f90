@@ -2331,7 +2331,7 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '', &
-'    call atomic_or__(atom, value, stat)', &
+'    call atomic_or(atom, value, stat)', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -2991,8 +2991,8 @@ textblock=[character(len=256) :: &
 '', &
 'RETURNS', &
 '', &
-'    Returns the number of bits used to represent a value of the type', &
-'    of __i__.  The result is a _integer_ scalar of the same kind as __i__.', &
+'Returns the number of bits used to represent a value of the type of I.', &
+'The result is a integer scalar of the same kind as I.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -12435,20 +12435,19 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'     - **x**           ', &
-'       : a scalar of type _integer_ or _real_ to be tested for whether', &
-'       it can be stored in a variable of the type and kind of **mold**', &
+'-   X', &
+'    : a scalar of type integer or real to be tested for whether it can', &
+'    be stored in a variable of the type and kind of MOLD', &
 '', &
-'     - **mold**        ', &
-'       : shall be an _integer_ or _real_ scalar. If it is a variable, it', &
-'       need not be defined, as only the type and kind are queried.', &
+'-   MOLD', &
+'    : shall be an integer or real scalar. If it is a variable, it need', &
+'    not be defined, as only the type and kind are queried.', &
 '', &
-'     - **round** ', &
-'       : flag whether to round the value of **xx** before validating it as', &
-'       an integer value like **mold**.', &
+'-   ROUND : flag whether to round the value of XX before validating it', &
+'    as an integer value like MOLD.', &
 '', &
-'       **round** can only be present if **x** is of type', &
-'       _real_ and **mold** is of type _integer_.', &
+'    ROUND can only be present if X is of type real and MOLD is of type', &
+'    integer.', &
 '', &
 'RETURNS', &
 '', &
