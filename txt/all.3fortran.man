@@ -101,7 +101,7 @@ Case (ii):
 
           [true, false, false]
 
-and ALL(B /= C, DIM = 2) is
+       and **all(B /= C, DIM = 2)** is
 
             [false, false].
 

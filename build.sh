@@ -17,6 +17,7 @@ cd scripts
 make
 make demos
 make ship
+make list
 )
 ######################################
 (

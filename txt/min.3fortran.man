@@ -14,7 +14,7 @@ ARGUMENTS
 
 -   A1 : The type shall be integer or real.
 
--   A2, A3, ``` : An expression of the same type and kind as A1.
+-   A2, A3, ... : An expression of the same type and kind as A1.
 
 RETURNS
 

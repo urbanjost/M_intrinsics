@@ -26,6 +26,6 @@ Fortran 2008 and later
 
 SEE ALSO
 
-BGE(3),, BGT(3),, BLT(3)
+BGE(3), BGT(3), BLT(3)
 
 fortran-lang intrinsic descriptions

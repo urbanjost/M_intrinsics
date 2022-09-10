@@ -19,7 +19,7 @@
    where the TYPE and KIND is determined by the type and type attributes
    of **a**, which may be any _real_, _integer_, or _complex_ value.
 
-   If the type of **a** is _cmplx_ the type returned will be _real_
+   If the type of **a** is _complex_ the type returned will be _real_
    with the same kind as the _real_ part of the input value.
 
    Otherwise the returned type will be the same type as **a**.
@@ -65,29 +65,28 @@ character(len=*),parameter :: &
  frmt =  '(1x,a15,1x," In: ",g0,            T51," Out: ",g0)', &
  frmtc = '(1x,a15,1x," In: (",g0,",",g0,")",T51," Out: ",g0)'
 integer,parameter :: dp=kind(0.0d0)
-integer,parameter :: sp=kind(0.0)
 
+  ! any integer, real, or complex type
     write(*, frmt)  'integer         ',  i, abs(i)
     write(*, frmt)  'real            ',  x, abs(x)
     write(*, frmt)  'doubleprecision ', rr, abs(rr)
     write(*, frmtc) 'complex         ',  z, abs(z)
-    !
-    !
-    write(*, *)
-    write(*, *) 'abs is elemental: ', abs([20,  0,  -1,  -3,  100])
-    write(*, *)
+
+  ! any value whose positive value is representable
+  ! A dusty corner is that abs(-huge(0)-1) would input a representable
+  ! negative value but result in a positive value out of range.
     write(*, *) 'abs range test : ', abs(huge(0)), abs(-huge(0))
     write(*, *) 'abs range test : ', abs(huge(0.0)), abs(-huge(0.0))
     write(*, *) 'abs range test : ', abs(tiny(0.0)), abs(-tiny(0.0))
 
-    write(*, *) 'returned real kind:', cmplx(30.0_dp,40.0_dp,kind=dp), &
-                                  kind(cmplx(30.0_dp,40.0_dp,kind=dp))
-    write(*, *) 'returned real kind:', cmplx(30.0_dp,40.0_dp),&
-                                  kind(cmplx(30.0_dp,40.0_dp))
-    write(*, *) 'returned real kind:', cmplx(30.0_sp,40.0_sp),&
-                                  kind(cmplx(30.0_sp,40.0_sp))
+  ! elemental
+    write(*, *) 'abs is elemental: ', abs([20,  0,  -1,  -3,  100])
 
-    write(*, *)
+  ! complex input produces real output
+    write(*, *)  cmplx(30.0,40.0)
+
+  ! the returned value for complex input can be thought of as the
+  ! distance from the origin <0,0>
     write(*, *) 'distance of <XX,YY> from zero is', &
                & distance(30.0_dp,40.0_dp)
 
@@ -101,27 +100,21 @@ integer,parameter :: sp=kind(0.0)
        ! See cmplx(3).
        distance=abs( cmplx(x,y,kind=dp) )
     end function distance
+
 end program demo_abs
 ```
-
-Results:
-
+  Results:
 ```text
-    integer          In: -1                        Out: 1
-    real             In: -1.00000000               Out: 1.00000000
-    doubleprecision  In: -45.780000000000001       Out: 45.780000000000001
-    complex          In: (-3.00000000,-4.00000000) Out: 5.00000000
-
-    abs is elemental:     20     0     1     3   100
-
+    integer          In: -1                     Out: 1
+    real             In: -1.000000              Out: 1.000000
+    doubleprecision  In: -45.78000000000000     Out: 45.78000000000000
+    complex          In: (-3.000000,-4.000000)  Out: 5.000000
     abs range test :   2147483647  2147483647
-    abs range test :    3.40282347E+38   3.40282347E+38
-    abs range test :    1.17549435E-38   1.17549435E-38
-    returned real kind: (30.000000000000000,40.000000000000000) 8
-    returned real kind: (30.0000000,40.0000000) 4
-    returned real kind: (30.0000000,40.0000000) 4
-
-    distance of <XX,YY> from zero is   50.000000000000000
+    abs range test :   3.4028235E+38  3.4028235E+38
+    abs range test :   1.1754944E-38  1.1754944E-38
+    abs is elemental: 20 0 1 3 100
+    (30.00000,40.00000)
+    distance of <XX,YY> from zero is   50.0000000000000
 ```
 
 ### **Standard**
@@ -567,9 +560,7 @@ Sample program:
 ```fortran
 program demo_adjustr
 implicit none
-integer :: right
 character(len=20) :: str = ' sample string '
-character(len=:),allocatable :: str2
    ! print a short number line
    write(*,'(a)')repeat('1234567890',5)
 
@@ -902,11 +893,9 @@ Case (ii):
    then all(B /= C, DIM = 1) is
 
       [true, false, false]
-```
 
-and **all(B /= C, DIM = 2)** is
+   and **all(B /= C, DIM = 2)** is
 
-```
         [false, false].
 ```
 
@@ -2897,8 +2886,8 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bge**(3),](BGE),
-[**ble**(3),](BLE),
+[**bge**(3)](BGE),
+[**ble**(3)](BLE),
 [**blt**(3)](BLT)
 
 ###### fortran-lang intrinsic descriptions
@@ -2946,7 +2935,6 @@ program demo_bit_size
 use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
 implicit none
 integer(kind=int64)          :: answer
-integer                      :: ilen
 character(len=*),parameter   :: fmt='(*(g0,1x))'
     write(*,fmt)'default integer size is',bit_size(0),'bits'
     write(*,fmt)bit_size(bit_size(0_int8)), 'which is kind=',kind(0_int8)
@@ -3011,8 +2999,8 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bge**(3),](BGE),
-[**bgt**(3),](BGT),
+[**bge**(3)](BGE),
+[**bgt**(3)](BGT),
 [**blt**(3)](BLT)
 
 ###### fortran-lang intrinsic descriptions
@@ -3730,14 +3718,11 @@ present. If **y** is present it is converted to the imaginary component. If
 The Fortran 90 language defines **cmplx**(3) as always returning a result
 that is type **complex(kind=KIND(0.0))**.
 
-This means \`**cmplx(d1,d2)**', where **\`d1'** and **\`d2'** are
+This means **cmplx(d1,d2)**, where **d1** and **d2** are
 _doubleprecision_, is treated as:
-fortran
-
-```
+```fortran
       cmplx(sngl(d1), sngl(d2))
 ```
-
 _doubleprecision complex_ numbers require specifying a precision.
 
 It was necessary for Fortran 90 to specify this behavior for
@@ -3773,7 +3758,7 @@ can be accessed independently with a component-like syntax in f2018:
 
 A complex-part-designator is
 
-``fortran
+```fortran
 designator % RE
 or
 designator % IM.
@@ -4468,14 +4453,14 @@ the occurred error.
   The function shall return a nonallocatable scalar of the same type
   and type parameters as **a**. The function shall be the same on all
   images and with regards to the arguments mathematically commutative
-  and associative. Note that OPERATION may not be an elemental
+  and associative. Note that OPERATION may not be an elemental unless
+  it is an intrinsic function.
 
-  - **function, unless it is an intrinsic function.**
-    result_image
+- **result_image**
 
-  - (optional) a scalar integer expression; if present, it shall
-    have the same the same value on all images and refer to an image
-    of the current team.
+  : (optional) a scalar integer expression; if present, it shall
+  have the same the same value on all images and refer to an image
+  of the current team.
 
 - **stat**
   : (optional) a scalar integer variable
@@ -4932,16 +4917,15 @@ which time is an array.
 
 ### **Returns**
 
-- **TIME**
+- **time**
   : The type shall be _real_ with **intent(out)**. It is assigned a
   processor-dependent approximation to the processor time in seconds.
   If the processor cannot return a meaningful time, a
-  processor-dependent negative value
+  processor-dependent negative value is returned.
 
-  - **is returned.**
-    The start time is left imprecise because the purpose is to time
-    sections of code, as in the example. This might or might not
-    include system overhead time.
+  : The start time is left imprecise because the purpose is to time
+  sections of code, as in the example. This might or might not
+  include system overhead time.
 
 ### **Examples**
 
@@ -5160,22 +5144,14 @@ Unavailable time and date _character_ parameters return blanks.
 - **values**
   : An _integer_ array of eight elements that contains:
 
-  - **values**(1)
-    : The year
-  - **values**(2)
-    : The month
-  - **values**(3)
-    : The day of the month
-  - **values**(4)
-    : Time difference with UTC in minutes
-  - **values**(5)
-    : The hour of the day
-  - **values**(6)
-    : The minutes of the hour
-  - **values**(7)
-    : The seconds of the minute
-  - **values**(8)
-    : The milliseconds of the second
+   - **values**(1) : The year
+   - **values**(2) : The month
+   - **values**(3) : The day of the month
+   - **values**(4) : Time difference with UTC in minutes
+   - **values**(5) : The hour of the day
+   - **values**(6) : The minutes of the hour
+   - **values**(7) : The seconds of the minute
+   - **values**(8) : The milliseconds of the second
 
 ### **Examples**
 
@@ -5738,16 +5714,14 @@ all elements of **array** are shifted by **shift** places. If rank is greater
 than one, then all complete rank one sections of **array** along the given
 dimension are shifted. Elements shifted out one end of each rank one
 section are dropped. If **boundary** is present then the corresponding value
-of from **boundary** is copied back in the other end. If **boundary** is not
+from **boundary** is copied back in the other end. If **boundary** is not
 present then the following are copied in depending on the type of **array**.
 
-\*Array Type\* - \*Boundary Value\*
-
-- Numeric 0 of the type and kind of **array**
-
-- Logical .false.
-
-- **Character(len)** LEN blanks
+    Array Type     | Boundary Value
+    -----------------------------------------------------
+    Numeric        | 0 of the type and kind of **array**
+    Logical        | .false.
+    Character(len) |  LEN blanks
 
 ### **Arguments**
 
@@ -5774,16 +5748,18 @@ Sample program:
 ```fortran
 program demo_eoshift
 implicit none
-    integer, dimension(3,3) :: a
+integer, dimension(3,3) :: a
+integer :: i
+
     a = reshape( [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], [ 3, 3 ])
-    print '(3i3)', a(1,:)
-    print '(3i3)', a(2,:)
-    print '(3i3)', a(3,:)
-    a = eoshift(a, SHIFT=[1, 2, 1], BOUNDARY=-5, DIM=2)
+    print '(3i3)', (a(i,:),i=1,3)
+
     print *
-    print '(3i3)', a(1,:)
-    print '(3i3)', a(2,:)
-    print '(3i3)', a(3,:)
+
+    ! shift it
+    a = eoshift(a, SHIFT=[1, 2, 1], BOUNDARY=-5, DIM=2)
+    print '(3i3)', (a(i,:),i=1,3)
+
 end program demo_eoshift
 ```
 
@@ -7068,7 +7044,7 @@ shells are ignored.
 ### **Returns**
 
 - **value**
-  :Shall be a scalar of type _character_ and of default kind. After
+  : Shall be a scalar of type _character_ and of default kind. After
   get_command_argument returns, the **value** argument holds the
   **number**-th command line argument. If **value** can not hold the argument,
   it is truncated to fit the length of **value**. If there are less than
@@ -7076,11 +7052,11 @@ shells are ignored.
   with blanks.
 
 - **length**
-  :(Optional) Shall be a scalar of type _integer_. The **length**
+  : (Optional) Shall be a scalar of type _integer_. The **length**
   argument contains the length of the **number**-th command line argument.
 
 - **status**
-  :(Optional) Shall be a scalar of type _integer_. If the argument
+  : (Optional) Shall be a scalar of type _integer_. If the argument
   retrieval fails, **status** is a positive number; if **value** contains a
   truncated command line argument, **status** is **-1**; and otherwise the
   **status** is zero.
@@ -7258,7 +7234,7 @@ Fortran 2003 and later
 ###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 # GET\_ENVIRONMENT\_VARIABLE
 
-## get_environment
+## get_environment_variable
 
 ### **Name**
 
@@ -7289,7 +7265,7 @@ being updated concurrently.
 - **name**
   : The name of the environment variable to query.
 
-  Shall be a scalar of type _character_ and of default kind.
+    Shall be a scalar of type _character_ and of default kind.
 
 ### **Returns**
 
@@ -7297,9 +7273,9 @@ being updated concurrently.
   : The value of the environment variable being queried.
 
   Shall be a scalar of type _character_ and of default kind.
-  The value of **name** is stored in **value**. If **value** is not large enough
-  to hold the data, it is truncated. If **name** is not set, **value** will be
-  filled with blanks.
+  The value of **name** is stored in **value**. If **value** is not
+  large enough to hold the data, it is truncated. If **name** is not
+  set, **value** will be filled with blanks.
 
 - **length**
   : Argument **length** contains the length needed for storing the
@@ -7309,16 +7285,16 @@ being updated concurrently.
 
 - **status**
   : **status** is **-1** if **value** is present but too short for the
-  environment variable; it is **1** if the environment variable does not
-  exist and **2** if the processor does not support environment variables;
-  in all other cases **status** is zero.
+  environment variable; it is **1** if the environment variable does
+  not exist and **2** if the processor does not support environment
+  variables; in all other cases **status** is zero.
 
   Shall be a scalar of type _integer_ and of default kind.
 
 - **trim_name**
-  : If **trim_name** is present with the value **.false.**, the trailing blanks in
-  **name** are significant; otherwise they are not part of the environment
-  variable name.
+  : If **trim_name** is present with the value **.false.**, the trailing
+  blanks in **name** are significant; otherwise they are not part of the
+  environment variable name.
 
   Shall be a scalar of type _logical_ and of default kind.
 
@@ -10493,15 +10469,15 @@ result = maxloc(array, dim, mask) result = maxloc(array, mask)
 ### **Description**
 
 Determines the location of the element in the array with the maximum
-value, or, if the **dim** argument is supplied, determines the locations of
-the maximum element along each row of the array in the **dim** direction. If
-**mask** is present, only the elements for which **mask** is **.true.** are
-considered. If more than one element in the array has the maximum value,
-the location returned is that of the first such element in array element
-order. If the array has zero size, or all of the elements of **mask** are
-.false., then the result is an array of zeroes. Similarly, if **dim** is
-supplied and all of the elements of **mask** along a given row are zero, the
-result value for that row is zero.
+value, or, if the **dim** argument is supplied, determines the locations
+of the maximum element along each row of the array in the **dim**
+direction. If **mask** is present, only the elements for which **mask**
+is **.true.** are considered. If more than one element in the array has
+the maximum value, the location returned is that of the first such element
+in array element order. If the array has zero size, or all of the elements
+of **mask** are .false., then the result is an array of zeroes. Similarly,
+if **dim** is supplied and all of the elements of **mask** along a given
+row are zero, the result value for that row is zero.
 
 ### **Arguments**
 
@@ -10518,12 +10494,12 @@ result value for that row is zero.
 
 ### **Returns**
 
-If **dim** is absent, the result is a rank-one array with a length equal to
-the rank of **array**. If **dim** is present, the result is an array with a rank
-one less than the rank of **array**, and a size corresponding to the size of
-**array** with the **dim** dimension removed. If **dim** is present and **array** has a
-rank of one, the result is a scalar. In all cases, the result is of
-default _integer_ type.
+If **dim** is absent, the result is a rank-one array with a length equal
+to the rank of **array**. If **dim** is present, the result is an array
+with a rank one less than the rank of **array**, and a size corresponding
+to the size of **array** with the **dim** dimension removed. If **dim**
+is present and **array** has a rank of one, the result is a scalar. In
+all cases, the result is of default _integer_ type.
 
 The value returned is reference to the offset from the beginning of the
 array, not necessarily the subscript value if the array subscripts do
@@ -11282,8 +11258,8 @@ Returns the argument with the smallest (most negative) value.
 - **a1**
   : The type shall be _integer_ or _real_.
 
-- **a2, a3, \`\`\`**
-  : An expression of the same type and kind as **A1**.
+- **a2, a3, ...**
+  : An expression of the same type and kind as **a1**.
 
 ### **Returns**
 
@@ -11649,8 +11625,8 @@ call move_alloc(src, dest)
 
 ### **Description**
 
-**move_alloc(src, dest)** moves the allocation from SRC to DEST. SRC
-will become deallocated in the process.
+**move_alloc(src, dest)** moves the allocation from **src*( to
+**dest*. **src** will become deallocated in the process.
 
 ### **Arguments**
 
@@ -11659,7 +11635,7 @@ will become deallocated in the process.
 
 - **dest**
   : allocatable, **intent(out)**, shall be of the same type, kind and
-  rank as SRC.
+  rank as **src*.
 
 ### **Examples**
 
@@ -12212,7 +12188,6 @@ Sample program:
 ```fortran
 program demo_norm2
 implicit none
-integer :: i
 
 real :: x(3,3) = reshape([ &
    1, 2, 3, &
@@ -13793,6 +13768,195 @@ FORTRAN 77 and later
 [**float**(3)](FLOAT)
 
 ###### fortran-lang intrinsic descriptions
+# REDUCE
+
+## reduce
+
+### **Name**
+
+**reduce**(3) - \[TRANSFORMATIONAL\] general reduction of an array
+
+### **Syntax**
+
+There are two forms to this function:
+```fortran
+
+   reduce(array, operation, mask, identity, ordered)
+   reduce(array, operation, dim, mask, identity, ordered)
+```
+
+```fortran
+      type(TYPE),intent(in)          :: array
+      pure function                  :: operation
+      integer,intent(in),optional    :: dim
+      logical,optional               :: mask
+      type(TYPE),intent(in),optional :: identity
+      logical,intent(in),optional    :: ordered
+```
+   where TYPE may be of any type. TYPE must be the same for **array**
+   and **identity**.
+
+### **description**
+
+   Reduce a list of conditionally selected values from an array to a
+   single value by iteratively applying a binary function.
+
+   Common in functional programming, a **reduce** function applies a
+   binary operator (a pure function with two arguments) to all elements
+   cumulatively.
+
+   **reduce** is a "higher-order" function; ie. it is a function that
+   receives other functions as arguments.
+
+   The **reduce** function receives a binary operator (a function with
+   two arguments, just like the basic arithmetic operators). It is first
+   applied to two unused values in the list to generate an accumulator
+   value which is subsequently used as the first argument to the function
+   as the function is recursively applied to all the remaining selected
+   values in the input array.
+
+### **options**
+
+- **array**
+  : An array of any type and allowed rank to select values from.
+
+- **operation**
+  : shall be a pure function with exactly two arguments;
+  each argument shall be a scalar, nonallocatable,
+  nonpointer, nonpolymorphic, nonoptional dummy data object
+  with the same type and type parameters as **array**. If
+  one argument has the ASYNCHRONOUS, TARGET, or VALUE
+  attribute, the other shall have that attribute. Its result
+  shall be a nonpolymorphic scalar and have the same type
+  and type parameters as **array**. **operation** should
+  implement a mathematically associative operation. It
+  need not be commutative.
+
+  NOTE
+
+  If **operation** is not computationally associative, REDUCE
+  without ORDERED=.TRUE. with the same argument values
+  might not always produce the same result, as the processor
+  can apply the associative law to the evaluation.
+
+  Many operations that mathematically are associative are
+  not when applied to floating-point numbers. The order
+  you sum values in may affect the result, for example.
+
+- **dim**
+  : An integer scalar with a value in the range
+  1<= **dim** <= n, where n is the rank of **array**.
+
+- **mask**
+  : (optional) shall be of type logical and shall be
+  conformable with **array**.
+
+  When present only those elements of **array** are passed
+  to **operation** for which the corresponding elements
+  of **mask** are true, as if **array* was filtered with
+  **pack(3)**.
+
+- **identity**
+  : shall be scalar with the same type and type parameters as **array**.
+  If the initial sequence is empty, the result has the value **identify**
+  if **identify** is present, and otherwise, error termination is
+  initiated.
+
+- **ordered**
+  : shall be a logical scalar. If **ordered** is present with the value
+  _.true._, the calls to the **operator** function begins with the first
+  two elements of **array** and the process continues in row-column
+  order until the sequence has only one element which is the value of the
+  reduction. Otherwise, the compiler is free to assume that the operation
+  is commutative and may evaluate the reduction in the most optimal way.
+
+### **result**
+
+The result is of the same type and type parameters as **array**. It is
+scalar if **dim** does not appear.
+
+If **dim** is present, it indicates the one dimension along which to
+perform the reduction, and the resultant array has a rank reduced by
+one relative to the input array.
+
+### **examples**
+
+   The following examples all use the function MY_MULT, which returns
+   the product of its two real arguments.
+```fortran
+   program demo_reduce
+   implicit none
+   character(len=*),parameter :: f='("[",*(g0,",",1x),"]")'
+   integer,allocatable :: arr(:), b(:,:)
+
+   ! Basic usage:
+      ! the product of the elements of an array
+      arr=[1, 2, 3, 4 ]
+      write(*,*) arr
+      write(*,*) 'product=', reduce(arr, my_mult)
+      write(*,*) 'sum=', reduce(arr, my_sum)
+
+   ! Examples of masking:
+      ! the product of only the positive elements of an array
+      arr=[1, -1, 2, -2, 3, -3 ]
+      write(*,*)'product positive values=',reduce(arr, my_mult, mask=arr>0)
+      !write(*,*)reduce(pack(arr,mask=arr>0), my_mult )
+   ! sum values ignoring negative values
+      write(*,*)'sum positive values=',reduce(arr, my_sum, mask=arr>0)
+      !write(*,*)reduce(pack(arr,mask=arr>0), my_sum )
+
+   ! a single-valued array returns the single value as the
+   ! calls to the operator stop when only one element remains
+      arr=[ 1234 ]
+      write(*,*)'single value sum',reduce(arr, my_sum )
+      write(*,*)'single value product',reduce(arr, my_mult )
+
+   ! Example of operations along a dimension:
+   !  If B is the array   1 3 5
+   !                      2 4 6
+      b=reshape([1,2,3,4,5,6],[2,3])
+      write(*,f) REDUCE(B, MY_MULT),'should be [720]'
+      write(*,f) REDUCE(B, MY_MULT, DIM=1),'should be [2,12,30]'
+      write(*,f) REDUCE(B, MY_MULT, DIM=2),'should be [15, 48]'
+
+   contains
+
+   pure function my_mult(a,b) result(c)
+   integer,intent(in) :: a, b
+   integer            :: c
+      c=a*b
+   end function my_mult
+
+   pure function my_sum(a,b) result(c)
+   integer,intent(in) :: a, b
+   integer            :: c
+      c=a+b
+   end function my_sum
+
+   end program demo_reduce
+```
+  Results:
+```text
+    1 2 3 4
+    product= 24
+    sum=     10
+              6
+              6
+   single value sum     1234
+   single value product 1234
+   [720, should be [720],
+   [2, 12, 30, should be [2,12,30],
+```
+
+### **See Also**
+- [co_reduce(3)](CO_REDUCE)
+- [associative:wipipedia](https://en.wikipedia.org/wiki/Associative_property)
+
+### **Standard**
+
+   Fortran 2018
+
+###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 # REPEAT
 
 ## repeat
@@ -13836,7 +14000,7 @@ Sample program:
 ```fortran
 program demo_repeat
 implicit none
-integer :: i, j
+integer :: i
     write(*,'(a)') repeat("^v", 36)         ! line break
     write(*,'(a)') repeat("_", 72)          ! line break
     write(*,'(a)') repeat("1234567890", 7)  ! number line
@@ -14390,19 +14554,24 @@ than one real data type meet the criteria, the kind of the data type
 with the smallest decimal precision is returned. If no real data type
 matches the criteria, the result is
 
-- **-1** if the processor does not support a real data type with a
-  precision greater than or equal to **p**, but the **r** and **radix**
-  requirements can be fulfilled
+  - **-1**
+  : if the processor does not support a real data type with a
+    precision greater than or equal to **p**, but the **r** and **radix**
+    requirements can be fulfilled
 
-  - **-2** if the processor does not support a real type with an
+  - **-2**
+  : if the processor does not support a real type with an
     exponent range greater than or equal to **r**, but **p** and **radix** are
     fulfillable
 
-  - **-3** if **radix** but not **p** and **r** requirements are fulfillable
+  - **-3**
+  : if **radix** but not **p** and **r** requirements are fulfillable
 
-  - **-4** if **radix** and either **p** or **r** requirements are fulfillable
+  - **-4**
+  : if **radix** and either **p** or **r** requirements are fulfillable
 
-  - **-5** if there is no real type with the given **radix**
+  - **-5**
+  : if there is no real type with the given **radix**
 
 ### **Examples**
 
@@ -15333,8 +15502,8 @@ result = spread(source, dim, ncopies)
 Replicates a **source** array **ncopies** times along a specified
 dimension **dim**.
 
-If SOURCE is scalar, the shape of the result is (MAX (NCOPIES, 0)).
-and each element of the result has a value equal to SOURCE.
+If **source** is scalar, the shape of the result is (MAX (NCOPIES, 0)).
+and each element of the result has a value equal to **source**.
 
 ### **Arguments**
 
@@ -15456,7 +15625,7 @@ result = sqrt(x)
    TYPE(kind=KIND) :: value
 ```
 
-Where TYPE may be _real_ or _complex_ and **KIND** may be any
+Where **TYPE** may be _real_ or _complex_ and **KIND** may be any
 kind valid for the declared type.
 
 ### **Description**
@@ -15476,7 +15645,7 @@ is called the principal square root.
 The principal square root of 9 is 3, for example, even though (-3)\*(-3)
 is also 9.
 
-A _real_, _radicand_ must be positive.
+A _real_ radicand must be positive.
 
 Square roots of negative numbers are a special case of complex numbers,
 where the components of the _radicand_ need not be positive in order to
@@ -15485,7 +15654,7 @@ have a valid square root.
 ### **Arguments**
 
 - **x**
-  : If **x** is real its value must be greater than or equal to zero.
+  : If **x** is _real_ its value must be greater than or equal to zero.
   The type shall be _real_ or _complex_.
 
 ### **Returns**
@@ -15937,10 +16106,16 @@ FORTRAN 77 and later. For a complex argument, Fortran 2008 or later.
 ### **Syntax**
 
 ```fortran
-   result = this_image()
-   !or
-   result = this_image(distance)
-   result = this_image(coarray, dim)
+result = this_image()
+```
+or
+```
+```fortran
+result = this_image(distance)
+```
+or
+```fortran
+result = this_image(coarray, dim)
 ```
 
 ### **Description**
@@ -16226,7 +16401,7 @@ Interprets the bitwise representation of **source** in memory as if it
 is the representation of a variable or array of the same type and type
 parameters as **mold**.
 
-This is approximately equivalent to the C concept of \*casting\* one
+This is approximately equivalent to the C concept of "casting" one
 type to another.
 
 ### **Arguments**

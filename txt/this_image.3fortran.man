@@ -4,10 +4,16 @@ THIS_IMAGE(3) - [COLLECTIVE] Cosubscript index of this image
 
 SYNTAX
 
-       result = this_image() 
-       !or
-       result = this_image(distance) 
-       result = this_image(coarray, dim)
+    result = this_image() 
+
+or
+
+    ```fortran
+    result = this_image(distance) 
+
+or
+
+    result = this_image(coarray, dim)
 
 DESCRIPTION
 

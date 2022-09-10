@@ -30,7 +30,7 @@ called the principal square root.
 The principal square root of 9 is 3, for example, even though (-3)*(-3)
 is also 9.
 
-A real, radicand must be positive.
+A real radicand must be positive.
 
 Square roots of negative numbers are a special case of complex numbers,
 where the components of the radicand need not be positive in order to

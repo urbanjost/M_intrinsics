@@ -23,4 +23,3 @@ all: $(PROGRAMS)
 .phony : clean
 clean:
 	rm -f $(PROGRAMS) *.mod
-

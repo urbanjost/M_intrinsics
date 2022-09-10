@@ -162,6 +162,7 @@ append("random_seed.3fortran.html");
 append("range.3fortran.html");
 append("rank.3fortran.html");
 append("real.3fortran.html");
+append("reduce.3fortran.html");
 append("repeat.3fortran.html");
 append("reshape.3fortran.html");
 append("rrspacing.3fortran.html");

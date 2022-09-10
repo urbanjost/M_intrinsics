@@ -33,19 +33,18 @@ than one real data type meet the criteria, the kind of the data type
 with the smallest decimal precision is returned. If no real data type
 matches the criteria, the result is
 
--   -1 if the processor does not support a real data type with a
+-   -1 : if the processor does not support a real data type with a
     precision greater than or equal to P, but the R and RADIX
     requirements can be fulfilled
 
-    -   -2 if the processor does not support a real type with an
-        exponent range greater than or equal to R, but P and RADIX are
-        fulfillable
+-   -2 : if the processor does not support a real type with an exponent
+    range greater than or equal to R, but P and RADIX are fulfillable
 
-    -   -3 if RADIX but not P and R requirements are fulfillable
+-   -3 : if RADIX but not P and R requirements are fulfillable
 
-    -   -4 if RADIX and either P or R requirements are fulfillable
+-   -4 : if RADIX and either P or R requirements are fulfillable
 
-    -   -5 if there is no real type with the given RADIX
+-   -5 : if there is no real type with the given RADIX
 
 EXAMPLES
 

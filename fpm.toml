@@ -16,9 +16,9 @@ auto-tests = true
 auto-examples = false
 
 [[executable]]
-name="bull"
+name="fpm-man"
 source-dir="app"
-main="main.f90"
+main="fpm-man.f90"
 [dependencies]
 M_CLI2        =  {  git  =  "https://github.com/urbanjost/M_CLI2.git"        }
 M_match       =  {  git  =  "https://github.com/urbanjost/M_match.git"       }

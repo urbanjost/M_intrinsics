@@ -218,7 +218,7 @@ textblock=[character(len=256) :: &
 'where the TYPE and KIND is determined by the type and type attributes of', &
 'A, which may be any real, integer, or complex value.', &
 '', &
-'If the type of A is cmplx the type returned will be real with the same', &
+'If the type of A is complex the type returned will be real with the same', &
 'kind as the real part of the input value.', &
 '', &
 'Otherwise the returned type will be the same type as A.', &
@@ -262,29 +262,28 @@ textblock=[character(len=256) :: &
 '     frmt =  ''(1x,a15,1x," In: ",g0,            T51," Out: ",g0)'', &', &
 '     frmtc = ''(1x,a15,1x," In: (",g0,",",g0,")",T51," Out: ",g0)''', &
 '    integer,parameter :: dp=kind(0.0d0)', &
-'    integer,parameter :: sp=kind(0.0)', &
 '', &
+'      ! any integer, real, or complex type', &
 '        write(*, frmt)  ''integer         '',  i, abs(i)', &
 '        write(*, frmt)  ''real            '',  x, abs(x)', &
 '        write(*, frmt)  ''doubleprecision '', rr, abs(rr)', &
 '        write(*, frmtc) ''complex         '',  z, abs(z)', &
-'        !', &
-'        !', &
-'        write(*, *)', &
-'        write(*, *) ''abs is elemental: '', abs([20,  0,  -1,  -3,  100])', &
-'        write(*, *)', &
+'', &
+'      ! any value whose positive value is representable', &
+'      ! A dusty corner is that abs(-huge(0)-1) would input a representable', &
+'      ! negative value but result in a positive value out of range.', &
 '        write(*, *) ''abs range test : '', abs(huge(0)), abs(-huge(0))', &
 '        write(*, *) ''abs range test : '', abs(huge(0.0)), abs(-huge(0.0))', &
 '        write(*, *) ''abs range test : '', abs(tiny(0.0)), abs(-tiny(0.0))', &
 '', &
-'        write(*, *) ''returned real kind:'', cmplx(30.0_dp,40.0_dp,kind=dp), &', &
-'                                      kind(cmplx(30.0_dp,40.0_dp,kind=dp))', &
-'        write(*, *) ''returned real kind:'', cmplx(30.0_dp,40.0_dp),&', &
-'                                      kind(cmplx(30.0_dp,40.0_dp))', &
-'        write(*, *) ''returned real kind:'', cmplx(30.0_sp,40.0_sp),&', &
-'                                      kind(cmplx(30.0_sp,40.0_sp))', &
+'      ! elemental', &
+'        write(*, *) ''abs is elemental: '', abs([20,  0,  -1,  -3,  100])', &
 '', &
-'        write(*, *)', &
+'      ! complex input produces real output  ', &
+'        write(*, *)  cmplx(30.0,40.0)', &
+'', &
+'      ! the returned value for complex input can be thought of as the', &
+'      ! distance from the origin <0,0>', &
 '        write(*, *) ''distance of <XX,YY> from zero is'', &', &
 '                   & distance(30.0_dp,40.0_dp)', &
 '', &
@@ -298,25 +297,21 @@ textblock=[character(len=256) :: &
 '           ! See cmplx(3).', &
 '           distance=abs( cmplx(x,y,kind=dp) )', &
 '        end function distance', &
+'', &
 '    end program demo_abs', &
 '', &
 'Results:', &
 '', &
-'        integer          In: -1                        Out: 1', &
-'        real             In: -1.00000000               Out: 1.00000000', &
-'        doubleprecision  In: -45.780000000000001       Out: 45.780000000000001', &
-'        complex          In: (-3.00000000,-4.00000000) Out: 5.00000000', &
-'', &
-'        abs is elemental:     20     0     1     3   100', &
-'', &
+'        integer          In: -1                     Out: 1', &
+'        real             In: -1.000000              Out: 1.000000', &
+'        doubleprecision  In: -45.78000000000000     Out: 45.78000000000000', &
+'        complex          In: (-3.000000,-4.000000)  Out: 5.000000', &
 '        abs range test :   2147483647  2147483647', &
-'        abs range test :    3.40282347E+38   3.40282347E+38', &
-'        abs range test :    1.17549435E-38   1.17549435E-38', &
-'        returned real kind: (30.000000000000000,40.000000000000000) 8', &
-'        returned real kind: (30.0000000,40.0000000) 4', &
-'        returned real kind: (30.0000000,40.0000000) 4', &
-'', &
-'        distance of <XX,YY> from zero is   50.000000000000000', &
+'        abs range test :   3.4028235E+38  3.4028235E+38', &
+'        abs range test :   1.1754944E-38  1.1754944E-38', &
+'        abs is elemental: 20 0 1 3 100', &
+'        (30.00000,40.00000)', &
+'        distance of <XX,YY> from zero is   50.0000000000000     ', &
 '', &
 'STANDARD', &
 '', &
@@ -755,9 +750,7 @@ textblock=[character(len=256) :: &
 '', &
 '    program demo_adjustr', &
 '    implicit none', &
-'    integer :: right', &
 '    character(len=20) :: str = '' sample string ''', &
-'    character(len=:),allocatable :: str2', &
 '       ! print a short number line', &
 '       write(*,''(a)'')repeat(''1234567890'',5)', &
 '', &
@@ -1069,7 +1062,7 @@ textblock=[character(len=256) :: &
 '', &
 '          [true, false, false]', &
 '', &
-'and ALL(B /= C, DIM = 2) is', &
+'       and **all(B /= C, DIM = 2)** is', &
 '', &
 '            [false, false].', &
 '', &
@@ -2956,7 +2949,7 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'BGE(3),, BLE(3),, BLT(3)', &
+'BGE(3), BLE(3), BLT(3)', &
 '', &
 'fortran-lang intrinsic descriptions', &
 '']
@@ -3004,7 +2997,6 @@ textblock=[character(len=256) :: &
 '    use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64', &
 '    implicit none', &
 '    integer(kind=int64)          :: answer', &
-'    integer                      :: ilen', &
 '    character(len=*),parameter   :: fmt=''(*(g0,1x))''', &
 '        write(*,fmt)''default integer size is'',bit_size(0),''bits''', &
 '        write(*,fmt)bit_size(bit_size(0_int8)), ''which is kind='',kind(0_int8)', &
@@ -3068,7 +3060,7 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'BGE(3),, BGT(3),, BLT(3)', &
+'BGE(3), BGT(3), BLT(3)', &
 '', &
 'fortran-lang intrinsic descriptions', &
 '']
@@ -3750,8 +3742,8 @@ textblock=[character(len=256) :: &
 'The Fortran 90 language defines CMPLX(3) as always returning a result', &
 'that is type COMPLEX(KIND=KIND(0.0)).', &
 '', &
-'This means `CMPLX(D1,D2)'', where `D1'' and `D2'' are doubleprecision, is', &
-'treated as: fortran', &
+'This means CMPLX(D1,D2), where D1 and D2 are doubleprecision, is treated', &
+'as:', &
 '', &
 '          cmplx(sngl(d1), sngl(d2))', &
 '', &
@@ -3788,19 +3780,19 @@ textblock=[character(len=256) :: &
 '', &
 'A complex-part-designator is', &
 '', &
-'``fortran designator % RE or designator % IM.', &
+'    designator % RE', &
+'    or', &
+'    designator % IM.', &
 '', &
+'Where the designator is of complex type.', &
 '', &
-'    Where the designator is of complex type.', &
+'So designator%RE designates the real part of a complex value,', &
+'designator%IM designates the imaginary part of complex value. The type', &
+'of a complex-part-designator is real, and its kind and shape are those', &
+'of the designator.', &
 '', &
-'    So designator%RE designates the real part of a complex value,', &
-'    designator%IM designates the imaginary part of complex value. The type', &
-'    of a complex-part-designator is _real_, and its kind and shape are those', &
-'    of the designator.', &
+'The following are examples of complex part designators:', &
 '', &
-'    The following are examples of complex part designators:', &
-'', &
-'    ```fortran', &
 '           impedance%re           !-- Same value as _real_(impedance)', &
 '           fft%im                 !-- Same value as AIMAG(fft)', &
 '           x%im = 0.0             !-- Sets the imaginary part of x to zero', &
@@ -4457,13 +4449,13 @@ textblock=[character(len=256) :: &
 '    of the same type and type parameters as A. The function shall be the', &
 '    same on all images and with regards to the arguments mathematically', &
 '    commutative and associative. Note that OPERATION may not be an', &
-'    elemental', &
+'    elemental unless it is an intrinsic function.', &
 '', &
-'    -   FUNCTION, UNLESS IT IS AN INTRINSIC FUNCTION. result_image', &
+'-   RESULT_IMAGE', &
 '', &
-'    -   (optional) a scalar integer expression; if present, it shall', &
-'        have the same the same value on all images and refer to an image', &
-'        of the current team.', &
+'    : (optional) a scalar integer expression; if present, it shall have', &
+'    the same the same value on all images and refer to an image of the', &
+'    current team.', &
 '', &
 '-   STAT : (optional) a scalar integer variable', &
 '', &
@@ -4905,11 +4897,11 @@ textblock=[character(len=256) :: &
 '-   TIME : The type shall be real with INTENT(OUT). It is assigned a', &
 '    processor-dependent approximation to the processor time in seconds.', &
 '    If the processor cannot return a meaningful time, a', &
-'    processor-dependent negative value', &
+'    processor-dependent negative value is returned.', &
 '', &
-'    -   IS RETURNED. The start time is left imprecise because the', &
-'        purpose is to time sections of code, as in the example. This', &
-'        might or might not include system overhead time.', &
+'    : The start time is left imprecise because the purpose is to time', &
+'    sections of code, as in the example. This might or might not include', &
+'    system overhead time.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -5671,16 +5663,14 @@ textblock=[character(len=256) :: &
 'than one, then all complete rank one sections of ARRAY along the given', &
 'dimension are shifted. Elements shifted out one end of each rank one', &
 'section are dropped. If BOUNDARY is present then the corresponding value', &
-'of from BOUNDARY is copied back in the other end. If BOUNDARY is not', &
+'from BOUNDARY is copied back in the other end. If BOUNDARY is not', &
 'present then the following are copied in depending on the type of ARRAY.', &
 '', &
-'*Array Type* - *Boundary Value*', &
-'', &
-'-   Numeric 0 of the type and kind of ARRAY', &
-'', &
-'-   Logical .false.', &
-'', &
-'-   CHARACTER(LEN) LEN blanks', &
+'    Array Type     | Boundary Value', &
+'    -----------------------------------------------------', &
+'    Numeric        | 0 of the type and kind of **array**', &
+'    Logical        | .false.', &
+'    Character(len) |  LEN blanks', &
 '', &
 'ARGUMENTS', &
 '', &
@@ -5702,16 +5692,18 @@ textblock=[character(len=256) :: &
 '', &
 '    program demo_eoshift', &
 '    implicit none', &
-'        integer, dimension(3,3) :: a', &
+'    integer, dimension(3,3) :: a', &
+'    integer :: i', &
+'', &
 '        a = reshape( [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], [ 3, 3 ])', &
-'        print ''(3i3)'', a(1,:)', &
-'        print ''(3i3)'', a(2,:)', &
-'        print ''(3i3)'', a(3,:)', &
-'        a = eoshift(a, SHIFT=[1, 2, 1], BOUNDARY=-5, DIM=2)', &
+'        print ''(3i3)'', (a(i,:),i=1,3)', &
+'', &
 '        print *', &
-'        print ''(3i3)'', a(1,:)', &
-'        print ''(3i3)'', a(2,:)', &
-'        print ''(3i3)'', a(3,:)', &
+'', &
+'        ! shift it', &
+'        a = eoshift(a, SHIFT=[1, 2, 1], BOUNDARY=-5, DIM=2)', &
+'        print ''(3i3)'', (a(i,:),i=1,3)', &
+'', &
 '    end program demo_eoshift', &
 '', &
 'Results:', &
@@ -6983,17 +6975,17 @@ textblock=[character(len=256) :: &
 '', &
 'RETURNS', &
 '', &
-'-   VALUE :Shall be a scalar of type character and of default kind.', &
+'-   VALUE : Shall be a scalar of type character and of default kind.', &
 '    After get_command_argument returns, the VALUE argument holds the', &
 '    NUMBER-th command line argument. If VALUE can not hold the argument,', &
 '    it is truncated to fit the length of VALUE. If there are less than', &
 '    NUMBER arguments specified at the command line, VALUE will be filled', &
 '    with blanks.', &
 '', &
-'-   LENGTH :(Optional) Shall be a scalar of type integer. The LENGTH', &
+'-   LENGTH : (Optional) Shall be a scalar of type integer. The LENGTH', &
 '    argument contains the length of the NUMBER-th command line argument.', &
 '', &
-'-   STATUS :(Optional) Shall be a scalar of type integer. If the', &
+'-   STATUS : (Optional) Shall be a scalar of type integer. If the', &
 '    argument retrieval fails, STATUS is a positive number; if VALUE', &
 '    contains a truncated command line argument, STATUS is -1; and', &
 '    otherwise the STATUS is zero.', &
@@ -11079,7 +11071,7 @@ textblock=[character(len=256) :: &
 '', &
 '-   A1 : The type shall be integer or real.', &
 '', &
-'-   A2, A3, ``` : An expression of the same type and kind as A1.', &
+'-   A2, A3, ... : An expression of the same type and kind as A1.', &
 '', &
 'RETURNS', &
 '', &
@@ -11590,7 +11582,7 @@ textblock=[character(len=256) :: &
 '', &
 'DESCRIPTION', &
 '', &
-'MOVE_ALLOC(SRC, DEST) moves the allocation from SRC to DEST. SRC will', &
+'MOVE_ALLOC(SRC, DEST) moves the allocation from *src( to *dest. SRC will', &
 'become deallocated in the process.', &
 '', &
 'ARGUMENTS', &
@@ -11598,7 +11590,7 @@ textblock=[character(len=256) :: &
 '-   SRC : allocatable, INTENT(INOUT), may be of any type and kind.', &
 '', &
 '-   DEST : allocatable, INTENT(OUT), shall be of the same type, kind and', &
-'    rank as SRC.', &
+'    rank as *src.', &
 '', &
 'EXAMPLES', &
 '', &
@@ -12110,7 +12102,6 @@ textblock=[character(len=256) :: &
 '', &
 '    program demo_norm2', &
 '    implicit none', &
-'    integer :: i', &
 '', &
 '    real :: x(3,3) = reshape([ &', &
 '       1, 2, 3, &', &
@@ -13832,7 +13823,192 @@ shortname="real"
 call process()
 
 
-case('166','repeat')
+case('166','reduce')
+
+textblock=[character(len=256) :: &
+'', &
+'NAME', &
+'', &
+'REDUCE(3) - [TRANSFORMATIONAL] general reduction of an array', &
+'', &
+'SYNTAX', &
+'', &
+'There are two forms to this function:', &
+'', &
+'', &
+'       reduce(array, operation, mask, identity, ordered)', &
+'       reduce(array, operation, dim, mask, identity, ordered)', &
+'', &
+'          type(TYPE),intent(in)          :: array', &
+'          pure function                  :: operation', &
+'          integer,intent(in),optional    :: dim', &
+'          logical,optional               :: mask', &
+'          type(TYPE),intent(in),optional :: identity', &
+'          logical,intent(in),optional    :: ordered', &
+'', &
+'where TYPE may be of any type. TYPE must be the same for ARRAY and', &
+'IDENTITY.', &
+'', &
+'DESCRIPTION', &
+'', &
+'Reduce a list of conditionally selected values from an array to a single', &
+'value by iteratively applying a binary function.', &
+'', &
+'Common in functional programming, a REDUCE function applies a binary', &
+'operator (a pure function with two arguments) to all elements', &
+'cumulatively.', &
+'', &
+'REDUCE is a "higher-order" function; ie. it is a function that receives', &
+'other functions as arguments.', &
+'', &
+'The REDUCE function receives a binary operator (a function with two', &
+'arguments, just like the basic arithmetic operators). It is first', &
+'applied to two unused values in the list to generate an accumulator', &
+'value which is subsequently used as the first argument to the function', &
+'as the function is recursively applied to all the remaining selected', &
+'values in the input array.', &
+'', &
+'OPTIONS', &
+'', &
+'-   ARRAY : An array of any type and allowed rank to select values from.', &
+'', &
+'-   OPERATION : shall be a pure function with exactly two arguments;', &
+'    each argument shall be a scalar, nonallocatable, nonpointer,', &
+'    nonpolymorphic, nonoptional dummy data object with the same type and', &
+'    type parameters as ARRAY. If one argument has the ASYNCHRONOUS,', &
+'    TARGET, or VALUE attribute, the other shall have that attribute. Its', &
+'    result shall be a nonpolymorphic scalar and have the same type and', &
+'    type parameters as ARRAY. OPERATION should implement a', &
+'    mathematically associative operation. It need not be commutative.', &
+'', &
+'    NOTE', &
+'', &
+'    If OPERATION is not computationally associative, REDUCE without', &
+'    ORDERED=.TRUE. with the same argument values might not always', &
+'    produce the same result, as the processor can apply the associative', &
+'    law to the evaluation.', &
+'', &
+'    Many operations that mathematically are associative are not when', &
+'    applied to floating-point numbers. The order you sum values in may', &
+'    affect the result, for example.', &
+'', &
+'-   DIM : An integer scalar with a value in the range 1<= DIM <= n,', &
+'    where n is the rank of ARRAY.', &
+'', &
+'-   MASK : (optional) shall be of type logical and shall be conformable', &
+'    with ARRAY.', &
+'', &
+'    When present only those elements of ARRAY are passed to OPERATION', &
+'    for which the corresponding elements of MASK are true, as if *array', &
+'    was filtered with PACK(3).', &
+'', &
+'-   IDENTITY : shall be scalar with the same type and type parameters as', &
+'    ARRAY. If the initial sequence is empty, the result has the value', &
+'    IDENTIFY if IDENTIFY is present, and otherwise, error termination is', &
+'    initiated.', &
+'', &
+'-   ORDERED : shall be a logical scalar. If ORDERED is present with the', &
+'    value .true., the calls to the OPERATOR function begins with the', &
+'    first two elements of ARRAY and the process continues in row-column', &
+'    order until the sequence has only one element which is the value of', &
+'    the reduction. Otherwise, the compiler is free to assume that the', &
+'    operation is commutative and may evaluate the reduction in the most', &
+'    optimal way.', &
+'', &
+'RESULT', &
+'', &
+'The result is of the same type and type parameters as ARRAY. It is', &
+'scalar if DIM does not appear.', &
+'', &
+'If DIM is present, it indicates the one dimension along which to perform', &
+'the reduction, and the resultant array has a rank reduced by one', &
+'relative to the input array.', &
+'', &
+'EXAMPLES', &
+'', &
+'The following examples all use the function MY_MULT, which returns the', &
+'product of its two real arguments.', &
+'', &
+'       program demo_reduce', &
+'       implicit none', &
+'       character(len=*),parameter :: f=''("[",*(g0,",",1x),"]")''', &
+'       integer,allocatable :: arr(:), b(:,:)', &
+'', &
+'       ! Basic usage:', &
+'          ! the product of the elements of an array', &
+'          arr=[1, 2, 3, 4 ]', &
+'          write(*,*) arr', &
+'          write(*,*) ''product='', reduce(arr, my_mult)', &
+'          write(*,*) ''sum='', reduce(arr, my_sum)', &
+'', &
+'       ! Examples of masking:', &
+'          ! the product of only the positive elements of an array', &
+'          arr=[1, -1, 2, -2, 3, -3 ]', &
+'          write(*,*)''product positive values='',reduce(arr, my_mult, mask=arr>0)', &
+'          !write(*,*)reduce(pack(arr,mask=arr>0), my_mult )', &
+'       ! sum values ignoring negative values', &
+'          write(*,*)''sum positive values='',reduce(arr, my_sum, mask=arr>0)', &
+'          !write(*,*)reduce(pack(arr,mask=arr>0), my_sum )', &
+'', &
+'       ! a single-valued array returns the single value as the', &
+'       ! calls to the operator stop when only one element remains', &
+'          arr=[ 1234 ]', &
+'          write(*,*)''single value sum'',reduce(arr, my_sum )', &
+'          write(*,*)''single value product'',reduce(arr, my_mult )', &
+'', &
+'       ! Example of operations along a dimension:', &
+'       !  If B is the array   1 3 5', &
+'       !                      2 4 6', &
+'          b=reshape([1,2,3,4,5,6],[2,3])', &
+'          write(*,f) REDUCE(B, MY_MULT),''should be [720]''', &
+'          write(*,f) REDUCE(B, MY_MULT, DIM=1),''should be [2,12,30]''', &
+'          write(*,f) REDUCE(B, MY_MULT, DIM=2),''should be [15, 48]''', &
+'', &
+'       contains', &
+'', &
+'       pure function my_mult(a,b) result(c)', &
+'       integer,intent(in) :: a, b', &
+'       integer            :: c', &
+'          c=a*b', &
+'       end function my_mult', &
+'', &
+'       pure function my_sum(a,b) result(c)', &
+'       integer,intent(in) :: a, b', &
+'       integer            :: c', &
+'          c=a+b', &
+'       end function my_sum', &
+'', &
+'       end program demo_reduce', &
+'', &
+'Results:', &
+'', &
+'        1 2 3 4', &
+'        product= 24', &
+'        sum=     10', &
+'                  6', &
+'                  6', &
+'       single value sum     1234', &
+'       single value product 1234', &
+'       [720, should be [720],', &
+'       [2, 12, 30, should be [2,12,30],', &
+'', &
+'SEE ALSO', &
+'', &
+'-   co_reduce(3)', &
+'-   associative:wipipedia', &
+'', &
+'STANDARD', &
+'', &
+'Fortran 2018', &
+'', &
+'fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
+'']
+
+shortname="reduce"
+call process()
+
+
+case('167','repeat')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13870,7 +14046,7 @@ textblock=[character(len=256) :: &
 '', &
 '    program demo_repeat', &
 '    implicit none', &
-'    integer :: i, j', &
+'    integer :: i', &
 '        write(*,''(a)'') repeat("^v", 36)         ! line break', &
 '        write(*,''(a)'') repeat("_", 72)          ! line break', &
 '        write(*,''(a)'') repeat("1234567890", 7)  ! number line', &
@@ -13906,7 +14082,7 @@ shortname="repeat"
 call process()
 
 
-case('167','reshape')
+case('168','reshape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13983,7 +14159,7 @@ shortname="reshape"
 call process()
 
 
-case('168','rrspacing')
+case('169','rrspacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14026,7 +14202,7 @@ shortname="rrspacing"
 call process()
 
 
-case('169','same_type_as')
+case('170','same_type_as')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14070,7 +14246,7 @@ shortname="same_type_as"
 call process()
 
 
-case('170','scale')
+case('171','scale')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14133,7 +14309,7 @@ shortname="scale"
 call process()
 
 
-case('171','scan')
+case('172','scan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14208,7 +14384,7 @@ shortname="scan"
 call process()
 
 
-case('172','selected_char_kind')
+case('173','selected_char_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14272,7 +14448,7 @@ shortname="selected_char_kind"
 call process()
 
 
-case('173','selected_int_kind')
+case('174','selected_int_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14334,7 +14510,7 @@ shortname="selected_int_kind"
 call process()
 
 
-case('174','selected_real_kind')
+case('175','selected_real_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14373,19 +14549,18 @@ textblock=[character(len=256) :: &
 'with the smallest decimal precision is returned. If no real data type', &
 'matches the criteria, the result is', &
 '', &
-'-   -1 if the processor does not support a real data type with a', &
+'-   -1 : if the processor does not support a real data type with a', &
 '    precision greater than or equal to P, but the R and RADIX', &
 '    requirements can be fulfilled', &
 '', &
-'    -   -2 if the processor does not support a real type with an', &
-'        exponent range greater than or equal to R, but P and RADIX are', &
-'        fulfillable', &
+'-   -2 : if the processor does not support a real type with an exponent', &
+'    range greater than or equal to R, but P and RADIX are fulfillable', &
 '', &
-'    -   -3 if RADIX but not P and R requirements are fulfillable', &
+'-   -3 : if RADIX but not P and R requirements are fulfillable', &
 '', &
-'    -   -4 if RADIX and either P or R requirements are fulfillable', &
+'-   -4 : if RADIX and either P or R requirements are fulfillable', &
 '', &
-'    -   -5 if there is no real type with the given RADIX', &
+'-   -5 : if there is no real type with the given RADIX', &
 '', &
 'EXAMPLES', &
 '', &
@@ -14426,7 +14601,7 @@ shortname="selected_real_kind"
 call process()
 
 
-case('175','set_exponent')
+case('176','set_exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14487,7 +14662,7 @@ shortname="set_exponent"
 call process()
 
 
-case('176','shape')
+case('177','shape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14558,7 +14733,7 @@ shortname="shape"
 call process()
 
 
-case('177','shifta')
+case('178','shifta')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14604,7 +14779,7 @@ shortname="shifta"
 call process()
 
 
-case('178','shiftl')
+case('179','shiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14648,7 +14823,7 @@ shortname="shiftl"
 call process()
 
 
-case('179','shiftr')
+case('180','shiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14692,7 +14867,7 @@ shortname="shiftr"
 call process()
 
 
-case('180','sign')
+case('181','sign')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14770,7 +14945,7 @@ shortname="sign"
 call process()
 
 
-case('181','sin')
+case('182','sin')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14896,7 +15071,7 @@ shortname="sin"
 call process()
 
 
-case('182','sinh')
+case('183','sinh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14993,7 +15168,7 @@ shortname="sinh"
 call process()
 
 
-case('183','size')
+case('184','size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15183,7 +15358,7 @@ shortname="size"
 call process()
 
 
-case('184','spacing')
+case('185','spacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15244,7 +15419,7 @@ shortname="spacing"
 call process()
 
 
-case('185','spread')
+case('186','spread')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15368,7 +15543,7 @@ shortname="spread"
 call process()
 
 
-case('186','sqrt')
+case('187','sqrt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15404,7 +15579,7 @@ textblock=[character(len=256) :: &
 'The principal square root of 9 is 3, for example, even though (-3)*(-3)', &
 'is also 9.', &
 '', &
-'A real, radicand must be positive.', &
+'A real radicand must be positive.', &
 '', &
 'Square roots of negative numbers are a special case of complex numbers,', &
 'where the components of the radicand need not be positive in order to', &
@@ -15462,7 +15637,7 @@ shortname="sqrt"
 call process()
 
 
-case('187','storage_size')
+case('188','storage_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15527,7 +15702,7 @@ shortname="storage_size"
 call process()
 
 
-case('188','sum')
+case('189','sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15615,7 +15790,7 @@ shortname="sum"
 call process()
 
 
-case('189','system_clock')
+case('190','system_clock')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15720,7 +15895,7 @@ shortname="system_clock"
 call process()
 
 
-case('190','tan')
+case('191','tan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15775,7 +15950,7 @@ shortname="tan"
 call process()
 
 
-case('191','tanh')
+case('192','tanh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15836,7 +16011,7 @@ shortname="tanh"
 call process()
 
 
-case('192','this_image')
+case('193','this_image')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15846,10 +16021,16 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '', &
-'       result = this_image() ', &
-'       !or', &
-'       result = this_image(distance) ', &
-'       result = this_image(coarray, dim)', &
+'    result = this_image() ', &
+'', &
+'or', &
+'', &
+'    ```fortran', &
+'    result = this_image(distance) ', &
+'', &
+'or', &
+'', &
+'    result = this_image(coarray, dim)', &
 '', &
 'DESCRIPTION', &
 '', &
@@ -15917,7 +16098,7 @@ shortname="this_image"
 call process()
 
 
-case('193','tiny')
+case('194','tiny')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15980,7 +16161,7 @@ shortname="tiny"
 call process()
 
 
-case('194','trailz')
+case('195','trailz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16095,7 +16276,7 @@ shortname="trailz"
 call process()
 
 
-case('195','transfer')
+case('196','transfer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16113,7 +16294,7 @@ textblock=[character(len=256) :: &
 'the representation of a variable or array of the same type and type', &
 'parameters as MOLD.', &
 '', &
-'This is approximately equivalent to the C concept of *casting* one type', &
+'This is approximately equivalent to the C concept of "casting" one type', &
 'to another.', &
 '', &
 'ARGUMENTS', &
@@ -16204,7 +16385,7 @@ shortname="transfer"
 call process()
 
 
-case('196','transpose')
+case('197','transpose')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16293,7 +16474,7 @@ shortname="transpose"
 call process()
 
 
-case('197','trim')
+case('198','trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16364,7 +16545,7 @@ shortname="trim"
 call process()
 
 
-case('198','ubound')
+case('199','ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16481,7 +16662,7 @@ shortname="ubound"
 call process()
 
 
-case('199','unpack')
+case('200','unpack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16549,7 +16730,7 @@ shortname="unpack"
 call process()
 
 
-case('200','verify')
+case('201','verify')
 
 textblock=[character(len=256) :: &
 '', &
@@ -35842,6 +36023,7 @@ end module M_list2
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
+ 
  
 !>>>>> build/dependencies/M_escape/src/M_escape.f90
 !>

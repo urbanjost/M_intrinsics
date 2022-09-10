@@ -70,7 +70,9 @@ integer,parameter :: dp=kind(0.0d0)
     write(*, frmt)  'doubleprecision ', rr, abs(rr)
     write(*, frmtc) 'complex         ',  z, abs(z)
 
-  ! any value
+  ! any value whose positive value is representable
+  ! A dusty corner is that abs(-huge(0)-1) would input a representable
+  ! negative value but result in a positive value out of range.
     write(*, *) 'abs range test : ', abs(huge(0)), abs(-huge(0))
     write(*, *) 'abs range test : ', abs(huge(0.0)), abs(-huge(0.0))
     write(*, *) 'abs range test : ', abs(tiny(0.0)), abs(-tiny(0.0))

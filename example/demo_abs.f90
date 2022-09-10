@@ -8,29 +8,28 @@
        frmt =  '(1x,a15,1x," In: ",g0,            T51," Out: ",g0)', &
        frmtc = '(1x,a15,1x," In: (",g0,",",g0,")",T51," Out: ",g0)'
       integer,parameter :: dp=kind(0.0d0)
-      integer,parameter :: sp=kind(0.0)
 
+        ! any integer, real, or complex type
           write(*, frmt)  'integer         ',  i, abs(i)
           write(*, frmt)  'real            ',  x, abs(x)
           write(*, frmt)  'doubleprecision ', rr, abs(rr)
           write(*, frmtc) 'complex         ',  z, abs(z)
-          !
-          !
-          write(*, *)
-          write(*, *) 'abs is elemental: ', abs([20,  0,  -1,  -3,  100])
-          write(*, *)
+
+        ! any value whose positive value is representable
+        ! A dusty corner is that abs(-huge(0)-1) would input a representable
+        ! negative value but result in a positive value out of range.
           write(*, *) 'abs range test : ', abs(huge(0)), abs(-huge(0))
           write(*, *) 'abs range test : ', abs(huge(0.0)), abs(-huge(0.0))
           write(*, *) 'abs range test : ', abs(tiny(0.0)), abs(-tiny(0.0))
 
-          write(*, *) 'returned real kind:', cmplx(30.0_dp,40.0_dp,kind=dp), &
-                                        kind(cmplx(30.0_dp,40.0_dp,kind=dp))
-          write(*, *) 'returned real kind:', cmplx(30.0_dp,40.0_dp),&
-                                        kind(cmplx(30.0_dp,40.0_dp))
-          write(*, *) 'returned real kind:', cmplx(30.0_sp,40.0_sp),&
-                                        kind(cmplx(30.0_sp,40.0_sp))
+        ! elemental
+          write(*, *) 'abs is elemental: ', abs([20,  0,  -1,  -3,  100])
 
-          write(*, *)
+        ! complex input produces real output
+          write(*, *)  cmplx(30.0,40.0)
+
+        ! the returned value for complex input can be thought of as the
+        ! distance from the origin <0,0>
           write(*, *) 'distance of <XX,YY> from zero is', &
                      & distance(30.0_dp,40.0_dp)
 
@@ -44,4 +43,5 @@
              ! See cmplx(3).
              distance=abs( cmplx(x,y,kind=dp) )
           end function distance
+
       end program demo_abs
