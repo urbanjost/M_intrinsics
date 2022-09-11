@@ -24,7 +24,7 @@ status of **array** and **scalar**, respectively.
 ### **Arguments**
 
 - **array**
-  : the argument shall be an _allocatable_ array.
+  : the argument shall be an _allocatable_ array or allocatable scalar.
 
 - **scalar**
   : the argument shall be an _allocatable_ scalar.
@@ -32,8 +32,8 @@ status of **array** and **scalar**, respectively.
 ### **Returns**
 
 The return value is a scalar _logical_ with the default logical kind type
-parameter. If the argument is allocated then the result is .true.;
-otherwise, it returns .false..
+parameter. If the argument is allocated then the result is _.true._;
+otherwise, it returns _.false._.
 
 ### **Examples**
 
@@ -89,4 +89,4 @@ scalar entities are available in Fortran 2003 and later.
 
 [**move_alloc**(3)](MOVE_ALLOC)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

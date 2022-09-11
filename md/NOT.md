@@ -60,4 +60,4 @@ Fortran 95 and later
 
 [**ibclr**(3)](IBCLR)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost

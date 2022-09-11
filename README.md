@@ -36,16 +36,15 @@ being explored to provide better formatting.
 
 Add
 
-o XOR
-o REDUCE
-o COSHAPE
-o FAILED_IMAGES
-o GET_TEAM
-o IMAGE_STATUS
-o LCOBOUND
-o STOPPED_IMAGES
-o TEAM_NUMBER
-o UCOBOUND
+ + XOR
+ + COSHAPE
+ + FAILED_IMAGES
+ + GET_TEAM
+ + IMAGE_STATUS
+ + LCOBOUND
+ + STOPPED_IMAGES
+ + TEAM_NUMBER
+ + UCOBOUND
 
 ## NAME
 
@@ -54,7 +53,7 @@ o UCOBOUND
 ## DESCRIPTION
 
 Unlike many parts of a language, intrinsics can naturally be described
-in discrete units using man-page-like descriptions. 
+in discrete units using man-page-like descriptions.
 
 This is a project to 
 

@@ -73,4 +73,4 @@ Fortran 2003 and later
 
 [**allocated**(3)](ALLOCATED)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

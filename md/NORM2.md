@@ -91,4 +91,4 @@ Fortran 2008 and later
 [**sum**(3)](SUM),
 [**hypot**(3)](HYPOT)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
