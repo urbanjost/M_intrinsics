@@ -1,7 +1,7 @@
 ## NOTE
 [https://fortran-lang.org](https://fortran-lang.org)
 now includes these documents. They may be changed using the instructions
-found in the [webpage](https://github.com/fortran-lang/webpage) repository.
+found in the [webpage](https://fortran-lang.org/en/learn/intrinsics/) repository.
 
 Keeping these original documents synced with those may be complicated by
 the fact that graphics, Unicode  and math expressions may be included in Kramdown
