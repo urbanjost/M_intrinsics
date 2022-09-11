@@ -1,4 +1,10 @@
 #!/bin/bash
+# to update the webpage site go to 
+#    https://github.com/fortran-lang/webpage
+# and click on [fork] and create a fork under your ID
+#    https://github.com/urbanjost/webpage
+# on your machine go to $HOME/github/FORK and clone your fork
+#    git clone https://github.com/urbanjost/webpage.git
 
 # where my fork is
 cd $HOME/github/FORK/webpage
