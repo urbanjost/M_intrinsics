@@ -5,7 +5,6 @@
 **spread**(3) - \[ARRAY CONSTRUCTION\] Add a dimension to an array
 
 ### **Syntax**
-
 ```fortran
 result = spread(source, dim, ncopies)
 
@@ -15,7 +14,6 @@ result = spread(source, dim, ncopies)
    integer,intent(in) :: dim
    integer,intent(in) :: ncopies
 ```
-
 ### **Description**
 
 Replicates a **source** array **ncopies** times along a specified
@@ -119,8 +117,6 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**pack**(3)](PACK),
-[**unpack**(3)](UNPACK),
 [**merge**(3)](MERGE),
 [**pack**(3)](PACK),
 [**unpack**(3)](UNPACK)
