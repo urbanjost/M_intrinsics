@@ -32,7 +32,7 @@ Fortran 95 and later
 
 SEE ALSO
 
-IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBSET(3), IAND(3),
-IOR(3), IEOR(3), MVBITS(3)
+BTEST(3), IAND(3), IBCLR(3), IBSET(3), IEOR(3), IOR(3), NOT(3),
+MVBITS(3)
 
 fortran-lang intrinsic descriptions

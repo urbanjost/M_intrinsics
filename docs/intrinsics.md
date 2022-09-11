@@ -3147,15 +3147,13 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**ieor**(3)](IEOR),
-[**ibclr**(3)](IBCLR),
-[**not**(3)](NOT),
+[**iand**(3)](IAND),
 [**ibclr**(3)](IBCLR),
 [**ibits**(3)](IBITS),
 [**ibset**(3)](IBSET),
-[**iand**(3)](IAND),
-[**ior**(3)](IOR),
 [**ieor**(3)](IEOR),
+[**ior**(3)](IOR),
+[**not**(3)](NOT),
 [**mvbits**(3)](MVBITS)
 
 _fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
@@ -7789,15 +7787,13 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**ieor**(3)](IEOR),
-[**ibclr**(3)](IBCLR),
-[**not**(3)](NOT),
 [**btest**(3)](BTEST),
 [**ibclr**(3)](IBCLR),
 [**ibits**(3)](IBITS),
 [**ibset**(3)](IBSET),
-[**ior**(3)](IOR),
 [**ieor**(3)](IEOR),
+[**ior**(3)](IOR),
+[**not**(3)](NOT),
 [**mvbits**(3)](MVBITS)
 
 _fortran-lang intrinsic descriptions_
@@ -7918,16 +7914,15 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**ieor**(3)](IEOR),
-[**not**(3)](NOT),
 [**btest**(3)](BTEST),
+[**iand**(3)](IAND),
 [**ibclr**(3)](IBCLR),
 [**ibits**(3)](IBITS),
 [**ibset**(3)](IBSET),
-[**iand**(3)](IAND),
-[**ior**(3)](IOR),
 [**ieor**(3)](IEOR),
-[**mvbits**(3)](MVBITS)
+[**ior**(3)](IOR),
+[**mvbits**(3)](MVBITS),
+[**not**(3)](NOT)
 
 _fortran-lang intrinsic descriptions_
 # IBITS
@@ -7973,15 +7968,13 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**ieor**(3)](IEOR),
-[**ibclr**(3)](IBCLR),
-[**not**(3)](NOT),
 [**btest**(3)](BTEST),
+[**iand**(3)](IAND),
 [**ibclr**(3)](IBCLR),
 [**ibset**(3)](IBSET),
-[**iand**(3)](IAND),
-[**ior**(3)](IOR),
 [**ieor**(3)](IEOR),
+[**ior**(3)](IOR),
+[**not**(3)](NOT),
 [**mvbits**(3)](MVBITS)
 
 _fortran-lang intrinsic descriptions_
@@ -8024,15 +8017,13 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**ieor**(3)](IEOR),
-[**ibclr**(3)](IBCLR),
-[**not**(3)](NOT),
 [**btest**(3)](BTEST),
+[**iand**(3)](IAND),
 [**ibclr**(3)](IBCLR),
 [**ibits**(3)](IBITS),
-[**iand**(3)](IAND),
-[**ior**(3)](IOR),
 [**ieor**(3)](IEOR),
+[**ior**(3)](IOR),
+[**not**(3)](NOT),
 [**mvbits**(3)](MVBITS)
 
 _fortran-lang intrinsic descriptions_
@@ -8206,15 +8197,14 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**ieor**(3)](IEOR),
-[**ibclr**(3)](IBCLR),
-[**not**(3)](NOT),
 [**btest**(3)](BTEST),
+[**iand**(3)](IAND),
 [**ibclr**(3)](IBCLR),
 [**ibits**(3)](IBITS),
 [**ibset**(3)](IBSET),
-[**iand**(3)](IAND),
+[**ieor**(3)](IEOR),
 [**ior**(3)](IOR),
+[**not**(3)](NOT),
 [**mvbits**(3)](MVBITS)
 
 _fortran-lang intrinsic descriptions_
@@ -8562,15 +8552,13 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**ieor**(3)](IEOR),
-[**ibclr**(3)](IBCLR),
-[**not**(3)](NOT),
 [**btest**(3)](BTEST),
+[**iand**(3)](IAND),
 [**ibclr**(3)](IBCLR),
 [**ibits**(3)](IBITS),
 [**ibset**(3)](IBSET),
-[**iand**(3)](IAND),
 [**ieor**(3)](IEOR),
+[**not**(3)](NOT),
 [**mvbits**(3)](MVBITS)
 
 _fortran-lang intrinsic descriptions_
@@ -11035,8 +11023,6 @@ Fortran 95 and later
 ### **See Also**
 
 [**pack**(3)](PACK),
-[**unpack**(3)](UNPACK),
-[**pack**(3)](PACK),
 [**spread**(3)](SPREAD),
 [**unpack**(3)](UNPACK)
 
@@ -11802,16 +11788,14 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**ieor**(3)](IEOR),
-[**ibclr**(3)](IBCLR),
-[**not**(3)](NOT),
 [**btest**(3)](BTEST),
+[**iand**(3)](IAND),
 [**ibclr**(3)](IBCLR),
 [**ibits**(3)](IBITS),
 [**ibset**(3)](IBSET),
-[**iand**(3)](IAND),
+[**ieor**(3)](IEOR),
 [**ior**(3)](IOR),
-[**ieor**(3)](IEOR)
+[**not**(3)](NOT)
 
 _fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # NEAREST
@@ -12704,9 +12688,7 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**unpack**(3)](UNPACK),
 [**merge**(3)](MERGE),
-[**pack**(3)](PACK),
 [**spread**(3)](SPREAD),
 [**unpack**(3)](UNPACK)
 
@@ -15463,7 +15445,6 @@ _fortran-lang intrinsic descriptions_
 **spread**(3) - \[ARRAY CONSTRUCTION\] Add a dimension to an array
 
 ### **Syntax**
-
 ```fortran
 result = spread(source, dim, ncopies)
 
@@ -15473,7 +15454,6 @@ result = spread(source, dim, ncopies)
    integer,intent(in) :: dim
    integer,intent(in) :: ncopies
 ```
-
 ### **Description**
 
 Replicates a **source** array **ncopies** times along a specified
@@ -15577,8 +15557,6 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**pack**(3)](PACK),
-[**unpack**(3)](UNPACK),
 [**merge**(3)](MERGE),
 [**pack**(3)](PACK),
 [**unpack**(3)](UNPACK)
@@ -16919,11 +16897,9 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**pack**(3)](PACK),
 [**merge**(3)](MERGE),
 [**pack**(3)](PACK),
-[**spread**(3)](SPREAD),
-[**unpack**(3)](UNPACK)
+[**spread**(3)](SPREAD)
 
 _fortran-lang intrinsic descriptions_
 # VERIFY

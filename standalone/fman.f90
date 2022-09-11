@@ -3210,8 +3210,8 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'IEOR(3), IBCLR(3), NOT(3), IBCLR(3), IBITS(3), IBSET(3), IAND(3),', &
-'IOR(3), IEOR(3), MVBITS(3)', &
+'IAND(3), IBCLR(3), IBITS(3), IBSET(3), IEOR(3), IOR(3), NOT(3),', &
+'MVBITS(3)', &
 '', &
 'fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '']
@@ -7983,8 +7983,8 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3),', &
-'IOR(3), IEOR(3), MVBITS(3)', &
+'BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IEOR(3), IOR(3), NOT(3),', &
+'MVBITS(3)', &
 '', &
 'fortran-lang intrinsic descriptions', &
 '']
@@ -8101,8 +8101,8 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'IEOR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IAND(3),', &
-'IOR(3), IEOR(3), MVBITS(3)', &
+'BTEST(3), IAND(3), IBCLR(3), IBITS(3), IBSET(3), IEOR(3), IOR(3),', &
+'MVBITS(3), NOT(3)', &
 '', &
 'fortran-lang intrinsic descriptions', &
 '']
@@ -8149,8 +8149,8 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBSET(3), IAND(3),', &
-'IOR(3), IEOR(3), MVBITS(3)', &
+'BTEST(3), IAND(3), IBCLR(3), IBSET(3), IEOR(3), IOR(3), NOT(3),', &
+'MVBITS(3)', &
 '', &
 'fortran-lang intrinsic descriptions', &
 '']
@@ -8194,8 +8194,8 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IAND(3),', &
-'IOR(3), IEOR(3), MVBITS(3)', &
+'BTEST(3), IAND(3), IBCLR(3), IBITS(3), IEOR(3), IOR(3), NOT(3),', &
+'MVBITS(3)', &
 '', &
 'fortran-lang intrinsic descriptions', &
 '']
@@ -8356,8 +8356,8 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3),', &
-'IAND(3), IOR(3), MVBITS(3)', &
+'BTEST(3), IAND(3), IBCLR(3), IBITS(3), IBSET(3), IEOR(3), IOR(3),', &
+'NOT(3), MVBITS(3)', &
 '', &
 'fortran-lang intrinsic descriptions', &
 '']
@@ -8686,8 +8686,8 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3),', &
-'IAND(3), IEOR(3), MVBITS(3)', &
+'BTEST(3), IAND(3), IBCLR(3), IBITS(3), IBSET(3), IEOR(3), NOT(3),', &
+'MVBITS(3)', &
 '', &
 'fortran-lang intrinsic descriptions', &
 '']
@@ -10902,7 +10902,7 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'PACK(3), UNPACK(3), PACK(3), SPREAD(3), UNPACK(3)', &
+'PACK(3), SPREAD(3), UNPACK(3)', &
 '', &
 'fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '']
@@ -11758,8 +11758,7 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3),', &
-'IAND(3), IOR(3), IEOR(3)', &
+'BTEST(3), IAND(3), IBCLR(3), IBITS(3), IBSET(3), IEOR(3), IOR(3), NOT(3)', &
 '', &
 'fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '']
@@ -12608,7 +12607,7 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'UNPACK(3), MERGE(3), PACK(3), SPREAD(3), UNPACK(3)', &
+'MERGE(3), SPREAD(3), UNPACK(3)', &
 '', &
 'fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '']
@@ -15518,7 +15517,7 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'PACK(3), UNPACK(3), MERGE(3), PACK(3), UNPACK(3)', &
+'MERGE(3), PACK(3), UNPACK(3)', &
 '', &
 'fortran-lang intrinsic descriptions', &
 '']
@@ -16796,7 +16795,7 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'PACK(3), MERGE(3), PACK(3), SPREAD(3), UNPACK(3)', &
+'MERGE(3), PACK(3), SPREAD(3)', &
 '', &
 'fortran-lang intrinsic descriptions', &
 '']

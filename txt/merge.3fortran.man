@@ -133,6 +133,6 @@ Fortran 95 and later
 
 SEE ALSO
 
-PACK(3), UNPACK(3), PACK(3), SPREAD(3), UNPACK(3)
+PACK(3), SPREAD(3), UNPACK(3)
 
 fortran-lang intrinsic descriptions (license: MIT) @urbanjost
