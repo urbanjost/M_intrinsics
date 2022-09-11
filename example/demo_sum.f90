@@ -9,7 +9,7 @@
          csum= sum(c(1:nd))
          cpsum= sum (c(1:nd), mask=c.gt.0)
          cbpsum= sum(c(1:nd), mask=b.gt.0.0)
-         print *, 'Sum of all elements in c = ' , csum
+         print *, 'Sum of all elements in c = ', csum
          print *, 'Sum of Positive elements in c = ', cpsum
          print *, 'Sum of elements in c when corresponding elements in b>0', &
          & ' =', cbpsum

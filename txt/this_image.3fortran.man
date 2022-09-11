@@ -4,12 +4,12 @@ THIS_IMAGE(3) - [COLLECTIVE] Cosubscript index of this image
 
 SYNTAX
 
-    result = this_image() 
+    result = this_image()
 
 or
 
     ```fortran
-    result = this_image(distance) 
+    result = this_image(distance)
 
 or
 

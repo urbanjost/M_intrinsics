@@ -23,9 +23,11 @@ SIGN() may be used to distinguish between REAL values 0.0 and −0.0. SIGN
 
 ARGUMENTS
 
--   A : Shall be of type integer or real
+-   A : The value whos magnitude will be returned. Shall be of type
+    integer or real
 
--   B : Shall be of the same type and kind as A
+-   B : The value whose sign will be returned. Shall be of the same type
+    and kind as A
 
 RETURNS
 

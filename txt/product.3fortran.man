@@ -125,14 +125,14 @@ Sample program:
 
        subroutine print_matrix_int(title,arr)
        implicit none
-       
+
        !@(#) print small 2d integer arrays in row-column format
-       
+
        character(len=*),intent(in)  :: title
        integer,intent(in)           :: arr(:,:)
        integer                      :: i
        character(len=:),allocatable :: biggest
-       
+
           print all
           print all, trim(title),':(',shape(arr),')'  ! print title
           biggest='           '  ! make buffer to write integer into
@@ -145,7 +145,7 @@ Sample program:
              write(*,fmt=biggest,advance='no')arr(i,:)
              write(*,'(" ]")')
           enddo
-       
+
        end subroutine print_matrix_int
 
     end program demo_product

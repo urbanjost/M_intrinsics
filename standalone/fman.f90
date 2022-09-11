@@ -279,7 +279,7 @@ textblock=[character(len=256) :: &
 '      ! elemental', &
 '        write(*, *) ''abs is elemental: '', abs([20,  0,  -1,  -3,  100])', &
 '', &
-'      ! complex input produces real output  ', &
+'      ! complex input produces real output', &
 '        write(*, *)  cmplx(30.0,40.0)', &
 '', &
 '      ! the returned value for complex input can be thought of as the', &
@@ -311,7 +311,7 @@ textblock=[character(len=256) :: &
 '        abs range test :   1.1754944E-38  1.1754944E-38', &
 '        abs is elemental: 20 0 1 3 100', &
 '        (30.00000,40.00000)', &
-'        distance of <XX,YY> from zero is   50.0000000000000     ', &
+'        distance of <XX,YY> from zero is   50.0000000000000', &
 '', &
 'STANDARD', &
 '', &
@@ -976,8 +976,7 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   MASK : shall be a logical array. That is, the type of the argument', &
-'    shall be logical and it shall not be scalar.', &
+'-   MASK : shall be a logical array.', &
 '', &
 '-   DIM : (optional) DIM shall be a scalar integer with a value that', &
 '    lies between one and the rank of MASK. The corresponding actual', &
@@ -1000,9 +999,9 @@ textblock=[character(len=256) :: &
 '', &
 '3.  Result Characteristics. The result is of type logical with the same', &
 '    kind type parameter as MASK. It is scalar if DIM is absent or N = 1;', &
-'    otherwise, the result has rank N - 1 and shape [D1 , D2 , . . . ,', &
-'    DDIM-1 , DDIM+1 , . . . , DN ] where [D1 , D2 , . . . , DN ] is the', &
-'    shape of MASK.', &
+'    otherwise, the result has rank N - 1 and shape [D1, D2, . . .,', &
+'    DDIM-1, DDIM+1, . . ., DN ] where [D1, D2, . . ., DN ] is the shape', &
+'    of MASK.', &
 '', &
 '4.  Result Value.', &
 '', &
@@ -1011,9 +1010,9 @@ textblock=[character(len=256) :: &
 '    has value false if any element of MASK is false.', &
 '', &
 '    Case (ii): : If MASK has rank one, ALL(MASK,DIM) is equal to', &
-'    ALL(MASK). Otherwise, the value of element (S1 , S2 , . . . , SDIM-1', &
-'    , SDIM+1 , . . . , SN ) of all (MASK, DIM) is equal to ALL(MASK (S1', &
-'    , S2 , . . . , SDIM-1 , :, SDIM+1 , . . . , SN )).', &
+'    ALL(MASK). Otherwise, the value of element (S1, S2, . . ., SDIM-1,', &
+'    SDIM+1, . . ., SN ) of all (MASK, DIM) is equal to ALL(MASK (S1, S2,', &
+'    . . ., SDIM-1, :, SDIM+1, . . ., SN )).', &
 '', &
 'EXAMPLES', &
 '', &
@@ -1021,50 +1020,33 @@ textblock=[character(len=256) :: &
 '', &
 '    program demo_all', &
 '    implicit none', &
-'    logical l', &
-'       l = all([.true., .true., .true.])', &
-'       print *, l', &
-'       call section', &
-'', &
-'    contains', &
-'', &
-'    subroutine section', &
-'    integer a(2,3), b(2,3)', &
-'      a = 1', &
-'      b = 1', &
-'      b(2,2) = 2', &
-'      print *, all(a .eq. b, 1)', &
-'      print *, all(a .eq. b, 2)', &
-'    end subroutine section', &
+'    logical bool', &
+'      ! basic usage', &
+'       ! is everything true?', &
+'       bool = all([ .true., .true., .true. ])', &
+'       bool = all([ .true., .false., .true. ])', &
+'       print *, bool', &
+'      ! by a dimension', &
+'       ARRAYS: block', &
+'       integer :: a(2,3), b(2,3)', &
+'        ! set everything to one except one value in b', &
+'        a = 1', &
+'        b = 1', &
+'        b(2,2) = 2', &
+'        ! now compare those two arrays', &
+'        print *,''entire array :'', all(a .eq. b )', &
+'        print *,''compare columns:'', all(a .eq. b, dim=1)', &
+'        print *,''compare rows:'', all(a .eq. b, dim=2)', &
+'      end block ARRAYS', &
 '    end program demo_all', &
 '', &
 'Results:', &
 '', &
 '        T', &
-'        T F T', &
-'        T F', &
-'', &
-'Case (i):', &
-'', &
-'         The value of all([.TRUE., .FALSE., .TRUE.]) is false.', &
-'', &
-'Case (ii):', &
-'', &
-'                              1|3|5', &
-'       If B is the array      -+-+-', &
-'                              2|4|6', &
-'', &
-'                              0|3|5', &
-'       and C is the array     -+-+-', &
-'                              7|4|8', &
-'', &
-'       then all(B /= C, DIM = 1) is', &
-'', &
-'          [true, false, false]', &
-'', &
-'       and **all(B /= C, DIM = 2)** is', &
-'', &
-'            [false, false].', &
+'        F', &
+'        entire array : F', &
+'        compare columns: T F T', &
+'        compare rows: T F', &
 '', &
 'STANDARD', &
 '', &
@@ -1100,7 +1082,8 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   ARRAY : the argument shall be an allocatable array.', &
+'-   ARRAY : the argument shall be an allocatable array or allocatable', &
+'    scalar.', &
 '', &
 '-   SCALAR : the argument shall be an allocatable scalar.', &
 '', &
@@ -3021,7 +3004,7 @@ textblock=[character(len=256) :: &
 '', &
 'Fortran 95 and later', &
 '', &
-'fortran-lang intrinsic descriptions (license MIT) @urbanjost', &
+'fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '']
 
 shortname="bit_size"
@@ -3830,7 +3813,7 @@ textblock=[character(len=256) :: &
 '       ! NOTE:', &
 '       ! The following is intuitive and works without calling cmplx(3)', &
 '       ! but does not work for variables just constants', &
-'       z8 = (1.2345678901234567d0 , 1.2345678901234567d0 )', &
+'       z8 = (1.2345678901234567d0, 1.2345678901234567d0 )', &
 '       print *, ''Z8 defined with constants='',z8', &
 '    end program demo_aimag', &
 '', &
@@ -5801,7 +5784,7 @@ textblock=[character(len=256) :: &
 '       ! calculate the epsilon value of a machine the hard way', &
 '       real(kind=dp) :: t', &
 '       real(kind=dp) :: my_dp_eps', &
-'       ', &
+'', &
 '          ! starting with a value of 1, keep dividing the value', &
 '          ! by 2 until no change is detected. Note that with', &
 '          ! infinite precision this would be an infinite loop,', &
@@ -5814,7 +5797,7 @@ textblock=[character(len=256) :: &
 '             if (t <= 1.0d0) exit', &
 '          enddo SET_ST', &
 '          my_dp_eps = 2.0d0*my_dp_eps', &
-'       ', &
+'', &
 '       end function my_dp_eps', &
 '    end program demo_epsilon', &
 '', &
@@ -5972,7 +5955,7 @@ textblock=[character(len=256) :: &
 '', &
 '-   Wikipedia:error function', &
 '', &
-'fortran-lang intrinsic descriptions license: MIT) @urbanjost', &
+'fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '']
 
 shortname="erfc"
@@ -6238,7 +6221,7 @@ textblock=[character(len=256) :: &
 '', &
 '    program demo_exp', &
 '    implicit none', &
-'    real :: x , re, im', &
+'    real :: x, re, im', &
 '    complex :: cx', &
 '', &
 '       x = 1.0', &
@@ -6465,11 +6448,11 @@ textblock=[character(len=256) :: &
 'the result is an array of rank one and of size equal to the rank of', &
 'ARRAY; otherwise, the result is of rank n - 1 and shape', &
 '', &
-'       [d1 , d2 , . . . , dDIM-1 , dDIM+1 , . . . , dn ]', &
+'       [d1, d2, . . ., dDIM-1, dDIM+1, . . ., dn ]', &
 '', &
 'where', &
 '', &
-'       [d1 , d2 , . . . , dn ]', &
+'       [d1, d2, . . ., dn ]', &
 '', &
 'is the shape of ARRAY.', &
 '', &
@@ -6478,7 +6461,7 @@ textblock=[character(len=256) :: &
 '-   CASE (I): The result of FINDLOC (ARRAY, VALUE) is a rank-one array', &
 '    whose element values are the values of the subscripts of an element', &
 '    of ARRAY whose value matches VALUE. If there is such a value, the', &
-'    ith subscript returned lies in the range 1 to ei , where ei is the', &
+'    ith subscript returned lies in the range 1 to ei, where ei is the', &
 '    extent of the ith dimension of ARRAY. If no elements match VALUE or', &
 '    ARRAY has size zero, all elements of the result are zero.', &
 '', &
@@ -6486,10 +6469,10 @@ textblock=[character(len=256) :: &
 '    rank-one array whose element values are the values of the subscripts', &
 '    of an element of ARRAY, corresponding to a true element of MASK,', &
 '    whose value matches VALUE. If there is such a value, the ith', &
-'    subscript returned lies in the range 1 to ei , where ei is the', &
-'    extent of the ith dimension of ARRAY. If no elements match VALUE,', &
-'    ARRAY has size zero, or every element of MASK has the value false,', &
-'    all elements of the result are zero.', &
+'    subscript returned lies in the range 1 to ei, where ei is the extent', &
+'    of the ith dimension of ARRAY. If no elements match VALUE, ARRAY has', &
+'    size zero, or every element of MASK has the value false, all', &
+'    elements of the result are zero.', &
 '', &
 '-   CASE (III): If ARRAY has rank one, the result of', &
 '', &
@@ -6501,13 +6484,13 @@ textblock=[character(len=256) :: &
 '', &
 'Otherwise, the value of element', &
 '', &
-'          (s1 , s2 , . . . , sDIM-1 , sDIM+1 , . . . , sn )', &
+'          (s1, s2, . . ., sDIM-1, sDIM+1, . . ., sn )', &
 '', &
 'of the result is equal to', &
 '', &
 '          findloc (array (s1, s2, ..., sdim-1, :, sdim+1, ..., sn ), &', &
 '          value, dim=1 [, mask = mask (s1, s2, ..., sdim-1, :,', &
-'                          sdim+1 , ... , sn )]).', &
+'                          sdim+1, ..., sn )]).', &
 '', &
 'EXAMPLES', &
 '', &
@@ -7708,7 +7691,7 @@ textblock=[character(len=256) :: &
 'DESCRIPTION', &
 '', &
 'HYPOT(X,Y) is referred to as the Euclidean distance function. It is', &
-'equal to $\sqrt{x^2+y^2}$ , without undue underflow or overflow.', &
+'equal to $\sqrt{x^2+y^2}$, without undue underflow or overflow.', &
 '', &
 'In mathematics, the Euclidean distance between two points in Euclidean', &
 'space is the length of a line segment between two points.', &
@@ -8276,7 +8259,7 @@ textblock=[character(len=256) :: &
 '', &
 '       subroutine printme()', &
 '       character(len=1) :: letter', &
-'       ', &
+'', &
 '          letter=char(i)', &
 '          select case(i)', &
 '          case (:31,127:)', &
@@ -8284,7 +8267,7 @@ textblock=[character(len=256) :: &
 '          case default', &
 '             write(*,''(1x,i0.3,1x,a,1x,i0)'')i,letter,ichar(letter)', &
 '          end select', &
-'       ', &
+'', &
 '       end subroutine printme', &
 '', &
 '    end program demo_ichar', &
@@ -8687,7 +8670,7 @@ textblock=[character(len=256) :: &
 '    integer :: i, j, k', &
 '       i=53       ! i=00110101 binary (lowest order byte)', &
 '       j=45       ! j=00101101 binary (lowest order byte)', &
-'       k=ior(i,j) ! k=00111101 binary (lowest order byte) , k=61 decimal', &
+'       k=ior(i,j) ! k=00111101 binary (lowest order byte), k=61 decimal', &
 '       write(*,''(i8,1x,b8.8)'')i,i,j,j,k,k', &
 '    end program demo_ior', &
 '', &
@@ -10941,7 +10924,7 @@ textblock=[character(len=256) :: &
 '    result = merge_bits(i, j, mask)', &
 '', &
 '        elemental function merge_bits(i,j,mask) result(r)', &
-'        integer(kind=KIND) ,intent(in) :: i, j, mask', &
+'        integer(kind=KIND), intent(in) :: i, j, mask', &
 '        integer(kind=KIND) :: r', &
 '', &
 'where the result and all input values have the same integer type and', &
@@ -11015,7 +10998,7 @@ textblock=[character(len=256) :: &
 '       ! using BOZ values', &
 '       print fmt, &', &
 '       & merge_bits(32767_int16,    o''12345'',         32767_int16), &', &
-'       & merge_bits(o''12345''   , 32767_int16, b''0000000000010101''), &', &
+'       & merge_bits(o''12345'', 32767_int16, b''0000000000010101''), &', &
 '       & merge_bits(32767_int16,    o''12345'',             z''1234'')', &
 '', &
 '       ! a do-it-yourself equivalent for comparison and validation', &
@@ -11044,7 +11027,7 @@ textblock=[character(len=256) :: &
 '', &
 'Fortran 2008 and later', &
 '', &
-'fortran-lang intrinsic descriptions (license MIT) @urbanjost', &
+'fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '']
 
 shortname="merge_bits"
@@ -11721,7 +11704,7 @@ textblock=[character(len=256) :: &
 '', &
 '        !! COPY PART OF A VALUE TO ITSELF', &
 '        ! can copy bit from a value to itself', &
-'        call mvbits(intfrom,0,1,intfrom,31) ', &
+'        call mvbits(intfrom,0,1,intfrom,31)', &
 '        write(*,bits)intfrom,intfrom', &
 '', &
 '        !! MOVING BYTES AT A TIME', &
@@ -11778,7 +11761,7 @@ textblock=[character(len=256) :: &
 'IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3),', &
 'IAND(3), IOR(3), IEOR(3)', &
 '', &
-'fortran-lang intrinsic descriptions (license MIT) @urbanjost', &
+'fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '']
 
 shortname="mvbits"
@@ -12105,7 +12088,7 @@ textblock=[character(len=256) :: &
 '', &
 '    real :: x(3,3) = reshape([ &', &
 '       1, 2, 3, &', &
-'       4, 5 ,6, &', &
+'       4, 5, 6, &', &
 '       7, 8, 9  &', &
 '    ],shape(x),order=[2,1])', &
 '', &
@@ -12428,13 +12411,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   X', &
-'    : a scalar of type integer or real to be tested for whether it can', &
+'-   X : a scalar of type integer or real to be tested for whether it can', &
 '    be stored in a variable of the type and kind of MOLD', &
 '', &
-'-   MOLD', &
-'    : shall be an integer or real scalar. If it is a variable, it need', &
-'    not be defined, as only the type and kind are queried.', &
+'-   MOLD : shall be an integer or real scalar. If it is a variable, it', &
+'    need not be defined, as only the type and kind are queried.', &
 '', &
 '-   ROUND : flag whether to round the value of XX before validating it', &
 '    as an integer value like MOLD.', &
@@ -12485,7 +12466,7 @@ textblock=[character(len=256) :: &
 '    integer(kind=int8) :: i8, j8', &
 '', &
 '        ! compilers are not required to produce an error on out of range.', &
-'        ! here storing the default integers into 1-byte integers ', &
+'        ! here storing the default integers into 1-byte integers', &
 '        ! incorrectly can have unexpected results', &
 '        do i=127,130', &
 '           i8=i', &
@@ -13092,14 +13073,14 @@ textblock=[character(len=256) :: &
 '', &
 '       subroutine print_matrix_int(title,arr)', &
 '       implicit none', &
-'       ', &
+'', &
 '       !@(#) print small 2d integer arrays in row-column format', &
-'       ', &
+'', &
 '       character(len=*),intent(in)  :: title', &
 '       integer,intent(in)           :: arr(:,:)', &
 '       integer                      :: i', &
 '       character(len=:),allocatable :: biggest', &
-'       ', &
+'', &
 '          print all', &
 '          print all, trim(title),'':('',shape(arr),'')''  ! print title', &
 '          biggest=''           ''  ! make buffer to write integer into', &
@@ -13112,7 +13093,7 @@ textblock=[character(len=256) :: &
 '             write(*,fmt=biggest,advance=''no'')arr(i,:)', &
 '             write(*,''(" ]")'')', &
 '          enddo', &
-'       ', &
+'', &
 '       end subroutine print_matrix_int', &
 '', &
 '    end program demo_product', &
@@ -13944,11 +13925,11 @@ textblock=[character(len=256) :: &
 '       ! Examples of masking:', &
 '          ! the product of only the positive elements of an array', &
 '          arr=[1, -1, 2, -2, 3, -3 ]', &
-'          write(*,*)''product positive values='',reduce(arr, my_mult, mask=arr>0)', &
-'          !write(*,*)reduce(pack(arr,mask=arr>0), my_mult )', &
+'          write(*,*)''positive value product='',reduce(arr, my_mult, mask=arr>0)', &
+'          !write(*,*)''positive value sum='',reduce(pack(arr,mask=arr>0), my_mult )', &
 '       ! sum values ignoring negative values', &
 '          write(*,*)''sum positive values='',reduce(arr, my_sum, mask=arr>0)', &
-'          !write(*,*)reduce(pack(arr,mask=arr>0), my_sum )', &
+'          !write(*,*)''sum positive values='',reduce(pack(arr,mask=arr>0), my_sum )', &
 '', &
 '       ! a single-valued array returns the single value as the', &
 '       ! calls to the operator stop when only one element remains', &
@@ -13982,15 +13963,16 @@ textblock=[character(len=256) :: &
 '', &
 'Results:', &
 '', &
-'        1 2 3 4', &
-'        product= 24', &
-'        sum=     10', &
-'                  6', &
-'                  6', &
-'       single value sum     1234', &
-'       single value product 1234', &
-'       [720, should be [720],', &
-'       [2, 12, 30, should be [2,12,30],', &
+'         >  1 2 3 4', &
+'         >  product= 24', &
+'         >  sum=     10', &
+'         >  positive value sum= 6', &
+'         >  sum positive values= 6', &
+'         >  single value sum     1234', &
+'         >  single value product 1234', &
+'         > [720, should be [720],', &
+'         > [2, 12, 30, should be [2,12,30],', &
+'         > [15, 48, should be [15, 48],', &
 '', &
 'SEE ALSO', &
 '', &
@@ -14896,9 +14878,11 @@ textblock=[character(len=256) :: &
 '', &
 'ARGUMENTS', &
 '', &
-'-   A : Shall be of type integer or real', &
+'-   A : The value whos magnitude will be returned. Shall be of type', &
+'    integer or real', &
 '', &
-'-   B : Shall be of the same type and kind as A', &
+'-   B : The value whose sign will be returned. Shall be of the same type', &
+'    and kind as A', &
 '', &
 'RETURNS', &
 '', &
@@ -15745,7 +15729,7 @@ textblock=[character(len=256) :: &
 '', &
 '    program simple_sum', &
 '    implicit none', &
-'    integer :: x(5) = [ 1, 2, 3, 4 ,5 ]', &
+'    integer :: x(5) = [ 1, 2, 3, 4, 5 ]', &
 '       print *, sum(x)                        ! all elements, sum = 15', &
 '       print *, sum(x, mask=mod(x, 2)==1)     ! odd elements, sum = 9', &
 '    end program simple_sum', &
@@ -15763,7 +15747,7 @@ textblock=[character(len=256) :: &
 '       csum= sum(c(1:nd))', &
 '       cpsum= sum (c(1:nd), mask=c.gt.0)', &
 '       cbpsum= sum(c(1:nd), mask=b.gt.0.0)', &
-'       print *, ''Sum of all elements in c = '' , csum', &
+'       print *, ''Sum of all elements in c = '', csum', &
 '       print *, ''Sum of Positive elements in c = '', cpsum', &
 '       print *, ''Sum of elements in c when corresponding elements in b>0'', &', &
 '       & '' ='', cbpsum', &
@@ -16021,12 +16005,12 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '', &
-'    result = this_image() ', &
+'    result = this_image()', &
 '', &
 'or', &
 '', &
 '    ```fortran', &
-'    result = this_image(distance) ', &
+'    result = this_image(distance)', &
 '', &
 'or', &
 '', &
@@ -16135,8 +16119,8 @@ textblock=[character(len=256) :: &
 '', &
 '    program demo_tiny', &
 '    implicit none', &
-'       print *, ''default real is from'',tiny(0.0) ,''to'',huge(0.0)', &
-'       print *, ''doubleprecision is from '',tiny(0.0d0),''to'',huge(0.0d0)', &
+'       print *, ''default real is from'', tiny(0.0), ''to'',huge(0.0)', &
+'       print *, ''doubleprecision is from '', tiny(0.0d0), ''to'',huge(0.0d0)', &
 '    end program demo_tiny', &
 '', &
 'Results:', &
@@ -16668,52 +16652,143 @@ textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '', &
-'UNPACK(3) - [ARRAY CONSTRUCTION] Store the elements of a vector in an', &
-'array of higher rank', &
+'UNPACK(3) - [ARRAY CONSTRUCTION] scatter the elements of a vector into', &
+'an array using a mask', &
 '', &
 'SYNTAX', &
 '', &
 '    result = unpack(vector, mask, field)', &
 '', &
+'     type(TYPE(kind=KIND)),intent(in) :: vector(:)', &
+'     logical,intent(in)               :: mask(..)', &
+'     type(TYPE(kind=KIND)),intent(in) :: field(..)', &
+'     type(TYPE(kind=KIND))            :: result(..)', &
+'', &
 'DESCRIPTION', &
 '', &
-'Store the elements of VECTOR in an array of higher rank.', &
+'Scatter the elements of VECTOR into a copy of an array FIELD of any rank', &
+'using .true. values from MASK in array element order to specify', &
+'placement of the VECTOR values.', &
+'', &
+'So a copy of FIELD is generated with select elements replaced with', &
+'values from VECTOR. This allows for complex replacement patterns that', &
+'would be difficult when using array syntax or multiple assignment', &
+'statements, particularly when the replacements are conditional.', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   VECTOR : Shall be an array of any type and rank one. It shall have', &
-'    at least as many elements as MASK has .TRUE. values.', &
+'-   VECTOR : New values to place into specified locations in FIELD.', &
+'    Shall be an array of any type and rank one. It shall have at least', &
+'    as many elements as MASK has .TRUE. values.', &
 '', &
-'-   MASK : Shall be an array of type logical.', &
+'-   MASK : Shall be an array of type logical that specifies which values', &
+'    in FIELD are to be replaced with values from VECTOR.', &
 '', &
-'-   FIELD : Shall be of the same type as VECTOR and have the same shape', &
-'    as MASK.', &
+'-   FIELD : The original data to be edited. Shall be of the same type', &
+'    and type parameters as VECTOR and shall be conformable with MASK.', &
 '', &
 'RETURNS', &
+'', &
+'The result is an array of the same type and type parameters as VECTOR', &
+'and the same shape as MASK.', &
+'', &
+'The element of the result that corresponds to the ith true element of', &
+'MASK, in array element order, has the value VECTOR (i) for i = 1, 2, . .', &
+'., t, where t is the number of true values in MASK. Each other element', &
+'has a value equal to FIELD if FIELD is scalar or to the corresponding', &
+'element of FIELD if it is an array.', &
 '', &
 'The resulting array corresponds to FIELD with .TRUE. elements of MASK', &
 'replaced by values from VECTOR in array element order.', &
 '', &
 'EXAMPLES', &
 '', &
+'Particular values may be "scattered" to particular positions in an array', &
+'by using', &
+'', &
+'                           1 0 0', &
+'        If M is the array  0 1 0', &
+'                           0 0 1', &
+'', &
+'        V is the array [1, 2, 3],', &
+'                                   . T .', &
+'        and Q is the logical mask  T . .', &
+'                                   . . T', &
+'        where "T" represents true and "." represents false, then the result of', &
+'', &
+'        UNPACK (V, MASK = Q, FIELD = M) has the value', &
+'', &
+'          1 2 0', &
+'          1 1 0', &
+'          0 0 3', &
+'', &
+'        and the result of UNPACK (V, MASK = Q, FIELD = 0) has the value', &
+'', &
+'          0 2 0', &
+'          1 0 0', &
+'          0 0 3', &
+'', &
 'Sample program:', &
 '', &
 '    program demo_unpack', &
 '    implicit none', &
-'    integer :: vector(2)  = [1,1]', &
-'    logical :: mask(4)  = [ .true., .false., .false., .true. ]', &
-'    integer :: field(2,2) = 0, unity(2,2)', &
+'    logical,parameter :: T=.true., F=.false.', &
 '', &
-'       ! result: unity matrix', &
-'       unity = unpack(vector, reshape(mask, [2,2]), field)', &
-'       write(*,*)unity,size(unity),shape(unity)', &
+'    integer :: vector(2)  = [1,1]', &
+'', &
+'    ! mask and field must conform', &
+'    integer,parameter :: r=2, c=2', &
+'    logical :: mask(r,c)  = reshape([ T,F,F,T ],[2,2])', &
+'    integer :: field(r,c) = 0, unity(2,2)', &
+'', &
+'       ! basic usage', &
+'       unity = unpack( vector, mask, field )', &
+'       call print_matrix_int(''unity='', unity)', &
+'', &
+'       ! if FIELD is a scalar it is used to fill all the elements', &
+'       ! not assigned to by the vector and mask.', &
+'       call print_matrix_int(''scalar field'',         &', &
+'       & unpack(                                     &', &
+'       & vector=[ 1, 2, 3, 4 ],                      &', &
+'       & mask=reshape([ T,F,T,F,F,F,T,F,T ], [3,3]), &', &
+'       & field=0) )', &
+'', &
+'    contains', &
+'', &
+'       subroutine print_matrix_int(title,arr)', &
+'       ! convenience routine:', &
+'       ! just prints small integer arrays in row-column format', &
+'       implicit none', &
+'       character(len=*),intent(in)  :: title', &
+'       integer,intent(in)           :: arr(:,:)', &
+'       integer                      :: i', &
+'       character(len=:),allocatable :: biggest', &
+'', &
+'            write(*,*)trim(title)', &
+'            ! make buffer to write integer into', &
+'            biggest=''           ''', &
+'            ! find how many characters to use for integers', &
+'            write(biggest,''(i0)'')ceiling(log10(real(maxval(abs(arr)))))+2', &
+'            ! use this format to write a row', &
+'            biggest=''("  [",*(i''//trim(biggest)//'':,","))''', &
+'            ! print one row of array at a time', &
+'            do i=1,size(arr,dim=1)', &
+'               write(*,fmt=biggest,advance=''no'')arr(i,:)', &
+'               write(*,''(" ]")'')', &
+'            enddo', &
+'       end subroutine print_matrix_int', &
 '', &
 '    end program demo_unpack', &
 '', &
 'Results:', &
 '', &
-'                  1           0           0           1           4', &
-'                  2           2', &
+'       > unity=', &
+'       >  [ 1, 0 ]', &
+'       >  [ 0, 1 ]', &
+'       > scalar field', &
+'       >  [  1,  0,  3 ]', &
+'       >  [  0,  0,  0 ]', &
+'       >  [  2,  0,  4 ]', &
 '', &
 'STANDARD', &
 '', &

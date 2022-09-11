@@ -21,13 +21,11 @@ a real or integer variable the same type and kind as MOLD.
 
 ARGUMENTS
 
--   X
-    : a scalar of type integer or real to be tested for whether it can
+-   X : a scalar of type integer or real to be tested for whether it can
     be stored in a variable of the type and kind of MOLD
 
--   MOLD
-    : shall be an integer or real scalar. If it is a variable, it need
-    not be defined, as only the type and kind are queried.
+-   MOLD : shall be an integer or real scalar. If it is a variable, it
+    need not be defined, as only the type and kind are queried.
 
 -   ROUND : flag whether to round the value of XX before validating it
     as an integer value like MOLD.
@@ -78,7 +76,7 @@ Sample program:
     integer(kind=int8) :: i8, j8
 
         ! compilers are not required to produce an error on out of range.
-        ! here storing the default integers into 1-byte integers 
+        ! here storing the default integers into 1-byte integers
         ! incorrectly can have unexpected results
         do i=127,130
            i8=i

@@ -121,7 +121,7 @@ end program demo_abs
 
    FORTRAN 77 and later
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # ACHAR
 
 ## achar
@@ -296,7 +296,7 @@ FORTRAN 77 and later, with KIND argument Fortran 2003 and later
 - [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code)
 - [M_attr module](https://github.com/urbanjost/M_attr) for controlling ANSI-compatible terminals
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # ACOSH
 
 ## acosh
@@ -365,7 +365,7 @@ Fortran 2008 and later
 
 Inverse function: [**cosh**(3)](COSH)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # ACOS
 
 ## acos
@@ -444,7 +444,7 @@ FORTRAN 77 and later; for a _complex_ argument - Fortran 2008 and later
 
 Inverse function: [**cos**(3](COS))
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # ADJUSTL
 
 ## adjustl
@@ -517,7 +517,7 @@ Fortran 95 and later
 
 [**adjustr**(3)](ADJUSTR)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # ADJUSTR
 
 ## adjustr
@@ -601,7 +601,7 @@ Fortran 95 and later
 
 [**adjustl**(3)](ADJUSTL)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # AIMAG
 
 ## aimag
@@ -671,7 +671,7 @@ Results:
 
 FORTRAN 77 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # AINT
 
 ## aint
@@ -771,7 +771,7 @@ FORTRAN 77 and later
 [**ceiling**(3)](CEILING),
 [**floor**(3)](FLOOR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ALL
 
 ## all
@@ -796,8 +796,7 @@ in the array along dimension **dim**.
 ### **Arguments**
 
 - **mask**
-  : shall be a logical array. That is, the type of the argument shall be
-  _logical_ and it shall not be scalar.
+  : shall be a logical array.
 
 - **dim**
   : (optional) **dim** shall be a scalar integer with a value that lies
@@ -822,8 +821,8 @@ where the **dim** dimension is elided.
 3.  Result Characteristics. The result is of type _logical_ with the
     same kind type parameter as **mask**. It is scalar if **dim**
     is absent or **n = 1**; otherwise, the result has rank **n - 1**
-    and shape **\[d1 , d2 , . . . , dDIM-1 , dDIM+1 , . . . , dn \]**
-    where **\[d1 , d2 , . . . , dn \]** is the shape of **mask**.
+    and shape **\[d1, d2, . . ., dDIM-1, dDIM+1, . . ., dn \]**
+    where **\[d1, d2, . . ., dn \]** is the shape of **mask**.
 
 4.  Result Value.
 
@@ -835,10 +834,10 @@ where the **dim** dimension is elided.
 
     Case (ii):
     : If **mask** has rank one, **all(mask,dim)** is equal to
-    **all(mask)**. Otherwise, the value of element **(s1 , s2 ,
-    . . . , sdim-1 , sdim+1 , . . . , sn )** of all **(mask,
-    dim)** is equal to **all(mask (s1 , s2 , . . . , sdim-1 ,
-    :, sdim+1 , . . . , sn ))**.
+    **all(mask)**. Otherwise, the value of element **(s1, s2,
+    . . ., sdim-1, sdim+1, . . ., sn )** of all **(mask,
+    dim)** is equal to **all(mask (s1, s2, . . ., sdim-1,
+    :, sdim+1, . . ., sn ))**.
 
 ### **Examples**
 
@@ -847,63 +846,40 @@ Sample program:
 ```fortran
 program demo_all
 implicit none
-logical l
-   l = all([.true., .true., .true.])
-   print *, l
-   call section
-
-contains
-
-subroutine section
-integer a(2,3), b(2,3)
-  a = 1
-  b = 1
-  b(2,2) = 2
-  print *, all(a .eq. b, 1)
-  print *, all(a .eq. b, 2)
-end subroutine section
+logical bool
+  ! basic usage
+   ! is everything true?
+   bool = all([ .true., .true., .true. ])
+   bool = all([ .true., .false., .true. ])
+   print *, bool
+  ! by a dimension
+   ARRAYS: block
+   integer :: a(2,3), b(2,3)
+    ! set everything to one except one value in b
+    a = 1
+    b = 1
+    b(2,2) = 2
+    ! now compare those two arrays
+    print *,'entire array :', all(a .eq. b )
+    print *,'compare columns:', all(a .eq. b, dim=1)
+    print *,'compare rows:', all(a .eq. b, dim=2)
+  end block ARRAYS
 end program demo_all
 ```
-
-Results:
-
+  Results:
 ```text
     T
-    T F T
-    T F
-```
-
-Case (i):
-
-```text
-     The value of all([.TRUE., .FALSE., .TRUE.]) is false.
-```
-
-Case (ii):
-
-```text
-                          1|3|5
-   If B is the array      -+-+-
-                          2|4|6
-
-                          0|3|5
-   and C is the array     -+-+-
-                          7|4|8
-
-   then all(B /= C, DIM = 1) is
-
-      [true, false, false]
-
-   and **all(B /= C, DIM = 2)** is
-
-        [false, false].
+    F
+    entire array : F
+    compare columns: T F T
+    compare rows: T F
 ```
 
 ### **Standard**
 
 Fortran 95 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ALLOCATED
 
 ## allocated
@@ -932,7 +908,7 @@ status of **array** and **scalar**, respectively.
 ### **Arguments**
 
 - **array**
-  : the argument shall be an _allocatable_ array.
+  : the argument shall be an _allocatable_ array or allocatable scalar.
 
 - **scalar**
   : the argument shall be an _allocatable_ scalar.
@@ -940,8 +916,8 @@ status of **array** and **scalar**, respectively.
 ### **Returns**
 
 The return value is a scalar _logical_ with the default logical kind type
-parameter. If the argument is allocated then the result is .true.;
-otherwise, it returns .false..
+parameter. If the argument is allocated then the result is _.true._;
+otherwise, it returns _.false._.
 
 ### **Examples**
 
@@ -997,7 +973,7 @@ scalar entities are available in Fortran 2003 and later.
 
 [**move_alloc**(3)](MOVE_ALLOC)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ANINT
 
 ## anint
@@ -1085,7 +1061,7 @@ FORTRAN 77 and later
 [**ceiling**(3)](CEILING),
 [**floor**(3)](FLOOR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ANY
 
 ## any
@@ -1165,7 +1141,7 @@ Results:
 
 Fortran 95 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ASINH
 
 ## asinh
@@ -1232,7 +1208,7 @@ Fortran 2008 and later
 
 Inverse function: [**sinh**(3)](SINH)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ASIN
 
 ## asin
@@ -1338,7 +1314,7 @@ FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 
 Inverse function: [**sin**(3)](SIN)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # ASSOCIATED
 
 ## associated
@@ -1430,7 +1406,7 @@ Fortran 95 and later
 
 [**null**(3)](NULL)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ATAN2
 
 ## atan2
@@ -1501,7 +1477,7 @@ Results:
 
 FORTRAN 77 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ATANH
 
 ## atanh
@@ -1562,7 +1538,7 @@ Fortran 2008 and later
 
 Inverse function: [**tanh**(3)](TANH)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ATAN
 
 ## atan
@@ -1651,7 +1627,7 @@ arguments Fortran 2008 or later
 
 [**atan2**(3)](ATAN2), [**tan**(3)](TAN)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # ATOMIC\_ADD
 
 ## atomic_add
@@ -1715,7 +1691,7 @@ TS 18508 or later
 [**atomic_xor**(3)](ATOMIC_XOR)
 **iso_fortran_env**(3),
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ATOMIC\_AND
 
 ## atomic_and
@@ -1781,7 +1757,7 @@ TS 18508 or later
 [**atomic_or**(3)](ATOMIC_OR),
 [**atomic_xor**(3)](ATOMIC_XOR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ATOMIC\_CAS
 
 ## atomic_cas
@@ -1851,7 +1827,7 @@ TS 18508 or later
 [**atomic_ref**(3)](ATOMIC_REF),
 [**iso_fortran_env**(3)]()
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ATOMIC\_DEFINE
 
 ## atomic_define
@@ -1922,7 +1898,7 @@ Fortran 2008 and later; with **stat**, TS 18508 or later
 [**atomic_or**(3)](ATOMIC_OR),
 [**atomic_xor**(3)](ATOMIC_XOR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ATOMIC\_FETCH\_ADD
 
 ## atomic_fetch_add
@@ -1992,7 +1968,7 @@ TS 18508 or later
 
 [**atomic_fetch_xor**(3)](ATOMIC_FETCH_XOR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ATOMIC\_FETCH\_AND
 
 ## atomic_fetch_and
@@ -2062,7 +2038,7 @@ TS 18508 or later
 
 [**atomic_fetch_xor**(3)](ATOMIC_FETCH_XOR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ATOMIC\_FETCH\_OR
 
 ## atomic_fetch_or
@@ -2132,7 +2108,7 @@ TS 18508 or later
 
 [**atomic_fetch_xor**(3)](ATOMIC_FETCH_XOR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ATOMIC\_FETCH\_XOR
 
 ## atomic_fetch_xor
@@ -2202,7 +2178,7 @@ TS 18508 or later
 
 [**atomic_fetch_or**(3)](ATOMIC_FETCH_OR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ATOMIC\_OR
 
 ## atomic_or
@@ -2268,7 +2244,7 @@ TS 18508 or later
 
 [**atomic_xor**(3)](ATOMIC_XOR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ATOMIC\_REF
 
 ## atomic_ref
@@ -2342,7 +2318,7 @@ Fortran 2008 and later; with STAT, TS 18508 or later
 [**atomic_fetch_or**(3)](ATOMIC_OR),
 [**atomic_fetch_xor**(3)](ATOMIC_XOR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ATOMIC\_XOR
 
 ## atomic_xor
@@ -2406,7 +2382,7 @@ TS 18508 or later
 [**atomic_or**(3)](ATOMIC_OR),
 [**atomic_xor**(3)](ATOMIC_XOR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # BESSEL\_J0
 
 ## bessel_j0
@@ -2469,7 +2445,7 @@ Fortran 2008 and later
 [**bessel_y1**(3)](BESSEL_Y1),
 [**bessel_yn**(3)](BESSEL_YN)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # BESSEL\_J1
 
 ## bessel_j1
@@ -2532,7 +2508,7 @@ Fortran 2008 and later
 [**bessel_y1**(3)](BESSEL_Y1),
 [**bessel_yn**(3)](BESSEL_YN)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # BESSEL\_JN
 
 ## bessel_jn
@@ -2610,7 +2586,7 @@ Fortran 2008 and later
 [**bessel_y1**(3)](BESSEL_Y1),
 [**bessel_yn**(3)](BESSEL_YN)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # BESSEL\_Y0
 
 ## bessel_y0
@@ -2672,7 +2648,7 @@ Fortran 2008 and later
 [**bessel_y1**(3)](BESSEL_Y1),
 [**bessel_yn**(3)](BESSEL_YN)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # BESSEL\_Y1
 
 ## bessel_y1
@@ -2727,7 +2703,7 @@ Fortran 2008 and later
 [**bessel_y0**(3)](BESSEL_Y0),
 [**bessel_yn**(3)](BESSEL_YN)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # BESSEL\_YN
 
 ## bessel_yn
@@ -2804,7 +2780,7 @@ Fortran 2008 and later
 [**bessel_y0**(3)](BESSEL_Y0),
 [**bessel_y1**(3)](BESSEL_Y1)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # BGE
 
 ## bge
@@ -2846,7 +2822,7 @@ Fortran 2008 and later
 [**ble**(3)](BLE),
 [**blt**(3)](BIT)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # BGT
 
 ## bgt
@@ -2890,7 +2866,7 @@ Fortran 2008 and later
 [**ble**(3)](BLE),
 [**blt**(3)](BLT)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # BIT\_SIZE
 
 ## bit_size
@@ -2962,7 +2938,7 @@ Typical Results:
 
 Fortran 95 and later
 
-###### fortran-lang intrinsic descriptions (license MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # BLE
 
 ## ble
@@ -3003,7 +2979,7 @@ Fortran 2008 and later
 [**bgt**(3)](BGT),
 [**blt**(3)](BLT)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # BLT
 
 ## blt
@@ -3044,7 +3020,7 @@ Fortran 2008 and later
 [**bgt**(3)](BGT),
 [**ble**(3)](BLE)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # BTEST
 
 ## btest
@@ -3182,7 +3158,7 @@ Fortran 95 and later
 [**ieor**(3)](IEOR),
 [**mvbits**(3)](MVBITS)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # C\_ASSOCIATED
 
 ## c_associated
@@ -3248,7 +3224,7 @@ Fortran 2003 and later
 [**c_funloc**(3)](C_FUNLOC),
 **iso_c_binding**(3)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # CEILING
 
 ## ceiling
@@ -3331,7 +3307,7 @@ Fortran 95 and later
 [**int**(3)](INT),
 [**selected_int_kind**(3)](SELECTED_INT_KIND)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # C\_F\_POINTER
 
 ## c_f_pointer
@@ -3395,7 +3371,7 @@ Fortran 2003 and later
 [**c_f_procpointer**(3)](C_F_PROCPOINTER),
 **iso_c_binding**(3)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # C\_F\_PROCPOINTER
 
 ## c_f_procpointer
@@ -3461,7 +3437,7 @@ Fortran 2003 and later
 [**c_f_pointer**(3)](C_F_POINTER),
 **iso_c_binding**(3)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # C\_FUNLOC
 
 ## c_funloc
@@ -3534,7 +3510,7 @@ Fortran 2003 and later
 [**c_f_procpointer**(3)](C_F_PROCPOINTER),
 **iso_c_binding**(3)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # CHAR
 
 ## char
@@ -3617,7 +3593,7 @@ of arguments, and search for certain arguments:
   [**len**(3)](LEN),
   [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # C\_LOC
 
 ## c_loc
@@ -3677,7 +3653,7 @@ Fortran 2003 and later
 [**c_f_procpointer**(3)](C_F_PROCPOINTER),
 **iso_c_binding**(3)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # CMPLX
 
 ## cmplx
@@ -3817,7 +3793,7 @@ complex(kind=dp) :: z8
    ! NOTE:
    ! The following is intuitive and works without calling cmplx(3)
    ! but does not work for variables just constants
-   z8 = (1.2345678901234567d0 , 1.2345678901234567d0 )
+   z8 = (1.2345678901234567d0, 1.2345678901234567d0 )
    print *, 'Z8 defined with constants=',z8
 end program demo_aimag
 ```
@@ -3844,7 +3820,7 @@ Typical Results:
 
 FORTRAN 77 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # CO\_BROADCAST
 
 ## co_broadcast
@@ -3908,7 +3884,7 @@ end program demo_co_broadcast
 [**co_sum**(3)](CO_SUM),
 [**co_reduce**(3)](CO_REDUCE)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # CO\_LBOUND
 
 ## co_lbound
@@ -3957,7 +3933,7 @@ Fortran 2008 and later
 [**co_ubound**(3)](CO_UBOUND),
 [**lbound**(3)](LBOUND)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # CO\_MAX
 
 ## co_max
@@ -4033,7 +4009,7 @@ TS 18508 or later
 [**co_reduce**(3)](CO_REDUCE),
 [**co_broadcast**(3)](CO_BROADCAST)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # CO\_MIN
 
 ## co_min
@@ -4103,7 +4079,7 @@ TS 18508 or later
 [**co_reduce**(3)](CO_REDUCE),
 [**co_broadcast**(3)](CO_BROADCAST)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # COMMAND\_ARGUMENT\_COUNT
 
 ## command_argument_count
@@ -4171,7 +4147,7 @@ Fortran 2003 and later
 [**get_command**(3)](GET_COMMAND),
 [**get_command_argument**(3)](GET_COMMAND_ARGUMENT)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # COMPILER\_OPTIONS
 
 ## compiler_options
@@ -4236,7 +4212,7 @@ Fortran 2008
 [**compiler_version**(3)](COMPILER_VERSION),
 **iso_fortran_env**(7)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # COMPILER\_VERSION
 
 ## compiler_version
@@ -4301,7 +4277,7 @@ Fortran 2008
 [**compiler_options**(3)](COMPILER_OPTIONS),
 **iso_fortran_env**(7)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # CONJG
 
 ## conjg
@@ -4408,7 +4384,7 @@ Results:
 
 FORTRAN 77 and later
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # CO\_REDUCE
 
 ## co_reduce
@@ -4512,7 +4488,7 @@ TS 18508 or later
 [**co_sum**(3)](CO_SUM),
 [**co_broadcast**(3)](CO_BROADCAST)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # COSH
 
 ## cosh
@@ -4575,7 +4551,7 @@ FORTRAN 77 and later, for a complex argument - Fortran 2008 or later
 
 Inverse function: [**acosh**(3)](ACOSH)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # COS
 
 ## cos
@@ -4659,7 +4635,7 @@ FORTRAN 77 and later
 [**sin**(3)](SIN),
 [**tan**(3)](TAN)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # CO\_SUM
 
 ## co_sum
@@ -4736,7 +4712,7 @@ TS 18508 or later
 [**co_reduce**(3)](CO_REDUCE),
 [**co_broadcast**(3)](CO_BROADCAST)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # CO\_UBOUND
 
 ## co_ubound
@@ -4786,7 +4762,7 @@ Fortran 2008 and later
 [**lbound**(3)](LBOUND),
 [**ubound**(3)](UBOUND)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # COUNT
 
 ## count
@@ -4880,7 +4856,7 @@ Expected Results:
 Fortran 95 and later, with KIND argument - Fortran 2003
 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # CPU\_TIME
 
 ## cpu_time
@@ -4960,7 +4936,7 @@ Fortran 95 and later
 [**system_clock**(3)](SYSTEM_CLOCK),
 [**date_and_time**(3)](DATE_AND_TIME)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # CSHIFT
 
 ## cshift
@@ -5037,7 +5013,7 @@ Results:
 
 Fortran 95 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # C\_SIZEOF
 
 ## c_sizeof
@@ -5102,7 +5078,7 @@ Fortran 2008
 
 [**storage_size**(3)](STORAGE_SIZE)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # DATE\_AND\_TIME
 
 ## date_and_time
@@ -5215,7 +5191,7 @@ date and time conversion, formatting and computation
 - [datetime](https://github.com/wavebitscientific/datetime-fortran)
 - [datetime-fortran](https://github.com/wavebitscientific/datetime-fortran)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # DBLE
 
 ## dble
@@ -5281,7 +5257,7 @@ FORTRAN 77 and later
 [**float**(3)](FLOAT),
 [**real**(3)](REAL)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # DIGITS
 
 ## digits
@@ -5363,7 +5339,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # DIM
 
 ## dim
@@ -5436,7 +5412,7 @@ Results:
 
 FORTRAN 77 and later
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # DOT\_PRODUCT
 
 ## dot_product
@@ -5509,7 +5485,7 @@ Results:
 
 Fortran 95 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # DPROD
 
 ## dprod
@@ -5601,7 +5577,7 @@ Results:
 
 FORTRAN 77 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # DSHIFTL
 
 ## dshiftl
@@ -5645,7 +5621,7 @@ Fortran 2008 and later
 
 [**dshiftr**(3)](DSHIFTR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # DSHIFTR
 
 ## dshiftr
@@ -5689,7 +5665,7 @@ Fortran 2008 and later
 
 [**dshiftl**(3)](DSHIFTL)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # EOSHIFT
 
 ## eoshift
@@ -5779,7 +5755,7 @@ Results:
 
 Fortran 95 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # EPSILON
 
 ## epsilon
@@ -5914,7 +5890,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # ERFC
 
 ## erfc
@@ -5994,7 +5970,7 @@ Fortran 2008 and later
 
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 
-###### fortran-lang intrinsic descriptions license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # ERFC\_SCALED
 
 ## erfc_scaled
@@ -6051,7 +6027,7 @@ Results:
 
 Fortran 2008 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ERF
 
 ## erf
@@ -6114,7 +6090,7 @@ Fortran 2008 and later
 
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # EVENT\_QUERY
 
 ## event_query
@@ -6173,7 +6149,7 @@ end program demo_event_query
 
 TS 18508 or later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # EXECUTE\_COMMAND\_LINE
 
 ## execute_command_line
@@ -6281,7 +6257,7 @@ be terminated alongside.
 
 Fortran 2008 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # EXP
 
 ## exp
@@ -6330,7 +6306,7 @@ Sample program:
 ```fortran
 program demo_exp
 implicit none
-real :: x , re, im
+real :: x, re, im
 complex :: cx
 
    x = 1.0
@@ -6382,7 +6358,7 @@ FORTRAN 77 and later
 
 - Wikipedia:[Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # EXPONENT
 
 ## exponent
@@ -6455,7 +6431,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # EXTENDS\_TYPE\_OF
 
 ## extends_type_of
@@ -6503,7 +6479,7 @@ is an extension of the dynamic type of **mold**.
 
 ### **Examples**
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # FINDLOC
 
 ## findloc
@@ -6573,13 +6549,13 @@ the result is an array of rank one and of size equal to the rank of
 **array**; otherwise, the result is of rank n - 1 and shape
 
 ```
-   [d1 , d2 , . . . , dDIM-1 , dDIM+1 , . . . , dn ]
+   [d1, d2, . . ., dDIM-1, dDIM+1, . . ., dn ]
 ```
 
 where
 
 ```
-   [d1 , d2 , . . . , dn ]
+   [d1, d2, . . ., dn ]
 ```
 
 is the shape of **array**.
@@ -6590,7 +6566,7 @@ is the shape of **array**.
   The result of **findloc (array, value)** is a rank-one array whose
   element values are the values of the subscripts of an element of
   **array** whose value matches **value**. If there is such a value, the
-  ith subscript returned lies in the range 1 to ei , where ei is the
+  ith subscript returned lies in the range 1 to ei, where ei is the
   extent of the ith dimension of **array**. If no elements match **value**
   or **array** has size zero, all elements of the result are zero.
 
@@ -6599,7 +6575,7 @@ is the shape of **array**.
   rank-one array whose element values are the values of the subscripts
   of an element of **array**, corresponding to a true element of **mask**,
   whose value matches **value**. If there is such a value, the ith
-  subscript returned lies in the range 1 to ei , where ei is the
+  subscript returned lies in the range 1 to ei, where ei is the
   extent of the ith dimension of **array**. If no elements match
   **value**, **array** has size zero, or every element of **mask** has the
   value false, all elements of the result are zero.
@@ -6620,7 +6596,7 @@ is a scalar whose value is equal to that of the first element of
 Otherwise, the value of element
 
 ```
-      (s1 , s2 , . . . , sDIM-1 , sDIM+1 , . . . , sn )
+      (s1, s2, . . ., sDIM-1, sDIM+1, . . ., sn )
 ```
 
 of the result is equal to
@@ -6628,7 +6604,7 @@ of the result is equal to
 ```
       findloc (array (s1, s2, ..., sdim-1, :, sdim+1, ..., sn ), &
       value, dim=1 [, mask = mask (s1, s2, ..., sdim-1, :,
-                      sdim+1 , ... , sn )]).
+                      sdim+1, ..., sn )]).
 ```
 
 ### **Examples**
@@ -6701,7 +6677,7 @@ has the value \[2, 1, 0\] and
 has the value \[2, 1\]. This is independent of the declared lower
 bounds for **b**.
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # FLOOR
 
 ## floor
@@ -6796,7 +6772,7 @@ Fortran 95 and later
 [**int**(3)](INT),
 [**selected_int_kind**(3)](SELECTED_INT_KIND)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # FRACTION
 
 ## fraction
@@ -6868,7 +6844,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # GAMMA
 
 ## gamma
@@ -7003,7 +6979,7 @@ Logarithm of the Gamma function: [**log_gamma**(3)](LOG_GAMMA)
 
 [Wikipedia: Gamma_function](https://en.wikipedia.org/wiki/Gamma_function)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # GET\_COMMAND\_ARGUMENT
 
 ## get_command_argument
@@ -7138,7 +7114,7 @@ Fortran 2003 and later
 [**get_command**(3)](GET_COMMAND),
 [**command_argument_count**(3)](COMMAND_ARGUMENT_COUNT)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # GET\_COMMAND
 
 ## get_command
@@ -7231,7 +7207,7 @@ Fortran 2003 and later
 [**get_command_argument**(3)](GET_COMMAND_ARGUMENT),
 [**command_argument_count**(3)](COMMAND_ARGUMENT_COUNT)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # GET\_ENVIRONMENT\_VARIABLE
 
 ## get_environment_variable
@@ -7362,7 +7338,7 @@ Typical Results:
 
 Fortran 2003 and later
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # HUGE
 
 ## huge
@@ -7476,7 +7452,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # HYPOT
 
 ## hypot
@@ -7498,7 +7474,8 @@ where **x,y,value** shall all be of the same **kind**.
 
 ### **Description**
 
-**hypot(x,y)** is referred to as the Euclidean distance function. It is equal to $\sqrt{x^2+y^2}$ , without undue underflow or overflow.
+**hypot(x,y)** is referred to as the Euclidean distance function. It is
+equal to $\sqrt{x^2+y^2}$, without undue underflow or overflow.
 
 In mathematics, the _Euclidean distance_ between two points in Euclidean
 space is the length of a line segment between two points.
@@ -7517,8 +7494,8 @@ space is the length of a line segment between two points.
 
 The return value has the same type and kind type parameter as **x**.
 
-The result is the positive magnitude of the distance of the point **<x,y>** from the
-origin **<0.0,0.0>** .
+The result is the positive magnitude of the distance of the point
+**<x,y>** from the origin **<0.0,0.0>** .
 
 ### **Examples**
 
@@ -7577,7 +7554,7 @@ Results:
 
 Fortran 2008 and later
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # IACHAR
 
 ## iachar
@@ -7674,7 +7651,7 @@ of arguments, and search for certain arguments:
   [**len**(3)](LEN),
   [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # IALL
 
 ## iall
@@ -7755,7 +7732,7 @@ Fortran 2008 and later
 [**iparity**(3)](IPARITY),
 [**iand**(3)](IAND)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # IAND
 
 ## iand
@@ -7823,7 +7800,7 @@ Fortran 95 and later
 [**ieor**(3)](IEOR),
 [**mvbits**(3)](MVBITS)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # IANY
 
 ## iany
@@ -7901,7 +7878,7 @@ Fortran 2008 and later
 [**iall**(3)](IALL),
 [**ior**(3)](IOR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # IBCLR
 
 ## ibclr
@@ -7952,7 +7929,7 @@ Fortran 95 and later
 [**ieor**(3)](IEOR),
 [**mvbits**(3)](MVBITS)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # IBITS
 
 ## ibits
@@ -8007,7 +7984,7 @@ Fortran 95 and later
 [**ieor**(3)](IEOR),
 [**mvbits**(3)](MVBITS)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # IBSET
 
 ## ibset
@@ -8058,7 +8035,7 @@ Fortran 95 and later
 [**ieor**(3)](IEOR),
 [**mvbits**(3)](MVBITS)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ICHAR
 
 ## ichar
@@ -8191,7 +8168,7 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](REPEAT),
   [**trim**(3)](TRIM)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # IEOR
 
 ## ieor
@@ -8240,7 +8217,7 @@ Fortran 95 and later
 [**ior**(3)](IOR),
 [**mvbits**(3)](MVBITS)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # IMAGE\_INDEX
 
 ## image_index
@@ -8296,7 +8273,7 @@ Fortran 2008 and later
 [**this_image**(3)](THIS_IMAGE),
 [**num_images**(3)](NUM_IMAGES)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # INDEX
 
 ## index
@@ -8389,7 +8366,7 @@ of arguments, and search for certain arguments:
   [**len**(3)](LEN),
   [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # INT
 
 ## int
@@ -8522,7 +8499,7 @@ FORTRAN 77 and later
 [**ceiling**(3)](CEILING),
 [**floor**(3)](FLOOR)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # IOR
 
 ## ior
@@ -8566,7 +8543,7 @@ implicit none
 integer :: i, j, k
    i=53       ! i=00110101 binary (lowest order byte)
    j=45       ! j=00101101 binary (lowest order byte)
-   k=ior(i,j) ! k=00111101 binary (lowest order byte) , k=61 decimal
+   k=ior(i,j) ! k=00111101 binary (lowest order byte), k=61 decimal
    write(*,'(i8,1x,b8.8)')i,i,j,j,k,k
 end program demo_ior
 ```
@@ -8596,7 +8573,7 @@ Fortran 95 and later
 [**ieor**(3)](IEOR),
 [**mvbits**(3)](MVBITS)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # IPARITY
 
 ## iparity
@@ -8673,7 +8650,7 @@ Fortran 2008 and later
 [**ieor**(3)](IEOR),
 [**parity**(3)](PARITY)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # IS\_CONTIGUOUS
 
 ## is_contiguous
@@ -8794,7 +8771,7 @@ Results:
 
 Fortran 2008 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ISHFTC
 
 ## ishftc
@@ -8843,7 +8820,7 @@ Fortran 95 and later
 
 [**ishft**(3)](ISHFT)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # ISHFT
 
 ## ishft
@@ -8888,7 +8865,7 @@ Fortran 95 and later
 
 [**ishftc**(3)](ISHFTC)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # IS\_IOSTAT\_END
 
 ## is_iostat_end
@@ -8954,7 +8931,7 @@ end program demo_iostat
 
 Fortran 2003 and later
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # IS\_IOSTAT\_EOR
 
 ## is_iostat_eor
@@ -9008,7 +8985,7 @@ end program demo_is_iostat_eor
 
 Fortran 2003 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # KIND
 
 ## kind
@@ -9064,7 +9041,7 @@ Results:
 
 Fortran 95 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # LBOUND
 
 ## lbound
@@ -9186,7 +9163,7 @@ Fortran 95 and later, with KIND argument - Fortran 2003 and later
 [**ubound**(3)](UBOUND),
 [**co_lbound**(3)](CO_LBOUND)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # LEADZ
 
 ## leadz
@@ -9320,7 +9297,7 @@ Fortran 2008 and later
 [**poppar**(3)](POPPAR),
 [**trailz**(3)](TRAILZ)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # LEN
 
 ## len
@@ -9457,7 +9434,7 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](REPEAT),
   [**trim**(3)](TRIM)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # LEN\_TRIM
 
 ## len_trim
@@ -9553,7 +9530,7 @@ of arguments, and search for certain arguments:
   [**len**(3)](LEN),
   [**trim**(3)](TRIM)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # LGE
 
 ## lge
@@ -9620,7 +9597,7 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](REPEAT),
   [**trim**(3)](TRIM)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # LGT
 
 ## lgt
@@ -9689,7 +9666,7 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](REPEAT),
   [**trim**(3)](TRIM)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # LLE
 
 ## lle
@@ -9804,7 +9781,7 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](REPEAT),
   [**trim**(3)](TRIM)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # LLT
 
 ## llt
@@ -9868,7 +9845,7 @@ of arguments, and search for certain arguments:
   [**len**(3)](LEN),
   [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # LOG10
 
 ## log10
@@ -9934,7 +9911,7 @@ Results:
 
 FORTRAN 77 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # LOG\_GAMMA
 
 ## log_gamma
@@ -9988,7 +9965,7 @@ Fortran 2008 and later
 
 Gamma function: [**gamma**(3)](GAMMA)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # LOGICAL
 
 ## logical
@@ -10063,7 +10040,7 @@ Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009
 [**real**(3)](REAL),
 [**cmplx**(3)](CMPLX)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # LOG
 
 ## log
@@ -10120,7 +10097,7 @@ Results:
 
 FORTRAN 77 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # MASKL
 
 ## maskl
@@ -10224,7 +10201,7 @@ Fortran 2008 and later
 
 [**maskr**(3)](MASKR)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # MASKR
 
 ## maskr
@@ -10336,7 +10313,7 @@ Fortran 2008 and later
 
 [**maskl**(3)](MASKL)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # MATMUL
 
 ## matmul
@@ -10377,7 +10354,7 @@ result follow the usual type and kind promotion rules, as for the \* or
 
 Fortran 95 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # MAXEXPONENT
 
 ## maxexponent
@@ -10451,7 +10428,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # MAXLOC
 
 ## maxloc
@@ -10560,7 +10537,7 @@ Fortran 95 and later
 [**max**(3)](MAX),
 [**maxval**(3)](MAXVAL)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # MAX
 
 ## max
@@ -10684,7 +10661,7 @@ FORTRAN 77 and later
 [**maxval**(3)](MAXVAL),
 [**min**(3)](MIN)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # MAXVAL
 
 ## maxval
@@ -10776,7 +10753,7 @@ Fortran 95 and later
 [**max**(3)](MAX),
 [**maxloc**(3)](MAXLOC)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # MERGE\_BITS
 
 ## merge_bits
@@ -10791,7 +10768,7 @@ Fortran 95 and later
 result = merge_bits(i, j, mask)
 
     elemental function merge_bits(i,j,mask) result(r)
-    integer(kind=KIND) ,intent(in) :: i, j, mask
+    integer(kind=KIND), intent(in) :: i, j, mask
     integer(kind=KIND) :: r
 ```
 
@@ -10870,7 +10847,7 @@ character(len=*),parameter :: fmt='(*(g0, 1X))'
    ! using BOZ values
    print fmt, &
    & merge_bits(32767_int16,    o'12345',         32767_int16), &
-   & merge_bits(o'12345'   , 32767_int16, b'0000000000010101'), &
+   & merge_bits(o'12345', 32767_int16, b'0000000000010101'), &
    & merge_bits(32767_int16,    o'12345',             z'1234')
 
    ! a do-it-yourself equivalent for comparison and validation
@@ -10900,7 +10877,7 @@ Results:
 
 Fortran 2008 and later
 
-###### fortran-lang intrinsic descriptions (license MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # MERGE
 
 ## merge
@@ -11063,7 +11040,7 @@ Fortran 95 and later
 [**spread**(3)](SPREAD),
 [**unpack**(3)](UNPACK)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # MINEXPONENT
 
 ## minexponent
@@ -11137,7 +11114,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # MINLOC
 
 ## minloc
@@ -11234,7 +11211,7 @@ Fortran 95 and later
 [**min**(3)](MIN),
 [**minval**(3)](MINVAL)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # MIN
 
 ## min
@@ -11293,7 +11270,7 @@ FORTRAN 77 and later
 [**minloc**(3)](MINLOC),
 [**minval**(3)](MINVAL)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # MINVAL
 
 ## minval
@@ -11446,7 +11423,7 @@ Fortran 95 and later
 [**min**(3)](MIN),
 [**minloc**(3)](MINLOC)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # MOD
 
 ## mod
@@ -11530,7 +11507,7 @@ FORTRAN 77 and later
 
 [**modulo**(3)](MODULO)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # MODULO
 
 ## modulo
@@ -11608,7 +11585,7 @@ Fortran 95 and later
 
 [**mod**(3)](MOD)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # MOVE\_ALLOC
 
 ## move_alloc
@@ -11686,7 +11663,7 @@ Fortran 2003 and later
 
 [**allocated**(3)](ALLOCATED)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # MVBITS
 
 ## mvbits
@@ -11836,7 +11813,7 @@ Fortran 95 and later
 [**ior**(3)](IOR),
 [**ieor**(3)](IEOR)
 
-###### fortran-lang intrinsic descriptions (license MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # NEAREST
 
 ## nearest
@@ -11925,7 +11902,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # NEW\_LINE
 
 ## new_line
@@ -12007,7 +11984,7 @@ Results:
 
 Fortran 2003 and later
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # NINT
 
 ## nint
@@ -12136,7 +12113,7 @@ FORTRAN 77 and later, with KIND argument - Fortran 90 and later
 [**ceiling**(3)](CEILING),
 [**floor**(3)](FLOOR)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # NORM2
 
 ## norm2
@@ -12191,7 +12168,7 @@ implicit none
 
 real :: x(3,3) = reshape([ &
    1, 2, 3, &
-   4, 5 ,6, &
+   4, 5, 6, &
    7, 8, 9  &
 ],shape(x),order=[2,1])
 
@@ -12232,7 +12209,7 @@ Fortran 2008 and later
 [**sum**(3)](SUM),
 [**hypot**(3)](HYPOT)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # NOT
 
 ## not
@@ -12297,7 +12274,7 @@ Fortran 95 and later
 
 [**ibclr**(3)](IBCLR)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # NULL
 
 ## null
@@ -12421,7 +12398,7 @@ Fortran 95 and later
 
 [**associated**(3)](ASSOCIATED)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # NUM\_IMAGES
 
 ## num_images
@@ -12490,7 +12467,7 @@ Fortran 2008 and later. With DISTANCE or FAILED argument, TS 18508 or later
 [**this_image**(3)](THIS_IMAGE),
 [**image_index**(3)](THIS_INDEX)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # OUT\_OF\_RANGE
 
 ## out_of_range
@@ -12615,7 +12592,7 @@ Results:
 
    FORTRAN 2018 and later
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # PACK
 
 ## pack
@@ -12733,7 +12710,7 @@ Fortran 95 and later
 [**spread**(3)](SPREAD),
 [**unpack**(3)](UNPACK)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # PARITY
 
 ## parity
@@ -12802,7 +12779,7 @@ Results:
 
 Fortran 2008 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # POPCNT
 
 ## popcnt
@@ -12870,7 +12847,7 @@ Fortran 2008 and later
 [**leadz**(3)](LEADZ),
 [**trailz**(3)](TRAILZ)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # POPPAR
 
 ## poppar
@@ -12939,7 +12916,7 @@ Fortran 2008 and later
 [**leadz**(3)](LEADZ),
 [**trailz**(3)](TRAILZ)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # PRECISION
 
 ## precision
@@ -13013,7 +12990,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # PRESENT
 
 ## present
@@ -13080,7 +13057,7 @@ Results:
 
 Fortran 95 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # PRODUCT
 
 ## product
@@ -13316,7 +13293,7 @@ Fortran 95 and later
 [**sum**(3)](SUM), note that an element by element multiplication is done
 directly using the star character.
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # RADIX
 
 ## radix
@@ -13388,7 +13365,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # RANDOM\_NUMBER
 
 ## random_number
@@ -13483,7 +13460,7 @@ Fortran 95 and later
 
 [**random_seed**(3)](RANDOM_SEED)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # RANDOM\_SEED
 
 ## random_seed
@@ -13556,7 +13533,7 @@ Fortran 95 and later
 
 [**random_number**(3)](RANDOM_NUMBER)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # RANGE
 
 ## range
@@ -13636,7 +13613,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # RANK
 
 ## rank
@@ -13689,7 +13666,7 @@ Results:
 
 TS 29113
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # REAL
 
 ## real
@@ -13767,7 +13744,7 @@ FORTRAN 77 and later
 [**dble**(3)](DBLE),
 [**float**(3)](FLOAT)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # REDUCE
 
 ## reduce
@@ -13899,11 +13876,11 @@ one relative to the input array.
    ! Examples of masking:
       ! the product of only the positive elements of an array
       arr=[1, -1, 2, -2, 3, -3 ]
-      write(*,*)'product positive values=',reduce(arr, my_mult, mask=arr>0)
-      !write(*,*)reduce(pack(arr,mask=arr>0), my_mult )
+      write(*,*)'positive value product=',reduce(arr, my_mult, mask=arr>0)
+      !write(*,*)'positive value sum=',reduce(pack(arr,mask=arr>0), my_mult )
    ! sum values ignoring negative values
       write(*,*)'sum positive values=',reduce(arr, my_sum, mask=arr>0)
-      !write(*,*)reduce(pack(arr,mask=arr>0), my_sum )
+      !write(*,*)'sum positive values=',reduce(pack(arr,mask=arr>0), my_sum )
 
    ! a single-valued array returns the single value as the
    ! calls to the operator stop when only one element remains
@@ -13937,16 +13914,17 @@ one relative to the input array.
 ```
   Results:
 ```text
-    1 2 3 4
-    product= 24
-    sum=     10
-              6
-              6
-   single value sum     1234
-   single value product 1234
-   [720, should be [720],
-   [2, 12, 30, should be [2,12,30],
-```
+     >  1 2 3 4
+     >  product= 24
+     >  sum=     10
+     >  positive value sum= 6
+     >  sum positive values= 6
+     >  single value sum     1234
+     >  single value product 1234
+     > [720, should be [720],
+     > [2, 12, 30, should be [2,12,30],
+     > [15, 48, should be [15, 48],
+````
 
 ### **See Also**
 - [co_reduce(3)](CO_REDUCE)
@@ -13956,7 +13934,7 @@ one relative to the input array.
 
    Fortran 2018
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # REPEAT
 
 ## repeat
@@ -14041,7 +14019,7 @@ Functions that perform operations on character strings:
   [**repeat**(3)](REPEAT),
   [**trim**(3)](TRIM)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # RESHAPE
 
 ## reshape
@@ -14122,7 +14100,7 @@ Fortran 95 and later
 
 [**shape**(3)](SHAPE)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # RRSPACING
 
 ## rrspacing
@@ -14174,7 +14152,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SAME\_TYPE\_AS
 
 ## same_type_as
@@ -14216,7 +14194,7 @@ Fortran 2003 and later
 
 [**extends_type_of**(3)](EXTENDS_TYPE_OF)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SCALE
 
 ## scale
@@ -14292,7 +14270,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SCAN
 
 ## scan
@@ -14375,7 +14353,7 @@ of arguments, and search for certain arguments:
   [**len**(3)](LEN),
   [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SELECTED\_CHAR\_KIND
 
 ## selected_char_kind
@@ -14440,7 +14418,7 @@ Results:
 
 Fortran 2003 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SELECTED\_INT\_KIND
 
 ## selected_int_kind
@@ -14508,7 +14486,7 @@ Fortran 95 and later
 [**ceiling**(3)](CEILING),
 [**floor**(3)](FLOOR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SELECTED\_REAL\_KIND
 
 ## selected_real_kind
@@ -14611,7 +14589,7 @@ Fortran 95 and later; with RADIX - Fortran 2008 and later
 [**range**(3)](RANGE),
 [**radix**(3)](RADIX)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SET\_EXPONENT
 
 ## set_exponent
@@ -14686,7 +14664,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SHAPE
 
 ## shape
@@ -14759,7 +14737,7 @@ Fortran 95 and later; with KIND argument Fortran 2003 and later
 [**reshape**(3)](RESHAPE),
 [**size**(3)](SIZE)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SHIFTA
 
 ## shifta
@@ -14804,7 +14782,7 @@ Fortran 2008 and later
 [**shiftl**(3)](SHIFTL),
 [**shiftr**(3)](SHIFTR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SHIFTL
 
 ## shiftl
@@ -14847,7 +14825,7 @@ Fortran 2008 and later
 [**shifta**(3)](SHIFTA),
 [**shiftr**(3)](SHIFTR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SHIFTR
 
 ## shiftr
@@ -14890,7 +14868,7 @@ Fortran 2008 and later
 [**shifta**(3)](SHIFTA),
 [**shiftl**(3)](SHIFTL)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SIGN
 
 ## sign
@@ -14925,10 +14903,12 @@ distinguishable.
 ### **Arguments**
 
   - **a**
-    : Shall be of type _integer_ or _real_
+    : The value whos magnitude will be returned. Shall be of type
+    _integer_ or _real_
 
   - **b**
-    : Shall be of the same type and kind as **a**
+    : The value whose sign will be returned. Shall be of the same type
+    and kind as **a**
 
 ### **Returns**
 
@@ -14944,7 +14924,6 @@ __b__. That is,
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_sign
 implicit none
@@ -14958,7 +14937,6 @@ implicit none
    &  sign( 1.0, -0.0 ) .ne. sign( 1.0, 0.0 )
 end program demo_sign
 ````
-
 Results:
 
 ```text
@@ -14968,12 +14946,11 @@ Results:
       12.00000       12.00000      -12.00000
     can I distinguish 0 from -0?  F
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later
 
-###### fortran-lang intrinsic descriptions (license: MIT)
+_fortran-lang intrinsic descriptions (license: MIT)_
 # SINH
 
 ## sinh
@@ -15071,7 +15048,7 @@ Fortran 95 and later, for a complex argument Fortran 2008 or later
 
 [**asinh**(3)](ASINH)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SIN
 
 ## sin
@@ -15209,7 +15186,7 @@ FORTRAN 77 and later
 [**cos**(3)](COS),
 [**tan**(3)](TAN)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # SIZE
 
 ## size
@@ -15403,7 +15380,7 @@ Fortran 95 and later, with **kind** argument - Fortran 2003 and later
 [**shape**(3)](SHAPE),
 [__reshape__(3)])(RESHAPE)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SPACING
 
 ## spacing
@@ -15476,7 +15453,7 @@ Fortran 95 and later
 [**set_exponent**(3)](SET_EXPONENT),
 [**tiny**(3)](TINY)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SPREAD
 
 ## spread
@@ -15606,7 +15583,7 @@ Fortran 95 and later
 [**pack**(3)](PACK),
 [**unpack**(3)](UNPACK)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SQRT
 
 ## sqrt
@@ -15701,7 +15678,7 @@ Results:
 
 FORTRAN 77 and later
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # STORAGE\_SIZE
 
 ## storage_size
@@ -15768,7 +15745,7 @@ Fortran 2008 and later
 
 [**c_sizeof**(3)](C_SIZEOF)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SUM
 
 ## sum
@@ -15818,7 +15795,7 @@ Sample program:
 ```fortran
 program simple_sum
 implicit none
-integer :: x(5) = [ 1, 2, 3, 4 ,5 ]
+integer :: x(5) = [ 1, 2, 3, 4, 5 ]
    print *, sum(x)                        ! all elements, sum = 15
    print *, sum(x, mask=mod(x, 2)==1)     ! odd elements, sum = 9
 end program simple_sum
@@ -15838,7 +15815,7 @@ data b/ndh*-1.0, nduh*2.0/
    csum= sum(c(1:nd))
    cpsum= sum (c(1:nd), mask=c.gt.0)
    cbpsum= sum(c(1:nd), mask=b.gt.0.0)
-   print *, 'Sum of all elements in c = ' , csum
+   print *, 'Sum of all elements in c = ', csum
    print *, 'Sum of Positive elements in c = ', cpsum
    print *, 'Sum of elements in c when corresponding elements in b>0', &
    & ' =', cbpsum
@@ -15861,7 +15838,7 @@ Fortran 95 and later
 
 intrinsics
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # SYSTEM\_CLOCK
 
 ## system_clock
@@ -15972,7 +15949,7 @@ Fortran 95 and later
 [**date_and_time**(3)](DATE_AND_TIME),
 [**cpu_time**(3)](CPU_TIME)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # TANH
 
 ## tanh
@@ -16036,7 +16013,7 @@ FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 
 [**atanh**(3)](ATANH)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # TAN
 
 ## tan
@@ -16094,7 +16071,7 @@ FORTRAN 77 and later. For a complex argument, Fortran 2008 or later.
 [**cos**(3)](COS),
 [**sin**(3)](SIN)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # THIS\_IMAGE
 
 ## this_image
@@ -16184,7 +16161,7 @@ or later
 [**num\_images**(3)](NUM_IMAGES),
 [**image\_index**(3)](IMAGE_INDEX)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 ```
 # TINY
 
@@ -16227,8 +16204,8 @@ Sample program:
 ```fortran
 program demo_tiny
 implicit none
-   print *, 'default real is from',tiny(0.0) ,'to',huge(0.0)
-   print *, 'doubleprecision is from ',tiny(0.0d0),'to',huge(0.0d0)
+   print *, 'default real is from', tiny(0.0), 'to',huge(0.0)
+   print *, 'doubleprecision is from ', tiny(0.0d0), 'to',huge(0.0d0)
 end program demo_tiny
 ```
 
@@ -16261,7 +16238,7 @@ Fortran 95 and later
 [**set_exponent**(3)](SET_EXPONENT),
 [**spacing**(3)](SPACING)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # TRAILZ
 
 ## trailz
@@ -16380,7 +16357,7 @@ Fortran 2008 and later
 [**poppar**(3)](POPPAR),
 [**leadz**(3)](LEADZ)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 # TRANSFER
 
 ## transfer
@@ -16492,7 +16469,7 @@ oblivious to the benefits of EQUIVALENCEs when used sparingly.
 
 Fortran 90 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # TRANSPOSE
 
 ## transpose
@@ -16582,7 +16559,7 @@ Results:
 
 Fortran 95 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # TRIM
 
 ## trim
@@ -16661,7 +16638,7 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](REPEAT),
   [**trim**(3)](TRIM)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # UBOUND
 
 ## ubound
@@ -16785,65 +16762,155 @@ and later
 [**co_ubound**(3)](CO_UBOUND),
 [__co\_lbound__(3)(CO_LBOUND)]
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # UNPACK
 
 ## unpack
 
 ### **Name**
 
-**unpack**(3) - \[ARRAY CONSTRUCTION\] Store the elements of a vector in an array of higher rank
+**unpack**(3) - \[ARRAY CONSTRUCTION\] scatter the elements of a vector
+into an array using a mask
 
 ### **Syntax**
 
 ```fortran
 result = unpack(vector, mask, field)
-```
 
+ type(TYPE(kind=KIND)),intent(in) :: vector(:)
+ logical,intent(in)               :: mask(..)
+ type(TYPE(kind=KIND)),intent(in) :: field(..)
+ type(TYPE(kind=KIND))            :: result(..)
+```
 ### **Description**
 
-Store the elements of **vector** in an array of higher rank.
+Scatter the elements of **vector** into a copy of an array **field**
+of any rank using _.true._ values from **mask** in array element order
+to specify placement of the **vector** values.
+
+So a copy of **field** is generated with select elements replaced with
+values from **vector**. This allows for complex replacement patterns
+that would be difficult when using array syntax or multiple assignment
+statements, particularly when the replacements are conditional.
 
 ### **Arguments**
 
 - **vector**
-  : Shall be an array of any type and rank one. It shall have at least
-  as many elements as **mask** has **.true.** values.
+  : New values to place into specified locations in **field**. Shall
+  be an array of any type and rank one. It shall have at least as many
+  elements as **mask** has **.true.** values.
 
 - **mask**
-  : Shall be an array of type _logical_.
+  : Shall be an array of type _logical_ that specifies which values
+  in **field** are to be replaced with values from **vector**.
 
 - **field**
-  : Shall be of the same type as **vector** and have the same shape as **mask**.
+  : The original data to be edited. Shall be of the same type and type
+  parameters as **vector** and shall be conformable with **mask**.
 
 ### **Returns**
 
-The resulting array corresponds to **field** with **.true.** elements of **mask**
-replaced by values from **vector** in array element order.
+The result is an array of the same type and type parameters as **vector**
+and the same shape as **mask**.
+
+The element of the result that corresponds to the ith true element
+of MASK, in array element order, has the value VECTOR (i) for i =
+1, 2, . . ., t, where t is the number of true values in MASK. Each
+other element has a value equal to FIELD if FIELD is scalar or to the
+corresponding element of FIELD if it is an array.
+
+The resulting array corresponds to **field** with **.true.** elements
+of **mask** replaced by values from **vector** in array element order.
 
 ### **Examples**
+Particular values may be "scattered" to particular positions in an array by using
+```text
+                       1 0 0
+    If M is the array  0 1 0
+                       0 0 1
+
+    V is the array [1, 2, 3],
+                               . T .
+    and Q is the logical mask  T . .
+                               . . T
+    where "T" represents true and "." represents false, then the result of
+
+    UNPACK (V, MASK = Q, FIELD = M) has the value
+
+      1 2 0
+      1 1 0
+      0 0 3
+
+    and the result of UNPACK (V, MASK = Q, FIELD = 0) has the value
+
+      0 2 0
+      1 0 0
+      0 0 3
+```
 
 Sample program:
 
 ```fortran
 program demo_unpack
 implicit none
-integer :: vector(2)  = [1,1]
-logical :: mask(4)  = [ .true., .false., .false., .true. ]
-integer :: field(2,2) = 0, unity(2,2)
+logical,parameter :: T=.true., F=.false.
 
-   ! result: unity matrix
-   unity = unpack(vector, reshape(mask, [2,2]), field)
-   write(*,*)unity,size(unity),shape(unity)
+integer :: vector(2)  = [1,1]
+
+! mask and field must conform
+integer,parameter :: r=2, c=2
+logical :: mask(r,c)  = reshape([ T,F,F,T ],[2,2])
+integer :: field(r,c) = 0, unity(2,2)
+
+   ! basic usage
+   unity = unpack( vector, mask, field )
+   call print_matrix_int('unity=', unity)
+
+   ! if FIELD is a scalar it is used to fill all the elements
+   ! not assigned to by the vector and mask.
+   call print_matrix_int('scalar field',         &
+   & unpack(                                     &
+   & vector=[ 1, 2, 3, 4 ],                      &
+   & mask=reshape([ T,F,T,F,F,F,T,F,T ], [3,3]), &
+   & field=0) )
+
+contains
+
+   subroutine print_matrix_int(title,arr)
+   ! convenience routine:
+   ! just prints small integer arrays in row-column format
+   implicit none
+   character(len=*),intent(in)  :: title
+   integer,intent(in)           :: arr(:,:)
+   integer                      :: i
+   character(len=:),allocatable :: biggest
+
+        write(*,*)trim(title)
+        ! make buffer to write integer into
+        biggest='           '
+        ! find how many characters to use for integers
+        write(biggest,'(i0)')ceiling(log10(real(maxval(abs(arr)))))+2
+        ! use this format to write a row
+        biggest='("  [",*(i'//trim(biggest)//':,","))'
+        ! print one row of array at a time
+        do i=1,size(arr,dim=1)
+           write(*,fmt=biggest,advance='no')arr(i,:)
+           write(*,'(" ]")')
+        enddo
+   end subroutine print_matrix_int
 
 end program demo_unpack
 ```
-
-Results:
+  Results:
 
 ```text
-              1           0           0           1           4
-              2           2
+   > unity=
+   >  [ 1, 0 ]
+   >  [ 0, 1 ]
+   > scalar field
+   >  [  1,  0,  3 ]
+   >  [  0,  0,  0 ]
+   >  [  2,  0,  4 ]
 ```
 
 ### **Standard**
@@ -16858,7 +16925,7 @@ Fortran 95 and later
 [**spread**(3)](SPREAD),
 [**unpack**(3)](UNPACK)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 # VERIFY
 
 ## verify
@@ -17133,4 +17200,4 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](REPEAT),
   [**trim**(3)](TRIM)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost

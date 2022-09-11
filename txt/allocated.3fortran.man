@@ -17,7 +17,8 @@ ARRAY and SCALAR, respectively.
 
 ARGUMENTS
 
--   ARRAY : the argument shall be an allocatable array.
+-   ARRAY : the argument shall be an allocatable array or allocatable
+    scalar.
 
 -   SCALAR : the argument shall be an allocatable scalar.
 

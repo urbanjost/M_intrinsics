@@ -56,11 +56,11 @@ type parameter is that of default integer type. If DIM does not appear,
 the result is an array of rank one and of size equal to the rank of
 ARRAY; otherwise, the result is of rank n - 1 and shape
 
-       [d1 , d2 , . . . , dDIM-1 , dDIM+1 , . . . , dn ]
+       [d1, d2, . . ., dDIM-1, dDIM+1, . . ., dn ]
 
 where
 
-       [d1 , d2 , . . . , dn ]
+       [d1, d2, . . ., dn ]
 
 is the shape of ARRAY.
 
@@ -69,7 +69,7 @@ RETURNS
 -   CASE (I): The result of FINDLOC (ARRAY, VALUE) is a rank-one array
     whose element values are the values of the subscripts of an element
     of ARRAY whose value matches VALUE. If there is such a value, the
-    ith subscript returned lies in the range 1 to ei , where ei is the
+    ith subscript returned lies in the range 1 to ei, where ei is the
     extent of the ith dimension of ARRAY. If no elements match VALUE or
     ARRAY has size zero, all elements of the result are zero.
 
@@ -77,10 +77,10 @@ RETURNS
     rank-one array whose element values are the values of the subscripts
     of an element of ARRAY, corresponding to a true element of MASK,
     whose value matches VALUE. If there is such a value, the ith
-    subscript returned lies in the range 1 to ei , where ei is the
-    extent of the ith dimension of ARRAY. If no elements match VALUE,
-    ARRAY has size zero, or every element of MASK has the value false,
-    all elements of the result are zero.
+    subscript returned lies in the range 1 to ei, where ei is the extent
+    of the ith dimension of ARRAY. If no elements match VALUE, ARRAY has
+    size zero, or every element of MASK has the value false, all
+    elements of the result are zero.
 
 -   CASE (III): If ARRAY has rank one, the result of
 
@@ -92,13 +92,13 @@ is a scalar whose value is equal to that of the first element of
 
 Otherwise, the value of element
 
-          (s1 , s2 , . . . , sDIM-1 , sDIM+1 , . . . , sn )
+          (s1, s2, . . ., sDIM-1, sDIM+1, . . ., sn )
 
 of the result is equal to
 
           findloc (array (s1, s2, ..., sdim-1, :, sdim+1, ..., sn ), &
           value, dim=1 [, mask = mask (s1, s2, ..., sdim-1, :,
-                          sdim+1 , ... , sn )]).
+                          sdim+1, ..., sn )]).
 
 EXAMPLES
 

@@ -13,11 +13,11 @@
          ! Examples of masking:
             ! the product of only the positive elements of an array
             arr=[1, -1, 2, -2, 3, -3 ]
-            write(*,*)'product positive values=',reduce(arr, my_mult, mask=arr>0)
-            !write(*,*)reduce(pack(arr,mask=arr>0), my_mult )
+            write(*,*)'positive value product=',reduce(arr, my_mult, mask=arr>0)
+            !write(*,*)'positive value sum=',reduce(pack(arr,mask=arr>0), my_mult )
          ! sum values ignoring negative values
             write(*,*)'sum positive values=',reduce(arr, my_sum, mask=arr>0)
-            !write(*,*)reduce(pack(arr,mask=arr>0), my_sum )
+            !write(*,*)'sum positive values=',reduce(pack(arr,mask=arr>0), my_sum )
 
          ! a single-valued array returns the single value as the
          ! calls to the operator stop when only one element remains
