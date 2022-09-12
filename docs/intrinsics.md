@@ -73,8 +73,9 @@ integer,parameter :: dp=kind(0.0d0)
     write(*, frmtc) 'complex         ',  z, abs(z)
 
   ! any value whose positive value is representable
-  ! A dusty corner is that abs(-huge(0)-1) would input a representable
-  ! negative value but result in a positive value out of range.
+  ! A dusty corner is that abs(-huge(0)-1) of an integer would input
+  ! a representable negative value on most machines but result in a
+  ! positive value out of range.
     write(*, *) 'abs range test : ', abs(huge(0)), abs(-huge(0))
     write(*, *) 'abs range test : ', abs(huge(0.0)), abs(-huge(0.0))
     write(*, *) 'abs range test : ', abs(tiny(0.0)), abs(-tiny(0.0))
@@ -121,7 +122,7 @@ end program demo_abs
 
    FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # ACHAR
 
 ## achar
@@ -296,7 +297,7 @@ FORTRAN 77 and later, with KIND argument Fortran 2003 and later
 - [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code)
 - [M_attr module](https://github.com/urbanjost/M_attr) for controlling ANSI-compatible terminals
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # ACOSH
 
 ## acosh
@@ -365,7 +366,7 @@ Fortran 2008 and later
 
 Inverse function: [**cosh**(3)](COSH)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # ACOS
 
 ## acos
@@ -444,7 +445,7 @@ FORTRAN 77 and later; for a _complex_ argument - Fortran 2008 and later
 
 Inverse function: [**cos**(3](COS))
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # ADJUSTL
 
 ## adjustl
@@ -517,7 +518,7 @@ Fortran 95 and later
 
 [**adjustr**(3)](ADJUSTR)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # ADJUSTR
 
 ## adjustr
@@ -601,7 +602,7 @@ Fortran 95 and later
 
 [**adjustl**(3)](ADJUSTL)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # AIMAG
 
 ## aimag
@@ -619,10 +620,13 @@ _fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 
      complex(kind=KIND),intent(in) :: z
 ```
-
 ### **Description**
 
 **aimag(z)** yields the imaginary part of complex argument **z**.
+
+This is similar to the modern complex-part-designator **%IM** which also
+designates the imaginary part of a value, accept a designator can appear
+on the left-hand side of an assignment as well, as in **val%im=10.0**.
 
 ### **Arguments**
 
@@ -655,9 +659,7 @@ complex(kind=real64) z8
     print *, aimag([z4,z4/2.0,z4+z4,z4**3])
 end program demo_aimag
 ```
-
 Results:
-
 ```text
   2.000000       4.00000000000000
 
@@ -666,6 +668,10 @@ Results:
 
        2.000000       1.000000       4.000000      -2.000000
 ```
+### **See Also**
+
+[**real**(3)](REAL),
+[**cmplx**(3)](CMPLX)
 
 ### **Standard**
 
@@ -874,9 +880,10 @@ end program demo_all
     compare columns: T F T
     compare rows: T F
 ```
+### **See Also**
+[**any**(3)](ANY)
 
 ### **Standard**
-
 Fortran 95 and later
 
 _fortran-lang intrinsic descriptions_
@@ -1136,6 +1143,8 @@ Results:
     T T T
     T T
 ```
+### **See Also**
+[**any**(3)](ALL)
 
 ### **Standard**
 
@@ -1314,7 +1323,7 @@ FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 
 Inverse function: [**sin**(3)](SIN)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # ASSOCIATED
 
 ## associated
@@ -1412,72 +1421,169 @@ _fortran-lang intrinsic descriptions_
 ## atan2
 
 ### **Name**
-
-**atan2**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arctangent function
+**atan2**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arctangent (inverse tangent)
+function
 
 ### **Syntax**
-
 ```fortran
-result = atan2(y, x)
+  elemental function atan2(y, x)
+
+    type(real,kind=KIND) :: atan2
+    type(real,kind=KIND),intent(in) :: y, x
 ```
+The return value has the same type and kind as **y**
+and **x**.
 
 ### **Description**
 
-**atan2(y, x)** computes the arctangent of the complex number
-( **x** + i **y** ) .
+**atan2(y, x)** computes in radians a processor-dependent approximation
+of the arctangent of the complex number ( **x**, **y** ) or equivalently
+the arctangent of the real value **y/x**.
 
-This function can be used to transform from Cartesian into polar
-coordinates and allows to determine the angle in the correct quadrant.
-To convert from Cartesian Coordinates **(x,y)** to polar coordinates
-
-(r,theta): $$ \begin{aligned} r &= \sqrt{x**2 + y**2} \\ \theta
-&= \tan\*\*{**-1**}(y / x) \end{aligned} $$
+It is often used in computations such as converting from Cartesian
+to polar coordinates.
 
 ### **Arguments**
 
 - **y**
-  : The type shall be _real_.
+  : The imaginary component of the complex value **(x,y)**.
 
 - **x**
-  : The type and kind type parameter shall be the same as **y**. If **y** is
-  zero, then **x** must be nonzero.
+  : The real component of the complex value **(x,y)**. A _real_ value
+  of the same kind as **y**.
 
 ### **Returns**
 
-The return value has the same type and kind type parameter as **y**. It is
-the principal value of the complex number **(x + i, y)**. If x is nonzero,
-then it lies in the range **-PI \<= atan(x) \<= PI**. The sign is
-positive if **y** is positive. If **y** is zero, then the return value is zero
-if **x** is strictly positive, **PI** if **x** is negative and **y** is positive zero
-(or the processor does not handle signed zeros), and **-PI** if **x** is
-negative and **Y** is negative zero. Finally, if **x** is zero, then the
-magnitude of the result is **PI/2**.
+The type and kind of the result are the same as the elements of **x**
+and **y**.
+
+The returned value will be in the range **-PI \<= atan(x) \<= PI**. That
+is, the absolute value returned is <= **PI**. It is _not_ from **0**
+to **2\*PI**.
+
+The classic definition of the arctangent is the angle that is formed
+in Cartesian coordinates of the line from the origin point **\<0,0\>**
+to the point **\<x,y\>** . **atan2** always returns a principal value.
+
+The principal value is simply what we get when we adjust the angle,
+if necessary, to lie between -PI and PI.
+
+It is  also by definition the principal value of the complex number
+**(x, y)**.
+
+Note that if pictured as the angle formed by the line from <0,0> to
+<x,y> that if **x** and **y** are both zero the angle is indeterminent
+because it sits directly over the origin, so **atan(0.0,0.0)** results
+in an error.
+
+Range of returned values by quadrant:
+```text
+>                   +PI/2
+>                     |
+>                     |
+>        PI/2<Z<PI    |   0>Z<PI/2
+>                     |
+>   +-PI -------------+---------------- +-0
+>                     |
+>         PI/2<-Z<PI  |    0<-Z<PI/2
+>                     |
+>                     |
+>                   -PI/2
+>
+     NOTES:
+
+     If the processor distinguishes -0 and +0 then the sign of the
+     returned value is that of Y when Y is zero, else when Y is zero
+     the returned value is always positive.
+```
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_atan2
-use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
+real :: x, y, z
+complex :: c
+
+ ! basic usage
+  ! ATAN2 (1.5574077, 1.0) has the value 1.0 (approximately).
+  z=atan2(1.5574077, 1.0)
+  write(*,*) 'radians=',z,'degrees=',r2d(z)
+
+ ! elemental arrays
+  write(*,*)'elemental',atan2( [10.0, 20.0], [30.0,40.0] )
+ ! elemental arrays and scalars
+  write(*,*)'elemental',atan2( [10.0, 20.0], 50.0 )
+
+ ! break into real and imaginary components to use with complex values
+ ! note TAN2() can take a complex value
+  c=(0.0,1.0)
+  write(*,*)'complex',c,atan2( x=c%re, y=c%im )
+  COMPLEX_VALS: block
+  real                :: ang, radius
+  complex,allocatable :: vals(:)
+
+  vals=[ &
+    ( 0.0, 1.0 ), &
+    ( 1.0, 1.0 ), &
+    ( 1.0, 0.0 ), &
+    ( 0.0,-1.0 ), &
+    (-1.0, 1.0 ), &
+    (-1.0, 0.0 ), &
+    (-1.0,-1.0 )]
+  do i=1,size(vals)
+     call cartesian_to_polar(vals(i)%re,vals(i)%im,radius,ang)
+     write(*,101)vals(i),ang,r2d(ang),radius
+  enddo
+  101 format('X= ',f5.2,' Y= ',f5.2,' ANGLE= ',g0,T40,'DEGREES= ',g0.4,T57,'DISTANCE=',g0)
+ endblock COMPLEX_VALS
+
+contains
+
+elemental real function r2d(radians)
+! input radians to convert to degrees
+doubleprecision,parameter :: DEGREE=0.017453292519943d0 ! radians
+real,intent(in)           :: radians
+   r2d=radians / DEGREE ! do the conversion
+end function r2d
+
+subroutine cartesian_to_polar(x,y,radius,inclination)
 implicit none
-real(kind=sp) :: x = 1.e0_sp, y = 0.5e0_sp, z
-   z = atan2(y,x)
-   write(*,*)x,y,z
+real,intent(in)  :: x,y
+real,intent(out) :: radius,inclination
+   radius=sqrt(x**2+y**2)
+   if(radius.eq.0)then
+      inclination=0.0
+   else
+      inclination=atan2(y,x)
+   endif
+end subroutine cartesian_to_polar
+
 end program demo_atan2
 ```
-
-Results:
-
+  Results:
 ```text
-      1.00000000      0.500000000      0.463647604
+> radians=   1.00000000     degrees=   57.2957802
+> elemental  0.321750551      0.463647604
+> elemental  0.197395563      0.380506366
+>X=  0.00 Y=  1.00 ANGLE= 1.57079637    DEGREES= 90.00   DISTANCE=1.00000000
+>X=  1.00 Y=  1.00 ANGLE= 0.785398185   DEGREES= 45.00   DISTANCE=1.41421354
+>X=  1.00 Y=  0.00 ANGLE= 0.00000000    DEGREES= 0.000   DISTANCE=1.00000000
+>X=  0.00 Y= -1.00 ANGLE= -1.57079637   DEGREES= -90.00  DISTANCE=1.00000000
+>X= -1.00 Y=  1.00 ANGLE= 2.35619450    DEGREES= 135.0   DISTANCE=1.41421354
+>X= -1.00 Y=  0.00 ANGLE= 3.14159274    DEGREES= 180.0   DISTANCE=1.00000000
+>X= -1.00 Y= -1.00 ANGLE= -2.35619450   DEGREES= -135.0  DISTANCE=1.41421354
 ```
+### **See Also**
+
+- [**atan**(3)](ATAN)
+- [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
 ### **Standard**
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # ATANH
 
 ## atanh
@@ -1627,7 +1733,7 @@ arguments Fortran 2008 or later
 
 [**atan2**(3)](ATAN2), [**tan**(3)](TAN)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # ATOMIC\_ADD
 
 ## atomic_add
@@ -2938,7 +3044,7 @@ Typical Results:
 
 Fortran 95 and later
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # BLE
 
 ## ble
@@ -3156,7 +3262,7 @@ Fortran 95 and later
 [**not**(3)](NOT),
 [**mvbits**(3)](MVBITS)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # C\_ASSOCIATED
 
 ## c_associated
@@ -3807,12 +3913,10 @@ Typical Results:
 ### **See Also**
 
 - [**aimag**(3)](AIMAG) - Imaginary part of complex number
-
-- [**cmplx**(3)](CMPLX) - Complex conversion function
-
 - [**conjg**(3)](CONJG) - Complex conjugate function
-
 - [**real**(3)](REAL) - Convert to real type
+- [**dble**(3)](DBLE) - Convert to doubleprecision
+- [**int**(3)](INT)   - Convert to an integer
 
 ### **Standard**
 
@@ -4145,7 +4249,7 @@ Fortran 2003 and later
 [**get_command**(3)](GET_COMMAND),
 [**get_command_argument**(3)](GET_COMMAND_ARGUMENT)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # COMPILER\_OPTIONS
 
 ## compiler_options
@@ -4382,7 +4486,7 @@ Results:
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # CO\_REDUCE
 
 ## co_reduce
@@ -4934,7 +5038,7 @@ Fortran 95 and later
 [**system_clock**(3)](SYSTEM_CLOCK),
 [**date_and_time**(3)](DATE_AND_TIME)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # CSHIFT
 
 ## cshift
@@ -5189,7 +5293,7 @@ date and time conversion, formatting and computation
 - [datetime](https://github.com/wavebitscientific/datetime-fortran)
 - [datetime-fortran](https://github.com/wavebitscientific/datetime-fortran)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # DBLE
 
 ## dble
@@ -5199,7 +5303,6 @@ _fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
 **dble**(3) - \[TYPE:NUMERIC\] Double conversion function
 
 ### **Syntax**
-
 ```fortran
 result = dble(a)
 
@@ -5207,7 +5310,6 @@ result = dble(a)
     type(real(kind=kind(0.0d0)))     :: dble
     type(TYPE(kind=KIND)),intent(in) :: a
 ```
-
 where TYPE may be _integer_, _real_, or _complex_ and KIND any kind
 supported by the TYPE.
 
@@ -5252,10 +5354,12 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**float**(3)](FLOAT),
-[**real**(3)](REAL)
+[**real**(3)](REAL),
+[**cmplx**(3)](CMPLX),
+[**aimag**(3)](AIMAG),
+[**int**(3)](INT)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # DIGITS
 
 ## digits
@@ -5337,7 +5441,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # DIM
 
 ## dim
@@ -5410,7 +5514,7 @@ Results:
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # DOT\_PRODUCT
 
 ## dot_product
@@ -5888,7 +5992,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # ERFC
 
 ## erfc
@@ -5968,7 +6072,7 @@ Fortran 2008 and later
 
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # ERFC\_SCALED
 
 ## erfc_scaled
@@ -6356,7 +6460,7 @@ FORTRAN 77 and later
 
 - Wikipedia:[Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # EXPONENT
 
 ## exponent
@@ -6770,7 +6874,7 @@ Fortran 95 and later
 [**int**(3)](INT),
 [**selected_int_kind**(3)](SELECTED_INT_KIND)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # FRACTION
 
 ## fraction
@@ -7112,7 +7216,7 @@ Fortran 2003 and later
 [**get_command**(3)](GET_COMMAND),
 [**command_argument_count**(3)](COMMAND_ARGUMENT_COUNT)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # GET\_COMMAND
 
 ## get_command
@@ -7205,7 +7309,7 @@ Fortran 2003 and later
 [**get_command_argument**(3)](GET_COMMAND_ARGUMENT),
 [**command_argument_count**(3)](COMMAND_ARGUMENT_COUNT)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # GET\_ENVIRONMENT\_VARIABLE
 
 ## get_environment_variable
@@ -7336,7 +7440,7 @@ Typical Results:
 
 Fortran 2003 and later
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # HUGE
 
 ## huge
@@ -7450,7 +7554,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # HYPOT
 
 ## hypot
@@ -7552,7 +7656,7 @@ Results:
 
 Fortran 2008 and later
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # IACHAR
 
 ## iachar
@@ -8489,7 +8593,7 @@ FORTRAN 77 and later
 [**ceiling**(3)](CEILING),
 [**floor**(3)](FLOOR)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # IOR
 
 ## ior
@@ -8919,7 +9023,7 @@ end program demo_iostat
 
 Fortran 2003 and later
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # IS\_IOSTAT\_EOR
 
 ## is_iostat_eor
@@ -9422,7 +9526,7 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](REPEAT),
   [**trim**(3)](TRIM)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # LEN\_TRIM
 
 ## len_trim
@@ -9518,7 +9622,7 @@ of arguments, and search for certain arguments:
   [**len**(3)](LEN),
   [**trim**(3)](TRIM)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # LGE
 
 ## lge
@@ -10189,7 +10293,7 @@ Fortran 2008 and later
 
 [**maskr**(3)](MASKR)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # MASKR
 
 ## maskr
@@ -10301,7 +10405,7 @@ Fortran 2008 and later
 
 [**maskl**(3)](MASKL)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # MATMUL
 
 ## matmul
@@ -10865,7 +10969,7 @@ Results:
 
 Fortran 2008 and later
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # MERGE
 
 ## merge
@@ -11026,7 +11130,7 @@ Fortran 95 and later
 [**spread**(3)](SPREAD),
 [**unpack**(3)](UNPACK)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # MINEXPONENT
 
 ## minexponent
@@ -11409,7 +11513,7 @@ Fortran 95 and later
 [**min**(3)](MIN),
 [**minloc**(3)](MINLOC)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # MOD
 
 ## mod
@@ -11797,7 +11901,7 @@ Fortran 95 and later
 [**ior**(3)](IOR),
 [**not**(3)](NOT)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # NEAREST
 
 ## nearest
@@ -11968,7 +12072,7 @@ Results:
 
 Fortran 2003 and later
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # NINT
 
 ## nint
@@ -12097,7 +12201,7 @@ FORTRAN 77 and later, with KIND argument - Fortran 90 and later
 [**ceiling**(3)](CEILING),
 [**floor**(3)](FLOOR)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # NORM2
 
 ## norm2
@@ -12258,7 +12362,7 @@ Fortran 95 and later
 
 [**ibclr**(3)](IBCLR)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # NULL
 
 ## null
@@ -12576,7 +12680,7 @@ Results:
 
    FORTRAN 2018 and later
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # PACK
 
 ## pack
@@ -12692,7 +12796,7 @@ Fortran 95 and later
 [**spread**(3)](SPREAD),
 [**unpack**(3)](UNPACK)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # PARITY
 
 ## parity
@@ -13275,7 +13379,7 @@ Fortran 95 and later
 [**sum**(3)](SUM), note that an element by element multiplication is done
 directly using the star character.
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # RADIX
 
 ## radix
@@ -13667,10 +13771,15 @@ result = real(x, kind)
 
 **real(x, kind)** converts its argument **x** to a real type.
 
+For complex values this is similar to the modern complex-part-designator
+**%RE** which also designates the real part of a value, accept a
+designator can appear on the left-hand side of an assignment as well,
+as in **val%re=(3.0,4.0)**.
+
 ### **Arguments**
 
 - **x**
-  : Shall be _integer_, _real_, or _complex_.
+  : Shall be _integer_, _real_, or _complex_ to convert to _real_.
 
 - **kind**
   : (Optional) An _integer_ initialization expression indicating the kind
@@ -13684,8 +13793,8 @@ rules:
 1.  **real**(x) is converted to a default _real_ type if **x** is an _integer_
     or _real_ variable.
 
-2.  **real**(x) is converted to a real type with the kind type parameter
-    of **x** if **x** is a _complex_ variable.
+2.  **real**(x) is converted to a _real_ type with the magnitude of the _real_
+    component of a complex value with kind type parameter of **x**.
 
 3.  **real(x, kind)** is converted to a _real_ type with kind type
     parameter **kind** if **x** is a _complex_, _integer_, or _real_ variable.
@@ -13724,7 +13833,9 @@ FORTRAN 77 and later
 ### **See Also**
 
 [**dble**(3)](DBLE),
-[**float**(3)](FLOAT)
+[**cmplx**(3)](CMPLX),
+[**aimag**(3)](AIMAG),
+[**int**(3)](INT)
 
 _fortran-lang intrinsic descriptions_
 # REDUCE
@@ -13916,7 +14027,7 @@ one relative to the input array.
 
    Fortran 2018
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # REPEAT
 
 ## repeat
@@ -15168,7 +15279,7 @@ FORTRAN 77 and later
 [**cos**(3)](COS),
 [**tan**(3)](TAN)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # SIZE
 
 ## size
@@ -15656,7 +15767,7 @@ Results:
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # STORAGE\_SIZE
 
 ## storage_size
@@ -16335,7 +16446,7 @@ Fortran 2008 and later
 [**poppar**(3)](POPPAR),
 [**leadz**(3)](LEADZ)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
 # TRANSFER
 
 ## transfer
@@ -16464,18 +16575,22 @@ result = transpose(matrix)
 
 ### **Description**
 
-Transpose an array of rank two. Element (i, j) of the result has the
-value **matrix(j, i)**, for all i, j.
+Transpose an array of rank two.
+
+A array is transposed by interchanging the rows and columns of the given
+matrix. That is, element (i, j) of the result has the value of element(j,
+i) for all (i, j).
 
 ### **Arguments**
 
 - **matrix**
-  : Shall be an array of any type and have a rank of two.
+  : The array to transpose, which shall be of any type and have a rank
+  of two.
 
 ### **Returns**
 
-The result has the same type as **matrix**, and has shape \[ m, n \] if
-**matrix** has shape \[ n, m \].
+The transpose of the input array.  The result has the same type as
+**matrix**, and has shape \[ m, n \] if **matrix** has shape \[ n, m \].
 
 ### **Examples**
 
@@ -16532,7 +16647,6 @@ Results:
     > [     4,    40,    44 ]
     > [     5,    50, -1055 ]
 ```
-
 ### **Standard**
 
 Fortran 95 and later
@@ -17176,4 +17290,4 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](REPEAT),
   [**trim**(3)](TRIM)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

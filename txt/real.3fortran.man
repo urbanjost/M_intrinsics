@@ -10,9 +10,14 @@ DESCRIPTION
 
 REAL(X, KIND) converts its argument X to a real type.
 
+For complex values this is similar to the modern complex-part-designator
+%RE which also designates the real part of a value, accept a designator
+can appear on the left-hand side of an assignment as well, as in
+VAL%RE=(3.0,4.0).
+
 ARGUMENTS
 
--   X : Shall be integer, real, or complex.
+-   X : Shall be integer, real, or complex to convert to real.
 
 -   KIND : (Optional) An integer initialization expression indicating
     the kind parameter of the result.
@@ -25,8 +30,8 @@ rules:
 1.  REAL(x) is converted to a default real type if X is an integer or
     real variable.
 
-2.  REAL(x) is converted to a real type with the kind type parameter of
-    X if X is a complex variable.
+2.  REAL(x) is converted to a real type with the magnitude of the real
+    component of a complex value with kind type parameter of X.
 
 3.  REAL(X, KIND) is converted to a real type with kind type parameter
     KIND if X is a complex, integer, or real variable.
@@ -60,6 +65,6 @@ FORTRAN 77 and later
 
 SEE ALSO
 
-DBLE(3), FLOAT(3)
+DBLE(3), CMPLX(3), AIMAG(3), INT(3)
 
 fortran-lang intrinsic descriptions
