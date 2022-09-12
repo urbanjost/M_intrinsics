@@ -64,4 +64,4 @@ Fortran 2008 and later
 
 Inverse function: [**cosh**(3)](COSH)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

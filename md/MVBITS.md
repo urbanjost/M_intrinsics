@@ -143,4 +143,4 @@ Fortran 95 and later
 [**ior**(3)](IOR),
 [**not**(3)](NOT)
 
-_fortran-lang intrinsic descriptions (license: MIT)_ @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

@@ -87,6 +87,10 @@ Results:
         compare columns: T F T
         compare rows: T F
 
+SEE ALSO
+
+ANY(3)
+
 STANDARD
 
 Fortran 95 and later

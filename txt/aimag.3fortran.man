@@ -14,6 +14,10 @@ DESCRIPTION
 
 AIMAG(Z) yields the imaginary part of complex argument Z.
 
+This is similar to the modern complex-part-designator %IM which also
+designates the imaginary part of a value, accept a designator can appear
+on the left-hand side of an assignment as well, as in VAL%IM=10.0.
+
 ARGUMENTS
 
 -   Z : The type of the argument shall be complex.
@@ -51,6 +55,10 @@ Results:
      (-11.00000,-2.000000)
 
            2.000000       1.000000       4.000000      -2.000000
+
+SEE ALSO
+
+REAL(3), CMPLX(3)
 
 STANDARD
 

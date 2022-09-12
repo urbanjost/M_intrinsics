@@ -57,19 +57,27 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-<B>ATAN2</B>(3) - [MATHEMATICS:TRIGONOMETRIC] Arctangent function
+<B>ATAN2</B>(3) - [MATHEMATICS:TRIGONOMETRIC] Arctangent (inverse tangent)
+function
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=7>
+<A name=8>
 
      <H3>SYNTAX</H3>
 
 </A>
 <BLOCKQUOTE>
 <P>
-result = <B>atan2</B>(y, x)
+elemental function <B>atan2</B>(y, x)
+<P>
+<PRE>
+        type(real,kind=KIND) :: atan2
+        type(real,kind=KIND),intent(in) :: y, x
+<P>
+</PRE>
+The return value has the same type and kind as Y and X.
 </BLOCKQUOTE>
 <A name=2>
 
@@ -78,14 +86,10 @@ result = <B>atan2</B>(y, x)
 </A>
 <BLOCKQUOTE>
 <P>
-<B>ATAN2</B>(Y, X) computes the arctangent of the complex number ( X + i Y ) .
-<P>
-This function can be used to transform from Cartesian into polar
-coordinates and allows to determine the angle in the correct quadrant.
-To convert from Cartesian Coordinates (X,Y) to polar coordinates
-<P>
-(r,theta): $$ \begin{aligned} r &= \sqrt{x2 + Y2} \ \theta &=
-\tan**{<B>-1</B>}(y / x) \end{aligned} $$
+<B>ATAN2</B>(Y, X) computes in radians a processor-dependent approximation of
+the arctangent of the complex number ( X, Y ) or equivalently the
+principal value of the arctangent of the value Y/X (which determines a
+unique angle).
 </BLOCKQUOTE>
 <A name=3>
 
@@ -98,13 +102,16 @@ To convert from Cartesian Coordinates (X,Y) to polar coordinates
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-Y : The type shall be real.
+Y : The imaginary component of the complex value (X,Y) or the Y
+component of the point &lt;X,Y&gt;.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-X : The type and kind type parameter shall be the same as Y. If Y is
-zero, then X must be nonzero.
+X : The real component of the complex value (X,Y) or the X component
+of the point &lt;X,Y&gt;.
+<P>
+If must be of the same kind as Y.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
@@ -114,14 +121,45 @@ zero, then X must be nonzero.
 </A>
 <BLOCKQUOTE>
 <P>
-The return value has the same type and kind type parameter as Y. It is
-the principal value of the complex number (X + I, Y). If x is nonzero,
-then it lies in the range <B>-PI</B> &lt;= <B>ATAN</B>(X) &lt;= PI. The sign is positive if
-Y is positive. If Y is zero, then the return value is zero if X is
-strictly positive, PI if X is negative and Y is positive zero (or the
-processor does not handle signed zeros), and <B>-PI</B> if X is negative and Y
-is negative zero. Finally, if X is zero, then the magnitude of the
-result is PI/2.
+The value returned is by definition the principal value of the complex
+number (X, Y).
+<P>
+The principal value is simply what we get when we adjust a radian value
+to lie between <B>-PI</B> and PI inclusive,
+<P>
+The type and kind of the result are the same as the elements of X. and
+Y.
+<P>
+The classic definition of the arctangent is the angle that is formed in
+Cartesian coordinates of the line from the origin point &lt;0,0&gt; to the
+point &lt;X,Y&gt; .
+<P>
+Pictured as such a vector it is easy to see that if X and Y are both
+zero the angle is indeterminent because it sits directly over the
+origin, so <B>ATAN</B>(0.0,0.0) will produce an error.
+<P>
+Range of returned values by quadrant:
+<P>
+<PRE>
+    &gt;                   +PI/2
+    &gt;                     |
+    &gt;                     |
+    &gt;        PI/2&lt;Z&lt;PI    |   0&gt;Z&lt;PI/2
+    &gt;                     |
+    &gt;   +-PI -------------+---------------- +-0
+    &gt;                     |
+    &gt;         PI/2&lt;-Z&lt;PI  |    0&lt;-Z&lt;PI/2
+    &gt;                     |
+    &gt;                     |
+    &gt;                   -PI/2
+    &gt;
+         NOTES:
+<P>
+         If the processor distinguishes -0 and +0 then the sign of the
+         returned value is that of Y when Y is zero, else when Y is zero
+         the returned value is always positive.
+<P>
+</PRE>
 </BLOCKQUOTE>
 <A name=5>
 
@@ -134,22 +172,102 @@ Sample program:
 <P>
 <PRE>
     program demo_atan2
-    use,intrinsic :: iso_fortran_env, only : dp=&gt;real64,sp=&gt;real32
+    real :: x, y, z
+    complex :: c
+<P>
+     ! basic usage
+      ! ATAN2 (1.5574077, 1.0) has the value 1.0 (approximately).
+      z=atan2(1.5574077, 1.0)
+      write(*,*) &#146;radians=&#146;,z,&#146;degrees=&#146;,r2d(z)
+<P>
+     ! elemental arrays
+      write(*,*)&#146;elemental&#146;,atan2( [10.0, 20.0], [30.0,40.0] )
+     ! elemental arrays and scalars
+      write(*,*)&#146;elemental&#146;,atan2( [10.0, 20.0], 50.0 )
+<P>
+     ! break into real and imaginary components to use with complex values
+     ! note TAN2() can take a complex value
+      c=(0.0,1.0)
+      write(*,*)&#146;complex&#146;,c,atan2( x=c%re, y=c%im )
+      COMPLEX_VALS: block
+      real                :: ang, radius
+      complex,allocatable :: vals(:)
+<P>
+      vals=[ &
+        ( 0.0, 1.0 ), &
+        ( 1.0, 1.0 ), &
+        ( 1.0, 0.0 ), &
+        ( 0.0,-1.0 ), &
+        (-1.0, 1.0 ), &
+        (-1.0, 0.0 ), &
+        (-1.0,-1.0 )]
+      do i=1,size(vals)
+         call cartesian_to_polar(vals(i)%re,vals(i)%im,radius,ang)
+         write(*,101)vals(i),ang,r2d(ang),radius
+      enddo
+      101 format(&#146;X= &#146;,f5.2,&#146; Y= &#146;,f5.2,&#146; ANGLE= &#146;,g0,T40,&#146;DEGREES= &#146;,g0.4,T57,&#146;DISTANCE=&#146;,g0)
+     endblock COMPLEX_VALS
+<P>
+    contains
+<P>
+    elemental real function r2d(radians)
+    ! input radians to convert to degrees
+    doubleprecision,parameter :: DEGREE=0.017453292519943d0 ! radians
+    real,intent(in)           :: radians
+       r2d=radians / DEGREE ! do the conversion
+    end function r2d
+<P>
+    subroutine cartesian_to_polar(x,y,radius,inclination)
     implicit none
-    real(kind=sp) :: x = 1.e0_sp, y = 0.5e0_sp, z
-       z = atan2(y,x)
-       write(*,*)x,y,z
+    real,intent(in)  :: x,y
+    real,intent(out) :: radius,inclination
+       radius=sqrt(x**2+y**2)
+       if(radius.eq.0)then
+          inclination=0.0
+       else
+          inclination=atan2(y,x)
+       endif
+    end subroutine cartesian_to_polar
+<P>
     end program demo_atan2
 <P>
 </PRE>
 Results:
 <P>
 <PRE>
-          1.00000000      0.500000000      0.463647604
+    &gt; radians=   1.00000000     degrees=   57.2957802   
+    &gt; elemental  0.321750551      0.463647604   
+    &gt; elemental  0.197395563      0.380506366   
+    &gt;X=  0.00 Y=  1.00 ANGLE= 1.57079637    DEGREES= 90.00   DISTANCE=1.00000000
+    &gt;X=  1.00 Y=  1.00 ANGLE= 0.785398185   DEGREES= 45.00   DISTANCE=1.41421354
+    &gt;X=  1.00 Y=  0.00 ANGLE= 0.00000000    DEGREES= 0.000   DISTANCE=1.00000000
+    &gt;X=  0.00 Y= -1.00 ANGLE= -1.57079637   DEGREES= -90.00  DISTANCE=1.00000000
+    &gt;X= -1.00 Y=  1.00 ANGLE= 2.35619450    DEGREES= 135.0   DISTANCE=1.41421354
+    &gt;X= -1.00 Y=  0.00 ANGLE= 3.14159274    DEGREES= 180.0   DISTANCE=1.00000000
+    &gt;X= -1.00 Y= -1.00 ANGLE= -2.35619450   DEGREES= -135.0  DISTANCE=1.41421354
 <P>
 </PRE>
 </BLOCKQUOTE>
 <A name=6>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+<B>ATAN</B>(3)
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+arctan:wikipedia
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=7>
 
      <H3>STANDARD</H3>
 
@@ -158,10 +276,10 @@ Results:
 <P>
 FORTRAN 77 and later
 <P>
-fortran-lang intrinsic descriptions
+fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>atan2 (3fortran)</TD> <TD align=right width=33%><I>September 11, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 7aad3822-ae29-4b85-9fa2-ef9119ce408b using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>atan2 (3fortran)</TD> <TD align=right width=33%><I>September 12, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from b0bc7e97-0303-4eea-a63c-79b156578af0 using man macros.</FONT>
 <br><br><center><img src="images/atan2.3fortran.gif"></center>
 </div>
 </div>

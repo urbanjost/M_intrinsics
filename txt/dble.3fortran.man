@@ -49,6 +49,6 @@ FORTRAN 77 and later
 
 SEE ALSO
 
-FLOAT(3), REAL(3)
+REAL(3), CMPLX(3), AIMAG(3), INT(3)
 
 fortran-lang intrinsic descriptions (license: MIT) @urbanjost

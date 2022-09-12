@@ -268,8 +268,9 @@ textblock=[character(len=256) :: &
 '        write(*, frmtc) ''complex         '',  z, abs(z)', &
 '', &
 '      ! any value whose positive value is representable', &
-'      ! A dusty corner is that abs(-huge(0)-1) would input a representable', &
-'      ! negative value but result in a positive value out of range.', &
+'      ! A dusty corner is that abs(-huge(0)-1) of an integer would input', &
+'      ! a representable negative value on most machines but result in a', &
+'      ! positive value out of range.', &
 '        write(*, *) ''abs range test : '', abs(huge(0)), abs(-huge(0))', &
 '        write(*, *) ''abs range test : '', abs(huge(0.0)), abs(-huge(0.0))', &
 '        write(*, *) ''abs range test : '', abs(tiny(0.0)), abs(-tiny(0.0))', &
@@ -813,6 +814,10 @@ textblock=[character(len=256) :: &
 '', &
 'AIMAG(Z) yields the imaginary part of complex argument Z.', &
 '', &
+'This is similar to the modern complex-part-designator %IM which also', &
+'designates the imaginary part of a value, accept a designator can appear', &
+'on the left-hand side of an assignment as well, as in VAL%IM=10.0.', &
+'', &
 'ARGUMENTS', &
 '', &
 '-   Z : The type of the argument shall be complex.', &
@@ -850,6 +855,10 @@ textblock=[character(len=256) :: &
 '     (-11.00000,-2.000000)', &
 '', &
 '           2.000000       1.000000       4.000000      -2.000000', &
+'', &
+'SEE ALSO', &
+'', &
+'REAL(3), CMPLX(3)', &
 '', &
 'STANDARD', &
 '', &
@@ -1045,6 +1054,10 @@ textblock=[character(len=256) :: &
 '        entire array : F', &
 '        compare columns: T F T', &
 '        compare rows: T F', &
+'', &
+'SEE ALSO', &
+'', &
+'ANY(3)', &
 '', &
 'STANDARD', &
 '', &
@@ -1296,6 +1309,10 @@ textblock=[character(len=256) :: &
 '        T', &
 '        T T T', &
 '        T T', &
+'', &
+'SEE ALSO', &
+'', &
+'ANY(3)', &
 '', &
 'STANDARD', &
 '', &
@@ -1577,62 +1594,161 @@ textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '', &
-'ATAN2(3) - [MATHEMATICS:TRIGONOMETRIC] Arctangent function', &
+'ATAN2(3) - [MATHEMATICS:TRIGONOMETRIC] Arctangent (inverse tangent)', &
+'function', &
 '', &
 'SYNTAX', &
 '', &
-'    result = atan2(y, x)', &
+'      elemental function atan2(y, x)', &
+'', &
+'        type(real,kind=KIND) :: atan2', &
+'        type(real,kind=KIND),intent(in) :: y, x', &
+'', &
+'The return value has the same type and kind as Y and X.', &
 '', &
 'DESCRIPTION', &
 '', &
-'ATAN2(Y, X) computes the arctangent of the complex number ( X + i Y ) .', &
-'', &
-'This function can be used to transform from Cartesian into polar', &
-'coordinates and allows to determine the angle in the correct quadrant.', &
-'To convert from Cartesian Coordinates (X,Y) to polar coordinates', &
-'', &
-'(r,theta): $$ \begin{aligned} r &= \sqrt{x2 + Y2} \ \theta &=', &
-'\tan**{-1}(y / x) \end{aligned} $$', &
+'ATAN2(Y, X) computes in radians a processor-dependent approximation of', &
+'the arctangent of the complex number ( X, Y ) or equivalently the', &
+'principal value of the arctangent of the value Y/X (which determines a', &
+'unique angle).', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   Y : The type shall be real.', &
+'-   Y : The imaginary component of the complex value (X,Y) or the Y', &
+'    component of the point <X,Y>.', &
 '', &
-'-   X : The type and kind type parameter shall be the same as Y. If Y is', &
-'    zero, then X must be nonzero.', &
+'-   X : The real component of the complex value (X,Y) or the X component', &
+'    of the point <X,Y>.', &
+'', &
+'    If must be of the same kind as Y.', &
 '', &
 'RETURNS', &
 '', &
-'The return value has the same type and kind type parameter as Y. It is', &
-'the principal value of the complex number (X + I, Y). If x is nonzero,', &
-'then it lies in the range -PI <= ATAN(X) <= PI. The sign is positive if', &
-'Y is positive. If Y is zero, then the return value is zero if X is', &
-'strictly positive, PI if X is negative and Y is positive zero (or the', &
-'processor does not handle signed zeros), and -PI if X is negative and Y', &
-'is negative zero. Finally, if X is zero, then the magnitude of the', &
-'result is PI/2.', &
+'The value returned is by definition the principal value of the complex', &
+'number (X, Y).', &
+'', &
+'The principal value is simply what we get when we adjust a radian value', &
+'to lie between -PI and PI inclusive,', &
+'', &
+'The type and kind of the result are the same as the elements of X. and', &
+'Y.', &
+'', &
+'The classic definition of the arctangent is the angle that is formed in', &
+'Cartesian coordinates of the line from the origin point <0,0> to the', &
+'point <X,Y> .', &
+'', &
+'Pictured as such a vector it is easy to see that if X and Y are both', &
+'zero the angle is indeterminent because it sits directly over the', &
+'origin, so ATAN(0.0,0.0) will produce an error.', &
+'', &
+'Range of returned values by quadrant:', &
+'', &
+'    >                   +PI/2', &
+'    >                     |', &
+'    >                     |', &
+'    >        PI/2<Z<PI    |   0>Z<PI/2', &
+'    >                     |', &
+'    >   +-PI -------------+---------------- +-0', &
+'    >                     |', &
+'    >         PI/2<-Z<PI  |    0<-Z<PI/2', &
+'    >                     |', &
+'    >                     |', &
+'    >                   -PI/2', &
+'    >', &
+'         NOTES:', &
+'', &
+'         If the processor distinguishes -0 and +0 then the sign of the', &
+'         returned value is that of Y when Y is zero, else when Y is zero', &
+'         the returned value is always positive.', &
 '', &
 'EXAMPLES', &
 '', &
 'Sample program:', &
 '', &
 '    program demo_atan2', &
-'    use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32', &
+'    real :: x, y, z', &
+'    complex :: c', &
+'', &
+'     ! basic usage', &
+'      ! ATAN2 (1.5574077, 1.0) has the value 1.0 (approximately).', &
+'      z=atan2(1.5574077, 1.0)', &
+'      write(*,*) ''radians='',z,''degrees='',r2d(z)', &
+'', &
+'     ! elemental arrays', &
+'      write(*,*)''elemental'',atan2( [10.0, 20.0], [30.0,40.0] )', &
+'     ! elemental arrays and scalars', &
+'      write(*,*)''elemental'',atan2( [10.0, 20.0], 50.0 )', &
+'', &
+'     ! break into real and imaginary components to use with complex values', &
+'     ! note TAN2() can take a complex value', &
+'      c=(0.0,1.0)', &
+'      write(*,*)''complex'',c,atan2( x=c%re, y=c%im )', &
+'      COMPLEX_VALS: block', &
+'      real                :: ang, radius', &
+'      complex,allocatable :: vals(:)', &
+'', &
+'      vals=[ &', &
+'        ( 0.0, 1.0 ), &', &
+'        ( 1.0, 1.0 ), &', &
+'        ( 1.0, 0.0 ), &', &
+'        ( 0.0,-1.0 ), &', &
+'        (-1.0, 1.0 ), &', &
+'        (-1.0, 0.0 ), &', &
+'        (-1.0,-1.0 )]', &
+'      do i=1,size(vals)', &
+'         call cartesian_to_polar(vals(i)%re,vals(i)%im,radius,ang)', &
+'         write(*,101)vals(i),ang,r2d(ang),radius', &
+'      enddo', &
+'      101 format(''X= '',f5.2,'' Y= '',f5.2,'' ANGLE= '',g0,T40,''DEGREES= '',g0.4,T57,''DISTANCE='',g0)', &
+'     endblock COMPLEX_VALS', &
+'', &
+'    contains', &
+'', &
+'    elemental real function r2d(radians)', &
+'    ! input radians to convert to degrees', &
+'    doubleprecision,parameter :: DEGREE=0.017453292519943d0 ! radians', &
+'    real,intent(in)           :: radians', &
+'       r2d=radians / DEGREE ! do the conversion', &
+'    end function r2d', &
+'', &
+'    subroutine cartesian_to_polar(x,y,radius,inclination)', &
 '    implicit none', &
-'    real(kind=sp) :: x = 1.e0_sp, y = 0.5e0_sp, z', &
-'       z = atan2(y,x)', &
-'       write(*,*)x,y,z', &
+'    real,intent(in)  :: x,y', &
+'    real,intent(out) :: radius,inclination', &
+'       radius=sqrt(x**2+y**2)', &
+'       if(radius.eq.0)then', &
+'          inclination=0.0', &
+'       else', &
+'          inclination=atan2(y,x)', &
+'       endif', &
+'    end subroutine cartesian_to_polar', &
+'', &
 '    end program demo_atan2', &
 '', &
 'Results:', &
 '', &
-'          1.00000000      0.500000000      0.463647604', &
+'    > radians=   1.00000000     degrees=   57.2957802    ', &
+'    > elemental  0.321750551      0.463647604    ', &
+'    > elemental  0.197395563      0.380506366    ', &
+'    >X=  0.00 Y=  1.00 ANGLE= 1.57079637    DEGREES= 90.00   DISTANCE=1.00000000', &
+'    >X=  1.00 Y=  1.00 ANGLE= 0.785398185   DEGREES= 45.00   DISTANCE=1.41421354', &
+'    >X=  1.00 Y=  0.00 ANGLE= 0.00000000    DEGREES= 0.000   DISTANCE=1.00000000', &
+'    >X=  0.00 Y= -1.00 ANGLE= -1.57079637   DEGREES= -90.00  DISTANCE=1.00000000', &
+'    >X= -1.00 Y=  1.00 ANGLE= 2.35619450    DEGREES= 135.0   DISTANCE=1.41421354', &
+'    >X= -1.00 Y=  0.00 ANGLE= 3.14159274    DEGREES= 180.0   DISTANCE=1.00000000', &
+'    >X= -1.00 Y= -1.00 ANGLE= -2.35619450   DEGREES= -135.0  DISTANCE=1.41421354', &
+'', &
+'SEE ALSO', &
+'', &
+'-   ATAN(3)', &
+'-   arctan:wikipedia', &
 '', &
 'STANDARD', &
 '', &
 'FORTRAN 77 and later', &
 '', &
-'fortran-lang intrinsic descriptions', &
+'fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '']
 
 shortname="atan2"
@@ -3824,12 +3940,10 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '', &
 '-   AIMAG(3) - Imaginary part of complex number', &
-'', &
-'-   CMPLX(3) - Complex conversion function', &
-'', &
 '-   CONJG(3) - Complex conjugate function', &
-'', &
 '-   REAL(3) - Convert to real type', &
+'-   DBLE(3) - Convert to doubleprecision', &
+'-   INT(3) - Convert to an integer', &
 '', &
 'STANDARD', &
 '', &
@@ -5223,7 +5337,7 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'FLOAT(3), REAL(3)', &
+'REAL(3), CMPLX(3), AIMAG(3), INT(3)', &
 '', &
 'fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '']
@@ -13742,9 +13856,14 @@ textblock=[character(len=256) :: &
 '', &
 'REAL(X, KIND) converts its argument X to a real type.', &
 '', &
+'For complex values this is similar to the modern complex-part-designator', &
+'%RE which also designates the real part of a value, accept a designator', &
+'can appear on the left-hand side of an assignment as well, as in', &
+'VAL%RE=(3.0,4.0).', &
+'', &
 'ARGUMENTS', &
 '', &
-'-   X : Shall be integer, real, or complex.', &
+'-   X : Shall be integer, real, or complex to convert to real.', &
 '', &
 '-   KIND : (Optional) An integer initialization expression indicating', &
 '    the kind parameter of the result.', &
@@ -13757,8 +13876,8 @@ textblock=[character(len=256) :: &
 '1.  REAL(x) is converted to a default real type if X is an integer or', &
 '    real variable.', &
 '', &
-'2.  REAL(x) is converted to a real type with the kind type parameter of', &
-'    X if X is a complex variable.', &
+'2.  REAL(x) is converted to a real type with the magnitude of the real', &
+'    component of a complex value with kind type parameter of X.', &
 '', &
 '3.  REAL(X, KIND) is converted to a real type with kind type parameter', &
 '    KIND if X is a complex, integer, or real variable.', &
@@ -13792,7 +13911,7 @@ textblock=[character(len=256) :: &
 '', &
 'SEE ALSO', &
 '', &
-'DBLE(3), FLOAT(3)', &
+'DBLE(3), CMPLX(3), AIMAG(3), INT(3)', &
 '', &
 'fortran-lang intrinsic descriptions', &
 '']
@@ -16380,17 +16499,21 @@ textblock=[character(len=256) :: &
 '', &
 'DESCRIPTION', &
 '', &
-'Transpose an array of rank two. Element (i, j) of the result has the', &
-'value MATRIX(J, I), for all i, j.', &
+'Transpose an array of rank two.', &
+'', &
+'A array is transposed by interchanging the rows and columns of the given', &
+'matrix. That is, element (i, j) of the result has the value of', &
+'element(j, i) for all (i, j).', &
 '', &
 'ARGUMENTS', &
 '', &
-'-   MATRIX : Shall be an array of any type and have a rank of two.', &
+'-   MATRIX : The array to transpose, which shall be of any type and have', &
+'    a rank of two.', &
 '', &
 'RETURNS', &
 '', &
-'The result has the same type as MATRIX, and has shape [ m, n ] if MATRIX', &
-'has shape [ n, m ].', &
+'The transpose of the input array. The result has the same type as', &
+'MATRIX, and has shape [ m, n ] if MATRIX has shape [ n, m ].', &
 '', &
 'EXAMPLES', &
 '', &

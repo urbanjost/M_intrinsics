@@ -16,8 +16,9 @@
           write(*, frmtc) 'complex         ',  z, abs(z)
 
         ! any value whose positive value is representable
-        ! A dusty corner is that abs(-huge(0)-1) would input a representable
-        ! negative value but result in a positive value out of range.
+        ! A dusty corner is that abs(-huge(0)-1) of an integer would input
+        ! a representable negative value on most machines but result in a
+        ! positive value out of range.
           write(*, *) 'abs range test : ', abs(huge(0)), abs(-huge(0))
           write(*, *) 'abs range test : ', abs(huge(0.0)), abs(-huge(0.0))
           write(*, *) 'abs range test : ', abs(tiny(0.0)), abs(-tiny(0.0))
