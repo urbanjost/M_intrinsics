@@ -36,7 +36,6 @@ being explored to provide better formatting.
 
 Add
 
- + XOR
  + COSHAPE
  + FAILED_IMAGES
  + GET_TEAM

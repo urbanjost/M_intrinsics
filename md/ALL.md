@@ -98,9 +98,10 @@ end program demo_all
     compare columns: T F T
     compare rows: T F
 ```
+### **See Also**
+[**any**(3)](ANY)
 
 ### **Standard**
-
 Fortran 95 and later
 
 _fortran-lang intrinsic descriptions_
