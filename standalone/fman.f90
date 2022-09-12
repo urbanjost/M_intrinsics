@@ -1605,6 +1605,7 @@ textblock=[character(len=256) :: &
 '', &
 '        type(real,kind=KIND) :: atan2', &
 '        type(real,kind=KIND),intent(in) :: y, x', &
+<<<<<<< HEAD
 '', &
 'The return value has the same type and kind as Y and X.', &
 '', &
@@ -1643,6 +1644,47 @@ textblock=[character(len=256) :: &
 'Pictured as such a vector it is easy to see that if X and Y are both', &
 'zero the angle is indeterminent because it sits directly over the', &
 'origin, so ATAN(0.0,0.0) will produce an error.', &
+=======
+'', &
+'The return value has the same type and kind as Y and X.', &
+'', &
+'DESCRIPTION', &
+'', &
+'ATAN2(Y, X) computes in radians a processor-dependent approximation of', &
+'the arctangent of the complex number ( X, Y ) or equivalently the', &
+'arctangent of the real value Y/X.', &
+'', &
+'It is often used in computations such as converting from Cartesian to', &
+'polar coordinates.', &
+'', &
+'ARGUMENTS', &
+'', &
+'-   Y : The imaginary component of the complex value (X,Y).', &
+'', &
+'-   X : The real component of the complex value (X,Y). A real value of', &
+'    the same kind as Y.', &
+'', &
+'RETURNS', &
+'', &
+'The type and kind of the result are the same as the elements of X and Y.', &
+'', &
+'The returned value will be in the range -PI <= ATAN(X) <= PI. That is,', &
+'the absolute value returned is <= PI. It is not from 0 to 2*PI.', &
+'', &
+'The classic definition of the arctangent is the angle that is formed in', &
+'Cartesian coordinates of the line from the origin point <0,0> to the', &
+'point <X,Y> . ATAN2 always returns a principal value.', &
+'', &
+'The principal value is simply what we get when we adjust the angle, if', &
+'necessary, to lie between -PI and PI.', &
+'', &
+'It is also by definition the principal value of the complex number (X,', &
+'Y).', &
+'', &
+'Note that if pictured as the angle formed by the line from <0,0> to', &
+'<x,y> that if X and Y are both zero the angle is indeterminent because', &
+'it sits directly over the origin, so ATAN(0.0,0.0) results in an error.', &
+>>>>>>> 5bf68cedc52270462b571be27a9bab3ff17207bf
 '', &
 'Range of returned values by quadrant:', &
 '', &
