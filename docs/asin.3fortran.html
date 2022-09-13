@@ -1,0 +1,219 @@
+<html> 
+<head> 
+<title> </title>
+<style> 
+px {font-family: "Lucida Console", Monaco, monospace}
+p { font-size:100%; line-height:1.1em; }
+body {xfont-style: sans-serif}
+body {
+color:#333; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:1em; line-height:1.3em; }
+a:visited { color:#666; }
+h1,h2,h3,h4,h5,h6 { color:#333; font-family:georgia, verdana, sans-serif; }
+h1 { font-size:150%; page-break-before:auto;background-color: #aaaaff}
+h2 { font-size:143%;color:teal; }
+h3 { font-size:134%;color:blue; }
+h4 { font-size:120%;color:gray; }
+img { max-width: 55em}
+p{ padding: 0;margin:0; }
+p{ padding-right:1.4em; }
+p{ padding-bottom:1em; }
+p{ padding-top:1em; }
+p{ whitespace: pre-wrap; }
+h5,h6 { font-size:100% }
+a.nav,a:link.nav, a:visited.nav { background-color:#FFF; color:#000; }
+XXtable { border:double #000; border-collapse:collapse; }
+XXtable { border-collapse:collapse; }
+XXtd { border:thin solid #888; }
+XXtd { border:none; }
+li { margin-bottom:0.5em; }
+blockquote { display:block; font-size:100%; line-height:1.1em; margin:0 0 1.5em; padding:0 2.5em; }
+pre { background-color:#DDD; font-size:100%; overflow:auto; padding:1em; }
+a,li span { color:#000; }
+a:hover, a.nav:hover, a:hover math { background-color:#000; color:#FFF; }
+#Container { margin:0 10px; text-align:center; background-color: #BBB}
+#Content { border-top:none; margin:auto; padding:0.3em; text-align:left; width:100%; max-width:55em; background:#FFF}
+span.webName { font-size:.5em; }
+textarea#content { font-size: 1em; line-height: 1.125; }
+h1#pageName { line-height:1em; margin:0.2em 0 0.2em 0; padding:0; }
+.property { color:#666; font-size:100%; }
+a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
+.byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
+</style> 
+</head>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!--
+<h5><a href="index.html">[UP]</a></h5>
+-->
+<button type="button" onclick="javascript:history.back()">Back</button>
+<div id="Container">
+<div id="Content">
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>asin (3fortran)</NOBR><HR></H1>
+</CENTER>
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<B>ASIN</B>(3) - [MATHEMATICS:TRIGONOMETRIC] Arcsine function
+<P>
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=8>
+
+     <H3>SYNTAX</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+result = <B>asin</B>(x)
+<P>
+<PRE>
+        elemental TYPE(kind=KIND) function asin(x)
+        TYPE(kind=KIND) :: x
+<P>
+</PRE>
+where the returned value has the kind of the input value and TYPE may be
+real or complex
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<B>ASIN</B>(X) computes the arcsine of its argument X.
+<P>
+The arcsine is the inverse function of the sine function. It is commonly
+used in trigonometry when trying to find the angle when the lengths of
+the hypotenuse and the opposite side of a right triangle are known.
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>ARGUMENTS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+X : The type shall be either real and a magnitude that is less than
+or equal to one; or be complex.
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>RETURNS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+RESULT : The return value is of the same type and kind as X. The
+real part of the result is in radians and lies in the range <B>-PI</B>/2 &lt;=
+<B>ASIN</B>(X) &lt;= PI/2.
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=5>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+The arcsine will allow you to find the measure of a right angle when you
+know the ratio of the side opposite the angle to the hypotenuse.
+<P>
+So if you knew that a train track rose 1.25 vertical miles on a track
+that was 50 miles long, you could determine the average angle of incline
+of the track using the arcsine. Given
+<P>
+<PRE>
+     sin(theta) = 1.25 miles/50 miles (opposite/hypotenuse)
+<P>
+</PRE>
+Sample program:
+<P>
+<PRE>
+    program demo_asin
+    use, intrinsic :: iso_fortran_env, only : dp=&gt;real64
+    implicit none
+    ! value to convert degrees to radians
+    real(kind=dp),parameter :: D2R=acos(-1.0_dp)/180.0_dp
+    real(kind=dp)           :: angle, rise, run
+    character(len=*),parameter :: all=&#146;(*(g0,1x))&#146;
+      ! given sine(theta) = 1.25 miles/50 miles (opposite/hypotenuse)
+      ! then taking the arcsine of both sides of the equality yields
+      ! theta = arcsine(1.25 miles/50 miles) ie. arcsine(opposite/hypotenuse)
+      rise=1.250_dp
+      run=50.00_dp
+      angle = asin(rise/run)
+      print all, &#146;angle of incline(radians) = &#146;, angle
+      angle = angle/D2R
+      print all, &#146;angle of incline(degrees) = &#146;, angle
+<P>
+      print all, &#146;percent grade=&#146;,rise/run*100.0_dp
+    end program demo_asin
+<P>
+</PRE>
+Results:
+<P>
+<PRE>
+        angle of incline(radians) =    2.5002604899361139E-002
+        angle of incline(degrees) =    1.4325437375665075
+        percent grade=   2.5000000000000000
+<P>
+</PRE>
+The percentage grade is the slope, written as a percent. To calculate
+the slope you divide the rise by the run. In the example the rise is
+1.25 mile over a run of 50 miles so the slope is 1.25/50 = 0.025.
+Written as a percent this is 2.5 %.
+<P>
+For the US, two and 1/2 percent is generally thought of as the upper
+limit. This means a rise of 2.5 feet when going 100 feet forward. In the
+US this was the maximum grade on the first major US railroad, the
+Baltimore and Ohio. Note curves increase the frictional drag on a train
+reducing the allowable grade.
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>STANDARD</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+FORTRAN 77 and later, for a complex argument Fortran 2008 or later
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+wikipedia: inverse trigonometric functions
+</TD></TR>
+<TR></TR></TABLE>Inverse function: <B>SIN</B>(3)
+<P>
+fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>asin (3fortran)</TD> <TD align=right width=33%><I>September 12, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 1e2d7cee-3f79-43c9-b537-4a55d44df486 using man macros.</FONT>
+<br><br><center><img src="images/asin.3fortran.gif"></center>
+</div>
+</div>
+</body>
+</HTML>

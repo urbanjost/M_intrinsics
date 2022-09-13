@@ -1,0 +1,268 @@
+<html> 
+<head> 
+<title> </title>
+<style> 
+px {font-family: "Lucida Console", Monaco, monospace}
+p { font-size:100%; line-height:1.1em; }
+body {xfont-style: sans-serif}
+body {
+color:#333; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:1em; line-height:1.3em; }
+a:visited { color:#666; }
+h1,h2,h3,h4,h5,h6 { color:#333; font-family:georgia, verdana, sans-serif; }
+h1 { font-size:150%; page-break-before:auto;background-color: #aaaaff}
+h2 { font-size:143%;color:teal; }
+h3 { font-size:134%;color:blue; }
+h4 { font-size:120%;color:gray; }
+img { max-width: 55em}
+p{ padding: 0;margin:0; }
+p{ padding-right:1.4em; }
+p{ padding-bottom:1em; }
+p{ padding-top:1em; }
+p{ whitespace: pre-wrap; }
+h5,h6 { font-size:100% }
+a.nav,a:link.nav, a:visited.nav { background-color:#FFF; color:#000; }
+XXtable { border:double #000; border-collapse:collapse; }
+XXtable { border-collapse:collapse; }
+XXtd { border:thin solid #888; }
+XXtd { border:none; }
+li { margin-bottom:0.5em; }
+blockquote { display:block; font-size:100%; line-height:1.1em; margin:0 0 1.5em; padding:0 2.5em; }
+pre { background-color:#DDD; font-size:100%; overflow:auto; padding:1em; }
+a,li span { color:#000; }
+a:hover, a.nav:hover, a:hover math { background-color:#000; color:#FFF; }
+#Container { margin:0 10px; text-align:center; background-color: #BBB}
+#Content { border-top:none; margin:auto; padding:0.3em; text-align:left; width:100%; max-width:55em; background:#FFF}
+span.webName { font-size:.5em; }
+textarea#content { font-size: 1em; line-height: 1.125; }
+h1#pageName { line-height:1em; margin:0.2em 0 0.2em 0; padding:0; }
+.property { color:#666; font-size:100%; }
+a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
+.byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
+</style> 
+</head>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!--
+<h5><a href="index.html">[UP]</a></h5>
+-->
+<button type="button" onclick="javascript:history.back()">Back</button>
+<div id="Container">
+<div id="Content">
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>btest (3fortran)</NOBR><HR></H1>
+</CENTER>
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<B>BTEST</B>(3) - [BIT:INQUIRY] Tests a bit of an integer value.
+<P>
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=8>
+
+     <H3>SYNTAX</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+result = <B>btest</B>(i, pos)
+<P>
+<PRE>
+        integer(kind=KIND) elemental function btest(i,pos)
+        integer,intent(in)  :: i
+        logical,intent(out) :: pos
+<P>
+</PRE>
+where KIND is any integer kind supported by the programming environment.
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<B>BTEST</B>(I,POS) returns logical .TRUE. if the bit at POS in I is set.
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>ARGUMENTS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+I : The type shall be integer.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+POS : The bit position to query. it must be a valid position for the
+value I; ie. 0 &lt;= POS &lt;= <B>BIT_SIZE</B>(I) .
+<P>
+A value of zero refers to the least significant bit.
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>RETURNS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+The result is a logical that has the value .TRUE. if bit position POS of
+I has the value 1 and the value .FALSE. if bit POS of I has the value 0.
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Sample program:
+<P>
+<PRE>
+    program demo_btest
+    implicit none
+    integer :: i, j, pos, a(2,2)
+    logical :: bool
+    character(len=*),parameter :: g=&#146;(*(g0))&#146;
+<P>
+         i = 32768 + 1024 + 64
+        write(*,&#146;(a,i0,"=&gt;",b32.32,/)&#146;)&#146;Looking at the integer: &#146;,i
+<P>
+        ! looking one bit at a time from LOW BIT TO HIGH BIT
+        write(*,g)&#146;from bit 0 to bit &#146;,bit_size(i),&#146;==&gt;&#146;
+        do pos=0,bit_size(i)-1
+            bool = btest(i, pos)
+            write(*,&#146;(l1)&#146;,advance=&#146;no&#146;)bool
+        enddo
+        write(*,*)
+<P>
+        ! a binary format the hard way.
+        ! Note going from bit_size(i) to zero.
+        write(*,*)
+        write(*,g)&#146;so for &#146;,i,&#146; with a bit size of &#146;,bit_size(i)
+        write(*,&#146;(b32.32)&#146;)i
+        write(*,g)merge(&#146;^&#146;,&#146;_&#146;,[(btest(i,j),j=bit_size(i)-1,0,-1)])
+        write(*,*)
+        write(*,g)&#146;and for &#146;,-i,&#146; with a bit size of &#146;,bit_size(i)
+        write(*,&#146;(b32.32)&#146;)-i
+        write(*,g)merge(&#146;^&#146;,&#146;_&#146;,[(btest(-i,j),j=bit_size(i)-1,0,-1)])
+<P>
+        ! elemental:
+        !
+        a(1,:)=[ 1, 2 ]
+        a(2,:)=[ 3, 4 ]
+        write(*,*)
+        write(*,&#146;(a,/,*(i2,1x,i2,/))&#146;)&#146;given the array a &#46;&#46;&#46;&#146;,a
+        ! the second bit of all the values in a
+        write(*,&#146;(a,/,*(l2,1x,l2,/))&#146;)&#146;the value of btest (a, 2)&#146;,btest(a,2)
+        ! bits 1,2,3,4 of the value 2
+        write(*,&#146;(a,/,*(l2,1x,l2,/))&#146;)&#146;the value of btest (2, a)&#146;,btest(2,a)
+    end program demo_btest
+<P>
+</PRE>
+Results:
+<P>
+<PRE>
+    Looking at the integer: 33856=&gt;11111111111111110111101111000000
+<P>
+    00000000000000001000010001000000
+    11111111111111110111101111000000
+    1000010001000000
+    11111111111111110111101111000000
+    from bit 0 to bit 32==&gt;
+</PRE>
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; FFFFFFTFFFTFFFFTFFFFFFFFFFFFFFFF</H4>
+</A>
+<BLOCKQUOTE>
+<P>
+so for 33856 with a bit size of 32
+00000000000000001000010001000000
+________________^____^___^______
+<P>
+and for <B>-33856</B> with a bit size of 32
+11111111111111110111101111000000
+^^^^^^^^^^^^^^^^_^^^^_^^^^______
+<P>
+given the array a &#46;&#46;&#46;
+<BLOCKQUOTE>
+<TABLE cellpadding=3><!-- tsb: given the array a &#46;&#46;&#46;
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>1</B> <!-- Consumed .TP -->
+<BR>
+<B>2</B> </TD><TD valign=bottom>
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<P>
+the value of btest (a, 2)
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; F F</H4>
+</A>
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; F T</H4>
+</A>
+<BLOCKQUOTE>
+<P>
+the value of btest (2, a)
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; T F</H4>
+</A>
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; F F</H4>
+</A>
+<BLOCKQUOTE>
+<P>
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>STANDARD</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Fortran 95 and later
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<B>IAND</B>(3), <B>IBCLR</B>(3), <B>IBITS</B>(3), <B>IBSET</B>(3), <B>IEOR</B>(3), <B>IOR</B>(3), <B>NOT</B>(3),
+<B>MVBITS</B>(3)
+<P>
+fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>btest (3fortran)</TD> <TD align=right width=33%><I>September 12, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 5b2470fa-6c0d-413d-8349-96a90ec5f4a2 using man macros.</FONT>
+<br><br><center><img src="images/btest.3fortran.gif"></center>
+</div>
+</div>
+</body>
+</HTML>

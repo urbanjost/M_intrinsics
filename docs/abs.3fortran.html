@@ -1,0 +1,228 @@
+<html> 
+<head> 
+<title> </title>
+<style> 
+px {font-family: "Lucida Console", Monaco, monospace}
+p { font-size:100%; line-height:1.1em; }
+body {xfont-style: sans-serif}
+body {
+color:#333; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:1em; line-height:1.3em; }
+a:visited { color:#666; }
+h1,h2,h3,h4,h5,h6 { color:#333; font-family:georgia, verdana, sans-serif; }
+h1 { font-size:150%; page-break-before:auto;background-color: #aaaaff}
+h2 { font-size:143%;color:teal; }
+h3 { font-size:134%;color:blue; }
+h4 { font-size:120%;color:gray; }
+img { max-width: 55em}
+p{ padding: 0;margin:0; }
+p{ padding-right:1.4em; }
+p{ padding-bottom:1em; }
+p{ padding-top:1em; }
+p{ whitespace: pre-wrap; }
+h5,h6 { font-size:100% }
+a.nav,a:link.nav, a:visited.nav { background-color:#FFF; color:#000; }
+XXtable { border:double #000; border-collapse:collapse; }
+XXtable { border-collapse:collapse; }
+XXtd { border:thin solid #888; }
+XXtd { border:none; }
+li { margin-bottom:0.5em; }
+blockquote { display:block; font-size:100%; line-height:1.1em; margin:0 0 1.5em; padding:0 2.5em; }
+pre { background-color:#DDD; font-size:100%; overflow:auto; padding:1em; }
+a,li span { color:#000; }
+a:hover, a.nav:hover, a:hover math { background-color:#000; color:#FFF; }
+#Container { margin:0 10px; text-align:center; background-color: #BBB}
+#Content { border-top:none; margin:auto; padding:0.3em; text-align:left; width:100%; max-width:55em; background:#FFF}
+span.webName { font-size:.5em; }
+textarea#content { font-size: 1em; line-height: 1.125; }
+h1#pageName { line-height:1em; margin:0.2em 0 0.2em 0; padding:0; }
+.property { color:#666; font-size:100%; }
+a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
+.byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
+</style> 
+</head>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!--
+<h5><a href="index.html">[UP]</a></h5>
+-->
+<button type="button" onclick="javascript:history.back()">Back</button>
+<div id="Container">
+<div id="Content">
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>abs (3fortran)</NOBR><HR></H1>
+</CENTER>
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<B>ABS</B>(3) - [NUMERIC] Absolute value
+<P>
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>SYNTAX</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+result = <B>abs</B>(a)
+<P>
+<PRE>
+       TYPE(kind=KIND) elemental function abs(a)
+<P>
+       TYPE(kind=KIND),intent(in) :: a
+<P>
+</PRE>
+where the TYPE and KIND is determined by the type and type attributes of
+A, which may be any real, integer, or complex value.
+</BLOCKQUOTE>
+<P>
+If the type of A is complex the type returned will be real with the same
+kind as the real part of the input value.
+<BLOCKQUOTE>
+<P>
+Otherwise the returned type will be the same type as A.
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<B>ABS</B>(A) computes the absolute value of numeric argument A.
+<P>
+In mathematics, the absolute value or modulus of a real number X,
+denoted |X|, is the magnitude of X without regard to its sign.
+<P>
+The absolute value of a number may be thought of as its distance from
+zero, which is the definition used by <B>ABS</B>(3) when dealing with complex
+values (see below).
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>ARGUMENTS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+A : the type of the argument shall be an integer, real, or complex
+scalar or array.
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>RETURNS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+If A is of type integer or real, the value of the result is |A| and of
+the same type and kind as the input argument.
+<P>
+(Take particular note) if A is complex with value (X, Y), the result is
+a real equal to a processor-dependent approximation to <B>SQRT</B>(X**2 + Y**2)
+computed without undue overflow or underflow.
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Sample program:
+<P>
+<PRE>
+    program demo_abs
+    implicit none
+    integer           :: i = -1
+    real              :: x = -1.0
+    complex           :: z = (-3.0,-4.0)
+    doubleprecision   :: rr = -45.78d+00
+    character(len=*),parameter :: &
+     frmt =  &#146;(1x,a15,1x," In: ",g0,            T51," Out: ",g0)&#146;, &
+     frmtc = &#146;(1x,a15,1x," In: (",g0,",",g0,")",T51," Out: ",g0)&#146;
+    integer,parameter :: dp=kind(0.0d0)
+<P>
+      ! any integer, real, or complex type
+        write(*, frmt)  &#146;integer         &#146;,  i, abs(i)
+        write(*, frmt)  &#146;real            &#146;,  x, abs(x)
+        write(*, frmt)  &#146;doubleprecision &#146;, rr, abs(rr)
+        write(*, frmtc) &#146;complex         &#146;,  z, abs(z)
+<P>
+      ! any value whose positive value is representable
+      ! A dusty corner is that abs(-huge(0)-1) of an integer would input
+      ! a representable negative value on most machines but result in a
+      ! positive value out of range.
+        write(*, *) &#146;abs range test : &#146;, abs(huge(0)), abs(-huge(0))
+        write(*, *) &#146;abs range test : &#146;, abs(huge(0.0)), abs(-huge(0.0))
+        write(*, *) &#146;abs range test : &#146;, abs(tiny(0.0)), abs(-tiny(0.0))
+<P>
+      ! elemental
+        write(*, *) &#146;abs is elemental: &#146;, abs([20,  0,  -1,  -3,  100])
+<P>
+      ! complex input produces real output
+        write(*, *)  cmplx(30.0,40.0)
+<P>
+      ! the returned value for complex input can be thought of as the
+      ! distance from the origin &lt;0,0&gt;
+        write(*, *) &#146;distance of &lt;XX,YY&gt; from zero is&#146;, &
+                   & distance(30.0_dp,40.0_dp)
+<P>
+        contains
+<P>
+        real(kind=dp) elemental function distance(x,y)
+        real(kind=dp),intent(in) :: x,y
+           ! dusty corners:
+           ! note that KIND=DP is NOT optional
+           ! if the desired result is KIND=dp.
+           ! See cmplx(3).
+           distance=abs( cmplx(x,y,kind=dp) )
+        end function distance
+<P>
+    end program demo_abs
+<P>
+</PRE>
+Results:
+<P>
+<PRE>
+        integer          In: -1                     Out: 1
+        real             In: -1.000000              Out: 1.000000
+        doubleprecision  In: -45.78000000000000     Out: 45.78000000000000
+        complex          In: (-3.000000,-4.000000)  Out: 5.000000
+        abs range test :   2147483647  2147483647
+        abs range test :   3.4028235E+38  3.4028235E+38
+        abs range test :   1.1754944E-38  1.1754944E-38
+        abs is elemental: 20 0 1 3 100
+        (30.00000,40.00000)
+        distance of &lt;XX,YY&gt; from zero is   50.0000000000000
+<P>
+</PRE>
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>STANDARD</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+FORTRAN 77 and later
+<P>
+fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>abs (3fortran)</TD> <TD align=right width=33%><I>September 12, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from adeddf7d-462e-414e-a741-a1ae5b0edaac using man macros.</FONT>
+<br><br><center><img src="images/abs.3fortran.gif"></center>
+</div>
+</div>
+</body>
+</HTML>

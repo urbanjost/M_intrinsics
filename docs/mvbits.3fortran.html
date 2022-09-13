@@ -1,0 +1,250 @@
+<html> 
+<head> 
+<title> </title>
+<style> 
+px {font-family: "Lucida Console", Monaco, monospace}
+p { font-size:100%; line-height:1.1em; }
+body {xfont-style: sans-serif}
+body {
+color:#333; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:1em; line-height:1.3em; }
+a:visited { color:#666; }
+h1,h2,h3,h4,h5,h6 { color:#333; font-family:georgia, verdana, sans-serif; }
+h1 { font-size:150%; page-break-before:auto;background-color: #aaaaff}
+h2 { font-size:143%;color:teal; }
+h3 { font-size:134%;color:blue; }
+h4 { font-size:120%;color:gray; }
+img { max-width: 55em}
+p{ padding: 0;margin:0; }
+p{ padding-right:1.4em; }
+p{ padding-bottom:1em; }
+p{ padding-top:1em; }
+p{ whitespace: pre-wrap; }
+h5,h6 { font-size:100% }
+a.nav,a:link.nav, a:visited.nav { background-color:#FFF; color:#000; }
+XXtable { border:double #000; border-collapse:collapse; }
+XXtable { border-collapse:collapse; }
+XXtd { border:thin solid #888; }
+XXtd { border:none; }
+li { margin-bottom:0.5em; }
+blockquote { display:block; font-size:100%; line-height:1.1em; margin:0 0 1.5em; padding:0 2.5em; }
+pre { background-color:#DDD; font-size:100%; overflow:auto; padding:1em; }
+a,li span { color:#000; }
+a:hover, a.nav:hover, a:hover math { background-color:#000; color:#FFF; }
+#Container { margin:0 10px; text-align:center; background-color: #BBB}
+#Content { border-top:none; margin:auto; padding:0.3em; text-align:left; width:100%; max-width:55em; background:#FFF}
+span.webName { font-size:.5em; }
+textarea#content { font-size: 1em; line-height: 1.125; }
+h1#pageName { line-height:1em; margin:0.2em 0 0.2em 0; padding:0; }
+.property { color:#666; font-size:100%; }
+a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
+.byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
+</style> 
+</head>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!--
+<h5><a href="index.html">[UP]</a></h5>
+-->
+<button type="button" onclick="javascript:history.back()">Back</button>
+<div id="Container">
+<div id="Content">
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>mvbits (3fortran)</NOBR><HR></H1>
+</CENTER>
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<B>MVBITS</B>(3) - [BIT:COPY] reproduce bit patterns found in one integer in
+another
+<P>
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>SYNTAX</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+call <B>mvbits</B>(from, frompos, len, to, topos)
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<B>MVBITS</B>(3F) copies a bit pattern found in a range of adjacent bits in the
+integer FROM to a specified position in another integer TO (which is of
+the same kind as FROM). It otherwise leaves the bits in TO as-is.
+<P>
+The bit positions copied must exist within the value of FROM. That is,
+the values of FROMPOS+LEN-1 and TOPOS+LEN-1 must be nonnegative and less
+than <B>BIT_SIZE</B>(from).
+<P>
+The bits are numbered 0 to <B>BIT_SIZE</B>(I)<B>-1</B>, from right to left.
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>ARGUMENTS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+FROM : An integer to read bits from.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+FROMPOS : FROMPOS is the position of the first bit to copy. It is a
+nonnegative integer value &lt; <B>BIT_SIZE</B>(FROM).
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+LEN : A nonnegative integer value that indicates how many bits to
+copy from FROM. It must not specify copying bits past the end of
+FROM. That is, FROMPOS + LEN must be less than or equal to
+<B>BIT_SIZE</B>(FROM).
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+TO : The integer variable to place the copied bits into. It must be
+of the same kind as FROM and may even be the same variable as FROM.
+<P>
+TO : is set by copying the sequence of bits of length LEN, starting
+at position FROMPOS of FROM to position TOPOS of TO. No other bits
+of TO are altered. On return, the LEN bits of TO starting at TOPOS
+are equal to the value that the LEN bits of FROM starting at FROMPOS
+had on entry.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+TOPOS : A nonnegative integer value indicating the starting location
+in TO to place the specified copy of bits from FROM. TOPOS + LEN
+must be less than or equal to <B>BIT_SIZE</B>(TO).
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>EXAMPLE</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Sample program that populates a new 32-bit integer with its bytes in
+reverse order (ie. changes the Endian of the integer).
+<P>
+<PRE>
+    program demo_mvbits
+    use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64
+    implicit none
+    integer(kind=int32) :: intfrom, intto, abcd_int
+    character(len=*),parameter :: bits= &#146;(g0,t30,b32.32)&#146;
+    character(len=*),parameter :: fmt= &#146;(g0,t30,a,t40,b32.32)&#146;
+<P>
+        intfrom=huge(0)  ! all bits are 1 accept the sign bit
+        intto=0          ! all bits are 0
+<P>
+        !! CHANGE BIT 0
+        ! show the value and bit pattern
+        write(*,bits)intfrom,intfrom
+        write(*,bits)intto,intto
+<P>
+        ! copy bit 0 from intfrom to intto to show the rightmost bit changes
+        !          (from,    frompos, len,    to, topos)
+        call mvbits(intfrom,       0,   1, intto,     0) ! change bit 0
+        write(*,bits)intto,intto
+<P>
+        !! COPY PART OF A VALUE TO ITSELF
+        ! can copy bit from a value to itself
+        call mvbits(intfrom,0,1,intfrom,31)
+        write(*,bits)intfrom,intfrom
+<P>
+        !! MOVING BYTES AT A TIME
+        ! make native integer value with bit patterns
+        ! that happen to be the same as the beginning of the alphabet
+        ! to make it easy to see the bytes are reversed
+        abcd_int=transfer(&#146;abcd&#146;,0)
+        ! show the value and bit pattern
+        write(*,*)&#146;native&#146;
+        write(*,fmt)abcd_int,abcd_int,abcd_int
+<P>
+        ! change endian of the value
+        abcd_int=int_swap32(abcd_int)
+        ! show the values and their bit pattern
+        write(*,*)&#146;non-native&#146;
+        write(*,fmt)abcd_int,abcd_int,abcd_int
+<P>
+     contains
+<P>
+     pure elemental function int_swap32(intin) result(intout)
+     ! Convert a 32 bit integer from big Endian to little Endian,
+     ! or conversely from little Endian to big Endian.
+     !
+     integer(kind=int32), intent(in)  :: intin
+     integer(kind=int32) :: intout
+        ! copy bytes from input value to new position in output value
+        !          (from,  frompos, len,     to, topos)
+        call mvbits(intin,       0,   8, intout,    24) ! byte1 to byte4
+        call mvbits(intin,       8,   8, intout,    16) ! byte2 to byte3
+        call mvbits(intin,      16,   8, intout,     8) ! byte3 to byte2
+        call mvbits(intin,      24,   8, intout,     0) ! byte4 to byte1
+     end function int_swap32
+<P>
+     end program demo_mvbits
+<P>
+</PRE>
+Results:
+</BLOCKQUOTE>
+<P>
+<P>
+<PRE>
+       2147483647                   01111111111111111111111111111111
+       0                            00000000000000000000000000000000
+       1                            00000000000000000000000000000001
+       -1                           11111111111111111111111111111111
+        native
+       1684234849                   abcd      01100100011000110110001001100001
+        non-native
+       1633837924                   dcba      01100001011000100110001101100100
+<P>
+</PRE>
+<A name=5>
+
+     <H3>STANDARD</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Fortran 95 and later
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<B>BTEST</B>(3), <B>IAND</B>(3), <B>IBCLR</B>(3), <B>IBITS</B>(3), <B>IBSET</B>(3), <B>IEOR</B>(3), <B>IOR</B>(3), <B>NOT</B>(3)
+<P>
+fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>mvbits (3fortran)</TD> <TD align=right width=33%><I>September 12, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 4e66d17e-76e1-49d4-8e8b-3e0edb6be117 using man macros.</FONT>
+<br><br><center><img src="images/mvbits.3fortran.gif"></center>
+</div>
+</div>
+</body>
+</HTML>
