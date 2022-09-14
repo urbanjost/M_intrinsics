@@ -1,4 +1,3 @@
-# ABS
 
 ## abs
 
@@ -123,7 +122,6 @@ end program demo_abs
    FORTRAN 77 and later
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# ACHAR
 
 ## achar
 
@@ -298,7 +296,6 @@ FORTRAN 77 and later, with KIND argument Fortran 2003 and later
 - [M_attr module](https://github.com/urbanjost/M_attr) for controlling ANSI-compatible terminals
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# ACOSH
 
 ## acosh
 
@@ -367,7 +364,6 @@ Fortran 2008 and later
 Inverse function: [**cosh**(3)](COSH)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# ACOS
 
 ## acos
 
@@ -446,7 +442,6 @@ FORTRAN 77 and later; for a _complex_ argument - Fortran 2008 and later
 Inverse function: [**cos**(3](COS))
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# ADJUSTL
 
 ## adjustl
 
@@ -519,7 +514,6 @@ Fortran 95 and later
 [**adjustr**(3)](ADJUSTR)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# ADJUSTR
 
 ## adjustr
 
@@ -603,7 +597,6 @@ Fortran 95 and later
 [**adjustl**(3)](ADJUSTL)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# AIMAG
 
 ## aimag
 
@@ -678,7 +671,6 @@ Results:
 FORTRAN 77 and later
 
 _fortran-lang intrinsic descriptions_
-# AINT
 
 ## aint
 
@@ -778,7 +770,6 @@ FORTRAN 77 and later
 [**floor**(3)](FLOOR)
 
 _fortran-lang intrinsic descriptions_
-# ALL
 
 ## all
 
@@ -887,7 +878,6 @@ end program demo_all
 Fortran 95 and later
 
 _fortran-lang intrinsic descriptions_
-# ALLOCATED
 
 ## allocated
 
@@ -896,17 +886,13 @@ _fortran-lang intrinsic descriptions_
 **allocated**(3) - \[ARRAY INQUIRY\] Status of an allocatable entity
 
 ### **Syntax**
-
 ```fortran
   result = allocated(array)
 ```
-
 or
-
 ```fortran
   result = allocated(scalar)
 ```
-
 ### **Description**
 
 **allocated(array)** and **allocated(scalar)** check the allocation
@@ -936,9 +922,15 @@ use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
 implicit none
 integer :: i = 4
 real(kind=sp), allocatable :: x(:)
+character(len=256) :: message
+integer :: istat
 
    ! if already allocated, deallocate
-   if ( allocated(x) ) deallocate(x)
+   if ( allocated(x) ) deallocate(x,STAT=istat, ERRMSG=message )
+   if(istat.ne.0)then
+      write(*,*)trim(message)
+      stop
+   endif
 
    ! only if not allocated, allocate
    if ( .not. allocated(x) ) allocate(x(i))
@@ -949,9 +941,12 @@ real(kind=sp), allocatable :: x(:)
    else
        write(*,*)'do things if not allocated'
    endif
+
    call intentout(x)
    write(*,*)'note it is deallocated!',allocated(x)
+
    contains
+
    subroutine intentout(arr)
    ! note that if arr has intent(out) and is allocatable,
    ! arr is deallocated on entry
@@ -981,7 +976,7 @@ scalar entities are available in Fortran 2003 and later.
 [**move_alloc**(3)](MOVE_ALLOC)
 
 _fortran-lang intrinsic descriptions_
-# ANINT
+SYNOPSIS
 
 ## anint
 
@@ -1069,7 +1064,6 @@ FORTRAN 77 and later
 [**floor**(3)](FLOOR)
 
 _fortran-lang intrinsic descriptions_
-# ANY
 
 ## any
 
@@ -1151,7 +1145,6 @@ Results:
 Fortran 95 and later
 
 _fortran-lang intrinsic descriptions_
-# ASINH
 
 ## asinh
 
@@ -1218,7 +1211,6 @@ Fortran 2008 and later
 Inverse function: [**sinh**(3)](SINH)
 
 _fortran-lang intrinsic descriptions_
-# ASIN
 
 ## asin
 
@@ -1324,7 +1316,6 @@ FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 Inverse function: [**sin**(3)](SIN)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# ASSOCIATED
 
 ## associated
 
@@ -1416,7 +1407,6 @@ Fortran 95 and later
 [**null**(3)](NULL)
 
 _fortran-lang intrinsic descriptions_
-# ATAN2
 
 ## atan2
 
@@ -1579,7 +1569,6 @@ end program demo_atan2
 FORTRAN 77 and later
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# ATANH
 
 ## atanh
 
@@ -1640,7 +1629,6 @@ Fortran 2008 and later
 Inverse function: [**tanh**(3)](TANH)
 
 _fortran-lang intrinsic descriptions_
-# ATAN
 
 ## atan
 
@@ -1729,7 +1717,6 @@ arguments Fortran 2008 or later
 [**atan2**(3)](ATAN2), [**tan**(3)](TAN)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# ATOMIC\_ADD
 
 ## atomic_add
 
@@ -1793,7 +1780,6 @@ TS 18508 or later
 **iso_fortran_env**(3),
 
 _fortran-lang intrinsic descriptions_
-# ATOMIC\_AND
 
 ## atomic_and
 
@@ -1859,7 +1845,6 @@ TS 18508 or later
 [**atomic_xor**(3)](ATOMIC_XOR)
 
 _fortran-lang intrinsic descriptions_
-# ATOMIC\_CAS
 
 ## atomic_cas
 
@@ -1929,7 +1914,6 @@ TS 18508 or later
 [**iso_fortran_env**(3)]()
 
 _fortran-lang intrinsic descriptions_
-# ATOMIC\_DEFINE
 
 ## atomic_define
 
@@ -2000,7 +1984,6 @@ Fortran 2008 and later; with **stat**, TS 18508 or later
 [**atomic_xor**(3)](ATOMIC_XOR)
 
 _fortran-lang intrinsic descriptions_
-# ATOMIC\_FETCH\_ADD
 
 ## atomic_fetch_add
 
@@ -2070,7 +2053,6 @@ TS 18508 or later
 [**atomic_fetch_xor**(3)](ATOMIC_FETCH_XOR)
 
 _fortran-lang intrinsic descriptions_
-# ATOMIC\_FETCH\_AND
 
 ## atomic_fetch_and
 
@@ -2140,7 +2122,6 @@ TS 18508 or later
 [**atomic_fetch_xor**(3)](ATOMIC_FETCH_XOR)
 
 _fortran-lang intrinsic descriptions_
-# ATOMIC\_FETCH\_OR
 
 ## atomic_fetch_or
 
@@ -2210,7 +2191,6 @@ TS 18508 or later
 [**atomic_fetch_xor**(3)](ATOMIC_FETCH_XOR)
 
 _fortran-lang intrinsic descriptions_
-# ATOMIC\_FETCH\_XOR
 
 ## atomic_fetch_xor
 
@@ -2280,7 +2260,6 @@ TS 18508 or later
 [**atomic_fetch_or**(3)](ATOMIC_FETCH_OR)
 
 _fortran-lang intrinsic descriptions_
-# ATOMIC\_OR
 
 ## atomic_or
 
@@ -2346,7 +2325,6 @@ TS 18508 or later
 [**atomic_xor**(3)](ATOMIC_XOR)
 
 _fortran-lang intrinsic descriptions_
-# ATOMIC\_REF
 
 ## atomic_ref
 
@@ -2420,7 +2398,6 @@ Fortran 2008 and later; with STAT, TS 18508 or later
 [**atomic_fetch_xor**(3)](ATOMIC_XOR)
 
 _fortran-lang intrinsic descriptions_
-# ATOMIC\_XOR
 
 ## atomic_xor
 
@@ -2484,7 +2461,6 @@ TS 18508 or later
 [**atomic_xor**(3)](ATOMIC_XOR)
 
 _fortran-lang intrinsic descriptions_
-# BESSEL\_J0
 
 ## bessel_j0
 
@@ -2547,7 +2523,6 @@ Fortran 2008 and later
 [**bessel_yn**(3)](BESSEL_YN)
 
 _fortran-lang intrinsic descriptions_
-# BESSEL\_J1
 
 ## bessel_j1
 
@@ -2610,7 +2585,6 @@ Fortran 2008 and later
 [**bessel_yn**(3)](BESSEL_YN)
 
 _fortran-lang intrinsic descriptions_
-# BESSEL\_JN
 
 ## bessel_jn
 
@@ -2688,7 +2662,6 @@ Fortran 2008 and later
 [**bessel_yn**(3)](BESSEL_YN)
 
 _fortran-lang intrinsic descriptions_
-# BESSEL\_Y0
 
 ## bessel_y0
 
@@ -2750,7 +2723,6 @@ Fortran 2008 and later
 [**bessel_yn**(3)](BESSEL_YN)
 
 _fortran-lang intrinsic descriptions_
-# BESSEL\_Y1
 
 ## bessel_y1
 
@@ -2805,7 +2777,6 @@ Fortran 2008 and later
 [**bessel_yn**(3)](BESSEL_YN)
 
 _fortran-lang intrinsic descriptions_
-# BESSEL\_YN
 
 ## bessel_yn
 
@@ -2882,7 +2853,6 @@ Fortran 2008 and later
 [**bessel_y1**(3)](BESSEL_Y1)
 
 _fortran-lang intrinsic descriptions_
-# BGE
 
 ## bge
 
@@ -2924,7 +2894,6 @@ Fortran 2008 and later
 [**blt**(3)](BIT)
 
 _fortran-lang intrinsic descriptions_
-# BGT
 
 ## bgt
 
@@ -2968,7 +2937,6 @@ Fortran 2008 and later
 [**blt**(3)](BLT)
 
 _fortran-lang intrinsic descriptions_
-# BIT\_SIZE
 
 ## bit_size
 
@@ -3040,7 +3008,6 @@ Typical Results:
 Fortran 95 and later
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# BLE
 
 ## ble
 
@@ -3081,7 +3048,6 @@ Fortran 2008 and later
 [**blt**(3)](BLT)
 
 _fortran-lang intrinsic descriptions_
-# BLT
 
 ## blt
 
@@ -3122,7 +3088,6 @@ Fortran 2008 and later
 [**ble**(3)](BLE)
 
 _fortran-lang intrinsic descriptions_
-# BTEST
 
 ## btest
 
@@ -3258,7 +3223,6 @@ Fortran 95 and later
 [**mvbits**(3)](MVBITS)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# C\_ASSOCIATED
 
 ## c_associated
 
@@ -3324,7 +3288,6 @@ Fortran 2003 and later
 **iso_c_binding**(3)
 
 _fortran-lang intrinsic descriptions_
-# CEILING
 
 ## ceiling
 
@@ -3407,7 +3370,6 @@ Fortran 95 and later
 [**selected_int_kind**(3)](SELECTED_INT_KIND)
 
 _fortran-lang intrinsic descriptions_
-# C\_F\_POINTER
 
 ## c_f_pointer
 
@@ -3471,7 +3433,6 @@ Fortran 2003 and later
 **iso_c_binding**(3)
 
 _fortran-lang intrinsic descriptions_
-# C\_F\_PROCPOINTER
 
 ## c_f_procpointer
 
@@ -3537,7 +3498,6 @@ Fortran 2003 and later
 **iso_c_binding**(3)
 
 _fortran-lang intrinsic descriptions_
-# C\_FUNLOC
 
 ## c_funloc
 
@@ -3610,7 +3570,6 @@ Fortran 2003 and later
 **iso_c_binding**(3)
 
 _fortran-lang intrinsic descriptions_
-# CHAR
 
 ## char
 
@@ -3693,7 +3652,6 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
 
 _fortran-lang intrinsic descriptions_
-# C\_LOC
 
 ## c_loc
 
@@ -3753,7 +3711,6 @@ Fortran 2003 and later
 **iso_c_binding**(3)
 
 _fortran-lang intrinsic descriptions_
-# CMPLX
 
 ## cmplx
 
@@ -3918,7 +3875,6 @@ Typical Results:
 FORTRAN 77 and later
 
 _fortran-lang intrinsic descriptions_
-# CO\_BROADCAST
 
 ## co_broadcast
 
@@ -3982,7 +3938,6 @@ end program demo_co_broadcast
 [**co_reduce**(3)](CO_REDUCE)
 
 _fortran-lang intrinsic descriptions_
-# CO\_LBOUND
 
 ## co_lbound
 
@@ -4031,7 +3986,6 @@ Fortran 2008 and later
 [**lbound**(3)](LBOUND)
 
 _fortran-lang intrinsic descriptions_
-# CO\_MAX
 
 ## co_max
 
@@ -4107,7 +4061,6 @@ TS 18508 or later
 [**co_broadcast**(3)](CO_BROADCAST)
 
 _fortran-lang intrinsic descriptions_
-# CO\_MIN
 
 ## co_min
 
@@ -4177,7 +4130,6 @@ TS 18508 or later
 [**co_broadcast**(3)](CO_BROADCAST)
 
 _fortran-lang intrinsic descriptions_
-# COMMAND\_ARGUMENT\_COUNT
 
 ## command_argument_count
 
@@ -4245,7 +4197,6 @@ Fortran 2003 and later
 [**get_command_argument**(3)](GET_COMMAND_ARGUMENT)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# COMPILER\_OPTIONS
 
 ## compiler_options
 
@@ -4310,7 +4261,6 @@ Fortran 2008
 **iso_fortran_env**(7)
 
 _fortran-lang intrinsic descriptions_
-# COMPILER\_VERSION
 
 ## compiler_version
 
@@ -4375,7 +4325,6 @@ Fortran 2008
 **iso_fortran_env**(7)
 
 _fortran-lang intrinsic descriptions_
-# CONJG
 
 ## conjg
 
@@ -4482,7 +4431,6 @@ Results:
 FORTRAN 77 and later
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# CO\_REDUCE
 
 ## co_reduce
 
@@ -4586,7 +4534,6 @@ TS 18508 or later
 [**co_broadcast**(3)](CO_BROADCAST)
 
 _fortran-lang intrinsic descriptions_
-# COSH
 
 ## cosh
 
@@ -4649,7 +4596,6 @@ FORTRAN 77 and later, for a complex argument - Fortran 2008 or later
 Inverse function: [**acosh**(3)](ACOSH)
 
 _fortran-lang intrinsic descriptions_
-# COS
 
 ## cos
 
@@ -4733,7 +4679,6 @@ FORTRAN 77 and later
 [**tan**(3)](TAN)
 
 _fortran-lang intrinsic descriptions_
-# CO\_SUM
 
 ## co_sum
 
@@ -4810,7 +4755,6 @@ TS 18508 or later
 [**co_broadcast**(3)](CO_BROADCAST)
 
 _fortran-lang intrinsic descriptions_
-# CO\_UBOUND
 
 ## co_ubound
 
@@ -4860,7 +4804,6 @@ Fortran 2008 and later
 [**ubound**(3)](UBOUND)
 
 _fortran-lang intrinsic descriptions_
-# COUNT
 
 ## count
 
@@ -4954,7 +4897,6 @@ Fortran 95 and later, with KIND argument - Fortran 2003
 and later
 
 _fortran-lang intrinsic descriptions_
-# CPU\_TIME
 
 ## cpu_time
 
@@ -5034,7 +4976,6 @@ Fortran 95 and later
 [**date_and_time**(3)](DATE_AND_TIME)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# CSHIFT
 
 ## cshift
 
@@ -5111,7 +5052,6 @@ Results:
 Fortran 95 and later
 
 _fortran-lang intrinsic descriptions_
-# C\_SIZEOF
 
 ## c_sizeof
 
@@ -5176,7 +5116,6 @@ Fortran 2008
 [**storage_size**(3)](STORAGE_SIZE)
 
 _fortran-lang intrinsic descriptions_
-# DATE\_AND\_TIME
 
 ## date_and_time
 
@@ -5289,7 +5228,6 @@ date and time conversion, formatting and computation
 - [datetime-fortran](https://github.com/wavebitscientific/datetime-fortran)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# DBLE
 
 ## dble
 
@@ -5355,7 +5293,6 @@ FORTRAN 77 and later
 [**int**(3)](INT)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# DIGITS
 
 ## digits
 
@@ -5437,7 +5374,6 @@ Fortran 95 and later
 [**tiny**(3)](TINY)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# DIM
 
 ## dim
 
@@ -5510,7 +5446,6 @@ Results:
 FORTRAN 77 and later
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# DOT\_PRODUCT
 
 ## dot_product
 
@@ -5583,7 +5518,6 @@ Results:
 Fortran 95 and later
 
 _fortran-lang intrinsic descriptions_
-# DPROD
 
 ## dprod
 
@@ -5675,7 +5609,6 @@ Results:
 FORTRAN 77 and later
 
 _fortran-lang intrinsic descriptions_
-# DSHIFTL
 
 ## dshiftl
 
@@ -5719,7 +5652,6 @@ Fortran 2008 and later
 [**dshiftr**(3)](DSHIFTR)
 
 _fortran-lang intrinsic descriptions_
-# DSHIFTR
 
 ## dshiftr
 
@@ -5763,7 +5695,6 @@ Fortran 2008 and later
 [**dshiftl**(3)](DSHIFTL)
 
 _fortran-lang intrinsic descriptions_
-# EOSHIFT
 
 ## eoshift
 
@@ -5853,7 +5784,6 @@ Results:
 Fortran 95 and later
 
 _fortran-lang intrinsic descriptions_
-# EPSILON
 
 ## epsilon
 
@@ -5988,7 +5918,6 @@ Fortran 95 and later
 [**tiny**(3)](TINY)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# ERFC
 
 ## erfc
 
@@ -6068,7 +5997,6 @@ Fortran 2008 and later
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# ERFC\_SCALED
 
 ## erfc_scaled
 
@@ -6125,7 +6053,6 @@ Results:
 Fortran 2008 and later
 
 _fortran-lang intrinsic descriptions_
-# ERF
 
 ## erf
 
@@ -6188,7 +6115,6 @@ Fortran 2008 and later
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 
 _fortran-lang intrinsic descriptions_
-# EVENT\_QUERY
 
 ## event_query
 
@@ -6247,7 +6173,6 @@ end program demo_event_query
 TS 18508 or later
 
 _fortran-lang intrinsic descriptions_
-# EXECUTE\_COMMAND\_LINE
 
 ## execute_command_line
 
@@ -6355,7 +6280,6 @@ be terminated alongside.
 Fortran 2008 and later
 
 _fortran-lang intrinsic descriptions_
-# EXP
 
 ## exp
 
@@ -6456,7 +6380,6 @@ FORTRAN 77 and later
 - Wikipedia:[Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# EXPONENT
 
 ## exponent
 
@@ -6529,7 +6452,6 @@ Fortran 95 and later
 [**tiny**(3)](TINY)
 
 _fortran-lang intrinsic descriptions_
-# EXTENDS\_TYPE\_OF
 
 ## extends_type_of
 
@@ -6577,7 +6499,6 @@ is an extension of the dynamic type of **mold**.
 ### **Examples**
 
 _fortran-lang intrinsic descriptions_
-# FINDLOC
 
 ## findloc
 
@@ -6775,7 +6696,6 @@ has the value \[2, 1\]. This is independent of the declared lower
 bounds for **b**.
 
 _fortran-lang intrinsic descriptions_
-# FLOOR
 
 ## floor
 
@@ -6870,7 +6790,6 @@ Fortran 95 and later
 [**selected_int_kind**(3)](SELECTED_INT_KIND)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# FRACTION
 
 ## fraction
 
@@ -6942,7 +6861,6 @@ Fortran 95 and later
 [**tiny**(3)](TINY)
 
 _fortran-lang intrinsic descriptions_
-# GAMMA
 
 ## gamma
 
@@ -7077,7 +6995,6 @@ Logarithm of the Gamma function: [**log_gamma**(3)](LOG_GAMMA)
 [Wikipedia: Gamma_function](https://en.wikipedia.org/wiki/Gamma_function)
 
 _fortran-lang intrinsic descriptions_
-# GET\_COMMAND\_ARGUMENT
 
 ## get_command_argument
 
@@ -7212,7 +7129,6 @@ Fortran 2003 and later
 [**command_argument_count**(3)](COMMAND_ARGUMENT_COUNT)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# GET\_COMMAND
 
 ## get_command
 
@@ -7305,7 +7221,6 @@ Fortran 2003 and later
 [**command_argument_count**(3)](COMMAND_ARGUMENT_COUNT)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# GET\_ENVIRONMENT\_VARIABLE
 
 ## get_environment_variable
 
@@ -7436,7 +7351,6 @@ Typical Results:
 Fortran 2003 and later
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# HUGE
 
 ## huge
 
@@ -7550,7 +7464,6 @@ Fortran 95 and later
 [**tiny**(3)](TINY)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# HYPOT
 
 ## hypot
 
@@ -7652,7 +7565,6 @@ Results:
 Fortran 2008 and later
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# IACHAR
 
 ## iachar
 
@@ -7749,7 +7661,6 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
 
 _fortran-lang intrinsic descriptions_
-# IALL
 
 ## iall
 
@@ -7830,7 +7741,6 @@ Fortran 2008 and later
 [**iand**(3)](IAND)
 
 _fortran-lang intrinsic descriptions_
-# IAND
 
 ## iand
 
@@ -7896,7 +7806,6 @@ Fortran 95 and later
 [**mvbits**(3)](MVBITS)
 
 _fortran-lang intrinsic descriptions_
-# IANY
 
 ## iany
 
@@ -7974,7 +7883,6 @@ Fortran 2008 and later
 [**ior**(3)](IOR)
 
 _fortran-lang intrinsic descriptions_
-# IBCLR
 
 ## ibclr
 
@@ -8024,7 +7932,6 @@ Fortran 95 and later
 [**not**(3)](NOT)
 
 _fortran-lang intrinsic descriptions_
-# IBITS
 
 ## ibits
 
@@ -8077,7 +7984,6 @@ Fortran 95 and later
 [**mvbits**(3)](MVBITS)
 
 _fortran-lang intrinsic descriptions_
-# IBSET
 
 ## ibset
 
@@ -8126,7 +8032,6 @@ Fortran 95 and later
 [**mvbits**(3)](MVBITS)
 
 _fortran-lang intrinsic descriptions_
-# ICHAR
 
 ## ichar
 
@@ -8259,7 +8164,6 @@ of arguments, and search for certain arguments:
   [**trim**(3)](TRIM)
 
 _fortran-lang intrinsic descriptions_
-# IEOR
 
 ## ieor
 
@@ -8307,7 +8211,6 @@ Fortran 95 and later
 [**mvbits**(3)](MVBITS)
 
 _fortran-lang intrinsic descriptions_
-# IMAGE\_INDEX
 
 ## image_index
 
@@ -8363,7 +8266,6 @@ Fortran 2008 and later
 [**num_images**(3)](NUM_IMAGES)
 
 _fortran-lang intrinsic descriptions_
-# INDEX
 
 ## index
 
@@ -8456,7 +8358,6 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
 
 _fortran-lang intrinsic descriptions_
-# INT
 
 ## int
 
@@ -8589,7 +8490,6 @@ FORTRAN 77 and later
 [**floor**(3)](FLOOR)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# IOR
 
 ## ior
 
@@ -8661,7 +8561,6 @@ Fortran 95 and later
 [**mvbits**(3)](MVBITS)
 
 _fortran-lang intrinsic descriptions_
-# IPARITY
 
 ## iparity
 
@@ -8738,7 +8637,6 @@ Fortran 2008 and later
 [**parity**(3)](PARITY)
 
 _fortran-lang intrinsic descriptions_
-# IS\_CONTIGUOUS
 
 ## is_contiguous
 
@@ -8859,7 +8757,6 @@ Results:
 Fortran 2008 and later
 
 _fortran-lang intrinsic descriptions_
-# ISHFTC
 
 ## ishftc
 
@@ -8908,7 +8805,6 @@ Fortran 95 and later
 [**ishft**(3)](ISHFT)
 
 _fortran-lang intrinsic descriptions_
-# ISHFT
 
 ## ishft
 
@@ -8953,7 +8849,6 @@ Fortran 95 and later
 [**ishftc**(3)](ISHFTC)
 
 _fortran-lang intrinsic descriptions_
-# IS\_IOSTAT\_END
 
 ## is_iostat_end
 
@@ -9019,7 +8914,6 @@ end program demo_iostat
 Fortran 2003 and later
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# IS\_IOSTAT\_EOR
 
 ## is_iostat_eor
 
@@ -9073,7 +8967,6 @@ end program demo_is_iostat_eor
 Fortran 2003 and later
 
 _fortran-lang intrinsic descriptions_
-# KIND
 
 ## kind
 
@@ -9129,7 +9022,6 @@ Results:
 Fortran 95 and later
 
 _fortran-lang intrinsic descriptions_
-# LBOUND
 
 ## lbound
 
@@ -9251,7 +9143,6 @@ Fortran 95 and later, with KIND argument - Fortran 2003 and later
 [**co_lbound**(3)](CO_LBOUND)
 
 _fortran-lang intrinsic descriptions_
-# LEADZ
 
 ## leadz
 
@@ -9385,7 +9276,6 @@ Fortran 2008 and later
 [**trailz**(3)](TRAILZ)
 
 _fortran-lang intrinsic descriptions_
-# LEN
 
 ## len
 
@@ -9522,7 +9412,6 @@ of arguments, and search for certain arguments:
   [**trim**(3)](TRIM)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# LEN\_TRIM
 
 ## len_trim
 
@@ -9618,7 +9507,6 @@ of arguments, and search for certain arguments:
   [**trim**(3)](TRIM)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# LGE
 
 ## lge
 
@@ -9685,7 +9573,6 @@ of arguments, and search for certain arguments:
   [**trim**(3)](TRIM)
 
 _fortran-lang intrinsic descriptions_
-# LGT
 
 ## lgt
 
@@ -9754,7 +9641,6 @@ of arguments, and search for certain arguments:
   [**trim**(3)](TRIM)
 
 _fortran-lang intrinsic descriptions_
-# LLE
 
 ## lle
 
@@ -9869,7 +9755,6 @@ of arguments, and search for certain arguments:
   [**trim**(3)](TRIM)
 
 _fortran-lang intrinsic descriptions_
-# LLT
 
 ## llt
 
@@ -9933,7 +9818,6 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
 
 _fortran-lang intrinsic descriptions_
-# LOG10
 
 ## log10
 
@@ -9999,7 +9883,6 @@ Results:
 FORTRAN 77 and later
 
 _fortran-lang intrinsic descriptions_
-# LOG\_GAMMA
 
 ## log_gamma
 
@@ -10053,7 +9936,6 @@ Fortran 2008 and later
 Gamma function: [**gamma**(3)](GAMMA)
 
 _fortran-lang intrinsic descriptions_
-# LOGICAL
 
 ## logical
 
@@ -10128,7 +10010,6 @@ Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009
 [**cmplx**(3)](CMPLX)
 
 _fortran-lang intrinsic descriptions_
-# LOG
 
 ## log
 
@@ -10185,7 +10066,6 @@ Results:
 FORTRAN 77 and later
 
 _fortran-lang intrinsic descriptions_
-# MASKL
 
 ## maskl
 
@@ -10289,7 +10169,6 @@ Fortran 2008 and later
 [**maskr**(3)](MASKR)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# MASKR
 
 ## maskr
 
@@ -10401,7 +10280,6 @@ Fortran 2008 and later
 [**maskl**(3)](MASKL)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# MATMUL
 
 ## matmul
 
@@ -10442,7 +10320,6 @@ result follow the usual type and kind promotion rules, as for the \* or
 Fortran 95 and later
 
 _fortran-lang intrinsic descriptions_
-# MAXEXPONENT
 
 ## maxexponent
 
@@ -10516,7 +10393,6 @@ Fortran 95 and later
 [**tiny**(3)](TINY)
 
 _fortran-lang intrinsic descriptions_
-# MAXLOC
 
 ## maxloc
 
@@ -10625,7 +10501,6 @@ Fortran 95 and later
 [**maxval**(3)](MAXVAL)
 
 _fortran-lang intrinsic descriptions_
-# MAX
 
 ## max
 
@@ -10749,7 +10624,6 @@ FORTRAN 77 and later
 [**min**(3)](MIN)
 
 _fortran-lang intrinsic descriptions_
-# MAXVAL
 
 ## maxval
 
@@ -10841,7 +10715,6 @@ Fortran 95 and later
 [**maxloc**(3)](MAXLOC)
 
 _fortran-lang intrinsic descriptions_
-# MERGE\_BITS
 
 ## merge_bits
 
@@ -10965,7 +10838,6 @@ Results:
 Fortran 2008 and later
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# MERGE
 
 ## merge
 
@@ -11126,7 +10998,6 @@ Fortran 95 and later
 [**unpack**(3)](UNPACK)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# MINEXPONENT
 
 ## minexponent
 
@@ -11200,7 +11071,6 @@ Fortran 95 and later
 [**tiny**(3)](TINY)
 
 _fortran-lang intrinsic descriptions_
-# MINLOC
 
 ## minloc
 
@@ -11297,7 +11167,6 @@ Fortran 95 and later
 [**minval**(3)](MINVAL)
 
 _fortran-lang intrinsic descriptions_
-# MIN
 
 ## min
 
@@ -11356,7 +11225,6 @@ FORTRAN 77 and later
 [**minval**(3)](MINVAL)
 
 _fortran-lang intrinsic descriptions_
-# MINVAL
 
 ## minval
 
@@ -11509,7 +11377,6 @@ Fortran 95 and later
 [**minloc**(3)](MINLOC)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# MOD
 
 ## mod
 
@@ -11593,7 +11460,6 @@ FORTRAN 77 and later
 [**modulo**(3)](MODULO)
 
 _fortran-lang intrinsic descriptions_
-# MODULO
 
 ## modulo
 
@@ -11671,7 +11537,6 @@ Fortran 95 and later
 [**mod**(3)](MOD)
 
 _fortran-lang intrinsic descriptions_
-# MOVE\_ALLOC
 
 ## move_alloc
 
@@ -11749,7 +11614,6 @@ Fortran 2003 and later
 [**allocated**(3)](ALLOCATED)
 
 _fortran-lang intrinsic descriptions_
-# MVBITS
 
 ## mvbits
 
@@ -11897,7 +11761,6 @@ Fortran 95 and later
 [**not**(3)](NOT)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# NEAREST
 
 ## nearest
 
@@ -11986,7 +11849,6 @@ Fortran 95 and later
 [**tiny**(3)](TINY)
 
 _fortran-lang intrinsic descriptions_
-# NEW\_LINE
 
 ## new_line
 
@@ -12068,7 +11930,6 @@ Results:
 Fortran 2003 and later
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# NINT
 
 ## nint
 
@@ -12197,7 +12058,6 @@ FORTRAN 77 and later, with KIND argument - Fortran 90 and later
 [**floor**(3)](FLOOR)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# NORM2
 
 ## norm2
 
@@ -12293,7 +12153,6 @@ Fortran 2008 and later
 [**hypot**(3)](HYPOT)
 
 _fortran-lang intrinsic descriptions_
-# NOT
 
 ## not
 
@@ -12358,7 +12217,6 @@ Fortran 95 and later
 [**ibclr**(3)](IBCLR)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# NULL
 
 ## null
 
@@ -12482,7 +12340,6 @@ Fortran 95 and later
 [**associated**(3)](ASSOCIATED)
 
 _fortran-lang intrinsic descriptions_
-# NUM\_IMAGES
 
 ## num_images
 
@@ -12551,7 +12408,6 @@ Fortran 2008 and later. With DISTANCE or FAILED argument, TS 18508 or later
 [**image_index**(3)](THIS_INDEX)
 
 _fortran-lang intrinsic descriptions_
-# OUT\_OF\_RANGE
 
 ## out_of_range
 
@@ -12676,7 +12532,6 @@ Results:
    FORTRAN 2018 and later
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# PACK
 
 ## pack
 
@@ -12792,7 +12647,6 @@ Fortran 95 and later
 [**unpack**(3)](UNPACK)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# PARITY
 
 ## parity
 
@@ -12861,7 +12715,6 @@ Results:
 Fortran 2008 and later
 
 _fortran-lang intrinsic descriptions_
-# POPCNT
 
 ## popcnt
 
@@ -12929,7 +12782,6 @@ Fortran 2008 and later
 [**trailz**(3)](TRAILZ)
 
 _fortran-lang intrinsic descriptions_
-# POPPAR
 
 ## poppar
 
@@ -12998,7 +12850,6 @@ Fortran 2008 and later
 [**trailz**(3)](TRAILZ)
 
 _fortran-lang intrinsic descriptions_
-# PRECISION
 
 ## precision
 
@@ -13072,7 +12923,6 @@ Fortran 95 and later
 [**tiny**(3)](TINY)
 
 _fortran-lang intrinsic descriptions_
-# PRESENT
 
 ## present
 
@@ -13139,7 +12989,6 @@ Results:
 Fortran 95 and later
 
 _fortran-lang intrinsic descriptions_
-# PRODUCT
 
 ## product
 
@@ -13375,7 +13224,6 @@ Fortran 95 and later
 directly using the star character.
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# RADIX
 
 ## radix
 
@@ -13447,7 +13295,6 @@ Fortran 95 and later
 [**tiny**(3)](TINY)
 
 _fortran-lang intrinsic descriptions_
-# RANDOM\_NUMBER
 
 ## random_number
 
@@ -13542,7 +13389,6 @@ Fortran 95 and later
 [**random_seed**(3)](RANDOM_SEED)
 
 _fortran-lang intrinsic descriptions_
-# RANDOM\_SEED
 
 ## random_seed
 
@@ -13615,7 +13461,6 @@ Fortran 95 and later
 [**random_number**(3)](RANDOM_NUMBER)
 
 _fortran-lang intrinsic descriptions_
-# RANGE
 
 ## range
 
@@ -13695,7 +13540,6 @@ Fortran 95 and later
 [**tiny**(3)](TINY)
 
 _fortran-lang intrinsic descriptions_
-# RANK
 
 ## rank
 
@@ -13748,7 +13592,6 @@ Results:
 TS 29113
 
 _fortran-lang intrinsic descriptions_
-# REAL
 
 ## real
 
@@ -13833,7 +13676,6 @@ FORTRAN 77 and later
 [**int**(3)](INT)
 
 _fortran-lang intrinsic descriptions_
-# REDUCE
 
 ## reduce
 
@@ -14023,7 +13865,6 @@ one relative to the input array.
    Fortran 2018
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# REPEAT
 
 ## repeat
 
@@ -14108,7 +13949,6 @@ Functions that perform operations on character strings:
   [**trim**(3)](TRIM)
 
 _fortran-lang intrinsic descriptions_
-# RESHAPE
 
 ## reshape
 
@@ -14189,7 +14029,6 @@ Fortran 95 and later
 [**shape**(3)](SHAPE)
 
 _fortran-lang intrinsic descriptions_
-# RRSPACING
 
 ## rrspacing
 
@@ -14241,7 +14080,6 @@ Fortran 95 and later
 [**tiny**(3)](TINY)
 
 _fortran-lang intrinsic descriptions_
-# SAME\_TYPE\_AS
 
 ## same_type_as
 
@@ -14283,7 +14121,6 @@ Fortran 2003 and later
 [**extends_type_of**(3)](EXTENDS_TYPE_OF)
 
 _fortran-lang intrinsic descriptions_
-# SCALE
 
 ## scale
 
@@ -14359,7 +14196,6 @@ Fortran 95 and later
 [**tiny**(3)](TINY)
 
 _fortran-lang intrinsic descriptions_
-# SCAN
 
 ## scan
 
@@ -14442,7 +14278,6 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
 
 _fortran-lang intrinsic descriptions_
-# SELECTED\_CHAR\_KIND
 
 ## selected_char_kind
 
@@ -14507,7 +14342,6 @@ Results:
 Fortran 2003 and later
 
 _fortran-lang intrinsic descriptions_
-# SELECTED\_INT\_KIND
 
 ## selected_int_kind
 
@@ -14575,7 +14409,6 @@ Fortran 95 and later
 [**floor**(3)](FLOOR)
 
 _fortran-lang intrinsic descriptions_
-# SELECTED\_REAL\_KIND
 
 ## selected_real_kind
 
@@ -14678,7 +14511,6 @@ Fortran 95 and later; with RADIX - Fortran 2008 and later
 [**radix**(3)](RADIX)
 
 _fortran-lang intrinsic descriptions_
-# SET\_EXPONENT
 
 ## set_exponent
 
@@ -14753,7 +14585,6 @@ Fortran 95 and later
 [**tiny**(3)](TINY)
 
 _fortran-lang intrinsic descriptions_
-# SHAPE
 
 ## shape
 
@@ -14826,7 +14657,6 @@ Fortran 95 and later; with KIND argument Fortran 2003 and later
 [**size**(3)](SIZE)
 
 _fortran-lang intrinsic descriptions_
-# SHIFTA
 
 ## shifta
 
@@ -14871,7 +14701,6 @@ Fortran 2008 and later
 [**shiftr**(3)](SHIFTR)
 
 _fortran-lang intrinsic descriptions_
-# SHIFTL
 
 ## shiftl
 
@@ -14914,7 +14743,6 @@ Fortran 2008 and later
 [**shiftr**(3)](SHIFTR)
 
 _fortran-lang intrinsic descriptions_
-# SHIFTR
 
 ## shiftr
 
@@ -14957,7 +14785,6 @@ Fortran 2008 and later
 [**shiftl**(3)](SHIFTL)
 
 _fortran-lang intrinsic descriptions_
-# SIGN
 
 ## sign
 
@@ -15039,7 +14866,6 @@ Results:
 FORTRAN 77 and later
 
 _fortran-lang intrinsic descriptions (license: MIT)_
-# SINH
 
 ## sinh
 
@@ -15137,7 +14963,6 @@ Fortran 95 and later, for a complex argument Fortran 2008 or later
 [**asinh**(3)](ASINH)
 
 _fortran-lang intrinsic descriptions_
-# SIN
 
 ## sin
 
@@ -15275,7 +15100,6 @@ FORTRAN 77 and later
 [**tan**(3)](TAN)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# SIZE
 
 ## size
 
@@ -15469,7 +15293,6 @@ Fortran 95 and later, with **kind** argument - Fortran 2003 and later
 [__reshape__(3)])(RESHAPE)
 
 _fortran-lang intrinsic descriptions_
-# SPACING
 
 ## spacing
 
@@ -15542,7 +15365,6 @@ Fortran 95 and later
 [**tiny**(3)](TINY)
 
 _fortran-lang intrinsic descriptions_
-# SPREAD
 
 ## spread
 
@@ -15668,7 +15490,6 @@ Fortran 95 and later
 [**unpack**(3)](UNPACK)
 
 _fortran-lang intrinsic descriptions_
-# SQRT
 
 ## sqrt
 
@@ -15763,7 +15584,6 @@ Results:
 FORTRAN 77 and later
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# STORAGE\_SIZE
 
 ## storage_size
 
@@ -15830,7 +15650,6 @@ Fortran 2008 and later
 [**c_sizeof**(3)](C_SIZEOF)
 
 _fortran-lang intrinsic descriptions_
-# SUM
 
 ## sum
 
@@ -15923,7 +15742,6 @@ Fortran 95 and later
 intrinsics
 
 _fortran-lang intrinsic descriptions_
-# SYSTEM\_CLOCK
 
 ## system_clock
 
@@ -16034,7 +15852,6 @@ Fortran 95 and later
 [**cpu_time**(3)](CPU_TIME)
 
 _fortran-lang intrinsic descriptions_
-# TANH
 
 ## tanh
 
@@ -16098,7 +15915,6 @@ FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 [**atanh**(3)](ATANH)
 
 _fortran-lang intrinsic descriptions_
-# TAN
 
 ## tan
 
@@ -16156,7 +15972,6 @@ FORTRAN 77 and later. For a complex argument, Fortran 2008 or later.
 [**sin**(3)](SIN)
 
 _fortran-lang intrinsic descriptions_
-# THIS\_IMAGE
 
 ## this_image
 
@@ -16247,7 +16062,6 @@ or later
 
 _fortran-lang intrinsic descriptions_
 ```
-# TINY
 
 ## tiny
 
@@ -16323,7 +16137,6 @@ Fortran 95 and later
 [**spacing**(3)](SPACING)
 
 _fortran-lang intrinsic descriptions_
-# TRAILZ
 
 ## trailz
 
@@ -16442,7 +16255,6 @@ Fortran 2008 and later
 [**leadz**(3)](LEADZ)
 
 _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
-# TRANSFER
 
 ## transfer
 
@@ -16554,7 +16366,6 @@ oblivious to the benefits of EQUIVALENCEs when used sparingly.
 Fortran 90 and later
 
 _fortran-lang intrinsic descriptions_
-# TRANSPOSE
 
 ## transpose
 
@@ -16647,7 +16458,6 @@ Results:
 Fortran 95 and later
 
 _fortran-lang intrinsic descriptions_
-# TRIM
 
 ## trim
 
@@ -16726,7 +16536,6 @@ of arguments, and search for certain arguments:
   [**trim**(3)](TRIM)
 
 _fortran-lang intrinsic descriptions_
-# UBOUND
 
 ## ubound
 
@@ -16850,7 +16659,6 @@ and later
 [__co\_lbound__(3)(CO_LBOUND)]
 
 _fortran-lang intrinsic descriptions_
-# UNPACK
 
 ## unpack
 
@@ -17011,7 +16819,6 @@ Fortran 95 and later
 [**spread**(3)](SPREAD)
 
 _fortran-lang intrinsic descriptions_
-# VERIFY
 
 ## verify
 

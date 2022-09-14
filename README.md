@@ -4,12 +4,12 @@ now includes these documents. They may be changed using the instructions
 found in the github [webpage](https://github.com/fortran-lang/webpage) repository.
 
 Keeping these original documents synced with those may be complicated by
-the fact that graphics, Unicode  and math expressions may be included in
-Kramdown markdown, so further development there might create documentation
-difficult to maintain as man-pages that display well with man(1), as
-the current translator does not handle the \*roff syntax for tables,
-graphics, and formulas; and those features do not typically display well
-if at all with the man(1) command.
+the fact that graphics, Unicode  and math expressions may be included
+in the descriptions in the future, so further development there might
+create documentation difficult to maintain as man-pages that display
+well with man(1) (as the current translator does not handle the \*roff
+syntax for tables, graphics, and formulas); and those features do not
+typically display well if at all with the man(1) command.
 
 This page allows you to generate the CLI (Command Line Interface)
 command fpm-man (which is often renamed to fman(1)) that allows the
@@ -23,7 +23,8 @@ may become more extensive as time goes on.
 
 Additional descriptions of procedures from the standard modules
 
-Descriptions of most statements (READ, WRITE, EXIT, ...)
+Descriptions of most statements (READ, WRITE, EXIT, ...) in addition to
+the intrinsics.
 
 Converting from the primary source in txt/ in txt2man(1) format and
 generating the markdown to the Kramdown markdown in md/ being used to
@@ -79,8 +80,8 @@ A single-file version of the CLI program fpm-man(1) is in
 ### USE AND INSTALLATION
 
 The man-pages can often be integrated with editors or IDEs. This is a
-powerful reference when inspecting code that uses unfamiliar procedures and
-to verify correct usage when creating code in a CLI environm1ent.
+powerful reference when inspecting code that uses unfamiliar procedures
+and to verify correct usage when creating code in a CLI environm1ent.
 
 The process of installing man-pages can vary. Check your system
 documentation, but at a minimum if you create the directory $HOME/man/man3
