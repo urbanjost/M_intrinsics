@@ -81,7 +81,7 @@ A single-file version of the CLI program fpm-man(1) is in
 
 The man-pages can often be integrated with editors or IDEs. This is a
 powerful reference when inspecting code that uses unfamiliar procedures
-and to verify correct usage when creating code in a CLI environm1ent.
+and to verify correct usage when creating code in a CLI environment.
 
 The process of installing man-pages can vary. Check your system
 documentation, but at a minimum if you create the directory $HOME/man/man3
@@ -106,7 +106,7 @@ Typical installation on a Linux platform as an administrator ( but it varies) :
      cd man
      mandb -c
 ```
-     then anyone on that plaform can enter commands like 
+     then anyone on that platform can enter commands like 
 ```bash
      man sinh.3fortran     # specifically show Fortran sinh(3) documentation
      man -k . -s 3fortran  # list all fortran pages
