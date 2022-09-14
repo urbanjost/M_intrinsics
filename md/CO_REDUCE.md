@@ -99,4 +99,4 @@ TS 18508 or later
 [**co_sum**(3)](CO_SUM),
 [**co_broadcast**(3)](CO_BROADCAST)
 
-_fortran-lang intrinsic descriptions_
+__fortran-lang intrinsic descriptions__

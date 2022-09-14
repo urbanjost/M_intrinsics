@@ -59,4 +59,4 @@ TS 18508 or later
 [**atomic_or**(3)](ATOMIC_OR),
 [**atomic_xor**(3)](ATOMIC_XOR)
 
-_fortran-lang intrinsic descriptions_
+__fortran-lang intrinsic descriptions__

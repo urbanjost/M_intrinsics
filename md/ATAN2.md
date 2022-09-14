@@ -31,7 +31,7 @@ a unique angle).
   : The real component of the complex value **(x,y)** or the **x**
   component of the point **\<x,y\>**.
 
-  If must be of the same kind as **y**. 
+  If must be of the same kind as **y**.
 
 ### **Returns**
 
@@ -46,7 +46,7 @@ and **y**.
 
 The classic definition of the arctangent is the angle that is formed
 in Cartesian coordinates of the line from the origin point **\<0,0\>**
-to the point **\<x,y\>** . 
+to the point **\<x,y\>** .
 
 Pictured as such a vector it is easy to see that if **x** and **y**
 are both zero the angle is indeterminent because it sits directly over
@@ -143,9 +143,9 @@ end program demo_atan2
 ```
   Results:
 ```text
-> radians=   1.00000000     degrees=   57.2957802    
-> elemental  0.321750551      0.463647604    
-> elemental  0.197395563      0.380506366    
+> radians=   1.00000000     degrees=   57.2957802
+> elemental  0.321750551      0.463647604
+> elemental  0.197395563      0.380506366
 >X=  0.00 Y=  1.00 ANGLE= 1.57079637  DEGREES= 90.00  DISTANCE=1.00000000
 >X=  1.00 Y=  1.00 ANGLE= 0.785398185 DEGREES= 45.00  DISTANCE=1.41421354
 >X=  1.00 Y=  0.00 ANGLE= 0.00000000  DEGREES= 0.000  DISTANCE=1.00000000
@@ -163,4 +163,4 @@ end program demo_atan2
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+__fortran-lang intrinsic descriptions (license: MIT) @urbanjost__

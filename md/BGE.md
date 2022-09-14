@@ -37,4 +37,4 @@ Fortran 2008 and later
 [**ble**(3)](BLE),
 [**blt**(3)](BIT)
 
-_fortran-lang intrinsic descriptions_
+__fortran-lang intrinsic descriptions__

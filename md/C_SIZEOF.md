@@ -60,4 +60,4 @@ Fortran 2008
 
 [**storage_size**(3)](STORAGE_SIZE)
 
-_fortran-lang intrinsic descriptions_
+__fortran-lang intrinsic descriptions__

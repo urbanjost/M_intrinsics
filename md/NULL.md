@@ -119,4 +119,4 @@ Fortran 95 and later
 
 [**associated**(3)](ASSOCIATED)
 
-_fortran-lang intrinsic descriptions_
+__fortran-lang intrinsic descriptions__

@@ -85,5 +85,5 @@ or later
 [**num\_images**(3)](NUM_IMAGES),
 [**image\_index**(3)](IMAGE_INDEX)
 
-_fortran-lang intrinsic descriptions_
+__fortran-lang intrinsic descriptions__
 ```

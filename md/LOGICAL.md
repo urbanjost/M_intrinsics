@@ -70,4 +70,4 @@ Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009
 [**real**(3)](REAL),
 [**cmplx**(3)](CMPLX)
 
-_fortran-lang intrinsic descriptions_
+__fortran-lang intrinsic descriptions__

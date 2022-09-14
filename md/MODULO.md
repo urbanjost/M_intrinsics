@@ -73,4 +73,4 @@ Fortran 95 and later
 
 [**mod**(3)](MOD)
 
-_fortran-lang intrinsic descriptions_
+__fortran-lang intrinsic descriptions__
