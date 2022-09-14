@@ -26,6 +26,7 @@ Additional descriptions of procedures from the standard modules
 Descriptions of most statements (READ, WRITE, EXIT, ...) in addition to
 the intrinsics.
 
+<!--
 Converting from the primary source in txt/ in txt2man(1) format and
 generating the markdown to the Kramdown markdown in md/ being used to
 generate the txt/ directory with pandoc made sense as the primary
@@ -34,6 +35,7 @@ pandoc(1) conversion to /txt and then manpages leaves the plain text
 without proper indentation. Other conversion paths like going straight
 to manpages and generating text from them for the CLI interface are
 being explored to provide better formatting.
+-->
 
 Add
 
@@ -197,7 +199,7 @@ and the demo programs in example
  - [GNU gfortran intrinsic descriptions](https://gcc.gnu.org/onlinedocs/gfortran/Intrinsic-Procedures.html)
    at https://gcc.gnu.org/onlinedocs/gfortran/Intrinsic-Procedures.html
 
+ - [Myst-Markdown](https://myst-parser.readthedocs.io/en/latest/)
  - [Kramdown markup](https://kramdown.gettalong.org/syntax.html)
- - pandoc
- - txt2man
-exit
+ - [pandoc](https://pandoc.org/)
+ - [txt2man](https://github.com/mvertes/txt2man)
