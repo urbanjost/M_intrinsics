@@ -62,4 +62,4 @@ Fortran 2008 and later
 
 [**c_sizeof**(3)](C_SIZEOF)
 
-_fortran-lang intrinsic descriptions_
+__fortran-lang intrinsic descriptions__

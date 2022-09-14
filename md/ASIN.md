@@ -101,4 +101,4 @@ FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 
 Inverse function: [**sin**(3)](SIN)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+__fortran-lang intrinsic descriptions (license: MIT) @urbanjost__

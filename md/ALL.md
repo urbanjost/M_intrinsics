@@ -20,7 +20,7 @@ in the array along dimension **dim**.
 ### **Arguments**
 
 - **mask**
-  : shall be a logical array. 
+  : shall be a logical array.
 
 - **dim**
   : (optional) **dim** shall be a scalar integer with a value that lies
@@ -104,4 +104,4 @@ end program demo_all
 ### **Standard**
 Fortran 95 and later
 
-_fortran-lang intrinsic descriptions_
+__fortran-lang intrinsic descriptions__

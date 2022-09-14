@@ -12,7 +12,7 @@ result = transpose(matrix)
 
 ### **Description**
 
-Transpose an array of rank two. 
+Transpose an array of rank two.
 
 A array is transposed by interchanging the rows and columns of the given
 matrix. That is, element (i, j) of the result has the value of element(j,
@@ -88,4 +88,4 @@ Results:
 
 Fortran 95 and later
 
-_fortran-lang intrinsic descriptions_
+__fortran-lang intrinsic descriptions__

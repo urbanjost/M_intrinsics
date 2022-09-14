@@ -131,4 +131,4 @@ Fortran 95 and later
 [**not**(3)](NOT),
 [**mvbits**(3)](MVBITS)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+__fortran-lang intrinsic descriptions (license: MIT) @urbanjost__

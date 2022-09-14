@@ -64,4 +64,4 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](REPEAT),
   [**trim**(3)](TRIM)
 
-_fortran-lang intrinsic descriptions_
+__fortran-lang intrinsic descriptions__

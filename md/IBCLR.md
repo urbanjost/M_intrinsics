@@ -45,4 +45,4 @@ Fortran 95 and later
 [**mvbits**(3)](MVBITS),
 [**not**(3)](NOT)
 
-_fortran-lang intrinsic descriptions_
+__fortran-lang intrinsic descriptions__

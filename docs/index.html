@@ -1,21 +1,333 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
 <head>
-  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0" />
-  <title></title>
+
+  <meta name="generator" content="HTML Tidy for Cygwin (vers 1st September 2004), see www.w3.org">
+
+  <title>M_intrinsic Documents</title>
+
+   <script language="JavaScript">
+
+   /* This file creates a page with a very large menu inside a DIV element. A combination of 
+   /* an HTML FORM made out of RADIO buttons and a small ECMAscript/javascript function are
+   /* combined to let you easily change the ID value of the DIV elements.
+   /*
+   /* But there are different CSS styles assigned to each ID name; so the page changes 
+   /* style with each RADIO button click.
+   /*
+   /* John S. Urban; Sun Dec 23, 2007
+   /*/
+   
+         globalid="MyDivStyle0";  // The ID value for the DIV element that will be changed
+
+         /*
+          * Decide which ID string to change the DIV fields to by reading the radio buttons named "rad"  and change it
+          *
+          */
+         function testButton (form){
+
+             for (Count = 0; Count < form.rad.length; Count++) {  // Determine which radio button is selected
+                 if (form.rad[Count].checked)       // This tests if Nth radio button is selected
+                     break;
+             }
+             globalid = "MyDivStyle" + Count;
+	     ChangeID();
+	     }
+
+	     function ChangeID(){
+	     DivNames=document.getElementsByTagName("div")
+             HowManyDiv = DivNames.length // How many div sections are in document ?
+             //alert( "The number of divisions is " + HowManyDiv );
+	     for ( DivCount=0; DivCount < HowManyDiv ; DivCount++ ) {
+
+		// exclude DIV ID names not containing "MyDivStyle" 
+                //alert( "The name of the counter is " + DivNames[DivCount].id );
+		if( DivNames[DivCount].id.indexOf("MyDivStyle") < 0 ){
+		     continue;
+		}
+                // change the ID value of the Nth DIV element in the document
+                document.getElementsByTagName("div")[DivCount].setAttribute("id",globalid);
+
+                // refresh the page or sometimes stuff that was not changed has problems
+		/*  Need to figure out if this can be done. Something like the following?
+                document.style.display="none";
+                document.style.display="block";
+		*/
+
+	     }
+
+             // alert(" using style <div id=\"MyDivStyle"+Count+"\">");
+         
+         }
+
+         /*
+          * Method Math.random() returns a value R such that 0 <= R < 1.0 ;
+          * therefore Random(x) gives an evenly distributed random integer in
+          * the range from 0 to x-1 inclusive; use Random(N)+1 for 1 to N.
+          */
+          function Random(x) { return Math.floor(x*Math.random()) }
+
+         /*
+	  * JustCuz: select a random style; which is then called by BODY element on 
+	  *          a document load.
+	  *
+	  */
+
+	 function Initialize(){   // The ID value for the DIV element that will be changed
+             globalid = "MyDivStyle" + Random(7);  // randomly pick an initial style
+             //alert(form.rad.length) // ???? NOT DEFINED AT LOAD
+             //alert("Initial style is for id="+globalid);
+	     ChangeID();
+	 }
+
+   
+   </script>
+
+   <style type="text/css">
+      /*
+          document-wide CSS style information for HTML documentation 
+          It includes styles for ID="MyDivStyleN" where 0 <= N <= 3
+      */
+      
+      
+      body { 
+             padding-top: 10px;
+             background-color: rgb(124,224,224);
+             color: black;
+           }
+      
+      
+      DIV{ margin-top: 0px; background-color: #442299 ; color: white; }
+      
+      H1 { font-family: "Times New Roman", serif; color: white; font-weight: bolder; text-align: center; font-size: 20pt; }
+      H2 { font-family: "Times New Roman", serif; font-size: 18pt; }
+      H3 { font-family: "Times New Roman", serif; text-align: center; font-size: 10pt;  }
+P.neutral {
+          background-color: brown;
+          color: #000;
+	  border: 10;
+	 }
+P.bottom {
+          background-color: #F55;
+          color: #000;
+          position: fixed;
+	  bottom: 0px;
+	  right: 0px;
+          padding:0px 0px 0px 0px;
+	  border: 0;
+	 }
+      
+      /*- Menu MyDivStyle6 -------- SCROLL ----------- */ 
+      /*-                  --------------------------- */
+      
+          #MyDivStyle6 {
+      	    padding: 0em 0em 0em 1.3em;
+            width:100%;
+      	    padding:10px 10px 10px 1.3em;
+            font-size:18pt;
+            color: #AFA;
+            background-color: #3F3;
+            }
+          #MyDivStyle6 li {
+      	    padding: 0em 0em 0em 1.3em;
+            cursor:pointer;
+            margin:10;
+            padding:10;
+            background:#050;
+	    }
+          #MyDivStyle6 ol {
+      	    padding: 0.2em 0em 0em 3.3em;
+	    height: 340px;
+	    width:  500px;
+            background:#090;
+	    overflow: scroll;
+	  }
+
+          #MyDivStyle6 :link   {  color: rgb(235,255,235); text-decoration: underline; }
+          #MyDivStyle6 :visited{  color: rgb(000,255,000); text-decoration: underline; }
+          #MyDivStyle6 :active {  color: rgb(255,000,255); text-decoration: underline; }
+
+      /*-                  --------------------------- */
+      /*- Menu MyDivStyle6 --------------------------- */ 
+      /*- Menu MyDivStyle4 -------- BIGGER ----------- */ 
+      /*-                  --------------------------- */
+      
+          #MyDivStyle4 {
+            width:100%;
+      	    padding:10px 10px 10px 1.3em;
+            font-size:48pt;
+            }
+          #MyDivStyle4 li {
+            cursor:pointer;
+            margin:10;
+            padding:10;
+            background:#00f;
+	    }
+
+          #MyDivStyle4 :link   {  color: rgb(000,255,000); text-decoration: underline; }
+          #MyDivStyle4 :visited{  color: rgb(255,255,255); text-decoration: underline; }
+          #MyDivStyle4 :active {  color: rgb(255,000,255); text-decoration: underline; }
+
+      /*-                  --------------------------- */
+      /*- Menu MyDivStyle4 --------------------------- */ 
+      /*- Menu MyDivStyle3 ------- ONCE -------------- */ 
+      /*-                  --------------------------- */
+      
+          #MyDivStyle3 {
+            float:left;
+            width:100%;
+            font-size:16pt;
+            line-height:normal;
+            background: #044;
+            }
+      
+          #MyDivStyle3 :link   {  color: rgb(170,50,0);  text-decoration: underline; background-color: white; }
+          #MyDivStyle3 :visited{  color: rgb(170,50,85); text-decoration: underline; background-color: inherited; display: none; }
+          #MyDivStyle3 :active {  color: rgb(170,50,0);  text-decoration: underline; background-color: blue; font-size: }
+      
+          #MyDivStyle3 ul {
+      	  margin:0;
+      	  padding:0px 10px 0px 0px;
+      	  list-style:none;
+            }
+          #MyDivStyle3 ol {
+      	  margin:0;
+      	  padding:0px 10px 0px 0px;
+      	  list-style:none;
+            }
+          #MyDivStyle3 li {
+            display:inline;
+            margin:0;
+            padding:0;
+            background:#00f;
+            }
+          #MyDivStyle3 a {
+            border-style: solid; 
+            float:left;
+            color:#FFF;
+            background:url("images/menus/tableft3.gif") no-repeat left top;
+            margin:0;
+            padding:0 0 0 4px;
+            text-decoration:none;
+            }
+          #MyDivStyle3 a span {
+            float:left;
+            display:block;
+            padding:5px 15px 4px 16px;
+            }
+          #MyDivStyle3 a:hover {
+            background-position:0% -84px;
+            background:#000;
+            }
+      /*-                  --------------------------- */
+      /*- Menu MyDivStyle3 --------------------------- */ 
+      /*- Menu MyDivStyle2 -------- BIG -------------- */ 
+      /*-                  --------------------------- */
+      
+          #MyDivStyle2 {
+            width:100%;
+            font-size:24pt;
+            }
+
+          #MyDivStyle2 :link   {  color: rgb(000,255,000); text-decoration: underline; }
+          #MyDivStyle2 :visited{  color: rgb(255,255,255); text-decoration: underline; }
+          #MyDivStyle2 :active {  color: rgb(255,000,255); text-decoration: underline; }
+
+      /*-                  --------------------------- */
+      /*- Menu MyDivStyle2 --------------------------- */ 
+      /*- Menu MyDivStyle1 ------INVISIBLE ----------- */ 
+      /*-                  --------------------------- */
+          /*
+	   * This is a simple style -- do not display anything.
+	   * That is, make the element invisible
+	   *
+	   */
+          #MyDivStyle1 { display: none; }
+      /*-                  --------------------------- */
+      /*- Menu MyDivStyle1 --------------------------- */ 
+      /*- Menu MyDivStyle0 ----PLAIN ----------------- */ 
+      /*-                  --------------------------- */
+      
+          #MyDivStyle0 {
+            float:left;
+            border-style: dotted; 
+	    background-color: #aaaaaa;
+	    color: #000000;
+            font-size:93%;
+            line-height:normal;
+            }
+      /*-                  --------------------------- */
+      /*- Menu MyDivStyle0 --------------------------- */ 
+      /*- Menu MyDivStyle5 ----BAR ------------------- */
+      /*-                  --------------------------- */
+      
+          #MyDivStyle5 {
+            float:left;
+            width:100%;
+            background-color: #ffcc33;
+            color: #330000;
+            font-size:16pt;
+            line-height:normal;
+            }
+          #MyDivStyle5 li {
+            background-color: #ffee55;
+      	    list-style:none;
+	    text-align:center;
+            margin:0;
+            padding:0;
+            border-style: solid; 
+            }
+          #MyDivStyle5 a {
+	    border-width: 0;
+            margin:0;
+            padding:0 0 0 4px;
+            text-decoration:none;
+            }
+          #MyDivStyle5 a:hover {
+            background:#FFF;
+            }
+          #MyDivStyle5 li:hover {
+            background:#888;
+            }
+          #MyDivStyle5 :link   {  min-width: 100%; color: rgb(000,000,000); text-decoration: none; font-size: 26pt; }
+          #MyDivStyle5 :visited{  color: rgb(100,100,100); text-decoration: none; }
+          #MyDivStyle5 :active {  color: rgb(000,100,100); text-decoration: none; }
+      /*-                  --------------------------- */
+      /*- Menu MyDivStyle5 --------------------------- */
+
+  </style>
+
 </head>
-<body>
-  <h2>DOCUMENTATION INDEX</h2>
-  <ul>
+<body onload="Initialize();" >
+<form name="just_radio">
+STYLE:
+<input type="radio"  name="rad"     Value="rad_button0" onClick="testButton(this.form)"> Plain 
+<input type="radio"  name="rad"     Value="rad_button1" onClick="testButton(this.form)"> Invisible
+<input type="radio"  name="rad"     Value="rad_button2" onClick="testButton(this.form)"> Big
+<input type="radio"  name="rad"     Value="rad_button3" onClick="testButton(this.form)"> Once
+<input type="radio"  name="rad"     Value="rad_button4" onClick="testButton(this.form)"> Bigger
+<input type="radio"  name="rad"     Value="rad_button5" onClick="testButton(this.form)"> Bar
+<input type="radio"  name="rad"     Value="rad_button6" onClick="testButton(this.form)"> Scroll
+</form>
+
+<p>
+<div id="MyDivStyle0">
+  <h2> M_intrisic Documents </h2>
+  <ol>
     <li> <a href="https://urbanjost.github.io/M_intrinsics/index3.html">index of intrinsics</a> </li>
     <li> <a href="https://urbanjost.github.io/M_intrinsics/index7.html">index of statements</a> </li>
     <li> <a href="https://urbanjost.github.io/M_intrinsics/BOOK_FORTRAN.html">BOOK_FORTRAN</a>.  </li>
     <li> <a href="https://urbanjost.github.io/M_intrinsics/intrinsics_slidy.html">slidy HTML file</a> </li>
-  </ul>
+    <li> <a href="https://urbanjost.github.io/M_intrinsics/intrinsics_slidy_by_section.html">slidy HTML file by section</a> </li>
+  </ol>
   <h2>REFERENCES</h2>
-  <ul>
+  <ol>
     <li> <a href="https://github.com/urbanjost/M_intrinsics.git">M_intrinsics  github site</a> </li>
     <li> <a href="https://fortran-lang.org/en/learn/intrinsics">fortran-lang.org intrinsics</a> </li>
-  </ul>
+  </ol>
+
+</div>
+<div  style="display:none;">
+</div>
 </body>
 </html>

@@ -181,4 +181,4 @@ one relative to the input array.
 
    Fortran 2018
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+__fortran-lang intrinsic descriptions (license: MIT) @urbanjost__

@@ -63,4 +63,4 @@ Fortran 2008 and later
 [**leadz**(3)](LEADZ),
 [**trailz**(3)](TRAILZ)
 
-_fortran-lang intrinsic descriptions_
+__fortran-lang intrinsic descriptions__

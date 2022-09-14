@@ -121,4 +121,4 @@ Fortran 95 and later
 [**pack**(3)](PACK),
 [**unpack**(3)](UNPACK)
 
-_fortran-lang intrinsic descriptions_
+__fortran-lang intrinsic descriptions__

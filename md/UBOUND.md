@@ -119,4 +119,4 @@ and later
 [**co_ubound**(3)](CO_UBOUND),
 [__co\_lbound__(3)(CO_LBOUND)]
 
-_fortran-lang intrinsic descriptions_
+__fortran-lang intrinsic descriptions__

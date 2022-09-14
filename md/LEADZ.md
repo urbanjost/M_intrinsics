@@ -129,4 +129,4 @@ Fortran 2008 and later
 [**poppar**(3)](POPPAR),
 [**trailz**(3)](TRAILZ)
 
-_fortran-lang intrinsic descriptions_
+__fortran-lang intrinsic descriptions__
