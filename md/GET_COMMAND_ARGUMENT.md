@@ -110,7 +110,7 @@ end program demo_get_command_argument
 Results:
 
 ```text
-/demo_get_command_argument a    test  'of getting   arguments  ' "  leading"
+/demo_get_command_argument a   test  'of getting   arguments ' "  leading"
 
  The number of arguments is            5
  The program's name is xxx

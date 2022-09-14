@@ -116,10 +116,8 @@ product of its two real arguments.
           ! the product of only the positive elements of an array
           arr=[1, -1, 2, -2, 3, -3 ]
           write(*,*)'positive value product=',reduce(arr, my_mult, mask=arr>0)
-          !write(*,*)'positive value sum=',reduce(pack(arr,mask=arr>0), my_mult )
        ! sum values ignoring negative values
           write(*,*)'sum positive values=',reduce(arr, my_sum, mask=arr>0)
-          !write(*,*)'sum positive values=',reduce(pack(arr,mask=arr>0), my_sum )
 
        ! a single-valued array returns the single value as the
        ! calls to the operator stop when only one element remains

@@ -1517,10 +1517,15 @@ complex :: c
     (-1.0, 0.0 ), &
     (-1.0,-1.0 )]
   do i=1,size(vals)
-     call cartesian_to_polar(vals(i)%re,vals(i)%im,radius,ang)
+     call cartesian_to_polar(vals(i)%re, vals(i)%im, radius,ang)
      write(*,101)vals(i),ang,r2d(ang),radius
   enddo
-  101 format('X= ',f5.2,' Y= ',f5.2,' ANGLE= ',g0,T40,'DEGREES= ',g0.4,T57,'DISTANCE=',g0)
+  101 format(             &
+  & 'X= ',f5.2,           &
+  & ' Y= ',f5.2,          &
+  & ' ANGLE= ',g0,        &
+  & T38,'DEGREES= ',g0.4, &
+  & T54,'DISTANCE=',g0)
  endblock COMPLEX_VALS
 
 contains
@@ -1551,13 +1556,13 @@ end program demo_atan2
 > radians=   1.00000000     degrees=   57.2957802
 > elemental  0.321750551      0.463647604
 > elemental  0.197395563      0.380506366
->X=  0.00 Y=  1.00 ANGLE= 1.57079637    DEGREES= 90.00   DISTANCE=1.00000000
->X=  1.00 Y=  1.00 ANGLE= 0.785398185   DEGREES= 45.00   DISTANCE=1.41421354
->X=  1.00 Y=  0.00 ANGLE= 0.00000000    DEGREES= 0.000   DISTANCE=1.00000000
->X=  0.00 Y= -1.00 ANGLE= -1.57079637   DEGREES= -90.00  DISTANCE=1.00000000
->X= -1.00 Y=  1.00 ANGLE= 2.35619450    DEGREES= 135.0   DISTANCE=1.41421354
->X= -1.00 Y=  0.00 ANGLE= 3.14159274    DEGREES= 180.0   DISTANCE=1.00000000
->X= -1.00 Y= -1.00 ANGLE= -2.35619450   DEGREES= -135.0  DISTANCE=1.41421354
+>X=  0.00 Y=  1.00 ANGLE= 1.57079637  DEGREES= 90.00  DISTANCE=1.00000000
+>X=  1.00 Y=  1.00 ANGLE= 0.785398185 DEGREES= 45.00  DISTANCE=1.41421354
+>X=  1.00 Y=  0.00 ANGLE= 0.00000000  DEGREES= 0.000  DISTANCE=1.00000000
+>X=  0.00 Y= -1.00 ANGLE= -1.57079637 DEGREES= -90.00 DISTANCE=1.00000000
+>X= -1.00 Y=  1.00 ANGLE= 2.35619450  DEGREES= 135.0  DISTANCE=1.41421354
+>X= -1.00 Y=  0.00 ANGLE= 3.14159274  DEGREES= 180.0  DISTANCE=1.00000000
+>X= -1.00 Y= -1.00 ANGLE= -2.35619450 DEGREES= -135.0 DISTANCE=1.41421354
 ```
 ### **See Also**
 
@@ -4230,7 +4235,8 @@ Sample program:
 
 ```fortran
 program demo_compiler_version
-use, intrinsic :: iso_fortran_env, only : compiler_version, compiler_options
+use, intrinsic :: iso_fortran_env, only : compiler_version
+use, intrinsic :: iso_fortran_env, only : compiler_options
 implicit none
    print '(4a)', &
       'This file was compiled by ', &
@@ -4294,7 +4300,8 @@ Sample program:
 
 ```fortran
 program demo_compiler_version
-use, intrinsic :: iso_fortran_env, only : compiler_version, compiler_options
+use, intrinsic :: iso_fortran_env, only : compiler_version
+use, intrinsic :: iso_fortran_env, only : compiler_options
 implicit none
    print '(4a)', &
       'This file was compiled by ', &
@@ -7108,7 +7115,7 @@ end program demo_get_command_argument
 Results:
 
 ```text
-/demo_get_command_argument a    test  'of getting   arguments  ' "  leading"
+/demo_get_command_argument a   test  'of getting   arguments ' "  leading"
 
  The number of arguments is            5
  The program's name is xxx
@@ -9659,7 +9666,6 @@ result = lle(str_a, str_b)
 
    character(len=*),intent(in) :: str_a, str_b(*) logical :: result
 ```
-
 ### **Description**
 
 Determines whether one string is lexically less than or equal to another
@@ -9700,18 +9706,17 @@ program demo_lle
 implicit none
 integer             :: i
    write(*,'(*(a))')(char(i),i=32,126)
-     write(*,*) lle('abc','ABC')              ! F lowercase is > uppercase
-     write(*,*) lle('abc','abc  ')            ! T trailing spaces
+     write(*,*) lle('abc','ABC')          ! F lowercase is > uppercase
+     write(*,*) lle('abc','abc  ')        ! T trailing spaces
      ! If both strings are of zero length the result is true.
-     write(*,*) lle('','')                    ! T
-     write(*,*) lle('','a')                   ! T the null string is padded
-     write(*,*) lle('a','')                   ! F
-     write(*,*) lle('abc',['abc','123'])      ! [T,F] scalar and array
-     write(*,*) lle(['cba', '123'],'abc')     ! [F,T]
+     write(*,*) lle('','')                ! T
+     write(*,*) lle('','a')               ! T the null string is padded
+     write(*,*) lle('a','')               ! F
+     write(*,*) lle('abc',['abc','123'])  ! [T,F] scalar and array
+     write(*,*) lle(['cba', '123'],'abc') ! [F,T]
      write(*,*) lle(['abc','123'],['cba','123']) ! [T,T] both arrays
 end program demo_lle
 ```
-
 Results:
 
 ```text
@@ -10460,18 +10465,18 @@ integer,save :: ints(3,5)= reshape([&
    11, 22, 33, 44, 55  &
 ],shape(ints),order=[2,1])
 
-    write(*,*) maxloc(ints)
-    write(*,*) maxloc(ints,dim=1)
-    write(*,*) maxloc(ints,dim=2)
-    ! when array bounds do not start with one remember MAXLOC(3) returns the
-    ! offset relative to the lower bound-1 of the location of the maximum
-    ! value, not the subscript of the maximum value. When the lower bound of
-    ! the array is one, these values are the same. In other words, MAXLOC(3)
-    ! returns the subscript of the value assuming the first subscript of the
-    ! array is one no matter what the lower bound of the subscript actually
-    ! is.
-    write(*,'(g0,1x,g0)') (ii,i(ii),ii=lbound(i,dim=1),ubound(i,dim=1))
-    write(*,*)maxloc(i)
+   write(*,*) maxloc(ints)
+   write(*,*) maxloc(ints,dim=1)
+   write(*,*) maxloc(ints,dim=2)
+   ! when array bounds do not start with one remember MAXLOC(3) returns
+   ! the offset relative to the lower bound-1 of the location of the
+   ! maximum value, not the subscript of the maximum value. When the
+   ! lower bound of the array is one, these values are the same. In
+   ! other words, MAXLOC(3) returns the subscript of the value assuming
+   ! the first subscript of the array is one no matter what the lower
+   ! bound of the subscript actually is.
+   write(*,'(g0,1x,g0)') (ii,i(ii),ii=lbound(i,dim=1),ubound(i,dim=1))
+   write(*,*)maxloc(i)
 
 end program demo_maxloc
 ```
@@ -11118,12 +11123,12 @@ result value for that row is zero.
 
 ### **Returns**
 
-If **dim** is absent, the result is a rank-one array with a length equal to
-the rank of **array**. If **dim** is present, the result is an array with a rank
-one less than the rank of **array**, and a size corresponding to the size of
-**array** with the **dim** dimension removed. If **dim** is present and **array** has a
-rank of one, the result is a scalar. In all cases, the result is of
-default _integer_ type.
+If **dim** is absent, the result is a rank-one array with a length equal
+to the rank of **array**. If **dim** is present, the result is an array
+with a rank one less than the rank of **array**, and a size corresponding
+to the size of **array** with the **dim** dimension removed. If **dim**
+is present and **array** has a rank of one, the result is a scalar. In
+all cases, the result is of default _integer_ type.
 
 ### **Examples**
 
@@ -11137,13 +11142,13 @@ integer,save :: ints(3,5)= reshape([&
    9, 15,  6, 12,  3, &
   14,  5, 11,  2,  8  &
 ],shape(ints),order=[2,1])
-    write(*,*) minloc(ints)
-    write(*,*) minloc(ints,dim=1)
-    write(*,*) minloc(ints,dim=2)
-    ! where in each column is the smallest number .gt. 10 ?
-    write(*,*) minloc(ints,dim=2,mask=ints.gt.10)
-    ! a one-dimensional array with dim=1 explicitly listed returns a scalar
-    write(*,*) minloc(pack(ints,.true.),dim=1) ! scalar
+   write(*,*) minloc(ints)
+   write(*,*) minloc(ints,dim=1)
+   write(*,*) minloc(ints,dim=2)
+   ! where in each column is the smallest number .gt. 10 ?
+   write(*,*) minloc(ints,dim=2,mask=ints.gt.10)
+   ! a one-dimensional array with dim=1 explicitly listed returns a scalar
+   write(*,*) minloc(pack(ints,.true.),dim=1) ! scalar
 end program demo_minloc
 ```
 
@@ -13070,7 +13075,8 @@ integer,allocatable :: array(:)
    print all, 'zero-sized array=>',product([integer :: ])
    ! NOTE: If nothing in the mask is true, this also results in a null
    !       array
-   print all, 'all elements have a false mask=>',product(array,mask=.false.)
+   print all, 'all elements have a false mask=>', &
+            & product(array,mask=.false.)
 
 endblock NO_DIM
 
@@ -13107,7 +13113,8 @@ integer :: box(2,3,4)
 
    ! only one plane has negative values, so note all the "1" values
    ! for vectors with no elements
-   call print_matrix_int('negative values',product(box,mask=box < 0,dim=1))
+   call print_matrix_int('negative values', &
+   & product(box,mask=box < 0,dim=1))
 
 !   If DIM is specified and ARRAY has rank greater than one, the
 !   result is a new array in which dimension DIM has been eliminated.
@@ -13691,7 +13698,6 @@ There are two forms to this function:
    reduce(array, operation, mask, identity, ordered)
    reduce(array, operation, dim, mask, identity, ordered)
 ```
-
 ```fortran
       type(TYPE),intent(in)          :: array
       pure function                  :: operation
@@ -13807,10 +13813,8 @@ one relative to the input array.
       ! the product of only the positive elements of an array
       arr=[1, -1, 2, -2, 3, -3 ]
       write(*,*)'positive value product=',reduce(arr, my_mult, mask=arr>0)
-      !write(*,*)'positive value sum=',reduce(pack(arr,mask=arr>0), my_mult )
    ! sum values ignoring negative values
       write(*,*)'sum positive values=',reduce(arr, my_sum, mask=arr>0)
-      !write(*,*)'sum positive values=',reduce(pack(arr,mask=arr>0), my_sum )
 
    ! a single-valued array returns the single value as the
    ! calls to the operator stop when only one element remains
@@ -13855,7 +13859,6 @@ one relative to the input array.
      > [2, 12, 30, should be [2,12,30],
      > [15, 48, should be [15, 48],
 ````
-
 ### **See Also**
 - [co_reduce(3)](CO_REDUCE)
 - [associative:wipipedia](https://en.wikipedia.org/wiki/Associative_property)
@@ -13922,9 +13925,9 @@ end program demo_repeat
 Results:
 
 ```
-   ^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v
-   ________________________________________________________________________
-   1234567890123456789012345678901234567890123456789012345678901234567890
+  ^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v
+  ________________________________________________________________________
+  1234567890123456789012345678901234567890123456789012345678901234567890
 ```
 
 ### **Standard**
@@ -15426,56 +15429,56 @@ program example_spread
 !  Author:
 !    John Burkardt, 03 July 2006
 implicit none
-     !
+
 integer ( kind = 4 ) a1(4,3)
 integer ( kind = 4 ) a2(3,4)
 integer i
 integer ( kind = 4 ) s
 integer ( kind = 4 ) v(4)
-     !
-     write ( *, '(a)' ) ' '
-     write ( *, '(a)' ) 'TEST_SPREAD'
-     write ( *, '(a)' ) '  SPREAD is a FORTRAN90 function which replicates'
-     write ( *, '(a)' ) '  an array by adding a dimension.'
-     write ( *, '(a)' ) ' '
-     !
-     s = 99
-     !
-     write ( *, '(a,i6)' ) '  Suppose we have a scalar S = ', s
-     write ( *, '(a)' ) ' '
-     !
-     v = spread ( s, 1, 4 )
-     !
-     write ( *, '(a)' ) '  V = spread ( s, 1, 4 )'
-     write ( *, '(a)' ) ' '
-     write ( *, '(a)' ) '  adds a new dimension (1) of extent 4'
-     write ( *, '(a)' ) ' '
-     write ( *, '(4i6)' ) v(1:4)
-     write ( *, '(a)' ) ' '
-     write ( *, '(a)' ) '  Now first reset V to (1,2,3,4)'
-     v = [ 1, 2, 3, 4 ]
-     !
-     a1 = spread ( v, 2, 3 )
-     !
-     write ( *, '(a)' ) ' '
-     write ( *, '(a)' ) '  A1 = spread ( v, 2, 3 )'
-     write ( *, '(a)' ) ' '
-     write ( *, '(a)' ) '  adds a new dimension (2) of extent 3'
-     write ( *, '(a)' ) ' '
-     do i = 1, 4
-       write ( *, '(3i6)' ) a1(i,1:3)
-     end do
-     !
-     a2 = spread ( v, 1, 3 )
-     !
-     write ( *, '(a)' ) ' '
-     write ( *, '(a)' ) '  A2 = spread ( v, 1, 3 )'
-     write ( *, '(a)' ) ' '
-     write ( *, '(a)' ) '  adds a new dimension (1) of extent 3'
-     write ( *, '(a)' ) ' '
-     do i = 1, 3
-       write ( *, '(4i6)' ) a2(i,1:4)
-     end do
+
+   write(*,'(a)' ) ' '
+   write(*,'(a)' ) 'TEST_SPREAD'
+   write(*,'(a)' ) '  SPREAD is a FORTRAN90 function which replicates'
+   write(*,'(a)' ) '  an array by adding a dimension.'
+   write(*,'(a)' ) ' '
+
+   s = 99
+
+   write(*, '(a,i6)' ) '  Suppose we have a scalar S = ', s
+   write(*, '(a)' ) ' '
+
+   v = spread ( s, 1, 4 )
+
+   write(*,'(a)' ) '  V = spread ( s, 1, 4 )'
+   write(*,'(a)' ) ' '
+   write(*,'(a)' ) '  adds a new dimension (1) of extent 4'
+   write(*,'(a)' ) ' '
+   write(*,'(4i6)' ) v(1:4)
+   write(*,'(a)' ) ' '
+   write(*,'(a)' ) '  Now first reset V to (1,2,3,4)'
+   v = [ 1, 2, 3, 4 ]
+
+   a1 = spread ( v, 2, 3 )
+
+   write (*, '(a)' ) ' '
+   write (*, '(a)' ) '  A1 = spread ( v, 2, 3 )'
+   write (*, '(a)' ) ' '
+   write (*, '(a)' ) '  adds a new dimension (2) of extent 3'
+   write (*, '(a)' ) ' '
+   do i = 1, 4
+     write ( *, '(3i6)' ) a1(i,1:3)
+   end do
+
+   a2 = spread ( v, 1, 3 )
+
+   write (*, '(a)' ) ' '
+   write (*, '(a)' ) '  A2 = spread ( v, 1, 3 )'
+   write (*, '(a)' ) ' '
+   write (*, '(a)' ) '  adds a new dimension (1) of extent 3'
+   write (*, '(a)' ) ' '
+   do i = 1, 3
+     write(*, '(4i6)' ) a2(i,1:4)
+   end do
 end program example_spread
 ```
 
@@ -16111,7 +16114,8 @@ Results:
 
 ```text
  default real is from 1.17549435E-38 to 3.40282347E+38
- doubleprecision is from 2.2250738585072014E-308 to 1.7976931348623157E+308
+ doubleprecision is from 2.2250738585072014E-308 to
+ 1.7976931348623157E+308
 ```
 
 ### **Standard**

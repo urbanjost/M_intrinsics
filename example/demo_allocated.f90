@@ -3,9 +3,15 @@
       implicit none
       integer :: i = 4
       real(kind=sp), allocatable :: x(:)
+      character(len=256) :: message
+      integer :: istat
 
          ! if already allocated, deallocate
-         if ( allocated(x) ) deallocate(x)
+         if ( allocated(x) ) deallocate(x,STAT=istat, ERRMSG=message )
+         if(istat.ne.0)then
+            write(*,*)trim(message)
+            stop
+         endif
 
          ! only if not allocated, allocate
          if ( .not. allocated(x) ) allocate(x(i))
@@ -16,9 +22,12 @@
          else
              write(*,*)'do things if not allocated'
          endif
+
          call intentout(x)
          write(*,*)'note it is deallocated!',allocated(x)
+
          contains
+
          subroutine intentout(arr)
          ! note that if arr has intent(out) and is allocatable,
          ! arr is deallocated on entry

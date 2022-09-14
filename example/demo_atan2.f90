@@ -29,10 +29,15 @@
           (-1.0, 0.0 ), &
           (-1.0,-1.0 )]
         do i=1,size(vals)
-           call cartesian_to_polar(vals(i)%re,vals(i)%im,radius,ang)
+           call cartesian_to_polar(vals(i)%re, vals(i)%im, radius,ang)
            write(*,101)vals(i),ang,r2d(ang),radius
         enddo
-        101 format('X= ',f5.2,' Y= ',f5.2,' ANGLE= ',g0,T40,'DEGREES= ',g0.4,T57,'DISTANCE=',g0)
+        101 format(             &
+        & 'X= ',f5.2,           &
+        & ' Y= ',f5.2,          &
+        & ' ANGLE= ',g0,        &
+        & T38,'DEGREES= ',g0.4, &
+        & T54,'DISTANCE=',g0)
        endblock COMPLEX_VALS
 
       contains

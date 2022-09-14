@@ -52,16 +52,19 @@ roff: $(FULLMANS)
 $(FULLMAN3) : ../man/man3/%.3fortran : ../txt/%.3fortran.man
 	scripts/txt2man -s 3fortran -t "$*" $< |tee $@ |\
 	env AUX_FILENAME=$< bash scripts/man2html >../docs/$*.3fortran.html
+	env MANWIDTH=80 man --ascii --encoding=ascii -l $@ > ../text/$*.3fortran.man
 	bash scripts/man2f90 $*
 
 $(FULLMAN5) : ../man/man5/%.5fortran : ../txt/%.5fortran.man
 	scripts/txt2man -s 5fortran -t "$*" $< |tee $@ |\
 	env AUX_FILENAME=$< bash scripts/man2html >../docs/$*.5fortran.html
+	env MANWIDTH=80 man --ascii --encoding=ascii -l $@ > ../text/$*.3fortran.man
 	bash scripts/man2f90 $*
 
 $(FULLMAN7) : ../man/man7/%.7fortran : ../txt/%.7fortran.man
 	scripts/txt2man -s 7fortran -t "$*" $< |tee $@ |\
 	env AUX_FILENAME=$< bash scripts/man2html >../docs/$*.7fortran.html
+	env MANWIDTH=80 man --ascii --encoding=ascii -l $@ > ../text/$*.3fortran.man
 	bash scripts/man2f90 $*
 
 .PHONY: install

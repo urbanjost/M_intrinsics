@@ -78,7 +78,8 @@ integer,allocatable :: array(:)
    print all, 'zero-sized array=>',product([integer :: ])
    ! NOTE: If nothing in the mask is true, this also results in a null
    !       array
-   print all, 'all elements have a false mask=>',product(array,mask=.false.)
+   print all, 'all elements have a false mask=>', &
+            & product(array,mask=.false.)
 
 endblock NO_DIM
 
@@ -115,7 +116,8 @@ integer :: box(2,3,4)
 
    ! only one plane has negative values, so note all the "1" values
    ! for vectors with no elements
-   call print_matrix_int('negative values',product(box,mask=box < 0,dim=1))
+   call print_matrix_int('negative values', &
+   & product(box,mask=box < 0,dim=1))
 
 !   If DIM is specified and ARRAY has rank greater than one, the
 !   result is a new array in which dimension DIM has been eliminated.
