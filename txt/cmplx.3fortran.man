@@ -132,10 +132,12 @@ Typical Results:
 SEE ALSO
 
 -   AIMAG(3) - Imaginary part of complex number
+
+-   CMPLX(3) - Complex conversion function
+
 -   CONJG(3) - Complex conjugate function
+
 -   REAL(3) - Convert to real type
--   DBLE(3) - Convert to doubleprecision
--   INT(3) - Convert to an integer
 
 STANDARD
 

@@ -67,13 +67,13 @@ integer,save :: ints(3,5)= reshape([&
     write(*,*) maxloc(ints)
     write(*,*) maxloc(ints,dim=1)
     write(*,*) maxloc(ints,dim=2)
-    ! when array bounds do not start with one remember MAXLOC(3) returns the
-    ! offset relative to the lower bound-1 of the location of the maximum
-    ! value, not the subscript of the maximum value. When the lower bound of
-    ! the array is one, these values are the same. In other words, MAXLOC(3)
-    ! returns the subscript of the value assuming the first subscript of the
-    ! array is one no matter what the lower bound of the subscript actually
-    ! is.
+    ! when array bounds do not start with one remember MAXLOC(3) returns
+    ! the offset relative to the lower bound-1 of the location of the
+    ! maximum value, not the subscript of the maximum value. When the
+    ! lower bound of the array is one, these values are the same. In
+    ! other words, MAXLOC(3) returns the subscript of the value assuming
+    ! the first subscript of the array is one no matter what the lower
+    ! bound of the subscript actually is.
     write(*,'(g0,1x,g0)') (ii,i(ii),ii=lbound(i,dim=1),ubound(i,dim=1))
     write(*,*)maxloc(i)
 

@@ -121,7 +121,7 @@ end program demo_abs
 
    FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## achar
 
@@ -286,16 +286,16 @@ FORTRAN 77 and later, with KIND argument Fortran 2003 and later
 
 ### **See Also**
 
-[**char**(3)](CHAR),
-[**iachar**(3)](IACHAR),
-[**ichar**(3)](ICHAR)
+[**char**(3)](#char),
+[**iachar**(3)](#iachar),
+[**ichar**(3)](#ichar)
 
 ### **Resources**
 
 - [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code)
 - [M_attr module](https://github.com/urbanjost/M_attr) for controlling ANSI-compatible terminals
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## acosh
 
@@ -361,9 +361,9 @@ Fortran 2008 and later
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
-Inverse function: [**cosh**(3)](COSH)
+Inverse function: [**cosh**(3)](#cosh)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## acos
 
@@ -439,9 +439,9 @@ FORTRAN 77 and later; for a _complex_ argument - Fortran 2008 and later
 
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
-Inverse function: [**cos**(3](COS))
+Inverse function: [**cos**(3](cos))
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## adjustl
 
@@ -511,9 +511,9 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**adjustr**(3)](ADJUSTR)
+[**adjustr**(3)](#adjustr)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## adjustr
 
@@ -594,9 +594,9 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**adjustl**(3)](ADJUSTL)
+[**adjustl**(3)](#adjustl)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## aimag
 
@@ -663,14 +663,14 @@ Results:
 ```
 ### **See Also**
 
-[**real**(3)](REAL),
-[**cmplx**(3)](CMPLX)
+[**real**(3)](#real),
+[**cmplx**(3)](#cmplx)
 
 ### **Standard**
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## aint
 
@@ -762,14 +762,14 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**anint**(3)](ANINT),
-[**int**(3)](INT),
-[**nint**(3)](NINT),
-[**selected_int_kind**(3)](SELECTED_INT_KIND),
-[**ceiling**(3)](CEILING),
-[**floor**(3)](FLOOR)
+[**anint**(3)](#anint),
+[**int**(3)](#int),
+[**nint**(3)](#nint),
+[**selected_int_kind**(3)](#selected_int_kind),
+[**ceiling**(3)](#ceiling),
+[**floor**(3)](#floor)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## all
 
@@ -872,12 +872,12 @@ end program demo_all
     compare rows: T F
 ```
 ### **See Also**
-[**any**(3)](ANY)
+[**any**(3)](#any)
 
 ### **Standard**
 Fortran 95 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## allocated
 
@@ -973,10 +973,9 @@ scalar entities are available in Fortran 2003 and later.
 
 ### **See Also**
 
-[**move_alloc**(3)](MOVE_ALLOC)
+[**move_alloc**(3)](#move_alloc)
 
-_fortran-lang intrinsic descriptions_
-SYNOPSIS
+ _fortran-lang intrinsic descriptions_
 
 ## anint
 
@@ -1056,14 +1055,14 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**aint**(3)](AINT),
-[**int**(3)](INT),
-[**nint**(3)](NINT),
-[**selected_int_kind**(3)](SELECTED_INT_KIND),
-[**ceiling**(3)](CEILING),
-[**floor**(3)](FLOOR)
+[**aint**(3)](#aint),
+[**int**(3)](#int),
+[**nint**(3)](#nint),
+[**selected_int_kind**(3)](#selected_int_kind),
+[**ceiling**(3)](#ceiling),
+[**floor**(3)](#floor)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## any
 
@@ -1138,13 +1137,13 @@ Results:
     T T
 ```
 ### **See Also**
-[**any**(3)](ALL)
+[**any**(3)](#all)
 
 ### **Standard**
 
 Fortran 95 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## asinh
 
@@ -1208,9 +1207,9 @@ Fortran 2008 and later
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
-Inverse function: [**sinh**(3)](SINH)
+Inverse function: [**sinh**(3)](#sinh)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## asin
 
@@ -1313,9 +1312,9 @@ FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
-Inverse function: [**sin**(3)](SIN)
+Inverse function: [**sin**(3)](#sin)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## associated
 
@@ -1404,9 +1403,9 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**null**(3)](NULL)
+[**null**(3)](#null)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## atan2
 
@@ -1421,8 +1420,7 @@ function
     type(real,kind=KIND) :: atan2
     type(real,kind=KIND),intent(in) :: y, x
 ```
-The return value has the same type and kind as **y**
-and **x**.
+The return value has the same type and kind as **y** and **x**.
 
 ### **Description**
 
@@ -1445,20 +1443,20 @@ a unique angle).
 
 ### **Returns**
 
+The type and kind of the result are the same as the elements of **x**.
+and **y**.
+
 The value returned is by definition the principal value of the complex
 number **(x, y)**.
 
 The principal value is simply what we get when we adjust a radian value
 to lie between **-PI** and **PI** inclusive,
 
-The type and kind of the result are the same as the elements of **x**.
-and **y**.
-
 The classic definition of the arctangent is the angle that is formed
 in Cartesian coordinates of the line from the origin point **\<0,0\>**
 to the point **\<x,y\>** .
 
-Pictured as such a vector it is easy to see that if **x** and **y**
+Pictured as a vector it is easy to see that if **x** and **y**
 are both zero the angle is indeterminent because it sits directly over
 the origin, so **atan(0.0,0.0)** will produce an error.
 
@@ -1467,11 +1465,11 @@ Range of returned values by quadrant:
 >                   +PI/2
 >                     |
 >                     |
->        PI/2<Z<PI    |   0>Z<PI/2
+>     PI/2 < z < PI   |   0 > z < PI/2
 >                     |
 >   +-PI -------------+---------------- +-0
 >                     |
->         PI/2<-Z<PI  |    0<-Z<PI/2
+>     PI/2 < -z < PI  |   0 < -z < PI/2
 >                     |
 >                     |
 >                   -PI/2
@@ -1487,7 +1485,7 @@ Range of returned values by quadrant:
 Sample program:
 ```fortran
 program demo_atan2
-real :: x, y, z
+real :: z
 complex :: c
 
  ! basic usage
@@ -1497,25 +1495,28 @@ complex :: c
 
  ! elemental arrays
   write(*,*)'elemental',atan2( [10.0, 20.0], [30.0,40.0] )
+
  ! elemental arrays and scalars
   write(*,*)'elemental',atan2( [10.0, 20.0], 50.0 )
 
- ! break into real and imaginary components to use with complex values
- ! note TAN2() can take a complex value
+ ! break complex values into real and imaginary components
+ ! (note TAN2() can take a complex type value )
   c=(0.0,1.0)
   write(*,*)'complex',c,atan2( x=c%re, y=c%im )
+
+ ! extended sample converting cartesian coordinates to polar
   COMPLEX_VALS: block
   real                :: ang, radius
   complex,allocatable :: vals(:)
 
   vals=[ &
-    ( 0.0, 1.0 ), &
-    ( 1.0, 1.0 ), &
-    ( 1.0, 0.0 ), &
-    ( 0.0,-1.0 ), &
-    (-1.0, 1.0 ), &
-    (-1.0, 0.0 ), &
-    (-1.0,-1.0 )]
+    ( 1.0, 0.0 ), & ! 0
+    ( 1.0, 1.0 ), & ! 45
+    ( 0.0, 1.0 ), & ! 90
+    (-1.0, 1.0 ), & ! 135
+    (-1.0, 0.0 ), & ! 180
+    (-1.0,-1.0 ), & ! 225
+    ( 0.0,-1.0 )]   ! 270
   do i=1,size(vals)
      call cartesian_to_polar(vals(i)%re, vals(i)%im, radius,ang)
      write(*,101)vals(i),ang,r2d(ang),radius
@@ -1538,6 +1539,7 @@ real,intent(in)           :: radians
 end function r2d
 
 subroutine cartesian_to_polar(x,y,radius,inclination)
+! return angle in radians in range 0 to 2*PI
 implicit none
 real,intent(in)  :: x,y
 real,intent(out) :: radius,inclination
@@ -1546,6 +1548,7 @@ real,intent(out) :: radius,inclination
       inclination=0.0
    else
       inclination=atan2(y,x)
+      if(inclination < 0.0)inclination=inclination+2*atan2(0.0d0,-1.0d0)
    endif
 end subroutine cartesian_to_polar
 
@@ -1553,27 +1556,28 @@ end program demo_atan2
 ```
   Results:
 ```text
-> radians=   1.00000000     degrees=   57.2957802
-> elemental  0.321750551      0.463647604
-> elemental  0.197395563      0.380506366
->X=  0.00 Y=  1.00 ANGLE= 1.57079637  DEGREES= 90.00  DISTANCE=1.00000000
->X=  1.00 Y=  1.00 ANGLE= 0.785398185 DEGREES= 45.00  DISTANCE=1.41421354
->X=  1.00 Y=  0.00 ANGLE= 0.00000000  DEGREES= 0.000  DISTANCE=1.00000000
->X=  0.00 Y= -1.00 ANGLE= -1.57079637 DEGREES= -90.00 DISTANCE=1.00000000
->X= -1.00 Y=  1.00 ANGLE= 2.35619450  DEGREES= 135.0  DISTANCE=1.41421354
->X= -1.00 Y=  0.00 ANGLE= 3.14159274  DEGREES= 180.0  DISTANCE=1.00000000
->X= -1.00 Y= -1.00 ANGLE= -2.35619450 DEGREES= -135.0 DISTANCE=1.41421354
+    radians=   1.000000     degrees=   57.29578
+    elemental  0.3217506      0.4636476
+    elemental  0.1973956      0.3805064
+    complex (0.0000000E+00,1.000000)   1.570796
+   X=  1.00 Y=  0.00 ANGLE= .000000     DEGREES= .000   DISTANCE=1.000000
+   X=  1.00 Y=  1.00 ANGLE= .7853982    DEGREES= 45.00  DISTANCE=1.414214
+   X=  0.00 Y=  1.00 ANGLE= 1.570796    DEGREES= 90.00  DISTANCE=1.000000
+   X= -1.00 Y=  1.00 ANGLE= 2.356194    DEGREES= 135.0  DISTANCE=1.414214
+   X= -1.00 Y=  0.00 ANGLE= 3.141593    DEGREES= 180.0  DISTANCE=1.000000
+   X= -1.00 Y= -1.00 ANGLE= 3.926991    DEGREES= 225.0  DISTANCE=1.414214
+   X=  0.00 Y= -1.00 ANGLE= 4.712389    DEGREES= 270.0  DISTANCE=1.000000
 ```
 ### **See Also**
 
-- [**atan**(3)](ATAN)
+- [**atan**(3)](#atan)
 - [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
 ### **Standard**
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## atanh
 
@@ -1631,9 +1635,9 @@ Fortran 2008 and later
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
-Inverse function: [**tanh**(3)](TANH)
+Inverse function: [**tanh**(3)](#tanh)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## atan
 
@@ -1719,9 +1723,9 @@ arguments Fortran 2008 or later
 
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
-[**atan2**(3)](ATAN2), [**tan**(3)](TAN)
+[**atan2**(3)](#atan2), [**tan**(3)](#tan)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## atomic_add
 
@@ -1777,14 +1781,14 @@ TS 18508 or later
 
 ### **See Also**
 
-[**atomic_define**(3)](ATOMIC_DEFINE),
-[**atomic_fetch_add**(3)](ATOMIC_FETCH),
-[**atomic_and**(3)](ATOMIC_AND),
-[**atomic_or**(3)](ATOMIC_OR),
-[**atomic_xor**(3)](ATOMIC_XOR),
+[**atomic_define**(3)](#atomic_define),
+[**atomic_fetch_add**(3)](#atomic_fetch),
+[**atomic_and**(3)](#atomic_and),
+[**atomic_or**(3)](#atomic_or),
+[**atomic_xor**(3)](#atomic_xor)
 **iso_fortran_env**(3),
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## atomic_and
 
@@ -1840,16 +1844,16 @@ TS 18508 or later
 
 ### **See Also**
 
-[**atomic_fetch_and**(3)](ATOMIC_FETCH_AND),
-[**atomic_define**(3)](ATOMIC_DEFINE),
-[**atomic_ref**(3)](ATOMIC_REF),
-[**atomic_cas**(3)](ATOMIC_CAS),
+[**atomic_fetch_and**(3)](#atomic_fetch_and),
+[**atomic_define**(3)](#atomic_define),
+[**atomic_ref**(3)](#atomic_ref),
+[**atomic_cas**(3)](#atomic_cas),
 **iso_fortran_env**(3),
-[**atomic_add**(3)](ATOMIC_ADD),
-[**atomic_or**(3)](ATOMIC_OR),
-[**atomic_xor**(3)](ATOMIC_XOR)
+[**atomic_add**(3)](#atomic_add),
+[**atomic_or**(3)](#atomic_or),
+[**atomic_xor**(3)](#atomic_xor)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## atomic_cas
 
@@ -1914,11 +1918,11 @@ TS 18508 or later
 
 ### **See Also**
 
-[**atomic_define**(3)](ATOMIC_DEFINE),
-[**atomic_ref**(3)](ATOMIC_REF),
-[**iso_fortran_env**(3)]()
+[**atomic_define**(3)](#atomic_define),
+[**atomic_ref**(3)](#atomic_ref),
+[**iso_fortran_env**(3)](#)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## atomic_define
 
@@ -1980,15 +1984,15 @@ Fortran 2008 and later; with **stat**, TS 18508 or later
 
 ### **See Also**
 
-[**atomic_ref**(3)](ATOMIC_REF),
-[**atomic_cas**(3)](ATOMIC_CAS),
+[**atomic_ref**(3)](#atomic_ref),
+[**atomic_cas**(3)](#atomic_cas),
 **iso_fortran_env**(3),
-[**atomic_add**(3)](ATOMIC_ADD),
-[**atomic_and**(3)](ATOMIC_AND),
-[**atomic_or**(3)](ATOMIC_OR),
-[**atomic_xor**(3)](ATOMIC_XOR)
+[**atomic_add**(3)](#atomic_add),
+[**atomic_and**(3)](#atomic_and),
+[**atomic_or**(3)](#atomic_or),
+[**atomic_xor**(3)](#atomic_xor)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## atomic_fetch_add
 
@@ -2048,16 +2052,16 @@ TS 18508 or later
 
 ### **See Also**
 
-[**atomic_define**(3)](ATOMIC_DEFINE),
-[**atomic_add**(3)](ATOMIC_ADD),
+[**atomic_define**(3)](#atomic_define),
+[**atomic_add**(3)](#atomic_add),
 **iso_fortran_env**(3),
 
-[**atomic_fetch_and**(3)](ATOMIC_FETCH_AND),
-[**atomic_fetch_or**(3)](ATOMIC_FETCH_OR),
+[**atomic_fetch_and**(3)](#atomic_fetch_and),
+[**atomic_fetch_or**(3)](#atomic_fetch_or),
 
-[**atomic_fetch_xor**(3)](ATOMIC_FETCH_XOR)
+[**atomic_fetch_xor**(3)](#atomic_fetch_xor)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## atomic_fetch_and
 
@@ -2117,16 +2121,16 @@ TS 18508 or later
 
 ### **See Also**
 
-[**atomic_define**(3)](ATOMIC_DEFINE),
-[**atomic_and**(3)](ATOMIC_AND),
-[**iso_fortran_env**(3)](),
+[**atomic_define**(3)](#atomic_define),
+[**atomic_and**(3)](#atomic_and),
+[**iso_fortran_env**(3)](#),
 
-[**atomic_fetch_add**(3)](ATOMIC_FETCH_ADD),
-[**atomic_fetch_or**(3)](ATOMIC_FETCH_OR),
+[**atomic_fetch_add**(3)](#atomic_fetch_add),
+[**atomic_fetch_or**(3)](#atomic_fetch_or),
 
-[**atomic_fetch_xor**(3)](ATOMIC_FETCH_XOR)
+[**atomic_fetch_xor**(3)](#atomic_fetch_xor)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## atomic_fetch_or
 
@@ -2186,16 +2190,16 @@ TS 18508 or later
 
 ### **See Also**
 
-[**atomic_define**(3)](ATOMIC_DEFINE),
-[**atomic_or**(3)](ATOMIC_OR),
-[**iso_fortran_env**(3)](),
+[**atomic_define**(3)](#atomic_define),
+[**atomic_or**(3)](#atomic_or),
+[**iso_fortran_env**(3)](#),
 
-[**atomic_fetch_add**(3)](ATOMIC_FETCH_ADD),
-[**atomic_fetch_and**(3)](ATOMIC_FETCH_AND),
+[**atomic_fetch_add**(3)](#atomic_fetch_add),
+[**atomic_fetch_and**(3)](#atomic_fetch_and),
 
-[**atomic_fetch_xor**(3)](ATOMIC_FETCH_XOR)
+[**atomic_fetch_xor**(3)](#atomic_fetch_xor)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## atomic_fetch_xor
 
@@ -2255,16 +2259,16 @@ TS 18508 or later
 
 ### **See Also**
 
-[**atomic_define**(3)](ATOMIC_DEFINE),
-[**atomic_xor**(3)](ATOMIC_XOR),
-[**iso_fortran_env**(3)](),
+[**atomic_define**(3)](#atomic_define),
+[**atomic_xor**(3)](#atomic_xor),
+[**iso_fortran_env**(3)](#),
 
-[**atomic_fetch_add**(3)](ATOMIC_FETCH_ADD),
-[**atomic_fetch_and**(3)](ATOMIC_FETCH_AND),
+[**atomic_fetch_add**(3)](#atomic_fetch_add),
+[**atomic_fetch_and**(3)](#atomic_fetch_and),
 
-[**atomic_fetch_or**(3)](ATOMIC_FETCH_OR)
+[**atomic_fetch_or**(3)](#atomic_fetch_or)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## atomic_or
 
@@ -2320,16 +2324,16 @@ TS 18508 or later
 
 ### **See Also**
 
-[**atomic_define**(3)](ATOMIC_DEFINE),
-[**atomic_fetch_or**(3)](ATOMIC_FETCH),
+[**atomic_define**(3)](#atomic_define),
+[**atomic_fetch_or**(3)](#atomic_fetch),
 
-[**iso_fortran_env**(3)](),
-[**atomic_add**(3)](ATOMIC_ADD),
-[**atomic_or**(3)](ATOMIC_OR),
+[**iso_fortran_env**(3)](#),
+[**atomic_add**(3)](#atomic_add),
+[**atomic_or**(3)](#atomic_or),
 
-[**atomic_xor**(3)](ATOMIC_XOR)
+[**atomic_xor**(3)](#atomic_xor)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## atomic_ref
 
@@ -2392,17 +2396,17 @@ Fortran 2008 and later; with STAT, TS 18508 or later
 
 ### **See Also**
 
-[**atomic_define**(3)](ATOMIC_DEFINE),
-[**atomic_cas**(3)](ATOMIC_CAS),
-[**iso_fortran_env**(3)](),
+[**atomic_define**(3)](#atomic_define),
+[**atomic_cas**(3)](#atomic_cas),
+[**iso_fortran_env**(3)](#),
 
-[**atomic_fetch_add**(3)](ATOMIC_ADD),
-[**atomic_fetch_and**(3)](ATOMIC_AND),
+[**atomic_fetch_add**(3)](#atomic_add),
+[**atomic_fetch_and**(3)](#atomic_and),
 
-[**atomic_fetch_or**(3)](ATOMIC_OR),
-[**atomic_fetch_xor**(3)](ATOMIC_XOR)
+[**atomic_fetch_or**(3)](#atomic_or),
+[**atomic_fetch_xor**(3)](#atomic_xor)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## atomic_xor
 
@@ -2458,14 +2462,14 @@ TS 18508 or later
 
 ### **See Also**
 
-[**atomic_define**(3)](ATOMIC_DEFINE),
-[**atomic_fetch_xor**(3)](ATOMIC_FETCH),
-[**iso_fortran_env**(3)](),
-[**atomic_add**(3)](ATOMIC_ADD),
-[**atomic_or**(3)](ATOMIC_OR),
-[**atomic_xor**(3)](ATOMIC_XOR)
+[**atomic_define**(3)](#atomic_define),
+[**atomic_fetch_xor**(3)](#atomic_fetch),
+[**iso_fortran_env**(3)](#),
+[**atomic_add**(3)](#atomic_add),
+[**atomic_or**(3)](#atomic_or),
+[**atomic_xor**(3)](#atomic_xor)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## bessel_j0
 
@@ -2521,13 +2525,13 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bessel_j1**(3)](BESSEL_J1),
-[**bessel_jn**(3)](BESSEL_JN),
-[**bessel_y0**(3)](BESSEL_Y0),
-[**bessel_y1**(3)](BESSEL_Y1),
-[**bessel_yn**(3)](BESSEL_YN)
+[**bessel_j1**(3)](#bessel_j1),
+[**bessel_jn**(3)](#bessel_jn),
+[**bessel_y0**(3)](#bessel_y0),
+[**bessel_y1**(3)](#bessel_y1),
+[**bessel_yn**(3)](#bessel_yn)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## bessel_j1
 
@@ -2583,13 +2587,13 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bessel_j0**(3)](BESSEL_J0),
-[**bessel_jn**(3)](BESSEL_JN),
-[**bessel_y0**(3)](BESSEL_Y0),
-[**bessel_y1**(3)](BESSEL_Y1),
-[**bessel_yn**(3)](BESSEL_YN)
+[**bessel_j0**(3)](#bessel_j0),
+[**bessel_jn**(3)](#bessel_jn),
+[**bessel_y0**(3)](#bessel_y0),
+[**bessel_y1**(3)](#bessel_y1),
+[**bessel_yn**(3)](#bessel_yn)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## bessel_jn
 
@@ -2660,13 +2664,13 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bessel_j0**(3)](BESSEL_J0),
-[**bessel_j1**(3)](BESSEL_J1),
-[**bessel_y0**(3)](BESSEL_Y0),
-[**bessel_y1**(3)](BESSEL_Y1),
-[**bessel_yn**(3)](BESSEL_YN)
+[**bessel_j0**(3)](#bessel_j0),
+[**bessel_j1**(3)](#bessel_j1),
+[**bessel_y0**(3)](#bessel_y0),
+[**bessel_y1**(3)](#bessel_y1),
+[**bessel_yn**(3)](#bessel_yn)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## bessel_y0
 
@@ -2721,13 +2725,13 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bessel_j0**(3)](BESSEL_J0),
-[**bessel_j1**(3)](BESSEL_J1),
-[**bessel_jn**(3)](BESSEL_JN),
-[**bessel_y1**(3)](BESSEL_Y1),
-[**bessel_yn**(3)](BESSEL_YN)
+[**bessel_j0**(3)](#bessel_j0),
+[**bessel_j1**(3)](#bessel_j1),
+[**bessel_jn**(3)](#bessel_jn),
+[**bessel_y1**(3)](#bessel_y1),
+[**bessel_yn**(3)](#bessel_yn)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## bessel_y1
 
@@ -2775,13 +2779,13 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bessel_j0**(3)](BESSEL_J0),
-[**bessel_j1**(3)](BESSEL_J1),
-[**bessel_jn**(3)](BESSEL_JN),
-[**bessel_y0**(3)](BESSEL_Y0),
-[**bessel_yn**(3)](BESSEL_YN)
+[**bessel_j0**(3)](#bessel_j0),
+[**bessel_j1**(3)](#bessel_j1),
+[**bessel_jn**(3)](#bessel_jn),
+[**bessel_y0**(3)](#bessel_y0),
+[**bessel_yn**(3)](#bessel_yn)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## bessel_yn
 
@@ -2851,13 +2855,13 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bessel_j0**(3)](BESSEL_J0),
-[**bessel_j1**(3)](BESSEL_J1),
-[**bessel_jn**(3)](BESSEL_JN),
-[**bessel_y0**(3)](BESSEL_Y0),
-[**bessel_y1**(3)](BESSEL_Y1)
+[**bessel_j0**(3)](#bessel_j0),
+[**bessel_j1**(3)](#bessel_j1),
+[**bessel_jn**(3)](#bessel_jn),
+[**bessel_y0**(3)](#bessel_y0),
+[**bessel_y1**(3)](#bessel_y1)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## bge
 
@@ -2894,11 +2898,11 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bgt**(3)](BGT),
-[**ble**(3)](BLE),
-[**blt**(3)](BIT)
+[**bgt**(3)](#bgt),
+[**ble**(3)](#ble),
+[**blt**(3)](#bit)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## bgt
 
@@ -2937,11 +2941,11 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bge**(3)](BGE),
-[**ble**(3)](BLE),
-[**blt**(3)](BLT)
+[**bge**(3)](#bge),
+[**ble**(3)](#ble),
+[**blt**(3)](#blt)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## bit_size
 
@@ -3012,7 +3016,7 @@ Typical Results:
 
 Fortran 95 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ble
 
@@ -3048,11 +3052,11 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bge**(3)](BGE),
-[**bgt**(3)](BGT),
-[**blt**(3)](BLT)
+[**bge**(3)](#bge),
+[**bgt**(3)](#bgt),
+[**blt**(3)](#blt)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## blt
 
@@ -3088,11 +3092,11 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bge**(3)](BGE),
-[**bgt**(3)](BGT),
-[**ble**(3)](BLE)
+[**bge**(3)](#bge),
+[**bgt**(3)](#bgt),
+[**ble**(3)](#ble)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## btest
 
@@ -3218,16 +3222,18 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**iand**(3)](IAND),
-[**ibclr**(3)](IBCLR),
-[**ibits**(3)](IBITS),
-[**ibset**(3)](IBSET),
-[**ieor**(3)](IEOR),
-[**ior**(3)](IOR),
-[**not**(3)](NOT),
-[**mvbits**(3)](MVBITS)
+[**ieor**(3)](#ieor),
+[**ibclr**(3)](#ibclr),
+[**not**(3)](#not),
+[**ibclr**(3)](#ibclr),
+[**ibits**(3)](#ibits),
+[**ibset**(3)](#ibset),
+[**iand**(3)](#iand),
+[**ior**(3)](#ior),
+[**ieor**(3)](#ieor),
+[**mvbits**(3)](#mvbits)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## c_associated
 
@@ -3288,11 +3294,11 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**c_loc**(3)](C_LOC),
-[**c_funloc**(3)](C_FUNLOC),
+[**c_loc**(3)](#c_loc),
+[**c_funloc**(3)](#c_funloc),
 **iso_c_binding**(3)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## ceiling
 
@@ -3366,15 +3372,15 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**floor**(3)](FLOOR),
-[**nint**(3)](NINT)
+[**floor**(3)](#floor),
+[**nint**(3)](#nint)
 
-[**aint**(3)](AINT),
-[**anint**(3)](ANINT),
-[**int**(3)](INT),
-[**selected_int_kind**(3)](SELECTED_INT_KIND)
+[**aint**(3)](#aint),
+[**anint**(3)](#anint),
+[**int**(3)](#int),
+[**selected_int_kind**(3)](#selected_int_kind)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## c_f_pointer
 
@@ -3433,11 +3439,11 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**c_loc**(3)](C_LOC),
-[**c_f_procpointer**(3)](C_F_PROCPOINTER),
+[**c_loc**(3)](#c_loc),
+[**c_f_procpointer**(3)](#c_f_procpointer),
 **iso_c_binding**(3)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## c_f_procpointer
 
@@ -3498,11 +3504,11 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**c_loc**(3)](C_LOC),
-[**c_f_pointer**(3)](C_F_POINTER),
+[**c_loc**(3)](#c_loc),
+[**c_f_pointer**(3)](#c_f_pointer),
 **iso_c_binding**(3)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## c_funloc
 
@@ -3567,14 +3573,14 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**c_associated**(3)](C_ASSOCIATED),
-[**c_loc**(3)](C_LOC),
-[**c_f_pointer**(3)](C_F_POINTER),
+[**c_associated**(3)](#c_associated),
+[**c_loc**(3)](#c_loc),
+[**c_f_pointer**(3)](#c_f_pointer),
 
-[**c_f_procpointer**(3)](C_F_PROCPOINTER),
+[**c_f_procpointer**(3)](#c_f_procpointer),
 **iso_c_binding**(3)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## char
 
@@ -3631,7 +3637,7 @@ Results:
 
 ### **Note**
 
-See [**ichar**(3)](CHAR) for a discussion of converting between numerical
+See [**ichar**(3)](#char) for a discussion of converting between numerical
 values and formatted string representations.
 
 ### **Standard**
@@ -3640,23 +3646,23 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**achar**(3)](ACHAR),
-[**iachar**(3)](IACHAR),
-[**ichar**(3)](ICHAR)
+[**achar**(3)](#achar),
+[**iachar**(3)](#iachar),
+[**ichar**(3)](#ichar)
 
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
 - **Elemental:**
-  [**adjustl**(3)](ADJUSTL), [**adjustr**(3)](ADJUSTR), [**index**(3)](INDEX),
-  [**scan**(3)](SCAN), [**verify**(3)](VERIFY)
+  [**adjustl**(3)](#adjustl), [**adjustr**(3)](#adjustr), [**index**(3)](#index),
+  [**scan**(3)](#scan), [**verify**(3)](#verify)
 
 - **Nonelemental:**
-  [**len_trim**(3)](LEN_TRIM),
-  [**len**(3)](LEN),
-  [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
+  [**len_trim**(3)](#len_trim),
+  [**len**(3)](#len),
+  [**repeat**(3)](#repeat), [**trim**(3)](#trim)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## c_loc
 
@@ -3708,14 +3714,14 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**c_associated**(3)](C_ASSOCIATED),
-[**c_funloc**(3)](C_FUNLOC),
-[**c_f_pointer**(3)](C_F_POINTER),
+[**c_associated**(3)](#c_associated),
+[**c_funloc**(3)](#c_funloc),
+[**c_f_pointer**(3)](#c_f_pointer),
 
-[**c_f_procpointer**(3)](C_F_PROCPOINTER),
+[**c_f_procpointer**(3)](#c_f_procpointer),
 **iso_c_binding**(3)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## cmplx
 
@@ -3869,17 +3875,19 @@ Typical Results:
 
 ### **See Also**
 
-- [**aimag**(3)](AIMAG) - Imaginary part of complex number
-- [**conjg**(3)](CONJG) - Complex conjugate function
-- [**real**(3)](REAL) - Convert to real type
-- [**dble**(3)](DBLE) - Convert to doubleprecision
-- [**int**(3)](INT)   - Convert to an integer
+- [**aimag**(3)](#aimag) - Imaginary part of complex number
+
+- [**cmplx**(3)](#cmplx) - Complex conversion function
+
+- [**conjg**(3)](#conjg) - Complex conjugate function
+
+- [**real**(3)](#real) - Convert to real type
 
 ### **Standard**
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## co_broadcast
 
@@ -3937,12 +3945,12 @@ end program demo_co_broadcast
 
 ### **See Also**
 
-[**co_max**(3)](CO_MAX),
-[**co_min**(3)](CO_MIN),
-[**co_sum**(3)](CO_SUM),
-[**co_reduce**(3)](CO_REDUCE)
+[**co_max**(3)](#co_max),
+[**co_min**(3)](#co_min),
+[**co_sum**(3)](#co_sum),
+[**co_reduce**(3)](#co_reduce)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## co_lbound
 
@@ -3987,10 +3995,10 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**co_ubound**(3)](CO_UBOUND),
-[**lbound**(3)](LBOUND)
+[**co_ubound**(3)](#co_ubound),
+[**lbound**(3)](#lbound)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## co_max
 
@@ -4060,12 +4068,12 @@ TS 18508 or later
 
 ### **See Also**
 
-[**co_min**(3)](CO_MIN),
-[**co_sum**(3)](CO_SUM),
-[**co_reduce**(3)](CO_REDUCE),
-[**co_broadcast**(3)](CO_BROADCAST)
+[**co_min**(3)](#co_min),
+[**co_sum**(3)](#co_sum),
+[**co_reduce**(3)](#co_reduce),
+[**co_broadcast**(3)](#co_broadcast)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## co_min
 
@@ -4129,12 +4137,12 @@ TS 18508 or later
 
 ### **See Also**
 
-[**co_max**(3)](CO_MAX),
-[**co_sum**(3)](CO_SUM),
-[**co_reduce**(3)](CO_REDUCE),
-[**co_broadcast**(3)](CO_BROADCAST)
+[**co_max**(3)](#co_max),
+[**co_sum**(3)](#co_sum),
+[**co_reduce**(3)](#co_reduce),
+[**co_broadcast**(3)](#co_broadcast)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## command_argument_count
 
@@ -4198,10 +4206,10 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**get_command**(3)](GET_COMMAND),
-[**get_command_argument**(3)](GET_COMMAND_ARGUMENT)
+[**get_command**(3)](#get_command),
+[**get_command_argument**(3)](#get_command_argument)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## compiler_options
 
@@ -4263,10 +4271,10 @@ Fortran 2008
 
 ### **See Also**
 
-[**compiler_version**(3)](COMPILER_VERSION),
+[**compiler_version**(3)](#compiler_version),
 **iso_fortran_env**(7)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## compiler_version
 
@@ -4328,10 +4336,10 @@ Fortran 2008
 
 ### **See Also**
 
-[**compiler_options**(3)](COMPILER_OPTIONS),
+[**compiler_options**(3)](#compiler_options),
 **iso_fortran_env**(7)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## conjg
 
@@ -4437,7 +4445,7 @@ Results:
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## co_reduce
 
@@ -4535,12 +4543,12 @@ TS 18508 or later
 
 ### **See Also**
 
-[**co_min**(3)](CO_MIN),
-[**co_max**(3)](CO_MAX),
-[**co_sum**(3)](CO_SUM),
-[**co_broadcast**(3)](CO_BROADCAST)
+[**co_min**(3)](#co_min),
+[**co_max**(3)](#co_max),
+[**co_sum**(3)](#co_sum),
+[**co_broadcast**(3)](#co_broadcast)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## cosh
 
@@ -4600,9 +4608,9 @@ FORTRAN 77 and later, for a complex argument - Fortran 2008 or later
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
-Inverse function: [**acosh**(3)](ACOSH)
+Inverse function: [**acosh**(3)](#acosh)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## cos
 
@@ -4681,11 +4689,11 @@ FORTRAN 77 and later
 
 - [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
-[**acos**(3)](ACOS),
-[**sin**(3)](SIN),
-[**tan**(3)](TAN)
+[**acos**(3)](#acos),
+[**sin**(3)](#sin),
+[**tan**(3)](#tan)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## co_sum
 
@@ -4756,12 +4764,12 @@ TS 18508 or later
 
 ### **See Also**
 
-[**co_max**(3)](CO_MAX),
-[**co_min**(3)](CO_MIN),
-[**co_reduce**(3)](CO_REDUCE),
-[**co_broadcast**(3)](CO_BROADCAST)
+[**co_max**(3)](#co_max),
+[**co_min**(3)](#co_min),
+[**co_reduce**(3)](#co_reduce),
+[**co_broadcast**(3)](#co_broadcast)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## co_ubound
 
@@ -4806,11 +4814,11 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**co_lbound**(3)](CO_LBOUND),
-[**lbound**(3)](LBOUND),
-[**ubound**(3)](UBOUND)
+[**co_lbound**(3)](#co_lbound),
+[**lbound**(3)](#lbound),
+[**ubound**(3)](#ubound)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## count
 
@@ -4903,7 +4911,7 @@ Expected Results:
 Fortran 95 and later, with KIND argument - Fortran 2003
 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## cpu_time
 
@@ -4979,10 +4987,10 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**system_clock**(3)](SYSTEM_CLOCK),
-[**date_and_time**(3)](DATE_AND_TIME)
+[**system_clock**(3)](#system_clock),
+[**date_and_time**(3)](#date_and_time)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## cshift
 
@@ -5058,7 +5066,7 @@ Results:
 
 Fortran 95 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## c_sizeof
 
@@ -5120,9 +5128,9 @@ Fortran 2008
 
 ### **See Also**
 
-[**storage_size**(3)](STORAGE_SIZE)
+[**storage_size**(3)](#storage_size)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## date_and_time
 
@@ -5223,8 +5231,8 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**cpu_time**(3)](CPU_TIME),
-[**system_clock**(3)](SYSTEM_CLOCK)
+[**cpu_time**(3)](#cpu_time),
+[**system_clock**(3)](#system_clock)
 
 ### **Resources**
 
@@ -5234,7 +5242,7 @@ date and time conversion, formatting and computation
 - [datetime](https://github.com/wavebitscientific/datetime-fortran)
 - [datetime-fortran](https://github.com/wavebitscientific/datetime-fortran)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## dble
 
@@ -5243,6 +5251,7 @@ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 **dble**(3) - \[TYPE:NUMERIC\] Double conversion function
 
 ### **Syntax**
+
 ```fortran
 result = dble(a)
 
@@ -5250,6 +5259,7 @@ result = dble(a)
     type(real(kind=kind(0.0d0)))     :: dble
     type(TYPE(kind=KIND)),intent(in) :: a
 ```
+
 where TYPE may be _integer_, _real_, or _complex_ and KIND any kind
 supported by the TYPE.
 
@@ -5294,12 +5304,10 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**real**(3)](REAL),
-[**cmplx**(3)](CMPLX),
-[**aimag**(3)](AIMAG),
-[**int**(3)](INT)
+[**float**(3)](#float),
+[**real**(3)](#real)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## digits
 
@@ -5364,23 +5372,23 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**epsilon**(3)](EPSILON),
-[**exponent**(3)](EXPONENT),
-[**fraction**(3)](FRACTION),
-[**huge**(3)](HUGE),
-[**maxexponent**(3)](MAXEXPONENT),
-[**minexponent**(3)](MINEXPONENT),
-[**nearest**(3)](NEAREST),
-[**precision**(3)](PRECISION),
-[**radix**(3)](RADIX),
-[**range**(3)](RANGE),
-[**rrspacing**(3)](RRSPACING),
-[**scale**(3)](SCALE),
-[**set_exponent**(3)](SET_EXPONENT),
-[**spacing**(3)](SPACING),
-[**tiny**(3)](TINY)
+[**epsilon**(3)](#epsilon),
+[**exponent**(3)](#exponent),
+[**fraction**(3)](#fraction),
+[**huge**(3)](#huge),
+[**maxexponent**(3)](#maxexponent),
+[**minexponent**(3)](#minexponent),
+[**nearest**(3)](#nearest),
+[**precision**(3)](#precision),
+[**radix**(3)](#radix),
+[**range**(3)](#range),
+[**rrspacing**(3)](#rrspacing),
+[**scale**(3)](#scale),
+[**set_exponent**(3)](#set_exponent),
+[**spacing**(3)](#spacing),
+[**tiny**(3)](#tiny)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## dim
 
@@ -5452,7 +5460,7 @@ Results:
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## dot_product
 
@@ -5524,50 +5532,49 @@ Results:
 
 Fortran 95 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## dprod
 
 ### **Name**
 
-**dprod**(3) - \[NUMERIC\] Double product function
+**dprod**(3) - \[NUMERIC\] Double precision real product
 
 ### **Syntax**
 
 ```fortran
-result = dprod(x, y)
-```
+   elemental function dprod(x,y)
 
+    real,intent(in) :: x
+    real,intent(in) :: y
+    doubleprecision :: dprod
+```
 ### **Description**
 
-**dprod(x,y)** produces a higher _doubleprecision_ product of default _real_
-numbers **x** and **y**.
+**dprod(x,y)** produces a _doubleprecision_ product of default _real_
+values **x** and **y**.
 
 The result has a value equal to a processor-dependent approximation to
-the product of **x** and **y**. It is recommended that the processor compute the
-product in double precision, rather than in single precision and then
-converted to double precision.
-
-- **x**
-  : shall be default real.
-
-- **y**
-  : shall be default real.
-
-The setting of compiler options specifying _real_ size can affect this
-function.
+the product of **x** and **y**. It is recommended that the processor
+compute the product in double precision, rather than in single precision
+then converted to double precision.
 
 ### **Arguments**
 
 - **x**
-  : Must be of default _real(kind=kind(0.0))_ type
+  : the multiplier, a _real_ value of default kind
 
 - **y**
-  : Must have the same type and kind parameters as **x**
+  : the multiplicand, a _real_ value of default kind.
+  **y** Must have the same type and kind parameters as **x**
+
+The setting of compiler options specifying the size of a default _real_
+can affect this function.
 
 ### **Returns**
 
 The return value is of type _real(kind=kind(0.0d0))_.
+It should have the same value as **dble(x)\*dble(y)**.
 
 ### **Examples**
 
@@ -5582,40 +5589,57 @@ integer,parameter :: dp=kind(0.0d0)
 real :: x = 5.2
 real :: y = 2.3
 real(kind=dp) :: dd
+
+   ! basic usage
    dd = dprod(x,y)
-   print *, dd, x*y, kind(x), kind(dd), kind(dprod(x,y))
-   ! interesting comparisons
-   print *, 52*23
+   print *, 'compare dprod(xy)=',dd, &
+   & 'to x*y=',x*y, &
+   & 'to dble(x)*dble(y)=',dble(x)*dble(y)
+
+   ! elemental
+   print *, dprod( [2.3,3.4,4.5], 10.0 )
+   print *, dprod( [2.3,3.4,4.5], [9.8,7.6,5.4] )
+
+   ! other interesting comparisons
+   print *, 'integer multiplication of digits=',52*23
    print *, 52*23/100.0
    print *, 52*23/100.0d0
 
-   !! common extension is to take doubleprecision arguments
-   !! and return higher precision
+   !! A common extension is to take doubleprecision arguments
+   !! and return higher precision when available
    bigger: block
-   doubleprecision :: xx = 5.2d0
-   doubleprecision :: yy = 2.3d0
-   real(kind=real128) :: ddd
-   !ddd = dprod(xx,yy)
-   !print *, ddd, xx*yy, kind(xx), kind(ddd), kind(dprod(xx,yy))
+   doubleprecision :: xx = 5.2_dp
+   doubleprecision :: yy = 2.3_dp
+   print *, 'dprop==>',dprod(xx,yy)
+   print *, 'multipy==>',xx*yy
+   print *, 'using dble==>',dble(xx)*dble(yy)
+   print *, 'kind of arguments is',kind(xx)
+   print *, 'kind of result is',kind(dprod(xx,yy))
    endblock bigger
 
 end program demo_dprod
 ```
-
-Results:
-
+  Results:
+  (this can vary between programming environments):
 ```text
-   11.959999313354501 11.9599991 4 8 8
-        1196
-   11.9600000
-   11.960000000000001
+    compare dprod(xy)= 11.9599993133545 to x*y= 11.96000
+    to dble(x)*dble(y)= 11.9599993133545
+      22.9999995231628  34.0000009536743  45.0000000000000
+      22.5399999713898  25.8400004005432  24.3000004291534
+    integer multiplication of digits=        1196
+      11.96000
+      11.9600000000000
+    dprop==>   11.9599999999999994848565165739273
+    multipy==>   11.9600000000000
+    using dble==>   11.9600000000000
+    kind of arguments is           8
+    kind of result is          16
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## dshiftl
 
@@ -5656,9 +5680,9 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**dshiftr**(3)](DSHIFTR)
+[**dshiftr**(3)](#dshiftr)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## dshiftr
 
@@ -5699,9 +5723,9 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**dshiftl**(3)](DSHIFTL)
+[**dshiftl**(3)](#dshiftl)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## eoshift
 
@@ -5790,7 +5814,7 @@ Results:
 
 Fortran 95 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## epsilon
 
@@ -5908,23 +5932,23 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**digits**(3)](DIGITS),
-[**exponent**(3)](EXPONENT),
-[**fraction**(3)](FRACTION),
-[**huge**(3)](HUGE),
-[**maxexponent**(3)](MAXEXPONENT),
-[**minexponent**(3)](MINEXPONENT),
-[**nearest**(3)](NEAREST),
-[**precision**(3)](PRECISION),
-[**radix**(3)](RADIX),
-[**range**(3)](RANGE),
-[**rrspacing**(3)](RRSPACING),
-[**scale**(3)](SCALE),
-[**set_exponent**(3)](SET_EXPONENT),
-[**spacing**(3)](SPACING),
-[**tiny**(3)](TINY)
+[**digits**(3)](#digits),
+[**exponent**(3)](#exponent),
+[**fraction**(3)](#fraction),
+[**huge**(3)](#huge),
+[**maxexponent**(3)](#maxexponent),
+[**minexponent**(3)](#minexponent),
+[**nearest**(3)](#nearest),
+[**precision**(3)](#precision),
+[**radix**(3)](#radix),
+[**range**(3)](#range),
+[**rrspacing**(3)](#rrspacing),
+[**scale**(3)](#scale),
+[**set_exponent**(3)](#set_exponent),
+[**spacing**(3)](#spacing),
+[**tiny**(3)](#tiny)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## erfc
 
@@ -5999,11 +6023,11 @@ Fortran 2008 and later
 
 ### See also
 
-[**erf**(3)](ERF)
+[**erf**(3)](#erf)
 
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## erfc_scaled
 
@@ -6059,7 +6083,7 @@ Results:
 
 Fortran 2008 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## erf
 
@@ -6117,11 +6141,11 @@ Fortran 2008 and later
 
 ### See also
 
-[**erfc**(3)](ERFC)
+[**erfc**(3)](#erfc)
 
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## event_query
 
@@ -6179,7 +6203,7 @@ end program demo_event_query
 
 TS 18508 or later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## execute_command_line
 
@@ -6286,7 +6310,7 @@ be terminated alongside.
 
 Fortran 2008 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## exp
 
@@ -6380,13 +6404,13 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-- [**log**(3)](LOG)
+- [**log**(3)](#log)
 
 - Wikipedia:[Exponential function](https://en.wikipedia.org/wiki/Exponential_function)
 
 - Wikipedia:[Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## exponent
 
@@ -6442,23 +6466,23 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**digits**(3)](DIGITS),
-[**epsilon**(3)](EPSILON),
-[**fraction**(3)](FRACTION),
-[**huge**(3)](HUGE),
-[**maxexponent**(3)](MAXEXPONENT),
-[**minexponent**(3)](MINEXPONENT),
-[**nearest**(3)](NEAREST),
-[**precision**(3)](PRECISION),
-[**radix**(3)](RADIX),
-[**range**(3)](RANGE),
-[**rrspacing**(3)](RRSPACING),
-[**scale**(3)](SCALE),
-[**set_exponent**(3)](SET_EXPONENT),
-[**spacing**(3)](SPACING),
-[**tiny**(3)](TINY)
+[**digits**(3)](#digits),
+[**epsilon**(3)](#epsilon),
+[**fraction**(3)](#fraction),
+[**huge**(3)](#huge),
+[**maxexponent**(3)](#maxexponent),
+[**minexponent**(3)](#minexponent),
+[**nearest**(3)](#nearest),
+[**precision**(3)](#precision),
+[**radix**(3)](#radix),
+[**range**(3)](#range),
+[**rrspacing**(3)](#rrspacing),
+[**scale**(3)](#scale),
+[**set_exponent**(3)](#set_exponent),
+[**spacing**(3)](#spacing),
+[**tiny**(3)](#tiny)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## extends_type_of
 
@@ -6505,7 +6529,7 @@ is an extension of the dynamic type of **mold**.
 
 ### **Examples**
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## findloc
 
@@ -6702,7 +6726,7 @@ has the value \[2, 1, 0\] and
 has the value \[2, 1\]. This is independent of the declared lower
 bounds for **b**.
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## floor
 
@@ -6788,15 +6812,15 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**ceiling**(3)](CEILING),
-[**nint**(3)](NINT)
+[**ceiling**(3)](#ceiling),
+[**nint**(3)](#nint)
 
-[**aint**(3)](AINT),
-[**anint**(3)](ANINT),
-[**int**(3)](INT),
-[**selected_int_kind**(3)](SELECTED_INT_KIND)
+[**aint**(3)](#aint),
+[**anint**(3)](#anint),
+[**int**(3)](#int),
+[**selected_int_kind**(3)](#selected_int_kind)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## fraction
 
@@ -6851,23 +6875,23 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**digits**(3)](DIGITS),
-[**epsilon**(3)](EPSILON),
-[**exponent**(3)](EXPONENT),
-[**huge**(3)](HUGE),
-[**maxexponent**(3)](MAXEXPONENT),
-[**minexponent**(3)](MINEXPONENT),
-[**nearest**(3)](NEAREST),
-[**precision**(3)](PRECISION),
-[**radix**(3)](RADIX),
-[**range**(3)](RANGE),
-[**rrspacing**(3)](RRSPACING),
-[**scale**(3)](SCALE),
-[**set_exponent**(3)](SET_EXPONENT),
-[**spacing**(3)](SPACING),
-[**tiny**(3)](TINY)
+[**digits**(3)](#digits),
+[**epsilon**(3)](#epsilon),
+[**exponent**(3)](#exponent),
+[**huge**(3)](#huge),
+[**maxexponent**(3)](#maxexponent),
+[**minexponent**(3)](#minexponent),
+[**nearest**(3)](#nearest),
+[**precision**(3)](#precision),
+[**radix**(3)](#radix),
+[**range**(3)](#range),
+[**rrspacing**(3)](#rrspacing),
+[**scale**(3)](#scale),
+[**set_exponent**(3)](#set_exponent),
+[**spacing**(3)](#spacing),
+[**tiny**(3)](#tiny)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## gamma
 
@@ -6997,11 +7021,11 @@ Fortran 2008 and later
 
 ### **See Also**
 
-Logarithm of the Gamma function: [**log_gamma**(3)](LOG_GAMMA)
+Logarithm of the Gamma function: [**log_gamma**(3)](#log_gamma)
 
 [Wikipedia: Gamma_function](https://en.wikipedia.org/wiki/Gamma_function)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## get_command_argument
 
@@ -7115,14 +7139,14 @@ end program demo_get_command_argument
 Results:
 
 ```text
-/demo_get_command_argument a   test  'of getting   arguments ' "  leading"
+/demo_get_command_argument a  test  'of getting   arguments ' "  leading"
 
  The number of arguments is            5
  The program's name is xxx
 000 00000 00003 [./test_get_command_argument]
 001 00000 00001 [a]
 003 00000 00004 [test]
-004 00000 00024 [of getting   arguments  ]
+004 00000 00024 [of getting   arguments ]
 005 00000 00018 [  leading]
 ```
 
@@ -7132,10 +7156,10 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**get_command**(3)](GET_COMMAND),
-[**command_argument_count**(3)](COMMAND_ARGUMENT_COUNT)
+[**get_command**(3)](#get_command),
+[**command_argument_count**(3)](#command_argument_count)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## get_command
 
@@ -7224,10 +7248,10 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**get_command_argument**(3)](GET_COMMAND_ARGUMENT),
-[**command_argument_count**(3)](COMMAND_ARGUMENT_COUNT)
+[**get_command_argument**(3)](#get_command_argument),
+[**command_argument_count**(3)](#command_argument_count)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## get_environment_variable
 
@@ -7357,7 +7381,7 @@ Typical Results:
 
 Fortran 2003 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## huge
 
@@ -7454,23 +7478,23 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**digits**(3)](DIGITS),
-[**epsilon**(3)](EPSILON),
-[**exponent**(3)](EXPONENT),
-[**fraction**(3)](FRACTION),
-[**maxexponent**(3)](MAXEXPONENT),
-[**minexponent**(3)](MINEXPONENT),
-[**nearest**(3)](NEAREST),
-[**precision**(3)](PRECISION),
-[**radix**(3)](RADIX),
-[**range**(3)](RANGE),
-[**rrspacing**(3)](RRSPACING),
-[**scale**(3)](SCALE),
-[**set_exponent**(3)](SET_EXPONENT),
-[**spacing**(3)](SPACING),
-[**tiny**(3)](TINY)
+[**digits**(3)](#digits),
+[**epsilon**(3)](#epsilon),
+[**exponent**(3)](#exponent),
+[**fraction**(3)](#fraction),
+[**maxexponent**(3)](#maxexponent),
+[**minexponent**(3)](#minexponent),
+[**nearest**(3)](#nearest),
+[**precision**(3)](#precision),
+[**radix**(3)](#radix),
+[**range**(3)](#range),
+[**rrspacing**(3)](#rrspacing),
+[**scale**(3)](#scale),
+[**set_exponent**(3)](#set_exponent),
+[**spacing**(3)](#spacing),
+[**tiny**(3)](#tiny)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## hypot
 
@@ -7571,7 +7595,7 @@ Results:
 
 Fortran 2008 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## iachar
 
@@ -7642,7 +7666,7 @@ Results:
 
 ### **Note**
 
-See [**ichar**(3)](ICHAR) for a discussion of converting between numerical
+See [**ichar**(3)](#ichar) for a discussion of converting between numerical
 values and formatted string representations.
 
 ### **Standard**
@@ -7651,23 +7675,23 @@ Fortran 95 and later, with KIND argument - Fortran 2003 and later
 
 ### **See Also**
 
-[**achar**(3)](ACHAR),
-[**char**(3)](CHAR),
-[**ichar**(3)](ICHAR)
+[**achar**(3)](#achar),
+[**char**(3)](#char),
+[**ichar**(3)](#ichar)
 
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
 - **Elemental:**
-  [**adjustl**(3)](ADJUSTL), [**adjustr**(3)](ADJUSTR), [**index**(3)](INDEX),
-  [**scan**(3)](SCAN), [**verify**(3)](VERIFY)
+  [**adjustl**(3)](#adjustl), [**adjustr**(3)](#adjustr), [**index**(3)](#index),
+  [**scan**(3)](#scan), [**verify**(3)](#verify)
 
 - **Nonelemental:**
-  [**len_trim**(3)](LEN_TRIM),
-  [**len**(3)](LEN),
-  [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
+  [**len_trim**(3)](#len_trim),
+  [**len**(3)](#len),
+  [**repeat**(3)](#repeat), [**trim**(3)](#trim)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## iall
 
@@ -7743,11 +7767,11 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**iany**(3)](IANY),
-[**iparity**(3)](IPARITY),
-[**iand**(3)](IAND)
+[**iany**(3)](#iany),
+[**iparity**(3)](#iparity),
+[**iand**(3)](#iand)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## iand
 
@@ -7803,16 +7827,18 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**btest**(3)](BTEST),
-[**ibclr**(3)](IBCLR),
-[**ibits**(3)](IBITS),
-[**ibset**(3)](IBSET),
-[**ieor**(3)](IEOR),
-[**ior**(3)](IOR),
-[**not**(3)](NOT),
-[**mvbits**(3)](MVBITS)
+[**ieor**(3)](#ieor),
+[**ibclr**(3)](#ibclr),
+[**not**(3)](#not),
+[**btest**(3)](#btest),
+[**ibclr**(3)](#ibclr),
+[**ibits**(3)](#ibits),
+[**ibset**(3)](#ibset),
+[**ior**(3)](#ior),
+[**ieor**(3)](#ieor),
+[**mvbits**(3)](#mvbits)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## iany
 
@@ -7885,11 +7911,11 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**iparity**(3)](IPARITY),
-[**iall**(3)](IALL),
-[**ior**(3)](IOR)
+[**iparity**(3)](#iparity),
+[**iall**(3)](#iall),
+[**ior**(3)](#ior)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## ibclr
 
@@ -7928,17 +7954,18 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**btest**(3)](BTEST),
-[**iand**(3)](IAND),
-[**ibclr**(3)](IBCLR),
-[**ibits**(3)](IBITS),
-[**ibset**(3)](IBSET),
-[**ieor**(3)](IEOR),
-[**ior**(3)](IOR),
-[**mvbits**(3)](MVBITS),
-[**not**(3)](NOT)
+[**ieor**(3)](#ieor),
+[**not**(3)](#not),
+[**btest**(3)](#btest),
+[**ibclr**(3)](#ibclr),
+[**ibits**(3)](#ibits),
+[**ibset**(3)](#ibset),
+[**iand**(3)](#iand),
+[**ior**(3)](#ior),
+[**ieor**(3)](#ieor),
+[**mvbits**(3)](#mvbits)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## ibits
 
@@ -7981,16 +8008,18 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**btest**(3)](BTEST),
-[**iand**(3)](IAND),
-[**ibclr**(3)](IBCLR),
-[**ibset**(3)](IBSET),
-[**ieor**(3)](IEOR),
-[**ior**(3)](IOR),
-[**not**(3)](NOT),
-[**mvbits**(3)](MVBITS)
+[**ieor**(3)](#ieor),
+[**ibclr**(3)](#ibclr),
+[**not**(3)](#not),
+[**btest**(3)](#btest),
+[**ibclr**(3)](#ibclr),
+[**ibset**(3)](#ibset),
+[**iand**(3)](#iand),
+[**ior**(3)](#ior),
+[**ieor**(3)](#ieor),
+[**mvbits**(3)](#mvbits)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## ibset
 
@@ -8029,16 +8058,18 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**btest**(3)](BTEST),
-[**iand**(3)](IAND),
-[**ibclr**(3)](IBCLR),
-[**ibits**(3)](IBITS),
-[**ieor**(3)](IEOR),
-[**ior**(3)](IOR),
-[**not**(3)](NOT),
-[**mvbits**(3)](MVBITS)
+[**ieor**(3)](#ieor),
+[**ibclr**(3)](#ibclr),
+[**not**(3)](#not),
+[**btest**(3)](#btest),
+[**ibclr**(3)](#ibclr),
+[**ibits**(3)](#ibits),
+[**iand**(3)](#iand),
+[**ior**(3)](#ior),
+[**ieor**(3)](#ieor),
+[**mvbits**(3)](#mvbits)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## ichar
 
@@ -8149,28 +8180,28 @@ Fortran 95 and later, with KIND argument -Fortran 2003 and later
 
 ### **See Also**
 
-[**achar**(3)](ACHAR),
-[**char**(3)](CHAR),
-[**iachar**(3)](IACHAR)
+[**achar**(3)](#achar),
+[**char**(3)](#char),
+[**iachar**(3)](#iachar)
 
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
 - **Elemental:**
-  [**adjustl**(3)](ADJUSTL),
-  [**adjustr**(3)](ADJUSTR),
-  [**index**(3)](INDEX),
+  [**adjustl**(3)](#adjustl),
+  [**adjustr**(3)](#adjustr),
+  [**index**(3)](#index),
 
-[**scan**(3)](SCAN),
-[**verify**(3)](VERIFY)
+[**scan**(3)](#scan),
+[**verify**(3)](#verify)
 
 - **Nonelemental:**
-  [**len_trim**(3)](LEN_TRIM),
-  [**len**(3)](LEN),
-  [**repeat**(3)](REPEAT),
-  [**trim**(3)](TRIM)
+  [**len_trim**(3)](#len_trim),
+  [**len**(3)](#len),
+  [**repeat**(3)](#repeat),
+  [**trim**(3)](#trim)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## ieor
 
@@ -8207,17 +8238,18 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**btest**(3)](BTEST),
-[**iand**(3)](IAND),
-[**ibclr**(3)](IBCLR),
-[**ibits**(3)](IBITS),
-[**ibset**(3)](IBSET),
-[**ieor**(3)](IEOR),
-[**ior**(3)](IOR),
-[**not**(3)](NOT),
-[**mvbits**(3)](MVBITS)
+[**ieor**(3)](#ieor),
+[**ibclr**(3)](#ibclr),
+[**not**(3)](#not),
+[**btest**(3)](#btest),
+[**ibclr**(3)](#ibclr),
+[**ibits**(3)](#ibits),
+[**ibset**(3)](#ibset),
+[**iand**(3)](#iand),
+[**ior**(3)](#ior),
+[**mvbits**(3)](#mvbits)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## image_index
 
@@ -8269,10 +8301,10 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**this_image**(3)](THIS_IMAGE),
-[**num_images**(3)](NUM_IMAGES)
+[**this_image**(3)](#this_image),
+[**num_images**(3)](#num_images)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## index
 
@@ -8356,15 +8388,15 @@ Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
 - **Elemental:**
-  [**adjustl**(3)](ADJUSTL), [**adjustr**(3)](ADJUSTR), [**index**(3)](INDEX),
-  [**scan**(3)](SCAN), [**verify**(3)](VERIFY)
+  [**adjustl**(3)](#adjustl), [**adjustr**(3)](#adjustr), [**index**(3)](#index),
+  [**scan**(3)](#scan), [**verify**(3)](#verify)
 
 - **Nonelemental:**
-  [**len_trim**(3)](LEN_TRIM),
-  [**len**(3)](LEN),
-  [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
+  [**len_trim**(3)](#len_trim),
+  [**len**(3)](#len),
+  [**repeat**(3)](#repeat), [**trim**(3)](#trim)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## int
 
@@ -8489,14 +8521,14 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**aint**(3)](AINT),
-[**anint**(3)](ANINT),
-[**nint**(3)](NINT),
-[**selected_int_kind**(3)](SELECTED_INT_KIND),
-[**ceiling**(3)](CEILING),
-[**floor**(3)](FLOOR)
+[**aint**(3)](#aint),
+[**anint**(3)](#anint),
+[**nint**(3)](#nint),
+[**selected_int_kind**(3)](#selected_int_kind),
+[**ceiling**(3)](#ceiling),
+[**floor**(3)](#floor)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ior
 
@@ -8558,16 +8590,18 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**btest**(3)](BTEST),
-[**iand**(3)](IAND),
-[**ibclr**(3)](IBCLR),
-[**ibits**(3)](IBITS),
-[**ibset**(3)](IBSET),
-[**ieor**(3)](IEOR),
-[**not**(3)](NOT),
-[**mvbits**(3)](MVBITS)
+[**ieor**(3)](#ieor),
+[**ibclr**(3)](#ibclr),
+[**not**(3)](#not),
+[**btest**(3)](#btest),
+[**ibclr**(3)](#ibclr),
+[**ibits**(3)](#ibits),
+[**ibset**(3)](#ibset),
+[**iand**(3)](#iand),
+[**ieor**(3)](#ieor),
+[**mvbits**(3)](#mvbits)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## iparity
 
@@ -8638,12 +8672,12 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**iany**(3)](IANY),
-[**iall**(3)](IALL),
-[**ieor**(3)](IEOR),
-[**parity**(3)](PARITY)
+[**iany**(3)](#iany),
+[**iall**(3)](#iall),
+[**ieor**(3)](#ieor),
+[**parity**(3)](#parity)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## is_contiguous
 
@@ -8763,7 +8797,7 @@ Results:
 
 Fortran 2008 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## ishftc
 
@@ -8809,9 +8843,9 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**ishft**(3)](ISHFT)
+[**ishft**(3)](#ishft)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## ishft
 
@@ -8853,9 +8887,9 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**ishftc**(3)](ISHFTC)
+[**ishftc**(3)](#ishftc)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## is_iostat_end
 
@@ -8920,7 +8954,7 @@ end program demo_iostat
 
 Fortran 2003 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## is_iostat_eor
 
@@ -8973,7 +9007,7 @@ end program demo_is_iostat_eor
 
 Fortran 2003 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## kind
 
@@ -9028,7 +9062,7 @@ Results:
 
 Fortran 95 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## lbound
 
@@ -9146,10 +9180,10 @@ Fortran 95 and later, with KIND argument - Fortran 2003 and later
 
 ### **See Also**
 
-[**ubound**(3)](UBOUND),
-[**co_lbound**(3)](CO_LBOUND)
+[**ubound**(3)](#ubound),
+[**co_lbound**(3)](#co_lbound)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## leadz
 
@@ -9277,12 +9311,12 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bit_size**(3)](BIT_SIZE),
-[**popcnt**(3)](POPCNT),
-[**poppar**(3)](POPPAR),
-[**trailz**(3)](TRAILZ)
+[**bit_size**(3)](#bit_size),
+[**popcnt**(3)](#popcnt),
+[**poppar**(3)](#poppar),
+[**trailz**(3)](#trailz)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## len
 
@@ -9418,16 +9452,16 @@ Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
 - **Elemental:**
-  [**adjustl**(3)](ADJUSTL),
-  [**adjustr**(3)](ADJUSTR),
-  [**index**(3)](INDEX),
-  [**scan**(3)](SCAN),
-  [**verify**(3)](VERIFY)
+  [**adjustl**(3)](#adjustl),
+  [**adjustr**(3)](#adjustr),
+  [**index**(3)](#index),
+  [**scan**(3)](#scan),
+  [**verify**(3)](#verify)
 
 - **Nonelemental:**
-  [**len_trim**(3)](LEN_TRIM), [**len**(3)](LEN), [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
+  [**len_trim**(3)](#len_trim), [**len**(3)](#len), [**repeat**(3)](#repeat), [**trim**(3)](#trim)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## len_trim
 
@@ -9511,18 +9545,18 @@ Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
 - **Elemental:**
-  [**adjustl**(3)](ADJUSTL),
-  [**adjustr**(3)](ADJUSTR),
-  [**index**(3)](INDEX),
-  [**scan**(3)](SCAN),
-  [**verify**(3)](VERIFY)
+  [**adjustl**(3)](#adjustl),
+  [**adjustr**(3)](#adjustr),
+  [**index**(3)](#index),
+  [**scan**(3)](#scan),
+  [**verify**(3)](#verify)
 
 - **Nonelemental:**
-  [**repeat**(3)](REPEAT),
-  [**len**(3)](LEN),
-  [**trim**(3)](TRIM)
+  [**repeat**(3)](#repeat),
+  [**len**(3)](#len),
+  [**trim**(3)](#trim)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## lge
 
@@ -9575,20 +9609,20 @@ Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
 - **Elemental:**
-  [**adjustl**(3)](ADJUSTL),
-  [**adjustr**(3)](ADJUSTR),
-  [**index**(3)](INDEX),
+  [**adjustl**(3)](#adjustl),
+  [**adjustr**(3)](#adjustr),
+  [**index**(3)](#index),
 
-[**scan**(3)](SCAN),
-[**verify**(3)](VERIFY)
+[**scan**(3)](#scan),
+[**verify**(3)](#verify)
 
 - **Nonelemental:**
-  [**len_trim**(3)](LEN_TRIM),
-  [**len**(3)](LEN),
-  [**repeat**(3)](REPEAT),
-  [**trim**(3)](TRIM)
+  [**len_trim**(3)](#len_trim),
+  [**len**(3)](#len),
+  [**repeat**(3)](#repeat),
+  [**trim**(3)](#trim)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## lgt
 
@@ -9635,28 +9669,28 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**lge**(3)](LGE),
-[**lle**(3)](LLE),
-[**llt**(3)](LLT)
+[**lge**(3)](#lge),
+[**lle**(3)](#lle),
+[**llt**(3)](#llt)
 
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
 - **Elemental:**
-  [**adjustl**(3)](ADJUSTL),
-  [**adjustr**(3)](ADJUSTR),
-  [**index**(3)](INDEX),
+  [**adjustl**(3)](#adjustl),
+  [**adjustr**(3)](#adjustr),
+  [**index**(3)](#index),
 
-[**scan**(3)](SCAN),
-[**verify**(3)](VERIFY)
+[**scan**(3)](#scan),
+[**verify**(3)](#verify)
 
 - **Nonelemental:**
-  [**len_trim**(3)](LEN_TRIM),
-  [**len**(3)](LEN),
-  [**repeat**(3)](REPEAT),
-  [**trim**(3)](TRIM)
+  [**len_trim**(3)](#len_trim),
+  [**len**(3)](#len),
+  [**repeat**(3)](#repeat),
+  [**trim**(3)](#trim)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## lle
 
@@ -9747,28 +9781,28 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**lge**(3)](LGE),
-[**lgt**(3),](LGT),
-[**llt**(3)](LLT)
+[**lge**(3)](#lge),
+[**lgt**(3),](#lgt),
+[**llt**(3)](#llt)
 
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
 - **Elemental:**
-  [**adjustl**(3)](ADJUSTL),
-  [**adjustr**(3)](ADJUSTR),
-  [**index**(3)](INDEX),
+  [**adjustl**(3)](#adjustl),
+  [**adjustr**(3)](#adjustr),
+  [**index**(3)](#index),
 
-[**scan**(3)](SCAN),
-[**verify**(3)](VERIFY)
+[**scan**(3)](#scan),
+[**verify**(3)](#verify)
 
 - **Nonelemental:**
-  [**len_trim**(3)](LEN_TRIM),
-  [**len**(3)](LEN),
-  [**repeat**(3)](REPEAT),
-  [**trim**(3)](TRIM)
+  [**len_trim**(3)](#len_trim),
+  [**len**(3)](#len),
+  [**repeat**(3)](#repeat),
+  [**trim**(3)](#trim)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## llt
 
@@ -9815,23 +9849,23 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**lge**(3)](LGE),
-[**lgt**(3)](LGT),
-[**lle**(3](LLE))
+[**lge**(3)](#lge),
+[**lgt**(3)](#lgt),
+[**lle**(3)](#lle))
 
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
 - **Elemental:**
-  [**adjustl**(3)](ADJUSTL), [**adjustr**(3)](ADJUSTR), [**index**(3)](INDEX),
-  [**scan**(3)](SCAN), [**verify**(3)](VERIFY)
+  [**adjustl**(3)](#adjustl), [**adjustr**(3)](#adjustr), [**index**(3)](#index),
+  [**scan**(3)](#scan), [**verify**(3)](#verify)
 
 - **Nonelemental:**
-  [**len_trim**(3)](LEN_TRIM),
-  [**len**(3)](LEN),
-  [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
+  [**len_trim**(3)](#len_trim),
+  [**len**(3)](#len),
+  [**repeat**(3)](#repeat), [**trim**(3)](#trim)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## log10
 
@@ -9896,7 +9930,7 @@ Results:
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## log_gamma
 
@@ -9947,9 +9981,9 @@ Fortran 2008 and later
 
 ### **See Also**
 
-Gamma function: [**gamma**(3)](GAMMA)
+Gamma function: [**gamma**(3)](#gamma)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## logical
 
@@ -10019,11 +10053,11 @@ Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009
 
 ### **See Also**
 
-[**int**(3)](INT),
-[**real**(3)](REAL),
-[**cmplx**(3)](CMPLX)
+[**int**(3)](#int),
+[**real**(3)](#real),
+[**cmplx**(3)](#cmplx)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## log
 
@@ -10079,7 +10113,7 @@ Results:
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## maskl
 
@@ -10180,9 +10214,9 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**maskr**(3)](MASKR)
+[**maskr**(3)](#maskr)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## maskr
 
@@ -10291,9 +10325,9 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**maskl**(3)](MASKL)
+[**maskl**(3)](#maskl)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## matmul
 
@@ -10333,7 +10367,7 @@ result follow the usual type and kind promotion rules, as for the \* or
 
 Fortran 95 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## maxexponent
 
@@ -10390,23 +10424,23 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**digits**(3)](DIGITS),
-[**epsilon**(3)](EPSILON),
-[**exponent**(3)](EXPONENT),
-[**fraction**(3)](FRACTION),
-[**huge**(3)](HUGE),
-[**minexponent**(3)](MINEXPONENT),
-[**nearest**(3)](NEAREST),
-[**precision**(3)](PRECISION),
-[**radix**(3)](RADIX),
-[**range**(3)](RANGE),
-[**rrspacing**(3)](RRSPACING),
-[**scale**(3)](SCALE),
-[**set_exponent**(3)](SET_EXPONENT),
-[**spacing**(3)](SPACING),
-[**tiny**(3)](TINY)
+[**digits**(3)](#digits),
+[**epsilon**(3)](#epsilon),
+[**exponent**(3)](#exponent),
+[**fraction**(3)](#fraction),
+[**huge**(3)](#huge),
+[**minexponent**(3)](#minexponent),
+[**nearest**(3)](#nearest),
+[**precision**(3)](#precision),
+[**radix**(3)](#radix),
+[**range**(3)](#range),
+[**rrspacing**(3)](#rrspacing),
+[**scale**(3)](#scale),
+[**set_exponent**(3)](#set_exponent),
+[**spacing**(3)](#spacing),
+[**tiny**(3)](#tiny)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## maxloc
 
@@ -10474,18 +10508,18 @@ integer,save :: ints(3,5)= reshape([&
    11, 22, 33, 44, 55  &
 ],shape(ints),order=[2,1])
 
-   write(*,*) maxloc(ints)
-   write(*,*) maxloc(ints,dim=1)
-   write(*,*) maxloc(ints,dim=2)
-   ! when array bounds do not start with one remember MAXLOC(3) returns
-   ! the offset relative to the lower bound-1 of the location of the
-   ! maximum value, not the subscript of the maximum value. When the
-   ! lower bound of the array is one, these values are the same. In
-   ! other words, MAXLOC(3) returns the subscript of the value assuming
-   ! the first subscript of the array is one no matter what the lower
-   ! bound of the subscript actually is.
-   write(*,'(g0,1x,g0)') (ii,i(ii),ii=lbound(i,dim=1),ubound(i,dim=1))
-   write(*,*)maxloc(i)
+    write(*,*) maxloc(ints)
+    write(*,*) maxloc(ints,dim=1)
+    write(*,*) maxloc(ints,dim=2)
+    ! when array bounds do not start with one remember MAXLOC(3) returns
+    ! the offset relative to the lower bound-1 of the location of the
+    ! maximum value, not the subscript of the maximum value. When the
+    ! lower bound of the array is one, these values are the same. In
+    ! other words, MAXLOC(3) returns the subscript of the value assuming
+    ! the first subscript of the array is one no matter what the lower
+    ! bound of the subscript actually is.
+    write(*,'(g0,1x,g0)') (ii,i(ii),ii=lbound(i,dim=1),ubound(i,dim=1))
+    write(*,*)maxloc(i)
 
 end program demo_maxloc
 ```
@@ -10511,10 +10545,10 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**max**(3)](MAX),
-[**maxval**(3)](MAXVAL)
+[**max**(3)](#max),
+[**maxval**(3)](#maxval)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## max
 
@@ -10633,11 +10667,11 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**maxloc**(3)](MAXLOC),
-[**maxval**(3)](MAXVAL),
-[**min**(3)](MIN)
+[**maxloc**(3)](#maxloc),
+[**maxval**(3)](#maxval),
+[**min**(3)](#min)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## maxval
 
@@ -10725,10 +10759,10 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**max**(3)](MAX),
-[**maxloc**(3)](MAXLOC)
+[**max**(3)](#max),
+[**maxloc**(3)](#maxloc)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## merge_bits
 
@@ -10851,7 +10885,7 @@ Results:
 
 Fortran 2008 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## merge
 
@@ -11007,11 +11041,13 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**pack**(3)](PACK),
-[**spread**(3)](SPREAD),
-[**unpack**(3)](UNPACK)
+[**pack**(3)](#pack),
+[**unpack**(3)](#unpack),
+[**pack**(3)](#pack),
+[**spread**(3)](#spread),
+[**unpack**(3)](#unpack)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## minexponent
 
@@ -11068,23 +11104,23 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**digits**(3)](DIGITS),
-[**epsilon**(3)](EPSILON),
-[**exponent**(3)](EXPONENT),
-[**fraction**(3)](FRACTION),
-[**huge**(3)](HUGE),
-[**maxexponent**(3)](MAXEXPONENT),
-[**nearest**(3)](NEAREST),
-[**precision**(3)](PRECISION),
-[**radix**(3)](RADIX),
-[**range**(3)](RANGE),
-[**rrspacing**(3)](RRSPACING),
-[**scale**(3)](SCALE),
-[**set_exponent**(3)](SET_EXPONENT),
-[**spacing**(3)](SPACING),
-[**tiny**(3)](TINY)
+[**digits**(3)](#digits),
+[**epsilon**(3)](#epsilon),
+[**exponent**(3)](#exponent),
+[**fraction**(3)](#fraction),
+[**huge**(3)](#huge),
+[**maxexponent**(3)](#maxexponent),
+[**nearest**(3)](#nearest),
+[**precision**(3)](#precision),
+[**radix**(3)](#radix),
+[**range**(3)](#range),
+[**rrspacing**(3)](#rrspacing),
+[**scale**(3)](#scale),
+[**set_exponent**(3)](#set_exponent),
+[**spacing**(3)](#spacing),
+[**tiny**(3)](#tiny)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## minloc
 
@@ -11177,10 +11213,10 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**min**(3)](MIN),
-[**minval**(3)](MINVAL)
+[**min**(3)](#min),
+[**minval**(3)](#minval)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## min
 
@@ -11234,11 +11270,11 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**max**(3)](MAX),
-[**minloc**(3)](MINLOC),
-[**minval**(3)](MINVAL)
+[**max**(3)](#max),
+[**minloc**(3)](#minloc),
+[**minval**(3)](#minval)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## minval
 
@@ -11387,10 +11423,10 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**min**(3)](MIN),
-[**minloc**(3)](MINLOC)
+[**min**(3)](#min),
+[**minloc**(3)](#minloc)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## mod
 
@@ -11471,9 +11507,9 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**modulo**(3)](MODULO)
+[**modulo**(3)](#modulo)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## modulo
 
@@ -11548,9 +11584,9 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**mod**(3)](MOD)
+[**mod**(3)](#mod)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## move_alloc
 
@@ -11625,9 +11661,9 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**allocated**(3)](ALLOCATED)
+[**allocated**(3)](#allocated)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## mvbits
 
@@ -11765,16 +11801,18 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**btest**(3)](BTEST),
-[**iand**(3)](IAND),
-[**ibclr**(3)](IBCLR),
-[**ibits**(3)](IBITS),
-[**ibset**(3)](IBSET),
-[**ieor**(3)](IEOR),
-[**ior**(3)](IOR),
-[**not**(3)](NOT)
+[**ieor**(3)](#ieor),
+[**ibclr**(3)](#ibclr),
+[**not**(3)](#not),
+[**btest**(3)](#btest),
+[**ibclr**(3)](#ibclr),
+[**ibits**(3)](#ibits),
+[**ibset**(3)](#ibset),
+[**iand**(3)](#iand),
+[**ior**(3)](#ior),
+[**ieor**(3)](#ieor)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## nearest
 
@@ -11846,23 +11884,23 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**digits**(3)](DIGITS),
-[**epsilon**(3)](EPSILON),
-[**exponent**(3)](EXPONENT),
-[**fraction**(3)](FRACTION),
-[**huge**(3)](HUGE),
-[**maxexponent**(3)](MAXEXPONENT),
-[**minexponent**(3)](MINEXPONENT),
-[**precision**(3)](PRECISION),
-[**radix**(3)](RADIX),
-[**range**(3)](RANGE),
-[**rrspacing**(3)](RRSPACING),
-[**scale**(3)](SCALE),
-[**set_exponent**(3)](SET_EXPONENT),
-[**spacing**(3)](SPACING),
-[**tiny**(3)](TINY)
+[**digits**(3)](#digits),
+[**epsilon**(3)](#epsilon),
+[**exponent**(3)](#exponent),
+[**fraction**(3)](#fraction),
+[**huge**(3)](#huge),
+[**maxexponent**(3)](#maxexponent),
+[**minexponent**(3)](#minexponent),
+[**precision**(3)](#precision),
+[**radix**(3)](#radix),
+[**range**(3)](#range),
+[**rrspacing**(3)](#rrspacing),
+[**scale**(3)](#scale),
+[**set_exponent**(3)](#set_exponent),
+[**spacing**(3)](#spacing),
+[**tiny**(3)](#tiny)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## new_line
 
@@ -11943,7 +11981,7 @@ Results:
 
 Fortran 2003 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## nint
 
@@ -12064,14 +12102,14 @@ FORTRAN 77 and later, with KIND argument - Fortran 90 and later
 
 ### **See Also**
 
-[**aint**(3)](AINT),
-[**anint**(3)](ANINT),
-[**int**(3)](INT),
-[**selected_int_kind**(3)](SELECTED_INT_KIND),
-[**ceiling**(3)](CEILING),
-[**floor**(3)](FLOOR)
+[**aint**(3)](#aint),
+[**anint**(3)](#anint),
+[**int**(3)](#int),
+[**selected_int_kind**(3)](#selected_int_kind),
+[**ceiling**(3)](#ceiling),
+[**floor**(3)](#floor)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## norm2
 
@@ -12162,11 +12200,11 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**product**(3)](PRODUCT),
-[**sum**(3)](SUM),
-[**hypot**(3)](HYPOT)
+[**product**(3)](#product),
+[**sum**(3)](#sum),
+[**hypot**(3)](#hypot)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## not
 
@@ -12222,15 +12260,15 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**iand**(3)](IAND),
-[**ior**(3)](IOR),
-[**ieor**(3)](IEOR),
-[**ibits**(3)](IBITS),
-[**ibset**(3)](IBSET),
+[**iand**(3)](#iand),
+[**ior**(3)](#ior),
+[**ieor**(3)](#ieor),
+[**ibits**(3)](#ibits),
+[**ibset**(3)](#ibset),
 
-[**ibclr**(3)](IBCLR)
+[**ibclr**(3)](#ibclr)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## null
 
@@ -12351,9 +12389,9 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**associated**(3)](ASSOCIATED)
+[**associated**(3)](#associated)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## num_images
 
@@ -12418,10 +12456,10 @@ Fortran 2008 and later. With DISTANCE or FAILED argument, TS 18508 or later
 
 ### **See Also**
 
-[**this_image**(3)](THIS_IMAGE),
-[**image_index**(3)](THIS_INDEX)
+[**this_image**(3)](#this_image),
+[**image_index**(3)](#this_index)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## out_of_range
 
@@ -12545,7 +12583,7 @@ Results:
 
    FORTRAN 2018 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## pack
 
@@ -12656,11 +12694,13 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**merge**(3)](MERGE),
-[**spread**(3)](SPREAD),
-[**unpack**(3)](UNPACK)
+[**unpack**(3)](#unpack),
+[**merge**(3)](#merge),
+[**pack**(3)](#pack),
+[**spread**(3)](#spread),
+[**unpack**(3)](#unpack)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## parity
 
@@ -12728,7 +12768,7 @@ Results:
 
 Fortran 2008 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## popcnt
 
@@ -12791,11 +12831,11 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**poppar**(3)](POPPAR),
-[**leadz**(3)](LEADZ),
-[**trailz**(3)](TRAILZ)
+[**poppar**(3)](#poppar),
+[**leadz**(3)](#leadz),
+[**trailz**(3)](#trailz)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## poppar
 
@@ -12859,11 +12899,11 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**popcnt**(3)](POPCNT),
-[**leadz**(3)](LEADZ),
-[**trailz**(3)](TRAILZ)
+[**popcnt**(3)](#popcnt),
+[**leadz**(3)](#leadz),
+[**trailz**(3)](#trailz)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## precision
 
@@ -12920,23 +12960,23 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**digits**(3)](DIGITS),
-[**epsilon**(3)](EPSILON),
-[**exponent**(3)](EXPONENT),
-[**fraction**(3)](FRACTION),
-[**huge**(3)](HUGE),
-[**maxexponent**(3)](MAXEXPONENT),
-[**minexponent**(3)](MINEXPONENT),
-[**nearest**(3)](NEAREST),
-[**radix**(3)](RADIX),
-[**range**(3)](RANGE),
-[**rrspacing**(3)](RRSPACING),
-[**scale**(3)](SCALE),
-[**set_exponent**(3)](SET_EXPONENT),
-[**spacing**(3)](SPACING),
-[**tiny**(3)](TINY)
+[**digits**(3)](#digits),
+[**epsilon**(3)](#epsilon),
+[**exponent**(3)](#exponent),
+[**fraction**(3)](#fraction),
+[**huge**(3)](#huge),
+[**maxexponent**(3)](#maxexponent),
+[**minexponent**(3)](#minexponent),
+[**nearest**(3)](#nearest),
+[**radix**(3)](#radix),
+[**range**(3)](#range),
+[**rrspacing**(3)](#rrspacing),
+[**scale**(3)](#scale),
+[**set_exponent**(3)](#set_exponent),
+[**spacing**(3)](#spacing),
+[**tiny**(3)](#tiny)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## present
 
@@ -13002,7 +13042,7 @@ Results:
 
 Fortran 95 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## product
 
@@ -13236,10 +13276,10 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**sum**(3)](SUM), note that an element by element multiplication is done
+[**sum**(3)](#sum), note that an element by element multiplication is done
 directly using the star character.
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## radix
 
@@ -13294,23 +13334,23 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**digits**(3)](DIGITS),
-[**epsilon**(3)](EPSILON),
-[**exponent**(3)](EXPONENT),
-[**fraction**(3)](FRACTION),
-[**huge**(3)](HUGE),
-[**maxexponent**(3)](MAXEXPONENT),
-[**minexponent**(3)](MINEXPONENT),
-[**nearest**(3)](NEAREST),
-[**precision**(3)](PRECISION),
-[**range**(3)](RANGE),
-[**rrspacing**(3)](RRSPACING),
-[**scale**(3)](SCALE),
-[**set_exponent**(3)](SET_EXPONENT),
-[**spacing**(3)](SPACING),
-[**tiny**(3)](TINY)
+[**digits**(3)](#digits),
+[**epsilon**(3)](#epsilon),
+[**exponent**(3)](#exponent),
+[**fraction**(3)](#fraction),
+[**huge**(3)](#huge),
+[**maxexponent**(3)](#maxexponent),
+[**minexponent**(3)](#minexponent),
+[**nearest**(3)](#nearest),
+[**precision**(3)](#precision),
+[**range**(3)](#range),
+[**rrspacing**(3)](#rrspacing),
+[**scale**(3)](#scale),
+[**set_exponent**(3)](#set_exponent),
+[**spacing**(3)](#spacing),
+[**tiny**(3)](#tiny)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## random_number
 
@@ -13402,9 +13442,9 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**random_seed**(3)](RANDOM_SEED)
+[**random_seed**(3)](#random_seed)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## random_seed
 
@@ -13474,9 +13514,9 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**random_number**(3)](RANDOM_NUMBER)
+[**random_number**(3)](#random_number)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## range
 
@@ -13539,23 +13579,23 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**digits**(3)](DIGITS),
-[**epsilon**(3)](EPSILON),
-[**exponent**(3)](EXPONENT),
-[**fraction**(3)](FRACTION),
-[**huge**(3)](HUGE),
-[**maxexponent**(3)](MAXEXPONENT),
-[**minexponent**(3)](MINEXPONENT),
-[**nearest**(3)](NEAREST),
-[**precision**(3)](PRECISION),
-[**radix**(3)](RADIX),
-[**rrspacing**(3)](RRSPACING),
-[**scale**(3)](SCALE),
-[**set_exponent**(3)](SET_EXPONENT),
-[**spacing**(3)](SPACING),
-[**tiny**(3)](TINY)
+[**digits**(3)](#digits),
+[**epsilon**(3)](#epsilon),
+[**exponent**(3)](#exponent),
+[**fraction**(3)](#fraction),
+[**huge**(3)](#huge),
+[**maxexponent**(3)](#maxexponent),
+[**minexponent**(3)](#minexponent),
+[**nearest**(3)](#nearest),
+[**precision**(3)](#precision),
+[**radix**(3)](#radix),
+[**rrspacing**(3)](#rrspacing),
+[**scale**(3)](#scale),
+[**set_exponent**(3)](#set_exponent),
+[**spacing**(3)](#spacing),
+[**tiny**(3)](#tiny)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## rank
 
@@ -13607,7 +13647,7 @@ Results:
 
 TS 29113
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## real
 
@@ -13686,12 +13726,12 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**dble**(3)](DBLE),
-[**cmplx**(3)](CMPLX),
-[**aimag**(3)](AIMAG),
-[**int**(3)](INT)
+[**dble**(3)](#dble),
+[**cmplx**(3)](#cmplx),
+[**aimag**(3)](#aimag),
+[**int**(3)](#int)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## reduce
 
@@ -13869,14 +13909,14 @@ one relative to the input array.
      > [15, 48, should be [15, 48],
 ````
 ### **See Also**
-- [co_reduce(3)](CO_REDUCE)
+- [co_reduce(3)](#co_reduce)
 - [associative:wipipedia](https://en.wikipedia.org/wiki/Associative_property)
 
 ### **Standard**
 
    Fortran 2018
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## repeat
 
@@ -13934,9 +13974,9 @@ end program demo_repeat
 Results:
 
 ```
-  ^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v
-  ________________________________________________________________________
-  1234567890123456789012345678901234567890123456789012345678901234567890
+^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v
+________________________________________________________________________
+1234567890123456789012345678901234567890123456789012345678901234567890
 ```
 
 ### **Standard**
@@ -13948,19 +13988,19 @@ Fortran 95 and later
 Functions that perform operations on character strings:
 
 - **Elemental:**
-  [**adjustl**(3)](ADJUSTL),
-  [**adjustr**(3)](ADJUSTR),
-  [**index**(3)](INDEX),
-  [**scan**(3)](SCAN),
-  [**verify**(3)](VERIFY)
+  [**adjustl**(3)](#adjustl),
+  [**adjustr**(3)](#adjustr),
+  [**index**(3)](#index),
+  [**scan**(3)](#scan),
+  [**verify**(3)](#verify)
 
 - **Non-elemental:**
-  [**len_trim**(3)](LEN_TRIM),
-  [**len**(3)](LEN),
-  [**repeat**(3)](REPEAT),
-  [**trim**(3)](TRIM)
+  [**len_trim**(3)](#len_trim),
+  [**len**(3)](#len),
+  [**repeat**(3)](#repeat),
+  [**trim**(3)](#trim)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## reshape
 
@@ -14038,9 +14078,9 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**shape**(3)](SHAPE)
+[**shape**(3)](#shape)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## rrspacing
 
@@ -14075,23 +14115,23 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**digits**(3)](DIGITS),
-[**epsilon**(3)](EPSILON),
-[**exponent**(3)](EXPONENT),
-[**fraction**(3)](FRACTION),
-[**huge**(3)](HUGE),
-[**maxexponent**(3)](MAXEXPONENT),
-[**minexponent**(3)](MINEXPONENT),
-[**nearest**(3)](NEAREST),
-[**precision**(3)](PRECISION),
-[**radix**(3)](RADIX),
-[**range**(3)](RANGE),
-[**scale**(3)](SCALE),
-[**set_exponent**(3)](SET_EXPONENT),
-[**spacing**(3)](SPACING),
-[**tiny**(3)](TINY)
+[**digits**(3)](#digits),
+[**epsilon**(3)](#epsilon),
+[**exponent**(3)](#exponent),
+[**fraction**(3)](#fraction),
+[**huge**(3)](#huge),
+[**maxexponent**(3)](#maxexponent),
+[**minexponent**(3)](#minexponent),
+[**nearest**(3)](#nearest),
+[**precision**(3)](#precision),
+[**radix**(3)](#radix),
+[**range**(3)](#range),
+[**scale**(3)](#scale),
+[**set_exponent**(3)](#set_exponent),
+[**spacing**(3)](#spacing),
+[**tiny**(3)](#tiny)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## same_type_as
 
@@ -14130,9 +14170,9 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**extends_type_of**(3)](EXTENDS_TYPE_OF)
+[**extends_type_of**(3)](#extends_type_of)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## scale
 
@@ -14191,23 +14231,23 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**digits**(3)](DIGITS),
-[**epsilon**(3)](EPSILON),
-[**exponent**(3)](EXPONENT),
-[**fraction**(3)](FRACTION),
-[**huge**(3)](HUGE),
-[**maxexponent**(3)](MAXEXPONENT),
-[**minexponent**(3)](MINEXPONENT),
-[**nearest**(3)](NEAREST),
-[**precision**(3)](PRECISION),
-[**radix**(3)](RADIX),
-[**range**(3)](RANGE),
-[**rrspacing**(3)](RRSPACING),
-[**set_exponent**(3)](SET_EXPONENT),
-[**spacing**(3)](SPACING),
-[**tiny**(3)](TINY)
+[**digits**(3)](#digits),
+[**epsilon**(3)](#epsilon),
+[**exponent**(3)](#exponent),
+[**fraction**(3)](#fraction),
+[**huge**(3)](#huge),
+[**maxexponent**(3)](#maxexponent),
+[**minexponent**(3)](#minexponent),
+[**nearest**(3)](#nearest),
+[**precision**(3)](#precision),
+[**radix**(3)](#radix),
+[**range**(3)](#range),
+[**rrspacing**(3)](#rrspacing),
+[**set_exponent**(3)](#set_exponent),
+[**spacing**(3)](#spacing),
+[**tiny**(3)](#tiny)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## scan
 
@@ -14281,15 +14321,15 @@ Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
 - **Elemental:**
-  [**adjustl**(3)](ADJUSTL), [**adjustr**(3)](ADJUSTR), [**index**(3)](INDEX),
-  [**scan**(3)](SCAN), [**verify**(3)](VERIFY)
+  [**adjustl**(3)](#adjustl), [**adjustr**(3)](#adjustr), [**index**(3)](#index),
+  [**scan**(3)](#scan), [**verify**(3)](#verify)
 
 - **Nonelemental:**
-  [**len_trim**(3)](LEN_TRIM),
-  [**len**(3)](LEN),
-  [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
+  [**len_trim**(3)](#len_trim),
+  [**len**(3)](#len),
+  [**repeat**(3)](#repeat), [**trim**(3)](#trim)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## selected_char_kind
 
@@ -14353,7 +14393,7 @@ Results:
 
 Fortran 2003 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## selected_int_kind
 
@@ -14413,14 +14453,14 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**aint**(3)](AINT),
-[**anint**(3)](ANINT),
-[**int**(3)](INT),
-[**nint**(3)](NINT),
-[**ceiling**(3)](CEILING),
-[**floor**(3)](FLOOR)
+[**aint**(3)](#aint),
+[**anint**(3)](#anint),
+[**int**(3)](#int),
+[**nint**(3)](#nint),
+[**ceiling**(3)](#ceiling),
+[**floor**(3)](#floor)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## selected_real_kind
 
@@ -14518,11 +14558,11 @@ Fortran 95 and later; with RADIX - Fortran 2008 and later
 
 ### **See Also**
 
-[**precision**(3)](PRECISION),
-[**range**(3)](RANGE),
-[**radix**(3)](RADIX)
+[**precision**(3)](#precision),
+[**range**(3)](#range),
+[**radix**(3)](#radix)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## set_exponent
 
@@ -14580,23 +14620,23 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**digits**(3)](DIGITS),
-[**epsilon**(3)](EPSILON),
-[**exponent**(3)](EXPONENT),
-[**fraction**(3)](FRACTION),
-[**huge**(3)](HUGE),
-[**maxexponent**(3)](MAXEXPONENT),
-[**minexponent**(3)](MINEXPONENT),
-[**nearest**(3)](NEAREST),
-[**precision**(3)](PRECISION),
-[**radix**(3)](RADIX),
-[**range**(3)](RANGE),
-[**rrspacing**(3)](RRSPACING),
-[**scale**(3)](SCALE),
-[**spacing**(3)](SPACING),
-[**tiny**(3)](TINY)
+[**digits**(3)](#digits),
+[**epsilon**(3)](#epsilon),
+[**exponent**(3)](#exponent),
+[**fraction**(3)](#fraction),
+[**huge**(3)](#huge),
+[**maxexponent**(3)](#maxexponent),
+[**minexponent**(3)](#minexponent),
+[**nearest**(3)](#nearest),
+[**precision**(3)](#precision),
+[**radix**(3)](#radix),
+[**range**(3)](#range),
+[**rrspacing**(3)](#rrspacing),
+[**scale**(3)](#scale),
+[**spacing**(3)](#spacing),
+[**tiny**(3)](#tiny)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## shape
 
@@ -14665,10 +14705,10 @@ Fortran 95 and later; with KIND argument Fortran 2003 and later
 
 ### **See Also**
 
-[**reshape**(3)](RESHAPE),
-[**size**(3)](SIZE)
+[**reshape**(3)](#reshape),
+[**size**(3)](#size)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## shifta
 
@@ -14709,10 +14749,10 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**shiftl**(3)](SHIFTL),
-[**shiftr**(3)](SHIFTR)
+[**shiftl**(3)](#shiftl),
+[**shiftr**(3)](#shiftr)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## shiftl
 
@@ -14751,10 +14791,10 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**shifta**(3)](SHIFTA),
-[**shiftr**(3)](SHIFTR)
+[**shifta**(3)](#shifta),
+[**shiftr**(3)](#shiftr)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## shiftr
 
@@ -14793,10 +14833,10 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**shifta**(3)](SHIFTA),
-[**shiftl**(3)](SHIFTL)
+[**shifta**(3)](#shifta),
+[**shiftl**(3)](#shiftl)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## sign
 
@@ -14877,7 +14917,7 @@ Results:
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## sinh
 
@@ -14972,9 +15012,9 @@ Fortran 95 and later, for a complex argument Fortran 2008 or later
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
-[**asinh**(3)](ASINH)
+[**asinh**(3)](#asinh)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## sin
 
@@ -15107,11 +15147,11 @@ FORTRAN 77 and later
 
 - [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
-[**asin**(3)](ASIN),
-[**cos**(3)](COS),
-[**tan**(3)](TAN)
+[**asin**(3)](#asin),
+[**cos**(3)](#cos),
+[**tan**(3)](#tan)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## size
 
@@ -15301,10 +15341,10 @@ Fortran 95 and later, with **kind** argument - Fortran 2003 and later
 
 ### **See Also**
 
-[**shape**(3)](SHAPE),
+[**shape**(3)](#shape),
 [__reshape__(3)])(RESHAPE)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## spacing
 
@@ -15360,23 +15400,23 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**digits**(3)](DIGITS),
-[**epsilon**(3)](EPSILON),
-[**exponent**(3)](EXPONENT),
-[**fraction**(3)](FRACTION),
-[**huge**(3)](HUGE),
-[**maxexponent**(3)](MAXEXPONENT),
-[**minexponent**(3)](MINEXPONENT),
-[**nearest**(3)](NEAREST),
-[**precision**(3)](PRECISION),
-[**radix**(3)](RADIX),
-[**range**(3)](RANGE),
-[**rrspacing**(3)](RRSPACING),
-[**scale**(3)](SCALE),
-[**set_exponent**(3)](SET_EXPONENT),
-[**tiny**(3)](TINY)
+[**digits**(3)](#digits),
+[**epsilon**(3)](#epsilon),
+[**exponent**(3)](#exponent),
+[**fraction**(3)](#fraction),
+[**huge**(3)](#huge),
+[**maxexponent**(3)](#maxexponent),
+[**minexponent**(3)](#minexponent),
+[**nearest**(3)](#nearest),
+[**precision**(3)](#precision),
+[**radix**(3)](#radix),
+[**range**(3)](#range),
+[**rrspacing**(3)](#rrspacing),
+[**scale**(3)](#scale),
+[**set_exponent**(3)](#set_exponent),
+[**tiny**(3)](#tiny)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## spread
 
@@ -15497,11 +15537,11 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**merge**(3)](MERGE),
-[**pack**(3)](PACK),
-[**unpack**(3)](UNPACK)
+[**merge**(3)](#merge),
+[**pack**(3)](#pack),
+[**unpack**(3)](#unpack)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## sqrt
 
@@ -15595,7 +15635,7 @@ Results:
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## storage_size
 
@@ -15659,9 +15699,9 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**c_sizeof**(3)](C_SIZEOF)
+[**c_sizeof**(3)](#c_sizeof)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## sum
 
@@ -15753,7 +15793,7 @@ Fortran 95 and later
 
 intrinsics
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## system_clock
 
@@ -15860,10 +15900,10 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**date_and_time**(3)](DATE_AND_TIME),
-[**cpu_time**(3)](CPU_TIME)
+[**date_and_time**(3)](#date_and_time),
+[**cpu_time**(3)](#cpu_time)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## tanh
 
@@ -15924,9 +15964,9 @@ FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
-[**atanh**(3)](ATANH)
+[**atanh**(3)](#atanh)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## tan
 
@@ -15979,11 +16019,11 @@ FORTRAN 77 and later. For a complex argument, Fortran 2008 or later.
 
 ### **See Also**
 
-[**atan**(3)](ATAN),
-[**cos**(3)](COS),
-[**sin**(3)](SIN)
+[**atan**(3)](#atan),
+[**cos**(3)](#cos),
+[**sin**(3)](#sin)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## this_image
 
@@ -16069,10 +16109,10 @@ or later
 
 ### **See Also**
 
-[**num\_images**(3)](NUM_IMAGES),
-[**image\_index**(3)](IMAGE_INDEX)
+[**num\_images**(3)](#num_images),
+[**image\_index**(3)](#image_index)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 ```
 
 ## tiny
@@ -16133,23 +16173,23 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**digits**(3)](DIGITS),
-[**epsilon**(3)](EPSILON),
-[**exponent**(3)](EXPONENT),
-[**fraction**(3)](FRACTION),
-[**huge**(3)](HUGE),
-[**maxexponent**(3)](MAXEXPONENT),
-[**minexponent**(3)](MINEXPONENT),
-[**nearest**(3)](NEAREST),
-[**precision**(3)](PRECISION),
-[**radix**(3)](RADIX),
-[**range**(3)](RANGE),
-[**rrspacing**(3)](RRSPACING),
-[**scale**(3)](SCALE),
-[**set_exponent**(3)](SET_EXPONENT),
-[**spacing**(3)](SPACING)
+[**digits**(3)](#digits),
+[**epsilon**(3)](#epsilon),
+[**exponent**(3)](#exponent),
+[**fraction**(3)](#fraction),
+[**huge**(3)](#huge),
+[**maxexponent**(3)](#maxexponent),
+[**minexponent**(3)](#minexponent),
+[**nearest**(3)](#nearest),
+[**precision**(3)](#precision),
+[**radix**(3)](#radix),
+[**range**(3)](#range),
+[**rrspacing**(3)](#rrspacing),
+[**scale**(3)](#scale),
+[**set_exponent**(3)](#set_exponent),
+[**spacing**(3)](#spacing)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## trailz
 
@@ -16262,12 +16302,12 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bit_size**(3)](BIT_SIZE),
-[**popcnt**(3)](POPCNT),
-[**poppar**(3)](POPPAR),
-[**leadz**(3)](LEADZ)
+[**bit_size**(3)](#bit_size),
+[**popcnt**(3)](#popcnt),
+[**poppar**(3)](#poppar),
+[**leadz**(3)](#leadz)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## transfer
 
@@ -16378,7 +16418,7 @@ oblivious to the benefits of EQUIVALENCEs when used sparingly.
 
 Fortran 90 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## transpose
 
@@ -16470,7 +16510,7 @@ Results:
 
 Fortran 95 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## trim
 
@@ -16535,20 +16575,20 @@ Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
 - **Elemental:**
-  [**adjustl**(3)](ADJUSTL),
-  [**adjustr**(3)](ADJUSTR),
-  [**index**(3)](INDEX),
+  [**adjustl**(3)](#adjustl),
+  [**adjustr**(3)](#adjustr),
+  [**index**(3)](#index),
 
-[**scan**(3)](SCAN),
-[**verify**(3)](VERIFY)
+[**scan**(3)](#scan),
+[**verify**(3)](#verify)
 
 - **Nonelemental:**
-  [**len_trim**(3)](LEN_TRIM),
-  [**len**(3)](LEN),
-  [**repeat**(3)](REPEAT),
-  [**trim**(3)](TRIM)
+  [**len_trim**(3)](#len_trim),
+  [**len**(3)](#len),
+  [**repeat**(3)](#repeat),
+  [**trim**(3)](#trim)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## ubound
 
@@ -16667,11 +16707,11 @@ and later
 
 ### **See Also**
 
-[**lbound**(3)](LBOUND),
-[**co_ubound**(3)](CO_UBOUND),
-[__co\_lbound__(3)(CO_LBOUND)]
+[**lbound**(3)](#lbound),
+[**co_ubound**(3)](#co_ubound),
+[__co\_lbound__(3)(co_lbound)]
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## unpack
 
@@ -16827,11 +16867,11 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**merge**(3)](MERGE),
-[**pack**(3)](PACK),
-[**spread**(3)](SPREAD)
+[**merge**(3)](#merge),
+[**pack**(3)](#pack),
+[**spread**(3)](#spread)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
 
 ## verify
 
@@ -17093,16 +17133,16 @@ Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
 - **Elemental:**
-  [**adjustl**(3)](ADJUSTL),
-  [**adjustr**(3)](ADJUSTR),
-  [**index**(3)](INDEX),
-  [**scan**(3)](SCAN),
-  [**verify**(3)](VERIFY)
+  [**adjustl**(3)](#adjustl),
+  [**adjustr**(3)](#adjustr),
+  [**index**(3)](#index),
+  [**scan**(3)](#scan),
+  [**verify**(3)](#verify)
 
 - **Nonelemental:**
-  [**len_trim**(3)](LEN_TRIM),
-  [**len**(3)](LEN),
-  [**repeat**(3)](REPEAT),
-  [**trim**(3)](TRIM)
+  [**len_trim**(3)](#len_trim),
+  [**len**(3)](#len),
+  [**repeat**(3)](#repeat),
+  [**trim**(3)](#trim)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

@@ -102,6 +102,6 @@ Fortran 95 and later, with KIND argument Fortran 2003 and later
 
 SEE ALSO
 
-LBOUND(3), CO_UBOUND(3), [CO_LBOUND(3)(CO_LBOUND)]
+LBOUND(3), CO_UBOUND(3), [CO_LBOUND(3)(co_lbound)]
 
 fortran-lang intrinsic descriptions

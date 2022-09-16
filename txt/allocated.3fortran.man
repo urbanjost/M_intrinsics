@@ -87,4 +87,4 @@ SEE ALSO
 
 MOVE_ALLOC(3)
 
-fortran-lang intrinsic descriptions SYNOPSIS
+fortran-lang intrinsic descriptions

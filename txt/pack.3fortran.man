@@ -96,6 +96,6 @@ Fortran 95 and later
 
 SEE ALSO
 
-MERGE(3), SPREAD(3), UNPACK(3)
+UNPACK(3), MERGE(3), PACK(3), SPREAD(3), UNPACK(3)
 
 fortran-lang intrinsic descriptions (license: MIT) @urbanjost

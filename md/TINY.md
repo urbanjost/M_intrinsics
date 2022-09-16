@@ -46,7 +46,8 @@ Results:
 
 ```text
  default real is from 1.17549435E-38 to 3.40282347E+38
- doubleprecision is from 2.2250738585072014E-308 to 1.7976931348623157E+308
+ doubleprecision is from 2.2250738585072014E-308 to 
+ 1.7976931348623157E+308
 ```
 
 ### **Standard**

@@ -121,22 +121,22 @@ If must be of the same kind as Y.
 </A>
 <BLOCKQUOTE>
 <P>
+The type and kind of the result are the same as the elements of X. and
+Y.
+<P>
 The value returned is by definition the principal value of the complex
 number (X, Y).
 <P>
 The principal value is simply what we get when we adjust a radian value
 to lie between <B>-PI</B> and PI inclusive,
 <P>
-The type and kind of the result are the same as the elements of X. and
-Y.
-<P>
 The classic definition of the arctangent is the angle that is formed in
 Cartesian coordinates of the line from the origin point &lt;0,0&gt; to the
 point &lt;X,Y&gt; .
 <P>
-Pictured as such a vector it is easy to see that if X and Y are both
-zero the angle is indeterminent because it sits directly over the
-origin, so <B>ATAN</B>(0.0,0.0) will produce an error.
+Pictured as a vector it is easy to see that if X and Y are both zero the
+angle is indeterminent because it sits directly over the origin, so
+<B>ATAN</B>(0.0,0.0) will produce an error.
 <P>
 Range of returned values by quadrant:
 <P>
@@ -144,11 +144,11 @@ Range of returned values by quadrant:
     &gt;                   +PI/2
     &gt;                     |
     &gt;                     |
-    &gt;        PI/2&lt;Z&lt;PI    |   0&gt;Z&lt;PI/2
+    &gt;     PI/2 &lt; z &lt; PI   |   0 &gt; z &lt; PI/2
     &gt;                     |
     &gt;   +-PI -------------+---------------- +-0
     &gt;                     |
-    &gt;         PI/2&lt;-Z&lt;PI  |    0&lt;-Z&lt;PI/2
+    &gt;     PI/2 &lt; -z &lt; PI  |   0 &lt; -z &lt; PI/2
     &gt;                     |
     &gt;                     |
     &gt;                   -PI/2
@@ -172,7 +172,7 @@ Sample program:
 <P>
 <PRE>
     program demo_atan2
-    real :: x, y, z
+    real :: z
     complex :: c
 <P>
      ! basic usage
@@ -182,25 +182,28 @@ Sample program:
 <P>
      ! elemental arrays
       write(*,*)&#146;elemental&#146;,atan2( [10.0, 20.0], [30.0,40.0] )
+<P>
      ! elemental arrays and scalars
       write(*,*)&#146;elemental&#146;,atan2( [10.0, 20.0], 50.0 )
 <P>
-     ! break into real and imaginary components to use with complex values
-     ! note TAN2() can take a complex value
+     ! break complex values into real and imaginary components
+     ! (note TAN2() can take a complex type value )
       c=(0.0,1.0)
       write(*,*)&#146;complex&#146;,c,atan2( x=c%re, y=c%im )
+<P>
+     ! extended sample converting cartesian coordinates to polar
       COMPLEX_VALS: block
       real                :: ang, radius
       complex,allocatable :: vals(:)
 <P>
       vals=[ &
-        ( 0.0, 1.0 ), &
-        ( 1.0, 1.0 ), &
-        ( 1.0, 0.0 ), &
-        ( 0.0,-1.0 ), &
-        (-1.0, 1.0 ), &
-        (-1.0, 0.0 ), &
-        (-1.0,-1.0 )]
+        ( 1.0, 0.0 ), & ! 0
+        ( 1.0, 1.0 ), & ! 45
+        ( 0.0, 1.0 ), & ! 90
+        (-1.0, 1.0 ), & ! 135
+        (-1.0, 0.0 ), & ! 180
+        (-1.0,-1.0 ), & ! 225
+        ( 0.0,-1.0 )]   ! 270
       do i=1,size(vals)
          call cartesian_to_polar(vals(i)%re, vals(i)%im, radius,ang)
          write(*,101)vals(i),ang,r2d(ang),radius
@@ -223,6 +226,7 @@ Sample program:
     end function r2d
 <P>
     subroutine cartesian_to_polar(x,y,radius,inclination)
+    ! return angle in radians in range 0 to 2*PI
     implicit none
     real,intent(in)  :: x,y
     real,intent(out) :: radius,inclination
@@ -231,6 +235,7 @@ Sample program:
           inclination=0.0
        else
           inclination=atan2(y,x)
+          if(inclination &lt; 0.0)inclination=inclination+2*atan2(0.0d0,-1.0d0)
        endif
     end subroutine cartesian_to_polar
 <P>
@@ -240,18 +245,44 @@ Sample program:
 Results:
 <P>
 <PRE>
-    &gt; radians=   1.00000000     degrees=   57.2957802
-    &gt; elemental  0.321750551      0.463647604
-    &gt; elemental  0.197395563      0.380506366
-    &gt;X=  0.00 Y=  1.00 ANGLE= 1.57079637  DEGREES= 90.00  DISTANCE=1.00000000
-    &gt;X=  1.00 Y=  1.00 ANGLE= 0.785398185 DEGREES= 45.00  DISTANCE=1.41421354
-    &gt;X=  1.00 Y=  0.00 ANGLE= 0.00000000  DEGREES= 0.000  DISTANCE=1.00000000
-    &gt;X=  0.00 Y= -1.00 ANGLE= -1.57079637 DEGREES= -90.00 DISTANCE=1.00000000
-    &gt;X= -1.00 Y=  1.00 ANGLE= 2.35619450  DEGREES= 135.0  DISTANCE=1.41421354
-    &gt;X= -1.00 Y=  0.00 ANGLE= 3.14159274  DEGREES= 180.0  DISTANCE=1.00000000
-    &gt;X= -1.00 Y= -1.00 ANGLE= -2.35619450 DEGREES= -135.0 DISTANCE=1.41421354
-<P>
+        radians=   1.000000     degrees=   57.29578   
+        elemental  0.3217506      0.4636476   
+        elemental  0.1973956      0.3805064   
+        complex (0.0000000E+00,1.000000)   1.570796   
 </PRE>
+<BLOCKQUOTE>
+<TABLE cellpadding=3><!-- tsb:         radians=   1.000000     degrees=   57.29578   
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>X=</B> </TD><TD valign=bottom>
+1.00 Y=  0.00 ANGLE= .000000     DEGREES= .000   DISTANCE=1.000000
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>X=</B> </TD><TD valign=bottom>
+1.00 Y=  1.00 ANGLE= .7853982    DEGREES= 45.00  DISTANCE=1.414214
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>X=</B> </TD><TD valign=bottom>
+0.00 Y=  1.00 ANGLE= 1.570796    DEGREES= 90.00  DISTANCE=1.000000
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>X= </B><B>-1.00</B> Y= </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+1.00 ANGLE= 2.356194    DEGREES= 135.0  DISTANCE=1.414214
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>X= </B><B>-1.00</B> Y= </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+0.00 ANGLE= 3.141593    DEGREES= 180.0  DISTANCE=1.000000
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>X= </B><B>-1.00</B> Y= <B>-1.00</B> ANGLE= 3.926991 </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+DEGREES= 225.0  DISTANCE=1.414214
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>X=</B> </TD><TD valign=bottom>
+0.00 Y= <B>-1.00</B> ANGLE= 4.712389    DEGREES= 270.0  DISTANCE=1.000000
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 </BLOCKQUOTE>
 <A name=6>
 
@@ -284,7 +315,7 @@ FORTRAN 77 and later
 fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>atan2 (3fortran)</TD> <TD align=right width=33%><I>September 14, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 9c8c327b-2996-44e4-8b32-4cef44a7cbde using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>atan2 (3fortran)</TD> <TD align=right width=33%><I>September 16, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 234ae4c3-cf0a-40d1-b1a8-a0d2693d231a using man macros.</FONT>
 <br><br><center><img src="images/atan2.3fortran.gif"></center>
 </div>
 </div>

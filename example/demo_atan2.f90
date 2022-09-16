@@ -1,5 +1,5 @@
       program demo_atan2
-      real :: x, y, z
+      real :: z
       complex :: c
 
        ! basic usage
@@ -9,25 +9,28 @@
 
        ! elemental arrays
         write(*,*)'elemental',atan2( [10.0, 20.0], [30.0,40.0] )
+
        ! elemental arrays and scalars
         write(*,*)'elemental',atan2( [10.0, 20.0], 50.0 )
 
-       ! break into real and imaginary components to use with complex values
-       ! note TAN2() can take a complex value
+       ! break complex values into real and imaginary components
+       ! (note TAN2() can take a complex type value )
         c=(0.0,1.0)
         write(*,*)'complex',c,atan2( x=c%re, y=c%im )
+
+       ! extended sample converting cartesian coordinates to polar
         COMPLEX_VALS: block
         real                :: ang, radius
         complex,allocatable :: vals(:)
 
         vals=[ &
-          ( 0.0, 1.0 ), &
-          ( 1.0, 1.0 ), &
-          ( 1.0, 0.0 ), &
-          ( 0.0,-1.0 ), &
-          (-1.0, 1.0 ), &
-          (-1.0, 0.0 ), &
-          (-1.0,-1.0 )]
+          ( 1.0, 0.0 ), & ! 0
+          ( 1.0, 1.0 ), & ! 45
+          ( 0.0, 1.0 ), & ! 90
+          (-1.0, 1.0 ), & ! 135
+          (-1.0, 0.0 ), & ! 180
+          (-1.0,-1.0 ), & ! 225
+          ( 0.0,-1.0 )]   ! 270
         do i=1,size(vals)
            call cartesian_to_polar(vals(i)%re, vals(i)%im, radius,ang)
            write(*,101)vals(i),ang,r2d(ang),radius
@@ -50,6 +53,7 @@
       end function r2d
 
       subroutine cartesian_to_polar(x,y,radius,inclination)
+      ! return angle in radians in range 0 to 2*PI
       implicit none
       real,intent(in)  :: x,y
       real,intent(out) :: radius,inclination
@@ -58,6 +62,7 @@
             inclination=0.0
          else
             inclination=atan2(y,x)
+            if(inclination < 0.0)inclination=inclination+2*atan2(0.0d0,-1.0d0)
          endif
       end subroutine cartesian_to_polar
 

@@ -57,7 +57,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-<B>DPROD</B>(3) - [NUMERIC] Double product function
+<B>DPROD</B>(3) - [NUMERIC] Double precision real product
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
@@ -69,7 +69,14 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-result = <B>dprod</B>(x, y)
+elemental function <B>dprod</B>(x,y)
+<P>
+<PRE>
+        real,intent(in) :: x
+        real,intent(in) :: y
+        doubleprecision :: dprod
+<P>
+</PRE>
 </BLOCKQUOTE>
 <A name=2>
 
@@ -78,28 +85,13 @@ result = <B>dprod</B>(x, y)
 </A>
 <BLOCKQUOTE>
 <P>
-<B>DPROD</B>(X,Y) produces a higher doubleprecision product of default real
-numbers X and Y.
+<B>DPROD</B>(X,Y) produces a doubleprecision product of default real values X
+and Y.
 <P>
 The result has a value equal to a processor-dependent approximation to
 the product of X and Y. It is recommended that the processor compute the
-product in double precision, rather than in single precision and then
+product in double precision, rather than in single precision then
 converted to double precision.
-<TABLE cellpadding=3><!-- tsb: The result has a value equal to a processor-dependent approximation to
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-X : shall be default real.
-</TD></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-Y : shall be default real.
-</TD></TR>
-<TR></TR></TABLE>The setting of compiler options specifying real size can affect this
-function.
 </BLOCKQUOTE>
 <A name=3>
 
@@ -112,14 +104,17 @@ function.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-X : Must be of default <B>real</B>(kind=kind(0.0)) type
+X : the multiplier, a real value of default kind
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-Y : Must have the same type and kind parameters as X
+Y : the multiplicand, a real value of default kind. Y Must have the
+same type and kind parameters as X
 </TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
+<TR></TR></TABLE>The setting of compiler options specifying the size of a default real
+can affect this function.
+</BLOCKQUOTE>
 <A name=4>
 
      <H3>RETURNS</H3>
@@ -127,7 +122,8 @@ Y : Must have the same type and kind parameters as X
 </A>
 <BLOCKQUOTE>
 <P>
-The return value is of type <B>real</B>(kind=kind(0.0d0)).
+The return value is of type <B>real</B>(kind=kind(0.0d0)). It should have the
+same value as <B>DBLE</B>(X)*<B>DBLE</B>(Y).
 </BLOCKQUOTE>
 <A name=5>
 
@@ -147,33 +143,52 @@ Sample program:
     real :: x = 5.2
     real :: y = 2.3
     real(kind=dp) :: dd
+<P>
+       ! basic usage
        dd = dprod(x,y)
-       print *, dd, x*y, kind(x), kind(dd), kind(dprod(x,y))
-       ! interesting comparisons
-       print *, 52*23
+       print *, &#146;compare dprod(xy)=&#146;,dd, &
+       & &#146;to x*y=&#146;,x*y, &
+       & &#146;to dble(x)*dble(y)=&#146;,dble(x)*dble(y)
+<P>
+       ! elemental
+       print *, dprod( [2.3,3.4,4.5], 10.0 )
+       print *, dprod( [2.3,3.4,4.5], [9.8,7.6,5.4] )
+<P>
+       ! other interesting comparisons
+       print *, &#146;integer multiplication of digits=&#146;,52*23
        print *, 52*23/100.0
        print *, 52*23/100.0d0
 <P>
-       !! common extension is to take doubleprecision arguments
-       !! and return higher precision
+       !! A common extension is to take doubleprecision arguments
+       !! and return higher precision when available
        bigger: block
-       doubleprecision :: xx = 5.2d0
-       doubleprecision :: yy = 2.3d0
-       real(kind=real128) :: ddd
-       !ddd = dprod(xx,yy)
-       !print *, ddd, xx*yy, kind(xx), kind(ddd), kind(dprod(xx,yy))
+       doubleprecision :: xx = 5.2_dp
+       doubleprecision :: yy = 2.3_dp
+       print *, &#146;dprop==&gt;&#146;,dprod(xx,yy)
+       print *, &#146;multipy==&gt;&#146;,xx*yy
+       print *, &#146;using dble==&gt;&#146;,dble(xx)*dble(yy)
+       print *, &#146;kind of arguments is&#146;,kind(xx)
+       print *, &#146;kind of result is&#146;,kind(dprod(xx,yy))
        endblock bigger
 <P>
     end program demo_dprod
 <P>
 </PRE>
-Results:
+Results: (this can vary between programming environments):
 <P>
 <PRE>
-       11.959999313354501 11.9599991 4 8 8
-            1196
-       11.9600000
-       11.960000000000001
+        compare dprod(xy)= 11.9599993133545 to x*y= 11.96000
+        to dble(x)*dble(y)= 11.9599993133545
+          22.9999995231628  34.0000009536743  45.0000000000000
+          22.5399999713898  25.8400004005432  24.3000004291534
+        integer multiplication of digits=        1196
+          11.96000
+          11.9600000000000
+        dprop==&gt;   11.9599999999999994848565165739273
+        multipy==&gt;   11.9600000000000
+        using dble==&gt;   11.9600000000000
+        kind of arguments is           8
+        kind of result is          16
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -186,10 +201,10 @@ Results:
 <P>
 FORTRAN 77 and later
 <P>
-fortran-lang intrinsic descriptions
+fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>dprod (3fortran)</TD> <TD align=right width=33%><I>September 14, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from d566c00b-9547-4c3a-a723-7a1d50c185a7 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>dprod (3fortran)</TD> <TD align=right width=33%><I>September 16, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 5e89a983-a279-41af-8512-ea2ba256ac92 using man macros.</FONT>
 <br><br><center><img src="images/dprod.3fortran.gif"></center>
 </div>
 </div>

@@ -37,7 +37,7 @@ FORTRAN 77 and later
 
 SEE ALSO
 
-LGE(3), LGT(3), LLE(3)
+LGE(3), LGT(3), LLE(3))
 
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:

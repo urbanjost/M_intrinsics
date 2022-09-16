@@ -11,8 +11,7 @@ function
     type(real,kind=KIND) :: atan2
     type(real,kind=KIND),intent(in) :: y, x
 ```
-The return value has the same type and kind as **y**
-and **x**.
+The return value has the same type and kind as **y** and **x**.
 
 ### **Description**
 
@@ -35,20 +34,20 @@ a unique angle).
 
 ### **Returns**
 
+The type and kind of the result are the same as the elements of **x**.
+and **y**.
+
 The value returned is by definition the principal value of the complex
 number **(x, y)**.
 
 The principal value is simply what we get when we adjust a radian value
 to lie between **-PI** and **PI** inclusive,
 
-The type and kind of the result are the same as the elements of **x**.
-and **y**.
-
 The classic definition of the arctangent is the angle that is formed
 in Cartesian coordinates of the line from the origin point **\<0,0\>**
 to the point **\<x,y\>** .
 
-Pictured as such a vector it is easy to see that if **x** and **y**
+Pictured as a vector it is easy to see that if **x** and **y**
 are both zero the angle is indeterminent because it sits directly over
 the origin, so **atan(0.0,0.0)** will produce an error.
 
@@ -57,11 +56,11 @@ Range of returned values by quadrant:
 >                   +PI/2
 >                     |
 >                     |
->        PI/2<Z<PI    |   0>Z<PI/2
+>     PI/2 < z < PI   |   0 > z < PI/2
 >                     |
 >   +-PI -------------+---------------- +-0
 >                     |
->         PI/2<-Z<PI  |    0<-Z<PI/2
+>     PI/2 < -z < PI  |   0 < -z < PI/2
 >                     |
 >                     |
 >                   -PI/2
@@ -77,7 +76,7 @@ Range of returned values by quadrant:
 Sample program:
 ```fortran
 program demo_atan2
-real :: x, y, z
+real :: z
 complex :: c
 
  ! basic usage
@@ -87,25 +86,28 @@ complex :: c
 
  ! elemental arrays
   write(*,*)'elemental',atan2( [10.0, 20.0], [30.0,40.0] )
+
  ! elemental arrays and scalars
   write(*,*)'elemental',atan2( [10.0, 20.0], 50.0 )
 
- ! break into real and imaginary components to use with complex values
- ! note TAN2() can take a complex value
+ ! break complex values into real and imaginary components
+ ! (note TAN2() can take a complex type value )
   c=(0.0,1.0)
   write(*,*)'complex',c,atan2( x=c%re, y=c%im )
+
+ ! extended sample converting cartesian coordinates to polar
   COMPLEX_VALS: block
   real                :: ang, radius
   complex,allocatable :: vals(:)
 
   vals=[ &
-    ( 0.0, 1.0 ), &
-    ( 1.0, 1.0 ), &
-    ( 1.0, 0.0 ), &
-    ( 0.0,-1.0 ), &
-    (-1.0, 1.0 ), &
-    (-1.0, 0.0 ), &
-    (-1.0,-1.0 )]
+    ( 1.0, 0.0 ), & ! 0
+    ( 1.0, 1.0 ), & ! 45
+    ( 0.0, 1.0 ), & ! 90
+    (-1.0, 1.0 ), & ! 135
+    (-1.0, 0.0 ), & ! 180
+    (-1.0,-1.0 ), & ! 225
+    ( 0.0,-1.0 )]   ! 270
   do i=1,size(vals)
      call cartesian_to_polar(vals(i)%re, vals(i)%im, radius,ang)
      write(*,101)vals(i),ang,r2d(ang),radius
@@ -128,6 +130,7 @@ real,intent(in)           :: radians
 end function r2d
 
 subroutine cartesian_to_polar(x,y,radius,inclination)
+! return angle in radians in range 0 to 2*PI 
 implicit none
 real,intent(in)  :: x,y
 real,intent(out) :: radius,inclination
@@ -136,6 +139,7 @@ real,intent(out) :: radius,inclination
       inclination=0.0
    else
       inclination=atan2(y,x)
+      if(inclination < 0.0)inclination=inclination+2*atan2(0.0d0,-1.0d0)
    endif
 end subroutine cartesian_to_polar
 
@@ -143,16 +147,17 @@ end program demo_atan2
 ```
   Results:
 ```text
-> radians=   1.00000000     degrees=   57.2957802
-> elemental  0.321750551      0.463647604
-> elemental  0.197395563      0.380506366
->X=  0.00 Y=  1.00 ANGLE= 1.57079637  DEGREES= 90.00  DISTANCE=1.00000000
->X=  1.00 Y=  1.00 ANGLE= 0.785398185 DEGREES= 45.00  DISTANCE=1.41421354
->X=  1.00 Y=  0.00 ANGLE= 0.00000000  DEGREES= 0.000  DISTANCE=1.00000000
->X=  0.00 Y= -1.00 ANGLE= -1.57079637 DEGREES= -90.00 DISTANCE=1.00000000
->X= -1.00 Y=  1.00 ANGLE= 2.35619450  DEGREES= 135.0  DISTANCE=1.41421354
->X= -1.00 Y=  0.00 ANGLE= 3.14159274  DEGREES= 180.0  DISTANCE=1.00000000
->X= -1.00 Y= -1.00 ANGLE= -2.35619450 DEGREES= -135.0 DISTANCE=1.41421354
+    radians=   1.000000     degrees=   57.29578    
+    elemental  0.3217506      0.4636476    
+    elemental  0.1973956      0.3805064    
+    complex (0.0000000E+00,1.000000)   1.570796    
+   X=  1.00 Y=  0.00 ANGLE= .000000     DEGREES= .000   DISTANCE=1.000000
+   X=  1.00 Y=  1.00 ANGLE= .7853982    DEGREES= 45.00  DISTANCE=1.414214
+   X=  0.00 Y=  1.00 ANGLE= 1.570796    DEGREES= 90.00  DISTANCE=1.000000
+   X= -1.00 Y=  1.00 ANGLE= 2.356194    DEGREES= 135.0  DISTANCE=1.414214
+   X= -1.00 Y=  0.00 ANGLE= 3.141593    DEGREES= 180.0  DISTANCE=1.000000
+   X= -1.00 Y= -1.00 ANGLE= 3.926991    DEGREES= 225.0  DISTANCE=1.414214
+   X=  0.00 Y= -1.00 ANGLE= 4.712389    DEGREES= 270.0  DISTANCE=1.000000
 ```
 ### **See Also**
 
