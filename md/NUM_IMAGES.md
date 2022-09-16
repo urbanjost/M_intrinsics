@@ -24,15 +24,16 @@ Returns the number of images.
 
 ### **Returns**
 
-Scalar default-kind _integer_. If **distance** is not present or has value 0,
-the number of images in the current team is returned. For values smaller
-or equal distance to the initial team, it returns the number of images
-index on the ancestor team which has a distance of **distance** from the
-invoking team. If **distance** is larger than the distance to the initial
-team, the number of images of the initial team is returned. If **failed** is
-not present the total number of images is returned; if it has the value
-.true., the number of failed images is returned, otherwise, the number
-of images which do have not the failed status.
+  Scalar default-kind _integer_. If **distance** is not present or has
+  value 0, the number of images in the current team is returned. For
+  values smaller or equal distance to the initial team, it returns the
+  number of images index on the ancestor team which has a distance of
+  **distance** from the invoking team. If **distance** is larger than
+  the distance to the initial team, the number of images of the initial
+  team is returned. If **failed** is not present the total number of
+  images is returned; if it has the value _.true._, the number of failed
+  images is returned, otherwise, the number of images which do have not
+  the failed status.
 
 ### **Examples**
 

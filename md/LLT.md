@@ -12,17 +12,17 @@ result = llt(string_a, string_b)
 
 ### **Description**
 
-Determines whether one string is lexically less than another string,
-where the two strings are interpreted as containing ASCII character
-codes. If the **string_a** and **string_b** are not the same length, the shorter
-is compared as if spaces were appended to it to form a value that has
-the same length as the longer.
+  Determines whether one string is lexically less than another string,
+  where the two strings are interpreted as containing ASCII character
+  codes. If the **string_a** and **string_b** are not the same length,
+  the shorter is compared as if spaces were appended to it to form a
+  value that has the same length as the longer.
 
-In general, the lexical comparison intrinsics LGE, LGT, LLE, and LLT
-differ from the corresponding intrinsic operators .ge., .gt., .le., and
-.lt., in that the latter use the processor's character ordering (which
-is not ASCII on some targets), whereas the former always use the ASCII
-ordering.
+  In general, the lexical comparison intrinsics **lge**, **lgt**, **lle**,
+  and **llt** differ from the corresponding intrinsic operators _.ge.,
+  .gt., .le., and .lt._, in that the latter use the processor's character
+  ordering (which is not ASCII on some targets), whereas the former
+  always use the ASCII ordering.
 
 ### **Arguments**
 

@@ -15,7 +15,7 @@ row of the array in the DIM direction.
 If MASK is present, only the elements for which MASK is .TRUE. are
 considered.
 
-If the array has zero size, or all of the elements of MASK are .false.,
+If the array has zero size, or all of the elements of MASK are .FALSE.,
 then the result is HUGE(ARRAY) if ARRAY is numeric, or a string of
 CHAR(LEN=255) characters if ARRAY is of character type.
 

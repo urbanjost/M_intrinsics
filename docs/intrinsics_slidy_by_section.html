@@ -4282,7 +4282,7 @@ the value of btest (2, a)
 <p>The setting of compiler options specifying the size of a default real can affect this function.</p>
 </div><div id="returns-52" class="slide section level3">
 <h1><strong>Returns</strong></h1>
-<p>The return value is of type real(kind=kind(0.0d0)). It should have the same value as <strong>dble(x)*dble(y)</strong>.</p>
+<p>The return value is doubleprecision (ie. real(kind=kind(0.0d0))). It should have the same value as <strong>dble(x)*dble(y)</strong>.</p>
 </div><div id="examples-65" class="slide section level3">
 <h1><strong>Examples</strong></h1>
 <p>Sample program:</p>
@@ -7384,7 +7384,7 @@ If not present the returned type is that of default integer type.</li>
 </div><div id="description-119" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>Determines whether one string is lexically less than or equal to another string, where the two strings are interpreted as containing ASCII character codes. if the <strong>string_a</strong> and <strong>string_b</strong> are not the same length, the shorter is compared as if spaces were appended to it to form a value that has the same length as the longer. Leading spaces are significant.</p>
-<p>In general, the lexical comparison intrinsics LGE, LGT, LLE, and LLT differ from the corresponding intrinsic operators .ge., .gt., .le., and .lt., in that the latter use the processor’s character ordering (which is not ASCII on some targets), whereas the former always use the ASCII ordering.</p>
+<p>In general, the lexical comparison intrinsics <strong>lge</strong>, <strong>lgt</strong>, <strong>lle</strong>, and <strong>llt</strong> differ from the corresponding intrinsic operators .ge., .gt., .le., and .lt., in that the latter use the processor’s character ordering (which is not ASCII on some targets), whereas the former always use the ASCII ordering.</p>
 </div><div id="arguments-113" class="slide section level3">
 <h1><strong>Arguments</strong></h1>
 <ul>
@@ -7458,7 +7458,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 </div><div id="description-120" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>Determines whether one string is lexically less than another string, where the two strings are interpreted as containing ASCII character codes. If the <strong>string_a</strong> and <strong>string_b</strong> are not the same length, the shorter is compared as if spaces were appended to it to form a value that has the same length as the longer.</p>
-<p>In general, the lexical comparison intrinsics LGE, LGT, LLE, and LLT differ from the corresponding intrinsic operators .ge., .gt., .le., and .lt., in that the latter use the processor’s character ordering (which is not ASCII on some targets), whereas the former always use the ASCII ordering.</p>
+<p>In general, the lexical comparison intrinsics <strong>lge</strong>, <strong>lgt</strong>, <strong>lle</strong>, and <strong>llt</strong> differ from the corresponding intrinsic operators .ge., .gt., .le., and .lt., in that the latter use the processor’s character ordering (which is not ASCII on some targets), whereas the former always use the ASCII ordering.</p>
 </div><div id="arguments-114" class="slide section level3">
 <h1><strong>Arguments</strong></h1>
 <ul>
@@ -7880,7 +7880,7 @@ end program demo_maskr</code></pre>
 </ul>
 </div><div id="returns-107" class="slide section level3">
 <h1><strong>Returns</strong></h1>
-<p>The matrix product of <strong>matrix_a</strong> and <strong>matrix_b</strong>. The type and kind of the result follow the usual type and kind promotion rules, as for the * or .and. operators.</p>
+<p>The matrix product of <strong>matrix_a</strong> and <strong>matrix_b</strong>. The type and kind of the result follow the usual type and kind promotion rules, as for the <strong>** or </strong>.and.** operators.</p>
 </div><div id="standard-124" class="slide section level3">
 <h1><strong>Standard</strong></h1>
 <p>Fortran 95 and later</p>
@@ -8438,7 +8438,7 @@ end program demo_maskr</code></pre>
 <div class="sourceCode" id="cb375"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb375-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">minloc</span>(array, mask)</a></code></pre></div>
 </div><div id="description-135" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Determines the location of the element in the array with the minimum value, or, if the <strong>dim</strong> argument is supplied, determines the locations of the minimum element along each row of the array in the <strong>dim</strong> direction. If <strong>mask</strong> is present, only the elements for which <strong>mask</strong> is <strong>.true.</strong> are considered. If more than one element in the array has the minimum value, the location returned is that of the first such element in array element order. If the array has zero size, or all of the elements of <strong>mask</strong> are .false., then the result is an array of zeroes. Similarly, if <strong>dim</strong> is supplied and all of the elements of <strong>mask</strong> along a given row are zero, the result value for that row is zero.</p>
+<p>Determines the location of the element in the array with the minimum value, or, if the <strong>dim</strong> argument is supplied, determines the locations of the minimum element along each row of the array in the <strong>dim</strong> direction. If <strong>mask</strong> is present, only the elements for which <strong>mask</strong> is <strong>.true.</strong> are considered. If more than one element in the array has the minimum value, the location returned is that of the first such element in array element order. If the array has zero size, or all of the elements of <strong>mask</strong> are <strong>.false.</strong>, then the result is an array of zeroes. Similarly, if <strong>dim</strong> is supplied and all of the elements of <strong>mask</strong> along a given row are zero, the result value for that row is zero.</p>
 </div><div id="arguments-129" class="slide section level3">
 <h1><strong>Arguments</strong></h1>
 <ul>
@@ -8546,7 +8546,7 @@ end program demo_maskr</code></pre>
 <h1><strong>Description</strong></h1>
 <p>Determines the minimum value of the elements in an array value, or, if the <strong>dim</strong> argument is supplied, determines the minimum value along each row of the array in the <strong>dim</strong> direction.</p>
 <p>If <strong>mask</strong> is present, only the elements for which <strong>mask</strong> is <strong>.true.</strong> are considered.</p>
-<p>If the array has zero size, or all of the elements of <strong>mask</strong> are .false., then the result is <strong>huge(array)</strong> if <strong>array</strong> is numeric, or a string of <strong>char(len=255)</strong> characters if <strong>array</strong> is of character type.</p>
+<p>If the array has zero size, or all of the elements of <strong>mask</strong> are <strong>.false.</strong>, then the result is <strong>huge(array)</strong> if <strong>array</strong> is numeric, or a string of <strong>char(len=255)</strong> characters if <strong>array</strong> is of character type.</p>
 </div><div id="arguments-131" class="slide section level3">
 <h1><strong>Arguments</strong></h1>
 <ul>

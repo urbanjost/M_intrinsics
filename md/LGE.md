@@ -18,11 +18,11 @@ ASCII character codes. If the String **a** and String **b** are not the same
 length, the shorter is compared as if spaces were appended to it to form
 a value that has the same length as the longer.
 
-In general, the lexical comparison intrinsics **lge**(3), **lgt**(3), **lle**(3), and **llt**(3)
-differ from the corresponding intrinsic operators .ge., .gt., .le., and
-.lt., in that the latter use the processor's character ordering (which
-is not ASCII on some targets), whereas the former always use the ASCII
-ordering.
+In general, the lexical comparison intrinsics **lge**(3), **lgt**(3),
+**lle**(3), and **llt**(3) differ from the corresponding intrinsic
+operators _.ge., .gt., .le., and .lt._, in that the latter use the
+processor's character ordering (which is not ASCII on some targets),
+whereas the former always use the ASCII ordering.
 
 ### **Arguments**
 

@@ -12,16 +12,17 @@ result = minval(array, dim, mask) result = minval(array, mask)
 
 ### **Description**
 
-Determines the minimum value of the elements in an array value, or, if
-the **dim** argument is supplied, determines the minimum value along each
-row of the array in the **dim** direction.
+  Determines the minimum value of the elements in an array value, or,
+  if the **dim** argument is supplied, determines the minimum value
+  along each row of the array in the **dim** direction.
 
-If **mask** is present, only the
-elements for which **mask** is **.true.** are considered.
+  If **mask** is present, only the elements for which **mask** is
+  **.true.** are considered.
 
-If the array has zero size, or all of the elements of **mask** are
-.false., then the result is **huge(array)** if **array** is numeric, or a
-string of **char(len=255)** characters if **array** is of character type.
+  If the array has zero size, or all of the elements of **mask**
+  are **.false.**, then the result is **huge(array)** if **array** is
+  numeric, or a string of **char(len=255)** characters if **array**
+  is of character type.
 
 ### **Arguments**
 

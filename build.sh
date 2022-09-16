@@ -36,6 +36,14 @@ cd standalone
 gfortran fman.f90 -o fpm-man
 )
 ######################################
+# wrap up
+set +x
+fpm install
+echo 'Check for long lines'
+fpm-man manual |findll -l 80
+echo 'Check for lines that will be accidently seen as *roff directives'
+grep '^\.' md/*.md
+fpm-man manual |findll -l 80
 )|tee /tmp/M_intrinsics.log
 ######################################
 exit

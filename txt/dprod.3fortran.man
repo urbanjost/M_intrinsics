@@ -32,8 +32,8 @@ can affect this function.
 
 RETURNS
 
-The return value is of type real(kind=kind(0.0d0)). It should have the
-same value as DBLE(X)*DBLE(Y).
+The return value is doubleprecision (ie. real(kind=kind(0.0d0))). It
+should have the same value as DBLE(X)*DBLE(Y).
 
 EXAMPLES
 

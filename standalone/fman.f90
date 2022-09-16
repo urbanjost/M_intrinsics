@@ -5374,8 +5374,8 @@ textblock=[character(len=256) :: &
 '  affect this function.', &
 '', &
 'RETURNS', &
-'  The return value is of type real(kind=kind(0.0d0)). It should have the same', &
-'  value as DBLE(X)*DBLE(Y).', &
+'  The return value is doubleprecision (ie. real(kind=kind(0.0d0))). It should', &
+'  have the same value as DBLE(X)*DBLE(Y).', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -9685,7 +9685,7 @@ textblock=[character(len=256) :: &
 '', &
 'RETURNS', &
 '  The matrix product of MATRIX_A and MATRIX_B. The type and kind of the result', &
-'  follow the usual type and kind promotion rules, as for the * or', &
+'  follow the usual type and kind promotion rules, as for the ** or', &
 '', &
 'STANDARD', &
 '  Fortran 95 and later', &
@@ -10527,7 +10527,7 @@ textblock=[character(len=256) :: &
 '  If MASK is present, only the elements for which MASK is .TRUE. are', &
 '  considered.', &
 '', &
-'  If the array has zero size, or all of the elements of MASK are .false., then', &
+'  If the array has zero size, or all of the elements of MASK are .FALSE., then', &
 '  the result is HUGE(ARRAY) if ARRAY is numeric, or a string of CHAR(LEN=255)', &
 '  characters if ARRAY is of character type.', &
 '', &

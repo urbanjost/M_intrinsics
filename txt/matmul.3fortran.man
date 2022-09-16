@@ -23,8 +23,8 @@ ARGUMENTS
 RETURNS
 
 The matrix product of MATRIX_A and MATRIX_B. The type and kind of the
-result follow the usual type and kind promotion rules, as for the * or
-.and. operators.
+result follow the usual type and kind promotion rules, as for the ** or
+.AND. operators.
 
 STANDARD
 

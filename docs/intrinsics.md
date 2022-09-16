@@ -5573,7 +5573,7 @@ can affect this function.
 
 ### **Returns**
 
-The return value is of type _real(kind=kind(0.0d0))_.
+The return value is doubleprecision (ie. _real(kind=kind(0.0d0))_).
 It should have the same value as **dble(x)\*dble(y)**.
 
 ### **Examples**
@@ -8982,9 +8982,9 @@ variable with the iostat_eor parameter of the intrinsic module
 
 ### **Returns**
 
-Returns a _logical_ of the default kind, which .true. if **i** has the value
+Returns a _logical_ of the default kind, which _.true._ if **i** has the value
 which indicates an end of file condition for iostat= specifiers, and is
-.false. otherwise.
+_.false._ otherwise.
 
 ### **Examples**
 
@@ -9578,11 +9578,11 @@ ASCII character codes. If the String **a** and String **b** are not the same
 length, the shorter is compared as if spaces were appended to it to form
 a value that has the same length as the longer.
 
-In general, the lexical comparison intrinsics **lge**(3), **lgt**(3), **lle**(3), and **llt**(3)
-differ from the corresponding intrinsic operators .ge., .gt., .le., and
-.lt., in that the latter use the processor's character ordering (which
-is not ASCII on some targets), whereas the former always use the ASCII
-ordering.
+In general, the lexical comparison intrinsics **lge**(3), **lgt**(3),
+**lle**(3), and **llt**(3) differ from the corresponding intrinsic
+operators _.ge., .gt., .le., and .lt._, in that the latter use the
+processor's character ordering (which is not ASCII on some targets),
+whereas the former always use the ASCII ordering.
 
 ### **Arguments**
 
@@ -9645,10 +9645,10 @@ is compared as if spaces were appended to it to form a value that has
 the same length as the longer.
 
 In general, the lexical comparison intrinsics LGE, LGT, LLE, and LLT
-differ from the corresponding intrinsic operators .ge., .gt., .le., and
-.lt., in that the latter use the processor's character ordering (which
-is not ASCII on some targets), whereas the former always use the ASCII
-ordering.
+differ from the corresponding intrinsic operators _.ge., .gt., .le.,
+and .lt._, in that the latter use the processor's character ordering
+(which is not ASCII on some targets), whereas the former always use the
+ASCII ordering.
 
 ### **Arguments**
 
@@ -9711,17 +9711,18 @@ result = lle(str_a, str_b)
 ```
 ### **Description**
 
-Determines whether one string is lexically less than or equal to another
-string, where the two strings are interpreted as containing ASCII
-character codes. if the **string_a** and **string_b** are not the same length,
-the shorter is compared as if spaces were appended to it to form a value
-that has the same length as the longer. Leading spaces are significant.
+  Determines whether one string is lexically less than or equal to
+  another string, where the two strings are interpreted as containing
+  ASCII character codes. if the **string_a** and **string_b** are not
+  the same length, the shorter is compared as if spaces were appended
+  to it to form a value that has the same length as the longer. Leading
+  spaces are significant.
 
-In general, the lexical comparison intrinsics LGE, LGT, LLE, and LLT
-differ from the corresponding intrinsic operators .ge., .gt., .le., and
-.lt., in that the latter use the processor's character ordering (which
-is not ASCII on some targets), whereas the former always use the ASCII
-ordering.
+  In general, the lexical comparison intrinsics **lge**, **lgt**, **lle**,
+  and **llt** differ from the corresponding intrinsic operators _.ge.,
+  .gt., .le., and .lt._, in that the latter use the processor's character
+  ordering (which is not ASCII on some targets), whereas the former
+  always use the ASCII ordering.
 
 ### **Arguments**
 
@@ -9818,17 +9819,17 @@ result = llt(string_a, string_b)
 
 ### **Description**
 
-Determines whether one string is lexically less than another string,
-where the two strings are interpreted as containing ASCII character
-codes. If the **string_a** and **string_b** are not the same length, the shorter
-is compared as if spaces were appended to it to form a value that has
-the same length as the longer.
+  Determines whether one string is lexically less than another string,
+  where the two strings are interpreted as containing ASCII character
+  codes. If the **string_a** and **string_b** are not the same length,
+  the shorter is compared as if spaces were appended to it to form a
+  value that has the same length as the longer.
 
-In general, the lexical comparison intrinsics LGE, LGT, LLE, and LLT
-differ from the corresponding intrinsic operators .ge., .gt., .le., and
-.lt., in that the latter use the processor's character ordering (which
-is not ASCII on some targets), whereas the former always use the ASCII
-ordering.
+  In general, the lexical comparison intrinsics **lge**, **lgt**, **lle**,
+  and **llt** differ from the corresponding intrinsic operators _.ge.,
+  .gt., .le., and .lt._, in that the latter use the processor's character
+  ordering (which is not ASCII on some targets), whereas the former
+  always use the ASCII ordering.
 
 ### **Arguments**
 
@@ -10359,9 +10360,9 @@ Performs a matrix multiplication on numeric or logical arguments.
 
 ### **Returns**
 
-The matrix product of **matrix_a** and **matrix_b**. The type and kind of the
-result follow the usual type and kind promotion rules, as for the \* or
-.and. operators.
+  The matrix product of **matrix_a** and **matrix_b**. The type and
+  kind of the result follow the usual type and kind promotion rules,
+  as for the **\** or **.and.** operators.
 
 ### **Standard**
 
@@ -11142,16 +11143,17 @@ or
 
 ### **Description**
 
-Determines the location of the element in the array with the minimum
-value, or, if the **dim** argument is supplied, determines the locations of
-the minimum element along each row of the array in the **dim** direction. If
-**mask** is present, only the elements for which **mask** is **.true.** are
-considered. If more than one element in the array has the minimum value,
-the location returned is that of the first such element in array element
-order. If the array has zero size, or all of the elements of **mask** are
-.false., then the result is an array of zeroes. Similarly, if **dim** is
-supplied and all of the elements of **mask** along a given row are zero, the
-result value for that row is zero.
+  Determines the location of the element in the array with the minimum
+  value, or, if the **dim** argument is supplied, determines the locations
+  of the minimum element along each row of the array in the **dim**
+  direction. If **mask** is present, only the elements for which **mask**
+  is **.true.** are considered. If more than one element in the array
+  has the minimum value, the location returned is that of the first
+  such element in array element order. If the array has zero size,
+  or all of the elements of **mask** are **.false.**, then the result is
+  an array of zeroes. Similarly, if **dim** is supplied and all of the
+  elements of **mask** along a given row are zero, the result value for
+  that row is zero.
 
 ### **Arguments**
 
@@ -11290,16 +11292,17 @@ result = minval(array, dim, mask) result = minval(array, mask)
 
 ### **Description**
 
-Determines the minimum value of the elements in an array value, or, if
-the **dim** argument is supplied, determines the minimum value along each
-row of the array in the **dim** direction.
+  Determines the minimum value of the elements in an array value, or,
+  if the **dim** argument is supplied, determines the minimum value
+  along each row of the array in the **dim** direction.
 
-If **mask** is present, only the
-elements for which **mask** is **.true.** are considered.
+  If **mask** is present, only the elements for which **mask** is
+  **.true.** are considered.
 
-If the array has zero size, or all of the elements of **mask** are
-.false., then the result is **huge(array)** if **array** is numeric, or a
-string of **char(len=255)** characters if **array** is of character type.
+  If the array has zero size, or all of the elements of **mask**
+  are **.false.**, then the result is **huge(array)** if **array** is
+  numeric, or a string of **char(len=255)** characters if **array**
+  is of character type.
 
 ### **Arguments**
 
@@ -12419,15 +12422,16 @@ Returns the number of images.
 
 ### **Returns**
 
-Scalar default-kind _integer_. If **distance** is not present or has value 0,
-the number of images in the current team is returned. For values smaller
-or equal distance to the initial team, it returns the number of images
-index on the ancestor team which has a distance of **distance** from the
-invoking team. If **distance** is larger than the distance to the initial
-team, the number of images of the initial team is returned. If **failed** is
-not present the total number of images is returned; if it has the value
-.true., the number of failed images is returned, otherwise, the number
-of images which do have not the failed status.
+  Scalar default-kind _integer_. If **distance** is not present or has
+  value 0, the number of images in the current team is returned. For
+  values smaller or equal distance to the initial team, it returns the
+  number of images index on the ancestor team which has a distance of
+  **distance** from the invoking team. If **distance** is larger than
+  the distance to the initial team, the number of images of the initial
+  team is returned. If **failed** is not present the total number of
+  images is returned; if it has the value _.true._, the number of failed
+  images is returned, otherwise, the number of images which do have not
+  the failed status.
 
 ### **Examples**
 

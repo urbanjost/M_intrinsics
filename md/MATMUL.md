@@ -28,9 +28,9 @@ Performs a matrix multiplication on numeric or logical arguments.
 
 ### **Returns**
 
-The matrix product of **matrix_a** and **matrix_b**. The type and kind of the
-result follow the usual type and kind promotion rules, as for the \* or
-.and. operators.
+  The matrix product of **matrix_a** and **matrix_b**. The type and
+  kind of the result follow the usual type and kind promotion rules,
+  as for the **\** or **.and.** operators.
 
 ### **Standard**
 

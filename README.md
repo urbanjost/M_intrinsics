@@ -39,6 +39,7 @@ being explored to provide better formatting.
 
 Add
 
+ + RANDOM_INIT
  + COSHAPE
  + FAILED_IMAGES
  + GET_TEAM
