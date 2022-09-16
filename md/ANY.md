@@ -71,10 +71,10 @@ Results:
     T T
 ```
 ### **See Also**
-[**any**(3)](ALL)
+[**any**(3)](#all)
 
 ### **Standard**
 
 Fortran 95 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_

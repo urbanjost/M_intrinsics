@@ -60,4 +60,4 @@ Results:
 
 Fortran 2003 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_

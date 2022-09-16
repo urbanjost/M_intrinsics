@@ -174,11 +174,11 @@ one relative to the input array.
      > [15, 48, should be [15, 48],
 ````
 ### **See Also**
-- [co_reduce(3)](CO_REDUCE)
+- [co_reduce(3)](#co_reduce)
 - [associative:wipipedia](https://en.wikipedia.org/wiki/Associative_property)
 
 ### **Standard**
 
    Fortran 2018
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

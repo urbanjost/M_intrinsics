@@ -43,4 +43,4 @@ is an extension of the dynamic type of **mold**.
 
 ### **Examples**
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_

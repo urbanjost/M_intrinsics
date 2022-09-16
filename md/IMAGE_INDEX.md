@@ -48,7 +48,7 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**this_image**(3)](THIS_IMAGE),
-[**num_images**(3)](NUM_IMAGES)
+[**this_image**(3)](#this_image),
+[**num_images**(3)](#num_images)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_

@@ -30,8 +30,7 @@ Sample program:
 
 ```fortran
 program demo_compiler_version
-use, intrinsic :: iso_fortran_env, only : compiler_version
-use, intrinsic :: iso_fortran_env, only : compiler_options
+use, intrinsic :: iso_fortran_env, only : compiler_version, compiler_options
 implicit none
    print '(4a)', &
       'This file was compiled by ', &
@@ -58,7 +57,7 @@ Fortran 2008
 
 ### **See Also**
 
-[**compiler_options**(3)](COMPILER_OPTIONS),
+[**compiler_options**(3)](#compiler_options),
 **iso_fortran_env**(7)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_

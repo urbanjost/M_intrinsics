@@ -63,11 +63,11 @@ Results:
 ```
 ### **See Also**
 
-[**real**(3)](REAL),
-[**cmplx**(3)](CMPLX)
+[**real**(3)](#real),
+[**cmplx**(3)](#cmplx)
 
 ### **Standard**
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_

@@ -99,9 +99,9 @@ end program demo_all
     compare rows: T F
 ```
 ### **See Also**
-[**any**(3)](ANY)
+[**any**(3)](#any)
 
 ### **Standard**
 Fortran 95 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_

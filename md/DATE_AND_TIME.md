@@ -97,8 +97,8 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**cpu_time**(3)](CPU_TIME),
-[**system_clock**(3)](SYSTEM_CLOCK)
+[**cpu_time**(3)](#cpu_time),
+[**system_clock**(3)](#system_clock)
 
 ### **Resources**
 
@@ -108,4 +108,4 @@ date and time conversion, formatting and computation
 - [datetime](https://github.com/wavebitscientific/datetime-fortran)
 - [datetime-fortran](https://github.com/wavebitscientific/datetime-fortran)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

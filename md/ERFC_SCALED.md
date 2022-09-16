@@ -52,4 +52,4 @@ Results:
 
 Fortran 2008 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_

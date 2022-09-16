@@ -99,6 +99,6 @@ FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
-Inverse function: [**sin**(3)](SIN)
+Inverse function: [**sin**(3)](#sin)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

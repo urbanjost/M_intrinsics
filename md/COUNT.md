@@ -89,4 +89,4 @@ Expected Results:
 Fortran 95 and later, with KIND argument - Fortran 2003
 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_

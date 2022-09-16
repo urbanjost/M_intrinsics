@@ -77,6 +77,6 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**adjustl**(3)](ADJUSTL)
+[**adjustl**(3)](#adjustl)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

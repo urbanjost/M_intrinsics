@@ -117,8 +117,8 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**merge**(3)](MERGE),
-[**pack**(3)](PACK),
-[**unpack**(3)](UNPACK)
+[**merge**(3)](#merge),
+[**pack**(3)](#pack),
+[**unpack**(3)](#unpack)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_

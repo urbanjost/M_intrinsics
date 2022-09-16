@@ -150,14 +150,16 @@ Typical Results:
 
 ### **See Also**
 
-- [**aimag**(3)](AIMAG) - Imaginary part of complex number
-- [**conjg**(3)](CONJG) - Complex conjugate function
-- [**real**(3)](REAL) - Convert to real type
-- [**dble**(3)](DBLE) - Convert to doubleprecision
-- [**int**(3)](INT)   - Convert to an integer
+- [**aimag**(3)](#aimag) - Imaginary part of complex number
+
+- [**cmplx**(3)](#cmplx) - Complex conversion function
+
+- [**conjg**(3)](#conjg) - Complex conjugate function
+
+- [**real**(3)](#real) - Convert to real type
 
 ### **Standard**
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_

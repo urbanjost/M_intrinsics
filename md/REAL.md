@@ -75,9 +75,9 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**dble**(3)](DBLE),
-[**cmplx**(3)](CMPLX),
-[**aimag**(3)](AIMAG),
-[**int**(3)](INT)
+[**dble**(3)](#dble),
+[**cmplx**(3)](#cmplx),
+[**aimag**(3)](#aimag),
+[**int**(3)](#int)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_

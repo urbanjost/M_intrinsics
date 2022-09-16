@@ -87,8 +87,8 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**product**(3)](PRODUCT),
-[**sum**(3)](SUM),
-[**hypot**(3)](HYPOT)
+[**product**(3)](#product),
+[**sum**(3)](#sum),
+[**hypot**(3)](#hypot)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_

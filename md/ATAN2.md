@@ -156,11 +156,11 @@ end program demo_atan2
 ```
 ### **See Also**
 
-- [**atan**(3)](ATAN)
+- [**atan**(3)](#atan)
 - [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
 ### **Standard**
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

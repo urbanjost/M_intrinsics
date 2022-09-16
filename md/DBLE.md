@@ -5,6 +5,7 @@
 **dble**(3) - \[TYPE:NUMERIC\] Double conversion function
 
 ### **Syntax**
+
 ```fortran
 result = dble(a)
 
@@ -12,6 +13,7 @@ result = dble(a)
     type(real(kind=kind(0.0d0)))     :: dble
     type(TYPE(kind=KIND)),intent(in) :: a
 ```
+
 where TYPE may be _integer_, _real_, or _complex_ and KIND any kind
 supported by the TYPE.
 
@@ -56,9 +58,7 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**real**(3)](REAL),
-[**cmplx**(3)](CMPLX),
-[**aimag**(3)](AIMAG),
-[**int**(3)](INT)
+[**float**(3)](#float),
+[**real**(3)](#real)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

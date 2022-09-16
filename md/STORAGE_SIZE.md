@@ -60,6 +60,6 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**c_sizeof**(3)](C_SIZEOF)
+[**c_sizeof**(3)](#c_sizeof)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_

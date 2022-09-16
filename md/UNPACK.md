@@ -154,8 +154,8 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**merge**(3)](MERGE),
-[**pack**(3)](PACK),
-[**spread**(3)](SPREAD)
+[**merge**(3)](#merge),
+[**pack**(3)](#pack),
+[**spread**(3)](#spread)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_

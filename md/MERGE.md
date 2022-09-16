@@ -152,8 +152,10 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**pack**(3)](PACK),
-[**spread**(3)](SPREAD),
-[**unpack**(3)](UNPACK)
+[**pack**(3)](#pack),
+[**unpack**(3)](#unpack),
+[**pack**(3)](#pack),
+[**spread**(3)](#spread),
+[**unpack**(3)](#unpack)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

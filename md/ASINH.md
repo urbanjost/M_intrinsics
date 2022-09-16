@@ -60,6 +60,6 @@ Fortran 2008 and later
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
-Inverse function: [**sinh**(3)](SINH)
+Inverse function: [**sinh**(3)](#sinh)
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions_
