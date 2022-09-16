@@ -68,4 +68,4 @@ Fortran 95 and later
 
 [**adjustr**(3)](ADJUSTR)
 
-__fortran-lang intrinsic descriptions (license: MIT) @urbanjost__
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

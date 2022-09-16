@@ -160,4 +160,4 @@ Typical Results:
 
 FORTRAN 77 and later
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

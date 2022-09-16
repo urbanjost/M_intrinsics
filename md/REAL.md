@@ -80,4 +80,4 @@ FORTRAN 77 and later
 [**aimag**(3)](AIMAG),
 [**int**(3)](INT)
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

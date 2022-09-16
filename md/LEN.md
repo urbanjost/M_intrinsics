@@ -55,7 +55,7 @@ program demo_len
 implicit none
 
 ! fixed length
-character(len=40) :: string  
+character(len=40) :: string
 ! allocatable length
 character(len=:),allocatable :: astring
 character(len=:),allocatable :: many_strings(:)
@@ -139,6 +139,6 @@ of arguments, and search for certain arguments:
   [**verify**(3)](VERIFY)
 
 - **Nonelemental:**
-  [**len_trim**(3)](LEN_TRIM), [**len**(3)](LEN), [**repeat**(3)](REPEAT), [**trim**(3)](TRIM) 
+  [**len_trim**(3)](LEN_TRIM), [**len**(3)](LEN), [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

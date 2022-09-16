@@ -139,9 +139,9 @@ Sample program:
 
 Results:
 
-    > radians=   1.00000000     degrees=   57.2957802    
-    > elemental  0.321750551      0.463647604    
-    > elemental  0.197395563      0.380506366    
+    > radians=   1.00000000     degrees=   57.2957802
+    > elemental  0.321750551      0.463647604
+    > elemental  0.197395563      0.380506366
     >X=  0.00 Y=  1.00 ANGLE= 1.57079637  DEGREES= 90.00  DISTANCE=1.00000000
     >X=  1.00 Y=  1.00 ANGLE= 0.785398185 DEGREES= 45.00  DISTANCE=1.41421354
     >X=  1.00 Y=  0.00 ANGLE= 0.00000000  DEGREES= 0.000  DISTANCE=1.00000000

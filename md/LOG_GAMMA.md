@@ -49,4 +49,4 @@ Fortran 2008 and later
 
 Gamma function: [**gamma**(3)](GAMMA)
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

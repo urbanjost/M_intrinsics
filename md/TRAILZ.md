@@ -114,4 +114,4 @@ Fortran 2008 and later
 [**poppar**(3)](POPPAR),
 [**leadz**(3)](LEADZ)
 
-__fortran-lang intrinsic descriptions (license: MIT) @urbanjost__
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

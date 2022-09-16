@@ -71,4 +71,4 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

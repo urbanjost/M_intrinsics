@@ -48,4 +48,4 @@ Results:
 
 TS 29113
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

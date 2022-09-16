@@ -56,7 +56,7 @@ TS 18508 or later
 [**atomic_fetch_add**(3)](ATOMIC_FETCH),
 [**atomic_and**(3)](ATOMIC_AND),
 [**atomic_or**(3)](ATOMIC_OR),
-[**atomic_xor**(3)](ATOMIC_XOR)
+[**atomic_xor**(3)](ATOMIC_XOR),
 **iso_fortran_env**(3),
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

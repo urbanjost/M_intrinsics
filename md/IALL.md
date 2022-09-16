@@ -76,4 +76,4 @@ Fortran 2008 and later
 [**iparity**(3)](IPARITY),
 [**iand**(3)](IAND)
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

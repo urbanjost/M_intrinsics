@@ -54,4 +54,4 @@ end program demo_event_query
 
 TS 18508 or later
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

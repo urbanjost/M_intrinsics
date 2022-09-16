@@ -87,4 +87,4 @@ Fortran 95 and later
 
 [**null**(3)](NULL)
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

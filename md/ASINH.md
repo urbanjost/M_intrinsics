@@ -62,4 +62,4 @@ Fortran 2008 and later
 
 Inverse function: [**sinh**(3)](SINH)
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

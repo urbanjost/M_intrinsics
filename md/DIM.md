@@ -68,4 +68,4 @@ Results:
 
 FORTRAN 77 and later
 
-__fortran-lang intrinsic descriptions (license: MIT) @urbanjost__
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

@@ -83,4 +83,4 @@ FORTRAN 77 and later
 [**ceiling**(3)](CEILING),
 [**floor**(3)](FLOOR)
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

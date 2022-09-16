@@ -103,4 +103,4 @@ be terminated alongside.
 
 Fortran 2008 and later
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

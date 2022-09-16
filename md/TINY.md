@@ -72,4 +72,4 @@ Fortran 95 and later
 [**set_exponent**(3)](SET_EXPONENT),
 [**spacing**(3)](SPACING)
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

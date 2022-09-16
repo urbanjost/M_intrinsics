@@ -156,4 +156,4 @@ Fortran 95 and later
 [**spread**(3)](SPREAD),
 [**unpack**(3)](UNPACK)
 
-__fortran-lang intrinsic descriptions (license: MIT) @urbanjost__
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

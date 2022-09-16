@@ -49,4 +49,4 @@ end program demo_is_iostat_eor
 
 Fortran 2003 and later
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

@@ -128,4 +128,4 @@ FORTRAN 77 and later
 [**ceiling**(3)](CEILING),
 [**floor**(3)](FLOOR)
 
-__fortran-lang intrinsic descriptions (license: MIT) @urbanjost__
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

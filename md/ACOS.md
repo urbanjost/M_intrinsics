@@ -74,4 +74,4 @@ FORTRAN 77 and later; for a _complex_ argument - Fortran 2008 and later
 
 Inverse function: [**cos**(3](COS))
 
-__fortran-lang intrinsic descriptions (license: MIT) @urbanjost__
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

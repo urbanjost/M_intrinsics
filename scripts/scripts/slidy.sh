@@ -38,13 +38,13 @@ do
 done >../docs/intrinsics.md
 
 echo "creating docs/intrinsics_slidy.html" 1>&2
-pandoc -t slidy  --metadata title="Fortran Intrinsics" -s "../docs/intrinsics.md" \
+pandoc -t slidy  --lua-filter ../scripts/deEmph.lua --metadata title="Fortran Intrinsics" -s "../docs/intrinsics.md" \
    --standalone --slide-level=2 -o ../docs/intrinsics_slidy.html
 #   --base-header-level=5 \
 #   --slide-level=1 
 #   --toc
 echo "creating docs/intrinsics_slidy_by_section.html" 1>&2
-pandoc -t slidy  --metadata title="Fortran Intrinsics" -s "../docs/intrinsics.md" \
+pandoc -t slidy  --lua-filter ../scripts/deEmph.lua --metadata title="Fortran Intrinsics" -s "../docs/intrinsics.md" \
    --standalone  -o ../docs/intrinsics_slidy_by_section.html
 }
 MAKE_SLIDY

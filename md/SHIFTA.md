@@ -40,4 +40,4 @@ Fortran 2008 and later
 [**shiftl**(3)](SHIFTL),
 [**shiftr**(3)](SHIFTR)
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

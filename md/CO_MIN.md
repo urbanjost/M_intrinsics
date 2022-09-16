@@ -65,4 +65,4 @@ TS 18508 or later
 [**co_reduce**(3)](CO_REDUCE),
 [**co_broadcast**(3)](CO_BROADCAST)
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

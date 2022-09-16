@@ -121,7 +121,7 @@ end program demo_abs
 
    FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## achar
 
@@ -295,7 +295,7 @@ FORTRAN 77 and later, with KIND argument Fortran 2003 and later
 - [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code)
 - [M_attr module](https://github.com/urbanjost/M_attr) for controlling ANSI-compatible terminals
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## acosh
 
@@ -363,7 +363,7 @@ Fortran 2008 and later
 
 Inverse function: [**cosh**(3)](COSH)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## acos
 
@@ -441,7 +441,7 @@ FORTRAN 77 and later; for a _complex_ argument - Fortran 2008 and later
 
 Inverse function: [**cos**(3](COS))
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## adjustl
 
@@ -513,7 +513,7 @@ Fortran 95 and later
 
 [**adjustr**(3)](ADJUSTR)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## adjustr
 
@@ -596,7 +596,7 @@ Fortran 95 and later
 
 [**adjustl**(3)](ADJUSTL)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## aimag
 
@@ -1315,7 +1315,7 @@ FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 
 Inverse function: [**sin**(3)](SIN)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## associated
 
@@ -1573,7 +1573,7 @@ end program demo_atan2
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## atanh
 
@@ -1721,7 +1721,7 @@ arguments Fortran 2008 or later
 
 [**atan2**(3)](ATAN2), [**tan**(3)](TAN)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## atomic_add
 
@@ -1781,7 +1781,7 @@ TS 18508 or later
 [**atomic_fetch_add**(3)](ATOMIC_FETCH),
 [**atomic_and**(3)](ATOMIC_AND),
 [**atomic_or**(3)](ATOMIC_OR),
-[**atomic_xor**(3)](ATOMIC_XOR)
+[**atomic_xor**(3)](ATOMIC_XOR),
 **iso_fortran_env**(3),
 
 _fortran-lang intrinsic descriptions_
@@ -3012,7 +3012,7 @@ Typical Results:
 
 Fortran 95 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ble
 
@@ -3227,7 +3227,7 @@ Fortran 95 and later
 [**not**(3)](NOT),
 [**mvbits**(3)](MVBITS)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## c_associated
 
@@ -4201,7 +4201,7 @@ Fortran 2003 and later
 [**get_command**(3)](GET_COMMAND),
 [**get_command_argument**(3)](GET_COMMAND_ARGUMENT)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## compiler_options
 
@@ -4437,7 +4437,7 @@ Results:
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## co_reduce
 
@@ -4982,7 +4982,7 @@ Fortran 95 and later
 [**system_clock**(3)](SYSTEM_CLOCK),
 [**date_and_time**(3)](DATE_AND_TIME)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## cshift
 
@@ -5234,7 +5234,7 @@ date and time conversion, formatting and computation
 - [datetime](https://github.com/wavebitscientific/datetime-fortran)
 - [datetime-fortran](https://github.com/wavebitscientific/datetime-fortran)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## dble
 
@@ -5299,7 +5299,7 @@ FORTRAN 77 and later
 [**aimag**(3)](AIMAG),
 [**int**(3)](INT)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## digits
 
@@ -5380,7 +5380,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## dim
 
@@ -5452,7 +5452,7 @@ Results:
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## dot_product
 
@@ -5924,7 +5924,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## erfc
 
@@ -6003,7 +6003,7 @@ Fortran 2008 and later
 
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## erfc_scaled
 
@@ -6386,7 +6386,7 @@ FORTRAN 77 and later
 
 - Wikipedia:[Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## exponent
 
@@ -6796,7 +6796,7 @@ Fortran 95 and later
 [**int**(3)](INT),
 [**selected_int_kind**(3)](SELECTED_INT_KIND)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## fraction
 
@@ -7135,7 +7135,7 @@ Fortran 2003 and later
 [**get_command**(3)](GET_COMMAND),
 [**command_argument_count**(3)](COMMAND_ARGUMENT_COUNT)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## get_command
 
@@ -7227,7 +7227,7 @@ Fortran 2003 and later
 [**get_command_argument**(3)](GET_COMMAND_ARGUMENT),
 [**command_argument_count**(3)](COMMAND_ARGUMENT_COUNT)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## get_environment_variable
 
@@ -7357,7 +7357,7 @@ Typical Results:
 
 Fortran 2003 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## huge
 
@@ -7470,7 +7470,7 @@ Fortran 95 and later
 [**spacing**(3)](SPACING),
 [**tiny**(3)](TINY)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## hypot
 
@@ -7571,7 +7571,7 @@ Results:
 
 Fortran 2008 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## iachar
 
@@ -8496,7 +8496,7 @@ FORTRAN 77 and later
 [**ceiling**(3)](CEILING),
 [**floor**(3)](FLOOR)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ior
 
@@ -8920,7 +8920,7 @@ end program demo_iostat
 
 Fortran 2003 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## is_iostat_eor
 
@@ -9297,19 +9297,19 @@ _fortran-lang intrinsic descriptions_
 
     integer(kind=KIND) function len(string,kind) result(value)
     character(len=*),intent(in) :: string
-    integer,optional,intent(in) :: KIND
+    integer,optional,intent(in) :: kind
     integer(kind=KIND) :: value
 ```
 
-where the returned value is the same kind as the **KIND**, or of
-the default kind if **KIND** is not specified.
+where the returned value is the same integer kind as the **kind**
+argument, or of the default integer kind if **kind** is not specified.
 
 ### **Description**
 
 **len(3)** Returns the length of a _character_ string.
 
-If **string** is an array, the length of an element of **string**
-is returned.
+If **string** is an array, the length of an element of **string** is
+returned, as all elements of an array are the same length.
 
 Note that **string** need not be defined when this intrinsic is invoked,
 as only the length (not the content) of **string** is needed.
@@ -9317,16 +9317,16 @@ as only the length (not the content) of **string** is needed.
 ### **Arguments**
 
 - **string**
-  : Shall be a scalar or array of type _character_.
+  : A scalar or array of type _character_ to return the length of
 
 - **kind**
-  : An _integer_ initialization expression indicating the kind
+  : A constant _integer_ initialization expression indicating the _kind_
   parameter of the result.
 
 ### **Returns**
 
-The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
-the return value is of default integer kind.
+The return value is of type _integer_ and of kind **kind**. If **kind**
+is absent, the return value is of default integer kind.
 
 ### **Standard**
 
@@ -9339,64 +9339,76 @@ Sample program
 ```fortran
 program demo_len
 implicit none
+
+! fixed length
 character(len=40) :: string
+! allocatable length
 character(len=:),allocatable :: astring
 character(len=:),allocatable :: many_strings(:)
 integer :: ii
-
+  ! BASIC USAGE
    ii=len(string)
-  write(*,*)'length =',ii
+   write(*,*)'length =',ii
 
-  ! the string length will be constant for the fixed-length variable
-  string=' How long is this string? '
-  write(*,'(a)')' ',string,repeat('=',len(string))
+  ! ALLOCATABLE VARIABLE LENGTH CAN CHANGE
+  ! the allocatable string length will be the length of RHS expression
+   astring=' How long is this allocatable string? '
+   write(*,*)astring, ' LEN=', len(astring)
+  ! print underline
+   write(*,*) repeat('=',len(astring))
+  ! assign new value to astring and length changes
+   astring='New allocatable string'
+   write(*,*)astring, ' LEN=', len(astring)
+  ! print underline
+   write(*,*) repeat('=',len(astring))
 
-  ! the allocatable string length will be the length of LHS expression
-  astring=' How long is this string? '
-  write(*,'(a)')' ',astring,repeat('=',len(astring))
+  ! THE STRING LENGTH WILL BE CONSTANT FOR A FIXED-LENGTH VARIABLE
+   string=' How long is this fixed string? '
+   write(*,*)string,' LEN=',len(string)
+   string='New fixed string '
+   write(*,*)string,' LEN=',len(string)
 
-   ! you can also query the length (and other attributes) of a string
-   ! using a "type parameter inquiry:" (available since fortran 2018)
-   write(*,*)'length from type parameter inquiry=',string%len
-
-   ! a scalar is returned for an array, as all values in a Fortran
-   ! character array must be of the same length:
-
-   ! define an allocatable array with a constructor ...
-     many_strings = [ character(len=7) :: 'Takata', 'Tanaka', 'Hayashi' ]
-   write(*,*)
+  ! ALL STRINGS IN AN ARRAY ARE THE SAME LENGTH
+  ! a scalar is returned for an array, as all values in a Fortran
+  ! character array must be of the same length.
+   many_strings = [ character(len=7) :: 'Tom', 'Dick', 'Harry' ]
    write(*,*)'length of ALL elements of array=',len(many_strings)
 
-   call proc_star(' how long? ')
+  ! NAME%LEN IS ESSENTIALLY THE SAME AS LEN(NAME)
+  ! you can also query the length (and other attributes) of a string
+  ! using a "type parameter inquiry" (available since fortran 2018)
+   write(*,*)'length from type parameter inquiry=',string%len
+  ! %len is equivalent to a call to LEN() except the kind of the integer
+  ! value returned is always of default kind.
+
+  ! LOOK AT HOW A PASSED STRING CAN BE USED ...
+   call passed(' how long? ')
 
 contains
 
-   subroutine proc_star(str)
+   subroutine passed(str)
    character(len=*),intent(in)  :: str
-   character(len=:),allocatable :: str2
    ! the length of str can be used in the definitions of variables
-   character(len=len(str))      :: str3
-
-      if(allocated(str2))deallocate(str2)
-      ! syntax for allocating a scalar string
-      allocate(character(len=len(str)) :: str2)
-
-      write(*,*)len(str),len(str2),len(str3)
-      ! these are other allowable ways to define str2
-      str2=str
-      str2=repeat(' ',len(str))
-
-   end subroutine proc_star
+   character(len=LEN(str))      :: str3
+      ! you can query the length of the passed variable
+      write(*,*)'length of passed value is ', LEN(str)
+   end subroutine passed
 
 end program demo_len
 ```
-
-Results:
-
+  Results:
 ```text
-
+    length =          40
+     How long is this allocatable string?  LEN=          38
+    ======================================
+    New allocatable string LEN=          22
+    ======================
+     How long is this fixed string?          LEN=          40
+    New fixed string                         LEN=          40
+    length of ALL elements of array=           7
+    length from type parameter inquiry=          40
+    length of passed value is           11
 ```
-
 ### **See Also**
 
 len_trim(3), adjustr(3), trim(3), and adjustl(3) are related routines that
@@ -9413,12 +9425,9 @@ of arguments, and search for certain arguments:
   [**verify**(3)](VERIFY)
 
 - **Nonelemental:**
-  [**len_trim**(3)](LEN_TRIM),
-  [**len**(3)](LEN),
-  [**repeat**(3)](REPEAT),
-  [**trim**(3)](TRIM)
+  [**len_trim**(3)](LEN_TRIM), [**len**(3)](LEN), [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## len_trim
 
@@ -9513,7 +9522,7 @@ of arguments, and search for certain arguments:
   [**len**(3)](LEN),
   [**trim**(3)](TRIM)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## lge
 
@@ -10173,7 +10182,7 @@ Fortran 2008 and later
 
 [**maskr**(3)](MASKR)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## maskr
 
@@ -10284,7 +10293,7 @@ Fortran 2008 and later
 
 [**maskl**(3)](MASKL)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## matmul
 
@@ -10842,7 +10851,7 @@ Results:
 
 Fortran 2008 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## merge
 
@@ -11002,7 +11011,7 @@ Fortran 95 and later
 [**spread**(3)](SPREAD),
 [**unpack**(3)](UNPACK)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## minexponent
 
@@ -11381,7 +11390,7 @@ Fortran 95 and later
 [**min**(3)](MIN),
 [**minloc**(3)](MINLOC)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## mod
 
@@ -11765,7 +11774,7 @@ Fortran 95 and later
 [**ior**(3)](IOR),
 [**not**(3)](NOT)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## nearest
 
@@ -11934,7 +11943,7 @@ Results:
 
 Fortran 2003 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## nint
 
@@ -12062,7 +12071,7 @@ FORTRAN 77 and later, with KIND argument - Fortran 90 and later
 [**ceiling**(3)](CEILING),
 [**floor**(3)](FLOOR)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## norm2
 
@@ -12221,7 +12230,7 @@ Fortran 95 and later
 
 [**ibclr**(3)](IBCLR)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## null
 
@@ -12536,7 +12545,7 @@ Results:
 
    FORTRAN 2018 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## pack
 
@@ -12651,7 +12660,7 @@ Fortran 95 and later
 [**spread**(3)](SPREAD),
 [**unpack**(3)](UNPACK)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## parity
 
@@ -13230,7 +13239,7 @@ Fortran 95 and later
 [**sum**(3)](SUM), note that an element by element multiplication is done
 directly using the star character.
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## radix
 
@@ -13867,7 +13876,7 @@ one relative to the input array.
 
    Fortran 2018
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## repeat
 
@@ -14868,7 +14877,7 @@ Results:
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT)_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## sinh
 
@@ -15102,7 +15111,7 @@ FORTRAN 77 and later
 [**cos**(3)](COS),
 [**tan**(3)](TAN)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## size
 
@@ -15586,7 +15595,7 @@ Results:
 
 FORTRAN 77 and later
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## storage_size
 
@@ -16258,7 +16267,7 @@ Fortran 2008 and later
 [**poppar**(3)](POPPAR),
 [**leadz**(3)](LEADZ)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## transfer
 
@@ -17096,4 +17105,4 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](REPEAT),
   [**trim**(3)](TRIM)
 
-_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

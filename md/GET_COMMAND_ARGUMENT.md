@@ -130,4 +130,4 @@ Fortran 2003 and later
 [**get_command**(3)](GET_COMMAND),
 [**command_argument_count**(3)](COMMAND_ARGUMENT_COUNT)
 
-__fortran-lang intrinsic descriptions (license: MIT) @urbanjost__
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

@@ -98,4 +98,4 @@ Fortran 95 and later; with RADIX - Fortran 2008 and later
 [**range**(3)](RANGE),
 [**radix**(3)](RADIX)
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

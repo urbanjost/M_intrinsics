@@ -158,4 +158,4 @@ Fortran 95 and later
 [**pack**(3)](PACK),
 [**spread**(3)](SPREAD)
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

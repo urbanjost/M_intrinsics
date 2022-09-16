@@ -44,4 +44,4 @@ Fortran 2008 and later
 [**co_ubound**(3)](CO_UBOUND),
 [**lbound**(3)](LBOUND)
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

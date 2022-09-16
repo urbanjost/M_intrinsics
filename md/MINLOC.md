@@ -92,4 +92,4 @@ Fortran 95 and later
 [**min**(3)](MIN),
 [**minval**(3)](MINVAL)
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_

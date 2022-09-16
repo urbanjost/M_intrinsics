@@ -72,4 +72,4 @@ Fortran 2008 and later
 [**ieor**(3)](IEOR),
 [**parity**(3)](PARITY)
 
-__fortran-lang intrinsic descriptions__
+_fortran-lang intrinsic descriptions_
