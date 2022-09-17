@@ -1,5 +1,6 @@
 #!/bin/bash
 # https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html  Sphinx uses reST.
+(
 cd md
 MD=markdown_mmd
 MD=commonmark
@@ -13,6 +14,9 @@ do
    tail -n +3 $NAME|pandoc --lua-filter ../scripts/deEmph.lua -f $MD -t plain -i - -o ../txt/$SHORTNAME.3fortran.man
    tail -n +3 $NAME|pandoc -f $MD -t html -i - -o ../docs/$SHORTNAME.3fortran.html
 done
+)
+cd txt
+sed -i -e 's/^\./\\./' *.man
 exit
 ####################################################################################################################################
 PANDOC(1)                                            General Commands Manual                                           PANDOC(1)

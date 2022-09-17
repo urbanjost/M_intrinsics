@@ -715,8 +715,8 @@ result = aint(x, KIND)
 ### **Returns**
 
 The return value is of type _real_ with the kind type parameter of
-the argument if the optional **kind** is absent; otherwise, the kind
-type parameter will be given by **kind**. If the magnitude of **x**
+the argument if the optional _kind_ is absent; otherwise, the kind
+type parameter will be given by _kind_. If the magnitude of **x**
 is less than one, **aint(x)** returns zero. If the magnitude is equal
 to or greater than one then it returns the largest whole number that
 does not exceed its magnitude. The sign is the same as the sign of **x**.
@@ -1079,7 +1079,7 @@ result = any(mask, dim)
 ### **Description**
 
 **any(mask, dim)** determines if any of the values in the logical
-array **mask** along dimension **dim** are **.true.**.
+array **mask** along dimension **dim** are _.true._.
 
 ### **Arguments**
 
@@ -1100,7 +1100,7 @@ minus 1. The shape is determined from the shape of **mask** where the **dim**
 dimension is elided.
 
 1.  **any(mask)** is true if any element of **mask** is true; otherwise, it
-    is **.false.**. It also is false if **mask** has zero size.
+    is _.false._. It also is false if **mask** has zero size.
 
 2.  If the rank of **mask** is one, then **any(mask, dim)** is equivalent to
     **any(mask)**. If the rank is greater than one, then **any(mask,
@@ -1371,7 +1371,7 @@ There are several cases:
     are not zero-sized storage sequences and occupy the same storage
     units.
 
-    The result is **.false.**, if either **target** or **pointer** is disassociated.
+    The result is _.false._, if either **target** or **pointer** is disassociated.
 
 5.  If **target** is present and an array pointer, the result is true if
     target associated with **pointer** and the target associated with **target**
@@ -3102,7 +3102,7 @@ Fortran 2008 and later
 [**ble**(3)](#ble),
 [**blt**(3)](#blt)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions \@urbanjost_
 
 ## bit_size
 
@@ -3251,7 +3251,7 @@ Fortran 2008 and later
 [**bgt**(3)](#bgt),
 [**blt**(3)](#blt)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions \@urbanjost_
 
 ## blt
 
@@ -3326,7 +3326,7 @@ Fortran 2008 and later
 [**bgt**(3)](#bgt),
 [**ble**(3)](#ble)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions \@urbanjost_
 
 ## btest
 
@@ -3348,7 +3348,7 @@ where **KIND** is any _integer_ kind supported by the programming environment.
 
 ### **Description**
 
-**btest(i,pos)** returns logical **.true.** if the bit at **pos** in **i** is set.
+**btest(i,pos)** returns logical _.true._ if the bit at **pos** in **i** is set.
 
 ### **Arguments**
 
@@ -3363,9 +3363,9 @@ where **KIND** is any _integer_ kind supported by the programming environment.
 
 ### **Returns**
 
-The result is a _logical_ that has the value **.true.** if bit
+The result is a _logical_ that has the value _.true._ if bit
 position **pos** of **i** has the value **1** and the value
-**.false.** if bit **pos** of **i** has the value **0**.
+_.false._ if bit **pos** of **i** has the value **0**.
 
 ### **Examples**
 
@@ -3493,7 +3493,7 @@ c_ptr_2.
 
 ### **Returns**
 
-The return value is of type _logical_; it is .false. if either c_ptr_1
+The return value is of type _logical_; it is _.false_. if either c_ptr_1
 is a C NULL pointer or if c_ptr1 and c_ptr_2 point to different
 addresses.
 
@@ -5064,7 +5064,7 @@ result = count(mask, dim, kind)
 
 ### **Description**
 
-Counts the number of **.true.** elements in a logical **mask**, or, if the **dim**
+Counts the number of _.true._ elements in a logical **mask**, or, if the **dim**
 argument is supplied, counts the number of elements along each row of
 the array in the **dim** direction. If the array has zero size, or all of
 the elements of **mask** are false, then the result is **0**.
@@ -5349,7 +5349,7 @@ Results:
     T
 ```
 
-The example will print .true. unless you are using a platform where
+The example will print _.true._ unless you are using a platform where
 default _real_ variables are unusually padded.
 
 ### **Standard**
@@ -5728,7 +5728,7 @@ result is **any(vector_a .and. vector_b)**.
 
 If the arguments are numeric, the return value is a scalar of numeric
 type, _integer_, _real_, or _complex_. If the arguments are _logical_, the
-return value is .true. or .false..
+return value is _.true._ or _.false._.
 
 ### **Examples**
 
@@ -5835,17 +5835,17 @@ real(kind=dp) :: dd
    print *, 52*23/100.0
    print *, 52*23/100.0d0
 
-   !! A common extension is to take doubleprecision arguments
-   !! and return higher precision when available
-   bigger: block
-   doubleprecision :: xx = 5.2_dp
-   doubleprecision :: yy = 2.3_dp
-   print *, 'dprop==>',dprod(xx,yy)
-   print *, 'multipy==>',xx*yy
-   print *, 'using dble==>',dble(xx)*dble(yy)
-   print *, 'kind of arguments is',kind(xx)
-   print *, 'kind of result is',kind(dprod(xx,yy))
-   endblock bigger
+!> !! A common extension is to take doubleprecision arguments
+!> !! and return higher precision when available
+!> bigger: block
+!> doubleprecision :: xx = 5.2_dp
+!> doubleprecision :: yy = 2.3_dp
+!> print *, 'dprop==>',dprod(xx,yy)
+!> print *, 'multipy==>',xx*yy
+!> print *, 'using dble==>',dble(xx)*dble(yy)
+!> print *, 'kind of arguments is',kind(xx)
+!> print *, 'kind of result is',kind(dprod(xx,yy))
+!> endblock bigger
 
 end program demo_dprod
 ```
@@ -6457,7 +6457,7 @@ TS 18508 or later
 
 The **command** argument is passed to the shell and executed. (The shell is
 generally **sh**(1) on Unix systems, and cmd.exe on Windows.) If **wait** is
-present and has the value **.false.**, the execution of the command is
+present and has the value _.false._, the execution of the command is
 asynchronous if the system supports it; otherwise, the command is
 executed synchronously.
 
@@ -6728,7 +6728,7 @@ result=extends_type_of(a, mold)
 
 ### **Description**
 
-**extends_type_of**(3) is **.true.** if and only if the dynamic type of **a**
+**extends_type_of**(3) is _.true._ if and only if the dynamic type of **a**
 is an extension of the dynamic type of **mold**.
 
 ### **Options**
@@ -7541,7 +7541,7 @@ being updated concurrently.
   Shall be a scalar of type _integer_ and of default kind.
 
 - **trim_name**
-  : If **trim_name** is present with the value **.false.**, the trailing
+  : If **trim_name** is present with the value _.false._, the trailing
   blanks in **name** are significant; otherwise they are not part of the
   environment variable name.
 
@@ -7942,7 +7942,7 @@ of arguments, and search for certain arguments:
 ### **Description**
 
 Reduces with bitwise _and_ the elements of **array** along dimension **dim** if
-the corresponding element in **mask** is **.true.**.
+the corresponding element in **mask** is _.true._.
 
 ### **Arguments**
 
@@ -8089,7 +8089,7 @@ Fortran 95 and later
 ### **Description**
 
 Reduces with bitwise or (inclusive or) the elements of **array** along
-dimension **dim** if the corresponding element in **mask** is **.true.**.
+dimension **dim** if the corresponding element in **mask** is _.true._.
 
 ### **Arguments**
 
@@ -8852,7 +8852,7 @@ Fortran 95 and later
 ### **Description**
 
 Reduces with bitwise _xor_ (exclusive _or_) the elements of **array** along
-dimension **dim** if the corresponding element in **mask** is **.true.**.
+dimension **dim** if the corresponding element in **mask** is _.true._.
 
 ### **Arguments**
 
@@ -9151,9 +9151,9 @@ The function is equivalent to comparing the variable with the
 
 ### **Returns**
 
-Returns a _logical_ of the default kind, **.true.** if **i** has the value
+Returns a _logical_ of the default kind, _.true._ if **i** has the value
 which indicates an end of file condition for **iostat=** specifiers, and is
-**.false.** otherwise.
+_.false._ otherwise.
 
 ### **Examples**
 
@@ -9555,16 +9555,12 @@ Fortran 2008 and later
 **len**(3) - \[CHARACTER\] Length of a character entity
 
 ### **Syntax**
-
 ```fortran
-   l = len(string, kind)
+    integer(kind=KIND) function len(string,kind)
 
-    integer(kind=KIND) function len(string,kind) result(value)
-    character(len=*),intent(in) :: string
-    integer,optional,intent(in) :: kind
-    integer(kind=KIND) :: value
+     character(len=*),intent(in) :: string
+     integer,optional,intent(in) :: kind
 ```
-
 where the returned value is the same integer kind as the **kind**
 argument, or of the default integer kind if **kind** is not specified.
 
@@ -9591,10 +9587,6 @@ as only the length (not the content) of **string** is needed.
 
 The return value is of type _integer_ and of kind **kind**. If **kind**
 is absent, the return value is of default integer kind.
-
-### **Standard**
-
-FORTRAN 77 and later; with **kind** argument - Fortran 2003 and later
 
 ### **Examples**
 
@@ -9653,7 +9645,6 @@ contains
    subroutine passed(str)
    character(len=*),intent(in)  :: str
    ! the length of str can be used in the definitions of variables
-   character(len=LEN(str))      :: str3
       ! you can query the length of the passed variable
       write(*,*)'length of passed value is ', LEN(str)
    end subroutine passed
@@ -9673,6 +9664,10 @@ end program demo_len
     length from type parameter inquiry=          40
     length of passed value is           11
 ```
+### **Standard**
+
+FORTRAN 77 and later; with **kind** argument - Fortran 2003 and later
+
 ### **See Also**
 
 len_trim(3), adjustr(3), trim(3), and adjustl(3) are related routines that
@@ -9792,27 +9787,29 @@ of arguments, and search for certain arguments:
 
 ### **Name**
 
-**lge**(3) - \[CHARACTER:COMPARE\] Lexical greater than or equal
+**lge**(3) - \[CHARACTER:COMPARE\] ASCII Lexical greater than or equal
 
 ### **Syntax**
 
 ```fortran
-result = lge(string_a, string_b)
-```
+   elemental logical function lge(string_a, string_b)
 
+    character(len=*),intent(in) :: string_a
+    character(len=*),intent(in) :: string_b
+```
 ### **Description**
 
-Determines whether one string is lexically greater than or equal to
-another string, where the two strings are interpreted as containing
-ASCII character codes. If the String **a** and String **b** are not the same
-length, the shorter is compared as if spaces were appended to it to form
-a value that has the same length as the longer.
+  Determines whether one string is lexically greater than or equal to
+  another string, where the two strings are interpreted as containing
+  ASCII character codes. If the String **a** and String **b** are not
+  the same length, the shorter is compared as if spaces were appended
+  to it to form a value that has the same length as the longer.
 
-In general, the lexical comparison intrinsics **lge**(3), **lgt**(3),
-**lle**(3), and **llt**(3) differ from the corresponding intrinsic
-operators _.ge., .gt., .le., and .lt._, in that the latter use the
-processor's character ordering (which is not ASCII on some targets),
-whereas the former always use the ASCII ordering.
+  The lexical comparison intrinsics **lge**(3), **lgt**(3), **lle**(3),
+  and **llt**(3) differ from the corresponding intrinsic operators
+  _.ge., .gt., .le., and .lt._, in that the latter use the processor's
+  character ordering (which is not ASCII on some targets), whereas the
+  former always use the ASCII ordering.
 
 ### **Arguments**
 
@@ -9824,9 +9821,44 @@ whereas the former always use the ASCII ordering.
 
 ### **Returns**
 
-Returns .true. if string_a \>= string_b, and .false. otherwise, based
-on the ASCII ordering.
+Returns _.true._ if string_a \>= string_b, and _.false._ otherwise,
+based on the ASCII ordering.
 
+If both input arguments are null strings, _.true._ is always returned.
+
+### **Examples**
+
+Sample program:
+
+```fortran
+program demo_lge
+implicit none
+integer :: i
+   write(*,'(*(a))')(char(i),i=32,126)  ! ASCII order
+   write(*,*) lge('abc','ABC')          ! [T] lowercase is > uppercase
+   write(*,*) lge('abc','abc  ')        ! [T] trailing spaces
+   ! If both strings are of zero length the result is true
+   write(*,*) lge('','')                ! [T]
+   write(*,*) lge('','a')               ! [F] the null string is padded
+   write(*,*) lge('a','')               ! [T]
+   write(*,*) lge('abc',['abc','123'])  ! [T T]  scalar and array
+   write(*,*) lge(['cba', '123'],'abc') ! [T F]
+   write(*,*) lge(['abc','123'],['cba','123']) ! [F T]  both arrays
+end program demo_lge
+```
+  Results:
+```text
+    !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    [\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+    T
+    T
+    T
+    F
+    T
+    T T
+    T F
+    F T
+```
 ### **Standard**
 
 FORTRAN 77 and later
@@ -9858,27 +9890,28 @@ of arguments, and search for certain arguments:
 
 ### **Name**
 
-**lgt**(3) - \[CHARACTER:COMPARE\] Lexical greater than
+**lgt**(3) - \[CHARACTER:COMPARE\] ASCII Lexical greater than
 
 ### **Syntax**
-
 ```fortran
-result = lgt(string_a, string_b)
-```
+   elemental logical function lgt(string_a, string_b)
 
+    character(len=*),intent(in) :: string_a
+    character(len=*),intent(in) :: string_b
+```
 ### **Description**
 
-Determines whether one string is lexically greater than another string,
-where the two strings are interpreted as containing ASCII character
-codes. If the String **a** and String **b** are not the same length, the shorter
-is compared as if spaces were appended to it to form a value that has
-the same length as the longer.
+  Determines whether one string is lexically greater than another string,
+  where the two strings are interpreted as containing ASCII character
+  codes. If the String **a** and String **b** are not the same length,
+  the shorter is compared as if spaces were appended to it to form a
+  value that has the same length as the longer.
 
-In general, the lexical comparison intrinsics LGE, LGT, LLE, and LLT
-differ from the corresponding intrinsic operators _.ge., .gt., .le.,
-and .lt._, in that the latter use the processor's character ordering
-(which is not ASCII on some targets), whereas the former always use the
-ASCII ordering.
+  In general, the lexical comparison intrinsics **lge**, **lgt**, **lle**,
+  and **llt** differ from the corresponding intrinsic operators _.ge.,
+  .gt., .le., and .lt._, in that the latter use the processor's character
+  ordering (which is not ASCII on some targets), whereas the former
+  always use the ASCII ordering.
 
 ### **Arguments**
 
@@ -9890,9 +9923,44 @@ ASCII ordering.
 
 ### **Returns**
 
-Returns .true. if string_a \> string_b, and .false. otherwise, based
-on the ASCII ordering.
+  Returns _.true._ if string_a \> string_b, and _.false._ otherwise,
+  based on the ASCII ordering.
 
+  If both input arguments are null strings, _.false._ is always returned.
+
+### **Examples**
+
+Sample program:
+
+```fortran
+program demo_lgt
+implicit none
+integer :: i
+   write(*,'(*(a))')(char(i),i=32,126)  ! ASCII order
+   write(*,*) lgt('abc','ABC')          ! [T] lowercase is > uppercase
+   write(*,*) lgt('abc','abc  ')        ! [F] trailing spaces
+   ! If both strings are of zero length the result is false.
+   write(*,*) lgt('','')                ! [F]
+   write(*,*) lgt('','a')               ! [F] the null string is padded
+   write(*,*) lgt('a','')               ! [T]
+   write(*,*) lgt('abc',['abc','123'])  ! [F T]  scalar and array
+   write(*,*) lgt(['cba', '123'],'abc') ! [T F]
+   write(*,*) lgt(['abc','123'],['cba','123']) ! [F F]  both arrays
+end program demo_lgt
+```
+  Results:
+```text
+    !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    [\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+    T
+    F
+    F
+    F
+    T
+    F T
+    T F
+    F F
+```
 ### **Standard**
 
 FORTRAN 77 and later
@@ -9903,8 +9971,8 @@ FORTRAN 77 and later
 [**lle**(3)](#lle),
 [**llt**(3)](#llt)
 
-Functions that perform operations on character strings, return lengths
-of arguments, and search for certain arguments:
+  Functions that perform operations on character strings, return lengths
+  of arguments, and search for certain arguments:
 
 - **Elemental:**
   [**adjustl**(3)](#adjustl),
@@ -9926,18 +9994,15 @@ of arguments, and search for certain arguments:
 
 ### **Name**
 
-**lle**(3) - \[CHARACTER:COMPARE\] Lexical less than or equal
+**lle**(3) - \[CHARACTER:COMPARE\] ASCII Lexical less than or equal
 
 ### **Syntax**
 
 ```fortran
-result = lle(str_a, str_b)
+   elemental logical function lle(string_a, string_b)
 
-   character(len=*),intent(in) :: str_a, str_b
-
-      or
-
-   character(len=*),intent(in) :: str_a, str_b(*) logical :: result
+    character(len=*),intent(in) :: string_a
+    character(len=*),intent(in) :: string_b
 ```
 ### **Description**
 
@@ -9968,8 +10033,10 @@ result = lle(str_a, str_b)
 ### **Returns**
 
 - **result**
-  Returns **.true.** if **STR_A \<= STR_B**, and **.false.** otherwise, based on
+  Returns _.true._ if **STR_A \<= STR_B**, and _.false._ otherwise, based on
   the ASCII ordering.
+
+  If both input arguments are null strings, _.true._ is always returned.
 
 ### **Examples**
 
@@ -9978,17 +10045,17 @@ Sample program:
 ```fortran
 program demo_lle
 implicit none
-integer             :: i
+integer :: i
    write(*,'(*(a))')(char(i),i=32,126)
-     write(*,*) lle('abc','ABC')          ! F lowercase is > uppercase
-     write(*,*) lle('abc','abc  ')        ! T trailing spaces
-     ! If both strings are of zero length the result is true.
-     write(*,*) lle('','')                ! T
-     write(*,*) lle('','a')               ! T the null string is padded
-     write(*,*) lle('a','')               ! F
-     write(*,*) lle('abc',['abc','123'])  ! [T,F] scalar and array
-     write(*,*) lle(['cba', '123'],'abc') ! [F,T]
-     write(*,*) lle(['abc','123'],['cba','123']) ! [T,T] both arrays
+   write(*,*) lle('abc','ABC')          ! F lowercase is > uppercase
+   write(*,*) lle('abc','abc  ')        ! T trailing spaces
+   ! If both strings are of zero length the result is true.
+   write(*,*) lle('','')                ! T
+   write(*,*) lle('','a')               ! T the null string is padded
+   write(*,*) lle('a','')               ! F
+   write(*,*) lle('abc',['abc','123'])  ! [T,F] scalar and array
+   write(*,*) lle(['cba', '123'],'abc') ! [F,T]
+   write(*,*) lle(['abc','123'],['cba','123']) ! [T,T] both arrays
 end program demo_lle
 ```
 Results:
@@ -10039,14 +10106,16 @@ of arguments, and search for certain arguments:
 
 ### **Name**
 
-**llt**(3) - \[CHARACTER:COMPARE\] Lexical less than
+**llt**(3) - \[CHARACTER:COMPARE\] ASCII Lexical less than
 
 ### **Syntax**
 
 ```fortran
-result = llt(string_a, string_b)
-```
+   elemental logical function llt(string_a, string_b)
 
+    character(len=*),intent(in) :: string_a
+    character(len=*),intent(in) :: string_b
+```
 ### **Description**
 
   Determines whether one string is lexically less than another string,
@@ -10071,9 +10140,44 @@ result = llt(string_a, string_b)
 
 ### **Returns**
 
-Returns .true. if string_a \<= string_b, and .false. otherwise, based
-on the ASCII ordering.
+  Returns _.true._ if string_a \<= string_b, and _.false._ otherwise,
+  based on the ASCII ordering.
 
+  If both input arguments are null strings, _.false._ is always returned.
+
+### **Examples**
+
+Sample program:
+
+```fortran
+program demo_llt
+implicit none
+integer :: i
+   write(*,'(*(a))')(char(i),i=32,126)  ! ASCII order
+   write(*,*) llt('abc','ABC')          ! [F] lowercase is > uppercase
+   write(*,*) llt('abc','abc  ')        ! [F] trailing spaces
+   ! If both strings are of zero length the result is false.
+   write(*,*) llt('','')                ! [F]
+   write(*,*) llt('','a')               ! [T] the null string is padded
+   write(*,*) llt('a','')               ! [F]
+   write(*,*) llt('abc',['abc','123'])  ! [F F]  scalar and array
+   write(*,*) llt(['cba', '123'],'abc') ! [F T]
+   write(*,*) llt(['abc','123'],['cba','123']) ! [T F]  both arrays
+end program demo_llt
+```
+  Results:
+```text
+  > !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
+  > [\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+  > F
+  > F
+  > F
+  > T
+  > F
+  > F F
+  > F T
+  > T F
+```
 ### **Standard**
 
 FORTRAN 77 and later
@@ -10332,7 +10436,6 @@ implicit none
   write(*,*)z, log(z)
 end program demo_log
 ```
-
 Results:
 
 ```text
@@ -10691,7 +10794,7 @@ Determines the location of the element in the array with the maximum
 value, or, if the **dim** argument is supplied, determines the locations
 of the maximum element along each row of the array in the **dim**
 direction. If **mask** is present, only the elements for which **mask**
-is **.true.** are considered. If more than one element in the array has
+is _.true._ are considered. If more than one element in the array has
 the maximum value, the location returned is that of the first such element
 in array element order. If the array has zero size, or all of the elements
 of **mask** are .false., then the result is an array of zeroes. Similarly,
@@ -10927,8 +11030,8 @@ result = maxval(array, mask)
 Determines the maximum value of the elements in an array value, or, if
 the **dim** argument is supplied, determines the maximum value along each
 row of the array in the **dim** direction. If **mask** is present, only the
-elements for which **mask** is **.true.** are considered. If the array has zero
-size, or all of the elements of **mask** are .false., then the result is the
+elements for which **mask** is _.true._ are considered. If the array has zero
+size, or all of the elements of **mask** are _.false._, then the result is the
 most negative number of the type and kind of **array** if **array** is numeric,
 or a string of nulls if **array** is of character type.
 
@@ -11134,8 +11237,8 @@ result = merge(tsource, fsource, mask)
 
 The elemental function **merge**(3) selects values from two arrays or
 scalars according to a logical mask. The result is equal to an element
-of **tsource** where the corresponding element of **mask** is **.true.**, or an
-element of **fsource** when it is .false. .
+of **tsource** where the corresponding element of **mask** is _.true._, or an
+element of **fsource** when it is _.false._ .
 
 Multi-dimensional arrays are supported.
 
@@ -11377,10 +11480,10 @@ or
   value, or, if the **dim** argument is supplied, determines the locations
   of the minimum element along each row of the array in the **dim**
   direction. If **mask** is present, only the elements for which **mask**
-  is **.true.** are considered. If more than one element in the array
+  is _.true._ are considered. If more than one element in the array
   has the minimum value, the location returned is that of the first
   such element in array element order. If the array has zero size,
-  or all of the elements of **mask** are **.false.**, then the result is
+  or all of the elements of **mask** are _.false._, then the result is
   an array of zeroes. Similarly, if **dim** is supplied and all of the
   elements of **mask** along a given row are zero, the result value for
   that row is zero.
@@ -11527,10 +11630,10 @@ result = minval(array, dim, mask) result = minval(array, mask)
   along each row of the array in the **dim** direction.
 
   If **mask** is present, only the elements for which **mask** is
-  **.true.** are considered.
+  _.true._ are considered.
 
   If the array has zero size, or all of the elements of **mask**
-  are **.false.**, then the result is **huge(array)** if **array** is
+  are _.false._, then the result is **huge(array)** if **array** is
   numeric, or a string of **char(len=255)** characters if **array**
   is of character type.
 
@@ -12845,7 +12948,7 @@ scalar as well an an array.
 Stores the elements of ARRAY in an array of rank one.
 
 The beginning of the resulting array is made up of elements whose **mask**
-equals **.true.**. Afterwards, positions are filled with elements taken from
+equals _.true._. Afterwards, positions are filled with elements taken from
 **vector**.
 
 ### **Arguments**
@@ -12868,7 +12971,7 @@ equals **.true.**. Afterwards, positions are filled with elements taken from
 
 The result is an array of rank one and the same type as that of **array**.
 If **vector** is present, the result size is that of **vector**, the number of
-**.true.** values in **mask** otherwise.
+_.true._ values in **mask** otherwise.
 
 ### **Examples**
 
@@ -13241,8 +13344,8 @@ Determines whether an optional dummy argument is present.
 
 ### **Returns**
 
-Returns either **.true.** if the optional argument **a** is present,
-or **.false.** otherwise.
+Returns either _.true._ if the optional argument **a** is present,
+or _.false._ otherwise.
 
 ### **Examples**
 
@@ -13299,7 +13402,7 @@ where **NUMERIC** is any numeric type
 ### **Description**
 
 Multiplies together all the selected elements of **array**, or along
-dimension **dim** if the corresponding element in **mask** is **.true.**.
+dimension **dim** if the corresponding element in **mask** is _.true._.
 
 If **dim** is absent, a scalar with the product of all elements in **array** is
 returned. (Note a zero-sized **array** returns **1**).
@@ -14499,9 +14602,9 @@ result = scan(string, set[, back [, kind]])
 
 Scans a **string** for any of the characters in a **set** of characters.
 
-If **back** is either absent or equals **.false.**, this function returns the
+If **back** is either absent or equals _.false._, this function returns the
 position of the leftmost character of **STRING** that is in **set**. If **back**
-equals **.true.**, the rightmost position is returned. If no character of **set**
+equals _.true._, the rightmost position is returned. If no character of **set**
 is found in **string**, the result is zero.
 
 ### **Arguments**
@@ -16980,7 +17083,7 @@ statements, particularly when the replacements are conditional.
 - **vector**
   : New values to place into specified locations in **field**. Shall
   be an array of any type and rank one. It shall have at least as many
-  elements as **mask** has **.true.** values.
+  elements as **mask** has _.true._ values.
 
 - **mask**
   : Shall be an array of type _logical_ that specifies which values
@@ -17001,7 +17104,7 @@ of MASK, in array element order, has the value VECTOR (i) for i =
 other element has a value equal to FIELD if FIELD is scalar or to the
 corresponding element of FIELD if it is an array.
 
-The resulting array corresponds to **field** with **.true.** elements
+The resulting array corresponds to **field** with _.true._ elements
 of **mask** replaced by values from **vector** in array element order.
 
 ### **Examples**
@@ -17132,11 +17235,11 @@ Verifies that all the characters in **string** belong to the set of
 characters in **set** by identifying the first character in the string(s)
 that is not in the set(s).
 
-If **back** is either absent or equals **.false.**, this function
+If **back** is either absent or equals _.false._, this function
 returns the position of the leftmost character of **string** that is
 not in **set**.
 
-If **back** equals **.true.**, the rightmost position is returned.
+If **back** equals _.true._, the rightmost position is returned.
 
 If all characters of **string** are found in **set**, the result is zero.
 

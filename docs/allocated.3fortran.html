@@ -1,209 +1,66 @@
-<html> 
-<head> 
-<title> </title>
-<style> 
-px {font-family: "Lucida Console", Monaco, monospace}
-p { font-size:100%; line-height:1.1em; }
-body {xfont-style: sans-serif}
-body {
-color:#333; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:1em; line-height:1.3em; }
-a:visited { color:#666; }
-h1,h2,h3,h4,h5,h6 { color:#333; font-family:georgia, verdana, sans-serif; }
-h1 { font-size:150%; page-break-before:auto;background-color: #aaaaff}
-h2 { font-size:143%;color:teal; }
-h3 { font-size:134%;color:blue; }
-h4 { font-size:120%;color:gray; }
-img { max-width: 55em}
-p{ padding: 0;margin:0; }
-p{ padding-right:1.4em; }
-p{ padding-bottom:1em; }
-p{ padding-top:1em; }
-p{ whitespace: pre-wrap; }
-h5,h6 { font-size:100% }
-a.nav,a:link.nav, a:visited.nav { background-color:#FFF; color:#000; }
-XXtable { border:double #000; border-collapse:collapse; }
-XXtable { border-collapse:collapse; }
-XXtd { border:thin solid #888; }
-XXtd { border:none; }
-li { margin-bottom:0.5em; }
-blockquote { display:block; font-size:100%; line-height:1.1em; margin:0 0 1.5em; padding:0 2.5em; }
-pre { background-color:#DDD; font-size:100%; overflow:auto; padding:1em; }
-a,li span { color:#000; }
-a:hover, a.nav:hover, a:hover math { background-color:#000; color:#FFF; }
-#Container { margin:0 10px; text-align:center; background-color: #BBB}
-#Content { border-top:none; margin:auto; padding:0.3em; text-align:left; width:100%; max-width:55em; background:#FFF}
-span.webName { font-size:.5em; }
-textarea#content { font-size: 1em; line-height: 1.125; }
-h1#pageName { line-height:1em; margin:0.2em 0 0.2em 0; padding:0; }
-.property { color:#666; font-size:100%; }
-a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
-.byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
-</style> 
-</head>
-<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
-<!--
-<h5><a href="index.html">[UP]</a></h5>
--->
-<button type="button" onclick="javascript:history.back()">Back</button>
-<div id="Container">
-<div id="Content">
-<CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>allocated (3fortran)</NOBR><HR></H1>
-</CENTER>
-<A name=0>
-
-     <H3>NAME</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-<B>ALLOCATED</B>(3) - [ARRAY INQUIRY] Status of an allocatable entity
-<P>
-</BLOCKQUOTE>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=8>
-
-     <H3>SYNTAX</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-result = <B>allocated</B>(array)
-</BLOCKQUOTE>
-<P>
-or
-<P>
-<PRE>
-      result = allocated(scalar)
-<P>
-</PRE>
-<A name=2>
-
-     <H3>DESCRIPTION</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-<B>ALLOCATED</B>(ARRAY) and <B>ALLOCATED</B>(SCALAR) check the allocation status of
-ARRAY and SCALAR, respectively.
-</BLOCKQUOTE>
-<A name=3>
-
-     <H3>ARGUMENTS</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-<TABLE cellpadding=3>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-ARRAY : the argument shall be an allocatable array or allocatable
-scalar.
-</TD></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-SCALAR : the argument shall be an allocatable scalar.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=4>
-
-     <H3>RETURNS</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-The return value is a scalar logical with the default logical kind type
-parameter. If the argument is allocated then the result is .true.;
-otherwise, it returns .false..
-</BLOCKQUOTE>
-<A name=5>
-
-     <H3>EXAMPLES</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-Sample program:
-<P>
-<PRE>
-    program demo_allocated
-    use,intrinsic :: iso_fortran_env, only : dp=&gt;real64,sp=&gt;real32
-    implicit none
-    integer :: i = 4
-    real(kind=sp), allocatable :: x(:)
-    character(len=256) :: message
-    integer :: istat
-<P>
-       ! if already allocated, deallocate
-       if ( allocated(x) ) deallocate(x,STAT=istat, ERRMSG=message )
-       if(istat.ne.0)then
-          write(*,*)trim(message)
-          stop
-       endif
-<P>
-       ! only if not allocated, allocate
-       if ( .not. allocated(x) ) allocate(x(i))
-<P>
-       write(*,*)allocated(x), size(x)
-       if( allocated(x)) then
-           write(*,*)&#146;do things if allocated&#146;
-       else
-           write(*,*)&#146;do things if not allocated&#146;
-       endif
-<P>
-       call intentout(x)
-       write(*,*)&#146;note it is deallocated!&#146;,allocated(x)
-<P>
-       contains
-<P>
-       subroutine intentout(arr)
-       ! note that if arr has intent(out) and is allocatable,
-       ! arr is deallocated on entry
-       real(kind=sp),intent(out),allocatable :: arr(:)
-           write(*,*)&#146;note it was allocated in calling program&#146;,allocated(arr)
-       end subroutine intentout
-<P>
-    end program demo_allocated
-<P>
-</PRE>
-Results:
-<P>
-<PRE>
-        T           4
-        do things if allocated
-        note it was allocated in calling program F
-        note it is deallocated! F
-<P>
-</PRE>
-</BLOCKQUOTE>
-<A name=6>
-
-     <H3>STANDARD</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-Fortran 95 and later. Note, the scalar= keyword and allocatable scalar
-entities are available in Fortran 2003 and later.
-</BLOCKQUOTE>
-<A name=7>
-
-     <H3>SEE ALSO</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-<B>MOVE_ALLOC</B>(3)
-<P>
-fortran-lang intrinsic descriptions
-</BLOCKQUOTE>
-<P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>allocated (3fortran)</TD> <TD align=right width=33%><I>September 17, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from fd3c94d4-6b7d-4440-b540-5b37402301e4 using man macros.</FONT>
-<br><br><center><img src="images/allocated.3fortran.gif"></center>
-</div>
-</div>
-</body>
-</HTML>
+<h3><strong>Name</strong></h3>
+<p><strong>allocated</strong>(3) - [ARRAY INQUIRY] Status of an allocatable entity</p>
+<h3><strong>Syntax</strong></h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb1-1" title="1">  <span class="kw">result</span> <span class="kw">=</span> <span class="fu">allocated</span>(array)</a></code></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb2-1" title="1">  <span class="kw">result</span> <span class="kw">=</span> <span class="fu">allocated</span>(scalar)</a></code></pre></div>
+<h3><strong>Description</strong></h3>
+<p><strong>allocated(array)</strong> and <strong>allocated(scalar)</strong> check the allocation status of <strong>array</strong> and <strong>scalar</strong>, respectively.</p>
+<h3><strong>Arguments</strong></h3>
+<ul class="incremental">
+<li><p><strong>array</strong> : the argument shall be an <em>allocatable</em> array or allocatable scalar.</p></li>
+<li><p><strong>scalar</strong> : the argument shall be an <em>allocatable</em> scalar.</p></li>
+</ul>
+<h3><strong>Returns</strong></h3>
+<p>The return value is a scalar <em>logical</em> with the default logical kind type parameter. If the argument is allocated then the result is <em>.true.</em>; otherwise, it returns <em>.false.</em>.</p>
+<h3><strong>Examples</strong></h3>
+<p>Sample program:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">program</span> demo_allocated</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : dp<span class="kw">=</span><span class="op">&gt;</span>real64,sp<span class="kw">=</span><span class="op">&gt;</span>real32</a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="dt">integer</span> <span class="dt">::</span> i <span class="kw">=</span> <span class="dv">4</span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="dt">real(kind=sp)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> x(:)</a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="dt">character(len=256)</span> <span class="dt">::</span> message</a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="dt">integer</span> <span class="dt">::</span> istat</a>
+<a class="sourceLine" id="cb3-8" title="8"></a>
+<a class="sourceLine" id="cb3-9" title="9">   <span class="co">! if already allocated, deallocate</span></a>
+<a class="sourceLine" id="cb3-10" title="10">   <span class="kw">if</span> ( <span class="fu">allocated</span>(x) ) <span class="kw">deallocate</span>(x,STAT<span class="kw">=</span>istat, ERRMSG<span class="kw">=</span>message )</a>
+<a class="sourceLine" id="cb3-11" title="11">   <span class="kw">if</span>(istat<span class="op">.ne.</span><span class="dv">0</span>)<span class="kw">then</span></a>
+<a class="sourceLine" id="cb3-12" title="12">      <span class="fu">write(*</span>,<span class="fu">*)trim</span>(message)</a>
+<a class="sourceLine" id="cb3-13" title="13">      <span class="kw">stop</span></a>
+<a class="sourceLine" id="cb3-14" title="14">   <span class="kw">endif</span></a>
+<a class="sourceLine" id="cb3-15" title="15"></a>
+<a class="sourceLine" id="cb3-16" title="16">   <span class="co">! only if not allocated, allocate</span></a>
+<a class="sourceLine" id="cb3-17" title="17">   <span class="kw">if</span> ( <span class="op">.not.</span> <span class="fu">allocated</span>(x) ) <span class="kw">allocate</span>(x(i))</a>
+<a class="sourceLine" id="cb3-18" title="18"></a>
+<a class="sourceLine" id="cb3-19" title="19">   <span class="fu">write(*</span>,<span class="fu">*)allocated</span>(x), <span class="fu">size</span>(x)</a>
+<a class="sourceLine" id="cb3-20" title="20">   <span class="kw">if</span>( <span class="fu">allocated</span>(x)) <span class="kw">then</span></a>
+<a class="sourceLine" id="cb3-21" title="21">       <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;do things if allocated&#39;</span></a>
+<a class="sourceLine" id="cb3-22" title="22">   <span class="kw">else</span></a>
+<a class="sourceLine" id="cb3-23" title="23">       <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;do things if not allocated&#39;</span></a>
+<a class="sourceLine" id="cb3-24" title="24">   <span class="kw">endif</span></a>
+<a class="sourceLine" id="cb3-25" title="25"></a>
+<a class="sourceLine" id="cb3-26" title="26">   <span class="kw">call</span> intentout(x)</a>
+<a class="sourceLine" id="cb3-27" title="27">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;note it is deallocated!&#39;</span>,<span class="fu">allocated</span>(x)</a>
+<a class="sourceLine" id="cb3-28" title="28"></a>
+<a class="sourceLine" id="cb3-29" title="29">   <span class="kw">contains</span></a>
+<a class="sourceLine" id="cb3-30" title="30"></a>
+<a class="sourceLine" id="cb3-31" title="31">   <span class="kw">subroutine</span> intentout(arr)</a>
+<a class="sourceLine" id="cb3-32" title="32">   <span class="co">! note that if arr has intent(out) and is allocatable,</span></a>
+<a class="sourceLine" id="cb3-33" title="33">   <span class="co">! arr is deallocated on entry</span></a>
+<a class="sourceLine" id="cb3-34" title="34"><span class="dt">   real(kind=sp)</span>,<span class="dt">intent(out)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> arr(:)</a>
+<a class="sourceLine" id="cb3-35" title="35">       <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;note it was allocated in calling program&#39;</span>,<span class="fu">allocated</span>(arr)</a>
+<a class="sourceLine" id="cb3-36" title="36">   <span class="kw">end subroutine</span> intentout</a>
+<a class="sourceLine" id="cb3-37" title="37"></a>
+<a class="sourceLine" id="cb3-38" title="38"><span class="kw">end program</span> demo_allocated</a></code></pre></div>
+<p>Results:</p>
+<pre class="text"><code>    T           4
+    do things if allocated
+    note it was allocated in calling program F
+    note it is deallocated! F
+</code></pre>
+<h3><strong>Standard</strong></h3>
+<p>Fortran 95 and later. Note, the scalar= keyword and allocatable scalar entities are available in Fortran 2003 and later.</p>
+<h3><strong>See Also</strong></h3>
+<p><a href="#move_alloc"><strong>move_alloc</strong>(3)</a></p>
+<p><em>fortran-lang intrinsic descriptions</em></p>

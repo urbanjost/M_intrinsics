@@ -1,209 +1,45 @@
-<html> 
-<head> 
-<title> </title>
-<style> 
-px {font-family: "Lucida Console", Monaco, monospace}
-p { font-size:100%; line-height:1.1em; }
-body {xfont-style: sans-serif}
-body {
-color:#333; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:1em; line-height:1.3em; }
-a:visited { color:#666; }
-h1,h2,h3,h4,h5,h6 { color:#333; font-family:georgia, verdana, sans-serif; }
-h1 { font-size:150%; page-break-before:auto;background-color: #aaaaff}
-h2 { font-size:143%;color:teal; }
-h3 { font-size:134%;color:blue; }
-h4 { font-size:120%;color:gray; }
-img { max-width: 55em}
-p{ padding: 0;margin:0; }
-p{ padding-right:1.4em; }
-p{ padding-bottom:1em; }
-p{ padding-top:1em; }
-p{ whitespace: pre-wrap; }
-h5,h6 { font-size:100% }
-a.nav,a:link.nav, a:visited.nav { background-color:#FFF; color:#000; }
-XXtable { border:double #000; border-collapse:collapse; }
-XXtable { border-collapse:collapse; }
-XXtd { border:thin solid #888; }
-XXtd { border:none; }
-li { margin-bottom:0.5em; }
-blockquote { display:block; font-size:100%; line-height:1.1em; margin:0 0 1.5em; padding:0 2.5em; }
-pre { background-color:#DDD; font-size:100%; overflow:auto; padding:1em; }
-a,li span { color:#000; }
-a:hover, a.nav:hover, a:hover math { background-color:#000; color:#FFF; }
-#Container { margin:0 10px; text-align:center; background-color: #BBB}
-#Content { border-top:none; margin:auto; padding:0.3em; text-align:left; width:100%; max-width:55em; background:#FFF}
-span.webName { font-size:.5em; }
-textarea#content { font-size: 1em; line-height: 1.125; }
-h1#pageName { line-height:1em; margin:0.2em 0 0.2em 0; padding:0; }
-.property { color:#666; font-size:100%; }
-a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
-.byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
-</style> 
-</head>
-<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
-<!--
-<h5><a href="index.html">[UP]</a></h5>
--->
-<button type="button" onclick="javascript:history.back()">Back</button>
-<div id="Container">
-<div id="Content">
-<CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>any (3fortran)</NOBR><HR></H1>
-</CENTER>
-<A name=0>
-
-     <H3>NAME</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-<B>ANY</B>(3) - [ARRAY REDUCTION] determines if any of the values in the
-logical array are true.
-<P>
-</BLOCKQUOTE>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=8>
-
-     <H3>SYNTAX</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-result = <B>any</B>(mask, dim)
-</BLOCKQUOTE>
-<A name=2>
-
-     <H3>DESCRIPTION</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-<B>ANY</B>(MASK, DIM) determines if any of the values in the logical array MASK
-along dimension DIM are .TRUE..
-</BLOCKQUOTE>
-<A name=3>
-
-     <H3>ARGUMENTS</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-<TABLE cellpadding=3>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-MASK : the type of the argument shall be logical and it shall not be
-scalar.
-</TD></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-DIM : (optional) dim shall be a scalar integer with a value that
-lies between one and the rank of mask.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=4>
-
-     <H3>RETURNS</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-<B>ANY</B>(MASK) returns a scalar value of type logical where the kind type
-parameter is the same as the kind type parameter of MASK. If DIM is
-present, then <B>ANY</B>(MASK, DIM) returns an array with the rank of MASK
-minus 1. The shape is determined from the shape of MASK where the DIM
-dimension is elided.
-<TABLE cellpadding=3><!-- tsb: <B>ANY</B>(MASK) returns a scalar value of type logical where the kind type
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD width=4%>
-1.
-</TD><TD>
-<B>ANY</B>(MASK) is true if any element of MASK is true; otherwise, it is
-</TD></TR>
-<TR valign=top><TD width=4%>
-2.
-</TD><TD>
-If the rank of MASK is one, then <B>ANY</B>(MASK, DIM) is equivalent to
-<B>ANY</B>(MASK). If the rank is greater than one, then <B>ANY</B>(MASK, DIM) is
-determined by applying <B>ANY</B>() to the array sections.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=5>
-
-     <H3>EXAMPLES</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-Sample program:
-<P>
-<PRE>
-    program demo_any
-    implicit none
-    logical l
-       l = any([.true., .true., .true.])
-       print *, l
-       call section
-       contains
-         subroutine section
-         integer a(2,3), b(2,3)
-           a = 1
-           b = 1
-           b(2,2) = 2
-           print *, any(a .eq. b, 1)
-           print *, any(a .eq. b, 2)
-         end subroutine section
-    end program demo_any
-<P>
-</PRE>
-Results:
-</BLOCKQUOTE>
-<A name=>
-
-    <H4>&nbsp; &nbsp; T</H4>
-</A>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=>
-
-    <H4>&nbsp; &nbsp; T T T</H4>
-</A>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=>
-
-    <H4>&nbsp; &nbsp; T T</H4>
-</A>
-<BLOCKQUOTE>
-<P>
-</BLOCKQUOTE>
-<A name=6>
-
-     <H3>SEE ALSO</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-<B>ANY</B>(3)
-</BLOCKQUOTE>
-<A name=7>
-
-     <H3>STANDARD</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-Fortran 95 and later
-<P>
-fortran-lang intrinsic descriptions
-</BLOCKQUOTE>
-<P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>any (3fortran)</TD> <TD align=right width=33%><I>September 17, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from e74e64a7-da39-49a6-90e8-2f6583400f78 using man macros.</FONT>
-<br><br><center><img src="images/any.3fortran.gif"></center>
-</div>
-</div>
-</body>
-</HTML>
+<h3><strong>Name</strong></h3>
+<p><strong>any</strong>(3) - [ARRAY REDUCTION] determines if any of the values in the logical array are true.</p>
+<h3><strong>Syntax</strong></h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">result</span> <span class="kw">=</span> <span class="fu">any</span>(mask, <span class="bu">dim</span>)</a></code></pre></div>
+<h3><strong>Description</strong></h3>
+<p><strong>any(mask, dim)</strong> determines if any of the values in the logical array <strong>mask</strong> along dimension <strong>dim</strong> are <em>.true.</em>.</p>
+<h3><strong>Arguments</strong></h3>
+<ul class="incremental">
+<li><p><strong>mask</strong> : the type of the argument shall be <em>logical</em> and it shall not be scalar.</p></li>
+<li><p><strong>dim</strong> : (optional) dim shall be a scalar integer with a value that lies between one and the rank of mask.</p></li>
+</ul>
+<h3><strong>Returns</strong></h3>
+<p><strong>any(mask)</strong> returns a scalar value of type <em>logical</em> where the kind type parameter is the same as the kind type parameter of <strong>mask</strong>. If <strong>dim</strong> is present, then <strong>any(mask, dim)</strong> returns an array with the rank of <strong>mask</strong> minus 1. The shape is determined from the shape of <strong>mask</strong> where the <strong>dim</strong> dimension is elided.</p>
+<ol class="incremental">
+<li><p><strong>any(mask)</strong> is true if any element of <strong>mask</strong> is true; otherwise, it is <em>.false.</em>. It also is false if <strong>mask</strong> has zero size.</p></li>
+<li><p>If the rank of <strong>mask</strong> is one, then <strong>any(mask, dim)</strong> is equivalent to <strong>any(mask)</strong>. If the rank is greater than one, then <strong>any(mask, dim)</strong> is determined by applying <strong>any()</strong> to the array sections.</p></li>
+</ol>
+<h3><strong>Examples</strong></h3>
+<p>Sample program:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">program</span> demo_any</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="dt">logical</span> l</a>
+<a class="sourceLine" id="cb2-4" title="4">   l <span class="kw">=</span> <span class="fu">any</span>(<span class="kw">[</span><span class="cn">.true.</span>, <span class="cn">.true.</span>, <span class="cn">.true.</span><span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb2-5" title="5">   <span class="fu">print</span> <span class="kw">*</span>, l</a>
+<a class="sourceLine" id="cb2-6" title="6">   <span class="kw">call</span> section</a>
+<a class="sourceLine" id="cb2-7" title="7">   <span class="kw">contains</span></a>
+<a class="sourceLine" id="cb2-8" title="8">     <span class="kw">subroutine</span> section</a>
+<a class="sourceLine" id="cb2-9" title="9">     <span class="dt">integer</span> a(<span class="dv">2</span>,<span class="dv">3</span>), b(<span class="dv">2</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb2-10" title="10">       a <span class="kw">=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb2-11" title="11">       b <span class="kw">=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb2-12" title="12">       b(<span class="dv">2</span>,<span class="dv">2</span>) <span class="kw">=</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb2-13" title="13">       <span class="fu">print</span> <span class="kw">*</span>, <span class="fu">any</span>(a <span class="op">.eq.</span> b, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb2-14" title="14">       <span class="fu">print</span> <span class="kw">*</span>, <span class="fu">any</span>(a <span class="op">.eq.</span> b, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb2-15" title="15">     <span class="kw">end subroutine</span> section</a>
+<a class="sourceLine" id="cb2-16" title="16"><span class="kw">end program</span> demo_any</a></code></pre></div>
+<p>Results:</p>
+<pre class="text"><code>    T
+    T T T
+    T T
+</code></pre>
+<h3><strong>See Also</strong></h3>
+<p><a href="#all"><strong>any</strong>(3)</a></p>
+<h3><strong>Standard</strong></h3>
+<p>Fortran 95 and later</p>
+<p><em>fortran-lang intrinsic descriptions</em></p>

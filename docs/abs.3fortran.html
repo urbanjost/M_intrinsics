@@ -1,228 +1,87 @@
-<html> 
-<head> 
-<title> </title>
-<style> 
-px {font-family: "Lucida Console", Monaco, monospace}
-p { font-size:100%; line-height:1.1em; }
-body {xfont-style: sans-serif}
-body {
-color:#333; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:1em; line-height:1.3em; }
-a:visited { color:#666; }
-h1,h2,h3,h4,h5,h6 { color:#333; font-family:georgia, verdana, sans-serif; }
-h1 { font-size:150%; page-break-before:auto;background-color: #aaaaff}
-h2 { font-size:143%;color:teal; }
-h3 { font-size:134%;color:blue; }
-h4 { font-size:120%;color:gray; }
-img { max-width: 55em}
-p{ padding: 0;margin:0; }
-p{ padding-right:1.4em; }
-p{ padding-bottom:1em; }
-p{ padding-top:1em; }
-p{ whitespace: pre-wrap; }
-h5,h6 { font-size:100% }
-a.nav,a:link.nav, a:visited.nav { background-color:#FFF; color:#000; }
-XXtable { border:double #000; border-collapse:collapse; }
-XXtable { border-collapse:collapse; }
-XXtd { border:thin solid #888; }
-XXtd { border:none; }
-li { margin-bottom:0.5em; }
-blockquote { display:block; font-size:100%; line-height:1.1em; margin:0 0 1.5em; padding:0 2.5em; }
-pre { background-color:#DDD; font-size:100%; overflow:auto; padding:1em; }
-a,li span { color:#000; }
-a:hover, a.nav:hover, a:hover math { background-color:#000; color:#FFF; }
-#Container { margin:0 10px; text-align:center; background-color: #BBB}
-#Content { border-top:none; margin:auto; padding:0.3em; text-align:left; width:100%; max-width:55em; background:#FFF}
-span.webName { font-size:.5em; }
-textarea#content { font-size: 1em; line-height: 1.125; }
-h1#pageName { line-height:1em; margin:0.2em 0 0.2em 0; padding:0; }
-.property { color:#666; font-size:100%; }
-a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
-.byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
-</style> 
-</head>
-<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
-<!--
-<h5><a href="index.html">[UP]</a></h5>
--->
-<button type="button" onclick="javascript:history.back()">Back</button>
-<div id="Container">
-<div id="Content">
-<CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>abs (3fortran)</NOBR><HR></H1>
-</CENTER>
-<A name=0>
-
-     <H3>NAME</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-<B>ABS</B>(3) - [NUMERIC] Absolute value
-<P>
-</BLOCKQUOTE>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=7>
-
-     <H3>SYNTAX</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-result = <B>abs</B>(a)
-<P>
-<PRE>
-       TYPE(kind=KIND) elemental function abs(a)
-<P>
-       TYPE(kind=KIND),intent(in) :: a
-<P>
-</PRE>
-where the TYPE and KIND is determined by the type and type attributes of
-A, which may be any real, integer, or complex value.
-</BLOCKQUOTE>
-<P>
-If the type of A is complex the type returned will be real with the same
-kind as the real part of the input value.
-<BLOCKQUOTE>
-<P>
-Otherwise the returned type will be the same type as A.
-</BLOCKQUOTE>
-<A name=2>
-
-     <H3>DESCRIPTION</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-<B>ABS</B>(A) computes the absolute value of numeric argument A.
-<P>
-In mathematics, the absolute value or modulus of a real number X,
-denoted |X|, is the magnitude of X without regard to its sign.
-<P>
-The absolute value of a number may be thought of as its distance from
-zero, which is the definition used by <B>ABS</B>(3) when dealing with complex
-values (see below).
-</BLOCKQUOTE>
-<A name=3>
-
-     <H3>ARGUMENTS</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-<TABLE cellpadding=3>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-A : the type of the argument shall be an integer, real, or complex
-scalar or array.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=4>
-
-     <H3>RETURNS</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-If A is of type integer or real, the value of the result is |A| and of
-the same type and kind as the input argument.
-<P>
-(Take particular note) if A is complex with value (X, Y), the result is
-a real equal to a processor-dependent approximation to <B>SQRT</B>(X**2 + Y**2)
-computed without undue overflow or underflow.
-</BLOCKQUOTE>
-<A name=5>
-
-     <H3>EXAMPLES</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-Sample program:
-<P>
-<PRE>
-    program demo_abs
-    implicit none
-    integer           :: i = -1
-    real              :: x = -1.0
-    complex           :: z = (-3.0,-4.0)
-    doubleprecision   :: rr = -45.78d+00
-    character(len=*),parameter :: &
-     frmt =  &#146;(1x,a15,1x," In: ",g0,            T51," Out: ",g0)&#146;, &
-     frmtc = &#146;(1x,a15,1x," In: (",g0,",",g0,")",T51," Out: ",g0)&#146;
-    integer,parameter :: dp=kind(0.0d0)
-<P>
-      ! any integer, real, or complex type
-        write(*, frmt)  &#146;integer         &#146;,  i, abs(i)
-        write(*, frmt)  &#146;real            &#146;,  x, abs(x)
-        write(*, frmt)  &#146;doubleprecision &#146;, rr, abs(rr)
-        write(*, frmtc) &#146;complex         &#146;,  z, abs(z)
-<P>
-      ! any value whose positive value is representable
-      ! A dusty corner is that abs(-huge(0)-1) of an integer would input
-      ! a representable negative value on most machines but result in a
-      ! positive value out of range.
-        write(*, *) &#146;abs range test : &#146;, abs(huge(0)), abs(-huge(0))
-        write(*, *) &#146;abs range test : &#146;, abs(huge(0.0)), abs(-huge(0.0))
-        write(*, *) &#146;abs range test : &#146;, abs(tiny(0.0)), abs(-tiny(0.0))
-<P>
-      ! elemental
-        write(*, *) &#146;abs is elemental: &#146;, abs([20,  0,  -1,  -3,  100])
-<P>
-      ! complex input produces real output
-        write(*, *)  cmplx(30.0,40.0)
-<P>
-      ! the returned value for complex input can be thought of as the
-      ! distance from the origin &lt;0,0&gt;
-        write(*, *) &#146;distance of &lt;XX,YY&gt; from zero is&#146;, &
-                   & distance(30.0_dp,40.0_dp)
-<P>
-        contains
-<P>
-        real(kind=dp) elemental function distance(x,y)
-        real(kind=dp),intent(in) :: x,y
-           ! dusty corners:
-           ! note that KIND=DP is NOT optional
-           ! if the desired result is KIND=dp.
-           ! See cmplx(3).
-           distance=abs( cmplx(x,y,kind=dp) )
-        end function distance
-<P>
-    end program demo_abs
-<P>
-</PRE>
-Results:
-<P>
-<PRE>
-        integer          In: -1                     Out: 1
-        real             In: -1.000000              Out: 1.000000
-        doubleprecision  In: -45.78000000000000     Out: 45.78000000000000
-        complex          In: (-3.000000,-4.000000)  Out: 5.000000
-        abs range test :   2147483647  2147483647
-        abs range test :   3.4028235E+38  3.4028235E+38
-        abs range test :   1.1754944E-38  1.1754944E-38
-        abs is elemental: 20 0 1 3 100
-        (30.00000,40.00000)
-        distance of &lt;XX,YY&gt; from zero is   50.0000000000000
-<P>
-</PRE>
-</BLOCKQUOTE>
-<A name=6>
-
-     <H3>STANDARD</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-FORTRAN 77 and later
-<P>
-fortran-lang intrinsic descriptions (license: MIT) @urbanjost
-</BLOCKQUOTE>
-<P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>abs (3fortran)</TD> <TD align=right width=33%><I>September 17, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 35210fd6-5f35-47c6-8336-0020b59b5c6c using man macros.</FONT>
-<br><br><center><img src="images/abs.3fortran.gif"></center>
-</div>
-</div>
-</body>
-</HTML>
+<h3><strong>Name</strong></h3>
+<p><strong>abs</strong>(3) - [NUMERIC] Absolute value</p>
+<h3><strong>Syntax</strong></h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb1-1" title="1">  <span class="kw">result</span> <span class="kw">=</span> <span class="bu">abs</span>(a)</a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3">   <span class="dt">TYPE(kind=KIND)</span> <span class="kw">elemental</span> <span class="kw">function</span> <span class="bu">abs</span>(a)</a>
+<a class="sourceLine" id="cb1-4" title="4"></a>
+<a class="sourceLine" id="cb1-5" title="5">   <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> a</a></code></pre></div>
+<p>where the TYPE and KIND is determined by the type and type attributes of <strong>a</strong>, which may be any <em>real</em>, <em>integer</em>, or <em>complex</em> value.</p>
+<p>If the type of <strong>a</strong> is <em>complex</em> the type returned will be <em>real</em> with the same kind as the <em>real</em> part of the input value.</p>
+<p>Otherwise the returned type will be the same type as <strong>a</strong>.</p>
+<h3><strong>Description</strong></h3>
+<p><strong>abs(a)</strong> computes the absolute value of numeric argument <strong>a</strong>.</p>
+<p>In mathematics, the absolute value or modulus of a real number <strong>x</strong>, denoted <strong>|x|</strong>, is the magnitude of <strong>x</strong> without regard to its sign.</p>
+<p>The absolute value of a number may be thought of as its distance from zero, which is the definition used by <strong>abs</strong>(3) when dealing with <em>complex</em> values (<em>see below</em>).</p>
+<h3><strong>Arguments</strong></h3>
+<ul class="incremental">
+<li><strong>a</strong> : the type of the argument shall be an <em>integer</em>, <em>real</em>, or <em>complex</em> scalar or array.</li>
+</ul>
+<h3><strong>Returns</strong></h3>
+<p>If <strong>a</strong> is of type <em>integer</em> or <em>real</em>, the value of the result is <strong>|a|</strong> and of the same type and kind as the input argument.</p>
+<p>(Take particular note) if <strong>a</strong> is <em>complex</em> with value <strong>(x, y)</strong>, the result is a <em>real</em> equal to a processor-dependent approximation to <strong>sqrt(x**2 + y**2)</strong> computed without undue overflow or underflow.</p>
+<h3><strong>Examples</strong></h3>
+<p>Sample program:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">program</span> demo_abs</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="dt">integer</span>           <span class="dt">::</span> i <span class="kw">=</span> <span class="kw">-</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="dt">real</span>              <span class="dt">::</span> x <span class="kw">=</span> <span class="kw">-</span><span class="fl">1.0</span></a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="dt">complex</span>           <span class="dt">::</span> z <span class="kw">=</span> (<span class="kw">-</span><span class="fl">3.0</span>,<span class="kw">-</span><span class="fl">4.0</span>)</a>
+<a class="sourceLine" id="cb2-6" title="6">doubleprecision   <span class="dt">::</span> rr <span class="kw">=</span> <span class="kw">-</span><span class="fl">45.78d+00</span></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb2-8" title="8"> frmt <span class="kw">=</span>  <span class="st">&#39;(1x,a15,1x,&quot; In: &quot;,g0,            T51,&quot; Out: &quot;,g0)&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb2-9" title="9"> frmtc <span class="kw">=</span> <span class="st">&#39;(1x,a15,1x,&quot; In: (&quot;,g0,&quot;,&quot;,g0,&quot;)&quot;,T51,&quot; Out: &quot;,g0)&#39;</span></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="dt">integer</span>,<span class="dt">parameter</span> <span class="dt">::</span> dp<span class="kw">=</span><span class="fu">kind</span>(<span class="fl">0.0d0</span>)</a>
+<a class="sourceLine" id="cb2-11" title="11"></a>
+<a class="sourceLine" id="cb2-12" title="12">  <span class="co">! any integer, real, or complex type</span></a>
+<a class="sourceLine" id="cb2-13" title="13">    <span class="fu">write(*</span>, frmt<span class="fu">)</span>  <span class="st">&#39;integer         &#39;</span>,  i, <span class="bu">abs</span>(i)</a>
+<a class="sourceLine" id="cb2-14" title="14">    <span class="fu">write(*</span>, frmt<span class="fu">)</span>  <span class="st">&#39;real            &#39;</span>,  x, <span class="bu">abs</span>(x)</a>
+<a class="sourceLine" id="cb2-15" title="15">    <span class="fu">write(*</span>, frmt<span class="fu">)</span>  <span class="st">&#39;doubleprecision &#39;</span>, rr, <span class="bu">abs</span>(rr)</a>
+<a class="sourceLine" id="cb2-16" title="16">    <span class="fu">write(*</span>, frmtc<span class="fu">)</span> <span class="st">&#39;complex         &#39;</span>,  z, <span class="bu">abs</span>(z)</a>
+<a class="sourceLine" id="cb2-17" title="17"></a>
+<a class="sourceLine" id="cb2-18" title="18">  <span class="co">! any value whose positive value is representable</span></a>
+<a class="sourceLine" id="cb2-19" title="19">  <span class="co">! A dusty corner is that abs(-huge(0)-1) of an integer would input</span></a>
+<a class="sourceLine" id="cb2-20" title="20">  <span class="co">! a representable negative value on most machines but result in a</span></a>
+<a class="sourceLine" id="cb2-21" title="21">  <span class="co">! positive value out of range.</span></a>
+<a class="sourceLine" id="cb2-22" title="22">    <span class="fu">write(*</span>, <span class="fu">*)</span> <span class="st">&#39;abs range test : &#39;</span>, <span class="bu">abs</span>(<span class="fu">huge</span>(<span class="dv">0</span>)), <span class="bu">abs</span>(<span class="kw">-</span><span class="fu">huge</span>(<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb2-23" title="23">    <span class="fu">write(*</span>, <span class="fu">*)</span> <span class="st">&#39;abs range test : &#39;</span>, <span class="bu">abs</span>(<span class="fu">huge</span>(<span class="fl">0.0</span>)), <span class="bu">abs</span>(<span class="kw">-</span><span class="fu">huge</span>(<span class="fl">0.0</span>))</a>
+<a class="sourceLine" id="cb2-24" title="24">    <span class="fu">write(*</span>, <span class="fu">*)</span> <span class="st">&#39;abs range test : &#39;</span>, <span class="bu">abs</span>(<span class="fu">tiny</span>(<span class="fl">0.0</span>)), <span class="bu">abs</span>(<span class="kw">-</span><span class="fu">tiny</span>(<span class="fl">0.0</span>))</a>
+<a class="sourceLine" id="cb2-25" title="25"></a>
+<a class="sourceLine" id="cb2-26" title="26">  <span class="co">! elemental</span></a>
+<a class="sourceLine" id="cb2-27" title="27">    <span class="fu">write(*</span>, <span class="fu">*)</span> <span class="st">&#39;abs is elemental: &#39;</span>, <span class="bu">abs</span>(<span class="kw">[</span><span class="dv">20</span>,  <span class="dv">0</span>,  <span class="kw">-</span><span class="dv">1</span>,  <span class="kw">-</span><span class="dv">3</span>,  <span class="dv">100</span><span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb2-28" title="28"></a>
+<a class="sourceLine" id="cb2-29" title="29">  <span class="co">! complex input produces real output</span></a>
+<a class="sourceLine" id="cb2-30" title="30">    <span class="fu">write(*</span>, <span class="fu">*)</span>  <span class="bu">cmplx</span>(<span class="fl">30.0</span>,<span class="fl">40.0</span>)</a>
+<a class="sourceLine" id="cb2-31" title="31"></a>
+<a class="sourceLine" id="cb2-32" title="32">  <span class="co">! the returned value for complex input can be thought of as the</span></a>
+<a class="sourceLine" id="cb2-33" title="33">  <span class="co">! distance from the origin &lt;0,0&gt;</span></a>
+<a class="sourceLine" id="cb2-34" title="34">    <span class="fu">write(*</span>, <span class="fu">*)</span> <span class="st">&#39;distance of &lt;XX,YY&gt; from zero is&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb2-35" title="35">               <span class="kw">&amp;</span> distance(<span class="fl">30.0_dp</span>,<span class="fl">40.0_dp</span>)</a>
+<a class="sourceLine" id="cb2-36" title="36"></a>
+<a class="sourceLine" id="cb2-37" title="37">    <span class="kw">contains</span></a>
+<a class="sourceLine" id="cb2-38" title="38"></a>
+<a class="sourceLine" id="cb2-39" title="39"><span class="dt">    real(kind=dp)</span> <span class="kw">elemental</span> <span class="kw">function</span> distance(x,y)</a>
+<a class="sourceLine" id="cb2-40" title="40"><span class="dt">    real(kind=dp)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x,y</a>
+<a class="sourceLine" id="cb2-41" title="41">       <span class="co">! dusty corners:</span></a>
+<a class="sourceLine" id="cb2-42" title="42">       <span class="co">! note that KIND=DP is NOT optional</span></a>
+<a class="sourceLine" id="cb2-43" title="43">       <span class="co">! if the desired result is KIND=dp.</span></a>
+<a class="sourceLine" id="cb2-44" title="44">       <span class="co">! See cmplx(3).</span></a>
+<a class="sourceLine" id="cb2-45" title="45">       distance<span class="kw">=</span><span class="bu">abs</span>( <span class="bu">cmplx</span>(x,y,<span class="fu">kind</span><span class="kw">=</span>dp) )</a>
+<a class="sourceLine" id="cb2-46" title="46">    <span class="kw">end function</span> distance</a>
+<a class="sourceLine" id="cb2-47" title="47"></a>
+<a class="sourceLine" id="cb2-48" title="48"><span class="kw">end program</span> demo_abs</a></code></pre></div>
+<p>Results:</p>
+<pre class="text"><code>    integer          In: -1                     Out: 1
+    real             In: -1.000000              Out: 1.000000
+    doubleprecision  In: -45.78000000000000     Out: 45.78000000000000
+    complex          In: (-3.000000,-4.000000)  Out: 5.000000
+    abs range test :   2147483647  2147483647
+    abs range test :   3.4028235E+38  3.4028235E+38
+    abs range test :   1.1754944E-38  1.1754944E-38
+    abs is elemental: 20 0 1 3 100
+    (30.00000,40.00000)
+    distance of &lt;XX,YY&gt; from zero is   50.0000000000000
+</code></pre>
+<h3><strong>Standard</strong></h3>
+<p>FORTRAN 77 and later</p>
+<p><em>fortran-lang intrinsic descriptions (license: MIT) @urbanjost</em></p>

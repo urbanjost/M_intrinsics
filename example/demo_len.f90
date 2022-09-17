@@ -50,7 +50,6 @@
          subroutine passed(str)
          character(len=*),intent(in)  :: str
          ! the length of str can be used in the definitions of variables
-         character(len=LEN(str))      :: str3
             ! you can query the length of the passed variable
             write(*,*)'length of passed value is ', LEN(str)
          end subroutine passed
