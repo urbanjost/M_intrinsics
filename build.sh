@@ -34,6 +34,7 @@ fpm standalone
 mv standalone.f90 standalone/fman.f90
 cd standalone
 gfortran fman.f90 -o fpm-man
+rm -f fpm-man
 )
 ######################################
 # wrap up

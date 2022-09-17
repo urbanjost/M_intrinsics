@@ -62,15 +62,19 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=7>
+<A name=8>
 
      <H3>SYNTAX</H3>
 
 </A>
 <BLOCKQUOTE>
 <P>
-result = <B>bge</B>(i, j)
+elemental function <B>bge</B>(i, j)
+<B>integer</B>(kind=KIND),intent(in) :: i,j
+logical :: bge
 </BLOCKQUOTE>
+<P>
+where the kind of I and J must be the same.
 <A name=2>
 
      <H3>DESCRIPTION</H3>
@@ -92,12 +96,12 @@ another.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-I : Shall be of integer type.
+I : The value to test if &gt;= J
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-J : Shall be of integer type, and of the same kind as I.
+J : The value to test I against.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
@@ -107,9 +111,131 @@ J : Shall be of integer type, and of the same kind as I.
 </A>
 <BLOCKQUOTE>
 <P>
-The return value is of type logical and of the default kind.
+The return value is of type logical and of the default kind. It is
 </BLOCKQUOTE>
 <A name=5>
+
+     <H3>SAMPLE</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+program demo_bge
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+implicit none
+<TABLE cellpadding=3><!-- tsb: program demo_bge
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B>integer</B> </TD></TR><TR valign=top><TD width=3%>&nbsp;</TD><TD>
+:: i
+<B>integer</B>(kind=int8) :: byte
+<B>integer</B>(kind=int8),allocatable :: <B>arr1</B>(:), <B>arr2</B>(:)
+! basic usage
+<B>write</B>(*,*)&#146;<B>bge</B>(<B>-127</B>,127)=&#146;,<B>bge</B>( <B>-127_int8</B>, 127_int8 )
+! surprised <B>-127</B> is great than 127 (on most machines, at least)?
+! if the values are not represented as "two&#146;s complement" or if
+! the endian changes the representation of a sign can vary!
+<P>
+<B>write</B>(*,*)&#146;compare some values to 01000000 (64)&#146;
+<B>write</B>(*,*)&#146;Notice that the values are tested as bits, so essentially&#146;
+<B>write</B>(*,*)&#146;the values are tested as if unsigned integers.&#146;
+do i=<B>-128</B>,127,32
+byte=i
+<B>write</B>(*,&#146;(sp,i0.4,*(1x,1l,1x,b0.8))&#146;)i,<B>bge</B>(byte,64_int8),byte
+enddo
+! elemental
+<P>
+<PRE>
+       ! an array and scalar
+       write(*, *)&#146;compare array of values [-128, -0, +0, 127] to 127&#146;
+       write(*, *)bge(int([-128, -0, +0, 127], kind=int8), 127_int8)
+       ! are +0 and -9 the same?
+<P>
+       ! two arrays
+       write(*, *)&#146;compare two arrays&#146;
+       arr1=int( [ -127, -0, +0,  127], kind=int8 )
+       arr2=int( [  127,  0,  0, -127], kind=int8 )
+       write(*,*)&#146;arr1=&#146;,arr1
+       write(*,*)&#146;arr2=&#146;,arr2
+       write(*, *)&#146;bge(arr1,arr2)=&#146;,bge( arr1, arr2 )
+<P>
+</PRE>
+end program demo_bge
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<P>
+Results:
+<BLOCKQUOTE>
+<P>
+Note that how an integer value is represented at the bit level can vary.
+These are just the values expected on the most common platforms &#46;&#46;&#46;
+<P>
+<PRE>
+        bge(-127,127)= T
+        compare some values to 01000000 (64)
+        Notice that the values are tested as bits, so essentially
+        the values are tested as if unsigned integers.
+</PRE>
+<BLOCKQUOTE>
+<TABLE cellpadding=3><!-- tsb:         bge(-127,127)= T
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=6% nowrap>
+<B></B><B>-0128</B> </TD><TD valign=bottom>
+T 10000000
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B></B><B>-0096</B> </TD><TD valign=bottom>
+T 10100000
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B></B><B>-0064</B> </TD><TD valign=bottom>
+T 11000000
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B></B><B>-0032</B> </TD><TD valign=bottom>
+T 11100000
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>+0000</B> </TD><TD valign=bottom>
+F 00000000
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>+0032</B> </TD><TD valign=bottom>
+F 00100000
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>+0064</B> </TD><TD valign=bottom>
+T 01000000
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>+0096</B> </TD><TD valign=bottom>
+T 01100000
+compare array of values [-128, <B>-0</B>, +0, 127] to 127
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; T F F T</H4>
+</A>
+<BLOCKQUOTE>
+compare two arrays
+<TABLE cellpadding=3><!-- tsb: compare two arrays
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B>arr1= </B><B>-127</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+0    0  127
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>arr2=</B> </TD><TD valign=bottom>
+127    0    0 <B>-127</B>
+<B>bge</B>(arr1,arr2)= T T T F
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=6>
 
      <H3>STANDARD</H3>
 
@@ -118,7 +244,7 @@ The return value is of type logical and of the default kind.
 <P>
 Fortran 2008 and later
 </BLOCKQUOTE>
-<A name=6>
+<A name=7>
 
      <H3>SEE ALSO</H3>
 
@@ -127,10 +253,10 @@ Fortran 2008 and later
 <P>
 <B>BGT</B>(3), <B>BLE</B>(3), <B>BLT</B>(3)
 <P>
-fortran-lang intrinsic descriptions
+fortran-lang intrinsic descriptions @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>bge (3fortran)</TD> <TD align=right width=33%><I>September 16, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from b44b4a7d-5282-4214-b3b2-4cdc4fdfa759 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>bge (3fortran)</TD> <TD align=right width=33%><I>September 16, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from b07ab148-c69d-4caa-9234-4ad873af12ce using man macros.</FONT>
 <br><br><center><img src="images/bge.3fortran.gif"></center>
 </div>
 </div>
