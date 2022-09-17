@@ -1,47 +1,185 @@
-<h3><strong>Name</strong></h3>
-<p><strong>aimag</strong>(3) - [TYPE:NUMERIC] Imaginary part of complex number</p>
-<h3><strong>Syntax</strong></h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb1-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">aimag</span>(z)</a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3">     <span class="dt">complex(kind=KIND)</span>,<span class="kw">elemental</span> <span class="dt">::</span> <span class="bu">aimag</span></a>
-<a class="sourceLine" id="cb1-4" title="4"></a>
-<a class="sourceLine" id="cb1-5" title="5">     <span class="dt">complex(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> z</a></code></pre></div>
-<h3><strong>Description</strong></h3>
-<p><strong>aimag(z)</strong> yields the imaginary part of complex argument <strong>z</strong>.</p>
-<p>This is similar to the modern complex-part-designator <strong>%IM</strong> which also designates the imaginary part of a value, accept a designator can appear on the left-hand side of an assignment as well, as in <strong>val%im=10.0</strong>.</p>
-<h3><strong>Arguments</strong></h3>
-<ul class="incremental">
-<li><strong>z</strong> : The type of the argument shall be <em>complex</em>.</li>
-</ul>
-<h3><strong>Returns</strong></h3>
-<p>The return value is of type <em>real</em> with the kind type parameter of the argument.</p>
-<h3><strong>Examples</strong></h3>
-<p>Sample program:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">program</span> demo_aimag</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : real_kinds, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb2-3" title="3"> <span class="kw">&amp;</span> real32, real64, real128</a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="dt">complex(kind=real32)</span> z4</a>
-<a class="sourceLine" id="cb2-6" title="6"><span class="dt">complex(kind=real64)</span> z8</a>
-<a class="sourceLine" id="cb2-7" title="7">    z4 <span class="kw">=</span> <span class="bu">cmplx</span>(<span class="fl">1.e0</span>, <span class="fl">2.e0</span>)</a>
-<a class="sourceLine" id="cb2-8" title="8">    z8 <span class="kw">=</span> <span class="bu">cmplx</span>(<span class="fl">3.e0_real64</span>, <span class="fl">4.e0_real64</span>,<span class="fu">kind</span><span class="kw">=</span>real64)</a>
-<a class="sourceLine" id="cb2-9" title="9">    <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">aimag</span>(z4), <span class="bu">aimag</span>(z8)</a>
-<a class="sourceLine" id="cb2-10" title="10">    <span class="co">! an elemental function can be passed an array</span></a>
-<a class="sourceLine" id="cb2-11" title="11">    <span class="fu">print</span> <span class="kw">*</span></a>
-<a class="sourceLine" id="cb2-12" title="12">    <span class="fu">print</span> <span class="kw">*</span>, <span class="kw">[</span>z4,z4<span class="kw">/</span><span class="fl">2.0</span>,z4<span class="kw">+</span>z4,z4<span class="kw">**</span><span class="dv">3</span><span class="kw">]</span></a>
-<a class="sourceLine" id="cb2-13" title="13">    <span class="fu">print</span> <span class="kw">*</span></a>
-<a class="sourceLine" id="cb2-14" title="14">    <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">aimag</span>(<span class="kw">[</span>z4,z4<span class="kw">/</span><span class="fl">2.0</span>,z4<span class="kw">+</span>z4,z4<span class="kw">**</span><span class="dv">3</span><span class="kw">]</span>)</a>
-<a class="sourceLine" id="cb2-15" title="15"><span class="kw">end program</span> demo_aimag</a></code></pre></div>
-<p>Results:</p>
-<pre class="text"><code>  2.000000       4.00000000000000
+<html> 
+<head> 
+<title> </title>
+<style> 
+px {font-family: "Lucida Console", Monaco, monospace}
+p { font-size:100%; line-height:1.1em; }
+body {xfont-style: sans-serif}
+body {
+color:#333; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:1em; line-height:1.3em; }
+a:visited { color:#666; }
+h1,h2,h3,h4,h5,h6 { color:#333; font-family:georgia, verdana, sans-serif; }
+h1 { font-size:150%; page-break-before:auto;background-color: #aaaaff}
+h2 { font-size:143%;color:teal; }
+h3 { font-size:134%;color:blue; }
+h4 { font-size:120%;color:gray; }
+img { max-width: 55em}
+p{ padding: 0;margin:0; }
+p{ padding-right:1.4em; }
+p{ padding-bottom:1em; }
+p{ padding-top:1em; }
+p{ whitespace: pre-wrap; }
+h5,h6 { font-size:100% }
+a.nav,a:link.nav, a:visited.nav { background-color:#FFF; color:#000; }
+XXtable { border:double #000; border-collapse:collapse; }
+XXtable { border-collapse:collapse; }
+XXtd { border:thin solid #888; }
+XXtd { border:none; }
+li { margin-bottom:0.5em; }
+blockquote { display:block; font-size:100%; line-height:1.1em; margin:0 0 1.5em; padding:0 2.5em; }
+pre { background-color:#DDD; font-size:100%; overflow:auto; padding:1em; }
+a,li span { color:#000; }
+a:hover, a.nav:hover, a:hover math { background-color:#000; color:#FFF; }
+#Container { margin:0 10px; text-align:center; background-color: #BBB}
+#Content { border-top:none; margin:auto; padding:0.3em; text-align:left; width:100%; max-width:55em; background:#FFF}
+span.webName { font-size:.5em; }
+textarea#content { font-size: 1em; line-height: 1.125; }
+h1#pageName { line-height:1em; margin:0.2em 0 0.2em 0; padding:0; }
+.property { color:#666; font-size:100%; }
+a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
+.byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
+</style> 
+</head>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!--
+<h5><a href="index.html">[UP]</a></h5>
+-->
+<button type="button" onclick="javascript:history.back()">Back</button>
+<div id="Container">
+<div id="Content">
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>aimag (3fortran)</NOBR><HR></H1>
+</CENTER>
+<A name=0>
 
- (1.000000,2.000000) (0.5000000,1.000000) (2.000000,4.000000)
- (-11.00000,-2.000000)
+     <H3>NAME</H3>
 
-       2.000000       1.000000       4.000000      -2.000000
-</code></pre>
-<h3><strong>See Also</strong></h3>
-<p><a href="#real"><strong>real</strong>(3)</a>, <a href="#cmplx"><strong>cmplx</strong>(3)</a></p>
-<h3><strong>Standard</strong></h3>
-<p>FORTRAN 77 and later</p>
-<p><em>fortran-lang intrinsic descriptions</em></p>
+</A>
+<BLOCKQUOTE>
+<P>
+<B>AIMAG</B>(3) - [TYPE:NUMERIC] Imaginary part of complex number
+<P>
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=8>
+
+     <H3>SYNTAX</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+result = <B>aimag</B>(z)
+<P>
+<PRE>
+         complex(kind=KIND),elemental :: aimag
+<P>
+         complex(kind=KIND),intent(in) :: z
+<P>
+</PRE>
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<B>AIMAG</B>(Z) yields the imaginary part of complex argument Z.
+<P>
+This is similar to the modern complex-part-designator %IM which also
+designates the imaginary part of a value, accept a designator can appear
+on the left-hand side of an assignment as well, as in VAL%IM=10.0.
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>ARGUMENTS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+Z : The type of the argument shall be complex.
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>RETURNS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+The return value is of type real with the kind type parameter of the
+argument.
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Sample program:
+<P>
+<PRE>
+    program demo_aimag
+    use, intrinsic :: iso_fortran_env, only : real_kinds, &
+     & real32, real64, real128
+    implicit none
+    complex(kind=real32) z4
+    complex(kind=real64) z8
+        z4 = cmplx(1.e0, 2.e0)
+        z8 = cmplx(3.e0_real64, 4.e0_real64,kind=real64)
+        print *, aimag(z4), aimag(z8)
+        ! an elemental function can be passed an array
+        print *
+        print *, [z4,z4/2.0,z4+z4,z4**3]
+        print *
+        print *, aimag([z4,z4/2.0,z4+z4,z4**3])
+    end program demo_aimag
+<P>
+</PRE>
+Results:
+<P>
+<PRE>
+      2.000000       4.00000000000000
+<P>
+</PRE>
+(1.000000,2.000000) (0.5000000,1.000000) (2.000000,4.000000)
+(<B>-11.00000</B>,<B>-2.000000</B>)
+<P>
+<PRE>
+           2.000000       1.000000       4.000000      -2.000000
+<P>
+</PRE>
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<B>REAL</B>(3), <B>CMPLX</B>(3)
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>STANDARD</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+FORTRAN 77 and later
+<P>
+fortran-lang intrinsic descriptions
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>aimag (3fortran)</TD> <TD align=right width=33%><I>September 17, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 982f03c8-fa99-40be-8d56-171e4dc543cb using man macros.</FONT>
+<br><br><center><img src="images/aimag.3fortran.gif"></center>
+</div>
+</div>
+</body>
+</HTML>

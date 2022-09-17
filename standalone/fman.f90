@@ -1585,7 +1585,7 @@ textblock=[character(len=256) :: &
 '  <X,Y> .', &
 '', &
 '  Pictured as a vector it is easy to see that if X and Y are both zero the', &
-'  angle is indeterminent because it sits directly over the origin, so', &
+'  angle is indeterminate because it sits directly over the origin, so', &
 '  ATAN(0.0,0.0) will produce an error.', &
 '', &
 '  Range of returned values by quadrant:', &
@@ -2958,7 +2958,7 @@ textblock=[character(len=256) :: &
 '         ! signs have ...', &
 '         write(*,*)''Compare some one-byte values to 64.''', &
 '         write(*,*)''Notice that the values are tested as bits not as integers''', &
-'         write(*,*)''so the resuls are as if values are unsigned integers.''', &
+'         write(*,*)''so the results are as if values are unsigned integers.''', &
 '         do i=-128,127,32', &
 '            byte=i', &
 '            write(*,''(sp,i0.4,*(1x,1l,1x,b0.8))'')i,bge(byte,64_int8),byte', &
@@ -3933,14 +3933,14 @@ textblock=[character(len=256) :: &
 '            integer,parameter :: dp=kind(0.0d0)', &
 '            complex(kind=dp) :: z8', &
 '            !', &
-'            ! NO: result is just the precision of default _real_ values', &
+'            ! NO: result is just the precision of default real values', &
 '            !     because KIND parameter is not specified', &
 '            !', &
 '            ! note this was stored with default real precision', &
 '            z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0)', &
 '            print *, ''NO, Z8='',z8,real(z8),aimag(z8)', &
 '            z8 = cmplx(1.2345678901234567e0_dp, 1.2345678901234567e0_dp)', &
-'            ! again, note components are just _real_', &
+'            ! again, note components are just real', &
 '            print *, ''NO, Z8='',z8,real(z8),aimag(z8)', &
 '            !', &
 '            ! YES', &
@@ -5643,7 +5643,7 @@ textblock=[character(len=256) :: &
 '      !> doubleprecision :: xx = 5.2_dp', &
 '      !> doubleprecision :: yy = 2.3_dp', &
 '      !> print *, ''dprop==>'',dprod(xx,yy)', &
-'      !> print *, ''multipy==>'',xx*yy', &
+'      !> print *, ''multiply==>'',xx*yy', &
 '      !> print *, ''using dble==>'',dble(xx)*dble(yy)', &
 '      !> print *, ''kind of arguments is'',kind(xx)', &
 '      !> print *, ''kind of result is'',kind(dprod(xx,yy))', &
@@ -5661,7 +5661,7 @@ textblock=[character(len=256) :: &
 '            11.96000', &
 '            11.9600000000000', &
 '          dprop==>   11.9599999999999994848565165739273', &
-'          multipy==>   11.9600000000000', &
+'          multiply==>   11.9600000000000', &
 '          using dble==>   11.9600000000000', &
 '          kind of arguments is           8', &
 '          kind of result is          16', &
@@ -5788,7 +5788,7 @@ textblock=[character(len=256) :: &
 '', &
 '      Array Type     | Boundary Value', &
 '      -----------------------------------------------------', &
-'      Numeric        | 0 of the type and kind of **array**', &
+'      Numeric        | 0 of the type and kind of "array"', &
 '      Logical        | .false.', &
 '      Character(len) |  LEN blanks', &
 '', &
@@ -9730,7 +9730,7 @@ textblock=[character(len=256) :: &
 '  FORTRAN 77 and later', &
 '', &
 'SEE ALSO', &
-'  [[LGT(3), [[LLE(3), [[LLT(3)', &
+'  LGT(3), LLE(3), LLT(3)', &
 '', &
 '  Functions that perform operations on character strings, return lengths of', &
 '  arguments, and search for certain arguments:', &
@@ -9918,7 +9918,7 @@ textblock=[character(len=256) :: &
 '  FORTRAN 77 and later', &
 '', &
 'SEE ALSO', &
-'  LGE(3), LGT(3),, LLT(3)', &
+'  LGE(3), LGT(3), LLT(3)', &
 '', &
 '  Functions that perform operations on character strings, return lengths of', &
 '  arguments, and search for certain arguments:', &
@@ -11578,14 +11578,14 @@ textblock=[character(len=256) :: &
 '  call move_alloc(src, dest)', &
 '', &
 'DESCRIPTION', &
-'  MOVE_ALLOC(SRC, DEST) moves the allocation from *src( to *dest. SRC will', &
-'  become deallocated in the process.', &
+'  MOVE_ALLOC(SRC, DEST) moves the allocation from SRC to DEST. SRC will become', &
+'  deallocated in the process.', &
 '', &
 'ARGUMENTS', &
 '  o  SRC : allocatable, INTENT(INOUT), may be of any type and kind.', &
 '', &
 '  o  DEST : allocatable, INTENT(OUT), shall be of the same type, kind and rank', &
-'     as *src.', &
+'     as SRC.', &
 '', &
 'EXAMPLES', &
 '  Basic Sample program to allocate a bigger grid', &
@@ -12407,24 +12407,24 @@ textblock=[character(len=256) :: &
 '  of MOLD.', &
 '', &
 '  Case (ii): If MOLD is of type integer, and ROUND is present with the value', &
-'  true, the result is true if and only if the value of X is an IEEE in nity or', &
-'  NaN, or if the integer nearest X, or the integer of greater magnitude if two', &
-'  integers are equally near to X, is not representable by objects with the', &
+'  true, the result is true if and only if the value of X is an IEEE infinity', &
+'  or NaN, or if the integer nearest X, or the integer of greater magnitude if', &
+'  two integers are equally near to X, is not representable by objects with the', &
 '  type and kind of MOLD.', &
 '', &
 '  Case (iii): Otherwise, the result is true if and only if the value of X is', &
-'  an IEEE in nity or NaN that is not supported by objects of the type and kind', &
-'  of MOLD, or if X is a finite number and the result of rounding the value of', &
-'  X (according to the IEEE rounding mode if appropriate) to the extended model', &
-'  for the kind of MOLD has magnitude larger than that of the largest finite', &
-'  number with the same sign as X that is representable by objects with the', &
-'  type and kind of MOLD.', &
+'  an IEEE infinity or NaN that is not supported by objects of the type and', &
+'  kind of MOLD, or if X is a finite number and the result of rounding the', &
+'  value of X (according to the IEEE rounding mode if appropriate) to the', &
+'  extended model for the kind of MOLD has magnitude larger than that of the', &
+'  largest finite number with the same sign as X that is representable by', &
+'  objects with the type and kind of MOLD.', &
 '', &
 'NOTE', &
 '  MOLD is required to be a scalar because the only information taken from it', &
 '  is its type and kind. Allowing an array MOLD would require that it be', &
 '  conformable with X. ROUND is scalar because allowing an array rounding mode', &
-'  would have severe performance di culties on many processors.', &
+'  would have severe performance difficulties on many processors.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -13889,7 +13889,7 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  o  co_reduce(3)', &
 '', &
-'  o  associative:wipipedia', &
+'  o  associative:wikipedia', &
 '', &
 'STANDARD', &
 '  Fortran 2018', &

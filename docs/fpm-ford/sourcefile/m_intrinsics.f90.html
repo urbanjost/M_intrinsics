@@ -1842,7 +1842,7 @@
 <a name="ln-1583"></a><span class="s1">&#39;  &lt;X,Y&gt; .&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-1584"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-1585"></a><span class="s1">&#39;  Pictured as a vector it is easy to see that if X and Y are both zero the&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-1586"></a><span class="s1">&#39;  angle is indeterminent because it sits directly over the origin, so&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-1586"></a><span class="s1">&#39;  angle is indeterminate because it sits directly over the origin, so&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-1587"></a><span class="s1">&#39;  ATAN(0.0,0.0) will produce an error.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-1588"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-1589"></a><span class="s1">&#39;  Range of returned values by quadrant:&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
@@ -3215,7 +3215,7 @@
 <a name="ln-2956"></a><span class="s1">&#39;         ! signs have ...&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-2957"></a><span class="s1">&#39;         write(*,*)&#39;&#39;Compare some one-byte values to 64.&#39;&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-2958"></a><span class="s1">&#39;         write(*,*)&#39;&#39;Notice that the values are tested as bits not as integers&#39;&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-2959"></a><span class="s1">&#39;         write(*,*)&#39;&#39;so the resuls are as if values are unsigned integers.&#39;&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-2959"></a><span class="s1">&#39;         write(*,*)&#39;&#39;so the results are as if values are unsigned integers.&#39;&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-2960"></a><span class="s1">&#39;         do i=-128,127,32&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-2961"></a><span class="s1">&#39;            byte=i&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-2962"></a><span class="s1">&#39;            write(*,&#39;&#39;(sp,i0.4,*(1x,1l,1x,b0.8))&#39;&#39;)i,bge(byte,64_int8),byte&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
@@ -4190,14 +4190,14 @@
 <a name="ln-3931"></a><span class="s1">&#39;            integer,parameter :: dp=kind(0.0d0)&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-3932"></a><span class="s1">&#39;            complex(kind=dp) :: z8&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-3933"></a><span class="s1">&#39;            !&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-3934"></a><span class="s1">&#39;            ! NO: result is just the precision of default _real_ values&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-3934"></a><span class="s1">&#39;            ! NO: result is just the precision of default real values&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-3935"></a><span class="s1">&#39;            !     because KIND parameter is not specified&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-3936"></a><span class="s1">&#39;            !&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-3937"></a><span class="s1">&#39;            ! note this was stored with default real precision&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-3938"></a><span class="s1">&#39;            z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0)&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-3939"></a><span class="s1">&#39;            print *, &#39;&#39;NO, Z8=&#39;&#39;,z8,real(z8),aimag(z8)&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-3940"></a><span class="s1">&#39;            z8 = cmplx(1.2345678901234567e0_dp, 1.2345678901234567e0_dp)&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-3941"></a><span class="s1">&#39;            ! again, note components are just _real_&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-3941"></a><span class="s1">&#39;            ! again, note components are just real&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-3942"></a><span class="s1">&#39;            print *, &#39;&#39;NO, Z8=&#39;&#39;,z8,real(z8),aimag(z8)&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-3943"></a><span class="s1">&#39;            !&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-3944"></a><span class="s1">&#39;            ! YES&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
@@ -5900,7 +5900,7 @@
 <a name="ln-5641"></a><span class="s1">&#39;      !&gt; doubleprecision :: xx = 5.2_dp&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-5642"></a><span class="s1">&#39;      !&gt; doubleprecision :: yy = 2.3_dp&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-5643"></a><span class="s1">&#39;      !&gt; print *, &#39;&#39;dprop==&gt;&#39;&#39;,dprod(xx,yy)&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-5644"></a><span class="s1">&#39;      !&gt; print *, &#39;&#39;multipy==&gt;&#39;&#39;,xx*yy&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-5644"></a><span class="s1">&#39;      !&gt; print *, &#39;&#39;multiply==&gt;&#39;&#39;,xx*yy&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-5645"></a><span class="s1">&#39;      !&gt; print *, &#39;&#39;using dble==&gt;&#39;&#39;,dble(xx)*dble(yy)&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-5646"></a><span class="s1">&#39;      !&gt; print *, &#39;&#39;kind of arguments is&#39;&#39;,kind(xx)&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-5647"></a><span class="s1">&#39;      !&gt; print *, &#39;&#39;kind of result is&#39;&#39;,kind(dprod(xx,yy))&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
@@ -5918,7 +5918,7 @@
 <a name="ln-5659"></a><span class="s1">&#39;            11.96000&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-5660"></a><span class="s1">&#39;            11.9600000000000&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-5661"></a><span class="s1">&#39;          dprop==&gt;   11.9599999999999994848565165739273&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-5662"></a><span class="s1">&#39;          multipy==&gt;   11.9600000000000&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-5662"></a><span class="s1">&#39;          multiply==&gt;   11.9600000000000&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-5663"></a><span class="s1">&#39;          using dble==&gt;   11.9600000000000&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-5664"></a><span class="s1">&#39;          kind of arguments is           8&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-5665"></a><span class="s1">&#39;          kind of result is          16&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
@@ -6045,7 +6045,7 @@
 <a name="ln-5786"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-5787"></a><span class="s1">&#39;      Array Type     | Boundary Value&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-5788"></a><span class="s1">&#39;      -----------------------------------------------------&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-5789"></a><span class="s1">&#39;      Numeric        | 0 of the type and kind of **array**&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-5789"></a><span class="s1">&#39;      Numeric        | 0 of the type and kind of &quot;array&quot;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-5790"></a><span class="s1">&#39;      Logical        | .false.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-5791"></a><span class="s1">&#39;      Character(len) |  LEN blanks&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-5792"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
@@ -9987,7 +9987,7 @@
 <a name="ln-9728"></a><span class="s1">&#39;  FORTRAN 77 and later&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9729"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9730"></a><span class="s1">&#39;SEE ALSO&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-9731"></a><span class="s1">&#39;  [[LGT(3), [[LLE(3), [[LLT(3)&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-9731"></a><span class="s1">&#39;  LGT(3), LLE(3), LLT(3)&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9732"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9733"></a><span class="s1">&#39;  Functions that perform operations on character strings, return lengths of&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9734"></a><span class="s1">&#39;  arguments, and search for certain arguments:&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
@@ -10175,7 +10175,7 @@
 <a name="ln-9916"></a><span class="s1">&#39;  FORTRAN 77 and later&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9917"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9918"></a><span class="s1">&#39;SEE ALSO&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-9919"></a><span class="s1">&#39;  LGE(3), LGT(3),, LLT(3)&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-9919"></a><span class="s1">&#39;  LGE(3), LGT(3), LLT(3)&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9920"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9921"></a><span class="s1">&#39;  Functions that perform operations on character strings, return lengths of&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9922"></a><span class="s1">&#39;  arguments, and search for certain arguments:&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
@@ -11835,14 +11835,14 @@
 <a name="ln-11576"></a><span class="s1">&#39;  call move_alloc(src, dest)&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-11577"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-11578"></a><span class="s1">&#39;DESCRIPTION&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-11579"></a><span class="s1">&#39;  MOVE_ALLOC(SRC, DEST) moves the allocation from *src( to *dest. SRC will&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-11580"></a><span class="s1">&#39;  become deallocated in the process.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-11579"></a><span class="s1">&#39;  MOVE_ALLOC(SRC, DEST) moves the allocation from SRC to DEST. SRC will become&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-11580"></a><span class="s1">&#39;  deallocated in the process.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-11581"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-11582"></a><span class="s1">&#39;ARGUMENTS&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-11583"></a><span class="s1">&#39;  o  SRC : allocatable, INTENT(INOUT), may be of any type and kind.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-11584"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-11585"></a><span class="s1">&#39;  o  DEST : allocatable, INTENT(OUT), shall be of the same type, kind and rank&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-11586"></a><span class="s1">&#39;     as *src.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-11586"></a><span class="s1">&#39;     as SRC.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-11587"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-11588"></a><span class="s1">&#39;EXAMPLES&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-11589"></a><span class="s1">&#39;  Basic Sample program to allocate a bigger grid&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
@@ -12664,24 +12664,24 @@
 <a name="ln-12405"></a><span class="s1">&#39;  of MOLD.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-12406"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-12407"></a><span class="s1">&#39;  Case (ii): If MOLD is of type integer, and ROUND is present with the value&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-12408"></a><span class="s1">&#39;  true, the result is true if and only if the value of X is an IEEE in nity or&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-12409"></a><span class="s1">&#39;  NaN, or if the integer nearest X, or the integer of greater magnitude if two&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-12410"></a><span class="s1">&#39;  integers are equally near to X, is not representable by objects with the&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-12408"></a><span class="s1">&#39;  true, the result is true if and only if the value of X is an IEEE infinity&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-12409"></a><span class="s1">&#39;  or NaN, or if the integer nearest X, or the integer of greater magnitude if&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-12410"></a><span class="s1">&#39;  two integers are equally near to X, is not representable by objects with the&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-12411"></a><span class="s1">&#39;  type and kind of MOLD.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-12412"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-12413"></a><span class="s1">&#39;  Case (iii): Otherwise, the result is true if and only if the value of X is&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-12414"></a><span class="s1">&#39;  an IEEE in nity or NaN that is not supported by objects of the type and kind&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-12415"></a><span class="s1">&#39;  of MOLD, or if X is a finite number and the result of rounding the value of&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-12416"></a><span class="s1">&#39;  X (according to the IEEE rounding mode if appropriate) to the extended model&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-12417"></a><span class="s1">&#39;  for the kind of MOLD has magnitude larger than that of the largest finite&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-12418"></a><span class="s1">&#39;  number with the same sign as X that is representable by objects with the&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-12419"></a><span class="s1">&#39;  type and kind of MOLD.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-12414"></a><span class="s1">&#39;  an IEEE infinity or NaN that is not supported by objects of the type and&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-12415"></a><span class="s1">&#39;  kind of MOLD, or if X is a finite number and the result of rounding the&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-12416"></a><span class="s1">&#39;  value of X (according to the IEEE rounding mode if appropriate) to the&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-12417"></a><span class="s1">&#39;  extended model for the kind of MOLD has magnitude larger than that of the&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-12418"></a><span class="s1">&#39;  largest finite number with the same sign as X that is representable by&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-12419"></a><span class="s1">&#39;  objects with the type and kind of MOLD.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-12420"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-12421"></a><span class="s1">&#39;NOTE&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-12422"></a><span class="s1">&#39;  MOLD is required to be a scalar because the only information taken from it&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-12423"></a><span class="s1">&#39;  is its type and kind. Allowing an array MOLD would require that it be&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-12424"></a><span class="s1">&#39;  conformable with X. ROUND is scalar because allowing an array rounding mode&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-12425"></a><span class="s1">&#39;  would have severe performance di culties on many processors.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-12425"></a><span class="s1">&#39;  would have severe performance difficulties on many processors.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-12426"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-12427"></a><span class="s1">&#39;EXAMPLES&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-12428"></a><span class="s1">&#39;  Sample program:&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
@@ -14146,7 +14146,7 @@
 <a name="ln-13887"></a><span class="s1">&#39;SEE ALSO&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-13888"></a><span class="s1">&#39;  o  co_reduce(3)&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-13889"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-13890"></a><span class="s1">&#39;  o  associative:wipipedia&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-13890"></a><span class="s1">&#39;  o  associative:wikipedia&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-13891"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-13892"></a><span class="s1">&#39;STANDARD&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-13893"></a><span class="s1">&#39;  Fortran 2018&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
@@ -17195,7 +17195,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2022-09-17 14:44  
+             on 2022-09-17 15:27  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> M_intrinsics was developed by John S. Urban</p></div>

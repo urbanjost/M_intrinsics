@@ -28,7 +28,7 @@
       !> doubleprecision :: xx = 5.2_dp
       !> doubleprecision :: yy = 2.3_dp
       !> print *, 'dprop==>',dprod(xx,yy)
-      !> print *, 'multipy==>',xx*yy
+      !> print *, 'multiply==>',xx*yy
       !> print *, 'using dble==>',dble(xx)*dble(yy)
       !> print *, 'kind of arguments is',kind(xx)
       !> print *, 'kind of result is',kind(dprod(xx,yy))

@@ -1192,7 +1192,7 @@ If must be of the same kind as <strong>y</strong>.</li>
 <p>The value returned is by definition the principal value of the complex number <strong>(x, y)</strong>.</p>
 <p>The principal value is simply what we get when we adjust a radian value to lie between <strong>-PI</strong> and <strong>PI</strong> inclusive,</p>
 <p>The classic definition of the arctangent is the angle that is formed in Cartesian coordinates of the line from the origin point <strong>&lt;0,0&gt;</strong> to the point <strong>&lt;x,y&gt;</strong> .</p>
-<p>Pictured as a vector it is easy to see that if <strong>x</strong> and <strong>y</strong> are both zero the angle is indeterminent because it sits directly over the origin, so <strong>atan(0.0,0.0)</strong> will produce an error.</p>
+<p>Pictured as a vector it is easy to see that if <strong>x</strong> and <strong>y</strong> are both zero the angle is indeterminate because it sits directly over the origin, so <strong>atan(0.0,0.0)</strong> will produce an error.</p>
 <p>Range of returned values by quadrant:</p>
 <pre class="text"><code>&gt;                   +PI/2
 &gt;                     |
@@ -2327,7 +2327,7 @@ If must be of the same kind as <strong>y</strong>.</li>
 <a class="sourceLine" id="cb100-33" title="33">   <span class="co">! signs have ...</span></a>
 <a class="sourceLine" id="cb100-34" title="34">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;Compare some one-byte values to 64.&#39;</span></a>
 <a class="sourceLine" id="cb100-35" title="35">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;Notice that the values are tested as bits not as integers&#39;</span></a>
-<a class="sourceLine" id="cb100-36" title="36">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;so the resuls are as if values are unsigned integers.&#39;</span></a>
+<a class="sourceLine" id="cb100-36" title="36">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;so the results are as if values are unsigned integers.&#39;</span></a>
 <a class="sourceLine" id="cb100-37" title="37">   <span class="kw">do</span> i<span class="kw">=-</span><span class="dv">128</span>,<span class="dv">127</span>,<span class="dv">32</span></a>
 <a class="sourceLine" id="cb100-38" title="38">      byte<span class="kw">=</span>i</a>
 <a class="sourceLine" id="cb100-39" title="39">      <span class="fu">write(*</span>,<span class="st">&#39;(sp,i0.4,*(1x,1l,1x,b0.8))&#39;</span><span class="fu">)</span>i,bge(byte,<span class="dv">64_int8</span>),byte</a>
@@ -3128,14 +3128,14 @@ the value of btest (2, a)
 <div class="sourceCode" id="cb136"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb136-1" title="1">      <span class="dt">integer</span>,<span class="dt">parameter</span> <span class="dt">::</span> dp<span class="kw">=</span><span class="fu">kind</span>(<span class="fl">0.0d0</span>)</a>
 <a class="sourceLine" id="cb136-2" title="2">      <span class="dt">complex(kind=dp)</span> <span class="dt">::</span> z8</a>
 <a class="sourceLine" id="cb136-3" title="3">      <span class="co">!</span></a>
-<a class="sourceLine" id="cb136-4" title="4">      <span class="co">! NO: result is just the precision of default _real_ values</span></a>
+<a class="sourceLine" id="cb136-4" title="4">      <span class="co">! NO: result is just the precision of default real values</span></a>
 <a class="sourceLine" id="cb136-5" title="5">      <span class="co">!     because KIND parameter is not specified</span></a>
 <a class="sourceLine" id="cb136-6" title="6">      <span class="co">!</span></a>
 <a class="sourceLine" id="cb136-7" title="7">      <span class="co">! note this was stored with default real precision</span></a>
 <a class="sourceLine" id="cb136-8" title="8">      z8 <span class="kw">=</span> <span class="bu">cmplx</span>(<span class="fl">1.2345678901234567d0</span>, <span class="fl">1.2345678901234567d0</span>)</a>
 <a class="sourceLine" id="cb136-9" title="9">      <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;NO, Z8=&#39;</span>,z8,<span class="bu">real</span>(z8),<span class="bu">aimag</span>(z8)</a>
 <a class="sourceLine" id="cb136-10" title="10">      z8 <span class="kw">=</span> <span class="bu">cmplx</span>(<span class="fl">1.2345678901234567e0_dp</span>, <span class="fl">1.2345678901234567e0_dp</span>)</a>
-<a class="sourceLine" id="cb136-11" title="11">      <span class="co">! again, note components are just _real_</span></a>
+<a class="sourceLine" id="cb136-11" title="11">      <span class="co">! again, note components are just real</span></a>
 <a class="sourceLine" id="cb136-12" title="12">      <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;NO, Z8=&#39;</span>,z8,<span class="bu">real</span>(z8),<span class="bu">aimag</span>(z8)</a>
 <a class="sourceLine" id="cb136-13" title="13">      <span class="co">!</span></a>
 <a class="sourceLine" id="cb136-14" title="14">      <span class="co">! YES</span></a>
@@ -4489,7 +4489,7 @@ the value of btest (2, a)
 <a class="sourceLine" id="cb200-28" title="28"><span class="co">!&gt; doubleprecision :: xx = 5.2_dp</span></a>
 <a class="sourceLine" id="cb200-29" title="29"><span class="co">!&gt; doubleprecision :: yy = 2.3_dp</span></a>
 <a class="sourceLine" id="cb200-30" title="30"><span class="co">!&gt; print *, &#39;dprop==&gt;&#39;,dprod(xx,yy)</span></a>
-<a class="sourceLine" id="cb200-31" title="31"><span class="co">!&gt; print *, &#39;multipy==&gt;&#39;,xx*yy</span></a>
+<a class="sourceLine" id="cb200-31" title="31"><span class="co">!&gt; print *, &#39;multiply==&gt;&#39;,xx*yy</span></a>
 <a class="sourceLine" id="cb200-32" title="32"><span class="co">!&gt; print *, &#39;using dble==&gt;&#39;,dble(xx)*dble(yy)</span></a>
 <a class="sourceLine" id="cb200-33" title="33"><span class="co">!&gt; print *, &#39;kind of arguments is&#39;,kind(xx)</span></a>
 <a class="sourceLine" id="cb200-34" title="34"><span class="co">!&gt; print *, &#39;kind of result is&#39;,kind(dprod(xx,yy))</span></a>
@@ -4505,7 +4505,7 @@ the value of btest (2, a)
       11.96000
       11.9600000000000
     dprop==&gt;   11.9599999999999994848565165739273
-    multipy==&gt;   11.9600000000000
+    multiply==&gt;   11.9600000000000
     using dble==&gt;   11.9600000000000
     kind of arguments is           8
     kind of result is          16</code></pre>
@@ -4603,7 +4603,7 @@ the value of btest (2, a)
 <p><strong>eoshift(array, shift[, boundary, dim])</strong> performs an end-off shift on elements of <strong>array</strong> along the dimension of <strong>dim</strong>. If <strong>dim</strong> is omitted it is taken to be <strong>1</strong>. <strong>dim</strong> is a scalar of type integer in the range of <strong>1 &lt;= DIM &lt;= n</strong> where <strong>“n”</strong> is the rank of <strong>array</strong>. If the rank of <strong>array</strong> is one, then all elements of <strong>array</strong> are shifted by <strong>shift</strong> places. If rank is greater than one, then all complete rank one sections of <strong>array</strong> along the given dimension are shifted. Elements shifted out one end of each rank one section are dropped. If <strong>boundary</strong> is present then the corresponding value from <strong>boundary</strong> is copied back in the other end. If <strong>boundary</strong> is not present then the following are copied in depending on the type of <strong>array</strong>.</p>
 <pre><code>Array Type     | Boundary Value
 -----------------------------------------------------
-Numeric        | 0 of the type and kind of **array**
+Numeric        | 0 of the type and kind of &quot;array&quot;
 Logical        | .false.
 Character(len) |  LEN blanks</code></pre>
 </div><div id="arguments-73" class="slide section level3">
@@ -7517,7 +7517,7 @@ If not present the returned type is that of default integer type.</li>
 <p>FORTRAN 77 and later</p>
 </div><div id="see-also-97" class="slide section level3">
 <h1><strong>See Also</strong></h1>
-<p><strong>[[lgt</strong>(3), <strong>[[lle</strong>(3), <strong>[[llt</strong>(3)</p>
+<p><a href="#lgt"><strong>lgt</strong>(3)</a>, <a href="#lle"><strong>lle</strong>(3)</a>, <a href="#llt"><strong>llt</strong>(3)</a></p>
 <p>Functions that perform operations on character strings, return lengths of arguments, and search for certain arguments:</p>
 <ul>
 <li><strong>Elemental:</strong> <a href="#adjustl"><strong>adjustl</strong>(3)</a>, <a href="#adjustr"><strong>adjustr</strong>(3)</a>, <a href="#index"><strong>index</strong>(3)</a>,</li>
@@ -7670,7 +7670,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 <p>FORTRAN 77 and later</p>
 </div><div id="see-also-99" class="slide section level3">
 <h1><strong>See Also</strong></h1>
-<p><a href="#lge"><strong>lge</strong>(3)</a>, <a href="#lgt"><strong>lgt</strong>(3),</a>, <a href="#llt"><strong>llt</strong>(3)</a></p>
+<p><a href="#lge"><strong>lge</strong>(3)</a>, <a href="#lgt"><strong>lgt</strong>(3)</a>, <a href="#llt"><strong>llt</strong>(3)</a></p>
 <p>Functions that perform operations on character strings, return lengths of arguments, and search for certain arguments:</p>
 <ul>
 <li><strong>Elemental:</strong> <a href="#adjustl"><strong>adjustl</strong>(3)</a>, <a href="#adjustr"><strong>adjustr</strong>(3)</a>, <a href="#index"><strong>index</strong>(3)</a>,</li>
@@ -9063,7 +9063,7 @@ end program demo_maskr</code></pre>
 <div class="sourceCode" id="cb404"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb404-1" title="1"><span class="kw">call</span> move_alloc(src, dest)</a></code></pre></div>
 </div><div id="description-139" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>move_alloc(src, dest)</strong> moves the allocation from **src*( to **dest*. <strong>src</strong> will become deallocated in the process.</p>
+<p><strong>move_alloc(src, dest)</strong> moves the allocation from <strong>src</strong> to <strong>dest</strong>. <strong>src</strong> will become deallocated in the process.</p>
 </div><div id="arguments-134" class="slide section level3">
 <h1><strong>Arguments</strong></h1>
 <ul>
@@ -9074,7 +9074,7 @@ end program demo_maskr</code></pre>
 </dl></li>
 <li><dl>
 <dt><strong>dest</strong></dt>
-<dd>allocatable, <strong>intent(out)</strong>, shall be of the same type, kind and rank as **src*.
+<dd>allocatable, <strong>intent(out)</strong>, shall be of the same type, kind and rank as <strong>src</strong>.
 </dd>
 </dl></li>
 </ul>
@@ -9779,10 +9779,10 @@ The result is undefined if it cannot be represented in the specified integer typ
 <h1><strong>Returns</strong></h1>
 <p>From the standard:</p>
 <p>Case (i): If MOLD is of type integer, and ROUND is absent or present with the value false, the result is true if and only if the value of X is an IEEE infinity or NaN, or if the integer with largest magnitude that lies between zero and X inclusive is not representable by objects with the type and kind of MOLD.</p>
-<p>Case (ii): If MOLD is of type integer, and ROUND is present with the value true, the result is true if and only if the value of X is an IEEE in nity or NaN, or if the integer nearest X, or the integer of greater magnitude if two integers are equally near to X, is not representable by objects with the type and kind of MOLD.</p>
-<p>Case (iii): Otherwise, the result is true if and only if the value of X is an IEEE in nity or NaN that is not supported by objects of the type and kind of MOLD, or if X is a finite number and the result of rounding the value of X (according to the IEEE rounding mode if appropriate) to the extended model for the kind of MOLD has magnitude larger than that of the largest finite number with the same sign as X that is representable by objects with the type and kind of MOLD.</p>
+<p>Case (ii): If MOLD is of type integer, and ROUND is present with the value true, the result is true if and only if the value of X is an IEEE infinity or NaN, or if the integer nearest X, or the integer of greater magnitude if two integers are equally near to X, is not representable by objects with the type and kind of MOLD.</p>
+<p>Case (iii): Otherwise, the result is true if and only if the value of X is an IEEE infinity or NaN that is not supported by objects of the type and kind of MOLD, or if X is a finite number and the result of rounding the value of X (according to the IEEE rounding mode if appropriate) to the extended model for the kind of MOLD has magnitude larger than that of the largest finite number with the same sign as X that is representable by objects with the type and kind of MOLD.</p>
 <p>NOTE</p>
-<p>MOLD is required to be a scalar because the only information taken from it is its type and kind. Allowing an array MOLD would require that it be conformable with X. ROUND is scalar because allowing an array rounding mode would have severe performance di culties on many processors.</p>
+<p>MOLD is required to be a scalar because the only information taken from it is its type and kind. Allowing an array MOLD would require that it be conformable with X. ROUND is scalar because allowing an array rounding mode would have severe performance difficulties on many processors.</p>
 </div><div id="examples-133" class="slide section level3">
 <h1><strong>Examples</strong></h1>
 <p>Sample program:</p>
@@ -10823,7 +10823,7 @@ dim=3 :( 2 3 )
 <h1><strong>See Also</strong></h1>
 <ul>
 <li><a href="#co_reduce">co_reduce(3)</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Associative_property">associative:wipipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Associative_property">associative:wikipedia</a></li>
 </ul>
 </div><div id="standard-160" class="slide section level3">
 <h1><strong>Standard</strong></h1>

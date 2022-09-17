@@ -1,127 +1,304 @@
-<h3><strong>Name</strong></h3>
-<p><strong>achar</strong>(3) - [CHARACTER:CONVERSION] returns a character in a specified position in the ASCII collating sequence</p>
-<h3><strong>Syntax</strong></h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb1-1" title="1">  <span class="kw">result</span> <span class="kw">=</span> <span class="bu">achar</span>(i,<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>)</a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3">    <span class="dt">character(len=1)</span> <span class="kw">elemental</span> <span class="kw">function</span> <span class="dt">::</span> <span class="bu">achar</span>(i,<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>)</a>
-<a class="sourceLine" id="cb1-4" title="4"></a>
-<a class="sourceLine" id="cb1-5" title="5">    <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb1-6" title="6">    <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
-<p>where KIND may be any supported kind value for <em>integer</em> types.</p>
-<h3><strong>Description</strong></h3>
-<p><strong>achar(i)</strong> returns the character located at position <strong>i</strong> (commonly called the <em>ADE</em> or ASCII Decimal Equivalent) in the ASCII collating sequence.</p>
-<p>The <strong>achar</strong>(3) function is often used for generating in-band escape sequences to control terminal attributes.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb2-1" title="1">   <span class="fu">write(*</span>,<span class="st">&#39;(*(a))&#39;</span><span class="fu">)</span><span class="bu">achar</span>(<span class="dv">27</span>),<span class="st">&#39;[2J&#39;</span></a></code></pre></div>
-<p>will clear the screen on an ANSI-compatible terminal display, for example.</p>
-<h3><strong>Arguments</strong></h3>
-<ul class="incremental">
-<li><p><strong>i</strong> : the <em>integer</em> value to convert to an ASCII character, in the range 0 to 127.</p></li>
-<li><p><strong>kind</strong> : (optional) an <em>integer</em> initialization expression indicating the kind parameter of the result.</p></li>
-</ul>
-<h3><strong>Returns</strong></h3>
-<p>The return value is the requested character of type <em>character</em> with a length of one. If the <strong>kind</strong> argument is present, the return value is of the specified kind and of the default kind otherwise.</p>
-<h3><strong>Examples</strong></h3>
-<p>Sample program:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">program</span> demo_achar</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw">use</span>,<span class="kw">intrinsic</span><span class="dt">::</span>iso_fortran_env,<span class="kw">only</span>:int8,int16,int32,int64</a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="dt">integer</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb3-5" title="5">   i<span class="kw">=</span><span class="dv">65</span></a>
-<a class="sourceLine" id="cb3-6" title="6">   <span class="fu">write(*</span>,<span class="st">&#39;(&quot;decimal     =&quot;,i0)&#39;</span><span class="fu">)</span>i</a>
-<a class="sourceLine" id="cb3-7" title="7">   <span class="fu">write(*</span>,<span class="st">&#39;(&quot;character   =&quot;,a1)&#39;</span><span class="fu">)</span><span class="bu">achar</span>(i)</a>
-<a class="sourceLine" id="cb3-8" title="8">   <span class="fu">write(*</span>,<span class="st">&#39;(&quot;binary      =&quot;,b0)&#39;</span><span class="fu">)</span><span class="bu">achar</span>(i)</a>
-<a class="sourceLine" id="cb3-9" title="9">   <span class="fu">write(*</span>,<span class="st">&#39;(&quot;octal       =&quot;,o0)&#39;</span><span class="fu">)</span><span class="bu">achar</span>(i)</a>
-<a class="sourceLine" id="cb3-10" title="10">   <span class="fu">write(*</span>,<span class="st">&#39;(&quot;hexadecimal =&quot;,z0)&#39;</span><span class="fu">)</span><span class="bu">achar</span>(i)</a>
-<a class="sourceLine" id="cb3-11" title="11"></a>
-<a class="sourceLine" id="cb3-12" title="12">   <span class="fu">write(*</span>,<span class="st">&#39;(8(i3,1x,a,1x),/)&#39;</span><span class="fu">)</span>(i,<span class="bu">achar</span>(i), i<span class="kw">=</span><span class="dv">32</span>,<span class="dv">126</span>)</a>
-<a class="sourceLine" id="cb3-13" title="13"></a>
-<a class="sourceLine" id="cb3-14" title="14">   <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span>upper(<span class="st">&#39;Mixed Case&#39;</span>)</a>
-<a class="sourceLine" id="cb3-15" title="15"><span class="co">contains</span></a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="co">! a classic use of achar(3) is to convert the case of a string</span></a>
-<a class="sourceLine" id="cb3-17" title="17"></a>
-<a class="sourceLine" id="cb3-18" title="18"><span class="kw">elemental</span> <span class="kw">pure</span> <span class="kw">function</span> upper(str) <span class="kw">result</span> (string)</a>
-<a class="sourceLine" id="cb3-19" title="19"><span class="co">!</span></a>
-<a class="sourceLine" id="cb3-20" title="20"><span class="co">!$@(#) upper(3f): function to return a trimmed uppercase-only string</span></a>
-<a class="sourceLine" id="cb3-21" title="21"><span class="co">!</span></a>
-<a class="sourceLine" id="cb3-22" title="22"><span class="co">! input string to convert to all uppercase</span></a>
-<a class="sourceLine" id="cb3-23" title="23"><span class="dt">character(*)</span>, <span class="dt">intent(in)</span>      <span class="dt">::</span> str</a>
-<a class="sourceLine" id="cb3-24" title="24"><span class="co">! output string that contains no miniscule letters</span></a>
-<a class="sourceLine" id="cb3-25" title="25"><span class="dt">character(len(str))</span>           <span class="dt">::</span> string</a>
-<a class="sourceLine" id="cb3-26" title="26"><span class="dt">integer</span>                       <span class="dt">::</span> i, iend</a>
-<a class="sourceLine" id="cb3-27" title="27"><span class="dt">integer</span>,<span class="dt">parameter</span>             <span class="dt">::</span> toupper <span class="kw">=</span> <span class="bu">iachar</span>(<span class="st">&#39;A&#39;</span>)<span class="kw">-</span><span class="bu">iachar</span>(<span class="st">&#39;a&#39;</span>)</a>
-<a class="sourceLine" id="cb3-28" title="28">   iend<span class="kw">=</span><span class="bu">len_trim</span>(str)</a>
-<a class="sourceLine" id="cb3-29" title="29">   <span class="co">! initialize output string to trimmed input string</span></a>
-<a class="sourceLine" id="cb3-30" title="30">   string <span class="kw">=</span> str(:iend)</a>
-<a class="sourceLine" id="cb3-31" title="31">   <span class="co">! process each letter in the string</span></a>
-<a class="sourceLine" id="cb3-32" title="32">   <span class="kw">do</span> concurrent (i <span class="kw">=</span> <span class="dv">1</span>:iend)</a>
-<a class="sourceLine" id="cb3-33" title="33">       <span class="kw">select</span> <span class="kw">case</span> (str(i:i))</a>
-<a class="sourceLine" id="cb3-34" title="34">       <span class="co">! located miniscule letter</span></a>
-<a class="sourceLine" id="cb3-35" title="35">       <span class="kw">case</span> (<span class="st">&#39;a&#39;</span>:<span class="st">&#39;z&#39;</span>)</a>
-<a class="sourceLine" id="cb3-36" title="36">          <span class="co">! change miniscule to majuscule letter</span></a>
-<a class="sourceLine" id="cb3-37" title="37">          string(i:i) <span class="kw">=</span> <span class="bu">achar</span>(<span class="bu">iachar</span>(str(i:i))<span class="kw">+</span>toupper)</a>
-<a class="sourceLine" id="cb3-38" title="38">       <span class="kw">end select</span></a>
-<a class="sourceLine" id="cb3-39" title="39">   <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb3-40" title="40"><span class="kw">end function</span> upper</a>
-<a class="sourceLine" id="cb3-41" title="41"><span class="kw">end program</span> demo_achar</a></code></pre></div>
-<p>Results:</p>
-<pre><code>   decimal     =65
-   character   =A
-   binary      =1000001
-   octal       =101
-   hexadecimal =41
-    32    33 !  34 &quot;  35 #  36 $  37 %  38 &amp;  39 &#39;
+<html> 
+<head> 
+<title> </title>
+<style> 
+px {font-family: "Lucida Console", Monaco, monospace}
+p { font-size:100%; line-height:1.1em; }
+body {xfont-style: sans-serif}
+body {
+color:#333; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:1em; line-height:1.3em; }
+a:visited { color:#666; }
+h1,h2,h3,h4,h5,h6 { color:#333; font-family:georgia, verdana, sans-serif; }
+h1 { font-size:150%; page-break-before:auto;background-color: #aaaaff}
+h2 { font-size:143%;color:teal; }
+h3 { font-size:134%;color:blue; }
+h4 { font-size:120%;color:gray; }
+img { max-width: 55em}
+p{ padding: 0;margin:0; }
+p{ padding-right:1.4em; }
+p{ padding-bottom:1em; }
+p{ padding-top:1em; }
+p{ whitespace: pre-wrap; }
+h5,h6 { font-size:100% }
+a.nav,a:link.nav, a:visited.nav { background-color:#FFF; color:#000; }
+XXtable { border:double #000; border-collapse:collapse; }
+XXtable { border-collapse:collapse; }
+XXtd { border:thin solid #888; }
+XXtd { border:none; }
+li { margin-bottom:0.5em; }
+blockquote { display:block; font-size:100%; line-height:1.1em; margin:0 0 1.5em; padding:0 2.5em; }
+pre { background-color:#DDD; font-size:100%; overflow:auto; padding:1em; }
+a,li span { color:#000; }
+a:hover, a.nav:hover, a:hover math { background-color:#000; color:#FFF; }
+#Container { margin:0 10px; text-align:center; background-color: #BBB}
+#Content { border-top:none; margin:auto; padding:0.3em; text-align:left; width:100%; max-width:55em; background:#FFF}
+span.webName { font-size:.5em; }
+textarea#content { font-size: 1em; line-height: 1.125; }
+h1#pageName { line-height:1em; margin:0.2em 0 0.2em 0; padding:0; }
+.property { color:#666; font-size:100%; }
+a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
+.byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
+</style> 
+</head>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!--
+<h5><a href="index.html">[UP]</a></h5>
+-->
+<button type="button" onclick="javascript:history.back()">Back</button>
+<div id="Container">
+<div id="Content">
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>achar (3fortran)</NOBR><HR></H1>
+</CENTER>
+<A name=0>
 
-    40 (  41 )  42 *  43 +  44 ,  45 -  46 .  47 /
+     <H3>NAME</H3>
 
-    48 0  49 1  50 2  51 3  52 4  53 5  54 6  55 7
+</A>
+<BLOCKQUOTE>
+<P>
+<B>ACHAR</B>(3) - [CHARACTER:CONVERSION] returns a character in a specified
+position in the ASCII collating sequence
+<P>
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=10>
 
-    56 8  57 9  58 :  59 ;  60 &lt;  61 =  62 &gt;  63 ?
+     <H3>SYNTAX</H3>
 
-    64 @  65 A  66 B  67 C  68 D  69 E  70 F  71 G
+</A>
+<BLOCKQUOTE>
+<P>
+result = <B>achar</B>(i,kind=KIND)
+<P>
+<PRE>
+        character(len=1) elemental function :: achar(i,kind=KIND)
+<P>
+        integer(kind=KIND),intent(in) :: i
+        integer(kind=KIND),intent(in),optional :: kind
+<P>
+</PRE>
+where KIND may be any supported kind value for integer types.
+</BLOCKQUOTE>
+<A name=2>
 
-    72 H  73 I  74 J  75 K  76 L  77 M  78 N  79 O
+     <H3>DESCRIPTION</H3>
 
-    80 P  81 Q  82 R  83 S  84 T  85 U  86 V  87 W
+</A>
+<BLOCKQUOTE>
+<P>
+<B>ACHAR</B>(I) returns the character located at position I (commonly called
+the ADE or ASCII Decimal Equivalent) in the ASCII collating sequence.
+<P>
+The <B>ACHAR</B>(3) function is often used for generating in-band escape
+sequences to control terminal attributes.
+<P>
+<PRE>
+       write(*,&#146;(*(a))&#146;)achar(27),&#146;[2J&#146;
+<P>
+</PRE>
+will clear the screen on an ANSI-compatible terminal display, for
+example.
+</BLOCKQUOTE>
+<A name=3>
 
-    88 X  89 Y  90 Z  91 [  92 \  93 ]  94 ^  95 _
+     <H3>ARGUMENTS</H3>
 
-    96 `  97 a  98 b  99 c 100 d 101 e 102 f 103 g
+</A>
+<BLOCKQUOTE>
+<P>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+I : the integer value to convert to an ASCII character, in the range
+0 to 127.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+KIND : (optional) an integer initialization expression indicating
+the kind parameter of the result.
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
 
-   104 h 105 i 106 j 107 k 108 l 109 m 110 n 111 o
+     <H3>RETURNS</H3>
 
-   112 p 113 q 114 r 115 s 116 t 117 u 118 v 119 w
+</A>
+<BLOCKQUOTE>
+<P>
+The return value is the requested character of type character with a
+length of one. If the KIND argument is present, the return value is of
+the specified kind and of the default kind otherwise.
+</BLOCKQUOTE>
+<A name=5>
 
-   120 x 121 y 122 z 123 { 124 | 125 } 126 ~
-   MIXED CASE
-</code></pre>
-<h3><strong>Note</strong></h3>
-<p>The ADEs (ASCII Decimal Equivalents) for ASCII are</p>
-<pre><code>*-------*-------*-------*-------*-------*-------*-------*-------*
-| 00 nul| 01 soh| 02 stx| 03 etx| 04 eot| 05 enq| 06 ack| 07 bel|
-| 08 bs | 09 ht | 10 nl | 11 vt | 12 np | 13 cr | 14 so | 15 si |
-| 16 dle| 17 dc1| 18 dc2| 19 dc3| 20 dc4| 21 nak| 22 syn| 23 etb|
-| 24 can| 25 em | 26 sub| 27 esc| 28 fs | 29 gs | 30 rs | 31 us |
-| 32 sp | 33  ! | 34  &quot; | 35  # | 36  $ | 37  % | 38  &amp; | 39  &#39; |
-| 40  ( | 41  ) | 42  * | 43  + | 44  , | 45  - | 46  . | 47  / |
-| 48  0 | 49  1 | 50  2 | 51  3 | 52  4 | 53  5 | 54  6 | 55  7 |
-| 56  8 | 57  9 | 58  : | 59  ; | 60  &lt; | 61  = | 62  &gt; | 63  ? |
-| 64  @ | 65  A | 66  B | 67  C | 68  D | 69  E | 70  F | 71  G |
-| 72  H | 73  I | 74  J | 75  K | 76  L | 77  M | 78  N | 79  O |
-| 80  P | 81  Q | 82  R | 83  S | 84  T | 85  U | 86  V | 87  W |
-| 88  X | 89  Y | 90  Z | 91  [ | 92  \ | 93  ] | 94  ^ | 95  _ |
-| 96  ` | 97  a | 98  b | 99  c |100  d |101  e |102  f |103  g |
-|104  h |105  i |106  j |107  k |108  l |109  m |110  n |111  o |
-|112  p |113  q |114  r |115  s |116  t |117  u |118  v |119  w |
-|120  x |121  y |122  z |123  { |124  | |125  } |126  ~ |127 del|
-*-------*-------*-------*-------*-------*-------*-------*-------*
-</code></pre>
-<h3><strong>Standard</strong></h3>
-<p>FORTRAN 77 and later, with KIND argument Fortran 2003 and later</p>
-<h3><strong>See Also</strong></h3>
-<p><a href="#char"><strong>char</strong>(3)</a>, <a href="#iachar"><strong>iachar</strong>(3)</a>, <a href="#ichar"><strong>ichar</strong>(3)</a></p>
-<h3><strong>Resources</strong></h3>
-<ul class="incremental">
-<li><a href="https://en.wikipedia.org/wiki/ANSI_escape_code">ANSI escape sequences</a></li>
-<li><a href="https://github.com/urbanjost/M_attr">M_attr module</a> for controlling ANSI-compatible terminals</li>
-</ul>
-<p><em>fortran-lang intrinsic descriptions (license: MIT) @urbanjost</em></p>
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Sample program:
+<P>
+<PRE>
+    program demo_achar
+    use,intrinsic::iso_fortran_env,only:int8,int16,int32,int64
+    implicit none
+    integer :: i
+       i=65
+       write(*,&#146;("decimal     =",i0)&#146;)i
+       write(*,&#146;("character   =",a1)&#146;)achar(i)
+       write(*,&#146;("binary      =",b0)&#146;)achar(i)
+       write(*,&#146;("octal       =",o0)&#146;)achar(i)
+       write(*,&#146;("hexadecimal =",z0)&#146;)achar(i)
+<P>
+       write(*,&#146;(8(i3,1x,a,1x),/)&#146;)(i,achar(i), i=32,126)
+<P>
+       write(*,&#146;(a)&#146;)upper(&#146;Mixed Case&#146;)
+    contains
+    ! a classic use of achar(3) is to convert the case of a string
+<P>
+    elemental pure function upper(str) result (string)
+    !
+    !$@(#) upper(3f): function to return a trimmed uppercase-only string
+    !
+    ! input string to convert to all uppercase
+    character(*), intent(in)      :: str
+    ! output string that contains no miniscule letters
+    character(len(str))           :: string
+    integer                       :: i, iend
+    integer,parameter             :: toupper = iachar(&#146;A&#146;)-iachar(&#146;a&#146;)
+       iend=len_trim(str)
+       ! initialize output string to trimmed input string
+       string = str(:iend)
+       ! process each letter in the string
+       do concurrent (i = 1:iend)
+           select case (str(i:i))
+           ! located miniscule letter
+           case (&#146;a&#146;:&#146;z&#146;)
+              ! change miniscule to majuscule letter
+              string(i:i) = achar(iachar(str(i:i))+toupper)
+           end select
+       enddo
+    end function upper
+    end program demo_achar
+<P>
+</PRE>
+Results:
+<P>
+<PRE>
+       decimal     =65
+       character   =A
+       binary      =1000001
+       octal       =101
+       hexadecimal =41
+        32    33 !  34 "  35 #  36 $  37 %  38 &  39 &#146;
+<P>
+        40 (  41 )  42 *  43 +  44 ,  45 -  46 .  47 /
+<P>
+        48 0  49 1  50 2  51 3  52 4  53 5  54 6  55 7
+<P>
+        56 8  57 9  58 :  59 ;  60 &lt;  61 =  62 &gt;  63 ?
+<P>
+        64 @  65 A  66 B  67 C  68 D  69 E  70 F  71 G
+<P>
+        72 H  73 I  74 J  75 K  76 L  77 M  78 N  79 O
+<P>
+        80 P  81 Q  82 R  83 S  84 T  85 U  86 V  87 W
+<P>
+        88 X  89 Y  90 Z  91 [  92 \  93 ]  94 ^  95 _
+<P>
+        96 &#145;  97 a  98 b  99 c 100 d 101 e 102 f 103 g
+<P>
+       104 h 105 i 106 j 107 k 108 l 109 m 110 n 111 o
+<P>
+       112 p 113 q 114 r 115 s 116 t 117 u 118 v 119 w
+<P>
+       120 x 121 y 122 z 123 { 124 | 125 } 126 ~
+</PRE>
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; MIXED CASE</H4>
+</A>
+<BLOCKQUOTE>
+<P>
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>NOTE</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+The ADEs (ASCII Decimal Equivalents) for ASCII are
+<P>
+<PRE>
+    *-------*-------*-------*-------*-------*-------*-------*-------*
+    | 00 nul| 01 soh| 02 stx| 03 etx| 04 eot| 05 enq| 06 ack| 07 bel|
+    | 08 bs | 09 ht | 10 nl | 11 vt | 12 np | 13 cr | 14 so | 15 si |
+    | 16 dle| 17 dc1| 18 dc2| 19 dc3| 20 dc4| 21 nak| 22 syn| 23 etb|
+    | 24 can| 25 em | 26 sub| 27 esc| 28 fs | 29 gs | 30 rs | 31 us |
+    | 32 sp | 33  ! | 34  " | 35  # | 36  $ | 37  % | 38  & | 39  &#146; |
+    | 40  ( | 41  ) | 42  * | 43  + | 44  , | 45  - | 46  . | 47  / |
+    | 48  0 | 49  1 | 50  2 | 51  3 | 52  4 | 53  5 | 54  6 | 55  7 |
+    | 56  8 | 57  9 | 58  : | 59  ; | 60  &lt; | 61  = | 62  &gt; | 63  ? |
+    | 64  @ | 65  A | 66  B | 67  C | 68  D | 69  E | 70  F | 71  G |
+    | 72  H | 73  I | 74  J | 75  K | 76  L | 77  M | 78  N | 79  O |
+    | 80  P | 81  Q | 82  R | 83  S | 84  T | 85  U | 86  V | 87  W |
+    | 88  X | 89  Y | 90  Z | 91  [ | 92  \ | 93  ] | 94  ^ | 95  _ |
+    | 96  &#145; | 97  a | 98  b | 99  c |100  d |101  e |102  f |103  g |
+    |104  h |105  i |106  j |107  k |108  l |109  m |110  n |111  o |
+    |112  p |113  q |114  r |115  s |116  t |117  u |118  v |119  w |
+    |120  x |121  y |122  z |123  { |124  | |125  } |126  ~ |127 del|
+    *-------*-------*-------*-------*-------*-------*-------*-------*
+<P>
+</PRE>
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>STANDARD</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+FORTRAN 77 and later, with KIND argument Fortran 2003 and later
+</BLOCKQUOTE>
+<A name=8>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<B>CHAR</B>(3), <B>IACHAR</B>(3), <B>ICHAR</B>(3)
+</BLOCKQUOTE>
+<A name=9>
+
+     <H3>RESOURCES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+ANSI escape sequences
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+M_attr module for controlling ANSI-compatible terminals
+</TD></TR>
+<TR></TR></TABLE>fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>achar (3fortran)</TD> <TD align=right width=33%><I>September 17, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from f143c14c-cd02-47d2-a236-7d0a0a8ce92e using man macros.</FONT>
+<br><br><center><img src="images/achar.3fortran.gif"></center>
+</div>
+</div>
+</body>
+</HTML>
