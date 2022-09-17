@@ -2,14 +2,16 @@
 
 ### **Name**
 
-**llt**(3) - \[CHARACTER:COMPARE\] Lexical less than
+**llt**(3) - \[CHARACTER:COMPARE\] ASCII Lexical less than
 
 ### **Syntax**
 
 ```fortran
-result = llt(string_a, string_b)
-```
+   elemental logical function llt(string_a, string_b)
 
+    character(len=*),intent(in) :: string_a
+    character(len=*),intent(in) :: string_b
+```
 ### **Description**
 
   Determines whether one string is lexically less than another string,
@@ -34,9 +36,44 @@ result = llt(string_a, string_b)
 
 ### **Returns**
 
-Returns _.true._ if string_a \<= string_b, and _.false._ otherwise, based
-on the ASCII ordering.
+  Returns _.true._ if string_a \<= string_b, and _.false._ otherwise,
+  based on the ASCII ordering.
 
+  If both input arguments are null strings, _.false._ is always returned.
+
+### **Examples**
+
+Sample program:
+
+```fortran
+program demo_llt
+implicit none
+integer :: i
+   write(*,'(*(a))')(char(i),i=32,126)  ! ASCII order
+   write(*,*) llt('abc','ABC')          ! [F] lowercase is > uppercase
+   write(*,*) llt('abc','abc  ')        ! [F] trailing spaces
+   ! If both strings are of zero length the result is false.
+   write(*,*) llt('','')                ! [F]  
+   write(*,*) llt('','a')               ! [T] the null string is padded
+   write(*,*) llt('a','')               ! [F]  
+   write(*,*) llt('abc',['abc','123'])  ! [F F]  scalar and array
+   write(*,*) llt(['cba', '123'],'abc') ! [F T]  
+   write(*,*) llt(['abc','123'],['cba','123']) ! [T F]  both arrays
+end program demo_llt
+```
+  Results:
+```text
+  > !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
+  > [\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+  > F
+  > F
+  > F
+  > T
+  > F
+  > F F
+  > F T
+  > T F
+```
 ### **Standard**
 
 FORTRAN 77 and later

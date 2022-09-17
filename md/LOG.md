@@ -40,7 +40,6 @@ implicit none
   write(*,*)z, log(z)
 end program demo_log
 ```
-
 Results:
 
 ```text

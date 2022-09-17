@@ -5,16 +5,12 @@
 **len**(3) - \[CHARACTER\] Length of a character entity
 
 ### **Syntax**
-
 ```fortran
-   l = len(string, kind)
+    integer(kind=KIND) function len(string,kind)
 
-    integer(kind=KIND) function len(string,kind) result(value)
-    character(len=*),intent(in) :: string
-    integer,optional,intent(in) :: kind
-    integer(kind=KIND) :: value
+     character(len=*),intent(in) :: string
+     integer,optional,intent(in) :: kind
 ```
-
 where the returned value is the same integer kind as the **kind**
 argument, or of the default integer kind if **kind** is not specified.
 
@@ -41,10 +37,6 @@ as only the length (not the content) of **string** is needed.
 
 The return value is of type _integer_ and of kind **kind**. If **kind**
 is absent, the return value is of default integer kind.
-
-### **Standard**
-
-FORTRAN 77 and later; with **kind** argument - Fortran 2003 and later
 
 ### **Examples**
 
@@ -122,6 +114,10 @@ end program demo_len
     length from type parameter inquiry=          40
     length of passed value is           11
 ```
+### **Standard**
+
+FORTRAN 77 and later; with **kind** argument - Fortran 2003 and later
+
 ### **See Also**
 
 len_trim(3), adjustr(3), trim(3), and adjustl(3) are related routines that
