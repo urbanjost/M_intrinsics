@@ -17,7 +17,7 @@
 ### **Description**
 
 Reduces with bitwise or (inclusive or) the elements of **array** along
-dimension **dim** if the corresponding element in **mask** is **.true.**.
+dimension **dim** if the corresponding element in **mask** is _.true._.
 
 ### **Arguments**
 

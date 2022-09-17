@@ -44,7 +44,7 @@ result = lle(str_a, str_b)
 ### **Returns**
 
 - **result**
-  Returns **.true.** if **STR_A \<= STR_B**, and **.false.** otherwise, based on
+  Returns _.true._ if **STR_A \<= STR_B**, and _.false._ otherwise, based on
   the ASCII ordering.
 
 ### **Examples**

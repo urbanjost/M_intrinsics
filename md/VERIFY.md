@@ -23,11 +23,11 @@ Verifies that all the characters in **string** belong to the set of
 characters in **set** by identifying the first character in the string(s)
 that is not in the set(s).
 
-If **back** is either absent or equals **.false.**, this function
+If **back** is either absent or equals _.false._, this function
 returns the position of the leftmost character of **string** that is
 not in **set**.
 
-If **back** equals **.true.**, the rightmost position is returned.
+If **back** equals _.true._, the rightmost position is returned.
 
 If all characters of **string** are found in **set**, the result is zero.
 

@@ -41,8 +41,8 @@ result = aint(x, KIND)
 ### **Returns**
 
 The return value is of type _real_ with the kind type parameter of
-the argument if the optional **kind** is absent; otherwise, the kind
-type parameter will be given by **kind**. If the magnitude of **x**
+the argument if the optional _kind_ is absent; otherwise, the kind
+type parameter will be given by _kind_. If the magnitude of **x**
 is less than one, **aint(x)** returns zero. If the magnitude is equal
 to or greater than one then it returns the largest whole number that
 does not exceed its magnitude. The sign is the same as the sign of **x**.

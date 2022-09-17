@@ -24,7 +24,7 @@ scalar as well an an array.
 Stores the elements of ARRAY in an array of rank one.
 
 The beginning of the resulting array is made up of elements whose **mask**
-equals **.true.**. Afterwards, positions are filled with elements taken from
+equals _.true._. Afterwards, positions are filled with elements taken from
 **vector**.
 
 ### **Arguments**
@@ -47,7 +47,7 @@ equals **.true.**. Afterwards, positions are filled with elements taken from
 
 The result is an array of rank one and the same type as that of **array**.
 If **vector** is present, the result size is that of **vector**, the number of
-**.true.** values in **mask** otherwise.
+_.true._ values in **mask** otherwise.
 
 ### **Examples**
 

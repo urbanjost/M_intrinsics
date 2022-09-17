@@ -53,7 +53,7 @@ There are several cases:
     are not zero-sized storage sequences and occupy the same storage
     units.
 
-    The result is **.false.**, if either **target** or **pointer** is disassociated.
+    The result is _.false._, if either **target** or **pointer** is disassociated.
 
 5.  If **target** is present and an array pointer, the result is true if
     target associated with **pointer** and the target associated with **target**

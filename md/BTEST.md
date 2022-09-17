@@ -18,7 +18,7 @@ where **KIND** is any _integer_ kind supported by the programming environment.
 
 ### **Description**
 
-**btest(i,pos)** returns logical **.true.** if the bit at **pos** in **i** is set.
+**btest(i,pos)** returns logical _.true._ if the bit at **pos** in **i** is set.
 
 ### **Arguments**
 
@@ -33,9 +33,9 @@ where **KIND** is any _integer_ kind supported by the programming environment.
 
 ### **Returns**
 
-The result is a _logical_ that has the value **.true.** if bit
+The result is a _logical_ that has the value _.true._ if bit
 position **pos** of **i** has the value **1** and the value
-**.false.** if bit **pos** of **i** has the value **0**.
+_.false._ if bit **pos** of **i** has the value **0**.
 
 ### **Examples**
 

@@ -49,7 +49,7 @@ Results:
     T
 ```
 
-The example will print .true. unless you are using a platform where
+The example will print _.true._ unless you are using a platform where
 default _real_ variables are unusually padded.
 
 ### **Standard**

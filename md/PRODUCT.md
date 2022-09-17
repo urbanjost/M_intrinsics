@@ -19,7 +19,7 @@ where **NUMERIC** is any numeric type
 ### **Description**
 
 Multiplies together all the selected elements of **array**, or along
-dimension **dim** if the corresponding element in **mask** is **.true.**.
+dimension **dim** if the corresponding element in **mask** is _.true._.
 
 If **dim** is absent, a scalar with the product of all elements in **array** is
 returned. (Note a zero-sized **array** returns **1**).

@@ -14,9 +14,9 @@ result = scan(string, set[, back [, kind]])
 
 Scans a **string** for any of the characters in a **set** of characters.
 
-If **back** is either absent or equals **.false.**, this function returns the
+If **back** is either absent or equals _.false._, this function returns the
 position of the leftmost character of **STRING** that is in **set**. If **back**
-equals **.true.**, the rightmost position is returned. If no character of **set**
+equals _.true._, the rightmost position is returned. If no character of **set**
 is found in **string**, the result is zero.
 
 ### **Arguments**

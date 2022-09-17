@@ -12,7 +12,7 @@ result = count(mask, dim, kind)
 
 ### **Description**
 
-Counts the number of **.true.** elements in a logical **mask**, or, if the **dim**
+Counts the number of _.true._ elements in a logical **mask**, or, if the **dim**
 argument is supplied, counts the number of elements along each row of
 the array in the **dim** direction. If the array has zero size, or all of
 the elements of **mask** are false, then the result is **0**.

@@ -56,7 +56,7 @@ being updated concurrently.
   Shall be a scalar of type _integer_ and of default kind.
 
 - **trim_name**
-  : If **trim_name** is present with the value **.false.**, the trailing
+  : If **trim_name** is present with the value _.false._, the trailing
   blanks in **name** are significant; otherwise they are not part of the
   environment variable name.
 

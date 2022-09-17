@@ -13,7 +13,7 @@ result = any(mask, dim)
 ### **Description**
 
 **any(mask, dim)** determines if any of the values in the logical
-array **mask** along dimension **dim** are **.true.**.
+array **mask** along dimension **dim** are _.true._.
 
 ### **Arguments**
 
@@ -34,7 +34,7 @@ minus 1. The shape is determined from the shape of **mask** where the **dim**
 dimension is elided.
 
 1.  **any(mask)** is true if any element of **mask** is true; otherwise, it
-    is **.false.**. It also is false if **mask** has zero size.
+    is _.false._. It also is false if **mask** has zero size.
 
 2.  If the rank of **mask** is one, then **any(mask, dim)** is equivalent to
     **any(mask)**. If the rank is greater than one, then **any(mask,

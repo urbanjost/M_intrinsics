@@ -28,9 +28,9 @@ The function is equivalent to comparing the variable with the
 
 ### **Returns**
 
-Returns a _logical_ of the default kind, **.true.** if **i** has the value
+Returns a _logical_ of the default kind, _.true._ if **i** has the value
 which indicates an end of file condition for **iostat=** specifiers, and is
-**.false.** otherwise.
+_.false._ otherwise.
 
 ### **Examples**
 

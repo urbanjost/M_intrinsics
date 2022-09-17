@@ -22,10 +22,10 @@ or
   value, or, if the **dim** argument is supplied, determines the locations
   of the minimum element along each row of the array in the **dim**
   direction. If **mask** is present, only the elements for which **mask**
-  is **.true.** are considered. If more than one element in the array
+  is _.true._ are considered. If more than one element in the array
   has the minimum value, the location returned is that of the first
   such element in array element order. If the array has zero size,
-  or all of the elements of **mask** are **.false.**, then the result is
+  or all of the elements of **mask** are _.false._, then the result is
   an array of zeroes. Similarly, if **dim** is supplied and all of the
   elements of **mask** along a given row are zero, the result value for
   that row is zero.

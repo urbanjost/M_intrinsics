@@ -12,7 +12,7 @@ result=extends_type_of(a, mold)
 
 ### **Description**
 
-**extends_type_of**(3) is **.true.** if and only if the dynamic type of **a**
+**extends_type_of**(3) is _.true._ if and only if the dynamic type of **a**
 is an extension of the dynamic type of **mold**.
 
 ### **Options**

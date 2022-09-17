@@ -31,7 +31,7 @@ statements, particularly when the replacements are conditional.
 - **vector**
   : New values to place into specified locations in **field**. Shall
   be an array of any type and rank one. It shall have at least as many
-  elements as **mask** has **.true.** values.
+  elements as **mask** has _.true._ values.
 
 - **mask**
   : Shall be an array of type _logical_ that specifies which values
@@ -53,7 +53,7 @@ of MASK, in array element order, has the value VECTOR (i) for i =
 other element has a value equal to FIELD if FIELD is scalar or to the
 corresponding element of FIELD if it is an array.
 
-The resulting array corresponds to **field** with **.true.** elements
+The resulting array corresponds to **field** with _.true._ elements
 of **mask** replaced by values from **vector** in array element order.
 
 

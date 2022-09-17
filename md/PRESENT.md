@@ -27,8 +27,8 @@ Determines whether an optional dummy argument is present.
 
 ### **Returns**
 
-Returns either **.true.** if the optional argument **a** is present,
-or **.false.** otherwise.
+Returns either _.true._ if the optional argument **a** is present,
+or _.false._ otherwise.
 
 ### **Examples**
 

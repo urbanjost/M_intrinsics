@@ -26,7 +26,7 @@ c_ptr_2.
 
 ### **Returns**
 
-The return value is of type _logical_; it is .false. if either c_ptr_1
+The return value is of type _logical_; it is _.false_. if either c_ptr_1
 is a C NULL pointer or if c_ptr1 and c_ptr_2 point to different
 addresses.
 

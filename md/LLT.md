@@ -34,7 +34,7 @@ result = llt(string_a, string_b)
 
 ### **Returns**
 
-Returns .true. if string_a \<= string_b, and .false. otherwise, based
+Returns _.true._ if string_a \<= string_b, and _.false._ otherwise, based
 on the ASCII ordering.
 
 ### **Standard**
