@@ -80,9 +80,9 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**lge**(3)](#lge),
-[**lgt**(3)](#lgt),
-[**lle**(3)](#lle))
+  [**lge**(3)](#lge),
+  [**lgt**(3)](#lgt),
+  [**lle**(3)](#lle))
 
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:

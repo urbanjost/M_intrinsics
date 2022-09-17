@@ -39,6 +39,7 @@
   based on the ASCII ordering.
 
   If both input arguments are null strings, _.false._ is always returned.
+
 ### **Examples**
 
 Sample program:
@@ -78,9 +79,9 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**lge**(3)](#lge),
-[**lle**(3)](#lle),
-[**llt**(3)](#llt)
+ [**lge**(3)](#lge),
+ [**lle**(3)](#lle),
+ [**llt**(3)](#llt)
 
   Functions that perform operations on character strings, return lengths
   of arguments, and search for certain arguments:

@@ -40,6 +40,7 @@ Returns _.true._ if string_a \>= string_b, and _.false._ otherwise,
 based on the ASCII ordering.
 
 If both input arguments are null strings, _.true._ is always returned.
+
 ### **Examples**
 
 Sample program:
@@ -79,7 +80,9 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-**\[\[lgt**(3), **\[\[lle**(3), **\[\[llt**(3)
+  [**lgt**(3)](#lgt),
+  [**lle**(3)](#lle),
+  [**llt**(3)](#llt)
 
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
