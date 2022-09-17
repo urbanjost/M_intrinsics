@@ -69,17 +69,17 @@ real(kind=dp) :: dd
    print *, 52*23/100.0
    print *, 52*23/100.0d0
 
-   !! A common extension is to take doubleprecision arguments
-   !! and return higher precision when available
-   bigger: block
-   doubleprecision :: xx = 5.2_dp
-   doubleprecision :: yy = 2.3_dp
-   print *, 'dprop==>',dprod(xx,yy)
-   print *, 'multipy==>',xx*yy
-   print *, 'using dble==>',dble(xx)*dble(yy)
-   print *, 'kind of arguments is',kind(xx)
-   print *, 'kind of result is',kind(dprod(xx,yy))
-   endblock bigger
+!> !! A common extension is to take doubleprecision arguments
+!> !! and return higher precision when available
+!> bigger: block
+!> doubleprecision :: xx = 5.2_dp
+!> doubleprecision :: yy = 2.3_dp
+!> print *, 'dprop==>',dprod(xx,yy)
+!> print *, 'multipy==>',xx*yy
+!> print *, 'using dble==>',dble(xx)*dble(yy)
+!> print *, 'kind of arguments is',kind(xx)
+!> print *, 'kind of result is',kind(dprod(xx,yy))
+!> endblock bigger
 
 end program demo_dprod
 ```
