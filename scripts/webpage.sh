@@ -5,6 +5,7 @@
 #
 # fork your own copy ????
 #git clone https://github.com/fortran-lang/webpage
+cd $HOME/github/FORK
 git clone https://github.com/urbanjost/webpage
 cd webpage
 #Setup

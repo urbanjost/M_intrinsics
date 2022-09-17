@@ -4,25 +4,21 @@
       integer            :: i
       integer(kind=int8) :: byte
       integer(kind=int8),allocatable :: arr1(:), arr2(:)
-        ! basic usage
-         write(*,*)'bge(-127,127)=',bge( -127_int8, 127_int8 )
-         ! surprised -127 is great than 127 (on most machines, at least)?
-         ! if the values are not represented as "two's complement" or if
-         ! the endian changes the representation of a sign can vary!
 
-         write(*,*)'compare some values to 01000000 (64)'
-         write(*,*)'Notice that the values are tested as bits, so essentially'
-         write(*,*)'the values are tested as if unsigned integers.'
-         do i=-128,127,32
-            byte=i
-            write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,bge(byte,64_int8),byte
-         enddo
-        ! elemental
+        ! BASIC USAGE
+         write(*,*)'bge(-127,127)=',bge( -127, 127 )
+         ! on (very common) "two's complement" machines that are
+         ! little-endian -127 will be greater than 127
 
+         ! BOZ constants
+         ! BOZ constants are subject to truncation, so make sure
+         ! your values are valid for the integer kind being compared to
+         write(*,*)'bge(b"0001",2)=',bge( b"1", 2)
+
+        ! ELEMENTAL
          ! an array and scalar
          write(*, *)'compare array of values [-128, -0, +0, 127] to 127'
          write(*, *)bge(int([-128, -0, +0, 127], kind=int8), 127_int8)
-         ! are +0 and -9 the same?
 
          ! two arrays
          write(*, *)'compare two arrays'
@@ -31,5 +27,22 @@
          write(*,*)'arr1=',arr1
          write(*,*)'arr2=',arr2
          write(*, *)'bge(arr1,arr2)=',bge( arr1, arr2 )
+
+        ! SHOW TESTS AND BITS
+         ! actually looking at the bit patterns should clarify what affect
+         ! signs have ...
+         write(*,*)'Compare some one-byte values to 64.'
+         write(*,*)'Notice that the values are tested as bits not as integers'
+         write(*,*)'so the resuls are as if values are unsigned integers.'
+         do i=-128,127,32
+            byte=i
+            write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,bge(byte,64_int8),byte
+         enddo
+
+        ! SIGNED ZERO
+         ! are +0 and -0 the same on your platform? When comparing at the
+         ! bit level this is important
+         write(*,'("plus zero=",b0)')  +0
+         write(*,'("minus zero=",b0)') -0
 
       end program demo_bge

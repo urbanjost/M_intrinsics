@@ -4,7 +4,15 @@ BLT(3) - [BIT:COMPARE] Bitwise less than
 
 SYNTAX
 
-        result = blt(i, j)
+        elemental function blt(i, j)
+
+         integer(kind=KIND),intent(in) :: i
+         integer(kind=KIND),intent(in) :: j
+         logical :: blt
+
+where the kind of I and J may be of any supported kind. An exception is
+that one value may be a BOZ constant with a value valid for the kind of
+the integer value.
 
 DESCRIPTION
 
@@ -12,13 +20,45 @@ Determines whether an integer is bitwise less than another.
 
 ARGUMENTS
 
--   I : Shall be of integer type.
+-   I Shall be of integer type or a BOZ literal constant.
 
--   J : Shall be of integer type, and of the same kind as I.
+-   J : Shall be of integer type or a BOZ constant.
 
 RETURNS
 
 The return value is of type logical and of the default kind.
+
+EXAMPLES
+
+Sample program:
+
+    program demo_blt
+    use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+    implicit none
+    integer            :: i
+    integer(kind=int8) :: byte
+      ! Compare some one-byte values to 64.
+       ! Notice that the values are tested as bits not as integers
+       ! so sign bits in the integer are treated just like any other
+       do i=-128,127,32
+          byte=i
+          write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,blt(byte,64_int8),byte
+       enddo
+
+       ! see the BGE() description for an extended example
+
+    end program demo_blt
+
+Results:
+
+       > -0128  F 10000000
+       > -0096  F 10100000
+       > -0064  F 11000000
+       > -0032  F 11100000
+       > +0000  T 00000000
+       > +0032  T 00100000
+       > +0064  F 01000000
+       > +0096  F 01100000
 
 STANDARD
 

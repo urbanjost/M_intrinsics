@@ -72,11 +72,14 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 elemental function <B>bge</B>(i, j)
 <P>
 <PRE>
-         integer(kind=KIND),intent(in) :: i,j
+         integer(kind=KIND),intent(in) :: i
+         integer(kind=KIND),intent(in) :: j
          logical :: bge
 <P>
 </PRE>
-where the kind of I and J must be the same.
+where the kind of I and J may be of any supported kind. An exception is
+that one value may be a BOZ constant with a value valid for the kind of
+the integer value.
 </BLOCKQUOTE>
 <A name=2>
 
@@ -85,8 +88,35 @@ where the kind of I and J must be the same.
 </A>
 <BLOCKQUOTE>
 <P>
-Determines whether an integer is bitwise greater than or equal to
+Determines whether one integer is bitwise greater than or equal to
 another.
+<P>
+The bit-level representation of a value is platform dependent. The
+endian-ness of a system and whether the system uses a "two&#146;s complement"
+representation of signs can affect the results, for example.
+<P>
+A BOZ constant (Binary, Octal, Hexadecimal) does not have a kind or type
+of its own, so be aware it is subject to truncation when transferred to
+the kind and type of the other argument.
+<P>
+Positions of bits in the sequence are numbered from right to left, with
+the position of the rightmost bit being zero. The bits are evaluated in
+this order, not necessarily from MSB to LSB (most significant bit to
+least significant bit).
+<P>
+Bit Sequence Comparison
+<P>
+When bit sequences of unequal length are compared, the shorter sequence
+is padded with zero bits on the left to the same length as the longer
+sequence.
+<P>
+Bit sequences are compared from left to right, one bit at a time, until
+unequal bits are found or until all bits have been compared and found to
+be equal.
+<P>
+If unequal bits are found the sequence with zero in the unequal position
+is considered to be less than the sequence with one in the unequal
+position.
 </BLOCKQUOTE>
 <A name=3>
 
@@ -99,12 +129,14 @@ another.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-I : The value to test if &gt;= J
+I : The value to test if &gt;= J based on the bit representation of the
+values. Shall be of integer type or a BOZ literal constant.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-J : The value to test I against.
+J : The value to test I against. Shall be of integer type or a BOZ
+literal constant.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
@@ -132,25 +164,21 @@ Sample program:
     integer            :: i
     integer(kind=int8) :: byte
     integer(kind=int8),allocatable :: arr1(:), arr2(:)
-      ! basic usage
-       write(*,*)&#146;bge(-127,127)=&#146;,bge( -127_int8, 127_int8 )
-       ! surprised -127 is great than 127 (on most machines, at least)?
-       ! if the values are not represented as "two&#146;s complement" or if
-       ! the endian changes the representation of a sign can vary!
 <P>
-       write(*,*)&#146;compare some values to 01000000 (64)&#146;
-       write(*,*)&#146;Notice that the values are tested as bits, so essentially&#146;
-       write(*,*)&#146;the values are tested as if unsigned integers.&#146;
-       do i=-128,127,32
-          byte=i
-          write(*,&#146;(sp,i0.4,*(1x,1l,1x,b0.8))&#146;)i,bge(byte,64_int8),byte
-       enddo
-      ! elemental
+      ! BASIC USAGE
+       write(*,*)&#146;bge(-127,127)=&#146;,bge( -127, 127 )
+       ! on (very common) "two&#146;s complement" machines that are
+       ! little-endian -127 will be greater than 127
 <P>
+       ! BOZ constants
+       ! BOZ constants are subject to truncation, so make sure
+       ! your values are valid for the integer kind being compared to
+       write(*,*)&#146;bge(b"0001",2)=&#146;,bge( b"1", 2)
+<P>
+      ! ELEMENTAL
        ! an array and scalar
        write(*, *)&#146;compare array of values [-128, -0, +0, 127] to 127&#146;
        write(*, *)bge(int([-128, -0, +0, 127], kind=int8), 127_int8)
-       ! are +0 and -9 the same?
 <P>
        ! two arrays
        write(*, *)&#146;compare two arrays&#146;
@@ -160,33 +188,53 @@ Sample program:
        write(*,*)&#146;arr2=&#146;,arr2
        write(*, *)&#146;bge(arr1,arr2)=&#146;,bge( arr1, arr2 )
 <P>
+      ! SHOW TESTS AND BITS
+       ! actually looking at the bit patterns should clarify what affect
+       ! signs have &#46;&#46;&#46;
+       write(*,*)&#146;Compare some one-byte values to 64.&#146;
+       write(*,*)&#146;Notice that the values are tested as bits not as integers&#146;
+       write(*,*)&#146;so the resuls are as if values are unsigned integers.&#146;
+       do i=-128,127,32
+          byte=i
+          write(*,&#146;(sp,i0.4,*(1x,1l,1x,b0.8))&#146;)i,bge(byte,64_int8),byte
+       enddo
+<P>
+      ! SIGNED ZERO
+       ! are +0 and -0 the same on your platform? When comparing at the
+       ! bit level this is important
+       write(*,&#146;("plus zero=",b0)&#146;)  +0
+       write(*,&#146;("minus zero=",b0)&#146;) -0
+<P>
     end program demo_bge
 <P>
 </PRE>
 Results:
 <P>
-Note that how an integer value is represented at the bit level can vary.
-These are just the values expected on the most common platforms &#46;&#46;&#46;
+How an integer value is represented at the bit level can vary. These are
+just the values expected on Today&#146;s most common platforms &#46;&#46;&#46;
 <P>
 <PRE>
-       &gt;  bge(-127,127)= T
-       &gt;  compare some values to 01000000 (64)
-       &gt;  Notice that the values are tested as bits, so essentially
-       &gt;  the values are tested as if unsigned integers.
-       &gt; -0128  T 10000000
-       &gt; -0096  T 10100000
-       &gt; -0064  T 11000000
-       &gt; -0032  T 11100000
-       &gt; +0000  F 00000000
-       &gt; +0032  F 00100000
-       &gt; +0064  T 01000000
-       &gt; +0096  T 01100000
-       &gt;  compare array of values [-128, -0, +0, 127] to 127
-       &gt;  T F F T
-       &gt;  compare two arrays
-       &gt;  arr1= -127    0    0  127
-       &gt;  arr2=  127    0    0 -127
-       &gt;  bge(arr1,arr2)= T T T F
+        &gt; bge(-127,127)= T
+        &gt; bge(b"0001",2)= F
+        &gt; compare array of values [-128, -0, +0, 127] to 127
+        &gt; T F F T
+        &gt; compare two arrays
+        &gt; arr1= -127    0    0  127
+        &gt; arr2=  127    0    0 -127
+        &gt; bge(arr1,arr2)= T T T F
+        &gt; Compare some one-byte values to 64.
+        &gt; Notice that the values are tested as bits not as integers
+        &gt; so the resuls are as if values are unsigned integers.
+        &gt; -0128  T 10000000
+        &gt; -0096  T 10100000
+        &gt; -0064  T 11000000
+        &gt; -0032  T 11100000
+        &gt; +0000  F 00000000
+        &gt; +0032  F 00100000
+        &gt; +0064  T 01000000
+        &gt; +0096  T 01100000
+        &gt; plus zero=0
+        &gt; minus zero=0
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -211,7 +259,7 @@ Fortran 2008 and later
 fortran-lang intrinsic descriptions @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>bge (3fortran)</TD> <TD align=right width=33%><I>September 16, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from d4bc3f51-153f-45ad-98a5-5e4e6b08c31d using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>bge (3fortran)</TD> <TD align=right width=33%><I>September 17, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from e15591c5-0c2a-4d3b-879c-a6103f0d374e using man macros.</FONT>
 <br><br><center><img src="images/bge.3fortran.gif"></center>
 </div>
 </div>
