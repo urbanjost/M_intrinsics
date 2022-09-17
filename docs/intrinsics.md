@@ -2870,18 +2870,18 @@ Fortran 2008 and later
 **bge**(3) - \[BIT:COMPARE\] Bitwise greater than or equal to
 
 ### **Syntax**
-
 ```fortran
     elemental function bge(i, j)
-    integer(kind=KIND),intent(in) :: i,j
-    logical :: bge
+
+     integer(kind=KIND),intent(in) :: i,j
+     logical :: bge
 ```
 where the _kind_ of **i** and **j** must be the same.
 
 ### **Description**
 
-Determines whether an integer is bitwise greater than or equal to
-another.
+  Determines whether an integer is bitwise greater than or equal to
+  another.
 
 ### **Arguments**
 
@@ -2893,10 +2893,13 @@ another.
 
 ### **Returns**
 
-The return value is of type _logical_ and of the default kind.  It is
-_.true._ if **i** is bit-wise greater than **j** and _.false._ otherwise.
+  The return value is of type _logical_ and of the default kind.
+  It is _.true._ if **i** is bit-wise greater than **j** and _.false._
+  otherwise.
 
-### **Sample**
+### **Examples**
+
+Sample program:
 ```fortran
 program demo_bge
 use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
@@ -2934,30 +2937,31 @@ integer(kind=int8),allocatable :: arr1(:), arr2(:)
 
 end program demo_bge
 ```
-  Results:
+Results:
 
   Note that how an integer value is represented at the bit level
   can vary. These are just the values expected on the most common
   platforms ...
+
 ```text
-    bge(-127,127)= T
-    compare some values to 01000000 (64)
-    Notice that the values are tested as bits, so essentially
-    the values are tested as if unsigned integers.
-   -0128  T 10000000
-   -0096  T 10100000
-   -0064  T 11000000
-   -0032  T 11100000
-   +0000  F 00000000
-   +0032  F 00100000
-   +0064  T 01000000
-   +0096  T 01100000
-    compare array of values [-128, -0, +0, 127] to 127
-    T F F T
-    compare two arrays
-    arr1= -127    0    0  127
-    arr2=  127    0    0 -127
-    bge(arr1,arr2)= T T T F
+   >  bge(-127,127)= T
+   >  compare some values to 01000000 (64)
+   >  Notice that the values are tested as bits, so essentially
+   >  the values are tested as if unsigned integers.
+   > -0128  T 10000000
+   > -0096  T 10100000
+   > -0064  T 11000000
+   > -0032  T 11100000
+   > +0000  F 00000000
+   > +0032  F 00100000
+   > +0064  T 01000000
+   > +0096  T 01100000
+   >  compare array of values [-128, -0, +0, 127] to 127
+   >  T F F T
+   >  compare two arrays
+   >  arr1= -127    0    0  127
+   >  arr2=  127    0    0 -127
+   >  bge(arr1,arr2)= T T T F
 ```
 ### **Standard**
 

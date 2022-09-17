@@ -70,11 +70,14 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 <BLOCKQUOTE>
 <P>
 elemental function <B>bge</B>(i, j)
-<B>integer</B>(kind=KIND),intent(in) :: i,j
-logical :: bge
-</BLOCKQUOTE>
 <P>
+<PRE>
+         integer(kind=KIND),intent(in) :: i,j
+         logical :: bge
+<P>
+</PRE>
 where the kind of I and J must be the same.
+</BLOCKQUOTE>
 <A name=2>
 
      <H3>DESCRIPTION</H3>
@@ -115,38 +118,35 @@ The return value is of type logical and of the default kind. It is
 </BLOCKQUOTE>
 <A name=5>
 
-     <H3>SAMPLE</H3>
+     <H3>EXAMPLES</H3>
 
 </A>
 <BLOCKQUOTE>
 <P>
-program demo_bge
-use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
-implicit none
-<TABLE cellpadding=3><!-- tsb: program demo_bge
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD colspan=2>
-<B>integer</B> </TD></TR><TR valign=top><TD width=3%>&nbsp;</TD><TD>
-:: i
-<B>integer</B>(kind=int8) :: byte
-<B>integer</B>(kind=int8),allocatable :: <B>arr1</B>(:), <B>arr2</B>(:)
-! basic usage
-<B>write</B>(*,*)&#146;<B>bge</B>(<B>-127</B>,127)=&#146;,<B>bge</B>( <B>-127_int8</B>, 127_int8 )
-! surprised <B>-127</B> is great than 127 (on most machines, at least)?
-! if the values are not represented as "two&#146;s complement" or if
-! the endian changes the representation of a sign can vary!
-<P>
-<B>write</B>(*,*)&#146;compare some values to 01000000 (64)&#146;
-<B>write</B>(*,*)&#146;Notice that the values are tested as bits, so essentially&#146;
-<B>write</B>(*,*)&#146;the values are tested as if unsigned integers.&#146;
-do i=<B>-128</B>,127,32
-byte=i
-<B>write</B>(*,&#146;(sp,i0.4,*(1x,1l,1x,b0.8))&#146;)i,<B>bge</B>(byte,64_int8),byte
-enddo
-! elemental
+Sample program:
 <P>
 <PRE>
+    program demo_bge
+    use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+    implicit none
+    integer            :: i
+    integer(kind=int8) :: byte
+    integer(kind=int8),allocatable :: arr1(:), arr2(:)
+      ! basic usage
+       write(*,*)&#146;bge(-127,127)=&#146;,bge( -127_int8, 127_int8 )
+       ! surprised -127 is great than 127 (on most machines, at least)?
+       ! if the values are not represented as "two&#146;s complement" or if
+       ! the endian changes the representation of a sign can vary!
+<P>
+       write(*,*)&#146;compare some values to 01000000 (64)&#146;
+       write(*,*)&#146;Notice that the values are tested as bits, so essentially&#146;
+       write(*,*)&#146;the values are tested as if unsigned integers.&#146;
+       do i=-128,127,32
+          byte=i
+          write(*,&#146;(sp,i0.4,*(1x,1l,1x,b0.8))&#146;)i,bge(byte,64_int8),byte
+       enddo
+      ! elemental
+<P>
        ! an array and scalar
        write(*, *)&#146;compare array of values [-128, -0, +0, 127] to 127&#146;
        write(*, *)bge(int([-128, -0, +0, 127], kind=int8), 127_int8)
@@ -160,81 +160,36 @@ enddo
        write(*,*)&#146;arr2=&#146;,arr2
        write(*, *)&#146;bge(arr1,arr2)=&#146;,bge( arr1, arr2 )
 <P>
-</PRE>
-end program demo_bge
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
+    end program demo_bge
 <P>
+</PRE>
 Results:
-<BLOCKQUOTE>
 <P>
 Note that how an integer value is represented at the bit level can vary.
 These are just the values expected on the most common platforms &#46;&#46;&#46;
 <P>
 <PRE>
-        bge(-127,127)= T
-        compare some values to 01000000 (64)
-        Notice that the values are tested as bits, so essentially
-        the values are tested as if unsigned integers.
+       &gt;  bge(-127,127)= T
+       &gt;  compare some values to 01000000 (64)
+       &gt;  Notice that the values are tested as bits, so essentially
+       &gt;  the values are tested as if unsigned integers.
+       &gt; -0128  T 10000000
+       &gt; -0096  T 10100000
+       &gt; -0064  T 11000000
+       &gt; -0032  T 11100000
+       &gt; +0000  F 00000000
+       &gt; +0032  F 00100000
+       &gt; +0064  T 01000000
+       &gt; +0096  T 01100000
+       &gt;  compare array of values [-128, -0, +0, 127] to 127
+       &gt;  T F F T
+       &gt;  compare two arrays
+       &gt;  arr1= -127    0    0  127
+       &gt;  arr2=  127    0    0 -127
+       &gt;  bge(arr1,arr2)= T T T F
+<P>
 </PRE>
-<BLOCKQUOTE>
-<TABLE cellpadding=3><!-- tsb:         bge(-127,127)= T
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD width=6% nowrap>
-<B></B><B>-0128</B> </TD><TD valign=bottom>
-T 10000000
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B></B><B>-0096</B> </TD><TD valign=bottom>
-T 10100000
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B></B><B>-0064</B> </TD><TD valign=bottom>
-T 11000000
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B></B><B>-0032</B> </TD><TD valign=bottom>
-T 11100000
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>+0000</B> </TD><TD valign=bottom>
-F 00000000
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>+0032</B> </TD><TD valign=bottom>
-F 00100000
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>+0064</B> </TD><TD valign=bottom>
-T 01000000
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>+0096</B> </TD><TD valign=bottom>
-T 01100000
-compare array of values [-128, <B>-0</B>, +0, 127] to 127
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=>
-
-    <H4>&nbsp; &nbsp; T F F T</H4>
-</A>
-<BLOCKQUOTE>
-compare two arrays
-<TABLE cellpadding=3><!-- tsb: compare two arrays
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD colspan=2>
-<B>arr1= </B><B>-127</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-0    0  127
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B>arr2=</B> </TD><TD valign=bottom>
-127    0    0 <B>-127</B>
-<B>bge</B>(arr1,arr2)= T T T F
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
 <A name=6>
 
      <H3>STANDARD</H3>
@@ -256,7 +211,7 @@ Fortran 2008 and later
 fortran-lang intrinsic descriptions @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>bge (3fortran)</TD> <TD align=right width=33%><I>September 16, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from b07ab148-c69d-4caa-9234-4ad873af12ce using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>bge (3fortran)</TD> <TD align=right width=33%><I>September 16, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from d4bc3f51-153f-45ad-98a5-5e4e6b08c31d using man macros.</FONT>
 <br><br><center><img src="images/bge.3fortran.gif"></center>
 </div>
 </div>

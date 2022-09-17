@@ -2057,8 +2057,9 @@ If must be of the same kind as <strong>y</strong>.</li>
 <p><strong>bge</strong>(3) - [BIT:COMPARE] Bitwise greater than or equal to</p>
 <h3 id="syntax-35"><strong>Syntax</strong></h3>
 <div class="sourceCode" id="cb99"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb99-1" title="1">    <span class="kw">elemental</span> <span class="kw">function</span> bge(i, j)</a>
-<a class="sourceLine" id="cb99-2" title="2">    <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i,j</a>
-<a class="sourceLine" id="cb99-3" title="3">    <span class="dt">logical</span> <span class="dt">::</span> bge</a></code></pre></div>
+<a class="sourceLine" id="cb99-2" title="2"></a>
+<a class="sourceLine" id="cb99-3" title="3">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i,j</a>
+<a class="sourceLine" id="cb99-4" title="4">     <span class="dt">logical</span> <span class="dt">::</span> bge</a></code></pre></div>
 <p>where the kind of <strong>i</strong> and <strong>j</strong> must be the same.</p>
 <h3 id="description-35"><strong>Description</strong></h3>
 <p>Determines whether an integer is bitwise greater than or equal to another.</p>
@@ -2077,7 +2078,8 @@ If must be of the same kind as <strong>y</strong>.</li>
 </ul>
 <h3 id="returns-24"><strong>Returns</strong></h3>
 <p>The return value is of type logical and of the default kind. It is .true. if <strong>i</strong> is bit-wise greater than <strong>j</strong> and .false. otherwise.</p>
-<h3 id="sample"><strong>Sample</strong></h3>
+<h3 id="examples-35"><strong>Examples</strong></h3>
+<p>Sample program:</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb100-1" title="1"><span class="kw">program</span> demo_bge</a>
 <a class="sourceLine" id="cb100-2" title="2"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : int8, int16, int32, int64</a>
 <a class="sourceLine" id="cb100-3" title="3"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -2115,24 +2117,24 @@ If must be of the same kind as <strong>y</strong>.</li>
 <a class="sourceLine" id="cb100-35" title="35"><span class="kw">end program</span> demo_bge</a></code></pre></div>
 <p>Results:</p>
 <p>Note that how an integer value is represented at the bit level can vary. These are just the values expected on the most common platforms …</p>
-<pre class="text"><code>    bge(-127,127)= T
-    compare some values to 01000000 (64)
-    Notice that the values are tested as bits, so essentially
-    the values are tested as if unsigned integers.
-   -0128  T 10000000
-   -0096  T 10100000
-   -0064  T 11000000
-   -0032  T 11100000
-   +0000  F 00000000
-   +0032  F 00100000
-   +0064  T 01000000
-   +0096  T 01100000
-    compare array of values [-128, -0, +0, 127] to 127
-    T F F T
-    compare two arrays
-    arr1= -127    0    0  127
-    arr2=  127    0    0 -127
-    bge(arr1,arr2)= T T T F</code></pre>
+<pre class="text"><code>   &gt;  bge(-127,127)= T
+   &gt;  compare some values to 01000000 (64)
+   &gt;  Notice that the values are tested as bits, so essentially
+   &gt;  the values are tested as if unsigned integers.
+   &gt; -0128  T 10000000
+   &gt; -0096  T 10100000
+   &gt; -0064  T 11000000
+   &gt; -0032  T 11100000
+   &gt; +0000  F 00000000
+   &gt; +0032  F 00100000
+   &gt; +0064  T 01000000
+   &gt; +0096  T 01100000
+   &gt;  compare array of values [-128, -0, +0, 127] to 127
+   &gt;  T F F T
+   &gt;  compare two arrays
+   &gt;  arr1= -127    0    0  127
+   &gt;  arr2=  127    0    0 -127
+   &gt;  bge(arr1,arr2)= T T T F</code></pre>
 <h3 id="standard-35"><strong>Standard</strong></h3>
 <p>Fortran 2008 and later</p>
 <h3 id="see-also-34"><strong>See Also</strong></h3>
@@ -2189,7 +2191,7 @@ If must be of the same kind as <strong>y</strong>.</li>
 </ul>
 <h3 id="returns-26"><strong>Returns</strong></h3>
 <p>Returns the number of bits used to represent a value of the type of <strong>i</strong>. The result is a integer scalar of the same kind as <strong>i</strong>.</p>
-<h3 id="examples-35"><strong>Examples</strong></h3>
+<h3 id="examples-36"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb104-1" title="1"><span class="kw">program</span> demo_bit_size</a>
 <a class="sourceLine" id="cb104-2" title="2"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : int8, int16, int32, int64</a>
@@ -2303,7 +2305,7 @@ A value of zero refers to the least significant bit.</li>
 </ul>
 <h3 id="returns-29"><strong>Returns</strong></h3>
 <p>The result is a logical that has the value <strong>.true.</strong> if bit position <strong>pos</strong> of <strong>i</strong> has the value <strong>1</strong> and the value <strong>.false.</strong> if bit <strong>pos</strong> of <strong>i</strong> has the value <strong>0</strong>.</p>
-<h3 id="examples-36"><strong>Examples</strong></h3>
+<h3 id="examples-37"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb109"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb109-1" title="1"><span class="kw">program</span> demo_btest</a>
 <a class="sourceLine" id="cb109-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -2402,7 +2404,7 @@ the value of btest (2, a)
 </ul>
 <h3 id="returns-30"><strong>Returns</strong></h3>
 <p>The return value is of type logical; it is .false. if either c_ptr_1 is a C NULL pointer or if c_ptr1 and c_ptr_2 point to different addresses.</p>
-<h3 id="examples-37"><strong>Examples</strong></h3>
+<h3 id="examples-38"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb112"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb112-1" title="1"><span class="kw">program</span> demo_c_associated</a>
 <a class="sourceLine" id="cb112-2" title="2"></a>
@@ -2452,7 +2454,7 @@ the value of btest (2, a)
 <h3 id="returns-31"><strong>Returns</strong></h3>
 <p>The return value is of type <strong>integer</strong>(kind) if <strong>kind</strong> is present and a default-kind integer otherwise.</p>
 <p>The result is undefined if it cannot be represented in the specified integer type.</p>
-<h3 id="examples-38"><strong>Examples</strong></h3>
+<h3 id="examples-39"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb114-1" title="1"><span class="kw">program</span> demo_ceiling</a>
 <a class="sourceLine" id="cb114-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -2505,7 +2507,7 @@ the value of btest (2, a)
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-39"><strong>Examples</strong></h3>
+<h3 id="examples-40"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb117-1" title="1"><span class="kw">program</span> demo_c_f_pointer</a>
 <a class="sourceLine" id="cb117-2" title="2"><span class="kw">use</span> iso_c_binding</a>
@@ -2548,7 +2550,7 @@ the value of btest (2, a)
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-40"><strong>Examples</strong></h3>
+<h3 id="examples-41"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb119"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb119-1" title="1"><span class="kw">program</span> demo_c_f_procpointer</a>
 <a class="sourceLine" id="cb119-2" title="2"><span class="kw">use</span> iso_c_binding</a>
@@ -2595,7 +2597,7 @@ the value of btest (2, a)
 </ul>
 <h3 id="returns-32"><strong>Returns</strong></h3>
 <p>The return value is of type c_funptr and contains the C address of the argument.</p>
-<h3 id="examples-41"><strong>Examples</strong></h3>
+<h3 id="examples-42"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb121"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb121-1" title="1"><span class="co">! program demo_c_funloc and module</span></a>
 <a class="sourceLine" id="cb121-2" title="2"><span class="kw">module</span> x</a>
@@ -2655,7 +2657,7 @@ the value of btest (2, a)
 </ul>
 <h3 id="returns-33"><strong>Returns</strong></h3>
 <p>The return value is of type character</p>
-<h3 id="examples-42"><strong>Examples</strong></h3>
+<h3 id="examples-43"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb123"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb123-1" title="1"><span class="kw">program</span> demo_char</a>
 <a class="sourceLine" id="cb123-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -2697,7 +2699,7 @@ the value of btest (2, a)
 </ul>
 <h3 id="returns-34"><strong>Returns</strong></h3>
 <p>The return value is of type c_ptr and contains the C address of the argument.</p>
-<h3 id="examples-43"><strong>Examples</strong></h3>
+<h3 id="examples-44"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb126"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb126-1" title="1">   <span class="kw">subroutine</span> association_test(a,b)</a>
 <a class="sourceLine" id="cb126-2" title="2">   <span class="kw">use</span> iso_c_binding, <span class="kw">only</span>: c_associated, c_loc, c_ptr</a>
@@ -2774,7 +2776,7 @@ the value of btest (2, a)
 </ul>
 <h3 id="returns-35"><strong>Returns</strong></h3>
 <p>The return value is of complex type, with a kind equal to <strong>kind</strong> if it is specified. If <strong>kind</strong> is not specified, the result is of the default complex kind, regardless of the kinds of <strong>x</strong> and <strong>y</strong>.</p>
-<h3 id="examples-44"><strong>Examples</strong></h3>
+<h3 id="examples-45"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb133"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb133-1" title="1"><span class="kw">program</span> demo_aimag</a>
 <a class="sourceLine" id="cb133-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -2838,7 +2840,7 @@ the value of btest (2, a)
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-45"><strong>Examples</strong></h3>
+<h3 id="examples-46"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb136"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb136-1" title="1"><span class="kw">program</span> demo_co_broadcast</a>
 <a class="sourceLine" id="cb136-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -2918,7 +2920,7 @@ the value of btest (2, a)
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-46"><strong>Examples</strong></h3>
+<h3 id="examples-47"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb139"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb139-1" title="1"><span class="kw">program</span> demo_co_max</a>
 <a class="sourceLine" id="cb139-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -2968,7 +2970,7 @@ the value of btest (2, a)
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-47"><strong>Examples</strong></h3>
+<h3 id="examples-48"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb142"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb142-1" title="1"><span class="kw">program</span> demo_co_min</a>
 <a class="sourceLine" id="cb142-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -3006,7 +3008,7 @@ the value of btest (2, a)
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-48"><strong>Examples</strong></h3>
+<h3 id="examples-49"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb144-1" title="1"><span class="kw">program</span> demo_command_argument_count</a>
 <a class="sourceLine" id="cb144-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -3041,7 +3043,7 @@ the value of btest (2, a)
 <p>None.</p>
 <h3 id="returns-38"><strong>Returns</strong></h3>
 <p>The return value is a default-kind string with system-dependent length. It contains the compiler flags used to compile the file, which called the compiler_options intrinsic.</p>
-<h3 id="examples-49"><strong>Examples</strong></h3>
+<h3 id="examples-50"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb147"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb147-1" title="1"><span class="kw">program</span> demo_compiler_version</a>
 <a class="sourceLine" id="cb147-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : compiler_version</a>
@@ -3078,7 +3080,7 @@ the value of btest (2, a)
 <p>None.</p>
 <h3 id="returns-39"><strong>Returns</strong></h3>
 <p>The return value is a default-kind string with system-dependent length. It contains the name of the compiler and its version number.</p>
-<h3 id="examples-50"><strong>Examples</strong></h3>
+<h3 id="examples-51"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb150"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb150-1" title="1"><span class="kw">program</span> demo_compiler_version</a>
 <a class="sourceLine" id="cb150-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : compiler_version</a>
@@ -3128,7 +3130,7 @@ the value of btest (2, a)
 </ul>
 <h3 id="returns-40"><strong>Returns</strong></h3>
 <p>The return value is of type complex.</p>
-<h3 id="examples-51"><strong>Examples</strong></h3>
+<h3 id="examples-52"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb153"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb153-1" title="1"><span class="kw">program</span> demo_conjg</a>
 <a class="sourceLine" id="cb153-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : real_kinds, <span class="kw">&amp;</span></a>
@@ -3219,7 +3221,7 @@ the value of btest (2, a)
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-52"><strong>Examples</strong></h3>
+<h3 id="examples-53"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb156"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb156-1" title="1"><span class="kw">program</span> demo_co_reduce</a>
 <a class="sourceLine" id="cb156-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -3271,7 +3273,7 @@ the value of btest (2, a)
 <h3 id="returns-41"><strong>Returns</strong></h3>
 <p>The return value has same type and kind as <strong>x</strong>. If <strong>x</strong> is complex, the imaginary part of the result is in radians.</p>
 <p>If <strong>x</strong> is real, the return value has a lower bound of one, <strong>cosh(x) &gt;= 1</strong>.</p>
-<h3 id="examples-53"><strong>Examples</strong></h3>
+<h3 id="examples-54"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb158"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb158-1" title="1"><span class="kw">program</span> demo_cosh</a>
 <a class="sourceLine" id="cb158-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : <span class="kw">&amp;</span></a>
@@ -3313,7 +3315,7 @@ the value of btest (2, a)
 <h3 id="returns-42"><strong>Returns</strong></h3>
 <p>The return value is of the same type and kind as <strong>x</strong>.</p>
 <p>If <strong>x</strong> is of the type real, the return value lies in the range <strong>-1 &lt;= cos(x) &lt;= 1</strong> .</p>
-<h3 id="examples-54"><strong>Examples</strong></h3>
+<h3 id="examples-55"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb160-1" title="1"><span class="kw">program</span> demo_cos</a>
 <a class="sourceLine" id="cb160-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -3374,7 +3376,7 @@ the value of btest (2, a)
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-55"><strong>Examples</strong></h3>
+<h3 id="examples-56"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb163"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb163-1" title="1"><span class="kw">program</span> demo_co_sum</a>
 <a class="sourceLine" id="cb163-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -3456,7 +3458,7 @@ the value of btest (2, a)
 </ul>
 <h3 id="returns-44"><strong>Returns</strong></h3>
 <p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind. If <strong>dim</strong> is present, the result is an array with a rank one less than the rank of <strong>array</strong>, and a size corresponding to the shape of <strong>array</strong> with the <strong>dim</strong> dimension removed.</p>
-<h3 id="examples-56"><strong>Examples</strong></h3>
+<h3 id="examples-57"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb167"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb167-1" title="1"><span class="kw">program</span> demo_count</a>
 <a class="sourceLine" id="cb167-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -3522,7 +3524,7 @@ the value of btest (2, a)
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-57"><strong>Examples</strong></h3>
+<h3 id="examples-58"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb170"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb170-1" title="1"><span class="kw">program</span> demo_cpu_time</a>
 <a class="sourceLine" id="cb170-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -3571,7 +3573,7 @@ the value of btest (2, a)
 </ul>
 <h3 id="returns-46"><strong>Returns</strong></h3>
 <p>Returns an array of same type and rank as the <strong>array</strong> argument.</p>
-<h3 id="examples-58"><strong>Examples</strong></h3>
+<h3 id="examples-59"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb173"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb173-1" title="1"><span class="kw">program</span> demo_cshift</a>
 <a class="sourceLine" id="cb173-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -3616,7 +3618,7 @@ the value of btest (2, a)
 </ul>
 <h3 id="returns-47"><strong>Returns</strong></h3>
 <p>The return value is of type integer and of the system-dependent kind csize_t (from the _iso_c_binding module). Its value is the number of bytes occupied by the argument. If the argument has the pointer attribute, the number of bytes of the storage area pointed to is returned. If the argument is of a derived type with pointer or allocatable components, the return value does not account for the sizes of the data pointed to by these components.</p>
-<h3 id="examples-59"><strong>Examples</strong></h3>
+<h3 id="examples-60"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb176"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb176-1" title="1"><span class="kw">program</span> demo_c_sizeof</a>
 <a class="sourceLine" id="cb176-2" title="2"><span class="kw">use</span> iso_c_binding</a>
@@ -3680,7 +3682,7 @@ the value of btest (2, a)
 <li><strong>values</strong>(8) : The milliseconds of the second</li>
 </ul></li>
 </ul>
-<h3 id="examples-60"><strong>Examples</strong></h3>
+<h3 id="examples-61"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb179"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb179-1" title="1"><span class="kw">program</span> demo_date_and_time</a>
 <a class="sourceLine" id="cb179-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -3752,7 +3754,7 @@ the value of btest (2, a)
 </ul>
 <h3 id="returns-48"><strong>Returns</strong></h3>
 <p>The return value is of type doubleprecision. For complex input, the returned value has the magnitude and sign of the real component of the input value.</p>
-<h3 id="examples-61"><strong>Examples</strong></h3>
+<h3 id="examples-62"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb182"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb182-1" title="1"><span class="kw">program</span> demo_dble</a>
 <a class="sourceLine" id="cb182-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -3791,7 +3793,7 @@ the value of btest (2, a)
 </ul>
 <h3 id="returns-49"><strong>Returns</strong></h3>
 <p>The return value is of type integer of default kind.</p>
-<h3 id="examples-62"><strong>Examples</strong></h3>
+<h3 id="examples-63"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb185"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb185-1" title="1"><span class="kw">program</span> demo_digits</a>
 <a class="sourceLine" id="cb185-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -3840,7 +3842,7 @@ the value of btest (2, a)
 </ul>
 <h3 id="returns-50"><strong>Returns</strong></h3>
 <p>The return value is the same type and kind as the input arguments <strong>x</strong> and <strong>y</strong>.</p>
-<h3 id="examples-63"><strong>Examples</strong></h3>
+<h3 id="examples-64"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb188"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb188-1" title="1"><span class="kw">program</span> demo_dim</a>
 <a class="sourceLine" id="cb188-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : real64</a>
@@ -3889,7 +3891,7 @@ the value of btest (2, a)
 </ul>
 <h3 id="returns-51"><strong>Returns</strong></h3>
 <p>If the arguments are numeric, the return value is a scalar of numeric type, integer, real, or complex. If the arguments are logical, the return value is .true. or .false..</p>
-<h3 id="examples-64"><strong>Examples</strong></h3>
+<h3 id="examples-65"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb191"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb191-1" title="1"><span class="kw">program</span> demo_dot_prod</a>
 <a class="sourceLine" id="cb191-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -3941,7 +3943,7 @@ the value of btest (2, a)
 <p>The setting of compiler options specifying the size of a default real can affect this function.</p>
 <h3 id="returns-52"><strong>Returns</strong></h3>
 <p>The return value is doubleprecision (ie. real(kind=kind(0.0d0))). It should have the same value as <strong>dble(x)*dble(y)</strong>.</p>
-<h3 id="examples-65"><strong>Examples</strong></h3>
+<h3 id="examples-66"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb194"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb194-1" title="1"><span class="kw">program</span> demo_dprod</a>
 <a class="sourceLine" id="cb194-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : real_kinds, <span class="kw">&amp;</span></a>
@@ -4103,7 +4105,7 @@ Character(len) |  LEN blanks</code></pre>
 </ul>
 <h3 id="returns-55"><strong>Returns</strong></h3>
 <p>Returns an array of same type and rank as the <strong>array</strong> argument.</p>
-<h3 id="examples-66"><strong>Examples</strong></h3>
+<h3 id="examples-67"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb200"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb200-1" title="1"><span class="kw">program</span> demo_eoshift</a>
 <a class="sourceLine" id="cb200-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -4154,7 +4156,7 @@ Character(len) |  LEN blanks</code></pre>
 </ul>
 <h3 id="returns-56"><strong>Returns</strong></h3>
 <p>The return value is of the same type as the argument.</p>
-<h3 id="examples-67"><strong>Examples</strong></h3>
+<h3 id="examples-68"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb204"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb204-1" title="1"><span class="kw">program</span> demo_epsilon</a>
 <a class="sourceLine" id="cb204-2" title="2"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : dp<span class="kw">=</span><span class="op">&gt;</span>real64,sp<span class="kw">=</span><span class="op">&gt;</span>real32</a>
@@ -4254,7 +4256,7 @@ $$</span><br /></p>
 <blockquote>
 <p>0 &lt;= <strong>erfc</strong>(x) &lt;= 2.</p>
 </blockquote>
-<h3 id="examples-68"><strong>Examples</strong></h3>
+<h3 id="examples-69"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb207"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb207-1" title="1"><span class="kw">program</span> demo_erfc</a>
 <a class="sourceLine" id="cb207-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : <span class="kw">&amp;</span></a>
@@ -4296,7 +4298,7 @@ $$</span><br /></p>
 </ul>
 <h3 id="returns-58"><strong>Returns</strong></h3>
 <p>The return value is of type real and of the same kind as <strong>x</strong>.</p>
-<h3 id="examples-69"><strong>Examples</strong></h3>
+<h3 id="examples-70"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb210-1" title="1"><span class="kw">program</span> demo_erfc_scaled</a>
 <a class="sourceLine" id="cb210-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -4331,7 +4333,7 @@ $$</span><br /></p>
 </ul>
 <h3 id="returns-59"><strong>Returns</strong></h3>
 <p>The return value is of type real, of the same kind as <strong>x</strong> and lies in the range <strong>-1</strong> &lt;= <strong>erf</strong>(x) &lt;= 1 .</p>
-<h3 id="examples-70"><strong>Examples</strong></h3>
+<h3 id="examples-71"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb213"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb213-1" title="1"><span class="kw">program</span> demo_erf</a>
 <a class="sourceLine" id="cb213-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : real_kinds, <span class="kw">&amp;</span></a>
@@ -4377,7 +4379,7 @@ $$</span><br /></p>
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-71"><strong>Examples</strong></h3>
+<h3 id="examples-72"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb216"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb216-1" title="1"><span class="kw">program</span> demo_event_query</a>
 <a class="sourceLine" id="cb216-2" title="2"><span class="kw">use</span> iso_fortran_env</a>
@@ -4441,7 +4443,7 @@ $$</span><br /></p>
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-72"><strong>Examples</strong></h3>
+<h3 id="examples-73"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb218"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb218-1" title="1"><span class="kw">program</span> demo_exec</a>
 <a class="sourceLine" id="cb218-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -4481,7 +4483,7 @@ $$</span><br /></p>
 <h3 id="returns-60"><strong>Returns</strong></h3>
 <p>The value of the result is <strong>e**x</strong> where <strong>e</strong> is Euler’s constant.</p>
 <p>The return value has the same type and kind as <strong>x</strong>.</p>
-<h3 id="examples-73"><strong>Examples</strong></h3>
+<h3 id="examples-74"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb220"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb220-1" title="1"><span class="kw">program</span> demo_exp</a>
 <a class="sourceLine" id="cb220-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -4547,7 +4549,7 @@ $$</span><br /></p>
 </ul>
 <h3 id="returns-61"><strong>Returns</strong></h3>
 <p>The return value is of type default integer.</p>
-<h3 id="examples-74"><strong>Examples</strong></h3>
+<h3 id="examples-75"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb223"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb223-1" title="1"><span class="kw">program</span> demo_exponent</a>
 <a class="sourceLine" id="cb223-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -4601,7 +4603,7 @@ $$</span><br /></p>
 </dl>
 The dynamic type of a disassociated pointer or unallocated allocatable variable is its declared type.</li>
 </ul>
-<h3 id="examples-75"><strong>Examples</strong></h3>
+<h3 id="examples-76"><strong>Examples</strong></h3>
 <p>fortran-lang intrinsic descriptions</p>
 </div>
 <div id="findloc" class="slide section level2">
@@ -4672,7 +4674,7 @@ The dynamic type of a disassociated pointer or unallocated allocatable variable 
 <pre><code>      findloc (array (s1, s2, ..., sdim-1, :, sdim+1, ..., sn ), &amp;
       value, dim=1 [, mask = mask (s1, s2, ..., sdim-1, :,
                       sdim+1, ..., sn )]).</code></pre>
-<h3 id="examples-76"><strong>Examples</strong></h3>
+<h3 id="examples-77"><strong>Examples</strong></h3>
 <ul>
 <li><strong>Case (i):</strong> The value of</li>
 </ul>
@@ -4740,7 +4742,7 @@ The dynamic type of a disassociated pointer or unallocated allocatable variable 
 <h3 id="returns-65"><strong>Returns</strong></h3>
 <p>The return value is of type integer(kind) if <strong>kind</strong> is present and of default-kind integer otherwise.</p>
 <p>The result is undefined if it cannot be represented in the specified integer type.</p>
-<h3 id="examples-77"><strong>Examples</strong></h3>
+<h3 id="examples-78"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb242"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb242-1" title="1"><span class="kw">program</span> demo_floor</a>
 <a class="sourceLine" id="cb242-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -4793,7 +4795,7 @@ The dynamic type of a disassociated pointer or unallocated allocatable variable 
 </ul>
 <h3 id="returns-66"><strong>Returns</strong></h3>
 <p>The return value is of the same type and kind as the argument. The fractional part of the model representation of <strong>x</strong> is returned; it is <strong>x * radix(x)**(-exponent(x))</strong>.</p>
-<h3 id="examples-78"><strong>Examples</strong></h3>
+<h3 id="examples-79"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb245"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb245-1" title="1"><span class="kw">program</span> demo_fraction</a>
 <a class="sourceLine" id="cb245-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -4832,7 +4834,7 @@ $$</span><br /></p>
 </ul>
 <h3 id="returns-67"><strong>Returns</strong></h3>
 <p>The return value is of type real of the same kind as x.</p>
-<h3 id="examples-79"><strong>Examples</strong></h3>
+<h3 id="examples-80"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb249"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb249-1" title="1"><span class="kw">program</span> demo_gamma</a>
 <a class="sourceLine" id="cb249-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : wp<span class="kw">=</span><span class="op">&gt;</span>real64</a>
@@ -4957,7 +4959,7 @@ $$</span><br /></p>
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-80"><strong>Examples</strong></h3>
+<h3 id="examples-81"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb252"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb252-1" title="1"><span class="kw">program</span> demo_get_command_argument</a>
 <a class="sourceLine" id="cb252-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -5054,7 +5056,7 @@ $$</span><br /></p>
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-81"><strong>Examples</strong></h3>
+<h3 id="examples-82"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb255"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb255-1" title="1"><span class="kw">program</span> demo_get_command</a>
 <a class="sourceLine" id="cb255-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -5138,7 +5140,7 @@ Shall be a scalar of type character and of default kind.</li>
 </dl>
 <p>Shall be a scalar of type logical and of default kind.</p></li>
 </ul>
-<h3 id="examples-82"><strong>Examples</strong></h3>
+<h3 id="examples-83"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb258"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb258-1" title="1"><span class="kw">program</span> demo_getenv</a>
 <a class="sourceLine" id="cb258-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -5216,7 +5218,7 @@ Shall be a scalar of type character and of default kind.</li>
 </ul>
 <h3 id="returns-71"><strong>Returns</strong></h3>
 <p>The return value is of the same type and kind as x and is the largest value supported by the specified model.</p>
-<h3 id="examples-83"><strong>Examples</strong></h3>
+<h3 id="examples-84"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb261-1" title="1"><span class="kw">program</span> demo_huge</a>
 <a class="sourceLine" id="cb261-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -5296,7 +5298,7 @@ Shall be a scalar of type character and of default kind.</li>
 <h3 id="returns-72"><strong>Returns</strong></h3>
 <p>The return value has the same type and kind type parameter as <strong>x</strong>.</p>
 <p>The result is the positive magnitude of the distance of the point <strong>&lt;x,y&gt;</strong> from the origin <strong>&lt;0.0,0.0&gt;</strong> .</p>
-<h3 id="examples-84"><strong>Examples</strong></h3>
+<h3 id="examples-85"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb264"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb264-1" title="1"><span class="kw">program</span> demo_hypot</a>
 <a class="sourceLine" id="cb264-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : <span class="kw">&amp;</span></a>
@@ -5367,7 +5369,7 @@ Shall be a scalar of type character and of default kind.</li>
 </ul>
 <h3 id="returns-73"><strong>Returns</strong></h3>
 <p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</p>
-<h3 id="examples-85"><strong>Examples</strong></h3>
+<h3 id="examples-86"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb267"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb267-1" title="1"><span class="kw">program</span> demo_iachar</a>
 <a class="sourceLine" id="cb267-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -5440,7 +5442,7 @@ Shall be a scalar of type character and of default kind.</li>
 <h3 id="returns-74"><strong>Returns</strong></h3>
 <p>The result is of the same type as <strong>array</strong>.</p>
 <p>If <strong>dim</strong> is absent, a scalar with the bitwise all of all elements in <strong>array</strong> is returned. Otherwise, an array of rank <strong>n-1</strong>, where <strong>n</strong> equals the rank of <strong>array</strong>, and a shape similar to that of <strong>array</strong> with dimension <strong>dim</strong> dropped is returned.</p>
-<h3 id="examples-86"><strong>Examples</strong></h3>
+<h3 id="examples-87"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb270"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb270-1" title="1"><span class="kw">program</span> demo_iall</a>
 <a class="sourceLine" id="cb270-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : integer_kinds, <span class="kw">&amp;</span></a>
@@ -5485,7 +5487,7 @@ Shall be a scalar of type character and of default kind.</li>
 </ul>
 <h3 id="returns-75"><strong>Returns</strong></h3>
 <p>The return type is integer, of the same kind as the arguments. (If the argument kinds differ, it is of the same kind as the larger argument.)</p>
-<h3 id="examples-87"><strong>Examples</strong></h3>
+<h3 id="examples-88"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb273"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb273-1" title="1"><span class="kw">program</span> demo_iand</a>
 <a class="sourceLine" id="cb273-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -5534,7 +5536,7 @@ Shall be a scalar of type character and of default kind.</li>
 <h3 id="returns-76"><strong>Returns</strong></h3>
 <p>The result is of the same type as <strong>array</strong>.</p>
 <p>If <strong>dim</strong> is absent, a scalar with the bitwise or of all elements in <strong>array</strong> is returned. Otherwise, an array of rank <strong>n-1</strong>, where <strong>n</strong> equals the rank of <strong>array</strong>, and a shape similar to that of <strong>array</strong> with dimension <strong>dim</strong> dropped is returned.</p>
-<h3 id="examples-88"><strong>Examples</strong></h3>
+<h3 id="examples-89"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb276"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb276-1" title="1"><span class="kw">program</span> demo_iany</a>
 <a class="sourceLine" id="cb276-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : integer_kinds, <span class="kw">&amp;</span></a>
@@ -5672,7 +5674,7 @@ Shall be a scalar of type character and of default kind.</li>
 </ul>
 <h3 id="returns-80"><strong>Returns</strong></h3>
 <p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</p>
-<h3 id="examples-89"><strong>Examples</strong></h3>
+<h3 id="examples-90"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb282"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb282-1" title="1"><span class="kw">program</span> demo_ichar</a>
 <a class="sourceLine" id="cb282-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -5783,7 +5785,7 @@ end program read_val</code></pre>
 </ul>
 <h3 id="returns-82"><strong>Returns</strong></h3>
 <p>Scalar default integer with the value of the image index which corresponds to the cosubscripts. For invalid cosubscripts the result is zero.</p>
-<h3 id="examples-90"><strong>Examples</strong></h3>
+<h3 id="examples-91"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb287"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb287-1" title="1"><span class="kw">program</span> demo image_index</a>
 <a class="sourceLine" id="cb287-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -5842,7 +5844,7 @@ end program read_val</code></pre>
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-91"><strong>Examples</strong></h3>
+<h3 id="examples-92"><strong>Examples</strong></h3>
 <p>Example program</p>
 <div class="sourceCode" id="cb289"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb289-1" title="1"><span class="kw">program</span> demo_index</a>
 <a class="sourceLine" id="cb289-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -5905,7 +5907,7 @@ If not present the returned type is that of default integer type.</li>
 <p>The interpretation of a bit sequence whose most significant bit is <strong>1</strong> is processor dependent.</p></li>
 </ol>
 <p>The result is undefined if it cannot be represented in the specified integer type.</p>
-<h3 id="examples-92"><strong>Examples</strong></h3>
+<h3 id="examples-93"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb292"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb292-1" title="1"><span class="kw">program</span> demo_int</a>
 <a class="sourceLine" id="cb292-2" title="2"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : int8, int16, int32, int64</a>
@@ -5991,7 +5993,7 @@ If not present the returned type is that of default integer type.</li>
 </ul>
 <h3 id="returns-85"><strong>Returns</strong></h3>
 <p>The return type is integer, of the same kind as the arguments. (If the argument kinds differ, it is of the same kind as the larger argument.)</p>
-<h3 id="examples-93"><strong>Examples</strong></h3>
+<h3 id="examples-94"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb295"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb295-1" title="1"><span class="kw">program</span> demo_ior</a>
 <a class="sourceLine" id="cb295-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -6044,7 +6046,7 @@ If not present the returned type is that of default integer type.</li>
 <h3 id="returns-86"><strong>Returns</strong></h3>
 <p>The result is of the same type as <strong>array</strong>.</p>
 <p>If <strong>dim</strong> is absent, a scalar with the bitwise xor of all elements in <strong>array</strong> is returned. Otherwise, an array of rank <strong>n-1</strong>, where <strong>n</strong> equals the rank of <strong>array</strong>, and a shape similar to that of <strong>array</strong> with dimension <strong>dim</strong> dropped is returned.</p>
-<h3 id="examples-94"><strong>Examples</strong></h3>
+<h3 id="examples-95"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb298"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb298-1" title="1"><span class="kw">program</span> demo_iparity</a>
 <a class="sourceLine" id="cb298-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -6111,7 +6113,7 @@ If not present the returned type is that of default integer type.</li>
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-95"><strong>Examples</strong></h3>
+<h3 id="examples-96"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb301"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb301-1" title="1"><span class="kw">program</span> demo_is_contiguous</a>
 <a class="sourceLine" id="cb301-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -6217,7 +6219,7 @@ If not present the returned type is that of default integer type.</li>
 </ul>
 <h3 id="returns-90"><strong>Returns</strong></h3>
 <p>Returns a logical of the default kind, <strong>.true.</strong> if <strong>i</strong> has the value which indicates an end of file condition for <strong>iostat=</strong> specifiers, and is <strong>.false.</strong> otherwise.</p>
-<h3 id="examples-96"><strong>Examples</strong></h3>
+<h3 id="examples-97"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb306"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb306-1" title="1"><span class="kw">program</span> demo_iostat</a>
 <a class="sourceLine" id="cb306-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -6259,7 +6261,7 @@ If not present the returned type is that of default integer type.</li>
 </ul>
 <h3 id="returns-91"><strong>Returns</strong></h3>
 <p>Returns a logical of the default kind, which .true. if <strong>i</strong> has the value which indicates an end of file condition for iostat= specifiers, and is .false. otherwise.</p>
-<h3 id="examples-97"><strong>Examples</strong></h3>
+<h3 id="examples-98"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb308"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb308-1" title="1"><span class="kw">program</span> demo_is_iostat_eor</a>
 <a class="sourceLine" id="cb308-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -6293,7 +6295,7 @@ If not present the returned type is that of default integer type.</li>
 </ul>
 <h3 id="returns-92"><strong>Returns</strong></h3>
 <p>The return value is a scalar of type integer and of the default integer kind.</p>
-<h3 id="examples-98"><strong>Examples</strong></h3>
+<h3 id="examples-99"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb310"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb310-1" title="1"><span class="kw">program</span> demo_kind</a>
 <a class="sourceLine" id="cb310-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -6344,7 +6346,7 @@ If not present the returned type is that of default integer type.</li>
 </ul>
 <h3 id="returns-93"><strong>Returns</strong></h3>
 <p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind. If <strong>dim</strong> is absent, the result is an array of the lower bounds of <strong>array</strong>. If <strong>dim</strong> is present, the result is a scalar corresponding to the lower bound of the array along that dimension. If <strong>array</strong> is an expression rather than a whole array or array structure component, or if it has a zero extent along the relevant dimension, the lower bound is taken to be 1.</p>
-<h3 id="examples-99"><strong>Examples</strong></h3>
+<h3 id="examples-100"><strong>Examples</strong></h3>
 <p>Note that in my opinion this function should not be used on assumed-size arrays or in any function without an explicit interface. Errors can occur if there is no interface defined.</p>
 <p>Sample program</p>
 <div class="sourceCode" id="cb313"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb313-1" title="1"><span class="co">! program demo_lbound</span></a>
@@ -6422,7 +6424,7 @@ If not present the returned type is that of default integer type.</li>
 </ul>
 <h3 id="returns-94"><strong>Returns</strong></h3>
 <p>The type of the return value is the same as a default integer. If all the bits of <strong>i</strong> are zero, the result value is <strong>bit_size(i)</strong>.</p>
-<h3 id="examples-100"><strong>Examples</strong></h3>
+<h3 id="examples-101"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb316"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb316-1" title="1"><span class="kw">program</span> demo_leadz</a>
 <a class="sourceLine" id="cb316-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -6546,7 +6548,7 @@ If not present the returned type is that of default integer type.</li>
 <p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</p>
 <h3 id="standard-112"><strong>Standard</strong></h3>
 <p>FORTRAN 77 and later; with <strong>kind</strong> argument - Fortran 2003 and later</p>
-<h3 id="examples-101"><strong>Examples</strong></h3>
+<h3 id="examples-102"><strong>Examples</strong></h3>
 <p>Sample program</p>
 <div class="sourceCode" id="cb319"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb319-1" title="1"><span class="kw">program</span> demo_len</a>
 <a class="sourceLine" id="cb319-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -6654,7 +6656,7 @@ If not present the returned type is that of default integer type.</li>
 </ul>
 <h3 id="returns-96"><strong>Returns</strong></h3>
 <p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</p>
-<h3 id="examples-102"><strong>Examples</strong></h3>
+<h3 id="examples-103"><strong>Examples</strong></h3>
 <p>Sample program</p>
 <div class="sourceCode" id="cb322"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb322-1" title="1"><span class="kw">program</span> demo_len_trim</a>
 <a class="sourceLine" id="cb322-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -6799,7 +6801,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 <ul>
 <li><strong>result</strong> Returns <strong>.true.</strong> if <strong>STR_A &lt;= STR_B</strong>, and <strong>.false.</strong> otherwise, based on the ASCII ordering.</li>
 </ul>
-<h3 id="examples-103"><strong>Examples</strong></h3>
+<h3 id="examples-104"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb327"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb327-1" title="1"><span class="kw">program</span> demo_lle</a>
 <a class="sourceLine" id="cb327-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -6896,7 +6898,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 </ul>
 <h3 id="returns-101"><strong>Returns</strong></h3>
 <p>The return value is of type real . The kind type parameter is the same as <strong>x</strong>.</p>
-<h3 id="examples-104"><strong>Examples</strong></h3>
+<h3 id="examples-105"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb331"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb331-1" title="1"><span class="kw">program</span> demo_log10</a>
 <a class="sourceLine" id="cb331-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : real_kinds, <span class="kw">&amp;</span></a>
@@ -6938,7 +6940,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 </ul>
 <h3 id="returns-102"><strong>Returns</strong></h3>
 <p>The return value is of type real of the same kind as <strong>x</strong>.</p>
-<h3 id="examples-105"><strong>Examples</strong></h3>
+<h3 id="examples-106"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb334"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb334-1" title="1"><span class="kw">program</span> demo_log_gamma</a>
 <a class="sourceLine" id="cb334-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -6980,7 +6982,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 </ul>
 <h3 id="returns-103"><strong>Returns</strong></h3>
 <p>The return value is a logical value equal to <strong>l</strong>, with a kind corresponding to <strong>kind</strong>, or of the default logical kind if <strong>kind</strong> is not given.</p>
-<h3 id="examples-106"><strong>Examples</strong></h3>
+<h3 id="examples-107"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb337"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb337-1" title="1"><span class="kw">program</span> demo_<span class="dt">logical</span></a>
 <a class="sourceLine" id="cb337-2" title="2"><span class="co">! Access array containing the kind type parameter values supported by this</span></a>
@@ -7025,7 +7027,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 <h3 id="returns-104"><strong>Returns</strong></h3>
 <p>The return value is of type real or complex. The kind type parameter is the same as <strong>x</strong>. If <strong>x</strong> is complex, the imaginary part OMEGA is in the range</p>
 <p><strong>-PI</strong> &lt; OMEGA &lt;= PI.</p>
-<h3 id="examples-107"><strong>Examples</strong></h3>
+<h3 id="examples-108"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb340"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb340-1" title="1"><span class="kw">program</span> demo_log</a>
 <a class="sourceLine" id="cb340-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -7068,7 +7070,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 <h3 id="returns-105"><strong>Returns</strong></h3>
 <p>The return value is of type integer. If <strong>kind</strong> is present, it specifies the kind value of the return type; otherwise, it is of the default integer kind.</p>
 <p>The leftmost <strong>i</strong> bits are set to 1 and the other bits are set to 0.</p>
-<h3 id="examples-108"><strong>Examples</strong></h3>
+<h3 id="examples-109"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb343"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb343-1" title="1"><span class="kw">program</span> demo_maskl</a>
 <a class="sourceLine" id="cb343-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -7252,7 +7254,7 @@ end program demo_maskr</code></pre>
 </ul>
 <h3 id="returns-108"><strong>Returns</strong></h3>
 <p>The return value is of type integer and of the default integer kind.</p>
-<h3 id="examples-109"><strong>Examples</strong></h3>
+<h3 id="examples-110"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb350"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb350-1" title="1"><span class="kw">program</span> demo_maxexponent</a>
 <a class="sourceLine" id="cb350-2" title="2"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : dp<span class="kw">=</span><span class="op">&gt;</span>real64,sp<span class="kw">=</span><span class="op">&gt;</span>real32</a>
@@ -7301,7 +7303,7 @@ end program demo_maskr</code></pre>
 <h3 id="returns-109"><strong>Returns</strong></h3>
 <p>If <strong>dim</strong> is absent, the result is a rank-one array with a length equal to the rank of <strong>array</strong>. If <strong>dim</strong> is present, the result is an array with a rank one less than the rank of <strong>array</strong>, and a size corresponding to the size of <strong>array</strong> with the <strong>dim</strong> dimension removed. If <strong>dim</strong> is present and <strong>array</strong> has a rank of one, the result is a scalar. In all cases, the result is of default integer type.</p>
 <p>The value returned is reference to the offset from the beginning of the array, not necessarily the subscript value if the array subscripts do not start with one.</p>
-<h3 id="examples-110"><strong>Examples</strong></h3>
+<h3 id="examples-111"><strong>Examples</strong></h3>
 <p>sample program</p>
 <div class="sourceCode" id="cb353"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb353-1" title="1"><span class="kw">program</span> demo_maxloc</a>
 <a class="sourceLine" id="cb353-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -7368,7 +7370,7 @@ end program demo_maskr</code></pre>
 <h3 id="returns-110"><strong>Returns</strong></h3>
 <p>The return value corresponds to the maximum value among the arguments, and has the same type and kind as the first argument.</p>
 <p>The function is both elemental and allows for an arbitrary number of arguments. This means if some elements are scalar and some are arrays that all the arrays must be of the same size, and the returned value will be an array that is the result as if multiple calls were made with all scalar values with a single element of each array used in each call. If called with all arrays the returned array is the same as if multiple calls were made with <strong>max(arr1(1),arr2(1), …)</strong> to <strong>max(arr1(N),arr2(N))</strong>.</p>
-<h3 id="examples-111"><strong>Examples</strong></h3>
+<h3 id="examples-112"><strong>Examples</strong></h3>
 <p>Sample program</p>
 <div class="sourceCode" id="cb356"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb356-1" title="1"><span class="kw">program</span> demo_max</a>
 <a class="sourceLine" id="cb356-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -7468,7 +7470,7 @@ end program demo_maskr</code></pre>
 </ul>
 <h3 id="returns-111"><strong>Returns</strong></h3>
 <p>If <strong>dim</strong> is absent, or if <strong>array</strong> has a rank of one, the result is a scalar. If <strong>dim</strong> is present, the result is an array with a rank one less than the rank of <strong>array</strong>, and a size corresponding to the size of <strong>array</strong> with the <strong>dim</strong> dimension removed. In all cases, the result is of the same type and kind as <strong>array</strong>.</p>
-<h3 id="examples-112"><strong>Examples</strong></h3>
+<h3 id="examples-113"><strong>Examples</strong></h3>
 <p>sample program:</p>
 <div class="sourceCode" id="cb360"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb360-1" title="1"><span class="kw">program</span> demo_maxval</a>
 <a class="sourceLine" id="cb360-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -7626,7 +7628,7 @@ end program demo_maskr</code></pre>
 <p>Note that (currently) character values must be of the same length.</p>
 <h3 id="returns-113"><strong>Returns</strong></h3>
 <p>The result is of the same type and type parameters as <strong>tsource</strong>. For any element the result is <strong>tsource</strong> if <strong>mask</strong> is true and <strong>fsource</strong> otherwise.</p>
-<h3 id="examples-113"><strong>Examples</strong></h3>
+<h3 id="examples-114"><strong>Examples</strong></h3>
 <p>The value of</p>
 <div class="sourceCode" id="cb370"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb370-1" title="1">     <span class="bu">merge</span> (<span class="fl">1.0</span>, <span class="fl">0.0</span>, k <span class="op">&gt;</span> <span class="dv">0</span>)</a></code></pre></div>
 <p>is 1.0 for K=5 and 0.0 for K=<strong>-2</strong>.</p>
@@ -7715,7 +7717,7 @@ end program demo_maskr</code></pre>
 </ul>
 <h3 id="returns-114"><strong>Returns</strong></h3>
 <p>The return value is of type integer and of the default integer kind.</p>
-<h3 id="examples-114"><strong>Examples</strong></h3>
+<h3 id="examples-115"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb374"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb374-1" title="1"><span class="kw">program</span> demo_minexponent</a>
 <a class="sourceLine" id="cb374-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : <span class="kw">&amp;</span></a>
@@ -7765,7 +7767,7 @@ end program demo_maskr</code></pre>
 </ul>
 <h3 id="returns-115"><strong>Returns</strong></h3>
 <p>If <strong>dim</strong> is absent, the result is a rank-one array with a length equal to the rank of <strong>array</strong>. If <strong>dim</strong> is present, the result is an array with a rank one less than the rank of <strong>array</strong>, and a size corresponding to the size of <strong>array</strong> with the <strong>dim</strong> dimension removed. If <strong>dim</strong> is present and <strong>array</strong> has a rank of one, the result is a scalar. In all cases, the result is of default integer type.</p>
-<h3 id="examples-115"><strong>Examples</strong></h3>
+<h3 id="examples-116"><strong>Examples</strong></h3>
 <p>sample program:</p>
 <div class="sourceCode" id="cb378"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb378-1" title="1"><span class="kw">program</span> demo_minloc</a>
 <a class="sourceLine" id="cb378-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -7817,7 +7819,7 @@ end program demo_maskr</code></pre>
 </ul>
 <h3 id="returns-116"><strong>Returns</strong></h3>
 <p>The return value corresponds to the minimum value among the arguments, and has the same type and kind as the first argument.</p>
-<h3 id="examples-116"><strong>Examples</strong></h3>
+<h3 id="examples-117"><strong>Examples</strong></h3>
 <p>Sample program</p>
 <div class="sourceCode" id="cb381"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb381-1" title="1"><span class="kw">program</span> demo_min</a>
 <a class="sourceLine" id="cb381-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -7862,7 +7864,7 @@ end program demo_maskr</code></pre>
 <h3 id="returns-117"><strong>Returns</strong></h3>
 <p>If <strong>dim</strong> is absent, or if <strong>array</strong> has a rank of one, the result is a scalar.</p>
 <p>If <strong>dim</strong> is present, the result is an array with a rank one less than the rank of <strong>array</strong>, and a size corresponding to the size of <strong>array</strong> with the <strong>dim</strong> dimension removed. In all cases, the result is of the same type and kind as <strong>array</strong>.</p>
-<h3 id="examples-117"><strong>Examples</strong></h3>
+<h3 id="examples-118"><strong>Examples</strong></h3>
 <p>sample program:</p>
 <div class="sourceCode" id="cb384"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb384-1" title="1"><span class="kw">program</span> demo_minval</a>
 <a class="sourceLine" id="cb384-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -7976,7 +7978,7 @@ end program demo_maskr</code></pre>
 </ul>
 <h3 id="returns-118"><strong>Returns</strong></h3>
 <p>The return value is the result of <strong>a - (int(a/p) * p)</strong>. The type and kind of the return value is the same as that of the arguments. The returned value has the same sign as <strong>a</strong> and a magnitude less than the magnitude of <strong>p</strong>.</p>
-<h3 id="examples-118"><strong>Examples</strong></h3>
+<h3 id="examples-119"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb387"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb387-1" title="1"><span class="kw">program</span> demo_mod</a>
 <a class="sourceLine" id="cb387-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -8042,7 +8044,7 @@ end program demo_maskr</code></pre>
 <li><p>If <strong>a</strong> and <strong>p</strong> are of type real: <strong>modulo(a,p)</strong> has the value of <strong>a - floor (a / p) * p</strong>.</p></li>
 </ul>
 <p>The returned value has the same sign as <strong>p</strong> and a magnitude less than the magnitude of <strong>p</strong>.</p>
-<h3 id="examples-119"><strong>Examples</strong></h3>
+<h3 id="examples-120"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb390"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb390-1" title="1"><span class="kw">program</span> demo_modulo</a>
 <a class="sourceLine" id="cb390-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -8089,7 +8091,7 @@ end program demo_maskr</code></pre>
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-120"><strong>Examples</strong></h3>
+<h3 id="examples-121"><strong>Examples</strong></h3>
 <p>Basic Sample program to allocate a bigger grid</p>
 <div class="sourceCode" id="cb393"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb393-1" title="1"><span class="kw">program</span> demo_move_alloc</a>
 <a class="sourceLine" id="cb393-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -8266,7 +8268,7 @@ end program demo_maskr</code></pre>
 </ul>
 <h3 id="returns-120"><strong>Returns</strong></h3>
 <p>The return value is of the same type as <strong>x</strong>. If <strong>s</strong> is positive, <strong>nearest</strong> returns the processor-representable number greater than <strong>x</strong> and nearest to it. If <strong>s</strong> is negative, <strong>nearest</strong> returns the processor-representable number smaller than <strong>x</strong> and nearest to it.</p>
-<h3 id="examples-121"><strong>Examples</strong></h3>
+<h3 id="examples-122"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb399"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb399-1" title="1"><span class="kw">program</span> demo_nearest</a>
 <a class="sourceLine" id="cb399-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -8330,7 +8332,7 @@ end program demo_maskr</code></pre>
 </ul>
 <h3 id="returns-121"><strong>Returns</strong></h3>
 <p>Returns a character scalar of length one with the new-line character of the same kind as parameter <strong>c</strong>.</p>
-<h3 id="examples-122"><strong>Examples</strong></h3>
+<h3 id="examples-123"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb402"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb402-1" title="1"><span class="kw">program</span> demo_new_line</a>
 <a class="sourceLine" id="cb402-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -8389,7 +8391,7 @@ end program demo_maskr</code></pre>
 </dl>
 The result is undefined if it cannot be represented in the specified integer type.</li>
 </ul>
-<h3 id="examples-123"><strong>Examples</strong></h3>
+<h3 id="examples-124"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb405"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb405-1" title="1"><span class="kw">program</span> demo_nint</a>
 <a class="sourceLine" id="cb405-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -8481,7 +8483,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 <p>The result is of the same type as <strong>array</strong>.</p>
 <p>If <strong>dim</strong> is absent, a scalar with the square root of the sum of squares of the elements of <strong>array</strong> is returned.</p>
 <p>Otherwise, an array of rank <strong>n-1</strong>, where <strong>n</strong> equals the rank of <strong>array</strong>, and a shape similar to that of <strong>array</strong> with dimension DIM dropped is returned.</p>
-<h3 id="examples-124"><strong>Examples</strong></h3>
+<h3 id="examples-125"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb408"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb408-1" title="1"><span class="kw">program</span> demo_norm2</a>
 <a class="sourceLine" id="cb408-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -8537,7 +8539,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 </ul>
 <h3 id="returns-124"><strong>Returns</strong></h3>
 <p>The return type is integer, of the same kind as the argument.</p>
-<h3 id="examples-125"><strong>Examples</strong></h3>
+<h3 id="examples-126"><strong>Examples</strong></h3>
 <p>Sample program</p>
 <div class="sourceCode" id="cb411"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb411-1" title="1"><span class="kw">program</span> demo_not</a>
 <a class="sourceLine" id="cb411-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -8578,7 +8580,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 </ul>
 <h3 id="returns-125"><strong>Returns</strong></h3>
 <p>A disassociated pointer or an unallocated allocatable entity.</p>
-<h3 id="examples-126"><strong>Examples</strong></h3>
+<h3 id="examples-127"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb414"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb414-1" title="1"><span class="co">!program demo_null</span></a>
 <a class="sourceLine" id="cb414-2" title="2"><span class="kw">module</span> showit</a>
@@ -8679,7 +8681,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 </ul>
 <h3 id="returns-126"><strong>Returns</strong></h3>
 <p>Scalar default-kind integer. If <strong>distance</strong> is not present or has value 0, the number of images in the current team is returned. For values smaller or equal distance to the initial team, it returns the number of images index on the ancestor team which has a distance of <strong>distance</strong> from the invoking team. If <strong>distance</strong> is larger than the distance to the initial team, the number of images of the initial team is returned. If <strong>failed</strong> is not present the total number of images is returned; if it has the value .true., the number of failed images is returned, otherwise, the number of images which do have not the failed status.</p>
-<h3 id="examples-127"><strong>Examples</strong></h3>
+<h3 id="examples-128"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb417"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb417-1" title="1"><span class="kw">program</span> demo_num_images</a>
 <a class="sourceLine" id="cb417-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -8742,7 +8744,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 <p>Case (iii): Otherwise, the result is true if and only if the value of X is an IEEE in nity or NaN that is not supported by objects of the type and kind of MOLD, or if X is a finite number and the result of rounding the value of X (according to the IEEE rounding mode if appropriate) to the extended model for the kind of MOLD has magnitude larger than that of the largest finite number with the same sign as X that is representable by objects with the type and kind of MOLD.</p>
 <p>NOTE</p>
 <p>MOLD is required to be a scalar because the only information taken from it is its type and kind. Allowing an array MOLD would require that it be conformable with X. ROUND is scalar because allowing an array rounding mode would have severe performance di culties on many processors.</p>
-<h3 id="examples-128"><strong>Examples</strong></h3>
+<h3 id="examples-129"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb419"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb419-1" title="1"><span class="kw">program</span> demo_out_of_range</a>
 <a class="sourceLine" id="cb419-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : int8, int16, int32, int64</a>
@@ -8817,7 +8819,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 </ul>
 <h3 id="returns-128"><strong>Returns</strong></h3>
 <p>The result is an array of rank one and the same type as that of <strong>array</strong>. If <strong>vector</strong> is present, the result size is that of <strong>vector</strong>, the number of <strong>.true.</strong> values in <strong>mask</strong> otherwise.</p>
-<h3 id="examples-129"><strong>Examples</strong></h3>
+<h3 id="examples-130"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb422"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb422-1" title="1"><span class="kw">program</span> demo_pack</a>
 <a class="sourceLine" id="cb422-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -8897,7 +8899,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 <p>The result is of the same type as <strong>mask</strong>.</p>
 <p>If <strong>dim</strong> is absent, a scalar with the parity of all elements in <strong>mask</strong> is returned: <strong>.true.</strong> if an odd number of elements are <strong>.true.</strong> and <strong>.false.</strong> otherwise.</p>
 <p>When <strong>dim</strong> is specified the returned shape is similar to that of <strong>mask</strong> with dimension <strong>dim</strong> dropped.</p>
-<h3 id="examples-130"><strong>Examples</strong></h3>
+<h3 id="examples-131"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb425"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb425-1" title="1"><span class="kw">program</span> demo_parity</a>
 <a class="sourceLine" id="cb425-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -8928,7 +8930,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 </ul>
 <h3 id="returns-130"><strong>Returns</strong></h3>
 <p>The return value is of type integer and of the default integer kind.</p>
-<h3 id="examples-131"><strong>Examples</strong></h3>
+<h3 id="examples-132"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb428"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb428-1" title="1"><span class="kw">program</span> demo_popcnt</a>
 <a class="sourceLine" id="cb428-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : integer_kinds, <span class="kw">&amp;</span></a>
@@ -8973,7 +8975,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 <h3 id="returns-131"><strong>Returns</strong></h3>
 <p>The return value is equal to <strong>0</strong> if <strong>i</strong> has an even number of bits set and 1 if an odd number of bits are set.</p>
 <p>It is of type integer and of the default integer kind.</p>
-<h3 id="examples-132"><strong>Examples</strong></h3>
+<h3 id="examples-133"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb431"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb431-1" title="1"><span class="kw">program</span> demo_popcnt</a>
 <a class="sourceLine" id="cb431-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : integer_kinds, <span class="kw">&amp;</span></a>
@@ -9015,7 +9017,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 </ul>
 <h3 id="returns-132"><strong>Returns</strong></h3>
 <p>The return value is of type integer and of the default integer kind.</p>
-<h3 id="examples-133"><strong>Examples</strong></h3>
+<h3 id="examples-134"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb434"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb434-1" title="1"><span class="kw">program</span> demo_precision</a>
 <a class="sourceLine" id="cb434-2" title="2"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : dp<span class="kw">=</span><span class="op">&gt;</span>real64,sp<span class="kw">=</span><span class="op">&gt;</span>real32</a>
@@ -9056,7 +9058,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 </ul>
 <h3 id="returns-133"><strong>Returns</strong></h3>
 <p>Returns either <strong>.true.</strong> if the optional argument <strong>a</strong> is present, or <strong>.false.</strong> otherwise.</p>
-<h3 id="examples-134"><strong>Examples</strong></h3>
+<h3 id="examples-135"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb437"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb437-1" title="1"><span class="kw">program</span> demo_present</a>
 <a class="sourceLine" id="cb437-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -9114,7 +9116,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 </ul>
 <h3 id="returns-134"><strong>Returns</strong></h3>
 <p>The result is of the same type as <strong>array</strong>.</p>
-<h3 id="examples-135"><strong>Examples</strong></h3>
+<h3 id="examples-136"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb440"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb440-1" title="1"><span class="kw">program</span> demo_product</a>
 <a class="sourceLine" id="cb440-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -9307,7 +9309,7 @@ dim=3 :( 2 3 )
 </ul>
 <h3 id="returns-135"><strong>Returns</strong></h3>
 <p>The return value is a scalar of type integer and of the default integer kind.</p>
-<h3 id="examples-136"><strong>Examples</strong></h3>
+<h3 id="examples-137"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb443"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb443-1" title="1"><span class="kw">program</span> demo_radix</a>
 <a class="sourceLine" id="cb443-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -9341,7 +9343,7 @@ dim=3 :( 2 3 )
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-137"><strong>Examples</strong></h3>
+<h3 id="examples-138"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb446"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb446-1" title="1"><span class="kw">program</span> demo_random_number</a>
 <a class="sourceLine" id="cb446-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : dp<span class="kw">=</span><span class="op">&gt;</span>real64</a>
@@ -9427,7 +9429,7 @@ dim=3 :( 2 3 )
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-138"><strong>Examples</strong></h3>
+<h3 id="examples-139"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb449"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb449-1" title="1"><span class="kw">program</span> demo_random_seed</a>
 <a class="sourceLine" id="cb449-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -9472,7 +9474,7 @@ dim=3 :( 2 3 )
 </ul>
 <h3 id="returns-136"><strong>Returns</strong></h3>
 <p>The return value is of type integer and of the default integer kind.</p>
-<h3 id="examples-139"><strong>Examples</strong></h3>
+<h3 id="examples-140"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb452"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb452-1" title="1"><span class="kw">program</span> demo_range</a>
 <a class="sourceLine" id="cb452-2" title="2"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : dp<span class="kw">=</span><span class="op">&gt;</span>real64,sp<span class="kw">=</span><span class="op">&gt;</span>real32</a>
@@ -9509,7 +9511,7 @@ dim=3 :( 2 3 )
 </ul>
 <h3 id="returns-137"><strong>Returns</strong></h3>
 <p>The return value is of type integer and of the default integer kind. For arrays, their rank is returned; for scalars zero is returned.</p>
-<h3 id="examples-140"><strong>Examples</strong></h3>
+<h3 id="examples-141"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb455"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb455-1" title="1"><span class="kw">program</span> demo_rank</a>
 <a class="sourceLine" id="cb455-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -9553,7 +9555,7 @@ dim=3 :( 2 3 )
 <li><p><strong>real</strong>(x) is converted to a real type with the magnitude of the real component of a complex value with kind type parameter of <strong>x</strong>.</p></li>
 <li><p><strong>real(x, kind)</strong> is converted to a real type with kind type parameter <strong>kind</strong> if <strong>x</strong> is a complex, integer, or real variable.</p></li>
 </ol>
-<h3 id="examples-141"><strong>Examples</strong></h3>
+<h3 id="examples-142"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb458"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb458-1" title="1"><span class="kw">program</span> demo_real</a>
 <a class="sourceLine" id="cb458-2" title="2"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : dp<span class="kw">=</span><span class="op">&gt;</span>real64</a>
@@ -9638,7 +9640,7 @@ dim=3 :( 2 3 )
 <h3 id="result"><strong>result</strong></h3>
 <p>The result is of the same type and type parameters as <strong>array</strong>. It is scalar if <strong>dim</strong> does not appear.</p>
 <p>If <strong>dim</strong> is present, it indicates the one dimension along which to perform the reduction, and the resultant array has a rank reduced by one relative to the input array.</p>
-<h3 id="examples-142"><strong>examples</strong></h3>
+<h3 id="examples-143"><strong>examples</strong></h3>
 <p>The following examples all use the function MY_MULT, which returns the product of its two real arguments.</p>
 <div class="sourceCode" id="cb462"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb462-1" title="1">   <span class="kw">program</span> demo_reduce</a>
 <a class="sourceLine" id="cb462-2" title="2">   <span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -9735,7 +9737,7 @@ dim=3 :( 2 3 )
 </ul>
 <h3 id="returns-139"><strong>Returns</strong></h3>
 <p>A new scalar of type character built up from <strong>ncopies</strong> copies of <strong>string</strong>.</p>
-<h3 id="examples-143"><strong>Examples</strong></h3>
+<h3 id="examples-144"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb465"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb465-1" title="1"><span class="kw">program</span> demo_repeat</a>
 <a class="sourceLine" id="cb465-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -9796,7 +9798,7 @@ ________________________________________________________________________
 </ul>
 <h3 id="returns-140"><strong>Returns</strong></h3>
 <p>The result is an array of shape <strong>shape</strong> with the same type as <strong>source</strong>.</p>
-<h3 id="examples-144"><strong>Examples</strong></h3>
+<h3 id="examples-145"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb468"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb468-1" title="1"><span class="kw">program</span> demo_reshape</a>
 <a class="sourceLine" id="cb468-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -9902,7 +9904,7 @@ ________________________________________________________________________
 </ul>
 <h3 id="returns-143"><strong>Returns</strong></h3>
 <p>The return value is of the same type and kind as <strong>x</strong>. Its value is <strong>x * radix(x)**i</strong>.</p>
-<h3 id="examples-145"><strong>Examples</strong></h3>
+<h3 id="examples-146"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb473"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb473-1" title="1"><span class="kw">program</span> demo_scale</a>
 <a class="sourceLine" id="cb473-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -9952,7 +9954,7 @@ ________________________________________________________________________
 </ul>
 <h3 id="returns-144"><strong>Returns</strong></h3>
 <p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</p>
-<h3 id="examples-146"><strong>Examples</strong></h3>
+<h3 id="examples-147"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb476"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb476-1" title="1"><span class="kw">program</span> demo_scan</a>
 <a class="sourceLine" id="cb476-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -9990,7 +9992,7 @@ ________________________________________________________________________
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-147"><strong>Examples</strong></h3>
+<h3 id="examples-148"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb479"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb479-1" title="1"><span class="kw">program</span> demo_selected_char_kind</a>
 <a class="sourceLine" id="cb479-2" title="2"><span class="kw">use</span> iso_fortran_env</a>
@@ -10034,7 +10036,7 @@ ________________________________________________________________________
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-148"><strong>Examples</strong></h3>
+<h3 id="examples-149"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb482"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb482-1" title="1"><span class="kw">program</span> demo_selected_int_kind</a>
 <a class="sourceLine" id="cb482-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -10115,7 +10117,7 @@ ________________________________________________________________________
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-149"><strong>Examples</strong></h3>
+<h3 id="examples-150"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb485"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb485-1" title="1"><span class="kw">program</span> demo_selected_real_kind</a>
 <a class="sourceLine" id="cb485-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -10163,7 +10165,7 @@ ________________________________________________________________________
 </ul>
 <h3 id="returns-146"><strong>Returns</strong></h3>
 <p>The return value is of the same type and kind as <strong>x</strong>. The real number whose fractional part is that that of <strong>x</strong> and whose exponent part if <strong>i</strong> is returned; it is <strong>fraction(x) * radix(x)**i</strong>.</p>
-<h3 id="examples-150"><strong>Examples</strong></h3>
+<h3 id="examples-151"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb488"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb488-1" title="1"><span class="kw">program</span> demo_setexp</a>
 <a class="sourceLine" id="cb488-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -10202,7 +10204,7 @@ ________________________________________________________________________
 </ul>
 <h3 id="returns-147"><strong>Returns</strong></h3>
 <p>An integer array of rank one with as many elements as <strong>source</strong> has dimensions. The elements of the resulting array correspond to the extend of <strong>source</strong> along the respective dimensions. If <strong>source</strong> is a scalar, the result is the rank one array of size zero. If <strong>kind</strong> is absent, the return value has the default integer kind otherwise the specified kind.</p>
-<h3 id="examples-151"><strong>Examples</strong></h3>
+<h3 id="examples-152"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb491"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb491-1" title="1"><span class="kw">program</span> demo_shape</a>
 <a class="sourceLine" id="cb491-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -10347,7 +10349,7 @@ ________________________________________________________________________
 <li>else if <strong>b &lt; 0</strong> it is -<strong>abs(a)</strong>.</li>
 <li>if <strong>b</strong> is real and the processor distinguishes between <strong>-0.0</strong> and <strong>0.0</strong> then the result is <strong>-abs(a)</strong></li>
 </ul>
-<h3 id="examples-152"><strong>Examples</strong></h3>
+<h3 id="examples-153"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb497"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb497-1" title="1"><span class="kw">program</span> demo_sign</a>
 <a class="sourceLine" id="cb497-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -10395,7 +10397,7 @@ ________________________________________________________________________
 </ul>
 <h3 id="returns-152"><strong>Returns</strong></h3>
 <p>The return value has same type and kind as <strong>x</strong>.</p>
-<h3 id="examples-153"><strong>Examples</strong></h3>
+<h3 id="examples-154"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb500"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb500-1" title="1"><span class="kw">program</span> demo_sinh</a>
 <a class="sourceLine" id="cb500-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : <span class="kw">&amp;</span></a>
@@ -10471,7 +10473,7 @@ ________________________________________________________________________
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-154"><strong>Examples</strong></h3>
+<h3 id="examples-155"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb503"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb503-1" title="1"><span class="kw">program</span> sample_sin</a>
 <a class="sourceLine" id="cb503-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -10563,7 +10565,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 </ul>
 <h3 id="returns-154"><strong>Returns</strong></h3>
 <p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</p>
-<h3 id="examples-155"><strong>Examples</strong></h3>
+<h3 id="examples-156"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb510"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb510-1" title="1"><span class="kw">program</span> demo_size</a>
 <a class="sourceLine" id="cb510-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -10724,7 +10726,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 </ul>
 <h3 id="returns-155"><strong>Returns</strong></h3>
 <p>The result is of the same type as the input argument <strong>x</strong>.</p>
-<h3 id="examples-156"><strong>Examples</strong></h3>
+<h3 id="examples-157"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb513"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb513-1" title="1"><span class="kw">program</span> demo_spacing</a>
 <a class="sourceLine" id="cb513-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -10778,7 +10780,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 </ul>
 <h3 id="returns-156"><strong>Returns</strong></h3>
 <p>The result is an array of the same type as <strong>source</strong> and has rank <strong>n+1</strong> where <strong>n</strong> equals the rank of <strong>source</strong>.</p>
-<h3 id="examples-157"><strong>Examples</strong></h3>
+<h3 id="examples-158"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb516"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb516-1" title="1"><span class="kw">program</span> demo_spread</a>
 <a class="sourceLine" id="cb516-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -10879,7 +10881,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 </ul>
 <h3 id="returns-157"><strong>Returns</strong></h3>
 <p>The return value is of type real or complex. The kind type parameter is the same as <strong>x</strong>.</p>
-<h3 id="examples-158"><strong>Examples</strong></h3>
+<h3 id="examples-159"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb518"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb518-1" title="1"><span class="kw">program</span> demo_sqrt</a>
 <a class="sourceLine" id="cb518-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : real_kinds, <span class="kw">&amp;</span></a>
@@ -10932,7 +10934,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 </ul>
 <h3 id="returns-158"><strong>Returns</strong></h3>
 <p>The result is a scalar integer with the kind type parameter specified by <strong>kind</strong> (or default integer type if <strong>kind</strong> is missing). The result value is the size expressed in bits for an element of an array that has the dynamic type and type parameters of <strong>a</strong>.</p>
-<h3 id="examples-159"><strong>Examples</strong></h3>
+<h3 id="examples-160"><strong>Examples</strong></h3>
 <p>Sample program</p>
 <div class="sourceCode" id="cb521"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb521-1" title="1"><span class="kw">program</span> demo_storage_size</a>
 <a class="sourceLine" id="cb521-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -10984,7 +10986,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <h3 id="returns-159"><strong>Returns</strong></h3>
 <p>The result is of the same type as ARRAY.</p>
 <p>If <strong>dim</strong>(3) is absent, a scalar with the sum of all elements in ARRAY is returned. Otherwise, an array of rank n-1, where n equals the rank of ARRAY, and a shape similar to that of ARRAY with dimension DIM dropped is returned.</p>
-<h3 id="examples-160"><strong>Examples</strong></h3>
+<h3 id="examples-161"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb524"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb524-1" title="1"><span class="kw">program</span> simple_sum</a>
 <a class="sourceLine" id="cb524-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -11054,7 +11056,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 </dd>
 </dl></li>
 </ul>
-<h3 id="examples-161"><strong>Examples</strong></h3>
+<h3 id="examples-162"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb528"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb528-1" title="1"><span class="kw">program</span> demo_system_clock</a>
 <a class="sourceLine" id="cb528-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -11104,7 +11106,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <h3 id="returns-160"><strong>Returns</strong></h3>
 <p>The return value has same type and kind as <strong>x</strong>. If <strong>x</strong> is complex, the imaginary part of the result is in radians. If <strong>x</strong> is real, the return value lies in the range</p>
 <pre><code>      -1 &lt;= tanh(x) &lt;= 1.</code></pre>
-<h3 id="examples-162"><strong>Examples</strong></h3>
+<h3 id="examples-163"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb533"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb533-1" title="1"><span class="kw">program</span> demo_tanh</a>
 <a class="sourceLine" id="cb533-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : <span class="kw">&amp;</span></a>
@@ -11142,7 +11144,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 </ul>
 <h3 id="returns-161"><strong>Returns</strong></h3>
 <p>The return value has the same type and kind as <strong>x</strong>.</p>
-<h3 id="examples-163"><strong>Examples</strong></h3>
+<h3 id="examples-164"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb536"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb536-1" title="1"><span class="kw">program</span> demo_tan</a>
 <a class="sourceLine" id="cb536-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : real_kinds, <span class="kw">&amp;</span></a>
@@ -11188,7 +11190,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 </ul>
 <h3 id="returns-162"><strong>Returns</strong></h3>
 <p>Default integer. If <strong>coarray</strong> is not present, it is scalar; if <strong>distance</strong> is not present or has value <strong>0</strong>, its value is the image index on the invoking image for the current team, for values smaller or equal distance to the initial team, it returns the image index on the ancestor team which has a distance of <strong>distance</strong> from the invoking team. If <strong>distance</strong> is larger than the distance to the initial team, the image index of the initial team is returned. Otherwise when the <strong>coarray</strong> is present, if <strong>dim</strong> is not present, a rank-1 array with corank elements is returned, containing the cosubscripts for <strong>coarray</strong> specifying the invoking image. If <strong>dim</strong> is present, a scalar is returned, with the value of the <strong>dim</strong> element of <strong>this_image(coarray)</strong>.</p>
-<h3 id="examples-164"><strong>Examples</strong></h3>
+<h3 id="examples-165"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb539"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb539-1" title="1"><span class="kw">program</span> demo_this_image</a>
 <a class="sourceLine" id="cb539-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -11232,7 +11234,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <h3 id="returns-163"><strong>Returns</strong></h3>
 <p>The smallest positive value for the real type of the specified kind.</p>
 <p>The return value is of the same type and kind as <strong>x</strong>.</p>
-<h3 id="examples-165"><strong>Examples</strong></h3>
+<h3 id="examples-166"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb542"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb542-1" title="1"><span class="kw">program</span> demo_tiny</a>
 <a class="sourceLine" id="cb542-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -11268,7 +11270,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 </ul>
 <h3 id="returns-164"><strong>Returns</strong></h3>
 <p>The type of the return value is the default integer. If all the bits of I are zero, the result value is <strong>bit_size(i)</strong>.</p>
-<h3 id="examples-166"><strong>Examples</strong></h3>
+<h3 id="examples-167"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb545"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb545-1" title="1"><span class="kw">program</span> demo_trailz</a>
 <a class="sourceLine" id="cb545-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : integer_kinds, <span class="kw">&amp;</span></a>
@@ -11374,7 +11376,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <p>The result has the same type as <strong>mold</strong>, with the bit level representation of <strong>source</strong>. If <strong>size</strong> is present, the result is a one-dimensional array of length <strong>size</strong>. If <strong>size</strong> is absent but <strong>mold</strong> is an array (of any size or shape), the result is a one-dimensional array of the minimum length needed to contain the entirety of the bitwise representation of <strong>source</strong>. If <strong>size</strong> is absent and <strong>mold</strong> is a scalar, the result is a scalar.</p>
 <p>If the bitwise representation of the result is longer than that of <strong>source</strong>, then the leading bits of the result correspond to those of <strong>source</strong> and any trailing bits are filled arbitrarily.</p>
 <p>When the resulting bit representation does not correspond to a valid representation of a variable of the same type as <strong>mold</strong>, the results are undefined, and subsequent operations on the result cannot be guaranteed to produce sensible behavior. For example, it is possible to create logical variables for which <strong>var</strong> and .not. var both appear to be true.</p>
-<h3 id="examples-167"><strong>Examples</strong></h3>
+<h3 id="examples-168"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb548"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb548-1" title="1"><span class="kw">program</span> demo_transfer</a>
 <a class="sourceLine" id="cb548-2" title="2"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : int32, real32</a>
@@ -11427,7 +11429,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 </ul>
 <h3 id="returns-166"><strong>Returns</strong></h3>
 <p>The transpose of the input array. The result has the same type as <strong>matrix</strong>, and has shape [ m, n ] if <strong>matrix</strong> has shape [ n, m ].</p>
-<h3 id="examples-168"><strong>Examples</strong></h3>
+<h3 id="examples-169"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb551"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb551-1" title="1"><span class="kw">program</span> demo_transpose</a>
 <a class="sourceLine" id="cb551-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -11496,7 +11498,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 </ul>
 <h3 id="returns-167"><strong>Returns</strong></h3>
 <p>A scalar of type character which length is that of <strong>string</strong> less the number of trailing blanks.</p>
-<h3 id="examples-169"><strong>Examples</strong></h3>
+<h3 id="examples-170"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb554"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb554-1" title="1"><span class="kw">program</span> demo_trim</a>
 <a class="sourceLine" id="cb554-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -11558,7 +11560,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <p>If <strong>dim</strong> is absent, the result is an array of the upper bounds of <strong>array</strong>.</p>
 <p>If <strong>dim</strong> is present, the result is a scalar corresponding to the upper bound of the array along that dimension.</p>
 <p>If <strong>array</strong> is an expression rather than a whole array or array structure component, or if it has a zero extent along the relevant dimension, the upper bound is taken to be the number of elements along the relevant dimension.</p>
-<h3 id="examples-170"><strong>Examples</strong></h3>
+<h3 id="examples-171"><strong>Examples</strong></h3>
 <p>Note this function should not be used on assumed-size arrays or in any function without an explicit interface. Errors can occur if there is no interface defined.</p>
 <p>Sample program</p>
 <div class="sourceCode" id="cb557"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb557-1" title="1"><span class="co">! program demo_ubound</span></a>
@@ -11653,7 +11655,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <p>The result is an array of the same type and type parameters as <strong>vector</strong> and the same shape as <strong>mask</strong>.</p>
 <p>The element of the result that corresponds to the ith true element of MASK, in array element order, has the value VECTOR (i) for i = 1, 2, . . ., t, where t is the number of true values in MASK. Each other element has a value equal to FIELD if FIELD is scalar or to the corresponding element of FIELD if it is an array.</p>
 <p>The resulting array corresponds to <strong>field</strong> with <strong>.true.</strong> elements of <strong>mask</strong> replaced by values from <strong>vector</strong> in array element order.</p>
-<h3 id="examples-171"><strong>Examples</strong></h3>
+<h3 id="examples-172"><strong>Examples</strong></h3>
 <p>Particular values may be “scattered” to particular positions in an array by using</p>
 <pre class="text"><code>                       1 0 0
     If M is the array  0 1 0
@@ -11784,7 +11786,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 </ul>
 <h3 id="returns-170"><strong>Returns</strong></h3>
 <p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</p>
-<h3 id="examples-172"><strong>Examples</strong></h3>
+<h3 id="examples-173"><strong>Examples</strong></h3>
 <p>Sample program I:</p>
 <div class="sourceCode" id="cb564"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb564-1" title="1"><span class="kw">program</span> demo_verify</a>
 <a class="sourceLine" id="cb564-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
