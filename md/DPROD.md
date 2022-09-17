@@ -75,7 +75,7 @@ real(kind=dp) :: dd
 !> doubleprecision :: xx = 5.2_dp
 !> doubleprecision :: yy = 2.3_dp
 !> print *, 'dprop==>',dprod(xx,yy)
-!> print *, 'multipy==>',xx*yy
+!> print *, 'multiply==>',xx*yy
 !> print *, 'using dble==>',dble(xx)*dble(yy)
 !> print *, 'kind of arguments is',kind(xx)
 !> print *, 'kind of result is',kind(dprod(xx,yy))
@@ -94,7 +94,7 @@ end program demo_dprod
       11.96000
       11.9600000000000
     dprop==>   11.9599999999999994848565165739273
-    multipy==>   11.9600000000000
+    multiply==>   11.9600000000000
     using dble==>   11.9600000000000
     kind of arguments is           8
     kind of result is          16

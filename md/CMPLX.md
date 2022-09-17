@@ -54,14 +54,14 @@ argument used to specify the desired kind of complex result.
       integer,parameter :: dp=kind(0.0d0)
       complex(kind=dp) :: z8
       !
-      ! NO: result is just the precision of default _real_ values
+      ! NO: result is just the precision of default real values
       !     because KIND parameter is not specified
       !
       ! note this was stored with default real precision
       z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0)
       print *, 'NO, Z8=',z8,real(z8),aimag(z8)
       z8 = cmplx(1.2345678901234567e0_dp, 1.2345678901234567e0_dp)
-      ! again, note components are just _real_
+      ! again, note components are just real
       print *, 'NO, Z8=',z8,real(z8),aimag(z8)
       !
       ! YES

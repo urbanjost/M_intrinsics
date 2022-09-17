@@ -175,7 +175,7 @@ one relative to the input array.
 ````
 ### **See Also**
 - [co_reduce(3)](#co_reduce)
-- [associative:wipipedia](https://en.wikipedia.org/wiki/Associative_property)
+- [associative:wikipedia](https://en.wikipedia.org/wiki/Associative_property)
 
 ### **Standard**
 

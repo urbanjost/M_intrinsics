@@ -25,7 +25,7 @@ present then the following are copied in depending on the type of **array**.
 
     Array Type     | Boundary Value
     -----------------------------------------------------
-    Numeric        | 0 of the type and kind of **array**
+    Numeric        | 0 of the type and kind of "array"
     Logical        | .false.
     Character(len) |  LEN blanks
 

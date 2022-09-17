@@ -47,9 +47,9 @@ The classic definition of the arctangent is the angle that is formed
 in Cartesian coordinates of the line from the origin point **\<0,0\>**
 to the point **\<x,y\>** .
 
-Pictured as a vector it is easy to see that if **x** and **y**
-are both zero the angle is indeterminent because it sits directly over
-the origin, so **atan(0.0,0.0)** will produce an error.
+Pictured as a vector it is easy to see that if **x** and **y** are both
+zero the angle is indeterminate because it sits directly over the origin,
+so **atan(0.0,0.0)** will produce an error.
 
 Range of returned values by quadrant:
 ```text

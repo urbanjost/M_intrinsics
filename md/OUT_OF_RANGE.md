@@ -48,13 +48,13 @@ From the standard:
 
    Case (ii):    If MOLD is of type integer, and ROUND is present with
                  the value true, the result is true if and only
-                 if the value of X is an IEEE in   nity or NaN, or
+                 if the value of X is an IEEE infinity or NaN, or
                  if the integer nearest X, or the integer of greater
                  magnitude if two integers are equally near to X, is not
                  representable by objects with the type and kind of MOLD.
 
    Case (iii):   Otherwise, the result is true if and only if the value
-                 of X is an IEEE in   nity or NaN that is not
+                 of X is an IEEE infinity or NaN that is not
                  supported by objects of the type and kind of MOLD,
                  or if X is a finite number and the result of rounding
                  the value of X (according to the IEEE rounding mode if
@@ -69,7 +69,7 @@ From the standard:
    taken from it is its type and kind. Allowing an array MOLD would
    require that it be conformable with X. ROUND is scalar because
    allowing an array rounding mode would have severe performance
-   di   culties on many processors.
+   difficulties on many processors.
 
 ### **Examples**
 
