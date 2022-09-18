@@ -2,7 +2,8 @@
 
 ### **Name**
 
-**findloc**(3) - \[ARRAY:LOCATION\] Location of first element of ARRAY identified by MASK along dimension DIM having a value
+**findloc**(3) - \[ARRAY:LOCATION\] Location of first element of ARRAY
+identified by MASK along dimension DIM matching a target value
 
 ### **Syntax**
 
@@ -22,13 +23,13 @@ dimension **dim** having a value equal to **value**.
 If both **array** and **value** are of type logical, the comparison is
 performed with the **.eqv.** operator; otherwise, the comparison is
 performed with the == operator. If the value of the comparison is
-true, that element of **array** matches **value**.
+_.true._, that element of **array** matches **value**.
 
 If only one element matches **value**, that element's subscripts are
 returned. Otherwise, if more than one element matches **value** and
-**back** is absent or present with the value false, the element whose
+**back** is absent or present with the value _.false._, the element whose
 subscripts are returned is the first such element, taken in array
-element order. If **back** is present with the value true, the element
+element order. If **back** is present with the value _.true._, the element
 whose subscripts are returned is the last such element, taken in array
 element order.
 

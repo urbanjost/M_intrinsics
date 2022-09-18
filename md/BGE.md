@@ -156,4 +156,4 @@ Fortran 2008 and later
 [**ble**(3)](#ble),
 [**blt**(3)](#blt)
 
- _fortran-lang intrinsic descriptions \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

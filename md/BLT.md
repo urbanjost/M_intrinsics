@@ -71,4 +71,4 @@ Fortran 2008 and later
 [**bgt**(3)](#bgt),
 [**ble**(3)](#ble)
 
- _fortran-lang intrinsic descriptions \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

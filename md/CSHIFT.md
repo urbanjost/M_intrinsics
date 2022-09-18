@@ -7,19 +7,30 @@
 ### **Syntax**
 
 ```fortran
-result = cshift(array, shift, dim)
+type(TYPE, kind=KIND) function cshift(array, shift, dim )
+ 
+   type(TYPE,kind=KIND),intent(in) :: array(..)
+   integer(kind=IKIND),intent(in)  :: shift
+   integer(kind=IKIND),intent(in)  :: dim
 ```
+  where **array** may be any type and rank (and the result will
+  automatically be of the same type, kind and rank as **array**).
+
+  The _kind_ of **shift** and **dim** may differ and be any supported
+  value.
 
 ### **Description**
 
-**cshift(array, shift \[, dim\])** performs a circular shift on elements
-of **array** along the dimension of **dim**. If **dim** is omitted it is taken to be
-**1**. **dim** is a scalar of type _integer_ in the range of **1 \<= dim \<= n**,
-where "n" is the rank of **array**. If the rank of **array** is one, then all
-elements of **array** are shifted by **shift** places. If rank is greater than
-one, then all complete rank one sections of **array** along the given
-dimension are shifted. Elements shifted out one end of each rank one
-section are shifted back in the other end.
+  **cshift(array, shift \[, dim\])** performs a circular shift on elements
+  of **array** along the dimension of **dim**. If **dim** is omitted it is
+  taken to be **1**. **dim** is a scalar of type _integer_ in the range of
+  **1 \<= dim \<= n**, where "n" is the rank of **array**. 
+
+  If the rank of
+  **array** is one, then all elements of **array** are shifted by **shift**
+  places. If rank is greater than one, then all complete rank one sections
+  of **array** along the given dimension are shifted. Elements shifted
+  out one end of each rank one section are shifted back in the other end.
 
 ### **Arguments**
 
