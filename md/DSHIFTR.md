@@ -75,6 +75,7 @@ this has the same result as a negative circular shift
 ### **Returns**
 
 The return value has same type and kind as **i**.
+
 ### **Examples**
 
 Sample program:
