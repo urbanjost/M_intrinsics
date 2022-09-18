@@ -3021,7 +3021,7 @@ Fortran 2008 and later
 [**ble**(3)](#ble),
 [**blt**(3)](#blt)
 
- _fortran-lang intrinsic descriptions \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## bgt
 
@@ -3102,7 +3102,7 @@ Fortran 2008 and later
 [**ble**(3)](#ble),
 [**blt**(3)](#blt)
 
- _fortran-lang intrinsic descriptions \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## bit_size
 
@@ -3251,7 +3251,7 @@ Fortran 2008 and later
 [**bgt**(3)](#bgt),
 [**blt**(3)](#blt)
 
- _fortran-lang intrinsic descriptions \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## blt
 
@@ -3326,7 +3326,7 @@ Fortran 2008 and later
 [**bgt**(3)](#bgt),
 [**ble**(3)](#ble)
 
- _fortran-lang intrinsic descriptions \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## btest
 
@@ -5231,19 +5231,30 @@ Fortran 95 and later
 ### **Syntax**
 
 ```fortran
-result = cshift(array, shift, dim)
+type(TYPE, kind=KIND) function cshift(array, shift, dim )
+
+   type(TYPE,kind=KIND),intent(in) :: array(..)
+   integer(kind=IKIND),intent(in)  :: shift
+   integer(kind=IKIND),intent(in)  :: dim
 ```
+  where **array** may be any type and rank (and the result will
+  automatically be of the same type, kind and rank as **array**).
+
+  The _kind_ of **shift** and **dim** may differ and be any supported
+  value.
 
 ### **Description**
 
-**cshift(array, shift \[, dim\])** performs a circular shift on elements
-of **array** along the dimension of **dim**. If **dim** is omitted it is taken to be
-**1**. **dim** is a scalar of type _integer_ in the range of **1 \<= dim \<= n**,
-where "n" is the rank of **array**. If the rank of **array** is one, then all
-elements of **array** are shifted by **shift** places. If rank is greater than
-one, then all complete rank one sections of **array** along the given
-dimension are shifted. Elements shifted out one end of each rank one
-section are shifted back in the other end.
+  **cshift(array, shift \[, dim\])** performs a circular shift on elements
+  of **array** along the dimension of **dim**. If **dim** is omitted it is
+  taken to be **1**. **dim** is a scalar of type _integer_ in the range of
+  **1 \<= dim \<= n**, where "n" is the rank of **array**.
+
+  If the rank of
+  **array** is one, then all elements of **array** are shifted by **shift**
+  places. If rank is greater than one, then all complete rank one sections
+  of **array** along the given dimension are shifted. Elements shifted
+  out one end of each rank one section are shifted back in the other end.
 
 ### **Arguments**
 
@@ -5875,19 +5886,67 @@ FORTRAN 77 and later
 
 ### **Name**
 
-**dshiftl**(3) - \[BIT:COPY\] combines bits of arguments **i** and **j**
+**dshiftl**(3) - \[BIT:COPY\] combined left shift of the bits of two integers
 
 ### **Syntax**
 
 ```fortran
-result = dshiftl(i, j, shift)
+elemental integer(kind=KIND) function dshiftl(i, j, shift)
+
+ integer(kind=KIND),intent(in) :: i
+ integer(kind=KIND),intent(in) :: j
+ integer(kind=KIND2),intent(in) :: shift
 ```
+  Where the kind of **i**, **j**, and **dshiftl** are the same.  An
+  exception is that one of **i** and **j** may be a BOZ literal constant.
 
 ### **Description**
 
-**dshiftl(i, j, shift)** combines bits of **i** and **j**. The rightmost **shift**
-bits of the result are the leftmost **shift** bits of **j**, and the remaining
-bits are the rightmost bits of **i**.
+  **dshiftl(i, j, shift)** combines bits of **i** and **j**. Per the
+  standard the rightmost **shift** bits of the result are the leftmost
+  **shift** bits of **j**, and the remaining bits are the rightmost bits
+  of **i**.
+
+  For example, for 32-bit values if **shift=6** designating ignored
+  bits with "-" and labeling the used bits of **i** with uppercase
+  letters and used bits of **j** with lowercase letters the result
+  would be ...
+```text
+      SHIFT=6
+      I =      ------ABCDEFGHIJKLMNOPQRSTUVWXYZ
+      J =      abcdef--------------------------
+      RESULT = ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef
+```
+  So reading from left to right we skip the first N values of **i**
+  and use the first N values of **j** and append them together.
+
+  This is equivalent to
+```fortran
+     ior( shiftl(i, shift), shiftr(j, bit_size(j)−shift) )
+```
+  hence **dshiftl** is designated as a "combined left shift", because
+  it is like we appended **i** and **j** together, shifted it **shift**
+  bits to the left, and then kept the same number of bits as **i** or
+  **j** had. Using the above strings:
+```text
+   Combine them together
+      ------ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef--------------------------
+   Shift 6 to the left
+      ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef--------------------------
+   keep 32 bits
+      ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef
+```
+
+#### Note:
+  Using the last representation of the operation is should be
+  seen that when both **i** and **j** have the same value as in
+```fortran
+      dshiftl(i, i, shift)
+```
+  the result has the same value as a circular shift:
+```fortran
+      ishftc(i, shift)
+```
 
 ### **Arguments**
 
@@ -5897,12 +5956,80 @@ bits are the rightmost bits of **i**.
 - **j**
   : Shall be of type _integer_, and of the same kind as **i**.
 
+  If either **i** or **j** is a BOZ-literal-constant, it is ﬁrst
+  converted as if by the intrinsic function **int()** to _integer_
+  with the kind type parameter of the other.
+
 - **shift**
   : Shall be of type _integer_.
+    It shall be nonnegative and less than or equal to BIT_SIZE(K) where K is
+    any **i** or **j** variable that is type _integer_ (ie. the size of either
+    one that is not a BOZ literal constant).
 
 ### **Returns**
 
-The return value has same type and kind as **i**.
+  The return value has same type and kind as **i** and/or **j**.
+
+  The leftmost **shift** bits of **j** are copied to the rightmost bits
+  of the result, and the remaining bits are the rightmost bits of **i**.
+
+### **Examples**
+
+Sample program:
+
+```fortran
+program demo_dshiftl
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+implicit none
+integer(kind=int32) :: i, j
+integer             :: shift
+
+  ! basic usage
+   write(*,*) dshiftl (1, 2**30, 2) ! int32 values on little-endian => 5
+
+  ! print some simple calls as binary to better visual the results
+   i=-1
+   j=0
+   shift=5
+   call printit()
+
+   ! the leftmost SHIFT bits of J are copied to the rightmost result bits
+   j=b"11111000000000000000000000000000"
+   ! and the other bits are the rightmost bits of I
+   i=b"00000000000000000000000000000000"
+   call printit()
+
+   j=b"11111000000000000000000000000000"
+   i=b"00000111111111111111111111111111"
+   ! result should be all 1s
+   call printit()
+
+contains
+subroutine printit()
+   ! print i,j,shift and then i,j, and the result as binary values
+    write(*,'(*(g0))')'I=',i,' J=',j,' SHIFT=',shift
+    write(*,'(b32.32)') i,j, dshiftl (i, j, shift)
+end subroutine printit
+
+end program demo_dshiftl
+```
+
+Results:
+
+```text
+   > I=-1 J=0 SHIFT=5
+   > 11111111111111111111111111111111
+   > 00000000000000000000000000000000
+   > 11111111111111111111111111100000
+   > I=0 J=-134217728 SHIFT=5
+   > 00000000000000000000000000000000
+   > 11111000000000000000000000000000
+   > 00000000000000000000000000011111
+   > I=134217727 J=-134217728 SHIFT=5
+   > 00000111111111111111111111111111
+   > 11111000000000000000000000000000
+   > 11111111111111111111111111111111
+```
 
 ### **Standard**
 
@@ -5912,25 +6039,67 @@ Fortran 2008 and later
 
 [**dshiftr**(3)](#dshiftr)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## dshiftr
 
 ### **Name**
 
-**dshiftr**(3) - \[BIT:COPY\] combines bits of arguments **i** and **j**
+**dshiftr**(3) - \[BIT:COPY\] combined right shift of the bits of two integers
 
 ### **Syntax**
 
 ```fortran
-result = dshiftr(i, j, shift)
+elemental integer(kind=KIND) function dshiftr(i, j, shift)
+
+ integer(kind=KIND),intent(in) :: i
+ integer(kind=KIND),intent(in) :: j
+ integer(kind=KIND2),intent(in) :: shift
 ```
+  Where the kind of **i**, **j**, and **dshiftr** are the same.  An
+  exception is that one of **i** and **j** may be a BOZ literal constant.
 
 ### **Description**
 
 **dshiftr(i, j, shift)** combines bits of **i** and **j**. The leftmost **shift**
 bits of the result are the rightmost **shift** bits of **i**, and the remaining
 bits are the leftmost bits of **j**.
+
+This is equivalent to
+```fortran
+     ior(shiftl (i, bit_size(i)−shift), shiftr(j, shift) )
+```
+It may be thought of as appending the bits of **i** and **j**, dropping off the
+**shift** rightmost bits, and then retaining the same number of rightmost bits
+as an input value, hence the name "combined right shift"...
+
+```text
+GIven two 16-bit values labeled alphabetically ...
+
+   i=ABCDEFGHIJKLMNOP
+   j=abcdefghijklmnop
+
+Append them together
+
+   ABCDEFGHIJKLMNOPabcdefghijklmnop
+
+Shift them N=6 bits to the right dropping off bits
+
+   ......ABCDEFGHIJKLMNOPabcdefghij
+
+Keep the 16 right-most bits
+
+   KLMNOPabcdefghij
+```
+Pictured this way it can be seen that if **i** and **j** have the same
+value
+```fortran
+     dshiftr( i, i, shift )
+```
+this has the same result as a negative circular shift
+```fortran
+     ishftc( i, −shift ).
+```
 
 ### **Arguments**
 
@@ -5942,10 +6111,65 @@ bits are the leftmost bits of **j**.
 
 - **shift**
   : Shall be of type _integer_.
+    It shall be nonnegative and less than or equal to **bit_size(result)**
+    where "result" is the _integer_ kind of the returned value/input integers.
 
 ### **Returns**
 
 The return value has same type and kind as **i**.
+### **Examples**
+
+Sample program:
+
+```fortran
+program demo_dshiftr
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+implicit none
+integer(kind=int32) :: i, j
+integer             :: shift
+
+  ! basic usage
+   write(*,*) dshiftr (1, 2**30, 2)
+
+  ! print some calls as binary to better visualize the results
+   i=-1
+   j=0
+   shift=5
+   call printit()
+
+  ! visualizing a "combined right shift" ...
+   i=b"00000000000000000000000000011111"
+   j=b"11111111111111111111111111100000"
+   ! appended together ( i//j )
+   ! 0000000000000000000000000001111111111111111111111111111111100000
+   ! shifted right SHIFT values dropping off shifted values
+   ! .....00000000000000000000000000011111111111111111111111111111111
+   ! keep enough rightmost bits to fill the kind
+   ! 11111111111111111111111111111111
+   ! so the result should be all 1s bits ...
+   call printit()
+
+contains
+subroutine printit()
+   ! print i,j,shift and then i,j, and the result as binary values
+    write(*,'(*(g0))')'I=',i,' J=',j,' SHIFT=',shift
+    write(*,'(b32.32)') i,j, dshiftr (i, j, shift)
+end subroutine printit
+
+end program demo_dshiftr
+```
+  Results:
+```> text
+   >   1342177280
+   > I=-1 J=0 SHIFT=5
+   > 11111111111111111111111111111111
+   > 00000000000000000000000000000000
+   > 11111000000000000000000000000000
+   > I=31 J=-32 SHIFT=5
+   > 00000000000000000000000000011111
+   > 11111111111111111111111111100000
+   > 11111111111111111111111111111111
+```
 
 ### **Standard**
 
@@ -5955,7 +6179,7 @@ Fortran 2008 and later
 
 [**dshiftl**(3)](#dshiftl)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## eoshift
 
@@ -6765,7 +6989,8 @@ is an extension of the dynamic type of **mold**.
 
 ### **Name**
 
-**findloc**(3) - \[ARRAY:LOCATION\] Location of first element of ARRAY identified by MASK along dimension DIM having a value
+**findloc**(3) - \[ARRAY:LOCATION\] Location of first element of ARRAY
+identified by MASK along dimension DIM matching a target value
 
 ### **Syntax**
 
@@ -6785,13 +7010,13 @@ dimension **dim** having a value equal to **value**.
 If both **array** and **value** are of type logical, the comparison is
 performed with the **.eqv.** operator; otherwise, the comparison is
 performed with the == operator. If the value of the comparison is
-true, that element of **array** matches **value**.
+_.true._, that element of **array** matches **value**.
 
 If only one element matches **value**, that element's subscripts are
 returned. Otherwise, if more than one element matches **value** and
-**back** is absent or present with the value false, the element whose
+**back** is absent or present with the value _.false._, the element whose
 subscripts are returned is the first such element, taken in array
-element order. If **back** is present with the value true, the element
+element order. If **back** is present with the value _.true._, the element
 whose subscripts are returned is the last such element, taken in array
 element order.
 
@@ -6962,7 +7187,8 @@ bounds for **b**.
 
 ### **Name**
 
-**floor**(3) - \[NUMERIC\] function to return largest integral value not greater than argument
+**floor**(3) - \[NUMERIC\] function to return largest integral value
+not greater than argument
 
 ### **Syntax**
 
@@ -9886,7 +10112,7 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## lgt
 
@@ -9990,7 +10216,7 @@ FORTRAN 77 and later
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## lle
 
@@ -10102,7 +10328,7 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## llt
 
@@ -10202,7 +10428,7 @@ of arguments, and search for certain arguments:
   [**len**(3)](#len),
   [**repeat**(3)](#repeat), [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## log10
 
