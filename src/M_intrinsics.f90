@@ -2875,9 +2875,10 @@ textblock=[character(len=256) :: &
 '           integer(kind=KIND),intent(in) :: j', &
 '           logical :: bge', &
 '', &
-'  where the kind of I and J may be of any supported kind. An exception is that', &
-'  one value may be a BOZ constant with a value valid for the kind of the', &
-'  integer value.', &
+'  where the kind of I and J may be of any supported integer kind, not', &
+'  necessarily the same. An exception is that values may be a BOZ constant with', &
+'  a value valid for the integer kind available with the most bits on the', &
+'  current platform.', &
 '', &
 'DESCRIPTION', &
 '  Determines whether one integer is bitwise greater than or equal to another.', &
@@ -2887,22 +2888,22 @@ textblock=[character(len=256) :: &
 '  representation of signs can affect the results, for example.', &
 '', &
 '  A BOZ constant (Binary, Octal, Hexadecimal) does not have a kind or type of', &
-'  its own, so be aware it is subject to truncation when transferred to the', &
-'  kind and type of the other argument.', &
-'', &
-'  Positions of bits in the sequence are numbered from right to left, with the', &
-'  position of the rightmost bit being zero. The bits are evaluated in this', &
-'  order, not necessarily from MSB to LSB (most significant bit to least', &
-'  significant bit).', &
+'  its own, so be aware it is subject to truncation when transferred to an', &
+'  integer type. The most bits the constant may contain is limited by the most', &
+'  bits representable by any integer kind supported by the compilation.', &
 '', &
 '  Bit Sequence Comparison', &
 '', &
 '  When bit sequences of unequal length are compared, the shorter sequence is', &
-'  padded with zero bits on the left to the same length as the longer sequence.', &
+'  padded with zero bits on the left to the same length as the longer sequence', &
+'  (up to the largest number of bits any available integer kind supports).', &
 '', &
 '  Bit sequences are compared from left to right, one bit at a time, until', &
 '  unequal bits are found or until all bits have been compared and found to be', &
 '  equal.', &
+'', &
+'  The bits are always evaluated in this order, not necessarily from MSB to LSB', &
+'  (most significant bit to least significant bit).', &
 '', &
 '  If unequal bits are found the sequence with zero in the unequal position is', &
 '  considered to be less than the sequence with one in the unequal position.', &
@@ -3028,9 +3029,10 @@ textblock=[character(len=256) :: &
 '           integer(kind=KIND),intent(in) :: j', &
 '           logical :: bgt', &
 '', &
-'  where the kind of I and J may be of any supported kind. An exception is that', &
-'  one value may be a BOZ constant with a value valid for the kind of the', &
-'  integer value.', &
+'  where the kind of I and J may be of any supported integer kind, not', &
+'  necessarily the same. An exception is that values may be a BOZ constant with', &
+'  a value valid for the integer kind available with the most bits on the', &
+'  current platform.', &
 '', &
 'DESCRIPTION', &
 '  Determines whether an integer is bitwise greater than another. Bit-level', &
@@ -3062,7 +3064,8 @@ textblock=[character(len=256) :: &
 '            write(*,''(sp,i0.4,*(1x,1l,1x,b0.8))'')i,bgt(byte,64_int8),byte', &
 '         enddo', &
 '', &
-'         ! see the BGE() description for an extended example', &
+'         ! see the BGE() description for an extended description', &
+'         ! of related information', &
 '', &
 '      end program demo_bgt', &
 '', &
@@ -3175,9 +3178,10 @@ textblock=[character(len=256) :: &
 '           integer(kind=KIND),intent(in) :: j', &
 '           logical :: ble', &
 '', &
-'  where the kind of I and J may be of any supported kind. An exception is that', &
-'  one value may be a BOZ constant with a value valid for the kind of the', &
-'  integer value.', &
+'  where the kind of I and J may be of any supported integer kind, not', &
+'  necessarily the same. An exception is that values may be a BOZ constant with', &
+'  a value valid for the integer kind available with the most bits on the', &
+'  current platform.', &
 '', &
 'SYNTAX', &
 'DESCRIPTION', &
@@ -3207,7 +3211,8 @@ textblock=[character(len=256) :: &
 '            write(*,''(sp,i0.4,*(1x,1l,1x,b0.8))'')i,ble(byte,64_int8),byte', &
 '         enddo', &
 '', &
-'         ! see the BGE() description for an extended example', &
+'         ! see the BGE() description for an extended description', &
+'         ! of related information', &
 '', &
 '      end program demo_ble', &
 '', &
@@ -3253,9 +3258,10 @@ textblock=[character(len=256) :: &
 '           integer(kind=KIND),intent(in) :: j', &
 '           logical :: blt', &
 '', &
-'  where the kind of I and J may be of any supported kind. An exception is that', &
-'  one value may be a BOZ constant with a value valid for the kind of the', &
-'  integer value.', &
+'  where the kind of I and J may be of any supported integer kind, not', &
+'  necessarily the same. An exception is that values may be a BOZ constant with', &
+'  a value valid for the integer kind available with the most bits on the', &
+'  current platform.', &
 '', &
 'DESCRIPTION', &
 '  Determines whether an integer is bitwise less than another.', &
@@ -3284,7 +3290,8 @@ textblock=[character(len=256) :: &
 '            write(*,''(sp,i0.4,*(1x,1l,1x,b0.8))'')i,blt(byte,64_int8),byte', &
 '         enddo', &
 '', &
-'         ! see the BGE() description for an extended example', &
+'         ! see the BGE() description for an extended description', &
+'         ! of related information', &
 '', &
 '      end program demo_blt', &
 '', &
@@ -14811,30 +14818,108 @@ textblock=[character(len=256) :: &
 '  SHIFTA(3) - [BIT:SHIFT] shift bits right with fill', &
 '', &
 'SYNTAX', &
-'  result = shifta(i, shift)', &
+'  elemental integer(kind=KIND) function shifta(i, shift)', &
+'', &
+'            integer(kind=KIND),intent(in) :: i', &
+'            integer(kind=SHIFTKIND,intent(in) :: shift', &
+'', &
+'  where KIND and SHIFTKIND may be any supported integer kind, but where the', &
+'  kind for I dictates the kind of the returned value.', &
 '', &
 'DESCRIPTION', &
 '  Returns a value corresponding to I with all of the bits shifted right by', &
-'  SHIFT places. If the absolute value of SHIFT is greater than BIT_SIZE(I),', &
-'  the value is undefined. Bits shifted out from the right end are lost. The', &
-'  fill is arithmetic: the bits shifted in from the left end are equal to the', &
-'  leftmost bit, which in two''s complement representation is the sign bit.', &
+'  SHIFT places and the vacated bits on the left filled with the value of the', &
+'  original left-most bit..', &
 '', &
 'ARGUMENTS', &
-'  o  I : The type shall be integer.', &
+'  o  I : The initial value to shift and fill', &
 '', &
-'  o  SHIFT : The type shall be integer.', &
+'  o  SHIFT : how many bits to shift right. It shall be nonnegative and less', &
+'     than or equal to BIT_SIZE(I). or the value is undefined.', &
 '', &
 'RETURNS', &
-'  The return value is of type integer and of the same kind as I.', &
+'  The result characteristics (kind, type, rank, shape, ....) are the same as', &
+'  I.', &
+'', &
+'  The result has the value obtained by shifting the bits of I to the right', &
+'  SHIFT bits and replicating the leftmost bit of I in the left SHIFT bits (the', &
+'  leftmost bit in "two''s complement" representation is the sign bit).', &
+'', &
+'  Bits shifted out from the right end are lost.', &
+'', &
+'  If SHIFT is zero the result is I.', &
+'', &
+'EXAMPLES', &
+'  Sample program:', &
+'', &
+'      program demo_shifta', &
+'      use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64', &
+'      implicit none', &
+'      integer(kind=int32) :: ival', &
+'      integer             :: shift', &
+'      integer(kind=int32) :: oval', &
+'      integer(kind=int32),allocatable :: ivals(:)', &
+'      integer             :: i', &
+'      integer(kind=int8)  :: arr(2,2)=reshape([2,4,8,16],[2,2])', &
+'', &
+'        ! basic usage', &
+'        write(*,*)shifta(100,3)', &
+'', &
+'        ! loop through some interesting values', &
+'         shift=5', &
+'', &
+'         ivals=[ -1, -0, +0, +1, &', &
+'         & int(b"01010101010101010101010101010101"), &', &
+'         & int(b"10101010101010101010101010101010"), &', &
+'         & int(b"00000000000000000000000000011111") ]', &
+'', &
+'         ! does your platform distinguish betwee +0 and -0?', &
+'         ! note the original leftmost bit is used to fill in the vacated bits', &
+'', &
+'         write(*,''(/,"SHIFT =  ",i0)'') shift', &
+'         do i=1,size(ivals)', &
+'            ival=ivals(i)', &
+'            write(*,''(  "I =      ",b32.32," == ",i0)'') ival,ival', &
+'            oval=shifta(ival,shift)', &
+'            write(*,''(  "RESULT = ",b32.32," == ",i0)'') oval,oval', &
+'         enddo', &
+'         ! elemental', &
+'         write(*,*)"characteristics of the result are the same as input"', &
+'         write(*,''(*(g0,1x))'') &', &
+'           & "kind=",kind(shifta(arr,3)), "shape=",shape(shifta(arr,3)), &', &
+'           & "size=",size(shifta(arr,3)) !, "rank=",rank(shifta(arr,3))', &
+'', &
+'      end program demo_shifta', &
+'', &
+'  Results:', &
+'', &
+'       >           12', &
+'       >', &
+'       > SHIFT =  5', &
+'       > I =      11111111111111111111111111111111 == -1', &
+'       > RESULT = 11111111111111111111111111111111 == -1', &
+'       > I =      00000000000000000000000000000000 == 0', &
+'       > RESULT = 00000000000000000000000000000000 == 0', &
+'       > I =      00000000000000000000000000000000 == 0', &
+'       > RESULT = 00000000000000000000000000000000 == 0', &
+'       > I =      00000000000000000000000000000001 == 1', &
+'       > RESULT = 00000000000000000000000000000000 == 0', &
+'       > I =      01010101010101010101010101010101 == 1431655765', &
+'       > RESULT = 00000010101010101010101010101010 == 44739242', &
+'       > I =      10101010101010101010101010101010 == -1431655766', &
+'       > RESULT = 11111101010101010101010101010101 == -44739243', &
+'       > I =      00000000000000000000000000011111 == 31', &
+'       > RESULT = 00000000000000000000000000000000 == 0', &
+'       >  characteristics of the result are the same as input', &
+'       > kind= 1 shape= 2 2 size= 4', &
 '', &
 'STANDARD', &
 '  Fortran 2008 and later', &
 '', &
 'SEE ALSO', &
-'  SHIFTL(3), SHIFTR(3)', &
+'  SHIFTL(3), SHIFTR(3), ISHFT(3), ISHFC(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                              September 18, 2022              shifta(3fortran)', &
 '']
@@ -14853,29 +14938,119 @@ textblock=[character(len=256) :: &
 '  SHIFTL(3) - [BIT:SHIFT] shift bits left', &
 '', &
 'SYNTAX', &
-'  result = shiftl(i, shift)', &
+'  elemental integer(kind=KIND) function shiftl(i, shift)', &
+'', &
+'       integer(kind=KIND),intent(in) :: i', &
+'       integer(kind=SHIFTKIND,intent(in) :: shift', &
+'', &
+'  where KIND and SHIFTKIND may be any supported integer kind, but where the', &
+'  kind for I dictates the kind of the returned value.', &
 '', &
 'DESCRIPTION', &
 '  Returns a value corresponding to I with all of the bits shifted left by', &
-'  SHIFT places. If the absolute value of SHIFT is greater than BIT_SIZE(I),', &
-'  the value is undefined. Bits shifted out from the left end are lost, and', &
-'  bits shifted in from the right end are set to 0.', &
+'  SHIFT places.', &
+'', &
+'  Bits shifted out from the left end are lost, and bits shifted in from the', &
+'  right end are set to 0.', &
+'', &
+'  If the absolute value of SHIFT is greater than BIT_SIZE(I), the value is', &
+'  undefined.', &
+'', &
+'  Note the value of the result is the same as ISHFT (I, SHIFT).', &
 '', &
 'ARGUMENTS', &
-'  o  I : The type shall be integer.', &
+'  o  I : The initial value to shift and fill in with zeros', &
 '', &
-'  o  SHIFT : The type shall be integer.', &
+'  o  SHIFT : how many bits to shift left. It shall be nonnegative and less', &
+'     than or equal to BIT_SIZE(I).', &
 '', &
 'RETURNS', &
 '  The return value is of type integer and of the same kind as I.', &
+'', &
+'EXAMPLES', &
+'  Sample program:', &
+'', &
+'      program demo_shiftl', &
+'      use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64', &
+'      implicit none', &
+'      integer             :: shift', &
+'      integer(kind=int32) :: oval', &
+'      integer(kind=int32) :: ival', &
+'      integer(kind=int32),allocatable :: ivals(:)', &
+'      integer             :: i', &
+'', &
+'       ! basic usage', &
+'        ival=100', &
+'        write(*,*)ival, shiftl(100,3)', &
+'', &
+'       ! elemental (input values may be conformant arrays)', &
+'        ! shifting is often equivalent to multiplying be a power of two', &
+'        write(*,*) shiftl(-1,[(i,i=1,bit_size(0))])', &
+'        write(*,*)', &
+'        write(*,*) shiftl(+3,[(i,i=1,bit_size(0))])', &
+'', &
+'       ! loop through some ivalues', &
+'         shift=9', &
+'         ivals=[ &', &
+'         & int(b"01010101010101010101010101010101"), &', &
+'         & int(b"10101010101010101010101010101010"), &', &
+'         & int(b"11111111111111111111111111111111") ]', &
+'', &
+'         write(*,''(/,"SHIFT =  ",i0)'') shift', &
+'         do i=1,size(ivals)', &
+'            ! print initial value as binary and decimal', &
+'            write(*,''(  "I =      ",b32.32," == ",i0)'') ivals(i),ivals(i)', &
+'            ! print shifted value as binary and decimal', &
+'            oval=shiftl(ivals(i),shift)', &
+'            write(*,''(  "RESULT = ",b32.32," == ",i0)'') oval,oval', &
+'         enddo', &
+'', &
+'        ! elemental (input values may be conformant arrays)', &
+'         ELEM : block', &
+'         integer(kind=int8)  :: arr(2,2)=reshape([2,4,8,16],[2,2])', &
+'         write(*,*)"characteristics of the result are the same as input"', &
+'         write(*,''(*(g0,1x))'') &', &
+'           & "kind=",kind(shiftl(arr,3)), "shape=",shape(shiftl(arr,3)), &', &
+'           & "size=",size(shiftl(arr,3)) !, "rank=",rank(shiftl(arr,3))', &
+'         endblock ELEM', &
+'', &
+'      end program demo_shiftl', &
+'', &
+'  Results:', &
+'', &
+'      >         100         800', &
+'      >', &
+'      >           -2          -4          -8         -16         -32         -64', &
+'      >         -128        -256        -512       -1024       -2048       -4096', &
+'      >        -8192      -16384      -32768      -65536     -131072     -262144', &
+'      >      -524288    -1048576    -2097152    -4194304    -8388608   -16777216', &
+'      >    -33554432   -67108864  -134217728  -268435456  -536870912 -1073741824', &
+'      >  -2147483648           0', &
+'      >', &
+'      >            6          12          24          48          96         192', &
+'      >          384         768        1536        3072        6144       12288', &
+'      >        24576       49152       98304      196608      393216      786432', &
+'      >      1572864     3145728     6291456    12582912    25165824    50331648', &
+'      >    100663296   201326592   402653184   805306368  1610612736 -1073741824', &
+'      >  -2147483648           0', &
+'      >', &
+'      >   SHIFT =  9', &
+'      >   I =      01010101010101010101010101010101 == 1431655765', &
+'      >   RESULT = 10101010101010101010101000000000 == -1431655936', &
+'      >   I =      10101010101010101010101010101010 == -1431655766', &
+'      >   RESULT = 01010101010101010101010000000000 == 1431655424', &
+'      >   I =      11111111111111111111111111111111 == -1', &
+'      >   RESULT = 11111111111111111111111000000000 == -512', &
+'      >    characteristics of the result are the same as input', &
+'      >   kind= 1 shape= 2 2 size= 4', &
 '', &
 'STANDARD', &
 '  Fortran 2008 and later', &
 '', &
 'SEE ALSO', &
-'  SHIFTA(3), SHIFTR(3)', &
+'  SHIFTA(3), SHIFTR(3), ISHFT(3), ISHFC(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                              September 18, 2022              shiftl(3fortran)', &
 '']
@@ -14894,7 +15069,13 @@ textblock=[character(len=256) :: &
 '  SHIFTR(3) - [BIT:SHIFT] shift bits right', &
 '', &
 'SYNTAX', &
-'  result = shiftr(i, shift)', &
+'  elemental integer(kind=KIND) function shiftr(i, shift)', &
+'', &
+'       integer(kind=KIND),intent(in) :: i', &
+'       integer(kind=SHIFTKIND,intent(in) :: shift', &
+'', &
+'  where KIND and SHIFTKIND may be any supported integer kind, but where the', &
+'  kind for I dictates the kind of the returned value.', &
 '', &
 'DESCRIPTION', &
 '  Returns a value corresponding to I with all of the bits shifted right by', &
@@ -14902,21 +15083,90 @@ textblock=[character(len=256) :: &
 '  the value is undefined. Bits shifted out from the right end are lost, and', &
 '  bits shifted in from the left end are set to 0.', &
 '', &
-'ARGUMENTS', &
-'  o  I : The type shall be integer.', &
+'  Note the value of the result is the same as ISHFT (I, -SHIFT).', &
 '', &
-'  o  SHIFT : The type shall be integer.', &
+'ARGUMENTS', &
+'  o  I : The initial value to shift and fill in with zeros', &
+'', &
+'  o  SHIFT : how many bits to shift right. It shall be nonnegative and less', &
+'     than or equal to BIT_SIZE(I).', &
 '', &
 'RETURNS', &
 '  The return value is of type integer and of the same kind as I.', &
+'', &
+'EXAMPLES', &
+'  Sample program:', &
+'', &
+'      program demo_shiftr', &
+'      use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64', &
+'      implicit none', &
+'      integer             :: shift', &
+'      integer(kind=int32) :: oval', &
+'      integer(kind=int32) :: ival', &
+'      integer(kind=int32),allocatable :: ivals(:)', &
+'      integer             :: i', &
+'', &
+'        ! basic usage', &
+'        ival=100', &
+'        write(*,*)ival, shiftr(100,3)', &
+'', &
+'        ! elemental (input values may be conformant arrays)', &
+'        write(*,*) shiftr(-1,[(i,i=1,bit_size(0))])', &
+'', &
+'        ! loop through some ivalues', &
+'         shift=9', &
+'         ivals=[ &', &
+'         & int(b"01010101010101010101010101010101"), &', &
+'         & int(b"10101010101010101010101010101010"), &', &
+'         & int(b"11111111111111111111111111111111") ]', &
+'', &
+'         write(*,''(/,"SHIFT =  ",i0)'') shift', &
+'         do i=1,size(ivals)', &
+'            ! print initial value as binary and decimal', &
+'            write(*,''(  "I =      ",b32.32," == ",i0)'') ivals(i),ivals(i)', &
+'            ! print shifted value as binary and decimal', &
+'            oval=shiftr(ivals(i),shift)', &
+'            write(*,''(  "RESULT = ",b32.32," == ",i0)'') oval,oval', &
+'         enddo', &
+'', &
+'         ! more on elemental (input values may be conformant arrays)', &
+'         ELEM : block', &
+'         integer(kind=int8)  :: arr(2,2)=reshape([2,4,8,16],[2,2])', &
+'         write(*,*)"characteristics of the result are the same as input"', &
+'         write(*,''(*(g0,1x))'') &', &
+'           & "kind=",kind(shiftr(arr,3)), "shape=",shape(shiftr(arr,3)), &', &
+'           & "size=",size(shiftr(arr,3)) !, "rank=",rank(shiftr(arr,3))', &
+'         endblock ELEM', &
+'', &
+'      end program demo_shiftr', &
+'', &
+'  Results:', &
+'', &
+'      >          100          12', &
+'      >   2147483647  1073741823   536870911   268435455   134217727    67108863', &
+'      >     33554431    16777215     8388607     4194303     2097151     1048575', &
+'      >       524287      262143      131071       65535       32767       16383', &
+'      >         8191        4095        2047        1023         511         255', &
+'      >          127          63          31          15           7           3', &
+'      >            1           0', &
+'      >', &
+'      >  SHIFT =  9', &
+'      >  I =      01010101010101010101010101010101 == 1431655765', &
+'      >  RESULT = 00000000001010101010101010101010 == 2796202', &
+'      >  I =      10101010101010101010101010101010 == -1431655766', &
+'      >  RESULT = 00000000010101010101010101010101 == 5592405', &
+'      >  I =      11111111111111111111111111111111 == -1', &
+'      >  RESULT = 00000000011111111111111111111111 == 8388607', &
+'      >   characteristics of the result are the same as input', &
+'      >  kind= 1 shape= 2 2 size= 4', &
 '', &
 'STANDARD', &
 '  Fortran 2008 and later', &
 '', &
 'SEE ALSO', &
-'  SHIFTA(3), SHIFTL(3)', &
+'  SHIFTA(3), SHIFTL(3), ISHFT(3), ISHFC(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                              September 18, 2022              shiftr(3fortran)', &
 '']
