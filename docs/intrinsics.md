@@ -15506,7 +15506,7 @@ Fortran 2008 and later
 [**shiftl**(3)](#shiftl),
 [**shiftr**(3)](#shiftr),
 [**ishft**(3)](#ishft),
-[**ishfc**(3)](#ishfc)
+[**ishftc**(3)](#ishftc)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -15641,7 +15641,7 @@ Fortran 2008 and later
 [**shifta**(3)](#shifta),
 [**shiftr**(3)](#shiftr),
 [**ishft**(3)](#ishft),
-[**ishfc**(3)](#ishfc)
+[**ishftc**(3)](#ishftc)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -15761,7 +15761,7 @@ Fortran 2008 and later
 [**shifta**(3)](#shifta),
 [**shiftl**(3)](#shiftl),
 [**ishft**(3)](#ishft),
-[**ishfc**(3)](#ishfc)
+[**ishftc**(3)](#ishftc)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 

@@ -15011,7 +15011,7 @@ textblock=[character(len=256) :: &
 '  Fortran 2008 and later', &
 '', &
 'SEE ALSO', &
-'  SHIFTL(3), SHIFTR(3), ISHFT(3), ISHFC(3)', &
+'  SHIFTL(3), SHIFTR(3), ISHFT(3), ISHFTC(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -15142,7 +15142,7 @@ textblock=[character(len=256) :: &
 '  Fortran 2008 and later', &
 '', &
 'SEE ALSO', &
-'  SHIFTA(3), SHIFTR(3), ISHFT(3), ISHFC(3)', &
+'  SHIFTA(3), SHIFTR(3), ISHFT(3), ISHFTC(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -15258,7 +15258,7 @@ textblock=[character(len=256) :: &
 '  Fortran 2008 and later', &
 '', &
 'SEE ALSO', &
-'  SHIFTA(3), SHIFTL(3), ISHFT(3), ISHFC(3)', &
+'  SHIFTA(3), SHIFTL(3), ISHFT(3), ISHFTC(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
