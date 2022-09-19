@@ -9273,39 +9273,97 @@ Fortran 2008 and later
 
 ### **Name**
 
-**ishftc**(3) - \[BIT:SHIFT\] Shift bits circularly
+**ishftc**(3) - \[BIT:SHIFT\] logical shift: shift rightmost bits circularly
 
 ### **Syntax**
 
 ```fortran
-result = ishftc(i, shift, size)
+elemental integer(kind=KIND) function ishftc(i, shift, size)
+
+ integer(kind=KIND),intent(in)     :: i
+ integer(kind=SHIFTKIND,intent(in) :: shift
+ integer(kind=SIZEKIND,intent(in),optional  :: size
 ```
+  where KIND, SHIFTKIND, and SIZEKIND  may be any supported _integer_
+  kind, but where the kind for **i** dictates the kind of the returned
+  value.
 
 ### **Description**
 
-**ishftc**(3) returns a value corresponding to **i** with the rightmost **size** bits
-shifted circularly **shift** places; that is, bits shifted out one end are
-shifted into the opposite end. A value of **shift** greater than zero
-corresponds to a left shift, a value of zero corresponds to no shift,
-and a value less than zero corresponds to a right shift. The absolute
-value of **shift** must be less than **size**. If the **size** argument is omitted,
-it is taken to be equivalent to **bit_size(i)**.
+  **ishftc**(3) circularly shifts just the specified rightmost bits of
+  an integer.
+
+  **ishftc**(3) returns a value corresponding to **i** with the rightmost
+  **size** bits shifted circularly **shift** places; that is, bits
+  shifted out one end of the section are shifted into the opposite end
+  of the section.
+
+  A value of **shift** greater than zero corresponds to a left shift,
+  a value of zero corresponds to no shift, and a value less than zero
+  corresponds to a right shift.
 
 ### **Arguments**
 
 - **i**
-  : The type shall be _integer_.
+  : The value specifying the pattern of bits to shift
 
 - **shift**
-  : The type shall be _integer_.
+  : If **shift** is positive, the shift is to the left; if **shift**
+  is negative, the shift is to the right; and if **shift** is zero,
+  no shift is performed. The absolute value of **shift** must be less
+  than **size** (simply put, the number of bits to shift must be less
+  than or equal to the number of bits specified to be shifting!)
 
 - **size**
   : (Optional) The type shall be _integer_; the value must be greater than
   zero and less than or equal to **bit_size**(i).
+  The default is **bit_size(i)**. That is, the default is to circularly shift
+  the entire value **i**.
 
 ### **Returns**
 
-The return value is of type _integer_ and of the same kind as **i**.
+  The result characteristics (kind, shape, size, ranke, ...) are the same as **i**.
+
+  The result has the value obtained by shifting the **size** rightmost
+  bits of **i** circularly by **shift** positions.
+
+  No bits are lost.
+
+  The unshifted bits are unaltered.
+
+### **Examples**
+
+Sample program:
+```fortran
+program demo_ishftc
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+implicit none
+integer             :: shift
+integer             :: i
+character(len=*),parameter :: g='(b32.32,1x,i0)'
+
+   write(*,*) ishftc(3, 1),' <== typically should have the value 6'
+
+  ! shift a value by various amounts
+   do i= -bit_size(0), bit_size(0), 8
+      write(*,g) ishftc(huge(0),i), i
+   enddo
+
+end program demo_ishftc
+```
+Results:
+```text
+>              6  <== typically should have the value 6
+>   01111111111111111111111111111111 -32
+>   11111111111111111111111101111111 -24
+>   11111111111111110111111111111111 -16
+>   11111111011111111111111111111111 -8
+>   01111111111111111111111111111111 0
+>   11111111111111111111111101111111 8
+>   11111111111111110111111111111111 16
+>   11111111011111111111111111111111 24
+>   01111111111111111111111111111111 32
+```
 
 ### **Standard**
 
@@ -9315,7 +9373,7 @@ Fortran 95 and later
 
 [**ishft**(3)](#ishft)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ishft
 
@@ -9324,33 +9382,69 @@ Fortran 95 and later
 **ishft**(3) - \[BIT:SHIFT\] Shift bits
 
 ### **Syntax**
-
 ```fortran
-result = ishft(i, shift)
+    elemental integer(kind=KIND) function ishft(i, shift )
+
+     integer(kind=KIND),intent(in)     :: i
+     integer(kind=SHIFTKIND,intent(in) :: shift
 ```
+  where KIND and  SHIFTKIND may be any supported _integer_ kind, but where
+  the kind for **i** dictates the kind of the returned value.
 
 ### **Description**
 
-**ishft**(3) returns a value corresponding to **i** with all of the bits shifted
-**shift** places. A value of **shift** greater than zero corresponds to a left
-shift, a value of zero corresponds to no shift, and a value less than
-zero corresponds to a right shift. If the absolute value of **shift** is
-greater than **bit_size(i)**, the value is undefined. Bits shifted out
-from the left end or right end are lost; zeros are shifted in from the
-opposite end.
+  **ishft**(3) returns a value corresponding to **i** with all of the
+  bits shifted **shift** places left or right as specified by the sign
+  and magnitude of **shift**.
+
+  Bits shifted out from the left end or right end are lost; zeros are
+  shifted in from the opposite end.
 
 ### **Arguments**
 
 - **i**
-  : The type shall be _integer_.
+  : The value specifying the pattern of bits to shift
 
 - **shift**
-  : The type shall be _integer_.
+  : A value of **shift** greater than zero corresponds to a left shift,
+  a value of zero corresponds to no shift, and a value less than zero
+  corresponds to a right shift.
+
+  If the absolute value of **shift** is
+  greater than **bit_size(i)**, the value is undefined.
 
 ### **Returns**
 
-The return value is of type _integer_ and of the same kind as **i**.
+  The return value has the same characteristics (shape, kind, ...)  as  **i**.
 
+### **Examples**
+
+Sample program:
+```fortran
+program demo_ishft
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+implicit none
+integer             :: shift
+integer             :: i
+character(len=*),parameter :: g='(b32.32,1x,i0)'
+
+   write(*,*) ishft(3, 1),' <== typically should have the value 6'
+
+   shift=4
+   write(*,g) ishft(huge(0),shift), shift
+   shift=0
+   write(*,g) ishft(huge(0),shift), shift
+   shift=-4
+   write(*,g) ishft(huge(0),shift), shift
+end program demo_ishft
+```
+  Results:
+```text
+>              6  <== typically should have the value 6
+>   11111111111111111111111111110000 4
+>   01111111111111111111111111111111 0
+>   00000111111111111111111111111111 -4
+```
 ### **Standard**
 
 Fortran 95 and later
