@@ -11037,7 +11037,7 @@ arguments.
   dimension of **matrix_a** and the first dimension of **matrix_b**
   must be equal.
 
-  Note that **matrix_a** and **matrix_b** may be a different numeric
+  Note that **matrix_a** and **matrix_b** may be different numeric
   types.
 
 ### **Returns**
@@ -11067,10 +11067,10 @@ arguments.
    + If **matrix_a** has shape [n,m] and **matrix_b** has shape [m],
      the result has shape [n].
 
-  Note this implies ...
+  So this implies ...
 
-    - when one of the arguments is of rank one, the result has a rank of one.
-    - when both arguments are of rank two, the result has a rank of two.
+   + when one of the arguments is of rank one, the result has a rank of one.
+   + when both arguments are of rank two, the result has a rank of two.
 
 #####  **Values**
 

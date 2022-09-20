@@ -65,10 +65,10 @@ arguments.
    + If **matrix_a** has shape [n,m] and **matrix_b** has shape [m],
      the result has shape [n].
 
-  So this implies ...
+  Note this implies ...
 
-   + when one of the arguments is of rank one, the result has a rank of one.
-   + when both arguments are of rank two, the result has a rank of two.
+    - when one of the arguments is of rank one, the result has a rank of one.
+    - when both arguments are of rank two, the result has a rank of two.
 
 #####  **Values**
 

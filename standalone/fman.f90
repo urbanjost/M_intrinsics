@@ -10777,7 +10777,7 @@ textblock=[character(len=256) :: &
 '  o  MATRIX_B : A numeric or logical array with a rank of one or two. The last', &
 '     dimension of MATRIX_A and the first dimension of MATRIX_B must be equal.', &
 '', &
-'     Note that MATRIX_A and MATRIX_B may be a different numeric types.', &
+'     Note that MATRIX_A and MATRIX_B may be different numeric types.', &
 '', &
 'RETURNS', &
 'NUMERIC ARGUMENTS', &
@@ -10805,11 +10805,11 @@ textblock=[character(len=256) :: &
 '  o  If MATRIX_A has shape [n,m] and MATRIX_B has shape [m], the result has', &
 '     shape [n].', &
 '', &
-'  Note this implies ...', &
+'  So this implies ...', &
 '', &
-'    o  when one of the arguments is of rank one, the result has a rank of one.', &
+'  o  when one of the arguments is of rank one, the result has a rank of one.', &
 '', &
-'    o  when both arguments are of rank two, the result has a rank of two.', &
+'  o  when both arguments are of rank two, the result has a rank of two.', &
 '', &
 'VALUES', &
 '  Then element C(I,J) of the product is obtained by multiplying term-by-term', &
