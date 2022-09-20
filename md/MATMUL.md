@@ -31,7 +31,7 @@ arguments.
   : A numeric or logical array with a rank of one or two.
 
 - **matrix_b**
-  : A numeric or logical array with a rank of one or two.  The last
+  : A numeric or logical array with a rank of one or two. The last
   dimension of **matrix_a** and the first dimension of **matrix_b**
   must be equal.
 
@@ -53,10 +53,11 @@ arguments.
 
 #####  **Shape and Rank**
 
-  The shape of the result can then be determined as the number of rows of
-  the first matrix and the number of columns of the second; but if any
-  resulting dimension is one the result is reduced to a rank one array
-  (a vector). That is ...
+  The shape of the result can then be determined as the number of rows
+  of the first matrix and the number of columns of the second; but if
+  any argument is of rank one the result is also rank one (a vector).
+  Conversely when both arguments are of rank two, the result has a rank
+  of two. That is ...
 
    + If **matrix_a** has shape [n,m] and **matrix_b** has shape [m,k],
      the result has shape [n,k].
@@ -64,11 +65,6 @@ arguments.
      the result has shape [k].
    + If **matrix_a** has shape [n,m] and **matrix_b** has shape [m],
      the result has shape [n].
-
-  So this implies ...
-
-   + when one of the arguments is of rank one, the result has a rank of one.
-   + when both arguments are of rank two, the result has a rank of two.
 
 #####  **Values**
 
@@ -104,9 +100,9 @@ Sample program:
 ```fortran
 program demo_matmul
 implicit none
-integer :: a(2,3), b(3,2), c(2), d(3), e(2,2), f(3), g(2)
+integer :: a(2,3), b(3,2), c(2), d(3), e(2,2), f(3), g(2), v1(4),v2(4)
    a = reshape([1, 2, 3, 4, 5, 6], [2, 3])
-   b = reshape([1, 2, 3, 4, 5, 6], [3, 2])
+   b = reshape([10, 20, 30, 40, 50, 60], [3, 2])
    c = [1, 2]
    d = [1, 2, 3]
    e = matmul(a, b)
@@ -120,6 +116,23 @@ integer :: a(2,3), b(3,2), c(2), d(3), e(2,2), f(3), g(2)
    call print_matrix_int('E is matmul(A,B)',e)
    call print_vector_int('F is matmul(C,A)',f)
    call print_vector_int('G is matmul(A,D)',g)
+
+   write(*,'(" > shape")')
+   ! at least one argument must be of rank two
+   ! so for two vectors at least one must be reshaped
+   v1=[11,22,33,44]
+   v2=[10,20,30,40]
+   ! these return a vector C(1:1)
+   ! treat A(1:n) as A(1:1,1:n)
+   call print_vector_int('cd is',matmul(reshape(v1,[1,size(v1)]),v2))
+   ! or treat B(1:m) as B(1:m,1:1)
+   call print_vector_int('cd is',matmul(v1,reshape(v2,[size(v2),1])))
+   ! or treat A(1:n) as A(1:1,1:n) and B(1:m) as B(1:m,1:1)
+   ! but note this returns a matrix C(1:1,1:1) not a vector!
+   call print_matrix_int('cd is',matmul(&
+   & reshape(v1,[1,size(v1)]), &
+   & reshape(v2,[size(v2),1])))
+
 contains
 
 ! CONVENIENCE ROUTINES TO PRINT IN ROW-COLUMN ORDER
@@ -154,7 +167,7 @@ end subroutine print_matrix_int
 
 end program demo_matmul
 ```
-Results:
+  Results:
 ```text
     >
     > A is
@@ -162,9 +175,9 @@ Results:
     > [  2,  4,  6 ]
     >
     > B is
-    > [  1,  4 ]
-    > [  2,  5 ]
-    > [  3,  6 ]
+    > [  10,  40 ]
+    > [  20,  50 ]
+    > [  30,  60 ]
     >
     > C is
     > [  1,  2 ]
@@ -173,14 +186,24 @@ Results:
     > [  1,  2,  3 ]
     >
     > E is matmul(A,B)
-    > [  22,  49 ]
-    > [  28,  64 ]
+    > [  220,  490 ]
+    > [  280,  640 ]
     >
     > F is matmul(C,A)
     > [   5,  11,  17 ]
     >
     > G is matmul(A,D)
     > [  22,  28 ]
+    > shape
+    >
+    > cd is
+    > [  3300 ]
+    >
+    > cd is
+    > [  3300 ]
+    >
+    > cd is
+    > [  3300 ]
 ```
 
 ### **Standard**
