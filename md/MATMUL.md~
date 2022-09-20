@@ -61,7 +61,7 @@ but you cannot use one numeric matrix and one _logical_ matrix.
 ```
   For numeric arguments the type and kind of the result follow the usual
   type and kind promotion rules that apply to the data types of the 
-  arguments, such as apply to **+-\*/** operations.
+  arguments, such as apply to **+-\*\** operations.
   
   If MATRIX_A and MATRIX_B are of type logical, the array elements of the
   result are:
