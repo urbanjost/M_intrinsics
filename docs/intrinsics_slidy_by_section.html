@@ -2444,49 +2444,54 @@ If must be of the same kind as <strong>y</strong>.</li>
 <p><strong>bit_size</strong>(3) - [BIT:INQUIRY] Bit size inquiry function</p>
 </div><div id="syntax-37" class="slide section level3">
 <h1><strong>Syntax</strong></h1>
-<div class="sourceCode" id="cb105"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb105-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">bit_size</span>(i)</a>
+<div class="sourceCode" id="cb105"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb105-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="fu">bit_size</span>(i)</a>
 <a class="sourceLine" id="cb105-2" title="2"></a>
-<a class="sourceLine" id="cb105-3" title="3">     <span class="kw">function</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="dt">::</span> <span class="fu">bit_size</span></a>
-<a class="sourceLine" id="cb105-4" title="4">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> ii</a></code></pre></div>
+<a class="sourceLine" id="cb105-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i(..)</a></code></pre></div>
+<p>where the value of KIND is any valid value for an integer kind parameter on the processor.</p>
 </div><div id="description-37" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>bit_size(i)</strong> returns the number of bits (integer precision plus sign bit) represented by the type of the integer <strong>i</strong>. <strong>i</strong> can be a scalar or an array.</p>
+<p><strong>bit_size(i)</strong> returns the number of bits (integer precision plus sign bit) represented by the type of the integer <strong>i</strong>.</p>
 </div><div id="arguments-37" class="slide section level3">
 <h1><strong>Arguments</strong></h1>
 <ul>
 <li><dl>
 <dt><strong>i</strong></dt>
-<dd>An integer value of any kind to determine the size of in bits. Because only the type of the argument is examined, the argument need not be defined.
+<dd>An integer value of any kind whose size in bits is to be determined. Because only the type of the argument is examined, the argument need not be defined; <strong>i</strong> can be a scalar or an array.
 </dd>
 </dl></li>
 </ul>
 </div><div id="returns-26" class="slide section level3">
 <h1><strong>Returns</strong></h1>
-<p>Returns the number of bits used to represent a value of the type of <strong>i</strong>. The result is a integer scalar of the same kind as <strong>i</strong>.</p>
+<p>The number of bits used to represent a value of the type of <strong>i</strong>. The result is a integer scalar of the same kind as <strong>i</strong>.</p>
 </div><div id="examples-37" class="slide section level3">
 <h1><strong>Examples</strong></h1>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb106-1" title="1"><span class="kw">program</span> demo_bit_size</a>
 <a class="sourceLine" id="cb106-2" title="2"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : int8, int16, int32, int64</a>
-<a class="sourceLine" id="cb106-3" title="3"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb106-4" title="4"><span class="dt">integer(kind=int64)</span>          <span class="dt">::</span> answer</a>
-<a class="sourceLine" id="cb106-5" title="5"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>   <span class="dt">::</span> fmt<span class="kw">=</span><span class="st">&#39;(*(g0,1x))&#39;</span></a>
-<a class="sourceLine" id="cb106-6" title="6">    <span class="fu">write(*</span>,<span class="fu">fmt)</span><span class="st">&#39;default integer size is&#39;</span>,<span class="fu">bit_size</span>(<span class="dv">0</span>),<span class="st">&#39;bits&#39;</span></a>
-<a class="sourceLine" id="cb106-7" title="7">    <span class="fu">write(*</span>,<span class="fu">fmt)bit_size</span>(<span class="fu">bit_size</span>(<span class="dv">0_int8</span>)), <span class="st">&#39;which is kind=&#39;</span>,<span class="fu">kind</span>(<span class="dv">0_int8</span>)</a>
-<a class="sourceLine" id="cb106-8" title="8">    <span class="fu">write(*</span>,<span class="fu">fmt)bit_size</span>(<span class="fu">bit_size</span>(<span class="dv">0_int16</span>)),<span class="st">&#39;which is kind=&#39;</span>,<span class="fu">kind</span>(<span class="dv">0_int16</span>)</a>
-<a class="sourceLine" id="cb106-9" title="9">    <span class="fu">write(*</span>,<span class="fu">fmt)bit_size</span>(<span class="fu">bit_size</span>(<span class="dv">0_int32</span>)),<span class="st">&#39;which is kind=&#39;</span>,<span class="fu">kind</span>(<span class="dv">0_int32</span>)</a>
-<a class="sourceLine" id="cb106-10" title="10">    <span class="fu">write(*</span>,<span class="fu">fmt)bit_size</span>(<span class="fu">bit_size</span>(<span class="dv">0_int64</span>)),<span class="st">&#39;which is kind=&#39;</span>,<span class="fu">kind</span>(<span class="dv">0_int64</span>)</a>
-<a class="sourceLine" id="cb106-11" title="11"></a>
-<a class="sourceLine" id="cb106-12" title="12">    <span class="co">! Check size of value not explicitly defined.</span></a>
-<a class="sourceLine" id="cb106-13" title="13">    <span class="fu">write(*</span>,<span class="fu">fmt)</span> <span class="bu">int</span>(<span class="fu">bit_size</span>(answer))</a>
-<a class="sourceLine" id="cb106-14" title="14"><span class="kw">end program</span> demo_bit_size</a></code></pre></div>
+<a class="sourceLine" id="cb106-3" title="3"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : integer_kinds</a>
+<a class="sourceLine" id="cb106-4" title="4"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb106-5" title="5"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>   <span class="dt">::</span> fmt<span class="kw">=&amp;</span></a>
+<a class="sourceLine" id="cb106-6" title="6"><span class="kw">&amp;</span> <span class="st">&#39;(a,&quot;: bit size is &quot;,i3,&quot; which is kind=&quot;,i3,&quot; on this platform&quot;)&#39;</span></a>
+<a class="sourceLine" id="cb106-7" title="7"></a>
+<a class="sourceLine" id="cb106-8" title="8">    <span class="co">! default integer bit size on this platform for common kinds</span></a>
+<a class="sourceLine" id="cb106-9" title="9">    <span class="fu">write(*</span>,<span class="fu">fmt)</span> <span class="st">&quot;default&quot;</span>, <span class="fu">bit_size</span>(<span class="dv">0</span>), <span class="fu">kind</span>(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb106-10" title="10"></a>
+<a class="sourceLine" id="cb106-11" title="11">    <span class="co">! default integer bit size on this platform</span></a>
+<a class="sourceLine" id="cb106-12" title="12">    <span class="fu">write(*</span>,<span class="fu">fmt)</span> <span class="st">&quot;int8   &quot;</span>, <span class="fu">bit_size</span>(<span class="dv">0_int8</span>),   <span class="fu">kind</span>(<span class="dv">0_int8</span>)</a>
+<a class="sourceLine" id="cb106-13" title="13">    <span class="fu">write(*</span>,<span class="fu">fmt)</span> <span class="st">&quot;int16  &quot;</span>, <span class="fu">bit_size</span>(<span class="dv">0_int16</span>),  <span class="fu">kind</span>(<span class="dv">0_int16</span>)</a>
+<a class="sourceLine" id="cb106-14" title="14">    <span class="fu">write(*</span>,<span class="fu">fmt)</span> <span class="st">&quot;int32  &quot;</span>, <span class="fu">bit_size</span>(<span class="dv">0_int32</span>),  <span class="fu">kind</span>(<span class="dv">0_int32</span>)</a>
+<a class="sourceLine" id="cb106-15" title="15">    <span class="fu">write(*</span>,<span class="fu">fmt)</span> <span class="st">&quot;int64  &quot;</span>, <span class="fu">bit_size</span>(<span class="dv">0_int64</span>),  <span class="fu">kind</span>(<span class="dv">0_int64</span>)</a>
+<a class="sourceLine" id="cb106-16" title="16"></a>
+<a class="sourceLine" id="cb106-17" title="17">    <span class="fu">write(*</span>,<span class="st">&#39;(a,*(i0:,&quot;, &quot;))&#39;</span><span class="fu">)</span> <span class="st">&quot;The available kinds are &quot;</span>,integer_kinds</a>
+<a class="sourceLine" id="cb106-18" title="18"></a>
+<a class="sourceLine" id="cb106-19" title="19"><span class="kw">end program</span> demo_bit_size</a></code></pre></div>
 <p>Typical Results:</p>
-<pre class="text"><code>   default integer size is 32 bits
-   8 which is kind= 1
-   16 which is kind= 2
-   32 which is kind= 4
-   64 which is kind= 8
-   64</code></pre>
+<pre class="text"><code>    default: bit size is  32 which is kind=  4 on this platform
+    int8   : bit size is   8 which is kind=  1 on this platform
+    int16  : bit size is  16 which is kind=  2 on this platform
+    int32  : bit size is  32 which is kind=  4 on this platform
+    int64  : bit size is  64 which is kind=  8 on this platform
+    The available kinds are 1, 2, 4, 8, 16</code></pre>
 </div><div id="standard-37" class="slide section level3">
 <h1><strong>Standard</strong></h1>
 <p>Fortran 95 and later</p>

@@ -42,10 +42,9 @@ implicit none
 character(len=*),parameter   :: fmt=&
 & '(a,": bit size is ",i3," which is kind=",i3," on this platform")'
 
-    ! default integer bit size on this platform for common kinds
+    ! default integer bit size on this platform
     write(*,fmt) "default", bit_size(0), kind(0)
 
-    ! default integer bit size on this platform
     write(*,fmt) "int8   ", bit_size(0_int8),   kind(0_int8)
     write(*,fmt) "int16  ", bit_size(0_int16),  kind(0_int16)
     write(*,fmt) "int32  ", bit_size(0_int32),  kind(0_int32)
