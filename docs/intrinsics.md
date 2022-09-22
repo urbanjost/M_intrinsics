@@ -11009,23 +11009,21 @@ multiplication
 
 ### **Syntax**
 ```fortran
-function matmul(matrix_a, matrix_b)
+    function matmul(matrix_a, matrix_b)
 
- type(NUMERIC_OR_LOGICAL) :: matrix_a(..)
- type(NUMERIC_OR_LOGICAL) :: matrix_b(..)
- type(PROMOTED) :: matmul(..)
+     type(NUMERIC_OR_LOGICAL) :: matrix_a(..)
+     type(NUMERIC_OR_LOGICAL) :: matrix_b(..)
+     type(PROMOTED) :: matmul(..)
 ```
-Arguments may be numeric (_integer_, _real_, or _complex_ )
-or _logical_ one or two-dimensional arrays.
-
-At least one argument must be rank two.
-
-If one argument is _logical_, both must be _logical_.
+ - Arguments may be numeric (_integer_, _real_, or _complex_ )
+   or _logical_ and must be one or two-dimensional arrays.
+ - At least one argument must be rank two.
+ - If one argument is _logical_, both must be _logical_.
 
 ### **Description**
 
-**matmul**(3) performs a matrix multiplication on numeric or logical
-arguments.
+ **matmul**(3) performs a matrix multiplication on numeric or logical
+ arguments.
 
 ### **Arguments**
 
@@ -11057,7 +11055,7 @@ arguments.
 
   The shape of the result can then be determined as the number of rows
   of the first matrix and the number of columns of the second; but if
-  any argument is of rank one the result is also rank one (a vector).
+  any argument is of rank one (a vector) the result is also rank one.
   Conversely when both arguments are of rank two, the result has a rank
   of two. That is ...
 
@@ -11079,7 +11077,7 @@ arguments.
 
   The returned array will be promoted to the same type and kind as would
   result from multiplication between an element of each argument (like
-  the **\*** operator had been used between the elements).
+  the multiplication operator (\*) had been used between the elements).
 
 #### **Logical Arguments**
 
@@ -11119,19 +11117,24 @@ integer :: a(2,3), b(3,2), c(2), d(3), e(2,2), f(3), g(2), v1(4),v2(4)
    call print_vector_int('F is matmul(C,A)',f)
    call print_vector_int('G is matmul(A,D)',g)
 
+   ! look at argument shapes when one is a vector
    write(*,'(" > shape")')
    ! at least one argument must be of rank two
    ! so for two vectors at least one must be reshaped
    v1=[11,22,33,44]
    v2=[10,20,30,40]
+
    ! these return a vector C(1:1)
    ! treat A(1:n) as A(1:1,1:n)
-   call print_vector_int('cd is',matmul(reshape(v1,[1,size(v1)]),v2))
+   call print_vector_int('Cd is a vector (not a scalar)',&
+   & matmul(reshape(v1,[1,size(v1)]),v2))
    ! or treat B(1:m) as B(1:m,1:1)
-   call print_vector_int('cd is',matmul(v1,reshape(v2,[size(v2),1])))
+   call print_vector_int('cD is a vector too',&
+   & matmul(v1,reshape(v2,[size(v2),1])))
+
    ! or treat A(1:n) as A(1:1,1:n) and B(1:m) as B(1:m,1:1)
    ! but note this returns a matrix C(1:1,1:1) not a vector!
-   call print_matrix_int('cd is',matmul(&
+   call print_matrix_int('CD is a matrix',matmul(&
    & reshape(v1,[1,size(v1)]), &
    & reshape(v2,[size(v2),1])))
 
@@ -11198,13 +11201,13 @@ end program demo_matmul
     > [  22,  28 ]
     > shape
     >
-    > cd is
+    > Cd is a vector (not a scalar)
     > [  3300 ]
     >
-    > cd is
+    > cD is a vector too
     > [  3300 ]
     >
-    > cd is
+    > CD is a matrix
     > [  3300 ]
 ```
 

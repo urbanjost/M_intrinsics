@@ -8357,14 +8357,16 @@ end program demo_maskr</code></pre>
 <p><strong>matmul</strong>(3) - [TRANSFORMATIONAL] numeric or logical matrix multiplication</p>
 </div><div id="syntax-128" class="slide section level3">
 <h1><strong>Syntax</strong></h1>
-<div class="sourceCode" id="cb376"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb376-1" title="1"><span class="kw">function</span> <span class="fu">matmul</span>(matrix_a, matrix_b)</a>
+<div class="sourceCode" id="cb376"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb376-1" title="1">    <span class="kw">function</span> <span class="fu">matmul</span>(matrix_a, matrix_b)</a>
 <a class="sourceLine" id="cb376-2" title="2"></a>
-<a class="sourceLine" id="cb376-3" title="3"> <span class="dt">type(NUMERIC_OR_LOGICAL)</span> <span class="dt">::</span> matrix_a(..)</a>
-<a class="sourceLine" id="cb376-4" title="4"> <span class="dt">type(NUMERIC_OR_LOGICAL)</span> <span class="dt">::</span> matrix_b(..)</a>
-<a class="sourceLine" id="cb376-5" title="5"> <span class="dt">type(PROMOTED)</span> <span class="dt">::</span> <span class="fu">matmul</span>(..)</a></code></pre></div>
-<p>Arguments may be numeric (integer, real, or complex ) or logical one or two-dimensional arrays.</p>
-<p>At least one argument must be rank two.</p>
-<p>If one argument is logical, both must be logical.</p>
+<a class="sourceLine" id="cb376-3" title="3">     <span class="dt">type(NUMERIC_OR_LOGICAL)</span> <span class="dt">::</span> matrix_a(..)</a>
+<a class="sourceLine" id="cb376-4" title="4">     <span class="dt">type(NUMERIC_OR_LOGICAL)</span> <span class="dt">::</span> matrix_b(..)</a>
+<a class="sourceLine" id="cb376-5" title="5">     <span class="dt">type(PROMOTED)</span> <span class="dt">::</span> <span class="fu">matmul</span>(..)</a></code></pre></div>
+<ul>
+<li>Arguments may be numeric (integer, real, or complex ) or logical and must be one or two-dimensional arrays.</li>
+<li>At least one argument must be rank two.</li>
+<li>If one argument is logical, both must be logical.</li>
+</ul>
 </div><div id="description-127" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p><strong>matmul</strong>(3) performs a matrix multiplication on numeric or logical arguments.</p>
@@ -8393,7 +8395,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <li>Any vector <strong>B(n)</strong> is treated as a column vector <strong>B(n,1)</strong>.</li>
 </ul>
 <h5 id="shape-and-rank"><strong>Shape and Rank</strong></h5>
-<p>The shape of the result can then be determined as the number of rows of the first matrix and the number of columns of the second; but if any argument is of rank one the result is also rank one (a vector). Conversely when both arguments are of rank two, the result has a rank of two. That is …</p>
+<p>The shape of the result can then be determined as the number of rows of the first matrix and the number of columns of the second; but if any argument is of rank one (a vector) the result is also rank one. Conversely when both arguments are of rank two, the result has a rank of two. That is …</p>
 <ul>
 <li>If <strong>matrix_a</strong> has shape [n,m] and <strong>matrix_b</strong> has shape [m,k], the result has shape [n,k].</li>
 <li>If <strong>matrix_a</strong> has shape [m] and <strong>matrix_b</strong> has shape [m,k], the result has shape [k].</li>
@@ -8402,7 +8404,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <h5 id="values"><strong>Values</strong></h5>
 <p>Then element <strong>C(i,j)</strong> of the product is obtained by multiplying term-by-term the entries of the ith row of <strong>A</strong> and the jth column of <strong>B</strong>, and summing these products. In other words, <strong>C(i,j)</strong> is the dot product of the ith row of <strong>A</strong> and the jth column of <strong>B</strong>.</p>
 <h5 id="characteristics"><strong>Characteristics</strong></h5>
-<p>The returned array will be promoted to the same type and kind as would result from multiplication between an element of each argument (like the <strong>*</strong> operator had been used between the elements).</p>
+<p>The returned array will be promoted to the same type and kind as would result from multiplication between an element of each argument (like the multiplication operator (*) had been used between the elements).</p>
 <h4 id="logical-arguments"><strong>Logical Arguments</strong></h4>
 <h5 id="values-1"><strong>Values</strong></h5>
 <p>If <strong>matrix_a</strong> and <strong>matrix_b</strong> are of type logical, the array elements of the result are instead:</p>
@@ -8432,55 +8434,60 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb378-17" title="17">   <span class="kw">call</span> print_vector_int(<span class="st">&#39;F is matmul(C,A)&#39;</span>,f)</a>
 <a class="sourceLine" id="cb378-18" title="18">   <span class="kw">call</span> print_vector_int(<span class="st">&#39;G is matmul(A,D)&#39;</span>,g)</a>
 <a class="sourceLine" id="cb378-19" title="19"></a>
-<a class="sourceLine" id="cb378-20" title="20">   <span class="fu">write(*</span>,<span class="st">&#39;(&quot; &gt; shape&quot;)&#39;</span><span class="fu">)</span></a>
-<a class="sourceLine" id="cb378-21" title="21">   <span class="co">! at least one argument must be of rank two</span></a>
-<a class="sourceLine" id="cb378-22" title="22">   <span class="co">! so for two vectors at least one must be reshaped</span></a>
-<a class="sourceLine" id="cb378-23" title="23">   v1<span class="kw">=[</span><span class="dv">11</span>,<span class="dv">22</span>,<span class="dv">33</span>,<span class="dv">44</span><span class="kw">]</span></a>
-<a class="sourceLine" id="cb378-24" title="24">   v2<span class="kw">=[</span><span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span><span class="kw">]</span></a>
-<a class="sourceLine" id="cb378-25" title="25">   <span class="co">! these return a vector C(1:1)</span></a>
-<a class="sourceLine" id="cb378-26" title="26">   <span class="co">! treat A(1:n) as A(1:1,1:n)</span></a>
-<a class="sourceLine" id="cb378-27" title="27">   <span class="kw">call</span> print_vector_int(<span class="st">&#39;cd is&#39;</span>,<span class="fu">matmul</span>(<span class="fu">reshape</span>(v1,<span class="kw">[</span><span class="dv">1</span>,<span class="fu">size</span>(v1)<span class="kw">]</span>),v2))</a>
-<a class="sourceLine" id="cb378-28" title="28">   <span class="co">! or treat B(1:m) as B(1:m,1:1)</span></a>
-<a class="sourceLine" id="cb378-29" title="29">   <span class="kw">call</span> print_vector_int(<span class="st">&#39;cd is&#39;</span>,<span class="fu">matmul</span>(v1,<span class="fu">reshape</span>(v2,<span class="kw">[</span><span class="fu">size</span>(v2),<span class="dv">1</span><span class="kw">]</span>)))</a>
-<a class="sourceLine" id="cb378-30" title="30">   <span class="co">! or treat A(1:n) as A(1:1,1:n) and B(1:m) as B(1:m,1:1)</span></a>
-<a class="sourceLine" id="cb378-31" title="31">   <span class="co">! but note this returns a matrix C(1:1,1:1) not a vector!</span></a>
-<a class="sourceLine" id="cb378-32" title="32">   <span class="kw">call</span> print_matrix_int(<span class="st">&#39;cd is&#39;</span>,<span class="fu">matmul</span>(<span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb378-33" title="33">   <span class="kw">&amp;</span> <span class="fu">reshape</span>(v1,<span class="kw">[</span><span class="dv">1</span>,<span class="fu">size</span>(v1)<span class="kw">]</span>), <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb378-34" title="34">   <span class="kw">&amp;</span> <span class="fu">reshape</span>(v2,<span class="kw">[</span><span class="fu">size</span>(v2),<span class="dv">1</span><span class="kw">]</span>)))</a>
-<a class="sourceLine" id="cb378-35" title="35"></a>
-<a class="sourceLine" id="cb378-36" title="36"><span class="co">contains</span></a>
-<a class="sourceLine" id="cb378-37" title="37"></a>
-<a class="sourceLine" id="cb378-38" title="38"><span class="co">! CONVENIENCE ROUTINES TO PRINT IN ROW-COLUMN ORDER</span></a>
-<a class="sourceLine" id="cb378-39" title="39"><span class="kw">subroutine</span> print_vector_int(title,arr)</a>
-<a class="sourceLine" id="cb378-40" title="40"><span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> title</a>
-<a class="sourceLine" id="cb378-41" title="41"><span class="dt">integer</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> arr(:)</a>
-<a class="sourceLine" id="cb378-42" title="42">   <span class="kw">call</span> print_matrix_int(title,<span class="fu">reshape</span>(arr,<span class="kw">[</span><span class="dv">1</span>,<span class="fu">shape</span>(arr)<span class="kw">]</span>))</a>
-<a class="sourceLine" id="cb378-43" title="43"><span class="kw">end subroutine</span> print_vector_int</a>
-<a class="sourceLine" id="cb378-44" title="44"></a>
-<a class="sourceLine" id="cb378-45" title="45"><span class="kw">subroutine</span> print_matrix_int(title,arr)</a>
-<a class="sourceLine" id="cb378-46" title="46"><span class="co">!@(#) print small 2d integer arrays in row-column format</span></a>
-<a class="sourceLine" id="cb378-47" title="47"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> <span class="fu">all</span><span class="kw">=</span><span class="st">&#39;(&quot; &gt; &quot;,*(g0,1x))&#39;</span> <span class="co">! a handy format</span></a>
-<a class="sourceLine" id="cb378-48" title="48"><span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> title</a>
-<a class="sourceLine" id="cb378-49" title="49"><span class="dt">integer</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> arr(:,:)</a>
-<a class="sourceLine" id="cb378-50" title="50"><span class="dt">integer</span>                      <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb378-51" title="51"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> biggest</a>
-<a class="sourceLine" id="cb378-52" title="52"></a>
-<a class="sourceLine" id="cb378-53" title="53">   <span class="fu">print</span> <span class="fu">all</span></a>
-<a class="sourceLine" id="cb378-54" title="54">   <span class="fu">print</span> <span class="fu">all</span>, <span class="fu">trim</span>(title)</a>
-<a class="sourceLine" id="cb378-55" title="55">   biggest<span class="kw">=</span><span class="st">&#39;           &#39;</span>  <span class="co">! make buffer to write integer into</span></a>
-<a class="sourceLine" id="cb378-56" title="56">   <span class="co">! find how many characters to use for integers</span></a>
-<a class="sourceLine" id="cb378-57" title="57">   <span class="fu">write(</span>biggest,<span class="st">&#39;(i0)&#39;</span><span class="fu">)</span><span class="bu">ceiling</span>(<span class="bu">log10</span>(<span class="bu">real</span>(<span class="fu">maxval</span>(<span class="bu">abs</span>(arr)))))<span class="kw">+</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb378-58" title="58">   <span class="co">! use this format to write a row</span></a>
-<a class="sourceLine" id="cb378-59" title="59">   biggest<span class="kw">=</span><span class="st">&#39;(&quot; &gt; [&quot;,*(i&#39;</span><span class="kw">//</span><span class="fu">trim</span>(biggest)<span class="kw">//</span><span class="st">&#39;:,&quot;,&quot;))&#39;</span></a>
-<a class="sourceLine" id="cb378-60" title="60">   <span class="co">! print one row of array at a time</span></a>
-<a class="sourceLine" id="cb378-61" title="61">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb378-62" title="62">      <span class="fu">write(*</span>,<span class="fu">fmt</span><span class="kw">=</span>biggest,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>arr(i,:)</a>
-<a class="sourceLine" id="cb378-63" title="63">      <span class="fu">write(*</span>,<span class="st">&#39;(&quot; ]&quot;)&#39;</span><span class="fu">)</span></a>
-<a class="sourceLine" id="cb378-64" title="64">   <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb378-65" title="65"></a>
-<a class="sourceLine" id="cb378-66" title="66"><span class="kw">end subroutine</span> print_matrix_int</a>
-<a class="sourceLine" id="cb378-67" title="67"></a>
-<a class="sourceLine" id="cb378-68" title="68"><span class="kw">end program</span> demo_matmul</a></code></pre></div>
+<a class="sourceLine" id="cb378-20" title="20">   <span class="co">! look at argument shapes when one is a vector</span></a>
+<a class="sourceLine" id="cb378-21" title="21">   <span class="fu">write(*</span>,<span class="st">&#39;(&quot; &gt; shape&quot;)&#39;</span><span class="fu">)</span></a>
+<a class="sourceLine" id="cb378-22" title="22">   <span class="co">! at least one argument must be of rank two</span></a>
+<a class="sourceLine" id="cb378-23" title="23">   <span class="co">! so for two vectors at least one must be reshaped</span></a>
+<a class="sourceLine" id="cb378-24" title="24">   v1<span class="kw">=[</span><span class="dv">11</span>,<span class="dv">22</span>,<span class="dv">33</span>,<span class="dv">44</span><span class="kw">]</span></a>
+<a class="sourceLine" id="cb378-25" title="25">   v2<span class="kw">=[</span><span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span><span class="kw">]</span></a>
+<a class="sourceLine" id="cb378-26" title="26"></a>
+<a class="sourceLine" id="cb378-27" title="27">   <span class="co">! these return a vector C(1:1)</span></a>
+<a class="sourceLine" id="cb378-28" title="28">   <span class="co">! treat A(1:n) as A(1:1,1:n)</span></a>
+<a class="sourceLine" id="cb378-29" title="29">   <span class="kw">call</span> print_vector_int(<span class="st">&#39;Cd is a vector (not a scalar)&#39;</span>,<span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb378-30" title="30">   <span class="kw">&amp;</span> <span class="fu">matmul</span>(<span class="fu">reshape</span>(v1,<span class="kw">[</span><span class="dv">1</span>,<span class="fu">size</span>(v1)<span class="kw">]</span>),v2))</a>
+<a class="sourceLine" id="cb378-31" title="31">   <span class="co">! or treat B(1:m) as B(1:m,1:1)</span></a>
+<a class="sourceLine" id="cb378-32" title="32">   <span class="kw">call</span> print_vector_int(<span class="st">&#39;cD is a vector too&#39;</span>,<span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb378-33" title="33">   <span class="kw">&amp;</span> <span class="fu">matmul</span>(v1,<span class="fu">reshape</span>(v2,<span class="kw">[</span><span class="fu">size</span>(v2),<span class="dv">1</span><span class="kw">]</span>)))</a>
+<a class="sourceLine" id="cb378-34" title="34"></a>
+<a class="sourceLine" id="cb378-35" title="35">   <span class="co">! or treat A(1:n) as A(1:1,1:n) and B(1:m) as B(1:m,1:1)</span></a>
+<a class="sourceLine" id="cb378-36" title="36">   <span class="co">! but note this returns a matrix C(1:1,1:1) not a vector!</span></a>
+<a class="sourceLine" id="cb378-37" title="37">   <span class="kw">call</span> print_matrix_int(<span class="st">&#39;CD is a matrix&#39;</span>,<span class="fu">matmul</span>(<span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb378-38" title="38">   <span class="kw">&amp;</span> <span class="fu">reshape</span>(v1,<span class="kw">[</span><span class="dv">1</span>,<span class="fu">size</span>(v1)<span class="kw">]</span>), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb378-39" title="39">   <span class="kw">&amp;</span> <span class="fu">reshape</span>(v2,<span class="kw">[</span><span class="fu">size</span>(v2),<span class="dv">1</span><span class="kw">]</span>)))</a>
+<a class="sourceLine" id="cb378-40" title="40"></a>
+<a class="sourceLine" id="cb378-41" title="41"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb378-42" title="42"></a>
+<a class="sourceLine" id="cb378-43" title="43"><span class="co">! CONVENIENCE ROUTINES TO PRINT IN ROW-COLUMN ORDER</span></a>
+<a class="sourceLine" id="cb378-44" title="44"><span class="kw">subroutine</span> print_vector_int(title,arr)</a>
+<a class="sourceLine" id="cb378-45" title="45"><span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> title</a>
+<a class="sourceLine" id="cb378-46" title="46"><span class="dt">integer</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> arr(:)</a>
+<a class="sourceLine" id="cb378-47" title="47">   <span class="kw">call</span> print_matrix_int(title,<span class="fu">reshape</span>(arr,<span class="kw">[</span><span class="dv">1</span>,<span class="fu">shape</span>(arr)<span class="kw">]</span>))</a>
+<a class="sourceLine" id="cb378-48" title="48"><span class="kw">end subroutine</span> print_vector_int</a>
+<a class="sourceLine" id="cb378-49" title="49"></a>
+<a class="sourceLine" id="cb378-50" title="50"><span class="kw">subroutine</span> print_matrix_int(title,arr)</a>
+<a class="sourceLine" id="cb378-51" title="51"><span class="co">!@(#) print small 2d integer arrays in row-column format</span></a>
+<a class="sourceLine" id="cb378-52" title="52"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> <span class="fu">all</span><span class="kw">=</span><span class="st">&#39;(&quot; &gt; &quot;,*(g0,1x))&#39;</span> <span class="co">! a handy format</span></a>
+<a class="sourceLine" id="cb378-53" title="53"><span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> title</a>
+<a class="sourceLine" id="cb378-54" title="54"><span class="dt">integer</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> arr(:,:)</a>
+<a class="sourceLine" id="cb378-55" title="55"><span class="dt">integer</span>                      <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb378-56" title="56"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> biggest</a>
+<a class="sourceLine" id="cb378-57" title="57"></a>
+<a class="sourceLine" id="cb378-58" title="58">   <span class="fu">print</span> <span class="fu">all</span></a>
+<a class="sourceLine" id="cb378-59" title="59">   <span class="fu">print</span> <span class="fu">all</span>, <span class="fu">trim</span>(title)</a>
+<a class="sourceLine" id="cb378-60" title="60">   biggest<span class="kw">=</span><span class="st">&#39;           &#39;</span>  <span class="co">! make buffer to write integer into</span></a>
+<a class="sourceLine" id="cb378-61" title="61">   <span class="co">! find how many characters to use for integers</span></a>
+<a class="sourceLine" id="cb378-62" title="62">   <span class="fu">write(</span>biggest,<span class="st">&#39;(i0)&#39;</span><span class="fu">)</span><span class="bu">ceiling</span>(<span class="bu">log10</span>(<span class="bu">real</span>(<span class="fu">maxval</span>(<span class="bu">abs</span>(arr)))))<span class="kw">+</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb378-63" title="63">   <span class="co">! use this format to write a row</span></a>
+<a class="sourceLine" id="cb378-64" title="64">   biggest<span class="kw">=</span><span class="st">&#39;(&quot; &gt; [&quot;,*(i&#39;</span><span class="kw">//</span><span class="fu">trim</span>(biggest)<span class="kw">//</span><span class="st">&#39;:,&quot;,&quot;))&#39;</span></a>
+<a class="sourceLine" id="cb378-65" title="65">   <span class="co">! print one row of array at a time</span></a>
+<a class="sourceLine" id="cb378-66" title="66">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb378-67" title="67">      <span class="fu">write(*</span>,<span class="fu">fmt</span><span class="kw">=</span>biggest,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>arr(i,:)</a>
+<a class="sourceLine" id="cb378-68" title="68">      <span class="fu">write(*</span>,<span class="st">&#39;(&quot; ]&quot;)&#39;</span><span class="fu">)</span></a>
+<a class="sourceLine" id="cb378-69" title="69">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb378-70" title="70"></a>
+<a class="sourceLine" id="cb378-71" title="71"><span class="kw">end subroutine</span> print_matrix_int</a>
+<a class="sourceLine" id="cb378-72" title="72"></a>
+<a class="sourceLine" id="cb378-73" title="73"><span class="kw">end program</span> demo_matmul</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>    &gt;
     &gt; A is
@@ -8509,13 +8516,13 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
     &gt; [  22,  28 ]
     &gt; shape
     &gt;
-    &gt; cd is
+    &gt; Cd is a vector (not a scalar)
     &gt; [  3300 ]
     &gt;
-    &gt; cd is
+    &gt; cD is a vector too
     &gt; [  3300 ]
     &gt;
-    &gt; cd is
+    &gt; CD is a matrix
     &gt; [  3300 ]</code></pre>
 </div><div id="standard-124" class="slide section level3">
 <h1><strong>Standard</strong></h1>

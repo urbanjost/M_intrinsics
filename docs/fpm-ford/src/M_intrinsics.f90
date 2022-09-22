@@ -7492,442 +7492,7 @@ shortname="get_environment_variable"
 call process()
 
 
-case('92','gnu_free_documentation_license')
-
-textblock=[character(len=256) :: &
-'', &
-'gnu_free_documentation_license(3fortragnu_free_documentation_license(3fortran)', &
-'', &
-'              Copyright (C) 2000,2001,2002', &
-'                Free Software Foundation, Inc.', &
-'', &
-'              51 Franklin St, Fifth Floor, Boston, MA', &
-'                02110-1301  USA Everyone is permitted to copy and distribute', &
-'                verbatim copies of this license document, but changing it is', &
-'                not allowed.', &
-'', &
-'       0.  PREAMBLE', &
-'', &
-'           The purpose of this License is to make a manual, textbook, or other', &
-'           functional and useful document "free" in the sense of freedom: to', &
-'           assure everyone the effective freedom to copy and redistribute it,', &
-'           with or without modifying it, either commercially or', &
-'           noncommercially.  Secondarily, this License preserves for the', &
-'           author and publisher a way to get credit for their work, while not', &
-'           being considered responsible for modifications made by others.', &
-'', &
-'           This License is a kind of "copyleft", which means that derivative', &
-'           works of the document must themselves be free in the same sense. It', &
-'           complements the GNU General Public License, which is a copyleft', &
-'           license designed for free software.', &
-'', &
-'           We have designed this License in order to use it for manuals for', &
-'           free software, because free software needs free documentation: a', &
-'           free program should come with manuals providing the same freedoms', &
-'           that the software does. But this License is not limited to software', &
-'           manuals; it can be used for any textual work, regardless of subject', &
-'           matter or whether it is published as a printed book. We recommend', &
-'           this License principally for works whose purpose is instruction or', &
-'           reference.', &
-'', &
-'           1.  APPLICABILITY AND DEFINITIONS', &
-'', &
-'           This License applies to any manual or other work, in any medium,', &
-'           that contains a notice placed by the copyright holder saying it can', &
-'           be distributed under the terms of this License. Such a notice', &
-'           grants a world-wide, royalty-free license, unlimited in duration,', &
-'           to use that work under the conditions stated herein. The', &
-'           "Document", below, refers to any such manual or work. Any member of', &
-'           the public is a licensee, and is addressed as "you". You accept the', &
-'           license if you copy, modify or distribute the work in a way', &
-'           requiring permission under copyright law.', &
-'', &
-'           A "Modified Version" of the Document means any work containing the', &
-'           Document or a portion of it, either copied verbatim, or with', &
-'           modifications and/or translated into another language.', &
-'', &
-'           A "Secondary Section" is a named appendix or a front-matter section', &
-'           of the Document that deals exclusively with the relationship of the', &
-'           publishers or authors of the Document to the Document''s overall', &
-'           subject (or to related matters) and contains nothing that could', &
-'           fall directly within that overall subject. (Thus, if the Document', &
-'           is in part a textbook of mathematics, a Secondary Section may not', &
-'           explain any mathematics.) The relationship could be a matter of', &
-'           historical connection with the subject or with related matters, or', &
-'           of legal, commercial, philosophical, ethical or political position', &
-'           regarding them.', &
-'', &
-'           The "Invariant Sections" are certain Secondary Sections whose', &
-'           titles are designated, as being those of Invariant Sections, in the', &
-'           notice that says that the Document is released under this License.', &
-'           If a section does not fit the above definition of Secondary then it', &
-'           is not allowed to be designated as Invariant. The Document may', &
-'           contain zero Invariant Sections. If the Document does not identify', &
-'           any Invariant Sections then there are none.', &
-'', &
-'           The "Cover Texts" are certain short passages of text that are', &
-'           listed, as Front-Cover Texts or Back-Cover Texts, in the notice', &
-'           that says that the Document is released under this License. A', &
-'           Front-Cover Text may be at most 5 words, and a Back-Cover Text may', &
-'           be at most 25 words.', &
-'', &
-'           A "Transparent" copy of the Document means a machine-readable copy,', &
-'           represented in a format whose specification is available to the', &
-'           general public, that is suitable for revising the document', &
-'           straightforwardly with generic text editors or (for images composed', &
-'           of pixels) generic paint programs or (for drawings) some widely', &
-'           available drawing editor, and that is suitable for input to text', &
-'           formatters or for automatic translation to a variety of formats', &
-'           suitable for input to text formatters. A copy made in an otherwise', &
-'           Transparent file format whose markup, or absence of markup, has', &
-'           been arranged to thwart or discourage subsequent modification by', &
-'           readers is not Transparent. An image format is not Transparent if', &
-'           used for any substantial amount of text. A copy that is not', &
-'           "Transparent" is called "Opaque".', &
-'', &
-'           Examples of suitable formats for Transparent copies include plain', &
-'           ASCII without markup, Texinfo input format, LaTeX input format,', &
-'           SGML or XML using a publicly available DTD, and standard-conforming', &
-'           simple HTML, PostScript or PDF designed for human modification.', &
-'           Examples of transparent image formats include PNG, XCF and JPG.', &
-'           Opaque formats include proprietary formats that can be read and', &
-'           edited only by proprietary word processors, SGML or XML for which', &
-'           the DTD and/or processing tools are not generally available, and', &
-'           the machine-generated HTML, PostScript or PDF produced by some word', &
-'           processors for output purposes only.', &
-'', &
-'           The "Title Page" means, for a printed book, the title page itself,', &
-'           plus such following pages as are needed to hold, legibly, the', &
-'           material this License requires to appear in the title page. For', &
-'           works in formats which do not have any title page as such, "Title', &
-'           Page" means the text near the most prominent appearance of the', &
-'           work''s title, preceding the beginning of the body of the text.', &
-'', &
-'           A section "Entitled XYZ" means a named subunit of the Document', &
-'           whose title either is precisely XYZ or contains XYZ in parentheses', &
-'           following text that translates XYZ in another language. (Here XYZ', &
-'           stands for a specific section name mentioned below, such as', &
-'           "Acknowledgements", "Dedications", "Endorsements", or "History".)', &
-'           To "Preserve the Title" of such a section when you modify the', &
-'           Document means that it remains a section "Entitled XYZ" according', &
-'           to this definition.', &
-'', &
-'           The Document may include Warranty Disclaimers next to the notice', &
-'           which states that this License applies to the Document. These', &
-'           Warranty Disclaimers are considered to be included by reference in', &
-'           this License, but only as regards disclaiming warranties: any other', &
-'           implication that these Warranty Disclaimers may have is void and', &
-'           has no effect on the meaning of this License.', &
-'', &
-'           2.  VERBATIM COPYING', &
-'', &
-'           You may copy and distribute the Document in any medium, either', &
-'           commercially or noncommercially, provided that this License, the', &
-'           copyright notices, and the license notice saying this License', &
-'           applies to the Document are reproduced in all copies, and that you', &
-'           add no other conditions whatsoever to those of this License. You', &
-'           may not use technical measures to obstruct or control the reading', &
-'           or further copying of the copies you make or distribute. However,', &
-'           you may accept compensation in exchange for copies. If you', &
-'           distribute a large enough number of copies you must also follow the', &
-'           conditions in section 3.', &
-'', &
-'           You may also lend copies, under the same conditions stated above,', &
-'           and you may publicly display copies.', &
-'', &
-'           3.  COPYING IN QUANTITY', &
-'', &
-'           If you publish printed copies (or copies in media that commonly', &
-'           have printed covers) of the Document, numbering more than 100, and', &
-'           the Document''s license notice requires Cover Texts, you must', &
-'           enclose the copies in covers that carry, clearly and legibly, all', &
-'           these Cover Texts: Front-Cover Texts on the front cover, and Back-', &
-'           Cover Texts on the back cover. Both covers must also clearly and', &
-'           legibly identify you as the publisher of these copies. The front', &
-'           cover must present the full title with all words of the title', &
-'           equally prominent and visible. You may add other material on the', &
-'           covers in addition. Copying with changes limited to the covers, as', &
-'           long as they preserve the title of the Document and satisfy these', &
-'           conditions, can be treated as verbatim copying in other respects.', &
-'', &
-'           If the required texts for either cover are too voluminous to fit', &
-'           legibly, you should put the first ones listed (as many as fit', &
-'           reasonably) on the actual cover, and continue the rest onto', &
-'           adjacent pages.', &
-'', &
-'           If you publish or distribute Opaque copies of the Document', &
-'           numbering more than 100, you must either include a machine-readable', &
-'           Transparent copy along with each Opaque copy, or state in or with', &
-'           each Opaque copy a computer-network location from which the general', &
-'           network-using public has access to download using public-standard', &
-'           network protocols a complete Transparent copy of the Document, free', &
-'           of added material. If you use the latter option, you must take', &
-'           reasonably prudent steps, when you begin distribution of Opaque', &
-'           copies in quantity, to ensure that this Transparent copy will', &
-'           remain thus accessible at the stated location until at least one', &
-'           year after the last time you distribute an Opaque copy (directly or', &
-'           through your agents or retailers) of that edition to the public.', &
-'', &
-'           It is requested, but not required, that you contact the authors of', &
-'           the Document well before redistributing any large number of copies,', &
-'           to give them a chance to provide you with an updated version of the', &
-'           Document.', &
-'', &
-'           4.  MODIFICATIONS', &
-'', &
-'           You may copy and distribute a Modified Version of the Document', &
-'           under the conditions of sections 2 and 3 above, provided that you', &
-'           release the Modified Version under precisely this License, with the', &
-'           Modified Version filling the role of the Document, thus licensing', &
-'           distribution and modification of the Modified Version to whoever', &
-'           possesses a copy of it.  In addition, you must do these things in', &
-'           the Modified Version:', &
-'', &
-'           o  A. Use in the Title Page (and on the covers, if any) a title', &
-'              distinct from that of the Document, and from those of previous', &
-'              versions (which should, if there were any, be listed in the', &
-'              History section of the Document). You may use the same title as', &
-'              a previous version if the original publisher of that version', &
-'              gives permission.', &
-'', &
-'           o  B. List on the Title Page, as authors, one or more persons or', &
-'              entities responsible for authorship of the modifications in the', &
-'              Modified Version, together with at least five of the principal', &
-'              authors of the Document (all of its principal authors, if it has', &
-'              fewer than five), unless they release you from this requirement.', &
-'', &
-'           o  C. State on the Title page the name of the publisher of the', &
-'              Modified Version, as the publisher.', &
-'', &
-'           o  D. Preserve all the copyright notices of the Document.', &
-'', &
-'           o  E. Add an appropriate copyright notice for your modifications', &
-'              adjacent to the other copyright notices.', &
-'', &
-'           o  F. Include, immediately after the copyright notices, a license', &
-'              notice giving the public permission to use the Modified Version', &
-'              under the terms of this License, in the form shown in the', &
-'              Addendum below.', &
-'', &
-'           o  G. Preserve in that license notice the full lists of Invariant', &
-'              Sections and required Cover Texts given in the Document''s', &
-'              license notice.', &
-'', &
-'           o  H. Include an unaltered copy of this License.', &
-'', &
-'           o  I. Preserve the section Entitled "History", Preserve its Title,', &
-'              and add to it an item stating at least the title, year, new', &
-'              authors, and publisher of the Modified Version as given on the', &
-'              Title Page. If there is no section Entitled "History" in the', &
-'              Document, create one stating the title, year, authors, and', &
-'              publisher of the Document as given on its Title Page, then add', &
-'              an item describing the Modified Version as stated in the', &
-'              previous sentence.', &
-'', &
-'           o  J. Preserve the network location, if any, given in the Document', &
-'              for public access to a Transparent copy of the Document, and', &
-'              likewise the network locations given in the Document for', &
-'              previous versions it was based on. These may be placed in the', &
-'              "History" section. You may omit a network location for a work', &
-'              that was published at least four years before the Document', &
-'              itself, or if the original publisher of the version it refers to', &
-'              gives permission.', &
-'', &
-'           o  K. For any section Entitled "Acknowledgements" or "Dedications",', &
-'              Preserve the Title of the section, and preserve in the section', &
-'              all the substance and tone of each of the contributor', &
-'              acknowledgements and/or dedications given therein.', &
-'', &
-'           o  L. Preserve all the Invariant Sections of the Document,', &
-'              unaltered in their text and in their titles. Section numbers or', &
-'              the equivalent are not considered part of the section titles.', &
-'', &
-'           o  M. Delete any section Entitled "Endorsements". Such a section', &
-'              may not be included in the Modified Version.', &
-'', &
-'           o  N. Do not retitle any existing section to be Entitled', &
-'              "Endorsements" or to conflict in title with any Invariant', &
-'              Section.', &
-'', &
-'           o  O. Preserve any Warranty Disclaimers.', &
-'', &
-'           If the Modified Version includes new front-matter sections or', &
-'           appendices that qualify as Secondary Sections and contain no', &
-'           material copied from the Document, you may at your option designate', &
-'           some or all of these sections as invariant. To do this, add their', &
-'           titles to the list of Invariant Sections in the Modified Version''s', &
-'           license notice. These titles must be distinct from any other', &
-'           section titles.', &
-'', &
-'           You may add a section Entitled "Endorsements", provided it contains', &
-'           nothing but endorsements of your Modified Version by various', &
-'           parties--for example, statements of peer review or that the text', &
-'           has been approved by an organization as the authoritative', &
-'           definition of a standard.', &
-'', &
-'           You may add a passage of up to five words as a Front-Cover Text,', &
-'           and a passage of up to 25 words as a Back-Cover Text, to the end of', &
-'           the list of Cover Texts in the Modified Version. Only one passage', &
-'           of Front-Cover Text and one of Back-Cover Text may be added by (or', &
-'           through arrangements made by) any one entity. If the Document', &
-'           already includes a cover text for the same cover, previously added', &
-'           by you or by arrangement made by the same entity you are acting on', &
-'           behalf of, you may not add another; but you may replace the old', &
-'           one, on explicit permission from the previous publisher that added', &
-'           the old one.', &
-'', &
-'           The author(s) and publisher(s) of the Document do not by this', &
-'           License give permission to use their names for publicity for or to', &
-'           assert or imply endorsement of any Modified Version.', &
-'', &
-'           5.  COMBINING DOCUMENTS', &
-'', &
-'           You may combine the Document with other documents released under', &
-'           this License, under the terms defined in section 4 above for', &
-'           modified versions, provided that you include in the combination all', &
-'           of the Invariant Sections of all of the original documents,', &
-'           unmodified, and list them all as Invariant Sections of your', &
-'           combined work in its license notice, and that you preserve all', &
-'           their Warranty Disclaimers.', &
-'', &
-'           The combined work need only contain one copy of this License, and', &
-'           multiple identical Invariant Sections may be replaced with a single', &
-'           copy. If there are multiple Invariant Sections with the same name', &
-'           but different contents, make the title of each such section unique', &
-'           by adding at the end of it, in parentheses, the name of the', &
-'           original author or publisher of that section if known, or else a', &
-'           unique number. Make the same adjustment to the section titles in', &
-'           the list of Invariant Sections in the license notice of the', &
-'           combined work.', &
-'', &
-'           In the combination, you must combine any sections Entitled', &
-'           "History" in the various original documents, forming one section', &
-'           Entitled "History"; likewise combine any sections Entitled', &
-'           "Acknowledgements", and any sections Entitled "Dedications". You', &
-'           must delete all sections Entitled "Endorsements".', &
-'', &
-'           6.  COLLECTIONS OF DOCUMENTS', &
-'', &
-'           You may make a collection consisting of the Document and other', &
-'           documents released under this License, and replace the individual', &
-'           copies of this License in the various documents with a single copy', &
-'           that is included in the collection, provided that you follow the', &
-'           rules of this License for verbatim copying of each of the documents', &
-'           in all other respects.', &
-'', &
-'           You may extract a single document from such a collection, and', &
-'           distribute it individually under this License, provided you insert', &
-'           a copy of this License into the extracted document, and follow this', &
-'           License in all other respects regarding verbatim copying of that', &
-'           document.', &
-'', &
-'           7.  AGGREGATION WITH INDEPENDENT WORKS', &
-'', &
-'           A compilation of the Document or its derivatives with other', &
-'           separate and independent documents or works, in or on a volume of a', &
-'           storage or distribution medium, is called an "aggregate" if the', &
-'           copyright resulting from the compilation is not used to limit the', &
-'           legal rights of the compilation''s users beyond what the individual', &
-'           works permit. When the Document is included in an aggregate, this', &
-'           License does not apply to the other works in the aggregate which', &
-'           are not themselves derivative works of the Document.', &
-'', &
-'           If the Cover Text requirement of section 3 is applicable to these', &
-'           copies of the Document, then if the Document is less than one half', &
-'           of the entire aggregate, the Document''s Cover Texts may be placed', &
-'           on covers that bracket the Document within the aggregate, or the', &
-'           electronic equivalent of covers if the Document is in electronic', &
-'           form. Otherwise they must appear on printed covers that bracket the', &
-'           whole aggregate.', &
-'', &
-'           8.  TRANSLATION', &
-'', &
-'           Translation is considered a kind of modification, so you may', &
-'           distribute translations of the Document under the terms of section', &
-'           4. Replacing Invariant Sections with translations requires special', &
-'           permission from their copyright holders, but you may include', &
-'           translations of some or all Invariant Sections in addition to the', &
-'           original versions of these Invariant Sections. You may include a', &
-'           translation of this License, and all the license notices in the', &
-'           Document, and any Warranty Disclaimers, provided that you also', &
-'           include the original English version of this License and the', &
-'           original versions of those notices and disclaimers. In case of a', &
-'           disagreement between the translation and the original version of', &
-'           this License or a notice or disclaimer, the original version will', &
-'           prevail.', &
-'', &
-'           If a section in the Document is Entitled "Acknowledgements",', &
-'           "Dedications", or "History", the requirement (section 4) to', &
-'           Preserve its Title (section 1) will typically require changing the', &
-'           actual title.', &
-'', &
-'           9.  TERMINATION', &
-'', &
-'           You may not copy, modify, sublicense, or distribute the Document', &
-'           except as expressly provided for under this License. Any other', &
-'           attempt to copy, modify, sublicense or distribute the Document is', &
-'           void, and will automatically terminate your rights under this', &
-'           License. However, parties who have received copies, or rights, from', &
-'           you under this License will not have their licenses terminated so', &
-'           long as such parties remain in full compliance.', &
-'', &
-'           10. FUTURE REVISIONS OF THIS LICENSE', &
-'', &
-'           The Free Software Foundation may publish new, revised versions of', &
-'           the GNU Free Documentation License from time to time. Such new', &
-'           versions will be similar in spirit to the present version, but may', &
-'           differ in detail to address new problems or concerns. See', &
-'           http://www.gnu.org/copyleft/.', &
-'', &
-'           Each version of the License is given a distinguishing version', &
-'           number. If the Document specifies that a particular numbered', &
-'           version of this License "or any later version" applies to it, you', &
-'           have the option of following the terms and conditions either of', &
-'           that specified version or of any later version that has been', &
-'           published (not as a draft) by the Free Software Foundation. If the', &
-'           Document does not specify a version number of this License, you may', &
-'           choose any version ever published (not as a draft) by the Free', &
-'           Software Foundation.', &
-'', &
-'           ADDENDUM: How to use this License for your documents', &
-'', &
-'           To use this License in a document you have written, include a copy', &
-'           of the License in the document and put the following copyright and', &
-'           license notices just after the title page:', &
-'', &
-'               Copyright (c)  YEAR  YOUR NAME.', &
-'               Permission is granted to copy, distribute and/or modify this document', &
-'               under the terms of the GNU Free Documentation License, Version 1.2', &
-'               or any later version published by the Free Software Foundation;', &
-'               with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.', &
-'               A copy of the license is included in the section entitled "GNU', &
-'               Free Documentation License".', &
-'', &
-'           If you have Invariant Sections, Front-Cover Texts and Back-Cover', &
-'           Texts, replace the "with...Texts." line with this:', &
-'', &
-'               with the Invariant Sections being LIST THEIR TITLES, with the', &
-'               Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.', &
-'', &
-'           If you have Invariant Sections without Cover Texts, or some other', &
-'           combination of the three, merge those two alternatives to suit the', &
-'           situation.', &
-'', &
-'           If your document contains nontrivial examples of program code, we', &
-'           recommend releasing these examples in parallel under your choice of', &
-'           free software license, such as the GNU General Public License, to', &
-'           permit their use in free software.', &
-'', &
-'           fortran-lang intrinsic descriptions', &
-'', &
-'                              Septembegnu_free_documentation_license(3fortran)', &
-'']
-
-shortname="gnu_free_documentation_license"
-call process()
-
-
-case('93','huge')
+case('92','huge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8022,7 +7587,7 @@ shortname="huge"
 call process()
 
 
-case('94','hypot')
+case('93','hypot')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8120,7 +7685,7 @@ shortname="hypot"
 call process()
 
 
-case('95','iachar')
+case('94','iachar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8203,7 +7768,7 @@ shortname="iachar"
 call process()
 
 
-case('96','iall')
+case('95','iall')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8274,7 +7839,7 @@ shortname="iall"
 call process()
 
 
-case('97','iand')
+case('96','iand')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8328,7 +7893,7 @@ shortname="iand"
 call process()
 
 
-case('98','iany')
+case('97','iany')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8396,7 +7961,7 @@ shortname="iany"
 call process()
 
 
-case('99','ibclr')
+case('98','ibclr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8437,7 +8002,7 @@ shortname="ibclr"
 call process()
 
 
-case('100','ibits')
+case('99','ibits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8482,7 +8047,7 @@ shortname="ibits"
 call process()
 
 
-case('101','ibset')
+case('100','ibset')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8523,7 +8088,7 @@ shortname="ibset"
 call process()
 
 
-case('102','ichar')
+case('101','ichar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8636,7 +8201,7 @@ shortname="ichar"
 call process()
 
 
-case('103','ieor')
+case('102','ieor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8676,7 +8241,7 @@ shortname="ieor"
 call process()
 
 
-case('104','image_index')
+case('103','image_index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8726,7 +8291,7 @@ shortname="image_index"
 call process()
 
 
-case('105','index')
+case('104','index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8803,7 +8368,7 @@ shortname="index"
 call process()
 
 
-case('106','int')
+case('105','int')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8932,7 +8497,7 @@ shortname="int"
 call process()
 
 
-case('107','ior')
+case('106','ior')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8990,7 +8555,7 @@ shortname="ior"
 call process()
 
 
-case('108','iparity')
+case('107','iparity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9056,7 +8621,7 @@ shortname="iparity"
 call process()
 
 
-case('109','is_contiguous')
+case('108','is_contiguous')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9159,7 +8724,7 @@ shortname="is_contiguous"
 call process()
 
 
-case('110','ishft')
+case('109','ishft')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9239,7 +8804,7 @@ shortname="ishft"
 call process()
 
 
-case('111','ishftc')
+case('110','ishftc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9341,7 +8906,7 @@ shortname="ishftc"
 call process()
 
 
-case('112','is_iostat_end')
+case('111','is_iostat_end')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9405,7 +8970,7 @@ shortname="is_iostat_end"
 call process()
 
 
-case('113','is_iostat_eor')
+case('112','is_iostat_eor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9456,7 +9021,7 @@ shortname="is_iostat_eor"
 call process()
 
 
-case('114','kind')
+case('113','kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9508,7 +9073,7 @@ shortname="kind"
 call process()
 
 
-case('115','lbound')
+case('114','lbound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9622,7 +9187,7 @@ shortname="lbound"
 call process()
 
 
-case('116','leadz')
+case('115','leadz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9748,7 +9313,7 @@ shortname="leadz"
 call process()
 
 
-case('117','len')
+case('116','len')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9882,7 +9447,7 @@ shortname="len"
 call process()
 
 
-case('118','len_trim')
+case('117','len_trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9964,7 +9529,7 @@ shortname="len_trim"
 call process()
 
 
-case('119','lge')
+case('118','lge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10057,7 +9622,7 @@ shortname="lge"
 call process()
 
 
-case('120','lgt')
+case('119','lgt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10150,7 +9715,7 @@ shortname="lgt"
 call process()
 
 
-case('121','lle')
+case('120','lle')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10245,7 +9810,7 @@ shortname="lle"
 call process()
 
 
-case('122','llt')
+case('121','llt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10336,7 +9901,7 @@ shortname="llt"
 call process()
 
 
-case('123','log10')
+case('122','log10')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10397,7 +9962,7 @@ shortname="log10"
 call process()
 
 
-case('124','log')
+case('123','log')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10450,7 +10015,7 @@ shortname="log"
 call process()
 
 
-case('125','log_gamma')
+case('124','log_gamma')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10500,7 +10065,7 @@ shortname="log_gamma"
 call process()
 
 
-case('126','logical')
+case('125','logical')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10564,7 +10129,7 @@ shortname="logical"
 call process()
 
 
-case('127','maskl')
+case('126','maskl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10660,7 +10225,7 @@ shortname="maskl"
 call process()
 
 
-case('128','maskr')
+case('127','maskr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10743,7 +10308,7 @@ shortname="maskr"
 call process()
 
 
-case('129','matmul')
+case('128','matmul')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10755,16 +10320,16 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  function matmul(matrix_a, matrix_b)', &
 '', &
-'       type(NUMERIC_OR_LOGICAL) :: matrix_a(..)', &
-'       type(NUMERIC_OR_LOGICAL) :: matrix_b(..)', &
-'       type(PROMOTED) :: matmul(..)', &
+'           type(NUMERIC_OR_LOGICAL) :: matrix_a(..)', &
+'           type(NUMERIC_OR_LOGICAL) :: matrix_b(..)', &
+'           type(PROMOTED) :: matmul(..)', &
 '', &
-'  Arguments may be numeric (integer, real, or complex ) or logical one or two-', &
-'  dimensional arrays.', &
+'  o  Arguments may be numeric (integer, real, or complex ) or logical and must', &
+'     be one or two-dimensional arrays.', &
 '', &
-'  At least one argument must be rank two.', &
+'     o  At least one argument must be rank two.', &
 '', &
-'    If one argument is logical, both must be logical.', &
+'     o  If one argument is logical, both must be logical.', &
 '', &
 'DESCRIPTION', &
 '  MATMUL(3) performs a matrix multiplication on numeric or logical arguments.', &
@@ -10791,7 +10356,7 @@ textblock=[character(len=256) :: &
 'SHAPE AND RANK', &
 '  The shape of the result can then be determined as the number of rows of the', &
 '  first matrix and the number of columns of the second; but if any argument is', &
-'  of rank one the result is also rank one (a vector).  Conversely when both', &
+'  of rank one (a vector) the result is also rank one.  Conversely when both', &
 '  arguments are of rank two, the result has a rank of two. That is ...', &
 '', &
 '  o  If MATRIX_A has shape [n,m] and MATRIX_B has shape [m,k], the result has', &
@@ -10812,8 +10377,7 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 '  The returned array will be promoted to the same type and kind as would', &
 '  result from multiplication between an element of each argument (like the', &
-'', &
-'  o  operator had been used between the elements).', &
+'  multiplication operator (*) had been used between the elements).', &
 '', &
 'LOGICAL ARGUMENTS', &
 'VALUES', &
@@ -10849,19 +10413,24 @@ textblock=[character(len=256) :: &
 '         call print_vector_int(''F is matmul(C,A)'',f)', &
 '         call print_vector_int(''G is matmul(A,D)'',g)', &
 '', &
+'         ! look at argument shapes when one is a vector', &
 '         write(*,''(" > shape")'')', &
 '         ! at least one argument must be of rank two', &
 '         ! so for two vectors at least one must be reshaped', &
 '         v1=[11,22,33,44]', &
 '         v2=[10,20,30,40]', &
+'', &
 '         ! these return a vector C(1:1)', &
 '         ! treat A(1:n) as A(1:1,1:n)', &
-'         call print_vector_int(''cd is'',matmul(reshape(v1,[1,size(v1)]),v2))', &
+'         call print_vector_int(''Cd is a vector (not a scalar)'',&', &
+'         & matmul(reshape(v1,[1,size(v1)]),v2))', &
 '         ! or treat B(1:m) as B(1:m,1:1)', &
-'         call print_vector_int(''cd is'',matmul(v1,reshape(v2,[size(v2),1])))', &
+'         call print_vector_int(''cD is a vector too'',&', &
+'         & matmul(v1,reshape(v2,[size(v2),1])))', &
+'', &
 '         ! or treat A(1:n) as A(1:1,1:n) and B(1:m) as B(1:m,1:1)', &
 '         ! but note this returns a matrix C(1:1,1:1) not a vector!', &
-'         call print_matrix_int(''cd is'',matmul(&', &
+'         call print_matrix_int(''CD is a matrix'',matmul(&', &
 '         & reshape(v1,[1,size(v1)]), &', &
 '         & reshape(v2,[size(v2),1])))', &
 '', &
@@ -10928,13 +10497,13 @@ textblock=[character(len=256) :: &
 '          > [  22,  28 ]', &
 '          > shape', &
 '          >', &
-'          > cd is', &
+'          > Cd is a vector (not a scalar)', &
 '          > [  3300 ]', &
 '          >', &
-'          > cd is', &
+'          > cD is a vector too', &
 '          > [  3300 ]', &
 '          >', &
-'          > cd is', &
+'          > CD is a matrix', &
 '          > [  3300 ]', &
 '', &
 'STANDARD', &
@@ -10967,7 +10536,7 @@ shortname="matmul"
 call process()
 
 
-case('130','max')
+case('129','max')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11082,7 +10651,7 @@ shortname="max"
 call process()
 
 
-case('131','maxexponent')
+case('130','maxexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11140,7 +10709,7 @@ shortname="maxexponent"
 call process()
 
 
-case('132','maxloc')
+case('131','maxloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11235,7 +10804,7 @@ shortname="maxloc"
 call process()
 
 
-case('133','maxval')
+case('132','maxval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11317,7 +10886,7 @@ shortname="maxval"
 call process()
 
 
-case('134','merge')
+case('133','merge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11460,7 +11029,7 @@ shortname="merge"
 call process()
 
 
-case('135','merge_bits')
+case('134','merge_bits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11578,7 +11147,7 @@ shortname="merge_bits"
 call process()
 
 
-case('136','min')
+case('135','min')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11629,7 +11198,7 @@ shortname="min"
 call process()
 
 
-case('137','minexponent')
+case('136','minexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11687,7 +11256,7 @@ shortname="minexponent"
 call process()
 
 
-case('138','minloc')
+case('137','minloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11775,7 +11344,7 @@ shortname="minloc"
 call process()
 
 
-case('139','minval')
+case('138','minval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11920,7 +11489,7 @@ shortname="minval"
 call process()
 
 
-case('140','mod')
+case('139','mod')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11988,7 +11557,7 @@ shortname="mod"
 call process()
 
 
-case('141','modulo')
+case('140','modulo')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12055,7 +11624,7 @@ shortname="modulo"
 call process()
 
 
-case('142','move_alloc')
+case('141','move_alloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12129,7 +11698,7 @@ shortname="move_alloc"
 call process()
 
 
-case('143','mvbits')
+case('142','mvbits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12264,7 +11833,7 @@ shortname="mvbits"
 call process()
 
 
-case('144','nearest')
+case('143','nearest')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12335,7 +11904,7 @@ shortname="nearest"
 call process()
 
 
-case('145','new_line')
+case('144','new_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12409,7 +11978,7 @@ shortname="new_line"
 call process()
 
 
-case('146','nint')
+case('145','nint')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12525,7 +12094,7 @@ shortname="nint"
 call process()
 
 
-case('147','norm2')
+case('146','norm2')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12612,7 +12181,7 @@ shortname="norm2"
 call process()
 
 
-case('148','not')
+case('147','not')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12668,7 +12237,7 @@ shortname="not"
 call process()
 
 
-case('149','null')
+case('148','null')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12787,7 +12356,7 @@ shortname="null"
 call process()
 
 
-case('150','num_images')
+case('149','num_images')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12851,7 +12420,7 @@ shortname="num_images"
 call process()
 
 
-case('151','out_of_range')
+case('150','out_of_range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12968,7 +12537,7 @@ shortname="out_of_range"
 call process()
 
 
-case('152','pack')
+case('151','pack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13076,7 +12645,7 @@ shortname="pack"
 call process()
 
 
-case('153','parity')
+case('152','parity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13139,7 +12708,7 @@ shortname="parity"
 call process()
 
 
-case('154','popcnt')
+case('153','popcnt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13204,7 +12773,7 @@ shortname="popcnt"
 call process()
 
 
-case('155','poppar')
+case('154','poppar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13270,7 +12839,7 @@ shortname="poppar"
 call process()
 
 
-case('156','precision')
+case('155','precision')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13328,7 +12897,7 @@ shortname="precision"
 call process()
 
 
-case('157','present')
+case('156','present')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13391,7 +12960,7 @@ shortname="present"
 call process()
 
 
-case('158','product')
+case('157','product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13622,7 +13191,7 @@ shortname="product"
 call process()
 
 
-case('159','radix')
+case('158','radix')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13677,209 +13246,7 @@ shortname="radix"
 call process()
 
 
-case('160','random_init')
-
-textblock=[character(len=256) :: &
-'', &
-'random_init(3fortran)                                    random_init(3fortran)', &
-'', &
-'              RANDOM_INIT(3) - [MATHEMATICS:RANDOM] control multi-image', &
-'              pseudorandom number generator initialization.', &
-'', &
-'SYNTAX', &
-'  call random_init (repeatable, image_distinct)', &
-'', &
-'           subroutine random_init(repeatable, image_distinct)', &
-'           logical,intent(in) :: repeatable', &
-'           logical,intent(in) :: image_distinct', &
-'', &
-'DESCRIPTION', &
-'  Pseudorandom generators produce a deterministic sequence of numbers that', &
-'  pass statistical tests that show they appear sufficiently random to be', &
-'  treated as such. So they are numbers that are generated by a repeatable', &
-'  computation that appear random if you do know what algorithm is being used.', &
-'', &
-'  To get different sets of random numbers you give them a different starting', &
-'  point called a "seed"; which is often an array of whole numbers.', &
-'', &
-'  External values (often time-related) are frequently used to automatically', &
-'  generate different seed values so you can get different sequences of random', &
-'  values without manually generating a seed each time you want a different set', &
-'  of values.', &
-'', &
-'  The standard Fortran procedures do not specify a specific generator', &
-'  algorithm. If you require a generator that produces the same values or a', &
-'  specific quality independent of the compiler or platform being used you will', &
-'  want to use your own generator or review the specific generators used by', &
-'  your compiler. There are many packages available for such situations.', &
-'', &
-'  But the standard procedures available are sufficient for many use cases.', &
-'  They consist of RANDOM_NUMBER(3F), RANDOM_SEED(3F), and RANDOM_INIT(3F).', &
-'', &
-'  RANDOM_NUMBER(3F) calls a generator and returns a psuedorandom scalar or', &
-'  array. This simple-to-use function does not directly define how to seed or', &
-'  initialize the generator, however. So if you do not call one of the other', &
-'  two initializer procedures it is implementation dependent as to whether the', &
-'  initial seed is always the same or changes with each program start, or', &
-'  whether all images in a parallel program start with the same seed or unique', &
-'  seeds for each image, for instance.', &
-'', &
-'  So you need to either set the seed with RANDOM_SEED(3) yourself and', &
-'  optionally the behavior when running in parallel with coarrays with', &
-'  **random_init(3f) if you do not want to just depend on your particular', &
-'  compiler behavior.', &
-'', &
-'  RANDOM_INIT(3F) Initializes the state of the pseudorandom number generator', &
-'  procedure RANDOM_NUMBER(3F). RANDOM_INIT(3f) is equivalent to invoking', &
-'  RANDOM_SEED(3F) with no parameters but considers parallel images and', &
-'  otherwise processor-dependent behaviors as well.', &
-'', &
-'  Not every compiler vendor gives a unique seed for random_seed(), for', &
-'  example.', &
-'', &
-'  The initial behavior of the pseudorandom number generator random_number()', &
-'  procedure is processor-dependent if not initialized.  Even if initialized', &
-'  with RANDOM_SEED() if a specific seed array is not specified behavior is', &
-'  still processor-dependent for multiple image codes unless specific modes are', &
-'  selected with RANDOM_INIT().', &
-'', &
-'  There are four combinations of REPEATABLE and IMAGE_DISTINCT. The behavior', &
-'  is as follows:', &
-'', &
-'  Case (i) : REPEATABLE=.true.,IMAGE_DISTINCT=.true.', &
-'', &
-'  PUT different on every invoking image. In each execution of the program with', &
-'  the same execution environment, if the invoking image index value in the', &
-'  initial team is the same, the value for PUT shall be the same.', &
-'', &
-'  PROGRAM main REAL,DIMENSION(1000) :: y CALL RANDOM_INIT (REPEATABLE=.TRUE.,', &
-'  IMAGE_DISTINCT=.TRUE.) CALL RANDOM_NUMBER (y) . . .', &
-'', &
-'END', &
-'  After executing the above code, the array y contains a different sequence of', &
-'  pseudorandom numbers on each image that executes the code.  If the program', &
-'  is executed multiple times, for an image that has the same image index in', &
-'  the initial team, the value of y is the same each time the program is run.', &
-'', &
-'  Consider the following:', &
-'', &
-'  CALL RANDOM_INIT(.TRUE., .TRUE.)', &
-'', &
-'  The sequence of random numbers is repeatable. If the program is compiled', &
-'  with -fcoarray=lib and multiple images are instantiated, then each image', &
-'  accesses a repeatable distinct sequence of random numbers. Technically, the', &
-'  Standard states that a distinct seed is used in each image (with the tacit', &
-'  assumption that the sequences are distinct, but this is not guaranteed).', &
-'  Also, the repeatability is guaranteed for the currently executing image.', &
-'  Rerunning the executable does not require the same distinct seeds, but I', &
-'  have chose to use the same seeds.', &
-'', &
-'  Case (ii) : REPEATABLE=.true.,IMAGE_DISTINCT=.false.', &
-'', &
-'  PUT is the same on every invoking image. In each execution of the program', &
-'  with the same execution environment, the value for PUT shall be the same.', &
-'', &
-'  Case (iii) : REPEATABLE=.false., IMAGE_DISTINCT=.true.', &
-'', &
-'  PUT is different on every invoking image. Different values for PUT shall be', &
-'  used for subsequent invocations, and for each execution of the program.', &
-'', &
-'  Case (iv) : REPEATABLE=.false.,IMAGE_DISTINCT=.false.', &
-'', &
-'  PUT that is the same on every invoking image. Different values for PUT shall', &
-'  be used for subsequent invocations, and for each execution of the program.', &
-'', &
-'  the array y contains the same sequence of pseudorandom numbers on each image', &
-'  that executes the code. If the program is executed multiple times, the value', &
-'  of y is different each time the program is run.', &
-'', &
-'  Consider another example:', &
-'', &
-'  PROGRAM main REAL,DIMENSION(1000) :: y CALL RANDOM_INIT (REPEATABLE=.FALSE.,', &
-'  IMAGE_DISTINCT=.FALSE.) CALL RANDOM_NUMBER (y) . .  \. END', &
-'', &
-'  The pseudorandom number generator used by RANDOM_NUMBER maintains a seed on', &
-'  each image that is updated during the execution of RANDOM_NUMBER and that', &
-'  can be retrieved or changed by RANDOM_INIT or RANDOM_SEED .  Computation of', &
-'  the seed from the argument PUT is performed in a processor-dependent manner.', &
-'  The value assigned to GET need not be the same as the value of PUT in an', &
-'  immediately preceding reference to RANDOM_SEED. For example, following', &
-'  execution of the statements', &
-'', &
-'  In each of these cases, a different processor-dependent value for PUT shall', &
-'  result in a different sequence of pseudorandom numbers.', &
-'', &
-'ARGUMENTS', &
-'  o  **repeatable : If .true., the seed is set to a processor-dependent value', &
-'     that is the same each time RANDOM_INIT(3F) is called from the same', &
-'     program execution (or the same image???).', &
-'', &
-'     The sequence of random numbers is different for repeated execution of the', &
-'     program.', &
-'', &
-'     If it is .false., the seed is set to a processor-dependent value.', &
-'', &
-'     : when .true. init the seed used by RANDOM_NUMBER differently on every', &
-'     invoking image.', &
-'', &
-'     If it is .true., the seed is set to a processor-dependent value that is', &
-'     the same each time random_init is called from the same image.', &
-'', &
-'  o  IMAGE_DISTINCT', &
-'', &
-'      image_distinct : If .true., the seed is set to a processor-dependent', &
-'      value that is distinct from the seed set by a call to random_init in', &
-'      another image.', &
-'', &
-'      If it is .false., the seed is set to a value that does depend which', &
-'      image called random_init.', &
-'', &
-'      IMAGE_DISTINCT is clearly meant for a program that uses co-arrays', &
-'      where upon execution multiple images are instantiated. If a program', &
-'      does not use co-arrays or only a single image is instantiated, then', &
-'      IMAGE_DISTINCT is irrelevant.', &
-'', &
-'EXAMPLES', &
-'  Sample program:', &
-'', &
-'      program demo_random_init', &
-'         ! random_number(3f) on this invoking image will generate a sequence', &
-'         ! that differs form other images that invoke a similar statement, as', &
-'         ! well as being different on subsequent program execution.', &
-'         call random_init (repeatable=.false., image_distinct=.true.)', &
-'', &
-'      end program demo_random_init', &
-'      Example', &
-'', &
-'      program test_random_seed', &
-'      implicit none', &
-'      real x(3), y(3)', &
-'         call random_init   (repeatable=.true., image_distinct=.true.)', &
-'         call random_number (x)', &
-'         call random_init   (repeatable=.true., image_distinct=.true.)', &
-'         call random_number (y)', &
-'         ! x and y are the same sequence', &
-'         if (any(x /= y)) stop "x(:) and y(:) not all equal"', &
-'      end program test_random_seed', &
-'', &
-'  Results:', &
-'', &
-'STANDARD', &
-'  Fortran 2018 and later', &
-'', &
-'SEE ALSO', &
-'  *_random_seed**(3), *_random_init**(3)', &
-'', &
-'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
-'', &
-'                              September 20, 2022         random_init(3fortran)', &
-'']
-
-shortname="random_init"
-call process()
-
-
-case('161','random_number')
+case('159','random_number')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13962,7 +13329,7 @@ shortname="random_number"
 call process()
 
 
-case('162','random_seed')
+case('160','random_seed')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14030,7 +13397,7 @@ shortname="random_seed"
 call process()
 
 
-case('163','range')
+case('161','range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14093,7 +13460,7 @@ shortname="range"
 call process()
 
 
-case('164','rank')
+case('162','rank')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14142,7 +13509,7 @@ shortname="rank"
 call process()
 
 
-case('165','real')
+case('163','real')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14217,7 +13584,7 @@ shortname="real"
 call process()
 
 
-case('166','reduce')
+case('164','reduce')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14393,7 +13760,7 @@ shortname="reduce"
 call process()
 
 
-case('167','repeat')
+case('165','repeat')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14464,7 +13831,7 @@ shortname="repeat"
 call process()
 
 
-case('168','reshape')
+case('166','reshape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14539,7 +13906,7 @@ shortname="reshape"
 call process()
 
 
-case('169','rrspacing')
+case('167','rrspacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14579,7 +13946,7 @@ shortname="rrspacing"
 call process()
 
 
-case('170','same_type_as')
+case('168','same_type_as')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14620,7 +13987,7 @@ shortname="same_type_as"
 call process()
 
 
-case('171','scale')
+case('169','scale')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14679,7 +14046,7 @@ shortname="scale"
 call process()
 
 
-case('172','scan')
+case('170','scan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14748,7 +14115,7 @@ shortname="scan"
 call process()
 
 
-case('173','selected_char_kind')
+case('171','selected_char_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14810,7 +14177,7 @@ shortname="selected_char_kind"
 call process()
 
 
-case('174','selected_int_kind')
+case('172','selected_int_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14869,7 +14236,7 @@ shortname="selected_int_kind"
 call process()
 
 
-case('175','selected_real_kind')
+case('173','selected_real_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14960,7 +14327,7 @@ shortname="selected_real_kind"
 call process()
 
 
-case('176','set_exponent')
+case('174','set_exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15017,7 +14384,7 @@ shortname="set_exponent"
 call process()
 
 
-case('177','shape')
+case('175','shape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15083,7 +14450,7 @@ shortname="shape"
 call process()
 
 
-case('178','shifta')
+case('176','shifta')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15203,7 +14570,7 @@ shortname="shifta"
 call process()
 
 
-case('179','shiftl')
+case('177','shiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15334,7 +14701,7 @@ shortname="shiftl"
 call process()
 
 
-case('180','shiftr')
+case('178','shiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15450,7 +14817,7 @@ shortname="shiftr"
 call process()
 
 
-case('181','sign')
+case('179','sign')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15532,7 +14899,7 @@ shortname="sign"
 call process()
 
 
-case('182','sin')
+case('180','sin')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15649,7 +15016,7 @@ shortname="sin"
 call process()
 
 
-case('183','sinh')
+case('181','sinh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15742,7 +15109,7 @@ shortname="sinh"
 call process()
 
 
-case('184','size')
+case('182','size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15928,7 +15295,7 @@ shortname="size"
 call process()
 
 
-case('185','spacing')
+case('183','spacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15985,7 +15352,7 @@ shortname="spacing"
 call process()
 
 
-case('186','spread')
+case('184','spread')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16105,7 +15472,7 @@ shortname="spread"
 call process()
 
 
-case('187','sqrt')
+case('185','sqrt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16194,7 +15561,7 @@ shortname="sqrt"
 call process()
 
 
-case('188','storage_size')
+case('186','storage_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16255,7 +15622,7 @@ shortname="storage_size"
 call process()
 
 
-case('189','sum')
+case('187','sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16337,7 +15704,7 @@ shortname="sum"
 call process()
 
 
-case('190','system_clock')
+case('188','system_clock')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16438,7 +15805,7 @@ shortname="system_clock"
 call process()
 
 
-case('191','tan')
+case('189','tan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16489,7 +15856,7 @@ shortname="tan"
 call process()
 
 
-case('192','tanh')
+case('190','tanh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16546,7 +15913,7 @@ shortname="tanh"
 call process()
 
 
-case('193','this_image')
+case('191','this_image')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16626,7 +15993,7 @@ shortname="this_image"
 call process()
 
 
-case('194','tiny')
+case('192','tiny')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16684,7 +16051,7 @@ shortname="tiny"
 call process()
 
 
-case('195','trailz')
+case('193','trailz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16794,7 +16161,7 @@ shortname="trailz"
 call process()
 
 
-case('196','transfer')
+case('194','transfer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16899,7 +16266,7 @@ shortname="transfer"
 call process()
 
 
-case('197','transpose')
+case('195','transpose')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16989,7 +16356,7 @@ shortname="transpose"
 call process()
 
 
-case('198','trim')
+case('196','trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17056,7 +16423,7 @@ shortname="trim"
 call process()
 
 
-case('199','ubound')
+case('197','ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17165,7 +16532,7 @@ shortname="ubound"
 call process()
 
 
-case('200','unpack')
+case('198','unpack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17317,7 +16684,7 @@ shortname="unpack"
 call process()
 
 
-case('201','verify')
+case('199','verify')
 
 textblock=[character(len=256) :: &
 '', &

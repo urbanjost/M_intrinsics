@@ -17,19 +17,24 @@
          call print_vector_int('F is matmul(C,A)',f)
          call print_vector_int('G is matmul(A,D)',g)
 
+         ! look at argument shapes when one is a vector
          write(*,'(" > shape")')
          ! at least one argument must be of rank two
          ! so for two vectors at least one must be reshaped
          v1=[11,22,33,44]
          v2=[10,20,30,40]
+
          ! these return a vector C(1:1)
          ! treat A(1:n) as A(1:1,1:n)
-         call print_vector_int('cd is',matmul(reshape(v1,[1,size(v1)]),v2))
+         call print_vector_int('Cd is a vector (not a scalar)',&
+         & matmul(reshape(v1,[1,size(v1)]),v2))
          ! or treat B(1:m) as B(1:m,1:1)
-         call print_vector_int('cd is',matmul(v1,reshape(v2,[size(v2),1])))
+         call print_vector_int('cD is a vector too',&
+         & matmul(v1,reshape(v2,[size(v2),1])))
+
          ! or treat A(1:n) as A(1:1,1:n) and B(1:m) as B(1:m,1:1)
          ! but note this returns a matrix C(1:1,1:1) not a vector!
-         call print_matrix_int('cd is',matmul(&
+         call print_matrix_int('CD is a matrix',matmul(&
          & reshape(v1,[1,size(v1)]), &
          & reshape(v2,[size(v2),1])))
 
