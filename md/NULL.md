@@ -5,12 +5,11 @@
 **null**(3) - \[TRANSFORMATIONAL\] Function that returns a disassociated pointer
 
 ### **Syntax**
-
 ```fortran
-ptr => null(mold)
-
+    ptr => null(mold)
 ```
-
+```fortran
+```
 ### **Description**
 
 Returns a disassociated pointer.

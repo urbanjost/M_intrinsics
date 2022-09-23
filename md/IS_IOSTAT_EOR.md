@@ -5,11 +5,11 @@
 **is_iostat_eor**(3) - \[STATE\] Test for end-of-record value
 
 ### **Syntax**
-
 ```fortran
-result = is_iostat_eor(i)
+    result = is_iostat_eor(i)
 ```
-
+```fortran
+```
 ### **Description**
 
 is_iostat_eor tests whether an variable has the value of the I/O

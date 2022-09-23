@@ -5,9 +5,10 @@
 **cshift**(3) - \[TRANSFORMATIONAL\] Circular shift elements of an array
 
 ### **Syntax**
-
 ```fortran
-type(TYPE, kind=KIND) function cshift(array, shift, dim )
+```
+```fortran
+   type(TYPE, kind=KIND) function cshift(array, shift, dim )
  
    type(TYPE,kind=KIND),intent(in) :: array(..)
    integer(kind=IKIND),intent(in)  :: shift

@@ -5,21 +5,21 @@
 **conjg**(3) - \[NUMERIC\] Complex conjugate of a complex value
 
 ### **Syntax**
-
 ```fortran
-z = conjg(z)
-
-   complex(kind=K) elemental function conjg(z)
-   complex(kind=K),intent(in) :: z
+    result = conjg(z)
 ```
+```fortran
+     elemental complex(kind=KIND) function conjg(z)
 
-where **K** is the kind of the parameter **z**
+     complex(kind=KIND),intent(in) :: z
+```
+where **KIND** is the kind of the parameter **z**
 
 ### **Description**
 
 **conjg(z)** returns the complex conjugate of the _complex_ value **z**.
 
-In mathematics, the complex conjugate of a complex\_ number is the number
+In mathematics, the complex conjugate of a complex number is a value
 with an equal real part and an imaginary part equal in magnitude but
 opposite in sign.
 
@@ -32,11 +32,12 @@ of **array** .
 ### **Arguments**
 
 - **z**
-  : The type shall be _complex_.
+  : The _complex_ value to take the conjugate of.
 
 ### **Returns**
 
-The return value is of type _complex_.
+Returns a complex value equal to the input value except the sign of
+the imaginary component is the opposite of the input value.
 
 ### **Examples**
 
@@ -77,9 +78,7 @@ integer :: i
 
 end program demo_conjg
 ```
-
 Results:
-
 ```fortran
  (2.000000,3.000000)
  (2.000000,-3.000000)

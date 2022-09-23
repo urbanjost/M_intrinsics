@@ -5,11 +5,11 @@
 **erfc_scaled**(3) - \[MATHEMATICS\] Error function
 
 ### **Syntax**
-
 ```fortran
-result = erfc_scaled(x)
+    result = erfc_scaled(x)
 ```
-
+```fortran
+```
 ### **Description**
 
 **erfc_scaled**(x) computes the exponentially-scaled complementary

@@ -5,11 +5,11 @@
 **atomic_cas**(3) - \[ATOMIC\] Atomic compare and swap
 
 ### **Syntax**
-
 ```fortran
-call atomic_cas (atom, old, compare, new, stat)
+    call atomic_cas (atom, old, compare, new, stat)
 ```
-
+```fortran
+```
 ### **Description**
 
 atomic_cas compares the variable **atom** with the value of **compare**; if the

@@ -5,11 +5,11 @@
 **rrspacing**(3) - \[MODEL_COMPONENTS\] Reciprocal of the relative spacing
 
 ### **Syntax**
-
 ```fortran
-result = rrspacing(x)
+    result = rrspacing(x)
 ```
-
+```fortran
+```
 ### **Description**
 
 **rrspacing(x)** returns the reciprocal of the relative spacing of model

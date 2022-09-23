@@ -5,11 +5,11 @@
 **rank**(3) - \[ARRAY INQUIRY\] Rank of a data object
 
 ### **Syntax**
-
 ```fortran
-result = rank(a)
+    result = rank(a)
 ```
-
+```fortran
+```
 ### **Description**
 
 **rank(a)** returns the rank of a scalar or array data object.

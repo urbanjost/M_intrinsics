@@ -5,9 +5,10 @@
 **atomic_and**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise AND operation
 
 ### **Syntax**
-
 ```fortran
-call atomic_and(atom, value, stat)
+    call atomic_and(atom, value, stat)
+```
+```fortran
 ```
 
 ### **Description**

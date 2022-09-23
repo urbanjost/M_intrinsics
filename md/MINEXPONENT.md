@@ -5,10 +5,15 @@
 **minexponent**(3) - \[NUMERIC MODEL\] Minimum exponent of a real kind
 
 ### **Syntax**
-
 ```fortran
-result = minexponent(x)
+    result = minexponent(x)
 ```
+```fortran
+     elemental integer function minexponent(x)
+
+     real(kind=KIND,intent(in)   :: x
+```
+where KIND is any _real_ kind.
 
 ### **Description**
 

@@ -5,11 +5,11 @@
 **scan**(3) - \[CHARACTER:SEARCH\] Scan a string for the presence of a set of characters
 
 ### **Syntax**
-
 ```fortran
-result = scan(string, set[, back [, kind]])
+    result = scan(string, set[, back [, kind]])
 ```
-
+```fortran
+```
 ### **Description**
 
 Scans a **string** for any of the characters in a **set** of characters.

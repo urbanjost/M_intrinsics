@@ -5,11 +5,11 @@
 **atomic_fetch_xor**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise XOR operation with prior fetch
 
 ### **Syntax**
-
 ```fortran
-call atomic_fetch_xor (atom, value, old, stat)
+    call atomic_fetch_xor (atom, value, old, stat)
 ```
-
+```fortran
+```
 ### **Description**
 
 **atomic_fetch_xor(atom, value, old)** atomically stores the value of

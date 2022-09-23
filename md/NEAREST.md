@@ -5,11 +5,11 @@
 **nearest**(3) - \[MODEL_COMPONENTS\] Nearest representable number
 
 ### **Syntax**
-
 ```fortran
-result = nearest(x, s)
+    result = nearest(x, s)
 ```
-
+```fortran
+```
 ### **Description**
 
 **nearest(x, s)** returns the processor-representable number nearest to

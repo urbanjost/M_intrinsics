@@ -5,11 +5,11 @@
 **gamma**(3) - \[MATHEMATICS\] Gamma function, which yields factorials for positive whole numbers
 
 ### **Syntax**
-
 ```fortran
-x = gamma(x)
+    result = gamma(x)
 ```
-
+```fortran
+```
 ### **Description**
 
 **gamma(x)** computes Gamma of **x**. For positive whole number values of **n** the

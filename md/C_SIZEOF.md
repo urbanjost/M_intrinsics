@@ -5,11 +5,11 @@
 **c_sizeof**(3) - \[ISO_C_BINDING\] Size in bytes of an expression
 
 ### **Syntax**
-
 ```fortran
-n = c_sizeof(x)
+    result = c_sizeof(x)
 ```
-
+```fortran
+```
 ### **Description**
 
 **c_sizeof(x)** calculates the number of bytes of storage the

@@ -5,11 +5,12 @@
 **compiler_options**(3) - \[COMPILER INQUIRY\] Options passed to the compiler
 
 ### **Syntax**
-
 ```fortran
-str = compiler_options()
+    result = compiler_options()
 ```
-
+```fortran
+     character(len=:) function compiler_options()
+```
 ### **Description**
 
 compiler_options returns a string with the options used for compiling.

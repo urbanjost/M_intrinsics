@@ -6,6 +6,8 @@
 
 ### **Syntax**
 ```fortran
+```
+```fortran
     integer(kind=KIND) function len(string,kind)
 
      character(len=*),intent(in) :: string

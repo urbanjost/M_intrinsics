@@ -6,6 +6,8 @@
 
 ### **Syntax**
 ```fortran
+```
+```fortran
     elemental integer(kind=KIND) function ishft(i, shift )
 
      integer(kind=KIND),intent(in)     :: i

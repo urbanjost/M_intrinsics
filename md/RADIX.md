@@ -5,11 +5,15 @@
 **radix**(3) - \[NUMERIC MODEL\] Base of a model number
 
 ### **Syntax**
-
 ```fortran
-result = radix(x)
+    result = radix(x)
 ```
+```fortran
+   integer function radix(x)
 
+   type(TYPE(kind=KIND)),intent(in) :: x
+```
+   where TYPE may be _real_ or _integer_ of any kind KIND.
 ### **Description**
 
 **radix(x)** returns the base of the model representing the entity **x**.

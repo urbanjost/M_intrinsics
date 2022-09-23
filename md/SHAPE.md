@@ -5,11 +5,11 @@
 **shape**(3) - \[ARRAY INQUIRY\] Determine the shape of an array
 
 ### **Syntax**
-
 ```fortran
-result = shape(source, kind)
+    result = shape(source, kind)
 ```
-
+```fortran
+```
 ### **Description**
 
 Determines the shape of an array.

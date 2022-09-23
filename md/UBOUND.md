@@ -5,11 +5,11 @@
 **ubound**(3) - \[ARRAY INQUIRY\] Upper dimension bounds of an array
 
 ### **Syntax**
-
 ```fortran
-result = ubound(array, dim, kind)
+    result = ubound(array, dim, kind)
 ```
-
+```fortran
+```
 ### **Description**
 
 Returns the upper bounds of an array, or a single upper bound along the

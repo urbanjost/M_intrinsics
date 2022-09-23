@@ -5,14 +5,13 @@
 **cos**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Cosine function
 
 ### **Syntax**
-
 ```fortran
-result = cos(x)
-
-   TYPE(kind=KIND),elemental :: cos
-   TYPE(kind=KIND,intent(in) :: x
+    result = cos(x)
 ```
-
+```fortran
+     elemental TYPE(kind=KIND) function cos(x)
+     TYPE(kind=KIND),intent(in) :: x
+```
 where TYPE may be _real_ or _complex_ and KIND may be any KIND supported
 by the associated type.
 

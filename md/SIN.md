@@ -5,14 +5,14 @@
 **sin**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Sine function
 
 ### **Syntax**
-
 ```fortran
-result = sin(x)
-
-    elemental TYPE(kind=KIND) function sin(x)
-    TYPE(kind=KIND) :: x
+    result = sin(x)
 ```
+```fortran
+     elemental TYPE(kind=KIND) function sin(x)
 
+     TYPE(kind=KIND) :: x
+```
 Where the returned value has the kind of the input value
 and TYPE may be _real_ or _complex_
 

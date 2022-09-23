@@ -5,13 +5,15 @@
 **bessel_yn**(3) - \[MATHEMATICS\] Bessel function of the second kind
 
 ### **Syntax**
-
 ```fortran
-  result = bessel_yn(n, x)
-
-  result = bessel_yn(n1, n2, x)
+    result = bessel_yn(n, x)
 ```
-
+or
+```fortran
+    result = bessel_yn(n1, n2, x)
+```
+```fortran
+```
 ### **Description**
 
 **bessel_yn(n, x)** computes the Bessel function of the second

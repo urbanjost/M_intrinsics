@@ -5,11 +5,11 @@
 **tan**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Tangent function
 
 ### **Syntax**
-
 ```fortran
-result = tan(x)
+    result = tan(x)
 ```
-
+```fortran
+```
 ### **Description**
 
 **tan(x)** computes the tangent of **x**.

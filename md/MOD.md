@@ -5,11 +5,11 @@
 **mod**(3) - \[NUMERIC\] Remainder function
 
 ### **Syntax**
-
 ```fortran
-result = mod(a, p)
+    result = mod(a, p)
 ```
-
+```fortran
+```
 ### **Description**
 
 **mod**(a,p) computes the remainder of the division of **a** by **p**.

@@ -5,11 +5,11 @@
 **co_ubound**(3) - \[COLLECTIVE\] Upper codimension bounds of an array
 
 ### **Syntax**
-
 ```fortran
-result = co_ubound(coarray, dim, kind)
+    result = co_ubound(coarray, dim, kind)
 ```
-
+```fortran
+```
 ### **Description**
 
 Returns the upper cobounds of a coarray, or a single upper cobound along

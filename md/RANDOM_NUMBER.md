@@ -5,11 +5,11 @@
 **random_number**(3) - \[MATHEMATICS:RANDOM\] Pseudo-random number
 
 ### **Syntax**
-
 ```fortran
-   random_number(harvest)
+    random_number(harvest)
 ```
-
+```fortran
+```
 ### **Description**
 
 Returns a single pseudorandom number or an array of pseudorandom numbers

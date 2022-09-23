@@ -5,17 +5,17 @@
 **system_clock**(3) - \[SYSTEM:TIME\] Return numeric data from a real-time clock.
 
 ### **Syntax**
-
 ```fortran
-subroutine system_clock(count, count_rate, count_max)
-
-   integer,intent(out),optional  :: count
-   integer,intent(out),optional  :: count_rate
-    ! or !
-   real,intent(out),optional     :: count_rate
-   integer,intent(out),optional  :: count_max
 ```
+```fortran
+    subroutine system_clock(count, count_rate, count_max)
 
+     integer,intent(out),optional  :: count
+     integer,intent(out),optional  :: count_rate
+      ! or !
+     real,intent(out),optional     :: count_rate
+     integer,intent(out),optional  :: count_max
+```
 ### **Description**
 
 **system_clock** lets you measure durations of time with the precision of

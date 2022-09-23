@@ -5,11 +5,11 @@
 **co_max**(3) - \[COLLECTIVE\] Maximal value on the current set of images
 
 ### **Syntax**
-
 ```fortran
-call co_max(a, result_image, stat, errmsg)
+     call co_max(a, result_image, stat, errmsg)
 ```
-
+```fortran
+```
 ### **Description**
 
 co_max determines element-wise the maximal value of **a** on all images of

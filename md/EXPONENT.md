@@ -5,11 +5,11 @@
 **exponent**(3) - \[MODEL_COMPONENTS\] Exponent function
 
 ### **Syntax**
-
 ```fortran
-result = exponent(x)
+    result = exponent(x)
 ```
-
+```fortran
+```
 ### **Description**
 
 **exponent**(x) returns the value of the exponent part of **x**. If **x** is

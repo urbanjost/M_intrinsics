@@ -5,15 +5,14 @@
 **sqrt**(3) - \[MATHEMATICS\] Square-root function
 
 ### **Syntax**
-
 ```fortran
-result = sqrt(x)
-
-   TYPE(kind=KIND) elemental function sqrt(x) result(value)
-   TYPE(kind=KIND),intent(in) :: x
-   TYPE(kind=KIND) :: value
+    result = sqrt(x)
 ```
-
+```fortran
+     TYPE(kind=KIND) elemental function sqrt(x) result(value)
+     TYPE(kind=KIND),intent(in) :: x
+     TYPE(kind=KIND) :: value
+```
 Where **TYPE** may be _real_ or _complex_ and **KIND** may be any
 kind valid for the declared type.
 

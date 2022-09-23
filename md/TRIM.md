@@ -5,11 +5,11 @@
 **trim**(3) - \[CHARACTER:WHITESPACE\] Remove trailing blank characters of a string
 
 ### **Syntax**
-
 ```fortran
-result = trim(string)
+    result = trim(string)
 ```
-
+```fortran
+```
 ### **Description**
 
 Removes trailing blank characters of a string.

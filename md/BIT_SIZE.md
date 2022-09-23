@@ -6,9 +6,12 @@
 
 ### **Syntax**
 ```fortran
+    result=bit_size(i)
+```
+```fortran
      integer(kind=KIND) function bit_size(i)
 
-      integer(kind=KIND),intent(in) :: i(..)
+     integer(kind=KIND),intent(in) :: i(..)
 ```
 where the value of KIND is any valid value for an _integer_ kind
 parameter on the processor.

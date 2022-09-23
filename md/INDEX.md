@@ -5,17 +5,16 @@
 **index**(3) - \[CHARACTER:SEARCH\] Position of a substring within a string
 
 ### **Syntax**
-
 ```fortran
-   index(string, substring, back, kind) result(start)
+```
+```fortran
+   integer(kind=KIND) function index(string, substring, back, kind)
 
      character(len=*),intent(in) :: string
      character(len=*),intent(in) :: substring
      logical,intent(in),optional :: back
      integer,intent(in),optional :: kind
-     integer(kind=KIND)          :: start
 ```
-
 ### **Description**
 
 Returns the position of the start of the leftmost or rightmost

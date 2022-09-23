@@ -5,11 +5,11 @@
 **log**(3) - \[MATHEMATICS\] Logarithm function
 
 ### **Syntax**
-
 ```fortran
-result = log(x)
+    result = log(x)
 ```
-
+```fortran
+```
 ### **Description**
 
 **log(x)** computes the natural logarithm of **x**, i.e. the logarithm to

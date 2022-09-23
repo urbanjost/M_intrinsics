@@ -5,15 +5,14 @@
 **sign**(3) - \[NUMERIC\] Sign copying function
 
 ### **Syntax**
-
 ```fortran
-result = sign(a, b)
-
-    elemental function sign(a, b)
-    type(TYPE(kind=KIND))            :: sign
-    type(TYPE(kind=KIND)),intent(in) :: a, b
+    result = sign(a, b)
 ```
+```fortran
+     elemental type(TYPE(kind=KIND))function sign(a, b)
 
+     type(TYPE(kind=KIND)),intent(in) :: a, b
+```
 where TYPE may be _real_ or _integer_ and KIND is any supported kind
 for the type.
 

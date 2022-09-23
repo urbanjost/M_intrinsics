@@ -5,7 +5,8 @@
 **lge**(3) - \[CHARACTER:COMPARE\] ASCII Lexical greater than or equal
 
 ### **Syntax**
-
+```fortran
+```
 ```fortran
    elemental logical function lge(string_a, string_b)
 

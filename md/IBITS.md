@@ -5,11 +5,11 @@
 **ibits**(3) - \[BIT:COPY\] Bit extraction
 
 ### **Syntax**
-
 ```fortran
-result = ibits(i, pos, len)
+    result = ibits(i, pos, len)
 ```
-
+```fortran
+```
 ### **Description**
 
 **ibits** extracts a field of length **len** from **i**, starting from

@@ -6,14 +6,14 @@
 not greater than argument
 
 ### **Syntax**
-
 ```fortran
-result = floor(a, KIND)
+    result = floor(a [,kind])
+```
+```fortran
+     elemental integer(kind=kind) function floor(a [,kind])
 
-    elemental function floor(a,KIND)
-    integer(kind=KIND) :: floor
-    real(kind=kind(a)),intent(in) :: a
-    integer(kind=IKIND),intent(in),optional :: KIND
+     real(kind=KIND),intent(in) :: a
+     integer,intent(in),optional :: kind 
 ```
 where _KIND_ is any valid value for type _integer_.
 

@@ -5,18 +5,16 @@
 **parity**(3) - \[TRANSFORMATIONAL\] Reduction with exclusive **OR**()
 
 ### **Syntax**
-
 ```fortran
-result = parity(mask, dim)
-
-    function parity(mask, dim)
-    type(logical(kind=LKIND))                    :: dim
-    type(logical(kind=LKIND)),intent(in)         :: mask(..)
-    type(integer(kind=KIND)),intent(in),optional :: dim
+    result = parity(mask, dim)
 ```
-
+```fortran
+     function parity(mask, dim)
+     type(logical(kind=LKIND))                    :: dim
+     type(logical(kind=LKIND)),intent(in)         :: mask(..)
+     type(integer(kind=KIND)),intent(in),optional :: dim
+```
 where KIND and LKIND are any supported kind for the type.
-
 
 ### **Description**
 

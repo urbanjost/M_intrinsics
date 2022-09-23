@@ -5,11 +5,11 @@
 **aimag**(3) - \[TYPE:NUMERIC\] Imaginary part of complex number
 
 ### **Syntax**
-
 ```fortran
-    result = aimag(z)
-
-     complex(kind=KIND),elemental :: aimag
+    result=aimag(z)
+```
+```fortran
+     elemental complex(kind=KIND) function aimag(z)
 
      complex(kind=KIND),intent(in) :: z
 ```

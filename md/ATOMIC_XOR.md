@@ -5,11 +5,11 @@
 **atomic_xor**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise OR operation
 
 ### **Syntax**
-
 ```fortran
-call atomic_xor(atom, value, stat)
+    call atomic_xor(atom, value, stat)
 ```
-
+```fortran
+```
 ### **Description**
 
 **atomic_xor(atom, value)** atomically defines **atom** with the bitwise

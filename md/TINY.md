@@ -5,13 +5,14 @@
 **tiny**(3) - \[NUMERIC MODEL\] Smallest positive number of a real kind
 
 ### **Syntax**
-
 ```fortran
-result = tiny(x)
-   real(kind=KIND) function(x)
-   real(kind=KIND) :: x
+    result = tiny(x)
 ```
+```fortran
+     real(kind=KIND) function tiny(x)
 
+     real(kind=KIND) :: x
+```
 where KIND may be any kind supported by type _real_
 
 ### **Description**

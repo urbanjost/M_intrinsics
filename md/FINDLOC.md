@@ -8,13 +8,14 @@ identified by MASK along dimension DIM matching a target value
 ### **Syntax**
 
 ```fortran
-findloc (array, value, dim, mask, kind, back)
-
+    findloc (array, value, dim, mask, kind, back)
+```
 or
-
+```fortran
 findloc(array, value, mask, kind, back)
 ```
-
+```fortran
+```
 ### **Description**
 
 Location of the first element of **array** identified by **mask** along

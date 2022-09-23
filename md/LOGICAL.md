@@ -5,15 +5,14 @@
 **logical**(3) - \[TYPE:LOGICAL\] Converts one kind of _logical_ variable to another
 
 ### **Syntax**
-
 ```fortran
-result = logical(l, kind)
-
- logical(kind=KIND) function logical(L,KIND)
-  logical(kind=INK),intent(in) :: L
-  integer,intent(in),optional :: KIND
+    result = logical(l, kind)
 ```
-
+```fortran
+     logical(kind=KIND) function logical(L,KIND)
+     logical(kind=INK),intent(in) :: L
+     integer,intent(in),optional :: KIND
+```
 ### **Description**
 
 Converts one kind of _logical_ variable to another.

@@ -5,16 +5,15 @@
 **norm2**(3) - \[MATHEMATICS\] Euclidean vector norm
 
 ### **Syntax**
-
 ```fortran
-result = norm2(array, dim)
-
-real function result norm2(array, dim)
-
-   real,intent(in) :: array(..)
-   integer,intent(in),optional :: dim
+    result = norm2(array, dim)
 ```
+```fortran
+     real function result norm2(array, dim)
 
+     real,intent(in) :: array(..)
+     integer,intent(in),optional :: dim
+```
 ### **Description**
 
 Calculates the Euclidean vector norm (L_2 norm) of **array** along

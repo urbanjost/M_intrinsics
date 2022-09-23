@@ -5,14 +5,13 @@
 **hypot**(3) - \[MATHEMATICS\] returns the distance between the point and the origin.
 
 ### **Syntax**
-
 ```fortran
-result = hypot(x, y)
-
-   real(kind=KIND) elemental function hypot(x,y) result(value)
-   real(kind=KIND),intent(in) :: x, y
+    result = hypot(x, y)
 ```
-
+```fortran
+     real(kind=KIND) elemental function hypot(x,y) result(value)
+     real(kind=KIND),intent(in) :: x, y
+```
 where **x,y,value** shall all be of the same **kind**.
 
 ### **Description**

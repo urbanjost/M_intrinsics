@@ -5,12 +5,12 @@
 **cpu_time**(3) - \[SYSTEM:TIME\] return CPU processor time in seconds
 
 ### **Syntax**
-
 ```fortran
      call cpu_time(time)
-     real,intent(out) :: time
 ```
-
+```fortran
+      real,intent(out) :: time
+```
 ### **Description**
 
 Returns a _real_ value representing the elapsed CPU time in seconds. This

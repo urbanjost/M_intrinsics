@@ -5,11 +5,11 @@
 **ibset**(3) - \[BIT:SET\] Set bit
 
 ### **Syntax**
-
 ```fortran
-result = ibset(i, pos)
+    result = ibset(i, pos)
 ```
-
+```fortran
+```
 ### **Description**
 
 **ibset** returns the value of **i** with the bit at position **pos** set to one.

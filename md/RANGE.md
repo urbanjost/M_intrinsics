@@ -5,15 +5,14 @@
 **range**(3) - \[NUMERIC MODEL\] Decimal exponent range of a real kind
 
 ### **Syntax**
-
 ```fortran
-result = range(x)
-
-      function range (x)
-      integer :: range
-      type(TYPE,kind=KIND),intent(in) :: x
+    result = range(x)
 ```
+```fortran
+      integer function range (x)
 
+      type(TYPE(kind=KIND)),intent(in) :: x
+```
 where TYPE is _real_ or _complex_ and KIND is any kind supported by
 TYPE.
 

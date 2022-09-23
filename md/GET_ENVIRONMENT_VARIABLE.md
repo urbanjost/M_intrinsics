@@ -5,17 +5,16 @@
 **get_environment_variable**(3) - \[SYSTEM:ENVIRONMENT\] Get an environmental variable
 
 ### **Syntax**
-
 ```fortran
-  call get_environment_variable(name, value, length, status, trim_name)
-
-   character(len=*),intent(in) :: name
-   character(len=*),intent(out),optional :: value
-   integer,intent(out),optional :: length
-   integer,intent(out),optional :: status
-   logical,intent(out),optional :: trim_name
+    call get_environment_variable(name, value, length, status, trim_name)
 ```
-
+```fortran
+     character(len=*),intent(in) :: name
+     character(len=*),intent(out),optional :: value
+     integer,intent(out),optional :: length
+     integer,intent(out),optional :: status
+     logical,intent(out),optional :: trim_name
+```
 ### **Description**
 
 Get the **value** of the environmental variable **name**.

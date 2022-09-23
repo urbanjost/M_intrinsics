@@ -5,11 +5,12 @@
 **compiler_version**(3) - \[COMPILER INQUIRY\] Compiler version string
 
 ### **Syntax**
-
 ```fortran
-str = compiler_version()
+    result = compiler_version()
 ```
-
+```fortran
+     character(len=:) function compiler_version()
+```
 ### **Description**
 
 **compiler_version**(3) returns a string containing the name and

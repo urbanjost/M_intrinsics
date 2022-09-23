@@ -5,7 +5,8 @@
 **date_and_time**(3) - \[SYSTEM:TIME\] gets current time
 
 ### **Syntax**
-
+```fortran
+```
 ```fortran
     subroutine date_and_time(date, time, zone, values)
 
@@ -14,7 +15,6 @@
      character(len=5),intent(out),optional :: zone
      integer,intent(out),optional :: values(8)
 ```
-
 ### **Description**
 
 **date_and_time(date, time, zone, values)** gets the corresponding

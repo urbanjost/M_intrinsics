@@ -5,16 +5,15 @@
 **get_command**(3) - \[SYSTEM:COMMAND LINE\] Get the entire command line
 
 ### **Syntax**
-
 ```fortran
-   call get_command(command, length, status)
-
-    subroutine get_command(command,length,status)
-    character(len=*),intent(out),optional :: command
-    integer,intent(out),optional :: length
-    integer,intent(out),optional :: status
+    call get_command(command, length, status)
 ```
-
+```fortran
+     subroutine get_command(command,length,status)
+     character(len=*),intent(out),optional :: command
+     integer,intent(out),optional :: length
+     integer,intent(out),optional :: status
+```
 ### **Description**
 
 Retrieve the entire command line that was used to invoke the program.

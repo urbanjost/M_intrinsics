@@ -5,14 +5,15 @@
 **ichar**(3) - \[CHARACTER:CONVERSION\] Character-to-integer conversion function
 
 ### **Syntax**
-
 ```fortran
-   elemental function ichar(c,kind)
-
-    character(len=1),intent(in) :: c
-    integer,intent(in),optional :: kind
+    result=ichar(c [,kind])
 ```
+```fortran
+     elemental function ichar(c,kind)
 
+     character(len=1),intent(in) :: c
+     integer,intent(in),optional :: kind
+```
 ### **Description**
 
 **ichar(c)** returns the code for the character in the system's native

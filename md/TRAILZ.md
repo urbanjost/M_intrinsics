@@ -6,11 +6,12 @@
 
 ### **Syntax**
 
+    result = trailz(i) integer :: result
 ```fortran
-   result = trailz(i) integer :: result
-   integer(kind=NNN),intent(in) :: i
+     integer(kind=NNN),intent(in) :: i
 ```
-
+```fortran
+```
 ### **Description**
 
 **trailz(3)** returns the number of trailing zero bits of an _integer_ value

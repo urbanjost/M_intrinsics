@@ -5,12 +5,13 @@
 **lle**(3) - \[CHARACTER:COMPARE\] ASCII Lexical less than or equal
 
 ### **Syntax**
-
 ```fortran
-   elemental logical function lle(string_a, string_b)
+```
+```fortran
+     elemental logical function lle(string_a, string_b)
 
-    character(len=*),intent(in) :: string_a
-    character(len=*),intent(in) :: string_b
+     character(len=*),intent(in) :: string_a
+     character(len=*),intent(in) :: string_b
 ```
 ### **Description**
 

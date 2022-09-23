@@ -5,17 +5,15 @@
 **minloc**(3) - \[ARRAY:LOCATION\] Location of the minimum value within an array
 
 ### **Syntax**
-
 ```fortran
     result = minloc(array, dim, mask)
 ```
-
 or
-
 ```fortran
     result = minloc(array, mask)
 ```
-
+```fortran
+```
 ### **Description**
 
   Determines the location of the element in the array with the minimum

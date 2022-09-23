@@ -6,6 +6,9 @@
 
 ### **Syntax**
 ```fortran
+    result=bge(i,j)
+```
+```fortran
     elemental function bge(i, j)
 
      integer(kind=KIND),intent(in) :: i

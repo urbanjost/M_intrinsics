@@ -5,11 +5,11 @@
 **ieor**(3) - \[BIT:LOGICAL\] Bitwise logical exclusive or
 
 ### **Syntax**
-
 ```fortran
-result = ieor(i, j)
+    result = ieor(i, j)
 ```
-
+```fortran
+```
 ### **Description**
 
 **ieor** returns the bitwise Boolean exclusive-**or** of **i** and **j**.

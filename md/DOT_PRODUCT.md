@@ -5,11 +5,11 @@
 **dot_product**(3) - \[TRANSFORMATIONAL\] Dot product function
 
 ### **Syntax**
-
 ```fortran
-result = dot_product(vector_a, vector_b)
+    result = dot_product(vector_a, vector_b)
 ```
-
+```fortran
+```
 ### **Description**
 
 **dot_product(vector_a, vector_b)** computes the dot product

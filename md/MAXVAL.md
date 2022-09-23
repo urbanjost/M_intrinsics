@@ -5,17 +5,15 @@
 **maxval**(3) - \[ARRAY REDUCTION\] determines the maximum value in an array or row
 
 ### **Syntax**
-
 ```fortran
-result = maxval(array, dim, mask)
+    result = maxval(array, dim, mask)
 ```
-
 or
-
 ```fortran
-result = maxval(array, mask)
+    result = maxval(array, mask)
 ```
-
+```fortran
+```
 ### **Description**
 
 Determines the maximum value of the elements in an array value, or, if

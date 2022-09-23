@@ -5,15 +5,14 @@
 **product**(3) - \[ARRAY REDUCTION\] Product of array elements
 
 ### **Syntax**
-
 ```fortran
-  result = product(array, dim, mask)
-
-    NUMERIC,intent(in) :: array(..)
-    integer,intent(in),optional :: dim
-    logical,intent(in),optional :: mask(..)
+    result = product(array, dim, mask)
 ```
-
+```fortran
+     NUMERIC,intent(in) :: array(..)
+     integer,intent(in),optional :: dim
+     logical,intent(in),optional :: mask(..)
+```
 where **NUMERIC** is any numeric type
 
 ### **Description**

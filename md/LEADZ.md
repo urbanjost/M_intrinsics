@@ -5,11 +5,11 @@
 **leadz**(3) - \[BIT:COUNT\] Number of leading zero bits of an integer
 
 ### **Syntax**
-
 ```fortran
-result = leadz(i)
+    result = leadz(i)
 ```
-
+```fortran
+```
 ### **Description**
 
 **leadz** returns the number of leading zero bits of an integer.

@@ -5,11 +5,11 @@
 **poppar**(3) - \[BIT:COUNT\] Parity of the number of bits set
 
 ### **Syntax**
-
 ```fortran
-result = poppar(i)
+    result = poppar(i)
 ```
-
+```fortran
+```
 ### **Description**
 
 Returns the parity of an integer's binary representation (i.e., the

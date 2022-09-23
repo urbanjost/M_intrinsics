@@ -5,14 +5,13 @@
 **cosh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Hyperbolic cosine function
 
 ### **Syntax**
-
 ```fortran
     result = cosh(x)
-
+```
+```fortran
      TYPE(kind=KIND) elemental function cosh(x)
      TYPE(kind=KIND),intent(in) :: x
 ```
-
 where TYPE may be _real_ or _complex_ and KIND may be any
 supported kind for the associated type. The returned **value**
 will be the same type and kind as the input value **x**.

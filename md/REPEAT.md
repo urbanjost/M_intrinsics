@@ -5,15 +5,14 @@
 **repeat**(3) - \[CHARACTER\] Repeated string concatenation
 
 ### **Syntax**
-
 ```fortran
-result = repeat(string, ncopies)
-
-   character(len=len(string)*ncopies) :: repeat
-   character(len=*),intent(in)        :: string
-   integer,intent(in)                 :: ncopies
+    result = repeat(string, ncopies)
 ```
-
+```fortran
+     character(len=len(string)*ncopies) :: repeat
+     character(len=*),intent(in)        :: string
+     integer,intent(in)                 :: ncopies
+```
 ### **Description**
 
 Concatenates **ncopies** copies of a string.

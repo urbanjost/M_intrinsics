@@ -5,11 +5,11 @@
 **selected_char_kind**(3) - \[KIND\] Choose character kind such as "Unicode"
 
 ### **Syntax**
-
 ```fortran
-result = selected_char_kind(name)
+    result = selected_char_kind(name)
 ```
-
+```fortran
+```
 ### **Description**
 
 **selected_char_kind(name)** returns the kind value for the character

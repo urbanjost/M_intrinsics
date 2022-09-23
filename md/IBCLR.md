@@ -5,11 +5,11 @@
 **ibclr**(3) - \[BIT:SET\] Clear bit
 
 ### **Syntax**
-
 ```fortran
-result = ibclr(i, pos)
+    result = ibclr(i, pos)
 ```
-
+```fortran
+```
 ### **Description**
 
 **ibclr** returns the value of **i** with the bit at position **pos** set to zero.

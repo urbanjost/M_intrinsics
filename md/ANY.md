@@ -5,9 +5,14 @@
 **any**(3) - \[ARRAY REDUCTION\] determines if any of the values in the logical array are true.
 
 ### **Syntax**
-
 ```fortran
-result = any(mask, dim)
+    result = any(mask [,dim])
+```
+```fortran
+     logical(..) function any(mask, dim)
+
+     logical,intent(in)          :: mask
+     integer,intent(in),optional :: dim
 ```
 
 ### **Description**

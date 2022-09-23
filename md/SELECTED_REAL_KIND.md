@@ -5,11 +5,11 @@
 **selected_real_kind**(3) - \[KIND\] Choose real kind
 
 ### **Syntax**
-
 ```fortran
-result = selected_real_kind(p, r, radix)
+    result = selected_real_kind(p, r, radix)
 ```
-
+```fortran
+```
 ### **Description**
 
 **selected_real_kind(p, r, radix)** return the kind value of a real

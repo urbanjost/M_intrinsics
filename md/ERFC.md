@@ -5,15 +5,14 @@
 **erfc**(3) - \[MATHEMATICS\] Complementary error function
 
 ### **Syntax**
-
 ```fortran
-result = erfc(x)
-
-   elemental function erfc(x)
-   real(kind=KIND) :: erfc
-   real(kind=KIND),intent(in) :: x
+    result = erfc(x)
 ```
-
+```fortran
+     elemental function erfc(x)
+     real(kind=KIND) :: erfc
+     real(kind=KIND),intent(in) :: x
+```
 ### **Description**
 
 **erfc**(x) computes the complementary error function of **x**. Simply put

@@ -18,6 +18,8 @@ or
 ```fortran
 result = this_image(coarray, dim)
 ```
+```fortran
+```
 
 ### **Description**
 

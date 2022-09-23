@@ -5,11 +5,11 @@
 **popcnt**(3) - \[BIT:COUNT\] Number of bits set
 
 ### **Syntax**
-
 ```fortran
-result = popcnt(i)
+    result = popcnt(i)
 ```
-
+```fortran
+```
 ### **Description**
 
 Returns the number of bits set in the binary representation of an

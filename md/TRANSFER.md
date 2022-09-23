@@ -5,11 +5,11 @@
 **transfer**(3) - \[TYPE:MOLD\] Transfer bit patterns
 
 ### **Syntax**
-
 ```fortran
-result = transfer(source, mold, size)
+    result = transfer(source, mold, size)
 ```
-
+```fortran
+```
 ### **Description**
 
 Interprets the bitwise representation of **source** in memory as if it

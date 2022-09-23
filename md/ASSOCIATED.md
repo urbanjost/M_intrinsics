@@ -5,11 +5,11 @@
 **associated**(3) - \[STATE\] Status of a pointer or pointer/target pair
 
 ### **Syntax**
-
 ```fortran
-result = associated(pointer, target)
+    result = associated(pointer [,target])
 ```
-
+```fortran
+```
 ### **Description**
 
 **associated(pointer \[, target\])** determines the status of the

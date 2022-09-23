@@ -5,11 +5,11 @@
 **atomic_fetch_add**(3) - \[ATOMIC\] Atomic ADD operation with prior fetch
 
 ### **Syntax**
-
 ```fortran
-call atomic_fetch_add(atom, value, old, stat)
+    call atomic_fetch_add(atom, value, old, stat)
 ```
-
+```fortran
+```
 ### **Description**
 
 **atomic_fetch_add(atom, value, old)** atomically stores the value of

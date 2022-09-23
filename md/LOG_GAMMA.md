@@ -5,11 +5,11 @@
 **log_gamma**(3) - \[MATHEMATICS\] Logarithm of the Gamma function
 
 ### **Syntax**
-
 ```fortran
-x = log_gamma(x)
+    result = log_gamma(x)
 ```
-
+```fortran
+```
 ### **Description**
 
 **log_gamma(x)** computes the natural logarithm of the absolute value of the Gamma function.

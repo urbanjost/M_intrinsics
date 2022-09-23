@@ -6,21 +6,26 @@
 
 ### **Syntax**
 ```fortran
-  result = allocated(array)
+    result = allocated(scalar\|array)
 ```
-or
 ```fortran
-  result = allocated(scalar)
+     logical function allocated(scalar,array)
+
+     type(TYPE(kind=KIND)),allocatable.optional :: scalar
+     type(TYPE(kind=KIND)),allocatable.optional :: array(..)
 ```
+where **TYPE** may be any allocatable scalar or array object type.
+Either a scalar or array argument must be present, but not both.
+
 ### **Description**
 
-**allocated(array)** and **allocated(scalar)** check the allocation
-status of **array** and **scalar**, respectively.
+**allocated(arg)**  checks the allocation status of both arrays 
+and scalars.
 
 ### **Arguments**
 
 - **array**
-  : the argument shall be an _allocatable_ array or allocatable scalar.
+  : the argument shall be an _allocatable_ array or _allocatable_ scalar.
 
 - **scalar**
   : the argument shall be an _allocatable_ scalar.
@@ -75,16 +80,13 @@ integer :: istat
 
 end program demo_allocated
 ```
-
 Results:
-
 ```text
     T           4
     do things if allocated
     note it was allocated in calling program F
     note it is deallocated! F
 ```
-
 ### **Standard**
 
 Fortran 95 and later. Note, the scalar= keyword and allocatable

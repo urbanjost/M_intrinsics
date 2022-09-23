@@ -5,11 +5,11 @@
 **size**(3) - \[ARRAY INQUIRY\] Determine the size of an array
 
 ### **Syntax**
-
 ```fortran
-result = size(array, dim, kind)
+    result = size(array, dim, kind)
 ```
-
+```fortran
+```
 ### **Description**
 
 Determine the extent of **array** along a specified dimension **dim**,

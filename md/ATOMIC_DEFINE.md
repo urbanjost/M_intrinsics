@@ -5,16 +5,15 @@
 **atomic_define**(3) - \[ATOMIC\] Setting a variable atomically
 
 ### **Syntax**
-
 ```fortran
-call atomic_define (atom, value, stat)
-
-   subroutine atomic_define(atom, value, stat)
-   TYPE(kind=KIND) :: atom
-   TYPE(kind=KIND) :: value
-   integer,intent(out),optional :: stat
+    call atomic_define (atom, value, stat)
 ```
-
+```fortran
+     subroutine atomic_define(atom, value, stat)
+     TYPE(kind=KIND) :: atom
+     TYPE(kind=KIND) :: value
+     integer,intent(out),optional :: stat
+```
 ### **Description**
 
 **atomic_define(atom, value)** defines the variable **atom** with the value

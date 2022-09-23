@@ -5,15 +5,15 @@
 **iparity**(3) - \[BIT:LOGICAL\] Bitwise exclusive or of array elements
 
 ### **Syntax**
-
 ```fortran
-  result = iparity(array, mask)
-
-   or
-
-  result = iparity(array, dim, mask)
+    result = iparity(array, mask)
 ```
-
+   or
+```fortran
+    result = iparity(array, dim, mask)
+```
+```fortran
+```
 ### **Description**
 
 Reduces with bitwise _xor_ (exclusive _or_) the elements of **array** along

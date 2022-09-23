@@ -5,14 +5,12 @@
 **command_argument_count**(3) - \[SYSTEM:COMMAND LINE\] Get number of command line arguments
 
 ### **Syntax**
-
 ```fortran
     result = command_argument_count()
-
-     integer function command_argument_count() result(count)
-     integer :: count
 ```
-
+```fortran
+     integer function command_argument_count() 
+```
 ### **Description**
 
 **command_argument_count()** returns the number of arguments passed

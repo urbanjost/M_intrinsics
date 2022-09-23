@@ -5,11 +5,11 @@
 **co_min**(3) - \[COLLECTIVE\] Minimal value on the current set of images
 
 ### **Syntax**
-
 ```fortran
-call co_min(a, result_image, stat, errmsg)
+     call co_min(a, result_image, stat, errmsg)
 ```
-
+```fortran
+```
 ### **Description**
 
 co_min determines element-wise the minimal value of **a** on all images of

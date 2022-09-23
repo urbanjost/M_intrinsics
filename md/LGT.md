@@ -6,10 +6,12 @@
 
 ### **Syntax**
 ```fortran
-   elemental logical function lgt(string_a, string_b)
+```
+```fortran
+     elemental logical function lgt(string_a, string_b)
 
-    character(len=*),intent(in) :: string_a
-    character(len=*),intent(in) :: string_b
+     character(len=*),intent(in) :: string_a
+     character(len=*),intent(in) :: string_b
 ```
 ### **Description**
 

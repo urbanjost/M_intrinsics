@@ -5,14 +5,13 @@
 **sinh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Hyperbolic sine function
 
 ### **Syntax**
-
 ```fortran
-result = sinh(x)
-
-    elemental TYPE(kind=KIND) function sinh(x)
-    TYPE(kind=KIND) :: x
+    result = sinh(x)
 ```
-
+```fortran
+     elemental TYPE(kind=KIND) function sinh(x)
+     TYPE(kind=KIND) :: x
+```
 Where the returned value has the kind of the input value
 and TYPE may be _real_ or _complex_
 

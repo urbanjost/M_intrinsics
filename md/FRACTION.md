@@ -5,9 +5,10 @@
 **fraction**(3) - \[MODEL_COMPONENTS\] Fractional part of the model representation
 
 ### **Syntax**
-
 ```fortran
-y = fraction(x)
+    result = fraction(x)
+```
+```fortran
 ```
 
 ### **Description**

@@ -5,11 +5,11 @@
 **selected_int_kind**(3) - \[KIND\] Choose integer kind
 
 ### **Syntax**
-
 ```fortran
-result = selected_int_kind(r)
+    result = selected_int_kind(r)
 ```
-
+```fortran
+```
 ### **Description**
 
 **selected_int_kind(r)** return the kind value of the smallest integer

@@ -5,11 +5,11 @@
 **event_query**(3) - \[COLLECTIVE\] Query whether a coarray event has occurred
 
 ### **Syntax**
-
 ```fortran
-call event_query(event, count, stat)
+    call event_query(event, count, stat)
 ```
-
+```fortran
+```
 ### **Description**
 
 **event_query** assigns the number of events to **count** which have been

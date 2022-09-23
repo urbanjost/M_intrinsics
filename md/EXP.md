@@ -5,11 +5,11 @@
 **exp**(3) - \[MATHEMATICS\] Exponential function
 
 ### **Syntax**
-
 ```fortran
-result = exp(x)
+    result = exp(x)
 ```
-
+```fortran
+```
 ### **Description**
 
 **exp**(x) computes the base "_e_" exponential of **x** where "_e_" is

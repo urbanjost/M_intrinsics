@@ -5,11 +5,11 @@
 **extends_type_of**(3) - \[STATE\] determine if the dynamic type of **a** is an extension of the dynamic type of **mold**.
 
 ### **Syntax**
-
 ```fortran
-result=extends_type_of(a, mold)
+    result=extends_type_of(a, mold)
 ```
-
+```fortran
+```
 ### **Description**
 
 **extends_type_of**(3) is _.true._ if and only if the dynamic type of **a**

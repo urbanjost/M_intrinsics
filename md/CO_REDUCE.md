@@ -5,11 +5,11 @@
 **co_reduce**(3) - \[COLLECTIVE\] Reduction of values on the current set of images
 
 ### **Syntax**
-
 ```fortran
-call co_reduce(a, operation, result_image, stat, errmsg)
+    call co_reduce(a, operation, result_image, stat, errmsg)
 ```
-
+```fortran
+```
 ### **Description**
 
 co_reduce determines element-wise the reduction of the value of **a** on

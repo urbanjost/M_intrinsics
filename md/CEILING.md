@@ -5,14 +5,17 @@
 **ceiling**(3) - \[NUMERIC\] Integer ceiling function
 
 ### **Syntax**
-
 ```fortran
-result = ceiling(a, kind)
-
-   integer(kind=KIND) elemental function ceiling(a,kind)
-   real(kind=ANY),intent(in)   :: a
-   integer,intent(in),optional :: kind
+    result = ceiling(a [,kind])
 ```
+```fortran
+     elemental integer(KIND) function ceiling(a,kind)
+
+     real(kind=KIND),intent(in)  :: a
+     integer,intent(in),optional :: kind
+```
+where the _kind_ of the result KIND is the same as **a** unless its 
+kind is specified by the optional **kind** argument.
 
 ### **Description**
 
@@ -21,7 +24,7 @@ result = ceiling(a, kind)
 ### **Arguments**
 
 - **a**
-  : The type shall be _real_.
+  : A _real_ value to produce a result for.
 
 - **kind**
   : An _integer_ initialization expression indicating the kind
@@ -29,11 +32,14 @@ result = ceiling(a, kind)
 
 ### **Returns**
 
-The return value is of type **integer**(kind) if **kind** is present and a
-default-kind _integer_ otherwise.
+The result will be the _integer_ value equal to **a** or the least integer
+greater than **a** if the input value is not equal to a whole number.
+
+On the number line -n <-- 0 -> +n the value returned is always at or to the
+right of the input value.
 
 The result is undefined if it cannot be represented in the specified
-integer type.
+_integer_ type.
 
 ### **Examples**
 
@@ -42,28 +48,42 @@ Sample program:
 ```fortran
 program demo_ceiling
 implicit none
-real :: x = 63.29
-real :: y = -63.59
-   print *, ceiling(x)
-   print *, ceiling(y)
-   ! elemental
-   print *,ceiling([ &
-   &  -2.7,  -2.5, -2.2, -2.0, -1.5, -1.0, -0.5, &
-   &  0.0,   &
-   &  +0.5,  +1.0, +1.5, +2.0, +2.2, +2.5, +2.7  ])
+! just a convenient format for a list of integers
+character(len=*),parameter :: ints='(*("   > ",5(i0:,",",1x),/))'
+real :: x 
+real :: y 
+  ! basic usage
+   x = 63.29
+   y = -63.59
+   print ints, ceiling(x)
+   print ints, ceiling(y) 
+   ! note the result was the next integer larger to the right
+
+  ! real values equal to whole numbers
+   x = 63.0
+   y = -63.0
+   print ints, ceiling(x)
+   print ints, ceiling(y) 
+
+  ! elemental (so an array argument is allowed)
+   print ints , &
+   & ceiling([ &
+   &  -2.7,  -2.5, -2.2, -2.0, -1.5, &
+   &  -1.0,  -0.5,  0.0, +0.5, +1.0, &
+   &  +1.5,  +2.0, +2.2, +2.5, +2.7  ])
+
 end program demo_ceiling
 ```
-
 Results:
-
 ```text
-   64
-  -63
-   -2      -2      -2      -2      -1      -1
-    0       0       1       1       2       2
-    3       3       3
+   > 64
+   > -63
+   > 63
+   > -63
+   > -2, -2, -2, -2, -1,
+   > -1, 0, 0, 1, 1,
+   > 2, 2, 3, 3, 3
 ```
-
 ### **Standard**
 
 Fortran 95 and later

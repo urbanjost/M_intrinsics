@@ -5,12 +5,12 @@
 **sum**(3) - \[ARRAY REDUCTION\] sum the elements of an array
 
 ### **Syntax**
-
 ```fortran
    result = sum(array[, mask])
    result = sum(array, dim[, mask])
 ```
-
+```fortran
+```
 ### **Description**
 
 Adds the elements of ARRAY along dimension DIM if the corresponding

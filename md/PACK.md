@@ -5,16 +5,15 @@
 **pack**(3) - \[ARRAY CONSTRUCTION\] Pack an array into an array of rank one
 
 ### **Syntax**
-
 ```fortran
-result = pack(array, mask,vector)
-
-   TYPE(kind=KIND) function pack(array,mask,vector)
-   TYPE(kind=KIND),option(in) :: array(*)
-   logical  :: mask(*)
-   TYPE(kind=KIND),option(in),optional :: vector(*)
+    result = pack(array, mask,vector)
 ```
-
+```fortran
+     TYPE(kind=KIND) function pack(array,mask,vector)
+     TYPE(kind=KIND),option(in) :: array(*)
+     logical  :: mask(*)
+     TYPE(kind=KIND),option(in),optional :: vector(*)
+```
 where TYPE(kind=KIND) may be any type, where **array** and **vector**
 and the returned value must by of the same type. **mask** may be a
 scalar as well an an array.

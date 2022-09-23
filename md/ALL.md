@@ -5,17 +5,24 @@
 **all**(3) - \[ARRAY REDUCTION\] determines if all the values are true
 
 ### **Syntax**
-
 ```fortran
-result = all(mask, dim)
+   result = all(mask [,dim])
 ```
+```fortran
+     logical(..) function all(mask, dim)
 
+     logical,intent(in)          :: mask
+     integer,intent(in),optional :: dim
+```
 ### **Description**
 
 Logical conjunction of elements of **mask** along dimension **dim**.
 
 "**all(mask, dim)**" determines if all the values are true in **mask**
 in the array along dimension **dim**.
+
+The mask is generally a logical expression, allowing for comparing 
+arrays and many other common operations.
 
 ### **Arguments**
 

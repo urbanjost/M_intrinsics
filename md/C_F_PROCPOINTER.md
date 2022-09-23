@@ -5,11 +5,11 @@
 **c_f_procpointer**(3) - \[ISO_C_BINDING\] Convert C into Fortran procedure pointer
 
 ### **Syntax**
-
 ```fortran
-call c_f_procpointer(cptr, fptr)
+    call c_f_procpointer(cptr, fptr)
 ```
-
+```fortran
+```
 ### **Description**
 
 **c_f_procpointer(cptr, fptr)** assigns the target of the C function

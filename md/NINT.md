@@ -5,13 +5,14 @@
 **nint**(3) - \[TYPE:NUMERIC\] Nearest whole number
 
 ### **Syntax**
-
 ```fortran
-    elemental function nint(x [, kind=NN]) result(ANSWER)
-     real(kind=??),intent(in) :: x
-     integer(kind=NN) :: ANSWER
+    result=nint(x [,kind])
 ```
+```fortran
+    elemental integer(kind=KIND) function nint(x, kind )
 
+     real(kind=KIND),intent(in) :: x
+```
 ### **Description**
 
 **nint(x)** rounds its argument to the nearest whole number with its
@@ -90,27 +91,24 @@ endblock ISSUES
 
 end program demo_nint
 ```
-
 Results:
-
 ```text
-     1    5   -5
-    -3   -3   -2   -2   -2
-    -1   -1    0    1    1
-     2    2    2    3    3
-    Range limits for typical KINDS:
-    1 127
-    2 32767
-    4 2147483647
-    8 9223372036854775807
-    Any KIND big enough? ICHECK=          16
-    These are all wrong answers for    1.2345669499901444E+019
-       0
-         0
-              0
-    -9223372036854775808
+   >  1    5   -5
+   > -3   -3   -2   -2   -2
+   > -1   -1    0    1    1
+   >  2    2    2    3    3
+   > Range limits for typical KINDS:
+   > 1 127
+   > 2 32767
+   > 4 2147483647
+   > 8 9223372036854775807
+   > Any KIND big enough? ICHECK=          16
+   > These are all wrong answers for    1.2345669499901444E+019
+   >    0
+   >      0
+   >           0
+   > -9223372036854775808
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later, with KIND argument - Fortran 90 and later

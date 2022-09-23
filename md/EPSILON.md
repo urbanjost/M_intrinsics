@@ -5,9 +5,13 @@
 **epsilon**(3) - \[NUMERIC MODEL\] Epsilon function
 
 ### **Syntax**
-
 ```fortran
-result = epsilon(x)
+    result = epsilon(x)
+```
+```fortran
+     real(kind=kind(x)) function iaint(x)
+
+     real(kind=kind(x),intent(in)   :: x
 ```
 ### **Description**
 

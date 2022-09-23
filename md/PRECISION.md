@@ -5,11 +5,15 @@
 **precision**(3) - \[NUMERIC MODEL\] Decimal precision of a real kind
 
 ### **Syntax**
-
 ```fortran
-result = precision(x)
+    result = precision(x)
 ```
-
+```fortran
+    integer function precision(x)
+    type(TYPE(kind=KIND),intent(in) :: x
+```
+where **TYPE** may be _real_ or _complex_
+    
 ### **Description**
 
 **precision(x)** returns the decimal precision in the model of the type

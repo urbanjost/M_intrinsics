@@ -5,11 +5,11 @@
 **co_lbound**(3) - \[COLLECTIVE\] Lower codimension bounds of an array
 
 ### **Syntax**
-
 ```fortran
-result = co_lbound(coarray, dim, kind)
+     result = co_lbound(coarray, dim, kind)
 ```
-
+```fortran
+```
 ### **Description**
 
 Returns the lower bounds of a coarray, or a single lower cobound along

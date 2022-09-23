@@ -5,12 +5,13 @@
 **shiftl**(3) - \[BIT:SHIFT\] shift bits left
 
 ### **Syntax**
-
 ```fortran
-elemental integer(kind=KIND) function shiftl(i, shift)
+```
+```fortran
+     elemental integer(kind=KIND) function shiftl(i, shift)
 
- integer(kind=KIND),intent(in) :: i
- integer(kind=SHIFTKIND,intent(in) :: shift
+      integer(kind=KIND),intent(in) :: i
+      integer(kind=SHIFTKIND,intent(in) :: shift
 ```
 where KIND and SHIFTKIND may be any supported _integer_ kind, but
 where the kind for **i** dictates the kind of the returned value.

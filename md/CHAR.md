@@ -5,15 +5,15 @@
 **char**(3) - \[CHARACTER\] Character conversion function
 
 ### **Syntax**
-
 ```fortran
-result = char(i, kind)
-   elemental integer function char(i,kind)
+    result = char(i [,kind])
+```
+```fortran
+    elemental integer function char(i,kind)
 
     integer(kind=KIND),intent(in) :: c
     integer,intent(in),optional :: KIND
 ```
-
 ### **Description**
 
 **char(i, kind)** returns the character represented by the integer **i**.

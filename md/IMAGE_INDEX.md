@@ -5,11 +5,11 @@
 **image_index**(3) - \[COLLECTIVE\] Cosubscript to image index conversion
 
 ### **Syntax**
-
 ```fortran
-result = image_index(coarray, sub)
+    result = image_index(coarray, sub)
 ```
-
+```fortran
+```
 ### **Description**
 
 Returns the image index belonging to a cosubscript.

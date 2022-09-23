@@ -5,14 +5,13 @@
 **log10**(3) - \[MATHEMATICS\] Base 10 logarithm function
 
 ### **Syntax**
-
 ```fortran
-result = log10(x)
-
-   real(kind=KIND) elemental function log10(x)
-   real(kind=KIND),intent(in) :: x
+    result = log10(x)
 ```
-
+```fortran
+     real(kind=KIND) elemental function log10(x)
+     real(kind=KIND),intent(in) :: x
+```
 ### **Description**
 
 **log10(x)** computes the base 10 logarithm of **x**. This

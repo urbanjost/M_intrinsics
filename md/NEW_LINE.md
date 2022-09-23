@@ -5,14 +5,13 @@
 **new_line**(3) - \[CHARACTER\] new-line character
 
 ### **Syntax**
-
 ```fortran
-result = new_line(c)
-
-   character(len=1,kind=kind(c)) :: new_line(c)
-   character(len=1),intent(in) :: c(..)
+    result = new_line(c)
 ```
-
+```fortran
+     character(len=1,kind=kind(c)) :: new_line(c)
+     character(len=1),intent(in) :: c(..)
+```
 ### **Description**
 
 **new_line(c)** returns the new-line character.

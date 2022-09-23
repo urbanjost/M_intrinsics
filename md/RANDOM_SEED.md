@@ -5,11 +5,11 @@
 **random_seed**(3) - \[MATHEMATICS:RANDOM\] Initialize a pseudo-random number sequence
 
 ### **Syntax**
-
 ```fortran
-call random_seed(size, put, get)
+    call random_seed(size, put, get)
 ```
-
+```fortran
+```
 ### **Description**
 
 Restarts or queries the state of the pseudorandom number generator used

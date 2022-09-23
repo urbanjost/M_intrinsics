@@ -5,11 +5,11 @@
 **transpose**(3) - \[ARRAY MANIPULATION\] Transpose an array of rank two
 
 ### **Syntax**
-
 ```fortran
-result = transpose(matrix)
+    result = transpose(matrix)
 ```
-
+```fortran
+```
 ### **Description**
 
 Transpose an array of rank two.

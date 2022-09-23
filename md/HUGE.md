@@ -5,15 +5,15 @@
 **huge**(3) - \[NUMERIC MODEL\] Largest number of a type and kind
 
 ### **Syntax**
-
 ```fortran
-result = huge(x)
-
-   function huge(x) result(answer)
-   TYPE(kind=KIND),intent(in) :: x
-   TYPE(kind=KIND) :: answer
+    result = huge(x)
 ```
+```fortran
+     function huge(x) result(answer)
 
+     TYPE(kind=KIND),intent(in) :: x
+     TYPE(kind=KIND) :: answer
+```
 where **TYPE** may be _real_ or _integer_ and **KIND** is any supported
 associated _kind_.
 

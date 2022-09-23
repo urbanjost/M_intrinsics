@@ -5,11 +5,11 @@
 **kind**(3) - \[KIND INQUIRY\] Kind of an entity
 
 ### **Syntax**
-
 ```fortran
-k = kind(x)
+    result = kind(x)
 ```
-
+```fortran
+```
 ### **Description**
 
 **kind(x)** returns the kind value of the entity **x**.

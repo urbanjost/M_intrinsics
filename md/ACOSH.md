@@ -5,15 +5,14 @@
 **acosh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Inverse hyperbolic cosine function
 
 ### **Syntax**
-
 ```fortran
-  result = acosh(x)
-
-   TYPE(kind=KIND),elemental :: acosh
-
-   TYPE(kind=KIND,intent(in) :: x
+    result=acosh(x)
 ```
+```fortran
+     elemental TYPE(kind=KIND) function acosh(x)
 
+     TYPE(kind=KIND),intent(in) :: x
+```
 where TYPE may be _real_ or _complex_ and KIND may be any KIND supported
 by the associated type.
 

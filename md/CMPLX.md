@@ -5,16 +5,16 @@
 **cmplx**(3) - \[TYPE:NUMERIC\] Complex conversion function
 
 ### **Syntax**
-
 ```fortran
-result = cmplx(x, y, kind)
-
-   complex elemental function :: cmplx
-   TYPE(kind=KIND),intent(in), x
-   TYPE(kind=KIND),intent(in),optional, y
-   integer,intent(in),optional :: kind
+    result = cmplx(x [,y] [,kind])
 ```
+```fortran
+    elemental complex function :: cmplx
 
+    TYPE(kind=KIND),intent(in) :: x
+    TYPE(kind=KIND),intent(in),optional :: y
+    integer,intent(in),optional :: kind
+```
 ### **Description**
 
 To convert numeric variables to complex, use the **cmplx**(3) function.

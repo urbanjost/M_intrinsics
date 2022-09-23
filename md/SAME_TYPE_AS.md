@@ -5,11 +5,11 @@
 **same_type_as**(3) - \[STATE\] Query dynamic types for equality
 
 ### **Syntax**
-
 ```fortran
-result = same_type_as(a, b)
+    result = same_type_as(a, b)
 ```
-
+```fortran
+```
 ### **Description**
 
 Query dynamic types for equality.

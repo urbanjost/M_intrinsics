@@ -7,16 +7,16 @@
 ### **Syntax**
 
 ```fortran
-result = verify(string, set, back, kind)
-
-  integer(kind=KIND) elemental function verify(string,set,back,kind)
-
-   character(len=*),intent(in) :: string
-   character(len=*),intent(in) :: set
-   logical,intent(in),optional :: back
-   integer,intent(in),optional :: KIND
+    result = verify(string, set, back, kind)
 ```
+```fortran
+     integer(kind=KIND) elemental function verify(string,set,back,kind)
 
+     character(len=*),intent(in) :: string
+     character(len=*),intent(in) :: set
+     logical,intent(in),optional :: back
+     integer,intent(in),optional :: KIND
+```
 ### **Description**
 
 Verifies that all the characters in **string** belong to the set of

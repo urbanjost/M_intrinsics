@@ -6,14 +6,14 @@
 is specified
 
 ### **Syntax**
-
 ```fortran
-result = present(a)
-
-   function present (a)
-   logical :: present
+    result = present(a)
 ```
-
+```fortran
+     logical function present (a)
+     type(TYPE(kind=KIND)) :: a(..)
+```
+where the **TYPE** may be any type
 ### **Description**
 
 Determines whether an optional dummy argument is present.

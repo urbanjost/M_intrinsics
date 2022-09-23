@@ -5,11 +5,11 @@
 **c_loc**(3) - \[ISO_C_BINDING\] Obtain the C address of an object
 
 ### **Syntax**
-
 ```fortran
-result = c_loc(x)
+    result = c_loc(x)
 ```
-
+```fortran
+```
 ### **Description**
 
 **c_loc(x)** determines the C address of the argument.

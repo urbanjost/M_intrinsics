@@ -5,16 +5,16 @@
 **lbound**(3) - \[ARRAY INQUIRY\] Lower dimension bounds of an array
 
 ### **Syntax**
-
 ```fortran
-result = lbound(array, dim, kind)
-
-   TYPE(kind=KIND) elemental function lbound(array,dim,kind)
-   TYPE(kind=KIND),intent(in)  :: array
-   integer,optional,intent(in) :: dim
-   integer,optional,intent(in) :: kind
+     result = lbound(array, dim, kind)
 ```
+```fortran
+     elemental TYPE(kind=KIND) function lbound(array,dim,kind)
 
+     TYPE(kind=KIND),intent(in)  :: array
+     integer,optional,intent(in) :: dim
+     integer,optional,intent(in) :: kind
+```
 ### **Description**
 
 Returns the lower bounds of an array, or a single lower bound along the

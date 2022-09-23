@@ -5,14 +5,13 @@
 **scale**(3) - \[MODEL_COMPONENTS\] Scale a real value by a whole power of the radix
 
 ### **Syntax**
-
 ```fortran
-result = scale(x, i)
-
-   real(kind=KIND),intent(in) :: x
-   integer,intent(in)         :: i
+    result = scale(x, i)
 ```
-
+```fortran
+     real(kind=KIND),intent(in) :: x
+     integer,intent(in)         :: i
+```
 ### **Description**
 
 **scale(x,i)** returns x \* **radix(x)\*\*i**.

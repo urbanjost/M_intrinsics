@@ -5,11 +5,11 @@
 **maxloc**(3) - \[ARRAY:LOCATION\] Location of the maximum value within an array
 
 ### **Syntax**
-
 ```fortran
-result = maxloc(array, dim, mask) result = maxloc(array, mask)
+    result = maxloc(array, dim, mask) result = maxloc(array, mask)
 ```
-
+```fortran
+```
 ### **Description**
 
 Determines the location of the element in the array with the maximum

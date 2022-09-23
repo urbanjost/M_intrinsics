@@ -5,12 +5,12 @@
 **asinh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Inverse hyperbolic sine function
 
 ### **Syntax**
-
 ```fortran
-result = asinh(x)
-
-    elemental TYPE(kind=KIND) function asinh(x)
-    TYPE(kind=KIND) :: x
+    result = asinh(x)
+```
+```fortran
+     elemental TYPE(kind=KIND) function asinh(x)
+     TYPE(kind=KIND) :: x
 ```
 
 Where the returned value has the kind of the input value

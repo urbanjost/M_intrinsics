@@ -5,17 +5,19 @@
 **iachar**(3) - \[CHARACTER:CONVERSION\] Code in ASCII collating sequence
 
 ### **Syntax**
-
 ```fortran
-result = iachar(c, kind)
+    result = iachar(c [,kind])
 ```
+```fortran
+     integer(kind=kind) function iachar(c,kind)
 
+```
 ### **Description**
 
 **iachar**(c) returns the code for the ASCII character in the first
 character position of C.
 
-### **Arguments**
+### **Arguments** 
 
 - **c**
   : Shall be a scalar _character_, with _intent(in)_

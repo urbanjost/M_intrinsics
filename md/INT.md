@@ -5,15 +5,15 @@
 **int**(3) - \[TYPE:NUMERIC\] Convert to integer type by truncating towards zero
 
 ### **Syntax**
-
 ```fortran
-result = int(a, kind)
-
- integer(kind=KIND) elemental function int(a,kind)
- TYPE(kind=KIND),intent(in),optional :: a
- integer,optional :: kind
+    result = int(a [,kind])
 ```
+```fortran
+     integer(kind=KIND) elemental function int(a,kind)
 
+     TYPE(kind=KIND),intent(in),optional :: a
+     integer,optional :: kind
+```
 ### **Description**
 
 Convert to integer type by truncating towards zero.

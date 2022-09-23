@@ -5,10 +5,15 @@
 **maxexponent**(3) - \[NUMERIC MODEL\] Maximum exponent of a real kind
 
 ### **Syntax**
-
 ```fortran
-result = maxexponent(x)
+    result = maxexponent(x)
 ```
+```fortran
+     elemental integer function maxexponent(x)
+
+     real(kind=KIND,intent(in)   :: x
+```
+where KIND is any _real_ kind.
 
 ### **Description**
 
@@ -39,14 +44,11 @@ real(kind=dp) :: y
    print *, minexponent(y), maxexponent(y)
 end program demo_maxexponent
 ```
-
 Results:
-
 ```text
            -125         128
           -1021        1024
 ```
-
 ### **Standard**
 
 Fortran 95 and later

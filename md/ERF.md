@@ -5,11 +5,11 @@
 **erf**(3) - \[MATHEMATICS\] Error function
 
 ### **Syntax**
-
 ```fortran
-result = erf(x)
+    result = erf(x)
 ```
-
+```fortran
+```
 ### **Description**
 
 **erf**(x) computes the error function of **x**, defined as

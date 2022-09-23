@@ -5,12 +5,13 @@
 **llt**(3) - \[CHARACTER:COMPARE\] ASCII Lexical less than
 
 ### **Syntax**
-
 ```fortran
-   elemental logical function llt(string_a, string_b)
+```
+```fortran
+     elemental logical function llt(string_a, string_b)
 
-    character(len=*),intent(in) :: string_a
-    character(len=*),intent(in) :: string_b
+     character(len=*),intent(in) :: string_a
+     character(len=*),intent(in) :: string_b
 ```
 ### **Description**
 

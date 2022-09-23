@@ -5,15 +5,15 @@
 **iall**(3) - \[BIT:LOGICAL\] Bitwise and of array elements
 
 ### **Syntax**
-
 ```fortran
-  result = iall(array, mask)
-
-    or
-
-  result = iall(array, dim, mask)
+    result = iall(array, mask)
 ```
-
+or
+```fortran
+    result = iall(array, dim, mask)
+```
+```fortran
+```
 ### **Description**
 
 Reduces with bitwise _and_ the elements of **array** along dimension **dim** if

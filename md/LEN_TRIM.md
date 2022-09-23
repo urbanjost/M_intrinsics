@@ -5,16 +5,15 @@
 **len_trim**(3) - \[CHARACTER:WHITESPACE\] Length of a character entity without trailing blank characters
 
 ### **Syntax**
-
 ```fortran
-   result = len_trim(string, kind)
-
-    integer(kind=KIND) function len_trim(string,KIND) result (value)
-    character(len=*),intent(in) :: string
-    integer,optional,intent(in) :: KIND
-    integer(kind=KIND) :: value
+    result = len_trim(string, kind)
 ```
-
+```fortran
+     integer(kind=KIND) function len_trim(string,KIND) result (value)
+     character(len=*),intent(in) :: string
+     integer,optional,intent(in) :: KIND
+     integer(kind=KIND) :: value
+```
 ### **Description**
 
 Returns the length of a character string, ignoring any trailing blanks.

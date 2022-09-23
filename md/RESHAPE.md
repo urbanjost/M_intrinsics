@@ -5,11 +5,11 @@
 **reshape**(3) - \[ARRAY RESHAPE\] Function to reshape an array
 
 ### **Syntax**
-
 ```fortran
-result = reshape(source, shape, pad, order)
+    result = reshape(source, shape, pad, order)
 ```
-
+```fortran
+```
 ### **Description**
 
 Reshapes array **source** to correspond to **shape**. If necessary, the new

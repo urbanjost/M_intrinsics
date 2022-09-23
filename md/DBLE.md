@@ -5,15 +5,14 @@
 **dble**(3) - \[TYPE:NUMERIC\] Double conversion function
 
 ### **Syntax**
-
 ```fortran
-result = dble(a)
-
-    elemental function dble(a)
-    type(real(kind=kind(0.0d0)))     :: dble
-    type(TYPE(kind=KIND)),intent(in) :: a
+    result = dble(a)
 ```
-
+```fortran
+     elemental function dble(a)
+     type(real(kind=kind(0.0d0)))     :: dble
+     type(TYPE(kind=KIND)),intent(in) :: a
+```
 where TYPE may be _integer_, _real_, or _complex_ and KIND any kind
 supported by the TYPE.
 

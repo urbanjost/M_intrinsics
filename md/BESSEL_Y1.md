@@ -5,11 +5,11 @@
 **bessel_y1**(3) - \[MATHEMATICS\] Bessel function of the second kind of order 1
 
 ### **Syntax**
-
 ```fortran
     result = bessel_y1(x)
 ```
-
+```fortran
+```
 ### **Description**
 
 **bessel_y1(x)** computes the Bessel function of the second

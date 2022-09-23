@@ -5,20 +5,20 @@
 **abs**(3) - \[NUMERIC\] Absolute value
 
 ### **Syntax**
-
 ```fortran
-  result = abs(a)
-
-   TYPE(kind=KIND) elemental function abs(a)
-
-   TYPE(kind=KIND),intent(in) :: a
+    result=abs(a)
 ```
+```fortran
+     elemental TYPE(kind=KIND) function abs(a)
 
+     TYPE(kind=KIND),intent(in) :: a
+```
    where the TYPE and KIND is determined by the type and type attributes
    of **a**, which may be any _real_, _integer_, or _complex_ value.
 
-   If the type of **a** is _complex_ the type returned will be _real_
-   with the same kind as the _real_ part of the input value.
+   If the type of **a** is _complex_ the type returned will be a _real_
+   value representing the distance from (0.0,0.0) with the same kind as
+   the _real_ part of the input value.
 
    Otherwise the returned type will be the same type as **a**.
 
@@ -36,15 +36,15 @@
 ### **Arguments**
 
 - **a**
-  : the type of the argument shall be an _integer_, _real_, or _complex_
-  scalar or array.
+  : The value to compute the absolute value of. the type of the argument
+  shall be an _integer_, _real_, or _complex_ scalar or array.
 
 ### **Returns**
 
    If **a** is of type _integer_ or _real_, the value of the result is
    **|a|** and of the same type and kind as the input argument.
 
-   (Take particular note) if **a** is _complex_ with value **(x, y)**,
+   If **a** is _complex_ with value **(x, y)**,
    the result is a _real_ equal to a processor-dependent approximation to
    **sqrt(x\*\*2 + y\*\*2)** computed without undue overflow or underflow.
 
@@ -55,67 +55,63 @@ Sample program:
 ```fortran
 program demo_abs
 implicit none
+integer,parameter :: dp=kind(0.0d0)
+
 integer           :: i = -1
 real              :: x = -1.0
 complex           :: z = (-3.0,-4.0)
-doubleprecision   :: rr = -45.78d+00
-character(len=*),parameter :: &
- frmt =  '(1x,a15,1x," In: ",g0,            T51," Out: ",g0)', &
- frmtc = '(1x,a15,1x," In: (",g0,",",g0,")",T51," Out: ",g0)'
-integer,parameter :: dp=kind(0.0d0)
+doubleprecision   :: rr = -45.78_dp
 
-  ! any integer, real, or complex type
+character(len=*),parameter :: &
+   ! some formats
+   frmt  =  '(1x,a15,1x," In: ",g0,            T51," Out: ",g0)', &
+   frmtc = '(1x,a15,1x," In: (",g0,",",g0,")",T51," Out: ",g0)',  &
+   g     = '(*(g0,1x))'
+
+  ! basic usage
+    ! any integer, real, or complex type
     write(*, frmt)  'integer         ',  i, abs(i)
     write(*, frmt)  'real            ',  x, abs(x)
     write(*, frmt)  'doubleprecision ', rr, abs(rr)
     write(*, frmtc) 'complex         ',  z, abs(z)
 
-  ! any value whose positive value is representable
-  ! A dusty corner is that abs(-huge(0)-1) of an integer would input
-  ! a representable negative value on most machines but result in a
-  ! positive value out of range.
+  ! You can take the absolute value of any value whose positive value
+  ! is representable with the same type and kind.
     write(*, *) 'abs range test : ', abs(huge(0)), abs(-huge(0))
     write(*, *) 'abs range test : ', abs(huge(0.0)), abs(-huge(0.0))
     write(*, *) 'abs range test : ', abs(tiny(0.0)), abs(-tiny(0.0))
+    ! A dusty corner is that abs(-huge(0)-1) of an integer would be
+    ! a representable negative value on most machines but result in a
+    ! positive value out of range.
 
   ! elemental
-    write(*, *) 'abs is elemental: ', abs([20,  0,  -1,  -3,  100])
+    write(*, g) ' abs is elemental:', abs([20,  0,  -1,  -3,  100])
 
-  ! complex input produces real output
-    write(*, *)  cmplx(30.0,40.0)
+  ! COMPLEX input produces REAL output
+    write(*, g)' complex input produces real output', &
+    & cmplx(30.0_dp,40.0_dp,kind=dp)
+    ! dusty corner: "kind=dp" is required or the value returned by
+    ! CMPLX() is a default real instead of double precision
 
   ! the returned value for complex input can be thought of as the
   ! distance from the origin <0,0>
-    write(*, *) 'distance of <XX,YY> from zero is', &
-               & distance(30.0_dp,40.0_dp)
-
-    contains
-
-    real(kind=dp) elemental function distance(x,y)
-    real(kind=dp),intent(in) :: x,y
-       ! dusty corners:
-       ! note that KIND=DP is NOT optional
-       ! if the desired result is KIND=dp.
-       ! See cmplx(3).
-       distance=abs( cmplx(x,y,kind=dp) )
-    end function distance
+    write(*, g) ' distance of (', z, ') from zero is', abs( z )
 
 end program demo_abs
 ```
-  Results:
+Result:
 ```text
-    integer          In: -1                     Out: 1
-    real             In: -1.000000              Out: 1.000000
-    doubleprecision  In: -45.78000000000000     Out: 45.78000000000000
-    complex          In: (-3.000000,-4.000000)  Out: 5.000000
-    abs range test :   2147483647  2147483647
-    abs range test :   3.4028235E+38  3.4028235E+38
-    abs range test :   1.1754944E-38  1.1754944E-38
-    abs is elemental: 20 0 1 3 100
-    (30.00000,40.00000)
-    distance of <XX,YY> from zero is   50.0000000000000
+ integer          In: -1                           Out: 1
+ real             In: -1.00000000                  Out: 1.00000000
+ doubleprecision  In: -45.780000000000001          Out: 45.780000000000001
+ complex          In: (-3.00000000,-4.00000000)    Out: 5.00000000
+ abs range test :   2147483647  2147483647
+ abs range test :    3.40282347E+38   3.40282347E+38
+ abs range test :    1.17549435E-38   1.17549435E-38
+ abs is elemental: 20 0 1 3 100
+ complex input produces real output 30.000000000000000 40.000000000000000
+ distance of ( -3.00000000 -4.00000000 ) from zero is 5.00000000
 ```
-
 ### **Standard**
 
    FORTRAN 77 and later

@@ -5,11 +5,11 @@
 **count**(3) - \[ARRAY REDUCTION\] Count function
 
 ### **Syntax**
-
 ```fortran
-result = count(mask, dim, kind)
+    result = count(mask, dim, kind)
 ```
-
+```fortran
+```
 ### **Description**
 
 Counts the number of _.true._ elements in a logical **mask**, or, if the **dim**

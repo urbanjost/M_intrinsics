@@ -5,14 +5,13 @@
 **maskl**(3) - \[BIT:SET\] Generates a left justified mask
 
 ### **Syntax**
-
 ```fortran
-result = maskl(i, kind)
-
-  integer elemental function maskl(i,kind)
-  integer,intent(in),optional :: kind
+    result = maskl(i, kind)
 ```
-
+```fortran
+     integer elemental function maskl(i,kind)
+     integer,intent(in),optional :: kind
+```
 ### **Description**
 
 **maskl(i\[, _kind_\])** has its leftmost **i** bits set to **1**, and the

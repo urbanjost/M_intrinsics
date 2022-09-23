@@ -5,11 +5,13 @@
 **minval**(3) - \[ARRAY REDUCTION\] Minimum value of an array
 
 ### **Syntax**
-
 ```fortran
-result = minval(array, dim, mask) result = minval(array, mask)
-```
+    result = minval(array, dim, mask) 
 
+    result = minval(array, mask)
+```
+```fortran
+```
 ### **Description**
 
   Determines the minimum value of the elements in an array value, or,

@@ -5,11 +5,11 @@
 **merge**(3) - \[ARRAY CONSTRUCTION\] Merge variables
 
 ### **Syntax**
-
 ```fortran
-result = merge(tsource, fsource, mask)
+    result = merge(tsource, fsource, mask)
 ```
-
+```fortran
+```
 ### **Description**
 
 The elemental function **merge**(3) selects values from two arrays or

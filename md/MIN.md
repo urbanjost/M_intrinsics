@@ -5,10 +5,20 @@
 **min**(3) - \[NUMERIC\] Minimum value of an argument list
 
 ### **Syntax**
-
 ```fortran
-result = min(a1, a2, a3, ... )
+    result = min(a1, a2, a3, ... )
 ```
+```fortran
+     elemental TYPE(kind=kind(a1)) function min(a1, a2, a3, ... )
+
+     TYPE(kind=kind(a1),intent(in)   :: a1
+     TYPE(kind=kind(a1),intent(in)   :: a2
+     TYPE(kind=kind(a1),intent(in)   :: a3
+                :
+                :
+                :
+```
+Where **TYPE** may be _integer_ or _real_
 
 ### **Description**
 
@@ -37,13 +47,10 @@ implicit none
     write(*,*)min(10.0,11.0,30.0,-100.0)
 end program demo_min
 ```
-
 Results:
-
 ```
       -100.0000000
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later

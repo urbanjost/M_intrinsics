@@ -5,14 +5,13 @@
 **asin**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arcsine function
 
 ### **Syntax**
-
 ```fortran
-result = asin(x)
-
-    elemental TYPE(kind=KIND) function asin(x)
-    TYPE(kind=KIND) :: x
+    result = asin(x)
 ```
-
+```fortran
+     elemental TYPE(kind=KIND) function asin(x)
+     TYPE(kind=KIND) :: x
+```
 where the returned value has the kind of the input value
 and TYPE may be _real_ or _complex_
 

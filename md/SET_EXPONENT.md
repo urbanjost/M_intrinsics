@@ -5,11 +5,11 @@
 **set_exponent**(3) - \[MODEL_COMPONENTS\] Set the exponent of the model
 
 ### **Syntax**
-
 ```fortran
-result = set_exponent(x, i)
+    result = set_exponent(x, i)
 ```
-
+```fortran
+```
 ### **Description**
 
 **set_exponent(x, i)** returns the real number whose fractional part is

@@ -5,11 +5,11 @@
 **atomic_fetch_or**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise OR operation with prior fetch
 
 ### **Syntax**
-
 ```fortran
-call atomic_fetch_or(atom, value, old, stat)
+    call atomic_fetch_or(atom, value, old, stat)
 ```
-
+```fortran
+```
 ### **Description**
 
 **atomic_fetch_or(atom, value, old)** atomically stores the value of

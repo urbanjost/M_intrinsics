@@ -5,7 +5,8 @@
 **execute_command_line**(3) - \[SYSTEM:PROCESSES\] Execute a shell command
 
 ### **Syntax**
-
+```fortran
+```
 ```fortran
    subroutine execute_command_line(command, wait, exitstat, cmdstat, cmdmsg)
 
@@ -15,7 +16,6 @@
     integer,intent(out),optional :: cmdstat
     character(len=*),intent(out),optional :: cmdmsg
 ```
-
 ### **Description**
 
 The **command** argument is passed to the shell and executed. (The shell is

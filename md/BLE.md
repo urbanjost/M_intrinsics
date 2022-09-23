@@ -6,7 +6,10 @@
 
 ### **Syntax**
 ```fortran
-    elemental function ble(i, j)
+    result=ble(i,j)
+```
+```fortran
+     elemental function ble(i, j)
 
      integer(kind=KIND),intent(in) :: i
      integer(kind=KIND),intent(in) :: j

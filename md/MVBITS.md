@@ -5,11 +5,11 @@
 **mvbits**(3) - \[BIT:COPY\] reproduce bit patterns found in one integer in another
 
 ### **Syntax**
-
 ```fortran
-call mvbits(from, frompos, len, to, topos)
+    call mvbits(from, frompos, len, to, topos)
 ```
-
+```fortran
+```
 ### **Description**
 
 **mvbits(3f)** copies a bit pattern found in a range of adjacent bits in

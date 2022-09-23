@@ -5,11 +5,11 @@
 **iand**(3) - \[BIT:LOGICAL\] Bitwise logical and
 
 ### **Syntax**
-
 ```fortran
-result = iand(i, j)
+    result = iand(i, j)
 ```
-
+```fortran
+```
 ### **Description**
 
 Bitwise logical **and**.

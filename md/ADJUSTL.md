@@ -5,15 +5,14 @@
 **adjustl**(3) - \[CHARACTER:WHITESPACE\] Left-adjust a string
 
 ### **Syntax**
-
 ```fortran
-    result = adjustl(string)
-
-     character(len=(len(string)) elemental function adjustr(a)
+    result=adjustl(string)
+```
+```fortran
+     elemental character(len=len(string)) function adjustl(string)
 
      character(len=*),intent(in) :: string
 ```
-
 ### **Description**
 
 **adjustl(string)** will left-adjust a string by removing leading

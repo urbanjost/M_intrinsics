@@ -5,11 +5,11 @@
 **is_contiguous**(3) - \[ARRAY INQUIRY\] test if object is contiguous
 
 ### **Syntax**
-
 ```fortran
-result = is_contiguous(a)
+    result = is_contiguous(a)
 ```
-
+```fortran
+```
 ### **Description**
 
 True if and only if an object is contiguous.

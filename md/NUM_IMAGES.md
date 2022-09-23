@@ -5,11 +5,11 @@
 **num_images**(3) - \[COLLECTIVE\] Number of images
 
 ### **Syntax**
-
 ```fortran
-result = num_images(distance, failed)
+    result = num_images(distance, failed)
 ```
-
+```fortran
+```
 ### **Description**
 
 Returns the number of images.

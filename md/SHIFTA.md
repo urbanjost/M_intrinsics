@@ -5,7 +5,8 @@
 **shifta**(3) - \[BIT:SHIFT\] shift bits right with fill
 
 ### **Syntax**
-
+```fortran
+```
 ```fortran
      elemental integer(kind=KIND) function shifta(i, shift)
 

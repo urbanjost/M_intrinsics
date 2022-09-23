@@ -5,11 +5,11 @@
 **atomic_add**(3) - \[ATOMIC\] Atomic ADD operation
 
 ### **Syntax**
-
 ```fortran
-call atomic_add (atom, value, stat)
+    call atomic_add (atom, value, stat)
 ```
-
+```fortran
+```
 ### **Description**
 
 **atomic_ad(atom, value)** atomically adds the value of VAR to the

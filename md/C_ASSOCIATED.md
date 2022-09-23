@@ -5,11 +5,11 @@
 **c_associated**(3) - \[ISO_C_BINDING\] Status of a C pointer
 
 ### **Syntax**
-
 ```fortran
-result = c_associated(c_prt_1, c_ptr_2)
+    result = c_associated(c_prt_1, c_ptr_2)
 ```
-
+```fortran
+```
 ### **Description**
 
 **c_associated(c_prt_1\[, c_ptr_2\])** determines the status of the

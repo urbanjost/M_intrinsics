@@ -5,14 +5,14 @@
 **is_iostat_end**(3) - \[STATE\] Test for end-of-file value
 
 ### **Syntax**
-
 ```fortran
-function is_iostat_end(i)
-
-    logical function   :: is_iostat_end (i) result(yesno)
-    integer,intent(in) :: i
 ```
+```fortran
+     function is_iostat_end(i)
 
+     logical function   :: is_iostat_end (i) result(yesno)
+     integer,intent(in) :: i
+```
 ### **Description**
 
 is_iostat_end(3) tests whether a variable (assumed returned as a status

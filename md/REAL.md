@@ -5,11 +5,11 @@
 **real**(3) - \[TYPE:NUMERIC\] Convert to real type
 
 ### **Syntax**
-
 ```fortran
-result = real(x, kind)
+    result = real(x, kind)
 ```
-
+```fortran
+```
 ### **Description**
 
 **real(x, kind)** converts its argument **x** to a real type.

@@ -5,13 +5,13 @@
 **ior**(3) - \[BIT:LOGICAL\] Bitwise logical inclusive or
 
 ### **Syntax**
-
 ```fortran
-   result = ior(i, j)
-    integer,intent(in) :: i
-    integer,intent(in) :: j
+    result = ior(i, j)
 ```
-
+```fortran
+     integer,intent(in) :: i
+     integer,intent(in) :: j
+```
 ### **Description**
 
 **ior** returns the bit-wise Boolean inclusive-**or** of **i** and **j**.

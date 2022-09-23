@@ -5,15 +5,15 @@
 **iany**(3) - \[BIT:LOGICAL\] Bitwise or of array elements
 
 ### **Syntax**
-
 ```fortran
-  result = iany(array, mask)
-
-    or
-
-  result = iany(array, dim, mask)
+    result = iany(array, mask)
 ```
-
+or
+```fortran
+    result = iany(array, dim, mask)
+```
+```fortran
+```
 ### **Description**
 
 Reduces with bitwise or (inclusive or) the elements of **array** along

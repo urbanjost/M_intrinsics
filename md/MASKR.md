@@ -5,14 +5,13 @@
 **maskr**(3) - \[BIT:SET\] Generates a right-justified mask
 
 ### **Syntax**
-
 ```fortran
-result = maskr(i, kind)
-
-  integer elemental function maskr(i,kind)
-  integer,intent(in),optional :: kind
+    result = maskr(i, kind)
 ```
-
+```fortran
+     integer elemental function maskr(i,kind)
+     integer,intent(in),optional :: kind
+```
 ### **Description**
 
 **maskr(i\[, kind\])** has its rightmost **i** bits set to 1, and the

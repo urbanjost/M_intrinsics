@@ -5,11 +5,11 @@
 **c_f_pointer**(3) - \[ISO_C_BINDING\] Convert C into Fortran pointer
 
 ### **Syntax**
-
 ```fortran
-call c_f_pointer(cptr, fptr, shape)
+    call c_f_pointer(cptr, fptr, shape)
 ```
-
+```fortran
+```
 ### **Description**
 
 **c_f_pointer(cptr, fptr\[, shape\])** Assign the target, the C

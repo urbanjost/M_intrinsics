@@ -5,11 +5,11 @@
 **storage_size**(3) - \[BIT:INQUIRY\] Storage size in bits
 
 ### **Syntax**
-
 ```fortran
-result = storage_size(a, kind)
+    result = storage_size(a, kind)
 ```
-
+```fortran
+```
 ### **Description**
 
 Returns the storage size of argument **a** in bits.

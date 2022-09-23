@@ -5,11 +5,11 @@
 **spacing**(3) - \[MODEL_COMPONENTS\] Smallest distance between two numbers of a given type
 
 ### **Syntax**
-
 ```fortran
-result = spacing(x)
+    result = spacing(x)
 ```
-
+```fortran
+```
 ### **Description**
 
 Determines the distance between the argument **x** and the nearest adjacent

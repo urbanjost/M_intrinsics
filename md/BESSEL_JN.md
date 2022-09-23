@@ -5,13 +5,15 @@
 **bessel_jn**(3) - \[MATHEMATICS\] Bessel function of the first kind
 
 ### **Syntax**
-
 ```fortran
-  result = bessel_jn(n, x)
-
-  result = bessel_jn(n1, n2, x)
+    result = bessel_jn(n, x)
 ```
-
+or
+```fortran
+    result = bessel_jn(n1, n2, x)
+```
+```fortran
+```
 ### **Description**
 
 **bessel_jn(n, x)** computes the Bessel function of the first

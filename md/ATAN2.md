@@ -6,10 +6,13 @@ function
 
 ### **Syntax**
 ```fortran
-  elemental function atan2(y, x)
+    result=atan2(y, x)
+```
+```fortran
+     elemental function atan2(y, x)
 
-    type(real,kind=KIND) :: atan2
-    type(real,kind=KIND),intent(in) :: y, x
+     type(real,kind=KIND) :: atan2
+     type(real,kind=KIND),intent(in) :: y, x
 ```
 The return value has the same type and kind as **y** and **x**.
 

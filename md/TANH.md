@@ -5,11 +5,11 @@
 **tanh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Hyperbolic tangent function
 
 ### **Syntax**
-
 ```fortran
-x = tanh(x)
+    x = tanh(x)
 ```
-
+```fortran
+```
 ### **Description**
 
 **tanh(x)** computes the hyperbolic tangent of **x**.

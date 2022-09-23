@@ -5,11 +5,11 @@
 **not**(3) - \[BIT:LOGICAL\] Logical negation
 
 ### **Syntax**
-
 ```fortran
-result = not(i)
+    result = not(i)
 ```
-
+```fortran
+```
 ### **Description**
 
 NOT returns the bitwise Boolean inverse of I.

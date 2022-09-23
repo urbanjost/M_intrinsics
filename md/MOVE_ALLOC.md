@@ -5,11 +5,11 @@
 **move_alloc**(3) - \[\] Move allocation from one object to another
 
 ### **Syntax**
-
 ```fortran
-call move_alloc(src, dest)
+    call move_alloc(src, dest)
 ```
-
+```fortran
+```
 ### **Description**
 
 **move_alloc(src, dest)** moves the allocation from **src** to

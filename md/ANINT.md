@@ -5,10 +5,17 @@
 **anint**(3) - \[NUMERIC\] Nearest whole number
 
 ### **Syntax**
-
 ```fortran
-result = anint(a, kind)
+    result = anint(a [,kind])
 ```
+```fortran
+     elemental real(kind=KIND) function iaint(x,kind)
+
+     real(kind=KIND,intent(in)   :: x
+     integer,intent(in),optional :: kind
+```
+where the _kind_ of the result is the same as as **x** unless
+**kind** is present.
 
 ### **Description**
 
@@ -27,9 +34,9 @@ result = anint(a, kind)
 
 The return value is of type real with the kind type parameter of the
 argument if the optional **kind** is absent; otherwise, the kind type
-parameter will be given by **kind**. If **a** is greater than zero, **anint(a)**
-returns **aint(a + 0.5)**. If **a** is less than or equal to zero then it
-returns **aint(a - 0.5)**.
+parameter will be given by **kind**. If **a** is greater than zero,
+**anint(a)** returns **aint(a + 0.5)**. If **a** is less than or equal
+to zero then it returns **aint(a - 0.5)**.
 
 ### **Examples**
 
@@ -57,7 +64,6 @@ real(kind=real64) :: x8
 
 end program demo_anint
 ```
-
 Results:
 
 ```text
@@ -69,7 +75,6 @@ Results:
     1.00000000       1.00000000       2.00000000       2.00000000
     2.00000000       3.00000000       3.00000000
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later

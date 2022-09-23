@@ -8,22 +8,21 @@
 
 There are two forms to this function:
 ```fortran
-
    reduce(array, operation, mask, identity, ordered)
    reduce(array, operation, dim, mask, identity, ordered)
 ```
 ```fortran
-      type(TYPE),intent(in)          :: array
-      pure function                  :: operation
-      integer,intent(in),optional    :: dim
-      logical,optional               :: mask
-      type(TYPE),intent(in),optional :: identity
-      logical,intent(in),optional    :: ordered
+     type(TYPE),intent(in)          :: array
+     pure function                  :: operation
+     integer,intent(in),optional    :: dim
+     logical,optional               :: mask
+     type(TYPE),intent(in),optional :: identity
+     logical,intent(in),optional    :: ordered
 ```
    where TYPE may be of any type. TYPE must be the same for **array**
    and **identity**.
 
-### **description**
+### **Description**
 
    Reduce a list of conditionally selected values from an array to a
    single value by iteratively applying a binary function.
@@ -42,7 +41,7 @@ There are two forms to this function:
    as the function is recursively applied to all the remaining selected
    values in the input array.
 
-### **options**
+### **Options**
 
 - **array**
   : An array of any type and allowed rank to select values from.
@@ -97,7 +96,7 @@ There are two forms to this function:
   reduction. Otherwise, the compiler is free to assume that the operation
   is commutative and may evaluate the reduction in the most optimal way.
 
-### **result**
+### **Result**
 
 The result is of the same type and type parameters as **array**. It is
 scalar if **dim** does not appear.
@@ -106,7 +105,7 @@ If **dim** is present, it indicates the one dimension along which to
 perform the reduction, and the resultant array has a rank reduced by
 one relative to the input array.
 
-### **examples**
+### **Examples**
 
    The following examples all use the function MY_MULT, which returns
    the product of its two real arguments.

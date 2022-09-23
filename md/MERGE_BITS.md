@@ -5,15 +5,14 @@
 **merge_bits**(3) - \[BIT:COPY\] Merge bits using a mask
 
 ### **Syntax**
-
 ```fortran
-result = merge_bits(i, j, mask)
-
-    elemental function merge_bits(i,j,mask) result(r)
-    integer(kind=KIND), intent(in) :: i, j, mask
-    integer(kind=KIND) :: r
+    result = merge_bits(i, j, mask)
 ```
-
+```fortran
+     elemental function merge_bits(i,j,mask) result(r)
+     integer(kind=KIND), intent(in) :: i, j, mask
+     integer(kind=KIND) :: r
+```
 where the result and all input values have the same _integer_ type and
 KIND with the exception that the mask and either **i** or **j** may be
 a BOZ constant.

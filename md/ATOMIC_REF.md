@@ -5,11 +5,11 @@
 **atomic_ref**(3) - \[ATOMIC\] Obtaining the value of a variable atomically
 
 ### **Syntax**
-
 ```fortran
-call atomic_ref(value, atom, stat)
+    call atomic_ref(value, atom, stat)
 ```
-
+```fortran
+```
 ### **Description**
 
 **atomic_ref(value, atom)** atomically assigns the value of the

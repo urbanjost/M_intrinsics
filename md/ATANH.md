@@ -5,11 +5,11 @@
 **atanh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Inverse hyperbolic tangent function
 
 ### **Syntax**
-
 ```fortran
-result = atanh(x)
+    result = atanh(x)
 ```
-
+```fortran
+```
 ### **Description**
 
 **atanh(x)** computes the inverse hyperbolic tangent of **x**.

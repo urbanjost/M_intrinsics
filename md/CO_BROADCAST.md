@@ -5,11 +5,11 @@
 **co_broadcast**(3) - \[COLLECTIVE\] Copy a value to all images the current set of images
 
 ### **Syntax**
-
 ```fortran
-call co_broadcast(a, source_image, stat, errmsg)
+    call co_broadcast(a, source_image, stat, errmsg)
 ```
-
+```fortran
+```
 ### **Description**
 
 **co_broadcast(3)** copies the value of argument **a** on the image with image

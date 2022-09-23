@@ -5,11 +5,11 @@
 **eoshift**(3) - \[TRANSFORMATIONAL\] End-off shift elements of an array
 
 ### **Syntax**
-
 ```fortran
-result = eoshift(array, shift, boundary, dim)
+    result = eoshift(array, shift, boundary, dim)
 ```
-
+```fortran
+```
 ### **Description**
 
 **eoshift(array, shift\[, boundary, dim\])** performs an end-off shift

@@ -5,16 +5,15 @@
 **acos**(3) - \[MATHEMATICS:TRIGONOMETRIC\] arccosine (inverse cosine) function
 
 ### **Syntax**
-
 ```fortran
-  result = acos(x)
-
-   TYPE(kind=KIND),elemental :: acos
-
-   TYPE(kind=KIND,intent(in) :: x
+    result=acos(x)
 ```
+```fortran
+     elemental TYPE(kind=KIND) function acos(x)
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any **KIND** supported
+     TYPE(kind=KIND,intent(in) :: x
+```
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
 by the associated type.
 
 ### **Description**

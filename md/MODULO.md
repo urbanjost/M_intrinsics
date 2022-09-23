@@ -5,11 +5,11 @@
 **modulo**(3) - \[NUMERIC\] Modulo function
 
 ### **Syntax**
-
 ```fortran
-result = modulo(a, p)
+    result = modulo(a, p)
 ```
-
+```fortran
+```
 ### **Description**
 
 **modulo(a,p)** computes the **a** modulo **p**.
