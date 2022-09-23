@@ -5,16 +5,17 @@
 **trailz**(3) - \[BIT:COUNT\] Number of trailing zero bits of an integer
 
 ### **Syntax**
-
-    result = trailz(i) integer :: result
 ```fortran
-     integer(kind=NNN),intent(in) :: i
+    result = trailz(i) 
 ```
 ```fortran
+     integer function trailz(i)
+
+     integer(kind=KIND),intent(in) :: i
 ```
 ### **Description**
 
-**trailz(3)** returns the number of trailing zero bits of an _integer_ value
+**trailz(3)** returns the number of trailing zero bits of an _integer_ value.
 
 ### **Arguments**
 

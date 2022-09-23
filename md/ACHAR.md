@@ -69,7 +69,7 @@ integer :: i
 contains
 ! a classic use of achar(3) is to convert the case of a string
 
-elemental pure function upper(str) result (string)
+pure elemental function upper(str) result (string)
 !
 !$@(#) upper(3f): function to return a trimmed uppercase-only string
 !

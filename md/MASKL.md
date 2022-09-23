@@ -9,7 +9,7 @@
     result = maskl(i, kind)
 ```
 ```fortran
-     integer elemental function maskl(i,kind)
+     elemental integer function maskl(i,kind)
      integer,intent(in),optional :: kind
 ```
 ### **Description**

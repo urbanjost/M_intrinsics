@@ -2,34 +2,29 @@
 
 ### **Name**
 
-**verify**(3) - \[CHARACTER:SEARCH\] Scan a string for the absence of a set of characters
+**verify**(3) - \[CHARACTER:SEARCH\] Scan a string for the absence of
+a set of characters
 
 ### **Syntax**
-
 ```fortran
-    result = verify(string, set, back, kind)
+    result = verify(string, set [,back] [,kind] )
 ```
 ```fortran
-     integer(kind=KIND) elemental function verify(string,set,back,kind)
+     elemental integer(kind=KIND) function verify(string,set,back,kind)
 
      character(len=*),intent(in) :: string
      character(len=*),intent(in) :: set
      logical,intent(in),optional :: back
-     integer,intent(in),optional :: KIND
+     integer,intent(in),optional :: kind
 ```
+the kind of the returned value is the same as **kind** if
+present. Otherwise a default _integer_ kind is returned.
+
 ### **Description**
 
 Verifies that all the characters in **string** belong to the set of
-characters in **set** by identifying the first character in the string(s)
-that is not in the set(s).
-
-If **back** is either absent or equals _.false._, this function
-returns the position of the leftmost character of **string** that is
-not in **set**.
-
-If **back** equals _.true._, the rightmost position is returned.
-
-If all characters of **string** are found in **set**, the result is zero.
+characters in **set** by identifying the position of the first character
+in the string that is not in the set.
 
 This makes it easy to verify strings are all uppercase or lowercase,
 follow a basic syntax, only contain printable characters, and many of the
@@ -42,13 +37,16 @@ and **isxdigit**(3c); but for a string as well an an array of characters.
 ### **Arguments**
 
 - **string**
-  : Shall be of type _character_.
+  : The string to search for an unmatched character.
 
 - **set**
-  : Shall be of type _character_.
+  : The set of characters that must be matched.
 
 - **back**
-  : shall be of type _logical_.
+  : The direction to look for an unmatched character. The left-most
+  unmatched character position is returned unless **back** is present
+  and _false_, which causes the position of the right-most unmatched
+  character to be returned.
 
 - **kind**
   : An _integer_ initialization expression indicating the kind
@@ -56,12 +54,14 @@ and **isxdigit**(3c); but for a string as well an an array of characters.
 
 ### **Returns**
 
-The return value is of type _integer_ and of kind **kind**. If **kind**
-is absent, the return value is of default integer kind.
+The position of the first or last (if **back is _.false._) unmatched 
+character in **string**.
+
+If all characters of **string** are found in **set**, the result is zero.
 
 ### **Examples**
 
-Sample program I:
+#### Sample program I:
 
 ```fortran
 program demo_verify
@@ -81,16 +81,13 @@ character(len=2) :: sets(2)=["de","gh"]
    ! first non-lowercase non-blank character
    write(*,*) verify(string,low//' ')
 
-   !! elemental -- using arrays for both strings and for sets
+  ! elemental -- using arrays for both strings and for sets
 
-   ! first character in "Howdy" not in "de", and first letter in "there!"
-   ! not in "gh"
-   write(*,*) verify(strings,sets)
+   ! note character variables in an array have to be of the same length
 
    ! check each string from right to left for non-letter
    write(*,*) 'last non-letter',verify(strings,upp//low,back=.true.)
 
-   ! note character variables in an array have to be of same length
    ! find last non-uppercase character in "Howdy"
    ! and first non-lowercase in "There!"
    write(*,*) verify(strings,[upp,low],back=[.true.,.false.])
@@ -99,8 +96,11 @@ character(len=2) :: sets(2)=["de","gh"]
    ! 0' found none unmatched
    write(*,*) verify("fortran", "nartrof")
 
+   ! first character in "Howdy" not in "de", and first letter in "there!"
+   ! not in "gh"
+   write(*,*) verify(strings,sets)
 
-    !! CHECK IF STRING IS OF FORM NN-HHHHH
+  ! check if string is of form NN-HHHHH
     CHECK : block
        logical                    :: lout
        character(len=80)          :: chars
@@ -139,7 +139,7 @@ Results:
     32-af43d passed
 ```
 
-Sample program II:
+#### Sample program II:
 
 Determine if strings are valid integer representations
 
@@ -192,7 +192,7 @@ Results:
 | T       | T       | F       | F       | F       | T       | F       |
 ```
 
-Sample program III:
+#### Sample program III:
 
 Determine if strings represent valid Fortran symbol names
 

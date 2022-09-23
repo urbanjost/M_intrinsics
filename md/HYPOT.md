@@ -9,7 +9,7 @@
     result = hypot(x, y)
 ```
 ```fortran
-     real(kind=KIND) elemental function hypot(x,y) result(value)
+     elemental real(kind=KIND) function hypot(x,y) result(value)
      real(kind=KIND),intent(in) :: x, y
 ```
 where **x,y,value** shall all be of the same **kind**.

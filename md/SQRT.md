@@ -9,12 +9,13 @@
     result = sqrt(x)
 ```
 ```fortran
-     TYPE(kind=KIND) elemental function sqrt(x) result(value)
+     elemental TYPE(kind=KIND) function sqrt(x) 
+
      TYPE(kind=KIND),intent(in) :: x
-     TYPE(kind=KIND) :: value
 ```
-Where **TYPE** may be _real_ or _complex_ and **KIND** may be any
-kind valid for the declared type.
+Where **TYPE** may be _real_ or _complex_.
+
+**KIND** may be any kind valid for the declared type.
 
 ### **Description**
 
@@ -49,6 +50,10 @@ have a valid square root.
 
 The return value is of type _real_ or _complex_. The kind type parameter is
 the same as **x**.
+ 
+A result of type complex is the principal value with the real part
+greater than or equal to zero. When the real part of the result is zero,
+the imaginary part has the same sign as the imaginary part of X.
 
 ### **Examples**
 

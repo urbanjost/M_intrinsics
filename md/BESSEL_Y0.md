@@ -9,7 +9,12 @@
     result = bessel_y0(x)
 ```
 ```fortran
+     elemental real(kind=KIND) function bessel_y0(x)
+
+     real(kind=KIND),intent(in) :: x
 ```
+where KIND may be any supported _real_ KIND.
+
 ### **Description**
 
 **bessel_y0(x)** computes the Bessel function of the second

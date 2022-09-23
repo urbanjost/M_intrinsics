@@ -9,7 +9,8 @@
     result = log10(x)
 ```
 ```fortran
-     real(kind=KIND) elemental function log10(x)
+     elemental real(kind=KIND) function log10(x)
+
      real(kind=KIND),intent(in) :: x
 ```
 ### **Description**

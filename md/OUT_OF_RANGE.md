@@ -8,7 +8,7 @@
     result = out_of_range (x, mold [, round])
 ```
 ```fortran
-     logical,elemental               :: out_of_range
+     elemental logical function(x, mold, round)
 
      type(TYPE,kind=KIND),intent(in) :: x
      type(TYPE,kind=KIND),intent(in) :: mold

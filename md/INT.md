@@ -9,7 +9,7 @@
     result = int(a [,kind])
 ```
 ```fortran
-     integer(kind=KIND) elemental function int(a,kind)
+     elemental integer(kind=KIND) function int(a,kind)
 
      TYPE(kind=KIND),intent(in),optional :: a
      integer,optional :: kind

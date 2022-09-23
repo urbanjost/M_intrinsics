@@ -9,7 +9,12 @@
     result = bessel_j1(x)
 ```
 ```fortran
+     elemental real(kind=KIND) function bessel_j1(x)
+
+     real(kind=KIND),intent(in) :: x
 ```
+where KIND may be any supported _real_ KIND.
+
 ### **Description**
 
 **bessel_j1(x)** computes the Bessel function of the first kind

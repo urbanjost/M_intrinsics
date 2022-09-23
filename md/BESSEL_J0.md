@@ -9,7 +9,12 @@
     result = bessel_j0(x)
 ```
 ```fortran
+     elemental real(kind=KIND) function bessel_j0(x)
+
+     real(kind=KIND),intent(in) :: x
 ```
+KIND may be any KIND supported by the _real_ type.
+
 ### **Description**
 
 **bessel_j0(x)** computes the Bessel function of the first kind
@@ -39,13 +44,11 @@ use, intrinsic :: iso_fortran_env, only : real_kinds, &
    write(*,*)x
 end program demo_besj0
 ```
-
 Results:
 
 ```text
       1.0000000000000000
 ```
-
 ### **Standard**
 
 Fortran 2008 and later

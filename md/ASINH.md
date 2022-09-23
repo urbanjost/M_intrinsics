@@ -10,11 +10,11 @@
 ```
 ```fortran
      elemental TYPE(kind=KIND) function asinh(x)
+
      TYPE(kind=KIND) :: x
 ```
-
-Where the returned value has the kind of the input value
-and TYPE may be _real_ or _complex_
+TYPE may be _real_ or _complex_, and the returned value has the type and
+kind of the input value.
 
 ### **Description**
 

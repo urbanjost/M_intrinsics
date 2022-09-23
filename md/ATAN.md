@@ -6,16 +6,16 @@
 
 ### **Syntax**
 ```fortran
-    result = atan(y, x)
+    result = atan(y, [x])
 ```
 ```fortran
+     TYPE(kind=KIND) function atan(y,x)
 
-     TYPE(kind=KIND):: atan
      TYPE(kind=KIND,intent(in) :: x
      TYPE(kind=KIND,intent(in),optional :: y
 ```
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any **KIND** supported
-by the associated type. If **y** is present **x** is \_real`.
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any **KIND**
+supported by the associated type. If **y** is present **x** is \_real`.
 
 ### **Description**
 
