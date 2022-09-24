@@ -1,11 +1,30 @@
       program demo_trim
       implicit none
-      character(len=10), parameter :: s = "gfortran  "
-         write(*,*) len(s), len(trim(s))  ! "10 8", with/without trailing blanks
+      character(len=:), allocatable :: str, strs(:)
+      character(len=*),parameter :: brackets='( *("[",a,"]":,1x) )'
+      integer :: i
 
-         ! with/without trailing blanks
-         write(*,*) len(s), len(trim('   leading'))
-         write(*,*) len(s), len(trim('   trailing    '))
-         write(*,*) len(s), len(trim('               '))
+         str='   trailing    '
+         print brackets, str,trim(str) ! trims it
+
+         str='   leading'
+         print brackets, str,trim(str) ! no effect
+
+         str='            '
+         print brackets, str,trim(str) ! becomes zero length
+         print *,  len(str), len(trim('               '))
+
+        ! array elements are all the same length, so you often
+        ! want to print them
+         strs=[character(len=10) :: "Z"," a b c","ABC",""]
+
+         write(*,*)'untrimmed:'
+         ! everthing prints as ten characters; nice for neat columns
+         print brackets, (strs(i), i=1,size(strs))
+         print brackets, (strs(i), i=size(strs),1,-1)
+         write(*,*)'trimmed:'
+         ! everthing prints trimmed
+         print brackets, (trim(strs(i)), i=1,size(strs))
+         print brackets, (trim(strs(i)), i=size(strs),1,-1)
 
       end program demo_trim

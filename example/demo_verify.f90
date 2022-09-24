@@ -1,59 +1,91 @@
       program demo_verify
       implicit none
-      character(len=*),parameter :: int='0123456789'
-      character(len=*),parameter :: hex='abcdef0123456789'
-      character(len=*),parameter :: low='abcdefghijklmnopqrstuvwxyz'
-      character(len=*),parameter :: upp='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-      character(len=20):: string='   Howdy There!'
-      character(len=6) :: strings(2)=["Howdy ","there!"]
-      character(len=2) :: sets(2)=["de","gh"]
+      ! some useful character sets
+      character,parameter :: &
+       & int*(*)   = '1234567890', &
+       & low*(*)   = 'abcdefghijklmnopqrstuvwxyz', &
+       & upp*(*)   = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', &
+       & punc*(*)  = "!""#$%&'()*+,-./:;<=>?@[\]^_`{|}~", &
+       & blank*(*) = ' ', &
+       & tab       = char(11), &
+       & prnt*(*) = int//low//upp//blank//punc
 
-         write(*,*)'first non-blank character ',verify(string, ' ')
-         ! NOTE: same as len_trim(3)
-         write(*,*)'last non-blank character',verify(string, ' ',back=.true.)
+      character(len=:),allocatable :: string
+      integer :: i
 
-         ! first non-lowercase non-blank character
-         write(*,*) verify(string,low//' ')
+         ! will produce the location of "d", because there is no match in UPP
+         write(*,*) 'something unmatched',verify("ABCdEFG", upp)
+         ! will produce 0 as all letters have a match
+         write(*,*) 'everything matched',verify("ffoorrttrraann", "nartrof")
 
-        ! elemental -- using arrays for both strings and for sets
+         ! easy C-like functionality but does entire strings not just characters
+         write(*,*)'isdigit 123?',verify("123", int) == 0
+         write(*,*)'islower abc?',verify("abc", low) == 0
+         write(*,*)'isalpha aBc?',verify("aBc", low//upp) == 0
+         write(*,*)'isblank aBc dEf?',verify("aBc dEf", blank//tab ) /= 0
+         ! check if all printable characters
+         string="aB;cde,fgHI!Jklmno PQRSTU vwxyz"
+         write(*,*)'isprint?',verify(string,prnt) == 0
+         ! this now has a nonprintable tab character in it
+         string(10:10)=char(11)
+         write(*,*)'isprint?',verify(string,prnt) == 0
 
-         ! note character variables in an array have to be of the same length
+         string=" This is NOT all UPPERCASE "
+         write(*,*)'all uppercase/spaces?',verify(string, blank//upp) == 0
+         string=" THIS IS ALL UPPERCASE "
+         write(*,*) 'string=['//string//']'
+         write(*,*)'all uppercase/spaces?',verify(string, blank//upp) == 0
 
-         ! check each string from right to left for non-letter
-         write(*,*) 'last non-letter',verify(strings,upp//low,back=.true.)
+        ! set and show complex string to be tested
+         string='  Check this out. Let me know  '
+         write(*,*) 'string=['//string//']'
+         write(*,*) '        '//repeat(int,4) ! number line
+         ! the Fortran functions result position just not a logical like C
+         ! which can be very useful for parsing strings
+         write(*,*)'first non-blank character',verify(string, blank)
+         write(*,*)'last non-blank character',verify(string, blank,back=.true.)
+         write(*,*)'first non-letter non-blank',verify(string,low//upp//blank)
 
-         ! find last non-uppercase character in "Howdy"
-         ! and first non-lowercase in "There!"
-         write(*,*) verify(strings,[upp,low],back=[.true.,.false.])
+        !VERIFY(3) is elemental so you can check an array of strings in one call
+         ! are strings all letters (or blanks)?
+         write(*,*) 'array of strings',verify( &
+         ! strings must all be same length, so force to length 10
+         & [character(len=10) :: "YES","ok","000","good one","Nope!"], &
+         & low//upp//blank) == 0
 
-         write(*,*) verify("fortran", "", .true.)  ! 7, found 'n'
-         ! 0' found none unmatched
-         write(*,*) verify("fortran", "nartrof")
+         ! rarer, but the set can be an array, not just the strings to test
+         ! you could do ISPRINT() this way :>
+         write(*,*)'isprint?',.not.all(verify("aBc", [(char(i),i=32,126)])==1)
 
-         ! first character in "Howdy" not in "de", and first letter in "there!"
-         ! not in "gh"
+      end program demo_verify
+      program demo_verify
+      implicit none
+      character(len=*),parameter :: &
+        & int='0123456789', &
+        & low='abcdefghijklmnopqrstuvwxyz', &
+        & upp='ABCDEFGHIJKLMNOPQRSTUVWXYZ', &
+        & blank=' '
+      ! note character variables in an array have to be of the same length
+      character(len=6) :: strings(3)=["Go    ","right ","home! "]
+      character(len=2) :: sets(3)=["do","re","me"]
+
+        ! elemental -- you can use arrays for both strings and for sets
+
+         ! check each string from right to left for non-letter/non-blank
+         write(*,*)'last non-letter',verify(strings,upp//low//blank,back=.true.)
+
+         ! even BACK can be an array
+         ! find last non-uppercase character in "Howdy "
+         ! and first non-lowercase in "there "
+         write(*,*) verify(strings(1:2),[upp,low],back=[.true.,.false.])
+
+         ! using a null string for a set is not well defined. Avoid it
+         write(*,*) 'null',verify("for tran ", "", .true.) ! 8,length of string?
+         write(*,*) 'blank',verify("for tran ", " ", .true.) ! 7,found 'n'
+
+         ! first character in  "Go    " not in "do",
+         ! and first letter in "right " not in "ri"
+         ! and first letter in "home! " not in "me"
          write(*,*) verify(strings,sets)
 
-        ! check if string is of form NN-HHHHH
-          CHECK : block
-             logical                    :: lout
-             character(len=80)          :: chars
-
-             chars='32-af43d'
-             lout=.true.
-
-             ! are the first two characters integer characters?
-             lout = lout.and.(verify(chars(1:2), int) == 0)
-
-             ! is the third character a dash?
-             lout = lout.and.(verify(chars(3:3), '-') == 0)
-
-             ! is remaining string a valid representation of a hex value?
-             lout = lout.and.(verify(chars(4:8), hex) == 0)
-
-             if(lout)then
-                write(*,*)trim(chars),' passed'
-             endif
-
-          endblock CHECK
       end program demo_verify

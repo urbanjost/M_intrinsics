@@ -1,7 +1,13 @@
       program demo_iachar
       implicit none
-      ! create function to convert uppercase letters to lowercase
-         write(*,'(a)')lower('abcdefg ABCDEFG')
+         ! basic usage
+          ! just does first letter
+          write(*,*)iachar('ABCD')
+          ! elemental: can do an array of letters
+          write(*,*)iachar(['A','Z','a','z'])
+
+         ! convert all characters to lowercase
+          write(*,'(a)')lower('abcdefg ABCDEFG')
       contains
       !
       pure elemental function lower(str) result (string)

@@ -1225,6 +1225,7 @@ Inverse function: [**sinh**(3)](#sinh)
 ```
 ```fortran
      elemental TYPE(kind=KIND) function asin(x)
+
      TYPE(kind=KIND) :: x
 ```
 where the returned value has the kind of the input value
@@ -1945,6 +1946,7 @@ TS 18508 or later
 ```
 ```fortran
      subroutine atomic_define(atom, value, stat)
+
      TYPE(kind=KIND) :: atom
      TYPE(kind=KIND) :: value
      integer,intent(out),optional :: stat
@@ -3399,6 +3401,7 @@ Fortran 2008 and later
 ```
 ```fortran
     elemental integer(kind=KIND) function btest(i,pos)
+
     integer,intent(in)  :: i
     logical,intent(out) :: pos
 ```
@@ -3903,8 +3906,8 @@ Fortran 2003 and later
 ```fortran
     elemental integer function char(i,kind)
 
-    integer(kind=KIND),intent(in) :: c
-    integer,intent(in),optional :: KIND
+     integer(kind=KIND),intent(in) :: c
+     integer,intent(in),optional :: KIND
 ```
 ### **Description**
 
@@ -4869,6 +4872,7 @@ TS 18508 or later
 ```
 ```fortran
      elemental TYPE(kind=KIND) function cosh(x)
+
      TYPE(kind=KIND),intent(in) :: x
 ```
 where TYPE may be _real_ or _complex_ and KIND may be any
@@ -4930,6 +4934,7 @@ Inverse function: [**acosh**(3)](#acosh)
 ```
 ```fortran
      elemental TYPE(kind=KIND) function cos(x)
+
      TYPE(kind=KIND),intent(in) :: x
 ```
 where TYPE may be _real_ or _complex_ and KIND may be any KIND supported
@@ -5305,6 +5310,7 @@ Fortran 95 and later
 
 ### **Syntax**
 ```fortran
+    result = cshift(array, shift, dim)
 ```
 ```fortran
    type(TYPE, kind=KIND) function cshift(array, shift, dim )
@@ -5457,6 +5463,7 @@ Fortran 2008
 
 ### **Syntax**
 ```fortran
+    call date_and_time([date] [,time] [,zone] [,values] )
 ```
 ```fortran
     subroutine date_and_time(date, time, zone, values)
@@ -5573,6 +5580,7 @@ date and time conversion, formatting and computation
 ```
 ```fortran
      elemental function dble(a)
+
      type(real(kind=kind(0.0d0)))     :: dble
      type(TYPE(kind=KIND)),intent(in) :: a
 ```
@@ -5796,16 +5804,24 @@ FORTRAN 77 and later
     result = dot_product(vector_a, vector_b)
 ```
 ```fortran
+
 ```
 ### **Description**
 
 **dot_product(vector_a, vector_b)** computes the dot product
-multiplication of two vectors vector*a and vector_b. The two vectors
-may be either numeric or logical and must be arrays of rank one and of
-equal size. If the vectors are \_integer* or _real_, the result is
-**sum(vector_a\*vector_b)**. If the vectors are _complex_, the result is
-**sum(conjg(vector_a)\*vector_b)**. If the vectors are _logical_, the
-result is **any(vector_a .and. vector_b)**.
+multiplication of two vectors **vector_a** and **vector_b**.
+
+The two vectors may be either numeric or logical and must be arrays of
+rank one and of equal size.
+
+If the vectors are _integer_ or _real_, the result is
+**sum(vector_a\*vector_b)**.
+
+If the vectors are _complex_, the result is
+**sum(conjg(vector_a)\*vector_b)**.
+
+If the vectors are _logical_, the result is **any(vector_a
+.and. vector_b)**.
 
 ### **Arguments**
 
@@ -5973,6 +5989,7 @@ FORTRAN 77 and later
 **dshiftl**(3) - \[BIT:COPY\] combined left shift of the bits of two integers
 
 ### **Syntax**
+    result = dshiftl(i, j, shift)
 ```fortran
 ```
 ```fortran
@@ -6134,6 +6151,7 @@ Fortran 2008 and later
 
 ### **Syntax**
 ```fortran
+    result = dshiftr(i, j, shift)
 ```
 ```fortran
      elemental integer(kind=KIND) function dshiftr(i, j, shift)
@@ -6276,7 +6294,7 @@ Fortran 2008 and later
 
 ### **Syntax**
 ```fortran
-    result = eoshift(array, shift, boundary, dim)
+    result = eoshift( array, shift [,boundary] [,dim] )
 ```
 ```fortran
 ```
@@ -6757,6 +6775,7 @@ TS 18508 or later
 
 ### **Syntax**
 ```fortran
+   call execute_command_line(command [,wait] [,exitstat] [,cmdstat] [,cmdmsg] )
 ```
 ```fortran
    subroutine execute_command_line(command, wait, exitstat, cmdstat, cmdmsg)
@@ -6860,27 +6879,35 @@ Fortran 2008 and later
 
 ### **Name**
 
-**exp**(3) - \[MATHEMATICS\] Exponential function
+**exp**(3) - \[MATHEMATICS\] Base-e exponential function
 
 ### **Syntax**
 ```fortran
     result = exp(x)
 ```
 ```fortran
+    type(TYPE(kind=KIND)) function exp(x)
+
+     type(TYPE(kind=KIND)),intent(in) :: x
 ```
+**x** may be _real_ or _complex_.
+The return value has the same type and kind as **x**.
+
 ### **Description**
 
-**exp**(x) computes the base "_e_" exponential of **x** where "_e_" is
-_Euler's constant_.
+**exp**(3) returns the value of _e_ (the base of natural logarithms)
+raised to the power of **x**.
+
+"_e_" is also known as _Euler's constant_.
 
 If **x** is of type _complex_, its imaginary part is regarded as a value
 in radians such that (see _Euler's formula_):
-
+```text
 if
-**cx=(re,im)**
+   **cx=(re,im)**
 then
-**exp(cx)=exp(re)\*cmplx(cos(im),sin(im),kind=kind(cx))**
-
+   **exp(cx)=exp(re)\*cmplx(cos(im),sin(im),kind=kind(cx))**
+```
 Since **exp**(3) is the inverse function of **log**(3) the maximum valid magnitude
 of the _real_ component of **x** is **log(huge(x))**.
 
@@ -6892,8 +6919,6 @@ of the _real_ component of **x** is **log(huge(x))**.
 ### **Returns**
 
 The value of the result is **e\*\*x** where **e** is Euler's constant.
-
-The return value has the same type and kind as **x**.
 
 ### **Examples**
 
@@ -7089,7 +7114,7 @@ identified by MASK along dimension DIM matching a target value
 ```
 or
 ```fortran
-findloc(array, value, mask, kind, back)
+    findloc(array, value, mask, kind, back)
 ```
 ```fortran
 ```
@@ -7380,23 +7405,31 @@ Fortran 95 and later
     result = fraction(x)
 ```
 ```fortran
-```
+     elemental real(kind=KIND) function fraction(x)
 
+      real(kind=KIND),intent(in) :: fraction
+```
+  The result has the same characteristics as the argument.
 ### **Description**
 
-**fraction(x)** returns the fractional part of the model representation
-of **x**.
+  **fraction(x)** returns the fractional part of the model representation
+  of **x**.
 
 ### **Arguments**
 
 - **x**
-  : The type of the argument shall be a _real_.
+  : The value to interrogate
 
 ### **Returns**
 
-The return value is of the same type and kind as the argument. The
-fractional part of the model representation of **x** is returned; it is
-**x \* radix(x)\*\*(-exponent(x))**.
+The fractional part of the model representation of **x** is returned;
+it is **x \* radix(x)\*\*(-exponent(x))**.
+
+If **x** has the value zero, the result is zero.
+
+If **x** is an IEEE NaN, the result is that NaN.
+
+If **x** is an IEEE inﬁnity, the result is an IEEE NaN.
 
 ### **Examples**
 
@@ -7410,13 +7443,11 @@ real :: x
    print *, fraction(x), x * radix(x)**(-exponent(x))
 end program demo_fraction
 ```
-
 Results:
 
 ```text
      0.570043862      0.570043862
 ```
-
 ### **Standard**
 
 Fortran 95 and later
@@ -7452,17 +7483,20 @@ Fortran 95 and later
     result = gamma(x)
 ```
 ```fortran
+     elemental real(kind=KIND) function gamma( x)
+
+     type(real,kind=KIND),intent(in) :: x
 ```
+The return value is _real_ with the kind as **x**.
+
 ### **Description**
 
 **gamma(x)** computes Gamma of **x**. For positive whole number values of **n** the
 Gamma function can be used to calculate factorials, as **(n-1)! == gamma(real(n))**.
 That is
-
 ```text
 n! == gamma(real(n+1))
 ```
-
 $$
 \\__Gamma__(x) = \\int\_0\*\*\\infty
 t\*\*{x-1}{\\mathrm{e}}\*\*{__-t__}\\,{\\mathrm{d}}t
@@ -7587,6 +7621,7 @@ Logarithm of the Gamma function: [**log_gamma**(3)](#log_gamma)
 ```
 ```fortran
      subroutine get_command_argument(number,value,length.status)
+
      integer,intent(in)                    :: number
      character(len=*),intent(out),optional :: value
      integer,intent(out),optional          :: length
@@ -7720,6 +7755,7 @@ Fortran 2003 and later
 ```
 ```fortran
      subroutine get_command(command,length,status)
+
      character(len=*),intent(out),optional :: command
      integer,intent(out),optional :: length
      integer,intent(out),optional :: status
@@ -7810,6 +7846,9 @@ Fortran 2003 and later
     call get_environment_variable(name, value, length, status, trim_name)
 ```
 ```fortran
+     subroutine character(len=*) get_environment_variable( &
+     & name [,value] [,length] [,status] [,trim_name] )
+
      character(len=*),intent(in) :: name
      character(len=*),intent(out),optional :: value
      integer,intent(out),optional :: length
@@ -7865,7 +7904,6 @@ being updated concurrently.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_getenv
 implicit none
@@ -7915,13 +7953,11 @@ end function get_env
 
 end program demo_getenv
 ```
-
 Typical Results:
 
 ```text
    HOME="/home/urbanjs"
 ```
-
 ### **Standard**
 
 Fortran 2003 and later
@@ -7939,10 +7975,9 @@ Fortran 2003 and later
     result = huge(x)
 ```
 ```fortran
-     function huge(x) result(answer)
+     type(TYPE(kind=KIND))function huge(x)
 
      TYPE(kind=KIND),intent(in) :: x
-     TYPE(kind=KIND) :: answer
 ```
 where **TYPE** may be _real_ or _integer_ and **KIND** is any supported
 associated _kind_.
@@ -8045,17 +8080,20 @@ Fortran 95 and later
 
 ### **Name**
 
-**hypot**(3) - \[MATHEMATICS\] returns the distance between the point and the origin.
+**hypot**(3) - \[MATHEMATICS\] returns the distance between the point
+and the origin.
 
 ### **Syntax**
 ```fortran
     result = hypot(x, y)
 ```
 ```fortran
-     elemental real(kind=KIND) function hypot(x,y) result(value)
-     real(kind=KIND),intent(in) :: x, y
+     elemental real(kind=KIND) function hypot(x,y)
+
+     real(kind=KIND),intent(in) :: x
+     real(kind=KIND),intent(in) :: y
 ```
-where **x,y,value** shall all be of the same **kind**.
+where **x,y** and the result shall all be of the same **kind**.
 
 ### **Description**
 
@@ -8065,7 +8103,8 @@ equal to $\sqrt{x^2+y^2}$, without undue underflow or overflow.
 In mathematics, the _Euclidean distance_ between two points in Euclidean
 space is the length of a line segment between two points.
 
-**hypot(x,y)** returns the distance between the point **<x,y>** and the origin.
+**hypot(x,y)** returns the distance between the point **<x,y>** and
+the origin.
 
 ### **Arguments**
 
@@ -8145,34 +8184,56 @@ Fortran 2008 and later
 
 ### **Name**
 
-**iachar**(3) - \[CHARACTER:CONVERSION\] Code in ASCII collating sequence
+**iachar**(3) - \[CHARACTER:CONVERSION\] Return integer ASCII code of a character
 
 ### **Syntax**
 ```fortran
     result = iachar(c [,kind])
 ```
 ```fortran
-     integer(kind=kind) function iachar(c,kind)
+     elemental integer(kind=KIND) function iachar(c,kind)
 
+     character(len=1),intent(in) :: c
+     integer(kind=KINDK,intent(in),optional :: kind
 ```
+  The return value is of type _integer_ and of kind **kind**. If **kind**
+  is absent, the return value is of default integer kind.
+
+  **kind** may be of any _integer_ kind.
+
 ### **Description**
 
-**iachar**(c) returns the code for the ASCII character in the first
-character position of C.
+  **iachar**(c) returns the code for the ASCII character in the first
+  character position of C.
 
 ### **Arguments**
 
 - **c**
-  : Shall be a scalar _character_, with _intent(in)_
+  : A character to determine the ASCII code of.
+
+  A common extension is to allow strings but all but the first character
+  is then ignored.
 
 - **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
+  : A constant initialization expression indicating the kind
   parameter of the result.
 
 ### **Returns**
 
-The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
-the return value is of default integer kind.
+  the result is the position of the character **c** in the ASCII
+  collating sequence. It is nonnegative and less than or equal to 127.
+
+  By ASCII, it is meant that **c** is in the collating sequence deﬁned
+  by the codes speciﬁed in ISO/IEC 646:1991 (International Reference
+  Version).
+
+  The value of the result is processor dependent if **c** is not in the
+  ASCII collating sequence.
+
+  The results are consistent with the **lge**(3), **lgt**(3), **lle**(3),
+  and **llt**(3) comparison functions. For example, if **lle(C, D)**
+  is true, **iachar(C) <= iachar (D)** is true where **C** and **D**
+  are any two characters representable by the processor.
 
 ### **Examples**
 
@@ -8181,8 +8242,14 @@ Sample program:
 ```fortran
 program demo_iachar
 implicit none
-! create function to convert uppercase letters to lowercase
-   write(*,'(a)')lower('abcdefg ABCDEFG')
+   ! basic usage
+    ! just does first letter
+    write(*,*)iachar('ABCD')
+    ! elemental: can do an array of letters
+    write(*,*)iachar(['A','Z','a','z'])
+
+   ! convert all characters to lowercase
+    write(*,'(a)')lower('abcdefg ABCDEFG')
 contains
 !
 pure elemental function lower(str) result (string)
@@ -8203,21 +8270,15 @@ end function lower
 !
 end program demo_iachar
 ```
-
 Results:
-
 ```text
+   65
+   65          90          97         122
    abcdefg abcdefg
 ```
-
-### **Note**
-
-See [**ichar**(3)](#ichar) for a discussion of converting between numerical
-values and formatted string representations.
-
 ### **Standard**
 
-Fortran 95 and later, with KIND argument - Fortran 2003 and later
+  Fortran 95 and later, with KIND argument - Fortran 2003 and later
 
 ### **See Also**
 
@@ -8225,8 +8286,11 @@ Fortran 95 and later, with KIND argument - Fortran 2003 and later
 [**char**(3)](#char),
 [**ichar**(3)](#ichar)
 
-Functions that perform operations on character strings, return lengths
-of arguments, and search for certain arguments:
+  See [**ichar**(3)](#ichar) in particular for a discussion of converting
+  between numerical values and formatted string representations.
+
+  Functions that perform operations on character strings, return lengths
+  of arguments, and search for certain arguments:
 
 - **Elemental:**
   [**adjustl**(3)](#adjustl), [**adjustr**(3)](#adjustr), [**index**(3)](#index),
@@ -8237,7 +8301,7 @@ of arguments, and search for certain arguments:
   [**len**(3)](#len),
   [**repeat**(3)](#repeat), [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## iall
 
@@ -8861,14 +8925,15 @@ Fortran 2008 and later
 
 ### **Syntax**
 ```fortran
+    result=index( string, substring [,back] [,kind] )
 ```
 ```fortran
-   integer(kind=KIND) function index(string, substring, back, kind)
+     integer(kind=KIND) function index(string, substring, back, kind)
 
-     character(len=*),intent(in) :: string
-     character(len=*),intent(in) :: substring
-     logical,intent(in),optional :: back
-     integer,intent(in),optional :: kind
+       character(len=*),intent(in) :: string
+       character(len=*),intent(in) :: substring
+       logical,intent(in),optional :: back
+       integer,intent(in),optional :: kind
 ```
 ### **Description**
 
@@ -9353,6 +9418,7 @@ Fortran 2008 and later
 
 ### **Syntax**
 ```fortran
+    result=ishftc( i, shift [,back] )
 ```
 ```fortran
      elemental integer(kind=KIND) function ishftc(i, shift, size)
@@ -9460,12 +9526,13 @@ Fortran 95 and later
 
 ### **Syntax**
 ```fortran
+    result=ishftc( i, shift )
 ```
 ```fortran
-    elemental integer(kind=KIND) function ishft(i, shift )
+     elemental integer(kind=KIND) function ishft(i, shift )
 
-     integer(kind=KIND),intent(in)     :: i
-     integer(kind=SHIFTKIND,intent(in) :: shift
+      integer(kind=KIND),intent(in)     :: i
+      integer(kind=SHIFTKIND,intent(in) :: shift
 ```
   where KIND and  SHIFTKIND may be any supported _integer_ kind, but where
   the kind for **i** dictates the kind of the returned value.
@@ -9542,12 +9609,12 @@ Fortran 95 and later
 
 ### **Syntax**
 ```fortran
+    result=is_iostat_end(iostat)
 ```
 ```fortran
-     function is_iostat_end(i)
+     logical function is_iostat_end(iostat)
 
-     logical function   :: is_iostat_end (i) result(yesno)
-     integer,intent(in) :: i
+      integer,intent(in) :: iostat
 ```
 ### **Description**
 
@@ -9610,24 +9677,27 @@ Fortran 2003 and later
     result = is_iostat_eor(i)
 ```
 ```fortran
+     integer function is_iostat_eor(i)
+
+      integer(kind=KIND),intent(in) :: iostat
 ```
 ### **Description**
 
-is_iostat_eor tests whether an variable has the value of the I/O
+**is_iostat_eor** tests whether a variable has the value of the I/O
 status "end of record". The function is equivalent to comparing the
-variable with the iostat_eor parameter of the intrinsic module
+variable with the **iostat_eor** parameter of the intrinsic module
 **iso_fortran_env**.
 
 ### **Arguments**
 
 - **i**
-  : Shall be of the type _integer_.
+  : The value to test as indicating "end of record".
 
 ### **Returns**
 
-Returns a _logical_ of the default kind, which _.true._ if **i** has the value
-which indicates an end of file condition for iostat= specifiers, and is
-_.false._ otherwise.
+Returns a _logical_ of the default kind, which is _.true._ if **i**
+has the value which indicates an end of file condition for iostat=
+specifiers, and is _.false._ otherwise.
 
 ### **Examples**
 
@@ -9635,17 +9705,28 @@ Sample program:
 
 ```fortran
 program demo_is_iostat_eor
+use iso_fortran_env, only : iostat_eor
 implicit none
-integer :: stat, i(50)
+integer :: stat, inums(50)
+integer :: lun, ios,
 
-  open(88, file='test.dat', form='unformatted')
-  read(88, iostat=stat) i
+  open(newunit=lun, file='_test.dat', form='unformatted')
+  write(lun, '(a)') '10 20 30'
+  write(lun, '(a)') '40 50 60 70'
+  write(lun, '(a)') '80 90'
+  write(lun, '(a)') '100'
 
-  if(is_iostat_eor(stat)) stop 'end of record'
+  i=0
+  do
+     read(lun, *, iostat=ios) inums
+     write(*,*)'iostat=',ios
+     if(is_iostat_eor(ios)) stop 'end of record'
+  enddo
+
+  close(lun,iostat=ios,status='delete')
 
 end program demo_is_iostat_eor
 ```
-
 ### **Standard**
 
 Fortran 2003 and later
@@ -9663,49 +9744,55 @@ Fortran 2003 and later
     result = kind(x)
 ```
 ```fortran
+     integer function kind(x)
+
+      type(TYPE,kind=KIND),intent(in) :: x(..)
 ```
+  **TYPE** may _logical_, _integer_, _real_, _complex_ or _character_.
+
+  **x** may be of any kind supported by the type, and may be
+  scalar or an array.
+
 ### **Description**
 
-**kind(x)** returns the kind value of the entity **x**.
+   **kind(x)** returns the kind value of the entity **x**.
 
 ### **Arguments**
 
 - **x**
-  : Shall be of type _logical_, _integer_, _real_, _complex_ or _character_.
+  : Value to query the kind of.
 
 ### **Returns**
 
-The return value is a scalar of type _integer_ and of the default integer
-kind.
+  The return value indicates the kind of the argument **x**.
+
+  Note that kinds are processor-dependent.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_kind
 implicit none
-integer,parameter :: kc = kind(' ')
-integer,parameter :: kl = kind(.true.)
+integer,parameter :: dc = kind(' ')
+integer,parameter :: dl = kind(.true.)
 
-   print *, "The default character kind is ", kc
-   print *, "The default logical kind is ", kl
+   print *, "The default character kind is ", dc
+   print *, "The default logical kind is ", dl
 
 end program demo_kind
 ```
-
 Results:
 
 ```text
     The default character kind is            1
     The default logical kind is            4
 ```
-
 ### **Standard**
 
 Fortran 95 and later
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## lbound
 
@@ -9839,6 +9926,9 @@ Fortran 95 and later, with KIND argument - Fortran 2003 and later
     result = leadz(i)
 ```
 ```fortran
+    elemental integer function leadz(i)
+
+     integer(kind=KIND),intent(in) :: i
 ```
 ### **Description**
 
@@ -9847,7 +9937,7 @@ Fortran 95 and later, with KIND argument - Fortran 2003 and later
 ### **Arguments**
 
 - **i**
-  : Shall be of type _integer_.
+  : _integer_ to count the leading zero bits of.
 
 ### **Returns**
 
@@ -9863,91 +9953,35 @@ program demo_leadz
 implicit none
 integer :: value, i
 character(len=80) :: f
-  write(*,'(*(g0))')'BIT_SIZE=',bit_size(value)
+
   ! make a format statement for writing a value as a bit string
   write(f,'("(b",i0,".",i0,")")')bit_size(value),bit_size(value)
+
   ! show output for various integer values
   value=0
-  do i=0,bit_size(value)-1
-     write (*,'("LEADING ZERO BITS=",i3,1x)') leadz(value)
+  do i=-150, 150, 50
+     value=i
+     write (*,'("LEADING ZERO BITS=",i3)',advance='no') leadz(value)
      write (*,'(" FOR VALUE ")',advance='no')
      write(*,f,advance='no') value
      write(*,'(*(1x,g0))') "OR",value
-     value=value+2**(i)
   enddo
+  ! Notes:
+  ! for two's-complements programming environments a negative non-zero
+  ! integer value will always start with a 1 and a positive value with 0
+  ! as the first bit is the sign bit. Such platforms are very common.
 end program demo_leadz
 ```
-
 Results:
-
+```text
+ LEADING ZERO BITS=  0 FOR VALUE 11111111111111111111111101101010 OR -150
+ LEADING ZERO BITS=  0 FOR VALUE 11111111111111111111111110011100 OR -100
+ LEADING ZERO BITS=  0 FOR VALUE 11111111111111111111111111001110 OR -50
+ LEADING ZERO BITS= 32 FOR VALUE 00000000000000000000000000000000 OR 0
+ LEADING ZERO BITS= 26 FOR VALUE 00000000000000000000000000110010 OR 50
+ LEADING ZERO BITS= 25 FOR VALUE 00000000000000000000000001100100 OR 100
+ LEADING ZERO BITS= 24 FOR VALUE 00000000000000000000000010010110 OR 150
 ```
-   BIT_SIZE=32
-   LEADING ZERO BITS= 32
-    FOR VALUE 00000000000000000000000000000000 OR 0
-   LEADING ZERO BITS= 31
-    FOR VALUE 00000000000000000000000000000001 OR 1
-   LEADING ZERO BITS= 30
-    FOR VALUE 00000000000000000000000000000011 OR 3
-   LEADING ZERO BITS= 29
-    FOR VALUE 00000000000000000000000000000111 OR 7
-   LEADING ZERO BITS= 28
-    FOR VALUE 00000000000000000000000000001111 OR 15
-   LEADING ZERO BITS= 27
-    FOR VALUE 00000000000000000000000000011111 OR 31
-   LEADING ZERO BITS= 26
-    FOR VALUE 00000000000000000000000000111111 OR 63
-   LEADING ZERO BITS= 25
-    FOR VALUE 00000000000000000000000001111111 OR 127
-   LEADING ZERO BITS= 24
-    FOR VALUE 00000000000000000000000011111111 OR 255
-   LEADING ZERO BITS= 23
-    FOR VALUE 00000000000000000000000111111111 OR 511
-   LEADING ZERO BITS= 22
-    FOR VALUE 00000000000000000000001111111111 OR 1023
-   LEADING ZERO BITS= 21
-    FOR VALUE 00000000000000000000011111111111 OR 2047
-   LEADING ZERO BITS= 20
-    FOR VALUE 00000000000000000000111111111111 OR 4095
-   LEADING ZERO BITS= 19
-    FOR VALUE 00000000000000000001111111111111 OR 8191
-   LEADING ZERO BITS= 18
-    FOR VALUE 00000000000000000011111111111111 OR 16383
-   LEADING ZERO BITS= 17
-    FOR VALUE 00000000000000000111111111111111 OR 32767
-   LEADING ZERO BITS= 16
-    FOR VALUE 00000000000000001111111111111111 OR 65535
-   LEADING ZERO BITS= 15
-    FOR VALUE 00000000000000011111111111111111 OR 131071
-   LEADING ZERO BITS= 14
-    FOR VALUE 00000000000000111111111111111111 OR 262143
-   LEADING ZERO BITS= 13
-    FOR VALUE 00000000000001111111111111111111 OR 524287
-   LEADING ZERO BITS= 12
-    FOR VALUE 00000000000011111111111111111111 OR 1048575
-   LEADING ZERO BITS= 11
-    FOR VALUE 00000000000111111111111111111111 OR 2097151
-   LEADING ZERO BITS= 10
-    FOR VALUE 00000000001111111111111111111111 OR 4194303
-   LEADING ZERO BITS=  9
-    FOR VALUE 00000000011111111111111111111111 OR 8388607
-   LEADING ZERO BITS=  8
-    FOR VALUE 00000000111111111111111111111111 OR 16777215
-   LEADING ZERO BITS=  7
-    FOR VALUE 00000001111111111111111111111111 OR 33554431
-   LEADING ZERO BITS=  6
-    FOR VALUE 00000011111111111111111111111111 OR 67108863
-   LEADING ZERO BITS=  5
-    FOR VALUE 00000111111111111111111111111111 OR 134217727
-   LEADING ZERO BITS=  4
-    FOR VALUE 00001111111111111111111111111111 OR 268435455
-   LEADING ZERO BITS=  3
-    FOR VALUE 00011111111111111111111111111111 OR 536870911
-   LEADING ZERO BITS=  2
-    FOR VALUE 00111111111111111111111111111111 OR 1073741823
-   LEADING ZERO BITS=  1
-    FOR VALUE 01111111111111111111111111111111 OR 2147483647
-```
-
 ### **Standard**
 
 Fortran 2008 and later
@@ -9959,7 +9993,7 @@ Fortran 2008 and later
 [**poppar**(3)](#poppar),
 [**trailz**(3)](#trailz)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## len
 
@@ -9969,6 +10003,7 @@ Fortran 2008 and later
 
 ### **Syntax**
 ```fortran
+    result=len(string [,kind])
 ```
 ```fortran
     integer(kind=KIND) function len(string,kind)
@@ -10205,6 +10240,7 @@ of arguments, and search for certain arguments:
 
 ### **Syntax**
 ```fortran
+     result = lge(string_a, stringb)
 ```
 ```fortran
    elemental logical function lge(string_a, string_b)
@@ -10311,12 +10347,13 @@ of arguments, and search for certain arguments:
 
 ### **Syntax**
 ```fortran
+     result = lgt(string_a, stringb)
 ```
 ```fortran
-     elemental logical function lgt(string_a, string_b)
+      elemental logical function lgt(string_a, string_b)
 
-     character(len=*),intent(in) :: string_a
-     character(len=*),intent(in) :: string_b
+      character(len=*),intent(in) :: string_a
+      character(len=*),intent(in) :: string_b
 ```
 ### **Description**
 
@@ -10417,12 +10454,13 @@ FORTRAN 77 and later
 
 ### **Syntax**
 ```fortran
+     result = lle(string_a, stringb)
 ```
 ```fortran
-     elemental logical function lle(string_a, string_b)
+      elemental logical function lle(string_a, string_b)
 
-     character(len=*),intent(in) :: string_a
-     character(len=*),intent(in) :: string_b
+      character(len=*),intent(in) :: string_a
+      character(len=*),intent(in) :: string_b
 ```
 ### **Description**
 
@@ -10530,12 +10568,13 @@ of arguments, and search for certain arguments:
 
 ### **Syntax**
 ```fortran
+     result = llt(string_a, stringb)
 ```
 ```fortran
-     elemental logical function llt(string_a, string_b)
+      elemental logical function llt(string_a, string_b)
 
-     character(len=*),intent(in) :: string_a
-     character(len=*),intent(in) :: string_b
+       character(len=*),intent(in) :: string_a
+       character(len=*),intent(in) :: string_b
 ```
 ### **Description**
 
@@ -11723,9 +11762,8 @@ Fortran 95 and later
     result = merge_bits(i, j, mask)
 ```
 ```fortran
-     elemental function merge_bits(i,j,mask) result(r)
+     elemental integer(kind=KIND) function merge_bits(i,j,mask)
      integer(kind=KIND), intent(in) :: i, j, mask
-     integer(kind=KIND) :: r
 ```
 where the result and all input values have the same _integer_ type and
 KIND with the exception that the mask and either **i** or **j** may be
@@ -12243,7 +12281,9 @@ FORTRAN 77 and later
 ### **Syntax**
 ```fortran
     result = minval(array, dim, mask)
-
+```
+  or
+```fortran
     result = minval(array, mask)
 ```
 ```fortran
@@ -14571,20 +14611,23 @@ Fortran 95 and later
     result = rank(a)
 ```
 ```fortran
+    integer function rank(a)
+
+    type(TYPE(kind=KIND),intent(in) :: a(..)
 ```
+  **a** can be of any type.
+
 ### **Description**
 
-**rank(a)** returns the rank of a scalar or array data object.
+  **rank(a)** returns the rank of a scalar or array data object.
 
 ### **Arguments**
 
 - **a**
-  : can be of any type
 
 ### **Returns**
 
-The return value is of type _integer_ and of the default integer kind. For
-arrays, their rank is returned; for scalars zero is returned.
+  For arrays, their rank is returned; for scalars zero is returned.
 
 ### **Examples**
 
@@ -14596,21 +14639,59 @@ implicit none
 integer :: a
 real, allocatable :: b(:,:)
 real  :: c(10,20,30)
-   print *, rank(a), rank(b), rank(c)
+complex :: d
+! make up a type
+type mytype
+   integer :: int
+   real :: float
+   character :: char
+end type mytype
+type(mytype) :: any_thing(1,2,3,4,5)
+
+   print *, 'rank of scalar a=',rank(a)
+   ! note you can query this array even though not allocated
+   print *, 'rank of matrix b=',rank(b)
+   print *, 'rank of vector c=',rank(c)
+   print *, 'rank of scalar d=',rank(d)
+   ! you can query any type
+   print *, 'rank of any_thing=',rank(any_thing)
+
+   call query_int(10)
+   call query_int([20,30])
+   call query_int( reshape([40,50,60,70],[2,2]) )
+
+contains
+
+subroutine query_int(entity)
+! It is hard to do much with something dimensioned
+! name(..) if not calling C but one thing you can
+! do is call the inquiry functions ...
+integer,intent(in) :: entity(..)
+
+   if(rank(entity).eq.0)then
+      write(*,*)'you passed a scalar',rank(entity)
+   else
+      write(*,*)'you passed an array, rank=',rank(entity)
+   endif
+
+end subroutine query_int
+
 end program demo_rank
 ```
-
-Results:
-
+  Results:
 ```text
-   0           2           3
+    rank of scalar a= 0
+    rank of matrix b= 2
+    rank of vector c= 3
+    rank of scalar d= 0
+    rank of any_thing= 5
+    you passed a scalar 0
+    you passed an array, rank= 1
+    you passed an array, rank= 2
 ```
-
 ### **Standard**
 
-TS 29113
-
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## real
 
@@ -14706,8 +14787,11 @@ FORTRAN 77 and later
 
 There are two forms to this function:
 ```fortran
-   reduce(array, operation, mask, identity, ordered)
-   reduce(array, operation, dim, mask, identity, ordered)
+    reduce(array, operation, mask, identity, ordered)
+```
+or
+```fortran
+    reduce(array, operation, dim, mask, identity, ordered)
 ```
 ```fortran
      type(TYPE),intent(in)          :: array
@@ -15220,7 +15304,17 @@ Fortran 95 and later
     result = scan(string, set[, back [, kind]])
 ```
 ```fortran
+     elemental integer(kind=KIND) function scan(string,set,back,kind)
+
+     character(len=*,kind=KINDC),intent(in) :: string
+     character(len=*,kind=KINDC),intent(in) :: set
+     logical,intent(in),optional :: back
+     integer,intent(in),optional :: kind
 ```
+**string** and **set**  must have the same kind type parameter.
+
+the kind of the returned value is the same as **kind** if
+present. Otherwise a default _integer_ kind is returned.
 ### **Description**
 
 Scans a **string** for any of the characters in a **set** of characters.
@@ -15295,26 +15389,52 @@ of arguments, and search for certain arguments:
 
 ### **Name**
 
-**selected_char_kind**(3) - \[KIND\] Choose character kind such as "Unicode"
+**selected_char_kind**(3) - \[KIND\] Select character kind such as "Unicode"
 
 ### **Syntax**
 ```fortran
     result = selected_char_kind(name)
 ```
 ```fortran
+     integer function selected_char_kind(name)
+
+     character(len=*),intent(in) :: name
 ```
 ### **Description**
 
-**selected_char_kind(name)** returns the kind value for the character
-set named NAME, if a character set with such a name is supported, or
-**-1** otherwise. Currently, supported character sets include "ASCII"
-and "DEFAULT" (iwhich are equivalent), and "ISO_10646" (Universal
-Character Set, UCS-4) which is commonly known as "Unicode".
+  **selected_char_kind(name)** returns the kind value for the character
+  set named NAME, if a character set with such a name is supported, or
+  **-1** otherwise.
 
 ### **Arguments**
 
 - **name**
-  : Shall be a scalar and of the default character type.
+  : A name to query the processor kind value of , and/or to determine
+  if it is supported. **name** is interpreted without respect to case
+  or trailing blanks.
+
+  Currently, supported character sets include "ASCII"
+  and "DEFAULT" (iwhich are equivalent), and "ISO_10646" (Universal
+  Character Set, UCS-4) which is commonly known as "Unicode".
+
+### **Result**
+
+If a name is not supported, -1 is returned. Otherwise
+
+ + If NAME has the value "DEFAULT", then the result has a value equal to
+   that of the kind type parameter of default character. This name is
+   always supported.
+
+ + If NAME has the value "ASCII", then the result has a value equal
+   to that of the kind type parameter of ASCII character.
+
+ + If NAME has the value "ISO_10646", then the result has a value equal
+   to that of the kind type parameter of the ISO 10646 character kind
+   (corresponding to UCS-4 as speciﬁed in ISO/IEC 10646).
+
+ + If NAME is a processor-deﬁned name of some other character kind
+   supported by the processor, then the result has a value equal to that
+   kind type parameter value.
 
 ### **Examples**
 
@@ -15341,14 +15461,12 @@ character(kind=ucs4,  len=30) :: hello_world
    write (*,*) trim (hello_world)
 end program demo_selected_char_kind
 ```
-
 Results:
 
 ```text
     abcdefghijklmnopqrstuvwxyz
     Hello World and Ni Hao -- 你好
 ```
-
 ### **Standard**
 
 Fortran 2003 and later
@@ -15678,6 +15796,7 @@ Fortran 95 and later; with KIND argument Fortran 2003 and later
 
 ### **Syntax**
 ```fortran
+    result = shifta(i, shift )
 ```
 ```fortran
      elemental integer(kind=KIND) function shifta(i, shift)
@@ -15806,6 +15925,7 @@ Fortran 2008 and later
 
 ### **Syntax**
 ```fortran
+    result = shiftl( i, shift )
 ```
 ```fortran
      elemental integer(kind=KIND) function shiftl(i, shift)
@@ -15942,6 +16062,7 @@ Fortran 2008 and later
 
 ### **Syntax**
 ```fortran
+    result = shiftr( i, shift )
 ```
 ```fortran
      elemental integer(kind=KIND) function shiftr(i, shift)
@@ -16376,10 +16497,21 @@ FORTRAN 77 and later
 
 ### **Syntax**
 ```fortran
-    result = size(array, dim, kind)
+    result = size(array [,dim] [,kind])
 ```
 ```fortran
+     integer(kind=KIND) function size(array,dim,kind)
+     type(TYPE(kind=KIND),intent(in) :: array(..)
+     integer(kind=KINDD),intent(in),optional :: dim
+     integer(kind=KINDK),intent(in),optional :: kind
 ```
+  **array** may be of any type and associated kind.
+
+  If **array** is a pointer it must be associated and allocatable arrays
+  must be allocated.
+
+  KINDD and KINDK may be any _integer_ type kind.
+
 ### **Description**
 
 Determine the extent of **array** along a specified dimension **dim**,
@@ -16388,21 +16520,31 @@ or the total number of elements in **array** if **dim** is absent.
 ### **Arguments**
 
 - **array**
-  : be an array of any type. If **array** is a pointer it must be
-  associated and allocatable arrays must be allocated.
+  : the array to measure the number of elements of.
 
 - **dim**
   : shall be a scalar of type _integer_ and its value shall be
   in the range from 1 to n, where n equals the rank of **array**.
 
+  If not present the total number of elements of the entire array
+  are returned.
+
 - **kind**
   : An _integer_ initialization expression indicating the kind
   parameter of the result.
 
+  The **kind** must allow for the magnitude returned by **size** or
+  results are undefined.
+
+  If **kind** is absent, the return value is of default _integer_ kind.
+
 ### **Returns**
 
-The return value is of type _integer_ and of kind **kind**. If **kind**
-is absent, the return value is of default _integer_ kind.
+  If **dim** is not present the total number of elements in the array
+  are returned.
+
+  If **dim** is present the number of elements along that dimension
+  are returned.
 
 ### **Examples**
 
@@ -16932,6 +17074,9 @@ Fortran 2008 and later
 ### **Syntax**
 ```fortran
    result = sum(array[, mask])
+```
+  or
+```fortran
    result = sum(array, dim[, mask])
 ```
 ```fortran
@@ -17023,6 +17168,7 @@ intrinsics
 
 ### **Syntax**
 ```fortran
+    call system_clock([count] [,count_rate]  [,count_max] )
 ```
 ```fortran
     subroutine system_clock(count, count_rate, count_max)
@@ -17268,7 +17414,6 @@ FORTRAN 77 and later. For a complex argument, Fortran 2008 or later.
 result = this_image()
 ```
 or
-```
 ```fortran
 result = this_image(distance)
 ```
@@ -17460,8 +17605,8 @@ Sample program:
 
 ```fortran
 program demo_trailz
-use, intrinsic :: iso_fortran_env, only : integer_kinds, &
-& int8, int16, int32, int64
+use, intrinsic :: iso_fortran_env, only : &
+ & integer_kinds, int8, int16, int32, int64
 implicit none
 integer(kind=int64) :: i, value
    write(*,*)'Default integer:'
@@ -17759,20 +17904,29 @@ Fortran 95 and later
     result = trim(string)
 ```
 ```fortran
+     character(len=:,kind=KIND) function trim(string)
+
+     character(len=*,kind=KIND),intent(in) :: string
 ```
+  **KIND** can be any kind supported for the _character_ type.
+  The result has the same kind as the input argument **string**.
+
 ### **Description**
 
-Removes trailing blank characters of a string.
+  Removes trailing blank characters from a string.
 
 ### **Arguments**
 
 - **string**
-  : Shall be a scalar of type _character_.
+  : A scalar string to trim trailing blanks from
 
 ### **Returns**
 
-A scalar of type _character_ which length is that of **string** less the
-number of trailing blanks.
+  The value of the result is the same as **string** except trailing
+  blanks are removed.
+
+  If **string** is composed entirely of blanks or has zero length,
+  the result has zero length.
 
 ### **Examples**
 
@@ -17781,26 +17935,48 @@ Sample program:
 ```fortran
 program demo_trim
 implicit none
-character(len=10), parameter :: s = "gfortran  "
-   write(*,*) len(s), len(trim(s))  ! "10 8", with/without trailing blanks
+character(len=:), allocatable :: str, strs(:)
+character(len=*),parameter :: brackets='( *("[",a,"]":,1x) )'
+integer :: i
 
-   ! with/without trailing blanks
-   write(*,*) len(s), len(trim('   leading'))
-   write(*,*) len(s), len(trim('   trailing    '))
-   write(*,*) len(s), len(trim('               '))
+   str='   trailing    '
+   print brackets, str,trim(str) ! trims it
+
+   str='   leading'
+   print brackets, str,trim(str) ! no effect
+
+   str='            '
+   print brackets, str,trim(str) ! becomes zero length
+   print *,  len(str), len(trim('               '))
+
+  ! array elements are all the same length, so you often
+  ! want to print them
+   strs=[character(len=10) :: "Z"," a b c","ABC",""]
+
+   write(*,*)'untrimmed:'
+   ! everthing prints as ten characters; nice for neat columns
+   print brackets, (strs(i), i=1,size(strs))
+   print brackets, (strs(i), i=size(strs),1,-1)
+   write(*,*)'trimmed:'
+   ! everthing prints trimmed
+   print brackets, (trim(strs(i)), i=1,size(strs))
+   print brackets, (trim(strs(i)), i=size(strs),1,-1)
 
 end program demo_trim
 ```
-
-Results:
-
+  Results:
 ```text
-      10           8
-      10          10
-      10          11
-      10           0
+    > [   trailing    ] [   trailing]
+    > [   leading] [   leading]
+    > [            ] []
+    >           12           0
+    >  untrimmed:
+    > [Z         ] [ a b c    ] [ABC       ] [          ]
+    > [          ] [ABC       ] [ a b c    ] [Z         ]
+    >  trimmed:
+    > [Z] [ a b c] [ABC] []
+    > [] [ABC] [ a b c] [Z]
 ```
-
 ### **Standard**
 
 Fortran 95 and later
@@ -17824,7 +18000,7 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ubound
 
@@ -18113,8 +18289,8 @@ Fortran 95 and later
 
 ### **Name**
 
-**verify**(3) - \[CHARACTER:SEARCH\] Scan a string for the absence of
-a set of characters
+**verify**(3) - \[CHARACTER:SEARCH\] Position of a character in a string
+of characters that does not appear in a given set of characters.
 
 ### **Syntax**
 ```fortran
@@ -18123,11 +18299,13 @@ a set of characters
 ```fortran
      elemental integer(kind=KIND) function verify(string,set,back,kind)
 
-     character(len=*),intent(in) :: string
-     character(len=*),intent(in) :: set
+     character(len=*,kind=KINDC),intent(in) :: string
+     character(len=*,kind=KINDC),intent(in) :: set
      logical,intent(in),optional :: back
      integer,intent(in),optional :: kind
 ```
+**string** and **set**  must have the same kind type parameter.
+
 the kind of the returned value is the same as **kind** if
 present. Otherwise a default _integer_ kind is returned.
 
@@ -18143,7 +18321,7 @@ conditions tested for with the C routines
 **isalnum**(3c), **isalpha**(3c), **isascii**(3c), **isblank**(3c),
 **iscntrl**(3c), **isdigit**(3c), **isgraph**(3c), **islower**(3c),
 **isprint**(3c), **ispunct**(3c), **isspace**(3c), **isupper**(3c),
-and **isxdigit**(3c); but for a string as well an an array of characters.
+and **isxdigit**(3c); but for a string as well an an array of strings.
 
 ### **Arguments**
 
@@ -18165,91 +18343,99 @@ and **isxdigit**(3c); but for a string as well an an array of characters.
 
 ### **Returns**
 
-The position of the first or last (if **back is _.false._) unmatched
+The position of the first or last (if **back** is _.false._) unmatched
 character in **string**.
 
 If all characters of **string** are found in **set**, the result is zero.
 
+If **string** is of zero length a zero (0) is always returned.
+
 ### **Examples**
 
 #### Sample program I:
-
 ```fortran
 program demo_verify
 implicit none
-character(len=*),parameter :: int='0123456789'
-character(len=*),parameter :: hex='abcdef0123456789'
-character(len=*),parameter :: low='abcdefghijklmnopqrstuvwxyz'
-character(len=*),parameter :: upp='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-character(len=20):: string='   Howdy There!'
-character(len=6) :: strings(2)=["Howdy ","there!"]
-character(len=2) :: sets(2)=["de","gh"]
+! some useful character sets
+character,parameter :: &
+ & int*(*)   = '1234567890', &
+ & low*(*)   = 'abcdefghijklmnopqrstuvwxyz', &
+ & upp*(*)   = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', &
+ & punc*(*)  = "!""#$%&'()*+,-./:;<=>?@[\]^_`{|}~", &
+ & blank*(*) = ' ', &
+ & tab       = char(11), &
+ & prnt*(*) = int//low//upp//blank//punc
 
-   write(*,*)'first non-blank character ',verify(string, ' ')
-   ! NOTE: same as len_trim(3)
-   write(*,*)'last non-blank character',verify(string, ' ',back=.true.)
+character(len=:),allocatable :: string
+integer :: i
 
-   ! first non-lowercase non-blank character
-   write(*,*) verify(string,low//' ')
+   ! will produce the location of "d", because there is no match in UPP
+   write(*,*) 'something unmatched',verify("ABCdEFG", upp)
+   ! will produce 0 as all letters have a match
+   write(*,*) 'everything matched',verify("ffoorrttrraann", "nartrof")
 
-  ! elemental -- using arrays for both strings and for sets
+   ! easy C-like functionality but does entire strings not just characters
+   write(*,*)'isdigit 123?',verify("123", int) == 0
+   write(*,*)'islower abc?',verify("abc", low) == 0
+   write(*,*)'isalpha aBc?',verify("aBc", low//upp) == 0
+   write(*,*)'isblank aBc dEf?',verify("aBc dEf", blank//tab ) /= 0
+   ! check if all printable characters
+   string="aB;cde,fgHI!Jklmno PQRSTU vwxyz"
+   write(*,*)'isprint?',verify(string,prnt) == 0
+   ! this now has a nonprintable tab character in it
+   string(10:10)=char(11)
+   write(*,*)'isprint?',verify(string,prnt) == 0
 
-   ! note character variables in an array have to be of the same length
+   string=" This is NOT all UPPERCASE "
+   write(*,*)'all uppercase/spaces?',verify(string, blank//upp) == 0
+   string=" THIS IS ALL UPPERCASE "
+   write(*,*) 'string=['//string//']'
+   write(*,*)'all uppercase/spaces?',verify(string, blank//upp) == 0
 
-   ! check each string from right to left for non-letter
-   write(*,*) 'last non-letter',verify(strings,upp//low,back=.true.)
+  ! set and show complex string to be tested
+   string='  Check this out. Let me know  '
+   write(*,*) 'string=['//string//']'
+   write(*,*) '        '//repeat(int,4) ! number line
+   ! the Fortran functions result position just not a logical like C
+   ! which can be very useful for parsing strings
+   write(*,*)'first non-blank character',verify(string, blank)
+   write(*,*)'last non-blank character',verify(string, blank,back=.true.)
+   write(*,*)'first non-letter non-blank',verify(string,low//upp//blank)
 
-   ! find last non-uppercase character in "Howdy"
-   ! and first non-lowercase in "There!"
-   write(*,*) verify(strings,[upp,low],back=[.true.,.false.])
+  !VERIFY(3) is elemental so you can check an array of strings in one call
+   ! are strings all letters (or blanks)?
+   write(*,*) 'array of strings',verify( &
+   ! strings must all be same length, so force to length 10
+   & [character(len=10) :: "YES","ok","000","good one","Nope!"], &
+   & low//upp//blank) == 0
 
-   write(*,*) verify("fortran", "", .true.)  ! 7, found 'n'
-   ! 0' found none unmatched
-   write(*,*) verify("fortran", "nartrof")
+   ! rarer, but the set can be an array, not just the strings to test
+   ! you could do ISPRINT() this way :>
+   write(*,*)'isprint?',.not.all(verify("aBc", [(char(i),i=32,126)])==1)
 
-   ! first character in "Howdy" not in "de", and first letter in "there!"
-   ! not in "gh"
-   write(*,*) verify(strings,sets)
-
-  ! check if string is of form NN-HHHHH
-    CHECK : block
-       logical                    :: lout
-       character(len=80)          :: chars
-
-       chars='32-af43d'
-       lout=.true.
-
-       ! are the first two characters integer characters?
-       lout = lout.and.(verify(chars(1:2), int) == 0)
-
-       ! is the third character a dash?
-       lout = lout.and.(verify(chars(3:3), '-') == 0)
-
-       ! is remaining string a valid representation of a hex value?
-       lout = lout.and.(verify(chars(4:8), hex) == 0)
-
-       if(lout)then
-          write(*,*)trim(chars),' passed'
-       endif
-
-    endblock CHECK
 end program demo_verify
 ```
-
 Results:
-
 ```text
-    first non-blank character            4
-    last non-blank character          15
-              4
-              1           1
-    last non-letter           6           6
-              6           6
-              7
-              0
-    32-af43d passed
+    > something unmatched           4
+    > everything matched           0
+    > isdigit 123? T
+    > islower abc? T
+    > isalpha aBc? T
+    > isblank aBc dEf? T
+    > isprint? T
+    > isprint? F
+    > true if all uppercase/spaces: F
+    > string=[ THIS IS ALL UPPERCASE ]
+    > true if all uppercase/spaces: T
+    > string=[  Check this out. Let me know  ]
+    >        1234567890123456789012345678901234567890
+    > first non-blank character            3
+    > last non-blank character           29
+    > first non-letter non-blank           17
+    > array of strings T T F T F
+    > isprint? T
 ```
-
 #### Sample program II:
 
 Determine if strings are valid integer representations
@@ -18285,24 +18471,22 @@ logical                      :: lout
    ! make sure at least two characters long to simplify tests
    name=adjustl(line)//'  '
    ! blank string
-   if( name .eq. '' )return
+   if( name == '' )return
    ! allow one leading sign
    if( verify(name(1:1),'+-') == 0 ) name=name(2:)
    ! was just a sign
-   if( name .eq. '' )return
+   if( name == '' )return
    lout=verify(trim(name), digits)  == 0
 end function isint
 
 end program fortran_ints
 ```
-
 Results:
 
 ```text
 |+1       |3044848  |30.40    |September|1 2 3    |  -3000  |         |
 | T       | T       | F       | F       | F       | T       | F       |
 ```
-
 #### Sample program III:
 
 Determine if strings represent valid Fortran symbol names
@@ -18352,14 +18536,92 @@ end function fortran_name
 
 end program fortran_symbol_name
 ```
-
 Results:
-
 ```text
-|A_        |10        |September |A B       |_A        |          |
-| T        | F        | T        | F        | F        | F        |
+    |A_        |10        |September |A B       |_A        |          |
+    | T        | F        | T        | F        | F        | F        |
 ```
+#### Sample program IV:
 
+check if string is of form NN-HHHHH
+
+```fortran
+program checkform
+! check if string is of form NN-HHHHH
+implicit none
+character(len=*),parameter :: int='1234567890'
+character(len=*),parameter :: hex='abcdefABCDEF0123456789'
+logical                    :: lout
+character(len=80)          :: chars
+
+   chars='32-af43d'
+   lout=.true.
+
+   ! are the first two characters integer characters?
+   lout = lout.and.(verify(chars(1:2), int) == 0)
+
+   ! is the third character a dash?
+   lout = lout.and.(verify(chars(3:3), '-') == 0)
+
+   ! is remaining string a valid representation of a hex value?
+   lout = lout.and.(verify(chars(4:8), hex) == 0)
+
+   if(lout)then
+      write(*,*)trim(chars),' passed'
+   else
+      write(*,*)trim(chars),' failed'
+   endif
+end program checkform
+```
+Results:
+```text
+    32-af43d passed
+```
+#### Sample program V:
+
+exploring uses of elemental functionality and dusty corners
+
+```fortran
+program demo_verify
+implicit none
+character(len=*),parameter :: &
+  & int='0123456789', &
+  & low='abcdefghijklmnopqrstuvwxyz', &
+  & upp='ABCDEFGHIJKLMNOPQRSTUVWXYZ', &
+  & blank=' '
+! note character variables in an array have to be of the same length
+character(len=6) :: strings(3)=["Go    ","right ","home! "]
+character(len=2) :: sets(3)=["do","re","me"]
+
+  ! elemental -- you can use arrays for both strings and for sets
+
+   ! check each string from right to left for non-letter/non-blank
+   write(*,*)'last non-letter',verify(strings,upp//low//blank,back=.true.)
+
+   ! even BACK can be an array
+   ! find last non-uppercase character in "Howdy "
+   ! and first non-lowercase in "there "
+   write(*,*) verify(strings(1:2),[upp,low],back=[.true.,.false.])
+
+   ! using a null string for a set is not well defined. Avoid it
+   write(*,*) 'null',verify("for tran ", "", .true.) ! 8,length of string?
+   write(*,*) 'blank',verify("for tran ", " ", .true.) ! 7,found 'n'
+
+   ! first character in  "Go    " not in "do",
+   ! and first letter in "right " not in "ri"
+   ! and first letter in "home! " not in "me"
+   write(*,*) verify(strings,sets)
+
+end program demo_verify
+```
+Results:
+```text
+    > last non-letter 0 0 5
+    > 6 6
+    > null 9
+    > blank 8
+    > 1 2 1
+```
 ### **Standard**
 
 Fortran 95 and later, with **kind** argument - Fortran 2003 and later
