@@ -15,11 +15,11 @@
      integer,intent(in),optional :: kind
 ```
   **a** may be of any type and kind. If it is polymorphic it shall not
-  be an undeﬁned pointer. If it is unlimited polymorphic or has any
+  be an undefined pointer. If it is unlimited polymorphic or has any
   deferred type parameters, it shall not be an unallocated allocatable
-  variable or a disassociated or undeﬁned pointer.
+  variable or a disassociated or undefined pointer.
 
-  The kind type parameter of the returned value is that speciﬁed by
+  The kind type parameter of the returned value is that specified by
   the value of **kind**; otherwise, the kind type parameter is that of
   default integer type.
 
@@ -43,7 +43,7 @@ Returns the storage size of argument **a** in bits.
 
   If the type and type parameters are such that storage association
   applies, the result is consistent with the named constants
-  deﬁned in the intrinsic module ISO_FORTRAN_ENV.
+  defined in the intrinsic module ISO_FORTRAN_ENV.
 
    NOTE1
 
@@ -54,9 +54,9 @@ Returns the storage size of argument **a** in bits.
    NOTE2
 
     This is intended to be the size in memory that an object takes when
-    it is stored; this might diﬀer from the size it takes during
+    it is stored; this might differ from the size it takes during
     expression handling (which might be the native register size) or
-    when stored in a ﬁle.  If an object is never stored in memory
+    when stored in a file. If an object is never stored in memory
     but only in a register, this function nonetheless returns the size
     it would take if it were stored in memory.
 

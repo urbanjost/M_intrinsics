@@ -26,7 +26,7 @@ i) for all (i, j).
 
 ### **Returns**
 
-The transpose of the input array.  The result has the same type as
+The transpose of the input array. The result has the same type as
 **matrix**, and has shape \[ m, n \] if **matrix** has shape \[ n, m \].
 
 ### **Examples**

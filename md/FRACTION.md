@@ -1,5 +1,3 @@
-                                                                −e
-
 ## fraction
 
 ### **Name**
@@ -35,7 +33,7 @@ If **x** has the value zero, the result is zero.
 
 If **x** is an IEEE NaN, the result is that NaN.
 
-If **x** is an IEEE inﬁnity, the result is an IEEE NaN.
+If **x** is an IEEE infinity, the result is an IEEE NaN.
 
 ### **Examples**
 

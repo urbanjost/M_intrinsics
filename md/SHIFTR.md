@@ -24,7 +24,7 @@ by **shift** places. If the absolute value of **shift** is greater than
 **bit_size(i)**, the value is undefined. Bits shifted out from the right
 end are lost, and bits shifted in from the left end are set to 0.
 
-Note the value of the result is the same as **ishft (i, −shift)**.
+Note the value of the result is the same as **ishft (i, -shift)**.
 
 ### **Arguments**
 

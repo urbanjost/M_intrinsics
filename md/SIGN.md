@@ -21,10 +21,9 @@ for the type.
 __sign__(a,b) return a value with the magnitude of __a__ but with the
 sign of __b__.
 
-
 For processors that distinguish between positive and negative zeros
 __sign()__ may be used to distinguish between __real__ values 0.0 and
-−0.0. SIGN (1.0, -0.0) will return −1.0 when a negative zero is
+-0.0. SIGN (1.0, -0.0) will return  -1.0 when a negative zero is
 distinguishable.
 
 ### **Arguments**

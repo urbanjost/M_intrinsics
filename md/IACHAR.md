@@ -41,8 +41,8 @@
   the result is the position of the character **c** in the ASCII
   collating sequence. It is nonnegative and less than or equal to 127.
 
-  By ASCII, it is meant that **c** is in the collating sequence deﬁned
-  by the codes speciﬁed in ISO/IEC 646:1991 (International Reference
+  By ASCII, it is meant that **c** is in the collating sequence de   ned
+  by the codes specified in ISO/IEC 646:1991 (International Reference
   Version).
 
   The value of the result is processor dependent if **c** is not in the

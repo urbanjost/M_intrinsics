@@ -43,9 +43,9 @@ If a name is not supported, -1 is returned. Otherwise
 
  + If NAME has the value "ISO_10646", then the result has a value equal
    to that of the kind type parameter of the ISO 10646 character kind
-   (corresponding to UCS-4 as speciﬁed in ISO/IEC 10646).
+   (corresponding to UCS-4 as specified in ISO/IEC 10646).
 
- + If NAME is a processor-deﬁned name of some other character kind
+ + If NAME is a processor-defined name of some other character kind
    supported by the processor, then the result has a value equal to that
    kind type parameter value.
 
@@ -78,7 +78,7 @@ Results:
 
 ```text
     abcdefghijklmnopqrstuvwxyz
-    Hello World and Ni Hao -- 你好
+    Hello World and Ni Hao --       
 ```
 ### **Standard**
 

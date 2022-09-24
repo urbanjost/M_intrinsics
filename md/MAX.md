@@ -43,7 +43,7 @@ Returns the argument with the largest (most positive) value.
   that all the arrays must be of the same size, and the returned value
   will be an array that is the result as if multiple calls were made
   with all scalar values with a single element of each array used in
-  each call.  If called with all arrays the returned array is the same
+  each call. If called with all arrays the returned array is the same
   as if multiple calls were made with **max(arr1(1),arr2(1), ...)**
   to **max(arr1(N),arr2(N))**.
 

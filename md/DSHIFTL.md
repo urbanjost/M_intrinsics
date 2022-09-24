@@ -15,7 +15,7 @@
      integer(kind=KIND),intent(in) :: j
      integer(kind=KIND2),intent(in) :: shift
 ```
-  Where the kind of **i**, **j**, and **dshiftl** are the same.  An
+  Where the kind of **i**, **j**, and **dshiftl** are the same. An
   exception is that one of **i** and **j** may be a BOZ literal constant.
 
 ### **Description**
@@ -40,7 +40,7 @@
 
   This is equivalent to
 ```fortran
-     ior( shiftl(i, shift), shiftr(j, bit_size(j)−shift) )
+     ior( shiftl(i, shift), shiftr(j, bit_size(j) - shift) )
 ```
   hence **dshiftl** is designated as a "combined left shift", because
   it is like we appended **i** and **j** together, shifted it **shift**
@@ -54,7 +54,6 @@
    keep 32 bits
       ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef
 ```
-
 #### Note:
   Using the last representation of the operation is should be
   seen that when both **i** and **j** have the same value as in
@@ -65,7 +64,6 @@
 ```fortran
       ishftc(i, shift)
 ```
-
 ### **Arguments**
 
 - **i**
@@ -74,7 +72,7 @@
 - **j**
   : Shall be of type _integer_, and of the same kind as **i**.
 
-  If either **i** or **j** is a BOZ-literal-constant, it is ﬁrst
+  If either **i** or **j** is a BOZ-literal-constant, it is first
   converted as if by the intrinsic function **int()** to _integer_
   with the kind type parameter of the other.
 
@@ -94,7 +92,6 @@
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_dshiftl
 use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
@@ -131,9 +128,7 @@ end subroutine printit
 
 end program demo_dshiftl
 ```
-
 Results:
-
 ```text
    > I=-1 J=0 SHIFT=5
    > 11111111111111111111111111111111
@@ -148,7 +143,6 @@ Results:
    > 11111000000000000000000000000000
    > 11111111111111111111111111111111
 ```
-
 ### **Standard**
 
 Fortran 2008 and later
