@@ -8,11 +8,25 @@
 ```fortran
     result = iparity(array, mask)
 ```
-   or
+```fortran
+     integer(kind=KIND) function iparity(array, mask)
+
+     integer(kind=KIND),intent(in) :: array(..)
+     logical(kind=KIND),intent(in) :: mask(..)
+```
+   **array** must be an array. **mask** may be either an array of the
+   same shape as **array** or a scalar.
+
+or
 ```fortran
     result = iparity(array, dim, mask)
 ```
 ```fortran
+     integer(kind=KIND) function iparity(array, mask)
+
+     integer(kind=KIND),intent(in)          :: array(..)
+     logical(kind=KIND),intent(in),optional :: dim
+     logical(kind=KIND),intent(in)          :: mask(..)
 ```
 ### **Description**
 
@@ -44,7 +58,6 @@ dropped is returned.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_iparity
 implicit none
@@ -54,13 +67,10 @@ integer, dimension(2) :: a
   print '(b8.8)', iparity(a)
 end program demo_iparity
 ```
-
 Results:
-
 ```
    01001110
 ```
-
 ### **Standard**
 
 Fortran 2008 and later

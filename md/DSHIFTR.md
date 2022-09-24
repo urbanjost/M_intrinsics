@@ -1,4 +1,3 @@
-      6    6 Examples. DSHIFTR (1, 16, 3) has the value 2        +2if default integer has 32 bits.
 ## dshiftr
 
 ### **Name**

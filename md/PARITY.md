@@ -54,7 +54,6 @@ end program demo_parity
 Results:
 ```text
     T
-```
 ### **Standard**
 
 Fortran 2008 and later

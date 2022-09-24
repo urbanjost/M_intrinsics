@@ -19,11 +19,11 @@
          strs=[character(len=10) :: "Z"," a b c","ABC",""]
 
          write(*,*)'untrimmed:'
-         ! everthing prints as ten characters; nice for neat columns
+         ! everything prints as ten characters; nice for neat columns
          print brackets, (strs(i), i=1,size(strs))
          print brackets, (strs(i), i=size(strs),1,-1)
          write(*,*)'trimmed:'
-         ! everthing prints trimmed
+         ! everything prints trimmed
          print brackets, (trim(strs(i)), i=1,size(strs))
          print brackets, (trim(strs(i)), i=size(strs),1,-1)
 

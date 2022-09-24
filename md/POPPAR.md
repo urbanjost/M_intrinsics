@@ -13,7 +13,6 @@
 
      integer(kind=KIND), intent(in) :: i
 ```
-
 ### **Description**
 
 Returns the parity of an integer's binary representation (i.e., the
@@ -47,9 +46,7 @@ implicit none
    print  *,  popcnt(huge(0_int64)),  poppar(huge(0_int64))
 end program demo_popcnt
 ```
-
 Results:
-
 ```text
               7           1
               7           1
@@ -57,7 +54,6 @@ Results:
              31           1
              63           1
 ```
-
 ### **Standard**
 
 Fortran 2008 and later

@@ -11,9 +11,9 @@
         do i=-150, 150, 50
            value=i
            write (*,'("LEADING ZERO BITS=",i3)',advance='no') leadz(value)
-           write (*,'(" FOR VALUE ")',advance='no')
+           write (*,'(" OF VALUE ")',advance='no')
            write(*,f,advance='no') value
-           write(*,'(*(1x,g0))') "OR",value
+           write(*,'(*(1x,g0))') "AKA",value
         enddo
         ! Notes:
         ! for two's-complements programming environments a negative non-zero

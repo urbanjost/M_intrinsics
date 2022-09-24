@@ -10,14 +10,14 @@
     result=abs(a)
 ```
 ```fortran
-     elemental type(TYPER(kind=KIND)) function abs(a)
+     elemental type(TYPE(kind=KIND)) function abs(a)
 
      type(TYPE(kind=KIND)),intent(in) :: a
 ```
    **a** may be any _real_, _integer_, or _complex_ value.
 
-   If the type of **a** is _complex_ the type returned will
-   be a _real_ with the same kind as the real part of **a**.
+   If the type of **a** is _complex_ the type returned will be a _real_
+   with the same kind as the real part of **a**.
 
    Otherwise the returned type is the same as for **a**.
 
@@ -141,18 +141,17 @@ where KIND may be any supported kind value for _integer_ types.
 
 ### **Description**
 
-**achar(i)** returns the character located at position **i** (commonly called the
-_ADE_ or ASCII Decimal Equivalent) in the ASCII collating sequence.
+**achar(i)** returns the character located at position **i** (commonly
+called the _ADE_ or ASCII Decimal Equivalent) in the ASCII collating
+sequence.
 
 The **achar**(3) function is often used for generating in-band escape
-sequences to control terminal attributes.
-
+sequences to control terminal attributes, as it makes it easy to
+print unprintable characters such as escape and tab. For example:
 ```fortran
    write(*,'(*(a))')achar(27),'[2J'
 ```
-
-will clear the screen on an ANSI-compatible terminal display, for
-example.
+will clear the screen on an ANSI-compatible terminal display,
 
 ### **Arguments**
 
@@ -217,9 +216,7 @@ integer,parameter             :: toupper = iachar('A')-iachar('a')
 end function upper
 end program demo_achar
 ```
-
 Results:
-
 ```
    decimal     =65
    character   =A
@@ -276,7 +273,6 @@ The ADEs (ASCII Decimal Equivalents) for ASCII are
 |120  x |121  y |122  z |123  { |124  | |125  } |126  ~ |127 del|
 *-------*-------*-------*-------*-------*-------*-------*-------*
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later, with KIND argument Fortran 2003 and later
@@ -1748,6 +1744,7 @@ arguments Fortran 2008 or later
     call atomic_add (atom, value, stat)
 ```
 ```fortran
+    subroutine atomic_add(atom,value,stat)
 ```
 ### **Description**
 
@@ -1811,6 +1808,7 @@ TS 18508 or later
     call atomic_and(atom, value, stat)
 ```
 ```fortran
+    subroutine atomic_and(atom, value, stat)
 ```
 
 ### **Description**
@@ -1877,6 +1875,7 @@ TS 18508 or later
     call atomic_cas (atom, old, compare, new, stat)
 ```
 ```fortran
+    subroutine atomic_cas (atom, old, compare, new, stat)
 ```
 ### **Description**
 
@@ -2016,6 +2015,7 @@ Fortran 2008 and later; with **stat**, TS 18508 or later
     call atomic_fetch_add(atom, value, old, stat)
 ```
 ```fortran
+    subroutine atomic_fetch_add(atom, value, old, stat)
 ```
 ### **Description**
 
@@ -2085,6 +2085,7 @@ TS 18508 or later
     call atomic_fetch_and(atom, value, old, stat)
 ```
 ```fortran
+    subroutine atomic_fetch_and(atom, value, old, stat)
 ```
 ### **Description**
 
@@ -2154,6 +2155,7 @@ TS 18508 or later
     call atomic_fetch_or(atom, value, old, stat)
 ```
 ```fortran
+    subroutine atomic_fetch_or(atom, value, old, stat)
 ```
 ### **Description**
 
@@ -2223,6 +2225,7 @@ TS 18508 or later
     call atomic_fetch_xor (atom, value, old, stat)
 ```
 ```fortran
+    subroutine atomic_fetch_xor (atom, value, old, stat)
 ```
 ### **Description**
 
@@ -2292,6 +2295,7 @@ TS 18508 or later
     call atomic_or(atom, value, stat)
 ```
 ```fortran
+    subroutine atomic_or(atom, value, stat)
 ```
 ### **Description**
 
@@ -2357,6 +2361,7 @@ TS 18508 or later
     call atomic_ref(value, atom, stat)
 ```
 ```fortran
+    subroutine atomic_ref(value, atom, stat)
 ```
 ### **Description**
 
@@ -2430,6 +2435,7 @@ Fortran 2008 and later; with STAT, TS 18508 or later
     call atomic_xor(atom, value, stat)
 ```
 ```fortran
+    subroutine atomic_xor(atom, value, stat)
 ```
 ### **Description**
 
@@ -2939,7 +2945,7 @@ Fortran 2008 and later
     logical :: bge
 ```
   where the _kind_ of **i** and **j** may be of any supported _integer_
-  kind, not necessarily the same.  An exception is that values may be a
+  kind, not necessarily the same. An exception is that values may be a
   BOZ constant with a value valid for the _integer_ kind available with
   the most bits on the current platform.
 
@@ -3104,7 +3110,7 @@ Fortran 2008 and later
     logical :: bgt
 ```
   where the _kind_ of **i** and **j** may be of any supported _integer_
-  kind, not necessarily the same.  An exception is that values may be a
+  kind, not necessarily the same. An exception is that values may be a
   BOZ constant with a value valid for the _integer_ kind available with
   the most bits on the current platform.
 
@@ -3206,7 +3212,7 @@ bit) represented by the type of the _integer_ **i**.
 ### **Returns**
 
 The number of bits used to represent a value of the type
-of __i__.  The result is a _integer_ scalar of the same kind as __i__.
+of __i__. The result is a _integer_ scalar of the same kind as __i__.
 
 ### **Examples**
 
@@ -3265,7 +3271,7 @@ Fortran 95 and later
      logical :: ble
 ```
   where the _kind_ of **i** and **j** may be of any supported _integer_
-  kind, not necessarily the same.  An exception is that values may be a
+  kind, not necessarily the same. An exception is that values may be a
   BOZ constant with a value valid for the _integer_ kind available with
   the most bits on the current platform.
 
@@ -3340,17 +3346,17 @@ Fortran 2008 and later
 
 ### **Syntax**
 ```fortran
-    result=blt(i,j)
+  result=blt(i,j)
 ```
 ```fortran
-     elemental function blt(i, j)
+   elemental function blt(i, j)
 
-     integer(kind=KIND),intent(in) :: i
-     integer(kind=KIND),intent(in) :: j
-     logical :: blt
+   integer(kind=KIND),intent(in) :: i
+   integer(kind=KIND),intent(in) :: j
+   logical :: blt
 ```
   where the _kind_ of **i** and **j** may be of any supported _integer_
-  kind, not necessarily the same.  An exception is that values may be a
+  kind, not necessarily the same. An exception is that values may be a
   BOZ constant with a value valid for the _integer_ kind available with
   the most bits on the current platform.
 
@@ -5830,24 +5836,30 @@ FORTRAN 77 and later
     result = dot_product(vector_a, vector_b)
 ```
 ```fortran
+    function dot_product(vector_a, vector_b)
 
+    type(TYPE(kind=KIND)),intent(in) :: vector_a(:)
+    type(TYPE(kind=KIND)),intent(in) :: vector_b(:)
 ```
+The two vectors may be either numeric or logical and must be arrays
+of rank one and of equal size.
+
 ### **Description**
 
 **dot_product(vector_a, vector_b)** computes the dot product
 multiplication of two vectors **vector_a** and **vector_b**.
 
-The two vectors may be either numeric or logical and must be arrays of
-rank one and of equal size.
-
 If the vectors are _integer_ or _real_, the result is
-**sum(vector_a\*vector_b)**.
+
+     **sum(vector_a\*vector_b)**.
 
 If the vectors are _complex_, the result is
-**sum(conjg(vector_a)\*vector_b)**.
 
-If the vectors are _logical_, the result is **any(vector_a
-.and. vector_b)**.
+     **sum(conjg(vector_a)\*vector_b)**.
+
+If the vectors are _logical_, the result is
+
+     **any(vector_a .and. vector_b)**.
 
 ### **Arguments**
 
@@ -6025,7 +6037,7 @@ FORTRAN 77 and later
      integer(kind=KIND),intent(in) :: j
      integer(kind=KIND2),intent(in) :: shift
 ```
-  Where the kind of **i**, **j**, and **dshiftl** are the same.  An
+  Where the kind of **i**, **j**, and **dshiftl** are the same. An
   exception is that one of **i** and **j** may be a BOZ literal constant.
 
 ### **Description**
@@ -6050,7 +6062,7 @@ FORTRAN 77 and later
 
   This is equivalent to
 ```fortran
-     ior( shiftl(i, shift), shiftr(j, bit_size(j)−shift) )
+     ior( shiftl(i, shift), shiftr(j, bit_size(j) - shift) )
 ```
   hence **dshiftl** is designated as a "combined left shift", because
   it is like we appended **i** and **j** together, shifted it **shift**
@@ -6064,7 +6076,6 @@ FORTRAN 77 and later
    keep 32 bits
       ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef
 ```
-
 #### Note:
   Using the last representation of the operation is should be
   seen that when both **i** and **j** have the same value as in
@@ -6075,7 +6086,6 @@ FORTRAN 77 and later
 ```fortran
       ishftc(i, shift)
 ```
-
 ### **Arguments**
 
 - **i**
@@ -6084,7 +6094,7 @@ FORTRAN 77 and later
 - **j**
   : Shall be of type _integer_, and of the same kind as **i**.
 
-  If either **i** or **j** is a BOZ-literal-constant, it is ﬁrst
+  If either **i** or **j** is a BOZ-literal-constant, it is first
   converted as if by the intrinsic function **int()** to _integer_
   with the kind type parameter of the other.
 
@@ -6104,7 +6114,6 @@ FORTRAN 77 and later
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_dshiftl
 use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
@@ -6141,9 +6150,7 @@ end subroutine printit
 
 end program demo_dshiftl
 ```
-
 Results:
-
 ```text
    > I=-1 J=0 SHIFT=5
    > 11111111111111111111111111111111
@@ -6158,7 +6165,6 @@ Results:
    > 11111000000000000000000000000000
    > 11111111111111111111111111111111
 ```
-
 ### **Standard**
 
 Fortran 2008 and later
@@ -6186,7 +6192,7 @@ Fortran 2008 and later
      integer(kind=KIND),intent(in) :: j
      integer(kind=KIND2),intent(in) :: shift
 ```
-  Where the kind of **i**, **j**, and **dshiftr** are the same.  An
+  Where the kind of **i**, **j**, and **dshiftr** are the same. An
   exception is that one of **i** and **j** may be a BOZ literal constant.
 
 ### **Description**
@@ -6197,14 +6203,14 @@ bits are the leftmost bits of **j**.
 
 This is equivalent to
 ```fortran
-     ior(shiftl (i, bit_size(i)−shift), shiftr(j, shift) )
+     ior(shiftl (i, bit_size(i) - shift), shiftr(j, shift) )
 ```
 It may be thought of as appending the bits of **i** and **j**, dropping off the
 **shift** rightmost bits, and then retaining the same number of rightmost bits
 as an input value, hence the name "combined right shift"...
 
 ```text
-GIven two 16-bit values labeled alphabetically ...
+Given two 16-bit values labeled alphabetically ...
 
    i=ABCDEFGHIJKLMNOP
    j=abcdefghijklmnop
@@ -6228,7 +6234,7 @@ value
 ```
 this has the same result as a negative circular shift
 ```fortran
-     ishftc( i, −shift ).
+     ishftc( i,   -shift ).
 ```
 
 ### **Arguments**
@@ -6327,15 +6333,23 @@ Fortran 2008 and later
 ### **Description**
 
 **eoshift(array, shift\[, boundary, dim\])** performs an end-off shift
-on elements of **array** along the dimension of **dim**. If **dim** is omitted it is
-taken to be **1**. **dim** is a scalar of type _integer_ in the range of **1 \<= DIM
-\<= n** where **"n"** is the rank of **array**. If the rank of **array** is one, then
-all elements of **array** are shifted by **shift** places. If rank is greater
-than one, then all complete rank one sections of **array** along the given
-dimension are shifted. Elements shifted out one end of each rank one
-section are dropped. If **boundary** is present then the corresponding value
-from **boundary** is copied back in the other end. If **boundary** is not
-present then the following are copied in depending on the type of **array**.
+on elements of **array** along the dimension of **dim**.
+
+If **dim** is omitted it is taken to be **1**.
+
+**dim** is a scalar of type _integer_ in the range of **1 \<= DIM
+\<= n** where **"n"** is the rank of **array**.
+
+If the rank of **array** is one, then all elements of **array** are
+shifted by **shift** places. If rank is greater than one, then all
+complete rank one sections of **array** along the given dimension are
+shifted.
+
+Elements shifted out one end of each rank one section are dropped.
+
+If **boundary** is present then the corresponding value from **boundary**
+is copied back in the other end. If **boundary** is not present then
+the following are copied in depending on the type of **array**.
 
     Array Type     | Boundary Value
     -----------------------------------------------------
@@ -6422,11 +6436,9 @@ Fortran 95 and later
 It is the nearly negligible number relative to **1**
 such that **1+ little_number** is not equal to **1**; or more
 precisely
-
 ```fortran
    real( 1.0, kind(x)) + epsilon(x) /=  real( 1.0, kind(x))
 ```
-
 It may be thought of as the distance from 1.0 to the next largest
 floating point number.
 
@@ -6500,9 +6512,7 @@ contains
    end function my_dp_eps
 end program demo_epsilon
 ```
-
 Results:
-
 ```text
   1.1920929E-07
   1.1920929E-07
@@ -6514,7 +6524,6 @@ Results:
  T
   2.220446049250313E-016
 ```
-
 ### **Standard**
 
 Fortran 95 and later
@@ -7463,7 +7472,7 @@ If **x** has the value zero, the result is zero.
 
 If **x** is an IEEE NaN, the result is that NaN.
 
-If **x** is an IEEE inﬁnity, the result is an IEEE NaN.
+If **x** is an IEEE infinity, the result is an IEEE NaN.
 
 ### **Examples**
 
@@ -8257,8 +8266,8 @@ Fortran 2008 and later
   the result is the position of the character **c** in the ASCII
   collating sequence. It is nonnegative and less than or equal to 127.
 
-  By ASCII, it is meant that **c** is in the collating sequence deﬁned
-  by the codes speciﬁed in ISO/IEC 646:1991 (International Reference
+  By ASCII, it is meant that **c** is in the collating sequence de   ned
+  by the codes specified in ISO/IEC 646:1991 (International Reference
   Version).
 
   The value of the result is processor dependent if **c** is not in the
@@ -9293,11 +9302,25 @@ Fortran 95 and later
 ```fortran
     result = iparity(array, mask)
 ```
-   or
+```fortran
+     integer(kind=KIND) function iparity(array, mask)
+
+     integer(kind=KIND),intent(in) :: array(..)
+     logical(kind=KIND),intent(in) :: mask(..)
+```
+   **array** must be an array. **mask** may be either an array of the
+   same shape as **array** or a scalar.
+
+or
 ```fortran
     result = iparity(array, dim, mask)
 ```
 ```fortran
+     integer(kind=KIND) function iparity(array, mask)
+
+     integer(kind=KIND),intent(in)          :: array(..)
+     logical(kind=KIND),intent(in),optional :: dim
+     logical(kind=KIND),intent(in)          :: mask(..)
 ```
 ### **Description**
 
@@ -9329,7 +9352,6 @@ dropped is returned.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_iparity
 implicit none
@@ -9339,13 +9361,10 @@ integer, dimension(2) :: a
   print '(b8.8)', iparity(a)
 end program demo_iparity
 ```
-
 Results:
-
 ```
    01001110
 ```
-
 ### **Standard**
 
 Fortran 2008 and later
@@ -10029,9 +10048,9 @@ character(len=80) :: f
   do i=-150, 150, 50
      value=i
      write (*,'("LEADING ZERO BITS=",i3)',advance='no') leadz(value)
-     write (*,'(" FOR VALUE ")',advance='no')
+     write (*,'(" OF VALUE ")',advance='no')
      write(*,f,advance='no') value
-     write(*,'(*(1x,g0))') "OR",value
+     write(*,'(*(1x,g0))') "AKA",value
   enddo
   ! Notes:
   ! for two's-complements programming environments a negative non-zero
@@ -10041,13 +10060,13 @@ end program demo_leadz
 ```
 Results:
 ```text
- LEADING ZERO BITS=  0 FOR VALUE 11111111111111111111111101101010 OR -150
- LEADING ZERO BITS=  0 FOR VALUE 11111111111111111111111110011100 OR -100
- LEADING ZERO BITS=  0 FOR VALUE 11111111111111111111111111001110 OR -50
- LEADING ZERO BITS= 32 FOR VALUE 00000000000000000000000000000000 OR 0
- LEADING ZERO BITS= 26 FOR VALUE 00000000000000000000000000110010 OR 50
- LEADING ZERO BITS= 25 FOR VALUE 00000000000000000000000001100100 OR 100
- LEADING ZERO BITS= 24 FOR VALUE 00000000000000000000000010010110 OR 150
+  LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111101101010 AKA -150
+  LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111110011100 AKA -100
+  LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111111001110 AKA -50
+  LEADING ZERO BITS= 32 OF VALUE 00000000000000000000000000000000 AKA 0
+  LEADING ZERO BITS= 26 OF VALUE 00000000000000000000000000110010 AKA 50
+  LEADING ZERO BITS= 25 OF VALUE 00000000000000000000000001100100 AKA 100
+  LEADING ZERO BITS= 24 OF VALUE 00000000000000000000000010010110 AKA 150
 ```
 ### **Standard**
 
@@ -11657,7 +11676,7 @@ Returns the argument with the largest (most positive) value.
   that all the arrays must be of the same size, and the returned value
   will be an array that is the result as if multiple calls were made
   with all scalar values with a single element of each array used in
-  each call.  If called with all arrays the returned array is the same
+  each call. If called with all arrays the returned array is the same
   as if multiple calls were made with **max(arr1(1),arr2(1), ...)**
   to **max(arr1(N),arr2(N))**.
 
@@ -13856,7 +13875,6 @@ end program demo_parity
 Results:
 ```text
     T
-```
 ### **Standard**
 
 Fortran 2008 and later
@@ -13950,7 +13968,6 @@ Fortran 2008 and later
 
      integer(kind=KIND), intent(in) :: i
 ```
-
 ### **Description**
 
 Returns the parity of an integer's binary representation (i.e., the
@@ -13984,9 +14001,7 @@ implicit none
    print  *,  popcnt(huge(0_int64)),  poppar(huge(0_int64))
 end program demo_popcnt
 ```
-
 Results:
-
 ```text
               7           1
               7           1
@@ -13994,7 +14009,6 @@ Results:
              31           1
              63           1
 ```
-
 ### **Standard**
 
 Fortran 2008 and later
@@ -15540,9 +15554,9 @@ If a name is not supported, -1 is returned. Otherwise
 
  + If NAME has the value "ISO_10646", then the result has a value equal
    to that of the kind type parameter of the ISO 10646 character kind
-   (corresponding to UCS-4 as speciﬁed in ISO/IEC 10646).
+   (corresponding to UCS-4 as specified in ISO/IEC 10646).
 
- + If NAME is a processor-deﬁned name of some other character kind
+ + If NAME is a processor-defined name of some other character kind
    supported by the processor, then the result has a value equal to that
    kind type parameter value.
 
@@ -15575,7 +15589,7 @@ Results:
 
 ```text
     abcdefghijklmnopqrstuvwxyz
-    Hello World and Ni Hao -- 你好
+    Hello World and Ni Hao --
 ```
 ### **Standard**
 
@@ -16196,7 +16210,7 @@ by **shift** places. If the absolute value of **shift** is greater than
 **bit_size(i)**, the value is undefined. Bits shifted out from the right
 end are lost, and bits shifted in from the left end are set to 0.
 
-Note the value of the result is the same as **ishft (i, −shift)**.
+Note the value of the result is the same as **ishft (i, -shift)**.
 
 ### **Arguments**
 
@@ -16317,7 +16331,7 @@ sign of __b__.
 
 For processors that distinguish between positive and negative zeros
 __sign()__ may be used to distinguish between __real__ values 0.0 and
-−0.0. SIGN (1.0, -0.0) will return −1.0 when a negative zero is
+-0.0. SIGN (1.0, -0.0) will return  -1.0 when a negative zero is
 distinguishable.
 
 ### **Arguments**
@@ -17139,11 +17153,11 @@ FORTRAN 77 and later
      integer,intent(in),optional :: kind
 ```
   **a** may be of any type and kind. If it is polymorphic it shall not
-  be an undeﬁned pointer. If it is unlimited polymorphic or has any
+  be an undefined pointer. If it is unlimited polymorphic or has any
   deferred type parameters, it shall not be an unallocated allocatable
-  variable or a disassociated or undeﬁned pointer.
+  variable or a disassociated or undefined pointer.
 
-  The kind type parameter of the returned value is that speciﬁed by
+  The kind type parameter of the returned value is that specified by
   the value of **kind**; otherwise, the kind type parameter is that of
   default integer type.
 
@@ -17167,7 +17181,7 @@ Returns the storage size of argument **a** in bits.
 
   If the type and type parameters are such that storage association
   applies, the result is consistent with the named constants
-  deﬁned in the intrinsic module ISO_FORTRAN_ENV.
+  defined in the intrinsic module ISO_FORTRAN_ENV.
 
    NOTE1
 
@@ -17178,9 +17192,9 @@ Returns the storage size of argument **a** in bits.
    NOTE2
 
     This is intended to be the size in memory that an object takes when
-    it is stored; this might diﬀer from the size it takes during
+    it is stored; this might differ from the size it takes during
     expression handling (which might be the native register size) or
-    when stored in a ﬁle.  If an object is never stored in memory
+    when stored in a file. If an object is never stored in memory
     but only in a register, this function nonetheless returns the size
     it would take if it were stored in memory.
 
@@ -17978,7 +17992,7 @@ i) for all (i, j).
 
 ### **Returns**
 
-The transpose of the input array.  The result has the same type as
+The transpose of the input array. The result has the same type as
 **matrix**, and has shape \[ m, n \] if **matrix** has shape \[ n, m \].
 
 ### **Examples**
@@ -18103,11 +18117,11 @@ integer :: i
    strs=[character(len=10) :: "Z"," a b c","ABC",""]
 
    write(*,*)'untrimmed:'
-   ! everthing prints as ten characters; nice for neat columns
+   ! everything prints as ten characters; nice for neat columns
    print brackets, (strs(i), i=1,size(strs))
    print brackets, (strs(i), i=size(strs),1,-1)
    write(*,*)'trimmed:'
-   ! everthing prints trimmed
+   ! everything prints trimmed
    print brackets, (trim(strs(i)), i=1,size(strs))
    print brackets, (trim(strs(i)), i=size(strs),1,-1)
 

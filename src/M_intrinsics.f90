@@ -209,7 +209,7 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result=abs(a)', &
 '', &
-'           elemental type(TYPER(kind=KIND)) function abs(a)', &
+'           elemental type(TYPE(kind=KIND)) function abs(a)', &
 '', &
 '           type(TYPE(kind=KIND)),intent(in) :: a', &
 '', &
@@ -344,11 +344,12 @@ textblock=[character(len=256) :: &
 '  ADE or ASCII Decimal Equivalent) in the ASCII collating sequence.', &
 '', &
 '  The ACHAR(3) function is often used for generating in-band escape sequences', &
-'  to control terminal attributes.', &
+'  to control terminal attributes, as it makes it easy to print unprintable', &
+'  characters such as escape and tab. For example:', &
 '', &
 '         write(*,''(*(a))'')achar(27),''[2J''', &
 '', &
-'  will clear the screen on an ANSI-compatible terminal display, for example.', &
+'  will clear the screen on an ANSI-compatible terminal display,', &
 '', &
 'ARGUMENTS', &
 '  o  I : the integer value to convert to an ASCII character, in the range 0 to', &
@@ -1907,6 +1908,8 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  call atomic_add (atom, value, stat)', &
 '', &
+'  subroutine atomic_add(atom,value,stat)', &
+'', &
 'DESCRIPTION', &
 '  ATOMIC_AD(ATOM, VALUE) atomically adds the value of VAR to the variable', &
 '  ATOM. When STAT is present and the invocation was successful, it is assigned', &
@@ -1963,6 +1966,8 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  call atomic_and(atom, value, stat)', &
 '', &
+'  subroutine atomic_and(atom, value, stat)', &
+'', &
 'DESCRIPTION', &
 '  ATOMIC_AND(ATOM, VALUE) atomically defines ATOM with the bitwise AND between', &
 '  the values of ATOM and VALUE. When STAT is present and the invocation was', &
@@ -2018,6 +2023,8 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  call atomic_cas (atom, old, compare, new, stat)', &
+'', &
+'  subroutine atomic_cas (atom, old, compare, new, stat)', &
 '', &
 'DESCRIPTION', &
 '  atomic_cas compares the variable ATOM with the value of COMPARE; if the', &
@@ -2141,6 +2148,8 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  call atomic_fetch_add(atom, value, old, stat)', &
 '', &
+'  subroutine atomic_fetch_add(atom, value, old, stat)', &
+'', &
 'DESCRIPTION', &
 '  ATOMIC_FETCH_ADD(ATOM, VALUE, OLD) atomically stores the value of ATOM in', &
 '  OLD and adds the value of VAR to the variable ATOM. When STAT is present and', &
@@ -2202,6 +2211,8 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  call atomic_fetch_and(atom, value, old, stat)', &
+'', &
+'  subroutine atomic_fetch_and(atom, value, old, stat)', &
 '', &
 'DESCRIPTION', &
 '  ATOMIC_FETCH_AND(ATOM, VALUE, OLD) atomically stores the value of ATOM in', &
@@ -2266,6 +2277,8 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  call atomic_fetch_or(atom, value, old, stat)', &
 '', &
+'  subroutine atomic_fetch_or(atom, value, old, stat)', &
+'', &
 'DESCRIPTION', &
 '  ATOMIC_FETCH_OR(ATOM, VALUE, OLD) atomically stores the value of ATOM in OLD', &
 '  and defines ATOM with the bitwise OR between the values of ATOM and VALUE.', &
@@ -2327,6 +2340,8 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  call atomic_fetch_xor (atom, value, old, stat)', &
+'', &
+'  subroutine atomic_fetch_xor (atom, value, old, stat)', &
 '', &
 'DESCRIPTION', &
 '  ATOMIC_FETCH_XOR(ATOM, VALUE, OLD) atomically stores the value of ATOM in', &
@@ -2390,6 +2405,8 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  call atomic_or(atom, value, stat)', &
 '', &
+'  subroutine atomic_or(atom, value, stat)', &
+'', &
 'DESCRIPTION', &
 '  ATOMIC_OR(ATOM, VALUE) atomically defines ATOM with the bitwise OR between', &
 '  the values of ATOM and VALUE. When STAT is present and the invocation was', &
@@ -2448,6 +2465,8 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  call atomic_ref(value, atom, stat)', &
+'', &
+'  subroutine atomic_ref(value, atom, stat)', &
 '', &
 'DESCRIPTION', &
 '  ATOMIC_REF(VALUE, ATOM) atomically assigns the value of the variable ATOM to', &
@@ -2513,6 +2532,8 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  call atomic_xor(atom, value, stat)', &
+'', &
+'  subroutine atomic_xor(atom, value, stat)', &
 '', &
 'DESCRIPTION', &
 '  ATOMIC_XOR(ATOM, VALUE) atomically defines ATOM with the bitwise XOR between', &
@@ -3351,11 +3372,11 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result=blt(i,j)', &
 '', &
-'           elemental function blt(i, j)', &
+'         elemental function blt(i, j)', &
 '', &
-'           integer(kind=KIND),intent(in) :: i', &
-'           integer(kind=KIND),intent(in) :: j', &
-'           logical :: blt', &
+'         integer(kind=KIND),intent(in) :: i', &
+'         integer(kind=KIND),intent(in) :: j', &
+'         logical :: blt', &
 '', &
 '  where the kind of I and J may be of any supported integer kind, not', &
 '  necessarily the same. An exception is that values may be a BOZ constant with', &
@@ -5674,18 +5695,29 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = dot_product(vector_a, vector_b)', &
 '', &
-'DESCRIPTION', &
-'  DOT_PRODUCT(VECTOR_A, VECTOR_B) computes the dot product multiplication of', &
-'  two vectors VECTOR_A and VECTOR_B.', &
+'  function dot_product(vector_a, vector_b)', &
+'', &
+'  type(TYPE(kind=KIND)),intent(in) :: vector_a(:)', &
+'  type(TYPE(kind=KIND)),intent(in) :: vector_b(:)', &
 '', &
 '  The two vectors may be either numeric or logical and must be arrays of rank', &
 '  one and of equal size.', &
 '', &
-'  If the vectors are integer or real, the result is SUM(VECTOR_A*VECTOR_B).', &
+'DESCRIPTION', &
+'  DOT_PRODUCT(VECTOR_A, VECTOR_B) computes the dot product multiplication of', &
+'  two vectors VECTOR_A and VECTOR_B.', &
 '', &
-'  If the vectors are complex, the result is SUM(CONJG(VECTOR_A)*VECTOR_B).', &
+'  If the vectors are integer or real, the result is', &
 '', &
-'  If the vectors are logical, the result is ANY(VECTOR_A .AND. VECTOR_B).', &
+'       **sum(vector_a\*vector_b)**.', &
+'', &
+'  If the vectors are complex, the result is', &
+'', &
+'       **sum(conjg(vector_a)\*vector_b)**.', &
+'', &
+'  If the vectors are logical, the result is', &
+'', &
+'       **any(vector_a .and. vector_b)**.', &
 '', &
 'ARGUMENTS', &
 '  o  VECTOR_A : The type shall be numeric or logical, rank 1.', &
@@ -5882,7 +5914,7 @@ textblock=[character(len=256) :: &
 '', &
 '  This is equivalent to', &
 '', &
-'           ior( shiftl(i, shift), shiftr(j, bit_size(j)-shift) )', &
+'           ior( shiftl(i, shift), shiftr(j, bit_size(j) - shift) )', &
 '', &
 '  hence DSHIFTL is designated as a "combined left shift", because it is like', &
 '  we appended I and J together, shifted it SHIFT bits to the left, and then', &
@@ -5911,7 +5943,7 @@ textblock=[character(len=256) :: &
 '', &
 '  o  J : Shall be of type integer, and of the same kind as I.', &
 '', &
-'      If either I or J is a BOZ-literal-constant, it is rst converted as', &
+'      If either I or J is a BOZ-literal-constant, it is first converted as', &
 '      if by the intrinsic function INT() to integer with the kind type', &
 '      parameter of the other.', &
 '', &
@@ -6021,13 +6053,13 @@ textblock=[character(len=256) :: &
 '', &
 '  This is equivalent to', &
 '', &
-'           ior(shiftl (i, bit_size(i)-shift), shiftr(j, shift) )', &
+'           ior(shiftl (i, bit_size(i) - shift), shiftr(j, shift) )', &
 '', &
 '  It may be thought of as appending the bits of I and J, dropping off the', &
 '  SHIFT rightmost bits, and then retaining the same number of rightmost bits', &
 '  as an input value, hence the name "combined right shift"...', &
 '', &
-'      GIven two 16-bit values labeled alphabetically ...', &
+'      Given two 16-bit values labeled alphabetically ...', &
 '', &
 '         i=ABCDEFGHIJKLMNOP', &
 '         j=abcdefghijklmnop', &
@@ -6050,7 +6082,7 @@ textblock=[character(len=256) :: &
 '', &
 '  this has the same result as a negative circular shift', &
 '', &
-'           ishftc( i, -shift ).', &
+'           ishftc( i,   -shift ).', &
 '', &
 'ARGUMENTS', &
 '  o  I : Shall be of type integer.', &
@@ -6144,15 +6176,22 @@ textblock=[character(len=256) :: &
 '', &
 'DESCRIPTION', &
 '  EOSHIFT(ARRAY, SHIFT[, BOUNDARY, DIM]) performs an end-off shift on elements', &
-'  of ARRAY along the dimension of DIM. If DIM is omitted it is taken to be 1.', &
+'  of ARRAY along the dimension of DIM.', &
+'', &
+'  If DIM is omitted it is taken to be 1.', &
+'', &
 '  DIM is a scalar of type integer in the range of 1 <= DIM <= N where "N" is', &
-'  the rank of ARRAY. If the rank of ARRAY is one, then all elements of ARRAY', &
-'  are shifted by SHIFT places. If rank is greater than one, then all complete', &
-'  rank one sections of ARRAY along the given dimension are shifted. Elements', &
-'  shifted out one end of each rank one section are dropped. If BOUNDARY is', &
-'  present then the corresponding value from BOUNDARY is copied back in the', &
-'  other end. If BOUNDARY is not present then the following are copied in', &
-'  depending on the type of ARRAY.', &
+'  the rank of ARRAY.', &
+'', &
+'  If the rank of ARRAY is one, then all elements of ARRAY are shifted by SHIFT', &
+'  places. If rank is greater than one, then all complete rank one sections of', &
+'  ARRAY along the given dimension are shifted.', &
+'', &
+'  Elements shifted out one end of each rank one section are dropped.', &
+'', &
+'  If BOUNDARY is present then the corresponding value from BOUNDARY is copied', &
+'  back in the other end. If BOUNDARY is not present then the following are', &
+'  copied in depending on the type of ARRAY.', &
 '', &
 '      Array Type     | Boundary Value', &
 '      -----------------------------------------------------', &
@@ -7148,8 +7187,6 @@ textblock=[character(len=256) :: &
 '', &
 'fraction(3fortran)                                          fraction(3fortran)', &
 '', &
-'              fraction', &
-'', &
 'NAME', &
 '  FRACTION(3) - [MODEL_COMPONENTS] Fractional part of the model representation', &
 '', &
@@ -7176,7 +7213,7 @@ textblock=[character(len=256) :: &
 '', &
 '  If X is an IEEE NaN, the result is that NaN.', &
 '', &
-'  If X is an IEEE innity, the result is an IEEE NaN.', &
+'  If X is an IEEE infinity, the result is an IEEE NaN.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -7925,8 +7962,8 @@ textblock=[character(len=256) :: &
 '  the result is the position of the character C in the ASCII collating', &
 '  sequence. It is nonnegative and less than or equal to 127.', &
 '', &
-'  By ASCII, it is meant that C is in the collating sequence dened by the codes', &
-'  specied in ISO/IEC 646:1991 (International Reference Version).', &
+'  By ASCII, it is meant that C is in the collating sequence de ned by the', &
+'  codes specified in ISO/IEC 646:1991 (International Reference Version).', &
 '', &
 '  The value of the result is processor dependent if C is not in the ASCII', &
 '  collating sequence.', &
@@ -8848,9 +8885,23 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = iparity(array, mask)', &
 '', &
+'           integer(kind=KIND) function iparity(array, mask)', &
+'', &
+'           integer(kind=KIND),intent(in) :: array(..)', &
+'           logical(kind=KIND),intent(in) :: mask(..)', &
+'', &
+'  ARRAY must be an array. MASK may be either an array of the same shape as', &
+'  ARRAY or a scalar.', &
+'', &
 '  or', &
 '', &
 '          result = iparity(array, dim, mask)', &
+'', &
+'           integer(kind=KIND) function iparity(array, mask)', &
+'', &
+'           integer(kind=KIND),intent(in)          :: array(..)', &
+'           logical(kind=KIND),intent(in),optional :: dim', &
+'           logical(kind=KIND),intent(in)          :: mask(..)', &
 '', &
 'DESCRIPTION', &
 '  Reduces with bitwise xor (exclusive or) the elements of ARRAY along', &
@@ -9539,9 +9590,9 @@ textblock=[character(len=256) :: &
 '        do i=-150, 150, 50', &
 '           value=i', &
 '           write (*,''("LEADING ZERO BITS=",i3)'',advance=''no'') leadz(value)', &
-'           write (*,''(" FOR VALUE ")'',advance=''no'')', &
+'           write (*,''(" OF VALUE ")'',advance=''no'')', &
 '           write(*,f,advance=''no'') value', &
-'           write(*,''(*(1x,g0))'') "OR",value', &
+'           write(*,''(*(1x,g0))'') "AKA",value', &
 '        enddo', &
 '        ! Notes:', &
 '        ! for two''s-complements programming environments a negative non-zero', &
@@ -9551,13 +9602,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       LEADING ZERO BITS=  0 FOR VALUE 11111111111111111111111101101010 OR -150', &
-'       LEADING ZERO BITS=  0 FOR VALUE 11111111111111111111111110011100 OR -100', &
-'       LEADING ZERO BITS=  0 FOR VALUE 11111111111111111111111111001110 OR -50', &
-'       LEADING ZERO BITS= 32 FOR VALUE 00000000000000000000000000000000 OR 0', &
-'       LEADING ZERO BITS= 26 FOR VALUE 00000000000000000000000000110010 OR 50', &
-'       LEADING ZERO BITS= 25 FOR VALUE 00000000000000000000000001100100 OR 100', &
-'       LEADING ZERO BITS= 24 FOR VALUE 00000000000000000000000010010110 OR 150', &
+'        LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111101101010 AKA -150', &
+'        LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111110011100 AKA -100', &
+'        LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111111001110 AKA -50', &
+'        LEADING ZERO BITS= 32 OF VALUE 00000000000000000000000000000000 AKA 0', &
+'        LEADING ZERO BITS= 26 OF VALUE 00000000000000000000000000110010 AKA 50', &
+'        LEADING ZERO BITS= 25 OF VALUE 00000000000000000000000001100100 AKA 100', &
+'        LEADING ZERO BITS= 24 OF VALUE 00000000000000000000000010010110 AKA 150', &
 '', &
 'STANDARD', &
 '  Fortran 2008 and later', &
@@ -13079,10 +13130,11 @@ textblock=[character(len=256) :: &
 '  Results:', &
 '', &
 '   T', &
-'STANDARD', &
+'  ### **Standard**', &
+'', &
 '  Fortran 2008 and later', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'       _fortran-lang intrinsic descriptions_', &
 '', &
 '                              September 24, 2022              parity(3fortran)', &
 '']
@@ -14642,11 +14694,11 @@ textblock=[character(len=256) :: &
 '', &
 '  o  If NAME has the value "ISO_10646", then the result has a value equal to', &
 '     that of the kind type parameter of the ISO 10646 character kind', &
-'     (corresponding to UCS-4 as specied in ISO/IEC 10646).', &
+'     (corresponding to UCS-4 as specified in ISO/IEC 10646).', &
 '', &
-'  o  If NAME is a processor-dened name of some other character kind supported', &
-'     by the processor, then the result has a value equal to that kind type', &
-'     parameter value.', &
+'  o  If NAME is a processor-defined name of some other character kind', &
+'     supported by the processor, then the result has a value equal to that', &
+'     kind type parameter value.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -16138,11 +16190,11 @@ textblock=[character(len=256) :: &
 '           integer,intent(in),optional :: kind', &
 '', &
 '  A may be of any type and kind. If it is polymorphic it shall not be an', &
-'  undened pointer. If it is unlimited polymorphic or has any deferred type', &
+'  undefined pointer. If it is unlimited polymorphic or has any deferred type', &
 '  parameters, it shall not be an unallocated allocatable variable or a', &
-'  disassociated or undened pointer.', &
+'  disassociated or undefined pointer.', &
 '', &
-'  The kind type parameter of the returned value is that specied by the value', &
+'  The kind type parameter of the returned value is that specified by the value', &
 '  of KIND; otherwise, the kind type parameter is that of default integer type.', &
 '', &
 'DESCRIPTION', &
@@ -16159,7 +16211,7 @@ textblock=[character(len=256) :: &
 '  that has the dynamic type and type parameters of A.', &
 '', &
 '  If the type and type parameters are such that storage association applies,', &
-'  the result is consistent with the named constants dened in the intrinsic', &
+'  the result is consistent with the named constants defined in the intrinsic', &
 '  module ISO_FORTRAN_ENV.', &
 '', &
 '  NOTE1', &
@@ -16171,9 +16223,9 @@ textblock=[character(len=256) :: &
 '  NOTE2', &
 '', &
 '      This is intended to be the size in memory that an object takes when', &
-'      it is stored; this might dier from the size it takes during', &
+'      it is stored; this might differ from the size it takes during', &
 '      expression handling (which might be the native register size) or', &
-'      when stored in a le.  If an object is never stored in memory', &
+'      when stored in a file. If an object is never stored in memory', &
 '      but only in a register, this function nonetheless returns the size', &
 '      it would take if it were stored in memory.', &
 '', &
@@ -17030,11 +17082,11 @@ textblock=[character(len=256) :: &
 '         strs=[character(len=10) :: "Z"," a b c","ABC",""]', &
 '', &
 '         write(*,*)''untrimmed:''', &
-'         ! everthing prints as ten characters; nice for neat columns', &
+'         ! everything prints as ten characters; nice for neat columns', &
 '         print brackets, (strs(i), i=1,size(strs))', &
 '         print brackets, (strs(i), i=size(strs),1,-1)', &
 '         write(*,*)''trimmed:''', &
-'         ! everthing prints trimmed', &
+'         ! everything prints trimmed', &
 '         print brackets, (trim(strs(i)), i=1,size(strs))', &
 '         print brackets, (trim(strs(i)), i=size(strs),1,-1)', &
 '', &
