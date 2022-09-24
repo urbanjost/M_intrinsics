@@ -6,10 +6,23 @@
 
 ### **Syntax**
 ```fortran
-    result = storage_size(a, kind)
+    result = storage_size(a [,kind] )
 ```
 ```fortran
+     integer(kind=KIND) storage_size(a,kind)
+
+     type(TYPE(kind=KINDA)) :: a
+     integer,intent(in),optional :: kind
 ```
+  **a** may be of any type and kind. If it is polymorphic it shall not
+  be an undeﬁned pointer. If it is unlimited polymorphic or has any
+  deferred type parameters, it shall not be an unallocated allocatable
+  variable or a disassociated or undeﬁned pointer.
+
+  The kind type parameter of the returned value is that speciﬁed by
+  the value of **kind**; otherwise, the kind type parameter is that of
+  default integer type.
+
 ### **Description**
 
 Returns the storage size of argument **a** in bits.
@@ -17,22 +30,39 @@ Returns the storage size of argument **a** in bits.
 ### **Arguments**
 
 - **a**
-  : Shall be a scalar or array of any type.
+  : The entity to determine the storage size of
 
 - **kind**
-  : (Optional) shall be a scalar integer constant expression.
+  : a scalar integer constant expression that defines the kind of the
+  output value.
 
 ### **Returns**
 
-The result is a scalar integer with the kind type parameter specified by
-**kind** (or default integer type if **kind** is missing). The result value is
-the size expressed in bits for an element of an array that has the
-dynamic type and type parameters of **a**.
+  The result value is the size expressed in bits for an element of an
+  array that has the dynamic type and type parameters of **a**.
+
+  If the type and type parameters are such that storage association
+  applies, the result is consistent with the named constants
+  deﬁned in the intrinsic module ISO_FORTRAN_ENV.
+
+   NOTE1
+
+    An array element might take "type" more bits to store than an isolated
+    scalar, since any hardware-imposed align- ment requirements for
+    array elements might not apply to a simple scalar variable.
+
+   NOTE2
+
+    This is intended to be the size in memory that an object takes when
+    it is stored; this might diﬀer from the size it takes during
+    expression handling (which might be the native register size) or
+    when stored in a ﬁle.  If an object is never stored in memory
+    but only in a register, this function nonetheless returns the size
+    it would take if it were stored in memory.
 
 ### **Examples**
 
 Sample program
-
 ```fortran
 program demo_storage_size
 implicit none
@@ -43,9 +73,7 @@ implicit none
    write(*,*)'size of integer array ',storage_size([0,1,2,3,4,5,6,7,8,9])
 end program demo_storage_size
 ```
-
 Results:
-
 ```text
     size of integer                 32
     size of real                    32
@@ -53,7 +81,6 @@ Results:
     size of complex                 64
     size of integer array           32
 ```
-
 ### **Standard**
 
 Fortran 2008 and later

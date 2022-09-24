@@ -15937,21 +15937,52 @@ textblock=[character(len=256) :: &
 '  STORAGE_SIZE(3) - [BIT:INQUIRY] Storage size in bits', &
 '', &
 'SYNTAX', &
-'  result = storage_size(a, kind)', &
+'  result = storage_size(a [,kind] )', &
+'', &
+'           integer(kind=KIND) storage_size(a,kind)', &
+'', &
+'           type(TYPE(kind=KINDA)) :: a', &
+'           integer,intent(in),optional :: kind', &
+'', &
+'  A may be of any type and kind. If it is polymorphic it shall not be an', &
+'  undened pointer. If it is unlimited polymorphic or has any deferred type', &
+'  parameters, it shall not be an unallocated allocatable variable or a', &
+'  disassociated or undened pointer.', &
+'', &
+'  The kind type parameter of the returned value is that specied by the value', &
+'  of KIND; otherwise, the kind type parameter is that of default integer type.', &
 '', &
 'DESCRIPTION', &
 '  Returns the storage size of argument A in bits.', &
 '', &
 'ARGUMENTS', &
-'  o  A : Shall be a scalar or array of any type.', &
+'  o  A : The entity to determine the storage size of', &
 '', &
-'  o  KIND : (Optional) shall be a scalar integer constant expression.', &
+'  o  KIND : a scalar integer constant expression that defines the kind of the', &
+'     output value.', &
 '', &
 'RETURNS', &
-'  The result is a scalar integer with the kind type parameter specified by', &
-'  KIND (or default integer type if KIND is missing). The result value is the', &
-'  size expressed in bits for an element of an array that has the dynamic type', &
-'  and type parameters of A.', &
+'  The result value is the size expressed in bits for an element of an array', &
+'  that has the dynamic type and type parameters of A.', &
+'', &
+'  If the type and type parameters are such that storage association applies,', &
+'  the result is consistent with the named constants dened in the intrinsic', &
+'  module ISO_FORTRAN_ENV.', &
+'', &
+'  NOTE1', &
+'', &
+'      An array element might take "type" more bits to store than an isolated', &
+'      scalar, since any hardware-imposed align- ment requirements for', &
+'      array elements might not apply to a simple scalar variable.', &
+'', &
+'  NOTE2', &
+'', &
+'      This is intended to be the size in memory that an object takes when', &
+'      it is stored; this might dier from the size it takes during', &
+'      expression handling (which might be the native register size) or', &
+'      when stored in a le.  If an object is never stored in memory', &
+'      but only in a register, this function nonetheless returns the size', &
+'      it would take if it were stored in memory.', &
 '', &
 'EXAMPLES', &
 '  Sample program', &
