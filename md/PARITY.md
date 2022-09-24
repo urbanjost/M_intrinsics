@@ -6,13 +6,13 @@
 
 ### **Syntax**
 ```fortran
-    result = parity(mask, dim)
+    result = parity( mask [,dim] )
 ```
 ```fortran
-     function parity(mask, dim)
-     type(logical(kind=LKIND))                    :: dim
-     type(logical(kind=LKIND)),intent(in)         :: mask(..)
-     type(integer(kind=KIND)),intent(in),optional :: dim
+     logical(kind=KIND) function parity(mask, dim)
+
+     type(logical(kind=KIND)),intent(in)           :: mask(..)
+     type(integer(kind=KINDD)),intent(in),optional :: dim
 ```
 where KIND and LKIND are any supported kind for the type.
 
@@ -44,7 +44,6 @@ __mask__ with dimension __dim__ dropped.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_parity
 implicit none
@@ -52,13 +51,10 @@ logical :: x(2) = [ .true., .false. ]
    print *, parity(x)
 end program demo_parity
 ````
-
 Results:
-
 ```text
     T
 ```
-
 ### **Standard**
 
 Fortran 2008 and later

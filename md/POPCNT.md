@@ -9,7 +9,12 @@
     result = popcnt(i)
 ```
 ```fortran
+    elemental integer function popcnt(i)
+
+     integer(kind=KIND), intent(in) :: i
 ```
+The **i** argument may be of any kind.
+
 ### **Description**
 
 Returns the number of bits set in the binary representation of an

@@ -18,18 +18,17 @@ where KIND may be any supported kind value for _integer_ types.
 
 ### **Description**
 
-**achar(i)** returns the character located at position **i** (commonly called the
-_ADE_ or ASCII Decimal Equivalent) in the ASCII collating sequence.
+**achar(i)** returns the character located at position **i** (commonly
+called the _ADE_ or ASCII Decimal Equivalent) in the ASCII collating
+sequence.
 
 The **achar**(3) function is often used for generating in-band escape
-sequences to control terminal attributes.
-
+sequences to control terminal attributes, as it makes it easy to
+print unprintable characters such as escape and tab. For example:
 ```fortran
    write(*,'(*(a))')achar(27),'[2J'
 ```
-
-will clear the screen on an ANSI-compatible terminal display, for
-example.
+will clear the screen on an ANSI-compatible terminal display,
 
 ### **Arguments**
 
@@ -94,9 +93,7 @@ integer,parameter             :: toupper = iachar('A')-iachar('a')
 end function upper
 end program demo_achar
 ```
-
 Results:
-
 ```
    decimal     =65
    character   =A
@@ -153,7 +150,6 @@ The ADEs (ASCII Decimal Equivalents) for ASCII are
 |120  x |121  y |122  z |123  { |124  | |125  } |126  ~ |127 del|
 *-------*-------*-------*-------*-------*-------*-------*-------*
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later, with KIND argument Fortran 2003 and later

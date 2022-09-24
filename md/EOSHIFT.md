@@ -13,15 +13,23 @@
 ### **Description**
 
 **eoshift(array, shift\[, boundary, dim\])** performs an end-off shift
-on elements of **array** along the dimension of **dim**. If **dim** is omitted it is
-taken to be **1**. **dim** is a scalar of type _integer_ in the range of **1 \<= DIM
-\<= n** where **"n"** is the rank of **array**. If the rank of **array** is one, then
-all elements of **array** are shifted by **shift** places. If rank is greater
-than one, then all complete rank one sections of **array** along the given
-dimension are shifted. Elements shifted out one end of each rank one
-section are dropped. If **boundary** is present then the corresponding value
-from **boundary** is copied back in the other end. If **boundary** is not
-present then the following are copied in depending on the type of **array**.
+on elements of **array** along the dimension of **dim**.
+
+If **dim** is omitted it is taken to be **1**.
+
+**dim** is a scalar of type _integer_ in the range of **1 \<= DIM
+\<= n** where **"n"** is the rank of **array**.
+
+If the rank of **array** is one, then all elements of **array** are
+shifted by **shift** places. If rank is greater than one, then all
+complete rank one sections of **array** along the given dimension are
+shifted.
+
+Elements shifted out one end of each rank one section are dropped.
+
+If **boundary** is present then the corresponding value from **boundary**
+is copied back in the other end. If **boundary** is not present then
+the following are copied in depending on the type of **array**.
 
     Array Type     | Boundary Value
     -----------------------------------------------------

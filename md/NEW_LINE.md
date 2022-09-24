@@ -9,8 +9,9 @@
     result = new_line(c)
 ```
 ```fortran
-     character(len=1,kind=kind(c)) :: new_line(c)
-     character(len=1),intent(in) :: c(..)
+     character(len=1,kind=kind(c)) function new_line(c)
+
+     character(len=1,kind=KIND),intent(in) :: c(..)
 ```
 ### **Description**
 

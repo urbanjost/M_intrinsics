@@ -9,7 +9,16 @@
     result = associated(pointer [,target])
 ```
 ```fortran
+     logical function associated(pointer,target)
+
+     type(TYPE(kind=KIND),pointer :: pointer
+     type(TYPE(kind=KIND),pointer,optional :: target
 ```
+  **pointer** shall have the _pointer_ attribute and it can be any type.
+
+  **target** shall be a pointer or a target. It must have the
+  same type, kind type parameter, and array rank as **pointer**.
+
 ### **Description**
 
 **associated(pointer \[, target\])** determines the status of the
@@ -18,11 +27,11 @@ pointer **pointer** or if **pointer** is associated with the target **target**.
 ### **Arguments**
 
 - **pointer**
-  : **pointer** shall have the _pointer_ attribute and it can be of any type.
+  : A pointer to test for association
 
 - **target**
-  : (Optional) **target** shall be a pointer or a target. It must have the
-  same type, kind type parameter, and array rank as **pointer**.
+  : A target that is to be tested for being occupying the same storage
+  units as the pointer **pointer**.
 
 The association status of neither **pointer** nor **target** shall be undefined.
 
@@ -32,8 +41,8 @@ The association status of neither **pointer** nor **target** shall be undefined.
 There are several cases:
 
 1.  When the optional **target** is not present then **associated(pointer)**
-    is true if **pointer** is associated with a target; otherwise, it
-    returns false.
+    is _.true._ if **pointer** is associated with a target; otherwise, it
+    returns _.false._.
 
 2.  If **target** is present and a scalar target, the result is true if
     **target** is not a zero-sized storage sequence and the target
@@ -65,7 +74,6 @@ There are several cases:
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_associated
 implicit none
@@ -78,7 +86,6 @@ real, pointer :: ptr(:)
    & stop 'POINTER NOT ASSOCIATED TO TARGET'
 end program demo_associated
 ```
-
 ### **Standard**
 
 Fortran 95 and later

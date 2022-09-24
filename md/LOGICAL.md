@@ -9,7 +9,8 @@
     result = logical(l, kind)
 ```
 ```fortran
-     logical(kind=KIND) function logical(L,KIND)
+     elemental logical(kind=KIND) function logical(L,KIND)
+
      logical(kind=INK),intent(in) :: L
      integer,intent(in),optional :: KIND
 ```
@@ -35,7 +36,6 @@ given.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_logical
 ! Access array containing the kind type parameter values supported by this
@@ -51,7 +51,6 @@ use iso_fortran_env, only : logical_kinds
 end program demo_logical
 ```
 Results:
-
 ```text
               1
               2

@@ -56,7 +56,7 @@ and **isxdigit**(3c); but for a string as well an an array of strings.
 
 ### **Returns**
 
-The position of the first or last (if **back** is _.false._) unmatched 
+The position of the first or last (if **back** is _.false._) unmatched
 character in **string**.
 
 If all characters of **string** are found in **set**, the result is zero.
@@ -78,7 +78,7 @@ character,parameter :: &
  & blank*(*) = ' ', &
  & tab       = char(11), &
  & prnt*(*) = int//low//upp//blank//punc
- 
+
 character(len=:),allocatable :: string
 integer :: i
 
@@ -295,7 +295,7 @@ Results:
 exploring uses of elemental functionality and dusty corners
 
 ```fortran
-program demo_verify
+program more_verify
 implicit none
 character(len=*),parameter :: &
   & int='0123456789', &
@@ -320,12 +320,12 @@ character(len=2) :: sets(3)=["do","re","me"]
    write(*,*) 'null',verify("for tran ", "", .true.) ! 8,length of string?
    write(*,*) 'blank',verify("for tran ", " ", .true.) ! 7,found 'n'
 
-   ! first character in  "Go    " not in "do", 
+   ! first character in  "Go    " not in "do",
    ! and first letter in "right " not in "ri"
    ! and first letter in "home! " not in "me"
    write(*,*) verify(strings,sets)
 
-end program demo_verify
+end program more_verify
 ```
 Results:
 ```text

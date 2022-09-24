@@ -9,7 +9,7 @@
     result = command_argument_count()
 ```
 ```fortran
-     integer function command_argument_count() 
+     integer function command_argument_count()
 ```
 ### **Description**
 

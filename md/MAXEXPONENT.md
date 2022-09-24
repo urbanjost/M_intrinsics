@@ -11,7 +11,7 @@
 ```fortran
      elemental integer function maxexponent(x)
 
-     real(kind=KIND,intent(in)   :: x
+     real(kind=KIND),intent(in)   :: x
 ```
 where KIND is any _real_ kind.
 
@@ -32,7 +32,6 @@ The return value is of type _integer_ and of the default integer kind.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_maxexponent
 use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32

@@ -6,9 +6,16 @@
 
 ### **Syntax**
 ```fortran
-    call mvbits(from, frompos, len, to, topos)
+call mvbits(from, frompos, len, to, topos)
 ```
 ```fortran
+    elemental subroutine mvbits(from,frompos,len,to,topos)
+
+     integer(kind=KIND),intent(in)    :: from
+     integer(kind=KIND),intent(in)    :: frompos
+     integer(kind=KIND),intent(in)    :: len
+     integer(kind=KIND),intent(inout) :: to
+     integer(kind=KIND),intent(in)    :: topos
 ```
 ### **Description**
 
@@ -27,21 +34,23 @@ The bits are numbered **0** to **bit_size(i)-1**, from right to left.
 
 - **from**
   : An _integer_ to read bits from.
+
 - **frompos**
   : **frompos** is the position of the first bit to copy. It is a
   nonnegative _integer_ value < **bit_size(from)**.
+
 - **len**
   : A nonnegative _integer_ value that indicates how many bits to
   copy from **from**. It must not specify copying bits past the end
   of **from**. That is, **frompos + len** must be less than or equal
   to **bit_size(from)**.
+
 - **to**
   : The _integer_ variable to place the copied bits into. It must
   be of the same kind as **from** and may even be the same variable
   as **from**.
 
-  **to**
-  : is set by copying the sequence of bits of length **len**,
+  **to** is set by copying the sequence of bits of length **len**,
   starting at position **frompos** of **from** to position **topos** of
   **to**. No other bits of **to** are altered. On return, the **len**
   bits of **to** starting at **topos** are equal to the value that
@@ -51,6 +60,7 @@ The bits are numbered **0** to **bit_size(i)-1**, from right to left.
   : A nonnegative _integer_ value indicating the starting location in
   **to** to place the specified copy of bits from **from**.
   **topos + len** must be less than or equal to **bit_size(to)**.
+
 
 ### **Example**
 

@@ -11,8 +11,8 @@ function
 ```fortran
      elemental function atan2(y, x)
 
-     type(real,kind=KIND) :: atan2
-     type(real,kind=KIND),intent(in) :: y, x
+     real,kind=KIND) :: atan2
+     real,kind=KIND),intent(in) :: y, x
 ```
 The return value has the same type and kind as **y** and **x**.
 
@@ -33,7 +33,7 @@ a unique angle).
   : The real component of the complex value **(x,y)** or the **x**
   component of the point **\<x,y\>**.
 
-  If must be of the same kind as **y**.
+  **x**  must be of the same kind as **y**.
 
 ### **Returns**
 
@@ -133,7 +133,7 @@ real,intent(in)           :: radians
 end function r2d
 
 subroutine cartesian_to_polar(x,y,radius,inclination)
-! return angle in radians in range 0 to 2*PI 
+! return angle in radians in range 0 to 2*PI
 implicit none
 real,intent(in)  :: x,y
 real,intent(out) :: radius,inclination
@@ -150,10 +150,10 @@ end program demo_atan2
 ```
   Results:
 ```text
-    radians=   1.000000     degrees=   57.29578    
-    elemental  0.3217506      0.4636476    
-    elemental  0.1973956      0.3805064    
-    complex (0.0000000E+00,1.000000)   1.570796    
+    radians=   1.000000     degrees=   57.29578
+    elemental  0.3217506      0.4636476
+    elemental  0.1973956      0.3805064
+    complex (0.0000000E+00,1.000000)   1.570796
    X=  1.00 Y=  0.00 ANGLE= .000000     DEGREES= .000   DISTANCE=1.000000
    X=  1.00 Y=  1.00 ANGLE= .7853982    DEGREES= 45.00  DISTANCE=1.414214
    X=  0.00 Y=  1.00 ANGLE= 1.570796    DEGREES= 90.00  DISTANCE=1.000000

@@ -9,6 +9,10 @@
     result = iand(i, j)
 ```
 ```fortran
+     elemental integer(kind=KIND) function iand(i,j)
+
+     integer(kind=KIND),intent(in) :: i
+     integer(kind=KIND),intent(in) :: j
 ```
 ### **Description**
 

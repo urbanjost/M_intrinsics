@@ -9,6 +9,9 @@
     result = exponent(x)
 ```
 ```fortran
+     elemental integer function exponent(x)
+
+     real(kind=KIND),intent(in) :: x
 ```
 ### **Description**
 

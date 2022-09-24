@@ -9,6 +9,8 @@
     result = scale(x, i)
 ```
 ```fortran
+     elemental real(kind=KIND) function scale(x, i)
+
      real(kind=KIND),intent(in) :: x
      integer,intent(in)         :: i
 ```
@@ -32,7 +34,6 @@ The return value is of the same type and kind as **x**. Its value is
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_scale
 implicit none
@@ -41,13 +42,10 @@ integer :: i = 5
    print *, scale(x,i), x*radix(x)**i
 end program demo_scale
 ```
-
 Results:
-
 ```
     0.570043862      0.570043862
 ```
-
 ### **Standard**
 
 Fortran 95 and later

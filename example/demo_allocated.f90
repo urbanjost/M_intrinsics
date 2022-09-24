@@ -1,10 +1,15 @@
       program demo_allocated
       use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
       implicit none
-      integer :: i = 4
       real(kind=sp), allocatable :: x(:)
       character(len=256) :: message
       integer :: istat
+        ! basics
+         if( allocated(x)) then
+             write(*,*)'do things if allocated'
+         else
+             write(*,*)'do things if not allocated'
+         endif
 
          ! if already allocated, deallocate
          if ( allocated(x) ) deallocate(x,STAT=istat, ERRMSG=message )
@@ -14,15 +19,9 @@
          endif
 
          ! only if not allocated, allocate
-         if ( .not. allocated(x) ) allocate(x(i))
+         if ( .not. allocated(x) ) allocate(x(20))
 
-         write(*,*)allocated(x), size(x)
-         if( allocated(x)) then
-             write(*,*)'do things if allocated'
-         else
-             write(*,*)'do things if not allocated'
-         endif
-
+        ! allocation and intent(out)
          call intentout(x)
          write(*,*)'note it is deallocated!',allocated(x)
 

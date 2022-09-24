@@ -9,7 +9,10 @@
     result = rrspacing(x)
 ```
 ```fortran
+     elemental real(kind=KIND) function rrspacing(x)
 ```
+The return value is of the same type and kind as **x**.
+
 ### **Description**
 
 **rrspacing(x)** returns the reciprocal of the relative spacing of model

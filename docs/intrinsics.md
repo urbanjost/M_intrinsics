@@ -10,18 +10,16 @@
     result=abs(a)
 ```
 ```fortran
-     elemental TYPE(kind=KIND) function abs(a)
+     elemental type(TYPER(kind=KIND)) function abs(a)
 
-     TYPE(kind=KIND),intent(in) :: a
+     type(TYPE(kind=KIND)),intent(in) :: a
 ```
-   where the TYPE and KIND is determined by the type and type attributes
-   of **a**, which may be any _real_, _integer_, or _complex_ value.
+   **a** may be any _real_, _integer_, or _complex_ value.
 
-   If the type of **a** is _complex_ the type returned will be a _real_
-   value representing the distance from (0.0,0.0) with the same kind as
-   the _real_ part of the input value.
+   If the type of **a** is _complex_ the type returned will
+   be a _real_ with the same kind as the real part of **a**.
 
-   Otherwise the returned type will be the same type as **a**.
+   Otherwise the returned type is the same as for **a**.
 
 ### **Description**
 
@@ -116,6 +114,10 @@ Result:
 ### **Standard**
 
    FORTRAN 77 and later
+
+### **See Also**
+
+[**sign**(3)](#sign)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -372,7 +374,7 @@ Inverse function: [**cosh**(3)](#cosh)
 ```fortran
      elemental TYPE(kind=KIND) function acos(x)
 
-     TYPE(kind=KIND,intent(in) :: x
+     TYPE(kind=KIND),intent(in) :: x
 ```
 where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
 by the associated type.
@@ -676,7 +678,7 @@ FORTRAN 77 and later
 ```fortran
      elemental real(kind=KIND) function iaint(x,kind)
 
-     real(kind=KIND,intent(in)   :: x
+     real(kind=KIND),intent(in)   :: x
      integer,intent(in),optional :: kind
 ```
 where the _kind_ of the result is the same as as **x** unless
@@ -766,9 +768,9 @@ FORTRAN 77 and later
    result = all(mask [,dim])
 ```
 ```fortran
-     logical(..) function all(mask, dim)
+     logical function all(mask, dim)
 
-     logical,intent(in)          :: mask
+     logical,intent(in)          :: mask(..)
      integer,intent(in),optional :: dim
 ```
 ### **Description**
@@ -878,35 +880,30 @@ Fortran 95 and later
 
 ### **Syntax**
 ```fortran
-    result = allocated(scalar\|array)
+    result = allocated(entity)
 ```
 ```fortran
-     logical function allocated(scalar,array)
+     logical function allocated(entity)
 
-     type(TYPE(kind=KIND)),allocatable.optional :: scalar
-     type(TYPE(kind=KIND)),allocatable.optional :: array(..)
+     type(TYPE(kind=KIND)),allocatable,optional :: entity(..)
 ```
-where **TYPE** may be any allocatable scalar or array object type.
-Either a scalar or array argument must be present, but not both.
+  where **entity** may be any allocatable scalar or array object
+  of any type.
 
 ### **Description**
 
-**allocated(arg)**  checks the allocation status of both arrays
-and scalars.
+  **allocated(arg)**  checks the allocation status of both arrays
+  and scalars.
 
 ### **Arguments**
 
-- **array**
-  : the argument shall be an _allocatable_ array or _allocatable_ scalar.
-
-- **scalar**
-  : the argument shall be an _allocatable_ scalar.
+- **entity**
+  : the _allocatable_ object to test.
 
 ### **Returns**
 
-The return value is a scalar _logical_ with the default logical kind type
-parameter. If the argument is allocated then the result is _.true._;
-otherwise, it returns _.false._.
+  If the argument is allocated then the result is _.true._; otherwise,
+  it returns _.false._.
 
 ### **Examples**
 
@@ -916,10 +913,15 @@ Sample program:
 program demo_allocated
 use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
 implicit none
-integer :: i = 4
 real(kind=sp), allocatable :: x(:)
 character(len=256) :: message
 integer :: istat
+  ! basics
+   if( allocated(x)) then
+       write(*,*)'do things if allocated'
+   else
+       write(*,*)'do things if not allocated'
+   endif
 
    ! if already allocated, deallocate
    if ( allocated(x) ) deallocate(x,STAT=istat, ERRMSG=message )
@@ -929,15 +931,9 @@ integer :: istat
    endif
 
    ! only if not allocated, allocate
-   if ( .not. allocated(x) ) allocate(x(i))
+   if ( .not. allocated(x) ) allocate(x(20))
 
-   write(*,*)allocated(x), size(x)
-   if( allocated(x)) then
-       write(*,*)'do things if allocated'
-   else
-       write(*,*)'do things if not allocated'
-   endif
-
+  ! allocation and intent(out)
    call intentout(x)
    write(*,*)'note it is deallocated!',allocated(x)
 
@@ -961,8 +957,8 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later. Note, the scalar= keyword and allocatable
-scalar entities are available in Fortran 2003 and later.
+  Fortran 95 and later. Note, the scalar= keyword and allocatable
+  scalar entities are available in Fortran 2003 and later.
 
 ### **See Also**
 
@@ -983,7 +979,7 @@ scalar entities are available in Fortran 2003 and later.
 ```fortran
      elemental real(kind=KIND) function iaint(x,kind)
 
-     real(kind=KIND,intent(in)   :: x
+     real(kind=KIND),intent(in)   :: x
      integer,intent(in),optional :: kind
 ```
 where the _kind_ of the result is the same as as **x** unless
@@ -1073,9 +1069,9 @@ FORTRAN 77 and later
     result = any(mask [,dim])
 ```
 ```fortran
-     logical(..) function any(mask, dim)
+     logical function any(mask, dim)
 
-     logical,intent(in)          :: mask
+     logical,intent(in)          :: mask(..)
      integer,intent(in),optional :: dim
 ```
 ### **Description**
@@ -1130,9 +1126,7 @@ logical l
      end subroutine section
 end program demo_any
 ```
-
 Results:
-
 ```text
     T
     T T T
@@ -1329,7 +1323,16 @@ Inverse function: [**sin**(3)](#sin)
     result = associated(pointer [,target])
 ```
 ```fortran
+     logical function associated(pointer,target)
+
+     type(TYPE(kind=KIND),pointer :: pointer
+     type(TYPE(kind=KIND),pointer,optional :: target
 ```
+  **pointer** shall have the _pointer_ attribute and it can be any type.
+
+  **target** shall be a pointer or a target. It must have the
+  same type, kind type parameter, and array rank as **pointer**.
+
 ### **Description**
 
 **associated(pointer \[, target\])** determines the status of the
@@ -1338,11 +1341,11 @@ pointer **pointer** or if **pointer** is associated with the target **target**.
 ### **Arguments**
 
 - **pointer**
-  : **pointer** shall have the _pointer_ attribute and it can be of any type.
+  : A pointer to test for association
 
 - **target**
-  : (Optional) **target** shall be a pointer or a target. It must have the
-  same type, kind type parameter, and array rank as **pointer**.
+  : A target that is to be tested for being occupying the same storage
+  units as the pointer **pointer**.
 
 The association status of neither **pointer** nor **target** shall be undefined.
 
@@ -1352,8 +1355,8 @@ The association status of neither **pointer** nor **target** shall be undefined.
 There are several cases:
 
 1.  When the optional **target** is not present then **associated(pointer)**
-    is true if **pointer** is associated with a target; otherwise, it
-    returns false.
+    is _.true._ if **pointer** is associated with a target; otherwise, it
+    returns _.false._.
 
 2.  If **target** is present and a scalar target, the result is true if
     **target** is not a zero-sized storage sequence and the target
@@ -1385,7 +1388,6 @@ There are several cases:
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_associated
 implicit none
@@ -1398,7 +1400,6 @@ real, pointer :: ptr(:)
    & stop 'POINTER NOT ASSOCIATED TO TARGET'
 end program demo_associated
 ```
-
 ### **Standard**
 
 Fortran 95 and later
@@ -1422,8 +1423,8 @@ function
 ```fortran
      elemental function atan2(y, x)
 
-     type(real,kind=KIND) :: atan2
-     type(real,kind=KIND),intent(in) :: y, x
+     real,kind=KIND) :: atan2
+     real,kind=KIND),intent(in) :: y, x
 ```
 The return value has the same type and kind as **y** and **x**.
 
@@ -1444,7 +1445,7 @@ a unique angle).
   : The real component of the complex value **(x,y)** or the **x**
   component of the point **\<x,y\>**.
 
-  If must be of the same kind as **y**.
+  **x**  must be of the same kind as **y**.
 
 ### **Returns**
 
@@ -1661,10 +1662,10 @@ Inverse function: [**tanh**(3)](#tanh)
     result = atan([y], x)
 ```
 ```fortran
-     TYPE(kind=KIND) function atan(y,x)
+     elemental TYPE(kind=KIND) function atan(y,x)
 
-     TYPE(kind=KIND,intent(in) :: x
-     TYPE(kind=KIND,intent(in),optional :: y
+     TYPE(kind=KIND),intent(in) :: x
+     TYPE(kind=KIND),intent(in),optional :: y
 ```
 where **TYPE** may be _real_ or _complex_ and **KIND** may be any **KIND**
 supported by the associated type. If **y** is present **x** is \_real`.
@@ -2497,6 +2498,7 @@ TS 18508 or later
      real(kind=KIND),intent(in) :: x
 ```
 KIND may be any KIND supported by the _real_ type.
+The result is the same type and kind as **x**.
 
 ### **Description**
 
@@ -2506,26 +2508,26 @@ of order **0** of **x**.
 ### **Arguments**
 
 - **x**
-  : The type shall be _real_.
+  : The value to operate on.
 
 ### **Returns**
 
-The return value is of type _real_ and lies in the range
-**-0.4027 \<= bessel(0,x) \<= 1**. It has the same kind as **x**.
+the Bessel function of the first kind of order **0** of **x**.
+The result lies in the range **-0.4027 \<= bessel(0,x) \<= 1**.
 
 ### **Examples**
 
 Sample program:
 
 ```fortran
-program demo_besj0
+program demo_bessel_j0
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
 & real32, real64, real128
    implicit none
    real(kind=real64) :: x = 0.0_real64
    x = bessel_j0(x)
    write(*,*)x
-end program demo_besj0
+end program demo_bessel_j0
 ```
 Results:
 
@@ -2583,14 +2585,14 @@ The return value is of type _real_ and lies in the range
 Sample program:
 
 ```fortran
-program demo_besj1
+program demo_bessel_j1
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
  & real32, real64, real128
 implicit none
 real(kind=real64) :: x = 1.0_real64
    x = bessel_j1(x)
    write(*,*)x
-end program demo_besj1
+end program demo_bessel_j1
 ```
 
 Results:
@@ -2623,20 +2625,39 @@ Fortran 2008 and later
 ```fortran
     result = bessel_jn(n, x)
 ```
+```fortran
+     elemental real(kind=KIND) function bessel_jn(n,x)
+
+     integer(kind=KIND),intent(in) :: n(..)
+     real(kind=KIND),intent(in) :: x(..)
+```
+  If **n** and **x** are arrays, their ranks and shapes
+  shall conform.
+
+  The return value has the same type and kind as **x**.
+
 or
+
 ```fortran
     result = bessel_jn(n1, n2, x)
 ```
 ```fortran
+     real(kind=KIND) function bessel_jn(n1, n2, ,x)
+
+     integer(kind=KIND),intent(in) :: n1(..)
+     integer(kind=KIND),intent(in) :: n2(..)
+     real(kind=KIND),intent(in) :: x
 ```
+  The return value has the same type and kind as **x**.
+
 ### **Description**
 
-**bessel_jn(n, x)** computes the Bessel function of the first
-kind of order **n** of **x**. If **n** and **x** are arrays, their ranks and shapes
-shall conform.
+  **bessel_jn(n, x)** computes the Bessel function of the first kind of
+  order **n** of **x**.
 
-**bessel_jn(n1, n2, x)** returns an array with the Bessel function\|Bessel functions
-of the first kind of the orders **n1** to **n2**.
+  **bessel_jn(n1, n2, x)** returns an array with the Bessel
+  function\|Bessel functions of the first kind of the orders **n1**
+  to **n2**.
 
 ### **Arguments**
 
@@ -2650,26 +2671,27 @@ of the first kind of the orders **n1** to **n2**.
   : Shall be a non-negative scalar of type _integer_.
 
 - **x**
-  : Shall be a scalar or an array of type _real_. For
-  **bessel_jn(n1, n2, x)** it shall be scalar.
+  : Shall be a scalar or an array of type _real_.
+  For **bessel_jn(n1, n2, x)** it shall be scalar.
 
 ### **Returns**
 
-The return value is a scalar of type _real_. It has the same kind as **x**.
+The return value is a scalar of type _real_. It has the same kind
+as **x**.
 
 ### **Examples**
 
 Sample program:
 
 ```fortran
-program demo_besjn
+program demo_bessel_jn
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
    & real32, real64, real128
 implicit none
 real(kind=real64) :: x = 1.0_real64
     x = bessel_jn(5,x)
     write(*,*)x
-end program demo_besjn
+end program demo_bessel_jn
 ```
 
 Results:
@@ -2728,14 +2750,14 @@ The return value is of type _real_. It has the same kind as **x**.
 Sample program:
 
 ```fortran
-program demo_besy0
+program demo_bessel_y0
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
 & real32, real64, real128
 implicit none
   real(kind=real64) :: x = 0.0_real64
   x = bessel_y0(x)
   write(*,*)x
-end program demo_besy0
+end program demo_bessel_y0
 ```
 
 Results:
@@ -2794,13 +2816,13 @@ The return value is _real_. It has the same kind as **x**.
 Sample program:
 
 ```fortran
-program demo_besy1
+program demo_bessel_y1
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
 & real32, real64, real128
 implicit none
   real(kind=real64) :: x = 1.0_real64
   write(*,*)x, bessel_y1(x)
-end program demo_besy1
+end program demo_bessel_y1
 ```
 
 ### **Standard**
@@ -2827,11 +2849,15 @@ Fortran 2008 and later
 ```fortran
     result = bessel_yn(n, x)
 ```
+```fortran
+    elemental real(kind=KIND) function bessel_yn(n,x)
+```
 or
 ```fortran
     result = bessel_yn(n1, n2, x)
 ```
 ```fortran
+    elemental real(kind=KIND) function bessel_yn(n1,n2,x)
 ```
 ### **Description**
 
@@ -2866,13 +2892,13 @@ The return value is _real_. It has the same kind as **x**.
 Sample program:
 
 ```fortran
-program demo_besyn
+program demo_bessel_yn
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
 & real32, real64, real128
 implicit none
 real(kind=real64) :: x = 1.0_real64
   write(*,*) x,bessel_yn(5,x)
-end program demo_besyn
+end program demo_bessel_yn
 ```
 
 Results:
@@ -2908,9 +2934,9 @@ Fortran 2008 and later
 ```fortran
     elemental function bge(i, j)
 
-     integer(kind=KIND),intent(in) :: i
-     integer(kind=KIND),intent(in) :: j
-     logical :: bge
+    integer(kind=KIND),intent(in) :: i
+    integer(kind=KIND),intent(in) :: j
+    logical :: bge
 ```
   where the _kind_ of **i** and **j** may be of any supported _integer_
   kind, not necessarily the same.  An exception is that values may be a
@@ -3073,9 +3099,9 @@ Fortran 2008 and later
 ```fortran
     elemental function bgt(i, j)
 
-     integer(kind=KIND),intent(in) :: i
-     integer(kind=KIND),intent(in) :: j
-     logical :: bgt
+    integer(kind=KIND),intent(in) :: i
+    integer(kind=KIND),intent(in) :: j
+    logical :: bgt
 ```
   where the _kind_ of **i** and **j** may be of any supported _integer_
   kind, not necessarily the same.  An exception is that values may be a
@@ -3906,8 +3932,8 @@ Fortran 2003 and later
 ```fortran
     elemental integer function char(i,kind)
 
-     integer(kind=KIND),intent(in) :: c
-     integer,intent(in),optional :: KIND
+    integer(kind=KIND),intent(in) :: c
+    integer,intent(in),optional :: KIND
 ```
 ### **Description**
 
@@ -4045,7 +4071,7 @@ Fortran 2003 and later
     result = cmplx(x [,y] [,kind])
 ```
 ```fortran
-    elemental complex function :: cmplx
+    elemental complex function cmplx( x, y, kind )
 
     TYPE(kind=KIND),intent(in) :: x
     TYPE(kind=KIND),intent(in),optional :: y
@@ -5313,11 +5339,11 @@ Fortran 95 and later
     result = cshift(array, shift, dim)
 ```
 ```fortran
-   type(TYPE, kind=KIND) function cshift(array, shift, dim )
+     type(TYPE, kind=KIND) function cshift(array, shift, dim )
 
-   type(TYPE,kind=KIND),intent(in) :: array(..)
-   integer(kind=IKIND),intent(in)  :: shift
-   integer(kind=IKIND),intent(in)  :: dim
+     type(TYPE,kind=KIND),intent(in) :: array(..)
+     integer(kind=IKIND),intent(in)  :: shift
+     integer(kind=IKIND),intent(in)  :: dim
 ```
   where **array** may be any type and rank (and the result will
   automatically be of the same type, kind and rank as **array**).
@@ -5466,7 +5492,7 @@ Fortran 2008
     call date_and_time([date] [,time] [,zone] [,values] )
 ```
 ```fortran
-    subroutine date_and_time(date, time, zone, values)
+     subroutine date_and_time(date, time, zone, values)
 
      character(len=8),intent(out),optional :: date
      character(len=10),intent(out),optional :: time
@@ -5884,11 +5910,11 @@ Fortran 95 and later
     result = dprod(x,y)
 ```
 ```fortran
-      elemental function dprod(x,y)
+     elemental function dprod(x,y)
 
-      real,intent(in) :: x
-      real,intent(in) :: y
-      doubleprecision :: dprod
+     real,intent(in) :: x
+     real,intent(in) :: y
+     doubleprecision :: dprod
 ```
 ### **Description**
 
@@ -6096,13 +6122,13 @@ integer             :: shift
    call printit()
 
    ! the leftmost SHIFT bits of J are copied to the rightmost result bits
-   j=b"11111000000000000000000000000000"
+   j=int(b"11111000000000000000000000000000")
    ! and the other bits are the rightmost bits of I
-   i=b"00000000000000000000000000000000"
+   i=int(b"00000000000000000000000000000000")
    call printit()
 
-   j=b"11111000000000000000000000000000"
-   i=b"00000111111111111111111111111111"
+   j=int(b"11111000000000000000000000000000")
+   i=int(b"00000111111111111111111111111111")
    ! result should be all 1s
    call printit()
 
@@ -6243,8 +6269,8 @@ integer             :: shift
    call printit()
 
   ! visualizing a "combined right shift" ...
-   i=b"00000000000000000000000000011111"
-   j=b"11111111111111111111111111100000"
+   i=int(b"00000000000000000000000000011111")
+   j=int(b"11111111111111111111111111100000")
    ! appended together ( i//j )
    ! 0000000000000000000000000001111111111111111111111111111111100000
    ! shifted right SHIFT values dropping off shifted values
@@ -6602,6 +6628,9 @@ Fortran 2008 and later
     result = erfc_scaled(x)
 ```
 ```fortran
+     elemental real(kind=KIND) function erfc_scaled(x)
+
+     real(kind=KIND),intent(in) :: x
 ```
 ### **Description**
 
@@ -6658,6 +6687,7 @@ Fortran 2008 and later
     result = erf(x)
 ```
 ```fortran
+     elemental real(kind=KIND) function erf(x)
 ```
 ### **Description**
 
@@ -6775,16 +6805,17 @@ TS 18508 or later
 
 ### **Syntax**
 ```fortran
-   call execute_command_line(command [,wait] [,exitstat] [,cmdstat] [,cmdmsg] )
+    call execute_command_line( &
+    & command [,wait] [,exitstat] [,cmdstat] [,cmdmsg] )
 ```
 ```fortran
-   subroutine execute_command_line(command, wait, exitstat, cmdstat, cmdmsg)
+     subroutine execute_command_line(command,wait,exitstat,cmdstat,cmdmsg)
 
-    character(len=*),intent(in)  :: command
-    logical,intent(in),optional  :: wait
-    integer,intent(out),optional :: exitstat
-    integer,intent(out),optional :: cmdstat
-    character(len=*),intent(out),optional :: cmdmsg
+     character(len=*),intent(in)  :: command
+     logical,intent(in),optional  :: wait
+     integer,intent(out),optional :: exitstat
+     integer,intent(out),optional :: cmdstat
+     character(len=*),intent(out),optional :: cmdmsg
 ```
 ### **Description**
 
@@ -6886,9 +6917,9 @@ Fortran 2008 and later
     result = exp(x)
 ```
 ```fortran
-    type(TYPE(kind=KIND)) function exp(x)
+    elemental type(TYPE(kind=KIND)) function exp(x)
 
-     type(TYPE(kind=KIND)),intent(in) :: x
+    type(TYPE(kind=KIND)),intent(in) :: x
 ```
 **x** may be _real_ or _complex_.
 The return value has the same type and kind as **x**.
@@ -6992,6 +7023,9 @@ FORTRAN 77 and later
     result = exponent(x)
 ```
 ```fortran
+     elemental integer function exponent(x)
+
+     real(kind=KIND),intent(in) :: x
 ```
 ### **Description**
 
@@ -7407,7 +7441,7 @@ Fortran 95 and later
 ```fortran
      elemental real(kind=KIND) function fraction(x)
 
-      real(kind=KIND),intent(in) :: fraction
+     real(kind=KIND),intent(in) :: fraction
 ```
   The result has the same characteristics as the argument.
 ### **Description**
@@ -8243,8 +8277,8 @@ Sample program:
 program demo_iachar
 implicit none
    ! basic usage
-    ! just does first letter
-    write(*,*)iachar('ABCD')
+    ! just does a string one character long
+    write(*,*)iachar('A')
     ! elemental: can do an array of letters
     write(*,*)iachar(['A','Z','a','z'])
 
@@ -8394,6 +8428,10 @@ Fortran 2008 and later
     result = iand(i, j)
 ```
 ```fortran
+     elemental integer(kind=KIND) function iand(i,j)
+
+     integer(kind=KIND),intent(in) :: i
+     integer(kind=KIND),intent(in) :: j
 ```
 ### **Description**
 
@@ -8538,7 +8576,13 @@ Fortran 2008 and later
     result = ibclr(i, pos)
 ```
 ```fortran
+     elemental integer(kind=KINDI) function ibclr(i,pos)
+
+     integer(kind=KINDI),intent(in) :: i
+     integer(kind=KINDPOS),intent(in) :: pos
 ```
+  The return value is of the same kind as **i**. Otherwise,
+  any _integer_ kinds are allowed.
 ### **Description**
 
 **ibclr** returns the value of **i** with the bit at position **pos** set to zero.
@@ -8587,6 +8631,15 @@ Fortran 95 and later
 ```fortran
     result = ibits(i, pos, len)
 ```
+```fortran
+     elemental integer(kind=KINDI) function ibits(i,pos,len)
+
+     integer(kind=KINDI),intent(in) :: i
+     integer(kind=KINDPOS),intent(in) :: pos
+     integer(kind=KINDLEN),intent(in) :: len
+```
+  The return value is of the same kind as **i**. Otherwise,
+  any _integer_ kinds are allowed.
 ```fortran
 ```
 ### **Description**
@@ -8642,7 +8695,14 @@ Fortran 95 and later
     result = ibset(i, pos)
 ```
 ```fortran
+     elemental integer(kind=KINDI) function ibset(i,pos)
+
+     integer(kind=KINDI),intent(in) :: i
+     integer(kind=KINDPOS),intent(in) :: pos
 ```
+  The return value is of the same kind as **i**. Otherwise,
+  any _integer_ kinds are allowed.
+
 ### **Description**
 
 **ibset** returns the value of **i** with the bit at position **pos** set to one.
@@ -8825,7 +8885,14 @@ of arguments, and search for certain arguments:
     result = ieor(i, j)
 ```
 ```fortran
+     elemental integer(kind=KINDI) function ieor(i,j)
+
+     integer(kind=KINDI),intent(in) :: i
+     integer(kind=KINDJ),intent(in) :: j
 ```
+  The return value is of the same kind as the larger kind of **i**
+  and **j**. Otherwise, any _integer_ kinds are allowed.
+
 ### **Description**
 
 **ieor** returns the bitwise Boolean exclusive-**or** of **i** and **j**.
@@ -8925,15 +8992,15 @@ Fortran 2008 and later
 
 ### **Syntax**
 ```fortran
-    result=index( string, substring [,back] [,kind] )
+result=index( string, substring [,back] [,kind] )
 ```
 ```fortran
-     integer(kind=KIND) function index(string, substring, back, kind)
+ elemental integer(kind=KIND) function index(string,substring,back,kind)
 
-       character(len=*),intent(in) :: string
-       character(len=*),intent(in) :: substring
-       logical,intent(in),optional :: back
-       integer,intent(in),optional :: kind
+ character(len=*),intent(in) :: string
+ character(len=*),intent(in) :: substring
+ logical,intent(in),optional :: back
+ integer,intent(in),optional :: kind
 ```
 ### **Description**
 
@@ -9152,12 +9219,17 @@ FORTRAN 77 and later
     result = ior(i, j)
 ```
 ```fortran
-     integer,intent(in) :: i
-     integer,intent(in) :: j
+    elemental integer(kind=KIND) function ior(i,j)
+
+    integer(kind=KINDI) ,intent(in) :: i
+    integer(kind=KINDJ) ,intent(in) :: j
 ```
+  The return value is of the same kind as the larger kind of **i**
+  and **j**. Otherwise, any _integer_ kinds are allowed.
+
 ### **Description**
 
-**ior** returns the bit-wise Boolean inclusive-**or** of **i** and **j**.
+**ior** returns the bit-wise Boolean inclusive-or of **i** and **j**.
 
 ### **Arguments**
 
@@ -9186,15 +9258,12 @@ integer :: i, j, k
    write(*,'(i8,1x,b8.8)')i,i,j,j,k,k
 end program demo_ior
 ```
-
 Results:
-
 ```
          53 00110101
          45 00101101
          61 00111101
 ```
-
 ### **Standard**
 
 Fortran 95 and later
@@ -9424,8 +9493,8 @@ Fortran 2008 and later
      elemental integer(kind=KIND) function ishftc(i, shift, size)
 
       integer(kind=KIND),intent(in)     :: i
-      integer(kind=SHIFTKIND,intent(in) :: shift
-      integer(kind=SIZEKIND,intent(in),optional  :: size
+      integer(kind=SHIFTKIND),intent(in) :: shift
+      integer(kind=SIZEKIND),intent(in),optional  :: size
 ```
   where KIND, SHIFTKIND, and SIZEKIND  may be any supported _integer_
   kind, but where the kind for **i** dictates the kind of the returned
@@ -9531,8 +9600,8 @@ Fortran 95 and later
 ```fortran
      elemental integer(kind=KIND) function ishft(i, shift )
 
-      integer(kind=KIND),intent(in)     :: i
-      integer(kind=SHIFTKIND,intent(in) :: shift
+      integer(kind=KIND),intent(in) :: i
+      integer(kind=SHIFTKIND),intent(in) :: shift
 ```
   where KIND and  SHIFTKIND may be any supported _integer_ kind, but where
   the kind for **i** dictates the kind of the returned value.
@@ -9612,7 +9681,7 @@ Fortran 95 and later
     result=is_iostat_end(iostat)
 ```
 ```fortran
-     logical function is_iostat_end(iostat)
+     elemental logical function is_iostat_end(iostat)
 
       integer,intent(in) :: iostat
 ```
@@ -9677,7 +9746,7 @@ Fortran 2003 and later
     result = is_iostat_eor(i)
 ```
 ```fortran
-     integer function is_iostat_eor(i)
+     elemental integer function is_iostat_eor(i)
 
       integer(kind=KIND),intent(in) :: iostat
 ```
@@ -9707,8 +9776,7 @@ Sample program:
 program demo_is_iostat_eor
 use iso_fortran_env, only : iostat_eor
 implicit none
-integer :: stat, inums(50)
-integer :: lun, ios,
+integer :: inums(50), lun, ios
 
   open(newunit=lun, file='_test.dat', form='unformatted')
   write(lun, '(a)') '10 20 30'
@@ -9716,7 +9784,6 @@ integer :: lun, ios,
   write(lun, '(a)') '80 90'
   write(lun, '(a)') '100'
 
-  i=0
   do
      read(lun, *, iostat=ios) inums
      write(*,*)'iostat=',ios
@@ -10008,8 +10075,8 @@ Fortran 2008 and later
 ```fortran
     integer(kind=KIND) function len(string,kind)
 
-     character(len=*),intent(in) :: string
-     integer,optional,intent(in) :: kind
+    character(len=*),intent(in) :: string
+    integer,optional,intent(in) :: kind
 ```
 where the returned value is the same integer kind as the **kind**
 argument, or of the default integer kind if **kind** is not specified.
@@ -10149,9 +10216,10 @@ of arguments, and search for certain arguments:
     result = len_trim(string, kind)
 ```
 ```fortran
-     integer(kind=KIND) function len_trim(string,KIND) result (value)
+     elemental integer(kind=KIND) function len_trim(string,kind)
+
      character(len=*),intent(in) :: string
-     integer,optional,intent(in) :: KIND
+     integer,optional,intent(in) :: kind
      integer(kind=KIND) :: value
 ```
 ### **Description**
@@ -10176,7 +10244,6 @@ the return value is of default _integer_ kind.
 ### **Examples**
 
 Sample program
-
 ```fortran
 program demo_len_trim
 implicit none
@@ -10197,9 +10264,7 @@ character(len=:),allocatable :: string
    !
 end program demo_len_trim
 ```
-
 Results:
-
 ```
     LENGTH=          30
     TRIMMED LENGTH=          25
@@ -10207,7 +10272,6 @@ Results:
     TRIMMED LENGTH=              25          13
     SUM TRIMMED LENGTH=          38
 ```
-
 ### **Standard**
 
 Fortran 95 and later, with **kind** argument - Fortran 2003
@@ -10245,8 +10309,8 @@ of arguments, and search for certain arguments:
 ```fortran
    elemental logical function lge(string_a, string_b)
 
-    character(len=*),intent(in) :: string_a
-    character(len=*),intent(in) :: string_b
+   character(len=*),intent(in) :: string_a
+   character(len=*),intent(in) :: string_b
 ```
 ### **Description**
 
@@ -10280,7 +10344,6 @@ If both input arguments are null strings, _.true._ is always returned.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_lge
 implicit none
@@ -10387,7 +10450,6 @@ of arguments, and search for certain arguments:
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_lgt
 implicit none
@@ -10517,7 +10579,6 @@ integer :: i
 end program demo_lle
 ```
 Results:
-
 ```text
   !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
   [\]^_`abcdefghijklmnopqrstuvwxyz{|}~
@@ -10530,7 +10591,6 @@ Results:
   F T
   T T
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later
@@ -10608,7 +10668,6 @@ of arguments, and search for certain arguments:
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_llt
 implicit none
@@ -10695,7 +10754,6 @@ the same as **x**.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_log10
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
@@ -10712,7 +10770,6 @@ real(kind=real64) :: x = 10.0_real64
 
 end program demo_log10
 ```
-
 Results:
 
 ```text
@@ -10731,45 +10788,54 @@ FORTRAN 77 and later
 
 ### **Name**
 
-**log_gamma**(3) - \[MATHEMATICS\] Logarithm of the Gamma function
+**log_gamma**(3) - \[MATHEMATICS\] Logarithm of the absolute value of
+the Gamma function
 
 ### **Syntax**
 ```fortran
     result = log_gamma(x)
 ```
 ```fortran
+     elemental real(kind=KIND) function log_gamma(x)
+
+      real(kind=KIND),intent(in) :: x
 ```
+  **x** may be any _real_ type; and the return value is of same type
+  and kind as **x**.
+
 ### **Description**
 
-**log_gamma(x)** computes the natural logarithm of the absolute value of the Gamma function.
+  **log_gamma(x)** computes the natural logarithm of the absolute value
+  of the Gamma function.
 
 ### **Arguments**
 
 - **x**
-  : Shall be of type _real_ and neither zero nor a negative integer.
+  : A non-negative (neither negative nor zero) value to render the
+  result for.
 
 ### **Returns**
 
-The return value is of type _real_ of the same kind as **x**.
+ The result has a value equal to a processor-dependent approximation
+ to the natural logarithm of the absolute value of the gamma function
+ of **x**.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_log_gamma
 implicit none
 real :: x = 1.0
    write(*,*)x,log_gamma(x) ! returns 0.0
+   write(*,*)x,log_gamma(3.0) ! returns 0.693 (approximately)
 end program demo_log_gamma
 ```
-
 Results:
-
 ```text
-      1.00000000       0.00000000
+      1.000000      0.0000000E+00
+      1.000000      0.6931472
 ```
-
 ### **Standard**
 
 Fortran 2008 and later
@@ -10791,7 +10857,8 @@ Gamma function: [**gamma**(3)](#gamma)
     result = logical(l, kind)
 ```
 ```fortran
-     logical(kind=KIND) function logical(L,KIND)
+     elemental logical(kind=KIND) function logical(L,KIND)
+
      logical(kind=INK),intent(in) :: L
      integer,intent(in),optional :: KIND
 ```
@@ -10817,7 +10884,6 @@ given.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_logical
 ! Access array containing the kind type parameter values supported by this
@@ -10833,7 +10899,6 @@ use iso_fortran_env, only : logical_kinds
 end program demo_logical
 ```
 Results:
-
 ```text
               1
               2
@@ -10864,11 +10929,17 @@ Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009
     result = log(x)
 ```
 ```fortran
+   elemental TYPE(kind=KIND) function log(x)
+
+    TYPE(kind=KIND),intent(in) :: x
 ```
+  Were **xx* may be any kind of _real_ or _complex_ value and
+  the result is the same type and characteristics as **x**.
+
 ### **Description**
 
-**log(x)** computes the natural logarithm of **x**, i.e. the logarithm to
-the base "e".
+  **log(x)** computes the natural logarithm of **x**, i.e. the logarithm to
+  the base "e".
 
 ### **Arguments**
 
@@ -10877,15 +10948,15 @@ the base "e".
 
 ### **Returns**
 
-The return value is of type _real_ or _complex_. The kind type parameter is
-the same as **x**. If **x** is _complex_, the imaginary part OMEGA is in the range
+  The return value is of type _real_ or _complex_. The kind type parameter
+  is the same as **x**. If **x** is _complex_, the imaginary part OMEGA
+  is in the range
 
-**-PI** \< OMEGA \<= PI.
+    **-PI** \< OMEGA \<= PI.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_log
 implicit none
@@ -10896,12 +10967,10 @@ implicit none
 end program demo_log
 ```
 Results:
-
 ```text
       2.7182818284590451        1.0000000000000000
    (1.00000000,2.00000000) (0.804718971,1.10714877)
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later
@@ -10916,10 +10985,11 @@ FORTRAN 77 and later
 
 ### **Syntax**
 ```fortran
-    result = maskl(i, kind)
+    result = maskl( i [,kind] )
 ```
 ```fortran
      elemental integer function maskl(i,kind)
+
      integer,intent(in),optional :: kind
 ```
 ### **Description**
@@ -10948,7 +11018,6 @@ The leftmost **i** bits are set to 1 and the other bits are set to 0.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_maskl
 implicit none
@@ -10959,9 +11028,7 @@ integer :: i
    write(*,'(*(i11,1x,b0,1x,/))') maskl([(i,i,i=1,bit_size(0))])
 end program demo_maskl
 ```
-
 Results:
-
 ```text
 -2147483648 10000000000000000000000000000000
 
@@ -11018,10 +11085,11 @@ Fortran 2008 and later
 
 ### **Syntax**
 ```fortran
-    result = maskr(i, kind)
+    result = maskr( i [,kind] )
 ```
 ```fortran
      elemental integer function maskr(i,kind)
+
      integer,intent(in),optional :: kind
 ```
 ### **Description**
@@ -11050,7 +11118,6 @@ It has its rightmost **i** bits set to 1, and the remaining bits set to 0.
 ### **Example**
 
 Sample program:
-
 ```fortrqn
 program demo_maskr
 implicit none
@@ -11065,9 +11132,7 @@ integer :: i
    write(*,'(*(i11,1x,b0,1x,/))') maskr([(i,i,i=0,bit_size(0))])
 end program demo_maskr
 ```
-
 Results:
-
 ```text
 1 1 10000000000000000000000000000000
 
@@ -11109,7 +11174,6 @@ Results:
  2147483647 1111111111111111111111111111111
          -1 11111111111111111111111111111111
 ```
-
 ### **Standard**
 
 Fortran 2008 and later
@@ -11333,7 +11397,6 @@ end program demo_matmul
     > CD is a matrix
     > [  3300 ]
 ```
-
 ### **Standard**
 
 Fortran 95 and later
@@ -11372,7 +11435,7 @@ Fortran 95 and later
 ```fortran
      elemental integer function maxexponent(x)
 
-     real(kind=KIND,intent(in)   :: x
+     real(kind=KIND),intent(in)   :: x
 ```
 where KIND is any _real_ kind.
 
@@ -11393,7 +11456,6 @@ The return value is of type _integer_ and of the default integer kind.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_maxexponent
 use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
@@ -11455,10 +11517,14 @@ or
 Determines the location of the element in the array with the maximum
 value, or, if the **dim** argument is supplied, determines the locations
 of the maximum element along each row of the array in the **dim**
-direction. If **mask** is present, only the elements for which **mask**
+direction.
+
+If **mask** is present, only the elements for which **mask**
 is _.true._ are considered. If more than one element in the array has
 the maximum value, the location returned is that of the first such element
-in array element order. If the array has zero size, or all of the elements
+in array element order.
+
+If the array has zero size, or all of the elements
 of **mask** are .false., then the result is an array of zeroes. Similarly,
 if **dim** is supplied and all of the elements of **mask** along a given
 row are zero, the result value for that row is zero.
@@ -11583,22 +11649,21 @@ Returns the argument with the largest (most positive) value.
 
 ### **Returns**
 
-The return value corresponds to the maximum value among the arguments,
-and has the same type and kind as the first argument.
+  The return value corresponds to the maximum value among the arguments,
+  and has the same type and kind as the first argument.
 
-The function is both elemental and allows for an arbitrary number of
-arguments. This means if some elements are scalar and some are arrays
-that all the arrays must be of the same size, and the returned value
-will be an array that is the result as if multiple calls were made with
-all scalar values with a single element of each array used in each call.
-If called with all arrays the returned array is the same as if multiple
-calls were made with **max(arr1(1),arr2(1), ...)** to
-**max(arr1(N),arr2(N))**.
+  The function is both elemental and allows for an arbitrary number of
+  arguments. This means if some elements are scalar and some are arrays
+  that all the arrays must be of the same size, and the returned value
+  will be an array that is the result as if multiple calls were made
+  with all scalar values with a single element of each array used in
+  each call.  If called with all arrays the returned array is the same
+  as if multiple calls were made with **max(arr1(1),arr2(1), ...)**
+  to **max(arr1(N),arr2(N))**.
 
 ### **Examples**
 
 Sample program
-
 ```fortran
 program demo_max
 implicit none
@@ -11730,16 +11795,13 @@ integer,save :: ints(3,5)= reshape([&
    write(*,*) maxval(ints,mask=ints.lt.30)
 end program demo_maxval
 ```
-
 Results:
-
 ```
    55
    11     22     33     44     55
     5     50     55
    22
 ```
-
 ### **Standard**
 
 Fortran 95 and later
@@ -11763,6 +11825,7 @@ Fortran 95 and later
 ```
 ```fortran
      elemental integer(kind=KIND) function merge_bits(i,j,mask)
+
      integer(kind=KIND), intent(in) :: i, j, mask
 ```
 where the result and all input values have the same _integer_ type and
@@ -11813,7 +11876,6 @@ as **j**.
 ### **Example**
 
 Sample program:
-
 ```fortran
 program demo_merge_bits
 use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64
@@ -11857,7 +11919,6 @@ character(len=*),parameter :: fmt='(*(g0, 1X))'
 end program demo_merge_bits
 ```
 Results:
-
 ```text
     MERGE_BITS( 5,10,41) should be 3.=>           3
     MERGE_BITS(13,18,22) should be 4.=>           4
@@ -11883,6 +11944,7 @@ Fortran 2008 and later
     result = merge(tsource, fsource, mask)
 ```
 ```fortran
+     elemental type(TYPE(kind=KIND)) function merge(tsource,fsource,mask)
 ```
 ### **Description**
 
@@ -11923,7 +11985,6 @@ instead of the more obscure
 ```fortran
       merge(1.0/merge(x,1.0,x /= 0.0), 0.0, x /= 0.0)
 ```
-
 ### **Arguments**
 
 - **tsource**
@@ -12047,7 +12108,7 @@ Fortran 95 and later
 ```fortran
      elemental integer function minexponent(x)
 
-     real(kind=KIND,intent(in)   :: x
+     real(kind=KIND),intent(in)   :: x
 ```
 where KIND is any _real_ kind.
 
@@ -12080,14 +12141,11 @@ real(kind=real64) :: y
     print *, minexponent(y), maxexponent(y)
 end program demo_minexponent
 ```
-
 Expected Results:
-
 ```
         -125         128
        -1021        1024
 ```
-
 ### **Standard**
 
 Fortran 95 and later
@@ -12185,9 +12243,7 @@ integer,save :: ints(3,5)= reshape([&
    write(*,*) minloc(pack(ints,.true.),dim=1) ! scalar
 end program demo_minloc
 ```
-
 Results:
-
 ```text
          1       3
          1       3       1       3       2
@@ -12195,7 +12251,6 @@ Results:
          5       4       3
          7
 ```
-
 ### **Standard**
 
 Fortran 95 and later
@@ -12249,7 +12304,6 @@ and has the same type and kind as the first argument.
 ### **Examples**
 
 Sample program
-
 ```fortran
 program demo_min
 implicit none
@@ -12327,7 +12381,6 @@ kind as **array**.
 ### **Examples**
 
 sample program:
-
 ```fortran
 program demo_minval
 implicit none
@@ -12385,9 +12438,7 @@ integer,save :: box(3,5,2)
 
 end program demo_minval
 ```
-
 Results:
-
 ```text
  Given the array
     1   -2    3    4    5
@@ -12417,7 +12468,6 @@ Results:
    -2 -30 -44 -5 -50 -55
    shape of answer is  3 2
 ```
-
 ### **Standard**
 
 Fortran 95 and later
@@ -12440,7 +12490,14 @@ Fortran 95 and later
     result = mod(a, p)
 ```
 ```fortran
+    elemental type(TYPE(kind=KIND) function mod(a,p)
+
+     type(TYPE(kind=KIND),intent(in) :: a
+     type(TYPE(kind=KIND),intent(in) :: p
 ```
+  The result and arguments are all of the same type and kind.
+  The type may be any kind of _real_ or _integer_.
+
 ### **Description**
 
 **mod**(a,p) computes the remainder of the division of **a** by **p**.
@@ -12523,7 +12580,14 @@ FORTRAN 77 and later
     result = modulo(a, p)
 ```
 ```fortran
+     elemental type(TYPE(kind=KIND) function modulo(a,p)
+
+     type(TYPE(kind=KIND),intent(in) :: a
+     type(TYPE(kind=KIND),intent(in) :: p
 ```
+  The result and arguments are all of the same type and kind.
+  The type may be any kind of _real_ or _integer_.
+
 ### **Description**
 
 **modulo(a,p)** computes the **a** modulo **p**.
@@ -12674,9 +12738,16 @@ Fortran 2003 and later
 
 ### **Syntax**
 ```fortran
-    call mvbits(from, frompos, len, to, topos)
+call mvbits(from, frompos, len, to, topos)
 ```
 ```fortran
+    elemental subroutine mvbits(from,frompos,len,to,topos)
+
+     integer(kind=KIND),intent(in)    :: from
+     integer(kind=KIND),intent(in)    :: frompos
+     integer(kind=KIND),intent(in)    :: len
+     integer(kind=KIND),intent(inout) :: to
+     integer(kind=KIND),intent(in)    :: topos
 ```
 ### **Description**
 
@@ -12695,21 +12766,23 @@ The bits are numbered **0** to **bit_size(i)-1**, from right to left.
 
 - **from**
   : An _integer_ to read bits from.
+
 - **frompos**
   : **frompos** is the position of the first bit to copy. It is a
   nonnegative _integer_ value < **bit_size(from)**.
+
 - **len**
   : A nonnegative _integer_ value that indicates how many bits to
   copy from **from**. It must not specify copying bits past the end
   of **from**. That is, **frompos + len** must be less than or equal
   to **bit_size(from)**.
+
 - **to**
   : The _integer_ variable to place the copied bits into. It must
   be of the same kind as **from** and may even be the same variable
   as **from**.
 
-  **to**
-  : is set by copying the sequence of bits of length **len**,
+  **to** is set by copying the sequence of bits of length **len**,
   starting at position **frompos** of **from** to position **topos** of
   **to**. No other bits of **to** are altered. On return, the **len**
   bits of **to** starting at **topos** are equal to the value that
@@ -12826,7 +12899,14 @@ Fortran 95 and later
     result = nearest(x, s)
 ```
 ```fortran
+     elemental real(kind=KINDX) function nearest(x,s)
+
+     real(kind=KINDX),intent(in) :: x
+     real(kind=KINDS),intent(in) :: s
 ```
+The return value is of the same type and kind as **x**.
+Otherwise, any _kind_ of _real_ is allowed.
+
 ### **Description**
 
 **nearest(x, s)** returns the processor-representable number nearest to
@@ -12835,10 +12915,19 @@ Fortran 95 and later
 ### **Arguments**
 
 - **x**
-  : Shall be of type _real_.
+  : the value to find the nearest representable value of
 
 - **s**
-  : Shall be of type _real_ and not equal to zero.
+  : a value whose sign is used to determine the direction in which to search
+  from **xx** to the representable value.
+
+  It Shall not equal zero.
+
+  If **s** is positive, **nearest** returns the processor-representable
+  number greater than **x** and nearest to it.
+
+  If **s** is negative, **nearest** returns the processor-representable
+  number smaller than **x** and nearest to it.
 
 ### **Returns**
 
@@ -12914,8 +13003,9 @@ Fortran 95 and later
     result = new_line(c)
 ```
 ```fortran
-     character(len=1,kind=kind(c)) :: new_line(c)
-     character(len=1),intent(in) :: c(..)
+     character(len=1,kind=kind(c)) function new_line(c)
+
+     character(len=1,kind=KIND),intent(in) :: c(..)
 ```
 ### **Description**
 
@@ -12994,10 +13084,14 @@ Fortran 2003 and later
     result=nint(x [,kind])
 ```
 ```fortran
-    elemental integer(kind=KIND) function nint(x, kind )
+    elemental integer(kind=kind) function nint(x, kind )
 
-     real(kind=KIND),intent(in) :: x
+     real(kind=KINDX),intent(in) :: x
+     integer(kind=KINDK),intent(in),optional :: kind
 ```
+   The result is default _integer_ kind or the value of **kind**
+   if it is present.
+
 ### **Description**
 
 **nint(x)** rounds its argument to the nearest whole number with its
@@ -13120,7 +13214,7 @@ FORTRAN 77 and later, with KIND argument - Fortran 90 and later
     result = norm2(array, dim)
 ```
 ```fortran
-     real function result norm2(array, dim)
+     real function norm2(array, dim)
 
      real,intent(in) :: array(..)
      integer,intent(in),optional :: dim
@@ -13214,10 +13308,15 @@ Fortran 2008 and later
     result = not(i)
 ```
 ```fortran
+    elemental integer(kind=KIND) function not(i)
+
+     integer(kind=KIND), intent(in) :: i
 ```
+The return type is of the same kind as the argument.
+
 ### **Description**
 
-NOT returns the bitwise Boolean inverse of I.
+NOT returns the bitwise Boolean inverse of **i**.
 
 ### **Arguments**
 
@@ -13596,21 +13695,22 @@ Results:
 ```
 ```fortran
      TYPE(kind=KIND) function pack(array,mask,vector)
-     TYPE(kind=KIND),option(in) :: array(*)
+
+     TYPE(kind=KIND),option(in) :: array(..)
      logical  :: mask(*)
      TYPE(kind=KIND),option(in),optional :: vector(*)
 ```
-where TYPE(kind=KIND) may be any type, where **array** and **vector**
-and the returned value must by of the same type. **mask** may be a
-scalar as well an an array.
+  where TYPE(kind=KIND) may be any type, where **array** and **vector**
+  and the returned value must by of the same type. **mask** may be a
+  scalar as well an an array.
 
 ### **Description**
 
-Stores the elements of ARRAY in an array of rank one.
+  Stores the elements of ARRAY in an array of rank one.
 
-The beginning of the resulting array is made up of elements whose **mask**
-equals _.true._. Afterwards, positions are filled with elements taken from
-**vector**.
+  The beginning of the resulting array is made up of elements whose
+  **mask** equals _.true._. Afterwards, positions are filled with elements
+  taken from **vector**.
 
 ### **Arguments**
 
@@ -13708,13 +13808,13 @@ Fortran 95 and later
 
 ### **Syntax**
 ```fortran
-    result = parity(mask, dim)
+    result = parity( mask [,dim] )
 ```
 ```fortran
-     function parity(mask, dim)
-     type(logical(kind=LKIND))                    :: dim
-     type(logical(kind=LKIND)),intent(in)         :: mask(..)
-     type(integer(kind=KIND)),intent(in),optional :: dim
+     logical(kind=KIND) function parity(mask, dim)
+
+     type(logical(kind=KIND)),intent(in)           :: mask(..)
+     type(integer(kind=KINDD)),intent(in),optional :: dim
 ```
 where KIND and LKIND are any supported kind for the type.
 
@@ -13746,7 +13846,6 @@ __mask__ with dimension __dim__ dropped.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_parity
 implicit none
@@ -13754,13 +13853,10 @@ logical :: x(2) = [ .true., .false. ]
    print *, parity(x)
 end program demo_parity
 ````
-
 Results:
-
 ```text
     T
 ```
-
 ### **Standard**
 
 Fortran 2008 and later
@@ -13778,7 +13874,12 @@ Fortran 2008 and later
     result = popcnt(i)
 ```
 ```fortran
+    elemental integer function popcnt(i)
+
+     integer(kind=KIND), intent(in) :: i
 ```
+The **i** argument may be of any kind.
+
 ### **Description**
 
 Returns the number of bits set in the binary representation of an
@@ -13845,7 +13946,11 @@ Fortran 2008 and later
     result = poppar(i)
 ```
 ```fortran
+    elemental integer function poppar(i)
+
+     integer(kind=KIND), intent(in) :: i
 ```
+
 ### **Description**
 
 Returns the parity of an integer's binary representation (i.e., the
@@ -13912,8 +14017,10 @@ Fortran 2008 and later
 ```fortran
     result = precision(x)
 ```
+The return value is of type _integer_ and of the default integer kind.
 ```fortran
     integer function precision(x)
+
     type(TYPE(kind=KIND),intent(in) :: x
 ```
 where **TYPE** may be _real_ or _complex_
@@ -13930,7 +14037,7 @@ of **x**.
 
 ### **Returns**
 
-The return value is of type _integer_ and of the default integer kind.
+   The precision of values of the type and kind of **x**
 
 ### **Examples**
 
@@ -13940,21 +14047,18 @@ Sample program:
 program demo_precision
 use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
 implicit none
-real(kind=sp) :: x(2)
+real(kind=sp)    :: x(2)
 complex(kind=dp) :: y
 
    print *, precision(x), range(x)
    print *, precision(y), range(y)
 end program demo_precision
 ```
-
 Results:
-
 ```text
               6          37
              15         307
 ```
-
 ### **Standard**
 
 Fortran 95 and later
@@ -14056,6 +14160,8 @@ Fortran 95 and later
     result = product(array, dim, mask)
 ```
 ```fortran
+     NUMERIC function product(array, dim, mask)
+
      NUMERIC,intent(in) :: array(..)
      integer,intent(in),optional :: dim
      logical,intent(in),optional :: mask(..)
@@ -14095,7 +14201,6 @@ The result is of the same type as **array**.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_product
 implicit none
@@ -14701,10 +14806,16 @@ end program demo_rank
 
 ### **Syntax**
 ```fortran
-    result = real(x, kind)
+    result = real(x [,kind])
 ```
 ```fortran
+    elemental real(kind=KIND) function real(x,kind)
+
+     type(TYPE(kind=KIND)),intent(in) :: x
+     integer(kind=KINDK),intent(in) :: kind
 ```
+  Where the type of **x** may be _integer_, _real_, or _complex_.
+
 ### **Description**
 
 **real(x, kind)** converts its argument **x** to a real type.
@@ -14740,7 +14851,6 @@ rules:
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_real
 use,intrinsic :: iso_fortran_env, only : dp=>real64
@@ -14755,7 +14865,6 @@ complex(kind=dp) :: zd=cmplx(4.0e0_dp,5.0e0_dp,kind=dp)
    write(*,*)xd,real(xd,kind=kind(0.0d0)),dble(xd)
 end program demo_real
 ```
-
 Results:
 
 ```
@@ -14763,7 +14872,6 @@ Results:
  4.0000000000000000       5.0000000000000000
  1.7976931348623157E+308  1.7976931348623157E+308  1.7976931348623157E+308
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later
@@ -14975,9 +15083,10 @@ one relative to the input array.
     result = repeat(string, ncopies)
 ```
 ```fortran
-     character(len=len(string)*ncopies) :: repeat
+     character(len=len(string)*ncopies) function repeat(string, ncopies)
+
      character(len=*),intent(in)        :: string
-     integer,intent(in)                 :: ncopies
+     integer(kind=KIND),intent(in)      :: ncopies
 ```
 ### **Description**
 
@@ -15138,7 +15247,10 @@ Fortran 95 and later
     result = rrspacing(x)
 ```
 ```fortran
+     elemental real(kind=KIND) function rrspacing(x)
 ```
+The return value is of the same type and kind as **x**.
+
 ### **Description**
 
 **rrspacing(x)** returns the reciprocal of the relative spacing of model
@@ -15230,6 +15342,8 @@ Fortran 2003 and later
     result = scale(x, i)
 ```
 ```fortran
+     elemental real(kind=KIND) function scale(x, i)
+
      real(kind=KIND),intent(in) :: x
      integer,intent(in)         :: i
 ```
@@ -15253,7 +15367,6 @@ The return value is of the same type and kind as **x**. Its value is
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_scale
 implicit none
@@ -15262,13 +15375,10 @@ integer :: i = 5
    print *, scale(x,i), x*radix(x)**i
 end program demo_scale
 ```
-
 Results:
-
 ```
     0.570043862      0.570043862
 ```
-
 ### **Standard**
 
 Fortran 95 and later
@@ -15653,7 +15763,13 @@ Fortran 95 and later; with RADIX - Fortran 2008 and later
     result = set_exponent(x, i)
 ```
 ```fortran
+     elemental real(kind=KIND) function set_exponent(x,i)
+
+     real(kind=KIND),intent(in) :: x
+     integer(kind=KINDI),intent(in) :: i
 ```
+  The return value is of the same type and kind as **x**.
+
 ### **Description**
 
 **set_exponent(x, i)** returns the real number whose fractional part is
@@ -15802,7 +15918,7 @@ Fortran 95 and later; with KIND argument Fortran 2003 and later
      elemental integer(kind=KIND) function shifta(i, shift)
 
       integer(kind=KIND),intent(in) :: i
-      integer(kind=SHIFTKIND,intent(in) :: shift
+      integer(kind=SHIFTKIND),intent(in) :: shift
 ```
   where KIND and SHIFTKIND may be any supported _integer_ kind, but
   where the kind for **i** dictates the kind of the returned value.
@@ -15931,7 +16047,7 @@ Fortran 2008 and later
      elemental integer(kind=KIND) function shiftl(i, shift)
 
       integer(kind=KIND),intent(in) :: i
-      integer(kind=SHIFTKIND,intent(in) :: shift
+      integer(kind=SHIFTKIND),intent(in) :: shift
 ```
 where KIND and SHIFTKIND may be any supported _integer_ kind, but
 where the kind for **i** dictates the kind of the returned value.
@@ -16068,7 +16184,7 @@ Fortran 2008 and later
      elemental integer(kind=KIND) function shiftr(i, shift)
 
       integer(kind=KIND),intent(in) :: i
-      integer(kind=SHIFTKIND,intent(in) :: shift
+      integer(kind=SHIFTKIND),intent(in) :: shift
 ```
 where KIND and SHIFTKIND may be any supported _integer_ kind, but
 where the kind for **i** dictates the kind of the returned value.
@@ -16268,6 +16384,7 @@ FORTRAN 77 and later
 ```
 ```fortran
      elemental TYPE(kind=KIND) function sinh(x)
+
      TYPE(kind=KIND) :: x
 ```
 Where the returned value has the kind of the input value
@@ -16501,6 +16618,7 @@ FORTRAN 77 and later
 ```
 ```fortran
      integer(kind=KIND) function size(array,dim,kind)
+
      type(TYPE(kind=KIND),intent(in) :: array(..)
      integer(kind=KINDD),intent(in),optional :: dim
      integer(kind=KINDK),intent(in),optional :: kind
@@ -16714,7 +16832,12 @@ Fortran 95 and later, with **kind** argument - Fortran 2003 and later
     result = spacing(x)
 ```
 ```fortran
+    elemental real(kind=KIND) function spacing(x)
+
+     real(kind=KIND), intent(in) :: x
 ```
+  The result is of the same type as the input argument **x**.
+
 ### **Description**
 
 Determines the distance between the argument **x** and the nearest adjacent
@@ -17195,17 +17318,16 @@ intrinsics
 
 ### **Syntax**
 ```fortran
-    call system_clock([count] [,count_rate]  [,count_max] )
+    call system_clock([count] [,count_rate] [,count_max] )
 ```
 ```fortran
-    subroutine system_clock(count, count_rate, count_max)
+     subroutine system_clock(count, count_rate, count_max)
 
      integer,intent(out),optional  :: count
-     integer,intent(out),optional  :: count_rate
-      ! or !
-     real,intent(out),optional     :: count_rate
+     type(TYPE(kind=KIND),intent(out),optional  :: count_rate
      integer,intent(out),optional  :: count_max
 ```
+where TYPE may be _real_ or _integer_.
 ### **Description**
 
 **system_clock** lets you measure durations of time with the precision of
@@ -17608,7 +17730,7 @@ Fortran 95 and later
     result = trailz(i)
 ```
 ```fortran
-     integer function trailz(i)
+     elemental integer function trailz(i)
 
      integer(kind=KIND),intent(in) :: i
 ```
@@ -18164,11 +18286,15 @@ into an array using a mask
     result = unpack(vector, mask, field)
 ```
 ```fortran
+     type(TYPE(kind=KIND)) unpack(vector, mask, field)
+
      type(TYPE(kind=KIND)),intent(in) :: vector(:)
      logical,intent(in)               :: mask(..)
      type(TYPE(kind=KIND)),intent(in) :: field(..)
-     type(TYPE(kind=KIND))            :: result(..)
 ```
+The result is an array of the same type and type parameters as **vector**
+and the same shape as **mask**.
+
 ### **Description**
 
 Scatter the elements of **vector** into a copy of an array **field**
@@ -18196,9 +18322,6 @@ statements, particularly when the replacements are conditional.
   parameters as **vector** and shall be conformable with **mask**.
 
 ### **Returns**
-
-The result is an array of the same type and type parameters as **vector**
-and the same shape as **mask**.
 
 The element of the result that corresponds to the ith true element
 of MASK, in array element order, has the value VECTOR (i) for i =
@@ -18609,7 +18732,7 @@ Results:
 exploring uses of elemental functionality and dusty corners
 
 ```fortran
-program demo_verify
+program more_verify
 implicit none
 character(len=*),parameter :: &
   & int='0123456789', &
@@ -18639,7 +18762,7 @@ character(len=2) :: sets(3)=["do","re","me"]
    ! and first letter in "home! " not in "me"
    write(*,*) verify(strings,sets)
 
-end program demo_verify
+end program more_verify
 ```
 Results:
 ```text

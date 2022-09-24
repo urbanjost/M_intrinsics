@@ -6,7 +6,7 @@
 
 ### **Syntax**
 ```fortran
-    result = minval(array, dim, mask) 
+    result = minval(array, dim, mask)
 ```
   or
 ```fortran
@@ -53,7 +53,6 @@ kind as **array**.
 ### **Examples**
 
 sample program:
-
 ```fortran
 program demo_minval
 implicit none
@@ -111,9 +110,7 @@ integer,save :: box(3,5,2)
 
 end program demo_minval
 ```
-
 Results:
-
 ```text
  Given the array
     1   -2    3    4    5
@@ -143,7 +140,6 @@ Results:
    -2 -30 -44 -5 -50 -55
    shape of answer is  3 2
 ```
-
 ### **Standard**
 
 Fortran 95 and later

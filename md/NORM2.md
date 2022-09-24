@@ -9,7 +9,7 @@
     result = norm2(array, dim)
 ```
 ```fortran
-     real function result norm2(array, dim)
+     real function norm2(array, dim)
 
      real,intent(in) :: array(..)
      integer,intent(in),optional :: dim

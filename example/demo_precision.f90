@@ -1,7 +1,7 @@
       program demo_precision
       use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
       implicit none
-      real(kind=sp) :: x(2)
+      real(kind=sp)    :: x(2)
       complex(kind=dp) :: y
 
          print *, precision(x), range(x)

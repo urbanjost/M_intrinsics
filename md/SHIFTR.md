@@ -12,7 +12,7 @@
      elemental integer(kind=KIND) function shiftr(i, shift)
 
       integer(kind=KIND),intent(in) :: i
-      integer(kind=SHIFTKIND,intent(in) :: shift
+      integer(kind=SHIFTKIND),intent(in) :: shift
 ```
 where KIND and SHIFTKIND may be any supported _integer_ kind, but
 where the kind for **i** dictates the kind of the returned value.
@@ -95,7 +95,7 @@ end program demo_shiftr
 >         8191        4095        2047        1023         511         255
 >          127          63          31          15           7           3
 >            1           0
->  
+>
 >  SHIFT =  9
 >  I =      01010101010101010101010101010101 == 1431655765
 >  RESULT = 00000000001010101010101010101010 == 2796202

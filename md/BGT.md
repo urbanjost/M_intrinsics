@@ -11,9 +11,9 @@
 ```fortran
     elemental function bgt(i, j)
 
-     integer(kind=KIND),intent(in) :: i
-     integer(kind=KIND),intent(in) :: j
-     logical :: bgt
+    integer(kind=KIND),intent(in) :: i
+    integer(kind=KIND),intent(in) :: j
+    logical :: bgt
 ```
   where the _kind_ of **i** and **j** may be of any supported _integer_
   kind, not necessarily the same.  An exception is that values may be a
@@ -57,7 +57,7 @@ integer(kind=int8) :: byte
       write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,bgt(byte,64_int8),byte
    enddo
 
-   ! see the BGE() description for an extended description 
+   ! see the BGE() description for an extended description
    ! of related information
 
 end program demo_bgt

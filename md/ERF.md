@@ -9,6 +9,7 @@
     result = erf(x)
 ```
 ```fortran
+     elemental real(kind=KIND) function erf(x)
 ```
 ### **Description**
 

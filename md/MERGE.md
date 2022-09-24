@@ -9,6 +9,7 @@
     result = merge(tsource, fsource, mask)
 ```
 ```fortran
+     elemental type(TYPE(kind=KIND)) function merge(tsource,fsource,mask)
 ```
 ### **Description**
 
@@ -49,7 +50,6 @@ instead of the more obscure
 ```fortran
       merge(1.0/merge(x,1.0,x /= 0.0), 0.0, x /= 0.0)
 ```
-
 ### **Arguments**
 
 - **tsource**

@@ -9,7 +9,7 @@
     result = is_iostat_eor(i)
 ```
 ```fortran
-     integer function is_iostat_eor(i)
+     elemental integer function is_iostat_eor(i)
 
       integer(kind=KIND),intent(in) :: iostat
 ```
@@ -39,8 +39,7 @@ Sample program:
 program demo_is_iostat_eor
 use iso_fortran_env, only : iostat_eor
 implicit none
-integer :: stat, inums(50)
-integer :: lun, ios, 
+integer :: inums(50), lun, ios
 
   open(newunit=lun, file='_test.dat', form='unformatted')
   write(lun, '(a)') '10 20 30'
@@ -48,7 +47,6 @@ integer :: lun, ios,
   write(lun, '(a)') '80 90'
   write(lun, '(a)') '100'
 
-  i=0
   do
      read(lun, *, iostat=ios) inums
      write(*,*)'iostat=',ios

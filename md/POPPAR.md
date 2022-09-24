@@ -9,7 +9,11 @@
     result = poppar(i)
 ```
 ```fortran
+    elemental integer function poppar(i)
+
+     integer(kind=KIND), intent(in) :: i
 ```
+
 ### **Description**
 
 Returns the parity of an integer's binary representation (i.e., the

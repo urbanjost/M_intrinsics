@@ -9,10 +9,15 @@
     result = not(i)
 ```
 ```fortran
+    elemental integer(kind=KIND) function not(i)
+
+     integer(kind=KIND), intent(in) :: i
 ```
+The return type is of the same kind as the argument.
+
 ### **Description**
 
-NOT returns the bitwise Boolean inverse of I.
+NOT returns the bitwise Boolean inverse of **i**.
 
 ### **Arguments**
 

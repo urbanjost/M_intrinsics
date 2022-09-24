@@ -8,12 +8,14 @@
 ```fortran
     result = precision(x)
 ```
+The return value is of type _integer_ and of the default integer kind.
 ```fortran
     integer function precision(x)
+
     type(TYPE(kind=KIND),intent(in) :: x
 ```
 where **TYPE** may be _real_ or _complex_
-    
+
 ### **Description**
 
 **precision(x)** returns the decimal precision in the model of the type
@@ -26,7 +28,7 @@ of **x**.
 
 ### **Returns**
 
-The return value is of type _integer_ and of the default integer kind.
+   The precision of values of the type and kind of **x**
 
 ### **Examples**
 
@@ -36,21 +38,18 @@ Sample program:
 program demo_precision
 use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
 implicit none
-real(kind=sp) :: x(2)
+real(kind=sp)    :: x(2)
 complex(kind=dp) :: y
 
    print *, precision(x), range(x)
    print *, precision(y), range(y)
 end program demo_precision
 ```
-
 Results:
-
 ```text
               6          37
              15         307
 ```
-
 ### **Standard**
 
 Fortran 95 and later

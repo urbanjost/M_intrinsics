@@ -40,7 +40,6 @@ and has the same type and kind as the first argument.
 ### **Examples**
 
 Sample program
-
 ```fortran
 program demo_min
 implicit none

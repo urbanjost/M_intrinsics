@@ -9,7 +9,14 @@
     result = modulo(a, p)
 ```
 ```fortran
+     elemental type(TYPE(kind=KIND) function modulo(a,p)
+
+     type(TYPE(kind=KIND),intent(in) :: a
+     type(TYPE(kind=KIND),intent(in) :: p
 ```
+  The result and arguments are all of the same type and kind.
+  The type may be any kind of _real_ or _integer_.
+
 ### **Description**
 
 **modulo(a,p)** computes the **a** modulo **p**.

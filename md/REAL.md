@@ -6,10 +6,16 @@
 
 ### **Syntax**
 ```fortran
-    result = real(x, kind)
+    result = real(x [,kind])
 ```
 ```fortran
+    elemental real(kind=KIND) function real(x,kind)
+
+     type(TYPE(kind=KIND)),intent(in) :: x
+     integer(kind=KINDK),intent(in) :: kind
 ```
+  Where the type of **x** may be _integer_, _real_, or _complex_.
+
 ### **Description**
 
 **real(x, kind)** converts its argument **x** to a real type.
@@ -45,7 +51,6 @@ rules:
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_real
 use,intrinsic :: iso_fortran_env, only : dp=>real64
@@ -60,7 +65,6 @@ complex(kind=dp) :: zd=cmplx(4.0e0_dp,5.0e0_dp,kind=dp)
    write(*,*)xd,real(xd,kind=kind(0.0d0)),dble(xd)
 end program demo_real
 ```
-
 Results:
 
 ```
@@ -68,7 +72,6 @@ Results:
  4.0000000000000000       5.0000000000000000
  1.7976931348623157E+308  1.7976931348623157E+308  1.7976931348623157E+308
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later

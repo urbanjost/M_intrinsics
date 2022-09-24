@@ -6,35 +6,30 @@
 
 ### **Syntax**
 ```fortran
-    result = allocated(scalar\|array)
+    result = allocated(entity)
 ```
 ```fortran
-     logical function allocated(scalar,array)
+     logical function allocated(entity)
 
-     type(TYPE(kind=KIND)),allocatable.optional :: scalar
-     type(TYPE(kind=KIND)),allocatable.optional :: array(..)
+     type(TYPE(kind=KIND)),allocatable,optional :: entity(..)
 ```
-where **TYPE** may be any allocatable scalar or array object type.
-Either a scalar or array argument must be present, but not both.
+  where **entity** may be any allocatable scalar or array object
+  of any type.
 
 ### **Description**
 
-**allocated(arg)**  checks the allocation status of both arrays 
-and scalars.
+  **allocated(arg)**  checks the allocation status of both arrays
+  and scalars.
 
 ### **Arguments**
 
-- **array**
-  : the argument shall be an _allocatable_ array or _allocatable_ scalar.
-
-- **scalar**
-  : the argument shall be an _allocatable_ scalar.
+- **entity**
+  : the _allocatable_ object to test.
 
 ### **Returns**
 
-The return value is a scalar _logical_ with the default logical kind type
-parameter. If the argument is allocated then the result is _.true._;
-otherwise, it returns _.false._.
+  If the argument is allocated then the result is _.true._; otherwise,
+  it returns _.false._.
 
 ### **Examples**
 
@@ -44,10 +39,15 @@ Sample program:
 program demo_allocated
 use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
 implicit none
-integer :: i = 4
 real(kind=sp), allocatable :: x(:)
 character(len=256) :: message
 integer :: istat
+  ! basics
+   if( allocated(x)) then
+       write(*,*)'do things if allocated'
+   else
+       write(*,*)'do things if not allocated'
+   endif
 
    ! if already allocated, deallocate
    if ( allocated(x) ) deallocate(x,STAT=istat, ERRMSG=message )
@@ -57,15 +57,9 @@ integer :: istat
    endif
 
    ! only if not allocated, allocate
-   if ( .not. allocated(x) ) allocate(x(i))
+   if ( .not. allocated(x) ) allocate(x(20))
 
-   write(*,*)allocated(x), size(x)
-   if( allocated(x)) then
-       write(*,*)'do things if allocated'
-   else
-       write(*,*)'do things if not allocated'
-   endif
-
+  ! allocation and intent(out)
    call intentout(x)
    write(*,*)'note it is deallocated!',allocated(x)
 
@@ -89,8 +83,8 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later. Note, the scalar= keyword and allocatable
-scalar entities are available in Fortran 2003 and later.
+  Fortran 95 and later. Note, the scalar= keyword and allocatable
+  scalar entities are available in Fortran 2003 and later.
 
 ### **See Also**
 

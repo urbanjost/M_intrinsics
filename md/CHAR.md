@@ -11,8 +11,8 @@
 ```fortran
     elemental integer function char(i,kind)
 
-     integer(kind=KIND),intent(in) :: c
-     integer,intent(in),optional :: KIND
+    integer(kind=KIND),intent(in) :: c
+    integer,intent(in),optional :: KIND
 ```
 ### **Description**
 

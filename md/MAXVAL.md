@@ -66,16 +66,13 @@ integer,save :: ints(3,5)= reshape([&
    write(*,*) maxval(ints,mask=ints.lt.30)
 end program demo_maxval
 ```
-
 Results:
-
 ```
    55
    11     22     33     44     55
     5     50     55
    22
 ```
-
 ### **Standard**
 
 Fortran 95 and later

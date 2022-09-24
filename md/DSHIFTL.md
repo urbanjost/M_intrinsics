@@ -112,13 +112,13 @@ integer             :: shift
    call printit()
 
    ! the leftmost SHIFT bits of J are copied to the rightmost result bits
-   j=b"11111000000000000000000000000000"
+   j=int(b"11111000000000000000000000000000")
    ! and the other bits are the rightmost bits of I
-   i=b"00000000000000000000000000000000"
+   i=int(b"00000000000000000000000000000000")
    call printit()
 
-   j=b"11111000000000000000000000000000"
-   i=b"00000111111111111111111111111111"
+   j=int(b"11111000000000000000000000000000")
+   i=int(b"00000111111111111111111111111111")
    ! result should be all 1s
    call printit()
 

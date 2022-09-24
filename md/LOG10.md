@@ -31,7 +31,6 @@ the same as **x**.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_log10
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
@@ -48,7 +47,6 @@ real(kind=real64) :: x = 10.0_real64
 
 end program demo_log10
 ```
-
 Results:
 
 ```text

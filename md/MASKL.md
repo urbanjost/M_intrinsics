@@ -6,10 +6,11 @@
 
 ### **Syntax**
 ```fortran
-    result = maskl(i, kind)
+    result = maskl( i [,kind] )
 ```
 ```fortran
      elemental integer function maskl(i,kind)
+
      integer,intent(in),optional :: kind
 ```
 ### **Description**
@@ -38,7 +39,6 @@ The leftmost **i** bits are set to 1 and the other bits are set to 0.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_maskl
 implicit none
@@ -49,9 +49,7 @@ integer :: i
    write(*,'(*(i11,1x,b0,1x,/))') maskl([(i,i,i=1,bit_size(0))])
 end program demo_maskl
 ```
-
 Results:
-
 ```text
 -2147483648 10000000000000000000000000000000
 

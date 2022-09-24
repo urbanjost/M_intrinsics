@@ -11,8 +11,8 @@
 ```fortran
    elemental logical function lge(string_a, string_b)
 
-    character(len=*),intent(in) :: string_a
-    character(len=*),intent(in) :: string_b
+   character(len=*),intent(in) :: string_a
+   character(len=*),intent(in) :: string_b
 ```
 ### **Description**
 
@@ -46,7 +46,6 @@ If both input arguments are null strings, _.true._ is always returned.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_lge
 implicit none
@@ -55,11 +54,11 @@ integer :: i
    write(*,*) lge('abc','ABC')          ! [T] lowercase is > uppercase
    write(*,*) lge('abc','abc  ')        ! [T] trailing spaces
    ! If both strings are of zero length the result is true
-   write(*,*) lge('','')                ! [T]  
+   write(*,*) lge('','')                ! [T]
    write(*,*) lge('','a')               ! [F] the null string is padded
-   write(*,*) lge('a','')               ! [T]  
+   write(*,*) lge('a','')               ! [T]
    write(*,*) lge('abc',['abc','123'])  ! [T T]  scalar and array
-   write(*,*) lge(['cba', '123'],'abc') ! [T F]  
+   write(*,*) lge(['cba', '123'],'abc') ! [T F]
    write(*,*) lge(['abc','123'],['cba','123']) ! [F T]  both arrays
 end program demo_lge
 ```

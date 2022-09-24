@@ -9,7 +9,7 @@
     result=is_iostat_end(iostat)
 ```
 ```fortran
-     logical function is_iostat_end(iostat)
+     elemental logical function is_iostat_end(iostat)
 
       integer,intent(in) :: iostat
 ```

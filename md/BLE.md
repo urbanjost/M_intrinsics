@@ -55,7 +55,7 @@ integer(kind=int8) :: byte
       write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,ble(byte,64_int8),byte
    enddo
 
-   ! see the BGE() description for an extended description 
+   ! see the BGE() description for an extended description
    ! of related information
 
 end program demo_ble

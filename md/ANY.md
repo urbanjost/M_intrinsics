@@ -9,9 +9,9 @@
     result = any(mask [,dim])
 ```
 ```fortran
-     logical(..) function any(mask, dim)
+     logical function any(mask, dim)
 
-     logical,intent(in)          :: mask
+     logical,intent(in)          :: mask(..)
      integer,intent(in),optional :: dim
 ```
 ### **Description**
@@ -66,9 +66,7 @@ logical l
      end subroutine section
 end program demo_any
 ```
-
 Results:
-
 ```text
     T
     T T T

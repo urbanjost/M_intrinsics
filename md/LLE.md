@@ -69,7 +69,6 @@ integer :: i
 end program demo_lle
 ```
 Results:
-
 ```text
   !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
   [\]^_`abcdefghijklmnopqrstuvwxyz{|}~
@@ -82,7 +81,6 @@ Results:
   F T
   T T
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later

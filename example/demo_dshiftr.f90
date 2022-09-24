@@ -14,8 +14,8 @@
          call printit()
 
         ! visualizing a "combined right shift" ...
-         i=b"00000000000000000000000000011111"
-         j=b"11111111111111111111111111100000"
+         i=int(b"00000000000000000000000000011111")
+         j=int(b"11111111111111111111111111100000")
          ! appended together ( i//j )
          ! 0000000000000000000000000001111111111111111111111111111111100000
          ! shifted right SHIFT values dropping off shifted values

@@ -9,11 +9,11 @@
     result = cshift(array, shift, dim)
 ```
 ```fortran
-   type(TYPE, kind=KIND) function cshift(array, shift, dim )
- 
-   type(TYPE,kind=KIND),intent(in) :: array(..)
-   integer(kind=IKIND),intent(in)  :: shift
-   integer(kind=IKIND),intent(in)  :: dim
+     type(TYPE, kind=KIND) function cshift(array, shift, dim )
+
+     type(TYPE,kind=KIND),intent(in) :: array(..)
+     integer(kind=IKIND),intent(in)  :: shift
+     integer(kind=IKIND),intent(in)  :: dim
 ```
   where **array** may be any type and rank (and the result will
   automatically be of the same type, kind and rank as **array**).
@@ -26,7 +26,7 @@
   **cshift(array, shift \[, dim\])** performs a circular shift on elements
   of **array** along the dimension of **dim**. If **dim** is omitted it is
   taken to be **1**. **dim** is a scalar of type _integer_ in the range of
-  **1 \<= dim \<= n**, where "n" is the rank of **array**. 
+  **1 \<= dim \<= n**, where "n" is the rank of **array**.
 
   If the rank of
   **array** is one, then all elements of **array** are shifted by **shift**

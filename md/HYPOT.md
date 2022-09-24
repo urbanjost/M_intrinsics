@@ -10,7 +10,7 @@ and the origin.
     result = hypot(x, y)
 ```
 ```fortran
-     elemental real(kind=KIND) function hypot(x,y) 
+     elemental real(kind=KIND) function hypot(x,y)
 
      real(kind=KIND),intent(in) :: x
      real(kind=KIND),intent(in) :: y

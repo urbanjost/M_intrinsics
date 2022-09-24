@@ -10,21 +10,22 @@
 ```
 ```fortran
      TYPE(kind=KIND) function pack(array,mask,vector)
-     TYPE(kind=KIND),option(in) :: array(*)
+
+     TYPE(kind=KIND),option(in) :: array(..)
      logical  :: mask(*)
      TYPE(kind=KIND),option(in),optional :: vector(*)
 ```
-where TYPE(kind=KIND) may be any type, where **array** and **vector**
-and the returned value must by of the same type. **mask** may be a
-scalar as well an an array.
+  where TYPE(kind=KIND) may be any type, where **array** and **vector**
+  and the returned value must by of the same type. **mask** may be a
+  scalar as well an an array.
 
 ### **Description**
 
-Stores the elements of ARRAY in an array of rank one.
+  Stores the elements of ARRAY in an array of rank one.
 
-The beginning of the resulting array is made up of elements whose **mask**
-equals _.true._. Afterwards, positions are filled with elements taken from
-**vector**.
+  The beginning of the resulting array is made up of elements whose
+  **mask** equals _.true._. Afterwards, positions are filled with elements
+  taken from **vector**.
 
 ### **Arguments**
 

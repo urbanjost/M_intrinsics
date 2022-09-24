@@ -11,7 +11,7 @@
 ```fortran
      elemental integer function minexponent(x)
 
-     real(kind=KIND,intent(in)   :: x
+     real(kind=KIND),intent(in)   :: x
 ```
 where KIND is any _real_ kind.
 
@@ -44,14 +44,11 @@ real(kind=real64) :: y
     print *, minexponent(y), maxexponent(y)
 end program demo_minexponent
 ```
-
 Expected Results:
-
 ```
         -125         128
        -1021        1024
 ```
-
 ### **Standard**
 
 Fortran 95 and later

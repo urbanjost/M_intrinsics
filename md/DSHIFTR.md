@@ -52,7 +52,7 @@ Keep the 16 right-most bits
    KLMNOPabcdefghij
 ```
 Pictured this way it can be seen that if **i** and **j** have the same
-value 
+value
 ```fortran
      dshiftr( i, i, shift )
 ```
@@ -71,7 +71,7 @@ this has the same result as a negative circular shift
 
 - **shift**
   : Shall be of type _integer_.
-    It shall be nonnegative and less than or equal to **bit_size(result)** 
+    It shall be nonnegative and less than or equal to **bit_size(result)**
     where "result" is the _integer_ kind of the returned value/input integers.
 
 ### **Returns**
@@ -90,7 +90,7 @@ integer(kind=int32) :: i, j
 integer             :: shift
 
   ! basic usage
-   write(*,*) dshiftr (1, 2**30, 2) 
+   write(*,*) dshiftr (1, 2**30, 2)
 
   ! print some calls as binary to better visualize the results
    i=-1
@@ -99,8 +99,8 @@ integer             :: shift
    call printit()
 
   ! visualizing a "combined right shift" ...
-   i=b"00000000000000000000000000011111"
-   j=b"11111111111111111111111111100000"
+   i=int(b"00000000000000000000000000011111")
+   j=int(b"11111111111111111111111111100000")
    ! appended together ( i//j )
    ! 0000000000000000000000000001111111111111111111111111111111100000
    ! shifted right SHIFT values dropping off shifted values
@@ -110,7 +110,7 @@ integer             :: shift
    ! so the result should be all 1s bits ...
    call printit()
 
-contains 
+contains
 subroutine printit()
    ! print i,j,shift and then i,j, and the result as binary values
     write(*,'(*(g0))')'I=',i,' J=',j,' SHIFT=',shift

@@ -6,10 +6,11 @@
 
 ### **Syntax**
 ```fortran
-    result = maskr(i, kind)
+    result = maskr( i [,kind] )
 ```
 ```fortran
      elemental integer function maskr(i,kind)
+
      integer,intent(in),optional :: kind
 ```
 ### **Description**
@@ -38,7 +39,6 @@ It has its rightmost **i** bits set to 1, and the remaining bits set to 0.
 ### **Example**
 
 Sample program:
-
 ```fortrqn
 program demo_maskr
 implicit none
@@ -53,9 +53,7 @@ integer :: i
    write(*,'(*(i11,1x,b0,1x,/))') maskr([(i,i,i=0,bit_size(0))])
 end program demo_maskr
 ```
-
 Results:
-
 ```text
 1 1 10000000000000000000000000000000
 
@@ -97,7 +95,6 @@ Results:
  2147483647 1111111111111111111111111111111
          -1 11111111111111111111111111111111
 ```
-
 ### **Standard**
 
 Fortran 2008 and later

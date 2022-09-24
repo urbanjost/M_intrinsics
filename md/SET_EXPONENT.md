@@ -9,7 +9,13 @@
     result = set_exponent(x, i)
 ```
 ```fortran
+     elemental real(kind=KIND) function set_exponent(x,i)
+
+     real(kind=KIND),intent(in) :: x
+     integer(kind=KINDI),intent(in) :: i
 ```
+  The return value is of the same type and kind as **x**.
+
 ### **Description**
 
 **set_exponent(x, i)** returns the real number whose fractional part is

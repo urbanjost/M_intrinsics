@@ -46,7 +46,6 @@
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_llt
 implicit none
@@ -55,11 +54,11 @@ integer :: i
    write(*,*) llt('abc','ABC')          ! [F] lowercase is > uppercase
    write(*,*) llt('abc','abc  ')        ! [F] trailing spaces
    ! If both strings are of zero length the result is false.
-   write(*,*) llt('','')                ! [F]  
+   write(*,*) llt('','')                ! [F]
    write(*,*) llt('','a')               ! [T] the null string is padded
-   write(*,*) llt('a','')               ! [F]  
+   write(*,*) llt('a','')               ! [F]
    write(*,*) llt('abc',['abc','123'])  ! [F F]  scalar and array
-   write(*,*) llt(['cba', '123'],'abc') ! [F T]  
+   write(*,*) llt(['cba', '123'],'abc') ! [F T]
    write(*,*) llt(['abc','123'],['cba','123']) ! [T F]  both arrays
 end program demo_llt
 ```

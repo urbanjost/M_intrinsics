@@ -1,6 +1,11 @@
 SRCS := $(wildcard *.f90)
 PROGRAMS := $(patsubst %.f90,%,$(SRCS))
 #Vary the command to your liking with make FC90=f90 F90FLAGS=-g  F90LDFLAGS=-s 
+
+FC90=ifort 
+F90FLAGS=
+F90LDFLAGS=
+
 FC90=gfortran 
 F90FLAGS=-std=f2018 -fcoarray=single -Wall
 F90LDFLAGS=

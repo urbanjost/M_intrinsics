@@ -13,7 +13,7 @@ not greater than argument
      elemental integer(kind=kind) function floor(a [,kind])
 
      real(kind=KIND),intent(in) :: a
-     integer,intent(in),optional :: kind 
+     integer,intent(in),optional :: kind
 ```
 where _KIND_ is any valid value for type _integer_.
 

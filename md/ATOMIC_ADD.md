@@ -9,6 +9,7 @@
     call atomic_add (atom, value, stat)
 ```
 ```fortran
+    subroutine atomic_add(atom,value,stat)
 ```
 ### **Description**
 

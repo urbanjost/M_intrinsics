@@ -9,6 +9,7 @@
     call atomic_xor(atom, value, stat)
 ```
 ```fortran
+    subroutine atomic_xor(atom, value, stat)
 ```
 ### **Description**
 

@@ -9,6 +9,15 @@
     result = ibits(i, pos, len)
 ```
 ```fortran
+     elemental integer(kind=KINDI) function ibits(i,pos,len)
+
+     integer(kind=KINDI),intent(in) :: i
+     integer(kind=KINDPOS),intent(in) :: pos
+     integer(kind=KINDLEN),intent(in) :: len
+```
+  The return value is of the same kind as **i**. Otherwise,
+  any _integer_ kinds are allowed.
+```fortran
 ```
 ### **Description**
 

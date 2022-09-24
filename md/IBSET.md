@@ -9,7 +9,14 @@
     result = ibset(i, pos)
 ```
 ```fortran
+     elemental integer(kind=KINDI) function ibset(i,pos)
+
+     integer(kind=KINDI),intent(in) :: i
+     integer(kind=KINDPOS),intent(in) :: pos
 ```
+  The return value is of the same kind as **i**. Otherwise,
+  any _integer_ kinds are allowed.
+
 ### **Description**
 
 **ibset** returns the value of **i** with the bit at position **pos** set to one.

@@ -12,7 +12,7 @@
      elemental integer(kind=KIND) function shiftl(i, shift)
 
       integer(kind=KIND),intent(in) :: i
-      integer(kind=SHIFTKIND,intent(in) :: shift
+      integer(kind=SHIFTKIND),intent(in) :: shift
 ```
 where KIND and SHIFTKIND may be any supported _integer_ kind, but
 where the kind for **i** dictates the kind of the returned value.
@@ -63,7 +63,7 @@ integer             :: i
  ! elemental (input values may be conformant arrays)
   ! shifting is often equivalent to multiplying be a power of two
   write(*,*) shiftl(-1,[(i,i=1,bit_size(0))])
-  write(*,*) 
+  write(*,*)
   write(*,*) shiftl(+3,[(i,i=1,bit_size(0))])
 
  ! loop through some ivalues
@@ -110,7 +110,7 @@ end program demo_shiftl
 >      1572864     3145728     6291456    12582912    25165824    50331648
 >    100663296   201326592   402653184   805306368  1610612736 -1073741824
 >  -2147483648           0
->   
+>
 >   SHIFT =  9
 >   I =      01010101010101010101010101010101 == 1431655765
 >   RESULT = 10101010101010101010101000000000 == -1431655936

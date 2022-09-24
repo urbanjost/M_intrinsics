@@ -9,7 +9,14 @@
     result = ieor(i, j)
 ```
 ```fortran
+     elemental integer(kind=KINDI) function ieor(i,j)
+
+     integer(kind=KINDI),intent(in) :: i
+     integer(kind=KINDJ),intent(in) :: j
 ```
+  The return value is of the same kind as the larger kind of **i**
+  and **j**. Otherwise, any _integer_ kinds are allowed.
+
 ### **Description**
 
 **ieor** returns the bitwise Boolean exclusive-**or** of **i** and **j**.

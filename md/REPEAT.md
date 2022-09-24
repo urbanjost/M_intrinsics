@@ -9,9 +9,10 @@
     result = repeat(string, ncopies)
 ```
 ```fortran
-     character(len=len(string)*ncopies) :: repeat
+     character(len=len(string)*ncopies) function repeat(string, ncopies)
+
      character(len=*),intent(in)        :: string
-     integer,intent(in)                 :: ncopies
+     integer(kind=KIND),intent(in)      :: ncopies
 ```
 ### **Description**
 

@@ -61,8 +61,8 @@ Sample program:
 program demo_iachar
 implicit none
    ! basic usage
-    ! just does first letter
-    write(*,*)iachar('ABCD')
+    ! just does a string one character long
+    write(*,*)iachar('A')
     ! elemental: can do an array of letters
     write(*,*)iachar(['A','Z','a','z'])
 

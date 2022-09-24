@@ -9,9 +9,10 @@
     result = len_trim(string, kind)
 ```
 ```fortran
-     integer(kind=KIND) function len_trim(string,KIND) result (value)
+     elemental integer(kind=KIND) function len_trim(string,kind)
+
      character(len=*),intent(in) :: string
-     integer,optional,intent(in) :: KIND
+     integer,optional,intent(in) :: kind
      integer(kind=KIND) :: value
 ```
 ### **Description**
@@ -36,7 +37,6 @@ the return value is of default _integer_ kind.
 ### **Examples**
 
 Sample program
-
 ```fortran
 program demo_len_trim
 implicit none
@@ -57,9 +57,7 @@ character(len=:),allocatable :: string
    !
 end program demo_len_trim
 ```
-
 Results:
-
 ```
     LENGTH=          30
     TRIMMED LENGTH=          25
@@ -67,7 +65,6 @@ Results:
     TRIMMED LENGTH=              25          13
     SUM TRIMMED LENGTH=          38
 ```
-
 ### **Standard**
 
 Fortran 95 and later, with **kind** argument - Fortran 2003

@@ -9,6 +9,9 @@
     result = erfc_scaled(x)
 ```
 ```fortran
+     elemental real(kind=KIND) function erfc_scaled(x)
+
+     real(kind=KIND),intent(in) :: x
 ```
 ### **Description**
 

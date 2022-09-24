@@ -209,18 +209,16 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result=abs(a)', &
 '', &
-'           elemental TYPE(kind=KIND) function abs(a)', &
+'           elemental type(TYPER(kind=KIND)) function abs(a)', &
 '', &
-'           TYPE(kind=KIND),intent(in) :: a', &
+'           type(TYPE(kind=KIND)),intent(in) :: a', &
 '', &
-'  where the TYPE and KIND is determined by the type and type attributes of A,', &
-'  which may be any real, integer, or complex value.', &
+'  A may be any real, integer, or complex value.', &
 '', &
-'  If the type of A is complex the type returned will be a real value', &
-'  representing the distance from (0.0,0.0) with the same kind as the real part', &
-'  of the input value.', &
+'  If the type of A is complex the type returned will be a real with the same', &
+'  kind as the real part of A.', &
 '', &
-'    Otherwise the returned type will be the same type as A.', &
+'    Otherwise the returned type is the same as for A.', &
 '', &
 'DESCRIPTION', &
 '  ABS(A) computes the absolute value of numeric argument A.', &
@@ -309,9 +307,12 @@ textblock=[character(len=256) :: &
 'STANDARD', &
 '  FORTRAN 77 and later', &
 '', &
+'SEE ALSO', &
+'  SIGN(3)', &
+'', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                 abs(3fortran)', &
+'                              September 24, 2022                 abs(3fortran)', &
 '']
 
 shortname="abs"
@@ -473,7 +474,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022               achar(3fortran)', &
+'                              September 24, 2022               achar(3fortran)', &
 '']
 
 shortname="achar"
@@ -494,7 +495,7 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental TYPE(kind=KIND) function acos(x)', &
 '', &
-'           TYPE(kind=KIND,intent(in) :: x', &
+'           TYPE(kind=KIND),intent(in) :: x', &
 '', &
 '  where TYPE may be real or complex and KIND may be any kind supported by the', &
 '  associated type.', &
@@ -547,7 +548,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                acos(3fortran)', &
+'                              September 24, 2022                acos(3fortran)', &
 '']
 
 shortname="acos"
@@ -611,7 +612,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022               acosh(3fortran)', &
+'                              September 24, 2022               acosh(3fortran)', &
 '']
 
 shortname="acosh"
@@ -679,7 +680,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022             adjustl(3fortran)', &
+'                              September 24, 2022             adjustl(3fortran)', &
 '']
 
 shortname="adjustl"
@@ -758,7 +759,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022             adjustr(3fortran)', &
+'                              September 24, 2022             adjustr(3fortran)', &
 '']
 
 shortname="adjustr"
@@ -831,7 +832,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               aimag(3fortran)', &
+'                              September 24, 2022               aimag(3fortran)', &
 '']
 
 shortname="aimag"
@@ -852,7 +853,7 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental real(kind=KIND) function iaint(x,kind)', &
 '', &
-'           real(kind=KIND,intent(in)   :: x', &
+'           real(kind=KIND),intent(in)   :: x', &
 '           integer,intent(in),optional :: kind', &
 '', &
 '  where the kind of the result is the same as as X unless KIND is present.', &
@@ -923,7 +924,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                aint(3fortran)', &
+'                              September 24, 2022                aint(3fortran)', &
 '']
 
 shortname="aint"
@@ -942,9 +943,9 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = all(mask [,dim])', &
 '', &
-'           logical(..) function all(mask, dim)', &
+'           logical function all(mask, dim)', &
 '', &
-'           logical,intent(in)          :: mask', &
+'           logical,intent(in)          :: mask(..)', &
 '           integer,intent(in),optional :: dim', &
 '', &
 'DESCRIPTION', &
@@ -1032,7 +1033,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                 all(3fortran)', &
+'                              September 24, 2022                 all(3fortran)', &
 '']
 
 shortname="all"
@@ -1049,28 +1050,23 @@ textblock=[character(len=256) :: &
 '  ALLOCATED(3) - [ARRAY INQUIRY] Status of an allocatable entity', &
 '', &
 'SYNTAX', &
-'  result = allocated(scalar\|array)', &
+'  result = allocated(entity)', &
 '', &
-'           logical function allocated(scalar,array)', &
+'           logical function allocated(entity)', &
 '', &
-'           type(TYPE(kind=KIND)),allocatable.optional :: scalar', &
-'           type(TYPE(kind=KIND)),allocatable.optional :: array(..)', &
+'           type(TYPE(kind=KIND)),allocatable,optional :: entity(..)', &
 '', &
-'  where TYPE may be any allocatable scalar or array object type. Either a', &
-'  scalar or array argument must be present, but not both.', &
+'  where ENTITY may be any allocatable scalar or array object of any type.', &
 '', &
 'DESCRIPTION', &
 '  ALLOCATED(ARG) checks the allocation status of both arrays and scalars.', &
 '', &
 'ARGUMENTS', &
-'  o  ARRAY : the argument shall be an allocatable array or allocatable scalar.', &
-'', &
-'  o  SCALAR : the argument shall be an allocatable scalar.', &
+'  o  ENTITY : the allocatable object to test.', &
 '', &
 'RETURNS', &
-'  The return value is a scalar logical with the default logical kind type', &
-'  parameter. If the argument is allocated then the result is .true.;', &
-'  otherwise, it returns .false..', &
+'  If the argument is allocated then the result is .true.; otherwise, it', &
+'  returns .false..', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -1078,10 +1074,15 @@ textblock=[character(len=256) :: &
 '      program demo_allocated', &
 '      use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32', &
 '      implicit none', &
-'      integer :: i = 4', &
 '      real(kind=sp), allocatable :: x(:)', &
 '      character(len=256) :: message', &
 '      integer :: istat', &
+'        ! basics', &
+'         if( allocated(x)) then', &
+'             write(*,*)''do things if allocated''', &
+'         else', &
+'             write(*,*)''do things if not allocated''', &
+'         endif', &
 '', &
 '         ! if already allocated, deallocate', &
 '         if ( allocated(x) ) deallocate(x,STAT=istat, ERRMSG=message )', &
@@ -1091,15 +1092,9 @@ textblock=[character(len=256) :: &
 '         endif', &
 '', &
 '         ! only if not allocated, allocate', &
-'         if ( .not. allocated(x) ) allocate(x(i))', &
+'         if ( .not. allocated(x) ) allocate(x(20))', &
 '', &
-'         write(*,*)allocated(x), size(x)', &
-'         if( allocated(x)) then', &
-'             write(*,*)''do things if allocated''', &
-'         else', &
-'             write(*,*)''do things if not allocated''', &
-'         endif', &
-'', &
+'        ! allocation and intent(out)', &
 '         call intentout(x)', &
 '         write(*,*)''note it is deallocated!'',allocated(x)', &
 '', &
@@ -1130,7 +1125,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022           allocated(3fortran)', &
+'                              September 24, 2022           allocated(3fortran)', &
 '']
 
 shortname="allocated"
@@ -1151,7 +1146,7 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental real(kind=KIND) function iaint(x,kind)', &
 '', &
-'           real(kind=KIND,intent(in)   :: x', &
+'           real(kind=KIND),intent(in)   :: x', &
 '           integer,intent(in),optional :: kind', &
 '', &
 '  where the kind of the result is the same as as X unless KIND is present.', &
@@ -1220,7 +1215,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               anint(3fortran)', &
+'                              September 24, 2022               anint(3fortran)', &
 '']
 
 shortname="anint"
@@ -1240,9 +1235,9 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = any(mask [,dim])', &
 '', &
-'           logical(..) function any(mask, dim)', &
+'           logical function any(mask, dim)', &
 '', &
-'           logical,intent(in)          :: mask', &
+'           logical,intent(in)          :: mask(..)', &
 '           integer,intent(in),optional :: dim', &
 '', &
 'DESCRIPTION', &
@@ -1302,7 +1297,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                 any(3fortran)', &
+'                              September 24, 2022                 any(3fortran)', &
 '']
 
 shortname="any"
@@ -1403,7 +1398,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                asin(3fortran)', &
+'                              September 24, 2022                asin(3fortran)', &
 '']
 
 shortname="asin"
@@ -1466,7 +1461,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               asinh(3fortran)', &
+'                              September 24, 2022               asinh(3fortran)', &
 '']
 
 shortname="asinh"
@@ -1485,16 +1480,25 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = associated(pointer [,target])', &
 '', &
+'           logical function associated(pointer,target)', &
+'', &
+'           type(TYPE(kind=KIND),pointer :: pointer', &
+'           type(TYPE(kind=KIND),pointer,optional :: target', &
+'', &
+'  POINTER shall have the pointer attribute and it can be any type.', &
+'', &
+'  TARGET shall be a pointer or a target. It must have the same type, kind type', &
+'  parameter, and array rank as POINTER.', &
+'', &
 'DESCRIPTION', &
 '  ASSOCIATED(POINTER [, TARGET]) determines the status of the pointer POINTER', &
 '  or if POINTER is associated with the target TARGET.', &
 '', &
 'ARGUMENTS', &
-'  o  POINTER : POINTER shall have the pointer attribute and it can be of any', &
-'     type.', &
+'  o  POINTER : A pointer to test for association', &
 '', &
-'  o  TARGET : (Optional) TARGET shall be a pointer or a target. It must have', &
-'     the same type, kind type parameter, and array rank as POINTER.', &
+'  o  TARGET : A target that is to be tested for being occupying the same', &
+'     storage units as the pointer POINTER.', &
 '', &
 '  The association status of neither POINTER nor TARGET shall be undefined.', &
 '', &
@@ -1502,8 +1506,7 @@ textblock=[character(len=256) :: &
 '  ASSOCIATED(POINTER) returns a scalar value of type logical. There are', &
 '  several cases:', &
 '', &
-'  1.  When the optional TARGET is not present then ASSOCIATED(POINTER) is true', &
-'      if POINTER is associated with a target; otherwise, it returns false.', &
+'  1.  When the optional TARGET is not present then ASSOCIATED(POINTER) is', &
 '', &
 '  2.  If TARGET is present and a scalar target, the result is true if TARGET', &
 '      is not a zero-sized storage sequence and the target associated with', &
@@ -1552,7 +1555,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022          associated(3fortran)', &
+'                              September 24, 2022          associated(3fortran)', &
 '']
 
 shortname="associated"
@@ -1573,8 +1576,8 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental function atan2(y, x)', &
 '', &
-'           type(real,kind=KIND) :: atan2', &
-'           type(real,kind=KIND),intent(in) :: y, x', &
+'           real,kind=KIND) :: atan2', &
+'           real,kind=KIND),intent(in) :: y, x', &
 '', &
 '  The return value has the same type and kind as Y and X.', &
 '', &
@@ -1590,7 +1593,7 @@ textblock=[character(len=256) :: &
 '  o  X : The real component of the complex value (X,Y) or the X component of', &
 '     the point <X,Y>.', &
 '', &
-'     If must be of the same kind as Y.', &
+'     X must be of the same kind as Y.', &
 '', &
 'RETURNS', &
 '  The type and kind of the result are the same as the elements of X. and Y.', &
@@ -1740,7 +1743,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022               atan2(3fortran)', &
+'                              September 24, 2022               atan2(3fortran)', &
 '']
 
 shortname="atan2"
@@ -1759,10 +1762,10 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = atan([y], x)', &
 '', &
-'           TYPE(kind=KIND) function atan(y,x)', &
+'           elemental TYPE(kind=KIND) function atan(y,x)', &
 '', &
-'           TYPE(kind=KIND,intent(in) :: x', &
-'           TYPE(kind=KIND,intent(in),optional :: y', &
+'           TYPE(kind=KIND),intent(in) :: x', &
+'           TYPE(kind=KIND),intent(in),optional :: y', &
 '', &
 '  where TYPE may be real or complex and KIND may be any KIND supported by the', &
 '  associated type. If Y is present X is _real`.', &
@@ -1822,7 +1825,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                atan(3fortran)', &
+'                              September 24, 2022                atan(3fortran)', &
 '']
 
 shortname="atan"
@@ -1885,7 +1888,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               atanh(3fortran)', &
+'                              September 24, 2022               atanh(3fortran)', &
 '']
 
 shortname="atanh"
@@ -1941,7 +1944,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022          atomic_add(3fortran)', &
+'                              September 24, 2022          atomic_add(3fortran)', &
 '']
 
 shortname="atomic_add"
@@ -1997,7 +2000,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022          atomic_and(3fortran)', &
+'                              September 24, 2022          atomic_and(3fortran)', &
 '']
 
 shortname="atomic_and"
@@ -2057,7 +2060,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022          atomic_cas(3fortran)', &
+'                              September 24, 2022          atomic_cas(3fortran)', &
 '']
 
 shortname="atomic_cas"
@@ -2119,7 +2122,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022       atomic_define(3fortran)', &
+'                              September 24, 2022       atomic_define(3fortran)', &
 '']
 
 shortname="atomic_define"
@@ -2180,7 +2183,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022    atomic_fetch_add(3fortran)', &
+'                              September 24, 2022    atomic_fetch_add(3fortran)', &
 '']
 
 shortname="atomic_fetch_add"
@@ -2243,7 +2246,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022    atomic_fetch_and(3fortran)', &
+'                              September 24, 2022    atomic_fetch_and(3fortran)', &
 '']
 
 shortname="atomic_fetch_and"
@@ -2305,7 +2308,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022     atomic_fetch_or(3fortran)', &
+'                              September 24, 2022     atomic_fetch_or(3fortran)', &
 '']
 
 shortname="atomic_fetch_or"
@@ -2368,7 +2371,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022    atomic_fetch_xor(3fortran)', &
+'                              September 24, 2022    atomic_fetch_xor(3fortran)', &
 '']
 
 shortname="atomic_fetch_xor"
@@ -2427,7 +2430,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022           atomic_or(3fortran)', &
+'                              September 24, 2022           atomic_or(3fortran)', &
 '']
 
 shortname="atomic_or"
@@ -2492,7 +2495,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022          atomic_ref(3fortran)', &
+'                              September 24, 2022          atomic_ref(3fortran)', &
 '']
 
 shortname="atomic_ref"
@@ -2548,7 +2551,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022          atomic_xor(3fortran)', &
+'                              September 24, 2022          atomic_xor(3fortran)', &
 '']
 
 shortname="atomic_xor"
@@ -2571,29 +2574,30 @@ textblock=[character(len=256) :: &
 '', &
 '           real(kind=KIND),intent(in) :: x', &
 '', &
-'  KIND may be any KIND supported by the real type.', &
+'  KIND may be any KIND supported by the real type. The result is the same type', &
+'  and kind as X.', &
 '', &
 'DESCRIPTION', &
 '  BESSEL_J0(X) computes the Bessel function of the first kind of order 0 of X.', &
 '', &
 'ARGUMENTS', &
-'  o  X : The type shall be real.', &
+'  o  X : The value to operate on.', &
 '', &
 'RETURNS', &
-'  The return value is of type real and lies in the range -0.4027 <=', &
-'  BESSEL(0,X) <= 1. It has the same kind as X.', &
+'  the Bessel function of the first kind of order 0 of X. The result lies in', &
+'  the range -0.4027 <= BESSEL(0,X) <= 1.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
-'      program demo_besj0', &
+'      program demo_bessel_j0', &
 '      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
 '      & real32, real64, real128', &
 '         implicit none', &
 '         real(kind=real64) :: x = 0.0_real64', &
 '         x = bessel_j0(x)', &
 '         write(*,*)x', &
-'      end program demo_besj0', &
+'      end program demo_bessel_j0', &
 '', &
 '  Results:', &
 '', &
@@ -2607,7 +2611,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022           bessel_j0(3fortran)', &
+'                              September 24, 2022           bessel_j0(3fortran)', &
 '']
 
 shortname="bessel_j0"
@@ -2645,14 +2649,14 @@ textblock=[character(len=256) :: &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
-'      program demo_besj1', &
+'      program demo_bessel_j1', &
 '      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
 '       & real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real64) :: x = 1.0_real64', &
 '         x = bessel_j1(x)', &
 '         write(*,*)x', &
-'      end program demo_besj1', &
+'      end program demo_bessel_j1', &
 '', &
 '  Results:', &
 '', &
@@ -2666,7 +2670,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022           bessel_j1(3fortran)', &
+'                              September 24, 2022           bessel_j1(3fortran)', &
 '']
 
 shortname="bessel_j1"
@@ -2685,13 +2689,30 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = bessel_jn(n, x)', &
 '', &
-'  or', &
+'           elemental real(kind=KIND) function bessel_jn(n,x)', &
 '', &
-'          result = bessel_jn(n1, n2, x)', &
+'           integer(kind=KIND),intent(in) :: n(..)', &
+'           real(kind=KIND),intent(in) :: x(..)', &
+'', &
+'  If N and X are arrays, their ranks and shapes shall conform.', &
+'', &
+'  The return value has the same type and kind as X.', &
+'', &
+'    or', &
+'', &
+'            result = bessel_jn(n1, n2, x)', &
+'', &
+'             real(kind=KIND) function bessel_jn(n1, n2, ,x)', &
+'', &
+'             integer(kind=KIND),intent(in) :: n1(..)', &
+'             integer(kind=KIND),intent(in) :: n2(..)', &
+'             real(kind=KIND),intent(in) :: x', &
+'', &
+'    The return value has the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
 '  BESSEL_JN(N, X) computes the Bessel function of the first kind of order N of', &
-'  X. If N and X are arrays, their ranks and shapes shall conform.', &
+'  X.', &
 '', &
 '  BESSEL_JN(N1, N2, X) returns an array with the Bessel function|Bessel', &
 '  functions of the first kind of the orders N1 to N2.', &
@@ -2712,14 +2733,14 @@ textblock=[character(len=256) :: &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
-'      program demo_besjn', &
+'      program demo_bessel_jn', &
 '      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
 '         & real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real64) :: x = 1.0_real64', &
 '          x = bessel_jn(5,x)', &
 '          write(*,*)x', &
-'      end program demo_besjn', &
+'      end program demo_bessel_jn', &
 '', &
 '  Results:', &
 '', &
@@ -2733,7 +2754,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022           bessel_jn(3fortran)', &
+'                              September 24, 2022           bessel_jn(3fortran)', &
 '']
 
 shortname="bessel_jn"
@@ -2771,14 +2792,14 @@ textblock=[character(len=256) :: &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
-'      program demo_besy0', &
+'      program demo_bessel_y0', &
 '      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
 '      & real32, real64, real128', &
 '      implicit none', &
 '        real(kind=real64) :: x = 0.0_real64', &
 '        x = bessel_y0(x)', &
 '        write(*,*)x', &
-'      end program demo_besy0', &
+'      end program demo_bessel_y0', &
 '', &
 '  Results:', &
 '', &
@@ -2792,7 +2813,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022           bessel_y0(3fortran)', &
+'                              September 24, 2022           bessel_y0(3fortran)', &
 '']
 
 shortname="bessel_y0"
@@ -2830,13 +2851,13 @@ textblock=[character(len=256) :: &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
-'      program demo_besy1', &
+'      program demo_bessel_y1', &
 '      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
 '      & real32, real64, real128', &
 '      implicit none', &
 '        real(kind=real64) :: x = 1.0_real64', &
 '        write(*,*)x, bessel_y1(x)', &
-'      end program demo_besy1', &
+'      end program demo_bessel_y1', &
 '', &
 'STANDARD', &
 '  Fortran 2008 and later', &
@@ -2846,7 +2867,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022           bessel_y1(3fortran)', &
+'                              September 24, 2022           bessel_y1(3fortran)', &
 '']
 
 shortname="bessel_y1"
@@ -2865,9 +2886,13 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = bessel_yn(n, x)', &
 '', &
+'  elemental real(kind=KIND) function bessel_yn(n,x)', &
+'', &
 '  or', &
 '', &
 '          result = bessel_yn(n1, n2, x)', &
+'', &
+'          elemental real(kind=KIND) function bessel_yn(n1,n2,x)', &
 '', &
 'DESCRIPTION', &
 '  BESSEL_YN(N, X) computes the Bessel function of the second kind of order N', &
@@ -2892,13 +2917,13 @@ textblock=[character(len=256) :: &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
-'      program demo_besyn', &
+'      program demo_bessel_yn', &
 '      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
 '      & real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real64) :: x = 1.0_real64', &
 '        write(*,*) x,bessel_yn(5,x)', &
-'      end program demo_besyn', &
+'      end program demo_bessel_yn', &
 '', &
 '  Results:', &
 '', &
@@ -2912,7 +2937,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022           bessel_yn(3fortran)', &
+'                              September 24, 2022           bessel_yn(3fortran)', &
 '']
 
 shortname="bessel_yn"
@@ -2933,9 +2958,8 @@ textblock=[character(len=256) :: &
 '', &
 '  elemental function bge(i, j)', &
 '', &
-'           integer(kind=KIND),intent(in) :: i', &
-'           integer(kind=KIND),intent(in) :: j', &
-'           logical :: bge', &
+'  integer(kind=KIND),intent(in) :: i integer(kind=KIND),intent(in) :: j', &
+'  logical :: bge', &
 '', &
 '  where the kind of I and J may be of any supported integer kind, not', &
 '  necessarily the same. An exception is that values may be a BOZ constant with', &
@@ -3068,7 +3092,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                 bge(3fortran)', &
+'                              September 24, 2022                 bge(3fortran)', &
 '']
 
 shortname="bge"
@@ -3089,9 +3113,8 @@ textblock=[character(len=256) :: &
 '', &
 '  elemental function bgt(i, j)', &
 '', &
-'           integer(kind=KIND),intent(in) :: i', &
-'           integer(kind=KIND),intent(in) :: j', &
-'           logical :: bgt', &
+'  integer(kind=KIND),intent(in) :: i integer(kind=KIND),intent(in) :: j', &
+'  logical :: bgt', &
 '', &
 '  where the kind of I and J may be of any supported integer kind, not', &
 '  necessarily the same. An exception is that values may be a BOZ constant with', &
@@ -3152,7 +3175,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                 bgt(3fortran)', &
+'                              September 24, 2022                 bgt(3fortran)', &
 '']
 
 shortname="bgt"
@@ -3227,7 +3250,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022            bit_size(3fortran)', &
+'                              September 24, 2022            bit_size(3fortran)', &
 '']
 
 shortname="bit_size"
@@ -3309,7 +3332,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                 ble(3fortran)', &
+'                              September 24, 2022                 ble(3fortran)', &
 '']
 
 shortname="ble"
@@ -3390,7 +3413,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                 blt(3fortran)', &
+'                              September 24, 2022                 blt(3fortran)', &
 '']
 
 shortname="blt"
@@ -3514,7 +3537,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022               btest(3fortran)', &
+'                              September 24, 2022               btest(3fortran)', &
 '']
 
 shortname="btest"
@@ -3572,7 +3595,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022        c_associated(3fortran)', &
+'                              September 24, 2022        c_associated(3fortran)', &
 '']
 
 shortname="c_associated"
@@ -3669,7 +3692,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022             ceiling(3fortran)', &
+'                              September 24, 2022             ceiling(3fortran)', &
 '']
 
 shortname="ceiling"
@@ -3727,7 +3750,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022         c_f_pointer(3fortran)', &
+'                              September 24, 2022         c_f_pointer(3fortran)', &
 '']
 
 shortname="c_f_pointer"
@@ -3789,7 +3812,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022     c_f_procpointer(3fortran)', &
+'                              September 24, 2022     c_f_procpointer(3fortran)', &
 '']
 
 shortname="c_f_procpointer"
@@ -3856,7 +3879,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022            c_funloc(3fortran)', &
+'                              September 24, 2022            c_funloc(3fortran)', &
 '']
 
 shortname="c_funloc"
@@ -3877,8 +3900,7 @@ textblock=[character(len=256) :: &
 '', &
 '  elemental integer function char(i,kind)', &
 '', &
-'           integer(kind=KIND),intent(in) :: c', &
-'           integer,intent(in),optional :: KIND', &
+'  integer(kind=KIND),intent(in) :: c integer,intent(in),optional :: KIND', &
 '', &
 'DESCRIPTION', &
 '  CHAR(I, KIND) returns the character represented by the integer I.', &
@@ -3926,7 +3948,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                char(3fortran)', &
+'                              September 24, 2022                char(3fortran)', &
 '']
 
 shortname="char"
@@ -3980,7 +4002,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               c_loc(3fortran)', &
+'                              September 24, 2022               c_loc(3fortran)', &
 '']
 
 shortname="c_loc"
@@ -3999,7 +4021,7 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = cmplx(x [,y] [,kind])', &
 '', &
-'  elemental complex function :: cmplx', &
+'  elemental complex function cmplx( x, y, kind )', &
 '', &
 '  TYPE(kind=KIND),intent(in) :: x TYPE(kind=KIND),intent(in),optional :: y', &
 '  integer,intent(in),optional :: kind', &
@@ -4127,7 +4149,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               cmplx(3fortran)', &
+'                              September 24, 2022               cmplx(3fortran)', &
 '']
 
 shortname="cmplx"
@@ -4185,7 +4207,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022        co_broadcast(3fortran)', &
+'                              September 24, 2022        co_broadcast(3fortran)', &
 '']
 
 shortname="co_broadcast"
@@ -4231,7 +4253,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022           co_lbound(3fortran)', &
+'                              September 24, 2022           co_lbound(3fortran)', &
 '']
 
 shortname="co_lbound"
@@ -4296,7 +4318,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022              co_max(3fortran)', &
+'                              September 24, 2022              co_max(3fortran)', &
 '']
 
 shortname="co_max"
@@ -4357,7 +4379,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022              co_min(3fortran)', &
+'                              September 24, 2022              co_min(3fortran)', &
 '']
 
 shortname="co_min"
@@ -4419,7 +4441,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 20command_argument_count(3fortran)', &
+'                              September 24, 20command_argument_count(3fortran)', &
 '']
 
 shortname="command_argument_count"
@@ -4482,7 +4504,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022    compiler_options(3fortran)', &
+'                              September 24, 2022    compiler_options(3fortran)', &
 '']
 
 shortname="compiler_options"
@@ -4545,7 +4567,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022    compiler_version(3fortran)', &
+'                              September 24, 2022    compiler_version(3fortran)', &
 '']
 
 shortname="compiler_version"
@@ -4661,7 +4683,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022               conjg(3fortran)', &
+'                              September 24, 2022               conjg(3fortran)', &
 '']
 
 shortname="conjg"
@@ -4755,7 +4777,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022           co_reduce(3fortran)', &
+'                              September 24, 2022           co_reduce(3fortran)', &
 '']
 
 shortname="co_reduce"
@@ -4832,7 +4854,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                 cos(3fortran)', &
+'                              September 24, 2022                 cos(3fortran)', &
 '']
 
 shortname="cos"
@@ -4892,7 +4914,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                cosh(3fortran)', &
+'                              September 24, 2022                cosh(3fortran)', &
 '']
 
 shortname="cosh"
@@ -4958,7 +4980,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022              co_sum(3fortran)', &
+'                              September 24, 2022              co_sum(3fortran)', &
 '']
 
 shortname="co_sum"
@@ -5004,7 +5026,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022           co_ubound(3fortran)', &
+'                              September 24, 2022           co_ubound(3fortran)', &
 '']
 
 shortname="co_ubound"
@@ -5092,7 +5114,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               count(3fortran)', &
+'                              September 24, 2022               count(3fortran)', &
 '']
 
 shortname="count"
@@ -5168,7 +5190,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022            cpu_time(3fortran)', &
+'                              September 24, 2022            cpu_time(3fortran)', &
 '']
 
 shortname="cpu_time"
@@ -5187,20 +5209,16 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = cshift(array, shift, dim)', &
 '', &
-'  type(TYPE, kind=KIND) function cshift(array, shift, dim )', &
+'           type(TYPE, kind=KIND) function cshift(array, shift, dim )', &
 '', &
-'    type(TYPE,kind=KIND),intent(in) :: array(..)', &
-'', &
-'    integer(kind=IKIND),intent(in)', &
-'      :: shift', &
-'', &
-'    integer(kind=IKIND),intent(in)', &
-'      :: dim', &
+'           type(TYPE,kind=KIND),intent(in) :: array(..)', &
+'           integer(kind=IKIND),intent(in)  :: shift', &
+'           integer(kind=IKIND),intent(in)  :: dim', &
 '', &
 '  where ARRAY may be any type and rank (and the result will automatically be', &
 '  of the same type, kind and rank as ARRAY).', &
 '', &
-'    The kind of SHIFT and DIM may differ and be any supported value.', &
+'  The kind of SHIFT and DIM may differ and be any supported value.', &
 '', &
 'DESCRIPTION', &
 '  CSHIFT(ARRAY, SHIFT [, DIM]) performs a circular shift on elements of ARRAY', &
@@ -5259,7 +5277,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022              cshift(3fortran)', &
+'                              September 24, 2022              cshift(3fortran)', &
 '']
 
 shortname="cshift"
@@ -5317,7 +5335,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022            c_sizeof(3fortran)', &
+'                              September 24, 2022            c_sizeof(3fortran)', &
 '']
 
 shortname="c_sizeof"
@@ -5336,7 +5354,7 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  call date_and_time([date] [,time] [,zone] [,values] )', &
 '', &
-'  subroutine date_and_time(date, time, zone, values)', &
+'           subroutine date_and_time(date, time, zone, values)', &
 '', &
 '           character(len=8),intent(out),optional :: date', &
 '           character(len=10),intent(out),optional :: time', &
@@ -5435,7 +5453,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022       date_and_time(3fortran)', &
+'                              September 24, 2022       date_and_time(3fortran)', &
 '']
 
 shortname="date_and_time"
@@ -5495,7 +5513,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                dble(3fortran)', &
+'                              September 24, 2022                dble(3fortran)', &
 '']
 
 shortname="dble"
@@ -5560,7 +5578,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022              digits(3fortran)', &
+'                              September 24, 2022              digits(3fortran)', &
 '']
 
 shortname="digits"
@@ -5637,7 +5655,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                 dim(3fortran)', &
+'                              September 24, 2022                 dim(3fortran)', &
 '']
 
 shortname="dim"
@@ -5709,7 +5727,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022         dot_product(3fortran)', &
+'                              September 24, 2022         dot_product(3fortran)', &
 '']
 
 shortname="dot_product"
@@ -5728,11 +5746,11 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = dprod(x,y)', &
 '', &
-'            elemental function dprod(x,y)', &
+'           elemental function dprod(x,y)', &
 '', &
-'            real,intent(in) :: x', &
-'            real,intent(in) :: y', &
-'            doubleprecision :: dprod', &
+'           real,intent(in) :: x', &
+'           real,intent(in) :: y', &
+'           doubleprecision :: dprod', &
 '', &
 'DESCRIPTION', &
 '  DPROD(X,Y) produces a doubleprecision product of default real values X and', &
@@ -5817,7 +5835,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022               dprod(3fortran)', &
+'                              September 24, 2022               dprod(3fortran)', &
 '']
 
 shortname="dprod"
@@ -5926,13 +5944,13 @@ textblock=[character(len=256) :: &
 '         call printit()', &
 '', &
 '         ! the leftmost SHIFT bits of J are copied to the rightmost result bits', &
-'         j=b"11111000000000000000000000000000"', &
+'         j=int(b"11111000000000000000000000000000")', &
 '         ! and the other bits are the rightmost bits of I', &
-'         i=b"00000000000000000000000000000000"', &
+'         i=int(b"00000000000000000000000000000000")', &
 '         call printit()', &
 '', &
-'         j=b"11111000000000000000000000000000"', &
-'         i=b"00000111111111111111111111111111"', &
+'         j=int(b"11111000000000000000000000000000")', &
+'         i=int(b"00000111111111111111111111111111")', &
 '         ! result should be all 1s', &
 '         call printit()', &
 '', &
@@ -5968,7 +5986,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022             dshiftl(3fortran)', &
+'                              September 24, 2022             dshiftl(3fortran)', &
 '']
 
 shortname="dshiftl"
@@ -6065,8 +6083,8 @@ textblock=[character(len=256) :: &
 '         call printit()', &
 '', &
 '        ! visualizing a "combined right shift" ...', &
-'         i=b"00000000000000000000000000011111"', &
-'         j=b"11111111111111111111111111100000"', &
+'         i=int(b"00000000000000000000000000011111")', &
+'         j=int(b"11111111111111111111111111100000")', &
 '         ! appended together ( i//j )', &
 '         ! 0000000000000000000000000001111111111111111111111111111111100000', &
 '         ! shifted right SHIFT values dropping off shifted values', &
@@ -6105,7 +6123,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022             dshiftr(3fortran)', &
+'                              September 24, 2022             dshiftr(3fortran)', &
 '']
 
 shortname="dshiftr"
@@ -6190,7 +6208,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022             eoshift(3fortran)', &
+'                              September 24, 2022             eoshift(3fortran)', &
 '']
 
 shortname="eoshift"
@@ -6311,7 +6329,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022             epsilon(3fortran)', &
+'                              September 24, 2022             epsilon(3fortran)', &
 '']
 
 shortname="epsilon"
@@ -6329,6 +6347,8 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = erf(x)', &
+'', &
+'           elemental real(kind=KIND) function erf(x)', &
 '', &
 'DESCRIPTION', &
 '  ERF(x) computes the error function of X, defined as', &
@@ -6368,7 +6388,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                 erf(3fortran)', &
+'                              September 24, 2022                 erf(3fortran)', &
 '']
 
 shortname="erf"
@@ -6437,7 +6457,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                erfc(3fortran)', &
+'                              September 24, 2022                erfc(3fortran)', &
 '']
 
 shortname="erfc"
@@ -6455,6 +6475,10 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = erfc_scaled(x)', &
+'', &
+'           elemental real(kind=KIND) function erfc_scaled(x)', &
+'', &
+'           real(kind=KIND),intent(in) :: x', &
 '', &
 'DESCRIPTION', &
 '  ERFC_SCALED(x) computes the exponentially-scaled complementary error', &
@@ -6487,7 +6511,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022         erfc_scaled(3fortran)', &
+'                              September 24, 2022         erfc_scaled(3fortran)', &
 '']
 
 shortname="erfc_scaled"
@@ -6543,7 +6567,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022         event_query(3fortran)', &
+'                              September 24, 2022         event_query(3fortran)', &
 '']
 
 shortname="event_query"
@@ -6560,15 +6584,16 @@ textblock=[character(len=256) :: &
 '  EXECUTE_COMMAND_LINE(3) - [SYSTEM:PROCESSES] Execute a shell command', &
 '', &
 'SYNTAX', &
-'  call execute_command_line(command [,wait] [,exitstat] [,cmdstat] [,cmdmsg] )', &
+'  call execute_command_line( & & command [,wait] [,exitstat] [,cmdstat]', &
+'  [,cmdmsg] )', &
 '', &
-'  subroutine execute_command_line(command, wait, exitstat, cmdstat, cmdmsg)', &
+'           subroutine execute_command_line(command,wait,exitstat,cmdstat,cmdmsg)', &
 '', &
-'          character(len=*),intent(in)  :: command', &
-'          logical,intent(in),optional  :: wait', &
-'          integer,intent(out),optional :: exitstat', &
-'          integer,intent(out),optional :: cmdstat', &
-'          character(len=*),intent(out),optional :: cmdmsg', &
+'           character(len=*),intent(in)  :: command', &
+'           logical,intent(in),optional  :: wait', &
+'           integer,intent(out),optional :: exitstat', &
+'           integer,intent(out),optional :: cmdstat', &
+'           character(len=*),intent(out),optional :: cmdmsg', &
 '', &
 'DESCRIPTION', &
 '  The COMMAND argument is passed to the shell and executed. (The shell is', &
@@ -6644,7 +6669,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022execute_command_line(3fortran)', &
+'                              September 24, 2022execute_command_line(3fortran)', &
 '']
 
 shortname="execute_command_line"
@@ -6663,9 +6688,9 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = exp(x)', &
 '', &
-'  type(TYPE(kind=KIND)) function exp(x)', &
+'  elemental type(TYPE(kind=KIND)) function exp(x)', &
 '', &
-'           type(TYPE(kind=KIND)),intent(in) :: x', &
+'  type(TYPE(kind=KIND)),intent(in) :: x', &
 '', &
 '  X may be real or complex. The return value has the same type and kind as X.', &
 '', &
@@ -6746,7 +6771,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                 exp(3fortran)', &
+'                              September 24, 2022                 exp(3fortran)', &
 '']
 
 shortname="exp"
@@ -6764,6 +6789,10 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = exponent(x)', &
+'', &
+'           elemental integer function exponent(x)', &
+'', &
+'           real(kind=KIND),intent(in) :: x', &
 '', &
 'DESCRIPTION', &
 '  EXPONENT(x) returns the value of the exponent part of X. If X is zero the', &
@@ -6801,7 +6830,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022            exponent(3fortran)', &
+'                              September 24, 2022            exponent(3fortran)', &
 '']
 
 shortname="exponent"
@@ -6848,7 +6877,7 @@ textblock=[character(len=256) :: &
 'EXAMPLES', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022     extends_type_of(3fortran)', &
+'                              September 24, 2022     extends_type_of(3fortran)', &
 '']
 
 shortname="extends_type_of"
@@ -7009,7 +7038,7 @@ textblock=[character(len=256) :: &
 '', &
 '    fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022             findloc(3fortran)', &
+'                              September 24, 2022             findloc(3fortran)', &
 '']
 
 shortname="findloc"
@@ -7106,7 +7135,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022               floor(3fortran)', &
+'                              September 24, 2022               floor(3fortran)', &
 '']
 
 shortname="floor"
@@ -7129,7 +7158,7 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental real(kind=KIND) function fraction(x)', &
 '', &
-'            real(kind=KIND),intent(in) :: fraction', &
+'           real(kind=KIND),intent(in) :: fraction', &
 '', &
 '  The result has the same characteristics as the argument.', &
 '', &
@@ -7173,7 +7202,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022            fraction(3fortran)', &
+'                              September 24, 2022            fraction(3fortran)', &
 '']
 
 shortname="fraction"
@@ -7315,7 +7344,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               gamma(3fortran)', &
+'                              September 24, 2022               gamma(3fortran)', &
 '']
 
 shortname="gamma"
@@ -7401,7 +7430,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022         get_command(3fortran)', &
+'                              September 24, 2022         get_command(3fortran)', &
 '']
 
 shortname="get_command"
@@ -7528,7 +7557,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022get_command_argument(3fortran)', &
+'                              September 24, 2022get_command_argument(3fortran)', &
 '']
 
 shortname="get_command_argument"
@@ -7655,7 +7684,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, get_environment_variable(3fortran)', &
+'                              September 24, get_environment_variable(3fortran)', &
 '']
 
 shortname="get_environment_variable"
@@ -7750,7 +7779,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                huge(3fortran)', &
+'                              September 24, 2022                huge(3fortran)', &
 '']
 
 shortname="huge"
@@ -7850,7 +7879,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022               hypot(3fortran)', &
+'                              September 24, 2022               hypot(3fortran)', &
 '']
 
 shortname="hypot"
@@ -7913,8 +7942,8 @@ textblock=[character(len=256) :: &
 '      program demo_iachar', &
 '      implicit none', &
 '         ! basic usage', &
-'          ! just does first letter', &
-'          write(*,*)iachar(''ABCD'')', &
+'          ! just does a string one character long', &
+'          write(*,*)iachar(''A'')', &
 '          ! elemental: can do an array of letters', &
 '          write(*,*)iachar([''A'',''Z'',''a'',''z''])', &
 '', &
@@ -7964,7 +7993,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022              iachar(3fortran)', &
+'                              September 24, 2022              iachar(3fortran)', &
 '']
 
 shortname="iachar"
@@ -8035,7 +8064,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                iall(3fortran)', &
+'                              September 24, 2022                iall(3fortran)', &
 '']
 
 shortname="iall"
@@ -8053,6 +8082,11 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = iand(i, j)', &
+'', &
+'           elemental integer(kind=KIND) function iand(i,j)', &
+'', &
+'           integer(kind=KIND),intent(in) :: i', &
+'           integer(kind=KIND),intent(in) :: j', &
 '', &
 'DESCRIPTION', &
 '  Bitwise logical AND.', &
@@ -8089,7 +8123,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                iand(3fortran)', &
+'                              September 24, 2022                iand(3fortran)', &
 '']
 
 shortname="iand"
@@ -8157,7 +8191,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                iany(3fortran)', &
+'                              September 24, 2022                iany(3fortran)', &
 '']
 
 shortname="iany"
@@ -8175,6 +8209,14 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = ibclr(i, pos)', &
+'', &
+'           elemental integer(kind=KINDI) function ibclr(i,pos)', &
+'', &
+'           integer(kind=KINDI),intent(in) :: i', &
+'           integer(kind=KINDPOS),intent(in) :: pos', &
+'', &
+'  The return value is of the same kind as I. Otherwise, any integer kinds are', &
+'  allowed.', &
 '', &
 'DESCRIPTION', &
 '  IBCLR returns the value of I with the bit at position POS set to zero.', &
@@ -8198,7 +8240,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               ibclr(3fortran)', &
+'                              September 24, 2022               ibclr(3fortran)', &
 '']
 
 shortname="ibclr"
@@ -8216,6 +8258,15 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = ibits(i, pos, len)', &
+'', &
+'           elemental integer(kind=KINDI) function ibits(i,pos,len)', &
+'', &
+'           integer(kind=KINDI),intent(in) :: i', &
+'           integer(kind=KINDPOS),intent(in) :: pos', &
+'           integer(kind=KINDLEN),intent(in) :: len', &
+'', &
+'  The return value is of the same kind as I. Otherwise, any integer kinds are', &
+'  allowed.', &
 '', &
 'DESCRIPTION', &
 '  IBITS extracts a field of length LEN from I, starting from bit position POS', &
@@ -8243,7 +8294,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               ibits(3fortran)', &
+'                              September 24, 2022               ibits(3fortran)', &
 '']
 
 shortname="ibits"
@@ -8261,6 +8312,14 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = ibset(i, pos)', &
+'', &
+'           elemental integer(kind=KINDI) function ibset(i,pos)', &
+'', &
+'           integer(kind=KINDI),intent(in) :: i', &
+'           integer(kind=KINDPOS),intent(in) :: pos', &
+'', &
+'  The return value is of the same kind as I. Otherwise, any integer kinds are', &
+'  allowed.', &
 '', &
 'DESCRIPTION', &
 '  IBSET returns the value of I with the bit at position POS set to one.', &
@@ -8284,7 +8343,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               ibset(3fortran)', &
+'                              September 24, 2022               ibset(3fortran)', &
 '']
 
 shortname="ibset"
@@ -8399,7 +8458,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               ichar(3fortran)', &
+'                              September 24, 2022               ichar(3fortran)', &
 '']
 
 shortname="ichar"
@@ -8417,6 +8476,14 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = ieor(i, j)', &
+'', &
+'           elemental integer(kind=KINDI) function ieor(i,j)', &
+'', &
+'           integer(kind=KINDI),intent(in) :: i', &
+'           integer(kind=KINDJ),intent(in) :: j', &
+'', &
+'  The return value is of the same kind as the larger kind of I and J.', &
+'  Otherwise, any integer kinds are allowed.', &
 '', &
 'DESCRIPTION', &
 '  IEOR returns the bitwise Boolean exclusive-OR of I and J.', &
@@ -8439,7 +8506,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                ieor(3fortran)', &
+'                              September 24, 2022                ieor(3fortran)', &
 '']
 
 shortname="ieor"
@@ -8489,7 +8556,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022         image_index(3fortran)', &
+'                              September 24, 2022         image_index(3fortran)', &
 '']
 
 shortname="image_index"
@@ -8508,12 +8575,12 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result=index( string, substring [,back] [,kind] )', &
 '', &
-'           integer(kind=KIND) function index(string, substring, back, kind)', &
+'       elemental integer(kind=KIND) function index(string,substring,back,kind)', &
 '', &
-'             character(len=*),intent(in) :: string', &
-'             character(len=*),intent(in) :: substring', &
-'             logical,intent(in),optional :: back', &
-'             integer,intent(in),optional :: kind', &
+'       character(len=*),intent(in) :: string', &
+'       character(len=*),intent(in) :: substring', &
+'       logical,intent(in),optional :: back', &
+'       integer,intent(in),optional :: kind', &
 '', &
 'DESCRIPTION', &
 '  Returns the position of the start of the leftmost or rightmost occurrence of', &
@@ -8567,7 +8634,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               index(3fortran)', &
+'                              September 24, 2022               index(3fortran)', &
 '']
 
 shortname="index"
@@ -8697,7 +8764,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                 int(3fortran)', &
+'                              September 24, 2022                 int(3fortran)', &
 '']
 
 shortname="int"
@@ -8716,11 +8783,15 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = ior(i, j)', &
 '', &
-'           integer,intent(in) :: i', &
-'           integer,intent(in) :: j', &
+'  elemental integer(kind=KIND) function ior(i,j)', &
+'', &
+'  integer(kind=KINDI) ,intent(in) :: i integer(kind=KINDJ) ,intent(in) :: j', &
+'', &
+'  The return value is of the same kind as the larger kind of I and J.', &
+'  Otherwise, any integer kinds are allowed.', &
 '', &
 'DESCRIPTION', &
-'  IOR returns the bit-wise Boolean inclusive-OR of I and J.', &
+'  IOR returns the bit-wise Boolean inclusive-or of I and J.', &
 '', &
 'ARGUMENTS', &
 '  o  I : an integer scalar or array.', &
@@ -8758,7 +8829,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                 ior(3fortran)', &
+'                              September 24, 2022                 ior(3fortran)', &
 '']
 
 shortname="ior"
@@ -8824,7 +8895,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022             iparity(3fortran)', &
+'                              September 24, 2022             iparity(3fortran)', &
 '']
 
 shortname="iparity"
@@ -8927,7 +8998,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022       is_contiguous(3fortran)', &
+'                              September 24, 2022       is_contiguous(3fortran)', &
 '']
 
 shortname="is_contiguous"
@@ -8948,8 +9019,8 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental integer(kind=KIND) function ishft(i, shift )', &
 '', &
-'            integer(kind=KIND),intent(in)     :: i', &
-'            integer(kind=SHIFTKIND,intent(in) :: shift', &
+'            integer(kind=KIND),intent(in) :: i', &
+'            integer(kind=SHIFTKIND),intent(in) :: shift', &
 '', &
 '  where KIND and SHIFTKIND may be any supported integer kind, but where the', &
 '  kind for I dictates the kind of the returned value.', &
@@ -9009,7 +9080,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               ishft(3fortran)', &
+'                              September 24, 2022               ishft(3fortran)', &
 '']
 
 shortname="ishft"
@@ -9031,8 +9102,8 @@ textblock=[character(len=256) :: &
 '           elemental integer(kind=KIND) function ishftc(i, shift, size)', &
 '', &
 '            integer(kind=KIND),intent(in)     :: i', &
-'            integer(kind=SHIFTKIND,intent(in) :: shift', &
-'            integer(kind=SIZEKIND,intent(in),optional  :: size', &
+'            integer(kind=SHIFTKIND),intent(in) :: shift', &
+'            integer(kind=SIZEKIND),intent(in),optional  :: size', &
 '', &
 '  where KIND, SHIFTKIND, and SIZEKIND may be any supported integer kind, but', &
 '  where the kind for I dictates the kind of the returned value.', &
@@ -9113,7 +9184,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022              ishftc(3fortran)', &
+'                              September 24, 2022              ishftc(3fortran)', &
 '']
 
 shortname="ishftc"
@@ -9132,7 +9203,7 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result=is_iostat_end(iostat)', &
 '', &
-'           logical function is_iostat_end(iostat)', &
+'           elemental logical function is_iostat_end(iostat)', &
 '', &
 '            integer,intent(in) :: iostat', &
 '', &
@@ -9178,7 +9249,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022       is_iostat_end(3fortran)', &
+'                              September 24, 2022       is_iostat_end(3fortran)', &
 '']
 
 shortname="is_iostat_end"
@@ -9197,7 +9268,7 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = is_iostat_eor(i)', &
 '', &
-'           integer function is_iostat_eor(i)', &
+'           elemental integer function is_iostat_eor(i)', &
 '', &
 '            integer(kind=KIND),intent(in) :: iostat', &
 '', &
@@ -9220,8 +9291,7 @@ textblock=[character(len=256) :: &
 '      program demo_is_iostat_eor', &
 '      use iso_fortran_env, only : iostat_eor', &
 '      implicit none', &
-'      integer :: stat, inums(50)', &
-'      integer :: lun, ios,', &
+'      integer :: inums(50), lun, ios', &
 '', &
 '        open(newunit=lun, file=''_test.dat'', form=''unformatted'')', &
 '        write(lun, ''(a)'') ''10 20 30''', &
@@ -9229,7 +9299,6 @@ textblock=[character(len=256) :: &
 '        write(lun, ''(a)'') ''80 90''', &
 '        write(lun, ''(a)'') ''100''', &
 '', &
-'        i=0', &
 '        do', &
 '           read(lun, *, iostat=ios) inums', &
 '           write(*,*)''iostat='',ios', &
@@ -9245,7 +9314,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022       is_iostat_eor(3fortran)', &
+'                              September 24, 2022       is_iostat_eor(3fortran)', &
 '']
 
 shortname="is_iostat_eor"
@@ -9306,7 +9375,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                kind(3fortran)', &
+'                              September 24, 2022                kind(3fortran)', &
 '']
 
 shortname="kind"
@@ -9421,7 +9490,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022              lbound(3fortran)', &
+'                              September 24, 2022              lbound(3fortran)', &
 '']
 
 shortname="lbound"
@@ -9498,7 +9567,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022               leadz(3fortran)', &
+'                              September 24, 2022               leadz(3fortran)', &
 '']
 
 shortname="leadz"
@@ -9519,8 +9588,7 @@ textblock=[character(len=256) :: &
 '', &
 '  integer(kind=KIND) function len(string,kind)', &
 '', &
-'           character(len=*),intent(in) :: string', &
-'           integer,optional,intent(in) :: kind', &
+'  character(len=*),intent(in) :: string integer,optional,intent(in) :: kind', &
 '', &
 '  where the returned value is the same integer kind as the KIND argument, or', &
 '  of the default integer kind if KIND is not specified.', &
@@ -9634,7 +9702,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                 len(3fortran)', &
+'                              September 24, 2022                 len(3fortran)', &
 '']
 
 shortname="len"
@@ -9654,9 +9722,10 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = len_trim(string, kind)', &
 '', &
-'           integer(kind=KIND) function len_trim(string,KIND) result (value)', &
+'           elemental integer(kind=KIND) function len_trim(string,kind)', &
+'', &
 '           character(len=*),intent(in) :: string', &
-'           integer,optional,intent(in) :: KIND', &
+'           integer,optional,intent(in) :: kind', &
 '           integer(kind=KIND) :: value', &
 '', &
 'DESCRIPTION', &
@@ -9716,7 +9785,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022            len_trim(3fortran)', &
+'                              September 24, 2022            len_trim(3fortran)', &
 '']
 
 shortname="len_trim"
@@ -9737,8 +9806,8 @@ textblock=[character(len=256) :: &
 '', &
 '  elemental logical function lge(string_a, string_b)', &
 '', &
-'          character(len=*),intent(in) :: string_a', &
-'          character(len=*),intent(in) :: string_b', &
+'    character(len=*),intent(in) :: string_a character(len=*),intent(in) ::', &
+'    string_b', &
 '', &
 'DESCRIPTION', &
 '  Determines whether one string is lexically greater than or equal to another', &
@@ -9811,7 +9880,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                 lge(3fortran)', &
+'                              September 24, 2022                 lge(3fortran)', &
 '']
 
 shortname="lge"
@@ -9906,7 +9975,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                 lgt(3fortran)', &
+'                              September 24, 2022                 lgt(3fortran)', &
 '']
 
 shortname="lgt"
@@ -10003,7 +10072,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                 lle(3fortran)', &
+'                              September 24, 2022                 lle(3fortran)', &
 '']
 
 shortname="lle"
@@ -10096,7 +10165,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                 llt(3fortran)', &
+'                              September 24, 2022                 llt(3fortran)', &
 '']
 
 shortname="llt"
@@ -10158,7 +10227,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               log10(3fortran)', &
+'                              September 24, 2022               log10(3fortran)', &
 '']
 
 shortname="log10"
@@ -10177,6 +10246,13 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = log(x)', &
 '', &
+'  elemental TYPE(kind=KIND) function log(x)', &
+'', &
+'          TYPE(kind=KIND),intent(in) :: x', &
+'', &
+'  Were *xx may be any kind of real or complex value and the result is the same', &
+'  type and characteristics as X.', &
+'', &
 'DESCRIPTION', &
 '  LOG(X) computes the natural logarithm of X, i.e. the logarithm to the base', &
 '  "e".', &
@@ -10188,7 +10264,7 @@ textblock=[character(len=256) :: &
 '  The return value is of type real or complex. The kind type parameter is the', &
 '  same as X. If X is complex, the imaginary part OMEGA is in the range', &
 '', &
-'  -PI < OMEGA <= PI.', &
+'      **-PI** \< OMEGA \<= PI.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -10211,7 +10287,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                 log(3fortran)', &
+'                              September 24, 2022                 log(3fortran)', &
 '']
 
 shortname="log"
@@ -10225,20 +10301,29 @@ textblock=[character(len=256) :: &
 'log_gamma(3fortran)                                        log_gamma(3fortran)', &
 '', &
 'NAME', &
-'  LOG_GAMMA(3) - [MATHEMATICS] Logarithm of the Gamma function', &
+'  LOG_GAMMA(3) - [MATHEMATICS] Logarithm of the absolute value of the Gamma', &
+'  function', &
 '', &
 'SYNTAX', &
 '  result = log_gamma(x)', &
+'', &
+'           elemental real(kind=KIND) function log_gamma(x)', &
+'', &
+'            real(kind=KIND),intent(in) :: x', &
+'', &
+'  X may be any real type; and the return value is of same type and kind as X.', &
 '', &
 'DESCRIPTION', &
 '  LOG_GAMMA(X) computes the natural logarithm of the absolute value of the', &
 '  Gamma function.', &
 '', &
 'ARGUMENTS', &
-'  o  X : Shall be of type real and neither zero nor a negative integer.', &
+'  o  X : A non-negative (neither negative nor zero) value to render the result', &
+'     for.', &
 '', &
 'RETURNS', &
-'  The return value is of type real of the same kind as X.', &
+'  The result has a value equal to a processor-dependent approximation to the', &
+'  natural logarithm of the absolute value of the gamma function of X.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -10247,11 +10332,13 @@ textblock=[character(len=256) :: &
 '      implicit none', &
 '      real :: x = 1.0', &
 '         write(*,*)x,log_gamma(x) ! returns 0.0', &
+'         write(*,*)x,log_gamma(3.0) ! returns 0.693 (approximately)', &
 '      end program demo_log_gamma', &
 '', &
 '  Results:', &
 '', &
-'            1.00000000       0.00000000', &
+'            1.000000      0.0000000E+00', &
+'            1.000000      0.6931472', &
 '', &
 'STANDARD', &
 '  Fortran 2008 and later', &
@@ -10261,7 +10348,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022           log_gamma(3fortran)', &
+'                              September 24, 2022           log_gamma(3fortran)', &
 '']
 
 shortname="log_gamma"
@@ -10280,7 +10367,8 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = logical(l, kind)', &
 '', &
-'           logical(kind=KIND) function logical(L,KIND)', &
+'           elemental logical(kind=KIND) function logical(L,KIND)', &
+'', &
 '           logical(kind=INK),intent(in) :: L', &
 '           integer,intent(in),optional :: KIND', &
 '', &
@@ -10325,7 +10413,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022             logical(3fortran)', &
+'                              September 24, 2022             logical(3fortran)', &
 '']
 
 shortname="logical"
@@ -10342,9 +10430,10 @@ textblock=[character(len=256) :: &
 '  MASKL(3) - [BIT:SET] Generates a left justified mask', &
 '', &
 'SYNTAX', &
-'  result = maskl(i, kind)', &
+'  result = maskl( i [,kind] )', &
 '', &
 '           elemental integer function maskl(i,kind)', &
+'', &
 '           integer,intent(in),optional :: kind', &
 '', &
 'DESCRIPTION', &
@@ -10421,7 +10510,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022               maskl(3fortran)', &
+'                              September 24, 2022               maskl(3fortran)', &
 '']
 
 shortname="maskl"
@@ -10438,9 +10527,10 @@ textblock=[character(len=256) :: &
 '  MASKR(3) - [BIT:SET] Generates a right-justified mask', &
 '', &
 'SYNTAX', &
-'  result = maskr(i, kind)', &
+'  result = maskr( i [,kind] )', &
 '', &
 '           elemental integer function maskr(i,kind)', &
+'', &
 '           integer,intent(in),optional :: kind', &
 '', &
 'DESCRIPTION', &
@@ -10504,7 +10594,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022               maskr(3fortran)', &
+'                              September 24, 2022               maskr(3fortran)', &
 '']
 
 shortname="maskr"
@@ -10734,7 +10824,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022              matmul(3fortran)', &
+'                              September 24, 2022              matmul(3fortran)', &
 '']
 
 shortname="matmul"
@@ -10846,7 +10936,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                 max(3fortran)', &
+'                              September 24, 2022                 max(3fortran)', &
 '']
 
 shortname="max"
@@ -10867,7 +10957,7 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental integer function maxexponent(x)', &
 '', &
-'           real(kind=KIND,intent(in)   :: x', &
+'           real(kind=KIND),intent(in)   :: x', &
 '', &
 '  where KIND is any real kind.', &
 '', &
@@ -10910,7 +11000,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022         maxexponent(3fortran)', &
+'                              September 24, 2022         maxexponent(3fortran)', &
 '']
 
 shortname="maxexponent"
@@ -10936,13 +11026,16 @@ textblock=[character(len=256) :: &
 'DESCRIPTION', &
 '  Determines the location of the element in the array with the maximum value,', &
 '  or, if the DIM argument is supplied, determines the locations of the maximum', &
-'  element along each row of the array in the DIM direction. If MASK is', &
-'  present, only the elements for which MASK is .true. are considered. If more', &
-'  than one element in the array has the maximum value, the location returned', &
-'  is that of the first such element in array element order. If the array has', &
-'  zero size, or all of the elements of MASK are \.false., then the result is', &
-'  an array of zeroes. Similarly, if DIM is supplied and all of the elements of', &
-'  MASK along a given row are zero, the result value for that row is zero.', &
+'  element along each row of the array in the DIM direction.', &
+'', &
+'  If MASK is present, only the elements for which MASK is .true. are', &
+'  considered. If more than one element in the array has the maximum value, the', &
+'  location returned is that of the first such element in array element order.', &
+'', &
+'  If the array has zero size, or all of the elements of MASK are .false., then', &
+'  the result is an array of zeroes. Similarly, if DIM is supplied and all of', &
+'  the elements of MASK along a given row are zero, the result value for that', &
+'  row is zero.', &
 '', &
 'ARGUMENTS', &
 '  o  ARRAY : Shall be an array of type integer, real, or character.', &
@@ -11009,7 +11102,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022              maxloc(3fortran)', &
+'                              September 24, 2022              maxloc(3fortran)', &
 '']
 
 shortname="maxloc"
@@ -11091,7 +11184,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022              maxval(3fortran)', &
+'                              September 24, 2022              maxval(3fortran)', &
 '']
 
 shortname="maxval"
@@ -11109,6 +11202,8 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = merge(tsource, fsource, mask)', &
+'', &
+'           elemental type(TYPE(kind=KIND)) function merge(tsource,fsource,mask)', &
 '', &
 'DESCRIPTION', &
 '  The elemental function MERGE(3) selects values from two arrays or scalars', &
@@ -11234,7 +11329,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022               merge(3fortran)', &
+'                              September 24, 2022               merge(3fortran)', &
 '']
 
 shortname="merge"
@@ -11254,6 +11349,7 @@ textblock=[character(len=256) :: &
 '  result = merge_bits(i, j, mask)', &
 '', &
 '           elemental integer(kind=KIND) function merge_bits(i,j,mask)', &
+'', &
 '           integer(kind=KIND), intent(in) :: i, j, mask', &
 '', &
 '  where the result and all input values have the same integer type and KIND', &
@@ -11351,7 +11447,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022          merge_bits(3fortran)', &
+'                              September 24, 2022          merge_bits(3fortran)', &
 '']
 
 shortname="merge_bits"
@@ -11413,7 +11509,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                 min(3fortran)', &
+'                              September 24, 2022                 min(3fortran)', &
 '']
 
 shortname="min"
@@ -11434,7 +11530,7 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental integer function minexponent(x)', &
 '', &
-'           real(kind=KIND,intent(in)   :: x', &
+'           real(kind=KIND),intent(in)   :: x', &
 '', &
 '  where KIND is any real kind.', &
 '', &
@@ -11477,7 +11573,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022         minexponent(3fortran)', &
+'                              September 24, 2022         minexponent(3fortran)', &
 '']
 
 shortname="minexponent"
@@ -11565,7 +11661,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022              minloc(3fortran)', &
+'                              September 24, 2022              minloc(3fortran)', &
 '']
 
 shortname="minloc"
@@ -11714,7 +11810,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022              minval(3fortran)', &
+'                              September 24, 2022              minval(3fortran)', &
 '']
 
 shortname="minval"
@@ -11732,6 +11828,14 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = mod(a, p)', &
+'', &
+'  elemental type(TYPE(kind=KIND) function mod(a,p)', &
+'', &
+'           type(TYPE(kind=KIND),intent(in) :: a', &
+'           type(TYPE(kind=KIND),intent(in) :: p', &
+'', &
+'  The result and arguments are all of the same type and kind. The type may be', &
+'  any kind of real or integer.', &
 '', &
 'DESCRIPTION', &
 '  MOD(a,p) computes the remainder of the division of A by P.', &
@@ -11782,7 +11886,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                 mod(3fortran)', &
+'                              September 24, 2022                 mod(3fortran)', &
 '']
 
 shortname="mod"
@@ -11800,6 +11904,14 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = modulo(a, p)', &
+'', &
+'           elemental type(TYPE(kind=KIND) function modulo(a,p)', &
+'', &
+'           type(TYPE(kind=KIND),intent(in) :: a', &
+'           type(TYPE(kind=KIND),intent(in) :: p', &
+'', &
+'  The result and arguments are all of the same type and kind. The type may be', &
+'  any kind of real or integer.', &
 '', &
 'DESCRIPTION', &
 '  MODULO(A,P) computes the A modulo P.', &
@@ -11849,7 +11961,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022              modulo(3fortran)', &
+'                              September 24, 2022              modulo(3fortran)', &
 '']
 
 shortname="modulo"
@@ -11923,7 +12035,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022          move_alloc(3fortran)', &
+'                              September 24, 2022          move_alloc(3fortran)', &
 '']
 
 shortname="move_alloc"
@@ -11942,6 +12054,14 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  call mvbits(from, frompos, len, to, topos)', &
+'', &
+'          elemental subroutine mvbits(from,frompos,len,to,topos)', &
+'', &
+'           integer(kind=KIND),intent(in)    :: from', &
+'           integer(kind=KIND),intent(in)    :: frompos', &
+'           integer(kind=KIND),intent(in)    :: len', &
+'           integer(kind=KIND),intent(inout) :: to', &
+'           integer(kind=KIND),intent(in)    :: topos', &
 '', &
 'DESCRIPTION', &
 '  MVBITS(3F) copies a bit pattern found in a range of adjacent bits in the', &
@@ -11967,7 +12087,7 @@ textblock=[character(len=256) :: &
 '  o  TO : The integer variable to place the copied bits into. It must be of', &
 '     the same kind as FROM and may even be the same variable as FROM.', &
 '', &
-'     TO : is set by copying the sequence of bits of length LEN, starting at', &
+'     TO is set by copying the sequence of bits of length LEN, starting at', &
 '     position FROMPOS of FROM to position TOPOS of TO. No other bits of TO are', &
 '     altered. On return, the LEN bits of TO starting at TOPOS are equal to the', &
 '     value that the LEN bits of FROM starting at FROMPOS had on entry.', &
@@ -12058,7 +12178,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022              mvbits(3fortran)', &
+'                              September 24, 2022              mvbits(3fortran)', &
 '']
 
 shortname="mvbits"
@@ -12077,14 +12197,31 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = nearest(x, s)', &
 '', &
+'           elemental real(kind=KINDX) function nearest(x,s)', &
+'', &
+'           real(kind=KINDX),intent(in) :: x', &
+'           real(kind=KINDS),intent(in) :: s', &
+'', &
+'  The return value is of the same type and kind as X. Otherwise, any kind of', &
+'  real is allowed.', &
+'', &
 'DESCRIPTION', &
 '  NEAREST(X, S) returns the processor-representable number nearest to X in the', &
 '  direction indicated by the sign of S.', &
 '', &
 'ARGUMENTS', &
-'  o  X : Shall be of type real.', &
+'  o  X : the value to find the nearest representable value of', &
 '', &
-'  o  S : Shall be of type real and not equal to zero.', &
+'  o  S : a value whose sign is used to determine the direction in which to', &
+'     search from XX to the representable value.', &
+'', &
+'     It Shall not equal zero.', &
+'', &
+'     If S is positive, NEAREST returns the processor-representable number', &
+'     greater than X and nearest to it.', &
+'', &
+'     If S is negative, NEAREST returns the processor-representable number', &
+'     smaller than X and nearest to it.', &
 '', &
 'RETURNS', &
 '  The return value is of the same type as X. If S is positive, NEAREST returns', &
@@ -12129,7 +12266,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022             nearest(3fortran)', &
+'                              September 24, 2022             nearest(3fortran)', &
 '']
 
 shortname="nearest"
@@ -12148,8 +12285,9 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = new_line(c)', &
 '', &
-'           character(len=1,kind=kind(c)) :: new_line(c)', &
-'           character(len=1),intent(in) :: c(..)', &
+'           character(len=1,kind=kind(c)) function new_line(c)', &
+'', &
+'           character(len=1,kind=KIND),intent(in) :: c(..)', &
 '', &
 'DESCRIPTION', &
 '  NEW_LINE(C) returns the new-line character.', &
@@ -12203,7 +12341,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022            new_line(3fortran)', &
+'                              September 24, 2022            new_line(3fortran)', &
 '']
 
 shortname="new_line"
@@ -12222,9 +12360,12 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result=nint(x [,kind])', &
 '', &
-'  elemental integer(kind=KIND) function nint(x, kind )', &
+'  elemental integer(kind=kind) function nint(x, kind )', &
 '', &
-'           real(kind=KIND),intent(in) :: x', &
+'           real(kind=KINDX),intent(in) :: x', &
+'           integer(kind=KINDK),intent(in),optional :: kind', &
+'', &
+'  The result is default integer kind or the value of KIND if it is present.', &
 '', &
 'DESCRIPTION', &
 '  NINT(X) rounds its argument to the nearest whole number with its sign', &
@@ -12321,7 +12462,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                nint(3fortran)', &
+'                              September 24, 2022                nint(3fortran)', &
 '']
 
 shortname="nint"
@@ -12340,7 +12481,7 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = norm2(array, dim)', &
 '', &
-'           real function result norm2(array, dim)', &
+'           real function norm2(array, dim)', &
 '', &
 '           real,intent(in) :: array(..)', &
 '           integer,intent(in),optional :: dim', &
@@ -12408,7 +12549,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               norm2(3fortran)', &
+'                              September 24, 2022               norm2(3fortran)', &
 '']
 
 shortname="norm2"
@@ -12426,6 +12567,12 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = not(i)', &
+'', &
+'  elemental integer(kind=KIND) function not(i)', &
+'', &
+'           integer(kind=KIND), intent(in) :: i', &
+'', &
+'  The return type is of the same kind as the argument.', &
 '', &
 'DESCRIPTION', &
 '  NOT returns the bitwise Boolean inverse of I.', &
@@ -12464,7 +12611,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                 not(3fortran)', &
+'                              September 24, 2022                 not(3fortran)', &
 '']
 
 shortname="not"
@@ -12583,7 +12730,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                null(3fortran)', &
+'                              September 24, 2022                null(3fortran)', &
 '']
 
 shortname="null"
@@ -12647,7 +12794,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022          num_images(3fortran)', &
+'                              September 24, 2022          num_images(3fortran)', &
 '']
 
 shortname="num_images"
@@ -12765,7 +12912,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022        out_of_range(3fortran)', &
+'                              September 24, 2022        out_of_range(3fortran)', &
 '']
 
 shortname="out_of_range"
@@ -12785,7 +12932,8 @@ textblock=[character(len=256) :: &
 '  result = pack(array, mask,vector)', &
 '', &
 '           TYPE(kind=KIND) function pack(array,mask,vector)', &
-'           TYPE(kind=KIND),option(in) :: array(*)', &
+'', &
+'           TYPE(kind=KIND),option(in) :: array(..)', &
 '           logical  :: mask(*)', &
 '           TYPE(kind=KIND),option(in),optional :: vector(*)', &
 '', &
@@ -12873,7 +13021,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                pack(3fortran)', &
+'                              September 24, 2022                pack(3fortran)', &
 '']
 
 shortname="pack"
@@ -12890,12 +13038,12 @@ textblock=[character(len=256) :: &
 '  PARITY(3) - [TRANSFORMATIONAL] Reduction with exclusive OR()', &
 '', &
 'SYNTAX', &
-'  result = parity(mask, dim)', &
+'  result = parity( mask [,dim] )', &
 '', &
-'           function parity(mask, dim)', &
-'           type(logical(kind=LKIND))                    :: dim', &
-'           type(logical(kind=LKIND)),intent(in)         :: mask(..)', &
-'           type(integer(kind=KIND)),intent(in),optional :: dim', &
+'           logical(kind=KIND) function parity(mask, dim)', &
+'', &
+'           type(logical(kind=KIND)),intent(in)           :: mask(..)', &
+'           type(integer(kind=KINDD)),intent(in),optional :: dim', &
 '', &
 '  where KIND and LKIND are any supported kind for the type.', &
 '', &
@@ -12936,7 +13084,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022              parity(3fortran)', &
+'                              September 24, 2022              parity(3fortran)', &
 '']
 
 shortname="parity"
@@ -12954,6 +13102,12 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = popcnt(i)', &
+'', &
+'  elemental integer function popcnt(i)', &
+'', &
+'           integer(kind=KIND), intent(in) :: i', &
+'', &
+'  The I argument may be of any kind.', &
 '', &
 'DESCRIPTION', &
 '  Returns the number of bits set in the binary representation of an integer.', &
@@ -13001,7 +13155,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022              popcnt(3fortran)', &
+'                              September 24, 2022              popcnt(3fortran)', &
 '']
 
 shortname="popcnt"
@@ -13019,6 +13173,10 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = poppar(i)', &
+'', &
+'  elemental integer function poppar(i)', &
+'', &
+'           integer(kind=KIND), intent(in) :: i', &
 '', &
 'DESCRIPTION', &
 '  Returns the parity of an integer''s binary representation (i.e., the parity', &
@@ -13067,7 +13225,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022              poppar(3fortran)', &
+'                              September 24, 2022              poppar(3fortran)', &
 '']
 
 shortname="poppar"
@@ -13086,7 +13244,11 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = precision(x)', &
 '', &
-'  integer function precision(x) type(TYPE(kind=KIND),intent(in) :: x', &
+'  The return value is of type integer and of the default integer kind.', &
+'', &
+'          integer function precision(x)', &
+'', &
+'          type(TYPE(kind=KIND),intent(in) :: x', &
 '', &
 '  where TYPE may be real or complex', &
 '', &
@@ -13097,7 +13259,7 @@ textblock=[character(len=256) :: &
 '  o  X : Shall be of type real or complex.', &
 '', &
 'RETURNS', &
-'  The return value is of type integer and of the default integer kind.', &
+'  The precision of values of the type and kind of X', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -13105,7 +13267,7 @@ textblock=[character(len=256) :: &
 '      program demo_precision', &
 '      use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32', &
 '      implicit none', &
-'      real(kind=sp) :: x(2)', &
+'      real(kind=sp)    :: x(2)', &
 '      complex(kind=dp) :: y', &
 '', &
 '         print *, precision(x), range(x)', &
@@ -13129,7 +13291,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022           precision(3fortran)', &
+'                              September 24, 2022           precision(3fortran)', &
 '']
 
 shortname="precision"
@@ -13194,7 +13356,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022             present(3fortran)', &
+'                              September 24, 2022             present(3fortran)', &
 '']
 
 shortname="present"
@@ -13212,6 +13374,8 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = product(array, dim, mask)', &
+'', &
+'           NUMERIC function product(array, dim, mask)', &
 '', &
 '           NUMERIC,intent(in) :: array(..)', &
 '           integer,intent(in),optional :: dim', &
@@ -13425,7 +13589,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022             product(3fortran)', &
+'                              September 24, 2022             product(3fortran)', &
 '']
 
 shortname="product"
@@ -13486,7 +13650,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               radix(3fortran)', &
+'                              September 24, 2022               radix(3fortran)', &
 '']
 
 shortname="radix"
@@ -13569,7 +13733,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022       random_number(3fortran)', &
+'                              September 24, 2022       random_number(3fortran)', &
 '']
 
 shortname="random_number"
@@ -13637,7 +13801,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022         random_seed(3fortran)', &
+'                              September 24, 2022         random_seed(3fortran)', &
 '']
 
 shortname="random_seed"
@@ -13700,7 +13864,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               range(3fortran)', &
+'                              September 24, 2022               range(3fortran)', &
 '']
 
 shortname="range"
@@ -13795,7 +13959,7 @@ textblock=[character(len=256) :: &
 'STANDARD', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                rank(3fortran)', &
+'                              September 24, 2022                rank(3fortran)', &
 '']
 
 shortname="rank"
@@ -13812,7 +13976,14 @@ textblock=[character(len=256) :: &
 '  REAL(3) - [TYPE:NUMERIC] Convert to real type', &
 '', &
 'SYNTAX', &
-'  result = real(x, kind)', &
+'  result = real(x [,kind])', &
+'', &
+'  elemental real(kind=KIND) function real(x,kind)', &
+'', &
+'           type(TYPE(kind=KIND)),intent(in) :: x', &
+'           integer(kind=KINDK),intent(in) :: kind', &
+'', &
+'  Where the type of X may be integer, real, or complex.', &
 '', &
 'DESCRIPTION', &
 '  REAL(X, KIND) converts its argument X to a real type.', &
@@ -13870,7 +14041,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                real(3fortran)', &
+'                              September 24, 2022                real(3fortran)', &
 '']
 
 shortname="real"
@@ -14049,7 +14220,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022              reduce(3fortran)', &
+'                              September 24, 2022              reduce(3fortran)', &
 '']
 
 shortname="reduce"
@@ -14068,9 +14239,10 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = repeat(string, ncopies)', &
 '', &
-'           character(len=len(string)*ncopies) :: repeat', &
+'           character(len=len(string)*ncopies) function repeat(string, ncopies)', &
+'', &
 '           character(len=*),intent(in)        :: string', &
-'           integer,intent(in)                 :: ncopies', &
+'           integer(kind=KIND),intent(in)      :: ncopies', &
 '', &
 'DESCRIPTION', &
 '  Concatenates NCOPIES copies of a string.', &
@@ -14120,7 +14292,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022              repeat(3fortran)', &
+'                              September 24, 2022              repeat(3fortran)', &
 '']
 
 shortname="repeat"
@@ -14195,7 +14367,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022             reshape(3fortran)', &
+'                              September 24, 2022             reshape(3fortran)', &
 '']
 
 shortname="reshape"
@@ -14213,6 +14385,10 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = rrspacing(x)', &
+'', &
+'           elemental real(kind=KIND) function rrspacing(x)', &
+'', &
+'  The return value is of the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
 '  RRSPACING(X) returns the reciprocal of the relative spacing of model numbers', &
@@ -14235,7 +14411,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022           rrspacing(3fortran)', &
+'                              September 24, 2022           rrspacing(3fortran)', &
 '']
 
 shortname="rrspacing"
@@ -14276,7 +14452,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022        same_type_as(3fortran)', &
+'                              September 24, 2022        same_type_as(3fortran)', &
 '']
 
 shortname="same_type_as"
@@ -14295,6 +14471,8 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = scale(x, i)', &
+'', &
+'           elemental real(kind=KIND) function scale(x, i)', &
 '', &
 '           real(kind=KIND),intent(in) :: x', &
 '           integer,intent(in)         :: i', &
@@ -14335,7 +14513,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               scale(3fortran)', &
+'                              September 24, 2022               scale(3fortran)', &
 '']
 
 shortname="scale"
@@ -14416,7 +14594,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                scan(3fortran)', &
+'                              September 24, 2022                scan(3fortran)', &
 '']
 
 shortname="scan"
@@ -14503,7 +14681,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022  selected_char_kind(3fortran)', &
+'                              September 24, 2022  selected_char_kind(3fortran)', &
 '']
 
 shortname="selected_char_kind"
@@ -14562,7 +14740,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022   selected_int_kind(3fortran)', &
+'                              September 24, 2022   selected_int_kind(3fortran)', &
 '']
 
 shortname="selected_int_kind"
@@ -14653,7 +14831,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022  selected_real_kind(3fortran)', &
+'                              September 24, 2022  selected_real_kind(3fortran)', &
 '']
 
 shortname="selected_real_kind"
@@ -14671,6 +14849,13 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = set_exponent(x, i)', &
+'', &
+'           elemental real(kind=KIND) function set_exponent(x,i)', &
+'', &
+'           real(kind=KIND),intent(in) :: x', &
+'           integer(kind=KINDI),intent(in) :: i', &
+'', &
+'  The return value is of the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
 '  SET_EXPONENT(X, I) returns the real number whose fractional part is that of', &
@@ -14710,7 +14895,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022        set_exponent(3fortran)', &
+'                              September 24, 2022        set_exponent(3fortran)', &
 '']
 
 shortname="set_exponent"
@@ -14776,7 +14961,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022               shape(3fortran)', &
+'                              September 24, 2022               shape(3fortran)', &
 '']
 
 shortname="shape"
@@ -14798,7 +14983,7 @@ textblock=[character(len=256) :: &
 '           elemental integer(kind=KIND) function shifta(i, shift)', &
 '', &
 '            integer(kind=KIND),intent(in) :: i', &
-'            integer(kind=SHIFTKIND,intent(in) :: shift', &
+'            integer(kind=SHIFTKIND),intent(in) :: shift', &
 '', &
 '  where KIND and SHIFTKIND may be any supported integer kind, but where the', &
 '  kind for I dictates the kind of the returned value.', &
@@ -14898,7 +15083,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022              shifta(3fortran)', &
+'                              September 24, 2022              shifta(3fortran)', &
 '']
 
 shortname="shifta"
@@ -14920,7 +15105,7 @@ textblock=[character(len=256) :: &
 '           elemental integer(kind=KIND) function shiftl(i, shift)', &
 '', &
 '            integer(kind=KIND),intent(in) :: i', &
-'            integer(kind=SHIFTKIND,intent(in) :: shift', &
+'            integer(kind=SHIFTKIND),intent(in) :: shift', &
 '', &
 '  where KIND and SHIFTKIND may be any supported integer kind, but where the', &
 '  kind for I dictates the kind of the returned value.', &
@@ -15031,7 +15216,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022              shiftl(3fortran)', &
+'                              September 24, 2022              shiftl(3fortran)', &
 '']
 
 shortname="shiftl"
@@ -15053,7 +15238,7 @@ textblock=[character(len=256) :: &
 '           elemental integer(kind=KIND) function shiftr(i, shift)', &
 '', &
 '            integer(kind=KIND),intent(in) :: i', &
-'            integer(kind=SHIFTKIND,intent(in) :: shift', &
+'            integer(kind=SHIFTKIND),intent(in) :: shift', &
 '', &
 '  where KIND and SHIFTKIND may be any supported integer kind, but where the', &
 '  kind for I dictates the kind of the returned value.', &
@@ -15149,7 +15334,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022              shiftr(3fortran)', &
+'                              September 24, 2022              shiftr(3fortran)', &
 '']
 
 shortname="shiftr"
@@ -15231,7 +15416,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                sign(3fortran)', &
+'                              September 24, 2022                sign(3fortran)', &
 '']
 
 shortname="sign"
@@ -15349,7 +15534,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                 sin(3fortran)', &
+'                              September 24, 2022                 sin(3fortran)', &
 '']
 
 shortname="sin"
@@ -15369,6 +15554,7 @@ textblock=[character(len=256) :: &
 '  result = sinh(x)', &
 '', &
 '           elemental TYPE(kind=KIND) function sinh(x)', &
+'', &
 '           TYPE(kind=KIND) :: x', &
 '', &
 '  Where the returned value has the kind of the input value and TYPE may be', &
@@ -15442,7 +15628,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                sinh(3fortran)', &
+'                              September 24, 2022                sinh(3fortran)', &
 '']
 
 shortname="sinh"
@@ -15462,6 +15648,7 @@ textblock=[character(len=256) :: &
 '  result = size(array [,dim] [,kind])', &
 '', &
 '           integer(kind=KIND) function size(array,dim,kind)', &
+'', &
 '           type(TYPE(kind=KIND),intent(in) :: array(..)', &
 '           integer(kind=KINDD),intent(in),optional :: dim', &
 '           integer(kind=KINDK),intent(in),optional :: kind', &
@@ -15649,7 +15836,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                size(3fortran)', &
+'                              September 24, 2022                size(3fortran)', &
 '']
 
 shortname="size"
@@ -15668,6 +15855,12 @@ textblock=[character(len=256) :: &
 '', &
 'SYNTAX', &
 '  result = spacing(x)', &
+'', &
+'  elemental real(kind=KIND) function spacing(x)', &
+'', &
+'           real(kind=KIND), intent(in) :: x', &
+'', &
+'  The result is of the same type as the input argument X.', &
 '', &
 'DESCRIPTION', &
 '  Determines the distance between the argument X and the nearest adjacent', &
@@ -15706,7 +15899,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022             spacing(3fortran)', &
+'                              September 24, 2022             spacing(3fortran)', &
 '']
 
 shortname="spacing"
@@ -15826,7 +16019,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022              spread(3fortran)', &
+'                              September 24, 2022              spread(3fortran)', &
 '']
 
 shortname="spread"
@@ -15920,7 +16113,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                sqrt(3fortran)', &
+'                              September 24, 2022                sqrt(3fortran)', &
 '']
 
 shortname="sqrt"
@@ -16012,7 +16205,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022        storage_size(3fortran)', &
+'                              September 24, 2022        storage_size(3fortran)', &
 '']
 
 shortname="storage_size"
@@ -16098,7 +16291,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                 sum(3fortran)', &
+'                              September 24, 2022                 sum(3fortran)', &
 '']
 
 shortname="sum"
@@ -16115,16 +16308,15 @@ textblock=[character(len=256) :: &
 '  SYSTEM_CLOCK(3) - [SYSTEM:TIME] Return numeric data from a real-time clock.', &
 '', &
 'SYNTAX', &
-'  call system_clock([count] [,count_rate]', &
-'    [,count_max] )', &
+'  call system_clock([count] [,count_rate] [,count_max] )', &
 '', &
-'  subroutine system_clock(count, count_rate, count_max)', &
+'           subroutine system_clock(count, count_rate, count_max)', &
 '', &
 '           integer,intent(out),optional  :: count', &
-'           integer,intent(out),optional  :: count_rate', &
-'            ! or !', &
-'           real,intent(out),optional     :: count_rate', &
+'           type(TYPE(kind=KIND),intent(out),optional  :: count_rate', &
 '           integer,intent(out),optional  :: count_max', &
+'', &
+'  where TYPE may be real or integer.', &
 '', &
 'DESCRIPTION', &
 '  SYSTEM_CLOCK lets you measure durations of time with the precision of the', &
@@ -16202,7 +16394,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022        system_clock(3fortran)', &
+'                              September 24, 2022        system_clock(3fortran)', &
 '']
 
 shortname="system_clock"
@@ -16260,7 +16452,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                 tan(3fortran)', &
+'                              September 24, 2022                 tan(3fortran)', &
 '']
 
 shortname="tan"
@@ -16324,7 +16516,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                tanh(3fortran)', &
+'                              September 24, 2022                tanh(3fortran)', &
 '']
 
 shortname="tanh"
@@ -16403,7 +16595,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022          this_image(3fortran)', &
+'                              September 24, 2022          this_image(3fortran)', &
 '']
 
 shortname="this_image"
@@ -16465,7 +16657,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022                tiny(3fortran)', &
+'                              September 24, 2022                tiny(3fortran)', &
 '']
 
 shortname="tiny"
@@ -16484,7 +16676,7 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = trailz(i)', &
 '', &
-'           integer function trailz(i)', &
+'           elemental integer function trailz(i)', &
 '', &
 '           integer(kind=KIND),intent(in) :: i', &
 '', &
@@ -16579,7 +16771,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022              trailz(3fortran)', &
+'                              September 24, 2022              trailz(3fortran)', &
 '']
 
 shortname="trailz"
@@ -16684,7 +16876,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022            transfer(3fortran)', &
+'                              September 24, 2022            transfer(3fortran)', &
 '']
 
 shortname="transfer"
@@ -16774,7 +16966,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022           transpose(3fortran)', &
+'                              September 24, 2022           transpose(3fortran)', &
 '']
 
 shortname="transpose"
@@ -16876,7 +17068,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022                trim(3fortran)', &
+'                              September 24, 2022                trim(3fortran)', &
 '']
 
 shortname="trim"
@@ -16985,7 +17177,7 @@ textblock=[character(len=256) :: &
 '  Fortran 95 and later, with KIND argument Fortran 2003 and later', &
 '', &
 'SEE ALSO', &
-'                              September 23, 2022              ubound(3fortran)', &
+'                              September 24, 2022              ubound(3fortran)', &
 '']
 
 shortname="ubound"
@@ -17005,10 +17197,14 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = unpack(vector, mask, field)', &
 '', &
+'           type(TYPE(kind=KIND)) unpack(vector, mask, field)', &
+'', &
 '           type(TYPE(kind=KIND)),intent(in) :: vector(:)', &
 '           logical,intent(in)               :: mask(..)', &
 '           type(TYPE(kind=KIND)),intent(in) :: field(..)', &
-'           type(TYPE(kind=KIND))            :: result(..)', &
+'', &
+'  The result is an array of the same type and type parameters as VECTOR and', &
+'  the same shape as MASK.', &
 '', &
 'DESCRIPTION', &
 '  Scatter the elements of VECTOR into a copy of an array FIELD of any rank', &
@@ -17032,9 +17228,6 @@ textblock=[character(len=256) :: &
 '     type parameters as VECTOR and shall be conformable with MASK.', &
 '', &
 'RETURNS', &
-'  The result is an array of the same type and type parameters as VECTOR and', &
-'  the same shape as MASK.', &
-'', &
 '  The element of the result that corresponds to the ith true element of MASK,', &
 '  in array element order, has the value VECTOR (i) for i = 1, 2, . .  \., t,', &
 '  where t is the number of true values in MASK. Each other element has a value', &
@@ -17137,7 +17330,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
-'                              September 23, 2022              unpack(3fortran)', &
+'                              September 24, 2022              unpack(3fortran)', &
 '']
 
 shortname="unpack"
@@ -17428,7 +17621,7 @@ textblock=[character(len=256) :: &
 '', &
 '  exploring uses of elemental functionality and dusty corners', &
 '', &
-'      program demo_verify', &
+'      program more_verify', &
 '      implicit none', &
 '      character(len=*),parameter :: &', &
 '        & int=''0123456789'', &', &
@@ -17458,7 +17651,7 @@ textblock=[character(len=256) :: &
 '         ! and first letter in "home! " not in "me"', &
 '         write(*,*) verify(strings,sets)', &
 '', &
-'      end program demo_verify', &
+'      end program more_verify', &
 '', &
 '  Results:', &
 '', &
@@ -17481,7 +17674,7 @@ textblock=[character(len=256) :: &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                              September 23, 2022              verify(3fortran)', &
+'                              September 24, 2022              verify(3fortran)', &
 '']
 
 shortname="verify"

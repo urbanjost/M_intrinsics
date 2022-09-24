@@ -9,11 +9,17 @@
     result = log(x)
 ```
 ```fortran
+   elemental TYPE(kind=KIND) function log(x)
+
+    TYPE(kind=KIND),intent(in) :: x
 ```
+  Were **xx* may be any kind of _real_ or _complex_ value and
+  the result is the same type and characteristics as **x**.
+
 ### **Description**
 
-**log(x)** computes the natural logarithm of **x**, i.e. the logarithm to
-the base "e".
+  **log(x)** computes the natural logarithm of **x**, i.e. the logarithm to
+  the base "e".
 
 ### **Arguments**
 
@@ -22,15 +28,15 @@ the base "e".
 
 ### **Returns**
 
-The return value is of type _real_ or _complex_. The kind type parameter is
-the same as **x**. If **x** is _complex_, the imaginary part OMEGA is in the range
+  The return value is of type _real_ or _complex_. The kind type parameter
+  is the same as **x**. If **x** is _complex_, the imaginary part OMEGA
+  is in the range
 
-**-PI** \< OMEGA \<= PI.
+    **-PI** \< OMEGA \<= PI.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_log
 implicit none
@@ -41,12 +47,10 @@ implicit none
 end program demo_log
 ```
 Results:
-
 ```text
       2.7182818284590451        1.0000000000000000
    (1.00000000,2.00000000) (0.804718971,1.10714877)
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later

@@ -71,9 +71,7 @@ integer,save :: ints(3,5)= reshape([&
    write(*,*) minloc(pack(ints,.true.),dim=1) ! scalar
 end program demo_minloc
 ```
-
 Results:
-
 ```text
          1       3
          1       3       1       3       2
@@ -81,7 +79,6 @@ Results:
          5       4       3
          7
 ```
-
 ### **Standard**
 
 Fortran 95 and later

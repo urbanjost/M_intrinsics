@@ -9,12 +9,17 @@
     result = ior(i, j)
 ```
 ```fortran
-     integer,intent(in) :: i
-     integer,intent(in) :: j
+    elemental integer(kind=KIND) function ior(i,j)
+
+    integer(kind=KINDI) ,intent(in) :: i
+    integer(kind=KINDJ) ,intent(in) :: j
 ```
+  The return value is of the same kind as the larger kind of **i**
+  and **j**. Otherwise, any _integer_ kinds are allowed.
+
 ### **Description**
 
-**ior** returns the bit-wise Boolean inclusive-**or** of **i** and **j**.
+**ior** returns the bit-wise Boolean inclusive-or of **i** and **j**.
 
 ### **Arguments**
 
@@ -43,15 +48,12 @@ integer :: i, j, k
    write(*,'(i8,1x,b8.8)')i,i,j,j,k,k
 end program demo_ior
 ```
-
 Results:
-
 ```
          53 00110101
          45 00101101
          61 00111101
 ```
-
 ### **Standard**
 
 Fortran 95 and later

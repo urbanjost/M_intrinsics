@@ -11,9 +11,9 @@
 ```fortran
     elemental function bge(i, j)
 
-     integer(kind=KIND),intent(in) :: i
-     integer(kind=KIND),intent(in) :: j
-     logical :: bge
+    integer(kind=KIND),intent(in) :: i
+    integer(kind=KIND),intent(in) :: j
+    logical :: bge
 ```
   where the _kind_ of **i** and **j** may be of any supported _integer_
   kind, not necessarily the same.  An exception is that values may be a
@@ -84,7 +84,7 @@ integer(kind=int8),allocatable :: arr1(:), arr2(:)
 
   ! BASIC USAGE
    write(*,*)'bge(-127,127)=',bge( -127, 127 )
-   ! on (very common) "two's complement" machines that are 
+   ! on (very common) "two's complement" machines that are
    ! little-endian -127 will be greater than 127
 
    ! BOZ constants
@@ -100,7 +100,7 @@ integer(kind=int8),allocatable :: arr1(:), arr2(:)
    ! two arrays
    write(*, *)'compare two arrays'
    arr1=int( [ -127, -0, +0,  127], kind=int8 )
-   arr2=int( [  127,  0,  0, -127], kind=int8 ) 
+   arr2=int( [  127,  0,  0, -127], kind=int8 )
    write(*,*)'arr1=',arr1
    write(*,*)'arr2=',arr2
    write(*, *)'bge(arr1,arr2)=',bge( arr1, arr2 )

@@ -9,6 +9,7 @@
     call atomic_ref(value, atom, stat)
 ```
 ```fortran
+    subroutine atomic_ref(value, atom, stat)
 ```
 ### **Description**
 

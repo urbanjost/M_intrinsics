@@ -9,7 +9,7 @@
     call date_and_time([date] [,time] [,zone] [,values] )
 ```
 ```fortran
-    subroutine date_and_time(date, time, zone, values)
+     subroutine date_and_time(date, time, zone, values)
 
      character(len=8),intent(out),optional :: date
      character(len=10),intent(out),optional :: time

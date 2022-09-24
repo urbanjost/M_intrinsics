@@ -14,7 +14,7 @@
      real(kind=KIND),intent(in)  :: a
      integer,intent(in),optional :: kind
 ```
-where the _kind_ of the result KIND is the same as **a** unless its 
+where the _kind_ of the result KIND is the same as **a** unless its
 kind is specified by the optional **kind** argument.
 
 ### **Description**
@@ -50,20 +50,20 @@ program demo_ceiling
 implicit none
 ! just a convenient format for a list of integers
 character(len=*),parameter :: ints='(*("   > ",5(i0:,",",1x),/))'
-real :: x 
-real :: y 
+real :: x
+real :: y
   ! basic usage
    x = 63.29
    y = -63.59
    print ints, ceiling(x)
-   print ints, ceiling(y) 
+   print ints, ceiling(y)
    ! note the result was the next integer larger to the right
 
   ! real values equal to whole numbers
    x = 63.0
    y = -63.0
    print ints, ceiling(x)
-   print ints, ceiling(y) 
+   print ints, ceiling(y)
 
   ! elemental (so an array argument is allowed)
    print ints , &

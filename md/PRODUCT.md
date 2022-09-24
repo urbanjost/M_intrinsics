@@ -9,6 +9,8 @@
     result = product(array, dim, mask)
 ```
 ```fortran
+     NUMERIC function product(array, dim, mask)
+
      NUMERIC,intent(in) :: array(..)
      integer,intent(in),optional :: dim
      logical,intent(in),optional :: mask(..)
@@ -48,7 +50,6 @@ The result is of the same type as **array**.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_product
 implicit none

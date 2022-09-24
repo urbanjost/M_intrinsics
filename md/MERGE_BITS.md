@@ -9,7 +9,8 @@
     result = merge_bits(i, j, mask)
 ```
 ```fortran
-     elemental integer(kind=KIND) function merge_bits(i,j,mask) 
+     elemental integer(kind=KIND) function merge_bits(i,j,mask)
+
      integer(kind=KIND), intent(in) :: i, j, mask
 ```
 where the result and all input values have the same _integer_ type and
@@ -60,7 +61,6 @@ as **j**.
 ### **Example**
 
 Sample program:
-
 ```fortran
 program demo_merge_bits
 use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64
@@ -104,7 +104,6 @@ character(len=*),parameter :: fmt='(*(g0, 1X))'
 end program demo_merge_bits
 ```
 Results:
-
 ```text
     MERGE_BITS( 5,10,41) should be 3.=>           3
     MERGE_BITS(13,18,22) should be 4.=>           4

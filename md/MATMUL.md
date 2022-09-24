@@ -175,43 +175,42 @@ end program demo_matmul
 ```
   Results:
 ```text
-    > 
+    >
     > A is
     > [  1,  3,  5 ]
     > [  2,  4,  6 ]
-    > 
+    >
     > B is
     > [  10,  40 ]
     > [  20,  50 ]
     > [  30,  60 ]
-    > 
+    >
     > C is
     > [  1,  2 ]
-    > 
+    >
     > D is
     > [  1,  2,  3 ]
-    > 
+    >
     > E is matmul(A,B)
     > [  220,  490 ]
     > [  280,  640 ]
-    > 
+    >
     > F is matmul(C,A)
     > [   5,  11,  17 ]
-    > 
+    >
     > G is matmul(A,D)
     > [  22,  28 ]
     > shape
-    > 
+    >
     > Cd is a vector (not a scalar)
     > [  3300 ]
-    > 
+    >
     > cD is a vector too
     > [  3300 ]
-    > 
+    >
     > CD is a matrix
     > [  3300 ]
 ```
-
 ### **Standard**
 
 Fortran 95 and later

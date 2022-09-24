@@ -35,22 +35,21 @@ Returns the argument with the largest (most positive) value.
 
 ### **Returns**
 
-The return value corresponds to the maximum value among the arguments,
-and has the same type and kind as the first argument.
+  The return value corresponds to the maximum value among the arguments,
+  and has the same type and kind as the first argument.
 
-The function is both elemental and allows for an arbitrary number of
-arguments. This means if some elements are scalar and some are arrays
-that all the arrays must be of the same size, and the returned value
-will be an array that is the result as if multiple calls were made with
-all scalar values with a single element of each array used in each call.
-If called with all arrays the returned array is the same as if multiple
-calls were made with **max(arr1(1),arr2(1), ...)** to
-**max(arr1(N),arr2(N))**.
+  The function is both elemental and allows for an arbitrary number of
+  arguments. This means if some elements are scalar and some are arrays
+  that all the arrays must be of the same size, and the returned value
+  will be an array that is the result as if multiple calls were made
+  with all scalar values with a single element of each array used in
+  each call.  If called with all arrays the returned array is the same
+  as if multiple calls were made with **max(arr1(1),arr2(1), ...)**
+  to **max(arr1(N),arr2(N))**.
 
 ### **Examples**
 
 Sample program
-
 ```fortran
 program demo_max
 implicit none
@@ -81,7 +80,7 @@ real :: arr2(5)= [20.0,21.0,32.0,-200.0,2200.0]
    ! value, but the largest first element of the arrays, then the
    ! largest second element, and so on.
    write(*,*)max(arr1,arr2(1:4))
-   ! multi-dimensional arrays are allowed, where the returned 
+   ! multi-dimensional arrays are allowed, where the returned
    ! value will be an array of all the sets of the elements with
    ! the same coordinates.
 

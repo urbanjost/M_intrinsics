@@ -9,18 +9,16 @@
     result=abs(a)
 ```
 ```fortran
-     elemental TYPE(kind=KIND) function abs(a)
+     elemental type(TYPE(kind=KIND)) function abs(a)
 
-     TYPE(kind=KIND),intent(in) :: a
+     type(TYPE(kind=KIND)),intent(in) :: a
 ```
-   where the TYPE and KIND is determined by the type and type attributes
-   of **a**, which may be any _real_, _integer_, or _complex_ value.
+   **a** may be any _real_, _integer_, or _complex_ value.
 
    If the type of **a** is _complex_ the type returned will be a _real_
-   value representing the distance from (0.0,0.0) with the same kind as
-   the _real_ part of the input value.
+   with the same kind as the real part of **a**.
 
-   Otherwise the returned type will be the same type as **a**.
+   Otherwise the returned type is the same as for **a**.
 
 ### **Description**
 
@@ -115,5 +113,9 @@ Result:
 ### **Standard**
 
    FORTRAN 77 and later
+
+### **See Also**
+
+[**sign**(3)](#sign)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

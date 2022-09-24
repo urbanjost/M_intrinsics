@@ -13,7 +13,7 @@
 ```fortran
      elemental real(kind=KIND) function fraction(x)
 
-      real(kind=KIND),intent(in) :: fraction
+     real(kind=KIND),intent(in) :: fraction
 ```
   The result has the same characteristics as the argument.
 ### **Description**
@@ -33,7 +33,7 @@ it is **x \* radix(x)\*\*(-exponent(x))**.
 
 If **x** has the value zero, the result is zero.
 
-If **x** is an IEEE NaN, the result is that NaN. 
+If **x** is an IEEE NaN, the result is that NaN.
 
 If **x** is an IEEE inﬁnity, the result is an IEEE NaN.
 

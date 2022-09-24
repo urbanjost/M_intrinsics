@@ -6,10 +6,10 @@
 
 ### **Syntax**
 ```fortran
-    result = trailz(i) 
+    result = trailz(i)
 ```
 ```fortran
-     integer function trailz(i)
+     elemental integer function trailz(i)
 
      integer(kind=KIND),intent(in) :: i
 ```

@@ -10,6 +10,7 @@
 ```
 ```fortran
      elemental TYPE(kind=KIND) function sinh(x)
+
      TYPE(kind=KIND) :: x
 ```
 Where the returned value has the kind of the input value

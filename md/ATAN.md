@@ -9,10 +9,10 @@
     result = atan([y], x)
 ```
 ```fortran
-     TYPE(kind=KIND) function atan(y,x)
+     elemental TYPE(kind=KIND) function atan(y,x)
 
-     TYPE(kind=KIND,intent(in) :: x
-     TYPE(kind=KIND,intent(in),optional :: y
+     TYPE(kind=KIND),intent(in) :: x
+     TYPE(kind=KIND),intent(in),optional :: y
 ```
 where **TYPE** may be _real_ or _complex_ and **KIND** may be any **KIND**
 supported by the associated type. If **y** is present **x** is \_real`.
