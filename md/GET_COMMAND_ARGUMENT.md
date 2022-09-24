@@ -10,6 +10,7 @@
 ```
 ```fortran
      subroutine get_command_argument(number,value,length.status)
+
      integer,intent(in)                    :: number
      character(len=*),intent(out),optional :: value
      integer,intent(out),optional          :: length

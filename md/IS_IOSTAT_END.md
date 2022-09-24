@@ -6,12 +6,12 @@
 
 ### **Syntax**
 ```fortran
+    result=is_iostat_end(iostat)
 ```
 ```fortran
-     function is_iostat_end(i)
+     logical function is_iostat_end(iostat)
 
-     logical function   :: is_iostat_end (i) result(yesno)
-     integer,intent(in) :: i
+      integer,intent(in) :: iostat
 ```
 ### **Description**
 

@@ -9,7 +9,12 @@
     x = tanh(x)
 ```
 ```fortran
+     elemental TYPE(kind=KIND) function tanh(x)
+
+     TYPE(kind=KIND),intent(in) :: x
 ```
+where TYPE may be _real_ or _complex_ and KIND may be any KIND supported
+by the associated type.
 ### **Description**
 
 **tanh(x)** computes the hyperbolic tangent of **x**.

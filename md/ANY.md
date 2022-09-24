@@ -14,7 +14,6 @@
      logical,intent(in)          :: mask
      integer,intent(in),optional :: dim
 ```
-
 ### **Description**
 
 **any(mask, dim)** determines if any of the values in the logical

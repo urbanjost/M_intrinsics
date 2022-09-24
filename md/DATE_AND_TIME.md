@@ -6,6 +6,7 @@
 
 ### **Syntax**
 ```fortran
+    call date_and_time([date] [,time] [,zone] [,values] )
 ```
 ```fortran
     subroutine date_and_time(date, time, zone, values)

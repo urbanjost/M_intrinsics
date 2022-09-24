@@ -10,6 +10,7 @@
 ```
 ```fortran
      elemental TYPE(kind=KIND) function cos(x)
+
      TYPE(kind=KIND),intent(in) :: x
 ```
 where TYPE may be _real_ or _complex_ and KIND may be any KIND supported

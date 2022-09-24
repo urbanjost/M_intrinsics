@@ -8,8 +8,11 @@
 
 There are two forms to this function:
 ```fortran
-   reduce(array, operation, mask, identity, ordered)
-   reduce(array, operation, dim, mask, identity, ordered)
+    reduce(array, operation, mask, identity, ordered)
+```
+or
+```fortran
+    reduce(array, operation, dim, mask, identity, ordered)
 ```
 ```fortran
      type(TYPE),intent(in)          :: array

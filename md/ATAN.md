@@ -6,7 +6,7 @@
 
 ### **Syntax**
 ```fortran
-    result = atan(y, [x])
+    result = atan([y], x)
 ```
 ```fortran
      TYPE(kind=KIND) function atan(y,x)
@@ -62,7 +62,6 @@ real(kind=real64) :: x
 
 end program demo_atan
 ```
-
 Results:
 
 ```text
@@ -72,7 +71,6 @@ Results:
    -.7853981633974483 -45.00000000000000
    -2.356194490192345 -135.0000000000000
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later for a complex argument; and for two

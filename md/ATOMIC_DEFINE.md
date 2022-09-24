@@ -10,6 +10,7 @@
 ```
 ```fortran
      subroutine atomic_define(atom, value, stat)
+
      TYPE(kind=KIND) :: atom
      TYPE(kind=KIND) :: value
      integer,intent(out),optional :: stat

@@ -6,7 +6,11 @@
 
 ### **Syntax**
 ```fortran
-    result = maxloc(array, dim, mask) result = maxloc(array, mask)
+    result = maxloc(array, dim, mask)
+```
+or
+```fortran
+    result = maxloc(array, mask)
 ```
 ```fortran
 ```

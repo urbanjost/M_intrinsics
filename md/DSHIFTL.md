@@ -5,6 +5,7 @@
 **dshiftl**(3) - \[BIT:COPY\] combined left shift of the bits of two integers
 
 ### **Syntax**
+    result = dshiftl(i, j, shift)
 ```fortran
 ```
 ```fortran

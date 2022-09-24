@@ -6,14 +6,15 @@
 
 ### **Syntax**
 ```fortran
+    result=index( string, substring [,back] [,kind] )
 ```
 ```fortran
-   integer(kind=KIND) function index(string, substring, back, kind)
+     integer(kind=KIND) function index(string, substring, back, kind)
 
-     character(len=*),intent(in) :: string
-     character(len=*),intent(in) :: substring
-     logical,intent(in),optional :: back
-     integer,intent(in),optional :: kind
+       character(len=*),intent(in) :: string
+       character(len=*),intent(in) :: substring
+       logical,intent(in),optional :: back
+       integer,intent(in),optional :: kind
 ```
 ### **Description**
 

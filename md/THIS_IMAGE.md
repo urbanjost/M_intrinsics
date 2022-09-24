@@ -10,7 +10,6 @@
 result = this_image()
 ```
 or
-```
 ```fortran
 result = this_image(distance)
 ```

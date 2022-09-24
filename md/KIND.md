@@ -9,46 +9,52 @@
     result = kind(x)
 ```
 ```fortran
+     integer function kind(x)
+
+      type(TYPE,kind=KIND),intent(in) :: x(..)
 ```
+  **TYPE** may _logical_, _integer_, _real_, _complex_ or _character_.
+
+  **x** may be of any kind supported by the type, and may be
+  scalar or an array.
+
 ### **Description**
 
-**kind(x)** returns the kind value of the entity **x**.
+   **kind(x)** returns the kind value of the entity **x**.
 
 ### **Arguments**
 
 - **x**
-  : Shall be of type _logical_, _integer_, _real_, _complex_ or _character_.
+  : Value to query the kind of.
 
 ### **Returns**
 
-The return value is a scalar of type _integer_ and of the default integer
-kind.
+  The return value indicates the kind of the argument **x**.
+
+  Note that kinds are processor-dependent.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_kind
 implicit none
-integer,parameter :: kc = kind(' ')
-integer,parameter :: kl = kind(.true.)
+integer,parameter :: dc = kind(' ')
+integer,parameter :: dl = kind(.true.)
 
-   print *, "The default character kind is ", kc
-   print *, "The default logical kind is ", kl
+   print *, "The default character kind is ", dc
+   print *, "The default logical kind is ", dl
 
 end program demo_kind
 ```
-
 Results:
 
 ```text
     The default character kind is            1
     The default logical kind is            4
 ```
-
 ### **Standard**
 
 Fortran 95 and later
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

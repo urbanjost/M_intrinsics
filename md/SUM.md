@@ -7,6 +7,9 @@
 ### **Syntax**
 ```fortran
    result = sum(array[, mask])
+```
+  or
+```fortran
    result = sum(array, dim[, mask])
 ```
 ```fortran

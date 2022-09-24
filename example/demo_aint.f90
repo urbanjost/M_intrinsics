@@ -1,11 +1,11 @@
       program demo_aint
-      use, intrinsic :: iso_fortran_env, only : real32, real64
+      use, intrinsic :: iso_fortran_env, only : sp=>real32, dp=>real64
       implicit none
-      real(kind=real32) :: x4
-      real(kind=real64) :: x8
+      real(kind=sp) :: x4
+      real(kind=dp) :: x8
 
-         x4 = 4.3210_real32
-         x8 = 4.3210_real64
+         x4 = 4.3210_sp
+         x8 = 4.3210_dp
          print *, aint(x4), aint(x8)
          print *
          ! elemental

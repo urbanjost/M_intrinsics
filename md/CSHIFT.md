@@ -6,6 +6,7 @@
 
 ### **Syntax**
 ```fortran
+    result = cshift(array, shift, dim)
 ```
 ```fortran
    type(TYPE, kind=KIND) function cshift(array, shift, dim )

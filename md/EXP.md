@@ -2,27 +2,36 @@
 
 ### **Name**
 
-**exp**(3) - \[MATHEMATICS\] Exponential function
+**exp**(3) - \[MATHEMATICS\] Base-e exponential function
 
 ### **Syntax**
 ```fortran
     result = exp(x)
 ```
 ```fortran
+    type(TYPE(kind=KIND)) function exp(x)
+
+     type(TYPE(kind=KIND)),intent(in) :: x
 ```
+**x** may be _real_ or _complex_.
+The return value has the same type and kind as **x**.
+
 ### **Description**
 
-**exp**(x) computes the base "_e_" exponential of **x** where "_e_" is
-_Euler's constant_.
+
+**exp**(3) returns the value of _e_ (the base of natural logarithms)
+raised to the power of **x**.
+
+"_e_" is also known as _Euler's constant_.
 
 If **x** is of type _complex_, its imaginary part is regarded as a value
 in radians such that (see _Euler's formula_):
-
+```text
 if
-**cx=(re,im)**
+   **cx=(re,im)**
 then
-**exp(cx)=exp(re)\*cmplx(cos(im),sin(im),kind=kind(cx))**
-
+   **exp(cx)=exp(re)\*cmplx(cos(im),sin(im),kind=kind(cx))**
+```
 Since **exp**(3) is the inverse function of **log**(3) the maximum valid magnitude
 of the _real_ component of **x** is **log(huge(x))**.
 
@@ -34,8 +43,6 @@ of the _real_ component of **x** is **log(huge(x))**.
 ### **Returns**
 
 The value of the result is **e\*\*x** where **e** is Euler's constant.
-
-The return value has the same type and kind as **x**.
 
 ### **Examples**
 

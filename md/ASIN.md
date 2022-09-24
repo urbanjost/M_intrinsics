@@ -10,6 +10,7 @@
 ```
 ```fortran
      elemental TYPE(kind=KIND) function asin(x)
+
      TYPE(kind=KIND) :: x
 ```
 where the returned value has the kind of the input value

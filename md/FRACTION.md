@@ -1,3 +1,5 @@
+                                                                −e
+
 ## fraction
 
 ### **Name**
@@ -9,23 +11,31 @@
     result = fraction(x)
 ```
 ```fortran
-```
+     elemental real(kind=KIND) function fraction(x)
 
+      real(kind=KIND),intent(in) :: fraction
+```
+  The result has the same characteristics as the argument.
 ### **Description**
 
-**fraction(x)** returns the fractional part of the model representation
-of **x**.
+  **fraction(x)** returns the fractional part of the model representation
+  of **x**.
 
 ### **Arguments**
 
 - **x**
-  : The type of the argument shall be a _real_.
+  : The value to interrogate
 
 ### **Returns**
 
-The return value is of the same type and kind as the argument. The
-fractional part of the model representation of **x** is returned; it is
-**x \* radix(x)\*\*(-exponent(x))**.
+The fractional part of the model representation of **x** is returned;
+it is **x \* radix(x)\*\*(-exponent(x))**.
+
+If **x** has the value zero, the result is zero.
+
+If **x** is an IEEE NaN, the result is that NaN. 
+
+If **x** is an IEEE inﬁnity, the result is an IEEE NaN.
 
 ### **Examples**
 
@@ -39,13 +49,11 @@ real :: x
    print *, fraction(x), x * radix(x)**(-exponent(x))
 end program demo_fraction
 ```
-
 Results:
 
 ```text
      0.570043862      0.570043862
 ```
-
 ### **Standard**
 
 Fortran 95 and later

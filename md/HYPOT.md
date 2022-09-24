@@ -2,17 +2,20 @@
 
 ### **Name**
 
-**hypot**(3) - \[MATHEMATICS\] returns the distance between the point and the origin.
+**hypot**(3) - \[MATHEMATICS\] returns the distance between the point
+and the origin.
 
 ### **Syntax**
 ```fortran
     result = hypot(x, y)
 ```
 ```fortran
-     elemental real(kind=KIND) function hypot(x,y) result(value)
-     real(kind=KIND),intent(in) :: x, y
+     elemental real(kind=KIND) function hypot(x,y) 
+
+     real(kind=KIND),intent(in) :: x
+     real(kind=KIND),intent(in) :: y
 ```
-where **x,y,value** shall all be of the same **kind**.
+where **x,y** and the result shall all be of the same **kind**.
 
 ### **Description**
 
@@ -22,7 +25,8 @@ equal to $\sqrt{x^2+y^2}$, without undue underflow or overflow.
 In mathematics, the _Euclidean distance_ between two points in Euclidean
 space is the length of a line segment between two points.
 
-**hypot(x,y)** returns the distance between the point **<x,y>** and the origin.
+**hypot(x,y)** returns the distance between the point **<x,y>** and
+the origin.
 
 ### **Arguments**
 

@@ -16,7 +16,6 @@
 where TYPE may be _real_ or _complex_ and KIND may be any KIND supported
 by the associated type.
 
-```
 ### **Description**
 
 **atanh(x)** computes the inverse hyperbolic tangent of **x**.

@@ -9,8 +9,8 @@
     result = erfc(x)
 ```
 ```fortran
-     elemental function erfc(x)
-     real(kind=KIND) :: erfc
+     elemental real(kind=KIND) function erfc(x)
+
      real(kind=KIND),intent(in) :: x
 ```
 ### **Description**

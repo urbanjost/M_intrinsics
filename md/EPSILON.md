@@ -9,7 +9,7 @@
     result = epsilon(x)
 ```
 ```fortran
-     real(kind=kind(x)) function iaint(x)
+     real(kind=kind(x)) function epsilon(x)
 
      real(kind=kind(x),intent(in)   :: x
 ```

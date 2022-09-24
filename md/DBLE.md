@@ -10,6 +10,7 @@
 ```
 ```fortran
      elemental function dble(a)
+
      type(real(kind=kind(0.0d0)))     :: dble
      type(TYPE(kind=KIND)),intent(in) :: a
 ```

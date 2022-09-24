@@ -2,8 +2,8 @@
 
 ### **Name**
 
-**verify**(3) - \[CHARACTER:SEARCH\] Scan a string for the absence of
-a set of characters
+**verify**(3) - \[CHARACTER:SEARCH\] Position of a character in a string
+of characters that does not appear in a given set of characters.
 
 ### **Syntax**
 ```fortran
@@ -12,11 +12,13 @@ a set of characters
 ```fortran
      elemental integer(kind=KIND) function verify(string,set,back,kind)
 
-     character(len=*),intent(in) :: string
-     character(len=*),intent(in) :: set
+     character(len=*,kind=KINDC),intent(in) :: string
+     character(len=*,kind=KINDC),intent(in) :: set
      logical,intent(in),optional :: back
      integer,intent(in),optional :: kind
 ```
+**string** and **set**  must have the same kind type parameter.
+
 the kind of the returned value is the same as **kind** if
 present. Otherwise a default _integer_ kind is returned.
 
@@ -32,7 +34,7 @@ conditions tested for with the C routines
 **isalnum**(3c), **isalpha**(3c), **isascii**(3c), **isblank**(3c),
 **iscntrl**(3c), **isdigit**(3c), **isgraph**(3c), **islower**(3c),
 **isprint**(3c), **ispunct**(3c), **isspace**(3c), **isupper**(3c),
-and **isxdigit**(3c); but for a string as well an an array of characters.
+and **isxdigit**(3c); but for a string as well an an array of strings.
 
 ### **Arguments**
 
@@ -54,91 +56,99 @@ and **isxdigit**(3c); but for a string as well an an array of characters.
 
 ### **Returns**
 
-The position of the first or last (if **back is _.false._) unmatched 
+The position of the first or last (if **back** is _.false._) unmatched 
 character in **string**.
 
 If all characters of **string** are found in **set**, the result is zero.
 
+If **string** is of zero length a zero (0) is always returned.
+
 ### **Examples**
 
 #### Sample program I:
-
 ```fortran
 program demo_verify
 implicit none
-character(len=*),parameter :: int='0123456789'
-character(len=*),parameter :: hex='abcdef0123456789'
-character(len=*),parameter :: low='abcdefghijklmnopqrstuvwxyz'
-character(len=*),parameter :: upp='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-character(len=20):: string='   Howdy There!'
-character(len=6) :: strings(2)=["Howdy ","there!"]
-character(len=2) :: sets(2)=["de","gh"]
+! some useful character sets
+character,parameter :: &
+ & int*(*)   = '1234567890', &
+ & low*(*)   = 'abcdefghijklmnopqrstuvwxyz', &
+ & upp*(*)   = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', &
+ & punc*(*)  = "!""#$%&'()*+,-./:;<=>?@[\]^_`{|}~", &
+ & blank*(*) = ' ', &
+ & tab       = char(11), &
+ & prnt*(*) = int//low//upp//blank//punc
+ 
+character(len=:),allocatable :: string
+integer :: i
 
-   write(*,*)'first non-blank character ',verify(string, ' ')
-   ! NOTE: same as len_trim(3)
-   write(*,*)'last non-blank character',verify(string, ' ',back=.true.)
+   ! will produce the location of "d", because there is no match in UPP
+   write(*,*) 'something unmatched',verify("ABCdEFG", upp)
+   ! will produce 0 as all letters have a match
+   write(*,*) 'everything matched',verify("ffoorrttrraann", "nartrof")
 
-   ! first non-lowercase non-blank character
-   write(*,*) verify(string,low//' ')
+   ! easy C-like functionality but does entire strings not just characters
+   write(*,*)'isdigit 123?',verify("123", int) == 0
+   write(*,*)'islower abc?',verify("abc", low) == 0
+   write(*,*)'isalpha aBc?',verify("aBc", low//upp) == 0
+   write(*,*)'isblank aBc dEf?',verify("aBc dEf", blank//tab ) /= 0
+   ! check if all printable characters
+   string="aB;cde,fgHI!Jklmno PQRSTU vwxyz"
+   write(*,*)'isprint?',verify(string,prnt) == 0
+   ! this now has a nonprintable tab character in it
+   string(10:10)=char(11)
+   write(*,*)'isprint?',verify(string,prnt) == 0
 
-  ! elemental -- using arrays for both strings and for sets
+   string=" This is NOT all UPPERCASE "
+   write(*,*)'all uppercase/spaces?',verify(string, blank//upp) == 0
+   string=" THIS IS ALL UPPERCASE "
+   write(*,*) 'string=['//string//']'
+   write(*,*)'all uppercase/spaces?',verify(string, blank//upp) == 0
 
-   ! note character variables in an array have to be of the same length
+  ! set and show complex string to be tested
+   string='  Check this out. Let me know  '
+   write(*,*) 'string=['//string//']'
+   write(*,*) '        '//repeat(int,4) ! number line
+   ! the Fortran functions result position just not a logical like C
+   ! which can be very useful for parsing strings
+   write(*,*)'first non-blank character',verify(string, blank)
+   write(*,*)'last non-blank character',verify(string, blank,back=.true.)
+   write(*,*)'first non-letter non-blank',verify(string,low//upp//blank)
 
-   ! check each string from right to left for non-letter
-   write(*,*) 'last non-letter',verify(strings,upp//low,back=.true.)
+  !VERIFY(3) is elemental so you can check an array of strings in one call
+   ! are strings all letters (or blanks)?
+   write(*,*) 'array of strings',verify( &
+   ! strings must all be same length, so force to length 10
+   & [character(len=10) :: "YES","ok","000","good one","Nope!"], &
+   & low//upp//blank) == 0
 
-   ! find last non-uppercase character in "Howdy"
-   ! and first non-lowercase in "There!"
-   write(*,*) verify(strings,[upp,low],back=[.true.,.false.])
+   ! rarer, but the set can be an array, not just the strings to test
+   ! you could do ISPRINT() this way :>
+   write(*,*)'isprint?',.not.all(verify("aBc", [(char(i),i=32,126)])==1)
 
-   write(*,*) verify("fortran", "", .true.)  ! 7, found 'n'
-   ! 0' found none unmatched
-   write(*,*) verify("fortran", "nartrof")
-
-   ! first character in "Howdy" not in "de", and first letter in "there!"
-   ! not in "gh"
-   write(*,*) verify(strings,sets)
-
-  ! check if string is of form NN-HHHHH
-    CHECK : block
-       logical                    :: lout
-       character(len=80)          :: chars
-
-       chars='32-af43d'
-       lout=.true.
-
-       ! are the first two characters integer characters?
-       lout = lout.and.(verify(chars(1:2), int) == 0)
-
-       ! is the third character a dash?
-       lout = lout.and.(verify(chars(3:3), '-') == 0)
-
-       ! is remaining string a valid representation of a hex value?
-       lout = lout.and.(verify(chars(4:8), hex) == 0)
-
-       if(lout)then
-          write(*,*)trim(chars),' passed'
-       endif
-
-    endblock CHECK
 end program demo_verify
 ```
-
 Results:
-
 ```text
-    first non-blank character            4
-    last non-blank character          15
-              4
-              1           1
-    last non-letter           6           6
-              6           6
-              7
-              0
-    32-af43d passed
+    > something unmatched           4
+    > everything matched           0
+    > isdigit 123? T
+    > islower abc? T
+    > isalpha aBc? T
+    > isblank aBc dEf? T
+    > isprint? T
+    > isprint? F
+    > true if all uppercase/spaces: F
+    > string=[ THIS IS ALL UPPERCASE ]
+    > true if all uppercase/spaces: T
+    > string=[  Check this out. Let me know  ]
+    >        1234567890123456789012345678901234567890
+    > first non-blank character            3
+    > last non-blank character           29
+    > first non-letter non-blank           17
+    > array of strings T T F T F
+    > isprint? T
 ```
-
 #### Sample program II:
 
 Determine if strings are valid integer representations
@@ -174,24 +184,22 @@ logical                      :: lout
    ! make sure at least two characters long to simplify tests
    name=adjustl(line)//'  '
    ! blank string
-   if( name .eq. '' )return
+   if( name == '' )return
    ! allow one leading sign
    if( verify(name(1:1),'+-') == 0 ) name=name(2:)
    ! was just a sign
-   if( name .eq. '' )return
+   if( name == '' )return
    lout=verify(trim(name), digits)  == 0
 end function isint
 
 end program fortran_ints
 ```
-
 Results:
 
 ```text
 |+1       |3044848  |30.40    |September|1 2 3    |  -3000  |         |
 | T       | T       | F       | F       | F       | T       | F       |
 ```
-
 #### Sample program III:
 
 Determine if strings represent valid Fortran symbol names
@@ -241,14 +249,92 @@ end function fortran_name
 
 end program fortran_symbol_name
 ```
-
 Results:
-
 ```text
-|A_        |10        |September |A B       |_A        |          |
-| T        | F        | T        | F        | F        | F        |
+    |A_        |10        |September |A B       |_A        |          |
+    | T        | F        | T        | F        | F        | F        |
 ```
+#### Sample program IV:
 
+check if string is of form NN-HHHHH
+
+```fortran
+program checkform
+! check if string is of form NN-HHHHH
+implicit none
+character(len=*),parameter :: int='1234567890'
+character(len=*),parameter :: hex='abcdefABCDEF0123456789'
+logical                    :: lout
+character(len=80)          :: chars
+
+   chars='32-af43d'
+   lout=.true.
+
+   ! are the first two characters integer characters?
+   lout = lout.and.(verify(chars(1:2), int) == 0)
+
+   ! is the third character a dash?
+   lout = lout.and.(verify(chars(3:3), '-') == 0)
+
+   ! is remaining string a valid representation of a hex value?
+   lout = lout.and.(verify(chars(4:8), hex) == 0)
+
+   if(lout)then
+      write(*,*)trim(chars),' passed'
+   else
+      write(*,*)trim(chars),' failed'
+   endif
+end program checkform
+```
+Results:
+```text
+    32-af43d passed
+```
+#### Sample program V:
+
+exploring uses of elemental functionality and dusty corners
+
+```fortran
+program demo_verify
+implicit none
+character(len=*),parameter :: &
+  & int='0123456789', &
+  & low='abcdefghijklmnopqrstuvwxyz', &
+  & upp='ABCDEFGHIJKLMNOPQRSTUVWXYZ', &
+  & blank=' '
+! note character variables in an array have to be of the same length
+character(len=6) :: strings(3)=["Go    ","right ","home! "]
+character(len=2) :: sets(3)=["do","re","me"]
+
+  ! elemental -- you can use arrays for both strings and for sets
+
+   ! check each string from right to left for non-letter/non-blank
+   write(*,*)'last non-letter',verify(strings,upp//low//blank,back=.true.)
+
+   ! even BACK can be an array
+   ! find last non-uppercase character in "Howdy "
+   ! and first non-lowercase in "there "
+   write(*,*) verify(strings(1:2),[upp,low],back=[.true.,.false.])
+
+   ! using a null string for a set is not well defined. Avoid it
+   write(*,*) 'null',verify("for tran ", "", .true.) ! 8,length of string?
+   write(*,*) 'blank',verify("for tran ", " ", .true.) ! 7,found 'n'
+
+   ! first character in  "Go    " not in "do", 
+   ! and first letter in "right " not in "ri"
+   ! and first letter in "home! " not in "me"
+   write(*,*) verify(strings,sets)
+
+end program demo_verify
+```
+Results:
+```text
+    > last non-letter 0 0 5
+    > 6 6
+    > null 9
+    > blank 8
+    > 1 2 1
+```
 ### **Standard**
 
 Fortran 95 and later, with **kind** argument - Fortran 2003 and later

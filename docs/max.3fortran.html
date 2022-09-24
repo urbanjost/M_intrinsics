@@ -70,6 +70,19 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 <BLOCKQUOTE>
 <P>
 result = <B>max</B>(a1, a2, a3, &#46;&#46;&#46;)
+<P>
+<PRE>
+         elemental TYPE(kind=kind(a1)) function max(a1, a2, a3, &#46;&#46;&#46; )
+<P>
+         TYPE(kind=kind(a1),intent(in)   :: a1
+         TYPE(kind=kind(a1),intent(in)   :: a2
+         TYPE(kind=kind(a1),intent(in)   :: a3
+                    :
+                    :
+                    :
+<P>
+</PRE>
+Where TYPE may be integer or real
 </BLOCKQUOTE>
 <A name=2>
 
@@ -96,7 +109,8 @@ A1 : The type shall be integer or real.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-A2,A3,&#46;&#46;&#46; : An expression of the same type and kind as A1.
+A2,A3,&#46;&#46;&#46; : An expression of the same type and kind as A1. There
+must be at least two arguments to <B>MAX</B>(3).
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
@@ -132,57 +146,42 @@ Sample program
     real :: arr1(4)= [10.0,11.0,30.0,-100.0]
     real :: arr2(5)= [20.0,21.0,32.0,-200.0,2200.0]
 <P>
-      !! this is simple enough because it is not being called elementally
-      !! because all arguments are scalar
-      !!
+      ! basic usage
+       ! this is simple enough because all arguments are scalar
+       write(*,*)&#146;scalars:&#146;,max(10.0,11.0,30.0,-100.0)
+       ! this is all max(3) could do before it became an elemental
+       ! function and is the most intuitive
+       ! except that it can take an arbitrary number of options,
+       ! which is not common in Fortran without
+       ! declaring a lot of optional parameters.
+       !
+       ! That is it unless you want to use the elemental features of max(3)!
 <P>
-      write(*,*)&#146;scalars:&#146;,max(10.0,11.0,30.0,-100.0)
+      ! elemental
+       ! there must be at least two arguments, so even if A1 is an array
+       ! max(A1) is not valid. See MAXVAL(3) and/or MAXVAL(3) instead.
 <P>
-      !!
-      !! this is all max(3) could do before it became an elemental
-      !! function and is the most intuitive
-      !! except that it can take an arbitrary number of options,
-      !! which is not common in Fortran without
-      !! declaring a lot of optional parameters.
-      !!
-      !! That is it unless you want to use the elemental features of max(3)!
+       ! If any argument is an array by the definition of an elemental
+       ! function all the array arguments must be the same shape but
+       ! MAXVAL([arr1, arr2]) or max(maxval(arr1),maxval(arr2))
+       ! would work, for example.
 <P>
-      !! Error: Intrinsic    max    at (1) must have at least two arguments
-      !!write(*,*)max(arr1)
-      !! This does not work because it is like trying to return
-      !! [(max(arr1(i)),i=1,size(arr1))]
-      !! so it is trying to take the max of a single value.
-      !! To find the largest element of an array
-      !! call maxloc(3) or maxval(3).
+       ! so an elemental call of two vectors does not return a single
+       ! value, but the largest first element of the arrays, then the
+       ! largest second element, and so on.
+       write(*,*)max(arr1,arr2(1:4))
+       ! multi-dimensional arrays are allowed, where the returned
+       ! value will be an array of all the sets of the elements with
+       ! the same coordinates.
 <P>
-      !! Error: Different shape for arguments &#146;a1&#146; and &#146;a2&#146; for intrinsic
-      !! &#146;max&#146; at (1) on dimension 1 (4 and 5)
-      !!write(*,*)max(arr1,arr2)
-      !! but this will return an array of
-      !! [(max(arr1(N),arr2(N),N=1,size(arr1))]
+       ! When mixing arrays and scalars you can think of the scalars
+       ! as being a copy of one of the arrays with all values set to
+       ! the scalar value &#46;&#46;&#46;
+       write(*,*)&#146;scalars and array:&#146;,max(10.0,11.0,30.0,-100.0,arr2)
 <P>
-      write(*,*)max(arr1,arr2(1:4))
-<P>
-      !! so this works only if all the arrays are the same size and
-      !! you want an array of the largest Nth elements
-      !! from the input arrays.
-      !! maybe you wanted to do maxval([arr1,arr2]) or
-      !! equivalently max(maxval(arr1),maxval(arr2))
-      !! to find the single largest element in both arrays?
-<P>
-      !! compares all scalars to each member of array and
-      !! returns array of size arr2
-<P>
-      write(*,*)&#146;scalars and array:&#146;,max(10.0,11.0,30.0,-100.0,arr2)
-<P>
-      !! Error: Different shape for arguments &#146;a5&#146; and &#146;a6&#146;
-      !! for intrinsic &#146;max&#146; at (1) on dimension 1 (5 and 4)
-      !! write(*,*)&#146;scalars and array:&#146;,max(10.0,11.0,30.0,-100.0,arr2,arr1)
-      !! as the same reason above when arrays are used
-      !! (without scalar values) all the arrays must be the same size
-<P>
-      write(*,*)&#146;scalars and array:&#146;,&
-      & max(40.0,11.0,30.0,-100.0,arr2(:4),arr1)
+       ! with two arrays and some scalars &#46;&#46;&#46;
+       write(*,*)&#146;scalars and array:&#146;,&
+       & max(40.0,11.0,30.0,-100.0,arr2(:4),arr1)
     end program demo_max
 <P>
 </PRE>
@@ -217,7 +216,7 @@ FORTRAN 77 and later
 fortran-lang intrinsic descriptions
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>max (3fortran)</TD> <TD align=right width=33%><I>September 21, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 1847dc99-de29-4caa-b403-0264bfc44b4b using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>max (3fortran)</TD> <TD align=right width=33%><I>September 23, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 896ec29f-6f31-4557-8e1e-cb671bd93c30 using man macros.</FONT>
 <br><br><center><img src="images/max.3fortran.gif"></center>
 </div>
 </div>

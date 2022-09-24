@@ -9,16 +9,24 @@
     result = dot_product(vector_a, vector_b)
 ```
 ```fortran
+    
 ```
 ### **Description**
 
 **dot_product(vector_a, vector_b)** computes the dot product
-multiplication of two vectors vector*a and vector_b. The two vectors
-may be either numeric or logical and must be arrays of rank one and of
-equal size. If the vectors are \_integer* or _real_, the result is
-**sum(vector_a\*vector_b)**. If the vectors are _complex_, the result is
-**sum(conjg(vector_a)\*vector_b)**. If the vectors are _logical_, the
-result is **any(vector_a .and. vector_b)**.
+multiplication of two vectors **vector_a** and **vector_b**.
+
+The two vectors may be either numeric or logical and must be arrays of
+rank one and of equal size.
+
+If the vectors are _integer_ or _real_, the result is
+**sum(vector_a\*vector_b)**.
+
+If the vectors are _complex_, the result is
+**sum(conjg(vector_a)\*vector_b)**.
+
+If the vectors are _logical_, the result is **any(vector_a
+.and. vector_b)**.
 
 ### **Arguments**
 

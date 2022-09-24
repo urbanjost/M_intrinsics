@@ -4,7 +4,7 @@
          write(*,'(a)')lower('abcdefg ABCDEFG')
       contains
       !
-      elemental pure function lower(str) result (string)
+      pure elemental function lower(str) result (string)
       ! Changes a string to lowercase
       character(*), intent(In)     :: str
       character(len(str))          :: string

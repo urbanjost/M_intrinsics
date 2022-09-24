@@ -6,6 +6,7 @@
 
 ### **Syntax**
 ```fortran
+    result = shiftl( i, shift )
 ```
 ```fortran
      elemental integer(kind=KIND) function shiftl(i, shift)

@@ -9,6 +9,9 @@
     call get_environment_variable(name, value, length, status, trim_name)
 ```
 ```fortran
+     subroutine character(len=*) get_environment_variable( &
+     & name [,value] [,length] [,status] [,trim_name] )
+
      character(len=*),intent(in) :: name
      character(len=*),intent(out),optional :: value
      integer,intent(out),optional :: length
@@ -64,7 +67,6 @@ being updated concurrently.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_getenv
 implicit none
@@ -114,13 +116,11 @@ end function get_env
 
 end program demo_getenv
 ```
-
 Typical Results:
 
 ```text
    HOME="/home/urbanjs"
 ```
-
 ### **Standard**
 
 Fortran 2003 and later

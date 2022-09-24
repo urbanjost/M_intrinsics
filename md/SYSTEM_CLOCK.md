@@ -6,6 +6,7 @@
 
 ### **Syntax**
 ```fortran
+    call system_clock([count] [,count_rate]  [,count_max] )
 ```
 ```fortran
     subroutine system_clock(count, count_rate, count_max)

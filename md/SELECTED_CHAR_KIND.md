@@ -2,26 +2,52 @@
 
 ### **Name**
 
-**selected_char_kind**(3) - \[KIND\] Choose character kind such as "Unicode"
+**selected_char_kind**(3) - \[KIND\] Select character kind such as "Unicode"
 
 ### **Syntax**
 ```fortran
     result = selected_char_kind(name)
 ```
 ```fortran
+     integer function selected_char_kind(name)
+
+     character(len=*),intent(in) :: name
 ```
 ### **Description**
 
-**selected_char_kind(name)** returns the kind value for the character
-set named NAME, if a character set with such a name is supported, or
-**-1** otherwise. Currently, supported character sets include "ASCII"
-and "DEFAULT" (iwhich are equivalent), and "ISO_10646" (Universal
-Character Set, UCS-4) which is commonly known as "Unicode".
+  **selected_char_kind(name)** returns the kind value for the character
+  set named NAME, if a character set with such a name is supported, or
+  **-1** otherwise. 
 
 ### **Arguments**
 
 - **name**
-  : Shall be a scalar and of the default character type.
+  : A name to query the processor kind value of , and/or to determine
+  if it is supported. **name** is interpreted without respect to case
+  or trailing blanks.
+
+  Currently, supported character sets include "ASCII"
+  and "DEFAULT" (iwhich are equivalent), and "ISO_10646" (Universal
+  Character Set, UCS-4) which is commonly known as "Unicode".
+
+### **Result**
+
+If a name is not supported, -1 is returned. Otherwise
+
+ + If NAME has the value "DEFAULT", then the result has a value equal to
+   that of the kind type parameter of default character. This name is
+   always supported.
+
+ + If NAME has the value "ASCII", then the result has a value equal
+   to that of the kind type parameter of ASCII character.
+
+ + If NAME has the value "ISO_10646", then the result has a value equal
+   to that of the kind type parameter of the ISO 10646 character kind
+   (corresponding to UCS-4 as speciﬁed in ISO/IEC 10646).
+
+ + If NAME is a processor-deﬁned name of some other character kind
+   supported by the processor, then the result has a value equal to that
+   kind type parameter value.
 
 ### **Examples**
 
@@ -48,14 +74,12 @@ character(kind=ucs4,  len=30) :: hello_world
    write (*,*) trim (hello_world)
 end program demo_selected_char_kind
 ```
-
 Results:
 
 ```text
     abcdefghijklmnopqrstuvwxyz
     Hello World and Ni Hao -- 你好
 ```
-
 ### **Standard**
 
 Fortran 2003 and later

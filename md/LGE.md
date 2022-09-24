@@ -6,6 +6,7 @@
 
 ### **Syntax**
 ```fortran
+     result = lge(string_a, stringb)
 ```
 ```fortran
    elemental logical function lge(string_a, string_b)

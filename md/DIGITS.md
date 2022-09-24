@@ -9,9 +9,8 @@
     result = digits(x)
 ```
 ```fortran
-     function digits(x)
+     integer function digits(x)
 
-     type(integer(kind=kind(0)))      :: digits
      type(TYPE(kind=KIND)),intent(in) :: x(..)
 ```
 where TYPE may be _integer_ or _real_ and KIND is any kind supported by

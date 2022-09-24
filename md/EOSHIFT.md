@@ -6,7 +6,7 @@
 
 ### **Syntax**
 ```fortran
-    result = eoshift(array, shift, boundary, dim)
+    result = eoshift( array, shift [,boundary] [,dim] )
 ```
 ```fortran
 ```

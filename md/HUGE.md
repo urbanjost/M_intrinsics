@@ -9,10 +9,9 @@
     result = huge(x)
 ```
 ```fortran
-     function huge(x) result(answer)
+     type(TYPE(kind=KIND))function huge(x)
 
      TYPE(kind=KIND),intent(in) :: x
-     TYPE(kind=KIND) :: answer
 ```
 where **TYPE** may be _real_ or _integer_ and **KIND** is any supported
 associated _kind_.

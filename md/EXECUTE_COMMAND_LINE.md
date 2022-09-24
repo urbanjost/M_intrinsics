@@ -6,6 +6,7 @@
 
 ### **Syntax**
 ```fortran
+   call execute_command_line(command [,wait] [,exitstat] [,cmdstat] [,cmdmsg] )
 ```
 ```fortran
    subroutine execute_command_line(command, wait, exitstat, cmdstat, cmdmsg)

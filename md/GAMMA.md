@@ -9,17 +9,20 @@
     result = gamma(x)
 ```
 ```fortran
+     elemental real(kind=KIND) function gamma( x)
+
+     type(real,kind=KIND),intent(in) :: x
 ```
+The return value is _real_ with the kind as **x**.
+
 ### **Description**
 
 **gamma(x)** computes Gamma of **x**. For positive whole number values of **n** the
 Gamma function can be used to calculate factorials, as **(n-1)! == gamma(real(n))**.
 That is
-
 ```text
 n! == gamma(real(n+1))
 ```
-
 $$
 \\__Gamma__(x) = \\int\_0\*\*\\infty
 t\*\*{x-1}{\\mathrm{e}}\*\*{__-t__}\\,{\\mathrm{d}}t

@@ -15,16 +15,13 @@
          ! first non-lowercase non-blank character
          write(*,*) verify(string,low//' ')
 
-         !! elemental -- using arrays for both strings and for sets
+        ! elemental -- using arrays for both strings and for sets
 
-         ! first character in "Howdy" not in "de", and first letter in "there!"
-         ! not in "gh"
-         write(*,*) verify(strings,sets)
+         ! note character variables in an array have to be of the same length
 
          ! check each string from right to left for non-letter
          write(*,*) 'last non-letter',verify(strings,upp//low,back=.true.)
 
-         ! note character variables in an array have to be of same length
          ! find last non-uppercase character in "Howdy"
          ! and first non-lowercase in "There!"
          write(*,*) verify(strings,[upp,low],back=[.true.,.false.])
@@ -33,7 +30,11 @@
          ! 0' found none unmatched
          write(*,*) verify("fortran", "nartrof")
 
-          !! CHECK IF STRING IS OF FORM NN-HHHHH
+         ! first character in "Howdy" not in "de", and first letter in "there!"
+         ! not in "gh"
+         write(*,*) verify(strings,sets)
+
+        ! check if string is of form NN-HHHHH
           CHECK : block
              logical                    :: lout
              character(len=80)          :: chars

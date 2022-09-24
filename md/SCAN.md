@@ -9,7 +9,17 @@
     result = scan(string, set[, back [, kind]])
 ```
 ```fortran
+     elemental integer(kind=KIND) function scan(string,set,back,kind)
+
+     character(len=*,kind=KINDC),intent(in) :: string
+     character(len=*,kind=KINDC),intent(in) :: set
+     logical,intent(in),optional :: back
+     integer,intent(in),optional :: kind
 ```
+**string** and **set**  must have the same kind type parameter.
+
+the kind of the returned value is the same as **kind** if
+present. Otherwise a default _integer_ kind is returned.
 ### **Description**
 
 Scans a **string** for any of the characters in a **set** of characters.

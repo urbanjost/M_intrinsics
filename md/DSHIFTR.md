@@ -7,6 +7,7 @@
 
 ### **Syntax**
 ```fortran
+    result = dshiftr(i, j, shift)
 ```
 ```fortran
      elemental integer(kind=KIND) function dshiftr(i, j, shift)

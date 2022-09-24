@@ -12,7 +12,7 @@ identified by MASK along dimension DIM matching a target value
 ```
 or
 ```fortran
-findloc(array, value, mask, kind, back)
+    findloc(array, value, mask, kind, back)
 ```
 ```fortran
 ```

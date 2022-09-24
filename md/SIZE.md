@@ -6,10 +6,21 @@
 
 ### **Syntax**
 ```fortran
-    result = size(array, dim, kind)
+    result = size(array [,dim] [,kind])
 ```
 ```fortran
+     integer(kind=KIND) function size(array,dim,kind)
+     type(TYPE(kind=KIND),intent(in) :: array(..)
+     integer(kind=KINDD),intent(in),optional :: dim
+     integer(kind=KINDK),intent(in),optional :: kind
 ```
+  **array** may be of any type and associated kind. 
+
+  If **array** is a pointer it must be associated and allocatable arrays
+  must be allocated.
+
+  KINDD and KINDK may be any _integer_ type kind.
+
 ### **Description**
 
 Determine the extent of **array** along a specified dimension **dim**,
@@ -18,21 +29,31 @@ or the total number of elements in **array** if **dim** is absent.
 ### **Arguments**
 
 - **array**
-  : be an array of any type. If **array** is a pointer it must be
-  associated and allocatable arrays must be allocated.
+  : the array to measure the number of elements of.
 
 - **dim**
   : shall be a scalar of type _integer_ and its value shall be
   in the range from 1 to n, where n equals the rank of **array**.
 
+  If not present the total number of elements of the entire array
+  are returned.
+
 - **kind**
   : An _integer_ initialization expression indicating the kind
   parameter of the result.
 
+  The **kind** must allow for the magnitude returned by **size** or
+  results are undefined.
+
+  If **kind** is absent, the return value is of default _integer_ kind.
+
 ### **Returns**
 
-The return value is of type _integer_ and of kind **kind**. If **kind**
-is absent, the return value is of default _integer_ kind.
+  If **dim** is not present the total number of elements in the array
+  are returned.
+
+  If **dim** is present the number of elements along that dimension
+  are returned.
 
 ### **Examples**
 

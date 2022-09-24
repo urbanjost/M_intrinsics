@@ -7,7 +7,9 @@
 ### **Syntax**
 ```fortran
     result = minval(array, dim, mask) 
-
+```
+  or
+```fortran
     result = minval(array, mask)
 ```
 ```fortran

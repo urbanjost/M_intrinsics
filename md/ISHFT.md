@@ -6,12 +6,13 @@
 
 ### **Syntax**
 ```fortran
+    result=ishftc( i, shift )
 ```
 ```fortran
-    elemental integer(kind=KIND) function ishft(i, shift )
+     elemental integer(kind=KIND) function ishft(i, shift )
 
-     integer(kind=KIND),intent(in)     :: i
-     integer(kind=SHIFTKIND,intent(in) :: shift
+      integer(kind=KIND),intent(in)     :: i
+      integer(kind=SHIFTKIND,intent(in) :: shift
 ```
   where KIND and  SHIFTKIND may be any supported _integer_ kind, but where
   the kind for **i** dictates the kind of the returned value.
