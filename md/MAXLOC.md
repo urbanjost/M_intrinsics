@@ -6,14 +6,27 @@
 
 ### **Syntax**
 ```fortran
-    result = maxloc(array, dim, mask)
+    result = maxloc(array [,mask])
+```
+```fortran
+     NUMERIC function maxloc(array, mask)
+
+     NUMERIC,intent(in) :: array(..)
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 or
 ```fortran
-    result = maxloc(array, mask)
+    result = maxloc(array [,dim] [,mask])
 ```
 ```fortran
+     NUMERIC function maxloc(array, dim, mask)
+
+     NUMERIC,intent(in) :: array(..)
+     integer(kind=KINDD),intent(in),optional :: dim
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
+where **NUMERIC** is any numeric type and kind.
+
 ### **Description**
 
 Determines the location of the element in the array with the maximum

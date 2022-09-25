@@ -11,10 +11,12 @@
 ```fortran
      integer function digits(x)
 
-     type(TYPE(kind=KIND)),intent(in) :: x(..)
+     TYPE(kind=KIND),intent(in) :: x(..)
 ```
 where TYPE may be _integer_ or _real_ and KIND is any kind supported by
 TYPE.
+
+The return value is of type _integer_ of default kind.
 
 ### **Description**
 

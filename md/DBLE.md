@@ -9,10 +9,10 @@
     result = dble(a)
 ```
 ```fortran
-     elemental function dble(a)
+     elemental doubleprecision function dble(a)
 
-     type(real(kind=kind(0.0d0)))     :: dble
-     type(TYPE(kind=KIND)),intent(in) :: a
+     doubleprecision :: dble
+     TYPE(kind=KIND),intent(in) :: a
 ```
 where TYPE may be _integer_, _real_, or _complex_ and KIND any kind
 supported by the TYPE.

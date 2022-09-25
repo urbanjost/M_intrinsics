@@ -9,13 +9,19 @@
     result = maskr( i [,kind] )
 ```
 ```fortran
-     elemental integer function maskr(i,kind)
+     elemental integer(kind=KIND) function maskr(i,kind)
 
-     integer,intent(in),optional :: kind
+     integer(kind=KINDI),intent(in) :: i
+     integer(kind=KINDK),intent(in),optional :: kind
 ```
+The result is an _integer_. It is of the default kind if **kind**
+is not present, else it is the kind specified by **kind**.
+
+**kind** and **i** may be of any kind.
+
 ### **Description**
 
-**maskr(i\[, kind\])** has its rightmost **i** bits set to 1, and the
+The result  is an intger with its rightmost **i** bits set to 1, and the
 remaining bits set to 0.
 
 ### **Arguments**

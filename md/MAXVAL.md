@@ -6,14 +6,27 @@
 
 ### **Syntax**
 ```fortran
-    result = maxval(array, dim, mask)
+    result = maxval(array [,mask])
+```
+```fortran
+     NUMERIC function maxval(array ,mask)
+
+     NUMERIC,intent(in) :: array(..)
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 or
 ```fortran
-    result = maxval(array, mask)
+    result = maxval(array [,dim] [,mask])
 ```
 ```fortran
+     NUMERIC function maxval(array ,dim, mask)
+
+     NUMERIC,intent(in) :: array(..)
+     integer(kind=KINDD),intent(in),optional :: dim
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
+where **NUMERIC** is any numeric type and kind.
+
 ### **Description**
 
 Determines the maximum value of the elements in an array value, or, if

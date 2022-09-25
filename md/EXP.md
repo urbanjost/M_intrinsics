@@ -9,9 +9,9 @@
     result = exp(x)
 ```
 ```fortran
-    elemental type(TYPE(kind=KIND)) function exp(x)
+    elemental TYPE(kind=KIND) function exp(x)
 
-    type(TYPE(kind=KIND)),intent(in) :: x
+    TYPE(kind=KIND),intent(in) :: x
 ```
 **x** may be _real_ or _complex_.
 The return value has the same type and kind as **x**.

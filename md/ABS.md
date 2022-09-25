@@ -9,9 +9,9 @@
     result=abs(a)
 ```
 ```fortran
-     elemental type(TYPE(kind=KIND)) function abs(a)
+     elemental TYPE(kind=KIND) function abs(a)
 
-     type(TYPE(kind=KIND)),intent(in) :: a
+     TYPE(kind=KIND),intent(in) :: a
 ```
    **a** may be any _real_, _integer_, or _complex_ value.
 

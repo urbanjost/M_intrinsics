@@ -9,7 +9,7 @@
     result = huge(x)
 ```
 ```fortran
-     type(TYPE(kind=KIND))function huge(x)
+     TYPE(kind=KIND) function huge(x)
 
      TYPE(kind=KIND),intent(in) :: x
 ```

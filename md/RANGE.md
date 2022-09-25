@@ -11,7 +11,7 @@
 ```fortran
       integer function range (x)
 
-      type(TYPE(kind=KIND)),intent(in) :: x
+      TYPE(kind=KIND),intent(in) :: x
 ```
 where TYPE is _real_ or _complex_ and KIND is any kind supported by
 TYPE.

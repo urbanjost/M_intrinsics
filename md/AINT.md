@@ -14,8 +14,9 @@
      real(kind=KIND),intent(in)   :: x
      integer,intent(in),optional :: kind
 ```
-where the _kind_ of the result is the same as as **x** unless
-**kind** is present.
+where the _kind_ of the result is the same as **x** unless **kind**
+is present. KIND defaults to the default _integer_ kind.
+
 ### **Description**
 
 **aint(x, kind)** truncates its argument to a whole number.

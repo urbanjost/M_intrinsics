@@ -9,9 +9,9 @@
     result = dim(x, y)
 ```
 ```fortran
-     elemental type(TYPE(kind=KIND)) function dim(x, y)
+     elemental TYPE(kind=KIND) function dim(x, y)
 
-     type(TYPE(kind=KIND)),intent(in) :: x, y
+     TYPE(kind=KIND),intent(in) :: x, y
 ```
 where TYPE may be _real_ or _integer_ and KIND is any supported kind
 for the type.

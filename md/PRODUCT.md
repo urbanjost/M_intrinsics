@@ -12,10 +12,10 @@
      NUMERIC function product(array, dim, mask)
 
      NUMERIC,intent(in) :: array(..)
-     integer,intent(in),optional :: dim
-     logical,intent(in),optional :: mask(..)
+     integer(kind=KINDD),intent(in),optional :: dim
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
-where **NUMERIC** is any numeric type
+where **NUMERIC** is any numeric type and kind.
 
 ### **Description**
 

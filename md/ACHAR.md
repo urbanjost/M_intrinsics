@@ -9,7 +9,7 @@
     result=achar(i [,kind])
 ```
 ```fortran
-     elemental character(len=1) function achar(i,kind=KIND)
+     elemental character(len=1) function achar(i,kind)
 
      integer(kind=KIND),intent(in) :: i
      integer(kind=KIND),intent(in),optional :: kind

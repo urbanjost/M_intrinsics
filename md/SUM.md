@@ -6,14 +6,27 @@
 
 ### **Syntax**
 ```fortran
-   result = sum(array[, mask])
+   result = sum(array ,[mask])
+```
+```fortran
+     NUMERIC function sum(array, mask)
+
+     NUMERIC,intent(in) :: array(..)
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
   or
 ```fortran
-   result = sum(array, dim[, mask])
+   result = sum(array [,dim] [,mask])
 ```
 ```fortran
+     NUMERIC function sum(array, dim, mask)
+
+     NUMERIC,intent(in) :: array(..)
+     integer(kind=KINDD),intent(in),optional :: dim
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
+where **NUMERIC** is any numeric type and kind.
+
 ### **Description**
 
 Adds the elements of ARRAY along dimension DIM if the corresponding

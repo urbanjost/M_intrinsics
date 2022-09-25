@@ -10,9 +10,9 @@
     result=abs(a)
 ```
 ```fortran
-     elemental type(TYPE(kind=KIND)) function abs(a)
+     elemental TYPE(kind=KIND) function abs(a)
 
-     type(TYPE(kind=KIND)),intent(in) :: a
+     TYPE(kind=KIND),intent(in) :: a
 ```
    **a** may be any _real_, _integer_, or _complex_ value.
 
@@ -132,7 +132,7 @@ Result:
     result=achar(i [,kind])
 ```
 ```fortran
-     elemental character(len=1) function achar(i,kind=KIND)
+     elemental character(len=1) function achar(i,kind)
 
      integer(kind=KIND),intent(in) :: i
      integer(kind=KIND),intent(in),optional :: kind
@@ -677,8 +677,9 @@ FORTRAN 77 and later
      real(kind=KIND),intent(in)   :: x
      integer,intent(in),optional :: kind
 ```
-where the _kind_ of the result is the same as as **x** unless
-**kind** is present.
+where the _kind_ of the result is the same as **x** unless **kind**
+is present. KIND defaults to the default _integer_ kind.
+
 ### **Description**
 
 **aint(x, kind)** truncates its argument to a whole number.
@@ -881,7 +882,7 @@ Fortran 95 and later
 ```fortran
      logical function allocated(entity)
 
-     type(TYPE(kind=KIND)),allocatable,optional :: entity(..)
+     type(TYPE(kind=KIND)),allocatable :: entity(..)
 ```
   where **entity** may be any allocatable scalar or array object
   of any type.
@@ -3939,7 +3940,7 @@ Fortran 2003 and later
     elemental integer function char(i,kind)
 
     integer(kind=KIND),intent(in) :: c
-    integer,intent(in),optional :: KIND
+    integer(kind=KINDK),intent(in),optional :: kind
 ```
 ### **Description**
 
@@ -5170,10 +5171,22 @@ Fortran 2008 and later
 
 ### **Syntax**
 ```fortran
-    result = count(mask, dim, kind)
+    result = count(mask [,dim] [,kind] )
 ```
 ```fortran
+    integer(kind=KIND) function count(mask, dim, kind )
+    logical(kind=KINDL),intent(in) :: mask(..)
+    integer(kind=KINDD),intent(in),optional :: dim
+    integer(kind=KINDK),intent(in),optional :: kind
 ```
+**mask** must be an array but may be any shape.
+
+The return value is of default _integer_ type unless **kind** is specified
+to declare the kind of the result.
+
+If **dim** is present, the result is an array with the specified rank
+removed.
+
 ### **Description**
 
 Counts the number of _.true._ elements in a logical **mask**, or, if the **dim**
@@ -5184,21 +5197,26 @@ the elements of **mask** are false, then the result is **0**.
 ### **Arguments**
 
 - **mask**
-  : The type shall be _logical_.
+  : an array to count the number of _.true._ values in
 
 - **dim**
-  : (Optional) The type shall be _integer_.
+  : specifies to remove this dimension from the result and produce an
+    array of counts of _.true._ values along the removed dimension.
 
 - **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
+  : An _integer_ initialization expression indicating the kind
   parameter of the result.
 
 ### **Returns**
 
-The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
-the return value is of default integer kind. If **dim** is present, the
-result is an array with a rank one less than the rank of **array**, and a
-size corresponding to the shape of **array** with the **dim** dimension removed.
+The return value is the number of _.true_. values in **mask** if **dim**
+is not present.
+
+If **dim** is present, the result is an array with a rank one less
+than the rank of the input array **mask**, and a size corresponding
+to the shape of **array** with the **dim** dimension removed, with the
+remaining elements containing the number of _.true._ elements along the
+removed dimension.
 
 ### **Examples**
 
@@ -5207,53 +5225,105 @@ Sample program:
 ```fortran
 program demo_count
 implicit none
+character(len=*),parameter :: ints='(*(i2,1x))'
+! two arrays and a mask all with the same shape
 integer, dimension(2,3) :: a, b
 logical, dimension(2,3) :: mymask
-      a = reshape( [ 1, 2, 3, 4, 5, 6 ], [ 2, 3 ])
-      b = reshape( [ 0, 7, 3, 4, 5, 8 ], [ 2, 3 ])
-      print '(3i3)', a(1,:)
-      print '(3i3)', a(2,:)
-      print *
-      print '(3i3)', b(1,:)
-      print '(3i3)', b(2,:)
-      print *
-      mymask = a.ne.b
-      print '(3l3)', mymask(1,:)
-      print '(3l3)', mymask(2,:)
-      print *
-      print '(3i3)', count(mymask)
-      print *
-      print '(3i3)', count(mymask, 1)
-      print *
-      print '(3i3)', count(mymask, 2)
+integer :: i
+integer :: c(2,3,4)
+   a = reshape( [ 1, 2, 3, 4, 5, 6 ], [ 2, 3 ])
+   b = reshape( [ 0, 7, 3, 4, 5, 8 ], [ 2, 3 ])
+   c = reshape( [( i,i=1,24)], [ 2, 3 ,4])
+   ! show numeric arrays we will compare
+   print '(3i3)', a(1,:)
+   print '(3i3)', a(2,:)
+   print *
+   print '(3i3)', b(1,:)
+   print '(3i3)', b(2,:)
+
+   ! basic calls
+   print *, 'count a few basic things ...'
+   print *, 'count a>b',count(a>b)
+   print *, 'count b<a',count(a<b)
+   print *, 'count b==a',count(a==b)
+   print *, 'check sum = ',count(a>b) + &
+                         & count(a<b) + &
+                         & count(a==b).eq.size(a)
+
+   ! The common usage is just getting a count, but if you want
+   ! to specify the DIM argument and get back reduced arrays
+   ! of counts this is easier to visualize if we look at a mask
+   ! make a mask identifying unequal elements
+   mymask = a.ne.b
+   print *, 'show mask for a.ne.b'
+   print '(3l3)', mymask(1,:)
+   print '(3l3)', mymask(2,:)
+   ! count total and along rows and columns
+   print '(a)', 'number of elements not equal'
+   print '(a)', '(ie. total true elements in the mask)'
+   print '(3i3)', count(mymask)
+   print '(a)', 'count of elements not equal in each column'
+   print '(a)', '(ie. total true elements in each column)'
+   print '(3i3)', count(mymask, dim=1)
+   print '(a)', 'count of elements not equal in each row'
+   print '(a)', '(ie. total true elements in each row)'
+   print '(3i3)', count(mymask, dim=2)
+   ! working with rank=3 ...
+   print *, 'lets try this with c(2,3,4)'
+   print *,'  taking the result of the modulo   '
+   print *,'   z=1      z=2      z=3      z=4   '
+   print *,'  1 3 0 || 2 4 1 || 3 0 2 || 4 1 3 |'
+   print *,'  2 4 1 || 3 0 2 || 4 1 3 || 0 2 4 |'
+   print *,'                                    '
+   print *,'  would result in the mask ..       '
+   print *,'  F F T || F F F || F T F || F F F |'
+   print *,'  F F F || F T F || F F F || T F F |'
+   print *,'                                    '
+   print *,' the total number of .true.values is'
+   print ints, count(modulo(c,5).eq.0)
+   call printi('counting up along a row and removing rows',&
+   count(modulo(c,5).eq.0,dim=1))
+   call printi('counting up along a column and removing columns',&
+   count(modulo(c,5).eq.0,dim=2))
+   call printi('counting up along a depth and removing depthss',&
+   count(modulo(c,5).eq.0,dim=3))
+
+contains
+
+   ! CONVENIENCE ROUTINE FOR PRINTING SMALL INTEGER MATRICES
+   subroutine printi(title,arr)
+   implicit none
+
+   !@(#) print small 2d integer arrays in row-column format
+
+   character(len=*),parameter :: all='(*(g0,1x))' ! a handy format
+   character(len=*),intent(in)  :: title
+   integer,intent(in)           :: arr(:,:)
+   integer                      :: i
+   character(len=:),allocatable :: biggest
+
+      print all
+      print all, trim(title),':(',shape(arr),')'  ! print title
+      biggest='           '  ! make buffer to write integer into
+      ! find how many characters to use for integers
+      write(biggest,'(i0)')ceiling(log10(real(maxval(abs(arr)))))+2
+      ! use this format to write a row
+      biggest='(" > [",*(i'//trim(biggest)//':,","))'
+      ! print one row of array at a time
+      do i=1,size(arr,dim=1)
+         write(*,fmt=biggest,advance='no')arr(i,:)
+         write(*,'(" ]")')
+      enddo
+
+   end subroutine printi
 end program demo_count
 ```
-
-Expected Results:
-
-```text
-  1  3  5
-  2  4  6
-
-  0  3  5
-  7  4  8
-
-  T  F  F
-  T  F  T
-
-  3
-
-  2  0  1
-
-  1  2
-```
-
 ### **Standard**
 
 Fortran 95 and later, with KIND argument - Fortran 2003
 and later
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## cpu_time
 
@@ -5611,10 +5681,10 @@ date and time conversion, formatting and computation
     result = dble(a)
 ```
 ```fortran
-     elemental function dble(a)
+     elemental doubleprecision function dble(a)
 
-     type(real(kind=kind(0.0d0)))     :: dble
-     type(TYPE(kind=KIND)),intent(in) :: a
+     doubleprecision :: dble
+     TYPE(kind=KIND),intent(in) :: a
 ```
 where TYPE may be _integer_, _real_, or _complex_ and KIND any kind
 supported by the TYPE.
@@ -5678,10 +5748,12 @@ FORTRAN 77 and later
 ```fortran
      integer function digits(x)
 
-     type(TYPE(kind=KIND)),intent(in) :: x(..)
+     TYPE(kind=KIND),intent(in) :: x(..)
 ```
 where TYPE may be _integer_ or _real_ and KIND is any kind supported by
 TYPE.
+
+The return value is of type _integer_ of default kind.
 
 ### **Description**
 
@@ -5757,9 +5829,9 @@ Fortran 95 and later
     result = dim(x, y)
 ```
 ```fortran
-     elemental type(TYPE(kind=KIND)) function dim(x, y)
+     elemental TYPE(kind=KIND) function dim(x, y)
 
-     type(TYPE(kind=KIND)),intent(in) :: x, y
+     TYPE(kind=KIND),intent(in) :: x, y
 ```
 where TYPE may be _real_ or _integer_ and KIND is any supported kind
 for the type.
@@ -5838,8 +5910,8 @@ FORTRAN 77 and later
 ```fortran
     function dot_product(vector_a, vector_b)
 
-    type(TYPE(kind=KIND)),intent(in) :: vector_a(:)
-    type(TYPE(kind=KIND)),intent(in) :: vector_b(:)
+    TYPE(kind=KIND),intent(in) :: vector_a(:)
+    TYPE(kind=KIND),intent(in) :: vector_b(:)
 ```
 The two vectors may be either numeric or logical and must be arrays
 of rank one and of equal size.
@@ -6329,16 +6401,28 @@ Fortran 2008 and later
     result = eoshift( array, shift [,boundary] [,dim] )
 ```
 ```fortran
+    type(TYPE(kind=KIND)) function eoshift(array,shift,boundary,dim)
+    type(TYPE(kind=KIND)),intent(in) :: array(..)
+    integer(kind=KINDS),intent(in)   :: shift
+    type(TYPE(kind=KIND)),intent(in) :: boundary
+    integer(kind=KINDD),intent(in)   :: dim
 ```
+**array** May be any type, not scalar. The result is an array of same
+type, kind and rank as the **array** argument. **boundary** is a scalar
+of the same type and kind as the **array**. **dim** and **shift** can
+be any kind of _integer_.
+
 ### **Description**
 
 **eoshift(array, shift\[, boundary, dim\])** performs an end-off shift
 on elements of **array** along the dimension of **dim**.
 
-If **dim** is omitted it is taken to be **1**.
+**dim** is a scalar of type _integer_ in the range of
 
-**dim** is a scalar of type _integer_ in the range of **1 \<= DIM
-\<= n** where **"n"** is the rank of **array**.
+    **1 \<= DIM \<= n**
+
+where **"n"** is the rank of **array**.  If **dim** is omitted it
+is taken to be **1**.
 
 If the rank of **array** is one, then all elements of **array** are
 shifted by **shift** places. If rank is greater than one, then all
@@ -6413,7 +6497,7 @@ Results:
 
 Fortran 95 and later
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## epsilon
 
@@ -6697,7 +6781,10 @@ Fortran 2008 and later
 ```
 ```fortran
      elemental real(kind=KIND) function erf(x)
+
+     real(kind=KIND),intent(in) :: x
 ```
+The result is of the same _type_ and _kind_ as **x**.
 ### **Description**
 
 **erf**(x) computes the error function of **x**, defined as
@@ -6926,9 +7013,9 @@ Fortran 2008 and later
     result = exp(x)
 ```
 ```fortran
-    elemental type(TYPE(kind=KIND)) function exp(x)
+    elemental TYPE(kind=KIND) function exp(x)
 
-    type(TYPE(kind=KIND)),intent(in) :: x
+    TYPE(kind=KIND),intent(in) :: x
 ```
 **x** may be _real_ or _complex_.
 The return value has the same type and kind as **x**.
@@ -8018,7 +8105,7 @@ Fortran 2003 and later
     result = huge(x)
 ```
 ```fortran
-     type(TYPE(kind=KIND))function huge(x)
+     TYPE(kind=KIND) function huge(x)
 
      TYPE(kind=KIND),intent(in) :: x
 ```
@@ -8354,18 +8441,33 @@ Results:
 
 ### **Syntax**
 ```fortran
-    result = iall(array, mask)
+    result = iall(array [,mask])
+```
+```fortran
+    integer(kind=KIND) function iall(array,mask)
+
+    integer(kind=KIND),intent(in)           :: array(..)
+    logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 or
 ```fortran
-    result = iall(array, dim, mask)
+    result = iall(array [,dim] [,mask])
 ```
 ```fortran
+    integer(kind=KIND) function iall(array,dim,mask)
+
+    integer(kind=KIND),intent(in)           :: array(..)
+    integer(kind=KINDD),intent(in),optional :: dim
+    logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
+**array** must be an array. The result will by of the same type and kind
+as **array**. **mask** is a _logical_ array that conforms to **array** of
+any _logical_ kind. **dim** may be of any _integer_ kind.
+
 ### **Description**
 
-Reduces with bitwise _and_ the elements of **array** along dimension **dim** if
-the corresponding element in **mask** is _.true._.
+Reduces with bitwise _and_ the elements of **array** along dimension
+**dim** if the corresponding element in **mask** is _.true._.
 
 ### **Arguments**
 
@@ -8505,14 +8607,29 @@ Fortran 95 and later
 
 ### **Syntax**
 ```fortran
-    result = iany(array, mask)
+    result = iany(array [,mask])
+```
+```fortran
+    integer(kind=KIND) function iany(array,mask)
+
+    integer(kind=KIND),intent(in)           :: array(..)
+    logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 or
 ```fortran
-    result = iany(array, dim, mask)
+    result = iany(array [,dim] [,mask])
 ```
 ```fortran
+    integer(kind=KIND) function iany(array,dim,mask)
+
+    integer(kind=KIND),intent(in)           :: array(..)
+    integer(kind=KINDD),intent(in),optional :: dim
+    logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
+**array** must be an array. The result will by of the same type and kind
+as **array**. **mask** is a _logical_ array that conforms to **array** of
+any _logical_ kind. **dim** may be of any _integer_ kind.
+
 ### **Description**
 
 Reduces with bitwise or (inclusive or) the elements of **array** along
@@ -10232,15 +10349,17 @@ of arguments, and search for certain arguments:
 
 ### **Syntax**
 ```fortran
-    result = len_trim(string, kind)
+    result = len_trim(string [,kind])
 ```
 ```fortran
      elemental integer(kind=KIND) function len_trim(string,kind)
 
      character(len=*),intent(in) :: string
-     integer,optional,intent(in) :: kind
-     integer(kind=KIND) :: value
+     integer(kind=KINDK),intent(in),optional :: kind
 ```
+The return value is of type _integer_ and of kind **kind**. If **kind**
+is absent, the return value is of default _integer_ kind.
+
 ### **Description**
 
 Returns the length of a character string, ignoring any trailing blanks.
@@ -10256,9 +10375,6 @@ Returns the length of a character string, ignoring any trailing blanks.
   parameter of the result.
 
 ### **Returns**
-
-The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
-the return value is of default _integer_ kind.
 
 ### **Examples**
 
@@ -10873,13 +10989,13 @@ Gamma function: [**gamma**(3)](#gamma)
 
 ### **Syntax**
 ```fortran
-    result = logical(l, kind)
+    result = logical(l [,kind])
 ```
 ```fortran
-     elemental logical(kind=KIND) function logical(L,KIND)
+     elemental logical(kind=KIND) function logical(l,kind)
 
-     logical(kind=INK),intent(in) :: L
-     integer,intent(in),optional :: KIND
+     logical(kind=KIND),intent(in) :: l
+     integer(kind=KINDK),intent(in),optional :: kind
 ```
 ### **Description**
 
@@ -10891,14 +11007,14 @@ Converts one kind of _logical_ variable to another.
   : The type shall be _logical_.
 
 - **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
-  parameter of the result.
+  : An _integer_ initialization expression indicating the kind parameter
+  of the result. If not present, the default kind is returned.
 
 ### **Returns**
 
 The return value is a _logical_ value equal to **l**, with a kind
-corresponding to **kind**, or of the default logical kind if **kind** is not
-given.
+corresponding to **kind**, or of the default logical kind if **kind**
+is not given.
 
 ### **Examples**
 
@@ -10952,7 +11068,7 @@ Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009
 
     TYPE(kind=KIND),intent(in) :: x
 ```
-  Were **xx* may be any kind of _real_ or _complex_ value and
+  Where **x** may be any kind of _real_ or _complex_ value and
   the result is the same type and characteristics as **x**.
 
 ### **Description**
@@ -10963,13 +11079,12 @@ Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009
 ### **Arguments**
 
 - **x**
-  : The type shall be _real_ or _complex_.
+  : The value to take the log of
 
 ### **Returns**
 
-  The return value is of type _real_ or _complex_. The kind type parameter
-  is the same as **x**. If **x** is _complex_, the imaginary part OMEGA
-  is in the range
+  The natural logarithm of **xx**.
+  If **x** is _complex_, the imaginary part OMEGA is in the range
 
     **-PI** \< OMEGA \<= PI.
 
@@ -11007,10 +11122,13 @@ FORTRAN 77 and later
     result = maskl( i [,kind] )
 ```
 ```fortran
-     elemental integer function maskl(i,kind)
+     elemental integer(kind=KIND) function maskl(i,kind)
 
-     integer,intent(in),optional :: kind
+     integer(kind=KIND),intent(in) :: i
+     integer(kind=KINDI),intent(in),optional :: kind
 ```
+The result is of the same _kind_ as **ii** unless **kind** is
+present, which is then used to specify the kind of the result.
 ### **Description**
 
 **maskl(i\[, _kind_\])** has its leftmost **i** bits set to **1**, and the
@@ -11019,9 +11137,8 @@ remaining bits set to **0**.
 ### **Arguments**
 
 - **i**
-  : Shall be of type _integer_.
-  Its value must be non-negative, and less than or equal to the
-  number of bits for the kind of the result.
+  : Shall be of type _integer_. Its value must be non-negative, and
+  less than or equal to the number of bits for the kind of the result.
 
 - **kind**
   : Shall be a scalar constant expression of type _integer_.
@@ -11085,7 +11202,6 @@ Results:
          -2 11111111111111111111111111111110
          -1 11111111111111111111111111111111
 ```
-
 ### **Standard**
 
 Fortran 2008 and later
@@ -11107,13 +11223,19 @@ Fortran 2008 and later
     result = maskr( i [,kind] )
 ```
 ```fortran
-     elemental integer function maskr(i,kind)
+     elemental integer(kind=KIND) function maskr(i,kind)
 
-     integer,intent(in),optional :: kind
+     integer(kind=KINDI),intent(in) :: i
+     integer(kind=KINDK),intent(in),optional :: kind
 ```
+The result is an _integer_. It is of the default kind if **kind**
+is not present, else it is the kind specified by **kind**.
+
+**kind** and **i** may be of any kind.
+
 ### **Description**
 
-**maskr(i\[, kind\])** has its rightmost **i** bits set to 1, and the
+The result  is an intger with its rightmost **i** bits set to 1, and the
 remaining bits set to 0.
 
 ### **Arguments**
@@ -11523,14 +11645,27 @@ Fortran 95 and later
 
 ### **Syntax**
 ```fortran
-    result = maxloc(array, dim, mask)
+    result = maxloc(array [,mask])
+```
+```fortran
+     NUMERIC function maxloc(array, mask)
+
+     NUMERIC,intent(in) :: array(..)
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 or
 ```fortran
-    result = maxloc(array, mask)
+    result = maxloc(array [,dim] [,mask])
 ```
 ```fortran
+     NUMERIC function maxloc(array, dim, mask)
+
+     NUMERIC,intent(in) :: array(..)
+     integer(kind=KINDD),intent(in),optional :: dim
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
+where **NUMERIC** is any numeric type and kind.
+
 ### **Description**
 
 Determines the location of the element in the array with the maximum
@@ -11754,14 +11889,27 @@ FORTRAN 77 and later
 
 ### **Syntax**
 ```fortran
-    result = maxval(array, dim, mask)
+    result = maxval(array [,mask])
+```
+```fortran
+     NUMERIC function maxval(array ,mask)
+
+     NUMERIC,intent(in) :: array(..)
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 or
 ```fortran
-    result = maxval(array, mask)
+    result = maxval(array [,dim] [,mask])
 ```
 ```fortran
+     NUMERIC function maxval(array ,dim, mask)
+
+     NUMERIC,intent(in) :: array(..)
+     integer(kind=KINDD),intent(in),optional :: dim
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
+where **NUMERIC** is any numeric type and kind.
+
 ### **Description**
 
 Determines the maximum value of the elements in an array value, or, if
@@ -12197,14 +12345,27 @@ Fortran 95 and later
 
 ### **Syntax**
 ```fortran
-    result = minloc(array, dim, mask)
+    result = minloc(array [,mask])
+```
+```fortran
+     NUMERIC function minloc(array, mask)
+
+     NUMERIC,intent(in) :: array(..)
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 or
 ```fortran
-    result = minloc(array, mask)
+    result = minloc(array [,dim] [,mask])
 ```
 ```fortran
+     NUMERIC function minloc(array, dim, mask)
+
+     NUMERIC,intent(in) :: array(..)
+     integer(kind=KINDD),intent(in),optional :: dim
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
+where **NUMERIC** is any numeric type and kind.
+
 ### **Description**
 
   Determines the location of the element in the array with the minimum
@@ -12353,14 +12514,27 @@ FORTRAN 77 and later
 
 ### **Syntax**
 ```fortran
-    result = minval(array, dim, mask)
-```
-  or
-```fortran
     result = minval(array, mask)
 ```
 ```fortran
+     NUMERIC function minval(array [,mask])
+
+     NUMERIC,intent(in) :: array(..)
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
+  or
+```fortran
+    result = minval(array [,dim] [,mask])
+```
+```fortran
+     NUMERIC function minval(array, dim, mask)
+
+     NUMERIC,intent(in) :: array(..)
+     integer(kind=KINDD),intent(in),optional :: dim
+     logical(kind=KINDL),intent(in),optional :: mask(..)
+```
+where **NUMERIC** is any numeric type and kind.
+
 ### **Description**
 
   Determines the minimum value of the elements in an array value, or,
@@ -12509,7 +12683,7 @@ Fortran 95 and later
     result = mod(a, p)
 ```
 ```fortran
-    elemental type(TYPE(kind=KIND) function mod(a,p)
+    elemental type(TYPE(kind=KIND)) function mod(a,p)
 
      type(TYPE(kind=KIND),intent(in) :: a
      type(TYPE(kind=KIND),intent(in) :: p
@@ -12599,10 +12773,10 @@ FORTRAN 77 and later
     result = modulo(a, p)
 ```
 ```fortran
-     elemental type(TYPE(kind=KIND) function modulo(a,p)
+     elemental TYPE(kind=KIND) function modulo(a,p)
 
-     type(TYPE(kind=KIND),intent(in) :: a
-     type(TYPE(kind=KIND),intent(in) :: p
+     TYPE(kind=KIND),intent(in) :: a
+     TYPE(kind=KIND),intent(in) :: p
 ```
   The result and arguments are all of the same type and kind.
   The type may be any kind of _real_ or _integer_.
@@ -13588,8 +13762,8 @@ Fortran 2008 and later. With DISTANCE or FAILED argument, TS 18508 or later
 ```fortran
      elemental logical function(x, mold, round)
 
-     type(TYPE,kind=KIND),intent(in) :: x
-     type(TYPE,kind=KIND),intent(in) :: mold
+     TYPE,kind=KIND),intent(in) :: x
+     TYPE,kind=KIND),intent(in) :: mold
      logical,intent(in),optional     :: round
 ```
    where TYPE may be _real_ or _integer_ of any available KIND.
@@ -14035,7 +14209,7 @@ The return value is of type _integer_ and of the default integer kind.
 ```fortran
     integer function precision(x)
 
-    type(TYPE(kind=KIND),intent(in) :: x
+    TYPE(kind=KIND),intent(in) :: x
 ```
 where **TYPE** may be _real_ or _complex_
 
@@ -14171,16 +14345,16 @@ Fortran 95 and later
 
 ### **Syntax**
 ```fortran
-    result = product(array, dim, mask)
+    result = product(array [,dim] [,mask])
 ```
 ```fortran
      NUMERIC function product(array, dim, mask)
 
      NUMERIC,intent(in) :: array(..)
-     integer,intent(in),optional :: dim
-     logical,intent(in),optional :: mask(..)
+     integer(kind=KINDD),intent(in),optional :: dim
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
-where **NUMERIC** is any numeric type
+where **NUMERIC** is any numeric type and kind.
 
 ### **Description**
 
@@ -14413,7 +14587,7 @@ directly using the star character.
 ```fortran
    integer function radix(x)
 
-   type(TYPE(kind=KIND)),intent(in) :: x
+   TYPE(kind=KIND),intent(in) :: x
 ```
    where TYPE may be _real_ or _integer_ of any kind KIND.
 ### **Description**
@@ -14654,7 +14828,7 @@ Fortran 95 and later
 ```fortran
       integer function range (x)
 
-      type(TYPE(kind=KIND)),intent(in) :: x
+      TYPE(kind=KIND),intent(in) :: x
 ```
 where TYPE is _real_ or _complex_ and KIND is any kind supported by
 TYPE.
@@ -14825,7 +14999,7 @@ end program demo_rank
 ```fortran
     elemental real(kind=KIND) function real(x,kind)
 
-     type(TYPE(kind=KIND)),intent(in) :: x
+     TYPE(kind=KIND),intent(in) :: x
      integer(kind=KINDK),intent(in) :: kind
 ```
   Where the type of **x** may be _integer_, _real_, or _complex_.
@@ -14909,14 +15083,15 @@ FORTRAN 77 and later
 
 There are two forms to this function:
 ```fortran
-    reduce(array, operation, mask, identity, ordered)
+    result = reduce(array, operation, mask, identity, ordered)
 ```
 or
 ```fortran
-    reduce(array, operation, dim, mask, identity, ordered)
+    type(TYPE(kind=KIND)) function reduce &
+    & (array, operation, dim, mask, identity, ordered)
 ```
 ```fortran
-     type(TYPE),intent(in)          :: array
+     type(TYPE(kind=KIND)),intent(in) :: array
      pure function                  :: operation
      integer,intent(in),optional    :: dim
      logical,optional               :: mask
@@ -15262,6 +15437,7 @@ Fortran 95 and later
 ```
 ```fortran
      elemental real(kind=KIND) function rrspacing(x)
+     real(kind=KIND),intent(in) :: x
 ```
 The return value is of the same type and kind as **x**.
 
@@ -15854,10 +16030,17 @@ Fortran 95 and later
 
 ### **Syntax**
 ```fortran
-    result = shape(source, kind)
+    result = shape(source [,kind])
 ```
 ```fortran
+   integer(kind=KINDR) function(shape(source,kind)
+
+   type(TYPE(kind=KIND)),intent(in)        :: source(..)
+   integer(kind=KINDK),intent(in),optional :: kind
 ```
+**source** is an array or scalar of any type. If **source** is a pointer
+it must be associated and allocatable arrays must be allocated.
+
 ### **Description**
 
 Determines the shape of an array.
@@ -17237,14 +17420,27 @@ Fortran 2008 and later
 
 ### **Syntax**
 ```fortran
-   result = sum(array[, mask])
+   result = sum(array ,[mask])
+```
+```fortran
+     NUMERIC function sum(array, mask)
+
+     NUMERIC,intent(in) :: array(..)
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
   or
 ```fortran
-   result = sum(array, dim[, mask])
+   result = sum(array [,dim] [,mask])
 ```
 ```fortran
+     NUMERIC function sum(array, dim, mask)
+
+     NUMERIC,intent(in) :: array(..)
+     integer(kind=KINDD),intent(in),optional :: dim
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
+where **NUMERIC** is any numeric type and kind.
+
 ### **Description**
 
 Adds the elements of ARRAY along dimension DIM if the corresponding

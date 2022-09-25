@@ -13,7 +13,7 @@
 
     TYPE(kind=KIND),intent(in) :: x
 ```
-  Were **xx* may be any kind of _real_ or _complex_ value and
+  Where **x** may be any kind of _real_ or _complex_ value and
   the result is the same type and characteristics as **x**.
 
 ### **Description**
@@ -24,13 +24,12 @@
 ### **Arguments**
 
 - **x**
-  : The type shall be _real_ or _complex_.
+  : The value to take the log of
 
 ### **Returns**
 
-  The return value is of type _real_ or _complex_. The kind type parameter
-  is the same as **x**. If **x** is _complex_, the imaginary part OMEGA
-  is in the range
+  The natural logarithm of **xx**.
+  If **x** is _complex_, the imaginary part OMEGA is in the range
 
     **-PI** \< OMEGA \<= PI.
 

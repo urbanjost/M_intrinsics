@@ -11,7 +11,7 @@
 ```fortran
      logical function allocated(entity)
 
-     type(TYPE(kind=KIND)),allocatable,optional :: entity(..)
+     type(TYPE(kind=KIND)),allocatable :: entity(..)
 ```
   where **entity** may be any allocatable scalar or array object
   of any type.
