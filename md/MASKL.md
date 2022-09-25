@@ -9,10 +9,13 @@
     result = maskl( i [,kind] )
 ```
 ```fortran
-     elemental integer function maskl(i,kind)
+     elemental integer(kind=KIND) function maskl(i,kind)
 
-     integer,intent(in),optional :: kind
+     integer(kind=KIND),intent(in) :: i
+     integer(kind=KINDI),intent(in),optional :: kind
 ```
+The result is of the same _kind_ as **ii** unless **kind** is
+present, which is then used to specify the kind of the result.
 ### **Description**
 
 **maskl(i\[, _kind_\])** has its leftmost **i** bits set to **1**, and the
@@ -21,9 +24,8 @@ remaining bits set to **0**.
 ### **Arguments**
 
 - **i**
-  : Shall be of type _integer_.
-  Its value must be non-negative, and less than or equal to the
-  number of bits for the kind of the result.
+  : Shall be of type _integer_. Its value must be non-negative, and
+  less than or equal to the number of bits for the kind of the result.
 
 - **kind**
   : Shall be a scalar constant expression of type _integer_.
@@ -87,7 +89,6 @@ Results:
          -2 11111111111111111111111111111110
          -1 11111111111111111111111111111111
 ```
-
 ### **Standard**
 
 Fortran 2008 and later

@@ -6,14 +6,27 @@
 
 ### **Syntax**
 ```fortran
-    result = minloc(array, dim, mask)
+    result = minloc(array [,mask])
+```
+```fortran
+     NUMERIC function minloc(array, mask)
+
+     NUMERIC,intent(in) :: array(..)
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 or
 ```fortran
-    result = minloc(array, mask)
+    result = minloc(array [,dim] [,mask])
 ```
 ```fortran
+     NUMERIC function minloc(array, dim, mask)
+
+     NUMERIC,intent(in) :: array(..)
+     integer(kind=KINDD),intent(in),optional :: dim
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
+where **NUMERIC** is any numeric type and kind.
+
 ### **Description**
 
   Determines the location of the element in the array with the minimum

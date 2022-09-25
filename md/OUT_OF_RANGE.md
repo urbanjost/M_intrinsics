@@ -10,8 +10,8 @@
 ```fortran
      elemental logical function(x, mold, round)
 
-     type(TYPE,kind=KIND),intent(in) :: x
-     type(TYPE,kind=KIND),intent(in) :: mold
+     TYPE,kind=KIND),intent(in) :: x
+     TYPE,kind=KIND),intent(in) :: mold
      logical,intent(in),optional     :: round
 ```
    where TYPE may be _real_ or _integer_ of any available KIND.

@@ -9,7 +9,7 @@
     result = mod(a, p)
 ```
 ```fortran
-    elemental type(TYPE(kind=KIND) function mod(a,p)
+    elemental type(TYPE(kind=KIND)) function mod(a,p)
 
      type(TYPE(kind=KIND),intent(in) :: a
      type(TYPE(kind=KIND),intent(in) :: p

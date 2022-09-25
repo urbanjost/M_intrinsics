@@ -209,9 +209,9 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result=abs(a)', &
 '', &
-'           elemental type(TYPE(kind=KIND)) function abs(a)', &
+'           elemental TYPE(kind=KIND) function abs(a)', &
 '', &
-'           type(TYPE(kind=KIND)),intent(in) :: a', &
+'           TYPE(kind=KIND),intent(in) :: a', &
 '', &
 '  A may be any real, integer, or complex value.', &
 '', &
@@ -332,7 +332,7 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result=achar(i [,kind])', &
 '', &
-'           elemental character(len=1) function achar(i,kind=KIND)', &
+'           elemental character(len=1) function achar(i,kind)', &
 '', &
 '           integer(kind=KIND),intent(in) :: i', &
 '           integer(kind=KIND),intent(in),optional :: kind', &
@@ -857,7 +857,8 @@ textblock=[character(len=256) :: &
 '           real(kind=KIND),intent(in)   :: x', &
 '           integer,intent(in),optional :: kind', &
 '', &
-'  where the kind of the result is the same as as X unless KIND is present.', &
+'  where the kind of the result is the same as X unless KIND is present.  KIND', &
+'  defaults to the default integer kind.', &
 '', &
 'DESCRIPTION', &
 '  AINT(X, KIND) truncates its argument to a whole number.', &
@@ -1055,7 +1056,7 @@ textblock=[character(len=256) :: &
 '', &
 '           logical function allocated(entity)', &
 '', &
-'           type(TYPE(kind=KIND)),allocatable,optional :: entity(..)', &
+'           type(TYPE(kind=KIND)),allocatable :: entity(..)', &
 '', &
 '  where ENTITY may be any allocatable scalar or array object of any type.', &
 '', &
@@ -3921,7 +3922,8 @@ textblock=[character(len=256) :: &
 '', &
 '  elemental integer function char(i,kind)', &
 '', &
-'  integer(kind=KIND),intent(in) :: c integer,intent(in),optional :: KIND', &
+'  integer(kind=KIND),intent(in) :: c integer(kind=KINDK),intent(in),optional', &
+'  :: kind', &
 '', &
 'DESCRIPTION', &
 '  CHAR(I, KIND) returns the character represented by the integer I.', &
@@ -5064,7 +5066,19 @@ textblock=[character(len=256) :: &
 '  COUNT(3) - [ARRAY REDUCTION] Count function', &
 '', &
 'SYNTAX', &
-'  result = count(mask, dim, kind)', &
+'  result = count(mask [,dim] [,kind] )', &
+'', &
+'  integer(kind=KIND) function count(mask, dim, kind )', &
+'  logical(kind=KINDL),intent(in) :: mask(..)', &
+'  integer(kind=KINDD),intent(in),optional :: dim', &
+'  integer(kind=KINDK),intent(in),optional :: kind', &
+'', &
+'  MASK must be an array but may be any shape.', &
+'', &
+'    The return value is of default integer type unless KIND is specified to', &
+'    declare the kind of the result.', &
+'', &
+'    If DIM is present, the result is an array with the specified rank removed.', &
 '', &
 'DESCRIPTION', &
 '  Counts the number of .true. elements in a logical MASK, or, if the DIM', &
@@ -5073,67 +5087,125 @@ textblock=[character(len=256) :: &
 '  elements of MASK are false, then the result is 0.', &
 '', &
 'ARGUMENTS', &
-'  o  MASK : The type shall be logical.', &
+'  o  MASK : an array to count the number of .true. values in', &
 '', &
-'  o  DIM : (Optional) The type shall be integer.', &
+'  o  DIM : specifies to remove this dimension from the result and produce an', &
+'     array of counts of .true. values along the removed dimension.', &
 '', &
-'  o  KIND : (Optional) An integer initialization expression indicating the', &
-'     kind parameter of the result.', &
+'  o  KIND : An integer initialization expression indicating the kind parameter', &
+'     of the result.', &
 '', &
 'RETURNS', &
-'  The return value is of type integer and of kind KIND. If KIND is absent, the', &
-'  return value is of default integer kind. If DIM is present, the result is an', &
-'  array with a rank one less than the rank of ARRAY, and a size corresponding', &
-'  to the shape of ARRAY with the DIM dimension removed.', &
+'  The return value is the number of .true. values in MASK if DIM is not', &
+'  present.', &
+'', &
+'  If DIM is present, the result is an array with a rank one less than the rank', &
+'  of the input array MASK, and a size corresponding to the shape of ARRAY with', &
+'  the DIM dimension removed, with the remaining elements containing the number', &
+'  of .true. elements along the removed dimension.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
 '      program demo_count', &
 '      implicit none', &
+'      character(len=*),parameter :: ints=''(*(i2,1x))''', &
+'      ! two arrays and a mask all with the same shape', &
 '      integer, dimension(2,3) :: a, b', &
 '      logical, dimension(2,3) :: mymask', &
-'            a = reshape( [ 1, 2, 3, 4, 5, 6 ], [ 2, 3 ])', &
-'            b = reshape( [ 0, 7, 3, 4, 5, 8 ], [ 2, 3 ])', &
-'            print ''(3i3)'', a(1,:)', &
-'            print ''(3i3)'', a(2,:)', &
-'            print *', &
-'            print ''(3i3)'', b(1,:)', &
-'            print ''(3i3)'', b(2,:)', &
-'            print *', &
-'            mymask = a.ne.b', &
-'            print ''(3l3)'', mymask(1,:)', &
-'            print ''(3l3)'', mymask(2,:)', &
-'            print *', &
-'            print ''(3i3)'', count(mymask)', &
-'            print *', &
-'            print ''(3i3)'', count(mymask, 1)', &
-'            print *', &
-'            print ''(3i3)'', count(mymask, 2)', &
+'      integer :: i', &
+'      integer :: c(2,3,4)', &
+'         a = reshape( [ 1, 2, 3, 4, 5, 6 ], [ 2, 3 ])', &
+'         b = reshape( [ 0, 7, 3, 4, 5, 8 ], [ 2, 3 ])', &
+'         c = reshape( [( i,i=1,24)], [ 2, 3 ,4])', &
+'         ! show numeric arrays we will compare', &
+'         print ''(3i3)'', a(1,:)', &
+'         print ''(3i3)'', a(2,:)', &
+'         print *', &
+'         print ''(3i3)'', b(1,:)', &
+'         print ''(3i3)'', b(2,:)', &
+'', &
+'         ! basic calls', &
+'         print *, ''count a few basic things ...''', &
+'         print *, ''count a>b'',count(a>b)', &
+'         print *, ''count b<a'',count(a<b)', &
+'         print *, ''count b==a'',count(a==b)', &
+'         print *, ''check sum = '',count(a>b) + &', &
+'                               & count(a<b) + &', &
+'                               & count(a==b).eq.size(a)', &
+'', &
+'         ! The common usage is just getting a count, but if you want', &
+'         ! to specify the DIM argument and get back reduced arrays', &
+'         ! of counts this is easier to visualize if we look at a mask', &
+'         ! make a mask identifying unequal elements', &
+'         mymask = a.ne.b', &
+'         print *, ''show mask for a.ne.b''', &
+'         print ''(3l3)'', mymask(1,:)', &
+'         print ''(3l3)'', mymask(2,:)', &
+'         ! count total and along rows and columns', &
+'         print ''(a)'', ''number of elements not equal''', &
+'         print ''(a)'', ''(ie. total true elements in the mask)''', &
+'         print ''(3i3)'', count(mymask)', &
+'         print ''(a)'', ''count of elements not equal in each column''', &
+'         print ''(a)'', ''(ie. total true elements in each column)''', &
+'         print ''(3i3)'', count(mymask, dim=1)', &
+'         print ''(a)'', ''count of elements not equal in each row''', &
+'         print ''(a)'', ''(ie. total true elements in each row)''', &
+'         print ''(3i3)'', count(mymask, dim=2)', &
+'         ! working with rank=3 ...', &
+'         print *, ''lets try this with c(2,3,4)''', &
+'         print *,''  taking the result of the modulo   ''', &
+'         print *,''   z=1      z=2      z=3      z=4   ''', &
+'         print *,''  1 3 0 || 2 4 1 || 3 0 2 || 4 1 3 |''', &
+'         print *,''  2 4 1 || 3 0 2 || 4 1 3 || 0 2 4 |''', &
+'         print *,''                                    ''', &
+'         print *,''  would result in the mask ..       ''', &
+'         print *,''  F F T || F F F || F T F || F F F |''', &
+'         print *,''  F F F || F T F || F F F || T F F |''', &
+'         print *,''                                    ''', &
+'         print *,'' the total number of .true.values is''', &
+'         print ints, count(modulo(c,5).eq.0)', &
+'         call printi(''counting up along a row and removing rows'',&', &
+'         count(modulo(c,5).eq.0,dim=1))', &
+'         call printi(''counting up along a column and removing columns'',&', &
+'         count(modulo(c,5).eq.0,dim=2))', &
+'         call printi(''counting up along a depth and removing depthss'',&', &
+'         count(modulo(c,5).eq.0,dim=3))', &
+'', &
+'      contains', &
+'', &
+'         ! CONVENIENCE ROUTINE FOR PRINTING SMALL INTEGER MATRICES', &
+'         subroutine printi(title,arr)', &
+'         implicit none', &
+'', &
+'         !@(#) print small 2d integer arrays in row-column format', &
+'', &
+'         character(len=*),parameter :: all=''(*(g0,1x))'' ! a handy format', &
+'         character(len=*),intent(in)  :: title', &
+'         integer,intent(in)           :: arr(:,:)', &
+'         integer                      :: i', &
+'         character(len=:),allocatable :: biggest', &
+'', &
+'            print all', &
+'            print all, trim(title),'':('',shape(arr),'')''  ! print title', &
+'            biggest=''           ''  ! make buffer to write integer into', &
+'            ! find how many characters to use for integers', &
+'            write(biggest,''(i0)'')ceiling(log10(real(maxval(abs(arr)))))+2', &
+'            ! use this format to write a row', &
+'            biggest=''(" > [",*(i''//trim(biggest)//'':,","))''', &
+'            ! print one row of array at a time', &
+'            do i=1,size(arr,dim=1)', &
+'               write(*,fmt=biggest,advance=''no'')arr(i,:)', &
+'               write(*,''(" ]")'')', &
+'            enddo', &
+'', &
+'         end subroutine printi', &
 '      end program demo_count', &
-'', &
-'  Expected Results:', &
-'', &
-'    1 3  5', &
-'', &
-'    2 4  6', &
-'', &
-'    0 3  5', &
-'', &
-'    7 4  8', &
-'', &
-'   T F F', &
-'   T F T', &
-'  3', &
-'', &
-'  2 0  1', &
-'', &
-'  1', &
 '', &
 'STANDARD', &
 '  Fortran 95 and later, with KIND argument - Fortran 2003 and later', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                              September 24, 2022               count(3fortran)', &
 '']
@@ -5493,10 +5565,10 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = dble(a)', &
 '', &
-'           elemental function dble(a)', &
+'           elemental doubleprecision function dble(a)', &
 '', &
-'           type(real(kind=kind(0.0d0)))     :: dble', &
-'           type(TYPE(kind=KIND)),intent(in) :: a', &
+'           doubleprecision :: dble', &
+'           TYPE(kind=KIND),intent(in) :: a', &
 '', &
 '  where TYPE may be integer, real, or complex and KIND any kind supported by', &
 '  the TYPE.', &
@@ -5555,9 +5627,11 @@ textblock=[character(len=256) :: &
 '', &
 '           integer function digits(x)', &
 '', &
-'           type(TYPE(kind=KIND)),intent(in) :: x(..)', &
+'           TYPE(kind=KIND),intent(in) :: x(..)', &
 '', &
 '  where TYPE may be integer or real and KIND is any kind supported by TYPE.', &
+'', &
+'  The return value is of type integer of default kind.', &
 '', &
 'DESCRIPTION', &
 '  DIGITS(X) returns the number of significant digits of the internal model', &
@@ -5618,9 +5692,9 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = dim(x, y)', &
 '', &
-'           elemental type(TYPE(kind=KIND)) function dim(x, y)', &
+'           elemental TYPE(kind=KIND) function dim(x, y)', &
 '', &
-'           type(TYPE(kind=KIND)),intent(in) :: x, y', &
+'           TYPE(kind=KIND),intent(in) :: x, y', &
 '', &
 '  where TYPE may be real or integer and KIND is any supported kind for the', &
 '  type.', &
@@ -5697,8 +5771,8 @@ textblock=[character(len=256) :: &
 '', &
 '  function dot_product(vector_a, vector_b)', &
 '', &
-'  type(TYPE(kind=KIND)),intent(in) :: vector_a(:)', &
-'  type(TYPE(kind=KIND)),intent(in) :: vector_b(:)', &
+'  TYPE(kind=KIND),intent(in) :: vector_a(:) TYPE(kind=KIND),intent(in) ::', &
+'  vector_b(:)', &
 '', &
 '  The two vectors may be either numeric or logical and must be arrays of rank', &
 '  one and of equal size.', &
@@ -6174,14 +6248,28 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = eoshift( array, shift [,boundary] [,dim] )', &
 '', &
+'  type(TYPE(kind=KIND)) function eoshift(array,shift,boundary,dim)', &
+'  type(TYPE(kind=KIND)),intent(in) :: array(..)', &
+'', &
+'  integer(kind=KINDS),intent(in)', &
+'    :: shift type(TYPE(kind=KIND)),intent(in) :: boundary', &
+'', &
+'  integer(kind=KINDD),intent(in)', &
+'    :: dim', &
+'', &
+'  ARRAY May be any type, not scalar. The result is an array of same type, kind', &
+'  and rank as the ARRAY argument. BOUNDARY is a scalar of the same type and', &
+'  kind as the ARRAY. DIM and SHIFT can be any kind of integer.', &
+'', &
 'DESCRIPTION', &
 '  EOSHIFT(ARRAY, SHIFT[, BOUNDARY, DIM]) performs an end-off shift on elements', &
 '  of ARRAY along the dimension of DIM.', &
 '', &
-'  If DIM is omitted it is taken to be 1.', &
+'  DIM is a scalar of type integer in the range of', &
 '', &
-'  DIM is a scalar of type integer in the range of 1 <= DIM <= N where "N" is', &
-'  the rank of ARRAY.', &
+'      **1 \<= DIM \<= n**', &
+'', &
+'  where "N" is the rank of ARRAY. If DIM is omitted it is taken to be 1.', &
 '', &
 '  If the rank of ARRAY is one, then all elements of ARRAY are shifted by SHIFT', &
 '  places. If rank is greater than one, then all complete rank one sections of', &
@@ -6245,7 +6333,7 @@ textblock=[character(len=256) :: &
 'STANDARD', &
 '  Fortran 95 and later', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                              September 24, 2022             eoshift(3fortran)', &
 '']
@@ -6388,6 +6476,10 @@ textblock=[character(len=256) :: &
 '  result = erf(x)', &
 '', &
 '           elemental real(kind=KIND) function erf(x)', &
+'', &
+'           real(kind=KIND),intent(in) :: x', &
+'', &
+'  The result is of the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
 '  ERF(x) computes the error function of X, defined as', &
@@ -6727,9 +6819,9 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = exp(x)', &
 '', &
-'  elemental type(TYPE(kind=KIND)) function exp(x)', &
+'  elemental TYPE(kind=KIND) function exp(x)', &
 '', &
-'  type(TYPE(kind=KIND)),intent(in) :: x', &
+'  TYPE(kind=KIND),intent(in) :: x', &
 '', &
 '  X may be real or complex. The return value has the same type and kind as X.', &
 '', &
@@ -7740,7 +7832,7 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = huge(x)', &
 '', &
-'           type(TYPE(kind=KIND))function huge(x)', &
+'           TYPE(kind=KIND) function huge(x)', &
 '', &
 '           TYPE(kind=KIND),intent(in) :: x', &
 '', &
@@ -8047,11 +8139,26 @@ textblock=[character(len=256) :: &
 '  IALL(3) - [BIT:LOGICAL] Bitwise and of array elements', &
 '', &
 'SYNTAX', &
-'  result = iall(array, mask)', &
+'  result = iall(array [,mask])', &
+'', &
+'  integer(kind=KIND) function iall(array,mask)', &
+'', &
+'  integer(kind=KIND),intent(in)', &
+'    :: array(..)  logical(kind=KINDL),intent(in),optional :: mask(..)', &
 '', &
 '  or', &
 '', &
-'          result = iall(array, dim, mask)', &
+'          result = iall(array [,dim] [,mask])', &
+'', &
+'          integer(kind=KIND) function iall(array,dim,mask)', &
+'', &
+'          integer(kind=KIND),intent(in)           :: array(..)', &
+'          integer(kind=KINDD),intent(in),optional :: dim', &
+'          logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'', &
+'  ARRAY must be an array. The result will by of the same type and kind as', &
+'  ARRAY. MASK is a logical array that conforms to ARRAY of any logical kind.', &
+'  DIM may be of any integer kind.', &
 '', &
 'DESCRIPTION', &
 '  Reduces with bitwise and the elements of ARRAY along dimension DIM if the', &
@@ -8177,11 +8284,26 @@ textblock=[character(len=256) :: &
 '  IANY(3) - [BIT:LOGICAL] Bitwise or of array elements', &
 '', &
 'SYNTAX', &
-'  result = iany(array, mask)', &
+'  result = iany(array [,mask])', &
+'', &
+'  integer(kind=KIND) function iany(array,mask)', &
+'', &
+'  integer(kind=KIND),intent(in)', &
+'    :: array(..)  logical(kind=KINDL),intent(in),optional :: mask(..)', &
 '', &
 '  or', &
 '', &
-'          result = iany(array, dim, mask)', &
+'          result = iany(array [,dim] [,mask])', &
+'', &
+'          integer(kind=KIND) function iany(array,dim,mask)', &
+'', &
+'          integer(kind=KIND),intent(in)           :: array(..)', &
+'          integer(kind=KINDD),intent(in),optional :: dim', &
+'          logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'', &
+'  ARRAY must be an array. The result will by of the same type and kind as', &
+'  ARRAY. MASK is a logical array that conforms to ARRAY of any logical kind.', &
+'  DIM may be of any integer kind.', &
 '', &
 'DESCRIPTION', &
 '  Reduces with bitwise or (inclusive or) the elements of ARRAY along dimension', &
@@ -9771,13 +9893,15 @@ textblock=[character(len=256) :: &
 '  trailing blank characters', &
 '', &
 'SYNTAX', &
-'  result = len_trim(string, kind)', &
+'  result = len_trim(string [,kind])', &
 '', &
 '           elemental integer(kind=KIND) function len_trim(string,kind)', &
 '', &
 '           character(len=*),intent(in) :: string', &
-'           integer,optional,intent(in) :: kind', &
-'           integer(kind=KIND) :: value', &
+'           integer(kind=KINDK),intent(in),optional :: kind', &
+'', &
+'  The return value is of type integer and of kind KIND. If KIND is absent, the', &
+'  return value is of default integer kind.', &
 '', &
 'DESCRIPTION', &
 '  Returns the length of a character string, ignoring any trailing blanks.', &
@@ -9790,9 +9914,6 @@ textblock=[character(len=256) :: &
 '     kind parameter of the result.', &
 '', &
 'RETURNS', &
-'  The return value is of type integer and of kind KIND. If KIND is absent, the', &
-'  return value is of default integer kind.', &
-'', &
 'EXAMPLES', &
 '  Sample program', &
 '', &
@@ -10301,7 +10422,7 @@ textblock=[character(len=256) :: &
 '', &
 '          TYPE(kind=KIND),intent(in) :: x', &
 '', &
-'  Were *xx may be any kind of real or complex value and the result is the same', &
+'  Where X may be any kind of real or complex value and the result is the same', &
 '  type and characteristics as X.', &
 '', &
 'DESCRIPTION', &
@@ -10309,11 +10430,11 @@ textblock=[character(len=256) :: &
 '  "e".', &
 '', &
 'ARGUMENTS', &
-'  o  X : The type shall be real or complex.', &
+'  o  X : The value to take the log of', &
 '', &
 'RETURNS', &
-'  The return value is of type real or complex. The kind type parameter is the', &
-'  same as X. If X is complex, the imaginary part OMEGA is in the range', &
+'  The natural logarithm of XX. If X is complex, the imaginary part OMEGA is in', &
+'  the range', &
 '', &
 '      **-PI** \< OMEGA \<= PI.', &
 '', &
@@ -10416,12 +10537,12 @@ textblock=[character(len=256) :: &
 '  LOGICAL(3) - [TYPE:LOGICAL] Converts one kind of logical variable to another', &
 '', &
 'SYNTAX', &
-'  result = logical(l, kind)', &
+'  result = logical(l [,kind])', &
 '', &
-'           elemental logical(kind=KIND) function logical(L,KIND)', &
+'           elemental logical(kind=KIND) function logical(l,kind)', &
 '', &
-'           logical(kind=INK),intent(in) :: L', &
-'           integer,intent(in),optional :: KIND', &
+'           logical(kind=KIND),intent(in) :: l', &
+'           integer(kind=KINDK),intent(in),optional :: kind', &
 '', &
 'DESCRIPTION', &
 '  Converts one kind of logical variable to another.', &
@@ -10429,8 +10550,8 @@ textblock=[character(len=256) :: &
 'ARGUMENTS', &
 '  o  L : The type shall be logical.', &
 '', &
-'  o  KIND : (Optional) An integer initialization expression indicating the', &
-'     kind parameter of the result.', &
+'  o  KIND : An integer initialization expression indicating the kind parameter', &
+'     of the result. If not present, the default kind is returned.', &
 '', &
 'RETURNS', &
 '  The return value is a logical value equal to L, with a kind corresponding to', &
@@ -10483,9 +10604,13 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = maskl( i [,kind] )', &
 '', &
-'           elemental integer function maskl(i,kind)', &
+'           elemental integer(kind=KIND) function maskl(i,kind)', &
 '', &
-'           integer,intent(in),optional :: kind', &
+'           integer(kind=KIND),intent(in) :: i', &
+'           integer(kind=KINDI),intent(in),optional :: kind', &
+'', &
+'  The result is of the same kind as II unless KIND is present, which is then', &
+'  used to specify the kind of the result.', &
 '', &
 'DESCRIPTION', &
 '  MASKL(I[, KIND]) has its leftmost I bits set to 1, and the remaining bits', &
@@ -10580,13 +10705,19 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = maskr( i [,kind] )', &
 '', &
-'           elemental integer function maskr(i,kind)', &
+'           elemental integer(kind=KIND) function maskr(i,kind)', &
 '', &
-'           integer,intent(in),optional :: kind', &
+'           integer(kind=KINDI),intent(in) :: i', &
+'           integer(kind=KINDK),intent(in),optional :: kind', &
+'', &
+'  The result is an integer. It is of the default kind if KIND is not present,', &
+'  else it is the kind specified by KIND.', &
+'', &
+'  KIND and I may be of any kind.', &
 '', &
 'DESCRIPTION', &
-'  MASKR(I[, KIND]) has its rightmost I bits set to 1, and the remaining bits', &
-'  set to 0.', &
+'  The result is an intger with its rightmost I bits set to 1, and the', &
+'  remaining bits set to 0.', &
 '', &
 'ARGUMENTS', &
 '  o  I : Shall be of type integer. Its value must be non-negative, and less', &
@@ -11068,11 +11199,24 @@ textblock=[character(len=256) :: &
 '  MAXLOC(3) - [ARRAY:LOCATION] Location of the maximum value within an array', &
 '', &
 'SYNTAX', &
-'  result = maxloc(array, dim, mask)', &
+'  result = maxloc(array [,mask])', &
+'', &
+'           NUMERIC function maxloc(array, mask)', &
+'', &
+'           NUMERIC,intent(in) :: array(..)', &
+'           logical(kind=KINDL),intent(in),optional :: mask(..)', &
 '', &
 '  or', &
 '', &
-'          result = maxloc(array, mask)', &
+'          result = maxloc(array [,dim] [,mask])', &
+'', &
+'           NUMERIC function maxloc(array, dim, mask)', &
+'', &
+'           NUMERIC,intent(in) :: array(..)', &
+'           integer(kind=KINDD),intent(in),optional :: dim', &
+'           logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'', &
+'  where NUMERIC is any numeric type and kind.', &
 '', &
 'DESCRIPTION', &
 '  Determines the location of the element in the array with the maximum value,', &
@@ -11171,11 +11315,24 @@ textblock=[character(len=256) :: &
 '  row', &
 '', &
 'SYNTAX', &
-'  result = maxval(array, dim, mask)', &
+'  result = maxval(array [,mask])', &
+'', &
+'           NUMERIC function maxval(array ,mask)', &
+'', &
+'           NUMERIC,intent(in) :: array(..)', &
+'           logical(kind=KINDL),intent(in),optional :: mask(..)', &
 '', &
 '  or', &
 '', &
-'          result = maxval(array, mask)', &
+'          result = maxval(array [,dim] [,mask])', &
+'', &
+'           NUMERIC function maxval(array ,dim, mask)', &
+'', &
+'           NUMERIC,intent(in) :: array(..)', &
+'           integer(kind=KINDD),intent(in),optional :: dim', &
+'           logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'', &
+'  where NUMERIC is any numeric type and kind.', &
 '', &
 'DESCRIPTION', &
 '  Determines the maximum value of the elements in an array value, or, if the', &
@@ -11641,11 +11798,24 @@ textblock=[character(len=256) :: &
 '  MINLOC(3) - [ARRAY:LOCATION] Location of the minimum value within an array', &
 '', &
 'SYNTAX', &
-'  result = minloc(array, dim, mask)', &
+'  result = minloc(array [,mask])', &
+'', &
+'           NUMERIC function minloc(array, mask)', &
+'', &
+'           NUMERIC,intent(in) :: array(..)', &
+'           logical(kind=KINDL),intent(in),optional :: mask(..)', &
 '', &
 '  or', &
 '', &
-'          result = minloc(array, mask)', &
+'          result = minloc(array [,dim] [,mask])', &
+'', &
+'           NUMERIC function minloc(array, dim, mask)', &
+'', &
+'           NUMERIC,intent(in) :: array(..)', &
+'           integer(kind=KINDD),intent(in),optional :: dim', &
+'           logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'', &
+'  where NUMERIC is any numeric type and kind.', &
 '', &
 'DESCRIPTION', &
 '  Determines the location of the element in the array with the minimum value,', &
@@ -11729,11 +11899,24 @@ textblock=[character(len=256) :: &
 '  MINVAL(3) - [ARRAY REDUCTION] Minimum value of an array', &
 '', &
 'SYNTAX', &
-'  result = minval(array, dim, mask)', &
+'  result = minval(array, mask)', &
+'', &
+'           NUMERIC function minval(array [,mask])', &
+'', &
+'           NUMERIC,intent(in) :: array(..)', &
+'           logical(kind=KINDL),intent(in),optional :: mask(..)', &
 '', &
 '  or', &
 '', &
-'          result = minval(array, mask)', &
+'          result = minval(array [,dim] [,mask])', &
+'', &
+'           NUMERIC function minval(array, dim, mask)', &
+'', &
+'           NUMERIC,intent(in) :: array(..)', &
+'           integer(kind=KINDD),intent(in),optional :: dim', &
+'           logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'', &
+'  where NUMERIC is any numeric type and kind.', &
 '', &
 'DESCRIPTION', &
 '  Determines the minimum value of the elements in an array value, or, if the', &
@@ -11880,7 +12063,7 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = mod(a, p)', &
 '', &
-'  elemental type(TYPE(kind=KIND) function mod(a,p)', &
+'  elemental type(TYPE(kind=KIND)) function mod(a,p)', &
 '', &
 '           type(TYPE(kind=KIND),intent(in) :: a', &
 '           type(TYPE(kind=KIND),intent(in) :: p', &
@@ -11956,10 +12139,10 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  result = modulo(a, p)', &
 '', &
-'           elemental type(TYPE(kind=KIND) function modulo(a,p)', &
+'           elemental TYPE(kind=KIND) function modulo(a,p)', &
 '', &
-'           type(TYPE(kind=KIND),intent(in) :: a', &
-'           type(TYPE(kind=KIND),intent(in) :: p', &
+'           TYPE(kind=KIND),intent(in) :: a', &
+'           TYPE(kind=KIND),intent(in) :: p', &
 '', &
 '  The result and arguments are all of the same type and kind. The type may be', &
 '  any kind of real or integer.', &
@@ -12866,8 +13049,8 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental logical function(x, mold, round)', &
 '', &
-'           type(TYPE,kind=KIND),intent(in) :: x', &
-'           type(TYPE,kind=KIND),intent(in) :: mold', &
+'           TYPE,kind=KIND),intent(in) :: x', &
+'           TYPE,kind=KIND),intent(in) :: mold', &
 '           logical,intent(in),optional     :: round', &
 '', &
 '  where TYPE may be real or integer of any available KIND.', &
@@ -13300,7 +13483,7 @@ textblock=[character(len=256) :: &
 '', &
 '          integer function precision(x)', &
 '', &
-'          type(TYPE(kind=KIND),intent(in) :: x', &
+'          TYPE(kind=KIND),intent(in) :: x', &
 '', &
 '  where TYPE may be real or complex', &
 '', &
@@ -13425,15 +13608,15 @@ textblock=[character(len=256) :: &
 '  PRODUCT(3) - [ARRAY REDUCTION] Product of array elements', &
 '', &
 'SYNTAX', &
-'  result = product(array, dim, mask)', &
+'  result = product(array [,dim] [,mask])', &
 '', &
 '           NUMERIC function product(array, dim, mask)', &
 '', &
 '           NUMERIC,intent(in) :: array(..)', &
-'           integer,intent(in),optional :: dim', &
-'           logical,intent(in),optional :: mask(..)', &
+'           integer(kind=KINDD),intent(in),optional :: dim', &
+'           logical(kind=KINDL),intent(in),optional :: mask(..)', &
 '', &
-'  where NUMERIC is any numeric type', &
+'  where NUMERIC is any numeric type and kind.', &
 '', &
 'DESCRIPTION', &
 '  Multiplies together all the selected elements of ARRAY, or along dimension', &
@@ -13662,7 +13845,7 @@ textblock=[character(len=256) :: &
 '', &
 '  integer function radix(x)', &
 '', &
-'    type(TYPE(kind=KIND)),intent(in) :: x', &
+'    TYPE(kind=KIND),intent(in) :: x', &
 '', &
 '  where TYPE may be real or integer of any kind KIND.', &
 '', &
@@ -13874,7 +14057,7 @@ textblock=[character(len=256) :: &
 '', &
 '            integer function range (x)', &
 '', &
-'            type(TYPE(kind=KIND)),intent(in) :: x', &
+'            TYPE(kind=KIND),intent(in) :: x', &
 '', &
 '  where TYPE is real or complex and KIND is any kind supported by TYPE.', &
 '', &
@@ -14032,7 +14215,7 @@ textblock=[character(len=256) :: &
 '', &
 '  elemental real(kind=KIND) function real(x,kind)', &
 '', &
-'           type(TYPE(kind=KIND)),intent(in) :: x', &
+'           TYPE(kind=KIND),intent(in) :: x', &
 '           integer(kind=KINDK),intent(in) :: kind', &
 '', &
 '  Where the type of X may be integer, real, or complex.', &
@@ -14112,13 +14295,14 @@ textblock=[character(len=256) :: &
 'SYNTAX', &
 '  There are two forms to this function:', &
 '', &
-'          reduce(array, operation, mask, identity, ordered)', &
+'          result = reduce(array, operation, mask, identity, ordered)', &
 '', &
 '  or', &
 '', &
-'          reduce(array, operation, dim, mask, identity, ordered)', &
+'          type(TYPE(kind=KIND)) function reduce &', &
+'          & (array, operation, dim, mask, identity, ordered)', &
 '', &
-'           type(TYPE),intent(in)          :: array', &
+'           type(TYPE(kind=KIND)),intent(in) :: array', &
 '           pure function                  :: operation', &
 '           integer,intent(in),optional    :: dim', &
 '           logical,optional               :: mask', &
@@ -14439,6 +14623,7 @@ textblock=[character(len=256) :: &
 '  result = rrspacing(x)', &
 '', &
 '           elemental real(kind=KIND) function rrspacing(x)', &
+'           real(kind=KIND),intent(in) :: x', &
 '', &
 '  The return value is of the same type and kind as X.', &
 '', &
@@ -14964,7 +15149,15 @@ textblock=[character(len=256) :: &
 '  SHAPE(3) - [ARRAY INQUIRY] Determine the shape of an array', &
 '', &
 'SYNTAX', &
-'  result = shape(source, kind)', &
+'  result = shape(source [,kind])', &
+'', &
+'  integer(kind=KINDR) function(shape(source,kind)', &
+'', &
+'    type(TYPE(kind=KIND)),intent(in)', &
+'      :: source(..)  integer(kind=KINDK),intent(in),optional :: kind', &
+'', &
+'  SOURCE is an array or scalar of any type. If SOURCE is a pointer it must be', &
+'  associated and allocatable arrays must be allocated.', &
 '', &
 'DESCRIPTION', &
 '  Determines the shape of an array.', &
@@ -16274,11 +16467,24 @@ textblock=[character(len=256) :: &
 '  SUM(3) - [ARRAY REDUCTION] sum the elements of an array', &
 '', &
 'SYNTAX', &
-'  result = sum(array[, mask])', &
+'  result = sum(array ,[mask])', &
+'', &
+'           NUMERIC function sum(array, mask)', &
+'', &
+'           NUMERIC,intent(in) :: array(..)', &
+'           logical(kind=KINDL),intent(in),optional :: mask(..)', &
 '', &
 '  or', &
 '', &
-'         result = sum(array, dim[, mask])', &
+'         result = sum(array [,dim] [,mask])', &
+'', &
+'           NUMERIC function sum(array, dim, mask)', &
+'', &
+'           NUMERIC,intent(in) :: array(..)', &
+'           integer(kind=KINDD),intent(in),optional :: dim', &
+'           logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'', &
+'  where NUMERIC is any numeric type and kind.', &
 '', &
 'DESCRIPTION', &
 '  Adds the elements of ARRAY along dimension DIM if the corresponding element', &

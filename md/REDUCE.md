@@ -8,14 +8,15 @@
 
 There are two forms to this function:
 ```fortran
-    reduce(array, operation, mask, identity, ordered)
+    result = reduce(array, operation, mask, identity, ordered)
 ```
 or
 ```fortran
-    reduce(array, operation, dim, mask, identity, ordered)
+    type(TYPE(kind=KIND)) function reduce &
+    & (array, operation, dim, mask, identity, ordered)
 ```
 ```fortran
-     type(TYPE),intent(in)          :: array
+     type(TYPE(kind=KIND)),intent(in) :: array
      pure function                  :: operation
      integer,intent(in),optional    :: dim
      logical,optional               :: mask

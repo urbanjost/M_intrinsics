@@ -6,13 +6,13 @@
 
 ### **Syntax**
 ```fortran
-    result = logical(l, kind)
+    result = logical(l [,kind])
 ```
 ```fortran
-     elemental logical(kind=KIND) function logical(L,KIND)
+     elemental logical(kind=KIND) function logical(l,kind)
 
-     logical(kind=INK),intent(in) :: L
-     integer,intent(in),optional :: KIND
+     logical(kind=KIND),intent(in) :: l
+     integer(kind=KINDK),intent(in),optional :: kind
 ```
 ### **Description**
 
@@ -24,14 +24,14 @@ Converts one kind of _logical_ variable to another.
   : The type shall be _logical_.
 
 - **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
-  parameter of the result.
+  : An _integer_ initialization expression indicating the kind parameter
+  of the result. If not present, the default kind is returned.
 
 ### **Returns**
 
 The return value is a _logical_ value equal to **l**, with a kind
-corresponding to **kind**, or of the default logical kind if **kind** is not
-given.
+corresponding to **kind**, or of the default logical kind if **kind**
+is not given.
 
 ### **Examples**
 

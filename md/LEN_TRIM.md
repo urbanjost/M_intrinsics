@@ -6,15 +6,17 @@
 
 ### **Syntax**
 ```fortran
-    result = len_trim(string, kind)
+    result = len_trim(string [,kind])
 ```
 ```fortran
      elemental integer(kind=KIND) function len_trim(string,kind)
 
      character(len=*),intent(in) :: string
-     integer,optional,intent(in) :: kind
-     integer(kind=KIND) :: value
+     integer(kind=KINDK),intent(in),optional :: kind
 ```
+The return value is of type _integer_ and of kind **kind**. If **kind**
+is absent, the return value is of default _integer_ kind.
+
 ### **Description**
 
 Returns the length of a character string, ignoring any trailing blanks.
@@ -31,8 +33,6 @@ Returns the length of a character string, ignoring any trailing blanks.
 
 ### **Returns**
 
-The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
-the return value is of default _integer_ kind.
 
 ### **Examples**
 
