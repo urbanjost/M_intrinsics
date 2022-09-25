@@ -6,14 +6,29 @@
 
 ### **Syntax**
 ```fortran
-    result = iany(array, mask)
+    result = iany(array [,mask])
+```
+```fortran
+    integer(kind=KIND) function iany(array,mask)
+
+    integer(kind=KIND),intent(in)           :: array(..)
+    logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 or
 ```fortran
-    result = iany(array, dim, mask)
+    result = iany(array [,dim] [,mask])
 ```
 ```fortran
+    integer(kind=KIND) function iany(array,dim,mask)
+
+    integer(kind=KIND),intent(in)           :: array(..)
+    integer(kind=KINDD),intent(in),optional :: dim
+    logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
+**array** must be an array. The result will by of the same type and kind
+as **array**. **mask** is a _logical_ array that conforms to **array** of
+any _logical_ kind. **dim** may be of any _integer_ kind.
+
 ### **Description**
 
 Reduces with bitwise or (inclusive or) the elements of **array** along

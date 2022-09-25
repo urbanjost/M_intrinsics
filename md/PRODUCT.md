@@ -6,7 +6,7 @@
 
 ### **Syntax**
 ```fortran
-    result = product(array, dim, mask)
+    result = product(array [,dim] [,mask])
 ```
 ```fortran
      NUMERIC function product(array, dim, mask)

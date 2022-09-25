@@ -6,18 +6,33 @@
 
 ### **Syntax**
 ```fortran
-    result = iall(array, mask)
+    result = iall(array [,mask])
+```
+```fortran
+    integer(kind=KIND) function iall(array,mask)
+
+    integer(kind=KIND),intent(in)           :: array(..)
+    logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 or
 ```fortran
-    result = iall(array, dim, mask)
+    result = iall(array [,dim] [,mask])
 ```
 ```fortran
+    integer(kind=KIND) function iall(array,dim,mask)
+
+    integer(kind=KIND),intent(in)           :: array(..)
+    integer(kind=KINDD),intent(in),optional :: dim
+    logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
+**array** must be an array. The result will by of the same type and kind
+as **array**. **mask** is a _logical_ array that conforms to **array** of
+any _logical_ kind. **dim** may be of any _integer_ kind.
+
 ### **Description**
 
-Reduces with bitwise _and_ the elements of **array** along dimension **dim** if
-the corresponding element in **mask** is _.true._.
+Reduces with bitwise _and_ the elements of **array** along dimension
+**dim** if the corresponding element in **mask** is _.true._.
 
 ### **Arguments**
 

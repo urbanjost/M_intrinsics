@@ -9,16 +9,28 @@
     result = eoshift( array, shift [,boundary] [,dim] )
 ```
 ```fortran
+    type(TYPE(kind=KIND)) function eoshift(array,shift,boundary,dim)
+    type(TYPE(kind=KIND)),intent(in) :: array(..)
+    integer(kind=KINDS),intent(in)   :: shift
+    type(TYPE(kind=KIND)),intent(in) :: boundary
+    integer(kind=KINDD),intent(in)   :: dim
 ```
+**array** May be any type, not scalar. The result is an array of same
+type, kind and rank as the **array** argument. **boundary** is a scalar
+of the same type and kind as the **array**. **dim** and **shift** can
+be any kind of _integer_.
+
 ### **Description**
 
 **eoshift(array, shift\[, boundary, dim\])** performs an end-off shift
 on elements of **array** along the dimension of **dim**.
 
-If **dim** is omitted it is taken to be **1**.
+**dim** is a scalar of type _integer_ in the range of 
 
-**dim** is a scalar of type _integer_ in the range of **1 \<= DIM
-\<= n** where **"n"** is the rank of **array**.
+    **1 \<= DIM \<= n** 
+
+where **"n"** is the rank of **array**.  If **dim** is omitted it
+is taken to be **1**.
 
 If the rank of **array** is one, then all elements of **array** are
 shifted by **shift** places. If rank is greater than one, then all
@@ -93,4 +105,4 @@ Results:
 
 Fortran 95 and later
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
