@@ -233,16 +233,18 @@ textblock=[character(len=256) :: &
 '  below).', &
 '', &
 'OPTIONS', &
-'  o  A : The value to compute the absolute value of. the type of the argument', &
-'     shall be an integer, real, or complex scalar or array.', &
+'  o  A : The value to compute the absolute value of.', &
 '', &
 'RESULT', &
-'  If A is of type integer or real, the value of the result is |A| and of the', &
-'  same type and kind as the input argument.', &
+'  If A is of type integer or real, the value of the result is the absolute', &
+'  value |A| and of the same type and kind as the input argument.', &
 '', &
 '  If A is complex with value (X, Y), the result is a real equal to a', &
-'  processor-dependent approximation to SQRT(X**2 + Y**2) computed without', &
-'  undue overflow or underflow.', &
+'  processor-dependent approximation to', &
+'', &
+'          **sqrt(x\*\*2 + y\*\*2)**', &
+'', &
+'  computed without undue overflow or underflow.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &

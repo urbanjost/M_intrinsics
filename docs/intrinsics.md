@@ -35,17 +35,20 @@
 ### **Options**
 
 - **a**
-  : The value to compute the absolute value of. the type of the argument
-  shall be an _integer_, _real_, or _complex_ scalar or array.
+  : The value to compute the absolute value of.
 
 ### **Result**
 
-   If **a** is of type _integer_ or _real_, the value of the result is
-   **|a|** and of the same type and kind as the input argument.
+   If **a** is of type _integer_ or _real_, the value of the result
+   is the absolute value **|a|** and of the same type and kind as the
+   input argument.
 
-   If **a** is _complex_ with value **(x, y)**,
-   the result is a _real_ equal to a processor-dependent approximation to
-   **sqrt(x\*\*2 + y\*\*2)** computed without undue overflow or underflow.
+   If **a** is _complex_ with value **(x, y)**, the result is a _real_
+   equal to a processor-dependent approximation to
+
+        **sqrt(x\*\*2 + y\*\*2)**
+
+   computed without undue overflow or underflow.
 
 ### **Examples**
 
@@ -13243,7 +13246,6 @@ the same kind as parameter **c**.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_new_line
 implicit none
@@ -13258,7 +13260,6 @@ character(len=:),allocatable :: string
 
 end program demo_new_line
 ```
-
 Results:
 
 ```text
@@ -13268,7 +13269,6 @@ Results:
    This is record 1.
    This is record 2.
 ```
-
 ### **Standard**
 
 Fortran 2003 and later
@@ -13331,7 +13331,6 @@ If **x** is less than or equal to zero, **nint(x)** has the value
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_nint
 implicit none
@@ -13701,6 +13700,10 @@ Fortran 95 and later
     result = num_images(distance, failed)
 ```
 ```fortran
+     integer function num_images (distance, failed)
+
+      integer(kind=KIND),intent(in),optional :: distance
+      integer(kind=KIND),intent(in),optional :: failed
 ```
 ### **Description**
 
@@ -13709,23 +13712,28 @@ Returns the number of images.
 ### **Options**
 
 - **distance**
-  : (optional, **intent(in)**) Nonnegative scalar integer
+  : Nonnegative scalar integer
 
 - **failed**
-  : (optional, **intent(in)**) Scalar logical expression
+  : Scalar logical expression
 
 ### **Result**
 
-  Scalar default-kind _integer_. If **distance** is not present or has
-  value 0, the number of images in the current team is returned. For
-  values smaller or equal distance to the initial team, it returns the
-  number of images index on the ancestor team which has a distance of
-  **distance** from the invoking team. If **distance** is larger than
-  the distance to the initial team, the number of images of the initial
-  team is returned. If **failed** is not present the total number of
-  images is returned; if it has the value _.true._, the number of failed
-  images is returned, otherwise, the number of images which do have not
-  the failed status.
+  The number of images.
+
+  If **distance** is not present or has value 0, the number of images
+  in the current team is returned.
+
+  For values smaller or equal distance to the initial team, it returns
+  the number of images index on the ancestor team which has a distance
+  of **distance** from the invoking team.
+
+  If **distance** is larger than the distance to the initial team,
+  the number of images of the initial team is returned.
+
+  If **failed** is not present the total number of images is returned;
+  if it has the value _.true._, the number of failed images is returned,
+  otherwise, the number of images which do have not the failed status.
 
 ### **Examples**
 
