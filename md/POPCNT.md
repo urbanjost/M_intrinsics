@@ -4,7 +4,7 @@
 
 **popcnt**(3) - \[BIT:COUNT\] Number of bits set
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = popcnt(i)
 ```
@@ -20,12 +20,12 @@ The **i** argument may be of any kind.
 Returns the number of bits set in the binary representation of an
 _integer_.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of type _integer_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of the default integer kind.
 

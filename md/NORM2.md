@@ -4,7 +4,7 @@
 
 **norm2**(3) - \[MATHEMATICS\] Euclidean vector norm
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = norm2(array, dim)
 ```
@@ -19,7 +19,7 @@
 Calculates the Euclidean vector norm (L_2 norm) of **array** along
 dimension **dim**.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _real_.
@@ -28,7 +28,7 @@ dimension **dim**.
   : shall be a scalar of type _integer_ with a value in the
   range from **1** to **rank(array)**.
 
-### **Returns**
+### **Result**
 
 The result is of the same type as **array**.
 

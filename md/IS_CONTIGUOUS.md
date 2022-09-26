@@ -4,7 +4,7 @@
 
 **is_contiguous**(3) - \[ARRAY INQUIRY\] test if object is contiguous
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = is_contiguous(a)
 ```
@@ -74,13 +74,13 @@ An object is not contiguous if it is an array subobject, and
 
 It is processor-dependent whether any other object is contiguous.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : may be of any type. It shall be an array. If it is a pointer it
   shall be associated.
 
-### **Returns**
+### **Result**
 
 - **Result**
   : of type Default logical scalar. The result has the value true if **a**

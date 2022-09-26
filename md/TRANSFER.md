@@ -4,7 +4,7 @@
 
 **transfer**(3) - \[TYPE:MOLD\] Transfer bit patterns
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = transfer(source, mold, size)
 ```
@@ -19,7 +19,7 @@ parameters as **mold**.
 This is approximately equivalent to the C concept of "casting" one
 type to another.
 
-### **Arguments**
+### **Options**
 
 - **source**
   : Shall be a scalar or an array of any type.
@@ -30,7 +30,7 @@ type to another.
 - **size**
   : (Optional) shall be a scalar of type _integer_.
 
-### **Returns**
+### **Result**
 
 The result has the same type as **mold**, with the bit level representation
 of **source**. If **size** is present, the result is a one-dimensional array of

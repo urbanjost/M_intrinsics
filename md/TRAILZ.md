@@ -4,7 +4,7 @@
 
 **trailz**(3) - \[BIT:COUNT\] Number of trailing zero bits of an integer
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = trailz(i)
 ```
@@ -17,12 +17,12 @@
 
 **trailz(3)** returns the number of trailing zero bits of an _integer_ value.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of type _integer_.
 
-### **Returns**
+### **Result**
 
 The type of the return value is the default _integer_. If all the bits of
 I are zero, the result value is **bit_size(i)**.

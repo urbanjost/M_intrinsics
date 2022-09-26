@@ -5,7 +5,7 @@
 **unpack**(3) - \[ARRAY CONSTRUCTION\] scatter the elements of a vector
 into an array using a mask
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = unpack(vector, mask, field)
 ```
@@ -30,7 +30,7 @@ values from **vector**. This allows for complex replacement patterns
 that would be difficult when using array syntax or multiple assignment
 statements, particularly when the replacements are conditional.
 
-### **Arguments**
+### **Options**
 
 - **vector**
   : New values to place into specified locations in **field**. Shall
@@ -46,7 +46,7 @@ statements, particularly when the replacements are conditional.
   parameters as **vector** and shall be conformable with **mask**.
 
 
-### **Returns**
+### **Result**
 
 The element of the result that corresponds to the ith true element
 of MASK, in array element order, has the value VECTOR (i) for i =

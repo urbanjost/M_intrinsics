@@ -4,36 +4,45 @@
 
 **num_images**(3) - \[COLLECTIVE\] Number of images
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = num_images(distance, failed)
 ```
 ```fortran
+     integer function num_images (distance, failed)
+
+      integer(kind=KIND),intent(in),optional :: distance
+      integer(kind=KIND),intent(in),optional :: failed
 ```
 ### **Description**
 
 Returns the number of images.
 
-### **Arguments**
+### **Options**
 
 - **distance**
-  : (optional, **intent(in)**) Nonnegative scalar integer
+  : Nonnegative scalar integer
 
 - **failed**
-  : (optional, **intent(in)**) Scalar logical expression
+  : Scalar logical expression
 
-### **Returns**
+### **Result**
 
-  Scalar default-kind _integer_. If **distance** is not present or has
-  value 0, the number of images in the current team is returned. For
-  values smaller or equal distance to the initial team, it returns the
-  number of images index on the ancestor team which has a distance of
-  **distance** from the invoking team. If **distance** is larger than
-  the distance to the initial team, the number of images of the initial
-  team is returned. If **failed** is not present the total number of
-  images is returned; if it has the value _.true._, the number of failed
-  images is returned, otherwise, the number of images which do have not
-  the failed status.
+  The number of images.
+
+  If **distance** is not present or has value 0, the number of images
+  in the current team is returned.
+
+  For values smaller or equal distance to the initial team, it returns
+  the number of images index on the ancestor team which has a distance
+  of **distance** from the invoking team.
+
+  If **distance** is larger than the distance to the initial team,
+  the number of images of the initial team is returned.
+
+  If **failed** is not present the total number of images is returned;
+  if it has the value _.true._, the number of failed images is returned,
+  otherwise, the number of images which do have not the failed status.
 
 ### **Examples**
 

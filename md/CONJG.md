@@ -4,7 +4,7 @@
 
 **conjg**(3) - \[NUMERIC\] Complex conjugate of a complex value
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = conjg(z)
 ```
@@ -29,12 +29,12 @@ For matrices of complex numbers, **conjg(array)** represents the
 element-by-element conjugation of **array**; not the conjugate transpose
 of **array** .
 
-### **Arguments**
+### **Options**
 
 - **z**
   : The _complex_ value to take the conjugate of.
 
-### **Returns**
+### **Result**
 
 Returns a complex value equal to the input value except the sign of
 the imaginary component is the opposite of the input value.

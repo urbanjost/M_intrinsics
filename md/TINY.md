@@ -4,7 +4,7 @@
 
 **tiny**(3) - \[NUMERIC MODEL\] Smallest positive number of a real kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = tiny(x)
 ```
@@ -20,12 +20,12 @@ where KIND may be any kind supported by type _real_
 **tiny(x)** returns the smallest positive (non zero) number of the type
 and kind of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_.
 
-### **Returns**
+### **Result**
 
 The smallest positive value for the _real_ type of the specified kind.
 

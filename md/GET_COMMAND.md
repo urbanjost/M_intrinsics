@@ -4,7 +4,7 @@
 
 **get_command**(3) - \[SYSTEM:COMMAND LINE\] Get the entire command line
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call get_command(command, length, status)
 ```
@@ -26,7 +26,7 @@ turned off by turning off globbing or quoting the command line arguments
 and/or changing the default field separators, but this should rarely
 be necessary.
 
-### **Returns**
+### **Result**
 
 - **command**
   : Shall be of type _character_ and of default kind. If

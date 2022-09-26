@@ -4,7 +4,7 @@
 
 **count**(3) - \[ARRAY REDUCTION\] Count function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = count(mask [,dim] [,kind] )
 ```
@@ -29,7 +29,7 @@ argument is supplied, counts the number of elements along each row of
 the array in the **dim** direction. If the array has zero size, or all of
 the elements of **mask** are false, then the result is **0**.
 
-### **Arguments**
+### **Options**
 
 - **mask**
   : an array to count the number of _.true._ values in
@@ -42,7 +42,7 @@ the elements of **mask** are false, then the result is **0**.
   : An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is the number of _.true_. values in **mask** if **dim**
 is not present.

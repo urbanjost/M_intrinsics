@@ -4,7 +4,7 @@
 
 **ubound**(3) - \[ARRAY INQUIRY\] Upper dimension bounds of an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = ubound(array, dim, kind)
 ```
@@ -15,7 +15,7 @@
 Returns the upper bounds of an array, or a single upper bound along the
 **dim** dimension.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array, of any type.
@@ -27,7 +27,7 @@ Returns the upper bounds of an array, or a single upper bound along the
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of kind **kind**. If **kind**
 is absent, the return value is of default integer kind.

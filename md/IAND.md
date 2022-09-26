@@ -4,7 +4,7 @@
 
 **iand**(3) - \[BIT:LOGICAL\] Bitwise logical and
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = iand(i, j)
 ```
@@ -18,7 +18,7 @@
 
 Bitwise logical **and**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The type shall be _integer_.
@@ -26,7 +26,7 @@ Bitwise logical **and**.
 - **j**
   : The type shall be _integer_, of the same kind as **i**.
 
-### **Returns**
+### **Result**
 
 The return type is _integer_, of the same kind as the arguments. (If the
 argument kinds differ, it is of the same kind as the larger argument.)

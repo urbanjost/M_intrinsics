@@ -4,7 +4,7 @@
 
 **achar**(3) - \[CHARACTER:CONVERSION\] returns a character in a specified position in the ASCII collating sequence
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=achar(i [,kind])
 ```
@@ -30,7 +30,7 @@ print unprintable characters such as escape and tab. For example:
 ```
 will clear the screen on an ANSI-compatible terminal display,
 
-### **Arguments**
+### **Options**
 
 - **i**
   : the _integer_ value to convert to an ASCII character, in the range
@@ -40,7 +40,7 @@ will clear the screen on an ANSI-compatible terminal display,
   : (optional) an _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is the requested character of type _character_ with a
 length of one. If the **kind** argument is present, the return value is of

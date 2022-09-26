@@ -4,7 +4,7 @@
 
 **huge**(3) - \[NUMERIC MODEL\] Largest number of a type and kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = huge(x)
 ```
@@ -21,14 +21,14 @@ associated _kind_.
 **huge(x)** returns the largest number that is not an infinity for the
 kind and type of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be an arbitrary value of type _real_ or _integer_.
   The value is used merely to determine what _kind_ and _type_ of
   scalar is being queried.
 
-### **Returns**
+### **Result**
 
 The return value is of the same type and kind as _x_ and is the
 largest value supported by the specified model.

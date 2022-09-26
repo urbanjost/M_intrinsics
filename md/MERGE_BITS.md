@@ -4,7 +4,7 @@
 
 **merge_bits**(3) - \[BIT:COPY\] Merge bits using a mask
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = merge_bits(i, j, mask)
 ```
@@ -41,7 +41,7 @@ are converted to the _integer_ type of the non-BOZ value(s) as if called
 by the intrinsic function **int()** with the kind of the non-BOZ value(s),
 so the BOZ values must be in the range of the type of the result.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : value to select bits from when the associated bit in the mask is **1**.
@@ -52,13 +52,13 @@ so the BOZ values must be in the range of the type of the result.
 - **mask**
   : a value whose bits are used as a mask to select bits from **i** and **j**
 
-### **Returns**
+### **Result**
 
 The bits blended from **i** and **j** using the mask **mask**. It is the
 same type as **i** if **i** is of type _integer_, otherwise the same type
 as **j**.
 
-### **Example**
+### **Examples**
 
 Sample program:
 ```fortran

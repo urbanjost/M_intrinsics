@@ -5,7 +5,7 @@
 **present**(3) - [STATE\] Determine whether an optional dummy argument
 is specified
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = present(a)
 ```
@@ -18,14 +18,14 @@ where the **TYPE** may be any type
 
 Determines whether an optional dummy argument is present.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : May be of any type and may be a pointer, scalar or array value,
   or a dummy procedure. It shall be the name of an optional dummy
   argument accessible within the current subroutine or function.
 
-### **Returns**
+### **Result**
 
 Returns either _.true._ if the optional argument **a** is present,
 or _.false._ otherwise.

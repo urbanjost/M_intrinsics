@@ -5,7 +5,7 @@
 **verify**(3) - \[CHARACTER:SEARCH\] Position of a character in a string
 of characters that does not appear in a given set of characters.
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = verify(string, set [,back] [,kind] )
 ```
@@ -36,7 +36,7 @@ conditions tested for with the C routines
 **isprint**(3c), **ispunct**(3c), **isspace**(3c), **isupper**(3c),
 and **isxdigit**(3c); but for a string as well an an array of strings.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : The string to search for an unmatched character.
@@ -54,7 +54,7 @@ and **isxdigit**(3c); but for a string as well an an array of strings.
   : An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The position of the first or last (if **back** is _.false._) unmatched
 character in **string**.

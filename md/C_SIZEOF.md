@@ -4,7 +4,7 @@
 
 **c_sizeof**(3) - \[ISO_C_BINDING\] Size in bytes of an expression
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = c_sizeof(x)
 ```
@@ -15,12 +15,12 @@
 **c_sizeof(x)** calculates the number of bytes of storage the
 expression **x** occupies.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The argument shall be an interoperable data entity.
 
-### **Returns**
+### **Result**
 
 The return value is of type integer and of the system-dependent kind
 c*size_t (from the \_iso_c_binding* module). Its value is the

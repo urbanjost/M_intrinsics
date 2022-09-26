@@ -4,7 +4,7 @@
 
 **bgt**(3) - \[BIT:COMPARE\] Bitwise greater than
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = bgt(i, j)
 ```
@@ -25,7 +25,7 @@
   Determines whether an integer is bitwise greater than another.
   Bit-level representations of values are platform-dependent.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of _integer_ type or a BOZ literal constant.
@@ -33,7 +33,7 @@
 - **j**
   : Shall be of _integer_ type or a BOZ literal constant.
 
-### **Returns**
+### **Result**
 
   The return value is of type _logical_ and of the default kind. The
   result is true if the sequence of bits represented by _i_ is greater

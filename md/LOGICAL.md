@@ -4,7 +4,7 @@
 
 **logical**(3) - \[TYPE:LOGICAL\] Converts one kind of _logical_ variable to another
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = logical(l [,kind])
 ```
@@ -18,7 +18,7 @@
 
 Converts one kind of _logical_ variable to another.
 
-### **Arguments**
+### **Options**
 
 - **l**
   : The type shall be _logical_.
@@ -27,7 +27,7 @@ Converts one kind of _logical_ variable to another.
   : An _integer_ initialization expression indicating the kind parameter
   of the result. If not present, the default kind is returned.
 
-### **Returns**
+### **Result**
 
 The return value is a _logical_ value equal to **l**, with a kind
 corresponding to **kind**, or of the default logical kind if **kind**

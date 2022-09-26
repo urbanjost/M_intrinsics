@@ -4,7 +4,7 @@
 
 **kind**(3) - \[KIND INQUIRY\] Kind of an entity
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = kind(x)
 ```
@@ -22,12 +22,12 @@
 
    **kind(x)** returns the kind value of the entity **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Value to query the kind of.
 
-### **Returns**
+### **Result**
 
   The return value indicates the kind of the argument **x**.
 

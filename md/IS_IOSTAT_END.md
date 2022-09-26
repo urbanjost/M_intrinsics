@@ -4,7 +4,7 @@
 
 **is_iostat_end**(3) - \[STATE\] Test for end-of-file value
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=is_iostat_end(iostat)
 ```
@@ -21,12 +21,12 @@ from an I/O statement) has the "end of file" I/O status value.
 The function is equivalent to comparing the variable with the
 **iostat_end** parameter of the intrinsic module **iso_fortran_env**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : An _integer_ status value to test if indicating end of file.
 
-### **Returns**
+### **Result**
 
 Returns a _logical_ of the default kind, _.true._ if **i** has the value
 which indicates an end of file condition for **iostat=** specifiers, and is

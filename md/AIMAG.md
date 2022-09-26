@@ -4,7 +4,7 @@
 
 **aimag**(3) - \[TYPE:NUMERIC\] Imaginary part of complex number
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=aimag(z)
 ```
@@ -21,12 +21,12 @@ This is similar to the modern complex-part-designator **%IM** which also
 designates the imaginary part of a value, accept a designator can appear
 on the left-hand side of an assignment as well, as in **val%im=10.0**.
 
-### **Arguments**
+### **Options**
 
 - **z**
   : The type of the argument shall be _complex_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_ with the kind type parameter of the
 argument.

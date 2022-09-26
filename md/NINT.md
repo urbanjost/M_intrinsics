@@ -4,7 +4,7 @@
 
 **nint**(3) - \[TYPE:NUMERIC\] Nearest whole number
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=nint(x [,kind])
 ```
@@ -31,7 +31,7 @@ If **x** is greater than zero, **nint(x)** has the value **int(x+0.5)**.
 If **x** is less than or equal to zero, **nint(x)** has the value
 **int(a-0.5)**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type of the argument shall be _real_.
@@ -41,7 +41,7 @@ If **x** is less than or equal to zero, **nint(x)** has the value
   parameter of the result. Otherwise, the kind type parameter is that
   of default _integer_ type.
 
-### **Returns**
+### **Result**
 
 - **answer**
   : The result is the integer nearest **x**, or if there are two integers
@@ -54,7 +54,6 @@ If **x** is less than or equal to zero, **nint(x)** has the value
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_nint
 implicit none

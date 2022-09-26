@@ -5,7 +5,7 @@
 **log_gamma**(3) - \[MATHEMATICS\] Logarithm of the absolute value of
 the Gamma function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = log_gamma(x)
 ```
@@ -22,13 +22,13 @@ the Gamma function
   **log_gamma(x)** computes the natural logarithm of the absolute value
   of the Gamma function.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : A non-negative (neither negative nor zero) value to render the
   result for.
 
-### **Returns**
+### **Result**
 
  The result has a value equal to a processor-dependent approximation
  to the natural logarithm of the absolute value of the gamma function

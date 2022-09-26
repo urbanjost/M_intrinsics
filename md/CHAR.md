@@ -4,7 +4,7 @@
 
 **char**(3) - \[CHARACTER\] Character conversion function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = char(i [,kind])
 ```
@@ -18,7 +18,7 @@
 
 **char(i, kind)** returns the character represented by the integer **i**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The type shall be _integer_.
@@ -27,7 +27,7 @@
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _character_
 

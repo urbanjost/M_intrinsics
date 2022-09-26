@@ -4,7 +4,7 @@
 
 **sum**(3) - \[ARRAY REDUCTION\] sum the elements of an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
    result = sum(array ,[mask])
 ```
@@ -32,7 +32,7 @@ where **NUMERIC** is any numeric type and kind.
 Adds the elements of ARRAY along dimension DIM if the corresponding
 element in MASK is TRUE.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_, _real_ or _complex_.
@@ -45,7 +45,7 @@ element in MASK is TRUE.
   : (Optional) shall be of type _logical_ and either be a scalar or an
   array of the same shape as ARRAY.
 
-### **Returns**
+### **Result**
 
 The result is of the same type as ARRAY.
 

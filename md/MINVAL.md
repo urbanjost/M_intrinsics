@@ -4,7 +4,7 @@
 
 **minval**(3) - \[ARRAY REDUCTION\] Minimum value of an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = minval(array, mask)
 ```
@@ -26,7 +26,7 @@
      logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 where **NUMERIC** is any numeric type and kind.
- 
+
 ### **Description**
 
   Determines the minimum value of the elements in an array value, or,
@@ -41,7 +41,7 @@ where **NUMERIC** is any numeric type and kind.
   numeric, or a string of **char(len=255)** characters if **array**
   is of character type.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_, _real_, or _character_.
@@ -54,7 +54,7 @@ where **NUMERIC** is any numeric type and kind.
 - **mask**
   : Shall be an array of type _logical_, and conformable with **array**.
 
-### **Returns**
+### **Result**
 
 If **dim** is absent, or if **array** has a rank of one, the result is a scalar.
 

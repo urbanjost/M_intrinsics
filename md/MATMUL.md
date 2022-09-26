@@ -5,7 +5,7 @@
 **matmul**(3) - \[TRANSFORMATIONAL\] numeric or logical matrix
 multiplication
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=matmul(matrix_a,matrix_b)
 ```
@@ -26,7 +26,7 @@ multiplication
  **matmul**(3) performs a matrix multiplication on numeric or logical
  arguments.
 
-### **Arguments**
+### **Options**
 
 - **matrix_a**
   : A numeric or logical array with a rank of one or two.
@@ -39,7 +39,7 @@ multiplication
   Note that **matrix_a** and **matrix_b** may be different numeric
   types.
 
-### **Returns**
+### **Result**
 
 ####  **Numeric Arguments**
 
@@ -219,6 +219,8 @@ Fortran 95 and later
 
 [**product**(3)](#product),
 [**transpose**(3)](#transpose)
+
+### **Resources**
 
 - [Matrix multiplication : Wikipedia](https://en.wikipedia.org/wiki/Matrix_multiplication)
 - The Winograd variant of Strassen's matrix-matrix multiply algorithm may

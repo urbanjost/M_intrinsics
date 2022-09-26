@@ -4,7 +4,7 @@
 
 **execute_command_line**(3) - \[SYSTEM:PROCESSES\] Execute a shell command
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call execute_command_line( &
     & command [,wait] [,exitstat] [,cmdstat] [,cmdmsg] )
@@ -40,7 +40,7 @@ When the command is executed synchronously, **execute_command_line**
 returns after the command line has completed execution. Otherwise,
 **execute_command_line** returns without waiting.
 
-### **Arguments**
+### **Options**
 
 - **command**
   : a default _character_ scalar containing the command line to be

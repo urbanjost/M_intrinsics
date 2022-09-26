@@ -4,7 +4,7 @@
 
 **system_clock**(3) - \[SYSTEM:TIME\] Return numeric data from a real-time clock.
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call system_clock([count] [,count_rate] [,count_max] )
 ```
@@ -38,7 +38,7 @@ clocks may be 24-hour clocks or measure processor clock ticks since
 boot, for example). It is most often used for measuring or tracking the
 time spent in code blocks in lieu of using profiling tools.
 
-### **Arguments**
+### **Options**
 
 - **count**
   : (optional) shall be an _integer_ scalar. It is assigned a

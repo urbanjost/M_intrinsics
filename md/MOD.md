@@ -4,7 +4,7 @@
 
 **mod**(3) - \[NUMERIC\] Remainder function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = mod(a, p)
 ```
@@ -21,7 +21,7 @@
 
 **mod**(a,p) computes the remainder of the division of **a** by **p**.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : Shall be a scalar of type _integer_ or _real_.
@@ -30,7 +30,7 @@
   : Shall be a scalar of the same type and kind as **a** and not equal to
   zero.
 
-### **Returns**
+### **Result**
 
 The return value is the result of **a - (int(a/p) \* p)**. The type and kind
 of the return value is the same as that of the arguments. The returned

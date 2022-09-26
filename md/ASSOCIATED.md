@@ -4,7 +4,7 @@
 
 **associated**(3) - \[STATE\] Status of a pointer or pointer/target pair
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = associated(pointer [,target])
 ```
@@ -24,7 +24,7 @@
 **associated(pointer \[, target\])** determines the status of the
 pointer **pointer** or if **pointer** is associated with the target **target**.
 
-### **Arguments**
+### **Options**
 
 - **pointer**
   : A pointer to test for association
@@ -35,7 +35,7 @@ pointer **pointer** or if **pointer** is associated with the target **target**.
 
 The association status of neither **pointer** nor **target** shall be undefined.
 
-### **Returns**
+### **Result**
 
 **associated(pointer)** returns a scalar value of type _logical_.
 There are several cases:

@@ -4,7 +4,7 @@
 
 **ishft**(3) - \[BIT:SHIFT\] Shift bits
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=ishftc( i, shift )
 ```
@@ -26,7 +26,7 @@
   Bits shifted out from the left end or right end are lost; zeros are
   shifted in from the opposite end.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The value specifying the pattern of bits to shift
@@ -39,7 +39,7 @@
   If the absolute value of **shift** is
   greater than **bit_size(i)**, the value is undefined.
 
-### **Returns**
+### **Result**
 
   The return value has the same characteristics (shape, kind, ...)  as  **i**.
 

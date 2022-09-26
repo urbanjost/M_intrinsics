@@ -4,7 +4,7 @@
 
 **selected_int_kind**(3) - \[KIND\] Choose integer kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = selected_int_kind(r)
 ```
@@ -17,7 +17,7 @@ type that can represent all values ranging from **-10\*\*r** (exclusive)
 to **10\*\*r** (exclusive). If there is no integer kind that accommodates
 this range, selected_int_kind returns **-1**.
 
-### **Arguments**
+### **Options**
 
 - **r**
   : Shall be a scalar and of type _integer_.

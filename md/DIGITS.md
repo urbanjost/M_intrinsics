@@ -4,7 +4,7 @@
 
 **digits**(3) - \[NUMERIC MODEL\] Significant digits function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = digits(x)
 ```
@@ -24,12 +24,12 @@ The return value is of type _integer_ of default kind.
 model representation of **x**. For example, on a system using a 32-bit
 floating point representation, a default real number would likely return 24.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type may be a scalar or array of type _integer_ or _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ of default kind.
 

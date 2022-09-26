@@ -4,7 +4,7 @@
 
 **transpose**(3) - \[ARRAY MANIPULATION\] Transpose an array of rank two
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = transpose(matrix)
 ```
@@ -18,13 +18,13 @@ A array is transposed by interchanging the rows and columns of the given
 matrix. That is, element (i, j) of the result has the value of element(j,
 i) for all (i, j).
 
-### **Arguments**
+### **Options**
 
 - **matrix**
   : The array to transpose, which shall be of any type and have a rank
   of two.
 
-### **Returns**
+### **Result**
 
 The transpose of the input array. The result has the same type as
 **matrix**, and has shape \[ m, n \] if **matrix** has shape \[ n, m \].

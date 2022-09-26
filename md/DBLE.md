@@ -4,7 +4,7 @@
 
 **dble**(3) - \[TYPE:NUMERIC\] Double conversion function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = dble(a)
 ```
@@ -21,12 +21,12 @@ supported by the TYPE.
 
 **dble(a)** Converts **a** to double precision _real_ type.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : The type shall be _integer_, _real_, or _complex_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _doubleprecision_. For _complex_ input,
 the returned value has the magnitude and sign of the real component

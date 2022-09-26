@@ -4,7 +4,7 @@
 
 **compiler_options**(3) - \[COMPILER INQUIRY\] Options passed to the compiler
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = compiler_options()
 ```
@@ -15,11 +15,11 @@
 
 compiler_options returns a string with the options used for compiling.
 
-### **Arguments**
+### **Options**
 
 None.
 
-### **Returns**
+### **Result**
 
 The return value is a default-kind string with system-dependent length.
 It contains the compiler flags used to compile the file, which called

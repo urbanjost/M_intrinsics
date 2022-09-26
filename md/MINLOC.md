@@ -4,7 +4,7 @@
 
 **minloc**(3) - \[ARRAY:LOCATION\] Location of the minimum value within an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = minloc(array [,mask])
 ```
@@ -41,7 +41,7 @@ where **NUMERIC** is any numeric type and kind.
   elements of **mask** along a given row are zero, the result value for
   that row is zero.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_, _real_, or _character_.
@@ -54,7 +54,7 @@ where **NUMERIC** is any numeric type and kind.
 - **mask**
   : Shall be an array of type _logical_, and conformable with **array**.
 
-### **Returns**
+### **Result**
 
 If **dim** is absent, the result is a rank-one array with a length equal
 to the rank of **array**. If **dim** is present, the result is an array

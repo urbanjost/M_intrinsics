@@ -4,7 +4,7 @@
 
 **c_f_pointer**(3) - \[ISO_C_BINDING\] Convert C into Fortran pointer
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call c_f_pointer(cptr, fptr, shape)
 ```
@@ -15,7 +15,7 @@
 **c_f_pointer(cptr, fptr\[, shape\])** Assign the target, the C
 pointer, **cptr** to the Fortran pointer **fptr** and specify its shape.
 
-### **Arguments**
+### **Options**
 
 - **cptr**
   : scalar of the type c_ptr. It is **intent(in)**.

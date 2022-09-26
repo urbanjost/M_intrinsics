@@ -4,7 +4,7 @@
 
 **selected_char_kind**(3) - \[KIND\] Select character kind such as "Unicode"
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = selected_char_kind(name)
 ```
@@ -19,7 +19,7 @@
   set named NAME, if a character set with such a name is supported, or
   **-1** otherwise.
 
-### **Arguments**
+### **Options**
 
 - **name**
   : A name to query the processor kind value of , and/or to determine
@@ -78,7 +78,7 @@ Results:
 
 ```text
     abcdefghijklmnopqrstuvwxyz
-    Hello World and Ni Hao --       
+    Hello World and Ni Hao --
 ```
 ### **Standard**
 

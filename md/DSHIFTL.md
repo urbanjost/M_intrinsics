@@ -4,7 +4,7 @@
 
 **dshiftl**(3) - \[BIT:COPY\] combined left shift of the bits of two integers
 
-### **Syntax**
+### **Synopsis**
     result = dshiftl(i, j, shift)
 ```fortran
 ```
@@ -64,7 +64,7 @@
 ```fortran
       ishftc(i, shift)
 ```
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of type _integer_.
@@ -82,7 +82,7 @@
     any **i** or **j** variable that is type _integer_ (ie. the size of either
     one that is not a BOZ literal constant).
 
-### **Returns**
+### **Result**
 
   The return value has same type and kind as **i** and/or **j**.
 

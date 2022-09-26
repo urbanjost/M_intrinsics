@@ -4,7 +4,7 @@
 
 **min**(3) - \[NUMERIC\] Minimum value of an argument list
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = min(a1, a2, a3, ... )
 ```
@@ -24,7 +24,7 @@ Where **TYPE** may be _integer_ or _real_
 
 Returns the argument with the smallest (most negative) value.
 
-### **Arguments**
+### **Options**
 
 - **a1**
   : The type shall be _integer_ or _real_.
@@ -32,7 +32,7 @@ Returns the argument with the smallest (most negative) value.
 - **a2, a3, ...**
   : An expression of the same type and kind as **a1**.
 
-### **Returns**
+### **Result**
 
 The return value corresponds to the minimum value among the arguments,
 and has the same type and kind as the first argument.

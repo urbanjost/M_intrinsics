@@ -4,7 +4,7 @@
 
 **dim**(3) - \[NUMERIC\] Positive difference
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = dim(x, y)
 ```
@@ -22,7 +22,7 @@ for the type.
 otherwise it returns zero. It is equivalent to **max(0,x-y)** where the
 arguments are all of the same type.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _integer_ or _real_
@@ -30,7 +30,7 @@ arguments are all of the same type.
 - **y**
   : The type shall be the same type and kind as **x**.
 
-### **Returns**
+### **Result**
 
 Returns the difference **xx -y** or zero, whichever is larger.
 The return value is the same type and kind as the input arguments **x**

@@ -4,7 +4,7 @@
 
 **allocated**(3) - \[ARRAY INQUIRY\] Status of an allocatable entity
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = allocated(entity)
 ```
@@ -21,12 +21,12 @@
   **allocated(arg)**  checks the allocation status of both arrays
   and scalars.
 
-### **Arguments**
+### **Options**
 
 - **entity**
   : the _allocatable_ object to test.
 
-### **Returns**
+### **Result**
 
   If the argument is allocated then the result is _.true._; otherwise,
   it returns _.false._.

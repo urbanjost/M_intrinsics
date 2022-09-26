@@ -4,7 +4,7 @@
 
 **bge**(3) - \[BIT:COMPARE\] Bitwise greater than or equal to
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=bge(i,j)
 ```
@@ -54,7 +54,7 @@
   position is considered to be less than the sequence with one in the
   unequal position.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The value to test if >= **j** based on the bit representation
@@ -65,7 +65,7 @@
   : The value to test **i** against.
     Shall be of _integer_ type or a BOZ literal constant.
 
-### **Returns**
+### **Result**
 
   The return value is of type _logical_ and of the default kind.
   It is _.true._ if **i** is bit-wise greater than **j** and _.false._

@@ -5,7 +5,7 @@
 **floor**(3) - \[NUMERIC\] function to return largest integral value
 not greater than argument
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = floor(a [,kind])
 ```
@@ -23,7 +23,7 @@ where _KIND_ is any valid value for type _integer_.
 That is, it picks the whole number at or to the left of the value on
 the scale **-huge(int(a,kind=KIND))-1** to **huge(int(a),kind=KIND)**.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : The type shall be _real_.
@@ -32,7 +32,7 @@ the scale **-huge(int(a,kind=KIND))-1** to **huge(int(a),kind=KIND)**.
   : (Optional) A scalar _integer_ constant initialization expression
   indicating the kind parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer(kind)_ if **kind** is present and of
 default-kind _integer_ otherwise.

@@ -4,7 +4,7 @@
 
 **shape**(3) - \[ARRAY INQUIRY\] Determine the shape of an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = shape(source [,kind])
 ```
@@ -21,7 +21,7 @@ it must be associated and allocatable arrays must be allocated.
 
 Determines the shape of an array.
 
-### **Arguments**
+### **Options**
 
 - **source**
   : Shall be an array or scalar of any type. If **source** is a pointer it
@@ -31,7 +31,7 @@ Determines the shape of an array.
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 An _integer_ array of rank one with as many elements as **source** has
 dimensions. The elements of the resulting array correspond to the extend

@@ -4,7 +4,7 @@
 
 **new_line**(3) - \[CHARACTER\] new-line character
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = new_line(c)
 ```
@@ -34,12 +34,12 @@ stream output if there is such a character.
 Case (iv)
 : Otherwise, the result is the blank character.
 
-### **Arguments**
+### **Options**
 
 - **C**
   : The argument shall be a scalar or array of the type _character_.
 
-### **Returns**
+### **Result**
 
 Returns a _character_ scalar of length one with the new-line character of
 the same kind as parameter **c**.
@@ -47,7 +47,6 @@ the same kind as parameter **c**.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_new_line
 implicit none
@@ -62,7 +61,6 @@ character(len=:),allocatable :: string
 
 end program demo_new_line
 ```
-
 Results:
 
 ```text
@@ -72,7 +70,6 @@ Results:
    This is record 1.
    This is record 2.
 ```
-
 ### **Standard**
 
 Fortran 2003 and later

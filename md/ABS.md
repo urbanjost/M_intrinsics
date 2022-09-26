@@ -4,7 +4,7 @@
 
 **abs**(3) - \[NUMERIC\] Absolute value
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=abs(a)
 ```
@@ -31,20 +31,23 @@
    zero, which is the definition used by **abs**(3) when dealing with
    _complex_ values (_see below_).
 
-### **Arguments**
+### **Options**
 
 - **a**
-  : The value to compute the absolute value of. the type of the argument
-  shall be an _integer_, _real_, or _complex_ scalar or array.
+  : The value to compute the absolute value of. 
 
-### **Returns**
+### **Result**
 
-   If **a** is of type _integer_ or _real_, the value of the result is
-   **|a|** and of the same type and kind as the input argument.
+   If **a** is of type _integer_ or _real_, the value of the result
+   is the absolute value **|a|** and of the same type and kind as the
+   input argument.
 
-   If **a** is _complex_ with value **(x, y)**,
-   the result is a _real_ equal to a processor-dependent approximation to
-   **sqrt(x\*\*2 + y\*\*2)** computed without undue overflow or underflow.
+   If **a** is _complex_ with value **(x, y)**, the result is a _real_
+   equal to a processor-dependent approximation to
+
+        **sqrt(x\*\*2 + y\*\*2)**
+
+   computed without undue overflow or underflow.
 
 ### **Examples**
 

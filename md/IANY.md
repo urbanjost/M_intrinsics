@@ -4,7 +4,7 @@
 
 **iany**(3) - \[BIT:LOGICAL\] Bitwise or of array elements
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = iany(array [,mask])
 ```
@@ -34,7 +34,7 @@ any _logical_ kind. **dim** may be of any _integer_ kind.
 Reduces with bitwise or (inclusive or) the elements of **array** along
 dimension **dim** if the corresponding element in **mask** is _.true._.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_
@@ -47,7 +47,7 @@ dimension **dim** if the corresponding element in **mask** is _.true._.
   : (Optional) shall be of type _logical_ and either be a scalar or an
   array of the same shape as **array**.
 
-### **Returns**
+### **Result**
 
 The result is of the same type as **array**.
 

@@ -4,7 +4,7 @@
 
 **rrspacing**(3) - \[MODEL_COMPONENTS\] Reciprocal of the relative spacing
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = rrspacing(x)
 ```
@@ -19,12 +19,12 @@ The return value is of the same type and kind as **x**.
 **rrspacing(x)** returns the reciprocal of the relative spacing of model
 numbers near **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of the same type and kind as **x**. The value returned
 is equal to **abs(fraction(x)) \* float(radix(x))\*\*digits(x)**.

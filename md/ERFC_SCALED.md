@@ -4,7 +4,7 @@
 
 **erfc_scaled**(3) - \[MATHEMATICS\] Error function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = erfc_scaled(x)
 ```
@@ -23,12 +23,12 @@ e^{x^2} \frac{2}{\sqrt{\pi}} \int_{x}^{\infty}
 e^{-t^2} dt.
 $$
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_ and of the same kind as **x**.
 

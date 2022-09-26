@@ -4,7 +4,7 @@
 
 **radix**(3) - \[NUMERIC MODEL\] Base of a model number
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = radix(x)
 ```
@@ -18,12 +18,12 @@
 
 **radix(x)** returns the base of the model representing the entity **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _integer_ or _real_
 
-### **Returns**
+### **Result**
 
 The return value is a scalar of type _integer_ and of the default integer
 kind.

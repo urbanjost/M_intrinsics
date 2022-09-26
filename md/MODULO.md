@@ -4,7 +4,7 @@
 
 **modulo**(3) - \[NUMERIC\] Modulo function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = modulo(a, p)
 ```
@@ -21,7 +21,7 @@
 
 **modulo(a,p)** computes the **a** modulo **p**.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : Shall be a scalar of type _integer_ or _real_.
@@ -30,7 +30,7 @@
   : Shall be a scalar of the same type and kind as **a**. It shall not be
   zero.
 
-### **Returns**
+### **Result**
 
 The type and kind of the result are those of the arguments.
 

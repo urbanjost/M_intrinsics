@@ -4,7 +4,7 @@
 
 **parity**(3) - \[TRANSFORMATIONAL\] Reduction with exclusive **OR**()
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = parity( mask [,dim] )
 ```
@@ -21,7 +21,7 @@ where KIND and LKIND are any supported kind for the type.
 Calculates the parity (i.e. the reduction using .xor.) of __mask__ along
 dimension __dim__.
 
-### **Arguments**
+### **Options**
 
   - __mask__
     : Shall be an array of type _logical_.
@@ -30,7 +30,7 @@ dimension __dim__.
     : (Optional) shall be a scalar of type _integer_ with a value in the
     range from __1 to n__, where __n__ equals the rank of __mask__.
 
-### **Returns**
+### **Result**
 
 The result is of the same type as __mask__.
 

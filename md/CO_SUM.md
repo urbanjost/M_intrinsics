@@ -4,7 +4,7 @@
 
 **co_sum**(3) - \[COLLECTIVE\] Sum of values on the current set of images
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call co_sum(a, result_image, stat, errmsg)
 ```
@@ -21,7 +21,7 @@ value is returned on all images. If the execution was successful and
 **stat** gets assigned a nonzero value and, if present, **errmsg** gets assigned
 a value describing the occurred error.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : shall be an integer, real or complex variable, which has the same

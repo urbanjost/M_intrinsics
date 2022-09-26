@@ -4,7 +4,7 @@
 
 **cshift**(3) - \[TRANSFORMATIONAL\] Circular shift elements of an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = cshift(array, shift, dim)
 ```
@@ -34,7 +34,7 @@
   of **array** along the given dimension are shifted. Elements shifted
   out one end of each rank one section are shifted back in the other end.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of any type.
@@ -45,7 +45,7 @@
 - **dim**
   : The type shall be _integer_.
 
-### **Returns**
+### **Result**
 
 Returns an array of same type and rank as the **array** argument.
 

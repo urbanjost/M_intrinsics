@@ -4,7 +4,7 @@
 
 **move_alloc**(3) - \[\] Move allocation from one object to another
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call move_alloc(src, dest)
 ```
@@ -15,7 +15,7 @@
 **move_alloc(src, dest)** moves the allocation from **src** to
 **dest**. **src** will become deallocated in the process.
 
-### **Arguments**
+### **Options**
 
 - **src**
   : allocatable, **intent(inout)**, may be of any type and kind.

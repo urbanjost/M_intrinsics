@@ -5,7 +5,7 @@
 
 **abs**(3) - \[NUMERIC\] Absolute value
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=abs(a)
 ```
@@ -32,13 +32,13 @@
    zero, which is the definition used by **abs**(3) when dealing with
    _complex_ values (_see below_).
 
-### **Arguments**
+### **Options**
 
 - **a**
   : The value to compute the absolute value of. the type of the argument
   shall be an _integer_, _real_, or _complex_ scalar or array.
 
-### **Returns**
+### **Result**
 
    If **a** is of type _integer_ or _real_, the value of the result is
    **|a|** and of the same type and kind as the input argument.
@@ -127,7 +127,7 @@ Result:
 
 **achar**(3) - \[CHARACTER:CONVERSION\] returns a character in a specified position in the ASCII collating sequence
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=achar(i [,kind])
 ```
@@ -153,7 +153,7 @@ print unprintable characters such as escape and tab. For example:
 ```
 will clear the screen on an ANSI-compatible terminal display,
 
-### **Arguments**
+### **Options**
 
 - **i**
   : the _integer_ value to convert to an ASCII character, in the range
@@ -163,7 +163,7 @@ will clear the screen on an ANSI-compatible terminal display,
   : (optional) an _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is the requested character of type _character_ with a
 length of one. If the **kind** argument is present, the return value is of
@@ -296,7 +296,7 @@ FORTRAN 77 and later, with KIND argument Fortran 2003 and later
 
 **acosh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Inverse hyperbolic cosine function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=acosh(x)
 ```
@@ -305,19 +305,20 @@ FORTRAN 77 and later, with KIND argument Fortran 2003 and later
 
      TYPE(kind=KIND),intent(in) :: x
 ```
-where TYPE may be _real_ or _complex_ and KIND may be any KIND supported
-by the associated type.
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
+by the associated type. The returned value will be of the same type and kind as
+the argument.
 
 ### **Description**
 
 **acosh(x)** computes the inverse hyperbolic cosine of **x** in radians.
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : the type shall be _real_ or _complex_.
+  : The value to compute the hyperbolic cosine of
 
-### **Returns**
+### **Result**
 
 The return value has the same type and kind as **x**.
 
@@ -329,7 +330,6 @@ lies between
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_acosh
 use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
@@ -338,22 +338,19 @@ real(kind=dp), dimension(3) :: x = [ 1.0d0, 2.0d0, 3.0d0 ]
    write (*,*) acosh(x)
 end program demo_acosh
 ```
-
 Results:
-
 ```text
  0.000000000000000E+000   1.31695789692482        1.76274717403909
 ```
-
 ### **Standard**
 
 Fortran 2008 and later
 
 ### **See Also**
-
-- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
-
 Inverse function: [**cosh**(3)](#cosh)
+
+### **Resources**
+- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -363,7 +360,7 @@ Inverse function: [**cosh**(3)](#cosh)
 
 **acos**(3) - \[MATHEMATICS:TRIGONOMETRIC\] arccosine (inverse cosine) function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=acos(x)
 ```
@@ -373,19 +370,20 @@ Inverse function: [**cosh**(3)](#cosh)
      TYPE(kind=KIND),intent(in) :: x
 ```
 where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type.
+by the associated type. The returned value will be of the same type and kind as
+the argument.
 
 ### **Description**
 
 **acos(x)** computes the arccosine of **x** (inverse of **cos(x)**).
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : Must be type _real_ or _complex_. If the type is _real_, the value
-  must satisfy |**x**| <= 1.
+  : The value to compute the arctangent of.
+  : If the type is _real_, the value must satisfy |**x**| <= 1.
 
-### **Returns**
+### **Result**
 
 The return value is of the same type and kind as **x**. The _real_ part of
 the result is in radians and lies in the range **0 \<= acos(x%re) \<= PI** .
@@ -411,9 +409,7 @@ real(kind=real64),parameter :: d2r=acos(-1.0_real64)/180.0_real64
 
 end program demo_acos
 ```
-
 Results:
-
 ```text
    acos( .8660000000000000 ) is  .5236495809318289
    90 degrees is  1.570796326794897  radians
@@ -421,16 +417,15 @@ Results:
    for reference PI ~ 3.14159265358979323846264338327950288419716939937510
    elemental 3.141593 2.094395 1.570796 1.047198 .000000
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later; for a _complex_ argument - Fortran 2008 and later
 
 ### **See Also**
-
-- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
-
 Inverse function: [**cos**(3](cos))
+
+### **Resources**
+- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -440,7 +435,7 @@ Inverse function: [**cos**(3](cos))
 
 **adjustl**(3) - \[CHARACTER:WHITESPACE\] Left-adjust a string
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=adjustl(string)
 ```
@@ -454,12 +449,12 @@ Inverse function: [**cos**(3](cos))
 **adjustl(string)** will left-adjust a string by removing leading
 spaces. Spaces are inserted at the end of the string as needed.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : the type shall be _character_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _character_ and of the same kind as **string**
 where leading spaces are removed and the same number of spaces are
@@ -511,7 +506,7 @@ Fortran 95 and later
 
 **adjustr**(3) - \[CHARACTER:WHITESPACE\] Right-adjust a string
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=adjustr(string)
 ```
@@ -526,12 +521,12 @@ Fortran 95 and later
 spaces. Spaces are inserted at the start of the string as needed to
 retain the original length.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : the type shall be _character_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _character_ and of the same kind as **string**
 where trailing spaces are removed and the same number of spaces are
@@ -593,7 +588,7 @@ Fortran 95 and later
 
 **aimag**(3) - \[TYPE:NUMERIC\] Imaginary part of complex number
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=aimag(z)
 ```
@@ -610,12 +605,12 @@ This is similar to the modern complex-part-designator **%IM** which also
 designates the imaginary part of a value, accept a designator can appear
 on the left-hand side of an assignment as well, as in **val%im=10.0**.
 
-### **Arguments**
+### **Options**
 
 - **z**
   : The type of the argument shall be _complex_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_ with the kind type parameter of the
 argument.
@@ -667,7 +662,7 @@ FORTRAN 77 and later
 
 **aint**(3) - \[NUMERIC\] Truncate to a whole number
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=aint(x [,kind])
 ```
@@ -684,7 +679,7 @@ is present. KIND defaults to the default _integer_ kind.
 
 **aint(x, kind)** truncates its argument to a whole number.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : the _real_ value to truncate.
@@ -693,7 +688,7 @@ is present. KIND defaults to the default _integer_ kind.
   : an _integer_ initialization expression indicating the
   kind parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_ with the kind type parameter of the
 argument if the optional **kind** is absent; otherwise, the kind type
@@ -760,7 +755,7 @@ FORTRAN 77 and later
 
 **all**(3) - \[ARRAY REDUCTION\] determines if all the values are true
 
-### **Syntax**
+### **Synopsis**
 ```fortran
    result = all(mask [,dim])
 ```
@@ -780,7 +775,7 @@ in the array along dimension **dim**.
 The mask is generally a logical expression, allowing for comparing
 arrays and many other common operations.
 
-### **Arguments**
+### **Options**
 
 - **mask**
   : shall be a logical array.
@@ -790,7 +785,7 @@ arrays and many other common operations.
   between one and the rank of **mask**. The corresponding actual argument
   shall not be an optional dummy argument.
 
-### **Returns**
+### **Result**
 
 "**all(mask)**" returns a scalar value of type _logical_ where the kind
 type parameter is the same as the kind type parameter of **mask**. If
@@ -875,7 +870,7 @@ Fortran 95 and later
 
 **allocated**(3) - \[ARRAY INQUIRY\] Status of an allocatable entity
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = allocated(entity)
 ```
@@ -892,12 +887,12 @@ Fortran 95 and later
   **allocated(arg)**  checks the allocation status of both arrays
   and scalars.
 
-### **Arguments**
+### **Options**
 
 - **entity**
   : the _allocatable_ object to test.
 
-### **Returns**
+### **Result**
 
   If the argument is allocated then the result is _.true._; otherwise,
   it returns _.false._.
@@ -969,7 +964,7 @@ Results:
 
 **anint**(3) - \[NUMERIC\] Nearest whole number
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = anint(a [,kind])
 ```
@@ -986,7 +981,7 @@ where the _kind_ of the result is the same as as **x** unless
 
 **anint(a \[, kind\])** rounds its argument to the nearest whole number.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : the type of the argument shall be _real_.
@@ -995,7 +990,7 @@ where the _kind_ of the result is the same as as **x** unless
   : (optional) an _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type real with the kind type parameter of the
 argument if the optional **kind** is absent; otherwise, the kind type
@@ -1061,7 +1056,7 @@ FORTRAN 77 and later
 
 **any**(3) - \[ARRAY REDUCTION\] determines if any of the values in the logical array are true.
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = any(mask [,dim])
 ```
@@ -1076,7 +1071,7 @@ FORTRAN 77 and later
 **any(mask, dim)** determines if any of the values in the logical
 array **mask** along dimension **dim** are _.true._.
 
-### **Arguments**
+### **Options**
 
 - **mask**
   : the type of the argument shall be _logical_ and it shall not be
@@ -1086,7 +1081,7 @@ array **mask** along dimension **dim** are _.true._.
   : (optional) dim shall be a scalar integer with a value that lies
   between one and the rank of mask.
 
-### **Returns**
+### **Result**
 
 **any(mask)** returns a scalar value of type _logical_ where the kind type
 parameter is the same as the kind type parameter of **mask**. If **dim** is
@@ -1144,7 +1139,7 @@ Fortran 95 and later
 
 **asinh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Inverse hyperbolic sine function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = asinh(x)
 ```
@@ -1153,28 +1148,28 @@ Fortran 95 and later
 
      TYPE(kind=KIND) :: x
 ```
-TYPE may be _real_ or _complex_, and the returned value has the type and
-kind of the input value.
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
+by the associated type. The returned value will be of the same type and kind as
+the argument.
 
 ### **Description**
 
 **asinh(x)** computes the inverse hyperbolic sine of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_.
+  : The value to compute the inverse hyperbolic sine of
 
-### **Returns**
+### **Result**
 
-The return value is of the same type and kind as **x**. If **x** is _complex_, the
-imaginary part of the result is in radians and lies between
-**-PI/2 \<= aimag(asinh(x)) \<= PI/2**.
+The return value is of the same type and kind as **x**. If **x** is
+_complex_, the imaginary part of the result is in radians and lies
+between **-PI/2 \<= aimag(asinh(x)) \<= PI/2**.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_asinh
 use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
@@ -1185,22 +1180,21 @@ real(kind=dp), dimension(3) :: x = [ -1.0d0, 0.0d0, 1.0d0 ]
 
 end program demo_asinh
 ```
-
 Results:
-
 ```text
   -0.88137358701954305  0.0000000000000000  0.88137358701954305
 ```
-
 ### **Standard**
 
 Fortran 2008 and later
 
 ### **See Also**
 
-- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
-
 Inverse function: [**sinh**(3)](#sinh)
+
+### **Resources**
+
+- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
  _fortran-lang intrinsic descriptions_
 
@@ -1210,7 +1204,7 @@ Inverse function: [**sinh**(3)](#sinh)
 
 **asin**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arcsine function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = asin(x)
 ```
@@ -1219,8 +1213,9 @@ Inverse function: [**sinh**(3)](#sinh)
 
      TYPE(kind=KIND) :: x
 ```
-where the returned value has the kind of the input value
-and TYPE may be _real_ or _complex_
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
+by the associated type. The returned value will be of the same type and kind as
+the argument.
 
 ### **Description**
 
@@ -1230,13 +1225,14 @@ The arcsine is the inverse function of the sine function. It is commonly
 used in trigonometry when trying to find the angle when the lengths of
 the hypotenuse and the opposite side of a right triangle are known.
 
-### **Arguments**
+### **Options**
 
 - **x**
+  : The value to compute the arcsine of
   : The type shall be either _real_ and a magnitude that is less than or
   equal to one; or be _complex_.
 
-### **Returns**
+### **Result**
 
 - **result**
   : The return value is of the same type and kind as **x**. The real part of
@@ -1255,7 +1251,6 @@ of the track using the arcsine. Given
      sin(theta) = 1.25 miles/50 miles (opposite/hypotenuse)
 
 Sample program:
-
 ```fortran
 program demo_asin
 use, intrinsic :: iso_fortran_env, only : dp=>real64
@@ -1277,15 +1272,12 @@ character(len=*),parameter :: all='(*(g0,1x))'
   print all, 'percent grade=',rise/run*100.0_dp
 end program demo_asin
 ```
-
 Results:
-
 ```
     angle of incline(radians) =    2.5002604899361139E-002
     angle of incline(degrees) =    1.4325437375665075
     percent grade=   2.5000000000000000
 ```
-
 The percentage grade is the slope, written as a percent. To calculate
 the slope you divide the rise by the run. In the example the rise is
 1.25 mile over a run of 50 miles so the slope is 1.25/50 = 0.025.
@@ -1303,9 +1295,11 @@ FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 
 ### **See Also**
 
-- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
-
 Inverse function: [**sin**(3)](#sin)
+
+### **Resources**
+
+- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -1315,7 +1309,7 @@ Inverse function: [**sin**(3)](#sin)
 
 **associated**(3) - \[STATE\] Status of a pointer or pointer/target pair
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = associated(pointer [,target])
 ```
@@ -1335,7 +1329,7 @@ Inverse function: [**sin**(3)](#sin)
 **associated(pointer \[, target\])** determines the status of the
 pointer **pointer** or if **pointer** is associated with the target **target**.
 
-### **Arguments**
+### **Options**
 
 - **pointer**
   : A pointer to test for association
@@ -1346,7 +1340,7 @@ pointer **pointer** or if **pointer** is associated with the target **target**.
 
 The association status of neither **pointer** nor **target** shall be undefined.
 
-### **Returns**
+### **Result**
 
 **associated(pointer)** returns a scalar value of type _logical_.
 There are several cases:
@@ -1413,7 +1407,7 @@ Fortran 95 and later
 **atan2**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arctangent (inverse tangent)
 function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=atan2(y, x)
 ```
@@ -1432,7 +1426,7 @@ the arctangent of the complex number ( **x**, **y** ) or equivalently the
 principal value of the arctangent of the value **y/x** (which determines
 a unique angle).
 
-### **Arguments**
+### **Options**
 
 - **y**
   : The imaginary component of the complex value **(x,y)** or the **y**
@@ -1444,7 +1438,7 @@ a unique angle).
 
   **x**  must be of the same kind as **y**.
 
-### **Returns**
+### **Result**
 
 The type and kind of the result are the same as the elements of **x**.
 and **y**.
@@ -1571,15 +1565,18 @@ end program demo_atan2
    X= -1.00 Y= -1.00 ANGLE= 3.926991    DEGREES= 225.0  DISTANCE=1.414214
    X=  0.00 Y= -1.00 ANGLE= 4.712389    DEGREES= 270.0  DISTANCE=1.000000
 ```
-### **See Also**
-
-- [**atan**(3)](#atan)
-- [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
 ### **Standard**
 
 FORTRAN 77 and later
 
+### **See Also**
+
+- [**atan**(3)](#atan)
+
+### **Resources**
+
+- [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## atanh
@@ -1588,7 +1585,7 @@ FORTRAN 77 and later
 
 **atanh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Inverse hyperbolic tangent function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = atanh(x)
 ```
@@ -1597,29 +1594,29 @@ FORTRAN 77 and later
 
      TYPE(kind=KIND),intent(in) :: x
 ```
-where TYPE may be _real_ or _complex_ and KIND may be any KIND supported
-by the associated type.
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
+by the associated type. The returned value will be of the same type and kind as
+the argument.
 
 ### **Description**
 
 **atanh(x)** computes the inverse hyperbolic tangent of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_ or _complex_.
 
-### **Returns**
+### **Result**
 
 The return value has same type and kind as **x**. If **x** is _complex_, the
 imaginary part of the result is in radians and lies between
 
-**-PI/2 \<= aimag(atanh(x)) \<= PI/2**
+     **-PI/2 \<= aimag(atanh(x)) \<= PI/2**
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_atanh
 implicit none
@@ -1629,22 +1626,21 @@ real, dimension(3) :: x = [ -1.0, 0.0, 1.0 ]
 
 end program demo_atanh
 ```
-
 Results:
-
 ```text
    -Infinity   0.00000000             Infinity
 ```
-
 ### **Standard**
 
 Fortran 2008 and later
 
 ### **See Also**
 
-- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
-
 Inverse function: [**tanh**(3)](#tanh)
+
+### **Resources**
+
+- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
  _fortran-lang intrinsic descriptions_
 
@@ -1654,7 +1650,7 @@ Inverse function: [**tanh**(3)](#tanh)
 
 **atan**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arctangent function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = atan([y], x)
 ```
@@ -1664,24 +1660,27 @@ Inverse function: [**tanh**(3)](#tanh)
      TYPE(kind=KIND),intent(in) :: x
      TYPE(kind=KIND),intent(in),optional :: y
 ```
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any **KIND**
-supported by the associated type. If **y** is present **x** is \_real`.
+If **y**
+is present **x** and **y** must both be _real_. Otherwise, **x** may be
+_complex_. **KIND** be any kind supported by the associated type.
+
+The returned value is of the same type and kind as **x**.
 
 ### **Description**
 
 **atan(x)** computes the arctangent of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_; if **y** is present, **x**
-  shall be _real_.
+  : The value to compute the arctangent of.
+  if **y** is present, **x** shall be _real_.
 
 - **y**
   : Shall be of the same type and kind as **x**. If **x** is zero, **y**
   must not be zero.
 
-### **Returns**
+### **Result**
 
 The returned value is of the same type and kind as **x**. If **y** is
 present, the result is identical to **atan2(y,x)**. Otherwise, it is the
@@ -1713,7 +1712,6 @@ real(kind=real64) :: x
 end program demo_atan
 ```
 Results:
-
 ```text
    1.235085437457879
    .7853981633974483 45.00000000000000
@@ -1728,9 +1726,11 @@ arguments Fortran 2008 or later
 
 ### **See Also**
 
-- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
-
 [**atan2**(3)](#atan2), [**tan**(3)](#tan)
+
+### **Resources**
+
+- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -1740,7 +1740,7 @@ arguments Fortran 2008 or later
 
 **atomic_add**(3) - \[ATOMIC\] Atomic ADD operation
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call atomic_add (atom, value, stat)
 ```
@@ -1757,7 +1757,7 @@ ATOM, if the remote image has stopped, it is assigned the value of
 iso_fortran_env's stat_stopped_image and if the remote image has
 failed, the value stat_failed_image.
 
-### **Arguments**
+### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of integer type with
@@ -1804,7 +1804,7 @@ TS 18508 or later
 
 **atomic_and**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise AND operation
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call atomic_and(atom, value, stat)
 ```
@@ -1822,7 +1822,7 @@ particular, for a coindexed **atom**, if the remote image has stopped, it is
 assigned the value of iso_fortran_env's stat_stopped_image and if
 the remote image has failed, the value stat_failed_image.
 
-### **Arguments**
+### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of integer type with
@@ -1871,7 +1871,7 @@ TS 18508 or later
 
 **atomic_cas**(3) - \[ATOMIC\] Atomic compare and swap
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call atomic_cas (atom, old, compare, new, stat)
 ```
@@ -1890,7 +1890,7 @@ has stopped, it is assigned the value of iso_fortran_env's
 stat_stopped_image and if the remote image has failed, the value
 stat_failed_image.
 
-### **Arguments**
+### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of either integer type with
@@ -1941,7 +1941,7 @@ TS 18508 or later
 
 **atomic_define**(3) - \[ATOMIC\] Setting a variable atomically
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call atomic_define (atom, value, stat)
 ```
@@ -1962,7 +1962,7 @@ for a coindexed **atom**, if the remote image has stopped, it is assigned
 the value of iso_fortran_env's stat_stopped_image and if the remote
 image has failed, the value stat_failed_image.
 
-### **Arguments**
+### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of either integer type with
@@ -2011,7 +2011,7 @@ Fortran 2008 and later; with **stat**, TS 18508 or later
 
 **atomic_fetch_add**(3) - \[ATOMIC\] Atomic ADD operation with prior fetch
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call atomic_fetch_add(atom, value, old, stat)
 ```
@@ -2029,7 +2029,7 @@ has stopped, it is assigned the value of iso_fortran_env's
 stat_stopped_image and if the remote image has failed, the value
 stat_failed_image.
 
-### **Arguments**
+### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of integer type with
@@ -2081,7 +2081,7 @@ TS 18508 or later
 
 **atomic_fetch_and**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise AND operation with prior fetch
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call atomic_fetch_and(atom, value, old, stat)
 ```
@@ -2099,7 +2099,7 @@ failed, it is assigned a positive value; in particular, for a coindexed
 iso_fortran_env's stat_stopped_image and if the remote image has
 failed, the value stat_failed_image.
 
-### **Arguments**
+### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of integer type with
@@ -2151,7 +2151,7 @@ TS 18508 or later
 
 **atomic_fetch_or**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise OR operation with prior fetch
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call atomic_fetch_or(atom, value, old, stat)
 ```
@@ -2169,7 +2169,7 @@ failed, it is assigned a positive value; in particular, for a coindexed
 iso_fortran_env's stat_stopped_image and if the remote image has
 failed, the value stat_failed_image.
 
-### **Arguments**
+### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of integer type with
@@ -2221,7 +2221,7 @@ TS 18508 or later
 
 **atomic_fetch_xor**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise XOR operation with prior fetch
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call atomic_fetch_xor (atom, value, old, stat)
 ```
@@ -2239,7 +2239,7 @@ failed, it is assigned a positive value; in particular, for a coindexed
 iso_fortran_env's stat_stopped_image and if the remote image has
 failed, the value stat_failed_image.
 
-### **Arguments**
+### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of integer type with
@@ -2291,7 +2291,7 @@ TS 18508 or later
 
 **atomic_or**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise OR operation
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call atomic_or(atom, value, stat)
 ```
@@ -2308,7 +2308,7 @@ particular, for a coindexed **atom**, if the remote image has stopped, it is
 assigned the value of iso_fortran_env's stat_stopped_image and if
 the remote image has failed, the value stat_failed_image.
 
-### **Arguments**
+### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of integer type with
@@ -2357,7 +2357,7 @@ TS 18508 or later
 
 **atomic_ref**(3) - \[ATOMIC\] Obtaining the value of a variable atomically
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call atomic_ref(value, atom, stat)
 ```
@@ -2374,7 +2374,7 @@ for a coindexed **atom**, if the remote image has stopped, it is assigned
 the value of iso_fortran_env's **stat_stopped_image** and if the remote
 image has failed, the value **stat_failed_image**.
 
-### **Arguments**
+### **Options**
 
 - **value**
   : Scalar of the same type as **atom**. If the kind is different, the value
@@ -2431,7 +2431,7 @@ Fortran 2008 and later; with STAT, TS 18508 or later
 
 **atomic_xor**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise OR operation
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call atomic_xor(atom, value, stat)
 ```
@@ -2448,7 +2448,7 @@ particular, for a coindexed **atom**, if the remote image has stopped, it is
 assigned the value of iso_fortran_env's stat_stopped_image and if
 the remote image has failed, the value stat_failed_image.
 
-### **Arguments**
+### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of integer type with
@@ -2495,7 +2495,7 @@ TS 18508 or later
 
 **bessel_j0**(3) - \[MATHEMATICS\] Bessel function of the first kind of order 0
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = bessel_j0(x)
 ```
@@ -2512,12 +2512,12 @@ The result is the same type and kind as **x**.
 **bessel_j0(x)** computes the Bessel function of the first kind
 of order **0** of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The value to operate on.
 
-### **Returns**
+### **Result**
 
 the Bessel function of the first kind of order **0** of **x**.
 The result lies in the range **-0.4027 \<= bessel(0,x) \<= 1**.
@@ -2561,7 +2561,7 @@ Fortran 2008 and later
 
 **bessel_j1**(3) - \[MATHEMATICS\] Bessel function of the first kind of order 1
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = bessel_j1(x)
 ```
@@ -2577,12 +2577,12 @@ where KIND may be any supported _real_ KIND.
 **bessel_j1(x)** computes the Bessel function of the first kind
 of order **1** of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_ and lies in the range
 **-0.5818 \<= bessel(0,x) \<= 0.5818** . It has the same kind as **x**.
@@ -2628,7 +2628,7 @@ Fortran 2008 and later
 
 **bessel_jn**(3) - \[MATHEMATICS\] Bessel function of the first kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = bessel_jn(n, x)
 ```
@@ -2666,7 +2666,7 @@ or
   function\|Bessel functions of the first kind of the orders **n1**
   to **n2**.
 
-### **Arguments**
+### **Options**
 
 - **n**
   : Shall be a scalar or an array of type _integer_.
@@ -2681,7 +2681,7 @@ or
   : Shall be a scalar or an array of type _real_.
   For **bessel_jn(n1, n2, x)** it shall be scalar.
 
-### **Returns**
+### **Result**
 
 The return value is a scalar of type _real_. It has the same kind
 as **x**.
@@ -2727,7 +2727,7 @@ Fortran 2008 and later
 
 **bessel_y0**(3) - \[MATHEMATICS\] Bessel function of the second kind of order 0
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = bessel_y0(x)
 ```
@@ -2743,12 +2743,12 @@ where KIND may be any supported _real_ KIND.
 **bessel_y0(x)** computes the Bessel function of the second
 kind of order 0 of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_. It has the same kind as **x**.
 
@@ -2793,7 +2793,7 @@ Fortran 2008 and later
 
 **bessel_y1**(3) - \[MATHEMATICS\] Bessel function of the second kind of order 1
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = bessel_y1(x)
 ```
@@ -2809,12 +2809,12 @@ where KIND may be any supported _real_ KIND.
 **bessel_y1(x)** computes the Bessel function of the second
 kind of order 1 of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
 
-### **Returns**
+### **Result**
 
 The return value is _real_. It has the same kind as **x**.
 
@@ -2852,7 +2852,7 @@ Fortran 2008 and later
 
 **bessel_yn**(3) - \[MATHEMATICS\] Bessel function of the second kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = bessel_yn(n, x)
 ```
@@ -2875,7 +2875,7 @@ shall conform.
 **bessel_yn(n1, n2, x)** returns an array with the Bessel
 function\|Bessel functions of the first kind of the orders **n1** to **n2**.
 
-### **Arguments**
+### **Options**
 
 - **n**
   : Shall be a scalar or an array of type _integer_.
@@ -2890,7 +2890,7 @@ function\|Bessel functions of the first kind of the orders **n1** to **n2**.
   : Shall be a scalar or an array of type _real_; for
   **bessel_yn(n1, n2, x)** it shall be scalar.
 
-### **Returns**
+### **Result**
 
 The return value is _real_. It has the same kind as **x**.
 
@@ -2934,7 +2934,7 @@ Fortran 2008 and later
 
 **bge**(3) - \[BIT:COMPARE\] Bitwise greater than or equal to
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=bge(i,j)
 ```
@@ -2983,7 +2983,7 @@ Fortran 2008 and later
   position is considered to be less than the sequence with one in the
   unequal position.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The value to test if >= **j** based on the bit representation
@@ -2994,7 +2994,7 @@ Fortran 2008 and later
   : The value to test **i** against.
     Shall be of _integer_ type or a BOZ literal constant.
 
-### **Returns**
+### **Result**
 
   The return value is of type _logical_ and of the default kind.
   It is _.true._ if **i** is bit-wise greater than **j** and _.false._
@@ -3099,7 +3099,7 @@ Fortran 2008 and later
 
 **bgt**(3) - \[BIT:COMPARE\] Bitwise greater than
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = bgt(i, j)
 ```
@@ -3120,7 +3120,7 @@ Fortran 2008 and later
   Determines whether an integer is bitwise greater than another.
   Bit-level representations of values are platform-dependent.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of _integer_ type or a BOZ literal constant.
@@ -3128,7 +3128,7 @@ Fortran 2008 and later
 - **j**
   : Shall be of _integer_ type or a BOZ literal constant.
 
-### **Returns**
+### **Result**
 
   The return value is of type _logical_ and of the default kind. The
   result is true if the sequence of bits represented by _i_ is greater
@@ -3186,7 +3186,7 @@ Fortran 2008 and later
 
 **bit_size**(3) - \[BIT:INQUIRY\] Bit size inquiry function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=bit_size(i)
 ```
@@ -3203,14 +3203,14 @@ parameter on the processor.
 **bit_size(i)** returns the number of bits (integer precision plus sign
 bit) represented by the type of the _integer_ **i**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : An _integer_ value of any kind whose size in bits is to be determined.
   Because only the type of the argument is examined, the argument need
   not be defined; **i** can be a scalar or an array.
 
-### **Returns**
+### **Result**
 
 The number of bits used to represent a value of the type
 of __i__. The result is a _integer_ scalar of the same kind as __i__.
@@ -3260,7 +3260,7 @@ Fortran 95 and later
 
 **ble**(3) - \[BIT:COMPARE\] Bitwise less than or equal to
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=ble(i,j)
 ```
@@ -3276,13 +3276,13 @@ Fortran 95 and later
   BOZ constant with a value valid for the _integer_ kind available with
   the most bits on the current platform.
 
-### **Syntax**
+### **Synopsis**
 
 ### **Description**
 
 Determines whether an integer is bitwise less than or equal to another.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of _integer_ type or a BOZ literal constant.
@@ -3290,7 +3290,7 @@ Determines whether an integer is bitwise less than or equal to another.
 - **j**
   : Shall be of _integer_ type or a BOZ constant.
 
-### **Returns**
+### **Result**
 
 The return value is of type _logical_ and of the default kind.
 
@@ -3345,7 +3345,7 @@ Fortran 2008 and later
 
 **blt**(3) - \[BIT:COMPARE\] Bitwise less than
 
-### **Syntax**
+### **Synopsis**
 ```fortran
   result=blt(i,j)
 ```
@@ -3365,7 +3365,7 @@ Fortran 2008 and later
 
 Determines whether an integer is bitwise less than another.
 
-### **Arguments**
+### **Options**
 
 - **i**
     Shall be of _integer_ type or a BOZ literal constant.
@@ -3373,7 +3373,7 @@ Determines whether an integer is bitwise less than another.
 - **j**
   : Shall be of _integer_ type or a BOZ constant.
 
-### **Returns**
+### **Result**
 
 The return value is of type _logical_ and of the default kind.
 
@@ -3428,7 +3428,7 @@ Fortran 2008 and later
 
 **btest**(3) - \[BIT:INQUIRY\] Tests a bit of an _integer_ value.
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=btest(i,pos)
 ```
@@ -3444,7 +3444,7 @@ where **KIND** is any _integer_ kind supported by the programming environment.
 
 **btest(i,pos)** returns logical _.true._ if the bit at **pos** in **i** is set.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The type shall be _integer_.
@@ -3455,7 +3455,7 @@ where **KIND** is any _integer_ kind supported by the programming environment.
 
   A value of zero refers to the least significant bit.
 
-### **Returns**
+### **Result**
 
 The result is a _logical_ that has the value _.true._ if bit
 position **pos** of **i** has the value **1** and the value
@@ -3565,7 +3565,7 @@ Fortran 95 and later
 
 **c_associated**(3) - \[ISO_C_BINDING\] Status of a C pointer
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = c_associated(c_prt_1, c_ptr_2)
 ```
@@ -3577,7 +3577,7 @@ Fortran 95 and later
 C pointer c_ptr_1 or if c_ptr_1 is associated with the target
 c_ptr_2.
 
-### **Arguments**
+### **Options**
 
 - **c_ptr_1**
   : Scalar of the type c_ptr or c_funptr.
@@ -3585,7 +3585,7 @@ c_ptr_2.
 - **c_ptr_2**
   : (Optional) Scalar of the same type as c_ptr_1.
 
-### **Returns**
+### **Result**
 
 The return value is of type _logical_; it is _.false_. if either c_ptr_1
 is a C NULL pointer or if c_ptr1 and c_ptr_2 point to different
@@ -3630,7 +3630,7 @@ Fortran 2003 and later
 
 **ceiling**(3) - \[NUMERIC\] Integer ceiling function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = ceiling(a [,kind])
 ```
@@ -3647,7 +3647,7 @@ kind is specified by the optional **kind** argument.
 
 **ceiling(a)** returns the least integer greater than or equal to **a**.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : A _real_ value to produce a result for.
@@ -3656,7 +3656,7 @@ kind is specified by the optional **kind** argument.
   : An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The result will be the _integer_ value equal to **a** or the least integer
 greater than **a** if the input value is not equal to a whole number.
@@ -3732,7 +3732,7 @@ Fortran 95 and later
 
 **c_f_pointer**(3) - \[ISO_C_BINDING\] Convert C into Fortran pointer
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call c_f_pointer(cptr, fptr, shape)
 ```
@@ -3743,7 +3743,7 @@ Fortran 95 and later
 **c_f_pointer(cptr, fptr\[, shape\])** Assign the target, the C
 pointer, **cptr** to the Fortran pointer **fptr** and specify its shape.
 
-### **Arguments**
+### **Options**
 
 - **cptr**
   : scalar of the type c_ptr. It is **intent(in)**.
@@ -3795,7 +3795,7 @@ Fortran 2003 and later
 
 **c_f_procpointer**(3) - \[ISO_C_BINDING\] Convert C into Fortran procedure pointer
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call c_f_procpointer(cptr, fptr)
 ```
@@ -3806,7 +3806,7 @@ Fortran 2003 and later
 **c_f_procpointer(cptr, fptr)** assigns the target of the C function
 pointer **cptr** to the Fortran procedure pointer **fptr**.
 
-### **Arguments**
+### **Options**
 
 - **cptr**
   : scalar of the type c_funptr. It is **intent(in)**.
@@ -3860,7 +3860,7 @@ Fortran 2003 and later
 
 **c_funloc**(3) - \[ISO_C_BINDING\] Obtain the C address of a procedure
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = c_funloc(x)
 ```
@@ -3870,12 +3870,12 @@ Fortran 2003 and later
 
 **c_funloc(x)** determines the C address of the argument.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Interoperable function or pointer to such function.
 
-### **Returns**
+### **Result**
 
 The return value is of type c_funptr and contains the C address of the
 argument.
@@ -3932,7 +3932,7 @@ Fortran 2003 and later
 
 **char**(3) - \[CHARACTER\] Character conversion function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = char(i [,kind])
 ```
@@ -3946,7 +3946,7 @@ Fortran 2003 and later
 
 **char(i, kind)** returns the character represented by the integer **i**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The type shall be _integer_.
@@ -3955,7 +3955,7 @@ Fortran 2003 and later
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _character_
 
@@ -4014,7 +4014,7 @@ of arguments, and search for certain arguments:
 
 **c_loc**(3) - \[ISO_C_BINDING\] Obtain the C address of an object
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = c_loc(x)
 ```
@@ -4024,7 +4024,7 @@ of arguments, and search for certain arguments:
 
 **c_loc(x)** determines the C address of the argument.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall have either the _pointer_ or _target_ attribute. It shall not be a
@@ -4032,7 +4032,7 @@ of arguments, and search for certain arguments:
   type and kind type parameters, or be a scalar, nonpolymorphic
   variable with no length type parameters.
 
-### **Returns**
+### **Result**
 
 The return value is of type c_ptr and contains the C address of the
 argument.
@@ -4073,7 +4073,7 @@ Fortran 2003 and later
 
 **cmplx**(3) - \[TYPE:NUMERIC\] Complex conversion function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = cmplx(x [,y] [,kind])
 ```
@@ -4167,7 +4167,7 @@ The following are examples of complex part designators:
        x%im = 0.0             !-- Sets the imaginary part of x to zero
 ````
 
-### **Arguments**
+### **Options**
 
 - **x**
   The type may be _integer_, _real_, or _complex_.
@@ -4180,7 +4180,7 @@ The following are examples of complex part designators:
   (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of _complex_ type, with a kind equal to **kind** if it is
 specified. If **kind** is not specified, the result is of the default
@@ -4239,7 +4239,7 @@ FORTRAN 77 and later
 
 **co_broadcast**(3) - \[COLLECTIVE\] Copy a value to all images the current set of images
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call co_broadcast(a, source_image, stat, errmsg)
 ```
@@ -4254,7 +4254,7 @@ is present, it is assigned the value zero. If the execution failed, **stat**
 gets assigned a nonzero value and, if present, **errmsg** gets assigned a
 value describing the occurred error.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : **intent(inout)** argument; shall have the same dynamic type and
@@ -4302,7 +4302,7 @@ end program demo_co_broadcast
 
 **co_lbound**(3) - \[COLLECTIVE\] Lower codimension bounds of an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
      result = co_lbound(coarray, dim, kind)
 ```
@@ -4313,7 +4313,7 @@ end program demo_co_broadcast
 Returns the lower bounds of a coarray, or a single lower cobound along
 the **dim** codimension.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an coarray, of any type.
@@ -4325,7 +4325,7 @@ the **dim** codimension.
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
 the return value is of default integer kind. If **dim** is absent, the
@@ -4350,7 +4350,7 @@ Fortran 2008 and later
 
 **co_max**(3) - \[COLLECTIVE\] Maximal value on the current set of images
 
-### **Syntax**
+### **Synopsis**
 ```fortran
      call co_max(a, result_image, stat, errmsg)
 ```
@@ -4367,7 +4367,7 @@ value is returned on all images. If the execution was successful and
 **stat** gets assigned a nonzero value and, if present, **errmsg** gets assigned
 a value describing the occurred error.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : shall be an integer, real or character variable, which has the same
@@ -4425,7 +4425,7 @@ TS 18508 or later
 
 **co_min**(3) - \[COLLECTIVE\] Minimal value on the current set of images
 
-### **Syntax**
+### **Synopsis**
 ```fortran
      call co_min(a, result_image, stat, errmsg)
 ```
@@ -4442,7 +4442,7 @@ value is returned on all images. If the execution was successful and
 **stat** gets assigned a nonzero value and, if present, **errmsg** gets assigned
 a value describing the occurred error.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : shall be an integer, real or character variable, which has the same
@@ -4494,7 +4494,7 @@ TS 18508 or later
 
 **command_argument_count**(3) - \[SYSTEM:COMMAND LINE\] Get number of command line arguments
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = command_argument_count()
 ```
@@ -4506,11 +4506,11 @@ TS 18508 or later
 **command_argument_count()** returns the number of arguments passed
 on the command line when the containing program was invoked.
 
-### **Arguments**
+### **Options**
 
 None
 
-### **Returns**
+### **Result**
 
 - **count**
   : The return value is of type default _integer_. It is the number of
@@ -4559,7 +4559,7 @@ Fortran 2003 and later
 
 **compiler_options**(3) - \[COMPILER INQUIRY\] Options passed to the compiler
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = compiler_options()
 ```
@@ -4570,11 +4570,11 @@ Fortran 2003 and later
 
 compiler_options returns a string with the options used for compiling.
 
-### **Arguments**
+### **Options**
 
 None.
 
-### **Returns**
+### **Result**
 
 The return value is a default-kind string with system-dependent length.
 It contains the compiler flags used to compile the file, which called
@@ -4625,7 +4625,7 @@ Fortran 2008
 
 **compiler_version**(3) - \[COMPILER INQUIRY\] Compiler version string
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = compiler_version()
 ```
@@ -4637,11 +4637,11 @@ Fortran 2008
 **compiler_version**(3) returns a string containing the name and
 version of the compiler.
 
-### **Arguments**
+### **Options**
 
 None.
 
-### **Returns**
+### **Result**
 
 The return value is a default-kind string with system-dependent length.
 It contains the name of the compiler and its version number.
@@ -4691,7 +4691,7 @@ Fortran 2008
 
 **conjg**(3) - \[NUMERIC\] Complex conjugate of a complex value
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = conjg(z)
 ```
@@ -4716,12 +4716,12 @@ For matrices of complex numbers, **conjg(array)** represents the
 element-by-element conjugation of **array**; not the conjugate transpose
 of **array** .
 
-### **Arguments**
+### **Options**
 
 - **z**
   : The _complex_ value to take the conjugate of.
 
-### **Returns**
+### **Result**
 
 Returns a complex value equal to the input value except the sign of
 the imaginary component is the opposite of the input value.
@@ -4796,7 +4796,7 @@ FORTRAN 77 and later
 
 **co_reduce**(3) - \[COLLECTIVE\] Reduction of values on the current set of images
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call co_reduce(a, operation, result_image, stat, errmsg)
 ```
@@ -4817,7 +4817,7 @@ assigned the value zero. If the execution failed, **stat** gets assigned a
 nonzero value and, if present, **errmsg** gets assigned a value describing
 the occurred error.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : is an **intent(inout)** argument and shall be nonpolymorphic. If it
@@ -4899,7 +4899,7 @@ TS 18508 or later
 
 **cosh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Hyperbolic cosine function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = cosh(x)
 ```
@@ -4908,20 +4908,20 @@ TS 18508 or later
 
      TYPE(kind=KIND),intent(in) :: x
 ```
-where TYPE may be _real_ or _complex_ and KIND may be any
-supported kind for the associated type. The returned **value**
-will be the same type and kind as the input value **x**.
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
+by the associated type. The returned value will be of the same type and kind as
+the argument.
 
 ### **Description**
 
 **cosh(x)** computes the hyperbolic cosine of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_ or _complex_.
 
-### **Returns**
+### **Result**
 
 The return value has same type and kind as **x**. If **x** is _complex_, the
 imaginary part of the result is in radians.
@@ -4932,7 +4932,6 @@ If **x** is _real_, the return value has a lower bound of one,
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_cosh
 use, intrinsic :: iso_fortran_env, only : &
@@ -4942,16 +4941,17 @@ real(kind=real64) :: x = 1.0_real64
     x = cosh(x)
 end program demo_cosh
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later, for a complex argument - Fortran 2008 or later
 
 ### **See Also**
 
-- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
-
 Inverse function: [**acosh**(3)](#acosh)
+
+### **Resources**
+
+- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
  _fortran-lang intrinsic descriptions_
 
@@ -4961,7 +4961,7 @@ Inverse function: [**acosh**(3)](#acosh)
 
 **cos**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Cosine function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = cos(x)
 ```
@@ -4970,8 +4970,9 @@ Inverse function: [**acosh**(3)](#acosh)
 
      TYPE(kind=KIND),intent(in) :: x
 ```
-where TYPE may be _real_ or _complex_ and KIND may be any KIND supported
-by the associated type.
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
+by the associated type. The returned value will be of the same type and kind as
+the argument.
 
 ### **Description**
 
@@ -4981,13 +4982,13 @@ angle in radians.
 The cosine of a _real_ value is the ratio of the adjacent side to the
 hypotenuse of a right-angled triangle.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_ or _complex_.
   **x** is assumed to be in radians.
 
-### **Returns**
+### **Result**
 
 The return value is of the same type and kind as **x**.
 
@@ -4997,7 +4998,6 @@ the range **-1 \<= cos(x) \<= 1** .
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_cos
 implicit none
@@ -5011,9 +5011,7 @@ doubleprecision,parameter :: PI=atan(1.0d0)*4.0d0
    write(*,*)'COS(3000*PI)=',cos(3000*PI)
 end program demo_cos
 ```
-
 Results:
-
 ```
    COS(0.0)=        1.00000000
    COS(PI)=        -1.0000000000000000
@@ -5023,18 +5021,19 @@ Results:
    COS(-2*PI)=      1.0000000000000000
    COS(-2000*PI)=   1.0000000000000000
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later
 
 ### **See Also**
 
-- [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
-
 [**acos**(3)](#acos),
 [**sin**(3)](#sin),
 [**tan**(3)](#tan)
+
+### **Resources**
+
+- [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
  _fortran-lang intrinsic descriptions_
 
@@ -5044,7 +5043,7 @@ FORTRAN 77 and later
 
 **co_sum**(3) - \[COLLECTIVE\] Sum of values on the current set of images
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call co_sum(a, result_image, stat, errmsg)
 ```
@@ -5061,7 +5060,7 @@ value is returned on all images. If the execution was successful and
 **stat** gets assigned a nonzero value and, if present, **errmsg** gets assigned
 a value describing the occurred error.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : shall be an integer, real or complex variable, which has the same
@@ -5120,7 +5119,7 @@ TS 18508 or later
 
 **co_ubound**(3) - \[COLLECTIVE\] Upper codimension bounds of an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = co_ubound(coarray, dim, kind)
 ```
@@ -5131,7 +5130,7 @@ TS 18508 or later
 Returns the upper cobounds of a coarray, or a single upper cobound along
 the **dim** codimension.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an coarray, of any type.
@@ -5143,7 +5142,7 @@ the **dim** codimension.
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
 the return value is of default integer kind. If **dim** is absent, the
@@ -5169,7 +5168,7 @@ Fortran 2008 and later
 
 **count**(3) - \[ARRAY REDUCTION\] Count function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = count(mask [,dim] [,kind] )
 ```
@@ -5194,7 +5193,7 @@ argument is supplied, counts the number of elements along each row of
 the array in the **dim** direction. If the array has zero size, or all of
 the elements of **mask** are false, then the result is **0**.
 
-### **Arguments**
+### **Options**
 
 - **mask**
   : an array to count the number of _.true._ values in
@@ -5207,7 +5206,7 @@ the elements of **mask** are false, then the result is **0**.
   : An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is the number of _.true_. values in **mask** if **dim**
 is not present.
@@ -5331,7 +5330,7 @@ and later
 
 **cpu_time**(3) - \[SYSTEM:TIME\] return CPU processor time in seconds
 
-### **Syntax**
+### **Synopsis**
 ```fortran
      call cpu_time(time)
 ```
@@ -5357,7 +5356,7 @@ A processor for which a single result is inadequate (for example, a
 parallel processor) might choose to provide an additional version for
 which time is an array.
 
-### **Returns**
+### **Result**
 
 - **time**
   : The type shall be _real_ with **intent(out)**. It is assigned a
@@ -5410,7 +5409,7 @@ Fortran 95 and later
 
 **cshift**(3) - \[TRANSFORMATIONAL\] Circular shift elements of an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = cshift(array, shift, dim)
 ```
@@ -5440,7 +5439,7 @@ Fortran 95 and later
   of **array** along the given dimension are shifted. Elements shifted
   out one end of each rank one section are shifted back in the other end.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of any type.
@@ -5451,7 +5450,7 @@ Fortran 95 and later
 - **dim**
   : The type shall be _integer_.
 
-### **Returns**
+### **Result**
 
 Returns an array of same type and rank as the **array** argument.
 
@@ -5499,7 +5498,7 @@ Fortran 95 and later
 
 **c_sizeof**(3) - \[ISO_C_BINDING\] Size in bytes of an expression
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = c_sizeof(x)
 ```
@@ -5510,12 +5509,12 @@ Fortran 95 and later
 **c_sizeof(x)** calculates the number of bytes of storage the
 expression **x** occupies.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The argument shall be an interoperable data entity.
 
-### **Returns**
+### **Result**
 
 The return value is of type integer and of the system-dependent kind
 c*size_t (from the \_iso_c_binding* module). Its value is the
@@ -5563,7 +5562,7 @@ Fortran 2008
 
 **date_and_time**(3) - \[SYSTEM:TIME\] gets current time
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call date_and_time([date] [,time] [,zone] [,values] )
 ```
@@ -5582,7 +5581,7 @@ date and time information from the real-time system clock.
 
 Unavailable time and date _character_ parameters return blanks.
 
-### **Arguments**
+### **Options**
 
 - **date**
   : A character string of default kind of the form CCYYMMDD, of length 8 or larger.
@@ -5676,7 +5675,7 @@ date and time conversion, formatting and computation
 
 **dble**(3) - \[TYPE:NUMERIC\] Double conversion function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = dble(a)
 ```
@@ -5693,12 +5692,12 @@ supported by the TYPE.
 
 **dble(a)** Converts **a** to double precision _real_ type.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : The type shall be _integer_, _real_, or _complex_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _doubleprecision_. For _complex_ input,
 the returned value has the magnitude and sign of the real component
@@ -5741,7 +5740,7 @@ FORTRAN 77 and later
 
 **digits**(3) - \[NUMERIC MODEL\] Significant digits function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = digits(x)
 ```
@@ -5761,12 +5760,12 @@ The return value is of type _integer_ of default kind.
 model representation of **x**. For example, on a system using a 32-bit
 floating point representation, a default real number would likely return 24.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type may be a scalar or array of type _integer_ or _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ of default kind.
 
@@ -5824,7 +5823,7 @@ Fortran 95 and later
 
 **dim**(3) - \[NUMERIC\] Positive difference
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = dim(x, y)
 ```
@@ -5842,7 +5841,7 @@ for the type.
 otherwise it returns zero. It is equivalent to **max(0,x-y)** where the
 arguments are all of the same type.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _integer_ or _real_
@@ -5850,7 +5849,7 @@ arguments are all of the same type.
 - **y**
   : The type shall be the same type and kind as **x**.
 
-### **Returns**
+### **Result**
 
 Returns the difference **xx -y** or zero, whichever is larger.
 The return value is the same type and kind as the input arguments **x**
@@ -5903,7 +5902,7 @@ FORTRAN 77 and later
 
 **dot_product**(3) - \[TRANSFORMATIONAL\] Dot product function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = dot_product(vector_a, vector_b)
 ```
@@ -5933,7 +5932,7 @@ If the vectors are _logical_, the result is
 
      **any(vector_a .and. vector_b)**.
 
-### **Arguments**
+### **Options**
 
 - **vector_a**
   : The type shall be numeric or _logical_, rank 1.
@@ -5943,7 +5942,7 @@ If the vectors are _logical_, the result is
   if vector*a is of type \_logical*. vector_b shall be a rank-one
   array.
 
-### **Returns**
+### **Result**
 
 If the arguments are numeric, the return value is a scalar of numeric
 type, _integer_, _real_, or _complex_. If the arguments are _logical_, the
@@ -5989,7 +5988,7 @@ Fortran 95 and later
 
 **dprod**(3) - \[NUMERIC\] Double precision real product
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = dprod(x,y)
 ```
@@ -6010,7 +6009,7 @@ the product of **x** and **y**. It is recommended that the processor
 compute the product in double precision, rather than in single precision
 then converted to double precision.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : the multiplier, a _real_ value of default kind
@@ -6022,7 +6021,7 @@ then converted to double precision.
 The setting of compiler options specifying the size of a default _real_
 can affect this function.
 
-### **Returns**
+### **Result**
 
 The return value is doubleprecision (ie. _real(kind=kind(0.0d0))_).
 It should have the same value as **dble(x)\*dble(y)**.
@@ -6098,7 +6097,7 @@ FORTRAN 77 and later
 
 **dshiftl**(3) - \[BIT:COPY\] combined left shift of the bits of two integers
 
-### **Syntax**
+### **Synopsis**
     result = dshiftl(i, j, shift)
 ```fortran
 ```
@@ -6158,7 +6157,7 @@ FORTRAN 77 and later
 ```fortran
       ishftc(i, shift)
 ```
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of type _integer_.
@@ -6176,7 +6175,7 @@ FORTRAN 77 and later
     any **i** or **j** variable that is type _integer_ (ie. the size of either
     one that is not a BOZ literal constant).
 
-### **Returns**
+### **Result**
 
   The return value has same type and kind as **i** and/or **j**.
 
@@ -6253,7 +6252,7 @@ Fortran 2008 and later
 
 **dshiftr**(3) - \[BIT:COPY\] combined right shift of the bits of two integers
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = dshiftr(i, j, shift)
 ```
@@ -6309,7 +6308,7 @@ this has the same result as a negative circular shift
      ishftc( i,   -shift ).
 ```
 
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of type _integer_.
@@ -6322,7 +6321,7 @@ this has the same result as a negative circular shift
     It shall be nonnegative and less than or equal to **bit_size(result)**
     where "result" is the _integer_ kind of the returned value/input integers.
 
-### **Returns**
+### **Result**
 
 The return value has same type and kind as **i**.
 
@@ -6396,7 +6395,7 @@ Fortran 2008 and later
 
 **eoshift**(3) - \[TRANSFORMATIONAL\] End-off shift elements of an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = eoshift( array, shift [,boundary] [,dim] )
 ```
@@ -6441,7 +6440,7 @@ the following are copied in depending on the type of **array**.
     Logical        | .false.
     Character(len) |  LEN blanks
 
-### **Arguments**
+### **Options**
 
 - **array**
   : May be any type, not scalar.
@@ -6455,7 +6454,7 @@ the following are copied in depending on the type of **array**.
 - **dim**
   : The type shall be _integer_.
 
-### **Returns**
+### **Result**
 
 Returns an array of same type and rank as the **array** argument.
 
@@ -6505,7 +6504,7 @@ Fortran 95 and later
 
 **epsilon**(3) - \[NUMERIC MODEL\] Epsilon function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = epsilon(x)
 ```
@@ -6533,12 +6532,12 @@ If _delta_ is too small the algorithm might never halt, as a computation
 summing values smaller than the decimal resolution of the data type does
 not change.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of the same type as the argument.
 
@@ -6638,7 +6637,7 @@ Fortran 95 and later
 
 **erfc**(3) - \[MATHEMATICS\] Complementary error function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = erfc(x)
 ```
@@ -6666,12 +6665,12 @@ $$
 \text{erfc}(x) = 1 - \text{erf}(x) = 1 - \frac{2}{\sqrt{\pi}} \int_x^{\infty} e^{-t^2} dt.
 $$
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_ and of the same kind as **x**. It lies in
 the range
@@ -6706,6 +6705,8 @@ Fortran 2008 and later
 
 [**erf**(3)](#erf)
 
+### **Resources**
+
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
@@ -6716,7 +6717,7 @@ Fortran 2008 and later
 
 **erfc_scaled**(3) - \[MATHEMATICS\] Error function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = erfc_scaled(x)
 ```
@@ -6735,12 +6736,12 @@ e^{x^2} \frac{2}{\sqrt{\pi}} \int_{x}^{\infty}
 e^{-t^2} dt.
 $$
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_ and of the same kind as **x**.
 
@@ -6775,7 +6776,7 @@ Fortran 2008 and later
 
 **erf**(3) - \[MATHEMATICS\] Error function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = erf(x)
 ```
@@ -6793,12 +6794,12 @@ $$
 \text{erf}(x) = \frac{2}{\sqrt{\pi}} \int_0^x e^{__-t__^2} dt.
 $$
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_, of the same kind as **x** and lies in the
 range **-1** \<= **erf**(x) \<= 1 .
@@ -6831,6 +6832,8 @@ Fortran 2008 and later
 
 [**erfc**(3)](#erfc)
 
+### **Resources**
+
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 
  _fortran-lang intrinsic descriptions_
@@ -6841,7 +6844,7 @@ Fortran 2008 and later
 
 **event_query**(3) - \[COLLECTIVE\] Query whether a coarray event has occurred
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call event_query(event, count, stat)
 ```
@@ -6855,7 +6858,7 @@ posted to the **event** variable and not yet been removed by calling
 is assigned the value **0**. If it is present and the invocation has failed,
 it is assigned a positive value and **count** is assigned the value **-1**.
 
-### **Arguments**
+### **Options**
 
 - **event**
   : (intent(in)) Scalar of type event_type, defined in
@@ -6899,7 +6902,7 @@ TS 18508 or later
 
 **execute_command_line**(3) - \[SYSTEM:PROCESSES\] Execute a shell command
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call execute_command_line( &
     & command [,wait] [,exitstat] [,cmdstat] [,cmdmsg] )
@@ -6935,7 +6938,7 @@ When the command is executed synchronously, **execute_command_line**
 returns after the command line has completed execution. Otherwise,
 **execute_command_line** returns without waiting.
 
-### **Arguments**
+### **Options**
 
 - **command**
   : a default _character_ scalar containing the command line to be
@@ -7008,7 +7011,7 @@ Fortran 2008 and later
 
 **exp**(3) - \[MATHEMATICS\] Base-e exponential function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = exp(x)
 ```
@@ -7038,12 +7041,12 @@ then
 Since **exp**(3) is the inverse function of **log**(3) the maximum valid magnitude
 of the _real_ component of **x** is **log(huge(x))**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_ or _complex_.
 
-### **Returns**
+### **Result**
 
 The value of the result is **e\*\*x** where **e** is Euler's constant.
 
@@ -7102,6 +7105,8 @@ FORTRAN 77 and later
 
 - [**log**(3)](#log)
 
+### **Resources**
+
 - Wikipedia:[Exponential function](https://en.wikipedia.org/wiki/Exponential_function)
 
 - Wikipedia:[Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula)
@@ -7114,7 +7119,7 @@ FORTRAN 77 and later
 
 **exponent**(3) - \[MODEL_COMPONENTS\] Exponent function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = exponent(x)
 ```
@@ -7128,12 +7133,12 @@ FORTRAN 77 and later
 **exponent**(x) returns the value of the exponent part of **x**. If **x** is
 zero the value returned is zero.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type default _integer_.
 
@@ -7189,7 +7194,7 @@ Fortran 95 and later
 
 **extends_type_of**(3) - \[STATE\] determine if the dynamic type of **a** is an extension of the dynamic type of **mold**.
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=extends_type_of(a, mold)
 ```
@@ -7210,7 +7215,7 @@ is an extension of the dynamic type of **mold**.
   : shall be an object of extensible type. If it is a pointer, it
   shall not have an undefined association status.
 
-### **Returns**
+### **Result**
 
 - **result**
   : Default logical scalar.
@@ -7237,7 +7242,7 @@ is an extension of the dynamic type of **mold**.
 **findloc**(3) - \[ARRAY:LOCATION\] Location of first element of ARRAY
 identified by MASK along dimension DIM matching a target value
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
     findloc (array, value, dim, mask, kind, back)
@@ -7290,7 +7295,7 @@ element order.
 - **back**
   : (optional) shall be a logical scalar.
 
-### **Returns**
+### **Result**
 
 Result Characteristics. Integer. If **kind** is present, the kind type
 parameter is that specified by the value of **kind**; otherwise the kind
@@ -7310,7 +7315,7 @@ where
 
 is the shape of **array**.
 
-### **Returns**
+### **Result**
 
 - **Case (i):**
   The result of **findloc (array, value)** is a rank-one array whose
@@ -7436,7 +7441,7 @@ bounds for **b**.
 **floor**(3) - \[NUMERIC\] function to return largest integral value
 not greater than argument
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = floor(a [,kind])
 ```
@@ -7454,7 +7459,7 @@ where _KIND_ is any valid value for type _integer_.
 That is, it picks the whole number at or to the left of the value on
 the scale **-huge(int(a,kind=KIND))-1** to **huge(int(a),kind=KIND)**.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : The type shall be _real_.
@@ -7463,7 +7468,7 @@ the scale **-huge(int(a,kind=KIND))-1** to **huge(int(a),kind=KIND)**.
   : (Optional) A scalar _integer_ constant initialization expression
   indicating the kind parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer(kind)_ if **kind** is present and of
 default-kind _integer_ otherwise.
@@ -7530,7 +7535,7 @@ Fortran 95 and later
 
 **fraction**(3) - \[MODEL_COMPONENTS\] Fractional part of the model representation
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = fraction(x)
 ```
@@ -7545,12 +7550,12 @@ Fortran 95 and later
   **fraction(x)** returns the fractional part of the model representation
   of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The value to interrogate
 
-### **Returns**
+### **Result**
 
 The fractional part of the model representation of **x** is returned;
 it is **x \* radix(x)\*\*(-exponent(x))**.
@@ -7608,7 +7613,7 @@ Fortran 95 and later
 
 **gamma**(3) - \[MATHEMATICS\] Gamma function, which yields factorials for positive whole numbers
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = gamma(x)
 ```
@@ -7632,12 +7637,12 @@ $$
 t\*\*{x-1}{\\mathrm{e}}\*\*{__-t__}\\,{\\mathrm{d}}t
 $$
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_ and neither zero nor a negative integer.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_ of the same kind as _x_.
 
@@ -7735,6 +7740,8 @@ Fortran 2008 and later
 
 Logarithm of the Gamma function: [**log_gamma**(3)](#log_gamma)
 
+### **Resources**
+
 [Wikipedia: Gamma_function](https://en.wikipedia.org/wiki/Gamma_function)
 
  _fortran-lang intrinsic descriptions_
@@ -7745,7 +7752,7 @@ Logarithm of the Gamma function: [**log_gamma**(3)](#log_gamma)
 
 **get_command_argument**(3) - \[SYSTEM:COMMAND LINE\] Get command line arguments
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call get_command_argument(number, value, length, status)
 ```
@@ -7774,7 +7781,7 @@ shells are ignored.
   0**, **value** is set to the name of the program (on systems that support
   this feature).
 
-### **Returns**
+### **Result**
 
 - **value**
   : Shall be a scalar of type _character_ and of default kind. After
@@ -7879,7 +7886,7 @@ Fortran 2003 and later
 
 **get_command**(3) - \[SYSTEM:COMMAND LINE\] Get the entire command line
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call get_command(command, length, status)
 ```
@@ -7901,7 +7908,7 @@ turned off by turning off globbing or quoting the command line arguments
 and/or changing the default field separators, but this should rarely
 be necessary.
 
-### **Returns**
+### **Result**
 
 - **command**
   : Shall be of type _character_ and of default kind. If
@@ -7971,7 +7978,7 @@ Fortran 2003 and later
 
 **get_environment_variable**(3) - \[SYSTEM:ENVIRONMENT\] Get an environmental variable
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call get_environment_variable(name, value, length, status, trim_name)
 ```
@@ -8000,7 +8007,7 @@ being updated concurrently.
 
     Shall be a scalar of type _character_ and of default kind.
 
-### **Returns**
+### **Result**
 
 - **value**
   : The value of the environment variable being queried.
@@ -8100,7 +8107,7 @@ Fortran 2003 and later
 
 **huge**(3) - \[NUMERIC MODEL\] Largest number of a type and kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = huge(x)
 ```
@@ -8117,14 +8124,14 @@ associated _kind_.
 **huge(x)** returns the largest number that is not an infinity for the
 kind and type of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be an arbitrary value of type _real_ or _integer_.
   The value is used merely to determine what _kind_ and _type_ of
   scalar is being queried.
 
-### **Returns**
+### **Result**
 
 The return value is of the same type and kind as _x_ and is the
 largest value supported by the specified model.
@@ -8213,7 +8220,7 @@ Fortran 95 and later
 **hypot**(3) - \[MATHEMATICS\] returns the distance between the point
 and the origin.
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = hypot(x, y)
 ```
@@ -8236,7 +8243,7 @@ space is the length of a line segment between two points.
 **hypot(x,y)** returns the distance between the point **<x,y>** and
 the origin.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
@@ -8244,7 +8251,7 @@ the origin.
 - **y**
   : The type and kind type parameter shall be the same as **x**.
 
-### **Returns**
+### **Result**
 
 The return value has the same type and kind type parameter as **x**.
 
@@ -8316,7 +8323,7 @@ Fortran 2008 and later
 
 **iachar**(3) - \[CHARACTER:CONVERSION\] Return integer ASCII code of a character
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = iachar(c [,kind])
 ```
@@ -8336,7 +8343,7 @@ Fortran 2008 and later
   **iachar**(c) returns the code for the ASCII character in the first
   character position of C.
 
-### **Arguments**
+### **Options**
 
 - **c**
   : A character to determine the ASCII code of.
@@ -8348,7 +8355,7 @@ Fortran 2008 and later
   : A constant initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
   the result is the position of the character **c** in the ASCII
   collating sequence. It is nonnegative and less than or equal to 127.
@@ -8439,7 +8446,7 @@ Results:
 
 **iall**(3) - \[BIT:LOGICAL\] Bitwise and of array elements
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = iall(array [,mask])
 ```
@@ -8469,7 +8476,7 @@ any _logical_ kind. **dim** may be of any _integer_ kind.
 Reduces with bitwise _and_ the elements of **array** along dimension
 **dim** if the corresponding element in **mask** is _.true._.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_
@@ -8482,7 +8489,7 @@ Reduces with bitwise _and_ the elements of **array** along dimension
   : (Optional) shall be of type _logical_ and either be a scalar or an
   array of the same shape as **array**.
 
-### **Returns**
+### **Result**
 
 The result is of the same type as **array**.
 
@@ -8534,7 +8541,7 @@ Fortran 2008 and later
 
 **iand**(3) - \[BIT:LOGICAL\] Bitwise logical and
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = iand(i, j)
 ```
@@ -8548,7 +8555,7 @@ Fortran 2008 and later
 
 Bitwise logical **and**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The type shall be _integer_.
@@ -8556,7 +8563,7 @@ Bitwise logical **and**.
 - **j**
   : The type shall be _integer_, of the same kind as **i**.
 
-### **Returns**
+### **Result**
 
 The return type is _integer_, of the same kind as the arguments. (If the
 argument kinds differ, it is of the same kind as the larger argument.)
@@ -8605,7 +8612,7 @@ Fortran 95 and later
 
 **iany**(3) - \[BIT:LOGICAL\] Bitwise or of array elements
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = iany(array [,mask])
 ```
@@ -8635,7 +8642,7 @@ any _logical_ kind. **dim** may be of any _integer_ kind.
 Reduces with bitwise or (inclusive or) the elements of **array** along
 dimension **dim** if the corresponding element in **mask** is _.true._.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_
@@ -8648,7 +8655,7 @@ dimension **dim** if the corresponding element in **mask** is _.true._.
   : (Optional) shall be of type _logical_ and either be a scalar or an
   array of the same shape as **array**.
 
-### **Returns**
+### **Result**
 
 The result is of the same type as **array**.
 
@@ -8697,7 +8704,7 @@ Fortran 2008 and later
 
 **ibclr**(3) - \[BIT:SET\] Clear bit
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = ibclr(i, pos)
 ```
@@ -8713,7 +8720,7 @@ Fortran 2008 and later
 
 **ibclr** returns the value of **i** with the bit at position **pos** set to zero.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The type shall be _integer_.
@@ -8724,7 +8731,7 @@ Fortran 2008 and later
   _integer_. The value of **pos** must be within the range zero to
   **(bit_size(i)-1**).
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of the same kind as **i**.
 
@@ -8753,7 +8760,7 @@ Fortran 95 and later
 
 **ibits**(3) - \[BIT:COPY\] Bit extraction
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = ibits(i, pos, len)
 ```
@@ -8775,7 +8782,7 @@ bit position **pos** and extending left for **len** bits. The result is
 right-justified and the remaining bits are zeroed. The value of pos+len
 must be less than or equal to the value **bit_size(i)**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The type shall be _integer_.
@@ -8787,7 +8794,7 @@ must be less than or equal to the value **bit_size(i)**.
 - **len**
   : The type shall be _integer_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of the same kind as **i**.
 
@@ -8816,7 +8823,7 @@ Fortran 95 and later
 
 **ibset**(3) - \[BIT:SET\] Set bit
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = ibset(i, pos)
 ```
@@ -8833,7 +8840,7 @@ Fortran 95 and later
 
 **ibset** returns the value of **i** with the bit at position **pos** set to one.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The type shall be _integer_.
@@ -8844,7 +8851,7 @@ Fortran 95 and later
   _integer_. The value of pos must be within the range zero to
   **(bit_size(i)-1**).
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of the same kind as **i**.
 
@@ -8873,7 +8880,7 @@ Fortran 95 and later
 
 **ichar**(3) - \[CHARACTER:CONVERSION\] Character-to-integer conversion function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=ichar(c [,kind])
 ```
@@ -8894,7 +8901,7 @@ ASCII platform.
 See **iachar**(3) for specifically working with the ASCII character
 set.
 
-### **Arguments**
+### **Options**
 
 - **c**
   : Shall be a scalar _character_, with **intent(in)**
@@ -8903,7 +8910,7 @@ set.
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
 the return value is of default _integer_ kind.
@@ -9006,7 +9013,7 @@ of arguments, and search for certain arguments:
 
 **ieor**(3) - \[BIT:LOGICAL\] Bitwise logical exclusive or
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = ieor(i, j)
 ```
@@ -9023,7 +9030,7 @@ of arguments, and search for certain arguments:
 
 **ieor** returns the bitwise Boolean exclusive-**or** of **i** and **j**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The type shall be _integer_.
@@ -9031,7 +9038,7 @@ of arguments, and search for certain arguments:
 - **j**
   : The type shall be _integer_, of the same kind as **i**.
 
-### **Returns**
+### **Result**
 
 The return type is _integer_, of the same kind as the arguments. (If the
 argument kinds differ, it is of the same kind as the larger argument.)
@@ -9061,7 +9068,7 @@ Fortran 95 and later
 
 **image_index**(3) - \[COLLECTIVE\] Cosubscript to image index conversion
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = image_index(coarray, sub)
 ```
@@ -9071,7 +9078,7 @@ Fortran 95 and later
 
 Returns the image index belonging to a cosubscript.
 
-### **Arguments**
+### **Options**
 
 - **coarray**
   : Coarray of any type.
@@ -9080,7 +9087,7 @@ Returns the image index belonging to a cosubscript.
   : default integer rank-1 array of a size equal to the corank of
   **coarray**.
 
-### **Returns**
+### **Result**
 
 Scalar default integer with the value of the image index which
 corresponds to the cosubscripts. For invalid cosubscripts the result is
@@ -9116,7 +9123,7 @@ Fortran 2008 and later
 
 **index**(3) - \[CHARACTER:SEARCH\] Position of a substring within a string
 
-### **Syntax**
+### **Synopsis**
 ```fortran
 result=index( string, substring [,back] [,kind] )
 ```
@@ -9134,7 +9141,7 @@ Returns the position of the start of the leftmost or rightmost
 occurrence of string **substring** in **string**, counting from one. If
 **substring** is not present in **string**, zero is returned.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : string to be searched
@@ -9150,7 +9157,7 @@ occurrence of string **substring** in **string**, counting from one. If
   : An _integer_ initialization expression indicating the kind parameter
   of the result.
 
-### **Returns**
+### **Result**
 
 - **START**
   : The return value is of type _integer_ and of kind **kind**. If **kind** is
@@ -9208,7 +9215,7 @@ of arguments, and search for certain arguments:
 
 **int**(3) - \[TYPE:NUMERIC\] Convert to integer type by truncating towards zero
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = int(a [,kind])
 ```
@@ -9222,7 +9229,7 @@ of arguments, and search for certain arguments:
 
 Convert to integer type by truncating towards zero.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : Shall be of type _integer_, _real_, or _complex_ or a BOZ-literal-constant.
@@ -9233,7 +9240,7 @@ Convert to integer type by truncating towards zero.
 
   If not present the returned type is that of default integer type.
 
-### **Returns**
+### **Result**
 
 returns an _integer_ variable or array applying the following rules:
 
@@ -9340,7 +9347,7 @@ FORTRAN 77 and later
 
 **ior**(3) - \[BIT:LOGICAL\] Bitwise logical inclusive or
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = ior(i, j)
 ```
@@ -9357,7 +9364,7 @@ FORTRAN 77 and later
 
 **ior** returns the bit-wise Boolean inclusive-or of **i** and **j**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : an _integer_ scalar or array.
@@ -9365,7 +9372,7 @@ FORTRAN 77 and later
 - **j**
   : _integer_ scalar or array, of the same kind as **i**.
 
-### **Returns**
+### **Result**
 
 The return type is _integer_, of the same kind as the arguments. (If the
 argument kinds differ, it is of the same kind as the larger argument.)
@@ -9415,7 +9422,7 @@ Fortran 95 and later
 
 **iparity**(3) - \[BIT:LOGICAL\] Bitwise exclusive or of array elements
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = iparity(array, mask)
 ```
@@ -9444,7 +9451,7 @@ or
 Reduces with bitwise _xor_ (exclusive _or_) the elements of **array** along
 dimension **dim** if the corresponding element in **mask** is _.true._.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_
@@ -9457,7 +9464,7 @@ dimension **dim** if the corresponding element in **mask** is _.true._.
   : (Optional) shall be of type _logical_ and either be a scalar or an
   array of the same shape as **array**.
 
-### **Returns**
+### **Result**
 
 The result is of the same type as **array**.
 
@@ -9501,7 +9508,7 @@ Fortran 2008 and later
 
 **is_contiguous**(3) - \[ARRAY INQUIRY\] test if object is contiguous
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = is_contiguous(a)
 ```
@@ -9571,13 +9578,13 @@ An object is not contiguous if it is an array subobject, and
 
 It is processor-dependent whether any other object is contiguous.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : may be of any type. It shall be an array. If it is a pointer it
   shall be associated.
 
-### **Returns**
+### **Result**
 
 - **Result**
   : of type Default logical scalar. The result has the value true if **a**
@@ -9621,7 +9628,7 @@ Fortran 2008 and later
 
 **ishftc**(3) - \[BIT:SHIFT\] logical shift: shift rightmost bits circularly
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=ishftc( i, shift [,back] )
 ```
@@ -9650,7 +9657,7 @@ Fortran 2008 and later
   a value of zero corresponds to no shift, and a value less than zero
   corresponds to a right shift.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The value specifying the pattern of bits to shift
@@ -9668,7 +9675,7 @@ Fortran 2008 and later
   The default is **bit_size(i)**. That is, the default is to circularly shift
   the entire value **i**.
 
-### **Returns**
+### **Result**
 
   The result characteristics (kind, shape, size, ranke, ...) are the same as **i**.
 
@@ -9729,7 +9736,7 @@ Fortran 95 and later
 
 **ishft**(3) - \[BIT:SHIFT\] Shift bits
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=ishftc( i, shift )
 ```
@@ -9751,7 +9758,7 @@ Fortran 95 and later
   Bits shifted out from the left end or right end are lost; zeros are
   shifted in from the opposite end.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The value specifying the pattern of bits to shift
@@ -9764,7 +9771,7 @@ Fortran 95 and later
   If the absolute value of **shift** is
   greater than **bit_size(i)**, the value is undefined.
 
-### **Returns**
+### **Result**
 
   The return value has the same characteristics (shape, kind, ...)  as  **i**.
 
@@ -9812,7 +9819,7 @@ Fortran 95 and later
 
 **is_iostat_end**(3) - \[STATE\] Test for end-of-file value
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=is_iostat_end(iostat)
 ```
@@ -9829,12 +9836,12 @@ from an I/O statement) has the "end of file" I/O status value.
 The function is equivalent to comparing the variable with the
 **iostat_end** parameter of the intrinsic module **iso_fortran_env**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : An _integer_ status value to test if indicating end of file.
 
-### **Returns**
+### **Result**
 
 Returns a _logical_ of the default kind, _.true._ if **i** has the value
 which indicates an end of file condition for **iostat=** specifiers, and is
@@ -9877,7 +9884,7 @@ Fortran 2003 and later
 
 **is_iostat_eor**(3) - \[STATE\] Test for end-of-record value
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = is_iostat_eor(i)
 ```
@@ -9893,12 +9900,12 @@ status "end of record". The function is equivalent to comparing the
 variable with the **iostat_eor** parameter of the intrinsic module
 **iso_fortran_env**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The value to test as indicating "end of record".
 
-### **Returns**
+### **Result**
 
 Returns a _logical_ of the default kind, which is _.true._ if **i**
 has the value which indicates an end of file condition for iostat=
@@ -9942,7 +9949,7 @@ Fortran 2003 and later
 
 **kind**(3) - \[KIND INQUIRY\] Kind of an entity
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = kind(x)
 ```
@@ -9960,12 +9967,12 @@ Fortran 2003 and later
 
    **kind(x)** returns the kind value of the entity **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Value to query the kind of.
 
-### **Returns**
+### **Result**
 
   The return value indicates the kind of the argument **x**.
 
@@ -10003,7 +10010,7 @@ Fortran 95 and later
 
 **lbound**(3) - \[ARRAY INQUIRY\] Lower dimension bounds of an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
      result = lbound(array, dim, kind)
 ```
@@ -10019,7 +10026,7 @@ Fortran 95 and later
 Returns the lower bounds of an array, or a single lower bound along the
 **dim** dimension.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array, of any type.
@@ -10031,7 +10038,7 @@ Returns the lower bounds of an array, or a single lower bound along the
   : An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
 the return value is of default integer kind. If **dim** is absent, the
@@ -10124,7 +10131,7 @@ Fortran 95 and later, with KIND argument - Fortran 2003 and later
 
 **leadz**(3) - \[BIT:COUNT\] Number of leading zero bits of an integer
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = leadz(i)
 ```
@@ -10137,12 +10144,12 @@ Fortran 95 and later, with KIND argument - Fortran 2003 and later
 
 **leadz** returns the number of leading zero bits of an integer.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : _integer_ to count the leading zero bits of.
 
-### **Returns**
+### **Result**
 
 The type of the return value is the same as a default _integer_. If all
 the bits of **i** are zero, the result value is **bit_size(i)**.
@@ -10204,7 +10211,7 @@ Fortran 2008 and later
 
 **len**(3) - \[CHARACTER\] Length of a character entity
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=len(string [,kind])
 ```
@@ -10227,7 +10234,7 @@ returned, as all elements of an array are the same length.
 Note that **string** need not be defined when this intrinsic is invoked,
 as only the length (not the content) of **string** is needed.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : A scalar or array of type _character_ to return the length of
@@ -10236,7 +10243,7 @@ as only the length (not the content) of **string** is needed.
   : A constant _integer_ initialization expression indicating the _kind_
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of kind **kind**. If **kind**
 is absent, the return value is of default integer kind.
@@ -10347,7 +10354,7 @@ of arguments, and search for certain arguments:
 
 **len_trim**(3) - \[CHARACTER:WHITESPACE\] Length of a character entity without trailing blank characters
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = len_trim(string [,kind])
 ```
@@ -10364,7 +10371,7 @@ is absent, the return value is of default _integer_ kind.
 
 Returns the length of a character string, ignoring any trailing blanks.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : The input string whose length is to be measured.
@@ -10374,7 +10381,7 @@ Returns the length of a character string, ignoring any trailing blanks.
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 ### **Examples**
 
@@ -10437,7 +10444,7 @@ of arguments, and search for certain arguments:
 
 **lge**(3) - \[CHARACTER:COMPARE\] ASCII Lexical greater than or equal
 
-### **Syntax**
+### **Synopsis**
 ```fortran
      result = lge(string_a, stringb)
 ```
@@ -10461,7 +10468,7 @@ of arguments, and search for certain arguments:
   character ordering (which is not ASCII on some targets), whereas the
   former always use the ASCII ordering.
 
-### **Arguments**
+### **Options**
 
 - **string_a**
   : Shall be of default _character_ type.
@@ -10469,7 +10476,7 @@ of arguments, and search for certain arguments:
 - **string_b**
   : Shall be of default _character_ type.
 
-### **Returns**
+### **Result**
 
 Returns _.true._ if string_a \>= string_b, and _.false._ otherwise,
 based on the ASCII ordering.
@@ -10543,7 +10550,7 @@ of arguments, and search for certain arguments:
 
 **lgt**(3) - \[CHARACTER:COMPARE\] ASCII Lexical greater than
 
-### **Syntax**
+### **Synopsis**
 ```fortran
      result = lgt(string_a, stringb)
 ```
@@ -10567,7 +10574,7 @@ of arguments, and search for certain arguments:
   ordering (which is not ASCII on some targets), whereas the former
   always use the ASCII ordering.
 
-### **Arguments**
+### **Options**
 
 - **string_a**
   : Shall be of default _character_ type.
@@ -10575,7 +10582,7 @@ of arguments, and search for certain arguments:
 - **string_b**
   : Shall be of default _character_ type.
 
-### **Returns**
+### **Result**
 
   Returns _.true._ if string_a \> string_b, and _.false._ otherwise,
   based on the ASCII ordering.
@@ -10649,7 +10656,7 @@ FORTRAN 77 and later
 
 **lle**(3) - \[CHARACTER:COMPARE\] ASCII Lexical less than or equal
 
-### **Syntax**
+### **Synopsis**
 ```fortran
      result = lle(string_a, stringb)
 ```
@@ -10674,7 +10681,7 @@ FORTRAN 77 and later
   ordering (which is not ASCII on some targets), whereas the former
   always use the ASCII ordering.
 
-### **Arguments**
+### **Options**
 
 - **str_a**
   : variable or array of default _character_ type.
@@ -10685,7 +10692,7 @@ FORTRAN 77 and later
   if **str_a** and **str_b** are both arrays they must be of the
   same shape.
 
-### **Returns**
+### **Result**
 
 - **result**
   Returns _.true._ if **STR_A \<= STR_B**, and _.false._ otherwise, based on
@@ -10761,7 +10768,7 @@ of arguments, and search for certain arguments:
 
 **llt**(3) - \[CHARACTER:COMPARE\] ASCII Lexical less than
 
-### **Syntax**
+### **Synopsis**
 ```fortran
      result = llt(string_a, stringb)
 ```
@@ -10785,7 +10792,7 @@ of arguments, and search for certain arguments:
   ordering (which is not ASCII on some targets), whereas the former
   always use the ASCII ordering.
 
-### **Arguments**
+### **Options**
 
 - **string_a**
   : Shall be of default _character_ type.
@@ -10793,7 +10800,7 @@ of arguments, and search for certain arguments:
 - **string_b**
   : Shall be of default _character_ type.
 
-### **Returns**
+### **Result**
 
   Returns _.true._ if string_a \<= string_b, and _.false._ otherwise,
   based on the ASCII ordering.
@@ -10862,7 +10869,7 @@ of arguments, and search for certain arguments:
 
 **log10**(3) - \[MATHEMATICS\] Base 10 logarithm function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = log10(x)
 ```
@@ -10876,12 +10883,12 @@ of arguments, and search for certain arguments:
 **log10(x)** computes the base 10 logarithm of **x**. This
 is generally called the "common logarithm".
 
-### **Arguments**
+### **Options**
 
 - **x**
   : A _real_ value > 0 to take the log of.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_ . The kind type parameter is
 the same as **x**.
@@ -10926,7 +10933,7 @@ FORTRAN 77 and later
 **log_gamma**(3) - \[MATHEMATICS\] Logarithm of the absolute value of
 the Gamma function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = log_gamma(x)
 ```
@@ -10943,13 +10950,13 @@ the Gamma function
   **log_gamma(x)** computes the natural logarithm of the absolute value
   of the Gamma function.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : A non-negative (neither negative nor zero) value to render the
   result for.
 
-### **Returns**
+### **Result**
 
  The result has a value equal to a processor-dependent approximation
  to the natural logarithm of the absolute value of the gamma function
@@ -10987,7 +10994,7 @@ Gamma function: [**gamma**(3)](#gamma)
 
 **logical**(3) - \[TYPE:LOGICAL\] Converts one kind of _logical_ variable to another
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = logical(l [,kind])
 ```
@@ -11001,7 +11008,7 @@ Gamma function: [**gamma**(3)](#gamma)
 
 Converts one kind of _logical_ variable to another.
 
-### **Arguments**
+### **Options**
 
 - **l**
   : The type shall be _logical_.
@@ -11010,7 +11017,7 @@ Converts one kind of _logical_ variable to another.
   : An _integer_ initialization expression indicating the kind parameter
   of the result. If not present, the default kind is returned.
 
-### **Returns**
+### **Result**
 
 The return value is a _logical_ value equal to **l**, with a kind
 corresponding to **kind**, or of the default logical kind if **kind**
@@ -11059,7 +11066,7 @@ Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009
 
 **log**(3) - \[MATHEMATICS\] Logarithm function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = log(x)
 ```
@@ -11076,12 +11083,12 @@ Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009
   **log(x)** computes the natural logarithm of **x**, i.e. the logarithm to
   the base "e".
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The value to take the log of
 
-### **Returns**
+### **Result**
 
   The natural logarithm of **xx**.
   If **x** is _complex_, the imaginary part OMEGA is in the range
@@ -11117,7 +11124,7 @@ FORTRAN 77 and later
 
 **maskl**(3) - \[BIT:SET\] Generates a left justified mask
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = maskl( i [,kind] )
 ```
@@ -11134,7 +11141,7 @@ present, which is then used to specify the kind of the result.
 **maskl(i\[, _kind_\])** has its leftmost **i** bits set to **1**, and the
 remaining bits set to **0**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of type _integer_. Its value must be non-negative, and
@@ -11143,7 +11150,7 @@ remaining bits set to **0**.
 - **kind**
   : Shall be a scalar constant expression of type _integer_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_. If **kind** is present, it specifies
 the kind value of the return type; otherwise, it is of the default
@@ -11218,7 +11225,7 @@ Fortran 2008 and later
 
 **maskr**(3) - \[BIT:SET\] Generates a right-justified mask
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = maskr( i [,kind] )
 ```
@@ -11238,7 +11245,7 @@ is not present, else it is the kind specified by **kind**.
 The result  is an intger with its rightmost **i** bits set to 1, and the
 remaining bits set to 0.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of type _integer_.
@@ -11248,7 +11255,7 @@ remaining bits set to 0.
 - **kind**
   : Shall be a scalar constant expression of type _integer_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_. If **kind** is present, it
 specifies the kind value of the return type; otherwise, it is of the
@@ -11256,7 +11263,7 @@ default integer kind.
 
 It has its rightmost **i** bits set to 1, and the remaining bits set to 0.
 
-### **Example**
+### **Examples**
 
 Sample program:
 ```fortrqn
@@ -11332,7 +11339,7 @@ Fortran 2008 and later
 **matmul**(3) - \[TRANSFORMATIONAL\] numeric or logical matrix
 multiplication
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=matmul(matrix_a,matrix_b)
 ```
@@ -11353,7 +11360,7 @@ multiplication
  **matmul**(3) performs a matrix multiplication on numeric or logical
  arguments.
 
-### **Arguments**
+### **Options**
 
 - **matrix_a**
   : A numeric or logical array with a rank of one or two.
@@ -11366,7 +11373,7 @@ multiplication
   Note that **matrix_a** and **matrix_b** may be different numeric
   types.
 
-### **Returns**
+### **Result**
 
 ####  **Numeric Arguments**
 
@@ -11547,6 +11554,8 @@ Fortran 95 and later
 [**product**(3)](#product),
 [**transpose**(3)](#transpose)
 
+### **Resources**
+
 - [Matrix multiplication : Wikipedia](https://en.wikipedia.org/wiki/Matrix_multiplication)
 - The Winograd variant of Strassen's matrix-matrix multiply algorithm may
   be of interest for optimizing multiplication of very large matrices. See
@@ -11569,7 +11578,7 @@ Fortran 95 and later
 
 **maxexponent**(3) - \[NUMERIC MODEL\] Maximum exponent of a real kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = maxexponent(x)
 ```
@@ -11585,12 +11594,12 @@ where KIND is any _real_ kind.
 **maxexponent(x)** returns the maximum exponent in the model of the type
 of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of the default integer kind.
 
@@ -11643,7 +11652,7 @@ Fortran 95 and later
 
 **maxloc**(3) - \[ARRAY:LOCATION\] Location of the maximum value within an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = maxloc(array [,mask])
 ```
@@ -11683,7 +11692,7 @@ of **mask** are .false., then the result is an array of zeroes. Similarly,
 if **dim** is supplied and all of the elements of **mask** along a given
 row are zero, the result value for that row is zero.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_, _real_, or _character_.
@@ -11696,7 +11705,7 @@ row are zero, the result value for that row is zero.
 - **mask**
   : Shall be an array of type _logical_, and conformable with **array**.
 
-### **Returns**
+### **Result**
 
 If **dim** is absent, the result is a rank-one array with a length equal
 to the rank of **array**. If **dim** is present, the result is an array
@@ -11772,7 +11781,7 @@ Fortran 95 and later
 
 **max**(3) - \[NUMERIC\] Maximum value of an argument list
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = max(a1, a2, a3, ...)
 ```
@@ -11792,7 +11801,7 @@ Where **TYPE** may be _integer_ or _real_
 
 Returns the argument with the largest (most positive) value.
 
-### **Arguments**
+### **Options**
 
 - **a1**
   : The type shall be _integer_ or _real_.
@@ -11801,7 +11810,7 @@ Returns the argument with the largest (most positive) value.
   : An expression of the same type and kind as **a1**.
   There must be at least two arguments to **max(3)**.
 
-### **Returns**
+### **Result**
 
   The return value corresponds to the maximum value among the arguments,
   and has the same type and kind as the first argument.
@@ -11887,7 +11896,7 @@ FORTRAN 77 and later
 
 **maxval**(3) - \[ARRAY REDUCTION\] determines the maximum value in an array or row
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = maxval(array [,mask])
 ```
@@ -11920,7 +11929,7 @@ size, or all of the elements of **mask** are _.false._, then the result is the
 most negative number of the type and kind of **array** if **array** is numeric,
 or a string of nulls if **array** is of character type.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_, _real_, or _character_.
@@ -11934,7 +11943,7 @@ or a string of nulls if **array** is of character type.
   : (Optional) Shall be an array of type _logical_, and conformable with
   **array**.
 
-### **Returns**
+### **Result**
 
 If **dim** is absent, or if **array** has a rank of one, the result is a scalar.
 If **dim** is present, the result is an array with a rank one less than the
@@ -11986,7 +11995,7 @@ Fortran 95 and later
 
 **merge_bits**(3) - \[BIT:COPY\] Merge bits using a mask
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = merge_bits(i, j, mask)
 ```
@@ -12023,7 +12032,7 @@ are converted to the _integer_ type of the non-BOZ value(s) as if called
 by the intrinsic function **int()** with the kind of the non-BOZ value(s),
 so the BOZ values must be in the range of the type of the result.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : value to select bits from when the associated bit in the mask is **1**.
@@ -12034,13 +12043,13 @@ so the BOZ values must be in the range of the type of the result.
 - **mask**
   : a value whose bits are used as a mask to select bits from **i** and **j**
 
-### **Returns**
+### **Result**
 
 The bits blended from **i** and **j** using the mask **mask**. It is the
 same type as **i** if **i** is of type _integer_, otherwise the same type
 as **j**.
 
-### **Example**
+### **Examples**
 
 Sample program:
 ```fortran
@@ -12106,7 +12115,7 @@ Fortran 2008 and later
 
 **merge**(3) - \[ARRAY CONSTRUCTION\] Merge variables
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = merge(tsource, fsource, mask)
 ```
@@ -12152,7 +12161,7 @@ instead of the more obscure
 ```fortran
       merge(1.0/merge(x,1.0,x /= 0.0), 0.0, x /= 0.0)
 ```
-### **Arguments**
+### **Options**
 
 - **tsource**
   : May be of any type, including user-defined.
@@ -12165,7 +12174,7 @@ instead of the more obscure
 
 Note that (currently) _character_ values must be of the same length.
 
-### **Returns**
+### **Result**
 
 The result is of the same type and type parameters as **tsource**. For any
 element the result is **tsource** if **mask** is true and **fsource** otherwise.
@@ -12268,7 +12277,7 @@ Fortran 95 and later
 
 **minexponent**(3) - \[NUMERIC MODEL\] Minimum exponent of a real kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = minexponent(x)
 ```
@@ -12284,12 +12293,12 @@ where KIND is any _real_ kind.
 **minexponent(x)** returns the minimum exponent in the model of the type
 of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of the default integer kind.
 
@@ -12343,7 +12352,7 @@ Fortran 95 and later
 
 **minloc**(3) - \[ARRAY:LOCATION\] Location of the minimum value within an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = minloc(array [,mask])
 ```
@@ -12380,7 +12389,7 @@ where **NUMERIC** is any numeric type and kind.
   elements of **mask** along a given row are zero, the result value for
   that row is zero.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_, _real_, or _character_.
@@ -12393,7 +12402,7 @@ where **NUMERIC** is any numeric type and kind.
 - **mask**
   : Shall be an array of type _logical_, and conformable with **array**.
 
-### **Returns**
+### **Result**
 
 If **dim** is absent, the result is a rank-one array with a length equal
 to the rank of **array**. If **dim** is present, the result is an array
@@ -12448,7 +12457,7 @@ Fortran 95 and later
 
 **min**(3) - \[NUMERIC\] Minimum value of an argument list
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = min(a1, a2, a3, ... )
 ```
@@ -12468,7 +12477,7 @@ Where **TYPE** may be _integer_ or _real_
 
 Returns the argument with the smallest (most negative) value.
 
-### **Arguments**
+### **Options**
 
 - **a1**
   : The type shall be _integer_ or _real_.
@@ -12476,7 +12485,7 @@ Returns the argument with the smallest (most negative) value.
 - **a2, a3, ...**
   : An expression of the same type and kind as **a1**.
 
-### **Returns**
+### **Result**
 
 The return value corresponds to the minimum value among the arguments,
 and has the same type and kind as the first argument.
@@ -12512,7 +12521,7 @@ FORTRAN 77 and later
 
 **minval**(3) - \[ARRAY REDUCTION\] Minimum value of an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = minval(array, mask)
 ```
@@ -12549,7 +12558,7 @@ where **NUMERIC** is any numeric type and kind.
   numeric, or a string of **char(len=255)** characters if **array**
   is of character type.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_, _real_, or _character_.
@@ -12562,7 +12571,7 @@ where **NUMERIC** is any numeric type and kind.
 - **mask**
   : Shall be an array of type _logical_, and conformable with **array**.
 
-### **Returns**
+### **Result**
 
 If **dim** is absent, or if **array** has a rank of one, the result is a scalar.
 
@@ -12678,7 +12687,7 @@ Fortran 95 and later
 
 **mod**(3) - \[NUMERIC\] Remainder function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = mod(a, p)
 ```
@@ -12695,7 +12704,7 @@ Fortran 95 and later
 
 **mod**(a,p) computes the remainder of the division of **a** by **p**.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : Shall be a scalar of type _integer_ or _real_.
@@ -12704,7 +12713,7 @@ Fortran 95 and later
   : Shall be a scalar of the same type and kind as **a** and not equal to
   zero.
 
-### **Returns**
+### **Result**
 
 The return value is the result of **a - (int(a/p) \* p)**. The type and kind
 of the return value is the same as that of the arguments. The returned
@@ -12768,7 +12777,7 @@ FORTRAN 77 and later
 
 **modulo**(3) - \[NUMERIC\] Modulo function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = modulo(a, p)
 ```
@@ -12785,7 +12794,7 @@ FORTRAN 77 and later
 
 **modulo(a,p)** computes the **a** modulo **p**.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : Shall be a scalar of type _integer_ or _real_.
@@ -12794,7 +12803,7 @@ FORTRAN 77 and later
   : Shall be a scalar of the same type and kind as **a**. It shall not be
   zero.
 
-### **Returns**
+### **Result**
 
 The type and kind of the result are those of the arguments.
 
@@ -12852,7 +12861,7 @@ Fortran 95 and later
 
 **move_alloc**(3) - \[\] Move allocation from one object to another
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call move_alloc(src, dest)
 ```
@@ -12863,7 +12872,7 @@ Fortran 95 and later
 **move_alloc(src, dest)** moves the allocation from **src** to
 **dest**. **src** will become deallocated in the process.
 
-### **Arguments**
+### **Options**
 
 - **src**
   : allocatable, **intent(inout)**, may be of any type and kind.
@@ -12929,7 +12938,7 @@ Fortran 2003 and later
 
 **mvbits**(3) - \[BIT:COPY\] reproduce bit patterns found in one integer in another
 
-### **Syntax**
+### **Synopsis**
 ```fortran
 call mvbits(from, frompos, len, to, topos)
 ```
@@ -12955,7 +12964,7 @@ nonnegative and less than **bit_size**(from).
 
 The bits are numbered **0** to **bit_size(i)-1**, from right to left.
 
-### **Arguments**
+### **Options**
 
 - **from**
   : An _integer_ to read bits from.
@@ -12986,7 +12995,7 @@ The bits are numbered **0** to **bit_size(i)-1**, from right to left.
   **to** to place the specified copy of bits from **from**.
   **topos + len** must be less than or equal to **bit_size(to)**.
 
-### **Example**
+### **Examples**
 
 Sample program that populates a new 32-bit integer with its bytes in
 reverse order (ie. changes the Endian of the integer).
@@ -13087,7 +13096,7 @@ Fortran 95 and later
 
 **nearest**(3) - \[MODEL_COMPONENTS\] Nearest representable number
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = nearest(x, s)
 ```
@@ -13105,7 +13114,7 @@ Otherwise, any _kind_ of _real_ is allowed.
 **nearest(x, s)** returns the processor-representable number nearest to
 **x** in the direction indicated by the sign of **s**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : the value to find the nearest representable value of
@@ -13122,7 +13131,7 @@ Otherwise, any _kind_ of _real_ is allowed.
   If **s** is negative, **nearest** returns the processor-representable
   number smaller than **x** and nearest to it.
 
-### **Returns**
+### **Result**
 
 The return value is of the same type as **x**. If **s** is positive, **nearest**
 returns the processor-representable number greater than **x** and nearest to
@@ -13191,7 +13200,7 @@ Fortran 95 and later
 
 **new_line**(3) - \[CHARACTER\] new-line character
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = new_line(c)
 ```
@@ -13221,12 +13230,12 @@ stream output if there is such a character.
 Case (iv)
 : Otherwise, the result is the blank character.
 
-### **Arguments**
+### **Options**
 
 - **C**
   : The argument shall be a scalar or array of the type _character_.
 
-### **Returns**
+### **Result**
 
 Returns a _character_ scalar of length one with the new-line character of
 the same kind as parameter **c**.
@@ -13272,7 +13281,7 @@ Fortran 2003 and later
 
 **nint**(3) - \[TYPE:NUMERIC\] Nearest whole number
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=nint(x [,kind])
 ```
@@ -13299,7 +13308,7 @@ If **x** is greater than zero, **nint(x)** has the value **int(x+0.5)**.
 If **x** is less than or equal to zero, **nint(x)** has the value
 **int(a-0.5)**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type of the argument shall be _real_.
@@ -13309,7 +13318,7 @@ If **x** is less than or equal to zero, **nint(x)** has the value
   parameter of the result. Otherwise, the kind type parameter is that
   of default _integer_ type.
 
-### **Returns**
+### **Result**
 
 - **answer**
   : The result is the integer nearest **x**, or if there are two integers
@@ -13402,7 +13411,7 @@ FORTRAN 77 and later, with KIND argument - Fortran 90 and later
 
 **norm2**(3) - \[MATHEMATICS\] Euclidean vector norm
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = norm2(array, dim)
 ```
@@ -13417,7 +13426,7 @@ FORTRAN 77 and later, with KIND argument - Fortran 90 and later
 Calculates the Euclidean vector norm (L_2 norm) of **array** along
 dimension **dim**.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _real_.
@@ -13426,7 +13435,7 @@ dimension **dim**.
   : shall be a scalar of type _integer_ with a value in the
   range from **1** to **rank(array)**.
 
-### **Returns**
+### **Result**
 
 The result is of the same type as **array**.
 
@@ -13496,7 +13505,7 @@ Fortran 2008 and later
 
 **not**(3) - \[BIT:LOGICAL\] Logical negation
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = not(i)
 ```
@@ -13511,12 +13520,12 @@ The return type is of the same kind as the argument.
 
 NOT returns the bitwise Boolean inverse of **i**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The type shall be _integer_.
 
-### **Returns**
+### **Result**
 
 The return type is _integer_, of the same kind as the argument.
 
@@ -13565,7 +13574,7 @@ Fortran 95 and later
 
 **null**(3) - \[TRANSFORMATIONAL\] Function that returns a disassociated pointer
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     ptr => null(mold)
 ```
@@ -13580,13 +13589,13 @@ returned, otherwise the type is determined by context.
 
 In _Fortran 95_, **mold** is optional. Please note that _Fortran 2003_ includes cases where it is required.
 
-### **Arguments**
+### **Options**
 
 - **mold**
   : (Optional) shall be a pointer of any association status and of any
   type.
 
-### **Returns**
+### **Result**
 
 A disassociated pointer or an unallocated allocatable entity.
 
@@ -13687,7 +13696,7 @@ Fortran 95 and later
 
 **num_images**(3) - \[COLLECTIVE\] Number of images
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = num_images(distance, failed)
 ```
@@ -13697,7 +13706,7 @@ Fortran 95 and later
 
 Returns the number of images.
 
-### **Arguments**
+### **Options**
 
 - **distance**
   : (optional, **intent(in)**) Nonnegative scalar integer
@@ -13705,7 +13714,7 @@ Returns the number of images.
 - **failed**
   : (optional, **intent(in)**) Scalar logical expression
 
-### **Returns**
+### **Result**
 
   Scalar default-kind _integer_. If **distance** is not present or has
   value 0, the number of images in the current team is returned. For
@@ -13755,7 +13764,7 @@ Fortran 2008 and later. With DISTANCE or FAILED argument, TS 18508 or later
 ### **Name**
 **out_of_range**(3) - \[TYPE:NUMERIC\] Whether a value cannot be converted safely.
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = out_of_range (x, mold [, round])
 ```
@@ -13773,7 +13782,7 @@ Fortran 2008 and later. With DISTANCE or FAILED argument, TS 18508 or later
    safely to a _real_ or _integer_ variable the same type and kind as
    **mold**.
 
-### **Arguments**
+### **Options**
    - **x**
      : a scalar of type _integer_ or _real_ to be tested for whether
      it can be stored in a variable of the type and kind of **mold**
@@ -13789,7 +13798,7 @@ Fortran 2008 and later. With DISTANCE or FAILED argument, TS 18508 or later
      **round** can only be present if **x** is of type
      _real_ and **mold** is of type _integer_.
 
-### **Returns**
+### **Result**
 
 From the standard:
 
@@ -13882,7 +13891,7 @@ Results:
 
 **pack**(3) - \[ARRAY CONSTRUCTION\] Pack an array into an array of rank one
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = pack(array, mask,vector)
 ```
@@ -13905,7 +13914,7 @@ Results:
   **mask** equals _.true._. Afterwards, positions are filled with elements
   taken from **vector**.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of any type.
@@ -13921,7 +13930,7 @@ Results:
   scalar, the number of elements in **vector** shall be equal to or
   greater than the number of elements in **array**.
 
-### **Returns**
+### **Result**
 
 The result is an array of rank one and the same type as that of **array**.
 If **vector** is present, the result size is that of **vector**, the number of
@@ -13999,7 +14008,7 @@ Fortran 95 and later
 
 **parity**(3) - \[TRANSFORMATIONAL\] Reduction with exclusive **OR**()
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = parity( mask [,dim] )
 ```
@@ -14016,7 +14025,7 @@ where KIND and LKIND are any supported kind for the type.
 Calculates the parity (i.e. the reduction using .xor.) of __mask__ along
 dimension __dim__.
 
-### **Arguments**
+### **Options**
 
   - __mask__
     : Shall be an array of type _logical_.
@@ -14025,7 +14034,7 @@ dimension __dim__.
     : (Optional) shall be a scalar of type _integer_ with a value in the
     range from __1 to n__, where __n__ equals the rank of __mask__.
 
-### **Returns**
+### **Result**
 
 The result is of the same type as __mask__.
 
@@ -14061,7 +14070,7 @@ Fortran 2008 and later
 
 **popcnt**(3) - \[BIT:COUNT\] Number of bits set
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = popcnt(i)
 ```
@@ -14077,12 +14086,12 @@ The **i** argument may be of any kind.
 Returns the number of bits set in the binary representation of an
 _integer_.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of type _integer_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of the default integer kind.
 
@@ -14133,7 +14142,7 @@ Fortran 2008 and later
 
 **poppar**(3) - \[BIT:COUNT\] Parity of the number of bits set
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = poppar(i)
 ```
@@ -14147,12 +14156,12 @@ Fortran 2008 and later
 Returns the parity of an integer's binary representation (i.e., the
 parity of the number of bits set).
 
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of type _integer_.
 
-### **Returns**
+### **Result**
 
 The return value is equal to **0** if **i** has an even number of bits set and 1 if an odd
 number of bits are set.
@@ -14201,7 +14210,7 @@ Fortran 2008 and later
 
 **precision**(3) - \[NUMERIC MODEL\] Decimal precision of a real kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = precision(x)
 ```
@@ -14218,12 +14227,12 @@ where **TYPE** may be _real_ or _complex_
 **precision(x)** returns the decimal precision in the model of the type
 of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_ or _complex_.
 
-### **Returns**
+### **Result**
 
    The precision of values of the type and kind of **x**
 
@@ -14278,7 +14287,7 @@ Fortran 95 and later
 **present**(3) - [STATE\] Determine whether an optional dummy argument
 is specified
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = present(a)
 ```
@@ -14291,14 +14300,14 @@ where the **TYPE** may be any type
 
 Determines whether an optional dummy argument is present.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : May be of any type and may be a pointer, scalar or array value,
   or a dummy procedure. It shall be the name of an optional dummy
   argument accessible within the current subroutine or function.
 
-### **Returns**
+### **Result**
 
 Returns either _.true._ if the optional argument **a** is present,
 or _.false._ otherwise.
@@ -14343,7 +14352,7 @@ Fortran 95 and later
 
 **product**(3) - \[ARRAY REDUCTION\] Product of array elements
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = product(array [,dim] [,mask])
 ```
@@ -14369,7 +14378,7 @@ When **dim** is present, If the masked array has a dimension of one
 **n-1**, where **n** equals the rank of **array**, and a shape similar
 to that of **array** with dimension **dim** dropped is returned.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_, _real_ or _complex_.
@@ -14382,7 +14391,7 @@ to that of **array** with dimension **dim** dropped is returned.
   : shall be of type _logical_ and either be a scalar or an
   array of the same shape as **array**.
 
-### **Returns**
+### **Result**
 
 The result is of the same type as **array**.
 
@@ -14580,7 +14589,7 @@ directly using the star character.
 
 **radix**(3) - \[NUMERIC MODEL\] Base of a model number
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = radix(x)
 ```
@@ -14594,12 +14603,12 @@ directly using the star character.
 
 **radix(x)** returns the base of the model representing the entity **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _integer_ or _real_
 
-### **Returns**
+### **Result**
 
 The return value is a scalar of type _integer_ and of the default integer
 kind.
@@ -14655,7 +14664,7 @@ Fortran 95 and later
 
 **random_number**(3) - \[MATHEMATICS:RANDOM\] Pseudo-random number
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     random_number(harvest)
 ```
@@ -14666,7 +14675,7 @@ Fortran 95 and later
 Returns a single pseudorandom number or an array of pseudorandom numbers
 from the uniform distribution over the range 0 \<= x \< 1.
 
-### **Arguments**
+### **Options**
 
 - **harvest**
   : Shall be a scalar or an array of type _real_.
@@ -14749,7 +14758,7 @@ Fortran 95 and later
 
 **random_seed**(3) - \[MATHEMATICS:RANDOM\] Initialize a pseudo-random number sequence
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call random_seed(size, put, get)
 ```
@@ -14763,7 +14772,7 @@ by random_number.
 If random_seed is called without arguments, it is seeded with random
 data retrieved from the operating system.
 
-### **Arguments**
+### **Options**
 
 - **size**
   : (Optional) Shall be a scalar and of type default _integer_, with
@@ -14821,7 +14830,7 @@ Fortran 95 and later
 
 **range**(3) - \[NUMERIC MODEL\] Decimal exponent range of a real kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = range(x)
 ```
@@ -14838,12 +14847,12 @@ TYPE.
 **range(x)** returns the decimal exponent range in the model of the type
 of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_ or _complex_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of the default integer kind.
 
@@ -14899,7 +14908,7 @@ Fortran 95 and later
 
 **rank**(3) - \[ARRAY INQUIRY\] Rank of a data object
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = rank(a)
 ```
@@ -14914,11 +14923,11 @@ Fortran 95 and later
 
   **rank(a)** returns the rank of a scalar or array data object.
 
-### **Arguments**
+### **Options**
 
 - **a**
 
-### **Returns**
+### **Result**
 
   For arrays, their rank is returned; for scalars zero is returned.
 
@@ -14992,7 +15001,7 @@ end program demo_rank
 
 **real**(3) - \[TYPE:NUMERIC\] Convert to real type
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = real(x [,kind])
 ```
@@ -15013,7 +15022,7 @@ For complex values this is similar to the modern complex-part-designator
 designator can appear on the left-hand side of an assignment as well,
 as in **val%re=(3.0,4.0)**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be _integer_, _real_, or _complex_ to convert to _real_.
@@ -15022,7 +15031,7 @@ as in **val%re=(3.0,4.0)**.
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 These functions return a _real_ variable or array under the following
 rules:
@@ -15079,7 +15088,7 @@ FORTRAN 77 and later
 
 **reduce**(3) - \[TRANSFORMATIONAL\] general reduction of an array
 
-### **Syntax**
+### **Synopsis**
 
 There are two forms to this function:
 ```fortran
@@ -15251,13 +15260,17 @@ one relative to the input array.
      > [2, 12, 30, should be [2,12,30],
      > [15, 48, should be [15, 48],
 ````
-### **See Also**
-- [co_reduce(3)](#co_reduce)
-- [associative:wikipedia](https://en.wikipedia.org/wiki/Associative_property)
 
 ### **Standard**
 
    Fortran 2018
+
+### **See Also**
+- [co_reduce(3)](#co_reduce)
+
+### **Resources**
+
+- [associative:wikipedia](https://en.wikipedia.org/wiki/Associative_property)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -15267,7 +15280,7 @@ one relative to the input array.
 
 **repeat**(3) - \[CHARACTER\] Repeated string concatenation
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = repeat(string, ncopies)
 ```
@@ -15281,7 +15294,7 @@ one relative to the input array.
 
 Concatenates **ncopies** copies of a string.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : The input string to repeatedly generate.
@@ -15291,7 +15304,7 @@ Concatenates **ncopies** copies of a string.
   : Number of copies to make of _string_, greater than or equal to zero (0).
   Shall be scalar and of type _integer_.
 
-### **Returns**
+### **Result**
 
 A new scalar of type _character_ built up from **ncopies** copies of **string**.
 
@@ -15351,7 +15364,7 @@ Functions that perform operations on character strings:
 
 **reshape**(3) - \[ARRAY RESHAPE\] Function to reshape an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = reshape(source, shape, pad, order)
 ```
@@ -15363,7 +15376,7 @@ Reshapes array **source** to correspond to **shape**. If necessary, the new
 array may be padded with elements from **pad** or permuted as defined by
 **order**.
 
-### **Arguments**
+### **Options**
 
 - **source**
   : an array of any type.
@@ -15381,7 +15394,7 @@ array may be padded with elements from **pad** or permuted as defined by
   the size of **shape**. If **order** is absent, the natural ordering shall be
   assumed.
 
-### **Returns**
+### **Result**
 
 The result is an array of shape **shape** with the same type as **source**.
 
@@ -15431,7 +15444,7 @@ Fortran 95 and later
 
 **rrspacing**(3) - \[MODEL_COMPONENTS\] Reciprocal of the relative spacing
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = rrspacing(x)
 ```
@@ -15446,12 +15459,12 @@ The return value is of the same type and kind as **x**.
 **rrspacing(x)** returns the reciprocal of the relative spacing of model
 numbers near **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of the same type and kind as **x**. The value returned
 is equal to **abs(fraction(x)) \* float(radix(x))\*\*digits(x)**.
@@ -15486,7 +15499,7 @@ Fortran 95 and later
 
 **same_type_as**(3) - \[STATE\] Query dynamic types for equality
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = same_type_as(a, b)
 ```
@@ -15496,7 +15509,7 @@ Fortran 95 and later
 
 Query dynamic types for equality.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : Shall be an object of extensible declared type or unlimited
@@ -15506,7 +15519,7 @@ Query dynamic types for equality.
   : Shall be an object of extensible declared type or unlimited
   polymorphic.
 
-### **Returns**
+### **Result**
 
 The return value is a scalar of type default logical. It is true if and
 only if the dynamic type of **a** is the same as the dynamic type of **b**.
@@ -15527,7 +15540,7 @@ Fortran 2003 and later
 
 **scale**(3) - \[MODEL_COMPONENTS\] Scale a real value by a whole power of the radix
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = scale(x, i)
 ```
@@ -15541,7 +15554,7 @@ Fortran 2003 and later
 
 **scale(x,i)** returns x \* **radix(x)\*\*i**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type of the argument shall be a _real_.
@@ -15549,7 +15562,7 @@ Fortran 2003 and later
 - **i**
   : The type of the argument shall be a _integer_.
 
-### **Returns**
+### **Result**
 
 The return value is of the same type and kind as **x**. Its value is
 **x \* radix(x)\*\*i**.
@@ -15599,7 +15612,7 @@ Fortran 95 and later
 
 **scan**(3) - \[CHARACTER:SEARCH\] Scan a string for the presence of a set of characters
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = scan(string, set[, back [, kind]])
 ```
@@ -15624,7 +15637,7 @@ position of the leftmost character of **STRING** that is in **set**. If **back**
 equals _.true._, the rightmost position is returned. If no character of **set**
 is found in **string**, the result is zero.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : Shall be of type _character_.
@@ -15639,7 +15652,7 @@ is found in **string**, the result is zero.
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
 the return value is of default integer kind.
@@ -15691,7 +15704,7 @@ of arguments, and search for certain arguments:
 
 **selected_char_kind**(3) - \[KIND\] Select character kind such as "Unicode"
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = selected_char_kind(name)
 ```
@@ -15706,7 +15719,7 @@ of arguments, and search for certain arguments:
   set named NAME, if a character set with such a name is supported, or
   **-1** otherwise.
 
-### **Arguments**
+### **Options**
 
 - **name**
   : A name to query the processor kind value of , and/or to determine
@@ -15779,7 +15792,7 @@ Fortran 2003 and later
 
 **selected_int_kind**(3) - \[KIND\] Choose integer kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = selected_int_kind(r)
 ```
@@ -15792,7 +15805,7 @@ type that can represent all values ranging from **-10\*\*r** (exclusive)
 to **10\*\*r** (exclusive). If there is no integer kind that accommodates
 this range, selected_int_kind returns **-1**.
 
-### **Arguments**
+### **Options**
 
 - **r**
   : Shall be a scalar and of type _integer_.
@@ -15846,7 +15859,7 @@ Fortran 95 and later
 
 **selected_real_kind**(3) - \[KIND\] Choose real kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = selected_real_kind(p, r, radix)
 ```
@@ -15858,7 +15871,7 @@ Fortran 95 and later
 data type with decimal precision of at least **p** digits, exponent range of
 at least **r**, and with a radix of **radix**.
 
-### **Arguments**
+### **Options**
 
 - **p**
   : (Optional) shall be a scalar and of type _integer_.
@@ -15873,7 +15886,7 @@ Before **Fortran 2008**, at least one of the arguments **r** or **p** shall
 be present; since **Fortran 2008**, they are assumed to be zero if
 absent.
 
-### **Returns**
+### **Result**
 
 selected_real_kind returns the value of the kind type parameter of a
 real data type with decimal precision of at least **p** digits, a decimal
@@ -15948,7 +15961,7 @@ Fortran 95 and later; with RADIX - Fortran 2008 and later
 
 **set_exponent**(3) - \[MODEL_COMPONENTS\] Set the exponent of the model
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = set_exponent(x, i)
 ```
@@ -15965,7 +15978,7 @@ Fortran 95 and later; with RADIX - Fortran 2008 and later
 **set_exponent(x, i)** returns the real number whose fractional part is
 that of **x** and whose exponent part is **i**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_.
@@ -15973,7 +15986,7 @@ that of **x** and whose exponent part is **i**.
 - **i**
   : Shall be of type _integer_.
 
-### **Returns**
+### **Result**
 
 The return value is of the same type and kind as **x**. The real number
 whose fractional part is that that of **x** and whose exponent part if **i** is
@@ -16028,7 +16041,7 @@ Fortran 95 and later
 
 **shape**(3) - \[ARRAY INQUIRY\] Determine the shape of an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = shape(source [,kind])
 ```
@@ -16045,7 +16058,7 @@ it must be associated and allocatable arrays must be allocated.
 
 Determines the shape of an array.
 
-### **Arguments**
+### **Options**
 
 - **source**
   : Shall be an array or scalar of any type. If **source** is a pointer it
@@ -16055,7 +16068,7 @@ Determines the shape of an array.
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 An _integer_ array of rank one with as many elements as **source** has
 dimensions. The elements of the resulting array correspond to the extend
@@ -16107,7 +16120,7 @@ Fortran 95 and later; with KIND argument Fortran 2003 and later
 
 **shifta**(3) - \[BIT:SHIFT\] shift bits right with fill
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = shifta(i, shift )
 ```
@@ -16126,7 +16139,7 @@ Fortran 95 and later; with KIND argument Fortran 2003 and later
   right by **shift** places and the vacated bits on the left filled
   with the value of the original left-most bit..
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The initial value to shift and fill
@@ -16136,7 +16149,7 @@ Fortran 95 and later; with KIND argument Fortran 2003 and later
     It shall be nonnegative and less than or equal to **bit_size(i)**.
     or the value is undefined.
 
-### **Returns**
+### **Result**
 
   The result characteristics (kind, type, rank, shape, ....) are the
   same as **i**.
@@ -16175,7 +16188,7 @@ integer(kind=int8)  :: arr(2,2)=reshape([2,4,8,16],[2,2])
    & int(b"10101010101010101010101010101010"), &
    & int(b"00000000000000000000000000011111") ]
 
-   ! does your platform distinguish betwee +0 and -0?
+   ! does your platform distinguish between +0 and -0?
    ! note the original leftmost bit is used to fill in the vacated bits
 
    write(*,'(/,"SHIFT =  ",i0)') shift
@@ -16236,7 +16249,7 @@ Fortran 2008 and later
 
 **shiftl**(3) - \[BIT:SHIFT\] shift bits left
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = shiftl( i, shift )
 ```
@@ -16262,7 +16275,7 @@ the value is undefined.
 
 Note the value of the result is the same as **ishft (i, shift)**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The initial value to shift and fill in with zeros
@@ -16271,7 +16284,7 @@ Note the value of the result is the same as **ishft (i, shift)**.
   : how many bits to shift left.
     It shall be nonnegative and less than or equal to **bit_size(i)**.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of the same kind as **i**.
 
@@ -16373,7 +16386,7 @@ Fortran 2008 and later
 
 **shiftr**(3) - \[BIT:SHIFT\] shift bits right
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = shiftr( i, shift )
 ```
@@ -16395,7 +16408,7 @@ end are lost, and bits shifted in from the left end are set to 0.
 
 Note the value of the result is the same as **ishft (i, -shift)**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The initial value to shift and fill in with zeros
@@ -16404,7 +16417,7 @@ Note the value of the result is the same as **ishft (i, -shift)**.
   : how many bits to shift right.
     It shall be nonnegative and less than or equal to **bit_size(i)**.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of the same kind as **i**.
 
@@ -16495,7 +16508,7 @@ Fortran 2008 and later
 
 **sign**(3) - \[NUMERIC\] Sign copying function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = sign(a, b)
 ```
@@ -16517,7 +16530,7 @@ __sign()__ may be used to distinguish between __real__ values 0.0 and
 -0.0. SIGN (1.0, -0.0) will return  -1.0 when a negative zero is
 distinguishable.
 
-### **Arguments**
+### **Options**
 
   - **a**
     : The value whos magnitude will be returned. Shall be of type
@@ -16527,7 +16540,7 @@ distinguishable.
     : The value whose sign will be returned. Shall be of the same type
     and kind as **a**
 
-### **Returns**
+### **Result**
 
 The kind of the return value is the magnitude of __a__ with the sign of
 __b__. That is,
@@ -16575,7 +16588,7 @@ FORTRAN 77 and later
 
 **sinh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Hyperbolic sine function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = sinh(x)
 ```
@@ -16584,8 +16597,9 @@ FORTRAN 77 and later
 
      TYPE(kind=KIND) :: x
 ```
-Where the returned value has the kind of the input value
-and TYPE may be _real_ or _complex_
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
+by the associated type. The returned value will be of the same type and kind as
+the argument.
 
 ### **Description**
 
@@ -16598,19 +16612,18 @@ The hyperbolic sine of x is defined mathematically as:
 If **x** is of type _complex_ its imaginary part is regarded as a value
 in radians.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_ or _complex_.
 
-### **Returns**
+### **Result**
 
 The return value has same type and kind as **x**.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_sinh
 use, intrinsic :: iso_fortran_env, only : &
@@ -16642,9 +16655,7 @@ character(len=20) :: line
 
 end program demo_sinh
 ```
-
 Results:
-
 ```text
   -1.1752011936438014
   -1.1752011936438014
@@ -16653,16 +16664,17 @@ Results:
                   Infinity
                   Infinity
 ```
-
 ### **Standard**
 
 Fortran 95 and later, for a complex argument Fortran 2008 or later
 
 ### **See Also**
 
-- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
-
 [**asinh**(3)](#asinh)
+
+### **Resources**
+
+- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
  _fortran-lang intrinsic descriptions_
 
@@ -16672,7 +16684,7 @@ Fortran 95 and later, for a complex argument Fortran 2008 or later
 
 **sin**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Sine function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = sin(x)
 ```
@@ -16681,8 +16693,9 @@ Fortran 95 and later, for a complex argument Fortran 2008 or later
 
      TYPE(kind=KIND) :: x
 ```
-Where the returned value has the kind of the input value
-and TYPE may be _real_ or _complex_
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
+by the associated type. The returned value will be of the same type and kind as
+the argument.
 
 ### **Description**
 
@@ -16693,12 +16706,12 @@ The sine of an angle in a right-angled triangle is the ratio of the
 length of the side opposite the given angle divided by the length of the
 hypotenuse.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_ or _complex_ in radians.
 
-### **Returns**
+### **Result**
 
 - **result**
   : The return value has the same type and kind as **x**.
@@ -16751,7 +16764,6 @@ And then use the haversine formula to roughly calculate the distance
 along the surface of the Earth between the locations:
 
 Sample program:
-
 ```fortran
 program demo_sin
 implicit none
@@ -16782,24 +16794,23 @@ real, parameter :: deg_to_rad = atan(1.0)/45.0
 end function haversine
 end program demo_sin
 ```
-
 Results:
-
 ```text
     distance: 2886.4446 km
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later
 
 ### **See Also**
 
-- [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
-
 [**asin**(3)](#asin),
 [**cos**(3)](#cos),
 [**tan**(3)](#tan)
+
+### **Resources**
+
+- [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -16809,7 +16820,7 @@ FORTRAN 77 and later
 
 **size**(3) - \[ARRAY INQUIRY\] Determine the size of an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = size(array [,dim] [,kind])
 ```
@@ -16832,7 +16843,7 @@ FORTRAN 77 and later
 Determine the extent of **array** along a specified dimension **dim**,
 or the total number of elements in **array** if **dim** is absent.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : the array to measure the number of elements of.
@@ -16853,7 +16864,7 @@ or the total number of elements in **array** if **dim** is absent.
 
   If **kind** is absent, the return value is of default _integer_ kind.
 
-### **Returns**
+### **Result**
 
   If **dim** is not present the total number of elements in the array
   are returned.
@@ -17024,7 +17035,7 @@ Fortran 95 and later, with **kind** argument - Fortran 2003 and later
 
 **spacing**(3) - \[MODEL_COMPONENTS\] Smallest distance between two numbers of a given type
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = spacing(x)
 ```
@@ -17040,12 +17051,12 @@ Fortran 95 and later, with **kind** argument - Fortran 2003 and later
 Determines the distance between the argument **x** and the nearest adjacent
 number of the same type.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_.
 
-### **Returns**
+### **Result**
 
 The result is of the same type as the input argument **x**.
 
@@ -17101,7 +17112,7 @@ Fortran 95 and later
 
 **spread**(3) - \[ARRAY CONSTRUCTION\] Add a dimension to an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = spread(source, dim, ncopies)
 ```
@@ -17120,7 +17131,7 @@ dimension **dim**.
 If **source** is scalar, the shape of the result is (MAX (NCOPIES, 0)).
 and each element of the result has a value equal to **source**.
 
-### **Arguments**
+### **Options**
 
 - **source**
   : Shall be a scalar or an array of any type and a rank less than
@@ -17133,7 +17144,7 @@ and each element of the result has a value equal to **source**.
 - **ncopies**
   : Shall be a scalar of type _integer_.
 
-### **Returns**
+### **Result**
 
 The result is an array of the same type as **source** and has rank **n+1**
 where **n** equals the rank of **source**.
@@ -17227,7 +17238,7 @@ Fortran 95 and later
 
 **sqrt**(3) - \[MATHEMATICS\] Square-root function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = sqrt(x)
 ```
@@ -17263,13 +17274,13 @@ Square roots of negative numbers are a special case of complex numbers,
 where the components of the _radicand_ need not be positive in order to
 have a valid square root.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : If **x** is _real_ its value must be greater than or equal to zero.
   The type shall be _real_ or _complex_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_ or _complex_. The kind type parameter is
 the same as **x**.
@@ -17325,7 +17336,7 @@ FORTRAN 77 and later
 
 **storage_size**(3) - \[BIT:INQUIRY\] Storage size in bits
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = storage_size(a [,kind] )
 ```
@@ -17348,7 +17359,7 @@ FORTRAN 77 and later
 
 Returns the storage size of argument **a** in bits.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : The entity to determine the storage size of
@@ -17357,7 +17368,7 @@ Returns the storage size of argument **a** in bits.
   : a scalar integer constant expression that defines the kind of the
   output value.
 
-### **Returns**
+### **Result**
 
   The result value is the size expressed in bits for an element of an
   array that has the dynamic type and type parameters of **a**.
@@ -17418,7 +17429,7 @@ Fortran 2008 and later
 
 **sum**(3) - \[ARRAY REDUCTION\] sum the elements of an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
    result = sum(array ,[mask])
 ```
@@ -17446,7 +17457,7 @@ where **NUMERIC** is any numeric type and kind.
 Adds the elements of ARRAY along dimension DIM if the corresponding
 element in MASK is TRUE.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_, _real_ or _complex_.
@@ -17459,7 +17470,7 @@ element in MASK is TRUE.
   : (Optional) shall be of type _logical_ and either be a scalar or an
   array of the same shape as ARRAY.
 
-### **Returns**
+### **Result**
 
 The result is of the same type as ARRAY.
 
@@ -17526,7 +17537,7 @@ intrinsics
 
 **system_clock**(3) - \[SYSTEM:TIME\] Return numeric data from a real-time clock.
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call system_clock([count] [,count_rate] [,count_max] )
 ```
@@ -17560,7 +17571,7 @@ clocks may be 24-hour clocks or measure processor clock ticks since
 boot, for example). It is most often used for measuring or tracking the
 time spent in code blocks in lieu of using profiling tools.
 
-### **Arguments**
+### **Options**
 
 - **count**
   : (optional) shall be an _integer_ scalar. It is assigned a
@@ -17636,7 +17647,7 @@ Fortran 95 and later
 
 **tanh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Hyperbolic tangent function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     x = tanh(x)
 ```
@@ -17645,18 +17656,20 @@ Fortran 95 and later
 
      TYPE(kind=KIND),intent(in) :: x
 ```
-where TYPE may be _real_ or _complex_ and KIND may be any KIND supported
-by the associated type.
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
+by the associated type. The returned value will be of the same type and kind as
+the argument.
+
 ### **Description**
 
 **tanh(x)** computes the hyperbolic tangent of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_.
+  : The value to compute the Hyperbolic tangent of
 
-### **Returns**
+### **Result**
 
 The return value has same type and kind as **x**. If **x** is complex, the
 imaginary part of the result is in radians. If **x** is _real_, the return
@@ -17665,11 +17678,9 @@ value lies in the range
 ```
       -1 <= tanh(x) <= 1.
 ```
-
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_tanh
 use, intrinsic :: iso_fortran_env, only : &
@@ -17679,22 +17690,21 @@ real(kind=real64) :: x = 2.1_real64
    write(*,*)x, tanh(x)
 end program demo_tanh
 ```
-
 Results:
-
 ```text
       2.1000000000000001       0.97045193661345386
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 
 ### **See Also**
 
-- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
-
 [**atanh**(3)](#atanh)
+
+### **Resources**
+
+- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
  _fortran-lang intrinsic descriptions_
 
@@ -17704,7 +17714,7 @@ FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 
 **tan**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Tangent function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = tan(x)
 ```
@@ -17713,26 +17723,26 @@ FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 
      TYPE(kind=KIND),intent(in) :: x
 ```
-where TYPE may be _real_ or _complex_ and KIND may be any KIND supported
-by the associated type.
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
+by the associated type. The returned value will be of the same type and kind as
+the argument.
 
 ### **Description**
 
 **tan(x)** computes the tangent of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_ or _complex_.
 
-### **Returns**
+### **Result**
 
 The return value has the same type and kind as **x**.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_tan
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
@@ -17742,13 +17752,10 @@ real(kind=real64) :: x = 0.165_real64
      write(*,*)x, tan(x)
 end program demo_tan
 ```
-
 Results:
-
 ```text
      0.16500000000000001       0.16651386310913616
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later. For a complex argument, Fortran 2008 or later.
@@ -17767,7 +17774,7 @@ FORTRAN 77 and later. For a complex argument, Fortran 2008 or later.
 
 **this_image**(3) - \[COLLECTIVE\] Cosubscript index of this image
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
 result = this_image()
@@ -17787,7 +17794,7 @@ result = this_image(coarray, dim)
 
 Returns the cosubscript for this image.
 
-### **Arguments**
+### **Options**
 
 - **distance**
   : (optional, **intent(in)**) Nonnegative scalar integer (not permitted
@@ -17800,7 +17807,7 @@ Returns the cosubscript for this image.
   : default integer scalar (optional). If present, **dim** shall be between
   one and the corank of **coarray**.
 
-### **Returns**
+### **Result**
 
 Default integer. If **coarray** is not present, it is scalar; if **distance** is
 not present or has value **0**, its value is the image index on the invoking
@@ -17858,7 +17865,7 @@ or later
 
 **tiny**(3) - \[NUMERIC MODEL\] Smallest positive number of a real kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = tiny(x)
 ```
@@ -17874,12 +17881,12 @@ where KIND may be any kind supported by type _real_
 **tiny(x)** returns the smallest positive (non zero) number of the type
 and kind of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_.
 
-### **Returns**
+### **Result**
 
 The smallest positive value for the _real_ type of the specified kind.
 
@@ -17935,7 +17942,7 @@ Fortran 95 and later
 
 **trailz**(3) - \[BIT:COUNT\] Number of trailing zero bits of an integer
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = trailz(i)
 ```
@@ -17948,12 +17955,12 @@ Fortran 95 and later
 
 **trailz(3)** returns the number of trailing zero bits of an _integer_ value.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of type _integer_.
 
-### **Returns**
+### **Result**
 
 The type of the return value is the default _integer_. If all the bits of
 I are zero, the result value is **bit_size(i)**.
@@ -18055,7 +18062,7 @@ Fortran 2008 and later
 
 **transfer**(3) - \[TYPE:MOLD\] Transfer bit patterns
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = transfer(source, mold, size)
 ```
@@ -18070,7 +18077,7 @@ parameters as **mold**.
 This is approximately equivalent to the C concept of "casting" one
 type to another.
 
-### **Arguments**
+### **Options**
 
 - **source**
   : Shall be a scalar or an array of any type.
@@ -18081,7 +18088,7 @@ type to another.
 - **size**
   : (Optional) shall be a scalar of type _integer_.
 
-### **Returns**
+### **Result**
 
 The result has the same type as **mold**, with the bit level representation
 of **source**. If **size** is present, the result is a one-dimensional array of
@@ -18166,7 +18173,7 @@ Fortran 90 and later
 
 **transpose**(3) - \[ARRAY MANIPULATION\] Transpose an array of rank two
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = transpose(matrix)
 ```
@@ -18180,13 +18187,13 @@ A array is transposed by interchanging the rows and columns of the given
 matrix. That is, element (i, j) of the result has the value of element(j,
 i) for all (i, j).
 
-### **Arguments**
+### **Options**
 
 - **matrix**
   : The array to transpose, which shall be of any type and have a rank
   of two.
 
-### **Returns**
+### **Result**
 
 The transpose of the input array. The result has the same type as
 **matrix**, and has shape \[ m, n \] if **matrix** has shape \[ n, m \].
@@ -18258,7 +18265,7 @@ Fortran 95 and later
 
 **trim**(3) - \[CHARACTER:WHITESPACE\] Remove trailing blank characters of a string
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = trim(string)
 ```
@@ -18274,12 +18281,12 @@ Fortran 95 and later
 
   Removes trailing blank characters from a string.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : A scalar string to trim trailing blanks from
 
-### **Returns**
+### **Result**
 
   The value of the result is the same as **string** except trailing
   blanks are removed.
@@ -18367,7 +18374,7 @@ of arguments, and search for certain arguments:
 
 **ubound**(3) - \[ARRAY INQUIRY\] Upper dimension bounds of an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = ubound(array, dim, kind)
 ```
@@ -18378,7 +18385,7 @@ of arguments, and search for certain arguments:
 Returns the upper bounds of an array, or a single upper bound along the
 **dim** dimension.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array, of any type.
@@ -18390,7 +18397,7 @@ Returns the upper bounds of an array, or a single upper bound along the
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of kind **kind**. If **kind**
 is absent, the return value is of default integer kind.
@@ -18491,7 +18498,7 @@ and later
 **unpack**(3) - \[ARRAY CONSTRUCTION\] scatter the elements of a vector
 into an array using a mask
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = unpack(vector, mask, field)
 ```
@@ -18516,7 +18523,7 @@ values from **vector**. This allows for complex replacement patterns
 that would be difficult when using array syntax or multiple assignment
 statements, particularly when the replacements are conditional.
 
-### **Arguments**
+### **Options**
 
 - **vector**
   : New values to place into specified locations in **field**. Shall
@@ -18531,7 +18538,7 @@ statements, particularly when the replacements are conditional.
   : The original data to be edited. Shall be of the same type and type
   parameters as **vector** and shall be conformable with **mask**.
 
-### **Returns**
+### **Result**
 
 The element of the result that corresponds to the ith true element
 of MASK, in array element order, has the value VECTOR (i) for i =
@@ -18652,7 +18659,7 @@ Fortran 95 and later
 **verify**(3) - \[CHARACTER:SEARCH\] Position of a character in a string
 of characters that does not appear in a given set of characters.
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = verify(string, set [,back] [,kind] )
 ```
@@ -18683,7 +18690,7 @@ conditions tested for with the C routines
 **isprint**(3c), **ispunct**(3c), **isspace**(3c), **isupper**(3c),
 and **isxdigit**(3c); but for a string as well an an array of strings.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : The string to search for an unmatched character.
@@ -18701,7 +18708,7 @@ and **isxdigit**(3c); but for a string as well an an array of strings.
   : An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The position of the first or last (if **back** is _.false._) unmatched
 character in **string**.

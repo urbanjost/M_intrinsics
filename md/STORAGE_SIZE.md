@@ -4,7 +4,7 @@
 
 **storage_size**(3) - \[BIT:INQUIRY\] Storage size in bits
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = storage_size(a [,kind] )
 ```
@@ -27,7 +27,7 @@
 
 Returns the storage size of argument **a** in bits.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : The entity to determine the storage size of
@@ -36,7 +36,7 @@ Returns the storage size of argument **a** in bits.
   : a scalar integer constant expression that defines the kind of the
   output value.
 
-### **Returns**
+### **Result**
 
   The result value is the size expressed in bits for an element of an
   array that has the dynamic type and type parameters of **a**.

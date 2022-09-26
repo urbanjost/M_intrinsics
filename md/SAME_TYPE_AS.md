@@ -4,7 +4,7 @@
 
 **same_type_as**(3) - \[STATE\] Query dynamic types for equality
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = same_type_as(a, b)
 ```
@@ -14,7 +14,7 @@
 
 Query dynamic types for equality.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : Shall be an object of extensible declared type or unlimited
@@ -24,7 +24,7 @@ Query dynamic types for equality.
   : Shall be an object of extensible declared type or unlimited
   polymorphic.
 
-### **Returns**
+### **Result**
 
 The return value is a scalar of type default logical. It is true if and
 only if the dynamic type of **a** is the same as the dynamic type of **b**.

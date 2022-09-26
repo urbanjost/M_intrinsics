@@ -4,7 +4,7 @@
 
 **dprod**(3) - \[NUMERIC\] Double precision real product
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = dprod(x,y)
 ```
@@ -25,7 +25,7 @@ the product of **x** and **y**. It is recommended that the processor
 compute the product in double precision, rather than in single precision
 then converted to double precision.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : the multiplier, a _real_ value of default kind
@@ -37,7 +37,7 @@ then converted to double precision.
 The setting of compiler options specifying the size of a default _real_
 can affect this function.
 
-### **Returns**
+### **Result**
 
 The return value is doubleprecision (ie. _real(kind=kind(0.0d0))_).
 It should have the same value as **dble(x)\*dble(y)**.

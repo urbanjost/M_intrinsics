@@ -4,7 +4,7 @@
 
 **blt**(3) - \[BIT:COMPARE\] Bitwise less than
 
-### **Syntax**
+### **Synopsis**
 ```fortran
   result=blt(i,j)
 ```
@@ -24,7 +24,7 @@
 
 Determines whether an integer is bitwise less than another.
 
-### **Arguments**
+### **Options**
 
 - **i**
     Shall be of _integer_ type or a BOZ literal constant.
@@ -32,7 +32,7 @@ Determines whether an integer is bitwise less than another.
 - **j**
   : Shall be of _integer_ type or a BOZ constant.
 
-### **Returns**
+### **Result**
 
 The return value is of type _logical_ and of the default kind.
 

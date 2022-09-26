@@ -4,7 +4,7 @@
 
 **dshiftr**(3) - \[BIT:COPY\] combined right shift of the bits of two integers
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = dshiftr(i, j, shift)
 ```
@@ -60,7 +60,7 @@ this has the same result as a negative circular shift
      ishftc( i,   -shift ).
 ```
 
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of type _integer_.
@@ -73,7 +73,7 @@ this has the same result as a negative circular shift
     It shall be nonnegative and less than or equal to **bit_size(result)**
     where "result" is the _integer_ kind of the returned value/input integers.
 
-### **Returns**
+### **Result**
 
 The return value has same type and kind as **i**.
 

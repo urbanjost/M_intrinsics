@@ -4,7 +4,7 @@
 
 **exponent**(3) - \[MODEL_COMPONENTS\] Exponent function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = exponent(x)
 ```
@@ -18,12 +18,12 @@
 **exponent**(x) returns the value of the exponent part of **x**. If **x** is
 zero the value returned is zero.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type default _integer_.
 

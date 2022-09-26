@@ -4,7 +4,7 @@
 
 **ceiling**(3) - \[NUMERIC\] Integer ceiling function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = ceiling(a [,kind])
 ```
@@ -21,7 +21,7 @@ kind is specified by the optional **kind** argument.
 
 **ceiling(a)** returns the least integer greater than or equal to **a**.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : A _real_ value to produce a result for.
@@ -30,7 +30,7 @@ kind is specified by the optional **kind** argument.
   : An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The result will be the _integer_ value equal to **a** or the least integer
 greater than **a** if the input value is not equal to a whole number.

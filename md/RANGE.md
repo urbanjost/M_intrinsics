@@ -4,7 +4,7 @@
 
 **range**(3) - \[NUMERIC MODEL\] Decimal exponent range of a real kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = range(x)
 ```
@@ -21,12 +21,12 @@ TYPE.
 **range(x)** returns the decimal exponent range in the model of the type
 of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_ or _complex_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of the default integer kind.
 

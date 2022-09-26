@@ -4,7 +4,7 @@
 
 **bessel_jn**(3) - \[MATHEMATICS\] Bessel function of the first kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = bessel_jn(n, x)
 ```
@@ -42,7 +42,7 @@ or
   function\|Bessel functions of the first kind of the orders **n1**
   to **n2**.
 
-### **Arguments**
+### **Options**
 
 - **n**
   : Shall be a scalar or an array of type _integer_.
@@ -57,7 +57,7 @@ or
   : Shall be a scalar or an array of type _real_.
   For **bessel_jn(n1, n2, x)** it shall be scalar.
 
-### **Returns**
+### **Result**
 
 The return value is a scalar of type _real_. It has the same kind
 as **x**.

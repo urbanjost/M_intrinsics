@@ -4,7 +4,7 @@
 
 **c_associated**(3) - \[ISO_C_BINDING\] Status of a C pointer
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = c_associated(c_prt_1, c_ptr_2)
 ```
@@ -16,7 +16,7 @@
 C pointer c_ptr_1 or if c_ptr_1 is associated with the target
 c_ptr_2.
 
-### **Arguments**
+### **Options**
 
 - **c_ptr_1**
   : Scalar of the type c_ptr or c_funptr.
@@ -24,7 +24,7 @@ c_ptr_2.
 - **c_ptr_2**
   : (Optional) Scalar of the same type as c_ptr_1.
 
-### **Returns**
+### **Result**
 
 The return value is of type _logical_; it is _.false_. if either c_ptr_1
 is a C NULL pointer or if c_ptr1 and c_ptr_2 point to different

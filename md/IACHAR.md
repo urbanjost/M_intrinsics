@@ -4,7 +4,7 @@
 
 **iachar**(3) - \[CHARACTER:CONVERSION\] Return integer ASCII code of a character
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = iachar(c [,kind])
 ```
@@ -24,7 +24,7 @@
   **iachar**(c) returns the code for the ASCII character in the first
   character position of C.
 
-### **Arguments**
+### **Options**
 
 - **c**
   : A character to determine the ASCII code of.
@@ -36,7 +36,7 @@
   : A constant initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
   the result is the position of the character **c** in the ASCII
   collating sequence. It is nonnegative and less than or equal to 127.

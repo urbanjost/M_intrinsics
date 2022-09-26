@@ -4,7 +4,7 @@
 
 **sqrt**(3) - \[MATHEMATICS\] Square-root function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = sqrt(x)
 ```
@@ -40,13 +40,13 @@ Square roots of negative numbers are a special case of complex numbers,
 where the components of the _radicand_ need not be positive in order to
 have a valid square root.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : If **x** is _real_ its value must be greater than or equal to zero.
   The type shall be _real_ or _complex_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_ or _complex_. The kind type parameter is
 the same as **x**.

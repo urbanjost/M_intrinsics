@@ -4,7 +4,7 @@
 
 **size**(3) - \[ARRAY INQUIRY\] Determine the size of an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = size(array [,dim] [,kind])
 ```
@@ -27,7 +27,7 @@
 Determine the extent of **array** along a specified dimension **dim**,
 or the total number of elements in **array** if **dim** is absent.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : the array to measure the number of elements of.
@@ -48,7 +48,7 @@ or the total number of elements in **array** if **dim** is absent.
 
   If **kind** is absent, the return value is of default _integer_ kind.
 
-### **Returns**
+### **Result**
 
   If **dim** is not present the total number of elements in the array
   are returned.

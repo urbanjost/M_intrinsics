@@ -4,7 +4,7 @@
 
 **ichar**(3) - \[CHARACTER:CONVERSION\] Character-to-integer conversion function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=ichar(c [,kind])
 ```
@@ -25,7 +25,7 @@ ASCII platform.
 See **iachar**(3) for specifically working with the ASCII character
 set.
 
-### **Arguments**
+### **Options**
 
 - **c**
   : Shall be a scalar _character_, with **intent(in)**
@@ -34,7 +34,7 @@ set.
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
 the return value is of default _integer_ kind.

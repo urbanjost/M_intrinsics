@@ -4,7 +4,7 @@
 
 **minexponent**(3) - \[NUMERIC MODEL\] Minimum exponent of a real kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = minexponent(x)
 ```
@@ -20,12 +20,12 @@ where KIND is any _real_ kind.
 **minexponent(x)** returns the minimum exponent in the model of the type
 of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of the default integer kind.
 

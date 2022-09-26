@@ -4,7 +4,7 @@
 
 **random_seed**(3) - \[MATHEMATICS:RANDOM\] Initialize a pseudo-random number sequence
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call random_seed(size, put, get)
 ```
@@ -18,7 +18,7 @@ by random_number.
 If random_seed is called without arguments, it is seeded with random
 data retrieved from the operating system.
 
-### **Arguments**
+### **Options**
 
 - **size**
   : (Optional) Shall be a scalar and of type default _integer_, with

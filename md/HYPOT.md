@@ -5,7 +5,7 @@
 **hypot**(3) - \[MATHEMATICS\] returns the distance between the point
 and the origin.
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = hypot(x, y)
 ```
@@ -28,7 +28,7 @@ space is the length of a line segment between two points.
 **hypot(x,y)** returns the distance between the point **<x,y>** and
 the origin.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
@@ -36,7 +36,7 @@ the origin.
 - **y**
   : The type and kind type parameter shall be the same as **x**.
 
-### **Returns**
+### **Result**
 
 The return value has the same type and kind type parameter as **x**.
 

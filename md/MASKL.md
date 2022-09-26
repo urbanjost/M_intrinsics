@@ -4,7 +4,7 @@
 
 **maskl**(3) - \[BIT:SET\] Generates a left justified mask
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = maskl( i [,kind] )
 ```
@@ -21,7 +21,7 @@ present, which is then used to specify the kind of the result.
 **maskl(i\[, _kind_\])** has its leftmost **i** bits set to **1**, and the
 remaining bits set to **0**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of type _integer_. Its value must be non-negative, and
@@ -30,7 +30,7 @@ remaining bits set to **0**.
 - **kind**
   : Shall be a scalar constant expression of type _integer_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_. If **kind** is present, it specifies
 the kind value of the return type; otherwise, it is of the default

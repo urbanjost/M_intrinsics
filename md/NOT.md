@@ -4,7 +4,7 @@
 
 **not**(3) - \[BIT:LOGICAL\] Logical negation
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = not(i)
 ```
@@ -19,12 +19,12 @@ The return type is of the same kind as the argument.
 
 NOT returns the bitwise Boolean inverse of **i**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The type shall be _integer_.
 
-### **Returns**
+### **Result**
 
 The return type is _integer_, of the same kind as the argument.
 

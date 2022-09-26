@@ -4,7 +4,7 @@
 
 **all**(3) - \[ARRAY REDUCTION\] determines if all the values are true
 
-### **Syntax**
+### **Synopsis**
 ```fortran
    result = all(mask [,dim])
 ```
@@ -24,7 +24,7 @@ in the array along dimension **dim**.
 The mask is generally a logical expression, allowing for comparing
 arrays and many other common operations.
 
-### **Arguments**
+### **Options**
 
 - **mask**
   : shall be a logical array.
@@ -34,7 +34,7 @@ arrays and many other common operations.
   between one and the rank of **mask**. The corresponding actual argument
   shall not be an optional dummy argument.
 
-### **Returns**
+### **Result**
 
 "**all(mask)**" returns a scalar value of type _logical_ where the kind
 type parameter is the same as the kind type parameter of **mask**. If

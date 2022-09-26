@@ -4,7 +4,7 @@
 
 **maskr**(3) - \[BIT:SET\] Generates a right-justified mask
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = maskr( i [,kind] )
 ```
@@ -24,7 +24,7 @@ is not present, else it is the kind specified by **kind**.
 The result  is an intger with its rightmost **i** bits set to 1, and the
 remaining bits set to 0.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of type _integer_.
@@ -34,7 +34,7 @@ remaining bits set to 0.
 - **kind**
   : Shall be a scalar constant expression of type _integer_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_. If **kind** is present, it
 specifies the kind value of the return type; otherwise, it is of the
@@ -42,7 +42,7 @@ default integer kind.
 
 It has its rightmost **i** bits set to 1, and the remaining bits set to 0.
 
-### **Example**
+### **Examples**
 
 Sample program:
 ```fortrqn

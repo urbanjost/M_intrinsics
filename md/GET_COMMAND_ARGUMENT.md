@@ -4,7 +4,7 @@
 
 **get_command_argument**(3) - \[SYSTEM:COMMAND LINE\] Get command line arguments
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call get_command_argument(number, value, length, status)
 ```
@@ -33,7 +33,7 @@ shells are ignored.
   0**, **value** is set to the name of the program (on systems that support
   this feature).
 
-### **Returns**
+### **Result**
 
 - **value**
   : Shall be a scalar of type _character_ and of default kind. After

@@ -5,7 +5,7 @@
 **findloc**(3) - \[ARRAY:LOCATION\] Location of first element of ARRAY
 identified by MASK along dimension DIM matching a target value
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
     findloc (array, value, dim, mask, kind, back)
@@ -58,7 +58,7 @@ element order.
 - **back**
   : (optional) shall be a logical scalar.
 
-### **Returns**
+### **Result**
 
 Result Characteristics. Integer. If **kind** is present, the kind type
 parameter is that specified by the value of **kind**; otherwise the kind
@@ -78,7 +78,7 @@ where
 
 is the shape of **array**.
 
-### **Returns**
+### **Result**
 
 - **Case (i):**
   The result of **findloc (array, value)** is a rank-one array whose

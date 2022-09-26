@@ -4,7 +4,7 @@
 
 **co_reduce**(3) - \[COLLECTIVE\] Reduction of values on the current set of images
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call co_reduce(a, operation, result_image, stat, errmsg)
 ```
@@ -25,7 +25,7 @@ assigned the value zero. If the execution failed, **stat** gets assigned a
 nonzero value and, if present, **errmsg** gets assigned a value describing
 the occurred error.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : is an **intent(inout)** argument and shall be nonpolymorphic. If it

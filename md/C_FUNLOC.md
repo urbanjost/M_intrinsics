@@ -4,7 +4,7 @@
 
 **c_funloc**(3) - \[ISO_C_BINDING\] Obtain the C address of a procedure
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = c_funloc(x)
 ```
@@ -14,12 +14,12 @@
 
 **c_funloc(x)** determines the C address of the argument.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Interoperable function or pointer to such function.
 
-### **Returns**
+### **Result**
 
 The return value is of type c_funptr and contains the C address of the
 argument.

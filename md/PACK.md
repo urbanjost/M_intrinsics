@@ -4,7 +4,7 @@
 
 **pack**(3) - \[ARRAY CONSTRUCTION\] Pack an array into an array of rank one
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = pack(array, mask,vector)
 ```
@@ -27,7 +27,7 @@
   **mask** equals _.true._. Afterwards, positions are filled with elements
   taken from **vector**.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of any type.
@@ -43,7 +43,7 @@
   scalar, the number of elements in **vector** shall be equal to or
   greater than the number of elements in **array**.
 
-### **Returns**
+### **Result**
 
 The result is an array of rank one and the same type as that of **array**.
 If **vector** is present, the result size is that of **vector**, the number of

@@ -4,7 +4,7 @@
 
 **ishftc**(3) - \[BIT:SHIFT\] logical shift: shift rightmost bits circularly
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=ishftc( i, shift [,back] )
 ```
@@ -33,7 +33,7 @@
   a value of zero corresponds to no shift, and a value less than zero
   corresponds to a right shift.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The value specifying the pattern of bits to shift
@@ -51,7 +51,7 @@
   The default is **bit_size(i)**. That is, the default is to circularly shift
   the entire value **i**.
 
-### **Returns**
+### **Result**
 
   The result characteristics (kind, shape, size, ranke, ...) are the same as **i**.
 

@@ -4,7 +4,7 @@
 
 **shifta**(3) - \[BIT:SHIFT\] shift bits right with fill
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = shifta(i, shift )
 ```
@@ -23,7 +23,7 @@
   right by **shift** places and the vacated bits on the left filled
   with the value of the original left-most bit..
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The initial value to shift and fill
@@ -33,7 +33,7 @@
     It shall be nonnegative and less than or equal to **bit_size(i)**.
     or the value is undefined.
 
-### **Returns**
+### **Result**
 
   The result characteristics (kind, type, rank, shape, ....) are the
   same as **i**.
@@ -72,7 +72,7 @@ integer(kind=int8)  :: arr(2,2)=reshape([2,4,8,16],[2,2])
    & int(b"10101010101010101010101010101010"), &
    & int(b"00000000000000000000000000011111") ]
 
-   ! does your platform distinguish betwee +0 and -0?
+   ! does your platform distinguish between +0 and -0?
    ! note the original leftmost bit is used to fill in the vacated bits
 
    write(*,'(/,"SHIFT =  ",i0)') shift

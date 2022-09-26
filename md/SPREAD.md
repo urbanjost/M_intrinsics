@@ -4,7 +4,7 @@
 
 **spread**(3) - \[ARRAY CONSTRUCTION\] Add a dimension to an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = spread(source, dim, ncopies)
 ```
@@ -23,7 +23,7 @@ dimension **dim**.
 If **source** is scalar, the shape of the result is (MAX (NCOPIES, 0)).
 and each element of the result has a value equal to **source**.
 
-### **Arguments**
+### **Options**
 
 - **source**
   : Shall be a scalar or an array of any type and a rank less than
@@ -36,7 +36,7 @@ and each element of the result has a value equal to **source**.
 - **ncopies**
   : Shall be a scalar of type _integer_.
 
-### **Returns**
+### **Result**
 
 The result is an array of the same type as **source** and has rank **n+1**
 where **n** equals the rank of **source**.

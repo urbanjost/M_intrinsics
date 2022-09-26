@@ -4,7 +4,7 @@
 
 **leadz**(3) - \[BIT:COUNT\] Number of leading zero bits of an integer
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = leadz(i)
 ```
@@ -17,12 +17,12 @@
 
 **leadz** returns the number of leading zero bits of an integer.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : _integer_ to count the leading zero bits of.
 
-### **Returns**
+### **Result**
 
 The type of the return value is the same as a default _integer_. If all
 the bits of **i** are zero, the result value is **bit_size(i)**.

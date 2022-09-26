@@ -4,7 +4,7 @@
 
 **command_argument_count**(3) - \[SYSTEM:COMMAND LINE\] Get number of command line arguments
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = command_argument_count()
 ```
@@ -16,11 +16,11 @@
 **command_argument_count()** returns the number of arguments passed
 on the command line when the containing program was invoked.
 
-### **Arguments**
+### **Options**
 
 None
 
-### **Returns**
+### **Result**
 
 - **count**
   : The return value is of type default _integer_. It is the number of

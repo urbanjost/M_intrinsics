@@ -4,7 +4,7 @@
 
 **ble**(3) - \[BIT:COMPARE\] Bitwise less than or equal to
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=ble(i,j)
 ```
@@ -20,13 +20,13 @@
   BOZ constant with a value valid for the _integer_ kind available with
   the most bits on the current platform.
 
-### **Syntax**
+### **Synopsis**
 
 ### **Description**
 
 Determines whether an integer is bitwise less than or equal to another.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of _integer_ type or a BOZ literal constant.
@@ -34,7 +34,7 @@ Determines whether an integer is bitwise less than or equal to another.
 - **j**
   : Shall be of _integer_ type or a BOZ constant.
 
-### **Returns**
+### **Result**
 
 The return value is of type _logical_ and of the default kind.
 

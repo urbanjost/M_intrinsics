@@ -4,7 +4,7 @@
 
 **sinh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Hyperbolic sine function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = sinh(x)
 ```
@@ -13,8 +13,9 @@
 
      TYPE(kind=KIND) :: x
 ```
-Where the returned value has the kind of the input value
-and TYPE may be _real_ or _complex_
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
+by the associated type. The returned value will be of the same type and kind as
+the argument.
 
 ### **Description**
 
@@ -27,19 +28,18 @@ The hyperbolic sine of x is defined mathematically as:
 If **x** is of type _complex_ its imaginary part is regarded as a value
 in radians.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_ or _complex_.
 
-### **Returns**
+### **Result**
 
 The return value has same type and kind as **x**.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_sinh
 use, intrinsic :: iso_fortran_env, only : &
@@ -71,9 +71,7 @@ character(len=20) :: line
 
 end program demo_sinh
 ```
-
 Results:
-
 ```text
   -1.1752011936438014
   -1.1752011936438014
@@ -82,15 +80,16 @@ Results:
                   Infinity
                   Infinity
 ```
-
 ### **Standard**
 
 Fortran 95 and later, for a complex argument Fortran 2008 or later
 
 ### **See Also**
 
-- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
-
 [**asinh**(3)](#asinh)
+
+### **Resources**
+
+- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
  _fortran-lang intrinsic descriptions_

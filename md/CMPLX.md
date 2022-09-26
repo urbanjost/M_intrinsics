@@ -4,7 +4,7 @@
 
 **cmplx**(3) - \[TYPE:NUMERIC\] Complex conversion function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = cmplx(x [,y] [,kind])
 ```
@@ -98,7 +98,7 @@ The following are examples of complex part designators:
        x%im = 0.0             !-- Sets the imaginary part of x to zero
 ````
 
-### **Arguments**
+### **Options**
 
 - **x**
   The type may be _integer_, _real_, or _complex_.
@@ -111,7 +111,7 @@ The following are examples of complex part designators:
   (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of _complex_ type, with a kind equal to **kind** if it is
 specified. If **kind** is not specified, the result is of the default

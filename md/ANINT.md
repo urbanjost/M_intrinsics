@@ -4,7 +4,7 @@
 
 **anint**(3) - \[NUMERIC\] Nearest whole number
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = anint(a [,kind])
 ```
@@ -21,7 +21,7 @@ where the _kind_ of the result is the same as as **x** unless
 
 **anint(a \[, kind\])** rounds its argument to the nearest whole number.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : the type of the argument shall be _real_.
@@ -30,7 +30,7 @@ where the _kind_ of the result is the same as as **x** unless
   : (optional) an _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type real with the kind type parameter of the
 argument if the optional **kind** is absent; otherwise, the kind type

@@ -4,7 +4,7 @@
 
 **product**(3) - \[ARRAY REDUCTION\] Product of array elements
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = product(array [,dim] [,mask])
 ```
@@ -30,7 +30,7 @@ When **dim** is present, If the masked array has a dimension of one
 **n-1**, where **n** equals the rank of **array**, and a shape similar
 to that of **array** with dimension **dim** dropped is returned.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_, _real_ or _complex_.
@@ -43,7 +43,7 @@ to that of **array** with dimension **dim** dropped is returned.
   : shall be of type _logical_ and either be a scalar or an
   array of the same shape as **array**.
 
-### **Returns**
+### **Result**
 
 The result is of the same type as **array**.
 

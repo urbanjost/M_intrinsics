@@ -4,7 +4,7 @@
 
 **int**(3) - \[TYPE:NUMERIC\] Convert to integer type by truncating towards zero
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = int(a [,kind])
 ```
@@ -18,7 +18,7 @@
 
 Convert to integer type by truncating towards zero.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : Shall be of type _integer_, _real_, or _complex_ or a BOZ-literal-constant.
@@ -29,7 +29,7 @@ Convert to integer type by truncating towards zero.
 
   If not present the returned type is that of default integer type.
 
-### **Returns**
+### **Result**
 
 returns an _integer_ variable or array applying the following rules:
 

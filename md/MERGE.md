@@ -4,7 +4,7 @@
 
 **merge**(3) - \[ARRAY CONSTRUCTION\] Merge variables
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = merge(tsource, fsource, mask)
 ```
@@ -50,7 +50,7 @@ instead of the more obscure
 ```fortran
       merge(1.0/merge(x,1.0,x /= 0.0), 0.0, x /= 0.0)
 ```
-### **Arguments**
+### **Options**
 
 - **tsource**
   : May be of any type, including user-defined.
@@ -63,7 +63,7 @@ instead of the more obscure
 
 Note that (currently) _character_ values must be of the same length.
 
-### **Returns**
+### **Result**
 
 The result is of the same type and type parameters as **tsource**. For any
 element the result is **tsource** if **mask** is true and **fsource** otherwise.

@@ -4,7 +4,7 @@
 
 **bessel_yn**(3) - \[MATHEMATICS\] Bessel function of the second kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = bessel_yn(n, x)
 ```
@@ -27,7 +27,7 @@ shall conform.
 **bessel_yn(n1, n2, x)** returns an array with the Bessel
 function\|Bessel functions of the first kind of the orders **n1** to **n2**.
 
-### **Arguments**
+### **Options**
 
 - **n**
   : Shall be a scalar or an array of type _integer_.
@@ -42,7 +42,7 @@ function\|Bessel functions of the first kind of the orders **n1** to **n2**.
   : Shall be a scalar or an array of type _real_; for
   **bessel_yn(n1, n2, x)** it shall be scalar.
 
-### **Returns**
+### **Result**
 
 The return value is _real_. It has the same kind as **x**.
 

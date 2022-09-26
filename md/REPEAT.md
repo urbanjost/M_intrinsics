@@ -4,7 +4,7 @@
 
 **repeat**(3) - \[CHARACTER\] Repeated string concatenation
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = repeat(string, ncopies)
 ```
@@ -18,7 +18,7 @@
 
 Concatenates **ncopies** copies of a string.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : The input string to repeatedly generate.
@@ -28,7 +28,7 @@ Concatenates **ncopies** copies of a string.
   : Number of copies to make of _string_, greater than or equal to zero (0).
   Shall be scalar and of type _integer_.
 
-### **Returns**
+### **Result**
 
 A new scalar of type _character_ built up from **ncopies** copies of **string**.
 

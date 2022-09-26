@@ -4,7 +4,7 @@
 
 **len**(3) - \[CHARACTER\] Length of a character entity
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=len(string [,kind])
 ```
@@ -27,7 +27,7 @@ returned, as all elements of an array are the same length.
 Note that **string** need not be defined when this intrinsic is invoked,
 as only the length (not the content) of **string** is needed.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : A scalar or array of type _character_ to return the length of
@@ -36,7 +36,7 @@ as only the length (not the content) of **string** is needed.
   : A constant _integer_ initialization expression indicating the _kind_
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of kind **kind**. If **kind**
 is absent, the return value is of default integer kind.

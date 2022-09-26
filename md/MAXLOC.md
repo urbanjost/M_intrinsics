@@ -4,7 +4,7 @@
 
 **maxloc**(3) - \[ARRAY:LOCATION\] Location of the maximum value within an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = maxloc(array [,mask])
 ```
@@ -44,7 +44,7 @@ of **mask** are .false., then the result is an array of zeroes. Similarly,
 if **dim** is supplied and all of the elements of **mask** along a given
 row are zero, the result value for that row is zero.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_, _real_, or _character_.
@@ -57,7 +57,7 @@ row are zero, the result value for that row is zero.
 - **mask**
   : Shall be an array of type _logical_, and conformable with **array**.
 
-### **Returns**
+### **Result**
 
 If **dim** is absent, the result is a rank-one array with a length equal
 to the rank of **array**. If **dim** is present, the result is an array

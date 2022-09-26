@@ -4,7 +4,7 @@
 
 **aint**(3) - \[NUMERIC\] Truncate to a whole number
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=aint(x [,kind])
 ```
@@ -21,7 +21,7 @@ is present. KIND defaults to the default _integer_ kind.
 
 **aint(x, kind)** truncates its argument to a whole number.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : the _real_ value to truncate.
@@ -30,7 +30,7 @@ is present. KIND defaults to the default _integer_ kind.
   : an _integer_ initialization expression indicating the
   kind parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_ with the kind type parameter of the
 argument if the optional **kind** is absent; otherwise, the kind type

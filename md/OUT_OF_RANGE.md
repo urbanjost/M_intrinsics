@@ -3,7 +3,7 @@
 ### **Name**
 **out_of_range**(3) - \[TYPE:NUMERIC\] Whether a value cannot be converted safely.
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = out_of_range (x, mold [, round])
 ```
@@ -21,7 +21,7 @@
    safely to a _real_ or _integer_ variable the same type and kind as
    **mold**.
 
-### **Arguments**
+### **Options**
    - **x**
      : a scalar of type _integer_ or _real_ to be tested for whether
      it can be stored in a variable of the type and kind of **mold**
@@ -37,7 +37,7 @@
      **round** can only be present if **x** is of type
      _real_ and **mold** is of type _integer_.
 
-### **Returns**
+### **Result**
 
 From the standard:
 

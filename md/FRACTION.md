@@ -4,7 +4,7 @@
 
 **fraction**(3) - \[MODEL_COMPONENTS\] Fractional part of the model representation
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = fraction(x)
 ```
@@ -19,12 +19,12 @@
   **fraction(x)** returns the fractional part of the model representation
   of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The value to interrogate
 
-### **Returns**
+### **Result**
 
 The fractional part of the model representation of **x** is returned;
 it is **x \* radix(x)\*\*(-exponent(x))**.

@@ -4,7 +4,7 @@
 
 **erf**(3) - \[MATHEMATICS\] Error function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = erf(x)
 ```
@@ -22,12 +22,12 @@ $$
 \text{erf}(x) = \frac{2}{\sqrt{\pi}} \int_0^x e^{__-t__^2} dt.
 $$
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_, of the same kind as **x** and lies in the
 range **-1** \<= **erf**(x) \<= 1 .
@@ -59,6 +59,8 @@ Fortran 2008 and later
 ### See also
 
 [**erfc**(3)](#erfc)
+
+### **Resources**
 
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 

@@ -4,7 +4,7 @@
 
 **ibclr**(3) - \[BIT:SET\] Clear bit
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = ibclr(i, pos)
 ```
@@ -20,7 +20,7 @@
 
 **ibclr** returns the value of **i** with the bit at position **pos** set to zero.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The type shall be _integer_.
@@ -31,7 +31,7 @@
   _integer_. The value of **pos** must be within the range zero to
   **(bit_size(i)-1**).
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of the same kind as **i**.
 

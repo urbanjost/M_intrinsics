@@ -4,7 +4,7 @@
 
 **gamma**(3) - \[MATHEMATICS\] Gamma function, which yields factorials for positive whole numbers
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = gamma(x)
 ```
@@ -28,12 +28,12 @@ $$
 t\*\*{x-1}{\\mathrm{e}}\*\*{__-t__}\\,{\\mathrm{d}}t
 $$
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_ and neither zero nor a negative integer.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_ of the same kind as _x_.
 
@@ -130,6 +130,8 @@ Fortran 2008 and later
 ### **See Also**
 
 Logarithm of the Gamma function: [**log_gamma**(3)](#log_gamma)
+
+### **Resources**
 
 [Wikipedia: Gamma_function](https://en.wikipedia.org/wiki/Gamma_function)
 

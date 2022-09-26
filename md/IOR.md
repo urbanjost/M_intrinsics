@@ -4,7 +4,7 @@
 
 **ior**(3) - \[BIT:LOGICAL\] Bitwise logical inclusive or
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = ior(i, j)
 ```
@@ -21,7 +21,7 @@
 
 **ior** returns the bit-wise Boolean inclusive-or of **i** and **j**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : an _integer_ scalar or array.
@@ -29,7 +29,7 @@
 - **j**
   : _integer_ scalar or array, of the same kind as **i**.
 
-### **Returns**
+### **Result**
 
 The return type is _integer_, of the same kind as the arguments. (If the
 argument kinds differ, it is of the same kind as the larger argument.)

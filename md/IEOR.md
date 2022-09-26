@@ -4,7 +4,7 @@
 
 **ieor**(3) - \[BIT:LOGICAL\] Bitwise logical exclusive or
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = ieor(i, j)
 ```
@@ -21,7 +21,7 @@
 
 **ieor** returns the bitwise Boolean exclusive-**or** of **i** and **j**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The type shall be _integer_.
@@ -29,7 +29,7 @@
 - **j**
   : The type shall be _integer_, of the same kind as **i**.
 
-### **Returns**
+### **Result**
 
 The return type is _integer_, of the same kind as the arguments. (If the
 argument kinds differ, it is of the same kind as the larger argument.)

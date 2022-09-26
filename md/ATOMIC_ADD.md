@@ -4,7 +4,7 @@
 
 **atomic_add**(3) - \[ATOMIC\] Atomic ADD operation
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call atomic_add (atom, value, stat)
 ```
@@ -21,7 +21,7 @@ ATOM, if the remote image has stopped, it is assigned the value of
 iso_fortran_env's stat_stopped_image and if the remote image has
 failed, the value stat_failed_image.
 
-### **Arguments**
+### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of integer type with

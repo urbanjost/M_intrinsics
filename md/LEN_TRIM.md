@@ -4,7 +4,7 @@
 
 **len_trim**(3) - \[CHARACTER:WHITESPACE\] Length of a character entity without trailing blank characters
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = len_trim(string [,kind])
 ```
@@ -21,7 +21,7 @@ is absent, the return value is of default _integer_ kind.
 
 Returns the length of a character string, ignoring any trailing blanks.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : The input string whose length is to be measured.
@@ -31,7 +31,7 @@ Returns the length of a character string, ignoring any trailing blanks.
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 
 ### **Examples**

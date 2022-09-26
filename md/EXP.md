@@ -4,7 +4,7 @@
 
 **exp**(3) - \[MATHEMATICS\] Base-e exponential function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = exp(x)
 ```
@@ -35,12 +35,12 @@ then
 Since **exp**(3) is the inverse function of **log**(3) the maximum valid magnitude
 of the _real_ component of **x** is **log(huge(x))**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_ or _complex_.
 
-### **Returns**
+### **Result**
 
 The value of the result is **e\*\*x** where **e** is Euler's constant.
 
@@ -98,6 +98,8 @@ FORTRAN 77 and later
 ### **See Also**
 
 - [**log**(3)](#log)
+
+### **Resources**
 
 - Wikipedia:[Exponential function](https://en.wikipedia.org/wiki/Exponential_function)
 

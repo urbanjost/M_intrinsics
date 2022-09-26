@@ -4,7 +4,7 @@
 
 **co_broadcast**(3) - \[COLLECTIVE\] Copy a value to all images the current set of images
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call co_broadcast(a, source_image, stat, errmsg)
 ```
@@ -19,7 +19,7 @@ is present, it is assigned the value zero. If the execution failed, **stat**
 gets assigned a nonzero value and, if present, **errmsg** gets assigned a
 value describing the occurred error.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : **intent(inout)** argument; shall have the same dynamic type and

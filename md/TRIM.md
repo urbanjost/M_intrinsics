@@ -4,7 +4,7 @@
 
 **trim**(3) - \[CHARACTER:WHITESPACE\] Remove trailing blank characters of a string
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = trim(string)
 ```
@@ -20,12 +20,12 @@
 
   Removes trailing blank characters from a string.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : A scalar string to trim trailing blanks from
 
-### **Returns**
+### **Result**
 
   The value of the result is the same as **string** except trailing
   blanks are removed.

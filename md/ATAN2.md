@@ -4,7 +4,7 @@
 **atan2**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arctangent (inverse tangent)
 function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=atan2(y, x)
 ```
@@ -23,7 +23,7 @@ the arctangent of the complex number ( **x**, **y** ) or equivalently the
 principal value of the arctangent of the value **y/x** (which determines
 a unique angle).
 
-### **Arguments**
+### **Options**
 
 - **y**
   : The imaginary component of the complex value **(x,y)** or the **y**
@@ -35,7 +35,7 @@ a unique angle).
 
   **x**  must be of the same kind as **y**.
 
-### **Returns**
+### **Result**
 
 The type and kind of the result are the same as the elements of **x**.
 and **y**.
@@ -162,13 +162,16 @@ end program demo_atan2
    X= -1.00 Y= -1.00 ANGLE= 3.926991    DEGREES= 225.0  DISTANCE=1.414214
    X=  0.00 Y= -1.00 ANGLE= 4.712389    DEGREES= 270.0  DISTANCE=1.000000
 ```
-### **See Also**
-
-- [**atan**(3)](#atan)
-- [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
 ### **Standard**
 
 FORTRAN 77 and later
 
+### **See Also**
+
+- [**atan**(3)](#atan)
+
+### **Resources**
+
+- [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

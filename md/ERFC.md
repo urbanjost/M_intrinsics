@@ -4,7 +4,7 @@
 
 **erfc**(3) - \[MATHEMATICS\] Complementary error function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = erfc(x)
 ```
@@ -32,12 +32,12 @@ $$
 \text{erfc}(x) = 1 - \text{erf}(x) = 1 - \frac{2}{\sqrt{\pi}} \int_x^{\infty} e^{-t^2} dt.
 $$
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_ and of the same kind as **x**. It lies in
 the range
@@ -71,6 +71,8 @@ Fortran 2008 and later
 ### See also
 
 [**erf**(3)](#erf)
+
+### **Resources**
 
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 

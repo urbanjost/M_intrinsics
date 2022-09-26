@@ -4,7 +4,7 @@
 
 **this_image**(3) - \[COLLECTIVE\] Cosubscript index of this image
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
 result = this_image()
@@ -24,7 +24,7 @@ result = this_image(coarray, dim)
 
 Returns the cosubscript for this image.
 
-### **Arguments**
+### **Options**
 
 - **distance**
   : (optional, **intent(in)**) Nonnegative scalar integer (not permitted
@@ -37,7 +37,7 @@ Returns the cosubscript for this image.
   : default integer scalar (optional). If present, **dim** shall be between
   one and the corank of **coarray**.
 
-### **Returns**
+### **Result**
 
 Default integer. If **coarray** is not present, it is scalar; if **distance** is
 not present or has value **0**, its value is the image index on the invoking

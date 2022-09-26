@@ -4,7 +4,7 @@
 
 **is_iostat_eor**(3) - \[STATE\] Test for end-of-record value
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = is_iostat_eor(i)
 ```
@@ -20,12 +20,12 @@ status "end of record". The function is equivalent to comparing the
 variable with the **iostat_eor** parameter of the intrinsic module
 **iso_fortran_env**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The value to test as indicating "end of record".
 
-### **Returns**
+### **Result**
 
 Returns a _logical_ of the default kind, which is _.true._ if **i**
 has the value which indicates an end of file condition for iostat=

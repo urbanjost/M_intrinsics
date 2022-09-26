@@ -4,7 +4,7 @@
 
 **maxexponent**(3) - \[NUMERIC MODEL\] Maximum exponent of a real kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = maxexponent(x)
 ```
@@ -20,12 +20,12 @@ where KIND is any _real_ kind.
 **maxexponent(x)** returns the maximum exponent in the model of the type
 of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of the default integer kind.
 

@@ -4,7 +4,7 @@
 
 **compiler_version**(3) - \[COMPILER INQUIRY\] Compiler version string
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = compiler_version()
 ```
@@ -16,11 +16,11 @@
 **compiler_version**(3) returns a string containing the name and
 version of the compiler.
 
-### **Arguments**
+### **Options**
 
 None.
 
-### **Returns**
+### **Result**
 
 The return value is a default-kind string with system-dependent length.
 It contains the name of the compiler and its version number.

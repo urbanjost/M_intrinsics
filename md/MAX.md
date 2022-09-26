@@ -4,7 +4,7 @@
 
 **max**(3) - \[NUMERIC\] Maximum value of an argument list
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = max(a1, a2, a3, ...)
 ```
@@ -24,7 +24,7 @@ Where **TYPE** may be _integer_ or _real_
 
 Returns the argument with the largest (most positive) value.
 
-### **Arguments**
+### **Options**
 
 - **a1**
   : The type shall be _integer_ or _real_.
@@ -33,7 +33,7 @@ Returns the argument with the largest (most positive) value.
   : An expression of the same type and kind as **a1**.
   There must be at least two arguments to **max(3)**.
 
-### **Returns**
+### **Result**
 
   The return value corresponds to the maximum value among the arguments,
   and has the same type and kind as the first argument.

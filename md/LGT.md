@@ -4,7 +4,7 @@
 
 **lgt**(3) - \[CHARACTER:COMPARE\] ASCII Lexical greater than
 
-### **Syntax**
+### **Synopsis**
 ```fortran
      result = lgt(string_a, stringb)
 ```
@@ -28,7 +28,7 @@
   ordering (which is not ASCII on some targets), whereas the former
   always use the ASCII ordering.
 
-### **Arguments**
+### **Options**
 
 - **string_a**
   : Shall be of default _character_ type.
@@ -36,7 +36,7 @@
 - **string_b**
   : Shall be of default _character_ type.
 
-### **Returns**
+### **Result**
 
   Returns _.true._ if string_a \> string_b, and _.false._ otherwise,
   based on the ASCII ordering.

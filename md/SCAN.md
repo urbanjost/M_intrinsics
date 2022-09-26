@@ -4,7 +4,7 @@
 
 **scan**(3) - \[CHARACTER:SEARCH\] Scan a string for the presence of a set of characters
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = scan(string, set[, back [, kind]])
 ```
@@ -29,7 +29,7 @@ position of the leftmost character of **STRING** that is in **set**. If **back**
 equals _.true._, the rightmost position is returned. If no character of **set**
 is found in **string**, the result is zero.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : Shall be of type _character_.
@@ -44,7 +44,7 @@ is found in **string**, the result is zero.
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
 the return value is of default integer kind.

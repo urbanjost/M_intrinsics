@@ -4,7 +4,7 @@
 
 **selected_real_kind**(3) - \[KIND\] Choose real kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = selected_real_kind(p, r, radix)
 ```
@@ -16,7 +16,7 @@
 data type with decimal precision of at least **p** digits, exponent range of
 at least **r**, and with a radix of **radix**.
 
-### **Arguments**
+### **Options**
 
 - **p**
   : (Optional) shall be a scalar and of type _integer_.
@@ -31,7 +31,7 @@ Before **Fortran 2008**, at least one of the arguments **r** or **p** shall
 be present; since **Fortran 2008**, they are assumed to be zero if
 absent.
 
-### **Returns**
+### **Result**
 
 selected_real_kind returns the value of the kind type parameter of a
 real data type with decimal precision of at least **p** digits, a decimal

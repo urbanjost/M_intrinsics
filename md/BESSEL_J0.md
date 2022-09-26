@@ -4,7 +4,7 @@
 
 **bessel_j0**(3) - \[MATHEMATICS\] Bessel function of the first kind of order 0
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = bessel_j0(x)
 ```
@@ -21,12 +21,12 @@ The result is the same type and kind as **x**.
 **bessel_j0(x)** computes the Bessel function of the first kind
 of order **0** of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The value to operate on.
 
-### **Returns**
+### **Result**
 
 the Bessel function of the first kind of order **0** of **x**.
 The result lies in the range **-0.4027 \<= bessel(0,x) \<= 1**.

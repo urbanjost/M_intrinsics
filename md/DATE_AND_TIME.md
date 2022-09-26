@@ -4,7 +4,7 @@
 
 **date_and_time**(3) - \[SYSTEM:TIME\] gets current time
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call date_and_time([date] [,time] [,zone] [,values] )
 ```
@@ -23,7 +23,7 @@ date and time information from the real-time system clock.
 
 Unavailable time and date _character_ parameters return blanks.
 
-### **Arguments**
+### **Options**
 
 - **date**
   : A character string of default kind of the form CCYYMMDD, of length 8 or larger.

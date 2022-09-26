@@ -4,7 +4,7 @@
 
 **lle**(3) - \[CHARACTER:COMPARE\] ASCII Lexical less than or equal
 
-### **Syntax**
+### **Synopsis**
 ```fortran
      result = lle(string_a, stringb)
 ```
@@ -29,7 +29,7 @@
   ordering (which is not ASCII on some targets), whereas the former
   always use the ASCII ordering.
 
-### **Arguments**
+### **Options**
 
 - **str_a**
   : variable or array of default _character_ type.
@@ -40,7 +40,7 @@
   if **str_a** and **str_b** are both arrays they must be of the
   same shape.
 
-### **Returns**
+### **Result**
 
 - **result**
   Returns _.true._ if **STR_A \<= STR_B**, and _.false._ otherwise, based on

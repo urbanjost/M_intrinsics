@@ -4,7 +4,7 @@
 
 **maxval**(3) - \[ARRAY REDUCTION\] determines the maximum value in an array or row
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = maxval(array [,mask])
 ```
@@ -37,7 +37,7 @@ size, or all of the elements of **mask** are _.false._, then the result is the
 most negative number of the type and kind of **array** if **array** is numeric,
 or a string of nulls if **array** is of character type.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_, _real_, or _character_.
@@ -51,7 +51,7 @@ or a string of nulls if **array** is of character type.
   : (Optional) Shall be an array of type _logical_, and conformable with
   **array**.
 
-### **Returns**
+### **Result**
 
 If **dim** is absent, or if **array** has a rank of one, the result is a scalar.
 If **dim** is present, the result is an array with a rank one less than the

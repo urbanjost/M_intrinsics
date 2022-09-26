@@ -4,7 +4,7 @@
 
 **bit_size**(3) - \[BIT:INQUIRY\] Bit size inquiry function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=bit_size(i)
 ```
@@ -21,14 +21,14 @@ parameter on the processor.
 **bit_size(i)** returns the number of bits (integer precision plus sign
 bit) represented by the type of the _integer_ **i**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : An _integer_ value of any kind whose size in bits is to be determined.
   Because only the type of the argument is examined, the argument need
   not be defined; **i** can be a scalar or an array.
 
-### **Returns**
+### **Result**
 
 The number of bits used to represent a value of the type
 of __i__. The result is a _integer_ scalar of the same kind as __i__.

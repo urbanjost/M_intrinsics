@@ -4,7 +4,7 @@
 
 **tan**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Tangent function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = tan(x)
 ```
@@ -13,26 +13,26 @@
 
      TYPE(kind=KIND),intent(in) :: x
 ```
-where TYPE may be _real_ or _complex_ and KIND may be any KIND supported
-by the associated type.
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
+by the associated type. The returned value will be of the same type and kind as
+the argument.
 
 ### **Description**
 
 **tan(x)** computes the tangent of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_ or _complex_.
 
-### **Returns**
+### **Result**
 
 The return value has the same type and kind as **x**.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_tan
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
@@ -42,13 +42,10 @@ real(kind=real64) :: x = 0.165_real64
      write(*,*)x, tan(x)
 end program demo_tan
 ```
-
 Results:
-
 ```text
      0.16500000000000001       0.16651386310913616
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later. For a complex argument, Fortran 2008 or later.

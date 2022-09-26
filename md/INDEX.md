@@ -4,7 +4,7 @@
 
 **index**(3) - \[CHARACTER:SEARCH\] Position of a substring within a string
 
-### **Syntax**
+### **Synopsis**
 ```fortran
 result=index( string, substring [,back] [,kind] )
 ```
@@ -22,7 +22,7 @@ Returns the position of the start of the leftmost or rightmost
 occurrence of string **substring** in **string**, counting from one. If
 **substring** is not present in **string**, zero is returned.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : string to be searched
@@ -38,7 +38,7 @@ occurrence of string **substring** in **string**, counting from one. If
   : An _integer_ initialization expression indicating the kind parameter
   of the result.
 
-### **Returns**
+### **Result**
 
 - **START**
   : The return value is of type _integer_ and of kind **kind**. If **kind** is

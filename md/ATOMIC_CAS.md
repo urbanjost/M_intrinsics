@@ -4,7 +4,7 @@
 
 **atomic_cas**(3) - \[ATOMIC\] Atomic compare and swap
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call atomic_cas (atom, old, compare, new, stat)
 ```
@@ -23,7 +23,7 @@ has stopped, it is assigned the value of iso_fortran_env's
 stat_stopped_image and if the remote image has failed, the value
 stat_failed_image.
 
-### **Arguments**
+### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of either integer type with

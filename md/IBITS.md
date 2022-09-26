@@ -4,7 +4,7 @@
 
 **ibits**(3) - \[BIT:COPY\] Bit extraction
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = ibits(i, pos, len)
 ```
@@ -26,7 +26,7 @@ bit position **pos** and extending left for **len** bits. The result is
 right-justified and the remaining bits are zeroed. The value of pos+len
 must be less than or equal to the value **bit_size(i)**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The type shall be _integer_.
@@ -38,7 +38,7 @@ must be less than or equal to the value **bit_size(i)**.
 - **len**
   : The type shall be _integer_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of the same kind as **i**.
 

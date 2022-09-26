@@ -4,7 +4,7 @@
 
 **mvbits**(3) - \[BIT:COPY\] reproduce bit patterns found in one integer in another
 
-### **Syntax**
+### **Synopsis**
 ```fortran
 call mvbits(from, frompos, len, to, topos)
 ```
@@ -30,7 +30,7 @@ nonnegative and less than **bit_size**(from).
 
 The bits are numbered **0** to **bit_size(i)-1**, from right to left.
 
-### **Arguments**
+### **Options**
 
 - **from**
   : An _integer_ to read bits from.
@@ -62,7 +62,7 @@ The bits are numbered **0** to **bit_size(i)-1**, from right to left.
   **topos + len** must be less than or equal to **bit_size(to)**.
 
 
-### **Example**
+### **Examples**
 
 Sample program that populates a new 32-bit integer with its bytes in
 reverse order (ie. changes the Endian of the integer).

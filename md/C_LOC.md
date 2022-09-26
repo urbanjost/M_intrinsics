@@ -4,7 +4,7 @@
 
 **c_loc**(3) - \[ISO_C_BINDING\] Obtain the C address of an object
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = c_loc(x)
 ```
@@ -14,7 +14,7 @@
 
 **c_loc(x)** determines the C address of the argument.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall have either the _pointer_ or _target_ attribute. It shall not be a
@@ -22,7 +22,7 @@
   type and kind type parameters, or be a scalar, nonpolymorphic
   variable with no length type parameters.
 
-### **Returns**
+### **Result**
 
 The return value is of type c_ptr and contains the C address of the
 argument.

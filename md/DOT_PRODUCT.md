@@ -4,7 +4,7 @@
 
 **dot_product**(3) - \[TRANSFORMATIONAL\] Dot product function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = dot_product(vector_a, vector_b)
 ```
@@ -34,7 +34,7 @@ If the vectors are _logical_, the result is
 
      **any(vector_a .and. vector_b)**.
 
-### **Arguments**
+### **Options**
 
 - **vector_a**
   : The type shall be numeric or _logical_, rank 1.
@@ -44,7 +44,7 @@ If the vectors are _logical_, the result is
   if vector*a is of type \_logical*. vector_b shall be a rank-one
   array.
 
-### **Returns**
+### **Result**
 
 If the arguments are numeric, the return value is a scalar of numeric
 type, _integer_, _real_, or _complex_. If the arguments are _logical_, the

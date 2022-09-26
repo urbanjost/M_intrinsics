@@ -4,7 +4,7 @@
 
 **reduce**(3) - \[TRANSFORMATIONAL\] general reduction of an array
 
-### **Syntax**
+### **Synopsis**
 
 There are two forms to this function:
 ```fortran
@@ -176,12 +176,16 @@ one relative to the input array.
      > [2, 12, 30, should be [2,12,30],
      > [15, 48, should be [15, 48],
 ````
-### **See Also**
-- [co_reduce(3)](#co_reduce)
-- [associative:wikipedia](https://en.wikipedia.org/wiki/Associative_property)
 
 ### **Standard**
 
    Fortran 2018
+
+### **See Also**
+- [co_reduce(3)](#co_reduce)
+
+### **Resources**
+
+- [associative:wikipedia](https://en.wikipedia.org/wiki/Associative_property)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

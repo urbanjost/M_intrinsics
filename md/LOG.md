@@ -4,7 +4,7 @@
 
 **log**(3) - \[MATHEMATICS\] Logarithm function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = log(x)
 ```
@@ -21,12 +21,12 @@
   **log(x)** computes the natural logarithm of **x**, i.e. the logarithm to
   the base "e".
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The value to take the log of
 
-### **Returns**
+### **Result**
 
   The natural logarithm of **xx**.
   If **x** is _complex_, the imaginary part OMEGA is in the range

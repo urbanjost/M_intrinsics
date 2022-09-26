@@ -4,7 +4,7 @@
 
 **bessel_j1**(3) - \[MATHEMATICS\] Bessel function of the first kind of order 1
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = bessel_j1(x)
 ```
@@ -20,12 +20,12 @@ where KIND may be any supported _real_ KIND.
 **bessel_j1(x)** computes the Bessel function of the first kind
 of order **1** of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_ and lies in the range
 **-0.5818 \<= bessel(0,x) \<= 0.5818** . It has the same kind as **x**.

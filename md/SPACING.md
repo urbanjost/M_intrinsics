@@ -4,7 +4,7 @@
 
 **spacing**(3) - \[MODEL_COMPONENTS\] Smallest distance between two numbers of a given type
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = spacing(x)
 ```
@@ -20,12 +20,12 @@
 Determines the distance between the argument **x** and the nearest adjacent
 number of the same type.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_.
 
-### **Returns**
+### **Result**
 
 The result is of the same type as the input argument **x**.
 

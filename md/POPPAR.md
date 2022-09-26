@@ -4,7 +4,7 @@
 
 **poppar**(3) - \[BIT:COUNT\] Parity of the number of bits set
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = poppar(i)
 ```
@@ -18,12 +18,12 @@
 Returns the parity of an integer's binary representation (i.e., the
 parity of the number of bits set).
 
-### **Arguments**
+### **Options**
 
 - **i**
   : Shall be of type _integer_.
 
-### **Returns**
+### **Result**
 
 The return value is equal to **0** if **i** has an even number of bits set and 1 if an odd
 number of bits are set.

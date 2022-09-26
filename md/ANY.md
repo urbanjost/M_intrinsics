@@ -4,7 +4,7 @@
 
 **any**(3) - \[ARRAY REDUCTION\] determines if any of the values in the logical array are true.
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = any(mask [,dim])
 ```
@@ -19,7 +19,7 @@
 **any(mask, dim)** determines if any of the values in the logical
 array **mask** along dimension **dim** are _.true._.
 
-### **Arguments**
+### **Options**
 
 - **mask**
   : the type of the argument shall be _logical_ and it shall not be
@@ -29,7 +29,7 @@ array **mask** along dimension **dim** are _.true._.
   : (optional) dim shall be a scalar integer with a value that lies
   between one and the rank of mask.
 
-### **Returns**
+### **Result**
 
 **any(mask)** returns a scalar value of type _logical_ where the kind type
 parameter is the same as the kind type parameter of **mask**. If **dim** is

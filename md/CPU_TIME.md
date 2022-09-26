@@ -4,7 +4,7 @@
 
 **cpu_time**(3) - \[SYSTEM:TIME\] return CPU processor time in seconds
 
-### **Syntax**
+### **Synopsis**
 ```fortran
      call cpu_time(time)
 ```
@@ -30,7 +30,7 @@ A processor for which a single result is inadequate (for example, a
 parallel processor) might choose to provide an additional version for
 which time is an array.
 
-### **Returns**
+### **Result**
 
 - **time**
   : The type shall be _real_ with **intent(out)**. It is assigned a

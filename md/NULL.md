@@ -4,7 +4,7 @@
 
 **null**(3) - \[TRANSFORMATIONAL\] Function that returns a disassociated pointer
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     ptr => null(mold)
 ```
@@ -19,13 +19,13 @@ returned, otherwise the type is determined by context.
 
 In _Fortran 95_, **mold** is optional. Please note that _Fortran 2003_ includes cases where it is required.
 
-### **Arguments**
+### **Options**
 
 - **mold**
   : (Optional) shall be a pointer of any association status and of any
   type.
 
-### **Returns**
+### **Result**
 
 A disassociated pointer or an unallocated allocatable entity.
 

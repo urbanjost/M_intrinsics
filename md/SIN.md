@@ -4,7 +4,7 @@
 
 **sin**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Sine function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = sin(x)
 ```
@@ -13,8 +13,9 @@
 
      TYPE(kind=KIND) :: x
 ```
-Where the returned value has the kind of the input value
-and TYPE may be _real_ or _complex_
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
+by the associated type. The returned value will be of the same type and kind as
+the argument.
 
 ### **Description**
 
@@ -25,12 +26,12 @@ The sine of an angle in a right-angled triangle is the ratio of the
 length of the side opposite the given angle divided by the length of the
 hypotenuse.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_ or _complex_ in radians.
 
-### **Returns**
+### **Result**
 
 - **result**
   : The return value has the same type and kind as **x**.
@@ -83,7 +84,6 @@ And then use the haversine formula to roughly calculate the distance
 along the surface of the Earth between the locations:
 
 Sample program:
-
 ```fortran
 program demo_sin
 implicit none
@@ -114,23 +114,22 @@ real, parameter :: deg_to_rad = atan(1.0)/45.0
 end function haversine
 end program demo_sin
 ```
-
 Results:
-
 ```text
     distance: 2886.4446 km
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later
 
 ### **See Also**
 
-- [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
-
 [**asin**(3)](#asin),
 [**cos**(3)](#cos),
 [**tan**(3)](#tan)
+
+### **Resources**
+
+- [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

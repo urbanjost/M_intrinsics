@@ -4,7 +4,7 @@
 
 **log10**(3) - \[MATHEMATICS\] Base 10 logarithm function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = log10(x)
 ```
@@ -18,12 +18,12 @@
 **log10(x)** computes the base 10 logarithm of **x**. This
 is generally called the "common logarithm".
 
-### **Arguments**
+### **Options**
 
 - **x**
   : A _real_ value > 0 to take the log of.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_ . The kind type parameter is
 the same as **x**.

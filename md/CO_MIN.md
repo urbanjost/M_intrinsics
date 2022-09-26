@@ -4,7 +4,7 @@
 
 **co_min**(3) - \[COLLECTIVE\] Minimal value on the current set of images
 
-### **Syntax**
+### **Synopsis**
 ```fortran
      call co_min(a, result_image, stat, errmsg)
 ```
@@ -21,7 +21,7 @@ value is returned on all images. If the execution was successful and
 **stat** gets assigned a nonzero value and, if present, **errmsg** gets assigned
 a value describing the occurred error.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : shall be an integer, real or character variable, which has the same

@@ -4,7 +4,7 @@
 
 **get_environment_variable**(3) - \[SYSTEM:ENVIRONMENT\] Get an environmental variable
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call get_environment_variable(name, value, length, status, trim_name)
 ```
@@ -33,7 +33,7 @@ being updated concurrently.
 
     Shall be a scalar of type _character_ and of default kind.
 
-### **Returns**
+### **Result**
 
 - **value**
   : The value of the environment variable being queried.

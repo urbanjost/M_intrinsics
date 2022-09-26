@@ -4,7 +4,7 @@
 
 **bessel_y0**(3) - \[MATHEMATICS\] Bessel function of the second kind of order 0
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = bessel_y0(x)
 ```
@@ -20,12 +20,12 @@ where KIND may be any supported _real_ KIND.
 **bessel_y0(x)** computes the Bessel function of the second
 kind of order 0 of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_. It has the same kind as **x**.
 

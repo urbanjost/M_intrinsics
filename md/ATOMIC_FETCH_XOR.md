@@ -4,7 +4,7 @@
 
 **atomic_fetch_xor**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise XOR operation with prior fetch
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call atomic_fetch_xor (atom, value, old, stat)
 ```
@@ -22,7 +22,7 @@ failed, it is assigned a positive value; in particular, for a coindexed
 iso_fortran_env's stat_stopped_image and if the remote image has
 failed, the value stat_failed_image.
 
-### **Arguments**
+### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of integer type with

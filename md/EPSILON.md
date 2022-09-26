@@ -4,7 +4,7 @@
 
 **epsilon**(3) - \[NUMERIC MODEL\] Epsilon function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = epsilon(x)
 ```
@@ -32,12 +32,12 @@ If _delta_ is too small the algorithm might never halt, as a computation
 summing values smaller than the decimal resolution of the data type does
 not change.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of the same type as the argument.
 

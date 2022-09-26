@@ -4,7 +4,7 @@
 
 **nearest**(3) - \[MODEL_COMPONENTS\] Nearest representable number
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = nearest(x, s)
 ```
@@ -22,7 +22,7 @@ Otherwise, any _kind_ of _real_ is allowed.
 **nearest(x, s)** returns the processor-representable number nearest to
 **x** in the direction indicated by the sign of **s**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : the value to find the nearest representable value of
@@ -39,7 +39,7 @@ Otherwise, any _kind_ of _real_ is allowed.
   If **s** is negative, **nearest** returns the processor-representable
   number smaller than **x** and nearest to it.
 
-### **Returns**
+### **Result**
 
 The return value is of the same type as **x**. If **s** is positive, **nearest**
 returns the processor-representable number greater than **x** and nearest to

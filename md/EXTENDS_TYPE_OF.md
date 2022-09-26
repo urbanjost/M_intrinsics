@@ -4,7 +4,7 @@
 
 **extends_type_of**(3) - \[STATE\] determine if the dynamic type of **a** is an extension of the dynamic type of **mold**.
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=extends_type_of(a, mold)
 ```
@@ -25,7 +25,7 @@ is an extension of the dynamic type of **mold**.
   : shall be an object of extensible type. If it is a pointer, it
   shall not have an undefined association status.
 
-### **Returns**
+### **Result**
 
 - **result**
   : Default logical scalar.

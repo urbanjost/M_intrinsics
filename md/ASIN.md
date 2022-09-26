@@ -4,7 +4,7 @@
 
 **asin**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arcsine function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = asin(x)
 ```
@@ -13,8 +13,9 @@
 
      TYPE(kind=KIND) :: x
 ```
-where the returned value has the kind of the input value
-and TYPE may be _real_ or _complex_
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
+by the associated type. The returned value will be of the same type and kind as
+the argument.
 
 ### **Description**
 
@@ -24,13 +25,14 @@ The arcsine is the inverse function of the sine function. It is commonly
 used in trigonometry when trying to find the angle when the lengths of
 the hypotenuse and the opposite side of a right triangle are known.
 
-### **Arguments**
+### **Options**
 
 - **x**
+  : The value to compute the arcsine of
   : The type shall be either _real_ and a magnitude that is less than or
   equal to one; or be _complex_.
 
-### **Returns**
+### **Result**
 
 - **result**
   : The return value is of the same type and kind as **x**. The real part of
@@ -49,7 +51,6 @@ of the track using the arcsine. Given
      sin(theta) = 1.25 miles/50 miles (opposite/hypotenuse)
 
 Sample program:
-
 ```fortran
 program demo_asin
 use, intrinsic :: iso_fortran_env, only : dp=>real64
@@ -71,15 +72,12 @@ character(len=*),parameter :: all='(*(g0,1x))'
   print all, 'percent grade=',rise/run*100.0_dp
 end program demo_asin
 ```
-
 Results:
-
 ```
     angle of incline(radians) =    2.5002604899361139E-002
     angle of incline(degrees) =    1.4325437375665075
     percent grade=   2.5000000000000000
 ```
-
 The percentage grade is the slope, written as a percent. To calculate
 the slope you divide the rise by the run. In the example the rise is
 1.25 mile over a run of 50 miles so the slope is 1.25/50 = 0.025.
@@ -97,8 +95,10 @@ FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 
 ### **See Also**
 
-- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
-
 Inverse function: [**sin**(3)](#sin)
+
+### **Resources**
+
+- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

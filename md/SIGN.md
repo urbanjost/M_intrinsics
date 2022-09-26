@@ -4,7 +4,7 @@
 
 **sign**(3) - \[NUMERIC\] Sign copying function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = sign(a, b)
 ```
@@ -26,7 +26,7 @@ __sign()__ may be used to distinguish between __real__ values 0.0 and
 -0.0. SIGN (1.0, -0.0) will return  -1.0 when a negative zero is
 distinguishable.
 
-### **Arguments**
+### **Options**
 
   - **a**
     : The value whos magnitude will be returned. Shall be of type
@@ -36,7 +36,7 @@ distinguishable.
     : The value whose sign will be returned. Shall be of the same type
     and kind as **a**
 
-### **Returns**
+### **Result**
 
 The kind of the return value is the magnitude of __a__ with the sign of
 __b__. That is,

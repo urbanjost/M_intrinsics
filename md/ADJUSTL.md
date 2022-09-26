@@ -4,7 +4,7 @@
 
 **adjustl**(3) - \[CHARACTER:WHITESPACE\] Left-adjust a string
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=adjustl(string)
 ```
@@ -18,12 +18,12 @@
 **adjustl(string)** will left-adjust a string by removing leading
 spaces. Spaces are inserted at the end of the string as needed.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : the type shall be _character_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _character_ and of the same kind as **string**
 where leading spaces are removed and the same number of spaces are

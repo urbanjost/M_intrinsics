@@ -4,7 +4,7 @@
 
 **set_exponent**(3) - \[MODEL_COMPONENTS\] Set the exponent of the model
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = set_exponent(x, i)
 ```
@@ -21,7 +21,7 @@
 **set_exponent(x, i)** returns the real number whose fractional part is
 that of **x** and whose exponent part is **i**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_.
@@ -29,7 +29,7 @@ that of **x** and whose exponent part is **i**.
 - **i**
   : Shall be of type _integer_.
 
-### **Returns**
+### **Result**
 
 The return value is of the same type and kind as **x**. The real number
 whose fractional part is that that of **x** and whose exponent part if **i** is

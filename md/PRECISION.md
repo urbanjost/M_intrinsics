@@ -4,7 +4,7 @@
 
 **precision**(3) - \[NUMERIC MODEL\] Decimal precision of a real kind
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = precision(x)
 ```
@@ -21,12 +21,12 @@ where **TYPE** may be _real_ or _complex_
 **precision(x)** returns the decimal precision in the model of the type
 of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_ or _complex_.
 
-### **Returns**
+### **Result**
 
    The precision of values of the type and kind of **x**
 

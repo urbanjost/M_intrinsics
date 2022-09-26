@@ -4,7 +4,7 @@
 
 **shiftr**(3) - \[BIT:SHIFT\] shift bits right
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = shiftr( i, shift )
 ```
@@ -26,7 +26,7 @@ end are lost, and bits shifted in from the left end are set to 0.
 
 Note the value of the result is the same as **ishft (i, -shift)**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The initial value to shift and fill in with zeros
@@ -35,7 +35,7 @@ Note the value of the result is the same as **ishft (i, -shift)**.
   : how many bits to shift right.
     It shall be nonnegative and less than or equal to **bit_size(i)**.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of the same kind as **i**.
 

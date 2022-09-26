@@ -4,7 +4,7 @@
 
 **scale**(3) - \[MODEL_COMPONENTS\] Scale a real value by a whole power of the radix
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = scale(x, i)
 ```
@@ -18,7 +18,7 @@
 
 **scale(x,i)** returns x \* **radix(x)\*\*i**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type of the argument shall be a _real_.
@@ -26,7 +26,7 @@
 - **i**
   : The type of the argument shall be a _integer_.
 
-### **Returns**
+### **Result**
 
 The return value is of the same type and kind as **x**. Its value is
 **x \* radix(x)\*\*i**.

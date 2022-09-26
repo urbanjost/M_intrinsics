@@ -4,7 +4,7 @@
 
 **event_query**(3) - \[COLLECTIVE\] Query whether a coarray event has occurred
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     call event_query(event, count, stat)
 ```
@@ -18,7 +18,7 @@ posted to the **event** variable and not yet been removed by calling
 is assigned the value **0**. If it is present and the invocation has failed,
 it is assigned a positive value and **count** is assigned the value **-1**.
 
-### **Arguments**
+### **Options**
 
 - **event**
   : (intent(in)) Scalar of type event_type, defined in

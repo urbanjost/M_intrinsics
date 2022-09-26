@@ -4,7 +4,7 @@
 
 **reshape**(3) - \[ARRAY RESHAPE\] Function to reshape an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = reshape(source, shape, pad, order)
 ```
@@ -16,7 +16,7 @@ Reshapes array **source** to correspond to **shape**. If necessary, the new
 array may be padded with elements from **pad** or permuted as defined by
 **order**.
 
-### **Arguments**
+### **Options**
 
 - **source**
   : an array of any type.
@@ -34,7 +34,7 @@ array may be padded with elements from **pad** or permuted as defined by
   the size of **shape**. If **order** is absent, the natural ordering shall be
   assumed.
 
-### **Returns**
+### **Result**
 
 The result is an array of shape **shape** with the same type as **source**.
 

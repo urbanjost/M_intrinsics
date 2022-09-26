@@ -4,7 +4,7 @@
 
 **acosh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Inverse hyperbolic cosine function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result=acosh(x)
 ```
@@ -13,19 +13,20 @@
 
      TYPE(kind=KIND),intent(in) :: x
 ```
-where TYPE may be _real_ or _complex_ and KIND may be any KIND supported
-by the associated type.
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
+by the associated type. The returned value will be of the same type and kind as
+the argument.
 
 ### **Description**
 
 **acosh(x)** computes the inverse hyperbolic cosine of **x** in radians.
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : the type shall be _real_ or _complex_.
+  : The value to compute the hyperbolic cosine of
 
-### **Returns**
+### **Result**
 
 The return value has the same type and kind as **x**.
 
@@ -37,7 +38,6 @@ lies between
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_acosh
 use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
@@ -46,21 +46,18 @@ real(kind=dp), dimension(3) :: x = [ 1.0d0, 2.0d0, 3.0d0 ]
    write (*,*) acosh(x)
 end program demo_acosh
 ```
-
 Results:
-
 ```text
  0.000000000000000E+000   1.31695789692482        1.76274717403909
 ```
-
 ### **Standard**
 
 Fortran 2008 and later
 
 ### **See Also**
-
-- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
-
 Inverse function: [**cosh**(3)](#cosh)
+
+### **Resources**
+- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

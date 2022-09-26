@@ -4,7 +4,7 @@
 
 **atan**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arctangent function
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = atan([y], x)
 ```
@@ -14,24 +14,27 @@
      TYPE(kind=KIND),intent(in) :: x
      TYPE(kind=KIND),intent(in),optional :: y
 ```
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any **KIND**
-supported by the associated type. If **y** is present **x** is \_real`.
+If **y**
+is present **x** and **y** must both be _real_. Otherwise, **x** may be
+_complex_. **KIND** be any kind supported by the associated type.
+
+The returned value is of the same type and kind as **x**.
 
 ### **Description**
 
 **atan(x)** computes the arctangent of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_; if **y** is present, **x**
-  shall be _real_.
+  : The value to compute the arctangent of.
+  if **y** is present, **x** shall be _real_.
 
 - **y**
   : Shall be of the same type and kind as **x**. If **x** is zero, **y**
   must not be zero.
 
-### **Returns**
+### **Result**
 
 The returned value is of the same type and kind as **x**. If **y** is
 present, the result is identical to **atan2(y,x)**. Otherwise, it is the
@@ -63,7 +66,6 @@ real(kind=real64) :: x
 end program demo_atan
 ```
 Results:
-
 ```text
    1.235085437457879
    .7853981633974483 45.00000000000000
@@ -78,8 +80,11 @@ arguments Fortran 2008 or later
 
 ### **See Also**
 
+[**atan2**(3)](#atan2), [**tan**(3)](#tan)
+
+### **Resources**
+
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
-[**atan2**(3)](#atan2), [**tan**(3)](#tan)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

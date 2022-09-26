@@ -4,7 +4,7 @@
 
 **eoshift**(3) - \[TRANSFORMATIONAL\] End-off shift elements of an array
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = eoshift( array, shift [,boundary] [,dim] )
 ```
@@ -25,9 +25,9 @@ be any kind of _integer_.
 **eoshift(array, shift\[, boundary, dim\])** performs an end-off shift
 on elements of **array** along the dimension of **dim**.
 
-**dim** is a scalar of type _integer_ in the range of 
+**dim** is a scalar of type _integer_ in the range of
 
-    **1 \<= DIM \<= n** 
+    **1 \<= DIM \<= n**
 
 where **"n"** is the rank of **array**.  If **dim** is omitted it
 is taken to be **1**.
@@ -49,7 +49,7 @@ the following are copied in depending on the type of **array**.
     Logical        | .false.
     Character(len) |  LEN blanks
 
-### **Arguments**
+### **Options**
 
 - **array**
   : May be any type, not scalar.
@@ -63,7 +63,7 @@ the following are copied in depending on the type of **array**.
 - **dim**
   : The type shall be _integer_.
 
-### **Returns**
+### **Result**
 
 Returns an array of same type and rank as the **array** argument.
 

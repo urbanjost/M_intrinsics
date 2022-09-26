@@ -4,7 +4,7 @@
 
 **real**(3) - \[TYPE:NUMERIC\] Convert to real type
 
-### **Syntax**
+### **Synopsis**
 ```fortran
     result = real(x [,kind])
 ```
@@ -25,7 +25,7 @@ For complex values this is similar to the modern complex-part-designator
 designator can appear on the left-hand side of an assignment as well,
 as in **val%re=(3.0,4.0)**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be _integer_, _real_, or _complex_ to convert to _real_.
@@ -34,7 +34,7 @@ as in **val%re=(3.0,4.0)**.
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 These functions return a _real_ variable or array under the following
 rules:
