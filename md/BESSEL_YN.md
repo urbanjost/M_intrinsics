@@ -9,15 +9,28 @@
     result = bessel_yn(n, x)
 ```
 ```fortran
-    elemental real(kind=KIND) function bessel_yn(n,x)
+     elemental real(kind=KIND) function bessel_yn(n,x)
+
+     integer(kind=KIND),intent(in) :: n(..)
+     real(kind=KIND),intent(in) :: x(..)
 ```
+  If **n** and **x** are arrays, their ranks and shapes
+  shall conform.
+
+  The return value has the same type and kind as **x**.
 or
 ```fortran
     result = bessel_yn(n1, n2, x)
 ```
 ```fortran
-    elemental real(kind=KIND) function bessel_yn(n1,n2,x)
+     real(kind=KIND) function bessel_yn(n1, n2, ,x)
+
+     integer(kind=KIND),intent(in) :: n1(..)
+     integer(kind=KIND),intent(in) :: n2(..)
+     real(kind=KIND),intent(in) :: x
 ```
+  The return value has the same type and kind as **x**.
+
 ### **Description**
 
 **bessel_yn(n, x)** computes the Bessel function of the second

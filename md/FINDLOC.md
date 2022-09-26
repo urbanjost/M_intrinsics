@@ -8,7 +8,23 @@ identified by MASK along dimension DIM matching a target value
 ### **Synopsis**
 
 ```fortran
-    findloc (array, value, dim, mask, kind, back)
+    findloc (array, value, dim [,mask] [,kind] [,back])
+```
+```fortran
+    function findloc (array, value, dim, mask, kind, back)
+    integer(kind=KIND),  intent(in)          :: array(..)
+    integer(kind=KIND),  intent(in)          :: value
+    integer(kind=KIND),  intent(in)          :: dim
+    logical(kind=KINDM), intent(in),optional :: mask(..)
+    integer(kind=KINDK), intent(in),optional :: kind
+    logical(kind=KINDB),intent(in),optional :: back
+
+- **array** shall be an array of intrinsic type.
+- **value** shall be scalar but in type conformance with **array**
+- **dim** The corresponding actual argument shall not be an optional dummy argument.
+- **mask** shall be conformable with **array**.
+- **kind** a scalar integer initialization expression (ie. a constant)
+- **back** a logical scalar.
 ```
 or
 ```fortran
@@ -65,17 +81,13 @@ parameter is that specified by the value of **kind**; otherwise the kind
 type parameter is that of default integer type. If **dim** does not appear,
 the result is an array of rank one and of size equal to the rank of
 **array**; otherwise, the result is of rank n - 1 and shape
-
 ```
    [d1, d2, . . ., dDIM-1, dDIM+1, . . ., dn ]
 ```
-
 where
-
 ```
    [d1, d2, . . ., dn ]
 ```
-
 is the shape of **array**.
 
 ### **Result**
@@ -100,59 +112,44 @@ is the shape of **array**.
 
 - **Case (iii):**
   If **array** has rank one, the result of
-
 ```
       findloc (array, value, dim=dim [, mask = mask])
 ```
-
 is a scalar whose value is equal to that of the first element of
-
 ```
       findloc (array, value [, mask = mask])
 ```
-
 Otherwise, the value of element
-
 ```
       (s1, s2, . . ., sDIM-1, sDIM+1, . . ., sn )
 ```
-
 of the result is equal to
-
 ```
       findloc (array (s1, s2, ..., sdim-1, :, sdim+1, ..., sn ), &
       value, dim=1 [, mask = mask (s1, s2, ..., sdim-1, :,
                       sdim+1, ..., sn )]).
 ```
-
 ### **Examples**
 
 - **Case (i):**
   The value of
-
 ```
         findloc ([2, 6, 4, 6,], value = 6)
 ```
-
 is \[2\], and the value of
-
 ```
         findloc ([2, 6, 4, 6], value = 6, back = .true.)
 ```
-
 is \[4\].
 
 - **Case (ii):**
   If **a** has the value
-
 ```text
       0 -5  7 7
       3  4 -1 2
       1  5  6 7
 ```
-
 and **m** has the value
-
 ```text
        T T F T
        T T F T
@@ -160,38 +157,29 @@ and **m** has the value
 
       findloc (a, 7, mask = m)
 ```
-
 has the value \[1, 4\] and
-
 ```
       findloc (a, 7, mask = m, back = .true.)
 ```
-
 has the value \[3, 4\]. This is independent of the declared lower
 bounds for **a** .
 
 - **Case (iii):**
   The value of
-
 ```
       findloc ([2, 6, 4], value = 6, dim = 1)
 ```
-
 is 2. If **b** has the value
-
 ```
        1 2 -9
        2 2  6
 ```
-
 > findloc (b, **value** = 2, dim = 1)
 
 has the value \[2, 1, 0\] and
-
 ```
       findloc (b, value = 2, dim = 2)
 ```
-
 has the value \[2, 1\]. This is independent of the declared lower
 bounds for **b**.
 
