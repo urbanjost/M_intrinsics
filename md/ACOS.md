@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=acos(x)
+    result = acos(x)
 ```
 ```fortran
      elemental TYPE(kind=KIND) function acos(x)

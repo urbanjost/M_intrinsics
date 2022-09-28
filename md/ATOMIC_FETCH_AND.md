@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    call atomic_fetch_and(atom, value, old, stat)
+    call atomic_fetch_and(atom, value, old [,stat] )
 ```
 ```fortran
     subroutine atomic_fetch_and(atom, value, old, stat)

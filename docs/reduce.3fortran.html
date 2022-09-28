@@ -57,7 +57,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-<B>REDUCE</B>(3) - [TRANSFORMATIONAL] general reduction of an array
+REDUCE(3) - [TRANSFORMATIONAL] general reduction of an array
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
@@ -69,17 +69,17 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-<B>There</B> <I>are</I> <I>two</I> <I>forms</I> <I>to</I> <I>this</I> function:
+There are two forms to this function:
 <P>
 <PRE>
-        result = reduce(array, operation, mask, identity, ordered)
+        result = reduce(array, operation [,mask]  [,identity]  [,ordered] )
 <P>
 </PRE>
-<B>or</B>
+or
 <P>
 <PRE>
         type(TYPE(kind=KIND)) function reduce &
-        & (array, operation, dim, mask, identity, ordered)
+        & (array, operation [,dim] [,mask] [,identity] [,ordered] )
 <P>
          type(TYPE(kind=KIND)),intent(in) :: array
          pure function                  :: operation
@@ -89,7 +89,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
          logical,intent(in),optional    :: ordered
 <P>
 </PRE>
-<B>where</B> <I>TYPE</I> <I>may</I> <I>be</I> <I>of</I> <I>any</I> type. <I>TYPE</I> <I>must</I> <I>be</I> <I>the</I> <I>same</I> <I>for</I> <I>ARRAY</I> <I>and</I>
+where TYPE may be of any type. TYPE must be the same for ARRAY and
 IDENTITY.
 </BLOCKQUOTE>
 <A name=2>
@@ -99,22 +99,22 @@ IDENTITY.
 </A>
 <BLOCKQUOTE>
 <P>
-Reduce a list <I>of</I> conditionally selected values from an array <I>to</I> a single
+Reduce a list of conditionally selected values from an array to a single
 value by iteratively applying a binary function.
 <P>
 Common in functional programming, a REDUCE function applies a binary
-operator (a pure function with <I>two</I> arguments) <I>to</I> all elements
+operator (a pure function with two arguments) to all elements
 cumulatively.
 <P>
 REDUCE is a "higher-order" function; ie. it is a function that receives
 other functions as arguments.
 <P>
-The REDUCE function receives a binary operator (a function with <I>two</I>
-arguments, just like <I>the</I> basic arithmetic operators). It is first
-applied <I>to</I> <I>two</I> unused values in <I>the</I> list <I>to</I> generate an accumulator
-value which is subsequently used as <I>the</I> first argument <I>to</I> <I>the</I> function
-as <I>the</I> function is recursively applied <I>to</I> all <I>the</I> remaining selected
-values in <I>the</I> input array.
+The REDUCE function receives a binary operator (a function with two
+arguments, just like the basic arithmetic operators). It is first
+applied to two unused values in the list to generate an accumulator
+value which is subsequently used as the first argument to the function
+as the function is recursively applied to all the remaining selected
+values in the input array.
 </BLOCKQUOTE>
 <A name=3>
 
@@ -127,19 +127,19 @@ values in <I>the</I> input array.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-<I>ARRAY</I> : An array <I>of</I> <I>any</I> type <I>and</I> allowed rank <I>to</I> select values from.
+ARRAY : An array of any type and allowed rank to select values from.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-OPERATION : shall <I>be</I> a pure function with exactly <I>two</I> arguments;
-each argument shall <I>be</I> a scalar, nonallocatable, nonpointer,
-nonpolymorphic, nonoptional dummy data object with <I>the</I> <I>same</I> type <I>and</I>
-type parameters as <I>ARRAY</I>. If one argument has <I>the</I> ASYNCHRONOUS,
-TARGET, <B>or</B> VALUE attribute, <I>the</I> other shall have that attribute. Its
-result shall <I>be</I> a nonpolymorphic scalar <I>and</I> have <I>the</I> <I>same</I> type <I>and</I>
-type parameters as <I>ARRAY</I>. OPERATION should implement a
-mathematically associative operation. It need not <I>be</I> commutative.
+OPERATION : shall be a pure function with exactly two arguments;
+each argument shall be a scalar, nonallocatable, nonpointer,
+nonpolymorphic, nonoptional dummy data object with the same type and
+type parameters as ARRAY. If one argument has the ASYNCHRONOUS,
+TARGET, or VALUE attribute, the other shall have that attribute. Its
+result shall be a nonpolymorphic scalar and have the same type and
+type parameters as ARRAY. OPERATION should implement a
+mathematically associative operation. It need not be commutative.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=>
@@ -149,52 +149,52 @@ mathematically associative operation. It need not <I>be</I> commutative.
 <BLOCKQUOTE>
 <P>
 If OPERATION is not computationally associative, REDUCE without
-ORDERED=.TRUE. with <I>the</I> <I>same</I> argument values might not always
-produce <I>the</I> <I>same</I> result, as <I>the</I> processor can apply <I>the</I> associative
-law <I>to</I> <I>the</I> evaluation.
+ORDERED=.TRUE. with the same argument values might not always
+produce the same result, as the processor can apply the associative
+law to the evaluation.
 <P>
-Many operations that mathematically <I>are</I> associative <I>are</I> not when
-applied <I>to</I> floating-point numbers. The order you sum values in <I>may</I>
-affect <I>the</I> result, <I>for</I> example.
+Many operations that mathematically are associative are not when
+applied to floating-point numbers. The order you sum values in may
+affect the result, for example.
 </BLOCKQUOTE>
-<TABLE cellpadding=3><!-- tsb: Many operations that mathematically <I>are</I> associative <I>are</I> not when
+<TABLE cellpadding=3><!-- tsb: Many operations that mathematically are associative are not when
  -->
 <TR></TR><TR></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-DIM : An integer scalar with a value in <I>the</I> range 1&lt;= DIM &lt;= n,
-<B>where</B> n is <I>the</I> rank <I>of</I> <I>ARRAY</I>.
-<TABLE width=100% cellpadding=3><!-- tsb: DIM : An integer scalar with a value in <I>the</I> range 1&lt;= DIM &lt;= n,
+DIM : An integer scalar with a value in the range 1&lt;= DIM &lt;= n,
+where n is the rank of ARRAY.
+<TABLE width=100% cellpadding=3><!-- tsb: DIM : An integer scalar with a value in the range 1&lt;= DIM &lt;= n,
  -->
 <TR></TR><TR></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-MASK : (optional) shall <I>be</I> <I>of</I> type logical <I>and</I> shall <I>be</I> conformable
-with <I>ARRAY</I>.
+MASK : (optional) shall be of type logical and shall be conformable
+with ARRAY.
 <P>
-When present only those elements <I>of</I> <I>ARRAY</I> <I>are</I> passed <I>to</I> OPERATION
-<I>for</I> which <I>the</I> corresponding elements <I>of</I> MASK <I>are</I> true, as if *array
-was filtered with <B>PACK</B>(3).
+When present only those elements of ARRAY are passed to OPERATION
+for which the corresponding elements of MASK are true, as if *array
+was filtered with PACK(3).
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-IDENTITY : shall <I>be</I> scalar with <I>the</I> <I>same</I> type <I>and</I> type parameters as
-<I>ARRAY</I>. If <I>the</I> initial sequence is empty, <I>the</I> result has <I>the</I> value
-IDENTIFY if IDENTIFY is present, <I>and</I> otherwise, error termination is
+IDENTITY : shall be scalar with the same type and type parameters as
+ARRAY. If the initial sequence is empty, the result has the value
+IDENTIFY if IDENTIFY is present, and otherwise, error termination is
 initiated.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-ORDERED : shall <I>be</I> a logical scalar. If ORDERED is present with <I>the</I>
-value .true., <I>the</I> calls <I>to</I> <I>the</I> OPERATOR function begins with <I>the</I>
-first <I>two</I> elements <I>of</I> <I>ARRAY</I> <I>and</I> <I>the</I> process continues in row-column
-order until <I>the</I> sequence has only one element which is <I>the</I> value <I>of</I>
-<I>the</I> reduction. Otherwise, <I>the</I> compiler is free <I>to</I> assume that <I>the</I>
-operation is commutative <I>and</I> <I>may</I> evaluate <I>the</I> reduction in <I>the</I> most
+ORDERED : shall be a logical scalar. If ORDERED is present with the
+value .true., the calls to the OPERATOR function begins with the
+first two elements of ARRAY and the process continues in row-column
+order until the sequence has only one element which is the value of
+the reduction. Otherwise, the compiler is free to assume that the
+operation is commutative and may evaluate the reduction in the most
 optimal way.
 </TD></TR>
 <TR></TR></TABLE></TD></TR>
@@ -205,12 +205,12 @@ optimal way.
 </A>
 <BLOCKQUOTE>
 <P>
-The result is <I>of</I> <I>the</I> <I>same</I> type <I>and</I> type parameters as <I>ARRAY</I>. It is
+The result is of the same type and type parameters as ARRAY. It is
 scalar if DIM does not appear.
 <P>
-If DIM is present, it indicates <I>the</I> one dimension along which <I>to</I> perform
-<I>the</I> reduction, <I>and</I> <I>the</I> resultant array has a rank reduced by one
-relative <I>to</I> <I>the</I> input array.
+If DIM is present, it indicates the one dimension along which to perform
+the reduction, and the resultant array has a rank reduced by one
+relative to the input array.
 </BLOCKQUOTE>
 <A name=5>
 
@@ -219,8 +219,8 @@ relative <I>to</I> <I>the</I> input array.
 </A>
 <BLOCKQUOTE>
 <P>
-The following examples all use <I>the</I> function MY_MULT, which returns <I>the</I>
-product <I>of</I> its <I>two</I> real arguments.
+The following examples all use the function MY_MULT, which returns the
+product of its two real arguments.
 <P>
 <PRE>
        program demo_reduce
@@ -296,7 +296,7 @@ Results:
 </A>
 <BLOCKQUOTE>
 <P>
-Fortran 2018
+Fortran 018
 </BLOCKQUOTE>
 <A name=7>
 
@@ -309,7 +309,7 @@ Fortran 2018
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-<B>co_reduce</B>(3)
+co_reduce(3)
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=8>
@@ -328,7 +328,7 @@ associative:wikipedia
 <TR></TR></TABLE>fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>reduce (3fortran)</TD> <TD align=right width=33%><I>September 25, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from c72d5855-b267-4091-8513-92417f43fd4d using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>reduce (3fortran)</TD> <TD align=right width=33%><I>September 27, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 22a72329-95ef-4f6a-8faa-43397b505d16 using man macros.</FONT>
 <br><br><center><img src="images/reduce.3fortran.gif"></center>
 </div>
 </div>

@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=achar(i [,kind])
+    result = achar(i [,kind])
 ```
 ```fortran
      elemental character(len=1) function achar(i,kind)

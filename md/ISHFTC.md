@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=ishftc( i, shift [,back] )
+    result = ishftc( i, shift [,size] )
 ```
 ```fortran
      elemental integer(kind=KIND) function ishftc(i, shift, size)

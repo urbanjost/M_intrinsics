@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    call atomic_define (atom, value, stat)
+    call atomic_define (atom, value [,stat] )
 ```
 ```fortran
      subroutine atomic_define(atom, value, stat)

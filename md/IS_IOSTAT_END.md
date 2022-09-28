@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=is_iostat_end(iostat)
+    result = is_iostat_end(iostat)
 ```
 ```fortran
      elemental logical function is_iostat_end(iostat)

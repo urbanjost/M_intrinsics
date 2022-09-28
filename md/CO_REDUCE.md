@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    call co_reduce(a, operation, result_image, stat, errmsg)
+    call co_reduce(a, operation, result_image [,stat] [,errmsg] )
 ```
 ```fortran
 ```

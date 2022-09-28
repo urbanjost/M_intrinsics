@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result = pack(array, mask,vector)
+    result = pack( array, mask [,vector] )
 ```
 ```fortran
      TYPE(kind=KIND) function pack(array,mask,vector)

@@ -48,7 +48,7 @@ Returns the storage size of argument **a** in bits.
    NOTE1
 
     An array element might take "type" more bits to store than an isolated
-    scalar, since any hardware-imposed align- ment requirements for
+    scalar, since any hardware-imposed alignment requirements for
     array elements might not apply to a simple scalar variable.
 
    NOTE2

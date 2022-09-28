@@ -57,7 +57,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-<B>ASIN</B>(3) - [MATHEMATICS:TRIGONOMETRIC] Arcsine function
+ASIN(3) - [MATHEMATICS:TRIGONOMETRIC] Arcsine function
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
@@ -69,7 +69,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-<B>result</B> = <B>asin</B>(x)
+result = asin(x)
 <P>
 <PRE>
          elemental TYPE(kind=KIND) function asin(x)
@@ -77,9 +77,9 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
          TYPE(kind=KIND) :: x
 <P>
 </PRE>
-<B>where</B> <I>TYPE</I> <I>may</I> <I>be</I> <I>real</I> <I>or</I> <I>complex</I> <I>and</I> <I>KIND</I> <I>may</I> <I>be</I> <I>any</I> <I>kind</I> <I>supported</I> <I>by</I>
-<I>the</I> <I>associated</I> <I>type</I>. <I>The</I> <I>returned</I> <I>value</I> <I>will</I> <I>be</I> <I>of</I> <I>the</I> <I>same</I> <I>type</I> <I>and</I>
-<B>kind</B> <I>as</I> <I>the</I> argument.
+where TYPE may be real or complex and KIND may be any kind supported by
+the associated type. The returned value will be of the same type and
+kind as the argument.
 </BLOCKQUOTE>
 <A name=2>
 
@@ -88,11 +88,11 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-<B>ASIN</B>(X) computes <I>the</I> arcsine <I>of</I> its argument X.
+ASIN(X) computes the arcsine of its argument X.
 <P>
-<I>The</I> arcsine is <I>the</I> inverse function <I>of</I> <I>the</I> sine function. It is commonly
-used in trigonometry when trying to find <I>the</I> angle when <I>the</I> lengths <I>of</I>
-<I>the</I> hypotenuse <I>and</I> <I>the</I> opposite side <I>of</I> a right triangle are known.
+The arcsine is the inverse function of the sine function. It is commonly
+used in trigonometry when trying to find the angle when the lengths of
+the hypotenuse and the opposite side of a right triangle are known.
 </BLOCKQUOTE>
 <A name=3>
 
@@ -105,9 +105,9 @@ used in trigonometry when trying to find <I>the</I> angle when <I>the</I> length
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-X : <I>The</I> <I>value</I> to compute <I>the</I> arcsine <I>of</I> : <I>The</I> <I>type</I> shall <I>be</I> either
-<I>real</I> <I>and</I> a magnitude that is less than <I>or</I> equal to one; <I>or</I> <I>be</I>
-<I>complex</I>.
+X : The value to compute the arcsine of : The type shall be either
+real and a magnitude that is less than or equal to one; or be
+complex.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
@@ -121,9 +121,9 @@ X : <I>The</I> <I>value</I> to compute <I>the</I> arcsine <I>of</I> : <I>The</I>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-RESULT : <I>The</I> return <I>value</I> is <I>of</I> <I>the</I> <I>same</I> <I>type</I> <I>and</I> <B>kind</B> <I>as</I> X. <I>The</I>
-<I>real</I> part <I>of</I> <I>the</I> <B>result</B> is in radians <I>and</I> lies in <I>the</I> range <B>-PI</B>/2 &lt;=
-<B>ASIN</B>(X) &lt;= PI/2.
+RESULT : The return value is of the same type and kind as X. The
+real part of the result is in radians and lies in the range <B>-PI</B>/ &lt;=
+ASIN(X) &lt;= PI/.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
@@ -133,12 +133,12 @@ RESULT : <I>The</I> return <I>value</I> is <I>of</I> <I>the</I> <I>same</I> <I>t
 </A>
 <BLOCKQUOTE>
 <P>
-<I>The</I> arcsine <I>will</I> allow you to find <I>the</I> measure <I>of</I> a right angle when you
-know <I>the</I> ratio <I>of</I> <I>the</I> side opposite <I>the</I> angle to <I>the</I> hypotenuse.
+The arcsine will allow you to find the measure of a right angle when you
+know the ratio of the side opposite the angle to the hypotenuse.
 <P>
-So if you knew that a train track rose 1.25 vertical miles on a track
-that was 50 miles long, you could determine <I>the</I> average angle <I>of</I> incline
-<I>of</I> <I>the</I> track using <I>the</I> arcsine. Given
+So if you knew that a train track rose 1.5 vertical miles on a track
+that was 50 miles long, you could determine the average angle of incline
+of the track using the arcsine. Given
 <P>
 <PRE>
      sin(theta) = 1.25 miles/50 miles (opposite/hypotenuse)
@@ -176,16 +176,16 @@ Results:
         percent grade=   2.5000000000000000
 <P>
 </PRE>
-<I>The</I> percentage grade is <I>the</I> slope, written <I>as</I> a percent. To calculate
-<I>the</I> slope you divide <I>the</I> rise <I>by</I> <I>the</I> run. In <I>the</I> example <I>the</I> rise is
-1.25 mile over a run <I>of</I> 50 miles so <I>the</I> slope is 1.25/50 = 0.025.
-Written <I>as</I> a percent this is 2.5 %.
+The percentage grade is the slope, written as a percent. To calculate
+the slope you divide the rise by the run. In the example the rise is
+1.5 mile over a run of 50 miles so the slope is 1.5/50 = 0.05.
+Written as a percent this is .5 %.
 <P>
-For <I>the</I> US, two <I>and</I> 1/2 percent is generally thought <I>of</I> <I>as</I> <I>the</I> upper
-limit. This means a rise <I>of</I> 2.5 feet when going 100 feet forward. In <I>the</I>
-US this was <I>the</I> maximum grade on <I>the</I> first major US railroad, <I>the</I>
-Baltimore <I>and</I> Ohio. Note curves increase <I>the</I> frictional drag on a train
-reducing <I>the</I> allowable grade.
+For the US, two and 1/ percent is generally thought of as the upper
+limit. This means a rise of .5 feet when going 100 feet forward. In the
+US this was the maximum grade on the first major US railroad, the
+Baltimore and Ohio. Note curves increase the frictional drag on a train
+reducing the allowable grade.
 </BLOCKQUOTE>
 <A name=6>
 
@@ -194,7 +194,7 @@ reducing <I>the</I> allowable grade.
 </A>
 <BLOCKQUOTE>
 <P>
-FORTRAN 77 <I>and</I> later, for a <I>complex</I> argument Fortran 2008 <I>or</I> later
+FORTRAN 77 and later, for a complex argument Fortran 008 or later
 </BLOCKQUOTE>
 <A name=7>
 
@@ -203,7 +203,7 @@ FORTRAN 77 <I>and</I> later, for a <I>complex</I> argument Fortran 2008 <I>or</I
 </A>
 <BLOCKQUOTE>
 <P>
-Inverse function: <B>SIN</B>(3)
+Inverse function: SIN(3)
 </BLOCKQUOTE>
 <A name=8>
 
@@ -221,7 +221,7 @@ wikipedia: inverse trigonometric functions
 <TR></TR></TABLE>fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>asin (3fortran)</TD> <TD align=right width=33%><I>September 25, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 7046288c-7666-4764-b1d3-b47247a163b8 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>asin (3fortran)</TD> <TD align=right width=33%><I>September 27, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 69a7fa80-3193-419c-96a0-eb6c3ef54e62 using man macros.</FONT>
 <br><br><center><img src="images/asin.3fortran.gif"></center>
 </div>
 </div>

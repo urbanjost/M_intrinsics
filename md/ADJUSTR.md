@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=adjustr(string)
+    result = adjustr(string)
 ```
 ```fortran
      elemental character(len=len(string)) function adjustr(string)

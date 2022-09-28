@@ -6,14 +6,14 @@
 
 ### **Synopsis**
 ```fortran
-     result = lbound(array, dim, kind)
+     result = lbound(array [,dim] [,kind] )
 ```
 ```fortran
      elemental TYPE(kind=KIND) function lbound(array,dim,kind)
 
      TYPE(kind=KIND),intent(in)  :: array
-     integer,optional,intent(in) :: dim
-     integer,optional,intent(in) :: kind
+     integer,intent(in),optional :: dim
+     integer,intent(in),optional :: kind
 ```
 ### **Description**
 

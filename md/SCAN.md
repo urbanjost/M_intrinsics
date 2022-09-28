@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result = scan(string, set[, back [, kind]])
+    result = scan( string, set, [,back] [,kind] )
 ```
 ```fortran
      elemental integer(kind=KIND) function scan(string,set,back,kind)

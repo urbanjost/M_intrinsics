@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=aimag(z)
+    result = aimag(z)
 ```
 ```fortran
      elemental complex(kind=KIND) function aimag(z)

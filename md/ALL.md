@@ -9,7 +9,7 @@
    result = all(mask [,dim])
 ```
 ```fortran
-     logical function all(mask, dim)
+     logical function all(mask ,dim)
 
      logical,intent(in)          :: mask(..)
      integer,intent(in),optional :: dim

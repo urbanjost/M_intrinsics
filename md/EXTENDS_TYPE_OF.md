@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=extends_type_of(a, mold)
+    result = extends_type_of(a, mold)
 ```
 ```fortran
 ```

@@ -7,7 +7,7 @@ multiplication
 
 ### **Synopsis**
 ```fortran
-    result=matmul(matrix_a,matrix_b)
+    result = matmul(matrix_a,matrix_b)
 ```
 ```fortran
      function matmul(matrix_a, matrix_b)

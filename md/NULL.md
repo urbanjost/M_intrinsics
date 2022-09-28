@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    ptr => null(mold)
+    ptr => null( [mold] )
 ```
 ```fortran
 ```

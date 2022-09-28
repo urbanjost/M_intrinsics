@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result = reshape(source, shape, pad, order)
+    result = reshape( source, shape [,pad] [,order] )
 ```
 ```fortran
 ```

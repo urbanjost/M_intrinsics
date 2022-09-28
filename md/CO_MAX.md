@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-     call co_max(a, result_image, stat, errmsg)
+     call co_max(a, result_image [,stat] [,errmsg] )
 ```
 ```fortran
 ```

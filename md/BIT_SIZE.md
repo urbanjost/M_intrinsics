@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=bit_size(i)
+    result = bit_size(i)
 ```
 ```fortran
      integer(kind=KIND) function bit_size(i)

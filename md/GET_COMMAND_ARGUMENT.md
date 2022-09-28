@@ -6,15 +6,15 @@
 
 ### **Synopsis**
 ```fortran
-    call get_command_argument(number, value, length, status)
+  call get_command_argument(number, value, length, status)
 ```
 ```fortran
-     subroutine get_command_argument(number,value,length.status)
+   subroutine get_command_argument(number[,value][,length][.status])
 
-     integer,intent(in)                    :: number
-     character(len=*),intent(out),optional :: value
-     integer,intent(out),optional          :: length
-     integer,intent(out),optional          :: status
+    integer,intent(in)                    :: number
+    character(len=*),intent(out),optional :: value
+    integer,intent(out),optional          :: length
+    integer,intent(out),optional          :: status
 ```
 ### **Description**
 

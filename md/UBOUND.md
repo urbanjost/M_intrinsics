@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result = ubound(array, dim, kind)
+    result = ubound(array [,dim] [,kind] )
 ```
 ```fortran
 ```

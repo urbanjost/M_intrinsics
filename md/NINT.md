@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=nint(x [,kind])
+    result = nint( x [,kind] )
 ```
 ```fortran
     elemental integer(kind=kind) function nint(x, kind )

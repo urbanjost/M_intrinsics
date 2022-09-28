@@ -8,12 +8,12 @@
 
 There are two forms to this function:
 ```fortran
-    result = reduce(array, operation, mask, identity, ordered)
+    result = reduce(array, operation [,mask]  [,identity]  [,ordered] )
 ```
 or
 ```fortran
     type(TYPE(kind=KIND)) function reduce &
-    & (array, operation, dim, mask, identity, ordered)
+    & (array, operation [,dim] [,mask] [,identity] [,ordered] )
 ```
 ```fortran
      type(TYPE(kind=KIND)),intent(in) :: array

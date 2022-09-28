@@ -5,7 +5,7 @@
 #
 ################################################################################
 export MANPATH=$(dirname $0)/../../man/
-PATH=$PATH:$(dirname $0)
+PATH=$(dirname $0):$PATH
 # try to find a command to change file to HTML
 if inpath manserver
 then

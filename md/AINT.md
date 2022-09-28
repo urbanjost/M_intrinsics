@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=aint(x [,kind])
+    result = aint(x [,kind])
 ```
 ```fortran
      elemental real(kind=KIND) function iaint(x,kind)

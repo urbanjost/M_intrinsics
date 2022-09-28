@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    call atomic_ref(value, atom, stat)
+    call atomic_ref(value, atom [,stat] )
 ```
 ```fortran
     subroutine atomic_ref(value, atom, stat)

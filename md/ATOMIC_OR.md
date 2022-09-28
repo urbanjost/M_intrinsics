@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    call atomic_or(atom, value, stat)
+    call atomic_or(atom, value [,stat] )
 ```
 ```fortran
     subroutine atomic_or(atom, value, stat)

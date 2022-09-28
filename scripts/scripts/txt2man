@@ -1,4 +1,5 @@
 #!/bin/bash --norc
+echo $0 1>&2
 #
 #(@)# txt2man - convert text file following markup rules to a man(1) page
 #
@@ -424,14 +425,19 @@ section == "SYNOPSIS" {
 			subwords["\\<" w "\\("] = "\\fB" w "\\fP("
 		}
 	}
+
 	# word attributes
 	for (i in subwords)
-		gsub(i, subwords[i])
+	   gensub(/([()])/, " \1",1)
+   	   gsub(i, subwords[i])
+
 	# shell options
 	gsub(/\B\-+\w+(\-\w+)*/, "\\fB&\\fP")
+
 	# unprotect dots inside words
 	gsub(/_dOt_/, ".")
 	gsub(/_sOq_/, "[")
+
 	########################################################################
 
 	if ($1 == "-"||$1 == "o"||$1 == "*" || $1 == "+") {

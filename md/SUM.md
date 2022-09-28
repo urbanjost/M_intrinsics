@@ -49,7 +49,7 @@ element in MASK is TRUE.
 
 The result is of the same type as ARRAY.
 
-If **dim**(3) is absent, a scalar with the sum of all elements in ARRAY
+If **dim** is absent, a scalar with the sum of all elements in ARRAY
 is returned. Otherwise, an array of rank n-1, where n equals the rank of
 ARRAY, and a shape similar to that of ARRAY with dimension DIM dropped
 is returned.

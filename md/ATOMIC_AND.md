@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    call atomic_and(atom, value, stat)
+    call atomic_and(atom, value [,stat])
 ```
 ```fortran
     subroutine atomic_and(atom, value, stat)

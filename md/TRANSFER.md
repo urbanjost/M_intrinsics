@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result = transfer(source, mold, size)
+    result = transfer(source, mold [,size] )
 ```
 ```fortran
 ```

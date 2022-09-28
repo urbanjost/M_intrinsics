@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result = c_associated(c_prt_1, c_ptr_2)
+    result = c_associated(c_prt_1, [c_ptr_2] )
 ```
 ```fortran
 ```

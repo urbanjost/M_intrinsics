@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result = selected_real_kind(p, r, radix)
+    result = selected_real_kind([p] [,r] [,radix] )
 ```
 ```fortran
 ```

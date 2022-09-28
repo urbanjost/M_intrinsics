@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=bge(i,j)
+    result = bge(i,j)
 ```
 ```fortran
     elemental function bge(i, j)

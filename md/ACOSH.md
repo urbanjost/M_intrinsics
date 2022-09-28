@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=acosh(x)
+    result = acosh(x)
 ```
 ```fortran
      elemental TYPE(kind=KIND) function acosh(x)

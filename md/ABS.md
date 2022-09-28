@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=abs(a)
+    result = abs(a)
 ```
 ```fortran
      elemental TYPE(kind=KIND) function abs(a)
@@ -15,8 +15,8 @@
 ```
    **a** may be any _real_, _integer_, or _complex_ value.
 
-   If the type of **a** is _complex_ the type returned will be a _real_
-   with the same kind as the real part of **a**.
+   If **a** is _complex_ the returned value will be a _real_ with the
+   same kind as **a**.
 
    Otherwise the returned type is the same as for **a**.
 
@@ -34,7 +34,7 @@
 ### **Options**
 
 - **a**
-  : The value to compute the absolute value of. 
+  : The value to compute the absolute value of.
 
 ### **Result**
 

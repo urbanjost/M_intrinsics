@@ -2,7 +2,7 @@
 ###############################################################################################################
 #@(#)aspell -l mimicks the standard unix spell(1) program, roughly.  (John S. Urban)
 ###############################################################################################################
-PATH=$PATH:$(dirname $0)
+PATH=$(dirname $0):$PATH
 export LC_ALL='C'
 if inpath aspell
 then

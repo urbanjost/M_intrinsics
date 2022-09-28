@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    call atomic_xor(atom, value, stat)
+    call atomic_xor(atom, value [,stat] )
 ```
 ```fortran
     subroutine atomic_xor(atom, value, stat)

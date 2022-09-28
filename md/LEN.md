@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=len(string [,kind])
+    result = len(string [,kind])
 ```
 ```fortran
     integer(kind=KIND) function len(string,kind)

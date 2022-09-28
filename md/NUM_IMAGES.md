@@ -6,13 +6,28 @@
 
 ### **Synopsis**
 ```fortran
-    result = num_images(distance, failed)
+    result = num_images([])
 ```
 ```fortran
-     integer function num_images (distance, failed)
+     integer function num_images ()
+```
+or
+```fortran
+    result = num_images(team)
+```
+```fortran
+     integer function num_images (team)
 
-      integer(kind=KIND),intent(in),optional :: distance
-      integer(kind=KIND),intent(in),optional :: failed
+      type(TEAM_TYPE),intent(in) :: team
+```
+or
+```fortran
+    result = num_images(team_number)
+```
+```fortran
+     integer function num_images (team_number)
+
+      integer(kind=KIND),intent(in) :: team_number
 ```
 ### **Description**
 
@@ -20,29 +35,19 @@ Returns the number of images.
 
 ### **Options**
 
-- **distance**
-  : Nonnegative scalar integer
+- **team**
+  : shall  be a scalar of type TEAM_TYPE from the intrinsic module
+  ISO_FORTRAN_ENV, with a value that identifies the current or an
+  ancestor team.
 
-- **failed**
-  : Scalar logical expression
+- **team_number**
+  : shall be an integer scalar. It shall identify the initial team or
+  a team whose parent is the same as that of the current team.
 
 ### **Result**
 
-  The number of images.
-
-  If **distance** is not present or has value 0, the number of images
-  in the current team is returned.
-
-  For values smaller or equal distance to the initial team, it returns
-  the number of images index on the ancestor team which has a distance
-  of **distance** from the invoking team.
-
-  If **distance** is larger than the distance to the initial team,
-  the number of images of the initial team is returned.
-
-  If **failed** is not present the total number of images is returned;
-  if it has the value _.true._, the number of failed images is returned,
-  otherwise, the number of images which do have not the failed status.
+  The number of images in the specified team, or in the current team if
+  no team is specified.
 
 ### **Examples**
 

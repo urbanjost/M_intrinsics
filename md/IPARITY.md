@@ -9,24 +9,24 @@
     result = iparity(array, mask)
 ```
 ```fortran
-     integer(kind=KIND) function iparity(array, mask)
+     integer(kind=KIND) function iparity(array [,mask] )
 
      integer(kind=KIND),intent(in) :: array(..)
-     logical(kind=KIND),intent(in) :: mask(..)
+     logical(kind=KIND),intent(in),optional :: mask(..)
 ```
    **array** must be an array. **mask** may be either an array of the
    same shape as **array** or a scalar.
 
 or
 ```fortran
-    result = iparity(array, dim, mask)
+    result = iparity(array, dim [,mask] )
 ```
 ```fortran
-     integer(kind=KIND) function iparity(array, mask)
+     integer(kind=KIND) function iparity( array ,dim ,mask )
 
      integer(kind=KIND),intent(in)          :: array(..)
-     logical(kind=KIND),intent(in),optional :: dim
-     logical(kind=KIND),intent(in)          :: mask(..)
+     logical(kind=KIND),intent(in)          :: dim
+     logical(kind=KIND),intent(in),optional :: mask(..)
 ```
 ### **Description**
 

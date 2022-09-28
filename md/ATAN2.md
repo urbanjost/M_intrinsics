@@ -1,12 +1,13 @@
 ## atan2
 
 ### **Name**
+
 **atan2**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arctangent (inverse tangent)
 function
 
 ### **Synopsis**
 ```fortran
-    result=atan2(y, x)
+    result = atan2(y, x)
 ```
 ```fortran
      elemental function atan2(y, x)

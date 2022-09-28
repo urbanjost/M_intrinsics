@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    call event_query(event, count, stat)
+    call event_query(event, count [,stat] )
 ```
 ```fortran
 ```

@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result = norm2(array, dim)
+    result = norm2(array, [dim])
 ```
 ```fortran
      real function norm2(array, dim)

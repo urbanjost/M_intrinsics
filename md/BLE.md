@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=ble(i,j)
+    result = ble(i,j)
 ```
 ```fortran
      elemental function ble(i, j)

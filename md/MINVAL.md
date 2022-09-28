@@ -6,10 +6,10 @@
 
 ### **Synopsis**
 ```fortran
-    result = minval(array, mask)
+    result = minval(array, [mask])
 ```
 ```fortran
-     NUMERIC function minval(array [,mask])
+     NUMERIC function minval(array ,mask)
 
      NUMERIC,intent(in) :: array(..)
      logical(kind=KINDL),intent(in),optional :: mask(..)

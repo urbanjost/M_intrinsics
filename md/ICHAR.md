@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=ichar(c [,kind])
+    result = ichar(c [,kind])
 ```
 ```fortran
      elemental function ichar(c,kind)

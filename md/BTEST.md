@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=btest(i,pos)
+    result = btest(i,pos)
 ```
 ```fortran
     elemental integer(kind=KIND) function btest(i,pos)

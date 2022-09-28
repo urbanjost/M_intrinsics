@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    call co_broadcast(a, source_image, stat, errmsg)
+    call co_broadcast(a, source_image [,stat] [,errmsg] )
 ```
 ```fortran
 ```

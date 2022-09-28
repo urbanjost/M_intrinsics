@@ -9,7 +9,7 @@
     call get_command(command, length, status)
 ```
 ```fortran
-     subroutine get_command(command,length,status)
+     subroutine get_command( [command] [,length] [,status] )
 
      character(len=*),intent(out),optional :: command
      integer,intent(out),optional :: length

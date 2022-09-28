@@ -7,7 +7,7 @@
 
 ### **Synopsis**
 ```fortran
-    result=abs(a)
+    result = abs(a)
 ```
 ```fortran
      elemental TYPE(kind=KIND) function abs(a)
@@ -16,8 +16,8 @@
 ```
    **a** may be any _real_, _integer_, or _complex_ value.
 
-   If the type of **a** is _complex_ the type returned will be a _real_
-   with the same kind as the real part of **a**.
+   If **a** is _complex_ the returned value will be a _real_ with the
+   same kind as **a**.
 
    Otherwise the returned type is the same as for **a**.
 
@@ -132,7 +132,7 @@ Result:
 
 ### **Synopsis**
 ```fortran
-    result=achar(i [,kind])
+    result = achar(i [,kind])
 ```
 ```fortran
      elemental character(len=1) function achar(i,kind)
@@ -301,7 +301,7 @@ FORTRAN 77 and later, with KIND argument Fortran 2003 and later
 
 ### **Synopsis**
 ```fortran
-    result=acosh(x)
+    result = acosh(x)
 ```
 ```fortran
      elemental TYPE(kind=KIND) function acosh(x)
@@ -365,7 +365,7 @@ Inverse function: [**cosh**(3)](#cosh)
 
 ### **Synopsis**
 ```fortran
-    result=acos(x)
+    result = acos(x)
 ```
 ```fortran
      elemental TYPE(kind=KIND) function acos(x)
@@ -440,7 +440,7 @@ Inverse function: [**cos**(3](cos))
 
 ### **Synopsis**
 ```fortran
-    result=adjustl(string)
+    result = adjustl(string)
 ```
 ```fortran
      elemental character(len=len(string)) function adjustl(string)
@@ -511,7 +511,7 @@ Fortran 95 and later
 
 ### **Synopsis**
 ```fortran
-    result=adjustr(string)
+    result = adjustr(string)
 ```
 ```fortran
      elemental character(len=len(string)) function adjustr(string)
@@ -593,7 +593,7 @@ Fortran 95 and later
 
 ### **Synopsis**
 ```fortran
-    result=aimag(z)
+    result = aimag(z)
 ```
 ```fortran
      elemental complex(kind=KIND) function aimag(z)
@@ -667,7 +667,7 @@ FORTRAN 77 and later
 
 ### **Synopsis**
 ```fortran
-    result=aint(x [,kind])
+    result = aint(x [,kind])
 ```
 ```fortran
      elemental real(kind=KIND) function iaint(x,kind)
@@ -763,7 +763,7 @@ FORTRAN 77 and later
    result = all(mask [,dim])
 ```
 ```fortran
-     logical function all(mask, dim)
+     logical function all(mask ,dim)
 
      logical,intent(in)          :: mask(..)
      integer,intent(in),optional :: dim
@@ -1407,12 +1407,13 @@ Fortran 95 and later
 ## atan2
 
 ### **Name**
+
 **atan2**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arctangent (inverse tangent)
 function
 
 ### **Synopsis**
 ```fortran
-    result=atan2(y, x)
+    result = atan2(y, x)
 ```
 ```fortran
      elemental function atan2(y, x)
@@ -1745,7 +1746,7 @@ arguments Fortran 2008 or later
 
 ### **Synopsis**
 ```fortran
-    call atomic_add (atom, value, stat)
+    call atomic_add (atom, value [,stat] )
 ```
 ```fortran
     subroutine atomic_add(atom,value,stat)
@@ -1809,7 +1810,7 @@ TS 18508 or later
 
 ### **Synopsis**
 ```fortran
-    call atomic_and(atom, value, stat)
+    call atomic_and(atom, value [,stat])
 ```
 ```fortran
     subroutine atomic_and(atom, value, stat)
@@ -1876,7 +1877,7 @@ TS 18508 or later
 
 ### **Synopsis**
 ```fortran
-    call atomic_cas (atom, old, compare, new, stat)
+    call atomic_cas (atom, old, compare, new [,stat] )
 ```
 ```fortran
     subroutine atomic_cas (atom, old, compare, new, stat)
@@ -1946,7 +1947,7 @@ TS 18508 or later
 
 ### **Synopsis**
 ```fortran
-    call atomic_define (atom, value, stat)
+    call atomic_define (atom, value [,stat] )
 ```
 ```fortran
      subroutine atomic_define(atom, value, stat)
@@ -2016,7 +2017,7 @@ Fortran 2008 and later; with **stat**, TS 18508 or later
 
 ### **Synopsis**
 ```fortran
-    call atomic_fetch_add(atom, value, old, stat)
+    call atomic_fetch_add(atom, value, old [,stat] )
 ```
 ```fortran
     subroutine atomic_fetch_add(atom, value, old, stat)
@@ -2086,7 +2087,7 @@ TS 18508 or later
 
 ### **Synopsis**
 ```fortran
-    call atomic_fetch_and(atom, value, old, stat)
+    call atomic_fetch_and(atom, value, old [,stat] )
 ```
 ```fortran
     subroutine atomic_fetch_and(atom, value, old, stat)
@@ -2156,7 +2157,7 @@ TS 18508 or later
 
 ### **Synopsis**
 ```fortran
-    call atomic_fetch_or(atom, value, old, stat)
+    call atomic_fetch_or(atom, value, old [,stat] )
 ```
 ```fortran
     subroutine atomic_fetch_or(atom, value, old, stat)
@@ -2226,7 +2227,7 @@ TS 18508 or later
 
 ### **Synopsis**
 ```fortran
-    call atomic_fetch_xor (atom, value, old, stat)
+    call atomic_fetch_xor (atom, value, old [,stat] )
 ```
 ```fortran
     subroutine atomic_fetch_xor (atom, value, old, stat)
@@ -2296,7 +2297,7 @@ TS 18508 or later
 
 ### **Synopsis**
 ```fortran
-    call atomic_or(atom, value, stat)
+    call atomic_or(atom, value [,stat] )
 ```
 ```fortran
     subroutine atomic_or(atom, value, stat)
@@ -2362,7 +2363,7 @@ TS 18508 or later
 
 ### **Synopsis**
 ```fortran
-    call atomic_ref(value, atom, stat)
+    call atomic_ref(value, atom [,stat] )
 ```
 ```fortran
     subroutine atomic_ref(value, atom, stat)
@@ -2436,7 +2437,7 @@ Fortran 2008 and later; with STAT, TS 18508 or later
 
 ### **Synopsis**
 ```fortran
-    call atomic_xor(atom, value, stat)
+    call atomic_xor(atom, value [,stat] )
 ```
 ```fortran
     subroutine atomic_xor(atom, value, stat)
@@ -2952,7 +2953,7 @@ Fortran 2008 and later
 
 ### **Synopsis**
 ```fortran
-    result=bge(i,j)
+    result = bge(i,j)
 ```
 ```fortran
     elemental function bge(i, j)
@@ -3204,7 +3205,7 @@ Fortran 2008 and later
 
 ### **Synopsis**
 ```fortran
-    result=bit_size(i)
+    result = bit_size(i)
 ```
 ```fortran
      integer(kind=KIND) function bit_size(i)
@@ -3278,7 +3279,7 @@ Fortran 95 and later
 
 ### **Synopsis**
 ```fortran
-    result=ble(i,j)
+    result = ble(i,j)
 ```
 ```fortran
      elemental function ble(i, j)
@@ -3363,7 +3364,7 @@ Fortran 2008 and later
 
 ### **Synopsis**
 ```fortran
-  result=blt(i,j)
+  result = blt(i,j)
 ```
 ```fortran
    elemental function blt(i, j)
@@ -3446,7 +3447,7 @@ Fortran 2008 and later
 
 ### **Synopsis**
 ```fortran
-    result=btest(i,pos)
+    result = btest(i,pos)
 ```
 ```fortran
     elemental integer(kind=KIND) function btest(i,pos)
@@ -3583,7 +3584,7 @@ Fortran 95 and later
 
 ### **Synopsis**
 ```fortran
-    result = c_associated(c_prt_1, c_ptr_2)
+    result = c_associated(c_prt_1, [c_ptr_2] )
 ```
 ```fortran
 ```
@@ -3750,7 +3751,7 @@ Fortran 95 and later
 
 ### **Synopsis**
 ```fortran
-    call c_f_pointer(cptr, fptr, shape)
+    call c_f_pointer(cptr, fptr [,shape] )
 ```
 ```fortran
 ```
@@ -3941,8 +3942,6 @@ Fortran 2003 and later
 **iso_c_binding**(3)
 
  _fortran-lang intrinsic descriptions_
-
-## char
 
 ### **Name**
 
@@ -4257,7 +4256,7 @@ FORTRAN 77 and later
 
 ### **Synopsis**
 ```fortran
-    call co_broadcast(a, source_image, stat, errmsg)
+    call co_broadcast(a, source_image [,stat] [,errmsg] )
 ```
 ```fortran
 ```
@@ -4320,7 +4319,7 @@ end program demo_co_broadcast
 
 ### **Synopsis**
 ```fortran
-     result = co_lbound(coarray, dim, kind)
+     result = co_lbound( coarray [,dim] [,kind] )
 ```
 ```fortran
 ```
@@ -4368,7 +4367,7 @@ Fortran 2008 and later
 
 ### **Synopsis**
 ```fortran
-     call co_max(a, result_image, stat, errmsg)
+     call co_max(a, result_image [,stat] [,errmsg] )
 ```
 ```fortran
 ```
@@ -4443,7 +4442,7 @@ TS 18508 or later
 
 ### **Synopsis**
 ```fortran
-     call co_min(a, result_image, stat, errmsg)
+     call co_min(a, result_image [,stat] [,errmsg] )
 ```
 ```fortran
 ```
@@ -4814,7 +4813,7 @@ FORTRAN 77 and later
 
 ### **Synopsis**
 ```fortran
-    call co_reduce(a, operation, result_image, stat, errmsg)
+    call co_reduce(a, operation, result_image [,stat] [,errmsg] )
 ```
 ```fortran
 ```
@@ -5061,7 +5060,7 @@ FORTRAN 77 and later
 
 ### **Synopsis**
 ```fortran
-    call co_sum(a, result_image, stat, errmsg)
+    call co_sum(a, result_image [,stat] [,errmsg] )
 ```
 ```fortran
 ```
@@ -5137,7 +5136,7 @@ TS 18508 or later
 
 ### **Synopsis**
 ```fortran
-    result = co_ubound(coarray, dim, kind)
+    result = co_ubound(coarray [,dim]  [,kind] )
 ```
 ```fortran
 ```
@@ -5580,7 +5579,7 @@ Fortran 2008
 
 ### **Synopsis**
 ```fortran
-    call date_and_time([date] [,time] [,zone] [,values] )
+    call date_and_time( [date] [,time] [,zone] [,values] )
 ```
 ```fortran
      subroutine date_and_time(date, time, zone, values)
@@ -6862,7 +6861,7 @@ Fortran 2008 and later
 
 ### **Synopsis**
 ```fortran
-    call event_query(event, count, stat)
+    call event_query(event, count [,stat] )
 ```
 ```fortran
 ```
@@ -7212,7 +7211,7 @@ Fortran 95 and later
 
 ### **Synopsis**
 ```fortran
-    result=extends_type_of(a, mold)
+    result = extends_type_of(a, mold)
 ```
 ```fortran
 ```
@@ -7758,15 +7757,15 @@ Logarithm of the Gamma function: [**log_gamma**(3)](#log_gamma)
 
 ### **Synopsis**
 ```fortran
-    call get_command_argument(number, value, length, status)
+  call get_command_argument(number, value, length, status)
 ```
 ```fortran
-     subroutine get_command_argument(number,value,length.status)
+   subroutine get_command_argument(number[,value][,length][.status])
 
-     integer,intent(in)                    :: number
-     character(len=*),intent(out),optional :: value
-     integer,intent(out),optional          :: length
-     integer,intent(out),optional          :: status
+    integer,intent(in)                    :: number
+    character(len=*),intent(out),optional :: value
+    integer,intent(out),optional          :: length
+    integer,intent(out),optional          :: status
 ```
 ### **Description**
 
@@ -7895,7 +7894,7 @@ Fortran 2003 and later
     call get_command(command, length, status)
 ```
 ```fortran
-     subroutine get_command(command,length,status)
+     subroutine get_command( [command] [,length] [,status] )
 
      character(len=*),intent(out),optional :: command
      integer,intent(out),optional :: length
@@ -7984,7 +7983,7 @@ Fortran 2003 and later
 
 ### **Synopsis**
 ```fortran
-    call get_environment_variable(name, value, length, status, trim_name)
+    call get_environment_variable(name [,value] [,length] [,status] [,trim_name] )
 ```
 ```fortran
      subroutine character(len=*) get_environment_variable( &
@@ -8702,8 +8701,6 @@ Fortran 2008 and later
 
  _fortran-lang intrinsic descriptions_
 
-## ibclr
-
 ### **Name**
 
 **ibclr**(3) - \[BIT:SET\] Clear bit
@@ -8886,7 +8883,7 @@ Fortran 95 and later
 
 ### **Synopsis**
 ```fortran
-    result=ichar(c [,kind])
+    result = ichar(c [,kind])
 ```
 ```fortran
      elemental function ichar(c,kind)
@@ -9129,7 +9126,7 @@ Fortran 2008 and later
 
 ### **Synopsis**
 ```fortran
-result=index( string, substring [,back] [,kind] )
+result = index( string, substring [,back] [,kind] )
 ```
 ```fortran
  elemental integer(kind=KIND) function index(string,substring,back,kind)
@@ -9224,9 +9221,9 @@ of arguments, and search for certain arguments:
     result = int(a [,kind])
 ```
 ```fortran
-     elemental integer(kind=KIND) function int(a,kind)
+     elemental integer(kind=KIND) function int(a, [kind] )
 
-     TYPE(kind=KIND),intent(in),optional :: a
+     TYPE(kind=KIND),intent(in) :: a
      integer,optional :: kind
 ```
 ### **Description**
@@ -9431,24 +9428,24 @@ Fortran 95 and later
     result = iparity(array, mask)
 ```
 ```fortran
-     integer(kind=KIND) function iparity(array, mask)
+     integer(kind=KIND) function iparity(array [,mask] )
 
      integer(kind=KIND),intent(in) :: array(..)
-     logical(kind=KIND),intent(in) :: mask(..)
+     logical(kind=KIND),intent(in),optional :: mask(..)
 ```
    **array** must be an array. **mask** may be either an array of the
    same shape as **array** or a scalar.
 
 or
 ```fortran
-    result = iparity(array, dim, mask)
+    result = iparity(array, dim [,mask] )
 ```
 ```fortran
-     integer(kind=KIND) function iparity(array, mask)
+     integer(kind=KIND) function iparity( array ,dim ,mask )
 
      integer(kind=KIND),intent(in)          :: array(..)
-     logical(kind=KIND),intent(in),optional :: dim
-     logical(kind=KIND),intent(in)          :: mask(..)
+     logical(kind=KIND),intent(in)          :: dim
+     logical(kind=KIND),intent(in),optional :: mask(..)
 ```
 ### **Description**
 
@@ -9634,7 +9631,7 @@ Fortran 2008 and later
 
 ### **Synopsis**
 ```fortran
-    result=ishftc( i, shift [,back] )
+    result = ishftc( i, shift [,size] )
 ```
 ```fortran
      elemental integer(kind=KIND) function ishftc(i, shift, size)
@@ -9742,7 +9739,7 @@ Fortran 95 and later
 
 ### **Synopsis**
 ```fortran
-    result=ishftc( i, shift )
+    result = ishftc( i, shift )
 ```
 ```fortran
      elemental integer(kind=KIND) function ishft(i, shift )
@@ -9825,7 +9822,7 @@ Fortran 95 and later
 
 ### **Synopsis**
 ```fortran
-    result=is_iostat_end(iostat)
+    result = is_iostat_end(iostat)
 ```
 ```fortran
      elemental logical function is_iostat_end(iostat)
@@ -10016,14 +10013,14 @@ Fortran 95 and later
 
 ### **Synopsis**
 ```fortran
-     result = lbound(array, dim, kind)
+     result = lbound(array [,dim] [,kind] )
 ```
 ```fortran
      elemental TYPE(kind=KIND) function lbound(array,dim,kind)
 
      TYPE(kind=KIND),intent(in)  :: array
-     integer,optional,intent(in) :: dim
-     integer,optional,intent(in) :: kind
+     integer,intent(in),optional :: dim
+     integer,intent(in),optional :: kind
 ```
 ### **Description**
 
@@ -10217,7 +10214,7 @@ Fortran 2008 and later
 
 ### **Synopsis**
 ```fortran
-    result=len(string [,kind])
+    result = len(string [,kind])
 ```
 ```fortran
     integer(kind=KIND) function len(string,kind)
@@ -11345,7 +11342,7 @@ multiplication
 
 ### **Synopsis**
 ```fortran
-    result=matmul(matrix_a,matrix_b)
+    result = matmul(matrix_a,matrix_b)
 ```
 ```fortran
      function matmul(matrix_a, matrix_b)
@@ -12527,10 +12524,10 @@ FORTRAN 77 and later
 
 ### **Synopsis**
 ```fortran
-    result = minval(array, mask)
+    result = minval(array, [mask])
 ```
 ```fortran
-     NUMERIC function minval(array [,mask])
+     NUMERIC function minval(array ,mask)
 
      NUMERIC,intent(in) :: array(..)
      logical(kind=KINDL),intent(in),optional :: mask(..)
@@ -13284,7 +13281,7 @@ Fortran 2003 and later
 
 ### **Synopsis**
 ```fortran
-    result=nint(x [,kind])
+    result = nint( x [,kind] )
 ```
 ```fortran
     elemental integer(kind=kind) function nint(x, kind )
@@ -13413,7 +13410,7 @@ FORTRAN 77 and later, with KIND argument - Fortran 90 and later
 
 ### **Synopsis**
 ```fortran
-    result = norm2(array, dim)
+    result = norm2(array, [dim])
 ```
 ```fortran
      real function norm2(array, dim)
@@ -13576,7 +13573,7 @@ Fortran 95 and later
 
 ### **Synopsis**
 ```fortran
-    ptr => null(mold)
+    ptr => null( [mold] )
 ```
 ```fortran
 ```
@@ -13698,13 +13695,28 @@ Fortran 95 and later
 
 ### **Synopsis**
 ```fortran
-    result = num_images(distance, failed)
+    result = num_images([])
 ```
 ```fortran
-     integer function num_images (distance, failed)
+     integer function num_images ()
+```
+or
+```fortran
+    result = num_images(team)
+```
+```fortran
+     integer function num_images (team)
 
-      integer(kind=KIND),intent(in),optional :: distance
-      integer(kind=KIND),intent(in),optional :: failed
+      type(TEAM_TYPE),intent(in) :: team
+```
+or
+```fortran
+    result = num_images(team_number)
+```
+```fortran
+     integer function num_images (team_number)
+
+      integer(kind=KIND),intent(in) :: team_number
 ```
 ### **Description**
 
@@ -13712,29 +13724,19 @@ Returns the number of images.
 
 ### **Options**
 
-- **distance**
-  : Nonnegative scalar integer
+- **team**
+  : shall  be a scalar of type TEAM_TYPE from the intrinsic module
+  ISO_FORTRAN_ENV, with a value that identifies the current or an
+  ancestor team.
 
-- **failed**
-  : Scalar logical expression
+- **team_number**
+  : shall be an integer scalar. It shall identify the initial team or
+  a team whose parent is the same as that of the current team.
 
 ### **Result**
 
-  The number of images.
-
-  If **distance** is not present or has value 0, the number of images
-  in the current team is returned.
-
-  For values smaller or equal distance to the initial team, it returns
-  the number of images index on the ancestor team which has a distance
-  of **distance** from the invoking team.
-
-  If **distance** is larger than the distance to the initial team,
-  the number of images of the initial team is returned.
-
-  If **failed** is not present the total number of images is returned;
-  if it has the value _.true._, the number of failed images is returned,
-  otherwise, the number of images which do have not the failed status.
+  The number of images in the specified team, or in the current team if
+  no team is specified.
 
 ### **Examples**
 
@@ -13771,6 +13773,7 @@ Fortran 2008 and later. With DISTANCE or FAILED argument, TS 18508 or later
 ## out_of_range
 
 ### **Name**
+
 **out_of_range**(3) - \[TYPE:NUMERIC\] Whether a value cannot be converted safely.
 
 ### **Synopsis**
@@ -13902,7 +13905,7 @@ Results:
 
 ### **Synopsis**
 ```fortran
-    result = pack(array, mask,vector)
+    result = pack( array, mask [,vector] )
 ```
 ```fortran
      TYPE(kind=KIND) function pack(array,mask,vector)
@@ -14769,7 +14772,7 @@ Fortran 95 and later
 
 ### **Synopsis**
 ```fortran
-    call random_seed(size, put, get)
+    call random_seed( [size] [,put] [,get] )
 ```
 ```fortran
 ```
@@ -15101,12 +15104,12 @@ FORTRAN 77 and later
 
 There are two forms to this function:
 ```fortran
-    result = reduce(array, operation, mask, identity, ordered)
+    result = reduce(array, operation [,mask]  [,identity]  [,ordered] )
 ```
 or
 ```fortran
     type(TYPE(kind=KIND)) function reduce &
-    & (array, operation, dim, mask, identity, ordered)
+    & (array, operation [,dim] [,mask] [,identity] [,ordered] )
 ```
 ```fortran
      type(TYPE(kind=KIND)),intent(in) :: array
@@ -15375,7 +15378,7 @@ Functions that perform operations on character strings:
 
 ### **Synopsis**
 ```fortran
-    result = reshape(source, shape, pad, order)
+    result = reshape( source, shape [,pad] [,order] )
 ```
 ```fortran
 ```
@@ -15623,7 +15626,7 @@ Fortran 95 and later
 
 ### **Synopsis**
 ```fortran
-    result = scan(string, set[, back [, kind]])
+    result = scan( string, set, [,back] [,kind] )
 ```
 ```fortran
      elemental integer(kind=KIND) function scan(string,set,back,kind)
@@ -15870,7 +15873,7 @@ Fortran 95 and later
 
 ### **Synopsis**
 ```fortran
-    result = selected_real_kind(p, r, radix)
+    result = selected_real_kind([p] [,r] [,radix] )
 ```
 ```fortran
 ```
@@ -17389,7 +17392,7 @@ Returns the storage size of argument **a** in bits.
    NOTE1
 
     An array element might take "type" more bits to store than an isolated
-    scalar, since any hardware-imposed align- ment requirements for
+    scalar, since any hardware-imposed alignment requirements for
     array elements might not apply to a simple scalar variable.
 
    NOTE2
@@ -17483,7 +17486,7 @@ element in MASK is TRUE.
 
 The result is of the same type as ARRAY.
 
-If **dim**(3) is absent, a scalar with the sum of all elements in ARRAY
+If **dim** is absent, a scalar with the sum of all elements in ARRAY
 is returned. Otherwise, an array of rank n-1, where n equals the rank of
 ARRAY, and a shape similar to that of ARRAY with dimension DIM dropped
 is returned.
@@ -18073,7 +18076,7 @@ Fortran 2008 and later
 
 ### **Synopsis**
 ```fortran
-    result = transfer(source, mold, size)
+    result = transfer(source, mold [,size] )
 ```
 ```fortran
 ```
@@ -18385,7 +18388,7 @@ of arguments, and search for certain arguments:
 
 ### **Synopsis**
 ```fortran
-    result = ubound(array, dim, kind)
+    result = ubound(array [,dim] [,kind] )
 ```
 ```fortran
 ```

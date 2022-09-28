@@ -57,21 +57,217 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-<B>DATE_AND_TIME</B>(3) - [SYSTEM:TIME] gets current time
+DATE_AND_TIME(3) - [SYSTEM:TIME] gets current time
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=2>
+<A name=8>
 
      <H3>SYNOPSIS</H3>
 
 </A>
 <BLOCKQUOTE>
 <P>
+call date_and_time( [date] [,time] [,zone] [,values] )
+<P>
+<PRE>
+         subroutine date_and_time(date, time, zone, values)
+<P>
+         character(len=8),intent(out),optional :: date
+         character(len=10),intent(out),optional :: time
+         character(len=5),intent(out),optional :: zone
+         integer,intent(out),optional :: values(8)
+<P>
+</PRE>
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+DATE_AND_TIME(DATE, TIME, ZONE, VALUES) gets the corresponding date and
+time information from the real-time system clock.
+<P>
+Unavailable time and date character parameters return blanks.
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+DATE : A character string of default kind of the form CCYYMMDD, of
+length 8 or larger.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+TIME : A character string of default kind of the form HHMMSS.SSS, of
+length 10 or larger.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+ZONE : A character string of default kind of the form (+-)HHMM, of
+length 5 or larger, representing the difference with respect to
+Coordinated Universal Time (UTC).
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+VALUES : An integer array of eight elements that contains:
+<TABLE width=100% cellpadding=3><!-- tsb: VALUES : An integer array of eight elements that contains:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+VALUES(1) : The year
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+VALUES() : The month
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+VALUES(3) : The day of the month
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+VALUES(4) : Time difference with UTC in minutes
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+VALUES(5) : The hour of the day
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+VALUES(6) : The minutes of the hour
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+VALUES(7) : The seconds of the minute
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+VALUES(8) : The milliseconds of the second
+</TD></TR>
+<TR></TR></TABLE></TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Sample program:
+<P>
+<PRE>
+    program demo_date_and_time
+    implicit none
+    character(len=8)     :: date
+    character(len=10)    :: time
+    character(len=5)     :: zone
+    integer,dimension(8) :: values
+<P>
+        call date_and_time(date,time,zone,values)
+<P>
+        ! using keyword arguments
+        call date_and_time(DATE=date,TIME=time,ZONE=zone)
+        print &#146;(*(g0))&#146;,&#146;DATE="&#146;,date,&#146;" TIME="&#146;,time,&#146;" ZONE="&#146;,zone,&#146;"&#146;
+<P>
+        call date_and_time(VALUES=values)
+        write(*,&#146;(i5,a)&#146;) &
+         & values(1),&#146; - The year&#146;, &
+         & values(2),&#146; - The month&#146;, &
+         & values(3),&#146; - The day of the month&#146;, &
+         & values(4),&#146; - Time difference with UTC in minutes&#146;, &
+         & values(5),&#146; - The hour of the day&#146;, &
+         & values(6),&#146; - The minutes of the hour&#146;, &
+         & values(7),&#146; - The seconds of the minute&#146;, &
+         & values(8),&#146; - The milliseconds of the second&#146;
+    end program demo_date_and_time
+<P>
+</PRE>
+Results:
+<P>
+<PRE>
+       DATE="20201222" TIME="165738.779" ZONE="-0500"
+        2020 - The year
+          12 - The month
+          22 - The day of the month
+        -300 - Time difference with UTC in minutes
+          16 - The hour of the day
+          57 - The minutes of the hour
+          38 - The seconds of the minute
+         779 - The milliseconds of the second
+<P>
+</PRE>
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>STANDARD</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Fortran 95 and later
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+CPU_TIME(3), SYSTEM_CLOCK(3)
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>RESOURCES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+date and time conversion, formatting and computation
+<TABLE cellpadding=3><!-- tsb: date and time conversion, formatting and computation
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+M_time
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+datetime
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+datetime-fortran
+</TD></TR>
+<TR></TR></TABLE>fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>date_and_time (3fortran)</TD> <TD align=right width=33%><I>September 25, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from fed31529-238d-4414-9a62-7b09615a40a7 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>date_and_time (3fortran)</TD> <TD align=right width=33%><I>September 27, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 3d79f942-4296-4dec-b48f-07f6edd110b9 using man macros.</FONT>
 <br><br><center><img src="images/date_and_time.3fortran.gif"></center>
 </div>
 </div>

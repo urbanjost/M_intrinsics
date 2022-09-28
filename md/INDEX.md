@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-result=index( string, substring [,back] [,kind] )
+result = index( string, substring [,back] [,kind] )
 ```
 ```fortran
  elemental integer(kind=KIND) function index(string,substring,back,kind)

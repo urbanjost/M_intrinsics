@@ -1,6 +1,7 @@
 ## out_of_range
 
 ### **Name**
+
 **out_of_range**(3) - \[TYPE:NUMERIC\] Whether a value cannot be converted safely.
 
 ### **Synopsis**

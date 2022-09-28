@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    call c_f_pointer(cptr, fptr, shape)
+    call c_f_pointer(cptr, fptr [,shape] )
 ```
 ```fortran
 ```

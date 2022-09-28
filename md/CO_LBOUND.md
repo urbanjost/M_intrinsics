@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-     result = co_lbound(coarray, dim, kind)
+     result = co_lbound( coarray [,dim] [,kind] )
 ```
 ```fortran
 ```

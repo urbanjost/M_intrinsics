@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    call random_seed(size, put, get)
+    call random_seed( [size] [,put] [,get] )
 ```
 ```fortran
 ```
