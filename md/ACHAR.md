@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**achar**(3) - \[CHARACTER:CONVERSION\] returns a character in a specified position in the ASCII collating sequence
+**achar**(3) - \[CHARACTER:CONVERSION\] Returns a character in a specified position in the ASCII collating sequence
 
 ### **Synopsis**
 ```fortran

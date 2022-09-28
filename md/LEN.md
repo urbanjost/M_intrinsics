@@ -14,18 +14,18 @@
      character(len=*),intent(in) :: string
      integer,optional,intent(in) :: kind
 ```
-where the returned value is the same integer kind as the **kind**
-argument, or of the default integer kind if **kind** is not specified.
+  where the returned value is the same integer kind as the **kind**
+  argument, or of the default integer kind if **kind** is not specified.
 
 ### **Description**
 
-**len(3)** Returns the length of a _character_ string.
+  **len(3)** Returns the length of a _character_ string.
 
-If **string** is an array, the length of an element of **string** is
-returned, as all elements of an array are the same length.
+  If **string** is an array, the length of an element of **string** is
+  returned, as all elements of an array are the same length.
 
-Note that **string** need not be defined when this intrinsic is invoked,
-as only the length (not the content) of **string** is needed.
+  Note that **string** need not be defined when this intrinsic is invoked,
+  as only the length (not the content) of **string** is needed.
 
 ### **Options**
 
@@ -38,8 +38,8 @@ as only the length (not the content) of **string** is needed.
 
 ### **Result**
 
-The return value is of type _integer_ and of kind **kind**. If **kind**
-is absent, the return value is of default integer kind.
+  The return value is of type _integer_ and of kind **kind**. If **kind**
+  is absent, the return value is of default integer kind.
 
 ### **Examples**
 

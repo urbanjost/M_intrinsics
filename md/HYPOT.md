@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**hypot**(3) - \[MATHEMATICS\] returns the distance between the point
+**hypot**(3) - \[MATHEMATICS\] Returns the distance between the point
 and the origin.
 
 ### **Synopsis**
@@ -20,7 +20,11 @@ where **x,y** and the result shall all be of the same **kind**.
 ### **Description**
 
 **hypot(x,y)** is referred to as the Euclidean distance function. It is
-equal to $\sqrt{x^2+y^2}$, without undue underflow or overflow.
+equal to 
+```fortran
+sqrt(x**2+y**2)
+```
+without undue underflow or overflow.
 
 In mathematics, the _Euclidean distance_ between two points in Euclidean
 space is the length of a line segment between two points.
@@ -31,7 +35,7 @@ the origin.
 ### **Options**
 
 - **x**
-  : The type shall be _real_.
+: The type shall be _real_.
 
 - **y**
   : The type and kind type parameter shall be the same as **x**.

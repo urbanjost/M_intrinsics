@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**floor**(3) - \[NUMERIC\] function to return largest integral value
+**floor**(3) - \[NUMERIC\] Function to return largest integral value
 not greater than argument
 
 ### **Synopsis**

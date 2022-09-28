@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**extends_type_of**(3) - \[STATE\] determine if the dynamic type of **a** is an extension of the dynamic type of **mold**.
+**extends_type_of**(3) - \[STATE\] Determine if the dynamic type of **a** is an extension of the dynamic type of **mold**.
 
 ### **Synopsis**
 ```fortran

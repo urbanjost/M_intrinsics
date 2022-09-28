@@ -30,8 +30,9 @@
 
   The natural logarithm of **xx**.
   If **x** is _complex_, the imaginary part OMEGA is in the range
-
-    **-PI** \< OMEGA \<= PI.
+```fortran
+    -PI < OMEGA <= PI
+```
 
 ### **Examples**
 

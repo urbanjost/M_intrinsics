@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**mvbits**(3) - \[BIT:COPY\] reproduce bit patterns found in one integer in another
+**mvbits**(3) - \[BIT:COPY\] Reproduce bit patterns found in one integer in another
 
 ### **Synopsis**
 ```fortran

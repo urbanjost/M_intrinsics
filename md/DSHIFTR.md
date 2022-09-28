@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**dshiftr**(3) - \[BIT:COPY\] combined right shift of the bits of two integers
+**dshiftr**(3) - \[BIT:COPY\] Combined right shift of the bits of two integers
 
 ### **Synopsis**
 ```fortran

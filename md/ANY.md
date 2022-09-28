@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**any**(3) - \[ARRAY REDUCTION\] determines if any of the values in the logical array are true.
+**any**(3) - \[ARRAY REDUCTION\] Determines if any of the values in the logical array are true.
 
 ### **Synopsis**
 ```fortran

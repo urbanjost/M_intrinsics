@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**shifta**(3) - \[BIT:SHIFT\] shift bits right with fill
+**shifta**(3) - \[BIT:SHIFT\] Shift bits right with fill
 
 ### **Synopsis**
 ```fortran

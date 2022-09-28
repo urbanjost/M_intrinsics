@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**acos**(3) - \[MATHEMATICS:TRIGONOMETRIC\] arccosine (inverse cosine) function
+**acos**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arccosine (inverse cosine) function
 
 ### **Synopsis**
 ```fortran

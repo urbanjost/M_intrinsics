@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**ishftc**(3) - \[BIT:SHIFT\] logical shift: shift rightmost bits circularly
+**ishftc**(3) - \[BIT:SHIFT\] Shift rightmost bits circularly, aka. a logical shift
 
 ### **Synopsis**
 ```fortran

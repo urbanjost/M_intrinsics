@@ -24,12 +24,13 @@ raised to the power of **x**.
 "_e_" is also known as _Euler's constant_.
 
 If **x** is of type _complex_, its imaginary part is regarded as a value
-in radians such that (see _Euler's formula_):
-```text
-if
-   **cx=(re,im)**
+in radians such that if (see _Euler's formula_):
+```fortran
+    cx=(re,im) 
+```
 then
-   **exp(cx)=exp(re)\*cmplx(cos(im),sin(im),kind=kind(cx))**
+```fortran
+    exp(cx) = exp(re) * cmplx(cos(im),sin(im),kind=kind(cx))
 ```
 Since **exp**(3) is the inverse function of **log**(3) the maximum valid magnitude
 of the _real_ component of **x** is **log(huge(x))**.

@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**date_and_time**(3) - \[SYSTEM:TIME\] gets current time
+**date_and_time**(3) - \[SYSTEM:TIME\] Gets current time
 
 ### **Synopsis**
 ```fortran

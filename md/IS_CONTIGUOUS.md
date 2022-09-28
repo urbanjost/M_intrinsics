@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**is_contiguous**(3) - \[ARRAY INQUIRY\] test if object is contiguous
+**is_contiguous**(3) - \[ARRAY INQUIRY\] Test if object is contiguous
 
 ### **Synopsis**
 ```fortran

@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**shiftl**(3) - \[BIT:SHIFT\] shift bits left
+**shiftl**(3) - \[BIT:SHIFT\] Shift bits left
 
 ### **Synopsis**
 ```fortran

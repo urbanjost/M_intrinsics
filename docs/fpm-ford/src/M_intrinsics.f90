@@ -1876,7 +1876,7 @@ textblock=[character(len=256) :: &
 '  The return value has same type and kind as X. If X is complex, the imaginary', &
 '  part of the result is in radians and lies between', &
 '', &
-'       **-PI/2 \<= aimag(atanh(x)) \<= PI/2**', &
+'           **-PI/2 <= aimag(atanh(x)) <= PI/2**', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -6293,7 +6293,7 @@ textblock=[character(len=256) :: &
 '', &
 '  DIM is a scalar of type integer in the range of', &
 '', &
-'      **1 \<= DIM \<= n**', &
+'          **1 <= DIM <= n**', &
 '', &
 '  where "N" is the rank of ARRAY. If DIM is omitted it is taken to be 1.', &
 '', &
@@ -6858,12 +6858,13 @@ textblock=[character(len=256) :: &
 '  "e" is also known as Euler''s constant.', &
 '', &
 '  If X is of type complex, its imaginary part is regarded as a value in', &
-'  radians such that (see Euler''s formula):', &
+'  radians such that if (see Euler''s formula):', &
 '', &
-'      if', &
-'         **cx=(re,im)**', &
-'      then', &
-'         **exp(cx)=exp(re)\*cmplx(cos(im),sin(im),kind=kind(cx))**', &
+'          cx=(re,im)', &
+'', &
+'  then', &
+'', &
+'          exp(cx) = exp(re) * cmplx(cos(im),sin(im),kind=kind(cx))', &
 '', &
 '  Since EXP(3) is the inverse function of LOG(3) the maximum valid magnitude', &
 '  of the real component of X is LOG(HUGE(X)).', &
@@ -7993,7 +7994,10 @@ textblock=[character(len=256) :: &
 '', &
 'DESCRIPTION', &
 '  HYPOT(X,Y) is referred to as the Euclidean distance function. It is equal to', &
-'  $\sqrt{x^+y^}$, without undue underflow or overflow.', &
+'', &
+'      sqrt(x**2+y**2)', &
+'', &
+'  without undue underflow or overflow.', &
 '', &
 '  In mathematics, the Euclidean distance between two points in Euclidean space', &
 '  is the length of a line segment between two points.', &
@@ -10065,7 +10069,7 @@ textblock=[character(len=256) :: &
 '  o  STRING_B : Shall be of default character type.', &
 '', &
 'RESULT', &
-'  Returns .true. if string_a >= string_b, and .false. otherwise, based on the', &
+'  Returns .true. if string_a == string_b, and .false. otherwise, based on the', &
 '  ASCII ordering.', &
 '', &
 '  If both input arguments are null strings, .true. is always returned.', &
@@ -10502,7 +10506,7 @@ textblock=[character(len=256) :: &
 '  The natural logarithm of XX. If X is complex, the imaginary part OMEGA is in', &
 '  the range', &
 '', &
-'      **-PI** \< OMEGA \<= PI.', &
+'          -PI < OMEGA <= PI', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &

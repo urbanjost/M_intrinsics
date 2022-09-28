@@ -1615,9 +1615,9 @@ the argument.
 
 The return value has same type and kind as **x**. If **x** is _complex_, the
 imaginary part of the result is in radians and lies between
-
-     **-PI/2 \<= aimag(atanh(x)) \<= PI/2**
-
+```fortran
+     **-PI/2 <= aimag(atanh(x)) <= PI/2**
+```
 ### **Examples**
 
 Sample program:
@@ -6431,9 +6431,9 @@ be any kind of _integer_.
 on elements of **array** along the dimension of **dim**.
 
 **dim** is a scalar of type _integer_ in the range of
-
-    **1 \<= DIM \<= n**
-
+```fortran
+    **1 <= DIM <= n**
+```
 where **"n"** is the rank of **array**.  If **dim** is omitted it
 is taken to be **1**.
 
@@ -7046,12 +7046,13 @@ raised to the power of **x**.
 "_e_" is also known as _Euler's constant_.
 
 If **x** is of type _complex_, its imaginary part is regarded as a value
-in radians such that (see _Euler's formula_):
-```text
-if
-   **cx=(re,im)**
+in radians such that if (see _Euler's formula_):
+```fortran
+    cx=(re,im)
+```
 then
-   **exp(cx)=exp(re)\*cmplx(cos(im),sin(im),kind=kind(cx))**
+```fortran
+    exp(cx) = exp(re) * cmplx(cos(im),sin(im),kind=kind(cx))
 ```
 Since **exp**(3) is the inverse function of **log**(3) the maximum valid magnitude
 of the _real_ component of **x** is **log(huge(x))**.
@@ -8246,7 +8247,11 @@ where **x,y** and the result shall all be of the same **kind**.
 ### **Description**
 
 **hypot(x,y)** is referred to as the Euclidean distance function. It is
-equal to $\sqrt{x^2+y^2}$, without undue underflow or overflow.
+equal to
+```fortran
+sqrt(x**2+y**2)
+```
+without undue underflow or overflow.
 
 In mathematics, the _Euclidean distance_ between two points in Euclidean
 space is the length of a line segment between two points.
@@ -8257,7 +8262,7 @@ the origin.
 ### **Options**
 
 - **x**
-  : The type shall be _real_.
+: The type shall be _real_.
 
 - **y**
   : The type and kind type parameter shall be the same as **x**.
@@ -10240,18 +10245,18 @@ Fortran 2008 and later
      character(len=*),intent(in) :: string
      integer,optional,intent(in) :: kind
 ```
-where the returned value is the same integer kind as the **kind**
-argument, or of the default integer kind if **kind** is not specified.
+  where the returned value is the same integer kind as the **kind**
+  argument, or of the default integer kind if **kind** is not specified.
 
 ### **Description**
 
-**len(3)** Returns the length of a _character_ string.
+  **len(3)** Returns the length of a _character_ string.
 
-If **string** is an array, the length of an element of **string** is
-returned, as all elements of an array are the same length.
+  If **string** is an array, the length of an element of **string** is
+  returned, as all elements of an array are the same length.
 
-Note that **string** need not be defined when this intrinsic is invoked,
-as only the length (not the content) of **string** is needed.
+  Note that **string** need not be defined when this intrinsic is invoked,
+  as only the length (not the content) of **string** is needed.
 
 ### **Options**
 
@@ -10264,8 +10269,8 @@ as only the length (not the content) of **string** is needed.
 
 ### **Result**
 
-The return value is of type _integer_ and of kind **kind**. If **kind**
-is absent, the return value is of default integer kind.
+  The return value is of type _integer_ and of kind **kind**. If **kind**
+  is absent, the return value is of default integer kind.
 
 ### **Examples**
 
@@ -10497,7 +10502,7 @@ of arguments, and search for certain arguments:
 
 ### **Result**
 
-Returns _.true._ if string_a \>= string_b, and _.false._ otherwise,
+Returns _.true._ if string_a == string_b, and _.false._ otherwise,
 based on the ASCII ordering.
 
 If both input arguments are null strings, _.true._ is always returned.
@@ -11111,8 +11116,9 @@ Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009
 
   The natural logarithm of **xx**.
   If **x** is _complex_, the imaginary part OMEGA is in the range
-
-    **-PI** \< OMEGA \<= PI.
+```fortran
+    -PI < OMEGA <= PI
+```
 
 ### **Examples**
 

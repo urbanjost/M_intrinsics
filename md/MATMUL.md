@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**matmul**(3) - \[TRANSFORMATIONAL\] numeric or logical matrix
+**matmul**(3) - \[TRANSFORMATIONAL\] Numeric or logical matrix
 multiplication
 
 ### **Synopsis**

@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**new_line**(3) - \[CHARACTER\] new-line character
+**new_line**(3) - \[CHARACTER\] New-line character
 
 ### **Synopsis**
 ```fortran

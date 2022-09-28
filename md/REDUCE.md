@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**reduce**(3) - \[TRANSFORMATIONAL\] general reduction of an array
+**reduce**(3) - \[TRANSFORMATIONAL\] General reduction of an array
 
 ### **Synopsis**
 

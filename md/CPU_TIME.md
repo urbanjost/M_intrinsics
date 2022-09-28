@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**cpu_time**(3) - \[SYSTEM:TIME\] return CPU processor time in seconds
+**cpu_time**(3) - \[SYSTEM:TIME\] Return CPU processor time in seconds
 
 ### **Synopsis**
 ```fortran

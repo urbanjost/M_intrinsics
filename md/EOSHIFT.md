@@ -26,9 +26,9 @@ be any kind of _integer_.
 on elements of **array** along the dimension of **dim**.
 
 **dim** is a scalar of type _integer_ in the range of
-
-    **1 \<= DIM \<= n**
-
+```fortran
+    **1 <= DIM <= n**
+```
 where **"n"** is the rank of **array**.  If **dim** is omitted it
 is taken to be **1**.
 

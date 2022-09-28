@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**all**(3) - \[ARRAY REDUCTION\] determines if all the values are true
+**all**(3) - \[ARRAY REDUCTION\] Determines if all the values are true
 
 ### **Synopsis**
 ```fortran

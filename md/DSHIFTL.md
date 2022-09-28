@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**dshiftl**(3) - \[BIT:COPY\] combined left shift of the bits of two integers
+**dshiftl**(3) - \[BIT:COPY\] Combined left shift of the bits of two integers
 
 ### **Synopsis**
     result = dshiftl(i, j, shift)
