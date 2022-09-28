@@ -9,9 +9,9 @@
     result = precision(x)
 ```
 ```fortran
-    integer function precision(x)
+     integer function precision(x)
 
-    TYPE(kind=KIND),intent(in) :: x
+     TYPE(kind=KIND),intent(in) :: x
 ```
 where **TYPE** may be _real_ or _complex_
 

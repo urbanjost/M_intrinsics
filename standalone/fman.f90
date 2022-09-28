@@ -1925,7 +1925,7 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  call atomic_add (atom, value [,stat] )', &
 '', &
-'  subroutine atomic_add(atom,value,stat)', &
+'           subroutine atomic_add(atom,value,stat)', &
 '', &
 'DESCRIPTION', &
 '  ATOMIC_AD(ATOM, VALUE) atomically adds the value of VAR to the variable', &
@@ -1983,7 +1983,7 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  call atomic_and(atom, value [,stat])', &
 '', &
-'  subroutine atomic_and(atom, value, stat)', &
+'           subroutine atomic_and(atom, value, stat)', &
 '', &
 'DESCRIPTION', &
 '  ATOMIC_AND(ATOM, VALUE) atomically defines ATOM with the bitwise AND between', &
@@ -2041,7 +2041,7 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  call atomic_cas (atom, old, compare, new [,stat] )', &
 '', &
-'  subroutine atomic_cas (atom, old, compare, new, stat)', &
+'           subroutine atomic_cas (atom, old, compare, new, stat)', &
 '', &
 'DESCRIPTION', &
 '  atomic_cas compares the variable ATOM with the value of COMPARE; if the', &
@@ -2165,7 +2165,7 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  call atomic_fetch_add(atom, value, old [,stat] )', &
 '', &
-'  subroutine atomic_fetch_add(atom, value, old, stat)', &
+'           subroutine atomic_fetch_add(atom, value, old, stat)', &
 '', &
 'DESCRIPTION', &
 '  ATOMIC_FETCH_ADD(ATOM, VALUE, OLD) atomically stores the value of ATOM in', &
@@ -2229,7 +2229,7 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  call atomic_fetch_and(atom, value, old [,stat] )', &
 '', &
-'  subroutine atomic_fetch_and(atom, value, old, stat)', &
+'           subroutine atomic_fetch_and(atom, value, old, stat)', &
 '', &
 'DESCRIPTION', &
 '  ATOMIC_FETCH_AND(ATOM, VALUE, OLD) atomically stores the value of ATOM in', &
@@ -2294,7 +2294,7 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  call atomic_fetch_or(atom, value, old [,stat] )', &
 '', &
-'  subroutine atomic_fetch_or(atom, value, old, stat)', &
+'           subroutine atomic_fetch_or(atom, value, old, stat)', &
 '', &
 'DESCRIPTION', &
 '  ATOMIC_FETCH_OR(ATOM, VALUE, OLD) atomically stores the value of ATOM in OLD', &
@@ -2358,7 +2358,7 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  call atomic_fetch_xor (atom, value, old [,stat] )', &
 '', &
-'  subroutine atomic_fetch_xor (atom, value, old, stat)', &
+'           subroutine atomic_fetch_xor (atom, value, old, stat)', &
 '', &
 'DESCRIPTION', &
 '  ATOMIC_FETCH_XOR(ATOM, VALUE, OLD) atomically stores the value of ATOM in', &
@@ -2422,7 +2422,7 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  call atomic_or(atom, value [,stat] )', &
 '', &
-'  subroutine atomic_or(atom, value, stat)', &
+'           subroutine atomic_or(atom, value, stat)', &
 '', &
 'DESCRIPTION', &
 '  ATOMIC_OR(ATOM, VALUE) atomically defines ATOM with the bitwise OR between', &
@@ -2483,7 +2483,7 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  call atomic_ref(value, atom [,stat] )', &
 '', &
-'  subroutine atomic_ref(value, atom, stat)', &
+'           subroutine atomic_ref(value, atom, stat)', &
 '', &
 'DESCRIPTION', &
 '  ATOMIC_REF(VALUE, ATOM) atomically assigns the value of the variable ATOM to', &
@@ -2550,7 +2550,7 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  call atomic_xor(atom, value [,stat] )', &
 '', &
-'  subroutine atomic_xor(atom, value, stat)', &
+'           subroutine atomic_xor(atom, value, stat)', &
 '', &
 'DESCRIPTION', &
 '  ATOMIC_XOR(ATOM, VALUE) atomically defines ATOM with the bitwise XOR between', &
@@ -2734,19 +2734,17 @@ textblock=[character(len=256) :: &
 '', &
 '  If N and X are arrays, their ranks and shapes shall conform.', &
 '', &
+'  The return value has the same type and kind as X. or', &
+'', &
+'          result = bessel_jn(n1, n2, x)', &
+'', &
+'           real(kind=KIND) function bessel_jn(n1, n2, ,x)', &
+'', &
+'           integer(kind=KIND),intent(in) :: n1(..)', &
+'           integer(kind=KIND),intent(in) :: n2(..)', &
+'           real(kind=KIND),intent(in) :: x', &
+'', &
 '  The return value has the same type and kind as X.', &
-'', &
-'    or', &
-'', &
-'            result = bessel_jn(n1, n2, x)', &
-'', &
-'             real(kind=KIND) function bessel_jn(n1, n2, ,x)', &
-'', &
-'             integer(kind=KIND),intent(in) :: n1(..)', &
-'             integer(kind=KIND),intent(in) :: n2(..)', &
-'             real(kind=KIND),intent(in) :: x', &
-'', &
-'    The return value has the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
 '  BESSEL_JN(N, X) computes the Bessel function of the first kind of order N of', &
@@ -2931,17 +2929,19 @@ textblock=[character(len=256) :: &
 '', &
 '  If N and X are arrays, their ranks and shapes shall conform.', &
 '', &
-'  The return value has the same type and kind as X. or', &
-'', &
-'          result = bessel_yn(n1, n2, x)', &
-'', &
-'           real(kind=KIND) function bessel_yn(n1, n2, ,x)', &
-'', &
-'           integer(kind=KIND),intent(in) :: n1(..)', &
-'           integer(kind=KIND),intent(in) :: n2(..)', &
-'           real(kind=KIND),intent(in) :: x', &
-'', &
 '  The return value has the same type and kind as X.', &
+'', &
+'    or', &
+'', &
+'            result = bessel_yn(n1, n2, x)', &
+'', &
+'             real(kind=KIND) function bessel_yn(n1, n2, ,x)', &
+'', &
+'             integer(kind=KIND),intent(in) :: n1(..)', &
+'             integer(kind=KIND),intent(in) :: n2(..)', &
+'             real(kind=KIND),intent(in) :: x', &
+'', &
+'    The return value has the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
 '  BESSEL_YN(N, X) computes the Bessel function of the second kind of order N', &
@@ -3005,10 +3005,11 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = bge(i,j)', &
 '', &
-'  elemental function bge(i, j)', &
+'            elemental function bge(i, j)', &
 '', &
-'  integer(kind=KIND),intent(in) :: i integer(kind=KIND),intent(in) :: j', &
-'  logical :: bge', &
+'            integer(kind=KIND),intent(in) :: i', &
+'            integer(kind=KIND),intent(in) :: j', &
+'            logical :: bge', &
 '', &
 '  where the kind of I and J may be of any supported integer kind, not', &
 '  necessarily the same. An exception is that values may be a BOZ constant with', &
@@ -3160,10 +3161,11 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = bgt(i, j)', &
 '', &
-'  elemental function bgt(i, j)', &
+'            elemental function bgt(i, j)', &
 '', &
-'  integer(kind=KIND),intent(in) :: i integer(kind=KIND),intent(in) :: j', &
-'  logical :: bgt', &
+'            integer(kind=KIND),intent(in) :: i', &
+'            integer(kind=KIND),intent(in) :: j', &
+'            logical :: bgt', &
 '', &
 '  where the kind of I and J may be of any supported integer kind, not', &
 '  necessarily the same. An exception is that values may be a BOZ constant with', &
@@ -3400,11 +3402,11 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = blt(i,j)', &
 '', &
-'         elemental function blt(i, j)', &
+'           elemental function blt(i, j)', &
 '', &
-'         integer(kind=KIND),intent(in) :: i', &
-'         integer(kind=KIND),intent(in) :: j', &
-'         logical :: blt', &
+'           integer(kind=KIND),intent(in) :: i', &
+'           integer(kind=KIND),intent(in) :: j', &
+'           logical :: blt', &
 '', &
 '  where the kind of I and J may be of any supported integer kind, not', &
 '  necessarily the same. An exception is that values may be a BOZ constant with', &
@@ -3481,10 +3483,10 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = btest(i,pos)', &
 '', &
-'  elemental integer(kind=KIND) function btest(i,pos)', &
+'           elemental integer(kind=KIND) function btest(i,pos)', &
 '', &
-'  integer,intent(in)', &
-'    :: i logical,intent(out) :: pos', &
+'           integer,intent(in)  :: i', &
+'           logical,intent(out) :: pos', &
 '', &
 '  where KIND is any integer kind supported by the programming environment.', &
 '', &
@@ -3945,10 +3947,10 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = char(i [,kind])', &
 '', &
-'  elemental integer function char(i,kind)', &
+'           elemental integer function char(i,kind)', &
 '', &
-'  integer(kind=KIND),intent(in) :: c integer(kind=KINDK),intent(in),optional', &
-'  :: kind', &
+'           integer(kind=KIND),intent(in) :: c', &
+'           integer(kind=KINDK),intent(in),optional :: kind', &
 '', &
 'DESCRIPTION', &
 '  CHAR(I, KIND) returns the character represented by the integer I.', &
@@ -4069,10 +4071,11 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = cmplx(x [,y] [,kind])', &
 '', &
-'  elemental complex function cmplx( x, y, kind )', &
+'            elemental complex function cmplx( x, y, kind )', &
 '', &
-'  TYPE(kind=KIND),intent(in) :: x TYPE(kind=KIND),intent(in),optional :: y', &
-'  integer,intent(in),optional :: kind', &
+'            TYPE(kind=KIND),intent(in) :: x', &
+'            TYPE(kind=KIND),intent(in),optional :: y', &
+'            integer,intent(in),optional :: kind', &
 '', &
 'DESCRIPTION', &
 '  To convert numeric variables to complex, use the CMPLX(3) function.', &
@@ -5048,8 +5051,7 @@ textblock=[character(len=256) :: &
 '  CO_UBOUND(3) - [COLLECTIVE] Upper codimension bounds of an array', &
 '', &
 'SYNOPSIS', &
-'  result = co_ubound(coarray [,dim]', &
-'    [,kind] )', &
+'  result = co_ubound(coarray [,dim] [,kind] )', &
 '', &
 'DESCRIPTION', &
 '  Returns the upper cobounds of a coarray, or a single upper cobound along the', &
@@ -5097,15 +5099,15 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = count(mask [,dim] [,kind] )', &
 '', &
-'  integer(kind=KIND) function count(mask, dim, kind )', &
-'  logical(kind=KINDL),intent(in) :: mask(..)', &
-'  integer(kind=KINDD),intent(in),optional :: dim', &
-'  integer(kind=KINDK),intent(in),optional :: kind', &
+'           integer(kind=KIND) function count(mask, dim, kind )', &
+'           logical(kind=KINDL),intent(in) :: mask(..)', &
+'           integer(kind=KINDD),intent(in),optional :: dim', &
+'           integer(kind=KINDK),intent(in),optional :: kind', &
 '', &
 '  MASK must be an array but may be any shape.', &
 '', &
-'    The return value is of default integer type unless KIND is specified to', &
-'    declare the kind of the result.', &
+'  The return value is of default integer type unless KIND is specified to', &
+'  declare the kind of the result.', &
 '', &
 '    If DIM is present, the result is an array with the specified rank removed.', &
 '', &
@@ -5798,10 +5800,10 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = dot_product(vector_a, vector_b)', &
 '', &
-'  TYPE(kind=KIND) function dot_product(vector_a, vector_b)', &
+'           TYPE(kind=KIND) function dot_product(vector_a, vector_b)', &
 '', &
-'  TYPE(kind=KIND),intent(in) :: vector_a(:) TYPE(kind=KIND),intent(in) ::', &
-'  vector_b(:)', &
+'           TYPE(kind=KIND),intent(in) :: vector_a(:)', &
+'           TYPE(kind=KIND),intent(in) :: vector_b(:)', &
 '', &
 '  The two vectors may be either numeric or logical and must be arrays of rank', &
 '  one and of equal size.', &
@@ -6277,14 +6279,11 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = eoshift( array, shift [,boundary] [,dim] )', &
 '', &
-'  type(TYPE(kind=KIND)) function eoshift(array,shift,boundary,dim)', &
-'  type(TYPE(kind=KIND)),intent(in) :: array(..)', &
-'', &
-'  integer(kind=KINDS),intent(in)', &
-'    :: shift type(TYPE(kind=KIND)),intent(in) :: boundary', &
-'', &
-'  integer(kind=KINDD),intent(in)', &
-'    :: dim', &
+'         type(TYPE(kind=KIND)) function eoshift(array,shift,boundary,dim)', &
+'         type(TYPE(kind=KIND)),intent(in) :: array(..)', &
+'         integer(kind=KINDS),intent(in)   :: shift', &
+'         type(TYPE(kind=KIND)),intent(in) :: boundary', &
+'         integer(kind=KINDD),intent(in)   :: dim', &
 '', &
 '  ARRAY May be any type, not scalar. The result is an array of same type, kind', &
 '  and rank as the ARRAY argument. BOUNDARY is a scalar of the same type and', &
@@ -6848,9 +6847,9 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = exp(x)', &
 '', &
-'  elemental TYPE(kind=KIND) function exp(x)', &
+'           elemental TYPE(kind=KIND) function exp(x)', &
 '', &
-'  TYPE(kind=KIND),intent(in) :: x', &
+'           TYPE(kind=KIND),intent(in) :: x', &
 '', &
 '  X may be real or complex. The return value has the same type and kind as X.', &
 '', &
@@ -7056,37 +7055,41 @@ textblock=[character(len=256) :: &
 '  by MASK along dimension DIM matching a target value', &
 '', &
 'SYNOPSIS', &
-'  findloc (array, value, dim [,mask] [,kind] [,back])', &
+'  result = findloc (array, value, dim [,mask] [,kind] [,back])', &
 '', &
-'  function findloc (array, value, dim, mask, kind, back)', &
+'           function findloc (array, value, dim, mask, kind, back)', &
 '', &
-'  integer(kind=KIND),', &
-'    intent(in)          :: array(..)', &
+'           integer(kind=KIND),  intent(in)          :: array(..)', &
+'           integer(kind=KIND),  intent(in)          :: value', &
+'           integer(kind=KIND),  intent(in)          :: dim', &
+'           logical(kind=KINDM), intent(in),optional :: mask(..)', &
+'           integer(kind=KINDK), intent(in),optional :: kind', &
+'           logical(kind=KINDB),intent(in),optional :: back', &
 '', &
-'  integer(kind=KIND),', &
-'    intent(in)          :: value', &
+'  o  ARRAY shall be an array of intrinsic type.', &
 '', &
-'  integer(kind=KIND),', &
-'    intent(in)          :: dim logical(kind=KINDM), intent(in),optional ::', &
-'    mask(..)  integer(kind=KINDK), intent(in),optional :: kind', &
-'    logical(kind=KINDB),intent(in),optional :: back', &
+'     o  VALUE shall be scalar but in type conformance with ARRAY', &
 '', &
-'  o  **array** shall be an array of intrinsic type.', &
+'     o  DIM The corresponding actual argument shall not be an optional dummy', &
+'        argument.', &
 '', &
-'     o  **value** shall be scalar but in type conformance with **array**', &
+'     o  MASK shall be conformable with ARRAY.', &
 '', &
-'     o  **dim** The corresponding actual argument shall not be an optional', &
-'        dummy argument.', &
+'     o  KIND a scalar integer initialization expression (ie. a constant)', &
 '', &
-'     o  **mask** shall be conformable with **array**.', &
+'     o  BACK a logical scalar.', &
 '', &
-'     o  **kind** a scalar integer initialization expression (ie. a constant)', &
+'     or', &
 '', &
-'     o  **back** a logical scalar.', &
+'             result = findloc(array, value [,mask] [,kind] [,back])', &
 '', &
-'  or', &
+'              function findloc (array, value, mask, kind, back)', &
 '', &
-'          findloc(array, value, mask, kind, back)', &
+'              integer(kind=KIND),  intent(in)          :: array(..)', &
+'              integer(kind=KIND),  intent(in)          :: value', &
+'              logical(kind=KINDM), intent(in),optional :: mask(..)', &
+'              integer(kind=KINDK), intent(in),optional :: kind', &
+'              logical(kind=KINDB),intent(in),optional :: back', &
 '', &
 'DESCRIPTION', &
 '  Location of the first element of ARRAY identified by MASK along dimension', &
@@ -8196,20 +8199,20 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = iall(array [,mask])', &
 '', &
-'  integer(kind=KIND) function iall(array,mask)', &
+'           integer(kind=KIND) function iall(array,mask)', &
 '', &
-'  integer(kind=KIND),intent(in)', &
-'    :: array(..)  logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'           integer(kind=KIND),intent(in)           :: array(..)', &
+'           logical(kind=KINDL),intent(in),optional :: mask(..)', &
 '', &
 '  or', &
 '', &
 '          result = iall(array [,dim] [,mask])', &
 '', &
-'          integer(kind=KIND) function iall(array,dim,mask)', &
+'           integer(kind=KIND) function iall(array,dim,mask)', &
 '', &
-'          integer(kind=KIND),intent(in)           :: array(..)', &
-'          integer(kind=KINDD),intent(in),optional :: dim', &
-'          logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'           integer(kind=KIND),intent(in)           :: array(..)', &
+'           integer(kind=KINDD),intent(in),optional :: dim', &
+'           logical(kind=KINDL),intent(in),optional :: mask(..)', &
 '', &
 '  ARRAY must be an array. The result will by of the same type and kind as', &
 '  ARRAY. MASK is a logical array that conforms to ARRAY of any logical kind.', &
@@ -8284,8 +8287,8 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental integer(kind=KIND) function iand(i,j)', &
 '', &
-'           integer(kind=KIND),intent(in) :: i', &
-'           integer(kind=KIND),intent(in) :: j', &
+'            integer(kind=KIND),intent(in) :: i', &
+'            integer(kind=KIND),intent(in) :: j', &
 '', &
 'DESCRIPTION', &
 '  Bitwise logical AND.', &
@@ -8341,10 +8344,10 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = iany(array [,mask])', &
 '', &
-'  integer(kind=KIND) function iany(array,mask)', &
+'           integer(kind=KIND) function iany(array,mask)', &
 '', &
-'  integer(kind=KIND),intent(in)', &
-'    :: array(..)  logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'            integer(kind=KIND),intent(in)           :: array(..)', &
+'            logical(kind=KINDL),intent(in),optional :: mask(..)', &
 '', &
 '  or', &
 '', &
@@ -8426,8 +8429,8 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental integer(kind=KINDI) function ibclr(i,pos)', &
 '', &
-'           integer(kind=KINDI),intent(in) :: i', &
-'           integer(kind=KINDPOS),intent(in) :: pos', &
+'            integer(kind=KINDI),intent(in) :: i', &
+'            integer(kind=KINDPOS),intent(in) :: pos', &
 '', &
 '  The return value is of the same kind as I. Otherwise, any integer kinds are', &
 '  allowed.', &
@@ -8993,9 +8996,10 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = ior(i, j)', &
 '', &
-'  elemental integer(kind=KIND) function ior(i,j)', &
+'           elemental integer(kind=KIND) function ior(i,j)', &
 '', &
-'  integer(kind=KINDI) ,intent(in) :: i integer(kind=KINDJ) ,intent(in) :: j', &
+'           integer(kind=KINDI) ,intent(in) :: i', &
+'           integer(kind=KINDJ) ,intent(in) :: j', &
 '', &
 '  The return value is of the same kind as the larger kind of I and J.', &
 '  Otherwise, any integer kinds are allowed.', &
@@ -9618,11 +9622,11 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = lbound(array [,dim] [,kind] )', &
 '', &
-'  elemental TYPE(kind=KIND) function lbound(array,dim,kind)', &
+'           elemental TYPE(kind=KIND) function lbound(array,dim,kind)', &
 '', &
-'  TYPE(kind=KIND),intent(in)', &
-'    :: array integer,intent(in),optional :: dim integer,intent(in),optional ::', &
-'    kind', &
+'           TYPE(kind=KIND),intent(in)  :: array', &
+'           integer,intent(in),optional :: dim', &
+'           integer,intent(in),optional :: kind', &
 '', &
 '  o  ARRAY Shall be an array, of any type.', &
 '', &
@@ -9745,9 +9749,9 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = leadz(i)', &
 '', &
-'  elemental integer function leadz(i)', &
+'           elemental integer function leadz(i)', &
 '', &
-'           integer(kind=KIND),intent(in) :: i', &
+'            integer(kind=KIND),intent(in) :: i', &
 '', &
 'DESCRIPTION', &
 '  LEADZ returns the number of leading zero bits of an integer.', &
@@ -9822,9 +9826,10 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = len(string [,kind])', &
 '', &
-'  integer(kind=KIND) function len(string,kind)', &
+'           integer(kind=KIND) function len(string,kind)', &
 '', &
-'  character(len=*),intent(in) :: string integer,optional,intent(in) :: kind', &
+'           character(len=*),intent(in) :: string', &
+'           integer,optional,intent(in) :: kind', &
 '', &
 '  where the returned value is the same integer kind as the KIND argument, or', &
 '  of the default integer kind if KIND is not specified.', &
@@ -10039,10 +10044,10 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = lge(string_a, stringb)', &
 '', &
-'  elemental logical function lge(string_a, string_b)', &
+'           elemental logical function lge(string_a, string_b)', &
 '', &
-'    character(len=*),intent(in) :: string_a character(len=*),intent(in) ::', &
-'    string_b', &
+'           character(len=*),intent(in) :: string_a', &
+'           character(len=*),intent(in) :: string_b', &
 '', &
 'DESCRIPTION', &
 '  Determines whether one string is lexically greater than or equal to another', &
@@ -10481,7 +10486,7 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = log(x)', &
 '', &
-'  elemental TYPE(kind=KIND) function log(x)', &
+'         elemental TYPE(kind=KIND) function log(x)', &
 '', &
 '          TYPE(kind=KIND),intent(in) :: x', &
 '', &
@@ -12137,10 +12142,10 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = mod(a, p)', &
 '', &
-'  elemental type(TYPE(kind=KIND)) function mod(a,p)', &
+'           elemental type(TYPE(kind=KIND)) function mod(a,p)', &
 '', &
-'           type(TYPE(kind=KIND),intent(in) :: a', &
-'           type(TYPE(kind=KIND),intent(in) :: p', &
+'            type(TYPE(kind=KIND),intent(in) :: a', &
+'            type(TYPE(kind=KIND),intent(in) :: p', &
 '', &
 '  The result and arguments are all of the same type and kind. The type may be', &
 '  any kind of real or integer.', &
@@ -12218,8 +12223,8 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental TYPE(kind=KIND) function modulo(a,p)', &
 '', &
-'           TYPE(kind=KIND),intent(in) :: a', &
-'           TYPE(kind=KIND),intent(in) :: p', &
+'            TYPE(kind=KIND),intent(in) :: a', &
+'            TYPE(kind=KIND),intent(in) :: p', &
 '', &
 '  The result and arguments are all of the same type and kind. The type may be', &
 '  any kind of real or integer.', &
@@ -12671,10 +12676,10 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = nint( x [,kind] )', &
 '', &
-'  elemental integer(kind=kind) function nint(x, kind )', &
+'           elemental integer(kind=kind) function nint(x, kind )', &
 '', &
-'           real(kind=KINDX),intent(in) :: x', &
-'           integer(kind=KINDK),intent(in),optional :: kind', &
+'            real(kind=KINDX),intent(in) :: x', &
+'            integer(kind=KINDK),intent(in),optional :: kind', &
 '', &
 '  The result is default integer kind or the value of KIND if it is present.', &
 '', &
@@ -12794,8 +12799,8 @@ textblock=[character(len=256) :: &
 '', &
 '           real function norm2(array, dim)', &
 '', &
-'           real,intent(in) :: array(..)', &
-'           integer,intent(in),optional :: dim', &
+'            real,intent(in) :: array(..)', &
+'            integer,intent(in),optional :: dim', &
 '', &
 'DESCRIPTION', &
 '  Calculates the Euclidean vector norm (L_ norm) of ARRAY along dimension DIM.', &
@@ -13430,9 +13435,9 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = popcnt(i)', &
 '', &
-'  elemental integer function popcnt(i)', &
+'           elemental integer function popcnt(i)', &
 '', &
-'           integer(kind=KIND), intent(in) :: i', &
+'            integer(kind=KIND), intent(in) :: i', &
 '', &
 '  The I argument may be of any kind.', &
 '', &
@@ -13501,9 +13506,9 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = poppar(i)', &
 '', &
-'  elemental integer function poppar(i)', &
+'           elemental integer function poppar(i)', &
 '', &
-'           integer(kind=KIND), intent(in) :: i', &
+'            integer(kind=KIND), intent(in) :: i', &
 '', &
 'DESCRIPTION', &
 '  Returns the parity of an integer''s binary representation (i.e., the parity', &
@@ -13571,13 +13576,13 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = precision(x)', &
 '', &
-'  integer function precision(x)', &
+'           integer function precision(x)', &
 '', &
-'  TYPE(kind=KIND),intent(in) :: x', &
+'           TYPE(kind=KIND),intent(in) :: x', &
 '', &
 '  where TYPE may be real or complex', &
 '', &
-'    The return value is of type integer and of the default integer kind.', &
+'  The return value is of type integer and of the default integer kind.', &
 '', &
 'DESCRIPTION', &
 '  PRECISION(X) returns the decimal precision in the model of the type of X.', &
@@ -13639,7 +13644,8 @@ textblock=[character(len=256) :: &
 '  result = present(a)', &
 '', &
 '           logical function present (a)', &
-'           type(TYPE(kind=KIND)) :: a(..)', &
+'', &
+'            type(TYPE(kind=KIND)) :: a(..)', &
 '', &
 '  where the TYPE may be any type', &
 '', &
@@ -13935,9 +13941,9 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = radix(x)', &
 '', &
-'  integer function radix(x)', &
+'          integer function radix(x)', &
 '', &
-'    TYPE(kind=KIND),intent(in) :: x', &
+'          TYPE(kind=KIND),intent(in) :: x', &
 '', &
 '  where TYPE may be real or integer of any kind KIND.', &
 '', &
@@ -14210,9 +14216,9 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = rank(a)', &
 '', &
-'  integer function rank(a)', &
+'           integer function rank(a)', &
 '', &
-'  type(TYPE(kind=KIND),intent(in) :: a(..)', &
+'           type(TYPE(kind=KIND),intent(in) :: a(..)', &
 '', &
 '  A can be of any type.', &
 '', &
@@ -14305,7 +14311,7 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = real(x [,kind])', &
 '', &
-'  elemental real(kind=KIND) function real(x,kind)', &
+'           elemental real(kind=KIND) function real(x,kind)', &
 '', &
 '           TYPE(kind=KIND),intent(in) :: x', &
 '           integer(kind=KINDK),intent(in) :: kind', &
@@ -14387,12 +14393,15 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  There are two forms to this function:', &
 '', &
-'          result = reduce(array, operation [,mask]  [,identity]  [,ordered] )', &
+'         result = reduce(array, operation [,mask]  [,identity]  [,ordered] )', &
 '', &
 '  or', &
 '', &
+'          result = reduce (array, operation &', &
+'          & [,dim] [,mask] [,identity] [,ordered] )', &
+'', &
 '          type(TYPE(kind=KIND)) function reduce &', &
-'          & (array, operation [,dim] [,mask] [,identity] [,ordered] )', &
+'          & (array, operation, dim, mask, identity, ordered )', &
 '', &
 '           type(TYPE(kind=KIND)),intent(in) :: array', &
 '           pure function                  :: operation', &
@@ -15241,10 +15250,10 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = shape(source [,kind])', &
 '', &
-'  integer(kind=KINDR) function(shape(source,kind)', &
+'         integer(kind=KINDR) function(shape(source,kind)', &
 '', &
-'    type(TYPE(kind=KIND)),intent(in)', &
-'      :: source(..)  integer(kind=KINDK),intent(in),optional :: kind', &
+'          type(TYPE(kind=KIND)),intent(in)        :: source(..)', &
+'          integer(kind=KINDK),intent(in),optional :: kind', &
 '', &
 '  SOURCE is an array or scalar of any type. If SOURCE is a pointer it must be', &
 '  associated and allocatable arrays must be allocated.', &
@@ -16195,9 +16204,9 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = spacing(x)', &
 '', &
-'  elemental real(kind=KIND) function spacing(x)', &
+'           elemental real(kind=KIND) function spacing(x)', &
 '', &
-'           real(kind=KIND), intent(in) :: x', &
+'            real(kind=KIND), intent(in) :: x', &
 '', &
 '  The result is of the same type as the input argument X.', &
 '', &
@@ -16822,7 +16831,7 @@ textblock=[character(len=256) :: &
 '  TANH(3) - [MATHEMATICS:TRIGONOMETRIC] Hyperbolic tangent function', &
 '', &
 'SYNOPSIS', &
-'  x = tanh(x)', &
+'  result = tanh(x)', &
 '', &
 '           elemental TYPE(kind=KIND) function tanh(x)', &
 '', &

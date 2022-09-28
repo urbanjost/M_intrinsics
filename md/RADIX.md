@@ -6,12 +6,12 @@
 
 ### **Synopsis**
 ```fortran
-    result = radix(x)
+   result = radix(x)
 ```
 ```fortran
-   integer function radix(x)
+    integer function radix(x)
 
-   TYPE(kind=KIND),intent(in) :: x
+    TYPE(kind=KIND),intent(in) :: x
 ```
    where TYPE may be _real_ or _integer_ of any kind KIND.
 

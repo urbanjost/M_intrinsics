@@ -11,7 +11,8 @@ is specified
 ```
 ```fortran
      logical function present (a)
-     type(TYPE(kind=KIND)) :: a(..)
+
+      type(TYPE(kind=KIND)) :: a(..)
 ```
 where the **TYPE** may be any type
 

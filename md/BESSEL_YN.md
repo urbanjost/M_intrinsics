@@ -18,6 +18,7 @@
   shall conform.
 
   The return value has the same type and kind as **x**.
+
 or
 ```fortran
     result = bessel_yn(n1, n2, x)

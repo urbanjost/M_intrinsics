@@ -9,11 +9,11 @@
     result = bge(i,j)
 ```
 ```fortran
-    elemental function bge(i, j)
+      elemental function bge(i, j)
 
-    integer(kind=KIND),intent(in) :: i
-    integer(kind=KIND),intent(in) :: j
-    logical :: bge
+      integer(kind=KIND),intent(in) :: i
+      integer(kind=KIND),intent(in) :: j
+      logical :: bge
 ```
   where the _kind_ of **i** and **j** may be of any supported _integer_
   kind, not necessarily the same. An exception is that values may be a

@@ -9,9 +9,9 @@
     result = rank(a)
 ```
 ```fortran
-    integer function rank(a)
+     integer function rank(a)
 
-    type(TYPE(kind=KIND),intent(in) :: a(..)
+     type(TYPE(kind=KIND),intent(in) :: a(..)
 ```
   **a** can be of any type.
 

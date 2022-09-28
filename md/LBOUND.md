@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-     result = lbound(array [,dim] [,kind] )
+    result = lbound(array [,dim] [,kind] )
 ```
 ```fortran
      elemental TYPE(kind=KIND) function lbound(array,dim,kind)

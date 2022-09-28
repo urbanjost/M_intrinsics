@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result = log(x)
+  result = log(x)
 ```
 ```fortran
    elemental TYPE(kind=KIND) function log(x)

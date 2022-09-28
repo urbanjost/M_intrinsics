@@ -6,14 +6,14 @@
 
 ### **Synopsis**
 ```fortran
-    result = eoshift( array, shift [,boundary] [,dim] )
+  result = eoshift( array, shift [,boundary] [,dim] )
 ```
 ```fortran
-    type(TYPE(kind=KIND)) function eoshift(array,shift,boundary,dim)
-    type(TYPE(kind=KIND)),intent(in) :: array(..)
-    integer(kind=KINDS),intent(in)   :: shift
-    type(TYPE(kind=KIND)),intent(in) :: boundary
-    integer(kind=KINDD),intent(in)   :: dim
+   type(TYPE(kind=KIND)) function eoshift(array,shift,boundary,dim)
+   type(TYPE(kind=KIND)),intent(in) :: array(..)
+   integer(kind=KINDS),intent(in)   :: shift
+   type(TYPE(kind=KIND)),intent(in) :: boundary
+   integer(kind=KINDD),intent(in)   :: dim
 ```
 **array** May be any type, not scalar. The result is an array of same
 type, kind and rank as the **array** argument. **boundary** is a scalar

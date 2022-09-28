@@ -9,10 +9,10 @@
     result = btest(i,pos)
 ```
 ```fortran
-    elemental integer(kind=KIND) function btest(i,pos)
+     elemental integer(kind=KIND) function btest(i,pos)
 
-    integer,intent(in)  :: i
-    logical,intent(out) :: pos
+     integer,intent(in)  :: i
+     logical,intent(out) :: pos
 ```
 where **KIND** is any _integer_ kind supported by the programming environment.
 

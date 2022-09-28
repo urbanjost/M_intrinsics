@@ -1341,7 +1341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>atomic_add</strong>(3) - [ATOMIC] Atomic ADD operation</p>
 <h3 id="synopsis-18"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb78"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb78-1" title="1">    <span class="kw">call</span> atomic_add (atom, value <span class="kw">[</span>,stat<span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb79"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb79-1" title="1">    <span class="kw">subroutine</span> atomic_add(atom,value,stat)</a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb79-1" title="1">     <span class="kw">subroutine</span> atomic_add(atom,value,stat)</a></code></pre></div>
 <h3 id="description-18"><strong>Description</strong></h3>
 <p><strong>atomic_ad(atom, value)</strong> atomically adds the value of VAR to the variable <strong>atom</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value 0. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed ATOM, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
 <h3 id="options-18"><strong>Options</strong></h3>
@@ -1382,7 +1382,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>atomic_and</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise AND operation</p>
 <h3 id="synopsis-19"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb81"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb81-1" title="1">    <span class="kw">call</span> atomic_and(atom, value <span class="kw">[</span>,stat<span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb82"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb82-1" title="1">    <span class="kw">subroutine</span> atomic_and(atom, value, stat)</a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb82-1" title="1">     <span class="kw">subroutine</span> atomic_and(atom, value, stat)</a></code></pre></div>
 <h3 id="description-19"><strong>Description</strong></h3>
 <p><strong>atomic_and(atom, value)</strong> atomically defines <strong>atom</strong> with the bitwise <strong>and</strong> between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value 0. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
 <h3 id="options-19"><strong>Options</strong></h3>
@@ -1423,7 +1423,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>atomic_cas</strong>(3) - [ATOMIC] Atomic compare and swap</p>
 <h3 id="synopsis-20"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb84"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb84-1" title="1">    <span class="kw">call</span> atomic_cas (atom, old, compare, new <span class="kw">[</span>,stat<span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb85"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb85-1" title="1">    <span class="kw">subroutine</span> atomic_cas (atom, old, compare, new, stat)</a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb85-1" title="1">     <span class="kw">subroutine</span> atomic_cas (atom, old, compare, new, stat)</a></code></pre></div>
 <h3 id="description-20"><strong>Description</strong></h3>
 <p>atomic_cas compares the variable <strong>atom</strong> with the value of <strong>compare</strong>; if the value is the same, <strong>atom</strong> is set to the value of <strong>new</strong>. Additionally, <strong>old</strong> is set to the value of <strong>atom</strong> that was used for the comparison. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value 0. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
 <h3 id="options-20"><strong>Options</strong></h3>
@@ -1519,7 +1519,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>atomic_fetch_add</strong>(3) - [ATOMIC] Atomic ADD operation with prior fetch</p>
 <h3 id="synopsis-22"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb90"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb90-1" title="1">    <span class="kw">call</span> atomic_fetch_add(atom, value, old <span class="kw">[</span>,stat<span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb91"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb91-1" title="1">    <span class="kw">subroutine</span> atomic_fetch_add(atom, value, old, stat)</a></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb91-1" title="1">     <span class="kw">subroutine</span> atomic_fetch_add(atom, value, old, stat)</a></code></pre></div>
 <h3 id="description-22"><strong>Description</strong></h3>
 <p><strong>atomic_fetch_add(atom, value, old)</strong> atomically stores the value of <strong>atom</strong> in <strong>old</strong> and adds the value of <strong>var</strong> to the variable <strong>atom</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
 <h3 id="options-22"><strong>Options</strong></h3>
@@ -1567,7 +1567,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>atomic_fetch_and</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise AND operation with prior fetch</p>
 <h3 id="synopsis-23"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb93"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb93-1" title="1">    <span class="kw">call</span> atomic_fetch_and(atom, value, old <span class="kw">[</span>,stat<span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb94"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb94-1" title="1">    <span class="kw">subroutine</span> atomic_fetch_and(atom, value, old, stat)</a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb94-1" title="1">     <span class="kw">subroutine</span> atomic_fetch_and(atom, value, old, stat)</a></code></pre></div>
 <h3 id="description-23"><strong>Description</strong></h3>
 <p><strong>atomic_fetch_and(atom, value, old)</strong> atomically stores the value of <strong>atom</strong> in <strong>old</strong> and defines <strong>atom</strong> with the bitwise AND between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
 <h3 id="options-23"><strong>Options</strong></h3>
@@ -1615,7 +1615,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>atomic_fetch_or</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise OR operation with prior fetch</p>
 <h3 id="synopsis-24"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb96"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb96-1" title="1">    <span class="kw">call</span> atomic_fetch_or(atom, value, old <span class="kw">[</span>,stat<span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb97"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb97-1" title="1">    <span class="kw">subroutine</span> atomic_fetch_or(atom, value, old, stat)</a></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb97-1" title="1">     <span class="kw">subroutine</span> atomic_fetch_or(atom, value, old, stat)</a></code></pre></div>
 <h3 id="description-24"><strong>Description</strong></h3>
 <p><strong>atomic_fetch_or(atom, value, old)</strong> atomically stores the value of <strong>atom</strong> in <strong>old</strong> and defines <strong>atom</strong> with the bitwise OR between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
 <h3 id="options-24"><strong>Options</strong></h3>
@@ -1663,7 +1663,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>atomic_fetch_xor</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise XOR operation with prior fetch</p>
 <h3 id="synopsis-25"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb99"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb99-1" title="1">    <span class="kw">call</span> atomic_fetch_xor (atom, value, old <span class="kw">[</span>,stat<span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb100"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb100-1" title="1">    <span class="kw">subroutine</span> atomic_fetch_xor (atom, value, old, stat)</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb100-1" title="1">     <span class="kw">subroutine</span> atomic_fetch_xor (atom, value, old, stat)</a></code></pre></div>
 <h3 id="description-25"><strong>Description</strong></h3>
 <p><strong>atomic_fetch_xor(atom, value, old)</strong> atomically stores the value of <strong>atom</strong> in <strong>old</strong> and defines <strong>atom</strong> with the bitwise <strong>xor</strong> between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
 <h3 id="options-25"><strong>Options</strong></h3>
@@ -1711,7 +1711,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>atomic_or</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise OR operation</p>
 <h3 id="synopsis-26"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb102"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb102-1" title="1">    <span class="kw">call</span> atomic_or(atom, value <span class="kw">[</span>,stat<span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb103"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb103-1" title="1">    <span class="kw">subroutine</span> atomic_or(atom, value, stat)</a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb103-1" title="1">     <span class="kw">subroutine</span> atomic_or(atom, value, stat)</a></code></pre></div>
 <h3 id="description-26"><strong>Description</strong></h3>
 <p><strong>atomic_or(atom, value)</strong> atomically defines <strong>atom</strong> with the bitwise <strong>or</strong> between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
 <h3 id="options-26"><strong>Options</strong></h3>
@@ -1754,7 +1754,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>atomic_ref</strong>(3) - [ATOMIC] Obtaining the value of a variable atomically</p>
 <h3 id="synopsis-27"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb105"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb105-1" title="1">    <span class="kw">call</span> atomic_ref(value, atom <span class="kw">[</span>,stat<span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb106"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb106-1" title="1">    <span class="kw">subroutine</span> atomic_ref(value, atom, stat)</a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb106-1" title="1">     <span class="kw">subroutine</span> atomic_ref(value, atom, stat)</a></code></pre></div>
 <h3 id="description-27"><strong>Description</strong></h3>
 <p><strong>atomic_ref(value, atom)</strong> atomically assigns the value of the variable <strong>atom</strong> to <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s <strong>stat_stopped_image</strong> and if the remote image has failed, the value <strong>stat_failed_image</strong>.</p>
 <h3 id="options-27"><strong>Options</strong></h3>
@@ -1803,7 +1803,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>atomic_xor</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise OR operation</p>
 <h3 id="synopsis-28"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb108"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb108-1" title="1">    <span class="kw">call</span> atomic_xor(atom, value <span class="kw">[</span>,stat<span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb109"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb109-1" title="1">    <span class="kw">subroutine</span> atomic_xor(atom, value, stat)</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb109-1" title="1">     <span class="kw">subroutine</span> atomic_xor(atom, value, stat)</a></code></pre></div>
 <h3 id="description-28"><strong>Description</strong></h3>
 <p><strong>atomic_xor(atom, value)</strong> atomically defines <strong>atom</strong> with the bitwise <strong>xor</strong> between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
 <h3 id="options-28"><strong>Options</strong></h3>
@@ -1929,8 +1929,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb120-3" title="3">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> n(..)</a>
 <a class="sourceLine" id="cb120-4" title="4"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x(..)</a></code></pre></div>
 <p>If <strong>n</strong> and <strong>x</strong> are arrays, their ranks and shapes shall conform.</p>
-<p>The return value has the same type and kind as <strong>x</strong>.</p>
-<p>or</p>
+<p>The return value has the same type and kind as <strong>x</strong>. or</p>
 <div class="sourceCode" id="cb121"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb121-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> bessel_jn(n1, n2, x)</a></code></pre></div>
 <div class="sourceCode" id="cb122"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb122-1" title="1"><span class="dt">     real(kind=KIND)</span> <span class="kw">function</span> bessel_jn(n1, n2, ,x)</a>
 <a class="sourceLine" id="cb122-2" title="2"></a>
@@ -2072,7 +2071,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb133-3" title="3">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> n(..)</a>
 <a class="sourceLine" id="cb133-4" title="4"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x(..)</a></code></pre></div>
 <p>If <strong>n</strong> and <strong>x</strong> are arrays, their ranks and shapes shall conform.</p>
-<p>The return value has the same type and kind as <strong>x</strong>. or</p>
+<p>The return value has the same type and kind as <strong>x</strong>.</p>
+<p>or</p>
 <div class="sourceCode" id="cb134"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb134-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> bessel_yn(n1, n2, x)</a></code></pre></div>
 <div class="sourceCode" id="cb135"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb135-1" title="1"><span class="dt">     real(kind=KIND)</span> <span class="kw">function</span> bessel_yn(n1, n2, ,x)</a>
 <a class="sourceLine" id="cb135-2" title="2"></a>
@@ -2131,11 +2131,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>bge</strong>(3) - [BIT:COMPARE] Bitwise greater than or equal to</p>
 <h3 id="synopsis-35"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb138"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb138-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> bge(i,j)</a></code></pre></div>
-<div class="sourceCode" id="cb139"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb139-1" title="1">    <span class="kw">elemental</span> <span class="kw">function</span> bge(i, j)</a>
+<div class="sourceCode" id="cb139"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb139-1" title="1">      <span class="kw">elemental</span> <span class="kw">function</span> bge(i, j)</a>
 <a class="sourceLine" id="cb139-2" title="2"></a>
-<a class="sourceLine" id="cb139-3" title="3">    <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb139-4" title="4">    <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a>
-<a class="sourceLine" id="cb139-5" title="5">    <span class="dt">logical</span> <span class="dt">::</span> bge</a></code></pre></div>
+<a class="sourceLine" id="cb139-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb139-4" title="4">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a>
+<a class="sourceLine" id="cb139-5" title="5">      <span class="dt">logical</span> <span class="dt">::</span> bge</a></code></pre></div>
 <p>where the kind of <strong>i</strong> and <strong>j</strong> may be of any supported integer kind, not necessarily the same. An exception is that values may be a BOZ constant with a value valid for the integer kind available with the most bits on the current platform.</p>
 <h3 id="description-35"><strong>Description</strong></h3>
 <p>Determines whether one integer is bitwise greater than or equal to another.</p>
@@ -2246,11 +2246,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>bgt</strong>(3) - [BIT:COMPARE] Bitwise greater than</p>
 <h3 id="synopsis-36"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb142"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb142-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> bgt(i, j)</a></code></pre></div>
-<div class="sourceCode" id="cb143"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb143-1" title="1">    <span class="kw">elemental</span> <span class="kw">function</span> bgt(i, j)</a>
+<div class="sourceCode" id="cb143"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb143-1" title="1">      <span class="kw">elemental</span> <span class="kw">function</span> bgt(i, j)</a>
 <a class="sourceLine" id="cb143-2" title="2"></a>
-<a class="sourceLine" id="cb143-3" title="3">    <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb143-4" title="4">    <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a>
-<a class="sourceLine" id="cb143-5" title="5">    <span class="dt">logical</span> <span class="dt">::</span> bgt</a></code></pre></div>
+<a class="sourceLine" id="cb143-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb143-4" title="4">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a>
+<a class="sourceLine" id="cb143-5" title="5">      <span class="dt">logical</span> <span class="dt">::</span> bgt</a></code></pre></div>
 <p>where the kind of <strong>i</strong> and <strong>j</strong> may be of any supported integer kind, not necessarily the same. An exception is that values may be a BOZ constant with a value valid for the integer kind available with the most bits on the current platform.</p>
 <h3 id="description-36"><strong>Description</strong></h3>
 <p>Determines whether an integer is bitwise greater than another. Bit-level representations of values are platform-dependent.</p>
@@ -2425,12 +2425,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 id="name-39"><strong>Name</strong></h3>
 <p><strong>blt</strong>(3) - [BIT:COMPARE] Bitwise less than</p>
 <h3 id="synopsis-40"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb154"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb154-1" title="1">  <span class="kw">result</span> <span class="kw">=</span> blt(i,j)</a></code></pre></div>
-<div class="sourceCode" id="cb155"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb155-1" title="1">   <span class="kw">elemental</span> <span class="kw">function</span> blt(i, j)</a>
+<div class="sourceCode" id="cb154"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb154-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> blt(i,j)</a></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb155-1" title="1">     <span class="kw">elemental</span> <span class="kw">function</span> blt(i, j)</a>
 <a class="sourceLine" id="cb155-2" title="2"></a>
-<a class="sourceLine" id="cb155-3" title="3">   <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb155-4" title="4">   <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a>
-<a class="sourceLine" id="cb155-5" title="5">   <span class="dt">logical</span> <span class="dt">::</span> blt</a></code></pre></div>
+<a class="sourceLine" id="cb155-3" title="3">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb155-4" title="4">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a>
+<a class="sourceLine" id="cb155-5" title="5">     <span class="dt">logical</span> <span class="dt">::</span> blt</a></code></pre></div>
 <p>where the kind of <strong>i</strong> and <strong>j</strong> may be of any supported integer kind, not necessarily the same. An exception is that values may be a BOZ constant with a value valid for the integer kind available with the most bits on the current platform.</p>
 <h3 id="description-39"><strong>Description</strong></h3>
 <p>Determines whether an integer is bitwise less than another.</p>
@@ -2485,10 +2485,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>btest</strong>(3) - [BIT:INQUIRY] Tests a bit of an integer value.</p>
 <h3 id="synopsis-41"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb158"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb158-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">btest</span>(i,pos)</a></code></pre></div>
-<div class="sourceCode" id="cb159"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb159-1" title="1">    <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">btest</span>(i,pos)</a>
+<div class="sourceCode" id="cb159"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb159-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">btest</span>(i,pos)</a>
 <a class="sourceLine" id="cb159-2" title="2"></a>
-<a class="sourceLine" id="cb159-3" title="3">    <span class="dt">integer</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb159-4" title="4">    <span class="dt">logical</span>,<span class="dt">intent(out)</span> <span class="dt">::</span> pos</a></code></pre></div>
+<a class="sourceLine" id="cb159-3" title="3">     <span class="dt">integer</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb159-4" title="4">     <span class="dt">logical</span>,<span class="dt">intent(out)</span> <span class="dt">::</span> pos</a></code></pre></div>
 <p>where <strong>KIND</strong> is any integer kind supported by the programming environment.</p>
 <h3 id="description-40"><strong>Description</strong></h3>
 <p><strong>btest(i,pos)</strong> returns logical .true. if the bit at <strong>pos</strong> in <strong>i</strong> is set.</p>
@@ -2859,10 +2859,10 @@ the value of btest (2, a)
 <p><strong>char</strong>(3) - [CHARACTER] Character conversion function</p>
 <h3 id="synopsis-47"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb178"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb178-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">char</span>(i <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb179"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb179-1" title="1">    <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> <span class="bu">char</span>(i,<span class="fu">kind</span>)</a>
+<div class="sourceCode" id="cb179"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb179-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> <span class="bu">char</span>(i,<span class="fu">kind</span>)</a>
 <a class="sourceLine" id="cb179-2" title="2"></a>
-<a class="sourceLine" id="cb179-3" title="3">    <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> c</a>
-<a class="sourceLine" id="cb179-4" title="4">    <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<a class="sourceLine" id="cb179-3" title="3">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> c</a>
+<a class="sourceLine" id="cb179-4" title="4">     <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 <h3 id="description-46"><strong>Description</strong></h3>
 <p><strong>char(i, kind)</strong> returns the character represented by the integer <strong>i</strong>.</p>
 <h3 id="options-46"><strong>Options</strong></h3>
@@ -2946,11 +2946,11 @@ the value of btest (2, a)
 <p><strong>cmplx</strong>(3) - [TYPE:NUMERIC] Complex conversion function</p>
 <h3 id="synopsis-49"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb185"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb185-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">cmplx</span>(x <span class="kw">[</span>,y<span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb186"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb186-1" title="1">    <span class="kw">elemental</span> <span class="dt">complex</span> <span class="kw">function</span> <span class="bu">cmplx</span>( x, y, <span class="fu">kind</span> )</a>
+<div class="sourceCode" id="cb186"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb186-1" title="1">      <span class="kw">elemental</span> <span class="dt">complex</span> <span class="kw">function</span> <span class="bu">cmplx</span>( x, y, <span class="fu">kind</span> )</a>
 <a class="sourceLine" id="cb186-2" title="2"></a>
-<a class="sourceLine" id="cb186-3" title="3">    <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
-<a class="sourceLine" id="cb186-4" title="4">    <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> y</a>
-<a class="sourceLine" id="cb186-5" title="5">    <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<a class="sourceLine" id="cb186-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
+<a class="sourceLine" id="cb186-4" title="4">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> y</a>
+<a class="sourceLine" id="cb186-5" title="5">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 <h3 id="description-48"><strong>Description</strong></h3>
 <p>To convert numeric variables to complex, use the <strong>cmplx</strong>(3) function. Constants can be used to define a complex variable using the syntax</p>
 <pre><code>      z8 = (1.2345678901234567d0, 1.2345678901234567d0)</code></pre>
@@ -3633,7 +3633,7 @@ the value of btest (2, a)
 <h3 id="name-61"><strong>Name</strong></h3>
 <p><strong>co_ubound</strong>(3) - [COLLECTIVE] Upper codimension bounds of an array</p>
 <h3 id="synopsis-62"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb236"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb236-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> co_ubound(coarray <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span>  <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb236-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> co_ubound(coarray <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
 <div class="sourceCode" id="cb237"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
 <h3 id="description-61"><strong>Description</strong></h3>
 <p>Returns the upper cobounds of a coarray, or a single upper cobound along the <strong>dim</strong> codimension.</p>
@@ -3669,10 +3669,10 @@ the value of btest (2, a)
 <p><strong>count</strong>(3) - [ARRAY REDUCTION] Count function</p>
 <h3 id="synopsis-63"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb238"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb238-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">count</span>(mask <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb239"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb239-1" title="1">    <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="fu">count</span>(mask, <span class="bu">dim</span>, <span class="fu">kind</span> )</a>
-<a class="sourceLine" id="cb239-2" title="2">    <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> mask(..)</a>
-<a class="sourceLine" id="cb239-3" title="3">    <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
-<a class="sourceLine" id="cb239-4" title="4">    <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb239-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="fu">count</span>(mask, <span class="bu">dim</span>, <span class="fu">kind</span> )</a>
+<a class="sourceLine" id="cb239-2" title="2">     <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> mask(..)</a>
+<a class="sourceLine" id="cb239-3" title="3">     <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb239-4" title="4">     <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 <p><strong>mask</strong> must be an array but may be any shape.</p>
 <p>The return value is of default integer type unless <strong>kind</strong> is specified to declare the kind of the result.</p>
 <p>If <strong>dim</strong> is present, the result is an array with the specified rank removed.</p>
@@ -4186,10 +4186,10 @@ the value of btest (2, a)
 <p><strong>dot_product</strong>(3) - [TRANSFORMATIONAL] Dot product function</p>
 <h3 id="synopsis-71"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb269"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb269-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">dot_product</span>(vector_a, vector_b)</a></code></pre></div>
-<div class="sourceCode" id="cb270"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb270-1" title="1">    <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="fu">dot_product</span>(vector_a, vector_b)</a>
+<div class="sourceCode" id="cb270"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb270-1" title="1">     <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="fu">dot_product</span>(vector_a, vector_b)</a>
 <a class="sourceLine" id="cb270-2" title="2"></a>
-<a class="sourceLine" id="cb270-3" title="3">    <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> vector_a(:)</a>
-<a class="sourceLine" id="cb270-4" title="4">    <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> vector_b(:)</a></code></pre></div>
+<a class="sourceLine" id="cb270-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> vector_a(:)</a>
+<a class="sourceLine" id="cb270-4" title="4">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> vector_b(:)</a></code></pre></div>
 <p>The two vectors may be either numeric or logical and must be arrays of rank one and of equal size.</p>
 <h3 id="description-70"><strong>Description</strong></h3>
 <p><strong>dot_product(vector_a, vector_b)</strong> computes the dot product multiplication of two vectors <strong>vector_a</strong> and <strong>vector_b</strong>.</p>
@@ -4541,12 +4541,12 @@ Keep the 16 right-most bits
 <h3 id="name-74"><strong>Name</strong></h3>
 <p><strong>eoshift</strong>(3) - [TRANSFORMATIONAL] End-off shift elements of an array</p>
 <h3 id="synopsis-75"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb297"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb297-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">eoshift</span>( array, shift <span class="kw">[</span>,boundary<span class="kw">]</span> <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb298"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb298-1" title="1">    <span class="dt">type(TYPE(kind=KIND))</span> <span class="kw">function</span> <span class="fu">eoshift</span>(array,shift,boundary,<span class="bu">dim</span>)</a>
-<a class="sourceLine" id="cb298-2" title="2">    <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb298-3" title="3">    <span class="dt">integer(kind=KINDS)</span>,<span class="dt">intent(in)</span>   <span class="dt">::</span> shift</a>
-<a class="sourceLine" id="cb298-4" title="4">    <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> boundary</a>
-<a class="sourceLine" id="cb298-5" title="5">    <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>   <span class="dt">::</span> <span class="bu">dim</span></a></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb297-1" title="1">  <span class="kw">result</span> <span class="kw">=</span> <span class="fu">eoshift</span>( array, shift <span class="kw">[</span>,boundary<span class="kw">]</span> <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> )</a></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb298-1" title="1">   <span class="dt">type(TYPE(kind=KIND))</span> <span class="kw">function</span> <span class="fu">eoshift</span>(array,shift,boundary,<span class="bu">dim</span>)</a>
+<a class="sourceLine" id="cb298-2" title="2">   <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
+<a class="sourceLine" id="cb298-3" title="3">   <span class="dt">integer(kind=KINDS)</span>,<span class="dt">intent(in)</span>   <span class="dt">::</span> shift</a>
+<a class="sourceLine" id="cb298-4" title="4">   <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> boundary</a>
+<a class="sourceLine" id="cb298-5" title="5">   <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>   <span class="dt">::</span> <span class="bu">dim</span></a></code></pre></div>
 <p><strong>array</strong> May be any type, not scalar. The result is an array of same type, kind and rank as the <strong>array</strong> argument. <strong>boundary</strong> is a scalar of the same type and kind as the <strong>array</strong>. <strong>dim</strong> and <strong>shift</strong> can be any kind of integer.</p>
 <h3 id="description-74"><strong>Description</strong></h3>
 <p><strong>eoshift(array, shift[, boundary, dim])</strong> performs an end-off shift on elements of <strong>array</strong> along the dimension of <strong>dim</strong>.</p>
@@ -4962,9 +4962,9 @@ $$</span><br /></p>
 <p><strong>exp</strong>(3) - [MATHEMATICS] Base-e exponential function</p>
 <h3 id="synopsis-82"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb326"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb326-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">exp</span>(x)</a></code></pre></div>
-<div class="sourceCode" id="cb327"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb327-1" title="1">    <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="bu">exp</span>(x)</a>
+<div class="sourceCode" id="cb327"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb327-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="bu">exp</span>(x)</a>
 <a class="sourceLine" id="cb327-2" title="2"></a>
-<a class="sourceLine" id="cb327-3" title="3">    <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
+<a class="sourceLine" id="cb327-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p><strong>x</strong> may be real or complex. The return value has the same type and kind as <strong>x</strong>.</p>
 <h3 id="description-81"><strong>Description</strong></h3>
 <p><strong>exp</strong>(3) returns the value of e (the base of natural logarithms) raised to the power of <strong>x</strong>.</p>
@@ -5120,24 +5120,32 @@ The dynamic type of a disassociated pointer or unallocated allocatable variable 
 <h3 id="name-84"><strong>Name</strong></h3>
 <p><strong>findloc</strong>(3) - [ARRAY:LOCATION] Location of first element of ARRAY identified by MASK along dimension DIM matching a target value</p>
 <h3 id="synopsis-85"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb337"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb337-1" title="1">    findloc (array, value, <span class="bu">dim</span> <span class="kw">[</span>,mask<span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> <span class="kw">[</span>,back<span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb338"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb338-1" title="1">    <span class="kw">function</span> findloc (array, value, <span class="bu">dim</span>, mask, <span class="fu">kind</span>, back)</a>
-<a class="sourceLine" id="cb338-2" title="2">    <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>          <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb338-3" title="3">    <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>          <span class="dt">::</span> value</a>
-<a class="sourceLine" id="cb338-4" title="4">    <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>          <span class="dt">::</span> <span class="bu">dim</span></a>
-<a class="sourceLine" id="cb338-5" title="5">    <span class="dt">logical(kind=KINDM)</span>, <span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a>
-<a class="sourceLine" id="cb338-6" title="6">    <span class="dt">integer(kind=KINDK)</span>, <span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a>
-<a class="sourceLine" id="cb338-7" title="7">    <span class="dt">logical(kind=KINDB)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> back</a>
-<a class="sourceLine" id="cb338-8" title="8"></a>
-<a class="sourceLine" id="cb338-9" title="9"><span class="kw">-</span> <span class="kw">**</span>array<span class="kw">**</span> shall be an array of <span class="kw">intrinsic</span> <span class="dt">type</span>.</a>
-<a class="sourceLine" id="cb338-10" title="10"><span class="kw">-</span> <span class="kw">**</span>value<span class="kw">**</span> shall be scalar but in <span class="dt">type</span> conformance with <span class="kw">**</span>array<span class="kw">**</span></a>
-<a class="sourceLine" id="cb338-11" title="11"><span class="kw">-</span> <span class="kw">**</span><span class="bu">dim</span><span class="kw">**</span> The corresponding actual argument shall <span class="bu">not</span> be an <span class="dt">optional</span> dummy argument.</a>
-<a class="sourceLine" id="cb338-12" title="12"><span class="kw">-</span> <span class="kw">**</span>mask<span class="kw">**</span> shall be conformable with <span class="kw">**</span>array<span class="kw">**</span>.</a>
-<a class="sourceLine" id="cb338-13" title="13"><span class="kw">-</span> <span class="kw">**</span><span class="fu">kind</span><span class="kw">**</span> a scalar <span class="dt">integer</span> initialization expression (ie. a constant)</a>
-<a class="sourceLine" id="cb338-14" title="14"><span class="kw">-</span> <span class="kw">**</span>back<span class="kw">**</span> a <span class="dt">logical</span> scalar.</a></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb337-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> findloc (array, value, <span class="bu">dim</span> <span class="kw">[</span>,mask<span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> <span class="kw">[</span>,back<span class="kw">]</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb338-1" title="1">     <span class="kw">function</span> findloc (array, value, <span class="bu">dim</span>, mask, <span class="fu">kind</span>, back)</a>
+<a class="sourceLine" id="cb338-2" title="2"></a>
+<a class="sourceLine" id="cb338-3" title="3">     <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>          <span class="dt">::</span> array(..)</a>
+<a class="sourceLine" id="cb338-4" title="4">     <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>          <span class="dt">::</span> value</a>
+<a class="sourceLine" id="cb338-5" title="5">     <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>          <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb338-6" title="6">     <span class="dt">logical(kind=KINDM)</span>, <span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a>
+<a class="sourceLine" id="cb338-7" title="7">     <span class="dt">integer(kind=KINDK)</span>, <span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a>
+<a class="sourceLine" id="cb338-8" title="8">     <span class="dt">logical(kind=KINDB)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> back</a></code></pre></div>
+<ul>
+<li><strong>array</strong> shall be an array of intrinsic type.</li>
+<li><strong>value</strong> shall be scalar but in type conformance with <strong>array</strong></li>
+<li><strong>dim</strong> The corresponding actual argument shall not be an optional dummy argument.</li>
+<li><strong>mask</strong> shall be conformable with <strong>array</strong>.</li>
+<li><strong>kind</strong> a scalar integer initialization expression (ie. a constant)</li>
+<li><strong>back</strong> a logical scalar.</li>
+</ul>
 <p>or</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb339-1" title="1">    findloc(array, value, mask, <span class="fu">kind</span>, back)</a></code></pre></div>
-<div class="sourceCode" id="cb340"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb339-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> findloc(array, value <span class="kw">[</span>,mask<span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> <span class="kw">[</span>,back<span class="kw">]</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb340-1" title="1">     <span class="kw">function</span> findloc (array, value, mask, <span class="fu">kind</span>, back)</a>
+<a class="sourceLine" id="cb340-2" title="2"></a>
+<a class="sourceLine" id="cb340-3" title="3">     <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>          <span class="dt">::</span> array(..)</a>
+<a class="sourceLine" id="cb340-4" title="4">     <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>          <span class="dt">::</span> value</a>
+<a class="sourceLine" id="cb340-5" title="5">     <span class="dt">logical(kind=KINDM)</span>, <span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a>
+<a class="sourceLine" id="cb340-6" title="6">     <span class="dt">integer(kind=KINDK)</span>, <span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a>
+<a class="sourceLine" id="cb340-7" title="7">     <span class="dt">logical(kind=KINDB)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> back</a></code></pre></div>
 <h3 id="description-84"><strong>Description</strong></h3>
 <p>Location of the first element of <strong>array</strong> identified by <strong>mask</strong> along dimension <strong>dim</strong> having a value equal to <strong>value</strong>.</p>
 <p>If both <strong>array</strong> and <strong>value</strong> are of type logical, the comparison is performed with the <strong>.eqv.</strong> operator; otherwise, the comparison is performed with the == operator. If the value of the comparison is .true., that element of <strong>array</strong> matches <strong>value</strong>.</p>
@@ -5966,17 +5974,17 @@ Shall be a scalar of type character and of default kind.</li>
 <p><strong>iall</strong>(3) - [BIT:LOGICAL] Bitwise and of array elements</p>
 <h3 id="synopsis-95"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb392"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb392-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> iall(array <span class="kw">[</span>,mask<span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb393"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb393-1" title="1">    <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> iall(array,mask)</a>
+<div class="sourceCode" id="cb393"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb393-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> iall(array,mask)</a>
 <a class="sourceLine" id="cb393-2" title="2"></a>
-<a class="sourceLine" id="cb393-3" title="3">    <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb393-4" title="4">    <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb393-3" title="3">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> array(..)</a>
+<a class="sourceLine" id="cb393-4" title="4">     <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb394"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb394-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> iall(array <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,mask<span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb395"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb395-1" title="1">    <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> iall(array,<span class="bu">dim</span>,mask)</a>
+<div class="sourceCode" id="cb395"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb395-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> iall(array,<span class="bu">dim</span>,mask)</a>
 <a class="sourceLine" id="cb395-2" title="2"></a>
-<a class="sourceLine" id="cb395-3" title="3">    <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb395-4" title="4">    <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
-<a class="sourceLine" id="cb395-5" title="5">    <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb395-3" title="3">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> array(..)</a>
+<a class="sourceLine" id="cb395-4" title="4">     <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb395-5" title="5">     <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p><strong>array</strong> must be an array. The result will by of the same type and kind as <strong>array</strong>. <strong>mask</strong> is a logical array that conforms to <strong>array</strong> of any logical kind. <strong>dim</strong> may be of any integer kind.</p>
 <h3 id="description-93"><strong>Description</strong></h3>
 <p>Reduces with bitwise and the elements of <strong>array</strong> along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
@@ -6031,8 +6039,8 @@ Shall be a scalar of type character and of default kind.</li>
 <div class="sourceCode" id="cb398"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb398-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">iand</span>(i, j)</a></code></pre></div>
 <div class="sourceCode" id="cb399"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb399-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">iand</span>(i,j)</a>
 <a class="sourceLine" id="cb399-2" title="2"></a>
-<a class="sourceLine" id="cb399-3" title="3">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb399-4" title="4">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a></code></pre></div>
+<a class="sourceLine" id="cb399-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb399-4" title="4">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a></code></pre></div>
 <h3 id="description-94"><strong>Description</strong></h3>
 <p>Bitwise logical <strong>and</strong>.</p>
 <h3 id="options-93"><strong>Options</strong></h3>
@@ -6072,10 +6080,10 @@ Shall be a scalar of type character and of default kind.</li>
 <p><strong>iany</strong>(3) - [BIT:LOGICAL] Bitwise or of array elements</p>
 <h3 id="synopsis-97"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb402"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb402-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> iany(array <span class="kw">[</span>,mask<span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb403"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb403-1" title="1">    <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> iany(array,mask)</a>
+<div class="sourceCode" id="cb403"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb403-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> iany(array,mask)</a>
 <a class="sourceLine" id="cb403-2" title="2"></a>
-<a class="sourceLine" id="cb403-3" title="3">    <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb403-4" title="4">    <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb403-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> array(..)</a>
+<a class="sourceLine" id="cb403-4" title="4">      <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb404"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb404-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> iany(array <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,mask<span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb405"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb405-1" title="1">    <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> iany(array,<span class="bu">dim</span>,mask)</a>
@@ -6131,8 +6139,8 @@ Shall be a scalar of type character and of default kind.</li>
 <div class="sourceCode" id="cb408"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb408-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">ibclr</span>(i, pos)</a></code></pre></div>
 <div class="sourceCode" id="cb409"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb409-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KINDI)</span> <span class="kw">function</span> <span class="bu">ibclr</span>(i,pos)</a>
 <a class="sourceLine" id="cb409-2" title="2"></a>
-<a class="sourceLine" id="cb409-3" title="3">     <span class="dt">integer(kind=KINDI)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb409-4" title="4">     <span class="dt">integer(kind=KINDPOS)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> pos</a></code></pre></div>
+<a class="sourceLine" id="cb409-3" title="3">      <span class="dt">integer(kind=KINDI)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb409-4" title="4">      <span class="dt">integer(kind=KINDPOS)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> pos</a></code></pre></div>
 <p>The return value is of the same kind as <strong>i</strong>. Otherwise, any integer kinds are allowed. ### <strong>Description</strong></p>
 <p><strong>ibclr</strong> returns the value of <strong>i</strong> with the bit at position <strong>pos</strong> set to zero.</p>
 <h3 id="options-95"><strong>Options</strong></h3>
@@ -6565,10 +6573,10 @@ If not present the returned type is that of default integer type.</li>
 <p><strong>ior</strong>(3) - [BIT:LOGICAL] Bitwise logical inclusive or</p>
 <h3 id="synopsis-106"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb433"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb433-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">ior</span>(i, j)</a></code></pre></div>
-<div class="sourceCode" id="cb434"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb434-1" title="1">    <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">ior</span>(i,j)</a>
+<div class="sourceCode" id="cb434"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb434-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">ior</span>(i,j)</a>
 <a class="sourceLine" id="cb434-2" title="2"></a>
-<a class="sourceLine" id="cb434-3" title="3">    <span class="dt">integer(kind=KINDI)</span> ,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb434-4" title="4">    <span class="dt">integer(kind=KINDJ)</span> ,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a></code></pre></div>
+<a class="sourceLine" id="cb434-3" title="3">     <span class="dt">integer(kind=KINDI)</span> ,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb434-4" title="4">     <span class="dt">integer(kind=KINDJ)</span> ,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a></code></pre></div>
 <p>The return value is of the same kind as the larger kind of <strong>i</strong> and <strong>j</strong>. Otherwise, any integer kinds are allowed.</p>
 <h3 id="description-103"><strong>Description</strong></h3>
 <p><strong>ior</strong> returns the bit-wise Boolean inclusive-or of <strong>i</strong> and <strong>j</strong>.</p>
@@ -7009,7 +7017,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <h3 id="name-113"><strong>Name</strong></h3>
 <p><strong>lbound</strong>(3) - [ARRAY INQUIRY] Lower dimension bounds of an array</p>
 <h3 id="synopsis-114"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb465"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb465-1" title="1">     <span class="kw">result</span> <span class="kw">=</span> <span class="fu">lbound</span>(array <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
+<div class="sourceCode" id="cb465"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb465-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">lbound</span>(array <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
 <div class="sourceCode" id="cb466"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb466-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="fu">lbound</span>(array,<span class="bu">dim</span>,<span class="fu">kind</span>)</a>
 <a class="sourceLine" id="cb466-2" title="2"></a>
 <a class="sourceLine" id="cb466-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> array</a>
@@ -7110,9 +7118,9 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <p><strong>leadz</strong>(3) - [BIT:COUNT] Number of leading zero bits of an integer</p>
 <h3 id="synopsis-115"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb469"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb469-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> leadz(i)</a></code></pre></div>
-<div class="sourceCode" id="cb470"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb470-1" title="1">    <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> leadz(i)</a>
+<div class="sourceCode" id="cb470"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb470-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> leadz(i)</a>
 <a class="sourceLine" id="cb470-2" title="2"></a>
-<a class="sourceLine" id="cb470-3" title="3">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
+<a class="sourceLine" id="cb470-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
 <h3 id="description-112"><strong>Description</strong></h3>
 <p><strong>leadz</strong> returns the number of leading zero bits of an integer.</p>
 <h3 id="options-112"><strong>Options</strong></h3>
@@ -7169,10 +7177,10 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <p><strong>len</strong>(3) - [CHARACTER] Length of a character entity</p>
 <h3 id="synopsis-116"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb473"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb473-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">len</span>(string <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb474"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb474-1" title="1">    <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="fu">len</span>(string,<span class="fu">kind</span>)</a>
+<div class="sourceCode" id="cb474"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb474-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="fu">len</span>(string,<span class="fu">kind</span>)</a>
 <a class="sourceLine" id="cb474-2" title="2"></a>
-<a class="sourceLine" id="cb474-3" title="3">    <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string</a>
-<a class="sourceLine" id="cb474-4" title="4">    <span class="dt">integer</span>,<span class="dt">optional</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<a class="sourceLine" id="cb474-3" title="3">     <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string</a>
+<a class="sourceLine" id="cb474-4" title="4">     <span class="dt">integer</span>,<span class="dt">optional</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 <p>where the returned value is the same integer kind as the <strong>kind</strong> argument, or of the default integer kind if <strong>kind</strong> is not specified.</p>
 <h3 id="description-113"><strong>Description</strong></h3>
 <p><strong>len(3)</strong> Returns the length of a character string.</p>
@@ -7342,11 +7350,11 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <h3 id="name-117"><strong>Name</strong></h3>
 <p><strong>lge</strong>(3) - [CHARACTER:COMPARE] ASCII Lexical greater than or equal</p>
 <h3 id="synopsis-118"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb481"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb481-1" title="1">     <span class="kw">result</span> <span class="kw">=</span> <span class="bu">lge</span>(string_a, stringb)</a></code></pre></div>
-<div class="sourceCode" id="cb482"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb482-1" title="1">   <span class="kw">elemental</span> <span class="dt">logical</span> <span class="kw">function</span> <span class="bu">lge</span>(string_a, string_b)</a>
+<div class="sourceCode" id="cb481"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb481-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">lge</span>(string_a, stringb)</a></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb482-1" title="1">     <span class="kw">elemental</span> <span class="dt">logical</span> <span class="kw">function</span> <span class="bu">lge</span>(string_a, string_b)</a>
 <a class="sourceLine" id="cb482-2" title="2"></a>
-<a class="sourceLine" id="cb482-3" title="3">   <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string_a</a>
-<a class="sourceLine" id="cb482-4" title="4">   <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string_b</a></code></pre></div>
+<a class="sourceLine" id="cb482-3" title="3">     <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string_a</a>
+<a class="sourceLine" id="cb482-4" title="4">     <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string_b</a></code></pre></div>
 <h3 id="description-115"><strong>Description</strong></h3>
 <p>Determines whether one string is lexically greater than or equal to another string, where the two strings are interpreted as containing ASCII character codes. If the String <strong>a</strong> and String <strong>b</strong> are not the same length, the shorter is compared as if spaces were appended to it to form a value that has the same length as the longer.</p>
 <p>The lexical comparison intrinsics <strong>lge</strong>(3), <strong>lgt</strong>(3), <strong>lle</strong>(3), and <strong>llt</strong>(3) differ from the corresponding intrinsic operators .ge., .gt., .le., and .lt., in that the latter use the processor’s character ordering (which is not ASCII on some targets), whereas the former always use the ASCII ordering.</p>
@@ -7759,7 +7767,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 <h3 id="name-124"><strong>Name</strong></h3>
 <p><strong>log</strong>(3) - [MATHEMATICS] Logarithm function</p>
 <h3 id="synopsis-125"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb509"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb509-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">log</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb509-1" title="1">  <span class="kw">result</span> <span class="kw">=</span> <span class="bu">log</span>(x)</a></code></pre></div>
 <div class="sourceCode" id="cb510"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb510-1" title="1">   <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="bu">log</span>(x)</a>
 <a class="sourceLine" id="cb510-2" title="2"></a>
 <a class="sourceLine" id="cb510-3" title="3">    <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
@@ -8947,10 +8955,10 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <p><strong>mod</strong>(3) - [NUMERIC] Remainder function</p>
 <h3 id="synopsis-139"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb580"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb580-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">mod</span>(a, p)</a></code></pre></div>
-<div class="sourceCode" id="cb581"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb581-1" title="1">    <span class="kw">elemental</span> <span class="dt">type(TYPE(kind=KIND))</span> <span class="kw">function</span> <span class="bu">mod</span>(a,p)</a>
+<div class="sourceCode" id="cb581"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb581-1" title="1">     <span class="kw">elemental</span> <span class="dt">type(TYPE(kind=KIND))</span> <span class="kw">function</span> <span class="bu">mod</span>(a,p)</a>
 <a class="sourceLine" id="cb581-2" title="2"></a>
-<a class="sourceLine" id="cb581-3" title="3">     <span class="dt">type(TYPE(kind=KIND),intent(in) :: a</span></a>
-<a class="sourceLine" id="cb581-4" title="4">     <span class="dt">type(TYPE(kind=KIND),intent(in) :: p</span></a></code></pre></div>
+<a class="sourceLine" id="cb581-3" title="3">      <span class="dt">type(TYPE(kind=KIND),intent(in) :: a</span></a>
+<a class="sourceLine" id="cb581-4" title="4">      <span class="dt">type(TYPE(kind=KIND),intent(in) :: p</span></a></code></pre></div>
 <p>The result and arguments are all of the same type and kind. The type may be any kind of real or integer.</p>
 <h3 id="description-135"><strong>Description</strong></h3>
 <p><strong>mod</strong>(a,p) computes the remainder of the division of <strong>a</strong> by <strong>p</strong>.</p>
@@ -9015,8 +9023,8 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div class="sourceCode" id="cb584"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb584-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">modulo</span>(a, p)</a></code></pre></div>
 <div class="sourceCode" id="cb585"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb585-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="bu">modulo</span>(a,p)</a>
 <a class="sourceLine" id="cb585-2" title="2"></a>
-<a class="sourceLine" id="cb585-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> a</a>
-<a class="sourceLine" id="cb585-4" title="4">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> p</a></code></pre></div>
+<a class="sourceLine" id="cb585-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> a</a>
+<a class="sourceLine" id="cb585-4" title="4">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> p</a></code></pre></div>
 <p>The result and arguments are all of the same type and kind. The type may be any kind of real or integer.</p>
 <h3 id="description-136"><strong>Description</strong></h3>
 <p><strong>modulo(a,p)</strong> computes the <strong>a</strong> modulo <strong>p</strong>.</p>
@@ -9372,10 +9380,10 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <p><strong>nint</strong>(3) - [TYPE:NUMERIC] Nearest whole number</p>
 <h3 id="synopsis-145"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb604"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb604-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">nint</span>( x <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb605"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb605-1" title="1">    <span class="kw">elemental</span> <span class="dt">integer(kind=kind)</span> <span class="kw">function</span> <span class="bu">nint</span>(x, <span class="fu">kind</span> )</a>
+<div class="sourceCode" id="cb605"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb605-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=kind)</span> <span class="kw">function</span> <span class="bu">nint</span>(x, <span class="fu">kind</span> )</a>
 <a class="sourceLine" id="cb605-2" title="2"></a>
-<a class="sourceLine" id="cb605-3" title="3"><span class="dt">     real(kind=KINDX)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
-<a class="sourceLine" id="cb605-4" title="4">     <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<a class="sourceLine" id="cb605-3" title="3"><span class="dt">      real(kind=KINDX)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
+<a class="sourceLine" id="cb605-4" title="4">      <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 <p>The result is default integer kind or the value of <strong>kind</strong> if it is present.</p>
 <h3 id="description-141"><strong>Description</strong></h3>
 <p><strong>nint(x)</strong> rounds its argument to the nearest whole number with its sign preserved.</p>
@@ -9474,8 +9482,8 @@ The result is undefined if it cannot be represented in the specified integer typ
 <div class="sourceCode" id="cb608"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb608-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> norm2(array, <span class="kw">[</span><span class="bu">dim</span><span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb609"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb609-1" title="1"><span class="dt">     real</span> <span class="kw">function</span> norm2(array, <span class="bu">dim</span>)</a>
 <a class="sourceLine" id="cb609-2" title="2"></a>
-<a class="sourceLine" id="cb609-3" title="3"><span class="dt">     real</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb609-4" title="4">     <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a></code></pre></div>
+<a class="sourceLine" id="cb609-3" title="3"><span class="dt">      real</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
+<a class="sourceLine" id="cb609-4" title="4">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a></code></pre></div>
 <h3 id="description-142"><strong>Description</strong></h3>
 <p>Calculates the Euclidean vector norm (L_2 norm) of <strong>array</strong> along dimension <strong>dim</strong>.</p>
 <h3 id="options-143"><strong>Options</strong></h3>
@@ -9942,9 +9950,9 @@ The result is undefined if it cannot be represented in the specified integer typ
 <p><strong>popcnt</strong>(3) - [BIT:COUNT] Number of bits set</p>
 <h3 id="synopsis-153"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb638"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb638-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> popcnt(i)</a></code></pre></div>
-<div class="sourceCode" id="cb639"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb639-1" title="1">    <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> popcnt(i)</a>
+<div class="sourceCode" id="cb639"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb639-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> popcnt(i)</a>
 <a class="sourceLine" id="cb639-2" title="2"></a>
-<a class="sourceLine" id="cb639-3" title="3">     <span class="dt">integer(kind=KIND)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
+<a class="sourceLine" id="cb639-3" title="3">      <span class="dt">integer(kind=KIND)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
 <p>The <strong>i</strong> argument may be of any kind.</p>
 <h3 id="description-149"><strong>Description</strong></h3>
 <p>Returns the number of bits set in the binary representation of an integer.</p>
@@ -9990,9 +9998,9 @@ The result is undefined if it cannot be represented in the specified integer typ
 <p><strong>poppar</strong>(3) - [BIT:COUNT] Parity of the number of bits set</p>
 <h3 id="synopsis-154"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb642"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb642-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> poppar(i)</a></code></pre></div>
-<div class="sourceCode" id="cb643"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb643-1" title="1">    <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> poppar(i)</a>
+<div class="sourceCode" id="cb643"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb643-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> poppar(i)</a>
 <a class="sourceLine" id="cb643-2" title="2"></a>
-<a class="sourceLine" id="cb643-3" title="3">     <span class="dt">integer(kind=KIND)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
+<a class="sourceLine" id="cb643-3" title="3">      <span class="dt">integer(kind=KIND)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
 <h3 id="description-150"><strong>Description</strong></h3>
 <p>Returns the parity of an integer’s binary representation (i.e., the parity of the number of bits set).</p>
 <h3 id="options-151"><strong>Options</strong></h3>
@@ -10036,9 +10044,9 @@ The result is undefined if it cannot be represented in the specified integer typ
 <p><strong>precision</strong>(3) - [NUMERIC MODEL] Decimal precision of a real kind</p>
 <h3 id="synopsis-155"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb646"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb646-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="dt">precision</span>(x)</a></code></pre></div>
-<div class="sourceCode" id="cb647"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb647-1" title="1">    <span class="dt">integer</span> <span class="kw">function</span> <span class="dt">precision</span>(x)</a>
+<div class="sourceCode" id="cb647"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb647-1" title="1">     <span class="dt">integer</span> <span class="kw">function</span> <span class="dt">precision</span>(x)</a>
 <a class="sourceLine" id="cb647-2" title="2"></a>
-<a class="sourceLine" id="cb647-3" title="3">    <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
+<a class="sourceLine" id="cb647-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p>where <strong>TYPE</strong> may be real or complex</p>
 <p>The return value is of type integer and of the default integer kind.</p>
 <h3 id="description-151"><strong>Description</strong></h3>
@@ -10080,7 +10088,8 @@ The result is undefined if it cannot be represented in the specified integer typ
 <h3 id="synopsis-156"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb650"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb650-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">present</span>(a)</a></code></pre></div>
 <div class="sourceCode" id="cb651"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb651-1" title="1">     <span class="dt">logical</span> <span class="kw">function</span> <span class="fu">present</span> (a)</a>
-<a class="sourceLine" id="cb651-2" title="2">     <span class="dt">type(TYPE(kind=KIND))</span> <span class="dt">::</span> a(..)</a></code></pre></div>
+<a class="sourceLine" id="cb651-2" title="2"></a>
+<a class="sourceLine" id="cb651-3" title="3">      <span class="dt">type(TYPE(kind=KIND))</span> <span class="dt">::</span> a(..)</a></code></pre></div>
 <p>where the <strong>TYPE</strong> may be any type</p>
 <h3 id="description-152"><strong>Description</strong></h3>
 <p>Determines whether an optional dummy argument is present.</p>
@@ -10333,10 +10342,10 @@ dim=3 :( 2 3 )
 <h3 id="name-157"><strong>Name</strong></h3>
 <p><strong>radix</strong>(3) - [NUMERIC MODEL] Base of a model number</p>
 <h3 id="synopsis-158"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb658"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb658-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">radix</span>(x)</a></code></pre></div>
-<div class="sourceCode" id="cb659"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb659-1" title="1">   <span class="dt">integer</span> <span class="kw">function</span> <span class="fu">radix</span>(x)</a>
+<div class="sourceCode" id="cb658"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb658-1" title="1">   <span class="kw">result</span> <span class="kw">=</span> <span class="fu">radix</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb659"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb659-1" title="1">    <span class="dt">integer</span> <span class="kw">function</span> <span class="fu">radix</span>(x)</a>
 <a class="sourceLine" id="cb659-2" title="2"></a>
-<a class="sourceLine" id="cb659-3" title="3">   <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
+<a class="sourceLine" id="cb659-3" title="3">    <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p>where TYPE may be real or integer of any kind KIND.</p>
 <h3 id="description-154"><strong>Description</strong></h3>
 <p><strong>radix(x)</strong> returns the base of the model representing the entity <strong>x</strong>.</p>
@@ -10541,9 +10550,9 @@ dim=3 :( 2 3 )
 <p><strong>rank</strong>(3) - [ARRAY INQUIRY] Rank of a data object</p>
 <h3 id="synopsis-162"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb674"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb674-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> rank(a)</a></code></pre></div>
-<div class="sourceCode" id="cb675"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb675-1" title="1">    <span class="dt">integer</span> <span class="kw">function</span> rank(a)</a>
+<div class="sourceCode" id="cb675"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb675-1" title="1">     <span class="dt">integer</span> <span class="kw">function</span> rank(a)</a>
 <a class="sourceLine" id="cb675-2" title="2"></a>
-<a class="sourceLine" id="cb675-3" title="3">    <span class="dt">type(TYPE(kind=KIND),intent(in) :: a(..)</span></a></code></pre></div>
+<a class="sourceLine" id="cb675-3" title="3">     <span class="dt">type(TYPE(kind=KIND),intent(in) :: a(..)</span></a></code></pre></div>
 <p><strong>a</strong> can be of any type.</p>
 <h3 id="description-158"><strong>Description</strong></h3>
 <p><strong>rank(a)</strong> returns the rank of a scalar or array data object.</p>
@@ -10616,7 +10625,7 @@ dim=3 :( 2 3 )
 <p><strong>real</strong>(3) - [TYPE:NUMERIC] Convert to real type</p>
 <h3 id="synopsis-163"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb678"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb678-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">real</span>(x <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb679"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb679-1" title="1">    <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> <span class="bu">real</span>(x,<span class="fu">kind</span>)</a>
+<div class="sourceCode" id="cb679"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb679-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> <span class="bu">real</span>(x,<span class="fu">kind</span>)</a>
 <a class="sourceLine" id="cb679-2" title="2"></a>
 <a class="sourceLine" id="cb679-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
 <a class="sourceLine" id="cb679-4" title="4">     <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
@@ -10674,16 +10683,19 @@ dim=3 :( 2 3 )
 <p><strong>reduce</strong>(3) - [TRANSFORMATIONAL] general reduction of an array</p>
 <h3 id="synopsis-164"><strong>Synopsis</strong></h3>
 <p>There are two forms to this function:</p>
-<div class="sourceCode" id="cb682"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb682-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> reduce(array, operation <span class="kw">[</span>,mask<span class="kw">]</span>  <span class="kw">[</span>,identity<span class="kw">]</span>  <span class="kw">[</span>,ordered<span class="kw">]</span> )</a></code></pre></div>
+<div class="sourceCode" id="cb682"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb682-1" title="1">   <span class="kw">result</span> <span class="kw">=</span> reduce(array, operation <span class="kw">[</span>,mask<span class="kw">]</span>  <span class="kw">[</span>,identity<span class="kw">]</span>  <span class="kw">[</span>,ordered<span class="kw">]</span> )</a></code></pre></div>
 <p>or</p>
-<div class="sourceCode" id="cb683"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb683-1" title="1">    <span class="dt">type(TYPE(kind=KIND))</span> <span class="kw">function</span> reduce <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb683-2" title="2">    <span class="kw">&amp;</span> (array, operation <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,mask<span class="kw">]</span> <span class="kw">[</span>,identity<span class="kw">]</span> <span class="kw">[</span>,ordered<span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb684"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb684-1" title="1">     <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> array</a>
-<a class="sourceLine" id="cb684-2" title="2">     <span class="kw">pure</span> <span class="kw">function</span>                  <span class="dt">::</span> operation</a>
-<a class="sourceLine" id="cb684-3" title="3">     <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span>    <span class="dt">::</span> <span class="bu">dim</span></a>
-<a class="sourceLine" id="cb684-4" title="4">     <span class="dt">logical</span>,<span class="dt">optional</span>               <span class="dt">::</span> mask</a>
-<a class="sourceLine" id="cb684-5" title="5">     <span class="dt">type(TYPE)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> identity</a>
-<a class="sourceLine" id="cb684-6" title="6">     <span class="dt">logical</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span>    <span class="dt">::</span> ordered</a></code></pre></div>
+<div class="sourceCode" id="cb683"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb683-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> reduce (array, operation <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb683-2" title="2">    <span class="kw">&amp;</span> <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,mask<span class="kw">]</span> <span class="kw">[</span>,identity<span class="kw">]</span> <span class="kw">[</span>,ordered<span class="kw">]</span> )</a></code></pre></div>
+<div class="sourceCode" id="cb684"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb684-1" title="1">    <span class="dt">type(TYPE(kind=KIND))</span> <span class="kw">function</span> reduce <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb684-2" title="2">    <span class="kw">&amp;</span> (array, operation, <span class="bu">dim</span>, mask, identity, ordered )</a>
+<a class="sourceLine" id="cb684-3" title="3"></a>
+<a class="sourceLine" id="cb684-4" title="4">     <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> array</a>
+<a class="sourceLine" id="cb684-5" title="5">     <span class="kw">pure</span> <span class="kw">function</span>                  <span class="dt">::</span> operation</a>
+<a class="sourceLine" id="cb684-6" title="6">     <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span>    <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb684-7" title="7">     <span class="dt">logical</span>,<span class="dt">optional</span>               <span class="dt">::</span> mask</a>
+<a class="sourceLine" id="cb684-8" title="8">     <span class="dt">type(TYPE)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> identity</a>
+<a class="sourceLine" id="cb684-9" title="9">     <span class="dt">logical</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span>    <span class="dt">::</span> ordered</a></code></pre></div>
 <p>where TYPE may be of any type. TYPE must be the same for <strong>array</strong> and <strong>identity</strong>.</p>
 <h3 id="description-160"><strong>Description</strong></h3>
 <p>Reduce a list of conditionally selected values from an array to a single value by iteratively applying a binary function.</p>
@@ -11311,11 +11323,11 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <h3 id="name-174"><strong>Name</strong></h3>
 <p><strong>shape</strong>(3) - [ARRAY INQUIRY] Determine the shape of an array</p>
 <h3 id="synopsis-175"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb723"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb723-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">shape</span>(source <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb723"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb723-1" title="1">  <span class="kw">result</span> <span class="kw">=</span> <span class="fu">shape</span>(source <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb724"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb724-1" title="1">   <span class="dt">integer(kind=KINDR)</span> <span class="kw">function</span>(<span class="fu">shape</span>(source,<span class="fu">kind</span>)</a>
 <a class="sourceLine" id="cb724-2" title="2"></a>
-<a class="sourceLine" id="cb724-3" title="3">   <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span>        <span class="dt">::</span> source(..)</a>
-<a class="sourceLine" id="cb724-4" title="4">   <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<a class="sourceLine" id="cb724-3" title="3">    <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span>        <span class="dt">::</span> source(..)</a>
+<a class="sourceLine" id="cb724-4" title="4">    <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 <p><strong>source</strong> is an array or scalar of any type. If <strong>source</strong> is a pointer it must be associated and allocatable arrays must be allocated.</p>
 <h3 id="description-170"><strong>Description</strong></h3>
 <p>Determines the shape of an array.</p>
@@ -12074,9 +12086,9 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <p><strong>spacing</strong>(3) - [MODEL_COMPONENTS] Smallest distance between two numbers of a given type</p>
 <h3 id="synopsis-183"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb759"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb759-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">spacing</span>(x)</a></code></pre></div>
-<div class="sourceCode" id="cb760"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb760-1" title="1">    <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> <span class="bu">spacing</span>(x)</a>
+<div class="sourceCode" id="cb760"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb760-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> <span class="bu">spacing</span>(x)</a>
 <a class="sourceLine" id="cb760-2" title="2"></a>
-<a class="sourceLine" id="cb760-3" title="3"><span class="dt">     real(kind=KIND)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
+<a class="sourceLine" id="cb760-3" title="3"><span class="dt">      real(kind=KIND)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p>The result is of the same type as the input argument <strong>x</strong>.</p>
 <h3 id="description-178"><strong>Description</strong></h3>
 <p>Determines the distance between the argument <strong>x</strong> and the nearest adjacent number of the same type.</p>
@@ -12484,7 +12496,7 @@ it would take if it were stored in memory.</code></pre>
 <h3 id="name-188"><strong>Name</strong></h3>
 <p><strong>tanh</strong>(3) - [MATHEMATICS:TRIGONOMETRIC] Hyperbolic tangent function</p>
 <h3 id="synopsis-189"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb788"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb788-1" title="1">    x <span class="kw">=</span> <span class="bu">tanh</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb788"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb788-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">tanh</span>(x)</a></code></pre></div>
 <div class="sourceCode" id="cb789"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb789-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="bu">tanh</span>(x)</a>
 <a class="sourceLine" id="cb789-2" title="2"></a>
 <a class="sourceLine" id="cb789-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>

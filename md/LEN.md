@@ -9,10 +9,10 @@
     result = len(string [,kind])
 ```
 ```fortran
-    integer(kind=KIND) function len(string,kind)
+     integer(kind=KIND) function len(string,kind)
 
-    character(len=*),intent(in) :: string
-    integer,optional,intent(in) :: kind
+     character(len=*),intent(in) :: string
+     integer,optional,intent(in) :: kind
 ```
 where the returned value is the same integer kind as the **kind**
 argument, or of the default integer kind if **kind** is not specified.

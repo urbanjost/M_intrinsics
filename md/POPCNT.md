@@ -9,9 +9,9 @@
     result = popcnt(i)
 ```
 ```fortran
-    elemental integer function popcnt(i)
+     elemental integer function popcnt(i)
 
-     integer(kind=KIND), intent(in) :: i
+      integer(kind=KIND), intent(in) :: i
 ```
 The **i** argument may be of any kind.
 

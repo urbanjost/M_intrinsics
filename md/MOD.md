@@ -9,10 +9,10 @@
     result = mod(a, p)
 ```
 ```fortran
-    elemental type(TYPE(kind=KIND)) function mod(a,p)
+     elemental type(TYPE(kind=KIND)) function mod(a,p)
 
-     type(TYPE(kind=KIND),intent(in) :: a
-     type(TYPE(kind=KIND),intent(in) :: p
+      type(TYPE(kind=KIND),intent(in) :: a
+      type(TYPE(kind=KIND),intent(in) :: p
 ```
   The result and arguments are all of the same type and kind.
   The type may be any kind of _real_ or _integer_.

@@ -9,10 +9,10 @@
     result = iany(array [,mask])
 ```
 ```fortran
-    integer(kind=KIND) function iany(array,mask)
+     integer(kind=KIND) function iany(array,mask)
 
-    integer(kind=KIND),intent(in)           :: array(..)
-    logical(kind=KINDL),intent(in),optional :: mask(..)
+      integer(kind=KIND),intent(in)           :: array(..)
+      logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 or
 ```fortran

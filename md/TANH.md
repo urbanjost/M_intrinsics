@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    x = tanh(x)
+    result = tanh(x)
 ```
 ```fortran
      elemental TYPE(kind=KIND) function tanh(x)

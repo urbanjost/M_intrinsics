@@ -9,10 +9,10 @@
     result = count(mask [,dim] [,kind] )
 ```
 ```fortran
-    integer(kind=KIND) function count(mask, dim, kind )
-    logical(kind=KINDL),intent(in) :: mask(..)
-    integer(kind=KINDD),intent(in),optional :: dim
-    integer(kind=KINDK),intent(in),optional :: kind
+     integer(kind=KIND) function count(mask, dim, kind )
+     logical(kind=KINDL),intent(in) :: mask(..)
+     integer(kind=KINDD),intent(in),optional :: dim
+     integer(kind=KINDK),intent(in),optional :: kind
 ```
 **mask** must be an array but may be any shape.
 

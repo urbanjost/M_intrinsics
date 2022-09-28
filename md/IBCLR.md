@@ -11,8 +11,8 @@
 ```fortran
      elemental integer(kind=KINDI) function ibclr(i,pos)
 
-     integer(kind=KINDI),intent(in) :: i
-     integer(kind=KINDPOS),intent(in) :: pos
+      integer(kind=KINDI),intent(in) :: i
+      integer(kind=KINDPOS),intent(in) :: pos
 ```
   The return value is of the same kind as **i**. Otherwise,
   any _integer_ kinds are allowed.

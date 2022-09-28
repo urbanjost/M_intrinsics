@@ -6,14 +6,14 @@
 
 ### **Synopsis**
 ```fortran
-  result = blt(i,j)
+    result = blt(i,j)
 ```
 ```fortran
-   elemental function blt(i, j)
+     elemental function blt(i, j)
 
-   integer(kind=KIND),intent(in) :: i
-   integer(kind=KIND),intent(in) :: j
-   logical :: blt
+     integer(kind=KIND),intent(in) :: i
+     integer(kind=KIND),intent(in) :: j
+     logical :: blt
 ```
   where the _kind_ of **i** and **j** may be of any supported _integer_
   kind, not necessarily the same. An exception is that values may be a

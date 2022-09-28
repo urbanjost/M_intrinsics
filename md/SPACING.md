@@ -9,9 +9,9 @@
     result = spacing(x)
 ```
 ```fortran
-    elemental real(kind=KIND) function spacing(x)
+     elemental real(kind=KIND) function spacing(x)
 
-     real(kind=KIND), intent(in) :: x
+      real(kind=KIND), intent(in) :: x
 ```
   The result is of the same type as the input argument **x**.
 

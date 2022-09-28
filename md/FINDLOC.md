@@ -8,29 +8,37 @@ identified by MASK along dimension DIM matching a target value
 ### **Synopsis**
 
 ```fortran
-    findloc (array, value, dim [,mask] [,kind] [,back])
+    result = findloc (array, value, dim [,mask] [,kind] [,back])
 ```
 ```fortran
-    function findloc (array, value, dim, mask, kind, back)
-    integer(kind=KIND),  intent(in)          :: array(..)
-    integer(kind=KIND),  intent(in)          :: value
-    integer(kind=KIND),  intent(in)          :: dim
-    logical(kind=KINDM), intent(in),optional :: mask(..)
-    integer(kind=KINDK), intent(in),optional :: kind
-    logical(kind=KINDB),intent(in),optional :: back
+     function findloc (array, value, dim, mask, kind, back)
 
+     integer(kind=KIND),  intent(in)          :: array(..)
+     integer(kind=KIND),  intent(in)          :: value
+     integer(kind=KIND),  intent(in)          :: dim
+     logical(kind=KINDM), intent(in),optional :: mask(..)
+     integer(kind=KINDK), intent(in),optional :: kind
+     logical(kind=KINDB),intent(in),optional :: back
+```
 - **array** shall be an array of intrinsic type.
 - **value** shall be scalar but in type conformance with **array**
 - **dim** The corresponding actual argument shall not be an optional dummy argument.
 - **mask** shall be conformable with **array**.
 - **kind** a scalar integer initialization expression (ie. a constant)
 - **back** a logical scalar.
-```
+
 or
 ```fortran
-    findloc(array, value, mask, kind, back)
+    result = findloc(array, value [,mask] [,kind] [,back])
 ```
 ```fortran
+     function findloc (array, value, mask, kind, back)
+
+     integer(kind=KIND),  intent(in)          :: array(..)
+     integer(kind=KIND),  intent(in)          :: value
+     logical(kind=KINDM), intent(in),optional :: mask(..)
+     integer(kind=KINDK), intent(in),optional :: kind
+     logical(kind=KINDB),intent(in),optional :: back
 ```
 ### **Description**
 

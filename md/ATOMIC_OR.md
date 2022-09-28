@@ -9,7 +9,7 @@
     call atomic_or(atom, value [,stat] )
 ```
 ```fortran
-    subroutine atomic_or(atom, value, stat)
+     subroutine atomic_or(atom, value, stat)
 ```
 ### **Description**
 

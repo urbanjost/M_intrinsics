@@ -9,7 +9,7 @@
     result = real(x [,kind])
 ```
 ```fortran
-    elemental real(kind=KIND) function real(x,kind)
+     elemental real(kind=KIND) function real(x,kind)
 
      TYPE(kind=KIND),intent(in) :: x
      integer(kind=KINDK),intent(in) :: kind

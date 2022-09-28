@@ -11,8 +11,8 @@
 ```fortran
      real function norm2(array, dim)
 
-     real,intent(in) :: array(..)
-     integer,intent(in),optional :: dim
+      real,intent(in) :: array(..)
+      integer,intent(in),optional :: dim
 ```
 ### **Description**
 

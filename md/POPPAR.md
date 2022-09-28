@@ -9,9 +9,9 @@
     result = poppar(i)
 ```
 ```fortran
-    elemental integer function poppar(i)
+     elemental integer function poppar(i)
 
-     integer(kind=KIND), intent(in) :: i
+      integer(kind=KIND), intent(in) :: i
 ```
 ### **Description**
 

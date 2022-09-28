@@ -9,7 +9,7 @@
     call atomic_cas (atom, old, compare, new [,stat] )
 ```
 ```fortran
-    subroutine atomic_cas (atom, old, compare, new, stat)
+     subroutine atomic_cas (atom, old, compare, new, stat)
 ```
 ### **Description**
 

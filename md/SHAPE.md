@@ -6,13 +6,13 @@
 
 ### **Synopsis**
 ```fortran
-    result = shape(source [,kind])
+  result = shape(source [,kind])
 ```
 ```fortran
    integer(kind=KINDR) function(shape(source,kind)
 
-   type(TYPE(kind=KIND)),intent(in)        :: source(..)
-   integer(kind=KINDK),intent(in),optional :: kind
+    type(TYPE(kind=KIND)),intent(in)        :: source(..)
+    integer(kind=KINDK),intent(in),optional :: kind
 ```
 **source** is an array or scalar of any type. If **source** is a pointer
 it must be associated and allocatable arrays must be allocated.

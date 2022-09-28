@@ -9,10 +9,10 @@
     result = ior(i, j)
 ```
 ```fortran
-    elemental integer(kind=KIND) function ior(i,j)
+     elemental integer(kind=KIND) function ior(i,j)
 
-    integer(kind=KINDI) ,intent(in) :: i
-    integer(kind=KINDJ) ,intent(in) :: j
+     integer(kind=KINDI) ,intent(in) :: i
+     integer(kind=KINDJ) ,intent(in) :: j
 ```
   The return value is of the same kind as the larger kind of **i**
   and **j**. Otherwise, any _integer_ kinds are allowed.

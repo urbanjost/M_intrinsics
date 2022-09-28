@@ -9,10 +9,10 @@
     result = char(i [,kind])
 ```
 ```fortran
-    elemental integer function char(i,kind)
+     elemental integer function char(i,kind)
 
-    integer(kind=KIND),intent(in) :: c
-    integer(kind=KINDK),intent(in),optional :: kind
+     integer(kind=KIND),intent(in) :: c
+     integer(kind=KINDK),intent(in),optional :: kind
 ```
 ### **Description**
 

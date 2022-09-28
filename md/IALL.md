@@ -9,21 +9,21 @@
     result = iall(array [,mask])
 ```
 ```fortran
-    integer(kind=KIND) function iall(array,mask)
+     integer(kind=KIND) function iall(array,mask)
 
-    integer(kind=KIND),intent(in)           :: array(..)
-    logical(kind=KINDL),intent(in),optional :: mask(..)
+     integer(kind=KIND),intent(in)           :: array(..)
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
-or
+  or
 ```fortran
     result = iall(array [,dim] [,mask])
 ```
 ```fortran
-    integer(kind=KIND) function iall(array,dim,mask)
+     integer(kind=KIND) function iall(array,dim,mask)
 
-    integer(kind=KIND),intent(in)           :: array(..)
-    integer(kind=KINDD),intent(in),optional :: dim
-    logical(kind=KINDL),intent(in),optional :: mask(..)
+     integer(kind=KIND),intent(in)           :: array(..)
+     integer(kind=KINDD),intent(in),optional :: dim
+     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 **array** must be an array. The result will by of the same type and kind
 as **array**. **mask** is a _logical_ array that conforms to **array** of

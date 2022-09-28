@@ -9,7 +9,7 @@
     call atomic_and(atom, value [,stat])
 ```
 ```fortran
-    subroutine atomic_and(atom, value, stat)
+     subroutine atomic_and(atom, value, stat)
 ```
 
 ### **Description**

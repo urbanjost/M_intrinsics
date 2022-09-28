@@ -9,9 +9,9 @@
     result = leadz(i)
 ```
 ```fortran
-    elemental integer function leadz(i)
+     elemental integer function leadz(i)
 
-     integer(kind=KIND),intent(in) :: i
+      integer(kind=KIND),intent(in) :: i
 ```
 ### **Description**
 
