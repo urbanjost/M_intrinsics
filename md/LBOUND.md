@@ -15,6 +15,16 @@
      integer,intent(in),optional :: dim
      integer,intent(in),optional :: kind
 ```
+- **array** Shall be an array, of any type.
+- **dim** : (Optional) Shall be a scalar _integer_.
+- **kind** An _integer_ initialization expression indicating the kind
+  parameter of the result.
+- The return value is of type _integer_ and of kind **kind**. If **kind**
+  is absent, the return value is of default integer kind.
+
+  If **dim** is absent, the result is an array of the upper bounds of
+  **array**.
+
 ### **Description**
 
 Returns the lower bounds of an array, or a single lower bound along the

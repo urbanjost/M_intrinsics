@@ -8,13 +8,14 @@
 ```fortran
     result = precision(x)
 ```
-The return value is of type _integer_ and of the default integer kind.
 ```fortran
     integer function precision(x)
 
     TYPE(kind=KIND),intent(in) :: x
 ```
 where **TYPE** may be _real_ or _complex_
+
+The return value is of type _integer_ and of the default integer kind.
 
 ### **Description**
 

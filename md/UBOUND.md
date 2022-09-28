@@ -9,7 +9,22 @@
     result = ubound(array [,dim] [,kind] )
 ```
 ```fortran
+     elemental TYPE(kind=KIND) function ubound(array,dim,kind)
+
+     TYPE(kind=KIND),intent(in)  :: array
+     integer(kind=KINDD),intent(in),optional :: dim
+     integer(kind=KINDK),intent(in),optional :: kind
 ```
+- **array** Shall be an array, of any type.
+- **dim** : (Optional) Shall be a scalar _integer_.
+- **kind** An _integer_ initialization expression indicating the kind
+  parameter of the result.
+- The return value is of type _integer_ and of kind **kind**. If **kind**
+  is absent, the return value is of default integer kind.
+
+  If **dim** is absent, the result is an array of the upper bounds of
+  **array**.
+
 ### **Description**
 
 Returns the upper bounds of an array, or a single upper bound along the
@@ -18,14 +33,14 @@ Returns the upper bounds of an array, or a single upper bound along the
 ### **Options**
 
 - **array**
-  : Shall be an array, of any type.
+  : The array to determine the upper bounds of
 
 - **dim**
-  : (Optional) Shall be a scalar _integer_.
+  : a specific rank to determine the bounds of
 
 - **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
-  parameter of the result.
+  : indicates the kind parameter of the result. If absent, an _integer_
+  of the default kind is returned.
 
 ### **Result**
 

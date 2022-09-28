@@ -4186,7 +4186,7 @@ the value of btest (2, a)
 <p><strong>dot_product</strong>(3) - [TRANSFORMATIONAL] Dot product function</p>
 <h3 id="synopsis-71"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb269"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb269-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">dot_product</span>(vector_a, vector_b)</a></code></pre></div>
-<div class="sourceCode" id="cb270"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb270-1" title="1">    <span class="kw">function</span> <span class="fu">dot_product</span>(vector_a, vector_b)</a>
+<div class="sourceCode" id="cb270"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb270-1" title="1">    <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="fu">dot_product</span>(vector_a, vector_b)</a>
 <a class="sourceLine" id="cb270-2" title="2"></a>
 <a class="sourceLine" id="cb270-3" title="3">    <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> vector_a(:)</a>
 <a class="sourceLine" id="cb270-4" title="4">    <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> vector_b(:)</a></code></pre></div>
@@ -4194,11 +4194,11 @@ the value of btest (2, a)
 <h3 id="description-70"><strong>Description</strong></h3>
 <p><strong>dot_product(vector_a, vector_b)</strong> computes the dot product multiplication of two vectors <strong>vector_a</strong> and <strong>vector_b</strong>.</p>
 <p>If the vectors are integer or real, the result is</p>
-<pre><code> **sum(vector_a\*vector_b)**.</code></pre>
+<div class="sourceCode" id="cb271"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb271-1" title="1">     <span class="fu">sum</span>(vector_a<span class="kw">*</span>vector_b)</a></code></pre></div>
 <p>If the vectors are complex, the result is</p>
-<pre><code> **sum(conjg(vector_a)\*vector_b)**.</code></pre>
+<div class="sourceCode" id="cb272"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb272-1" title="1">     <span class="fu">sum</span>(<span class="bu">conjg</span>(vector_a)<span class="kw">*</span>vector_b)<span class="kw">**</span></a></code></pre></div>
 <p>If the vectors are logical, the result is</p>
-<pre><code> **any(vector_a .and. vector_b)**.</code></pre>
+<div class="sourceCode" id="cb273"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb273-1" title="1">     <span class="fu">any</span>(vector_a <span class="op">.and.</span> vector_b)</a></code></pre></div>
 <h3 id="options-69"><strong>Options</strong></h3>
 <ul>
 <li><dl>
@@ -4208,7 +4208,7 @@ the value of btest (2, a)
 </dl></li>
 <li><dl>
 <dt><strong>vector_b</strong></dt>
-<dd>The type shall be numeric if vectora is of numeric type or _logical if vectora is of type _logical. vector_b shall be a rank-one array.
+<dd>The type shall be numeric if vector_a is of numeric type or logical if vector_a is of type logical. vector_b shall be a rank-one array.
 </dd>
 </dl></li>
 </ul>
@@ -4808,7 +4808,8 @@ $$</span><br /></p>
 <div class="sourceCode" id="cb317"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb317-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> erf(x)</a>
 <a class="sourceLine" id="cb317-2" title="2"></a>
 <a class="sourceLine" id="cb317-3" title="3"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
-<p>The result is of the same type and kind as <strong>x</strong>. ### <strong>Description</strong></p>
+<p>The result is of the same type and kind as <strong>x</strong>.</p>
+<h3 id="description-78"><strong>Description</strong></h3>
 <p><strong>erf</strong>(x) computes the error function of <strong>x</strong>, defined as</p>
 <p><br /><span class="math display">$$
 \text{erf}(x) = \frac{2}{\sqrt{\pi}} \int_0^x e^{__-t__^2} dt.
@@ -4851,7 +4852,7 @@ $$</span><br /></p>
 <h3 id="synopsis-80"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb320"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb320-1" title="1">    <span class="kw">call</span> event_query(event, <span class="fu">count</span> <span class="kw">[</span>,stat<span class="kw">]</span> )</a></code></pre></div>
 <div class="sourceCode" id="cb321"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
-<h3 id="description-78"><strong>Description</strong></h3>
+<h3 id="description-79"><strong>Description</strong></h3>
 <p><strong>event_query</strong> assigns the number of events to <strong>count</strong> which have been posted to the <strong>event</strong> variable and not yet been removed by calling <strong>event_wait</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value and <strong>count</strong> is assigned the value <strong>-1</strong>.</p>
 <h3 id="options-78"><strong>Options</strong></h3>
 <ul>
@@ -4903,7 +4904,7 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb324-5" title="5">     <span class="dt">integer</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span> <span class="dt">::</span> exitstat</a>
 <a class="sourceLine" id="cb324-6" title="6">     <span class="dt">integer</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span> <span class="dt">::</span> cmdstat</a>
 <a class="sourceLine" id="cb324-7" title="7">     <span class="dt">character(len=*)</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span> <span class="dt">::</span> cmdmsg</a></code></pre></div>
-<h3 id="description-79"><strong>Description</strong></h3>
+<h3 id="description-80"><strong>Description</strong></h3>
 <p>The <strong>command</strong> argument is passed to the shell and executed. (The shell is generally <strong>sh</strong>(1) on Unix systems, and cmd.exe on Windows.) If <strong>wait</strong> is present and has the value .false., the execution of the command is asynchronous if the system supports it; otherwise, the command is executed synchronously.</p>
 <p>The three last arguments allow the user to get status information. After synchronous execution, <strong>exitstat</strong> contains the integer exit code of the command, as returned by <strong>system</strong>. <strong>cmdstat</strong> is set to zero if the command line was executed (whatever its exit status was). <strong>cmdmsg</strong> is assigned an error message if an error has occurred.</p>
 <p>Note that the system call need not be thread-safe. It is the responsibility of the user to ensure that the system is not called concurrently if required.</p>
@@ -4965,7 +4966,7 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb327-2" title="2"></a>
 <a class="sourceLine" id="cb327-3" title="3">    <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p><strong>x</strong> may be real or complex. The return value has the same type and kind as <strong>x</strong>.</p>
-<h3 id="description-80"><strong>Description</strong></h3>
+<h3 id="description-81"><strong>Description</strong></h3>
 <p><strong>exp</strong>(3) returns the value of e (the base of natural logarithms) raised to the power of <strong>x</strong>.</p>
 <p>“e” is also known as Euler’s constant.</p>
 <p>If <strong>x</strong> is of type complex, its imaginary part is regarded as a value in radians such that (see Euler’s formula):</p>
@@ -5044,7 +5045,7 @@ then
 <div class="sourceCode" id="cb332"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb332-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> <span class="bu">exponent</span>(x)</a>
 <a class="sourceLine" id="cb332-2" title="2"></a>
 <a class="sourceLine" id="cb332-3" title="3"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
-<h3 id="description-81"><strong>Description</strong></h3>
+<h3 id="description-82"><strong>Description</strong></h3>
 <p><strong>exponent</strong>(x) returns the value of the exponent part of <strong>x</strong>. If <strong>x</strong> is zero the value returned is zero.</p>
 <h3 id="options-81"><strong>Options</strong></h3>
 <ul>
@@ -5082,7 +5083,7 @@ then
 <h3 id="synopsis-84"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb335"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb335-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> extends_type_of(a, mold)</a></code></pre></div>
 <div class="sourceCode" id="cb336"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
-<h3 id="description-82"><strong>Description</strong></h3>
+<h3 id="description-83"><strong>Description</strong></h3>
 <p><strong>extends_type_of</strong>(3) is .true. if and only if the dynamic type of <strong>a</strong> is an extension of the dynamic type of <strong>mold</strong>.</p>
 <h3 id="options-82"><strong>Options</strong></h3>
 <ul>
@@ -5137,7 +5138,7 @@ The dynamic type of a disassociated pointer or unallocated allocatable variable 
 <p>or</p>
 <div class="sourceCode" id="cb339"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb339-1" title="1">    findloc(array, value, mask, <span class="fu">kind</span>, back)</a></code></pre></div>
 <div class="sourceCode" id="cb340"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
-<h3 id="description-83"><strong>Description</strong></h3>
+<h3 id="description-84"><strong>Description</strong></h3>
 <p>Location of the first element of <strong>array</strong> identified by <strong>mask</strong> along dimension <strong>dim</strong> having a value equal to <strong>value</strong>.</p>
 <p>If both <strong>array</strong> and <strong>value</strong> are of type logical, the comparison is performed with the <strong>.eqv.</strong> operator; otherwise, the comparison is performed with the == operator. If the value of the comparison is .true., that element of <strong>array</strong> matches <strong>value</strong>.</p>
 <p>If only one element matches <strong>value</strong>, that element’s subscripts are returned. Otherwise, if more than one element matches <strong>value</strong> and <strong>back</strong> is absent or present with the value .false., the element whose subscripts are returned is the first such element, taken in array element order. If <strong>back</strong> is present with the value .true., the element whose subscripts are returned is the last such element, taken in array element order.</p>
@@ -5244,7 +5245,7 @@ The dynamic type of a disassociated pointer or unallocated allocatable variable 
 <a class="sourceLine" id="cb356-3" title="3"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> a</a>
 <a class="sourceLine" id="cb356-4" title="4">     <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 <p>where KIND is any valid value for type integer.</p>
-<h3 id="description-84"><strong>Description</strong></h3>
+<h3 id="description-85"><strong>Description</strong></h3>
 <p><strong>floor(a)</strong> returns the greatest integer less than or equal to <strong>a</strong>. That is, it picks the whole number at or to the left of the value on the scale <strong>-huge(int(a,kind=KIND))-1</strong> to <strong>huge(int(a),kind=KIND)</strong>.</p>
 <h3 id="options-84"><strong>Options</strong></h3>
 <ul>
@@ -5347,7 +5348,7 @@ The dynamic type of a disassociated pointer or unallocated allocatable variable 
 <a class="sourceLine" id="cb364-2" title="2"></a>
 <a class="sourceLine" id="cb364-3" title="3">     <span class="dt">type(real,kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p>The return value is real with the kind as <strong>x</strong>.</p>
-<h3 id="description-85"><strong>Description</strong></h3>
+<h3 id="description-86"><strong>Description</strong></h3>
 <p><strong>gamma(x)</strong> computes Gamma of <strong>x</strong>. For positive whole number values of <strong>n</strong> the Gamma function can be used to calculate factorials, as <strong>(n-1)! == gamma(real(n))</strong>. That is</p>
 <pre class="text"><code>n! == gamma(real(n+1))</code></pre>
 <p><br /><span class="math display">$$
@@ -5461,7 +5462,7 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb369-4" title="4">    <span class="dt">character(len=*)</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span> <span class="dt">::</span> value</a>
 <a class="sourceLine" id="cb369-5" title="5">    <span class="dt">integer</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span>          <span class="dt">::</span> length</a>
 <a class="sourceLine" id="cb369-6" title="6">    <span class="dt">integer</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span>          <span class="dt">::</span> status</a></code></pre></div>
-<h3 id="description-86"><strong>Description</strong></h3>
+<h3 id="description-87"><strong>Description</strong></h3>
 <p>Retrieve the <strong>number</strong>-th argument that was passed on the command line when the containing program was invoked.</p>
 <p>There is not anything specifically stated about what an argument is but in practice the arguments are split on whitespace unless the arguments are quoted and IFS values (Internal Field Separators) used by common shells are ignored.</p>
 <h3 id="options-87"><strong>Options</strong></h3>
@@ -5566,7 +5567,7 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb373-3" title="3">     <span class="dt">character(len=*)</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span> <span class="dt">::</span> command</a>
 <a class="sourceLine" id="cb373-4" title="4">     <span class="dt">integer</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span> <span class="dt">::</span> length</a>
 <a class="sourceLine" id="cb373-5" title="5">     <span class="dt">integer</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span> <span class="dt">::</span> status</a></code></pre></div>
-<h3 id="description-87"><strong>Description</strong></h3>
+<h3 id="description-88"><strong>Description</strong></h3>
 <p>Retrieve the entire command line that was used to invoke the program.</p>
 <p>Note that what is typed on the command line is often processed by a shell. The shell typically processes special characters and white space before passing it to the program. The processing can typically be turned off by turning off globbing or quoting the command line arguments and/or changing the default field separators, but this should rarely be necessary.</p>
 <h3 id="result-69"><strong>Result</strong></h3>
@@ -5634,7 +5635,7 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb377-6" title="6">     <span class="dt">integer</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span> <span class="dt">::</span> length</a>
 <a class="sourceLine" id="cb377-7" title="7">     <span class="dt">integer</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span> <span class="dt">::</span> status</a>
 <a class="sourceLine" id="cb377-8" title="8">     <span class="dt">logical</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span> <span class="dt">::</span> trim_name</a></code></pre></div>
-<h3 id="description-88"><strong>Description</strong></h3>
+<h3 id="description-89"><strong>Description</strong></h3>
 <p>Get the <strong>value</strong> of the environmental variable <strong>name</strong>.</p>
 <p>Note that <strong>get_environment_variable</strong>(3) need not be thread-safe. It is the responsibility of the user to ensure that the environment is not being updated concurrently.</p>
 <h3 id="options-88"><strong>Options</strong></h3>
@@ -5738,7 +5739,7 @@ Shall be a scalar of type character and of default kind.</li>
 <a class="sourceLine" id="cb381-2" title="2"></a>
 <a class="sourceLine" id="cb381-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p>where <strong>TYPE</strong> may be real or integer and <strong>KIND</strong> is any supported associated kind.</p>
-<h3 id="description-89"><strong>Description</strong></h3>
+<h3 id="description-90"><strong>Description</strong></h3>
 <p><strong>huge(x)</strong> returns the largest number that is not an infinity for the kind and type of <strong>x</strong>.</p>
 <h3 id="options-89"><strong>Options</strong></h3>
 <ul>
@@ -5811,7 +5812,7 @@ Shall be a scalar of type character and of default kind.</li>
 <a class="sourceLine" id="cb385-3" title="3"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
 <a class="sourceLine" id="cb385-4" title="4"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> y</a></code></pre></div>
 <p>where <strong>x,y</strong> and the result shall all be of the same <strong>kind</strong>.</p>
-<h3 id="description-90"><strong>Description</strong></h3>
+<h3 id="description-91"><strong>Description</strong></h3>
 <p><strong>hypot(x,y)</strong> is referred to as the Euclidean distance function. It is equal to <span class="math inline">$\sqrt{x^2+y^2}$</span>, without undue underflow or overflow.</p>
 <p>In mathematics, the Euclidean distance between two points in Euclidean space is the length of a line segment between two points.</p>
 <p><strong>hypot(x,y)</strong> returns the distance between the point <strong>&lt;x,y&gt;</strong> and the origin.</p>
@@ -5891,7 +5892,7 @@ Shall be a scalar of type character and of default kind.</li>
 <a class="sourceLine" id="cb389-4" title="4">     <span class="dt">integer(kind=KINDK,intent(in),optional :: kind</span></a></code></pre></div>
 <p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</p>
 <p><strong>kind</strong> may be of any integer kind.</p>
-<h3 id="description-91"><strong>Description</strong></h3>
+<h3 id="description-92"><strong>Description</strong></h3>
 <p><strong>iachar</strong>(c) returns the code for the ASCII character in the first character position of C.</p>
 <h3 id="options-91"><strong>Options</strong></h3>
 <ul>
@@ -5977,7 +5978,7 @@ Shall be a scalar of type character and of default kind.</li>
 <a class="sourceLine" id="cb395-4" title="4">    <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb395-5" title="5">    <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p><strong>array</strong> must be an array. The result will by of the same type and kind as <strong>array</strong>. <strong>mask</strong> is a logical array that conforms to <strong>array</strong> of any logical kind. <strong>dim</strong> may be of any integer kind.</p>
-<h3 id="description-92"><strong>Description</strong></h3>
+<h3 id="description-93"><strong>Description</strong></h3>
 <p>Reduces with bitwise and the elements of <strong>array</strong> along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
 <h3 id="options-92"><strong>Options</strong></h3>
 <ul>
@@ -6032,7 +6033,7 @@ Shall be a scalar of type character and of default kind.</li>
 <a class="sourceLine" id="cb399-2" title="2"></a>
 <a class="sourceLine" id="cb399-3" title="3">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
 <a class="sourceLine" id="cb399-4" title="4">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a></code></pre></div>
-<h3 id="description-93"><strong>Description</strong></h3>
+<h3 id="description-94"><strong>Description</strong></h3>
 <p>Bitwise logical <strong>and</strong>.</p>
 <h3 id="options-93"><strong>Options</strong></h3>
 <ul>
@@ -6083,7 +6084,7 @@ Shall be a scalar of type character and of default kind.</li>
 <a class="sourceLine" id="cb405-4" title="4">    <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb405-5" title="5">    <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p><strong>array</strong> must be an array. The result will by of the same type and kind as <strong>array</strong>. <strong>mask</strong> is a logical array that conforms to <strong>array</strong> of any logical kind. <strong>dim</strong> may be of any integer kind.</p>
-<h3 id="description-94"><strong>Description</strong></h3>
+<h3 id="description-95"><strong>Description</strong></h3>
 <p>Reduces with bitwise or (inclusive or) the elements of <strong>array</strong> along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
 <h3 id="options-94"><strong>Options</strong></h3>
 <ul>
@@ -6168,7 +6169,7 @@ Shall be a scalar of type character and of default kind.</li>
 <a class="sourceLine" id="cb411-5" title="5">     <span class="dt">integer(kind=KINDLEN)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> <span class="fu">len</span></a></code></pre></div>
 <p>The return value is of the same kind as <strong>i</strong>. Otherwise, any integer kinds are allowed.</p>
 <div class="sourceCode" id="cb412"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
-<h3 id="description-95"><strong>Description</strong></h3>
+<h3 id="description-96"><strong>Description</strong></h3>
 <p><strong>ibits</strong> extracts a field of length <strong>len</strong> from <strong>i</strong>, starting from bit position <strong>pos</strong> and extending left for <strong>len</strong> bits. The result is right-justified and the remaining bits are zeroed. The value of pos+len must be less than or equal to the value <strong>bit_size(i)</strong>.</p>
 <h3 id="options-96"><strong>Options</strong></h3>
 <ul>
@@ -6207,7 +6208,7 @@ Shall be a scalar of type character and of default kind.</li>
 <a class="sourceLine" id="cb414-3" title="3">     <span class="dt">integer(kind=KINDI)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
 <a class="sourceLine" id="cb414-4" title="4">     <span class="dt">integer(kind=KINDPOS)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> pos</a></code></pre></div>
 <p>The return value is of the same kind as <strong>i</strong>. Otherwise, any integer kinds are allowed.</p>
-<h3 id="description-96"><strong>Description</strong></h3>
+<h3 id="description-97"><strong>Description</strong></h3>
 <p><strong>ibset</strong> returns the value of <strong>i</strong> with the bit at position <strong>pos</strong> set to one.</p>
 <h3 id="options-97"><strong>Options</strong></h3>
 <ul>
@@ -6240,7 +6241,7 @@ Shall be a scalar of type character and of default kind.</li>
 <a class="sourceLine" id="cb416-2" title="2"></a>
 <a class="sourceLine" id="cb416-3" title="3">     <span class="dt">character(len=1)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> c</a>
 <a class="sourceLine" id="cb416-4" title="4">     <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
-<h3 id="description-97"><strong>Description</strong></h3>
+<h3 id="description-98"><strong>Description</strong></h3>
 <p><strong>ichar(c)</strong> returns the code for the character in the system’s native character set. The correspondence between characters and their codes is not necessarily the same across different Fortran implementations. For example, a platform using EBCDIC would return different values than an ASCII platform.</p>
 <p>See <strong>iachar</strong>(3) for specifically working with the ASCII character set.</p>
 <h3 id="options-98"><strong>Options</strong></h3>
@@ -6328,7 +6329,7 @@ end program read_val</code></pre>
 <a class="sourceLine" id="cb421-3" title="3">     <span class="dt">integer(kind=KINDI)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
 <a class="sourceLine" id="cb421-4" title="4">     <span class="dt">integer(kind=KINDJ)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a></code></pre></div>
 <p>The return value is of the same kind as the larger kind of <strong>i</strong> and <strong>j</strong>. Otherwise, any integer kinds are allowed.</p>
-<h3 id="description-98"><strong>Description</strong></h3>
+<h3 id="description-99"><strong>Description</strong></h3>
 <p><strong>ieor</strong> returns the bitwise Boolean exclusive-<strong>or</strong> of <strong>i</strong> and <strong>j</strong>.</p>
 <h3 id="options-99"><strong>Options</strong></h3>
 <ul>
@@ -6358,7 +6359,7 @@ end program read_val</code></pre>
 <h3 id="synopsis-103"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb422"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb422-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> image_index(coarray, sub)</a></code></pre></div>
 <div class="sourceCode" id="cb423"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
-<h3 id="description-99"><strong>Description</strong></h3>
+<h3 id="description-100"><strong>Description</strong></h3>
 <p>Returns the image index belonging to a cosubscript.</p>
 <h3 id="options-100"><strong>Options</strong></h3>
 <ul>
@@ -6401,7 +6402,7 @@ end program read_val</code></pre>
 <a class="sourceLine" id="cb426-4" title="4"> <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> substring</a>
 <a class="sourceLine" id="cb426-5" title="5"> <span class="dt">logical</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> back</a>
 <a class="sourceLine" id="cb426-6" title="6"> <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
-<h3 id="description-100"><strong>Description</strong></h3>
+<h3 id="description-101"><strong>Description</strong></h3>
 <p>Returns the position of the start of the leftmost or rightmost occurrence of string <strong>substring</strong> in <strong>string</strong>, counting from one. If <strong>substring</strong> is not present in <strong>string</strong>, zero is returned.</p>
 <h3 id="options-101"><strong>Options</strong></h3>
 <ul>
@@ -6470,7 +6471,7 @@ end program read_val</code></pre>
 <a class="sourceLine" id="cb430-2" title="2"></a>
 <a class="sourceLine" id="cb430-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> a</a>
 <a class="sourceLine" id="cb430-4" title="4">     <span class="dt">integer</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
-<h3 id="description-101"><strong>Description</strong></h3>
+<h3 id="description-102"><strong>Description</strong></h3>
 <p>Convert to integer type by truncating towards zero.</p>
 <h3 id="options-102"><strong>Options</strong></h3>
 <ul>
@@ -6569,7 +6570,7 @@ If not present the returned type is that of default integer type.</li>
 <a class="sourceLine" id="cb434-3" title="3">    <span class="dt">integer(kind=KINDI)</span> ,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
 <a class="sourceLine" id="cb434-4" title="4">    <span class="dt">integer(kind=KINDJ)</span> ,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a></code></pre></div>
 <p>The return value is of the same kind as the larger kind of <strong>i</strong> and <strong>j</strong>. Otherwise, any integer kinds are allowed.</p>
-<h3 id="description-102"><strong>Description</strong></h3>
+<h3 id="description-103"><strong>Description</strong></h3>
 <p><strong>ior</strong> returns the bit-wise Boolean inclusive-or of <strong>i</strong> and <strong>j</strong>.</p>
 <h3 id="options-103"><strong>Options</strong></h3>
 <ul>
@@ -6624,7 +6625,7 @@ If not present the returned type is that of default integer type.</li>
 <a class="sourceLine" id="cb440-3" title="3">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>          <span class="dt">::</span> array(..)</a>
 <a class="sourceLine" id="cb440-4" title="4">     <span class="dt">logical(kind=KIND)</span>,<span class="dt">intent(in)</span>          <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb440-5" title="5">     <span class="dt">logical(kind=KIND)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
-<h3 id="description-103"><strong>Description</strong></h3>
+<h3 id="description-104"><strong>Description</strong></h3>
 <p>Reduces with bitwise xor (exclusive or) the elements of <strong>array</strong> along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
 <h3 id="options-104"><strong>Options</strong></h3>
 <ul>
@@ -6671,7 +6672,7 @@ If not present the returned type is that of default integer type.</li>
 <h3 id="synopsis-108"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb443"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb443-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> is_contiguous(a)</a></code></pre></div>
 <div class="sourceCode" id="cb444"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
-<h3 id="description-104"><strong>Description</strong></h3>
+<h3 id="description-105"><strong>Description</strong></h3>
 <p>True if and only if an object is contiguous.</p>
 <p>An object is contiguous if it is</p>
 <ul>
@@ -6748,7 +6749,7 @@ If not present the returned type is that of default integer type.</li>
 <a class="sourceLine" id="cb448-4" title="4">      <span class="dt">integer(kind=SHIFTKIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> shift</a>
 <a class="sourceLine" id="cb448-5" title="5">      <span class="dt">integer(kind=SIZEKIND)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span>  <span class="dt">::</span> <span class="fu">size</span></a></code></pre></div>
 <p>where KIND, SHIFTKIND, and SIZEKIND may be any supported integer kind, but where the kind for <strong>i</strong> dictates the kind of the returned value.</p>
-<h3 id="description-105"><strong>Description</strong></h3>
+<h3 id="description-106"><strong>Description</strong></h3>
 <p><strong>ishftc</strong>(3) circularly shifts just the specified rightmost bits of an integer.</p>
 <p><strong>ishftc</strong>(3) returns a value corresponding to <strong>i</strong> with the rightmost <strong>size</strong> bits shifted circularly <strong>shift</strong> places; that is, bits shifted out one end of the section are shifted into the opposite end of the section.</p>
 <p>A value of <strong>shift</strong> greater than zero corresponds to a left shift, a value of zero corresponds to no shift, and a value less than zero corresponds to a right shift.</p>
@@ -6820,7 +6821,7 @@ If not present the returned type is that of default integer type.</li>
 <a class="sourceLine" id="cb452-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
 <a class="sourceLine" id="cb452-4" title="4">      <span class="dt">integer(kind=SHIFTKIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> shift</a></code></pre></div>
 <p>where KIND and SHIFTKIND may be any supported integer kind, but where the kind for <strong>i</strong> dictates the kind of the returned value.</p>
-<h3 id="description-106"><strong>Description</strong></h3>
+<h3 id="description-107"><strong>Description</strong></h3>
 <p><strong>ishft</strong>(3) returns a value corresponding to <strong>i</strong> with all of the bits shifted <strong>shift</strong> places left or right as specified by the sign and magnitude of <strong>shift</strong>.</p>
 <p>Bits shifted out from the left end or right end are lost; zeros are shifted in from the opposite end.</p>
 <h3 id="options-107"><strong>Options</strong></h3>
@@ -6877,7 +6878,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <div class="sourceCode" id="cb456"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb456-1" title="1">     <span class="kw">elemental</span> <span class="dt">logical</span> <span class="kw">function</span> is_iostat_<span class="kw">end</span>(iostat)</a>
 <a class="sourceLine" id="cb456-2" title="2"></a>
 <a class="sourceLine" id="cb456-3" title="3">      <span class="dt">integer</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> iostat</a></code></pre></div>
-<h3 id="description-107"><strong>Description</strong></h3>
+<h3 id="description-108"><strong>Description</strong></h3>
 <p>is_iostat_end(3) tests whether a variable (assumed returned as a status from an I/O statement) has the “end of file” I/O status value.</p>
 <p>The function is equivalent to comparing the variable with the <strong>iostat_end</strong> parameter of the intrinsic module <strong>iso_fortran_env</strong>.</p>
 <h3 id="options-108"><strong>Options</strong></h3>
@@ -6923,7 +6924,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <div class="sourceCode" id="cb459"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb459-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> is_iostat_eor(i)</a>
 <a class="sourceLine" id="cb459-2" title="2"></a>
 <a class="sourceLine" id="cb459-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> iostat</a></code></pre></div>
-<h3 id="description-108"><strong>Description</strong></h3>
+<h3 id="description-109"><strong>Description</strong></h3>
 <p><strong>is_iostat_eor</strong> tests whether a variable has the value of the I/O status “end of record”. The function is equivalent to comparing the variable with the <strong>iostat_eor</strong> parameter of the intrinsic module <strong>iso_fortran_env</strong>.</p>
 <h3 id="options-109"><strong>Options</strong></h3>
 <ul>
@@ -6972,7 +6973,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <a class="sourceLine" id="cb462-3" title="3">      <span class="dt">type(TYPE,kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x(..)</a></code></pre></div>
 <p><strong>TYPE</strong> may logical, integer, real, complex or character.</p>
 <p><strong>x</strong> may be of any kind supported by the type, and may be scalar or an array.</p>
-<h3 id="description-109"><strong>Description</strong></h3>
+<h3 id="description-110"><strong>Description</strong></h3>
 <p><strong>kind(x)</strong> returns the kind value of the entity <strong>x</strong>.</p>
 <h3 id="options-110"><strong>Options</strong></h3>
 <ul>
@@ -7014,7 +7015,14 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <a class="sourceLine" id="cb466-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> array</a>
 <a class="sourceLine" id="cb466-4" title="4">     <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb466-5" title="5">     <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
-<h3 id="description-110"><strong>Description</strong></h3>
+<ul>
+<li><strong>array</strong> Shall be an array, of any type.</li>
+<li><strong>dim</strong> : (Optional) Shall be a scalar integer.</li>
+<li><strong>kind</strong> An integer initialization expression indicating the kind parameter of the result.</li>
+<li><p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</p>
+<p>If <strong>dim</strong> is absent, the result is an array of the upper bounds of <strong>array</strong>.</p></li>
+</ul>
+<h3 id="description-111"><strong>Description</strong></h3>
 <p>Returns the lower bounds of an array, or a single lower bound along the <strong>dim</strong> dimension.</p>
 <h3 id="options-111"><strong>Options</strong></h3>
 <ul>
@@ -7105,7 +7113,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <div class="sourceCode" id="cb470"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb470-1" title="1">    <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> leadz(i)</a>
 <a class="sourceLine" id="cb470-2" title="2"></a>
 <a class="sourceLine" id="cb470-3" title="3">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
-<h3 id="description-111"><strong>Description</strong></h3>
+<h3 id="description-112"><strong>Description</strong></h3>
 <p><strong>leadz</strong> returns the number of leading zero bits of an integer.</p>
 <h3 id="options-112"><strong>Options</strong></h3>
 <ul>
@@ -7166,7 +7174,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <a class="sourceLine" id="cb474-3" title="3">    <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string</a>
 <a class="sourceLine" id="cb474-4" title="4">    <span class="dt">integer</span>,<span class="dt">optional</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 <p>where the returned value is the same integer kind as the <strong>kind</strong> argument, or of the default integer kind if <strong>kind</strong> is not specified.</p>
-<h3 id="description-112"><strong>Description</strong></h3>
+<h3 id="description-113"><strong>Description</strong></h3>
 <p><strong>len(3)</strong> Returns the length of a character string.</p>
 <p>If <strong>string</strong> is an array, the length of an element of <strong>string</strong> is returned, as all elements of an array are the same length.</p>
 <p>Note that <strong>string</strong> need not be defined when this intrinsic is invoked, as only the length (not the content) of <strong>string</strong> is needed.</p>
@@ -7277,7 +7285,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <a class="sourceLine" id="cb478-3" title="3">     <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string</a>
 <a class="sourceLine" id="cb478-4" title="4">     <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 <p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</p>
-<h3 id="description-113"><strong>Description</strong></h3>
+<h3 id="description-114"><strong>Description</strong></h3>
 <p>Returns the length of a character string, ignoring any trailing blanks.</p>
 <h3 id="options-114"><strong>Options</strong></h3>
 <ul>
@@ -7339,7 +7347,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <a class="sourceLine" id="cb482-2" title="2"></a>
 <a class="sourceLine" id="cb482-3" title="3">   <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string_a</a>
 <a class="sourceLine" id="cb482-4" title="4">   <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string_b</a></code></pre></div>
-<h3 id="description-114"><strong>Description</strong></h3>
+<h3 id="description-115"><strong>Description</strong></h3>
 <p>Determines whether one string is lexically greater than or equal to another string, where the two strings are interpreted as containing ASCII character codes. If the String <strong>a</strong> and String <strong>b</strong> are not the same length, the shorter is compared as if spaces were appended to it to form a value that has the same length as the longer.</p>
 <p>The lexical comparison intrinsics <strong>lge</strong>(3), <strong>lgt</strong>(3), <strong>lle</strong>(3), and <strong>llt</strong>(3) differ from the corresponding intrinsic operators .ge., .gt., .le., and .lt., in that the latter use the processor’s character ordering (which is not ASCII on some targets), whereas the former always use the ASCII ordering.</p>
 <h3 id="options-115"><strong>Options</strong></h3>
@@ -7409,7 +7417,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <a class="sourceLine" id="cb486-2" title="2"></a>
 <a class="sourceLine" id="cb486-3" title="3">      <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string_a</a>
 <a class="sourceLine" id="cb486-4" title="4">      <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string_b</a></code></pre></div>
-<h3 id="description-115"><strong>Description</strong></h3>
+<h3 id="description-116"><strong>Description</strong></h3>
 <p>Determines whether one string is lexically greater than another string, where the two strings are interpreted as containing ASCII character codes. If the String <strong>a</strong> and String <strong>b</strong> are not the same length, the shorter is compared as if spaces were appended to it to form a value that has the same length as the longer.</p>
 <p>In general, the lexical comparison intrinsics <strong>lge</strong>, <strong>lgt</strong>, <strong>lle</strong>, and <strong>llt</strong> differ from the corresponding intrinsic operators .ge., .gt., .le., and .lt., in that the latter use the processor’s character ordering (which is not ASCII on some targets), whereas the former always use the ASCII ordering.</p>
 <h3 id="options-116"><strong>Options</strong></h3>
@@ -7479,7 +7487,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <a class="sourceLine" id="cb490-2" title="2"></a>
 <a class="sourceLine" id="cb490-3" title="3">      <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string_a</a>
 <a class="sourceLine" id="cb490-4" title="4">      <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string_b</a></code></pre></div>
-<h3 id="description-116"><strong>Description</strong></h3>
+<h3 id="description-117"><strong>Description</strong></h3>
 <p>Determines whether one string is lexically less than or equal to another string, where the two strings are interpreted as containing ASCII character codes. if the <strong>string_a</strong> and <strong>string_b</strong> are not the same length, the shorter is compared as if spaces were appended to it to form a value that has the same length as the longer. Leading spaces are significant.</p>
 <p>In general, the lexical comparison intrinsics <strong>lge</strong>, <strong>lgt</strong>, <strong>lle</strong>, and <strong>llt</strong> differ from the corresponding intrinsic operators .ge., .gt., .le., and .lt., in that the latter use the processor’s character ordering (which is not ASCII on some targets), whereas the former always use the ASCII ordering.</p>
 <h3 id="options-117"><strong>Options</strong></h3>
@@ -7552,7 +7560,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 <a class="sourceLine" id="cb494-2" title="2"></a>
 <a class="sourceLine" id="cb494-3" title="3">       <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string_a</a>
 <a class="sourceLine" id="cb494-4" title="4">       <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string_b</a></code></pre></div>
-<h3 id="description-117"><strong>Description</strong></h3>
+<h3 id="description-118"><strong>Description</strong></h3>
 <p>Determines whether one string is lexically less than another string, where the two strings are interpreted as containing ASCII character codes. If the <strong>string_a</strong> and <strong>string_b</strong> are not the same length, the shorter is compared as if spaces were appended to it to form a value that has the same length as the longer.</p>
 <p>In general, the lexical comparison intrinsics <strong>lge</strong>, <strong>lgt</strong>, <strong>lle</strong>, and <strong>llt</strong> differ from the corresponding intrinsic operators .ge., .gt., .le., and .lt., in that the latter use the processor’s character ordering (which is not ASCII on some targets), whereas the former always use the ASCII ordering.</p>
 <h3 id="options-118"><strong>Options</strong></h3>
@@ -7618,7 +7626,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 <div class="sourceCode" id="cb498"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb498-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> <span class="bu">log10</span>(x)</a>
 <a class="sourceLine" id="cb498-2" title="2"></a>
 <a class="sourceLine" id="cb498-3" title="3"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
-<h3 id="description-118"><strong>Description</strong></h3>
+<h3 id="description-119"><strong>Description</strong></h3>
 <p><strong>log10(x)</strong> computes the base 10 logarithm of <strong>x</strong>. This is generally called the “common logarithm”.</p>
 <h3 id="options-119"><strong>Options</strong></h3>
 <ul>
@@ -7664,7 +7672,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 <a class="sourceLine" id="cb502-2" title="2"></a>
 <a class="sourceLine" id="cb502-3" title="3"><span class="dt">      real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p><strong>x</strong> may be any real type; and the return value is of same type and kind as <strong>x</strong>.</p>
-<h3 id="description-119"><strong>Description</strong></h3>
+<h3 id="description-120"><strong>Description</strong></h3>
 <p><strong>log_gamma(x)</strong> computes the natural logarithm of the absolute value of the Gamma function.</p>
 <h3 id="options-120"><strong>Options</strong></h3>
 <ul>
@@ -7703,7 +7711,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 <a class="sourceLine" id="cb506-2" title="2"></a>
 <a class="sourceLine" id="cb506-3" title="3">     <span class="dt">logical(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> l</a>
 <a class="sourceLine" id="cb506-4" title="4">     <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
-<h3 id="description-120"><strong>Description</strong></h3>
+<h3 id="description-121"><strong>Description</strong></h3>
 <p>Converts one kind of logical variable to another.</p>
 <h3 id="options-121"><strong>Options</strong></h3>
 <ul>
@@ -7756,7 +7764,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 <a class="sourceLine" id="cb510-2" title="2"></a>
 <a class="sourceLine" id="cb510-3" title="3">    <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p>Where <strong>x</strong> may be any kind of real or complex value and the result is the same type and characteristics as <strong>x</strong>.</p>
-<h3 id="description-121"><strong>Description</strong></h3>
+<h3 id="description-122"><strong>Description</strong></h3>
 <p><strong>log(x)</strong> computes the natural logarithm of <strong>x</strong>, i.e. the logarithm to the base “e”.</p>
 <h3 id="options-122"><strong>Options</strong></h3>
 <ul>
@@ -7877,7 +7885,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 <a class="sourceLine" id="cb519-4" title="4">     <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 <p>The result is an integer. It is of the default kind if <strong>kind</strong> is not present, else it is the kind specified by <strong>kind</strong>.</p>
 <p><strong>kind</strong> and <strong>i</strong> may be of any kind.</p>
-<h3 id="description-122"><strong>Description</strong></h3>
+<h3 id="description-123"><strong>Description</strong></h3>
 <p>The result is an intger with its rightmost <strong>i</strong> bits set to 1, and the remaining bits set to 0.</p>
 <h3 id="options-124"><strong>Options</strong></h3>
 <ul>
@@ -7971,7 +7979,7 @@ end program demo_maskr</code></pre>
 <li>At least one argument must be rank two.</li>
 <li>If one argument is logical, both must be logical.</li>
 </ul>
-<h3 id="description-123"><strong>Description</strong></h3>
+<h3 id="description-124"><strong>Description</strong></h3>
 <p><strong>matmul</strong>(3) performs a matrix multiplication on numeric or logical arguments.</p>
 <h3 id="options-125"><strong>Options</strong></h3>
 <ul>
@@ -8154,7 +8162,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb529-2" title="2"></a>
 <a class="sourceLine" id="cb529-3" title="3"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span>   <span class="dt">::</span> x</a></code></pre></div>
 <p>where KIND is any real kind.</p>
-<h3 id="description-124"><strong>Description</strong></h3>
+<h3 id="description-125"><strong>Description</strong></h3>
 <p><strong>maxexponent(x)</strong> returns the maximum exponent in the model of the type of <strong>x</strong>.</p>
 <h3 id="options-126"><strong>Options</strong></h3>
 <ul>
@@ -8204,7 +8212,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb535-4" title="4">     <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb535-5" title="5">     <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p>where <strong>NUMERIC</strong> is any numeric type and kind.</p>
-<h3 id="description-125"><strong>Description</strong></h3>
+<h3 id="description-126"><strong>Description</strong></h3>
 <p>Determines the location of the element in the array with the maximum value, or, if the <strong>dim</strong> argument is supplied, determines the locations of the maximum element along each row of the array in the <strong>dim</strong> direction.</p>
 <p>If <strong>mask</strong> is present, only the elements for which <strong>mask</strong> is .true. are considered. If more than one element in the array has the maximum value, the location returned is that of the first such element in array element order.</p>
 <p>If the array has zero size, or all of the elements of <strong>mask</strong> are .false., then the result is an array of zeroes. Similarly, if <strong>dim</strong> is supplied and all of the elements of <strong>mask</strong> along a given row are zero, the result value for that row is zero.</p>
@@ -8287,7 +8295,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb539-7" title="7">                :</a>
 <a class="sourceLine" id="cb539-8" title="8">                :</a></code></pre></div>
 <p>Where <strong>TYPE</strong> may be integer or real</p>
-<h3 id="description-126"><strong>Description</strong></h3>
+<h3 id="description-127"><strong>Description</strong></h3>
 <p>Returns the argument with the largest (most positive) value.</p>
 <h3 id="options-128"><strong>Options</strong></h3>
 <ul>
@@ -8378,7 +8386,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb545-4" title="4">     <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb545-5" title="5">     <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p>where <strong>NUMERIC</strong> is any numeric type and kind.</p>
-<h3 id="description-127"><strong>Description</strong></h3>
+<h3 id="description-128"><strong>Description</strong></h3>
 <p>Determines the maximum value of the elements in an array value, or, if the <strong>dim</strong> argument is supplied, determines the maximum value along each row of the array in the <strong>dim</strong> direction. If <strong>mask</strong> is present, only the elements for which <strong>mask</strong> is .true. are considered. If the array has zero size, or all of the elements of <strong>mask</strong> are .false., then the result is the most negative number of the type and kind of <strong>array</strong> if <strong>array</strong> is numeric, or a string of nulls if <strong>array</strong> is of character type.</p>
 <h3 id="options-129"><strong>Options</strong></h3>
 <ul>
@@ -8437,7 +8445,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb549-2" title="2"></a>
 <a class="sourceLine" id="cb549-3" title="3">     <span class="dt">integer(kind=KIND)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> i, j, mask</a></code></pre></div>
 <p>where the result and all input values have the same integer type and KIND with the exception that the mask and either <strong>i</strong> or <strong>j</strong> may be a BOZ constant.</p>
-<h3 id="description-128"><strong>Description</strong></h3>
+<h3 id="description-129"><strong>Description</strong></h3>
 <p>A common graphics operation in Ternary Raster Operations is to combine bits from two different sources, generally referred to as bit-blending. <strong>merge_bits</strong> performs a masked bit-blend of <strong>i</strong> and <strong>j</strong> using the bits of the <strong>mask</strong> value to determine which of the input values to copy bits from.</p>
 <p>Specifically, The k-th bit of the result is equal to the k-th bit of <strong>i</strong> if the k-th bit of <strong>mask</strong> is <strong>1</strong>; it is equal to the k-th bit of <strong>j</strong> otherwise (so all three input values must have the same number of bits).</p>
 <p>The resulting value is the same as would result from</p>
@@ -8529,7 +8537,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb554-5" title="5">      <span class="dt">logical(kind=KINDM)</span>,<span class="dt">intent(in)</span>   <span class="dt">::</span> mask</a>
 <a class="sourceLine" id="cb554-6" title="6">      mask<span class="kw">**</span> : Shall be of <span class="dt">type</span> _logical_.</a></code></pre></div>
 <p><strong>tsource</strong> May be of any type, including user-defined. <strong>fsource</strong> Shall be of the same type and type parameters as <strong>tsource</strong>. The result will by of the same type and type parameters as <strong>tsource</strong> too.</p>
-<h3 id="description-129"><strong>Description</strong></h3>
+<h3 id="description-130"><strong>Description</strong></h3>
 <p>The elemental function <strong>merge</strong>(3) selects values from two arrays or scalars according to a logical mask. The result is equal to an element of <strong>tsource</strong> where the corresponding element of <strong>mask</strong> is .true., or an element of <strong>fsource</strong> when it is .false. .</p>
 <p>Multi-dimensional arrays are supported.</p>
 <p>Note that argument expressions to <strong>merge</strong>(3) are not required to be short-circuited so (as an example) if the array <strong>x</strong> contains zero values in the statement below the standard does not prevent floating point divide by zero being generated; as <strong>1.0/x</strong> may be evaluated for all values of <strong>x</strong> before the mask is used to select which value to retain:</p>
@@ -8652,7 +8660,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb561-2" title="2"></a>
 <a class="sourceLine" id="cb561-3" title="3"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span>   <span class="dt">::</span> x</a></code></pre></div>
 <p>where KIND is any real kind.</p>
-<h3 id="description-130"><strong>Description</strong></h3>
+<h3 id="description-131"><strong>Description</strong></h3>
 <p><strong>minexponent(x)</strong> returns the minimum exponent in the model of the type of <strong>x</strong>.</p>
 <h3 id="options-132"><strong>Options</strong></h3>
 <ul>
@@ -8702,7 +8710,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb567-4" title="4">     <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb567-5" title="5">     <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p>where <strong>NUMERIC</strong> is any numeric type and kind.</p>
-<h3 id="description-131"><strong>Description</strong></h3>
+<h3 id="description-132"><strong>Description</strong></h3>
 <p>Determines the location of the element in the array with the minimum value, or, if the <strong>dim</strong> argument is supplied, determines the locations of the minimum element along each row of the array in the <strong>dim</strong> direction. If <strong>mask</strong> is present, only the elements for which <strong>mask</strong> is .true. are considered. If more than one element in the array has the minimum value, the location returned is that of the first such element in array element order. If the array has zero size, or all of the elements of <strong>mask</strong> are .false., then the result is an array of zeroes. Similarly, if <strong>dim</strong> is supplied and all of the elements of <strong>mask</strong> along a given row are zero, the result value for that row is zero.</p>
 <h3 id="options-133"><strong>Options</strong></h3>
 <ul>
@@ -8768,7 +8776,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb571-7" title="7">                :</a>
 <a class="sourceLine" id="cb571-8" title="8">                :</a></code></pre></div>
 <p>Where <strong>TYPE</strong> may be integer or real</p>
-<h3 id="description-132"><strong>Description</strong></h3>
+<h3 id="description-133"><strong>Description</strong></h3>
 <p>Returns the argument with the smallest (most negative) value.</p>
 <h3 id="options-134"><strong>Options</strong></h3>
 <ul>
@@ -8817,7 +8825,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb577-4" title="4">     <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb577-5" title="5">     <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p>where <strong>NUMERIC</strong> is any numeric type and kind.</p>
-<h3 id="description-133"><strong>Description</strong></h3>
+<h3 id="description-134"><strong>Description</strong></h3>
 <p>Determines the minimum value of the elements in an array value, or, if the <strong>dim</strong> argument is supplied, determines the minimum value along each row of the array in the <strong>dim</strong> direction.</p>
 <p>If <strong>mask</strong> is present, only the elements for which <strong>mask</strong> is .true. are considered.</p>
 <p>If the array has zero size, or all of the elements of <strong>mask</strong> are .false., then the result is <strong>huge(array)</strong> if <strong>array</strong> is numeric, or a string of <strong>char(len=255)</strong> characters if <strong>array</strong> is of character type.</p>
@@ -8944,7 +8952,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb581-3" title="3">     <span class="dt">type(TYPE(kind=KIND),intent(in) :: a</span></a>
 <a class="sourceLine" id="cb581-4" title="4">     <span class="dt">type(TYPE(kind=KIND),intent(in) :: p</span></a></code></pre></div>
 <p>The result and arguments are all of the same type and kind. The type may be any kind of real or integer.</p>
-<h3 id="description-134"><strong>Description</strong></h3>
+<h3 id="description-135"><strong>Description</strong></h3>
 <p><strong>mod</strong>(a,p) computes the remainder of the division of <strong>a</strong> by <strong>p</strong>.</p>
 <h3 id="options-136"><strong>Options</strong></h3>
 <ul>
@@ -9010,7 +9018,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb585-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> a</a>
 <a class="sourceLine" id="cb585-4" title="4">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> p</a></code></pre></div>
 <p>The result and arguments are all of the same type and kind. The type may be any kind of real or integer.</p>
-<h3 id="description-135"><strong>Description</strong></h3>
+<h3 id="description-136"><strong>Description</strong></h3>
 <p><strong>modulo(a,p)</strong> computes the <strong>a</strong> modulo <strong>p</strong>.</p>
 <h3 id="options-137"><strong>Options</strong></h3>
 <ul>
@@ -9065,7 +9073,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <h3 id="synopsis-141"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb588"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb588-1" title="1">    <span class="kw">call</span> move_alloc(src, dest)</a></code></pre></div>
 <div class="sourceCode" id="cb589"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
-<h3 id="description-136"><strong>Description</strong></h3>
+<h3 id="description-137"><strong>Description</strong></h3>
 <p><strong>move_alloc(src, dest)</strong> moves the allocation from <strong>src</strong> to <strong>dest</strong>. <strong>src</strong> will become deallocated in the process.</p>
 <h3 id="options-138"><strong>Options</strong></h3>
 <ul>
@@ -9131,7 +9139,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb593-5" title="5">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>    <span class="dt">::</span> <span class="fu">len</span></a>
 <a class="sourceLine" id="cb593-6" title="6">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(inout)</span> <span class="dt">::</span> <span class="kw">to</span></a>
 <a class="sourceLine" id="cb593-7" title="7">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>    <span class="dt">::</span> topos</a></code></pre></div>
-<h3 id="description-137"><strong>Description</strong></h3>
+<h3 id="description-138"><strong>Description</strong></h3>
 <p><strong>mvbits(3f)</strong> copies a bit pattern found in a range of adjacent bits in the integer <strong>from</strong> to a specified position in another integer <strong>to</strong> (which is of the same kind as <strong>from</strong>). It otherwise leaves the bits in <strong>to</strong> as-is.</p>
 <p>The bit positions copied must exist within the value of <strong>from</strong>. That is, the values of <strong>frompos+len-1</strong> and <strong>topos+len-1</strong> must be nonnegative and less than <strong>bit_size</strong>(from).</p>
 <p>The bits are numbered <strong>0</strong> to <strong>bit_size(i)-1</strong>, from right to left.</p>
@@ -9250,7 +9258,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb597-3" title="3"><span class="dt">     real(kind=KINDX)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
 <a class="sourceLine" id="cb597-4" title="4"><span class="dt">     real(kind=KINDS)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> s</a></code></pre></div>
 <p>The return value is of the same type and kind as <strong>x</strong>. Otherwise, any kind of real is allowed.</p>
-<h3 id="description-138"><strong>Description</strong></h3>
+<h3 id="description-139"><strong>Description</strong></h3>
 <p><strong>nearest(x, s)</strong> returns the processor-representable number nearest to <strong>x</strong> in the direction indicated by the sign of <strong>s</strong>.</p>
 <h3 id="options-140"><strong>Options</strong></h3>
 <ul>
@@ -9308,7 +9316,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div class="sourceCode" id="cb601"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb601-1" title="1">     <span class="dt">character(len=1,kind=kind(c))</span> <span class="kw">function</span> new_line(c)</a>
 <a class="sourceLine" id="cb601-2" title="2"></a>
 <a class="sourceLine" id="cb601-3" title="3">     <span class="dt">character(len=1,kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> c(..)</a></code></pre></div>
-<h3 id="description-139"><strong>Description</strong></h3>
+<h3 id="description-140"><strong>Description</strong></h3>
 <p><strong>new_line(c)</strong> returns the new-line character.</p>
 <dl>
 <dt>Case (i)</dt>
@@ -9369,7 +9377,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb605-3" title="3"><span class="dt">     real(kind=KINDX)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
 <a class="sourceLine" id="cb605-4" title="4">     <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 <p>The result is default integer kind or the value of <strong>kind</strong> if it is present.</p>
-<h3 id="description-140"><strong>Description</strong></h3>
+<h3 id="description-141"><strong>Description</strong></h3>
 <p><strong>nint(x)</strong> rounds its argument to the nearest whole number with its sign preserved.</p>
 <p>The user must ensure the value is a valid value for the range of the <strong>kind</strong> returned. If the processor cannot represent the result in the kind specified, the result is undefined.</p>
 <p>If <strong>x</strong> is greater than zero, <strong>nint(x)</strong> has the value <strong>int(x+0.5)</strong>.</p>
@@ -9468,7 +9476,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 <a class="sourceLine" id="cb609-2" title="2"></a>
 <a class="sourceLine" id="cb609-3" title="3"><span class="dt">     real</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
 <a class="sourceLine" id="cb609-4" title="4">     <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a></code></pre></div>
-<h3 id="description-141"><strong>Description</strong></h3>
+<h3 id="description-142"><strong>Description</strong></h3>
 <p>Calculates the Euclidean vector norm (L_2 norm) of <strong>array</strong> along dimension <strong>dim</strong>.</p>
 <h3 id="options-143"><strong>Options</strong></h3>
 <ul>
@@ -9535,7 +9543,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 <a class="sourceLine" id="cb613-2" title="2"></a>
 <a class="sourceLine" id="cb613-3" title="3">     <span class="dt">integer(kind=KIND)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
 <p>The return type is of the same kind as the argument.</p>
-<h3 id="description-142"><strong>Description</strong></h3>
+<h3 id="description-143"><strong>Description</strong></h3>
 <p>NOT returns the bitwise Boolean inverse of <strong>i</strong>.</p>
 <h3 id="options-144"><strong>Options</strong></h3>
 <ul>
@@ -9575,7 +9583,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 <h3 id="synopsis-148"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb616"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb616-1" title="1">    ptr <span class="kw">=</span><span class="op">&gt;</span> null( <span class="kw">[</span>mold<span class="kw">]</span> )</a></code></pre></div>
 <div class="sourceCode" id="cb617"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
-<h3 id="description-143"><strong>Description</strong></h3>
+<h3 id="description-144"><strong>Description</strong></h3>
 <p>Returns a disassociated pointer.</p>
 <p>If <strong>mold</strong> is present, a disassociated pointer of the same type is returned, otherwise the type is determined by context.</p>
 <p>In Fortran 95, <strong>mold</strong> is optional. Please note that Fortran 2003 includes cases where it is required.</p>
@@ -9684,7 +9692,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 <div class="sourceCode" id="cb625"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb625-1" title="1">     <span class="dt">integer</span> <span class="kw">function</span> num_images (team_number)</a>
 <a class="sourceLine" id="cb625-2" title="2"></a>
 <a class="sourceLine" id="cb625-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> team_number</a></code></pre></div>
-<h3 id="description-144"><strong>Description</strong></h3>
+<h3 id="description-145"><strong>Description</strong></h3>
 <p>Returns the number of images.</p>
 <h3 id="options-146"><strong>Options</strong></h3>
 <ul>
@@ -9735,7 +9743,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 <a class="sourceLine" id="cb628-4" title="4">     <span class="dt">TYPE</span>,<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>),<span class="dt">intent(in)</span> <span class="dt">::</span> mold</a>
 <a class="sourceLine" id="cb628-5" title="5">     <span class="dt">logical</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span>     <span class="dt">::</span> round</a></code></pre></div>
 <p>where TYPE may be real or integer of any available KIND.</p>
-<h3 id="description-145"><strong>Description</strong></h3>
+<h3 id="description-146"><strong>Description</strong></h3>
 <p><strong>out_of_range</strong>(3) determines whether a value <strong>x</strong> can be converted safely to a real or integer variable the same type and kind as <strong>mold</strong>.</p>
 <h3 id="options-147"><strong>Options</strong></h3>
 <ul>
@@ -9815,7 +9823,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 <a class="sourceLine" id="cb632-4" title="4">     <span class="dt">logical</span>  <span class="dt">::</span> mask(<span class="kw">*</span>)</a>
 <a class="sourceLine" id="cb632-5" title="5">     <span class="dt">TYPE(kind=KIND)</span>,option(in),<span class="dt">optional</span> <span class="dt">::</span> vector(<span class="kw">*</span>)</a></code></pre></div>
 <p>where TYPE(kind=KIND) may be any type, where <strong>array</strong> and <strong>vector</strong> and the returned value must by of the same type. <strong>mask</strong> may be a scalar as well an an array.</p>
-<h3 id="description-146"><strong>Description</strong></h3>
+<h3 id="description-147"><strong>Description</strong></h3>
 <p>Stores the elements of ARRAY in an array of rank one.</p>
 <p>The beginning of the resulting array is made up of elements whose <strong>mask</strong> equals .true.. Afterwards, positions are filled with elements taken from <strong>vector</strong>.</p>
 <h3 id="options-148"><strong>Options</strong></h3>
@@ -9898,7 +9906,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 <a class="sourceLine" id="cb636-3" title="3">     <span class="dt">type(logical(kind=KIND))</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> mask(..)</a>
 <a class="sourceLine" id="cb636-4" title="4">     <span class="dt">type(integer(kind=KINDD))</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a></code></pre></div>
 <p>where KIND and LKIND are any supported kind for the type.</p>
-<h3 id="description-147"><strong>Description</strong></h3>
+<h3 id="description-148"><strong>Description</strong></h3>
 <p>Calculates the parity (i.e. the reduction using .xor.) of <strong>mask</strong> along dimension <strong>dim</strong>.</p>
 <h3 id="options-149"><strong>Options</strong></h3>
 <ul>
@@ -9938,7 +9946,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 <a class="sourceLine" id="cb639-2" title="2"></a>
 <a class="sourceLine" id="cb639-3" title="3">     <span class="dt">integer(kind=KIND)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
 <p>The <strong>i</strong> argument may be of any kind.</p>
-<h3 id="description-148"><strong>Description</strong></h3>
+<h3 id="description-149"><strong>Description</strong></h3>
 <p>Returns the number of bits set in the binary representation of an integer.</p>
 <h3 id="options-150"><strong>Options</strong></h3>
 <ul>
@@ -9985,7 +9993,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 <div class="sourceCode" id="cb643"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb643-1" title="1">    <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> poppar(i)</a>
 <a class="sourceLine" id="cb643-2" title="2"></a>
 <a class="sourceLine" id="cb643-3" title="3">     <span class="dt">integer(kind=KIND)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
-<h3 id="description-149"><strong>Description</strong></h3>
+<h3 id="description-150"><strong>Description</strong></h3>
 <p>Returns the parity of an integer’s binary representation (i.e., the parity of the number of bits set).</p>
 <h3 id="options-151"><strong>Options</strong></h3>
 <ul>
@@ -10028,12 +10036,12 @@ The result is undefined if it cannot be represented in the specified integer typ
 <p><strong>precision</strong>(3) - [NUMERIC MODEL] Decimal precision of a real kind</p>
 <h3 id="synopsis-155"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb646"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb646-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="dt">precision</span>(x)</a></code></pre></div>
-<p>The return value is of type integer and of the default integer kind.</p>
 <div class="sourceCode" id="cb647"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb647-1" title="1">    <span class="dt">integer</span> <span class="kw">function</span> <span class="dt">precision</span>(x)</a>
 <a class="sourceLine" id="cb647-2" title="2"></a>
 <a class="sourceLine" id="cb647-3" title="3">    <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p>where <strong>TYPE</strong> may be real or complex</p>
-<h3 id="description-150"><strong>Description</strong></h3>
+<p>The return value is of type integer and of the default integer kind.</p>
+<h3 id="description-151"><strong>Description</strong></h3>
 <p><strong>precision(x)</strong> returns the decimal precision in the model of the type of <strong>x</strong>.</p>
 <h3 id="options-152"><strong>Options</strong></h3>
 <ul>
@@ -10073,7 +10081,8 @@ The result is undefined if it cannot be represented in the specified integer typ
 <div class="sourceCode" id="cb650"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb650-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">present</span>(a)</a></code></pre></div>
 <div class="sourceCode" id="cb651"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb651-1" title="1">     <span class="dt">logical</span> <span class="kw">function</span> <span class="fu">present</span> (a)</a>
 <a class="sourceLine" id="cb651-2" title="2">     <span class="dt">type(TYPE(kind=KIND))</span> <span class="dt">::</span> a(..)</a></code></pre></div>
-<p>where the <strong>TYPE</strong> may be any type ### <strong>Description</strong></p>
+<p>where the <strong>TYPE</strong> may be any type</p>
+<h3 id="description-152"><strong>Description</strong></h3>
 <p>Determines whether an optional dummy argument is present.</p>
 <h3 id="options-153"><strong>Options</strong></h3>
 <ul>
@@ -10120,7 +10129,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 <a class="sourceLine" id="cb655-4" title="4">     <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb655-5" title="5">     <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p>where <strong>NUMERIC</strong> is any numeric type and kind.</p>
-<h3 id="description-151"><strong>Description</strong></h3>
+<h3 id="description-153"><strong>Description</strong></h3>
 <p>Multiplies together all the selected elements of <strong>array</strong>, or along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
 <p>If <strong>dim</strong> is absent, a scalar with the product of all elements in <strong>array</strong> is returned. (Note a zero-sized <strong>array</strong> returns <strong>1</strong>).</p>
 <p>When <strong>dim</strong> is present, If the masked array has a dimension of one (ie. is a vector) the result is a scalar. Otherwise, an array of rank <strong>n-1</strong>, where <strong>n</strong> equals the rank of <strong>array</strong>, and a shape similar to that of <strong>array</strong> with dimension <strong>dim</strong> dropped is returned.</p>
@@ -10328,7 +10337,8 @@ dim=3 :( 2 3 )
 <div class="sourceCode" id="cb659"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb659-1" title="1">   <span class="dt">integer</span> <span class="kw">function</span> <span class="fu">radix</span>(x)</a>
 <a class="sourceLine" id="cb659-2" title="2"></a>
 <a class="sourceLine" id="cb659-3" title="3">   <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
-<p>where TYPE may be real or integer of any kind KIND. ### <strong>Description</strong></p>
+<p>where TYPE may be real or integer of any kind KIND.</p>
+<h3 id="description-154"><strong>Description</strong></h3>
 <p><strong>radix(x)</strong> returns the base of the model representing the entity <strong>x</strong>.</p>
 <h3 id="options-155"><strong>Options</strong></h3>
 <ul>
@@ -10365,7 +10375,7 @@ dim=3 :( 2 3 )
 <h3 id="synopsis-159"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb662"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb662-1" title="1">    <span class="fu">random_number</span>(harvest)</a></code></pre></div>
 <div class="sourceCode" id="cb663"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
-<h3 id="description-152"><strong>Description</strong></h3>
+<h3 id="description-155"><strong>Description</strong></h3>
 <p>Returns a single pseudorandom number or an array of pseudorandom numbers from the uniform distribution over the range 0 &lt;= x &lt; 1.</p>
 <h3 id="options-156"><strong>Options</strong></h3>
 <ul>
@@ -10441,7 +10451,7 @@ dim=3 :( 2 3 )
 <h3 id="synopsis-160"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb666"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb666-1" title="1">    <span class="kw">call</span> <span class="fu">random_seed</span>( <span class="kw">[</span><span class="fu">size</span><span class="kw">]</span> <span class="kw">[</span>,put<span class="kw">]</span> <span class="kw">[</span>,get<span class="kw">]</span> )</a></code></pre></div>
 <div class="sourceCode" id="cb667"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
-<h3 id="description-153"><strong>Description</strong></h3>
+<h3 id="description-156"><strong>Description</strong></h3>
 <p>Restarts or queries the state of the pseudorandom number generator used by random_number.</p>
 <p>If random_seed is called without arguments, it is seeded with random data retrieved from the operating system.</p>
 <h3 id="options-157"><strong>Options</strong></h3>
@@ -10494,7 +10504,7 @@ dim=3 :( 2 3 )
 <a class="sourceLine" id="cb671-2" title="2"></a>
 <a class="sourceLine" id="cb671-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p>where TYPE is real or complex and KIND is any kind supported by TYPE.</p>
-<h3 id="description-154"><strong>Description</strong></h3>
+<h3 id="description-157"><strong>Description</strong></h3>
 <p><strong>range(x)</strong> returns the decimal exponent range in the model of the type of <strong>x</strong>.</p>
 <h3 id="options-158"><strong>Options</strong></h3>
 <ul>
@@ -10535,7 +10545,7 @@ dim=3 :( 2 3 )
 <a class="sourceLine" id="cb675-2" title="2"></a>
 <a class="sourceLine" id="cb675-3" title="3">    <span class="dt">type(TYPE(kind=KIND),intent(in) :: a(..)</span></a></code></pre></div>
 <p><strong>a</strong> can be of any type.</p>
-<h3 id="description-155"><strong>Description</strong></h3>
+<h3 id="description-158"><strong>Description</strong></h3>
 <p><strong>rank(a)</strong> returns the rank of a scalar or array data object.</p>
 <h3 id="options-159"><strong>Options</strong></h3>
 <ul>
@@ -10611,7 +10621,7 @@ dim=3 :( 2 3 )
 <a class="sourceLine" id="cb679-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
 <a class="sourceLine" id="cb679-4" title="4">     <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 <p>Where the type of <strong>x</strong> may be integer, real, or complex.</p>
-<h3 id="description-156"><strong>Description</strong></h3>
+<h3 id="description-159"><strong>Description</strong></h3>
 <p><strong>real(x, kind)</strong> converts its argument <strong>x</strong> to a real type.</p>
 <p>For complex values this is similar to the modern complex-part-designator <strong>%RE</strong> which also designates the real part of a value, accept a designator can appear on the left-hand side of an assignment as well, as in <strong>val%re=(3.0,4.0)</strong>.</p>
 <h3 id="options-160"><strong>Options</strong></h3>
@@ -10675,7 +10685,7 @@ dim=3 :( 2 3 )
 <a class="sourceLine" id="cb684-5" title="5">     <span class="dt">type(TYPE)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> identity</a>
 <a class="sourceLine" id="cb684-6" title="6">     <span class="dt">logical</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span>    <span class="dt">::</span> ordered</a></code></pre></div>
 <p>where TYPE may be of any type. TYPE must be the same for <strong>array</strong> and <strong>identity</strong>.</p>
-<h3 id="description-157"><strong>Description</strong></h3>
+<h3 id="description-160"><strong>Description</strong></h3>
 <p>Reduce a list of conditionally selected values from an array to a single value by iteratively applying a binary function.</p>
 <p>Common in functional programming, a <strong>reduce</strong> function applies a binary operator (a pure function with two arguments) to all elements cumulatively.</p>
 <p><strong>reduce</strong> is a “higher-order” function; ie. it is a function that receives other functions as arguments.</p>
@@ -10803,7 +10813,7 @@ dim=3 :( 2 3 )
 <a class="sourceLine" id="cb688-2" title="2"></a>
 <a class="sourceLine" id="cb688-3" title="3">     <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>        <span class="dt">::</span> string</a>
 <a class="sourceLine" id="cb688-4" title="4">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>      <span class="dt">::</span> ncopies</a></code></pre></div>
-<h3 id="description-158"><strong>Description</strong></h3>
+<h3 id="description-161"><strong>Description</strong></h3>
 <p>Concatenates <strong>ncopies</strong> copies of a string.</p>
 <h3 id="options-162"><strong>Options</strong></h3>
 <ul>
@@ -10855,7 +10865,7 @@ ________________________________________________________________________
 <h3 id="synopsis-166"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb691"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb691-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">reshape</span>( source, <span class="fu">shape</span> <span class="kw">[</span>,pad<span class="kw">]</span> <span class="kw">[</span>,order<span class="kw">]</span> )</a></code></pre></div>
 <div class="sourceCode" id="cb692"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
-<h3 id="description-159"><strong>Description</strong></h3>
+<h3 id="description-162"><strong>Description</strong></h3>
 <p>Reshapes array <strong>source</strong> to correspond to <strong>shape</strong>. If necessary, the new array may be padded with elements from <strong>pad</strong> or permuted as defined by <strong>order</strong>.</p>
 <h3 id="options-163"><strong>Options</strong></h3>
 <ul>
@@ -10918,7 +10928,7 @@ ________________________________________________________________________
 <div class="sourceCode" id="cb696"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb696-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> <span class="bu">rrspacing</span>(x)</a>
 <a class="sourceLine" id="cb696-2" title="2"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p>The return value is of the same type and kind as <strong>x</strong>.</p>
-<h3 id="description-160"><strong>Description</strong></h3>
+<h3 id="description-163"><strong>Description</strong></h3>
 <p><strong>rrspacing(x)</strong> returns the reciprocal of the relative spacing of model numbers near <strong>x</strong>.</p>
 <h3 id="options-164"><strong>Options</strong></h3>
 <ul>
@@ -10943,7 +10953,7 @@ ________________________________________________________________________
 <h3 id="synopsis-168"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb697"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb697-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> same_type_as(a, b)</a></code></pre></div>
 <div class="sourceCode" id="cb698"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
-<h3 id="description-161"><strong>Description</strong></h3>
+<h3 id="description-164"><strong>Description</strong></h3>
 <p>Query dynamic types for equality.</p>
 <h3 id="options-165"><strong>Options</strong></h3>
 <ul>
@@ -10976,7 +10986,7 @@ ________________________________________________________________________
 <a class="sourceLine" id="cb700-2" title="2"></a>
 <a class="sourceLine" id="cb700-3" title="3"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
 <a class="sourceLine" id="cb700-4" title="4">     <span class="dt">integer</span>,<span class="dt">intent(in)</span>         <span class="dt">::</span> i</a></code></pre></div>
-<h3 id="description-162"><strong>Description</strong></h3>
+<h3 id="description-165"><strong>Description</strong></h3>
 <p><strong>scale(x,i)</strong> returns x * <strong>radix(x)**i</strong>.</p>
 <h3 id="options-166"><strong>Options</strong></h3>
 <ul>
@@ -11081,7 +11091,7 @@ ________________________________________________________________________
 <div class="sourceCode" id="cb708"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb708-1" title="1">     <span class="dt">integer</span> <span class="kw">function</span> selected_char_kind(name)</a>
 <a class="sourceLine" id="cb708-2" title="2"></a>
 <a class="sourceLine" id="cb708-3" title="3">     <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> name</a></code></pre></div>
-<h3 id="description-163"><strong>Description</strong></h3>
+<h3 id="description-166"><strong>Description</strong></h3>
 <p><strong>selected_char_kind(name)</strong> returns the kind value for the character set named NAME, if a character set with such a name is supported, or <strong>-1</strong> otherwise.</p>
 <h3 id="options-168"><strong>Options</strong></h3>
 <ul>
@@ -11135,7 +11145,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <h3 id="synopsis-172"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb711"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb711-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">selected_int_kind</span>(r)</a></code></pre></div>
 <div class="sourceCode" id="cb712"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
-<h3 id="description-164"><strong>Description</strong></h3>
+<h3 id="description-167"><strong>Description</strong></h3>
 <p><strong>selected_int_kind(r)</strong> return the kind value of the smallest integer type that can represent all values ranging from <strong>-10**r</strong> (exclusive) to <strong>10**r</strong> (exclusive). If there is no integer kind that accommodates this range, selected_int_kind returns <strong>-1</strong>.</p>
 <h3 id="options-169"><strong>Options</strong></h3>
 <ul>
@@ -11177,7 +11187,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <h3 id="synopsis-173"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb715"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb715-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">selected_real_kind</span>(<span class="kw">[</span>p<span class="kw">]</span> <span class="kw">[</span>,r<span class="kw">]</span> <span class="kw">[</span>,<span class="fu">radix</span><span class="kw">]</span> )</a></code></pre></div>
 <div class="sourceCode" id="cb716"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
-<h3 id="description-165"><strong>Description</strong></h3>
+<h3 id="description-168"><strong>Description</strong></h3>
 <p><strong>selected_real_kind(p, r, radix)</strong> return the kind value of a real data type with decimal precision of at least <strong>p</strong> digits, exponent range of at least <strong>r</strong>, and with a radix of <strong>radix</strong>.</p>
 <h3 id="options-170"><strong>Options</strong></h3>
 <ul>
@@ -11263,7 +11273,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <a class="sourceLine" id="cb720-3" title="3"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
 <a class="sourceLine" id="cb720-4" title="4">     <span class="dt">integer(kind=KINDI)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
 <p>The return value is of the same type and kind as <strong>x</strong>.</p>
-<h3 id="description-166"><strong>Description</strong></h3>
+<h3 id="description-169"><strong>Description</strong></h3>
 <p><strong>set_exponent(x, i)</strong> returns the real number whose fractional part is that of <strong>x</strong> and whose exponent part is <strong>i</strong>.</p>
 <h3 id="options-171"><strong>Options</strong></h3>
 <ul>
@@ -11307,7 +11317,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <a class="sourceLine" id="cb724-3" title="3">   <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span>        <span class="dt">::</span> source(..)</a>
 <a class="sourceLine" id="cb724-4" title="4">   <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 <p><strong>source</strong> is an array or scalar of any type. If <strong>source</strong> is a pointer it must be associated and allocatable arrays must be allocated.</p>
-<h3 id="description-167"><strong>Description</strong></h3>
+<h3 id="description-170"><strong>Description</strong></h3>
 <p>Determines the shape of an array.</p>
 <h3 id="options-172"><strong>Options</strong></h3>
 <ul>
@@ -11359,7 +11369,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <a class="sourceLine" id="cb728-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
 <a class="sourceLine" id="cb728-4" title="4">      <span class="dt">integer(kind=SHIFTKIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> shift</a></code></pre></div>
 <p>where KIND and SHIFTKIND may be any supported integer kind, but where the kind for <strong>i</strong> dictates the kind of the returned value.</p>
-<h3 id="description-168"><strong>Description</strong></h3>
+<h3 id="description-171"><strong>Description</strong></h3>
 <p>Returns a value corresponding to <strong>i</strong> with all of the bits shifted right by <strong>shift</strong> places and the vacated bits on the left filled with the value of the original left-most bit..</p>
 <h3 id="options-173"><strong>Options</strong></h3>
 <ul>
@@ -11456,7 +11466,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <a class="sourceLine" id="cb732-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
 <a class="sourceLine" id="cb732-4" title="4">      <span class="dt">integer(kind=SHIFTKIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> shift</a></code></pre></div>
 <p>where KIND and SHIFTKIND may be any supported integer kind, but where the kind for <strong>i</strong> dictates the kind of the returned value.</p>
-<h3 id="description-169"><strong>Description</strong></h3>
+<h3 id="description-172"><strong>Description</strong></h3>
 <p>Returns a value corresponding to <strong>i</strong> with all of the bits shifted left by <strong>shift</strong> places.</p>
 <p>Bits shifted out from the left end are lost, and bits shifted in from the right end are set to <strong>0</strong>.</p>
 <p>If the absolute value of <strong>shift</strong> is greater than <strong>bit_size(i)</strong>, the value is undefined.</p>
@@ -11566,7 +11576,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <a class="sourceLine" id="cb736-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
 <a class="sourceLine" id="cb736-4" title="4">      <span class="dt">integer(kind=SHIFTKIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> shift</a></code></pre></div>
 <p>where KIND and SHIFTKIND may be any supported integer kind, but where the kind for <strong>i</strong> dictates the kind of the returned value.</p>
-<h3 id="description-170"><strong>Description</strong></h3>
+<h3 id="description-173"><strong>Description</strong></h3>
 <p>Returns a value corresponding to <strong>i</strong> with all of the bits shifted right by <strong>shift</strong> places. If the absolute value of <strong>shift</strong> is greater than <strong>bit_size(i)</strong>, the value is undefined. Bits shifted out from the right end are lost, and bits shifted in from the left end are set to 0.</p>
 <p>Note the value of the result is the same as <strong>ishft (i, -shift)</strong>.</p>
 <h3 id="options-175"><strong>Options</strong></h3>
@@ -11662,7 +11672,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <a class="sourceLine" id="cb740-2" title="2"></a>
 <a class="sourceLine" id="cb740-3" title="3">     <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> a, b</a></code></pre></div>
 <p>where TYPE may be real or integer and KIND is any supported kind for the type.</p>
-<h3 id="description-171"><strong>Description</strong></h3>
+<h3 id="description-174"><strong>Description</strong></h3>
 <p><strong>sign</strong>(a,b) return a value with the magnitude of <strong>a</strong> but with the sign of <strong>b</strong>.</p>
 <p>For processors that distinguish between positive and negative zeros <strong>sign()</strong> may be used to distinguish between <strong>real</strong> values 0.0 and -0.0. SIGN (1.0, -0.0) will return -1.0 when a negative zero is distinguishable.</p>
 <h3 id="options-176"><strong>Options</strong></h3>
@@ -11718,7 +11728,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <a class="sourceLine" id="cb744-2" title="2"></a>
 <a class="sourceLine" id="cb744-3" title="3">     <span class="dt">TYPE(kind=KIND)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p>where <strong>TYPE</strong> may be real or complex and <strong>KIND</strong> may be any kind supported by the associated type. The returned value will be of the same type and kind as the argument.</p>
-<h3 id="description-172"><strong>Description</strong></h3>
+<h3 id="description-175"><strong>Description</strong></h3>
 <p><strong>sinh(x)</strong> computes the hyperbolic sine of <strong>x</strong>.</p>
 <p>The hyperbolic sine of x is defined mathematically as:</p>
 <p><strong>sinh(x) = (exp(x) - exp(-x)) / 2.0</strong></p>
@@ -11791,7 +11801,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <a class="sourceLine" id="cb748-2" title="2"></a>
 <a class="sourceLine" id="cb748-3" title="3">     <span class="dt">TYPE(kind=KIND)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p>where <strong>TYPE</strong> may be real or complex and <strong>KIND</strong> may be any kind supported by the associated type. The returned value will be of the same type and kind as the argument.</p>
-<h3 id="description-173"><strong>Description</strong></h3>
+<h3 id="description-176"><strong>Description</strong></h3>
 <p><strong>sin(x)</strong> computes the sine of an angle given the size of the angle in radians.</p>
 <p>The sine of an angle in a right-angled triangle is the ratio of the length of the side opposite the given angle divided by the length of the hypotenuse.</p>
 <h3 id="options-178"><strong>Options</strong></h3>
@@ -11889,7 +11899,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <p><strong>array</strong> may be of any type and associated kind.</p>
 <p>If <strong>array</strong> is a pointer it must be associated and allocatable arrays must be allocated.</p>
 <p>KINDD and KINDK may be any integer type kind.</p>
-<h3 id="description-174"><strong>Description</strong></h3>
+<h3 id="description-177"><strong>Description</strong></h3>
 <p>Determine the extent of <strong>array</strong> along a specified dimension <strong>dim</strong>, or the total number of elements in <strong>array</strong> if <strong>dim</strong> is absent.</p>
 <h3 id="options-179"><strong>Options</strong></h3>
 <ul>
@@ -12068,7 +12078,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <a class="sourceLine" id="cb760-2" title="2"></a>
 <a class="sourceLine" id="cb760-3" title="3"><span class="dt">     real(kind=KIND)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p>The result is of the same type as the input argument <strong>x</strong>.</p>
-<h3 id="description-175"><strong>Description</strong></h3>
+<h3 id="description-178"><strong>Description</strong></h3>
 <p>Determines the distance between the argument <strong>x</strong> and the nearest adjacent number of the same type.</p>
 <h3 id="options-180"><strong>Options</strong></h3>
 <ul>
@@ -12110,7 +12120,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <a class="sourceLine" id="cb764-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>    <span class="dt">::</span> source(..)</a>
 <a class="sourceLine" id="cb764-4" title="4">     <span class="dt">integer</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb764-5" title="5">     <span class="dt">integer</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> ncopies</a></code></pre></div>
-<h3 id="description-176"><strong>Description</strong></h3>
+<h3 id="description-179"><strong>Description</strong></h3>
 <p>Replicates a <strong>source</strong> array <strong>ncopies</strong> times along a specified dimension <strong>dim</strong>.</p>
 <p>If <strong>source</strong> is scalar, the shape of the result is (MAX (NCOPIES, 0)). and each element of the result has a value equal to <strong>source</strong>.</p>
 <h3 id="options-181"><strong>Options</strong></h3>
@@ -12216,7 +12226,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <a class="sourceLine" id="cb767-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p>Where <strong>TYPE</strong> may be real or complex.</p>
 <p><strong>KIND</strong> may be any kind valid for the declared type.</p>
-<h3 id="description-177"><strong>Description</strong></h3>
+<h3 id="description-180"><strong>Description</strong></h3>
 <p><strong>sqrt(x)</strong> computes the principal square root of <strong>x</strong>.</p>
 <p>In mathematics, a square root of a number <strong>x</strong> is a number <strong>y</strong> such that <strong>y*y = x</strong>.</p>
 <p>The number whose square root is being considered is known as the radicand.</p>
@@ -12277,7 +12287,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <a class="sourceLine" id="cb771-4" title="4">     <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 <p><strong>a</strong> may be of any type and kind. If it is polymorphic it shall not be an undefined pointer. If it is unlimited polymorphic or has any deferred type parameters, it shall not be an unallocated allocatable variable or a disassociated or undefined pointer.</p>
 <p>The kind type parameter of the returned value is that specified by the value of <strong>kind</strong>; otherwise, the kind type parameter is that of default integer type.</p>
-<h3 id="description-178"><strong>Description</strong></h3>
+<h3 id="description-181"><strong>Description</strong></h3>
 <p>Returns the storage size of argument <strong>a</strong> in bits.</p>
 <h3 id="options-183"><strong>Options</strong></h3>
 <ul>
@@ -12346,7 +12356,7 @@ it would take if it were stored in memory.</code></pre>
 <a class="sourceLine" id="cb779-4" title="4">     <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb779-5" title="5">     <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p>where <strong>NUMERIC</strong> is any numeric type and kind.</p>
-<h3 id="description-179"><strong>Description</strong></h3>
+<h3 id="description-182"><strong>Description</strong></h3>
 <p>Adds the elements of ARRAY along dimension DIM if the corresponding element in MASK is TRUE.</p>
 <h3 id="options-184"><strong>Options</strong></h3>
 <ul>
@@ -12479,7 +12489,7 @@ it would take if it were stored in memory.</code></pre>
 <a class="sourceLine" id="cb789-2" title="2"></a>
 <a class="sourceLine" id="cb789-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p>where <strong>TYPE</strong> may be real or complex and <strong>KIND</strong> may be any kind supported by the associated type. The returned value will be of the same type and kind as the argument.</p>
-<h3 id="description-180"><strong>Description</strong></h3>
+<h3 id="description-183"><strong>Description</strong></h3>
 <p><strong>tanh(x)</strong> computes the hyperbolic tangent of <strong>x</strong>.</p>
 <h3 id="options-186"><strong>Options</strong></h3>
 <ul>
@@ -12523,7 +12533,7 @@ it would take if it were stored in memory.</code></pre>
 <a class="sourceLine" id="cb794-2" title="2"></a>
 <a class="sourceLine" id="cb794-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p>where <strong>TYPE</strong> may be real or complex and <strong>KIND</strong> may be any kind supported by the associated type. The returned value will be of the same type and kind as the argument.</p>
-<h3 id="description-181"><strong>Description</strong></h3>
+<h3 id="description-184"><strong>Description</strong></h3>
 <p><strong>tan(x)</strong> computes the tangent of <strong>x</strong>.</p>
 <h3 id="options-187"><strong>Options</strong></h3>
 <ul>
@@ -12563,7 +12573,7 @@ it would take if it were stored in memory.</code></pre>
 <p>or</p>
 <div class="sourceCode" id="cb799"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb799-1" title="1"><span class="kw">result</span> <span class="kw">=</span> this_image(coarray, <span class="bu">dim</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb800"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
-<h3 id="description-182"><strong>Description</strong></h3>
+<h3 id="description-185"><strong>Description</strong></h3>
 <p>Returns the cosubscript for this image.</p>
 <h3 id="options-188"><strong>Options</strong></h3>
 <ul>
@@ -12617,7 +12627,7 @@ it would take if it were stored in memory.</code></pre>
 <a class="sourceLine" id="cb804-2" title="2"></a>
 <a class="sourceLine" id="cb804-3" title="3"><span class="dt">     real(kind=KIND)</span> <span class="dt">::</span> x</a></code></pre></div>
 <p>where KIND may be any kind supported by type real</p>
-<h3 id="description-183"><strong>Description</strong></h3>
+<h3 id="description-186"><strong>Description</strong></h3>
 <p><strong>tiny(x)</strong> returns the smallest positive (non zero) number of the type and kind of <strong>x</strong>.</p>
 <h3 id="options-189"><strong>Options</strong></h3>
 <ul>
@@ -12656,7 +12666,7 @@ it would take if it were stored in memory.</code></pre>
 <div class="sourceCode" id="cb808"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb808-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> trailz(i)</a>
 <a class="sourceLine" id="cb808-2" title="2"></a>
 <a class="sourceLine" id="cb808-3" title="3">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
-<h3 id="description-184"><strong>Description</strong></h3>
+<h3 id="description-187"><strong>Description</strong></h3>
 <p><strong>trailz(3)</strong> returns the number of trailing zero bits of an integer value.</p>
 <h3 id="options-190"><strong>Options</strong></h3>
 <ul>
@@ -12749,31 +12759,38 @@ it would take if it were stored in memory.</code></pre>
 <p><strong>transfer</strong>(3) - [TYPE:MOLD] Transfer bit patterns</p>
 <h3 id="synopsis-194"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb811"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb811-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">transfer</span>(source, mold <span class="kw">[</span>,<span class="fu">size</span><span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb812"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
-<h3 id="description-185"><strong>Description</strong></h3>
-<p>Interprets the bitwise representation of <strong>source</strong> in memory as if it is the representation of a variable or array of the same type and type parameters as <strong>mold</strong>.</p>
+<pre><code> type(TYPE(kind=KIND)) function transfer(source,mold,size)
+
+  type(TYPE(kind=KIND)),intent(in) :: source(..)
+  type(TYPE(kind=KIND)),intent(in) :: mold(..)
+  integer,intent(in),intent(in),optional :: size</code></pre>
+<p>```fortran - <strong>source</strong> Shall be a scalar or an array of any type. - <strong>mold</strong> Shall be a scalar or an array of any type. - <strong>size</strong> shall be a scalar of type integer. - <strong>result</strong> has the same type as <strong>mold</strong></p>
+<h3 id="description-188"><strong>Description</strong></h3>
+<p>copies the bitwise representation of <strong>source</strong> in memory into a variable or array of the same type and type parameters as <strong>mold</strong>.</p>
 <p>This is approximately equivalent to the C concept of “casting” one type to another.</p>
 <h3 id="options-191"><strong>Options</strong></h3>
 <ul>
 <li><dl>
 <dt><strong>source</strong></dt>
-<dd>Shall be a scalar or an array of any type.
+<dd>Holds the bit pattern to be copied
 </dd>
 </dl></li>
 <li><dl>
 <dt><strong>mold</strong></dt>
-<dd>Shall be a scalar or an array of any type.
+<dd>the type of <strong>mold</strong> is used to define the type of the returned value. In addition, if it is an array the returned value is a one-dimensional array. If it is a scalar the returned value is a scalar.
 </dd>
 </dl></li>
 <li><dl>
 <dt><strong>size</strong></dt>
-<dd>(Optional) shall be a scalar of type integer.
+<dd>If <strong>size</strong> is present, the result is a one-dimensional array of length <strong>size</strong>.
 </dd>
 </dl></li>
 </ul>
+<p>If <strong>size</strong> is absent but <strong>mold</strong> is an array (of any size or shape), the result is a one-dimensional array of the minimum length needed to contain the entirety of the bitwise representation of <strong>source</strong>.</p>
+<p>If <strong>size</strong> is absent and <strong>mold</strong> is a scalar, the result is a scalar.</p>
 <h3 id="result-167"><strong>Result</strong></h3>
-<p>The result has the same type as <strong>mold</strong>, with the bit level representation of <strong>source</strong>. If <strong>size</strong> is present, the result is a one-dimensional array of length <strong>size</strong>. If <strong>size</strong> is absent but <strong>mold</strong> is an array (of any size or shape), the result is a one-dimensional array of the minimum length needed to contain the entirety of the bitwise representation of <strong>source</strong>. If <strong>size</strong> is absent and <strong>mold</strong> is a scalar, the result is a scalar.</p>
-<p>If the bitwise representation of the result is longer than that of <strong>source</strong>, then the leading bits of the result correspond to those of <strong>source</strong> and any trailing bits are filled arbitrarily.</p>
+<p>The result has the bit level representation of <strong>source</strong>.</p>
+<p>If the bitwise representation of the result is longer than that of <strong>source</strong>, then the leading bits of the result correspond to those of <strong>source</strong> but any trailing bits are filled arbitrarily.</p>
 <p>When the resulting bit representation does not correspond to a valid representation of a variable of the same type as <strong>mold</strong>, the results are undefined, and subsequent operations on the result cannot be guaranteed to produce sensible behavior. For example, it is possible to create logical variables for which <strong>var</strong> and .not. var both appear to be true.</p>
 <h3 id="examples-185"><strong>Examples</strong></h3>
 <p>Sample program:</p>
@@ -12819,7 +12836,7 @@ it would take if it were stored in memory.</code></pre>
 <a class="sourceLine" id="cb816-2" title="2"></a>
 <a class="sourceLine" id="cb816-3" title="3">      <span class="dt">type(TYPE(kind=KIND),intent(in) :: matrix(:,:)</span></a></code></pre></div>
 <p><strong>matrix</strong> which shall be of any type and have a rank of two. The result will be the same type and kind as <strong>matrix</strong> and of the shape of (m,n) when the input array has the shape(n,m).</p>
-<h3 id="description-186"><strong>Description</strong></h3>
+<h3 id="description-189"><strong>Description</strong></h3>
 <p>Transpose an array of rank two.</p>
 <p>A array is transposed by interchanging the rows and columns of the given matrix. That is, element (i, j) of the result has the value of element(j, i) for all (i, j).</p>
 <h3 id="options-192"><strong>Options</strong></h3>
@@ -12893,7 +12910,7 @@ it would take if it were stored in memory.</code></pre>
 <a class="sourceLine" id="cb820-2" title="2"></a>
 <a class="sourceLine" id="cb820-3" title="3">     <span class="dt">character(len=*,kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string</a></code></pre></div>
 <p><strong>KIND</strong> can be any kind supported for the character type. The result has the same kind as the input argument <strong>string</strong>.</p>
-<h3 id="description-187"><strong>Description</strong></h3>
+<h3 id="description-190"><strong>Description</strong></h3>
 <p>Removes trailing blank characters from a string.</p>
 <h3 id="options-193"><strong>Options</strong></h3>
 <ul>
@@ -12968,24 +12985,35 @@ it would take if it were stored in memory.</code></pre>
 <p><strong>ubound</strong>(3) - [ARRAY INQUIRY] Upper dimension bounds of an array</p>
 <h3 id="synopsis-197"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb823"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb823-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">ubound</span>(array <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb824"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
-<h3 id="description-188"><strong>Description</strong></h3>
+<div class="sourceCode" id="cb824"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb824-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="fu">ubound</span>(array,<span class="bu">dim</span>,<span class="fu">kind</span>)</a>
+<a class="sourceLine" id="cb824-2" title="2"></a>
+<a class="sourceLine" id="cb824-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> array</a>
+<a class="sourceLine" id="cb824-4" title="4">     <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb824-5" title="5">     <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<ul>
+<li><strong>array</strong> Shall be an array, of any type.</li>
+<li><strong>dim</strong> : (Optional) Shall be a scalar integer.</li>
+<li><strong>kind</strong> An integer initialization expression indicating the kind parameter of the result.</li>
+<li><p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</p>
+<p>If <strong>dim</strong> is absent, the result is an array of the upper bounds of <strong>array</strong>.</p></li>
+</ul>
+<h3 id="description-191"><strong>Description</strong></h3>
 <p>Returns the upper bounds of an array, or a single upper bound along the <strong>dim</strong> dimension.</p>
 <h3 id="options-194"><strong>Options</strong></h3>
 <ul>
 <li><dl>
 <dt><strong>array</strong></dt>
-<dd>Shall be an array, of any type.
+<dd>The array to determine the upper bounds of
 </dd>
 </dl></li>
 <li><dl>
 <dt><strong>dim</strong></dt>
-<dd>(Optional) Shall be a scalar integer.
+<dd>a specific rank to determine the bounds of
 </dd>
 </dl></li>
 <li><dl>
 <dt><strong>kind</strong></dt>
-<dd>(Optional) An integer initialization expression indicating the kind parameter of the result.
+<dd>indicates the kind parameter of the result. If absent, an integer of the default kind is returned.
 </dd>
 </dl></li>
 </ul>
@@ -13065,7 +13093,7 @@ it would take if it were stored in memory.</code></pre>
 <a class="sourceLine" id="cb828-4" title="4">     <span class="dt">logical</span>,<span class="dt">intent(in)</span>               <span class="dt">::</span> mask(..)</a>
 <a class="sourceLine" id="cb828-5" title="5">     <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> field(..)</a></code></pre></div>
 <p>The result is an array of the same type and type parameters as <strong>vector</strong> and the same shape as <strong>mask</strong>.</p>
-<h3 id="description-189"><strong>Description</strong></h3>
+<h3 id="description-192"><strong>Description</strong></h3>
 <p>Scatter the elements of <strong>vector</strong> into a copy of an array <strong>field</strong> of any rank using .true. values from <strong>mask</strong> in array element order to specify placement of the <strong>vector</strong> values.</p>
 <p>So a copy of <strong>field</strong> is generated with select elements replaced with values from <strong>vector</strong>. This allows for complex replacement patterns that would be difficult when using array syntax or multiple assignment statements, particularly when the replacements are conditional.</p>
 <h3 id="options-195"><strong>Options</strong></h3>
@@ -13190,7 +13218,7 @@ it would take if it were stored in memory.</code></pre>
 <a class="sourceLine" id="cb833-6" title="6">     <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 <p><strong>string</strong> and <strong>set</strong> must have the same kind type parameter.</p>
 <p>the kind of the returned value is the same as <strong>kind</strong> if present. Otherwise a default integer kind is returned.</p>
-<h3 id="description-190"><strong>Description</strong></h3>
+<h3 id="description-193"><strong>Description</strong></h3>
 <p>Verifies that all the characters in <strong>string</strong> belong to the set of characters in <strong>set</strong> by identifying the position of the first character in the string that is not in the set.</p>
 <p>This makes it easy to verify strings are all uppercase or lowercase, follow a basic syntax, only contain printable characters, and many of the conditions tested for with the C routines <strong>isalnum</strong>(3c), <strong>isalpha</strong>(3c), <strong>isascii</strong>(3c), <strong>isblank</strong>(3c), <strong>iscntrl</strong>(3c), <strong>isdigit</strong>(3c), <strong>isgraph</strong>(3c), <strong>islower</strong>(3c), <strong>isprint</strong>(3c), <strong>ispunct</strong>(3c), <strong>isspace</strong>(3c), <strong>isupper</strong>(3c), and <strong>isxdigit</strong>(3c); but for a string as well an an array of strings.</p>
 <h3 id="options-196"><strong>Options</strong></h3>

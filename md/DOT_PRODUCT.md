@@ -9,7 +9,7 @@
     result = dot_product(vector_a, vector_b)
 ```
 ```fortran
-    function dot_product(vector_a, vector_b)
+    TYPE(kind=KIND) function dot_product(vector_a, vector_b)
 
     TYPE(kind=KIND),intent(in) :: vector_a(:)
     TYPE(kind=KIND),intent(in) :: vector_b(:)
@@ -23,25 +23,25 @@ of rank one and of equal size.
 multiplication of two vectors **vector_a** and **vector_b**.
 
 If the vectors are _integer_ or _real_, the result is
-
-     **sum(vector_a\*vector_b)**.
-
+```fortran
+     sum(vector_a*vector_b)
+```
 If the vectors are _complex_, the result is
-
-     **sum(conjg(vector_a)\*vector_b)**.
-
+```fortran
+     sum(conjg(vector_a)*vector_b)**
+```
 If the vectors are _logical_, the result is
-
-     **any(vector_a .and. vector_b)**.
-
+```fortran
+     any(vector_a .and. vector_b)
+```
 ### **Options**
 
 - **vector_a**
   : The type shall be numeric or _logical_, rank 1.
 
 - **vector_b**
-  : The type shall be numeric if vector*a is of numeric type or \_logical*
-  if vector*a is of type \_logical*. vector_b shall be a rank-one
+  : The type shall be numeric if vector_a is of numeric type or _logical_
+  if vector_a is of type _logical_. vector_b shall be a rank-one
   array.
 
 ### **Result**

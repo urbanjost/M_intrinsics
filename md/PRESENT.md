@@ -14,6 +14,7 @@ is specified
      type(TYPE(kind=KIND)) :: a(..)
 ```
 where the **TYPE** may be any type
+
 ### **Description**
 
 Determines whether an optional dummy argument is present.

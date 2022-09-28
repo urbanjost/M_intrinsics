@@ -8,13 +8,21 @@
 ```fortran
     result = transfer(source, mold [,size] )
 ```
+     type(TYPE(kind=KIND)) function transfer(source,mold,size)
+
+      type(TYPE(kind=KIND)),intent(in) :: source(..)
+      type(TYPE(kind=KIND)),intent(in) :: mold(..)
+      integer,intent(in),intent(in),optional :: size
 ```fortran
-```
+- **source** Shall be a scalar or an array of any type.
+- **mold** Shall be a scalar or an array of any type.
+- **size** shall be a scalar of type _integer_.
+- **result** has the same type as **mold**
+
 ### **Description**
 
-Interprets the bitwise representation of **source** in memory as if it
-is the representation of a variable or array of the same type and type
-parameters as **mold**.
+copies the bitwise representation of **source** in memory into 
+a variable or array of the same type and type parameters as **mold**.
 
 This is approximately equivalent to the C concept of "casting" one
 type to another.
@@ -22,32 +30,36 @@ type to another.
 ### **Options**
 
 - **source**
-  : Shall be a scalar or an array of any type.
+  : Holds the bit pattern to be copied
 
 - **mold**
-  : Shall be a scalar or an array of any type.
+  : the type of **mold** is used to define the type of the returned
+  value. In addition, if it is an array the returned value is a
+  one-dimensional array. If it is a scalar the returned value is a scalar.
 
 - **size**
-  : (Optional) shall be a scalar of type _integer_.
+  : If **size** is present, the result is a one-dimensional array of
+    length **size**.
+
+If **size** is absent but **mold** is an array (of any size or
+shape), the result is a one-dimensional array of the minimum length
+needed to contain the entirety of the bitwise representation of **source**.
+
+If **size** is absent and **mold** is a scalar, the result is a scalar.
 
 ### **Result**
 
-The result has the same type as **mold**, with the bit level representation
-of **source**. If **size** is present, the result is a one-dimensional array of
-length **size**. If **size** is absent but **mold** is an array (of any size or
-shape), the result is a one-dimensional array of the minimum length
-needed to contain the entirety of the bitwise representation of **source**.
-If **size** is absent and **mold** is a scalar, the result is a scalar.
+The result has the bit level representation of **source**.
 
 If the bitwise representation of the result is longer than that of
 **source**, then the leading bits of the result correspond to those of
-**source** and any trailing bits are filled arbitrarily.
+**source** but any trailing bits are filled arbitrarily.
 
 When the resulting bit representation does not correspond to a valid
 representation of a variable of the same type as **mold**, the results are
-undefined, and subsequent operations on the result cannot be guaranteed
-to produce sensible behavior. For example, it is possible to create
-_logical_ variables for which **var** and .not. var both appear to be true.
+undefined, and subsequent operations on the result cannot be guaranteed to
+produce sensible behavior. For example, it is possible to create _logical_
+variables for which **var** and .not. var both appear to be true.
 
 ### **Examples**
 
