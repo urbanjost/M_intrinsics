@@ -47,7 +47,7 @@ and **isxdigit**(3c); but for a string as well an an array of strings.
 - **back**
   : The direction to look for an unmatched character. The left-most
   unmatched character position is returned unless **back** is present
-  and _false_, which causes the position of the right-most unmatched
+  and _.false._, which causes the position of the right-most unmatched
   character to be returned.
 
 - **kind**

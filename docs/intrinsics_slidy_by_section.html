@@ -13933,7 +13933,10 @@ it would take if it were stored in memory.</code></pre>
 </div><div id="synopsis-195" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb815"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb815-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">transpose</span>(matrix)</a></code></pre></div>
-<div class="sourceCode" id="cb816"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
+<div class="sourceCode" id="cb816"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb816-1" title="1">     <span class="dt">type(TYPE(kind=KIND) transpose(matrix)</span></a>
+<a class="sourceLine" id="cb816-2" title="2"></a>
+<a class="sourceLine" id="cb816-3" title="3">      <span class="dt">type(TYPE(kind=KIND),intent(in) :: matrix(:,:)</span></a></code></pre></div>
+<p><strong>matrix</strong> which shall be of any type and have a rank of two. The result will be the same type and kind as <strong>matrix</strong> and of the shape of (m,n) when the input array has the shape(n,m).</p>
 </div><div id="description-186" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>Transpose an array of rank two.</p>
@@ -13943,7 +13946,7 @@ it would take if it were stored in memory.</code></pre>
 <ul>
 <li><dl>
 <dt><strong>matrix</strong></dt>
-<dd>The array to transpose, which shall be of any type and have a rank of two.
+<dd>The array to transpose
 </dd>
 </dl></li>
 </ul>
@@ -14347,7 +14350,7 @@ it would take if it were stored in memory.</code></pre>
 </dl></li>
 <li><dl>
 <dt><strong>back</strong></dt>
-<dd>The direction to look for an unmatched character. The left-most unmatched character position is returned unless <strong>back</strong> is present and false, which causes the position of the right-most unmatched character to be returned.
+<dd>The direction to look for an unmatched character. The left-most unmatched character position is returned unless <strong>back</strong> is present and .false., which causes the position of the right-most unmatched character to be returned.
 </dd>
 </dl></li>
 <li><dl>

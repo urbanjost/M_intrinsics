@@ -17236,6 +17236,14 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = transpose(matrix)', &
 '', &
+'           type(TYPE(kind=KIND) transpose(matrix)', &
+'', &
+'            type(TYPE(kind=KIND),intent(in) :: matrix(:,:)', &
+'', &
+'  MATRIX which shall be of any type and have a rank of two. The result will be', &
+'  the same type and kind as MATRIX and of the shape of (m,n) when the input', &
+'  array has the shape(n,m).', &
+'', &
 'DESCRIPTION', &
 '  Transpose an array of rank two.', &
 '', &
@@ -17244,8 +17252,7 @@ textblock=[character(len=256) :: &
 '  for all (i, j).', &
 '', &
 'OPTIONS', &
-'  o  MATRIX : The array to transpose, which shall be of any type and have a', &
-'     rank of two.', &
+'  o  MATRIX : The array to transpose', &
 '', &
 'RESULT', &
 '  The transpose of the input array. The result has the same type as MATRIX,', &
@@ -17726,8 +17733,8 @@ textblock=[character(len=256) :: &
 '', &
 '  o  BACK : The direction to look for an unmatched character. The left-most', &
 '     unmatched character position is returned unless BACK is present and', &
-'     false, which causes the position of the right-most unmatched character to', &
-'     be returned.', &
+'     .false., which causes the position of the right-most unmatched character', &
+'     to be returned.', &
 '', &
 '  o  KIND : An integer initialization expression indicating the kind parameter', &
 '     of the result.', &

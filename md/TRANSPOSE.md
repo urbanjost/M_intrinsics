@@ -9,7 +9,14 @@
     result = transpose(matrix)
 ```
 ```fortran
+     type(TYPE(kind=KIND) transpose(matrix)
+
+      type(TYPE(kind=KIND),intent(in) :: matrix(:,:)
 ```
+  **matrix** which shall be of any type and have a rank of two. The
+  result will be the same type and kind as **matrix** and of the 
+  shape of (m,n) when the input array has the shape(n,m).
+
 ### **Description**
 
 Transpose an array of rank two.
@@ -21,8 +28,7 @@ i) for all (i, j).
 ### **Options**
 
 - **matrix**
-  : The array to transpose, which shall be of any type and have a rank
-  of two.
+  : The array to transpose
 
 ### **Result**
 
@@ -32,7 +38,6 @@ The transpose of the input array. The result has the same type as
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_transpose
 implicit none
@@ -69,9 +74,7 @@ end subroutine print_matrix_int
 
 end program demo_transpose
 ```
-
 Results:
-
 ```
     xx array:
     > [     1,     2,     3,     4,     5 ]
