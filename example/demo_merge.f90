@@ -1,10 +1,14 @@
-      program demo_merge
-      implicit none
-      integer :: tvals(2,3), fvals(2,3), answer(2,3)
-      logical :: mask(2,3)
-      integer :: i
-      logical :: chooseleft
+  program demo_merge implicit none integer :: tvals(,3), fvals(,3), answer(,3) logical :: mask(,3) integer :: i logical ::
+  chooseleft
 
+         ! Works with scalars
+         k=5
+         write(*,*)merge (1.0, 0.0, k > 0)
+         k=-2
+         write(*,*)merge (1.0, 0.0, k > 0)
+
+         ! set up some simple arrays that all conform to the
+         ! same shape
          tvals(1,:)=[  10, -60,  50 ]
          tvals(2,:)=[ -20,  40, -60 ]
 
@@ -14,10 +18,12 @@
          mask(1,:)=[ .true.,  .false., .true. ]
          mask(2,:)=[ .false., .false., .true. ]
 
+         ! lets use the mask of specific values
          write(*,*)'mask of logicals'
          answer=merge( tvals, fvals, mask )
          call printme()
 
+         ! more typically the mask is an expression
          write(*, *)'highest values'
          answer=merge( tvals, fvals, tvals > fvals )
          call printme()
@@ -36,10 +42,8 @@
          chooseleft=.true.
          write(*, '(3i4)')merge([1,2,3],[10,20,30],chooseleft)
 
-      contains
+  contains
 
-      subroutine printme()
-            write(*, '(3i4)')(answer(i, :), i=1, size(answer, dim=1))
-      end subroutine printme
+  subroutine printme() write(*, '(3i4)')(answer(i, :), i=1, size(answer, dim=1)) end subroutine printme
 
-      end program demo_merge
+  end program demo_merge

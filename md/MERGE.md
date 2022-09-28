@@ -10,7 +10,16 @@
 ```
 ```fortran
      elemental type(TYPE(kind=KIND)) function merge(tsource,fsource,mask)
+
+      type(TYPE(kind=KIND)),intent(in) :: tsource
+      type(TYPE(kind=KIND)),intent(in) :: fsource
+      logical(kind=KINDM),intent(in)   :: mask
+      mask** : Shall be of type _logical_.
 ```
+  **tsource** May be of any type, including user-defined.  
+  **fsource** Shall be of the same type and type parameters as **tsource**.  
+  The result will by of the same type and type parameters as **tsource** too.
+
 ### **Description**
 
 The elemental function **merge**(3) selects values from two arrays or
@@ -70,13 +79,6 @@ element the result is **tsource** if **mask** is true and **fsource** otherwise.
 
 ### **Examples**
 
-The value of
-
-```fortran
-     merge (1.0, 0.0, k > 0)
-```
-
-is 1.0 for K=5 and 0.0 for K=**-2**.
 
 ```fortran
 program demo_merge
@@ -86,6 +88,14 @@ logical :: mask(2,3)
 integer :: i
 logical :: chooseleft
 
+   ! Works with scalars
+   k=5
+   write(*,*)merge (1.0, 0.0, k > 0)
+   k=-2
+   write(*,*)merge (1.0, 0.0, k > 0)
+
+   ! set up some simple arrays that all conform to the
+   ! same shape
    tvals(1,:)=[  10, -60,  50 ]
    tvals(2,:)=[ -20,  40, -60 ]
 
@@ -95,10 +105,12 @@ logical :: chooseleft
    mask(1,:)=[ .true.,  .false., .true. ]
    mask(2,:)=[ .false., .false., .true. ]
 
+   ! lets use the mask of specific values
    write(*,*)'mask of logicals'
    answer=merge( tvals, fvals, mask )
    call printme()
 
+   ! more typically the mask is an expression
    write(*, *)'highest values'
    answer=merge( tvals, fvals, tvals > fvals )
    call printme()

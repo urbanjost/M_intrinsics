@@ -11467,6 +11467,15 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental type(TYPE(kind=KIND)) function merge(tsource,fsource,mask)', &
 '', &
+'            type(TYPE(kind=KIND)),intent(in) :: tsource', &
+'            type(TYPE(kind=KIND)),intent(in) :: fsource', &
+'            logical(kind=KINDM),intent(in)   :: mask', &
+'            mask** : Shall be of type _logical_.', &
+'', &
+'  TSOURCE May be of any type, including user-defined.  FSOURCE Shall be of the', &
+'  same type and type parameters as TSOURCE.  The result will by of the same', &
+'  type and type parameters as TSOURCE too.', &
+'', &
 'DESCRIPTION', &
 '  The elemental function MERGE(3) selects values from two arrays or scalars', &
 '  according to a logical mask. The result is equal to an element of TSOURCE', &
@@ -11513,19 +11522,17 @@ textblock=[character(len=256) :: &
 '  element the result is TSOURCE if MASK is true and FSOURCE otherwise.', &
 '', &
 'EXAMPLES', &
-'  The value of', &
+'  program demo_merge implicit none integer :: tvals(,3), fvals(,3), answer(,3)', &
+'  logical :: mask(,3) integer :: i logical :: chooseleft', &
 '', &
-'           merge (1.0, 0.0, k > 0)', &
+'         ! Works with scalars', &
+'         k=5', &
+'         write(*,*)merge (1.0, 0.0, k > 0)', &
+'         k=-2', &
+'         write(*,*)merge (1.0, 0.0, k > 0)', &
 '', &
-'  is 1.0 for K=5 and 0.0 for K=-.', &
-'', &
-'      program demo_merge', &
-'      implicit none', &
-'      integer :: tvals(2,3), fvals(2,3), answer(2,3)', &
-'      logical :: mask(2,3)', &
-'      integer :: i', &
-'      logical :: chooseleft', &
-'', &
+'         ! set up some simple arrays that all conform to the', &
+'         ! same shape', &
 '         tvals(1,:)=[  10, -60,  50 ]', &
 '         tvals(2,:)=[ -20,  40, -60 ]', &
 '', &
@@ -11535,10 +11542,12 @@ textblock=[character(len=256) :: &
 '         mask(1,:)=[ .true.,  .false., .true. ]', &
 '         mask(2,:)=[ .false., .false., .true. ]', &
 '', &
+'         ! lets use the mask of specific values', &
 '         write(*,*)''mask of logicals''', &
 '         answer=merge( tvals, fvals, mask )', &
 '         call printme()', &
 '', &
+'         ! more typically the mask is an expression', &
 '         write(*, *)''highest values''', &
 '         answer=merge( tvals, fvals, tvals > fvals )', &
 '         call printme()', &
@@ -11557,13 +11566,12 @@ textblock=[character(len=256) :: &
 '         chooseleft=.true.', &
 '         write(*, ''(3i4)'')merge([1,2,3],[10,20,30],chooseleft)', &
 '', &
-'      contains', &
+'  contains', &
 '', &
-'      subroutine printme()', &
-'            write(*, ''(3i4)'')(answer(i, :), i=1, size(answer, dim=1))', &
-'      end subroutine printme', &
+'  subroutine printme() write(*, ''(3i4)'')(answer(i, :), i=1, size(answer,', &
+'  dim=1)) end subroutine printme', &
 '', &
-'      end program demo_merge', &
+'  end program demo_merge', &
 '', &
 '  Expected Results:', &
 '', &
