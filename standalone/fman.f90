@@ -7243,7 +7243,7 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = floor(a [,kind])', &
 '', &
-'           elemental integer(kind=kind) function floor(a [,kind])', &
+'           elemental integer(kind=kind) function floor( a ,kind )', &
 '', &
 '           real(kind=KIND),intent(in) :: a', &
 '           integer,intent(in),optional :: kind', &
@@ -8867,7 +8867,7 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = int(a [,kind])', &
 '', &
-'           elemental integer(kind=KIND) function int(a, [kind] )', &
+'           elemental integer(kind=KIND) function int(a, kind )', &
 '', &
 '           TYPE(kind=KIND),intent(in) :: a', &
 '           integer,optional :: kind', &
@@ -9056,9 +9056,9 @@ textblock=[character(len=256) :: &
 '  IPARITY(3) - [BIT:LOGICAL] Bitwise exclusive or of array elements', &
 '', &
 'SYNOPSIS', &
-'  result = iparity(array, mask)', &
+'  result = iparity(array [,mask])', &
 '', &
-'           integer(kind=KIND) function iparity(array [,mask] )', &
+'           integer(kind=KIND) function iparity(array, mask )', &
 '', &
 '           integer(kind=KIND),intent(in) :: array(..)', &
 '           logical(kind=KIND),intent(in),optional :: mask(..)', &

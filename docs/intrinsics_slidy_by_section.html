@@ -436,7 +436,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>FORTRAN 77 and later; for a complex argument - Fortran 2008 and later</p>
 </div><div id="see-also-3" class="slide section level3">
 <h1><strong>See Also</strong></h1>
-<p>Inverse function: <a href="cos"><strong>cos</strong>(3</a>)</p>
+<p>Inverse function: <a href="cos"><strong>cos</strong>(3)</a></p>
 </div><div id="resources-2" class="slide section level3">
 <h1><strong>Resources</strong></h1>
 <ul>
@@ -5731,7 +5731,7 @@ The dynamic type of a disassociated pointer or unallocated allocatable variable 
 </div><div id="synopsis-86" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb355"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb355-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">floor</span>(a <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb356"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb356-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=kind)</span> <span class="kw">function</span> <span class="bu">floor</span>(a <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a>
+<div class="sourceCode" id="cb356"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb356-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=kind)</span> <span class="kw">function</span> <span class="bu">floor</span>( a ,<span class="fu">kind</span> )</a>
 <a class="sourceLine" id="cb356-2" title="2"></a>
 <a class="sourceLine" id="cb356-3" title="3"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> a</a>
 <a class="sourceLine" id="cb356-4" title="4">     <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
@@ -7067,7 +7067,7 @@ end program read_val</code></pre>
 </div><div id="synopsis-105" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb429"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb429-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">int</span>(a <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb430"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb430-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">int</span>(a, <span class="kw">[</span><span class="fu">kind</span><span class="kw">]</span> )</a>
+<div class="sourceCode" id="cb430"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb430-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">int</span>(a, <span class="fu">kind</span> )</a>
 <a class="sourceLine" id="cb430-2" title="2"></a>
 <a class="sourceLine" id="cb430-3" title="3">     <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> a</a>
 <a class="sourceLine" id="cb430-4" title="4">     <span class="dt">integer</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
@@ -7224,8 +7224,8 @@ If not present the returned type is that of default integer type.</li>
 <p><strong>iparity</strong>(3) - [BIT:LOGICAL] Bitwise exclusive or of array elements</p>
 </div><div id="synopsis-107" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
-<div class="sourceCode" id="cb437"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb437-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> iparity(array, mask)</a></code></pre></div>
-<div class="sourceCode" id="cb438"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb438-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> iparity(array <span class="kw">[</span>,mask<span class="kw">]</span> )</a>
+<div class="sourceCode" id="cb437"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb437-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> iparity(array <span class="kw">[</span>,mask<span class="kw">]</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb438-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> iparity(array, mask )</a>
 <a class="sourceLine" id="cb438-2" title="2"></a>
 <a class="sourceLine" id="cb438-3" title="3">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
 <a class="sourceLine" id="cb438-4" title="4">     <span class="dt">logical(kind=KIND)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>

@@ -425,7 +425,7 @@ Results:
 FORTRAN 77 and later; for a _complex_ argument - Fortran 2008 and later
 
 ### **See Also**
-Inverse function: [**cos**(3](cos))
+Inverse function: [**cos**(3)](cos)
 
 ### **Resources**
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
@@ -7449,7 +7449,7 @@ not greater than argument
     result = floor(a [,kind])
 ```
 ```fortran
-     elemental integer(kind=kind) function floor(a [,kind])
+     elemental integer(kind=kind) function floor( a ,kind )
 
      real(kind=KIND),intent(in) :: a
      integer,intent(in),optional :: kind
@@ -9221,7 +9221,7 @@ of arguments, and search for certain arguments:
     result = int(a [,kind])
 ```
 ```fortran
-     elemental integer(kind=KIND) function int(a, [kind] )
+     elemental integer(kind=KIND) function int(a, kind )
 
      TYPE(kind=KIND),intent(in) :: a
      integer,optional :: kind
@@ -9425,10 +9425,10 @@ Fortran 95 and later
 
 ### **Synopsis**
 ```fortran
-    result = iparity(array, mask)
+    result = iparity(array [,mask])
 ```
 ```fortran
-     integer(kind=KIND) function iparity(array [,mask] )
+     integer(kind=KIND) function iparity(array, mask )
 
      integer(kind=KIND),intent(in) :: array(..)
      logical(kind=KIND),intent(in),optional :: mask(..)

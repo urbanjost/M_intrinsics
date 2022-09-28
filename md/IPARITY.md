@@ -6,10 +6,10 @@
 
 ### **Synopsis**
 ```fortran
-    result = iparity(array, mask)
+    result = iparity(array [,mask])
 ```
 ```fortran
-     integer(kind=KIND) function iparity(array [,mask] )
+     integer(kind=KIND) function iparity(array, mask )
 
      integer(kind=KIND),intent(in) :: array(..)
      logical(kind=KIND),intent(in),optional :: mask(..)

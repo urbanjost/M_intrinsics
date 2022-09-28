@@ -10,7 +10,7 @@ not greater than argument
     result = floor(a [,kind])
 ```
 ```fortran
-     elemental integer(kind=kind) function floor(a [,kind])
+     elemental integer(kind=kind) function floor( a ,kind )
 
      real(kind=KIND),intent(in) :: a
      integer,intent(in),optional :: kind

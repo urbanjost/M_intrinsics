@@ -66,7 +66,7 @@ Results:
 FORTRAN 77 and later; for a _complex_ argument - Fortran 2008 and later
 
 ### **See Also**
-Inverse function: [**cos**(3](cos))
+Inverse function: [**cos**(3)](cos)
 
 ### **Resources**
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
