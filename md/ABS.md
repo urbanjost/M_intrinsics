@@ -44,9 +44,9 @@
 
    If **a** is _complex_ with value **(x, y)**, the result is a _real_
    equal to a processor-dependent approximation to
-
-        **sqrt(x\*\*2 + y\*\*2)**
-
+``fortran
+        sqrt(x**2 + y**2)
+``
    computed without undue overflow or underflow.
 
 ### **Examples**

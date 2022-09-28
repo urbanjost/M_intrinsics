@@ -237,11 +237,9 @@ textblock=[character(len=256) :: &
 '  value |A| and of the same type and kind as the input argument.', &
 '', &
 '  If A is complex with value (X, Y), the result is a real equal to a', &
-'  processor-dependent approximation to', &
 '', &
-'          **sqrt(x\*\*2 + y\*\*2)**', &
-'', &
-'  computed without undue overflow or underflow.', &
+'  processor-dependent approximation to fortran sqrt(x** + y**)', &
+'    computed without undue overflow or underflow.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
