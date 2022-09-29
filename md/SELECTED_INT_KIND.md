@@ -9,6 +9,9 @@
     result = selected_int_kind(r)
 ```
 ```fortran
+    integer function selected_int_kind(r)
+
+     integer(kind=KIND),intent(in) :: r
 ```
 ### **Description**
 

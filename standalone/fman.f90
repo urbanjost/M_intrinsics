@@ -15269,6 +15269,10 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = selected_int_kind(r)', &
 '', &
+'  integer function selected_int_kind(r)', &
+'', &
+'           integer(kind=KIND),intent(in) :: r', &
+'', &
 'DESCRIPTION', &
 '  SELECTED_INT_KIND(R) return the kind value of the smallest integer type that', &
 '  can represent all values ranging from -10**R (exclusive) to 10**R', &
@@ -15328,17 +15332,23 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = selected_real_kind([p] [,r] [,radix] )', &
 '', &
+'  integer function selected_int_kind(r)', &
+'', &
+'           real(kind=KIND),intent(in),optional :: p', &
+'           real(kind=KIND),intent(in),optional :: r', &
+'           real(kind=KIND),intent(in),optional :: radix', &
+'', &
 'DESCRIPTION', &
 '  SELECTED_REAL_KIND(P, R, RADIX) return the kind value of a real data type', &
 '  with decimal precision of at least P digits, exponent range of at least R,', &
 '  and with a radix of RADIX.', &
 '', &
 'OPTIONS', &
-'  o  P : (Optional) shall be a scalar and of type integer.', &
+'  o  P : shall be a scalar and of type integer.', &
 '', &
-'  o  R : (Optional) shall be a scalar and of type integer.', &
+'  o  R : shall be a scalar and of type integer.', &
 '', &
-'  o  RADIX : (Optional) shall be a scalar and of type integer.', &
+'  o  RADIX : shall be a scalar and of type integer.', &
 '', &
 '  Before FORTRAN 008, at least one of the arguments R or P shall be present;', &
 '  since FORTRAN 008, they are assumed to be zero if absent.', &

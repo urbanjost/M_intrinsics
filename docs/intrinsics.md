@@ -16074,6 +16074,9 @@ Fortran 2003 and later
     result = selected_int_kind(r)
 ```
 ```fortran
+    integer function selected_int_kind(r)
+
+     integer(kind=KIND),intent(in) :: r
 ```
 ### **Description**
 
@@ -16141,6 +16144,11 @@ Fortran 95 and later
     result = selected_real_kind([p] [,r] [,radix] )
 ```
 ```fortran
+    integer function selected_int_kind(r)
+
+     real(kind=KIND),intent(in),optional :: p
+     real(kind=KIND),intent(in),optional :: r
+     real(kind=KIND),intent(in),optional :: radix
 ```
 ### **Description**
 
@@ -16151,13 +16159,13 @@ at least **r**, and with a radix of **radix**.
 ### **Options**
 
 - **p**
-  : (Optional) shall be a scalar and of type _integer_.
+  : shall be a scalar and of type _integer_.
 
 - **r**
-  : (Optional) shall be a scalar and of type _integer_.
+  : shall be a scalar and of type _integer_.
 
 - **radix**
-  : (Optional) shall be a scalar and of type _integer_.
+  : shall be a scalar and of type _integer_.
 
 Before **Fortran 2008**, at least one of the arguments **r** or **p** shall
 be present; since **Fortran 2008**, they are assumed to be zero if

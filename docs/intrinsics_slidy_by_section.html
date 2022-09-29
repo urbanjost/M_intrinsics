@@ -12317,7 +12317,9 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 </div><div id="synopsis-172" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb719"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb719-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">selected_int_kind</span>(r)</a></code></pre></div>
-<div class="sourceCode" id="cb720"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
+<div class="sourceCode" id="cb720"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb720-1" title="1">    <span class="dt">integer</span> <span class="kw">function</span> <span class="fu">selected_int_kind</span>(r)</a>
+<a class="sourceLine" id="cb720-2" title="2"></a>
+<a class="sourceLine" id="cb720-3" title="3">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> r</a></code></pre></div>
 </div><div id="description-164" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p><strong>selected_int_kind(r)</strong> return the kind value of the smallest integer type that can represent all values ranging from <strong>-10**r</strong> (exclusive) to <strong>10**r</strong> (exclusive). If there is no integer kind that accommodates this range, selected_int_kind returns <strong>-1</strong>.</p>
@@ -12364,7 +12366,11 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 </div><div id="synopsis-173" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb723"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb723-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">selected_real_kind</span>(<span class="kw">[</span>p<span class="kw">]</span> <span class="kw">[</span>,r<span class="kw">]</span> <span class="kw">[</span>,<span class="fu">radix</span><span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb724"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
+<div class="sourceCode" id="cb724"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb724-1" title="1">    <span class="dt">integer</span> <span class="kw">function</span> <span class="fu">selected_int_kind</span>(r)</a>
+<a class="sourceLine" id="cb724-2" title="2"></a>
+<a class="sourceLine" id="cb724-3" title="3"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> p</a>
+<a class="sourceLine" id="cb724-4" title="4"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> r</a>
+<a class="sourceLine" id="cb724-5" title="5"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">radix</span></a></code></pre></div>
 </div><div id="description-165" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p><strong>selected_real_kind(p, r, radix)</strong> return the kind value of a real data type with decimal precision of at least <strong>p</strong> digits, exponent range of at least <strong>r</strong>, and with a radix of <strong>radix</strong>.</p>
@@ -12373,17 +12379,17 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <ul>
 <li><dl>
 <dt><strong>p</strong></dt>
-<dd>(Optional) shall be a scalar and of type integer.
+<dd>shall be a scalar and of type integer.
 </dd>
 </dl></li>
 <li><dl>
 <dt><strong>r</strong></dt>
-<dd>(Optional) shall be a scalar and of type integer.
+<dd>shall be a scalar and of type integer.
 </dd>
 </dl></li>
 <li><dl>
 <dt><strong>radix</strong></dt>
-<dd>(Optional) shall be a scalar and of type integer.
+<dd>shall be a scalar and of type integer.
 </dd>
 </dl></li>
 </ul>
