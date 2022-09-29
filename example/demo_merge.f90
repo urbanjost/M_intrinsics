@@ -1,5 +1,5 @@
-  program demo_merge implicit none integer :: tvals(,3), fvals(,3), answer(,3) logical :: mask(,3) integer :: i logical ::
-  chooseleft
+  program demo_merge implicit none integer :: tvals(,3), fvals(,3), answer(,3)
+  logical :: mask(,3) integer :: i logical :: chooseleft
 
          ! Works with scalars
          k=5
@@ -44,6 +44,7 @@
 
   contains
 
-  subroutine printme() write(*, '(3i4)')(answer(i, :), i=1, size(answer, dim=1)) end subroutine printme
+  subroutine printme() write(*, '(3i4)')(answer(i, :), i=1, size(answer,
+  dim=1)) end subroutine printme
 
   end program demo_merge

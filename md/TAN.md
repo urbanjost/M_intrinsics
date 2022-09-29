@@ -6,16 +6,18 @@
 
 ### **Synopsis**
 ```fortran
-    result = tan(x)
+result = tan(x)
 ```
 ```fortran
-     elemental TYPE(kind=KIND) function tan(x)
+ elemental TYPE(kind=KIND) function tan(x)
 
-     TYPE(kind=KIND),intent(in) :: x
+  TYPE(kind=KIND),intent(in) :: x
 ```
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type. The returned value will be of the same type and kind as
-the argument.
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind
+supported by the associated type. The returned value will be of the same
+type and kind as the argument.
+
+The return value has the same type and kind as **x**.
 
 ### **Description**
 
@@ -24,11 +26,11 @@ the argument.
 ### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_.
+  : The angle in radians to compute the tangent of
 
 ### **Result**
 
-The return value has the same type and kind as **x**.
+The return value is the sine of the value **x**.
 
 ### **Examples**
 

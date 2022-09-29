@@ -10,7 +10,19 @@
 ```
 ```fortran
      subroutine atomic_add(atom,value,stat)
+
+     integer(atomic_int_kind) :: atom[*]
+   call atomic_add (atom[1], this_image())
 ```
+- **atom**
+  **atom** is a scalar coarray or coindexed variable of integer type with
+  atomic_int_kind kind.
+
+- **value** is a scalar of the same type as **atom**. If the kind is different, the value
+  is converted to the kind of **atom**.
+
+- **stat**
+  : (optional) Scalar default-kind integer variable.
 ### **Description**
 
 **atomic_ad(atom, value)** atomically adds the value of VAR to the

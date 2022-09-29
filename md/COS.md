@@ -28,12 +28,11 @@ hypotenuse of a right-angled triangle.
 ### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_.
-  **x** is assumed to be in radians.
+  : The angle in radians to compute the cosine of.
 
 ### **Result**
 
-The return value is of the same type and kind as **x**.
+The return value is the tangent of **x**.
 
 If **x** is of the type _real_, the return value lies in
 the range **-1 \<= cos(x) \<= 1** .

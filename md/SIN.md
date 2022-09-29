@@ -13,9 +13,10 @@
 
      TYPE(kind=KIND) :: x
 ```
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type. The returned value will be of the same type and kind as
-the argument.
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind
+supported by the associated type.
+
+The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
@@ -29,12 +30,12 @@ hypotenuse.
 ### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_ in radians.
+  : The angle in radians to compute the sine of.
 
 ### **Result**
 
 - **result**
-  : The return value has the same type and kind as **x**.
+  : The return value contains the sine of **x**.
 
 ### **Examples**
 

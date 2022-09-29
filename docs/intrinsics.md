@@ -128,7 +128,7 @@ Result:
 
 ### **Name**
 
-**achar**(3) - \[CHARACTER:CONVERSION\] returns a character in a specified position in the ASCII collating sequence
+**achar**(3) - \[CHARACTER:CONVERSION\] Returns a character in a specified position in the ASCII collating sequence
 
 ### **Synopsis**
 ```fortran
@@ -361,7 +361,7 @@ Inverse function: [**cosh**(3)](#cosh)
 
 ### **Name**
 
-**acos**(3) - \[MATHEMATICS:TRIGONOMETRIC\] arccosine (inverse cosine) function
+**acos**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arccosine (inverse cosine) function
 
 ### **Synopsis**
 ```fortran
@@ -756,7 +756,7 @@ FORTRAN 77 and later
 
 ### **Name**
 
-**all**(3) - \[ARRAY REDUCTION\] determines if all the values are true
+**all**(3) - \[ARRAY REDUCTION\] Determines if all the values are true
 
 ### **Synopsis**
 ```fortran
@@ -1057,7 +1057,7 @@ FORTRAN 77 and later
 
 ### **Name**
 
-**any**(3) - \[ARRAY REDUCTION\] determines if any of the values in the logical array are true.
+**any**(3) - \[ARRAY REDUCTION\] Determines if any of the values in the logical array are true.
 
 ### **Synopsis**
 ```fortran
@@ -1666,7 +1666,7 @@ Inverse function: [**tanh**(3)](#tanh)
 ```
 If **y**
 is present **x** and **y** must both be _real_. Otherwise, **x** may be
-_complex_. **KIND** be any kind supported by the associated type.
+_complex_. **KIND** can be any kind supported by the associated type.
 
 The returned value is of the same type and kind as **x**.
 
@@ -1750,7 +1750,19 @@ arguments Fortran 2008 or later
 ```
 ```fortran
      subroutine atomic_add(atom,value,stat)
+
+     integer(atomic_int_kind) :: atom[*]
+   call atomic_add (atom[1], this_image())
 ```
+- **atom**
+  **atom** is a scalar coarray or coindexed variable of integer type with
+  atomic_int_kind kind.
+
+- **value** is a scalar of the same type as **atom**. If the kind is different, the value
+  is converted to the kind of **atom**.
+
+- **stat**
+  : (optional) Scalar default-kind integer variable.
 ### **Description**
 
 **atomic_ad(atom, value)** atomically adds the value of VAR to the
@@ -1952,33 +1964,42 @@ TS 18508 or later
 ```fortran
      subroutine atomic_define(atom, value, stat)
 
-     TYPE(kind=KIND) :: atom
+     TYPE(kind=atomic_KIND_kind) :: atom[*]
      TYPE(kind=KIND) :: value
      integer,intent(out),optional :: stat
 ```
-### **Description**
-
-**atomic_define(atom, value)** defines the variable **atom** with the value
-**value** atomically. When **stat** is present and the invocation was
-successful, it is assigned the value **0**. If it is present and the
-invocation has failed, it is assigned a positive value; in particular,
-for a coindexed **atom**, if the remote image has stopped, it is assigned
-the value of iso_fortran_env's stat_stopped_image and if the remote
-image has failed, the value stat_failed_image.
-
-### **Options**
-
 - **atom**
   : Scalar coarray or coindexed variable of either integer type with
   atomic_int_kind kind or logical type with atomic_logical_kind
   kind.
-
 - **value**
   : Scalar of the same type as **atom**. If the kind is different, the value
   is converted to the kind of **atom**.
 
 - **stat**
   : (optional) Scalar default-kind integer variable.
+### **Description**
+
+**atomic_define(atom, value)** defines the variable **atom** with the value
+**value** atomically.
+
+### **Options**
+
+- **atom**
+  : Scalar coarray or coindexed variable to atomically assign the
+  value **value** to.
+  kind.
+
+- **value**
+  : value to assign to **atom**
+
+- **stat**
+  : When **stat** is present and the invocation was
+  successful, it is assigned the value **0**. If it is present and the
+  invocation has failed, it is assigned a positive value; in particular,
+  for a coindexed **atom**, if the remote image has stopped, it is assigned
+  the value of iso_fortran_env's stat_stopped_image and if the remote
+  image has failed, the value stat_failed_image.
 
 ### **Examples**
 
@@ -4999,12 +5020,11 @@ hypotenuse of a right-angled triangle.
 ### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_.
-  **x** is assumed to be in radians.
+  : The angle in radians to compute the cosine of.
 
 ### **Result**
 
-The return value is of the same type and kind as **x**.
+The return value is the tangent of **x**.
 
 If **x** is of the type _real_, the return value lies in
 the range **-1 \<= cos(x) \<= 1** .
@@ -5342,7 +5362,7 @@ and later
 
 ### **Name**
 
-**cpu_time**(3) - \[SYSTEM:TIME\] return CPU processor time in seconds
+**cpu_time**(3) - \[SYSTEM:TIME\] Return CPU processor time in seconds
 
 ### **Synopsis**
 ```fortran
@@ -5574,7 +5594,7 @@ Fortran 2008
 
 ### **Name**
 
-**date_and_time**(3) - \[SYSTEM:TIME\] gets current time
+**date_and_time**(3) - \[SYSTEM:TIME\] Gets current time
 
 ### **Synopsis**
 ```fortran
@@ -6109,7 +6129,7 @@ FORTRAN 77 and later
 
 ### **Name**
 
-**dshiftl**(3) - \[BIT:COPY\] combined left shift of the bits of two integers
+**dshiftl**(3) - \[BIT:COPY\] Combined left shift of the bits of two integers
 
 ### **Synopsis**
     result = dshiftl(i, j, shift)
@@ -6264,7 +6284,7 @@ Fortran 2008 and later
 
 ### **Name**
 
-**dshiftr**(3) - \[BIT:COPY\] combined right shift of the bits of two integers
+**dshiftr**(3) - \[BIT:COPY\] Combined right shift of the bits of two integers
 
 ### **Synopsis**
 ```fortran
@@ -7208,48 +7228,163 @@ Fortran 95 and later
 
 ### **Name**
 
-**extends_type_of**(3) - \[STATE\] determine if the dynamic type of **a** is an extension of the dynamic type of **mold**.
+**extends_type_of**(3) - \[STATE\] Determine if the dynamic type of **a** is an extension of the dynamic type of **mold**.
 
 ### **Synopsis**
 ```fortran
     result = extends_type_of(a, mold)
 ```
 ```fortran
+     logical extends_type_of(a, mold)
+
+      type(TYPE(kind=KIND),intent(in) :: a
+      type(TYPE(kind=KIND),intent(in) :: mold
 ```
-### **Description**
+**a** an object of any extensible type; it may also be a pointer
+to an object extensible type.
 
-**extends_type_of**(3) is _.true._ if and only if the dynamic type of **a**
-is an extension of the dynamic type of **mold**.
+**mold** an object of any extensible type; it may also be a pointer
+to an object extensible type.
 
-### **Options**
+**description**
 
+  **EXTENDS_TYPE_OF**(3) is .true. if and only if the dynamic type of
+  **a** is or could be (for unlimited polymorphic) an extension of the
+  dynamic type of **mold**.
+
+**options**
 - **a**
-  : shall be an object of extensible type. If it is a pointer, it
-  shall not have an undefined association status.
+    : be an object of extensible declared type or unlimited
+    polymorphic. If it is a polymorphic pointer, it shall not have an
+    undeﬁned association status.
 
 - **mold**
-  : shall be an object of extensible type. If it is a pointer, it
-  shall not have an undefined association status.
+    : be an object of extensible declared type or unlimited
+    polymorphic. If it is a polymorphic pointer, it shall not have an
+    undeﬁned association status.
 
 ### **Result**
 
-- **result**
-  : Default logical scalar.
+  If **mold** is unlimited polymorphic and is either a disassociated
+  pointer or unallocated allocatable variable, the result is true.
 
-- **value**
-  : If **mold** is unlimited polymorphic and is either a disassociated
-  pointer or unallocated allocatable variable, the result is
-  true; otherwise if **a** is unlimited polymorphic and is either a
+  Otherwise if **a** is unlimited polymorphic and is either a
   disassociated pointer or unallocated allocatable variable, the result
-  is false; otherwise the result is true if and only if the dynamic
-  type of **a** is an extension type of the dynamic type of **mold**.
+  is false.
 
-  The dynamic type of a disassociated pointer or unallocated
-  allocatable variable is its declared type.
+  Otherwise the result is true if and only if the dynamic type of **a**
+
+  if the dynamic type of A or MOLD is extensible, the result is true if
+  and only if the dynamic type of A is an extension type of the dynamic
+  type of MOLD; otherwise the result is processor dependent.
+
+  NOTE1
+
+  The dynamic type of a disassociated pointer or unallocated allocatable
+  variable is its declared type.
+
+  NOTE2
+
+  The test performed by **extends_type_of** is not the same as the
+  test performed by the type guard **class is**. The test performed by
+  **extends_type_of** does not consider kind type parameters.
 
 ### **Examples**
 
- _fortran-lang intrinsic descriptions_
+Sample program:
+```fortran
+  ! program demo_extends_type_of
+  module M_ether
+
+  type nothing
+  end type nothing
+
+  type, extends(nothing) :: dot
+    real :: x=0
+    real :: y=0
+  end type dot
+
+  type, extends(dot) :: point
+    real :: z=0
+  end type point
+
+  type something_else
+  end type something_else
+
+  end module M_ether
+
+  program demo_extends_type_of
+  use M_ether, only : nothing, dot, point, something_else
+  type(nothing) :: grandpa
+  type(dot) :: dad
+  type(point) :: me
+  type(something_else) :: alien
+
+   write(*,*)'these should all be true'
+   write(*,*)extends_type_of(me,grandpa),'I am descended from Grandpa'
+   write(*,*)extends_type_of(dad,grandpa),'Dad is descended from Grandpa'
+   write(*,*)extends_type_of(me,dad),'Dad is my ancestor'
+
+   write(*,*)'is an object an extension of itself?'
+   write(*,*)extends_type_of(grandpa,grandpa) ,'self-propogating!'
+   write(*,*)extends_type_of(dad,dad) ,'clone!'
+
+   write(*,*)' you did not father your grandfather'
+   write(*,*)extends_type_of(grandpa,dad),'no paradox here'
+
+   write(*,*)extends_type_of(dad,me),'no paradox here'
+   write(*,*)extends_type_of(grandpa,me),'no relation whatsoever'
+   write(*,*)extends_type_of(grandpa,alien),'no relation'
+   write(*,*)extends_type_of(me,alien),'not what everyone thinks'
+
+   call pointers()
+   contains
+
+   subroutine pointers()
+   ! Given the declarations and assignments
+   type t1
+   real c
+   end type
+   type, extends(t1) :: t2
+   end type
+   class(t1), pointer :: p, q
+      allocate (p)
+      allocate (t2 :: q)
+      ! the result of EXTENDS_TYPE_OF (P, Q) will be false, and the result
+      ! of EXTENDS_TYPE_OF (Q, P) will be true.
+      write(*,*)'(P,Q)',extends_type_of(p,q),"mind your P's and Q's"
+      write(*,*)'(Q,P)',extends_type_of(q,p)
+   end subroutine pointers
+
+  end program demo_extends_type_of
+```
+Results:
+```text
+    these should all be true
+    T I am descended from Grandpa
+    T Dad is descended from Grandpa
+    T Dad is my ancestor
+    is an object an extension of itself?
+    T self-propogating!
+    T clone!
+     you did not father your grandfather
+    F no paradox here
+    F no paradox here
+    F no relation whatsoever
+    F no relation
+    F not what everyone thinks
+    (P,Q) F mind your P's and Q's
+    (Q,P) T
+```
+### **Standard**
+
+   Fortran 2003
+
+### **See Also**
+
+[**same_type_as**(3)](#same_type_as)
+
+  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## findloc
 
@@ -7450,7 +7585,7 @@ bounds for **b**.
 
 ### **Name**
 
-**floor**(3) - \[NUMERIC\] function to return largest integral value
+**floor**(3) - \[NUMERIC\] Function to return largest integral value
 not greater than argument
 
 ### **Synopsis**
@@ -8229,7 +8364,7 @@ Fortran 95 and later
 
 ### **Name**
 
-**hypot**(3) - \[MATHEMATICS\] returns the distance between the point
+**hypot**(3) - \[MATHEMATICS\] Returns the distance between the point
 and the origin.
 
 ### **Synopsis**
@@ -9520,7 +9655,7 @@ Fortran 2008 and later
 
 ### **Name**
 
-**is_contiguous**(3) - \[ARRAY INQUIRY\] test if object is contiguous
+**is_contiguous**(3) - \[ARRAY INQUIRY\] Test if object is contiguous
 
 ### **Synopsis**
 ```fortran
@@ -9640,7 +9775,7 @@ Fortran 2008 and later
 
 ### **Name**
 
-**ishftc**(3) - \[BIT:SHIFT\] logical shift: shift rightmost bits circularly
+**ishftc**(3) - \[BIT:SHIFT\] Shift rightmost bits circularly, aka. a logical shift
 
 ### **Synopsis**
 ```fortran
@@ -11361,7 +11496,7 @@ Fortran 2008 and later
 
 ### **Name**
 
-**matmul**(3) - \[TRANSFORMATIONAL\] numeric or logical matrix
+**matmul**(3) - \[TRANSFORMATIONAL\] Numeric or logical matrix
 multiplication
 
 ### **Synopsis**
@@ -11919,7 +12054,7 @@ FORTRAN 77 and later
 
 ### **Name**
 
-**maxval**(3) - \[ARRAY REDUCTION\] determines the maximum value in an array or row
+**maxval**(3) - \[ARRAY REDUCTION\] Determines the maximum value in an array or row
 
 ### **Synopsis**
 ```fortran
@@ -12972,7 +13107,7 @@ Fortran 2003 and later
 
 ### **Name**
 
-**mvbits**(3) - \[BIT:COPY\] reproduce bit patterns found in one integer in another
+**mvbits**(3) - \[BIT:COPY\] Reproduce bit patterns found in one integer in another
 
 ### **Synopsis**
 ```fortran
@@ -13234,7 +13369,7 @@ Fortran 95 and later
 
 ### **Name**
 
-**new_line**(3) - \[CHARACTER\] new-line character
+**new_line**(3) - \[CHARACTER\] New-line character
 
 ### **Synopsis**
 ```fortran
@@ -15054,13 +15189,13 @@ end program demo_rank
 
 ### **Synopsis**
 ```fortran
-    result = real(x [,kind])
+  result = real(x [,kind])
 ```
 ```fortran
-     elemental real(kind=KIND) function real(x,kind)
+   elemental real(kind=KIND) function real(x,kind)
 
-     TYPE(kind=KIND),intent(in) :: x
-     integer(kind=KINDK),intent(in) :: kind
+    TYPE(kind=KIND),intent(in) :: x
+    integer(kind=KINDK),intent(in) :: kind
 ```
   Where the type of **x** may be _integer_, _real_, or _complex_.
 
@@ -15137,7 +15272,7 @@ FORTRAN 77 and later
 
 ### **Name**
 
-**reduce**(3) - \[TRANSFORMATIONAL\] general reduction of an array
+**reduce**(3) - \[TRANSFORMATIONAL\] General reduction of an array
 
 ### **Synopsis**
 
@@ -15147,8 +15282,8 @@ There are two forms to this function:
 ```
 or
 ```fortran
-    result = reduce (array, operation &
-    & [,dim] [,mask] [,identity] [,ordered] )
+   result = reduce (array, operation &
+   & [,dim] [,mask] [,identity] [,ordered] )
 ```
 ```fortran
     type(TYPE(kind=KIND)) function reduce &
@@ -15558,7 +15693,19 @@ Fortran 95 and later
     result = same_type_as(a, b)
 ```
 ```fortran
+     logical same_type_as(a, b)
+
+      type(TYPE(kind=KIND),intent(in) :: a
+      type(TYPE(kind=KIND),intent(in) :: b
 ```
+- **a** shall be an object of extensible declared type or unlimited
+  polymorphic. If it is a polymorphic pointer, it shall not have
+  an undeﬁned association status.
+
+- **b** shall be an object of extensible declared type or unlimited
+  polymorphic. If it is a polymorphic pointer, it shall not have
+  an undeﬁned association status.
+
 ### **Description**
 
 Query dynamic types for equality.
@@ -15566,18 +15713,92 @@ Query dynamic types for equality.
 ### **Options**
 
 - **a**
-  : Shall be an object of extensible declared type or unlimited
-  polymorphic.
+  : object to compare to **b** for equality of type
 
 - **b**
-  : Shall be an object of extensible declared type or unlimited
-  polymorphic.
+  : object to be compared to for equality of type
 
 ### **Result**
 
-The return value is a scalar of type default logical. It is true if and
-only if the dynamic type of **a** is the same as the dynamic type of **b**.
+  If the dynamic type of **a** or **b** is extensible, the result is true
+  if and only if the dynamic type of **a** is the same as the dynamic
+  type of **b**. If neither **a** nor **b** has extensible dynamic type,
+  the result is processor dependent.
 
+    NOTE1
+
+  The dynamic type of a disassociated pointer or unallocated allocatable
+  variable is its declared type. An unlimited polymorphic entity has no
+  declared type.
+
+    NOTE2
+
+  The test performed by SAME_TYPE_AS is not the same as the test performed
+  by the type guard TYPE IS. The test performed by SAME_TYPE_AS does
+  not consider kind type parameters.
+
+Sample program:
+```fortran
+  ! program demo_same_type_as
+  module M_ether
+
+  type   :: dot
+    real :: x=0
+    real :: y=0
+  end type dot
+
+  type, extends(dot) :: point
+    real :: z=0
+  end type point
+
+  type something_else
+  end type something_else
+
+  end module M_ether
+
+  program demo_same_type_as
+  use M_ether, only : dot, point, something_else
+  type(dot) :: dad, mom
+  type(point) :: me
+  type(something_else) :: alien
+
+   write(*,*)same_type_as(me,dad),'I am descended from Dad, but equal?'
+   write(*,*)same_type_as(me,me) ,'I am what I am'
+   write(*,*)same_type_as(dad,mom) ,'what a pair!'
+
+   write(*,*)same_type_as(dad,me),'no paradox here'
+   write(*,*)same_type_as(dad,alien),'no relation'
+
+   call pointers()
+   contains
+   subroutine pointers()
+   ! Given the declarations and assignments
+   type t1
+      real c
+   end type
+   type, extends(t1) :: t2
+   end type
+   class(t1), pointer :: p, q, r
+      allocate (p, q)
+      allocate (t2 :: r)
+      ! the result of SAME_TYPE_AS (P, Q) will be true, and the result
+      ! of SAME_TYPE_AS (P, R) will be false.
+      write(*,*)'(P,Q)',same_type_as(p,q),"mind your P's and Q's"
+      write(*,*)'(P,R)',same_type_as(p,r)
+   end subroutine pointers
+
+  end program demo_same_type_as
+```
+Results:
+```text
+    F I am descended from Dad, but equal?
+    T I am what I am
+    T what a pair!
+    F no paradox here
+    F no relation
+    (P,Q) T mind your P's and Q's
+    (P,R) F
+```
 ### **Standard**
 
 Fortran 2003 and later
@@ -16172,7 +16393,7 @@ Fortran 95 and later; with KIND argument Fortran 2003 and later
 
 ### **Name**
 
-**shifta**(3) - \[BIT:SHIFT\] shift bits right with fill
+**shifta**(3) - \[BIT:SHIFT\] Shift bits right with fill
 
 ### **Synopsis**
 ```fortran
@@ -16301,7 +16522,7 @@ Fortran 2008 and later
 
 ### **Name**
 
-**shiftl**(3) - \[BIT:SHIFT\] shift bits left
+**shiftl**(3) - \[BIT:SHIFT\] Shift bits left
 
 ### **Synopsis**
 ```fortran
@@ -16438,7 +16659,7 @@ Fortran 2008 and later
 
 ### **Name**
 
-**shiftr**(3) - \[BIT:SHIFT\] shift bits right
+**shiftr**(3) - \[BIT:SHIFT\] Shift bits right
 
 ### **Synopsis**
 ```fortran
@@ -16652,7 +16873,9 @@ FORTRAN 77 and later
      TYPE(kind=KIND) :: x
 ```
 where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type. The returned value will be of the same type and kind as
+by the associated type.
+
+The returned value will be of the same type and kind as
 the argument.
 
 ### **Description**
@@ -16747,9 +16970,10 @@ Fortran 95 and later, for a complex argument Fortran 2008 or later
 
      TYPE(kind=KIND) :: x
 ```
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type. The returned value will be of the same type and kind as
-the argument.
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind
+supported by the associated type.
+
+The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
@@ -16763,12 +16987,12 @@ hypotenuse.
 ### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_ in radians.
+  : The angle in radians to compute the sine of.
 
 ### **Result**
 
 - **result**
-  : The return value has the same type and kind as **x**.
+  : The return value contains the sine of **x**.
 
 ### **Examples**
 
@@ -17481,7 +17705,7 @@ Fortran 2008 and later
 
 ### **Name**
 
-**sum**(3) - \[ARRAY REDUCTION\] sum the elements of an array
+**sum**(3) - \[ARRAY REDUCTION\] Sum the elements of an array
 
 ### **Synopsis**
 ```fortran
@@ -17770,16 +17994,18 @@ FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 
 ### **Synopsis**
 ```fortran
-    result = tan(x)
+result = tan(x)
 ```
 ```fortran
-     elemental TYPE(kind=KIND) function tan(x)
+ elemental TYPE(kind=KIND) function tan(x)
 
-     TYPE(kind=KIND),intent(in) :: x
+  TYPE(kind=KIND),intent(in) :: x
 ```
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type. The returned value will be of the same type and kind as
-the argument.
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind
+supported by the associated type. The returned value will be of the same
+type and kind as the argument.
+
+The return value has the same type and kind as **x**.
 
 ### **Description**
 
@@ -17788,11 +18014,11 @@ the argument.
 ### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_.
+  : The angle in radians to compute the tangent of
 
 ### **Result**
 
-The return value has the same type and kind as **x**.
+The return value is the sine of the value **x**.
 
 ### **Examples**
 
@@ -18120,12 +18346,13 @@ Fortran 2008 and later
 ```fortran
     result = transfer(source, mold [,size] )
 ```
+```fortran
      type(TYPE(kind=KIND)) function transfer(source,mold,size)
 
       type(TYPE(kind=KIND)),intent(in) :: source(..)
       type(TYPE(kind=KIND)),intent(in) :: mold(..)
       integer,intent(in),intent(in),optional :: size
-```fortran
+```
 - **source** Shall be a scalar or an array of any type.
 - **mold** Shall be a scalar or an array of any type.
 - **size** shall be a scalar of type _integer_.
@@ -18579,7 +18806,7 @@ and later
 
 ### **Name**
 
-**unpack**(3) - \[ARRAY CONSTRUCTION\] scatter the elements of a vector
+**unpack**(3) - \[ARRAY CONSTRUCTION\] Scatter the elements of a vector
 into an array using a mask
 
 ### **Synopsis**

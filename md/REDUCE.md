@@ -12,8 +12,8 @@ There are two forms to this function:
 ```
 or
 ```fortran
-    result = reduce (array, operation &
-    & [,dim] [,mask] [,identity] [,ordered] )
+   result = reduce (array, operation &
+   & [,dim] [,mask] [,identity] [,ordered] )
 ```
 ```fortran
     type(TYPE(kind=KIND)) function reduce &

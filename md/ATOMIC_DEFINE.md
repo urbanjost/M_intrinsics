@@ -11,33 +11,42 @@
 ```fortran
      subroutine atomic_define(atom, value, stat)
 
-     TYPE(kind=KIND) :: atom
+     TYPE(kind=atomic_KIND_kind) :: atom[*]
      TYPE(kind=KIND) :: value
      integer,intent(out),optional :: stat
 ```
-### **Description**
-
-**atomic_define(atom, value)** defines the variable **atom** with the value
-**value** atomically. When **stat** is present and the invocation was
-successful, it is assigned the value **0**. If it is present and the
-invocation has failed, it is assigned a positive value; in particular,
-for a coindexed **atom**, if the remote image has stopped, it is assigned
-the value of iso_fortran_env's stat_stopped_image and if the remote
-image has failed, the value stat_failed_image.
-
-### **Options**
-
 - **atom**
   : Scalar coarray or coindexed variable of either integer type with
   atomic_int_kind kind or logical type with atomic_logical_kind
   kind.
-
 - **value**
   : Scalar of the same type as **atom**. If the kind is different, the value
   is converted to the kind of **atom**.
 
 - **stat**
   : (optional) Scalar default-kind integer variable.
+### **Description**
+
+**atomic_define(atom, value)** defines the variable **atom** with the value
+**value** atomically.
+
+### **Options**
+
+- **atom**
+  : Scalar coarray or coindexed variable to atomically assign the 
+  value **value** to.
+  kind.
+
+- **value**
+  : value to assign to **atom**
+
+- **stat**
+  : When **stat** is present and the invocation was
+  successful, it is assigned the value **0**. If it is present and the
+  invocation has failed, it is assigned a positive value; in particular,
+  for a coindexed **atom**, if the remote image has stopped, it is assigned
+  the value of iso_fortran_env's stat_stopped_image and if the remote
+  image has failed, the value stat_failed_image.
 
 ### **Examples**
 

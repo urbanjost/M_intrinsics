@@ -8,12 +8,13 @@
 ```fortran
     result = transfer(source, mold [,size] )
 ```
+```fortran
      type(TYPE(kind=KIND)) function transfer(source,mold,size)
 
       type(TYPE(kind=KIND)),intent(in) :: source(..)
       type(TYPE(kind=KIND)),intent(in) :: mold(..)
       integer,intent(in),intent(in),optional :: size
-```fortran
+```
 - **source** Shall be a scalar or an array of any type.
 - **mold** Shall be a scalar or an array of any type.
 - **size** shall be a scalar of type _integer_.
