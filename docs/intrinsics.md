@@ -12350,12 +12350,14 @@ element the result is **tsource** if **mask** is true and **fsource** otherwise.
 
 ### **Examples**
 
+Sample program:
 ```fortran
 program demo_merge
 implicit none
 integer :: tvals(2,3), fvals(2,3), answer(2,3)
 logical :: mask(2,3)
 integer :: i
+integer :: k
 logical :: chooseleft
 
    ! Works with scalars

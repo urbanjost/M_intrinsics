@@ -11676,8 +11676,15 @@ textblock=[character(len=256) :: &
 '  element the result is TSOURCE if MASK is true and FSOURCE otherwise.', &
 '', &
 'EXAMPLES', &
-'  program demo_merge implicit none integer :: tvals(,3), fvals(,3), answer(,3)', &
-'  logical :: mask(,3) integer :: i logical :: chooseleft', &
+'  Sample program:', &
+'', &
+'      program demo_merge', &
+'      implicit none', &
+'      integer :: tvals(2,3), fvals(2,3), answer(2,3)', &
+'      logical :: mask(2,3)', &
+'      integer :: i', &
+'      integer :: k', &
+'      logical :: chooseleft', &
 '', &
 '         ! Works with scalars', &
 '         k=5', &
@@ -11720,12 +11727,13 @@ textblock=[character(len=256) :: &
 '         chooseleft=.true.', &
 '         write(*, ''(3i4)'')merge([1,2,3],[10,20,30],chooseleft)', &
 '', &
-'  contains', &
+'      contains', &
 '', &
-'  subroutine printme() write(*, ''(3i4)'')(answer(i, :), i=1, size(answer,', &
-'  dim=1)) end subroutine printme', &
+'      subroutine printme()', &
+'            write(*, ''(3i4)'')(answer(i, :), i=1, size(answer, dim=1))', &
+'      end subroutine printme', &
 '', &
-'  end program demo_merge', &
+'      end program demo_merge', &
 '', &
 '  Expected Results:', &
 '', &

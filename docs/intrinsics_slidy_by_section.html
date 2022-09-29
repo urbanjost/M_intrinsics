@@ -9460,61 +9460,63 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <p>The result is of the same type and type parameters as <strong>tsource</strong>. For any element the result is <strong>tsource</strong> if <strong>mask</strong> is true and <strong>fsource</strong> otherwise.</p>
 </div><div id="examples-127" class="slide section level3">
 <h1><strong>Examples</strong></h1>
+<p>Sample program:</p>
 <div class="sourceCode" id="cb562"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb562-1" title="1"><span class="kw">program</span> demo_merge</a>
 <a class="sourceLine" id="cb562-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
 <a class="sourceLine" id="cb562-3" title="3"><span class="dt">integer</span> <span class="dt">::</span> tvals(<span class="dv">2</span>,<span class="dv">3</span>), fvals(<span class="dv">2</span>,<span class="dv">3</span>), answer(<span class="dv">2</span>,<span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb562-4" title="4"><span class="dt">logical</span> <span class="dt">::</span> mask(<span class="dv">2</span>,<span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb562-5" title="5"><span class="dt">integer</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb562-6" title="6"><span class="dt">logical</span> <span class="dt">::</span> chooseleft</a>
-<a class="sourceLine" id="cb562-7" title="7"></a>
-<a class="sourceLine" id="cb562-8" title="8">   <span class="co">! Works with scalars</span></a>
-<a class="sourceLine" id="cb562-9" title="9">   k<span class="kw">=</span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb562-10" title="10">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="bu">merge</span> (<span class="fl">1.0</span>, <span class="fl">0.0</span>, k <span class="op">&gt;</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb562-11" title="11">   k<span class="kw">=-</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb562-12" title="12">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="bu">merge</span> (<span class="fl">1.0</span>, <span class="fl">0.0</span>, k <span class="op">&gt;</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb562-13" title="13"></a>
-<a class="sourceLine" id="cb562-14" title="14">   <span class="co">! set up some simple arrays that all conform to the</span></a>
-<a class="sourceLine" id="cb562-15" title="15">   <span class="co">! same shape</span></a>
-<a class="sourceLine" id="cb562-16" title="16">   tvals(<span class="dv">1</span>,:)<span class="kw">=[</span>  <span class="dv">10</span>, <span class="kw">-</span><span class="dv">60</span>,  <span class="dv">50</span> <span class="kw">]</span></a>
-<a class="sourceLine" id="cb562-17" title="17">   tvals(<span class="dv">2</span>,:)<span class="kw">=[</span> <span class="kw">-</span><span class="dv">20</span>,  <span class="dv">40</span>, <span class="kw">-</span><span class="dv">60</span> <span class="kw">]</span></a>
-<a class="sourceLine" id="cb562-18" title="18"></a>
-<a class="sourceLine" id="cb562-19" title="19">   fvals(<span class="dv">1</span>,:)<span class="kw">=[</span> <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">2</span> <span class="kw">]</span></a>
-<a class="sourceLine" id="cb562-20" title="20">   fvals(<span class="dv">2</span>,:)<span class="kw">=[</span> <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">8</span> <span class="kw">]</span></a>
-<a class="sourceLine" id="cb562-21" title="21"></a>
-<a class="sourceLine" id="cb562-22" title="22">   mask(<span class="dv">1</span>,:)<span class="kw">=[</span> <span class="cn">.true.</span>,  <span class="cn">.false.</span>, <span class="cn">.true.</span> <span class="kw">]</span></a>
-<a class="sourceLine" id="cb562-23" title="23">   mask(<span class="dv">2</span>,:)<span class="kw">=[</span> <span class="cn">.false.</span>, <span class="cn">.false.</span>, <span class="cn">.true.</span> <span class="kw">]</span></a>
-<a class="sourceLine" id="cb562-24" title="24"></a>
-<a class="sourceLine" id="cb562-25" title="25">   <span class="co">! lets use the mask of specific values</span></a>
-<a class="sourceLine" id="cb562-26" title="26">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;mask of logicals&#39;</span></a>
-<a class="sourceLine" id="cb562-27" title="27">   answer<span class="kw">=</span><span class="bu">merge</span>( tvals, fvals, mask )</a>
-<a class="sourceLine" id="cb562-28" title="28">   <span class="kw">call</span> printme()</a>
-<a class="sourceLine" id="cb562-29" title="29"></a>
-<a class="sourceLine" id="cb562-30" title="30">   <span class="co">! more typically the mask is an expression</span></a>
-<a class="sourceLine" id="cb562-31" title="31">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;highest values&#39;</span></a>
-<a class="sourceLine" id="cb562-32" title="32">   answer<span class="kw">=</span><span class="bu">merge</span>( tvals, fvals, tvals <span class="op">&gt;</span> fvals )</a>
-<a class="sourceLine" id="cb562-33" title="33">   <span class="kw">call</span> printme()</a>
-<a class="sourceLine" id="cb562-34" title="34"></a>
-<a class="sourceLine" id="cb562-35" title="35">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;lowest values&#39;</span></a>
-<a class="sourceLine" id="cb562-36" title="36">   answer<span class="kw">=</span><span class="bu">merge</span>( tvals, fvals, tvals <span class="op">&lt;</span> fvals )</a>
-<a class="sourceLine" id="cb562-37" title="37">   <span class="kw">call</span> printme()</a>
-<a class="sourceLine" id="cb562-38" title="38"></a>
-<a class="sourceLine" id="cb562-39" title="39">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;zero out negative values&#39;</span></a>
-<a class="sourceLine" id="cb562-40" title="40">   answer<span class="kw">=</span><span class="bu">merge</span>( tvals, <span class="dv">0</span>, tvals <span class="op">&lt;</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb562-41" title="41">   <span class="kw">call</span> printme()</a>
-<a class="sourceLine" id="cb562-42" title="42"></a>
-<a class="sourceLine" id="cb562-43" title="43">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;binary choice&#39;</span></a>
-<a class="sourceLine" id="cb562-44" title="44">   chooseleft<span class="kw">=</span><span class="cn">.false.</span></a>
-<a class="sourceLine" id="cb562-45" title="45">   <span class="fu">write(*</span>, <span class="st">&#39;(3i4)&#39;</span><span class="fu">)</span><span class="bu">merge</span>(<span class="kw">[</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span><span class="kw">]</span>,<span class="kw">[</span><span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span><span class="kw">]</span>,chooseleft)</a>
-<a class="sourceLine" id="cb562-46" title="46">   chooseleft<span class="kw">=</span><span class="cn">.true.</span></a>
-<a class="sourceLine" id="cb562-47" title="47">   <span class="fu">write(*</span>, <span class="st">&#39;(3i4)&#39;</span><span class="fu">)</span><span class="bu">merge</span>(<span class="kw">[</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span><span class="kw">]</span>,<span class="kw">[</span><span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span><span class="kw">]</span>,chooseleft)</a>
-<a class="sourceLine" id="cb562-48" title="48"></a>
-<a class="sourceLine" id="cb562-49" title="49"><span class="co">contains</span></a>
-<a class="sourceLine" id="cb562-50" title="50"></a>
-<a class="sourceLine" id="cb562-51" title="51"><span class="kw">subroutine</span> printme()</a>
-<a class="sourceLine" id="cb562-52" title="52">      <span class="fu">write(*</span>, <span class="st">&#39;(3i4)&#39;</span><span class="fu">)</span>(answer(i, :), i<span class="kw">=</span><span class="dv">1</span>, <span class="fu">size</span>(answer, <span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb562-53" title="53"><span class="kw">end subroutine</span> printme</a>
-<a class="sourceLine" id="cb562-54" title="54"></a>
-<a class="sourceLine" id="cb562-55" title="55"><span class="kw">end program</span> demo_merge</a></code></pre></div>
+<a class="sourceLine" id="cb562-6" title="6"><span class="dt">integer</span> <span class="dt">::</span> k</a>
+<a class="sourceLine" id="cb562-7" title="7"><span class="dt">logical</span> <span class="dt">::</span> chooseleft</a>
+<a class="sourceLine" id="cb562-8" title="8"></a>
+<a class="sourceLine" id="cb562-9" title="9">   <span class="co">! Works with scalars</span></a>
+<a class="sourceLine" id="cb562-10" title="10">   k<span class="kw">=</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb562-11" title="11">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="bu">merge</span> (<span class="fl">1.0</span>, <span class="fl">0.0</span>, k <span class="op">&gt;</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb562-12" title="12">   k<span class="kw">=-</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb562-13" title="13">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="bu">merge</span> (<span class="fl">1.0</span>, <span class="fl">0.0</span>, k <span class="op">&gt;</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb562-14" title="14"></a>
+<a class="sourceLine" id="cb562-15" title="15">   <span class="co">! set up some simple arrays that all conform to the</span></a>
+<a class="sourceLine" id="cb562-16" title="16">   <span class="co">! same shape</span></a>
+<a class="sourceLine" id="cb562-17" title="17">   tvals(<span class="dv">1</span>,:)<span class="kw">=[</span>  <span class="dv">10</span>, <span class="kw">-</span><span class="dv">60</span>,  <span class="dv">50</span> <span class="kw">]</span></a>
+<a class="sourceLine" id="cb562-18" title="18">   tvals(<span class="dv">2</span>,:)<span class="kw">=[</span> <span class="kw">-</span><span class="dv">20</span>,  <span class="dv">40</span>, <span class="kw">-</span><span class="dv">60</span> <span class="kw">]</span></a>
+<a class="sourceLine" id="cb562-19" title="19"></a>
+<a class="sourceLine" id="cb562-20" title="20">   fvals(<span class="dv">1</span>,:)<span class="kw">=[</span> <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">2</span> <span class="kw">]</span></a>
+<a class="sourceLine" id="cb562-21" title="21">   fvals(<span class="dv">2</span>,:)<span class="kw">=[</span> <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">8</span> <span class="kw">]</span></a>
+<a class="sourceLine" id="cb562-22" title="22"></a>
+<a class="sourceLine" id="cb562-23" title="23">   mask(<span class="dv">1</span>,:)<span class="kw">=[</span> <span class="cn">.true.</span>,  <span class="cn">.false.</span>, <span class="cn">.true.</span> <span class="kw">]</span></a>
+<a class="sourceLine" id="cb562-24" title="24">   mask(<span class="dv">2</span>,:)<span class="kw">=[</span> <span class="cn">.false.</span>, <span class="cn">.false.</span>, <span class="cn">.true.</span> <span class="kw">]</span></a>
+<a class="sourceLine" id="cb562-25" title="25"></a>
+<a class="sourceLine" id="cb562-26" title="26">   <span class="co">! lets use the mask of specific values</span></a>
+<a class="sourceLine" id="cb562-27" title="27">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;mask of logicals&#39;</span></a>
+<a class="sourceLine" id="cb562-28" title="28">   answer<span class="kw">=</span><span class="bu">merge</span>( tvals, fvals, mask )</a>
+<a class="sourceLine" id="cb562-29" title="29">   <span class="kw">call</span> printme()</a>
+<a class="sourceLine" id="cb562-30" title="30"></a>
+<a class="sourceLine" id="cb562-31" title="31">   <span class="co">! more typically the mask is an expression</span></a>
+<a class="sourceLine" id="cb562-32" title="32">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;highest values&#39;</span></a>
+<a class="sourceLine" id="cb562-33" title="33">   answer<span class="kw">=</span><span class="bu">merge</span>( tvals, fvals, tvals <span class="op">&gt;</span> fvals )</a>
+<a class="sourceLine" id="cb562-34" title="34">   <span class="kw">call</span> printme()</a>
+<a class="sourceLine" id="cb562-35" title="35"></a>
+<a class="sourceLine" id="cb562-36" title="36">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;lowest values&#39;</span></a>
+<a class="sourceLine" id="cb562-37" title="37">   answer<span class="kw">=</span><span class="bu">merge</span>( tvals, fvals, tvals <span class="op">&lt;</span> fvals )</a>
+<a class="sourceLine" id="cb562-38" title="38">   <span class="kw">call</span> printme()</a>
+<a class="sourceLine" id="cb562-39" title="39"></a>
+<a class="sourceLine" id="cb562-40" title="40">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;zero out negative values&#39;</span></a>
+<a class="sourceLine" id="cb562-41" title="41">   answer<span class="kw">=</span><span class="bu">merge</span>( tvals, <span class="dv">0</span>, tvals <span class="op">&lt;</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb562-42" title="42">   <span class="kw">call</span> printme()</a>
+<a class="sourceLine" id="cb562-43" title="43"></a>
+<a class="sourceLine" id="cb562-44" title="44">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;binary choice&#39;</span></a>
+<a class="sourceLine" id="cb562-45" title="45">   chooseleft<span class="kw">=</span><span class="cn">.false.</span></a>
+<a class="sourceLine" id="cb562-46" title="46">   <span class="fu">write(*</span>, <span class="st">&#39;(3i4)&#39;</span><span class="fu">)</span><span class="bu">merge</span>(<span class="kw">[</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span><span class="kw">]</span>,<span class="kw">[</span><span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span><span class="kw">]</span>,chooseleft)</a>
+<a class="sourceLine" id="cb562-47" title="47">   chooseleft<span class="kw">=</span><span class="cn">.true.</span></a>
+<a class="sourceLine" id="cb562-48" title="48">   <span class="fu">write(*</span>, <span class="st">&#39;(3i4)&#39;</span><span class="fu">)</span><span class="bu">merge</span>(<span class="kw">[</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span><span class="kw">]</span>,<span class="kw">[</span><span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span><span class="kw">]</span>,chooseleft)</a>
+<a class="sourceLine" id="cb562-49" title="49"></a>
+<a class="sourceLine" id="cb562-50" title="50"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb562-51" title="51"></a>
+<a class="sourceLine" id="cb562-52" title="52"><span class="kw">subroutine</span> printme()</a>
+<a class="sourceLine" id="cb562-53" title="53">      <span class="fu">write(*</span>, <span class="st">&#39;(3i4)&#39;</span><span class="fu">)</span>(answer(i, :), i<span class="kw">=</span><span class="dv">1</span>, <span class="fu">size</span>(answer, <span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb562-54" title="54"><span class="kw">end subroutine</span> printme</a>
+<a class="sourceLine" id="cb562-55" title="55"></a>
+<a class="sourceLine" id="cb562-56" title="56"><span class="kw">end program</span> demo_merge</a></code></pre></div>
 <p>Expected Results:</p>
 <pre><code>    mask of logicals
      10   3  50
