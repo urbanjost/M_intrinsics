@@ -14,6 +14,8 @@
      real(kind=KIND),intent(in) :: x
      integer,intent(in)         :: i
 ```
+### **Characteristics**
+
 ### **Description**
 
 **scale(x,i)** returns x \* **radix(x)\*\*i**.

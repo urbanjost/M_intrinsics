@@ -10,6 +10,8 @@
 ```
 ```fortran
 ```
+### **Characteristics**
+
 ### **Description**
 
 Reshapes array **source** to correspond to **shape**. If necessary, the new

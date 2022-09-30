@@ -10,6 +10,8 @@
 ```
 ```fortran
 ```
+### **Characteristics**
+
 ### **Description**
 
 Returns a single pseudorandom number or an array of pseudorandom numbers

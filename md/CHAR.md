@@ -8,6 +8,8 @@
 ```fortran
     result = char(i [,kind])
 ```
+### **Characteristics**
+
 ```fortran
      elemental integer function char(i,kind)
 

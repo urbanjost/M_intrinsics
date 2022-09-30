@@ -13,6 +13,8 @@
 
     TYPE(kind=KIND),intent(in) :: x
 ```
+### **Characteristics**
+
    where TYPE may be _real_ or _integer_ of any kind KIND.
 
 ### **Description**

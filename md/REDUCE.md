@@ -26,6 +26,8 @@ or
      type(TYPE),intent(in),optional :: identity
      logical,intent(in),optional    :: ordered
 ```
+### **Characteristics**
+
    where TYPE may be of any type. TYPE must be the same for **array**
    and **identity**.
 

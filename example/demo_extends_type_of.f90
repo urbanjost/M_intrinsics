@@ -1,5 +1,5 @@
         ! program demo_extends_type_of
-        module M_ether
+        module M_demo_extends_type_of
 
         type nothing
         end type nothing
@@ -16,10 +16,10 @@
         type something_else
         end type something_else
 
-        end module M_ether
+        end module M_demo_extends_type_of
 
         program demo_extends_type_of
-        use M_ether, only : nothing, dot, point, something_else
+        use M_demo_extends_type_of, only : nothing, dot, point, something_else
         type(nothing) :: grandpa
         type(dot) :: dad
         type(point) :: me

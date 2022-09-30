@@ -13,6 +13,8 @@
 
      integer(kind=KIND),intent(in) :: i
 ```
+### **Characteristics**
+
 ### **Description**
 
 **trailz(3)** returns the number of trailing zero bits of an _integer_ value.

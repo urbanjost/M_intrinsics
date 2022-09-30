@@ -15,6 +15,8 @@
      integer,intent(in) :: dim
      integer,intent(in) :: ncopies
 ```
+### **Characteristics**
+
 ### **Description**
 
 Replicates a **source** array **ncopies** times along a specified

@@ -14,8 +14,11 @@
       integer(kind=KINDI),intent(in) :: i
       integer(kind=KINDPOS),intent(in) :: pos
 ```
+### **Characteristics**
+
   The return value is of the same kind as **i**. Otherwise,
   any _integer_ kinds are allowed.
+
 ### **Description**
 
 **ibclr** returns the value of **i** with the bit at position **pos** set to zero.

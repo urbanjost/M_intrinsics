@@ -14,8 +14,11 @@
      integer(kind=KIND),intent(in) :: i
      integer(kind=KINDI),intent(in),optional :: kind
 ```
+### **Characteristics**
+
 The result is of the same _kind_ as **ii** unless **kind** is
 present, which is then used to specify the kind of the result.
+
 ### **Description**
 
 **maskl(i\[, _kind_\])** has its leftmost **i** bits set to **1**, and the

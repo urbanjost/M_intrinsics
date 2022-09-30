@@ -29,6 +29,8 @@ or
 
       integer(kind=KIND),intent(in) :: team_number
 ```
+### **Characteristics**
+
 ### **Description**
 
 Returns the number of images.

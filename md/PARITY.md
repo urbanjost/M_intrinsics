@@ -14,6 +14,8 @@
      type(logical(kind=KIND)),intent(in)           :: mask(..)
      type(integer(kind=KINDD)),intent(in),optional :: dim
 ```
+### **Characteristics**
+
 where KIND and LKIND are any supported kind for the type.
 
 ### **Description**

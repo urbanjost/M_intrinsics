@@ -18,6 +18,8 @@
      integer,intent(out),optional :: cmdstat
      character(len=*),intent(out),optional :: cmdmsg
 ```
+### **Characteristics**
+
 ### **Description**
 
 The **command** argument is passed to the shell and executed. (The shell is

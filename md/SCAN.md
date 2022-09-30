@@ -16,10 +16,13 @@
      logical,intent(in),optional :: back
      integer,intent(in),optional :: kind
 ```
+### **Characteristics**
+
 **string** and **set**  must have the same kind type parameter.
 
 the kind of the returned value is the same as **kind** if
 present. Otherwise a default _integer_ kind is returned.
+
 ### **Description**
 
 Scans a **string** for any of the characters in a **set** of characters.

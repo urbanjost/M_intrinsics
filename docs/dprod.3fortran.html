@@ -62,7 +62,7 @@ DPROD(3) - [NUMERIC] Double precision real product
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=7>
+<A name=8>
 
      <H3>SYNOPSIS</H3>
 
@@ -82,6 +82,20 @@ result = dprod(x,y)
 </BLOCKQUOTE>
 <A name=2>
 
+     <H3>CHARACTERISTICS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+X and Y must both be real values of default kind.
+<P>
+The return value is doubleprecision (ie. real(kind=kind(0.0d0))).
+<P>
+The setting of compiler options specifying the size of a default real
+can affect this function.
+</BLOCKQUOTE>
+<A name=3>
+
      <H3>DESCRIPTION</H3>
 
 </A>
@@ -90,12 +104,18 @@ result = dprod(x,y)
 DPROD(X,Y) produces a doubleprecision product of default real values X
 and Y.
 <P>
+That is, it is expected to convert the arguments to double precision
+before multiplying, which a simple expression X*Y would not be required
+to do. This can be significant in specialized computations requiring
+high precision.
+<P>
 The result has a value equal to a processor-dependent approximation to
-the product of X and Y. It is recommended that the processor compute the
-product in double precision, rather than in single precision then
-converted to double precision.
+the product of X and Y. Note it is recommended in the standard that the
+processor compute the product in double precision, rather than in single
+precision then converted to double precision; but is only a
+recommendation.
 </BLOCKQUOTE>
-<A name=3>
+<A name=4>
 
      <H3>OPTIONS</H3>
 
@@ -106,28 +126,25 @@ converted to double precision.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-X : the multiplier, a real value of default kind
+X : the multiplier
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-Y : the multiplicand, a real value of default kind. Y Must have the
-same type and kind parameters as X
+Y : the multiplicand
 </TD></TR>
-<TR></TR></TABLE>The setting of compiler options specifying the size of a default real
-can affect this function.
-</BLOCKQUOTE>
-<A name=4>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=5>
 
      <H3>RESULT</H3>
 
 </A>
 <BLOCKQUOTE>
 <P>
-The return value is doubleprecision (ie. real(kind=kind(0.0d0))). It
-should have the same value as DBLE(X)*DBLE(Y).
+The returned value of the product should have the same value as
+DBLE(X)*DBLE(Y).
 </BLOCKQUOTE>
-<A name=5>
+<A name=6>
 
      <H3>EXAMPLES</H3>
 
@@ -138,40 +155,29 @@ Sample program:
 <P>
 <PRE>
     program demo_dprod
-    use, intrinsic :: iso_fortran_env, only : real_kinds, &
-    & real32, real64, real128
     implicit none
     integer,parameter :: dp=kind(0.0d0)
     real :: x = 5.2
     real :: y = 2.3
-    real(kind=dp) :: dd
+    doubleprecision :: xx
+    real(kind=dp)   :: dd
 <P>
+       print *,&#146;algebraically 5.2 x 2.3 is exactly 11.96&#146;
+       print *,&#146;as floating point values results may differ slightly:&#146;
        ! basic usage
        dd = dprod(x,y)
        print *, &#146;compare dprod(xy)=&#146;,dd, &
        & &#146;to x*y=&#146;,x*y, &
        & &#146;to dble(x)*dble(y)=&#146;,dble(x)*dble(y)
 <P>
-       ! elemental
+       print *&#146;test an expected result is produced&#146;
+       xx=-6.0d0
+       write(*,*)DPROD(-3.0, 2.0),xx
+       write(*,*)merge(&#146;PASSED&#146;,&#146;FAILED&#146;,DPROD(-3.0, 2.0) == xx)
+<P>
+       print *,&#146;elemental&#146;
        print *, dprod( [2.3,3.4,4.5], 10.0 )
        print *, dprod( [2.3,3.4,4.5], [9.8,7.6,5.4] )
-<P>
-       ! other interesting comparisons
-       print *, &#146;integer multiplication of digits=&#146;,52*23
-       print *, 52*23/100.0
-       print *, 52*23/100.0d0
-<P>
-    !&gt; !! A common extension is to take doubleprecision arguments
-    !&gt; !! and return higher precision when available
-    !&gt; bigger: block
-    !&gt; doubleprecision :: xx = 5.2_dp
-    !&gt; doubleprecision :: yy = 2.3_dp
-    !&gt; print *, &#146;dprop==&gt;&#146;,dprod(xx,yy)
-    !&gt; print *, &#146;multiply==&gt;&#146;,xx*yy
-    !&gt; print *, &#146;using dble==&gt;&#146;,dble(xx)*dble(yy)
-    !&gt; print *, &#146;kind of arguments is&#146;,kind(xx)
-    !&gt; print *, &#146;kind of result is&#146;,kind(dprod(xx,yy))
-    !&gt; endblock bigger
 <P>
     end program demo_dprod
 <P>
@@ -179,22 +185,35 @@ Sample program:
 Results: (this can vary between programming environments):
 <P>
 <PRE>
-        compare dprod(xy)= 11.9599993133545 to x*y= 11.96000
-        to dble(x)*dble(y)= 11.9599993133545
-          22.9999995231628  34.0000009536743  45.0000000000000
-          22.5399999713898  25.8400004005432  24.3000004291534
-        integer multiplication of digits=        1196
-          11.96000
-          11.9600000000000
-        dprop==&gt;   11.9599999999999994848565165739273
-        multiply==&gt;   11.9600000000000
-        using dble==&gt;   11.9600000000000
-        kind of arguments is           8
-        kind of result is          16
-<P>
+        algebraically 5.2 x 2.3 is exactly 11.96
+        as floating point values results may differ slightly:
+        compare dprod(xy)=   11.959999313354501      to x*y=   11.9599991  
+        to dble(x)*dble(y)=   11.959999313354501    
+        test an expected result is produced
+         -6.0000000000000000       -6.0000000000000000    
 </PRE>
 </BLOCKQUOTE>
-<A name=6>
+<A name=>
+
+    <H4>&nbsp; &nbsp; PASSED</H4>
+</A>
+<BLOCKQUOTE>
+elemental
+<BLOCKQUOTE>
+<TABLE cellpadding=3><!-- tsb: elemental
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B>.999999531684</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+34.000000953674316        45.000000000000000    
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>.539999971389761</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+5.84000040054304        4.3000004915344    
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=7>
 
      <H3>STANDARD</H3>
 
@@ -206,7 +225,7 @@ FORTRAN 77 and later
 fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>dprod (3fortran)</TD> <TD align=right width=33%><I>September 29, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from e114389c-f87c-4665-ba9e-5f868f2e56a8 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>dprod (3fortran)</TD> <TD align=right width=33%><I>September 30, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 2d1cafe9-85fe-4c00-96da-fe08975ea298 using man macros.</FONT>
 <br><br><center><img src="images/dprod.3fortran.gif"></center>
 </div>
 </div>

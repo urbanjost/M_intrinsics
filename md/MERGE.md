@@ -16,6 +16,8 @@
       logical(kind=KINDM),intent(in)   :: mask
       mask** : Shall be of type _logical_.
 ```
+### **Characteristics**
+
   **tsource** May be of any type, including user-defined.  
   **fsource** Shall be of the same type and type parameters as **tsource**.  
   The result will by of the same type and type parameters as **tsource** too.

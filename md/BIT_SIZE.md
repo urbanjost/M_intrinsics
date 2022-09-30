@@ -13,6 +13,8 @@
 
      integer(kind=KIND),intent(in) :: i(..)
 ```
+### **Characteristics**
+
 where the value of KIND is any valid value for an _integer_ kind
 parameter on the processor.
 

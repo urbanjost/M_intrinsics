@@ -13,6 +13,8 @@
 
      real(kind=KIND),intent(in) :: x
 ```
+### **Characteristics**
+
 ### **Description**
 
 **exponent**(x) returns the value of the exponent part of **x**. If **x** is

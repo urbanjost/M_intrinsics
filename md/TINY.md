@@ -13,6 +13,8 @@
 
      real(kind=KIND) :: x
 ```
+### **Characteristics**
+
 where KIND may be any kind supported by type _real_
 
 ### **Description**

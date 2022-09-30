@@ -13,6 +13,8 @@
 
      real(kind=KIND),intent(in) :: x
 ```
+### **Characteristics**
+
 ### **Description**
 
 **erfc_scaled**(x) computes the exponentially-scaled complementary

@@ -11,6 +11,8 @@
 ```fortran
      subroutine atomic_xor(atom, value, stat)
 ```
+### **Characteristics**
+
 ### **Description**
 
 **atomic_xor(atom, value)** atomically defines **atom** with the bitwise

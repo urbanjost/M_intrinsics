@@ -8,6 +8,8 @@
 ```fortran
 call mvbits(from, frompos, len, to, topos)
 ```
+### **Characteristics**
+
 ```fortran
     elemental subroutine mvbits(from,frompos,len,to,topos)
 

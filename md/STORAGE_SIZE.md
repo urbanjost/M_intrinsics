@@ -14,6 +14,8 @@
      type(TYPE(kind=KINDA)) :: a
      integer,intent(in),optional :: kind
 ```
+### **Characteristics**
+
   **a** may be of any type and kind. If it is polymorphic it shall not
   be an undefined pointer. If it is unlimited polymorphic or has any
   deferred type parameters, it shall not be an unallocated allocatable

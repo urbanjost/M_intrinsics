@@ -15,6 +15,8 @@
      TYPE(kind=KIND) :: value
      integer,intent(out),optional :: stat
 ```
+### **Characteristics**
+
 - **atom**
   : Scalar coarray or coindexed variable of either integer type with
   atomic_int_kind kind or logical type with atomic_logical_kind
@@ -25,6 +27,7 @@
 
 - **stat**
   : (optional) Scalar default-kind integer variable.
+
 ### **Description**
 
 **atomic_define(atom, value)** defines the variable **atom** with the value

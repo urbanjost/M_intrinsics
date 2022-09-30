@@ -14,6 +14,8 @@
      integer(kind=KIND),intent(in) :: i
      integer(kind=KIND),intent(in),optional :: kind
 ```
+### **Characteristics**
+
 where KIND may be any supported kind value for _integer_ types.
 
 ### **Description**

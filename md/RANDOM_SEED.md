@@ -10,6 +10,8 @@
 ```
 ```fortran
 ```
+### **Characteristics**
+
 ### **Description**
 
 Restarts or queries the state of the pseudorandom number generator used

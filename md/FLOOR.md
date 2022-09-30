@@ -15,6 +15,8 @@ not greater than argument
      real(kind=KIND),intent(in) :: a
      integer,intent(in),optional :: kind
 ```
+### **Characteristics**
+
 where _KIND_ is any valid value for type _integer_.
 
 ### **Description**

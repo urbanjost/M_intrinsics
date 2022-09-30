@@ -10,6 +10,8 @@
 ```
 ```fortran
 ```
+### **Characteristics**
+
 ### **Description**
 
 **move_alloc(src, dest)** moves the allocation from **src** to

@@ -15,6 +15,8 @@
    type(TYPE(kind=KIND)),intent(in) :: boundary
    integer(kind=KINDD),intent(in)   :: dim
 ```
+### **Characteristics**
+
 **array** May be any type, not scalar. The result is an array of same
 type, kind and rank as the **array** argument. **boundary** is a scalar
 of the same type and kind as the **array**. **dim** and **shift** can

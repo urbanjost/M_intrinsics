@@ -10,6 +10,8 @@
 ```
 ```fortran
 ```
+### **Characteristics**
+
 ### **Description**
 
 Returns a disassociated pointer.

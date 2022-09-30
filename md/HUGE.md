@@ -13,8 +13,15 @@
 
      TYPE(kind=KIND),intent(in) :: x
 ```
+### **Characteristics**
+
 where **TYPE** may be _real_ or _integer_ and **KIND** is any supported
-associated _kind_.
+associated _kind_. It need not be defined, as only its characteristics
+are used.
+
+The result will be of the same type and kind as the input to ensure the
+returned value does not overflow. Any assignment of the result should
+take this into consideration.
 
 ### **Description**
 
@@ -24,9 +31,8 @@ kind and type of **x**.
 ### **Options**
 
 - **x**
-  : Shall be an arbitrary value of type _real_ or _integer_.
-  The value is used merely to determine what _kind_ and _type_ of
-  scalar is being queried.
+  : **xx** is an arbitrary value which is used merely to determine what
+  _kind_ and _type_ of scalar is being queried. 
 
 ### **Result**
 
@@ -63,9 +69,7 @@ real :: v, w
    enddo
 end program demo_huge
 ```
-
 Results:
-
 ```
   2147483647  3.4028235E+38  1.797693134862316E+308
   1.1754944E-38  2.225073858507201E-308
@@ -85,7 +89,6 @@ Results:
     13     175792128  -2147483648   13060694016. F wrong for j and k and w
     14     1054752768 -2147483648   78364164096. F wrong for j and k and w
 ```
-
 ### **Standard**
 
 Fortran 95 and later

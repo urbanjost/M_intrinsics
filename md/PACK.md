@@ -15,6 +15,8 @@
      logical  :: mask(*)
      TYPE(kind=KIND),option(in),optional :: vector(*)
 ```
+### **Characteristics**
+
   where TYPE(kind=KIND) may be any type, where **array** and **vector**
   and the returned value must by of the same type. **mask** may be a
   scalar as well an an array.

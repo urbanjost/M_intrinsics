@@ -13,6 +13,8 @@
 
      integer(kind=KIND),intent(in) :: r
 ```
+### **Characteristics**
+
 ### **Description**
 
 **selected_int_kind(r)** return the kind value of the smallest integer

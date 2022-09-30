@@ -13,6 +13,8 @@
 
      real(kind=KIND),intent(in)   :: x
 ```
+### **Characteristics**
+
 where KIND is any _real_ kind.
 
 ### **Description**

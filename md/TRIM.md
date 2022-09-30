@@ -13,6 +13,8 @@
 
      character(len=*,kind=KIND),intent(in) :: string
 ```
+### **Characteristics**
+
   **KIND** can be any kind supported for the _character_ type.
   The result has the same kind as the input argument **string**.
 

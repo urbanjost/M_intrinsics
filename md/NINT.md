@@ -14,6 +14,8 @@
       real(kind=KINDX),intent(in) :: x
       integer(kind=KINDK),intent(in),optional :: kind
 ```
+### **Characteristics**
+
    The result is default _integer_ kind or the value of **kind**
    if it is present.
 

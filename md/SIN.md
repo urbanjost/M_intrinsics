@@ -13,6 +13,8 @@
 
      TYPE(kind=KIND) :: x
 ```
+### **Characteristics**
+
 where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind
 supported by the associated type.
 

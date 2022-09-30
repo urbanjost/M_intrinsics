@@ -13,6 +13,8 @@
 
       integer(kind=KIND),intent(in) :: i
 ```
+### **Characteristics**
+
 ### **Description**
 
 **leadz** returns the number of leading zero bits of an integer.

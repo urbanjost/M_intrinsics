@@ -14,6 +14,8 @@
      real(kind=KIND),intent(in)  :: a
      integer,intent(in),optional :: kind
 ```
+### **Characteristics**
+
 where the _kind_ of the result KIND is the same as **a** unless its
 kind is specified by the optional **kind** argument.
 

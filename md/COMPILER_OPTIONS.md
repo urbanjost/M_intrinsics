@@ -11,6 +11,8 @@
 ```fortran
      character(len=:) function compiler_options()
 ```
+### **Characteristics**
+
 ### **Description**
 
 compiler_options returns a string with the options used for compiling.

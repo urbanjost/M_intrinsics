@@ -15,6 +15,8 @@
      real(kind=KIND),intent(in),optional :: r
      real(kind=KIND),intent(in),optional :: radix
 ```
+### **Characteristics**
+
 ### **Description**
 
 **selected_real_kind(p, r, radix)** return the kind value of a real

@@ -18,6 +18,8 @@
                 :
                 :
 ```
+### **Characteristics**
+
 Where **TYPE** may be _integer_ or _real_
 
 ### **Description**

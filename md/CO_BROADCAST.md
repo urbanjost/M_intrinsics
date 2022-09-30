@@ -10,6 +10,8 @@
 ```
 ```fortran
 ```
+### **Characteristics**
+
 ### **Description**
 
 **co_broadcast(3)** copies the value of argument **a** on the image with image

@@ -14,6 +14,8 @@
     TYPE(kind=KIND),intent(in) :: x
     integer(kind=KINDK),intent(in) :: kind
 ```
+### **Characteristics**
+
   Where the type of **x** may be _integer_, _real_, or _complex_.
 
 ### **Description**

@@ -14,6 +14,8 @@
      TYPE(kind=KIND),intent(in) :: x
      TYPE(kind=KIND),intent(in),optional :: y
 ```
+### **Characteristics**
+
 If **y**
 is present **x** and **y** must both be _real_. Otherwise, **x** may be
 _complex_. **KIND** can be any kind supported by the associated type.

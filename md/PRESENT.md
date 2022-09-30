@@ -14,6 +14,8 @@ is specified
 
       type(TYPE(kind=KIND)) :: a(..)
 ```
+### **Characteristics**
+
 where the **TYPE** may be any type
 
 ### **Description**

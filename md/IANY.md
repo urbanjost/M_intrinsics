@@ -25,6 +25,8 @@ or
     integer(kind=KINDD),intent(in),optional :: dim
     logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
+### **Characteristics**
+
 **array** must be an array. The result will by of the same type and kind
 as **array**. **mask** is a _logical_ array that conforms to **array** of
 any _logical_ kind. **dim** may be of any _integer_ kind.

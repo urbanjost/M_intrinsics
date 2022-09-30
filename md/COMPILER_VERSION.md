@@ -11,6 +11,8 @@
 ```fortran
      character(len=:) function compiler_version()
 ```
+### **Characteristics**
+
 ### **Description**
 
 **compiler_version**(3) returns a string containing the name and

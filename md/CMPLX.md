@@ -15,6 +15,8 @@
       TYPE(kind=KIND),intent(in),optional :: y
       integer,intent(in),optional :: kind
 ```
+### **Characteristics**
+
 ### **Description**
 
 To convert numeric variables to complex, use the **cmplx**(3) function.

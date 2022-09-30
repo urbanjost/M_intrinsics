@@ -15,6 +15,8 @@
      integer(kind=KINDD),intent(in),optional :: dim
      integer(kind=KINDK),intent(in),optional :: kind
 ```
+### **Characteristics**
+
   **array** may be of any type and associated kind.
 
   If **array** is a pointer it must be associated and allocatable arrays

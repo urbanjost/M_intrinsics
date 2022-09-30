@@ -10,6 +10,8 @@
 ```
 ```fortran
 ```
+### **Characteristics**
+
 ### **Description**
 
 co_reduce determines element-wise the reduction of the value of **a** on

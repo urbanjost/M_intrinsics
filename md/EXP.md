@@ -13,6 +13,8 @@
 
      TYPE(kind=KIND),intent(in) :: x
 ```
+### **Characteristics**
+
 **x** may be _real_ or _complex_.
 The return value has the same type and kind as **x**.
 

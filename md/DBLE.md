@@ -14,6 +14,8 @@
      doubleprecision :: dble
      TYPE(kind=KIND),intent(in) :: a
 ```
+### **Characteristics**
+
 where TYPE may be _integer_, _real_, or _complex_ and KIND any kind
 supported by the TYPE.
 

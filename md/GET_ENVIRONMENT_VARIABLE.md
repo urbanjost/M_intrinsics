@@ -8,6 +8,8 @@
 ```fortran
     call get_environment_variable(name [,value] [,length] [,status] [,trim_name] )
 ```
+### **Characteristics**
+
 ```fortran
      subroutine character(len=*) get_environment_variable( &
      & name [,value] [,length] [,status] [,trim_name] )

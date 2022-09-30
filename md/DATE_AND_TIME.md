@@ -16,6 +16,8 @@
      character(len=5),intent(out),optional :: zone
      integer,intent(out),optional :: values(8)
 ```
+### **Characteristics**
+
 ### **Description**
 
 **date_and_time(date, time, zone, values)** gets the corresponding

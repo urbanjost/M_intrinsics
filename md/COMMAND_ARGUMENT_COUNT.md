@@ -11,6 +11,8 @@
 ```fortran
      integer function command_argument_count()
 ```
+### **Characteristics**
+
 ### **Description**
 
 **command_argument_count()** returns the number of arguments passed

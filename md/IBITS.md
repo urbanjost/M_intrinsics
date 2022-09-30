@@ -15,6 +15,8 @@
      integer(kind=KINDPOS),intent(in) :: pos
      integer(kind=KINDLEN),intent(in) :: len
 ```
+### **Characteristics**
+
   The return value is of the same kind as **i**. Otherwise,
   any _integer_ kinds are allowed.
 ```fortran

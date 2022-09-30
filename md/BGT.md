@@ -15,6 +15,8 @@
       integer(kind=KIND),intent(in) :: j
       logical :: bgt
 ```
+### **Characteristics**
+
   where the _kind_ of **i** and **j** may be of any supported _integer_
   kind, not necessarily the same. An exception is that values may be a
   BOZ constant with a value valid for the _integer_ kind available with

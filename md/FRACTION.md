@@ -13,7 +13,10 @@
 
      real(kind=KIND),intent(in) :: fraction
 ```
+### **Characteristics**
+
   The result has the same characteristics as the argument.
+
 ### **Description**
 
   **fraction(x)** returns the fractional part of the model representation

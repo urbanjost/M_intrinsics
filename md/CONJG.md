@@ -13,6 +13,8 @@
 
      complex(kind=KIND),intent(in) :: z
 ```
+### **Characteristics**
+
 where **KIND** is the kind of the parameter **z**
 
 ### **Description**

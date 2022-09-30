@@ -63,7 +63,7 @@ characters that does not appear in a given set of characters.
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=8>
+<A name=9>
 
      <H3>SYNOPSIS</H3>
 
@@ -81,12 +81,20 @@ result = verify(string, set [,back] [,kind] )
          integer,intent(in),optional :: kind
 <P>
 </PRE>
-STRING and SET must have the same kind type parameter.
 </BLOCKQUOTE>
+<A name=2>
+
+     <H3>CHARACTERISTICS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+STRING and SET must have the same kind type parameter.
 <P>
 the kind of the returned value is the same as KIND if present. Otherwise
 a default integer kind is returned.
-<A name=2>
+</BLOCKQUOTE>
+<A name=3>
 
      <H3>DESCRIPTION</H3>
 
@@ -104,7 +112,7 @@ ISASCII(3c), ISBLANK(3c), ISCNTRL(3c), ISDIGIT(3c), ISGRAPH(3c),
 ISLOWER(3c), ISPRINT(3c), ISPUNCT(3c), ISSPACE(3c), ISUPPER(3c), and
 ISXDIGIT(3c); but for a string as well an an array of strings.
 </BLOCKQUOTE>
-<A name=3>
+<A name=4>
 
      <H3>OPTIONS</H3>
 
@@ -115,7 +123,7 @@ ISXDIGIT(3c); but for a string as well an an array of strings.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-STRING : The string to search for an unmatched character.
+STRING : The string to search in for an unmatched character.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
@@ -128,7 +136,8 @@ o
 BACK : The direction to look for an unmatched character. The
 left-most unmatched character position is returned unless BACK is
 present and .false., which causes the position of the right-most
-unmatched character to be returned.
+unmatched character to be returned instead of the left-most
+unmatched character..
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
@@ -137,7 +146,7 @@ KIND : An integer initialization expression indicating the kind
 parameter of the result.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
-<A name=4>
+<A name=5>
 
      <H3>RESULT</H3>
 
@@ -151,7 +160,7 @@ If all characters of STRING are found in SET, the result is zero.
 <P>
 If STRING is of zero length a zero (0) is always returned.
 </BLOCKQUOTE>
-<A name=5>
+<A name=6>
 
      <H3>EXAMPLES</H3>
 
@@ -176,8 +185,11 @@ Sample program I:
     character(len=:),allocatable :: string
     integer :: i
 <P>
+       ! find first non-uppercase letter
        ! will produce the location of "d", because there is no match in UPP
        write(*,*) &#146;something unmatched&#146;,verify("ABCdEFG", upp)
+<P>
+       ! if everything is matched return zero
        ! will produce 0 as all letters have a match
        write(*,*) &#146;everything matched&#146;,verify("ffoorrttrraann", "nartrof")
 <P>
@@ -193,17 +205,20 @@ Sample program I:
        string(10:10)=char(11)
        write(*,*)&#146;isprint?&#146;,verify(string,prnt) == 0
 <P>
+       ! verify(3f) is often used in a logical expression
        string=" This is NOT all UPPERCASE "
        write(*,*)&#146;all uppercase/spaces?&#146;,verify(string, blank//upp) == 0
-       string=" THIS IS ALL UPPERCASE "
+       string=" This IS all uppercase "
        write(*,*) &#146;string=[&#146;//string//&#146;]&#146;
        write(*,*)&#146;all uppercase/spaces?&#146;,verify(string, blank//upp) == 0
 <P>
       ! set and show complex string to be tested
        string=&#146;  Check this out. Let me know  &#146;
+       ! show the string being examined
        write(*,*) &#146;string=[&#146;//string//&#146;]&#146;
        write(*,*) &#146;        &#146;//repeat(int,4) ! number line
-       ! the Fortran functions result position just not a logical like C
+<P>
+       ! the Fortran functions returns a position just not a logical like C
        ! which can be very useful for parsing strings
        write(*,*)&#146;first non-blank character&#146;,verify(string, blank)
        write(*,*)&#146;last non-blank character&#146;,verify(string, blank,back=.true.)
@@ -217,8 +232,10 @@ Sample program I:
        & low//upp//blank) == 0
 <P>
        ! rarer, but the set can be an array, not just the strings to test
-       ! you could do ISPRINT() this way :&gt;
+       ! you could do ISPRINT() this (harder) way :&gt;
        write(*,*)&#146;isprint?&#146;,.not.all(verify("aBc", [(char(i),i=32,126)])==1)
+       ! instead of this way
+       write(*,*)&#146;isprint?&#146;,verify("aBc",prnt) == 0
 <P>
     end program demo_verify
 <P>
@@ -244,6 +261,7 @@ Results:
         &gt; first non-letter non-blank           17
         &gt; array of strings T T F T F
         &gt; isprint? T
+        &gt; isprint? T
 <P>
 </PRE>
 Sample program II:
@@ -262,8 +280,9 @@ Determine if strings are valid integer representations
      &#146;1 2 3&#146;, &
      &#146;  -3000 &#146;, &
      &#146; &#146;]
-<P>
+       ! show the strings to test
        write(*,&#146;("|",*(g0,"|"))&#146;) ints
+       ! show if strings pass or fail the test done by isint(3f)
        write(*,&#146;("|",*(1x,l1,8x,"|"))&#146;) isint(ints)
 <P>
     contains
@@ -423,6 +442,7 @@ exploring uses of elemental functionality and dusty corners
 <P>
        ! using a null string for a set is not well defined. Avoid it
        write(*,*) &#146;null&#146;,verify("for tran ", "", .true.) ! 8,length of string?
+       ! probably what you expected
        write(*,*) &#146;blank&#146;,verify("for tran ", " ", .true.) ! 7,found &#146;n&#146;
 <P>
        ! first character in  "Go    " not in "do",
@@ -444,7 +464,7 @@ Results:
 <P>
 </PRE>
 </BLOCKQUOTE>
-<A name=6>
+<A name=7>
 
      <H3>STANDARD</H3>
 
@@ -453,7 +473,7 @@ Results:
 <P>
 Fortran 95 and later, with KIND argument - Fortran 003 and later
 </BLOCKQUOTE>
-<A name=7>
+<A name=8>
 
      <H3>SEE ALSO</H3>
 
@@ -478,7 +498,7 @@ NONELEMENTAL: LEN_TRIM(3), LEN(3), REPEAT(3), TRIM(3)
 <TR></TR></TABLE>fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>verify (3fortran)</TD> <TD align=right width=33%><I>September 29, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from aa0fb57f-ef57-4ea2-9c05-c032fc8a1191 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>verify (3fortran)</TD> <TD align=right width=33%><I>September 30, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 2d9a9fab-37ab-4a02-9cdc-d452ef5c9291 using man macros.</FONT>
 <br><br><center><img src="images/verify.3fortran.gif"></center>
 </div>
 </div>

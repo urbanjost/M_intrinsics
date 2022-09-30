@@ -13,6 +13,8 @@
 
      character(len=*),intent(in) :: name
 ```
+### **Characteristics**
+
 ### **Description**
 
   **selected_char_kind(name)** returns the kind value for the character

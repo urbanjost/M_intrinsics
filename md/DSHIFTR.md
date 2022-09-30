@@ -15,6 +15,8 @@
      integer(kind=KIND),intent(in) :: j
      integer(kind=KIND2),intent(in) :: shift
 ```
+### **Characteristics**
+
   Where the kind of **i**, **j**, and **dshiftr** are the same. An
   exception is that one of **i** and **j** may be a BOZ literal constant.
 

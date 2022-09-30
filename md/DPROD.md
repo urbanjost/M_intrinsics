@@ -15,32 +15,43 @@
      real,intent(in) :: y
      doubleprecision :: dprod
 ```
+### **Characteristics**
+
+**x** and **y** must both be real values of default kind.
+
+The return value is doubleprecision (ie. _real(kind=kind(0.0d0))_).
+
+The setting of compiler options specifying the size of a default _real_
+can affect this function.
+
 ### **Description**
 
 **dprod(x,y)** produces a _doubleprecision_ product of default _real_
 values **x** and **y**.
 
+That is, it is expected to convert the arguments to double precision
+before multiplying, which a simple expression **x\*y** would not be
+required to do. This can be significant in specialized computations
+requiring high precision.
+
 The result has a value equal to a processor-dependent approximation to
-the product of **x** and **y**. It is recommended that the processor
-compute the product in double precision, rather than in single precision
-then converted to double precision.
+the product of **x** and **y**. Note it is recommended in the standard
+that the processor compute the product in double precision, rather than
+in single precision then converted to double precision; but is only
+a recommendation.
 
 ### **Options**
 
 - **x**
-  : the multiplier, a _real_ value of default kind
+  : the multiplier
 
 - **y**
-  : the multiplicand, a _real_ value of default kind.
-  **y** Must have the same type and kind parameters as **x**
-
-The setting of compiler options specifying the size of a default _real_
-can affect this function.
+  : the multiplicand
 
 ### **Result**
 
-The return value is doubleprecision (ie. _real(kind=kind(0.0d0))_).
-It should have the same value as **dble(x)\*dble(y)**.
+The returned value of the product should have the same value as
+**dble(x)\*dble(y)**.
 
 ### **Examples**
 
@@ -48,58 +59,45 @@ Sample program:
 
 ```fortran
 program demo_dprod
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
-& real32, real64, real128
 implicit none
 integer,parameter :: dp=kind(0.0d0)
 real :: x = 5.2
 real :: y = 2.3
-real(kind=dp) :: dd
+doubleprecision :: xx
+real(kind=dp)   :: dd
 
+   print *,'algebraically 5.2 x 2.3 is exactly 11.96'
+   print *,'as floating point values results may differ slightly:'
    ! basic usage
    dd = dprod(x,y)
    print *, 'compare dprod(xy)=',dd, &
    & 'to x*y=',x*y, &
    & 'to dble(x)*dble(y)=',dble(x)*dble(y)
 
-   ! elemental
+   print *'test an expected result is produced'
+   xx=-6.0d0
+   write(*,*)DPROD(-3.0, 2.0),xx 
+   write(*,*)merge('PASSED','FAILED',DPROD(-3.0, 2.0) == xx)
+
+   print *,'elemental'
    print *, dprod( [2.3,3.4,4.5], 10.0 )
    print *, dprod( [2.3,3.4,4.5], [9.8,7.6,5.4] )
 
-   ! other interesting comparisons
-   print *, 'integer multiplication of digits=',52*23
-   print *, 52*23/100.0
-   print *, 52*23/100.0d0
-
-!> !! A common extension is to take doubleprecision arguments
-!> !! and return higher precision when available
-!> bigger: block
-!> doubleprecision :: xx = 5.2_dp
-!> doubleprecision :: yy = 2.3_dp
-!> print *, 'dprop==>',dprod(xx,yy)
-!> print *, 'multiply==>',xx*yy
-!> print *, 'using dble==>',dble(xx)*dble(yy)
-!> print *, 'kind of arguments is',kind(xx)
-!> print *, 'kind of result is',kind(dprod(xx,yy))
-!> endblock bigger
-
 end program demo_dprod
 ```
-  Results:
-  (this can vary between programming environments):
+Results:
+(this can vary between programming environments):
 ```text
-    compare dprod(xy)= 11.9599993133545 to x*y= 11.96000
-    to dble(x)*dble(y)= 11.9599993133545
-      22.9999995231628  34.0000009536743  45.0000000000000
-      22.5399999713898  25.8400004005432  24.3000004291534
-    integer multiplication of digits=        1196
-      11.96000
-      11.9600000000000
-    dprop==>   11.9599999999999994848565165739273
-    multiply==>   11.9600000000000
-    using dble==>   11.9600000000000
-    kind of arguments is           8
-    kind of result is          16
+    algebraically 5.2 x 2.3 is exactly 11.96
+    as floating point values results may differ slightly:
+    compare dprod(xy)=   11.959999313354501      to x*y=   11.9599991   
+    to dble(x)*dble(y)=   11.959999313354501     
+    test an expected result is produced
+     -6.0000000000000000       -6.0000000000000000     
+    PASSED
+    elemental
+      22.999999523162842        34.000000953674316        45.000000000000000     
+      22.539999971389761        25.840000400543204        24.300000429153442     
 ```
 ### **Standard**
 

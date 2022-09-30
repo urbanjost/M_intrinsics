@@ -14,6 +14,8 @@
      logical,intent(in)          :: mask(..)
      integer,intent(in),optional :: dim
 ```
+### **Characteristics**
+
 ### **Description**
 
 Logical conjunction of elements of **mask** along dimension **dim**.

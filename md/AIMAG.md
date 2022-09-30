@@ -13,6 +13,8 @@
 
      complex(kind=KIND),intent(in) :: z
 ```
+### **Characteristics**
+
 ### **Description**
 
 **aimag(z)** yields the imaginary part of complex argument **z**.

@@ -8,6 +8,8 @@
 ```fortran
     result = nearest(x, s)
 ```
+### **Characteristics**
+
 ```fortran
      elemental real(kind=KINDX) function nearest(x,s)
 

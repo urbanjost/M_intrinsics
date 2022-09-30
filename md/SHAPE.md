@@ -14,6 +14,8 @@
     type(TYPE(kind=KIND)),intent(in)        :: source(..)
     integer(kind=KINDK),intent(in),optional :: kind
 ```
+### **Characteristics**
+
 **source** is an array or scalar of any type. If **source** is a pointer
 it must be associated and allocatable arrays must be allocated.
 

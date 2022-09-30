@@ -10,6 +10,8 @@
 ```
 ```fortran
 ```
+### **Characteristics**
+
 ### **Description**
 
 Returns the lower bounds of a coarray, or a single lower cobound along

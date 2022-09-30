@@ -13,6 +13,8 @@
 
       type(TYPE(kind=KIND),intent(in) :: matrix(:,:)
 ```
+### **Characteristics**
+
   **matrix** which shall be of any type and have a rank of two. The
   result will be the same type and kind as **matrix** and of the 
   shape of (m,n) when the input array has the shape(n,m).

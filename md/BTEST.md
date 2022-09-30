@@ -14,6 +14,8 @@
      integer,intent(in)  :: i
      logical,intent(out) :: pos
 ```
+### **Characteristics**
+
 where **KIND** is any _integer_ kind supported by the programming environment.
 
 ### **Description**

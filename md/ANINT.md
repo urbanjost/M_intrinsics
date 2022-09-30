@@ -17,6 +17,8 @@
 where the _kind_ of the result is the same as as **x** unless
 **kind** is present.
 
+### **Characteristics**
+
 ### **Description**
 
 **anint(a \[, kind\])** rounds its argument to the nearest whole number.

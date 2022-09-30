@@ -13,7 +13,9 @@
 
      type(TYPE(kind=KIND),intent(in) :: a(..)
 ```
-  **a** can be of any type.
+### **Characteristics**
+
+  **a** can be of any type and rank.
 
 ### **Description**
 

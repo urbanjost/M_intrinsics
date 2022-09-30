@@ -11,6 +11,8 @@
 ```fortran
      subroutine atomic_ref(value, atom, stat)
 ```
+### **Characteristics**
+
 ### **Description**
 
 **atomic_ref(value, atom)** atomically assigns the value of the

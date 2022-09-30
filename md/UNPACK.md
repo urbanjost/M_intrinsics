@@ -16,6 +16,8 @@ into an array using a mask
      logical,intent(in)               :: mask(..)
      type(TYPE(kind=KIND)),intent(in) :: field(..)
 ```
+### **Characteristics**
+
 The result is an array of the same type and type parameters as **vector**
 and the same shape as **mask**.
 

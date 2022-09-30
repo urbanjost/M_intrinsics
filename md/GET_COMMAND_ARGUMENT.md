@@ -16,6 +16,8 @@
     integer,intent(out),optional          :: length
     integer,intent(out),optional          :: status
 ```
+### **Characteristics**
+
 ### **Description**
 
 Retrieve the **number**-th argument that was passed on the command line

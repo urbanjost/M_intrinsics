@@ -14,6 +14,8 @@
       type(TYPE(kind=KIND),intent(in) :: a
       type(TYPE(kind=KIND),intent(in) :: b
 ```
+### **Characteristics**
+
 - **a** shall be an object of extensible declared type or unlimited
   polymorphic. If it is a polymorphic pointer, it shall not have
   an undeﬁned association status.

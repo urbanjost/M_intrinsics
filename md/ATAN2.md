@@ -15,6 +15,9 @@ function
      real,kind=KIND) :: atan2
      real,kind=KIND),intent(in) :: y, x
 ```
+### **Characteristics**
+**x** and **y** must be reals of the same kind.
+
 The return value has the same type and kind as **y** and **x**.
 
 ### **Description**
@@ -34,12 +37,8 @@ a unique angle).
   : The real component of the complex value **(x,y)** or the **x**
   component of the point **\<x,y\>**.
 
-  **x**  must be of the same kind as **y**.
-
 ### **Result**
 
-The type and kind of the result are the same as the elements of **x**.
-and **y**.
 
 The value returned is by definition the principal value of the complex
 number **(x, y)**.
@@ -163,7 +162,6 @@ end program demo_atan2
    X= -1.00 Y= -1.00 ANGLE= 3.926991    DEGREES= 225.0  DISTANCE=1.414214
    X=  0.00 Y= -1.00 ANGLE= 4.712389    DEGREES= 270.0  DISTANCE=1.000000
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later

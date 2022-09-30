@@ -14,6 +14,8 @@
       type(TYPE(kind=KIND),intent(in) :: a
       type(TYPE(kind=KIND),intent(in) :: p
 ```
+### **Characteristics**
+
   The result and arguments are all of the same type and kind.
   The type may be any kind of _real_ or _integer_.
 

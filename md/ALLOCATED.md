@@ -13,6 +13,8 @@
 
      type(TYPE(kind=KIND)),allocatable :: entity(..)
 ```
+### **Characteristics**
+
   where **entity** may be any allocatable scalar or array object
   of any type.
 

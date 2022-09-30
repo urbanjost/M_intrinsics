@@ -13,6 +13,8 @@
 
       integer,intent(in) :: iostat
 ```
+### **Characteristics**
+
 ### **Description**
 
 is_iostat_end(3) tests whether a variable (assumed returned as a status

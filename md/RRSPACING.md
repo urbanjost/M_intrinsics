@@ -12,6 +12,8 @@
      elemental real(kind=KIND) function rrspacing(x)
      real(kind=KIND),intent(in) :: x
 ```
+### **Characteristics**
+
 The return value is of the same type and kind as **x**.
 
 ### **Description**

@@ -11,6 +11,8 @@
 ```fortran
      subroutine atomic_cas (atom, old, compare, new, stat)
 ```
+### **Characteristics**
+
 ### **Description**
 
 atomic_cas compares the variable **atom** with the value of **compare**; if the

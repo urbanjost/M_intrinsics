@@ -17,6 +17,8 @@ where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
 by the associated type. The returned value will be of the same type and kind as
 the argument.
 
+### **Characteristics**
+
 ### **Description**
 
 **cosh(x)** computes the hyperbolic cosine of **x**.

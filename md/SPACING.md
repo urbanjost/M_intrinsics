@@ -13,6 +13,8 @@
 
       real(kind=KIND), intent(in) :: x
 ```
+### **Characteristics**
+
   The result is of the same type as the input argument **x**.
 
 ### **Description**

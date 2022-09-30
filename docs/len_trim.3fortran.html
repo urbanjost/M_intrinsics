@@ -57,13 +57,13 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-LEN_TRIM(3) - [CHARACTER:WHITESPACE] Length of a character entity
-without trailing blank characters
+LEN_TRIM(3) - [CHARACTER:WHITESPACE] Character length without trailing
+blank characters
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=8>
+<A name=9>
 
      <H3>SYNOPSIS</H3>
 
@@ -73,16 +73,29 @@ without trailing blank characters
 result = len_trim(string [,kind])
 <P>
 <PRE>
-         elemental integer(kind=KIND) function len_trim(string,kind)
+       elemental integer(kind=KIND) function len_trim(string,kind)
 <P>
-         character(len=*),intent(in) :: string
-         integer(kind=KINDK),intent(in),optional :: kind
+        character(len=*),intent(in) :: string
+        integer(kind=KIND),intent(in),optional :: kind
 <P>
 </PRE>
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>CHARACTERISTICS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+STRING is a scalar or array of type character
+<P>
+KIND is a scalar integer constant expression specifying the kind of the
+returned value.
+<P>
 The return value is of type integer and of kind KIND. If KIND is absent,
 the return value is of default integer kind.
 </BLOCKQUOTE>
-<A name=2>
+<A name=3>
 
      <H3>DESCRIPTION</H3>
 
@@ -91,7 +104,7 @@ the return value is of default integer kind.
 <P>
 Returns the length of a character string, ignoring any trailing blanks.
 </BLOCKQUOTE>
-<A name=3>
+<A name=4>
 
      <H3>OPTIONS</H3>
 
@@ -102,25 +115,26 @@ Returns the length of a character string, ignoring any trailing blanks.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-STRING : The input string whose length is to be measured. Shall be a
-scalar of type character
+STRING : The input string whose length is to be measured.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-KIND : (Optional) An integer initialization expression indicating
-the kind parameter of the result.
+KIND : Indicates the kind parameter of the result.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
-<A name=4>
+<A name=5>
 
      <H3>RESULT</H3>
 
 </A>
 <BLOCKQUOTE>
 <P>
+The result has a value equal to the number of characters remaining after
+any trailing blanks in STRING are removed. If the argument contains no
+nonblank characters, the result is zero.
 </BLOCKQUOTE>
-<A name=5>
+<A name=6>
 
      <H3>EXAMPLES</H3>
 
@@ -133,16 +147,27 @@ Sample program
     program demo_len_trim
     implicit none
     character(len=:),allocatable :: string
-       string=&#146; how long is this string?     &#146;
-       write(*,*)&#146;LENGTH=&#146;,len(string)
+    integer :: i
+    ! basic usage
+       string=" how long is this string?     "
+       write(*,*) string
+       write(*,*)&#146;UNTRIMMED LENGTH=&#146;,len(string)
        write(*,*)&#146;TRIMMED LENGTH=&#146;,len_trim(string)
+<P>
+       ! print string, then print substring of string
+       string=&#146;xxxxx   &#146;
+       write(*,*)string,string,string
+       i=len_trim(string)
+       write(*,*)string(:i),string(:i),string(:i)
        !
-       ELE:block ! elemental example
+      ! elemental example
+       ELE:block
+       ! an array of strings may be used
        character(len=:),allocatable :: tablet(:)
        tablet=[character(len=256) :: &
        & &#146; how long is this string?     &#146;,&
        & &#146;and this one?&#146;]
-          write(*,*)&#146;LENGTH=            &#146;,len(tablet)
+          write(*,*)&#146;UNTRIMMED LENGTH=  &#146;,len(tablet)
           write(*,*)&#146;TRIMMED LENGTH=    &#146;,len_trim(tablet)
           write(*,*)&#146;SUM TRIMMED LENGTH=&#146;,sum(len_trim(tablet))
        endblock ELE
@@ -153,24 +178,47 @@ Sample program
 Results:
 <P>
 <PRE>
-        LENGTH=          30
-        TRIMMED LENGTH=          25
-        LENGTH=                     256
-        TRIMMED LENGTH=              25          13
-        SUM TRIMMED LENGTH=          38
-<P>
+         how long is this string?    
 </PRE>
+<BLOCKQUOTE>
+<TABLE cellpadding=3><!-- tsb:          how long is this string?    
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B>UNTRIMMED LENGTH=</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+30
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>TRIMMED LENGTH=</B> <!-- Consumed .TP -->
+<BR>
+<B>xxxxx</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+xxxxx   xxxxx  
+xxxxxxxxxxxxxxx
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>UNTRIMMED LENGTH=</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+56
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>TRIMMED LENGTH=</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+5          13
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>SUM TRIMMED LENGTH=</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+38
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=6>
+<A name=7>
 
      <H3>STANDARD</H3>
 
 </A>
 <BLOCKQUOTE>
 <P>
-Fortran 95 and later, with KIND argument - Fortran 003 and later
+Fortran 95 and later. KIND argument added with Fortran 003.
 </BLOCKQUOTE>
-<A name=7>
+<A name=8>
 
      <H3>SEE ALSO</H3>
 
@@ -195,7 +243,7 @@ NONELEMENTAL: REPEAT(3), LEN(3), TRIM(3)
 <TR></TR></TABLE>fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>len_trim (3fortran)</TD> <TD align=right width=33%><I>September 29, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 6782840e-52e0-4835-b31b-3cc0cf7d6ff7 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>len_trim (3fortran)</TD> <TD align=right width=33%><I>September 30, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 61f6aa93-8019-4472-ad38-6ac2e257834d using man macros.</FONT>
 <br><br><center><img src="images/len_trim.3fortran.gif"></center>
 </div>
 </div>

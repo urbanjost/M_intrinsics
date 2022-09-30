@@ -13,6 +13,8 @@
 
       integer(kind=KIND),intent(in) :: iostat
 ```
+### **Characteristics**
+
 ### **Description**
 
 **is_iostat_eor** tests whether a variable has the value of the I/O

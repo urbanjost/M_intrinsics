@@ -20,13 +20,6 @@ identified by MASK along dimension DIM matching a target value
      integer(kind=KINDK), intent(in),optional :: kind
      logical(kind=KINDB),intent(in),optional :: back
 ```
-- **array** shall be an array of intrinsic type.
-- **value** shall be scalar but in type conformance with **array**
-- **dim** The corresponding actual argument shall not be an optional dummy argument.
-- **mask** shall be conformable with **array**.
-- **kind** a scalar integer initialization expression (ie. a constant)
-- **back** a logical scalar.
-
 or
 ```fortran
     result = findloc(array, value [,mask] [,kind] [,back])
@@ -40,6 +33,15 @@ or
      integer(kind=KINDK), intent(in),optional :: kind
      logical(kind=KINDB),intent(in),optional :: back
 ```
+### **Characteristics**
+
+- **array** shall be an array of intrinsic type.
+- **value** shall be scalar but in type conformance with **array**
+- **dim** The corresponding actual argument shall not be an optional dummy argument.
+- **mask** shall be conformable with **array**.
+- **kind** a scalar integer initialization expression (ie. a constant)
+- **back** a logical scalar.
+
 ### **Description**
 
 Location of the first element of **array** identified by **mask** along

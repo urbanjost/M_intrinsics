@@ -11,6 +11,8 @@
 ```fortran
      subroutine atomic_fetch_and(atom, value, old, stat)
 ```
+### **Characteristics**
+
 ### **Description**
 
 **atomic_fetch_and(atom, value, old)** atomically stores the value of

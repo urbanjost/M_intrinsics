@@ -13,6 +13,8 @@
 
      TYPE(kind=KIND),intent(in) :: x
 ```
+### **Characteristics**
+
 where **TYPE** may be _real_ or _complex_
 
 The return value is of type _integer_ and of the default integer kind.

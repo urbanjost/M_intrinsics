@@ -15,6 +15,8 @@ and the origin.
      real(kind=KIND),intent(in) :: x
      real(kind=KIND),intent(in) :: y
 ```
+### **Characteristics**
+
 where **x,y** and the result shall all be of the same **kind**.
 
 ### **Description**

@@ -16,6 +16,8 @@ result = index( string, substring [,back] [,kind] )
  logical,intent(in),optional :: back
  integer,intent(in),optional :: kind
 ```
+### **Characteristics**
+
 ### **Description**
 
 Returns the position of the start of the leftmost or rightmost

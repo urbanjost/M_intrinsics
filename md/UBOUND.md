@@ -15,6 +15,8 @@
      integer(kind=KINDD),intent(in),optional :: dim
      integer(kind=KINDK),intent(in),optional :: kind
 ```
+### **Characteristics**
+
 - **array** Shall be an array, of any type.
 - **dim** : (Optional) Shall be a scalar _integer_.
 - **kind** An _integer_ initialization expression indicating the kind

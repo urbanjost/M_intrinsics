@@ -14,6 +14,8 @@
      real(kind=KIND),intent(in) :: x
      integer(kind=KINDI),intent(in) :: i
 ```
+### **Characteristics**
+
   The return value is of the same type and kind as **x**.
 
 ### **Description**

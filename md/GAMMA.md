@@ -13,6 +13,8 @@
 
      type(real,kind=KIND),intent(in) :: x
 ```
+### **Characteristics**
+
 The return value is _real_ with the kind as **x**.
 
 ### **Description**

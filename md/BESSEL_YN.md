@@ -14,6 +14,8 @@
      integer(kind=KIND),intent(in) :: n(..)
      real(kind=KIND),intent(in) :: x(..)
 ```
+### **Characteristics**
+
   If **n** and **x** are arrays, their ranks and shapes
   shall conform.
 

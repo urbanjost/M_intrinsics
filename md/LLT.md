@@ -14,6 +14,8 @@
        character(len=*),intent(in) :: string_a
        character(len=*),intent(in) :: string_b
 ```
+### **Characteristics**
+
 ### **Description**
 
   Determines whether one string is lexically less than another string,

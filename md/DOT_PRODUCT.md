@@ -14,6 +14,8 @@
      TYPE(kind=KIND),intent(in) :: vector_a(:)
      TYPE(kind=KIND),intent(in) :: vector_b(:)
 ```
+### **Characteristics**
+
 The two vectors may be either numeric or logical and must be arrays
 of rank one and of equal size.
 

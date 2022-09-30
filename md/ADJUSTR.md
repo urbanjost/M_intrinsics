@@ -13,6 +13,8 @@
 
      character(len=*),intent(in) :: string
 ```
+### **Characteristics**
+
 ### **Description**
 
 **adjustr(string)** right-adjusts a string by removing trailing

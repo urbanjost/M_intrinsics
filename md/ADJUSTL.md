@@ -13,6 +13,8 @@
 
      character(len=*),intent(in) :: string
 ```
+### **Characteristics**
+
 ### **Description**
 
 **adjustl(string)** will left-adjust a string by removing leading

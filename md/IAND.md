@@ -14,6 +14,8 @@
       integer(kind=KIND),intent(in) :: i
       integer(kind=KIND),intent(in) :: j
 ```
+### **Characteristics**
+
 ### **Description**
 
 Bitwise logical **and**.

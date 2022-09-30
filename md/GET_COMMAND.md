@@ -15,6 +15,8 @@
      integer,intent(out),optional :: length
      integer,intent(out),optional :: status
 ```
+### **Characteristics**
+
 ### **Description**
 
 Retrieve the entire command line that was used to invoke the program.

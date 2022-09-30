@@ -11,6 +11,8 @@
 ```fortran
      subroutine atomic_or(atom, value, stat)
 ```
+### **Characteristics**
+
 ### **Description**
 
 **atomic_or(atom, value)** atomically defines **atom** with the bitwise **or**

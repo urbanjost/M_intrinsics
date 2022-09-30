@@ -13,6 +13,8 @@
 
      TYPE(kind=KIND),intent(in) :: a
 ```
+### **Characteristics**
+
    **a** may be any _real_, _integer_, or _complex_ value.
 
    If **a** is _complex_ the returned value will be a _real_ with the

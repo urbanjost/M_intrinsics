@@ -13,6 +13,8 @@
 
       type(TYPE,kind=KIND),intent(in) :: x(..)
 ```
+### **Characteristics**
+
   **TYPE** may _logical_, _integer_, _real_, _complex_ or _character_.
 
   **x** may be of any kind supported by the type, and may be

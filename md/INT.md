@@ -14,6 +14,8 @@
      TYPE(kind=KIND),intent(in) :: a
      integer,optional :: kind
 ```
+### **Characteristics**
+
 ### **Description**
 
 Convert to integer type by truncating towards zero.

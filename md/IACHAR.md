@@ -14,6 +14,8 @@
      character(len=1),intent(in) :: c
      integer(kind=KINDK,intent(in),optional :: kind
 ```
+### **Characteristics**
+
   The return value is of type _integer_ and of kind **kind**. If **kind**
   is absent, the return value is of default integer kind.
 

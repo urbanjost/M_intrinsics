@@ -10,6 +10,8 @@
 ```
 ```fortran
 ```
+### **Characteristics**
+
 ### **Description**
 
 **c_associated(c_prt_1\[, c_ptr_2\])** determines the status of the

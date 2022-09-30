@@ -10,6 +10,8 @@
 ```
 ```fortran
 ```
+### **Characteristics**
+
 ### **Description**
 
 **c_sizeof(x)** calculates the number of bytes of storage the

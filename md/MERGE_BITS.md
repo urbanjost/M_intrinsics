@@ -13,6 +13,8 @@
 
      integer(kind=KIND), intent(in) :: i, j, mask
 ```
+### **Characteristics**
+
 where the result and all input values have the same _integer_ type and
 KIND with the exception that the mask and either **i** or **j** may be
 a BOZ constant.

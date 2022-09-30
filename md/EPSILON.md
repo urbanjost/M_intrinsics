@@ -13,6 +13,8 @@
 
      real(kind=kind(x),intent(in)   :: x
 ```
+### **Characteristics**
+
 ### **Description**
 
 **epsilon(x)** returns the floating point relative accuracy.

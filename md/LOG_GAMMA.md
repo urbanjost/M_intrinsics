@@ -14,6 +14,8 @@ the Gamma function
 
       real(kind=KIND),intent(in) :: x
 ```
+### **Characteristics**
+
   **x** may be any _real_ type; and the return value is of same type
   and kind as **x**.
 

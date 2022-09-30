@@ -14,6 +14,8 @@
      logical(kind=KIND),intent(in) :: l
      integer(kind=KINDK),intent(in),optional :: kind
 ```
+### **Characteristics**
+
 ### **Description**
 
 Converts one kind of _logical_ variable to another.

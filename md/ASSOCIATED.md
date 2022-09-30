@@ -12,12 +12,24 @@
      logical function associated(pointer,target)
 
      type(TYPE(kind=KIND),pointer :: pointer
+     type(TYPE(kind=KIND),target,optional :: target
+```
+or
+```fortran
+     logical function associated(pointer,target)
+
+     type(TYPE(kind=KIND),pointer :: pointer
      type(TYPE(kind=KIND),pointer,optional :: target
 ```
+### **Characteristics**
+
   **pointer** shall have the _pointer_ attribute and it can be any type.
 
   **target** shall be a pointer or a target. It must have the
   same type, kind type parameter, and array rank as **pointer**.
+
+  The association status of neither **pointer** nor **target** shall
+  be undefined.
 
 ### **Description**
 
@@ -30,46 +42,45 @@ pointer **pointer** or if **pointer** is associated with the target **target**.
   : A pointer to test for association
 
 - **target**
-  : A target that is to be tested for being occupying the same storage
-  units as the pointer **pointer**.
-
-The association status of neither **pointer** nor **target** shall be undefined.
+  : A target that is to be tested for occupying the same storage
+  units as the pointer **pointer**. That is, it is tested as to whether it
+  is pointed to by **pointer**.
 
 ### **Result**
 
-**associated(pointer)** returns a scalar value of type _logical_.
+****associated**(3f) returns a scalar value of type _logical_.
 There are several cases:
 
 1.  When the optional **target** is not present then **associated(pointer)**
     is _.true._ if **pointer** is associated with a target; otherwise, it
     returns _.false._.
 
-2.  If **target** is present and a scalar target, the result is true if
+2.  If **target** is present and a scalar target, the result is _.true._ if
     **target** is not a zero-sized storage sequence and the target
     associated with **pointer** occupies the same storage units. If **pointer**
-    is disassociated, the result is false.
+    is disassociated, the result is _.false._.
 
-3.  If **target** is present and an array target, the result is true if
+3.  If **target** is present and an array target, the result is _.true._ if
     **target** and **pointer** have the same shape, are not zero-sized arrays,
     are arrays whose elements are not zero-sized storage sequences, and
     **target** and **pointer** occupy the same storage units in array element
     order.
 
-    As in case 2, the result is false, if **pointer** is disassociated.
+    As in case 2, the result is _.false._, if **pointer** is disassociated.
 
-4.  If **target** is present and an scalar pointer, the result is true if
+4.  If **target** is present and an scalar pointer, the result is _.true._ if
     **target** is associated with **pointer**, the target associated with **target**
     are not zero-sized storage sequences and occupy the same storage
     units.
 
     The result is _.false._, if either **target** or **pointer** is disassociated.
 
-5.  If **target** is present and an array pointer, the result is true if
+5.  If **target** is present and an array pointer, the result is _.true._ if
     target associated with **pointer** and the target associated with **target**
     have the same shape, are not zero-sized arrays, are arrays whose
     elements are not zero-sized storage sequences, and **target** and
     **pointer** occupy the same storage units in array element order. The
-    result is false, if either **target** or **pointer** is disassociated.
+    result is _.false._, if either **target** or **pointer** is disassociated.
 
 ### **Examples**
 

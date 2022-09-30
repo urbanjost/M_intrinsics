@@ -13,6 +13,8 @@
 
      real(kind=KIND),intent(in) :: x
 ```
+### **Characteristics**
+
 The result is of the same _type_ and _kind_ as **x**.
  
 ### **Description**

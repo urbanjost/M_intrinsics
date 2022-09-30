@@ -13,6 +13,8 @@
 
      real(kind=KIND),intent(in) :: x
 ```
+### **Characteristics**
+
 ### **Description**
 
 **log10(x)** computes the base 10 logarithm of **x**. This

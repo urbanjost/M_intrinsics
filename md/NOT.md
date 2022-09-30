@@ -13,6 +13,8 @@
 
      integer(kind=KIND), intent(in) :: i
 ```
+### **Characteristics**
+
 The return type is of the same kind as the argument.
 
 ### **Description**

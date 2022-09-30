@@ -13,6 +13,8 @@
 
      real(kind=KIND),intent(in) :: x
 ```
+### **Characteristics**
+
 ### **Description**
 
 **erfc**(x) computes the complementary error function of **x**. Simply put

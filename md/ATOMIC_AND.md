@@ -11,6 +11,7 @@
 ```fortran
      subroutine atomic_and(atom, value, stat)
 ```
+### **Characteristics**
 
 ### **Description**
 

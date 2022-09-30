@@ -13,6 +13,8 @@
 
      character(len=1,kind=KIND),intent(in) :: c(..)
 ```
+### **Characteristics**
+
 ### **Description**
 
 **new_line(c)** returns the new-line character.

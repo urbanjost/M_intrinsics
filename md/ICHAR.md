@@ -14,6 +14,8 @@
      character(len=1),intent(in) :: c
      integer,intent(in),optional :: kind
 ```
+### **Characteristics**
+
 ### **Description**
 
 **ichar(c)** returns the code for the character in the system's native

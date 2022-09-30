@@ -15,7 +15,10 @@
      type(TYPE(kind=KIND),intent(out),optional  :: count_rate
      integer,intent(out),optional  :: count_max
 ```
+### **Characteristics**
+
 where TYPE may be _real_ or _integer_.
+
 ### **Description**
 
 **system_clock** lets you measure durations of time with the precision of

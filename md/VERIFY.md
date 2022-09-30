@@ -17,6 +17,8 @@ of characters that does not appear in a given set of characters.
      logical,intent(in),optional :: back
      integer,intent(in),optional :: kind
 ```
+### **Characteristics**
+
 **string** and **set**  must have the same kind type parameter.
 
 the kind of the returned value is the same as **kind** if
@@ -39,7 +41,7 @@ and **isxdigit**(3c); but for a string as well an an array of strings.
 ### **Options**
 
 - **string**
-  : The string to search for an unmatched character.
+  : The string to search in for an unmatched character.
 
 - **set**
   : The set of characters that must be matched.
@@ -48,7 +50,7 @@ and **isxdigit**(3c); but for a string as well an an array of strings.
   : The direction to look for an unmatched character. The left-most
   unmatched character position is returned unless **back** is present
   and _.false._, which causes the position of the right-most unmatched
-  character to be returned.
+  character to be returned instead of the left-most unmatched character..
 
 - **kind**
   : An _integer_ initialization expression indicating the kind
@@ -82,8 +84,11 @@ character,parameter :: &
 character(len=:),allocatable :: string
 integer :: i
 
+   ! find first non-uppercase letter
    ! will produce the location of "d", because there is no match in UPP
    write(*,*) 'something unmatched',verify("ABCdEFG", upp)
+
+   ! if everything is matched return zero
    ! will produce 0 as all letters have a match
    write(*,*) 'everything matched',verify("ffoorrttrraann", "nartrof")
 
@@ -99,17 +104,20 @@ integer :: i
    string(10:10)=char(11)
    write(*,*)'isprint?',verify(string,prnt) == 0
 
+   ! verify(3f) is often used in a logical expression
    string=" This is NOT all UPPERCASE "
    write(*,*)'all uppercase/spaces?',verify(string, blank//upp) == 0
-   string=" THIS IS ALL UPPERCASE "
+   string=" This IS all uppercase "
    write(*,*) 'string=['//string//']'
    write(*,*)'all uppercase/spaces?',verify(string, blank//upp) == 0
 
   ! set and show complex string to be tested
    string='  Check this out. Let me know  '
+   ! show the string being examined
    write(*,*) 'string=['//string//']'
    write(*,*) '        '//repeat(int,4) ! number line
-   ! the Fortran functions result position just not a logical like C
+
+   ! the Fortran functions returns a position just not a logical like C
    ! which can be very useful for parsing strings
    write(*,*)'first non-blank character',verify(string, blank)
    write(*,*)'last non-blank character',verify(string, blank,back=.true.)
@@ -123,8 +131,10 @@ integer :: i
    & low//upp//blank) == 0
 
    ! rarer, but the set can be an array, not just the strings to test
-   ! you could do ISPRINT() this way :>
+   ! you could do ISPRINT() this (harder) way :>
    write(*,*)'isprint?',.not.all(verify("aBc", [(char(i),i=32,126)])==1)
+   ! instead of this way
+   write(*,*)'isprint?',verify("aBc",prnt) == 0
 
 end program demo_verify
 ```
@@ -148,6 +158,7 @@ Results:
     > first non-letter non-blank           17
     > array of strings T T F T F
     > isprint? T
+    > isprint? T
 ```
 #### Sample program II:
 
@@ -165,8 +176,9 @@ character(len=*),parameter :: ints(*)=[character(len=10) :: &
  '1 2 3', &
  '  -3000 ', &
  ' ']
-
+   ! show the strings to test
    write(*,'("|",*(g0,"|"))') ints
+   ! show if strings pass or fail the test done by isint(3f)
    write(*,'("|",*(1x,l1,8x,"|"))') isint(ints)
 
 contains
@@ -318,6 +330,7 @@ character(len=2) :: sets(3)=["do","re","me"]
 
    ! using a null string for a set is not well defined. Avoid it
    write(*,*) 'null',verify("for tran ", "", .true.) ! 8,length of string?
+   ! probably what you expected
    write(*,*) 'blank',verify("for tran ", " ", .true.) ! 7,found 'n'
 
    ! first character in  "Go    " not in "do",

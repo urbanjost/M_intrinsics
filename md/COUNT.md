@@ -8,6 +8,8 @@
 ```fortran
     result = count(mask [,dim] [,kind] )
 ```
+### **Characteristics**
+
 ```fortran
      integer(kind=KIND) function count(mask, dim, kind )
      logical(kind=KINDL),intent(in) :: mask(..)

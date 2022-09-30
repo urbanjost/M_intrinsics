@@ -14,6 +14,8 @@
      integer(kind=KINDI),intent(in) :: i
      integer(kind=KINDK),intent(in),optional :: kind
 ```
+### **Characteristics**
+
 The result is an _integer_. It is of the default kind if **kind**
 is not present, else it is the kind specified by **kind**.
 

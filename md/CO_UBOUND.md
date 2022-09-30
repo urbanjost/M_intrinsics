@@ -10,6 +10,8 @@
 ```
 ```fortran
 ```
+### **Characteristics**
+
 ### **Description**
 
 Returns the upper cobounds of a coarray, or a single upper cobound along

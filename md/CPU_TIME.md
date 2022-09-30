@@ -11,6 +11,8 @@
 ```fortran
       real,intent(out) :: time
 ```
+### **Characteristics**
+
 ### **Description**
 
 Returns a _real_ value representing the elapsed CPU time in seconds. This

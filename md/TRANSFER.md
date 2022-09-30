@@ -15,6 +15,8 @@
       type(TYPE(kind=KIND)),intent(in) :: mold(..)
       integer,intent(in),intent(in),optional :: size
 ```
+### **Characteristics**
+
 - **source** Shall be a scalar or an array of any type.
 - **mold** Shall be a scalar or an array of any type.
 - **size** shall be a scalar of type _integer_.

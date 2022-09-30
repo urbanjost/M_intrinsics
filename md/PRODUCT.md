@@ -15,6 +15,8 @@
      integer(kind=KINDD),intent(in),optional :: dim
      logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
+### **Characteristics**
+
 where **NUMERIC** is any numeric type and kind.
 
 ### **Description**

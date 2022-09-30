@@ -14,6 +14,8 @@
      character(len=*),intent(in)        :: string
      integer(kind=KIND),intent(in)      :: ncopies
 ```
+### **Characteristics**
+
 ### **Description**
 
 Concatenates **ncopies** copies of a string.

@@ -15,9 +15,12 @@
      TYPE,kind=KIND),intent(in) :: mold
      logical,intent(in),optional     :: round
 ```
+### **Characteristics**
+
    where TYPE may be _real_ or _integer_ of any available KIND.
 
 ### **Description**
+
    **out_of_range**(3) determines whether a value **x** can be converted
    safely to a _real_ or _integer_ variable the same type and kind as
    **mold**.

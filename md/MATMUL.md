@@ -16,6 +16,8 @@ multiplication
      type(NUMERIC_OR_LOGICAL) :: matrix_b(..)
      type(PROMOTED) :: matmul(..)
 ```
+### **Characteristics**
+
  - Arguments may be numeric (_integer_, _real_, or _complex_ )
    or _logical_ and must be one or two-dimensional arrays.
  - At least one argument must be rank two.

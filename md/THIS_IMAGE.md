@@ -19,6 +19,8 @@ result = this_image(coarray, dim)
 ```
 ```fortran
 ```
+### **Characteristics**
+
 
 ### **Description**
 

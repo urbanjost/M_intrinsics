@@ -14,6 +14,8 @@
       real,intent(in) :: array(..)
       integer,intent(in),optional :: dim
 ```
+### **Characteristics**
+
 ### **Description**
 
 Calculates the Euclidean vector norm (L_2 norm) of **array** along
