@@ -8,16 +8,17 @@
 ```fortran
     result = nearest(x, s)
 ```
+```fortran
+     elemental real(kind=KIND) function nearest(x,s)
+
+     real(kind=KIND),intent(in) :: x
+     real(kind=**),intent(in) :: s
+```
 ### **Characteristics**
 
-```fortran
-     elemental real(kind=KINDX) function nearest(x,s)
+**x** may be a _real_ value of any kind.
 
-     real(kind=KINDX),intent(in) :: x
-     real(kind=KINDS),intent(in) :: s
-```
 The return value is of the same type and kind as **x**.
-Otherwise, any _kind_ of _real_ is allowed.
 
 ### **Description**
 
@@ -30,10 +31,8 @@ Otherwise, any _kind_ of _real_ is allowed.
   : the value to find the nearest representable value of
 
 - **s**
-  : a value whose sign is used to determine the direction in which to search
-  from **xx** to the representable value.
-
-  It Shall not equal zero.
+  : a non-zero value whose sign is used to determine the direction in
+  which to search from **xx** to the representable value.
 
   If **s** is positive, **nearest** returns the processor-representable
   number greater than **x** and nearest to it.
@@ -73,13 +72,10 @@ implicit none
 
 end program demo_nearest
 ```
-
 Results:
-
 ```text
    42.0000038146973    41.9999961853027    .762939453125000E-05
 ```
-
 ### **Standard**
 
 Fortran 95

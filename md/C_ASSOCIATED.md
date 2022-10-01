@@ -9,8 +9,15 @@
     result = c_associated(c_prt_1, [c_ptr_2] )
 ```
 ```fortran
+     logical function c_associated(c_prt_1, cptr_2)
+     TYPE,intent(in) ::c_ptr_1
+     TYPE,intent(in),optional ::c_ptr_2
 ```
 ### **Characteristics**
+
+- **c_ptr_1** is a scalar of the type c_ptr or c_funptr.  
+- **c_ptr_2** is a scalar of the same type as c_ptr_1.  
+- The return value is of type _logical_
 
 ### **Description**
 
@@ -21,10 +28,11 @@ c_ptr_2.
 ### **Options**
 
 - **c_ptr_1**
-  : Scalar of the type c_ptr or c_funptr.
+  : C pointer to test for being a C NULL pointer, or to test if
+  pointing to the same association as **c_ptr_2** when present.
 
 - **c_ptr_2**
-  : (Optional) Scalar of the same type as c_ptr_1.
+  : C pointer to test for shared association with **c_ptr_1**
 
 ### **Result**
 
