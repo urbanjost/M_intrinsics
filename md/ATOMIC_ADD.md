@@ -11,8 +11,9 @@
 ```fortran
      subroutine atomic_add(atom,value,stat)
 
-     integer(atomic_int_kind) :: atom[*]
-   call atomic_add (atom[1], this_image())
+      integer(atomic_int_kind)            :: atom[*]
+      integer(atomic_int_kind),intent(in) :: value
+      integer,intent(out),intent(out)     :: stat
 ```
 ### **Characteristics**
 
@@ -31,8 +32,8 @@ variable **atom**. When **stat** is present and the invocation was successful,
 it is assigned the value 0. If it is present and the invocation has
 failed, it is assigned a positive value; in particular, for a coindexed
 ATOM, if the remote image has stopped, it is assigned the value of
-iso_fortran_env's stat_stopped_image and if the remote image has
-failed, the value stat_failed_image.
+iso_fortran_env's STAT_STOPPED_IMAGE and if the remote image has
+failed, the value STAT_FAILED_IMAGE.
 
 ### **Options**
 
@@ -41,7 +42,7 @@ failed, the value stat_failed_image.
   atomic_int_kind kind.
 
 - **value**
-  : Scalar of the same type as **atom**. If the kind is different, the value
+: Scalar of the same type as **atom**. If the kind is different, the value
   is converted to the kind of **atom**.
 
 - **stat**
@@ -50,7 +51,6 @@ failed, the value stat_failed_image.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_atomic_add
 use iso_fortran_env
@@ -59,7 +59,6 @@ integer(atomic_int_kind) :: atom[*]
    call atomic_add (atom[1], this_image())
 end program demo_atomic_add
 ```
-
 ### **Standard**
 
 TS 18508

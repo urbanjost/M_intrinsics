@@ -9,6 +9,9 @@
     call random_seed( [size] [,put] [,get] )
 ```
 ```fortran
+     integer,intent(out),optional :: size
+     integer,intent(in),optional :: put(*)
+     integer,intent(out),optional :: get(*)
 ```
 ### **Characteristics**
 
@@ -54,14 +57,11 @@ integer :: n
 
 end program demo_random_seed
 ```
-
 Results:
-
 ```text
      -674862499 -1750483360  -183136071  -317862567   682500039
      349459   344020729 -1725483289
 ```
-
 ### **Standard**
 
 Fortran 95

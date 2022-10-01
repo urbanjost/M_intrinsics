@@ -197,7 +197,7 @@ program demo_aimag
 implicit none
 integer,parameter :: dp=kind(0.0d0)
 real(kind=dp)    :: precise, z8
-complex          :: z4, three
+complex          :: z4, three(3)
    precise=1.2345678901234567d0
 
   ! basic
@@ -205,6 +205,8 @@ complex          :: z4, three
    print *, 'Z4=',z4
    z4 = cmplx(1.23456789, 1.23456789)
    print *, 'Z4=',z4
+   ! with a format treat a complex as two real values
+   print '(g0,1x,g0,1x,g0)','Z4=',z4
 
   ! working with higher precision values
    ! using kind=dp makes it keep DOUBLEPRECISION precision
@@ -214,6 +216,7 @@ complex          :: z4, three
    z8 = cmplx(precise, -precise ,kind=dp)
    print *, 'kept precision Z8=',z8
 
+  ! assignment of constant values does not require cmplx(3)00
    ! The following is intuitive and works without calling cmplx(3)
    ! but does not work for variables just constants
    z8 = (1.1111111111111111d0, 2.2222222222222222d0 )
@@ -229,9 +232,20 @@ complex          :: z4, three
 
 end program demo_aimag
 ```
+Results:
+```text
+    Z4= (-3.000000,0.0000000E+00)
+    Z4= (1.234568,1.234568)
+   Z4= 1.234568 1.234568
+    lost precision Z8=   1.23456788063049     
+    kept precision Z8=   1.23456789012346     
+    Z8 defined with constants=   1.11111111111111     
+    three= (10.00000,-1.000000) (20.00000,-1.000000) (30.00000,-1.000000)
+    three= (100.0000,-1.000000) (200.0000,-1.000000) (30.00000,-1.000000)
+```
 ### **Standard**
 
-FORTRAN 77
+FORTRAN 77, KIND added in Fortran 90.
 
 ### **See Also**
 
@@ -275,4 +289,4 @@ logical expressions:
 [**tan**(3)](#tan),
 [**unpack**(3)](#unpack),
 
-_fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

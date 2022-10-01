@@ -11,8 +11,8 @@
 ```fortran
      logical function all(mask ,dim)
 
-     logical,intent(in)          :: mask(..)
-     integer,intent(in),optional :: dim
+      logical,intent(in)          :: mask(..)
+      integer,intent(in),optional :: dim
 ```
 ### **Characteristics**
 

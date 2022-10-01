@@ -11,8 +11,8 @@
 ```fortran
      elemental TYPE(kind=KIND) function atan(y,x)
 
-     TYPE(kind=KIND),intent(in) :: x
-     TYPE(kind=KIND),intent(in),optional :: y
+      TYPE(kind=KIND),intent(in) :: x
+      TYPE(kind=KIND),intent(in),optional :: y
 ```
 ### **Characteristics**
 

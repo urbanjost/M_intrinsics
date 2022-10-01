@@ -11,7 +11,7 @@
 ```fortran
      logical function allocated(entity)
 
-     type(TYPE(kind=KIND)),allocatable :: entity(..)
+      type(TYPE(kind=KIND)),allocatable :: entity(..)
 ```
 ### **Characteristics**
 

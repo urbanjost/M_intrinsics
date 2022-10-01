@@ -9,9 +9,22 @@
     call atomic_ref(value, atom [,stat] )
 ```
 ```fortran
-     subroutine atomic_ref(value, atom, stat)
+     subroutine atomic_ref(value,atom,stat)
+
+      integer(atomic_int_kind),intent(in) :: value
+      integer(atomic_int_kind)            :: atom[*]
+      integer,intent(out),intent(out)     :: stat
 ```
 ### **Characteristics**
+
+- **atom** is a ccalar coarray or coindexed variable of either integer
+  type with atomic_int_kind kind or logical type with atomic_logical_kind
+  kind.
+
+- **value** is a scalar of the same type as **atom**. If the kind is
+  different, the value is converted to the kind of **atom**.
+
+- **stat** is a Scalar default-kind integer variable.
 
 ### **Description**
 

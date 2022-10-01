@@ -11,7 +11,7 @@
 ```fortran
      elemental TYPE(kind=KIND) function acos(x)
 
-     TYPE(kind=KIND),intent(in) :: x
+      TYPE(kind=KIND),intent(in) :: x
 ```
 ### **Characteristics**
 

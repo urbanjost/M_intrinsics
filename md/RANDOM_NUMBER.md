@@ -6,11 +6,21 @@
 
 ### **Synopsis**
 ```fortran
-    random_number(harvest)
+    call random_number(harvest)
 ```
 ```fortran
+     subroutine random_number(harvest)
+
+      real,intent(out) :: harvest(..)
 ```
 ### **Characteristics**
+- **harvest** and the result are default _real_ variables
+
+REAL X, Y (10, 10)
+! Initialize X with a pseudorandom number
+CALL RANDOM_NUMBER (HARVEST = X)
+CALL RANDOM_NUMBER (Y)
+! X and Y contain uniformly distributed random numbers
 
 ### **Description**
 

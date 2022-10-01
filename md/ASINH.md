@@ -11,7 +11,7 @@
 ```fortran
      elemental TYPE(kind=KIND) function asinh(x)
 
-     TYPE(kind=KIND) :: x
+      TYPE(kind=KIND) :: x
 ```
 ### **Characteristics**
 

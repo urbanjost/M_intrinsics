@@ -9,9 +9,21 @@
     call atomic_or(atom, value [,stat] )
 ```
 ```fortran
-     subroutine atomic_or(atom, value, stat)
+     subroutine atomic_or(atom,value,stat)
+
+      integer(atomic_int_kind)            :: atom[*]
+      integer(atomic_int_kind),intent(in) :: value
+      integer,intent(out),intent(out)     :: stat
 ```
 ### **Characteristics**
+
+- **atom** is a scalar coarray or coindexed variable of integer type with
+  atomic_int_kind kind.
+
+- **value** is a scalar of the same type as **atom**. If the kind is different, the value
+  is converted to the kind of **atom**.
+
+- **stat** is a Scalar default-kind integer variable.
 
 ### **Description**
 

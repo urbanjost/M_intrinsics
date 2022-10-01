@@ -11,15 +11,15 @@
 ```fortran
      logical function associated(pointer,target)
 
-     type(TYPE(kind=KIND),pointer :: pointer
-     type(TYPE(kind=KIND),target,optional :: target
+      type(TYPE(kind=KIND),pointer :: pointer
+      type(TYPE(kind=KIND),target,optional :: target
 ```
 or
 ```fortran
      logical function associated(pointer,target)
 
-     type(TYPE(kind=KIND),pointer :: pointer
-     type(TYPE(kind=KIND),pointer,optional :: target
+      type(TYPE(kind=KIND),pointer :: pointer
+      type(TYPE(kind=KIND),pointer,optional :: target
 ```
 ### **Characteristics**
 

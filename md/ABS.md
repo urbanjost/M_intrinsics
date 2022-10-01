@@ -11,7 +11,7 @@
 ```fortran
      elemental TYPE(kind=KIND) function abs(a)
 
-     TYPE(kind=KIND),intent(in) :: a
+      TYPE(kind=KIND),intent(in) :: a
 ```
 ### **Characteristics**
 

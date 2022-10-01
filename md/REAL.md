@@ -124,4 +124,4 @@ logical expressions:
 [**tan**(3)](#tan),
 [**unpack**(3)](#unpack),
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

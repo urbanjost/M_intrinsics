@@ -11,8 +11,8 @@
 ```fortran
      elemental real(kind=KIND) function iaint(x,kind)
 
-     real(kind=KIND),intent(in)   :: x
-     integer,intent(in),optional :: kind
+      real(kind=KIND),intent(in)   :: x
+      integer,intent(in),optional :: kind
 ```
 where the _kind_ of the result is the same as as **x** unless
 **kind** is present.
