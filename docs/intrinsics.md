@@ -12,7 +12,7 @@
 ```fortran
      elemental TYPE(kind=KIND) function abs(a)
 
-     TYPE(kind=KIND),intent(in) :: a
+      TYPE(kind=KIND),intent(in) :: a
 ```
 ### **Characteristics**
 
@@ -139,8 +139,8 @@ Result:
 ```fortran
      elemental character(len=1) function achar(i,kind)
 
-     integer(kind=KIND),intent(in) :: i
-     integer(kind=KIND),intent(in),optional :: kind
+      integer(kind=KIND),intent(in) :: i
+      integer(kind=KIND),intent(in),optional :: kind
 ```
 ### **Characteristics**
 
@@ -310,7 +310,7 @@ FORTRAN 77 , with KIND argument Fortran 2003
 ```fortran
      elemental TYPE(kind=KIND) function acosh(x)
 
-     TYPE(kind=KIND),intent(in) :: x
+      TYPE(kind=KIND),intent(in) :: x
 ```
 ### **Characteristics**
 
@@ -328,8 +328,6 @@ the argument.
   : The value to compute the hyperbolic cosine of
 
 ### **Result**
-
-The return value has the same type and kind as **x**.
 
 If **x** is _complex_, the imaginary part of the result is in radians and
 lies between
@@ -376,7 +374,7 @@ Inverse function: [**cosh**(3)](#cosh)
 ```fortran
      elemental TYPE(kind=KIND) function acos(x)
 
-     TYPE(kind=KIND),intent(in) :: x
+      TYPE(kind=KIND),intent(in) :: x
 ```
 ### **Characteristics**
 
@@ -408,25 +406,39 @@ program demo_acos
 use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128
 implicit none
 character(len=*),parameter :: all='(*(g0,1x))'
-real(kind=real64) :: x = 0.866_real64
-real(kind=real64),parameter :: d2r=acos(-1.0_real64)/180.0_real64
+real(kind=real64) :: x , d2r
 
+   ! basics
+    x = 0.866_real64
     print all,'acos(',x,') is ', acos(x)
-    print all,'90 degrees is ', d2r*90.0_real64, ' radians'
-    print all,'180 degrees is ', d2r*180.0_real64, ' radians'
+
+   ! acos(-1) should be PI
     print all,'for reference &
-    &PI ~ 3.14159265358979323846264338327950288419716939937510'
+    &PI ~= 3.14159265358979323846264338327950288419716939937510'
+    write(*,*) acos(-1.0_real64)
+    d2r=acos(-1.0_real64)/180.0_real64
+    print all,'90 degrees is ', d2r*90.0_real64, ' radians'
+   ! elemental
     print all,'elemental',acos([-1.0,-0.5,0.0,0.50,1.0])
+   ! complex
+    print *,'complex',acos( (-1.0,  0.0) )
+    print *,'complex',acos( (-1.0, -1.0) )
+    print *,'complex',acos( ( 0.0, -0.0) )
+    print *,'complex',acos( ( 1.0,  0.0) )
 
 end program demo_acos
 ```
 Results:
 ```text
-   acos( .8660000000000000 ) is  .5236495809318289
-   90 degrees is  1.570796326794897  radians
-   180 degrees is  3.141592653589793  radians
-   for reference PI ~ 3.14159265358979323846264338327950288419716939937510
-   elemental 3.141593 2.094395 1.570796 1.047198 .000000
+ acos( 0.86599999999999999 ) is  0.52364958093182890
+ for reference PI ~= 3.14159265358979323846264338327950288419716939937510
+    3.1415926535897931
+ 90 degrees is  1.5707963267948966  radians
+ elemental 3.14159274 2.09439516 1.57079637 1.04719758 0.00000000
+  complex            (3.14159274,-0.00000000)
+  complex             (2.23703575,1.06127501)
+  complex             (1.57079637,0.00000000)
+  complex            (0.00000000,-0.00000000)
 ```
 ### **Standard**
 
@@ -453,9 +465,12 @@ Inverse function: [**cos**(3)](cos)
 ```fortran
      elemental character(len=len(string)) function adjustl(string)
 
-     character(len=*),intent(in) :: string
+      character(len=*),intent(in) :: string
 ```
 ### **Characteristics**
+- **string** is a _character_ variable
+- The return value is a _character_ variable of the same kind as
+  **string**
 
 ### **Description**
 
@@ -465,13 +480,12 @@ spaces. Spaces are inserted at the end of the string as needed.
 ### **Options**
 
 - **string**
-  : the type shall be _character_.
+  : the string to left-adjust
 
 ### **Result**
 
-The return value is of type _character_ and of the same kind as **string**
-where leading spaces are removed and the same number of spaces are
-inserted on the end of **string**.
+A copy of **string** where leading spaces are removed and the same
+number of spaces are inserted on the end of **string**.
 
 ### **Examples**
 
@@ -482,34 +496,49 @@ program demo_adjustl
 implicit none
 character(len=20) :: str = '   sample string'
 character(len=:),allocatable :: astr
-    !
-    ! basic use
-    str = adjustl(str)
-    write(*,'("[",a,"]")') str, trim(str)
-    !
-    ! an allocatable string stays the same length
-    ! and is not trimmed.
+integer :: length
+
+   ! basic use
+    write(*,'(a,"[",a,"]")') 'original: ',str
+    str=adjustl(str)
+    write(*,'(a,"[",a,"]")') 'adjusted: ',str
+
+    ! a fixed-length string can be printed
+    ! trimmed using trim(3f) or len_trim(3f)
+    write(*,'(a,"[",a,"]")') 'trimmed:  ',trim(str)
+    length=len_trim(str)
+    write(*,'(a,"[",a,"]")') 'substring:',str(:length)
+
+    ! note an allocatable string stays the same length too
+    ! and is not trimmed by just an adjustl(3f) call.
     astr='    allocatable string   '
-    write(*,'("[",a,"]")') adjustl(astr)
-    !
+    write(*,'(a,"[",a,"]")') 'original:',astr
+    astr = adjustl(astr)
+    write(*,'(a,"[",a,"]")') 'adjusted:',astr
+    ! trim(3f) can be used to change the length
+    astr = trim(astr)
+    write(*,'(a,"[",a,"]")') 'trimmed: ',astr
+
 end program demo_adjustl
 ```
-
 Results:
-
 ```text
-   [sample string       ]
-   [sample string]
-   [allocatable string       ]
+   original: [   sample string    ]
+   adjusted: [sample string       ]
+   trimmed:  [sample string]
+   substring:[sample string]
+   original:[    allocatable string   ]
+   adjusted:[allocatable string       ]
+   trimmed: [allocatable string]
 ```
-
 ### **Standard**
 
 Fortran 95
 
 ### **See Also**
 
-[**adjustr**(3)](#adjustr)
+[**adjustr**(3)](#adjustr),
+[**trim**(3)](#trim)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -526,26 +555,28 @@ Fortran 95
 ```fortran
      elemental character(len=len(string)) function adjustr(string)
 
-     character(len=*),intent(in) :: string
+      character(len=*),intent(in) :: string
 ```
 ### **Characteristics**
+- **string** is a _character_ variable
+- The return value is a _character_ variable of the same kind as
+  **string**
 
 ### **Description**
 
-**adjustr(string)** right-adjusts a string by removing trailing
-spaces. Spaces are inserted at the start of the string as needed to
-retain the original length.
+**adjustr(3f)** right-adjusts a string by removing trailing spaces. Spaces
+are inserted at the start of the string as needed to retain the original
+length.
 
 ### **Options**
 
 - **string**
-  : the type shall be _character_.
+  : the string to right-adjust
 
 ### **Result**
 
-The return value is of type _character_ and of the same kind as **string**
-where trailing spaces are removed and the same number of spaces are
-inserted at the start of **string**.
+Trailing spaces are removed and the same number of spaces are inserted
+at the start of **string**.
 
 ### **Examples**
 
@@ -554,46 +585,47 @@ Sample program:
 ```fortran
 program demo_adjustr
 implicit none
-character(len=20) :: str = ' sample string '
+character(len=20) :: str
    ! print a short number line
-   write(*,'(a)')repeat('1234567890',5)
+   write(*,'(a)')repeat('1234567890',2)
 
-   !
-   ! basic usage
-   !
+  ! basic usage
+   str = '  sample string '
+   write(*,'(a)') str
    str = adjustr(str)
    write(*,'(a)') str
 
    !
    ! elemental
    !
+   write(*,'(a)')repeat('1234567890',5)
    write(*,'(a)')adjustr([character(len=50) :: &
    '  first           ', &
    '     second       ', &
    '         third    ' ])
-
    write(*,'(a)')repeat('1234567890',5)
+
 end program demo_adjustr
 ```
-
 Results:
-
 ```text
-   12345678901234567890123456789012345678901234567890
+   12345678901234567890
+     sample string
           sample string
+   12345678901234567890123456789012345678901234567890
                                                 first
                                                second
                                                 third
    12345678901234567890123456789012345678901234567890
 ```
-
 ### **Standard**
 
 Fortran 95
 
 ### **See Also**
 
-[**adjustl**(3)](#adjustl)
+[**adjustl**(3)](#adjustl),
+[**trim**(3)](#trim)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -610,7 +642,7 @@ Fortran 95
 ```fortran
      elemental complex(kind=KIND) function aimag(z)
 
-     complex(kind=KIND),intent(in) :: z
+      complex(kind=KIND),intent(in) :: z
 ```
 ### **Characteristics**
 
@@ -744,8 +776,8 @@ logical expressions:
 ```fortran
      elemental real(kind=KIND) function iaint(x,kind)
 
-     real(kind=KIND),intent(in)   :: x
-     integer,intent(in),optional :: kind
+      real(kind=KIND),intent(in)   :: x
+      integer,intent(in),optional :: kind
 ```
 ### **Characteristics**
 
@@ -839,8 +871,8 @@ FORTRAN 77
 ```fortran
      logical function all(mask ,dim)
 
-     logical,intent(in)          :: mask(..)
-     integer,intent(in),optional :: dim
+      logical,intent(in)          :: mask(..)
+      integer,intent(in),optional :: dim
 ```
 ### **Characteristics**
 
@@ -958,7 +990,7 @@ Fortran 95
 ```fortran
      logical function allocated(entity)
 
-     type(TYPE(kind=KIND)),allocatable :: entity(..)
+      type(TYPE(kind=KIND)),allocatable :: entity(..)
 ```
 ### **Characteristics**
 
@@ -1054,8 +1086,8 @@ Results:
 ```fortran
      elemental real(kind=KIND) function iaint(x,kind)
 
-     real(kind=KIND),intent(in)   :: x
-     integer,intent(in),optional :: kind
+      real(kind=KIND),intent(in)   :: x
+      integer,intent(in),optional :: kind
 ```
 where the _kind_ of the result is the same as as **x** unless
 **kind** is present.
@@ -1148,8 +1180,8 @@ FORTRAN 77
 ```fortran
      logical function any(mask, dim)
 
-     logical,intent(in)          :: mask(..)
-     integer,intent(in),optional :: dim
+      logical,intent(in)          :: mask(..)
+      integer,intent(in),optional :: dim
 ```
 ### **Characteristics**
 
@@ -1235,7 +1267,7 @@ Fortran 95
 ```fortran
      elemental TYPE(kind=KIND) function asinh(x)
 
-     TYPE(kind=KIND) :: x
+      TYPE(kind=KIND) :: x
 ```
 ### **Characteristics**
 
@@ -1302,7 +1334,7 @@ Inverse function: [**sinh**(3)](#sinh)
 ```fortran
      elemental TYPE(kind=KIND) function asin(x)
 
-     TYPE(kind=KIND) :: x
+      TYPE(kind=KIND) :: x
 ```
 ### **Characteristics**
 
@@ -1409,15 +1441,15 @@ Inverse function: [**sin**(3)](#sin)
 ```fortran
      logical function associated(pointer,target)
 
-     type(TYPE(kind=KIND),pointer :: pointer
-     type(TYPE(kind=KIND),target,optional :: target
+      type(TYPE(kind=KIND),pointer :: pointer
+      type(TYPE(kind=KIND),target,optional :: target
 ```
 or
 ```fortran
      logical function associated(pointer,target)
 
-     type(TYPE(kind=KIND),pointer :: pointer
-     type(TYPE(kind=KIND),pointer,optional :: target
+      type(TYPE(kind=KIND),pointer :: pointer
+      type(TYPE(kind=KIND),pointer,optional :: target
 ```
 ### **Characteristics**
 
@@ -1519,8 +1551,8 @@ function
 ```fortran
      elemental function atan2(y, x)
 
-     real,kind=KIND) :: atan2
-     real,kind=KIND),intent(in) :: y, x
+      real,kind=KIND) :: atan2
+      real,kind=KIND),intent(in) :: y, x
 ```
 ### **Characteristics**
 **x** and **y** must be reals of the same kind.
@@ -1694,7 +1726,7 @@ FORTRAN 77
 ```fortran
      elemental TYPE(kind=KIND) function atanh(x)
 
-     TYPE(kind=KIND),intent(in) :: x
+      TYPE(kind=KIND),intent(in) :: x
 ```
 ### **Characteristics**
 
@@ -1761,8 +1793,8 @@ Inverse function: [**tanh**(3)](#tanh)
 ```fortran
      elemental TYPE(kind=KIND) function atan(y,x)
 
-     TYPE(kind=KIND),intent(in) :: x
-     TYPE(kind=KIND),intent(in),optional :: y
+      TYPE(kind=KIND),intent(in) :: x
+      TYPE(kind=KIND),intent(in),optional :: y
 ```
 ### **Characteristics**
 
@@ -1853,8 +1885,9 @@ arguments Fortran 2008
 ```fortran
      subroutine atomic_add(atom,value,stat)
 
-     integer(atomic_int_kind) :: atom[*]
-   call atomic_add (atom[1], this_image())
+      integer(atomic_int_kind)            :: atom[*]
+      integer(atomic_int_kind),intent(in) :: value
+      integer,intent(out),intent(out)     :: stat
 ```
 ### **Characteristics**
 
@@ -1873,8 +1906,8 @@ variable **atom**. When **stat** is present and the invocation was successful,
 it is assigned the value 0. If it is present and the invocation has
 failed, it is assigned a positive value; in particular, for a coindexed
 ATOM, if the remote image has stopped, it is assigned the value of
-iso_fortran_env's stat_stopped_image and if the remote image has
-failed, the value stat_failed_image.
+iso_fortran_env's STAT_STOPPED_IMAGE and if the remote image has
+failed, the value STAT_FAILED_IMAGE.
 
 ### **Options**
 
@@ -1883,7 +1916,7 @@ failed, the value stat_failed_image.
   atomic_int_kind kind.
 
 - **value**
-  : Scalar of the same type as **atom**. If the kind is different, the value
+: Scalar of the same type as **atom**. If the kind is different, the value
   is converted to the kind of **atom**.
 
 - **stat**
@@ -1892,7 +1925,6 @@ failed, the value stat_failed_image.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_atomic_add
 use iso_fortran_env
@@ -1901,7 +1933,6 @@ integer(atomic_int_kind) :: atom[*]
    call atomic_add (atom[1], this_image())
 end program demo_atomic_add
 ```
-
 ### **Standard**
 
 TS 18508
@@ -1928,9 +1959,21 @@ TS 18508
     call atomic_and(atom, value [,stat])
 ```
 ```fortran
-     subroutine atomic_and(atom, value, stat)
+     subroutine atomic_and(atom,value,stat)
+
+      integer(atomic_int_kind)            :: atom[*]
+      integer(atomic_int_kind),intent(in) :: value
+      integer,intent(out),intent(out)     :: stat
 ```
 ### **Characteristics**
+
+- **atom** is a scalar coarray or coindexed variable of integer type with
+  atomic_int_kind kind.
+
+- **value** is a scalar of the same type as **atom**. If the kind is different, the value
+  is converted to the kind of **atom**.
+
+- **stat** is a Scalar default-kind integer variable.
 
 ### **Description**
 
@@ -2438,9 +2481,21 @@ TS 18508
     call atomic_or(atom, value [,stat] )
 ```
 ```fortran
-     subroutine atomic_or(atom, value, stat)
+     subroutine atomic_or(atom,value,stat)
+
+      integer(atomic_int_kind)            :: atom[*]
+      integer(atomic_int_kind),intent(in) :: value
+      integer,intent(out),intent(out)     :: stat
 ```
 ### **Characteristics**
+
+- **atom** is a scalar coarray or coindexed variable of integer type with
+  atomic_int_kind kind.
+
+- **value** is a scalar of the same type as **atom**. If the kind is different, the value
+  is converted to the kind of **atom**.
+
+- **stat** is a Scalar default-kind integer variable.
 
 ### **Description**
 
@@ -2506,9 +2561,22 @@ TS 18508
     call atomic_ref(value, atom [,stat] )
 ```
 ```fortran
-     subroutine atomic_ref(value, atom, stat)
+     subroutine atomic_ref(value,atom,stat)
+
+      integer(atomic_int_kind),intent(in) :: value
+      integer(atomic_int_kind)            :: atom[*]
+      integer,intent(out),intent(out)     :: stat
 ```
 ### **Characteristics**
+
+- **atom** is a ccalar coarray or coindexed variable of either integer
+  type with atomic_int_kind kind or logical type with atomic_logical_kind
+  kind.
+
+- **value** is a scalar of the same type as **atom**. If the kind is
+  different, the value is converted to the kind of **atom**.
+
+- **stat** is a Scalar default-kind integer variable.
 
 ### **Description**
 
@@ -2582,8 +2650,22 @@ Fortran 2008 ; with STAT, TS 18508
     call atomic_xor(atom, value [,stat] )
 ```
 ```fortran
-     subroutine atomic_xor(atom, value, stat)
+     subroutine atomic_xor(atom,value,stat)
+
+      integer(atomic_int_kind)            :: atom[*]
+      integer(atomic_int_kind),intent(in) :: value
+      integer,intent(out),intent(out)     :: stat
 ```
+### **Characteristics**
+
+- **atom** is a scalar coarray or coindexed variable of integer type with
+  atomic_int_kind kind.
+
+- **value** is a scalar of the same type as **atom**. If the kind is different, the value
+  is converted to the kind of **atom**.
+
+- **stat** is a Scalar default-kind integer variable.
+
 ### **Characteristics**
 
 ### **Description**
@@ -3754,8 +3836,15 @@ Fortran 95
     result = c_associated(c_prt_1, [c_ptr_2] )
 ```
 ```fortran
+     logical function c_associated(c_prt_1, cptr_2)
+     TYPE,intent(in) ::c_ptr_1
+     TYPE,intent(in),optional ::c_ptr_2
 ```
 ### **Characteristics**
+
+- **c_ptr_1** is a scalar of the type c_ptr or c_funptr.
+- **c_ptr_2** is a scalar of the same type as c_ptr_1.
+- The return value is of type _logical_
 
 ### **Description**
 
@@ -3766,10 +3855,11 @@ c_ptr_2.
 ### **Options**
 
 - **c_ptr_1**
-  : Scalar of the type c_ptr or c_funptr.
+  : C pointer to test for being a C NULL pointer, or to test if
+  pointing to the same association as **c_ptr_2** when present.
 
 - **c_ptr_2**
-  : (Optional) Scalar of the same type as c_ptr_1.
+  : C pointer to test for shared association with **c_ptr_1**
 
 ### **Result**
 
@@ -4267,68 +4357,114 @@ Fortran 2003
 
 ### **Name**
 
-**cmplx**(3) - \[TYPE:NUMERIC\] Complex conversion function
+**cmplx**(3) - \[TYPE:NUMERIC\] Convert values to a complex type
 
 ### **Synopsis**
 ```fortran
     result = cmplx(x [,y] [,kind])
 ```
 ```fortran
-      elemental complex function cmplx( x, y, kind )
+      elemental complex(kind=KIND) function cmplx( x, y, kind )
 
-      TYPE(kind=KIND),intent(in) :: x
-      TYPE(kind=KIND),intent(in),optional :: y
-      integer,intent(in),optional :: kind
+      TYPE(kind=**),intent(in) :: x
+      TYPE(kind=**),intent(in),optional :: y
+      integer,intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
+- The type of **x** **TYPE** may be _integer_, _real_, or _complex_.
+- **y** is allowed only if **x** is not _complex_. The **TYPE** for
+  **y** may be _integer_ or _real_.
+- **kind** is a constant _integer_ initialization expression indicating the kind
+  parameter of the result.
+
+The type of the arguments does not affect the kind of the result except
+for a _complex_ **x** value.
+
+- if **kind** is not present and **x** is _complex_ the result is of the kind
+  of **x**.
+
+- if **kind** is not present and **x** is not _complex_ the result if of default
+  _complex_ kind.
+
 ### **Description**
 
-To convert numeric variables to complex, use the **cmplx**(3) function.
-Constants can be used to define a complex variable using the syntax
+The **cmplx**(3) function converts numeric values to a _complex_ value.
 
+Even though constants can be used to define a complex variable using syntax like
+```fortran
+      z = (1.23456789, 9.87654321)
 ```
-      z8 = (1.2345678901234567d0, 1.2345678901234567d0)
+this will not work for variables. So you cannot enter
+```fortran
+      z = (a, b)  ! NO ! (unless a and b are constants, not variables)
 ```
+so to construct a _complex_ value using non-complex values you must use
+the **cmplx**(3) function:
+```fortran
+      z = cmplx(a, b)
+```
+or assign values separately to the imaginary and real components using
+the **%IM** and **%RE** designators:
+```fortran
+      z%re = a
+      z%im = b
+```
+If **x** is complex **y** is not allowed and **cmplx** essentially
+returns the input value except for an optional change of kind, which can be
+useful when passing a value to a procedure that requires the arguments
+to have a different kind (and does not return an altered value):
+```fortran
+      call something(cmplx(z,kind=real64))
+```
+would pass a copy of a value with kind=real64 even if z had a different kind
 
-but this will not work for variables. You must use the **cmplx**(3) function.
+but otherwise is equivalent to a simple assign. So if z1 and z2 were _complex_:
+```fortran
+      z2 = z1        ! equivalent statements
+      z2 = cmplx(z1)
+```
+If **x** is not _complex_ **x** is only used to define the real component
+of the result but **y** is still optional -- the imaginary part of the
+result will just be assigned a value of zero.
 
-**cmplx(x \[, y \[, kind\]\])** returns a complex number where **x** is
-converted to the _real_ component. If **x** is _complex_ then **y** must not be
-present. If **y** is present it is converted to the imaginary component. If
-**y** is not present then the imaginary component is set to **0.0**.
+If **y** is present it is converted to the imaginary component.
 
-### **cmplx(3) and double precision**
+#### **cmplx(3) and double precision**
 
-The Fortran 90 language defines **cmplx**(3) as always returning a result
-that is type **complex(kind=KIND(0.0))**.
+Primarily in order to maintain upward compatibility you need to be careful
+when working with complex values of higher precision that the default.
+
+It was necessary for Fortran to continue to specify that **cmplx**(3)
+always return a result of the default kind if the **kind** option
+is absent, since that is the behavior mandated by FORTRAN 77.
+
+It might have been preferable to use the highest precision of the
+arguments for determining the return kind, but that is not the case. So
+with arguments with greater precision than default values you are
+required to use the **kind** argument or the greater precision values
+will be reduced to default precision.
 
 This means **cmplx(d1,d2)**, where **d1** and **d2** are
 _doubleprecision_, is treated as:
 ```fortran
       cmplx(sngl(d1), sngl(d2))
 ```
-_doubleprecision complex_ numbers require specifying a precision.
-
-It was necessary for Fortran 90 to specify this behavior for
-_doubleprecision_ arguments, since that is the behavior mandated by
-FORTRAN 77.
+which looses precision.
 
 So Fortran 90 extends the **cmplx**(3) intrinsic by adding an extra
-argument used to specify the desired kind of complex result.
+argument used to specify the desired kind of the complex result.
 
 ```fortran
       integer,parameter :: dp=kind(0.0d0)
       complex(kind=dp) :: z8
-      !
-      ! NO: result is just the precision of default real values
-      !     because KIND parameter is not specified
-      !
-      ! note this was stored with default real precision
+     ! wrong ways to specify constant values
+      ! note this was stored with default real precision !
       z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0)
       print *, 'NO, Z8=',z8,real(z8),aimag(z8)
+
       z8 = cmplx(1.2345678901234567e0_dp, 1.2345678901234567e0_dp)
-      ! again, note components are just real
+      ! again, note output components are just real
       print *, 'NO, Z8=',z8,real(z8),aimag(z8)
       !
       ! YES
@@ -4337,25 +4473,21 @@ argument used to specify the desired kind of complex result.
       z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0,kind=dp)
       print *, 'YES, Z8=',z8,real(z8),aimag(z8)
 ```
-
-F2018 COMPONENT SYNTAX The real and imaginary parts of a complex entity
-can be accessed independently with a component-like syntax in f2018:
-
-A complex-part-designator is
+A more recent alternative to using **cmplx**(3) is "F2018 component
+syntax" where real and imaginary parts of a complex entity can be
+accessed independently:
 
 ```fortran
-designator % RE
+value%RE     ! %RE specifies the real part
 or
-designator % IM.
+value%IM     ! %IM specifies the imaginary part
 
 ````
+Where the designator value is of course of complex type.
 
-Where the designator is of complex type.
-
-So designator%RE designates the real part of a complex value,
-designator%IM designates the imaginary part of complex value. The type
-of a complex-part-designator is _real_, and its kind and shape are those
-of the designator.
+The type of a complex-part-designator is _real_, and its kind and shape
+are those of the designator. That is, you retain the precision of the
+complex value by default, unlike with **cmplx**.
 
 The following are examples of complex part designators:
 
@@ -4363,26 +4495,53 @@ The following are examples of complex part designators:
        impedance%re           !-- Same value as _real_(impedance)
        fft%im                 !-- Same value as AIMAG(fft)
        x%im = 0.0             !-- Sets the imaginary part of x to zero
+       x(1:2)%re=[10,20]      !-- even if x is an array
 ````
+
+#### NOTE for I/O
+  Note that if format statements are specified a complex value is
+  treated as two real values.
+
+  For list-directed I/O (ie. using an asterisk for a format) and NAMELIST
+  output the values are expected to be delimited by "(" and ")" and of
+  the form "(real_part,imaginary_part)". For NAMELIST input parenthesized
+  values or lists of multiple _real_ values are acceptable.
 
 ### **Options**
 
 - **x**
-  The type may be _integer_, _real_, or _complex_.
+  : The value assigned to the _real_ component of the result when **x** is
+  not complex.
+
+  If **x** is complex, the result is the same as if the real part of the
+  input was passed as **x** and the imaginary part as **y**.
+```fortran
+     result = CMPLX (REAL (X), AIMAG (X), KIND).
+```
+   That is, a complex **x** value is copied to the result value with a
+   possible change of kind.
 
 - **y**
-  (Optional; only allowed if **x** is not _complex_.). May be _integer_ or
-  _real_.
+  : **y* is only allowed if **x** is not _complex_. Its value
+  is assigned to the imaginary component of the result and defaults
+  to a value of zero if absent.
 
 - **kind**
-  (Optional) An _integer_ initialization expression indicating the kind
+  : An _integer_ initialization expression indicating the kind
   parameter of the result.
 
 ### **Result**
 
-The return value is of _complex_ type, with a kind equal to **kind** if it is
-specified. If **kind** is not specified, the result is of the default
-_complex_ kind, regardless of the kinds of **x** and **y**.
+The return value is of _complex_ type, with magnitudes determined by the
+values **x** and **y**.
+
+The common case when **x** is not complex is that the real
+component of the result is assigned the value of **x** and the imaginary
+part is zero or the value of **y** if **y** is present.
+
+When **x** is complex **y** is not allowed and the result is the same
+value as **x** with a possible change of kind. That is, the real part
+is **real(x, kind)** and the imaginary part is **real(y, kind)**.
 
 ### **Examples**
 
@@ -4392,31 +4551,56 @@ Sample program:
 program demo_aimag
 implicit none
 integer,parameter :: dp=kind(0.0d0)
-complex          :: z4
-complex(kind=dp) :: z8
+real(kind=dp)    :: precise, z8
+complex          :: z4, three(3)
+   precise=1.2345678901234567d0
+
+  ! basic
+   z4 = cmplx(-3)
+   print *, 'Z4=',z4
    z4 = cmplx(1.23456789, 1.23456789)
    print *, 'Z4=',z4
+   ! with a format treat a complex as two real values
+   print '(g0,1x,g0,1x,g0)','Z4=',z4
+
+  ! working with higher precision values
    ! using kind=dp makes it keep DOUBLEPRECISION precision
-   z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0,kind=dp)
-   print *, 'Z8=',z8
-   ! NOTE:
+   ! otherwise the result would be of default kind
+   z8 = cmplx(precise, -precise )
+   print *, 'lost precision Z8=',z8
+   z8 = cmplx(precise, -precise ,kind=dp)
+   print *, 'kept precision Z8=',z8
+
+  ! assignment of constant values does not require cmplx(3)00
    ! The following is intuitive and works without calling cmplx(3)
    ! but does not work for variables just constants
-   z8 = (1.2345678901234567d0, 1.2345678901234567d0 )
+   z8 = (1.1111111111111111d0, 2.2222222222222222d0 )
    print *, 'Z8 defined with constants=',z8
+
+  ! elemental
+   three=cmplx([10,20,30],-1)
+   print *, 'three=',three
+
+  ! descriptors are an alternative
+   three(1:2)%re=[100,200]
+   print *, 'three=',three
+
 end program demo_aimag
 ```
-
-Typical Results:
-
-```
-    Z4= (1.23456788,1.23456788)
-    Z8= (1.2345678901234567,1.2345678901234567)
-    Z8 defined with constants= (1.2345678901234567,1.2345678901234567)
+Results:
+```text
+    Z4= (-3.000000,0.0000000E+00)
+    Z4= (1.234568,1.234568)
+   Z4= 1.234568 1.234568
+    lost precision Z8=   1.23456788063049
+    kept precision Z8=   1.23456789012346
+    Z8 defined with constants=   1.11111111111111
+    three= (10.00000,-1.000000) (20.00000,-1.000000) (30.00000,-1.000000)
+    three= (100.0000,-1.000000) (200.0000,-1.000000) (30.00000,-1.000000)
 ```
 ### **Standard**
 
-FORTRAN 77
+FORTRAN 77, KIND added in Fortran 90.
 
 ### **See Also**
 
@@ -4460,7 +4644,7 @@ logical expressions:
 [**tan**(3)](#tan),
 [**unpack**(3)](#unpack),
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## co_broadcast
 
@@ -5643,28 +5827,32 @@ Fortran 95 , with KIND argument - Fortran 2003
      call cpu_time(time)
 ```
 ```fortran
-      real,intent(out) :: time
+      subroutine cpu_time(time)
+
+       real,intent(out) :: time
 ```
 ### **Characteristics**
+
+  - **time** is of type _real_ and any kind, with **intent(out)**.
 
 ### **Description**
 
 Returns a _real_ value representing the elapsed CPU time in seconds. This
 is useful for testing segments of code to determine execution time.
 
-The exact definition of time is left imprecise because of the
-variability in what different processors are able to provide.
+The exact definition of time is left imprecise because of the variability
+in what different processors are able to provide.
 
 If no time source is available, TIME is set to a negative value.
 
 Note that TIME may contain a system dependent, arbitrary offset and may
-not start with 0.0. For cpu_time the absolute value is meaningless.
-Only differences between subsequent calls, as shown in the example
-below, should be used.
+not start with 0.0. For **cpu_time**(3) the absolute value is meaningless.
+Only differences between subsequent calls, as shown in the example below,
+should be used.
 
 A processor for which a single result is inadequate (for example, a
 parallel processor) might choose to provide an additional version for
-which time is an array.
+which **time** is an array.
 
 ### **Result**
 
@@ -5684,22 +5872,40 @@ Sample program:
 
 ```fortran
 program demo_cpu_time
+use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128
 implicit none
 real :: start, finish
+real(kind=real64) :: startd, finishd
    !
    call cpu_time(start)
-   ! put code to test here
+   call cpu_time(startd)
+   ! put code to time here
    call cpu_time(finish)
+   call cpu_time(finishd)
    !
-   ! writes processor time taken by the piece of code.
+  ! writes processor time taken by the piece of code.
+
+  ! the accuracy of the clock and whether it includes system time
+  ! as well as user time is processor dependent. Accuracy up to
+  ! milliseconds is common but not guaranteed, and may be much
+  ! higher or lower
    print '("Processor Time = ",f6.3," seconds.")',finish-start
+
+   ! see your specific compiler documentation for how to measure
+   ! parallel jobs and for the precision of the time returned
+   print '("Processor Time = ",g0," seconds.")',finish-start
+   print '("Processor Time = ",g0," seconds.")',finishd-startd
 end program demo_cpu_time
 ```
+  Results:
 
-Results:
-
+  The precision of the result, some aspects of what is returned,
+  and what if any options there are for parallel applications
+  may very from system to system. See compiler-specific for details.
 ```text
    Processor Time =  0.000 seconds.
+   Processor Time = .4000030E-05 seconds.
+   Processor Time = .2000000000000265E-05 seconds.
 ```
 ### **Standard**
 
@@ -13773,16 +13979,17 @@ Fortran 95
 ```fortran
     result = nearest(x, s)
 ```
+```fortran
+     elemental real(kind=KIND) function nearest(x,s)
+
+     real(kind=KIND),intent(in) :: x
+     real(kind=**),intent(in) :: s
+```
 ### **Characteristics**
 
-```fortran
-     elemental real(kind=KINDX) function nearest(x,s)
+**x** may be a _real_ value of any kind.
 
-     real(kind=KINDX),intent(in) :: x
-     real(kind=KINDS),intent(in) :: s
-```
 The return value is of the same type and kind as **x**.
-Otherwise, any _kind_ of _real_ is allowed.
 
 ### **Description**
 
@@ -13795,10 +14002,8 @@ Otherwise, any _kind_ of _real_ is allowed.
   : the value to find the nearest representable value of
 
 - **s**
-  : a value whose sign is used to determine the direction in which to search
-  from **xx** to the representable value.
-
-  It Shall not equal zero.
+  : a non-zero value whose sign is used to determine the direction in
+  which to search from **xx** to the representable value.
 
   If **s** is positive, **nearest** returns the processor-representable
   number greater than **x** and nearest to it.
@@ -13838,13 +14043,10 @@ implicit none
 
 end program demo_nearest
 ```
-
 Results:
-
 ```text
    42.0000038146973    41.9999961853027    .762939453125000E-05
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -15114,23 +15316,28 @@ is specified
 ```
 ### **Characteristics**
 
-where the **TYPE** may be any type
+- **a** May be of any type and may be a pointer, scalar or array value,
+  or a dummy procedure.
 
 ### **Description**
 
-Determines whether an optional dummy argument is present.
+  **present**(3f) can be used in a procedure to determine if an optional
+  dummy argument was present on the current call to the procedure.
+
+  When an argument is not present when the current procedure is invoked,
+  you may only pass it as an optional argument to another procedure or
+  pass it as an argument to PRESENT.
 
 ### **Options**
 
 - **a**
-  : May be of any type and may be a pointer, scalar or array value,
-  or a dummy procedure. It shall be the name of an optional dummy
-  argument accessible within the current subroutine or function.
+  : the name of an optional dummy argument accessible within the current
+  subroutine or function.
 
 ### **Result**
 
-Returns either _.true._ if the optional argument **a** is present,
-or _.false._ otherwise.
+  Returns _.true._ if the optional argument **a** is present (was passed
+  on the call to the procedure) , or _.false._ otherwise.
 
 ### **Examples**
 
@@ -15138,34 +15345,70 @@ Sample program:
 ```fortran
 program demo_present
 implicit none
-   write(*,*) func(), func(42)
+integer :: answer
+   ! argument to func() is not present
+   answer=func()
+   write(*,*) answer
+   ! argument to func() is present
+   answer=func(1492)
+   write(*,*) answer
 contains
 
 integer function func(x)
+! the optional characteristic on this definition allows this variable
+! to not be specified on a call; and also allows it to subsequently
+! be passed to PRESENT(3f):
 integer, intent(in), optional :: x
+integer :: x_local
+
+  ! basic
    if(present(x))then
-     func=x**2
+     ! if present, you can use x like any other variable.
+     x_local=x
    else
-     func=0
+     ! if not, you cannot define or reference x except to
+     ! pass it as an optional parameter to another procedure
+     ! or in a call to present(3f)
+     x_local=0
    endif
+
+   func=x_local**2
+
+  ! passing the argument on to other procedures
+   ! so something like this is a bad idea because x is used
+   ! as the first argument to merge(3f) when it might not be
+   ! present
+   ! xlocal=merge(x,0,present(x)) ! NO!!
+
+   ! We can pass it to another procedure if and only if the
+   ! other procedue declares the argument as optional as well.
+   call tattle('optional argument x',x)
 end function
+
+subroutine tattle(label,arg)
+character(len=*),intent(in) :: label
+integer,intent(in),optional :: arg
+   if(present(arg))then
+      write(*,*)label,' is present'
+   else
+      write(*,*)label,' is not present'
+   endif
+end subroutine tattle
 
 end program demo_present
 ```
 Results:
-
 ```text
-     0        1764
+    optional argument x is not present
+              0
+    optional argument x is present
+        2226064
 ```
 ### **Standard**
 
 Fortran 95
 
-### **See also**
-
-[****(3)](#)
-
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## product
 
@@ -15492,11 +15735,21 @@ Fortran 95
 
 ### **Synopsis**
 ```fortran
-    random_number(harvest)
+    call random_number(harvest)
 ```
 ```fortran
+     subroutine random_number(harvest)
+
+      real,intent(out) :: harvest(..)
 ```
 ### **Characteristics**
+- **harvest** and the result are default _real_ variables
+
+REAL X, Y (10, 10)
+! Initialize X with a pseudorandom number
+CALL RANDOM_NUMBER (HARVEST = X)
+CALL RANDOM_NUMBER (Y)
+! X and Y contain uniformly distributed random numbers
 
 ### **Description**
 
@@ -15591,6 +15844,9 @@ Fortran 95
     call random_seed( [size] [,put] [,get] )
 ```
 ```fortran
+     integer,intent(out),optional :: size
+     integer,intent(in),optional :: put(*)
+     integer,intent(out),optional :: get(*)
 ```
 ### **Characteristics**
 
@@ -15636,14 +15892,11 @@ integer :: n
 
 end program demo_random_seed
 ```
-
 Results:
-
 ```text
      -674862499 -1750483360  -183136071  -317862567   682500039
      349459   344020729 -1725483289
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -15846,22 +16099,27 @@ end program demo_rank
 ```fortran
    elemental real(kind=KIND) function real(x,kind)
 
-    TYPE(kind=KIND),intent(in) :: x
-    integer(kind=KINDK),intent(in) :: kind
+    TYPE(kind=**),intent(in) :: x
+    integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-  Where the type of **x** may be _integer_, _real_, or _complex_.
+ - the type of **x** **TYPE** may be _integer_, _real_, or _complex_.
+ - if **kind** is not present when **x** is complex the result is the same kind as **x**.
+   If **kind** is not present and **x** is not _complex_ the result is a default _real_ kind.
+ - When present the value of **kind** defines the kind of the result.
 
 ### **Description**
 
-**real(x, kind)** converts its argument **x** to a real type.
+**real(x, kind)** converts its argument **x** to a _real_ type per the
+rules described for the result below.
 
 For complex values this is similar to the modern complex-part-designator
-**%RE** which also designates the real part of a value, accept a
-designator can appear on the left-hand side of an assignment as well,
-as in **val%re=(3.0,4.0)**.
-
+**%RE** which also designates the real part of a value.
+```fortran
+      z=(3.0,4.0)     ! if z is a complex value
+      print *, z%re == real(z) ! these expressions are equivalent
+```
 ### **Options**
 
 - **x**
@@ -15903,7 +16161,6 @@ complex(kind=dp) :: zd=cmplx(4.0e0_dp,5.0e0_dp,kind=dp)
 end program demo_real
 ```
 Results:
-
 ```
  1.00000000       2.00000000
  4.0000000000000000       5.0000000000000000
@@ -15955,7 +16212,7 @@ logical expressions:
 [**tan**(3)](#tan),
 [**unpack**(3)](#unpack),
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## reduce
 
@@ -16251,63 +16508,200 @@ Functions that perform operations on character strings:
     result = reshape( source, shape [,pad] [,order] )
 ```
 ```fortran
+     type(TYPE(kind=KIND) function reshape
+
+      type(TYPE(kind=KIND),intent(in)          :: source(..)
+      integer(kind=**),intent(in)              :: shape(:)
+      type(TYPE(kind=KIND),intent(in),optional :: pad(..)
+      integer(kind=**),intent(in),optional     :: order(:)
 ```
 ### **Characteristics**
+ - **source** is an array of any type
+ - **shape** defines a Fortran shape and therefore an _integer_ vector
+   (of rank one) of constant size of up to 16 non-negative values.
+ - **pad** is the same type as **source**
+ - **order** is the same shape as **shape**
+ - The result is an array of shape **shape** with the same type as **source**.
 
 ### **Description**
 
-Reshapes array **source** to correspond to **shape**. If necessary, the new
-array may be padded with elements from **pad** or permuted as defined by
-**order**.
+Constructs an array of shape **shape** using the elements from **source** and
+possibly **pad** to fill it.
+
+If necessary, the new array may be padded with elements from **pad**
+or permuted as defined by **order**.
+
+Among many other uses, **reshape** can be used to reorder a Fortran array
+to match C array ordering before the array is passed from Fortran to a
+C procedure.
 
 ### **Options**
 
 - **source**
-  : an array of any type.
-
+  : an array containing the elements to be copied to the result.
+  there must be enough elements in the source to fill the new shape
+  if **pad** is omitted or has size zero. Expressed in Fortran ...
+```fortran
+   if(.not.present(pad))then
+      if(size(source) < product(shape))then
+        stop 'not enough elements in the old array to fill the new one'
+      endif
+   endif
+```
 - **shape**
-  : an array of rank one and type _integer_. Its values must be positive
-  or zero.
+  : This is the shape of the new array being generated.
+    Being by definition a shape; all elements are either positive integers
+    or zero, the size but be 1 or greater, it may have up to 16 elements
+    but must be of constant fixed size and rank one.
 
 - **pad**
-  : (Optional) an array of the same type as **source**.
+  : used to fill in extra values if the result array is larger than **source**.
+  It will be used repeatedly after all the elements of **source** have been
+  placed in the result until the result has all elements assigned.
+
+  If it is absent or is a zero-sized array, you can only make
+  **ource** into another array of the same size as **source** or smaller.
 
 - **order**
-  : (Optional) an array of type _integer_ and the same shape as **shape**. Its
-  values shall be a permutation of the numbers from 1 to n, where n is
-  the size of **shape**. If **order** is absent, the natural ordering shall be
-  assumed.
+  : used to insert elements in the result in an order other
+  than the normal Fortran array element order, in wich the first dimension
+  varies fastest.
+
+  By definition of ranks the values have to be a permutation of the numbers
+  from 1 to n, where n is the rank of **shape**.
+
+  : the elements of **source** and pad are placed into the result in order;
+  changing the left-most rank most rapidly by default. To change the order by
+  which the elements are placed in the result use **order**.
 
 ### **Result**
 
-The result is an array of shape **shape** with the same type as **source**.
+The result is an array of shape **shape** with the same type and type
+parameters as **source**.  It is first filled with the values of elements
+of **source**, with the remainder filled with repeated copies of **pad**
+until all elements are filled. The new array may be smaller than
+**source**.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_reshape
 implicit none
 integer :: i
-integer, dimension(4) :: x=[(i,i=10,40,10)]
-real :: xx(3,4)
-real,allocatable :: v(:)
-    ! x is originally a vector with four elements
-    write(*,*) shape(x) ! what is the current shape of the array?
-    write(*,*) shape(reshape(x, [2, 2]))    ! prints "2 2"
+! notice the use of "shape(box)" on the RHS
+integer :: box(3,4)=reshape([1,2,3,4,5,6,7,8,9,10,11,12],shape(box))
+integer,allocatable :: v(:,:)
+integer :: rc(2)
+   ! basics0
+    ! what is the current shape of the array?
+    call printi('shape of box is ',box)
+    ! change the shape
+    call printi('reshaped ',reshape(box,[2,6]))
+    call printi('reshaped ',reshape(box,[4,3]))
 
-    ! pack any array into a vector
-    xx=1.0
-    v=reshape(xx,[size(xx)])
-    write(*,*)shape(v),ubound(v)
+   ! fill in row column order using order
+    v=reshape([1,2,3,4,10,20,30,40,100,200,300,400],[1,12])
+    call printi('here is some data to shape',v)
+    call printi('normally fills columns first ',reshape([v],[3,4]))
+    call printi('fill rows first', reshape([v],[3,4],order=[2,1]))
+
+    ! if we take the data and put in back in filling
+    ! rows first instead of columns, and flipping the
+    ! height and width of the box we not only fill in
+    ! a vector using row-column order we actually
+    ! transpose it.
+    rc(2:1:-1)=shape(box)
+    ! copy the data in changing column number fastest
+    v=reshape(box,rc,order=[2,1])
+    call printi('reshaped and reordered',v)
+    ! of course we could have just done a transpose
+    call printi('transposed',transpose(box))
+
+   ! making the result bigger than source using pad
+    v=reshape(box,rc*2,pad=[-1,-2,-3],order=[2,1])
+    call printi('bigger and padded and reordered',v)
+contains
+
+subroutine printi(title,arr)
+implicit none
+
+!@(#) print small 2d integer arrays in row-column format
+
+character(len=*),parameter :: all='(*(g0,1x))' ! a handy format
+character(len=*),intent(in)  :: title
+integer,intent(in)           :: arr(:,:)
+integer                      :: i
+character(len=:),allocatable :: biggest
+
+   print all
+   print all, trim(title),':(',shape(arr),')'  ! print title
+   biggest='           '  ! make buffer to write integer into
+   ! find how many characters to use for integers
+   write(biggest,'(i0)')ceiling(log10(real(maxval(abs(arr)))))+2
+   ! use this format to write a row
+   biggest='(" > [",*(i'//trim(biggest)//':,","))'
+   ! print one row of array at a time
+   do i=1,size(arr,dim=1)
+      write(*,fmt=biggest,advance='no')arr(i,:)
+      write(*,'(" ]")')
+   enddo
+
+end subroutine printi
+
 end program demo_reshape
 ```
 Results:
 ```text
-              4
-              2           2
-             12          12
+   shape of box is :( 3 4 )
+    > [   1,   4,   7,  10 ]
+    > [   2,   5,   8,  11 ]
+    > [   3,   6,   9,  12 ]
+
+   reshaped :( 2 6 )
+    > [   1,   3,   5,   7,   9,  11 ]
+    > [   2,   4,   6,   8,  10,  12 ]
+
+   reshaped :( 4 3 )
+    > [   1,   5,   9 ]
+    > [   2,   6,  10 ]
+    > [   3,   7,  11 ]
+    > [   4,   8,  12 ]
+
+   here is some data to shape :( 1 12 )
+    > [   1,   2,   3,   4,  10,  20,  30,  40, 100, 200, 300, 400 ]
+
+   normally fills columns first :( 3 4 )
+    > [    1,    4,   30,  200 ]
+    > [    2,   10,   40,  300 ]
+    > [    3,   20,  100,  400 ]
+
+   fill rows first :( 3 4 )
+    > [    1,    2,    3,    4 ]
+    > [   10,   20,   30,   40 ]
+    > [  100,  200,  300,  400 ]
+
+   reshaped and reordered :( 4 3 )
+    > [   1,   2,   3 ]
+    > [   4,   5,   6 ]
+    > [   7,   8,   9 ]
+    > [  10,  11,  12 ]
+
+   transposed :( 4 3 )
+    > [   1,   2,   3 ]
+    > [   4,   5,   6 ]
+    > [   7,   8,   9 ]
+    > [  10,  11,  12 ]
+
+   bigger and padded and reordered :( 8 6 )
+    > [   1,   2,   3,   4,   5,   6 ]
+    > [   7,   8,   9,  10,  11,  12 ]
+    > [  -1,  -2,  -3,  -1,  -2,  -3 ]
+    > [  -1,  -2,  -3,  -1,  -2,  -3 ]
+    > [  -1,  -2,  -3,  -1,  -2,  -3 ]
+    > [  -1,  -2,  -3,  -1,  -2,  -3 ]
+    > [  -1,  -2,  -3,  -1,  -2,  -3 ]
+    > [  -1,  -2,  -3,  -1,  -2,  -3 ]
 ```
 ### **Standard**
 
@@ -16315,9 +16709,12 @@ Fortran 95
 
 ### **See Also**
 
-[**shape**(3)](#shape)
+[**shape**(3)](#shape),
+[**pack**(3)](#pack),
+[**transpose**(3)](#transpose)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
 
 ## rrspacing
 

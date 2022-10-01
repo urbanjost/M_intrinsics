@@ -41,7 +41,7 @@ C procedure.
 - **source**
   : an array containing the elements to be copied to the result.
   there must be enough elements in the source to fill the new shape
-  if **pad* is omitted or has size zero. Expressed in Fortran ...
+  if **pad** is omitted or has size zero. Expressed in Fortran ...
 ```fortran
    if(.not.present(pad))then
       if(size(source) < product(shape))then
@@ -86,7 +86,6 @@ until all elements are filled. The new array may be smaller than
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_reshape
 implicit none
@@ -106,7 +105,7 @@ integer :: rc(2)
     v=reshape([1,2,3,4,10,20,30,40,100,200,300,400],[1,12])
     call printi('here is some data to shape',v)
     call printi('normally fills columns first ',reshape([v],[3,4]))
-    call printi('fill rows first',              reshape([v],[3,4],order=[2,1]))
+    call printi('fill rows first', reshape([v],[3,4],order=[2,1]))
 
     ! if we take the data and put in back in filling
     ! rows first instead of columns, and flipping the

@@ -57,7 +57,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-CMPLX(3) - [TYPE:NUMERIC] Complex conversion function
+CMPLX(3) - [TYPE:NUMERIC] Convert values to a complex type
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
@@ -72,11 +72,11 @@ CMPLX(3) - [TYPE:NUMERIC] Complex conversion function
 result = cmplx(x [,y] [,kind])
 <P>
 <PRE>
-          elemental complex function cmplx( x, y, kind )
+          elemental complex(kind=KIND) function cmplx( x, y, kind )
 <P>
-          TYPE(kind=KIND),intent(in) :: x
-          TYPE(kind=KIND),intent(in),optional :: y
-          integer,intent(in),optional :: kind
+          TYPE(kind=**),intent(in) :: x
+          TYPE(kind=**),intent(in),optional :: y
+          integer,intent(in),optional :: KIND
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -87,7 +87,42 @@ result = cmplx(x [,y] [,kind])
 </A>
 <BLOCKQUOTE>
 <P>
-</BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+The type of X TYPE may be integer, real, or complex.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+Y is allowed only if X is not complex. The TYPE for Y may be integer
+or real.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+KIND is a constant integer initialization expression indicating the
+kind parameter of the result.
+</TD></TR>
+<TR></TR></TABLE>The type of the arguments does not affect the kind of the result except
+for a complex X value.
+<TABLE cellpadding=3><!-- tsb: The type of the arguments does not affect the kind of the result except
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+if KIND is not present and X is complex the result is of the kind of
+X.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+if KIND is not present and X is not complex the result if of default
+complex kind.
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=3>
 
      <H3>DESCRIPTION</H3>
@@ -95,25 +130,77 @@ result = cmplx(x [,y] [,kind])
 </A>
 <BLOCKQUOTE>
 <P>
-To convert numeric variables to complex, use the CMPLX(3) function.
-Constants can be used to define a complex variable using the syntax
+The CMPLX(3) function converts numeric values to a complex value.
+<P>
+Even though constants can be used to define a complex variable using
+syntax like
 <P>
 <PRE>
-          z8 = (1.2345678901234567d0, 1.2345678901234567d0)
+          z = (1.23456789, 9.87654321)
 <P>
 </PRE>
-but this will not work for variables. You must use the CMPLX(3)
-function.
+this will not work for variables. So you cannot enter
 <P>
-CMPLX(X [, Y [, KIND]]) returns a complex number where X is converted to
-the real component. If X is complex then Y must not be present. If Y is
-present it is converted to the imaginary component. If Y is not present
-then the imaginary component is set to 0.0.
+<PRE>
+          z = (a, b)  ! NO ! (unless a and b are constants, not variables)
+<P>
+</PRE>
+so to construct a complex value using non-complex values you must use
+the CMPLX(3) function:
+<P>
+<PRE>
+          z = cmplx(a, b)
+<P>
+</PRE>
+or assign values separately to the imaginary and real components using
+the %IM and %RE designators:
+<P>
+<PRE>
+          z%re = a
+          z%im = b
+<P>
+</PRE>
+If X is complex Y is not allowed and CMPLX essentially returns the input
+value except for an optional change of kind, which can be useful when
+passing a value to a procedure that requires the arguments to have a
+different kind (and does not return an altered value):
+<P>
+<PRE>
+          call something(cmplx(z,kind=real64))
+<P>
+</PRE>
+would pass a copy of a value with kind=real64 even if z had a different
+kind
+<P>
+but otherwise is equivalent to a simple assign. So if z1 and z were
+complex:
+<P>
+<PRE>
+          z2 = z1        ! equivalent statements
+          z2 = cmplx(z1)
+<P>
+</PRE>
+If X is not complex X is only used to define the real component of the
+result but Y is still optional -- the imaginary part of the result will
+just be assigned a value of zero.
+<P>
+If Y is present it is converted to the imaginary component.
 <P>
 CMPLX(3) AND DOUBLE PRECISION
 <P>
-The Fortran 90 language defines CMPLX(3) as always returning a result
-that is type COMPLEX(KIND=KIND(0.0)).
+Primarily in order to maintain upward compatibility you need to be
+careful when working with complex values of higher precision that the
+default.
+<P>
+It was necessary for Fortran to continue to specify that CMPLX(3) always
+return a result of the default kind if the KIND option is absent, since
+that is the behavior mandated by FORTRAN 77.
+<P>
+It might have been preferable to use the highest precision of the
+arguments for determining the return kind, but that is not the case. So
+with arguments with greater precision than default values you are
+required to use the KIND argument or the greater precision values will
+be reduced to default precision.
 <P>
 This means CMPLX(D1,D), where D1 and D are doubleprecision, is treated
 as:
@@ -122,53 +209,47 @@ as:
           cmplx(sngl(d1), sngl(d2))
 <P>
 </PRE>
-doubleprecision complex numbers require specifying a precision.
-<P>
-It was necessary for Fortran 90 to specify this behavior for
-doubleprecision arguments, since that is the behavior mandated by
-FORTRAN 77.
+which looses precision.
 <P>
 So Fortran 90 extends the CMPLX(3) intrinsic by adding an extra argument
-used to specify the desired kind of complex result.
+used to specify the desired kind of the complex result.
 <P>
 <PRE>
           integer,parameter :: dp=kind(0.0d0)
           complex(kind=dp) :: z8
-          !
-          ! NO: result is just the precision of default real values
-          !     because KIND parameter is not specified
-          !
-          ! note this was stored with default real precision
-          z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0)
-          print *, &#146;NO, Z8=&#146;,z8,real(z8),aimag(z8)
-          z8 = cmplx(1.2345678901234567e0_dp, 1.2345678901234567e0_dp)
-          ! again, note components are just real
-          print *, &#146;NO, Z8=&#146;,z8,real(z8),aimag(z8)
-          !
-          ! YES
-          !
-          ! kind= makes it work
-          z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0,kind=dp)
-          print *, &#146;YES, Z8=&#146;,z8,real(z8),aimag(z8)
-<P>
 </PRE>
-F018 COMPONENT SYNTAX The real and imaginary parts of a complex entity
-can be accessed independently with a component-like syntax in f018:
+! wrong ways to specify constant values
+! note this was stored with default real precision !
+z8 = cmplx(1.34567890134567d0, 1.34567890134567d0)
+print *, &#146;NO, Z8=&#146;,z8,real(z8),aimag(z8)
+<BLOCKQUOTE>
 <P>
-A complex-part-designator is
+z8 = cmplx(1.34567890134567e0_dp, 1.34567890134567e0_dp)
+! again, note output components are just real
+print *, &#146;NO, Z8=&#146;,z8,real(z8),aimag(z8)
+!
+! YES
+!
+! kind= makes it work
+z8 = cmplx(1.34567890134567d0, 1.34567890134567d0,kind=dp)
+print *, &#146;YES, Z8=&#146;,z8,real(z8),aimag(z8)
+</BLOCKQUOTE>
+<P>
+A more recent alternative to using CMPLX(3) is "F018 component syntax"
+where real and imaginary parts of a complex entity can be accessed
+independently:
 <P>
 <PRE>
-    designator % RE
+    value%RE     ! %RE specifies the real part
     or
-    designator % IM.
+    value%IM     ! %IM specifies the imaginary part
 <P>
 </PRE>
-Where the designator is of complex type.
+Where the designator value is of course of complex type.
 <P>
-So designator%RE designates the real part of a complex value,
-designator%IM designates the imaginary part of complex value. The type
-of a complex-part-designator is real, and its kind and shape are those
-of the designator.
+The type of a complex-part-designator is real, and its kind and shape
+are those of the designator. That is, you retain the precision of the
+complex value by default, unlike with CMPLX.
 <P>
 The following are examples of complex part designators:
 <P>
@@ -176,8 +257,18 @@ The following are examples of complex part designators:
            impedance%re           !-- Same value as _real_(impedance)
            fft%im                 !-- Same value as AIMAG(fft)
            x%im = 0.0             !-- Sets the imaginary part of x to zero
+           x(1:2)%re=[10,20]      !-- even if x is an array
 <P>
 </PRE>
+NOTE for I/O
+<P>
+Note that if format statements are specified a complex value is treated
+as two real values.
+<P>
+For list-directed I/O (ie. using an asterisk for a format) and NAMELIST
+output the values are expected to be delimited by "(" and ")" and of the
+form "(real_part,imaginary_part)". For NAMELIST input parenthesized
+values or lists of multiple real values are acceptable.
 </BLOCKQUOTE>
 <A name=4>
 
@@ -190,19 +281,31 @@ The following are examples of complex part designators:
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-X The type may be integer, real, or complex.
+X : The value assigned to the real component of the result when X is
+not complex.
+<P>
+If X is complex, the result is the same as if the real part of the
+input was passed as X and the imaginary part as Y.
+<P>
+<PRE>
+         result = CMPLX (REAL (X), AIMAG (X), KIND).
+<P>
+</PRE>
+That is, a complex X value is copied to the result value with a possible
+change of kind.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-Y (Optional; only allowed if X is not complex.). May be integer or
-real.
+Y : *y is only allowed if X is not complex. Its value is assigned to
+the imaginary component of the result and defaults to a value of
+zero if absent.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-KIND (Optional) An integer initialization expression indicating the
-kind parameter of the result.
+KIND : An integer initialization expression indicating the kind
+parameter of the result.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
@@ -212,9 +315,16 @@ kind parameter of the result.
 </A>
 <BLOCKQUOTE>
 <P>
-The return value is of complex type, with a kind equal to KIND if it is
-specified. If KIND is not specified, the result is of the default
-complex kind, regardless of the kinds of X and Y.
+The return value is of complex type, with magnitudes determined by the
+values X and Y.
+<P>
+The common case when X is not complex is that the real component of the
+result is assigned the value of X and the imaginary part is zero or the
+value of Y if Y is present.
+<P>
+When X is complex Y is not allowed and the result is the same value as X
+with a possible change of kind. That is, the real part is REAL(X, KIND)
+and the imaginary part is REAL(Y, KIND).
 </BLOCKQUOTE>
 <A name=6>
 
@@ -229,29 +339,69 @@ Sample program:
     program demo_aimag
     implicit none
     integer,parameter :: dp=kind(0.0d0)
-    complex          :: z4
-    complex(kind=dp) :: z8
+    real(kind=dp)    :: precise, z8
+    complex          :: z4, three(3)
+       precise=1.2345678901234567d0
+<P>
+      ! basic
+       z4 = cmplx(-3)
+       print *, &#146;Z4=&#146;,z4
        z4 = cmplx(1.23456789, 1.23456789)
        print *, &#146;Z4=&#146;,z4
+       ! with a format treat a complex as two real values
+       print &#146;(g0,1x,g0,1x,g0)&#146;,&#146;Z4=&#146;,z4
+<P>
+      ! working with higher precision values
        ! using kind=dp makes it keep DOUBLEPRECISION precision
-       z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0,kind=dp)
-       print *, &#146;Z8=&#146;,z8
-       ! NOTE:
+       ! otherwise the result would be of default kind
+       z8 = cmplx(precise, -precise )
+       print *, &#146;lost precision Z8=&#146;,z8
+       z8 = cmplx(precise, -precise ,kind=dp)
+       print *, &#146;kept precision Z8=&#146;,z8
+<P>
+      ! assignment of constant values does not require cmplx(3)00
        ! The following is intuitive and works without calling cmplx(3)
        ! but does not work for variables just constants
-       z8 = (1.2345678901234567d0, 1.2345678901234567d0 )
+       z8 = (1.1111111111111111d0, 2.2222222222222222d0 )
        print *, &#146;Z8 defined with constants=&#146;,z8
+<P>
+      ! elemental
+       three=cmplx([10,20,30],-1)
+       print *, &#146;three=&#146;,three
+<P>
+      ! descriptors are an alternative
+       three(1:2)%re=[100,200]
+       print *, &#146;three=&#146;,three
+<P>
     end program demo_aimag
 <P>
 </PRE>
-Typical Results:
+Results:
 <P>
 <PRE>
-        Z4= (1.23456788,1.23456788)
-        Z8= (1.2345678901234567,1.2345678901234567)
-        Z8 defined with constants= (1.2345678901234567,1.2345678901234567)
-<P>
+        Z4= (-3.000000,0.0000000E+00)
+        Z4= (1.234568,1.234568)
 </PRE>
+Z4= 1.34568 1.34568
+<BLOCKQUOTE>
+<TABLE cellpadding=3><!-- tsb:         Z4= (-3.000000,0.0000000E+00)
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B>lost precision Z8=</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+1.3456788063049    
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>kept precision Z8=</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+1.345678901346    
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>Z8 defined with constants=</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+1.11111111111111    
+three= (10.00000,<B>-1.000000</B>) (0.00000,<B>-1.000000</B>) (30.00000,<B>-1.000000</B>)
+three= (100.0000,<B>-1.000000</B>) (00.0000,<B>-1.000000</B>) (30.00000,<B>-1.000000</B>)
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 </BLOCKQUOTE>
 <A name=7>
 
@@ -260,7 +410,7 @@ Typical Results:
 </A>
 <BLOCKQUOTE>
 <P>
-FORTRAN 77
+FORTRAN 77, KIND added in Fortran 90.
 </BLOCKQUOTE>
 <A name=8>
 
@@ -295,10 +445,10 @@ INT(3), IS_CONTIGUOUS(3), KIND(3), LOG(3), MATMUL(3), PRECISION(3),
 PRODUCT(3), RANGE(3), RANK(3), SINH(3), SIN(3), SQRT(3),
 STORAGE_SIZE(3), SUM(3), TANH(3), TAN(3), UNPACK(3),
 <P>
-fortran-lang intrinsic descriptions
+fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>cmplx (3fortran)</TD> <TD align=right width=33%><I>September 30, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from a948f33a-7df2-460e-bbef-d7cffca12428 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>cmplx (3fortran)</TD> <TD align=right width=33%><I>October 01, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from ee326731-315a-4a89-bcdb-ab0e9f9d2291 using man macros.</FONT>
 <br><br><center><img src="images/cmplx.3fortran.gif"></center>
 </div>
 </div>
