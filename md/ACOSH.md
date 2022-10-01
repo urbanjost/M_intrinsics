@@ -30,8 +30,6 @@ the argument.
 
 ### **Result**
 
-The return value has the same type and kind as **x**.
-
 If **x** is _complex_, the imaginary part of the result is in radians and
 lies between
 

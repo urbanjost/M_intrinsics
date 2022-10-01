@@ -11,22 +11,27 @@
 ```fortran
    elemental real(kind=KIND) function real(x,kind)
 
-    TYPE(kind=KIND),intent(in) :: x
-    integer(kind=KINDK),intent(in) :: kind
+    TYPE(kind=**),intent(in) :: x
+    integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-  Where the type of **x** may be _integer_, _real_, or _complex_.
+ - the type of **x** **TYPE** may be _integer_, _real_, or _complex_.
+ - if **kind** is not present when **x** is complex the result is the same kind as **x**.
+   If **kind** is not present and **x** is not _complex_ the result is a default _real_ kind.
+ - When present the value of **kind** defines the kind of the result.
 
 ### **Description**
 
-**real(x, kind)** converts its argument **x** to a real type.
+**real(x, kind)** converts its argument **x** to a _real_ type per the
+rules described for the result below.
 
 For complex values this is similar to the modern complex-part-designator
-**%RE** which also designates the real part of a value, accept a
-designator can appear on the left-hand side of an assignment as well,
-as in **val%re=(3.0,4.0)**.
-
+**%RE** which also designates the real part of a value.
+```fortran
+      z=(3.0,4.0)     ! if z is a complex value
+      print *, z%re == real(z) ! these expressions are equivalent
+```
 ### **Options**
 
 - **x**
@@ -68,7 +73,6 @@ complex(kind=dp) :: zd=cmplx(4.0e0_dp,5.0e0_dp,kind=dp)
 end program demo_real
 ```
 Results:
-
 ```
  1.00000000       2.00000000
  4.0000000000000000       5.0000000000000000

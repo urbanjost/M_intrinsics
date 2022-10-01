@@ -2,68 +2,114 @@
 
 ### **Name**
 
-**cmplx**(3) - \[TYPE:NUMERIC\] Complex conversion function
+**cmplx**(3) - \[TYPE:NUMERIC\] Convert values to a complex type
 
 ### **Synopsis**
 ```fortran
     result = cmplx(x [,y] [,kind])
 ```
 ```fortran
-      elemental complex function cmplx( x, y, kind )
+      elemental complex(kind=KIND) function cmplx( x, y, kind )
 
-      TYPE(kind=KIND),intent(in) :: x
-      TYPE(kind=KIND),intent(in),optional :: y
-      integer,intent(in),optional :: kind
+      TYPE(kind=**),intent(in) :: x
+      TYPE(kind=**),intent(in),optional :: y
+      integer,intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
+- The type of **x** **TYPE** may be _integer_, _real_, or _complex_.
+- **y** is allowed only if **x** is not _complex_. The **TYPE** for
+  **y** may be _integer_ or _real_.
+- **kind** is a constant _integer_ initialization expression indicating the kind
+  parameter of the result. 
+
+The type of the arguments does not affect the kind of the result except
+for a _complex_ **x** value.
+
+- if **kind** is not present and **x** is _complex_ the result is of the kind
+  of **x**.
+
+- if **kind** is not present and **x** is not _complex_ the result if of default
+  _complex_ kind.
+
 ### **Description**
 
-To convert numeric variables to complex, use the **cmplx**(3) function.
-Constants can be used to define a complex variable using the syntax
+The **cmplx**(3) function converts numeric values to a _complex_ value.
 
+Even though constants can be used to define a complex variable using syntax like
+```fortran
+      z = (1.23456789, 9.87654321)
 ```
-      z8 = (1.2345678901234567d0, 1.2345678901234567d0)
+this will not work for variables. So you cannot enter
+```fortran
+      z = (a, b)  ! NO ! (unless a and b are constants, not variables)
 ```
+so to construct a _complex_ value using non-complex values you must use
+the **cmplx**(3) function:
+```fortran
+      z = cmplx(a, b)
+```
+or assign values separately to the imaginary and real components using
+the **%IM** and **%RE** designators:
+```fortran
+      z%re = a
+      z%im = b
+```
+If **x** is complex **y** is not allowed and **cmplx** essentially
+returns the input value except for an optional change of kind, which can be
+useful when passing a value to a procedure that requires the arguments
+to have a different kind (and does not return an altered value):
+```fortran
+      call something(cmplx(z,kind=real64))
+```
+would pass a copy of a value with kind=real64 even if z had a different kind
 
-but this will not work for variables. You must use the **cmplx**(3) function.
+but otherwise is equivalent to a simple assign. So if z1 and z2 were _complex_:
+```fortran
+      z2 = z1        ! equivalent statements
+      z2 = cmplx(z1) 
+```
+If **x** is not _complex_ **x** is only used to define the real component
+of the result but **y** is still optional -- the imaginary part of the
+result will just be assigned a value of zero.
 
-**cmplx(x \[, y \[, kind\]\])** returns a complex number where **x** is
-converted to the _real_ component. If **x** is _complex_ then **y** must not be
-present. If **y** is present it is converted to the imaginary component. If
-**y** is not present then the imaginary component is set to **0.0**.
+If **y** is present it is converted to the imaginary component.
 
-### **cmplx(3) and double precision**
+#### **cmplx(3) and double precision**
 
-The Fortran 90 language defines **cmplx**(3) as always returning a result
-that is type **complex(kind=KIND(0.0))**.
+Primarily in order to maintain upward compatibility you need to be careful
+when working with complex values of higher precision that the default.
+
+It was necessary for Fortran to continue to specify that **cmplx**(3)
+always return a result of the default kind if the **kind** option
+is absent, since that is the behavior mandated by FORTRAN 77.
+
+It might have been preferable to use the highest precision of the
+arguments for determining the return kind, but that is not the case. So
+with arguments with greater precision than default values you are
+required to use the **kind** argument or the greater precision values
+will be reduced to default precision.
 
 This means **cmplx(d1,d2)**, where **d1** and **d2** are
 _doubleprecision_, is treated as:
 ```fortran
       cmplx(sngl(d1), sngl(d2))
 ```
-_doubleprecision complex_ numbers require specifying a precision.
-
-It was necessary for Fortran 90 to specify this behavior for
-_doubleprecision_ arguments, since that is the behavior mandated by
-FORTRAN 77.
+which looses precision.
 
 So Fortran 90 extends the **cmplx**(3) intrinsic by adding an extra
-argument used to specify the desired kind of complex result.
+argument used to specify the desired kind of the complex result.
 
 ```fortran
       integer,parameter :: dp=kind(0.0d0)
       complex(kind=dp) :: z8
-      !
-      ! NO: result is just the precision of default real values
-      !     because KIND parameter is not specified
-      !
-      ! note this was stored with default real precision
+     ! wrong ways to specify constant values
+      ! note this was stored with default real precision !
       z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0)
       print *, 'NO, Z8=',z8,real(z8),aimag(z8)
+
       z8 = cmplx(1.2345678901234567e0_dp, 1.2345678901234567e0_dp)
-      ! again, note components are just real
+      ! again, note output components are just real
       print *, 'NO, Z8=',z8,real(z8),aimag(z8)
       !
       ! YES
@@ -72,25 +118,21 @@ argument used to specify the desired kind of complex result.
       z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0,kind=dp)
       print *, 'YES, Z8=',z8,real(z8),aimag(z8)
 ```
-
-F2018 COMPONENT SYNTAX The real and imaginary parts of a complex entity
-can be accessed independently with a component-like syntax in f2018:
-
-A complex-part-designator is
+A more recent alternative to using **cmplx**(3) is "F2018 component
+syntax" where real and imaginary parts of a complex entity can be
+accessed independently:
 
 ```fortran
-designator % RE
+value%RE     ! %RE specifies the real part
 or
-designator % IM.
+value%IM     ! %IM specifies the imaginary part
 
 ````
+Where the designator value is of course of complex type.
 
-Where the designator is of complex type.
-
-So designator%RE designates the real part of a complex value,
-designator%IM designates the imaginary part of complex value. The type
-of a complex-part-designator is _real_, and its kind and shape are those
-of the designator.
+The type of a complex-part-designator is _real_, and its kind and shape
+are those of the designator. That is, you retain the precision of the
+complex value by default, unlike with **cmplx**.
 
 The following are examples of complex part designators:
 
@@ -98,26 +140,53 @@ The following are examples of complex part designators:
        impedance%re           !-- Same value as _real_(impedance)
        fft%im                 !-- Same value as AIMAG(fft)
        x%im = 0.0             !-- Sets the imaginary part of x to zero
+       x(1:2)%re=[10,20]      !-- even if x is an array
 ````
+
+#### NOTE for I/O
+  Note that if format statements are specified a complex value is 
+  treated as two real values.
+
+  For list-directed I/O (ie. using an asterisk for a format) and NAMELIST
+  output the values are expected to be delimited by "(" and ")" and of
+  the form "(real_part,imaginary_part)". For NAMELIST input parenthesized
+  values or lists of multiple _real_ values are acceptable.
 
 ### **Options**
 
 - **x**
-  The type may be _integer_, _real_, or _complex_.
+  : The value assigned to the _real_ component of the result when **x** is
+  not complex. 
+
+  If **x** is complex, the result is the same as if the real part of the
+  input was passed as **x** and the imaginary part as **y**.
+```fortran
+     result = CMPLX (REAL (X), AIMAG (X), KIND).
+```
+   That is, a complex **x** value is copied to the result value with a 
+   possible change of kind.
 
 - **y**
-  (Optional; only allowed if **x** is not _complex_.). May be _integer_ or
-  _real_.
+  : **y* is only allowed if **x** is not _complex_. Its value
+  is assigned to the imaginary component of the result and defaults
+  to a value of zero if absent.
 
 - **kind**
-  (Optional) An _integer_ initialization expression indicating the kind
+  : An _integer_ initialization expression indicating the kind
   parameter of the result.
 
 ### **Result**
 
-The return value is of _complex_ type, with a kind equal to **kind** if it is
-specified. If **kind** is not specified, the result is of the default
-_complex_ kind, regardless of the kinds of **x** and **y**.
+The return value is of _complex_ type, with magnitudes determined by the
+values **x** and **y**. 
+
+The common case when **x** is not complex is that the real
+component of the result is assigned the value of **x** and the imaginary
+part is zero or the value of **y** if **y** is present.
+
+When **x** is complex **y** is not allowed and the result is the same
+value as **x** with a possible change of kind. That is, the real part
+is **real(x, kind)** and the imaginary part is **real(y, kind)**.
 
 ### **Examples**
 
@@ -127,27 +196,38 @@ Sample program:
 program demo_aimag
 implicit none
 integer,parameter :: dp=kind(0.0d0)
-complex          :: z4
-complex(kind=dp) :: z8
+real(kind=dp)    :: precise, z8
+complex          :: z4, three
+   precise=1.2345678901234567d0
+
+  ! basic
+   z4 = cmplx(-3)
+   print *, 'Z4=',z4
    z4 = cmplx(1.23456789, 1.23456789)
    print *, 'Z4=',z4
+
+  ! working with higher precision values
    ! using kind=dp makes it keep DOUBLEPRECISION precision
-   z8 = cmplx(1.2345678901234567d0, 1.2345678901234567d0,kind=dp)
-   print *, 'Z8=',z8
-   ! NOTE:
+   ! otherwise the result would be of default kind
+   z8 = cmplx(precise, -precise ) 
+   print *, 'lost precision Z8=',z8
+   z8 = cmplx(precise, -precise ,kind=dp)
+   print *, 'kept precision Z8=',z8
+
    ! The following is intuitive and works without calling cmplx(3)
    ! but does not work for variables just constants
-   z8 = (1.2345678901234567d0, 1.2345678901234567d0 )
+   z8 = (1.1111111111111111d0, 2.2222222222222222d0 )
    print *, 'Z8 defined with constants=',z8
+
+  ! elemental
+   three=cmplx([10,20,30],-1)
+   print *, 'three=',three
+
+  ! descriptors are an alternative
+   three(1:2)%re=[100,200]
+   print *, 'three=',three
+
 end program demo_aimag
-```
-
-Typical Results:
-
-```
-    Z4= (1.23456788,1.23456788)
-    Z8= (1.2345678901234567,1.2345678901234567)
-    Z8 defined with constants= (1.2345678901234567,1.2345678901234567)
 ```
 ### **Standard**
 
@@ -195,4 +275,4 @@ logical expressions:
 [**tan**(3)](#tan),
 [**unpack**(3)](#unpack),
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_
