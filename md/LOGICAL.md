@@ -62,7 +62,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009
+Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 
 ### **See Also**
 

@@ -76,13 +76,48 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
+- [**aimag**(3)](#aimag) - Imaginary part of complex number
+- [**cmplx**(3)](#cmplx) - Complex conversion function
+- [**conjg**(3)](#conjg) - Complex conjugate function
+
+Fortran has strong support for _complex_ values, including many intrinsics
+that take or produce _complex_ values in addition to algebraic and
+logical expressions:
+
+[**abs**(3)](#abs),
+[**acosh**(3)](#acosh),
+[**acos**(3)](#acos),
+[**asinh**(3)](#asinh),
+[**asin**(3)](#asin),
+[**atan2**(3)](#atan2),
+[**atanh**(3)](#atanh),
+[**atan**(3)](#atan),
+[**cosh**(3)](#cosh),
+[**cos**(3)](#cos),
+[**co_sum**(3)](#co_sum),
 [**dble**(3)](#dble),
-[**cmplx**(3)](#cmplx),
-[**aimag**(3)](#aimag),
-[**int**(3)](#int)
+[**dot_product**(3)](#dot_product),
+[**exp**(3)](#exp),
+[**int**(3)](#int),
+[**is_contiguous**(3)](#is_contiguous),
+[**kind**(3)](#kind),
+[**log**(3)](#log),
+[**matmul**(3)](#matmul),
+[**precision**(3)](#precision),
+[**product**(3)](#product),
+[**range**(3)](#range),
+[**rank**(3)](#rank),
+[**sinh**(3)](#sinh),
+[**sin**(3)](#sin),
+[**sqrt**(3)](#sqrt),
+[**storage_size**(3)](#storage_size),
+[**sum**(3)](#sum),
+[**tanh**(3)](#tanh),
+[**tan**(3)](#tan),
+[**unpack**(3)](#unpack),
 
  _fortran-lang intrinsic descriptions_

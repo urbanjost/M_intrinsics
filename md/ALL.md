@@ -107,10 +107,12 @@ end program demo_all
     compare columns: T F T
     compare rows: T F
 ```
-### **See Also**
-[**any**(3)](#any)
-
 ### **Standard**
-Fortran 95 and later
+
+Fortran 95
+
+### **See Also**
+
+[**any**(3)](#any)
 
  _fortran-lang intrinsic descriptions_

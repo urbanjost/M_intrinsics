@@ -85,8 +85,8 @@ Results:
 ```
 ### **Standard**
 
-  Fortran 95 and later. Note, the scalar= keyword and allocatable
-  scalar entities are available in Fortran 2003 and later.
+  Fortran 95 . Note, the scalar= keyword and allocatable
+  scalar entities are available in Fortran 2003 .
 
 ### **See Also**
 

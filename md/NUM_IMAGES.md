@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result = num_images([])
+    result = num_images()
 ```
 ```fortran
      integer function num_images ()
@@ -74,7 +74,7 @@ end program demo_num_images
 
 ### **Standard**
 
-Fortran 2008 and later. With DISTANCE or FAILED argument, TS 18508 or later
+Fortran 2008 . With DISTANCE or FAILED argument, TS 18508
 
 ### **See Also**
 

@@ -93,7 +93,7 @@ train reducing the allowable grade.
 
 ### **Standard**
 
-FORTRAN 77 and later, for a complex argument Fortran 2008 or later
+FORTRAN 77 , for a _complex_ argument Fortran 2008
 
 ### **See Also**
 

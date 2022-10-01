@@ -28,7 +28,7 @@ raised to the power of **x**.
 If **x** is of type _complex_, its imaginary part is regarded as a value
 in radians such that if (see _Euler's formula_):
 ```fortran
-    cx=(re,im) 
+    cx=(re,im)
 ```
 then
 ```fortran
@@ -95,7 +95,7 @@ Results:
 
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 

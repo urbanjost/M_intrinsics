@@ -16,7 +16,7 @@
 ### **Characteristics**
 
   **matrix** which shall be of any type and have a rank of two. The
-  result will be the same type and kind as **matrix** and of the 
+  result will be the same type and kind as **matrix** and of the
   shape of (m,n) when the input array has the shape(n,m).
 
 ### **Description**
@@ -91,6 +91,10 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_

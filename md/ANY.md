@@ -74,11 +74,13 @@ Results:
     T T T
     T T
 ```
-### **See Also**
-[**any**(3)](#all)
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
+
+### **See Also**
+
+[**all**(3)](#all)
 
  _fortran-lang intrinsic descriptions_

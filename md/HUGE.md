@@ -32,7 +32,7 @@ kind and type of **x**.
 
 - **x**
   : **xx** is an arbitrary value which is used merely to determine what
-  _kind_ and _type_ of scalar is being queried. 
+  _kind_ and _type_ of scalar is being queried.
 
 ### **Result**
 
@@ -91,7 +91,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 

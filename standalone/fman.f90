@@ -309,7 +309,7 @@ textblock=[character(len=256) :: &
 '       distance of ( -3.00000000 -4.00000000 ) from zero is 5.00000000', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
 '  SIGN(3)', &
@@ -468,7 +468,7 @@ textblock=[character(len=256) :: &
 '      *-------*-------*-------*-------*-------*-------*-------*-------*', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later, with KIND argument Fortran 003 and later', &
+'  FORTRAN 77 , with KIND argument Fortran 003', &
 '', &
 'SEE ALSO', &
 '  CHAR(3), IACHAR(3), ICHAR(3)', &
@@ -547,7 +547,7 @@ textblock=[character(len=256) :: &
 '         elemental 3.141593 2.094395 1.570796 1.047198 .000000', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later; for a complex argument - Fortran 008 and later', &
+'  FORTRAN 77 ; for a complex argument - Fortran 008', &
 '', &
 'SEE ALSO', &
 '  Inverse function: COS(3)', &
@@ -614,7 +614,7 @@ textblock=[character(len=256) :: &
 '       0.000000000000000E+000   1.31695789692482        1.76274717403909', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  Inverse function: COSH(3)', &
@@ -686,7 +686,7 @@ textblock=[character(len=256) :: &
 '         [allocatable string       ]', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  ADJUSTR(3)', &
@@ -766,7 +766,7 @@ textblock=[character(len=256) :: &
 '         12345678901234567890123456789012345678901234567890', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  ADJUSTL(3)', &
@@ -797,19 +797,26 @@ textblock=[character(len=256) :: &
 '           complex(kind=KIND),intent(in) :: z', &
 '', &
 'CHARACTERISTICS', &
+'  The type of the argument Z shall be complex and any supported complex kind', &
+'', &
+'  The return value is of type real with the kind type parameter of the', &
+'  argument.', &
+'', &
 'DESCRIPTION', &
-'  AIMAG(Z) yields the imaginary part of complex argument Z.', &
+'  AIMAG(Z) yields the imaginary part of the complex argument Z.', &
 '', &
 '  This is similar to the modern complex-part-designator %IM which also', &
 '  designates the imaginary part of a value, accept a designator can appear on', &
 '  the left-hand side of an assignment as well, as in VAL%IM=10.0.', &
 '', &
 'OPTIONS', &
-'  o  Z : The type of the argument shall be complex.', &
+'  o  Z : The complex value to extract the _imaginary component of.', &
 '', &
 'RESULT', &
-'  The return value is of type real with the kind type parameter of the', &
-'  argument.', &
+'  The return value is a real value with the magnitude and sign of the', &
+'  imaginary component of the argument Z.', &
+'', &
+'  That is, If Z has the value (X,Y), the result has the value Y.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -818,34 +825,60 @@ textblock=[character(len=256) :: &
 '      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
 '       & real32, real64, real128', &
 '      implicit none', &
-'      complex(kind=real32) z4', &
-'      complex(kind=real64) z8', &
+'      character(len=*),parameter :: g=''(*(1x,g0))''', &
+'      complex              :: z4', &
+'      complex(kind=real64) :: z8', &
+'         ! basics', &
 '          z4 = cmplx(1.e0, 2.e0)', &
+'          print *, ''value='',z4', &
+'          print g, ''imaginary part='',aimag(z4),''or'', z4%im', &
+'', &
+'          ! other kinds other than the default may be supported', &
 '          z8 = cmplx(3.e0_real64, 4.e0_real64,kind=real64)', &
-'          print *, aimag(z4), aimag(z8)', &
+'          print *, ''value='',z8', &
+'          print g, ''imaginary part='',aimag(z8),''or'', z8%im', &
+'', &
 '          ! an elemental function can be passed an array', &
 '          print *', &
 '          print *, [z4,z4/2.0,z4+z4,z4**3]', &
 '          print *', &
 '          print *, aimag([z4,z4/2.0,z4+z4,z4**3])', &
+'', &
 '      end program demo_aimag', &
 '', &
 '  Results:', &
 '', &
-'        2.000000       4.00000000000000', &
+'       value= (1.00000000,2.00000000)', &
+'       imaginary part= 2.00000000 or 2.00000000', &
+'       value= (3.0000000000000000,4.0000000000000000)', &
+'       imaginary part= 4.0000000000000000 or 4.0000000000000000', &
 '', &
-'  (1.000000,.000000) (0.5000000,1.000000) (.000000,4.000000)', &
-'  (-11.00000,-.000000)', &
+'       (1.00000000,2.00000000) (0.500000000,1.00000000) (2.00000000,4.00000000)', &
+'       (-11.0000000,-2.00000000)', &
 '', &
-'             2.000000       1.000000       4.000000      -2.000000', &
-'', &
-'SEE ALSO', &
-'  REAL(3), CMPLX(3)', &
+'         2.00000000       1.00000000       4.00000000      -2.00000000', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'SEE ALSO', &
+'  o  CMPLX(3) - Complex conversion function', &
+'', &
+'  o  CONJG(3) - Complex conjugate function', &
+'', &
+'  o  REAL(3) - Convert to real type', &
+'', &
+'  Fortran has strong support for complex values, including many intrinsics', &
+'  that take or produce complex values in addition to algebraic and logical', &
+'  expressions:', &
+'', &
+'  ABS(3), ACOSH(3), ACOS(3), ASINH(3), ASIN(3), ATAN(3), ATANH(3), ATAN(3),', &
+'  COSH(3), COS(3), CO_SUM(3), DBLE(3), DOT_PRODUCT(3), EXP(3), INT(3),', &
+'  IS_CONTIGUOUS(3), KIND(3), LOG(3), MATMUL(3), PRECISION(3), PRODUCT(3),', &
+'  RANGE(3), RANK(3), SINH(3), SIN(3), SQRT(3), STORAGE_SIZE(3), SUM(3),', &
+'  TANH(3), TAN(3), UNPACK(3),', &
+'', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                              September 30, 2022               aimag(3fortran)', &
 '']
@@ -933,7 +966,7 @@ textblock=[character(len=256) :: &
 '      .00000000', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
 '  ANINT(3), INT(3), NINT(3), SELECTED_INT_KIND(3), CEILING(3), FLOOR(3)', &
@@ -1042,11 +1075,11 @@ textblock=[character(len=256) :: &
 '   F', &
 '  entire array : F compare columns: T F T compare rows: T F', &
 '', &
+'STANDARD', &
+'  Fortran 95', &
+'', &
 'SEE ALSO', &
 '  ANY(3)', &
-'', &
-'STANDARD', &
-'  Fortran 95 and later', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
@@ -1135,8 +1168,8 @@ textblock=[character(len=256) :: &
 '          note it is deallocated! F', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later. Note, the scalar= keyword and allocatable scalar', &
-'  entities are available in Fortran 003 and later.', &
+'  Fortran 95 . Note, the scalar= keyword and allocatable scalar entities are', &
+'  available in Fortran 003 .', &
 '', &
 'SEE ALSO', &
 '  MOVE_ALLOC(3)', &
@@ -1227,7 +1260,7 @@ textblock=[character(len=256) :: &
 '        3.00000000       3.00000000', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
 '  AINT(3), INT(3), NINT(3), SELECTED_INT_KIND(3), CEILING(3), FLOOR(3)', &
@@ -1309,11 +1342,11 @@ textblock=[character(len=256) :: &
 '   T', &
 '   T T T', &
 '   T T', &
-'SEE ALSO', &
-'  ANY(3)', &
-'', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
+'', &
+'SEE ALSO', &
+'  ALL(3)', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
@@ -1411,7 +1444,7 @@ textblock=[character(len=256) :: &
 '  grade.', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later, for a complex argument Fortran 008 or later', &
+'  FORTRAN 77 , for a complex argument Fortran 008', &
 '', &
 'SEE ALSO', &
 '  Inverse function: SIN(3)', &
@@ -1477,7 +1510,7 @@ textblock=[character(len=256) :: &
 '        -0.88137358701954305  0.0000000000000000  0.88137358701954305', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  Inverse function: SINH(3)', &
@@ -1583,7 +1616,7 @@ textblock=[character(len=256) :: &
 '      end program demo_associated', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  NULL(3)', &
@@ -1768,7 +1801,7 @@ textblock=[character(len=256) :: &
 '      0.00 Y= -1.00 ANGLE= 4.71389    DEGREES= 70.0  DISTANCE=1.000000', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
 '  o  ATAN(3)', &
@@ -1853,8 +1886,7 @@ textblock=[character(len=256) :: &
 '         -2.356194490192345 -135.0000000000000', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later for a complex argument; and for two arguments Fortran', &
-'  008 or later', &
+'  FORTRAN 77 for a complex argument; and for two arguments Fortran 008', &
 '', &
 'SEE ALSO', &
 '  ATAN(3), TAN(3)', &
@@ -1920,7 +1952,7 @@ textblock=[character(len=256) :: &
 '         -Infinity   0.00000000             Infinity', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  Inverse function: TANH(3)', &
@@ -1992,7 +2024,7 @@ textblock=[character(len=256) :: &
 '      end program demo_atomic_add', &
 '', &
 'STANDARD', &
-'  TS 18508 or later', &
+'  TS 18508', &
 '', &
 'SEE ALSO', &
 '  ATOMIC_DEFINE(3), ATOMIC_FETCH_ADD(3), ATOMIC_AND(3), ATOMIC_OR(3),', &
@@ -2051,7 +2083,7 @@ textblock=[character(len=256) :: &
 '      end program demo_atomic_and', &
 '', &
 'STANDARD', &
-'  TS 18508 or later', &
+'  TS 18508', &
 '', &
 'SEE ALSO', &
 '  ATOMIC_FETCH_AND(3), ATOMIC_DEFINE(3), ATOMIC_REF(3), ATOMIC_CAS(3),', &
@@ -2115,7 +2147,7 @@ textblock=[character(len=256) :: &
 '      end program demo_atomic_cas', &
 '', &
 'STANDARD', &
-'  TS 18508 or later', &
+'  TS 18508', &
 '', &
 'SEE ALSO', &
 '  ATOMIC_DEFINE(3), ATOMIC_REF(3), ISO_FORTRAN_ENV(3)', &
@@ -2184,7 +2216,7 @@ textblock=[character(len=256) :: &
 '      end program demo_atomic_define', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later; with STAT, TS 18508 or later', &
+'  Fortran 008 ; with STAT, TS 18508', &
 '', &
 'SEE ALSO', &
 '  ATOMIC_REF(3), ATOMIC_CAS(3), ISO_FORTRAN_ENV(3), ATOMIC_ADD(3),', &
@@ -2245,7 +2277,7 @@ textblock=[character(len=256) :: &
 '      end program demo_atomic_fetch_add', &
 '', &
 'STANDARD', &
-'  TS 18508 or later', &
+'  TS 18508', &
 '', &
 'SEE ALSO', &
 '  ATOMIC_DEFINE(3), ATOMIC_ADD(3), ISO_FORTRAN_ENV(3),', &
@@ -2311,7 +2343,7 @@ textblock=[character(len=256) :: &
 '      end program demo_atomic_fetch_and', &
 '', &
 'STANDARD', &
-'  TS 18508 or later', &
+'  TS 18508', &
 '', &
 'SEE ALSO', &
 '  ATOMIC_DEFINE(3), ATOMIC_AND(3), ISO_FORTRAN_ENV(3),', &
@@ -2376,7 +2408,7 @@ textblock=[character(len=256) :: &
 '      end program demo_atomic_fetch_or', &
 '', &
 'STANDARD', &
-'  TS 18508 or later', &
+'  TS 18508', &
 '', &
 'SEE ALSO', &
 '  ATOMIC_DEFINE(3), ATOMIC_OR(3), ISO_FORTRAN_ENV(3),', &
@@ -2442,7 +2474,7 @@ textblock=[character(len=256) :: &
 '      end program demo_atomic_fetch_xor', &
 '', &
 'STANDARD', &
-'  TS 18508 or later', &
+'  TS 18508', &
 '', &
 'SEE ALSO', &
 '  ATOMIC_DEFINE(3), ATOMIC_XOR(3), ISO_FORTRAN_ENV(3),', &
@@ -2504,7 +2536,7 @@ textblock=[character(len=256) :: &
 '      end program demo_atomic_or', &
 '', &
 'STANDARD', &
-'  TS 18508 or later', &
+'  TS 18508', &
 '', &
 'SEE ALSO', &
 '  ATOMIC_DEFINE(3), ATOMIC_FETCH_OR(3),', &
@@ -2572,7 +2604,7 @@ textblock=[character(len=256) :: &
 '      end program demo_atomic_ref', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later; with STAT, TS 18508 or later', &
+'  Fortran 008 ; with STAT, TS 18508', &
 '', &
 'SEE ALSO', &
 '  ATOMIC_DEFINE(3), ATOMIC_CAS(3), ISO_FORTRAN_ENV(3),', &
@@ -2634,7 +2666,7 @@ textblock=[character(len=256) :: &
 '      end program demo_atomic_xor', &
 '', &
 'STANDARD', &
-'  TS 18508 or later', &
+'  TS 18508', &
 '', &
 'SEE ALSO', &
 '  ATOMIC_DEFINE(3), ATOMIC_FETCH_XOR(3), ISO_FORTRAN_ENV(3), ATOMIC_ADD(3),', &
@@ -2696,7 +2728,7 @@ textblock=[character(len=256) :: &
 '            1.0000000000000000', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  BESSEL_J1(3), BESSEL_JN(3), BESSEL_Y0(3), BESSEL_Y1(3), BESSEL_YN(3)', &
@@ -2756,7 +2788,7 @@ textblock=[character(len=256) :: &
 '           0.44005058574493350', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  BESSEL_J0(3), BESSEL_JN(3), BESSEL_Y0(3), BESSEL_Y1(3), BESSEL_YN(3)', &
@@ -2838,7 +2870,7 @@ textblock=[character(len=256) :: &
 '            2.4975773021123450E-004', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  BESSEL_J0(3), BESSEL_J1(3), BESSEL_Y0(3), BESSEL_Y1(3), BESSEL_YN(3)', &
@@ -2898,7 +2930,7 @@ textblock=[character(len=256) :: &
 '                          -Infinity', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  BESSEL_J0(3), BESSEL_J1(3), BESSEL_JN(3), BESSEL_Y1(3), BESSEL_YN(3)', &
@@ -2953,7 +2985,7 @@ textblock=[character(len=256) :: &
 '      end program demo_bessel_y1', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  BESSEL_J0(3), BESSEL_J1(3), BESSEL_JN(3), BESSEL_Y0(3), BESSEL_YN(3)', &
@@ -3037,7 +3069,7 @@ textblock=[character(len=256) :: &
 '            1.0000000000000000       -260.40586662581222', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  BESSEL_J0(3), BESSEL_J1(3), BESSEL_JN(3), BESSEL_Y0(3), BESSEL_Y1(3)', &
@@ -3194,7 +3226,7 @@ textblock=[character(len=256) :: &
 '          > minus zero=0', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  BGT(3), BLE(3), BLT(3)', &
@@ -3279,7 +3311,7 @@ textblock=[character(len=256) :: &
 '         > +0096  T 01100000', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  BGE(3), BLE(3), BLT(3)', &
@@ -3358,7 +3390,10 @@ textblock=[character(len=256) :: &
 '          The available kinds are 1, 2, 4, 8, 16', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -3393,7 +3428,6 @@ textblock=[character(len=256) :: &
 '  a value valid for the integer kind available with the most bits on the', &
 '  current platform.', &
 '', &
-'SYNOPSIS', &
 'DESCRIPTION', &
 '  Determines whether an integer is bitwise less than or equal to another.', &
 '', &
@@ -3438,7 +3472,7 @@ textblock=[character(len=256) :: &
 '         > +0096  F 01100000', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  BGE(3), BGT(3), BLT(3)', &
@@ -3520,7 +3554,7 @@ textblock=[character(len=256) :: &
 '         > +0096  F 01100000', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  BGE(3), BGT(3), BLE(3)', &
@@ -3642,7 +3676,7 @@ textblock=[character(len=256) :: &
 '   T F', &
 '   F F', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  IEOR(3), IBCLR(3), NOT(3), IBCLR(3), IBITS(3), IBSET(3), IAND(3), IOR(3),', &
@@ -3702,7 +3736,7 @@ textblock=[character(len=256) :: &
 '      end program demo_c_associated', &
 '', &
 'STANDARD', &
-'  Fortran 003 and later', &
+'  Fortran 003', &
 '', &
 'SEE ALSO', &
 '  C_LOC(3), C_FUNLOC(3), ISO_C_BINDING(3)', &
@@ -3798,7 +3832,7 @@ textblock=[character(len=256) :: &
 '         > 2, 2, 3, 3, 3', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  FLOOR(3), NINT(3)', &
@@ -3859,7 +3893,7 @@ textblock=[character(len=256) :: &
 '      end program demo_c_f_pointer', &
 '', &
 'STANDARD', &
-'  Fortran 003 and later', &
+'  Fortran 003', &
 '', &
 'SEE ALSO', &
 '  C_LOC(3), C_F_PROCPOINTER(3), ISO_C_BINDING(3)', &
@@ -3922,7 +3956,7 @@ textblock=[character(len=256) :: &
 '      end program demo_c_f_procpointer', &
 '', &
 'STANDARD', &
-'  Fortran 003 and later', &
+'  Fortran 003', &
 '', &
 'SEE ALSO', &
 '  C_LOC(3), C_F_POINTER(3), ISO_C_BINDING(3)', &
@@ -3988,7 +4022,7 @@ textblock=[character(len=256) :: &
 '      end program demo_c_funloc', &
 '', &
 'STANDARD', &
-'  Fortran 003 and later', &
+'  Fortran 003', &
 '', &
 'SEE ALSO', &
 '  C_ASSOCIATED(3), C_LOC(3), C_F_POINTER(3),', &
@@ -4054,7 +4088,7 @@ textblock=[character(len=256) :: &
 '  formatted string representations.', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
 '  ACHAR(3), IACHAR(3), ICHAR(3)', &
@@ -4114,7 +4148,7 @@ textblock=[character(len=256) :: &
 '         end subroutine association_test', &
 '', &
 'STANDARD', &
-'  Fortran 003 and later', &
+'  Fortran 003', &
 '', &
 'SEE ALSO', &
 '  C_ASSOCIATED(3), C_FUNLOC(3), C_F_POINTER(3),', &
@@ -4258,17 +4292,25 @@ textblock=[character(len=256) :: &
 '          Z8= (1.2345678901234567,1.2345678901234567)', &
 '          Z8 defined with constants= (1.2345678901234567,1.2345678901234567)', &
 '', &
+'STANDARD', &
+'  FORTRAN 77', &
+'', &
 'SEE ALSO', &
 '  o  AIMAG(3) - Imaginary part of complex number', &
-'', &
-'  o  CMPLX(3) - Complex conversion function', &
 '', &
 '  o  CONJG(3) - Complex conjugate function', &
 '', &
 '  o  REAL(3) - Convert to real type', &
 '', &
-'STANDARD', &
-'  FORTRAN 77 and later', &
+'  Fortran has strong support for complex values, including many intrinsics', &
+'  that take or produce complex values in addition to algebraic and logical', &
+'  expressions:', &
+'', &
+'  ABS(3), ACOSH(3), ACOS(3), ASINH(3), ASIN(3), ATAN(3), ATANH(3), ATAN(3),', &
+'  COSH(3), COS(3), CO_SUM(3), DBLE(3), DOT_PRODUCT(3), EXP(3), INT(3),', &
+'  IS_CONTIGUOUS(3), KIND(3), LOG(3), MATMUL(3), PRECISION(3), PRODUCT(3),', &
+'  RANGE(3), RANK(3), SINH(3), SIN(3), SQRT(3), STORAGE_SIZE(3), SUM(3),', &
+'  TANH(3), TAN(3), UNPACK(3),', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
@@ -4326,6 +4368,9 @@ textblock=[character(len=256) :: &
 '         print *, this_image(), ":", val', &
 '      end program demo_co_broadcast', &
 '', &
+'STANDARD', &
+'  Fortran xx', &
+'', &
 'SEE ALSO', &
 '  CO_MAX(3), CO_MIN(3), CO_SUM(3), CO_REDUCE(3)', &
 '', &
@@ -4371,7 +4416,7 @@ textblock=[character(len=256) :: &
 '  codimension.', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  CO_UBOUND(3), LBOUND(3)', &
@@ -4437,7 +4482,7 @@ textblock=[character(len=256) :: &
 '          Maximal value           2', &
 '', &
 'STANDARD', &
-'  TS 18508 or later', &
+'  TS 18508', &
 '', &
 'SEE ALSO', &
 '  CO_MIN(3), CO_SUM(3), CO_REDUCE(3), CO_BROADCAST(3)', &
@@ -4499,7 +4544,7 @@ textblock=[character(len=256) :: &
 '      end program demo_co_min', &
 '', &
 'STANDARD', &
-'  TS 18508 or later', &
+'  TS 18508', &
 '', &
 'SEE ALSO', &
 '  CO_MAX(3), CO_SUM(3), CO_REDUCE(3), CO_BROADCAST(3)', &
@@ -4562,7 +4607,7 @@ textblock=[character(len=256) :: &
 '             1', &
 '', &
 'STANDARD', &
-'  Fortran 003 and later', &
+'  Fortran 003', &
 '', &
 'SEE ALSO', &
 '  GET_COMMAND(3), GET_COMMAND_ARGUMENT(3)', &
@@ -4721,22 +4766,24 @@ textblock=[character(len=256) :: &
 '           complex(kind=KIND),intent(in) :: z', &
 '', &
 'CHARACTERISTICS', &
-'  where KIND is the kind of the parameter Z', &
+'  KIND may be any supported value for the complex input value.', &
+'', &
+'  The returned value with be the same complex type as the input.', &
 '', &
 'DESCRIPTION', &
 '  CONJG(Z) returns the complex conjugate of the complex value Z.', &
 '', &
-'  In mathematics, the complex conjugate of a complex number is a value with an', &
-'  equal real part and an imaginary part equal in magnitude but opposite in', &
-'  sign.', &
+'  In mathematics, the complex conjugate of a complex number is a value whose', &
+'  real and imaginary part are equal parts are equal in magnitude to each other', &
+'  but the Y value has opposite sign.', &
 '', &
-'  That is, If Z is (X, Y) then the result is (X, -Y).', &
+'  That is, If Z is the complex value (X, Y) then the result is (X, -Y).', &
 '', &
 '  For matrices of complex numbers, CONJG(ARRAY) represents the element-by-', &
-'  element conjugation of ARRAY; not the conjugate transpose of ARRAY .', &
+'  element conjugation of ARRAY; not the conjugate transpose of the ARRAY .', &
 '', &
 'OPTIONS', &
-'  o  Z : The complex value to take the conjugate of.', &
+'  o  Z : The complex value to create the conjugate of.', &
 '', &
 'RESULT', &
 '  Returns a complex value equal to the input value except the sign of the', &
@@ -4751,16 +4798,15 @@ textblock=[character(len=256) :: &
 '      implicit none', &
 '      complex :: z = (2.0, 3.0)', &
 '      complex(kind=real64) :: dz = (   &', &
-'         &  1.2345678901234567_real64, &', &
-'         & -1.2345678901234567_real64)', &
+'         &  1.2345678901234567_real64, -1.2345678901234567_real64)', &
 '      complex :: arr(3,3)', &
 '      integer :: i', &
+'         ! basics', &
+'          ! notice the sine of the imaginary component changes', &
+'          print *, z, conjg(z)', &
 '', &
-'          print *, z', &
-'          z= conjg(z)', &
-'          print *, z', &
-'          print *', &
-'', &
+'          ! any complex kind is supported. z is of default kind but', &
+'          ! dz is kind=real64.', &
 '          print *, dz', &
 '          dz = conjg(dz)', &
 '          print *, dz', &
@@ -4781,8 +4827,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       (2.000000,3.000000)', &
-'       (2.000000,-3.000000)', &
+'       (2.000000,3.000000) (2.000000,-3.000000)', &
 '', &
 '       (1.23456789012346,-1.23456789012346)', &
 '       (1.23456789012346,1.23456789012346)', &
@@ -4810,7 +4855,24 @@ textblock=[character(len=256) :: &
 '      ,-9.0    ) ( .0    , 0.0    ) (-3.0    , 7.0    )', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
+'', &
+'SEE ALSO', &
+'  o  AIMAG(3) - Imaginary part of complex number', &
+'', &
+'  o  CMPLX(3) - Complex conversion function', &
+'', &
+'  o  REAL(3) - Convert to real type', &
+'', &
+'  Fortran has strong support for complex values, including many intrinsics', &
+'  that take or produce complex values in addition to algebraic and logical', &
+'  expressions:', &
+'', &
+'  ABS(3), ACOSH(3), ACOS(3), ASINH(3), ASIN(3), ATAN(3), ATANH(3), ATAN(3),', &
+'  COSH(3), COS(3), CO_SUM(3), DBLE(3), DOT_PRODUCT(3), EXP(3), INT(3),', &
+'  IS_CONTIGUOUS(3), KIND(3), LOG(3), MATMUL(3), PRECISION(3), PRODUCT(3),', &
+'  RANGE(3), RANK(3), SINH(3), SIN(3), SQRT(3), STORAGE_SIZE(3), SUM(3),', &
+'  TANH(3), TAN(3), UNPACK(3),', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -4902,7 +4964,7 @@ textblock=[character(len=256) :: &
 '  as a result.', &
 '', &
 'STANDARD', &
-'  TS 18508 or later', &
+'  TS 18508', &
 '', &
 'SEE ALSO', &
 '  CO_MIN(3), CO_MAX(3), CO_SUM(3), CO_BROADCAST(3)', &
@@ -4979,7 +5041,7 @@ textblock=[character(len=256) :: &
 '         COS(-2000*PI)=   1.0000000000000000', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
 '  ACOS(3), SIN(3), TAN(3)', &
@@ -5041,7 +5103,7 @@ textblock=[character(len=256) :: &
 '      end program demo_cosh', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later, for a complex argument - Fortran 008 or later', &
+'  FORTRAN 77 , for a complex argument - Fortran 008', &
 '', &
 'SEE ALSO', &
 '  Inverse function: ACOSH(3)', &
@@ -5073,12 +5135,16 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
 '  co_sum sums up the values of each element of A on all images of the current', &
-'  team. If result_image is present, the summed-up values are returned in A on', &
-'  the specified image only and the value of A on the other images become', &
-'  undefined. If result_image is not present, the value is returned on all', &
-'  images. If the execution was successful and STAT is present, it is assigned', &
-'  the value zero. If the execution failed, STAT gets assigned a nonzero value', &
-'  and, if present, ERRMSG gets assigned a value describing the occurred error.', &
+'  team.', &
+'', &
+'  If result_image is present, the summed-up values are returned in A on the', &
+'  specified image only and the value of A on the other images become', &
+'  undefined.', &
+'', &
+'  If result_image is not present, the value is returned on all images. If the', &
+'  execution was successful and STAT is present, it is assigned the value zero.', &
+'  If the execution failed, STAT gets assigned a nonzero value and, if present,', &
+'  ERRMSG gets assigned a value describing the occurred error.', &
 '', &
 'OPTIONS', &
 '  o  A : shall be an integer, real or complex variable, which has the same', &
@@ -5111,7 +5177,7 @@ textblock=[character(len=256) :: &
 '          The sum is            1', &
 '', &
 'STANDARD', &
-'  TS 18508 or later', &
+'  TS 18508', &
 '', &
 'SEE ALSO', &
 '  CO_MAX(3), CO_MIN(3), CO_REDUCE(3), CO_BROADCAST(3)', &
@@ -5158,7 +5224,7 @@ textblock=[character(len=256) :: &
 '  codimension.', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  CO_LBOUND(3), LBOUND(3), UBOUND(3)', &
@@ -5320,7 +5386,10 @@ textblock=[character(len=256) :: &
 '      end program demo_count', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later, with KIND argument - Fortran 003 and later', &
+'  Fortran 95 , with KIND argument - Fortran 003', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -5394,7 +5463,7 @@ textblock=[character(len=256) :: &
 '         Processor Time =  0.000 seconds.', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  SYSTEM_CLOCK(3), DATE_AND_TIME(3)', &
@@ -5485,7 +5554,10 @@ textblock=[character(len=256) :: &
 '    9 3  6', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
@@ -5651,7 +5723,7 @@ textblock=[character(len=256) :: &
 '           779 - The milliseconds of the second', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  CPU_TIME(3), SYSTEM_CLOCK(3)', &
@@ -5721,7 +5793,7 @@ textblock=[character(len=256) :: &
 '        2.1800000667572021  5.0000000000000000   2.2999999523162842', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
 '  FLOAT(3), REAL(3)', &
@@ -5787,7 +5859,7 @@ textblock=[character(len=256) :: &
 '          default doubleprecision:          53', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  EPSILON(3), EXPONENT(3), FRACTION(3), HUGE(3), MAXEXPONENT(3),', &
@@ -5870,7 +5942,10 @@ textblock=[character(len=256) :: &
 '    0 0          10', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -5954,7 +6029,10 @@ textblock=[character(len=256) :: &
 '                     32', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
@@ -6062,7 +6140,10 @@ textblock=[character(len=256) :: &
 '      5.84000040054304        4.3000004915344', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -6211,7 +6292,7 @@ textblock=[character(len=256) :: &
 '         > 11111111111111111111111111111111', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  DSHIFTR(3)', &
@@ -6349,7 +6430,7 @@ textblock=[character(len=256) :: &
 '         > 11111111111111111111111111111111', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  DSHIFTL(3)', &
@@ -6456,7 +6537,10 @@ textblock=[character(len=256) :: &
 '    6 9 -5', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -6571,7 +6655,7 @@ textblock=[character(len=256) :: &
 '   T', &
 '   T', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  DIGITS(3), EXPONENT(3), FRACTION(3), HUGE(3), MAXEXPONENT(3),', &
@@ -6634,11 +6718,10 @@ textblock=[character(len=256) :: &
 '           0.17000000000000001       0.18999246120180879', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
-'  See also', &
-'', &
-'  ERFC(3)', &
+'SEE ALSO', &
+'  ERFC(3), ERF_SCALED(3)', &
 '', &
 'RESOURCES', &
 '  o  Wikipedia:error function', &
@@ -6705,11 +6788,11 @@ textblock=[character(len=256) :: &
 '           0.17000000000000001       0.81000753879819121', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
-'  See also', &
+'  *SEE ALSO', &
 '', &
-'  ERF(3)', &
+'  ERF(3) ERF_SCALED(3)', &
 '', &
 'RESOURCES', &
 '  o  Wikipedia:error function', &
@@ -6767,7 +6850,10 @@ textblock=[character(len=256) :: &
 '           0.83375830214998126', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
+'', &
+'SEE ALSO', &
+'  ERF(3) ERFC(3)', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
@@ -6824,7 +6910,10 @@ textblock=[character(len=256) :: &
 '      end program demo_event_query', &
 '', &
 'STANDARD', &
-'  TS 18508 or later', &
+'  TS 18508', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
@@ -6927,7 +7016,10 @@ textblock=[character(len=256) :: &
 '  is terminated, the child process might not be terminated alongside.', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
@@ -7024,7 +7116,7 @@ textblock=[character(len=256) :: &
 '       maximum doubleprecision component   709.782712893384', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
 '  o  LOG(3)', &
@@ -7087,7 +7179,7 @@ textblock=[character(len=256) :: &
 '    1 0', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  DIGITS(3), EPSILON(3), FRACTION(3), HUGE(3), MAXEXPONENT(3), MINEXPONENT(3),', &
@@ -7536,7 +7628,7 @@ textblock=[character(len=256) :: &
 '      1', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  CEILING(3), NINT(3)', &
@@ -7602,7 +7694,7 @@ textblock=[character(len=256) :: &
 '           0.570043862      0.570043862', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  DIGITS(3), EPSILON(3), EXPONENT(3), HUGE(3), MAXEXPONENT(3), MINEXPONENT(3),', &
@@ -7745,7 +7837,7 @@ textblock=[character(len=256) :: &
 '      is  .757415615307994E+307 .757415615307999E+307', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  Logarithm of the Gamma function: LOG_GAMMA(3)', &
@@ -7772,9 +7864,9 @@ textblock=[character(len=256) :: &
 '  GET_COMMAND(3) - [SYSTEM:COMMAND LINE] Get the entire command line', &
 '', &
 'SYNOPSIS', &
-'  call get_command(command, length, status)', &
+'  call get_command([command] [,length] [,status])', &
 '', &
-'           subroutine get_command( [command] [,length] [,status] )', &
+'           subroutine get_command( command ,length ,status )', &
 '', &
 '           character(len=*),intent(out),optional :: command', &
 '           integer,intent(out),optional :: length', &
@@ -7835,7 +7927,7 @@ textblock=[character(len=256) :: &
 '           OUTPUT:./test_get_command arguments  *><`~[]!{}?"''|', &
 '', &
 'STANDARD', &
-'  Fortran 003 and later', &
+'  Fortran 003', &
 '', &
 'SEE ALSO', &
 '  GET_COMMAND_ARGUMENT(3), COMMAND_ARGUMENT_COUNT(3)', &
@@ -7859,9 +7951,9 @@ textblock=[character(len=256) :: &
 '  GET_COMMAND_ARGUMENT(3) - [SYSTEM:COMMAND LINE] Get command line arguments', &
 '', &
 'SYNOPSIS', &
-'  call get_command_argument(number, value, length, status)', &
+'  call get_command_argument(number [,value] [,length] [,status])', &
 '', &
-'         subroutine get_command_argument(number[,value][,length][.status])', &
+'         subroutine get_command_argument( number, value, length, status )', &
 '', &
 '          integer,intent(in)                    :: number', &
 '          character(len=*),intent(out),optional :: value', &
@@ -7963,7 +8055,7 @@ textblock=[character(len=256) :: &
 '      005 00000 00018 [  leading]', &
 '', &
 'STANDARD', &
-'  Fortran 003 and later', &
+'  Fortran 003', &
 '', &
 'SEE ALSO', &
 '  GET_COMMAND(3), COMMAND_ARGUMENT_COUNT(3)', &
@@ -8095,7 +8187,10 @@ textblock=[character(len=256) :: &
 '         HOME="/home/urbanjs"', &
 '', &
 'STANDARD', &
-'  Fortran 003 and later', &
+'  Fortran 003', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -8191,7 +8286,7 @@ textblock=[character(len=256) :: &
 '          14     1054752768 -2147483648   78364164096. F wrong for j and k and w', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  DIGITS(3), EPSILON(3), EXPONENT(3), FRACTION(3), MAXEXPONENT(3),', &
@@ -8300,7 +8395,10 @@ textblock=[character(len=256) :: &
 '            +1.03077638', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -8402,7 +8500,7 @@ textblock=[character(len=256) :: &
 '         abcdefg abcdefg', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later, with KIND argument - Fortran 003 and later', &
+'  Fortran 95 , with KIND argument - Fortran 003', &
 '', &
 'SEE ALSO', &
 '  ACHAR(3), CHAR(3), ICHAR(3)', &
@@ -8499,7 +8597,7 @@ textblock=[character(len=256) :: &
 '         00100000', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  IANY(3), IPARITY(3), IAND(3)', &
@@ -8558,7 +8656,7 @@ textblock=[character(len=256) :: &
 '    3', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IOR(3),', &
@@ -8643,7 +8741,7 @@ textblock=[character(len=256) :: &
 '         01101110', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  IPARITY(3), IALL(3), IOR(3)', &
@@ -8692,7 +8790,7 @@ textblock=[character(len=256) :: &
 '  The return value is of type integer and of the same kind as I.', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  IEOR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IAND(3), IOR(3),', &
@@ -8747,7 +8845,7 @@ textblock=[character(len=256) :: &
 '  The return value is of type integer and of the same kind as I.', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBSET(3), IAND(3), IOR(3),', &
@@ -8797,7 +8895,7 @@ textblock=[character(len=256) :: &
 '  The return value is of type integer and of the same kind as I.', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IAND(3), IOR(3),', &
@@ -8905,7 +9003,7 @@ textblock=[character(len=256) :: &
 '  154', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later, with KIND argument -Fortran 003 and later', &
+'  Fortran 95 , with KIND argument -Fortran 003', &
 '', &
 'SEE ALSO', &
 '  ACHAR(3), CHAR(3), IACHAR(3)', &
@@ -8962,7 +9060,7 @@ textblock=[character(len=256) :: &
 '  argument kinds differ, it is of the same kind as the larger argument.)', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IAND(3),', &
@@ -9014,7 +9112,7 @@ textblock=[character(len=256) :: &
 '      end demo image_index', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  THIS_IMAGE(3), NUM_IMAGES(3)', &
@@ -9088,7 +9186,7 @@ textblock=[character(len=256) :: &
 '', &
 '   T T T', &
 'STANDARD', &
-'  FORTRAN 77 and later, with KIND argument Fortran 003 and later', &
+'  FORTRAN 77 , with KIND argument Fortran 003', &
 '', &
 'SEE ALSO', &
 '  Functions that perform operations on character strings, return lengths of', &
@@ -9220,7 +9318,7 @@ textblock=[character(len=256) :: &
 '       1', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
 '  AINT(3), ANINT(3), NINT(3), SELECTED_INT_KIND(3), CEILING(3), FLOOR(3)', &
@@ -9286,7 +9384,7 @@ textblock=[character(len=256) :: &
 '               61 00111101', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IAND(3),', &
@@ -9367,7 +9465,7 @@ textblock=[character(len=256) :: &
 '         01001110', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  IANY(3), IALL(3), IEOR(3), PARITY(3)', &
@@ -9474,7 +9572,10 @@ textblock=[character(len=256) :: &
 '          OUT is  F', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
@@ -9554,7 +9655,7 @@ textblock=[character(len=256) :: &
 '      >   00000111111111111111111111111111 -4', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  ISHFTC(3)', &
@@ -9660,7 +9761,7 @@ textblock=[character(len=256) :: &
 '      >   01111111111111111111111111111111 32', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  ISHFT(3)', &
@@ -9729,7 +9830,10 @@ textblock=[character(len=256) :: &
 '      end program demo_iostat', &
 '', &
 'STANDARD', &
-'  Fortran 003 and later', &
+'  Fortran 003', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -9795,7 +9899,10 @@ textblock=[character(len=256) :: &
 '      end program demo_is_iostat_eor', &
 '', &
 'STANDARD', &
-'  Fortran 003 and later', &
+'  Fortran 003', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
@@ -9857,7 +9964,10 @@ textblock=[character(len=256) :: &
 '          The default logical kind is            4', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -9982,7 +10092,7 @@ textblock=[character(len=256) :: &
 '         ESUB: LOWER=           1 UPPER=          21 SIZE=          21', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later, with KIND argument - Fortran 003 and later', &
+'  Fortran 95 , with KIND argument - Fortran 003', &
 '', &
 'SEE ALSO', &
 '  UBOUND(3), CO_LBOUND(3)', &
@@ -10060,7 +10170,7 @@ textblock=[character(len=256) :: &
 '        LEADING ZERO BITS= 24 OF VALUE 00000000000000000000000010010110 AKA 150', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  BIT_SIZE(3), POPCNT(3), POPPAR(3), TRAILZ(3)', &
@@ -10189,7 +10299,7 @@ textblock=[character(len=256) :: &
 '          length of passed value is           11', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later; with KIND argument - Fortran 003 and later', &
+'  FORTRAN 77 ; with KIND argument - Fortran 003', &
 '', &
 'SEE ALSO', &
 '  len_trim(3), adjustr(3), trim(3), and adjustl(3) are related routines that', &
@@ -10306,7 +10416,7 @@ textblock=[character(len=256) :: &
 '      38', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later. KIND argument added with Fortran 003.', &
+'  Fortran 95 . KIND argument added with Fortran 003.', &
 '', &
 'SEE ALSO', &
 '  Functions that perform operations on character strings, return lengths of', &
@@ -10398,7 +10508,7 @@ textblock=[character(len=256) :: &
 '   T F', &
 '   F T', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
 '  LGT(3), LLE(3), LLT(3)', &
@@ -10494,7 +10604,7 @@ textblock=[character(len=256) :: &
 '   T F', &
 '   F F', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
 '  LGE(3), LLE(3), LLT(3)', &
@@ -10592,7 +10702,7 @@ textblock=[character(len=256) :: &
 '   F T', &
 '   T T', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
 '  LGE(3), LGT(3), LLT(3)', &
@@ -10688,7 +10798,7 @@ textblock=[character(len=256) :: &
 '        > T F', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
 '  LGE(3), LGT(3), LLE(3))', &
@@ -10761,7 +10871,10 @@ textblock=[character(len=256) :: &
 '            4.00000000       5.00000000       6.00000000       7.00000000', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
@@ -10822,7 +10935,10 @@ textblock=[character(len=256) :: &
 '  (1.00000000,.00000000) (0.804718971,1.10714877)', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
@@ -10881,7 +10997,7 @@ textblock=[character(len=256) :: &
 '            1.000000      0.6931472', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  Gamma function: GAMMA(3)', &
@@ -10947,7 +11063,7 @@ textblock=[character(len=256) :: &
 '    1 4 8 16', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 009', &
+'  Fortran 95 , related ISO_FORTRAN_ENV module - fortran 009', &
 '', &
 'SEE ALSO', &
 '  INT(3), REAL(3), CMPLX(3)', &
@@ -11049,7 +11165,7 @@ textblock=[character(len=256) :: &
 '               -1 11111111111111111111111111111111', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  MASKR(3)', &
@@ -11140,7 +11256,7 @@ textblock=[character(len=256) :: &
 '      -1 11111111111111111111111111111111', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  MASKL(3)', &
@@ -11356,7 +11472,7 @@ textblock=[character(len=256) :: &
 '          > [  3300 ]', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  PRODUCT(3), TRANSPOSE(3)', &
@@ -11485,7 +11601,7 @@ textblock=[character(len=256) :: &
 '          scalars and array: 40.000000 40.000000 40.000000 40.000000', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
 '  MAXLOC(3), MAXVAL(3), MIN(3)', &
@@ -11548,7 +11664,7 @@ textblock=[character(len=256) :: &
 '      104', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  DIGITS(3), EPSILON(3), EXPONENT(3), FRACTION(3), HUGE(3), MINEXPONENT(3),', &
@@ -11668,7 +11784,7 @@ textblock=[character(len=256) :: &
 '  o  48 -1 49 0 50 1 49 48 3 47', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  MAX(3), MAXVAL(3)', &
@@ -11764,7 +11880,7 @@ textblock=[character(len=256) :: &
 '         22', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  MAX(3), MAXLOC(3)', &
@@ -11798,8 +11914,8 @@ textblock=[character(len=256) :: &
 '            mask** : Shall be of type _logical_.', &
 '', &
 'CHARACTERISTICS', &
-'  TSOURCE May be of any type, including user-defined.  FSOURCE Shall be of the', &
-'  same type and type parameters as TSOURCE.  The result will by of the same', &
+'  TSOURCE May be of any type, including user-defined. FSOURCE Shall be of the', &
+'  same type and type parameters as TSOURCE. The result will by of the same', &
 '  type and type parameters as TSOURCE too.', &
 '', &
 'DESCRIPTION', &
@@ -11926,7 +12042,7 @@ textblock=[character(len=256) :: &
 '            1   2   3', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  PACK(3), UNPACK(3), PACK(3), SPREAD(3), UNPACK(3)', &
@@ -12048,7 +12164,10 @@ textblock=[character(len=256) :: &
 '  =>1111111111111111 3767 3751 5877 3767 3767 5877', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -12108,7 +12227,7 @@ textblock=[character(len=256) :: &
 '            -100.0000000', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
 '  MAX(3), MINLOC(3), MINVAL(3)', &
@@ -12171,7 +12290,7 @@ textblock=[character(len=256) :: &
 '      104', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  DIGITS(3), EPSILON(3), EXPONENT(3), FRACTION(3), HUGE(3), MAXEXPONENT(3),', &
@@ -12275,7 +12394,7 @@ textblock=[character(len=256) :: &
 '    5 4       3 7', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  MIN(3), MINVAL(3)', &
@@ -12438,7 +12557,7 @@ textblock=[character(len=256) :: &
 '         shape of answer is  3 2', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  MIN(3), MINLOC(3)', &
@@ -12518,7 +12637,7 @@ textblock=[character(len=256) :: &
 '     1.0000000000000000 1.0000000000000000', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
 '  MODULO(3)', &
@@ -12594,7 +12713,7 @@ textblock=[character(len=256) :: &
 '    1.00000000 1 4.50000000 -1 -4.50000000', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  MOD(3)', &
@@ -12669,7 +12788,7 @@ textblock=[character(len=256) :: &
 '    1.500   .000   .500   3.000   3.500', &
 '', &
 'STANDARD', &
-'  Fortran 003 and later', &
+'  Fortran 003', &
 '', &
 'SEE ALSO', &
 '  ALLOCATED(3)', &
@@ -12696,8 +12815,7 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  call mvbits(from, frompos, len, to, topos)', &
 '', &
-'CHARACTERISTICS', &
-'  elemental subroutine mvbits(from,frompos,len,to,topos)', &
+'          elemental subroutine mvbits(from,frompos,len,to,topos)', &
 '', &
 '           integer(kind=KIND),intent(in)    :: from', &
 '           integer(kind=KIND),intent(in)    :: frompos', &
@@ -12705,6 +12823,7 @@ textblock=[character(len=256) :: &
 '           integer(kind=KIND),intent(inout) :: to', &
 '           integer(kind=KIND),intent(in)    :: topos', &
 '', &
+'CHARACTERISTICS', &
 'DESCRIPTION', &
 '  MVBITS(3F) copies a bit pattern found in a range of adjacent bits in the', &
 '  integer FROM to a specified position in another integer TO (which is of the', &
@@ -12812,7 +12931,7 @@ textblock=[character(len=256) :: &
 '         1633837924                   dcba      01100001011000100110001101100100', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IAND(3),', &
@@ -12899,7 +13018,7 @@ textblock=[character(len=256) :: &
 '         42.0000038146973    41.9999961853027    .762939453125000E-05', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  DIGITS(3), EPSILON(3), EXPONENT(3), FRACTION(3), HUGE(3), MAXEXPONENT(3),', &
@@ -12980,7 +13099,10 @@ textblock=[character(len=256) :: &
 '         This is record 2.', &
 '', &
 'STANDARD', &
-'  Fortran 003 and later', &
+'  Fortran 003', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -13099,7 +13221,7 @@ textblock=[character(len=256) :: &
 '         > -9223372036854775808', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later, with KIND argument - Fortran 90 and later', &
+'  FORTRAN 77 , with KIND argument - Fortran 90', &
 '', &
 'SEE ALSO', &
 '  AINT(3), ANINT(3), INT(3), SELECTED_INT_KIND(3), CEILING(3), FLOOR(3)', &
@@ -13186,7 +13308,7 @@ textblock=[character(len=256) :: &
 '       sqrt(sum(x**2))=   16.88194', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  PRODUCT(3), SUM(3), HYPOT(3)', &
@@ -13247,7 +13369,7 @@ textblock=[character(len=256) :: &
 '         11111111111111111100101001010010 -13742', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  IAND(3), IOR(3), IEOR(3), IBITS(3), IBSET(3),', &
@@ -13369,7 +13491,7 @@ textblock=[character(len=256) :: &
 '         Two integers in S1:, 4 and 100', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  ASSOCIATED(3)', &
@@ -13393,7 +13515,7 @@ textblock=[character(len=256) :: &
 '  NUM_IMAGES(3) - [COLLECTIVE] Number of images', &
 '', &
 'SYNOPSIS', &
-'  result = num_images([])', &
+'  result = num_images()', &
 '', &
 '           integer function num_images ()', &
 '', &
@@ -13448,7 +13570,7 @@ textblock=[character(len=256) :: &
 '      end program demo_num_images', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later. With DISTANCE or FAILED argument, TS 18508 or later', &
+'  Fortran 008 . With DISTANCE or FAILED argument, TS 18508', &
 '', &
 'SEE ALSO', &
 '  THIS_IMAGE(3), IMAGE_INDEX(3)', &
@@ -13570,7 +13692,10 @@ textblock=[character(len=256) :: &
 '        > T', &
 '', &
 'STANDARD', &
-'  FORTRAN 018 and later', &
+'  FORTRAN 018', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -13679,7 +13804,7 @@ textblock=[character(len=256) :: &
 '      cat', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  UNPACK(3), MERGE(3), PACK(3), SPREAD(3), UNPACK(3)', &
@@ -13747,7 +13872,11 @@ textblock=[character(len=256) :: &
 '   T', &
 '  ### **Standard**', &
 '', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
+'', &
+'  ### **See also**', &
+'', &
+'  [****(3)](#)', &
 '', &
 '       _fortran-lang intrinsic descriptions_', &
 '', &
@@ -13820,7 +13949,7 @@ textblock=[character(len=256) :: &
 '       > 111111111111111111111111111111111111111111111111111111111111111 63', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  There are many procedures that operator or query values at the bit level:', &
@@ -13906,7 +14035,7 @@ textblock=[character(len=256) :: &
 '       >  111111111111111111111111111111111111111111111111111111111111111 1', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  There are many procedures that operator or query values at the bit level:', &
@@ -13979,7 +14108,7 @@ textblock=[character(len=256) :: &
 '    307', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  DIGITS(3), EPSILON(3), EXPONENT(3), FRACTION(3), HUGE(3), MAXEXPONENT(3),', &
@@ -14051,7 +14180,10 @@ textblock=[character(len=256) :: &
 '    0 1764', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
@@ -14281,7 +14413,7 @@ textblock=[character(len=256) :: &
 '       > [  -51200, -125000, -259200 ]', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  SUM(3), note that an element by element multiplication is done directly', &
@@ -14342,7 +14474,7 @@ textblock=[character(len=256) :: &
 '          The radix for the doubleprecision real kind is          2', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  DIGITS(3), EPSILON(3), EXPONENT(3), FRACTION(3), HUGE(3), MAXEXPONENT(3),', &
@@ -14428,7 +14560,7 @@ textblock=[character(len=256) :: &
 '    9999133 9 100005 10 10000196', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  RANDOM_SEED(3)', &
@@ -14497,7 +14629,7 @@ textblock=[character(len=256) :: &
 '           349459   344020729 -1725483289', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  RANDOM_NUMBER(3)', &
@@ -14559,7 +14691,7 @@ textblock=[character(len=256) :: &
 '    307', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  DIGITS(3), EPSILON(3), EXPONENT(3), FRACTION(3), HUGE(3), MAXEXPONENT(3),', &
@@ -14662,6 +14794,9 @@ textblock=[character(len=256) :: &
 '          you passed an array, rank= 2', &
 '', &
 'STANDARD', &
+'SEE ALSO', &
+'  ****(3)', &
+'', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                              September 30, 2022                rank(3fortran)', &
@@ -14740,10 +14875,24 @@ textblock=[character(len=256) :: &
 '       1.7976931348623157E+308  1.7976931348623157E+308  1.7976931348623157E+308', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
-'  DBLE(3), CMPLX(3), AIMAG(3), INT(3)', &
+'  o  AIMAG(3) - Imaginary part of complex number', &
+'', &
+'  o  CMPLX(3) - Complex conversion function', &
+'', &
+'  o  CONJG(3) - Complex conjugate function', &
+'', &
+'  Fortran has strong support for complex values, including many intrinsics', &
+'  that take or produce complex values in addition to algebraic and logical', &
+'  expressions:', &
+'', &
+'  ABS(3), ACOSH(3), ACOS(3), ASINH(3), ASIN(3), ATAN(3), ATANH(3), ATAN(3),', &
+'  COSH(3), COS(3), CO_SUM(3), DBLE(3), DOT_PRODUCT(3), EXP(3), INT(3),', &
+'  IS_CONTIGUOUS(3), KIND(3), LOG(3), MATMUL(3), PRECISION(3), PRODUCT(3),', &
+'  RANGE(3), RANK(3), SINH(3), SIN(3), SQRT(3), STORAGE_SIZE(3), SUM(3),', &
+'  TANH(3), TAN(3), UNPACK(3),', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
@@ -14994,7 +15143,7 @@ textblock=[character(len=256) :: &
 '  134567890134567890134567890134567890134567890134567890134567890', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  Functions that perform operations on character strings:', &
@@ -15071,7 +15220,7 @@ textblock=[character(len=256) :: &
 '  1', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  SHAPE(3)', &
@@ -15115,7 +15264,7 @@ textblock=[character(len=256) :: &
 '  equal to ABS(FRACTION(X)) * FLOAT(RADIX(X))**DIGITS(X).', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  DIGITS(3), EPSILON(3), EXPONENT(3), FRACTION(3), HUGE(3), MAXEXPONENT(3),', &
@@ -15245,7 +15394,7 @@ textblock=[character(len=256) :: &
 '          (P,R) F', &
 '', &
 'STANDARD', &
-'  Fortran 003 and later', &
+'  Fortran 003', &
 '', &
 'SEE ALSO', &
 '  EXTENDS_TYPE_OF(3)', &
@@ -15305,7 +15454,7 @@ textblock=[character(len=256) :: &
 '          0.570043862      0.570043862', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  DIGITS(3), EPSILON(3), EXPONENT(3), FRACTION(3), HUGE(3), MAXEXPONENT(3),', &
@@ -15384,7 +15533,7 @@ textblock=[character(len=256) :: &
 '    6 0', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later, with KIND argument - Fortran 003 and later', &
+'  Fortran 95 , with KIND argument - Fortran 003', &
 '', &
 'SEE ALSO', &
 '  Functions that perform operations on character strings, return lengths of', &
@@ -15480,7 +15629,10 @@ textblock=[character(len=256) :: &
 '          Hello World and Ni Hao --', &
 '', &
 'STANDARD', &
-'  Fortran 003 and later', &
+'  Fortran 003', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
@@ -15541,7 +15693,7 @@ textblock=[character(len=256) :: &
 '   T', &
 '   T', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  AINT(3), ANINT(3), INT(3), NINT(3), CEILING(3), FLOOR(3)', &
@@ -15639,7 +15791,7 @@ textblock=[character(len=256) :: &
 '      4931', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later; with RADIX - Fortran 008 and later', &
+'  Fortran 95 ; with RADIX - Fortran 008', &
 '', &
 'SEE ALSO', &
 '  PRECISION(3), RANGE(3), RADIX(3)', &
@@ -15702,7 +15854,7 @@ textblock=[character(len=256) :: &
 '            74716.7891       74716.7891', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  DIGITS(3), EPSILON(3), EXPONENT(3), FRACTION(3), HUGE(3), MAXEXPONENT(3),', &
@@ -15779,7 +15931,7 @@ textblock=[character(len=256) :: &
 '         lbound of array= -1 -1', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later; with KIND argument Fortran 003 and later', &
+'  Fortran 95 ; with KIND argument Fortran 003', &
 '', &
 'SEE ALSO', &
 '  RESHAPE(3), SIZE(3)', &
@@ -15902,7 +16054,7 @@ textblock=[character(len=256) :: &
 '       > kind= 1 shape= 2 2 size= 4', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  SHIFTL(3), SHIFTR(3), ISHFT(3), ISHFTC(3)', &
@@ -16036,7 +16188,7 @@ textblock=[character(len=256) :: &
 '      >   kind= 1 shape= 2 2 size= 4', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  SHIFTA(3), SHIFTR(3), ISHFT(3), ISHFTC(3)', &
@@ -16155,7 +16307,7 @@ textblock=[character(len=256) :: &
 '      >  kind= 1 shape= 2 2 size= 4', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  SHIFTA(3), SHIFTL(3), ISHFT(3), ISHFTC(3)', &
@@ -16241,7 +16393,10 @@ textblock=[character(len=256) :: &
 '  can I distinguish 0 from -0?', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'SEE ALSO', &
+'  ****(3)', &
+'', &
+'  FORTRAN 77', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -16357,7 +16512,7 @@ textblock=[character(len=256) :: &
 '          distance: 2886.4446 km', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
 '', &
 'SEE ALSO', &
 '  ASIN(3), COS(3), TAN(3)', &
@@ -16455,7 +16610,7 @@ textblock=[character(len=256) :: &
 '                        Infinity', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later, for a complex argument Fortran 008 or later', &
+'  Fortran 95 , for a complex argument Fortran 008', &
 '', &
 'SEE ALSO', &
 '  ASINH(3)', &
@@ -16667,7 +16822,7 @@ textblock=[character(len=256) :: &
 '          LBOUND(arr,DIM=2):           1', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later, with KIND argument - Fortran 003 and later', &
+'  Fortran 95 , with KIND argument - Fortran 003', &
 '', &
 'SEE ALSO', &
 '  SHAPE(3), [RESHAPE(3)])(RESHAPE)', &
@@ -16729,7 +16884,7 @@ textblock=[character(len=256) :: &
 '            2.2204460492503131E-016', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  DIGITS(3), EPSILON(3), EXPONENT(3), FRACTION(3), HUGE(3), MAXEXPONENT(3),', &
@@ -16852,7 +17007,7 @@ textblock=[character(len=256) :: &
 '      end program example_spread', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  MERGE(3), PACK(3), UNPACK(3)', &
@@ -16950,7 +17105,10 @@ textblock=[character(len=256) :: &
 '        1.4142135623730951    (1.27201962,0.786151350)', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later', &
+'  FORTRAN 77', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -17040,7 +17198,7 @@ textblock=[character(len=256) :: &
 '          size of integer array           32', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  C_SIZEOF(3)', &
@@ -17140,7 +17298,7 @@ textblock=[character(len=256) :: &
 '       Sum of elements in c when corresponding elements in b>0 =   30.0000000', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  intrinsics', &
@@ -17244,7 +17402,7 @@ textblock=[character(len=256) :: &
 '            M = 24*3600*18.20648193-1 = 1573039.', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  DATE_AND_TIME(3), CPU_TIME(3)', &
@@ -17306,7 +17464,7 @@ textblock=[character(len=256) :: &
 '           0.16500000000000001       0.16651386310913616', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later. For a complex argument, Fortran 008 or later.', &
+'  FORTRAN 77 . For a complex argument, Fortran 008 .', &
 '', &
 'SEE ALSO', &
 '  ATAN(3), COS(3), SIN(3)', &
@@ -17370,7 +17528,7 @@ textblock=[character(len=256) :: &
 '            2.1000000000000001       0.97045193661345386', &
 '', &
 'STANDARD', &
-'  FORTRAN 77 and later, for a complex argument Fortran 008 or later', &
+'  FORTRAN 77 , for a complex argument Fortran 008', &
 '', &
 'SEE ALSO', &
 '  ATANH(3)', &
@@ -17453,7 +17611,7 @@ textblock=[character(len=256) :: &
 '         value[1] is 1', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later. With DISTANCE argument, TS 18508 or later', &
+'  Fortran 008. With DISTANCE argument, TS 18508', &
 '', &
 'SEE ALSO', &
 '  NUM_IMAGES(3), IMAGE_INDEX(3)', &
@@ -17514,7 +17672,7 @@ textblock=[character(len=256) :: &
 '       1.7976931348623157E+308', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  DIGITS(3), EPSILON(3), EXPONENT(3), FRACTION(3), HUGE(3), MAXEXPONENT(3),', &
@@ -17631,7 +17789,7 @@ textblock=[character(len=256) :: &
 '       huge 0111111111111111111111111111111111111111111111111111111111111111', &
 '', &
 'STANDARD', &
-'  Fortran 008 and later', &
+'  Fortran 008', &
 '', &
 'SEE ALSO', &
 '  BIT_SIZE(3), POPCNT(3), POPPAR(3), LEADZ(3)', &
@@ -17757,7 +17915,10 @@ textblock=[character(len=256) :: &
 '  benefits of EQUIVALENCEs when used sparingly.', &
 '', &
 'STANDARD', &
-'  Fortran 90 and later', &
+'  Fortran 90', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
@@ -17855,7 +18016,10 @@ textblock=[character(len=256) :: &
 '          > [     5,    50, -1055 ]', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
+'', &
+'SEE ALSO', &
+'  ****(3)', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
@@ -17891,11 +18055,10 @@ textblock=[character(len=256) :: &
 '  Removes trailing blank characters from a string.', &
 '', &
 'OPTIONS', &
-'  o  STRING : A scalar string to trim trailing blanks from', &
+'  o  STRING : A string to trim', &
 '', &
 'RESULT', &
-'  The value of the result is the same as STRING except trailing blanks are', &
-'  removed.', &
+'  The result is the same as STRING except trailing blanks are removed.', &
 '', &
 '  If STRING is composed entirely of blanks or has zero length, the result has', &
 '  zero length.', &
@@ -17948,15 +18111,13 @@ textblock=[character(len=256) :: &
 '          > [] [ABC] [ a b c] [Z]', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  Functions that perform operations on character strings, return lengths of', &
 '  arguments, and search for certain arguments:', &
 '', &
-'  o  ELEMENTAL: ADJUSTL(3), ADJUSTR(3), INDEX(3),', &
-'', &
-'  SCAN(3), VERIFY(3)', &
+'  o  ELEMENTAL: ADJUSTL(3), ADJUSTR(3), INDEX(3), SCAN(3), VERIFY(3)', &
 '', &
 '  o  NONELEMENTAL: LEN_TRIM(3), LEN(3), REPEAT(3), TRIM(3)', &
 '', &
@@ -18087,7 +18248,7 @@ textblock=[character(len=256) :: &
 '        ESUB: LOWER=           1 UPPER=          21 SIZE=          21', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later, with KIND argument Fortran 003 and later', &
+'  Fortran 95 , with KIND argument Fortran 003', &
 '', &
 'SEE ALSO', &
 '  LBOUND(3), CO_UBOUND(3), [CO_LBOUND(3)(co_lbound)]', &
@@ -18241,7 +18402,7 @@ textblock=[character(len=256) :: &
 '         >  [  2,  0,  4 ]', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later', &
+'  Fortran 95', &
 '', &
 'SEE ALSO', &
 '  MERGE(3), PACK(3), SPREAD(3)', &
@@ -18592,7 +18753,7 @@ textblock=[character(len=256) :: &
 '          > 1 2 1', &
 '', &
 'STANDARD', &
-'  Fortran 95 and later, with KIND argument - Fortran 003 and later', &
+'  Fortran 95 , with KIND argument - Fortran 003', &
 '', &
 'SEE ALSO', &
 '  Functions that perform operations on character strings, return lengths of', &
@@ -39064,26 +39225,28 @@ end module M_escape
 !>>>>> app/fpm-man.f90
 program fman
 use M_intrinsics, only : help_intrinsics
-use M_CLI2,       only : set_args, sget, lget, topics=>unnamed
+use M_CLI2,       only : set_args, sget, lget, specified, topics=>unnamed
 use M_match,      only : getpat, match, regex_pattern
 use M_match,      only : YES, ERR
 use M_strings,    only : lower, indent, atleast
 use M_escape,     only : esc
 implicit none
-type(regex_pattern)          :: p
+type(regex_pattern)          :: p, start_p, end_p
 character(len=:),allocatable :: help_text(:), version_text(:)
 character(len=256),allocatable :: manual(:),section(:)
-character(len=:),allocatable :: regex
+character(len=:),allocatable :: regex, start, end
 character(len=:),allocatable :: query
 integer                      :: i, j, k
 logical                      :: topic
 logical                      :: prefix, ignorecase, demo, color
-integer                      :: start_keep, end_keep
     ! process command line
     call setup()
-    call set_args(' --regex:e " " --ignorecase:i F --topic_only:t F --demo:d F --color:c -query:Q " "',&
+    call set_args(' --regex:e " " --ignorecase:i F --topic_only:t F --demo:d F --color:c -query:Q " " &
+    & -start:S " " -end:E "^[A-Z][A-Z_ ]*$" --prefixoff:O F',&
     & help_text,version_text)
     regex=sget('regex')
+    start=sget('start')
+    end=sget('end')
     topic=lget('topic_only')
     ignorecase=lget('ignorecase')
     demo=lget('demo')
@@ -39103,9 +39266,8 @@ integer                      :: start_keep, end_keep
     ! Also, if doing a regular expression and not the single topic "toc"
     ! add a section prefix when building manual
 
-
     ! initially assume prefixing is off unless a regular expression is used
-    if(regex.ne.' ')then
+    if(regex.ne.' '.or.start.ne.' ')then
        prefix=.true.
     else
        prefix=.false.
@@ -39122,9 +39284,21 @@ integer                      :: start_keep, end_keep
        ignorecase=.true.
     endif
 
+    if(specified('prefixoff'))then
+       prefix=.not.lget('prefixoff')
+    endif
+
     if(regex.ne.' ')then
        if (getpat(merge(lower(regex),regex,ignorecase), p%pat) .eq. ERR) then
-          stop '*fman* Illegal pattern.'
+          stop '*fman* Illegal regex pattern.'
+       endif
+    endif
+    if(start.ne.' ')then
+       if (getpat(merge(lower(start),start,ignorecase), start_p%pat) .eq. ERR) then
+          stop '*fman* Illegal start pattern.'
+       endif
+       if (getpat(merge(lower(end),end,ignorecase), end_p%pat) .eq. ERR) then
+          stop '*fman* Illegal end pattern.'
        endif
     endif
 
@@ -39136,6 +39310,8 @@ integer                      :: start_keep, end_keep
        write(*,'(*(g0:,1x))')'<INFO>PREFIX      ',prefix
        write(*,'(*(g0:,1x))')'<INFO>DEMO        ',demo
        write(*,'(*(g0:,1x))')'<INFO>TOPICS      ',topics
+       write(*,'(*(g0:,1x))')'<INFO>START       ',start
+       write(*,'(*(g0:,1x))')'<INFO>END         ',end
     endif
     ! build text to display or search
     manual=[character(len=0) ::]
@@ -39146,6 +39322,9 @@ integer                      :: start_keep, end_keep
        ! extract demo program if found (has to follow specific format)
        if(demo)then
           call find_demo()
+       endif
+       if(start /= '' )then
+          call find_start()
        endif
 
        manual = [character(len=max(len(manual),len(section))) :: manual,section]
@@ -39178,9 +39357,11 @@ integer                      :: start_keep, end_keep
        enddo
     endif
 contains
+
 subroutine find_demo()
 character(len=256),allocatable :: newsection(:)
-integer :: ii,jj,kk
+integer                        :: ii,jj,kk
+integer                        :: start_keep, end_keep
    if(allocated(newsection)) deallocate(newsection)
    allocate(newsection(0))
    if(demo)then
@@ -39214,6 +39395,52 @@ integer :: ii,jj,kk
        deallocate(newsection)
     endif
 end subroutine find_demo
+
+subroutine find_start()
+character(len=256),allocatable :: newsection(:)
+integer                        :: ii,jj,kk,ic
+integer                        :: start_keep, end_keep
+   if(size(section).eq.0)return
+   if(allocated(newsection)) deallocate(newsection)
+   allocate(newsection(0))
+   if(specified('start'))then
+      start_keep=0
+      end_keep=0
+      jj=0
+      do
+         jj=jj+1
+         if(prefix)then
+            ic=index(section(jj),':')+1
+         else
+            ic=1
+         endif
+         if(jj.gt.size(section))exit
+         if(match(trim(section(jj)(ic:))//char(10), start_p%pat) .eq. YES) then
+            start_keep=jj
+            do kk=start_keep+1,size(section)
+               if(kk.gt.size(section))exit
+               if (match(trim(section(kk)(ic:))//char(10), end_p%pat) .eq. YES) then
+                  end_keep=kk-1
+                  if(start_keep.gt.0 .and. end_keep .gt. 0)then
+                     newsection=[character(len=max(len(newsection),len(section))) :: newsection,section(start_keep:end_keep)]
+                     jj=kk+1
+                  endif
+                  exit
+               endif
+            enddo
+         endif
+         if(jj.ge.size(section))exit
+      enddo
+    endif
+    if(size(newsection).eq.0)then
+       write(*,*)'!<ERROR> *fman* standard start code format not found for ',trim(topics(i))
+       section=['']
+    else
+       section=newsection
+       deallocate(newsection)
+    endif
+end subroutine find_start
+
 function crayons(oldblock) result(newblock)
 ! just playing. There is a lot of stuff not done robustly here
 character(len=256),intent(in),allocatable :: oldblock(:)
@@ -39288,10 +39515,10 @@ help_text=[ CHARACTER(LEN=128) :: &
 '                    The default is "toc" and to ignore case.',&
 '  --regex,-e        Search all output per the provided Regular Expression.',&
 '                    Output is prefixed with the topic it was found in.',&
-'  --itopic_only,-t  Only show topic names. Other switches are ignored.',&
+'  --topic_only,-t   Only show topic names. Other switches are ignored.',&
 '  --ignorecase,-i   Ignore case when searching for a Regular Expression.',&
 '  --demo,-d         extract first demo program found for a topic (starting with',&
-'                    "program demo_" and ending with "end program demo_").',&
+'                    "program demo_*" and ending with "end program demo_*").',&
 '  --color           Use ANSI in-line escape sequences to display the text in',&
 '                    set colors. Does not work with all terminal emulators or',&
 '                    terminals. Must use the -r switch with less(1) for less(1)',&
@@ -39327,6 +39554,7 @@ version_text=[ CHARACTER(LEN=128) :: &
 '']
 
 end subroutine setup
+
 end program fman
 ! kludge1: older versions of gfortran do not handle character arrays with both line and size allocatable
  

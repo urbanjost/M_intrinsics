@@ -46,7 +46,7 @@ Sample program:
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 

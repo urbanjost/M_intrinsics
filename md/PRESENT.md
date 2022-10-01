@@ -37,7 +37,6 @@ or _.false._ otherwise.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_present
 implicit none
@@ -55,15 +54,18 @@ end function
 
 end program demo_present
 ```
-
 Results:
 
 ```text
      0        1764
 ```
-
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
+
+### **See also**
+
+[****(3)](#)
+
 
  _fortran-lang intrinsic descriptions_

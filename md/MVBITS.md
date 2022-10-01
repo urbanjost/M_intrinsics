@@ -8,8 +8,6 @@
 ```fortran
 call mvbits(from, frompos, len, to, topos)
 ```
-### **Characteristics**
-
 ```fortran
     elemental subroutine mvbits(from,frompos,len,to,topos)
 
@@ -19,6 +17,8 @@ call mvbits(from, frompos, len, to, topos)
      integer(kind=KIND),intent(inout) :: to
      integer(kind=KIND),intent(in)    :: topos
 ```
+### **Characteristics**
+
 ### **Description**
 
 **mvbits(3f)** copies a bit pattern found in a range of adjacent bits in
@@ -142,7 +142,7 @@ character(len=*),parameter :: fmt= '(g0,t30,a,t40,b32.32)'
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 

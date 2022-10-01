@@ -59,7 +59,7 @@ end program demo_c_funloc
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 

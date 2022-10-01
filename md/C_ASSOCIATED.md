@@ -55,7 +55,7 @@ end program demo_c_associated
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 

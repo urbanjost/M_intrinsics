@@ -22,7 +22,7 @@ where **x,y** and the result shall all be of the same **kind**.
 ### **Description**
 
 **hypot(x,y)** is referred to as the Euclidean distance function. It is
-equal to 
+equal to
 ```fortran
 sqrt(x**2+y**2)
 ```
@@ -101,9 +101,12 @@ Results:
    the closest is
       +1.03077638
 ```
-
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

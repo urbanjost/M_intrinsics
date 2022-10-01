@@ -228,7 +228,7 @@ dim=3 :( 2 3 )
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 

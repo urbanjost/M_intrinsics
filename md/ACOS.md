@@ -65,7 +65,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later; for a _complex_ argument - Fortran 2008 and later
+FORTRAN 77 ; for a _complex_ argument - Fortran 2008
 
 ### **See Also**
 Inverse function: [**cos**(3)](cos)

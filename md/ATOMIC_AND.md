@@ -51,7 +51,7 @@ end program demo_atomic_and
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 

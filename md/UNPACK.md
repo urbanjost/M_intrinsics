@@ -152,7 +152,7 @@ end program demo_unpack
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 

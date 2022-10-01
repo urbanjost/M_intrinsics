@@ -53,6 +53,9 @@ integer :: val(3)
    print *, this_image(), ":", val
 end program demo_co_broadcast
 ```
+### **Standard**
+
+Fortran xx
 
 ### **See Also**
 

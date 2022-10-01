@@ -70,7 +70,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later; with KIND argument Fortran 2003 and later
+Fortran 95 ; with KIND argument Fortran 2003
 
 ### **See Also**
 

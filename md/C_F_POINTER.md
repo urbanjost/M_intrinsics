@@ -53,7 +53,7 @@ end program demo_c_f_pointer
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 

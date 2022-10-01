@@ -18,8 +18,8 @@
 ```
 ### **Characteristics**
 
-  **tsource** May be of any type, including user-defined.  
-  **fsource** Shall be of the same type and type parameters as **tsource**.  
+  **tsource** May be of any type, including user-defined.
+  **fsource** Shall be of the same type and type parameters as **tsource**.
   The result will by of the same type and type parameters as **tsource** too.
 
 ### **Description**
@@ -163,7 +163,7 @@ Expected Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 

@@ -24,7 +24,7 @@
 
 ### **Description**
 
-copies the bitwise representation of **source** in memory into 
+copies the bitwise representation of **source** in memory into
 a variable or array of the same type and type parameters as **mold**.
 
 This is approximately equivalent to the C concept of "casting" one
@@ -120,6 +120,10 @@ oblivious to the benefits of EQUIVALENCEs when used sparingly.
 
 ### **Standard**
 
-Fortran 90 and later
+Fortran 90
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_

@@ -36,7 +36,7 @@
 ### **Options**
 
 - **atom**
-  : Scalar coarray or coindexed variable to atomically assign the 
+  : Scalar coarray or coindexed variable to atomically assign the
   value **value** to.
   kind.
 
@@ -66,7 +66,7 @@ end program demo_atomic_define
 
 ### **Standard**
 
-Fortran 2008 and later; with **stat**, TS 18508 or later
+Fortran 2008 ; with **stat**, TS 18508
 
 ### **See Also**
 

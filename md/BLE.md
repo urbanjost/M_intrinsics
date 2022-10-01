@@ -22,8 +22,6 @@
   BOZ constant with a value valid for the _integer_ kind available with
   the most bits on the current platform.
 
-### **Synopsis**
-
 ### **Description**
 
 Determines whether an integer is bitwise less than or equal to another.
@@ -75,7 +73,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 

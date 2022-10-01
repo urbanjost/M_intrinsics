@@ -350,7 +350,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later, with **kind** argument - Fortran 2003 and later
+Fortran 95 , with **kind** argument - Fortran 2003
 
 ### **See Also**
 

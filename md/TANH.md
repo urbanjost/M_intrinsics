@@ -55,7 +55,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later, for a complex argument Fortran 2008 or later
+FORTRAN 77 , for a complex argument Fortran 2008
 
 ### **See Also**
 

@@ -46,15 +46,18 @@ real(kind(0.0d0)) :: x = 0.17d0
    print *, x
 end program demo_erfc_scaled
 ```
-
 Results:
 
 ```text
      0.83375830214998126
 ```
-
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
+
+### **See also**
+
+[**erf**(3)](#erf)
+[**erfc**(3)](#erfc)
 
  _fortran-lang intrinsic descriptions_

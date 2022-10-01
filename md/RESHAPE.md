@@ -61,18 +61,15 @@ real,allocatable :: v(:)
     write(*,*)shape(v),ubound(v)
 end program demo_reshape
 ```
-
 Results:
-
 ```text
               4
               2           2
              12          12
 ```
-
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 

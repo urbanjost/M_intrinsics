@@ -51,9 +51,12 @@ integer :: cnt
    endif
 end program demo_event_query
 ```
-
 ### **Standard**
 
-TS 18508 or later
+TS 18508
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_

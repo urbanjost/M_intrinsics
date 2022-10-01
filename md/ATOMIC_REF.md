@@ -58,7 +58,7 @@ end program demo_atomic_ref
 
 ### **Standard**
 
-Fortran 2008 and later; with STAT, TS 18508 or later
+Fortran 2008 ; with STAT, TS 18508
 
 ### **See Also**
 

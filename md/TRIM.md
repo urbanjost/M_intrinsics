@@ -25,12 +25,11 @@
 ### **Options**
 
 - **string**
-  : A scalar string to trim trailing blanks from
+  : A string to trim
 
 ### **Result**
 
-  The value of the result is the same as **string** except trailing
-  blanks are removed.
+  The result is the same as **string** except trailing blanks are removed.
 
   If **string** is composed entirely of blanks or has zero length,
   the result has zero length.
@@ -86,7 +85,7 @@ end program demo_trim
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -97,9 +96,8 @@ of arguments, and search for certain arguments:
   [**adjustl**(3)](#adjustl),
   [**adjustr**(3)](#adjustr),
   [**index**(3)](#index),
-
-[**scan**(3)](#scan),
-[**verify**(3)](#verify)
+  [**scan**(3)](#scan),
+  [**verify**(3)](#verify)
 
 - **Nonelemental:**
   [**len_trim**(3)](#len_trim),

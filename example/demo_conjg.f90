@@ -4,16 +4,15 @@
       implicit none
       complex :: z = (2.0, 3.0)
       complex(kind=real64) :: dz = (   &
-         &  1.2345678901234567_real64, &
-         & -1.2345678901234567_real64)
+         &  1.2345678901234567_real64, -1.2345678901234567_real64)
       complex :: arr(3,3)
       integer :: i
+         ! basics
+          ! notice the sine of the imaginary component changes
+          print *, z, conjg(z)
 
-          print *, z
-          z= conjg(z)
-          print *, z
-          print *
-
+          ! any complex kind is supported. z is of default kind but
+          ! dz is kind=real64.
           print *, dz
           dz = conjg(dz)
           print *, dz

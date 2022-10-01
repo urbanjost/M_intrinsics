@@ -67,10 +67,9 @@ Results:
 ```text
    Processor Time =  0.000 seconds.
 ```
-
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 

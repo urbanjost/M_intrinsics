@@ -62,7 +62,7 @@ end program demo_atomic_add
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 

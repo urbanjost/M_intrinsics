@@ -15,13 +15,17 @@
 ### **Description**
 
 co_sum sums up the values of each element of **a** on all images of the
-current team. If result_image is present, the summed-up values are
-returned in **a** on the specified image only and the value of **a** on the
-other images become undefined. If result_image is not present, the
-value is returned on all images. If the execution was successful and
-**stat** is present, it is assigned the value zero. If the execution failed,
-**stat** gets assigned a nonzero value and, if present, **errmsg** gets assigned
-a value describing the occurred error.
+current team.
+
+If result_image is present, the summed-up values are returned in **a**
+on the specified image only and the value of **a** on the other images
+become undefined.
+
+If result_image is not present, the value is returned on all images. If
+the execution was successful and **stat** is present, it is assigned the
+value zero. If the execution failed, **stat** gets assigned a nonzero
+value and, if present, **errmsg** gets assigned a value describing the
+occurred error.
 
 ### **Options**
 
@@ -65,7 +69,7 @@ Results:
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 

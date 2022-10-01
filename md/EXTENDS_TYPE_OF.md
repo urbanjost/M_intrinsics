@@ -40,7 +40,7 @@ to an object extensible type.
     undeﬁned association status.
 
 ### **Result**
-    
+
 
 
   If **mold** is unlimited polymorphic and is either a disassociated
@@ -102,14 +102,14 @@ Sample program:
    write(*,*)extends_type_of(me,grandpa),'I am descended from Grandpa'
    write(*,*)extends_type_of(dad,grandpa),'Dad is descended from Grandpa'
    write(*,*)extends_type_of(me,dad),'Dad is my ancestor'
-   
+
    write(*,*)'is an object an extension of itself?'
    write(*,*)extends_type_of(grandpa,grandpa) ,'self-propogating!'
    write(*,*)extends_type_of(dad,dad) ,'clone!'
-   
+
    write(*,*)' you did not father your grandfather'
    write(*,*)extends_type_of(grandpa,dad),'no paradox here'
-   
+
    write(*,*)extends_type_of(dad,me),'no paradox here'
    write(*,*)extends_type_of(grandpa,me),'no relation whatsoever'
    write(*,*)extends_type_of(grandpa,alien),'no relation'
@@ -155,11 +155,11 @@ Results:
     (Q,P) T
 ```
 ### **Standard**
- 
+
    Fortran 2003
- 
+
 ### **See Also**
- 
+
 [**same_type_as**(3)](#same_type_as)
- 
+
   _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

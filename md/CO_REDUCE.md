@@ -92,7 +92,7 @@ type as a result.
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 

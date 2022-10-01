@@ -73,8 +73,8 @@ Expected Results:
 
 ### **Standard**
 
-FORTRAN 77 and later, with KIND argument Fortran 2003
-and later
+FORTRAN 77 , with KIND argument Fortran 2003
+
 
 ### **See Also**
 

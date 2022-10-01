@@ -68,11 +68,12 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
-### See also
+### ***See also**
 
 [**erf**(3)](#erf)
+[**erf_scaled**(3)](#erf_scaled)
 
 ### **Resources**
 

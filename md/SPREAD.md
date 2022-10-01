@@ -116,7 +116,7 @@ end program example_spread
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 

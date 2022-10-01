@@ -63,7 +63,7 @@ integer :: i
    write(*,*)string(:i),string(:i),string(:i)
    !
   ! elemental example
-   ELE:block 
+   ELE:block
    ! an array of strings may be used
    character(len=:),allocatable :: tablet(:)
    tablet=[character(len=256) :: &
@@ -78,10 +78,10 @@ end program demo_len_trim
 ```
   Results:
 ```text
-     how long is this string?     
+     how long is this string?
     UNTRIMMED LENGTH=          30
     TRIMMED LENGTH=          25
-    xxxxx   xxxxx   xxxxx   
+    xxxxx   xxxxx   xxxxx
     xxxxxxxxxxxxxxx
     UNTRIMMED LENGTH=           256
     TRIMMED LENGTH=              25          13
@@ -89,7 +89,7 @@ end program demo_len_trim
 ```
 ### **Standard**
 
-Fortran 95 and later. **kind** argument added with Fortran 2003.
+Fortran 95 . **kind** argument added with Fortran 2003.
 
 ### **See Also**
 

@@ -16,7 +16,7 @@
 ### **Characteristics**
 
 The result is of the same _type_ and _kind_ as **x**.
- 
+
 ### **Description**
 
 **erf**(x) computes the error function of **x**, defined as
@@ -57,11 +57,12 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
-### See also
+### **See also**
 
-[**erfc**(3)](#erfc)
+[**erfc**(3)](#erfc),
+[**erf_scaled**(3)](#erfc_scaled)
 
 ### **Resources**
 

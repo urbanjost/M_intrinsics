@@ -62,9 +62,7 @@ real(kind=real64) :: x
 
 end program demo_dim
 ```
-
 Results:
-
 ```text
               0
       3.21000000000000
@@ -72,9 +70,12 @@ Results:
               0           0           2
               0           0          10
 ```
-
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
+
+### **See Also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

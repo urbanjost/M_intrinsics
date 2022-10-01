@@ -55,7 +55,7 @@ end program demo_atomic_fetch_add
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 

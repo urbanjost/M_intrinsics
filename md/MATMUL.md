@@ -215,7 +215,7 @@ end program demo_matmul
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 

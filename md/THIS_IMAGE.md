@@ -56,7 +56,6 @@ present, a scalar is returned, with the value of the **dim** element of
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_this_image
 implicit none
@@ -71,17 +70,14 @@ integer :: i
    endif
 end program demo_this_image
 ```
-
 Results:
 
 ```text
    value[1] is 1
 ```
-
 ### **Standard**
 
-Fortran 2008 and later. With DISTANCE argument, TS 18508
-or later
+Fortran 2008. With DISTANCE argument, TS 18508
 
 ### **See Also**
 

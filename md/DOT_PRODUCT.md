@@ -69,9 +69,7 @@ implicit none
     print *, dot_product(a,b)
 end program demo_dot_prod
 ```
-
 Results:
-
 ```text
      1  2  3
 
@@ -79,9 +77,12 @@ Results:
 
              32
 ```
-
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
+
+### **See Also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_

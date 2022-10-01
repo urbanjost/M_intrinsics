@@ -46,7 +46,7 @@ The return value is of type _integer_ and of the same kind as **i**.
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 

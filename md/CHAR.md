@@ -60,7 +60,7 @@ values and formatted string representations.
 
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 

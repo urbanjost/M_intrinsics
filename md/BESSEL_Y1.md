@@ -47,7 +47,7 @@ end program demo_bessel_y1
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 

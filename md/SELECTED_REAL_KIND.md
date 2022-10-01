@@ -97,7 +97,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later; with RADIX - Fortran 2008 and later
+Fortran 95 ; with RADIX - Fortran 2008
 
 ### **See Also**
 

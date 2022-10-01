@@ -83,7 +83,7 @@ Sample program:
    write(*,*)same_type_as(me,dad),'I am descended from Dad, but equal?'
    write(*,*)same_type_as(me,me) ,'I am what I am'
    write(*,*)same_type_as(dad,mom) ,'what a pair!'
-   
+
    write(*,*)same_type_as(dad,me),'no paradox here'
    write(*,*)same_type_as(dad,alien),'no relation'
 
@@ -119,7 +119,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 

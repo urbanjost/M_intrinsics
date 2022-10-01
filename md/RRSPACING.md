@@ -33,7 +33,7 @@ is equal to **abs(fraction(x)) \* float(radix(x))\*\*digits(x)**.
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 

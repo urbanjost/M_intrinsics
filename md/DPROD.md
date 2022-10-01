@@ -76,7 +76,7 @@ real(kind=dp)   :: dd
 
    print *'test an expected result is produced'
    xx=-6.0d0
-   write(*,*)DPROD(-3.0, 2.0),xx 
+   write(*,*)DPROD(-3.0, 2.0),xx
    write(*,*)merge('PASSED','FAILED',DPROD(-3.0, 2.0) == xx)
 
    print *,'elemental'
@@ -90,17 +90,21 @@ Results:
 ```text
     algebraically 5.2 x 2.3 is exactly 11.96
     as floating point values results may differ slightly:
-    compare dprod(xy)=   11.959999313354501      to x*y=   11.9599991   
-    to dble(x)*dble(y)=   11.959999313354501     
+    compare dprod(xy)=   11.959999313354501      to x*y=   11.9599991
+    to dble(x)*dble(y)=   11.959999313354501
     test an expected result is produced
-     -6.0000000000000000       -6.0000000000000000     
+     -6.0000000000000000       -6.0000000000000000
     PASSED
     elemental
-      22.999999523162842        34.000000953674316        45.000000000000000     
-      22.539999971389761        25.840000400543204        24.300000429153442     
+      22.999999523162842        34.000000953674316        45.000000000000000
+      22.539999971389761        25.840000400543204        24.300000429153442
 ```
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
+
+### **See Also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

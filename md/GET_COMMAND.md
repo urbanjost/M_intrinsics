@@ -6,10 +6,10 @@
 
 ### **Synopsis**
 ```fortran
-    call get_command(command, length, status)
+    call get_command([command] [,length] [,status])
 ```
 ```fortran
-     subroutine get_command( [command] [,length] [,status] )
+     subroutine get_command( command ,length ,status )
 
      character(len=*),intent(out),optional :: command
      integer,intent(out),optional :: length
@@ -65,9 +65,7 @@ character(len=:),allocatable :: COMMAND_LINE
    write(*,'("OUTPUT:",a)')COMMAND_LINE
 end program demo_get_command
 ```
-
 Results:
-
 ```bash
      # note that shell expansion removes some of the whitespace
      # without quotes
@@ -80,10 +78,9 @@ Results:
 
      OUTPUT:./test_get_command arguments  *><`~[]!{}?"'|
 ```
-
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 

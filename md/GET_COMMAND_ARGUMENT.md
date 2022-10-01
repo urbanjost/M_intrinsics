@@ -6,10 +6,10 @@
 
 ### **Synopsis**
 ```fortran
-  call get_command_argument(number, value, length, status)
+  call get_command_argument(number [,value] [,length] [,status])
 ```
 ```fortran
-   subroutine get_command_argument(number[,value][,length][.status])
+   subroutine get_command_argument( number, value, length, status )
 
     integer,intent(in)                    :: number
     character(len=*),intent(out),optional :: value
@@ -125,7 +125,7 @@ Results:
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 

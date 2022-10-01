@@ -106,16 +106,18 @@ real, DIMENSION (:, :), POINTER       :: IN, OUT
    !
 end program demo_is_contiguous
 ```
-
 Results:
 
 ```text
     IN is  T
     OUT is  F
 ```
-
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_

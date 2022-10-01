@@ -16,7 +16,7 @@
 ### **Characteristics**
 
 where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type. 
+by the associated type.
 
 The returned value will be of the same type and kind as
 the argument.
@@ -86,7 +86,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later, for a complex argument Fortran 2008 or later
+Fortran 95 , for a complex argument Fortran 2008
 
 ### **See Also**
 

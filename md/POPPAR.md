@@ -16,7 +16,7 @@
 ### **Characteristics**
 
 - **i** is an _integer_ of any kind
-- the return value is a default kind _integer_ 
+- the return value is a default kind _integer_
 
 ### **Description**
 
@@ -68,7 +68,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 

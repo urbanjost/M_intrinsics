@@ -116,7 +116,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later, with KIND argument - Fortran 90 and later
+FORTRAN 77 , with KIND argument - Fortran 90
 
 ### **See Also**
 

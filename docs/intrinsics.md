@@ -118,7 +118,7 @@ Result:
 ```
 ### **Standard**
 
-   FORTRAN 77 and later
+   FORTRAN 77
 
 ### **See Also**
 
@@ -282,7 +282,7 @@ The ADEs (ASCII Decimal Equivalents) for ASCII are
 ```
 ### **Standard**
 
-FORTRAN 77 and later, with KIND argument Fortran 2003 and later
+FORTRAN 77 , with KIND argument Fortran 2003
 
 ### **See Also**
 
@@ -353,7 +353,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 Inverse function: [**cosh**(3)](#cosh)
@@ -430,7 +430,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later; for a _complex_ argument - Fortran 2008 and later
+FORTRAN 77 ; for a _complex_ argument - Fortran 2008
 
 ### **See Also**
 Inverse function: [**cos**(3)](cos)
@@ -505,7 +505,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -589,7 +589,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -614,9 +614,15 @@ Fortran 95 and later
 ```
 ### **Characteristics**
 
+The type of the argument **z** shall be _complex_ and any supported
+_complex_ kind
+
+The return value is of type _real_ with the kind type parameter of
+the argument.
+
 ### **Description**
 
-**aimag(z)** yields the imaginary part of complex argument **z**.
+**aimag(z)** yields the imaginary part of the complex argument **z**.
 
 This is similar to the modern complex-part-designator **%IM** which also
 designates the imaginary part of a value, accept a designator can appear
@@ -625,12 +631,15 @@ on the left-hand side of an assignment as well, as in **val%im=10.0**.
 ### **Options**
 
 - **z**
-  : The type of the argument shall be _complex_.
+  : The _complex_ value to extract the _imaginary component of.
 
 ### **Result**
 
-The return value is of type _real_ with the kind type parameter of the
-argument.
+The return value is a _real_ value with the magnitude and sign of the
+imaginary component of the argument **z**.
+
+That is, If **z** has the value **(x,y)**, the result has the value
+**y**.
 
 ### **Examples**
 
@@ -641,37 +650,86 @@ program demo_aimag
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
  & real32, real64, real128
 implicit none
-complex(kind=real32) z4
-complex(kind=real64) z8
+character(len=*),parameter :: g='(*(1x,g0))'
+complex              :: z4
+complex(kind=real64) :: z8
+   ! basics
     z4 = cmplx(1.e0, 2.e0)
+    print *, 'value=',z4
+    print g, 'imaginary part=',aimag(z4),'or', z4%im
+
+    ! other kinds other than the default may be supported
     z8 = cmplx(3.e0_real64, 4.e0_real64,kind=real64)
-    print *, aimag(z4), aimag(z8)
+    print *, 'value=',z8
+    print g, 'imaginary part=',aimag(z8),'or', z8%im
+
     ! an elemental function can be passed an array
     print *
     print *, [z4,z4/2.0,z4+z4,z4**3]
     print *
     print *, aimag([z4,z4/2.0,z4+z4,z4**3])
+
 end program demo_aimag
 ```
-Results:
+  Results:
 ```text
-  2.000000       4.00000000000000
+ value= (1.00000000,2.00000000)
+ imaginary part= 2.00000000 or 2.00000000
+ value= (3.0000000000000000,4.0000000000000000)
+ imaginary part= 4.0000000000000000 or 4.0000000000000000
 
- (1.000000,2.000000) (0.5000000,1.000000) (2.000000,4.000000)
- (-11.00000,-2.000000)
+ (1.00000000,2.00000000) (0.500000000,1.00000000) (2.00000000,4.00000000)
+ (-11.0000000,-2.00000000)
 
-       2.000000       1.000000       4.000000      -2.000000
+   2.00000000       1.00000000       4.00000000      -2.00000000
 ```
-### **See Also**
-
-[**real**(3)](#real),
-[**cmplx**(3)](#cmplx)
-
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
- _fortran-lang intrinsic descriptions_
+### **See Also**
+
+- [**cmplx**(3)](#cmplx) - Complex conversion function
+- [**conjg**(3)](#conjg) - Complex conjugate function
+- [**real**(3)](#real) - Convert to real type
+
+Fortran has strong support for _complex_ values, including many intrinsics
+that take or produce _complex_ values in addition to algebraic and
+logical expressions:
+
+[**abs**(3)](#abs),
+[**acosh**(3)](#acosh),
+[**acos**(3)](#acos),
+[**asinh**(3)](#asinh),
+[**asin**(3)](#asin),
+[**atan2**(3)](#atan2),
+[**atanh**(3)](#atanh),
+[**atan**(3)](#atan),
+[**cosh**(3)](#cosh),
+[**cos**(3)](#cos),
+[**co_sum**(3)](#co_sum),
+[**dble**(3)](#dble),
+[**dot_product**(3)](#dot_product),
+[**exp**(3)](#exp),
+[**int**(3)](#int),
+[**is_contiguous**(3)](#is_contiguous),
+[**kind**(3)](#kind),
+[**log**(3)](#log),
+[**matmul**(3)](#matmul),
+[**precision**(3)](#precision),
+[**product**(3)](#product),
+[**range**(3)](#range),
+[**rank**(3)](#rank),
+[**sinh**(3)](#sinh),
+[**sin**(3)](#sin),
+[**sqrt**(3)](#sqrt),
+[**storage_size**(3)](#storage_size),
+[**sum**(3)](#sum),
+[**tanh**(3)](#tanh),
+[**tan**(3)](#tan),
+[**unpack**(3)](#unpack),
+
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## aint
 
@@ -755,7 +813,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -877,11 +935,13 @@ end program demo_all
     compare columns: T F T
     compare rows: T F
 ```
-### **See Also**
-[**any**(3)](#any)
-
 ### **Standard**
-Fortran 95 and later
+
+Fortran 95
+
+### **See Also**
+
+[**any**(3)](#any)
 
  _fortran-lang intrinsic descriptions_
 
@@ -972,8 +1032,8 @@ Results:
 ```
 ### **Standard**
 
-  Fortran 95 and later. Note, the scalar= keyword and allocatable
-  scalar entities are available in Fortran 2003 and later.
+  Fortran 95 . Note, the scalar= keyword and allocatable
+  scalar entities are available in Fortran 2003 .
 
 ### **See Also**
 
@@ -1062,7 +1122,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -1151,12 +1211,14 @@ Results:
     T T T
     T T
 ```
-### **See Also**
-[**any**(3)](#all)
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
+
+### **See Also**
+
+[**all**(3)](#all)
 
  _fortran-lang intrinsic descriptions_
 
@@ -1215,7 +1277,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -1322,7 +1384,7 @@ train reducing the allowable grade.
 
 ### **Standard**
 
-FORTRAN 77 and later, for a complex argument Fortran 2008 or later
+FORTRAN 77 , for a _complex_ argument Fortran 2008
 
 ### **See Also**
 
@@ -1435,7 +1497,7 @@ end program demo_associated
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -1608,7 +1670,7 @@ end program demo_atan2
 ```
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -1674,7 +1736,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -1765,8 +1827,8 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later for a complex argument; and for two
-arguments Fortran 2008 or later
+FORTRAN 77  for a complex argument; and for two
+arguments Fortran 2008
 
 ### **See Also**
 
@@ -1842,7 +1904,7 @@ end program demo_atomic_add
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -1908,7 +1970,7 @@ end program demo_atomic_and
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -1985,7 +2047,7 @@ end program demo_atomic_cas
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -2063,7 +2125,7 @@ end program demo_atomic_define
 
 ### **Standard**
 
-Fortran 2008 and later; with **stat**, TS 18508 or later
+Fortran 2008 ; with **stat**, TS 18508
 
 ### **See Also**
 
@@ -2134,7 +2196,7 @@ end program demo_atomic_fetch_add
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -2206,7 +2268,7 @@ end program demo_atomic_fetch_and
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -2278,7 +2340,7 @@ end program demo_atomic_fetch_or
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -2350,7 +2412,7 @@ end program demo_atomic_fetch_xor
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -2418,7 +2480,7 @@ end program demo_atomic_or
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -2493,7 +2555,7 @@ end program demo_atomic_ref
 
 ### **Standard**
 
-Fortran 2008 and later; with STAT, TS 18508 or later
+Fortran 2008 ; with STAT, TS 18508
 
 ### **See Also**
 
@@ -2562,7 +2624,7 @@ end program demo_atomic_xor
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -2631,7 +2693,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -2700,7 +2762,7 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -2797,7 +2859,7 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -2865,7 +2927,7 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -2926,7 +2988,7 @@ end program demo_bessel_y1
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -3024,7 +3086,7 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -3193,7 +3255,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -3282,7 +3344,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -3364,7 +3426,11 @@ Typical Results:
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
+
+### **See Also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -3391,8 +3457,6 @@ Fortran 95 and later
   kind, not necessarily the same. An exception is that values may be a
   BOZ constant with a value valid for the _integer_ kind available with
   the most bits on the current platform.
-
-### **Synopsis**
 
 ### **Description**
 
@@ -3445,7 +3509,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -3530,7 +3594,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -3662,7 +3726,7 @@ the value of btest (2, a)
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -3736,7 +3800,7 @@ end program demo_c_associated
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 
@@ -3836,7 +3900,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -3905,7 +3969,7 @@ end program demo_c_f_pointer
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 
@@ -3972,7 +4036,7 @@ end program demo_c_f_procpointer
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 
@@ -4043,7 +4107,7 @@ end program demo_c_funloc
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 
@@ -4116,7 +4180,7 @@ values and formatted string representations.
 
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -4186,7 +4250,7 @@ Sample program:
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 
@@ -4350,20 +4414,51 @@ Typical Results:
     Z8= (1.2345678901234567,1.2345678901234567)
     Z8 defined with constants= (1.2345678901234567,1.2345678901234567)
 ```
+### **Standard**
+
+FORTRAN 77
 
 ### **See Also**
 
 - [**aimag**(3)](#aimag) - Imaginary part of complex number
-
-- [**cmplx**(3)](#cmplx) - Complex conversion function
-
 - [**conjg**(3)](#conjg) - Complex conjugate function
-
 - [**real**(3)](#real) - Convert to real type
 
-### **Standard**
+Fortran has strong support for _complex_ values, including many intrinsics
+that take or produce _complex_ values in addition to algebraic and
+logical expressions:
 
-FORTRAN 77 and later
+[**abs**(3)](#abs),
+[**acosh**(3)](#acosh),
+[**acos**(3)](#acos),
+[**asinh**(3)](#asinh),
+[**asin**(3)](#asin),
+[**atan2**(3)](#atan2),
+[**atanh**(3)](#atanh),
+[**atan**(3)](#atan),
+[**cosh**(3)](#cosh),
+[**cos**(3)](#cos),
+[**co_sum**(3)](#co_sum),
+[**dble**(3)](#dble),
+[**dot_product**(3)](#dot_product),
+[**exp**(3)](#exp),
+[**int**(3)](#int),
+[**is_contiguous**(3)](#is_contiguous),
+[**kind**(3)](#kind),
+[**log**(3)](#log),
+[**matmul**(3)](#matmul),
+[**precision**(3)](#precision),
+[**product**(3)](#product),
+[**range**(3)](#range),
+[**rank**(3)](#rank),
+[**sinh**(3)](#sinh),
+[**sin**(3)](#sin),
+[**sqrt**(3)](#sqrt),
+[**storage_size**(3)](#storage_size),
+[**sum**(3)](#sum),
+[**tanh**(3)](#tanh),
+[**tan**(3)](#tan),
+[**unpack**(3)](#unpack),
 
  _fortran-lang intrinsic descriptions_
 
@@ -4422,6 +4517,9 @@ integer :: val(3)
    print *, this_image(), ":", val
 end program demo_co_broadcast
 ```
+### **Standard**
+
+Fortran xx
 
 ### **See Also**
 
@@ -4473,7 +4571,7 @@ along that codimension.
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -4548,7 +4646,7 @@ Results:
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -4619,7 +4717,7 @@ end program demo_co_min
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -4688,7 +4786,7 @@ Sample output:
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 
@@ -4850,26 +4948,29 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-where **KIND** is the kind of the parameter **z**
+**KIND** may be any supported value for the _complex_ input value.
+
+The returned value with be the same _complex_ type as the input.
 
 ### **Description**
 
 **conjg(z)** returns the complex conjugate of the _complex_ value **z**.
 
 In mathematics, the complex conjugate of a complex number is a value
-with an equal real part and an imaginary part equal in magnitude but
-opposite in sign.
+whose real and imaginary part are equal parts are equal in magnitude to
+each other but the **y** value has opposite sign.
 
-That is, If **z** is **(x, y)** then the result is **(x, -y)**.
+That is, If **z** is the _complex_ value **(x, y)** then the result is
+**(x, -y)**.
 
 For matrices of complex numbers, **conjg(array)** represents the
 element-by-element conjugation of **array**; not the conjugate transpose
-of **array** .
+of the **array** .
 
 ### **Options**
 
 - **z**
-  : The _complex_ value to take the conjugate of.
+  : The _complex_ value to create the conjugate of.
 
 ### **Result**
 
@@ -4887,16 +4988,15 @@ use, intrinsic :: iso_fortran_env, only : real_kinds, &
 implicit none
 complex :: z = (2.0, 3.0)
 complex(kind=real64) :: dz = (   &
-   &  1.2345678901234567_real64, &
-   & -1.2345678901234567_real64)
+   &  1.2345678901234567_real64, -1.2345678901234567_real64)
 complex :: arr(3,3)
 integer :: i
+   ! basics
+    ! notice the sine of the imaginary component changes
+    print *, z, conjg(z)
 
-    print *, z
-    z= conjg(z)
-    print *, z
-    print *
-
+    ! any complex kind is supported. z is of default kind but
+    ! dz is kind=real64.
     print *, dz
     dz = conjg(dz)
     print *, dz
@@ -4917,8 +5017,7 @@ end program demo_conjg
 ```
 Results:
 ```fortran
- (2.000000,3.000000)
- (2.000000,-3.000000)
+ (2.000000,3.000000) (2.000000,-3.000000)
 
  (1.23456789012346,-1.23456789012346)
  (1.23456789012346,1.23456789012346)
@@ -4933,10 +5032,51 @@ Results:
 ( 7.0    , 8.0    ) ( 8.0    ,-9.0    ) ( 9.0    ,-9.0    )
 ( 1.0    ,-9.0    ) ( 2.0    , 0.0    ) (-3.0    , 7.0    )
 ```
-
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
+
+### **See Also**
+
+- [**aimag**(3)](#aimag) - Imaginary part of complex number
+- [**cmplx**(3)](#cmplx) - Complex conversion function
+- [**real**(3)](#real) - Convert to real type
+
+Fortran has strong support for _complex_ values, including many intrinsics
+that take or produce _complex_ values in addition to algebraic and
+logical expressions:
+
+[**abs**(3)](#abs),
+[**acosh**(3)](#acosh),
+[**acos**(3)](#acos),
+[**asinh**(3)](#asinh),
+[**asin**(3)](#asin),
+[**atan2**(3)](#atan2),
+[**atanh**(3)](#atanh),
+[**atan**(3)](#atan),
+[**cosh**(3)](#cosh),
+[**cos**(3)](#cos),
+[**co_sum**(3)](#co_sum),
+[**dble**(3)](#dble),
+[**dot_product**(3)](#dot_product),
+[**exp**(3)](#exp),
+[**int**(3)](#int),
+[**is_contiguous**(3)](#is_contiguous),
+[**kind**(3)](#kind),
+[**log**(3)](#log),
+[**matmul**(3)](#matmul),
+[**precision**(3)](#precision),
+[**product**(3)](#product),
+[**range**(3)](#range),
+[**rank**(3)](#rank),
+[**sinh**(3)](#sinh),
+[**sin**(3)](#sin),
+[**sqrt**(3)](#sqrt),
+[**storage_size**(3)](#storage_size),
+[**sum**(3)](#sum),
+[**tanh**(3)](#tanh),
+[**tan**(3)](#tan),
+[**unpack**(3)](#unpack),
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -5034,7 +5174,7 @@ type as a result.
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -5097,7 +5237,7 @@ end program demo_cosh
 ```
 ### **Standard**
 
-FORTRAN 77 and later, for a complex argument - Fortran 2008 or later
+FORTRAN 77 , for a complex argument - Fortran 2008
 
 ### **See Also**
 
@@ -5178,7 +5318,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -5209,13 +5349,17 @@ FORTRAN 77 and later
 ### **Description**
 
 co_sum sums up the values of each element of **a** on all images of the
-current team. If result_image is present, the summed-up values are
-returned in **a** on the specified image only and the value of **a** on the
-other images become undefined. If result_image is not present, the
-value is returned on all images. If the execution was successful and
-**stat** is present, it is assigned the value zero. If the execution failed,
-**stat** gets assigned a nonzero value and, if present, **errmsg** gets assigned
-a value describing the occurred error.
+current team.
+
+If result_image is present, the summed-up values are returned in **a**
+on the specified image only and the value of **a** on the other images
+become undefined.
+
+If result_image is not present, the value is returned on all images. If
+the execution was successful and **stat** is present, it is assigned the
+value zero. If the execution failed, **stat** gets assigned a nonzero
+value and, if present, **errmsg** gets assigned a value describing the
+occurred error.
 
 ### **Options**
 
@@ -5259,7 +5403,7 @@ Results:
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -5311,7 +5455,7 @@ along that codimension.
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -5480,8 +5624,11 @@ end program demo_count
 ```
 ### **Standard**
 
-Fortran 95 and later, with KIND argument - Fortran 2003
-and later
+Fortran 95 , with KIND argument - Fortran 2003
+
+### **See Also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -5554,10 +5701,9 @@ Results:
 ```text
    Processor Time =  0.000 seconds.
 ```
-
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -5638,7 +5784,6 @@ integer, dimension(3,3) :: a
     print '(3i3)', a(3,:)
 end program demo_cshift
 ```
-
 Results:
 
 ```text
@@ -5650,10 +5795,13 @@ Results:
      8  2  5
      9  3  6
 ```
-
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
+
+### **See Also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_
 
@@ -5821,7 +5969,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -5896,7 +6044,7 @@ Results:
 
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -5968,7 +6116,7 @@ Typical Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -6054,9 +6202,7 @@ real(kind=real64) :: x
 
 end program demo_dim
 ```
-
 Results:
-
 ```text
               0
       3.21000000000000
@@ -6064,10 +6210,13 @@ Results:
               0           0           2
               0           0          10
 ```
-
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
+
+### **See Also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -6142,9 +6291,7 @@ implicit none
     print *, dot_product(a,b)
 end program demo_dot_prod
 ```
-
 Results:
-
 ```text
      1  2  3
 
@@ -6152,10 +6299,13 @@ Results:
 
              32
 ```
-
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
+
+### **See Also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_
 
@@ -6262,7 +6412,11 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
+
+### **See Also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -6415,7 +6569,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -6560,7 +6714,7 @@ end program demo_dshiftr
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -6675,7 +6829,11 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
+
+### **See Also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -6792,7 +6950,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -6884,11 +7042,12 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
-### See also
+### ***See also**
 
 [**erf**(3)](#erf)
+[**erf_scaled**(3)](#erf_scaled)
 
 ### **Resources**
 
@@ -6944,16 +7103,19 @@ real(kind(0.0d0)) :: x = 0.17d0
    print *, x
 end program demo_erfc_scaled
 ```
-
 Results:
 
 ```text
      0.83375830214998126
 ```
-
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
+
+### **See also**
+
+[**erf**(3)](#erf)
+[**erfc**(3)](#erfc)
 
  _fortran-lang intrinsic descriptions_
 
@@ -7016,11 +7178,12 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
-### See also
+### **See also**
 
-[**erfc**(3)](#erfc)
+[**erfc**(3)](#erfc),
+[**erf_scaled**(3)](#erfc_scaled)
 
 ### **Resources**
 
@@ -7081,10 +7244,13 @@ integer :: cnt
    endif
 end program demo_event_query
 ```
-
 ### **Standard**
 
-TS 18508 or later
+TS 18508
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_
 
@@ -7183,7 +7349,6 @@ implicit none
    print *, "Now reindexing files in the background"
 end program demo_exec
 ```
-
 ### **Note**
 
 Because this intrinsic is making a system call, it is very system
@@ -7195,7 +7360,11 @@ be terminated alongside.
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_
 
@@ -7296,7 +7465,7 @@ Results:
 
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -7365,7 +7534,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -7831,7 +8000,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -7904,7 +8073,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -8055,7 +8224,7 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -8075,10 +8244,10 @@ Logarithm of the Gamma function: [**log_gamma**(3)](#log_gamma)
 
 ### **Synopsis**
 ```fortran
-  call get_command_argument(number, value, length, status)
+  call get_command_argument(number [,value] [,length] [,status])
 ```
 ```fortran
-   subroutine get_command_argument(number[,value][,length][.status])
+   subroutine get_command_argument( number, value, length, status )
 
     integer,intent(in)                    :: number
     character(len=*),intent(out),optional :: value
@@ -8194,7 +8363,7 @@ Results:
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 
@@ -8211,10 +8380,10 @@ Fortran 2003 and later
 
 ### **Synopsis**
 ```fortran
-    call get_command(command, length, status)
+    call get_command([command] [,length] [,status])
 ```
 ```fortran
-     subroutine get_command( [command] [,length] [,status] )
+     subroutine get_command( command ,length ,status )
 
      character(len=*),intent(out),optional :: command
      integer,intent(out),optional :: length
@@ -8270,9 +8439,7 @@ character(len=:),allocatable :: COMMAND_LINE
    write(*,'("OUTPUT:",a)')COMMAND_LINE
 end program demo_get_command
 ```
-
 Results:
-
 ```bash
      # note that shell expansion removes some of the whitespace
      # without quotes
@@ -8285,10 +8452,9 @@ Results:
 
      OUTPUT:./test_get_command arguments  *><`~[]!{}?"'|
 ```
-
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 
@@ -8424,7 +8590,11 @@ Typical Results:
 ```
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -8521,7 +8691,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -8646,10 +8816,13 @@ Results:
    the closest is
       +1.03077638
 ```
-
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -8753,7 +8926,7 @@ Results:
 ```
 ### **Standard**
 
-  Fortran 95 and later, with KIND argument - Fortran 2003 and later
+  Fortran 95 , with KIND argument - Fortran 2003
 
 ### **See Also**
 
@@ -8865,7 +9038,7 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -8931,7 +9104,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -9032,7 +9205,7 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -9082,7 +9255,7 @@ The return value is of type _integer_ and of the same kind as **i**.
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -9147,7 +9320,7 @@ The return value is of type _integer_ and of the same kind as **i**.
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -9206,7 +9379,7 @@ The return value is of type _integer_ and of the same kind as **i**.
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -9331,7 +9504,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later, with KIND argument -Fortran 2003 and later
+Fortran 95 , with KIND argument -Fortran 2003
 
 ### **See Also**
 
@@ -9398,7 +9571,7 @@ argument kinds differ, it is of the same kind as the larger argument.)
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -9463,7 +9636,7 @@ end demo image_index
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -9547,8 +9720,7 @@ Expected Results:
 
 ### **Standard**
 
-FORTRAN 77 and later, with KIND argument Fortran 2003
-and later
+FORTRAN 77 , with KIND argument Fortran 2003
 
 ### **See Also**
 
@@ -9687,7 +9859,7 @@ Results:
 
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -9760,7 +9932,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -9852,7 +10024,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -9971,17 +10143,19 @@ real, DIMENSION (:, :), POINTER       :: IN, OUT
    !
 end program demo_is_contiguous
 ```
-
 Results:
 
 ```text
     IN is  T
     OUT is  F
 ```
-
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_
 
@@ -10087,7 +10261,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -10172,7 +10346,7 @@ end program demo_ishft
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -10240,10 +10414,13 @@ character(len=256) :: message
    enddo
 end program demo_iostat
 ```
-
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -10310,7 +10487,11 @@ end program demo_is_iostat_eor
 ```
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_
 
@@ -10373,7 +10554,11 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -10501,7 +10686,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later, with KIND argument - Fortran 2003 and later
+Fortran 95 , with KIND argument - Fortran 2003
 
 ### **See Also**
 
@@ -10581,7 +10766,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -10715,7 +10900,7 @@ end program demo_len
 ```
 ### **Standard**
 
-FORTRAN 77 and later; with **kind** argument - Fortran 2003 and later
+FORTRAN 77 ; with **kind** argument - Fortran 2003
 
 ### **See Also**
 
@@ -10828,7 +11013,7 @@ end program demo_len_trim
 ```
 ### **Standard**
 
-Fortran 95 and later. **kind** argument added with Fortran 2003.
+Fortran 95 . **kind** argument added with Fortran 2003.
 
 ### **See Also**
 
@@ -10930,7 +11115,7 @@ end program demo_lge
 ```
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -11038,7 +11223,7 @@ end program demo_lgt
 ```
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -11152,7 +11337,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -11260,7 +11445,7 @@ end program demo_llt
 ```
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -11343,7 +11528,11 @@ Results:
 
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_
 
@@ -11403,7 +11592,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -11475,7 +11664,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009
+Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 
 ### **See Also**
 
@@ -11542,7 +11731,11 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_
 
@@ -11642,7 +11835,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -11757,7 +11950,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -11982,7 +12175,7 @@ end program demo_matmul
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -12061,7 +12254,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -12205,7 +12398,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -12321,7 +12514,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -12423,7 +12616,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -12550,7 +12743,11 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -12719,7 +12916,7 @@ Expected Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -12786,7 +12983,7 @@ Expected Results:
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -12906,7 +13103,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -12971,7 +13168,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -13140,7 +13337,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -13233,7 +13430,7 @@ Results:
 
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -13319,7 +13516,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -13398,7 +13595,7 @@ Results:
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 
@@ -13416,8 +13613,6 @@ Fortran 2003 and later
 ```fortran
 call mvbits(from, frompos, len, to, topos)
 ```
-### **Characteristics**
-
 ```fortran
     elemental subroutine mvbits(from,frompos,len,to,topos)
 
@@ -13427,6 +13622,8 @@ call mvbits(from, frompos, len, to, topos)
      integer(kind=KIND),intent(inout) :: to
      integer(kind=KIND),intent(in)    :: topos
 ```
+### **Characteristics**
+
 ### **Description**
 
 **mvbits(3f)** copies a bit pattern found in a range of adjacent bits in
@@ -13549,7 +13746,7 @@ character(len=*),parameter :: fmt= '(g0,t30,a,t40,b32.32)'
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -13650,7 +13847,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -13748,7 +13945,11 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -13870,7 +14071,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later, with KIND argument - Fortran 90 and later
+FORTRAN 77 , with KIND argument - Fortran 90
 
 ### **See Also**
 
@@ -13969,7 +14170,7 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -14036,7 +14237,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -14166,7 +14367,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -14182,7 +14383,7 @@ Fortran 95 and later
 
 ### **Synopsis**
 ```fortran
-    result = num_images([])
+    result = num_images()
 ```
 ```fortran
      integer function num_images ()
@@ -14250,7 +14451,7 @@ end program demo_num_images
 
 ### **Standard**
 
-Fortran 2008 and later. With DISTANCE or FAILED argument, TS 18508 or later
+Fortran 2008 . With DISTANCE or FAILED argument, TS 18508
 
 ### **See Also**
 
@@ -14385,7 +14586,11 @@ Results:
 
 ### **Standard**
 
-   FORTRAN 2018 and later
+   FORTRAN 2018
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -14496,7 +14701,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -14568,7 +14773,11 @@ Results:
     T
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_
 
@@ -14642,7 +14851,7 @@ bit to 1.
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -14760,7 +14969,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -14865,7 +15074,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -14926,7 +15135,6 @@ or _.false._ otherwise.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_present
 implicit none
@@ -14944,16 +15152,18 @@ end function
 
 end program demo_present
 ```
-
 Results:
 
 ```text
      0        1764
 ```
-
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_
 
@@ -15187,7 +15397,7 @@ dim=3 :( 2 3 )
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -15252,7 +15462,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -15362,7 +15572,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -15436,7 +15646,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -15502,7 +15712,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -15617,6 +15827,10 @@ end program demo_rank
 ```
 ### **Standard**
 
+### **See also**
+
+[****(3)](#)
+
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## real
@@ -15697,14 +15911,49 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
+- [**aimag**(3)](#aimag) - Imaginary part of complex number
+- [**cmplx**(3)](#cmplx) - Complex conversion function
+- [**conjg**(3)](#conjg) - Complex conjugate function
+
+Fortran has strong support for _complex_ values, including many intrinsics
+that take or produce _complex_ values in addition to algebraic and
+logical expressions:
+
+[**abs**(3)](#abs),
+[**acosh**(3)](#acosh),
+[**acos**(3)](#acos),
+[**asinh**(3)](#asinh),
+[**asin**(3)](#asin),
+[**atan2**(3)](#atan2),
+[**atanh**(3)](#atanh),
+[**atan**(3)](#atan),
+[**cosh**(3)](#cosh),
+[**cos**(3)](#cos),
+[**co_sum**(3)](#co_sum),
 [**dble**(3)](#dble),
-[**cmplx**(3)](#cmplx),
-[**aimag**(3)](#aimag),
-[**int**(3)](#int)
+[**dot_product**(3)](#dot_product),
+[**exp**(3)](#exp),
+[**int**(3)](#int),
+[**is_contiguous**(3)](#is_contiguous),
+[**kind**(3)](#kind),
+[**log**(3)](#log),
+[**matmul**(3)](#matmul),
+[**precision**(3)](#precision),
+[**product**(3)](#product),
+[**range**(3)](#range),
+[**rank**(3)](#rank),
+[**sinh**(3)](#sinh),
+[**sin**(3)](#sin),
+[**sqrt**(3)](#sqrt),
+[**storage_size**(3)](#storage_size),
+[**sum**(3)](#sum),
+[**tanh**(3)](#tanh),
+[**tan**(3)](#tan),
+[**unpack**(3)](#unpack),
 
  _fortran-lang intrinsic descriptions_
 
@@ -15970,7 +16219,7 @@ ________________________________________________________________________
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -16054,18 +16303,15 @@ real,allocatable :: v(:)
     write(*,*)shape(v),ubound(v)
 end program demo_reshape
 ```
-
 Results:
-
 ```text
               4
               2           2
              12          12
 ```
-
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -16108,7 +16354,7 @@ is equal to **abs(fraction(x)) \* float(radix(x))\*\*digits(x)**.
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -16251,7 +16497,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 
@@ -16311,7 +16557,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -16410,7 +16656,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later, with KIND argument - Fortran 2003 and later
+Fortran 95 , with KIND argument - Fortran 2003
 
 ### **See Also**
 
@@ -16514,7 +16760,11 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_
 
@@ -16577,7 +16827,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -16689,7 +16939,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later; with RADIX - Fortran 2008 and later
+Fortran 95 ; with RADIX - Fortran 2008
 
 ### **See Also**
 
@@ -16759,7 +17009,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -16853,7 +17103,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later; with KIND argument Fortran 2003 and later
+Fortran 95 ; with KIND argument Fortran 2003
 
 ### **See Also**
 
@@ -16982,7 +17232,7 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -17121,7 +17371,7 @@ end program demo_shiftl
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -17245,7 +17495,7 @@ end program demo_shiftr
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -17334,7 +17584,11 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later
+### **See also**
+
+[****(3)](#)
+
+FORTRAN 77
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -17426,7 +17680,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later, for a complex argument Fortran 2008 or later
+Fortran 95 , for a complex argument Fortran 2008
 
 ### **See Also**
 
@@ -17563,7 +17817,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -17785,7 +18039,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later, with **kind** argument - Fortran 2003 and later
+Fortran 95 , with **kind** argument - Fortran 2003
 
 ### **See Also**
 
@@ -17851,7 +18105,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -17991,7 +18245,7 @@ end program example_spread
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -18097,7 +18351,11 @@ Results:
 
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -18188,7 +18446,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -18298,7 +18556,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -18410,7 +18668,7 @@ defines
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -18476,7 +18734,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later, for a complex argument Fortran 2008 or later
+FORTRAN 77 , for a complex argument Fortran 2008
 
 ### **See Also**
 
@@ -18542,7 +18800,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77 and later. For a complex argument, Fortran 2008 or later.
+FORTRAN 77 . For a complex argument, Fortran 2008 .
 
 ### **See Also**
 
@@ -18609,7 +18867,6 @@ present, a scalar is returned, with the value of the **dim** element of
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_this_image
 implicit none
@@ -18624,17 +18881,14 @@ integer :: i
    endif
 end program demo_this_image
 ```
-
 Results:
 
 ```text
    value[1] is 1
 ```
-
 ### **Standard**
 
-Fortran 2008 and later. With DISTANCE argument, TS 18508
-or later
+Fortran 2008. With DISTANCE argument, TS 18508
 
 ### **See Also**
 
@@ -18701,7 +18955,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -18834,7 +19088,7 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -18967,7 +19221,11 @@ oblivious to the benefits of EQUIVALENCEs when used sparingly.
 
 ### **Standard**
 
-Fortran 90 and later
+Fortran 90
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_
 
@@ -19064,7 +19322,11 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
+
+### **See also**
+
+[****(3)](#)
 
  _fortran-lang intrinsic descriptions_
 
@@ -19095,12 +19357,11 @@ Fortran 95 and later
 ### **Options**
 
 - **string**
-  : A scalar string to trim trailing blanks from
+  : A string to trim
 
 ### **Result**
 
-  The value of the result is the same as **string** except trailing
-  blanks are removed.
+  The result is the same as **string** except trailing blanks are removed.
 
   If **string** is composed entirely of blanks or has zero length,
   the result has zero length.
@@ -19156,7 +19417,7 @@ end program demo_trim
 ```
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -19167,9 +19428,8 @@ of arguments, and search for certain arguments:
   [**adjustl**(3)](#adjustl),
   [**adjustr**(3)](#adjustr),
   [**index**(3)](#index),
-
-[**scan**(3)](#scan),
-[**verify**(3)](#verify)
+  [**scan**(3)](#scan),
+  [**verify**(3)](#verify)
 
 - **Nonelemental:**
   [**len_trim**(3)](#len_trim),
@@ -19308,8 +19568,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later, with KIND argument Fortran 2003
-and later
+Fortran 95 , with KIND argument Fortran 2003
 
 ### **See Also**
 
@@ -19472,7 +19731,7 @@ end program demo_unpack
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -19834,7 +20093,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95 and later, with **kind** argument - Fortran 2003 and later
+Fortran 95 , with **kind** argument - Fortran 2003
 
 ### **See Also**
 
