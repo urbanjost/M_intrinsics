@@ -9,14 +9,17 @@
     result = achar(i [,kind])
 ```
 ```fortran
-     elemental character(len=1) function achar(i,kind)
+     elemental character(len=1,kind=KIND) function achar(i,kind)
 
-      integer(kind=KIND),intent(in) :: i
-      integer(kind=KIND),intent(in),optional :: kind
+      integer(kind=**),intent(in) :: i
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-where KIND may be any supported kind value for _integer_ types.
+where a kind designated as ** may be any supported kind value for the type
+
+The _character_ kind returned is the value of **kind** if present.
+otherwise, a single default _character_ is returned.
 
 ### **Description**
 
@@ -37,21 +40,23 @@ will clear the screen on an ANSI-compatible terminal display,
 - **i**
   : the _integer_ value to convert to an ASCII character, in the range
   0 to 127.
+  : **achar(iachar(c))** shall have the value C for any character
+  C capable of representation as a default character.
 
 - **kind**
-  : (optional) an _integer_ initialization expression indicating the kind
+  : a _integer_ initialization expression indicating the kind
   parameter of the result.
 
 ### **Result**
 
-The return value is the requested character of type _character_ with a
-length of one. If the **kind** argument is present, the return value is of
-the specified kind and of the default kind otherwise.
+  Assuming **i** has a value in the range 0 <= I <= 127, the result is the
+  character in position **i** of the ASCII collating sequence, provided
+  the processor is capable of representing that character in the character
+  kind of the result; otherwise, the result is processor dependent.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_achar
 use,intrinsic::iso_fortran_env,only:int8,int16,int32,int64

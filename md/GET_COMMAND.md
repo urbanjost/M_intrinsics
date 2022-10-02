@@ -2,20 +2,27 @@
 
 ### **Name**
 
-**get_command**(3) - \[SYSTEM:COMMAND LINE\] Get the entire command line
+**get_command**(3) - \[SYSTEM:COMMAND LINE\] Get the entire command line invocation
 
 ### **Synopsis**
 ```fortran
-    call get_command([command] [,length] [,status])
+    call get_command([command] [,length] [,status] [,errmsg])
 ```
 ```fortran
-     subroutine get_command( command ,length ,status )
+     subroutine get_command( command ,length ,status, errmsg )
 
-     character(len=*),intent(out),optional :: command
-     integer,intent(out),optional :: length
-     integer,intent(out),optional :: status
+      character(len=*),intent(out),optional   :: command
+      integer(kind=**),intent(out),optional   :: length
+      integer(kind=**),intent(out),optional   :: status
+      character(len=*),intent(inout),optional :: errmsg
 ```
 ### **Characteristics**
+
+ - a kind designated as ** may be any supported kind value for the type
+   meeting the conditions described herein.
+ - **command** and **errmsg** are scalar _character_ variables of default kind.
+ - **length** and **status** are scalar _integer_ with a decimal exponent
+   range of at least four.
 
 ### **Description**
 
@@ -31,19 +38,25 @@ be necessary.
 ### **Result**
 
 - **command**
-  : Shall be of type _character_ and of default kind. If
-  **command** is present, stores the entire command line that was used to
-  invoke the program in **command**.
+  : If **command** is present, the entire command line that was used
+    to invoke the program is stored into it. If the command cannot be
+    determined, **command** is assigned all blanks.
 
 - **length**
-  : Shall be of type _integer_ and of default kind. If **length**
-  is present, it is assigned the length of the command line.
+  : If **length** is present, it is assigned the length of the command line.
+    It is system-dependent as to whether trailing blanks will be counted.
+
+    If the command length cannot be determined, a length of 0 is assigned.
 
 - **status**
   : Shall be of type _integer_ and of default kind. If **status**
-  is present, it is assigned 0 upon success of the command, **-1** if
-  **command** is too short to store the command line, or a positive value
-  in case of an error.
+    is present, it is assigned 0 upon success of the command, **-1**
+    if **command** is too short to store the command line, or a positive
+    value in case of an error.
+
+- **errmsg**
+  : It is assigned a processor-dependent explanatory message if the
+    command retrieval fails. Otherwise, it is unchanged.
 
 ### **Examples**
 

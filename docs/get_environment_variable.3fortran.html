@@ -57,8 +57,8 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-GET_ENVIRONMENT_VARIABLE(3) - [SYSTEM:ENVIRONMENT] Get an environmental
-variable
+GET_ENVIRONMENT_VARIABLE(3) - [SYSTEM:ENVIRONMENT] Get value of an
+environment variable
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
@@ -70,7 +70,21 @@ variable
 </A>
 <BLOCKQUOTE>
 <P>
-call get_environment_variable(name [,value] [,length] [,status] [,trim_name] )
+call get_environment_variable(name [,value] [,length] &
+& [,status] [,trim_name] [,errmsg] )
+<P>
+<PRE>
+         subroutine character(len=*) get_environment_variable( &
+         & name, value, length, status, trim_name, errmsg )
+<P>
+         character(len=*),intent(in) :: name
+         character(len=*),intent(out),optional   :: value
+         integer(kind=**),intent(out),optional   :: length
+         integer(kind=**),intent(out),optional   :: status
+         logical,intent(out),optional            :: trim_name
+         character(len=*),intent(inout),optional :: errmsg
+<P>
+</PRE>
 </BLOCKQUOTE>
 <A name=2>
 
@@ -79,15 +93,30 @@ call get_environment_variable(name [,value] [,length] [,status] [,trim_name] )
 </A>
 <BLOCKQUOTE>
 <P>
-subroutine character(len=*) get_environment_variable( &
-& name [,value] [,length] [,status] [,trim_name] )
-<P>
-character(len=*),intent(in) :: name
-character(len=*),intent(out),optional :: value
-integer,intent(out),optional :: length
-integer,intent(out),optional :: status
-logical,intent(out),optional :: trim_name
-</BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+a kind designated as ** may be any supported kind value for the type
+meeting the conditions described herein.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+NAME, VALUE, and ERRMSG are a scalar character of default kind.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+LENGTH and STATUS are integer scalars with a decimal exponent range
+of at least four.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+TRIM_NAME is a scalar of type logical and of default kind.
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=3>
 
      <H3>DESCRIPTION</H3>
@@ -95,11 +124,16 @@ logical,intent(out),optional :: trim_name
 </A>
 <BLOCKQUOTE>
 <P>
-Get the VALUE of the environmental variable NAME.
+Get the VALUE of the environment variable NAME.
 <P>
 Note that GET_ENVIRONMENT_VARIABLE(3) need not be thread-safe. It is the
 responsibility of the user to ensure that the environment is not being
 updated concurrently.
+<P>
+If running in parallel be aware It is processor dependent whether an
+environment variable that exists on an image also exists on another
+image, and if it does exist on both images whether the values are the
+same or different.
 </BLOCKQUOTE>
 <A name=4>
 
@@ -112,14 +146,10 @@ updated concurrently.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-NAME : The name of the environment variable to query.
+NAME : The name of the environment variable to query. The
+interpretation of case is processor dependent.
 </TD></TR>
-<TR></TR></TABLE><!-- .nf -->
-<PRE>
-    Shall be a scalar of type character and of default kind.
-<P>
-</PRE>
-</BLOCKQUOTE>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
 
      <H3>RESULT</H3>
@@ -131,24 +161,17 @@ NAME : The name of the environment variable to query.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-VALUE : The value of the environment variable being queried.
+VALUE : The value of the environment variable being queried. If
+VALUE is not large enough to hold the data, it is truncated. If the
+variable NAME is not set or has no value, or the processor does not
+support environment variables VALUE will be filled with blanks.
 </TD></TR>
-<TR></TR></TABLE><!-- .nf -->
-<PRE>
-    Shall be a scalar of type character and of default kind. The value
-    of NAME is stored in VALUE. If VALUE is not large enough to hold the
-    data, it is truncated. If NAME is not set, VALUE will be filled with
-    blanks.
-<P>
-</PRE>
-<TABLE cellpadding=3>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
 LENGTH : Argument LENGTH contains the length needed for storing the
-environment variable NAME or zero if it is not present.
-<P>
-Shall be a scalar of type integer and of default kind.
+environment variable NAME. It is zero if the environment variable is
+not set.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
@@ -163,7 +186,7 @@ environment variable; it is 1 if the environment variable does not
 if the processor does not support environment variables;
 in all other cases STATUS is zero.
 </TD></TR>
-<TR></TR></TABLE>Shall be a scalar of type integer and of default kind.
+<TR></TR></TABLE><!-- .IP \(bu 3 -->
 </TD></TR>
 <TR valign=top><TD width=6%>
 o
@@ -171,8 +194,6 @@ o
 TRIM_NAME : If TRIM_NAME is present with the value .false., the
 trailing blanks in NAME are significant; otherwise they are not part
 of the environment variable name.
-<P>
-Shall be a scalar of type logical and of default kind.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=6>
@@ -189,46 +210,46 @@ Sample program:
     implicit none
     character(len=:),allocatable :: homedir
     character(len=:),allocatable :: var
+<P>
          var=&#146;HOME&#146;
          homedir=get_env(var)
          write (*,&#146;(a,"=""",a,"""")&#146;)var,homedir
 <P>
     contains
 <P>
-    function get_env(NAME,DEFAULT) result(VALUE)
+    function get_env(name,default) result(value)
     ! a function that makes calling get_environment_variable(3) simple
     implicit none
-    character(len=*),intent(in)          :: NAME
-    character(len=*),intent(in),optional :: DEFAULT
-    character(len=:),allocatable         :: VALUE
+    character(len=*),intent(in)          :: name
+    character(len=*),intent(in),optional :: default
+    character(len=:),allocatable         :: value
     integer                              :: howbig
     integer                              :: stat
     integer                              :: length
-       ! get length required to hold value
        length=0
-       VALUE=&#146;&#146;
-       if(NAME.ne.&#146;&#146;)then
-          call get_environment_variable( &
-          & NAME, length=howbig,status=stat,trim_name=.true.)
+       value=&#146;&#146;
+       if(name.ne.&#146;&#146;)then
+          call get_environment_variable( name, &
+          & length=howbig,status=stat,trim_name=.true.)
           select case (stat)
           case (1)
-           !*!print *, NAME, " is not defined in the environment. Strange&#46;&#46;&#46;"
-           VALUE=&#146;&#146;
+           print *, NAME, " is not defined in the environment. Strange&#46;&#46;&#46;"
+           value=&#146;&#146;
           case (2)
-           !*!print *, &
-           !*!"This processor does not support environment variables. Boooh!"
-           VALUE=&#146;&#146;
+           print *, &
+           "This processor does not support environment variables. Boooh!"
+           value=&#146;&#146;
           case default
-           ! make string to hold value of sufficient size
-           if(allocated(VALUE))deallocate(VALUE)
-           allocate(character(len=max(howbig,1)) :: VALUE)
+           ! make string of sufficient size to hold value
+           if(allocated(value))deallocate(value)
+           allocate(character(len=max(howbig,1)) :: value)
            ! get value
            call get_environment_variable( &
-           & NAME,VALUE,status=stat,trim_name=.true.)
-           if(stat.ne.0)VALUE=&#146;&#146;
+           & name,value,status=stat,trim_name=.true.)
+           if(stat.ne.0)value=&#146;&#146;
           end select
        endif
-       if(VALUE.eq.&#146;&#146;.and.present(DEFAULT))VALUE=DEFAULT
+       if(value.eq.&#146;&#146;.and.present(default))value=default
     end function get_env
 <P>
     end program demo_getenv
@@ -257,12 +278,12 @@ Fortran 003
 </A>
 <BLOCKQUOTE>
 <P>
-****(3)
+GET_COMMAND_ARGUMENT(3), GET_COMMAND(3)
 <P>
 fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>get_environment_variable (3fortran)</TD> <TD align=right width=33%><I>October 01, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 392cc0cc-8627-4144-aa2d-a25fa0d6189d using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>get_environment_variable (3fortran)</TD> <TD align=right width=33%><I>October 02, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from f11c57f3-8b8c-4371-9917-feba1309cfec using man macros.</FONT>
 <br><br><center><img src="images/get_environment_variable.3fortran.gif"></center>
 </div>
 </div>

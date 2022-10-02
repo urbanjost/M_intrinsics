@@ -70,15 +70,18 @@ arguments
 </A>
 <BLOCKQUOTE>
 <P>
-call get_command_argument(number [,value] [,length] [,status])
+call get_command_argument(number [,value] [,length] &
+& [,status] [,errmsg])
 <P>
 <PRE>
-       subroutine get_command_argument( number, value, length, status )
+       subroutine get_command_argument( number, value, length, &
+       & status ,errmsg)
 <P>
-        integer,intent(in)                    :: number
-        character(len=*),intent(out),optional :: value
-        integer,intent(out),optional          :: length
-        integer,intent(out),optional          :: status
+        integer(kind=**),intent(in)             :: number
+        character(len=*),intent(out),optional   :: value
+        integer(kind=**),intent(out),optional   :: length
+        integer(kind=**),intent(out),optional   :: status
+        character(len=*),intent(inout),optional :: errmsg
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -89,7 +92,25 @@ call get_command_argument(number [,value] [,length] [,status])
 </A>
 <BLOCKQUOTE>
 <P>
-</BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+a kind designated as ** may be any supported kind value for the type
+meeting the conditions described herein.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+NUMBER, LENGTH, and STATUS are scalar integer with a decimal
+exponent range of at least four.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+VALUE and ERRMSG are scalar character variables of default kind.
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=3>
 
      <H3>DESCRIPTION</H3>
@@ -97,13 +118,18 @@ call get_command_argument(number [,value] [,length] [,status])
 </A>
 <BLOCKQUOTE>
 <P>
-Retrieve the NUMBER-th argument that was passed on the command line when
-the containing program was invoked.
+Retrieve or query the n-th argument that was passed on the command line
+to the current program execution.
 <P>
 There is not anything specifically stated about what an argument is but
-in practice the arguments are split on whitespace unless the arguments
-are quoted and IFS values (Internal Field Separators) used by common
-shells are ignored.
+in practice the arguments are strings split on whitespace unless the
+arguments are quoted. IFS values (Internal Field Separators) used by
+common shells are typically ignored and unquoted whitespace is almost
+always the separator.
+<P>
+Shells have often expanded command arguments and spell characters before
+passing them to the program, so the strings read are often not exactly
+what the user typed on the command line.
 </BLOCKQUOTE>
 <A name=4>
 
@@ -116,9 +142,19 @@ shells are ignored.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-NUMBER : Shall be a scalar of type INTEGER, NUMBER &gt;= 0. If NUMBER =
-0, VALUE is set to the name of the program (on systems that support
-this feature).
+NUMBER : is a non-negative number indicating which argument of the
+current program command line is to be retrieved or queried.
+<P>
+If NUMBER = 0, the argument pointed to is set to the name of the
+program (on systems that support this feature).
+<P>
+if the processor does not have such a concept as a command name the
+value of command argument 0 is processor dependent.
+<P>
+For values from 1 to the number of arguments passed to the program a
+value is returned in an order determined by the processor.
+Conventionally they are returned consecutively as they appear on the
+command line from left to right.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
@@ -132,26 +168,28 @@ this feature).
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-VALUE : Shall be a scalar of type character and of default kind.
-After get_command_argument returns, the VALUE argument holds the
-NUMBER-th command line argument. If VALUE can not hold the argument,
-it is truncated to fit the length of VALUE. If there are less than
-NUMBER arguments specified at the command line, VALUE will be filled
-with blanks.
+VALUE : The VALUE argument holds the command line argument. If VALUE
+can not hold the argument, it is truncated to fit the length of
+VALUE.
+<P>
+If there are less than NUMBER arguments specified at the command
+line or if the argument specified does not exist for other reasons,
+VALUE will be filled with blanks.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-LENGTH : (Optional) Shall be a scalar of type integer. The LENGTH
-argument contains the length of the NUMBER-th command line argument.
+LENGTH : The LENGTH argument contains the length of the n-th command
+line argument. The length of VALUE has no effect on this value, It
+is the length required to hold all the significant characters of the
+argument regardless of how much storage is provided by VALUE.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-STATUS : (Optional) Shall be a scalar of type integer. If the
-argument retrieval fails, STATUS is a positive number; if VALUE
-contains a truncated command line argument, STATUS is <B>-1</B>; and
-otherwise the STATUS is zero.
+STATUS : If the argument retrieval fails, STATUS is a positive
+number; if VALUE contains a truncated command line argument, STATUS
+is <B>-1</B>; and otherwise the STATUS is zero.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=6>
@@ -167,66 +205,58 @@ Sample program:
     program demo_get_command_argument
     implicit none
     character(len=255)           :: progname
-    integer                      :: stat
-    integer                      :: count,i, longest, argument_length
-    integer,allocatable          :: istat(:), ilen(:)
-    character(len=:),allocatable :: args(:)
-      !
-      ! get number of arguments
+    integer                      :: count, i, argument_length, istat
+    character(len=:),allocatable :: arg
+<P>
+     ! command name assuming it is less than 255 characters in length
+      call get_command_argument (0, progname, status=istat)
+      if (istat == 0) then
+         print *, "The program&#146;s name is " // trim (progname)
+      else
+         print *, "Could not get the program&#146;s name " // trim (progname)
+      endif
+<P>
+     ! get number of arguments
       count = command_argument_count()
       write(*,*)&#146;The number of arguments is &#146;,count
-      !
-      ! simple usage
-      !
-      call get_command_argument (0, progname, status=stat)
-      if (stat == 0) then
-         print *, "The program&#146;s name is " // trim (progname)
-      endif
-      !
-      ! showing how to make an array to hold any argument list
-      !
-      ! find longest argument
-      !
-      longest=0
-      do i=0,count
-         call get_command_argument(number=i,length=argument_length)
-         longest=max(longest,argument_length)
-      enddo
+<P>
       !
       ! allocate string array big enough to hold command line
       ! argument strings and related information
       !
-      allocate(character(len=longest) :: args(0:count))
-      allocate(istat(0:count))
-      allocate(ilen(0:count))
-      !
-      ! read the arguments into the array
-      !
-      do i=0,count
-        call get_command_argument(i, args(i),status=istat(i),length=ilen(i))
+      do i=1,count
+         call get_command_argument(number=i,length=argument_length)
+         if(allocated(arg))deallocate(arg)
+         allocate(character(len=argument_length) :: arg)
+         call get_command_argument(i, arg,status=istat)
+         ! show the results
+         write (*,&#146;(i3.3,1x,i0.5,1x,i0.5,1x,"[",a,"]")&#146;) &
+         & i,istat,argument_length,arg
       enddo
-      !
-      ! show the results
-      !
-      write (*,&#146;(i3.3,1x,i0.5,1x,i0.5,1x,"[",a,"]")&#146;) &
-      & (i,istat(i),ilen(i),args(i)(:ilen(i)),i=0,count)
+<P>
     end program demo_get_command_argument
 <P>
 </PRE>
 Results:
 <P>
 <PRE>
-    /demo_get_command_argument a  test  &#146;of getting   arguments &#146; "  leading"
+     ./demo_get_command_argument a  test &#146;of getting  arguments &#146; " leading"
 <P>
-     The number of arguments is            5
-     The program&#146;s name is xxx
-    000 00000 00003 [./test_get_command_argument]
-    001 00000 00001 [a]
-    003 00000 00004 [test]
-    004 00000 00024 [of getting   arguments ]
-    005 00000 00018 [  leading]
-<P>
+     The program&#146;s name is ./demo_get_command_argument
+     The number of arguments is            4
 </PRE>
+001 00000 00001 [a]
+00 00000 00004 [test]
+<BLOCKQUOTE>
+<TABLE cellpadding=3><!-- tsb:      The program&#146;s name is ./demo_get_command_argument
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B>003 00000 000 [of getting</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+arguments ]
+004 00000 00008 [ leading]
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 </BLOCKQUOTE>
 <A name=7>
 
@@ -249,7 +279,7 @@ GET_COMMAND(3), COMMAND_ARGUMENT_COUNT(3)
 fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>get_command_argument (3fortran)</TD> <TD align=right width=33%><I>October 01, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from f06495ab-e3b6-49a4-9e75-8e22705c7afc using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>get_command_argument (3fortran)</TD> <TD align=right width=33%><I>October 02, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from cf305386-0ac1-43f2-805f-ecace659e2ce using man macros.</FONT>
 <br><br><center><img src="images/get_command_argument.3fortran.gif"></center>
 </div>
 </div>

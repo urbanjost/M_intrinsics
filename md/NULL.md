@@ -9,6 +9,7 @@
     ptr => null( [mold] )
 ```
 ```fortran
+      function null(mold)
 ```
 ### **Characteristics**
 

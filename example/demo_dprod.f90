@@ -14,7 +14,7 @@
          & 'to x*y=',x*y, &
          & 'to dble(x)*dble(y)=',dble(x)*dble(y)
 
-         print *'test an expected result is produced'
+         print *,'test if an expected result is produced'
          xx=-6.0d0
          write(*,*)DPROD(-3.0, 2.0),xx
          write(*,*)merge('PASSED','FAILED',DPROD(-3.0, 2.0) == xx)

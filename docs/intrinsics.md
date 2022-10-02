@@ -93,7 +93,7 @@ character(len=*),parameter :: &
 
   ! COMPLEX input produces REAL output
     write(*, g)' complex input produces real output', &
-    & cmplx(30.0_dp,40.0_dp,kind=dp)
+    & abs(cmplx(30.0_dp,40.0_dp,kind=dp))
     ! dusty corner: "kind=dp" is required or the value returned by
     ! CMPLX() is a default real instead of double precision
 
@@ -103,18 +103,18 @@ character(len=*),parameter :: &
 
 end program demo_abs
 ```
-Result:
+Results:
 ```text
- integer          In: -1                           Out: 1
- real             In: -1.00000000                  Out: 1.00000000
- doubleprecision  In: -45.780000000000001          Out: 45.780000000000001
- complex          In: (-3.00000000,-4.00000000)    Out: 5.00000000
- abs range test :   2147483647  2147483647
- abs range test :    3.40282347E+38   3.40282347E+38
- abs range test :    1.17549435E-38   1.17549435E-38
- abs is elemental: 20 0 1 3 100
- complex input produces real output 30.000000000000000 40.000000000000000
- distance of ( -3.00000000 -4.00000000 ) from zero is 5.00000000
+    integer          In: -1                       Out: 1
+    real             In: -1.000000                Out: 1.000000
+    doubleprecision  In: -45.78000000000000       Out: 45.78000000000000
+    complex          In: (-3.000000,-4.000000)    Out: 5.000000
+    abs range test :   2147483647  2147483647
+    abs range test :   3.4028235E+38  3.4028235E+38
+    abs range test :   1.1754944E-38  1.1754944E-38
+    abs is elemental: 20 0 1 3 100
+    complex input produces real output 50.00000000000000
+    distance of ( -3.000000 -4.000000 ) from zero is 5.000000
 ```
 ### **Standard**
 
@@ -137,14 +137,17 @@ Result:
     result = achar(i [,kind])
 ```
 ```fortran
-     elemental character(len=1) function achar(i,kind)
+     elemental character(len=1,kind=KIND) function achar(i,kind)
 
-      integer(kind=KIND),intent(in) :: i
-      integer(kind=KIND),intent(in),optional :: kind
+      integer(kind=**),intent(in) :: i
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-where KIND may be any supported kind value for _integer_ types.
+where a kind designated as ** may be any supported kind value for the type
+
+The _character_ kind returned is the value of **kind** if present.
+otherwise, a single default _character_ is returned.
 
 ### **Description**
 
@@ -165,21 +168,23 @@ will clear the screen on an ANSI-compatible terminal display,
 - **i**
   : the _integer_ value to convert to an ASCII character, in the range
   0 to 127.
+  : **achar(iachar(c))** shall have the value C for any character
+  C capable of representation as a default character.
 
 - **kind**
-  : (optional) an _integer_ initialization expression indicating the kind
+  : a _integer_ initialization expression indicating the kind
   parameter of the result.
 
 ### **Result**
 
-The return value is the requested character of type _character_ with a
-length of one. If the **kind** argument is present, the return value is of
-the specified kind and of the default kind otherwise.
+  Assuming **i** has a value in the range 0 <= I <= 127, the result is the
+  character in position **i** of the ASCII collating sequence, provided
+  the processor is capable of representing that character in the character
+  kind of the result; otherwise, the result is processor dependent.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_achar
 use,intrinsic::iso_fortran_env,only:int8,int16,int32,int64
@@ -4015,13 +4020,22 @@ Fortran 95
     call c_f_pointer(cptr, fptr [,shape] )
 ```
 ```fortran
+    subroutine c_f_pointer(cptr, fptr ,shape )
+    type(c_ptr),intent(in) :: cprt
+    type(TYPE),pointer,intent(out) :: fprt
+    integer,intent(in),optional :: shape(:)
 ```
 ### **Characteristics**
 
+The Fortran pointer **fprt** must be interoperable with **cptr**
+
+**shape** is only specified if **fptr** is an array.
+
 ### **Description**
 
-**c_f_pointer(cptr, fptr\[, shape\])** Assign the target, the C
-pointer, **cptr** to the Fortran pointer **fptr** and specify its shape.
+**c_f_pointer**(3) assigns the target (the C pointer **cptr**) to the
+Fortran pointer **fptr** and specifies its shape if **fptr** points to
+an array.
 
 ### **Options**
 
@@ -4080,12 +4094,15 @@ Fortran 2003
     call c_f_procpointer(cptr, fptr)
 ```
 ```fortran
+    subroutine c_f_procpointer(cptr, fptr )
+    type(c_funptr),intent(in) :: cprt
+    type(TYPE),pointer,intent(out) :: fprt
 ```
 ### **Characteristics**
 
 ### **Description**
 
-**c_f_procpointer(cptr, fptr)** assigns the target of the C function
+**c_f_procpointer**(3) assigns the target of the C function
 pointer **cptr** to the Fortran procedure pointer **fptr**.
 
 ### **Options**
@@ -4372,6 +4389,7 @@ Fortran 2003
 ```
 ### **Characteristics**
 
+- a kind designated as ** may be any supported kind value for the type
 - The type of **x** **TYPE** may be _integer_, _real_, or _complex_.
 - **y** is allowed only if **x** is not _complex_. The **TYPE** for
   **y** may be _integer_ or _real_.
@@ -6591,7 +6609,7 @@ real(kind=dp)   :: dd
    & 'to x*y=',x*y, &
    & 'to dble(x)*dble(y)=',dble(x)*dble(y)
 
-   print *'test an expected result is produced'
+   print *,'test if an expected result is produced'
    xx=-6.0d0
    write(*,*)DPROD(-3.0, 2.0),xx
    write(*,*)merge('PASSED','FAILED',DPROD(-3.0, 2.0) == xx)
@@ -6609,7 +6627,7 @@ Results:
     as floating point values results may differ slightly:
     compare dprod(xy)=   11.959999313354501      to x*y=   11.9599991
     to dble(x)*dble(y)=   11.959999313354501
-    test an expected result is produced
+    test if an expected result is produced
      -6.0000000000000000       -6.0000000000000000
     PASSED
     elemental
@@ -8450,123 +8468,132 @@ Logarithm of the Gamma function: [**log_gamma**(3)](#log_gamma)
 
 ### **Synopsis**
 ```fortran
-  call get_command_argument(number [,value] [,length] [,status])
+  call get_command_argument(number [,value] [,length] &
+  & [,status] [,errmsg])
 ```
 ```fortran
-   subroutine get_command_argument( number, value, length, status )
+   subroutine get_command_argument( number, value, length, &
+   & status ,errmsg)
 
-    integer,intent(in)                    :: number
-    character(len=*),intent(out),optional :: value
-    integer,intent(out),optional          :: length
-    integer,intent(out),optional          :: status
+    integer(kind=**),intent(in)             :: number
+    character(len=*),intent(out),optional   :: value
+    integer(kind=**),intent(out),optional   :: length
+    integer(kind=**),intent(out),optional   :: status
+    character(len=*),intent(inout),optional :: errmsg
 ```
 ### **Characteristics**
 
+ - a kind designated as ** may be any supported kind value for the type
+   meeting the conditions described herein.
+ - **number**, **length**, and **status** are scalar _integer_
+   with a decimal exponent range of at least four.
+ - **value** and **errmsg** are scalar _character_ variables of default
+   kind.
+
 ### **Description**
 
-Retrieve the **number**-th argument that was passed on the command line
-when the containing program was invoked.
+Retrieve or query the n-th argument that was passed on the command line
+to the current program execution.
 
 There is not anything specifically stated about what an argument is but
-in practice the arguments are split on whitespace unless the arguments
-are quoted and IFS values (Internal Field Separators) used by common
-shells are ignored.
+in practice the arguments are strings split on whitespace unless the
+arguments are quoted. IFS values (Internal Field Separators) used by
+common shells are typically ignored and unquoted whitespace is almost
+always the separator.
+
+Shells have often expanded command arguments and spell characters before
+passing them to the program, so the strings read are often not exactly
+what the user typed on the command line.
 
 ### **Options**
 
 - **number**
-  : Shall be a scalar of type **integer**, **number \>= 0**. If **number =
-  0**, **value** is set to the name of the program (on systems that support
-  this feature).
+  : is a non-negative number indicating which argument of the current
+    program command line is to be retrieved or queried.
+
+    If **number = 0**, the argument pointed to is set to the name of the
+    program (on systems that support this feature).
+
+    if the processor does not have such a concept as a command name the
+    value of command argument 0 is processor dependent.
+
+    For values from 1 to the number of arguments passed to the program a
+    value is returned in an order determined by the processor. Conventionally
+    they are returned consecutively as they appear on the command line from
+    left to right.
 
 ### **Result**
 
 - **value**
-  : Shall be a scalar of type _character_ and of default kind. After
-  get_command_argument returns, the **value** argument holds the
-  **number**-th command line argument. If **value** can not hold the argument,
-  it is truncated to fit the length of **value**. If there are less than
-  **number** arguments specified at the command line, **value** will be filled
-  with blanks.
+  : The **value** argument holds the command line argument.
+    If **value** can not hold the argument, it is truncated to fit the
+    length of **value**.
+
+    If there are less than **number** arguments specified at the command
+    line or if the argument specified does not exist for other reasons,
+    **value** will be filled with blanks.
 
 - **length**
-  : (Optional) Shall be a scalar of type _integer_. The **length**
-  argument contains the length of the **number**-th command line argument.
+  : The **length** argument contains the length of the n-th command
+    line argument. The length of **value** has no effect on this value,
+    It is the length required to hold all the significant characters of
+    the argument regardless of how much storage is provided by **value**.
 
 - **status**
-  : (Optional) Shall be a scalar of type _integer_. If the argument
-  retrieval fails, **status** is a positive number; if **value** contains a
-  truncated command line argument, **status** is **-1**; and otherwise the
-  **status** is zero.
+  : If the argument retrieval fails, **status** is a positive number;
+    if **value** contains a truncated command line argument, **status**
+    is **-1**; and otherwise the **status** is zero.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_get_command_argument
 implicit none
 character(len=255)           :: progname
-integer                      :: stat
-integer                      :: count,i, longest, argument_length
-integer,allocatable          :: istat(:), ilen(:)
-character(len=:),allocatable :: args(:)
-  !
-  ! get number of arguments
+integer                      :: count, i, argument_length, istat
+character(len=:),allocatable :: arg
+
+ ! command name assuming it is less than 255 characters in length
+  call get_command_argument (0, progname, status=istat)
+  if (istat == 0) then
+     print *, "The program's name is " // trim (progname)
+  else
+     print *, "Could not get the program's name " // trim (progname)
+  endif
+
+ ! get number of arguments
   count = command_argument_count()
   write(*,*)'The number of arguments is ',count
-  !
-  ! simple usage
-  !
-  call get_command_argument (0, progname, status=stat)
-  if (stat == 0) then
-     print *, "The program's name is " // trim (progname)
-  endif
-  !
-  ! showing how to make an array to hold any argument list
-  !
-  ! find longest argument
-  !
-  longest=0
-  do i=0,count
-     call get_command_argument(number=i,length=argument_length)
-     longest=max(longest,argument_length)
-  enddo
+
   !
   ! allocate string array big enough to hold command line
   ! argument strings and related information
   !
-  allocate(character(len=longest) :: args(0:count))
-  allocate(istat(0:count))
-  allocate(ilen(0:count))
-  !
-  ! read the arguments into the array
-  !
-  do i=0,count
-    call get_command_argument(i, args(i),status=istat(i),length=ilen(i))
+  do i=1,count
+     call get_command_argument(number=i,length=argument_length)
+     if(allocated(arg))deallocate(arg)
+     allocate(character(len=argument_length) :: arg)
+     call get_command_argument(i, arg,status=istat)
+     ! show the results
+     write (*,'(i3.3,1x,i0.5,1x,i0.5,1x,"[",a,"]")') &
+     & i,istat,argument_length,arg
   enddo
-  !
-  ! show the results
-  !
-  write (*,'(i3.3,1x,i0.5,1x,i0.5,1x,"[",a,"]")') &
-  & (i,istat(i),ilen(i),args(i)(:ilen(i)),i=0,count)
+
 end program demo_get_command_argument
 ```
-
 Results:
-
-```text
-/demo_get_command_argument a  test  'of getting   arguments ' "  leading"
-
- The number of arguments is            5
- The program's name is xxx
-000 00000 00003 [./test_get_command_argument]
-001 00000 00001 [a]
-003 00000 00004 [test]
-004 00000 00024 [of getting   arguments ]
-005 00000 00018 [  leading]
+```bash
+ ./demo_get_command_argument a  test 'of getting  arguments ' " leading"
 ```
-
+```text
+ The program's name is ./demo_get_command_argument
+ The number of arguments is            4
+001 00000 00001 [a]
+002 00000 00004 [test]
+003 00000 00022 [of getting  arguments ]
+004 00000 00008 [ leading]
+```
 ### **Standard**
 
 Fortran 2003
@@ -8576,26 +8603,33 @@ Fortran 2003
 [**get_command**(3)](#get_command),
 [**command_argument_count**(3)](#command_argument_count)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## get_command
 
 ### **Name**
 
-**get_command**(3) - \[SYSTEM:COMMAND LINE\] Get the entire command line
+**get_command**(3) - \[SYSTEM:COMMAND LINE\] Get the entire command line invocation
 
 ### **Synopsis**
 ```fortran
-    call get_command([command] [,length] [,status])
+    call get_command([command] [,length] [,status] [,errmsg])
 ```
 ```fortran
-     subroutine get_command( command ,length ,status )
+     subroutine get_command( command ,length ,status, errmsg )
 
-     character(len=*),intent(out),optional :: command
-     integer,intent(out),optional :: length
-     integer,intent(out),optional :: status
+      character(len=*),intent(out),optional   :: command
+      integer(kind=**),intent(out),optional   :: length
+      integer(kind=**),intent(out),optional   :: status
+      character(len=*),intent(inout),optional :: errmsg
 ```
 ### **Characteristics**
+
+ - a kind designated as ** may be any supported kind value for the type
+   meeting the conditions described herein.
+ - **command** and **errmsg** are scalar _character_ variables of default kind.
+ - **length** and **status** are scalar _integer_ with a decimal exponent
+   range of at least four.
 
 ### **Description**
 
@@ -8611,19 +8645,25 @@ be necessary.
 ### **Result**
 
 - **command**
-  : Shall be of type _character_ and of default kind. If
-  **command** is present, stores the entire command line that was used to
-  invoke the program in **command**.
+  : If **command** is present, the entire command line that was used
+    to invoke the program is stored into it. If the command cannot be
+    determined, **command** is assigned all blanks.
 
 - **length**
-  : Shall be of type _integer_ and of default kind. If **length**
-  is present, it is assigned the length of the command line.
+  : If **length** is present, it is assigned the length of the command line.
+    It is system-dependent as to whether trailing blanks will be counted.
+
+    If the command length cannot be determined, a length of 0 is assigned.
 
 - **status**
   : Shall be of type _integer_ and of default kind. If **status**
-  is present, it is assigned 0 upon success of the command, **-1** if
-  **command** is too short to store the command line, or a positive value
-  in case of an error.
+    is present, it is assigned 0 upon success of the command, **-1**
+    if **command** is too short to store the command line, or a positive
+    value in case of an error.
+
+- **errmsg**
+  : It is assigned a processor-dependent explanatory message if the
+    command retrieval fails. Otherwise, it is unchanged.
 
 ### **Examples**
 
@@ -8673,69 +8713,76 @@ Fortran 2003
 
 ### **Name**
 
-**get_environment_variable**(3) - \[SYSTEM:ENVIRONMENT\] Get an environmental variable
+**get_environment_variable**(3) - \[SYSTEM:ENVIRONMENT\] Get value of an environment variable
 
 ### **Synopsis**
 ```fortran
-    call get_environment_variable(name [,value] [,length] [,status] [,trim_name] )
+    call get_environment_variable(name [,value] [,length] &
+    & [,status] [,trim_name] [,errmsg] )
+```
+```fortran
+     subroutine character(len=*) get_environment_variable( &
+     & name, value, length, status, trim_name, errmsg )
+
+     character(len=*),intent(in) :: name
+     character(len=*),intent(out),optional   :: value
+     integer(kind=**),intent(out),optional   :: length
+     integer(kind=**),intent(out),optional   :: status
+     logical,intent(out),optional            :: trim_name
+     character(len=*),intent(inout),optional :: errmsg
 ```
 ### **Characteristics**
 
-```fortran
-     subroutine character(len=*) get_environment_variable( &
-     & name [,value] [,length] [,status] [,trim_name] )
+ - a kind designated as ** may be any supported kind value for the type
+   meeting the conditions described herein.
+ - **name**, **value**, and **errmsg**  are a scalar _character_ of
+   default kind.
+ - **length** and **status** are _integer_ scalars with a decimal exponent
+   range of at least four.
+ - **trim_name** is a scalar of type _logical_ and of default kind.
 
-     character(len=*),intent(in) :: name
-     character(len=*),intent(out),optional :: value
-     integer,intent(out),optional :: length
-     integer,intent(out),optional :: status
-     logical,intent(out),optional :: trim_name
-```
 ### **Description**
 
-Get the **value** of the environmental variable **name**.
+Get the **value** of the environment variable **name**.
 
 Note that **get_environment_variable**(3) need not be thread-safe. It
 is the responsibility of the user to ensure that the environment is not
 being updated concurrently.
 
+If running in parallel be aware
+It is processor dependent whether an environment variable that exists
+on an image also exists on another image, and if it does exist on both
+images whether the values are the same or different.
+
 ### **Options**
 
 - **name**
   : The name of the environment variable to query.
-
-    Shall be a scalar of type _character_ and of default kind.
+  The interpretation of case is processor dependent.
 
 ### **Result**
 
 - **value**
-  : The value of the environment variable being queried.
-
-  Shall be a scalar of type _character_ and of default kind.
-  The value of **name** is stored in **value**. If **value** is not
-  large enough to hold the data, it is truncated. If **name** is not
-  set, **value** will be filled with blanks.
+  : The value of the environment variable being queried. If **value**
+    is not large enough to hold the data, it is truncated. If the variable
+    **name** is not set or has no value, or the processor does not support
+    environment variables **value** will be filled with blanks.
 
 - **length**
   : Argument **length** contains the length needed for storing the
-  environment variable **name** or zero if it is not present.
-
-  Shall be a scalar of type _integer_ and of default kind.
+    environment variable **name**. It is zero if the environment variable
+    is not set.
 
 - **status**
   : **status** is **-1** if **value** is present but too short for the
-  environment variable; it is **1** if the environment variable does
-  not exist and **2** if the processor does not support environment
-  variables; in all other cases **status** is zero.
-
-  Shall be a scalar of type _integer_ and of default kind.
+    environment variable; it is **1** if the environment variable does
+    not exist and **2** if the processor does not support environment
+    variables; in all other cases **status** is zero.
 
 - **trim_name**
   : If **trim_name** is present with the value _.false._, the trailing
-  blanks in **name** are significant; otherwise they are not part of the
-  environment variable name.
-
-  Shall be a scalar of type _logical_ and of default kind.
+    blanks in **name** are significant; otherwise they are not part of
+    the environment variable name.
 
 ### **Examples**
 
@@ -8745,52 +8792,51 @@ program demo_getenv
 implicit none
 character(len=:),allocatable :: homedir
 character(len=:),allocatable :: var
+
      var='HOME'
      homedir=get_env(var)
      write (*,'(a,"=""",a,"""")')var,homedir
 
 contains
 
-function get_env(NAME,DEFAULT) result(VALUE)
+function get_env(name,default) result(value)
 ! a function that makes calling get_environment_variable(3) simple
 implicit none
-character(len=*),intent(in)          :: NAME
-character(len=*),intent(in),optional :: DEFAULT
-character(len=:),allocatable         :: VALUE
+character(len=*),intent(in)          :: name
+character(len=*),intent(in),optional :: default
+character(len=:),allocatable         :: value
 integer                              :: howbig
 integer                              :: stat
 integer                              :: length
-   ! get length required to hold value
    length=0
-   VALUE=''
-   if(NAME.ne.'')then
-      call get_environment_variable( &
-      & NAME, length=howbig,status=stat,trim_name=.true.)
+   value=''
+   if(name.ne.'')then
+      call get_environment_variable( name, &
+      & length=howbig,status=stat,trim_name=.true.)
       select case (stat)
       case (1)
-       !*!print *, NAME, " is not defined in the environment. Strange..."
-       VALUE=''
+       print *, NAME, " is not defined in the environment. Strange..."
+       value=''
       case (2)
-       !*!print *, &
-       !*!"This processor does not support environment variables. Boooh!"
-       VALUE=''
+       print *, &
+       "This processor does not support environment variables. Boooh!"
+       value=''
       case default
-       ! make string to hold value of sufficient size
-       if(allocated(VALUE))deallocate(VALUE)
-       allocate(character(len=max(howbig,1)) :: VALUE)
+       ! make string of sufficient size to hold value
+       if(allocated(value))deallocate(value)
+       allocate(character(len=max(howbig,1)) :: value)
        ! get value
        call get_environment_variable( &
-       & NAME,VALUE,status=stat,trim_name=.true.)
-       if(stat.ne.0)VALUE=''
+       & name,value,status=stat,trim_name=.true.)
+       if(stat.ne.0)value=''
       end select
    endif
-   if(VALUE.eq.''.and.present(DEFAULT))VALUE=DEFAULT
+   if(value.eq.''.and.present(default))value=default
 end function get_env
 
 end program demo_getenv
 ```
 Typical Results:
-
 ```text
    HOME="/home/urbanjs"
 ```
@@ -8800,7 +8846,8 @@ Fortran 2003
 
 ### **See also**
 
-[****(3)](#)
+[**get_command_argument**(3)](#get_command_argument),
+[**get_command**(3)](#get_command)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -10252,8 +10299,16 @@ Fortran 2008
     result = is_contiguous(a)
 ```
 ```fortran
+     logical function is_contingious(a)
+
+      type(TYPE(kind=**)),intent(in) :: a
 ```
 ### **Characteristics**
+
+- a kind designated as ** may be any supported kind value for the type
+- **a** may be of any type. It shall be an array. If it is a pointer it
+  shall be associated.
+- the result is a default logical scalar
 
 ### **Description**
 
@@ -10322,19 +10377,17 @@ It is processor-dependent whether any other object is contiguous.
 ### **Options**
 
 - **a**
-  : may be of any type. It shall be an array. If it is a pointer it
+  : An arry any type to be tested for being contingious. If it is a pointer it
   shall be associated.
 
 ### **Result**
 
-- **Result**
-  : of type Default logical scalar. The result has the value true if **a**
-  is contiguous, and false otherwise.
+  The result has the value _.true._ if **a** is contiguous, and _.false._
+  otherwise.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_is_contiguous
 implicit none
@@ -13987,9 +14040,9 @@ Fortran 95
 ```
 ### **Characteristics**
 
-**x** may be a _real_ value of any kind.
-
-The return value is of the same type and kind as **x**.
+- a kind designated as ** may be any supported kind value for the type
+- **x** may be a _real_ value of any kind.
+- The return value is of the same type and kind as **x**.
 
 ### **Description**
 
@@ -14464,6 +14517,7 @@ Fortran 95
     ptr => null( [mold] )
 ```
 ```fortran
+      function null(mold)
 ```
 ### **Characteristics**
 
@@ -16104,6 +16158,7 @@ end program demo_rank
 ```
 ### **Characteristics**
 
+ - a kind designated as ** may be any supported kind value for the type
  - the type of **x** **TYPE** may be _integer_, _real_, or _complex_.
  - if **kind** is not present when **x** is complex the result is the same kind as **x**.
    If **kind** is not present and **x** is not _complex_ the result is a default _real_ kind.
@@ -16516,6 +16571,8 @@ Functions that perform operations on character strings:
       integer(kind=**),intent(in),optional     :: order(:)
 ```
 ### **Characteristics**
+
+ - a kind designated as ** may be any supported kind value for the type
  - **source** is an array of any type
  - **shape** defines a Fortran shape and therefore an _integer_ vector
    (of rank one) of constant size of up to 16 non-negative values.
@@ -19224,11 +19281,20 @@ result = this_image(distance)
 ```
 or
 ```fortran
-result = this_image(coarray, dim)
+  result = this_image(coarray, dim)
 ```
 ```fortran
+  integer function this_image( distance ,coarray, dim )
+    type(TYPE(kind=**),optional :: coarray[*]
+    integer,intent(in),optional :: distance
+    integer,intent(in),optional :: dim
 ```
 ### **Characteristics**
+
+ - a kind designated as ** may be any supported kind value for the type
+ - **distance** (not permitted together with **coarray**).
+ - **coarray** can be of any type. If **dim** is present it is required.
+ - if **dim**  if present, coarray is required.
 
 ### **Description**
 
@@ -19237,15 +19303,13 @@ Returns the cosubscript for this image.
 ### **Options**
 
 - **distance**
-  : (optional, **intent(in)**) Nonnegative scalar integer (not permitted
-  together with **coarray**).
+  : Nonnegative scalar integer (not permitted together with **coarray**).
 
 - **coarray**
-  : Coarray of any type (optional; if **dim** present, required).
+  : if **dim** present, required).
 
 - **dim**
-  : default integer scalar (optional). If present, **dim** shall be between
-  one and the corank of **coarray**.
+  : If present, **dim** shall be between one and the corank of **coarray**.
 
 ### **Result**
 

@@ -34,7 +34,7 @@
 
         ! COMPLEX input produces REAL output
           write(*, g)' complex input produces real output', &
-          & cmplx(30.0_dp,40.0_dp,kind=dp)
+          & abs(cmplx(30.0_dp,40.0_dp,kind=dp))
           ! dusty corner: "kind=dp" is required or the value returned by
           ! CMPLX() is a default real instead of double precision
 

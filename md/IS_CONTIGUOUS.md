@@ -9,8 +9,16 @@
     result = is_contiguous(a)
 ```
 ```fortran
+     logical function is_contingious(a)
+
+      type(TYPE(kind=**)),intent(in) :: a
 ```
 ### **Characteristics**
+
+- a kind designated as ** may be any supported kind value for the type
+- **a** may be of any type. It shall be an array. If it is a pointer it
+  shall be associated.
+- the result is a default logical scalar
 
 ### **Description**
 
@@ -79,19 +87,17 @@ It is processor-dependent whether any other object is contiguous.
 ### **Options**
 
 - **a**
-  : may be of any type. It shall be an array. If it is a pointer it
+  : An arry any type to be tested for being contingious. If it is a pointer it
   shall be associated.
 
 ### **Result**
 
-- **Result**
-  : of type Default logical scalar. The result has the value true if **a**
-  is contiguous, and false otherwise.
+  The result has the value _.true._ if **a** is contiguous, and _.false._
+  otherwise.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_is_contiguous
 implicit none

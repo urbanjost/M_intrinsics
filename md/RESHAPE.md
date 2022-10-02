@@ -17,6 +17,8 @@
       integer(kind=**),intent(in),optional     :: order(:)
 ```
 ### **Characteristics**
+
+ - a kind designated as ** may be any supported kind value for the type
  - **source** is an array of any type
  - **shape** defines a Fortran shape and therefore an _integer_ vector
    (of rank one) of constant size of up to 16 non-negative values.

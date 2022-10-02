@@ -9,12 +9,15 @@
     call c_f_procpointer(cptr, fptr)
 ```
 ```fortran
+    subroutine c_f_procpointer(cptr, fptr )
+    type(c_funptr),intent(in) :: cprt
+    type(TYPE),pointer,intent(out) :: fprt
 ```
 ### **Characteristics**
 
 ### **Description**
 
-**c_f_procpointer(cptr, fptr)** assigns the target of the C function
+**c_f_procpointer**(3) assigns the target of the C function
 pointer **cptr** to the Fortran procedure pointer **fptr**.
 
 ### **Options**

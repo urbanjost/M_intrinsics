@@ -17,6 +17,7 @@
 ```
 ### **Characteristics**
 
+- a kind designated as ** may be any supported kind value for the type
 - The type of **x** **TYPE** may be _integer_, _real_, or _complex_.
 - **y** is allowed only if **x** is not _complex_. The **TYPE** for
   **y** may be _integer_ or _real_.

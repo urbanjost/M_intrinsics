@@ -16,6 +16,7 @@
 ```
 ### **Characteristics**
 
+ - a kind designated as ** may be any supported kind value for the type
  - the type of **x** **TYPE** may be _integer_, _real_, or _complex_.
  - if **kind** is not present when **x** is complex the result is the same kind as **x**.
    If **kind** is not present and **x** is not _complex_ the result is a default _real_ kind.

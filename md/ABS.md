@@ -92,7 +92,7 @@ character(len=*),parameter :: &
 
   ! COMPLEX input produces REAL output
     write(*, g)' complex input produces real output', &
-    & cmplx(30.0_dp,40.0_dp,kind=dp)
+    & abs(cmplx(30.0_dp,40.0_dp,kind=dp))
     ! dusty corner: "kind=dp" is required or the value returned by
     ! CMPLX() is a default real instead of double precision
 
@@ -102,18 +102,18 @@ character(len=*),parameter :: &
 
 end program demo_abs
 ```
-Result:
+Results:
 ```text
- integer          In: -1                           Out: 1
- real             In: -1.00000000                  Out: 1.00000000
- doubleprecision  In: -45.780000000000001          Out: 45.780000000000001
- complex          In: (-3.00000000,-4.00000000)    Out: 5.00000000
- abs range test :   2147483647  2147483647
- abs range test :    3.40282347E+38   3.40282347E+38
- abs range test :    1.17549435E-38   1.17549435E-38
- abs is elemental: 20 0 1 3 100
- complex input produces real output 30.000000000000000 40.000000000000000
- distance of ( -3.00000000 -4.00000000 ) from zero is 5.00000000
+    integer          In: -1                       Out: 1
+    real             In: -1.000000                Out: 1.000000
+    doubleprecision  In: -45.78000000000000       Out: 45.78000000000000
+    complex          In: (-3.000000,-4.000000)    Out: 5.000000
+    abs range test :   2147483647  2147483647
+    abs range test :   3.4028235E+38  3.4028235E+38
+    abs range test :   1.1754944E-38  1.1754944E-38
+    abs is elemental: 20 0 1 3 100
+    complex input produces real output 50.00000000000000
+    distance of ( -3.000000 -4.000000 ) from zero is 5.000000
 ```
 ### **Standard**
 

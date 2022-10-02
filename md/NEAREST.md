@@ -16,9 +16,9 @@
 ```
 ### **Characteristics**
 
-**x** may be a _real_ value of any kind.
-
-The return value is of the same type and kind as **x**.
+- a kind designated as ** may be any supported kind value for the type
+- **x** may be a _real_ value of any kind.
+- The return value is of the same type and kind as **x**.
 
 ### **Description**
 

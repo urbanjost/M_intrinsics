@@ -15,12 +15,20 @@ result = this_image(distance)
 ```
 or
 ```fortran
-result = this_image(coarray, dim)
+  result = this_image(coarray, dim)
 ```
 ```fortran
+  integer function this_image( distance ,coarray, dim )
+    type(TYPE(kind=**),optional :: coarray[*]
+    integer,intent(in),optional :: distance
+    integer,intent(in),optional :: dim
 ```
 ### **Characteristics**
 
+ - a kind designated as ** may be any supported kind value for the type
+ - **distance** (not permitted together with **coarray**).
+ - **coarray** can be of any type. If **dim** is present it is required.
+ - if **dim**  if present, coarray is required.
 
 ### **Description**
 
@@ -29,15 +37,13 @@ Returns the cosubscript for this image.
 ### **Options**
 
 - **distance**
-  : (optional, **intent(in)**) Nonnegative scalar integer (not permitted
-  together with **coarray**).
+  : Nonnegative scalar integer (not permitted together with **coarray**).
 
 - **coarray**
-  : Coarray of any type (optional; if **dim** present, required).
+  : if **dim** present, required).
 
 - **dim**
-  : default integer scalar (optional). If present, **dim** shall be between
-  one and the corank of **coarray**.
+  : If present, **dim** shall be between one and the corank of **coarray**.
 
 ### **Result**
 
