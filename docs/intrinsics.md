@@ -1921,7 +1921,7 @@ failed, the value STAT_FAILED_IMAGE.
   atomic_int_kind kind.
 
 - **value**
-: Scalar of the same type as **atom**. If the kind is different, the value
+  : Scalar of the same type as **atom**. If the kind is different, the value
   is converted to the kind of **atom**.
 
 - **stat**
@@ -2128,6 +2128,7 @@ TS 18508
   : Scalar coarray or coindexed variable of either integer type with
   atomic_int_kind kind or logical type with atomic_logical_kind
   kind.
+
 - **value**
   : Scalar of the same type as **atom**. If the kind is different, the value
   is converted to the kind of **atom**.
@@ -3637,7 +3638,7 @@ Determines whether an integer is bitwise less than another.
 ### **Options**
 
 - **i**
-    Shall be of _integer_ type or a BOZ literal constant.
+  : Shall be of _integer_ type or a BOZ literal constant.
 
 - **j**
   : Shall be of _integer_ type or a BOZ constant.
@@ -8509,40 +8510,36 @@ what the user typed on the command line.
 
 - **number**
   : is a non-negative number indicating which argument of the current
-    program command line is to be retrieved or queried.
-
-    If **number = 0**, the argument pointed to is set to the name of the
-    program (on systems that support this feature).
-
-    if the processor does not have such a concept as a command name the
-    value of command argument 0 is processor dependent.
-
-    For values from 1 to the number of arguments passed to the program a
-    value is returned in an order determined by the processor. Conventionally
-    they are returned consecutively as they appear on the command line from
-    left to right.
+  program command line is to be retrieved or queried.
+  : If **number = 0**, the argument pointed to is set to the name of the
+  program (on systems that support this feature).
+  : if the processor does not have such a concept as a command name the
+  value of command argument 0 is processor dependent.
+  : For values from 1 to the number of arguments passed to the program a
+  value is returned in an order determined by the processor. Conventionally
+  they are returned consecutively as they appear on the command line from
+  left to right.
 
 ### **Result**
 
 - **value**
   : The **value** argument holds the command line argument.
-    If **value** can not hold the argument, it is truncated to fit the
-    length of **value**.
-
-    If there are less than **number** arguments specified at the command
-    line or if the argument specified does not exist for other reasons,
-    **value** will be filled with blanks.
+  If **value** can not hold the argument, it is truncated to fit the
+  length of **value**.
+  : If there are less than **number** arguments specified at the command
+  line or if the argument specified does not exist for other reasons,
+  **value** will be filled with blanks.
 
 - **length**
   : The **length** argument contains the length of the n-th command
-    line argument. The length of **value** has no effect on this value,
-    It is the length required to hold all the significant characters of
-    the argument regardless of how much storage is provided by **value**.
+  line argument. The length of **value** has no effect on this value,
+  It is the length required to hold all the significant characters of
+  the argument regardless of how much storage is provided by **value**.
 
 - **status**
   : If the argument retrieval fails, **status** is a positive number;
-    if **value** contains a truncated command line argument, **status**
-    is **-1**; and otherwise the **status** is zero.
+  if **value** contains a truncated command line argument, **status**
+  is **-1**; and otherwise the **status** is zero.
 
 ### **Examples**
 
@@ -8646,24 +8643,22 @@ be necessary.
 
 - **command**
   : If **command** is present, the entire command line that was used
-    to invoke the program is stored into it. If the command cannot be
-    determined, **command** is assigned all blanks.
+  to invoke the program is stored into it. If the command cannot be
+  determined, **command** is assigned all blanks.
 
 - **length**
   : If **length** is present, it is assigned the length of the command line.
-    It is system-dependent as to whether trailing blanks will be counted.
-
-    If the command length cannot be determined, a length of 0 is assigned.
+  It is system-dependent as to whether trailing blanks will be counted.
+  : If the command length cannot be determined, a length of 0 is assigned.
 
 - **status**
-  : Shall be of type _integer_ and of default kind. If **status**
-    is present, it is assigned 0 upon success of the command, **-1**
-    if **command** is too short to store the command line, or a positive
-    value in case of an error.
+  : If **status** is present, it is assigned 0 upon success of the
+  command, **-1** if **command** is too short to store the command line,
+  or a positive value in case of an error.
 
 - **errmsg**
   : It is assigned a processor-dependent explanatory message if the
-    command retrieval fails. Otherwise, it is unchanged.
+  command retrieval fails. Otherwise, it is unchanged.
 
 ### **Examples**
 
@@ -8672,17 +8667,17 @@ Sample program:
 ```fortran
 program demo_get_command
 implicit none
-integer                      :: COMMAND_LINE_LENGTH
-character(len=:),allocatable :: COMMAND_LINE
+integer                      :: command_line_length
+character(len=:),allocatable :: command_line
    ! get command line length
-   call get_command(length=COMMAND_LINE_LENGTH)
+   call get_command(length=command_line_length)
    ! allocate string big enough to hold command line
-   allocate(character(len=COMMAND_LINE_LENGTH) :: COMMAND_LINE)
+   allocate(character(len=command_line_length) :: command_line)
    ! get command line as a string
-   call get_command(command=COMMAND_LINE)
+   call get_command(command=command_line)
    ! trim leading spaces just in case
-   COMMAND_LINE=adjustl(COMMAND_LINE)
-   write(*,'("OUTPUT:",a)')COMMAND_LINE
+   command_line=adjustl(command_line)
+   write(*,'("OUTPUT:",a)')command_line
 end program demo_get_command
 ```
 Results:
@@ -8764,25 +8759,25 @@ images whether the values are the same or different.
 
 - **value**
   : The value of the environment variable being queried. If **value**
-    is not large enough to hold the data, it is truncated. If the variable
-    **name** is not set or has no value, or the processor does not support
-    environment variables **value** will be filled with blanks.
+  is not large enough to hold the data, it is truncated. If the variable
+  **name** is not set or has no value, or the processor does not support
+  environment variables **value** will be filled with blanks.
 
 - **length**
   : Argument **length** contains the length needed for storing the
-    environment variable **name**. It is zero if the environment variable
-    is not set.
+  environment variable **name**. It is zero if the environment variable
+  is not set.
 
 - **status**
   : **status** is **-1** if **value** is present but too short for the
-    environment variable; it is **1** if the environment variable does
-    not exist and **2** if the processor does not support environment
-    variables; in all other cases **status** is zero.
+  environment variable; it is **1** if the environment variable does
+  not exist and **2** if the processor does not support environment
+  variables; in all other cases **status** is zero.
 
 - **trim_name**
   : If **trim_name** is present with the value _.false._, the trailing
-    blanks in **name** are significant; otherwise they are not part of
-    the environment variable name.
+  blanks in **name** are significant; otherwise they are not part of
+  the environment variable name.
 
 ### **Examples**
 
@@ -8815,7 +8810,7 @@ integer                              :: length
       & length=howbig,status=stat,trim_name=.true.)
       select case (stat)
       case (1)
-       print *, NAME, " is not defined in the environment. Strange..."
+       print *, name, " is not defined in the environment. Strange..."
        value=''
       case (2)
        print *, &

@@ -2882,7 +2882,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div><div id="options-39" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
-<li><p><strong>i</strong> Shall be of integer type or a BOZ literal constant.</p></li>
+<li><dl>
+<dt><strong>i</strong></dt>
+<dd>Shall be of integer type or a BOZ literal constant.
+</dd>
+</dl></li>
 <li><dl>
 <dt><strong>j</strong></dt>
 <dd>Shall be of integer type or a BOZ constant.
@@ -6528,10 +6532,13 @@ $$</span><br /></p>
 <dt><strong>number</strong></dt>
 <dd>is a non-negative number indicating which argument of the current program command line is to be retrieved or queried.
 </dd>
-</dl>
-<p>If <strong>number = 0</strong>, the argument pointed to is set to the name of the program (on systems that support this feature).</p>
-<p>if the processor does not have such a concept as a command name the value of command argument 0 is processor dependent.</p>
-<p>For values from 1 to the number of arguments passed to the program a value is returned in an order determined by the processor. Conventionally they are returned consecutively as they appear on the command line from left to right.</p></li>
+<dd>If <strong>number = 0</strong>, the argument pointed to is set to the name of the program (on systems that support this feature).
+</dd>
+<dd>if the processor does not have such a concept as a command name the value of command argument 0 is processor dependent.
+</dd>
+<dd>For values from 1 to the number of arguments passed to the program a value is returned in an order determined by the processor. Conventionally they are returned consecutively as they appear on the command line from left to right.
+</dd>
+</dl></li>
 </ul>
 </div><div id="result-68" class="slide section level3">
 <h1><strong>Result</strong></h1>
@@ -6540,8 +6547,9 @@ $$</span><br /></p>
 <dt><strong>value</strong></dt>
 <dd>The <strong>value</strong> argument holds the command line argument. If <strong>value</strong> can not hold the argument, it is truncated to fit the length of <strong>value</strong>.
 </dd>
-</dl>
-<p>If there are less than <strong>number</strong> arguments specified at the command line or if the argument specified does not exist for other reasons, <strong>value</strong> will be filled with blanks.</p></li>
+<dd>If there are less than <strong>number</strong> arguments specified at the command line or if the argument specified does not exist for other reasons, <strong>value</strong> will be filled with blanks.
+</dd>
+</dl></li>
 <li><dl>
 <dt><strong>length</strong></dt>
 <dd>The <strong>length</strong> argument contains the length of the n-th command line argument. The length of <strong>value</strong> has no effect on this value, It is the length required to hold all the significant characters of the argument regardless of how much storage is provided by <strong>value</strong>.
@@ -6640,11 +6648,12 @@ $$</span><br /></p>
 <dt><strong>length</strong></dt>
 <dd>If <strong>length</strong> is present, it is assigned the length of the command line. It is system-dependent as to whether trailing blanks will be counted.
 </dd>
-</dl>
-<p>If the command length cannot be determined, a length of 0 is assigned.</p></li>
+<dd>If the command length cannot be determined, a length of 0 is assigned.
+</dd>
+</dl></li>
 <li><dl>
 <dt><strong>status</strong></dt>
-<dd>Shall be of type integer and of default kind. If <strong>status</strong> is present, it is assigned 0 upon success of the command, <strong>-1</strong> if <strong>command</strong> is too short to store the command line, or a positive value in case of an error.
+<dd>If <strong>status</strong> is present, it is assigned 0 upon success of the command, <strong>-1</strong> if <strong>command</strong> is too short to store the command line, or a positive value in case of an error.
 </dd>
 </dl></li>
 <li><dl>
@@ -6658,17 +6667,17 @@ $$</span><br /></p>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb384"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb384-1" title="1"><span class="kw">program</span> demo_get_command</a>
 <a class="sourceLine" id="cb384-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb384-3" title="3"><span class="dt">integer</span>                      <span class="dt">::</span> COMMAND_LINE_LENGTH</a>
-<a class="sourceLine" id="cb384-4" title="4"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> COMMAND_LINE</a>
+<a class="sourceLine" id="cb384-3" title="3"><span class="dt">integer</span>                      <span class="dt">::</span> command_line_length</a>
+<a class="sourceLine" id="cb384-4" title="4"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> command_line</a>
 <a class="sourceLine" id="cb384-5" title="5">   <span class="co">! get command line length</span></a>
-<a class="sourceLine" id="cb384-6" title="6">   <span class="kw">call</span> get_command(length<span class="kw">=</span>COMMAND_LINE_LENGTH)</a>
+<a class="sourceLine" id="cb384-6" title="6">   <span class="kw">call</span> get_command(length<span class="kw">=</span>command_line_length)</a>
 <a class="sourceLine" id="cb384-7" title="7">   <span class="co">! allocate string big enough to hold command line</span></a>
-<a class="sourceLine" id="cb384-8" title="8">   <span class="kw">allocate</span>(<span class="dt">character(len=COMMAND_LINE_LENGTH)</span> <span class="dt">::</span> COMMAND_LINE)</a>
+<a class="sourceLine" id="cb384-8" title="8">   <span class="kw">allocate</span>(<span class="dt">character(len=command_line_length)</span> <span class="dt">::</span> command_line)</a>
 <a class="sourceLine" id="cb384-9" title="9">   <span class="co">! get command line as a string</span></a>
-<a class="sourceLine" id="cb384-10" title="10">   <span class="kw">call</span> get_command(command<span class="kw">=</span>COMMAND_LINE)</a>
+<a class="sourceLine" id="cb384-10" title="10">   <span class="kw">call</span> get_command(command<span class="kw">=</span>command_line)</a>
 <a class="sourceLine" id="cb384-11" title="11">   <span class="co">! trim leading spaces just in case</span></a>
-<a class="sourceLine" id="cb384-12" title="12">   COMMAND_LINE<span class="kw">=</span><span class="bu">adjustl</span>(COMMAND_LINE)</a>
-<a class="sourceLine" id="cb384-13" title="13">   <span class="fu">write(*</span>,<span class="st">&#39;(&quot;OUTPUT:&quot;,a)&#39;</span><span class="fu">)</span>COMMAND_LINE</a>
+<a class="sourceLine" id="cb384-12" title="12">   command_line<span class="kw">=</span><span class="bu">adjustl</span>(command_line)</a>
+<a class="sourceLine" id="cb384-13" title="13">   <span class="fu">write(*</span>,<span class="st">&#39;(&quot;OUTPUT:&quot;,a)&#39;</span><span class="fu">)</span>command_line</a>
 <a class="sourceLine" id="cb384-14" title="14"><span class="kw">end program</span> demo_get_command</a></code></pre></div>
 <p>Results:</p>
 <div class="sourceCode" id="cb385"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb385-1" title="1">     <span class="co"># note that shell expansion removes some of the whitespace</span></a>
@@ -6781,7 +6790,7 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb388-25" title="25">      <span class="kw">&amp;</span> length<span class="kw">=</span>howbig,status<span class="kw">=</span>stat,trim_name<span class="kw">=</span><span class="cn">.true.</span>)</a>
 <a class="sourceLine" id="cb388-26" title="26">      <span class="kw">select</span> <span class="kw">case</span> (stat)</a>
 <a class="sourceLine" id="cb388-27" title="27">      <span class="kw">case</span> (<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb388-28" title="28">       <span class="fu">print</span> <span class="kw">*</span>, NAME, <span class="st">&quot; is not defined in the environment. Strange...&quot;</span></a>
+<a class="sourceLine" id="cb388-28" title="28">       <span class="fu">print</span> <span class="kw">*</span>, name, <span class="st">&quot; is not defined in the environment. Strange...&quot;</span></a>
 <a class="sourceLine" id="cb388-29" title="29">       value<span class="kw">=</span><span class="st">&#39;&#39;</span></a>
 <a class="sourceLine" id="cb388-30" title="30">      <span class="kw">case</span> (<span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb388-31" title="31">       <span class="fu">print</span> <span class="kw">*</span>, <span class="kw">&amp;</span></a>

@@ -42,7 +42,7 @@ failed, the value STAT_FAILED_IMAGE.
   atomic_int_kind kind.
 
 - **value**
-: Scalar of the same type as **atom**. If the kind is different, the value
+  : Scalar of the same type as **atom**. If the kind is different, the value
   is converted to the kind of **atom**.
 
 - **stat**

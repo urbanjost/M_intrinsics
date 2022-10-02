@@ -54,25 +54,25 @@ images whether the values are the same or different.
 
 - **value**
   : The value of the environment variable being queried. If **value**
-    is not large enough to hold the data, it is truncated. If the variable
-    **name** is not set or has no value, or the processor does not support
-    environment variables **value** will be filled with blanks.
+  is not large enough to hold the data, it is truncated. If the variable
+  **name** is not set or has no value, or the processor does not support
+  environment variables **value** will be filled with blanks.
 
 - **length**
   : Argument **length** contains the length needed for storing the
-    environment variable **name**. It is zero if the environment variable
-    is not set. 
+  environment variable **name**. It is zero if the environment variable
+  is not set. 
 
 - **status**
   : **status** is **-1** if **value** is present but too short for the
-    environment variable; it is **1** if the environment variable does
-    not exist and **2** if the processor does not support environment
-    variables; in all other cases **status** is zero.
+  environment variable; it is **1** if the environment variable does
+  not exist and **2** if the processor does not support environment
+  variables; in all other cases **status** is zero.
 
 - **trim_name**
   : If **trim_name** is present with the value _.false._, the trailing
-    blanks in **name** are significant; otherwise they are not part of
-    the environment variable name.
+  blanks in **name** are significant; otherwise they are not part of
+  the environment variable name.
 
 ### **Examples**
 
@@ -105,7 +105,7 @@ integer                              :: length
       & length=howbig,status=stat,trim_name=.true.)
       select case (stat)
       case (1)
-       print *, NAME, " is not defined in the environment. Strange..."
+       print *, name, " is not defined in the environment. Strange..."
        value=''
       case (2)
        print *, &

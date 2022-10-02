@@ -47,40 +47,36 @@ what the user typed on the command line.
 
 - **number**
   : is a non-negative number indicating which argument of the current
-    program command line is to be retrieved or queried.
-
-    If **number = 0**, the argument pointed to is set to the name of the
-    program (on systems that support this feature).
-
-    if the processor does not have such a concept as a command name the
-    value of command argument 0 is processor dependent.
-
-    For values from 1 to the number of arguments passed to the program a
-    value is returned in an order determined by the processor. Conventionally
-    they are returned consecutively as they appear on the command line from
-    left to right.
+  program command line is to be retrieved or queried.
+  : If **number = 0**, the argument pointed to is set to the name of the
+  program (on systems that support this feature).
+  : if the processor does not have such a concept as a command name the
+  value of command argument 0 is processor dependent.
+  : For values from 1 to the number of arguments passed to the program a
+  value is returned in an order determined by the processor. Conventionally
+  they are returned consecutively as they appear on the command line from
+  left to right.
 
 ### **Result**
 
 - **value**
   : The **value** argument holds the command line argument.
-    If **value** can not hold the argument, it is truncated to fit the
-    length of **value**.
-
-    If there are less than **number** arguments specified at the command
-    line or if the argument specified does not exist for other reasons,
-    **value** will be filled with blanks.
+  If **value** can not hold the argument, it is truncated to fit the
+  length of **value**.
+  : If there are less than **number** arguments specified at the command
+  line or if the argument specified does not exist for other reasons,
+  **value** will be filled with blanks.
 
 - **length**
   : The **length** argument contains the length of the n-th command
-    line argument. The length of **value** has no effect on this value,
-    It is the length required to hold all the significant characters of
-    the argument regardless of how much storage is provided by **value**.
+  line argument. The length of **value** has no effect on this value,
+  It is the length required to hold all the significant characters of
+  the argument regardless of how much storage is provided by **value**.
 
 - **status**
   : If the argument retrieval fails, **status** is a positive number;
-    if **value** contains a truncated command line argument, **status**
-    is **-1**; and otherwise the **status** is zero.
+  if **value** contains a truncated command line argument, **status**
+  is **-1**; and otherwise the **status** is zero.
 
 ### **Examples**
 

@@ -1,14 +1,14 @@
       program demo_get_command
       implicit none
-      integer                      :: COMMAND_LINE_LENGTH
-      character(len=:),allocatable :: COMMAND_LINE
+      integer                      :: command_line_length
+      character(len=:),allocatable :: command_line
          ! get command line length
-         call get_command(length=COMMAND_LINE_LENGTH)
+         call get_command(length=command_line_length)
          ! allocate string big enough to hold command line
-         allocate(character(len=COMMAND_LINE_LENGTH) :: COMMAND_LINE)
+         allocate(character(len=command_line_length) :: command_line)
          ! get command line as a string
-         call get_command(command=COMMAND_LINE)
+         call get_command(command=command_line)
          ! trim leading spaces just in case
-         COMMAND_LINE=adjustl(COMMAND_LINE)
-         write(*,'("OUTPUT:",a)')COMMAND_LINE
+         command_line=adjustl(command_line)
+         write(*,'("OUTPUT:",a)')command_line
       end program demo_get_command

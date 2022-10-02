@@ -18,17 +18,18 @@
 
  - a kind designated as ** may be any supported kind value for the type
  - the type of **x** **TYPE** may be _integer_, _real_, or _complex_.
- - if **kind** is not present when **x** is complex the result is the same kind as **x**.
-   If **kind** is not present and **x** is not _complex_ the result is a default _real_ kind.
- - When present the value of **kind** defines the kind of the result.
+ - **kind** is a _integer_ initialization expression (a constant expression)
+   + If **kind** is present it defines the kind of the result
+   + if **kind** is not present 
+     - when **x** is complex the result is the same kind as **x**.
+     - when **x** is real or integer the result is a _real_ of default kind
 
 ### **Description**
 
-**real(x, kind)** converts its argument **x** to a _real_ type per the
-rules described for the result below.
+**real(x, kind)** converts its argument **x** to a _real_ type.
 
 For complex values this is similar to the modern complex-part-designator
-**%RE** which also designates the real part of a value.
+**%RE** which also designates the real part of _complex_ a value.
 ```fortran
       z=(3.0,4.0)     ! if z is a complex value
       print *, z%re == real(z) ! these expressions are equivalent
@@ -36,22 +37,19 @@ For complex values this is similar to the modern complex-part-designator
 ### **Options**
 
 - **x**
-  : Shall be _integer_, _real_, or _complex_ to convert to _real_.
+  : A _integer_, _real_, or _complex_ value to convert to _real_.
 
 - **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
-  parameter of the result.
+  : When present the value of **kind** defines the kind of the result.
 
 ### **Result**
 
-These functions return a _real_ variable or array under the following
-rules:
-
-1.  **real**(x) is converted to a default _real_ type if **x** is an _integer_
+1.  **real(x)** converts **x** to a default _real_ type if **x** is an _integer_
     or _real_ variable.
 
-2.  **real**(x) is converted to a _real_ type with the magnitude of the _real_
-    component of a complex value with kind type parameter of **x**.
+2.  **real(x)** converts a _complex_ value to a _real_ type with the
+    magnitude of the real component of the input with kind type
+    parameter the same as **x**.
 
 3.  **real(x, kind)** is converted to a _real_ type with kind type
     parameter **kind** if **x** is a _complex_, _integer_, or _real_ variable.

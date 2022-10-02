@@ -11,10 +11,15 @@
 ```fortran
      character(len=len(string)*ncopies) function repeat(string, ncopies)
 
-     character(len=*),intent(in)        :: string
-     integer(kind=KIND),intent(in)      :: ncopies
+      character(len=*),intent(in)   :: string
+      integer(kind=**),intent(in)   :: ncopies
 ```
 ### **Characteristics**
+
+- **string** is a scalar _character_ type.
+- **ncopies** is a scalar integer.
+- the result is a new scalar of type _character_ of the same type as
+  **string**
 
 ### **Description**
 
@@ -23,21 +28,18 @@ Concatenates **ncopies** copies of a string.
 ### **Options**
 
 - **string**
-  : The input string to repeatedly generate.
-  Shall be scalar and of type _character_.
+  : The input string to repeat
 
 - **ncopies**
   : Number of copies to make of _string_, greater than or equal to zero (0).
-  Shall be scalar and of type _integer_.
 
 ### **Result**
 
-A new scalar of type _character_ built up from **ncopies** copies of **string**.
+A new string built up from **ncopies** copies of **string**.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_repeat
 implicit none
@@ -52,15 +54,12 @@ integer :: i
     enddo
 end program demo_repeat
 ```
-
 Results:
-
 ```
 ^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v
 ________________________________________________________________________
 1234567890123456789012345678901234567890123456789012345678901234567890
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -82,4 +81,4 @@ Functions that perform operations on character strings:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

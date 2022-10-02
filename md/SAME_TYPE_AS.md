@@ -18,11 +18,11 @@
 
 - **a** shall be an object of extensible declared type or unlimited
   polymorphic. If it is a polymorphic pointer, it shall not have
-  an undeﬁned association status.
+  an unde   ned association status.
 
 - **b** shall be an object of extensible declared type or unlimited
   polymorphic. If it is a polymorphic pointer, it shall not have
-  an undeﬁned association status.
+  an unde   ned association status.
 
 ### **Description**
 

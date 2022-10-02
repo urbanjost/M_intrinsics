@@ -21,6 +21,7 @@
   : Scalar coarray or coindexed variable of either integer type with
   atomic_int_kind kind or logical type with atomic_logical_kind
   kind.
+
 - **value**
   : Scalar of the same type as **atom**. If the kind is different, the value
   is converted to the kind of **atom**.

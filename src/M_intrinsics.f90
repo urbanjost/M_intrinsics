@@ -3604,7 +3604,7 @@ textblock=[character(len=256) :: &
 '  Determines whether an integer is bitwise less than another.', &
 '', &
 'OPTIONS', &
-'  o  I Shall be of integer type or a BOZ literal constant.', &
+'  o  I : Shall be of integer type or a BOZ literal constant.', &
 '', &
 '  o  J : Shall be of integer type or a BOZ constant.', &
 '', &
@@ -8142,14 +8142,12 @@ textblock=[character(len=256) :: &
 '', &
 '  o  LENGTH : If LENGTH is present, it is assigned the length of the command', &
 '     line. It is system-dependent as to whether trailing blanks will be', &
-'     counted.', &
+'     counted. : If the command length cannot be determined, a length of 0 is', &
+'     assigned.', &
 '', &
-'     If the command length cannot be determined, a length of 0 is assigned.', &
-'', &
-'  o  STATUS : Shall be of type integer and of default kind. If STATUS is', &
-'     present, it is assigned 0 upon success of the command, -1 if COMMAND is', &
-'     too short to store the command line, or a positive value in case of an', &
-'     error.', &
+'  o  STATUS : If STATUS is present, it is assigned 0 upon success of the', &
+'     command, -1 if COMMAND is too short to store the command line, or a', &
+'     positive value in case of an error.', &
 '', &
 '  o  ERRMSG : It is assigned a processor-dependent explanatory message if the', &
 '     command retrieval fails. Otherwise, it is unchanged.', &
@@ -8159,17 +8157,17 @@ textblock=[character(len=256) :: &
 '', &
 '      program demo_get_command', &
 '      implicit none', &
-'      integer                      :: COMMAND_LINE_LENGTH', &
-'      character(len=:),allocatable :: COMMAND_LINE', &
+'      integer                      :: command_line_length', &
+'      character(len=:),allocatable :: command_line', &
 '         ! get command line length', &
-'         call get_command(length=COMMAND_LINE_LENGTH)', &
+'         call get_command(length=command_line_length)', &
 '         ! allocate string big enough to hold command line', &
-'         allocate(character(len=COMMAND_LINE_LENGTH) :: COMMAND_LINE)', &
+'         allocate(character(len=command_line_length) :: command_line)', &
 '         ! get command line as a string', &
-'         call get_command(command=COMMAND_LINE)', &
+'         call get_command(command=command_line)', &
 '         ! trim leading spaces just in case', &
-'         COMMAND_LINE=adjustl(COMMAND_LINE)', &
-'         write(*,''("OUTPUT:",a)'')COMMAND_LINE', &
+'         command_line=adjustl(command_line)', &
+'         write(*,''("OUTPUT:",a)'')command_line', &
 '      end program demo_get_command', &
 '', &
 '  Results:', &
@@ -8245,25 +8243,20 @@ textblock=[character(len=256) :: &
 '', &
 'OPTIONS', &
 '  o  NUMBER : is a non-negative number indicating which argument of the', &
-'     current program command line is to be retrieved or queried.', &
-'', &
-'     If NUMBER = 0, the argument pointed to is set to the name of the program', &
-'     (on systems that support this feature).', &
-'', &
-'     if the processor does not have such a concept as a command name the value', &
-'     of command argument 0 is processor dependent.', &
-'', &
-'     For values from 1 to the number of arguments passed to the program a', &
-'     value is returned in an order determined by the processor.', &
+'     current program command line is to be retrieved or queried. : If NUMBER =', &
+'     0, the argument pointed to is set to the name of the program (on systems', &
+'     that support this feature). : if the processor does not have such a', &
+'     concept as a command name the value of command argument 0 is processor', &
+'     dependent. : For values from 1 to the number of arguments passed to the', &
+'     program a value is returned in an order determined by the processor.', &
 '     Conventionally they are returned consecutively as they appear on the', &
 '     command line from left to right.', &
 '', &
 'RESULT', &
 '  o  VALUE : The VALUE argument holds the command line argument. If VALUE can', &
-'     not hold the argument, it is truncated to fit the length of VALUE.', &
-'', &
-'     If there are less than NUMBER arguments specified at the command line or', &
-'     if the argument specified does not exist for other reasons, VALUE will be', &
+'     not hold the argument, it is truncated to fit the length of VALUE. : If', &
+'     there are less than NUMBER arguments specified at the command line or if', &
+'     the argument specified does not exist for other reasons, VALUE will be', &
 '     filled with blanks.', &
 '', &
 '  o  LENGTH : The LENGTH argument contains the length of the n-th command line', &
@@ -8440,7 +8433,7 @@ textblock=[character(len=256) :: &
 '            & length=howbig,status=stat,trim_name=.true.)', &
 '            select case (stat)', &
 '            case (1)', &
-'             print *, NAME, " is not defined in the environment. Strange..."', &
+'             print *, name, " is not defined in the environment. Strange..."', &
 '             value=''''', &
 '            case (2)', &
 '             print *, &', &

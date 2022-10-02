@@ -39,24 +39,22 @@ be necessary.
 
 - **command**
   : If **command** is present, the entire command line that was used
-    to invoke the program is stored into it. If the command cannot be
-    determined, **command** is assigned all blanks.
+  to invoke the program is stored into it. If the command cannot be
+  determined, **command** is assigned all blanks.
 
 - **length**
   : If **length** is present, it is assigned the length of the command line.
-    It is system-dependent as to whether trailing blanks will be counted.
-
-    If the command length cannot be determined, a length of 0 is assigned.
+  It is system-dependent as to whether trailing blanks will be counted.
+  : If the command length cannot be determined, a length of 0 is assigned.
 
 - **status**
-  : Shall be of type _integer_ and of default kind. If **status**
-    is present, it is assigned 0 upon success of the command, **-1**
-    if **command** is too short to store the command line, or a positive
-    value in case of an error.
+  : If **status** is present, it is assigned 0 upon success of the
+  command, **-1** if **command** is too short to store the command line,
+  or a positive value in case of an error.
 
 - **errmsg**
   : It is assigned a processor-dependent explanatory message if the
-    command retrieval fails. Otherwise, it is unchanged.
+  command retrieval fails. Otherwise, it is unchanged.
 
 ### **Examples**
 
@@ -65,17 +63,17 @@ Sample program:
 ```fortran
 program demo_get_command
 implicit none
-integer                      :: COMMAND_LINE_LENGTH
-character(len=:),allocatable :: COMMAND_LINE
+integer                      :: command_line_length
+character(len=:),allocatable :: command_line
    ! get command line length
-   call get_command(length=COMMAND_LINE_LENGTH)
+   call get_command(length=command_line_length)
    ! allocate string big enough to hold command line
-   allocate(character(len=COMMAND_LINE_LENGTH) :: COMMAND_LINE)
+   allocate(character(len=command_line_length) :: command_line)
    ! get command line as a string
-   call get_command(command=COMMAND_LINE)
+   call get_command(command=command_line)
    ! trim leading spaces just in case
-   COMMAND_LINE=adjustl(COMMAND_LINE)
-   write(*,'("OUTPUT:",a)')COMMAND_LINE
+   command_line=adjustl(command_line)
+   write(*,'("OUTPUT:",a)')command_line
 end program demo_get_command
 ```
 Results:

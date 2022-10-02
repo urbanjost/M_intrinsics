@@ -29,7 +29,7 @@ Determines whether an integer is bitwise less than another.
 ### **Options**
 
 - **i**
-    Shall be of _integer_ type or a BOZ literal constant.
+  : Shall be of _integer_ type or a BOZ literal constant.
 
 - **j**
   : Shall be of _integer_ type or a BOZ constant.

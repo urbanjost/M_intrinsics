@@ -25,7 +25,7 @@
             & length=howbig,status=stat,trim_name=.true.)
             select case (stat)
             case (1)
-             print *, NAME, " is not defined in the environment. Strange..."
+             print *, name, " is not defined in the environment. Strange..."
              value=''
             case (2)
              print *, &
