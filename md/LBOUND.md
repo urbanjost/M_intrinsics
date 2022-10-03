@@ -11,9 +11,9 @@
 ```fortran
      elemental TYPE(kind=KIND) function lbound(array,dim,kind)
 
-     TYPE(kind=KIND),intent(in)  :: array
-     integer,intent(in),optional :: dim
-     integer,intent(in),optional :: kind
+      TYPE(kind=KIND),intent(in)  :: array
+      integer,intent(in),optional :: dim
+      integer,intent(in),optional :: kind
 ```
 ### **Characteristics**
 

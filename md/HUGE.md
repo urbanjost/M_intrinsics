@@ -11,7 +11,7 @@
 ```fortran
      TYPE(kind=KIND) function huge(x)
 
-     TYPE(kind=KIND),intent(in) :: x
+      TYPE(kind=KIND),intent(in) :: x
 ```
 ### **Characteristics**
 

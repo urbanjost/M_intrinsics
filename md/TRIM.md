@@ -11,7 +11,7 @@
 ```fortran
      character(len=:,kind=KIND) function trim(string)
 
-     character(len=*,kind=KIND),intent(in) :: string
+      character(len=*,kind=KIND),intent(in) :: string
 ```
 ### **Characteristics**
 

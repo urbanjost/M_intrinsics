@@ -11,9 +11,9 @@
 ```fortran
      elemental logical function(x, mold, round)
 
-     TYPE,kind=KIND),intent(in) :: x
-     TYPE,kind=KIND),intent(in) :: mold
-     logical,intent(in),optional     :: round
+      TYPE,kind=KIND),intent(in) :: x
+      TYPE,kind=KIND),intent(in) :: mold
+      logical,intent(in),optional     :: round
 ```
 ### **Characteristics**
 

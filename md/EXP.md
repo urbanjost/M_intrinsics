@@ -11,7 +11,7 @@
 ```fortran
      elemental TYPE(kind=KIND) function exp(x)
 
-     TYPE(kind=KIND),intent(in) :: x
+      TYPE(kind=KIND),intent(in) :: x
 ```
 ### **Characteristics**
 

@@ -9,28 +9,34 @@
     ptr => null( [mold] )
 ```
 ```fortran
-      function null(mold)
+     function null(mold)
+
+      type(TYPE(kind=**)),pointer,optional :: mold
 ```
 ### **Characteristics**
 
+- **mold** is a pointer of any association status and of any type.
+- The result is a disassociated pointer or an unallocated allocatable entity.
+
 ### **Description**
 
-Returns a disassociated pointer.
+  Returns a disassociated pointer.
 
-If **mold** is present, a disassociated pointer of the same type is
-returned, otherwise the type is determined by context.
+  If **mold** is present, a disassociated pointer of the same type is
+  returned, otherwise the type is determined by context.
 
-In _Fortran 95_, **mold** is optional. Please note that _Fortran 2003_ includes cases where it is required.
+  In _Fortran 95_, **mold** is optional. Please note that _Fortran 2003_
+  includes cases where it is required.
 
 ### **Options**
 
 - **mold**
-  : (Optional) shall be a pointer of any association status and of any
+  : a pointer of any association status and of any
   type.
 
 ### **Result**
 
-A disassociated pointer or an unallocated allocatable entity.
+   A disassociated pointer or an unallocated allocatable entity.
 
 ### **Examples**
 
@@ -103,16 +109,13 @@ call gen (4, integer_ptr ) ! invokes s1
 end
 !end program demo_null
 ```
-
 Results:
-
 ```text
    One integer in S2:, 1
    One integer in S1:, 2
    integer and real in S2:, 3 and 200.000000
    Two integers in S1:, 4 and 100
 ```
-
 ### **Standard**
 
 Fortran 95

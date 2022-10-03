@@ -7,18 +7,19 @@
 ### **Synopsis**
 
 ```fortran
-result = this_image()
+ result = this_image()
 ```
 or
 ```fortran
-result = this_image(distance)
+ result = this_image(distance)
 ```
 or
 ```fortran
   result = this_image(coarray, dim)
 ```
 ```fortran
-  integer function this_image( distance ,coarray, dim )
+   integer function this_image( distance ,coarray, dim )
+
     type(TYPE(kind=**),optional :: coarray[*]
     integer,intent(in),optional :: distance
     integer,intent(in),optional :: dim

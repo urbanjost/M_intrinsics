@@ -10,8 +10,9 @@
 ```
 ```fortran
      logical function c_associated(c_prt_1, cptr_2)
-     TYPE,intent(in) ::c_ptr_1
-     TYPE,intent(in),optional ::c_ptr_2
+
+      TYPE,intent(in) ::c_ptr_1
+      TYPE,intent(in),optional ::c_ptr_2
 ```
 ### **Characteristics**
 

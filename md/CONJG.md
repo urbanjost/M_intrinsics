@@ -11,7 +11,7 @@
 ```fortran
      elemental complex(kind=KIND) function conjg(z)
 
-     complex(kind=KIND),intent(in) :: z
+      complex(kind=KIND),intent(in) :: z
 ```
 ### **Characteristics**
 

@@ -11,9 +11,9 @@
 ```fortran
      elemental function ble(i, j)
 
-     integer(kind=KIND),intent(in) :: i
-     integer(kind=KIND),intent(in) :: j
-     logical :: ble
+      integer(kind=KIND),intent(in) :: i
+      integer(kind=KIND),intent(in) :: j
+      logical :: ble
 ```
 ### **Characteristics**
 

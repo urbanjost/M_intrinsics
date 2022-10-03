@@ -11,7 +11,7 @@
 ```fortran
      elemental integer function minexponent(x)
 
-     real(kind=KIND),intent(in)   :: x
+      real(kind=KIND),intent(in)   :: x
 ```
 ### **Characteristics**
 

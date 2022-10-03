@@ -11,8 +11,8 @@
 ```fortran
       elemental logical function lle(string_a, string_b)
 
-      character(len=*),intent(in) :: string_a
-      character(len=*),intent(in) :: string_b
+       character(len=*),intent(in) :: string_a
+       character(len=*),intent(in) :: string_b
 ```
 ### **Characteristics**
 

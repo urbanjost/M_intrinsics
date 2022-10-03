@@ -11,7 +11,7 @@
 ```fortran
      elemental real(kind=KIND) function gamma( x)
 
-     type(real,kind=KIND),intent(in) :: x
+      type(real,kind=KIND),intent(in) :: x
 ```
 ### **Characteristics**
 

@@ -11,8 +11,8 @@
 ```fortran
      elemental real(kind=KIND) function set_exponent(x,i)
 
-     real(kind=KIND),intent(in) :: x
-     integer(kind=KINDI),intent(in) :: i
+      real(kind=KIND),intent(in) :: x
+      integer(kind=KINDI),intent(in) :: i
 ```
 ### **Characteristics**
 

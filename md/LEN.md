@@ -11,8 +11,8 @@
 ```fortran
      integer(kind=KIND) function len(string,kind)
 
-     character(len=*),intent(in) :: string
-     integer,optional,intent(in) :: kind
+      character(len=*),intent(in) :: string
+      integer,optional,intent(in) :: kind
 ```
 ### **Characteristics**
 

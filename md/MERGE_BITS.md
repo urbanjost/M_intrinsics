@@ -11,7 +11,7 @@
 ```fortran
      elemental integer(kind=KIND) function merge_bits(i,j,mask)
 
-     integer(kind=KIND), intent(in) :: i, j, mask
+      integer(kind=KIND), intent(in) :: i, j, mask
 ```
 ### **Characteristics**
 

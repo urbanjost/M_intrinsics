@@ -74,8 +74,8 @@ result = maskr( i [,kind] )
 <PRE>
          elemental integer(kind=KIND) function maskr(i,kind)
 <P>
-         integer(kind=KINDI),intent(in) :: i
-         integer(kind=KINDK),intent(in),optional :: kind
+          integer(kind=**),intent(in) :: i
+          integer(kind=**),intent(in),optional :: kind
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -86,11 +86,25 @@ result = maskr( i [,kind] )
 </A>
 <BLOCKQUOTE>
 <P>
-The result is an integer. It is of the default kind if KIND is not
-present, else it is the kind specified by KIND.
-<P>
-KIND and I may be of any kind.
-</BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+a kind designated as ** may be any supported kind value for the type
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+KIND Shall be a scalar constant expression of type integer whose
+value is a supported integer kind.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+The result is of the same kind as I unless KIND is present, which is
+then used to specify the kind of the result.
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=3>
 
      <H3>DESCRIPTION</H3>
@@ -98,7 +112,7 @@ KIND and I may be of any kind.
 </A>
 <BLOCKQUOTE>
 <P>
-The result is an intger with its rightmost I bits set to 1, and the
+The result is an integer with its rightmost I bits set to 1, and the
 remaining bits set to 0.
 </BLOCKQUOTE>
 <A name=4>
@@ -112,13 +126,22 @@ remaining bits set to 0.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-I : Shall be of type integer. Its value must be non-negative, and
-less than or equal to the number of bits for the kind of the result.
+I : the number of right-most bits to set in the integer result. It
+must be from 0 to the number of bits for the kind of the result. The
+default kind of the result is the same as I unless the result size
+is specified by KIND. That is, these Fortran statements must be
 </TD></TR>
+<TR></TR></TABLE><!-- .nf -->
+<PRE>
+       i &gt;= 0 .and. i &lt; bitsize(i) ! if KIND is not specified
+       i &gt;= 0 .and. i &lt; bitsize(0_KIND) ! if KIND is specified
+<P>
+</PRE>
+<TABLE cellpadding=3>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-KIND : Shall be a scalar constant expression of type integer.
+KIND : designates the kind of the integer result.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
@@ -128,11 +151,8 @@ KIND : Shall be a scalar constant expression of type integer.
 </A>
 <BLOCKQUOTE>
 <P>
-The return value is of type integer. If KIND is present, it specifies
-the kind value of the return type; otherwise, it is of the default
-integer kind.
-<P>
-It has its rightmost I bits set to 1, and the remaining bits set to 0.
+The rightmost I bits of the output integer are set to 1 and the other
+bits are set to 0.
 </BLOCKQUOTE>
 <A name=6>
 
@@ -147,14 +167,15 @@ Sample program:
     program demo_maskr
     implicit none
     integer :: i
+      ! basics
        i=maskr(1)
        write(*,&#146;(i0,1x,b0,1x,b0/)&#146;) i,i, shiftl(7,bit_size(0)-1)
        i=maskr(5)
        write(*,&#146;(i0,1x,b0,1x,b0/)&#146;) i,i, shiftl(7,bit_size(0)-5)
        i=maskr(11)
        write(*,&#146;(i0,1x,b0,1x,b0/)&#146;) i,i, shiftl(7,bit_size(0)-11)
-       ! elemental
-       write(*,&#146;(*(i11,1x,b0,1x,/))&#146;) maskr([(i,i,i=0,bit_size(0))])
+      ! elemental
+       write(*,&#146;(*(i11,1x,b0.32,1x,/))&#146;) maskr([(i,i,i=0,bit_size(0),4)])
     end program demo_maskr
 <P>
 </PRE>
@@ -168,38 +189,14 @@ Results:
 047 11111111111 111000000000000000000000
 <BLOCKQUOTE>
 <P>
-0 0
-1 1
-3 11
-7 111
-15 1111
-31 11111
-63 111111
-17 1111111
-55 11111111
-511 111111111
-103 1111111111
-047 11111111111
-4095 111111111111
-8191 1111111111111
-16383 11111111111111
-3767 111111111111111
-65535 1111111111111111
-131071 11111111111111111
-6143 111111111111111111
-5487 1111111111111111111
-1048575 11111111111111111111
-097151 111111111111111111111
-4194303 1111111111111111111111
-8388607 11111111111111111111111
-1677715 111111111111111111111111
-33554431 1111111111111111111111111
-67108863 11111111111111111111111111
-1341777 111111111111111111111111111
-68435455 1111111111111111111111111111
-536870911 11111111111111111111111111111
-107374183 111111111111111111111111111111
-147483647 1111111111111111111111111111111
+0 00000000000000000000000000000000
+15 00000000000000000000000000001111
+55 00000000000000000000000011111111
+4095 00000000000000000000111111111111
+65535 00000000000000001111111111111111
+1048575 00000000000011111111111111111111
+1677715 00000000111111111111111111111111
+68435455 00001111111111111111111111111111
 <B>-1</B> 11111111111111111111111111111111
 </BLOCKQUOTE>
 </BLOCKQUOTE>
@@ -225,7 +222,7 @@ MASKL(3)
 fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>maskr (3fortran)</TD> <TD align=right width=33%><I>October 02, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 5f4716a6-42b9-40ba-979b-185d19f307d3 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>maskr (3fortran)</TD> <TD align=right width=33%><I>October 02, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from a7781d16-de47-4cbc-bba6-29dd72b990e3 using man macros.</FONT>
 <br><br><center><img src="images/maskr.3fortran.gif"></center>
 </div>
 </div>

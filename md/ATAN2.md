@@ -16,6 +16,7 @@ function
       real,kind=KIND),intent(in) :: y, x
 ```
 ### **Characteristics**
+
 **x** and **y** must be reals of the same kind.
 
 The return value has the same type and kind as **y** and **x**.

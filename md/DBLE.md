@@ -11,8 +11,8 @@
 ```fortran
      elemental doubleprecision function dble(a)
 
-     doubleprecision :: dble
-     TYPE(kind=KIND),intent(in) :: a
+      doubleprecision :: dble
+      TYPE(kind=KIND),intent(in) :: a
 ```
 ### **Characteristics**
 

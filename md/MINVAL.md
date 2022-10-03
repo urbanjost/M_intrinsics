@@ -11,8 +11,8 @@
 ```fortran
      NUMERIC function minval(array ,mask)
 
-     NUMERIC,intent(in) :: array(..)
-     logical(kind=KINDL),intent(in),optional :: mask(..)
+      NUMERIC,intent(in) :: array(..)
+      logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
   or
 ```fortran
@@ -21,9 +21,9 @@
 ```fortran
      NUMERIC function minval(array, dim, mask)
 
-     NUMERIC,intent(in) :: array(..)
-     integer(kind=KINDD),intent(in),optional :: dim
-     logical(kind=KINDL),intent(in),optional :: mask(..)
+      NUMERIC,intent(in) :: array(..)
+      integer(kind=KINDD),intent(in),optional :: dim
+      logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
 
@@ -163,5 +163,8 @@ Fortran 95
 
 [**min**(3)](#min),
 [**minloc**(3)](#minloc)
+[**maxloc**(3)](#maxloc),
+[**maxval**(3)](#maxval),
+[**min**(3)](#min)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

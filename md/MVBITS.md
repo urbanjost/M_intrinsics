@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-call mvbits(from, frompos, len, to, topos)
+   call mvbits(from, frompos, len, to, topos)
 ```
 ```fortran
     elemental subroutine mvbits(from,frompos,len,to,topos)

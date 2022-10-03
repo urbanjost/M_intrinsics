@@ -9,10 +9,11 @@
     call c_f_pointer(cptr, fptr [,shape] )
 ```
 ```fortran
-    subroutine c_f_pointer(cptr, fptr ,shape )
-    type(c_ptr),intent(in) :: cprt
-    type(TYPE),pointer,intent(out) :: fprt
-    integer,intent(in),optional :: shape(:)
+     subroutine c_f_pointer(cptr, fptr ,shape )
+
+      type(c_ptr),intent(in) :: cprt
+      type(TYPE),pointer,intent(out) :: fprt
+      integer,intent(in),optional :: shape(:)
 ```
 ### **Characteristics**
 

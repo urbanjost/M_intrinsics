@@ -11,9 +11,9 @@
 ```fortran
      elemental function dprod(x,y)
 
-     real,intent(in) :: x
-     real,intent(in) :: y
-     doubleprecision :: dprod
+      real,intent(in) :: x
+      real,intent(in) :: y
+      doubleprecision :: dprod
 ```
 ### **Characteristics**
 

@@ -11,8 +11,8 @@
 ```fortran
      elemental real(kind=KIND) function bessel_yn(n,x)
 
-     integer(kind=KIND),intent(in) :: n(..)
-     real(kind=KIND),intent(in) :: x(..)
+      integer(kind=KIND),intent(in) :: n(..)
+      real(kind=KIND),intent(in) :: x(..)
 ```
 ### **Characteristics**
 

@@ -74,8 +74,8 @@ result = maskl( i [,kind] )
 <PRE>
          elemental integer(kind=KIND) function maskl(i,kind)
 <P>
-         integer(kind=KIND),intent(in) :: i
-         integer(kind=KINDI),intent(in),optional :: kind
+          integer(kind=**),intent(in) :: i
+          integer(kind=**),intent(in),optional :: KIND
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -86,9 +86,25 @@ result = maskl( i [,kind] )
 </A>
 <BLOCKQUOTE>
 <P>
-The result is of the same kind as II unless KIND is present, which is
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+a kind designated as ** may be any supported kind value for the type
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+KIND Shall be a scalar constant expression of type integer whose
+value is a supported integer kind.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+The result is of the same kind as I unless KIND is present, which is
 then used to specify the kind of the result.
-</BLOCKQUOTE>
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=3>
 
      <H3>DESCRIPTION</H3>
@@ -96,9 +112,16 @@ then used to specify the kind of the result.
 </A>
 <BLOCKQUOTE>
 <P>
-MASKL(I[, KIND]) has its leftmost I bits set to 1, and the remaining
-bits set to 0.
-</BLOCKQUOTE>
+MASKL(3) has its leftmost I bits set to 1, and the remaining bits set to
+<TABLE cellpadding=3><!-- tsb: MASKL(3) has its leftmost I bits set to 1, and the remaining bits set to
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=4%>
+0.
+</TD><TD>
+<P>
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
 
      <H3>OPTIONS</H3>
@@ -110,13 +133,22 @@ bits set to 0.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-I : Shall be of type integer. Its value must be non-negative, and
-less than or equal to the number of bits for the kind of the result.
+I : the number of left-most bits to set in the integer result. It
+must be from 0 to the number of bits for the kind of the result. The
+default kind of the result is the same as I unless the result size
+is specified by KIND. That is, these Fortran statements must be
 </TD></TR>
+<TR></TR></TABLE><!-- .nf -->
+<PRE>
+       i &gt;= 0 .and. i &lt; bitsize(i) ! if KIND is not specified
+       i &gt;= 0 .and. i &lt; bitsize(0_KIND) ! if KIND is specified
+<P>
+</PRE>
+<TABLE cellpadding=3>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-KIND : Shall be a scalar constant expression of type integer.
+KIND : designates the kind of the integer result.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
@@ -126,11 +158,8 @@ KIND : Shall be a scalar constant expression of type integer.
 </A>
 <BLOCKQUOTE>
 <P>
-The return value is of type integer. If KIND is present, it specifies
-the kind value of the return type; otherwise, it is of the default
-integer kind.
-<P>
-The leftmost I bits are set to 1 and the other bits are set to 0.
+The leftmost I bits of the output integer are set to 1 and the other
+bits are set to 0.
 </BLOCKQUOTE>
 <A name=6>
 
@@ -148,50 +177,27 @@ Sample program:
        i=maskl(1)
        write(*,&#146;(i0,1x,b0,/)&#146;) i,i
        ! elemental
-       write(*,&#146;(*(i11,1x,b0,1x,/))&#146;) maskl([(i,i,i=1,bit_size(0))])
+       write(*,&#146;(*(i11,1x,b0.32,1x,/))&#146;) maskl([(i,i,i=0,bit_size(0),4)])
     end program demo_maskl
 <P>
 </PRE>
 Results:
 <P>
 <PRE>
-    -2147483648 10000000000000000000000000000000
+       -2147483648 10000000000000000000000000000000
 <P>
-              0 0
-    -2147483648 10000000000000000000000000000000
-    -1073741824 11000000000000000000000000000000
-     -536870912 11100000000000000000000000000000
-     -268435456 11110000000000000000000000000000
-     -134217728 11111000000000000000000000000000
-      -67108864 11111100000000000000000000000000
-      -33554432 11111110000000000000000000000000
-      -16777216 11111111000000000000000000000000
-       -8388608 11111111100000000000000000000000
-       -4194304 11111111110000000000000000000000
-       -2097152 11111111111000000000000000000000
-       -1048576 11111111111100000000000000000000
-        -524288 11111111111110000000000000000000
-        -262144 11111111111111000000000000000000
-        -131072 11111111111111100000000000000000
-         -65536 11111111111111110000000000000000
-         -32768 11111111111111111000000000000000
-         -16384 11111111111111111100000000000000
-          -8192 11111111111111111110000000000000
-          -4096 11111111111111111111000000000000
-          -2048 11111111111111111111100000000000
-          -1024 11111111111111111111110000000000
-           -512 11111111111111111111111000000000
-           -256 11111111111111111111111100000000
-           -128 11111111111111111111111110000000
-            -64 11111111111111111111111111000000
-            -32 11111111111111111111111111100000
-            -16 11111111111111111111111111110000
-             -8 11111111111111111111111111111000
-             -4 11111111111111111111111111111100
-             -2 11111111111111111111111111111110
-             -1 11111111111111111111111111111111
+                 0 00000000000000000000000000000000
+        -268435456 11110000000000000000000000000000
+         -16777216 11111111000000000000000000000000
+          -1048576 11111111111100000000000000000000
+            -65536 11111111111111110000000000000000
+             -4096 11111111111111111111000000000000
+              -256 11111111111111111111111100000000
+               -16 11111111111111111111111111110000
+                -1 11111111111111111111111111111111
 <P>
 </PRE>
+Results:
 </BLOCKQUOTE>
 <A name=7>
 
@@ -214,7 +220,7 @@ MASKR(3)
 fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>maskl (3fortran)</TD> <TD align=right width=33%><I>October 02, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 30f62a9f-5ec3-40ed-b3f3-2a57601db4f4 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>maskl (3fortran)</TD> <TD align=right width=33%><I>October 02, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 1ce0014d-d84c-4f4a-a659-80412d5b9e59 using man macros.</FONT>
 <br><br><center><img src="images/maskl.3fortran.gif"></center>
 </div>
 </div>

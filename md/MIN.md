@@ -11,9 +11,9 @@
 ```fortran
      elemental TYPE(kind=kind(a1)) function min(a1, a2, a3, ... )
 
-     TYPE(kind=kind(a1),intent(in)   :: a1
-     TYPE(kind=kind(a1),intent(in)   :: a2
-     TYPE(kind=kind(a1),intent(in)   :: a3
+      TYPE(kind=kind(a1),intent(in)   :: a1
+      TYPE(kind=kind(a1),intent(in)   :: a2
+      TYPE(kind=kind(a1),intent(in)   :: a3
                 :
                 :
                 :
@@ -58,8 +58,9 @@ FORTRAN 77
 
 ### **See Also**
 
-[**max**(3)](#max),
+[**maxloc**(3)](#maxloc),
 [**minloc**(3)](#minloc),
-[**minval**(3)](#minval)
+[**minval**(3)](#minval),
+[**max**(3)](#max),
 
  _fortran-lang intrinsic descriptions_

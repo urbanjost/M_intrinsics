@@ -11,8 +11,8 @@
 ```fortran
      elemental function ichar(c,kind)
 
-     character(len=1),intent(in) :: c
-     integer,intent(in),optional :: kind
+      character(len=1),intent(in) :: c
+      integer,intent(in),optional :: kind
 ```
 ### **Characteristics**
 

@@ -27,7 +27,7 @@ array **mask** along dimension **dim** are _.true._.
 
 - **mask**
   : an array of _logical_ expressions or values to be tested in groups
-  for a _.true._ value.
+  or in total for a _.true._ value.
 
 - **dim**
   : a whole number value that lies between one and **rank(mask)** that
@@ -73,7 +73,7 @@ logical           :: bool
    b(:,3) = 3
   ! using any(3) with logical expressions you can compare two arrays
   ! in a myriad of ways
-   ! first, print where elments of b are bigger than in a
+   ! first, print where elements of b are bigger than in a
    call printl( 'first print b > a             ', b > a         )
    ! now use any() to test 
    call printl( 'any true values?  any(b > a)  ', any(b > a )   )
@@ -83,9 +83,13 @@ logical           :: bool
    ! CONVENIENCE ROUTINE FOR PRINTING SMALL MATRICES
    ! this is not specific to ANY()
 subroutine printl(title,a)
+use, intrinsic :: iso_fortran_env, only : &
+ & stderr=>ERROR_UNIT,&
+ & stdin=>INPUT_UNIT,&
+ & stdout=>OUTPUT_UNIT
 implicit none
 
-!@(#) print small 2d logical scalars, and arrays 
+!@(#) print small 2d logical scalar, vector, or matrix
 
 character(len=*),parameter   :: all='(*(g0))' 
 character(len=*),parameter   :: row='(" > [ ",*(l1:,","))'
@@ -94,7 +98,7 @@ logical,intent(in)           :: a(..)
 integer                      :: i
    write(*,*)
    write(*,all,advance='no')trim(title),&
-   & ' : shape=',shape(a),',rank=',rank(a),',size=',size(a)
+    & ' : shape=',shape(a),',rank=',rank(a),',size=',size(a)
    ! get size and shape of input
    select rank(a)
    rank (0); write(*,'(a)')'(a scalar)'
@@ -111,8 +115,8 @@ integer                      :: i
          write(*,'(" ]")')
       enddo
    rank default
-      print *,'*printl* did not expect rank=', rank(a), &
-            & 'shape=', shape(a),'size=',size(a)
+      print stderr,'*printl* did not expect rank=', rank(a), &
+       & 'shape=', shape(a),'size=',size(a)
       stop '*printl* unexpected rank'
    end select
 

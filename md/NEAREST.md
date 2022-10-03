@@ -11,8 +11,8 @@
 ```fortran
      elemental real(kind=KIND) function nearest(x,s)
 
-     real(kind=KIND),intent(in) :: x
-     real(kind=**),intent(in) :: s
+      real(kind=KIND),intent(in) :: x
+      real(kind=**),intent(in) :: s
 ```
 ### **Characteristics**
 

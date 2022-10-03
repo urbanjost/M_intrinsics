@@ -11,8 +11,8 @@
 ```fortran
      elemental integer(kind=KIND) function int(a, kind )
 
-     TYPE(kind=KIND),intent(in) :: a
-     integer,optional :: kind
+      TYPE(kind=KIND),intent(in) :: a
+      integer,optional :: kind
 ```
 ### **Characteristics**
 

@@ -10,10 +10,11 @@
 ```
 ```fortran
    type(TYPE(kind=KIND)) function eoshift(array,shift,boundary,dim)
-   type(TYPE(kind=KIND)),intent(in) :: array(..)
-   integer(kind=KINDS),intent(in)   :: shift
-   type(TYPE(kind=KIND)),intent(in) :: boundary
-   integer(kind=KINDD),intent(in)   :: dim
+
+    type(TYPE(kind=KIND)),intent(in) :: array(..)
+    integer(kind=KINDS),intent(in)   :: shift
+    type(TYPE(kind=KIND)),intent(in) :: boundary
+    integer(kind=KINDD),intent(in)   :: dim
 ```
 ### **Characteristics**
 

@@ -11,8 +11,8 @@
 ```fortran
      elemental real(kind=KIND) function scale(x, i)
 
-     real(kind=KIND),intent(in) :: x
-     integer,intent(in)         :: i
+      real(kind=KIND),intent(in) :: x
+      integer,intent(in)         :: i
 ```
 ### **Characteristics**
 

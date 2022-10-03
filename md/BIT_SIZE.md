@@ -11,7 +11,7 @@
 ```fortran
      integer(kind=KIND) function bit_size(i)
 
-     integer(kind=KIND),intent(in) :: i(..)
+      integer(kind=KIND),intent(in) :: i(..)
 ```
 ### **Characteristics**
 

@@ -13,12 +13,12 @@ identified by MASK along dimension DIM matching a target value
 ```fortran
      function findloc (array, value, dim, mask, kind, back)
 
-     integer(kind=KIND),  intent(in)          :: array(..)
-     integer(kind=KIND),  intent(in)          :: value
-     integer(kind=KIND),  intent(in)          :: dim
-     logical(kind=KINDM), intent(in),optional :: mask(..)
-     integer(kind=KINDK), intent(in),optional :: kind
-     logical(kind=KINDB),intent(in),optional :: back
+      integer(kind=KIND),  intent(in)          :: array(..)
+      integer(kind=KIND),  intent(in)          :: value
+      integer(kind=KIND),  intent(in)          :: dim
+      logical(kind=KINDM), intent(in),optional :: mask(..)
+      integer(kind=KINDK), intent(in),optional :: kind
+      logical(kind=KINDB),intent(in),optional :: back
 ```
 or
 ```fortran
@@ -27,11 +27,11 @@ or
 ```fortran
      function findloc (array, value, mask, kind, back)
 
-     integer(kind=KIND),  intent(in)          :: array(..)
-     integer(kind=KIND),  intent(in)          :: value
-     logical(kind=KINDM), intent(in),optional :: mask(..)
-     integer(kind=KINDK), intent(in),optional :: kind
-     logical(kind=KINDB),intent(in),optional :: back
+      integer(kind=KIND),  intent(in)          :: array(..)
+      integer(kind=KIND),  intent(in)          :: value
+      logical(kind=KINDM), intent(in),optional :: mask(..)
+      integer(kind=KINDK), intent(in),optional :: kind
+      logical(kind=KINDB),intent(in),optional :: back
 ```
 ### **Characteristics**
 

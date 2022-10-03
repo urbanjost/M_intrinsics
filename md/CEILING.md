@@ -11,8 +11,8 @@
 ```fortran
      elemental integer(KIND) function ceiling(a,kind)
 
-     real(kind=KIND),intent(in)  :: a
-     integer,intent(in),optional :: kind
+      real(kind=KIND),intent(in)  :: a
+      integer,intent(in),optional :: kind
 ```
 ### **Characteristics**
 

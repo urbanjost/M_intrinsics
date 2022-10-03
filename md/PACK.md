@@ -11,9 +11,9 @@
 ```fortran
      TYPE(kind=KIND) function pack(array,mask,vector)
 
-     TYPE(kind=KIND),option(in) :: array(..)
-     logical  :: mask(*)
-     TYPE(kind=KIND),option(in),optional :: vector(*)
+      TYPE(kind=KIND),option(in) :: array(..)
+      logical  :: mask(*)
+      TYPE(kind=KIND),option(in),optional :: vector(*)
 ```
 ### **Characteristics**
 

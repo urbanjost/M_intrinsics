@@ -32,12 +32,12 @@ to an object extensible type.
 - **a**
     : be an object of extensible declared type or unlimited
     polymorphic. If it is a polymorphic pointer, it shall not have an
-    unde   ned association status.
+    undefined association status.
 
 - **mold**
     : be an object of extensible declared type or unlimited
     polymorphic. If it is a polymorphic pointer, it shall not have an
-    unde   ned association status.
+    undefined association status.
 
 ### **Result**
 

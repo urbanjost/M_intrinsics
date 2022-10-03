@@ -11,8 +11,8 @@
 ```fortran
      elemental integer(kind=KIND) function btest(i,pos)
 
-     integer,intent(in)  :: i
-     logical,intent(out) :: pos
+      integer,intent(in)  :: i
+      logical,intent(out) :: pos
 ```
 ### **Characteristics**
 

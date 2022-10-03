@@ -11,7 +11,7 @@
 ```fortran
      elemental real(kind=KIND) function fraction(x)
 
-     real(kind=KIND),intent(in) :: fraction
+      real(kind=KIND),intent(in) :: fraction
 ```
 ### **Characteristics**
 

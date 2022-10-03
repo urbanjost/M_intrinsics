@@ -11,13 +11,13 @@
 ```fortran
      elemental TYPE(kind=KIND) function tanh(x)
 
-     TYPE(kind=KIND),intent(in) :: x
+      TYPE(kind=KIND),intent(in) :: x
 ```
 ### **Characteristics**
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type. The returned value will be of the same type and kind as
-the argument.
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind
+supported by the associated type. The returned value will be of the same
+type and kind as the argument.
 
 ### **Description**
 

@@ -11,9 +11,9 @@
 ```fortran
      TYPE(kind=KIND) function spread(source, dim, ncopies)
 
-     TYPE(kind=KIND)    :: source(..)
-     integer,intent(in) :: dim
-     integer,intent(in) :: ncopies
+      TYPE(kind=KIND)    :: source(..)
+      integer,intent(in) :: dim
+      integer,intent(in) :: ncopies
 ```
 ### **Characteristics**
 

@@ -11,9 +11,9 @@
 ```fortran
       elemental function bge(i, j)
 
-      integer(kind=KIND),intent(in) :: i
-      integer(kind=KIND),intent(in) :: j
-      logical :: bge
+       integer(kind=KIND),intent(in) :: i
+       integer(kind=KIND),intent(in) :: j
+       logical :: bge
 ```
 ### **Characteristics**
 
@@ -142,7 +142,7 @@ Results:
     > bge(arr1,arr2)= T T T F
     > Compare some one-byte values to 64.
     > Notice that the values are tested as bits not as integers
-    > so the resuls are as if values are unsigned integers.
+    > so the results are as if values are unsigned integers.
     > -0128  T 10000000
     > -0096  T 10100000
     > -0064  T 11000000

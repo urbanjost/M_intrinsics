@@ -12,9 +12,9 @@ into an array using a mask
 ```fortran
      type(TYPE(kind=KIND)) unpack(vector, mask, field)
 
-     type(TYPE(kind=KIND)),intent(in) :: vector(:)
-     logical,intent(in)               :: mask(..)
-     type(TYPE(kind=KIND)),intent(in) :: field(..)
+      type(TYPE(kind=KIND)),intent(in) :: vector(:)
+      logical,intent(in)               :: mask(..)
+      type(TYPE(kind=KIND)),intent(in) :: field(..)
 ```
 ### **Characteristics**
 

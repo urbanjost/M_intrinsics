@@ -11,8 +11,8 @@
 ```fortran
      NUMERIC function maxloc(array, mask)
 
-     NUMERIC,intent(in) :: array(..)
-     logical(kind=KINDL),intent(in),optional :: mask(..)
+      NUMERIC,intent(in) :: array(..)
+      logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 or
 ```fortran
@@ -21,9 +21,9 @@ or
 ```fortran
      NUMERIC function maxloc(array, dim, mask)
 
-     NUMERIC,intent(in) :: array(..)
-     integer(kind=KINDD),intent(in),optional :: dim
-     logical(kind=KINDL),intent(in),optional :: mask(..)
+      NUMERIC,intent(in) :: array(..)
+      integer(kind=KINDD),intent(in),optional :: dim
+      logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
 
@@ -124,7 +124,10 @@ Fortran 95
 
 ### **See Also**
 
-[**max**(3)](#max),
-[**maxval**(3)](#maxval)
+[**maxloc**(3)](#maxloc),
+[**minloc**(3)](#minloc),
+[**maxval**(3)](#maxval),
+[**minval**(3)](#minval),
+[**max**(3)](#max)
 
  _fortran-lang intrinsic descriptions_

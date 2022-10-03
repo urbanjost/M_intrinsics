@@ -9,7 +9,7 @@
     result = is_contiguous(a)
 ```
 ```fortran
-     logical function is_contingious(a)
+     logical function is_contigious(a)
 
       type(TYPE(kind=**)),intent(in) :: a
 ```
@@ -87,8 +87,8 @@ It is processor-dependent whether any other object is contiguous.
 ### **Options**
 
 - **a**
-  : An arry any type to be tested for being contingious. If it is a pointer it
-  shall be associated.
+  : An array of any type to be tested for being contigious. If it is a
+  pointer it shall be associated.
 
 ### **Result**
 

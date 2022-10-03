@@ -11,9 +11,9 @@
 ```fortran
      elemental integer(kind=KINDI) function ibits(i,pos,len)
 
-     integer(kind=KINDI),intent(in) :: i
-     integer(kind=KINDPOS),intent(in) :: pos
-     integer(kind=KINDLEN),intent(in) :: len
+      integer(kind=KINDI),intent(in) :: i
+      integer(kind=KINDPOS),intent(in) :: pos
+      integer(kind=KINDLEN),intent(in) :: len
 ```
 ### **Characteristics**
 

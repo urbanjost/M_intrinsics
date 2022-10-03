@@ -11,7 +11,7 @@
 ```fortran
      real(kind=KIND) function tiny(x)
 
-     real(kind=KIND) :: x
+      real(kind=KIND) :: x
 ```
 ### **Characteristics**
 

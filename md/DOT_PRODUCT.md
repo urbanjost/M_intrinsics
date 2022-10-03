@@ -11,8 +11,8 @@
 ```fortran
      TYPE(kind=KIND) function dot_product(vector_a, vector_b)
 
-     TYPE(kind=KIND),intent(in) :: vector_a(:)
-     TYPE(kind=KIND),intent(in) :: vector_b(:)
+      TYPE(kind=KIND),intent(in) :: vector_a(:)
+      TYPE(kind=KIND),intent(in) :: vector_b(:)
 ```
 ### **Characteristics**
 

@@ -11,7 +11,7 @@
 ```fortran
      real(kind=kind(x)) function epsilon(x)
 
-     real(kind=kind(x),intent(in)   :: x
+      real(kind=kind(x),intent(in)   :: x
 ```
 ### **Characteristics**
 

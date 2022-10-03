@@ -11,7 +11,7 @@
 ```fortran
      integer function selected_char_kind(name)
 
-     character(len=*),intent(in) :: name
+      character(len=*),intent(in) :: name
 ```
 ### **Characteristics**
 

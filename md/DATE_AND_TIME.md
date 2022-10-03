@@ -11,10 +11,10 @@
 ```fortran
      subroutine date_and_time(date, time, zone, values)
 
-     character(len=8),intent(out),optional :: date
-     character(len=10),intent(out),optional :: time
-     character(len=5),intent(out),optional :: zone
-     integer,intent(out),optional :: values(8)
+      character(len=8),intent(out),optional :: date
+      character(len=10),intent(out),optional :: time
+      character(len=5),intent(out),optional :: zone
+      integer,intent(out),optional :: values(8)
 ```
 ### **Characteristics**
 

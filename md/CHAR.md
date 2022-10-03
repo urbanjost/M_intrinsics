@@ -8,14 +8,14 @@
 ```fortran
     result = char(i [,kind])
 ```
-### **Characteristics**
-
 ```fortran
      elemental integer function char(i,kind)
 
-     integer(kind=KIND),intent(in) :: c
-     integer(kind=KINDK),intent(in),optional :: kind
+      integer(kind=KIND),intent(in) :: c
+      integer(kind=KINDK),intent(in),optional :: kind
 ```
+### **Characteristics**
+
 ### **Description**
 
 **char(i, kind)** returns the character represented by the integer **i**.

@@ -11,9 +11,9 @@
 ```fortran
      elemental integer(kind=KIND) function dshiftl(i, j, shift)
 
-     integer(kind=KIND),intent(in) :: i
-     integer(kind=KIND),intent(in) :: j
-     integer(kind=KIND2),intent(in) :: shift
+      integer(kind=KIND),intent(in) :: i
+      integer(kind=KIND),intent(in) :: j
+      integer(kind=KIND2),intent(in) :: shift
 ```
 ### **Characteristics**
 

@@ -11,8 +11,8 @@
 ```fortran
      integer(kind=KIND) storage_size(a,kind)
 
-     type(TYPE(kind=KINDA)) :: a
-     integer,intent(in),optional :: kind
+      type(TYPE(kind=KINDA)) :: a
+      integer,intent(in),optional :: kind
 ```
 ### **Characteristics**
 

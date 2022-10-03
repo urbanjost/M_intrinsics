@@ -11,7 +11,7 @@
 ```fortran
      elemental real(kind=KIND) function erfc(x)
 
-     real(kind=KIND),intent(in) :: x
+      real(kind=KIND),intent(in) :: x
 ```
 ### **Characteristics**
 

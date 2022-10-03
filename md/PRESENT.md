@@ -81,7 +81,7 @@ integer :: x_local
    ! xlocal=merge(x,0,present(x)) ! NO!!
 
    ! We can pass it to another procedure if and only if the
-   ! other procedue declares the argument as optional as well.
+   ! other procedure declares the argument as optional as well.
    call tattle('optional argument x',x)
 end function
 

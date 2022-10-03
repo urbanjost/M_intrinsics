@@ -11,8 +11,8 @@
 ```fortran
      elemental integer(kind=KIND) function ior(i,j)
 
-     integer(kind=KINDI) ,intent(in) :: i
-     integer(kind=KINDJ) ,intent(in) :: j
+      integer(kind=KINDI) ,intent(in) :: i
+      integer(kind=KINDJ) ,intent(in) :: j
 ```
 ### **Characteristics**
 

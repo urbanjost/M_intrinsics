@@ -11,7 +11,7 @@
 ```fortran
      elemental type(TYPE(kind=KIND))function sign(a, b)
 
-     type(TYPE(kind=KIND)),intent(in) :: a, b
+      type(TYPE(kind=KIND)),intent(in) :: a, b
 ```
 ### **Characteristics**
 

@@ -12,8 +12,8 @@ and the origin.
 ```fortran
      elemental real(kind=KIND) function hypot(x,y)
 
-     real(kind=KIND),intent(in) :: x
-     real(kind=KIND),intent(in) :: y
+      real(kind=KIND),intent(in) :: x
+      real(kind=KIND),intent(in) :: y
 ```
 ### **Characteristics**
 

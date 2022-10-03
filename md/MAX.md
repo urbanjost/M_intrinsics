@@ -11,16 +11,17 @@
 ```fortran
      elemental TYPE(kind=kind(a1)) function max(a1, a2, a3, ... )
 
-     TYPE(kind=kind(a1),intent(in)   :: a1
-     TYPE(kind=kind(a1),intent(in)   :: a2
-     TYPE(kind=kind(a1),intent(in)   :: a3
+      TYPE(kind=kind(a1),intent(in),optional :: a1
+      TYPE(kind=kind(a1),intent(in),optional :: a2
+      TYPE(kind=kind(a1),intent(in),optional :: a3
                 :
                 :
                 :
 ```
 ### **Characteristics**
 
-Where **TYPE** may be _integer_ or _real_
+- **TYPE** may be _integer_ or _real_
+- **a1, a2, a3, ...** must be of the same type and kind as **a1**.
 
 ### **Description**
 
@@ -29,16 +30,16 @@ Returns the argument with the largest (most positive) value.
 ### **Options**
 
 - **a1**
-  : The type shall be _integer_ or _real_.
+  : The first argument determines the type and kind of the returned
+  value, and of any remaining arguments.
 
 - **a2,a3,...**
-  : An expression of the same type and kind as **a1**.
+  : A value or expression of the same type and kind as **a1**.
   There must be at least two arguments to **max(3)**.
 
 ### **Result**
 
-  The return value corresponds to the maximum value among the arguments,
-  and has the same type and kind as the first argument.
+  The return value corresponds to the maximum value among the arguments.
 
   The function is both elemental and allows for an arbitrary number of
   arguments. This means if some elements are scalar and some are arrays
@@ -110,7 +111,9 @@ FORTRAN 77
 ### **See Also**
 
 [**maxloc**(3)](#maxloc),
+[**minloc**(3)](#minloc),
 [**maxval**(3)](#maxval),
+[**minval**(3)](#minval),
 [**min**(3)](#min)
 
  _fortran-lang intrinsic descriptions_

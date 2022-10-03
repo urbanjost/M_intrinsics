@@ -11,9 +11,9 @@
 ```fortran
       elemental function bgt(i, j)
 
-      integer(kind=KIND),intent(in) :: i
-      integer(kind=KIND),intent(in) :: j
-      logical :: bgt
+       integer(kind=KIND),intent(in) :: i
+       integer(kind=KIND),intent(in) :: j
+       logical :: bgt
 ```
 ### **Characteristics**
 

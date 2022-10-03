@@ -12,11 +12,11 @@
 ```fortran
      subroutine execute_command_line(command,wait,exitstat,cmdstat,cmdmsg)
 
-     character(len=*),intent(in)  :: command
-     logical,intent(in),optional  :: wait
-     integer,intent(out),optional :: exitstat
-     integer,intent(out),optional :: cmdstat
-     character(len=*),intent(out),optional :: cmdmsg
+      character(len=*),intent(in)  :: command
+      logical,intent(in),optional  :: wait
+      integer,intent(out),optional :: exitstat
+      integer,intent(out),optional :: cmdstat
+      character(len=*),intent(out),optional :: cmdmsg
 ```
 ### **Characteristics**
 

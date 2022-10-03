@@ -11,8 +11,8 @@
 ```fortran
      elemental integer(kind=KIND) function iachar(c,kind)
 
-     character(len=1),intent(in) :: c
-     integer(kind=KINDK,intent(in),optional :: kind
+      character(len=1),intent(in) :: c
+      integer(kind=KINDK,intent(in),optional :: kind
 ```
 ### **Characteristics**
 
@@ -43,7 +43,7 @@
   the result is the position of the character **c** in the ASCII
   collating sequence. It is nonnegative and less than or equal to 127.
 
-  By ASCII, it is meant that **c** is in the collating sequence de   ned
+  By ASCII, it is meant that **c** is in the collating sequence defined
   by the codes specified in ISO/IEC 646:1991 (International Reference
   Version).
 

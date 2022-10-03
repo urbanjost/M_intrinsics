@@ -11,9 +11,9 @@
 ```fortran
      NUMERIC function product(array, dim, mask)
 
-     NUMERIC,intent(in) :: array(..)
-     integer(kind=KINDD),intent(in),optional :: dim
-     logical(kind=KINDL),intent(in),optional :: mask(..)
+      NUMERIC,intent(in) :: array(..)
+      integer(kind=KINDD),intent(in),optional :: dim
+      logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
 

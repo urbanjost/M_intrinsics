@@ -11,9 +11,9 @@
 ```fortran
      elemental TYPE(kind=KIND) function ubound(array,dim,kind)
 
-     TYPE(kind=KIND),intent(in)  :: array
-     integer(kind=KINDD),intent(in),optional :: dim
-     integer(kind=KINDK),intent(in),optional :: kind
+      TYPE(kind=KIND),intent(in)  :: array
+      integer(kind=KINDD),intent(in),optional :: dim
+      integer(kind=KINDK),intent(in),optional :: kind
 ```
 ### **Characteristics**
 

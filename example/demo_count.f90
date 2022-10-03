@@ -60,7 +60,7 @@
          count(modulo(c,5).eq.0,dim=1))
          call printi('counting up along a column and removing columns',&
          count(modulo(c,5).eq.0,dim=2))
-         call printi('counting up along a depth and removing depthss',&
+         call printi('counting up along a depth and removing depths',&
          count(modulo(c,5).eq.0,dim=3))
 
       contains

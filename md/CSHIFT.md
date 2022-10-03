@@ -11,9 +11,9 @@
 ```fortran
      type(TYPE, kind=KIND) function cshift(array, shift, dim )
 
-     type(TYPE,kind=KIND),intent(in) :: array(..)
-     integer(kind=IKIND),intent(in)  :: shift
-     integer(kind=IKIND),intent(in)  :: dim
+      type(TYPE,kind=KIND),intent(in) :: array(..)
+      integer(kind=IKIND),intent(in)  :: shift
+      integer(kind=IKIND),intent(in)  :: dim
 ```
 ### **Characteristics**
 

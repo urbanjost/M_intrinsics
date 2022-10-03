@@ -11,8 +11,8 @@
 ```fortran
      integer(kind=KIND) function iall(array,mask)
 
-     integer(kind=KIND),intent(in)           :: array(..)
-     logical(kind=KINDL),intent(in),optional :: mask(..)
+      integer(kind=KIND),intent(in)           :: array(..)
+      logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
   or
 ```fortran
@@ -21,9 +21,9 @@
 ```fortran
      integer(kind=KIND) function iall(array,dim,mask)
 
-     integer(kind=KIND),intent(in)           :: array(..)
-     integer(kind=KINDD),intent(in),optional :: dim
-     logical(kind=KINDL),intent(in),optional :: mask(..)
+      integer(kind=KIND),intent(in)           :: array(..)
+      integer(kind=KINDD),intent(in),optional :: dim
+      logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
 

@@ -9,9 +9,10 @@
     call c_f_procpointer(cptr, fptr)
 ```
 ```fortran
-    subroutine c_f_procpointer(cptr, fptr )
-    type(c_funptr),intent(in) :: cprt
-    type(TYPE),pointer,intent(out) :: fprt
+     subroutine c_f_procpointer(cptr, fptr )
+
+      type(c_funptr),intent(in) :: cprt
+      type(TYPE),pointer,intent(out) :: fprt
 ```
 ### **Characteristics**
 

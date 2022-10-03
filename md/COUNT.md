@@ -8,14 +8,15 @@
 ```fortran
     result = count(mask [,dim] [,kind] )
 ```
-### **Characteristics**
-
 ```fortran
      integer(kind=KIND) function count(mask, dim, kind )
-     logical(kind=KINDL),intent(in) :: mask(..)
-     integer(kind=KINDD),intent(in),optional :: dim
-     integer(kind=KINDK),intent(in),optional :: kind
+
+      logical(kind=KINDL),intent(in) :: mask(..)
+      integer(kind=KINDD),intent(in),optional :: dim
+      integer(kind=KINDK),intent(in),optional :: kind
 ```
+### **Characteristics**
+
 **mask** must be an array but may be any shape.
 
 The return value is of default _integer_ type unless **kind** is specified
@@ -122,7 +123,7 @@ integer :: c(2,3,4)
    count(modulo(c,5).eq.0,dim=1))
    call printi('counting up along a column and removing columns',&
    count(modulo(c,5).eq.0,dim=2))
-   call printi('counting up along a depth and removing depthss',&
+   call printi('counting up along a depth and removing depths',&
    count(modulo(c,5).eq.0,dim=3))
 
 contains

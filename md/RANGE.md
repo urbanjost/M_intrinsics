@@ -11,7 +11,7 @@
 ```fortran
       integer function range (x)
 
-      TYPE(kind=KIND),intent(in) :: x
+       TYPE(kind=KIND),intent(in) :: x
 ```
 ### **Characteristics**
 

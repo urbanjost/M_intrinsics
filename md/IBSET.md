@@ -11,8 +11,8 @@
 ```fortran
      elemental integer(kind=KINDI) function ibset(i,pos)
 
-     integer(kind=KINDI),intent(in) :: i
-     integer(kind=KINDPOS),intent(in) :: pos
+      integer(kind=KINDI),intent(in) :: i
+      integer(kind=KINDPOS),intent(in) :: pos
 ```
 ### **Characteristics**
 

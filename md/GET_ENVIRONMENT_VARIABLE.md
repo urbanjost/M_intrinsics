@@ -14,12 +14,12 @@
      subroutine character(len=*) get_environment_variable( &
      & name, value, length, status, trim_name, errmsg )
 
-     character(len=*),intent(in) :: name
-     character(len=*),intent(out),optional   :: value
-     integer(kind=**),intent(out),optional   :: length
-     integer(kind=**),intent(out),optional   :: status
-     logical,intent(out),optional            :: trim_name
-     character(len=*),intent(inout),optional :: errmsg
+      character(len=*),intent(in) :: name
+      character(len=*),intent(out),optional   :: value
+      integer(kind=**),intent(out),optional   :: length
+      integer(kind=**),intent(out),optional   :: status
+      logical,intent(out),optional            :: trim_name
+      character(len=*),intent(inout),optional :: errmsg
 ```
 ### **Characteristics**
 

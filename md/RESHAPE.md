@@ -67,7 +67,7 @@ C procedure.
 
 - **order**
   : used to insert elements in the result in an order other
-  than the normal Fortran array element order, in wich the first dimension
+  than the normal Fortran array element order, in which the first dimension
   varies fastest.
 
   By definition of ranks the values have to be a permutation of the numbers

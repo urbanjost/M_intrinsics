@@ -11,8 +11,8 @@
 ```fortran
      elemental real(kind=KIND) function bessel_jn(n,x)
 
-     integer(kind=KIND),intent(in) :: n(..)
-     real(kind=KIND),intent(in) :: x(..)
+      integer(kind=KIND),intent(in) :: n(..)
+      real(kind=KIND),intent(in) :: x(..)
 ```
   If **n** and **x** are arrays, their ranks and shapes
   shall conform.

@@ -11,8 +11,8 @@
 ```fortran
      elemental logical(kind=KIND) function logical(l,kind)
 
-     logical(kind=KIND),intent(in) :: l
-     integer(kind=KINDK),intent(in),optional :: kind
+      logical(kind=KIND),intent(in) :: l
+      integer(kind=KINDK),intent(in),optional :: kind
 ```
 ### **Characteristics**
 

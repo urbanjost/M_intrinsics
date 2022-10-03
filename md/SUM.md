@@ -11,8 +11,8 @@
 ```fortran
      NUMERIC function sum(array, mask)
 
-     NUMERIC,intent(in) :: array(..)
-     logical(kind=KINDL),intent(in),optional :: mask(..)
+      NUMERIC,intent(in) :: array(..)
+      logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
   or
 ```fortran
@@ -21,9 +21,9 @@
 ```fortran
      NUMERIC function sum(array, dim, mask)
 
-     NUMERIC,intent(in) :: array(..)
-     integer(kind=KINDD),intent(in),optional :: dim
-     logical(kind=KINDL),intent(in),optional :: mask(..)
+      NUMERIC,intent(in) :: array(..)
+      integer(kind=KINDD),intent(in),optional :: dim
+      logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
 

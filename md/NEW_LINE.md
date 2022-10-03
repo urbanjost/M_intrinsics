@@ -11,7 +11,7 @@
 ```fortran
      character(len=1,kind=kind(c)) function new_line(c)
 
-     character(len=1,kind=KIND),intent(in) :: c(..)
+      character(len=1,kind=KIND),intent(in) :: c(..)
 ```
 ### **Characteristics**
 

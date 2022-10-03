@@ -9,9 +9,11 @@
     call random_seed( [size] [,put] [,get] )
 ```
 ```fortran
-     integer,intent(out),optional :: size
-     integer,intent(in),optional :: put(*)
-     integer,intent(out),optional :: get(*)
+     subroutine random_seed( size, put, get )
+
+      integer,intent(out),optional :: size
+      integer,intent(in),optional :: put(*)
+      integer,intent(out),optional :: get(*)
 ```
 ### **Characteristics**
 

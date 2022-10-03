@@ -11,7 +11,7 @@
 ```fortran
      integer function rank(a)
 
-     type(TYPE(kind=KIND),intent(in) :: a(..)
+      type(TYPE(kind=KIND),intent(in) :: a(..)
 ```
 ### **Characteristics**
 

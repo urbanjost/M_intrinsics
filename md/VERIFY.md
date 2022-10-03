@@ -12,10 +12,10 @@ of characters that does not appear in a given set of characters.
 ```fortran
      elemental integer(kind=KIND) function verify(string,set,back,kind)
 
-     character(len=*,kind=KINDC),intent(in) :: string
-     character(len=*,kind=KINDC),intent(in) :: set
-     logical,intent(in),optional :: back
-     integer,intent(in),optional :: kind
+      character(len=*,kind=KINDC),intent(in) :: string
+      character(len=*,kind=KINDC),intent(in) :: set
+      logical,intent(in),optional :: back
+      integer,intent(in),optional :: kind
 ```
 ### **Characteristics**
 

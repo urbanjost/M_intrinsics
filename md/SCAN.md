@@ -11,10 +11,10 @@
 ```fortran
      elemental integer(kind=KIND) function scan(string,set,back,kind)
 
-     character(len=*,kind=KINDC),intent(in) :: string
-     character(len=*,kind=KINDC),intent(in) :: set
-     logical,intent(in),optional :: back
-     integer,intent(in),optional :: kind
+      character(len=*,kind=KINDC),intent(in) :: string
+      character(len=*,kind=KINDC),intent(in) :: set
+      logical,intent(in),optional :: back
+      integer,intent(in),optional :: kind
 ```
 ### **Characteristics**
 

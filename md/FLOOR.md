@@ -12,8 +12,8 @@ not greater than argument
 ```fortran
      elemental integer(kind=kind) function floor( a ,kind )
 
-     real(kind=KIND),intent(in) :: a
-     integer,intent(in),optional :: kind
+      real(kind=KIND),intent(in) :: a
+      integer,intent(in),optional :: kind
 ```
 ### **Characteristics**
 

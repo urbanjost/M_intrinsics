@@ -11,7 +11,7 @@
 ```fortran
      elemental integer function exponent(x)
 
-     real(kind=KIND),intent(in) :: x
+      real(kind=KIND),intent(in) :: x
 ```
 ### **Characteristics**
 

@@ -11,8 +11,8 @@
 ```fortran
      logical(kind=KIND) function parity(mask, dim)
 
-     type(logical(kind=KIND)),intent(in)           :: mask(..)
-     type(integer(kind=KINDD)),intent(in),optional :: dim
+      type(logical(kind=KIND)),intent(in)           :: mask(..)
+      type(integer(kind=KINDD)),intent(in),optional :: dim
 ```
 ### **Characteristics**
 

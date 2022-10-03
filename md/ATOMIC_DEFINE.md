@@ -11,9 +11,9 @@
 ```fortran
      subroutine atomic_define(atom, value, stat)
 
-     TYPE(kind=atomic_KIND_kind) :: atom[*]
-     TYPE(kind=KIND) :: value
-     integer,intent(out),optional :: stat
+      TYPE(kind=atomic_KIND_kind) :: atom[*]
+      TYPE(kind=KIND) :: value
+      integer,intent(out),optional :: stat
 ```
 ### **Characteristics**
 

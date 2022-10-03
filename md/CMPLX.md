@@ -9,7 +9,7 @@
     result = cmplx(x [,y] [,kind])
 ```
 ```fortran
-      elemental complex(kind=KIND) function cmplx( x, y, kind )
+     elemental complex(kind=KIND) function cmplx( x, y, kind )
 
       TYPE(kind=**),intent(in) :: x
       TYPE(kind=**),intent(in),optional :: y

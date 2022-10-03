@@ -19,11 +19,11 @@ or
     result = iany(array [,dim] [,mask])
 ```
 ```fortran
-    integer(kind=KIND) function iany(array,dim,mask)
+     integer(kind=KIND) function iany(array,dim,mask)
 
-    integer(kind=KIND),intent(in)           :: array(..)
-    integer(kind=KINDD),intent(in),optional :: dim
-    logical(kind=KINDL),intent(in),optional :: mask(..)
+      integer(kind=KIND),intent(in)           :: array(..)
+      integer(kind=KINDD),intent(in),optional :: dim
+      logical(kind=KINDL),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
 

@@ -11,7 +11,7 @@
 ```fortran
      elemental TYPE(kind=KIND) function dim(x, y)
 
-     TYPE(kind=KIND),intent(in) :: x, y
+      TYPE(kind=KIND),intent(in) :: x, y
 ```
 ### **Characteristics**
 
