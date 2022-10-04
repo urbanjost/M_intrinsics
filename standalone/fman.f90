@@ -9011,17 +9011,37 @@ textblock=[character(len=256) :: &
 '            integer(kind=KIND),intent(in) :: j', &
 '', &
 'CHARACTERISTICS', &
+'  o  I, J and the result shall have the same integer type and kind, with the', &
+'     exception one of I or J may be a BOZ constant.', &
+'', &
 'DESCRIPTION', &
 '  Bitwise logical AND.', &
 '', &
 'OPTIONS', &
-'  o  I : The type shall be integer.', &
+'  o  I : one of the pair of values to compare', &
 '', &
-'  o  J : The type shall be integer, of the same kind as I.', &
+'  o  J : one of the pair of values to compare', &
+'', &
+'  If either I or J is a BOZ-literal-constant, it is rst converted as if by the', &
+'  intrinsic function INT(3) to type integer with the kind type parameter of', &
+'  the other.', &
 '', &
 'RESULT', &
-'  The return type is integer, of the same kind as the arguments. (If the', &
-'  argument kinds differ, it is of the same kind as the larger argument.)', &
+'  The result has the value obtained by combining I and I bit-by-bit according', &
+'  to the following table: ``text I | J | IAND (I, J)', &
+'', &
+'    1 |  1  |    1', &
+'', &
+'    1 |  0  |    0', &
+'', &
+'    0 |  1  |    0', &
+'', &
+'    0 |  0  |    0', &
+'', &
+'  ``text', &
+'', &
+'  So if both the bit in I and JJ are on the resulting bit is on (a one); else', &
+'  the resulting bit is off (a zero).', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -9029,13 +9049,16 @@ textblock=[character(len=256) :: &
 '      program demo_iand', &
 '      implicit none', &
 '      integer :: a, b', &
-'            data a / z''f'' /, b / z''3'' /', &
-'            write (*,*) iand(a, b)', &
+'       data a / z''f'' /, b / z''3'' /', &
+'       write (*,*) ''a='',a,'' b='',b,''iand(a,b)='',iand(a, b)', &
+'       write (*,''(b32.32)'') a,b,iand(a,b)', &
 '      end program demo_iand', &
 '', &
 '  Results:', &
 '', &
-'    3', &
+'          a= 15  b= 3 iand(a,b)= 3', &
+'  00000000000000000000000000001111 00000000000000000000000000000011', &
+'  00000000000000000000000000000011', &
 '', &
 'STANDARD', &
 '  Fortran 95', &
@@ -9044,7 +9067,7 @@ textblock=[character(len=256) :: &
 '  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IOR(3),', &
 '  IEOR(3), MVBITS(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 04, 2022                 iand(3fortran)', &
 '']

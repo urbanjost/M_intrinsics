@@ -7287,6 +7287,9 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb413-4" title="4">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a></code></pre></div>
 </div><div id="characteristics-95" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
+<ul>
+<li><strong>i</strong>, <strong>j</strong> and the result shall have the same integer type and kind, with the exception one of <strong>i</strong> or <strong>j</strong> may be a BOZ constant.</li>
+</ul>
 </div><div id="description-94" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>Bitwise logical <strong>and</strong>.</p>
@@ -7295,36 +7298,42 @@ $$</span><br /></p>
 <ul>
 <li><dl>
 <dt><strong>i</strong></dt>
-<dd>The type shall be integer.
+<dd>one of the pair of values to compare
 </dd>
 </dl></li>
 <li><dl>
 <dt><strong>j</strong></dt>
-<dd>The type shall be integer, of the same kind as <strong>i</strong>.
+<dd>one of the pair of values to compare
 </dd>
 </dl></li>
 </ul>
+<p>If either <strong>i</strong> or <strong>j</strong> is a BOZ-literal-constant, it is ﬁrst converted as if by the intrinsic function <strong>int</strong>(3) to type integer with the kind type parameter of the other.</p>
 </div><div id="result-75" class="slide section level3">
 <h1><strong>Result</strong></h1>
-<p>The return type is integer, of the same kind as the arguments. (If the argument kinds differ, it is of the same kind as the larger argument.)</p>
+<p>The result has the value obtained by combining <strong>i</strong> and <strong>i</strong> bit-by-bit according to the following table: <code>text     I  |  J  |  IAND (I, J)   ----------------------------     1  |  1  |    1     1  |  0  |    0     0  |  1  |    0     0  |  0  |    0</code>text</p>
+<p>So if both the bit in <strong>i</strong> and <strong>jj</strong> are on the resulting bit is on (a one); else the resulting bit is off (a zero).</p>
 </div><div id="examples-93" class="slide section level3">
 <h1><strong>Examples</strong></h1>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb414"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb414-1" title="1"><span class="kw">program</span> demo_iand</a>
 <a class="sourceLine" id="cb414-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
 <a class="sourceLine" id="cb414-3" title="3"><span class="dt">integer</span> <span class="dt">::</span> a, b</a>
-<a class="sourceLine" id="cb414-4" title="4"><span class="dt">      data</span> a <span class="kw">/</span> <span class="dv">z&#39;f&#39;</span> <span class="kw">/</span>, b <span class="kw">/</span> <span class="dv">z&#39;3&#39;</span> <span class="kw">/</span></a>
-<a class="sourceLine" id="cb414-5" title="5">      <span class="fu">write (*</span>,<span class="fu">*)</span> <span class="bu">iand</span>(a, b)</a>
-<a class="sourceLine" id="cb414-6" title="6"><span class="kw">end program</span> demo_iand</a></code></pre></div>
+<a class="sourceLine" id="cb414-4" title="4"><span class="dt"> data</span> a <span class="kw">/</span> <span class="dv">z&#39;f&#39;</span> <span class="kw">/</span>, b <span class="kw">/</span> <span class="dv">z&#39;3&#39;</span> <span class="kw">/</span></a>
+<a class="sourceLine" id="cb414-5" title="5"> <span class="fu">write (*</span>,<span class="fu">*)</span> <span class="st">&#39;a=&#39;</span>,a,<span class="st">&#39; b=&#39;</span>,b,<span class="st">&#39;iand(a,b)=&#39;</span>,<span class="bu">iand</span>(a, b)</a>
+<a class="sourceLine" id="cb414-6" title="6"> <span class="fu">write (*</span>,<span class="st">&#39;(b32.32)&#39;</span><span class="fu">)</span> a,b,<span class="bu">iand</span>(a,b)</a>
+<a class="sourceLine" id="cb414-7" title="7"><span class="kw">end program</span> demo_iand</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>              3</code></pre>
+<pre class="text"><code>    a= 15  b= 3 iand(a,b)= 3
+   00000000000000000000000000001111
+   00000000000000000000000000000011
+   00000000000000000000000000000011</code></pre>
 </div><div id="standard-94" class="slide section level3">
 <h1><strong>Standard</strong></h1>
 <p>Fortran 95</p>
 </div><div id="see-also-94" class="slide section level3">
 <h1><strong>See Also</strong></h1>
 <p><a href="#ieor"><strong>ieor</strong>(3)</a>, <a href="#ibclr"><strong>ibclr</strong>(3)</a>, <a href="#not"><strong>not</strong>(3)</a>, <a href="#btest"><strong>btest</strong>(3)</a>, <a href="#ibclr"><strong>ibclr</strong>(3)</a>, <a href="#ibits"><strong>ibits</strong>(3)</a>, <a href="#ibset"><strong>ibset</strong>(3)</a>, <a href="#ior"><strong>ior</strong>(3)</a>, <a href="#ieor"><strong>ieor</strong>(3)</a>, <a href="#mvbits"><strong>mvbits</strong>(3)</a></p>
-<p>fortran-lang intrinsic descriptions</p>
+<p>fortran-lang intrinsic descriptions (license: MIT) @urbanjost</p>
 </div>
 <div id="iany" class="title-slide slide section level2"><h1>iany</h1></div><div id="name-96" class="slide section level3">
 <h1><strong>Name</strong></h1>

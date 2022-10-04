@@ -9425,6 +9425,9 @@ Fortran 2008
 ```
 ### **Characteristics**
 
+- **i**, **j** and the result  shall have the same _integer_ type and kind,
+  with the exception one of **i** or **j** may be a BOZ constant.
+
 ### **Description**
 
 Bitwise logical **and**.
@@ -9432,15 +9435,30 @@ Bitwise logical **and**.
 ### **Options**
 
 - **i**
-  : The type shall be _integer_.
+  : one of the pair of values to compare
 
 - **j**
-  : The type shall be _integer_, of the same kind as **i**.
+  : one of the pair of values to compare
+
+If either **i** or **j** is a BOZ-literal-constant, it is ﬁrst converted
+as if by the intrinsic function **int**(3)  to type _integer_ with the
+kind type parameter of the other.
 
 ### **Result**
 
-The return type is _integer_, of the same kind as the arguments. (If the
-argument kinds differ, it is of the same kind as the larger argument.)
+The result has the value obtained by combining **i** and **i**
+bit-by-bit according to the following table:
+``text
+    I  |  J  |  IAND (I, J)
+  ----------------------------
+    1  |  1  |    1
+    1  |  0  |    0
+    0  |  1  |    0
+    0  |  0  |    0
+``text
+
+So if both the bit in **i** and **jj** are on the resulting bit is on
+(a one); else the resulting bit is off (a zero).
 
 ### **Examples**
 
@@ -9450,17 +9468,18 @@ Sample program:
 program demo_iand
 implicit none
 integer :: a, b
-      data a / z'f' /, b / z'3' /
-      write (*,*) iand(a, b)
+ data a / z'f' /, b / z'3' /
+ write (*,*) 'a=',a,' b=',b,'iand(a,b)=',iand(a, b)
+ write (*,'(b32.32)') a,b,iand(a,b)
 end program demo_iand
 ```
-
-Results:
-
+  Results:
 ```text
-              3
+    a= 15  b= 3 iand(a,b)= 3
+   00000000000000000000000000001111
+   00000000000000000000000000000011
+   00000000000000000000000000000011
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -9478,7 +9497,7 @@ Fortran 95
 [**ieor**(3)](#ieor),
 [**mvbits**(3)](#mvbits)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## iany
 
