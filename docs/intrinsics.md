@@ -3290,18 +3290,21 @@ Fortran 2008
     result = bge(i,j)
 ```
 ```fortran
-      elemental function bge(i, j)
+      elemental logical function bge(i, j)
 
-       integer(kind=KIND),intent(in) :: i
-       integer(kind=KIND),intent(in) :: j
-       logical :: bge
+       integer(kind=**),intent(in) :: i
+       integer(kind=**),intent(in) :: j
 ```
 ### **Characteristics**
 
-  where the _kind_ of **i** and **j** may be of any supported _integer_
-  kind, not necessarily the same. An exception is that values may be a
-  BOZ constant with a value valid for the _integer_ kind available with
-  the most bits on the current platform.
+ - a kind designated as ** may be any supported kind value for the type
+
+ - the _integer_ _kind_ of **i** and **j** may not necessarily be
+   the same.  In addition, values may be a BOZ constant with a value
+   valid for the _integer_ kind available with the most bits on the
+   current platform.
+
+ - The return value is of type _logical_ and of the default kind.
 
 ### **Description**
 
@@ -3341,16 +3344,13 @@ Fortran 2008
 - **i**
   : The value to test if >= **j** based on the bit representation
     of the values.
-    Shall be of _integer_ type or a BOZ literal constant.
 
 - **j**
   : The value to test **i** against.
-    Shall be of _integer_ type or a BOZ literal constant.
 
 ### **Result**
 
-  The return value is of type _logical_ and of the default kind.
-  It is _.true._ if **i** is bit-wise greater than **j** and _.false._
+  Returns _.true._ if **i** is bit-wise greater than **j** and _.false._
   otherwise.
 
 ### **Examples**
@@ -3457,18 +3457,21 @@ Fortran 2008
     result = bgt(i, j)
 ```
 ```fortran
-      elemental function bgt(i, j)
+      elemental logical function bgt(i, j)
 
        integer(kind=KIND),intent(in) :: i
        integer(kind=KIND),intent(in) :: j
-       logical :: bgt
 ```
 ### **Characteristics**
 
-  where the _kind_ of **i** and **j** may be of any supported _integer_
-  kind, not necessarily the same. An exception is that values may be a
-  BOZ constant with a value valid for the _integer_ kind available with
-  the most bits on the current platform.
+ - a kind designated as ** may be any supported kind value for the type
+
+ - the _integer_ _kind_ of **i** and **j** may not necessarily be the same.
+   kind. In addition, values may be a BOZ constant with a value valid
+   for the _integer_ kind available with the most bits on the current
+   platform.
+
+ - The return value is of type _logical_ and of the default kind.
 
 ### **Description**
 
@@ -3552,20 +3555,22 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-where the value of KIND is any valid value for an _integer_ kind
-parameter on the processor.
+ - the value of KIND is any valid value for an _integer_ kind
+ - parameter on the processor.
+ - the return value is of the same kind as the input value.
 
 ### **Description**
 
-**bit_size(i)** returns the number of bits (integer precision plus sign
-bit) represented by the type of the _integer_ **i**.
+  **bit_size(i)** returns the number of bits (integer precision plus
+  sign bit) represented by the type of the _integer_ **i**.
 
 ### **Options**
 
 - **i**
   : An _integer_ value of any kind whose size in bits is to be determined.
-  Because only the type of the argument is examined, the argument need
-  not be defined; **i** can be a scalar or an array.
+  Because only the type of the argument is examined, the argument need not
+  be defined; **i** can be a scalar or an array, but a scalar representing
+  just the first element is always returned.
 
 ### **Result**
 
@@ -3615,8 +3620,6 @@ Fortran 95
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
-## ble
-
 ### **Name**
 
 **ble**(3) - \[BIT:COMPARE\] Bitwise less than or equal to
@@ -3626,34 +3629,35 @@ Fortran 95
     result = ble(i,j)
 ```
 ```fortran
-     elemental function ble(i, j)
+     elemental logical function ble(i, j)
 
       integer(kind=KIND),intent(in) :: i
       integer(kind=KIND),intent(in) :: j
-      logical :: ble
 ```
 ### **Characteristics**
 
-  where the _kind_ of **i** and **j** may be of any supported _integer_
+  - the _kind_ of **i** and **j** may be of any supported _integer_
   kind, not necessarily the same. An exception is that values may be a
   BOZ constant with a value valid for the _integer_ kind available with
   the most bits on the current platform.
+  - a logical scalar of default kind is returned.
 
 ### **Description**
 
-Determines whether an integer is bitwise less than or equal to another.
+  Determines whether an integer is bitwise less than or equal to another.
 
 ### **Options**
 
 - **i**
-  : Shall be of _integer_ type or a BOZ literal constant.
+  : the value to use for testing **j**
 
 - **j**
-  : Shall be of _integer_ type or a BOZ constant.
+  : the value to be tested for being less than or equal to **i**
 
 ### **Result**
 
-The return value is of type _logical_ and of the default kind.
+The return value is _.true._ if any bit in **j** is less than any bit in
+**i** starting with the rightmost bit and continuing tests leftward.
 
 ### **Examples**
 
@@ -3670,6 +3674,7 @@ integer(kind=int8) :: byte
    do i=-128,127,32
       byte=i
       write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,ble(byte,64_int8),byte
+      write(*,'(sp,i0.4,*(4x,b0.8))')64_int8,64_int8
    enddo
 
    ! see the BGE() description for an extended description
@@ -3679,14 +3684,22 @@ end program demo_ble
 ```
 Results:
 ```text
-   > -0128  F 10000000
-   > -0096  F 10100000
-   > -0064  F 11000000
-   > -0032  F 11100000
-   > +0000  T 00000000
-   > +0032  T 00100000
-   > +0064  T 01000000
-   > +0096  F 01100000
+   -0128  F 10000000
+   +0064    01000000
+   -0096  F 10100000
+   +0064    01000000
+   -0064  F 11000000
+   +0064    01000000
+   -0032  F 11100000
+   +0064    01000000
+   +0000  T 00000000
+   +0064    01000000
+   +0032  T 00100000
+   +0064    01000000
+   +0064  T 01000000
+   +0064    01000000
+   +0096  F 01100000
+   +0064    01000000
 ```
 ### **Standard**
 
@@ -3711,11 +3724,10 @@ Fortran 2008
     result = blt(i,j)
 ```
 ```fortran
-     elemental function blt(i, j)
+     elemental logical function blt(i, j)
 
       integer(kind=KIND),intent(in) :: i
       integer(kind=KIND),intent(in) :: j
-      logical :: blt
 ```
 ### **Characteristics**
 
@@ -5770,7 +5782,7 @@ Fortran 2008
 
 ### **Name**
 
-**count**(3) - \[ARRAY REDUCTION\] Count function
+**count**(3) - \[ARRAY REDUCTION\] Count true values in an array
 
 ### **Synopsis**
 ```fortran
@@ -5787,7 +5799,7 @@ Fortran 2008
 
   - a kind designated as ** may be any supported kind value for the type
 
-  - **mask** must be an array but may be any shape.
+  - **mask** is an array of any shape.
 
   - If **dim** is present, the result is an array with the specified rank
     removed.
@@ -5797,10 +5809,10 @@ Fortran 2008
 
 ### **Description**
 
-Counts the number of _.true._ elements in a logical **mask**, or, if the **dim**
-argument is supplied, counts the number of elements along each row of
-the array in the **dim** direction. If the array has zero size, or all of
-the elements of **mask** are false, then the result is **0**.
+  Counts the number of _.true._ elements in a logical **mask**, or, if the
+  **dim** argument is supplied, counts the number of elements along each
+  row of the array in the **dim** direction. If the array has zero size
+  or all of the elements of **mask** are false, then the result is **0**.
 
 ### **Options**
 
@@ -5925,6 +5937,56 @@ contains
 
    end subroutine printi
 end program demo_count
+```
+Results:
+```text
+     1  3  5
+     2  4  6
+
+     0  3  5
+     7  4  8
+    count a few basic things ...
+    count a>b           1
+    count b<a           2
+    count b==a           3
+    check sum =  T
+    show mask for a.ne.b
+     T  F  F
+     T  F  T
+   number of elements not equal
+   (ie. total true elements in the mask)
+     3
+   count of elements not equal in each column
+   (ie. total true elements in each column)
+     2  0  1
+   count of elements not equal in each row
+   (ie. total true elements in each row)
+     1  2
+    lets try this with c(2,3,4)
+      taking the result of the modulo
+       z=1      z=2      z=3      z=4
+      1 3 0 || 2 4 1 || 3 0 2 || 4 1 3 |
+      2 4 1 || 3 0 2 || 4 1 3 || 0 2 4 |
+
+      would result in the mask ..
+      F F T || F F F || F T F || F F F |
+      F F F || F T F || F F F || T F F |
+
+     the total number of .true.values is
+    4
+
+   counting up along a row and removing rows :( 3 4 )
+    > [ 0, 0, 0, 1 ]
+    > [ 0, 1, 1, 0 ]
+    > [ 1, 0, 0, 0 ]
+
+   counting up along a column and removing columns :( 2 4 )
+    > [ 1, 0, 1, 0 ]
+    > [ 0, 1, 0, 1 ]
+
+   counting up along a depth and removing depths :( 2 3 )
+    > [ 0, 1, 1 ]
+    > [ 1, 1, 0 ]
 ```
 ### **Standard**
 
@@ -9503,7 +9565,7 @@ Fortran 95
 
 ### **Name**
 
-**iany**(3) - \[BIT:LOGICAL\] Bitwise or of array elements
+**iany**(3) - \[BIT:LOGICAL\] Bitwise OR of array elements
 
 ### **Synopsis**
 ```fortran
@@ -9528,11 +9590,13 @@ or
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
-
-**array** must be an array. The result will by of the same type and kind
-as **array**. **mask** is a _logical_ array that conforms to **array** of
-any _logical_ kind. **dim** may be of any _integer_ kind.
+ - a kind designated as ** may be any supported kind value for the type
+ - **array** must be an array.
+ - **dim** may be of any _integer_ kind.
+ - **mask** is a _logical_ array that conforms to **array** of
+   any _logical_ kind.
+ - The result will by of the same type and kind
+   as **array**.
 
 ### **Description**
 
@@ -9542,24 +9606,23 @@ dimension **dim** if the corresponding element in **mask** is _.true._.
 ### **Options**
 
 - **array**
-  : Shall be an array of type _integer_
+  : an array of elements to selectively **OR** based on the mask.
 
 - **dim**
-  : (Optional) shall be a scalar of type _integer_ with a value in the
-  range from **1 to n**, where **n** equals the rank of **array**.
+  : a value in the range from **1 to n**, where **n** equals the rank
+  of **array**.
 
 - **mask**
-  : (Optional) shall be of type _logical_ and either be a scalar or an
-  array of the same shape as **array**.
+  : a _logical_ scalar; or an array of the same shape as **array**.
 
 ### **Result**
 
-The result is of the same type as **array**.
+  The result is of the same type as **array**.
 
-If **dim** is absent, a scalar with the bitwise _or_ of all elements in **array**
-is returned. Otherwise, an array of rank **n-1**, where **n** equals the
-rank of **array**, and a shape similar to that of **array** with dimension **dim**
-dropped is returned.
+  If **dim** is absent, a scalar with the bitwise _or_ of all elements in
+  **array** is returned. Otherwise, an array of rank **n-1**, where **n**
+  equals the rank of **array**, and a shape similar to that of **array**
+  with dimension **dim** dropped is returned.
 
 ### **Examples**
 
@@ -9570,19 +9633,39 @@ program demo_iany
 use, intrinsic :: iso_fortran_env, only : integer_kinds, &
  & int8, int16, int32, int64
 implicit none
-integer(kind=int8) :: a(2)
-     a(1) = int(b'00100100')
-     a(2) = int(b'01101010')
-     print '(b8.8)', iany(a)
+logical,parameter :: T=.true., F=.false.
+integer(kind=int8) :: a(3), b(4:3)
+   a(1) = int(b'00100100')
+   a(2) = int(b'01101010')
+   a(3) = int(b'10101010')
+   write(*,*)'A='
+   print '(1x,b8.8)', a
+   write(*,*)'IANY(A)='
+   print '(1x,b8.8)', iany(a)
+
+   write(*,*)'IANY(A) with a mask'
+   print '(1x,b8.8)', iany(a,mask=[T,F,T])
+   write(*,*)'should match '
+   print '(1x,b8.8)', iany([a(1),a(3)])
+   write(*,*)'does it?'
+   write(*,*)iany(a,[T,F,T]) == iany([a(1),a(3)])
 end program demo_iany
 ```
-
-Results:
-
+  Results:
+```text
+    A=
+    00100100
+    01101010
+    10101010
+    IANY(A)=
+    11101110
+    IANY(A) with a mask
+    10101110
+    should match
+    10101110
+    does it?
+    T
 ```
-   01101110
-```
-
 ### **Standard**
 
 Fortran 2008
@@ -9798,30 +9881,34 @@ Fortran 95
 ```
 ### **Characteristics**
 
+- **c** is a single scalar _character_
+- **kind** a constant _integer_ initialization expression indicating
+  the kind parameter of the result.
+- The return value is of type _integer_ and of kind **kind**. If **kind**
+  is absent, the return value is of default _integer_ kind.
+
 ### **Description**
 
-**ichar(c)** returns the code for the character in the system's native
-character set. The correspondence between characters and their codes is
-not necessarily the same across different Fortran implementations. For
-example, a platform using EBCDIC would return different values than an
-ASCII platform.
+ **ichar(c)** returns the code for the character in the system's native
+ character set. The correspondence between characters and their codes is
+ not necessarily the same across different Fortran implementations. For
+ example, a platform using EBCDIC would return different values than an
+ ASCII platform.
 
-See **iachar**(3) for specifically working with the ASCII character
-set.
+ See **iachar**(3) for specifically working with the ASCII character set.
 
 ### **Options**
 
 - **c**
-  : Shall be a scalar _character_, with **intent(in)**
+  : The input character to determine the code for.
 
 - **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
-  parameter of the result.
+  : indicates the kind parameter of the result.  If **kind** is absent,
+  the return value is of default _integer_ kind.
 
 ### **Result**
 
-The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
-the return value is of default _integer_ kind.
+The code in the systems default character set for the character being queried.
 
 ### **Examples**
 
@@ -9833,59 +9920,13 @@ implicit none
 integer i
 
    write(*,*)ichar(['a','z','A','Z'])
-   do i=0,127
-      call printme()
-   enddo
-
-contains
-
-   subroutine printme()
-   character(len=1) :: letter
-
-      letter=char(i)
-      select case(i)
-      case (:31,127:)
-         write(*,'(1x,i0.3,1x,"HEX=",z2.2,1x,i0)')i,letter,ichar(letter)
-      case default
-         write(*,'(1x,i0.3,1x,a,1x,i0)')i,letter,ichar(letter)
-      end select
-
-   end subroutine printme
 
 end program demo_ichar
 ```
-
-### **Note**
-
-No intrinsic exists to convert between a numeric value and a formatted
-character string representation -- for instance, given the _character_
-value '154', obtaining an _integer_ or _real_ value with the value 154, or
-vice versa. Instead, this functionality is provided by internal-file
-I/O, as in the following example:
-
-```
-program read_val
-integer value
-character(len=10) string, string2
-   string = '154'
-
-   ! Convert a string to a numeric value
-   read (string,'(I10)') value
-   print *, value
-
-   ! Convert a value to a formatted string
-   write (string2,'(I10)') value
-   print *, string2
-end program read_val
-```
-
-Results:
-
+  Results:
 ```text
-            154
-           154
+             97         122          65          90
 ```
-
 ### **Standard**
 
 Fortran 95 , with KIND argument -Fortran 2003

@@ -15,20 +15,22 @@
 ```
 ### **Characteristics**
 
-where the value of KIND is any valid value for an _integer_ kind
-parameter on the processor.
+ - the value of KIND is any valid value for an _integer_ kind
+ - parameter on the processor.
+ - the return value is of the same kind as the input value.
 
 ### **Description**
 
-**bit_size(i)** returns the number of bits (integer precision plus sign
-bit) represented by the type of the _integer_ **i**.
+  **bit_size(i)** returns the number of bits (integer precision plus
+  sign bit) represented by the type of the _integer_ **i**.
 
 ### **Options**
 
 - **i**
   : An _integer_ value of any kind whose size in bits is to be determined.
-  Because only the type of the argument is examined, the argument need
-  not be defined; **i** can be a scalar or an array.
+  Because only the type of the argument is examined, the argument need not
+  be defined; **i** can be a scalar or an array, but a scalar representing
+  just the first element is always returned.
 
 ### **Result**
 

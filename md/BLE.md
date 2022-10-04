@@ -1,4 +1,4 @@
-## ble
+o# ble
 
 ### **Name**
 
@@ -9,34 +9,35 @@
     result = ble(i,j)
 ```
 ```fortran
-     elemental function ble(i, j)
+     elemental logical function ble(i, j)
 
       integer(kind=KIND),intent(in) :: i
       integer(kind=KIND),intent(in) :: j
-      logical :: ble
 ```
 ### **Characteristics**
 
-  where the _kind_ of **i** and **j** may be of any supported _integer_
+  - the _kind_ of **i** and **j** may be of any supported _integer_
   kind, not necessarily the same. An exception is that values may be a
   BOZ constant with a value valid for the _integer_ kind available with
   the most bits on the current platform.
+  - a logical scalar of default kind is returned.
 
 ### **Description**
 
-Determines whether an integer is bitwise less than or equal to another.
+  Determines whether an integer is bitwise less than or equal to another.
 
 ### **Options**
 
 - **i**
-  : Shall be of _integer_ type or a BOZ literal constant.
+  : the value to use for testing **j**
 
 - **j**
-  : Shall be of _integer_ type or a BOZ constant.
+  : the value to be tested for being less than or equal to **i**
 
 ### **Result**
 
-The return value is of type _logical_ and of the default kind.
+The return value is _.true._ if any bit in **j** is less than any bit in
+**i** starting with the rightmost bit and continuing tests leftward.
 
 ### **Examples**
 
@@ -53,6 +54,7 @@ integer(kind=int8) :: byte
    do i=-128,127,32
       byte=i
       write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,ble(byte,64_int8),byte
+      write(*,'(sp,i0.4,*(4x,b0.8))')64_int8,64_int8
    enddo
 
    ! see the BGE() description for an extended description
@@ -62,14 +64,22 @@ end program demo_ble
 ```
 Results:
 ```text
-   > -0128  F 10000000
-   > -0096  F 10100000
-   > -0064  F 11000000
-   > -0032  F 11100000
-   > +0000  T 00000000
-   > +0032  T 00100000
-   > +0064  T 01000000
-   > +0096  F 01100000
+   -0128  F 10000000
+   +0064    01000000
+   -0096  F 10100000
+   +0064    01000000
+   -0064  F 11000000
+   +0064    01000000
+   -0032  F 11100000
+   +0064    01000000
+   +0000  T 00000000
+   +0064    01000000
+   +0032  T 00100000
+   +0064    01000000
+   +0064  T 01000000
+   +0064    01000000
+   +0096  F 01100000
+   +0064    01000000
 ```
 ### **Standard**
 

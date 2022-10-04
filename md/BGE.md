@@ -9,18 +9,21 @@
     result = bge(i,j)
 ```
 ```fortran
-      elemental function bge(i, j)
+      elemental logical function bge(i, j)
 
-       integer(kind=KIND),intent(in) :: i
-       integer(kind=KIND),intent(in) :: j
-       logical :: bge
+       integer(kind=**),intent(in) :: i
+       integer(kind=**),intent(in) :: j
 ```
 ### **Characteristics**
 
-  where the _kind_ of **i** and **j** may be of any supported _integer_
-  kind, not necessarily the same. An exception is that values may be a
-  BOZ constant with a value valid for the _integer_ kind available with
-  the most bits on the current platform.
+ - a kind designated as ** may be any supported kind value for the type
+
+ - the _integer_ _kind_ of **i** and **j** may not necessarily be
+   the same.  In addition, values may be a BOZ constant with a value
+   valid for the _integer_ kind available with the most bits on the
+   current platform.
+
+ - The return value is of type _logical_ and of the default kind.
 
 ### **Description**
 
@@ -61,16 +64,13 @@
 - **i**
   : The value to test if >= **j** based on the bit representation
     of the values.
-    Shall be of _integer_ type or a BOZ literal constant.
 
 - **j**
   : The value to test **i** against.
-    Shall be of _integer_ type or a BOZ literal constant.
 
 ### **Result**
 
-  The return value is of type _logical_ and of the default kind.
-  It is _.true._ if **i** is bit-wise greater than **j** and _.false._
+  Returns _.true._ if **i** is bit-wise greater than **j** and _.false._
   otherwise.
 
 ### **Examples**

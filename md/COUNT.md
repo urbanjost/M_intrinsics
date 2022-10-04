@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**count**(3) - \[ARRAY REDUCTION\] Count function
+**count**(3) - \[ARRAY REDUCTION\] Count true values in an array
 
 ### **Synopsis**
 ```fortran
@@ -19,7 +19,7 @@
 
   - a kind designated as ** may be any supported kind value for the type
 
-  - **mask** must be an array but may be any shape.
+  - **mask** is an array of any shape.
 
   - If **dim** is present, the result is an array with the specified rank
     removed.
@@ -29,10 +29,10 @@
 
 ### **Description**
 
-Counts the number of _.true._ elements in a logical **mask**, or, if the **dim**
-argument is supplied, counts the number of elements along each row of
-the array in the **dim** direction. If the array has zero size, or all of
-the elements of **mask** are false, then the result is **0**.
+  Counts the number of _.true._ elements in a logical **mask**, or, if the
+  **dim** argument is supplied, counts the number of elements along each
+  row of the array in the **dim** direction. If the array has zero size
+  or all of the elements of **mask** are false, then the result is **0**.
 
 ### **Options**
 
@@ -157,6 +157,56 @@ contains
 
    end subroutine printi
 end program demo_count
+```
+Results:
+```text
+     1  3  5
+     2  4  6
+    
+     0  3  5
+     7  4  8
+    count a few basic things ...
+    count a>b           1
+    count b<a           2
+    count b==a           3
+    check sum =  T
+    show mask for a.ne.b
+     T  F  F
+     T  F  T
+   number of elements not equal
+   (ie. total true elements in the mask)
+     3
+   count of elements not equal in each column
+   (ie. total true elements in each column)
+     2  0  1
+   count of elements not equal in each row
+   (ie. total true elements in each row)
+     1  2
+    lets try this with c(2,3,4)
+      taking the result of the modulo   
+       z=1      z=2      z=3      z=4   
+      1 3 0 || 2 4 1 || 3 0 2 || 4 1 3 |
+      2 4 1 || 3 0 2 || 4 1 3 || 0 2 4 |
+                                        
+      would result in the mask ..       
+      F F T || F F F || F T F || F F F |
+      F F F || F T F || F F F || T F F |
+                                        
+     the total number of .true.values is
+    4
+   
+   counting up along a row and removing rows :( 3 4 )
+    > [ 0, 0, 0, 1 ]
+    > [ 0, 1, 1, 0 ]
+    > [ 1, 0, 0, 0 ]
+   
+   counting up along a column and removing columns :( 2 4 )
+    > [ 1, 0, 1, 0 ]
+    > [ 0, 1, 0, 1 ]
+   
+   counting up along a depth and removing depths :( 2 3 )
+    > [ 0, 1, 1 ]
+    > [ 1, 1, 0 ]
 ```
 ### **Standard**
 

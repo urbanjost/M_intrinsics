@@ -3270,17 +3270,19 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = bge(i,j)', &
 '', &
-'            elemental function bge(i, j)', &
+'            elemental logical function bge(i, j)', &
 '', &
-'             integer(kind=KIND),intent(in) :: i', &
-'             integer(kind=KIND),intent(in) :: j', &
-'             logical :: bge', &
+'             integer(kind=**),intent(in) :: i', &
+'             integer(kind=**),intent(in) :: j', &
 '', &
 'CHARACTERISTICS', &
-'  where the kind of I and J may be of any supported integer kind, not', &
-'  necessarily the same. An exception is that values may be a BOZ constant with', &
-'  a value valid for the integer kind available with the most bits on the', &
-'  current platform.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  the integer kind of I and J may not necessarily be the same. In addition,', &
+'     values may be a BOZ constant with a value valid for the integer kind', &
+'     available with the most bits on the current platform.', &
+'', &
+'  o  The return value is of type logical and of the default kind.', &
 '', &
 'DESCRIPTION', &
 '  Determines whether one integer is bitwise greater than or equal to another.', &
@@ -3312,14 +3314,12 @@ textblock=[character(len=256) :: &
 '', &
 'OPTIONS', &
 '  o  I : The value to test if >= J based on the bit representation of the', &
-'     values. Shall be of integer type or a BOZ literal constant.', &
+'     values.', &
 '', &
-'  o  J : The value to test I against. Shall be of integer type or a BOZ', &
-'     literal constant.', &
+'  o  J : The value to test I against.', &
 '', &
 'RESULT', &
-'  The return value is of type logical and of the default kind. It is \.true.', &
-'  if I is bit-wise greater than J and .false. otherwise.', &
+'  Returns .true. if I is bit-wise greater than J and .false. otherwise.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -3427,17 +3427,19 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = bgt(i, j)', &
 '', &
-'            elemental function bgt(i, j)', &
+'            elemental logical function bgt(i, j)', &
 '', &
 '             integer(kind=KIND),intent(in) :: i', &
 '             integer(kind=KIND),intent(in) :: j', &
-'             logical :: bgt', &
 '', &
 'CHARACTERISTICS', &
-'  where the kind of I and J may be of any supported integer kind, not', &
-'  necessarily the same. An exception is that values may be a BOZ constant with', &
-'  a value valid for the integer kind available with the most bits on the', &
-'  current platform.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  the integer kind of I and J may not necessarily be the same. kind.  In', &
+'     addition, values may be a BOZ constant with a value valid for the integer', &
+'     kind available with the most bits on the current platform.', &
+'', &
+'  o  The return value is of type logical and of the default kind.', &
 '', &
 'DESCRIPTION', &
 '  Determines whether an integer is bitwise greater than another. Bit-level', &
@@ -3517,8 +3519,11 @@ textblock=[character(len=256) :: &
 '            integer(kind=KIND),intent(in) :: i(..)', &
 '', &
 'CHARACTERISTICS', &
-'  where the value of KIND is any valid value for an integer kind parameter on', &
-'  the processor.', &
+'  o  the value of KIND is any valid value for an integer kind', &
+'', &
+'  o  parameter on the processor.', &
+'', &
+'  o  the return value is of the same kind as the input value.', &
 '', &
 'DESCRIPTION', &
 '  BIT_SIZE(I) returns the number of bits (integer precision plus sign bit)', &
@@ -3527,7 +3532,8 @@ textblock=[character(len=256) :: &
 'OPTIONS', &
 '  o  I : An integer value of any kind whose size in bits is to be determined.', &
 '     Because only the type of the argument is examined, the argument need not', &
-'     be defined; I can be a scalar or an array.', &
+'     be defined; I can be a scalar or an array, but a scalar representing just', &
+'     the first element is always returned.', &
 '', &
 'RESULT', &
 '  The number of bits used to represent a value of the type of I. The result is', &
@@ -3591,28 +3597,30 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = ble(i,j)', &
 '', &
-'           elemental function ble(i, j)', &
+'           elemental logical function ble(i, j)', &
 '', &
 '            integer(kind=KIND),intent(in) :: i', &
 '            integer(kind=KIND),intent(in) :: j', &
-'            logical :: ble', &
 '', &
 'CHARACTERISTICS', &
-'  where the kind of I and J may be of any supported integer kind, not', &
-'  necessarily the same. An exception is that values may be a BOZ constant with', &
-'  a value valid for the integer kind available with the most bits on the', &
-'  current platform.', &
+'  o  the kind of I and J may be of any supported integer kind, not necessarily', &
+'     the same. An exception is that values may be a BOZ constant with a value', &
+'     valid for the integer kind available with the most bits on the current', &
+'     platform.', &
+'', &
+'  o  a logical scalar of default kind is returned.', &
 '', &
 'DESCRIPTION', &
 '  Determines whether an integer is bitwise less than or equal to another.', &
 '', &
 'OPTIONS', &
-'  o  I : Shall be of integer type or a BOZ literal constant.', &
+'  o  I : the value to use for testing J', &
 '', &
-'  o  J : Shall be of integer type or a BOZ constant.', &
+'  o  J : the value to be tested for being less than or equal to I', &
 '', &
 'RESULT', &
-'  The return value is of type logical and of the default kind.', &
+'  The return value is .true. if any bit in J is less than any bit in I', &
+'  starting with the rightmost bit and continuing tests leftward.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -3628,6 +3636,7 @@ textblock=[character(len=256) :: &
 '         do i=-128,127,32', &
 '            byte=i', &
 '            write(*,''(sp,i0.4,*(1x,1l,1x,b0.8))'')i,ble(byte,64_int8),byte', &
+'            write(*,''(sp,i0.4,*(4x,b0.8))'')64_int8,64_int8', &
 '         enddo', &
 '', &
 '         ! see the BGE() description for an extended description', &
@@ -3637,14 +3646,22 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         > -0128  F 10000000', &
-'         > -0096  F 10100000', &
-'         > -0064  F 11000000', &
-'         > -0032  F 11100000', &
-'         > +0000  T 00000000', &
-'         > +0032  T 00100000', &
-'         > +0064  T 01000000', &
-'         > +0096  F 01100000', &
+'         -0128  F 10000000', &
+'         +0064    01000000', &
+'         -0096  F 10100000', &
+'         +0064    01000000', &
+'         -0064  F 11000000', &
+'         +0064    01000000', &
+'         -0032  F 11100000', &
+'         +0064    01000000', &
+'         +0000  T 00000000', &
+'         +0064    01000000', &
+'         +0032  T 00100000', &
+'         +0064    01000000', &
+'         +0064  T 01000000', &
+'         +0064    01000000', &
+'         +0096  F 01100000', &
+'         +0064    01000000', &
 '', &
 'STANDARD', &
 '  Fortran 008', &
@@ -3673,11 +3690,10 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = blt(i,j)', &
 '', &
-'           elemental function blt(i, j)', &
+'           elemental logical function blt(i, j)', &
 '', &
 '            integer(kind=KIND),intent(in) :: i', &
 '            integer(kind=KIND),intent(in) :: j', &
-'            logical :: blt', &
 '', &
 'CHARACTERISTICS', &
 '  where the kind of I and J may be of any supported integer kind, not', &
@@ -5556,7 +5572,7 @@ textblock=[character(len=256) :: &
 'count(3fortran)                                                count(3fortran)', &
 '', &
 'NAME', &
-'  COUNT(3) - [ARRAY REDUCTION] Count function', &
+'  COUNT(3) - [ARRAY REDUCTION] Count true values in an array', &
 '', &
 'SYNOPSIS', &
 '  result = count(mask [,dim] [,kind] )', &
@@ -5570,7 +5586,7 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 '  o  a kind designated as ** may be any supported kind value for the type', &
 '', &
-'  o  MASK must be an array but may be any shape.', &
+'  o  MASK is an array of any shape.', &
 '', &
 '  o  If DIM is present, the result is an array with the specified rank', &
 '     removed.', &
@@ -5581,7 +5597,7 @@ textblock=[character(len=256) :: &
 'DESCRIPTION', &
 '  Counts the number of .true. elements in a logical MASK, or, if the DIM', &
 '  argument is supplied, counts the number of elements along each row of the', &
-'  array in the DIM direction. If the array has zero size, or all of the', &
+'  array in the DIM direction. If the array has zero size or all of the', &
 '  elements of MASK are false, then the result is 0.', &
 '', &
 'OPTIONS', &
@@ -5699,6 +5715,61 @@ textblock=[character(len=256) :: &
 '', &
 '         end subroutine printi', &
 '      end program demo_count', &
+'', &
+'  Results:', &
+'', &
+'    1 3  5', &
+'', &
+'    4', &
+'', &
+'    0 3  5', &
+'', &
+'    7 4  8 count a few basic things ...', &
+'', &
+'  count a>b', &
+'', &
+'    count b<a', &
+'', &
+'    count b==a', &
+'', &
+'    check sum =', &
+'      show mask for a.ne.b', &
+'', &
+'   T F F', &
+'   T F T', &
+'  number of elements not equal (ie. total true elements in the mask) 3 count', &
+'  of elements not equal in each column (ie. total true elements in each', &
+'  column)', &
+'', &
+'    0 count of elements not equal in each row (ie. total true elements in each', &
+'      row)', &
+'', &
+'    1 lets try this with c(,3,4)', &
+'', &
+'      taking the result of the modulo', &
+'', &
+'        z=1', &
+'          z=      z=3      z=4', &
+'', &
+'      1 3 0 ||', &
+'        4 1 || 3 0  || 4 1 3 |', &
+'', &
+'      4 1 || 3 0', &
+'        || 4 1 3 || 0  4 |', &
+'', &
+'      would result in the mask ..', &
+'        F F T || F F F || F T F || F F F | F F F || F T F || F F F || T F F |', &
+'', &
+'    the total number of .true.values is 4', &
+'', &
+'  counting up along a row and removing rows :( 3 4 ) > [ 0, 0, 0, 1 ] > [ 0,', &
+'  1, 1, 0 ] > [ 1, 0, 0, 0 ]', &
+'', &
+'  counting up along a column and removing columns :(', &
+'    4 ) > [ 1, 0, 1, 0 ] > [ 0, 1, 0, 1 ]', &
+'', &
+'  counting up along a depth and removing depths :(', &
+'    3 ) > [ 0, 1, 1 ] > [ 1, 1, 0 ]', &
 '', &
 'STANDARD', &
 '  Fortran 95 , with KIND argument - Fortran 003', &
@@ -9084,7 +9155,7 @@ textblock=[character(len=256) :: &
 'iany(3fortran)                                                  iany(3fortran)', &
 '', &
 'NAME', &
-'  IANY(3) - [BIT:LOGICAL] Bitwise or of array elements', &
+'  IANY(3) - [BIT:LOGICAL] Bitwise OR of array elements', &
 '', &
 'SYNOPSIS', &
 '  result = iany(array [,mask])', &
@@ -9107,22 +9178,24 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 '  o  a kind designated as ** may be any supported kind value for the type', &
 '', &
-'  ARRAY must be an array. The result will by of the same type and kind as', &
-'  ARRAY. MASK is a logical array that conforms to ARRAY of any logical kind.', &
-'  DIM may be of any integer kind.', &
+'  o  ARRAY must be an array.', &
+'', &
+'  o  DIM may be of any integer kind.', &
+'', &
+'  o  MASK is a logical array that conforms to ARRAY of any logical kind.', &
+'', &
+'  o  The result will by of the same type and kind as ARRAY.', &
 '', &
 'DESCRIPTION', &
 '  Reduces with bitwise OR (inclusive OR) the elements of ARRAY along dimension', &
 '  DIM if the corresponding element in MASK is .true..', &
 '', &
 'OPTIONS', &
-'  o  ARRAY : Shall be an array of type integer', &
+'  o  ARRAY : an array of elements to selectively OR based on the mask.', &
 '', &
-'  o  DIM : (Optional) shall be a scalar of type integer with a value in the', &
-'     range from 1 TO N, where N equals the rank of ARRAY.', &
+'  o  DIM : a value in the range from 1 TO N, where N equals the rank of ARRAY.', &
 '', &
-'  o  MASK : (Optional) shall be of type logical and either be a scalar or an', &
-'     array of the same shape as ARRAY.', &
+'  o  MASK : a logical scalar; or an array of the same shape as ARRAY.', &
 '', &
 'RESULT', &
 '  The result is of the same type as ARRAY.', &
@@ -9138,16 +9211,39 @@ textblock=[character(len=256) :: &
 '      use, intrinsic :: iso_fortran_env, only : integer_kinds, &', &
 '       & int8, int16, int32, int64', &
 '      implicit none', &
-'      integer(kind=int8) :: a(2)', &
-'           a(1) = int(b''00100100'')', &
-'           a(2) = int(b''01101010'')', &
-'           print ''(b8.8)'', iany(a)', &
+'      logical,parameter :: T=.true., F=.false.', &
+'      integer(kind=int8) :: a(3), b(4:3)', &
+'         a(1) = int(b''00100100'')', &
+'         a(2) = int(b''01101010'')', &
+'         a(3) = int(b''10101010'')', &
+'         write(*,*)''A=''', &
+'         print ''(1x,b8.8)'', a', &
+'         write(*,*)''IANY(A)=''', &
+'         print ''(1x,b8.8)'', iany(a)', &
+'', &
+'         write(*,*)''IANY(A) with a mask''', &
+'         print ''(1x,b8.8)'', iany(a,mask=[T,F,T])', &
+'         write(*,*)''should match ''', &
+'         print ''(1x,b8.8)'', iany([a(1),a(3)])', &
+'         write(*,*)''does it?''', &
+'         write(*,*)iany(a,[T,F,T]) == iany([a(1),a(3)])', &
 '      end program demo_iany', &
 '', &
 '  Results:', &
 '', &
-'         01101110', &
+'          A=', &
+'          00100100', &
+'          01101010', &
+'          10101010', &
+'          IANY(A)=', &
+'          11101110', &
+'          IANY(A) with a mask', &
+'          10101110', &
+'          should match', &
+'          10101110', &
+'          does it?', &
 '', &
+'   T', &
 'STANDARD', &
 '  Fortran 008', &
 '', &
@@ -9342,6 +9438,14 @@ textblock=[character(len=256) :: &
 '            integer,intent(in),optional :: kind', &
 '', &
 'CHARACTERISTICS', &
+'  o  C is a single scalar character', &
+'', &
+'  o  KIND a constant integer initialization expression indicating the kind', &
+'     parameter of the result.', &
+'', &
+'  o  The return value is of type integer and of kind KIND. If KIND is absent,', &
+'     the return value is of default integer kind.', &
+'', &
 'DESCRIPTION', &
 '  ICHAR(C) returns the code for the character in the system''s native character', &
 '  set. The correspondence between characters and their codes is not', &
@@ -9352,14 +9456,14 @@ textblock=[character(len=256) :: &
 '  See IACHAR(3) for specifically working with the ASCII character set.', &
 '', &
 'OPTIONS', &
-'  o  C : Shall be a scalar character, with INTENT(IN)', &
+'  o  C : The input character to determine the code for.', &
 '', &
-'  o  KIND : (Optional) An integer initialization expression indicating the', &
-'     kind parameter of the result.', &
+'  o  KIND : indicates the kind parameter of the result. If KIND is absent, the', &
+'     return value is of default integer kind.', &
 '', &
 'RESULT', &
-'  The return value is of type integer and of kind KIND. If KIND is absent, the', &
-'  return value is of default integer kind.', &
+'  The code in the systems default character set for the character being', &
+'  queried.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -9369,52 +9473,12 @@ textblock=[character(len=256) :: &
 '      integer i', &
 '', &
 '         write(*,*)ichar([''a'',''z'',''A'',''Z''])', &
-'         do i=0,127', &
-'            call printme()', &
-'         enddo', &
-'', &
-'      contains', &
-'', &
-'         subroutine printme()', &
-'         character(len=1) :: letter', &
-'', &
-'            letter=char(i)', &
-'            select case(i)', &
-'            case (:31,127:)', &
-'               write(*,''(1x,i0.3,1x,"HEX=",z2.2,1x,i0)'')i,letter,ichar(letter)', &
-'            case default', &
-'               write(*,''(1x,i0.3,1x,a,1x,i0)'')i,letter,ichar(letter)', &
-'            end select', &
-'', &
-'         end subroutine printme', &
 '', &
 '      end program demo_ichar', &
 '', &
-'NOTE', &
-'  No intrinsic exists to convert between a numeric value and a formatted', &
-'  character string representation -- for instance, given the character value', &
-'  ''154'', obtaining an integer or real value with the value 154, or vice versa.', &
-'  Instead, this functionality is provided by internal-file I/O, as in the', &
-'  following example:', &
-'', &
-'      program read_val', &
-'      integer value', &
-'      character(len=10) string, string2', &
-'         string = ''154''', &
-'', &
-'         ! Convert a string to a numeric value', &
-'         read (string,''(I10)'') value', &
-'         print *, value', &
-'', &
-'         ! Convert a value to a formatted string', &
-'         write (string2,''(I10)'') value', &
-'         print *, string2', &
-'      end program read_val', &
-'', &
 '  Results:', &
 '', &
-'                  154', &
-'  154', &
+'                   97         122          65          90', &
 '', &
 'STANDARD', &
 '  Fortran 95 , with KIND argument -Fortran 003', &

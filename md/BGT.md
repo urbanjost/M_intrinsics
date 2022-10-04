@@ -9,18 +9,21 @@
     result = bgt(i, j)
 ```
 ```fortran
-      elemental function bgt(i, j)
+      elemental logical function bgt(i, j)
 
        integer(kind=KIND),intent(in) :: i
        integer(kind=KIND),intent(in) :: j
-       logical :: bgt
 ```
 ### **Characteristics**
 
-  where the _kind_ of **i** and **j** may be of any supported _integer_
-  kind, not necessarily the same. An exception is that values may be a
-  BOZ constant with a value valid for the _integer_ kind available with
-  the most bits on the current platform.
+ - a kind designated as ** may be any supported kind value for the type
+
+ - the _integer_ _kind_ of **i** and **j** may not necessarily be the same.
+   kind. In addition, values may be a BOZ constant with a value valid
+   for the _integer_ kind available with the most bits on the current
+   platform.
+
+ - The return value is of type _logical_ and of the default kind.
 
 ### **Description**
 
