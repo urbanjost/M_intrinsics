@@ -11,15 +11,13 @@
 ```fortran
      elemental integer(kind=KIND) function ior(i,j)
 
-      integer(kind=**) ,intent(in) :: i
-      integer(kind=**) ,intent(in) :: j
+      integer(kind=KIND ,intent(in) :: i
+      integer(kind=KIND ,intent(in) :: j
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
-
-  - The return value is of the same kind as the larger kind of **i**
-    and **j**. Otherwise, any _integer_ kinds are allowed.
+- **i**, **j** and the result shall have the same _integer_ type and kind,
+  with the exception that one of **i** or **j** may be a BOZ constant.
 
 ### **Description**
 
@@ -28,20 +26,29 @@
 ### **Options**
 
 - **i**
-  : an _integer_ scalar or array.
+  : one of the pair of values to compare the bits of
 
 - **j**
-  : _integer_ scalar or array, of the same kind as **i**.
+  : one of the pair of values to compare the bits of
+
+If either **i** or **j** is a BOZ-literal-constant, it is ﬁrst converted
+as if by the intrinsic function **int**(3)  to type _integer_ with the
+kind type parameter of the other.
 
 ### **Result**
 
-The return type is _integer_, of the same kind as the arguments. (If the
-argument kinds differ, it is of the same kind as the larger argument.)
-
+ The result has the value obtained by combining I and J
+ bit-by-bit according to the following table:
+```text
+          I   J   IOR (I, J)
+          1   1        1
+          1   0        1
+          0   1        1
+          0   0        0
+```
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_ior
 implicit none
@@ -75,4 +82,4 @@ Fortran 95
 [**ieor**(3)](#ieor),
 [**mvbits**(3)](#mvbits)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

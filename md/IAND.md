@@ -16,8 +16,8 @@
 ```
 ### **Characteristics**
 
-- **i**, **j** and the result  shall have the same _integer_ type and kind,
-  with the exception one of **i** or **j** may be a BOZ constant.
+- **i**, **j** and the result shall have the same _integer_ type and kind,
+  with the exception that one of **i** or **j** may be a BOZ constant.
 
 ### **Description**
 
@@ -26,10 +26,10 @@ Bitwise logical **and**.
 ### **Options**
 
 - **i**
-  : one of the pair of values to compare
+  : one of the pair of values to compare the bits of
 
 - **j**
-  : one of the pair of values to compare
+  : one of the pair of values to compare the bits of
 
 If either **i** or **j** is a BOZ-literal-constant, it is ﬁrst converted
 as if by the intrinsic function **int**(3)  to type _integer_ with the
@@ -39,15 +39,14 @@ kind type parameter of the other.
 
 The result has the value obtained by combining **i** and **i**
 bit-by-bit according to the following table:
-``text
+```text
     I  |  J  |  IAND (I, J)
   ----------------------------
     1  |  1  |    1
     1  |  0  |    0
     0  |  1  |    0
     0  |  0  |    0
-``text
-
+```
 So if both the bit in **i** and **jj** are on the resulting bit is on
 (a one); else the resulting bit is off (a zero).
 

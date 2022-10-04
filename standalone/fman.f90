@@ -9012,15 +9012,15 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 '  o  I, J and the result shall have the same integer type and kind, with the', &
-'     exception one of I or J may be a BOZ constant.', &
+'     exception that one of I or J may be a BOZ constant.', &
 '', &
 'DESCRIPTION', &
 '  Bitwise logical AND.', &
 '', &
 'OPTIONS', &
-'  o  I : one of the pair of values to compare', &
+'  o  I : one of the pair of values to compare the bits of', &
 '', &
-'  o  J : one of the pair of values to compare', &
+'  o  J : one of the pair of values to compare the bits of', &
 '', &
 '  If either I or J is a BOZ-literal-constant, it is rst converted as if by the', &
 '  intrinsic function INT(3) to type integer with the kind type parameter of', &
@@ -9028,7 +9028,10 @@ textblock=[character(len=256) :: &
 '', &
 'RESULT', &
 '  The result has the value obtained by combining I and I bit-by-bit according', &
-'  to the following table: ``text I | J | IAND (I, J)', &
+'  to the following table:', &
+'', &
+'          I  |  J  |  IAND (I, J)', &
+'  ----------------------------', &
 '', &
 '    1 |  1  |    1', &
 '', &
@@ -9037,8 +9040,6 @@ textblock=[character(len=256) :: &
 '    0 |  1  |    0', &
 '', &
 '    0 |  0  |    0', &
-'', &
-'  ``text', &
 '', &
 '  So if both the bit in I and JJ are on the resulting bit is on (a one); else', &
 '  the resulting bit is off (a zero).', &
@@ -9762,26 +9763,34 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental integer(kind=KIND) function ior(i,j)', &
 '', &
-'            integer(kind=**) ,intent(in) :: i', &
-'            integer(kind=**) ,intent(in) :: j', &
+'            integer(kind=KIND ,intent(in) :: i', &
+'            integer(kind=KIND ,intent(in) :: j', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
-'', &
-'  o  The return value is of the same kind as the larger kind of I and J.', &
-'     Otherwise, any integer kinds are allowed.', &
+'  o  I, J and the result shall have the same integer type and kind, with the', &
+'     exception that one of I or J may be a BOZ constant.', &
 '', &
 'DESCRIPTION', &
 '  IOR returns the bit-wise Boolean inclusive-or of I and J.', &
 '', &
 'OPTIONS', &
-'  o  I : an integer scalar or array.', &
+'  o  I : one of the pair of values to compare the bits of', &
 '', &
-'  o  J : integer scalar or array, of the same kind as I.', &
+'  o  J : one of the pair of values to compare the bits of', &
+'', &
+'  If either I or J is a BOZ-literal-constant, it is rst converted as if by the', &
+'  intrinsic function INT(3) to type integer with the kind type parameter of', &
+'  the other.', &
 '', &
 'RESULT', &
-'  The return type is integer, of the same kind as the arguments. (If the', &
-'  argument kinds differ, it is of the same kind as the larger argument.)', &
+'  The result has the value obtained by combining I and J bit-by-bit according', &
+'  to the following table:', &
+'', &
+'                I   J   IOR (I, J)', &
+'                1   1        1', &
+'                1   0        1', &
+'                0   1        1', &
+'                0   0        0', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -9808,7 +9817,7 @@ textblock=[character(len=256) :: &
 '  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IAND(3),', &
 '  IEOR(3), MVBITS(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 04, 2022                  ior(3fortran)', &
 '']
