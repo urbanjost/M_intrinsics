@@ -14,14 +14,14 @@
       real(kind=KIND),intent(in)   :: x
       integer,intent(in),optional :: kind
 ```
-where the _kind_ of the result is the same as as **x** unless
-**kind** is present.
+- the _kind_ of the result is the same as **x** unless
+  **kind** is present.
 
 ### **Characteristics**
 
 ### **Description**
 
-**anint(a \[, kind\])** rounds its argument to the nearest whole number.
+**anint**(3) rounds its argument to the nearest whole number.
 
 ### **Options**
 
@@ -37,7 +37,7 @@ where the _kind_ of the result is the same as as **x** unless
 The return value is of type real with the kind type parameter of the
 argument if the optional **kind** is absent; otherwise, the kind type
 parameter will be given by **kind**. If **a** is greater than zero,
-**anint(a)** returns **aint(a + 0.5)**. If **a** is less than or equal
+**anint(a)**(3) returns **aint(a + 0.5)**. If **a** is less than or equal
 to zero then it returns **aint(a - 0.5)**.
 
 ### **Examples**

@@ -21,9 +21,8 @@
          call printl( 'any true values?  any(b > a)  ', any(b > a )   )
          call printl( 'again by columns? any(b > a,1)', any(b > a, 1) )
          call printl( 'again by rows?    any(b > a,2)', any(b > a, 2) )
-         contains
-         ! CONVENIENCE ROUTINE FOR PRINTING SMALL MATRICES
-         ! this is not specific to ANY()
+      contains
+      ! CONVENIENCE ROUTINE. this is not specific to ANY()
       subroutine printl(title,a)
       use, intrinsic :: iso_fortran_env, only : &
        & stderr=>ERROR_UNIT,&
@@ -33,7 +32,7 @@
 
       !@(#) print small 2d logical scalar, vector, or matrix
 
-      character(len=*),parameter   :: all='(*(g0))'
+      character(len=*),parameter   :: all='(*(g0,1x))'
       character(len=*),parameter   :: row='(" > [ ",*(l1:,","))'
       character(len=*),intent(in)  :: title
       logical,intent(in)           :: a(..)
@@ -57,7 +56,7 @@
                write(*,'(" ]")')
             enddo
          rank default
-            print stderr,'*printl* did not expect rank=', rank(a), &
+            write(stderr,*)'*printl* did not expect rank=', rank(a), &
              & 'shape=', shape(a),'size=',size(a)
             stop '*printl* unexpected rank'
          end select

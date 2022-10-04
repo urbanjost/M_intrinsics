@@ -15,12 +15,12 @@
 ```
 ### **Characteristics**
 
-   **a** may be any _real_, _integer_, or _complex_ value.
+- **a** may be any _real_, _integer_, or _complex_ value.
 
-   If **a** is _complex_ the returned value will be a _real_ with the
-   same kind as **a**.
+- If **a** is _complex_ the returned value will be a _real_ with the
+  same kind as **a**.
 
-   Otherwise the returned type is the same as for **a**.
+  Otherwise the returned type is the same as for **a**.
 
 ### **Description**
 
@@ -30,8 +30,10 @@
    denoted **|x|**, is the magnitude of **x** without regard to its sign.
 
    The absolute value of a number may be thought of as its distance from
-   zero, which is the definition used by **abs**(3) when dealing with
-   _complex_ values (_see below_).
+   zero. So for a complex value the absolute value is a real number
+   with magnitude **sqrt(x%re**2,x%im**2)**, as if the real component
+   is the x value and the imaginary value is the y value for the point
+   \<x,y\>.
 
 ### **Options**
 
@@ -49,7 +51,15 @@
 ```fortran
         sqrt(x**2 + y**2)
 ```
-   computed without undue overflow or underflow.
+   computed without undue overflow or underflow (that means the
+   computation of the result can overflow the allowed magnitude of the
+   real value returned, and that very small values can produce underflows
+   if they are squared while calculating the returned value, for example).
+
+   That is, if you think of non-complex values as being complex values
+   on the x-axis and complex values as being x-y points <x%re,x%im>
+   the result of **abs**(3) is the (positive) magnitude of the distance
+   of the value from the origin.
 
 ### **Examples**
 
@@ -99,21 +109,27 @@ character(len=*),parameter :: &
   ! the returned value for complex input can be thought of as the
   ! distance from the origin <0,0>
     write(*, g) ' distance of (', z, ') from zero is', abs( z )
+    write(*, g) ' so beware of overflow with complex values'
+    write(*, g) abs(cmplx( huge(0.0), huge(0.0) ))
+    write(*, g) ' because the biggest default real is',huge(0.0)
 
 end program demo_abs
 ```
-Results:
+  Results:
 ```text
-    integer          In: -1                       Out: 1
-    real             In: -1.000000                Out: 1.000000
-    doubleprecision  In: -45.78000000000000       Out: 45.78000000000000
-    complex          In: (-3.000000,-4.000000)    Out: 5.000000
+    integer          In: -1                     Out: 1
+    real             In: -1.000000              Out: 1.000000
+    doubleprecision  In: -45.78000000000000     Out: 45.78000000000000
+    complex          In: (-3.000000,-4.000000)  Out: 5.000000
     abs range test :   2147483647  2147483647
     abs range test :   3.4028235E+38  3.4028235E+38
     abs range test :   1.1754944E-38  1.1754944E-38
     abs is elemental: 20 0 1 3 100
     complex input produces real output 50.00000000000000
     distance of ( -3.000000 -4.000000 ) from zero is 5.000000
+    so beware of overflow with complex values
+    Inf
+    because the biggest default real is .3402823E+39
 ```
 ### **Standard**
 

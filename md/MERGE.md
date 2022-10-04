@@ -167,10 +167,8 @@ Fortran 95
 
 ### **See Also**
 
-[**pack**(3)](#pack),
-[**unpack**(3)](#unpack),
-[**pack**(3)](#pack),
-[**spread**(3)](#spread),
-[**unpack**(3)](#unpack)
+- [**pack**(3)](#pack) packs an array into an array of rank one
+- [**spread**(3)](#spread) is used to add a dimension and replicate data
+- [**unpack**(3)](#unpack) scatters the elements of a vector
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

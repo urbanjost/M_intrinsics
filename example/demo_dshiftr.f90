@@ -11,7 +11,10 @@
          i=-1
          j=0
          shift=5
-         call printit()
+
+         ! print values
+          write(*,'(*(g0))')'I=',i,' J=',j,' SHIFT=',shift
+          write(*,'(b32.32)') i,j, dshiftr (i, j, shift)
 
         ! visualizing a "combined right shift" ...
          i=int(b"00000000000000000000000000011111")
@@ -19,17 +22,12 @@
          ! appended together ( i//j )
          ! 0000000000000000000000000001111111111111111111111111111111100000
          ! shifted right SHIFT values dropping off shifted values
-         ! .....00000000000000000000000000011111111111111111111111111111111
+         !      00000000000000000000000000011111111111111111111111111111111
          ! keep enough rightmost bits to fill the kind
-         ! 11111111111111111111111111111111
+         !                                 11111111111111111111111111111111
          ! so the result should be all 1s bits ...
-         call printit()
 
-      contains
-      subroutine printit()
-         ! print i,j,shift and then i,j, and the result as binary values
           write(*,'(*(g0))')'I=',i,' J=',j,' SHIFT=',shift
           write(*,'(b32.32)') i,j, dshiftr (i, j, shift)
-      end subroutine printit
 
       end program demo_dshiftr

@@ -13,46 +13,54 @@
 
       integer(kind=KIND),intent(in) :: i
       integer(kind=KIND),intent(in) :: j
-      integer(kind=KIND2),intent(in) :: shift
+      integer(kind=**),intent(in) :: shift
 ```
 ### **Characteristics**
 
-  Where the kind of **i**, **j**, and **dshiftr** are the same. An
-  exception is that one of **i** and **j** may be a BOZ literal constant.
+  - a kind designated as ** may be any kind value for the _integer_ type
+
+  - the kind of **i**, **j**, and the results are the same. An
+    exception is that one of **i** and **j** may be a BOZ literal constant
+
+  - If either I or J is a boz-literal-constant, it is first converted
+    as if by the intrinsic function **int**(3) to type integer with the
+    kind type parameter of the other.
 
 ### **Description**
 
-**dshiftr(i, j, shift)** combines bits of **i** and **j**. The leftmost **shift**
-bits of the result are the rightmost **shift** bits of **i**, and the remaining
-bits are the leftmost bits of **j**.
+  **dshiftr**(3) combines bits of **i** and **j**. The leftmost **shift**
+  bits of the result are the rightmost **shift** bits of **i**, and the
+  remaining bits are the leftmost bits of **j**.
 
-This is equivalent to
+  It may be thought of as appending the bits of **i** and **j**, dropping
+  off the **shift** rightmost bits, and then retaining the same number
+  of rightmost bits as an input value, hence the name "combined right
+  shift"...
+
+Given two 16-bit values labeled alphabetically ...
+```text
+   i=ABCDEFGHIJKLMNOP
+   j=abcdefghijklmnop
+```
+Append them together
+```text
+   ABCDEFGHIJKLMNOPabcdefghijklmnop
+```
+Shift them N=6 bits to the right dropping off bits
+```text
+         ABCDEFGHIJKLMNOPabcdefghij
+```
+Keep the 16 right-most bits
+```text
+                   KLMNOPabcdefghij
+```
+#### NOTE
+
+**dshifr(i,j,shift)t** is equivalent to
 ```fortran
      ior(shiftl (i, bit_size(i) - shift), shiftr(j, shift) )
 ```
-It may be thought of as appending the bits of **i** and **j**, dropping off the
-**shift** rightmost bits, and then retaining the same number of rightmost bits
-as an input value, hence the name "combined right shift"...
-
-```text
-Given two 16-bit values labeled alphabetically ...
-
-   i=ABCDEFGHIJKLMNOP
-   j=abcdefghijklmnop
-
-Append them together
-
-   ABCDEFGHIJKLMNOPabcdefghijklmnop
-
-Shift them N=6 bits to the right dropping off bits
-
-   ......ABCDEFGHIJKLMNOPabcdefghij
-
-Keep the 16 right-most bits
-
-   KLMNOPabcdefghij
-```
-Pictured this way it can be seen that if **i** and **j** have the same
+it can also be seen that if **i** and **j** have the same
 value
 ```fortran
      dshiftr( i, i, shift )
@@ -61,23 +69,24 @@ this has the same result as a negative circular shift
 ```fortran
      ishftc( i,   -shift ).
 ```
-
 ### **Options**
 
 - **i**
-  : Shall be of type _integer_.
+  : left value of the pair of values to be combine-shifted right
 
 - **j**
-  : Shall be of type _integer_, and of the same kind as **i**.
+  : right value of the pair of values to be combine-shifted right
 
 - **shift**
-  : Shall be of type _integer_.
-    It shall be nonnegative and less than or equal to **bit_size(result)**
-    where "result" is the _integer_ kind of the returned value/input integers.
+  : the shift value is non-negative and less than or equal to the number
+    of bits in an input value as can be computed by **bit_size**(3).
 
 ### **Result**
 
-The return value has same type and kind as **i**.
+The result is a combined right shift of **i** and **j** that is the
+same as the bit patterns of the inputs being combined left to right,
+dropping off **shift** bits on the right and then retaining the same 
+number of bits as an input value from the rightmost bits.
 
 ### **Examples**
 
@@ -97,7 +106,10 @@ integer             :: shift
    i=-1
    j=0
    shift=5
-   call printit()
+
+   ! print values
+    write(*,'(*(g0))')'I=',i,' J=',j,' SHIFT=',shift
+    write(*,'(b32.32)') i,j, dshiftr (i, j, shift)
 
   ! visualizing a "combined right shift" ...
    i=int(b"00000000000000000000000000011111")
@@ -105,34 +117,28 @@ integer             :: shift
    ! appended together ( i//j )
    ! 0000000000000000000000000001111111111111111111111111111111100000
    ! shifted right SHIFT values dropping off shifted values
-   ! .....00000000000000000000000000011111111111111111111111111111111
+   !      00000000000000000000000000011111111111111111111111111111111
    ! keep enough rightmost bits to fill the kind
-   ! 11111111111111111111111111111111
+   !                                 11111111111111111111111111111111
    ! so the result should be all 1s bits ...
-   call printit()
 
-contains
-subroutine printit()
-   ! print i,j,shift and then i,j, and the result as binary values
     write(*,'(*(g0))')'I=',i,' J=',j,' SHIFT=',shift
     write(*,'(b32.32)') i,j, dshiftr (i, j, shift)
-end subroutine printit
 
 end program demo_dshiftr
 ```
-  Results:
-```> text
-   >   1342177280
-   > I=-1 J=0 SHIFT=5
-   > 11111111111111111111111111111111
-   > 00000000000000000000000000000000
-   > 11111000000000000000000000000000
-   > I=31 J=-32 SHIFT=5
-   > 00000000000000000000000000011111
-   > 11111111111111111111111111100000
-   > 11111111111111111111111111111111
+Results:
+```text
+     1342177280
+   I=-1 J=0 SHIFT=5
+   11111111111111111111111111111111
+   00000000000000000000000000000000
+   11111000000000000000000000000000
+   I=31 J=-32 SHIFT=5
+   00000000000000000000000000011111
+   11111111111111111111111111100000
+   11111111111111111111111111111111
 ```
-
 ### **Standard**
 
 Fortran 2008

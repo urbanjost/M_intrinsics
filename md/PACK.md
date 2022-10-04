@@ -109,9 +109,7 @@ Fortran 95
 
 ### **See Also**
 
-[**unpack**(3)](#unpack),
 [**merge**(3)](#merge),
-[**pack**(3)](#pack),
 [**spread**(3)](#spread),
 [**unpack**(3)](#unpack)
 

@@ -57,7 +57,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-AINT(3) - [NUMERIC] Truncate to a whole number
+AINT(3) - [NUMERIC] Truncate toward zero to a whole number
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
@@ -74,8 +74,8 @@ result = aint(x [,kind])
 <PRE>
          elemental real(kind=KIND) function iaint(x,kind)
 <P>
-          real(kind=KIND),intent(in)   :: x
-          integer,intent(in),optional :: kind
+          real(kind=**),intent(in)   :: x
+          integer(kind=**),intent(in),optional :: KIND
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -86,9 +86,24 @@ result = aint(x [,kind])
 </A>
 <BLOCKQUOTE>
 <P>
-where the kind of the result is the same as X unless KIND is present.
-KIND defaults to the default integer kind.
-</BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+a kind designated as ** may be any supported kind value for the type
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+the result is a real of the default kind unless KIND is specified.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+KIND is an integer initialization expression indicating the kind
+parameter of the result.
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=3>
 
      <H3>DESCRIPTION</H3>
@@ -96,7 +111,7 @@ KIND defaults to the default integer kind.
 </A>
 <BLOCKQUOTE>
 <P>
-AINT(X, KIND) truncates its argument to a whole number.
+AINT(3) truncates its argument toward zero to a whole number.
 </BLOCKQUOTE>
 <A name=4>
 
@@ -114,8 +129,7 @@ X : the real value to truncate.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-KIND : an integer initialization expression indicating the kind
-parameter of the result.
+KIND : indicates the kind parameter of the result.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
@@ -125,16 +139,13 @@ parameter of the result.
 </A>
 <BLOCKQUOTE>
 <P>
-The return value is of type real with the kind type parameter of the
-argument if the optional KIND is absent; otherwise, the kind type
-parameter will be given by KIND.
+The sign is the same as the sign of X unless the magnitude of X is less
+than one, in which case zero is returned.
 <P>
-If the magnitude of X is less than one, AINT(X) returns zero.
+Otherwise AINT(3) returns the largest whole number that does not exceed
+the magnitude of X with the same sign as the input.
 <P>
-If the magnitude is equal to or greater than one then it returns the
-largest whole number that does not exceed its magnitude.
-<P>
-The sign is the same as the sign of X.
+That is, it truncates the value towards zero.
 </BLOCKQUOTE>
 <A name=6>
 
@@ -149,49 +160,39 @@ Sample program:
     program demo_aint
     use, intrinsic :: iso_fortran_env, only : sp=&gt;real32, dp=&gt;real64
     implicit none
-    real(kind=sp) :: x4
     real(kind=dp) :: x8
-<P>
-       x4 = 4.3210_sp
+       print *,&#146;basics:&#146;
+       print *,&#146; just chops off the fractional part&#146;
+       print *,  aint(-2.999), aint(-2.1111)
+       print *,&#146; if |x| &lt; 1 a positive zero is returned&#146;
+       print *,  aint(-0.999), aint( 0.9999)
+       print *,&#146; input may be of any real kind&#146;
        x8 = 4.3210_dp
-       print *, aint(x4), aint(x8)
-       print *
-       ! elemental
+       print *, aint(-x8), aint(x8)
+       print *,&#146;elemental:&#146;
        print *,aint([ &
         &  -2.7,  -2.5, -2.2, -2.0, -1.5, -1.0, -0.5, &
         &  0.0,   &
         &  +0.5,  +1.0, +1.5, +2.0, +2.2, +2.5, +2.7  ])
-<P>
     end program demo_aint
 <P>
 </PRE>
 Results:
 <P>
 <PRE>
-         4.00000000       4.0000000000000000
+     basics:
+      just chops off the fractional part
+      -2.000000      -2.000000
+      if |x| &lt; 1 a positive zero is returned
+      0.0000000E+00  0.0000000E+00
+      input may be of any real kind
+      -4.00000000000000        4.00000000000000
+     elemental:
+      -2.000000      -2.000000      -2.000000      -2.000000      -1.000000
+      -1.000000      0.0000000E+00  0.0000000E+00  0.0000000E+00   1.000000
+       1.000000       2.000000       2.000000       2.000000       2.000000
 <P>
 </PRE>
-<BLOCKQUOTE>
-<TABLE cellpadding=3>
-<TR valign=top><TD colspan=2>
-<B></B><B>-.00000000</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-<B>-.00000000</B>      <B>-.00000000</B>      <B>-.00000000</B>
-</TD></TR>
-<TR valign=top><TD colspan=2>
-<B></B><B>-1.00000000</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-<B>-1.00000000</B>      <B>-0.00000000</B>       0.00000000
-<TABLE width=100% cellpadding=3><!-- tsb: <B>-1.00000000</B>      <B>-0.00000000</B>       0.00000000
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD colspan=2>
-<B>0.00000000</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-1.00000000       1.00000000       .00000000
-</TD></TR>
-<TR valign=top><TD colspan=2>
-<B>.00000000</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-</TD></TR>
-<TR></TR></TABLE></TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
 </BLOCKQUOTE>
 <A name=7>
 
@@ -211,10 +212,10 @@ FORTRAN 77
 <P>
 ANINT(3), INT(3), NINT(3), SELECTED_INT_KIND(3), CEILING(3), FLOOR(3)
 <P>
-fortran-lang intrinsic descriptions
+fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>aint (3fortran)</TD> <TD align=right width=33%><I>October 02, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from e265205d-1593-404f-8fc8-0c098551cef0 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>aint (3fortran)</TD> <TD align=right width=33%><I>October 04, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 365737cb-af6e-47fe-b811-e54eb7897b42 using man macros.</FONT>
 <br><br><center><img src="images/aint.3fortran.gif"></center>
 </div>
 </div>

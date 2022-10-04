@@ -16,10 +16,10 @@
 ```
 ### **Characteristics**
 
-where a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind value for the type
 
-The _character_ kind returned is the value of **kind** if present.
-otherwise, a single default _character_ is returned.
+- The _character_ kind returned is the value of **kind** if present.
+  otherwise, a single default _character_ is returned.
 
 ### **Description**
 
@@ -40,7 +40,7 @@ will clear the screen on an ANSI-compatible terminal display,
 - **i**
   : the _integer_ value to convert to an ASCII character, in the range
   0 to 127.
-  : **achar(iachar(c))** shall have the value C for any character
+  : **achar**(3) shall have the value C for any character
   C capable of representation as a default character.
 
 - **kind**

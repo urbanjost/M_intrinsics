@@ -15,32 +15,32 @@
 ```
 ### **Characteristics**
 
-The type of the argument **z** shall be _complex_ and any supported
-_complex_ kind
+- The type of the argument **z** shall be _complex_ and any supported
+  _complex_ kind
 
-The return value is of type _real_ with the kind type parameter of
-the argument.
+- The return value is of type _real_ with the kind type parameter of
+  the argument.
 
 ### **Description**
 
-**aimag(z)** yields the imaginary part of the complex argument **z**.
+  **aimag(z)** yields the imaginary part of the complex argument **z**.
 
-This is similar to the modern complex-part-designator **%IM** which also
-designates the imaginary part of a value, accept a designator can appear
-on the left-hand side of an assignment as well, as in **val%im=10.0**.
+  This is similar to the modern complex-part-designator **%IM** which also
+  designates the imaginary part of a value, accept a designator can appear
+  on the left-hand side of an assignment as well, as in **val%im=10.0**.
 
 ### **Options**
 
 - **z**
-  : The _complex_ value to extract the _imaginary component of.
+  : The _complex_ value to extract the imaginary component of.
 
 ### **Result**
 
-The return value is a _real_ value with the magnitude and sign of the
-imaginary component of the argument **z**.
+  The return value is a _real_ value with the magnitude and sign of the
+  imaginary component of the argument **z**.
 
-That is, If **z** has the value **(x,y)**, the result has the value
-**y**.
+  That is, If **z** has the value **(x,y)**, the result has the value
+  **y**.
 
 ### **Examples**
 
@@ -131,3 +131,4 @@ logical expressions:
 [**unpack**(3)](#unpack),
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+#

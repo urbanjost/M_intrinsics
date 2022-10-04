@@ -87,5 +87,5 @@ Inverse function: [**cos**(3)](cos)
 ### **Resources**
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
-
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+#

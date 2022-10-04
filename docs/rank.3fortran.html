@@ -74,7 +74,7 @@ result = rank(a)
 <PRE>
          integer function rank(a)
 <P>
-          type(TYPE(kind=KIND),intent(in) :: a(..)
+          type(TYPE(kind=**)),intent(in) :: a(..)
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -85,8 +85,18 @@ result = rank(a)
 </A>
 <BLOCKQUOTE>
 <P>
-A can be of any type and rank.
-</BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+A can be of any type TYPE and rank.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+a kind designated as ** may be any supported kind value for the type
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=3>
 
      <H3>DESCRIPTION</H3>
@@ -94,7 +104,10 @@ A can be of any type and rank.
 </A>
 <BLOCKQUOTE>
 <P>
-RANK(A) returns the rank of a scalar or array data object.
+RANK(3) returns the rank of a scalar or array data object.
+<P>
+The rank of an array is the number of dimensions it has (zero for a
+scalar).
 </BLOCKQUOTE>
 <A name=4>
 
@@ -107,7 +120,11 @@ RANK(A) returns the rank of a scalar or array data object.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-A
+A is the data object to query the dimensionality of. The rank
+returned may be from 0 to 16.
+<P>
+The argument A may be any data object type, including an
+assumed-rank array.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
@@ -131,10 +148,13 @@ Sample program:
 <PRE>
     program demo_rank
     implicit none
-    integer :: a
+<P>
+    ! a bunch of data objects to query
+    integer           :: a
     real, allocatable :: b(:,:)
-    real  :: c(10,20,30)
-    complex :: d
+    real, pointer     :: c(:)
+    complex           :: d
+<P>
     ! make up a type
     type mytype
        integer :: int
@@ -143,33 +163,61 @@ Sample program:
     end type mytype
     type(mytype) :: any_thing(1,2,3,4,5)
 <P>
+      ! basics
        print *, &#146;rank of scalar a=&#146;,rank(a)
-       ! note you can query this array even though not allocated
+       ! you can query this array even though it is not allocated
        print *, &#146;rank of matrix b=&#146;,rank(b)
-       print *, &#146;rank of vector c=&#146;,rank(c)
-       print *, &#146;rank of scalar d=&#146;,rank(d)
-       ! you can query any type
-       print *, &#146;rank of any_thing=&#146;,rank(any_thing)
+       print *, &#146;rank of vector pointer c=&#146;,rank(c)
+       print *, &#146;rank of complex scalar d=&#146;,rank(d)
 <P>
+      ! you can query any type, not just intrinsics
+       print *, &#146;rank of any arbitrary type=&#146;,rank(any_thing)
+<P>
+      ! an assumed-rank object may be queried
        call query_int(10)
        call query_int([20,30])
        call query_int( reshape([40,50,60,70],[2,2]) )
 <P>
+      ! you can even query an unlimited polymorphic entity
+       call query_anything(10.0)
+       call query_anything([.true.,.false.])
+       call query_anything( reshape([40.0,50.0,60.0,70.0],[2,2]) )
+<P>
     contains
 <P>
-    subroutine query_int(entity)
+    subroutine query_int(data_object)
     ! It is hard to do much with something dimensioned
-    ! name(..) if not calling C but one thing you can
+    ! name(..) if not calling C except inside of a
+    ! SELECT_RANK construct but one thing you can
     ! do is call the inquiry functions &#46;&#46;&#46;
-    integer,intent(in) :: entity(..)
+    integer,intent(in) :: data_object(..)
+    character(len=*),parameter :: all=&#146;(*(g0,1x))&#146;
 <P>
-       if(rank(entity).eq.0)then
-          write(*,*)&#146;you passed a scalar&#146;,rank(entity)
+       if(rank(data_object).eq.0)then
+          print all,&
+          & &#146;passed a scalar to an assumed rank,  &
+          & rank=&#146;,rank(data_object)
        else
-          write(*,*)&#146;you passed an array, rank=&#146;,rank(entity)
+          print all,&
+          & &#146;passed an array to an assumed rank,  &
+          & rank=&#146;,rank(data_object)
        endif
 <P>
     end subroutine query_int
+<P>
+    subroutine query_anything(data_object)
+    class(*),intent(in) ::data_object(..)
+    character(len=*),parameter :: all=&#146;(*(g0,1x))&#146;
+      if(rank(data_object).eq.0)then
+        print all,&
+        &&#146;passed a scalar to an unlimited polymorphic rank=&#146;, &
+        & rank(data_object)
+      else
+        print all,&
+        & &#146;passed an array to an unlimited polymorphic, rank=&#146;, &
+        & rank(data_object)
+      endif
+    end subroutine query_anything
 <P>
     end program demo_rank
 <P>
@@ -177,16 +225,32 @@ Sample program:
 Results:
 <P>
 <PRE>
-        rank of scalar a= 0
-        rank of matrix b= 2
-        rank of vector c= 3
-        rank of scalar d= 0
-        rank of any_thing= 5
-        you passed a scalar 0
-        you passed an array, rank= 1
-        you passed an array, rank= 2
-<P>
+        rank of scalar a=           0
+        rank of matrix b=           2
+        rank of vector pointer c=           1
+        rank of complex scalar d=           0
+        rank of any arbitrary type=           5
 </PRE>
+<BLOCKQUOTE>
+<TABLE cellpadding=3><!-- tsb:         rank of scalar a=           0
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B>passed a scalar to an assumed rank,</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+rank= 0
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>passed an array to an assumed rank,</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+rank= 1
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>passed an array to an assumed rank,</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+rank=
+passed a scalar to an unlimited polymorphic rank= 0
+passed an array to an unlimited polymorphic, rank= 1
+passed an array to an unlimited polymorphic, rank=
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 </BLOCKQUOTE>
 <A name=7>
 
@@ -203,12 +267,81 @@ Results:
 </A>
 <BLOCKQUOTE>
 <P>
-****(3)
-<P>
-fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+Array inquiry:
+<TABLE cellpadding=3><!-- tsb: Array inquiry:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+SIZE(3) - Determine the size of an array
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+RANK(3) - Rank of a data object
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+SHAPE(3) - Determine the shape of an array
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+UBOUND(3) - Upper dimension bounds of an array
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+LBOUND(3) - Lower dimension bounds of an array
+</TD></TR>
+<TR></TR></TABLE>State Inquiry:
+<TABLE cellpadding=3><!-- tsb: State Inquiry:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+ALLOCATED(3) - Status of an allocatable entity
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+IS_CONTIGUOUS(3) - Test if object is contiguous
+</TD></TR>
+<TR></TR></TABLE>Kind Inquiry:
+<TABLE cellpadding=3><!-- tsb: Kind Inquiry:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+KIND(3) - Kind of an entity
+</TD></TR>
+<TR></TR></TABLE>Bit Inquiry:
+<TABLE cellpadding=3><!-- tsb: Bit Inquiry:
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+STORAGE_SIZE(3) - Storage size in bits
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+BIT_SIZE(3) - Bit size inquiry function
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+BTEST(3) - Tests a bit of an integer value.
+</TD></TR>
+<TR></TR></TABLE>fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>rank (3fortran)</TD> <TD align=right width=33%><I>October 02, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from e5110211-f8f6-4e6c-be4c-5ccbab5aab61 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>rank (3fortran)</TD> <TD align=right width=33%><I>October 04, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 6f417c3c-d46e-4699-a2e1-0e68564275ac using man macros.</FONT>
 <br><br><center><img src="images/rank.3fortran.gif"></center>
 </div>
 </div>

@@ -75,9 +75,9 @@ result = eoshift( array, shift [,boundary] [,dim] )
        type(TYPE(kind=KIND)) function eoshift(array,shift,boundary,dim)
 <P>
         type(TYPE(kind=KIND)),intent(in) :: array(..)
-        integer(kind=KINDS),intent(in)   :: shift
+        integer(kind=**),intent(in)      :: shift
         type(TYPE(kind=KIND)),intent(in) :: boundary
-        integer(kind=KINDD),intent(in)   :: dim
+        integer(kind=**),intent(in)      :: dim
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -88,10 +88,39 @@ result = eoshift( array, shift [,boundary] [,dim] )
 </A>
 <BLOCKQUOTE>
 <P>
-ARRAY May be any type, not scalar. The result is an array of same type,
-kind and rank as the ARRAY argument. BOUNDARY is a scalar of the same
-type and kind as the ARRAY. DIM and SHIFT can be any kind of integer.
-</BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+a kind designated as ** may be any supported kind value for the type
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+ARRAY May be any type, but not a scalar.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+SHIFT is an integer of any dind
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+BOUNDARY is a scalar of the same type and kind as the ARRAY.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+DIM is an integer of any dind
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+The result is an array of same type, kind and rank as the ARRAY
+argument.
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=3>
 
      <H3>DESCRIPTION</H3>
@@ -99,35 +128,13 @@ type and kind as the ARRAY. DIM and SHIFT can be any kind of integer.
 </A>
 <BLOCKQUOTE>
 <P>
-EOSHIFT(ARRAY, SHIFT[, BOUNDARY, DIM]) performs an end-off shift on
-elements of ARRAY along the dimension of DIM.
-<P>
-DIM is a scalar of type integer in the range of
-<P>
-<PRE>
-        **1 &lt;= DIM &lt;= n**
-<P>
-</PRE>
-where "N" is the rank of ARRAY. If DIM is omitted it is taken to be 1.
-<P>
-If the rank of ARRAY is one, then all elements of ARRAY are shifted by
-SHIFT places. If rank is greater than one, then all complete rank one
-sections of ARRAY along the given dimension are shifted.
+EOSHIFT(3) performs an end-off shift on elements of ARRAY along the
+dimension of DIM.
 <P>
 Elements shifted out one end of each rank one section are dropped.
 <P>
 If BOUNDARY is present then the corresponding value from BOUNDARY is
-copied back in the other end. If BOUNDARY is not present then the
-following are copied in depending on the type of ARRAY.
-<P>
-<PRE>
-    Array Type     | Boundary Value
-    -----------------------------------------------------
-    Numeric        | 0 of the type and kind of "array"
-    Logical        | .false.
-    Character(len) |  LEN blanks
-<P>
-</PRE>
+copied back in the other end, else default values are used.
 </BLOCKQUOTE>
 <A name=4>
 
@@ -140,24 +147,45 @@ following are copied in depending on the type of ARRAY.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-ARRAY : May be any type, not scalar.
+ARRAY : array of any type whose elements are to be shifted. If the
+rank of ARRAY is one, then all elements of ARRAY are shifted by
+SHIFT places. If rank is greater than one, then all complete rank
+one sections of ARRAY along the given dimension are shifted.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-SHIFT : The type shall be integer.
+SHIFT : the number of elements to shift
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-BOUNDARY : Same type as ARRAY.
+BOUNDARY : the value to use to fill in the elements vacated by the
+shift. If BOUNDARY is not present then the following are copied in
+depending on the type of ARRAY.
 </TD></TR>
+<TR></TR></TABLE><!-- .nf -->
+<PRE>
+        Array Type     | Boundary Value
+        -----------------------------------------------------
+        Numeric        | 0 of the type and kind of "array"
+        Logical        | .false.
+        Character(len) |  LEN blanks
+<P>
+</PRE>
+<TABLE cellpadding=3>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-DIM : The type shall be integer.
+DIM : DIM is in the range of
 </TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
+<TR></TR></TABLE><!-- .nf -->
+<PRE>
+        **1 &lt;= DIM &lt;= n**
+<P>
+</PRE>
+where "N" is the rank of ARRAY. If DIM is omitted it is taken to be 1.
+</BLOCKQUOTE>
 <A name=5>
 
      <H3>RESULT</H3>
@@ -165,7 +193,10 @@ DIM : The type shall be integer.
 </A>
 <BLOCKQUOTE>
 <P>
-Returns an array of same type and rank as the ARRAY argument.
+Returns an array of the same characteristics as the input with the
+specified number of elements dropped off along the specified direction
+indicated, backfilling the vacated elements with a value indicated by
+the BOUNDARY value.
 </BLOCKQUOTE>
 <A name=6>
 
@@ -236,12 +267,12 @@ Fortran 95
 </A>
 <BLOCKQUOTE>
 <P>
-****(3)
+DSHIFTR(3), DSHIFTL(3)
 <P>
 fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>eoshift (3fortran)</TD> <TD align=right width=33%><I>October 02, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 215b5f66-9d22-4be1-9f3b-4fc5cade3c1e using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>eoshift (3fortran)</TD> <TD align=right width=33%><I>October 04, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from a8984ed0-35b7-4b63-8ea7-74e66f9ddf00 using man macros.</FONT>
 <br><br><center><img src="images/eoshift.3fortran.gif"></center>
 </div>
 </div>

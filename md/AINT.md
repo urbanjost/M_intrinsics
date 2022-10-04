@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**aint**(3) - \[NUMERIC\] Truncate to a whole number
+**aint**(3) - \[NUMERIC\] Truncate toward zero to  a whole number
 
 ### **Synopsis**
 ```fortran
@@ -11,17 +11,19 @@
 ```fortran
      elemental real(kind=KIND) function iaint(x,kind)
 
-      real(kind=KIND),intent(in)   :: x
-      integer,intent(in),optional :: kind
+      real(kind=**),intent(in)   :: x
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-where the _kind_ of the result is the same as **x** unless **kind**
-is present. KIND defaults to the default _integer_ kind.
+- a kind designated as ** may be any supported kind value for the type
+- the result is a real of the default kind unless **kind** is specified.
+- **kind** is an _integer_ initialization expression indicating the
+  kind parameter of the result.
 
 ### **Description**
 
-**aint(x, kind)** truncates its argument to a whole number.
+  **aint**(3) truncates its argument toward zero to a whole number.
 
 ### **Options**
 
@@ -29,21 +31,17 @@ is present. KIND defaults to the default _integer_ kind.
   : the _real_ value to truncate.
 
 - **kind**
-  : an _integer_ initialization expression indicating the
-  kind parameter of the result.
+  : indicates the kind parameter of the result.
 
 ### **Result**
 
-The return value is of type _real_ with the kind type parameter of the
-argument if the optional **kind** is absent; otherwise, the kind type
-parameter will be given by **kind**.
+  The sign is the same as the sign of **x** unless the magnitude of **x**
+  is less than one, in which case zero is returned.
 
-If the magnitude of **x** is less than one, **aint(x)** returns zero.
+  Otherwise **aint**(3) returns the largest whole number that does not
+  exceed the magnitude of **x** with the same sign as the input.
 
-If the magnitude is equal to or greater than one then it returns the
-largest whole number that does not exceed its magnitude.
-
-The sign is the same as the sign of **x**.
+  That is, it truncates the value towards zero.
 
 ### **Examples**
 
@@ -53,30 +51,35 @@ Sample program:
 program demo_aint
 use, intrinsic :: iso_fortran_env, only : sp=>real32, dp=>real64
 implicit none
-real(kind=sp) :: x4
 real(kind=dp) :: x8
-
-   x4 = 4.3210_sp
+   print *,'basics:'
+   print *,' just chops off the fractional part'
+   print *,  aint(-2.999), aint(-2.1111)
+   print *,' if |x| < 1 a positive zero is returned'
+   print *,  aint(-0.999), aint( 0.9999)
+   print *,' input may be of any real kind'
    x8 = 4.3210_dp
-   print *, aint(x4), aint(x8)
-   print *
-   ! elemental
+   print *, aint(-x8), aint(x8)
+   print *,'elemental:'
    print *,aint([ &
     &  -2.7,  -2.5, -2.2, -2.0, -1.5, -1.0, -0.5, &
     &  0.0,   &
     &  +0.5,  +1.0, +1.5, +2.0, +2.2, +2.5, +2.7  ])
-
 end program demo_aint
 ```
-Results:
-
+  Results:
 ```text
-     4.00000000       4.0000000000000000
-
-    -2.00000000      -2.00000000      -2.00000000      -2.00000000
-    -1.00000000      -1.00000000      -0.00000000       0.00000000
-     0.00000000       1.00000000       1.00000000       2.00000000
-     2.00000000       2.00000000       2.00000000
+ basics:
+  just chops off the fractional part
+  -2.000000      -2.000000
+  if |x| < 1 a positive zero is returned
+  0.0000000E+00  0.0000000E+00
+  input may be of any real kind
+  -4.00000000000000        4.00000000000000
+ elemental:
+  -2.000000      -2.000000      -2.000000      -2.000000      -1.000000
+  -1.000000      0.0000000E+00  0.0000000E+00  0.0000000E+00   1.000000
+   1.000000       2.000000       2.000000       2.000000       2.000000
 ```
 ### **Standard**
 
@@ -91,4 +94,5 @@ FORTRAN 77
 [**ceiling**(3)](#ceiling),
 [**floor**(3)](#floor)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+#

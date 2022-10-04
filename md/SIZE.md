@@ -12,17 +12,17 @@
      integer(kind=KIND) function size(array,dim,kind)
 
       type(TYPE(kind=KIND),intent(in) :: array(..)
-      integer(kind=KINDD),intent(in),optional :: dim
-      integer(kind=KINDK),intent(in),optional :: kind
+      integer(kind=**),intent(in),optional :: dim
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-  **array** may be of any type and associated kind.
+ - a kind designated as ** may be any supported kind value for the type
+ 
+-  **array** may be of any type and associated kind.
 
-  If **array** is a pointer it must be associated and allocatable arrays
-  must be allocated.
-
-  KINDD and KINDK may be any _integer_ type kind.
+   If **array** is a pointer it must be associated and allocatable arrays
+   must be allocated.
 
 ### **Description**
 
@@ -35,7 +35,7 @@ or the total number of elements in **array** if **dim** is absent.
   : the array to measure the number of elements of.
 
 - **dim**
-  : shall be a scalar of type _integer_ and its value shall be
+  : a value shall be
   in the range from 1 to n, where n equals the rank of **array**.
 
   If not present the total number of elements of the entire array
@@ -210,7 +210,27 @@ Fortran 95 , with **kind** argument - Fortran 2003
 
 ### **See Also**
 
-[**shape**(3)](#shape),
-[__reshape__(3)])(RESHAPE)
+#### Array inquiry:
 
- _fortran-lang intrinsic descriptions_
+- [**size**(3)](#size) -  Determine the size of an array
+- [**rank**(3)](#rank) -  Rank of a data object
+- [**shape**(3)](#shape) -  Determine the shape of an array
+- [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
+- [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
+ 
+#### State Inquiry:
+
+- [**allocated**(3)](#allocated) -  Status of an allocatable entity
+- [**is_contiguous**(3)](#is_contigious) -  Test if object is contiguous
+
+#### Kind Inquiry:
+
+- [**kind**(3)](#kind) - Kind of an entity
+
+#### Bit Inquiry: 
+
+- [**storage_size**(3)](#storage_size) - Storage size in bits
+- [**bit_size**(3)](#bit_size) -  Bit size inquiry function
+- [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
+
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

@@ -13,52 +13,47 @@
 
       integer(kind=KIND),intent(in) :: i
       integer(kind=KIND),intent(in) :: j
-      integer(kind=KIND2),intent(in) :: shift
+      integer(kind=**),intent(in) :: shift
 ```
 ### **Characteristics**
 
-  Where the kind of **i**, **j**, and **dshiftl** are the same. An
-  exception is that one of **i** and **j** may be a BOZ literal constant.
+  - the kind of **i**, **j**, and the return value are the same. An
+    exception is that one of **i** and **j** may be a BOZ literal
+    constant.
+
+  - If either I or J is a boz-literal-constant (but not both), it is
+    ﬁrst converted as if by the intrinsic function **int**(3) to type
+    integer with the kind type parameter of the other.
+ 
+  - a kind designated as ** may be any supported kind value for the type
 
 ### **Description**
 
-  **dshiftl(i, j, shift)** combines bits of **i** and **j**. Per the
-  standard the rightmost **shift** bits of the result are the leftmost
-  **shift** bits of **j**, and the remaining bits are the rightmost bits
-  of **i**.
+  **dshiftl**(3) combines bits of **i** and **j**. The rightmost **shift**
+  bits of the result are the leftmost **shift** bits of **j**, and the
+  remaining bits are the rightmost **bitsize(i)-shift** of **i**.
 
-  For example, for 32-bit values if **shift=6** designating ignored
-  bits with "-" and labeling the used bits of **i** with uppercase
-  letters and used bits of **j** with lowercase letters the result
-  would be ...
+  Hence **dshiftl** is designated as a "combined left shift", because
+  it is like we appended **i** and **j** together, shifted it **shift**
+  bits to the left, and then kept the same number of bits as **i** or
+  **j** had. 
+
+  For example, for two 16-bit values if **shift=6** 
 ```text
       SHIFT=6
-      I =      ------ABCDEFGHIJKLMNOPQRSTUVWXYZ
-      J =      abcdef--------------------------
-      RESULT = ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef
+      I =             1111111111111111
+      J =             0000000000000000
+      COMBINED        11111111111111110000000000000000
+      DROP LEFT BITS  11111111110000000000000000
+      KEEP LEFT 16    1111111111000000
 ```
-  So reading from left to right we skip the first N values of **i**
-  and use the first N values of **j** and append them together.
-
+#### NOTE
   This is equivalent to
 ```fortran
      ior( shiftl(i, shift), shiftr(j, bit_size(j) - shift) )
 ```
-  hence **dshiftl** is designated as a "combined left shift", because
-  it is like we appended **i** and **j** together, shifted it **shift**
-  bits to the left, and then kept the same number of bits as **i** or
-  **j** had. Using the above strings:
-```text
-   Combine them together
-      ------ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef--------------------------
-   Shift 6 to the left
-      ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef--------------------------
-   keep 32 bits
-      ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef
-```
-#### Note:
-  Using the last representation of the operation is should be
-  seen that when both **i** and **j** have the same value as in
+  Also note that using this last representation of the operation is can
+  be derived that when both **i** and **j** have the same value as in
 ```fortran
       dshiftl(i, i, shift)
 ```
@@ -69,24 +64,17 @@
 ### **Options**
 
 - **i**
-  : Shall be of type _integer_.
+  : used to define the left pattern of bits in the combined pattern
 
 - **j**
-  : Shall be of type _integer_, and of the same kind as **i**.
-
-  If either **i** or **j** is a BOZ-literal-constant, it is first
-  converted as if by the intrinsic function **int()** to _integer_
-  with the kind type parameter of the other.
+  : used for the right pattern of bits in the combined pattern
 
 - **shift**
-  : Shall be of type _integer_.
-    It shall be nonnegative and less than or equal to BIT_SIZE(K) where K is
-    any **i** or **j** variable that is type _integer_ (ie. the size of either
-    one that is not a BOZ literal constant).
+  : shall be nonnegative and less than or equal to the number of bits
+    in an _integer_ input value (ie. the bit size of either one that is
+    not a BOZ literal constant).
 
 ### **Result**
-
-  The return value has same type and kind as **i** and/or **j**.
 
   The leftmost **shift** bits of **j** are copied to the rightmost bits
   of the result, and the remaining bits are the rightmost bits of **i**.

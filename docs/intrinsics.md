@@ -16,12 +16,12 @@
 ```
 ### **Characteristics**
 
-   **a** may be any _real_, _integer_, or _complex_ value.
+- **a** may be any _real_, _integer_, or _complex_ value.
 
-   If **a** is _complex_ the returned value will be a _real_ with the
-   same kind as **a**.
+- If **a** is _complex_ the returned value will be a _real_ with the
+  same kind as **a**.
 
-   Otherwise the returned type is the same as for **a**.
+  Otherwise the returned type is the same as for **a**.
 
 ### **Description**
 
@@ -31,8 +31,10 @@
    denoted **|x|**, is the magnitude of **x** without regard to its sign.
 
    The absolute value of a number may be thought of as its distance from
-   zero, which is the definition used by **abs**(3) when dealing with
-   _complex_ values (_see below_).
+   zero. So for a complex value the absolute value is a real number
+   with magnitude **sqrt(x%re**2,x%im**2)**, as if the real component
+   is the x value and the imaginary value is the y value for the point
+   \<x,y\>.
 
 ### **Options**
 
@@ -50,7 +52,15 @@
 ```fortran
         sqrt(x**2 + y**2)
 ```
-   computed without undue overflow or underflow.
+   computed without undue overflow or underflow (that means the
+   computation of the result can overflow the allowed magnitude of the
+   real value returned, and that very small values can produce underflows
+   if they are squared while calculating the returned value, for example).
+
+   That is, if you think of non-complex values as being complex values
+   on the x-axis and complex values as being x-y points <x%re,x%im>
+   the result of **abs**(3) is the (positive) magnitude of the distance
+   of the value from the origin.
 
 ### **Examples**
 
@@ -100,21 +110,27 @@ character(len=*),parameter :: &
   ! the returned value for complex input can be thought of as the
   ! distance from the origin <0,0>
     write(*, g) ' distance of (', z, ') from zero is', abs( z )
+    write(*, g) ' so beware of overflow with complex values'
+    write(*, g) abs(cmplx( huge(0.0), huge(0.0) ))
+    write(*, g) ' because the biggest default real is',huge(0.0)
 
 end program demo_abs
 ```
-Results:
+  Results:
 ```text
-    integer          In: -1                       Out: 1
-    real             In: -1.000000                Out: 1.000000
-    doubleprecision  In: -45.78000000000000       Out: 45.78000000000000
-    complex          In: (-3.000000,-4.000000)    Out: 5.000000
+    integer          In: -1                     Out: 1
+    real             In: -1.000000              Out: 1.000000
+    doubleprecision  In: -45.78000000000000     Out: 45.78000000000000
+    complex          In: (-3.000000,-4.000000)  Out: 5.000000
     abs range test :   2147483647  2147483647
     abs range test :   3.4028235E+38  3.4028235E+38
     abs range test :   1.1754944E-38  1.1754944E-38
     abs is elemental: 20 0 1 3 100
     complex input produces real output 50.00000000000000
     distance of ( -3.000000 -4.000000 ) from zero is 5.000000
+    so beware of overflow with complex values
+    Inf
+    because the biggest default real is .3402823E+39
 ```
 ### **Standard**
 
@@ -144,10 +160,10 @@ Results:
 ```
 ### **Characteristics**
 
-where a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind value for the type
 
-The _character_ kind returned is the value of **kind** if present.
-otherwise, a single default _character_ is returned.
+- The _character_ kind returned is the value of **kind** if present.
+  otherwise, a single default _character_ is returned.
 
 ### **Description**
 
@@ -168,7 +184,7 @@ will clear the screen on an ANSI-compatible terminal display,
 - **i**
   : the _integer_ value to convert to an ASCII character, in the range
   0 to 127.
-  : **achar(iachar(c))** shall have the value C for any character
+  : **achar**(3) shall have the value C for any character
   C capable of representation as a default character.
 
 - **kind**
@@ -456,6 +472,7 @@ Inverse function: [**cos**(3)](cos)
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+#
 
 ## adjustl
 
@@ -651,32 +668,32 @@ Fortran 95
 ```
 ### **Characteristics**
 
-The type of the argument **z** shall be _complex_ and any supported
-_complex_ kind
+- The type of the argument **z** shall be _complex_ and any supported
+  _complex_ kind
 
-The return value is of type _real_ with the kind type parameter of
-the argument.
+- The return value is of type _real_ with the kind type parameter of
+  the argument.
 
 ### **Description**
 
-**aimag(z)** yields the imaginary part of the complex argument **z**.
+  **aimag(z)** yields the imaginary part of the complex argument **z**.
 
-This is similar to the modern complex-part-designator **%IM** which also
-designates the imaginary part of a value, accept a designator can appear
-on the left-hand side of an assignment as well, as in **val%im=10.0**.
+  This is similar to the modern complex-part-designator **%IM** which also
+  designates the imaginary part of a value, accept a designator can appear
+  on the left-hand side of an assignment as well, as in **val%im=10.0**.
 
 ### **Options**
 
 - **z**
-  : The _complex_ value to extract the _imaginary component of.
+  : The _complex_ value to extract the imaginary component of.
 
 ### **Result**
 
-The return value is a _real_ value with the magnitude and sign of the
-imaginary component of the argument **z**.
+  The return value is a _real_ value with the magnitude and sign of the
+  imaginary component of the argument **z**.
 
-That is, If **z** has the value **(x,y)**, the result has the value
-**y**.
+  That is, If **z** has the value **(x,y)**, the result has the value
+  **y**.
 
 ### **Examples**
 
@@ -767,12 +784,13 @@ logical expressions:
 [**unpack**(3)](#unpack),
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+#
 
 ## aint
 
 ### **Name**
 
-**aint**(3) - \[NUMERIC\] Truncate to a whole number
+**aint**(3) - \[NUMERIC\] Truncate toward zero to  a whole number
 
 ### **Synopsis**
 ```fortran
@@ -781,17 +799,19 @@ logical expressions:
 ```fortran
      elemental real(kind=KIND) function iaint(x,kind)
 
-      real(kind=KIND),intent(in)   :: x
-      integer,intent(in),optional :: kind
+      real(kind=**),intent(in)   :: x
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-where the _kind_ of the result is the same as **x** unless **kind**
-is present. KIND defaults to the default _integer_ kind.
+- a kind designated as ** may be any supported kind value for the type
+- the result is a real of the default kind unless **kind** is specified.
+- **kind** is an _integer_ initialization expression indicating the
+  kind parameter of the result.
 
 ### **Description**
 
-**aint(x, kind)** truncates its argument to a whole number.
+  **aint**(3) truncates its argument toward zero to a whole number.
 
 ### **Options**
 
@@ -799,21 +819,17 @@ is present. KIND defaults to the default _integer_ kind.
   : the _real_ value to truncate.
 
 - **kind**
-  : an _integer_ initialization expression indicating the
-  kind parameter of the result.
+  : indicates the kind parameter of the result.
 
 ### **Result**
 
-The return value is of type _real_ with the kind type parameter of the
-argument if the optional **kind** is absent; otherwise, the kind type
-parameter will be given by **kind**.
+  The sign is the same as the sign of **x** unless the magnitude of **x**
+  is less than one, in which case zero is returned.
 
-If the magnitude of **x** is less than one, **aint(x)** returns zero.
+  Otherwise **aint**(3) returns the largest whole number that does not
+  exceed the magnitude of **x** with the same sign as the input.
 
-If the magnitude is equal to or greater than one then it returns the
-largest whole number that does not exceed its magnitude.
-
-The sign is the same as the sign of **x**.
+  That is, it truncates the value towards zero.
 
 ### **Examples**
 
@@ -823,30 +839,35 @@ Sample program:
 program demo_aint
 use, intrinsic :: iso_fortran_env, only : sp=>real32, dp=>real64
 implicit none
-real(kind=sp) :: x4
 real(kind=dp) :: x8
-
-   x4 = 4.3210_sp
+   print *,'basics:'
+   print *,' just chops off the fractional part'
+   print *,  aint(-2.999), aint(-2.1111)
+   print *,' if |x| < 1 a positive zero is returned'
+   print *,  aint(-0.999), aint( 0.9999)
+   print *,' input may be of any real kind'
    x8 = 4.3210_dp
-   print *, aint(x4), aint(x8)
-   print *
-   ! elemental
+   print *, aint(-x8), aint(x8)
+   print *,'elemental:'
    print *,aint([ &
     &  -2.7,  -2.5, -2.2, -2.0, -1.5, -1.0, -0.5, &
     &  0.0,   &
     &  +0.5,  +1.0, +1.5, +2.0, +2.2, +2.5, +2.7  ])
-
 end program demo_aint
 ```
-Results:
-
+  Results:
 ```text
-     4.00000000       4.0000000000000000
-
-    -2.00000000      -2.00000000      -2.00000000      -2.00000000
-    -1.00000000      -1.00000000      -0.00000000       0.00000000
-     0.00000000       1.00000000       1.00000000       2.00000000
-     2.00000000       2.00000000       2.00000000
+ basics:
+  just chops off the fractional part
+  -2.000000      -2.000000
+  if |x| < 1 a positive zero is returned
+  0.0000000E+00  0.0000000E+00
+  input may be of any real kind
+  -4.00000000000000        4.00000000000000
+ elemental:
+  -2.000000      -2.000000      -2.000000      -2.000000      -1.000000
+  -1.000000      0.0000000E+00  0.0000000E+00  0.0000000E+00   1.000000
+   1.000000       2.000000       2.000000       2.000000       2.000000
 ```
 ### **Standard**
 
@@ -861,7 +882,8 @@ FORTRAN 77
 [**ceiling**(3)](#ceiling),
 [**floor**(3)](#floor)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+#
 
 ## all
 
@@ -1094,14 +1116,14 @@ Results:
       real(kind=KIND),intent(in)   :: x
       integer,intent(in),optional :: kind
 ```
-where the _kind_ of the result is the same as as **x** unless
-**kind** is present.
+- the _kind_ of the result is the same as **x** unless
+  **kind** is present.
 
 ### **Characteristics**
 
 ### **Description**
 
-**anint(a \[, kind\])** rounds its argument to the nearest whole number.
+**anint**(3) rounds its argument to the nearest whole number.
 
 ### **Options**
 
@@ -1117,7 +1139,7 @@ where the _kind_ of the result is the same as as **x** unless
 The return value is of type real with the kind type parameter of the
 argument if the optional **kind** is absent; otherwise, the kind type
 parameter will be given by **kind**. If **a** is greater than zero,
-**anint(a)** returns **aint(a + 0.5)**. If **a** is less than or equal
+**anint(a)**(3) returns **aint(a + 0.5)**. If **a** is less than or equal
 to zero then it returns **aint(a - 0.5)**.
 
 ### **Examples**
@@ -1253,9 +1275,8 @@ logical           :: bool
    call printl( 'any true values?  any(b > a)  ', any(b > a )   )
    call printl( 'again by columns? any(b > a,1)', any(b > a, 1) )
    call printl( 'again by rows?    any(b > a,2)', any(b > a, 2) )
-   contains
-   ! CONVENIENCE ROUTINE FOR PRINTING SMALL MATRICES
-   ! this is not specific to ANY()
+contains
+! CONVENIENCE ROUTINE. this is not specific to ANY()
 subroutine printl(title,a)
 use, intrinsic :: iso_fortran_env, only : &
  & stderr=>ERROR_UNIT,&
@@ -1265,7 +1286,7 @@ implicit none
 
 !@(#) print small 2d logical scalar, vector, or matrix
 
-character(len=*),parameter   :: all='(*(g0))'
+character(len=*),parameter   :: all='(*(g0,1x))'
 character(len=*),parameter   :: row='(" > [ ",*(l1:,","))'
 character(len=*),intent(in)  :: title
 logical,intent(in)           :: a(..)
@@ -1289,7 +1310,7 @@ integer                      :: i
          write(*,'(" ]")')
       enddo
    rank default
-      print stderr,'*printl* did not expect rank=', rank(a), &
+      write(stderr,*)'*printl* did not expect rank=', rank(a), &
        & 'shape=', shape(a),'size=',size(a)
       stop '*printl* unexpected rank'
    end select
@@ -1328,6 +1349,7 @@ Fortran 95
 [**all**(3)](#all)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+#
 
 ## asinh
 
@@ -6735,52 +6757,47 @@ FORTRAN 77
 
       integer(kind=KIND),intent(in) :: i
       integer(kind=KIND),intent(in) :: j
-      integer(kind=KIND2),intent(in) :: shift
+      integer(kind=**),intent(in) :: shift
 ```
 ### **Characteristics**
 
-  Where the kind of **i**, **j**, and **dshiftl** are the same. An
-  exception is that one of **i** and **j** may be a BOZ literal constant.
+  - the kind of **i**, **j**, and the return value are the same. An
+    exception is that one of **i** and **j** may be a BOZ literal
+    constant.
+
+  - If either I or J is a boz-literal-constant (but not both), it is
+    ﬁrst converted as if by the intrinsic function **int**(3) to type
+    integer with the kind type parameter of the other.
+
+  - a kind designated as ** may be any supported kind value for the type
 
 ### **Description**
 
-  **dshiftl(i, j, shift)** combines bits of **i** and **j**. Per the
-  standard the rightmost **shift** bits of the result are the leftmost
-  **shift** bits of **j**, and the remaining bits are the rightmost bits
-  of **i**.
+  **dshiftl**(3) combines bits of **i** and **j**. The rightmost **shift**
+  bits of the result are the leftmost **shift** bits of **j**, and the
+  remaining bits are the rightmost **bitsize(i)-shift** of **i**.
 
-  For example, for 32-bit values if **shift=6** designating ignored
-  bits with "-" and labeling the used bits of **i** with uppercase
-  letters and used bits of **j** with lowercase letters the result
-  would be ...
+  Hence **dshiftl** is designated as a "combined left shift", because
+  it is like we appended **i** and **j** together, shifted it **shift**
+  bits to the left, and then kept the same number of bits as **i** or
+  **j** had.
+
+  For example, for two 16-bit values if **shift=6**
 ```text
       SHIFT=6
-      I =      ------ABCDEFGHIJKLMNOPQRSTUVWXYZ
-      J =      abcdef--------------------------
-      RESULT = ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef
+      I =             1111111111111111
+      J =             0000000000000000
+      COMBINED        11111111111111110000000000000000
+      DROP LEFT BITS  11111111110000000000000000
+      KEEP LEFT 16    1111111111000000
 ```
-  So reading from left to right we skip the first N values of **i**
-  and use the first N values of **j** and append them together.
-
+#### NOTE
   This is equivalent to
 ```fortran
      ior( shiftl(i, shift), shiftr(j, bit_size(j) - shift) )
 ```
-  hence **dshiftl** is designated as a "combined left shift", because
-  it is like we appended **i** and **j** together, shifted it **shift**
-  bits to the left, and then kept the same number of bits as **i** or
-  **j** had. Using the above strings:
-```text
-   Combine them together
-      ------ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef--------------------------
-   Shift 6 to the left
-      ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef--------------------------
-   keep 32 bits
-      ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef
-```
-#### Note:
-  Using the last representation of the operation is should be
-  seen that when both **i** and **j** have the same value as in
+  Also note that using this last representation of the operation is can
+  be derived that when both **i** and **j** have the same value as in
 ```fortran
       dshiftl(i, i, shift)
 ```
@@ -6791,24 +6808,17 @@ FORTRAN 77
 ### **Options**
 
 - **i**
-  : Shall be of type _integer_.
+  : used to define the left pattern of bits in the combined pattern
 
 - **j**
-  : Shall be of type _integer_, and of the same kind as **i**.
-
-  If either **i** or **j** is a BOZ-literal-constant, it is first
-  converted as if by the intrinsic function **int()** to _integer_
-  with the kind type parameter of the other.
+  : used for the right pattern of bits in the combined pattern
 
 - **shift**
-  : Shall be of type _integer_.
-    It shall be nonnegative and less than or equal to BIT_SIZE(K) where K is
-    any **i** or **j** variable that is type _integer_ (ie. the size of either
-    one that is not a BOZ literal constant).
+  : shall be nonnegative and less than or equal to the number of bits
+    in an _integer_ input value (ie. the bit size of either one that is
+    not a BOZ literal constant).
 
 ### **Result**
-
-  The return value has same type and kind as **i** and/or **j**.
 
   The leftmost **shift** bits of **j** are copied to the rightmost bits
   of the result, and the remaining bits are the rightmost bits of **i**.
@@ -6892,46 +6902,54 @@ Fortran 2008
 
       integer(kind=KIND),intent(in) :: i
       integer(kind=KIND),intent(in) :: j
-      integer(kind=KIND2),intent(in) :: shift
+      integer(kind=**),intent(in) :: shift
 ```
 ### **Characteristics**
 
-  Where the kind of **i**, **j**, and **dshiftr** are the same. An
-  exception is that one of **i** and **j** may be a BOZ literal constant.
+  - a kind designated as ** may be any kind value for the _integer_ type
+
+  - the kind of **i**, **j**, and the results are the same. An
+    exception is that one of **i** and **j** may be a BOZ literal constant
+
+  - If either I or J is a boz-literal-constant, it is first converted
+    as if by the intrinsic function **int**(3) to type integer with the
+    kind type parameter of the other.
 
 ### **Description**
 
-**dshiftr(i, j, shift)** combines bits of **i** and **j**. The leftmost **shift**
-bits of the result are the rightmost **shift** bits of **i**, and the remaining
-bits are the leftmost bits of **j**.
+  **dshiftr**(3) combines bits of **i** and **j**. The leftmost **shift**
+  bits of the result are the rightmost **shift** bits of **i**, and the
+  remaining bits are the leftmost bits of **j**.
 
-This is equivalent to
+  It may be thought of as appending the bits of **i** and **j**, dropping
+  off the **shift** rightmost bits, and then retaining the same number
+  of rightmost bits as an input value, hence the name "combined right
+  shift"...
+
+Given two 16-bit values labeled alphabetically ...
+```text
+   i=ABCDEFGHIJKLMNOP
+   j=abcdefghijklmnop
+```
+Append them together
+```text
+   ABCDEFGHIJKLMNOPabcdefghijklmnop
+```
+Shift them N=6 bits to the right dropping off bits
+```text
+         ABCDEFGHIJKLMNOPabcdefghij
+```
+Keep the 16 right-most bits
+```text
+                   KLMNOPabcdefghij
+```
+#### NOTE
+
+**dshifr(i,j,shift)t** is equivalent to
 ```fortran
      ior(shiftl (i, bit_size(i) - shift), shiftr(j, shift) )
 ```
-It may be thought of as appending the bits of **i** and **j**, dropping off the
-**shift** rightmost bits, and then retaining the same number of rightmost bits
-as an input value, hence the name "combined right shift"...
-
-```text
-Given two 16-bit values labeled alphabetically ...
-
-   i=ABCDEFGHIJKLMNOP
-   j=abcdefghijklmnop
-
-Append them together
-
-   ABCDEFGHIJKLMNOPabcdefghijklmnop
-
-Shift them N=6 bits to the right dropping off bits
-
-   ......ABCDEFGHIJKLMNOPabcdefghij
-
-Keep the 16 right-most bits
-
-   KLMNOPabcdefghij
-```
-Pictured this way it can be seen that if **i** and **j** have the same
+it can also be seen that if **i** and **j** have the same
 value
 ```fortran
      dshiftr( i, i, shift )
@@ -6940,23 +6958,24 @@ this has the same result as a negative circular shift
 ```fortran
      ishftc( i,   -shift ).
 ```
-
 ### **Options**
 
 - **i**
-  : Shall be of type _integer_.
+  : left value of the pair of values to be combine-shifted right
 
 - **j**
-  : Shall be of type _integer_, and of the same kind as **i**.
+  : right value of the pair of values to be combine-shifted right
 
 - **shift**
-  : Shall be of type _integer_.
-    It shall be nonnegative and less than or equal to **bit_size(result)**
-    where "result" is the _integer_ kind of the returned value/input integers.
+  : the shift value is non-negative and less than or equal to the number
+    of bits in an input value as can be computed by **bit_size**(3).
 
 ### **Result**
 
-The return value has same type and kind as **i**.
+The result is a combined right shift of **i** and **j** that is the
+same as the bit patterns of the inputs being combined left to right,
+dropping off **shift** bits on the right and then retaining the same
+number of bits as an input value from the rightmost bits.
 
 ### **Examples**
 
@@ -6976,7 +6995,10 @@ integer             :: shift
    i=-1
    j=0
    shift=5
-   call printit()
+
+   ! print values
+    write(*,'(*(g0))')'I=',i,' J=',j,' SHIFT=',shift
+    write(*,'(b32.32)') i,j, dshiftr (i, j, shift)
 
   ! visualizing a "combined right shift" ...
    i=int(b"00000000000000000000000000011111")
@@ -6984,34 +7006,28 @@ integer             :: shift
    ! appended together ( i//j )
    ! 0000000000000000000000000001111111111111111111111111111111100000
    ! shifted right SHIFT values dropping off shifted values
-   ! .....00000000000000000000000000011111111111111111111111111111111
+   !      00000000000000000000000000011111111111111111111111111111111
    ! keep enough rightmost bits to fill the kind
-   ! 11111111111111111111111111111111
+   !                                 11111111111111111111111111111111
    ! so the result should be all 1s bits ...
-   call printit()
 
-contains
-subroutine printit()
-   ! print i,j,shift and then i,j, and the result as binary values
     write(*,'(*(g0))')'I=',i,' J=',j,' SHIFT=',shift
     write(*,'(b32.32)') i,j, dshiftr (i, j, shift)
-end subroutine printit
 
 end program demo_dshiftr
 ```
-  Results:
-```> text
-   >   1342177280
-   > I=-1 J=0 SHIFT=5
-   > 11111111111111111111111111111111
-   > 00000000000000000000000000000000
-   > 11111000000000000000000000000000
-   > I=31 J=-32 SHIFT=5
-   > 00000000000000000000000000011111
-   > 11111111111111111111111111100000
-   > 11111111111111111111111111111111
+Results:
+```text
+     1342177280
+   I=-1 J=0 SHIFT=5
+   11111111111111111111111111111111
+   00000000000000000000000000000000
+   11111000000000000000000000000000
+   I=31 J=-32 SHIFT=5
+   00000000000000000000000000011111
+   11111111111111111111111111100000
+   11111111111111111111111111111111
 ```
-
 ### **Standard**
 
 Fortran 2008
@@ -7036,63 +7052,72 @@ Fortran 2008
    type(TYPE(kind=KIND)) function eoshift(array,shift,boundary,dim)
 
     type(TYPE(kind=KIND)),intent(in) :: array(..)
-    integer(kind=KINDS),intent(in)   :: shift
+    integer(kind=**),intent(in)      :: shift
     type(TYPE(kind=KIND)),intent(in) :: boundary
-    integer(kind=KINDD),intent(in)   :: dim
+    integer(kind=**),intent(in)      :: dim
 ```
 ### **Characteristics**
 
-**array** May be any type, not scalar. The result is an array of same
-type, kind and rank as the **array** argument. **boundary** is a scalar
-of the same type and kind as the **array**. **dim** and **shift** can
-be any kind of _integer_.
+ - a kind designated as ** may be any supported kind value for the type
+
+ - **array** May be any type, but not a scalar.
+
+ - **shift** is an integer of any dind
+
+ - **boundary** is a scalar of the same type and kind as the **array**.
+
+ - **dim** is an integer of any dind
+
+ - The result is an array of same type, kind and rank as the **array** argument.
 
 ### **Description**
 
-**eoshift(array, shift\[, boundary, dim\])** performs an end-off shift
-on elements of **array** along the dimension of **dim**.
+  **eoshift**(3) performs an end-off shift on elements of **array**
+  along the dimension of **dim**.
 
-**dim** is a scalar of type _integer_ in the range of
-```fortran
-    **1 <= DIM <= n**
-```
-where **"n"** is the rank of **array**.  If **dim** is omitted it
-is taken to be **1**.
+  Elements shifted out one end of each rank one section are dropped.
 
-If the rank of **array** is one, then all elements of **array** are
-shifted by **shift** places. If rank is greater than one, then all
-complete rank one sections of **array** along the given dimension are
-shifted.
+  If **boundary** is present then the corresponding value from
+  **boundary** is copied back in the other end, else default values
+  are used.
 
-Elements shifted out one end of each rank one section are dropped.
+### **Options**
 
-If **boundary** is present then the corresponding value from **boundary**
-is copied back in the other end. If **boundary** is not present then
-the following are copied in depending on the type of **array**.
+- **array**
+  : array of any type whose elements are to be shifted.
+  If the rank of **array** is one, then all elements of **array** are
+  shifted by **shift** places. If rank is greater than one, then all
+  complete rank one sections of **array** along the given dimension
+  are shifted.
 
+- **shift**
+  : the number of elements to shift
+
+- **boundary**
+  : the value to use to fill in the elements vacated by the shift.
+  If **boundary** is not present then the following are copied in
+  depending on the type of **array**.
+```text
     Array Type     | Boundary Value
     -----------------------------------------------------
     Numeric        | 0 of the type and kind of "array"
     Logical        | .false.
     Character(len) |  LEN blanks
-
-### **Options**
-
-- **array**
-  : May be any type, not scalar.
-
-- **shift**
-  : The type shall be _integer_.
-
-- **boundary**
-  : Same type as ARRAY.
-
+```
 - **dim**
-  : The type shall be _integer_.
+  :  **dim** is in the range of
+```fortran
+    **1 <= DIM <= n**
+```
+  where **"n"** is the rank of **array**.  If **dim** is omitted it
+  is taken to be **1**.
 
 ### **Result**
 
-Returns an array of same type and rank as the **array** argument.
+ Returns an array of the same characteristics as the input with the
+ specified number of elements dropped off along the specified direction
+ indicated, backfilling the vacated elements with a value indicated by
+ the **boundary** value.
 
 ### **Examples**
 
@@ -7115,7 +7140,6 @@ integer :: i
 
 end program demo_eoshift
 ```
-
 Results:
 
 ```text
@@ -7127,14 +7151,14 @@ Results:
      8 -5 -5
      6  9 -5
 ```
-
 ### **Standard**
 
 Fortran 95
 
 ### **See Also**
 
-[****(3)](#)
+[**dshiftr**(3)](#dshiftr),
+[**dshiftl**(3)](#dshiftl)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -8677,6 +8701,7 @@ Fortran 2003
 [**command_argument_count**(3)](#command_argument_count)
 
 _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+#
 
 ## get_command
 
@@ -8779,6 +8804,7 @@ Fortran 2003
 [**command_argument_count**(3)](#command_argument_count)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+#
 
 ## get_environment_variable
 
@@ -8921,6 +8947,7 @@ Fortran 2003
 [**get_command**(3)](#get_command)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+#
 
 ## huge
 
@@ -11020,10 +11047,33 @@ Fortran 95 , with KIND argument - Fortran 2003
 
 ### **See Also**
 
+#### Array inquiry:
+
+- [**size**(3)](#size) -  Determine the size of an array
+- [**rank**(3)](#rank) -  Rank of a data object
+- [**shape**(3)](#shape) -  Determine the shape of an array
+- [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
+- [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
+
 [**ubound**(3)](#ubound),
 [**co_lbound**(3)](#co_lbound)
 
- _fortran-lang intrinsic descriptions_
+#### State Inquiry:
+
+- [**allocated**(3)](#allocated) -  Status of an allocatable entity
+- [**is_contiguous**(3)](#is_contigious) -  Test if object is contiguous
+
+#### Kind Inquiry:
+
+- [**kind**(3)](#kind) - Kind of an entity
+
+#### Bit Inquiry:
+
+- [**storage_size**(3)](#storage_size) - Storage size in bits
+- [**bit_size**(3)](#bit_size) -  Bit size inquiry function
+- [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
+
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## leadz
 
@@ -13224,11 +13274,9 @@ Fortran 95
 
 ### **See Also**
 
-[**pack**(3)](#pack),
-[**unpack**(3)](#unpack),
-[**pack**(3)](#pack),
-[**spread**(3)](#spread),
-[**unpack**(3)](#unpack)
+- [**pack**(3)](#pack) packs an array into an array of rank one
+- [**spread**(3)](#spread) is used to add a dimension and replicate data
+- [**unpack**(3)](#unpack) scatters the elements of a vector
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -15016,9 +15064,7 @@ Fortran 95
 
 ### **See Also**
 
-[**unpack**(3)](#unpack),
 [**merge**(3)](#merge),
-[**pack**(3)](#pack),
 [**spread**(3)](#spread),
 [**unpack**(3)](#unpack)
 
@@ -15916,9 +15962,7 @@ real(kind=dp)        :: rand_val
       write(*,'(i0,1x,i0)')(i,count(i),i=1,size(count))
 end program demo_random_number
 ```
-
 Results:
-
 ```
    1 10003588
    2 10000104
@@ -15931,7 +15975,6 @@ Results:
    9 10000252
    10 10000196
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -16111,19 +16154,26 @@ Fortran 95
 ```fortran
      integer function rank(a)
 
-      type(TYPE(kind=KIND),intent(in) :: a(..)
+      type(TYPE(kind=**)),intent(in) :: a(..)
 ```
 ### **Characteristics**
 
-  **a** can be of any type and rank.
+ -  **a** can be of any type **TYPE** and rank.
+ - a kind designated as ** may be any supported kind value for the type
 
 ### **Description**
 
-  **rank(a)** returns the rank of a scalar or array data object.
+  **rank**(3) returns the rank of a scalar or array data object.
+
+  The rank of an array is the number of dimensions it has (zero for a scalar).
 
 ### **Options**
 
-- **a**
+- **a** is the data object to query the dimensionality of. The rank returned
+  may be from 0 to 16.
+
+  The argument **a** may be any data object type, including an assumed-rank
+  array.
 
 ### **Result**
 
@@ -16136,10 +16186,13 @@ Sample program:
 ```fortran
 program demo_rank
 implicit none
-integer :: a
+
+! a bunch of data objects to query
+integer           :: a
 real, allocatable :: b(:,:)
-real  :: c(10,20,30)
-complex :: d
+real, pointer     :: c(:)
+complex           :: d
+
 ! make up a type
 type mytype
    integer :: int
@@ -16148,54 +16201,107 @@ type mytype
 end type mytype
 type(mytype) :: any_thing(1,2,3,4,5)
 
+  ! basics
    print *, 'rank of scalar a=',rank(a)
-   ! note you can query this array even though not allocated
+   ! you can query this array even though it is not allocated
    print *, 'rank of matrix b=',rank(b)
-   print *, 'rank of vector c=',rank(c)
-   print *, 'rank of scalar d=',rank(d)
-   ! you can query any type
-   print *, 'rank of any_thing=',rank(any_thing)
+   print *, 'rank of vector pointer c=',rank(c)
+   print *, 'rank of complex scalar d=',rank(d)
 
+  ! you can query any type, not just intrinsics
+   print *, 'rank of any arbitrary type=',rank(any_thing)
+
+  ! an assumed-rank object may be queried
    call query_int(10)
    call query_int([20,30])
    call query_int( reshape([40,50,60,70],[2,2]) )
 
+  ! you can even query an unlimited polymorphic entity
+   call query_anything(10.0)
+   call query_anything([.true.,.false.])
+   call query_anything( reshape([40.0,50.0,60.0,70.0],[2,2]) )
+
 contains
 
-subroutine query_int(entity)
+subroutine query_int(data_object)
 ! It is hard to do much with something dimensioned
-! name(..) if not calling C but one thing you can
+! name(..) if not calling C except inside of a
+! SELECT_RANK construct but one thing you can
 ! do is call the inquiry functions ...
-integer,intent(in) :: entity(..)
+integer,intent(in) :: data_object(..)
+character(len=*),parameter :: all='(*(g0,1x))'
 
-   if(rank(entity).eq.0)then
-      write(*,*)'you passed a scalar',rank(entity)
+   if(rank(data_object).eq.0)then
+      print all,&
+      & 'passed a scalar to an assumed rank,  &
+      & rank=',rank(data_object)
    else
-      write(*,*)'you passed an array, rank=',rank(entity)
+      print all,&
+      & 'passed an array to an assumed rank,  &
+      & rank=',rank(data_object)
    endif
 
 end subroutine query_int
+
+subroutine query_anything(data_object)
+class(*),intent(in) ::data_object(..)
+character(len=*),parameter :: all='(*(g0,1x))'
+  if(rank(data_object).eq.0)then
+    print all,&
+    &'passed a scalar to an unlimited polymorphic rank=', &
+    & rank(data_object)
+  else
+    print all,&
+    & 'passed an array to an unlimited polymorphic, rank=', &
+    & rank(data_object)
+  endif
+end subroutine query_anything
 
 end program demo_rank
 ```
   Results:
 ```text
-    rank of scalar a= 0
-    rank of matrix b= 2
-    rank of vector c= 3
-    rank of scalar d= 0
-    rank of any_thing= 5
-    you passed a scalar 0
-    you passed an array, rank= 1
-    you passed an array, rank= 2
+    rank of scalar a=           0
+    rank of matrix b=           2
+    rank of vector pointer c=           1
+    rank of complex scalar d=           0
+    rank of any arbitrary type=           5
+   passed a scalar to an assumed rank,   rank= 0
+   passed an array to an assumed rank,   rank= 1
+   passed an array to an assumed rank,   rank= 2
+   passed a scalar to an unlimited polymorphic rank= 0
+   passed an array to an unlimited polymorphic, rank= 1
+   passed an array to an unlimited polymorphic, rank= 2
 ```
 ### **Standard**
 
 ### **See also**
 
-[****(3)](#)
+#### Array inquiry:
+
+- [**size**(3)](#size) -  Determine the size of an array
+- [**rank**(3)](#rank) -  Rank of a data object
+- [**shape**(3)](#shape) -  Determine the shape of an array
+- [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
+- [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
+
+#### State Inquiry:
+
+- [**allocated**(3)](#allocated) -  Status of an allocatable entity
+- [**is_contiguous**(3)](#is_contigious) -  Test if object is contiguous
+
+#### Kind Inquiry:
+
+- [**kind**(3)](#kind) - Kind of an entity
+
+#### Bit Inquiry:
+
+- [**storage_size**(3)](#storage_size) - Storage size in bits
+- [**bit_size**(3)](#bit_size) -  Bit size inquiry function
+- [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+#
 
 ## real
 
@@ -16605,6 +16711,7 @@ Functions that perform operations on character strings:
   [**trim**(3)](#trim)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+#
 
 ## reshape
 
@@ -17616,10 +17723,30 @@ Fortran 95 ; with KIND argument Fortran 2003
 
 ### **See Also**
 
-[**reshape**(3)](#reshape),
-[**size**(3)](#size)
+#### Array inquiry:
 
- _fortran-lang intrinsic descriptions_
+- [**size**(3)](#size) -  Determine the size of an array
+- [**rank**(3)](#rank) -  Rank of a data object
+- [**shape**(3)](#shape) -  Determine the shape of an array
+- [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
+- [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
+
+#### State Inquiry:
+
+- [**allocated**(3)](#allocated) -  Status of an allocatable entity
+- [**is_contiguous**(3)](#is_contigious) -  Test if object is contiguous
+
+#### Kind Inquiry:
+
+- [**kind**(3)](#kind) - Kind of an entity
+
+#### Bit Inquiry:
+
+- [**storage_size**(3)](#storage_size) - Storage size in bits
+- [**bit_size**(3)](#bit_size) -  Bit size inquiry function
+- [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
+
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## shifta
 
@@ -18354,17 +18481,17 @@ FORTRAN 77
      integer(kind=KIND) function size(array,dim,kind)
 
       type(TYPE(kind=KIND),intent(in) :: array(..)
-      integer(kind=KINDD),intent(in),optional :: dim
-      integer(kind=KINDK),intent(in),optional :: kind
+      integer(kind=**),intent(in),optional :: dim
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-  **array** may be of any type and associated kind.
+ - a kind designated as ** may be any supported kind value for the type
 
-  If **array** is a pointer it must be associated and allocatable arrays
-  must be allocated.
+-  **array** may be of any type and associated kind.
 
-  KINDD and KINDK may be any _integer_ type kind.
+   If **array** is a pointer it must be associated and allocatable arrays
+   must be allocated.
 
 ### **Description**
 
@@ -18377,7 +18504,7 @@ or the total number of elements in **array** if **dim** is absent.
   : the array to measure the number of elements of.
 
 - **dim**
-  : shall be a scalar of type _integer_ and its value shall be
+  : a value shall be
   in the range from 1 to n, where n equals the rank of **array**.
 
   If not present the total number of elements of the entire array
@@ -18552,10 +18679,30 @@ Fortran 95 , with **kind** argument - Fortran 2003
 
 ### **See Also**
 
-[**shape**(3)](#shape),
-[__reshape__(3)])(RESHAPE)
+#### Array inquiry:
 
- _fortran-lang intrinsic descriptions_
+- [**size**(3)](#size) -  Determine the size of an array
+- [**rank**(3)](#rank) -  Rank of a data object
+- [**shape**(3)](#shape) -  Determine the shape of an array
+- [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
+- [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
+
+#### State Inquiry:
+
+- [**allocated**(3)](#allocated) -  Status of an allocatable entity
+- [**is_contiguous**(3)](#is_contigious) -  Test if object is contiguous
+
+#### Kind Inquiry:
+
+- [**kind**(3)](#kind) - Kind of an entity
+
+#### Bit Inquiry:
+
+- [**storage_size**(3)](#storage_size) - Storage size in bits
+- [**bit_size**(3)](#bit_size) -  Bit size inquiry function
+- [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
+
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## spacing
 
@@ -18640,7 +18787,7 @@ Fortran 95
 
 ### **Name**
 
-**spread**(3) - \[ARRAY CONSTRUCTION\] Add a dimension to an array
+**spread**(3) - \[ARRAY CONSTRUCTION\] Add a dimension and replicate data
 
 ### **Synopsis**
 ```fortran
@@ -18649,32 +18796,39 @@ Fortran 95
 ```fortran
      TYPE(kind=KIND) function spread(source, dim, ncopies)
 
-      TYPE(kind=KIND)    :: source(..)
-      integer,intent(in) :: dim
-      integer,intent(in) :: ncopies
+      TYPE(kind=KIND)             :: source(..)
+      integer(kind=**),intent(in) :: dim
+      integer(kind=**),intent(in) :: ncopies
 ```
 ### **Characteristics**
 
+- **source** is a scalar or array of any type.
+- **dim** is an _integer_ scalar
+- **ncopies** is an integer scalar
+
 ### **Description**
 
-Replicates a **source** array **ncopies** times along a specified
-dimension **dim**.
+Replicates a **source** array along a specified dimension **dim**. The
+copy is repeated **ncopies** times.
 
-If **source** is scalar, the shape of the result is (MAX (NCOPIES, 0)).
+So to add additional rows to a matrix **dim=1** would be used, but to
+add additional rows **dim=2** would be used, for example.
+
+If **source** is scalar, the size of the resulting vector is **ncopies**
 and each element of the result has a value equal to **source**.
 
 ### **Options**
 
 - **source**
-  : Shall be a scalar or an array of any type and a rank less than
-  fifteen.
+  : a scalar or array of any type and a rank less than fifteen.
 
 - **dim**
-  : Shall be a scalar of type _integer_ with a value in the range from
+
+  : The additional dimension  value in the range from
   **1** to **n+1**, where **n** equals the rank of **source**.
 
 - **ncopies**
-  : Shall be a scalar of type _integer_.
+  : the number of copies of the original data to generate
 
 ### **Result**
 
@@ -18688,17 +18842,6 @@ Sample program:
 ```fortran
 program demo_spread
 implicit none
-integer :: a = 1, b(2) = [ 1, 2 ]
-
-   write(*,*) spread(a, 1, 2)            ! "1 1"
-   write(*,*) spread(b, 1, 2)            ! "1 1 2 2"
-
-end program demo_spread
-
-program example_spread
-!  Author:
-!    John Burkardt, 03 July 2006
-implicit none
 
 integer ( kind = 4 ) a1(4,3)
 integer ( kind = 4 ) a2(3,4)
@@ -18706,52 +18849,116 @@ integer i
 integer ( kind = 4 ) s
 integer ( kind = 4 ) v(4)
 
-   write(*,'(a)' ) ' '
-   write(*,'(a)' ) 'TEST_SPREAD'
-   write(*,'(a)' ) '  SPREAD is a FORTRAN90 function which replicates'
+   write(*,'(a)' ) 'TEST SPREAD(3)'
+   write(*,'(a)' ) '  SPREAD(3) is a FORTRAN90 function which replicates'
    write(*,'(a)' ) '  an array by adding a dimension.'
    write(*,'(a)' ) ' '
 
    s = 99
+   call printi('suppose we have a scalar S',s)
 
-   write(*, '(a,i6)' ) '  Suppose we have a scalar S = ', s
-   write(*, '(a)' ) ' '
+   write(*,*) 'to add a new dimension (1) of extent 4 call'
+   call printi('spread( s, dim=1, ncopis=4 )',spread ( s, 1, 4 ))
 
-   v = spread ( s, 1, 4 )
-
-   write(*,'(a)' ) '  V = spread ( s, 1, 4 )'
-   write(*,'(a)' ) ' '
-   write(*,'(a)' ) '  adds a new dimension (1) of extent 4'
-   write(*,'(a)' ) ' '
-   write(*,'(4i6)' ) v(1:4)
-   write(*,'(a)' ) ' '
-   write(*,'(a)' ) '  Now first reset V to (1,2,3,4)'
    v = [ 1, 2, 3, 4 ]
+   call printi(' first we will set V to',v)
 
-   a1 = spread ( v, 2, 3 )
-
-   write (*, '(a)' ) ' '
-   write (*, '(a)' ) '  A1 = spread ( v, 2, 3 )'
-   write (*, '(a)' ) ' '
-   write (*, '(a)' ) '  adds a new dimension (2) of extent 3'
-   write (*, '(a)' ) ' '
-   do i = 1, 4
-     write ( *, '(3i6)' ) a1(i,1:3)
-   end do
+   write(*,'(a)')' and then do "spread ( v, dim=2, ncopies=3 )"'
+   a1 = spread ( v, dim=2, ncopies=3 )
+   call printi('this adds a new dimension (2) of extent 3',a1)
 
    a2 = spread ( v, 1, 3 )
+   call printi(' spread(v,1,3) adds a new dimension (1) of extent 3',a2)
 
-   write (*, '(a)' ) ' '
-   write (*, '(a)' ) '  A2 = spread ( v, 1, 3 )'
-   write (*, '(a)' ) ' '
-   write (*, '(a)' ) '  adds a new dimension (1) of extent 3'
-   write (*, '(a)' ) ' '
-   do i = 1, 3
-     write(*, '(4i6)' ) a2(i,1:4)
-   end do
-end program example_spread
+contains
+! CONVENIENCE ROUTINE; NOT DIRECTLY CONNECTED TO SPREAD(3)
+subroutine printi(title,a)
+use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT,&
+ & stdin=>INPUT_UNIT, stdout=>OUTPUT_UNIT
+implicit none
+
+!@(#) print small 2d integer scalar, vector, matrix in row-column format
+
+character(len=*),parameter   :: all='(" ",*(g0,1x))'
+character(len=*),intent(in)  :: title
+character(len=20)            :: row
+integer,intent(in)           :: a(..)
+integer                      :: i
+
+   write(*,all,advance='no')trim(title)
+   ! select rank of input
+   select rank(a)
+   rank (0); write(*,'(a)')' (a scalar)'
+      write(*,'(" > [ ",i0," ]")')a
+   rank (1); write(*,'(a)')' (a vector)'
+      ! find how many characters to use for integers
+      write(row,'(i0)')ceiling(log10(real(maxval(abs(a)))))+2
+      ! use this format to write a row
+      row='(" > [",*(i'//trim(row)//':,","))'
+      do i=1,size(a)
+         write(*,fmt=row,advance='no')a(i)
+         write(*,'(" ]")')
+      enddo
+   rank (2); write(*,'(a)')' (a matrix) '
+      ! find how many characters to use for integers
+      write(row,'(i0)')ceiling(log10(real(maxval(abs(a)))))+2
+      ! use this format to write a row
+      row='(" > [",*(i'//trim(row)//':,","))'
+      do i=1,size(a,dim=1)
+         write(*,fmt=row,advance='no')a(i,:)
+         write(*,'(" ]")')
+      enddo
+   rank default
+      write(stderr,*)'*printi* did not expect rank=', rank(a), &
+       & 'shape=', shape(a),'size=',size(a)
+      stop '*printi* unexpected rank'
+   end select
+   write(*,all) '>shape=',shape(a),',rank=',rank(a),',size=',size(a)
+   write(*,*)
+
+end subroutine printi
+
+end program demo_spread
 ```
+Results:
+```text
+   TEST SPREAD(3)
+     SPREAD(3) is a FORTRAN90 function which replicates
+     an array by adding a dimension.
 
+    suppose we have a scalar S  (a scalar)
+    > [ 99 ]
+    >shape= ,rank= 0 ,size= 1
+
+    to add a new dimension (1) of extent 4 call
+    spread( s, dim=1, ncopies=4 )  (a vector)
+    > [  99 ]
+    > [  99 ]
+    > [  99 ]
+    > [  99 ]
+    >shape= 4 ,rank= 1 ,size= 4
+
+     first we will set V to  (a vector)
+    > [  1 ]
+    > [  2 ]
+    > [  3 ]
+    > [  4 ]
+    >shape= 4 ,rank= 1 ,size= 4
+
+    and then do "spread ( v, dim=2, ncopies=3 )"
+    this adds a new dimension (2) of extent 3  (a matrix)
+    > [  1,  1,  1 ]
+    > [  2,  2,  2 ]
+    > [  3,  3,  3 ]
+    > [  4,  4,  4 ]
+    >shape= 4 3 ,rank= 2 ,size= 12
+
+     spread(v,dim=1,ncopies=3) adds a new dimension (1) (a matrix)
+    > [  1,  2,  3,  4 ]
+    > [  1,  2,  3,  4 ]
+    > [  1,  2,  3,  4 ]
+    >shape= 3 4 ,rank= 2 ,size= 12
+```
 ### **Standard**
 
 Fortran 95
@@ -18762,7 +18969,13 @@ Fortran 95
 [**pack**(3)](#pack),
 [**unpack**(3)](#unpack)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+<!--
+when adding dimension 3,4,5, ... why is 15 not allowed if 16 is allowed?
+
+need an illustration of what happens with higher dimension array
+-->
+#
 
 ## sqrt
 
@@ -20089,11 +20302,34 @@ Fortran 95 , with KIND argument Fortran 2003
 
 ### **See Also**
 
-[**lbound**(3)](#lbound),
+#### Array inquiry:
+
+- [**size**(3)](#size) -  Determine the size of an array
+- [**rank**(3)](#rank) -  Rank of a data object
+- [**shape**(3)](#shape) -  Determine the shape of an array
+- [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
+- [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
+
 [**co_ubound**(3)](#co_ubound),
 [__co\_lbound__(3)(co_lbound)]
 
- _fortran-lang intrinsic descriptions_
+#### State Inquiry:
+
+- [**allocated**(3)](#allocated) -  Status of an allocatable entity
+- [**is_contiguous**(3)](#is_contigious) -  Test if object is contiguous
+
+#### Kind Inquiry:
+
+- [**kind**(3)](#kind) - Kind of an entity
+
+#### Bit Inquiry:
+
+- [**storage_size**(3)](#storage_size) - Storage size in bits
+- [**bit_size**(3)](#bit_size) -  Bit size inquiry function
+- [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
+- [**lbound**(3)](#lbound),
+
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## unpack
 

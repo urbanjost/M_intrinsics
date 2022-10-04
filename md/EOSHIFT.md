@@ -12,63 +12,72 @@
    type(TYPE(kind=KIND)) function eoshift(array,shift,boundary,dim)
 
     type(TYPE(kind=KIND)),intent(in) :: array(..)
-    integer(kind=KINDS),intent(in)   :: shift
+    integer(kind=**),intent(in)      :: shift
     type(TYPE(kind=KIND)),intent(in) :: boundary
-    integer(kind=KINDD),intent(in)   :: dim
+    integer(kind=**),intent(in)      :: dim
 ```
 ### **Characteristics**
 
-**array** May be any type, not scalar. The result is an array of same
-type, kind and rank as the **array** argument. **boundary** is a scalar
-of the same type and kind as the **array**. **dim** and **shift** can
-be any kind of _integer_.
+ - a kind designated as ** may be any supported kind value for the type
+
+ - **array** May be any type, but not a scalar. 
+
+ - **shift** is an integer of any dind
+
+ - **boundary** is a scalar of the same type and kind as the **array**. 
+
+ - **dim** is an integer of any dind
+
+ - The result is an array of same type, kind and rank as the **array** argument.
 
 ### **Description**
 
-**eoshift(array, shift\[, boundary, dim\])** performs an end-off shift
-on elements of **array** along the dimension of **dim**.
+  **eoshift**(3) performs an end-off shift on elements of **array**
+  along the dimension of **dim**.
 
-**dim** is a scalar of type _integer_ in the range of
-```fortran
-    **1 <= DIM <= n**
-```
-where **"n"** is the rank of **array**.  If **dim** is omitted it
-is taken to be **1**.
+  Elements shifted out one end of each rank one section are dropped.
 
-If the rank of **array** is one, then all elements of **array** are
-shifted by **shift** places. If rank is greater than one, then all
-complete rank one sections of **array** along the given dimension are
-shifted.
+  If **boundary** is present then the corresponding value from
+  **boundary** is copied back in the other end, else default values
+  are used.
 
-Elements shifted out one end of each rank one section are dropped.
+### **Options**
 
-If **boundary** is present then the corresponding value from **boundary**
-is copied back in the other end. If **boundary** is not present then
-the following are copied in depending on the type of **array**.
+- **array**
+  : array of any type whose elements are to be shifted.
+  If the rank of **array** is one, then all elements of **array** are
+  shifted by **shift** places. If rank is greater than one, then all
+  complete rank one sections of **array** along the given dimension
+  are shifted.
 
+- **shift**
+  : the number of elements to shift
+
+- **boundary**
+  : the value to use to fill in the elements vacated by the shift.
+  If **boundary** is not present then the following are copied in
+  depending on the type of **array**.
+```text
     Array Type     | Boundary Value
     -----------------------------------------------------
     Numeric        | 0 of the type and kind of "array"
     Logical        | .false.
     Character(len) |  LEN blanks
-
-### **Options**
-
-- **array**
-  : May be any type, not scalar.
-
-- **shift**
-  : The type shall be _integer_.
-
-- **boundary**
-  : Same type as ARRAY.
-
+```
 - **dim**
-  : The type shall be _integer_.
+  :  **dim** is in the range of
+```fortran
+    **1 <= DIM <= n**
+```
+  where **"n"** is the rank of **array**.  If **dim** is omitted it
+  is taken to be **1**.
 
 ### **Result**
 
-Returns an array of same type and rank as the **array** argument.
+ Returns an array of the same characteristics as the input with the
+ specified number of elements dropped off along the specified direction
+ indicated, backfilling the vacated elements with a value indicated by
+ the **boundary** value.
 
 ### **Examples**
 
@@ -91,7 +100,6 @@ integer :: i
 
 end program demo_eoshift
 ```
-
 Results:
 
 ```text
@@ -103,13 +111,13 @@ Results:
      8 -5 -5
      6  9 -5
 ```
-
 ### **Standard**
 
 Fortran 95
 
 ### **See Also**
 
-[****(3)](#)
+[**dshiftr**(3)](#dshiftr),
+[**dshiftl**(3)](#dshiftl)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
