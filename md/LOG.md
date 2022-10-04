@@ -15,8 +15,8 @@
 ```
 ### **Characteristics**
 
-  Where **x** may be any kind of _real_ or _complex_ value and
-  the result is the same type and characteristics as **x**.
+ - **x** may be any kind of _real_ or _complex_ value
+ - the result is the same type and characteristics as **x**.
 
 ### **Description**
 

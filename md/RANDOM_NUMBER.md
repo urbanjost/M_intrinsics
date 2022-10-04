@@ -14,6 +14,7 @@
       real,intent(out) :: harvest(..)
 ```
 ### **Characteristics**
+
 - **harvest** and the result are default _real_ variables
 
 REAL X, Y (10, 10)

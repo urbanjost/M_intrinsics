@@ -9,14 +9,14 @@
          a = reshape( [ 1, 2, 3, 4, 5, 6 ], [ 2, 3 ])
          b = reshape( [ 0, 7, 3, 4, 5, 8 ], [ 2, 3 ])
          c = reshape( [( i,i=1,24)], [ 2, 3 ,4])
-         ! show numeric arrays we will compare
+        ! show numeric arrays we will compare
          print '(3i3)', a(1,:)
          print '(3i3)', a(2,:)
          print *
          print '(3i3)', b(1,:)
          print '(3i3)', b(2,:)
 
-         ! basic calls
+        ! basic calls
          print *, 'count a few basic things ...'
          print *, 'count a>b',count(a>b)
          print *, 'count b<a',count(a<b)
@@ -34,15 +34,19 @@
          print '(3l3)', mymask(1,:)
          print '(3l3)', mymask(2,:)
          ! count total and along rows and columns
+
          print '(a)', 'number of elements not equal'
          print '(a)', '(ie. total true elements in the mask)'
          print '(3i3)', count(mymask)
+
          print '(a)', 'count of elements not equal in each column'
          print '(a)', '(ie. total true elements in each column)'
          print '(3i3)', count(mymask, dim=1)
+
          print '(a)', 'count of elements not equal in each row'
          print '(a)', '(ie. total true elements in each row)'
          print '(3i3)', count(mymask, dim=2)
+
          ! working with rank=3 ...
          print *, 'lets try this with c(2,3,4)'
          print *,'  taking the result of the modulo   '

@@ -15,32 +15,31 @@
 ```
 ### **Characteristics**
 
-Where **TYPE** may be _real_ or _complex_.
-
-**KIND** may be any kind valid for the declared type.
+ - **TYPE** may be _real_ or _complex_.
+ - **KIND** may be any kind valid for the declared type.
 
 ### **Description**
 
-**sqrt(x)** computes the principal square root of **x**.
+  **sqrt(x)** computes the principal square root of **x**.
 
-In mathematics, a square root of a number **x** is a number **y** such
-that **y\*y = x**.
+  In mathematics, a square root of a number **x** is a number **y**
+  such that **y\*y = x**.
 
-The number whose square root is being considered is known as the
-_radicand_.
+  The number whose square root is being considered is known as the
+  _radicand_.
 
-Every nonnegative number _x_ has two square roots of the same unique
-magnitude, one positive and one negative. The nonnegative square root
-is called the principal square root.
+  Every nonnegative number _x_ has two square roots of the same unique
+  magnitude, one positive and one negative. The nonnegative square root
+  is called the principal square root.
 
-The principal square root of 9 is 3, for example, even though (-3)\*(-3)
-is also 9.
+  The principal square root of 9 is 3, for example, even though (-3)\*(-3)
+  is also 9.
 
-A _real_ radicand must be positive.
+  A _real_ radicand must be positive.
 
-Square roots of negative numbers are a special case of complex numbers,
-where the components of the _radicand_ need not be positive in order to
-have a valid square root.
+  Square roots of negative numbers are a special case of complex numbers,
+  where the components of the _radicand_ need not be positive in order
+  to have a valid square root.
 
 ### **Options**
 
@@ -50,12 +49,12 @@ have a valid square root.
 
 ### **Result**
 
-The return value is of type _real_ or _complex_. The kind type parameter is
-the same as **x**.
+  The return value is of type _real_ or _complex_. The kind type parameter
+  is the same as **x**.
 
-A result of type complex is the principal value with the real part
-greater than or equal to zero. When the real part of the result is zero,
-the imaginary part has the same sign as the imaginary part of X.
+  A result of type complex is the principal value with the real part
+  greater than or equal to zero. When the real part of the result is zero,
+  the imaginary part has the same sign as the imaginary part of X.
 
 ### **Examples**
 
@@ -83,7 +82,6 @@ complex :: z, z2
 
 end program demo_sqrt
 ```
-
 Results:
 
 ```text
@@ -91,7 +89,6 @@ Results:
   1.4142135623730951    (1.27201962,0.786151350)
   1.4142135623730951    (1.27201962,0.786151350)
 ```
-
 ### **Standard**
 
 FORTRAN 77

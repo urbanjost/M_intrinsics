@@ -15,17 +15,16 @@
 ```
 ### **Characteristics**
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type. The returned value will be of the same type and kind as
-the argument.
+ - where **TYPE** may be _real_ or _complex_ of any kind. 
+ - the returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
-**cos(x)** computes the cosine of an angle **x** given the size of the
-angle in radians.
+  **cos(x)** computes the cosine of an angle **x** given the size of
+  the angle in radians.
 
-The cosine of a _real_ value is the ratio of the adjacent side to the
-hypotenuse of a right-angled triangle.
+  The cosine of a _real_ value is the ratio of the adjacent side to the
+  hypotenuse of a right-angled triangle.
 
 ### **Options**
 
@@ -34,10 +33,10 @@ hypotenuse of a right-angled triangle.
 
 ### **Result**
 
-The return value is the tangent of **x**.
+  The return value is the tangent of **x**.
 
-If **x** is of the type _real_, the return value lies in
-the range **-1 \<= cos(x) \<= 1** .
+  If **x** is of the type _real_, the return value lies in
+  the range **-1 \<= cos(x) \<= 1** .
 
 ### **Examples**
 

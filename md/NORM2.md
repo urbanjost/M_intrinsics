@@ -16,30 +16,31 @@
 ```
 ### **Characteristics**
 
+- **array** shall be an array of type _real_.
+- **dim** shall be a scalar of type _integer_
+- The result is of the same type as **array**.
+
 ### **Description**
 
-Calculates the Euclidean vector norm (L_2 norm) of **array** along
-dimension **dim**.
+  Calculates the Euclidean vector norm (L_2 norm) of **array** along
+  dimension **dim**.
 
 ### **Options**
 
 - **array**
-  : Shall be an array of type _real_.
+  : the array of input values for the L_2 norm computations
 
 - **dim**
-  : shall be a scalar of type _integer_ with a value in the
-  range from **1** to **rank(array)**.
+  : a value in the range from **1** to **rank(array)**.
 
 ### **Result**
 
-The result is of the same type as **array**.
+  If **dim** is absent, a scalar with the square root of the sum of squares
+  of the elements of **array** is returned.
 
-If **dim** is absent, a scalar with the square root of the sum of squares of
-the elements of **array** is returned.
-
-Otherwise, an array of rank **n-1**,
-where **n** equals the rank of **array**, and a shape similar to that of **array**
-with dimension DIM dropped is returned.
+  Otherwise, an array of rank **n-1**, where **n** equals the rank of
+  **array**, and a shape similar to that of **array** with dimension DIM
+  dropped is returned.
 
 ### **Examples**
 
@@ -53,22 +54,20 @@ real :: x(3,3) = reshape([ &
    1, 2, 3, &
    4, 5, 6, &
    7, 8, 9  &
-],shape(x),order=[2,1])
+   ],shape(x),order=[2,1])
 
-write(*,*) 'x='
-write(*,'(4x,3f4.0)')transpose(x)
+  write(*,*) 'x='
+  write(*,'(4x,3f4.0)')transpose(x)
 
-write(*,*) 'norm2(x)=',norm2(x)
+  write(*,*) 'norm2(x)=',norm2(x)
 
-write(*,*) 'x**2='
-write(*,'(4x,3f4.0)')transpose(x**2)
-write(*,*)'sqrt(sum(x**2))=',sqrt(sum(x**2))
+  write(*,*) 'x**2='
+  write(*,'(4x,3f4.0)')transpose(x**2)
+  write(*,*)'sqrt(sum(x**2))=',sqrt(sum(x**2))
 
 end program demo_norm2
 ```
-
 Results:
-
 ```text
  x=
       1.  2.  3.
@@ -81,7 +80,6 @@ Results:
      49. 64. 81.
  sqrt(sum(x**2))=   16.88194
 ```
-
 ### **Standard**
 
 Fortran 2008

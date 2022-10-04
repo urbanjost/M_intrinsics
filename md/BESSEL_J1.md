@@ -15,7 +15,7 @@
 ```
 ### **Characteristics**
 
-where KIND may be any supported _real_ KIND.
+ -  KIND may be any supported _real_ KIND.
 
 ### **Description**
 

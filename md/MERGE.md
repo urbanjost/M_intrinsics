@@ -171,5 +171,6 @@ Fortran 95
 - [**pack**(3)](#pack) packs an array into an array of rank one
 - [**spread**(3)](#spread) is used to add a dimension and replicate data
 - [**unpack**(3)](#unpack) scatters the elements of a vector
+- [**transpose**(3)](#transpose) - Transpose an array of rank two
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

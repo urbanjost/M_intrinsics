@@ -14,11 +14,11 @@
       integer(kind=KIND),intent(in) :: n(..)
       real(kind=KIND),intent(in) :: x(..)
 ```
-  If **n** and **x** are arrays, their ranks and shapes
-  shall conform.
+ - If **n** and **x** are arrays, their ranks and shapes
+   shall conform.
 
-  The return value has the same type and kind as **x**.
-or
+ - The return value has the same type and kind as **x**.
+
 ```fortran
     result = bessel_jn(n1, n2, x)
 ```

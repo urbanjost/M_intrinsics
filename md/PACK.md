@@ -17,9 +17,8 @@
 ```
 ### **Characteristics**
 
-  where TYPE(kind=KIND) may be any type, where **array** and **vector**
-  and the returned value must by of the same type. **mask** may be a
-  scalar as well an an array.
+  - **array**, **vector** and the returned value are all of the same kind and type.
+  - **mask** may be a scalar as well an an array.
 
 ### **Description**
 
@@ -32,11 +31,11 @@
 ### **Options**
 
 - **array**
-  : Shall be an array of any type.
+  : The data from this array is used to fill the resulting vector
 
 - **mask**
-  : Shall be an array of type _logical_ and of the same size as **array**.
-  Alternatively, it may be a _logical_ scalar.
+  : the _logical_ mask must be the same size as **array** or,
+  alternatively, it may be a _logical_ scalar.
 
 - **vector**
   : (Optional) shall be an array of the same type as **array** and of rank
@@ -58,51 +57,31 @@ Sample program:
 ```fortran
 program demo_pack
 implicit none
-   call test1()
-   call test2()
-   call test3()
-contains
-!
-subroutine test1()
-! gathering nonzero elements from an array:
-integer :: m(6)
+integer, allocatable :: m(:)
+character(len=10) :: c(4)
 
+ ! gathering nonzero elements from an array:
    m = [ 1, 0, 0, 0, 5, 0 ]
-   write(*, fmt="(*(i0, ' '))") pack(m, m /= 0)  ! "1 5"
+   write(*, fmt="(*(i0, ' '))") pack(m, m /= 0)
 
-end subroutine test1
-!
-subroutine test2()
-! Gathering nonzero elements from an array and appending elements
-! from VECTOR till the size of the mask array (or array size if the
-! mask is scalar):
-integer :: m(4)
-
+ ! Gathering nonzero elements from an array and appending elements
+ ! from VECTOR till the size of the mask array (or array size if the
+ ! mask is scalar):
    m = [ 1, 0, 0, 2 ]
    write(*, fmt="(*(i0, ' '))") pack(m, m /= 0, [ 0, 0, 3, 4 ])
 
-end subroutine test2
-!
-subroutine test3()
-! select strings whose second character is "a"
-character(len=10) :: m(4)
-
-m = [ character(len=10) :: 'ape', 'bat', 'cat', 'dog']
-   write(*, fmt="(*(g0, ' '))") pack(m, m(:)(2:2) == 'a' )
-
-end subroutine test3
-!
+ ! select strings whose second character is "a"
+   c = [ character(len=10) :: 'ape', 'bat', 'cat', 'dog']
+   write(*, fmt="(*(g0, ' '))") pack(c, c(:)(2:2) == 'a' )
+ 
 end program demo_pack
 ```
-
 Results:
-
 ```text
-   1 5
-   1 2 3 4
-   bat        cat
+   1 5 
+   1 2 3 4 
+   bat        cat        
 ```
-
 ### **Standard**
 
 Fortran 95

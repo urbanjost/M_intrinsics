@@ -15,8 +15,8 @@
 ```
 ### **Characteristics**
 
-**x** may be _real_ or _complex_.
-The return value has the same type and kind as **x**.
+ - **x** may be _real_ or _complex_.
+ - The return value has the same type and kind as **x**.
 
 ### **Description**
 

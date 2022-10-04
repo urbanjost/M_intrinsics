@@ -15,8 +15,8 @@
 ```
 ### **Characteristics**
 
-KIND may be any KIND supported by the _real_ type.
-The result is the same type and kind as **x**.
+ - KIND may be any KIND supported by the _real_ type.
+ - The result is the same type and kind as **x**.
 
 ### **Description**
 

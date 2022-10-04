@@ -15,9 +15,9 @@
 ```
 ### **Characteristics**
 
-  **matrix** which shall be of any type and have a rank of two. The
-  result will be the same type and kind as **matrix** and of the
-  shape of (m,n) when the input array has the shape(n,m).
+  - **matrix** which shall be of any type and have a rank of two. 
+  - The result will be the same type and kind as **matrix** and the
+    shape of the input array. 
 
 ### **Description**
 
@@ -95,6 +95,9 @@ Fortran 95
 
 ### **See also**
 
-[****(3)](#)
+- [**merge**(3)](#merge) - Merge variables
+- [**pack**(3)](#pack) - Pack an array into an array of rank one
+- [**spread**(3)](#spread) - Add a dimension and replicate data
+- [**unpack**(3)](#unpack) - Scatter the elements of a vector
 
  _fortran-lang intrinsic descriptions_

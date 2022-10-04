@@ -15,7 +15,7 @@
 ```
 ### **Characteristics**
 
-The return value is _real_ with the kind as **x**.
+- The return value is _real_ with the kind as **x**.
 
 ### **Description**
 

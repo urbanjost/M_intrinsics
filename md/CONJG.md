@@ -15,9 +15,9 @@
 ```
 ### **Characteristics**
 
-**KIND** may be any supported value for the _complex_ input value.
+- **KIND** may be any supported value for the _complex_ input value.
 
-The returned value with be the same _complex_ type as the input.
+- The returned value with be the same _complex_ type as the input.
 
 ### **Description**
 

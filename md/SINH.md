@@ -15,22 +15,20 @@
 ```
 ### **Characteristics**
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type.
-
-The returned value will be of the same type and kind as
-the argument.
+ - **TYPE** may be _real_ or _complex_ 
+ - **KIND** may be any kind supported by the associated type.
+ - The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
-**sinh(x)** computes the hyperbolic sine of **x**.
+  **sinh(x)** computes the hyperbolic sine of **x**.
 
-The hyperbolic sine of x is defined mathematically as:
-
-**sinh(x) = (exp(x) - exp(-x)) / 2.0**
-
-If **x** is of type _complex_ its imaginary part is regarded as a value
-in radians.
+  The hyperbolic sine of x is defined mathematically as:
+```fortran
+     sinh(x) = (exp(x) - exp(-x)) / 2.0
+```
+  If **x** is of type _complex_ its imaginary part is regarded as a value
+  in radians.
 
 ### **Options**
 
@@ -39,7 +37,7 @@ in radians.
 
 ### **Result**
 
-The return value has same type and kind as **x**.
+  The return value has same type and kind as **x**.
 
 ### **Examples**
 

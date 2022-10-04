@@ -335,9 +335,9 @@ FORTRAN 77 , with KIND argument Fortran 2003
 ```
 ### **Characteristics**
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type. The returned value will be of the same type and kind as
-the argument.
+ - **TYPE** may be _real_ or _complex_
+ - **KIND** may be any kind supported by the associated type.
+ - The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
@@ -399,9 +399,9 @@ Inverse function: [**cosh**(3)](#cosh)
 ```
 ### **Characteristics**
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type. The returned value will be of the same type and kind as
-the argument.
+ - **TYPE** may be _real_ or _complex_
+ - **KIND** may be any kind supported by the associated type.
+ - The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
@@ -1368,9 +1368,9 @@ Fortran 95
 ```
 ### **Characteristics**
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type. The returned value will be of the same type and kind as
-the argument.
+ - **TYPE** may be _real_ or _complex_
+ - **KIND** may be any kind supported by the associated type.
+ - The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
@@ -1435,9 +1435,9 @@ Inverse function: [**sinh**(3)](#sinh)
 ```
 ### **Characteristics**
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type. The returned value will be of the same type and kind as
-the argument.
+ - **TYPE** may be _real_ or _complex_
+ - **KIND** may be any kind supported by the associated type.
+ - The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
@@ -1828,9 +1828,9 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind
-supported by the associated type. The returned value will be of the same
-type and kind as the argument.
+ - **TYPE** may be _real_ or _complex_
+ - **KIND** may be any kind supported by the associated type.
+ - The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
@@ -2835,8 +2835,8 @@ TS 18508
 ```
 ### **Characteristics**
 
-KIND may be any KIND supported by the _real_ type.
-The result is the same type and kind as **x**.
+ - KIND may be any KIND supported by the _real_ type.
+ - The result is the same type and kind as **x**.
 
 ### **Description**
 
@@ -2903,7 +2903,7 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-where KIND may be any supported _real_ KIND.
+ -  KIND may be any supported _real_ KIND.
 
 ### **Description**
 
@@ -2971,11 +2971,11 @@ Fortran 2008
       integer(kind=KIND),intent(in) :: n(..)
       real(kind=KIND),intent(in) :: x(..)
 ```
-  If **n** and **x** are arrays, their ranks and shapes
-  shall conform.
+ - If **n** and **x** are arrays, their ranks and shapes
+   shall conform.
 
-  The return value has the same type and kind as **x**.
-or
+ - The return value has the same type and kind as **x**.
+
 ```fortran
     result = bessel_jn(n1, n2, x)
 ```
@@ -3069,7 +3069,7 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-where KIND may be any supported _real_ KIND.
+ - KIND may be any supported _real_ KIND.
 
 ### **Description**
 
@@ -3137,7 +3137,7 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-where KIND may be any supported _real_ KIND.
+ - KIND may be any supported _real_ KIND.
 
 ### **Description**
 
@@ -3199,32 +3199,32 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-  If **n** and **x** are arrays, their ranks and shapes
-  shall conform.
+ - If **n** and **x** are arrays, their ranks and shapes
+   shall conform.
 
-  The return value has the same type and kind as **x**.
+ - The return value has the same type and kind as **x**.
 
-or
 ```fortran
     result = bessel_yn(n1, n2, x)
 ```
 ```fortran
      real(kind=KIND) function bessel_yn(n1, n2, ,x)
 
-     integer(kind=KIND),intent(in) :: n1(..)
-     integer(kind=KIND),intent(in) :: n2(..)
-     real(kind=KIND),intent(in) :: x
+      integer(kind=KIND),intent(in) :: n1(..)
+      integer(kind=KIND),intent(in) :: n2(..)
+      real(kind=KIND),intent(in) :: x
 ```
   The return value has the same type and kind as **x**.
 
 ### **Description**
 
-**bessel_yn(n, x)** computes the Bessel function of the second
-kind of order **n** of **x**. If **n** and **x** are arrays, their ranks and shapes
-shall conform.
+  **bessel_yn(n, x)** computes the Bessel function of the second kind
+  of order **n** of **x**. If **n** and **x** are arrays, their ranks
+  and shapes shall conform.
 
-**bessel_yn(n1, n2, x)** returns an array with the Bessel
-function\|Bessel functions of the first kind of the orders **n1** to **n2**.
+  **bessel_yn(n1, n2, x)** returns an array with the Bessel
+  function\|Bessel functions of the first kind of the orders **n1**
+  to **n2**.
 
 ### **Options**
 
@@ -5261,9 +5261,9 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-**KIND** may be any supported value for the _complex_ input value.
+- **KIND** may be any supported value for the _complex_ input value.
 
-The returned value with be the same _complex_ type as the input.
+- The returned value with be the same _complex_ type as the input.
 
 ### **Description**
 
@@ -5513,11 +5513,10 @@ TS 18508
 
       TYPE(kind=KIND),intent(in) :: x
 ```
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type. The returned value will be of the same type and kind as
-the argument.
-
 ### **Characteristics**
+
+ - **TYPE** may be _real_ or _complex_ of any kind.
+ -  The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
@@ -5526,15 +5525,14 @@ the argument.
 ### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_.
+  : the value to compute the hyerbolic cosine of
 
 ### **Result**
 
-The return value has same type and kind as **x**. If **x** is _complex_, the
-imaginary part of the result is in radians.
+  If **x** is _complex_, the imaginary part of the result is in radians.
 
-If **x** is _real_, the return value has a lower bound of one,
-**cosh(x) \>= 1**.
+  If **x** is _real_, the return value has a lower bound of one,
+  **cosh(x) \>= 1**.
 
 ### **Examples**
 
@@ -5579,17 +5577,16 @@ Inverse function: [**acosh**(3)](#acosh)
 ```
 ### **Characteristics**
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type. The returned value will be of the same type and kind as
-the argument.
+ - where **TYPE** may be _real_ or _complex_ of any kind.
+ - the returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
-**cos(x)** computes the cosine of an angle **x** given the size of the
-angle in radians.
+  **cos(x)** computes the cosine of an angle **x** given the size of
+  the angle in radians.
 
-The cosine of a _real_ value is the ratio of the adjacent side to the
-hypotenuse of a right-angled triangle.
+  The cosine of a _real_ value is the ratio of the adjacent side to the
+  hypotenuse of a right-angled triangle.
 
 ### **Options**
 
@@ -5598,10 +5595,10 @@ hypotenuse of a right-angled triangle.
 
 ### **Result**
 
-The return value is the tangent of **x**.
+  The return value is the tangent of **x**.
 
-If **x** is of the type _real_, the return value lies in
-the range **-1 \<= cos(x) \<= 1** .
+  If **x** is of the type _real_, the return value lies in
+  the range **-1 \<= cos(x) \<= 1** .
 
 ### **Examples**
 
@@ -5854,14 +5851,14 @@ integer :: c(2,3,4)
    a = reshape( [ 1, 2, 3, 4, 5, 6 ], [ 2, 3 ])
    b = reshape( [ 0, 7, 3, 4, 5, 8 ], [ 2, 3 ])
    c = reshape( [( i,i=1,24)], [ 2, 3 ,4])
-   ! show numeric arrays we will compare
+  ! show numeric arrays we will compare
    print '(3i3)', a(1,:)
    print '(3i3)', a(2,:)
    print *
    print '(3i3)', b(1,:)
    print '(3i3)', b(2,:)
 
-   ! basic calls
+  ! basic calls
    print *, 'count a few basic things ...'
    print *, 'count a>b',count(a>b)
    print *, 'count b<a',count(a<b)
@@ -5879,15 +5876,19 @@ integer :: c(2,3,4)
    print '(3l3)', mymask(1,:)
    print '(3l3)', mymask(2,:)
    ! count total and along rows and columns
+
    print '(a)', 'number of elements not equal'
    print '(a)', '(ie. total true elements in the mask)'
    print '(3i3)', count(mymask)
+
    print '(a)', 'count of elements not equal in each column'
    print '(a)', '(ie. total true elements in each column)'
    print '(3i3)', count(mymask, dim=1)
+
    print '(a)', 'count of elements not equal in each row'
    print '(a)', '(ie. total true elements in each row)'
    print '(3i3)', count(mymask, dim=2)
+
    ! working with rank=3 ...
    print *, 'lets try this with c(2,3,4)'
    print *,'  taking the result of the modulo   '
@@ -7528,7 +7529,7 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-The result is of the same _type_ and _kind_ as **x**.
+- The result is of the same _type_ and _kind_ as **x**.
 
 ### **Description**
 
@@ -7777,8 +7778,8 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-**x** may be _real_ or _complex_.
-The return value has the same type and kind as **x**.
+ - **x** may be _real_ or _complex_.
+ - The return value has the same type and kind as **x**.
 
 ### **Description**
 
@@ -8505,7 +8506,7 @@ Fortran 95
 ```
 ### **Characteristics**
 
-The return value is _real_ with the kind as **x**.
+- The return value is _real_ with the kind as **x**.
 
 ### **Description**
 
@@ -9151,7 +9152,7 @@ and the origin.
 ```
 ### **Characteristics**
 
-where **x,y** and the result shall all be of the same **kind**.
+ - **x,y** and the result shall all be of the same **kind**.
 
 ### **Description**
 
@@ -11953,10 +11954,13 @@ of arguments, and search for certain arguments:
 ```
 ### **Characteristics**
 
+ - **x** may be any kind of _real_ value
+ - the result is the same type and characteristics as **x**.
+
 ### **Description**
 
-**log10(x)** computes the base 10 logarithm of **x**. This
-is generally called the "common logarithm".
+  **log10(x)** computes the base 10 logarithm of **x**. This
+  is generally called the "common logarithm".
 
 ### **Options**
 
@@ -11965,8 +11969,7 @@ is generally called the "common logarithm".
 
 ### **Result**
 
-The return value is of type _real_ . The kind type parameter is
-the same as **x**.
+  The logarithm to base 10 of **x**
 
 ### **Examples**
 
@@ -11988,13 +11991,11 @@ real(kind=real64) :: x = 10.0_real64
 end program demo_log10
 ```
 Results:
-
 ```text
    log10(1.0000000000000000) is 0.0000000000000000
       0.00000000       1.00000000       2.00000000       3.00000000
       4.00000000       5.00000000       6.00000000       7.00000000
 ```
-
 ### **Standard**
 
 FORTRAN 77
@@ -12023,8 +12024,8 @@ the Gamma function
 ```
 ### **Characteristics**
 
-  **x** may be any _real_ type; and the return value is of same type
-  and kind as **x**.
+  - **x** may be any _real_ type
+  - the return value is of same type and kind as **x**.
 
 ### **Description**
 
@@ -12162,8 +12163,8 @@ Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 ```
 ### **Characteristics**
 
-  Where **x** may be any kind of _real_ or _complex_ value and
-  the result is the same type and characteristics as **x**.
+ - **x** may be any kind of _real_ or _complex_ value
+ - the result is the same type and characteristics as **x**.
 
 ### **Description**
 
@@ -13372,6 +13373,7 @@ Fortran 95
 - [**pack**(3)](#pack) packs an array into an array of rank one
 - [**spread**(3)](#spread) is used to add a dimension and replicate data
 - [**unpack**(3)](#unpack) scatters the elements of a vector
+- [**transpose**(3)](#transpose) - Transpose an array of rank two
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -14557,30 +14559,31 @@ FORTRAN 77 , with KIND argument - Fortran 90
 ```
 ### **Characteristics**
 
+- **array** shall be an array of type _real_.
+- **dim** shall be a scalar of type _integer_
+- The result is of the same type as **array**.
+
 ### **Description**
 
-Calculates the Euclidean vector norm (L_2 norm) of **array** along
-dimension **dim**.
+  Calculates the Euclidean vector norm (L_2 norm) of **array** along
+  dimension **dim**.
 
 ### **Options**
 
 - **array**
-  : Shall be an array of type _real_.
+  : the array of input values for the L_2 norm computations
 
 - **dim**
-  : shall be a scalar of type _integer_ with a value in the
-  range from **1** to **rank(array)**.
+  : a value in the range from **1** to **rank(array)**.
 
 ### **Result**
 
-The result is of the same type as **array**.
+  If **dim** is absent, a scalar with the square root of the sum of squares
+  of the elements of **array** is returned.
 
-If **dim** is absent, a scalar with the square root of the sum of squares of
-the elements of **array** is returned.
-
-Otherwise, an array of rank **n-1**,
-where **n** equals the rank of **array**, and a shape similar to that of **array**
-with dimension DIM dropped is returned.
+  Otherwise, an array of rank **n-1**, where **n** equals the rank of
+  **array**, and a shape similar to that of **array** with dimension DIM
+  dropped is returned.
 
 ### **Examples**
 
@@ -14594,22 +14597,20 @@ real :: x(3,3) = reshape([ &
    1, 2, 3, &
    4, 5, 6, &
    7, 8, 9  &
-],shape(x),order=[2,1])
+   ],shape(x),order=[2,1])
 
-write(*,*) 'x='
-write(*,'(4x,3f4.0)')transpose(x)
+  write(*,*) 'x='
+  write(*,'(4x,3f4.0)')transpose(x)
 
-write(*,*) 'norm2(x)=',norm2(x)
+  write(*,*) 'norm2(x)=',norm2(x)
 
-write(*,*) 'x**2='
-write(*,'(4x,3f4.0)')transpose(x**2)
-write(*,*)'sqrt(sum(x**2))=',sqrt(sum(x**2))
+  write(*,*) 'x**2='
+  write(*,'(4x,3f4.0)')transpose(x**2)
+  write(*,*)'sqrt(sum(x**2))=',sqrt(sum(x**2))
 
 end program demo_norm2
 ```
-
 Results:
-
 ```text
  x=
       1.  2.  3.
@@ -14622,7 +14623,6 @@ Results:
      49. 64. 81.
  sqrt(sum(x**2))=   16.88194
 ```
-
 ### **Standard**
 
 Fortran 2008
@@ -15072,9 +15072,8 @@ Results:
 ```
 ### **Characteristics**
 
-  where TYPE(kind=KIND) may be any type, where **array** and **vector**
-  and the returned value must by of the same type. **mask** may be a
-  scalar as well an an array.
+  - **array**, **vector** and the returned value are all of the same kind and type.
+  - **mask** may be a scalar as well an an array.
 
 ### **Description**
 
@@ -15087,11 +15086,11 @@ Results:
 ### **Options**
 
 - **array**
-  : Shall be an array of any type.
+  : The data from this array is used to fill the resulting vector
 
 - **mask**
-  : Shall be an array of type _logical_ and of the same size as **array**.
-  Alternatively, it may be a _logical_ scalar.
+  : the _logical_ mask must be the same size as **array** or,
+  alternatively, it may be a _logical_ scalar.
 
 - **vector**
   : (Optional) shall be an array of the same type as **array** and of rank
@@ -15113,51 +15112,31 @@ Sample program:
 ```fortran
 program demo_pack
 implicit none
-   call test1()
-   call test2()
-   call test3()
-contains
-!
-subroutine test1()
-! gathering nonzero elements from an array:
-integer :: m(6)
+integer, allocatable :: m(:)
+character(len=10) :: c(4)
 
+ ! gathering nonzero elements from an array:
    m = [ 1, 0, 0, 0, 5, 0 ]
-   write(*, fmt="(*(i0, ' '))") pack(m, m /= 0)  ! "1 5"
+   write(*, fmt="(*(i0, ' '))") pack(m, m /= 0)
 
-end subroutine test1
-!
-subroutine test2()
-! Gathering nonzero elements from an array and appending elements
-! from VECTOR till the size of the mask array (or array size if the
-! mask is scalar):
-integer :: m(4)
-
+ ! Gathering nonzero elements from an array and appending elements
+ ! from VECTOR till the size of the mask array (or array size if the
+ ! mask is scalar):
    m = [ 1, 0, 0, 2 ]
    write(*, fmt="(*(i0, ' '))") pack(m, m /= 0, [ 0, 0, 3, 4 ])
 
-end subroutine test2
-!
-subroutine test3()
-! select strings whose second character is "a"
-character(len=10) :: m(4)
+ ! select strings whose second character is "a"
+   c = [ character(len=10) :: 'ape', 'bat', 'cat', 'dog']
+   write(*, fmt="(*(g0, ' '))") pack(c, c(:)(2:2) == 'a' )
 
-m = [ character(len=10) :: 'ape', 'bat', 'cat', 'dog']
-   write(*, fmt="(*(g0, ' '))") pack(m, m(:)(2:2) == 'a' )
-
-end subroutine test3
-!
 end program demo_pack
 ```
-
 Results:
-
 ```text
    1 5
    1 2 3 4
    bat        cat
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -15999,6 +15978,7 @@ Fortran 95
       real,intent(out) :: harvest(..)
 ```
 ### **Characteristics**
+
 - **harvest** and the result are default _real_ variables
 
 REAL X, Y (10, 10)
@@ -18350,22 +18330,20 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type.
-
-The returned value will be of the same type and kind as
-the argument.
+ - **TYPE** may be _real_ or _complex_
+ - **KIND** may be any kind supported by the associated type.
+ - The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
-**sinh(x)** computes the hyperbolic sine of **x**.
+  **sinh(x)** computes the hyperbolic sine of **x**.
 
-The hyperbolic sine of x is defined mathematically as:
-
-**sinh(x) = (exp(x) - exp(-x)) / 2.0**
-
-If **x** is of type _complex_ its imaginary part is regarded as a value
-in radians.
+  The hyperbolic sine of x is defined mathematically as:
+```fortran
+     sinh(x) = (exp(x) - exp(-x)) / 2.0
+```
+  If **x** is of type _complex_ its imaginary part is regarded as a value
+  in radians.
 
 ### **Options**
 
@@ -18374,7 +18352,7 @@ in radians.
 
 ### **Result**
 
-The return value has same type and kind as **x**.
+  The return value has same type and kind as **x**.
 
 ### **Examples**
 
@@ -18948,16 +18926,13 @@ Sample program:
 program demo_spread
 implicit none
 
-integer ( kind = 4 ) a1(4,3)
-integer ( kind = 4 ) a2(3,4)
-integer i
-integer ( kind = 4 ) s
-integer ( kind = 4 ) v(4)
+integer a1(4,3), a2(3,4), v(4), s, i
 
-   write(*,'(a)' ) 'TEST SPREAD(3)'
-   write(*,'(a)' ) '  SPREAD(3) is a FORTRAN90 function which replicates'
-   write(*,'(a)' ) '  an array by adding a dimension.'
-   write(*,'(a)' ) ' '
+   write(*,'(a)' ) &
+   'TEST SPREAD(3)                                      ', &
+   '  SPREAD(3) is a FORTRAN90 function which replicates', &
+   '  an array by adding a dimension.                   ', &
+   ' '
 
    s = 99
    call printi('suppose we have a scalar S',s)
@@ -19099,32 +19074,31 @@ need an illustration of what happens with higher dimension array
 ```
 ### **Characteristics**
 
-Where **TYPE** may be _real_ or _complex_.
-
-**KIND** may be any kind valid for the declared type.
+ - **TYPE** may be _real_ or _complex_.
+ - **KIND** may be any kind valid for the declared type.
 
 ### **Description**
 
-**sqrt(x)** computes the principal square root of **x**.
+  **sqrt(x)** computes the principal square root of **x**.
 
-In mathematics, a square root of a number **x** is a number **y** such
-that **y\*y = x**.
+  In mathematics, a square root of a number **x** is a number **y**
+  such that **y\*y = x**.
 
-The number whose square root is being considered is known as the
-_radicand_.
+  The number whose square root is being considered is known as the
+  _radicand_.
 
-Every nonnegative number _x_ has two square roots of the same unique
-magnitude, one positive and one negative. The nonnegative square root
-is called the principal square root.
+  Every nonnegative number _x_ has two square roots of the same unique
+  magnitude, one positive and one negative. The nonnegative square root
+  is called the principal square root.
 
-The principal square root of 9 is 3, for example, even though (-3)\*(-3)
-is also 9.
+  The principal square root of 9 is 3, for example, even though (-3)\*(-3)
+  is also 9.
 
-A _real_ radicand must be positive.
+  A _real_ radicand must be positive.
 
-Square roots of negative numbers are a special case of complex numbers,
-where the components of the _radicand_ need not be positive in order to
-have a valid square root.
+  Square roots of negative numbers are a special case of complex numbers,
+  where the components of the _radicand_ need not be positive in order
+  to have a valid square root.
 
 ### **Options**
 
@@ -19134,12 +19108,12 @@ have a valid square root.
 
 ### **Result**
 
-The return value is of type _real_ or _complex_. The kind type parameter is
-the same as **x**.
+  The return value is of type _real_ or _complex_. The kind type parameter
+  is the same as **x**.
 
-A result of type complex is the principal value with the real part
-greater than or equal to zero. When the real part of the result is zero,
-the imaginary part has the same sign as the imaginary part of X.
+  A result of type complex is the principal value with the real part
+  greater than or equal to zero. When the real part of the result is zero,
+  the imaginary part has the same sign as the imaginary part of X.
 
 ### **Examples**
 
@@ -19167,7 +19141,6 @@ complex :: z, z2
 
 end program demo_sqrt
 ```
-
 Results:
 
 ```text
@@ -19175,7 +19148,6 @@ Results:
   1.4142135623730951    (1.27201962,0.786151350)
   1.4142135623730951    (1.27201962,0.786151350)
 ```
-
 ### **Standard**
 
 FORTRAN 77
@@ -19592,9 +19564,9 @@ result = tan(x)
 ```
 ### **Characteristics**
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind
-supported by the associated type. The returned value will be of the same
-type and kind as the argument.
+  where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind
+  supported by the associated type. The returned value will be of the same
+  type and kind as the argument.
 
 The return value has the same type and kind as **x**.
 
@@ -20083,9 +20055,9 @@ Fortran 90
 ```
 ### **Characteristics**
 
-  **matrix** which shall be of any type and have a rank of two. The
-  result will be the same type and kind as **matrix** and of the
-  shape of (m,n) when the input array has the shape(n,m).
+  - **matrix** which shall be of any type and have a rank of two.
+  - The result will be the same type and kind as **matrix** and the
+    shape of the input array.
 
 ### **Description**
 
@@ -20163,7 +20135,10 @@ Fortran 95
 
 ### **See also**
 
-[****(3)](#)
+- [**merge**(3)](#merge) - Merge variables
+- [**pack**(3)](#pack) - Pack an array into an array of rank one
+- [**spread**(3)](#spread) - Add a dimension and replicate data
+- [**unpack**(3)](#unpack) - Scatter the elements of a vector
 
  _fortran-lang intrinsic descriptions_
 

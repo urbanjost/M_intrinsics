@@ -13,11 +13,10 @@
 
       TYPE(kind=KIND),intent(in) :: x
 ```
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind supported
-by the associated type. The returned value will be of the same type and kind as
-the argument.
-
 ### **Characteristics**
+
+ - **TYPE** may be _real_ or _complex_ of any kind.
+ -  The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
@@ -26,15 +25,14 @@ the argument.
 ### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_.
+  : the value to compute the hyerbolic cosine of
 
 ### **Result**
 
-The return value has same type and kind as **x**. If **x** is _complex_, the
-imaginary part of the result is in radians.
+  If **x** is _complex_, the imaginary part of the result is in radians.
 
-If **x** is _real_, the return value has a lower bound of one,
-**cosh(x) \>= 1**.
+  If **x** is _real_, the return value has a lower bound of one,
+  **cosh(x) \>= 1**.
 
 ### **Examples**
 

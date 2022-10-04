@@ -17,7 +17,7 @@ and the origin.
 ```
 ### **Characteristics**
 
-where **x,y** and the result shall all be of the same **kind**.
+ - **x,y** and the result shall all be of the same **kind**.
 
 ### **Description**
 

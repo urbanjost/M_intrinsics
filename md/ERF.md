@@ -15,7 +15,7 @@
 ```
 ### **Characteristics**
 
-The result is of the same _type_ and _kind_ as **x**.
+- The result is of the same _type_ and _kind_ as **x**.
 
 ### **Description**
 

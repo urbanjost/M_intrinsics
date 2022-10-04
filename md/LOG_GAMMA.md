@@ -16,8 +16,8 @@ the Gamma function
 ```
 ### **Characteristics**
 
-  **x** may be any _real_ type; and the return value is of same type
-  and kind as **x**.
+  - **x** may be any _real_ type
+  - the return value is of same type and kind as **x**.
 
 ### **Description**
 

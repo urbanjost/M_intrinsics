@@ -58,16 +58,13 @@ Sample program:
 program demo_spread
 implicit none
 
-integer ( kind = 4 ) a1(4,3)
-integer ( kind = 4 ) a2(3,4)
-integer i
-integer ( kind = 4 ) s
-integer ( kind = 4 ) v(4)
+integer a1(4,3), a2(3,4), v(4), s, i
 
-   write(*,'(a)' ) 'TEST SPREAD(3)'
-   write(*,'(a)' ) '  SPREAD(3) is a FORTRAN90 function which replicates'
-   write(*,'(a)' ) '  an array by adding a dimension.'
-   write(*,'(a)' ) ' '
+   write(*,'(a)' ) &
+   'TEST SPREAD(3)                                      ', &
+   '  SPREAD(3) is a FORTRAN90 function which replicates', &
+   '  an array by adding a dimension.                   ', &
+   ' '
 
    s = 99
    call printi('suppose we have a scalar S',s)

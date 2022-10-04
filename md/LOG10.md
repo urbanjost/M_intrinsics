@@ -15,10 +15,13 @@
 ```
 ### **Characteristics**
 
+ - **x** may be any kind of _real_ value
+ - the result is the same type and characteristics as **x**.
+
 ### **Description**
 
-**log10(x)** computes the base 10 logarithm of **x**. This
-is generally called the "common logarithm".
+  **log10(x)** computes the base 10 logarithm of **x**. This
+  is generally called the "common logarithm".
 
 ### **Options**
 
@@ -27,8 +30,7 @@ is generally called the "common logarithm".
 
 ### **Result**
 
-The return value is of type _real_ . The kind type parameter is
-the same as **x**.
+  The logarithm to base 10 of **x**
 
 ### **Examples**
 
@@ -50,13 +52,11 @@ real(kind=real64) :: x = 10.0_real64
 end program demo_log10
 ```
 Results:
-
 ```text
    log10(1.0000000000000000) is 0.0000000000000000
       0.00000000       1.00000000       2.00000000       3.00000000
       4.00000000       5.00000000       6.00000000       7.00000000
 ```
-
 ### **Standard**
 
 FORTRAN 77

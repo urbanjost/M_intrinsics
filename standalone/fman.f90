@@ -525,9 +525,11 @@ textblock=[character(len=256) :: &
 '            TYPE(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  where TYPE may be real or complex and KIND may be any kind supported by the', &
-'  associated type. The returned value will be of the same type and kind as the', &
-'  argument.', &
+'  o  TYPE may be real or complex', &
+'', &
+'  o  KIND may be any kind supported by the associated type.', &
+'', &
+'  o  The returned value will be of the same type and kind as the argument.', &
 '', &
 'DESCRIPTION', &
 '  ACOS(X) computes the arccosine of X (inverse of COS(X)).', &
@@ -616,9 +618,11 @@ textblock=[character(len=256) :: &
 '            TYPE(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  where TYPE may be real or complex and KIND may be any kind supported by the', &
-'  associated type. The returned value will be of the same type and kind as the', &
-'  argument.', &
+'  o  TYPE may be real or complex', &
+'', &
+'  o  KIND may be any kind supported by the associated type.', &
+'', &
+'  o  The returned value will be of the same type and kind as the argument.', &
 '', &
 'DESCRIPTION', &
 '  ACOSH(X) computes the inverse hyperbolic cosine of X in radians.', &
@@ -1501,9 +1505,11 @@ textblock=[character(len=256) :: &
 '            TYPE(kind=KIND) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  where TYPE may be real or complex and KIND may be any kind supported by the', &
-'  associated type. The returned value will be of the same type and kind as the', &
-'  argument.', &
+'  o  TYPE may be real or complex', &
+'', &
+'  o  KIND may be any kind supported by the associated type.', &
+'', &
+'  o  The returned value will be of the same type and kind as the argument.', &
 '', &
 'DESCRIPTION', &
 '  ASIN(X) computes the arcsine of its argument X.', &
@@ -1605,9 +1611,11 @@ textblock=[character(len=256) :: &
 '            TYPE(kind=KIND) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  where TYPE may be real or complex and KIND may be any kind supported by the', &
-'  associated type. The returned value will be of the same type and kind as the', &
-'  argument.', &
+'  o  TYPE may be real or complex', &
+'', &
+'  o  KIND may be any kind supported by the associated type.', &
+'', &
+'  o  The returned value will be of the same type and kind as the argument.', &
 '', &
 'DESCRIPTION', &
 '  ASINH(X) computes the inverse hyperbolic sine of X.', &
@@ -2047,9 +2055,11 @@ textblock=[character(len=256) :: &
 '            TYPE(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  where TYPE may be real or complex and KIND may be any kind supported by the', &
-'  associated type. The returned value will be of the same type and kind as the', &
-'  argument.', &
+'  o  TYPE may be real or complex', &
+'', &
+'  o  KIND may be any kind supported by the associated type.', &
+'', &
+'  o  The returned value will be of the same type and kind as the argument.', &
 '', &
 'DESCRIPTION', &
 '  ATANH(X) computes the inverse hyperbolic tangent of X.', &
@@ -2875,8 +2885,9 @@ textblock=[character(len=256) :: &
 '            real(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  KIND may be any KIND supported by the real type. The result is the same type', &
-'  and kind as X.', &
+'  o  KIND may be any KIND supported by the real type.', &
+'', &
+'  o  The result is the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
 '  BESSEL_J0(X) computes the Bessel function of the first kind of order 0 of X.', &
@@ -2936,7 +2947,7 @@ textblock=[character(len=256) :: &
 '            real(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  where KIND may be any supported real KIND.', &
+'  o  KIND may be any supported real KIND.', &
 '', &
 'DESCRIPTION', &
 '  BESSEL_J1(X) computes the Bessel function of the first kind of order 1 of X.', &
@@ -2996,19 +3007,19 @@ textblock=[character(len=256) :: &
 '            integer(kind=KIND),intent(in) :: n(..)', &
 '            real(kind=KIND),intent(in) :: x(..)', &
 '', &
-'  If N and X are arrays, their ranks and shapes shall conform.', &
+'  o  If N and X are arrays, their ranks and shapes shall conform.', &
 '', &
-'  The return value has the same type and kind as X. or', &
+'     o  The return value has the same type and kind as X.', &
 '', &
-'          result = bessel_jn(n1, n2, x)', &
+'             result = bessel_jn(n1, n2, x)', &
 '', &
-'           real(kind=KIND) function bessel_jn(n1, n2, ,x)', &
+'              real(kind=KIND) function bessel_jn(n1, n2, ,x)', &
 '', &
-'           integer(kind=KIND),intent(in) :: n1(..)', &
-'           integer(kind=KIND),intent(in) :: n2(..)', &
-'           real(kind=KIND),intent(in) :: x', &
+'              integer(kind=KIND),intent(in) :: n1(..)', &
+'              integer(kind=KIND),intent(in) :: n2(..)', &
+'              real(kind=KIND),intent(in) :: x', &
 '', &
-'  The return value has the same type and kind as X.', &
+'     The return value has the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
 '  BESSEL_JN(N, X) computes the Bessel function of the first kind of order N of', &
@@ -3078,7 +3089,7 @@ textblock=[character(len=256) :: &
 '            real(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  where KIND may be any supported real KIND.', &
+'  o  KIND may be any supported real KIND.', &
 '', &
 'DESCRIPTION', &
 '  BESSEL_Y0(X) computes the Bessel function of the second kind of order 0 of', &
@@ -3138,7 +3149,7 @@ textblock=[character(len=256) :: &
 '            real(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  where KIND may be any supported real KIND.', &
+'  o  KIND may be any supported real KIND.', &
 '', &
 'DESCRIPTION', &
 '  BESSEL_Y1(X) computes the Bessel function of the second kind of order 1 of', &
@@ -3194,19 +3205,17 @@ textblock=[character(len=256) :: &
 '            real(kind=KIND),intent(in) :: x(..)', &
 '', &
 'CHARACTERISTICS', &
-'  If N and X are arrays, their ranks and shapes shall conform.', &
+'  o  If N and X are arrays, their ranks and shapes shall conform.', &
 '', &
-'  The return value has the same type and kind as X.', &
-'', &
-'  or', &
+'  o  The return value has the same type and kind as X.', &
 '', &
 '          result = bessel_yn(n1, n2, x)', &
 '', &
 '           real(kind=KIND) function bessel_yn(n1, n2, ,x)', &
 '', &
-'           integer(kind=KIND),intent(in) :: n1(..)', &
-'           integer(kind=KIND),intent(in) :: n2(..)', &
-'           real(kind=KIND),intent(in) :: x', &
+'            integer(kind=KIND),intent(in) :: n1(..)', &
+'            integer(kind=KIND),intent(in) :: n2(..)', &
+'            real(kind=KIND),intent(in) :: x', &
 '', &
 '  The return value has the same type and kind as X.', &
 '', &
@@ -5095,9 +5104,9 @@ textblock=[character(len=256) :: &
 '            complex(kind=KIND),intent(in) :: z', &
 '', &
 'CHARACTERISTICS', &
-'  KIND may be any supported value for the complex input value.', &
+'  o  KIND may be any supported value for the complex input value.', &
 '', &
-'  The returned value with be the same complex type as the input.', &
+'  o  The returned value with be the same complex type as the input.', &
 '', &
 'DESCRIPTION', &
 '  CONJG(Z) returns the complex conjugate of the complex value Z.', &
@@ -5324,9 +5333,9 @@ textblock=[character(len=256) :: &
 '            TYPE(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  where TYPE may be real or complex and KIND may be any kind supported by the', &
-'  associated type. The returned value will be of the same type and kind as the', &
-'  argument.', &
+'  o  where TYPE may be real or complex of any kind.', &
+'', &
+'  o  the returned value will be of the same type and kind as the argument.', &
 '', &
 'DESCRIPTION', &
 '  COS(X) computes the cosine of an angle X given the size of the angle in', &
@@ -5403,20 +5412,19 @@ textblock=[character(len=256) :: &
 '', &
 '            TYPE(kind=KIND),intent(in) :: x', &
 '', &
-'  where TYPE may be real or complex and KIND may be any kind supported by the', &
-'  associated type. The returned value will be of the same type and kind as the', &
-'  argument.', &
-'', &
 'CHARACTERISTICS', &
+'  o  TYPE may be real or complex of any kind.', &
+'', &
+'  o  The returned value will be of the same type and kind as the argument.', &
+'', &
 'DESCRIPTION', &
 '  COSH(X) computes the hyperbolic cosine of X.', &
 '', &
 'OPTIONS', &
-'  o  X : The type shall be real or complex.', &
+'  o  X : the value to compute the hyerbolic cosine of', &
 '', &
 'RESULT', &
-'  The return value has same type and kind as X. If X is complex, the imaginary', &
-'  part of the result is in radians.', &
+'  If X is complex, the imaginary part of the result is in radians.', &
 '', &
 '  If X is real, the return value has a lower bound of one, COSH(X) >= 1.', &
 '', &
@@ -5634,14 +5642,14 @@ textblock=[character(len=256) :: &
 '         a = reshape( [ 1, 2, 3, 4, 5, 6 ], [ 2, 3 ])', &
 '         b = reshape( [ 0, 7, 3, 4, 5, 8 ], [ 2, 3 ])', &
 '         c = reshape( [( i,i=1,24)], [ 2, 3 ,4])', &
-'         ! show numeric arrays we will compare', &
+'        ! show numeric arrays we will compare', &
 '         print ''(3i3)'', a(1,:)', &
 '         print ''(3i3)'', a(2,:)', &
 '         print *', &
 '         print ''(3i3)'', b(1,:)', &
 '         print ''(3i3)'', b(2,:)', &
 '', &
-'         ! basic calls', &
+'        ! basic calls', &
 '         print *, ''count a few basic things ...''', &
 '         print *, ''count a>b'',count(a>b)', &
 '         print *, ''count b<a'',count(a<b)', &
@@ -5659,15 +5667,19 @@ textblock=[character(len=256) :: &
 '         print ''(3l3)'', mymask(1,:)', &
 '         print ''(3l3)'', mymask(2,:)', &
 '         ! count total and along rows and columns', &
+'', &
 '         print ''(a)'', ''number of elements not equal''', &
 '         print ''(a)'', ''(ie. total true elements in the mask)''', &
 '         print ''(3i3)'', count(mymask)', &
+'', &
 '         print ''(a)'', ''count of elements not equal in each column''', &
 '         print ''(a)'', ''(ie. total true elements in each column)''', &
 '         print ''(3i3)'', count(mymask, dim=1)', &
+'', &
 '         print ''(a)'', ''count of elements not equal in each row''', &
 '         print ''(a)'', ''(ie. total true elements in each row)''', &
 '         print ''(3i3)'', count(mymask, dim=2)', &
+'', &
 '         ! working with rank=3 ...', &
 '         print *, ''lets try this with c(2,3,4)''', &
 '         print *,''  taking the result of the modulo   ''', &
@@ -7104,7 +7116,7 @@ textblock=[character(len=256) :: &
 '            real(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  The result is of the same type and kind as X.', &
+'  o  The result is of the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
 '  ERF(x) computes the error function of X, defined as', &
@@ -7463,7 +7475,9 @@ textblock=[character(len=256) :: &
 '            TYPE(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  X may be real or complex. The return value has the same type and kind as X.', &
+'  o  X may be real or complex.', &
+'', &
+'  o  The return value has the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
 '  EXP(3) returns the value of e (the base of natural logarithms) raised to the', &
@@ -8146,7 +8160,7 @@ textblock=[character(len=256) :: &
 '            type(real,kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  The return value is real with the kind as X.', &
+'  o  The return value is real with the kind as X.', &
 '', &
 'DESCRIPTION', &
 '  GAMMA(X) computes Gamma of X. For positive whole number values of N the', &
@@ -8768,7 +8782,7 @@ textblock=[character(len=256) :: &
 '            real(kind=KIND),intent(in) :: y', &
 '', &
 'CHARACTERISTICS', &
-'  where X,Y and the result shall all be of the same KIND.', &
+'  o  X,Y and the result shall all be of the same KIND.', &
 '', &
 'DESCRIPTION', &
 '  HYPOT(X,Y) is referred to as the Euclidean distance function. It is equal to', &
@@ -11372,6 +11386,10 @@ textblock=[character(len=256) :: &
 '            real(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
+'  o  X may be any kind of real value', &
+'', &
+'  o  the result is the same type and characteristics as X.', &
+'', &
 'DESCRIPTION', &
 '  LOG10(X) computes the base 10 logarithm of X. This is generally called the', &
 '  "common logarithm".', &
@@ -11380,7 +11398,7 @@ textblock=[character(len=256) :: &
 '  o  X : A real value > 0 to take the log of.', &
 '', &
 'RESULT', &
-'  The return value is of type real . The kind type parameter is the same as X.', &
+'  The logarithm to base 10 of X', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -11438,8 +11456,9 @@ textblock=[character(len=256) :: &
 '          TYPE(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  Where X may be any kind of real or complex value and the result is the same', &
-'  type and characteristics as X.', &
+'  o  X may be any kind of real or complex value', &
+'', &
+'  o  the result is the same type and characteristics as X.', &
 '', &
 'DESCRIPTION', &
 '  LOG(X) computes the natural logarithm of X, i.e. the logarithm to the base', &
@@ -11503,7 +11522,9 @@ textblock=[character(len=256) :: &
 '            real(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  X may be any real type; and the return value is of same type and kind as X.', &
+'  o  X may be any real type', &
+'', &
+'  o  the return value is of same type and kind as X.', &
 '', &
 'DESCRIPTION', &
 '  LOG_GAMMA(X) computes the natural logarithm of the absolute value of the', &
@@ -12586,6 +12607,8 @@ textblock=[character(len=256) :: &
 '  o  SPREAD(3) is used to add a dimension and replicate data', &
 '', &
 '  o  UNPACK(3) scatters the elements of a vector', &
+'', &
+'  o  TRANSPOSE(3) - Transpose an array of rank two', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -13801,18 +13824,21 @@ textblock=[character(len=256) :: &
 '            integer,intent(in),optional :: dim', &
 '', &
 'CHARACTERISTICS', &
+'  o  ARRAY shall be an array of type real.', &
+'', &
+'  o  DIM shall be a scalar of type integer', &
+'', &
+'  o  The result is of the same type as ARRAY.', &
+'', &
 'DESCRIPTION', &
 '  Calculates the Euclidean vector norm (L_ norm) of ARRAY along dimension DIM.', &
 '', &
 'OPTIONS', &
-'  o  ARRAY : Shall be an array of type real.', &
+'  o  ARRAY : the array of input values for the L_ norm computations', &
 '', &
-'  o  DIM : shall be a scalar of type integer with a value in the range from 1', &
-'     to RANK(ARRAY).', &
+'  o  DIM : a value in the range from 1 to RANK(ARRAY).', &
 '', &
 'RESULT', &
-'  The result is of the same type as ARRAY.', &
-'', &
 '  If DIM is absent, a scalar with the square root of the sum of squares of the', &
 '  elements of ARRAY is returned.', &
 '', &
@@ -13829,16 +13855,16 @@ textblock=[character(len=256) :: &
 '         1, 2, 3, &', &
 '         4, 5, 6, &', &
 '         7, 8, 9  &', &
-'      ],shape(x),order=[2,1])', &
+'         ],shape(x),order=[2,1])', &
 '', &
-'      write(*,*) ''x=''', &
-'      write(*,''(4x,3f4.0)'')transpose(x)', &
+'        write(*,*) ''x=''', &
+'        write(*,''(4x,3f4.0)'')transpose(x)', &
 '', &
-'      write(*,*) ''norm2(x)='',norm2(x)', &
+'        write(*,*) ''norm2(x)='',norm2(x)', &
 '', &
-'      write(*,*) ''x**2=''', &
-'      write(*,''(4x,3f4.0)'')transpose(x**2)', &
-'      write(*,*)''sqrt(sum(x**2))='',sqrt(sum(x**2))', &
+'        write(*,*) ''x**2=''', &
+'        write(*,''(4x,3f4.0)'')transpose(x**2)', &
+'        write(*,*)''sqrt(sum(x**2))='',sqrt(sum(x**2))', &
 '', &
 '      end program demo_norm2', &
 '', &
@@ -14281,9 +14307,9 @@ textblock=[character(len=256) :: &
 '            TYPE(kind=KIND),option(in),optional :: vector(*)', &
 '', &
 'CHARACTERISTICS', &
-'  where TYPE(kind=KIND) may be any type, where ARRAY and VECTOR and the', &
-'  returned value must by of the same type. MASK may be a scalar as well an an', &
-'  array.', &
+'  o  ARRAY, VECTOR and the returned value are all of the same kind and type.', &
+'', &
+'  o  MASK may be a scalar as well an an array.', &
 '', &
 'DESCRIPTION', &
 '  Stores the elements of ARRAY in an array of rank one.', &
@@ -14293,10 +14319,10 @@ textblock=[character(len=256) :: &
 '  VECTOR.', &
 '', &
 'OPTIONS', &
-'  o  ARRAY : Shall be an array of any type.', &
+'  o  ARRAY : The data from this array is used to fill the resulting vector', &
 '', &
-'  o  MASK : Shall be an array of type logical and of the same size as ARRAY.', &
-'     Alternatively, it may be a logical scalar.', &
+'  o  MASK : the logical mask must be the same size as ARRAY or, alternatively,', &
+'     it may be a logical scalar.', &
 '', &
 '  o  VECTOR : (Optional) shall be an array of the same type as ARRAY and of', &
 '     rank one. If present, the number of elements in VECTOR shall be equal to', &
@@ -14314,40 +14340,23 @@ textblock=[character(len=256) :: &
 '', &
 '      program demo_pack', &
 '      implicit none', &
-'         call test1()', &
-'         call test2()', &
-'         call test3()', &
-'      contains', &
-'      !', &
-'      subroutine test1()', &
-'      ! gathering nonzero elements from an array:', &
-'      integer :: m(6)', &
+'      integer, allocatable :: m(:)', &
+'      character(len=10) :: c(4)', &
 '', &
+'       ! gathering nonzero elements from an array:', &
 '         m = [ 1, 0, 0, 0, 5, 0 ]', &
-'         write(*, fmt="(*(i0, '' ''))") pack(m, m /= 0)  ! "1 5"', &
+'         write(*, fmt="(*(i0, '' ''))") pack(m, m /= 0)', &
 '', &
-'      end subroutine test1', &
-'      !', &
-'      subroutine test2()', &
-'      ! Gathering nonzero elements from an array and appending elements', &
-'      ! from VECTOR till the size of the mask array (or array size if the', &
-'      ! mask is scalar):', &
-'      integer :: m(4)', &
-'', &
+'       ! Gathering nonzero elements from an array and appending elements', &
+'       ! from VECTOR till the size of the mask array (or array size if the', &
+'       ! mask is scalar):', &
 '         m = [ 1, 0, 0, 2 ]', &
 '         write(*, fmt="(*(i0, '' ''))") pack(m, m /= 0, [ 0, 0, 3, 4 ])', &
 '', &
-'      end subroutine test2', &
-'      !', &
-'      subroutine test3()', &
-'      ! select strings whose second character is "a"', &
-'      character(len=10) :: m(4)', &
+'       ! select strings whose second character is "a"', &
+'         c = [ character(len=10) :: ''ape'', ''bat'', ''cat'', ''dog'']', &
+'         write(*, fmt="(*(g0, '' ''))") pack(c, c(:)(2:2) == ''a'' )', &
 '', &
-'      m = [ character(len=10) :: ''ape'', ''bat'', ''cat'', ''dog'']', &
-'         write(*, fmt="(*(g0, '' ''))") pack(m, m(:)(2:2) == ''a'' )', &
-'', &
-'      end subroutine test3', &
-'      !', &
 '      end program demo_pack', &
 '', &
 '  Results:', &
@@ -17433,17 +17442,18 @@ textblock=[character(len=256) :: &
 '            TYPE(kind=KIND) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  where TYPE may be real or complex and KIND may be any kind supported by the', &
-'  associated type.', &
+'  o  TYPE may be real or complex', &
 '', &
-'  The returned value will be of the same type and kind as the argument.', &
+'  o  KIND may be any kind supported by the associated type.', &
+'', &
+'  o  The returned value will be of the same type and kind as the argument.', &
 '', &
 'DESCRIPTION', &
 '  SINH(X) computes the hyperbolic sine of X.', &
 '', &
 '  The hyperbolic sine of x is defined mathematically as:', &
 '', &
-'  SINH(X) = (EXP(X) - EXP(-X)) / .0', &
+'           sinh(x) = (exp(x) - exp(-x)) / 2.0', &
 '', &
 '  If X is of type complex its imaginary part is regarded as a value in', &
 '  radians.', &
@@ -17870,16 +17880,13 @@ textblock=[character(len=256) :: &
 '      program demo_spread', &
 '      implicit none', &
 '', &
-'      integer ( kind = 4 ) a1(4,3)', &
-'      integer ( kind = 4 ) a2(3,4)', &
-'      integer i', &
-'      integer ( kind = 4 ) s', &
-'      integer ( kind = 4 ) v(4)', &
+'      integer a1(4,3), a2(3,4), v(4), s, i', &
 '', &
-'         write(*,''(a)'' ) ''TEST SPREAD(3)''', &
-'         write(*,''(a)'' ) ''  SPREAD(3) is a FORTRAN90 function which replicates''', &
-'         write(*,''(a)'' ) ''  an array by adding a dimension.''', &
-'         write(*,''(a)'' ) '' ''', &
+'         write(*,''(a)'' ) &', &
+'         ''TEST SPREAD(3)                                      '', &', &
+'         ''  SPREAD(3) is a FORTRAN90 function which replicates'', &', &
+'         ''  an array by adding a dimension.                   '', &', &
+'         '' ''', &
 '', &
 '         s = 99', &
 '         call printi(''suppose we have a scalar S'',s)', &
@@ -18018,9 +18025,9 @@ textblock=[character(len=256) :: &
 '            TYPE(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  Where TYPE may be real or complex.', &
+'  o  TYPE may be real or complex.', &
 '', &
-'  KIND may be any kind valid for the declared type.', &
+'  o  KIND may be any kind valid for the declared type.', &
 '', &
 'DESCRIPTION', &
 '  SQRT(X) computes the principal square root of X.', &
@@ -18944,9 +18951,10 @@ textblock=[character(len=256) :: &
 '            type(TYPE(kind=KIND),intent(in) :: matrix(:,:)', &
 '', &
 'CHARACTERISTICS', &
-'  MATRIX which shall be of any type and have a rank of two. The result will be', &
-'  the same type and kind as MATRIX and of the shape of (m,n) when the input', &
-'  array has the shape(n,m).', &
+'  o  MATRIX which shall be of any type and have a rank of two.', &
+'', &
+'  o  The result will be the same type and kind as MATRIX and the shape of the', &
+'     input array.', &
 '', &
 'DESCRIPTION', &
 '  Transpose an array of rank two.', &
@@ -19017,7 +19025,13 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  ****(3)', &
+'  o  MERGE(3) - Merge variables', &
+'', &
+'  o  PACK(3) - Pack an array into an array of rank one', &
+'', &
+'  o  SPREAD(3) - Add a dimension and replicate data', &
+'', &
+'  o  UNPACK(3) - Scatter the elements of a vector', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
