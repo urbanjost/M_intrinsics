@@ -11,8 +11,8 @@
 ```fortran
      integer(kind=KIND) function iany(array,mask)
 
-      integer(kind=KIND),intent(in)           :: array(..)
-      logical(kind=KINDL),intent(in),optional :: mask(..)
+      integer(kind=KIND),intent(in)        :: array(..)
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
 or
 ```fortran
@@ -21,11 +21,13 @@ or
 ```fortran
      integer(kind=KIND) function iany(array,dim,mask)
 
-      integer(kind=KIND),intent(in)           :: array(..)
-      integer(kind=KINDD),intent(in),optional :: dim
-      logical(kind=KINDL),intent(in),optional :: mask(..)
+      integer(kind=KIND),intent(in)        :: array(..)
+      integer(kind=**),intent(in),optional :: dim
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
+
+  - a kind designated as ** may be any supported kind value for the type
 
 **array** must be an array. The result will by of the same type and kind
 as **array**. **mask** is a _logical_ array that conforms to **array** of
@@ -33,7 +35,7 @@ any _logical_ kind. **dim** may be of any _integer_ kind.
 
 ### **Description**
 
-Reduces with bitwise or (inclusive or) the elements of **array** along
+Reduces with bitwise **OR** (inclusive **OR**) the elements of **array** along
 dimension **dim** if the corresponding element in **mask** is _.true._.
 
 ### **Options**

@@ -67,7 +67,7 @@
 - **dim**
   :  **dim** is in the range of
 ```fortran
-    **1 <= DIM <= n**
+    1 <= DIM <= n
 ```
   where **"n"** is the rank of **array**.  If **dim** is omitted it
   is taken to be **1**.

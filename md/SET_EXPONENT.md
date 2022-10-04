@@ -12,11 +12,13 @@
      elemental real(kind=KIND) function set_exponent(x,i)
 
       real(kind=KIND),intent(in) :: x
-      integer(kind=KINDI),intent(in) :: i
+      integer(kind=**),intent(in) :: i
 ```
 ### **Characteristics**
 
-  The return value is of the same type and kind as **x**.
+ - a kind designated as ** may be any supported kind value for the type
+
+ - The return value is of the same type and kind as **x**.
 
 ### **Description**
 

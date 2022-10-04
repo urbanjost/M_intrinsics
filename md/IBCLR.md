@@ -9,15 +9,16 @@
     result = ibclr(i, pos)
 ```
 ```fortran
-     elemental integer(kind=KINDI) function ibclr(i,pos)
+     elemental integer(kind=KIND) function ibclr(i,pos)
 
-      integer(kind=KINDI),intent(in) :: i
-      integer(kind=KINDPOS),intent(in) :: pos
+      integer(kind=KIND),intent(in) :: i
+      integer(kind=**),intent(in) :: pos
 ```
 ### **Characteristics**
+  - a kind designated as ** may be any supported kind value for the type
 
-  The return value is of the same kind as **i**. Otherwise,
-  any _integer_ kinds are allowed.
+  - The return value is of the same kind as **i**. Otherwise,
+    any _integer_ kinds are allowed.
 
 ### **Description**
 

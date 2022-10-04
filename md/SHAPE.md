@@ -9,15 +9,17 @@
   result = shape(source [,kind])
 ```
 ```fortran
-   integer(kind=KINDR) function(shape(source,kind)
+   integer(kind=KIND) function(shape(source,kind)
 
-    type(TYPE(kind=KIND)),intent(in)        :: source(..)
-    integer(kind=KINDK),intent(in),optional :: kind
+    type(TYPE(kind=**)),intent(in)        :: source(..)
+    integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-**source** is an array or scalar of any type. If **source** is a pointer
-it must be associated and allocatable arrays must be allocated.
+  - a kind designated as ** may be any supported kind value for the type
+
+  - **source** is an array or scalar of any type. If **source** is a pointer
+    it must be associated and allocatable arrays must be allocated.
 
 ### **Description**
 

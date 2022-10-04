@@ -4255,9 +4255,11 @@ textblock=[character(len=256) :: &
 '           elemental integer function char(i,kind)', &
 '', &
 '            integer(kind=KIND),intent(in) :: c', &
-'            integer(kind=KINDK),intent(in),optional :: kind', &
+'            integer(kind=**),intent(in),optional :: kind', &
 '', &
 'CHARACTERISTICS', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
 'DESCRIPTION', &
 '  CHAR(I, KIND) returns the character represented by the integer I.', &
 '', &
@@ -5561,17 +5563,20 @@ textblock=[character(len=256) :: &
 '', &
 '           integer(kind=KIND) function count(mask, dim, kind )', &
 '', &
-'            logical(kind=KINDL),intent(in) :: mask(..)', &
-'            integer(kind=KINDD),intent(in),optional :: dim', &
-'            integer(kind=KINDK),intent(in),optional :: kind', &
+'            logical(kind=**),intent(in) :: mask(..)', &
+'            integer(kind=**),intent(in),optional :: dim', &
+'            integer(kind=**),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  MASK must be an array but may be any shape.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
 '', &
-'  The return value is of default integer type unless KIND is specified to', &
-'  declare the kind of the result.', &
+'  o  MASK must be an array but may be any shape.', &
 '', &
-'  If DIM is present, the result is an array with the specified rank removed.', &
+'  o  If DIM is present, the result is an array with the specified rank', &
+'     removed.', &
+'', &
+'  o  The return value is of default integer type unless KIND is specified to', &
+'     declare the kind of the result.', &
 '', &
 'DESCRIPTION', &
 '  Counts the number of .true. elements in a logical MASK, or, if the DIM', &
@@ -6508,9 +6513,10 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 '  o  the kind of I, J, and the return value are the same. An exception is that', &
-'     one of I and J may be a BOZ literal constant.', &
+'     one of I and J may be a BOZ literal constant (A BOZ literal constant is a', &
+'     binary, octal or hex constant).', &
 '', &
-'  o  If either I or J is a boz-literal-constant (but not both), it is rst', &
+'  o  If either I or J is a BOZ-literal-constant (but not both), it is rst', &
 '     converted as if by the intrinsic function INT(3) to type integer with the', &
 '     kind type parameter of the other.', &
 '', &
@@ -6650,10 +6656,11 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 '  o  a kind designated as ** may be any kind value for the integer type', &
 '', &
-'  o  the kind of I, J, and the results are the same. An exception is that one', &
-'     of I and J may be a BOZ literal constant', &
+'  o  the kind of I, J, and the return value are the same. An exception is that', &
+'     one of I and J may be a BOZ literal constant (A BOZ literal constant is a', &
+'     binary, octal or hex constant).', &
 '', &
-'  o  If either I or J is a boz-literal-constant, it is first converted as if', &
+'  o  If either I or J is a BOZ-literal-constant, it is first converted as if', &
 '     by the intrinsic function INT(3) to type integer with the kind type', &
 '     parameter of the other.', &
 '', &
@@ -6684,7 +6691,7 @@ textblock=[character(len=256) :: &
 '                         KLMNOPabcdefghij', &
 '', &
 'NOTE', &
-'  DSHIFR(I,J,SHIFT)T is equivalent to', &
+'  DSHIFR(I,J,SHIFT) is equivalent to', &
 '', &
 '           ior(shiftl (i, bit_size(i) - shift), shiftr(j, shift) )', &
 '', &
@@ -6831,7 +6838,7 @@ textblock=[character(len=256) :: &
 '', &
 '  o  DIM : DIM is in the range of', &
 '', &
-'          **1 <= DIM <= n**', &
+'     1 <= DIM <= n', &
 '', &
 '  where "N" is the rank of ARRAY. If DIM is omitted it is taken to be 1.', &
 '', &
@@ -7710,12 +7717,12 @@ textblock=[character(len=256) :: &
 '', &
 '           function findloc (array, value, dim, mask, kind, back)', &
 '', &
-'            integer(kind=KIND),  intent(in)          :: array(..)', &
-'            integer(kind=KIND),  intent(in)          :: value', &
-'            integer(kind=KIND),  intent(in)          :: dim', &
-'            logical(kind=KINDM), intent(in),optional :: mask(..)', &
-'            integer(kind=KINDK), intent(in),optional :: kind', &
-'            logical(kind=KINDB),intent(in),optional :: back', &
+'            integer(kind=KIND),  intent(in)      :: array(..)', &
+'            integer(kind=KIND),  intent(in)      :: value', &
+'            integer(kind=KIND),  intent(in)      :: dim', &
+'            logical(kind=**),intent(in),optional :: mask(..)', &
+'            integer(kind=**),intent(in),optional :: kind', &
+'            logical(kind=**),intent(in),optional :: back', &
 '', &
 '  or', &
 '', &
@@ -7723,13 +7730,15 @@ textblock=[character(len=256) :: &
 '', &
 '           function findloc (array, value, mask, kind, back)', &
 '', &
-'            integer(kind=KIND),  intent(in)          :: array(..)', &
-'            integer(kind=KIND),  intent(in)          :: value', &
-'            logical(kind=KINDM), intent(in),optional :: mask(..)', &
-'            integer(kind=KINDK), intent(in),optional :: kind', &
-'            logical(kind=KINDB),intent(in),optional :: back', &
+'            integer(kind=KIND),  intent(in)       :: array(..)', &
+'            integer(kind=KIND),  intent(in)       :: value', &
+'            logical(kind=**), intent(in),optional :: mask(..)', &
+'            integer(kind=**), intent(in),optional :: kind', &
+'            logical(kind=**),intent(in),optional  :: back', &
 '', &
 'CHARACTERISTICS', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
 '  o  ARRAY shall be an array of intrinsic type.', &
 '', &
 '  o  VALUE shall be scalar but in type conformance with ARRAY', &
@@ -8789,23 +8798,23 @@ textblock=[character(len=256) :: &
 '           elemental integer(kind=KIND) function iachar(c,kind)', &
 '', &
 '            character(len=1),intent(in) :: c', &
-'            integer(kind=KINDK,intent(in),optional :: kind', &
+'            integer(kind=**),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  The return value is of type integer and of kind KIND. If KIND is absent, the', &
-'  return value is of default integer kind.', &
+'  o  The return value is of type integer and of kind KIND. If KIND is absent,', &
+'     the return value is of default integer kind.', &
 '', &
-'  KIND may be of any integer kind.', &
+'  o  KIND may be of any integer kind.', &
+'', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
 '', &
 'DESCRIPTION', &
 '  IACHAR(c) returns the code for the ASCII character in the first character', &
 '  position of C.', &
 '', &
 'OPTIONS', &
-'  o  C : A character to determine the ASCII code of.', &
-'', &
-'      A common extension is to allow strings but all but the first', &
-'      character is then ignored.', &
+'  o  C : A character to determine the ASCII code of. : A common extension is', &
+'     to allow strings but all but the first character is then ignored.', &
 '', &
 '  o  KIND : A constant initialization expression indicating the kind parameter', &
 '     of the result.', &
@@ -8903,8 +8912,8 @@ textblock=[character(len=256) :: &
 '', &
 '           integer(kind=KIND) function iall(array,mask)', &
 '', &
-'            integer(kind=KIND),intent(in)           :: array(..)', &
-'            logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'            integer(kind=KIND),intent(in)        :: array(..)', &
+'            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 '  or', &
 '', &
@@ -8912,17 +8921,23 @@ textblock=[character(len=256) :: &
 '', &
 '           integer(kind=KIND) function iall(array,dim,mask)', &
 '', &
-'            integer(kind=KIND),intent(in)           :: array(..)', &
-'            integer(kind=KINDD),intent(in),optional :: dim', &
-'            logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'            integer(kind=KIND),intent(in)        :: array(..)', &
+'            integer(kind=**),intent(in),optional :: dim', &
+'            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 'CHARACTERISTICS', &
-'  ARRAY must be an array. The result will by of the same type and kind as', &
-'  ARRAY. MASK is a logical array that conforms to ARRAY of any logical kind.', &
-'  DIM may be of any integer kind.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  ARRAY must be an integer array', &
+'', &
+'  o  MASK is a logical array that conforms to ARRAY of any logical kind.', &
+'', &
+'  o  DIM may be of any integer kind.', &
+'', &
+'  o  The result will by of the same type and kind as ARRAY.', &
 '', &
 'DESCRIPTION', &
-'  Reduces with bitwise and the elements of ARRAY along dimension DIM if the', &
+'  Reduces with a bitwise and the elements of ARRAY along dimension DIM if the', &
 '  corresponding element in MASK is .true..', &
 '', &
 'OPTIONS', &
@@ -9050,8 +9065,8 @@ textblock=[character(len=256) :: &
 '', &
 '           integer(kind=KIND) function iany(array,mask)', &
 '', &
-'            integer(kind=KIND),intent(in)           :: array(..)', &
-'            logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'            integer(kind=KIND),intent(in)        :: array(..)', &
+'            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 '  or', &
 '', &
@@ -9059,17 +9074,19 @@ textblock=[character(len=256) :: &
 '', &
 '           integer(kind=KIND) function iany(array,dim,mask)', &
 '', &
-'            integer(kind=KIND),intent(in)           :: array(..)', &
-'            integer(kind=KINDD),intent(in),optional :: dim', &
-'            logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'            integer(kind=KIND),intent(in)        :: array(..)', &
+'            integer(kind=**),intent(in),optional :: dim', &
+'            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 'CHARACTERISTICS', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
 '  ARRAY must be an array. The result will by of the same type and kind as', &
 '  ARRAY. MASK is a logical array that conforms to ARRAY of any logical kind.', &
 '  DIM may be of any integer kind.', &
 '', &
 'DESCRIPTION', &
-'  Reduces with bitwise or (inclusive or) the elements of ARRAY along dimension', &
+'  Reduces with bitwise OR (inclusive OR) the elements of ARRAY along dimension', &
 '  DIM if the corresponding element in MASK is .true..', &
 '', &
 'OPTIONS', &
@@ -9132,14 +9149,16 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = ibclr(i, pos)', &
 '', &
-'           elemental integer(kind=KINDI) function ibclr(i,pos)', &
+'           elemental integer(kind=KIND) function ibclr(i,pos)', &
 '', &
-'            integer(kind=KINDI),intent(in) :: i', &
-'            integer(kind=KINDPOS),intent(in) :: pos', &
+'            integer(kind=KIND),intent(in) :: i', &
+'            integer(kind=**),intent(in) :: pos', &
 '', &
 'CHARACTERISTICS', &
-'  The return value is of the same kind as I. Otherwise, any integer kinds are', &
-'  allowed.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  The return value is of the same kind as I. Otherwise, any integer kinds', &
+'     are allowed.', &
 '', &
 'DESCRIPTION', &
 '  IBCLR returns the value of I with the bit at position POS set to zero.', &
@@ -9182,15 +9201,17 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = ibits(i, pos, len)', &
 '', &
-'           elemental integer(kind=KINDI) function ibits(i,pos,len)', &
+'           elemental integer(kind=KIND) function ibits(i,pos,len)', &
 '', &
-'            integer(kind=KINDI),intent(in) :: i', &
-'            integer(kind=KINDPOS),intent(in) :: pos', &
-'            integer(kind=KINDLEN),intent(in) :: len', &
+'            integer(kind=KIND),intent(in) :: i', &
+'            integer(kind=**),intent(in) :: pos', &
+'            integer(kind=**),intent(in) :: len', &
 '', &
 'CHARACTERISTICS', &
-'  The return value is of the same kind as I. Otherwise, any integer kinds are', &
-'  allowed.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  The return value is of the same kind as I. Otherwise, any integer kinds', &
+'     are allowed.', &
 '', &
 'DESCRIPTION', &
 '  IBITS extracts a field of length LEN from I, starting from bit position POS', &
@@ -9237,14 +9258,16 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = ibset(i, pos)', &
 '', &
-'           elemental integer(kind=KINDI) function ibset(i,pos)', &
+'           elemental integer(kind=KIND) function ibset(i,pos)', &
 '', &
-'            integer(kind=KINDI),intent(in) :: i', &
-'            integer(kind=KINDPOS),intent(in) :: pos', &
+'            integer(kind=KIND),intent(in) :: i', &
+'            integer(kind=**),intent(in) :: pos', &
 '', &
 'CHARACTERISTICS', &
-'  The return value is of the same kind as I. Otherwise, any integer kinds are', &
-'  allowed.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  The return value is of the same kind as I. Otherwise, any integer kinds', &
+'     are allowed.', &
 '', &
 'DESCRIPTION', &
 '  IBSET returns the value of I with the bit at position POS set to one.', &
@@ -9403,14 +9426,17 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = ieor(i, j)', &
 '', &
-'           elemental integer(kind=KINDI) function ieor(i,j)', &
+'           elemental integer(kind=KIND) function ieor(i,j)', &
 '', &
-'            integer(kind=KINDI),intent(in) :: i', &
-'            integer(kind=KINDJ),intent(in) :: j', &
+'            integer(kind=**),intent(in) :: i', &
+'            integer(kind=**),intent(in) :: j', &
 '', &
 'CHARACTERISTICS', &
-'  The return value is of the same kind as the larger kind of I and J.', &
-'  Otherwise, any integer kinds are allowed.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  any integer kinds are allowed for I and J.', &
+'', &
+'  o  The return value is of the same kind as the larger kind of I and J.', &
 '', &
 'DESCRIPTION', &
 '  IEOR returns the bitwise Boolean exclusive-OR of I and J.', &
@@ -9711,12 +9737,14 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental integer(kind=KIND) function ior(i,j)', &
 '', &
-'            integer(kind=KINDI) ,intent(in) :: i', &
-'            integer(kind=KINDJ) ,intent(in) :: j', &
+'            integer(kind=**) ,intent(in) :: i', &
+'            integer(kind=**) ,intent(in) :: j', &
 '', &
 'CHARACTERISTICS', &
-'  The return value is of the same kind as the larger kind of I and J.', &
-'  Otherwise, any integer kinds are allowed.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  The return value is of the same kind as the larger kind of I and J.', &
+'     Otherwise, any integer kinds are allowed.', &
 '', &
 'DESCRIPTION', &
 '  IOR returns the bit-wise Boolean inclusive-or of I and J.', &
@@ -11431,9 +11459,11 @@ textblock=[character(len=256) :: &
 '           elemental logical(kind=KIND) function logical(l,kind)', &
 '', &
 '            logical(kind=KIND),intent(in) :: l', &
-'            integer(kind=KINDK),intent(in),optional :: kind', &
+'            integer(kind=**),intent(in),optional :: kind', &
 '', &
 'CHARACTERISTICS', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
 'DESCRIPTION', &
 '  Converts one kind of logical variable to another.', &
 '', &
@@ -12090,7 +12120,7 @@ textblock=[character(len=256) :: &
 '           NUMERIC function maxloc(array, mask)', &
 '', &
 '            NUMERIC,intent(in) :: array(..)', &
-'            logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 '  or', &
 '', &
@@ -12099,11 +12129,13 @@ textblock=[character(len=256) :: &
 '           NUMERIC function maxloc(array, dim, mask)', &
 '', &
 '            NUMERIC,intent(in) :: array(..)', &
-'            integer(kind=KINDD),intent(in),optional :: dim', &
-'            logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'            integer(kind=**),intent(in),optional :: dim', &
+'            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 'CHARACTERISTICS', &
-'  where NUMERIC is any numeric type and kind.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  NUMERIC designates any intrinsic numeric type and kind.', &
 '', &
 'DESCRIPTION', &
 '  Determines the location of the element in the array with the maximum value,', &
@@ -12209,7 +12241,7 @@ textblock=[character(len=256) :: &
 '           NUMERIC function maxval(array ,mask)', &
 '', &
 '            NUMERIC,intent(in) :: array(..)', &
-'            logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 '  or', &
 '', &
@@ -12218,11 +12250,13 @@ textblock=[character(len=256) :: &
 '           NUMERIC function maxval(array ,dim, mask)', &
 '', &
 '            NUMERIC,intent(in) :: array(..)', &
-'            integer(kind=KINDD),intent(in),optional :: dim', &
-'            logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'            integer(kind=**),intent(in),optional :: dim', &
+'            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 'CHARACTERISTICS', &
-'  where NUMERIC is any numeric type and kind.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  NUMERIC designates any numeric type and kind.', &
 '', &
 'DESCRIPTION', &
 '  Determines the maximum value of the elements in an array value, or, if the', &
@@ -12305,13 +12339,17 @@ textblock=[character(len=256) :: &
 '', &
 '            type(TYPE(kind=KIND)),intent(in) :: tsource', &
 '            type(TYPE(kind=KIND)),intent(in) :: fsource', &
-'            logical(kind=KINDM),intent(in)   :: mask', &
+'            logical(kind=**),intent(in)   :: mask', &
 '            mask** : Shall be of type _logical_.', &
 '', &
 'CHARACTERISTICS', &
-'  TSOURCE May be of any type, including user-defined. FSOURCE Shall be of the', &
-'  same type and type parameters as TSOURCE. The result will by of the same', &
-'  type and type parameters as TSOURCE too.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  TSOURCE May be of any type, including user-defined.', &
+'', &
+'  o  FSOURCE Shall be of the same type and type parameters as TSOURCE.', &
+'', &
+'  o  The result will by of the same type and type parameters as TSOURCE too.', &
 '', &
 'DESCRIPTION', &
 '  The elemental function MERGE(3) selects values from two arrays or scalars', &
@@ -12720,7 +12758,7 @@ textblock=[character(len=256) :: &
 '           NUMERIC function minloc(array, mask)', &
 '', &
 '            NUMERIC,intent(in) :: array(..)', &
-'            logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 '  or', &
 '', &
@@ -12729,11 +12767,13 @@ textblock=[character(len=256) :: &
 '           NUMERIC function minloc(array, dim, mask)', &
 '', &
 '            NUMERIC,intent(in) :: array(..)', &
-'            integer(kind=KINDD),intent(in),optional :: dim', &
-'            logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'            integer(kind=**),intent(in),optional :: dim', &
+'            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 'CHARACTERISTICS', &
-'  where NUMERIC is any numeric type and kind.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  NUMERIC is any numeric type and kind.', &
 '', &
 'DESCRIPTION', &
 '  Determines the location of the element in the array with the minimum value,', &
@@ -12822,7 +12862,7 @@ textblock=[character(len=256) :: &
 '           NUMERIC function minval(array ,mask)', &
 '', &
 '            NUMERIC,intent(in) :: array(..)', &
-'            logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 '  or', &
 '', &
@@ -12831,11 +12871,13 @@ textblock=[character(len=256) :: &
 '           NUMERIC function minval(array, dim, mask)', &
 '', &
 '            NUMERIC,intent(in) :: array(..)', &
-'            integer(kind=KINDD),intent(in),optional :: dim', &
-'            logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'            integer(kind=**),intent(in),optional :: dim', &
+'            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 'CHARACTERISTICS', &
-'  where NUMERIC is any numeric type and kind.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  NUMERIC is any numeric type and kind.', &
 '', &
 'DESCRIPTION', &
 '  Determines the minimum value of the elements in an array value, or, if the', &
@@ -13526,13 +13568,15 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = nint( x [,kind] )', &
 '', &
-'           elemental integer(kind=kind) function nint(x, kind )', &
+'           elemental integer(kind=KIND) function nint(x, kind )', &
 '', &
-'            real(kind=KINDX),intent(in) :: x', &
-'            integer(kind=KINDK),intent(in),optional :: kind', &
+'            real(kind=**),intent(in) :: x', &
+'            integer(kind=**),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  The result is default integer kind or the value of KIND if it is present.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  The result is default integer kind or the value of KIND if it is present.', &
 '', &
 'DESCRIPTION', &
 '  NINT(X) rounds its argument to the nearest whole number with its sign', &
@@ -14241,11 +14285,11 @@ textblock=[character(len=256) :: &
 '', &
 '           logical(kind=KIND) function parity(mask, dim)', &
 '', &
-'            type(logical(kind=KIND)),intent(in)           :: mask(..)', &
-'            type(integer(kind=KINDD)),intent(in),optional :: dim', &
+'            type(logical(kind=KIND)),intent(in)        :: mask(..)', &
+'            type(integer(kind=**)),intent(in),optional :: dim', &
 '', &
 'CHARACTERISTICS', &
-'  where KIND and LKIND are any supported kind for the type.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
 '', &
 'DESCRIPTION', &
 '  Calculates the parity (i.e. the reduction using .xor.) of MASK along', &
@@ -14661,11 +14705,13 @@ textblock=[character(len=256) :: &
 '           NUMERIC function product(array, dim, mask)', &
 '', &
 '            NUMERIC,intent(in) :: array(..)', &
-'            integer(kind=KINDD),intent(in),optional :: dim', &
-'            logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'            integer(kind=**),intent(in),optional :: dim', &
+'            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 'CHARACTERISTICS', &
-'  where NUMERIC is any numeric type and kind.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  NUMERIC is any numeric type and kind.', &
 '', &
 'DESCRIPTION', &
 '  Multiplies together all the selected elements of ARRAY, or along dimension', &
@@ -16191,8 +16237,8 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental integer(kind=KIND) function scan(string,set,back,kind)', &
 '', &
-'            character(len=*,kind=KINDC),intent(in) :: string', &
-'            character(len=*,kind=KINDC),intent(in) :: set', &
+'            character(len=*,kind=**),intent(in) :: string', &
+'            character(len=*,kind=**),intent(in) :: set', &
 '            logical,intent(in),optional :: back', &
 '            integer,intent(in),optional :: kind', &
 '', &
@@ -16526,10 +16572,12 @@ textblock=[character(len=256) :: &
 '           elemental real(kind=KIND) function set_exponent(x,i)', &
 '', &
 '            real(kind=KIND),intent(in) :: x', &
-'            integer(kind=KINDI),intent(in) :: i', &
+'            integer(kind=**),intent(in) :: i', &
 '', &
 'CHARACTERISTICS', &
-'  The return value is of the same type and kind as X.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  The return value is of the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
 '  SET_EXPONENT(X, I) returns the real number whose fractional part is that of', &
@@ -16588,14 +16636,16 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = shape(source [,kind])', &
 '', &
-'         integer(kind=KINDR) function(shape(source,kind)', &
+'         integer(kind=KIND) function(shape(source,kind)', &
 '', &
-'          type(TYPE(kind=KIND)),intent(in)        :: source(..)', &
-'          integer(kind=KINDK),intent(in),optional :: kind', &
+'          type(TYPE(kind=**)),intent(in)        :: source(..)', &
+'          integer(kind=**),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  SOURCE is an array or scalar of any type. If SOURCE is a pointer it must be', &
-'  associated and allocatable arrays must be allocated.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  SOURCE is an array or scalar of any type. If SOURCE is a pointer it must', &
+'     be associated and allocatable arrays must be allocated.', &
 '', &
 'DESCRIPTION', &
 '  Determines the shape of an array.', &
@@ -17960,17 +18010,20 @@ textblock=[character(len=256) :: &
 '', &
 '           integer(kind=KIND) storage_size(a,kind)', &
 '', &
-'            type(TYPE(kind=KINDA)) :: a', &
+'            type(TYPE(kind=**)) :: a', &
 '            integer,intent(in),optional :: kind', &
 '', &
 'CHARACTERISTICS', &
-'  A may be of any type and kind. If it is polymorphic it shall not be an', &
-'  undefined pointer. If it is unlimited polymorphic or has any deferred type', &
-'  parameters, it shall not be an unallocated allocatable variable or a', &
-'  disassociated or undefined pointer.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
 '', &
-'  The kind type parameter of the returned value is that specified by the value', &
-'  of KIND; otherwise, the kind type parameter is that of default integer type.', &
+'  o  A may be of any type and kind. If it is polymorphic it shall not be an', &
+'     undefined pointer. If it is unlimited polymorphic or has any deferred', &
+'     type parameters, it shall not be an unallocated allocatable variable or a', &
+'     disassociated or undefined pointer.', &
+'', &
+'  o  The kind type parameter of the returned value is that specified by the', &
+'     value of KIND; otherwise, the kind type parameter is that of default', &
+'     integer type.', &
 '', &
 'DESCRIPTION', &
 '  Returns the storage size of argument A in bits.', &
@@ -18054,7 +18107,7 @@ textblock=[character(len=256) :: &
 '           NUMERIC function sum(array, mask)', &
 '', &
 '            NUMERIC,intent(in) :: array(..)', &
-'            logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 '  or', &
 '', &
@@ -18063,11 +18116,13 @@ textblock=[character(len=256) :: &
 '           NUMERIC function sum(array, dim, mask)', &
 '', &
 '            NUMERIC,intent(in) :: array(..)', &
-'            integer(kind=KINDD),intent(in),optional :: dim', &
-'            logical(kind=KINDL),intent(in),optional :: mask(..)', &
+'            integer(kind=**),intent(in),optional :: dim', &
+'            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 'CHARACTERISTICS', &
-'  where NUMERIC is any numeric type and kind.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  NUMERIC is any numeric type and kind.', &
 '', &
 'DESCRIPTION', &
 '  Adds the elements of ARRAY along dimension DIM if the corresponding element', &
@@ -18985,10 +19040,12 @@ textblock=[character(len=256) :: &
 '           elemental TYPE(kind=KIND) function ubound(array,dim,kind)', &
 '', &
 '            TYPE(kind=KIND),intent(in)  :: array', &
-'            integer(kind=KINDD),intent(in),optional :: dim', &
-'            integer(kind=KINDK),intent(in),optional :: kind', &
+'            integer(kind=**),intent(in),optional :: dim', &
+'            integer(kind=**),intent(in),optional :: kind', &
 '', &
 'CHARACTERISTICS', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
 '  o  ARRAY Shall be an array, of any type.', &
 '', &
 '  o  DIM : (Optional) Shall be a scalar integer.', &
@@ -19303,16 +19360,18 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental integer(kind=KIND) function verify(string,set,back,kind)', &
 '', &
-'            character(len=*,kind=KINDC),intent(in) :: string', &
-'            character(len=*,kind=KINDC),intent(in) :: set', &
+'            character(len=*,kind=**),intent(in) :: string', &
+'            character(len=*,kind=**),intent(in) :: set', &
 '            logical,intent(in),optional :: back', &
 '            integer,intent(in),optional :: kind', &
 '', &
 'CHARACTERISTICS', &
-'  STRING and SET must have the same kind type parameter.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
 '', &
-'  the kind of the returned value is the same as KIND if present. Otherwise a', &
-'  default integer kind is returned.', &
+'  o  STRING and SET must have the same kind type parameter.', &
+'', &
+'  o  the kind of the returned value is the same as KIND if present.  Otherwise', &
+'     a default integer kind is returned.', &
 '', &
 'DESCRIPTION', &
 '  Verifies that all the characters in STRING belong to the set of characters', &

@@ -12,14 +12,14 @@
      elemental integer(kind=KIND) function iachar(c,kind)
 
       character(len=1),intent(in) :: c
-      integer(kind=KINDK,intent(in),optional :: kind
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-  The return value is of type _integer_ and of kind **kind**. If **kind**
-  is absent, the return value is of default integer kind.
-
-  **kind** may be of any _integer_ kind.
+ - The return value is of type _integer_ and of kind **KIND**. If **KIND**
+   is absent, the return value is of default integer kind.
+ - **kind** may be of any _integer_ kind.
+ - a kind designated as ** may be any supported kind value for the type
 
 ### **Description**
 
@@ -30,8 +30,7 @@
 
 - **c**
   : A character to determine the ASCII code of.
-
-  A common extension is to allow strings but all but the first character
+  : A common extension is to allow strings but all but the first character
   is then ignored.
 
 - **kind**

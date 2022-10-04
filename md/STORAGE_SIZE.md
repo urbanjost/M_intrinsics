@@ -11,19 +11,20 @@
 ```fortran
      integer(kind=KIND) storage_size(a,kind)
 
-      type(TYPE(kind=KINDA)) :: a
+      type(TYPE(kind=**)) :: a
       integer,intent(in),optional :: kind
 ```
 ### **Characteristics**
+  - a kind designated as ** may be any supported kind value for the type
 
-  **a** may be of any type and kind. If it is polymorphic it shall not
-  be an undefined pointer. If it is unlimited polymorphic or has any
-  deferred type parameters, it shall not be an unallocated allocatable
-  variable or a disassociated or undefined pointer.
+  - **a** may be of any type and kind. If it is polymorphic it shall not
+    be an undefined pointer. If it is unlimited polymorphic or has any
+    deferred type parameters, it shall not be an unallocated allocatable
+    variable or a disassociated or undefined pointer.
 
-  The kind type parameter of the returned value is that specified by
-  the value of **kind**; otherwise, the kind type parameter is that of
-  default integer type.
+  - The kind type parameter of the returned value is that specified by
+    the value of **kind**; otherwise, the kind type parameter is that of
+    default integer type.
 
 ### **Description**
 

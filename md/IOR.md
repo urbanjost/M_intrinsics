@@ -11,13 +11,15 @@
 ```fortran
      elemental integer(kind=KIND) function ior(i,j)
 
-      integer(kind=KINDI) ,intent(in) :: i
-      integer(kind=KINDJ) ,intent(in) :: j
+      integer(kind=**) ,intent(in) :: i
+      integer(kind=**) ,intent(in) :: j
 ```
 ### **Characteristics**
 
-  The return value is of the same kind as the larger kind of **i**
-  and **j**. Otherwise, any _integer_ kinds are allowed.
+  - a kind designated as ** may be any supported kind value for the type
+
+  - The return value is of the same kind as the larger kind of **i**
+    and **j**. Otherwise, any _integer_ kinds are allowed.
 
 ### **Description**
 

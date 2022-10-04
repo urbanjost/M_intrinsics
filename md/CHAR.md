@@ -12,9 +12,11 @@
      elemental integer function char(i,kind)
 
       integer(kind=KIND),intent(in) :: c
-      integer(kind=KINDK),intent(in),optional :: kind
+      integer(kind=**),intent(in),optional :: kind
 ```
 ### **Characteristics**
+
+  - a kind designated as ** may be any supported kind value for the type
 
 ### **Description**
 

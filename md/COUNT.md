@@ -11,19 +11,21 @@
 ```fortran
      integer(kind=KIND) function count(mask, dim, kind )
 
-      logical(kind=KINDL),intent(in) :: mask(..)
-      integer(kind=KINDD),intent(in),optional :: dim
-      integer(kind=KINDK),intent(in),optional :: kind
+      logical(kind=**),intent(in) :: mask(..)
+      integer(kind=**),intent(in),optional :: dim
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-**mask** must be an array but may be any shape.
+  - a kind designated as ** may be any supported kind value for the type
 
-The return value is of default _integer_ type unless **kind** is specified
-to declare the kind of the result.
+  - **mask** must be an array but may be any shape.
 
-If **dim** is present, the result is an array with the specified rank
-removed.
+  - If **dim** is present, the result is an array with the specified rank
+    removed.
+
+  - The return value is of default _integer_ type unless **kind** is specified
+    to declare the kind of the result.
 
 ### **Description**
 

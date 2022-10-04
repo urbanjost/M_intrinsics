@@ -13,14 +13,15 @@
 
       type(TYPE(kind=KIND)),intent(in) :: tsource
       type(TYPE(kind=KIND)),intent(in) :: fsource
-      logical(kind=KINDM),intent(in)   :: mask
+      logical(kind=**),intent(in)   :: mask
       mask** : Shall be of type _logical_.
 ```
 ### **Characteristics**
 
-  **tsource** May be of any type, including user-defined.
-  **fsource** Shall be of the same type and type parameters as **tsource**.
-  The result will by of the same type and type parameters as **tsource** too.
+ - a kind designated as ** may be any supported kind value for the type
+ - **tsource** May be of any type, including user-defined.
+ - **fsource** Shall be of the same type and type parameters as **tsource**.
+ - The result will by of the same type and type parameters as **tsource** too.
 
 ### **Description**
 

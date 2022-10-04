@@ -12,11 +12,12 @@
      elemental TYPE(kind=KIND) function ubound(array,dim,kind)
 
       TYPE(kind=KIND),intent(in)  :: array
-      integer(kind=KINDD),intent(in),optional :: dim
-      integer(kind=KINDK),intent(in),optional :: kind
+      integer(kind=**),intent(in),optional :: dim
+      integer(kind=**),intent(in),optional :: kind
 ```
 ### **Characteristics**
 
+- a kind designated as ** may be any supported kind value for the type
 - **array** Shall be an array, of any type.
 - **dim** : (Optional) Shall be a scalar _integer_.
 - **kind** An _integer_ initialization expression indicating the kind

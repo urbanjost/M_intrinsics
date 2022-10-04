@@ -18,12 +18,12 @@
 ### **Characteristics**
 
   - the kind of **i**, **j**, and the return value are the same. An
-    exception is that one of **i** and **j** may be a BOZ literal
-    constant.
+    exception is that one of **i** and **j** may be a BOZ literal constant
+    (A BOZ literal constant is a binary, octal or hex constant).
 
-  - If either I or J is a boz-literal-constant (but not both), it is
+  - If either I or J is a BOZ-literal-constant (but not both), it is
     ﬁrst converted as if by the intrinsic function **int**(3) to type
-    integer with the kind type parameter of the other.
+    _integer_ with the kind type parameter of the other.
  
   - a kind designated as ** may be any supported kind value for the type
 

@@ -12,17 +12,19 @@ of characters that does not appear in a given set of characters.
 ```fortran
      elemental integer(kind=KIND) function verify(string,set,back,kind)
 
-      character(len=*,kind=KINDC),intent(in) :: string
-      character(len=*,kind=KINDC),intent(in) :: set
+      character(len=*,kind=**),intent(in) :: string
+      character(len=*,kind=**),intent(in) :: set
       logical,intent(in),optional :: back
       integer,intent(in),optional :: kind
 ```
 ### **Characteristics**
 
-**string** and **set**  must have the same kind type parameter.
+ - a kind designated as ** may be any supported kind value for the type
 
-the kind of the returned value is the same as **kind** if
-present. Otherwise a default _integer_ kind is returned.
+ - **string** and **set**  must have the same kind type parameter.
+
+ - the kind of the returned value is the same as **kind** if
+   present. Otherwise a default _integer_ kind is returned.
 
 ### **Description**
 

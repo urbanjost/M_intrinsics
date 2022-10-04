@@ -12,9 +12,11 @@
      elemental logical(kind=KIND) function logical(l,kind)
 
       logical(kind=KIND),intent(in) :: l
-      integer(kind=KINDK),intent(in),optional :: kind
+      integer(kind=**),intent(in),optional :: kind
 ```
 ### **Characteristics**
+
+  - a kind designated as ** may be any supported kind value for the type
 
 ### **Description**
 

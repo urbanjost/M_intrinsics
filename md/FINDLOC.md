@@ -13,12 +13,12 @@ identified by MASK along dimension DIM matching a target value
 ```fortran
      function findloc (array, value, dim, mask, kind, back)
 
-      integer(kind=KIND),  intent(in)          :: array(..)
-      integer(kind=KIND),  intent(in)          :: value
-      integer(kind=KIND),  intent(in)          :: dim
-      logical(kind=KINDM), intent(in),optional :: mask(..)
-      integer(kind=KINDK), intent(in),optional :: kind
-      logical(kind=KINDB),intent(in),optional :: back
+      integer(kind=KIND),  intent(in)      :: array(..)
+      integer(kind=KIND),  intent(in)      :: value
+      integer(kind=KIND),  intent(in)      :: dim
+      logical(kind=**),intent(in),optional :: mask(..)
+      integer(kind=**),intent(in),optional :: kind
+      logical(kind=**),intent(in),optional :: back
 ```
 or
 ```fortran
@@ -27,14 +27,15 @@ or
 ```fortran
      function findloc (array, value, mask, kind, back)
 
-      integer(kind=KIND),  intent(in)          :: array(..)
-      integer(kind=KIND),  intent(in)          :: value
-      logical(kind=KINDM), intent(in),optional :: mask(..)
-      integer(kind=KINDK), intent(in),optional :: kind
-      logical(kind=KINDB),intent(in),optional :: back
+      integer(kind=KIND),  intent(in)       :: array(..)
+      integer(kind=KIND),  intent(in)       :: value
+      logical(kind=**), intent(in),optional :: mask(..)
+      integer(kind=**), intent(in),optional :: kind
+      logical(kind=**),intent(in),optional  :: back
 ```
 ### **Characteristics**
 
+- a kind designated as ** may be any supported kind value for the type
 - **array** shall be an array of intrinsic type.
 - **value** shall be scalar but in type conformance with **array**
 - **dim** The corresponding actual argument shall not be an optional dummy argument.

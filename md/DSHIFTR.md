@@ -19,11 +19,12 @@
 
   - a kind designated as ** may be any kind value for the _integer_ type
 
-  - the kind of **i**, **j**, and the results are the same. An
+  - the kind of **i**, **j**, and the return value are the same. An
     exception is that one of **i** and **j** may be a BOZ literal constant
+    (A BOZ literal constant is a binary, octal or hex constant).
 
-  - If either I or J is a boz-literal-constant, it is first converted
-    as if by the intrinsic function **int**(3) to type integer with the
+  - If either I or J is a BOZ-literal-constant, it is first converted
+    as if by the intrinsic function **int**(3) to type _integer_ with the
     kind type parameter of the other.
 
 ### **Description**
@@ -56,7 +57,7 @@ Keep the 16 right-most bits
 ```
 #### NOTE
 
-**dshifr(i,j,shift)t** is equivalent to
+**dshifr(i,j,shift)** is equivalent to
 ```fortran
      ior(shiftl (i, bit_size(i) - shift), shiftr(j, shift) )
 ```

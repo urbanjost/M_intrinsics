@@ -4336,9 +4336,11 @@ Fortran 2003
      elemental integer function char(i,kind)
 
       integer(kind=KIND),intent(in) :: c
-      integer(kind=KINDK),intent(in),optional :: kind
+      integer(kind=**),intent(in),optional :: kind
 ```
 ### **Characteristics**
+
+  - a kind designated as ** may be any supported kind value for the type
 
 ### **Description**
 
@@ -5777,19 +5779,21 @@ Fortran 2008
 ```fortran
      integer(kind=KIND) function count(mask, dim, kind )
 
-      logical(kind=KINDL),intent(in) :: mask(..)
-      integer(kind=KINDD),intent(in),optional :: dim
-      integer(kind=KINDK),intent(in),optional :: kind
+      logical(kind=**),intent(in) :: mask(..)
+      integer(kind=**),intent(in),optional :: dim
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-**mask** must be an array but may be any shape.
+  - a kind designated as ** may be any supported kind value for the type
 
-The return value is of default _integer_ type unless **kind** is specified
-to declare the kind of the result.
+  - **mask** must be an array but may be any shape.
 
-If **dim** is present, the result is an array with the specified rank
-removed.
+  - If **dim** is present, the result is an array with the specified rank
+    removed.
+
+  - The return value is of default _integer_ type unless **kind** is specified
+    to declare the kind of the result.
 
 ### **Description**
 
@@ -6762,12 +6766,12 @@ FORTRAN 77
 ### **Characteristics**
 
   - the kind of **i**, **j**, and the return value are the same. An
-    exception is that one of **i** and **j** may be a BOZ literal
-    constant.
+    exception is that one of **i** and **j** may be a BOZ literal constant
+    (A BOZ literal constant is a binary, octal or hex constant).
 
-  - If either I or J is a boz-literal-constant (but not both), it is
+  - If either I or J is a BOZ-literal-constant (but not both), it is
     ﬁrst converted as if by the intrinsic function **int**(3) to type
-    integer with the kind type parameter of the other.
+    _integer_ with the kind type parameter of the other.
 
   - a kind designated as ** may be any supported kind value for the type
 
@@ -6908,11 +6912,12 @@ Fortran 2008
 
   - a kind designated as ** may be any kind value for the _integer_ type
 
-  - the kind of **i**, **j**, and the results are the same. An
+  - the kind of **i**, **j**, and the return value are the same. An
     exception is that one of **i** and **j** may be a BOZ literal constant
+    (A BOZ literal constant is a binary, octal or hex constant).
 
-  - If either I or J is a boz-literal-constant, it is first converted
-    as if by the intrinsic function **int**(3) to type integer with the
+  - If either I or J is a BOZ-literal-constant, it is first converted
+    as if by the intrinsic function **int**(3) to type _integer_ with the
     kind type parameter of the other.
 
 ### **Description**
@@ -6945,7 +6950,7 @@ Keep the 16 right-most bits
 ```
 #### NOTE
 
-**dshifr(i,j,shift)t** is equivalent to
+**dshifr(i,j,shift)** is equivalent to
 ```fortran
      ior(shiftl (i, bit_size(i) - shift), shiftr(j, shift) )
 ```
@@ -7107,7 +7112,7 @@ Fortran 2008
 - **dim**
   :  **dim** is in the range of
 ```fortran
-    **1 <= DIM <= n**
+    1 <= DIM <= n
 ```
   where **"n"** is the rank of **array**.  If **dim** is omitted it
   is taken to be **1**.
@@ -8060,12 +8065,12 @@ identified by MASK along dimension DIM matching a target value
 ```fortran
      function findloc (array, value, dim, mask, kind, back)
 
-      integer(kind=KIND),  intent(in)          :: array(..)
-      integer(kind=KIND),  intent(in)          :: value
-      integer(kind=KIND),  intent(in)          :: dim
-      logical(kind=KINDM), intent(in),optional :: mask(..)
-      integer(kind=KINDK), intent(in),optional :: kind
-      logical(kind=KINDB),intent(in),optional :: back
+      integer(kind=KIND),  intent(in)      :: array(..)
+      integer(kind=KIND),  intent(in)      :: value
+      integer(kind=KIND),  intent(in)      :: dim
+      logical(kind=**),intent(in),optional :: mask(..)
+      integer(kind=**),intent(in),optional :: kind
+      logical(kind=**),intent(in),optional :: back
 ```
 or
 ```fortran
@@ -8074,14 +8079,15 @@ or
 ```fortran
      function findloc (array, value, mask, kind, back)
 
-      integer(kind=KIND),  intent(in)          :: array(..)
-      integer(kind=KIND),  intent(in)          :: value
-      logical(kind=KINDM), intent(in),optional :: mask(..)
-      integer(kind=KINDK), intent(in),optional :: kind
-      logical(kind=KINDB),intent(in),optional :: back
+      integer(kind=KIND),  intent(in)       :: array(..)
+      integer(kind=KIND),  intent(in)       :: value
+      logical(kind=**), intent(in),optional :: mask(..)
+      integer(kind=**), intent(in),optional :: kind
+      logical(kind=**),intent(in),optional  :: back
 ```
 ### **Characteristics**
 
+- a kind designated as ** may be any supported kind value for the type
 - **array** shall be an array of intrinsic type.
 - **value** shall be scalar but in type conformance with **array**
 - **dim** The corresponding actual argument shall not be an optional dummy argument.
@@ -9191,14 +9197,14 @@ Fortran 2008
      elemental integer(kind=KIND) function iachar(c,kind)
 
       character(len=1),intent(in) :: c
-      integer(kind=KINDK,intent(in),optional :: kind
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-  The return value is of type _integer_ and of kind **kind**. If **kind**
-  is absent, the return value is of default integer kind.
-
-  **kind** may be of any _integer_ kind.
+ - The return value is of type _integer_ and of kind **KIND**. If **KIND**
+   is absent, the return value is of default integer kind.
+ - **kind** may be of any _integer_ kind.
+ - a kind designated as ** may be any supported kind value for the type
 
 ### **Description**
 
@@ -9209,8 +9215,7 @@ Fortran 2008
 
 - **c**
   : A character to determine the ASCII code of.
-
-  A common extension is to allow strings but all but the first character
+  : A common extension is to allow strings but all but the first character
   is then ignored.
 
 - **kind**
@@ -9315,8 +9320,8 @@ Results:
 ```fortran
      integer(kind=KIND) function iall(array,mask)
 
-      integer(kind=KIND),intent(in)           :: array(..)
-      logical(kind=KINDL),intent(in),optional :: mask(..)
+      integer(kind=KIND),intent(in)        :: array(..)
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
   or
 ```fortran
@@ -9325,19 +9330,22 @@ Results:
 ```fortran
      integer(kind=KIND) function iall(array,dim,mask)
 
-      integer(kind=KIND),intent(in)           :: array(..)
-      integer(kind=KINDD),intent(in),optional :: dim
-      logical(kind=KINDL),intent(in),optional :: mask(..)
+      integer(kind=KIND),intent(in)        :: array(..)
+      integer(kind=**),intent(in),optional :: dim
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
 
-**array** must be an array. The result will by of the same type and kind
-as **array**. **mask** is a _logical_ array that conforms to **array** of
-any _logical_ kind. **dim** may be of any _integer_ kind.
+ - a kind designated as ** may be any supported kind value for the type
+ - **array** must be an _integer_ array
+ - **mask** is a _logical_ array that conforms to **array** of any
+   _logical_ kind.
+ - **dim** may be of any _integer_ kind.
+ - The result will by of the same type and kind as **array**.
 
 ### **Description**
 
-Reduces with bitwise _and_ the elements of **array** along dimension
+Reduces with a bitwise _and_ the elements of **array** along dimension
 **dim** if the corresponding element in **mask** is _.true._.
 
 ### **Options**
@@ -9485,8 +9493,8 @@ Fortran 95
 ```fortran
      integer(kind=KIND) function iany(array,mask)
 
-      integer(kind=KIND),intent(in)           :: array(..)
-      logical(kind=KINDL),intent(in),optional :: mask(..)
+      integer(kind=KIND),intent(in)        :: array(..)
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
 or
 ```fortran
@@ -9495,11 +9503,13 @@ or
 ```fortran
      integer(kind=KIND) function iany(array,dim,mask)
 
-      integer(kind=KIND),intent(in)           :: array(..)
-      integer(kind=KINDD),intent(in),optional :: dim
-      logical(kind=KINDL),intent(in),optional :: mask(..)
+      integer(kind=KIND),intent(in)        :: array(..)
+      integer(kind=**),intent(in),optional :: dim
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
+
+  - a kind designated as ** may be any supported kind value for the type
 
 **array** must be an array. The result will by of the same type and kind
 as **array**. **mask** is a _logical_ array that conforms to **array** of
@@ -9507,7 +9517,7 @@ any _logical_ kind. **dim** may be of any _integer_ kind.
 
 ### **Description**
 
-Reduces with bitwise or (inclusive or) the elements of **array** along
+Reduces with bitwise **OR** (inclusive **OR**) the elements of **array** along
 dimension **dim** if the corresponding element in **mask** is _.true._.
 
 ### **Options**
@@ -9575,15 +9585,16 @@ Fortran 2008
     result = ibclr(i, pos)
 ```
 ```fortran
-     elemental integer(kind=KINDI) function ibclr(i,pos)
+     elemental integer(kind=KIND) function ibclr(i,pos)
 
-      integer(kind=KINDI),intent(in) :: i
-      integer(kind=KINDPOS),intent(in) :: pos
+      integer(kind=KIND),intent(in) :: i
+      integer(kind=**),intent(in) :: pos
 ```
 ### **Characteristics**
+  - a kind designated as ** may be any supported kind value for the type
 
-  The return value is of the same kind as **i**. Otherwise,
-  any _integer_ kinds are allowed.
+  - The return value is of the same kind as **i**. Otherwise,
+    any _integer_ kinds are allowed.
 
 ### **Description**
 
@@ -9634,16 +9645,17 @@ Fortran 95
     result = ibits(i, pos, len)
 ```
 ```fortran
-     elemental integer(kind=KINDI) function ibits(i,pos,len)
+     elemental integer(kind=KIND) function ibits(i,pos,len)
 
-      integer(kind=KINDI),intent(in) :: i
-      integer(kind=KINDPOS),intent(in) :: pos
-      integer(kind=KINDLEN),intent(in) :: len
+      integer(kind=KIND),intent(in) :: i
+      integer(kind=**),intent(in) :: pos
+      integer(kind=**),intent(in) :: len
 ```
 ### **Characteristics**
 
-  The return value is of the same kind as **i**. Otherwise,
-  any _integer_ kinds are allowed.
+  - a kind designated as ** may be any supported kind value for the type
+  - The return value is of the same kind as **i**. Otherwise,
+    any _integer_ kinds are allowed.
 ```fortran
 ```
 ### **Description**
@@ -9699,15 +9711,17 @@ Fortran 95
     result = ibset(i, pos)
 ```
 ```fortran
-     elemental integer(kind=KINDI) function ibset(i,pos)
+     elemental integer(kind=KIND) function ibset(i,pos)
 
-      integer(kind=KINDI),intent(in) :: i
-      integer(kind=KINDPOS),intent(in) :: pos
+      integer(kind=KIND),intent(in) :: i
+      integer(kind=**),intent(in) :: pos
 ```
 ### **Characteristics**
 
-  The return value is of the same kind as **i**. Otherwise,
-  any _integer_ kinds are allowed.
+  - a kind designated as ** may be any supported kind value for the type
+
+  - The return value is of the same kind as **i**. Otherwise,
+    any _integer_ kinds are allowed.
 
 ### **Description**
 
@@ -9893,15 +9907,19 @@ of arguments, and search for certain arguments:
     result = ieor(i, j)
 ```
 ```fortran
-     elemental integer(kind=KINDI) function ieor(i,j)
+     elemental integer(kind=KIND) function ieor(i,j)
 
-      integer(kind=KINDI),intent(in) :: i
-      integer(kind=KINDJ),intent(in) :: j
+      integer(kind=**),intent(in) :: i
+      integer(kind=**),intent(in) :: j
 ```
 ### **Characteristics**
 
-  The return value is of the same kind as the larger kind of **i**
-  and **j**. Otherwise, any _integer_ kinds are allowed.
+  - a kind designated as ** may be any supported kind value for the type
+
+  - any _integer_ kinds are allowed for **i** and **j**.
+
+  - The return value is of the same kind as the larger kind of **i**
+    and **j**.
 
 ### **Description**
 
@@ -10236,13 +10254,15 @@ FORTRAN 77
 ```fortran
      elemental integer(kind=KIND) function ior(i,j)
 
-      integer(kind=KINDI) ,intent(in) :: i
-      integer(kind=KINDJ) ,intent(in) :: j
+      integer(kind=**) ,intent(in) :: i
+      integer(kind=**) ,intent(in) :: j
 ```
 ### **Characteristics**
 
-  The return value is of the same kind as the larger kind of **i**
-  and **j**. Otherwise, any _integer_ kinds are allowed.
+  - a kind designated as ** may be any supported kind value for the type
+
+  - The return value is of the same kind as the larger kind of **i**
+    and **j**. Otherwise, any _integer_ kinds are allowed.
 
 ### **Description**
 
@@ -11994,9 +12014,11 @@ Gamma function: [**gamma**(3)](#gamma)
      elemental logical(kind=KIND) function logical(l,kind)
 
       logical(kind=KIND),intent(in) :: l
-      integer(kind=KINDK),intent(in),optional :: kind
+      integer(kind=**),intent(in),optional :: kind
 ```
 ### **Characteristics**
+
+  - a kind designated as ** may be any supported kind value for the type
 
 ### **Description**
 
@@ -12635,7 +12657,7 @@ Fortran 95
      NUMERIC function maxloc(array, mask)
 
       NUMERIC,intent(in) :: array(..)
-      logical(kind=KINDL),intent(in),optional :: mask(..)
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
 or
 ```fortran
@@ -12645,12 +12667,13 @@ or
      NUMERIC function maxloc(array, dim, mask)
 
       NUMERIC,intent(in) :: array(..)
-      integer(kind=KINDD),intent(in),optional :: dim
-      logical(kind=KINDL),intent(in),optional :: mask(..)
+      integer(kind=**),intent(in),optional :: dim
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
 
-where **NUMERIC** is any numeric type and kind.
+  - a kind designated as ** may be any supported kind value for the type
+  - **NUMERIC** designates any intrinsic numeric type and kind.
 
 ### **Description**
 
@@ -12889,7 +12912,7 @@ FORTRAN 77
      NUMERIC function maxval(array ,mask)
 
       NUMERIC,intent(in) :: array(..)
-      logical(kind=KINDL),intent(in),optional :: mask(..)
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
 or
 ```fortran
@@ -12899,12 +12922,14 @@ or
      NUMERIC function maxval(array ,dim, mask)
 
       NUMERIC,intent(in) :: array(..)
-      integer(kind=KINDD),intent(in),optional :: dim
-      logical(kind=KINDL),intent(in),optional :: mask(..)
+      integer(kind=**),intent(in),optional :: dim
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
 
-where **NUMERIC** is any numeric type and kind.
+ - a kind designated as ** may be any supported kind value for the type
+
+ - **NUMERIC** designates any numeric type and kind.
 
 ### **Description**
 
@@ -13120,14 +13145,15 @@ Fortran 2008
 
       type(TYPE(kind=KIND)),intent(in) :: tsource
       type(TYPE(kind=KIND)),intent(in) :: fsource
-      logical(kind=KINDM),intent(in)   :: mask
+      logical(kind=**),intent(in)   :: mask
       mask** : Shall be of type _logical_.
 ```
 ### **Characteristics**
 
-  **tsource** May be of any type, including user-defined.
-  **fsource** Shall be of the same type and type parameters as **tsource**.
-  The result will by of the same type and type parameters as **tsource** too.
+ - a kind designated as ** may be any supported kind value for the type
+ - **tsource** May be of any type, including user-defined.
+ - **fsource** Shall be of the same type and type parameters as **tsource**.
+ - The result will by of the same type and type parameters as **tsource** too.
 
 ### **Description**
 
@@ -13371,7 +13397,7 @@ Fortran 95
      NUMERIC function minloc(array, mask)
 
       NUMERIC,intent(in) :: array(..)
-      logical(kind=KINDL),intent(in),optional :: mask(..)
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
 or
 ```fortran
@@ -13381,12 +13407,13 @@ or
      NUMERIC function minloc(array, dim, mask)
 
       NUMERIC,intent(in) :: array(..)
-      integer(kind=KINDD),intent(in),optional :: dim
-      logical(kind=KINDL),intent(in),optional :: mask(..)
+      integer(kind=**),intent(in),optional :: dim
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
 
-where **NUMERIC** is any numeric type and kind.
+  - a kind designated as ** may be any supported kind value for the type
+  - **NUMERIC** is any numeric type and kind.
 
 ### **Description**
 
@@ -13548,7 +13575,7 @@ FORTRAN 77
      NUMERIC function minval(array ,mask)
 
       NUMERIC,intent(in) :: array(..)
-      logical(kind=KINDL),intent(in),optional :: mask(..)
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
   or
 ```fortran
@@ -13558,12 +13585,14 @@ FORTRAN 77
      NUMERIC function minval(array, dim, mask)
 
       NUMERIC,intent(in) :: array(..)
-      integer(kind=KINDD),intent(in),optional :: dim
-      logical(kind=KINDL),intent(in),optional :: mask(..)
+      integer(kind=**),intent(in),optional :: dim
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
 
-where **NUMERIC** is any numeric type and kind.
+ - a kind designated as ** may be any supported kind value for the type
+
+ - **NUMERIC** is any numeric type and kind.
 
 ### **Description**
 
@@ -14319,15 +14348,17 @@ Fortran 2003
     result = nint( x [,kind] )
 ```
 ```fortran
-     elemental integer(kind=kind) function nint(x, kind )
+     elemental integer(kind=KIND) function nint(x, kind )
 
-      real(kind=KINDX),intent(in) :: x
-      integer(kind=KINDK),intent(in),optional :: kind
+      real(kind=**),intent(in) :: x
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-   The result is default _integer_ kind or the value of **kind**
-   if it is present.
+  - a kind designated as ** may be any supported kind value for the type
+
+  - The result is default _integer_ kind or the value of **kind**
+    if it is present.
 
 ### **Description**
 
@@ -15083,12 +15114,12 @@ Fortran 95
 ```fortran
      logical(kind=KIND) function parity(mask, dim)
 
-      type(logical(kind=KIND)),intent(in)           :: mask(..)
-      type(integer(kind=KINDD)),intent(in),optional :: dim
+      type(logical(kind=KIND)),intent(in)        :: mask(..)
+      type(integer(kind=**)),intent(in),optional :: dim
 ```
 ### **Characteristics**
 
-where KIND and LKIND are any supported kind for the type.
+  - a kind designated as ** may be any supported kind value for the type
 
 ### **Description**
 
@@ -15579,12 +15610,13 @@ Fortran 95
      NUMERIC function product(array, dim, mask)
 
       NUMERIC,intent(in) :: array(..)
-      integer(kind=KINDD),intent(in),optional :: dim
-      logical(kind=KINDL),intent(in),optional :: mask(..)
+      integer(kind=**),intent(in),optional :: dim
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
 
-where **NUMERIC** is any numeric type and kind.
+  - a kind designated as ** may be any supported kind value for the type
+  - **NUMERIC** is any numeric type and kind.
 
 ### **Description**
 
@@ -17208,8 +17240,8 @@ Fortran 95
 ```fortran
      elemental integer(kind=KIND) function scan(string,set,back,kind)
 
-      character(len=*,kind=KINDC),intent(in) :: string
-      character(len=*,kind=KINDC),intent(in) :: set
+      character(len=*,kind=**),intent(in) :: string
+      character(len=*,kind=**),intent(in) :: set
       logical,intent(in),optional :: back
       integer,intent(in),optional :: kind
 ```
@@ -17579,11 +17611,13 @@ Fortran 95 ; with RADIX - Fortran 2008
      elemental real(kind=KIND) function set_exponent(x,i)
 
       real(kind=KIND),intent(in) :: x
-      integer(kind=KINDI),intent(in) :: i
+      integer(kind=**),intent(in) :: i
 ```
 ### **Characteristics**
 
-  The return value is of the same type and kind as **x**.
+ - a kind designated as ** may be any supported kind value for the type
+
+ - The return value is of the same type and kind as **x**.
 
 ### **Description**
 
@@ -17658,15 +17692,17 @@ Fortran 95
   result = shape(source [,kind])
 ```
 ```fortran
-   integer(kind=KINDR) function(shape(source,kind)
+   integer(kind=KIND) function(shape(source,kind)
 
-    type(TYPE(kind=KIND)),intent(in)        :: source(..)
-    integer(kind=KINDK),intent(in),optional :: kind
+    type(TYPE(kind=**)),intent(in)        :: source(..)
+    integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-**source** is an array or scalar of any type. If **source** is a pointer
-it must be associated and allocatable arrays must be allocated.
+  - a kind designated as ** may be any supported kind value for the type
+
+  - **source** is an array or scalar of any type. If **source** is a pointer
+    it must be associated and allocatable arrays must be allocated.
 
 ### **Description**
 
@@ -19094,19 +19130,20 @@ FORTRAN 77
 ```fortran
      integer(kind=KIND) storage_size(a,kind)
 
-      type(TYPE(kind=KINDA)) :: a
+      type(TYPE(kind=**)) :: a
       integer,intent(in),optional :: kind
 ```
 ### **Characteristics**
+  - a kind designated as ** may be any supported kind value for the type
 
-  **a** may be of any type and kind. If it is polymorphic it shall not
-  be an undefined pointer. If it is unlimited polymorphic or has any
-  deferred type parameters, it shall not be an unallocated allocatable
-  variable or a disassociated or undefined pointer.
+  - **a** may be of any type and kind. If it is polymorphic it shall not
+    be an undefined pointer. If it is unlimited polymorphic or has any
+    deferred type parameters, it shall not be an unallocated allocatable
+    variable or a disassociated or undefined pointer.
 
-  The kind type parameter of the returned value is that specified by
-  the value of **kind**; otherwise, the kind type parameter is that of
-  default integer type.
+  - The kind type parameter of the returned value is that specified by
+    the value of **kind**; otherwise, the kind type parameter is that of
+    default integer type.
 
 ### **Description**
 
@@ -19190,7 +19227,7 @@ Fortran 2008
      NUMERIC function sum(array, mask)
 
       NUMERIC,intent(in) :: array(..)
-      logical(kind=KINDL),intent(in),optional :: mask(..)
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
   or
 ```fortran
@@ -19200,12 +19237,13 @@ Fortran 2008
      NUMERIC function sum(array, dim, mask)
 
       NUMERIC,intent(in) :: array(..)
-      integer(kind=KINDD),intent(in),optional :: dim
-      logical(kind=KINDL),intent(in),optional :: mask(..)
+      integer(kind=**),intent(in),optional :: dim
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
 
-where **NUMERIC** is any numeric type and kind.
+  - a kind designated as ** may be any supported kind value for the type
+  - **NUMERIC** is any numeric type and kind.
 
 ### **Description**
 
@@ -20183,11 +20221,12 @@ of arguments, and search for certain arguments:
      elemental TYPE(kind=KIND) function ubound(array,dim,kind)
 
       TYPE(kind=KIND),intent(in)  :: array
-      integer(kind=KINDD),intent(in),optional :: dim
-      integer(kind=KINDK),intent(in),optional :: kind
+      integer(kind=**),intent(in),optional :: dim
+      integer(kind=**),intent(in),optional :: kind
 ```
 ### **Characteristics**
 
+- a kind designated as ** may be any supported kind value for the type
 - **array** Shall be an array, of any type.
 - **dim** : (Optional) Shall be a scalar _integer_.
 - **kind** An _integer_ initialization expression indicating the kind
@@ -20508,17 +20547,19 @@ of characters that does not appear in a given set of characters.
 ```fortran
      elemental integer(kind=KIND) function verify(string,set,back,kind)
 
-      character(len=*,kind=KINDC),intent(in) :: string
-      character(len=*,kind=KINDC),intent(in) :: set
+      character(len=*,kind=**),intent(in) :: string
+      character(len=*,kind=**),intent(in) :: set
       logical,intent(in),optional :: back
       integer,intent(in),optional :: kind
 ```
 ### **Characteristics**
 
-**string** and **set**  must have the same kind type parameter.
+ - a kind designated as ** may be any supported kind value for the type
 
-the kind of the returned value is the same as **kind** if
-present. Otherwise a default _integer_ kind is returned.
+ - **string** and **set**  must have the same kind type parameter.
+
+ - the kind of the returned value is the same as **kind** if
+   present. Otherwise a default _integer_ kind is returned.
 
 ### **Description**
 

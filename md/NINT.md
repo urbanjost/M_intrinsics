@@ -9,15 +9,17 @@
     result = nint( x [,kind] )
 ```
 ```fortran
-     elemental integer(kind=kind) function nint(x, kind )
+     elemental integer(kind=KIND) function nint(x, kind )
 
-      real(kind=KINDX),intent(in) :: x
-      integer(kind=KINDK),intent(in),optional :: kind
+      real(kind=**),intent(in) :: x
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-   The result is default _integer_ kind or the value of **kind**
-   if it is present.
+  - a kind designated as ** may be any supported kind value for the type
+
+  - The result is default _integer_ kind or the value of **kind**
+    if it is present.
 
 ### **Description**
 

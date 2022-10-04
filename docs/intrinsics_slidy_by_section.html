@@ -3474,9 +3474,12 @@ the value of btest (2, a)
 <div class="sourceCode" id="cb180"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb180-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> <span class="bu">char</span>(i,<span class="fu">kind</span>)</a>
 <a class="sourceLine" id="cb180-2" title="2"></a>
 <a class="sourceLine" id="cb180-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> c</a>
-<a class="sourceLine" id="cb180-4" title="4">      <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<a class="sourceLine" id="cb180-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 </div><div id="characteristics-46" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
+<ul>
+<li>a kind designated as ** may be any supported kind value for the type</li>
+</ul>
 </div><div id="description-46" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p><strong>char(i, kind)</strong> returns the character represented by the integer <strong>i</strong>.</p>
@@ -4491,14 +4494,17 @@ the value of btest (2, a)
 <div class="sourceCode" id="cb245"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb245-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">count</span>(mask <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
 <div class="sourceCode" id="cb246"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb246-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="fu">count</span>(mask, <span class="bu">dim</span>, <span class="fu">kind</span> )</a>
 <a class="sourceLine" id="cb246-2" title="2"></a>
-<a class="sourceLine" id="cb246-3" title="3">      <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> mask(..)</a>
-<a class="sourceLine" id="cb246-4" title="4">      <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
-<a class="sourceLine" id="cb246-5" title="5">      <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<a class="sourceLine" id="cb246-3" title="3">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> mask(..)</a>
+<a class="sourceLine" id="cb246-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb246-5" title="5">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
 </div><div id="characteristics-62" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p><strong>mask</strong> must be an array but may be any shape.</p>
-<p>The return value is of default integer type unless <strong>kind</strong> is specified to declare the kind of the result.</p>
-<p>If <strong>dim</strong> is present, the result is an array with the specified rank removed.</p>
+<ul>
+<li><p>a kind designated as ** may be any supported kind value for the type</p></li>
+<li><p><strong>mask</strong> must be an array but may be any shape.</p></li>
+<li><p>If <strong>dim</strong> is present, the result is an array with the specified rank removed.</p></li>
+<li><p>The return value is of default integer type unless <strong>kind</strong> is specified to declare the kind of the result.</p></li>
+</ul>
 </div><div id="description-62" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>Counts the number of .true. elements in a logical <strong>mask</strong>, or, if the <strong>dim</strong> argument is supplied, counts the number of elements along each row of the array in the <strong>dim</strong> direction. If the array has zero size, or all of the elements of <strong>mask</strong> are false, then the result is <strong>0</strong>.</p>
@@ -5259,8 +5265,8 @@ the value of btest (2, a)
 </div><div id="characteristics-72" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
 <ul>
-<li><p>the kind of <strong>i</strong>, <strong>j</strong>, and the return value are the same. An exception is that one of <strong>i</strong> and <strong>j</strong> may be a BOZ literal constant.</p></li>
-<li><p>If either I or J is a boz-literal-constant (but not both), it is ﬁrst converted as if by the intrinsic function <strong>int</strong>(3) to type integer with the kind type parameter of the other.</p></li>
+<li><p>the kind of <strong>i</strong>, <strong>j</strong>, and the return value are the same. An exception is that one of <strong>i</strong> and <strong>j</strong> may be a BOZ literal constant (A BOZ literal constant is a binary, octal or hex constant).</p></li>
+<li><p>If either I or J is a BOZ-literal-constant (but not both), it is ﬁrst converted as if by the intrinsic function <strong>int</strong>(3) to type integer with the kind type parameter of the other.</p></li>
 <li><p>a kind designated as ** may be any supported kind value for the type</p></li>
 </ul>
 </div><div id="description-72" class="slide section level3">
@@ -5376,8 +5382,8 @@ the value of btest (2, a)
 <h1><strong>Characteristics</strong></h1>
 <ul>
 <li><p>a kind designated as ** may be any kind value for the integer type</p></li>
-<li><p>the kind of <strong>i</strong>, <strong>j</strong>, and the results are the same. An exception is that one of <strong>i</strong> and <strong>j</strong> may be a BOZ literal constant</p></li>
-<li><p>If either I or J is a boz-literal-constant, it is first converted as if by the intrinsic function <strong>int</strong>(3) to type integer with the kind type parameter of the other.</p></li>
+<li><p>the kind of <strong>i</strong>, <strong>j</strong>, and the return value are the same. An exception is that one of <strong>i</strong> and <strong>j</strong> may be a BOZ literal constant (A BOZ literal constant is a binary, octal or hex constant).</p></li>
+<li><p>If either I or J is a BOZ-literal-constant, it is first converted as if by the intrinsic function <strong>int</strong>(3) to type integer with the kind type parameter of the other.</p></li>
 </ul>
 </div><div id="description-73" class="slide section level3">
 <h1><strong>Description</strong></h1>
@@ -5393,7 +5399,7 @@ the value of btest (2, a)
 <p>Keep the 16 right-most bits</p>
 <pre class="text"><code>                   KLMNOPabcdefghij</code></pre>
 <h4 id="note-4">NOTE</h4>
-<p><strong>dshifr(i,j,shift)t</strong> is equivalent to</p>
+<p><strong>dshifr(i,j,shift)</strong> is equivalent to</p>
 <div class="sourceCode" id="cb301"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb301-1" title="1">     <span class="bu">ior</span>(shiftl (i, <span class="fu">bit_size</span>(i) <span class="kw">-</span> shift), shiftr(j, shift) )</a></code></pre></div>
 <p>it can also be seen that if <strong>i</strong> and <strong>j</strong> have the same value</p>
 <div class="sourceCode" id="cb302"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb302-1" title="1">     dshiftr( i, i, shift )</a></code></pre></div>
@@ -5533,7 +5539,7 @@ the value of btest (2, a)
 </dd>
 </dl></li>
 </ul>
-<div class="sourceCode" id="cb309"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb309-1" title="1">    <span class="kw">**</span><span class="dv">1</span> <span class="op">&lt;</span><span class="kw">=</span> <span class="bu">DIM</span> <span class="op">&lt;</span><span class="kw">=</span> n<span class="kw">**</span></a></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb309-1" title="1">    <span class="dv">1</span> <span class="op">&lt;</span><span class="kw">=</span> <span class="bu">DIM</span> <span class="op">&lt;</span><span class="kw">=</span> n</a></code></pre></div>
 <p>where <strong>“n”</strong> is the rank of <strong>array</strong>. If <strong>dim</strong> is omitted it is taken to be <strong>1</strong>.</p>
 </div><div id="result-55" class="slide section level3">
 <h1><strong>Result</strong></h1>
@@ -6237,24 +6243,25 @@ $$</span><br /></p>
 <div class="sourceCode" id="cb349"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb349-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> findloc (array, value, <span class="bu">dim</span> <span class="kw">[</span>,mask<span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> <span class="kw">[</span>,back<span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb350"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb350-1" title="1">     <span class="kw">function</span> findloc (array, value, <span class="bu">dim</span>, mask, <span class="fu">kind</span>, back)</a>
 <a class="sourceLine" id="cb350-2" title="2"></a>
-<a class="sourceLine" id="cb350-3" title="3">      <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>          <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb350-4" title="4">      <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>          <span class="dt">::</span> value</a>
-<a class="sourceLine" id="cb350-5" title="5">      <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>          <span class="dt">::</span> <span class="bu">dim</span></a>
-<a class="sourceLine" id="cb350-6" title="6">      <span class="dt">logical(kind=KINDM)</span>, <span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a>
-<a class="sourceLine" id="cb350-7" title="7">      <span class="dt">integer(kind=KINDK)</span>, <span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a>
-<a class="sourceLine" id="cb350-8" title="8">      <span class="dt">logical(kind=KINDB)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> back</a></code></pre></div>
+<a class="sourceLine" id="cb350-3" title="3">      <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>      <span class="dt">::</span> array(..)</a>
+<a class="sourceLine" id="cb350-4" title="4">      <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>      <span class="dt">::</span> value</a>
+<a class="sourceLine" id="cb350-5" title="5">      <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>      <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb350-6" title="6">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a>
+<a class="sourceLine" id="cb350-7" title="7">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a>
+<a class="sourceLine" id="cb350-8" title="8">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> back</a></code></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb351"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb351-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> findloc(array, value <span class="kw">[</span>,mask<span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> <span class="kw">[</span>,back<span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb352"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb352-1" title="1">     <span class="kw">function</span> findloc (array, value, mask, <span class="fu">kind</span>, back)</a>
 <a class="sourceLine" id="cb352-2" title="2"></a>
-<a class="sourceLine" id="cb352-3" title="3">      <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>          <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb352-4" title="4">      <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>          <span class="dt">::</span> value</a>
-<a class="sourceLine" id="cb352-5" title="5">      <span class="dt">logical(kind=KINDM)</span>, <span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a>
-<a class="sourceLine" id="cb352-6" title="6">      <span class="dt">integer(kind=KINDK)</span>, <span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a>
-<a class="sourceLine" id="cb352-7" title="7">      <span class="dt">logical(kind=KINDB)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> back</a></code></pre></div>
+<a class="sourceLine" id="cb352-3" title="3">      <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>       <span class="dt">::</span> array(..)</a>
+<a class="sourceLine" id="cb352-4" title="4">      <span class="dt">integer(kind=KIND)</span>,  <span class="dt">intent(in)</span>       <span class="dt">::</span> value</a>
+<a class="sourceLine" id="cb352-5" title="5">      <span class="dt">logical(kind=**)</span>, <span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a>
+<a class="sourceLine" id="cb352-6" title="6">      <span class="dt">integer(kind=**)</span>, <span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a>
+<a class="sourceLine" id="cb352-7" title="7">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span>  <span class="dt">::</span> back</a></code></pre></div>
 </div><div id="characteristics-84" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
 <ul>
+<li>a kind designated as ** may be any supported kind value for the type</li>
 <li><strong>array</strong> shall be an array of intrinsic type.</li>
 <li><strong>value</strong> shall be scalar but in type conformance with <strong>array</strong></li>
 <li><strong>dim</strong> The corresponding actual argument shall not be an optional dummy argument.</li>
@@ -7108,11 +7115,14 @@ $$</span><br /></p>
 <div class="sourceCode" id="cb403"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb403-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">iachar</span>(c,<span class="fu">kind</span>)</a>
 <a class="sourceLine" id="cb403-2" title="2"></a>
 <a class="sourceLine" id="cb403-3" title="3">      <span class="dt">character(len=1)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> c</a>
-<a class="sourceLine" id="cb403-4" title="4">      <span class="dt">integer(kind=KINDK,intent(in),optional :: kind</span></a></code></pre></div>
+<a class="sourceLine" id="cb403-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
 </div><div id="characteristics-93" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</p>
-<p><strong>kind</strong> may be of any integer kind.</p>
+<ul>
+<li>The return value is of type integer and of kind <strong>KIND</strong>. If <strong>KIND</strong> is absent, the return value is of default integer kind.</li>
+<li><strong>kind</strong> may be of any integer kind.</li>
+<li>a kind designated as ** may be any supported kind value for the type</li>
+</ul>
 </div><div id="description-92" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p><strong>iachar</strong>(c) returns the code for the ASCII character in the first character position of C.</p>
@@ -7123,8 +7133,9 @@ $$</span><br /></p>
 <dt><strong>c</strong></dt>
 <dd>A character to determine the ASCII code of.
 </dd>
-</dl>
-<p>A common extension is to allow strings but all but the first character is then ignored.</p></li>
+<dd>A common extension is to allow strings but all but the first character is then ignored.
+</dd>
+</dl></li>
 <li><dl>
 <dt><strong>kind</strong></dt>
 <dd>A constant initialization expression indicating the kind parameter of the result.
@@ -7195,21 +7206,27 @@ $$</span><br /></p>
 <div class="sourceCode" id="cb406"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb406-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> iall(array <span class="kw">[</span>,mask<span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb407"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb407-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> iall(array,mask)</a>
 <a class="sourceLine" id="cb407-2" title="2"></a>
-<a class="sourceLine" id="cb407-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb407-4" title="4">      <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb407-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>        <span class="dt">::</span> array(..)</a>
+<a class="sourceLine" id="cb407-4" title="4">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb408"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb408-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> iall(array <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,mask<span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb409"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb409-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> iall(array,<span class="bu">dim</span>,mask)</a>
 <a class="sourceLine" id="cb409-2" title="2"></a>
-<a class="sourceLine" id="cb409-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb409-4" title="4">      <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
-<a class="sourceLine" id="cb409-5" title="5">      <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb409-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>        <span class="dt">::</span> array(..)</a>
+<a class="sourceLine" id="cb409-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb409-5" title="5">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 </div><div id="characteristics-94" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p><strong>array</strong> must be an array. The result will by of the same type and kind as <strong>array</strong>. <strong>mask</strong> is a logical array that conforms to <strong>array</strong> of any logical kind. <strong>dim</strong> may be of any integer kind.</p>
+<ul>
+<li>a kind designated as ** may be any supported kind value for the type</li>
+<li><strong>array</strong> must be an integer array</li>
+<li><strong>mask</strong> is a logical array that conforms to <strong>array</strong> of any logical kind.</li>
+<li><strong>dim</strong> may be of any integer kind.</li>
+<li>The result will by of the same type and kind as <strong>array</strong>.</li>
+</ul>
 </div><div id="description-93" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Reduces with bitwise and the elements of <strong>array</strong> along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
+<p>Reduces with a bitwise and the elements of <strong>array</strong> along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
 </div><div id="options-91" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -7317,21 +7334,24 @@ $$</span><br /></p>
 <div class="sourceCode" id="cb416"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb416-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> iany(array <span class="kw">[</span>,mask<span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb417"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb417-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> iany(array,mask)</a>
 <a class="sourceLine" id="cb417-2" title="2"></a>
-<a class="sourceLine" id="cb417-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb417-4" title="4">      <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb417-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>        <span class="dt">::</span> array(..)</a>
+<a class="sourceLine" id="cb417-4" title="4">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb418"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb418-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> iany(array <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,mask<span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb419"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb419-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> iany(array,<span class="bu">dim</span>,mask)</a>
 <a class="sourceLine" id="cb419-2" title="2"></a>
-<a class="sourceLine" id="cb419-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb419-4" title="4">      <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
-<a class="sourceLine" id="cb419-5" title="5">      <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb419-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>        <span class="dt">::</span> array(..)</a>
+<a class="sourceLine" id="cb419-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb419-5" title="5">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 </div><div id="characteristics-96" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
+<ul>
+<li>a kind designated as ** may be any supported kind value for the type</li>
+</ul>
 <p><strong>array</strong> must be an array. The result will by of the same type and kind as <strong>array</strong>. <strong>mask</strong> is a logical array that conforms to <strong>array</strong> of any logical kind. <strong>dim</strong> may be of any integer kind.</p>
 </div><div id="description-95" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Reduces with bitwise or (inclusive or) the elements of <strong>array</strong> along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
+<p>Reduces with bitwise <strong>OR</strong> (inclusive <strong>OR</strong>) the elements of <strong>array</strong> along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
 </div><div id="options-93" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -7382,13 +7402,16 @@ $$</span><br /></p>
 </div><div id="synopsis-97" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb422"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb422-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">ibclr</span>(i, pos)</a></code></pre></div>
-<div class="sourceCode" id="cb423"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb423-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KINDI)</span> <span class="kw">function</span> <span class="bu">ibclr</span>(i,pos)</a>
+<div class="sourceCode" id="cb423"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb423-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">ibclr</span>(i,pos)</a>
 <a class="sourceLine" id="cb423-2" title="2"></a>
-<a class="sourceLine" id="cb423-3" title="3">      <span class="dt">integer(kind=KINDI)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb423-4" title="4">      <span class="dt">integer(kind=KINDPOS)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> pos</a></code></pre></div>
+<a class="sourceLine" id="cb423-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb423-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> pos</a></code></pre></div>
 </div><div id="characteristics-97" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p>The return value is of the same kind as <strong>i</strong>. Otherwise, any integer kinds are allowed.</p>
+<ul>
+<li><p>a kind designated as ** may be any supported kind value for the type</p></li>
+<li><p>The return value is of the same kind as <strong>i</strong>. Otherwise, any integer kinds are allowed.</p></li>
+</ul>
 </div><div id="description-96" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p><strong>ibclr</strong> returns the value of <strong>i</strong> with the bit at position <strong>pos</strong> set to zero.</p>
@@ -7423,14 +7446,17 @@ $$</span><br /></p>
 </div><div id="synopsis-98" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb424"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb424-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">ibits</span>(i, pos, <span class="fu">len</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb425"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb425-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KINDI)</span> <span class="kw">function</span> <span class="bu">ibits</span>(i,pos,<span class="fu">len</span>)</a>
+<div class="sourceCode" id="cb425"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb425-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">ibits</span>(i,pos,<span class="fu">len</span>)</a>
 <a class="sourceLine" id="cb425-2" title="2"></a>
-<a class="sourceLine" id="cb425-3" title="3">      <span class="dt">integer(kind=KINDI)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb425-4" title="4">      <span class="dt">integer(kind=KINDPOS)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> pos</a>
-<a class="sourceLine" id="cb425-5" title="5">      <span class="dt">integer(kind=KINDLEN)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> <span class="fu">len</span></a></code></pre></div>
+<a class="sourceLine" id="cb425-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb425-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> pos</a>
+<a class="sourceLine" id="cb425-5" title="5">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> <span class="fu">len</span></a></code></pre></div>
 </div><div id="characteristics-98" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p>The return value is of the same kind as <strong>i</strong>. Otherwise, any integer kinds are allowed.</p>
+<ul>
+<li>a kind designated as ** may be any supported kind value for the type</li>
+<li>The return value is of the same kind as <strong>i</strong>. Otherwise, any integer kinds are allowed.</li>
+</ul>
 <div class="sourceCode" id="cb426"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
 </div><div id="description-97" class="slide section level3">
 <h1><strong>Description</strong></h1>
@@ -7471,13 +7497,16 @@ $$</span><br /></p>
 </div><div id="synopsis-99" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb427"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb427-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">ibset</span>(i, pos)</a></code></pre></div>
-<div class="sourceCode" id="cb428"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb428-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KINDI)</span> <span class="kw">function</span> <span class="bu">ibset</span>(i,pos)</a>
+<div class="sourceCode" id="cb428"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb428-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">ibset</span>(i,pos)</a>
 <a class="sourceLine" id="cb428-2" title="2"></a>
-<a class="sourceLine" id="cb428-3" title="3">      <span class="dt">integer(kind=KINDI)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb428-4" title="4">      <span class="dt">integer(kind=KINDPOS)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> pos</a></code></pre></div>
+<a class="sourceLine" id="cb428-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb428-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> pos</a></code></pre></div>
 </div><div id="characteristics-99" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p>The return value is of the same kind as <strong>i</strong>. Otherwise, any integer kinds are allowed.</p>
+<ul>
+<li><p>a kind designated as ** may be any supported kind value for the type</p></li>
+<li><p>The return value is of the same kind as <strong>i</strong>. Otherwise, any integer kinds are allowed.</p></li>
+</ul>
 </div><div id="description-98" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p><strong>ibset</strong> returns the value of <strong>i</strong> with the bit at position <strong>pos</strong> set to one.</p>
@@ -7608,13 +7637,17 @@ end program read_val</code></pre>
 </div><div id="synopsis-101" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb434"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb434-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">ieor</span>(i, j)</a></code></pre></div>
-<div class="sourceCode" id="cb435"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb435-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KINDI)</span> <span class="kw">function</span> <span class="bu">ieor</span>(i,j)</a>
+<div class="sourceCode" id="cb435"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb435-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">ieor</span>(i,j)</a>
 <a class="sourceLine" id="cb435-2" title="2"></a>
-<a class="sourceLine" id="cb435-3" title="3">      <span class="dt">integer(kind=KINDI)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb435-4" title="4">      <span class="dt">integer(kind=KINDJ)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a></code></pre></div>
+<a class="sourceLine" id="cb435-3" title="3">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb435-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a></code></pre></div>
 </div><div id="characteristics-101" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p>The return value is of the same kind as the larger kind of <strong>i</strong> and <strong>j</strong>. Otherwise, any integer kinds are allowed.</p>
+<ul>
+<li><p>a kind designated as ** may be any supported kind value for the type</p></li>
+<li><p>any integer kinds are allowed for <strong>i</strong> and <strong>j</strong>.</p></li>
+<li><p>The return value is of the same kind as the larger kind of <strong>i</strong> and <strong>j</strong>.</p></li>
+</ul>
 </div><div id="description-100" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p><strong>ieor</strong> returns the bitwise Boolean exclusive-<strong>or</strong> of <strong>i</strong> and <strong>j</strong>.</p>
@@ -7882,11 +7915,14 @@ If not present the returned type is that of default integer type.</li>
 <div class="sourceCode" id="cb447"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb447-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">ior</span>(i, j)</a></code></pre></div>
 <div class="sourceCode" id="cb448"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb448-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">ior</span>(i,j)</a>
 <a class="sourceLine" id="cb448-2" title="2"></a>
-<a class="sourceLine" id="cb448-3" title="3">      <span class="dt">integer(kind=KINDI)</span> ,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb448-4" title="4">      <span class="dt">integer(kind=KINDJ)</span> ,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a></code></pre></div>
+<a class="sourceLine" id="cb448-3" title="3">      <span class="dt">integer(kind=**)</span> ,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb448-4" title="4">      <span class="dt">integer(kind=**)</span> ,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a></code></pre></div>
 </div><div id="characteristics-105" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p>The return value is of the same kind as the larger kind of <strong>i</strong> and <strong>j</strong>. Otherwise, any integer kinds are allowed.</p>
+<ul>
+<li><p>a kind designated as ** may be any supported kind value for the type</p></li>
+<li><p>The return value is of the same kind as the larger kind of <strong>i</strong> and <strong>j</strong>. Otherwise, any integer kinds are allowed.</p></li>
+</ul>
 </div><div id="description-104" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p><strong>ior</strong> returns the bit-wise Boolean inclusive-or of <strong>i</strong> and <strong>j</strong>.</p>
@@ -9218,9 +9254,12 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 <div class="sourceCode" id="cb520"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb520-1" title="1">     <span class="kw">elemental</span> <span class="dt">logical(kind=KIND)</span> <span class="kw">function</span> <span class="dt">logical(l,kind)</span></a>
 <a class="sourceLine" id="cb520-2" title="2"></a>
 <a class="sourceLine" id="cb520-3" title="3">      <span class="dt">logical(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> l</a>
-<a class="sourceLine" id="cb520-4" title="4">      <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<a class="sourceLine" id="cb520-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 </div><div id="characteristics-122" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
+<ul>
+<li>a kind designated as ** may be any supported kind value for the type</li>
+</ul>
 </div><div id="description-122" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>Converts one kind of logical variable to another.</p>
@@ -9731,17 +9770,20 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div class="sourceCode" id="cb550"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb550-1" title="1">     NUMERIC <span class="kw">function</span> <span class="fu">maxloc</span>(array, mask)</a>
 <a class="sourceLine" id="cb550-2" title="2"></a>
 <a class="sourceLine" id="cb550-3" title="3">      NUMERIC,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb550-4" title="4">      <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb550-4" title="4">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb551"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb551-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">maxloc</span>(array <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,mask<span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb552"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb552-1" title="1">     NUMERIC <span class="kw">function</span> <span class="fu">maxloc</span>(array, <span class="bu">dim</span>, mask)</a>
 <a class="sourceLine" id="cb552-2" title="2"></a>
 <a class="sourceLine" id="cb552-3" title="3">      NUMERIC,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb552-4" title="4">      <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
-<a class="sourceLine" id="cb552-5" title="5">      <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb552-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb552-5" title="5">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 </div><div id="characteristics-130" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p>where <strong>NUMERIC</strong> is any numeric type and kind.</p>
+<ul>
+<li>a kind designated as ** may be any supported kind value for the type</li>
+<li><strong>NUMERIC</strong> designates any intrinsic numeric type and kind.</li>
+</ul>
 </div><div id="description-128" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>Determines the location of the element in the array with the maximum value, or, if the <strong>dim</strong> argument is supplied, determines the locations of the maximum element along each row of the array in the <strong>dim</strong> direction.</p>
@@ -9924,17 +9966,20 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div class="sourceCode" id="cb560"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb560-1" title="1">     NUMERIC <span class="kw">function</span> <span class="fu">maxval</span>(array ,mask)</a>
 <a class="sourceLine" id="cb560-2" title="2"></a>
 <a class="sourceLine" id="cb560-3" title="3">      NUMERIC,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb560-4" title="4">      <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb560-4" title="4">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb561"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb561-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">maxval</span>(array <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,mask<span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb562"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb562-1" title="1">     NUMERIC <span class="kw">function</span> <span class="fu">maxval</span>(array ,<span class="bu">dim</span>, mask)</a>
 <a class="sourceLine" id="cb562-2" title="2"></a>
 <a class="sourceLine" id="cb562-3" title="3">      NUMERIC,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb562-4" title="4">      <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
-<a class="sourceLine" id="cb562-5" title="5">      <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb562-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb562-5" title="5">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 </div><div id="characteristics-132" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p>where <strong>NUMERIC</strong> is any numeric type and kind.</p>
+<ul>
+<li><p>a kind designated as ** may be any supported kind value for the type</p></li>
+<li><p><strong>NUMERIC</strong> designates any numeric type and kind.</p></li>
+</ul>
 </div><div id="description-130" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>Determines the maximum value of the elements in an array value, or, if the <strong>dim</strong> argument is supplied, determines the maximum value along each row of the array in the <strong>dim</strong> direction. If <strong>mask</strong> is present, only the elements for which <strong>mask</strong> is .true. are considered. If the array has zero size, or all of the elements of <strong>mask</strong> are .false., then the result is the most negative number of the type and kind of <strong>array</strong> if <strong>array</strong> is numeric, or a string of nulls if <strong>array</strong> is of character type.</p>
@@ -10099,11 +10144,16 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb571-2" title="2"></a>
 <a class="sourceLine" id="cb571-3" title="3">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> tsource</a>
 <a class="sourceLine" id="cb571-4" title="4">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> fsource</a>
-<a class="sourceLine" id="cb571-5" title="5">      <span class="dt">logical(kind=KINDM)</span>,<span class="dt">intent(in)</span>   <span class="dt">::</span> mask</a>
+<a class="sourceLine" id="cb571-5" title="5">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>   <span class="dt">::</span> mask</a>
 <a class="sourceLine" id="cb571-6" title="6">      mask<span class="kw">**</span> : Shall be of <span class="dt">type</span> _logical_.</a></code></pre></div>
 </div><div id="characteristics-134" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p><strong>tsource</strong> May be of any type, including user-defined. <strong>fsource</strong> Shall be of the same type and type parameters as <strong>tsource</strong>. The result will by of the same type and type parameters as <strong>tsource</strong> too.</p>
+<ul>
+<li>a kind designated as ** may be any supported kind value for the type</li>
+<li><strong>tsource</strong> May be of any type, including user-defined.</li>
+<li><strong>fsource</strong> Shall be of the same type and type parameters as <strong>tsource</strong>.</li>
+<li>The result will by of the same type and type parameters as <strong>tsource</strong> too.</li>
+</ul>
 </div><div id="description-132" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>The elemental function <strong>merge</strong>(3) selects values from two arrays or scalars according to a logical mask. The result is equal to an element of <strong>tsource</strong> where the corresponding element of <strong>mask</strong> is .true., or an element of <strong>fsource</strong> when it is .false. .</p>
@@ -10288,17 +10338,20 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div class="sourceCode" id="cb582"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb582-1" title="1">     NUMERIC <span class="kw">function</span> <span class="fu">minloc</span>(array, mask)</a>
 <a class="sourceLine" id="cb582-2" title="2"></a>
 <a class="sourceLine" id="cb582-3" title="3">      NUMERIC,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb582-4" title="4">      <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb582-4" title="4">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb583"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb583-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">minloc</span>(array <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,mask<span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb584"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb584-1" title="1">     NUMERIC <span class="kw">function</span> <span class="fu">minloc</span>(array, <span class="bu">dim</span>, mask)</a>
 <a class="sourceLine" id="cb584-2" title="2"></a>
 <a class="sourceLine" id="cb584-3" title="3">      NUMERIC,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb584-4" title="4">      <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
-<a class="sourceLine" id="cb584-5" title="5">      <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb584-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb584-5" title="5">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 </div><div id="characteristics-136" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p>where <strong>NUMERIC</strong> is any numeric type and kind.</p>
+<ul>
+<li>a kind designated as ** may be any supported kind value for the type</li>
+<li><strong>NUMERIC</strong> is any numeric type and kind.</li>
+</ul>
 </div><div id="description-134" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>Determines the location of the element in the array with the minimum value, or, if the <strong>dim</strong> argument is supplied, determines the locations of the minimum element along each row of the array in the <strong>dim</strong> direction. If <strong>mask</strong> is present, only the elements for which <strong>mask</strong> is .true. are considered. If more than one element in the array has the minimum value, the location returned is that of the first such element in array element order. If the array has zero size, or all of the elements of <strong>mask</strong> are .false., then the result is an array of zeroes. Similarly, if <strong>dim</strong> is supplied and all of the elements of <strong>mask</strong> along a given row are zero, the result value for that row is zero.</p>
@@ -10419,17 +10472,20 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div class="sourceCode" id="cb592"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb592-1" title="1">     NUMERIC <span class="kw">function</span> <span class="fu">minval</span>(array ,mask)</a>
 <a class="sourceLine" id="cb592-2" title="2"></a>
 <a class="sourceLine" id="cb592-3" title="3">      NUMERIC,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb592-4" title="4">      <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb592-4" title="4">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb593"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb593-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">minval</span>(array <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,mask<span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb594"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb594-1" title="1">     NUMERIC <span class="kw">function</span> <span class="fu">minval</span>(array, <span class="bu">dim</span>, mask)</a>
 <a class="sourceLine" id="cb594-2" title="2"></a>
 <a class="sourceLine" id="cb594-3" title="3">      NUMERIC,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb594-4" title="4">      <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
-<a class="sourceLine" id="cb594-5" title="5">      <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb594-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb594-5" title="5">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 </div><div id="characteristics-138" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p>where <strong>NUMERIC</strong> is any numeric type and kind.</p>
+<ul>
+<li><p>a kind designated as ** may be any supported kind value for the type</p></li>
+<li><p><strong>NUMERIC</strong> is any numeric type and kind.</p></li>
+</ul>
 </div><div id="description-136" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>Determines the minimum value of the elements in an array value, or, if the <strong>dim</strong> argument is supplied, determines the minimum value along each row of the array in the <strong>dim</strong> direction.</p>
@@ -11034,13 +11090,16 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </div><div id="synopsis-144" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb621"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb621-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">nint</span>( x <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb622"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb622-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=kind)</span> <span class="kw">function</span> <span class="bu">nint</span>(x, <span class="fu">kind</span> )</a>
+<div class="sourceCode" id="cb622"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb622-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">nint</span>(x, <span class="fu">kind</span> )</a>
 <a class="sourceLine" id="cb622-2" title="2"></a>
-<a class="sourceLine" id="cb622-3" title="3"><span class="dt">      real(kind=KINDX)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
-<a class="sourceLine" id="cb622-4" title="4">      <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<a class="sourceLine" id="cb622-3" title="3"><span class="dt">      real(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
+<a class="sourceLine" id="cb622-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
 </div><div id="characteristics-145" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p>The result is default integer kind or the value of <strong>kind</strong> if it is present.</p>
+<ul>
+<li><p>a kind designated as ** may be any supported kind value for the type</p></li>
+<li><p>The result is default integer kind or the value of <strong>kind</strong> if it is present.</p></li>
+</ul>
 </div><div id="description-143" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p><strong>nint(x)</strong> rounds its argument to the nearest whole number with its sign preserved.</p>
@@ -11629,11 +11688,13 @@ The result is undefined if it cannot be represented in the specified integer typ
 <div class="sourceCode" id="cb652"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb652-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> parity( mask <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> )</a></code></pre></div>
 <div class="sourceCode" id="cb653"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb653-1" title="1">     <span class="dt">logical(kind=KIND)</span> <span class="kw">function</span> parity(mask, <span class="bu">dim</span>)</a>
 <a class="sourceLine" id="cb653-2" title="2"></a>
-<a class="sourceLine" id="cb653-3" title="3">      <span class="dt">type(logical(kind=KIND))</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> mask(..)</a>
-<a class="sourceLine" id="cb653-4" title="4">      <span class="dt">type(integer(kind=KINDD))</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a></code></pre></div>
+<a class="sourceLine" id="cb653-3" title="3">      <span class="dt">type(logical(kind=KIND))</span>,<span class="dt">intent(in)</span>        <span class="dt">::</span> mask(..)</a>
+<a class="sourceLine" id="cb653-4" title="4">      <span class="dt">type(integer(kind=**))</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a></code></pre></div>
 </div><div id="characteristics-152" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p>where KIND and LKIND are any supported kind for the type.</p>
+<ul>
+<li>a kind designated as ** may be any supported kind value for the type</li>
+</ul>
 </div><div id="description-150" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>Calculates the parity (i.e. the reduction using .xor.) of <strong>mask</strong> along dimension <strong>dim</strong>.</p>
@@ -11958,11 +12019,14 @@ The result is undefined if it cannot be represented in the specified integer typ
 <div class="sourceCode" id="cb672"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb672-1" title="1">     NUMERIC <span class="kw">function</span> <span class="fu">product</span>(array, <span class="bu">dim</span>, mask)</a>
 <a class="sourceLine" id="cb672-2" title="2"></a>
 <a class="sourceLine" id="cb672-3" title="3">      NUMERIC,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb672-4" title="4">      <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
-<a class="sourceLine" id="cb672-5" title="5">      <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb672-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb672-5" title="5">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 </div><div id="characteristics-157" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p>where <strong>NUMERIC</strong> is any numeric type and kind.</p>
+<ul>
+<li>a kind designated as ** may be any supported kind value for the type</li>
+<li><strong>NUMERIC</strong> is any numeric type and kind.</li>
+</ul>
 </div><div id="description-155" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>Multiplies together all the selected elements of <strong>array</strong>, or along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
@@ -13250,8 +13314,8 @@ ________________________________________________________________________
 <div class="sourceCode" id="cb726"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb726-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">scan</span>( string, set, <span class="kw">[</span>,back<span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
 <div class="sourceCode" id="cb727"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb727-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">scan</span>(string,set,back,<span class="fu">kind</span>)</a>
 <a class="sourceLine" id="cb727-2" title="2"></a>
-<a class="sourceLine" id="cb727-3" title="3">      <span class="dt">character(len=*,kind=KINDC)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string</a>
-<a class="sourceLine" id="cb727-4" title="4">      <span class="dt">character(len=*,kind=KINDC)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> set</a>
+<a class="sourceLine" id="cb727-3" title="3">      <span class="dt">character(len=*,kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string</a>
+<a class="sourceLine" id="cb727-4" title="4">      <span class="dt">character(len=*,kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> set</a>
 <a class="sourceLine" id="cb727-5" title="5">      <span class="dt">logical</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> back</a>
 <a class="sourceLine" id="cb727-6" title="6">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 </div><div id="characteristics-170" class="slide section level3">
@@ -13534,10 +13598,13 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <div class="sourceCode" id="cb743"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb743-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> <span class="bu">set_exponent</span>(x,i)</a>
 <a class="sourceLine" id="cb743-2" title="2"></a>
 <a class="sourceLine" id="cb743-3" title="3"><span class="dt">      real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
-<a class="sourceLine" id="cb743-4" title="4">      <span class="dt">integer(kind=KINDI)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
+<a class="sourceLine" id="cb743-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
 </div><div id="characteristics-174" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p>The return value is of the same type and kind as <strong>x</strong>.</p>
+<ul>
+<li><p>a kind designated as ** may be any supported kind value for the type</p></li>
+<li><p>The return value is of the same type and kind as <strong>x</strong>.</p></li>
+</ul>
 </div><div id="description-172" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p><strong>set_exponent(x, i)</strong> returns the real number whose fractional part is that of <strong>x</strong> and whose exponent part is <strong>i</strong>.</p>
@@ -13583,13 +13650,16 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 </div><div id="synopsis-174" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb746"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb746-1" title="1">  <span class="kw">result</span> <span class="kw">=</span> <span class="fu">shape</span>(source <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb747"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb747-1" title="1">   <span class="dt">integer(kind=KINDR)</span> <span class="kw">function</span>(<span class="fu">shape</span>(source,<span class="fu">kind</span>)</a>
+<div class="sourceCode" id="cb747"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb747-1" title="1">   <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span>(<span class="fu">shape</span>(source,<span class="fu">kind</span>)</a>
 <a class="sourceLine" id="cb747-2" title="2"></a>
-<a class="sourceLine" id="cb747-3" title="3">    <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span>        <span class="dt">::</span> source(..)</a>
-<a class="sourceLine" id="cb747-4" title="4">    <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<a class="sourceLine" id="cb747-3" title="3">    <span class="dt">type(TYPE(kind=**))</span>,<span class="dt">intent(in)</span>        <span class="dt">::</span> source(..)</a>
+<a class="sourceLine" id="cb747-4" title="4">    <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
 </div><div id="characteristics-175" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p><strong>source</strong> is an array or scalar of any type. If <strong>source</strong> is a pointer it must be associated and allocatable arrays must be allocated.</p>
+<ul>
+<li><p>a kind designated as ** may be any supported kind value for the type</p></li>
+<li><p><strong>source</strong> is an array or scalar of any type. If <strong>source</strong> is a pointer it must be associated and allocatable arrays must be allocated.</p></li>
+</ul>
 </div><div id="description-173" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>Determines the shape of an array.</p>
@@ -14759,12 +14829,15 @@ need an illustration of what happens with higher dimension array
 <div class="sourceCode" id="cb794"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb794-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> storage_size(a <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
 <div class="sourceCode" id="cb795"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb795-1" title="1">     <span class="dt">integer(kind=KIND)</span> storage_size(a,<span class="fu">kind</span>)</a>
 <a class="sourceLine" id="cb795-2" title="2"></a>
-<a class="sourceLine" id="cb795-3" title="3">      <span class="dt">type(TYPE(kind=KINDA))</span> <span class="dt">::</span> a</a>
+<a class="sourceLine" id="cb795-3" title="3">      <span class="dt">type(TYPE(kind=**))</span> <span class="dt">::</span> a</a>
 <a class="sourceLine" id="cb795-4" title="4">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 </div><div id="characteristics-186" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p><strong>a</strong> may be of any type and kind. If it is polymorphic it shall not be an undefined pointer. If it is unlimited polymorphic or has any deferred type parameters, it shall not be an unallocated allocatable variable or a disassociated or undefined pointer.</p>
-<p>The kind type parameter of the returned value is that specified by the value of <strong>kind</strong>; otherwise, the kind type parameter is that of default integer type.</p>
+<ul>
+<li><p>a kind designated as ** may be any supported kind value for the type</p></li>
+<li><p><strong>a</strong> may be of any type and kind. If it is polymorphic it shall not be an undefined pointer. If it is unlimited polymorphic or has any deferred type parameters, it shall not be an unallocated allocatable variable or a disassociated or undefined pointer.</p></li>
+<li><p>The kind type parameter of the returned value is that specified by the value of <strong>kind</strong>; otherwise, the kind type parameter is that of default integer type.</p></li>
+</ul>
 </div><div id="description-184" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>Returns the storage size of argument <strong>a</strong> in bits.</p>
@@ -14831,17 +14904,20 @@ it would take if it were stored in memory.</code></pre>
 <div class="sourceCode" id="cb801"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb801-1" title="1">     NUMERIC <span class="kw">function</span> <span class="fu">sum</span>(array, mask)</a>
 <a class="sourceLine" id="cb801-2" title="2"></a>
 <a class="sourceLine" id="cb801-3" title="3">      NUMERIC,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb801-4" title="4">      <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb801-4" title="4">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb802"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb802-1" title="1">   <span class="kw">result</span> <span class="kw">=</span> <span class="fu">sum</span>(array <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,mask<span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb803"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb803-1" title="1">     NUMERIC <span class="kw">function</span> <span class="fu">sum</span>(array, <span class="bu">dim</span>, mask)</a>
 <a class="sourceLine" id="cb803-2" title="2"></a>
 <a class="sourceLine" id="cb803-3" title="3">      NUMERIC,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb803-4" title="4">      <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
-<a class="sourceLine" id="cb803-5" title="5">      <span class="dt">logical(kind=KINDL)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb803-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb803-5" title="5">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 </div><div id="characteristics-187" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p>where <strong>NUMERIC</strong> is any numeric type and kind.</p>
+<ul>
+<li>a kind designated as ** may be any supported kind value for the type</li>
+<li><strong>NUMERIC</strong> is any numeric type and kind.</li>
+</ul>
 </div><div id="description-185" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>Adds the elements of ARRAY along dimension DIM if the corresponding element in MASK is TRUE.</p>
@@ -15571,11 +15647,12 @@ it would take if it were stored in memory.</code></pre>
 <div class="sourceCode" id="cb848"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb848-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="fu">ubound</span>(array,<span class="bu">dim</span>,<span class="fu">kind</span>)</a>
 <a class="sourceLine" id="cb848-2" title="2"></a>
 <a class="sourceLine" id="cb848-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> array</a>
-<a class="sourceLine" id="cb848-4" title="4">      <span class="dt">integer(kind=KINDD)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
-<a class="sourceLine" id="cb848-5" title="5">      <span class="dt">integer(kind=KINDK)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<a class="sourceLine" id="cb848-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb848-5" title="5">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 </div><div id="characteristics-197" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
 <ul>
+<li>a kind designated as ** may be any supported kind value for the type</li>
 <li><strong>array</strong> Shall be an array, of any type.</li>
 <li><strong>dim</strong> : (Optional) Shall be a scalar integer.</li>
 <li><strong>kind</strong> An integer initialization expression indicating the kind parameter of the result.</li>
@@ -15835,14 +15912,17 @@ it would take if it were stored in memory.</code></pre>
 <div class="sourceCode" id="cb856"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb856-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">verify</span>(string, set <span class="kw">[</span>,back<span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
 <div class="sourceCode" id="cb857"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb857-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">verify</span>(string,set,back,<span class="fu">kind</span>)</a>
 <a class="sourceLine" id="cb857-2" title="2"></a>
-<a class="sourceLine" id="cb857-3" title="3">      <span class="dt">character(len=*,kind=KINDC)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string</a>
-<a class="sourceLine" id="cb857-4" title="4">      <span class="dt">character(len=*,kind=KINDC)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> set</a>
+<a class="sourceLine" id="cb857-3" title="3">      <span class="dt">character(len=*,kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string</a>
+<a class="sourceLine" id="cb857-4" title="4">      <span class="dt">character(len=*,kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> set</a>
 <a class="sourceLine" id="cb857-5" title="5">      <span class="dt">logical</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> back</a>
 <a class="sourceLine" id="cb857-6" title="6">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 </div><div id="characteristics-199" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p><strong>string</strong> and <strong>set</strong> must have the same kind type parameter.</p>
-<p>the kind of the returned value is the same as <strong>kind</strong> if present. Otherwise a default integer kind is returned.</p>
+<ul>
+<li><p>a kind designated as ** may be any supported kind value for the type</p></li>
+<li><p><strong>string</strong> and <strong>set</strong> must have the same kind type parameter.</p></li>
+<li><p>the kind of the returned value is the same as <strong>kind</strong> if present. Otherwise a default integer kind is returned.</p></li>
+</ul>
 </div><div id="description-197" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>Verifies that all the characters in <strong>string</strong> belong to the set of characters in <strong>set</strong> by identifying the position of the first character in the string that is not in the set.</p>
