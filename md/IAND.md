@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**iand**(3) - \[BIT:LOGICAL\] Bitwise logical and
+**iand**(3) - \[BIT:LOGICAL\] Bitwise logical AND
 
 ### **Synopsis**
 ```fortran
@@ -47,9 +47,10 @@ bit-by-bit according to the following table:
     0  |  1  |    0
     0  |  0  |    0
 ```
-So if both the bit in **i** and **jj** are on the resulting bit is on
+So if both the bit in **i** and **j** are on the resulting bit is on
 (a one); else the resulting bit is off (a zero).
 
+This is commonly called the "bitwise logical AND" of the two values.
 ### **Examples**
 
 Sample program:

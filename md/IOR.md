@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**ior**(3) - \[BIT:LOGICAL\] Bitwise logical inclusive or
+**ior**(3) - \[BIT:LOGICAL\] Bitwise logical inclusive OR
 
 ### **Synopsis**
 ```fortran
@@ -46,6 +46,8 @@ kind type parameter of the other.
           0   1        1
           0   0        0
 ```
+ This is commonly called the "bitwise logical inclusive OR" of the two values.
+
 ### **Examples**
 
 Sample program:

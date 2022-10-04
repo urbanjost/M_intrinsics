@@ -8998,7 +8998,7 @@ textblock=[character(len=256) :: &
 'iand(3fortran)                                                  iand(3fortran)', &
 '', &
 'NAME', &
-'  IAND(3) - [BIT:LOGICAL] Bitwise logical and', &
+'  IAND(3) - [BIT:LOGICAL] Bitwise logical AND', &
 '', &
 'SYNOPSIS', &
 '  result = iand(i, j)', &
@@ -9039,8 +9039,10 @@ textblock=[character(len=256) :: &
 '', &
 '    0 |  0  |    0', &
 '', &
-'  So if both the bit in I and JJ are on the resulting bit is on (a one); else', &
+'  So if both the bit in I and J are on the resulting bit is on (a one); else', &
 '  the resulting bit is off (a zero).', &
+'', &
+'  This is commonly called the "bitwise logical AND" of the two values.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -9754,7 +9756,7 @@ textblock=[character(len=256) :: &
 'ior(3fortran)                                                    ior(3fortran)', &
 '', &
 'NAME', &
-'  IOR(3) - [BIT:LOGICAL] Bitwise logical inclusive or', &
+'  IOR(3) - [BIT:LOGICAL] Bitwise logical inclusive OR', &
 '', &
 'SYNOPSIS', &
 '  result = ior(i, j)', &
@@ -9789,6 +9791,9 @@ textblock=[character(len=256) :: &
 '                1   0        1', &
 '                0   1        1', &
 '                0   0        0', &
+'', &
+'  This is commonly called the "bitwise logical inclusive OR" of the two', &
+'  values.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
