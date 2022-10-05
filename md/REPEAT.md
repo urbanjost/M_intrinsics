@@ -16,6 +16,7 @@
 ```
 ### **Characteristics**
 
+- a kind designated as ** may be any supported kind value for the type
 - **string** is a scalar _character_ type.
 - **ncopies** is a scalar integer.
 - the result is a new scalar of type _character_ of the same type as
@@ -23,7 +24,7 @@
 
 ### **Description**
 
-**repeat**(3) concatenates **ncopies** copies of a string.
+  **repeat**(3) concatenates copies of a string.
 
 ### **Options**
 
@@ -31,11 +32,11 @@
   : The input string to repeat
 
 - **ncopies**
-  : Number of copies to make of _string_, greater than or equal to zero (0).
+  : Number of copies to make of **string**, greater than or equal to zero (0).
 
 ### **Result**
 
-A new string built up from **ncopies** copies of **string**.
+  A new string built up from **ncopies** copies of **string**.
 
 ### **Examples**
 
@@ -47,18 +48,15 @@ integer :: i
     write(*,'(a)') repeat("^v", 36)         ! line break
     write(*,'(a)') repeat("_", 72)          ! line break
     write(*,'(a)') repeat("1234567890", 7)  ! number line
-    do i=80,0,-1 ! a simple progress bar
-        write(*,'(a)',advance='no') &
-        & repeat("#", i)//repeat(' ',80-i)//char(13)
-        !do something slow
-    enddo
+    write(*,'(a)') repeat("         |", 7)  ! 
 end program demo_repeat
 ```
 Results:
-```
-^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v
-________________________________________________________________________
-1234567890123456789012345678901234567890123456789012345678901234567890
+```text
+   ^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v
+   ________________________________________________________________________
+   1234567890123456789012345678901234567890123456789012345678901234567890
+            |         |         |         |         |         |         |
 ```
 ### **Standard**
 

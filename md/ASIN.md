@@ -37,10 +37,19 @@ the hypotenuse and the opposite side of a right triangle are known.
 ### **Result**
 
 - **result**
-  : The return value is of the same type and kind as **x**. The real part of
-  the result is in radians and lies in the range **-PI/2 \<=
-  asin(x) \<= PI/2**.
+  The result has a value equal to a processor-dependent approximation
+  to arcsin(x).
 
+  If **x** is real the result is _real_ and it is expressed in radians
+  and lies in the range
+```fortran
+        PI/2 <= ASIN (X) <= PI/2.
+```
+  If the argument (and therefore the result) is imaginary The real part
+  of the result is in radians and lies in the range
+```fortran
+    -PI/2 <= real(asin(x)) <= PI/2
+```
 ### **Examples**
 
 The arcsine will allow you to find the measure of a right angle when you

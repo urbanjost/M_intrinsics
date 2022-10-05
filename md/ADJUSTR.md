@@ -2,32 +2,33 @@
 
 ### **Name**
 
-**adjustr**(3) - \[CHARACTER:WHITESPACE\] Right-adjust a string
+**adjustr**(3) - \[CHARACTER:WHITESPACE\] Right-justify a string
 
 ### **Synopsis**
 ```fortran
     result = adjustr(string)
 ```
 ```fortran
-     elemental character(len=len(string)) function adjustr(string)
+     elemental character(len=len(string),kind=KIND) function adjustr(string)
 
-      character(len=*),intent(in) :: string
+      character(len=*,kind=KIND),intent(in) :: string
 ```
 ### **Characteristics**
+
 - **string** is a _character_ variable
-- The return value is a _character_ variable of the same kind as
-  **string**
+- The return value is a _character_ variable of the same kind and
+  length as **string**
 
 ### **Description**
 
-**adjustr**(3) right-adjusts a string by removing trailing spaces. Spaces
+**adjustr**(3) right-justifies a string by removing trailing spaces. Spaces
 are inserted at the start of the string as needed to retain the original
 length.
 
 ### **Options**
 
 - **string**
-  : the string to right-adjust
+  : the string to right-justify
 
 ### **Result**
 

@@ -11,25 +11,34 @@
 ```fortran
     integer function radix(x)
 
-     TYPE(kind=KIND),intent(in) :: x
+     TYPE(kind=**),intent(in) :: x(..)
 ```
 ### **Characteristics**
 
-   where TYPE may be _real_ or _integer_ of any kind KIND.
+   - TYPE may be _real_ or _integer_ 
+   - **x** may be scalar or an array
 
 ### **Description**
 
-**radix**(3) returns the base of the model representing the entity **x**.
+  **radix**(3) returns the base of the internal model representing the
+  numeric entity **x**.
+
+  In a positional numeral system, the radix or base is the number of
+  unique digits, including the digit zero, used to represent numbers.
+
+  This function helps to represent the internal computing model
+  generically, but will be 2 (representing a binary machine) for any
+  common platform for all the numeric types.
 
 ### **Options**
 
 - **x**
-  : Shall be of type _integer_ or _real_
+  : used to identify the type of number to query.
 
 ### **Result**
 
-The return value is a scalar of type _integer_ and of the default integer
-kind.
+  The returned value indicates what base is internally used to represent
+  the type of numeric value **x** represents.
 
 ### **Examples**
 
@@ -43,7 +52,6 @@ implicit none
    print *, "The radix for the doubleprecision real kind is", radix(0.0d0)
 end program demo_radix
 ```
-
 Results:
 
 ```text
@@ -74,4 +82,4 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

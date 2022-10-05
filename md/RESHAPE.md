@@ -59,23 +59,20 @@ C procedure.
 
 - **pad**
   : used to fill in extra values if the result array is larger than **source**.
-  It will be used repeatedly after all the elements of **source** have been
-  placed in the result until the result has all elements assigned.
-
-  If it is absent or is a zero-sized array, you can only make
-  **ource** into another array of the same size as **source** or smaller.
+    It will be used repeatedly after all the elements of **source** have been
+    placed in the result until the result has all elements assigned.
+  : If it is absent or is a zero-sized array, you can only make
+    **ource** into another array of the same size as **source** or smaller.
 
 - **order**
   : used to insert elements in the result in an order other
-  than the normal Fortran array element order, in which the first dimension
-  varies fastest.
-
-  By definition of ranks the values have to be a permutation of the numbers
-  from 1 to n, where n is the rank of **shape**.
-
+    than the normal Fortran array element order, in which the first dimension
+    varies fastest.
+  : By definition of ranks the values have to be a permutation of the numbers
+    from 1 to n, where n is the rank of **shape**.
   : the elements of **source** and pad are placed into the result in order;
-  changing the left-most rank most rapidly by default. To change the order by
-  which the elements are placed in the result use **order**.
+    changing the left-most rank most rapidly by default. To change the order by
+    which the elements are placed in the result use **order**.
 
 ### **Result**
 

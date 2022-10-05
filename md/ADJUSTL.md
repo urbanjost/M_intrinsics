@@ -2,41 +2,40 @@
 
 ### **Name**
 
-**adjustl**(3) - \[CHARACTER:WHITESPACE\] Left-adjust a string
+**adjustl**(3) - \[CHARACTER:WHITESPACE\] Left-justified a string
 
 ### **Synopsis**
 ```fortran
-    result = adjustl(string)
+  result = adjustl(string)
 ```
 ```fortran
-     elemental character(len=len(string)) function adjustl(string)
+   elemental character(len=len(string),kind=KIND) function adjustl(string)
 
-      character(len=*),intent(in) :: string
+    character(len=*,kind=KIND),intent(in) :: string
 ```
 ### **Characteristics**
-- **string** is a _character_ variable
-- The return value is a _character_ variable of the same kind as
-  **string**
+ - **string** is a _character_ variable of any supported kind
+ - The return value is a _character_ variable of the same kind
+   and length as **string**
 
 ### **Description**
 
-**adjustl**(3) will left-adjust a string by removing leading
-spaces. Spaces are inserted at the end of the string as needed.
+  **adjustl**(3) will left-justify a string by removing leading
+  spaces. Spaces are inserted at the end of the string as needed.
 
 ### **Options**
 
 - **string**
-  : the string to left-adjust
+  : the string to left-justify
 
 ### **Result**
 
-A copy of **string** where leading spaces are removed and the same
-number of spaces are inserted on the end of **string**.
+  A copy of **string** where leading spaces are removed and the same
+  number of spaces are inserted on the end of **string**.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_adjustl
 implicit none

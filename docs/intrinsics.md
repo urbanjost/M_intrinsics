@@ -21,7 +21,7 @@
 - If **a** is _complex_ the returned value will be a _real_ with the
   same kind as **a**.
 
-  Otherwise the returned type is the same as for **a**.
+  Otherwise the returned type and kind is the same as for **a**.
 
 ### **Description**
 
@@ -32,7 +32,7 @@
 
    The absolute value of a number may be thought of as its distance from
    zero. So for a complex value the absolute value is a real number
-   with magnitude **sqrt(x%re**2,x%im**2)**, as if the real component
+   with magnitude **sqrt(x%re\*\*2,x%im\*\*2)**, as if the real component
    is the x value and the imaginary value is the y value for the point
    \<x,y\>.
 
@@ -350,11 +350,14 @@ FORTRAN 77 , with KIND argument Fortran 2003
 
 ### **Result**
 
-If **x** is _complex_, the imaginary part of the result is in radians and
-lies between
+The result has a value equal to a processor-dependent approximation to
+the inverse hyperbolic cosine function of X.
 
-> **0 \<= aimag(acosh(x)) \<= PI**
-
+If **x** is _complex_, the imaginary part of the result is in radians
+and lies between
+```fortran
+ 0 <= aimag(acosh(x)) <= PI
+```
 ### **Examples**
 
 Sample program:
@@ -478,41 +481,40 @@ Inverse function: [**cos**(3)](cos)
 
 ### **Name**
 
-**adjustl**(3) - \[CHARACTER:WHITESPACE\] Left-adjust a string
+**adjustl**(3) - \[CHARACTER:WHITESPACE\] Left-justified a string
 
 ### **Synopsis**
 ```fortran
-    result = adjustl(string)
+  result = adjustl(string)
 ```
 ```fortran
-     elemental character(len=len(string)) function adjustl(string)
+   elemental character(len=len(string),kind=KIND) function adjustl(string)
 
-      character(len=*),intent(in) :: string
+    character(len=*,kind=KIND),intent(in) :: string
 ```
 ### **Characteristics**
-- **string** is a _character_ variable
-- The return value is a _character_ variable of the same kind as
-  **string**
+ - **string** is a _character_ variable of any supported kind
+ - The return value is a _character_ variable of the same kind
+   and length as **string**
 
 ### **Description**
 
-**adjustl**(3) will left-adjust a string by removing leading
-spaces. Spaces are inserted at the end of the string as needed.
+  **adjustl**(3) will left-justify a string by removing leading
+  spaces. Spaces are inserted at the end of the string as needed.
 
 ### **Options**
 
 - **string**
-  : the string to left-adjust
+  : the string to left-justify
 
 ### **Result**
 
-A copy of **string** where leading spaces are removed and the same
-number of spaces are inserted on the end of **string**.
+  A copy of **string** where leading spaces are removed and the same
+  number of spaces are inserted on the end of **string**.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_adjustl
 implicit none
@@ -568,32 +570,33 @@ Fortran 95
 
 ### **Name**
 
-**adjustr**(3) - \[CHARACTER:WHITESPACE\] Right-adjust a string
+**adjustr**(3) - \[CHARACTER:WHITESPACE\] Right-justify a string
 
 ### **Synopsis**
 ```fortran
     result = adjustr(string)
 ```
 ```fortran
-     elemental character(len=len(string)) function adjustr(string)
+     elemental character(len=len(string),kind=KIND) function adjustr(string)
 
-      character(len=*),intent(in) :: string
+      character(len=*,kind=KIND),intent(in) :: string
 ```
 ### **Characteristics**
+
 - **string** is a _character_ variable
-- The return value is a _character_ variable of the same kind as
-  **string**
+- The return value is a _character_ variable of the same kind and
+  length as **string**
 
 ### **Description**
 
-**adjustr**(3) right-adjusts a string by removing trailing spaces. Spaces
+**adjustr**(3) right-justifies a string by removing trailing spaces. Spaces
 are inserted at the start of the string as needed to retain the original
 length.
 
 ### **Options**
 
 - **string**
-  : the string to right-adjust
+  : the string to right-justify
 
 ### **Result**
 
@@ -1092,8 +1095,7 @@ Results:
 ```
 ### **Standard**
 
-  Fortran 95 . Note, the scalar= keyword and allocatable
-  scalar entities are available in Fortran 2003 .
+  Fortran 95. allocatable scalar entities were added in Fortran 2003.
 
 ### **See Also**
 
@@ -1458,10 +1460,19 @@ the hypotenuse and the opposite side of a right triangle are known.
 ### **Result**
 
 - **result**
-  : The return value is of the same type and kind as **x**. The real part of
-  the result is in radians and lies in the range **-PI/2 \<=
-  asin(x) \<= PI/2**.
+  The result has a value equal to a processor-dependent approximation
+  to arcsin(x).
 
+  If **x** is real the result is _real_ and it is expressed in radians
+  and lies in the range
+```fortran
+        PI/2 <= ASIN (X) <= PI/2.
+```
+  If the argument (and therefore the result) is imaginary The real part
+  of the result is in radians and lies in the range
+```fortran
+    -PI/2 <= real(asin(x)) <= PI/2
+```
 ### **Examples**
 
 The arcsine will allow you to find the measure of a right angle when you
@@ -15986,25 +15997,34 @@ directly using the star character.
 ```fortran
     integer function radix(x)
 
-     TYPE(kind=KIND),intent(in) :: x
+     TYPE(kind=**),intent(in) :: x(..)
 ```
 ### **Characteristics**
 
-   where TYPE may be _real_ or _integer_ of any kind KIND.
+   - TYPE may be _real_ or _integer_
+   - **x** may be scalar or an array
 
 ### **Description**
 
-**radix**(3) returns the base of the model representing the entity **x**.
+  **radix**(3) returns the base of the internal model representing the
+  numeric entity **x**.
+
+  In a positional numeral system, the radix or base is the number of
+  unique digits, including the digit zero, used to represent numbers.
+
+  This function helps to represent the internal computing model
+  generically, but will be 2 (representing a binary machine) for any
+  common platform for all the numeric types.
 
 ### **Options**
 
 - **x**
-  : Shall be of type _integer_ or _real_
+  : used to identify the type of number to query.
 
 ### **Result**
 
-The return value is a scalar of type _integer_ and of the default integer
-kind.
+  The returned value indicates what base is internally used to represent
+  the type of numeric value **x** represents.
 
 ### **Examples**
 
@@ -16018,7 +16038,6 @@ implicit none
    print *, "The radix for the doubleprecision real kind is", radix(0.0d0)
 end program demo_radix
 ```
-
 Results:
 
 ```text
@@ -16049,7 +16068,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## random_number
 
@@ -16816,6 +16835,7 @@ Results:
 ```
 ### **Characteristics**
 
+- a kind designated as ** may be any supported kind value for the type
 - **string** is a scalar _character_ type.
 - **ncopies** is a scalar integer.
 - the result is a new scalar of type _character_ of the same type as
@@ -16823,7 +16843,7 @@ Results:
 
 ### **Description**
 
-**repeat**(3) concatenates **ncopies** copies of a string.
+  **repeat**(3) concatenates copies of a string.
 
 ### **Options**
 
@@ -16831,11 +16851,11 @@ Results:
   : The input string to repeat
 
 - **ncopies**
-  : Number of copies to make of _string_, greater than or equal to zero (0).
+  : Number of copies to make of **string**, greater than or equal to zero (0).
 
 ### **Result**
 
-A new string built up from **ncopies** copies of **string**.
+  A new string built up from **ncopies** copies of **string**.
 
 ### **Examples**
 
@@ -16847,18 +16867,15 @@ integer :: i
     write(*,'(a)') repeat("^v", 36)         ! line break
     write(*,'(a)') repeat("_", 72)          ! line break
     write(*,'(a)') repeat("1234567890", 7)  ! number line
-    do i=80,0,-1 ! a simple progress bar
-        write(*,'(a)',advance='no') &
-        & repeat("#", i)//repeat(' ',80-i)//char(13)
-        !do something slow
-    enddo
+    write(*,'(a)') repeat("         |", 7)  !
 end program demo_repeat
 ```
 Results:
-```
-^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v
-________________________________________________________________________
-1234567890123456789012345678901234567890123456789012345678901234567890
+```text
+   ^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v
+   ________________________________________________________________________
+   1234567890123456789012345678901234567890123456789012345678901234567890
+            |         |         |         |         |         |         |
 ```
 ### **Standard**
 
@@ -16945,23 +16962,20 @@ C procedure.
 
 - **pad**
   : used to fill in extra values if the result array is larger than **source**.
-  It will be used repeatedly after all the elements of **source** have been
-  placed in the result until the result has all elements assigned.
-
-  If it is absent or is a zero-sized array, you can only make
-  **ource** into another array of the same size as **source** or smaller.
+    It will be used repeatedly after all the elements of **source** have been
+    placed in the result until the result has all elements assigned.
+  : If it is absent or is a zero-sized array, you can only make
+    **ource** into another array of the same size as **source** or smaller.
 
 - **order**
   : used to insert elements in the result in an order other
-  than the normal Fortran array element order, in which the first dimension
-  varies fastest.
-
-  By definition of ranks the values have to be a permutation of the numbers
-  from 1 to n, where n is the rank of **shape**.
-
+    than the normal Fortran array element order, in which the first dimension
+    varies fastest.
+  : By definition of ranks the values have to be a permutation of the numbers
+    from 1 to n, where n is the rank of **shape**.
   : the elements of **source** and pad are placed into the result in order;
-  changing the left-most rank most rapidly by default. To change the order by
-  which the elements are placed in the result use **order**.
+    changing the left-most rank most rapidly by default. To change the order by
+    which the elements are placed in the result use **order**.
 
 ### **Result**
 
@@ -17493,9 +17507,9 @@ of arguments, and search for certain arguments:
   if it is supported. **name** is interpreted without respect to case
   or trailing blanks.
 
-  Currently, supported character sets include "ASCII"
-  and "DEFAULT" (iwhich are equivalent), and "ISO_10646" (Universal
-  Character Set, UCS-4) which is commonly known as "Unicode".
+  Currently, supported character sets include "ASCII" and "DEFAULT" and
+  "ISO_10646" (Universal Character Set, UCS-4) which is commonly known as
+  "Unicode". Supported names other than "DEFAULT" are processor dependent.
 
 ### **Result**
 
@@ -17524,28 +17538,78 @@ Sample program:
 program demo_selected_char_kind
 use iso_fortran_env
 implicit none
-integer, parameter :: ascii = selected_char_kind ("ascii")
-integer, parameter :: ucs4  = selected_char_kind ('ISO_10646')
 
-character(kind=ascii, len=26) :: alphabet
-character(kind=ucs4,  len=30) :: hello_world
+intrinsic date_and_time,selected_char_kind
 
+integer, parameter :: default = selected_char_kind ("default")
+integer, parameter :: ascii =   selected_char_kind ("ascii")
+integer, parameter :: ucs4  =   selected_char_kind ('ISO_10646')
+integer, parameter :: utf8  =   selected_char_kind ('utf-8')
+
+character(len=26, kind=ascii ) :: alphabet
+character(len=30, kind=ucs4  ) :: hello_world
+character(len=30, kind=ucs4  ) :: string
+
+   write(*,*)'ASCII     ',&
+    & merge('SUPPORTED    ','NOT SUPPORTED',ascii /= -1)
+   write(*,*)'ISO_10646 ',&
+    & merge('SUPPORTED    ','NOT SUPPORTED',ucs4 /= -1)
+   write(*,*)'UTF-8     ',&
+    & merge('SUPPORTED    ','NOT SUPPORTED',utf8 /= -1)
+
+   if(default.eq.ascii)then
+       write(*,*)'ASCII is the default on this processor'
+   endif
+
+  ! the kind precedes the value, somewhat like a BOZ constant
    alphabet = ascii_"abcdefghijklmnopqrstuvwxyz"
+   write (*,*) alphabet
+
    hello_world = ucs4_'Hello World and Ni Hao -- ' &
                  // char (int (z'4F60'), ucs4)     &
                  // char (int (z'597D'), ucs4)
 
-   write (*,*) alphabet
+  ! an  encoding option is required on OPEN for non-default I/O
+   if(ucs4 /= -1 )then
+      open (output_unit, encoding='UTF-8')
+      write (*,*) trim (hello_world)
+   else
+      write (*,*) 'cannot use utf-8'
+   endif
 
-   open (output_unit, encoding='UTF-8')
-   write (*,*) trim (hello_world)
+   call create_date_string(string)
+   write (*,*) trim (string)
+
+contains
+
+! The following produces a Japanese date stamp.
+subroutine create_date_string(string)
+intrinsic date_and_time,selected_char_kind
+integer,parameter :: ucs4 = selected_char_kind("ISO_10646")
+character(len=1,kind=ucs4),parameter :: &
+       nen =   char(int( z'5e74' ),ucs4), & ! year
+       gatsu = char(int( z'6708' ),ucs4), & ! month
+       nichi = char(int( z'65e5' ),ucs4)    ! day
+     character(len= *, kind= ucs4) string
+     integer values(8)
+     call date_and_time(values=values)
+     write(string,1) values(1),nen,values(2),gatsu,values(3),nichi
+   1 format(i0,a,i0,a,i0,a)
+end subroutine create_date_string
+
 end program demo_selected_char_kind
 ```
 Results:
 
+The results are very processor-dependent
 ```text
-    abcdefghijklmnopqrstuvwxyz
-    Hello World and Ni Hao --
+ ASCII     SUPPORTED
+ ISO_10646 SUPPORTED
+ UTF-8     NOT SUPPORTED
+ ASCII is the default on this processor
+ abcdefghijklmnopqrstuvwxyz
+ Hello World and Ni Hao -- 你好
+ 2022年10月5日
 ```
 ### **Standard**
 
@@ -17553,9 +17617,9 @@ Fortran 2003
 
 ### **See also**
 
-[****(3)](#)
+[**achar**(3)](#achar)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## selected_int_kind
 
@@ -19665,11 +19729,10 @@ result = tan(x)
 ```
 ### **Characteristics**
 
-  where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind
-  supported by the associated type. The returned value will be of the same
-  type and kind as the argument.
-
-The return value has the same type and kind as **x**.
+  - **TYPE** may be _real_ or _complex_
+  - **KIND** may be any kind supported by the associated type.
+  - The returned value will be of the same type and kind as the argument
+    **x**.
 
 ### **Description**
 
@@ -19678,11 +19741,13 @@ The return value has the same type and kind as **x**.
 ### **Options**
 
 - **x**
-  : The angle in radians to compute the tangent of
+  : The angle in radians to compute the tangent of for _real_ input.
+    If **x** is of type _complex_, its real part is regarded as a value
+    in radians.
 
 ### **Result**
 
-The return value is the sine of the value **x**.
+  The return value is the tangent of the value **x**.
 
 ### **Examples**
 
@@ -19707,10 +19772,11 @@ FORTRAN 77 . For a complex argument, Fortran 2008 .
 ### **See Also**
 
 [**atan**(3)](#atan),
+[**atan2**(3)](#atan2),
 [**cos**(3)](#cos),
 [**sin**(3)](#sin)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## this_image
 

@@ -15,11 +15,10 @@ result = tan(x)
 ```
 ### **Characteristics**
 
-  where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind
-  supported by the associated type. The returned value will be of the same
-  type and kind as the argument.
-
-The return value has the same type and kind as **x**.
+  - **TYPE** may be _real_ or _complex_ 
+  - **KIND** may be any kind supported by the associated type.
+  - The returned value will be of the same type and kind as the argument
+    **x**.
 
 ### **Description**
 
@@ -28,11 +27,13 @@ The return value has the same type and kind as **x**.
 ### **Options**
 
 - **x**
-  : The angle in radians to compute the tangent of
+  : The angle in radians to compute the tangent of for _real_ input.
+    If **x** is of type _complex_, its real part is regarded as a value
+    in radians.
 
 ### **Result**
 
-The return value is the sine of the value **x**.
+  The return value is the tangent of the value **x**. 
 
 ### **Examples**
 
@@ -57,7 +58,8 @@ FORTRAN 77 . For a complex argument, Fortran 2008 .
 ### **See Also**
 
 [**atan**(3)](#atan),
+[**atan2**(3)](#atan2),
 [**cos**(3)](#cos),
 [**sin**(3)](#sin)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

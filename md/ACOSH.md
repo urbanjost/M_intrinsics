@@ -30,11 +30,14 @@
 
 ### **Result**
 
-If **x** is _complex_, the imaginary part of the result is in radians and
-lies between
+The result has a value equal to a processor-dependent approximation to
+the inverse hyperbolic cosine function of X.
 
-> **0 \<= aimag(acosh(x)) \<= PI**
-
+If **x** is _complex_, the imaginary part of the result is in radians
+and lies between
+```fortran
+ 0 <= aimag(acosh(x)) <= PI
+```
 ### **Examples**
 
 Sample program:

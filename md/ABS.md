@@ -20,7 +20,7 @@
 - If **a** is _complex_ the returned value will be a _real_ with the
   same kind as **a**.
 
-  Otherwise the returned type is the same as for **a**.
+  Otherwise the returned type and kind is the same as for **a**.
 
 ### **Description**
 
@@ -31,7 +31,7 @@
 
    The absolute value of a number may be thought of as its distance from
    zero. So for a complex value the absolute value is a real number
-   with magnitude **sqrt(x%re**2,x%im**2)**, as if the real component
+   with magnitude **sqrt(x%re\*\*2,x%im\*\*2)**, as if the real component
    is the x value and the imaginary value is the y value for the point
    \<x,y\>.
 
