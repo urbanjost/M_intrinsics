@@ -31,7 +31,7 @@
 - **j**
   : one of the pair of values to compare the bits of
 
-If either **i** or **j** is a BOZ-literal-constant, it is ﬁrst converted
+If either **i** or **j** is a BOZ-literal-constant, it is first converted
 as if by the intrinsic function **int**(3)  to type _integer_ with the
 kind type parameter of the other.
 

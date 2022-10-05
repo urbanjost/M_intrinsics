@@ -6856,7 +6856,7 @@
 <a name="ln-6597"></a><span class="s1">&#39;     one of I and J may be a BOZ literal constant (A BOZ literal constant is a&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-6598"></a><span class="s1">&#39;     binary, octal or hex constant).&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-6599"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-6600"></a><span class="s1">&#39;  o  If either I or J is a BOZ-literal-constant (but not both), it is rst&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-6600"></a><span class="s1">&#39;  o  If either I or J is a BOZ-literal-constant (but not both), it is first&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-6601"></a><span class="s1">&#39;     converted as if by the intrinsic function INT(3) to type integer with the&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-6602"></a><span class="s1">&#39;     kind type parameter of the other.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-6603"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
@@ -9364,9 +9364,9 @@
 <a name="ln-9105"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9106"></a><span class="s1">&#39;  o  J : one of the pair of values to compare the bits of&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9107"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-9108"></a><span class="s1">&#39;  If either I or J is a BOZ-literal-constant, it is rst converted as if by the&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-9109"></a><span class="s1">&#39;  intrinsic function INT(3) to type integer with the kind type parameter of&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-9110"></a><span class="s1">&#39;  the other.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-9108"></a><span class="s1">&#39;  If either I or J is a BOZ-literal-constant, it is first converted as if by&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-9109"></a><span class="s1">&#39;  the intrinsic function INT(3) to type integer with the kind type parameter&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-9110"></a><span class="s1">&#39;  of the other.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9111"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9112"></a><span class="s1">&#39;RESULT&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9113"></a><span class="s1">&#39;  The result has the value obtained by combining I and I bit-by-bit according&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
@@ -10115,9 +10115,9 @@
 <a name="ln-9856"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9857"></a><span class="s1">&#39;  o  J : one of the pair of values to compare the bits of&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9858"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-9859"></a><span class="s1">&#39;  If either I or J is a BOZ-literal-constant, it is rst converted as if by the&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-9860"></a><span class="s1">&#39;  intrinsic function INT(3) to type integer with the kind type parameter of&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-9861"></a><span class="s1">&#39;  the other.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-9859"></a><span class="s1">&#39;  If either I or J is a BOZ-literal-constant, it is first converted as if by&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-9860"></a><span class="s1">&#39;  the intrinsic function INT(3) to type integer with the kind type parameter&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-9861"></a><span class="s1">&#39;  of the other.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9862"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9863"></a><span class="s1">&#39;RESULT&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-9864"></a><span class="s1">&#39;  The result has the value obtained by combining I and J bit-by-bit according&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
@@ -13598,7 +13598,7 @@
 <a name="ln-13339"></a><span class="s1">&#39;     otherwise, if FROM is a coarray and the current team contains a failed&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-13340"></a><span class="s1">&#39;     image, and no other error condition occurs, STAT is assigned the value&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-13341"></a><span class="s1">&#39;     STAT_FAILED_IMAGE from the intrinsic module ISO_FORTRAN_ENV; o otherwise,&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-13342"></a><span class="s1">&#39;     STAT is assigned a processor-dependent positive value that diers from&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-13342"></a><span class="s1">&#39;     STAT is assigned a processor-dependent positive value that differs from&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-13343"></a><span class="s1">&#39;     that of STAT_STOPPED_IMAGE or STAT_FAILED_IMAGE.&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-13344"></a><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
 <a name="ln-13345"></a><span class="s1">&#39;  o  ERRMSG&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
@@ -20225,7 +20225,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2022-10-04 21:53  
+             on 2022-10-04 22:25  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> M_intrinsics was developed by John S. Urban</p></div>

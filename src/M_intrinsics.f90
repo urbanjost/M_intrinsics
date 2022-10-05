@@ -6597,7 +6597,7 @@ textblock=[character(len=256) :: &
 '     one of I and J may be a BOZ literal constant (A BOZ literal constant is a', &
 '     binary, octal or hex constant).', &
 '', &
-'  o  If either I or J is a BOZ-literal-constant (but not both), it is rst', &
+'  o  If either I or J is a BOZ-literal-constant (but not both), it is first', &
 '     converted as if by the intrinsic function INT(3) to type integer with the', &
 '     kind type parameter of the other.', &
 '', &
@@ -9105,9 +9105,9 @@ textblock=[character(len=256) :: &
 '', &
 '  o  J : one of the pair of values to compare the bits of', &
 '', &
-'  If either I or J is a BOZ-literal-constant, it is rst converted as if by the', &
-'  intrinsic function INT(3) to type integer with the kind type parameter of', &
-'  the other.', &
+'  If either I or J is a BOZ-literal-constant, it is first converted as if by', &
+'  the intrinsic function INT(3) to type integer with the kind type parameter', &
+'  of the other.', &
 '', &
 'RESULT', &
 '  The result has the value obtained by combining I and I bit-by-bit according', &
@@ -9856,9 +9856,9 @@ textblock=[character(len=256) :: &
 '', &
 '  o  J : one of the pair of values to compare the bits of', &
 '', &
-'  If either I or J is a BOZ-literal-constant, it is rst converted as if by the', &
-'  intrinsic function INT(3) to type integer with the kind type parameter of', &
-'  the other.', &
+'  If either I or J is a BOZ-literal-constant, it is first converted as if by', &
+'  the intrinsic function INT(3) to type integer with the kind type parameter', &
+'  of the other.', &
 '', &
 'RESULT', &
 '  The result has the value obtained by combining I and J bit-by-bit according', &
@@ -13339,7 +13339,7 @@ textblock=[character(len=256) :: &
 '     otherwise, if FROM is a coarray and the current team contains a failed', &
 '     image, and no other error condition occurs, STAT is assigned the value', &
 '     STAT_FAILED_IMAGE from the intrinsic module ISO_FORTRAN_ENV; o otherwise,', &
-'     STAT is assigned a processor-dependent positive value that diers from', &
+'     STAT is assigned a processor-dependent positive value that differs from', &
 '     that of STAT_STOPPED_IMAGE or STAT_FAILED_IMAGE.', &
 '', &
 '  o  ERRMSG', &
