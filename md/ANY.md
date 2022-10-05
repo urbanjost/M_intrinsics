@@ -1,3 +1,5 @@
+## any
+
 ### **Name**
 
 **any**(3) - \[ARRAY REDUCTION\] Determines if any of the values in the logical array are _.true._
@@ -153,4 +155,3 @@ Fortran 95
 [**all**(3)](#all)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
-#

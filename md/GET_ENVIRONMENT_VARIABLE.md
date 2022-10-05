@@ -1,4 +1,3 @@
-
 ## get_environment_variable
 
 ### **Name**

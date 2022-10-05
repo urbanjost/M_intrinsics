@@ -14,11 +14,11 @@
       character(len=30, kind=ucs4  ) :: string
 
          write(*,*)'ASCII     ',&
-          & merge('SUPPORTED    ','NOT SUPPORTED',ascii /= -1)
+          & merge('Supported    ','Not Supported',ascii /= -1)
          write(*,*)'ISO_10646 ',&
-          & merge('SUPPORTED    ','NOT SUPPORTED',ucs4 /= -1)
+          & merge('Supported    ','Not Supported',ucs4 /= -1)
          write(*,*)'UTF-8     ',&
-          & merge('SUPPORTED    ','NOT SUPPORTED',utf8 /= -1)
+          & merge('Supported    ','Not Supported',utf8 /= -1)
 
          if(default.eq.ascii)then
              write(*,*)'ASCII is the default on this processor'

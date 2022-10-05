@@ -1346,8 +1346,9 @@ textblock=[character(len=256) :: &
 '', &
 'any(3fortran)                                                    any(3fortran)', &
 '', &
-'              ANY(3) - [ARRAY REDUCTION] Determines if any of the values in', &
-'              the logical array are .true.', &
+'NAME', &
+'  ANY(3) - [ARRAY REDUCTION] Determines if any of the values in the logical', &
+'  array are .true.', &
 '', &
 'SYNOPSIS', &
 '  result = any(mask [,dim])', &
@@ -1387,7 +1388,7 @@ textblock=[character(len=256) :: &
 '  1.  ANY(MASK) is .true. if any element of MASK is .true.; otherwise, it is', &
 '      .false.. It also is .false. if MASK has zero size.', &
 '', &
-'  2.  If the rank of MASK is one, then ANY(MASK, DIM) is equivalent to', &
+'  .   If the rank of MASK is one, then ANY(MASK, DIM) is equivalent to', &
 '      ANY(MASK). If the rank is greater than one, then ANY(MASK, DIM) is', &
 '      determined by applying ANY(MASK) to the array sections.', &
 '', &
@@ -1465,7 +1466,7 @@ textblock=[character(len=256) :: &
 '', &
 '   T', &
 '   F', &
-'  first print b > a : shape=23,rank=2,size=6(a matrix) > [ F,T,T ] > [ F,T,T ]', &
+'  first print b > a : shape=3,rank=,size=6(a matrix) > [ F,T,T ] > [ F,T,T ]', &
 '', &
 '  any true values?', &
 '    any(b > a) : shape=,rank=0,size=1(a scalar) > [ T ]', &
@@ -1474,7 +1475,7 @@ textblock=[character(len=256) :: &
 '  T ] > [ T ]', &
 '', &
 '  again by rows?', &
-'    any(b > a,2) : shape=2,rank=1,size=2(a vector) > [ T ] > [ T ]', &
+'    any(b > a,) : shape=,rank=1,size=(a vector) > [ T ] > [ T ]', &
 '', &
 'STANDARD', &
 '  Fortran 95', &
@@ -5927,14 +5928,14 @@ textblock=[character(len=256) :: &
 '           type(TYPE, kind=KIND) function cshift(array, shift, dim )', &
 '', &
 '            type(TYPE,kind=KIND),intent(in) :: array(..)', &
-'            integer(kind=IKIND),intent(in)  :: shift', &
-'            integer(kind=IKIND),intent(in)  :: dim', &
+'            integer(kind=**),intent(in)  :: shift', &
+'            integer(kind=**),intent(in)  :: dim', &
 '', &
 'CHARACTERISTICS', &
-'  where ARRAY may be any type and rank (and the result will automatically be', &
-'  of the same type, kind and rank as ARRAY).', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
 '', &
-'  The kind of SHIFT and DIM may differ and be any supported value.', &
+'  o  ARRAY may be any type and rank (and the result will automatically be of', &
+'     the same type, kind and rank as ARRAY).', &
 '', &
 'DESCRIPTION', &
 '  CSHIFT(3) performs a circular shift on elements of ARRAY along the dimension', &
@@ -10132,11 +10133,12 @@ textblock=[character(len=256) :: &
 '           elemental integer(kind=KIND) function ishft(i, shift )', &
 '', &
 '            integer(kind=KIND),intent(in) :: i', &
-'            integer(kind=SHIFTKIND),intent(in) :: shift', &
+'            integer(kind=**),intent(in) :: shift', &
 '', &
 'CHARACTERISTICS', &
-'  where KIND and SHIFTKIND may be any supported integer kind, but where the', &
-'  kind for I dictates the kind of the returned value.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  the kind for I dictates the kind of the returned value.', &
 '', &
 'DESCRIPTION', &
 '  ISHFT(3) returns a value corresponding to I with all of the bits shifted', &
@@ -10215,13 +10217,14 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental integer(kind=KIND) function ishftc(i, shift, size)', &
 '', &
-'            integer(kind=KIND),intent(in)     :: i', &
-'            integer(kind=SHIFTKIND),intent(in) :: shift', &
-'            integer(kind=SIZEKIND),intent(in),optional  :: size', &
+'            integer(kind=KIND),intent(in)        :: i', &
+'            integer(kind=**),intent(in)          :: shift', &
+'            integer(kind=**),intent(in),optional :: size', &
 '', &
 'CHARACTERISTICS', &
-'  where KIND, SHIFTKIND, and SIZEKIND may be any supported integer kind, but', &
-'  where the kind for I dictates the kind of the returned value.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  the kind for I dictates the kind of the returned value.', &
 '', &
 'DESCRIPTION', &
 '  ISHFTC(3) circularly shifts just the specified rightmost bits of an integer.', &
@@ -16534,11 +16537,11 @@ textblock=[character(len=256) :: &
 '      character(len=30, kind=ucs4  ) :: string', &
 '', &
 '         write(*,*)''ASCII     '',&', &
-'          & merge(''SUPPORTED    '',''NOT SUPPORTED'',ascii /= -1)', &
+'          & merge(''Supported    '',''Not Supported'',ascii /= -1)', &
 '         write(*,*)''ISO_10646 '',&', &
-'          & merge(''SUPPORTED    '',''NOT SUPPORTED'',ucs4 /= -1)', &
+'          & merge(''Supported    '',''Not Supported'',ucs4 /= -1)', &
 '         write(*,*)''UTF-8     '',&', &
-'          & merge(''SUPPORTED    '',''NOT SUPPORTED'',utf8 /= -1)', &
+'          & merge(''Supported    '',''Not Supported'',utf8 /= -1)', &
 '', &
 '         if(default.eq.ascii)then', &
 '             write(*,*)''ASCII is the default on this processor''', &
@@ -16586,12 +16589,13 @@ textblock=[character(len=256) :: &
 '', &
 '  The results are very processor-dependent', &
 '', &
-'   ASCII SUPPORTED', &
-'  ISO_10646 SUPPORTED', &
-'', &
-'  UTF-8', &
-'    NOT SUPPORTED ASCII is the default on this processor', &
-'    abcdefghijklmnopqrstuvwxyz Hello World and Ni Hao -- 0105', &
+'       ASCII     Supported', &
+'       ISO_10646 Supported', &
+'       UTF-8     Not Supported', &
+'       ASCII is the default on this processor', &
+'       abcdefghijklmnopqrstuvwxyz', &
+'       Hello World and Ni Hao --', &
+'       2022105', &
 '', &
 'STANDARD', &
 '  Fortran 003', &
@@ -16957,11 +16961,13 @@ textblock=[character(len=256) :: &
 '           elemental integer(kind=KIND) function shifta(i, shift)', &
 '', &
 '            integer(kind=KIND),intent(in) :: i', &
-'            integer(kind=SHIFTKIND),intent(in) :: shift', &
+'            integer(kind=**),intent(in) :: shift', &
 '', &
 'CHARACTERISTICS', &
-'  where KIND and SHIFTKIND may be any supported integer kind, but where the', &
-'  kind for I dictates the kind of the returned value.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  ARRAY may be any type and rank (and the result will automatically be of', &
+'     the same type, kind and rank as ARRAY).', &
 '', &
 'DESCRIPTION', &
 '  SHIFTA(3) returns a value corresponding to I with all of the bits shifted', &
@@ -17080,11 +17086,13 @@ textblock=[character(len=256) :: &
 '           elemental integer(kind=KIND) function shiftl(i, shift)', &
 '', &
 '            integer(kind=KIND),intent(in) :: i', &
-'            integer(kind=SHIFTKIND),intent(in) :: shift', &
+'            integer(kind=**),intent(in) :: shift', &
 '', &
 'CHARACTERISTICS', &
-'  where KIND and SHIFTKIND may be any supported integer kind, but where the', &
-'  kind for I dictates the kind of the returned value.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  ARRAY may be any type and rank (and the result will automatically be of', &
+'     the same type, kind and rank as ARRAY).', &
 '', &
 'DESCRIPTION', &
 '  SHIFTL(3) returns a value corresponding to I with all of the bits shifted', &
@@ -17214,11 +17222,13 @@ textblock=[character(len=256) :: &
 '           elemental integer(kind=KIND) function shiftr(i, shift)', &
 '', &
 '            integer(kind=KIND),intent(in) :: i', &
-'            integer(kind=SHIFTKIND),intent(in) :: shift', &
+'            integer(kind=**),intent(in) :: shift', &
 '', &
 'CHARACTERISTICS', &
-'  where KIND and SHIFTKIND may be any supported integer kind, but where the', &
-'  kind for I dictates the kind of the returned value.', &
+'  o  a kind designated as ** may be any supported kind value for the type', &
+'', &
+'  o  ARRAY may be any type and rank (and the result will automatically be of', &
+'     the same type, kind and rank as ARRAY).', &
 '', &
 'DESCRIPTION', &
 '  SHIFTR(3) returns a value corresponding to I with all of the bits shifted', &

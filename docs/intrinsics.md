@@ -475,7 +475,6 @@ Inverse function: [**cos**(3)](cos)
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
-#
 
 ## adjustl
 
@@ -787,7 +786,6 @@ logical expressions:
 [**unpack**(3)](#unpack),
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
-#
 
 ## aint
 
@@ -886,7 +884,6 @@ FORTRAN 77
 [**floor**(3)](#floor)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
-#
 
 ## all
 
@@ -1197,6 +1194,8 @@ FORTRAN 77
 
  _fortran-lang intrinsic descriptions_
 
+## any
+
 ### **Name**
 
 **any**(3) - \[ARRAY REDUCTION\] Determines if any of the values in the logical array are _.true._
@@ -1352,7 +1351,6 @@ Fortran 95
 [**all**(3)](#all)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
-#
 
 ## asinh
 
@@ -3631,6 +3629,8 @@ Fortran 95
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
+## ble
+
 ### **Name**
 
 **ble**(3) - \[BIT:COMPARE\] Bitwise less than or equal to
@@ -4347,6 +4347,8 @@ Fortran 2003
 **iso_c_binding**(3)
 
  _fortran-lang intrinsic descriptions_
+
+## char
 
 ### **Name**
 
@@ -6129,16 +6131,14 @@ Fortran 95
      type(TYPE, kind=KIND) function cshift(array, shift, dim )
 
       type(TYPE,kind=KIND),intent(in) :: array(..)
-      integer(kind=IKIND),intent(in)  :: shift
-      integer(kind=IKIND),intent(in)  :: dim
+      integer(kind=**),intent(in)  :: shift
+      integer(kind=**),intent(in)  :: dim
 ```
 ### **Characteristics**
 
-  where **array** may be any type and rank (and the result will
-  automatically be of the same type, kind and rank as **array**).
-
-  The _kind_ of **shift** and **dim** may differ and be any supported
-  value.
+ - a kind designated as ** may be any supported kind value for the type
+ - **array** may be any type and rank (and the result will
+   automatically be of the same type, kind and rank as **array**).
 
 ### **Description**
 
@@ -7141,13 +7141,9 @@ Fortran 2008
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
-
  - **array** May be any type, but not a scalar.
-
  - **shift** is an integer of any dind
-
  - **boundary** is a scalar of the same type and kind as the **array**.
-
  - **dim** is an integer of any dind
 
  - The result is an array of same type, kind and rank as the **array** argument.
@@ -9697,6 +9693,8 @@ Fortran 2008
 
  _fortran-lang intrinsic descriptions_
 
+## ibclr
+
 ### **Name**
 
 **ibclr**(3) - \[BIT:SET\] Clear bit
@@ -10641,15 +10639,14 @@ Fortran 2008
 ```fortran
      elemental integer(kind=KIND) function ishftc(i, shift, size)
 
-      integer(kind=KIND),intent(in)     :: i
-      integer(kind=SHIFTKIND),intent(in) :: shift
-      integer(kind=SIZEKIND),intent(in),optional  :: size
+      integer(kind=KIND),intent(in)        :: i
+      integer(kind=**),intent(in)          :: shift
+      integer(kind=**),intent(in),optional :: size
 ```
 ### **Characteristics**
 
-  where KIND, SHIFTKIND, and SIZEKIND  may be any supported _integer_
-  kind, but where the kind for **i** dictates the kind of the returned
-  value.
+ - a kind designated as ** may be any supported kind value for the type
+ - the kind for **i** dictates the kind of the returned value.
 
 ### **Description**
 
@@ -10752,12 +10749,12 @@ Fortran 95
      elemental integer(kind=KIND) function ishft(i, shift )
 
       integer(kind=KIND),intent(in) :: i
-      integer(kind=SHIFTKIND),intent(in) :: shift
+      integer(kind=**),intent(in) :: shift
 ```
 ### **Characteristics**
 
-  where KIND and  SHIFTKIND may be any supported _integer_ kind, but where
-  the kind for **i** dictates the kind of the returned value.
+ - a kind designated as ** may be any supported kind value for the type
+ -  the kind for **i** dictates the kind of the returned value.
 
 ### **Description**
 
@@ -17551,11 +17548,11 @@ character(len=30, kind=ucs4  ) :: hello_world
 character(len=30, kind=ucs4  ) :: string
 
    write(*,*)'ASCII     ',&
-    & merge('SUPPORTED    ','NOT SUPPORTED',ascii /= -1)
+    & merge('Supported    ','Not Supported',ascii /= -1)
    write(*,*)'ISO_10646 ',&
-    & merge('SUPPORTED    ','NOT SUPPORTED',ucs4 /= -1)
+    & merge('Supported    ','Not Supported',ucs4 /= -1)
    write(*,*)'UTF-8     ',&
-    & merge('SUPPORTED    ','NOT SUPPORTED',utf8 /= -1)
+    & merge('Supported    ','Not Supported',utf8 /= -1)
 
    if(default.eq.ascii)then
        write(*,*)'ASCII is the default on this processor'
@@ -17603,9 +17600,9 @@ Results:
 
 The results are very processor-dependent
 ```text
- ASCII     SUPPORTED
- ISO_10646 SUPPORTED
- UTF-8     NOT SUPPORTED
+ ASCII     Supported
+ ISO_10646 Supported
+ UTF-8     Not Supported
  ASCII is the default on this processor
  abcdefghijklmnopqrstuvwxyz
  Hello World and Ni Hao -- 你好
@@ -18003,12 +18000,13 @@ Fortran 95 ; with KIND argument Fortran 2003
      elemental integer(kind=KIND) function shifta(i, shift)
 
       integer(kind=KIND),intent(in) :: i
-      integer(kind=SHIFTKIND),intent(in) :: shift
+      integer(kind=**),intent(in) :: shift
 ```
 ### **Characteristics**
 
-  where KIND and SHIFTKIND may be any supported _integer_ kind, but
-  where the kind for **i** dictates the kind of the returned value.
+ - a kind designated as ** may be any supported kind value for the type
+ - **array** may be any type and rank (and the result will
+   automatically be of the same type, kind and rank as **array**).
 
 ### **Description**
 
@@ -18134,12 +18132,13 @@ Fortran 2008
      elemental integer(kind=KIND) function shiftl(i, shift)
 
       integer(kind=KIND),intent(in) :: i
-      integer(kind=SHIFTKIND),intent(in) :: shift
+      integer(kind=**),intent(in) :: shift
 ```
 ### **Characteristics**
 
-where KIND and SHIFTKIND may be any supported _integer_ kind, but
-where the kind for **i** dictates the kind of the returned value.
+ - a kind designated as ** may be any supported kind value for the type
+ - **array** may be any type and rank (and the result will
+   automatically be of the same type, kind and rank as **array**).
 
 ### **Description**
 
@@ -18273,12 +18272,13 @@ Fortran 2008
      elemental integer(kind=KIND) function shiftr(i, shift)
 
       integer(kind=KIND),intent(in) :: i
-      integer(kind=SHIFTKIND),intent(in) :: shift
+      integer(kind=**),intent(in) :: shift
 ```
 ### **Characteristics**
 
-where KIND and SHIFTKIND may be any supported _integer_ kind, but
-where the kind for **i** dictates the kind of the returned value.
+ - a kind designated as ** may be any supported kind value for the type
+ - **array** may be any type and rank (and the result will
+   automatically be of the same type, kind and rank as **array**).
 
 ### **Description**
 
@@ -19220,7 +19220,6 @@ when adding dimension 3,4,5, ... why is 15 not allowed if 16 is allowed?
 
 need an illustration of what happens with higher dimension array
 -->
-#
 
 ## sqrt
 

@@ -72,11 +72,11 @@ character(len=30, kind=ucs4  ) :: hello_world
 character(len=30, kind=ucs4  ) :: string
 
    write(*,*)'ASCII     ',&
-    & merge('SUPPORTED    ','NOT SUPPORTED',ascii /= -1) 
+    & merge('Supported    ','Not Supported',ascii /= -1) 
    write(*,*)'ISO_10646 ',&
-    & merge('SUPPORTED    ','NOT SUPPORTED',ucs4 /= -1)
+    & merge('Supported    ','Not Supported',ucs4 /= -1)
    write(*,*)'UTF-8     ',&
-    & merge('SUPPORTED    ','NOT SUPPORTED',utf8 /= -1)
+    & merge('Supported    ','Not Supported',utf8 /= -1)
 
    if(default.eq.ascii)then
        write(*,*)'ASCII is the default on this processor'
@@ -124,9 +124,9 @@ Results:
 
 The results are very processor-dependent
 ```text
- ASCII     SUPPORTED    
- ISO_10646 SUPPORTED    
- UTF-8     NOT SUPPORTED
+ ASCII     Supported    
+ ISO_10646 Supported    
+ UTF-8     Not Supported
  ASCII is the default on this processor
  abcdefghijklmnopqrstuvwxyz
  Hello World and Ni Hao -- 你好

@@ -19,13 +19,9 @@
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
-
  - **array** May be any type, but not a scalar. 
-
  - **shift** is an integer of any dind
-
  - **boundary** is a scalar of the same type and kind as the **array**. 
-
  - **dim** is an integer of any dind
 
  - The result is an array of same type, kind and rank as the **array** argument.

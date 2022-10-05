@@ -131,4 +131,3 @@ logical expressions:
 [**unpack**(3)](#unpack),
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
-#

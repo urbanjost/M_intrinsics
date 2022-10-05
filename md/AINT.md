@@ -95,4 +95,3 @@ FORTRAN 77
 [**floor**(3)](#floor)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
-#

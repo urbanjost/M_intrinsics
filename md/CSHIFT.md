@@ -12,16 +12,14 @@
      type(TYPE, kind=KIND) function cshift(array, shift, dim )
 
       type(TYPE,kind=KIND),intent(in) :: array(..)
-      integer(kind=IKIND),intent(in)  :: shift
-      integer(kind=IKIND),intent(in)  :: dim
+      integer(kind=**),intent(in)  :: shift
+      integer(kind=**),intent(in)  :: dim
 ```
 ### **Characteristics**
 
-  where **array** may be any type and rank (and the result will
-  automatically be of the same type, kind and rank as **array**).
-
-  The _kind_ of **shift** and **dim** may differ and be any supported
-  value.
+ - a kind designated as ** may be any supported kind value for the type
+ - **array** may be any type and rank (and the result will
+   automatically be of the same type, kind and rank as **array**).
 
 ### **Description**
 

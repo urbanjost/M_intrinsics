@@ -10,6 +10,7 @@ append("aint.3fortran.html");
 append("all.3fortran.html");
 append("allocated.3fortran.html");
 append("anint.3fortran.html");
+append("any.3fortran.html");
 append("asin.3fortran.html");
 append("asinh.3fortran.html");
 append("associated.3fortran.html");

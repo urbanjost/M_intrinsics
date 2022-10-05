@@ -12,12 +12,12 @@
      elemental integer(kind=KIND) function ishft(i, shift )
 
       integer(kind=KIND),intent(in) :: i
-      integer(kind=SHIFTKIND),intent(in) :: shift
+      integer(kind=**),intent(in) :: shift
 ```
 ### **Characteristics**
 
-  where KIND and  SHIFTKIND may be any supported _integer_ kind, but where
-  the kind for **i** dictates the kind of the returned value.
+ - a kind designated as ** may be any supported kind value for the type
+ -  the kind for **i** dictates the kind of the returned value.
 
 ### **Description**
 
