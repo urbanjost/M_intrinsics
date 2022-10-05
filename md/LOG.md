@@ -20,7 +20,7 @@
 
 ### **Description**
 
-  **log(x)** computes the natural logarithm of **x**, i.e. the logarithm to
+  **log**(3) computes the natural logarithm of **x**, i.e. the logarithm to
   the base "e".
 
 ### **Options**

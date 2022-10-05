@@ -23,7 +23,7 @@
 
 ### **Description**
 
-  **aimag(z)** yields the imaginary part of the complex argument **z**.
+  **aimag**(3) yields the imaginary part of the complex argument **z**.
 
   This is similar to the modern complex-part-designator **%IM** which also
   designates the imaginary part of a value, accept a designator can appear
@@ -72,7 +72,7 @@ complex(kind=real64) :: z8
 
 end program demo_aimag
 ```
-  Results:
+Results:
 ```text
  value= (1.00000000,2.00000000)
  imaginary part= 2.00000000 or 2.00000000

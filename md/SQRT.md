@@ -20,7 +20,7 @@
 
 ### **Description**
 
-  **sqrt(x)** computes the principal square root of **x**.
+  **sqrt**(3) computes the principal square root of **x**.
 
   In mathematics, a square root of a number **x** is a number **y**
   such that **y\*y = x**.

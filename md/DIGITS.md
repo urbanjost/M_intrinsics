@@ -22,7 +22,7 @@ The return value is of type _integer_ of default kind.
 
 ### **Description**
 
-**digits(x)** returns the number of significant digits of the internal
+**digits**(3) returns the number of significant digits of the internal
 model representation of **x**. For example, on a system using a 32-bit
 floating point representation, a default real number would likely return 24.
 

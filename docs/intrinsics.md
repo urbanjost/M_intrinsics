@@ -25,7 +25,7 @@
 
 ### **Description**
 
-   **abs(a)** computes the absolute value of numeric argument **a**.
+   **abs**(3) computes the absolute value of numeric argument **a**.
 
    In mathematics, the absolute value or modulus of a real number **x**,
    denoted **|x|**, is the magnitude of **x** without regard to its sign.
@@ -116,7 +116,7 @@ character(len=*),parameter :: &
 
 end program demo_abs
 ```
-  Results:
+Results:
 ```text
     integer          In: -1                     Out: 1
     real             In: -1.000000              Out: 1.000000
@@ -167,7 +167,7 @@ end program demo_abs
 
 ### **Description**
 
-**achar(i)** returns the character located at position **i** (commonly
+**achar**(3) returns the character located at position **i** (commonly
 called the _ADE_ or ASCII Decimal Equivalent) in the ASCII collating
 sequence.
 
@@ -341,7 +341,7 @@ FORTRAN 77 , with KIND argument Fortran 2003
 
 ### **Description**
 
-**acosh(x)** computes the inverse hyperbolic cosine of **x** in radians.
+**acosh**(3) computes the inverse hyperbolic cosine of **x** in radians.
 
 ### **Options**
 
@@ -405,7 +405,7 @@ Inverse function: [**cosh**(3)](#cosh)
 
 ### **Description**
 
-**acos(x)** computes the arccosine of **x** (inverse of **cos(x)**).
+**acos**(3) computes the arccosine of **x** (inverse of **cos(x)**).
 
 ### **Options**
 
@@ -496,7 +496,7 @@ Inverse function: [**cos**(3)](cos)
 
 ### **Description**
 
-**adjustl(string)** will left-adjust a string by removing leading
+**adjustl**(3) will left-adjust a string by removing leading
 spaces. Spaces are inserted at the end of the string as needed.
 
 ### **Options**
@@ -586,7 +586,7 @@ Fortran 95
 
 ### **Description**
 
-**adjustr(3f)** right-adjusts a string by removing trailing spaces. Spaces
+**adjustr**(3) right-adjusts a string by removing trailing spaces. Spaces
 are inserted at the start of the string as needed to retain the original
 length.
 
@@ -676,7 +676,7 @@ Fortran 95
 
 ### **Description**
 
-  **aimag(z)** yields the imaginary part of the complex argument **z**.
+  **aimag**(3) yields the imaginary part of the complex argument **z**.
 
   This is similar to the modern complex-part-designator **%IM** which also
   designates the imaginary part of a value, accept a designator can appear
@@ -725,7 +725,7 @@ complex(kind=real64) :: z8
 
 end program demo_aimag
 ```
-  Results:
+Results:
 ```text
  value= (1.00000000,2.00000000)
  imaginary part= 2.00000000 or 2.00000000
@@ -855,7 +855,7 @@ real(kind=dp) :: x8
     &  +0.5,  +1.0, +1.5, +2.0, +2.2, +2.5, +2.7  ])
 end program demo_aint
 ```
-  Results:
+Results:
 ```text
  basics:
   just chops off the fractional part
@@ -905,12 +905,13 @@ FORTRAN 77
 
 ### **Description**
 
-Logical conjunction of elements of **mask** along dimension **dim**.
-
-"**all(mask, dim)**" determines if all the values are true in **mask**
+**all**(3) determines if all the values are true in **mask**
 in the array along dimension **dim**.
 
-The mask is generally a logical expression, allowing for comparing
+This is called a logical conjunction of elements of **mask** along
+dimension **dim**.
+
+The mask is generally a _logical_ expression, allowing for comparing
 arrays and many other common operations.
 
 ### **Options**
@@ -986,7 +987,7 @@ logical bool
   end block ARRAYS
 end program demo_all
 ```
-  Results:
+Results:
 ```text
     T
     F
@@ -1026,7 +1027,7 @@ Fortran 95
 
 ### **Description**
 
-  **allocated(arg)**  checks the allocation status of both arrays
+  **allocated**(3) checks the allocation status of both arrays
   and scalars.
 
 ### **Options**
@@ -1216,7 +1217,7 @@ FORTRAN 77
 
 ### **Description**
 
-**any(mask, dim)** determines if any of the values in the logical
+**any**(3) determines if any of the values in the logical
 array **mask** along dimension **dim** are _.true._.
 
 ### **Options**
@@ -1374,7 +1375,7 @@ Fortran 95
 
 ### **Description**
 
-**asinh(x)** computes the inverse hyperbolic sine of **x**.
+**asinh**(3) computes the inverse hyperbolic sine of **x**.
 
 ### **Options**
 
@@ -1441,7 +1442,7 @@ Inverse function: [**sinh**(3)](#sinh)
 
 ### **Description**
 
-**asin(x)** computes the arcsine of its argument **x**.
+**asin**(3) computes the arcsine of its argument **x**.
 
 The arcsine is the inverse function of the sine function. It is commonly
 used in trigonometry when trying to find the angle when the lengths of
@@ -1560,8 +1561,8 @@ or
 
 ### **Description**
 
-**associated(pointer \[, target\])** determines the status of the
-pointer **pointer** or if **pointer** is associated with the target **target**.
+**associated**(3) determines the status of the pointer **pointer**
+or if **pointer** is associated with the target **target**.
 
 ### **Options**
 
@@ -1659,7 +1660,7 @@ The return value has the same type and kind as **y** and **x**.
 
 ### **Description**
 
-**atan2(y, x)** computes in radians a processor-dependent approximation of
+**atan2**(3) computes in radians a processor-dependent approximation of
 the arctangent of the complex number ( **x**, **y** ) or equivalently the
 principal value of the arctangent of the value **y/x** (which determines
 a unique angle).
@@ -1784,7 +1785,7 @@ end subroutine cartesian_to_polar
 
 end program demo_atan2
 ```
-  Results:
+Results:
 ```text
     radians=   1.000000     degrees=   57.29578
     elemental  0.3217506      0.4636476
@@ -1834,7 +1835,7 @@ FORTRAN 77
 
 ### **Description**
 
-**atanh(x)** computes the inverse hyperbolic tangent of **x**.
+**atanh**(3) computes the inverse hyperbolic tangent of **x**.
 
 ### **Options**
 
@@ -1904,7 +1905,7 @@ The returned value is of the same type and kind as **x**.
 
 ### **Description**
 
-**atan(x)** computes the arctangent of **x**.
+**atan**(3) computes the arctangent of **x**.
 
 ### **Options**
 
@@ -1999,7 +2000,7 @@ arguments Fortran 2008
 
 ### **Description**
 
-**atomic_ad(atom, value)** atomically adds the value of VAR to the
+**atomic_add**(3) atomically adds the value of VAR to the
 variable **atom**. When **stat** is present and the invocation was successful,
 it is assigned the value 0. If it is present and the invocation has
 failed, it is assigned a positive value; in particular, for a coindexed
@@ -2075,7 +2076,7 @@ TS 18508
 
 ### **Description**
 
-**atomic_and(atom, value)** atomically defines **atom** with the bitwise
+**atomic_and**(3) atomically defines **atom** with the bitwise
 **and** between the values of **atom** and **value**. When **stat** is present and the
 invocation was successful, it is assigned the value 0. If it is present
 and the invocation has failed, it is assigned a positive value; in
@@ -2143,15 +2144,15 @@ TS 18508
 
 ### **Description**
 
-atomic_cas compares the variable **atom** with the value of **compare**; if the
-value is the same, **atom** is set to the value of **new**. Additionally, **old** is
-set to the value of **atom** that was used for the comparison. When **stat** is
-present and the invocation was successful, it is assigned the value 0.
-If it is present and the invocation has failed, it is assigned a
-positive value; in particular, for a coindexed **atom**, if the remote image
-has stopped, it is assigned the value of iso_fortran_env's
-stat_stopped_image and if the remote image has failed, the value
-stat_failed_image.
+**atomic_cas**(3) compares the variable **atom** with the value of
+**compare**; if the value is the same, **atom** is set to the value of
+**new**. Additionally, **old** is set to the value of **atom** that was
+used for the comparison. When **stat** is present and the invocation
+was successful, it is assigned the value 0.  If it is present and the
+invocation has failed, it is assigned a positive value; in particular,
+for a coindexed **atom**, if the remote image has stopped, it is assigned
+the value of iso_fortran_env's stat_stopped_image and if the remote
+image has failed, the value stat_failed_image.
 
 ### **Options**
 
@@ -2231,7 +2232,7 @@ TS 18508
 
 ### **Description**
 
-**atomic_define(atom, value)** defines the variable **atom** with the value
+**atomic_define**(3) defines the variable **atom** with the value
 **value** atomically.
 
 ### **Options**
@@ -2298,14 +2299,13 @@ Fortran 2008 ; with **stat**, TS 18508
 
 ### **Description**
 
-**atomic_fetch_add(atom, value, old)** atomically stores the value of
-**atom** in **old** and adds the value of **var** to the variable **atom**. When **stat** is
+**atomic_fetch_add**(3) atomically stores the value of **atom** in **old**
+and adds the value of **var** to the variable **atom**. When **stat** is
 present and the invocation was successful, it is assigned the value **0**.
-If it is present and the invocation has failed, it is assigned a
-positive value; in particular, for a coindexed **atom**, if the remote image
-has stopped, it is assigned the value of iso_fortran_env's
-stat_stopped_image and if the remote image has failed, the value
-stat_failed_image.
+If it is present and the invocation has failed, it is assigned a positive
+value; in particular, for a coindexed **atom**, if the remote image has
+stopped, it is assigned the value of iso_fortran_env's stat_stopped_image
+and if the remote image has failed, the value stat_failed_image.
 
 ### **Options**
 
@@ -2370,7 +2370,7 @@ TS 18508
 
 ### **Description**
 
-**atomic_fetch_and(atom, value, old)** atomically stores the value of
+**atomic_fetch_and**(3) atomically stores the value of
 **atom** in **old** and defines **atom** with the bitwise AND between the values of
 **atom** and **value**. When **stat** is present and the invocation was successful,
 it is assigned the value **0**. If it is present and the invocation has
@@ -2442,7 +2442,7 @@ TS 18508
 
 ### **Description**
 
-**atomic_fetch_or(atom, value, old)** atomically stores the value of
+**atomic_fetch_or**(3) atomically stores the value of
 **atom** in **old** and defines **atom** with the bitwise OR between the values of
 **atom** and **value**. When **stat** is present and the invocation was successful,
 it is assigned the value **0**. If it is present and the invocation has
@@ -2514,7 +2514,7 @@ TS 18508
 
 ### **Description**
 
-**atomic_fetch_xor(atom, value, old)** atomically stores the value of
+**atomic_fetch_xor**(3) atomically stores the value of
 **atom** in **old** and defines **atom** with the bitwise **xor** between the values of
 **atom** and **value**. When **stat** is present and the invocation was successful,
 it is assigned the value **0**. If it is present and the invocation has
@@ -2598,7 +2598,7 @@ TS 18508
 
 ### **Description**
 
-**atomic_or(atom, value)** atomically defines **atom** with the bitwise **or**
+**atomic_or**(3) atomically defines **atom** with the bitwise **or**
 between the values of **atom** and **value**. When **stat** is present and the
 invocation was successful, it is assigned the value **0**. If it is present
 and the invocation has failed, it is assigned a positive value; in
@@ -2679,7 +2679,7 @@ TS 18508
 
 ### **Description**
 
-**atomic_ref(value, atom)** atomically assigns the value of the
+**atomic_ref**(3) atomically assigns the value of the
 variable **atom** to **value**. When **stat** is present and the invocation was
 successful, it is assigned the value **0**. If it is present and the
 invocation has failed, it is assigned a positive value; in particular,
@@ -2769,7 +2769,7 @@ Fortran 2008 ; with STAT, TS 18508
 
 ### **Description**
 
-**atomic_xor(atom, value)** atomically defines **atom** with the bitwise
+**atomic_xor**(3) atomically defines **atom** with the bitwise
 **xor** between the values of **atom** and **value**. When **stat** is present and the
 invocation was successful, it is assigned the value **0**. If it is present
 and the invocation has failed, it is assigned a positive value; in
@@ -2840,7 +2840,7 @@ TS 18508
 
 ### **Description**
 
-**bessel_j0(x)** computes the Bessel function of the first kind
+**bessel_j0**(3) computes the Bessel function of the first kind
 of order **0** of **x**.
 
 ### **Options**
@@ -2907,7 +2907,7 @@ Fortran 2008
 
 ### **Description**
 
-**bessel_j1(x)** computes the Bessel function of the first kind
+**bessel_j1**(3) computes the Bessel function of the first kind
 of order **1** of **x**.
 
 ### **Options**
@@ -2990,7 +2990,7 @@ Fortran 2008
 
 ### **Description**
 
-  **bessel_jn(n, x)** computes the Bessel function of the first kind of
+  **bessel_jn( n, x )** computes the Bessel function of the first kind of
   order **n** of **x**.
 
   **bessel_jn(n1, n2, x)** returns an array with the Bessel
@@ -3073,7 +3073,7 @@ Fortran 2008
 
 ### **Description**
 
-**bessel_y0(x)** computes the Bessel function of the second
+**bessel_y0**(3) computes the Bessel function of the second
 kind of order 0 of **x**.
 
 ### **Options**
@@ -3141,7 +3141,7 @@ Fortran 2008
 
 ### **Description**
 
-**bessel_y1(x)** computes the Bessel function of the second
+**bessel_y1**(3) computes the Bessel function of the second
 kind of order 1 of **x**.
 
 ### **Options**
@@ -3308,8 +3308,8 @@ Fortran 2008
 
 ### **Description**
 
-  Determines whether one _integer_ is bitwise greater than or equal
-  to another.
+  **bge**(3) Determines whether one _integer_ is bitwise greater than
+  or equal to another.
 
   The bit-level representation of a value is platform dependent. The
   endian-ness of a system and whether the system uses a "two's complement"
@@ -3475,7 +3475,7 @@ Fortran 2008
 
 ### **Description**
 
-  Determines whether an integer is bitwise greater than another.
+  **bgt** determines whether an integer is bitwise greater than another.
   Bit-level representations of values are platform-dependent.
 
 ### **Options**
@@ -3555,13 +3555,13 @@ Fortran 2008
 ```
 ### **Characteristics**
 
- - the value of KIND is any valid value for an _integer_ kind
- - parameter on the processor.
+ - the value of **KIND** is any valid value for an _integer_ kind
+   parameter on the processor.
  - the return value is of the same kind as the input value.
 
 ### **Description**
 
-  **bit_size(i)** returns the number of bits (integer precision plus
+  **bit_size**(3) returns the number of bits (integer precision plus
   sign bit) represented by the type of the _integer_ **i**.
 
 ### **Options**
@@ -3570,7 +3570,7 @@ Fortran 2008
   : An _integer_ value of any kind whose size in bits is to be determined.
   Because only the type of the argument is examined, the argument need not
   be defined; **i** can be a scalar or an array, but a scalar representing
-  just the first element is always returned.
+  just a single element is always returned.
 
 ### **Result**
 
@@ -3644,7 +3644,8 @@ Fortran 95
 
 ### **Description**
 
-  Determines whether an integer is bitwise less than or equal to another.
+  **ble**(3) determines whether an integer is bitwise less than or equal
+  to another.
 
 ### **Options**
 
@@ -3738,7 +3739,7 @@ Fortran 2008
 
 ### **Description**
 
-Determines whether an integer is bitwise less than another.
+  **blt**(3) determines whether an integer is bitwise less than another.
 
 ### **Options**
 
@@ -3819,7 +3820,7 @@ where **KIND** is any _integer_ kind supported by the programming environment.
 
 ### **Description**
 
-**btest(i,pos)** returns logical _.true._ if the bit at **pos** in **i** is set.
+**btest**(3) returns logical _.true._ if the bit at **pos** in **i** is set.
 
 ### **Options**
 
@@ -3960,7 +3961,7 @@ Fortran 95
 
 ### **Description**
 
-**c_associated(c_prt_1\[, c_ptr_2\])** determines the status of the
+**c_associated**(3) determines the status of the
 C pointer c_ptr_1 or if c_ptr_1 is associated with the target
 c_ptr_2.
 
@@ -4035,7 +4036,7 @@ kind is specified by the optional **kind** argument.
 
 ### **Description**
 
-**ceiling(a)** returns the least integer greater than or equal to **a**.
+**ceiling**(3) returns the least integer greater than or equal to **a**.
 
 ### **Options**
 
@@ -4278,7 +4279,7 @@ Fortran 2003
 
 ### **Description**
 
-**c_funloc(x)** determines the C address of the argument.
+**c_funloc**(3) determines the C address of the argument.
 
 ### **Options**
 
@@ -4356,7 +4357,7 @@ Fortran 2003
 
 ### **Description**
 
-**char(i, kind)** returns the character represented by the integer **i**.
+**char**(3) returns the character represented by the integer **i**.
 
 ### **Options**
 
@@ -4436,7 +4437,7 @@ of arguments, and search for certain arguments:
 
 ### **Description**
 
-**c_loc(x)** determines the C address of the argument.
+  **c_loc**(3) determines the C address of the argument.
 
 ### **Options**
 
@@ -4791,7 +4792,7 @@ logical expressions:
 
 ### **Description**
 
-**co_broadcast(3)** copies the value of argument **a** on the image with image
+**co_broadcast**(3) copies the value of argument **a** on the image with image
 index source_image to all images in the current team. **a** becomes defined
 as if by intrinsic assignment. If the execution was successful and **stat**
 is present, it is assigned the value zero. If the execution failed, **stat**
@@ -4859,8 +4860,8 @@ Fortran xx
 
 ### **Description**
 
-Returns the lower bounds of a coarray, or a single lower cobound along
-the **dim** codimension.
+**co_lbound**(3) returns the lower bounds of a coarray, or a single
+lower cobound along the **dim** codimension.
 
 ### **Options**
 
@@ -4909,14 +4910,14 @@ Fortran 2008
 
 ### **Description**
 
-co_max determines element-wise the maximal value of **a** on all images of
-the current team. If result_image is present, the maximum values are
-returned in **a** on the specified image only and the value of **a** on the
-other images become undefined. If result_image is not present, the
-value is returned on all images. If the execution was successful and
-**stat** is present, it is assigned the value zero. If the execution failed,
-**stat** gets assigned a nonzero value and, if present, **errmsg** gets assigned
-a value describing the occurred error.
+**co_max**(3) determines element-wise the maximal value of **a** on all
+images of the current team. If result_image is present, the maximum values
+are returned in **a** on the specified image only and the value of **a**
+on the other images become undefined. If result_image is not present,
+the value is returned on all images. If the execution was successful
+and **stat** is present, it is assigned the value zero. If the execution
+failed, **stat** gets assigned a nonzero value and, if present, **errmsg**
+gets assigned a value describing the occurred error.
 
 ### **Options**
 
@@ -4986,14 +4987,14 @@ TS 18508
 
 ### **Description**
 
-co_min determines element-wise the minimal value of **a** on all images of
-the current team. If result_image is present, the minimal values are
-returned in **a** on the specified image only and the value of **a** on the
-other images become undefined. If result_image is not present, the
-value is returned on all images. If the execution was successful and
-**stat** is present, it is assigned the value zero. If the execution failed,
-**stat** gets assigned a nonzero value and, if present, **errmsg** gets assigned
-a value describing the occurred error.
+**co_min**(3) determines element-wise the minimal value of **a** on all
+images of the current team. If result_image is present, the minimal values
+are returned in **a** on the specified image only and the value of **a**
+on the other images become undefined. If result_image is not present,
+the value is returned on all images. If the execution was successful
+and **stat** is present, it is assigned the value zero. If the execution
+failed, **stat** gets assigned a nonzero value and, if present, **errmsg**
+gets assigned a value describing the occurred error.
 
 ### **Options**
 
@@ -5058,7 +5059,7 @@ TS 18508
 
 ### **Description**
 
-**command_argument_count()** returns the number of arguments passed
+**command_argument_count**(3) returns the number of arguments passed
 on the command line when the containing program was invoked.
 
 ### **Options**
@@ -5125,7 +5126,7 @@ Fortran 2003
 
 ### **Description**
 
-compiler_options returns a string with the options used for compiling.
+**compiler_options**(3) returns a string with the options used for compiling.
 
 ### **Options**
 
@@ -5267,7 +5268,7 @@ Fortran 2008
 
 ### **Description**
 
-**conjg(z)** returns the complex conjugate of the _complex_ value **z**.
+**conjg**(3) returns the complex conjugate of the _complex_ value **z**.
 
 In mathematics, the complex conjugate of a complex number is a value
 whose real and imaginary part are equal parts are equal in magnitude to
@@ -5409,7 +5410,7 @@ logical expressions:
 
 ### **Description**
 
-co_reduce determines element-wise the reduction of the value of **a** on
+**co_reduce**(3) determines element-wise the reduction of the value of **a** on
 all images of the current team. The pure function passed as **operation** is
 used to pairwise reduce the values of **a** by passing either the value of **a**
 of different images or the result values of such a reduction as
@@ -5520,7 +5521,7 @@ TS 18508
 
 ### **Description**
 
-**cosh(x)** computes the hyperbolic cosine of **x**.
+**cosh**(3) computes the hyperbolic cosine of **x**.
 
 ### **Options**
 
@@ -5582,7 +5583,7 @@ Inverse function: [**acosh**(3)](#acosh)
 
 ### **Description**
 
-  **cos(x)** computes the cosine of an angle **x** given the size of
+  **cos**(3) computes the cosine of an angle **x** given the size of
   the angle in radians.
 
   The cosine of a _real_ value is the ratio of the adjacent side to the
@@ -5658,8 +5659,8 @@ FORTRAN 77
 
 ### **Description**
 
-co_sum sums up the values of each element of **a** on all images of the
-current team.
+**co_sum**(3) sums up the values of each element of **a** on all images
+of the current team.
 
 If result_image is present, the summed-up values are returned in **a**
 on the specified image only and the value of **a** on the other images
@@ -5740,8 +5741,8 @@ TS 18508
 
 ### **Description**
 
-Returns the upper cobounds of a coarray, or a single upper cobound along
-the **dim** codimension.
+**co_ubound**(3) returns the upper cobounds of a coarray, or a single
+upper cobound along the **dim** codimension.
 
 ### **Options**
 
@@ -5806,10 +5807,11 @@ Fortran 2008
 
 ### **Description**
 
-  Counts the number of _.true._ elements in a logical **mask**, or, if the
-  **dim** argument is supplied, counts the number of elements along each
-  row of the array in the **dim** direction. If the array has zero size
-  or all of the elements of **mask** are false, then the result is **0**.
+  **count**(3) counts the number of _.true._ elements in a logical
+  **mask**, or, if the **dim** argument is supplied, counts the number
+  of elements along each row of the array in the **dim** direction. If
+  the array has zero size or all of the elements of **mask** are false,
+  then the result is **0**.
 
 ### **Options**
 
@@ -6020,8 +6022,9 @@ Fortran 95 , with KIND argument - Fortran 2003
 
 ### **Description**
 
-Returns a _real_ value representing the elapsed CPU time in seconds. This
-is useful for testing segments of code to determine execution time.
+**cpu_time**(3) returns a _real_ value representing the elapsed CPU time
+in seconds. This is useful for testing segments of code to determine
+execution time.
 
 The exact definition of time is left imprecise because of the variability
 in what different processors are able to provide.
@@ -6080,7 +6083,7 @@ real(kind=real64) :: startd, finishd
    print '("Processor Time = ",g0," seconds.")',finishd-startd
 end program demo_cpu_time
 ```
-  Results:
+Results:
 
   The precision of the result, some aspects of what is returned,
   and what if any options there are for parallel applications
@@ -6128,7 +6131,7 @@ Fortran 95
 
 ### **Description**
 
-  **cshift(array, shift \[, dim\])** performs a circular shift on elements
+  **cshift**(3) performs a circular shift on elements
   of **array** along the dimension of **dim**. If **dim** is omitted it is
   taken to be **1**. **dim** is a scalar of type _integer_ in the range of
   **1 \<= dim \<= n**, where "n" is the rank of **array**.
@@ -6210,7 +6213,7 @@ Fortran 95
 
 ### **Description**
 
-**c_sizeof(x)** calculates the number of bytes of storage the
+**c_sizeof**(3) calculates the number of bytes of storage the
 expression **x** occupies.
 
 ### **Options**
@@ -6282,7 +6285,7 @@ Fortran 2008
 
 ### **Description**
 
-**date_and_time(date, time, zone, values)** gets the corresponding
+**date_and_time**(3) gets the corresponding
 date and time information from the real-time system clock.
 
 Unavailable time and date _character_ parameters return blanks.
@@ -6398,7 +6401,7 @@ supported by the TYPE.
 
 ### **Description**
 
-**dble(a)** Converts **a** to double precision _real_ type.
+**dble**(3) Converts **a** to double precision _real_ type.
 
 ### **Options**
 
@@ -6466,7 +6469,7 @@ The return value is of type _integer_ of default kind.
 
 ### **Description**
 
-**digits(x)** returns the number of significant digits of the internal
+**digits**(3) returns the number of significant digits of the internal
 model representation of **x**. For example, on a system using a 32-bit
 floating point representation, a default real number would likely return 24.
 
@@ -6549,7 +6552,7 @@ for the type.
 
 ### **Description**
 
-**dim(x,y)** returns the difference **x - y** if the result is positive;
+**dim**(3) returns the difference **x - y** if the result is positive;
 otherwise it returns zero. It is equivalent to **max(0,x-y)** where the
 arguments are all of the same type.
 
@@ -6632,7 +6635,7 @@ of rank one and of equal size.
 
 ### **Description**
 
-**dot_product(vector_a, vector_b)** computes the dot product
+**dot_product**(3) computes the dot product
 multiplication of two vectors **vector_a** and **vector_b**.
 
 If the vectors are _integer_ or _real_, the result is
@@ -6726,7 +6729,7 @@ can affect this function.
 
 ### **Description**
 
-**dprod(x,y)** produces a _doubleprecision_ product of default _real_
+**dprod**(3) produces a _doubleprecision_ product of default _real_
 values **x** and **y**.
 
 That is, it is expected to convert the arguments to double precision
@@ -7249,7 +7252,7 @@ Fortran 95
 
 ### **Description**
 
-**epsilon(x)** returns the floating point relative accuracy.
+**epsilon**(3) returns the floating point relative accuracy.
 It is the nearly negligible number relative to **1**
 such that **1+ little_number** is not equal to **1**; or more
 precisely
@@ -7384,7 +7387,7 @@ Fortran 95
 
 ### **Description**
 
-**erfc**(x) computes the complementary error function of **x**. Simply put
+**erfc**(3) computes the complementary error function of **x**. Simply put
 this is equivalent to **1 - erf(x)**, but **erfc** is provided because
 of the extreme loss of relative accuracy if **erf(x)** is called for
 large **x** and the result is subtracted from **1**.
@@ -7467,7 +7470,7 @@ Fortran 2008
 
 ### **Description**
 
-**erfc_scaled**(x) computes the exponentially-scaled complementary
+**erfc_scaled**(3) computes the exponentially-scaled complementary
 error function of **x**:
 
 $$
@@ -7533,7 +7536,7 @@ Fortran 2008
 
 ### **Description**
 
-**erf**(x) computes the error function of **x**, defined as
+**erf**(3) computes the error function of **x**, defined as
 
 $$
 \text{erf}(x) = \frac{2}{\sqrt{\pi}} \int_0^x e^{__-t__^2} dt.
@@ -7600,7 +7603,7 @@ Fortran 2008
 
 ### **Description**
 
-**event_query** assigns the number of events to **count** which have been
+**event_query**(3) assigns the number of events to **count** which have been
 posted to the **event** variable and not yet been removed by calling
 **event_wait**. When **stat** is present and the invocation was successful, it
 is assigned the value **0**. If it is present and the invocation has failed,
@@ -7671,11 +7674,11 @@ TS 18508
 
 ### **Description**
 
-The **command** argument is passed to the shell and executed. (The shell is
-generally **sh**(1) on Unix systems, and cmd.exe on Windows.) If **wait** is
-present and has the value _.false._, the execution of the command is
-asynchronous if the system supports it; otherwise, the command is
-executed synchronously.
+For **execute_command_line**(3) the **command** argument is passed to the
+shell and executed. (The shell is generally **sh**(1) on Unix systems, and
+cmd.exe on Windows.) If **wait** is present and has the value _.false._,
+the execution of the command is asynchronous if the system supports it;
+otherwise, the command is executed synchronously.
 
 The three last arguments allow the user to get status information. After
 synchronous execution, **exitstat** contains the integer exit code of the
@@ -7891,7 +7894,7 @@ FORTRAN 77
 
 ### **Description**
 
-**exponent**(x) returns the value of the exponent part of **x**. If **x** is
+**exponent**(3) returns the value of the exponent part of **x**. If **x** is
 zero the value returned is zero.
 
 ### **Options**
@@ -7975,7 +7978,7 @@ to an object extensible type.
 
 **description**
 
-  **EXTENDS_TYPE_OF**(3) is .true. if and only if the dynamic type of
+  **extends_type_of**(3) is .true. if and only if the dynamic type of
   **a** is or could be (for unlimited polymorphic) an extension of the
   dynamic type of **mold**.
 
@@ -8160,8 +8163,9 @@ or
 
 ### **Description**
 
-Location of the first element of **array** identified by **mask** along
-dimension **dim** having a value equal to **value**.
+**findloc**(3) returns the location of the first element of **array**
+identified by **mask** along dimension **dim** having a value equal
+to **value**.
 
 If both **array** and **value** are of type logical, the comparison is
 performed with the **.eqv.** operator; otherwise, the comparison is
@@ -8334,7 +8338,7 @@ where _KIND_ is any valid value for type _integer_.
 
 ### **Description**
 
-**floor(a)** returns the greatest integer less than or equal to **a**.
+**floor**(3) returns the greatest integer less than or equal to **a**.
 That is, it picks the whole number at or to the left of the value on
 the scale **-huge(int(a,kind=KIND))-1** to **huge(int(a),kind=KIND)**.
 
@@ -8429,7 +8433,7 @@ Fortran 95
 
 ### **Description**
 
-  **fraction(x)** returns the fractional part of the model representation
+  **fraction**(3) returns the fractional part of the model representation
   of **x**.
 
 ### **Options**
@@ -8506,7 +8510,7 @@ Fortran 95
 ```
 ### **Characteristics**
 
-- The return value is _real_ with the kind as **x**.
+- **gamma**(3) returns a _real_ value with the kind as **x**.
 
 ### **Description**
 
@@ -8662,8 +8666,8 @@ Logarithm of the Gamma function: [**log_gamma**(3)](#log_gamma)
 
 ### **Description**
 
-Retrieve or query the n-th argument that was passed on the command line
-to the current program execution.
+**get_command_argument**(3) retrieves or queries the n-th argument that
+was passed on the command line to the current program execution.
 
 There is not anything specifically stated about what an argument is but
 in practice the arguments are strings split on whitespace unless the
@@ -8800,7 +8804,8 @@ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ### **Description**
 
-Retrieve the entire command line that was used to invoke the program.
+**get_command**(3) retrieves the entire command line that was used to
+invoke the program.
 
 Note that what is typed on the command line is often processed by
 a shell. The shell typically processes special characters and white
@@ -8909,7 +8914,8 @@ Fortran 2003
 
 ### **Description**
 
-Get the **value** of the environment variable **name**.
+**get_environment_variable**(3) gets the **value** of the environment
+variable **name**.
 
 Note that **get_environment_variable**(3) need not be thread-safe. It
 is the responsibility of the user to ensure that the environment is not
@@ -9045,7 +9051,7 @@ take this into consideration.
 
 ### **Description**
 
-**huge(x)** returns the largest number that is not an infinity for the
+**huge**(3) returns the largest number that is not an infinity for the
 kind and type of **x**.
 
 ### **Options**
@@ -9156,7 +9162,7 @@ and the origin.
 
 ### **Description**
 
-**hypot(x,y)** is referred to as the Euclidean distance function. It is
+**hypot**(3) is referred to as the Euclidean distance function. It is
 equal to
 ```fortran
 sqrt(x**2+y**2)
@@ -9271,7 +9277,7 @@ Fortran 2008
 
 ### **Description**
 
-  **iachar**(c) returns the code for the ASCII character in the first
+  **iachar**(3) returns the code for the ASCII character in the first
   character position of C.
 
 ### **Options**
@@ -9408,8 +9414,8 @@ Results:
 
 ### **Description**
 
-Reduces with a bitwise _and_ the elements of **array** along dimension
-**dim** if the corresponding element in **mask** is _.true._.
+**iall**(3) reduces with a bitwise _and_ the elements of **array** along
+dimension **dim** if the corresponding element in **mask** is _.true._.
 
 ### **Options**
 
@@ -9493,7 +9499,7 @@ Fortran 2008
 
 ### **Description**
 
-Bitwise logical **and**.
+**iand**(3) returns the bitwise logical **and** of two values.
 
 ### **Options**
 
@@ -9536,7 +9542,7 @@ integer :: a, b
  write (*,'(b32.32)') a,b,iand(a,b)
 end program demo_iand
 ```
-  Results:
+Results:
 ```text
     a= 15  b= 3 iand(a,b)= 3
    00000000000000000000000000001111
@@ -9601,8 +9607,9 @@ or
 
 ### **Description**
 
-Reduces with bitwise **OR** (inclusive **OR**) the elements of **array** along
-dimension **dim** if the corresponding element in **mask** is _.true._.
+  **iany**(3) reduces with bitwise a **OR** (inclusive **OR**) the
+  elements of **array** along dimension **dim** if the corresponding
+  element in **mask** is _.true._.
 
 ### **Options**
 
@@ -9652,7 +9659,7 @@ integer(kind=int8) :: a(3), b(4:3)
    write(*,*)iany(a,[T,F,T]) == iany([a(1),a(3)])
 end program demo_iany
 ```
-  Results:
+Results:
 ```text
     A=
     00100100
@@ -9701,7 +9708,8 @@ Fortran 2008
 
 ### **Description**
 
-**ibclr** returns the value of **i** with the bit at position **pos** set to zero.
+  **ibclr**(3) returns the value of **i** with the bit at position **pos**
+  set to zero.
 
 ### **Options**
 
@@ -9763,7 +9771,7 @@ Fortran 95
 ```
 ### **Description**
 
-**ibits** extracts a field of length **len** from **i**, starting from
+**ibits**(3) extracts a field of length **len** from **i**, starting from
 bit position **pos** and extending left for **len** bits. The result is
 right-justified and the remaining bits are zeroed. The value of pos+len
 must be less than or equal to the value **bit_size(i)**.
@@ -9828,7 +9836,7 @@ Fortran 95
 
 ### **Description**
 
-**ibset** returns the value of **i** with the bit at position **pos** set to one.
+**ibset**(3) returns the value of **i** with the bit at position **pos** set to one.
 
 ### **Options**
 
@@ -9890,7 +9898,7 @@ Fortran 95
 
 ### **Description**
 
- **ichar(c)** returns the code for the character in the system's native
+ **ichar**(3) returns the code for the character in the system's native
  character set. The correspondence between characters and their codes is
  not necessarily the same across different Fortran implementations. For
  example, a platform using EBCDIC would return different values than an
@@ -9924,7 +9932,7 @@ integer i
 
 end program demo_ichar
 ```
-  Results:
+Results:
 ```text
              97         122          65          90
 ```
@@ -9984,7 +9992,7 @@ of arguments, and search for certain arguments:
 
 ### **Description**
 
-**ieor** returns the bitwise Boolean exclusive-**or** of **i** and **j**.
+**ieor**(3) returns the bitwise Boolean exclusive-**or** of **i** and **j**.
 
 ### **Options**
 
@@ -10034,7 +10042,7 @@ Fortran 95
 
 ### **Description**
 
-Returns the image index belonging to a cosubscript.
+**image_index**(3) returns the image index belonging to a cosubscript.
 
 ### **Options**
 
@@ -10097,9 +10105,10 @@ result = index( string, substring [,back] [,kind] )
 
 ### **Description**
 
-Returns the position of the start of the leftmost or rightmost
-occurrence of string **substring** in **string**, counting from one. If
-**substring** is not present in **string**, zero is returned.
+  **index**(3) returns the position of the start of the leftmost
+  or rightmost occurrence of string **substring** in **string**,
+  counting from one. If **substring** is not present in **string**,
+  zero is returned.
 
 ### **Options**
 
@@ -10188,7 +10197,7 @@ of arguments, and search for certain arguments:
 
 ### **Description**
 
-Convert to integer type by truncating towards zero.
+**int**(3) converts a value to _integer_ type by truncating towards zero.
 
 ### **Options**
 
@@ -10325,7 +10334,7 @@ FORTRAN 77
 
 ### **Description**
 
-**ior** returns the bit-wise Boolean inclusive-or of **i** and **j**.
+**ior**(3) returns the bit-wise Boolean inclusive-or of **i** and **j**.
 
 ### **Options**
 
@@ -10422,8 +10431,9 @@ or
 ```
 ### **Description**
 
-Reduces with bitwise _xor_ (exclusive _or_) the elements of **array** along
-dimension **dim** if the corresponding element in **mask** is _.true._.
+**iparity**(3) reduces with bitwise _xor_ (exclusive _or_) the elements
+of **array** along dimension **dim** if the corresponding element in
+**mask** is _.true._.
 
 ### **Options**
 
@@ -10500,7 +10510,8 @@ Fortran 2008
 
 ### **Description**
 
-True if and only if an object is contiguous.
+**is_contigious**(3) returns _.true._ if and only if an object is
+contiguous.
 
 An object is contiguous if it is
 
@@ -10784,7 +10795,7 @@ character(len=*),parameter :: g='(b32.32,1x,i0)'
    write(*,g) ishft(huge(0),shift), shift
 end program demo_ishft
 ```
-  Results:
+Results:
 ```text
 >              6  <== typically should have the value 6
 >   11111111111111111111111111110000 4
@@ -10820,7 +10831,7 @@ Fortran 95
 
 ### **Description**
 
-is_iostat_end(3) tests whether a variable (assumed returned as a status
+**is_iostat_end**(3) tests whether a variable (assumed returned as a status
 from an I/O statement) has the "end of file" I/O status value.
 
 The function is equivalent to comparing the variable with the
@@ -10890,7 +10901,7 @@ Fortran 2003
 
 ### **Description**
 
-**is_iostat_eor** tests whether a variable has the value of the I/O
+**is_iostat_eor**(3) tests whether a variable has the value of the I/O
 status "end of record". The function is equivalent to comparing the
 variable with the **iostat_eor** parameter of the intrinsic module
 **iso_fortran_env**.
@@ -10966,7 +10977,7 @@ Fortran 2003
 
 ### **Description**
 
-   **kind(x)** returns the kind value of the entity **x**.
+   **kind(x)**(3) returns the kind value of the entity **x**.
 
 ### **Options**
 
@@ -11028,20 +11039,17 @@ Fortran 95
 ```
 ### **Characteristics**
 
-- **array** Shall be an array, of any type.
-- **dim** : (Optional) Shall be a scalar _integer_.
-- **kind** An _integer_ initialization expression indicating the kind
+- **array** shall be an array, of any type.
+- **dim** shall be a scalar _integer_.
+- **kind** an _integer_ initialization expression indicating the kind
   parameter of the result.
 - The return value is of type _integer_ and of kind **kind**. If **kind**
   is absent, the return value is of default integer kind.
 
-  If **dim** is absent, the result is an array of the upper bounds of
-  **array**.
-
 ### **Description**
 
-Returns the lower bounds of an array, or a single lower bound along the
-**dim** dimension.
+  **result**(3) returns the lower bounds of an array, or a single lower
+  bound along the **dim** dimension.
 
 ### **Options**
 
@@ -11050,6 +11058,8 @@ Returns the lower bounds of an array, or a single lower bound along the
 
 - **dim**
   : Shall be a scalar _integer_.
+  If **dim** is absent, the result is an array of the upper bounds of
+  **array**.
 
 - **kind**
   : An _integer_ initialization expression indicating the kind
@@ -11184,7 +11194,7 @@ Fortran 95 , with KIND argument - Fortran 2003
 
 ### **Description**
 
-**leadz** returns the number of leading zero bits of an integer.
+**leadz**(3) returns the number of leading zero bits of an integer.
 
 ### **Options**
 
@@ -11270,7 +11280,7 @@ Fortran 2008
 
 ### **Description**
 
-  **len(3)** Returns the length of a _character_ string.
+  **len**(3) returns the length of a _character_ string.
 
   If **string** is an array, the length of an element of **string** is
   returned, as all elements of an array are the same length.
@@ -11355,7 +11365,7 @@ contains
 
 end program demo_len
 ```
-  Results:
+Results:
 ```text
     length =          40
      How long is this allocatable string?  LEN=          38
@@ -11420,7 +11430,8 @@ is absent, the return value is of default _integer_ kind.
 
 ### **Description**
 
-Returns the length of a character string, ignoring any trailing blanks.
+**len_trim**(3) returns the length of a character string, ignoring any
+trailing blanks.
 
 ### **Options**
 
@@ -11470,7 +11481,7 @@ integer :: i
    !
 end program demo_len_trim
 ```
-  Results:
+Results:
 ```text
      how long is this string?
     UNTRIMMED LENGTH=          30
@@ -11524,11 +11535,11 @@ of arguments, and search for certain arguments:
 
 ### **Description**
 
-  Determines whether one string is lexically greater than or equal to
-  another string, where the two strings are interpreted as containing
-  ASCII character codes. If the String **a** and String **b** are not
-  the same length, the shorter is compared as if spaces were appended
-  to it to form a value that has the same length as the longer.
+  **lge**(3) determines whether one string is lexically greater than
+  or equal to another string, where the two strings are interpreted as
+  containing ASCII character codes. If the String **a** and String **b**
+  are not the same length, the shorter is compared as if spaces were
+  appended to it to form a value that has the same length as the longer.
 
   The lexical comparison intrinsics **lge**(3), **lgt**(3), **lle**(3),
   and **llt**(3) differ from the corresponding intrinsic operators
@@ -11570,7 +11581,7 @@ integer :: i
    write(*,*) lge(['abc','123'],['cba','123']) ! [F T]  both arrays
 end program demo_lge
 ```
-  Results:
+Results:
 ```text
     !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
     [\]^_`abcdefghijklmnopqrstuvwxyz{|}~
@@ -11632,11 +11643,11 @@ of arguments, and search for certain arguments:
 
 ### **Description**
 
-  Determines whether one string is lexically greater than another string,
-  where the two strings are interpreted as containing ASCII character
-  codes. If the String **a** and String **b** are not the same length,
-  the shorter is compared as if spaces were appended to it to form a
-  value that has the same length as the longer.
+  **lgt**(3) determines whether one string is lexically greater than
+  another string, where the two strings are interpreted as containing
+  ASCII character codes. If the String **a** and String **b** are not
+  the same length, the shorter is compared as if spaces were appended
+  to it to form a value that has the same length as the longer.
 
   In general, the lexical comparison intrinsics **lge**, **lgt**, **lle**,
   and **llt** differ from the corresponding intrinsic operators _.ge.,
@@ -11678,7 +11689,7 @@ integer :: i
    write(*,*) lgt(['abc','123'],['cba','123']) ! [F F]  both arrays
 end program demo_lgt
 ```
-  Results:
+Results:
 ```text
     !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
     [\]^_`abcdefghijklmnopqrstuvwxyz{|}~
@@ -11740,8 +11751,8 @@ FORTRAN 77
 
 ### **Description**
 
-  Determines whether one string is lexically less than or equal to
-  another string, where the two strings are interpreted as containing
+  **lle**(3) determines whether one string is lexically less than or equal
+  to another string, where the two strings are interpreted as containing
   ASCII character codes. if the **string_a** and **string_b** are not
   the same length, the shorter is compared as if spaces were appended
   to it to form a value that has the same length as the longer. Leading
@@ -11854,11 +11865,11 @@ of arguments, and search for certain arguments:
 
 ### **Description**
 
-  Determines whether one string is lexically less than another string,
-  where the two strings are interpreted as containing ASCII character
-  codes. If the **string_a** and **string_b** are not the same length,
-  the shorter is compared as if spaces were appended to it to form a
-  value that has the same length as the longer.
+  **llt**(3) determines whether one string is lexically less than
+  another string, where the two strings are interpreted as containing
+  ASCII character codes. If the **string_a** and **string_b** are not
+  the same length, the shorter is compared as if spaces were appended
+  to it to form a value that has the same length as the longer.
 
   In general, the lexical comparison intrinsics **lge**, **lgt**, **lle**,
   and **llt** differ from the corresponding intrinsic operators _.ge.,
@@ -11900,7 +11911,7 @@ integer :: i
    write(*,*) llt(['abc','123'],['cba','123']) ! [T F]  both arrays
 end program demo_llt
 ```
-  Results:
+Results:
 ```text
   > !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
   > [\]^_`abcdefghijklmnopqrstuvwxyz{|}~
@@ -11959,8 +11970,8 @@ of arguments, and search for certain arguments:
 
 ### **Description**
 
-  **log10(x)** computes the base 10 logarithm of **x**. This
-  is generally called the "common logarithm".
+  **log10**(3) computes the base 10 logarithm of **x**. This is generally
+  called the "common logarithm".
 
 ### **Options**
 
@@ -12029,7 +12040,7 @@ the Gamma function
 
 ### **Description**
 
-  **log_gamma(x)** computes the natural logarithm of the absolute value
+  **log_gamma**(3) computes the natural logarithm of the absolute value
   of the Gamma function.
 
 ### **Options**
@@ -12092,7 +12103,7 @@ Gamma function: [**gamma**(3)](#gamma)
 
 ### **Description**
 
-Converts one kind of _logical_ variable to another.
+  **logical**(3) converts one kind of _logical_ variable to another.
 
 ### **Options**
 
@@ -12168,7 +12179,7 @@ Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 
 ### **Description**
 
-  **log(x)** computes the natural logarithm of **x**, i.e. the logarithm to
+  **log**(3) computes the natural logarithm of **x**, i.e. the logarithm to
   the base "e".
 
 ### **Options**
@@ -12326,8 +12337,8 @@ Fortran 2008
 
 ### **Description**
 
-  The result  is an _integer_ with its rightmost **i** bits set to 1,
-  and the remaining bits set to 0.
+  **maskr**(3) the result is an _integer_ with its rightmost **i**
+  bits set to 1, and the remaining bits set to 0.
 
 ### **Options**
 
@@ -12572,7 +12583,7 @@ end subroutine print_matrix_int
 
 end program demo_matmul
 ```
-  Results:
+Results:
 ```text
     >
     > A is
@@ -12658,7 +12669,7 @@ where KIND is any _real_ kind.
 
 ### **Description**
 
-**maxexponent(x)** returns the maximum exponent in the model of the type
+**maxexponent**(3) returns the maximum exponent in the model of the type
 of **x**.
 
 ### **Options**
@@ -12747,10 +12758,10 @@ or
 
 ### **Description**
 
-Determines the location of the element in the array with the maximum
-value, or, if the **dim** argument is supplied, determines the locations
-of the maximum element along each row of the array in the **dim**
-direction.
+**maxloc**(3) determines the location of the element in the array with
+the maximum value, or, if the **dim** argument is supplied, determines
+the locations of the maximum element along each row of the array in the
+**dim** direction.
 
 If **mask** is present, only the elements for which **mask**
 is _.true._ are considered. If more than one element in the array has
@@ -12875,7 +12886,7 @@ Fortran 95
 
 ### **Description**
 
-Returns the argument with the largest (most positive) value.
+**max**(3) returns the argument with the largest (most positive) value.
 
 ### **Options**
 
@@ -13003,13 +13014,14 @@ or
 
 ### **Description**
 
-Determines the maximum value of the elements in an array value, or, if
-the **dim** argument is supplied, determines the maximum value along each
-row of the array in the **dim** direction. If **mask** is present, only the
-elements for which **mask** is _.true._ are considered. If the array has zero
-size, or all of the elements of **mask** are _.false._, then the result is the
-most negative number of the type and kind of **array** if **array** is numeric,
-or a string of nulls if **array** is of character type.
+**maxval**(3) determines the maximum value of the elements in an
+array value, or, if the **dim** argument is supplied, determines the
+maximum value along each row of the array in the **dim** direction. If
+**mask** is present, only the elements for which **mask** is _.true._
+are considered. If the array has zero size, or all of the elements of
+**mask** are _.false._, then the result is the most negative number of
+the type and kind of **array** if **array** is numeric, or a string of
+nulls if **array** is of character type.
 
 ### **Options**
 
@@ -13099,7 +13111,7 @@ a BOZ constant.
 
 A common graphics operation in Ternary Raster Operations is to combine
 bits from two different sources, generally referred to as bit-blending.
-**merge_bits** performs a masked bit-blend of **i** and **j** using
+**merge_bits**(3) performs a masked bit-blend of **i** and **j** using
 the bits of the **mask** value to determine which of the input values
 to copy bits from.
 
@@ -13398,7 +13410,7 @@ where KIND is any _real_ kind.
 
 ### **Description**
 
-**minexponent(x)** returns the minimum exponent in the model of the type
+**minexponent**(3) returns the minimum exponent in the model of the type
 of **x**.
 
 ### **Options**
@@ -13488,13 +13500,13 @@ or
 
 ### **Description**
 
-  Determines the location of the element in the array with the minimum
-  value, or, if the **dim** argument is supplied, determines the locations
-  of the minimum element along each row of the array in the **dim**
-  direction. If **mask** is present, only the elements for which **mask**
-  is _.true._ are considered. If more than one element in the array
-  has the minimum value, the location returned is that of the first
-  such element in array element order. If the array has zero size,
+  **minloc**(3) determines the location of the element in the array with
+  the minimum value, or, if the **dim** argument is supplied, determines
+  the locations of the minimum element along each row of the array in
+  the **dim** direction. If **mask** is present, only the elements for
+  which **mask** is _.true._ are considered. If more than one element in
+  the array has the minimum value, the location returned is that of the
+  first such element in array element order. If the array has zero size,
   or all of the elements of **mask** are _.false._, then the result is
   an array of zeroes. Similarly, if **dim** is supplied and all of the
   elements of **mask** along a given row are zero, the result value for
@@ -13591,7 +13603,7 @@ Where **TYPE** may be _integer_ or _real_
 
 ### **Description**
 
-Returns the argument with the smallest (most negative) value.
+**min**(3) returns the argument with the smallest (most negative) value.
 
 ### **Options**
 
@@ -13667,9 +13679,9 @@ FORTRAN 77
 
 ### **Description**
 
-  Determines the minimum value of the elements in an array value, or,
-  if the **dim** argument is supplied, determines the minimum value
-  along each row of the array in the **dim** direction.
+  **minval**(3) determines the minimum value of the elements in an array
+  value, or, if the **dim** argument is supplied, determines the minimum
+  value along each row of the array in the **dim** direction.
 
   If **mask** is present, only the elements for which **mask** is
   _.true._ are considered.
@@ -13828,7 +13840,7 @@ Fortran 95
 
 ### **Description**
 
-**mod**(a,p) computes the remainder of the division of **a** by **p**.
+**mod**(3) computes the remainder of the division of **a** by **p**.
 
 ### **Options**
 
@@ -13920,7 +13932,7 @@ FORTRAN 77
 
 ### **Description**
 
-**modulo(a,p)** computes the **a** modulo **p**.
+**modulo**(3) computes the **a** modulo **p**.
 
 ### **Options**
 
@@ -13991,29 +14003,60 @@ Fortran 95
 
 ### **Synopsis**
 ```fortran
-    call move_alloc(src, dest)
+    call move_alloc(from, to [,stat] [,errmsg] )
 ```
 ```fortran
+     subroutine move_alloc(from, to)
+
+      type(TYPE(kind=**)),intent(inout),allocatable :: from(..)
+      type(TYPE(kind=**)),intent(out),allocatable   :: to(..)
+      integer(kind=**),intent(out)     :: stat
+      character(len=*),intent(inout)   :: errmsg
 ```
 ### **Characteristics**
 
+- **from** may be of any type and kind.
+- **to** shall be of the same type, kind and rank as **from**.
+
 ### **Description**
 
-**move_alloc(src, dest)** moves the allocation from **src** to
-**dest**. **src** will become deallocated in the process.
+**move_alloc**(3) moves the allocation from **from** to
+**to**. **from** will become deallocated in the process.
+
+This is potentially more efficient than other methods of assigning
+the values in **from** to **to** and explicitly deallocating **from**,
+which are for more likely to require a temporary object or a copy of
+the elements of the array.
 
 ### **Options**
 
-- **src**
-  : allocatable, **intent(inout)**, may be of any type and kind.
+- **from**
+  : The data object to be moved to **to** and deallocated.
 
-- **dest**
-  : allocatable, **intent(out)**, shall be of the same type, kind and
-  rank as **src**.
+- **to**
+  : The destination data object to move the allocated data object **from**
+  to. Typically, it is a different shape than **from**.
+
+- **stat**
+  : If STAT is present and execution is successful, it is assigned the
+    value zero.
+  : If an error condition occurs,
+      o if STAT is absent, error termination is initiated;
+      o otherwise, if FROM is a coarray and the current team contains a
+        stopped image, STAT is assigned the value STAT_STOPPED_IMAGE
+        from the intrinsic module ISO_FORTRAN_ENV;
+      o otherwise, if FROM is a coarray and the current team contains
+      a failed image, and no other error condition
+        occurs, STAT is assigned the value STAT_FAILED_IMAGE from the
+        intrinsic module ISO_FORTRAN_ENV;
+      o otherwise, STAT is assigned a processor-dependent positive value
+        that diﬀers from that of STAT_STOPPED_IMAGE or STAT_FAILED_IMAGE.
+
+- **errmsg**
 
 ### **Examples**
 
-Basic Sample program to allocate a bigger grid
+Basic sample program to allocate a bigger grid
 
 ```fortran
 program demo_move_alloc
@@ -14061,6 +14104,51 @@ Fortran 2003
 [**allocated**(3)](#allocated)
 
  _fortran-lang intrinsic descriptions_
+<!--
+    35  2 Class. Subroutine, pure if and only if FROM is not a coarray.
+    1   3 Arguments.
+    2     FROM      may be of any type, rank, and corank. It shall be allocatable and shall not be a coindexed object.
+    3               It is an INTENT (INOUT) argument.
+    4     TO        shall be type compatible (7.3.2.3) with FROM and have the same rank and corank. It shall be
+    5               allocatable and shall not be a coindexed object. It shall be polymorphic if FROM is polymorphic.
+    6               It is an INTENT (OUT) argument. Each nondeferred parameter of the declared type of TO shall
+    7               have the same value as the corresponding parameter of the declared type of FROM.
+    8     STAT (optional) shall be a noncoindexed integer scalar with a decimal exponent range of at least four. It is an
+    9               INTENT (OUT) argument.
+    10    ERRMSG(optional) shall be a noncoindexed default character scalar. It is an INTENT (INOUT) argument.
+
+    11  4 If execution of MOVE_ALLOC is successful, or if STAT_FAILED_IMAGE is assigned to STAT,
+    12      • On invocation of MOVE_ALLOC, if the allocation status of TO is allocated, it is deallocated. Then,
+    13        if FROM has an allocation status of allocated on entry to MOVE_ALLOC, TO becomes allocated with
+    14        dynamic type, type parameters, bounds, cobounds, and value identical to those that FROM had on entry
+    15        to MOVE_ALLOC. Note that if FROM and TO are the same variable, it shall be unallocated when
+    16        MOVE_ALLOCisinvoked.
+    17      • If TO has the TARGETattribute, any pointer associated with FROM on entry to MOVE_ALLOC becomes
+    18        correspondingly associated with TO. If TO does not have the TARGET attribute, the pointer association
+    19        status of any pointer associated with FROM on entry becomes undeﬁned.
+    20      • The allocation status of FROM becomes unallocated.
+    21  5 Whenareference to MOVE_ALLOCisexecuted for which the FROM argument is a coarray, there is an implicit
+    22    synchronization of all active images of the current team. On those images, execution of the segment (11.6.2)
+    23    following the CALL statement is delayed until all other active images of the current team have executed the same
+    24    statement the same number of times. When such a reference is executed, if any image of the current team has
+    25    stopped or failed, an error condition occurs.
+    36  8 If the ERRMSG argument is present and an error condition occurs, it is assigned an explanatory message. If no
+    37    error condition occurs, the deﬁnition status and value of ERRMSG are unchanged.
+    38  9 Example. The example below demonstrates reallocation of GRID to twice its previous size, with its previous
+    39    contents evenly distributed over the new elements so that intermediate points can be inserted.
+    40          REAL,ALLOCATABLE :: GRID(:),TEMPGRID(:)
+    41          . . .
+    42          ALLOCATE(GRID(-N:N))   ! initial allocation of GRID
+    43          . . .
+    44          ALLOCATE(TEMPGRID(-2*N:2*N)) ! allocate bigger grid
+    45          TEMPGRID(::2)=GRID ! distribute values to new locations
+    46          CALL MOVE_ALLOC(TO=GRID,FROM=TEMPGRID)
+     1      The old grid is deallocated because TO is INTENT (OUT), and GRID then takes over the new grid allocation.
+                NOTE1
+                It is expected that the implementation of allocatable objects will typically involve descriptors to locate the
+                allocated storage; MOVE_ALLOCcouldthenbeimplementedbytransferringthecontentsofthedescriptor
+                for FROM to the descriptor for TO and clearing the descriptor for FROM.
+-->
 
 ## mvbits
 
@@ -14085,7 +14173,7 @@ Fortran 2003
 
 ### **Description**
 
-**mvbits(3f)** copies a bit pattern found in a range of adjacent bits in
+**mvbits**(3) copies a bit pattern found in a range of adjacent bits in
 the _integer_ **from** to a specified position in another integer **to**
 (which is of the same kind as **from**). It otherwise leaves the bits
 in **to** as-is.
@@ -14190,7 +14278,7 @@ character(len=*),parameter :: fmt= '(g0,t30,a,t40,b32.32)'
 
  end program demo_mvbits
 ````
-  Results:
+Results:
 ```text
 
    2147483647                   01111111111111111111111111111111
@@ -14246,7 +14334,7 @@ Fortran 95
 
 ### **Description**
 
-**nearest(x, s)** returns the processor-representable number nearest to
+**nearest**(3) returns the processor-representable number nearest to
 **x** in the direction indicated by the sign of **s**.
 
 ### **Options**
@@ -14343,7 +14431,7 @@ Fortran 95
 
 ### **Description**
 
-**new_line(c)** returns the new-line character.
+**new_line**(3) returns the new-line character.
 
 Case (i)
 : If **a** is default _character_ and the character in position **10** of the
@@ -14433,7 +14521,7 @@ Fortran 2003
 
 ### **Description**
 
-**nint(x)** rounds its argument to the nearest whole number with its
+**nint**(3) rounds its argument to the nearest whole number with its
 sign preserved.
 
 The user must ensure the value is a valid value for the range of the
@@ -14565,8 +14653,8 @@ FORTRAN 77 , with KIND argument - Fortran 90
 
 ### **Description**
 
-  Calculates the Euclidean vector norm (L_2 norm) of **array** along
-  dimension **dim**.
+  **norm2**(3) calculates the Euclidean vector norm (L_2 norm) of
+  **array** along dimension **dim**.
 
 ### **Options**
 
@@ -14656,7 +14744,7 @@ The return type is of the same kind as the argument.
 
 ### **Description**
 
-NOT returns the bitwise Boolean inverse of **i**.
+**not**(3) returns the bitwise Boolean inverse of **i**.
 
 ### **Options**
 
@@ -14728,7 +14816,7 @@ Fortran 95
 
 ### **Description**
 
-  Returns a disassociated pointer.
+  **null**(3) returns a disassociated pointer.
 
   If **mold** is present, a disassociated pointer of the same type is
   returned, otherwise the type is determined by context.
@@ -14869,7 +14957,7 @@ or
 
 ### **Description**
 
-Returns the number of images.
+**num_images**(3) Returns the number of images.
 
 ### **Options**
 
@@ -15077,7 +15165,7 @@ Results:
 
 ### **Description**
 
-  Stores the elements of ARRAY in an array of rank one.
+  **pack**(3) stores the elements of ARRAY in an array of rank one.
 
   The beginning of the resulting array is made up of elements whose
   **mask** equals _.true._. Afterwards, positions are filled with elements
@@ -15171,8 +15259,8 @@ Fortran 95
 
 ### **Description**
 
-Calculates the parity (i.e. the reduction using .xor.) of __mask__ along
-dimension __dim__.
+**parity**(3) calculates the parity (i.e. the reduction using .xor.) of
+__mask__ along dimension __dim__.
 
 ### **Options**
 
@@ -15239,8 +15327,8 @@ Fortran 2008
 
 ### **Description**
 
-Returns the number of bits set in the binary representation of an
-_integer_.
+**popcnt**(3) returns the number of bits set in the binary representation
+of an _integer_.
 
 ### **Options**
 
@@ -15357,8 +15445,8 @@ There are many procedures that operator or query values at the bit level:
 
 ### **Description**
 
-Returns the parity of an integer's binary representation (i.e., the
-parity of the number of bits set).
+**poppar**(3) returns the parity of an integer's binary representation
+(i.e., the parity of the number of bits set).
 
 ### **Options**
 
@@ -15476,7 +15564,7 @@ The return value is of type _integer_ and of the default integer kind.
 
 ### **Description**
 
-**precision(x)** returns the decimal precision in the model of the type
+**precision**(3) returns the decimal precision in the model of the type
 of **x**.
 
 ### **Options**
@@ -15555,7 +15643,7 @@ is specified
 
 ### **Description**
 
-  **present**(3f) can be used in a procedure to determine if an optional
+  **present**(3) can be used in a procedure to determine if an optional
   dummy argument was present on the current call to the procedure.
 
   When an argument is not present when the current procedure is invoked,
@@ -15668,8 +15756,9 @@ Fortran 95
 
 ### **Description**
 
-Multiplies together all the selected elements of **array**, or along
-dimension **dim** if the corresponding element in **mask** is _.true._.
+**product**(3) multiplies together all the selected elements of **array**,
+or along dimension **dim** if the corresponding element in **mask**
+is _.true._.
 
 If **dim** is absent, a scalar with the product of all elements in **array** is
 returned. (Note a zero-sized **array** returns **1**).
@@ -15905,7 +15994,7 @@ directly using the star character.
 
 ### **Description**
 
-**radix(x)** returns the base of the model representing the entity **x**.
+**radix**(3) returns the base of the model representing the entity **x**.
 
 ### **Options**
 
@@ -15989,8 +16078,9 @@ CALL RANDOM_NUMBER (Y)
 
 ### **Description**
 
-Returns a single pseudorandom number or an array of pseudorandom numbers
-from the uniform distribution over the range 0 \<= x \< 1.
+**random_number**(3) returns a single pseudorandom number or an array of
+pseudorandom numbers from the uniform distribution over the range
+0 \<= x \< 1.
 
 ### **Options**
 
@@ -16087,8 +16177,8 @@ Fortran 95
 
 ### **Description**
 
-Restarts or queries the state of the pseudorandom number generator used
-by random_number.
+**random_seed**(3) restarts or queries the state of the pseudorandom
+number generator used by random_number.
 
 If random_seed is called without arguments, it is seeded with random
 data retrieved from the operating system.
@@ -16164,7 +16254,7 @@ TYPE.
 
 ### **Description**
 
-**range(x)** returns the decimal exponent range in the model of the type
+**range**(3) returns the decimal exponent range in the model of the type
 of **x**.
 
 ### **Options**
@@ -16340,7 +16430,7 @@ end subroutine query_anything
 
 end program demo_rank
 ```
-  Results:
+Results:
 ```text
     rank of scalar a=           0
     rank of matrix b=           2
@@ -16412,7 +16502,7 @@ end program demo_rank
 
 ### **Description**
 
-**real(x, kind)** converts its argument **x** to a _real_ type.
+**real**(3) converts its argument **x** to a _real_ type.
 
 For complex values this is similar to the modern complex-part-designator
 **%RE** which also designates the real part of _complex_ a value.
@@ -16546,8 +16636,8 @@ or
 
 ### **Description**
 
-   Reduce a list of conditionally selected values from an array to a
-   single value by iteratively applying a binary function.
+   **reduce**(3) reduces a list of conditionally selected values from
+   an array to a single value by iteratively applying a binary function.
 
    Common in functional programming, a **reduce** function applies a
    binary operator (a pure function with two arguments) to all elements
@@ -16681,7 +16771,7 @@ one relative to the input array.
 
    end program demo_reduce
 ```
-  Results:
+Results:
 ```text
      >  1 2 3 4
      >  product= 24
@@ -16733,7 +16823,7 @@ one relative to the input array.
 
 ### **Description**
 
-Concatenates **ncopies** copies of a string.
+**repeat**(3) concatenates **ncopies** copies of a string.
 
 ### **Options**
 
@@ -16824,8 +16914,8 @@ Functions that perform operations on character strings:
 
 ### **Description**
 
-Constructs an array of shape **shape** using the elements from **source** and
-possibly **pad** to fill it.
+**reshape** constructs an array of shape **shape** using the elements
+from **source** and possibly **pad** to fill it.
 
 If necessary, the new array may be padded with elements from **pad**
 or permuted as defined by **order**.
@@ -17036,7 +17126,7 @@ The return value is of the same type and kind as **x**.
 
 ### **Description**
 
-**rrspacing(x)** returns the reciprocal of the relative spacing of model
+**rrspacing**(3) returns the reciprocal of the relative spacing of model
 numbers near **x**.
 
 ### **Options**
@@ -17101,7 +17191,7 @@ Fortran 95
 
 ### **Description**
 
-Query dynamic types for equality.
+**same_type_as**(3) queries the dynamic types of objects for equality.
 
 ### **Options**
 
@@ -17222,7 +17312,7 @@ Fortran 2003
 
 ### **Description**
 
-**scale(x,i)** returns x \* **radix(x)\*\*i**.
+**scale**(3) returns x \* **radix(x)\*\*i**.
 
 ### **Options**
 
@@ -17303,12 +17393,14 @@ present. Otherwise a default _integer_ kind is returned.
 
 ### **Description**
 
-Scans a **string** for any of the characters in a **set** of characters.
+**scan**(3) scans a **string** for any of the characters in a **set**
+of characters.
 
-If **back** is either absent or equals _.false._, this function returns the
-position of the leftmost character of **STRING** that is in **set**. If **back**
-equals _.true._, the rightmost position is returned. If no character of **set**
-is found in **string**, the result is zero.
+If **back** is either absent or equals _.false._, this function
+returns the position of the leftmost character of **STRING** that is
+in **set**. If **back** equals _.true._, the rightmost position is
+returned. If no character of **set** is found in **string**, the result
+is zero.
 
 ### **Options**
 
@@ -17390,7 +17482,7 @@ of arguments, and search for certain arguments:
 
 ### **Description**
 
-  **selected_char_kind(name)** returns the kind value for the character
+  **selected_char_kind**(3) returns the kind value for the character
   set named NAME, if a character set with such a name is supported, or
   **-1** otherwise.
 
@@ -17484,7 +17576,7 @@ Fortran 2003
 
 ### **Description**
 
-**selected_int_kind(r)** return the kind value of the smallest integer
+**selected_int_kind**(3) return the kind value of the smallest integer
 type that can represent all values ranging from **-10\*\*r** (exclusive)
 to **10\*\*r** (exclusive). If there is no integer kind that accommodates
 this range, selected_int_kind returns **-1**.
@@ -17558,9 +17650,9 @@ Fortran 95
 
 ### **Description**
 
-**selected_real_kind(p, r, radix)** return the kind value of a real
-data type with decimal precision of at least **p** digits, exponent range of
-at least **r**, and with a radix of **radix**.
+**selected_real_kind**(3) return the kind value of a real data type with
+decimal precision of at least **p** digits, exponent range of at least
+**r**, and with a radix of **radix**.
 
 ### **Options**
 
@@ -17670,7 +17762,7 @@ Fortran 95 ; with RADIX - Fortran 2008
 
 ### **Description**
 
-**set_exponent(x, i)** returns the real number whose fractional part is
+**set_exponent**(3) returns the real number whose fractional part is
 that of **x** and whose exponent part is **i**.
 
 ### **Options**
@@ -17755,7 +17847,7 @@ Fortran 95
 
 ### **Description**
 
-Determines the shape of an array.
+**shape**(3) determines the shape of an array.
 
 ### **Options**
 
@@ -17856,9 +17948,9 @@ Fortran 95 ; with KIND argument Fortran 2003
 
 ### **Description**
 
-  Returns a value corresponding to **i** with all of the bits shifted
-  right by **shift** places and the vacated bits on the left filled
-  with the value of the original left-most bit..
+  **shifta**(3) returns a value corresponding to **i** with all of the
+  bits shifted right by **shift** places and the vacated bits on the
+  left filled with the value of the original left-most bit..
 
 ### **Options**
 
@@ -17987,8 +18079,8 @@ where the kind for **i** dictates the kind of the returned value.
 
 ### **Description**
 
-Returns a value corresponding to **i** with all of the bits shifted left
-by **shift** places.
+**shiftl**(3) returns a value corresponding to **i** with all of the
+bits shifted left by **shift** places.
 
 Bits shifted out from the left end are lost, and bits shifted in from
 the right end are set to **0**.
@@ -18061,7 +18153,7 @@ integer             :: i
 
 end program demo_shiftl
 ```
-  Results:
+Results:
 ```text
 >         100         800
 >
@@ -18126,10 +18218,11 @@ where the kind for **i** dictates the kind of the returned value.
 
 ### **Description**
 
-Returns a value corresponding to **i** with all of the bits shifted right
-by **shift** places. If the absolute value of **shift** is greater than
-**bit_size(i)**, the value is undefined. Bits shifted out from the right
-end are lost, and bits shifted in from the left end are set to 0.
+**shiftr**(3) returns a value corresponding to **i** with all of the bits
+shifted right by **shift** places. If the absolute value of **shift**
+is greater than **bit_size(i)**, the value is undefined. Bits shifted
+out from the right end are lost, and bits shifted in from the left end
+are set to 0.
 
 Note the value of the result is the same as **ishft (i, -shift)**.
 
@@ -18193,7 +18286,7 @@ integer             :: i
 
 end program demo_shiftr
 ```
-  Results:
+Results:
 ```text
 >          100          12
 >   2147483647  1073741823   536870911   268435455   134217727    67108863
@@ -18249,11 +18342,11 @@ for the type.
 
 ### **Description**
 
-__sign__(a,b) return a value with the magnitude of __a__ but with the
-sign of __b__.
+**sign**(3) returns a value with the magnitude of _a_ but with the
+sign of _b_.
 
 For processors that distinguish between positive and negative zeros
-__sign()__ may be used to distinguish between __real__ values 0.0 and
+_sign()_ may be used to distinguish between _real_ values 0.0 and
 -0.0. SIGN (1.0, -0.0) will return  -1.0 when a negative zero is
 distinguishable.
 
@@ -18269,14 +18362,14 @@ distinguishable.
 
 ### **Result**
 
-The kind of the return value is the magnitude of __a__ with the sign of
-__b__. That is,
+The kind of the return value is the magnitude of _a_ with the sign of
+_b_. That is,
 
-  - If __b \>= 0__ then the result is __abs(a)__
-  - else if __b < 0__ it is -__abs(a)__.
-  - if __b__ is _real_ and the processor distinguishes between __-0.0__
-    and __0.0__ then the
-    result is __-abs(a)__
+  - If _b \>= 0_ then the result is _abs(a)_
+  - else if _b < 0_ it is -_abs(a)_.
+  - if _b_ is _real_ and the processor distinguishes between _-0.0_
+    and _0.0_ then the
+    result is _-abs(a)_
 
 ### **Examples**
 
@@ -18336,7 +18429,7 @@ FORTRAN 77
 
 ### **Description**
 
-  **sinh(x)** computes the hyperbolic sine of **x**.
+  **sinh**(3) computes the hyperbolic sine of **x**.
 
   The hyperbolic sine of x is defined mathematically as:
 ```fortran
@@ -18435,7 +18528,7 @@ The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
-**sin(x)** computes the sine of an angle given the size of the angle in
+**sin**(3) computes the sine of an angle given the size of the angle in
 radians.
 
 The sine of an angle in a right-angled triangle is the ratio of the
@@ -18578,8 +18671,9 @@ FORTRAN 77
 
 ### **Description**
 
-Determine the extent of **array** along a specified dimension **dim**,
-or the total number of elements in **array** if **dim** is absent.
+**size**(3) determines the extent of **array** along a specified
+dimension **dim**, or the total number of elements in **array** if **dim**
+is absent.
 
 ### **Options**
 
@@ -18808,8 +18902,8 @@ Fortran 95 , with **kind** argument - Fortran 2003
 
 ### **Description**
 
-Determines the distance between the argument **x** and the nearest adjacent
-number of the same type.
+  **spacing**(3) determines the distance between the argument **x**
+  and the nearest adjacent number of the same type.
 
 ### **Options**
 
@@ -18830,18 +18924,22 @@ implicit none
 integer, parameter :: sgl = selected_real_kind(p=6, r=37)
 integer, parameter :: dbl = selected_real_kind(p=13, r=200)
 
-   write(*,*) spacing(1.0_sgl)      ! "1.1920929e-07"          on i686
-   write(*,*) spacing(1.0_dbl)      ! "2.220446049250313e-016" on i686
+   write(*,*) spacing(1.0_sgl)
+   write(*,*) nearest(1.0_sgl,+1.0),nearest(1.0_sgl,+1.0)-1.0
+
+   write(*,*) spacing(1.0_dbl)
 end program demo_spacing
 ```
-
 Results:
 
-```text
-      1.19209290E-07
-      2.2204460492503131E-016
-```
+Typical values ...
 
+```text
+     1.1920929E-07
+      1.000000      1.1920929E-07
+     0.9999999     -5.9604645E-08
+     2.220446049250313E-016
+```
 ### **Standard**
 
 Fortran 95
@@ -18891,8 +18989,8 @@ Fortran 95
 
 ### **Description**
 
-Replicates a **source** array along a specified dimension **dim**. The
-copy is repeated **ncopies** times.
+**spread**(3) replicates a **source** array along a specified dimension
+**dim**. The copy is repeated **ncopies** times.
 
 So to add additional rows to a matrix **dim=1** would be used, but to
 add additional rows **dim=2** would be used, for example.
@@ -18947,6 +19045,9 @@ integer a1(4,3), a2(3,4), v(4), s, i
    a1 = spread ( v, dim=2, ncopies=3 )
    call printi('this adds a new dimension (2) of extent 3',a1)
 
+   a2 = spread ( v, 1, 3 )
+   call printi(' spread(v,1,3) adds a new dimension (1) of extent 3',a2)
+   ! add more
    a2 = spread ( v, 1, 3 )
    call printi(' spread(v,1,3) adds a new dimension (1) of extent 3',a2)
 
@@ -19079,7 +19180,7 @@ need an illustration of what happens with higher dimension array
 
 ### **Description**
 
-  **sqrt(x)** computes the principal square root of **x**.
+  **sqrt**(3) computes the principal square root of **x**.
 
   In mathematics, a square root of a number **x** is a number **y**
   such that **y\*y = x**.
@@ -19188,7 +19289,7 @@ FORTRAN 77
 
 ### **Description**
 
-Returns the storage size of argument **a** in bits.
+**storage_size**(3) returns the storage size of argument **a** in bits.
 
 ### **Options**
 
@@ -19288,8 +19389,8 @@ Fortran 2008
 
 ### **Description**
 
-Adds the elements of ARRAY along dimension DIM if the corresponding
-element in MASK is TRUE.
+  **sum**(3) adds the elements of ARRAY along dimension DIM if the
+  corresponding element in MASK is TRUE.
 
 ### **Options**
 
@@ -19388,7 +19489,7 @@ where TYPE may be _real_ or _integer_.
 
 ### **Description**
 
-**system_clock** lets you measure durations of time with the precision of
+**system_clock**(3) lets you measure durations of time with the precision of
 the smallest time increment generally available on a system by returning
 processor-dependent values based on the current value of the processor
 clock. The **clock** value is incremented by one for each clock count until
@@ -19501,7 +19602,7 @@ type and kind as the argument.
 
 ### **Description**
 
-**tanh(x)** computes the hyperbolic tangent of **x**.
+**tanh**(3) computes the hyperbolic tangent of **x**.
 
 ### **Options**
 
@@ -19572,7 +19673,7 @@ The return value has the same type and kind as **x**.
 
 ### **Description**
 
-**tan(x)** computes the tangent of **x**.
+**tan**(3) computes the tangent of **x**.
 
 ### **Options**
 
@@ -19646,7 +19747,7 @@ or
 
 ### **Description**
 
-Returns the cosubscript for this image.
+**this_image**(3) returns the cosubscript for this image.
 
 ### **Options**
 
@@ -19728,7 +19829,7 @@ where KIND may be any kind supported by type _real_
 
 ### **Description**
 
-**tiny(x)** returns the smallest positive (non zero) number of the type
+**tiny**(3) returns the smallest positive (non zero) number of the type
 and kind of **x**.
 
 ### **Options**
@@ -19805,7 +19906,7 @@ Fortran 95
 
 ### **Description**
 
-**trailz(3)** returns the number of trailing zero bits of an _integer_ value.
+**trailz**(3) returns the number of trailing zero bits of an _integer_ value.
 
 ### **Options**
 
@@ -19927,18 +20028,18 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-- **source** Shall be a scalar or an array of any type.
-- **mold** Shall be a scalar or an array of any type.
+- **source** shall be a scalar or an array of any type.
+- **mold** shall be a scalar or an array of any type.
 - **size** shall be a scalar of type _integer_.
 - **result** has the same type as **mold**
 
 ### **Description**
 
-copies the bitwise representation of **source** in memory into
-a variable or array of the same type and type parameters as **mold**.
+**transfer**(3) copies the bitwise representation of **source** in memory
+into a variable or array of the same type and type parameters as **mold**.
 
-This is approximately equivalent to the C concept of "casting" one
-type to another.
+This is approximately equivalent to the C concept of "casting" one type
+to another.
 
 ### **Options**
 
@@ -20055,17 +20156,17 @@ Fortran 90
 ```
 ### **Characteristics**
 
-  - **matrix** which shall be of any type and have a rank of two.
+  - **matrix** can be of any type but must have a rank of two.
   - The result will be the same type and kind as **matrix** and the
-    shape of the input array.
+    reversed shape of the input array.
 
 ### **Description**
 
-Transpose an array of rank two.
+  **transpose**(3) transposes an array of rank two.
 
-A array is transposed by interchanging the rows and columns of the given
-matrix. That is, element (i, j) of the result has the value of element(j,
-i) for all (i, j).
+  An array is transposed by interchanging the rows and columns of the
+  given matrix. That is, element (i,j) of the result has the value of
+  element (j,i) of the input for all (i,j).
 
 ### **Options**
 
@@ -20140,7 +20241,7 @@ Fortran 95
 - [**spread**(3)](#spread) - Add a dimension and replicate data
 - [**unpack**(3)](#unpack) - Scatter the elements of a vector
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## trim
 
@@ -20164,7 +20265,7 @@ Fortran 95
 
 ### **Description**
 
-  Removes trailing blank characters from a string.
+  **trim**(3) removes trailing blank characters from a string.
 
 ### **Options**
 
@@ -20214,7 +20315,7 @@ integer :: i
 
 end program demo_trim
 ```
-  Results:
+Results:
 ```text
     > [   trailing    ] [   trailing]
     > [   leading] [   leading]
@@ -20271,20 +20372,17 @@ of arguments, and search for certain arguments:
 ### **Characteristics**
 
 - a kind designated as ** may be any supported kind value for the type
-- **array** Shall be an array, of any type.
-- **dim** : (Optional) Shall be a scalar _integer_.
-- **kind** An _integer_ initialization expression indicating the kind
+- **array** shall be an array, of any type.
+- **dim** shall be a scalar _integer_.
+- **kind** an _integer_ initialization expression indicating the kind
   parameter of the result.
 - The return value is of type _integer_ and of kind **kind**. If **kind**
   is absent, the return value is of default integer kind.
 
-  If **dim** is absent, the result is an array of the upper bounds of
-  **array**.
-
 ### **Description**
 
-Returns the upper bounds of an array, or a single upper bound along the
-**dim** dimension.
+**ubound**(3) returns the upper bounds of an array, or a single upper
+bound along the **dim** dimension.
 
 ### **Options**
 
@@ -20293,6 +20391,8 @@ Returns the upper bounds of an array, or a single upper bound along the
 
 - **dim**
   : a specific rank to determine the bounds of
+  If **dim** is absent, the result is an array of the upper bounds of
+  **array**.
 
 - **kind**
   : indicates the kind parameter of the result. If absent, an _integer_
@@ -20439,9 +20539,9 @@ and the same shape as **mask**.
 
 ### **Description**
 
-Scatter the elements of **vector** into a copy of an array **field**
-of any rank using _.true._ values from **mask** in array element order
-to specify placement of the **vector** values.
+**unpack**(3) scatters the elements of **vector** into a copy of an
+array **field** of any rank using _.true._ values from **mask** in array
+element order to specify placement of the **vector** values.
 
 So a copy of **field** is generated with select elements replaced with
 values from **vector**. This allows for complex replacement patterns
@@ -20553,7 +20653,7 @@ contains
 
 end program demo_unpack
 ```
-  Results:
+Results:
 
 ```text
    > unity=
@@ -20594,30 +20694,31 @@ of characters that does not appear in a given set of characters.
       character(len=*,kind=**),intent(in) :: string
       character(len=*,kind=**),intent(in) :: set
       logical,intent(in),optional :: back
-      integer,intent(in),optional :: kind
+      integer,intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
-
- - **string** and **set**  must have the same kind type parameter.
-
+ - a kind designated as ** may be any supported kind value for the type.
+   However, **string** and **set** must have the same kind type parameter
+   for any individual call.
  - the kind of the returned value is the same as **kind** if
    present. Otherwise a default _integer_ kind is returned.
+ - **kind** must be a constant _integer_ initialization expression and a
+   valid kind for the _integer_ type.
 
 ### **Description**
 
-Verifies that all the characters in **string** belong to the set of
-characters in **set** by identifying the position of the first character
-in the string that is not in the set.
+  **verify**(3) verifies that all the characters in **string** belong
+  to the set of characters in **set** by identifying the position of
+  the first character in the string that is not in the set.
 
-This makes it easy to verify strings are all uppercase or lowercase,
-follow a basic syntax, only contain printable characters, and many of the
-conditions tested for with the C routines
-**isalnum**(3c), **isalpha**(3c), **isascii**(3c), **isblank**(3c),
-**iscntrl**(3c), **isdigit**(3c), **isgraph**(3c), **islower**(3c),
-**isprint**(3c), **ispunct**(3c), **isspace**(3c), **isupper**(3c),
-and **isxdigit**(3c); but for a string as well an an array of strings.
+  This makes it easy to verify strings are all uppercase or lowercase,
+  follow a basic syntax, only contain printable characters, and many
+  of the conditions tested for with the C routines **isalnum**(3c),
+  **isalpha**(3c), **isascii**(3c), **isblank**(3c), **iscntrl**(3c),
+  **isdigit**(3c), **isgraph**(3c), **islower**(3c), **isprint**(3c),
+  **ispunct**(3c), **isspace**(3c), **isupper**(3c), and **isxdigit**(3c);
+  but for a string as well an an array of strings.
 
 ### **Options**
 
@@ -20631,7 +20732,7 @@ and **isxdigit**(3c); but for a string as well an an array of strings.
   : The direction to look for an unmatched character. The left-most
   unmatched character position is returned unless **back** is present
   and _.false._, which causes the position of the right-most unmatched
-  character to be returned instead of the left-most unmatched character..
+  character to be returned instead of the left-most unmatched character.
 
 - **kind**
   : An _integer_ initialization expression indicating the kind
@@ -20788,7 +20889,6 @@ end function isint
 end program fortran_ints
 ```
 Results:
-
 ```text
 |+1       |3044848  |30.40    |September|1 2 3    |  -3000  |         |
 | T       | T       | F       | F       | F       | T       | F       |

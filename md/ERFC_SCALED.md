@@ -17,7 +17,7 @@
 
 ### **Description**
 
-**erfc_scaled**(x) computes the exponentially-scaled complementary
+**erfc_scaled**(3) computes the exponentially-scaled complementary
 error function of **x**:
 
 $$

@@ -21,7 +21,7 @@ supported by the TYPE.
 
 ### **Description**
 
-**dble(a)** Converts **a** to double precision _real_ type.
+**dble**(3) Converts **a** to double precision _real_ type.
 
 ### **Options**
 

@@ -30,8 +30,8 @@
 
 ### **Description**
 
-Retrieve or query the n-th argument that was passed on the command line
-to the current program execution.
+**get_command_argument**(3) retrieves or queries the n-th argument that
+was passed on the command line to the current program execution.
 
 There is not anything specifically stated about what an argument is but
 in practice the arguments are strings split on whitespace unless the

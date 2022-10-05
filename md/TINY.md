@@ -19,7 +19,7 @@ where KIND may be any kind supported by type _real_
 
 ### **Description**
 
-**tiny(x)** returns the smallest positive (non zero) number of the type
+**tiny**(3) returns the smallest positive (non zero) number of the type
 and kind of **x**.
 
 ### **Options**

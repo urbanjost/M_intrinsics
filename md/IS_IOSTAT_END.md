@@ -17,7 +17,7 @@
 
 ### **Description**
 
-is_iostat_end(3) tests whether a variable (assumed returned as a status
+**is_iostat_end**(3) tests whether a variable (assumed returned as a status
 from an I/O statement) has the "end of file" I/O status value.
 
 The function is equivalent to comparing the variable with the

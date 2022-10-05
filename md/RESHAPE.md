@@ -28,8 +28,8 @@
 
 ### **Description**
 
-Constructs an array of shape **shape** using the elements from **source** and
-possibly **pad** to fill it.
+**reshape** constructs an array of shape **shape** using the elements
+from **source** and possibly **pad** to fill it.
 
 If necessary, the new array may be padded with elements from **pad**
 or permuted as defined by **order**.

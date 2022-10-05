@@ -25,7 +25,7 @@
 
 ### **Description**
 
-  **cshift(array, shift \[, dim\])** performs a circular shift on elements
+  **cshift**(3) performs a circular shift on elements
   of **array** along the dimension of **dim**. If **dim** is omitted it is
   taken to be **1**. **dim** is a scalar of type _integer_ in the range of
   **1 \<= dim \<= n**, where "n" is the rank of **array**.

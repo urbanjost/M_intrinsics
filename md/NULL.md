@@ -20,7 +20,7 @@
 
 ### **Description**
 
-  Returns a disassociated pointer.
+  **null**(3) returns a disassociated pointer.
 
   If **mold** is present, a disassociated pointer of the same type is
   returned, otherwise the type is determined by context.

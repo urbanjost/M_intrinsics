@@ -18,11 +18,11 @@
 
 ### **Description**
 
-  Determines whether one string is lexically less than another string,
-  where the two strings are interpreted as containing ASCII character
-  codes. If the **string_a** and **string_b** are not the same length,
-  the shorter is compared as if spaces were appended to it to form a
-  value that has the same length as the longer.
+  **llt**(3) determines whether one string is lexically less than
+  another string, where the two strings are interpreted as containing
+  ASCII character codes. If the **string_a** and **string_b** are not
+  the same length, the shorter is compared as if spaces were appended
+  to it to form a value that has the same length as the longer.
 
   In general, the lexical comparison intrinsics **lge**, **lgt**, **lle**,
   and **llt** differ from the corresponding intrinsic operators _.ge.,
@@ -64,7 +64,7 @@ integer :: i
    write(*,*) llt(['abc','123'],['cba','123']) ! [T F]  both arrays
 end program demo_llt
 ```
-  Results:
+Results:
 ```text
   > !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
   > [\]^_`abcdefghijklmnopqrstuvwxyz{|}~

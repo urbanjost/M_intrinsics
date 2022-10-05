@@ -20,7 +20,7 @@
 
 ### **Description**
 
-Converts one kind of _logical_ variable to another.
+  **logical**(3) converts one kind of _logical_ variable to another.
 
 ### **Options**
 

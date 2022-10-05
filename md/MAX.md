@@ -25,7 +25,7 @@
 
 ### **Description**
 
-Returns the argument with the largest (most positive) value.
+**max**(3) returns the argument with the largest (most positive) value.
 
 ### **Options**
 

@@ -21,7 +21,7 @@ The return value is of type _integer_ and of the default integer kind.
 
 ### **Description**
 
-**precision(x)** returns the decimal precision in the model of the type
+**precision**(3) returns the decimal precision in the model of the type
 of **x**.
 
 ### **Options**

@@ -14,7 +14,7 @@
 
 ### **Description**
 
-**c_funloc(x)** determines the C address of the argument.
+**c_funloc**(3) determines the C address of the argument.
 
 ### **Options**
 

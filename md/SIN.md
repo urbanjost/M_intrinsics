@@ -22,7 +22,7 @@ The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
-**sin(x)** computes the sine of an angle given the size of the angle in
+**sin**(3) computes the sine of an angle given the size of the angle in
 radians.
 
 The sine of an angle in a right-angled triangle is the ratio of the

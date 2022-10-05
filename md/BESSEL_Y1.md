@@ -19,7 +19,7 @@
 
 ### **Description**
 
-**bessel_y1(x)** computes the Bessel function of the second
+**bessel_y1**(3) computes the Bessel function of the second
 kind of order 1 of **x**.
 
 ### **Options**

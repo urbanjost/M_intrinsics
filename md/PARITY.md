@@ -20,8 +20,8 @@
 
 ### **Description**
 
-Calculates the parity (i.e. the reduction using .xor.) of __mask__ along
-dimension __dim__.
+**parity**(3) calculates the parity (i.e. the reduction using .xor.) of
+__mask__ along dimension __dim__.
 
 ### **Options**
 

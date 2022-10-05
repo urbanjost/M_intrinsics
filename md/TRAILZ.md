@@ -17,7 +17,7 @@
 
 ### **Description**
 
-**trailz(3)** returns the number of trailing zero bits of an _integer_ value.
+**trailz**(3) returns the number of trailing zero bits of an _integer_ value.
 
 ### **Options**
 

@@ -23,7 +23,7 @@
 
 ### **Description**
 
-Determines the shape of an array.
+**shape**(3) determines the shape of an array.
 
 ### **Options**
 

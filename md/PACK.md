@@ -22,7 +22,7 @@
 
 ### **Description**
 
-  Stores the elements of ARRAY in an array of rank one.
+  **pack**(3) stores the elements of ARRAY in an array of rank one.
 
   The beginning of the resulting array is made up of elements whose
   **mask** equals _.true._. Afterwards, positions are filled with elements

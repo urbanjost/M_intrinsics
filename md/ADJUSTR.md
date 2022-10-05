@@ -20,7 +20,7 @@
 
 ### **Description**
 
-**adjustr(3f)** right-adjusts a string by removing trailing spaces. Spaces
+**adjustr**(3) right-adjusts a string by removing trailing spaces. Spaces
 are inserted at the start of the string as needed to retain the original
 length.
 

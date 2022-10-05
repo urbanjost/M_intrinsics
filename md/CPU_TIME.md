@@ -19,8 +19,9 @@
 
 ### **Description**
 
-Returns a _real_ value representing the elapsed CPU time in seconds. This
-is useful for testing segments of code to determine execution time.
+**cpu_time**(3) returns a _real_ value representing the elapsed CPU time
+in seconds. This is useful for testing segments of code to determine
+execution time.
 
 The exact definition of time is left imprecise because of the variability
 in what different processors are able to provide.
@@ -79,7 +80,7 @@ real(kind=real64) :: startd, finishd
    print '("Processor Time = ",g0," seconds.")',finishd-startd
 end program demo_cpu_time
 ```
-  Results:
+Results:
 
   The precision of the result, some aspects of what is returned,
   and what if any options there are for parallel applications 

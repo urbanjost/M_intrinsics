@@ -31,7 +31,7 @@
 
 ### **Description**
 
-**atomic_define(atom, value)** defines the variable **atom** with the value
+**atomic_define**(3) defines the variable **atom** with the value
 **value** atomically.
 
 ### **Options**

@@ -23,7 +23,7 @@
 
 ### **Description**
 
-**ibset** returns the value of **i** with the bit at position **pos** set to one.
+**ibset**(3) returns the value of **i** with the bit at position **pos** set to one.
 
 ### **Options**
 

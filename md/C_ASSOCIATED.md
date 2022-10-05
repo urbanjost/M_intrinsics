@@ -22,7 +22,7 @@
 
 ### **Description**
 
-**c_associated(c_prt_1\[, c_ptr_2\])** determines the status of the
+**c_associated**(3) determines the status of the
 C pointer c_ptr_1 or if c_ptr_1 is associated with the target
 c_ptr_2.
 

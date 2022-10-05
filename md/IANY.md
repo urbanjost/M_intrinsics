@@ -37,8 +37,9 @@ or
 
 ### **Description**
 
-Reduces with bitwise **OR** (inclusive **OR**) the elements of **array** along
-dimension **dim** if the corresponding element in **mask** is _.true._.
+  **iany**(3) reduces with bitwise a **OR** (inclusive **OR**) the
+  elements of **array** along dimension **dim** if the corresponding
+  element in **mask** is _.true._.
 
 ### **Options**
 
@@ -88,7 +89,7 @@ integer(kind=int8) :: a(3), b(4:3)
    write(*,*)iany(a,[T,F,T]) == iany([a(1),a(3)])
 end program demo_iany
 ```
-  Results:
+Results:
 ```text
     A=
     00100100

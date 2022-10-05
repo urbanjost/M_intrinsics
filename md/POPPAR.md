@@ -20,8 +20,8 @@
 
 ### **Description**
 
-Returns the parity of an integer's binary representation (i.e., the
-parity of the number of bits set).
+**poppar**(3) returns the parity of an integer's binary representation
+(i.e., the parity of the number of bits set).
 
 ### **Options**
 

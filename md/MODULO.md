@@ -21,7 +21,7 @@
 
 ### **Description**
 
-**modulo(a,p)** computes the **a** modulo **p**.
+**modulo**(3) computes the **a** modulo **p**.
 
 ### **Options**
 

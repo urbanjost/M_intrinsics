@@ -24,7 +24,7 @@
 
 ### **Description**
 
- **ichar(c)** returns the code for the character in the system's native
+ **ichar**(3) returns the code for the character in the system's native
  character set. The correspondence between characters and their codes is
  not necessarily the same across different Fortran implementations. For
  example, a platform using EBCDIC would return different values than an
@@ -58,7 +58,7 @@ integer i
 
 end program demo_ichar
 ```
-  Results:
+Results:
 ```text
              97         122          65          90
 ```

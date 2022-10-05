@@ -20,7 +20,7 @@
 
 ### **Description**
 
-**bessel_j0(x)** computes the Bessel function of the first kind
+**bessel_j0**(3) computes the Bessel function of the first kind
 of order **0** of **x**.
 
 ### **Options**

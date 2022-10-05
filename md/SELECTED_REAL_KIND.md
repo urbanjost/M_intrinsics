@@ -19,9 +19,9 @@
 
 ### **Description**
 
-**selected_real_kind(p, r, radix)** return the kind value of a real
-data type with decimal precision of at least **p** digits, exponent range of
-at least **r**, and with a radix of **radix**.
+**selected_real_kind**(3) return the kind value of a real data type with
+decimal precision of at least **p** digits, exponent range of at least
+**r**, and with a radix of **radix**.
 
 ### **Options**
 

@@ -21,7 +21,7 @@
 
 ### **Description**
 
-  **sinh(x)** computes the hyperbolic sine of **x**.
+  **sinh**(3) computes the hyperbolic sine of **x**.
 
   The hyperbolic sine of x is defined mathematically as:
 ```fortran

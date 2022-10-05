@@ -27,7 +27,7 @@
 
 ### **Description**
 
-  Determines whether an integer is bitwise greater than another.
+  **bgt** determines whether an integer is bitwise greater than another.
   Bit-level representations of values are platform-dependent.
 
 ### **Options**

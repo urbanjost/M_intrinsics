@@ -33,8 +33,8 @@ or
 
 ### **Description**
 
-**associated(pointer \[, target\])** determines the status of the
-pointer **pointer** or if **pointer** is associated with the target **target**.
+**associated**(3) determines the status of the pointer **pointer**
+or if **pointer** is associated with the target **target**.
 
 ### **Options**
 

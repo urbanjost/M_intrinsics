@@ -45,8 +45,9 @@ or
 
 ### **Description**
 
-Location of the first element of **array** identified by **mask** along
-dimension **dim** having a value equal to **value**.
+**findloc**(3) returns the location of the first element of **array**
+identified by **mask** along dimension **dim** having a value equal
+to **value**.
 
 If both **array** and **value** are of type logical, the comparison is
 performed with the **.eqv.** operator; otherwise, the comparison is

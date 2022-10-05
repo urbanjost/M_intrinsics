@@ -23,7 +23,7 @@
 
 ### **Description**
 
-  **iachar**(c) returns the code for the ASCII character in the first
+  **iachar**(3) returns the code for the ASCII character in the first
   character position of C.
 
 ### **Options**

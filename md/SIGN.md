@@ -20,11 +20,11 @@ for the type.
 
 ### **Description**
 
-__sign__(a,b) return a value with the magnitude of __a__ but with the
-sign of __b__.
+**sign**(3) returns a value with the magnitude of _a_ but with the
+sign of _b_.
 
 For processors that distinguish between positive and negative zeros
-__sign()__ may be used to distinguish between __real__ values 0.0 and
+_sign()_ may be used to distinguish between _real_ values 0.0 and
 -0.0. SIGN (1.0, -0.0) will return  -1.0 when a negative zero is
 distinguishable.
 
@@ -40,14 +40,14 @@ distinguishable.
 
 ### **Result**
 
-The kind of the return value is the magnitude of __a__ with the sign of
-__b__. That is,
+The kind of the return value is the magnitude of _a_ with the sign of
+_b_. That is,
 
-  - If __b \>= 0__ then the result is __abs(a)__
-  - else if __b < 0__ it is -__abs(a)__.
-  - if __b__ is _real_ and the processor distinguishes between __-0.0__
-    and __0.0__ then the
-    result is __-abs(a)__
+  - If _b \>= 0_ then the result is _abs(a)_
+  - else if _b < 0_ it is -_abs(a)_.
+  - if _b_ is _real_ and the processor distinguishes between _-0.0_
+    and _0.0_ then the
+    result is _-abs(a)_
 
 ### **Examples**
 

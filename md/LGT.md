@@ -18,11 +18,11 @@
 
 ### **Description**
 
-  Determines whether one string is lexically greater than another string,
-  where the two strings are interpreted as containing ASCII character
-  codes. If the String **a** and String **b** are not the same length,
-  the shorter is compared as if spaces were appended to it to form a
-  value that has the same length as the longer.
+  **lgt**(3) determines whether one string is lexically greater than
+  another string, where the two strings are interpreted as containing
+  ASCII character codes. If the String **a** and String **b** are not
+  the same length, the shorter is compared as if spaces were appended
+  to it to form a value that has the same length as the longer.
 
   In general, the lexical comparison intrinsics **lge**, **lgt**, **lle**,
   and **llt** differ from the corresponding intrinsic operators _.ge.,
@@ -64,7 +64,7 @@ integer :: i
    write(*,*) lgt(['abc','123'],['cba','123']) ! [F F]  both arrays
 end program demo_lgt
 ```
-  Results:
+Results:
 ```text
     !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
     [\]^_`abcdefghijklmnopqrstuvwxyz{|}~

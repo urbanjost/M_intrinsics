@@ -20,7 +20,7 @@
 
 ### **Description**
 
-  Removes trailing blank characters from a string.
+  **trim**(3) removes trailing blank characters from a string.
 
 ### **Options**
 
@@ -70,7 +70,7 @@ integer :: i
 
 end program demo_trim
 ```
-  Results:
+Results:
 ```text
     > [   trailing    ] [   trailing]
     > [   leading] [   leading]

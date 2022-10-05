@@ -33,9 +33,9 @@
 
 ### **Description**
 
-  Determines the minimum value of the elements in an array value, or,
-  if the **dim** argument is supplied, determines the minimum value
-  along each row of the array in the **dim** direction.
+  **minval**(3) determines the minimum value of the elements in an array
+  value, or, if the **dim** argument is supplied, determines the minimum
+  value along each row of the array in the **dim** direction.
 
   If **mask** is present, only the elements for which **mask** is
   _.true._ are considered.

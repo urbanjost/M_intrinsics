@@ -21,7 +21,7 @@
 
 ### **Description**
 
-  **len(3)** Returns the length of a _character_ string.
+  **len**(3) returns the length of a _character_ string.
 
   If **string** is an array, the length of an element of **string** is
   returned, as all elements of an array are the same length.
@@ -106,7 +106,7 @@ contains
 
 end program demo_len
 ```
-  Results:
+Results:
 ```text
     length =          40
      How long is this allocatable string?  LEN=          38

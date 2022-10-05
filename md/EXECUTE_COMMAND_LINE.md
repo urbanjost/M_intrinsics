@@ -22,11 +22,11 @@
 
 ### **Description**
 
-The **command** argument is passed to the shell and executed. (The shell is
-generally **sh**(1) on Unix systems, and cmd.exe on Windows.) If **wait** is
-present and has the value _.false._, the execution of the command is
-asynchronous if the system supports it; otherwise, the command is
-executed synchronously.
+For **execute_command_line**(3) the **command** argument is passed to the
+shell and executed. (The shell is generally **sh**(1) on Unix systems, and
+cmd.exe on Windows.) If **wait** is present and has the value _.false._,
+the execution of the command is asynchronous if the system supports it;
+otherwise, the command is executed synchronously.
 
 The three last arguments allow the user to get status information. After
 synchronous execution, **exitstat** contains the integer exit code of the

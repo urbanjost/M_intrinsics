@@ -19,7 +19,7 @@ The return value is of the same type and kind as **x**.
 
 ### **Description**
 
-**rrspacing(x)** returns the reciprocal of the relative spacing of model
+**rrspacing**(3) returns the reciprocal of the relative spacing of model
 numbers near **x**.
 
 ### **Options**

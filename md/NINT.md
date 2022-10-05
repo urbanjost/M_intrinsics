@@ -23,7 +23,7 @@
 
 ### **Description**
 
-**nint(x)** rounds its argument to the nearest whole number with its
+**nint**(3) rounds its argument to the nearest whole number with its
 sign preserved.
 
 The user must ensure the value is a valid value for the range of the

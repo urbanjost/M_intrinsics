@@ -175,7 +175,7 @@ end subroutine print_matrix_int
 
 end program demo_matmul
 ```
-  Results:
+Results:
 ```text
     >
     > A is

@@ -24,8 +24,8 @@
 
 ### **Description**
 
-  The result  is an _integer_ with its rightmost **i** bits set to 1,
-  and the remaining bits set to 0.
+  **maskr**(3) the result is an _integer_ with its rightmost **i**
+  bits set to 1, and the remaining bits set to 0.
 
 ### **Options**
 

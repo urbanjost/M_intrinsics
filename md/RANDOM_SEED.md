@@ -19,8 +19,8 @@
 
 ### **Description**
 
-Restarts or queries the state of the pseudorandom number generator used
-by random_number.
+**random_seed**(3) restarts or queries the state of the pseudorandom
+number generator used by random_number.
 
 If random_seed is called without arguments, it is seeded with random
 data retrieved from the operating system.

@@ -20,9 +20,10 @@ result = index( string, substring [,back] [,kind] )
 
 ### **Description**
 
-Returns the position of the start of the leftmost or rightmost
-occurrence of string **substring** in **string**, counting from one. If
-**substring** is not present in **string**, zero is returned.
+  **index**(3) returns the position of the start of the leftmost
+  or rightmost occurrence of string **substring** in **string**,
+  counting from one. If **substring** is not present in **string**,
+  zero is returned.
 
 ### **Options**
 

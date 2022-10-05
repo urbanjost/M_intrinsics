@@ -25,7 +25,7 @@ take this into consideration.
 
 ### **Description**
 
-**huge(x)** returns the largest number that is not an infinity for the
+**huge**(3) returns the largest number that is not an infinity for the
 kind and type of **x**.
 
 ### **Options**

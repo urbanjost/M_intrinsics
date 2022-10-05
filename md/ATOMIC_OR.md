@@ -27,7 +27,7 @@
 
 ### **Description**
 
-**atomic_or(atom, value)** atomically defines **atom** with the bitwise **or**
+**atomic_or**(3) atomically defines **atom** with the bitwise **or**
 between the values of **atom** and **value**. When **stat** is present and the
 invocation was successful, it is assigned the value **0**. If it is present
 and the invocation has failed, it is assigned a positive value; in

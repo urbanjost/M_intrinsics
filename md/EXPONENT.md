@@ -17,7 +17,7 @@
 
 ### **Description**
 
-**exponent**(x) returns the value of the exponent part of **x**. If **x** is
+**exponent**(3) returns the value of the exponent part of **x**. If **x** is
 zero the value returned is zero.
 
 ### **Options**

@@ -18,12 +18,14 @@
 
 ### **Description**
 
-Logical conjunction of elements of **mask** along dimension **dim**.
 
-"**all(mask, dim)**" determines if all the values are true in **mask**
+**all**(3) determines if all the values are true in **mask**
 in the array along dimension **dim**.
 
-The mask is generally a logical expression, allowing for comparing
+This is called a logical conjunction of elements of **mask** along
+dimension **dim**.
+
+The mask is generally a _logical_ expression, allowing for comparing
 arrays and many other common operations.
 
 ### **Options**
@@ -99,7 +101,7 @@ logical bool
   end block ARRAYS
 end program demo_all
 ```
-  Results:
+Results:
 ```text
     T
     F

@@ -18,8 +18,8 @@
 
 ### **Description**
 
-  Determines whether one string is lexically less than or equal to
-  another string, where the two strings are interpreted as containing
+  **lle**(3) determines whether one string is lexically less than or equal
+  to another string, where the two strings are interpreted as containing
   ASCII character codes. if the **string_a** and **string_b** are not
   the same length, the shorter is compared as if spaces were appended
   to it to form a value that has the same length as the longer. Leading

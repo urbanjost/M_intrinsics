@@ -26,8 +26,9 @@
 
 ### **Description**
 
-Determine the extent of **array** along a specified dimension **dim**,
-or the total number of elements in **array** if **dim** is absent.
+**size**(3) determines the extent of **array** along a specified
+dimension **dim**, or the total number of elements in **array** if **dim**
+is absent.
 
 ### **Options**
 

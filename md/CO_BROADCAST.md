@@ -14,7 +14,7 @@
 
 ### **Description**
 
-**co_broadcast(3)** copies the value of argument **a** on the image with image
+**co_broadcast**(3) copies the value of argument **a** on the image with image
 index source_image to all images in the current team. **a** becomes defined
 as if by intrinsic assignment. If the execution was successful and **stat**
 is present, it is assigned the value zero. If the execution failed, **stat**

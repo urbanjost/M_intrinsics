@@ -21,10 +21,11 @@ where the kind for **i** dictates the kind of the returned value.
 
 ### **Description**
 
-Returns a value corresponding to **i** with all of the bits shifted right
-by **shift** places. If the absolute value of **shift** is greater than
-**bit_size(i)**, the value is undefined. Bits shifted out from the right
-end are lost, and bits shifted in from the left end are set to 0.
+**shiftr**(3) returns a value corresponding to **i** with all of the bits
+shifted right by **shift** places. If the absolute value of **shift**
+is greater than **bit_size(i)**, the value is undefined. Bits shifted
+out from the right end are lost, and bits shifted in from the left end
+are set to 0.
 
 Note the value of the result is the same as **ishft (i, -shift)**.
 
@@ -88,7 +89,7 @@ integer             :: i
 
 end program demo_shiftr
 ```
-  Results:
+Results:
 ```text
 >          100          12
 >   2147483647  1073741823   536870911   268435455   134217727    67108863

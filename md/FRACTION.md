@@ -19,7 +19,7 @@
 
 ### **Description**
 
-  **fraction(x)** returns the fractional part of the model representation
+  **fraction**(3) returns the fractional part of the model representation
   of **x**.
 
 ### **Options**

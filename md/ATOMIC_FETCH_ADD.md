@@ -15,14 +15,13 @@
 
 ### **Description**
 
-**atomic_fetch_add(atom, value, old)** atomically stores the value of
-**atom** in **old** and adds the value of **var** to the variable **atom**. When **stat** is
+**atomic_fetch_add**(3) atomically stores the value of **atom** in **old**
+and adds the value of **var** to the variable **atom**. When **stat** is
 present and the invocation was successful, it is assigned the value **0**.
-If it is present and the invocation has failed, it is assigned a
-positive value; in particular, for a coindexed **atom**, if the remote image
-has stopped, it is assigned the value of iso_fortran_env's
-stat_stopped_image and if the remote image has failed, the value
-stat_failed_image.
+If it is present and the invocation has failed, it is assigned a positive
+value; in particular, for a coindexed **atom**, if the remote image has
+stopped, it is assigned the value of iso_fortran_env's stat_stopped_image
+and if the remote image has failed, the value stat_failed_image.
 
 ### **Options**
 

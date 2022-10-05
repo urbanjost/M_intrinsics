@@ -20,7 +20,7 @@
 
 ### **Description**
 
-**adjustl(string)** will left-adjust a string by removing leading
+**adjustl**(3) will left-adjust a string by removing leading
 spaces. Spaces are inserted at the end of the string as needed.
 
 ### **Options**

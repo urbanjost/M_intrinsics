@@ -25,7 +25,7 @@
 
 ### **Description**
 
-**ieor** returns the bitwise Boolean exclusive-**or** of **i** and **j**.
+**ieor**(3) returns the bitwise Boolean exclusive-**or** of **i** and **j**.
 
 ### **Options**
 

@@ -20,7 +20,7 @@
 
 ### **Description**
 
-  **allocated(arg)**  checks the allocation status of both arrays
+  **allocated**(3) checks the allocation status of both arrays
   and scalars.
 
 ### **Options**

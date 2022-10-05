@@ -14,8 +14,8 @@
 
 ### **Description**
 
-Returns the lower bounds of a coarray, or a single lower cobound along
-the **dim** codimension.
+**co_lbound**(3) returns the lower bounds of a coarray, or a single
+lower cobound along the **dim** codimension.
 
 ### **Options**
 

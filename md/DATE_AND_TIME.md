@@ -20,7 +20,7 @@
 
 ### **Description**
 
-**date_and_time(date, time, zone, values)** gets the corresponding
+**date_and_time**(3) gets the corresponding
 date and time information from the real-time system clock.
 
 Unavailable time and date _character_ parameters return blanks.

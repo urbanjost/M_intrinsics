@@ -14,8 +14,8 @@
 
 ### **Description**
 
-co_sum sums up the values of each element of **a** on all images of the
-current team.
+**co_sum**(3) sums up the values of each element of **a** on all images
+of the current team.
 
 If result_image is present, the summed-up values are returned in **a**
 on the specified image only and the value of **a** on the other images

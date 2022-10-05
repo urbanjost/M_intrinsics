@@ -66,7 +66,7 @@ character(len=*),parameter :: g='(b32.32,1x,i0)'
    write(*,g) ishft(huge(0),shift), shift
 end program demo_ishft
 ```
-  Results:
+Results:
 ```text
 >              6  <== typically should have the value 6
 >   11111111111111111111111111110000 4

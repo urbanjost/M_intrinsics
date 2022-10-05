@@ -15,17 +15,17 @@
 ```
 ### **Characteristics**
 
-  - **matrix** which shall be of any type and have a rank of two. 
+  - **matrix** can be of any type but must have a rank of two. 
   - The result will be the same type and kind as **matrix** and the
-    shape of the input array. 
+    reversed shape of the input array. 
 
 ### **Description**
 
-Transpose an array of rank two.
+  **transpose**(3) transposes an array of rank two.
 
-A array is transposed by interchanging the rows and columns of the given
-matrix. That is, element (i, j) of the result has the value of element(j,
-i) for all (i, j).
+  An array is transposed by interchanging the rows and columns of the
+  given matrix. That is, element (i,j) of the result has the value of
+  element (j,i) of the input for all (i,j).
 
 ### **Options**
 
@@ -100,4 +100,4 @@ Fortran 95
 - [**spread**(3)](#spread) - Add a dimension and replicate data
 - [**unpack**(3)](#unpack) - Scatter the elements of a vector
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

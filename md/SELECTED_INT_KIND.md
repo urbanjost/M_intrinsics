@@ -17,7 +17,7 @@
 
 ### **Description**
 
-**selected_int_kind(r)** return the kind value of the smallest integer
+**selected_int_kind**(3) return the kind value of the smallest integer
 type that can represent all values ranging from **-10\*\*r** (exclusive)
 to **10\*\*r** (exclusive). If there is no integer kind that accommodates
 this range, selected_int_kind returns **-1**.

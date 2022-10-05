@@ -17,7 +17,7 @@
 
 ### **Description**
 
-**is_iostat_eor** tests whether a variable has the value of the I/O
+**is_iostat_eor**(3) tests whether a variable has the value of the I/O
 status "end of record". The function is equivalent to comparing the
 variable with the **iostat_eor** parameter of the intrinsic module
 **iso_fortran_env**.

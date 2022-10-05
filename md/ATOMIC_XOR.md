@@ -29,7 +29,7 @@
 
 ### **Description**
 
-**atomic_xor(atom, value)** atomically defines **atom** with the bitwise
+**atomic_xor**(3) atomically defines **atom** with the bitwise
 **xor** between the values of **atom** and **value**. When **stat** is present and the
 invocation was successful, it is assigned the value **0**. If it is present
 and the invocation has failed, it is assigned a positive value; in

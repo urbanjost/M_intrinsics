@@ -21,7 +21,7 @@ where TYPE may be _real_ or _integer_.
 
 ### **Description**
 
-**system_clock** lets you measure durations of time with the precision of
+**system_clock**(3) lets you measure durations of time with the precision of
 the smallest time increment generally available on a system by returning
 processor-dependent values based on the current value of the processor
 clock. The **clock** value is incremented by one for each clock count until

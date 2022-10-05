@@ -21,7 +21,7 @@ where _KIND_ is any valid value for type _integer_.
 
 ### **Description**
 
-**floor(a)** returns the greatest integer less than or equal to **a**.
+**floor**(3) returns the greatest integer less than or equal to **a**.
 That is, it picks the whole number at or to the left of the value on
 the scale **-huge(int(a,kind=KIND))-1** to **huge(int(a),kind=KIND)**.
 

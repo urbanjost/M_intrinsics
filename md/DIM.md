@@ -20,7 +20,7 @@ for the type.
 
 ### **Description**
 
-**dim(x,y)** returns the difference **x - y** if the result is positive;
+**dim**(3) returns the difference **x - y** if the result is positive;
 otherwise it returns zero. It is equivalent to **max(0,x-y)** where the
 arguments are all of the same type.
 

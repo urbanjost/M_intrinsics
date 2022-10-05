@@ -20,7 +20,7 @@ TYPE.
 
 ### **Description**
 
-**range(x)** returns the decimal exponent range in the model of the type
+**range**(3) returns the decimal exponent range in the model of the type
 of **x**.
 
 ### **Options**

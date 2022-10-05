@@ -26,7 +26,8 @@ is absent, the return value is of default _integer_ kind.
 
 ### **Description**
 
-Returns the length of a character string, ignoring any trailing blanks.
+**len_trim**(3) returns the length of a character string, ignoring any
+trailing blanks.
 
 ### **Options**
 
@@ -76,7 +77,7 @@ integer :: i
    !
 end program demo_len_trim
 ```
-  Results:
+Results:
 ```text
      how long is this string?
     UNTRIMMED LENGTH=          30

@@ -19,7 +19,7 @@ where KIND is any _real_ kind.
 
 ### **Description**
 
-**minexponent(x)** returns the minimum exponent in the model of the type
+**minexponent**(3) returns the minimum exponent in the model of the type
 of **x**.
 
 ### **Options**

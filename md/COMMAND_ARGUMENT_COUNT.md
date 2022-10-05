@@ -15,7 +15,7 @@
 
 ### **Description**
 
-**command_argument_count()** returns the number of arguments passed
+**command_argument_count**(3) returns the number of arguments passed
 on the command line when the containing program was invoked.
 
 ### **Options**

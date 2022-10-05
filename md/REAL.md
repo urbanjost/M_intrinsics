@@ -26,7 +26,7 @@
 
 ### **Description**
 
-**real(x, kind)** converts its argument **x** to a _real_ type.
+**real**(3) converts its argument **x** to a _real_ type.
 
 For complex values this is similar to the modern complex-part-designator
 **%RE** which also designates the real part of _complex_ a value.

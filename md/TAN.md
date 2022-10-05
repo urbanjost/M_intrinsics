@@ -23,7 +23,7 @@ The return value has the same type and kind as **x**.
 
 ### **Description**
 
-**tan(x)** computes the tangent of **x**.
+**tan**(3) computes the tangent of **x**.
 
 ### **Options**
 

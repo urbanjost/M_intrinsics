@@ -19,7 +19,7 @@ The return type is of the same kind as the argument.
 
 ### **Description**
 
-NOT returns the bitwise Boolean inverse of **i**.
+**not**(3) returns the bitwise Boolean inverse of **i**.
 
 ### **Options**
 

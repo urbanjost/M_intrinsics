@@ -24,7 +24,7 @@ to an object extensible type.
 
 **description**
 
-  **EXTENDS_TYPE_OF**(3) is .true. if and only if the dynamic type of
+  **extends_type_of**(3) is .true. if and only if the dynamic type of
   **a** is or could be (for unlimited polymorphic) an extension of the
   dynamic type of **mold**.
 

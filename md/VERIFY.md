@@ -15,30 +15,31 @@ of characters that does not appear in a given set of characters.
       character(len=*,kind=**),intent(in) :: string
       character(len=*,kind=**),intent(in) :: set
       logical,intent(in),optional :: back
-      integer,intent(in),optional :: kind
+      integer,intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
-
- - **string** and **set**  must have the same kind type parameter.
-
+ - a kind designated as ** may be any supported kind value for the type.
+   However, **string** and **set** must have the same kind type parameter
+   for any individual call.
  - the kind of the returned value is the same as **kind** if
    present. Otherwise a default _integer_ kind is returned.
+ - **kind** must be a constant _integer_ initialization expression and a
+   valid kind for the _integer_ type.
 
 ### **Description**
 
-Verifies that all the characters in **string** belong to the set of
-characters in **set** by identifying the position of the first character
-in the string that is not in the set.
+  **verify**(3) verifies that all the characters in **string** belong
+  to the set of characters in **set** by identifying the position of
+  the first character in the string that is not in the set.
 
-This makes it easy to verify strings are all uppercase or lowercase,
-follow a basic syntax, only contain printable characters, and many of the
-conditions tested for with the C routines
-**isalnum**(3c), **isalpha**(3c), **isascii**(3c), **isblank**(3c),
-**iscntrl**(3c), **isdigit**(3c), **isgraph**(3c), **islower**(3c),
-**isprint**(3c), **ispunct**(3c), **isspace**(3c), **isupper**(3c),
-and **isxdigit**(3c); but for a string as well an an array of strings.
+  This makes it easy to verify strings are all uppercase or lowercase,
+  follow a basic syntax, only contain printable characters, and many
+  of the conditions tested for with the C routines **isalnum**(3c),
+  **isalpha**(3c), **isascii**(3c), **isblank**(3c), **iscntrl**(3c),
+  **isdigit**(3c), **isgraph**(3c), **islower**(3c), **isprint**(3c),
+  **ispunct**(3c), **isspace**(3c), **isupper**(3c), and **isxdigit**(3c);
+  but for a string as well an an array of strings.
 
 ### **Options**
 
@@ -52,7 +53,7 @@ and **isxdigit**(3c); but for a string as well an an array of strings.
   : The direction to look for an unmatched character. The left-most
   unmatched character position is returned unless **back** is present
   and _.false._, which causes the position of the right-most unmatched
-  character to be returned instead of the left-most unmatched character..
+  character to be returned instead of the left-most unmatched character.
 
 - **kind**
   : An _integer_ initialization expression indicating the kind
@@ -209,7 +210,6 @@ end function isint
 end program fortran_ints
 ```
 Results:
-
 ```text
 |+1       |3044848  |30.40    |September|1 2 3    |  -3000  |         |
 | T       | T       | F       | F       | F       | T       | F       |

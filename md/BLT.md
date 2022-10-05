@@ -23,7 +23,7 @@
 
 ### **Description**
 
-Determines whether an integer is bitwise less than another.
+  **blt**(3) determines whether an integer is bitwise less than another.
 
 ### **Options**
 

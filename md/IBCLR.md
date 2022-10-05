@@ -22,7 +22,8 @@
 
 ### **Description**
 
-**ibclr** returns the value of **i** with the bit at position **pos** set to zero.
+  **ibclr**(3) returns the value of **i** with the bit at position **pos**
+  set to zero.
 
 ### **Options**
 

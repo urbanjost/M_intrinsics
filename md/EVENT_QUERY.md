@@ -14,7 +14,7 @@
 
 ### **Description**
 
-**event_query** assigns the number of events to **count** which have been
+**event_query**(3) assigns the number of events to **count** which have been
 posted to the **event** variable and not yet been removed by calling
 **event_wait**. When **stat** is present and the invocation was successful, it
 is assigned the value **0**. If it is present and the invocation has failed,

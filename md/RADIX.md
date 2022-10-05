@@ -19,7 +19,7 @@
 
 ### **Description**
 
-**radix(x)** returns the base of the model representing the entity **x**.
+**radix**(3) returns the base of the model representing the entity **x**.
 
 ### **Options**
 

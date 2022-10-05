@@ -18,20 +18,17 @@
 ### **Characteristics**
 
 - a kind designated as ** may be any supported kind value for the type
-- **array** Shall be an array, of any type.
-- **dim** : (Optional) Shall be a scalar _integer_.
-- **kind** An _integer_ initialization expression indicating the kind
+- **array** shall be an array, of any type.
+- **dim** shall be a scalar _integer_.
+- **kind** an _integer_ initialization expression indicating the kind
   parameter of the result.
 - The return value is of type _integer_ and of kind **kind**. If **kind**
   is absent, the return value is of default integer kind.
 
-  If **dim** is absent, the result is an array of the upper bounds of
-  **array**.
-
 ### **Description**
 
-Returns the upper bounds of an array, or a single upper bound along the
-**dim** dimension.
+**ubound**(3) returns the upper bounds of an array, or a single upper
+bound along the **dim** dimension.
 
 ### **Options**
 
@@ -40,6 +37,8 @@ Returns the upper bounds of an array, or a single upper bound along the
 
 - **dim**
   : a specific rank to determine the bounds of
+  If **dim** is absent, the result is an array of the upper bounds of
+  **array**.
 
 - **kind**
   : indicates the kind parameter of the result. If absent, an _integer_

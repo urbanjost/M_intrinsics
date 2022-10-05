@@ -14,7 +14,7 @@
 
 ### **Description**
 
-Returns the image index belonging to a cosubscript.
+**image_index**(3) returns the image index belonging to a cosubscript.
 
 ### **Options**
 

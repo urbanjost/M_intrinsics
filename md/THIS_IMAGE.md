@@ -33,7 +33,7 @@ or
 
 ### **Description**
 
-Returns the cosubscript for this image.
+**this_image**(3) returns the cosubscript for this image.
 
 ### **Options**
 

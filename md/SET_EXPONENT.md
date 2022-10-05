@@ -22,7 +22,7 @@
 
 ### **Description**
 
-**set_exponent(x, i)** returns the real number whose fractional part is
+**set_exponent**(3) returns the real number whose fractional part is
 that of **x** and whose exponent part is **i**.
 
 ### **Options**

@@ -26,7 +26,7 @@
 
 ### **Description**
 
-Query dynamic types for equality.
+**same_type_as**(3) queries the dynamic types of objects for equality.
 
 ### **Options**
 

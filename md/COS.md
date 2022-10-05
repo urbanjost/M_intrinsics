@@ -20,7 +20,7 @@
 
 ### **Description**
 
-  **cos(x)** computes the cosine of an angle **x** given the size of
+  **cos**(3) computes the cosine of an angle **x** given the size of
   the angle in radians.
 
   The cosine of a _real_ value is the ratio of the adjacent side to the

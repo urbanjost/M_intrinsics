@@ -21,7 +21,7 @@
 
 ### **Description**
 
-**conjg(z)** returns the complex conjugate of the _complex_ value **z**.
+**conjg**(3) returns the complex conjugate of the _complex_ value **z**.
 
 In mathematics, the complex conjugate of a complex number is a value
 whose real and imaginary part are equal parts are equal in magnitude to

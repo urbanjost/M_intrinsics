@@ -224,7 +224,7 @@ textblock=[character(len=256) :: &
 '     Otherwise the returned type is the same as for A.', &
 '', &
 'DESCRIPTION', &
-'  ABS(A) computes the absolute value of numeric argument A.', &
+'  ABS(3) computes the absolute value of numeric argument A.', &
 '', &
 '  In mathematics, the absolute value or modulus of a real number X, denoted', &
 '  |X|, is the magnitude of X without regard to its sign.', &
@@ -364,7 +364,7 @@ textblock=[character(len=256) :: &
 '     a single default character is returned.', &
 '', &
 'DESCRIPTION', &
-'  ACHAR(I) returns the character located at position I (commonly called the', &
+'  ACHAR(3) returns the character located at position I (commonly called the', &
 '  ADE or ASCII Decimal Equivalent) in the ASCII collating sequence.', &
 '', &
 '  The ACHAR(3) function is often used for generating in-band escape sequences', &
@@ -532,7 +532,7 @@ textblock=[character(len=256) :: &
 '  o  The returned value will be of the same type and kind as the argument.', &
 '', &
 'DESCRIPTION', &
-'  ACOS(X) computes the arccosine of X (inverse of COS(X)).', &
+'  ACOS(3) computes the arccosine of X (inverse of COS(X)).', &
 '', &
 'OPTIONS', &
 '  o  X : The value to compute the arctangent of. : If the type is real, the', &
@@ -625,7 +625,7 @@ textblock=[character(len=256) :: &
 '  o  The returned value will be of the same type and kind as the argument.', &
 '', &
 'DESCRIPTION', &
-'  ACOSH(X) computes the inverse hyperbolic cosine of X in radians.', &
+'  ACOSH(3) computes the inverse hyperbolic cosine of X in radians.', &
 '', &
 'OPTIONS', &
 '  o  X : The value to compute the hyperbolic cosine of', &
@@ -690,8 +690,8 @@ textblock=[character(len=256) :: &
 '  o  The return value is a character variable of the same kind as STRING', &
 '', &
 'DESCRIPTION', &
-'  ADJUSTL(STRING) will left-adjust a string by removing leading spaces.', &
-'  Spaces are inserted at the end of the string as needed.', &
+'  ADJUSTL(3) will left-adjust a string by removing leading spaces. Spaces are', &
+'  inserted at the end of the string as needed.', &
 '', &
 'OPTIONS', &
 '  o  STRING : the string to left-adjust', &
@@ -779,7 +779,7 @@ textblock=[character(len=256) :: &
 '  o  The return value is a character variable of the same kind as STRING', &
 '', &
 'DESCRIPTION', &
-'  ADJUSTR(3F) right-adjusts a string by removing trailing spaces. Spaces are', &
+'  ADJUSTR(3) right-adjusts a string by removing trailing spaces. Spaces are', &
 '  inserted at the start of the string as needed to retain the original length.', &
 '', &
 'OPTIONS', &
@@ -866,7 +866,7 @@ textblock=[character(len=256) :: &
 '     argument.', &
 '', &
 'DESCRIPTION', &
-'  AIMAG(Z) yields the imaginary part of the complex argument Z.', &
+'  AIMAG(3) yields the imaginary part of the complex argument Z.', &
 '', &
 '  This is similar to the modern complex-part-designator %IM which also', &
 '  designates the imaginary part of a value, accept a designator can appear on', &
@@ -1062,10 +1062,11 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  Logical conjunction of elements of MASK along dimension DIM.', &
+'  ALL(3) determines if all the values are true in MASK in the array along', &
+'  dimension DIM.', &
 '', &
-'  "ALL(MASK, DIM)" determines if all the values are true in MASK in the array', &
-'  along dimension DIM.', &
+'  This is called a logical conjunction of elements of MASK along dimension', &
+'  DIM.', &
 '', &
 '  The mask is generally a logical expression, allowing for comparing arrays', &
 '  and many other common operations.', &
@@ -1173,7 +1174,7 @@ textblock=[character(len=256) :: &
 '  where ENTITY may be any allocatable scalar or array object of any type.', &
 '', &
 'DESCRIPTION', &
-'  ALLOCATED(ARG) checks the allocation status of both arrays and scalars.', &
+'  ALLOCATED(3) checks the allocation status of both arrays and scalars.', &
 '', &
 'OPTIONS', &
 '  o  ENTITY : the allocatable object to test.', &
@@ -1363,8 +1364,8 @@ textblock=[character(len=256) :: &
 '     logical scalar.', &
 '', &
 'DESCRIPTION', &
-'  ANY(MASK, DIM) determines if any of the values in the logical array MASK', &
-'  along dimension DIM are .true..', &
+'  ANY(3) determines if any of the values in the logical array MASK along', &
+'  dimension DIM are .true..', &
 '', &
 'OPTIONS', &
 '  o  MASK : an array of logical expressions or values to be tested in groups', &
@@ -1512,7 +1513,7 @@ textblock=[character(len=256) :: &
 '  o  The returned value will be of the same type and kind as the argument.', &
 '', &
 'DESCRIPTION', &
-'  ASIN(X) computes the arcsine of its argument X.', &
+'  ASIN(3) computes the arcsine of its argument X.', &
 '', &
 '  The arcsine is the inverse function of the sine function. It is commonly', &
 '  used in trigonometry when trying to find the angle when the lengths of the', &
@@ -1618,7 +1619,7 @@ textblock=[character(len=256) :: &
 '  o  The returned value will be of the same type and kind as the argument.', &
 '', &
 'DESCRIPTION', &
-'  ASINH(X) computes the inverse hyperbolic sine of X.', &
+'  ASINH(3) computes the inverse hyperbolic sine of X.', &
 '', &
 'OPTIONS', &
 '  o  X : The value to compute the inverse hyperbolic sine of', &
@@ -1695,8 +1696,8 @@ textblock=[character(len=256) :: &
 '  The association status of neither POINTER nor TARGET shall be undefined.', &
 '', &
 'DESCRIPTION', &
-'  ASSOCIATED(POINTER [, TARGET]) determines the status of the pointer POINTER', &
-'  or if POINTER is associated with the target TARGET.', &
+'  ASSOCIATED(3) determines the status of the pointer POINTER or if POINTER is', &
+'  associated with the target TARGET.', &
 '', &
 'OPTIONS', &
 '  o  POINTER : A pointer to test for association', &
@@ -1788,7 +1789,7 @@ textblock=[character(len=256) :: &
 '  The return value has the same type and kind as Y and X.', &
 '', &
 'DESCRIPTION', &
-'  ATAN(Y, X) computes in radians a processor-dependent approximation of the', &
+'  ATAN(3) computes in radians a processor-dependent approximation of the', &
 '  arctangent of the complex number ( X, Y ) or equivalently the principal', &
 '  value of the arctangent of the value Y/X (which determines a unique angle).', &
 '', &
@@ -1976,7 +1977,7 @@ textblock=[character(len=256) :: &
 '  The returned value is of the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
-'  ATAN(X) computes the arctangent of X.', &
+'  ATAN(3) computes the arctangent of X.', &
 '', &
 'OPTIONS', &
 '  o  X : The value to compute the arctangent of. if Y is present, X shall be', &
@@ -2062,7 +2063,7 @@ textblock=[character(len=256) :: &
 '  o  The returned value will be of the same type and kind as the argument.', &
 '', &
 'DESCRIPTION', &
-'  ATANH(X) computes the inverse hyperbolic tangent of X.', &
+'  ATANH(3) computes the inverse hyperbolic tangent of X.', &
 '', &
 'OPTIONS', &
 '  o  X : The type shall be real or complex.', &
@@ -2134,13 +2135,12 @@ textblock=[character(len=256) :: &
 '  o  STAT is a Scalar default-kind integer variable.', &
 '', &
 'DESCRIPTION', &
-'  ATOMIC_AD(ATOM, VALUE) atomically adds the value of VAR to the variable', &
-'  ATOM. When STAT is present and the invocation was successful, it is assigned', &
-'  the value 0. If it is present and the invocation has failed, it is assigned', &
-'  a positive value; in particular, for a coindexed ATOM, if the remote image', &
-'  has stopped, it is assigned the value of iso_fortran_env''s', &
-'  STAT_STOPPED_IMAGE and if the remote image has failed, the value', &
-'  STAT_FAILED_IMAGE.', &
+'  ATOMIC_ADD(3) atomically adds the value of VAR to the variable ATOM.  When', &
+'  STAT is present and the invocation was successful, it is assigned the value', &
+'  0. If it is present and the invocation has failed, it is assigned a positive', &
+'  value; in particular, for a coindexed ATOM, if the remote image has stopped,', &
+'  it is assigned the value of iso_fortran_env''s STAT_STOPPED_IMAGE and if the', &
+'  remote image has failed, the value STAT_FAILED_IMAGE.', &
 '', &
 'OPTIONS', &
 '  o  ATOM : Scalar coarray or coindexed variable of integer type with', &
@@ -2205,8 +2205,8 @@ textblock=[character(len=256) :: &
 '  o  STAT is a Scalar default-kind integer variable.', &
 '', &
 'DESCRIPTION', &
-'  ATOMIC_AND(ATOM, VALUE) atomically defines ATOM with the bitwise AND between', &
-'  the values of ATOM and VALUE. When STAT is present and the invocation was', &
+'  ATOMIC_AND(3) atomically defines ATOM with the bitwise AND between the', &
+'  values of ATOM and VALUE. When STAT is present and the invocation was', &
 '  successful, it is assigned the value 0. If it is present and the invocation', &
 '  has failed, it is assigned a positive value; in particular, for a coindexed', &
 '  ATOM, if the remote image has stopped, it is assigned the value of', &
@@ -2264,10 +2264,10 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  atomic_cas compares the variable ATOM with the value of COMPARE; if the', &
+'  ATOMIC_CAS(3) compares the variable ATOM with the value of COMPARE; if the', &
 '  value is the same, ATOM is set to the value of NEW. Additionally, OLD is set', &
 '  to the value of ATOM that was used for the comparison. When STAT is present', &
-'  and the invocation was successful, it is assigned the value 0.  If it is', &
+'  and the invocation was successful, it is assigned the value 0. If it is', &
 '  present and the invocation has failed, it is assigned a positive value; in', &
 '  particular, for a coindexed ATOM, if the remote image has stopped, it is', &
 '  assigned the value of iso_fortran_env''s stat_stopped_image and if the remote', &
@@ -2339,8 +2339,7 @@ textblock=[character(len=256) :: &
 '  o  STAT : (optional) Scalar default-kind integer variable.', &
 '', &
 'DESCRIPTION', &
-'  ATOMIC_DEFINE(ATOM, VALUE) defines the variable ATOM with the value VALUE', &
-'  atomically.', &
+'  ATOMIC_DEFINE(3) defines the variable ATOM with the value VALUE atomically.', &
 '', &
 'OPTIONS', &
 '  o  ATOM : Scalar coarray or coindexed variable to atomically assign the', &
@@ -2397,13 +2396,13 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  ATOMIC_FETCH_ADD(ATOM, VALUE, OLD) atomically stores the value of ATOM in', &
-'  OLD and adds the value of VAR to the variable ATOM. When STAT is present and', &
-'  the invocation was successful, it is assigned the value 0.  If it is present', &
-'  and the invocation has failed, it is assigned a positive value; in', &
-'  particular, for a coindexed ATOM, if the remote image has stopped, it is', &
-'  assigned the value of iso_fortran_env''s stat_stopped_image and if the remote', &
-'  image has failed, the value stat_failed_image.', &
+'  ATOMIC_FETCH_ADD(3) atomically stores the value of ATOM in OLD and adds the', &
+'  value of VAR to the variable ATOM. When STAT is present and the invocation', &
+'  was successful, it is assigned the value 0. If it is present and the', &
+'  invocation has failed, it is assigned a positive value; in particular, for a', &
+'  coindexed ATOM, if the remote image has stopped, it is assigned the value of', &
+'  iso_fortran_env''s stat_stopped_image and if the remote image has failed, the', &
+'  value stat_failed_image.', &
 '', &
 'OPTIONS', &
 '  o  ATOM : Scalar coarray or coindexed variable of integer type with', &
@@ -2462,14 +2461,13 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  ATOMIC_FETCH_AND(ATOM, VALUE, OLD) atomically stores the value of ATOM in', &
-'  OLD and defines ATOM with the bitwise AND between the values of ATOM and', &
-'  VALUE. When STAT is present and the invocation was successful, it is', &
-'  assigned the value 0. If it is present and the invocation has failed, it is', &
-'  assigned a positive value; in particular, for a coindexed ATOM, if the', &
-'  remote image has stopped, it is assigned the value of iso_fortran_env''s', &
-'  stat_stopped_image and if the remote image has failed, the value', &
-'  stat_failed_image.', &
+'  ATOMIC_FETCH_AND(3) atomically stores the value of ATOM in OLD and defines', &
+'  ATOM with the bitwise AND between the values of ATOM and VALUE.  When STAT', &
+'  is present and the invocation was successful, it is assigned the value 0. If', &
+'  it is present and the invocation has failed, it is assigned a positive', &
+'  value; in particular, for a coindexed ATOM, if the remote image has stopped,', &
+'  it is assigned the value of iso_fortran_env''s stat_stopped_image and if the', &
+'  remote image has failed, the value stat_failed_image.', &
 '', &
 'OPTIONS', &
 '  o  ATOM : Scalar coarray or coindexed variable of integer type with', &
@@ -2528,13 +2526,13 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  ATOMIC_FETCH_OR(ATOM, VALUE, OLD) atomically stores the value of ATOM in OLD', &
-'  and defines ATOM with the bitwise OR between the values of ATOM and VALUE.', &
-'  When STAT is present and the invocation was successful, it is assigned the', &
-'  value 0. If it is present and the invocation has failed, it is assigned a', &
-'  positive value; in particular, for a coindexed ATOM, if the remote image has', &
-'  stopped, it is assigned the value of iso_fortran_env''s stat_stopped_image', &
-'  and if the remote image has failed, the value stat_failed_image.', &
+'  ATOMIC_FETCH_OR(3) atomically stores the value of ATOM in OLD and defines', &
+'  ATOM with the bitwise OR between the values of ATOM and VALUE.  When STAT is', &
+'  present and the invocation was successful, it is assigned the value 0. If it', &
+'  is present and the invocation has failed, it is assigned a positive value;', &
+'  in particular, for a coindexed ATOM, if the remote image has stopped, it is', &
+'  assigned the value of iso_fortran_env''s stat_stopped_image and if the remote', &
+'  image has failed, the value stat_failed_image.', &
 '', &
 'OPTIONS', &
 '  o  ATOM : Scalar coarray or coindexed variable of integer type with', &
@@ -2593,14 +2591,13 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  ATOMIC_FETCH_XOR(ATOM, VALUE, OLD) atomically stores the value of ATOM in', &
-'  OLD and defines ATOM with the bitwise XOR between the values of ATOM and', &
-'  VALUE. When STAT is present and the invocation was successful, it is', &
-'  assigned the value 0. If it is present and the invocation has failed, it is', &
-'  assigned a positive value; in particular, for a coindexed ATOM, if the', &
-'  remote image has stopped, it is assigned the value of iso_fortran_env''s', &
-'  stat_stopped_image and if the remote image has failed, the value', &
-'  stat_failed_image.', &
+'  ATOMIC_FETCH_XOR(3) atomically stores the value of ATOM in OLD and defines', &
+'  ATOM with the bitwise XOR between the values of ATOM and VALUE.  When STAT', &
+'  is present and the invocation was successful, it is assigned the value 0. If', &
+'  it is present and the invocation has failed, it is assigned a positive', &
+'  value; in particular, for a coindexed ATOM, if the remote image has stopped,', &
+'  it is assigned the value of iso_fortran_env''s stat_stopped_image and if the', &
+'  remote image has failed, the value stat_failed_image.', &
 '', &
 'OPTIONS', &
 '  o  ATOM : Scalar coarray or coindexed variable of integer type with', &
@@ -2670,13 +2667,13 @@ textblock=[character(len=256) :: &
 '  o  STAT is a Scalar default-kind integer variable.', &
 '', &
 'DESCRIPTION', &
-'  ATOMIC_OR(ATOM, VALUE) atomically defines ATOM with the bitwise OR between', &
-'  the values of ATOM and VALUE. When STAT is present and the invocation was', &
-'  successful, it is assigned the value 0. If it is present and the invocation', &
-'  has failed, it is assigned a positive value; in particular, for a coindexed', &
-'  ATOM, if the remote image has stopped, it is assigned the value of', &
-'  iso_fortran_env''s stat_stopped_image and if the remote image has failed, the', &
-'  value stat_failed_image.', &
+'  ATOMIC_OR(3) atomically defines ATOM with the bitwise OR between the values', &
+'  of ATOM and VALUE. When STAT is present and the invocation was successful,', &
+'  it is assigned the value 0. If it is present and the invocation has failed,', &
+'  it is assigned a positive value; in particular, for a coindexed ATOM, if the', &
+'  remote image has stopped, it is assigned the value of iso_fortran_env''s', &
+'  stat_stopped_image and if the remote image has failed, the value', &
+'  stat_failed_image.', &
 '', &
 'OPTIONS', &
 '  o  ATOM : Scalar coarray or coindexed variable of integer type with', &
@@ -2744,13 +2741,12 @@ textblock=[character(len=256) :: &
 '  o  STAT is a Scalar default-kind integer variable.', &
 '', &
 'DESCRIPTION', &
-'  ATOMIC_REF(VALUE, ATOM) atomically assigns the value of the variable ATOM to', &
-'  VALUE. When STAT is present and the invocation was successful, it is', &
-'  assigned the value 0. If it is present and the invocation has failed, it is', &
-'  assigned a positive value; in particular, for a coindexed ATOM, if the', &
-'  remote image has stopped, it is assigned the value of iso_fortran_env''s', &
-'  STAT_STOPPED_IMAGE and if the remote image has failed, the value', &
-'  STAT_FAILED_IMAGE.', &
+'  ATOMIC_REF(3) atomically assigns the value of the variable ATOM to VALUE.', &
+'  When STAT is present and the invocation was successful, it is assigned the', &
+'  value 0. If it is present and the invocation has failed, it is assigned a', &
+'  positive value; in particular, for a coindexed ATOM, if the remote image has', &
+'  stopped, it is assigned the value of iso_fortran_env''s STAT_STOPPED_IMAGE', &
+'  and if the remote image has failed, the value STAT_FAILED_IMAGE.', &
 '', &
 'OPTIONS', &
 '  o  VALUE : Scalar of the same type as ATOM. If the kind is different, the', &
@@ -2825,8 +2821,8 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  ATOMIC_XOR(ATOM, VALUE) atomically defines ATOM with the bitwise XOR between', &
-'  the values of ATOM and VALUE. When STAT is present and the invocation was', &
+'  ATOMIC_XOR(3) atomically defines ATOM with the bitwise XOR between the', &
+'  values of ATOM and VALUE. When STAT is present and the invocation was', &
 '  successful, it is assigned the value 0. If it is present and the invocation', &
 '  has failed, it is assigned a positive value; in particular, for a coindexed', &
 '  ATOM, if the remote image has stopped, it is assigned the value of', &
@@ -2890,7 +2886,7 @@ textblock=[character(len=256) :: &
 '  o  The result is the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
-'  BESSEL_J0(X) computes the Bessel function of the first kind of order 0 of X.', &
+'  BESSEL_J0(3) computes the Bessel function of the first kind of order 0 of X.', &
 '', &
 'OPTIONS', &
 '  o  X : The value to operate on.', &
@@ -2950,7 +2946,7 @@ textblock=[character(len=256) :: &
 '  o  KIND may be any supported real KIND.', &
 '', &
 'DESCRIPTION', &
-'  BESSEL_J1(X) computes the Bessel function of the first kind of order 1 of X.', &
+'  BESSEL_J1(3) computes the Bessel function of the first kind of order 1 of X.', &
 '', &
 'OPTIONS', &
 '  o  X : The type shall be real.', &
@@ -3022,8 +3018,8 @@ textblock=[character(len=256) :: &
 '     The return value has the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
-'  BESSEL_JN(N, X) computes the Bessel function of the first kind of order N of', &
-'  X.', &
+'  BESSEL_JN( N, X ) computes the Bessel function of the first kind of order N', &
+'  of X.', &
 '', &
 '  BESSEL_JN(N1, N, X) returns an array with the Bessel function|Bessel', &
 '  functions of the first kind of the orders N1 to N.', &
@@ -3092,7 +3088,7 @@ textblock=[character(len=256) :: &
 '  o  KIND may be any supported real KIND.', &
 '', &
 'DESCRIPTION', &
-'  BESSEL_Y0(X) computes the Bessel function of the second kind of order 0 of', &
+'  BESSEL_Y0(3) computes the Bessel function of the second kind of order 0 of', &
 '  X.', &
 '', &
 'OPTIONS', &
@@ -3152,7 +3148,7 @@ textblock=[character(len=256) :: &
 '  o  KIND may be any supported real KIND.', &
 '', &
 'DESCRIPTION', &
-'  BESSEL_Y1(X) computes the Bessel function of the second kind of order 1 of', &
+'  BESSEL_Y1(3) computes the Bessel function of the second kind of order 1 of', &
 '  X.', &
 '', &
 'OPTIONS', &
@@ -3296,7 +3292,8 @@ textblock=[character(len=256) :: &
 '  o  The return value is of type logical and of the default kind.', &
 '', &
 'DESCRIPTION', &
-'  Determines whether one integer is bitwise greater than or equal to another.', &
+'  BGE(3) Determines whether one integer is bitwise greater than or equal to', &
+'  another.', &
 '', &
 '  The bit-level representation of a value is platform dependent. The endian-', &
 '  ness of a system and whether the system uses a "two''s complement"', &
@@ -3453,8 +3450,8 @@ textblock=[character(len=256) :: &
 '  o  The return value is of type logical and of the default kind.', &
 '', &
 'DESCRIPTION', &
-'  Determines whether an integer is bitwise greater than another. Bit-level', &
-'  representations of values are platform-dependent.', &
+'  BGT determines whether an integer is bitwise greater than another.  Bit-', &
+'  level representations of values are platform-dependent.', &
 '', &
 'OPTIONS', &
 '  o  I : Shall be of integer type or a BOZ literal constant.', &
@@ -3530,21 +3527,20 @@ textblock=[character(len=256) :: &
 '            integer(kind=KIND),intent(in) :: i(..)', &
 '', &
 'CHARACTERISTICS', &
-'  o  the value of KIND is any valid value for an integer kind', &
-'', &
-'  o  parameter on the processor.', &
+'  o  the value of KIND is any valid value for an integer kind parameter on the', &
+'     processor.', &
 '', &
 '  o  the return value is of the same kind as the input value.', &
 '', &
 'DESCRIPTION', &
-'  BIT_SIZE(I) returns the number of bits (integer precision plus sign bit)', &
+'  BIT_SIZE(3) returns the number of bits (integer precision plus sign bit)', &
 '  represented by the type of the integer I.', &
 '', &
 'OPTIONS', &
 '  o  I : An integer value of any kind whose size in bits is to be determined.', &
 '     Because only the type of the argument is examined, the argument need not', &
 '     be defined; I can be a scalar or an array, but a scalar representing just', &
-'     the first element is always returned.', &
+'     a single element is always returned.', &
 '', &
 'RESULT', &
 '  The number of bits used to represent a value of the type of I. The result is', &
@@ -3622,7 +3618,8 @@ textblock=[character(len=256) :: &
 '  o  a logical scalar of default kind is returned.', &
 '', &
 'DESCRIPTION', &
-'  Determines whether an integer is bitwise less than or equal to another.', &
+'  BLE(3) determines whether an integer is bitwise less than or equal to', &
+'  another.', &
 '', &
 'OPTIONS', &
 '  o  I : the value to use for testing J', &
@@ -3713,7 +3710,7 @@ textblock=[character(len=256) :: &
 '  current platform.', &
 '', &
 'DESCRIPTION', &
-'  Determines whether an integer is bitwise less than another.', &
+'  BLT(3) determines whether an integer is bitwise less than another.', &
 '', &
 'OPTIONS', &
 '  o  I : Shall be of integer type or a BOZ literal constant.', &
@@ -3791,7 +3788,7 @@ textblock=[character(len=256) :: &
 '  where KIND is any integer kind supported by the programming environment.', &
 '', &
 'DESCRIPTION', &
-'  BTEST(I,POS) returns logical .true. if the bit at POS in I is set.', &
+'  BTEST(3) returns logical .true. if the bit at POS in I is set.', &
 '', &
 'OPTIONS', &
 '  o  I : The type shall be integer.', &
@@ -3918,8 +3915,8 @@ textblock=[character(len=256) :: &
 '  o  The return value is of type logical', &
 '', &
 'DESCRIPTION', &
-'  C_ASSOCIATED(C_PRT_1[, C_PTR_]) determines the status of the C pointer', &
-'  c_ptr_1 or if c_ptr_1 is associated with the target c_ptr_.', &
+'  C_ASSOCIATED(3) determines the status of the C pointer c_ptr_1 or if c_ptr_1', &
+'  is associated with the target c_ptr_.', &
 '', &
 'OPTIONS', &
 '  o  C_PTR_1 : C pointer to test for being a C NULL pointer, or to test if', &
@@ -3986,7 +3983,7 @@ textblock=[character(len=256) :: &
 '  specified by the optional KIND argument.', &
 '', &
 'DESCRIPTION', &
-'  CEILING(A) returns the least integer greater than or equal to A.', &
+'  CEILING(3) returns the least integer greater than or equal to A.', &
 '', &
 'OPTIONS', &
 '  o  A : A real value to produce a result for.', &
@@ -4213,7 +4210,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  C_FUNLOC(X) determines the C address of the argument.', &
+'  C_FUNLOC(3) determines the C address of the argument.', &
 '', &
 'OPTIONS', &
 '  o  X : Interoperable function or pointer to such function.', &
@@ -4288,7 +4285,7 @@ textblock=[character(len=256) :: &
 '  o  a kind designated as ** may be any supported kind value for the type', &
 '', &
 'DESCRIPTION', &
-'  CHAR(I, KIND) returns the character represented by the integer I.', &
+'  CHAR(3) returns the character represented by the integer I.', &
 '', &
 'OPTIONS', &
 '  o  I : The type shall be integer.', &
@@ -4354,7 +4351,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  C_LOC(X) determines the C address of the argument.', &
+'  C_LOC(3) determines the C address of the argument.', &
 '', &
 'OPTIONS', &
 '  o  X : Shall have either the pointer or target attribute. It shall not be a', &
@@ -4735,8 +4732,8 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  Returns the lower bounds of a coarray, or a single lower cobound along the', &
-'  DIM codimension.', &
+'  CO_LBOUND(3) returns the lower bounds of a coarray, or a single lower', &
+'  cobound along the DIM codimension.', &
 '', &
 'OPTIONS', &
 '  o  ARRAY : Shall be an coarray, of any type.', &
@@ -4782,13 +4779,14 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  co_max determines element-wise the maximal value of A on all images of the', &
-'  current team. If result_image is present, the maximum values are returned in', &
-'  A on the specified image only and the value of A on the other images become', &
-'  undefined. If result_image is not present, the value is returned on all', &
-'  images. If the execution was successful and STAT is present, it is assigned', &
-'  the value zero. If the execution failed, STAT gets assigned a nonzero value', &
-'  and, if present, ERRMSG gets assigned a value describing the occurred error.', &
+'  CO_MAX(3) determines element-wise the maximal value of A on all images of', &
+'  the current team. If result_image is present, the maximum values are', &
+'  returned in A on the specified image only and the value of A on the other', &
+'  images become undefined. If result_image is not present, the value is', &
+'  returned on all images. If the execution was successful and STAT is present,', &
+'  it is assigned the value zero. If the execution failed, STAT gets assigned a', &
+'  nonzero value and, if present, ERRMSG gets assigned a value describing the', &
+'  occurred error.', &
 '', &
 'OPTIONS', &
 '  o  A : shall be an integer, real or character variable, which has the same', &
@@ -4848,13 +4846,14 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  co_min determines element-wise the minimal value of A on all images of the', &
-'  current team. If result_image is present, the minimal values are returned in', &
-'  A on the specified image only and the value of A on the other images become', &
-'  undefined. If result_image is not present, the value is returned on all', &
-'  images. If the execution was successful and STAT is present, it is assigned', &
-'  the value zero. If the execution failed, STAT gets assigned a nonzero value', &
-'  and, if present, ERRMSG gets assigned a value describing the occurred error.', &
+'  CO_MIN(3) determines element-wise the minimal value of A on all images of', &
+'  the current team. If result_image is present, the minimal values are', &
+'  returned in A on the specified image only and the value of A on the other', &
+'  images become undefined. If result_image is not present, the value is', &
+'  returned on all images. If the execution was successful and STAT is present,', &
+'  it is assigned the value zero. If the execution failed, STAT gets assigned a', &
+'  nonzero value and, if present, ERRMSG gets assigned a value describing the', &
+'  occurred error.', &
 '', &
 'OPTIONS', &
 '  o  A : shall be an integer, real or character variable, which has the same', &
@@ -4913,7 +4912,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  COMMAND_ARGUMENT_COUNT() returns the number of arguments passed on the', &
+'  COMMAND_ARGUMENT_COUNT(3) returns the number of arguments passed on the', &
 '  command line when the containing program was invoked.', &
 '', &
 'OPTIONS', &
@@ -4975,7 +4974,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  compiler_options returns a string with the options used for compiling.', &
+'  COMPILER_OPTIONS(3) returns a string with the options used for compiling.', &
 '', &
 'OPTIONS', &
 '  None.', &
@@ -5109,7 +5108,7 @@ textblock=[character(len=256) :: &
 '  o  The returned value with be the same complex type as the input.', &
 '', &
 'DESCRIPTION', &
-'  CONJG(Z) returns the complex conjugate of the complex value Z.', &
+'  CONJG(3) returns the complex conjugate of the complex value Z.', &
 '', &
 '  In mathematics, the complex conjugate of a complex number is a value whose', &
 '  real and imaginary part are equal parts are equal in magnitude to each other', &
@@ -5235,7 +5234,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  co_reduce determines element-wise the reduction of the value of A on all', &
+'  CO_REDUCE(3) determines element-wise the reduction of the value of A on all', &
 '  images of the current team. The pure function passed as OPERATION is used to', &
 '  pairwise reduce the values of A by passing either the value of A of', &
 '  different images or the result values of such a reduction as argument. If A', &
@@ -5338,7 +5337,7 @@ textblock=[character(len=256) :: &
 '  o  the returned value will be of the same type and kind as the argument.', &
 '', &
 'DESCRIPTION', &
-'  COS(X) computes the cosine of an angle X given the size of the angle in', &
+'  COS(3) computes the cosine of an angle X given the size of the angle in', &
 '  radians.', &
 '', &
 '  The cosine of a real value is the ratio of the adjacent side to the', &
@@ -5418,7 +5417,7 @@ textblock=[character(len=256) :: &
 '  o  The returned value will be of the same type and kind as the argument.', &
 '', &
 'DESCRIPTION', &
-'  COSH(X) computes the hyperbolic cosine of X.', &
+'  COSH(3) computes the hyperbolic cosine of X.', &
 '', &
 'OPTIONS', &
 '  o  X : the value to compute the hyerbolic cosine of', &
@@ -5471,8 +5470,8 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  co_sum sums up the values of each element of A on all images of the current', &
-'  team.', &
+'  CO_SUM(3) sums up the values of each element of A on all images of the', &
+'  current team.', &
 '', &
 '  If result_image is present, the summed-up values are returned in A on the', &
 '  specified image only and the value of A on the other images become', &
@@ -5542,8 +5541,8 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  Returns the upper cobounds of a coarray, or a single upper cobound along the', &
-'  DIM codimension.', &
+'  CO_UBOUND(3) returns the upper cobounds of a coarray, or a single upper', &
+'  cobound along the DIM codimension.', &
 '', &
 'OPTIONS', &
 '  o  ARRAY : Shall be an coarray, of any type.', &
@@ -5605,9 +5604,9 @@ textblock=[character(len=256) :: &
 '     declare the kind of the result.', &
 '', &
 'DESCRIPTION', &
-'  Counts the number of .true. elements in a logical MASK, or, if the DIM', &
-'  argument is supplied, counts the number of elements along each row of the', &
-'  array in the DIM direction. If the array has zero size or all of the', &
+'  COUNT(3) counts the number of .true. elements in a logical MASK, or, if the', &
+'  DIM argument is supplied, counts the number of elements along each row of', &
+'  the array in the DIM direction. If the array has zero size or all of the', &
 '  elements of MASK are false, then the result is 0.', &
 '', &
 'OPTIONS', &
@@ -5820,8 +5819,9 @@ textblock=[character(len=256) :: &
 '  o  TIME is of type real and any kind, with INTENT(OUT).', &
 '', &
 'DESCRIPTION', &
-'  Returns a real value representing the elapsed CPU time in seconds. This is', &
-'  useful for testing segments of code to determine execution time.', &
+'  CPU_TIME(3) returns a real value representing the elapsed CPU time in', &
+'  seconds. This is useful for testing segments of code to determine execution', &
+'  time.', &
 '', &
 '  The exact definition of time is left imprecise because of the variability in', &
 '  what different processors are able to provide.', &
@@ -5926,10 +5926,9 @@ textblock=[character(len=256) :: &
 '  The kind of SHIFT and DIM may differ and be any supported value.', &
 '', &
 'DESCRIPTION', &
-'  CSHIFT(ARRAY, SHIFT [, DIM]) performs a circular shift on elements of ARRAY', &
-'  along the dimension of DIM. If DIM is omitted it is taken to be 1.  DIM is a', &
-'  scalar of type integer in the range of 1 <= DIM <= N, where "n" is the rank', &
-'  of ARRAY.', &
+'  CSHIFT(3) performs a circular shift on elements of ARRAY along the dimension', &
+'  of DIM. If DIM is omitted it is taken to be 1. DIM is a scalar of type', &
+'  integer in the range of 1 <= DIM <= N, where "n" is the rank of ARRAY.', &
 '', &
 '  If the rank of ARRAY is one, then all elements of ARRAY are shifted by SHIFT', &
 '  places. If rank is greater than one, then all complete rank one sections of', &
@@ -6006,7 +6005,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  C_SIZEOF(X) calculates the number of bytes of storage the expression X', &
+'  C_SIZEOF(3) calculates the number of bytes of storage the expression X', &
 '  occupies.', &
 '', &
 'OPTIONS', &
@@ -6072,8 +6071,8 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  DATE_AND_TIME(DATE, TIME, ZONE, VALUES) gets the corresponding date and time', &
-'  information from the real-time system clock.', &
+'  DATE_AND_TIME(3) gets the corresponding date and time information from the', &
+'  real-time system clock.', &
 '', &
 '  Unavailable time and date character parameters return blanks.', &
 '', &
@@ -6192,7 +6191,7 @@ textblock=[character(len=256) :: &
 '  the TYPE.', &
 '', &
 'DESCRIPTION', &
-'  DBLE(A) Converts A to double precision real type.', &
+'  DBLE(3) Converts A to double precision real type.', &
 '', &
 'OPTIONS', &
 '  o  A : The type shall be integer, real, or complex.', &
@@ -6253,7 +6252,7 @@ textblock=[character(len=256) :: &
 '  The return value is of type integer of default kind.', &
 '', &
 'DESCRIPTION', &
-'  DIGITS(X) returns the number of significant digits of the internal model', &
+'  DIGITS(3) returns the number of significant digits of the internal model', &
 '  representation of X. For example, on a system using a 3-bit floating point', &
 '  representation, a default real number would likely return 4.', &
 '', &
@@ -6320,9 +6319,9 @@ textblock=[character(len=256) :: &
 '  type.', &
 '', &
 'DESCRIPTION', &
-'  DIM(X,Y) returns the difference X - Y if the result is positive; otherwise', &
-'  it returns zero. It is equivalent to MAX(0,X-Y) where the arguments are all', &
-'  of the same type.', &
+'  DIM(3) returns the difference X - Y if the result is positive; otherwise it', &
+'  returns zero. It is equivalent to MAX(0,X-Y) where the arguments are all of', &
+'  the same type.', &
 '', &
 'OPTIONS', &
 '  o  X : The type shall be integer or real', &
@@ -6402,8 +6401,8 @@ textblock=[character(len=256) :: &
 '  one and of equal size.', &
 '', &
 'DESCRIPTION', &
-'  DOT_PRODUCT(VECTOR_A, VECTOR_B) computes the dot product multiplication of', &
-'  two vectors VECTOR_A and VECTOR_B.', &
+'  DOT_PRODUCT(3) computes the dot product multiplication of two vectors', &
+'  VECTOR_A and VECTOR_B.', &
 '', &
 '  If the vectors are integer or real, the result is', &
 '', &
@@ -6494,8 +6493,7 @@ textblock=[character(len=256) :: &
 '  affect this function.', &
 '', &
 'DESCRIPTION', &
-'  DPROD(X,Y) produces a doubleprecision product of default real values X and', &
-'  Y.', &
+'  DPROD(3) produces a doubleprecision product of default real values X and Y.', &
 '', &
 '  That is, it is expected to convert the arguments to double precision before', &
 '  multiplying, which a simple expression X*Y would not be required to do. This', &
@@ -6997,7 +6995,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  EPSILON(X) returns the floating point relative accuracy. It is the nearly', &
+'  EPSILON(3) returns the floating point relative accuracy. It is the nearly', &
 '  negligible number relative to 1 such that 1+ LITTLE_NUMBER is not equal to', &
 '  1; or more precisely', &
 '', &
@@ -7119,7 +7117,7 @@ textblock=[character(len=256) :: &
 '  o  The result is of the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
-'  ERF(x) computes the error function of X, defined as', &
+'  ERF(3) computes the error function of X, defined as', &
 '', &
 '  $$ \text{erf}(x) = \frac{}{\sqrt{\pi}} \int_0^x e^{-T^} dt. $$', &
 '', &
@@ -7181,7 +7179,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  ERFC(x) computes the complementary error function of X. Simply put this is', &
+'  ERFC(3) computes the complementary error function of X. Simply put this is', &
 '  equivalent to 1 - ERF(X), but ERFC is provided because of the extreme loss', &
 '  of relative accuracy if ERF(X) is called for large X and the result is', &
 '  subtracted from 1.', &
@@ -7252,7 +7250,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  ERFC_SCALED(x) computes the exponentially-scaled complementary error', &
+'  ERFC_SCALED(3) computes the exponentially-scaled complementary error', &
 '  function of X:', &
 '', &
 '  $$ e^{x^} \frac{}{\sqrt{\pi}} \int_{x}^{\infty} e^{-t^} dt. $$', &
@@ -7306,8 +7304,8 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  EVENT_QUERY assigns the number of events to COUNT which have been posted to', &
-'  the EVENT variable and not yet been removed by calling EVENT_WAIT.  When', &
+'  EVENT_QUERY(3) assigns the number of events to COUNT which have been posted', &
+'  to the EVENT variable and not yet been removed by calling EVENT_WAIT. When', &
 '  STAT is present and the invocation was successful, it is assigned the value', &
 '  0. If it is present and the invocation has failed, it is assigned a positive', &
 '  value and COUNT is assigned the value -1.', &
@@ -7375,10 +7373,11 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  The COMMAND argument is passed to the shell and executed. (The shell is', &
-'  generally SH(1) on Unix systems, and cmd.exe on Windows.) If WAIT is present', &
-'  and has the value .false., the execution of the command is asynchronous if', &
-'  the system supports it; otherwise, the command is executed synchronously.', &
+'  For EXECUTE_COMMAND_LINE(3) the COMMAND argument is passed to the shell and', &
+'  executed. (The shell is generally SH(1) on Unix systems, and cmd.exe on', &
+'  Windows.) If WAIT is present and has the value .false., the execution of the', &
+'  command is asynchronous if the system supports it; otherwise, the command is', &
+'  executed synchronously.', &
 '', &
 '  The three last arguments allow the user to get status information. After', &
 '  synchronous execution, EXITSTAT contains the integer exit code of the', &
@@ -7583,7 +7582,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  EXPONENT(x) returns the value of the exponent part of X. If X is zero the', &
+'  EXPONENT(3) returns the value of the exponent part of X. If X is zero the', &
 '  value returned is zero.', &
 '', &
 'OPTIONS', &
@@ -7840,8 +7839,8 @@ textblock=[character(len=256) :: &
 '  o  BACK a logical scalar.', &
 '', &
 'DESCRIPTION', &
-'  Location of the first element of ARRAY identified by MASK along dimension', &
-'  DIM having a value equal to VALUE.', &
+'  FINDLOC(3) returns the location of the first element of ARRAY identified by', &
+'  MASK along dimension DIM having a value equal to VALUE.', &
 '', &
 '  If both ARRAY and VALUE are of type logical, the comparison is performed', &
 '  with the .EQV. operator; otherwise, the comparison is performed with the ==', &
@@ -8003,7 +8002,7 @@ textblock=[character(len=256) :: &
 '  where KIND is any valid value for type integer.', &
 '', &
 'DESCRIPTION', &
-'  FLOOR(A) returns the greatest integer less than or equal to A. That is, it', &
+'  FLOOR(3) returns the greatest integer less than or equal to A. That is, it', &
 '  picks the whole number at or to the left of the value on the scale', &
 '  -HUGE(INT(A,KIND=KIND))-1 to HUGE(INT(A),KIND=KIND).', &
 '', &
@@ -8096,7 +8095,7 @@ textblock=[character(len=256) :: &
 '  The result has the same characteristics as the argument.', &
 '', &
 'DESCRIPTION', &
-'  FRACTION(X) returns the fractional part of the model representation of X.', &
+'  FRACTION(3) returns the fractional part of the model representation of X.', &
 '', &
 'OPTIONS', &
 '  o  X : The value to interrogate', &
@@ -8160,7 +8159,7 @@ textblock=[character(len=256) :: &
 '            type(real,kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  o  The return value is real with the kind as X.', &
+'  o  GAMMA(3) returns a real value with the kind as X.', &
 '', &
 'DESCRIPTION', &
 '  GAMMA(X) computes Gamma of X. For positive whole number values of N the', &
@@ -8316,7 +8315,8 @@ textblock=[character(len=256) :: &
 '     least four.', &
 '', &
 'DESCRIPTION', &
-'  Retrieve the entire command line that was used to invoke the program.', &
+'  GET_COMMAND(3) retrieves the entire command line that was used to invoke the', &
+'  program.', &
 '', &
 '  Note that what is typed on the command line is often processed by a shell.', &
 '  The shell typically processes special characters and white space before', &
@@ -8418,8 +8418,8 @@ textblock=[character(len=256) :: &
 '  o  VALUE and ERRMSG are scalar character variables of default kind.', &
 '', &
 'DESCRIPTION', &
-'  Retrieve or query the n-th argument that was passed on the command line to', &
-'  the current program execution.', &
+'  GET_COMMAND_ARGUMENT(3) retrieves or queries the n-th argument that was', &
+'  passed on the command line to the current program execution.', &
 '', &
 '  There is not anything specifically stated about what an argument is but in', &
 '  practice the arguments are strings split on whitespace unless the arguments', &
@@ -8556,7 +8556,7 @@ textblock=[character(len=256) :: &
 '  o  TRIM_NAME is a scalar of type logical and of default kind.', &
 '', &
 'DESCRIPTION', &
-'  Get the VALUE of the environment variable NAME.', &
+'  GET_ENVIRONMENT_VARIABLE(3) gets the VALUE of the environment variable NAME.', &
 '', &
 '  Note that GET_ENVIRONMENT_VARIABLE(3) need not be thread-safe. It is the', &
 '  responsibility of the user to ensure that the environment is not being', &
@@ -8687,7 +8687,7 @@ textblock=[character(len=256) :: &
 '  this into consideration.', &
 '', &
 'DESCRIPTION', &
-'  HUGE(X) returns the largest number that is not an infinity for the kind and', &
+'  HUGE(3) returns the largest number that is not an infinity for the kind and', &
 '  type of X.', &
 '', &
 'OPTIONS', &
@@ -8785,7 +8785,7 @@ textblock=[character(len=256) :: &
 '  o  X,Y and the result shall all be of the same KIND.', &
 '', &
 'DESCRIPTION', &
-'  HYPOT(X,Y) is referred to as the Euclidean distance function. It is equal to', &
+'  HYPOT(3) is referred to as the Euclidean distance function. It is equal to', &
 '', &
 '      sqrt(x**2+y**2)', &
 '', &
@@ -8896,7 +8896,7 @@ textblock=[character(len=256) :: &
 '  o  a kind designated as ** may be any supported kind value for the type', &
 '', &
 'DESCRIPTION', &
-'  IACHAR(c) returns the code for the ASCII character in the first character', &
+'  IACHAR(3) returns the code for the ASCII character in the first character', &
 '  position of C.', &
 '', &
 'OPTIONS', &
@@ -9024,8 +9024,8 @@ textblock=[character(len=256) :: &
 '  o  The result will by of the same type and kind as ARRAY.', &
 '', &
 'DESCRIPTION', &
-'  Reduces with a bitwise and the elements of ARRAY along dimension DIM if the', &
-'  corresponding element in MASK is .true..', &
+'  IALL(3) reduces with a bitwise and the elements of ARRAY along dimension DIM', &
+'  if the corresponding element in MASK is .true..', &
 '', &
 'OPTIONS', &
 '  o  ARRAY : Shall be an array of type integer', &
@@ -9100,7 +9100,7 @@ textblock=[character(len=256) :: &
 '     exception that one of I or J may be a BOZ constant.', &
 '', &
 'DESCRIPTION', &
-'  Bitwise logical AND.', &
+'  IAND(3) returns the bitwise logical AND of two values.', &
 '', &
 'OPTIONS', &
 '  o  I : one of the pair of values to compare the bits of', &
@@ -9203,8 +9203,8 @@ textblock=[character(len=256) :: &
 '  o  The result will by of the same type and kind as ARRAY.', &
 '', &
 'DESCRIPTION', &
-'  Reduces with bitwise OR (inclusive OR) the elements of ARRAY along dimension', &
-'  DIM if the corresponding element in MASK is .true..', &
+'  IANY(3) reduces with bitwise a OR (inclusive OR) the elements of ARRAY along', &
+'  dimension DIM if the corresponding element in MASK is .true..', &
 '', &
 'OPTIONS', &
 '  o  ARRAY : an array of elements to selectively OR based on the mask.', &
@@ -9299,7 +9299,7 @@ textblock=[character(len=256) :: &
 '     are allowed.', &
 '', &
 'DESCRIPTION', &
-'  IBCLR returns the value of I with the bit at position POS set to zero.', &
+'  IBCLR(3) returns the value of I with the bit at position POS set to zero.', &
 '', &
 'OPTIONS', &
 '  o  I : The type shall be integer.', &
@@ -9352,8 +9352,8 @@ textblock=[character(len=256) :: &
 '     are allowed.', &
 '', &
 'DESCRIPTION', &
-'  IBITS extracts a field of length LEN from I, starting from bit position POS', &
-'  and extending left for LEN bits. The result is right-justified and the', &
+'  IBITS(3) extracts a field of length LEN from I, starting from bit position', &
+'  POS and extending left for LEN bits. The result is right-justified and the', &
 '  remaining bits are zeroed. The value of pos+len must be less than or equal', &
 '  to the value BIT_SIZE(I).', &
 '', &
@@ -9408,7 +9408,7 @@ textblock=[character(len=256) :: &
 '     are allowed.', &
 '', &
 'DESCRIPTION', &
-'  IBSET returns the value of I with the bit at position POS set to one.', &
+'  IBSET(3) returns the value of I with the bit at position POS set to one.', &
 '', &
 'OPTIONS', &
 '  o  I : The type shall be integer.', &
@@ -9463,7 +9463,7 @@ textblock=[character(len=256) :: &
 '     the return value is of default integer kind.', &
 '', &
 'DESCRIPTION', &
-'  ICHAR(C) returns the code for the character in the system''s native character', &
+'  ICHAR(3) returns the code for the character in the system''s native character', &
 '  set. The correspondence between characters and their codes is not', &
 '  necessarily the same across different Fortran implementations. For example,', &
 '  a platform using EBCDIC would return different values than an ASCII', &
@@ -9545,7 +9545,7 @@ textblock=[character(len=256) :: &
 '  o  The return value is of the same kind as the larger kind of I and J.', &
 '', &
 'DESCRIPTION', &
-'  IEOR returns the bitwise Boolean exclusive-OR of I and J.', &
+'  IEOR(3) returns the bitwise Boolean exclusive-OR of I and J.', &
 '', &
 'OPTIONS', &
 '  o  I : The type shall be integer.', &
@@ -9586,7 +9586,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  Returns the image index belonging to a cosubscript.', &
+'  IMAGE_INDEX(3) returns the image index belonging to a cosubscript.', &
 '', &
 'OPTIONS', &
 '  o  COARRAY : Coarray of any type.', &
@@ -9644,9 +9644,9 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  Returns the position of the start of the leftmost or rightmost occurrence of', &
-'  string SUBSTRING in STRING, counting from one. If SUBSTRING is not present', &
-'  in STRING, zero is returned.', &
+'  INDEX(3) returns the position of the start of the leftmost or rightmost', &
+'  occurrence of string SUBSTRING in STRING, counting from one. If SUBSTRING is', &
+'  not present in STRING, zero is returned.', &
 '', &
 'OPTIONS', &
 '  o  STRING : string to be searched', &
@@ -9721,7 +9721,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  Convert to integer type by truncating towards zero.', &
+'  INT(3) converts a value to integer type by truncating towards zero.', &
 '', &
 'OPTIONS', &
 '  o  A : Shall be of type integer, real, or complex or a BOZ-literal-constant.', &
@@ -9851,7 +9851,7 @@ textblock=[character(len=256) :: &
 '     exception that one of I or J may be a BOZ constant.', &
 '', &
 'DESCRIPTION', &
-'  IOR returns the bit-wise Boolean inclusive-or of I and J.', &
+'  IOR(3) returns the bit-wise Boolean inclusive-or of I and J.', &
 '', &
 'OPTIONS', &
 '  o  I : one of the pair of values to compare the bits of', &
@@ -9940,8 +9940,8 @@ textblock=[character(len=256) :: &
 '            logical(kind=KIND),intent(in),optional :: mask(..)', &
 '', &
 'DESCRIPTION', &
-'  Reduces with bitwise xor (exclusive or) the elements of ARRAY along', &
-'  dimension DIM if the corresponding element in MASK is .true..', &
+'  IPARITY(3) reduces with bitwise xor (exclusive or) the elements of ARRAY', &
+'  along dimension DIM if the corresponding element in MASK is .true..', &
 '', &
 'OPTIONS', &
 '  o  ARRAY : Shall be an array of type integer', &
@@ -10014,7 +10014,7 @@ textblock=[character(len=256) :: &
 '  o  the result is a default logical scalar', &
 '', &
 'DESCRIPTION', &
-'  True if and only if an object is contiguous.', &
+'  IS_CONTIGIOUS(3) returns .true. if and only if an object is contiguous.', &
 '', &
 '  An object is contiguous if it is', &
 '', &
@@ -10313,7 +10313,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  is_iostat_end(3) tests whether a variable (assumed returned as a status from', &
+'  IS_IOSTAT_END(3) tests whether a variable (assumed returned as a status from', &
 '  an I/O statement) has the "end of file" I/O status value.', &
 '', &
 '  The function is equivalent to comparing the variable with the IOSTAT_END', &
@@ -10382,9 +10382,9 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  IS_IOSTAT_EOR tests whether a variable has the value of the I/O status "end', &
-'  of record". The function is equivalent to comparing the variable with the', &
-'  IOSTAT_EOR parameter of the intrinsic module ISO_FORTRAN_ENV.', &
+'  IS_IOSTAT_EOR(3) tests whether a variable has the value of the I/O status', &
+'  "end of record". The function is equivalent to comparing the variable with', &
+'  the IOSTAT_EOR parameter of the intrinsic module ISO_FORTRAN_ENV.', &
 '', &
 'OPTIONS', &
 '  o  I : The value to test as indicating "end of record".', &
@@ -10455,7 +10455,7 @@ textblock=[character(len=256) :: &
 '  X may be of any kind supported by the type, and may be scalar or an array.', &
 '', &
 'DESCRIPTION', &
-'  KIND(X) returns the kind value of the entity X.', &
+'  KIND(X)(3) returns the kind value of the entity X.', &
 '', &
 'OPTIONS', &
 '  o  X : Value to query the kind of.', &
@@ -10517,26 +10517,25 @@ textblock=[character(len=256) :: &
 '            integer,intent(in),optional :: kind', &
 '', &
 'CHARACTERISTICS', &
-'  o  ARRAY Shall be an array, of any type.', &
+'  o  ARRAY shall be an array, of any type.', &
 '', &
-'  o  DIM : (Optional) Shall be a scalar integer.', &
+'  o  DIM shall be a scalar integer.', &
 '', &
-'  o  KIND An integer initialization expression indicating the kind parameter', &
+'  o  KIND an integer initialization expression indicating the kind parameter', &
 '     of the result.', &
 '', &
 '  o  The return value is of type integer and of kind KIND. If KIND is absent,', &
 '     the return value is of default integer kind.', &
 '', &
-'     If DIM is absent, the result is an array of the upper bounds of ARRAY.', &
-'', &
 'DESCRIPTION', &
-'  Returns the lower bounds of an array, or a single lower bound along the DIM', &
-'  dimension.', &
+'  RESULT(3) returns the lower bounds of an array, or a single lower bound', &
+'  along the DIM dimension.', &
 '', &
 'OPTIONS', &
 '  o  ARRAY : Shall be an array, of any type.', &
 '', &
-'  o  DIM : Shall be a scalar integer.', &
+'  o  DIM : Shall be a scalar integer. If DIM is absent, the result is an array', &
+'     of the upper bounds of ARRAY.', &
 '', &
 '  o  KIND : An integer initialization expression indicating the kind parameter', &
 '     of the result.', &
@@ -10674,7 +10673,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  LEADZ returns the number of leading zero bits of an integer.', &
+'  LEADZ(3) returns the number of leading zero bits of an integer.', &
 '', &
 'OPTIONS', &
 '  o  I : integer to count the leading zero bits of.', &
@@ -10756,7 +10755,7 @@ textblock=[character(len=256) :: &
 '  of the default integer kind if KIND is not specified.', &
 '', &
 'DESCRIPTION', &
-'  LEN(3) Returns the length of a character string.', &
+'  LEN(3) returns the length of a character string.', &
 '', &
 '  If STRING is an array, the length of an element of STRING is returned, as', &
 '  all elements of an array are the same length.', &
@@ -10899,7 +10898,8 @@ textblock=[character(len=256) :: &
 '  return value is of default integer kind.', &
 '', &
 'DESCRIPTION', &
-'  Returns the length of a character string, ignoring any trailing blanks.', &
+'  LEN_TRIM(3) returns the length of a character string, ignoring any trailing', &
+'  blanks.', &
 '', &
 'OPTIONS', &
 '  o  STRING : The input string whose length is to be measured.', &
@@ -11004,11 +11004,11 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  Determines whether one string is lexically greater than or equal to another', &
-'  string, where the two strings are interpreted as containing ASCII character', &
-'  codes. If the String A and String B are not the same length, the shorter is', &
-'  compared as if spaces were appended to it to form a value that has the same', &
-'  length as the longer.', &
+'  LGE(3) determines whether one string is lexically greater than or equal to', &
+'  another string, where the two strings are interpreted as containing ASCII', &
+'  character codes. If the String A and String B are not the same length, the', &
+'  shorter is compared as if spaces were appended to it to form a value that', &
+'  has the same length as the longer.', &
 '', &
 '  The lexical comparison intrinsics LGE(3), LGT(3), LLE(3), and LLT(3) differ', &
 '  from the corresponding intrinsic operators .ge., .gt., .le., and \.lt., in', &
@@ -11100,9 +11100,9 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  Determines whether one string is lexically greater than another string,', &
-'  where the two strings are interpreted as containing ASCII character codes.', &
-'  If the String A and String B are not the same length, the shorter is', &
+'  LGT(3) determines whether one string is lexically greater than another', &
+'  string, where the two strings are interpreted as containing ASCII character', &
+'  codes. If the String A and String B are not the same length, the shorter is', &
 '  compared as if spaces were appended to it to form a value that has the same', &
 '  length as the longer.', &
 '', &
@@ -11196,11 +11196,11 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  Determines whether one string is lexically less than or equal to another', &
-'  string, where the two strings are interpreted as containing ASCII character', &
-'  codes. if the STRING_A and STRING_B are not the same length, the shorter is', &
-'  compared as if spaces were appended to it to form a value that has the same', &
-'  length as the longer. Leading spaces are significant.', &
+'  LLE(3) determines whether one string is lexically less than or equal to', &
+'  another string, where the two strings are interpreted as containing ASCII', &
+'  character codes. if the STRING_A and STRING_B are not the same length, the', &
+'  shorter is compared as if spaces were appended to it to form a value that', &
+'  has the same length as the longer. Leading spaces are significant.', &
 '', &
 '  In general, the lexical comparison intrinsics LGE, LGT, LLE, and LLT differ', &
 '  from the corresponding intrinsic operators .ge., .gt., .le., and \.lt., in', &
@@ -11294,11 +11294,11 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  Determines whether one string is lexically less than another string, where', &
-'  the two strings are interpreted as containing ASCII character codes. If the', &
-'  STRING_A and STRING_B are not the same length, the shorter is compared as if', &
-'  spaces were appended to it to form a value that has the same length as the', &
-'  longer.', &
+'  LLT(3) determines whether one string is lexically less than another string,', &
+'  where the two strings are interpreted as containing ASCII character codes.', &
+'  If the STRING_A and STRING_B are not the same length, the shorter is', &
+'  compared as if spaces were appended to it to form a value that has the same', &
+'  length as the longer.', &
 '', &
 '  In general, the lexical comparison intrinsics LGE, LGT, LLE, and LLT differ', &
 '  from the corresponding intrinsic operators .ge., .gt., .le., and \.lt., in', &
@@ -11391,7 +11391,7 @@ textblock=[character(len=256) :: &
 '  o  the result is the same type and characteristics as X.', &
 '', &
 'DESCRIPTION', &
-'  LOG10(X) computes the base 10 logarithm of X. This is generally called the', &
+'  LOG10(3) computes the base 10 logarithm of X. This is generally called the', &
 '  "common logarithm".', &
 '', &
 'OPTIONS', &
@@ -11461,7 +11461,7 @@ textblock=[character(len=256) :: &
 '  o  the result is the same type and characteristics as X.', &
 '', &
 'DESCRIPTION', &
-'  LOG(X) computes the natural logarithm of X, i.e. the logarithm to the base', &
+'  LOG(3) computes the natural logarithm of X, i.e. the logarithm to the base', &
 '  "e".', &
 '', &
 'OPTIONS', &
@@ -11527,7 +11527,7 @@ textblock=[character(len=256) :: &
 '  o  the return value is of same type and kind as X.', &
 '', &
 'DESCRIPTION', &
-'  LOG_GAMMA(X) computes the natural logarithm of the absolute value of the', &
+'  LOG_GAMMA(3) computes the natural logarithm of the absolute value of the', &
 '  Gamma function.', &
 '', &
 'OPTIONS', &
@@ -11589,7 +11589,7 @@ textblock=[character(len=256) :: &
 '  o  a kind designated as ** may be any supported kind value for the type', &
 '', &
 'DESCRIPTION', &
-'  Converts one kind of logical variable to another.', &
+'  LOGICAL(3) converts one kind of logical variable to another.', &
 '', &
 'OPTIONS', &
 '  o  L : The type shall be logical.', &
@@ -11752,8 +11752,8 @@ textblock=[character(len=256) :: &
 '     used to specify the kind of the result.', &
 '', &
 'DESCRIPTION', &
-'  The result is an integer with its rightmost I bits set to 1, and the', &
-'  remaining bits set to 0.', &
+'  MASKR(3) the result is an integer with its rightmost I bits set to 1, and', &
+'  the remaining bits set to 0.', &
 '', &
 'OPTIONS', &
 '  o  I : the number of right-most bits to set in the integer result. It must', &
@@ -12076,7 +12076,7 @@ textblock=[character(len=256) :: &
 '  o  A1, A, A3, ... must be of the same type and kind as A1.', &
 '', &
 'DESCRIPTION', &
-'  Returns the argument with the largest (most positive) value.', &
+'  MAX(3) returns the argument with the largest (most positive) value.', &
 '', &
 'OPTIONS', &
 '  o  A1 : The first argument determines the type and kind of the returned', &
@@ -12184,7 +12184,7 @@ textblock=[character(len=256) :: &
 '  where KIND is any real kind.', &
 '', &
 'DESCRIPTION', &
-'  MAXEXPONENT(X) returns the maximum exponent in the model of the type of X.', &
+'  MAXEXPONENT(3) returns the maximum exponent in the model of the type of X.', &
 '', &
 'OPTIONS', &
 '  o  X : Shall be of type real.', &
@@ -12262,9 +12262,9 @@ textblock=[character(len=256) :: &
 '  o  NUMERIC designates any intrinsic numeric type and kind.', &
 '', &
 'DESCRIPTION', &
-'  Determines the location of the element in the array with the maximum value,', &
-'  or, if the DIM argument is supplied, determines the locations of the maximum', &
-'  element along each row of the array in the DIM direction.', &
+'  MAXLOC(3) determines the location of the element in the array with the', &
+'  maximum value, or, if the DIM argument is supplied, determines the locations', &
+'  of the maximum element along each row of the array in the DIM direction.', &
 '', &
 '  If MASK is present, only the elements for which MASK is .true. are', &
 '  considered. If more than one element in the array has the maximum value, the', &
@@ -12383,13 +12383,13 @@ textblock=[character(len=256) :: &
 '  o  NUMERIC designates any numeric type and kind.', &
 '', &
 'DESCRIPTION', &
-'  Determines the maximum value of the elements in an array value, or, if the', &
-'  DIM argument is supplied, determines the maximum value along each row of the', &
-'  array in the DIM direction. If MASK is present, only the elements for which', &
-'  MASK is .true. are considered. If the array has zero size, or all of the', &
-'  elements of MASK are .false., then the result is the most negative number of', &
-'  the type and kind of ARRAY if ARRAY is numeric, or a string of nulls if', &
-'  ARRAY is of character type.', &
+'  MAXVAL(3) determines the maximum value of the elements in an array value,', &
+'  or, if the DIM argument is supplied, determines the maximum value along each', &
+'  row of the array in the DIM direction. If MASK is present, only the elements', &
+'  for which MASK is .true. are considered. If the array has zero size, or all', &
+'  of the elements of MASK are .false., then the result is the most negative', &
+'  number of the type and kind of ARRAY if ARRAY is numeric, or a string of', &
+'  nulls if ARRAY is of character type.', &
 '', &
 'OPTIONS', &
 '  o  ARRAY : Shall be an array of type integer, real, or character.', &
@@ -12642,8 +12642,8 @@ textblock=[character(len=256) :: &
 'DESCRIPTION', &
 '  A common graphics operation in Ternary Raster Operations is to combine bits', &
 '  from two different sources, generally referred to as bit-blending.', &
-'  MERGE_BITS performs a masked bit-blend of I and J using the bits of the MASK', &
-'  value to determine which of the input values to copy bits from.', &
+'  MERGE_BITS(3) performs a masked bit-blend of I and J using the bits of the', &
+'  MASK value to determine which of the input values to copy bits from.', &
 '', &
 '  Specifically, The k-th bit of the result is equal to the k-th bit of I if', &
 '  the k-th bit of MASK is 1; it is equal to the k-th bit of J otherwise (so', &
@@ -12766,7 +12766,7 @@ textblock=[character(len=256) :: &
 '  Where TYPE may be integer or real', &
 '', &
 'DESCRIPTION', &
-'  Returns the argument with the smallest (most negative) value.', &
+'  MIN(3) returns the argument with the smallest (most negative) value.', &
 '', &
 'OPTIONS', &
 '  o  A1 : The type shall be integer or real.', &
@@ -12824,7 +12824,7 @@ textblock=[character(len=256) :: &
 '  where KIND is any real kind.', &
 '', &
 'DESCRIPTION', &
-'  MINEXPONENT(X) returns the minimum exponent in the model of the type of X.', &
+'  MINEXPONENT(3) returns the minimum exponent in the model of the type of X.', &
 '', &
 'OPTIONS', &
 '  o  X : Shall be of type real.', &
@@ -12902,15 +12902,16 @@ textblock=[character(len=256) :: &
 '  o  NUMERIC is any numeric type and kind.', &
 '', &
 'DESCRIPTION', &
-'  Determines the location of the element in the array with the minimum value,', &
-'  or, if the DIM argument is supplied, determines the locations of the minimum', &
-'  element along each row of the array in the DIM direction. If MASK is', &
-'  present, only the elements for which MASK is .true. are considered. If more', &
-'  than one element in the array has the minimum value, the location returned', &
-'  is that of the first such element in array element order. If the array has', &
-'  zero size, or all of the elements of MASK are \.false., then the result is', &
-'  an array of zeroes. Similarly, if DIM is supplied and all of the elements of', &
-'  MASK along a given row are zero, the result value for that row is zero.', &
+'  MINLOC(3) determines the location of the element in the array with the', &
+'  minimum value, or, if the DIM argument is supplied, determines the locations', &
+'  of the minimum element along each row of the array in the DIM direction. If', &
+'  MASK is present, only the elements for which MASK is \.true. are considered.', &
+'  If more than one element in the array has the minimum value, the location', &
+'  returned is that of the first such element in array element order. If the', &
+'  array has zero size, or all of the elements of MASK are .false., then the', &
+'  result is an array of zeroes.  Similarly, if DIM is supplied and all of the', &
+'  elements of MASK along a given row are zero, the result value for that row', &
+'  is zero.', &
 '', &
 'OPTIONS', &
 '  o  ARRAY : Shall be an array of type integer, real, or character.', &
@@ -13006,9 +13007,9 @@ textblock=[character(len=256) :: &
 '  o  NUMERIC is any numeric type and kind.', &
 '', &
 'DESCRIPTION', &
-'  Determines the minimum value of the elements in an array value, or, if the', &
-'  DIM argument is supplied, determines the minimum value along each row of the', &
-'  array in the DIM direction.', &
+'  MINVAL(3) determines the minimum value of the elements in an array value,', &
+'  or, if the DIM argument is supplied, determines the minimum value along each', &
+'  row of the array in the DIM direction.', &
 '', &
 '  If MASK is present, only the elements for which MASK is .true. are', &
 '  considered.', &
@@ -13160,7 +13161,7 @@ textblock=[character(len=256) :: &
 '  any kind of real or integer.', &
 '', &
 'DESCRIPTION', &
-'  MOD(a,p) computes the remainder of the division of A by P.', &
+'  MOD(3) computes the remainder of the division of A by P.', &
 '', &
 'OPTIONS', &
 '  o  A : Shall be a scalar of type integer or real.', &
@@ -13240,7 +13241,7 @@ textblock=[character(len=256) :: &
 '  any kind of real or integer.', &
 '', &
 'DESCRIPTION', &
-'  MODULO(A,P) computes the A modulo P.', &
+'  MODULO(3) computes the A modulo P.', &
 '', &
 'OPTIONS', &
 '  o  A : Shall be a scalar of type integer or real.', &
@@ -13304,21 +13305,49 @@ textblock=[character(len=256) :: &
 '  MOVE_ALLOC(3) - [] Move allocation from one object to another', &
 '', &
 'SYNOPSIS', &
-'  call move_alloc(src, dest)', &
+'  call move_alloc(from, to [,stat] [,errmsg] )', &
+'', &
+'           subroutine move_alloc(from, to)', &
+'', &
+'            type(TYPE(kind=**)),intent(inout),allocatable :: from(..)', &
+'            type(TYPE(kind=**)),intent(out),allocatable   :: to(..)', &
+'            integer(kind=**),intent(out)     :: stat', &
+'            character(len=*),intent(inout)   :: errmsg', &
 '', &
 'CHARACTERISTICS', &
+'  o  FROM may be of any type and kind.', &
+'', &
+'  o  TO shall be of the same type, kind and rank as FROM.', &
+'', &
 'DESCRIPTION', &
-'  MOVE_ALLOC(SRC, DEST) moves the allocation from SRC to DEST. SRC will become', &
+'  MOVE_ALLOC(3) moves the allocation from FROM to TO. FROM will become', &
 '  deallocated in the process.', &
 '', &
-'OPTIONS', &
-'  o  SRC : allocatable, INTENT(INOUT), may be of any type and kind.', &
+'  This is potentially more efficient than other methods of assigning the', &
+'  values in FROM to TO and explicitly deallocating FROM, which are for more', &
+'  likely to require a temporary object or a copy of the elements of the array.', &
 '', &
-'  o  DEST : allocatable, INTENT(OUT), shall be of the same type, kind and rank', &
-'     as SRC.', &
+'OPTIONS', &
+'  o  FROM : The data object to be moved to TO and deallocated.', &
+'', &
+'  o  TO : The destination data object to move the allocated data object FROM', &
+'     to. Typically, it is a different shape than FROM.', &
+'', &
+'  o  STAT : If STAT is present and execution is successful, it is assigned the', &
+'     value zero. : If an error condition occurs, o if STAT is absent, error', &
+'     termination is initiated; o otherwise, if FROM is a coarray and the', &
+'     current team contains a stopped image, STAT is assigned the value', &
+'     STAT_STOPPED_IMAGE from the intrinsic module ISO_FORTRAN_ENV; o', &
+'     otherwise, if FROM is a coarray and the current team contains a failed', &
+'     image, and no other error condition occurs, STAT is assigned the value', &
+'     STAT_FAILED_IMAGE from the intrinsic module ISO_FORTRAN_ENV; o otherwise,', &
+'     STAT is assigned a processor-dependent positive value that diers from', &
+'     that of STAT_STOPPED_IMAGE or STAT_FAILED_IMAGE.', &
+'', &
+'  o  ERRMSG', &
 '', &
 'EXAMPLES', &
-'  Basic Sample program to allocate a bigger grid', &
+'  Basic sample program to allocate a bigger grid', &
 '', &
 '      program demo_move_alloc', &
 '      implicit none', &
@@ -13392,7 +13421,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  MVBITS(3F) copies a bit pattern found in a range of adjacent bits in the', &
+'  MVBITS(3) copies a bit pattern found in a range of adjacent bits in the', &
 '  integer FROM to a specified position in another integer TO (which is of the', &
 '  same kind as FROM). It otherwise leaves the bits in TO as-is.', &
 '', &
@@ -13538,7 +13567,7 @@ textblock=[character(len=256) :: &
 '  o  The return value is of the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
-'  NEAREST(X, S) returns the processor-representable number nearest to X in the', &
+'  NEAREST(3) returns the processor-representable number nearest to X in the', &
 '  direction indicated by the sign of S.', &
 '', &
 'OPTIONS', &
@@ -13621,7 +13650,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  NEW_LINE(C) returns the new-line character.', &
+'  NEW_LINE(3) returns the new-line character.', &
 '', &
 '  Case (i) : If A is default character and the character in position 10 of the', &
 '  ASCII collating sequence is representable in the default character set, then', &
@@ -13705,7 +13734,7 @@ textblock=[character(len=256) :: &
 '  o  The result is default integer kind or the value of KIND if it is present.', &
 '', &
 'DESCRIPTION', &
-'  NINT(X) rounds its argument to the nearest whole number with its sign', &
+'  NINT(3) rounds its argument to the nearest whole number with its sign', &
 '  preserved.', &
 '', &
 '  The user must ensure the value is a valid value for the range of the KIND', &
@@ -13831,7 +13860,8 @@ textblock=[character(len=256) :: &
 '  o  The result is of the same type as ARRAY.', &
 '', &
 'DESCRIPTION', &
-'  Calculates the Euclidean vector norm (L_ norm) of ARRAY along dimension DIM.', &
+'  NORM(3) calculates the Euclidean vector norm (L_ norm) of ARRAY along', &
+'  dimension DIM.', &
 '', &
 'OPTIONS', &
 '  o  ARRAY : the array of input values for the L_ norm computations', &
@@ -13916,7 +13946,7 @@ textblock=[character(len=256) :: &
 '  The return type is of the same kind as the argument.', &
 '', &
 'DESCRIPTION', &
-'  NOT returns the bitwise Boolean inverse of I.', &
+'  NOT(3) returns the bitwise Boolean inverse of I.', &
 '', &
 'OPTIONS', &
 '  o  I : The type shall be integer.', &
@@ -13982,7 +14012,7 @@ textblock=[character(len=256) :: &
 '     entity.', &
 '', &
 'DESCRIPTION', &
-'  Returns a disassociated pointer.', &
+'  NULL(3) returns a disassociated pointer.', &
 '', &
 '  If MOLD is present, a disassociated pointer of the same type is returned,', &
 '  otherwise the type is determined by context.', &
@@ -14119,7 +14149,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  Returns the number of images.', &
+'  NUM_IMAGES(3) Returns the number of images.', &
 '', &
 'OPTIONS', &
 '  o  TEAM : shall be a scalar of type TEAM_TYPE from the intrinsic module', &
@@ -14312,7 +14342,7 @@ textblock=[character(len=256) :: &
 '  o  MASK may be a scalar as well an an array.', &
 '', &
 'DESCRIPTION', &
-'  Stores the elements of ARRAY in an array of rank one.', &
+'  PACK(3) stores the elements of ARRAY in an array of rank one.', &
 '', &
 '  The beginning of the resulting array is made up of elements whose MASK', &
 '  equals .true.. Afterwards, positions are filled with elements taken from', &
@@ -14404,8 +14434,8 @@ textblock=[character(len=256) :: &
 '  o  a kind designated as ** may be any supported kind value for the type', &
 '', &
 'DESCRIPTION', &
-'  Calculates the parity (i.e. the reduction using .xor.) of MASK along', &
-'  dimension DIM.', &
+'  PARITY(3) calculates the parity (i.e. the reduction using .xor.) of MASK', &
+'  along dimension DIM.', &
 '', &
 'OPTIONS', &
 '  o  MASK : Shall be an array of type logical.', &
@@ -14474,7 +14504,8 @@ textblock=[character(len=256) :: &
 '  o  The return value is an integer of the default integer kind.', &
 '', &
 'DESCRIPTION', &
-'  Returns the number of bits set in the binary representation of an integer.', &
+'  POPCNT(3) returns the number of bits set in the binary representation of an', &
+'  integer.', &
 '', &
 'OPTIONS', &
 '  o  I : value to count set bits in', &
@@ -14558,8 +14589,8 @@ textblock=[character(len=256) :: &
 '  o  the return value is a default kind integer', &
 '', &
 'DESCRIPTION', &
-'  Returns the parity of an integer''s binary representation (i.e., the parity', &
-'  of the number of bits set).', &
+'  POPPAR(3) returns the parity of an integer''s binary representation (i.e.,', &
+'  the parity of the number of bits set).', &
 '', &
 'OPTIONS', &
 '  o  I : The value to query the bits of', &
@@ -14644,7 +14675,7 @@ textblock=[character(len=256) :: &
 '  The return value is of type integer and of the default integer kind.', &
 '', &
 'DESCRIPTION', &
-'  PRECISION(X) returns the decimal precision in the model of the type of X.', &
+'  PRECISION(3) returns the decimal precision in the model of the type of X.', &
 '', &
 'OPTIONS', &
 '  o  X : Shall be of type real or complex.', &
@@ -14711,7 +14742,7 @@ textblock=[character(len=256) :: &
 '     dummy procedure.', &
 '', &
 'DESCRIPTION', &
-'  PRESENT(3f) can be used in a procedure to determine if an optional dummy', &
+'  PRESENT(3) can be used in a procedure to determine if an optional dummy', &
 '  argument was present on the current call to the procedure.', &
 '', &
 '  When an argument is not present when the current procedure is invoked, you', &
@@ -14826,8 +14857,8 @@ textblock=[character(len=256) :: &
 '  o  NUMERIC is any numeric type and kind.', &
 '', &
 'DESCRIPTION', &
-'  Multiplies together all the selected elements of ARRAY, or along dimension', &
-'  DIM if the corresponding element in MASK is .true..', &
+'  PRODUCT(3) multiplies together all the selected elements of ARRAY, or along', &
+'  dimension DIM if the corresponding element in MASK is .true..', &
 '', &
 '  If DIM is absent, a scalar with the product of all elements in ARRAY is', &
 '  returned. (Note a zero-sized ARRAY returns 1).', &
@@ -15058,7 +15089,7 @@ textblock=[character(len=256) :: &
 '  where TYPE may be real or integer of any kind KIND.', &
 '', &
 'DESCRIPTION', &
-'  RADIX(X) returns the base of the model representing the entity X.', &
+'  RADIX(3) returns the base of the model representing the entity X.', &
 '', &
 'OPTIONS', &
 '  o  X : Shall be of type integer or real', &
@@ -15124,8 +15155,9 @@ textblock=[character(len=256) :: &
 '  uniformly distributed random numbers', &
 '', &
 'DESCRIPTION', &
-'  Returns a single pseudorandom number or an array of pseudorandom numbers', &
-'  from the uniform distribution over the range 0 <= x < 1.', &
+'  RANDOM_NUMBER(3) returns a single pseudorandom number or an array of', &
+'  pseudorandom numbers from the uniform distribution over the range 0 <= x <', &
+'  1.', &
 '', &
 'OPTIONS', &
 '  o  HARVEST : Shall be a scalar or an array of type real.', &
@@ -15215,8 +15247,8 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  Restarts or queries the state of the pseudorandom number generator used by', &
-'  random_number.', &
+'  RANDOM_SEED(3) restarts or queries the state of the pseudorandom number', &
+'  generator used by random_number.', &
 '', &
 '  If random_seed is called without arguments, it is seeded with random data', &
 '  retrieved from the operating system.', &
@@ -15289,7 +15321,7 @@ textblock=[character(len=256) :: &
 '  where TYPE is real or complex and KIND is any kind supported by TYPE.', &
 '', &
 'DESCRIPTION', &
-'  RANGE(X) returns the decimal exponent range in the model of the type of X.', &
+'  RANGE(3) returns the decimal exponent range in the model of the type of X.', &
 '', &
 'OPTIONS', &
 '  o  X : Shall be of type real or complex.', &
@@ -15540,7 +15572,7 @@ textblock=[character(len=256) :: &
 '        o  when X is real or integer the result is a real of default kind', &
 '', &
 'DESCRIPTION', &
-'  REAL(X, KIND) converts its argument X to a real type.', &
+'  REAL(3) converts its argument X to a real type.', &
 '', &
 '  For complex values this is similar to the modern complex-part-designator %RE', &
 '  which also designates the real part of complex a value.', &
@@ -15647,8 +15679,8 @@ textblock=[character(len=256) :: &
 '  where TYPE may be of any type. TYPE must be the same for ARRAY and IDENTITY.', &
 '', &
 'DESCRIPTION', &
-'  Reduce a list of conditionally selected values from an array to a single', &
-'  value by iteratively applying a binary function.', &
+'  REDUCE(3) reduces a list of conditionally selected values from an array to a', &
+'  single value by iteratively applying a binary function.', &
 '', &
 '  Common in functional programming, a REDUCE function applies a binary', &
 '  operator (a pure function with two arguments) to all elements cumulatively.', &
@@ -15825,7 +15857,7 @@ textblock=[character(len=256) :: &
 '', &
 '   STRING', &
 'DESCRIPTION', &
-'  Concatenates NCOPIES copies of a string.', &
+'  REPEAT(3) concatenates NCOPIES copies of a string.', &
 '', &
 'OPTIONS', &
 '  o  STRING : The input string to repeat', &
@@ -15912,8 +15944,8 @@ textblock=[character(len=256) :: &
 '  o  The result is an array of shape SHAPE with the same type as SOURCE.', &
 '', &
 'DESCRIPTION', &
-'  Constructs an array of shape SHAPE using the elements from SOURCE and', &
-'  possibly PAD to fill it.', &
+'  RESHAPE constructs an array of shape SHAPE using the elements from SOURCE', &
+'  and possibly PAD to fill it.', &
 '', &
 '  If necessary, the new array may be padded with elements from PAD or permuted', &
 '  as defined by ORDER.', &
@@ -16117,7 +16149,7 @@ textblock=[character(len=256) :: &
 '  The return value is of the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
-'  RRSPACING(X) returns the reciprocal of the relative spacing of model numbers', &
+'  RRSPACING(3) returns the reciprocal of the relative spacing of model numbers', &
 '  near X.', &
 '', &
 'OPTIONS', &
@@ -16171,7 +16203,7 @@ textblock=[character(len=256) :: &
 '     undefined association status.', &
 '', &
 'DESCRIPTION', &
-'  Query dynamic types for equality.', &
+'  SAME_TYPE_AS(3) queries the dynamic types of objects for equality.', &
 '', &
 'OPTIONS', &
 '  o  A : object to compare to B for equality of type', &
@@ -16292,7 +16324,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  SCALE(X,I) returns x * RADIX(X)**I.', &
+'  SCALE(3) returns x * RADIX(X)**I.', &
 '', &
 'OPTIONS', &
 '  o  X : The type of the argument shall be a real.', &
@@ -16361,7 +16393,7 @@ textblock=[character(len=256) :: &
 '  default integer kind is returned.', &
 '', &
 'DESCRIPTION', &
-'  Scans a STRING for any of the characters in a SET of characters.', &
+'  SCAN(3) scans a STRING for any of the characters in a SET of characters.', &
 '', &
 '  If BACK is either absent or equals .false., this function returns the', &
 '  position of the leftmost character of STRING that is in SET. If BACK equals', &
@@ -16434,7 +16466,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  SELECTED_CHAR_KIND(NAME) returns the kind value for the character set named', &
+'  SELECTED_CHAR_KIND(3) returns the kind value for the character set named', &
 '  NAME, if a character set with such a name is supported, or -1 otherwise.', &
 '', &
 'OPTIONS', &
@@ -16525,7 +16557,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  SELECTED_INT_KIND(R) return the kind value of the smallest integer type that', &
+'  SELECTED_INT_KIND(3) return the kind value of the smallest integer type that', &
 '  can represent all values ranging from -10**R (exclusive) to 10**R', &
 '  (exclusive). If there is no integer kind that accommodates this range,', &
 '  selected_int_kind returns -1.', &
@@ -16591,9 +16623,9 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  SELECTED_REAL_KIND(P, R, RADIX) return the kind value of a real data type', &
-'  with decimal precision of at least P digits, exponent range of at least R,', &
-'  and with a radix of RADIX.', &
+'  SELECTED_REAL_KIND(3) return the kind value of a real data type with decimal', &
+'  precision of at least P digits, exponent range of at least R, and with a', &
+'  radix of RADIX.', &
 '', &
 'OPTIONS', &
 '  o  P : shall be a scalar and of type integer.', &
@@ -16692,8 +16724,8 @@ textblock=[character(len=256) :: &
 '  o  The return value is of the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
-'  SET_EXPONENT(X, I) returns the real number whose fractional part is that of', &
-'  X and whose exponent part is I.', &
+'  SET_EXPONENT(3) returns the real number whose fractional part is that of X', &
+'  and whose exponent part is I.', &
 '', &
 'OPTIONS', &
 '  o  X : Shall be of type real.', &
@@ -16760,7 +16792,7 @@ textblock=[character(len=256) :: &
 '     be associated and allocatable arrays must be allocated.', &
 '', &
 'DESCRIPTION', &
-'  Determines the shape of an array.', &
+'  SHAPE(3) determines the shape of an array.', &
 '', &
 'OPTIONS', &
 '  o  SOURCE : Shall be an array or scalar of any type. If SOURCE is a pointer', &
@@ -16863,9 +16895,9 @@ textblock=[character(len=256) :: &
 '  kind for I dictates the kind of the returned value.', &
 '', &
 'DESCRIPTION', &
-'  Returns a value corresponding to I with all of the bits shifted right by', &
-'  SHIFT places and the vacated bits on the left filled with the value of the', &
-'  original left-most bit..', &
+'  SHIFTA(3) returns a value corresponding to I with all of the bits shifted', &
+'  right by SHIFT places and the vacated bits on the left filled with the value', &
+'  of the original left-most bit..', &
 '', &
 'OPTIONS', &
 '  o  I : The initial value to shift and fill', &
@@ -16986,8 +17018,8 @@ textblock=[character(len=256) :: &
 '  kind for I dictates the kind of the returned value.', &
 '', &
 'DESCRIPTION', &
-'  Returns a value corresponding to I with all of the bits shifted left by', &
-'  SHIFT places.', &
+'  SHIFTL(3) returns a value corresponding to I with all of the bits shifted', &
+'  left by SHIFT places.', &
 '', &
 '  Bits shifted out from the left end are lost, and bits shifted in from the', &
 '  right end are set to 0.', &
@@ -17120,10 +17152,10 @@ textblock=[character(len=256) :: &
 '  kind for I dictates the kind of the returned value.', &
 '', &
 'DESCRIPTION', &
-'  Returns a value corresponding to I with all of the bits shifted right by', &
-'  SHIFT places. If the absolute value of SHIFT is greater than BIT_SIZE(I),', &
-'  the value is undefined. Bits shifted out from the right end are lost, and', &
-'  bits shifted in from the left end are set to 0.', &
+'  SHIFTR(3) returns a value corresponding to I with all of the bits shifted', &
+'  right by SHIFT places. If the absolute value of SHIFT is greater than', &
+'  BIT_SIZE(I), the value is undefined. Bits shifted out from the right end are', &
+'  lost, and bits shifted in from the left end are set to 0.', &
 '', &
 '  Note the value of the result is the same as ISHFT (I, -SHIFT).', &
 '', &
@@ -17238,10 +17270,10 @@ textblock=[character(len=256) :: &
 '  type.', &
 '', &
 'DESCRIPTION', &
-'  SIGN(a,b) return a value with the magnitude of A but with the sign of B.', &
+'  SIGN(3) returns a value with the magnitude of a but with the sign of b.', &
 '', &
-'  For processors that distinguish between positive and negative zeros SIGN()', &
-'  may be used to distinguish between REAL values 0.0 and -0.0. SIGN (1.0,', &
+'  For processors that distinguish between positive and negative zeros sign()', &
+'  may be used to distinguish between real values 0.0 and -0.0. SIGN (1.0,', &
 '  -0.0) will return -1.0 when a negative zero is distinguishable.', &
 '', &
 'OPTIONS', &
@@ -17252,15 +17284,15 @@ textblock=[character(len=256) :: &
 '     kind as A', &
 '', &
 'RESULT', &
-'  The kind of the return value is the magnitude of A with the sign of B.  That', &
+'  The kind of the return value is the magnitude of a with the sign of b.  That', &
 '  is,', &
 '', &
-'  o  If B >= 0 then the result is ABS(A)', &
+'  o  If b >= 0 then the result is abs(a)', &
 '', &
-'  o  else if B < 0 it is -ABS(A).', &
+'  o  else if b < 0 it is -abs(a).', &
 '', &
-'  o  if B is real and the processor distinguishes between -0.0 and 0.0 then', &
-'     the result is -ABS(A)', &
+'  o  if b is real and the processor distinguishes between -0.0 and 0.0 then', &
+'     the result is -abs(a)', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -17326,7 +17358,7 @@ textblock=[character(len=256) :: &
 '  The returned value will be of the same type and kind as the argument.', &
 '', &
 'DESCRIPTION', &
-'  SIN(X) computes the sine of an angle given the size of the angle in radians.', &
+'  SIN(3) computes the sine of an angle given the size of the angle in radians.', &
 '', &
 '  The sine of an angle in a right-angled triangle is the ratio of the length', &
 '  of the side opposite the given angle divided by the length of the', &
@@ -17449,7 +17481,7 @@ textblock=[character(len=256) :: &
 '  o  The returned value will be of the same type and kind as the argument.', &
 '', &
 'DESCRIPTION', &
-'  SINH(X) computes the hyperbolic sine of X.', &
+'  SINH(3) computes the hyperbolic sine of X.', &
 '', &
 '  The hyperbolic sine of x is defined mathematically as:', &
 '', &
@@ -17551,8 +17583,8 @@ textblock=[character(len=256) :: &
 '      must be allocated.', &
 '', &
 'DESCRIPTION', &
-'  Determine the extent of ARRAY along a specified dimension DIM, or the total', &
-'  number of elements in ARRAY if DIM is absent.', &
+'  SIZE(3) determines the extent of ARRAY along a specified dimension DIM, or', &
+'  the total number of elements in ARRAY if DIM is absent.', &
 '', &
 'OPTIONS', &
 '  o  ARRAY : the array to measure the number of elements of.', &
@@ -17782,8 +17814,8 @@ textblock=[character(len=256) :: &
 '  The result is of the same type as the input argument X.', &
 '', &
 'DESCRIPTION', &
-'  Determines the distance between the argument X and the nearest adjacent', &
-'  number of the same type.', &
+'  SPACING(3) determines the distance between the argument X and the nearest', &
+'  adjacent number of the same type.', &
 '', &
 'OPTIONS', &
 '  o  X : Shall be of type real.', &
@@ -17799,14 +17831,20 @@ textblock=[character(len=256) :: &
 '      integer, parameter :: sgl = selected_real_kind(p=6, r=37)', &
 '      integer, parameter :: dbl = selected_real_kind(p=13, r=200)', &
 '', &
-'         write(*,*) spacing(1.0_sgl)      ! "1.1920929e-07"          on i686', &
-'         write(*,*) spacing(1.0_dbl)      ! "2.220446049250313e-016" on i686', &
+'         write(*,*) spacing(1.0_sgl)', &
+'         write(*,*) nearest(1.0_sgl,+1.0),nearest(1.0_sgl,+1.0)-1.0', &
+'', &
+'         write(*,*) spacing(1.0_dbl)', &
 '      end program demo_spacing', &
 '', &
 '  Results:', &
 '', &
-'            1.19209290E-07', &
-'            2.2204460492503131E-016', &
+'  Typical values ...', &
+'', &
+'           1.1920929E-07', &
+'            1.000000      1.1920929E-07', &
+'           0.9999999     -5.9604645E-08', &
+'           2.220446049250313E-016', &
 '', &
 'STANDARD', &
 '  Fortran 95', &
@@ -17851,8 +17889,8 @@ textblock=[character(len=256) :: &
 '  o  NCOPIES is an integer scalar', &
 '', &
 'DESCRIPTION', &
-'  Replicates a SOURCE array along a specified dimension DIM. The copy is', &
-'  repeated NCOPIES times.', &
+'  SPREAD(3) replicates a SOURCE array along a specified dimension DIM. The', &
+'  copy is repeated NCOPIES times.', &
 '', &
 '  So to add additional rows to a matrix DIM=1 would be used, but to add', &
 '  additional rows DIM= would be used, for example.', &
@@ -17901,6 +17939,9 @@ textblock=[character(len=256) :: &
 '         a1 = spread ( v, dim=2, ncopies=3 )', &
 '         call printi(''this adds a new dimension (2) of extent 3'',a1)', &
 '', &
+'         a2 = spread ( v, 1, 3 )', &
+'         call printi('' spread(v,1,3) adds a new dimension (1) of extent 3'',a2)', &
+'         ! add more', &
 '         a2 = spread ( v, 1, 3 )', &
 '         call printi('' spread(v,1,3) adds a new dimension (1) of extent 3'',a2)', &
 '', &
@@ -18030,7 +18071,7 @@ textblock=[character(len=256) :: &
 '  o  KIND may be any kind valid for the declared type.', &
 '', &
 'DESCRIPTION', &
-'  SQRT(X) computes the principal square root of X.', &
+'  SQRT(3) computes the principal square root of X.', &
 '', &
 '  In mathematics, a square root of a number X is a number Y such that Y*Y = X.', &
 '', &
@@ -18136,7 +18177,7 @@ textblock=[character(len=256) :: &
 '     integer type.', &
 '', &
 'DESCRIPTION', &
-'  Returns the storage size of argument A in bits.', &
+'  STORAGE_SIZE(3) returns the storage size of argument A in bits.', &
 '', &
 'OPTIONS', &
 '  o  A : The entity to determine the storage size of', &
@@ -18235,8 +18276,8 @@ textblock=[character(len=256) :: &
 '  o  NUMERIC is any numeric type and kind.', &
 '', &
 'DESCRIPTION', &
-'  Adds the elements of ARRAY along dimension DIM if the corresponding element', &
-'  in MASK is TRUE.', &
+'  SUM(3) adds the elements of ARRAY along dimension DIM if the corresponding', &
+'  element in MASK is TRUE.', &
 '', &
 'OPTIONS', &
 '  o  ARRAY : Shall be an array of type integer, real or complex.', &
@@ -18326,7 +18367,7 @@ textblock=[character(len=256) :: &
 '  where TYPE may be real or integer.', &
 '', &
 'DESCRIPTION', &
-'  SYSTEM_CLOCK lets you measure durations of time with the precision of the', &
+'  SYSTEM_CLOCK(3) lets you measure durations of time with the precision of the', &
 '  smallest time increment generally available on a system by returning', &
 '  processor-dependent values based on the current value of the processor', &
 '  clock. The CLOCK value is incremented by one for each clock count until the', &
@@ -18432,7 +18473,7 @@ textblock=[character(len=256) :: &
 '  The return value has the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
-'  TAN(X) computes the tangent of X.', &
+'  TAN(3) computes the tangent of X.', &
 '', &
 'OPTIONS', &
 '  o  X : The angle in radians to compute the tangent of', &
@@ -18492,7 +18533,7 @@ textblock=[character(len=256) :: &
 '  argument.', &
 '', &
 'DESCRIPTION', &
-'  TANH(X) computes the hyperbolic tangent of X.', &
+'  TANH(3) computes the hyperbolic tangent of X.', &
 '', &
 'OPTIONS', &
 '  o  X : The value to compute the Hyperbolic tangent of', &
@@ -18573,7 +18614,7 @@ textblock=[character(len=256) :: &
 '  o  if DIM if present, coarray is required.', &
 '', &
 'DESCRIPTION', &
-'  Returns the cosubscript for this image.', &
+'  THIS_IMAGE(3) returns the cosubscript for this image.', &
 '', &
 'OPTIONS', &
 '  o  DISTANCE : Nonnegative scalar integer (not permitted together with', &
@@ -18650,7 +18691,7 @@ textblock=[character(len=256) :: &
 '  where KIND may be any kind supported by type real', &
 '', &
 'DESCRIPTION', &
-'  TINY(X) returns the smallest positive (non zero) number of the type and kind', &
+'  TINY(3) returns the smallest positive (non zero) number of the type and kind', &
 '  of X.', &
 '', &
 'OPTIONS', &
@@ -18827,17 +18868,17 @@ textblock=[character(len=256) :: &
 '            integer,intent(in),intent(in),optional :: size', &
 '', &
 'CHARACTERISTICS', &
-'  o  SOURCE Shall be a scalar or an array of any type.', &
+'  o  SOURCE shall be a scalar or an array of any type.', &
 '', &
-'  o  MOLD Shall be a scalar or an array of any type.', &
+'  o  MOLD shall be a scalar or an array of any type.', &
 '', &
 '  o  SIZE shall be a scalar of type integer.', &
 '', &
 '  o  RESULT has the same type as MOLD', &
 '', &
 'DESCRIPTION', &
-'  copies the bitwise representation of SOURCE in memory into a variable or', &
-'  array of the same type and type parameters as MOLD.', &
+'  TRANSFER(3) copies the bitwise representation of SOURCE in memory into a', &
+'  variable or array of the same type and type parameters as MOLD.', &
 '', &
 '  This is approximately equivalent to the C concept of "casting" one type to', &
 '  another.', &
@@ -18951,17 +18992,17 @@ textblock=[character(len=256) :: &
 '            type(TYPE(kind=KIND),intent(in) :: matrix(:,:)', &
 '', &
 'CHARACTERISTICS', &
-'  o  MATRIX which shall be of any type and have a rank of two.', &
+'  o  MATRIX can be of any type but must have a rank of two.', &
 '', &
-'  o  The result will be the same type and kind as MATRIX and the shape of the', &
-'     input array.', &
+'  o  The result will be the same type and kind as MATRIX and the reversed', &
+'     shape of the input array.', &
 '', &
 'DESCRIPTION', &
-'  Transpose an array of rank two.', &
+'  TRANSPOSE(3) transposes an array of rank two.', &
 '', &
-'  A array is transposed by interchanging the rows and columns of the given', &
-'  matrix. That is, element (i, j) of the result has the value of element(j, i)', &
-'  for all (i, j).', &
+'  An array is transposed by interchanging the rows and columns of the given', &
+'  matrix. That is, element (i,j) of the result has the value of element (j,i)', &
+'  of the input for all (i,j).', &
 '', &
 'OPTIONS', &
 '  o  MATRIX : The array to transpose', &
@@ -19033,7 +19074,7 @@ textblock=[character(len=256) :: &
 '', &
 '  o  UNPACK(3) - Scatter the elements of a vector', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 04, 2022            transpose(3fortran)', &
 '']
@@ -19064,7 +19105,7 @@ textblock=[character(len=256) :: &
 '  same kind as the input argument STRING.', &
 '', &
 'DESCRIPTION', &
-'  Removes trailing blank characters from a string.', &
+'  TRIM(3) removes trailing blank characters from a string.', &
 '', &
 'OPTIONS', &
 '  o  STRING : A string to trim', &
@@ -19163,26 +19204,25 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 '  o  a kind designated as ** may be any supported kind value for the type', &
 '', &
-'  o  ARRAY Shall be an array, of any type.', &
+'  o  ARRAY shall be an array, of any type.', &
 '', &
-'  o  DIM : (Optional) Shall be a scalar integer.', &
+'  o  DIM shall be a scalar integer.', &
 '', &
-'  o  KIND An integer initialization expression indicating the kind parameter', &
+'  o  KIND an integer initialization expression indicating the kind parameter', &
 '     of the result.', &
 '', &
 '  o  The return value is of type integer and of kind KIND. If KIND is absent,', &
 '     the return value is of default integer kind.', &
 '', &
-'     If DIM is absent, the result is an array of the upper bounds of ARRAY.', &
-'', &
 'DESCRIPTION', &
-'  Returns the upper bounds of an array, or a single upper bound along the DIM', &
-'  dimension.', &
+'  UBOUND(3) returns the upper bounds of an array, or a single upper bound', &
+'  along the DIM dimension.', &
 '', &
 'OPTIONS', &
 '  o  ARRAY : The array to determine the upper bounds of', &
 '', &
-'  o  DIM : a specific rank to determine the bounds of', &
+'  o  DIM : a specific rank to determine the bounds of If DIM is absent, the', &
+'     result is an array of the upper bounds of ARRAY.', &
 '', &
 '  o  KIND : indicates the kind parameter of the result. If absent, an integer', &
 '     of the default kind is returned.', &
@@ -19332,9 +19372,9 @@ textblock=[character(len=256) :: &
 '  the same shape as MASK.', &
 '', &
 'DESCRIPTION', &
-'  Scatter the elements of VECTOR into a copy of an array FIELD of any rank', &
-'  using .true. values from MASK in array element order to specify placement of', &
-'  the VECTOR values.', &
+'  UNPACK(3) scatters the elements of VECTOR into a copy of an array FIELD of', &
+'  any rank using .true. values from MASK in array element order to specify', &
+'  placement of the VECTOR values.', &
 '', &
 '  So a copy of FIELD is generated with select elements replaced with values', &
 '  from VECTOR. This allows for complex replacement patterns that would be', &
@@ -19480,20 +19520,23 @@ textblock=[character(len=256) :: &
 '            character(len=*,kind=**),intent(in) :: string', &
 '            character(len=*,kind=**),intent(in) :: set', &
 '            logical,intent(in),optional :: back', &
-'            integer,intent(in),optional :: kind', &
+'            integer,intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
-'', &
-'  o  STRING and SET must have the same kind type parameter.', &
+'  o  a kind designated as ** may be any supported kind value for the type.', &
+'     However, STRING and SET must have the same kind type parameter for any', &
+'     individual call.', &
 '', &
 '  o  the kind of the returned value is the same as KIND if present.  Otherwise', &
 '     a default integer kind is returned.', &
 '', &
+'  o  KIND must be a constant integer initialization expression and a valid', &
+'     kind for the integer type.', &
+'', &
 'DESCRIPTION', &
-'  Verifies that all the characters in STRING belong to the set of characters', &
-'  in SET by identifying the position of the first character in the string that', &
-'  is not in the set.', &
+'  VERIFY(3) verifies that all the characters in STRING belong to the set of', &
+'  characters in SET by identifying the position of the first character in the', &
+'  string that is not in the set.', &
 '', &
 '  This makes it easy to verify strings are all uppercase or lowercase, follow', &
 '  a basic syntax, only contain printable characters, and many of the', &
@@ -19510,7 +19553,7 @@ textblock=[character(len=256) :: &
 '  o  BACK : The direction to look for an unmatched character. The left-most', &
 '     unmatched character position is returned unless BACK is present and', &
 '     .false., which causes the position of the right-most unmatched character', &
-'     to be returned instead of the left-most unmatched character..', &
+'     to be returned instead of the left-most unmatched character.', &
 '', &
 '  o  KIND : An integer initialization expression indicating the kind parameter', &
 '     of the result.', &

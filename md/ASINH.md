@@ -21,7 +21,7 @@
 
 ### **Description**
 
-**asinh(x)** computes the inverse hyperbolic sine of **x**.
+**asinh**(3) computes the inverse hyperbolic sine of **x**.
 
 ### **Options**
 

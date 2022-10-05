@@ -21,9 +21,9 @@
 
 ### **Description**
 
-  Returns a value corresponding to **i** with all of the bits shifted
-  right by **shift** places and the vacated bits on the left filled
-  with the value of the original left-most bit..
+  **shifta**(3) returns a value corresponding to **i** with all of the
+  bits shifted right by **shift** places and the vacated bits on the
+  left filled with the value of the original left-most bit..
 
 ### **Options**
 

@@ -116,7 +116,7 @@ end subroutine query_anything
 
 end program demo_rank
 ```
-  Results:
+Results:
 ```text
     rank of scalar a=           0
     rank of matrix b=           2

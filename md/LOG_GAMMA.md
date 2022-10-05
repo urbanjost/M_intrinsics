@@ -21,7 +21,7 @@ the Gamma function
 
 ### **Description**
 
-  **log_gamma(x)** computes the natural logarithm of the absolute value
+  **log_gamma**(3) computes the natural logarithm of the absolute value
   of the Gamma function.
 
 ### **Options**

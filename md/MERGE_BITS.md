@@ -23,7 +23,7 @@ a BOZ constant.
 
 A common graphics operation in Ternary Raster Operations is to combine
 bits from two different sources, generally referred to as bit-blending.
-**merge_bits** performs a masked bit-blend of **i** and **j** using
+**merge_bits**(3) performs a masked bit-blend of **i** and **j** using
 the bits of the **mask** value to determine which of the input values
 to copy bits from.
 

@@ -33,7 +33,8 @@
 
 ### **Description**
 
-Get the **value** of the environment variable **name**.
+**get_environment_variable**(3) gets the **value** of the environment
+variable **name**.
 
 Note that **get_environment_variable**(3) need not be thread-safe. It
 is the responsibility of the user to ensure that the environment is not

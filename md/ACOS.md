@@ -21,7 +21,7 @@
 
 ### **Description**
 
-**acos(x)** computes the arccosine of **x** (inverse of **cos(x)**).
+**acos**(3) computes the arccosine of **x** (inverse of **cos(x)**).
 
 ### **Options**
 

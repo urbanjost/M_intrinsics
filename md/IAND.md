@@ -21,7 +21,7 @@
 
 ### **Description**
 
-Bitwise logical **and**.
+**iand**(3) returns the bitwise logical **and** of two values.
 
 ### **Options**
 
@@ -64,7 +64,7 @@ integer :: a, b
  write (*,'(b32.32)') a,b,iand(a,b)
 end program demo_iand
 ```
-  Results:
+Results:
 ```text
     a= 15  b= 3 iand(a,b)= 3
    00000000000000000000000000001111

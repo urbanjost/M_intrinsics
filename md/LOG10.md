@@ -20,8 +20,8 @@
 
 ### **Description**
 
-  **log10(x)** computes the base 10 logarithm of **x**. This
-  is generally called the "common logarithm".
+  **log10**(3) computes the base 10 logarithm of **x**. This is generally
+  called the "common logarithm".
 
 ### **Options**
 

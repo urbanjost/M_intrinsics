@@ -17,7 +17,7 @@
 
 ### **Description**
 
-  **selected_char_kind(name)** returns the kind value for the character
+  **selected_char_kind**(3) returns the kind value for the character
   set named NAME, if a character set with such a name is supported, or
   **-1** otherwise.
 

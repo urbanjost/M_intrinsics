@@ -21,7 +21,7 @@ is specified
 
 ### **Description**
 
-  **present**(3f) can be used in a procedure to determine if an optional
+  **present**(3) can be used in a procedure to determine if an optional
   dummy argument was present on the current call to the procedure.
 
   When an argument is not present when the current procedure is invoked,

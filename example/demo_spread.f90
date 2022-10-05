@@ -24,6 +24,9 @@
 
          a2 = spread ( v, 1, 3 )
          call printi(' spread(v,1,3) adds a new dimension (1) of extent 3',a2)
+         ! add more
+         a2 = spread ( v, 1, 3 )
+         call printi(' spread(v,1,3) adds a new dimension (1) of extent 3',a2)
 
       contains
       ! CONVENIENCE ROUTINE; NOT DIRECTLY CONNECTED TO SPREAD(3)

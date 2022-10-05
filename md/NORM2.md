@@ -22,8 +22,8 @@
 
 ### **Description**
 
-  Calculates the Euclidean vector norm (L_2 norm) of **array** along
-  dimension **dim**.
+  **norm2**(3) calculates the Euclidean vector norm (L_2 norm) of
+  **array** along dimension **dim**.
 
 ### **Options**
 

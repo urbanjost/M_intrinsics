@@ -20,7 +20,7 @@ where **KIND** is any _integer_ kind supported by the programming environment.
 
 ### **Description**
 
-**btest(i,pos)** returns logical _.true._ if the bit at **pos** in **i** is set.
+**btest**(3) returns logical _.true._ if the bit at **pos** in **i** is set.
 
 ### **Options**
 

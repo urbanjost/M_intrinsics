@@ -15,7 +15,7 @@
 ```
 ### **Characteristics**
 
-- The return value is _real_ with the kind as **x**.
+- **gamma**(3) returns a _real_ value with the kind as **x**.
 
 ### **Description**
 

@@ -23,7 +23,7 @@
 
 ### **Description**
 
-Concatenates **ncopies** copies of a string.
+**repeat**(3) concatenates **ncopies** copies of a string.
 
 ### **Options**
 

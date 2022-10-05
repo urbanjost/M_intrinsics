@@ -33,8 +33,8 @@ or
 
 ### **Description**
 
-   Reduce a list of conditionally selected values from an array to a
-   single value by iteratively applying a binary function.
+   **reduce**(3) reduces a list of conditionally selected values from
+   an array to a single value by iteratively applying a binary function.
 
    Common in functional programming, a **reduce** function applies a
    binary operator (a pure function with two arguments) to all elements
@@ -168,7 +168,7 @@ one relative to the input array.
 
    end program demo_reduce
 ```
-  Results:
+Results:
 ```text
      >  1 2 3 4
      >  product= 24

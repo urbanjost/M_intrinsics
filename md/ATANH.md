@@ -21,7 +21,7 @@
 
 ### **Description**
 
-**atanh(x)** computes the inverse hyperbolic tangent of **x**.
+**atanh**(3) computes the inverse hyperbolic tangent of **x**.
 
 ### **Options**
 

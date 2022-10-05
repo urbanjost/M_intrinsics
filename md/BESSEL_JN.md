@@ -33,7 +33,7 @@
 
 ### **Description**
 
-  **bessel_jn(n, x)** computes the Bessel function of the first kind of
+  **bessel_jn( n, x )** computes the Bessel function of the first kind of
   order **n** of **x**.
 
   **bessel_jn(n1, n2, x)** returns an array with the Bessel

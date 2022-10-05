@@ -21,7 +21,7 @@
 
 ### **Description**
 
-**asin(x)** computes the arcsine of its argument **x**.
+**asin**(3) computes the arcsine of its argument **x**.
 
 The arcsine is the inverse function of the sine function. It is commonly
 used in trigonometry when trying to find the angle when the lengths of

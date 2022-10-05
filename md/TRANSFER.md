@@ -17,18 +17,18 @@
 ```
 ### **Characteristics**
 
-- **source** Shall be a scalar or an array of any type.
-- **mold** Shall be a scalar or an array of any type.
+- **source** shall be a scalar or an array of any type.
+- **mold** shall be a scalar or an array of any type.
 - **size** shall be a scalar of type _integer_.
 - **result** has the same type as **mold**
 
 ### **Description**
 
-copies the bitwise representation of **source** in memory into
-a variable or array of the same type and type parameters as **mold**.
+**transfer**(3) copies the bitwise representation of **source** in memory
+into a variable or array of the same type and type parameters as **mold**.
 
-This is approximately equivalent to the C concept of "casting" one
-type to another.
+This is approximately equivalent to the C concept of "casting" one type
+to another.
 
 ### **Options**
 

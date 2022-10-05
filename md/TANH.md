@@ -21,7 +21,7 @@ type and kind as the argument.
 
 ### **Description**
 
-**tanh(x)** computes the hyperbolic tangent of **x**.
+**tanh**(3) computes the hyperbolic tangent of **x**.
 
 ### **Options**
 

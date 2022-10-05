@@ -15,7 +15,7 @@
 
 ### **Description**
 
-compiler_options returns a string with the options used for compiling.
+**compiler_options**(3) returns a string with the options used for compiling.
 
 ### **Options**
 

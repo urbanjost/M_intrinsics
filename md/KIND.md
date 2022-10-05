@@ -22,7 +22,7 @@
 
 ### **Description**
 
-   **kind(x)** returns the kind value of the entity **x**.
+   **kind(x)**(3) returns the kind value of the entity **x**.
 
 ### **Options**
 

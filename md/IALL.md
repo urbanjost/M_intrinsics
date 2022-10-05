@@ -36,8 +36,8 @@
 
 ### **Description**
 
-Reduces with a bitwise _and_ the elements of **array** along dimension
-**dim** if the corresponding element in **mask** is _.true._.
+**iall**(3) reduces with a bitwise _and_ the elements of **array** along
+dimension **dim** if the corresponding element in **mask** is _.true._.
 
 ### **Options**
 

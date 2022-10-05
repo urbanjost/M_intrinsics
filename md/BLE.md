@@ -24,7 +24,8 @@ o# ble
 
 ### **Description**
 
-  Determines whether an integer is bitwise less than or equal to another.
+  **ble**(3) determines whether an integer is bitwise less than or equal
+  to another.
 
 ### **Options**
 

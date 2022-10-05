@@ -32,8 +32,8 @@
 
 ### **Description**
 
-Adds the elements of ARRAY along dimension DIM if the corresponding
-element in MASK is TRUE.
+  **sum**(3) adds the elements of ARRAY along dimension DIM if the
+  corresponding element in MASK is TRUE.
 
 ### **Options**
 

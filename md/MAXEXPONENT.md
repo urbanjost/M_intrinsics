@@ -19,7 +19,7 @@ where KIND is any _real_ kind.
 
 ### **Description**
 
-**maxexponent(x)** returns the maximum exponent in the model of the type
+**maxexponent**(3) returns the maximum exponent in the model of the type
 of **x**.
 
 ### **Options**

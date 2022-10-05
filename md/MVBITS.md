@@ -21,7 +21,7 @@
 
 ### **Description**
 
-**mvbits(3f)** copies a bit pattern found in a range of adjacent bits in
+**mvbits**(3) copies a bit pattern found in a range of adjacent bits in
 the _integer_ **from** to a specified position in another integer **to**
 (which is of the same kind as **from**). It otherwise leaves the bits
 in **to** as-is.
@@ -127,7 +127,7 @@ character(len=*),parameter :: fmt= '(g0,t30,a,t40,b32.32)'
 
  end program demo_mvbits
 ````
-  Results:
+Results:
 ```text
 
    2147483647                   01111111111111111111111111111111

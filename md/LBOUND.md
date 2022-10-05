@@ -17,20 +17,17 @@
 ```
 ### **Characteristics**
 
-- **array** Shall be an array, of any type.
-- **dim** : (Optional) Shall be a scalar _integer_.
-- **kind** An _integer_ initialization expression indicating the kind
+- **array** shall be an array, of any type.
+- **dim** shall be a scalar _integer_.
+- **kind** an _integer_ initialization expression indicating the kind
   parameter of the result.
 - The return value is of type _integer_ and of kind **kind**. If **kind**
   is absent, the return value is of default integer kind.
 
-  If **dim** is absent, the result is an array of the upper bounds of
-  **array**.
-
 ### **Description**
 
-Returns the lower bounds of an array, or a single lower bound along the
-**dim** dimension.
+  **result**(3) returns the lower bounds of an array, or a single lower
+  bound along the **dim** dimension.
 
 ### **Options**
 
@@ -39,6 +36,8 @@ Returns the lower bounds of an array, or a single lower bound along the
 
 - **dim**
   : Shall be a scalar _integer_.
+  If **dim** is absent, the result is an array of the upper bounds of
+  **array**.
 
 - **kind**
   : An _integer_ initialization expression indicating the kind

@@ -17,7 +17,7 @@
 
 ### **Description**
 
-**leadz** returns the number of leading zero bits of an integer.
+**leadz**(3) returns the number of leading zero bits of an integer.
 
 ### **Options**
 

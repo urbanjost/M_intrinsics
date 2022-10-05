@@ -22,7 +22,7 @@
 
 ### **Description**
 
-**nearest(x, s)** returns the processor-representable number nearest to
+**nearest**(3) returns the processor-representable number nearest to
 **x** in the direction indicated by the sign of **s**.
 
 ### **Options**

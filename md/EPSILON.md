@@ -17,7 +17,7 @@
 
 ### **Description**
 
-**epsilon(x)** returns the floating point relative accuracy.
+**epsilon**(3) returns the floating point relative accuracy.
 It is the nearly negligible number relative to **1**
 such that **1+ little_number** is not equal to **1**; or more
 precisely

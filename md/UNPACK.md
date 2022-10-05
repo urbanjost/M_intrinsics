@@ -23,9 +23,9 @@ and the same shape as **mask**.
 
 ### **Description**
 
-Scatter the elements of **vector** into a copy of an array **field**
-of any rank using _.true._ values from **mask** in array element order
-to specify placement of the **vector** values.
+**unpack**(3) scatters the elements of **vector** into a copy of an
+array **field** of any rank using _.true._ values from **mask** in array
+element order to specify placement of the **vector** values.
 
 So a copy of **field** is generated with select elements replaced with
 values from **vector**. This allows for complex replacement patterns
@@ -138,7 +138,7 @@ contains
 
 end program demo_unpack
 ```
-  Results:
+Results:
 
 ```text
    > unity=

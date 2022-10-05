@@ -14,8 +14,8 @@
 
 ### **Description**
 
-Returns the upper cobounds of a coarray, or a single upper cobound along
-the **dim** codimension.
+**co_ubound**(3) returns the upper cobounds of a coarray, or a single
+upper cobound along the **dim** codimension.
 
 ### **Options**
 

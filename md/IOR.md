@@ -21,7 +21,7 @@
 
 ### **Description**
 
-**ior** returns the bit-wise Boolean inclusive-or of **i** and **j**.
+**ior**(3) returns the bit-wise Boolean inclusive-or of **i** and **j**.
 
 ### **Options**
 

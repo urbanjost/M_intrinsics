@@ -17,7 +17,7 @@
 
 ### **Description**
 
-**new_line(c)** returns the new-line character.
+**new_line**(3) returns the new-line character.
 
 Case (i)
 : If **a** is default _character_ and the character in position **10** of the

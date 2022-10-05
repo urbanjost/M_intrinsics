@@ -21,7 +21,7 @@
 
 ### **Description**
 
-**acosh(x)** computes the inverse hyperbolic cosine of **x** in radians.
+**acosh**(3) computes the inverse hyperbolic cosine of **x** in radians.
 
 ### **Options**
 

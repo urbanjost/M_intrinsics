@@ -21,8 +21,8 @@ where the kind for **i** dictates the kind of the returned value.
 
 ### **Description**
 
-Returns a value corresponding to **i** with all of the bits shifted left
-by **shift** places.
+**shiftl**(3) returns a value corresponding to **i** with all of the
+bits shifted left by **shift** places.
 
 Bits shifted out from the left end are lost, and bits shifted in from
 the right end are set to **0**.
@@ -95,7 +95,7 @@ integer             :: i
 
 end program demo_shiftl
 ```
-  Results:
+Results:
 ```text
 >         100         800
 >

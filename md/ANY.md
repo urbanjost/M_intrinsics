@@ -20,7 +20,7 @@
 
 ### **Description**
 
-**any(mask, dim)** determines if any of the values in the logical
+**any**(3) determines if any of the values in the logical
 array **mask** along dimension **dim** are _.true._.
 
 ### **Options**

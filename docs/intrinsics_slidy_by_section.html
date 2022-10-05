@@ -103,7 +103,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>abs(a)</strong> computes the absolute value of numeric argument <strong>a</strong>.</p>
+<p><strong>abs</strong>(3) computes the absolute value of numeric argument <strong>a</strong>.</p>
 <p>In mathematics, the absolute value or modulus of a real number <strong>x</strong>, denoted <strong>|x|</strong>, is the magnitude of <strong>x</strong> without regard to its sign.</p>
 <p>The absolute value of a number may be thought of as its distance from zero. So for a complex value the absolute value is a real number with magnitude <strong>sqrt(x%re</strong>2,x%im<strong>2)</strong>, as if the real component is the x value and the imaginary value is the y value for the point &lt;x,y&gt;.</p>
 </div><div id="options" class="slide section level3">
@@ -213,7 +213,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-1" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>achar(i)</strong> returns the character located at position <strong>i</strong> (commonly called the ADE or ASCII Decimal Equivalent) in the ASCII collating sequence.</p>
+<p><strong>achar</strong>(3) returns the character located at position <strong>i</strong> (commonly called the ADE or ASCII Decimal Equivalent) in the ASCII collating sequence.</p>
 <p>The <strong>achar</strong>(3) function is often used for generating in-band escape sequences to control terminal attributes, as it makes it easy to print unprintable characters such as escape and tab. For example:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb8-1" title="1">   <span class="fu">write(*</span>,<span class="st">&#39;(*(a))&#39;</span><span class="fu">)</span><span class="bu">achar</span>(<span class="dv">27</span>),<span class="st">&#39;[2J&#39;</span></a></code></pre></div>
 <p>will clear the screen on an ANSI-compatible terminal display,</p>
@@ -363,7 +363,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-2" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>acosh(x)</strong> computes the inverse hyperbolic cosine of <strong>x</strong> in radians.</p>
+<p><strong>acosh</strong>(3) computes the inverse hyperbolic cosine of <strong>x</strong> in radians.</p>
 </div><div id="options-2" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -421,7 +421,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-3" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>acos(x)</strong> computes the arccosine of <strong>x</strong> (inverse of <strong>cos(x)</strong>).</p>
+<p><strong>acos</strong>(3) computes the arccosine of <strong>x</strong> (inverse of <strong>cos(x)</strong>).</p>
 </div><div id="options-3" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -504,7 +504,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-4" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>adjustl(string)</strong> will left-adjust a string by removing leading spaces. Spaces are inserted at the end of the string as needed.</p>
+<p><strong>adjustl</strong>(3) will left-adjust a string by removing leading spaces. Spaces are inserted at the end of the string as needed.</p>
 </div><div id="options-4" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -581,7 +581,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-5" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>adjustr(3f)</strong> right-adjusts a string by removing trailing spaces. Spaces are inserted at the start of the string as needed to retain the original length.</p>
+<p><strong>adjustr</strong>(3) right-adjusts a string by removing trailing spaces. Spaces are inserted at the start of the string as needed to retain the original length.</p>
 </div><div id="options-5" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -654,7 +654,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-6" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>aimag(z)</strong> yields the imaginary part of the complex argument <strong>z</strong>.</p>
+<p><strong>aimag</strong>(3) yields the imaginary part of the complex argument <strong>z</strong>.</p>
 <p>This is similar to the modern complex-part-designator <strong>%IM</strong> which also designates the imaginary part of a value, accept a designator can appear on the left-hand side of an assignment as well, as in <strong>val%im=10.0</strong>.</p>
 </div><div id="options-6" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -814,8 +814,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-8" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Logical conjunction of elements of <strong>mask</strong> along dimension <strong>dim</strong>.</p>
-<p>“<strong>all(mask, dim)</strong>” determines if all the values are true in <strong>mask</strong> in the array along dimension <strong>dim</strong>.</p>
+<p><strong>all</strong>(3) determines if all the values are true in <strong>mask</strong> in the array along dimension <strong>dim</strong>.</p>
+<p>This is called a logical conjunction of elements of <strong>mask</strong> along dimension <strong>dim</strong>.</p>
 <p>The mask is generally a logical expression, allowing for comparing arrays and many other common operations.</p>
 </div><div id="options-8" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -900,7 +900,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>where <strong>entity</strong> may be any allocatable scalar or array object of any type.</p>
 </div><div id="description-9" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>allocated(arg)</strong> checks the allocation status of both arrays and scalars.</p>
+<p><strong>allocated</strong>(3) checks the allocation status of both arrays and scalars.</p>
 </div><div id="options-9" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -1058,7 +1058,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-11" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>any(mask, dim)</strong> determines if any of the values in the logical array <strong>mask</strong> along dimension <strong>dim</strong> are .true..</p>
+<p><strong>any</strong>(3) determines if any of the values in the logical array <strong>mask</strong> along dimension <strong>dim</strong> are .true..</p>
 </div><div id="options-11" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -1194,7 +1194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-12" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>asinh(x)</strong> computes the inverse hyperbolic sine of <strong>x</strong>.</p>
+<p><strong>asinh</strong>(3) computes the inverse hyperbolic sine of <strong>x</strong>.</p>
 </div><div id="options-12" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -1251,7 +1251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-13" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>asin(x)</strong> computes the arcsine of its argument <strong>x</strong>.</p>
+<p><strong>asin</strong>(3) computes the arcsine of its argument <strong>x</strong>.</p>
 <p>The arcsine is the inverse function of the sine function. It is commonly used in trigonometry when trying to find the angle when the lengths of the hypotenuse and the opposite side of a right triangle are known.</p>
 </div><div id="options-13" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -1339,7 +1339,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The association status of neither <strong>pointer</strong> nor <strong>target</strong> shall be undefined.</p>
 </div><div id="description-14" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>associated(pointer [, target])</strong> determines the status of the pointer <strong>pointer</strong> or if <strong>pointer</strong> is associated with the target <strong>target</strong>.</p>
+<p><strong>associated</strong>(3) determines the status of the pointer <strong>pointer</strong> or if <strong>pointer</strong> is associated with the target <strong>target</strong>.</p>
 </div><div id="options-14" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -1403,7 +1403,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The return value has the same type and kind as <strong>y</strong> and <strong>x</strong>.</p>
 </div><div id="description-15" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>atan2(y, x)</strong> computes in radians a processor-dependent approximation of the arctangent of the complex number ( <strong>x</strong>, <strong>y</strong> ) or equivalently the principal value of the arctangent of the value <strong>y/x</strong> (which determines a unique angle).</p>
+<p><strong>atan2</strong>(3) computes in radians a processor-dependent approximation of the arctangent of the complex number ( <strong>x</strong>, <strong>y</strong> ) or equivalently the principal value of the arctangent of the value <strong>y/x</strong> (which determines a unique angle).</p>
 </div><div id="options-15" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -1558,7 +1558,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-16" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>atanh(x)</strong> computes the inverse hyperbolic tangent of <strong>x</strong>.</p>
+<p><strong>atanh</strong>(3) computes the inverse hyperbolic tangent of <strong>x</strong>.</p>
 </div><div id="options-16" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -1613,7 +1613,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The returned value is of the same type and kind as <strong>x</strong>.</p>
 </div><div id="description-17" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>atan(x)</strong> computes the arctangent of <strong>x</strong>.</p>
+<p><strong>atan</strong>(3) computes the arctangent of <strong>x</strong>.</p>
 </div><div id="options-17" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -1690,7 +1690,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-18" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>atomic_ad(atom, value)</strong> atomically adds the value of VAR to the variable <strong>atom</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value 0. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed ATOM, if the remote image has stopped, it is assigned the value of iso_fortran_env’s STAT_STOPPED_IMAGE and if the remote image has failed, the value STAT_FAILED_IMAGE.</p>
+<p><strong>atomic_add</strong>(3) atomically adds the value of VAR to the variable <strong>atom</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value 0. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed ATOM, if the remote image has stopped, it is assigned the value of iso_fortran_env’s STAT_STOPPED_IMAGE and if the remote image has failed, the value STAT_FAILED_IMAGE.</p>
 </div><div id="options-18" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -1747,7 +1747,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-19" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>atomic_and(atom, value)</strong> atomically defines <strong>atom</strong> with the bitwise <strong>and</strong> between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value 0. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
+<p><strong>atomic_and</strong>(3) atomically defines <strong>atom</strong> with the bitwise <strong>and</strong> between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value 0. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
 </div><div id="options-19" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -1795,7 +1795,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-20" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>atomic_cas compares the variable <strong>atom</strong> with the value of <strong>compare</strong>; if the value is the same, <strong>atom</strong> is set to the value of <strong>new</strong>. Additionally, <strong>old</strong> is set to the value of <strong>atom</strong> that was used for the comparison. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value 0. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
+<p><strong>atomic_cas</strong>(3) compares the variable <strong>atom</strong> with the value of <strong>compare</strong>; if the value is the same, <strong>atom</strong> is set to the value of <strong>new</strong>. Additionally, <strong>old</strong> is set to the value of <strong>atom</strong> that was used for the comparison. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value 0. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
 </div><div id="options-20" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -1874,7 +1874,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-21" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>atomic_define(atom, value)</strong> defines the variable <strong>atom</strong> with the value <strong>value</strong> atomically.</p>
+<p><strong>atomic_define</strong>(3) defines the variable <strong>atom</strong> with the value <strong>value</strong> atomically.</p>
 </div><div id="options-21" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -1922,7 +1922,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-22" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>atomic_fetch_add(atom, value, old)</strong> atomically stores the value of <strong>atom</strong> in <strong>old</strong> and adds the value of <strong>var</strong> to the variable <strong>atom</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
+<p><strong>atomic_fetch_add</strong>(3) atomically stores the value of <strong>atom</strong> in <strong>old</strong> and adds the value of <strong>var</strong> to the variable <strong>atom</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
 </div><div id="options-22" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -1977,7 +1977,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-23" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>atomic_fetch_and(atom, value, old)</strong> atomically stores the value of <strong>atom</strong> in <strong>old</strong> and defines <strong>atom</strong> with the bitwise AND between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
+<p><strong>atomic_fetch_and</strong>(3) atomically stores the value of <strong>atom</strong> in <strong>old</strong> and defines <strong>atom</strong> with the bitwise AND between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
 </div><div id="options-23" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -2032,7 +2032,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-24" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>atomic_fetch_or(atom, value, old)</strong> atomically stores the value of <strong>atom</strong> in <strong>old</strong> and defines <strong>atom</strong> with the bitwise OR between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
+<p><strong>atomic_fetch_or</strong>(3) atomically stores the value of <strong>atom</strong> in <strong>old</strong> and defines <strong>atom</strong> with the bitwise OR between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
 </div><div id="options-24" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -2087,7 +2087,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-25" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>atomic_fetch_xor(atom, value, old)</strong> atomically stores the value of <strong>atom</strong> in <strong>old</strong> and defines <strong>atom</strong> with the bitwise <strong>xor</strong> between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
+<p><strong>atomic_fetch_xor</strong>(3) atomically stores the value of <strong>atom</strong> in <strong>old</strong> and defines <strong>atom</strong> with the bitwise <strong>xor</strong> between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
 </div><div id="options-25" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -2151,7 +2151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-26" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>atomic_or(atom, value)</strong> atomically defines <strong>atom</strong> with the bitwise <strong>or</strong> between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
+<p><strong>atomic_or</strong>(3) atomically defines <strong>atom</strong> with the bitwise <strong>or</strong> between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
 </div><div id="options-26" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -2210,7 +2210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-27" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>atomic_ref(value, atom)</strong> atomically assigns the value of the variable <strong>atom</strong> to <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s <strong>stat_stopped_image</strong> and if the remote image has failed, the value <strong>stat_failed_image</strong>.</p>
+<p><strong>atomic_ref</strong>(3) atomically assigns the value of the variable <strong>atom</strong> to <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s <strong>stat_stopped_image</strong> and if the remote image has failed, the value <strong>stat_failed_image</strong>.</p>
 </div><div id="options-27" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -2277,7 +2277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-28" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>atomic_xor(atom, value)</strong> atomically defines <strong>atom</strong> with the bitwise <strong>xor</strong> between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
+<p><strong>atomic_xor</strong>(3) atomically defines <strong>atom</strong> with the bitwise <strong>xor</strong> between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s stat_stopped_image and if the remote image has failed, the value stat_failed_image.</p>
 </div><div id="options-28" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -2331,7 +2331,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-29" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>bessel_j0(x)</strong> computes the Bessel function of the first kind of order <strong>0</strong> of <strong>x</strong>.</p>
+<p><strong>bessel_j0</strong>(3) computes the Bessel function of the first kind of order <strong>0</strong> of <strong>x</strong>.</p>
 </div><div id="options-29" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -2381,7 +2381,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-30" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>bessel_j1(x)</strong> computes the Bessel function of the first kind of order <strong>1</strong> of <strong>x</strong>.</p>
+<p><strong>bessel_j1</strong>(3) computes the Bessel function of the first kind of order <strong>1</strong> of <strong>x</strong>.</p>
 </div><div id="options-30" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -2438,7 +2438,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The return value has the same type and kind as <strong>x</strong>.</p>
 </div><div id="description-31" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>bessel_jn(n, x)</strong> computes the Bessel function of the first kind of order <strong>n</strong> of <strong>x</strong>.</p>
+<p><strong>bessel_jn( n, x )</strong> computes the Bessel function of the first kind of order <strong>n</strong> of <strong>x</strong>.</p>
 <p><strong>bessel_jn(n1, n2, x)</strong> returns an array with the Bessel function|Bessel functions of the first kind of the orders <strong>n1</strong> to <strong>n2</strong>.</p>
 </div><div id="options-31" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -2504,7 +2504,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-32" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>bessel_y0(x)</strong> computes the Bessel function of the second kind of order 0 of <strong>x</strong>.</p>
+<p><strong>bessel_y0</strong>(3) computes the Bessel function of the second kind of order 0 of <strong>x</strong>.</p>
 </div><div id="options-32" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -2554,7 +2554,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-33" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>bessel_y1(x)</strong> computes the Bessel function of the second kind of order 1 of <strong>x</strong>.</p>
+<p><strong>bessel_y1</strong>(3) computes the Bessel function of the second kind of order 1 of <strong>x</strong>.</p>
 </div><div id="options-33" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -2678,7 +2678,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-35" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Determines whether one integer is bitwise greater than or equal to another.</p>
+<p><strong>bge</strong>(3) Determines whether one integer is bitwise greater than or equal to another.</p>
 <p>The bit-level representation of a value is platform dependent. The endian-ness of a system and whether the system uses a “two’s complement” representation of signs can affect the results, for example.</p>
 <p>A BOZ constant (Binary, Octal, Hexadecimal) does not have a kind or type of its own, so be aware it is subject to truncation when transferred to an integer type. The most bits the constant may contain is limited by the most bits representable by any integer kind supported by the compilation.</p>
 <h4 id="bit-sequence-comparison">Bit Sequence Comparison</h4>
@@ -2804,7 +2804,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-36" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Determines whether an integer is bitwise greater than another. Bit-level representations of values are platform-dependent.</p>
+<p><strong>bgt</strong> determines whether an integer is bitwise greater than another. Bit-level representations of values are platform-dependent.</p>
 </div><div id="options-36" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -2871,19 +2871,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div><div id="characteristics-37" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
 <ul>
-<li>the value of KIND is any valid value for an integer kind</li>
-<li>parameter on the processor.</li>
+<li>the value of <strong>KIND</strong> is any valid value for an integer kind parameter on the processor.</li>
 <li>the return value is of the same kind as the input value.</li>
 </ul>
 </div><div id="description-37" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>bit_size(i)</strong> returns the number of bits (integer precision plus sign bit) represented by the type of the integer <strong>i</strong>.</p>
+<p><strong>bit_size</strong>(3) returns the number of bits (integer precision plus sign bit) represented by the type of the integer <strong>i</strong>.</p>
 </div><div id="options-37" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
 <li><dl>
 <dt><strong>i</strong></dt>
-<dd>An integer value of any kind whose size in bits is to be determined. Because only the type of the argument is examined, the argument need not be defined; <strong>i</strong> can be a scalar or an array, but a scalar representing just the first element is always returned.
+<dd>An integer value of any kind whose size in bits is to be determined. Because only the type of the argument is examined, the argument need not be defined; <strong>i</strong> can be a scalar or an array, but a scalar representing just a single element is always returned.
 </dd>
 </dl></li>
 </ul>
@@ -2943,7 +2942,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div><div id="description-38" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Determines whether an integer is bitwise less than or equal to another.</p>
+<p><strong>ble</strong>(3) determines whether an integer is bitwise less than or equal to another.</p>
 </div><div id="options-38" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -3022,7 +3021,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>where the kind of <strong>i</strong> and <strong>j</strong> may be of any supported integer kind, not necessarily the same. An exception is that values may be a BOZ constant with a value valid for the integer kind available with the most bits on the current platform.</p>
 </div><div id="description-39" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Determines whether an integer is bitwise less than another.</p>
+<p><strong>blt</strong>(3) determines whether an integer is bitwise less than another.</p>
 </div><div id="options-39" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -3092,7 +3091,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>where <strong>KIND</strong> is any integer kind supported by the programming environment.</p>
 </div><div id="description-40" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>btest(i,pos)</strong> returns logical .true. if the bit at <strong>pos</strong> in <strong>i</strong> is set.</p>
+<p><strong>btest</strong>(3) returns logical .true. if the bit at <strong>pos</strong> in <strong>i</strong> is set.</p>
 </div><div id="options-40" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -3209,7 +3208,7 @@ the value of btest (2, a)
 </ul>
 </div><div id="description-41" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>c_associated(c_prt_1[, c_ptr_2])</strong> determines the status of the C pointer c_ptr_1 or if c_ptr_1 is associated with the target c_ptr_2.</p>
+<p><strong>c_associated</strong>(3) determines the status of the C pointer c_ptr_1 or if c_ptr_1 is associated with the target c_ptr_2.</p>
 </div><div id="options-41" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -3267,7 +3266,7 @@ the value of btest (2, a)
 <p>where the kind of the result KIND is the same as <strong>a</strong> unless its kind is specified by the optional <strong>kind</strong> argument.</p>
 </div><div id="description-42" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>ceiling(a)</strong> returns the least integer greater than or equal to <strong>a</strong>.</p>
+<p><strong>ceiling</strong>(3) returns the least integer greater than or equal to <strong>a</strong>.</p>
 </div><div id="options-42" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -3468,7 +3467,7 @@ the value of btest (2, a)
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-45" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>c_funloc(x)</strong> determines the C address of the argument.</p>
+<p><strong>c_funloc</strong>(3) determines the C address of the argument.</p>
 </div><div id="options-45" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -3533,7 +3532,7 @@ the value of btest (2, a)
 </ul>
 </div><div id="description-46" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>char(i, kind)</strong> returns the character represented by the integer <strong>i</strong>.</p>
+<p><strong>char</strong>(3) returns the character represented by the integer <strong>i</strong>.</p>
 </div><div id="options-46" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -3590,7 +3589,7 @@ the value of btest (2, a)
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-47" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>c_loc(x)</strong> determines the C address of the argument.</p>
+<p><strong>c_loc</strong>(3) determines the C address of the argument.</p>
 </div><div id="options-47" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -3807,7 +3806,7 @@ the value of btest (2, a)
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-49" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>co_broadcast(3)</strong> copies the value of argument <strong>a</strong> on the image with image index source_image to all images in the current team. <strong>a</strong> becomes defined as if by intrinsic assignment. If the execution was successful and <strong>stat</strong> is present, it is assigned the value zero. If the execution failed, <strong>stat</strong> gets assigned a nonzero value and, if present, <strong>errmsg</strong> gets assigned a value describing the occurred error.</p>
+<p><strong>co_broadcast</strong>(3) copies the value of argument <strong>a</strong> on the image with image index source_image to all images in the current team. <strong>a</strong> becomes defined as if by intrinsic assignment. If the execution was successful and <strong>stat</strong> is present, it is assigned the value zero. If the execution failed, <strong>stat</strong> gets assigned a nonzero value and, if present, <strong>errmsg</strong> gets assigned a value describing the occurred error.</p>
 </div><div id="options-49" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -3863,7 +3862,7 @@ the value of btest (2, a)
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-50" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns the lower bounds of a coarray, or a single lower cobound along the <strong>dim</strong> codimension.</p>
+<p><strong>co_lbound</strong>(3) returns the lower bounds of a coarray, or a single lower cobound along the <strong>dim</strong> codimension.</p>
 </div><div id="options-50" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -3905,7 +3904,7 @@ the value of btest (2, a)
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-51" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>co_max determines element-wise the maximal value of <strong>a</strong> on all images of the current team. If result_image is present, the maximum values are returned in <strong>a</strong> on the specified image only and the value of <strong>a</strong> on the other images become undefined. If result_image is not present, the value is returned on all images. If the execution was successful and <strong>stat</strong> is present, it is assigned the value zero. If the execution failed, <strong>stat</strong> gets assigned a nonzero value and, if present, <strong>errmsg</strong> gets assigned a value describing the occurred error.</p>
+<p><strong>co_max</strong>(3) determines element-wise the maximal value of <strong>a</strong> on all images of the current team. If result_image is present, the maximum values are returned in <strong>a</strong> on the specified image only and the value of <strong>a</strong> on the other images become undefined. If result_image is not present, the value is returned on all images. If the execution was successful and <strong>stat</strong> is present, it is assigned the value zero. If the execution failed, <strong>stat</strong> gets assigned a nonzero value and, if present, <strong>errmsg</strong> gets assigned a value describing the occurred error.</p>
 </div><div id="options-51" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -3963,7 +3962,7 @@ the value of btest (2, a)
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-52" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>co_min determines element-wise the minimal value of <strong>a</strong> on all images of the current team. If result_image is present, the minimal values are returned in <strong>a</strong> on the specified image only and the value of <strong>a</strong> on the other images become undefined. If result_image is not present, the value is returned on all images. If the execution was successful and <strong>stat</strong> is present, it is assigned the value zero. If the execution failed, <strong>stat</strong> gets assigned a nonzero value and, if present, <strong>errmsg</strong> gets assigned a value describing the occurred error.</p>
+<p><strong>co_min</strong>(3) determines element-wise the minimal value of <strong>a</strong> on all images of the current team. If result_image is present, the minimal values are returned in <strong>a</strong> on the specified image only and the value of <strong>a</strong> on the other images become undefined. If result_image is not present, the value is returned on all images. If the execution was successful and <strong>stat</strong> is present, it is assigned the value zero. If the execution failed, <strong>stat</strong> gets assigned a nonzero value and, if present, <strong>errmsg</strong> gets assigned a value describing the occurred error.</p>
 </div><div id="options-52" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -4019,7 +4018,7 @@ the value of btest (2, a)
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-53" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>command_argument_count()</strong> returns the number of arguments passed on the command line when the containing program was invoked.</p>
+<p><strong>command_argument_count</strong>(3) returns the number of arguments passed on the command line when the containing program was invoked.</p>
 </div><div id="options-53" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <p>None</p>
@@ -4069,7 +4068,7 @@ the value of btest (2, a)
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-54" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>compiler_options returns a string with the options used for compiling.</p>
+<p><strong>compiler_options</strong>(3) returns a string with the options used for compiling.</p>
 </div><div id="options-54" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <p>None.</p>
@@ -4167,7 +4166,7 @@ the value of btest (2, a)
 </ul>
 </div><div id="description-56" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>conjg(z)</strong> returns the complex conjugate of the complex value <strong>z</strong>.</p>
+<p><strong>conjg</strong>(3) returns the complex conjugate of the complex value <strong>z</strong>.</p>
 <p>In mathematics, the complex conjugate of a complex number is a value whose real and imaginary part are equal parts are equal in magnitude to each other but the <strong>y</strong> value has opposite sign.</p>
 <p>That is, If <strong>z</strong> is the complex value <strong>(x, y)</strong> then the result is <strong>(x, -y)</strong>.</p>
 <p>For matrices of complex numbers, <strong>conjg(array)</strong> represents the element-by-element conjugation of <strong>array</strong>; not the conjugate transpose of the <strong>array</strong> .</p>
@@ -4258,7 +4257,7 @@ the value of btest (2, a)
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-57" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>co_reduce determines element-wise the reduction of the value of <strong>a</strong> on all images of the current team. The pure function passed as <strong>operation</strong> is used to pairwise reduce the values of <strong>a</strong> by passing either the value of <strong>a</strong> of different images or the result values of such a reduction as argument. If <strong>a</strong> is an array, the reduction is done element wise. If result_image is present, the result values are returned in <strong>a</strong> on the specified image only and the value of <strong>a</strong> on the other images become undefined. If result_image is not present, the value is returned on all images. If the execution was successful and <strong>stat</strong> is present, it is assigned the value zero. If the execution failed, <strong>stat</strong> gets assigned a nonzero value and, if present, <strong>errmsg</strong> gets assigned a value describing the occurred error.</p>
+<p><strong>co_reduce</strong>(3) determines element-wise the reduction of the value of <strong>a</strong> on all images of the current team. The pure function passed as <strong>operation</strong> is used to pairwise reduce the values of <strong>a</strong> by passing either the value of <strong>a</strong> of different images or the result values of such a reduction as argument. If <strong>a</strong> is an array, the reduction is done element wise. If result_image is present, the result values are returned in <strong>a</strong> on the specified image only and the value of <strong>a</strong> on the other images become undefined. If result_image is not present, the value is returned on all images. If the execution was successful and <strong>stat</strong> is present, it is assigned the value zero. If the execution failed, <strong>stat</strong> gets assigned a nonzero value and, if present, <strong>errmsg</strong> gets assigned a value describing the occurred error.</p>
 </div><div id="options-57" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -4338,7 +4337,7 @@ the value of btest (2, a)
 </ul>
 </div><div id="description-58" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>cosh(x)</strong> computes the hyperbolic cosine of <strong>x</strong>.</p>
+<p><strong>cosh</strong>(3) computes the hyperbolic cosine of <strong>x</strong>.</p>
 </div><div id="options-58" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -4392,7 +4391,7 @@ the value of btest (2, a)
 </ul>
 </div><div id="description-59" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>cos(x)</strong> computes the cosine of an angle <strong>x</strong> given the size of the angle in radians.</p>
+<p><strong>cos</strong>(3) computes the cosine of an angle <strong>x</strong> given the size of the angle in radians.</p>
 <p>The cosine of a real value is the ratio of the adjacent side to the hypotenuse of a right-angled triangle.</p>
 </div><div id="options-59" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -4453,7 +4452,7 @@ the value of btest (2, a)
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-60" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>co_sum sums up the values of each element of <strong>a</strong> on all images of the current team.</p>
+<p><strong>co_sum</strong>(3) sums up the values of each element of <strong>a</strong> on all images of the current team.</p>
 <p>If result_image is present, the summed-up values are returned in <strong>a</strong> on the specified image only and the value of <strong>a</strong> on the other images become undefined.</p>
 <p>If result_image is not present, the value is returned on all images. If the execution was successful and <strong>stat</strong> is present, it is assigned the value zero. If the execution failed, <strong>stat</strong> gets assigned a nonzero value and, if present, <strong>errmsg</strong> gets assigned a value describing the occurred error.</p>
 </div><div id="options-60" class="slide section level3">
@@ -4514,7 +4513,7 @@ the value of btest (2, a)
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-61" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns the upper cobounds of a coarray, or a single upper cobound along the <strong>dim</strong> codimension.</p>
+<p><strong>co_ubound</strong>(3) returns the upper cobounds of a coarray, or a single upper cobound along the <strong>dim</strong> codimension.</p>
 </div><div id="options-61" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -4566,7 +4565,7 @@ the value of btest (2, a)
 </ul>
 </div><div id="description-62" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Counts the number of .true. elements in a logical <strong>mask</strong>, or, if the <strong>dim</strong> argument is supplied, counts the number of elements along each row of the array in the <strong>dim</strong> direction. If the array has zero size or all of the elements of <strong>mask</strong> are false, then the result is <strong>0</strong>.</p>
+<p><strong>count</strong>(3) counts the number of .true. elements in a logical <strong>mask</strong>, or, if the <strong>dim</strong> argument is supplied, counts the number of elements along each row of the array in the <strong>dim</strong> direction. If the array has zero size or all of the elements of <strong>mask</strong> are false, then the result is <strong>0</strong>.</p>
 </div><div id="options-62" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -4763,7 +4762,7 @@ the value of btest (2, a)
 </ul>
 </div><div id="description-63" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns a real value representing the elapsed CPU time in seconds. This is useful for testing segments of code to determine execution time.</p>
+<p><strong>cpu_time</strong>(3) returns a real value representing the elapsed CPU time in seconds. This is useful for testing segments of code to determine execution time.</p>
 <p>The exact definition of time is left imprecise because of the variability in what different processors are able to provide.</p>
 <p>If no time source is available, TIME is set to a negative value.</p>
 <p>Note that TIME may contain a system dependent, arbitrary offset and may not start with 0.0. For <strong>cpu_time</strong>(3) the absolute value is meaningless. Only differences between subsequent calls, as shown in the example below, should be used.</p>
@@ -4837,7 +4836,7 @@ the value of btest (2, a)
 <p>The kind of <strong>shift</strong> and <strong>dim</strong> may differ and be any supported value.</p>
 </div><div id="description-64" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>cshift(array, shift [, dim])</strong> performs a circular shift on elements of <strong>array</strong> along the dimension of <strong>dim</strong>. If <strong>dim</strong> is omitted it is taken to be <strong>1</strong>. <strong>dim</strong> is a scalar of type integer in the range of <strong>1 &lt;= dim &lt;= n</strong>, where “n” is the rank of <strong>array</strong>.</p>
+<p><strong>cshift</strong>(3) performs a circular shift on elements of <strong>array</strong> along the dimension of <strong>dim</strong>. If <strong>dim</strong> is omitted it is taken to be <strong>1</strong>. <strong>dim</strong> is a scalar of type integer in the range of <strong>1 &lt;= dim &lt;= n</strong>, where “n” is the rank of <strong>array</strong>.</p>
 <p>If the rank of <strong>array</strong> is one, then all elements of <strong>array</strong> are shifted by <strong>shift</strong> places. If rank is greater than one, then all complete rank one sections of <strong>array</strong> along the given dimension are shifted. Elements shifted out one end of each rank one section are shifted back in the other end.</p>
 </div><div id="options-63" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -4904,7 +4903,7 @@ the value of btest (2, a)
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-65" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>c_sizeof(x)</strong> calculates the number of bytes of storage the expression <strong>x</strong> occupies.</p>
+<p><strong>c_sizeof</strong>(3) calculates the number of bytes of storage the expression <strong>x</strong> occupies.</p>
 </div><div id="options-64" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -4953,7 +4952,7 @@ the value of btest (2, a)
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-66" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>date_and_time(date, time, zone, values)</strong> gets the corresponding date and time information from the real-time system clock.</p>
+<p><strong>date_and_time</strong>(3) gets the corresponding date and time information from the real-time system clock.</p>
 <p>Unavailable time and date character parameters return blanks.</p>
 </div><div id="options-65" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -5057,7 +5056,7 @@ the value of btest (2, a)
 <p>where TYPE may be integer, real, or complex and KIND any kind supported by the TYPE.</p>
 </div><div id="description-67" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>dble(a)</strong> Converts <strong>a</strong> to double precision real type.</p>
+<p><strong>dble</strong>(3) Converts <strong>a</strong> to double precision real type.</p>
 </div><div id="options-66" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -5105,7 +5104,7 @@ the value of btest (2, a)
 <p>The return value is of type integer of default kind.</p>
 </div><div id="description-68" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>digits(x)</strong> returns the number of significant digits of the internal model representation of <strong>x</strong>. For example, on a system using a 32-bit floating point representation, a default real number would likely return 24.</p>
+<p><strong>digits</strong>(3) returns the number of significant digits of the internal model representation of <strong>x</strong>. For example, on a system using a 32-bit floating point representation, a default real number would likely return 24.</p>
 </div><div id="options-67" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -5156,7 +5155,7 @@ the value of btest (2, a)
 <p>where TYPE may be real or integer and KIND is any supported kind for the type.</p>
 </div><div id="description-69" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>dim(x,y)</strong> returns the difference <strong>x - y</strong> if the result is positive; otherwise it returns zero. It is equivalent to <strong>max(0,x-y)</strong> where the arguments are all of the same type.</p>
+<p><strong>dim</strong>(3) returns the difference <strong>x - y</strong> if the result is positive; otherwise it returns zero. It is equivalent to <strong>max(0,x-y)</strong> where the arguments are all of the same type.</p>
 </div><div id="options-68" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -5224,7 +5223,7 @@ the value of btest (2, a)
 <p>The two vectors may be either numeric or logical and must be arrays of rank one and of equal size.</p>
 </div><div id="description-70" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>dot_product(vector_a, vector_b)</strong> computes the dot product multiplication of two vectors <strong>vector_a</strong> and <strong>vector_b</strong>.</p>
+<p><strong>dot_product</strong>(3) computes the dot product multiplication of two vectors <strong>vector_a</strong> and <strong>vector_b</strong>.</p>
 <p>If the vectors are integer or real, the result is</p>
 <div class="sourceCode" id="cb279"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb279-1" title="1">     <span class="fu">sum</span>(vector_a<span class="kw">*</span>vector_b)</a></code></pre></div>
 <p>If the vectors are complex, the result is</p>
@@ -5294,7 +5293,7 @@ the value of btest (2, a)
 <p>The setting of compiler options specifying the size of a default real can affect this function.</p>
 </div><div id="description-71" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>dprod(x,y)</strong> produces a doubleprecision product of default real values <strong>x</strong> and <strong>y</strong>.</p>
+<p><strong>dprod</strong>(3) produces a doubleprecision product of default real values <strong>x</strong> and <strong>y</strong>.</p>
 <p>That is, it is expected to convert the arguments to double precision before multiplying, which a simple expression <strong>x*y</strong> would not be required to do. This can be significant in specialized computations requiring high precision.</p>
 <p>The result has a value equal to a processor-dependent approximation to the product of <strong>x</strong> and <strong>y</strong>. Note it is recommended in the standard that the processor compute the product in double precision, rather than in single precision then converted to double precision; but is only a recommendation.</p>
 </div><div id="options-70" class="slide section level3">
@@ -5702,7 +5701,7 @@ the value of btest (2, a)
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-75" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>epsilon(x)</strong> returns the floating point relative accuracy. It is the nearly negligible number relative to <strong>1</strong> such that <strong>1+ little_number</strong> is not equal to <strong>1</strong>; or more precisely</p>
+<p><strong>epsilon</strong>(3) returns the floating point relative accuracy. It is the nearly negligible number relative to <strong>1</strong> such that <strong>1+ little_number</strong> is not equal to <strong>1</strong>; or more precisely</p>
 <div class="sourceCode" id="cb315"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb315-1" title="1"><span class="dt">   real( 1.0, kind(x))</span> <span class="kw">+</span> <span class="fu">epsilon</span>(x) <span class="op">/=</span>  <span class="bu">real</span>( <span class="fl">1.0</span>, <span class="fu">kind</span>(x))</a></code></pre></div>
 <p>It may be thought of as the distance from 1.0 to the next largest floating point number.</p>
 <p>One use of <strong>epsilon</strong>(3) is to select a delta value for algorithms that search until the calculation is within delta of an estimate.</p>
@@ -5801,7 +5800,7 @@ the value of btest (2, a)
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-76" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>erfc</strong>(x) computes the complementary error function of <strong>x</strong>. Simply put this is equivalent to <strong>1 - erf(x)</strong>, but <strong>erfc</strong> is provided because of the extreme loss of relative accuracy if <strong>erf(x)</strong> is called for large <strong>x</strong> and the result is subtracted from <strong>1</strong>.</p>
+<p><strong>erfc</strong>(3) computes the complementary error function of <strong>x</strong>. Simply put this is equivalent to <strong>1 - erf(x)</strong>, but <strong>erfc</strong> is provided because of the extreme loss of relative accuracy if <strong>erf(x)</strong> is called for large <strong>x</strong> and the result is subtracted from <strong>1</strong>.</p>
 <p><strong>erfc(x)</strong> is defined as</p>
 <!--
 $$
@@ -5864,7 +5863,7 @@ $$</span><br /></p>
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-77" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>erfc_scaled</strong>(x) computes the exponentially-scaled complementary error function of <strong>x</strong>:</p>
+<p><strong>erfc_scaled</strong>(3) computes the exponentially-scaled complementary error function of <strong>x</strong>:</p>
 <p><br /><span class="math display">$$
 e^{x^2} \frac{2}{\sqrt{\pi}} \int_{x}^{\infty}
 e^{-t^2} dt.
@@ -5916,7 +5915,7 @@ $$</span><br /></p>
 </ul>
 </div><div id="description-78" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>erf</strong>(x) computes the error function of <strong>x</strong>, defined as</p>
+<p><strong>erf</strong>(3) computes the error function of <strong>x</strong>, defined as</p>
 <p><br /><span class="math display">$$
 \text{erf}(x) = \frac{2}{\sqrt{\pi}} \int_0^x e^{__-t__^2} dt.
 $$</span><br /></p>
@@ -5968,7 +5967,7 @@ $$</span><br /></p>
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-79" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>event_query</strong> assigns the number of events to <strong>count</strong> which have been posted to the <strong>event</strong> variable and not yet been removed by calling <strong>event_wait</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value and <strong>count</strong> is assigned the value <strong>-1</strong>.</p>
+<p><strong>event_query</strong>(3) assigns the number of events to <strong>count</strong> which have been posted to the <strong>event</strong> variable and not yet been removed by calling <strong>event_wait</strong>. When <strong>stat</strong> is present and the invocation was successful, it is assigned the value <strong>0</strong>. If it is present and the invocation has failed, it is assigned a positive value and <strong>count</strong> is assigned the value <strong>-1</strong>.</p>
 </div><div id="options-78" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -6029,7 +6028,7 @@ $$</span><br /></p>
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-80" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>The <strong>command</strong> argument is passed to the shell and executed. (The shell is generally <strong>sh</strong>(1) on Unix systems, and cmd.exe on Windows.) If <strong>wait</strong> is present and has the value .false., the execution of the command is asynchronous if the system supports it; otherwise, the command is executed synchronously.</p>
+<p>For <strong>execute_command_line</strong>(3) the <strong>command</strong> argument is passed to the shell and executed. (The shell is generally <strong>sh</strong>(1) on Unix systems, and cmd.exe on Windows.) If <strong>wait</strong> is present and has the value .false., the execution of the command is asynchronous if the system supports it; otherwise, the command is executed synchronously.</p>
 <p>The three last arguments allow the user to get status information. After synchronous execution, <strong>exitstat</strong> contains the integer exit code of the command, as returned by <strong>system</strong>. <strong>cmdstat</strong> is set to zero if the command line was executed (whatever its exit status was). <strong>cmdmsg</strong> is assigned an error message if an error has occurred.</p>
 <p>Note that the system call need not be thread-safe. It is the responsibility of the user to ensure that the system is not called concurrently if required.</p>
 <p>When the command is executed synchronously, <strong>execute_command_line</strong> returns after the command line has completed execution. Otherwise, <strong>execute_command_line</strong> returns without waiting.</p>
@@ -6191,7 +6190,7 @@ $$</span><br /></p>
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-82" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>exponent</strong>(x) returns the value of the exponent part of <strong>x</strong>. If <strong>x</strong> is zero the value returned is zero.</p>
+<p><strong>exponent</strong>(3) returns the value of the exponent part of <strong>x</strong>. If <strong>x</strong> is zero the value returned is zero.</p>
 </div><div id="options-81" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -6241,7 +6240,7 @@ $$</span><br /></p>
 <p><strong>a</strong> an object of any extensible type; it may also be a pointer to an object extensible type.</p>
 <p><strong>mold</strong> an object of any extensible type; it may also be a pointer to an object extensible type.</p>
 <p><strong>description</strong></p>
-<p><strong>EXTENDS_TYPE_OF</strong>(3) is .true. if and only if the dynamic type of <strong>a</strong> is or could be (for unlimited polymorphic) an extension of the dynamic type of <strong>mold</strong>.</p>
+<p><strong>extends_type_of</strong>(3) is .true. if and only if the dynamic type of <strong>a</strong> is or could be (for unlimited polymorphic) an extension of the dynamic type of <strong>mold</strong>.</p>
 <p><strong>options</strong> - <strong>a</strong> : be an object of extensible declared type or unlimited polymorphic. If it is a polymorphic pointer, it shall not have an undefined association status.</p>
 <ul>
 <li><dl>
@@ -6387,7 +6386,7 @@ $$</span><br /></p>
 </ul>
 </div><div id="description-83" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Location of the first element of <strong>array</strong> identified by <strong>mask</strong> along dimension <strong>dim</strong> having a value equal to <strong>value</strong>.</p>
+<p><strong>findloc</strong>(3) returns the location of the first element of <strong>array</strong> identified by <strong>mask</strong> along dimension <strong>dim</strong> having a value equal to <strong>value</strong>.</p>
 <p>If both <strong>array</strong> and <strong>value</strong> are of type logical, the comparison is performed with the <strong>.eqv.</strong> operator; otherwise, the comparison is performed with the == operator. If the value of the comparison is .true., that element of <strong>array</strong> matches <strong>value</strong>.</p>
 <p>If only one element matches <strong>value</strong>, that element’s subscripts are returned. Otherwise, if more than one element matches <strong>value</strong> and <strong>back</strong> is absent or present with the value .false., the element whose subscripts are returned is the first such element, taken in array element order. If <strong>back</strong> is present with the value .true., the element whose subscripts are returned is the last such element, taken in array element order.</p>
 </div><div id="options-82" class="slide section level3">
@@ -6501,7 +6500,7 @@ $$</span><br /></p>
 <p>where KIND is any valid value for type integer.</p>
 </div><div id="description-84" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>floor(a)</strong> returns the greatest integer less than or equal to <strong>a</strong>. That is, it picks the whole number at or to the left of the value on the scale <strong>-huge(int(a,kind=KIND))-1</strong> to <strong>huge(int(a),kind=KIND)</strong>.</p>
+<p><strong>floor</strong>(3) returns the greatest integer less than or equal to <strong>a</strong>. That is, it picks the whole number at or to the left of the value on the scale <strong>-huge(int(a,kind=KIND))-1</strong> to <strong>huge(int(a),kind=KIND)</strong>.</p>
 </div><div id="options-83" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -6572,7 +6571,7 @@ $$</span><br /></p>
 <p>The result has the same characteristics as the argument.</p>
 </div><div id="description-85" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>fraction(x)</strong> returns the fractional part of the model representation of <strong>x</strong>.</p>
+<p><strong>fraction</strong>(3) returns the fractional part of the model representation of <strong>x</strong>.</p>
 </div><div id="options-84" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -6619,7 +6618,7 @@ $$</span><br /></p>
 </div><div id="characteristics-87" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
 <ul>
-<li>The return value is real with the kind as <strong>x</strong>.</li>
+<li><strong>gamma</strong>(3) returns a real value with the kind as <strong>x</strong>.</li>
 </ul>
 </div><div id="description-86" class="slide section level3">
 <h1><strong>Description</strong></h1>
@@ -6754,7 +6753,7 @@ $$</span><br /></p>
 </ul>
 </div><div id="description-87" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Retrieve or query the n-th argument that was passed on the command line to the current program execution.</p>
+<p><strong>get_command_argument</strong>(3) retrieves or queries the n-th argument that was passed on the command line to the current program execution.</p>
 <p>There is not anything specifically stated about what an argument is but in practice the arguments are strings split on whitespace unless the arguments are quoted. IFS values (Internal Field Separators) used by common shells are typically ignored and unquoted whitespace is almost always the separator.</p>
 <p>Shells have often expanded command arguments and spell characters before passing them to the program, so the strings read are often not exactly what the user typed on the command line.</p>
 </div><div id="options-86" class="slide section level3">
@@ -6866,7 +6865,7 @@ $$</span><br /></p>
 </ul>
 </div><div id="description-88" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Retrieve the entire command line that was used to invoke the program.</p>
+<p><strong>get_command</strong>(3) retrieves the entire command line that was used to invoke the program.</p>
 <p>Note that what is typed on the command line is often processed by a shell. The shell typically processes special characters and white space before passing it to the program. The processing can typically be turned off by turning off globbing or quoting the command line arguments and/or changing the default field separators, but this should rarely be necessary.</p>
 </div><div id="result-69" class="slide section level3">
 <h1><strong>Result</strong></h1>
@@ -6956,7 +6955,7 @@ $$</span><br /></p>
 </ul>
 </div><div id="description-89" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Get the <strong>value</strong> of the environment variable <strong>name</strong>.</p>
+<p><strong>get_environment_variable</strong>(3) gets the <strong>value</strong> of the environment variable <strong>name</strong>.</p>
 <p>Note that <strong>get_environment_variable</strong>(3) need not be thread-safe. It is the responsibility of the user to ensure that the environment is not being updated concurrently.</p>
 <p>If running in parallel be aware It is processor dependent whether an environment variable that exists on an image also exists on another image, and if it does exist on both images whether the values are the same or different.</p>
 </div><div id="options-87" class="slide section level3">
@@ -7067,7 +7066,7 @@ $$</span><br /></p>
 <p>The result will be of the same type and kind as the input to ensure the returned value does not overflow. Any assignment of the result should take this into consideration.</p>
 </div><div id="description-90" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>huge(x)</strong> returns the largest number that is not an infinity for the kind and type of <strong>x</strong>.</p>
+<p><strong>huge</strong>(3) returns the largest number that is not an infinity for the kind and type of <strong>x</strong>.</p>
 </div><div id="options-88" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -7150,7 +7149,7 @@ $$</span><br /></p>
 </ul>
 </div><div id="description-91" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>hypot(x,y)</strong> is referred to as the Euclidean distance function. It is equal to</p>
+<p><strong>hypot</strong>(3) is referred to as the Euclidean distance function. It is equal to</p>
 <div class="sourceCode" id="cb400"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb400-1" title="1"><span class="bu">sqrt</span>(x<span class="kw">**</span><span class="dv">2</span><span class="kw">+</span>y<span class="kw">**</span><span class="dv">2</span>)</a></code></pre></div>
 <p>without undue underflow or overflow.</p>
 <p>In mathematics, the Euclidean distance between two points in Euclidean space is the length of a line segment between two points.</p>
@@ -7245,7 +7244,7 @@ $$</span><br /></p>
 </ul>
 </div><div id="description-92" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>iachar</strong>(c) returns the code for the ASCII character in the first character position of C.</p>
+<p><strong>iachar</strong>(3) returns the code for the ASCII character in the first character position of C.</p>
 </div><div id="options-90" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -7346,7 +7345,7 @@ $$</span><br /></p>
 </ul>
 </div><div id="description-93" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Reduces with a bitwise and the elements of <strong>array</strong> along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
+<p><strong>iall</strong>(3) reduces with a bitwise and the elements of <strong>array</strong> along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
 </div><div id="options-91" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -7412,7 +7411,7 @@ $$</span><br /></p>
 </ul>
 </div><div id="description-94" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Bitwise logical <strong>and</strong>.</p>
+<p><strong>iand</strong>(3) returns the bitwise logical <strong>and</strong> of two values.</p>
 </div><div id="options-92" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -7488,7 +7487,7 @@ $$</span><br /></p>
 </ul>
 </div><div id="description-95" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Reduces with bitwise <strong>OR</strong> (inclusive <strong>OR</strong>) the elements of <strong>array</strong> along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
+<p><strong>iany</strong>(3) reduces with bitwise a <strong>OR</strong> (inclusive <strong>OR</strong>) the elements of <strong>array</strong> along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
 </div><div id="options-93" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -7574,7 +7573,7 @@ $$</span><br /></p>
 </ul>
 </div><div id="description-96" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>ibclr</strong> returns the value of <strong>i</strong> with the bit at position <strong>pos</strong> set to zero.</p>
+<p><strong>ibclr</strong>(3) returns the value of <strong>i</strong> with the bit at position <strong>pos</strong> set to zero.</p>
 </div><div id="options-94" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -7620,7 +7619,7 @@ $$</span><br /></p>
 <div class="sourceCode" id="cb428"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
 </div><div id="description-97" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>ibits</strong> extracts a field of length <strong>len</strong> from <strong>i</strong>, starting from bit position <strong>pos</strong> and extending left for <strong>len</strong> bits. The result is right-justified and the remaining bits are zeroed. The value of pos+len must be less than or equal to the value <strong>bit_size(i)</strong>.</p>
+<p><strong>ibits</strong>(3) extracts a field of length <strong>len</strong> from <strong>i</strong>, starting from bit position <strong>pos</strong> and extending left for <strong>len</strong> bits. The result is right-justified and the remaining bits are zeroed. The value of pos+len must be less than or equal to the value <strong>bit_size(i)</strong>.</p>
 </div><div id="options-95" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -7669,7 +7668,7 @@ $$</span><br /></p>
 </ul>
 </div><div id="description-98" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>ibset</strong> returns the value of <strong>i</strong> with the bit at position <strong>pos</strong> set to one.</p>
+<p><strong>ibset</strong>(3) returns the value of <strong>i</strong> with the bit at position <strong>pos</strong> set to one.</p>
 </div><div id="options-96" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -7714,7 +7713,7 @@ $$</span><br /></p>
 </ul>
 </div><div id="description-99" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>ichar(c)</strong> returns the code for the character in the system’s native character set. The correspondence between characters and their codes is not necessarily the same across different Fortran implementations. For example, a platform using EBCDIC would return different values than an ASCII platform.</p>
+<p><strong>ichar</strong>(3) returns the code for the character in the system’s native character set. The correspondence between characters and their codes is not necessarily the same across different Fortran implementations. For example, a platform using EBCDIC would return different values than an ASCII platform.</p>
 <p>See <strong>iachar</strong>(3) for specifically working with the ASCII character set.</p>
 </div><div id="options-97" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -7780,7 +7779,7 @@ $$</span><br /></p>
 </ul>
 </div><div id="description-100" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>ieor</strong> returns the bitwise Boolean exclusive-<strong>or</strong> of <strong>i</strong> and <strong>j</strong>.</p>
+<p><strong>ieor</strong>(3) returns the bitwise Boolean exclusive-<strong>or</strong> of <strong>i</strong> and <strong>j</strong>.</p>
 </div><div id="options-98" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -7817,7 +7816,7 @@ $$</span><br /></p>
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-101" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns the image index belonging to a cosubscript.</p>
+<p><strong>image_index</strong>(3) returns the image index belonging to a cosubscript.</p>
 </div><div id="options-99" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -7868,7 +7867,7 @@ $$</span><br /></p>
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-102" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns the position of the start of the leftmost or rightmost occurrence of string <strong>substring</strong> in <strong>string</strong>, counting from one. If <strong>substring</strong> is not present in <strong>string</strong>, zero is returned.</p>
+<p><strong>index</strong>(3) returns the position of the start of the leftmost or rightmost occurrence of string <strong>substring</strong> in <strong>string</strong>, counting from one. If <strong>substring</strong> is not present in <strong>string</strong>, zero is returned.</p>
 </div><div id="options-100" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -7945,7 +7944,7 @@ $$</span><br /></p>
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-103" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Convert to integer type by truncating towards zero.</p>
+<p><strong>int</strong>(3) converts a value to integer type by truncating towards zero.</p>
 </div><div id="options-101" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -8054,7 +8053,7 @@ If not present the returned type is that of default integer type.</li>
 </ul>
 </div><div id="description-104" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>ior</strong> returns the bit-wise Boolean inclusive-or of <strong>i</strong> and <strong>j</strong>.</p>
+<p><strong>ior</strong>(3) returns the bit-wise Boolean inclusive-or of <strong>i</strong> and <strong>j</strong>.</p>
 </div><div id="options-102" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -8122,7 +8121,7 @@ If not present the returned type is that of default integer type.</li>
 <a class="sourceLine" id="cb456-5" title="5">      <span class="dt">logical(kind=KIND)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
 </div><div id="description-105" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Reduces with bitwise xor (exclusive or) the elements of <strong>array</strong> along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
+<p><strong>iparity</strong>(3) reduces with bitwise xor (exclusive or) the elements of <strong>array</strong> along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
 </div><div id="options-103" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -8184,7 +8183,7 @@ If not present the returned type is that of default integer type.</li>
 </ul>
 </div><div id="description-106" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>True if and only if an object is contiguous.</p>
+<p><strong>is_contigious</strong>(3) returns .true. if and only if an object is contiguous.</p>
 <p>An object is contiguous if it is</p>
 <ul>
 <li><p><strong>(1)</strong> an object with the CONTIGUOUS attribute,</p></li>
@@ -8410,7 +8409,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-109" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>is_iostat_end(3) tests whether a variable (assumed returned as a status from an I/O statement) has the “end of file” I/O status value.</p>
+<p><strong>is_iostat_end</strong>(3) tests whether a variable (assumed returned as a status from an I/O statement) has the “end of file” I/O status value.</p>
 <p>The function is equivalent to comparing the variable with the <strong>iostat_end</strong> parameter of the intrinsic module <strong>iso_fortran_env</strong>.</p>
 </div><div id="options-107" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -8466,7 +8465,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-110" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>is_iostat_eor</strong> tests whether a variable has the value of the I/O status “end of record”. The function is equivalent to comparing the variable with the <strong>iostat_eor</strong> parameter of the intrinsic module <strong>iso_fortran_env</strong>.</p>
+<p><strong>is_iostat_eor</strong>(3) tests whether a variable has the value of the I/O status “end of record”. The function is equivalent to comparing the variable with the <strong>iostat_eor</strong> parameter of the intrinsic module <strong>iso_fortran_env</strong>.</p>
 </div><div id="options-108" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -8525,7 +8524,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <p><strong>x</strong> may be of any kind supported by the type, and may be scalar or an array.</p>
 </div><div id="description-111" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>kind(x)</strong> returns the kind value of the entity <strong>x</strong>.</p>
+<p><strong>kind(x)</strong>(3) returns the kind value of the entity <strong>x</strong>.</p>
 </div><div id="options-109" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -8576,15 +8575,14 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 </div><div id="characteristics-112" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
 <ul>
-<li><strong>array</strong> Shall be an array, of any type.</li>
-<li><strong>dim</strong> : (Optional) Shall be a scalar integer.</li>
-<li><strong>kind</strong> An integer initialization expression indicating the kind parameter of the result.</li>
-<li><p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</p>
-<p>If <strong>dim</strong> is absent, the result is an array of the upper bounds of <strong>array</strong>.</p></li>
+<li><strong>array</strong> shall be an array, of any type.</li>
+<li><strong>dim</strong> shall be a scalar integer.</li>
+<li><strong>kind</strong> an integer initialization expression indicating the kind parameter of the result.</li>
+<li>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</li>
 </ul>
 </div><div id="description-112" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns the lower bounds of an array, or a single lower bound along the <strong>dim</strong> dimension.</p>
+<p><strong>result</strong>(3) returns the lower bounds of an array, or a single lower bound along the <strong>dim</strong> dimension.</p>
 </div><div id="options-110" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -8595,7 +8593,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 </dl></li>
 <li><dl>
 <dt><strong>dim</strong></dt>
-<dd>Shall be a scalar integer.
+<dd>Shall be a scalar integer. If <strong>dim</strong> is absent, the result is an array of the upper bounds of <strong>array</strong>.
 </dd>
 </dl></li>
 <li><dl>
@@ -8706,7 +8704,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-113" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>leadz</strong> returns the number of leading zero bits of an integer.</p>
+<p><strong>leadz</strong>(3) returns the number of leading zero bits of an integer.</p>
 </div><div id="options-111" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -8775,7 +8773,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <p>where the returned value is the same integer kind as the <strong>kind</strong> argument, or of the default integer kind if <strong>kind</strong> is not specified.</p>
 </div><div id="description-114" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>len(3)</strong> Returns the length of a character string.</p>
+<p><strong>len</strong>(3) returns the length of a character string.</p>
 <p>If <strong>string</strong> is an array, the length of an element of <strong>string</strong> is returned, as all elements of an array are the same length.</p>
 <p>Note that <strong>string</strong> need not be defined when this intrinsic is invoked, as only the length (not the content) of <strong>string</strong> is needed.</p>
 </div><div id="options-112" class="slide section level3">
@@ -8896,7 +8894,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</p>
 </div><div id="description-115" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns the length of a character string, ignoring any trailing blanks.</p>
+<p><strong>len_trim</strong>(3) returns the length of a character string, ignoring any trailing blanks.</p>
 </div><div id="options-113" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -8981,7 +8979,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-116" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Determines whether one string is lexically greater than or equal to another string, where the two strings are interpreted as containing ASCII character codes. If the String <strong>a</strong> and String <strong>b</strong> are not the same length, the shorter is compared as if spaces were appended to it to form a value that has the same length as the longer.</p>
+<p><strong>lge</strong>(3) determines whether one string is lexically greater than or equal to another string, where the two strings are interpreted as containing ASCII character codes. If the String <strong>a</strong> and String <strong>b</strong> are not the same length, the shorter is compared as if spaces were appended to it to form a value that has the same length as the longer.</p>
 <p>The lexical comparison intrinsics <strong>lge</strong>(3), <strong>lgt</strong>(3), <strong>lle</strong>(3), and <strong>llt</strong>(3) differ from the corresponding intrinsic operators .ge., .gt., .le., and .lt., in that the latter use the processor’s character ordering (which is not ASCII on some targets), whereas the former always use the ASCII ordering.</p>
 </div><div id="options-114" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -9059,7 +9057,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-117" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Determines whether one string is lexically greater than another string, where the two strings are interpreted as containing ASCII character codes. If the String <strong>a</strong> and String <strong>b</strong> are not the same length, the shorter is compared as if spaces were appended to it to form a value that has the same length as the longer.</p>
+<p><strong>lgt</strong>(3) determines whether one string is lexically greater than another string, where the two strings are interpreted as containing ASCII character codes. If the String <strong>a</strong> and String <strong>b</strong> are not the same length, the shorter is compared as if spaces were appended to it to form a value that has the same length as the longer.</p>
 <p>In general, the lexical comparison intrinsics <strong>lge</strong>, <strong>lgt</strong>, <strong>lle</strong>, and <strong>llt</strong> differ from the corresponding intrinsic operators .ge., .gt., .le., and .lt., in that the latter use the processor’s character ordering (which is not ASCII on some targets), whereas the former always use the ASCII ordering.</p>
 </div><div id="options-115" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -9137,7 +9135,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-118" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Determines whether one string is lexically less than or equal to another string, where the two strings are interpreted as containing ASCII character codes. if the <strong>string_a</strong> and <strong>string_b</strong> are not the same length, the shorter is compared as if spaces were appended to it to form a value that has the same length as the longer. Leading spaces are significant.</p>
+<p><strong>lle</strong>(3) determines whether one string is lexically less than or equal to another string, where the two strings are interpreted as containing ASCII character codes. if the <strong>string_a</strong> and <strong>string_b</strong> are not the same length, the shorter is compared as if spaces were appended to it to form a value that has the same length as the longer. Leading spaces are significant.</p>
 <p>In general, the lexical comparison intrinsics <strong>lge</strong>, <strong>lgt</strong>, <strong>lle</strong>, and <strong>llt</strong> differ from the corresponding intrinsic operators .ge., .gt., .le., and .lt., in that the latter use the processor’s character ordering (which is not ASCII on some targets), whereas the former always use the ASCII ordering.</p>
 </div><div id="options-116" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -9218,7 +9216,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-119" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Determines whether one string is lexically less than another string, where the two strings are interpreted as containing ASCII character codes. If the <strong>string_a</strong> and <strong>string_b</strong> are not the same length, the shorter is compared as if spaces were appended to it to form a value that has the same length as the longer.</p>
+<p><strong>llt</strong>(3) determines whether one string is lexically less than another string, where the two strings are interpreted as containing ASCII character codes. If the <strong>string_a</strong> and <strong>string_b</strong> are not the same length, the shorter is compared as if spaces were appended to it to form a value that has the same length as the longer.</p>
 <p>In general, the lexical comparison intrinsics <strong>lge</strong>, <strong>lgt</strong>, <strong>lle</strong>, and <strong>llt</strong> differ from the corresponding intrinsic operators .ge., .gt., .le., and .lt., in that the latter use the processor’s character ordering (which is not ASCII on some targets), whereas the former always use the ASCII ordering.</p>
 </div><div id="options-117" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -9296,7 +9294,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 </ul>
 </div><div id="description-120" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>log10(x)</strong> computes the base 10 logarithm of <strong>x</strong>. This is generally called the “common logarithm”.</p>
+<p><strong>log10</strong>(3) computes the base 10 logarithm of <strong>x</strong>. This is generally called the “common logarithm”.</p>
 </div><div id="options-118" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -9355,7 +9353,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 </ul>
 </div><div id="description-121" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>log_gamma(x)</strong> computes the natural logarithm of the absolute value of the Gamma function.</p>
+<p><strong>log_gamma</strong>(3) computes the natural logarithm of the absolute value of the Gamma function.</p>
 </div><div id="options-119" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -9405,7 +9403,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 </ul>
 </div><div id="description-122" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Converts one kind of logical variable to another.</p>
+<p><strong>logical</strong>(3) converts one kind of logical variable to another.</p>
 </div><div id="options-120" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -9469,7 +9467,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 </ul>
 </div><div id="description-123" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>log(x)</strong> computes the natural logarithm of <strong>x</strong>, i.e. the logarithm to the base “e”.</p>
+<p><strong>log</strong>(3) computes the natural logarithm of <strong>x</strong>, i.e. the logarithm to the base “e”.</p>
 </div><div id="options-121" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -9597,7 +9595,7 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 </ul>
 </div><div id="description-125" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>The result is an integer with its rightmost <strong>i</strong> bits set to 1, and the remaining bits set to 0.</p>
+<p><strong>maskr</strong>(3) the result is an integer with its rightmost <strong>i</strong> bits set to 1, and the remaining bits set to 0.</p>
 </div><div id="options-123" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -9871,7 +9869,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <p>where KIND is any real kind.</p>
 </div><div id="description-127" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>maxexponent(x)</strong> returns the maximum exponent in the model of the type of <strong>x</strong>.</p>
+<p><strong>maxexponent</strong>(3) returns the maximum exponent in the model of the type of <strong>x</strong>.</p>
 </div><div id="options-125" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -9932,7 +9930,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </ul>
 </div><div id="description-128" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Determines the location of the element in the array with the maximum value, or, if the <strong>dim</strong> argument is supplied, determines the locations of the maximum element along each row of the array in the <strong>dim</strong> direction.</p>
+<p><strong>maxloc</strong>(3) determines the location of the element in the array with the maximum value, or, if the <strong>dim</strong> argument is supplied, determines the locations of the maximum element along each row of the array in the <strong>dim</strong> direction.</p>
 <p>If <strong>mask</strong> is present, only the elements for which <strong>mask</strong> is .true. are considered. If more than one element in the array has the maximum value, the location returned is that of the first such element in array element order.</p>
 <p>If the array has zero size, or all of the elements of <strong>mask</strong> are .false., then the result is an array of zeroes. Similarly, if <strong>dim</strong> is supplied and all of the elements of <strong>mask</strong> along a given row are zero, the result value for that row is zero.</p>
 </div><div id="options-126" class="slide section level3">
@@ -10026,7 +10024,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </ul>
 </div><div id="description-129" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns the argument with the largest (most positive) value.</p>
+<p><strong>max</strong>(3) returns the argument with the largest (most positive) value.</p>
 </div><div id="options-127" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -10128,7 +10126,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </ul>
 </div><div id="description-130" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Determines the maximum value of the elements in an array value, or, if the <strong>dim</strong> argument is supplied, determines the maximum value along each row of the array in the <strong>dim</strong> direction. If <strong>mask</strong> is present, only the elements for which <strong>mask</strong> is .true. are considered. If the array has zero size, or all of the elements of <strong>mask</strong> are .false., then the result is the most negative number of the type and kind of <strong>array</strong> if <strong>array</strong> is numeric, or a string of nulls if <strong>array</strong> is of character type.</p>
+<p><strong>maxval</strong>(3) determines the maximum value of the elements in an array value, or, if the <strong>dim</strong> argument is supplied, determines the maximum value along each row of the array in the <strong>dim</strong> direction. If <strong>mask</strong> is present, only the elements for which <strong>mask</strong> is .true. are considered. If the array has zero size, or all of the elements of <strong>mask</strong> are .false., then the result is the most negative number of the type and kind of <strong>array</strong> if <strong>array</strong> is numeric, or a string of nulls if <strong>array</strong> is of character type.</p>
 </div><div id="options-128" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -10195,7 +10193,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <p>where the result and all input values have the same integer type and KIND with the exception that the mask and either <strong>i</strong> or <strong>j</strong> may be a BOZ constant.</p>
 </div><div id="description-131" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>A common graphics operation in Ternary Raster Operations is to combine bits from two different sources, generally referred to as bit-blending. <strong>merge_bits</strong> performs a masked bit-blend of <strong>i</strong> and <strong>j</strong> using the bits of the <strong>mask</strong> value to determine which of the input values to copy bits from.</p>
+<p>A common graphics operation in Ternary Raster Operations is to combine bits from two different sources, generally referred to as bit-blending. <strong>merge_bits</strong>(3) performs a masked bit-blend of <strong>i</strong> and <strong>j</strong> using the bits of the <strong>mask</strong> value to determine which of the input values to copy bits from.</p>
 <p>Specifically, The k-th bit of the result is equal to the k-th bit of <strong>i</strong> if the k-th bit of <strong>mask</strong> is <strong>1</strong>; it is equal to the k-th bit of <strong>j</strong> otherwise (so all three input values must have the same number of bits).</p>
 <p>The resulting value is the same as would result from</p>
 <div class="sourceCode" id="cb569"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb569-1" title="1">    <span class="bu">ior</span> (<span class="bu">iand</span> (i, mask),<span class="bu">iand</span> (j, <span class="bu">not</span> (mask)))</a></code></pre></div>
@@ -10440,7 +10438,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <p>where KIND is any real kind.</p>
 </div><div id="description-133" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>minexponent(x)</strong> returns the minimum exponent in the model of the type of <strong>x</strong>.</p>
+<p><strong>minexponent</strong>(3) returns the minimum exponent in the model of the type of <strong>x</strong>.</p>
 </div><div id="options-131" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -10501,7 +10499,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </ul>
 </div><div id="description-134" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Determines the location of the element in the array with the minimum value, or, if the <strong>dim</strong> argument is supplied, determines the locations of the minimum element along each row of the array in the <strong>dim</strong> direction. If <strong>mask</strong> is present, only the elements for which <strong>mask</strong> is .true. are considered. If more than one element in the array has the minimum value, the location returned is that of the first such element in array element order. If the array has zero size, or all of the elements of <strong>mask</strong> are .false., then the result is an array of zeroes. Similarly, if <strong>dim</strong> is supplied and all of the elements of <strong>mask</strong> along a given row are zero, the result value for that row is zero.</p>
+<p><strong>minloc</strong>(3) determines the location of the element in the array with the minimum value, or, if the <strong>dim</strong> argument is supplied, determines the locations of the minimum element along each row of the array in the <strong>dim</strong> direction. If <strong>mask</strong> is present, only the elements for which <strong>mask</strong> is .true. are considered. If more than one element in the array has the minimum value, the location returned is that of the first such element in array element order. If the array has zero size, or all of the elements of <strong>mask</strong> are .false., then the result is an array of zeroes. Similarly, if <strong>dim</strong> is supplied and all of the elements of <strong>mask</strong> along a given row are zero, the result value for that row is zero.</p>
 </div><div id="options-132" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -10575,7 +10573,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <p>Where <strong>TYPE</strong> may be integer or real</p>
 </div><div id="description-135" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns the argument with the smallest (most negative) value.</p>
+<p><strong>min</strong>(3) returns the argument with the smallest (most negative) value.</p>
 </div><div id="options-133" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -10635,7 +10633,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </ul>
 </div><div id="description-136" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Determines the minimum value of the elements in an array value, or, if the <strong>dim</strong> argument is supplied, determines the minimum value along each row of the array in the <strong>dim</strong> direction.</p>
+<p><strong>minval</strong>(3) determines the minimum value of the elements in an array value, or, if the <strong>dim</strong> argument is supplied, determines the minimum value along each row of the array in the <strong>dim</strong> direction.</p>
 <p>If <strong>mask</strong> is present, only the elements for which <strong>mask</strong> is .true. are considered.</p>
 <p>If the array has zero size, or all of the elements of <strong>mask</strong> are .false., then the result is <strong>huge(array)</strong> if <strong>array</strong> is numeric, or a string of <strong>char(len=255)</strong> characters if <strong>array</strong> is of character type.</p>
 </div><div id="options-134" class="slide section level3">
@@ -10770,7 +10768,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <p>The result and arguments are all of the same type and kind. The type may be any kind of real or integer.</p>
 </div><div id="description-137" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>mod</strong>(a,p) computes the remainder of the division of <strong>a</strong> by <strong>p</strong>.</p>
+<p><strong>mod</strong>(3) computes the remainder of the division of <strong>a</strong> by <strong>p</strong>.</p>
 </div><div id="options-135" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -10844,7 +10842,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <p>The result and arguments are all of the same type and kind. The type may be any kind of real or integer.</p>
 </div><div id="description-138" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>modulo(a,p)</strong> computes the <strong>a</strong> modulo <strong>p</strong>.</p>
+<p><strong>modulo</strong>(3) computes the <strong>a</strong> modulo <strong>p</strong>.</p>
 </div><div id="options-136" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -10901,30 +10899,48 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <p><strong>move_alloc</strong>(3) - [] Move allocation from one object to another</p>
 </div><div id="synopsis-140" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
-<div class="sourceCode" id="cb607"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb607-1" title="1">    <span class="kw">call</span> move_alloc(src, dest)</a></code></pre></div>
-<div class="sourceCode" id="cb608"><pre class="sourceCode fortran"><code class="sourceCode fortran"></code></pre></div>
+<div class="sourceCode" id="cb607"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb607-1" title="1">    <span class="kw">call</span> move_alloc(from, <span class="kw">to</span> <span class="kw">[</span>,stat<span class="kw">]</span> <span class="kw">[</span>,errmsg<span class="kw">]</span> )</a></code></pre></div>
+<div class="sourceCode" id="cb608"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb608-1" title="1">     <span class="kw">subroutine</span> move_alloc(from, <span class="kw">to</span>)</a>
+<a class="sourceLine" id="cb608-2" title="2"></a>
+<a class="sourceLine" id="cb608-3" title="3">      <span class="dt">type(TYPE(kind=**))</span>,<span class="dt">intent(inout)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> from(..)</a>
+<a class="sourceLine" id="cb608-4" title="4">      <span class="dt">type(TYPE(kind=**))</span>,<span class="dt">intent(out)</span>,<span class="dt">allocatable</span>   <span class="dt">::</span> <span class="kw">to</span>(..)</a>
+<a class="sourceLine" id="cb608-5" title="5">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(out)</span>     <span class="dt">::</span> stat</a>
+<a class="sourceLine" id="cb608-6" title="6">      <span class="dt">character(len=*)</span>,<span class="dt">intent(inout)</span>   <span class="dt">::</span> errmsg</a></code></pre></div>
 </div><div id="characteristics-141" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
+<ul>
+<li><strong>from</strong> may be of any type and kind.</li>
+<li><strong>to</strong> shall be of the same type, kind and rank as <strong>from</strong>.</li>
+</ul>
 </div><div id="description-139" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>move_alloc(src, dest)</strong> moves the allocation from <strong>src</strong> to <strong>dest</strong>. <strong>src</strong> will become deallocated in the process.</p>
+<p><strong>move_alloc</strong>(3) moves the allocation from <strong>from</strong> to <strong>to</strong>. <strong>from</strong> will become deallocated in the process.</p>
+<p>This is potentially more efficient than other methods of assigning the values in <strong>from</strong> to <strong>to</strong> and explicitly deallocating <strong>from</strong>, which are for more likely to require a temporary object or a copy of the elements of the array.</p>
 </div><div id="options-137" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
 <li><dl>
-<dt><strong>src</strong></dt>
-<dd>allocatable, <strong>intent(inout)</strong>, may be of any type and kind.
+<dt><strong>from</strong></dt>
+<dd>The data object to be moved to <strong>to</strong> and deallocated.
 </dd>
 </dl></li>
 <li><dl>
-<dt><strong>dest</strong></dt>
-<dd>allocatable, <strong>intent(out)</strong>, shall be of the same type, kind and rank as <strong>src</strong>.
+<dt><strong>to</strong></dt>
+<dd>The destination data object to move the allocated data object <strong>from</strong> to. Typically, it is a different shape than <strong>from</strong>.
 </dd>
 </dl></li>
+<li><dl>
+<dt><strong>stat</strong></dt>
+<dd>If STAT is present and execution is successful, it is assigned the value zero.
+</dd>
+<dd>If an error condition occurs, o if STAT is absent, error termination is initiated; o otherwise, if FROM is a coarray and the current team contains a stopped image, STAT is assigned the value STAT_STOPPED_IMAGE from the intrinsic module ISO_FORTRAN_ENV; o otherwise, if FROM is a coarray and the current team contains a failed image, and no other error condition occurs, STAT is assigned the value STAT_FAILED_IMAGE from the intrinsic module ISO_FORTRAN_ENV; o otherwise, STAT is assigned a processor-dependent positive value that diﬀers from that of STAT_STOPPED_IMAGE or STAT_FAILED_IMAGE.
+</dd>
+</dl></li>
+<li><strong>errmsg</strong></li>
 </ul>
 </div><div id="examples-133" class="slide section level3">
 <h1><strong>Examples</strong></h1>
-<p>Basic Sample program to allocate a bigger grid</p>
+<p>Basic sample program to allocate a bigger grid</p>
 <div class="sourceCode" id="cb609"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb609-1" title="1"><span class="kw">program</span> demo_move_alloc</a>
 <a class="sourceLine" id="cb609-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
 <a class="sourceLine" id="cb609-3" title="3"><span class="co">! Example to allocate a bigger GRID</span></a>
@@ -10961,7 +10977,51 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </div><div id="see-also-139" class="slide section level3">
 <h1><strong>See Also</strong></h1>
 <p><a href="#allocated"><strong>allocated</strong>(3)</a></p>
-<p>fortran-lang intrinsic descriptions</p>
+<p>fortran-lang intrinsic descriptions <!--
+    35  2 Class. Subroutine, pure if and only if FROM is not a coarray.
+    1   3 Arguments.
+    2     FROM      may be of any type, rank, and corank. It shall be allocatable and shall not be a coindexed object.
+    3               It is an INTENT (INOUT) argument.
+    4     TO        shall be type compatible (7.3.2.3) with FROM and have the same rank and corank. It shall be
+    5               allocatable and shall not be a coindexed object. It shall be polymorphic if FROM is polymorphic.
+    6               It is an INTENT (OUT) argument. Each nondeferred parameter of the declared type of TO shall
+    7               have the same value as the corresponding parameter of the declared type of FROM.
+    8     STAT (optional) shall be a noncoindexed integer scalar with a decimal exponent range of at least four. It is an
+    9               INTENT (OUT) argument.
+    10    ERRMSG(optional) shall be a noncoindexed default character scalar. It is an INTENT (INOUT) argument.
+
+    11  4 If execution of MOVE_ALLOC is successful, or if STAT_FAILED_IMAGE is assigned to STAT,
+    12      • On invocation of MOVE_ALLOC, if the allocation status of TO is allocated, it is deallocated. Then,
+    13        if FROM has an allocation status of allocated on entry to MOVE_ALLOC, TO becomes allocated with
+    14        dynamic type, type parameters, bounds, cobounds, and value identical to those that FROM had on entry
+    15        to MOVE_ALLOC. Note that if FROM and TO are the same variable, it shall be unallocated when
+    16        MOVE_ALLOCisinvoked.
+    17      • If TO has the TARGETattribute, any pointer associated with FROM on entry to MOVE_ALLOC becomes
+    18        correspondingly associated with TO. If TO does not have the TARGET attribute, the pointer association
+    19        status of any pointer associated with FROM on entry becomes undeﬁned.
+    20      • The allocation status of FROM becomes unallocated.
+    21  5 Whenareference to MOVE_ALLOCisexecuted for which the FROM argument is a coarray, there is an implicit
+    22    synchronization of all active images of the current team. On those images, execution of the segment (11.6.2)
+    23    following the CALL statement is delayed until all other active images of the current team have executed the same
+    24    statement the same number of times. When such a reference is executed, if any image of the current team has
+    25    stopped or failed, an error condition occurs.
+    36  8 If the ERRMSG argument is present and an error condition occurs, it is assigned an explanatory message. If no
+    37    error condition occurs, the deﬁnition status and value of ERRMSG are unchanged.
+    38  9 Example. The example below demonstrates reallocation of GRID to twice its previous size, with its previous
+    39    contents evenly distributed over the new elements so that intermediate points can be inserted.
+    40          REAL,ALLOCATABLE :: GRID(:),TEMPGRID(:)
+    41          . . .
+    42          ALLOCATE(GRID(-N:N))   ! initial allocation of GRID
+    43          . . .
+    44          ALLOCATE(TEMPGRID(-2*N:2*N)) ! allocate bigger grid
+    45          TEMPGRID(::2)=GRID ! distribute values to new locations
+    46          CALL MOVE_ALLOC(TO=GRID,FROM=TEMPGRID)
+     1      The old grid is deallocated because TO is INTENT (OUT), and GRID then takes over the new grid allocation.
+                NOTE1
+                It is expected that the implementation of allocatable objects will typically involve descriptors to locate the
+                allocated storage; MOVE_ALLOCcouldthenbeimplementedbytransferringthecontentsofthedescriptor
+                for FROM to the descriptor for TO and clearing the descriptor for FROM.
+--></p>
 </div>
 <div id="mvbits" class="title-slide slide section level2"><h1>mvbits</h1></div><div id="name-141" class="slide section level3">
 <h1><strong>Name</strong></h1>
@@ -10980,7 +11040,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-140" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>mvbits(3f)</strong> copies a bit pattern found in a range of adjacent bits in the integer <strong>from</strong> to a specified position in another integer <strong>to</strong> (which is of the same kind as <strong>from</strong>). It otherwise leaves the bits in <strong>to</strong> as-is.</p>
+<p><strong>mvbits</strong>(3) copies a bit pattern found in a range of adjacent bits in the integer <strong>from</strong> to a specified position in another integer <strong>to</strong> (which is of the same kind as <strong>from</strong>). It otherwise leaves the bits in <strong>to</strong> as-is.</p>
 <p>The bit positions copied must exist within the value of <strong>from</strong>. That is, the values of <strong>frompos+len-1</strong> and <strong>topos+len-1</strong> must be nonnegative and less than <strong>bit_size</strong>(from).</p>
 <p>The bits are numbered <strong>0</strong> to <strong>bit_size(i)-1</strong>, from right to left.</p>
 </div><div id="options-138" class="slide section level3">
@@ -11110,7 +11170,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </ul>
 </div><div id="description-141" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>nearest(x, s)</strong> returns the processor-representable number nearest to <strong>x</strong> in the direction indicated by the sign of <strong>s</strong>.</p>
+<p><strong>nearest</strong>(3) returns the processor-representable number nearest to <strong>x</strong> in the direction indicated by the sign of <strong>s</strong>.</p>
 </div><div id="options-139" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -11175,7 +11235,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-142" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>new_line(c)</strong> returns the new-line character.</p>
+<p><strong>new_line</strong>(3) returns the new-line character.</p>
 <dl>
 <dt>Case (i)</dt>
 <dd>If <strong>a</strong> is default character and the character in position <strong>10</strong> of the ASCII collating sequence is representable in the default character set, then the result is <strong>achar(10)</strong>.
@@ -11249,7 +11309,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </ul>
 </div><div id="description-143" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>nint(x)</strong> rounds its argument to the nearest whole number with its sign preserved.</p>
+<p><strong>nint</strong>(3) rounds its argument to the nearest whole number with its sign preserved.</p>
 <p>The user must ensure the value is a valid value for the range of the <strong>kind</strong> returned. If the processor cannot represent the result in the kind specified, the result is undefined.</p>
 <p>If <strong>x</strong> is greater than zero, <strong>nint(x)</strong> has the value <strong>int(x+0.5)</strong>.</p>
 <p>If <strong>x</strong> is less than or equal to zero, <strong>nint(x)</strong> has the value <strong>int(a-0.5)</strong>.</p>
@@ -11361,7 +11421,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 </ul>
 </div><div id="description-144" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Calculates the Euclidean vector norm (L_2 norm) of <strong>array</strong> along dimension <strong>dim</strong>.</p>
+<p><strong>norm2</strong>(3) calculates the Euclidean vector norm (L_2 norm) of <strong>array</strong> along dimension <strong>dim</strong>.</p>
 </div><div id="options-142" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -11435,7 +11495,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 <p>The return type is of the same kind as the argument.</p>
 </div><div id="description-145" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>NOT returns the bitwise Boolean inverse of <strong>i</strong>.</p>
+<p><strong>not</strong>(3) returns the bitwise Boolean inverse of <strong>i</strong>.</p>
 </div><div id="options-143" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -11489,7 +11549,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 </ul>
 </div><div id="description-146" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns a disassociated pointer.</p>
+<p><strong>null</strong>(3) returns a disassociated pointer.</p>
 <p>If <strong>mold</strong> is present, a disassociated pointer of the same type is returned, otherwise the type is determined by context.</p>
 <p>In Fortran 95, <strong>mold</strong> is optional. Please note that Fortran 2003 includes cases where it is required.</p>
 </div><div id="options-144" class="slide section level3">
@@ -11606,7 +11666,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-147" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns the number of images.</p>
+<p><strong>num_images</strong>(3) Returns the number of images.</p>
 </div><div id="options-145" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -11758,7 +11818,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 </ul>
 </div><div id="description-149" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Stores the elements of ARRAY in an array of rank one.</p>
+<p><strong>pack</strong>(3) stores the elements of ARRAY in an array of rank one.</p>
 <p>The beginning of the resulting array is made up of elements whose <strong>mask</strong> equals .true.. Afterwards, positions are filled with elements taken from <strong>vector</strong>.</p>
 </div><div id="options-147" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -11834,7 +11894,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 </ul>
 </div><div id="description-150" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Calculates the parity (i.e. the reduction using .xor.) of <strong>mask</strong> along dimension <strong>dim</strong>.</p>
+<p><strong>parity</strong>(3) calculates the parity (i.e. the reduction using .xor.) of <strong>mask</strong> along dimension <strong>dim</strong>.</p>
 </div><div id="options-148" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -11886,7 +11946,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 </ul>
 </div><div id="description-151" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns the number of bits set in the binary representation of an integer.</p>
+<p><strong>popcnt</strong>(3) returns the number of bits set in the binary representation of an integer.</p>
 </div><div id="options-149" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -11950,7 +12010,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 </ul>
 </div><div id="description-152" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns the parity of an integer’s binary representation (i.e., the parity of the number of bits set).</p>
+<p><strong>poppar</strong>(3) returns the parity of an integer’s binary representation (i.e., the parity of the number of bits set).</p>
 </div><div id="options-150" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -12015,7 +12075,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 <p>The return value is of type integer and of the default integer kind.</p>
 </div><div id="description-153" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>precision(x)</strong> returns the decimal precision in the model of the type of <strong>x</strong>.</p>
+<p><strong>precision</strong>(3) returns the decimal precision in the model of the type of <strong>x</strong>.</p>
 </div><div id="options-151" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -12067,7 +12127,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 </ul>
 </div><div id="description-154" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>present</strong>(3f) can be used in a procedure to determine if an optional dummy argument was present on the current call to the procedure.</p>
+<p><strong>present</strong>(3) can be used in a procedure to determine if an optional dummy argument was present on the current call to the procedure.</p>
 <p>When an argument is not present when the current procedure is invoked, you may only pass it as an optional argument to another procedure or pass it as an argument to PRESENT.</p>
 </div><div id="options-152" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -12166,7 +12226,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 </ul>
 </div><div id="description-155" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Multiplies together all the selected elements of <strong>array</strong>, or along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
+<p><strong>product</strong>(3) multiplies together all the selected elements of <strong>array</strong>, or along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
 <p>If <strong>dim</strong> is absent, a scalar with the product of all elements in <strong>array</strong> is returned. (Note a zero-sized <strong>array</strong> returns <strong>1</strong>).</p>
 <p>When <strong>dim</strong> is present, If the masked array has a dimension of one (ie. is a vector) the result is a scalar. Otherwise, an array of rank <strong>n-1</strong>, where <strong>n</strong> equals the rank of <strong>array</strong>, and a shape similar to that of <strong>array</strong> with dimension <strong>dim</strong> dropped is returned.</p>
 </div><div id="options-153" class="slide section level3">
@@ -12383,7 +12443,7 @@ dim=3 :( 2 3 )
 <p>where TYPE may be real or integer of any kind KIND.</p>
 </div><div id="description-156" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>radix(x)</strong> returns the base of the model representing the entity <strong>x</strong>.</p>
+<p><strong>radix</strong>(3) returns the base of the model representing the entity <strong>x</strong>.</p>
 </div><div id="options-154" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -12434,7 +12494,7 @@ dim=3 :( 2 3 )
 <p>REAL X, Y (10, 10) ! Initialize X with a pseudorandom number CALL RANDOM_NUMBER (HARVEST = X) CALL RANDOM_NUMBER (Y) ! X and Y contain uniformly distributed random numbers</p>
 </div><div id="description-157" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns a single pseudorandom number or an array of pseudorandom numbers from the uniform distribution over the range 0 &lt;= x &lt; 1.</p>
+<p><strong>random_number</strong>(3) returns a single pseudorandom number or an array of pseudorandom numbers from the uniform distribution over the range 0 &lt;= x &lt; 1.</p>
 </div><div id="options-155" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -12521,7 +12581,7 @@ dim=3 :( 2 3 )
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-158" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Restarts or queries the state of the pseudorandom number generator used by random_number.</p>
+<p><strong>random_seed</strong>(3) restarts or queries the state of the pseudorandom number generator used by random_number.</p>
 <p>If random_seed is called without arguments, it is seeded with random data retrieved from the operating system.</p>
 </div><div id="options-156" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -12581,7 +12641,7 @@ dim=3 :( 2 3 )
 <p>where TYPE is real or complex and KIND is any kind supported by TYPE.</p>
 </div><div id="description-159" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>range(x)</strong> returns the decimal exponent range in the model of the type of <strong>x</strong>.</p>
+<p><strong>range</strong>(3) returns the decimal exponent range in the model of the type of <strong>x</strong>.</p>
 </div><div id="options-157" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -12789,7 +12849,7 @@ dim=3 :( 2 3 )
 </ul>
 </div><div id="description-161" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>real(x, kind)</strong> converts its argument <strong>x</strong> to a real type.</p>
+<p><strong>real</strong>(3) converts its argument <strong>x</strong> to a real type.</p>
 <p>For complex values this is similar to the modern complex-part-designator <strong>%RE</strong> which also designates the real part of complex a value.</p>
 <div class="sourceCode" id="cb699"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb699-1" title="1">      z<span class="kw">=</span>(<span class="fl">3.0</span>,<span class="fl">4.0</span>)     <span class="co">! if z is a complex value</span></a>
 <a class="sourceLine" id="cb699-2" title="2">      <span class="fu">print</span> <span class="kw">*</span>, z%re <span class="op">==</span> <span class="bu">real</span>(z) <span class="co">! these expressions are equivalent</span></a></code></pre></div>
@@ -12871,7 +12931,7 @@ dim=3 :( 2 3 )
 <p>where TYPE may be of any type. TYPE must be the same for <strong>array</strong> and <strong>identity</strong>.</p>
 </div><div id="description-162" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Reduce a list of conditionally selected values from an array to a single value by iteratively applying a binary function.</p>
+<p><strong>reduce</strong>(3) reduces a list of conditionally selected values from an array to a single value by iteratively applying a binary function.</p>
 <p>Common in functional programming, a <strong>reduce</strong> function applies a binary operator (a pure function with two arguments) to all elements cumulatively.</p>
 <p><strong>reduce</strong> is a “higher-order” function; ie. it is a function that receives other functions as arguments.</p>
 <p>The <strong>reduce</strong> function receives a binary operator (a function with two arguments, just like the basic arithmetic operators). It is first applied to two unused values in the list to generate an accumulator value which is subsequently used as the first argument to the function as the function is recursively applied to all the remaining selected values in the input array.</p>
@@ -13013,7 +13073,7 @@ dim=3 :( 2 3 )
 </ul>
 </div><div id="description-163" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Concatenates <strong>ncopies</strong> copies of a string.</p>
+<p><strong>repeat</strong>(3) concatenates <strong>ncopies</strong> copies of a string.</p>
 </div><div id="options-161" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -13086,7 +13146,7 @@ ________________________________________________________________________
 </ul>
 </div><div id="description-164" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Constructs an array of shape <strong>shape</strong> using the elements from <strong>source</strong> and possibly <strong>pad</strong> to fill it.</p>
+<p><strong>reshape</strong> constructs an array of shape <strong>shape</strong> using the elements from <strong>source</strong> and possibly <strong>pad</strong> to fill it.</p>
 <p>If necessary, the new array may be padded with elements from <strong>pad</strong> or permuted as defined by <strong>order</strong>.</p>
 <p>Among many other uses, <strong>reshape</strong> can be used to reorder a Fortran array to match C array ordering before the array is passed from Fortran to a C procedure.</p>
 </div><div id="options-162" class="slide section level3">
@@ -13265,7 +13325,7 @@ ________________________________________________________________________
 <p>The return value is of the same type and kind as <strong>x</strong>.</p>
 </div><div id="description-165" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>rrspacing(x)</strong> returns the reciprocal of the relative spacing of model numbers near <strong>x</strong>.</p>
+<p><strong>rrspacing</strong>(3) returns the reciprocal of the relative spacing of model numbers near <strong>x</strong>.</p>
 </div><div id="options-163" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -13304,7 +13364,7 @@ ________________________________________________________________________
 </ul>
 </div><div id="description-166" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Query dynamic types for equality.</p>
+<p><strong>same_type_as</strong>(3) queries the dynamic types of objects for equality.</p>
 </div><div id="options-164" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -13406,7 +13466,7 @@ ________________________________________________________________________
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-167" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>scale(x,i)</strong> returns x * <strong>radix(x)**i</strong>.</p>
+<p><strong>scale</strong>(3) returns x * <strong>radix(x)**i</strong>.</p>
 </div><div id="options-165" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -13461,7 +13521,7 @@ ________________________________________________________________________
 <p>the kind of the returned value is the same as <strong>kind</strong> if present. Otherwise a default integer kind is returned.</p>
 </div><div id="description-168" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Scans a <strong>string</strong> for any of the characters in a <strong>set</strong> of characters.</p>
+<p><strong>scan</strong>(3) scans a <strong>string</strong> for any of the characters in a <strong>set</strong> of characters.</p>
 <p>If <strong>back</strong> is either absent or equals .false., this function returns the position of the leftmost character of <strong>STRING</strong> that is in <strong>set</strong>. If <strong>back</strong> equals .true., the rightmost position is returned. If no character of <strong>set</strong> is found in <strong>string</strong>, the result is zero.</p>
 </div><div id="options-166" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -13528,7 +13588,7 @@ ________________________________________________________________________
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-169" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>selected_char_kind(name)</strong> returns the kind value for the character set named NAME, if a character set with such a name is supported, or <strong>-1</strong> otherwise.</p>
+<p><strong>selected_char_kind</strong>(3) returns the kind value for the character set named NAME, if a character set with such a name is supported, or <strong>-1</strong> otherwise.</p>
 </div><div id="options-167" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -13594,7 +13654,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-170" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>selected_int_kind(r)</strong> return the kind value of the smallest integer type that can represent all values ranging from <strong>-10**r</strong> (exclusive) to <strong>10**r</strong> (exclusive). If there is no integer kind that accommodates this range, selected_int_kind returns <strong>-1</strong>.</p>
+<p><strong>selected_int_kind</strong>(3) return the kind value of the smallest integer type that can represent all values ranging from <strong>-10**r</strong> (exclusive) to <strong>10**r</strong> (exclusive). If there is no integer kind that accommodates this range, selected_int_kind returns <strong>-1</strong>.</p>
 </div><div id="options-168" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -13647,7 +13707,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-171" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>selected_real_kind(p, r, radix)</strong> return the kind value of a real data type with decimal precision of at least <strong>p</strong> digits, exponent range of at least <strong>r</strong>, and with a radix of <strong>radix</strong>.</p>
+<p><strong>selected_real_kind</strong>(3) return the kind value of a real data type with decimal precision of at least <strong>p</strong> digits, exponent range of at least <strong>r</strong>, and with a radix of <strong>radix</strong>.</p>
 </div><div id="options-169" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -13744,7 +13804,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 </ul>
 </div><div id="description-172" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>set_exponent(x, i)</strong> returns the real number whose fractional part is that of <strong>x</strong> and whose exponent part is <strong>i</strong>.</p>
+<p><strong>set_exponent</strong>(3) returns the real number whose fractional part is that of <strong>x</strong> and whose exponent part is <strong>i</strong>.</p>
 </div><div id="options-170" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -13799,7 +13859,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 </ul>
 </div><div id="description-173" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Determines the shape of an array.</p>
+<p><strong>shape</strong>(3) determines the shape of an array.</p>
 </div><div id="options-171" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -13881,7 +13941,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <p>where KIND and SHIFTKIND may be any supported integer kind, but where the kind for <strong>i</strong> dictates the kind of the returned value.</p>
 </div><div id="description-174" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns a value corresponding to <strong>i</strong> with all of the bits shifted right by <strong>shift</strong> places and the vacated bits on the left filled with the value of the original left-most bit..</p>
+<p><strong>shifta</strong>(3) returns a value corresponding to <strong>i</strong> with all of the bits shifted right by <strong>shift</strong> places and the vacated bits on the left filled with the value of the original left-most bit..</p>
 </div><div id="options-172" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -13986,7 +14046,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <p>where KIND and SHIFTKIND may be any supported integer kind, but where the kind for <strong>i</strong> dictates the kind of the returned value.</p>
 </div><div id="description-175" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns a value corresponding to <strong>i</strong> with all of the bits shifted left by <strong>shift</strong> places.</p>
+<p><strong>shiftl</strong>(3) returns a value corresponding to <strong>i</strong> with all of the bits shifted left by <strong>shift</strong> places.</p>
 <p>Bits shifted out from the left end are lost, and bits shifted in from the right end are set to <strong>0</strong>.</p>
 <p>If the absolute value of <strong>shift</strong> is greater than <strong>bit_size(i)</strong>, the value is undefined.</p>
 <p>Note the value of the result is the same as <strong>ishft (i, shift)</strong>.</p>
@@ -14104,7 +14164,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <p>where KIND and SHIFTKIND may be any supported integer kind, but where the kind for <strong>i</strong> dictates the kind of the returned value.</p>
 </div><div id="description-176" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns a value corresponding to <strong>i</strong> with all of the bits shifted right by <strong>shift</strong> places. If the absolute value of <strong>shift</strong> is greater than <strong>bit_size(i)</strong>, the value is undefined. Bits shifted out from the right end are lost, and bits shifted in from the left end are set to 0.</p>
+<p><strong>shiftr</strong>(3) returns a value corresponding to <strong>i</strong> with all of the bits shifted right by <strong>shift</strong> places. If the absolute value of <strong>shift</strong> is greater than <strong>bit_size(i)</strong>, the value is undefined. Bits shifted out from the right end are lost, and bits shifted in from the left end are set to 0.</p>
 <p>Note the value of the result is the same as <strong>ishft (i, -shift)</strong>.</p>
 </div><div id="options-174" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -14208,8 +14268,8 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <p>where TYPE may be real or integer and KIND is any supported kind for the type.</p>
 </div><div id="description-177" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>sign</strong>(a,b) return a value with the magnitude of <strong>a</strong> but with the sign of <strong>b</strong>.</p>
-<p>For processors that distinguish between positive and negative zeros <strong>sign()</strong> may be used to distinguish between <strong>real</strong> values 0.0 and -0.0. SIGN (1.0, -0.0) will return -1.0 when a negative zero is distinguishable.</p>
+<p><strong>sign</strong>(3) returns a value with the magnitude of a but with the sign of b.</p>
+<p>For processors that distinguish between positive and negative zeros sign() may be used to distinguish between real values 0.0 and -0.0. SIGN (1.0, -0.0) will return -1.0 when a negative zero is distinguishable.</p>
 </div><div id="options-175" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -14226,11 +14286,11 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 </ul>
 </div><div id="result-153" class="slide section level3">
 <h1><strong>Result</strong></h1>
-<p>The kind of the return value is the magnitude of <strong>a</strong> with the sign of <strong>b</strong>. That is,</p>
+<p>The kind of the return value is the magnitude of a with the sign of b. That is,</p>
 <ul>
-<li>If <strong>b &gt;= 0</strong> then the result is <strong>abs(a)</strong></li>
-<li>else if <strong>b &lt; 0</strong> it is -<strong>abs(a)</strong>.</li>
-<li>if <strong>b</strong> is real and the processor distinguishes between <strong>-0.0</strong> and <strong>0.0</strong> then the result is <strong>-abs(a)</strong></li>
+<li>If b &gt;= 0 then the result is abs(a)</li>
+<li>else if b &lt; 0 it is -abs(a).</li>
+<li>if b is real and the processor distinguishes between -0.0 and 0.0 then the result is -abs(a)</li>
 </ul>
 </div><div id="examples-169" class="slide section level3">
 <h1><strong>Examples</strong></h1>
@@ -14278,7 +14338,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 </ul>
 </div><div id="description-178" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>sinh(x)</strong> computes the hyperbolic sine of <strong>x</strong>.</p>
+<p><strong>sinh</strong>(3) computes the hyperbolic sine of <strong>x</strong>.</p>
 <p>The hyperbolic sine of x is defined mathematically as:</p>
 <div class="sourceCode" id="cb770"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb770-1" title="1">     <span class="bu">sinh</span>(x) <span class="kw">=</span> (<span class="bu">exp</span>(x) <span class="kw">-</span> <span class="bu">exp</span>(<span class="kw">-</span>x)) <span class="kw">/</span> <span class="fl">2.0</span></a></code></pre></div>
 <p>If <strong>x</strong> is of type complex its imaginary part is regarded as a value in radians.</p>
@@ -14361,7 +14421,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” (iwhic
 <p>The returned value will be of the same type and kind as the argument.</p>
 </div><div id="description-179" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>sin(x)</strong> computes the sine of an angle given the size of the angle in radians.</p>
+<p><strong>sin</strong>(3) computes the sine of an angle given the size of the angle in radians.</p>
 <p>The sine of an angle in a right-angled triangle is the ratio of the length of the side opposite the given angle divided by the length of the hypotenuse.</p>
 </div><div id="options-177" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -14471,7 +14531,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 </ul>
 </div><div id="description-180" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Determine the extent of <strong>array</strong> along a specified dimension <strong>dim</strong>, or the total number of elements in <strong>array</strong> if <strong>dim</strong> is absent.</p>
+<p><strong>size</strong>(3) determines the extent of <strong>array</strong> along a specified dimension <strong>dim</strong>, or the total number of elements in <strong>array</strong> if <strong>dim</strong> is absent.</p>
 </div><div id="options-178" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -14680,7 +14740,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <p>The result is of the same type as the input argument <strong>x</strong>.</p>
 </div><div id="description-181" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Determines the distance between the argument <strong>x</strong> and the nearest adjacent number of the same type.</p>
+<p><strong>spacing</strong>(3) determines the distance between the argument <strong>x</strong> and the nearest adjacent number of the same type.</p>
 </div><div id="options-179" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -14701,12 +14761,17 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <a class="sourceLine" id="cb787-3" title="3"><span class="dt">integer</span>, <span class="dt">parameter</span> <span class="dt">::</span> sgl <span class="kw">=</span> <span class="fu">selected_real_kind</span>(p<span class="kw">=</span><span class="dv">6</span>, r<span class="kw">=</span><span class="dv">37</span>)</a>
 <a class="sourceLine" id="cb787-4" title="4"><span class="dt">integer</span>, <span class="dt">parameter</span> <span class="dt">::</span> dbl <span class="kw">=</span> <span class="fu">selected_real_kind</span>(p<span class="kw">=</span><span class="dv">13</span>, r<span class="kw">=</span><span class="dv">200</span>)</a>
 <a class="sourceLine" id="cb787-5" title="5"></a>
-<a class="sourceLine" id="cb787-6" title="6">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="bu">spacing</span>(<span class="fl">1.0_sgl</span>)      <span class="co">! &quot;1.1920929e-07&quot;          on i686</span></a>
-<a class="sourceLine" id="cb787-7" title="7">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="bu">spacing</span>(<span class="fl">1.0_dbl</span>)      <span class="co">! &quot;2.220446049250313e-016&quot; on i686</span></a>
-<a class="sourceLine" id="cb787-8" title="8"><span class="kw">end program</span> demo_spacing</a></code></pre></div>
+<a class="sourceLine" id="cb787-6" title="6">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="bu">spacing</span>(<span class="fl">1.0_sgl</span>)</a>
+<a class="sourceLine" id="cb787-7" title="7">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="bu">nearest</span>(<span class="fl">1.0_sgl</span>,<span class="kw">+</span><span class="fl">1.0</span>),<span class="bu">nearest</span>(<span class="fl">1.0_sgl</span>,<span class="kw">+</span><span class="fl">1.0</span>)<span class="kw">-</span><span class="fl">1.0</span></a>
+<a class="sourceLine" id="cb787-8" title="8"></a>
+<a class="sourceLine" id="cb787-9" title="9">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="bu">spacing</span>(<span class="fl">1.0_dbl</span>)</a>
+<a class="sourceLine" id="cb787-10" title="10"><span class="kw">end program</span> demo_spacing</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>      1.19209290E-07
-      2.2204460492503131E-016</code></pre>
+<p>Typical values …</p>
+<pre class="text"><code>     1.1920929E-07
+      1.000000      1.1920929E-07
+     0.9999999     -5.9604645E-08
+     2.220446049250313E-016</code></pre>
 </div><div id="standard-180" class="slide section level3">
 <h1><strong>Standard</strong></h1>
 <p>Fortran 95</p>
@@ -14735,7 +14800,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 </ul>
 </div><div id="description-182" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Replicates a <strong>source</strong> array along a specified dimension <strong>dim</strong>. The copy is repeated <strong>ncopies</strong> times.</p>
+<p><strong>spread</strong>(3) replicates a <strong>source</strong> array along a specified dimension <strong>dim</strong>. The copy is repeated <strong>ncopies</strong> times.</p>
 <p>So to add additional rows to a matrix <strong>dim=1</strong> would be used, but to add additional rows <strong>dim=2</strong> would be used, for example.</p>
 <p>If <strong>source</strong> is scalar, the size of the resulting vector is <strong>ncopies</strong> and each element of the result has a value equal to <strong>source</strong>.</p>
 </div><div id="options-180" class="slide section level3">
@@ -14789,56 +14854,59 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <a class="sourceLine" id="cb791-24" title="24"></a>
 <a class="sourceLine" id="cb791-25" title="25">   a2 <span class="kw">=</span> <span class="fu">spread</span> ( v, <span class="dv">1</span>, <span class="dv">3</span> )</a>
 <a class="sourceLine" id="cb791-26" title="26">   <span class="kw">call</span> printi(<span class="st">&#39; spread(v,1,3) adds a new dimension (1) of extent 3&#39;</span>,a2)</a>
-<a class="sourceLine" id="cb791-27" title="27"></a>
-<a class="sourceLine" id="cb791-28" title="28"><span class="co">contains</span></a>
-<a class="sourceLine" id="cb791-29" title="29"><span class="co">! CONVENIENCE ROUTINE; NOT DIRECTLY CONNECTED TO SPREAD(3)</span></a>
-<a class="sourceLine" id="cb791-30" title="30"><span class="kw">subroutine</span> printi(title,a)</a>
-<a class="sourceLine" id="cb791-31" title="31"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : stderr<span class="kw">=</span><span class="op">&gt;</span>ERROR_UNIT,<span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb791-32" title="32"> <span class="kw">&amp;</span> stdin<span class="kw">=</span><span class="op">&gt;</span>INPUT_UNIT, stdout<span class="kw">=</span><span class="op">&gt;</span>OUTPUT_UNIT</a>
-<a class="sourceLine" id="cb791-33" title="33"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb791-34" title="34"></a>
-<a class="sourceLine" id="cb791-35" title="35"><span class="co">!@(#) print small 2d integer scalar, vector, matrix in row-column format</span></a>
-<a class="sourceLine" id="cb791-36" title="36"></a>
-<a class="sourceLine" id="cb791-37" title="37"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>   <span class="dt">::</span> <span class="fu">all</span><span class="kw">=</span><span class="st">&#39;(&quot; &quot;,*(g0,1x))&#39;</span></a>
-<a class="sourceLine" id="cb791-38" title="38"><span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> title</a>
-<a class="sourceLine" id="cb791-39" title="39"><span class="dt">character(len=20)</span>            <span class="dt">::</span> row</a>
-<a class="sourceLine" id="cb791-40" title="40"><span class="dt">integer</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> a(..)</a>
-<a class="sourceLine" id="cb791-41" title="41"><span class="dt">integer</span>                      <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb791-42" title="42"></a>
-<a class="sourceLine" id="cb791-43" title="43">   <span class="fu">write(*</span>,<span class="fu">all</span>,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)trim</span>(title)</a>
-<a class="sourceLine" id="cb791-44" title="44">   <span class="co">! select rank of input</span></a>
-<a class="sourceLine" id="cb791-45" title="45">   <span class="kw">select</span> rank(a)</a>
-<a class="sourceLine" id="cb791-46" title="46">   rank (<span class="dv">0</span>); <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span><span class="st">&#39; (a scalar)&#39;</span></a>
-<a class="sourceLine" id="cb791-47" title="47">      <span class="fu">write(*</span>,<span class="st">&#39;(&quot; &gt; [ &quot;,i0,&quot; ]&quot;)&#39;</span><span class="fu">)</span>a</a>
-<a class="sourceLine" id="cb791-48" title="48">   rank (<span class="dv">1</span>); <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span><span class="st">&#39; (a vector)&#39;</span></a>
-<a class="sourceLine" id="cb791-49" title="49">      <span class="co">! find how many characters to use for integers</span></a>
-<a class="sourceLine" id="cb791-50" title="50">      <span class="fu">write(</span>row,<span class="st">&#39;(i0)&#39;</span><span class="fu">)</span><span class="bu">ceiling</span>(<span class="bu">log10</span>(<span class="bu">real</span>(<span class="fu">maxval</span>(<span class="bu">abs</span>(a)))))<span class="kw">+</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb791-51" title="51">      <span class="co">! use this format to write a row</span></a>
-<a class="sourceLine" id="cb791-52" title="52">      row<span class="kw">=</span><span class="st">&#39;(&quot; &gt; [&quot;,*(i&#39;</span><span class="kw">//</span><span class="fu">trim</span>(row)<span class="kw">//</span><span class="st">&#39;:,&quot;,&quot;))&#39;</span></a>
-<a class="sourceLine" id="cb791-53" title="53">      <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(a)</a>
-<a class="sourceLine" id="cb791-54" title="54">         <span class="fu">write(*</span>,<span class="fu">fmt</span><span class="kw">=</span>row,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>a(i)</a>
-<a class="sourceLine" id="cb791-55" title="55">         <span class="fu">write(*</span>,<span class="st">&#39;(&quot; ]&quot;)&#39;</span><span class="fu">)</span></a>
-<a class="sourceLine" id="cb791-56" title="56">      <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb791-57" title="57">   rank (<span class="dv">2</span>); <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span><span class="st">&#39; (a matrix) &#39;</span></a>
-<a class="sourceLine" id="cb791-58" title="58">      <span class="co">! find how many characters to use for integers</span></a>
-<a class="sourceLine" id="cb791-59" title="59">      <span class="fu">write(</span>row,<span class="st">&#39;(i0)&#39;</span><span class="fu">)</span><span class="bu">ceiling</span>(<span class="bu">log10</span>(<span class="bu">real</span>(<span class="fu">maxval</span>(<span class="bu">abs</span>(a)))))<span class="kw">+</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb791-60" title="60">      <span class="co">! use this format to write a row</span></a>
-<a class="sourceLine" id="cb791-61" title="61">      row<span class="kw">=</span><span class="st">&#39;(&quot; &gt; [&quot;,*(i&#39;</span><span class="kw">//</span><span class="fu">trim</span>(row)<span class="kw">//</span><span class="st">&#39;:,&quot;,&quot;))&#39;</span></a>
-<a class="sourceLine" id="cb791-62" title="62">      <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(a,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb791-63" title="63">         <span class="fu">write(*</span>,<span class="fu">fmt</span><span class="kw">=</span>row,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>a(i,:)</a>
-<a class="sourceLine" id="cb791-64" title="64">         <span class="fu">write(*</span>,<span class="st">&#39;(&quot; ]&quot;)&#39;</span><span class="fu">)</span></a>
-<a class="sourceLine" id="cb791-65" title="65">      <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb791-66" title="66">   rank <span class="kw">default</span></a>
-<a class="sourceLine" id="cb791-67" title="67">      <span class="fu">write(</span>stderr,<span class="fu">*)</span><span class="st">&#39;*printi* did not expect rank=&#39;</span>, rank(a), <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb791-68" title="68">       <span class="kw">&amp;</span> <span class="st">&#39;shape=&#39;</span>, <span class="fu">shape</span>(a),<span class="st">&#39;size=&#39;</span>,<span class="fu">size</span>(a)</a>
-<a class="sourceLine" id="cb791-69" title="69">      <span class="kw">stop</span> <span class="st">&#39;*printi* unexpected rank&#39;</span></a>
-<a class="sourceLine" id="cb791-70" title="70">   <span class="kw">end select</span></a>
-<a class="sourceLine" id="cb791-71" title="71">   <span class="fu">write(*</span>,<span class="fu">all)</span> <span class="st">&#39;&gt;shape=&#39;</span>,<span class="fu">shape</span>(a),<span class="st">&#39;,rank=&#39;</span>,rank(a),<span class="st">&#39;,size=&#39;</span>,<span class="fu">size</span>(a)</a>
-<a class="sourceLine" id="cb791-72" title="72">   <span class="fu">write(*</span>,<span class="fu">*)</span></a>
-<a class="sourceLine" id="cb791-73" title="73"></a>
-<a class="sourceLine" id="cb791-74" title="74"><span class="kw">end subroutine</span> printi</a>
-<a class="sourceLine" id="cb791-75" title="75"></a>
-<a class="sourceLine" id="cb791-76" title="76"><span class="kw">end program</span> demo_spread</a></code></pre></div>
+<a class="sourceLine" id="cb791-27" title="27">   <span class="co">! add more</span></a>
+<a class="sourceLine" id="cb791-28" title="28">   a2 <span class="kw">=</span> <span class="fu">spread</span> ( v, <span class="dv">1</span>, <span class="dv">3</span> )</a>
+<a class="sourceLine" id="cb791-29" title="29">   <span class="kw">call</span> printi(<span class="st">&#39; spread(v,1,3) adds a new dimension (1) of extent 3&#39;</span>,a2)</a>
+<a class="sourceLine" id="cb791-30" title="30"></a>
+<a class="sourceLine" id="cb791-31" title="31"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb791-32" title="32"><span class="co">! CONVENIENCE ROUTINE; NOT DIRECTLY CONNECTED TO SPREAD(3)</span></a>
+<a class="sourceLine" id="cb791-33" title="33"><span class="kw">subroutine</span> printi(title,a)</a>
+<a class="sourceLine" id="cb791-34" title="34"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : stderr<span class="kw">=</span><span class="op">&gt;</span>ERROR_UNIT,<span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb791-35" title="35"> <span class="kw">&amp;</span> stdin<span class="kw">=</span><span class="op">&gt;</span>INPUT_UNIT, stdout<span class="kw">=</span><span class="op">&gt;</span>OUTPUT_UNIT</a>
+<a class="sourceLine" id="cb791-36" title="36"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb791-37" title="37"></a>
+<a class="sourceLine" id="cb791-38" title="38"><span class="co">!@(#) print small 2d integer scalar, vector, matrix in row-column format</span></a>
+<a class="sourceLine" id="cb791-39" title="39"></a>
+<a class="sourceLine" id="cb791-40" title="40"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>   <span class="dt">::</span> <span class="fu">all</span><span class="kw">=</span><span class="st">&#39;(&quot; &quot;,*(g0,1x))&#39;</span></a>
+<a class="sourceLine" id="cb791-41" title="41"><span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> title</a>
+<a class="sourceLine" id="cb791-42" title="42"><span class="dt">character(len=20)</span>            <span class="dt">::</span> row</a>
+<a class="sourceLine" id="cb791-43" title="43"><span class="dt">integer</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> a(..)</a>
+<a class="sourceLine" id="cb791-44" title="44"><span class="dt">integer</span>                      <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb791-45" title="45"></a>
+<a class="sourceLine" id="cb791-46" title="46">   <span class="fu">write(*</span>,<span class="fu">all</span>,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)trim</span>(title)</a>
+<a class="sourceLine" id="cb791-47" title="47">   <span class="co">! select rank of input</span></a>
+<a class="sourceLine" id="cb791-48" title="48">   <span class="kw">select</span> rank(a)</a>
+<a class="sourceLine" id="cb791-49" title="49">   rank (<span class="dv">0</span>); <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span><span class="st">&#39; (a scalar)&#39;</span></a>
+<a class="sourceLine" id="cb791-50" title="50">      <span class="fu">write(*</span>,<span class="st">&#39;(&quot; &gt; [ &quot;,i0,&quot; ]&quot;)&#39;</span><span class="fu">)</span>a</a>
+<a class="sourceLine" id="cb791-51" title="51">   rank (<span class="dv">1</span>); <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span><span class="st">&#39; (a vector)&#39;</span></a>
+<a class="sourceLine" id="cb791-52" title="52">      <span class="co">! find how many characters to use for integers</span></a>
+<a class="sourceLine" id="cb791-53" title="53">      <span class="fu">write(</span>row,<span class="st">&#39;(i0)&#39;</span><span class="fu">)</span><span class="bu">ceiling</span>(<span class="bu">log10</span>(<span class="bu">real</span>(<span class="fu">maxval</span>(<span class="bu">abs</span>(a)))))<span class="kw">+</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb791-54" title="54">      <span class="co">! use this format to write a row</span></a>
+<a class="sourceLine" id="cb791-55" title="55">      row<span class="kw">=</span><span class="st">&#39;(&quot; &gt; [&quot;,*(i&#39;</span><span class="kw">//</span><span class="fu">trim</span>(row)<span class="kw">//</span><span class="st">&#39;:,&quot;,&quot;))&#39;</span></a>
+<a class="sourceLine" id="cb791-56" title="56">      <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(a)</a>
+<a class="sourceLine" id="cb791-57" title="57">         <span class="fu">write(*</span>,<span class="fu">fmt</span><span class="kw">=</span>row,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>a(i)</a>
+<a class="sourceLine" id="cb791-58" title="58">         <span class="fu">write(*</span>,<span class="st">&#39;(&quot; ]&quot;)&#39;</span><span class="fu">)</span></a>
+<a class="sourceLine" id="cb791-59" title="59">      <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb791-60" title="60">   rank (<span class="dv">2</span>); <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span><span class="st">&#39; (a matrix) &#39;</span></a>
+<a class="sourceLine" id="cb791-61" title="61">      <span class="co">! find how many characters to use for integers</span></a>
+<a class="sourceLine" id="cb791-62" title="62">      <span class="fu">write(</span>row,<span class="st">&#39;(i0)&#39;</span><span class="fu">)</span><span class="bu">ceiling</span>(<span class="bu">log10</span>(<span class="bu">real</span>(<span class="fu">maxval</span>(<span class="bu">abs</span>(a)))))<span class="kw">+</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb791-63" title="63">      <span class="co">! use this format to write a row</span></a>
+<a class="sourceLine" id="cb791-64" title="64">      row<span class="kw">=</span><span class="st">&#39;(&quot; &gt; [&quot;,*(i&#39;</span><span class="kw">//</span><span class="fu">trim</span>(row)<span class="kw">//</span><span class="st">&#39;:,&quot;,&quot;))&#39;</span></a>
+<a class="sourceLine" id="cb791-65" title="65">      <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(a,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb791-66" title="66">         <span class="fu">write(*</span>,<span class="fu">fmt</span><span class="kw">=</span>row,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>a(i,:)</a>
+<a class="sourceLine" id="cb791-67" title="67">         <span class="fu">write(*</span>,<span class="st">&#39;(&quot; ]&quot;)&#39;</span><span class="fu">)</span></a>
+<a class="sourceLine" id="cb791-68" title="68">      <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb791-69" title="69">   rank <span class="kw">default</span></a>
+<a class="sourceLine" id="cb791-70" title="70">      <span class="fu">write(</span>stderr,<span class="fu">*)</span><span class="st">&#39;*printi* did not expect rank=&#39;</span>, rank(a), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb791-71" title="71">       <span class="kw">&amp;</span> <span class="st">&#39;shape=&#39;</span>, <span class="fu">shape</span>(a),<span class="st">&#39;size=&#39;</span>,<span class="fu">size</span>(a)</a>
+<a class="sourceLine" id="cb791-72" title="72">      <span class="kw">stop</span> <span class="st">&#39;*printi* unexpected rank&#39;</span></a>
+<a class="sourceLine" id="cb791-73" title="73">   <span class="kw">end select</span></a>
+<a class="sourceLine" id="cb791-74" title="74">   <span class="fu">write(*</span>,<span class="fu">all)</span> <span class="st">&#39;&gt;shape=&#39;</span>,<span class="fu">shape</span>(a),<span class="st">&#39;,rank=&#39;</span>,rank(a),<span class="st">&#39;,size=&#39;</span>,<span class="fu">size</span>(a)</a>
+<a class="sourceLine" id="cb791-75" title="75">   <span class="fu">write(*</span>,<span class="fu">*)</span></a>
+<a class="sourceLine" id="cb791-76" title="76"></a>
+<a class="sourceLine" id="cb791-77" title="77"><span class="kw">end subroutine</span> printi</a>
+<a class="sourceLine" id="cb791-78" title="78"></a>
+<a class="sourceLine" id="cb791-79" title="79"><span class="kw">end program</span> demo_spread</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>   TEST SPREAD(3)
      SPREAD(3) is a FORTRAN90 function which replicates
@@ -14905,7 +14973,7 @@ need an illustration of what happens with higher dimension array
 </ul>
 </div><div id="description-183" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>sqrt(x)</strong> computes the principal square root of <strong>x</strong>.</p>
+<p><strong>sqrt</strong>(3) computes the principal square root of <strong>x</strong>.</p>
 <p>In mathematics, a square root of a number <strong>x</strong> is a number <strong>y</strong> such that <strong>y*y = x</strong>.</p>
 <p>The number whose square root is being considered is known as the radicand.</p>
 <p>Every nonnegative number x has two square roots of the same unique magnitude, one positive and one negative. The nonnegative square root is called the principal square root.</p>
@@ -14979,7 +15047,7 @@ need an illustration of what happens with higher dimension array
 </ul>
 </div><div id="description-184" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns the storage size of argument <strong>a</strong> in bits.</p>
+<p><strong>storage_size</strong>(3) returns the storage size of argument <strong>a</strong> in bits.</p>
 </div><div id="options-182" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -15059,7 +15127,7 @@ it would take if it were stored in memory.</code></pre>
 </ul>
 </div><div id="description-185" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Adds the elements of ARRAY along dimension DIM if the corresponding element in MASK is TRUE.</p>
+<p><strong>sum</strong>(3) adds the elements of ARRAY along dimension DIM if the corresponding element in MASK is TRUE.</p>
 </div><div id="options-183" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -15137,7 +15205,7 @@ it would take if it were stored in memory.</code></pre>
 <p>where TYPE may be real or integer.</p>
 </div><div id="description-186" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>system_clock</strong> lets you measure durations of time with the precision of the smallest time increment generally available on a system by returning processor-dependent values based on the current value of the processor clock. The <strong>clock</strong> value is incremented by one for each clock count until the value <strong>count_max</strong> is reached and is then reset to zero at the next count. <strong>clock</strong> therefore is a modulo value that lies in the range <strong>0 to count_max</strong>. <strong>count_rate</strong> and <strong>count_max</strong> are assumed constant (even though CPU rates can vary on a single platform).</p>
+<p><strong>system_clock</strong>(3) lets you measure durations of time with the precision of the smallest time increment generally available on a system by returning processor-dependent values based on the current value of the processor clock. The <strong>clock</strong> value is incremented by one for each clock count until the value <strong>count_max</strong> is reached and is then reset to zero at the next count. <strong>clock</strong> therefore is a modulo value that lies in the range <strong>0 to count_max</strong>. <strong>count_rate</strong> and <strong>count_max</strong> are assumed constant (even though CPU rates can vary on a single platform).</p>
 <p><strong>count_rate</strong> is system dependent and can vary depending on the kind of the arguments.</p>
 <p>If there is no clock, or querying the clock fails, <strong>count</strong> is set to <strong>-huge(count)</strong>, and <strong>count_rate</strong> and <strong>count_max</strong> are set to zero.</p>
 <p><strong>system_clock</strong> is typically used to measure short time intervals (system clocks may be 24-hour clocks or measure processor clock ticks since boot, for example). It is most often used for measuring or tracking the time spent in code blocks in lieu of using profiling tools.</p>
@@ -15208,7 +15276,7 @@ it would take if it were stored in memory.</code></pre>
 <p>where <strong>TYPE</strong> may be real or complex and <strong>KIND</strong> may be any kind supported by the associated type. The returned value will be of the same type and kind as the argument.</p>
 </div><div id="description-187" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>tanh(x)</strong> computes the hyperbolic tangent of <strong>x</strong>.</p>
+<p><strong>tanh</strong>(3) computes the hyperbolic tangent of <strong>x</strong>.</p>
 </div><div id="options-185" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -15262,7 +15330,7 @@ it would take if it were stored in memory.</code></pre>
 <p>The return value has the same type and kind as <strong>x</strong>.</p>
 </div><div id="description-188" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>tan(x)</strong> computes the tangent of <strong>x</strong>.</p>
+<p><strong>tan</strong>(3) computes the tangent of <strong>x</strong>.</p>
 </div><div id="options-186" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -15320,7 +15388,7 @@ it would take if it were stored in memory.</code></pre>
 </ul>
 </div><div id="description-189" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns the cosubscript for this image.</p>
+<p><strong>this_image</strong>(3) returns the cosubscript for this image.</p>
 </div><div id="options-187" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -15382,7 +15450,7 @@ it would take if it were stored in memory.</code></pre>
 <p>where KIND may be any kind supported by type real</p>
 </div><div id="description-190" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>tiny(x)</strong> returns the smallest positive (non zero) number of the type and kind of <strong>x</strong>.</p>
+<p><strong>tiny</strong>(3) returns the smallest positive (non zero) number of the type and kind of <strong>x</strong>.</p>
 </div><div id="options-188" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -15429,7 +15497,7 @@ it would take if it were stored in memory.</code></pre>
 <h1><strong>Characteristics</strong></h1>
 </div><div id="description-191" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>trailz(3)</strong> returns the number of trailing zero bits of an integer value.</p>
+<p><strong>trailz</strong>(3) returns the number of trailing zero bits of an integer value.</p>
 </div><div id="options-189" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -15534,14 +15602,14 @@ it would take if it were stored in memory.</code></pre>
 </div><div id="characteristics-194" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
 <ul>
-<li><strong>source</strong> Shall be a scalar or an array of any type.</li>
-<li><strong>mold</strong> Shall be a scalar or an array of any type.</li>
+<li><strong>source</strong> shall be a scalar or an array of any type.</li>
+<li><strong>mold</strong> shall be a scalar or an array of any type.</li>
 <li><strong>size</strong> shall be a scalar of type integer.</li>
 <li><strong>result</strong> has the same type as <strong>mold</strong></li>
 </ul>
 </div><div id="description-192" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>copies the bitwise representation of <strong>source</strong> in memory into a variable or array of the same type and type parameters as <strong>mold</strong>.</p>
+<p><strong>transfer</strong>(3) copies the bitwise representation of <strong>source</strong> in memory into a variable or array of the same type and type parameters as <strong>mold</strong>.</p>
 <p>This is approximately equivalent to the C concept of “casting” one type to another.</p>
 </div><div id="options-190" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -15621,13 +15689,13 @@ it would take if it were stored in memory.</code></pre>
 </div><div id="characteristics-195" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
 <ul>
-<li><strong>matrix</strong> which shall be of any type and have a rank of two.</li>
-<li>The result will be the same type and kind as <strong>matrix</strong> and the shape of the input array.</li>
+<li><strong>matrix</strong> can be of any type but must have a rank of two.</li>
+<li>The result will be the same type and kind as <strong>matrix</strong> and the reversed shape of the input array.</li>
 </ul>
 </div><div id="description-193" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Transpose an array of rank two.</p>
-<p>A array is transposed by interchanging the rows and columns of the given matrix. That is, element (i, j) of the result has the value of element(j, i) for all (i, j).</p>
+<p><strong>transpose</strong>(3) transposes an array of rank two.</p>
+<p>An array is transposed by interchanging the rows and columns of the given matrix. That is, element (i,j) of the result has the value of element (j,i) of the input for all (i,j).</p>
 </div><div id="options-191" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -15699,7 +15767,7 @@ it would take if it were stored in memory.</code></pre>
 <li><a href="#spread"><strong>spread</strong>(3)</a> - Add a dimension and replicate data</li>
 <li><a href="#unpack"><strong>unpack</strong>(3)</a> - Scatter the elements of a vector</li>
 </ul>
-<p>fortran-lang intrinsic descriptions</p>
+<p>fortran-lang intrinsic descriptions (license: MIT) @urbanjost</p>
 </div>
 <div id="trim" class="title-slide slide section level2"><h1>trim</h1></div><div id="name-195" class="slide section level3">
 <h1><strong>Name</strong></h1>
@@ -15715,7 +15783,7 @@ it would take if it were stored in memory.</code></pre>
 <p><strong>KIND</strong> can be any kind supported for the character type. The result has the same kind as the input argument <strong>string</strong>.</p>
 </div><div id="description-194" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Removes trailing blank characters from a string.</p>
+<p><strong>trim</strong>(3) removes trailing blank characters from a string.</p>
 </div><div id="options-192" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -15800,15 +15868,14 @@ it would take if it were stored in memory.</code></pre>
 <h1><strong>Characteristics</strong></h1>
 <ul>
 <li>a kind designated as ** may be any supported kind value for the type</li>
-<li><strong>array</strong> Shall be an array, of any type.</li>
-<li><strong>dim</strong> : (Optional) Shall be a scalar integer.</li>
-<li><strong>kind</strong> An integer initialization expression indicating the kind parameter of the result.</li>
-<li><p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</p>
-<p>If <strong>dim</strong> is absent, the result is an array of the upper bounds of <strong>array</strong>.</p></li>
+<li><strong>array</strong> shall be an array, of any type.</li>
+<li><strong>dim</strong> shall be a scalar integer.</li>
+<li><strong>kind</strong> an integer initialization expression indicating the kind parameter of the result.</li>
+<li>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</li>
 </ul>
 </div><div id="description-195" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Returns the upper bounds of an array, or a single upper bound along the <strong>dim</strong> dimension.</p>
+<p><strong>ubound</strong>(3) returns the upper bounds of an array, or a single upper bound along the <strong>dim</strong> dimension.</p>
 </div><div id="options-193" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -15819,7 +15886,7 @@ it would take if it were stored in memory.</code></pre>
 </dl></li>
 <li><dl>
 <dt><strong>dim</strong></dt>
-<dd>a specific rank to determine the bounds of
+<dd>a specific rank to determine the bounds of If <strong>dim</strong> is absent, the result is an array of the upper bounds of <strong>array</strong>.
 </dd>
 </dl></li>
 <li><dl>
@@ -15936,7 +16003,7 @@ it would take if it were stored in memory.</code></pre>
 <p>The result is an array of the same type and type parameters as <strong>vector</strong> and the same shape as <strong>mask</strong>.</p>
 </div><div id="description-196" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Scatter the elements of <strong>vector</strong> into a copy of an array <strong>field</strong> of any rank using .true. values from <strong>mask</strong> in array element order to specify placement of the <strong>vector</strong> values.</p>
+<p><strong>unpack</strong>(3) scatters the elements of <strong>vector</strong> into a copy of an array <strong>field</strong> of any rank using .true. values from <strong>mask</strong> in array element order to specify placement of the <strong>vector</strong> values.</p>
 <p>So a copy of <strong>field</strong> is generated with select elements replaced with values from <strong>vector</strong>. This allows for complex replacement patterns that would be difficult when using array syntax or multiple assignment statements, particularly when the replacements are conditional.</p>
 </div><div id="options-194" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -16062,17 +16129,17 @@ it would take if it were stored in memory.</code></pre>
 <a class="sourceLine" id="cb860-3" title="3">      <span class="dt">character(len=*,kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string</a>
 <a class="sourceLine" id="cb860-4" title="4">      <span class="dt">character(len=*,kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> set</a>
 <a class="sourceLine" id="cb860-5" title="5">      <span class="dt">logical</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> back</a>
-<a class="sourceLine" id="cb860-6" title="6">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<a class="sourceLine" id="cb860-6" title="6">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
 </div><div id="characteristics-199" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
 <ul>
-<li><p>a kind designated as ** may be any supported kind value for the type</p></li>
-<li><p><strong>string</strong> and <strong>set</strong> must have the same kind type parameter.</p></li>
-<li><p>the kind of the returned value is the same as <strong>kind</strong> if present. Otherwise a default integer kind is returned.</p></li>
+<li>a kind designated as ** may be any supported kind value for the type. However, <strong>string</strong> and <strong>set</strong> must have the same kind type parameter for any individual call.</li>
+<li>the kind of the returned value is the same as <strong>kind</strong> if present. Otherwise a default integer kind is returned.</li>
+<li><strong>kind</strong> must be a constant integer initialization expression and a valid kind for the integer type.</li>
 </ul>
 </div><div id="description-197" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p>Verifies that all the characters in <strong>string</strong> belong to the set of characters in <strong>set</strong> by identifying the position of the first character in the string that is not in the set.</p>
+<p><strong>verify</strong>(3) verifies that all the characters in <strong>string</strong> belong to the set of characters in <strong>set</strong> by identifying the position of the first character in the string that is not in the set.</p>
 <p>This makes it easy to verify strings are all uppercase or lowercase, follow a basic syntax, only contain printable characters, and many of the conditions tested for with the C routines <strong>isalnum</strong>(3c), <strong>isalpha</strong>(3c), <strong>isascii</strong>(3c), <strong>isblank</strong>(3c), <strong>iscntrl</strong>(3c), <strong>isdigit</strong>(3c), <strong>isgraph</strong>(3c), <strong>islower</strong>(3c), <strong>isprint</strong>(3c), <strong>ispunct</strong>(3c), <strong>isspace</strong>(3c), <strong>isupper</strong>(3c), and <strong>isxdigit</strong>(3c); but for a string as well an an array of strings.</p>
 </div><div id="options-195" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -16089,7 +16156,7 @@ it would take if it were stored in memory.</code></pre>
 </dl></li>
 <li><dl>
 <dt><strong>back</strong></dt>
-<dd>The direction to look for an unmatched character. The left-most unmatched character position is returned unless <strong>back</strong> is present and .false., which causes the position of the right-most unmatched character to be returned instead of the left-most unmatched character..
+<dd>The direction to look for an unmatched character. The left-most unmatched character position is returned unless <strong>back</strong> is present and .false., which causes the position of the right-most unmatched character to be returned instead of the left-most unmatched character.
 </dd>
 </dl></li>
 <li><dl>

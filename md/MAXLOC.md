@@ -32,10 +32,10 @@ or
 
 ### **Description**
 
-Determines the location of the element in the array with the maximum
-value, or, if the **dim** argument is supplied, determines the locations
-of the maximum element along each row of the array in the **dim**
-direction.
+**maxloc**(3) determines the location of the element in the array with
+the maximum value, or, if the **dim** argument is supplied, determines
+the locations of the maximum element along each row of the array in the
+**dim** direction.
 
 If **mask** is present, only the elements for which **mask**
 is _.true._ are considered. If more than one element in the array has

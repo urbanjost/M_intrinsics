@@ -27,8 +27,8 @@
 
 ### **Description**
 
-  Determines whether one _integer_ is bitwise greater than or equal
-  to another.
+  **bge**(3) Determines whether one _integer_ is bitwise greater than
+  or equal to another.
 
   The bit-level representation of a value is platform dependent. The
   endian-ness of a system and whether the system uses a "two's complement"

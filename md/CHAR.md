@@ -20,7 +20,7 @@
 
 ### **Description**
 
-**char(i, kind)** returns the character represented by the integer **i**.
+**char**(3) returns the character represented by the integer **i**.
 
 ### **Options**
 

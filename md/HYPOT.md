@@ -21,7 +21,7 @@ and the origin.
 
 ### **Description**
 
-**hypot(x,y)** is referred to as the Euclidean distance function. It is
+**hypot**(3) is referred to as the Euclidean distance function. It is
 equal to
 ```fortran
 sqrt(x**2+y**2)

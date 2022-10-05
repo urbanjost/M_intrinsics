@@ -23,7 +23,7 @@
 
 ### **Description**
 
-**achar(i)** returns the character located at position **i** (commonly
+**achar**(3) returns the character located at position **i** (commonly
 called the _ADE_ or ASCII Decimal Equivalent) in the ASCII collating
 sequence.
 

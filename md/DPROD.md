@@ -26,7 +26,7 @@ can affect this function.
 
 ### **Description**
 
-**dprod(x,y)** produces a _doubleprecision_ product of default _real_
+**dprod**(3) produces a _doubleprecision_ product of default _real_
 values **x** and **y**.
 
 That is, it is expected to convert the arguments to double precision

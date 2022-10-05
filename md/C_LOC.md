@@ -14,7 +14,7 @@
 
 ### **Description**
 
-**c_loc(x)** determines the C address of the argument.
+  **c_loc**(3) determines the C address of the argument.
 
 ### **Options**
 

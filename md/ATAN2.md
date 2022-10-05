@@ -23,7 +23,7 @@ The return value has the same type and kind as **y** and **x**.
 
 ### **Description**
 
-**atan2(y, x)** computes in radians a processor-dependent approximation of
+**atan2**(3) computes in radians a processor-dependent approximation of
 the arctangent of the complex number ( **x**, **y** ) or equivalently the
 principal value of the arctangent of the value **y/x** (which determines
 a unique angle).
@@ -149,7 +149,7 @@ end subroutine cartesian_to_polar
 
 end program demo_atan2
 ```
-  Results:
+Results:
 ```text
     radians=   1.000000     degrees=   57.29578
     elemental  0.3217506      0.4636476

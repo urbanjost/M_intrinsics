@@ -28,7 +28,7 @@
 
 ### **Description**
 
-Returns the storage size of argument **a** in bits.
+**storage_size**(3) returns the storage size of argument **a** in bits.
 
 ### **Options**
 

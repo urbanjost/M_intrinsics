@@ -26,7 +26,8 @@
 
 ### **Description**
 
-Retrieve the entire command line that was used to invoke the program.
+**get_command**(3) retrieves the entire command line that was used to
+invoke the program.
 
 Note that what is typed on the command line is often processed by
 a shell. The shell typically processes special characters and white

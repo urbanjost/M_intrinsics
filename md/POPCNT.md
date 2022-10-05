@@ -20,8 +20,8 @@
 
 ### **Description**
 
-Returns the number of bits set in the binary representation of an
-_integer_.
+**popcnt**(3) returns the number of bits set in the binary representation
+of an _integer_.
 
 ### **Options**
 

@@ -67,7 +67,7 @@ real(kind=dp) :: x8
     &  +0.5,  +1.0, +1.5, +2.0, +2.2, +2.5, +2.7  ])
 end program demo_aint
 ```
-  Results:
+Results:
 ```text
  basics:
   just chops off the fractional part

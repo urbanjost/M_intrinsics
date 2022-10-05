@@ -33,7 +33,7 @@ or
 
 ### **Description**
 
-Returns the number of images.
+**num_images**(3) Returns the number of images.
 
 ### **Options**
 

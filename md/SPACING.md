@@ -19,8 +19,8 @@
 
 ### **Description**
 
-Determines the distance between the argument **x** and the nearest adjacent
-number of the same type.
+  **spacing**(3) determines the distance between the argument **x**
+  and the nearest adjacent number of the same type.
 
 ### **Options**
 
@@ -41,18 +41,22 @@ implicit none
 integer, parameter :: sgl = selected_real_kind(p=6, r=37)
 integer, parameter :: dbl = selected_real_kind(p=13, r=200)
 
-   write(*,*) spacing(1.0_sgl)      ! "1.1920929e-07"          on i686
-   write(*,*) spacing(1.0_dbl)      ! "2.220446049250313e-016" on i686
+   write(*,*) spacing(1.0_sgl)      
+   write(*,*) nearest(1.0_sgl,+1.0),nearest(1.0_sgl,+1.0)-1.0
+
+   write(*,*) spacing(1.0_dbl)     
 end program demo_spacing
 ```
-
 Results:
 
-```text
-      1.19209290E-07
-      2.2204460492503131E-016
-```
+Typical values ...
 
+```text
+     1.1920929E-07
+      1.000000      1.1920929E-07
+     0.9999999     -5.9604645E-08
+     2.220446049250313E-016
+```
 ### **Standard**
 
 Fortran 95

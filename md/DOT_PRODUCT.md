@@ -21,7 +21,7 @@ of rank one and of equal size.
 
 ### **Description**
 
-**dot_product(vector_a, vector_b)** computes the dot product
+**dot_product**(3) computes the dot product
 multiplication of two vectors **vector_a** and **vector_b**.
 
 If the vectors are _integer_ or _real_, the result is

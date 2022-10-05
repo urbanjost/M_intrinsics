@@ -18,7 +18,7 @@
 
 ### **Description**
 
-**scale(x,i)** returns x \* **radix(x)\*\*i**.
+**scale**(3) returns x \* **radix(x)\*\*i**.
 
 ### **Options**
 

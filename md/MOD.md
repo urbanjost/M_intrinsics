@@ -21,7 +21,7 @@
 
 ### **Description**
 
-**mod**(a,p) computes the remainder of the division of **a** by **p**.
+**mod**(3) computes the remainder of the division of **a** by **p**.
 
 ### **Options**
 

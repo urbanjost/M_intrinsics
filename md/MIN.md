@@ -24,7 +24,7 @@ Where **TYPE** may be _integer_ or _real_
 
 ### **Description**
 
-Returns the argument with the smallest (most negative) value.
+**min**(3) returns the argument with the smallest (most negative) value.
 
 ### **Options**
 

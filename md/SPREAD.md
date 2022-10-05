@@ -23,8 +23,8 @@
 
 ### **Description**
 
-Replicates a **source** array along a specified dimension **dim**. The
-copy is repeated **ncopies** times.
+**spread**(3) replicates a **source** array along a specified dimension
+**dim**. The copy is repeated **ncopies** times.
 
 So to add additional rows to a matrix **dim=1** would be used, but to
 add additional rows **dim=2** would be used, for example.
@@ -79,6 +79,9 @@ integer a1(4,3), a2(3,4), v(4), s, i
    a1 = spread ( v, dim=2, ncopies=3 )
    call printi('this adds a new dimension (2) of extent 3',a1)
 
+   a2 = spread ( v, 1, 3 )
+   call printi(' spread(v,1,3) adds a new dimension (1) of extent 3',a2)
+   ! add more
    a2 = spread ( v, 1, 3 )
    call printi(' spread(v,1,3) adds a new dimension (1) of extent 3',a2)
    

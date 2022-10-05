@@ -21,7 +21,7 @@ kind is specified by the optional **kind** argument.
 
 ### **Description**
 
-**ceiling(a)** returns the least integer greater than or equal to **a**.
+**ceiling**(3) returns the least integer greater than or equal to **a**.
 
 ### **Options**
 

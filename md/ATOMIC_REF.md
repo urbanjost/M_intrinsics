@@ -28,7 +28,7 @@
 
 ### **Description**
 
-**atomic_ref(value, atom)** atomically assigns the value of the
+**atomic_ref**(3) atomically assigns the value of the
 variable **atom** to **value**. When **stat** is present and the invocation was
 successful, it is assigned the value **0**. If it is present and the
 invocation has failed, it is assigned a positive value; in particular,

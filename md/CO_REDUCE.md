@@ -14,7 +14,7 @@
 
 ### **Description**
 
-co_reduce determines element-wise the reduction of the value of **a** on
+**co_reduce**(3) determines element-wise the reduction of the value of **a** on
 all images of the current team. The pure function passed as **operation** is
 used to pairwise reduce the values of **a** by passing either the value of **a**
 of different images or the result values of such a reduction as

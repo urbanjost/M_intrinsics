@@ -22,7 +22,8 @@
 
 ### **Description**
 
-True if and only if an object is contiguous.
+**is_contigious**(3) returns _.true._ if and only if an object is
+contiguous.
 
 An object is contiguous if it is
 

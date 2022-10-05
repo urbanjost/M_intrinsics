@@ -14,14 +14,14 @@
 
 ### **Description**
 
-co_min determines element-wise the minimal value of **a** on all images of
-the current team. If result_image is present, the minimal values are
-returned in **a** on the specified image only and the value of **a** on the
-other images become undefined. If result_image is not present, the
-value is returned on all images. If the execution was successful and
-**stat** is present, it is assigned the value zero. If the execution failed,
-**stat** gets assigned a nonzero value and, if present, **errmsg** gets assigned
-a value describing the occurred error.
+**co_min**(3) determines element-wise the minimal value of **a** on all
+images of the current team. If result_image is present, the minimal values
+are returned in **a** on the specified image only and the value of **a**
+on the other images become undefined. If result_image is not present,
+the value is returned on all images. If the execution was successful
+and **stat** is present, it is assigned the value zero. If the execution
+failed, **stat** gets assigned a nonzero value and, if present, **errmsg**
+gets assigned a value describing the occurred error.
 
 ### **Options**
 

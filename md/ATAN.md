@@ -24,7 +24,7 @@ The returned value is of the same type and kind as **x**.
 
 ### **Description**
 
-**atan(x)** computes the arctangent of **x**.
+**atan**(3) computes the arctangent of **x**.
 
 ### **Options**
 

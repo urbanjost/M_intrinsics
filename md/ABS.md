@@ -24,7 +24,7 @@
 
 ### **Description**
 
-   **abs(a)** computes the absolute value of numeric argument **a**.
+   **abs**(3) computes the absolute value of numeric argument **a**.
 
    In mathematics, the absolute value or modulus of a real number **x**,
    denoted **|x|**, is the magnitude of **x** without regard to its sign.
@@ -115,7 +115,7 @@ character(len=*),parameter :: &
 
 end program demo_abs
 ```
-  Results:
+Results:
 ```text
     integer          In: -1                     Out: 1
     real             In: -1.000000              Out: 1.000000

@@ -20,7 +20,7 @@
 
 ### **Description**
 
-**cosh(x)** computes the hyperbolic cosine of **x**.
+**cosh**(3) computes the hyperbolic cosine of **x**.
 
 ### **Options**
 

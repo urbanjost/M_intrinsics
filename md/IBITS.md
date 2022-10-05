@@ -24,7 +24,7 @@
 ```
 ### **Description**
 
-**ibits** extracts a field of length **len** from **i**, starting from
+**ibits**(3) extracts a field of length **len** from **i**, starting from
 bit position **pos** and extending left for **len** bits. The result is
 right-justified and the remaining bits are zeroed. The value of pos+len
 must be less than or equal to the value **bit_size(i)**.

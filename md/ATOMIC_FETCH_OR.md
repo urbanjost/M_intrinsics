@@ -15,7 +15,7 @@
 
 ### **Description**
 
-**atomic_fetch_or(atom, value, old)** atomically stores the value of
+**atomic_fetch_or**(3) atomically stores the value of
 **atom** in **old** and defines **atom** with the bitwise OR between the values of
 **atom** and **value**. When **stat** is present and the invocation was successful,
 it is assigned the value **0**. If it is present and the invocation has

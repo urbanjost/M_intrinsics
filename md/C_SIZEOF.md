@@ -14,7 +14,7 @@
 
 ### **Description**
 
-**c_sizeof(x)** calculates the number of bytes of storage the
+**c_sizeof**(3) calculates the number of bytes of storage the
 expression **x** occupies.
 
 ### **Options**

@@ -27,7 +27,7 @@
 
 ### **Description**
 
-**atomic_ad(atom, value)** atomically adds the value of VAR to the
+**atomic_add**(3) atomically adds the value of VAR to the
 variable **atom**. When **stat** is present and the invocation was successful,
 it is assigned the value 0. If it is present and the invocation has
 failed, it is assigned a positive value; in particular, for a coindexed

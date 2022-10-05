@@ -19,7 +19,7 @@
 
 ### **Description**
 
-**erf**(x) computes the error function of **x**, defined as
+**erf**(3) computes the error function of **x**, defined as
 
 $$
 \text{erf}(x) = \frac{2}{\sqrt{\pi}} \int_0^x e^{__-t__^2} dt.
