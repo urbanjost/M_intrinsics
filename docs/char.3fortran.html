@@ -57,12 +57,12 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-CHAR(3) - [CHARACTER] Character conversion function
+CHAR(3) - [CHARACTER] Generate a character from a code value
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=10>
+<A name=9>
 
      <H3>SYNOPSIS</H3>
 
@@ -72,10 +72,10 @@ CHAR(3) - [CHARACTER] Character conversion function
 result = char(i [,kind])
 <P>
 <PRE>
-         elemental integer function char(i,kind)
+         elemental character(kind=KIND) function char(i,KIND)
 <P>
-          integer(kind=KIND),intent(in) :: c
-          integer(kind=**),intent(in),optional :: kind
+          integer(kind=**),intent(in) :: i
+          integer(kind=**),intent(in),optional :: KIND
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -92,6 +92,23 @@ o
 </TD><TD>
 a kind designated as ** may be any supported kind value for the type
 </TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+I is an integer of any kind
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+KIND is an integer initialization expression indicating the kind
+parameter of the result.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+The returned value is a character with the kind specified by KIND or
+if KIND is not present, the default character kind.
+</TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=3>
 
@@ -100,7 +117,16 @@ a kind designated as ** may be any supported kind value for the type
 </A>
 <BLOCKQUOTE>
 <P>
-CHAR(3) returns the character represented by the integer I.
+Generates a character value given a numeric code representing the
+position I in the collating sequence associated with the specified kind
+KIND.
+<P>
+Note that ACHAR(3) is a similar function specifically for ASCII
+characters that is preferred when only ASCII is being processed, which
+is equivalent to CHAR(I,KIND=SELECTED_CHAR_KIND("ASCII") )
+<P>
+The ICHAR(3) function is the reverse of CHAR(3), converting characters
+to their collating sequence value.
 </BLOCKQUOTE>
 <A name=4>
 
@@ -113,13 +139,17 @@ CHAR(3) returns the character represented by the integer I.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-I : The type shall be integer.
+I : a value in the range 0 &lt;= I &lt;= N−1, where N is the number of
+characters in the collating sequence associated with the specified
+kind type parameter. : For ASCII, N is 17. The default character
+set may or may not allow higher values.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-KIND : (Optional) An integer initialization expression indicating
-the kind parameter of the result.
+KIND : A constant integer initialization expression indicating the
+kind parameter of the result. If not present, the default kind is
+assumed.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
@@ -129,7 +159,9 @@ the kind parameter of the result.
 </A>
 <BLOCKQUOTE>
 <P>
-The return value is of type character
+The return value is a single character of the specified kind, determined
+by the position of I in the collating sequence associated with the
+specified KIND.
 </BLOCKQUOTE>
 <A name=6>
 
@@ -143,31 +175,52 @@ Sample program:
 <PRE>
     program demo_char
     implicit none
-    integer :: i = 74
-    character(1) :: c
-        c = char(i)
-        print *, i, c ! returns &#146;J&#146;
+    integer, parameter :: ascii =  selected_char_kind ("ascii")
+    character(len=1, kind=ascii ) :: c
+    integer :: i
+      ! basic
+       i=74
+       c=char(i)
+       write(*,*)&#146;ASCII character &#146;,i,&#146;is &#146;,c
+      !
+       print *, &#146;a selection of ASCII characters (shows hex if not printable)&#146;
+       do i=0,127,10
+          c = char(i,kind=ascii)
+          select case(i)
+          case(32:126)
+             write(*,&#146;(i3,1x,a)&#146;)i,c
+          case(0:31,127)
+             ! print hexadecimal value for unprintable characters
+             write(*,&#146;(i3,1x,z2.2)&#146;)i,c
+          case default
+             write(*,&#146;(i3,1x,a,1x,a)&#146;)i,c,&#146;non-standard ASCII&#146;
+          end select
+       enddo
+<P>
     end program demo_char
 <P>
 </PRE>
 Results:
 <P>
 <PRE>
-                 74 J
-<P>
+        ASCII character           74 is J
+        a selection of ASCII characters (shows hex if not printable)
+         0 00
+        10 0A
+        20 14
+        30 1E
+        40 (
+        50 2
+        60 &lt;
+        70 F
+        80 P
+        90 Z
 </PRE>
+100 d
+110 n
+10 x
 </BLOCKQUOTE>
 <A name=7>
-
-     <H3>NOTE</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-See ICHAR(3) for a discussion of converting between numerical values and
-formatted string representations.
-</BLOCKQUOTE>
-<A name=8>
 
      <H3>STANDARD</H3>
 
@@ -176,7 +229,7 @@ formatted string representations.
 <P>
 FORTRAN 77
 </BLOCKQUOTE>
-<A name=9>
+<A name=8>
 
      <H3>SEE ALSO</H3>
 
@@ -200,10 +253,10 @@ o
 </TD><TD>
 NONELEMENTAL: LEN_TRIM(3), LEN(3), REPEAT(3), TRIM(3)
 </TD></TR>
-<TR></TR></TABLE>fortran-lang intrinsic descriptions
+<TR></TR></TABLE>fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>char (3fortran)</TD> <TD align=right width=33%><I>October 05, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 1733d269-aa55-4cb1-8f72-edd3c4e8b759 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>char (3fortran)</TD> <TD align=right width=33%><I>October 06, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from b1b3fd89-6664-4499-b53e-89e7397d4aa3 using man macros.</FONT>
 <br><br><center><img src="images/char.3fortran.gif"></center>
 </div>
 </div>

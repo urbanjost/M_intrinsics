@@ -9,10 +9,10 @@
     result = ceiling(a [,kind])
 ```
 ```fortran
-     elemental integer(KIND) function ceiling(a,kind)
+     elemental integer(KIND) function ceiling(a,KIND)
 
       real(kind=KIND),intent(in)  :: a
-      integer,intent(in),optional :: kind
+      integer,intent(in),optional :: KIND
 ```
 ### **Characteristics**
 

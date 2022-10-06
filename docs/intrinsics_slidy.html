@@ -194,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>achar</strong>(3) - [CHARACTER:CONVERSION] Returns a character in a specified position in the ASCII collating sequence</p>
 <h3 id="synopsis-1"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb6-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">achar</span>(i <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb7-1" title="1">     <span class="kw">elemental</span> <span class="dt">character(len=1,kind=KIND)</span> <span class="kw">function</span> <span class="bu">achar</span>(i,<span class="fu">kind</span>)</a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb7-1" title="1">     <span class="kw">elemental</span> <span class="dt">character(len=1,kind=KIND)</span> <span class="kw">function</span> <span class="bu">achar</span>(i,<span class="fu">KIND</span>)</a>
 <a class="sourceLine" id="cb7-2" title="2"></a>
 <a class="sourceLine" id="cb7-3" title="3">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
 <a class="sourceLine" id="cb7-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
@@ -672,7 +672,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>aint</strong>(3) - [NUMERIC] Truncate toward zero to a whole number</p>
 <h3 id="synopsis-7"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb33"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb33-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">aint</span>(x <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb34"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb34-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> iaint(x,<span class="fu">kind</span>)</a>
+<div class="sourceCode" id="cb34"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb34-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> iaint(x,<span class="fu">KIND</span>)</a>
 <a class="sourceLine" id="cb34-2" title="2"></a>
 <a class="sourceLine" id="cb34-3" title="3"><span class="dt">      real(kind=**)</span>,<span class="dt">intent(in)</span>   <span class="dt">::</span> x</a>
 <a class="sourceLine" id="cb34-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
@@ -897,10 +897,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>anint</strong>(3) - [NUMERIC] Nearest whole number</p>
 <h3 id="synopsis-10"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb45"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb45-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">anint</span>(a <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb46"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb46-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> iaint(x,<span class="fu">kind</span>)</a>
+<div class="sourceCode" id="cb46"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb46-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> iaint(x,<span class="fu">KIND</span>)</a>
 <a class="sourceLine" id="cb46-2" title="2"></a>
 <a class="sourceLine" id="cb46-3" title="3"><span class="dt">      real(kind=KIND)</span>,<span class="dt">intent(in)</span>   <span class="dt">::</span> x</a>
-<a class="sourceLine" id="cb46-4" title="4">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<a class="sourceLine" id="cb46-4" title="4">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
 <ul>
 <li>the kind of the result is the same as <strong>x</strong> unless <strong>kind</strong> is present.</li>
 </ul>
@@ -2966,10 +2966,10 @@ the value of btest (2, a)
 <p><strong>ceiling</strong>(3) - [NUMERIC] Integer ceiling function</p>
 <h3 id="synopsis-42"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb169"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb169-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">ceiling</span>(a <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb170"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb170-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(KIND)</span> <span class="kw">function</span> <span class="bu">ceiling</span>(a,<span class="fu">kind</span>)</a>
+<div class="sourceCode" id="cb170"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb170-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(KIND)</span> <span class="kw">function</span> <span class="bu">ceiling</span>(a,<span class="fu">KIND</span>)</a>
 <a class="sourceLine" id="cb170-2" title="2"></a>
 <a class="sourceLine" id="cb170-3" title="3"><span class="dt">      real(kind=KIND)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> a</a>
-<a class="sourceLine" id="cb170-4" title="4">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<a class="sourceLine" id="cb170-4" title="4">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
 <h3 id="characteristics-42"><strong>Characteristics</strong></h3>
 <p>where the kind of the result KIND is the same as <strong>a</strong> unless its kind is specified by the optional <strong>kind</strong> argument.</p>
 <h3 id="description-42"><strong>Description</strong></h3>
@@ -3202,47 +3202,89 @@ the value of btest (2, a)
 <div id="char" class="slide section level2">
 <h1>char</h1>
 <h3 id="name-46"><strong>Name</strong></h3>
-<p><strong>char</strong>(3) - [CHARACTER] Character conversion function</p>
+<p><strong>char</strong>(3) - [CHARACTER] Generate a character from a code value</p>
 <h3 id="synopsis-46"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb182"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb182-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">char</span>(i <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb183"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb183-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> <span class="bu">char</span>(i,<span class="fu">kind</span>)</a>
+<div class="sourceCode" id="cb183"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb183-1" title="1">     <span class="kw">elemental</span> <span class="dt">character(kind=KIND)</span> <span class="kw">function</span> <span class="bu">char</span>(i,<span class="fu">KIND</span>)</a>
 <a class="sourceLine" id="cb183-2" title="2"></a>
-<a class="sourceLine" id="cb183-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> c</a>
-<a class="sourceLine" id="cb183-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<a class="sourceLine" id="cb183-3" title="3">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb183-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
 <h3 id="characteristics-46"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind value for the type</li>
+<li><strong>i</strong> is an integer of any kind</li>
+<li><strong>kind</strong> is an integer initialization expression indicating the kind parameter of the result.</li>
+<li>The returned value is a character with the kind specified by <strong>kind</strong> or if <strong>kind</strong> is not present, the default character kind.</li>
 </ul>
 <h3 id="description-46"><strong>Description</strong></h3>
-<p><strong>char</strong>(3) returns the character represented by the integer <strong>i</strong>.</p>
+<p>Generates a character value given a numeric code representing the position <strong>i</strong> in the collating sequence associated with the specified kind <strong>kind</strong>.</p>
+<p>Note that <strong>achar</strong>(3) is a similar function specifically for ASCII characters that is preferred when only ASCII is being processed, which is equivalent to <strong>char(i,kind=selected_char_kind(“ascii”) )</strong></p>
+<p>The <strong>ichar</strong>(3) function is the reverse of <strong>char</strong>(3), converting characters to their collating sequence value.</p>
+<!--
+   ICHAR (CHAR (I, KIND (C))) shall have the value I for 0 ≤ I ≤ n − 1 and
+  CHAR (ICHAR (C), KIND (C)) shall have the value C for any character C capable of representation in the
+  processor.
+-->
 <h3 id="options-46"><strong>Options</strong></h3>
 <ul>
 <li><dl>
 <dt><strong>i</strong></dt>
-<dd>The type shall be integer.
+<dd>a value in the range <strong>0 &lt;= I &lt;= n−1</strong>, where <strong>n</strong> is the number of characters in the collating sequence associated with the specified kind type parameter.
+</dd>
+<dd>For ASCII, <strong>n</strong> is 127. The default character set may or may not allow higher values.
 </dd>
 </dl></li>
 <li><dl>
 <dt><strong>kind</strong></dt>
-<dd>(Optional) An integer initialization expression indicating the kind parameter of the result.
+<dd>A constant integer initialization expression indicating the kind parameter of the result. If not present, the default kind is assumed.
 </dd>
 </dl></li>
 </ul>
 <h3 id="result-33"><strong>Result</strong></h3>
-<p>The return value is of type character</p>
+<p>The return value is a single character of the specified kind, determined by the position of <strong>i</strong> in the collating sequence associated with the specified <strong>kind</strong>.</p>
 <h3 id="examples-46"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb184"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb184-1" title="1"><span class="kw">program</span> demo_char</a>
 <a class="sourceLine" id="cb184-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb184-3" title="3"><span class="dt">integer</span> <span class="dt">::</span> i <span class="kw">=</span> <span class="dv">74</span></a>
-<a class="sourceLine" id="cb184-4" title="4"><span class="dt">character(1)</span> <span class="dt">::</span> c</a>
-<a class="sourceLine" id="cb184-5" title="5">    c <span class="kw">=</span> <span class="bu">char</span>(i)</a>
-<a class="sourceLine" id="cb184-6" title="6">    <span class="fu">print</span> <span class="kw">*</span>, i, c <span class="co">! returns &#39;J&#39;</span></a>
-<a class="sourceLine" id="cb184-7" title="7"><span class="kw">end program</span> demo_char</a></code></pre></div>
+<a class="sourceLine" id="cb184-3" title="3"><span class="dt">integer</span>, <span class="dt">parameter</span> <span class="dt">::</span> ascii <span class="kw">=</span>  selected_char_kind (<span class="st">&quot;ascii&quot;</span>)</a>
+<a class="sourceLine" id="cb184-4" title="4"><span class="dt">character(len=1, kind=ascii )</span> <span class="dt">::</span> c</a>
+<a class="sourceLine" id="cb184-5" title="5"><span class="dt">integer</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb184-6" title="6">  <span class="co">! basic</span></a>
+<a class="sourceLine" id="cb184-7" title="7">   i<span class="kw">=</span><span class="dv">74</span></a>
+<a class="sourceLine" id="cb184-8" title="8">   c<span class="kw">=</span><span class="bu">char</span>(i)</a>
+<a class="sourceLine" id="cb184-9" title="9">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;ASCII character &#39;</span>,i,<span class="st">&#39;is &#39;</span>,c</a>
+<a class="sourceLine" id="cb184-10" title="10">  <span class="co">!</span></a>
+<a class="sourceLine" id="cb184-11" title="11">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;a selection of ASCII characters (shows hex if not printable)&#39;</span></a>
+<a class="sourceLine" id="cb184-12" title="12">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">0</span>,<span class="dv">127</span>,<span class="dv">10</span></a>
+<a class="sourceLine" id="cb184-13" title="13">      c <span class="kw">=</span> <span class="bu">char</span>(i,<span class="fu">kind</span><span class="kw">=</span>ascii)</a>
+<a class="sourceLine" id="cb184-14" title="14">      <span class="kw">select</span> <span class="kw">case</span>(i)</a>
+<a class="sourceLine" id="cb184-15" title="15">      <span class="kw">case</span>(<span class="dv">32</span>:<span class="dv">126</span>)</a>
+<a class="sourceLine" id="cb184-16" title="16">         <span class="fu">write(*</span>,<span class="st">&#39;(i3,1x,a)&#39;</span><span class="fu">)</span>i,c</a>
+<a class="sourceLine" id="cb184-17" title="17">      <span class="kw">case</span>(<span class="dv">0</span>:<span class="dv">31</span>,<span class="dv">127</span>)</a>
+<a class="sourceLine" id="cb184-18" title="18">         <span class="co">! print hexadecimal value for unprintable characters</span></a>
+<a class="sourceLine" id="cb184-19" title="19">         <span class="fu">write(*</span>,<span class="st">&#39;(i3,1x,z2.2)&#39;</span><span class="fu">)</span>i,c</a>
+<a class="sourceLine" id="cb184-20" title="20">      <span class="kw">case</span> <span class="kw">default</span></a>
+<a class="sourceLine" id="cb184-21" title="21">         <span class="fu">write(*</span>,<span class="st">&#39;(i3,1x,a,1x,a)&#39;</span><span class="fu">)</span>i,c,<span class="st">&#39;non-standard ASCII&#39;</span></a>
+<a class="sourceLine" id="cb184-22" title="22">      <span class="kw">end select</span></a>
+<a class="sourceLine" id="cb184-23" title="23">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb184-24" title="24"></a>
+<a class="sourceLine" id="cb184-25" title="25"><span class="kw">end program</span> demo_char</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>             74 J</code></pre>
-<h3 id="note-1"><strong>Note</strong></h3>
-<p>See <a href="#char"><strong>ichar</strong>(3)</a> for a discussion of converting between numerical values and formatted string representations.</p>
+<pre class="text"><code>    ASCII character           74 is J
+    a selection of ASCII characters (shows hex if not printable)
+     0 00
+    10 0A
+    20 14
+    30 1E
+    40 (
+    50 2
+    60 &lt;
+    70 F
+    80 P
+    90 Z
+   100 d
+   110 n
+   120 x</code></pre>
 <h3 id="standard-46"><strong>Standard</strong></h3>
 <p>FORTRAN 77</p>
 <h3 id="see-also-46"><strong>See Also</strong></h3>
@@ -3252,7 +3294,7 @@ the value of btest (2, a)
 <li><p><strong>Elemental:</strong> <a href="#adjustl"><strong>adjustl</strong>(3)</a>, <a href="#adjustr"><strong>adjustr</strong>(3)</a>, <a href="#index"><strong>index</strong>(3)</a>, <a href="#scan"><strong>scan</strong>(3)</a>, <a href="#verify"><strong>verify</strong>(3)</a></p></li>
 <li><p><strong>Nonelemental:</strong> <a href="#len_trim"><strong>len_trim</strong>(3)</a>, <a href="#len"><strong>len</strong>(3)</a>, <a href="#repeat"><strong>repeat</strong>(3)</a>, <a href="#trim"><strong>trim</strong>(3)</a></p></li>
 </ul>
-<p>fortran-lang intrinsic descriptions</p>
+<p>fortran-lang intrinsic descriptions (license: MIT) @urbanjost</p>
 </div>
 <div id="c_loc" class="slide section level2">
 <h1>c_loc</h1>
@@ -3921,7 +3963,7 @@ the value of btest (2, a)
 <a class="sourceLine" id="cb234-17" title="17"><span class="kw">end function</span> myprod</a>
 <a class="sourceLine" id="cb234-18" title="18"></a>
 <a class="sourceLine" id="cb234-19" title="19"><span class="kw">end program</span> demo_co_reduce</a></code></pre></div>
-<h3 id="note-2"><strong>Note</strong></h3>
+<h3 id="note-1"><strong>Note</strong></h3>
 <p>While the rules permit in principle an intrinsic function, none of the intrinsics in the standard fulfill the criteria of having a specific function, which takes two arguments of the same type and returning that type as a result.</p>
 <h3 id="standard-57"><strong>Standard</strong></h3>
 <p>TS 18508</p>
@@ -4902,7 +4944,7 @@ the value of btest (2, a)
       COMBINED        11111111111111110000000000000000
       DROP LEFT BITS  11111111110000000000000000
       KEEP LEFT 16    1111111111000000</code></pre>
-<h4 id="note-3">NOTE</h4>
+<h4 id="note-2">NOTE</h4>
 <p>This is equivalent to</p>
 <div class="sourceCode" id="cb294"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb294-1" title="1">     <span class="bu">ior</span>( shiftl(i, shift), shiftr(j, <span class="fu">bit_size</span>(j) <span class="kw">-</span> shift) )</a></code></pre></div>
 <p>Also note that using this last representation of the operation is can be derived that when both <strong>i</strong> and <strong>j</strong> have the same value as in</p>
@@ -5013,7 +5055,7 @@ the value of btest (2, a)
 <pre class="text"><code>         ABCDEFGHIJKLMNOPabcdefghij</code></pre>
 <p>Keep the 16 right-most bits</p>
 <pre class="text"><code>                   KLMNOPabcdefghij</code></pre>
-<h4 id="note-4">NOTE</h4>
+<h4 id="note-3">NOTE</h4>
 <p><strong>dshifr(i,j,shift)</strong> is equivalent to</p>
 <div class="sourceCode" id="cb305"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb305-1" title="1">     <span class="bu">ior</span>(shiftl (i, <span class="fu">bit_size</span>(i) <span class="kw">-</span> shift), shiftr(j, shift) )</a></code></pre></div>
 <p>it can also be seen that if <strong>i</strong> and <strong>j</strong> have the same value</p>
@@ -5528,7 +5570,7 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb338-8" title="8">   <span class="kw">call</span> execute_command_line(<span class="st">&quot;reindex_files.exe&quot;</span>, wait<span class="kw">=</span><span class="cn">.false.</span>)</a>
 <a class="sourceLine" id="cb338-9" title="9">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&quot;Now reindexing files in the background&quot;</span></a>
 <a class="sourceLine" id="cb338-10" title="10"><span class="kw">end program</span> demo_exec</a></code></pre></div>
-<h3 id="note-5"><strong>Note</strong></h3>
+<h3 id="note-4"><strong>Note</strong></h3>
 <p>Because this intrinsic is making a system call, it is very system dependent. Its behavior with respect to signaling is processor dependent. In particular, on POSIX-compliant systems, the SIGINT and SIGQUIT signals will be ignored, and the SIGCHLD will be blocked. As such, if the parent process is terminated, the child process might not be terminated alongside.</p>
 <h3 id="standard-80"><strong>Standard</strong></h3>
 <p>Fortran 2008</p>
@@ -11796,7 +11838,7 @@ dim=3 :( 2 3 )
 <h3 id="characteristics-163"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind value for the type</li>
-<li>the type of <strong>x</strong> <strong>TYPE</strong> may be integer, real, or complex.</li>
+<li>the type of <strong>x</strong> may be integer, real, or complex.</li>
 <li><strong>kind</strong> is a integer initialization expression (a constant expression)
 <ul>
 <li>If <strong>kind</strong> is present it defines the kind of the result</li>

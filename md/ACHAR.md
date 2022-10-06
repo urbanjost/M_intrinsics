@@ -9,7 +9,7 @@
     result = achar(i [,kind])
 ```
 ```fortran
-     elemental character(len=1,kind=KIND) function achar(i,kind)
+     elemental character(len=1,kind=KIND) function achar(i,KIND)
 
       integer(kind=**),intent(in) :: i
       integer(kind=**),intent(in),optional :: KIND
@@ -132,11 +132,9 @@ Results:
    120 x 121 y 122 z 123 { 124 | 125 } 126 ~
    MIXED CASE
 ```
-
 ### **Note**
 
 The ADEs (ASCII Decimal Equivalents) for ASCII are
-
 ```
 *-------*-------*-------*-------*-------*-------*-------*-------*
 | 00 nul| 01 soh| 02 stx| 03 etx| 04 eot| 05 enq| 06 ack| 07 bel|

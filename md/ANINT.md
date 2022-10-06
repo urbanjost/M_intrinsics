@@ -9,10 +9,10 @@
     result = anint(a [,kind])
 ```
 ```fortran
-     elemental real(kind=KIND) function iaint(x,kind)
+     elemental real(kind=KIND) function iaint(x,KIND)
 
       real(kind=KIND),intent(in)   :: x
-      integer,intent(in),optional :: kind
+      integer,intent(in),optional :: KIND
 ```
 - the _kind_ of the result is the same as **x** unless
   **kind** is present.
