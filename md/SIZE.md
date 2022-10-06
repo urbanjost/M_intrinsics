@@ -18,7 +18,7 @@
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
- 
+
 -  **array** may be of any type and associated kind.
 
    If **array** is a pointer it must be associated and allocatable arrays
@@ -218,7 +218,7 @@ Fortran 95 , with **kind** argument - Fortran 2003
 - [**shape**(3)](#shape) -  Determine the shape of an array
 - [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
 - [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
- 
+
 #### State Inquiry:
 
 - [**allocated**(3)](#allocated) -  Status of an allocatable entity
@@ -228,7 +228,7 @@ Fortran 95 , with **kind** argument - Fortran 2003
 
 - [**kind**(3)](#kind) - Kind of an entity
 
-#### Bit Inquiry: 
+#### Bit Inquiry:
 
 - [**storage_size**(3)](#storage_size) - Storage size in bits
 - [**bit_size**(3)](#bit_size) -  Bit size inquiry function

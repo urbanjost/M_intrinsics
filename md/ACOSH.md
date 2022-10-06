@@ -15,8 +15,8 @@
 ```
 ### **Characteristics**
 
- - **TYPE** may be _real_ or _complex_ 
- - **KIND** may be any kind supported by the associated type. 
+ - **TYPE** may be _real_ or _complex_
+ - **KIND** may be any kind supported by the associated type.
  - The returned value will be of the same type and kind as the argument.
 
 ### **Description**

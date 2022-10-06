@@ -1,7 +1,7 @@
 ## spread
 
 ### **Name**
- 
+
 **spread**(3) - \[ARRAY CONSTRUCTION\] Add a dimension and replicate data
 
 ### **Synopsis**
@@ -38,7 +38,7 @@ and each element of the result has a value equal to **source**.
   : a scalar or array of any type and a rank less than fifteen.
 
 - **dim**
-  
+
   : The additional dimension  value in the range from
   **1** to **n+1**, where **n** equals the rank of **source**.
 
@@ -58,7 +58,7 @@ Sample program:
 program demo_spread
 implicit none
 
-integer a1(4,3), a2(3,4), v(4), s, i
+integer a1(4,3), a2(3,4), v(4), s
 
    write(*,'(a)' ) &
    'TEST SPREAD(3)                                      ', &
@@ -84,7 +84,7 @@ integer a1(4,3), a2(3,4), v(4), s, i
    ! add more
    a2 = spread ( v, 1, 3 )
    call printi(' spread(v,1,3) adds a new dimension (1) of extent 3',a2)
-   
+
 contains
 ! CONVENIENCE ROUTINE; NOT DIRECTLY CONNECTED TO SPREAD(3)
 subroutine printi(title,a)
@@ -94,7 +94,7 @@ implicit none
 
 !@(#) print small 2d integer scalar, vector, matrix in row-column format
 
-character(len=*),parameter   :: all='(" ",*(g0,1x))' 
+character(len=*),parameter   :: all='(" ",*(g0,1x))'
 character(len=*),intent(in)  :: title
 character(len=20)            :: row
 integer,intent(in)           :: a(..)
@@ -140,11 +140,11 @@ Results:
    TEST SPREAD(3)
      SPREAD(3) is a FORTRAN90 function which replicates
      an array by adding a dimension.
-    
+
     suppose we have a scalar S  (a scalar)
     > [ 99 ]
     >shape= ,rank= 0 ,size= 1
-    
+
     to add a new dimension (1) of extent 4 call
     spread( s, dim=1, ncopies=4 )  (a vector)
     > [  99 ]
@@ -152,23 +152,23 @@ Results:
     > [  99 ]
     > [  99 ]
     >shape= 4 ,rank= 1 ,size= 4
-    
+
      first we will set V to  (a vector)
     > [  1 ]
     > [  2 ]
     > [  3 ]
     > [  4 ]
     >shape= 4 ,rank= 1 ,size= 4
-    
+
     and then do "spread ( v, dim=2, ncopies=3 )"
-    this adds a new dimension (2) of extent 3  (a matrix) 
+    this adds a new dimension (2) of extent 3  (a matrix)
     > [  1,  1,  1 ]
     > [  2,  2,  2 ]
     > [  3,  3,  3 ]
     > [  4,  4,  4 ]
     >shape= 4 3 ,rank= 2 ,size= 12
-    
-     spread(v,dim=1,ncopies=3) adds a new dimension (1) (a matrix) 
+
+     spread(v,dim=1,ncopies=3) adds a new dimension (1) (a matrix)
     > [  1,  2,  3,  4 ]
     > [  1,  2,  3,  4 ]
     > [  1,  2,  3,  4 ]

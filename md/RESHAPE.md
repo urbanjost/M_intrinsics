@@ -88,7 +88,6 @@ Sample program:
 ```fortran
 program demo_reshape
 implicit none
-integer :: i
 ! notice the use of "shape(box)" on the RHS
 integer :: box(3,4)=reshape([1,2,3,4,5,6,7,8,9,10,11,12],shape(box))
 integer,allocatable :: v(:,:)
@@ -109,7 +108,7 @@ integer :: rc(2)
     ! if we take the data and put in back in filling
     ! rows first instead of columns, and flipping the
     ! height and width of the box we not only fill in
-    ! a vector using row-column order we actually 
+    ! a vector using row-column order we actually
     ! transpose it.
     rc(2:1:-1)=shape(box)
     ! copy the data in changing column number fastest
@@ -157,42 +156,42 @@ Results:
     > [   1,   4,   7,  10 ]
     > [   2,   5,   8,  11 ]
     > [   3,   6,   9,  12 ]
-   
+
    reshaped :( 2 6 )
     > [   1,   3,   5,   7,   9,  11 ]
     > [   2,   4,   6,   8,  10,  12 ]
-   
+
    reshaped :( 4 3 )
     > [   1,   5,   9 ]
     > [   2,   6,  10 ]
     > [   3,   7,  11 ]
     > [   4,   8,  12 ]
-   
+
    here is some data to shape :( 1 12 )
     > [   1,   2,   3,   4,  10,  20,  30,  40, 100, 200, 300, 400 ]
-   
+
    normally fills columns first :( 3 4 )
     > [    1,    4,   30,  200 ]
     > [    2,   10,   40,  300 ]
     > [    3,   20,  100,  400 ]
-   
+
    fill rows first :( 3 4 )
     > [    1,    2,    3,    4 ]
     > [   10,   20,   30,   40 ]
     > [  100,  200,  300,  400 ]
-   
+
    reshaped and reordered :( 4 3 )
     > [   1,   2,   3 ]
     > [   4,   5,   6 ]
     > [   7,   8,   9 ]
     > [  10,  11,  12 ]
-   
+
    transposed :( 4 3 )
     > [   1,   2,   3 ]
     > [   4,   5,   6 ]
     > [   7,   8,   9 ]
     > [  10,  11,  12 ]
-   
+
    bigger and padded and reordered :( 8 6 )
     > [   1,   2,   3,   4,   5,   6 ]
     > [   7,   8,   9,  10,  11,  12 ]

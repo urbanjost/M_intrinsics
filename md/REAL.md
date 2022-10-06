@@ -20,7 +20,7 @@
  - the type of **x** **TYPE** may be _integer_, _real_, or _complex_.
  - **kind** is a _integer_ initialization expression (a constant expression)
    + If **kind** is present it defines the kind of the result
-   + if **kind** is not present 
+   + if **kind** is not present
      - when **x** is complex the result is the same kind as **x**.
      - when **x** is real or integer the result is a _real_ of default kind
 

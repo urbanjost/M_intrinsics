@@ -28,11 +28,11 @@
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
- - **array** must be an _integer_ array 
+ - **array** must be an _integer_ array
  - **mask** is a _logical_ array that conforms to **array** of any
    _logical_ kind.
  - **dim** may be of any _integer_ kind.
- - The result will by of the same type and kind as **array**. 
+ - The result will by of the same type and kind as **array**.
 
 ### **Description**
 

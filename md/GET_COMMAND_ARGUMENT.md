@@ -87,7 +87,7 @@ implicit none
 character(len=255)           :: progname
 integer                      :: count, i, argument_length, istat
 character(len=:),allocatable :: arg
-  
+
  ! command name assuming it is less than 255 characters in length
   call get_command_argument (0, progname, status=istat)
   if (istat == 0) then

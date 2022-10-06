@@ -52,7 +52,6 @@ Sample program:
 ```fortran
 program demo_ichar
 implicit none
-integer i
 
    write(*,*)ichar(['a','z','A','Z'])
 

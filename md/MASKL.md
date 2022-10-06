@@ -17,7 +17,7 @@
 ### **Characteristics**
 
 - a kind designated as ** may be any supported kind value for the type
-- **kind** Shall be a scalar constant expression of type _integer_ 
+- **kind** Shall be a scalar constant expression of type _integer_
   whose value is a supported _integer_ kind.
 - The result is of the same _kind_ as **i** unless **kind** is
   present, which is then used to specify the kind of the result.
@@ -63,7 +63,7 @@ end program demo_maskl
 Results:
 ```text
    -2147483648 10000000000000000000000000000000
-   
+
              0 00000000000000000000000000000000
     -268435456 11110000000000000000000000000000
      -16777216 11111111000000000000000000000000

@@ -48,7 +48,7 @@ integer :: length
     str=adjustl(str)
     write(*,'(a,"[",a,"]")') 'adjusted: ',str
 
-    ! a fixed-length string can be printed 
+    ! a fixed-length string can be printed
     ! trimmed using trim(3f) or len_trim(3f)
     write(*,'(a,"[",a,"]")') 'trimmed:  ',trim(str)
     length=len_trim(str)
@@ -59,7 +59,7 @@ integer :: length
     astr='    allocatable string   '
     write(*,'(a,"[",a,"]")') 'original:',astr
     astr = adjustl(astr)
-    write(*,'(a,"[",a,"]")') 'adjusted:',astr 
+    write(*,'(a,"[",a,"]")') 'adjusted:',astr
     ! trim(3f) can be used to change the length
     astr = trim(astr)
     write(*,'(a,"[",a,"]")') 'trimmed: ',astr

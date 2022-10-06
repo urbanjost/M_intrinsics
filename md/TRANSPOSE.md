@@ -15,9 +15,9 @@
 ```
 ### **Characteristics**
 
-  - **matrix** can be of any type but must have a rank of two. 
+  - **matrix** can be of any type but must have a rank of two.
   - The result will be the same type and kind as **matrix** and the
-    reversed shape of the input array. 
+    reversed shape of the input array.
 
 ### **Description**
 

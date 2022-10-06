@@ -15,7 +15,7 @@
 ```
 ### **Characteristics**
 
-  - **time** is of type _real_ and any kind, with **intent(out)**. 
+  - **time** is of type _real_ and any kind, with **intent(out)**.
 
 ### **Description**
 
@@ -83,7 +83,7 @@ end program demo_cpu_time
 Results:
 
   The precision of the result, some aspects of what is returned,
-  and what if any options there are for parallel applications 
+  and what if any options there are for parallel applications
   may very from system to system. See compiler-specific for details.
 ```text
    Processor Time =  0.000 seconds.

@@ -45,7 +45,7 @@ the elements of the array.
     value zero.
   : If an error condition occurs,
       o if STAT is absent, error termination is initiated;
-      o otherwise, if FROM is a coarray and the current team contains a 
+      o otherwise, if FROM is a coarray and the current team contains a
         stopped image, STAT is assigned the value STAT_STOPPED_IMAGE
         from the intrinsic module ISO_FORTRAN_ENV;
       o otherwise, if FROM is a coarray and the current team contains

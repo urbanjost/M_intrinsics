@@ -58,7 +58,7 @@ integer function func(x)
 ! the optional characteristic on this definition allows this variable
 ! to not be specified on a call; and also allows it to subsequently
 ! be passed to PRESENT(3f):
-integer, intent(in), optional :: x 
+integer, intent(in), optional :: x
 integer :: x_local
 
   ! basic
@@ -75,7 +75,7 @@ integer :: x_local
    func=x_local**2
 
   ! passing the argument on to other procedures
-   ! so something like this is a bad idea because x is used 
+   ! so something like this is a bad idea because x is used
    ! as the first argument to merge(3f) when it might not be
    ! present
    ! xlocal=merge(x,0,present(x)) ! NO!!

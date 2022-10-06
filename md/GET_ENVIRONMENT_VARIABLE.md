@@ -61,7 +61,7 @@ images whether the values are the same or different.
 - **length**
   : Argument **length** contains the length needed for storing the
   environment variable **name**. It is zero if the environment variable
-  is not set. 
+  is not set.
 
 - **status**
   : **status** is **-1** if **value** is present but too short for the

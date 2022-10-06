@@ -86,7 +86,7 @@ this has the same result as a negative circular shift
 
 The result is a combined right shift of **i** and **j** that is the
 same as the bit patterns of the inputs being combined left to right,
-dropping off **shift** bits on the right and then retaining the same 
+dropping off **shift** bits on the right and then retaining the same
 number of bits as an input value from the rightmost bits.
 
 ### **Examples**

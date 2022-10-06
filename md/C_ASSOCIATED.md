@@ -16,8 +16,8 @@
 ```
 ### **Characteristics**
 
-- **c_ptr_1** is a scalar of the type c_ptr or c_funptr.  
-- **c_ptr_2** is a scalar of the same type as c_ptr_1.  
+- **c_ptr_1** is a scalar of the type c_ptr or c_funptr.
+- **c_ptr_2** is a scalar of the same type as c_ptr_1.
 - The return value is of type _logical_
 
 ### **Description**

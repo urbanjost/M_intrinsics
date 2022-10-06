@@ -143,7 +143,7 @@ Fortran 95 , with KIND argument Fortran 2003
 
 [**co_ubound**(3)](#co_ubound),
 [__co\_lbound__(3)(co_lbound)]
- 
+
 #### State Inquiry:
 
 - [**allocated**(3)](#allocated) -  Status of an allocatable entity
@@ -153,7 +153,7 @@ Fortran 95 , with KIND argument Fortran 2003
 
 - [**kind**(3)](#kind) - Kind of an entity
 
-#### Bit Inquiry: 
+#### Bit Inquiry:
 
 - [**storage_size**(3)](#storage_size) - Storage size in bits
 - [**bit_size**(3)](#bit_size) -  Bit size inquiry function

@@ -15,7 +15,7 @@
 ```
 ### **Characteristics**
 
- - where **TYPE** may be _real_ or _complex_ of any kind. 
+ - where **TYPE** may be _real_ or _complex_ of any kind.
  - the returned value will be of the same type and kind as the argument.
 
 ### **Description**

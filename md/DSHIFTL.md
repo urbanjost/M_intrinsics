@@ -24,7 +24,7 @@
   - If either I or J is a BOZ-literal-constant (but not both), it is
     first converted as if by the intrinsic function **int**(3) to type
     _integer_ with the kind type parameter of the other.
- 
+
   - a kind designated as ** may be any supported kind value for the type
 
 ### **Description**
@@ -36,9 +36,9 @@
   Hence **dshiftl** is designated as a "combined left shift", because
   it is like we appended **i** and **j** together, shifted it **shift**
   bits to the left, and then kept the same number of bits as **i** or
-  **j** had. 
+  **j** had.
 
-  For example, for two 16-bit values if **shift=6** 
+  For example, for two 16-bit values if **shift=6**
 ```text
       SHIFT=6
       I =             1111111111111111

@@ -62,7 +62,7 @@ program demo_any
 implicit none
 logical,parameter :: T=.true., F=.false.
 integer           :: a(2,3), b(2,3)
-logical           :: bool 
+logical           :: bool
   ! basic usage
    bool = any([F,F,T,F])
    print *,bool
@@ -77,7 +77,7 @@ logical           :: bool
   ! in a myriad of ways
    ! first, print where elements of b are bigger than in a
    call printl( 'first print b > a             ', b > a         )
-   ! now use any() to test 
+   ! now use any() to test
    call printl( 'any true values?  any(b > a)  ', any(b > a )   )
    call printl( 'again by columns? any(b > a,1)', any(b > a, 1) )
    call printl( 'again by rows?    any(b > a,2)', any(b > a, 2) )
@@ -92,7 +92,7 @@ implicit none
 
 !@(#) print small 2d logical scalar, vector, or matrix
 
-character(len=*),parameter   :: all='(*(g0,1x))' 
+character(len=*),parameter   :: all='(*(g0,1x))'
 character(len=*),parameter   :: row='(" > [ ",*(l1:,","))'
 character(len=*),intent(in)  :: title
 logical,intent(in)           :: a(..)
@@ -129,19 +129,19 @@ Results:
 ```text
     T
     F
-    
-   first print b > a : shape=23,rank=2,size=6(a matrix) 
+
+   first print b > a : shape=23,rank=2,size=6(a matrix)
     > [ F,T,T ]
     > [ F,T,T ]
-    
+
    any true values?  any(b > a) : shape=,rank=0,size=1(a scalar)
     > [ T ]
-    
+
    again by columns? any(b > a,1) : shape=3,rank=1,size=3(a vector)
     > [ F ]
     > [ T ]
     > [ T ]
-    
+
    again by rows?    any(b > a,2) : shape=2,rank=1,size=2(a vector)
     > [ T ]
     > [ T ]

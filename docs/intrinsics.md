@@ -573,12 +573,12 @@ Fortran 95
 
 ### **Synopsis**
 ```fortran
-    result = adjustr(string)
+  result = adjustr(string)
 ```
 ```fortran
-     elemental character(len=len(string),kind=KIND) function adjustr(string)
+   elemental character(len=len(string),kind=KIND) function adjustr(string)
 
-      character(len=*,kind=KIND),intent(in) :: string
+    character(len=*,kind=KIND),intent(in) :: string
 ```
 ### **Characteristics**
 
@@ -4508,9 +4508,9 @@ Fortran 2003
 ```fortran
      elemental complex(kind=KIND) function cmplx( x, y, kind )
 
-      TYPE(kind=**),intent(in) :: x
+      TYPE(kind=**),intent(in)          :: x
       TYPE(kind=**),intent(in),optional :: y
-      integer,intent(in),optional :: KIND
+      integer,intent(in),optional       :: KIND
 ```
 ### **Characteristics**
 
@@ -4694,8 +4694,9 @@ Sample program:
 program demo_aimag
 implicit none
 integer,parameter :: dp=kind(0.0d0)
-real(kind=dp)    :: precise, z8
-complex          :: z4, three(3)
+real(kind=dp)     :: precise
+complex(kind=dp)  :: z8
+complex           :: z4, zthree(3)
    precise=1.2345678901234567d0
 
   ! basic
@@ -4704,7 +4705,7 @@ complex          :: z4, three(3)
    z4 = cmplx(1.23456789, 1.23456789)
    print *, 'Z4=',z4
    ! with a format treat a complex as two real values
-   print '(g0,1x,g0,1x,g0)','Z4=',z4
+   print '(1x,g0,1x,g0,1x,g0)','Z4=',z4
 
   ! working with higher precision values
    ! using kind=dp makes it keep DOUBLEPRECISION precision
@@ -4720,13 +4721,17 @@ complex          :: z4, three(3)
    z8 = (1.1111111111111111d0, 2.2222222222222222d0 )
    print *, 'Z8 defined with constants=',z8
 
+  ! what happens when you assign a complex to a real?
+   precise=z8
+   print *, 'LHS=',precise,'RHS=',z8
+
   ! elemental
-   three=cmplx([10,20,30],-1)
-   print *, 'three=',three
+   zthree=cmplx([10,20,30],-1)
+   print *, 'zthree=',zthree
 
   ! descriptors are an alternative
-   three(1:2)%re=[100,200]
-   print *, 'three=',three
+   zthree(1:2)%re=[100,200]
+   print *, 'zthree=',zthree
 
 end program demo_aimag
 ```
@@ -4734,12 +4739,13 @@ Results:
 ```text
     Z4= (-3.000000,0.0000000E+00)
     Z4= (1.234568,1.234568)
-   Z4= 1.234568 1.234568
-    lost precision Z8=   1.23456788063049
-    kept precision Z8=   1.23456789012346
-    Z8 defined with constants=   1.11111111111111
-    three= (10.00000,-1.000000) (20.00000,-1.000000) (30.00000,-1.000000)
-    three= (100.0000,-1.000000) (200.0000,-1.000000) (30.00000,-1.000000)
+    Z4= 1.234568 1.234568
+    lost precision Z8= (1.23456788063049,-1.23456788063049)
+    kept precision Z8= (1.23456789012346,-1.23456789012346)
+    Z8 defined with constants= (1.11111111111111,2.22222222222222)
+    LHS=   1.11111111111111      RHS= (1.11111111111111,2.22222222222222)
+    zthree= (10.00000,-1.000000) (20.00000,-1.000000) (30.00000,-1.000000)
+    zthree= (100.0000,-1.000000) (200.0000,-1.000000) (30.00000,-1.000000)
 ```
 ### **Standard**
 
@@ -9649,19 +9655,22 @@ use, intrinsic :: iso_fortran_env, only : integer_kinds, &
  & int8, int16, int32, int64
 implicit none
 logical,parameter :: T=.true., F=.false.
-integer(kind=int8) :: a(3), b(4:3)
-   a(1) = int(b'00100100')
-   a(2) = int(b'01101010')
-   a(3) = int(b'10101010')
+integer(kind=int8) :: a(3)
+   a(1) = int(b'00100100',int8)
+   a(2) = int(b'01101010',int8)
+   a(3) = int(b'10101010',int8)
    write(*,*)'A='
    print '(1x,b8.8)', a
+   print *
    write(*,*)'IANY(A)='
    print '(1x,b8.8)', iany(a)
-
+   print *
    write(*,*)'IANY(A) with a mask'
    print '(1x,b8.8)', iany(a,mask=[T,F,T])
+   print *
    write(*,*)'should match '
    print '(1x,b8.8)', iany([a(1),a(3)])
+   print *
    write(*,*)'does it?'
    write(*,*)iany(a,[T,F,T]) == iany([a(1),a(3)])
 end program demo_iany
@@ -9672,12 +9681,16 @@ Results:
     00100100
     01101010
     10101010
+
     IANY(A)=
     11101110
+
     IANY(A) with a mask
     10101110
+
     should match
     10101110
+
     does it?
     T
 ```
@@ -9935,7 +9948,6 @@ Sample program:
 ```fortran
 program demo_ichar
 implicit none
-integer i
 
    write(*,*)ichar(['a','z','A','Z'])
 
@@ -10698,7 +10710,6 @@ Sample program:
 program demo_ishftc
 use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
 implicit none
-integer             :: shift
 integer             :: i
 character(len=*),parameter :: g='(b32.32,1x,i0)'
 
@@ -10790,7 +10801,6 @@ program demo_ishft
 use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
 implicit none
 integer             :: shift
-integer             :: i
 character(len=*),parameter :: g='(b32.32,1x,i0)'
 
    write(*,*) ishft(3, 1),' <== typically should have the value 6'
@@ -14441,27 +14451,80 @@ Fortran 95
 
 **new_line**(3) returns the new-line character.
 
+Normally, new-lines are generated with regular formatted I/O statements like
+WRITE() and PRINT() when each statement completes:
+```fortran
+   print *, 'x=11'
+   print *
+   print *, 'y=22'
+   end
+```
+produces:
+    x=11
+
+    y=22
+```
+Alternatively, a "/" descriptor in a format is used to generate a
+newline on the output. For example:
+```fortran
+   write(*,'(a,1x,i0,/,a)') 'x =',11,'is the answer'
+   end
+```
+produces:
+```text
+   x = 11
+   is the answer
+```
+Also, for formatted sequential output if more data is listed on the
+output statement than can be represented by the format statement a
+newline is generated and then the format is reused until the output
+list is exhausted.
+```fortran
+   write(*,'(a,"=",i0)') 'x', 10, 'y', 20
+   end
+```
+produces
+```text
+   x=10
+   y=20
+```
+But there are occasions, particularly when non-advancing I/O or stream
+I/O is being generated (which does not generate a new-line at the end
+of each WRITE statement, as normally occurs) where it is preferable to
+place a new-line explicitly in the output at specified points.
+
+To do so you must make sure you are generating the correct new-line
+character, which the techniques above do automatically.
+
+The new-line character varies between some platforms, and can even
+depend on the encoding (ie. which character set is being used) of the
+output file.  In these cases selecting the correct character to output
+can be determined by the **new_line**(3) procedure.
+
 Case (i)
-: If **a** is default _character_ and the character in position **10** of the
-ASCII collating sequence is representable in the default character set,
-then the result is **achar(10)**.
+  : If **a** is default _character_ and the character in position **10**
+  of the ASCII collating sequence is representable in the default
+  character set, then the result is **achar(10)**.
+
+  This is the typical case, and just requires using "new_line('a')".
 
 Case (ii)
-: If **a** is an ASCII character or an ISO 10646 character, then the
-result is **char(10, kind (a))**.
+  : If **a** is an ASCII character or an ISO 10646 character, then the
+  result is **char(10, kind (a))**.
 
 Case (iii)
-: Otherwise, the result is a processor-dependent character that
-represents a newline in output to files connected for formatted
-stream output if there is such a character.
+  : Otherwise, the result is a processor-dependent character that
+  represents a newline in output to files connected for formatted
+  stream output if there is such a character.
 
 Case (iv)
-: Otherwise, the result is the blank character.
+  : If not of the previous cases apply, the result is the blank character.
 
 ### **Options**
 
-- **C**
-  : The argument shall be a scalar or array of the type _character_.
+- **c**
+  : an arbitrary character whose kind is used to decide on the output
+  character that represents a new-line.
 
 ### **Result**
 
@@ -14476,23 +14539,58 @@ program demo_new_line
 implicit none
 character,parameter :: nl=new_line('a')
 character(len=:),allocatable :: string
+real :: r
+integer :: i, count
 
+  ! basics
+   ! print a string with a new-line embedded in it
    string='This is record 1.'//nl//'This is record 2.'
    write(*,'(a)') string
 
+   ! print a new-line character string
    write(*,'(*(a))',advance='no') &
       nl,'This is record 1.',nl,'This is record 2.',nl
 
+   ! output a number of words of random length as a paragraph
+   ! by inserting a new_line before line exceeds 70 characters
+
+  ! simplistic paragraph print using non-advancing I/O
+   count=0
+   do i=1,100
+
+      ! make some fake word of random length
+      call random_number(r)
+      string=repeat('x',int(r*10)+1)
+
+      count=count+len(string)+1
+      if(count.gt.70)then
+         write(*,'(a)',advance='no')nl
+         count=len(string)+1
+      endif
+      write(*,'(1x,a)',advance='no')string
+   enddo
+   write(*,'(a)',advance='no')nl
+
 end program demo_new_line
 ```
-Results:
-
+  Results:
 ```text
    This is record 1.
    This is record 2.
 
    This is record 1.
    This is record 2.
+    x x xxxx xxxxxxx xxxxxxxxxx xxxxxxxxx xxxx xxxxxxxxxx xxxxxxxx
+    xxxxxxxxx xxxx xxxxxxxxx x xxxxxxxxx xxxxxxxx xxxxxxxx xxxx x
+    xxxxxxxxxx x x x xxxxxx xxxxxxxxxx x xxxxxxxxxx x xxxxxxx xxxxxxxxx
+    xx xxxxxxxxxx xxxxxxxx x xx xxxxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxx
+    xxxxx xxxxxxxxx x xxxxxxxxxx xxxxxx xxxxxxxx xxxxx xxxxxxxx xxxxxxxx
+    xxxxx xxx xxxxxxxx xxxxxxx xxxxxxxx xxx xxxx xxx xxxxxxxx xxxxxx
+    xxxxxxx xxxxxxx xxxxx xxxxx xx xxxxxx xx xxxxxxxxxx xxxxxx x xxxx
+    xxxxxx xxxxxxx x xxx xxxxx xxxxxxxxx xxx xxxxxxx x xxxxxx xxxxxxxxx
+    xxxx xxxxxxxxx xxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxxx xxxxxxxxxx
+    xxxxxxxxxx xxxxxx xxxxx xxxx xxxxxxx xx xxxxxxxxxx xxxxxx xxxxxx
+    xxxxxx xxxx xxxxx
 ```
 ### **Standard**
 
@@ -14500,7 +14598,11 @@ Fortran 2003
 
 ### **See also**
 
-[****(3)](#)
+[**achar**(3)](#achar),
+[**char**(3)](#char),
+[**iachar**(3)](#iachar),
+[**ichar**(3)](#ichar),
+[**selected_char_kind**(3)](#selected_char_kind)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -16860,7 +16962,6 @@ Sample program:
 ```fortran
 program demo_repeat
 implicit none
-integer :: i
     write(*,'(a)') repeat("^v", 36)         ! line break
     write(*,'(a)') repeat("_", 72)          ! line break
     write(*,'(a)') repeat("1234567890", 7)  ! number line
@@ -16869,10 +16970,10 @@ end program demo_repeat
 ```
 Results:
 ```text
-   ^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v
-   ________________________________________________________________________
-   1234567890123456789012345678901234567890123456789012345678901234567890
-            |         |         |         |         |         |         |
+ ^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v
+ ________________________________________________________________________
+ 1234567890123456789012345678901234567890123456789012345678901234567890
+          |         |         |         |         |         |         |
 ```
 ### **Standard**
 
@@ -16988,7 +17089,6 @@ Sample program:
 ```fortran
 program demo_reshape
 implicit none
-integer :: i
 ! notice the use of "shape(box)" on the RHS
 integer :: box(3,4)=reshape([1,2,3,4,5,6,7,8,9,10,11,12],shape(box))
 integer,allocatable :: v(:,:)
@@ -19088,7 +19188,7 @@ Sample program:
 program demo_spread
 implicit none
 
-integer a1(4,3), a2(3,4), v(4), s, i
+integer a1(4,3), a2(3,4), v(4), s
 
    write(*,'(a)' ) &
    'TEST SPREAD(3)                                      ', &

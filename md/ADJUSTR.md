@@ -6,12 +6,12 @@
 
 ### **Synopsis**
 ```fortran
-    result = adjustr(string)
+  result = adjustr(string)
 ```
 ```fortran
-     elemental character(len=len(string),kind=KIND) function adjustr(string)
+   elemental character(len=len(string),kind=KIND) function adjustr(string)
 
-      character(len=*,kind=KIND),intent(in) :: string
+    character(len=*,kind=KIND),intent(in) :: string
 ```
 ### **Characteristics**
 
@@ -42,7 +42,7 @@ Sample program:
 ```fortran
 program demo_adjustr
 implicit none
-character(len=20) :: str 
+character(len=20) :: str
    ! print a short number line
    write(*,'(a)')repeat('1234567890',2)
 
@@ -67,7 +67,7 @@ end program demo_adjustr
 Results:
 ```text
    12345678901234567890
-     sample string      
+     sample string
           sample string
    12345678901234567890123456789012345678901234567890
                                                 first

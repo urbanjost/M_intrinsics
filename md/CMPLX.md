@@ -11,9 +11,9 @@
 ```fortran
      elemental complex(kind=KIND) function cmplx( x, y, kind )
 
-      TYPE(kind=**),intent(in) :: x
+      TYPE(kind=**),intent(in)          :: x
       TYPE(kind=**),intent(in),optional :: y
-      integer,intent(in),optional :: KIND
+      integer,intent(in),optional       :: KIND
 ```
 ### **Characteristics**
 
@@ -22,7 +22,7 @@
 - **y** is allowed only if **x** is not _complex_. The **TYPE** for
   **y** may be _integer_ or _real_.
 - **kind** is a constant _integer_ initialization expression indicating the kind
-  parameter of the result. 
+  parameter of the result.
 
 The type of the arguments does not affect the kind of the result except
 for a _complex_ **x** value.
@@ -68,7 +68,7 @@ would pass a copy of a value with kind=real64 even if z had a different kind
 but otherwise is equivalent to a simple assign. So if z1 and z2 were _complex_:
 ```fortran
       z2 = z1        ! equivalent statements
-      z2 = cmplx(z1) 
+      z2 = cmplx(z1)
 ```
 If **x** is not _complex_ **x** is only used to define the real component
 of the result but **y** is still optional -- the imaginary part of the
@@ -145,7 +145,7 @@ The following are examples of complex part designators:
 ````
 
 #### NOTE for I/O
-  Note that if format statements are specified a complex value is 
+  Note that if format statements are specified a complex value is
   treated as two real values.
 
   For list-directed I/O (ie. using an asterisk for a format) and NAMELIST
@@ -157,14 +157,14 @@ The following are examples of complex part designators:
 
 - **x**
   : The value assigned to the _real_ component of the result when **x** is
-  not complex. 
+  not complex.
 
   If **x** is complex, the result is the same as if the real part of the
   input was passed as **x** and the imaginary part as **y**.
 ```fortran
      result = CMPLX (REAL (X), AIMAG (X), KIND).
 ```
-   That is, a complex **x** value is copied to the result value with a 
+   That is, a complex **x** value is copied to the result value with a
    possible change of kind.
 
 - **y**
@@ -179,7 +179,7 @@ The following are examples of complex part designators:
 ### **Result**
 
 The return value is of _complex_ type, with magnitudes determined by the
-values **x** and **y**. 
+values **x** and **y**.
 
 The common case when **x** is not complex is that the real
 component of the result is assigned the value of **x** and the imaginary
@@ -197,8 +197,9 @@ Sample program:
 program demo_aimag
 implicit none
 integer,parameter :: dp=kind(0.0d0)
-real(kind=dp)    :: precise, z8
-complex          :: z4, three(3)
+real(kind=dp)     :: precise
+complex(kind=dp)  :: z8
+complex           :: z4, zthree(3)
    precise=1.2345678901234567d0
 
   ! basic
@@ -207,12 +208,12 @@ complex          :: z4, three(3)
    z4 = cmplx(1.23456789, 1.23456789)
    print *, 'Z4=',z4
    ! with a format treat a complex as two real values
-   print '(g0,1x,g0,1x,g0)','Z4=',z4
+   print '(1x,g0,1x,g0,1x,g0)','Z4=',z4
 
   ! working with higher precision values
    ! using kind=dp makes it keep DOUBLEPRECISION precision
    ! otherwise the result would be of default kind
-   z8 = cmplx(precise, -precise ) 
+   z8 = cmplx(precise, -precise )
    print *, 'lost precision Z8=',z8
    z8 = cmplx(precise, -precise ,kind=dp)
    print *, 'kept precision Z8=',z8
@@ -223,13 +224,17 @@ complex          :: z4, three(3)
    z8 = (1.1111111111111111d0, 2.2222222222222222d0 )
    print *, 'Z8 defined with constants=',z8
 
+  ! what happens when you assign a complex to a real?
+   precise=z8
+   print *, 'LHS=',precise,'RHS=',z8
+
   ! elemental
-   three=cmplx([10,20,30],-1)
-   print *, 'three=',three
+   zthree=cmplx([10,20,30],-1)
+   print *, 'zthree=',zthree
 
   ! descriptors are an alternative
-   three(1:2)%re=[100,200]
-   print *, 'three=',three
+   zthree(1:2)%re=[100,200]
+   print *, 'zthree=',zthree
 
 end program demo_aimag
 ```
@@ -237,12 +242,13 @@ Results:
 ```text
     Z4= (-3.000000,0.0000000E+00)
     Z4= (1.234568,1.234568)
-   Z4= 1.234568 1.234568
-    lost precision Z8=   1.23456788063049     
-    kept precision Z8=   1.23456789012346     
-    Z8 defined with constants=   1.11111111111111     
-    three= (10.00000,-1.000000) (20.00000,-1.000000) (30.00000,-1.000000)
-    three= (100.0000,-1.000000) (200.0000,-1.000000) (30.00000,-1.000000)
+    Z4= 1.234568 1.234568
+    lost precision Z8= (1.23456788063049,-1.23456788063049)
+    kept precision Z8= (1.23456789012346,-1.23456789012346)
+    Z8 defined with constants= (1.11111111111111,2.22222222222222)
+    LHS=   1.11111111111111      RHS= (1.11111111111111,2.22222222222222)
+    zthree= (10.00000,-1.000000) (20.00000,-1.000000) (30.00000,-1.000000)
+    zthree= (100.0000,-1.000000) (200.0000,-1.000000) (30.00000,-1.000000)
 ```
 ### **Standard**
 

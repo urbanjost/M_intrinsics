@@ -73,14 +73,14 @@ character(len=10) :: c(4)
  ! select strings whose second character is "a"
    c = [ character(len=10) :: 'ape', 'bat', 'cat', 'dog']
    write(*, fmt="(*(g0, ' '))") pack(c, c(:)(2:2) == 'a' )
- 
+
 end program demo_pack
 ```
 Results:
 ```text
-   1 5 
-   1 2 3 4 
-   bat        cat        
+   1 5
+   1 2 3 4
+   bat        cat
 ```
 ### **Standard**
 

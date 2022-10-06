@@ -95,9 +95,70 @@ result = new_line(c)
 <P>
 NEW_LINE(3) returns the new-line character.
 <P>
+Normally, new-lines are generated with regular formatted I/O statements
+like WRITE() and PRINT() when each statement completes:
+<P>
+<PRE>
+       print *, &#146;x=11&#146;
+       print *
+       print *, &#146;y=22&#146;
+       end
+<P>
+</PRE>
+produces: x=11
+<P>
+<PRE>
+    y=22
+<P>
+    Alternatively, a "/" descriptor in a format is used to generate a
+    newline on the output. For example:
+    &#145;&#145;&#145;fortran
+       write(*,&#146;(a,1x,i0,/,a)&#146;) &#146;x =&#146;,11,&#146;is the answer&#146;
+       end
+<P>
+</PRE>
+produces:
+<P>
+<PRE>
+       x = 11
+       is the answer
+<P>
+</PRE>
+Also, for formatted sequential output if more data is listed on the
+output statement than can be represented by the format statement a
+newline is generated and then the format is reused until the output list
+is exhausted.
+<P>
+<PRE>
+       write(*,&#146;(a,"=",i0)&#146;) &#146;x&#146;, 10, &#146;y&#146;, 20
+       end
+<P>
+</PRE>
+produces
+<P>
+<PRE>
+       x=10
+       y=20
+<P>
+</PRE>
+But there are occasions, particularly when non-advancing I/O or stream
+I/O is being generated (which does not generate a new-line at the end of
+each WRITE statement, as normally occurs) where it is preferable to
+place a new-line explicitly in the output at specified points.
+<P>
+To do so you must make sure you are generating the correct new-line
+character, which the techniques above do automatically.
+<P>
+The new-line character varies between some platforms, and can even
+depend on the encoding (ie. which character set is being used) of the
+output file. In these cases selecting the correct character to output
+can be determined by the NEW_LINE(3) procedure.
+<P>
 Case (i) : If A is default character and the character in position 10 of
 the ASCII collating sequence is representable in the default character
 set, then the result is ACHAR(10).
+<P>
+This is the typical case, and just requires using "new_line(&#146;a&#146;)".
 <P>
 Case (ii) : If A is an ASCII character or an ISO 10646 character, then
 the result is CHAR(10, KIND (A)).
@@ -106,7 +167,8 @@ Case (iii) : Otherwise, the result is a processor-dependent character
 that represents a newline in output to files connected for formatted
 stream output if there is such a character.
 <P>
-Case (iv) : Otherwise, the result is the blank character.
+Case (iv) : If not of the previous cases apply, the result is the blank
+character.
 </BLOCKQUOTE>
 <A name=4>
 
@@ -119,7 +181,8 @@ Case (iv) : Otherwise, the result is the blank character.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-C : The argument shall be a scalar or array of the type character.
+C : an arbitrary character whose kind is used to decide on the
+output character that represents a new-line.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
@@ -146,12 +209,37 @@ Sample program:
     implicit none
     character,parameter :: nl=new_line(&#146;a&#146;)
     character(len=:),allocatable :: string
+    real :: r
+    integer :: i, count
 <P>
+      ! basics
+       ! print a string with a new-line embedded in it
        string=&#146;This is record 1.&#146;//nl//&#146;This is record 2.&#146;
        write(*,&#146;(a)&#146;) string
 <P>
+       ! print a new-line character string
        write(*,&#146;(*(a))&#146;,advance=&#146;no&#146;) &
           nl,&#146;This is record 1.&#146;,nl,&#146;This is record 2.&#146;,nl
+<P>
+       ! output a number of words of random length as a paragraph
+       ! by inserting a new_line before line exceeds 70 characters
+<P>
+      ! simplistic paragraph print using non-advancing I/O
+       count=0
+       do i=1,100
+<P>
+          ! make some fake word of random length
+          call random_number(r)
+          string=repeat(&#146;x&#146;,int(r*10)+1)
+<P>
+          count=count+len(string)+1
+          if(count.gt.70)then
+             write(*,&#146;(a)&#146;,advance=&#146;no&#146;)nl
+             count=len(string)+1
+          endif
+          write(*,&#146;(1x,a)&#146;,advance=&#146;no&#146;)string
+       enddo
+       write(*,&#146;(a)&#146;,advance=&#146;no&#146;)nl
 <P>
     end program demo_new_line
 <P>
@@ -164,6 +252,17 @@ Results:
 <P>
        This is record 1.
        This is record 2.
+        x x xxxx xxxxxxx xxxxxxxxxx xxxxxxxxx xxxx xxxxxxxxxx xxxxxxxx
+        xxxxxxxxx xxxx xxxxxxxxx x xxxxxxxxx xxxxxxxx xxxxxxxx xxxx x
+        xxxxxxxxxx x x x xxxxxx xxxxxxxxxx x xxxxxxxxxx x xxxxxxx xxxxxxxxx
+        xx xxxxxxxxxx xxxxxxxx x xx xxxxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxx
+        xxxxx xxxxxxxxx x xxxxxxxxxx xxxxxx xxxxxxxx xxxxx xxxxxxxx xxxxxxxx
+        xxxxx xxx xxxxxxxx xxxxxxx xxxxxxxx xxx xxxx xxx xxxxxxxx xxxxxx
+        xxxxxxx xxxxxxx xxxxx xxxxx xx xxxxxx xx xxxxxxxxxx xxxxxx x xxxx
+        xxxxxx xxxxxxx x xxx xxxxx xxxxxxxxx xxx xxxxxxx x xxxxxx xxxxxxxxx
+        xxxx xxxxxxxxx xxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxxx xxxxxxxxxx
+        xxxxxxxxxx xxxxxx xxxxx xxxx xxxxxxx xx xxxxxxxxxx xxxxxx xxxxxx
+        xxxxxx xxxx xxxxx
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -183,12 +282,12 @@ Fortran 003
 </A>
 <BLOCKQUOTE>
 <P>
-****(3)
+ACHAR(3), CHAR(3), IACHAR(3), ICHAR(3), SELECTED_CHAR_KIND(3)
 <P>
 fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>new_line (3fortran)</TD> <TD align=right width=33%><I>October 05, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 57ae0863-f1d6-4127-887c-cb345d924e47 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>new_line (3fortran)</TD> <TD align=right width=33%><I>October 05, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from f6a826b8-888a-4c30-8a28-1bf4309c3f1b using man macros.</FONT>
 <br><br><center><img src="images/new_line.3fortran.gif"></center>
 </div>
 </div>

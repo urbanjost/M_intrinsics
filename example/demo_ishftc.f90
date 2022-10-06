@@ -1,7 +1,6 @@
       program demo_ishftc
       use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
       implicit none
-      integer             :: shift
       integer             :: i
       character(len=*),parameter :: g='(b32.32,1x,i0)'
 

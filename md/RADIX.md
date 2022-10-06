@@ -15,7 +15,7 @@
 ```
 ### **Characteristics**
 
-   - TYPE may be _real_ or _integer_ 
+   - TYPE may be _real_ or _integer_
    - **x** may be scalar or an array
 
 ### **Description**

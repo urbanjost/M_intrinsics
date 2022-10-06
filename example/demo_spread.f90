@@ -1,7 +1,7 @@
       program demo_spread
       implicit none
 
-      integer a1(4,3), a2(3,4), v(4), s, i
+      integer a1(4,3), a2(3,4), v(4), s
 
          write(*,'(a)' ) &
          'TEST SPREAD(3)                                      ', &

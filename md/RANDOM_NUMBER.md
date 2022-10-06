@@ -26,7 +26,7 @@ CALL RANDOM_NUMBER (Y)
 ### **Description**
 
 **random_number**(3) returns a single pseudorandom number or an array of
-pseudorandom numbers from the uniform distribution over the range 
+pseudorandom numbers from the uniform distribution over the range
 0 \<= x \< 1.
 
 ### **Options**

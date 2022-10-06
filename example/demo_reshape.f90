@@ -1,6 +1,5 @@
       program demo_reshape
       implicit none
-      integer :: i
       ! notice the use of "shape(box)" on the RHS
       integer :: box(3,4)=reshape([1,2,3,4,5,6,7,8,9,10,11,12],shape(box))
       integer,allocatable :: v(:,:)

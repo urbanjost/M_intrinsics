@@ -44,19 +44,18 @@ Sample program:
 ```fortran
 program demo_repeat
 implicit none
-integer :: i
     write(*,'(a)') repeat("^v", 36)         ! line break
     write(*,'(a)') repeat("_", 72)          ! line break
     write(*,'(a)') repeat("1234567890", 7)  ! number line
-    write(*,'(a)') repeat("         |", 7)  ! 
+    write(*,'(a)') repeat("         |", 7)  !
 end program demo_repeat
 ```
 Results:
 ```text
-   ^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v
-   ________________________________________________________________________
-   1234567890123456789012345678901234567890123456789012345678901234567890
-            |         |         |         |         |         |         |
+ ^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v
+ ________________________________________________________________________
+ 1234567890123456789012345678901234567890123456789012345678901234567890
+          |         |         |         |         |         |         |
 ```
 ### **Standard**
 

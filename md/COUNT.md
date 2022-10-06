@@ -167,7 +167,7 @@ Results:
 ```text
      1  3  5
      2  4  6
-    
+
      0  3  5
      7  4  8
     count a few basic things ...
@@ -188,27 +188,27 @@ Results:
    (ie. total true elements in each row)
      1  2
     lets try this with c(2,3,4)
-      taking the result of the modulo   
-       z=1      z=2      z=3      z=4   
+      taking the result of the modulo
+       z=1      z=2      z=3      z=4
       1 3 0 || 2 4 1 || 3 0 2 || 4 1 3 |
       2 4 1 || 3 0 2 || 4 1 3 || 0 2 4 |
-                                        
-      would result in the mask ..       
+
+      would result in the mask ..
       F F T || F F F || F T F || F F F |
       F F F || F T F || F F F || T F F |
-                                        
+
      the total number of .true.values is
     4
-   
+
    counting up along a row and removing rows :( 3 4 )
     > [ 0, 0, 0, 1 ]
     > [ 0, 1, 1, 0 ]
     > [ 1, 0, 0, 0 ]
-   
+
    counting up along a column and removing columns :( 2 4 )
     > [ 1, 0, 1, 0 ]
     > [ 0, 1, 0, 1 ]
-   
+
    counting up along a depth and removing depths :( 2 3 )
     > [ 0, 1, 1 ]
     > [ 1, 1, 0 ]
