@@ -10034,7 +10034,7 @@ of arguments, and search for certain arguments:
 
 ### **Name**
 
-**ieor**(3) - \[BIT:LOGICAL\] Bitwise logical exclusive or
+**ieor**(3) - \[BIT:LOGICAL\] Bitwise logical exclusive OR
 
 ### **Synopsis**
 ```fortran
@@ -10686,7 +10686,7 @@ Fortran 2008
 
 ### **Name**
 
-**ishftc**(3) - \[BIT:SHIFT\] Shift rightmost bits circularly, aka. a logical shift
+**ishftc**(3) - \[BIT:SHIFT\] Shift rightmost bits circularly, AKA. a logical shift
 
 ### **Synopsis**
 ```fortran
@@ -12932,46 +12932,64 @@ Fortran 95
     result = max(a1, a2, a3, ...)
 ```
 ```fortran
-     elemental TYPE(kind=kind(a1)) function max(a1, a2, a3, ... )
+     elemental TYPE(kind=KIND) function max(a1, a2, a3, ... )
 
-      TYPE(kind=kind(a1),intent(in),optional :: a1
-      TYPE(kind=kind(a1),intent(in),optional :: a2
-      TYPE(kind=kind(a1),intent(in),optional :: a3
+      TYPE(kind=KIND,intent(in),optional :: a1
+      TYPE(kind=KIND,intent(in),optional :: a2
+      TYPE(kind=KIND,intent(in),optional :: a3
                 :
                 :
                 :
 ```
 ### **Characteristics**
 
-- **TYPE** may be _integer_ or _real_
-- **a1, a2, a3, ...** must be of the same type and kind as **a1**.
+ - **a3, a3, a4, ...** must be of the same type and kind as **a1**
+ - the arguments may (all) be _integer_, _real_ or _character_
+ - there must be at least two arguments
+ - the length of a character result is the length of the longest argument
+ - the type and kind of the result is the same as those of the arguments
 
 ### **Description**
 
-**max**(3) returns the argument with the largest (most positive) value.
+  **max**(3) returns the argument with the largest (most positive) value.
+
+  For arguments of character type, the result is as if the arguments had
+  been successively compared with the intrinsic operational operators,
+  taking into account the collating sequence of the _character_ kind.
+
+  If the selected _character_ argument is shorter than the longest
+  argument, the result is as all values were extended with blanks on
+  the right to the length of the longest argument.
+
+  It is unusual for a Fortran intrinsic to take an arbitrary number of
+  options, and in addition **max**(3) is elemental, meaning any number
+  of arguments may be arrays as long as they are of the same shape.
+  The examples have an extended description clarifying the resulting
+  behavior for those not familiar with calling a "scalar" function
+  elementally with arrays.
+
+  See maxval(3) for simply getting the max value of an array.
 
 ### **Options**
 
 - **a1**
   : The first argument determines the type and kind of the returned
-  value, and of any remaining arguments.
+  value, and of any remaining arguments as well as being a member of
+  the set of values to find the maximum (most positive) value of.
 
 - **a2,a3,...**
-  : A value or expression of the same type and kind as **a1**.
-  There must be at least two arguments to **max(3)**.
+  : the remaining arguments of which to find the maximum value(s) of.
+  : There must be at least two arguments to **max(3)**.
 
 ### **Result**
 
-  The return value corresponds to the maximum value among the arguments.
+  The return value corresponds to an array of the same shape of any
+  array argument, or a scalar if all arguments are scalar.
 
-  The function is both elemental and allows for an arbitrary number of
-  arguments. This means if some elements are scalar and some are arrays
-  that all the arrays must be of the same size, and the returned value
-  will be an array that is the result as if multiple calls were made
-  with all scalar values with a single element of each array used in
-  each call. If called with all arrays the returned array is the same
-  as if multiple calls were made with **max(arr1(1),arr2(1), ...)**
-  to **max(arr1(N),arr2(N))**.
+  The returned value when any argument is an array will be an array of
+  the same shape where each element is the maximum value occuring at
+  that location, treating all the scalar values as arrays of that same
+  shape with all elements set to the scalar value.
 
 ### **Examples**
 
@@ -12981,51 +12999,70 @@ program demo_max
 implicit none
 real :: arr1(4)= [10.0,11.0,30.0,-100.0]
 real :: arr2(5)= [20.0,21.0,32.0,-200.0,2200.0]
+integer :: box(3,4)= reshape([-6,-5,-4,-3,-2,-1,1,2,3,4,5,6],shape(box))
 
   ! basic usage
-   ! this is simple enough because all arguments are scalar
+   ! this is simple enough when all arguments are scalar
+
+   ! the most positive value is returned, not the one with the
+   ! largest magnitude
    write(*,*)'scalars:',max(10.0,11.0,30.0,-100.0)
-   ! this is all max(3) could do before it became an elemental
-   ! function and is the most intuitive
-   ! except that it can take an arbitrary number of options,
-   ! which is not common in Fortran without
-   ! declaring a lot of optional parameters.
-   !
-   ! That is it unless you want to use the elemental features of max(3)!
+   write(*,*)'scalars:',max(-22222.0,-0.0001)
+
+   ! strings do not need to be of the same length
+   write(*,*)'characters:',max('the','words','order')
+
+   ! leading spaces are significant; everyone is padded on the right
+   ! to the length of the longest argument
+   write(*,*)'characters:',max('c','bb','a')
+   write(*,*)'characters:',max(' c','b','a')
 
   ! elemental
    ! there must be at least two arguments, so even if A1 is an array
-   ! max(A1) is not valid. See MAXVAL(3) and/or MAXVAL(3) instead.
+   ! max(A1) is not valid. See MAXVAL(3) and/or MAXLOC(3) instead.
 
-   ! If any argument is an array by the definition of an elemental
-   ! function all the array arguments must be the same shape but
-   ! MAXVAL([arr1, arr2]) or max(maxval(arr1),maxval(arr2))
-   ! would work, for example.
+   ! strings in a single array do need to be of the same length
+   ! but the different objects can still be of different lengths.
+   write(*,"(*('""'a,'""':,1x))")MAX(['A','Z'],['BB','Y '])
+   ! note the result is now an array with the max of every element
+   ! position, as can be illustrated numerically as well:
+   write(*,'(a,*(i3,1x))')'box=   ',box
+   write(*,'(a,*(i3,1x))')'box**2=',sign(1,box)*box**2
+   write(*,'(a,*(i3,1x))')'max    ',max(box,sign(1,box)*box**2)
 
-   ! so an elemental call of two vectors does not return a single
-   ! value, but the largest first element of the arrays, then the
-   ! largest second element, and so on.
+   ! Remember if any argument is an array by the definition of an
+   ! elemental function all the array arguments must be the same shape.
+
+   ! to find the single largest value of arrays you could use something
+   ! like MAXVAL([arr1, arr2]) or probably better (no large temp array),
+   ! max(maxval(arr1),maxval(arr2)) instead
+
+   ! so this returns an array of the same shape as any input array
+   ! where each result is the maximum that occurs at that position.
    write(*,*)max(arr1,arr2(1:4))
-   ! multi-dimensional arrays are allowed, where the returned
-   ! value will be an array of all the sets of the elements with
-   ! the same coordinates.
-
+   ! this returns an array just like arr1 except all values less than
+   ! zero are set to zero:
+   write(*,*)max(box,0)
    ! When mixing arrays and scalars you can think of the scalars
    ! as being a copy of one of the arrays with all values set to
-   ! the scalar value ...
-   write(*,*)'scalars and array:',max(10.0,11.0,30.0,-100.0,arr2)
+   ! the scalar value.
 
-   ! with two arrays and some scalars ...
-   write(*,*)'scalars and array:',&
-   & max(40.0,11.0,30.0,-100.0,arr2(:4),arr1)
 end program demo_max
 ```
 Results:
 ```text
-    scalars:   30.000000
-      20.0000000  21.000000  32.000000 -100.00000
-    scalars and array: 30.000000 30.000000 32.000000 30.000000 2200.0000
-    scalars and array: 40.000000 40.000000 40.000000 40.000000
+    scalars:   30.00000
+    scalars: -9.9999997E-05
+    characters:words
+    characters:c
+    characters:b
+   "BB" "Z "
+   box=    -6  -5  -4  -3  -2  -1   1   2   3   4   5   6
+   box**2=-36 -25 -16  -9  -4  -1   1   4   9  16  25  36
+   max     -6  -5  -4  -3  -2  -1   1   4   9  16  25  36
+   20.00000  21.00000  32.00000  -100.0000
+   0  0  0  0  0  0
+   1  2  3  4  5  6
 ```
 ### **Standard**
 
@@ -13039,7 +13076,7 @@ FORTRAN 77
 [**minval**(3)](#minval),
 [**min**(3)](#min)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## maxval
 
@@ -13650,30 +13687,34 @@ Fortran 95
     result = min(a1, a2, a3, ... )
 ```
 ```fortran
-     elemental TYPE(kind=kind(a1)) function min(a1, a2, a3, ... )
+     elemental TYPE(kind=KIND) function min(a1, a2, a3, ... )
 
-      TYPE(kind=kind(a1),intent(in)   :: a1
-      TYPE(kind=kind(a1),intent(in)   :: a2
-      TYPE(kind=kind(a1),intent(in)   :: a3
+      TYPE(kind=KIND,intent(in)   :: a1
+      TYPE(kind=KIND,intent(in)   :: a2
+      TYPE(kind=KIND,intent(in)   :: a3
                 :
                 :
                 :
 ```
 ### **Characteristics**
 
-Where **TYPE** may be _integer_ or _real_
+- **TYPE** may be _integer_, _real_ or _character_.
 
 ### **Description**
 
 **min**(3) returns the argument with the smallest (most negative) value.
 
+See **max**(3) for an extended example of the behavior of **min**(3) as
+and **max**(3).
+
 ### **Options**
 
 - **a1**
-  : The type shall be _integer_ or _real_.
+  : the first element of the set of values to determine the minimum of.
 
 - **a2, a3, ...**
-  : An expression of the same type and kind as **a1**.
+  : An expression of the same type and kind as **a1** completing the
+  set of values to find the minimum of.
 
 ### **Result**
 
@@ -13704,7 +13745,7 @@ FORTRAN 77
 [**minval**(3)](#minval),
 [**max**(3)](#max),
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## minval
 
@@ -14061,7 +14102,7 @@ Fortran 95
 
 ### **Name**
 
-**move_alloc**(3) - \[\] Move allocation from one object to another
+**move_alloc**(3) - \[MEMORY\] Move allocation from one object to another
 
 ### **Synopsis**
 ```fortran
@@ -15476,13 +15517,13 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-- **i** argument may be an integer of any kind.
+- **i** may be an _integer_ of any kind.
 - The return value is an _integer_ of the default integer kind.
 
 ### **Description**
 
-**popcnt**(3) returns the number of bits set in the binary representation
-of an _integer_.
+  **popcnt**(3) returns the number of bits set to one in the binary
+  representation of an _integer_.
 
 ### **Options**
 
@@ -15491,7 +15532,7 @@ of an _integer_.
 
 ### **Result**
 
-The number of bits set in **i**.
+The number of bits set to one in **i**.
 
 ### **Examples**
 
@@ -15503,10 +15544,11 @@ use, intrinsic :: iso_fortran_env, only : integer_kinds, &
    & int8, int16, int32, int64
 implicit none
 character(len=*),parameter :: pretty='(b64,1x,i0)'
-   ! basic usage
+  ! basic usage
    print pretty, 127,     popcnt(127)
    print pretty, int(b"01010"), popcnt(int(b"01010"))
-   ! any kind of an integer can be used
+
+  ! any kind of an integer can be used
    print pretty, huge(0_int8),  popcnt(huge(0_int8))
    print pretty, huge(0_int16), popcnt(huge(0_int16))
    print pretty, huge(0_int32), popcnt(huge(0_int32))
@@ -15516,7 +15558,7 @@ end program demo_popcnt
 Results:
 
 Note that on most machines the first bit is the sign bit, and a zero is
-used for positive values, but that this is system-dependent.  These are
+used for positive values; but that this is system-dependent.  These are
 typical values, where the huge(3f) function has set all but the first
 bit to 1.
 ```text
@@ -18879,9 +18921,13 @@ FORTRAN 77
 
 ### **Description**
 
-**size**(3) determines the extent of **array** along a specified
-dimension **dim**, or the total number of elements in **array** if **dim**
-is absent.
+  **size(3)** returns the total number of elements in an array, or
+  if **dim** is specified returns the number of elements along that
+  dimension.
+
+  **size**(3) determines the extent of **array** along a specified
+  dimension **dim**, or the total number of elements in **array** if
+  **dim** is absent.
 
 ### **Options**
 
@@ -18894,6 +18940,10 @@ is absent.
 
   If not present the total number of elements of the entire array
   are returned.
+
+    If KIND is present, the KIND type parameter is that specified by
+    the value of KIND; otherwise, the KIND type parameter is that of
+    default integer type.
 
 - **kind**
   : An _integer_ initialization expression indicating the kind
@@ -18920,144 +18970,50 @@ Sample program:
 program demo_size
 implicit none
 integer :: i, j
-integer :: arr(0:2,-5:5)=reshape([(((i-1)*11+j,i=1,3),j=1,11)],[3,11])
-   write(*,*) 'SIZE of simple one-dimensional array=', &
-   & size([ 11, 22, 33 ])    ! 3
+integer :: arr(0:2,-5:5)
+   write(*,*)'SIZE of simple two-dimensional array'
+   write(*,*)'SIZE(arr)       :total count of elements:',size(arr)
+   write(*,*)'SIZE(arr,DIM=1) :number of rows         :',size(arr,dim=1)
+   write(*,*)'SIZE(arr,DIM=2) :number of columnts     :',size(arr,dim=2)
 
-   write(*,*)'body'
-   write(*,*)'SHAPE(arr)       :',shape(arr)
-   write(*,*)'SIZE(arr)        :',size(arr)
-   write(*,*)'SIZE(arr,DIM=1)  :',size(arr,dim=1)
-   write(*,*)'SIZE(arr,DIM=2)  :',size(arr,dim=2)
-   write(*,*)'note lower bound is not "1"'
-   write(*,*)'LBOUND(arr)      :',lbound(arr)
-   write(*,*)'UBOUND(arr)      :',ubound(arr)
-   write(*,*)'LBOUND(arr,DIM=1):',lbound(arr,dim=1)
-   write(*,*)'UBOUND(arr,DIM=1):',ubound(arr,dim=1)
-   write(*,*)'LBOUND(arr,DIM=2):',lbound(arr,dim=2)
-   write(*,*)'UBOUND(arr,DIM=2):',ubound(arr,dim=2)
-
+   ! pass the same array to a procedure that passes the value two
+   ! different ways
    call interfaced(arr,arr)
-   call nointerface(arr)
 contains
 
-subroutine interfaced(arr,arr2)
-integer,intent(in)  :: arr(:,:)
-integer,intent(in)  :: arr2(2,*)
+subroutine interfaced(arr1,arr2)
+! notice the difference in the array specification
+! for arr1 and arr2.
+integer,intent(in) :: arr1(:,:)
+integer,intent(in) :: arr2(2,*)
    !
-   write(*,*)'interfaced assumed-shape arr2ay'
-   !
-   ! source argument of shape intrinsic at (1) must not be
-   ! an assumed size array
-   !!write(*,*)'SHAPE(arr2)       :',shape(arr2)
-   ! The upper bound in the last dimension must appear in the reference
-   ! to the assumed size array    arr2    at (1)
-   !!write(*,*)'SIZE(arr2)        :',size(arr2)
+   write(*,*)'interfaced assumed-shape array'
+   write(*,*)'SIZE(arr1)        :',size(arr1)
+   write(*,*)'SIZE(arr1,DIM=1)  :',size(arr1,dim=1)
+   write(*,*)'SIZE(arr1,DIM=2)  :',size(arr1,dim=2)
+
+!  write(*,*)'SIZE(arr2)        :',size(arr2)
    write(*,*)'SIZE(arr2,DIM=1)  :',size(arr2,dim=1)
-   !    dim    argument of    size    intrinsic at (1) is not
-   !a valid dimension index
-   !!write(*,*)'SIZE(arr2,DIM=2)  :',size(arr2,dim=2)
-   write(*,*)'note lower bound is "1"'
-   write(*,*)'LBOUND(arr2)      :',lbound(arr2)
-   write(*,*)'LBOUND(arr2)      :',lbound(arr2)
-   ! The upper bound in the last dimension must appear in the
-   ! reference to the assumed size array    arr2    at (1)
-   !!write(*,*)'UBOUND(arr2)      :',ubound(arr2)
-   write(*,*)'LBOUND(arr2,DIM=1):',lbound(arr2,dim=1)
-   write(*,*)'UBOUND(arr2,DIM=1):',ubound(arr2,dim=1)
-   write(*,*)'LBOUND(arr2,DIM=2):',lbound(arr2,dim=2)
-   !    dim    argument of    ubound    intrinsic at (1) is not
-   ! a valid dimension index
-   !!write(*,*)'UBOUND(arr2,DIM=2):',ubound(arr2,dim=2)
-   !
-   write(*,*)'interfaced'
-   !
-   write(*,*)'SHAPE(arr)       :',shape(arr)
-   write(*,*)'SIZE(arr)        :',size(arr)
-   write(*,*)'SIZE(arr,DIM=1)  :',size(arr,dim=1)
-   write(*,*)'SIZE(arr,DIM=2)  :',size(arr,dim=2)
-   write(*,*)'note lower bound is "1"'
-   write(*,*)'LBOUND(arr)      :',lbound(arr)
-   write(*,*)'LBOUND(arr)      :',lbound(arr)
-   write(*,*)'UBOUND(arr)      :',ubound(arr)
-   write(*,*)'LBOUND(arr,DIM=1):',lbound(arr,dim=1)
-   write(*,*)'UBOUND(arr,DIM=1):',ubound(arr,dim=1)
-   write(*,*)'LBOUND(arr,DIM=2):',lbound(arr,dim=2)
-   write(*,*)'UBOUND(arr,DIM=2):',ubound(arr,dim=2)
-   !
+!
+! CANNOT DETERMINE SIZE OF ASSUMED SIZE ARRAY LAST DIMENSION
+!  write(*,*)'SIZE(arr2,DIM=2)  :',size(arr2,dim=2)
+
 end subroutine interfaced
-!!
-! NOTE: If NOINTERFACE(3) had an assumed-shape argument with :
-!       for dimensions it could only be properly called with
-!       an explicit interface
-!!
-subroutine nointerface(arr)
-integer,intent(in) :: arr(3,*)
-   write(*,*)'nointerface'
- ! SHAPE(3) CANNOT BE USED ON AN ASSUMED SIZE ARRAY
- !!write(*,*)'SHAPE(arr)       :',shape(arr)
- !!write(*,*)'SIZE(arr)        :',size(arr)
-   write(*,*)'SIZE(arr,DIM=1)  :',size(arr,dim=1)
- ! CANNOT DETERMINE SIZE OF ASSUMED SIZE ARRAY LAST DIMENSION
- !!write(*,*)'SIZE(arr,DIM=2)  :',size(arr,dim=2)
-   write(*,*)'note lower bound is "1"'
-   write(*,*)'LBOUND(arr)      :',lbound(arr)
- !!write(*,*)'UBOUND(arr)      :',ubound(arr)
-   write(*,*)'LBOUND(arr,DIM=1):',lbound(arr,dim=1)
-   write(*,*)'UBOUND(arr,DIM=1):',ubound(arr,dim=1)
-   write(*,*)'LBOUND(arr,DIM=2):',lbound(arr,dim=2)
- !!write(*,*)'UBOUND(arr,DIM=2):',ubound(arr,dim=2)
-end subroutine nointerface
-!!
+
 end program demo_size
 ```
-
 Results:
-
 ```text
-    SIZE of simple one-dimensional array=           3
-    body
-    SHAPE(arr)       :           3          11
-    SIZE(arr)        :          33
-    SIZE(arr,DIM=1)  :           3
-    SIZE(arr,DIM=2)  :          11
-    note lower bound is not "1"
-    LBOUND(arr)      :           0          -5
-    UBOUND(arr)      :           2           5
-    LBOUND(arr,DIM=1):           0
-    UBOUND(arr,DIM=1):           2
-    LBOUND(arr,DIM=2):          -5
-    UBOUND(arr,DIM=2):           5
-    interfaced assumed-shape arr2ay
+    SIZE of simple two-dimensional array
+    SIZE(arr)       :total count of elements:          33
+    SIZE(arr,DIM=1) :number of rows         :           3
+    SIZE(arr,DIM=2) :number of columnts     :          11
+    interfaced assumed-shape array
+    SIZE(arr1)        :          33
+    SIZE(arr1,DIM=1)  :           3
+    SIZE(arr1,DIM=2)  :          11
     SIZE(arr2,DIM=1)  :           2
-    note lower bound is "1"
-    LBOUND(arr2)      :           1           1
-    LBOUND(arr2)      :           1           1
-    LBOUND(arr2,DIM=1):           1
-    UBOUND(arr2,DIM=1):           2
-    LBOUND(arr2,DIM=2):           1
-    interfaced
-    SHAPE(arr)       :           3          11
-    SIZE(arr)        :          33
-    SIZE(arr,DIM=1)  :           3
-    SIZE(arr,DIM=2)  :          11
-    note lower bound is "1"
-    LBOUND(arr)      :           1           1
-    LBOUND(arr)      :           1           1
-    UBOUND(arr)      :           3          11
-    LBOUND(arr,DIM=1):           1
-    UBOUND(arr,DIM=1):           3
-    LBOUND(arr,DIM=2):           1
-    UBOUND(arr,DIM=2):          11
-    nointerface
-    SIZE(arr,DIM=1)  :           3
-    note lower bound is "1"
-    LBOUND(arr)      :           1           1
-    LBOUND(arr,DIM=1):           1
-    UBOUND(arr,DIM=1):           3
-    LBOUND(arr,DIM=2):           1
 ```
-
 ### **Standard**
 
 Fortran 95 , with **kind** argument - Fortran 2003
@@ -19088,6 +19044,34 @@ Fortran 95 , with **kind** argument - Fortran 2003
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+<!--
+ARRAY
+    An array of any data type or an assumed-rank object.
+
+   The corresponding actual argument must not be a scalar,
+    disassociated pointer, or allocatable array that is not allocated. The
+    actual argument can be an assumed-size array if DIM is present and
+    has a value that is less than the rank of ARRAY.
+
+DIM (optional)
+    An INTEGER scalar. Its value must be in the range 1 ≤ DIM ≤
+    RANK(ARRAY). It must not be present if ARRAY is an
+    assumed-rank object that is associated with a scalar.
+
+    An INTEGER scalar. Its value must be specified by a constant expression. Fortran 2003 ends
+
+    result is of type scalar integer.
+
+Result value
+
+The result equals the extent of ARRAY along dimension DIM; or, if DIM is not specified, it is the total number of array elements in ARRAY.
+TS 29113 begins
+
+    If ARRAY is an assumed-rank object that is associated with a scalar, the result is 1.
+    If ARRAY is an assumed-rank object that is associated with an assumed-size array, and
+        If DIM is present and equal to the rank of ARRAY, the result is -1.
+        If DIM is not present, the result is a negative value that is equal to PRODUCT([(SIZE(ARRAY, I, KIND), I=1, RANK(ARRAY))]).
+-->
 
 ## spacing
 
@@ -19803,9 +19787,9 @@ Fortran 95
 ```
 ### **Characteristics**
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind
-supported by the associated type. The returned value will be of the same
-type and kind as the argument.
+ - **x** may be _real_ or _complex_ and any associated kind supported by
+   the processor.
+ - The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
@@ -19814,14 +19798,16 @@ type and kind as the argument.
 ### **Options**
 
 - **x**
-  : The value to compute the Hyperbolic tangent of
+  : The value to compute the Hyperbolic tangent of.
 
 ### **Result**
 
-The return value has same type and kind as **x**. If **x** is complex, the
-imaginary part of the result is in radians. If **x** is _real_, the return
-value lies in the range
+Returns the hyperbolic tangent of **x**.
 
+  If **x** is _complex_, the imaginary part of the result is regarded as
+  a radian value.
+
+  If **x** is _real_, the return value lies in the range
 ```
       -1 <= tanh(x) <= 1.
 ```

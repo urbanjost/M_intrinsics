@@ -7128,7 +7128,7 @@ $$</span><br /></p>
 <div id="ieor" class="slide section level2">
 <h1>ieor</h1>
 <h3 id="name-101"><strong>Name</strong></h3>
-<p><strong>ieor</strong>(3) - [BIT:LOGICAL] Bitwise logical exclusive or</p>
+<p><strong>ieor</strong>(3) - [BIT:LOGICAL] Bitwise logical exclusive OR</p>
 <h3 id="synopsis-101"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb438"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb438-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">ieor</span>(i, j)</a></code></pre></div>
 <div class="sourceCode" id="cb439"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb439-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">ieor</span>(i,j)</a>
@@ -7569,7 +7569,7 @@ If not present the returned type is that of default integer type.</li>
 <div id="ishftc" class="slide section level2">
 <h1>ishftc</h1>
 <h3 id="name-108"><strong>Name</strong></h3>
-<p><strong>ishftc</strong>(3) - [BIT:SHIFT] Shift rightmost bits circularly, aka. a logical shift</p>
+<p><strong>ishftc</strong>(3) - [BIT:SHIFT] Shift rightmost bits circularly, AKA. a logical shift</p>
 <h3 id="synopsis-108"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb466"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb466-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">ishftc</span>( i, shift <span class="kw">[</span>,<span class="fu">size</span><span class="kw">]</span> )</a></code></pre></div>
 <div class="sourceCode" id="cb467"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb467-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">ishftc</span>(i, shift, <span class="fu">size</span>)</a>
@@ -9175,91 +9175,119 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <p><strong>max</strong>(3) - [NUMERIC] Maximum value of an argument list</p>
 <h3 id="synopsis-130"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb560"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb560-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">max</span>(a1, a2, a3, ...)</a></code></pre></div>
-<div class="sourceCode" id="cb561"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb561-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=kind(a1))</span> <span class="kw">function</span> <span class="bu">max</span>(a1, a2, a3, ... )</a>
+<div class="sourceCode" id="cb561"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb561-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="bu">max</span>(a1, a2, a3, ... )</a>
 <a class="sourceLine" id="cb561-2" title="2"></a>
-<a class="sourceLine" id="cb561-3" title="3">      <span class="dt">TYPE(kind=kind(a1),intent(in),optional :: a1</span></a>
-<a class="sourceLine" id="cb561-4" title="4">      <span class="dt">TYPE(kind=kind(a1),intent(in),optional :: a2</span></a>
-<a class="sourceLine" id="cb561-5" title="5">      <span class="dt">TYPE(kind=kind(a1),intent(in),optional :: a3</span></a>
+<a class="sourceLine" id="cb561-3" title="3">      <span class="dt">TYPE(kind=KIND,intent(in),optional :: a1</span></a>
+<a class="sourceLine" id="cb561-4" title="4">      <span class="dt">TYPE(kind=KIND,intent(in),optional :: a2</span></a>
+<a class="sourceLine" id="cb561-5" title="5">      <span class="dt">TYPE(kind=KIND,intent(in),optional :: a3</span></a>
 <a class="sourceLine" id="cb561-6" title="6">                :</a>
 <a class="sourceLine" id="cb561-7" title="7">                :</a>
 <a class="sourceLine" id="cb561-8" title="8">                :</a></code></pre></div>
 <h3 id="characteristics-131"><strong>Characteristics</strong></h3>
 <ul>
-<li><strong>TYPE</strong> may be integer or real</li>
-<li><strong>a1, a2, a3, …</strong> must be of the same type and kind as <strong>a1</strong>.</li>
+<li><strong>a3, a3, a4, …</strong> must be of the same type and kind as <strong>a1</strong></li>
+<li>the arguments may (all) be integer, real or character</li>
+<li>there must be at least two arguments</li>
+<li>the length of a character result is the length of the longest argument</li>
+<li>the type and kind of the result is the same as those of the arguments</li>
 </ul>
 <h3 id="description-129"><strong>Description</strong></h3>
 <p><strong>max</strong>(3) returns the argument with the largest (most positive) value.</p>
+<p>For arguments of character type, the result is as if the arguments had been successively compared with the intrinsic operational operators, taking into account the collating sequence of the character kind.</p>
+<p>If the selected character argument is shorter than the longest argument, the result is as all values were extended with blanks on the right to the length of the longest argument.</p>
+<p>It is unusual for a Fortran intrinsic to take an arbitrary number of options, and in addition <strong>max</strong>(3) is elemental, meaning any number of arguments may be arrays as long as they are of the same shape. The examples have an extended description clarifying the resulting behavior for those not familiar with calling a “scalar” function elementally with arrays.</p>
+<p>See maxval(3) for simply getting the max value of an array.</p>
 <h3 id="options-127"><strong>Options</strong></h3>
 <ul>
 <li><dl>
 <dt><strong>a1</strong></dt>
-<dd>The first argument determines the type and kind of the returned value, and of any remaining arguments.
+<dd>The first argument determines the type and kind of the returned value, and of any remaining arguments as well as being a member of the set of values to find the maximum (most positive) value of.
 </dd>
 </dl></li>
 <li><dl>
 <dt><strong>a2,a3,…</strong></dt>
-<dd>A value or expression of the same type and kind as <strong>a1</strong>. There must be at least two arguments to <strong>max(3)</strong>.
+<dd>the remaining arguments of which to find the maximum value(s) of.
+</dd>
+<dd>There must be at least two arguments to <strong>max(3)</strong>.
 </dd>
 </dl></li>
 </ul>
 <h3 id="result-110"><strong>Result</strong></h3>
-<p>The return value corresponds to the maximum value among the arguments.</p>
-<p>The function is both elemental and allows for an arbitrary number of arguments. This means if some elements are scalar and some are arrays that all the arrays must be of the same size, and the returned value will be an array that is the result as if multiple calls were made with all scalar values with a single element of each array used in each call. If called with all arrays the returned array is the same as if multiple calls were made with <strong>max(arr1(1),arr2(1), …)</strong> to <strong>max(arr1(N),arr2(N))</strong>.</p>
+<p>The return value corresponds to an array of the same shape of any array argument, or a scalar if all arguments are scalar.</p>
+<p>The returned value when any argument is an array will be an array of the same shape where each element is the maximum value occuring at that location, treating all the scalar values as arrays of that same shape with all elements set to the scalar value.</p>
 <h3 id="examples-123"><strong>Examples</strong></h3>
 <p>Sample program</p>
 <div class="sourceCode" id="cb562"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb562-1" title="1"><span class="kw">program</span> demo_max</a>
 <a class="sourceLine" id="cb562-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
 <a class="sourceLine" id="cb562-3" title="3"><span class="dt">real</span> <span class="dt">::</span> arr1(<span class="dv">4</span>)<span class="kw">=</span> <span class="kw">[</span><span class="fl">10.0</span>,<span class="fl">11.0</span>,<span class="fl">30.0</span>,<span class="kw">-</span><span class="fl">100.0</span><span class="kw">]</span></a>
 <a class="sourceLine" id="cb562-4" title="4"><span class="dt">real</span> <span class="dt">::</span> arr2(<span class="dv">5</span>)<span class="kw">=</span> <span class="kw">[</span><span class="fl">20.0</span>,<span class="fl">21.0</span>,<span class="fl">32.0</span>,<span class="kw">-</span><span class="fl">200.0</span>,<span class="fl">2200.0</span><span class="kw">]</span></a>
-<a class="sourceLine" id="cb562-5" title="5"></a>
-<a class="sourceLine" id="cb562-6" title="6">  <span class="co">! basic usage</span></a>
-<a class="sourceLine" id="cb562-7" title="7">   <span class="co">! this is simple enough because all arguments are scalar</span></a>
-<a class="sourceLine" id="cb562-8" title="8">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;scalars:&#39;</span>,<span class="bu">max</span>(<span class="fl">10.0</span>,<span class="fl">11.0</span>,<span class="fl">30.0</span>,<span class="kw">-</span><span class="fl">100.0</span>)</a>
-<a class="sourceLine" id="cb562-9" title="9">   <span class="co">! this is all max(3) could do before it became an elemental</span></a>
-<a class="sourceLine" id="cb562-10" title="10">   <span class="co">! function and is the most intuitive</span></a>
-<a class="sourceLine" id="cb562-11" title="11">   <span class="co">! except that it can take an arbitrary number of options,</span></a>
-<a class="sourceLine" id="cb562-12" title="12">   <span class="co">! which is not common in Fortran without</span></a>
-<a class="sourceLine" id="cb562-13" title="13">   <span class="co">! declaring a lot of optional parameters.</span></a>
-<a class="sourceLine" id="cb562-14" title="14">   <span class="co">!</span></a>
-<a class="sourceLine" id="cb562-15" title="15">   <span class="co">! That is it unless you want to use the elemental features of max(3)!</span></a>
-<a class="sourceLine" id="cb562-16" title="16"></a>
-<a class="sourceLine" id="cb562-17" title="17">  <span class="co">! elemental</span></a>
-<a class="sourceLine" id="cb562-18" title="18">   <span class="co">! there must be at least two arguments, so even if A1 is an array</span></a>
-<a class="sourceLine" id="cb562-19" title="19">   <span class="co">! max(A1) is not valid. See MAXVAL(3) and/or MAXVAL(3) instead.</span></a>
-<a class="sourceLine" id="cb562-20" title="20"></a>
-<a class="sourceLine" id="cb562-21" title="21">   <span class="co">! If any argument is an array by the definition of an elemental</span></a>
-<a class="sourceLine" id="cb562-22" title="22">   <span class="co">! function all the array arguments must be the same shape but</span></a>
-<a class="sourceLine" id="cb562-23" title="23">   <span class="co">! MAXVAL([arr1, arr2]) or max(maxval(arr1),maxval(arr2))</span></a>
-<a class="sourceLine" id="cb562-24" title="24">   <span class="co">! would work, for example.</span></a>
-<a class="sourceLine" id="cb562-25" title="25"></a>
-<a class="sourceLine" id="cb562-26" title="26">   <span class="co">! so an elemental call of two vectors does not return a single</span></a>
-<a class="sourceLine" id="cb562-27" title="27">   <span class="co">! value, but the largest first element of the arrays, then the</span></a>
-<a class="sourceLine" id="cb562-28" title="28">   <span class="co">! largest second element, and so on.</span></a>
-<a class="sourceLine" id="cb562-29" title="29">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="bu">max</span>(arr1,arr2(<span class="dv">1</span>:<span class="dv">4</span>))</a>
-<a class="sourceLine" id="cb562-30" title="30">   <span class="co">! multi-dimensional arrays are allowed, where the returned</span></a>
-<a class="sourceLine" id="cb562-31" title="31">   <span class="co">! value will be an array of all the sets of the elements with</span></a>
-<a class="sourceLine" id="cb562-32" title="32">   <span class="co">! the same coordinates.</span></a>
-<a class="sourceLine" id="cb562-33" title="33"></a>
-<a class="sourceLine" id="cb562-34" title="34">   <span class="co">! When mixing arrays and scalars you can think of the scalars</span></a>
-<a class="sourceLine" id="cb562-35" title="35">   <span class="co">! as being a copy of one of the arrays with all values set to</span></a>
-<a class="sourceLine" id="cb562-36" title="36">   <span class="co">! the scalar value ...</span></a>
-<a class="sourceLine" id="cb562-37" title="37">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;scalars and array:&#39;</span>,<span class="bu">max</span>(<span class="fl">10.0</span>,<span class="fl">11.0</span>,<span class="fl">30.0</span>,<span class="kw">-</span><span class="fl">100.0</span>,arr2)</a>
+<a class="sourceLine" id="cb562-5" title="5"><span class="dt">integer</span> <span class="dt">::</span> box(<span class="dv">3</span>,<span class="dv">4</span>)<span class="kw">=</span> <span class="fu">reshape</span>(<span class="kw">[-</span><span class="dv">6</span>,<span class="kw">-</span><span class="dv">5</span>,<span class="kw">-</span><span class="dv">4</span>,<span class="kw">-</span><span class="dv">3</span>,<span class="kw">-</span><span class="dv">2</span>,<span class="kw">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span><span class="kw">]</span>,<span class="fu">shape</span>(box))</a>
+<a class="sourceLine" id="cb562-6" title="6"></a>
+<a class="sourceLine" id="cb562-7" title="7">  <span class="co">! basic usage</span></a>
+<a class="sourceLine" id="cb562-8" title="8">   <span class="co">! this is simple enough when all arguments are scalar</span></a>
+<a class="sourceLine" id="cb562-9" title="9"></a>
+<a class="sourceLine" id="cb562-10" title="10">   <span class="co">! the most positive value is returned, not the one with the</span></a>
+<a class="sourceLine" id="cb562-11" title="11">   <span class="co">! largest magnitude</span></a>
+<a class="sourceLine" id="cb562-12" title="12">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;scalars:&#39;</span>,<span class="bu">max</span>(<span class="fl">10.0</span>,<span class="fl">11.0</span>,<span class="fl">30.0</span>,<span class="kw">-</span><span class="fl">100.0</span>)</a>
+<a class="sourceLine" id="cb562-13" title="13">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;scalars:&#39;</span>,<span class="bu">max</span>(<span class="kw">-</span><span class="fl">22222.0</span>,<span class="kw">-</span><span class="fl">0.0001</span>)</a>
+<a class="sourceLine" id="cb562-14" title="14"></a>
+<a class="sourceLine" id="cb562-15" title="15">   <span class="co">! strings do not need to be of the same length</span></a>
+<a class="sourceLine" id="cb562-16" title="16">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;characters:&#39;</span>,<span class="bu">max</span>(<span class="st">&#39;the&#39;</span>,<span class="st">&#39;words&#39;</span>,<span class="st">&#39;order&#39;</span>)</a>
+<a class="sourceLine" id="cb562-17" title="17"></a>
+<a class="sourceLine" id="cb562-18" title="18">   <span class="co">! leading spaces are significant; everyone is padded on the right</span></a>
+<a class="sourceLine" id="cb562-19" title="19">   <span class="co">! to the length of the longest argument</span></a>
+<a class="sourceLine" id="cb562-20" title="20">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;characters:&#39;</span>,<span class="bu">max</span>(<span class="st">&#39;c&#39;</span>,<span class="st">&#39;bb&#39;</span>,<span class="st">&#39;a&#39;</span>)</a>
+<a class="sourceLine" id="cb562-21" title="21">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;characters:&#39;</span>,<span class="bu">max</span>(<span class="st">&#39; c&#39;</span>,<span class="st">&#39;b&#39;</span>,<span class="st">&#39;a&#39;</span>)</a>
+<a class="sourceLine" id="cb562-22" title="22"></a>
+<a class="sourceLine" id="cb562-23" title="23">  <span class="co">! elemental</span></a>
+<a class="sourceLine" id="cb562-24" title="24">   <span class="co">! there must be at least two arguments, so even if A1 is an array</span></a>
+<a class="sourceLine" id="cb562-25" title="25">   <span class="co">! max(A1) is not valid. See MAXVAL(3) and/or MAXLOC(3) instead.</span></a>
+<a class="sourceLine" id="cb562-26" title="26"></a>
+<a class="sourceLine" id="cb562-27" title="27">   <span class="co">! strings in a single array do need to be of the same length</span></a>
+<a class="sourceLine" id="cb562-28" title="28">   <span class="co">! but the different objects can still be of different lengths.</span></a>
+<a class="sourceLine" id="cb562-29" title="29">   <span class="fu">write(*</span>,<span class="st">&quot;(*(&#39;&quot;&quot;&#39;a,&#39;&quot;&quot;&#39;:,1x))&quot;</span><span class="fu">)</span><span class="bu">MAX</span>(<span class="kw">[</span><span class="st">&#39;A&#39;</span>,<span class="st">&#39;Z&#39;</span><span class="kw">]</span>,<span class="kw">[</span><span class="st">&#39;BB&#39;</span>,<span class="st">&#39;Y &#39;</span><span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb562-30" title="30">   <span class="co">! note the result is now an array with the max of every element</span></a>
+<a class="sourceLine" id="cb562-31" title="31">   <span class="co">! position, as can be illustrated numerically as well:</span></a>
+<a class="sourceLine" id="cb562-32" title="32">   <span class="fu">write(*</span>,<span class="st">&#39;(a,*(i3,1x))&#39;</span><span class="fu">)</span><span class="st">&#39;box=   &#39;</span>,box</a>
+<a class="sourceLine" id="cb562-33" title="33">   <span class="fu">write(*</span>,<span class="st">&#39;(a,*(i3,1x))&#39;</span><span class="fu">)</span><span class="st">&#39;box**2=&#39;</span>,<span class="bu">sign</span>(<span class="dv">1</span>,box)<span class="kw">*</span>box<span class="kw">**</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb562-34" title="34">   <span class="fu">write(*</span>,<span class="st">&#39;(a,*(i3,1x))&#39;</span><span class="fu">)</span><span class="st">&#39;max    &#39;</span>,<span class="bu">max</span>(box,<span class="bu">sign</span>(<span class="dv">1</span>,box)<span class="kw">*</span>box<span class="kw">**</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb562-35" title="35"></a>
+<a class="sourceLine" id="cb562-36" title="36">   <span class="co">! Remember if any argument is an array by the definition of an</span></a>
+<a class="sourceLine" id="cb562-37" title="37">   <span class="co">! elemental function all the array arguments must be the same shape.</span></a>
 <a class="sourceLine" id="cb562-38" title="38"></a>
-<a class="sourceLine" id="cb562-39" title="39">   <span class="co">! with two arrays and some scalars ...</span></a>
-<a class="sourceLine" id="cb562-40" title="40">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;scalars and array:&#39;</span>,<span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb562-41" title="41">   <span class="kw">&amp;</span> <span class="bu">max</span>(<span class="fl">40.0</span>,<span class="fl">11.0</span>,<span class="fl">30.0</span>,<span class="kw">-</span><span class="fl">100.0</span>,arr2(:<span class="dv">4</span>),arr1)</a>
-<a class="sourceLine" id="cb562-42" title="42"><span class="kw">end program</span> demo_max</a></code></pre></div>
+<a class="sourceLine" id="cb562-39" title="39">   <span class="co">! to find the single largest value of arrays you could use something</span></a>
+<a class="sourceLine" id="cb562-40" title="40">   <span class="co">! like MAXVAL([arr1, arr2]) or probably better (no large temp array),</span></a>
+<a class="sourceLine" id="cb562-41" title="41">   <span class="co">! max(maxval(arr1),maxval(arr2)) instead</span></a>
+<a class="sourceLine" id="cb562-42" title="42"></a>
+<a class="sourceLine" id="cb562-43" title="43">   <span class="co">! so this returns an array of the same shape as any input array</span></a>
+<a class="sourceLine" id="cb562-44" title="44">   <span class="co">! where each result is the maximum that occurs at that position.</span></a>
+<a class="sourceLine" id="cb562-45" title="45">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="bu">max</span>(arr1,arr2(<span class="dv">1</span>:<span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb562-46" title="46">   <span class="co">! this returns an array just like arr1 except all values less than</span></a>
+<a class="sourceLine" id="cb562-47" title="47">   <span class="co">! zero are set to zero:</span></a>
+<a class="sourceLine" id="cb562-48" title="48">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="bu">max</span>(box,<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb562-49" title="49">   <span class="co">! When mixing arrays and scalars you can think of the scalars</span></a>
+<a class="sourceLine" id="cb562-50" title="50">   <span class="co">! as being a copy of one of the arrays with all values set to</span></a>
+<a class="sourceLine" id="cb562-51" title="51">   <span class="co">! the scalar value.</span></a>
+<a class="sourceLine" id="cb562-52" title="52"></a>
+<a class="sourceLine" id="cb562-53" title="53"><span class="kw">end program</span> demo_max</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>    scalars:   30.000000
-      20.0000000  21.000000  32.000000 -100.00000
-    scalars and array: 30.000000 30.000000 32.000000 30.000000 2200.0000
-    scalars and array: 40.000000 40.000000 40.000000 40.000000</code></pre>
+<pre class="text"><code>    scalars:   30.00000
+    scalars: -9.9999997E-05
+    characters:words
+    characters:c
+    characters:b
+   &quot;BB&quot; &quot;Z &quot;
+   box=    -6  -5  -4  -3  -2  -1   1   2   3   4   5   6
+   box**2=-36 -25 -16  -9  -4  -1   1   4   9  16  25  36
+   max     -6  -5  -4  -3  -2  -1   1   4   9  16  25  36
+   20.00000  21.00000  32.00000  -100.0000
+   0  0  0  0  0  0
+   1  2  3  4  5  6</code></pre>
 <h3 id="standard-129"><strong>Standard</strong></h3>
 <p>FORTRAN 77</p>
 <h3 id="see-also-129"><strong>See Also</strong></h3>
 <p><a href="#maxloc"><strong>maxloc</strong>(3)</a>, <a href="#minloc"><strong>minloc</strong>(3)</a>, <a href="#maxval"><strong>maxval</strong>(3)</a>, <a href="#minval"><strong>minval</strong>(3)</a>, <a href="#min"><strong>min</strong>(3)</a></p>
-<p>fortran-lang intrinsic descriptions</p>
+<p>fortran-lang intrinsic descriptions (license: MIT) @urbanjost</p>
 </div>
 <div id="maxval" class="slide section level2">
 <h1>maxval</h1>
@@ -9685,28 +9713,31 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <p><strong>min</strong>(3) - [NUMERIC] Minimum value of an argument list</p>
 <h3 id="synopsis-136"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb592"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb592-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">min</span>(a1, a2, a3, ... )</a></code></pre></div>
-<div class="sourceCode" id="cb593"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb593-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=kind(a1))</span> <span class="kw">function</span> <span class="bu">min</span>(a1, a2, a3, ... )</a>
+<div class="sourceCode" id="cb593"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb593-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="bu">min</span>(a1, a2, a3, ... )</a>
 <a class="sourceLine" id="cb593-2" title="2"></a>
-<a class="sourceLine" id="cb593-3" title="3">      <span class="dt">TYPE(kind=kind(a1),intent(in)   :: a1</span></a>
-<a class="sourceLine" id="cb593-4" title="4">      <span class="dt">TYPE(kind=kind(a1),intent(in)   :: a2</span></a>
-<a class="sourceLine" id="cb593-5" title="5">      <span class="dt">TYPE(kind=kind(a1),intent(in)   :: a3</span></a>
+<a class="sourceLine" id="cb593-3" title="3">      <span class="dt">TYPE(kind=KIND,intent(in)   :: a1</span></a>
+<a class="sourceLine" id="cb593-4" title="4">      <span class="dt">TYPE(kind=KIND,intent(in)   :: a2</span></a>
+<a class="sourceLine" id="cb593-5" title="5">      <span class="dt">TYPE(kind=KIND,intent(in)   :: a3</span></a>
 <a class="sourceLine" id="cb593-6" title="6">                :</a>
 <a class="sourceLine" id="cb593-7" title="7">                :</a>
 <a class="sourceLine" id="cb593-8" title="8">                :</a></code></pre></div>
 <h3 id="characteristics-137"><strong>Characteristics</strong></h3>
-<p>Where <strong>TYPE</strong> may be integer or real</p>
+<ul>
+<li><strong>TYPE</strong> may be integer, real or character.</li>
+</ul>
 <h3 id="description-135"><strong>Description</strong></h3>
 <p><strong>min</strong>(3) returns the argument with the smallest (most negative) value.</p>
+<p>See <strong>max</strong>(3) for an extended example of the behavior of <strong>min</strong>(3) as and <strong>max</strong>(3).</p>
 <h3 id="options-133"><strong>Options</strong></h3>
 <ul>
 <li><dl>
 <dt><strong>a1</strong></dt>
-<dd>The type shall be integer or real.
+<dd>the first element of the set of values to determine the minimum of.
 </dd>
 </dl></li>
 <li><dl>
 <dt><strong>a2, a3, …</strong></dt>
-<dd>An expression of the same type and kind as <strong>a1</strong>.
+<dd>An expression of the same type and kind as <strong>a1</strong> completing the set of values to find the minimum of.
 </dd>
 </dl></li>
 </ul>
@@ -9724,7 +9755,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <p>FORTRAN 77</p>
 <h3 id="see-also-135"><strong>See Also</strong></h3>
 <p><a href="#maxloc"><strong>maxloc</strong>(3)</a>, <a href="#minloc"><strong>minloc</strong>(3)</a>, <a href="#minval"><strong>minval</strong>(3)</a>, <a href="#max"><strong>max</strong>(3)</a>,</p>
-<p>fortran-lang intrinsic descriptions</p>
+<p>fortran-lang intrinsic descriptions (license: MIT) @urbanjost</p>
 </div>
 <div id="minval" class="slide section level2">
 <h1>minval</h1>
@@ -9994,7 +10025,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div id="move_alloc" class="slide section level2">
 <h1>move_alloc</h1>
 <h3 id="name-140"><strong>Name</strong></h3>
-<p><strong>move_alloc</strong>(3) - [] Move allocation from one object to another</p>
+<p><strong>move_alloc</strong>(3) - [MEMORY] Move allocation from one object to another</p>
 <h3 id="synopsis-140"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb610"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb610-1" title="1">    <span class="kw">call</span> move_alloc(from, <span class="kw">to</span> <span class="kw">[</span>,stat<span class="kw">]</span> <span class="kw">[</span>,errmsg<span class="kw">]</span> )</a></code></pre></div>
 <div class="sourceCode" id="cb611"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb611-1" title="1">     <span class="kw">subroutine</span> move_alloc(from, <span class="kw">to</span>)</a>
@@ -11005,11 +11036,11 @@ The result is undefined if it cannot be represented in the specified integer typ
 <a class="sourceLine" id="cb663-3" title="3">      <span class="dt">integer(kind=KIND)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
 <h3 id="characteristics-153"><strong>Characteristics</strong></h3>
 <ul>
-<li><strong>i</strong> argument may be an integer of any kind.</li>
+<li><strong>i</strong> may be an integer of any kind.</li>
 <li>The return value is an integer of the default integer kind.</li>
 </ul>
 <h3 id="description-151"><strong>Description</strong></h3>
-<p><strong>popcnt</strong>(3) returns the number of bits set in the binary representation of an integer.</p>
+<p><strong>popcnt</strong>(3) returns the number of bits set to one in the binary representation of an integer.</p>
 <h3 id="options-149"><strong>Options</strong></h3>
 <ul>
 <li><dl>
@@ -11019,7 +11050,7 @@ The result is undefined if it cannot be represented in the specified integer typ
 </dl></li>
 </ul>
 <h3 id="result-130"><strong>Result</strong></h3>
-<p>The number of bits set in <strong>i</strong>.</p>
+<p>The number of bits set to one in <strong>i</strong>.</p>
 <h3 id="examples-145"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb664"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb664-1" title="1"><span class="kw">program</span> demo_popcnt</a>
@@ -11027,17 +11058,18 @@ The result is undefined if it cannot be represented in the specified integer typ
 <a class="sourceLine" id="cb664-3" title="3">   <span class="kw">&amp;</span> int8, int16, int32, int64</a>
 <a class="sourceLine" id="cb664-4" title="4"><span class="kw">implicit</span> <span class="kw">none</span></a>
 <a class="sourceLine" id="cb664-5" title="5"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> pretty<span class="kw">=</span><span class="st">&#39;(b64,1x,i0)&#39;</span></a>
-<a class="sourceLine" id="cb664-6" title="6">   <span class="co">! basic usage</span></a>
+<a class="sourceLine" id="cb664-6" title="6">  <span class="co">! basic usage</span></a>
 <a class="sourceLine" id="cb664-7" title="7">   <span class="fu">print</span> pretty, <span class="dv">127</span>,     popcnt(<span class="dv">127</span>)</a>
 <a class="sourceLine" id="cb664-8" title="8">   <span class="fu">print</span> pretty, <span class="bu">int</span>(<span class="dv">b&quot;01010&quot;</span>), popcnt(<span class="bu">int</span>(<span class="dv">b&quot;01010&quot;</span>))</a>
-<a class="sourceLine" id="cb664-9" title="9">   <span class="co">! any kind of an integer can be used</span></a>
-<a class="sourceLine" id="cb664-10" title="10">   <span class="fu">print</span> pretty, <span class="fu">huge</span>(<span class="dv">0_int8</span>),  popcnt(<span class="fu">huge</span>(<span class="dv">0_int8</span>))</a>
-<a class="sourceLine" id="cb664-11" title="11">   <span class="fu">print</span> pretty, <span class="fu">huge</span>(<span class="dv">0_int16</span>), popcnt(<span class="fu">huge</span>(<span class="dv">0_int16</span>))</a>
-<a class="sourceLine" id="cb664-12" title="12">   <span class="fu">print</span> pretty, <span class="fu">huge</span>(<span class="dv">0_int32</span>), popcnt(<span class="fu">huge</span>(<span class="dv">0_int32</span>))</a>
-<a class="sourceLine" id="cb664-13" title="13">   <span class="fu">print</span> pretty, <span class="fu">huge</span>(<span class="dv">0_int64</span>), popcnt(<span class="fu">huge</span>(<span class="dv">0_int64</span>))</a>
-<a class="sourceLine" id="cb664-14" title="14"><span class="kw">end program</span> demo_popcnt</a></code></pre></div>
+<a class="sourceLine" id="cb664-9" title="9"></a>
+<a class="sourceLine" id="cb664-10" title="10">  <span class="co">! any kind of an integer can be used</span></a>
+<a class="sourceLine" id="cb664-11" title="11">   <span class="fu">print</span> pretty, <span class="fu">huge</span>(<span class="dv">0_int8</span>),  popcnt(<span class="fu">huge</span>(<span class="dv">0_int8</span>))</a>
+<a class="sourceLine" id="cb664-12" title="12">   <span class="fu">print</span> pretty, <span class="fu">huge</span>(<span class="dv">0_int16</span>), popcnt(<span class="fu">huge</span>(<span class="dv">0_int16</span>))</a>
+<a class="sourceLine" id="cb664-13" title="13">   <span class="fu">print</span> pretty, <span class="fu">huge</span>(<span class="dv">0_int32</span>), popcnt(<span class="fu">huge</span>(<span class="dv">0_int32</span>))</a>
+<a class="sourceLine" id="cb664-14" title="14">   <span class="fu">print</span> pretty, <span class="fu">huge</span>(<span class="dv">0_int64</span>), popcnt(<span class="fu">huge</span>(<span class="dv">0_int64</span>))</a>
+<a class="sourceLine" id="cb664-15" title="15"><span class="kw">end program</span> demo_popcnt</a></code></pre></div>
 <p>Results:</p>
-<p>Note that on most machines the first bit is the sign bit, and a zero is used for positive values, but that this is system-dependent. These are typical values, where the huge(3f) function has set all but the first bit to 1.</p>
+<p>Note that on most machines the first bit is the sign bit, and a zero is used for positive values; but that this is system-dependent. These are typical values, where the huge(3f) function has set all but the first bit to 1.</p>
 <pre class="text"><code> &gt;                                                         1111111 7
  &gt;                                                            1010 2
  &gt;                                                         1111111 7
@@ -13456,6 +13488,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <p>If <strong>array</strong> is a pointer it must be associated and allocatable arrays must be allocated.</p></li>
 </ul>
 <h3 id="description-180"><strong>Description</strong></h3>
+<p><strong>size(3)</strong> returns the total number of elements in an array, or if <strong>dim</strong> is specified returns the number of elements along that dimension.</p>
 <p><strong>size</strong>(3) determines the extent of <strong>array</strong> along a specified dimension <strong>dim</strong>, or the total number of elements in <strong>array</strong> if <strong>dim</strong> is absent.</p>
 <h3 id="options-178"><strong>Options</strong></h3>
 <ul>
@@ -13469,7 +13502,8 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <dd>a value shall be in the range from 1 to n, where n equals the rank of <strong>array</strong>.
 </dd>
 </dl>
-<p>If not present the total number of elements of the entire array are returned.</p></li>
+<p>If not present the total number of elements of the entire array are returned.</p>
+<p>If KIND is present, the KIND type parameter is that specified by the value of KIND; otherwise, the KIND type parameter is that of default integer type.</p></li>
 <li><dl>
 <dt><strong>kind</strong></dt>
 <dd>An integer initialization expression indicating the kind parameter of the result.
@@ -13486,138 +13520,47 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <div class="sourceCode" id="cb788"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb788-1" title="1"><span class="kw">program</span> demo_size</a>
 <a class="sourceLine" id="cb788-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
 <a class="sourceLine" id="cb788-3" title="3"><span class="dt">integer</span> <span class="dt">::</span> i, j</a>
-<a class="sourceLine" id="cb788-4" title="4"><span class="dt">integer</span> <span class="dt">::</span> arr(<span class="dv">0</span>:<span class="dv">2</span>,<span class="kw">-</span><span class="dv">5</span>:<span class="dv">5</span>)<span class="kw">=</span><span class="fu">reshape</span>(<span class="kw">[</span>(((i<span class="kw">-</span><span class="dv">1</span>)<span class="kw">*</span><span class="dv">11</span><span class="kw">+</span>j,i<span class="kw">=</span><span class="dv">1</span>,<span class="dv">3</span>),j<span class="kw">=</span><span class="dv">1</span>,<span class="dv">11</span>)<span class="kw">]</span>,<span class="kw">[</span><span class="dv">3</span>,<span class="dv">11</span><span class="kw">]</span>)</a>
-<a class="sourceLine" id="cb788-5" title="5">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;SIZE of simple one-dimensional array=&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb788-6" title="6">   <span class="kw">&amp;</span> <span class="fu">size</span>(<span class="kw">[</span> <span class="dv">11</span>, <span class="dv">22</span>, <span class="dv">33</span> <span class="kw">]</span>)    <span class="co">! 3</span></a>
-<a class="sourceLine" id="cb788-7" title="7"></a>
-<a class="sourceLine" id="cb788-8" title="8">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;body&#39;</span></a>
-<a class="sourceLine" id="cb788-9" title="9">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SHAPE(arr)       :&#39;</span>,<span class="fu">shape</span>(arr)</a>
-<a class="sourceLine" id="cb788-10" title="10">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr)        :&#39;</span>,<span class="fu">size</span>(arr)</a>
-<a class="sourceLine" id="cb788-11" title="11">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr,DIM=1)  :&#39;</span>,<span class="fu">size</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb788-12" title="12">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr,DIM=2)  :&#39;</span>,<span class="fu">size</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb788-13" title="13">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;note lower bound is not &quot;1&quot;&#39;</span></a>
-<a class="sourceLine" id="cb788-14" title="14">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;LBOUND(arr)      :&#39;</span>,<span class="fu">lbound</span>(arr)</a>
-<a class="sourceLine" id="cb788-15" title="15">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;UBOUND(arr)      :&#39;</span>,<span class="fu">ubound</span>(arr)</a>
-<a class="sourceLine" id="cb788-16" title="16">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;LBOUND(arr,DIM=1):&#39;</span>,<span class="fu">lbound</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb788-17" title="17">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;UBOUND(arr,DIM=1):&#39;</span>,<span class="fu">ubound</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb788-18" title="18">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;LBOUND(arr,DIM=2):&#39;</span>,<span class="fu">lbound</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb788-19" title="19">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;UBOUND(arr,DIM=2):&#39;</span>,<span class="fu">ubound</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb788-20" title="20"></a>
-<a class="sourceLine" id="cb788-21" title="21">   <span class="kw">call</span> interfaced(arr,arr)</a>
-<a class="sourceLine" id="cb788-22" title="22">   <span class="kw">call</span> nointerface(arr)</a>
-<a class="sourceLine" id="cb788-23" title="23"><span class="co">contains</span></a>
-<a class="sourceLine" id="cb788-24" title="24"></a>
-<a class="sourceLine" id="cb788-25" title="25"><span class="kw">subroutine</span> interfaced(arr,arr2)</a>
-<a class="sourceLine" id="cb788-26" title="26"><span class="dt">integer</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> arr(:,:)</a>
-<a class="sourceLine" id="cb788-27" title="27"><span class="dt">integer</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> arr2(<span class="dv">2</span>,<span class="kw">*</span>)</a>
-<a class="sourceLine" id="cb788-28" title="28">   <span class="co">!</span></a>
-<a class="sourceLine" id="cb788-29" title="29">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;interfaced assumed-shape arr2ay&#39;</span></a>
-<a class="sourceLine" id="cb788-30" title="30">   <span class="co">!</span></a>
-<a class="sourceLine" id="cb788-31" title="31">   <span class="co">! source argument of shape intrinsic at (1) must not be</span></a>
-<a class="sourceLine" id="cb788-32" title="32">   <span class="co">! an assumed size array</span></a>
-<a class="sourceLine" id="cb788-33" title="33">   <span class="co">!!write(*,*)&#39;SHAPE(arr2)       :&#39;,shape(arr2)</span></a>
-<a class="sourceLine" id="cb788-34" title="34">   <span class="co">! The upper bound in the last dimension must appear in the reference</span></a>
-<a class="sourceLine" id="cb788-35" title="35">   <span class="co">! to the assumed size array    arr2    at (1)</span></a>
-<a class="sourceLine" id="cb788-36" title="36">   <span class="co">!!write(*,*)&#39;SIZE(arr2)        :&#39;,size(arr2)</span></a>
-<a class="sourceLine" id="cb788-37" title="37">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr2,DIM=1)  :&#39;</span>,<span class="fu">size</span>(arr2,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb788-38" title="38">   <span class="co">!    dim    argument of    size    intrinsic at (1) is not</span></a>
-<a class="sourceLine" id="cb788-39" title="39">   <span class="co">!a valid dimension index</span></a>
-<a class="sourceLine" id="cb788-40" title="40">   <span class="co">!!write(*,*)&#39;SIZE(arr2,DIM=2)  :&#39;,size(arr2,dim=2)</span></a>
-<a class="sourceLine" id="cb788-41" title="41">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;note lower bound is &quot;1&quot;&#39;</span></a>
-<a class="sourceLine" id="cb788-42" title="42">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;LBOUND(arr2)      :&#39;</span>,<span class="fu">lbound</span>(arr2)</a>
-<a class="sourceLine" id="cb788-43" title="43">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;LBOUND(arr2)      :&#39;</span>,<span class="fu">lbound</span>(arr2)</a>
-<a class="sourceLine" id="cb788-44" title="44">   <span class="co">! The upper bound in the last dimension must appear in the</span></a>
-<a class="sourceLine" id="cb788-45" title="45">   <span class="co">! reference to the assumed size array    arr2    at (1)</span></a>
-<a class="sourceLine" id="cb788-46" title="46">   <span class="co">!!write(*,*)&#39;UBOUND(arr2)      :&#39;,ubound(arr2)</span></a>
-<a class="sourceLine" id="cb788-47" title="47">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;LBOUND(arr2,DIM=1):&#39;</span>,<span class="fu">lbound</span>(arr2,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb788-48" title="48">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;UBOUND(arr2,DIM=1):&#39;</span>,<span class="fu">ubound</span>(arr2,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb788-49" title="49">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;LBOUND(arr2,DIM=2):&#39;</span>,<span class="fu">lbound</span>(arr2,<span class="bu">dim</span><span class="kw">=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb788-50" title="50">   <span class="co">!    dim    argument of    ubound    intrinsic at (1) is not</span></a>
-<a class="sourceLine" id="cb788-51" title="51">   <span class="co">! a valid dimension index</span></a>
-<a class="sourceLine" id="cb788-52" title="52">   <span class="co">!!write(*,*)&#39;UBOUND(arr2,DIM=2):&#39;,ubound(arr2,dim=2)</span></a>
-<a class="sourceLine" id="cb788-53" title="53">   <span class="co">!</span></a>
-<a class="sourceLine" id="cb788-54" title="54">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;interfaced&#39;</span></a>
-<a class="sourceLine" id="cb788-55" title="55">   <span class="co">!</span></a>
-<a class="sourceLine" id="cb788-56" title="56">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SHAPE(arr)       :&#39;</span>,<span class="fu">shape</span>(arr)</a>
-<a class="sourceLine" id="cb788-57" title="57">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr)        :&#39;</span>,<span class="fu">size</span>(arr)</a>
-<a class="sourceLine" id="cb788-58" title="58">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr,DIM=1)  :&#39;</span>,<span class="fu">size</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb788-59" title="59">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr,DIM=2)  :&#39;</span>,<span class="fu">size</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb788-60" title="60">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;note lower bound is &quot;1&quot;&#39;</span></a>
-<a class="sourceLine" id="cb788-61" title="61">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;LBOUND(arr)      :&#39;</span>,<span class="fu">lbound</span>(arr)</a>
-<a class="sourceLine" id="cb788-62" title="62">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;LBOUND(arr)      :&#39;</span>,<span class="fu">lbound</span>(arr)</a>
-<a class="sourceLine" id="cb788-63" title="63">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;UBOUND(arr)      :&#39;</span>,<span class="fu">ubound</span>(arr)</a>
-<a class="sourceLine" id="cb788-64" title="64">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;LBOUND(arr,DIM=1):&#39;</span>,<span class="fu">lbound</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb788-65" title="65">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;UBOUND(arr,DIM=1):&#39;</span>,<span class="fu">ubound</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb788-66" title="66">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;LBOUND(arr,DIM=2):&#39;</span>,<span class="fu">lbound</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb788-67" title="67">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;UBOUND(arr,DIM=2):&#39;</span>,<span class="fu">ubound</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb788-68" title="68">   <span class="co">!</span></a>
-<a class="sourceLine" id="cb788-69" title="69"><span class="kw">end subroutine</span> interfaced</a>
-<a class="sourceLine" id="cb788-70" title="70"><span class="co">!!</span></a>
-<a class="sourceLine" id="cb788-71" title="71"><span class="co">! </span><span class="al">NOTE</span><span class="co">: If NOINTERFACE(3) had an assumed-shape argument with :</span></a>
-<a class="sourceLine" id="cb788-72" title="72"><span class="co">!       for dimensions it could only be properly called with</span></a>
-<a class="sourceLine" id="cb788-73" title="73"><span class="co">!       an explicit interface</span></a>
-<a class="sourceLine" id="cb788-74" title="74"><span class="co">!!</span></a>
-<a class="sourceLine" id="cb788-75" title="75"><span class="kw">subroutine</span> nointerface(arr)</a>
-<a class="sourceLine" id="cb788-76" title="76"><span class="dt">integer</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> arr(<span class="dv">3</span>,<span class="kw">*</span>)</a>
-<a class="sourceLine" id="cb788-77" title="77">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;nointerface&#39;</span></a>
-<a class="sourceLine" id="cb788-78" title="78"> <span class="co">! SHAPE(3) CANNOT BE USED ON AN ASSUMED SIZE ARRAY</span></a>
-<a class="sourceLine" id="cb788-79" title="79"> <span class="co">!!write(*,*)&#39;SHAPE(arr)       :&#39;,shape(arr)</span></a>
-<a class="sourceLine" id="cb788-80" title="80"> <span class="co">!!write(*,*)&#39;SIZE(arr)        :&#39;,size(arr)</span></a>
-<a class="sourceLine" id="cb788-81" title="81">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr,DIM=1)  :&#39;</span>,<span class="fu">size</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb788-82" title="82"> <span class="co">! CANNOT DETERMINE SIZE OF ASSUMED SIZE ARRAY LAST DIMENSION</span></a>
-<a class="sourceLine" id="cb788-83" title="83"> <span class="co">!!write(*,*)&#39;SIZE(arr,DIM=2)  :&#39;,size(arr,dim=2)</span></a>
-<a class="sourceLine" id="cb788-84" title="84">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;note lower bound is &quot;1&quot;&#39;</span></a>
-<a class="sourceLine" id="cb788-85" title="85">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;LBOUND(arr)      :&#39;</span>,<span class="fu">lbound</span>(arr)</a>
-<a class="sourceLine" id="cb788-86" title="86"> <span class="co">!!write(*,*)&#39;UBOUND(arr)      :&#39;,ubound(arr)</span></a>
-<a class="sourceLine" id="cb788-87" title="87">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;LBOUND(arr,DIM=1):&#39;</span>,<span class="fu">lbound</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb788-88" title="88">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;UBOUND(arr,DIM=1):&#39;</span>,<span class="fu">ubound</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb788-89" title="89">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;LBOUND(arr,DIM=2):&#39;</span>,<span class="fu">lbound</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb788-90" title="90"> <span class="co">!!write(*,*)&#39;UBOUND(arr,DIM=2):&#39;,ubound(arr,dim=2)</span></a>
-<a class="sourceLine" id="cb788-91" title="91"><span class="kw">end subroutine</span> nointerface</a>
-<a class="sourceLine" id="cb788-92" title="92"><span class="co">!!</span></a>
-<a class="sourceLine" id="cb788-93" title="93"><span class="kw">end program</span> demo_size</a></code></pre></div>
+<a class="sourceLine" id="cb788-4" title="4"><span class="dt">integer</span> <span class="dt">::</span> arr(<span class="dv">0</span>:<span class="dv">2</span>,<span class="kw">-</span><span class="dv">5</span>:<span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb788-5" title="5">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE of simple two-dimensional array&#39;</span></a>
+<a class="sourceLine" id="cb788-6" title="6">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr)       :total count of elements:&#39;</span>,<span class="fu">size</span>(arr)</a>
+<a class="sourceLine" id="cb788-7" title="7">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr,DIM=1) :number of rows         :&#39;</span>,<span class="fu">size</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb788-8" title="8">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr,DIM=2) :number of columnts     :&#39;</span>,<span class="fu">size</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb788-9" title="9"></a>
+<a class="sourceLine" id="cb788-10" title="10">   <span class="co">! pass the same array to a procedure that passes the value two</span></a>
+<a class="sourceLine" id="cb788-11" title="11">   <span class="co">! different ways</span></a>
+<a class="sourceLine" id="cb788-12" title="12">   <span class="kw">call</span> interfaced(arr,arr)</a>
+<a class="sourceLine" id="cb788-13" title="13"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb788-14" title="14"></a>
+<a class="sourceLine" id="cb788-15" title="15"><span class="kw">subroutine</span> interfaced(arr1,arr2)</a>
+<a class="sourceLine" id="cb788-16" title="16"><span class="co">! notice the difference in the array specification</span></a>
+<a class="sourceLine" id="cb788-17" title="17"><span class="co">! for arr1 and arr2.</span></a>
+<a class="sourceLine" id="cb788-18" title="18"><span class="dt">integer</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> arr1(:,:)</a>
+<a class="sourceLine" id="cb788-19" title="19"><span class="dt">integer</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> arr2(<span class="dv">2</span>,<span class="kw">*</span>)</a>
+<a class="sourceLine" id="cb788-20" title="20">   <span class="co">!</span></a>
+<a class="sourceLine" id="cb788-21" title="21">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;interfaced assumed-shape array&#39;</span></a>
+<a class="sourceLine" id="cb788-22" title="22">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr1)        :&#39;</span>,<span class="fu">size</span>(arr1)</a>
+<a class="sourceLine" id="cb788-23" title="23">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr1,DIM=1)  :&#39;</span>,<span class="fu">size</span>(arr1,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb788-24" title="24">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr1,DIM=2)  :&#39;</span>,<span class="fu">size</span>(arr1,<span class="bu">dim</span><span class="kw">=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb788-25" title="25"></a>
+<a class="sourceLine" id="cb788-26" title="26"><span class="co">!  write(*,*)&#39;SIZE(arr2)        :&#39;,size(arr2)</span></a>
+<a class="sourceLine" id="cb788-27" title="27">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr2,DIM=1)  :&#39;</span>,<span class="fu">size</span>(arr2,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb788-28" title="28"><span class="co">!</span></a>
+<a class="sourceLine" id="cb788-29" title="29"><span class="co">! CANNOT DETERMINE SIZE OF ASSUMED SIZE ARRAY LAST DIMENSION</span></a>
+<a class="sourceLine" id="cb788-30" title="30"><span class="co">!  write(*,*)&#39;SIZE(arr2,DIM=2)  :&#39;,size(arr2,dim=2)</span></a>
+<a class="sourceLine" id="cb788-31" title="31"></a>
+<a class="sourceLine" id="cb788-32" title="32"><span class="kw">end subroutine</span> interfaced</a>
+<a class="sourceLine" id="cb788-33" title="33"></a>
+<a class="sourceLine" id="cb788-34" title="34"><span class="kw">end program</span> demo_size</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>    SIZE of simple one-dimensional array=           3
-    body
-    SHAPE(arr)       :           3          11
-    SIZE(arr)        :          33
-    SIZE(arr,DIM=1)  :           3
-    SIZE(arr,DIM=2)  :          11
-    note lower bound is not &quot;1&quot;
-    LBOUND(arr)      :           0          -5
-    UBOUND(arr)      :           2           5
-    LBOUND(arr,DIM=1):           0
-    UBOUND(arr,DIM=1):           2
-    LBOUND(arr,DIM=2):          -5
-    UBOUND(arr,DIM=2):           5
-    interfaced assumed-shape arr2ay
-    SIZE(arr2,DIM=1)  :           2
-    note lower bound is &quot;1&quot;
-    LBOUND(arr2)      :           1           1
-    LBOUND(arr2)      :           1           1
-    LBOUND(arr2,DIM=1):           1
-    UBOUND(arr2,DIM=1):           2
-    LBOUND(arr2,DIM=2):           1
-    interfaced
-    SHAPE(arr)       :           3          11
-    SIZE(arr)        :          33
-    SIZE(arr,DIM=1)  :           3
-    SIZE(arr,DIM=2)  :          11
-    note lower bound is &quot;1&quot;
-    LBOUND(arr)      :           1           1
-    LBOUND(arr)      :           1           1
-    UBOUND(arr)      :           3          11
-    LBOUND(arr,DIM=1):           1
-    UBOUND(arr,DIM=1):           3
-    LBOUND(arr,DIM=2):           1
-    UBOUND(arr,DIM=2):          11
-    nointerface
-    SIZE(arr,DIM=1)  :           3
-    note lower bound is &quot;1&quot;
-    LBOUND(arr)      :           1           1
-    LBOUND(arr,DIM=1):           1
-    UBOUND(arr,DIM=1):           3
-    LBOUND(arr,DIM=2):           1</code></pre>
+<pre class="text"><code>    SIZE of simple two-dimensional array
+    SIZE(arr)       :total count of elements:          33
+    SIZE(arr,DIM=1) :number of rows         :           3
+    SIZE(arr,DIM=2) :number of columnts     :          11
+    interfaced assumed-shape array
+    SIZE(arr1)        :          33
+    SIZE(arr1,DIM=1)  :           3
+    SIZE(arr1,DIM=2)  :          11
+    SIZE(arr2,DIM=1)  :           2</code></pre>
 <h3 id="standard-179"><strong>Standard</strong></h3>
 <p>Fortran 95 , with <strong>kind</strong> argument - Fortran 2003</p>
 <h3 id="see-also-179"><strong>See Also</strong></h3>
@@ -13644,7 +13587,34 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <li><a href="#bit_size"><strong>bit_size</strong>(3)</a> - Bit size inquiry function</li>
 <li><a href="#btest"><strong>btest</strong>(3)</a> - Tests a bit of an integer value.</li>
 </ul>
-<p>fortran-lang intrinsic descriptions (license: MIT) @urbanjost</p>
+<p>fortran-lang intrinsic descriptions (license: MIT) @urbanjost <!--
+ARRAY
+    An array of any data type or an assumed-rank object.
+
+   The corresponding actual argument must not be a scalar,
+    disassociated pointer, or allocatable array that is not allocated. The
+    actual argument can be an assumed-size array if DIM is present and
+    has a value that is less than the rank of ARRAY.
+
+DIM (optional)
+    An INTEGER scalar. Its value must be in the range 1 ≤ DIM ≤
+    RANK(ARRAY). It must not be present if ARRAY is an
+    assumed-rank object that is associated with a scalar.
+
+    An INTEGER scalar. Its value must be specified by a constant expression. Fortran 2003 ends
+
+    result is of type scalar integer.
+
+Result value
+
+The result equals the extent of ARRAY along dimension DIM; or, if DIM is not specified, it is the total number of array elements in ARRAY.
+TS 29113 begins
+
+    If ARRAY is an assumed-rank object that is associated with a scalar, the result is 1.
+    If ARRAY is an assumed-rank object that is associated with an assumed-size array, and
+        If DIM is present and equal to the rank of ARRAY, the result is -1.
+        If DIM is not present, the result is a negative value that is equal to PRODUCT([(SIZE(ARRAY, I, KIND), I=1, RANK(ARRAY))]).
+--></p>
 </div>
 <div id="spacing" class="slide section level2">
 <h1>spacing</h1>
@@ -14151,19 +14121,24 @@ it would take if it were stored in memory.</code></pre>
 <a class="sourceLine" id="cb821-2" title="2"></a>
 <a class="sourceLine" id="cb821-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <h3 id="characteristics-189"><strong>Characteristics</strong></h3>
-<p>where <strong>TYPE</strong> may be real or complex and <strong>KIND</strong> may be any kind supported by the associated type. The returned value will be of the same type and kind as the argument.</p>
+<ul>
+<li><strong>x</strong> may be real or complex and any associated kind supported by the processor.</li>
+<li>The returned value will be of the same type and kind as the argument.</li>
+</ul>
 <h3 id="description-187"><strong>Description</strong></h3>
 <p><strong>tanh</strong>(3) computes the hyperbolic tangent of <strong>x</strong>.</p>
 <h3 id="options-185"><strong>Options</strong></h3>
 <ul>
 <li><dl>
 <dt><strong>x</strong></dt>
-<dd>The value to compute the Hyperbolic tangent of
+<dd>The value to compute the Hyperbolic tangent of.
 </dd>
 </dl></li>
 </ul>
 <h3 id="result-162"><strong>Result</strong></h3>
-<p>The return value has same type and kind as <strong>x</strong>. If <strong>x</strong> is complex, the imaginary part of the result is in radians. If <strong>x</strong> is real, the return value lies in the range</p>
+<p>Returns the hyperbolic tangent of <strong>x</strong>.</p>
+<p>If <strong>x</strong> is complex, the imaginary part of the result is regarded as a radian value.</p>
+<p>If <strong>x</strong> is real, the return value lies in the range</p>
 <pre><code>      -1 &lt;= tanh(x) &lt;= 1.</code></pre>
 <h3 id="examples-179"><strong>Examples</strong></h3>
 <p>Sample program:</p>

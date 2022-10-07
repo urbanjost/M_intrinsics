@@ -31,7 +31,7 @@ textblock=[character(len=256)    :: &
 $(TOCHARACTER)
 '']
    if(present(topic))then
-      textblock=[shortname]
+      textblock=[character(len=256) :: shortname]
    elseif(present(prefix))then
       if(prefix)then
          do i=1,size(textblock)
@@ -282,7 +282,7 @@ contains
 subroutine process()
 if(present(topic))then
    if(topic)then
-      textblock=[shortname]
+      textblock=[character(len=len(shortname)) :: shortname]
    endif
 endif
 

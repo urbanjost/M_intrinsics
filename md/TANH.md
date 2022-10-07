@@ -15,9 +15,9 @@
 ```
 ### **Characteristics**
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind
-supported by the associated type. The returned value will be of the same
-type and kind as the argument.
+ - **x** may be _real_ or _complex_ and any associated kind supported by
+   the processor.
+ - The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
@@ -26,14 +26,16 @@ type and kind as the argument.
 ### **Options**
 
 - **x**
-  : The value to compute the Hyperbolic tangent of
+  : The value to compute the Hyperbolic tangent of.
 
 ### **Result**
 
-The return value has same type and kind as **x**. If **x** is complex, the
-imaginary part of the result is in radians. If **x** is _real_, the return
-value lies in the range
+Returns the hyperbolic tangent of **x**.
 
+  If **x** is _complex_, the imaginary part of the result is regarded as
+  a radian value.
+
+  If **x** is _real_, the return value lies in the range
 ```
       -1 <= tanh(x) <= 1.
 ```

@@ -2,41 +2,52 @@
       implicit none
       real :: arr1(4)= [10.0,11.0,30.0,-100.0]
       real :: arr2(5)= [20.0,21.0,32.0,-200.0,2200.0]
+      integer :: box(3,4)= reshape([-6,-5,-4,-3,-2,-1,1,2,3,4,5,6],shape(box))
 
         ! basic usage
-         ! this is simple enough because all arguments are scalar
+         ! this is simple enough when all arguments are scalar
+
+         ! the most positive value is returned, not the one with the
+         ! largest magnitude
          write(*,*)'scalars:',max(10.0,11.0,30.0,-100.0)
-         ! this is all max(3) could do before it became an elemental
-         ! function and is the most intuitive
-         ! except that it can take an arbitrary number of options,
-         ! which is not common in Fortran without
-         ! declaring a lot of optional parameters.
-         !
-         ! That is it unless you want to use the elemental features of max(3)!
+         write(*,*)'scalars:',max(-22222.0,-0.0001)
+
+         ! strings do not need to be of the same length
+         write(*,*)'characters:',max('the','words','order')
+
+         ! leading spaces are significant; everyone is padded on the right
+         ! to the length of the longest argument
+         write(*,*)'characters:',max('c','bb','a')
+         write(*,*)'characters:',max(' c','b','a')
 
         ! elemental
          ! there must be at least two arguments, so even if A1 is an array
-         ! max(A1) is not valid. See MAXVAL(3) and/or MAXVAL(3) instead.
+         ! max(A1) is not valid. See MAXVAL(3) and/or MAXLOC(3) instead.
 
-         ! If any argument is an array by the definition of an elemental
-         ! function all the array arguments must be the same shape but
-         ! MAXVAL([arr1, arr2]) or max(maxval(arr1),maxval(arr2))
-         ! would work, for example.
+         ! strings in a single array do need to be of the same length
+         ! but the different objects can still be of different lengths.
+         write(*,"(*('""'a,'""':,1x))")MAX(['A','Z'],['BB','Y '])
+         ! note the result is now an array with the max of every element
+         ! position, as can be illustrated numerically as well:
+         write(*,'(a,*(i3,1x))')'box=   ',box
+         write(*,'(a,*(i3,1x))')'box**2=',sign(1,box)*box**2
+         write(*,'(a,*(i3,1x))')'max    ',max(box,sign(1,box)*box**2)
 
-         ! so an elemental call of two vectors does not return a single
-         ! value, but the largest first element of the arrays, then the
-         ! largest second element, and so on.
+         ! Remember if any argument is an array by the definition of an
+         ! elemental function all the array arguments must be the same shape.
+
+         ! to find the single largest value of arrays you could use something
+         ! like MAXVAL([arr1, arr2]) or probably better (no large temp array),
+         ! max(maxval(arr1),maxval(arr2)) instead
+
+         ! so this returns an array of the same shape as any input array
+         ! where each result is the maximum that occurs at that position.
          write(*,*)max(arr1,arr2(1:4))
-         ! multi-dimensional arrays are allowed, where the returned
-         ! value will be an array of all the sets of the elements with
-         ! the same coordinates.
-
+         ! this returns an array just like arr1 except all values less than
+         ! zero are set to zero:
+         write(*,*)max(box,0)
          ! When mixing arrays and scalars you can think of the scalars
          ! as being a copy of one of the arrays with all values set to
-         ! the scalar value ...
-         write(*,*)'scalars and array:',max(10.0,11.0,30.0,-100.0,arr2)
+         ! the scalar value.
 
-         ! with two arrays and some scalars ...
-         write(*,*)'scalars and array:',&
-         & max(40.0,11.0,30.0,-100.0,arr2(:4),arr1)
       end program demo_max

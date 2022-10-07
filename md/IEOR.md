@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**ieor**(3) - \[BIT:LOGICAL\] Bitwise logical exclusive or
+**ieor**(3) - \[BIT:LOGICAL\] Bitwise logical exclusive OR
 
 ### **Synopsis**
 ```fortran

@@ -78,6 +78,9 @@ The man-pages are available as archive files:
 A single-file version of the CLI program fpm-man(1) is in 
 [fman.f90](https://raw.githubusercontent.com/urbanjost/M_intrinsics/master/standalone/fman.f90).
 
+   - builds with `gfortran  fman.f90`
+   - builds with `ifort -O1 fman.f90`
+
 ## PROJECT INFORMATION
 
 ### USE AND INSTALLATION

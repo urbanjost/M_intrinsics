@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**move_alloc**(3) - \[\] Move allocation from one object to another
+**move_alloc**(3) - \[MEMORY\] Move allocation from one object to another
 
 ### **Synopsis**
 ```fortran

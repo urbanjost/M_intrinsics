@@ -9,30 +9,34 @@
     result = min(a1, a2, a3, ... )
 ```
 ```fortran
-     elemental TYPE(kind=kind(a1)) function min(a1, a2, a3, ... )
+     elemental TYPE(kind=KIND) function min(a1, a2, a3, ... )
 
-      TYPE(kind=kind(a1),intent(in)   :: a1
-      TYPE(kind=kind(a1),intent(in)   :: a2
-      TYPE(kind=kind(a1),intent(in)   :: a3
+      TYPE(kind=KIND,intent(in)   :: a1
+      TYPE(kind=KIND,intent(in)   :: a2
+      TYPE(kind=KIND,intent(in)   :: a3
                 :
                 :
                 :
 ```
 ### **Characteristics**
 
-Where **TYPE** may be _integer_ or _real_
+- **TYPE** may be _integer_, _real_ or _character_.
 
 ### **Description**
 
 **min**(3) returns the argument with the smallest (most negative) value.
 
+See **max**(3) for an extended example of the behavior of **min**(3) as
+and **max**(3).
+
 ### **Options**
 
 - **a1**
-  : The type shall be _integer_ or _real_.
+  : the first element of the set of values to determine the minimum of.
 
 - **a2, a3, ...**
-  : An expression of the same type and kind as **a1**.
+  : An expression of the same type and kind as **a1** completing the
+  set of values to find the minimum of.
 
 ### **Result**
 
@@ -63,4 +67,4 @@ FORTRAN 77
 [**minval**(3)](#minval),
 [**max**(3)](#max),
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

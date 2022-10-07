@@ -26,9 +26,13 @@
 
 ### **Description**
 
-**size**(3) determines the extent of **array** along a specified
-dimension **dim**, or the total number of elements in **array** if **dim**
-is absent.
+  **size(3)** returns the total number of elements in an array, or
+  if **dim** is specified returns the number of elements along that
+  dimension.
+
+  **size**(3) determines the extent of **array** along a specified
+  dimension **dim**, or the total number of elements in **array** if
+  **dim** is absent.
 
 ### **Options**
 
@@ -41,6 +45,10 @@ is absent.
 
   If not present the total number of elements of the entire array
   are returned.
+
+    If KIND is present, the KIND type parameter is that specified by
+    the value of KIND; otherwise, the KIND type parameter is that of
+    default integer type.
 
 - **kind**
   : An _integer_ initialization expression indicating the kind
@@ -67,144 +75,50 @@ Sample program:
 program demo_size
 implicit none
 integer :: i, j
-integer :: arr(0:2,-5:5)=reshape([(((i-1)*11+j,i=1,3),j=1,11)],[3,11])
-   write(*,*) 'SIZE of simple one-dimensional array=', &
-   & size([ 11, 22, 33 ])    ! 3
+integer :: arr(0:2,-5:5)
+   write(*,*)'SIZE of simple two-dimensional array'
+   write(*,*)'SIZE(arr)       :total count of elements:',size(arr)
+   write(*,*)'SIZE(arr,DIM=1) :number of rows         :',size(arr,dim=1)
+   write(*,*)'SIZE(arr,DIM=2) :number of columnts     :',size(arr,dim=2)
 
-   write(*,*)'body'
-   write(*,*)'SHAPE(arr)       :',shape(arr)
-   write(*,*)'SIZE(arr)        :',size(arr)
-   write(*,*)'SIZE(arr,DIM=1)  :',size(arr,dim=1)
-   write(*,*)'SIZE(arr,DIM=2)  :',size(arr,dim=2)
-   write(*,*)'note lower bound is not "1"'
-   write(*,*)'LBOUND(arr)      :',lbound(arr)
-   write(*,*)'UBOUND(arr)      :',ubound(arr)
-   write(*,*)'LBOUND(arr,DIM=1):',lbound(arr,dim=1)
-   write(*,*)'UBOUND(arr,DIM=1):',ubound(arr,dim=1)
-   write(*,*)'LBOUND(arr,DIM=2):',lbound(arr,dim=2)
-   write(*,*)'UBOUND(arr,DIM=2):',ubound(arr,dim=2)
-
+   ! pass the same array to a procedure that passes the value two
+   ! different ways
    call interfaced(arr,arr)
-   call nointerface(arr)
 contains
 
-subroutine interfaced(arr,arr2)
-integer,intent(in)  :: arr(:,:)
-integer,intent(in)  :: arr2(2,*)
+subroutine interfaced(arr1,arr2)
+! notice the difference in the array specification
+! for arr1 and arr2.
+integer,intent(in) :: arr1(:,:)
+integer,intent(in) :: arr2(2,*)
    !
-   write(*,*)'interfaced assumed-shape arr2ay'
-   !
-   ! source argument of shape intrinsic at (1) must not be
-   ! an assumed size array
-   !!write(*,*)'SHAPE(arr2)       :',shape(arr2)
-   ! The upper bound in the last dimension must appear in the reference
-   ! to the assumed size array    arr2    at (1)
-   !!write(*,*)'SIZE(arr2)        :',size(arr2)
+   write(*,*)'interfaced assumed-shape array'
+   write(*,*)'SIZE(arr1)        :',size(arr1)
+   write(*,*)'SIZE(arr1,DIM=1)  :',size(arr1,dim=1)
+   write(*,*)'SIZE(arr1,DIM=2)  :',size(arr1,dim=2)
+
+!  write(*,*)'SIZE(arr2)        :',size(arr2)
    write(*,*)'SIZE(arr2,DIM=1)  :',size(arr2,dim=1)
-   !    dim    argument of    size    intrinsic at (1) is not
-   !a valid dimension index
-   !!write(*,*)'SIZE(arr2,DIM=2)  :',size(arr2,dim=2)
-   write(*,*)'note lower bound is "1"'
-   write(*,*)'LBOUND(arr2)      :',lbound(arr2)
-   write(*,*)'LBOUND(arr2)      :',lbound(arr2)
-   ! The upper bound in the last dimension must appear in the
-   ! reference to the assumed size array    arr2    at (1)
-   !!write(*,*)'UBOUND(arr2)      :',ubound(arr2)
-   write(*,*)'LBOUND(arr2,DIM=1):',lbound(arr2,dim=1)
-   write(*,*)'UBOUND(arr2,DIM=1):',ubound(arr2,dim=1)
-   write(*,*)'LBOUND(arr2,DIM=2):',lbound(arr2,dim=2)
-   !    dim    argument of    ubound    intrinsic at (1) is not
-   ! a valid dimension index
-   !!write(*,*)'UBOUND(arr2,DIM=2):',ubound(arr2,dim=2)
-   !
-   write(*,*)'interfaced'
-   !
-   write(*,*)'SHAPE(arr)       :',shape(arr)
-   write(*,*)'SIZE(arr)        :',size(arr)
-   write(*,*)'SIZE(arr,DIM=1)  :',size(arr,dim=1)
-   write(*,*)'SIZE(arr,DIM=2)  :',size(arr,dim=2)
-   write(*,*)'note lower bound is "1"'
-   write(*,*)'LBOUND(arr)      :',lbound(arr)
-   write(*,*)'LBOUND(arr)      :',lbound(arr)
-   write(*,*)'UBOUND(arr)      :',ubound(arr)
-   write(*,*)'LBOUND(arr,DIM=1):',lbound(arr,dim=1)
-   write(*,*)'UBOUND(arr,DIM=1):',ubound(arr,dim=1)
-   write(*,*)'LBOUND(arr,DIM=2):',lbound(arr,dim=2)
-   write(*,*)'UBOUND(arr,DIM=2):',ubound(arr,dim=2)
-   !
+!
+! CANNOT DETERMINE SIZE OF ASSUMED SIZE ARRAY LAST DIMENSION
+!  write(*,*)'SIZE(arr2,DIM=2)  :',size(arr2,dim=2)
+
 end subroutine interfaced
-!!
-! NOTE: If NOINTERFACE(3) had an assumed-shape argument with :
-!       for dimensions it could only be properly called with
-!       an explicit interface
-!!
-subroutine nointerface(arr)
-integer,intent(in) :: arr(3,*)
-   write(*,*)'nointerface'
- ! SHAPE(3) CANNOT BE USED ON AN ASSUMED SIZE ARRAY
- !!write(*,*)'SHAPE(arr)       :',shape(arr)
- !!write(*,*)'SIZE(arr)        :',size(arr)
-   write(*,*)'SIZE(arr,DIM=1)  :',size(arr,dim=1)
- ! CANNOT DETERMINE SIZE OF ASSUMED SIZE ARRAY LAST DIMENSION
- !!write(*,*)'SIZE(arr,DIM=2)  :',size(arr,dim=2)
-   write(*,*)'note lower bound is "1"'
-   write(*,*)'LBOUND(arr)      :',lbound(arr)
- !!write(*,*)'UBOUND(arr)      :',ubound(arr)
-   write(*,*)'LBOUND(arr,DIM=1):',lbound(arr,dim=1)
-   write(*,*)'UBOUND(arr,DIM=1):',ubound(arr,dim=1)
-   write(*,*)'LBOUND(arr,DIM=2):',lbound(arr,dim=2)
- !!write(*,*)'UBOUND(arr,DIM=2):',ubound(arr,dim=2)
-end subroutine nointerface
-!!
+
 end program demo_size
 ```
-
 Results:
-
 ```text
-    SIZE of simple one-dimensional array=           3
-    body
-    SHAPE(arr)       :           3          11
-    SIZE(arr)        :          33
-    SIZE(arr,DIM=1)  :           3
-    SIZE(arr,DIM=2)  :          11
-    note lower bound is not "1"
-    LBOUND(arr)      :           0          -5
-    UBOUND(arr)      :           2           5
-    LBOUND(arr,DIM=1):           0
-    UBOUND(arr,DIM=1):           2
-    LBOUND(arr,DIM=2):          -5
-    UBOUND(arr,DIM=2):           5
-    interfaced assumed-shape arr2ay
+    SIZE of simple two-dimensional array
+    SIZE(arr)       :total count of elements:          33
+    SIZE(arr,DIM=1) :number of rows         :           3
+    SIZE(arr,DIM=2) :number of columnts     :          11
+    interfaced assumed-shape array
+    SIZE(arr1)        :          33
+    SIZE(arr1,DIM=1)  :           3
+    SIZE(arr1,DIM=2)  :          11
     SIZE(arr2,DIM=1)  :           2
-    note lower bound is "1"
-    LBOUND(arr2)      :           1           1
-    LBOUND(arr2)      :           1           1
-    LBOUND(arr2,DIM=1):           1
-    UBOUND(arr2,DIM=1):           2
-    LBOUND(arr2,DIM=2):           1
-    interfaced
-    SHAPE(arr)       :           3          11
-    SIZE(arr)        :          33
-    SIZE(arr,DIM=1)  :           3
-    SIZE(arr,DIM=2)  :          11
-    note lower bound is "1"
-    LBOUND(arr)      :           1           1
-    LBOUND(arr)      :           1           1
-    UBOUND(arr)      :           3          11
-    LBOUND(arr,DIM=1):           1
-    UBOUND(arr,DIM=1):           3
-    LBOUND(arr,DIM=2):           1
-    UBOUND(arr,DIM=2):          11
-    nointerface
-    SIZE(arr,DIM=1)  :           3
-    note lower bound is "1"
-    LBOUND(arr)      :           1           1
-    LBOUND(arr,DIM=1):           1
-    UBOUND(arr,DIM=1):           3
-    LBOUND(arr,DIM=2):           1
 ```
-
 ### **Standard**
 
 Fortran 95 , with **kind** argument - Fortran 2003
@@ -235,3 +149,31 @@ Fortran 95 , with **kind** argument - Fortran 2003
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+<!--
+ARRAY
+    An array of any data type or an assumed-rank object.
+
+   The corresponding actual argument must not be a scalar,
+    disassociated pointer, or allocatable array that is not allocated. The
+    actual argument can be an assumed-size array if DIM is present and
+    has a value that is less than the rank of ARRAY.
+
+DIM (optional)
+    An INTEGER scalar. Its value must be in the range 1 ≤ DIM ≤
+    RANK(ARRAY). It must not be present if ARRAY is an
+    assumed-rank object that is associated with a scalar.
+
+    An INTEGER scalar. Its value must be specified by a constant expression. Fortran 2003 ends
+
+    result is of type scalar integer.
+
+Result value
+
+The result equals the extent of ARRAY along dimension DIM; or, if DIM is not specified, it is the total number of array elements in ARRAY.
+TS 29113 begins
+
+    If ARRAY is an assumed-rank object that is associated with a scalar, the result is 1.
+    If ARRAY is an assumed-rank object that is associated with an assumed-size array, and
+        If DIM is present and equal to the rank of ARRAY, the result is -1.
+        If DIM is not present, the result is a negative value that is equal to PRODUCT([(SIZE(ARRAY, I, KIND), I=1, RANK(ARRAY))]).
+-->

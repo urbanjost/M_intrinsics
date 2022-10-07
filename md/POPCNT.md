@@ -15,13 +15,13 @@
 ```
 ### **Characteristics**
 
-- **i** argument may be an integer of any kind.
+- **i** may be an _integer_ of any kind.
 - The return value is an _integer_ of the default integer kind.
 
 ### **Description**
 
-**popcnt**(3) returns the number of bits set in the binary representation
-of an _integer_.
+  **popcnt**(3) returns the number of bits set to one in the binary
+  representation of an _integer_.
 
 ### **Options**
 
@@ -30,7 +30,7 @@ of an _integer_.
 
 ### **Result**
 
-The number of bits set in **i**.
+The number of bits set to one in **i**.
 
 ### **Examples**
 
@@ -42,10 +42,11 @@ use, intrinsic :: iso_fortran_env, only : integer_kinds, &
    & int8, int16, int32, int64
 implicit none
 character(len=*),parameter :: pretty='(b64,1x,i0)'
-   ! basic usage
+  ! basic usage
    print pretty, 127,     popcnt(127)
    print pretty, int(b"01010"), popcnt(int(b"01010"))
-   ! any kind of an integer can be used
+
+  ! any kind of an integer can be used
    print pretty, huge(0_int8),  popcnt(huge(0_int8))
    print pretty, huge(0_int16), popcnt(huge(0_int16))
    print pretty, huge(0_int32), popcnt(huge(0_int32))
@@ -55,7 +56,7 @@ end program demo_popcnt
 Results:
 
 Note that on most machines the first bit is the sign bit, and a zero is
-used for positive values, but that this is system-dependent.  These are
+used for positive values; but that this is system-dependent.  These are
 typical values, where the huge(3f) function has set all but the first
 bit to 1.
 ```text
