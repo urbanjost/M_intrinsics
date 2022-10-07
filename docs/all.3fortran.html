@@ -86,7 +86,24 @@ result = all(mask [,dim])
 </A>
 <BLOCKQUOTE>
 <P>
-</BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+MASK is a logical array
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+DIM is an integer
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+the result is a logical array if DIM is supplied, otherwise it is a
+logical scalar.
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=3>
 
      <H3>DESCRIPTION</H3>
@@ -95,10 +112,11 @@ result = all(mask [,dim])
 <BLOCKQUOTE>
 <P>
 ALL(3) determines if all the values are true in MASK in the array along
-dimension DIM.
+dimension DIM if DIM is specified; otherwise all elements are tested
+together.
 <P>
-This is called a logical conjunction of elements of MASK along dimension
-DIM.
+This testing type is called a logical conjunction of elements of MASK
+along dimension DIM.
 <P>
 The mask is generally a logical expression, allowing for comparing
 arrays and many other common operations.
@@ -114,14 +132,16 @@ arrays and many other common operations.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-MASK : shall be a logical array.
+MASK : the logical array to be tested for all elements being .true.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-DIM : (optional) DIM shall be a scalar integer with a value that
-lies between one and the rank of MASK. The corresponding actual
-argument shall not be an optional dummy argument.
+DIM : DIM indicates the direction through the elements of MASK to
+group elements for testing. : DIM has a value that lies between one
+and the rank of MASK. : The corresponding actual argument shall not
+be an optional dummy argument. : If DIM is not present all elements
+are tested and a single scalar value is returned.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
@@ -132,11 +152,12 @@ argument shall not be an optional dummy argument.
 <BLOCKQUOTE>
 <P>
 "ALL(MASK)" returns a scalar value of type logical where the kind type
-parameter is the same as the kind type parameter of MASK. If DIM is
-present, then ALL(MASK, DIM) returns an array with the rank of MASK
-minus 1. The shape is determined from the shape of MASK where the DIM
-dimension is elided.
-<TABLE cellpadding=3><!-- tsb: "ALL(MASK)" returns a scalar value of type logical where the kind type
+parameter is the same as the kind type parameter of MASK.
+<P>
+If DIM is present, then ALL(MASK, DIM) returns an array with the rank of
+MASK minus 1. The shape is determined from the shape of MASK where the
+DIM dimension is elided.
+<TABLE cellpadding=3><!-- tsb: If DIM is present, then ALL(MASK, DIM) returns an array with the rank of
  -->
 <TR></TR><TR></TR>
 <TR valign=top><TD width=4%>
@@ -148,36 +169,23 @@ if MASK has zero size; otherwise, it is false.
 <TR valign=top><TD width=4% nowrap>
 <B>.</B> </TD><TD valign=bottom>
 If the rank of MASK is one, then ALL(MASK, DIM) is equivalent to
-ALL(MASK). If the rank is greater than one, then ALL(MASK, DIM) is
-determined by applying ALL() to the array sections.
+ALL(MASK).
 </TD></TR>
 <TR valign=top><TD width=4%>
 3.
 </TD><TD>
-Result Characteristics. The result is of type logical with the same
-kind type parameter as MASK. It is scalar if DIM is absent or N = 1;
-otherwise, the result has rank N - 1 and shape [D1, D, . . .,
-DDIM-1, DDIM+1, . . ., DN ] where [D1, D, . . ., DN ] is the shape
-of MASK.
+If the rank of MASK is greater than one, then ALL(MASK, DIM) is
+determined by applying ALL() to the array sections.
 </TD></TR>
 <TR valign=top><TD width=4%>
 4.
 </TD><TD>
-Result Value.
+The result is of type logical with the same kind type parameter as
+MASK. It is scalar if DIM is absent or 1; otherwise, the result has
+rank RANK(MASK) - 1 and the shape is the shape of MASK with the nth
+dimension where n is specified by DIM is removed.
 </TD></TR>
-<TR></TR></TABLE><!-- .nf -->
-<PRE>
-    Case (i): : The result of ALL(MASK) has the value true if all
-    elements of MASK are true or if MASK has size zero, and the result
-    has value false if any element of MASK is false.
-<P>
-    Case (ii): : If MASK has rank one, ALL(MASK,DIM) is equal to
-    ALL(MASK). Otherwise, the value of element (S1, S2, . . ., SDIM-1,
-    SDIM+1, . . ., SN ) of all (MASK, DIM) is equal to ALL(MASK (S1, S2,
-    . . ., SDIM-1, :, SDIM+1, . . ., SN )).
-<P>
-</PRE>
-</BLOCKQUOTE>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=6>
 
      <H3>EXAMPLES</H3>
@@ -190,11 +198,12 @@ Sample program:
 <PRE>
     program demo_all
     implicit none
+    logical,parameter :: T=.true., F=.false.
     logical bool
       ! basic usage
        ! is everything true?
-       bool = all([ .true., .true., .true. ])
-       bool = all([ .true., .false., .true. ])
+       bool = all([ T,T,T ])
+       bool = all([ T,F,T ])
        print *, bool
       ! by a dimension
        ARRAYS: block
@@ -204,9 +213,9 @@ Sample program:
         b = 1
         b(2,2) = 2
         ! now compare those two arrays
-        print *,&#146;entire array :&#146;, all(a .eq. b )
-        print *,&#146;compare columns:&#146;, all(a .eq. b, dim=1)
-        print *,&#146;compare rows:&#146;, all(a .eq. b, dim=2)
+        print *,&#146;entire array :&#146;, all(a ==  b )
+        print *,&#146;compare columns:&#146;, all(a ==  b, dim=1)
+        print *,&#146;compare rows:&#146;, all(a ==  b, dim=2)
       end block ARRAYS
     end program demo_all
 <P>
@@ -246,10 +255,10 @@ Fortran 95
 <P>
 ANY(3)
 <P>
-fortran-lang intrinsic descriptions
+fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>all (3fortran)</TD> <TD align=right width=33%><I>October 06, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 2b4b9d03-456b-4a5a-9adf-484fb5538777 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>all (3fortran)</TD> <TD align=right width=33%><I>October 07, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 68827c80-5211-49d2-ad8d-163f5e0c89b6 using man macros.</FONT>
 <br><br><center><img src="images/all.3fortran.gif"></center>
 </div>
 </div>

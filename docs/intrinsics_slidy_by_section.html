@@ -811,66 +811,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb38-4" title="4">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a></code></pre></div>
 </div><div id="characteristics-8" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
+<ul>
+<li><strong>mask</strong> is a logical array</li>
+<li><strong>dim</strong> is an integer</li>
+<li>the result is a logical array if <strong>dim</strong> is supplied, otherwise it is a logical scalar.</li>
+</ul>
 </div><div id="description-8" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>all</strong>(3) determines if all the values are true in <strong>mask</strong> in the array along dimension <strong>dim</strong>.</p>
-<p>This is called a logical conjunction of elements of <strong>mask</strong> along dimension <strong>dim</strong>.</p>
+<p><strong>all</strong>(3) determines if all the values are true in <strong>mask</strong> in the array along dimension <strong>dim</strong> if <strong>dim</strong> is specified; otherwise all elements are tested together.</p>
+<p>This testing type is called a logical conjunction of elements of <strong>mask</strong> along dimension <strong>dim</strong>.</p>
 <p>The mask is generally a logical expression, allowing for comparing arrays and many other common operations.</p>
 </div><div id="options-8" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
 <li><dl>
 <dt><strong>mask</strong></dt>
-<dd>shall be a logical array.
+<dd>the logical array to be tested for all elements being .true.
 </dd>
 </dl></li>
 <li><dl>
 <dt><strong>dim</strong></dt>
-<dd>(optional) <strong>dim</strong> shall be a scalar integer with a value that lies between one and the rank of <strong>mask</strong>. The corresponding actual argument shall not be an optional dummy argument.
+<dd><strong>dim</strong> indicates the direction through the elements of <strong>mask</strong> to group elements for testing.
+</dd>
+<dd><strong>dim</strong> has a value that lies between one and the rank of <strong>mask</strong>.
+</dd>
+<dd>The corresponding actual argument shall not be an optional dummy argument.
+</dd>
+<dd>If <strong>dim</strong> is not present all elements are tested and a single scalar value is returned.
 </dd>
 </dl></li>
 </ul>
 </div><div id="result-8" class="slide section level3">
 <h1><strong>Result</strong></h1>
-<p>“<strong>all(mask)</strong>” returns a scalar value of type logical where the kind type parameter is the same as the kind type parameter of <strong>mask</strong>. If <strong>dim</strong> is present, then <strong>all(mask, dim)</strong> returns an array with the rank of <strong>mask</strong> minus 1. The shape is determined from the shape of <strong>mask</strong> where the <strong>dim</strong> dimension is elided.</p>
+<p>“<strong>all(mask)</strong>” returns a scalar value of type logical where the kind type parameter is the same as the kind type parameter of <strong>mask</strong>.</p>
+<p>If <strong>dim</strong> is present, then <strong>all(mask, dim)</strong> returns an array with the rank of <strong>mask</strong> minus 1. The shape is determined from the shape of <strong>mask</strong> where the <strong>dim</strong> dimension is elided.</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>all(mask)</strong> is true if all elements of <strong>mask</strong> are true. It also is true if <strong>mask</strong> has zero size; otherwise, it is false.</p></li>
-<li><p>If the rank of <strong>mask</strong> is one, then <strong>all(mask, dim)</strong> is equivalent to <strong>all(mask)</strong>. If the rank is greater than one, then <strong>all(mask, dim)</strong> is determined by applying <strong>all()</strong> to the array sections.</p></li>
-<li><p>Result Characteristics. The result is of type logical with the same kind type parameter as <strong>mask</strong>. It is scalar if <strong>dim</strong> is absent or <strong>n = 1</strong>; otherwise, the result has rank <strong>n - 1</strong> and shape <strong>[d1, d2, . . ., dDIM-1, dDIM+1, . . ., dn ]</strong> where <strong>[d1, d2, . . ., dn ]</strong> is the shape of <strong>mask</strong>.</p></li>
-<li><p>Result Value.</p>
-<dl>
-<dt>Case (i):</dt>
-<dd>The result of <strong>all(mask)</strong> has the value true if all elements of <strong>mask</strong> are true or if <strong>mask</strong> has size zero, and the result has value false if any element of <strong>mask</strong> is false.
-</dd>
-<dt>Case (ii):</dt>
-<dd>If <strong>mask</strong> has rank one, <strong>all(mask,dim)</strong> is equal to <strong>all(mask)</strong>. Otherwise, the value of element <strong>(s1, s2, . . ., sdim-1, sdim+1, . . ., sn )</strong> of all <strong>(mask, dim)</strong> is equal to <strong>all(mask (s1, s2, . . ., sdim-1, :, sdim+1, . . ., sn ))</strong>.
-</dd>
-</dl></li>
+<li><p>If the rank of <strong>mask</strong> is one, then <strong>all(mask, dim)</strong> is equivalent to <strong>all(mask)</strong>.</p></li>
+<li><p>If the rank of <strong>mask</strong> is greater than one, then <strong>all(mask, dim)</strong> is determined by applying <strong>all()</strong> to the array sections.</p></li>
+<li><p>The result is of type logical with the same kind type parameter as <strong>mask</strong>. It is scalar if <strong>dim</strong> is absent or <strong>1</strong>; otherwise, the result has rank <strong>rank(mask) - 1</strong> and the shape is the shape of <strong>mask</strong> with the nth dimension where n is specified by <strong>dim</strong> is removed.</p></li>
 </ol>
 </div><div id="examples-8" class="slide section level3">
 <h1><strong>Examples</strong></h1>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">program</span> demo_all</a>
 <a class="sourceLine" id="cb39-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb39-3" title="3"><span class="dt">logical</span> bool</a>
-<a class="sourceLine" id="cb39-4" title="4">  <span class="co">! basic usage</span></a>
-<a class="sourceLine" id="cb39-5" title="5">   <span class="co">! is everything true?</span></a>
-<a class="sourceLine" id="cb39-6" title="6">   bool <span class="kw">=</span> <span class="fu">all</span>(<span class="kw">[</span> <span class="cn">.true.</span>, <span class="cn">.true.</span>, <span class="cn">.true.</span> <span class="kw">]</span>)</a>
-<a class="sourceLine" id="cb39-7" title="7">   bool <span class="kw">=</span> <span class="fu">all</span>(<span class="kw">[</span> <span class="cn">.true.</span>, <span class="cn">.false.</span>, <span class="cn">.true.</span> <span class="kw">]</span>)</a>
-<a class="sourceLine" id="cb39-8" title="8">   <span class="fu">print</span> <span class="kw">*</span>, bool</a>
-<a class="sourceLine" id="cb39-9" title="9">  <span class="co">! by a dimension</span></a>
-<a class="sourceLine" id="cb39-10" title="10">   ARRAYS: block</a>
-<a class="sourceLine" id="cb39-11" title="11">   <span class="dt">integer</span> <span class="dt">::</span> a(<span class="dv">2</span>,<span class="dv">3</span>), b(<span class="dv">2</span>,<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb39-12" title="12">    <span class="co">! set everything to one except one value in b</span></a>
-<a class="sourceLine" id="cb39-13" title="13">    a <span class="kw">=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb39-14" title="14">    b <span class="kw">=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb39-15" title="15">    b(<span class="dv">2</span>,<span class="dv">2</span>) <span class="kw">=</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb39-16" title="16">    <span class="co">! now compare those two arrays</span></a>
-<a class="sourceLine" id="cb39-17" title="17">    <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;entire array :&#39;</span>, <span class="fu">all</span>(a <span class="op">.eq.</span> b )</a>
-<a class="sourceLine" id="cb39-18" title="18">    <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;compare columns:&#39;</span>, <span class="fu">all</span>(a <span class="op">.eq.</span> b, <span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb39-19" title="19">    <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;compare rows:&#39;</span>, <span class="fu">all</span>(a <span class="op">.eq.</span> b, <span class="bu">dim</span><span class="kw">=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb39-20" title="20">  <span class="kw">end</span> block ARRAYS</a>
-<a class="sourceLine" id="cb39-21" title="21"><span class="kw">end program</span> demo_all</a></code></pre></div>
+<a class="sourceLine" id="cb39-3" title="3"><span class="dt">logical</span>,<span class="dt">parameter</span> <span class="dt">::</span> T<span class="kw">=</span><span class="cn">.true.</span>, F<span class="kw">=</span><span class="cn">.false.</span></a>
+<a class="sourceLine" id="cb39-4" title="4"><span class="dt">logical</span> bool</a>
+<a class="sourceLine" id="cb39-5" title="5">  <span class="co">! basic usage</span></a>
+<a class="sourceLine" id="cb39-6" title="6">   <span class="co">! is everything true?</span></a>
+<a class="sourceLine" id="cb39-7" title="7">   bool <span class="kw">=</span> <span class="fu">all</span>(<span class="kw">[</span> T,T,T <span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb39-8" title="8">   bool <span class="kw">=</span> <span class="fu">all</span>(<span class="kw">[</span> T,F,T <span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb39-9" title="9">   <span class="fu">print</span> <span class="kw">*</span>, bool</a>
+<a class="sourceLine" id="cb39-10" title="10">  <span class="co">! by a dimension</span></a>
+<a class="sourceLine" id="cb39-11" title="11">   ARRAYS: block</a>
+<a class="sourceLine" id="cb39-12" title="12">   <span class="dt">integer</span> <span class="dt">::</span> a(<span class="dv">2</span>,<span class="dv">3</span>), b(<span class="dv">2</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb39-13" title="13">    <span class="co">! set everything to one except one value in b</span></a>
+<a class="sourceLine" id="cb39-14" title="14">    a <span class="kw">=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb39-15" title="15">    b <span class="kw">=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb39-16" title="16">    b(<span class="dv">2</span>,<span class="dv">2</span>) <span class="kw">=</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb39-17" title="17">    <span class="co">! now compare those two arrays</span></a>
+<a class="sourceLine" id="cb39-18" title="18">    <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;entire array :&#39;</span>, <span class="fu">all</span>(a <span class="op">==</span>  b )</a>
+<a class="sourceLine" id="cb39-19" title="19">    <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;compare columns:&#39;</span>, <span class="fu">all</span>(a <span class="op">==</span>  b, <span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb39-20" title="20">    <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;compare rows:&#39;</span>, <span class="fu">all</span>(a <span class="op">==</span>  b, <span class="bu">dim</span><span class="kw">=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb39-21" title="21">  <span class="kw">end</span> block ARRAYS</a>
+<a class="sourceLine" id="cb39-22" title="22"><span class="kw">end program</span> demo_all</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>    T
     F
@@ -883,7 +888,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div><div id="see-also-8" class="slide section level3">
 <h1><strong>See Also</strong></h1>
 <p><a href="#any"><strong>any</strong>(3)</a></p>
-<p>fortran-lang intrinsic descriptions</p>
+<p>fortran-lang intrinsic descriptions (license: MIT) @urbanjost</p>
 </div>
 <div id="allocated" class="title-slide slide section level2"><h1>allocated</h1></div><div id="name-9" class="slide section level3">
 <h1><strong>Name</strong></h1>
@@ -971,7 +976,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div><div id="synopsis-10" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb45"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb45-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">anint</span>(a <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb46"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb46-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> iaint(x,<span class="fu">KIND</span>)</a>
+<div class="sourceCode" id="cb46"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb46-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> <span class="bu">anint</span>(x,<span class="fu">KIND</span>)</a>
 <a class="sourceLine" id="cb46-2" title="2"></a>
 <a class="sourceLine" id="cb46-3" title="3"><span class="dt">      real(kind=KIND)</span>,<span class="dt">intent(in)</span>   <span class="dt">::</span> x</a>
 <a class="sourceLine" id="cb46-4" title="4">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
@@ -6541,27 +6546,34 @@ $$</span><br /></p>
 </div><div id="synopsis-85" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb371"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb371-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">floor</span>(a <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb372"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb372-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=kind)</span> <span class="kw">function</span> <span class="bu">floor</span>( a ,<span class="fu">kind</span> )</a>
+<div class="sourceCode" id="cb372"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb372-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">floor</span>( a ,<span class="fu">kind</span> )</a>
 <a class="sourceLine" id="cb372-2" title="2"></a>
-<a class="sourceLine" id="cb372-3" title="3"><span class="dt">      real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> a</a>
-<a class="sourceLine" id="cb372-4" title="4">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<a class="sourceLine" id="cb372-3" title="3"><span class="dt">      real(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> a</a>
+<a class="sourceLine" id="cb372-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
 </div><div id="characteristics-85" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p>where KIND is any valid value for type integer.</p>
+<ul>
+<li>a kind designated as ** may be any supported kind value for the type</li>
+<li><strong>a</strong> is a real of any kind</li>
+<li>KIND is any valid value for type integer.</li>
+<li>the result is an integer of the specified or default kind</li>
+</ul>
 </div><div id="description-84" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>floor</strong>(3) returns the greatest integer less than or equal to <strong>a</strong>. That is, it picks the whole number at or to the left of the value on the scale <strong>-huge(int(a,kind=KIND))-1</strong> to <strong>huge(int(a),kind=KIND)</strong>.</p>
+<p><strong>floor</strong>(3) returns the greatest integer less than or equal to <strong>a</strong>.</p>
+<p>In other words, it picks the whole number at or to the left of the value on the number scale.</p>
+<p>This means care has to be taken that the magnitude of the real value <strong>a</strong> does not exceed the range of the output value, as the range of values supported by real values is typically larger than the range for integers.</p>
 </div><div id="options-83" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
 <li><dl>
 <dt><strong>a</strong></dt>
-<dd>The type shall be real.
+<dd>The value to operate on. Valid values are restricted by the size of the returned integer kind to the range <strong>-huge(int(a,kind=KIND))-1</strong> to <strong>huge(int(a),kind=KIND)</strong>.
 </dd>
 </dl></li>
 <li><dl>
 <dt><strong>kind</strong></dt>
-<dd>(Optional) A scalar integer constant initialization expression indicating the kind parameter of the result.
+<dd>A scalar integer constant initialization expression indicating the kind parameter of the result.
 </dd>
 </dl></li>
 </ul>
@@ -6569,6 +6581,9 @@ $$</span><br /></p>
 <h1><strong>Result</strong></h1>
 <p>The return value is of type integer(kind) if <strong>kind</strong> is present and of default-kind integer otherwise.</p>
 <p>The result is undefined if it cannot be represented in the specified integer type.</p>
+<p>If in range for the kind of the result the result is the whole number at or to the left of the input value on the number line.</p>
+<p>If <strong>a</strong> is positive the result is the value with the fractional part removed.</p>
+<p>If <strong>a</strong> is negative, it is the whole number at or to the left of the input value.</p>
 </div><div id="examples-83" class="slide section level3">
 <h1><strong>Examples</strong></h1>
 <p>Sample program:</p>
@@ -6603,9 +6618,18 @@ $$</span><br /></p>
 <p>Fortran 95</p>
 </div><div id="see-also-84" class="slide section level3">
 <h1><strong>See Also</strong></h1>
-<p><a href="#ceiling"><strong>ceiling</strong>(3)</a>, <a href="#nint"><strong>nint</strong>(3)</a></p>
-<p><a href="#aint"><strong>aint</strong>(3)</a>, <a href="#anint"><strong>anint</strong>(3)</a>, <a href="#int"><strong>int</strong>(3)</a>, <a href="#selected_int_kind"><strong>selected_int_kind</strong>(3)</a></p>
-<p>fortran-lang intrinsic descriptions (license: MIT) @urbanjost</p>
+<p><a href="#ceiling"><strong>ceiling</strong>(3)</a>, <a href="#nint"><strong>nint</strong>(3)</a>, <a href="#aint"><strong>aint</strong>(3)</a>, <a href="#anint"><strong>anint</strong>(3)</a>, <a href="#int"><strong>int</strong>(3)</a>, <a href="#selected_int_kind"><strong>selected_int_kind</strong>(3)</a></p>
+<p>fortran-lang intrinsic descriptions (license: MIT) @urbanjost <!--
+real function floor(fval0)
+!@(#) return largest integer not greater than x as a real
+   fval=fval0
+   if(fval.ne.float(int(fval))) then
+      if(fval.gt.0.0) fval = int(fval)
+      if(fval.lt.0.0) fval = int(fval)-1
+   endif
+   floor=fval
+end function floor
+--></p>
 </div>
 <div id="fraction" class="title-slide slide section level2"><h1>fraction</h1></div><div id="name-86" class="slide section level3">
 <h1><strong>Name</strong></h1>
@@ -11316,28 +11340,43 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </div>
 <div id="new_line" class="title-slide slide section level2"><h1>new_line</h1></div><div id="name-143" class="slide section level3">
 <h1><strong>Name</strong></h1>
-<p><strong>new_line</strong>(3) - [CHARACTER] New-line character</p>
+<p><strong>new_line</strong>(3) - [CHARACTER:INQUIRY] Newline character</p>
 </div><div id="synopsis-143" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb622"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb622-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> new_line(c)</a></code></pre></div>
-<div class="sourceCode" id="cb623"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb623-1" title="1">     <span class="dt">character(len=1,kind=kind(c))</span> <span class="kw">function</span> new_line(c)</a>
+<div class="sourceCode" id="cb623"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb623-1" title="1">     <span class="dt">character(len=1,kind=KIND)</span> <span class="kw">function</span> new_line(c)</a>
 <a class="sourceLine" id="cb623-2" title="2"></a>
 <a class="sourceLine" id="cb623-3" title="3">      <span class="dt">character(len=1,kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> c(..)</a></code></pre></div>
 </div><div id="characteristics-144" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
+<ul>
+<li><strong>c</strong> shall be of type character. It may be a scalar or an array.</li>
+<li>the result is a character scalar of length one with the same kind type parameter as <strong>c</strong>.</li>
+</ul>
 </div><div id="description-142" class="slide section level3">
 <h1><strong>Description</strong></h1>
-<p><strong>new_line</strong>(3) returns the new-line character.</p>
-<p>Normally, new-lines are generated with regular formatted I/O statements like WRITE() and PRINT() when each statement completes:</p>
+<p><strong>new_line</strong>(3) returns the newline character.</p>
+<p>Normally, newlines are generated with regular formatted I/O statements like WRITE() and PRINT() when each statement completes:</p>
 <div class="sourceCode" id="cb624"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb624-1" title="1">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;x=11&#39;</span></a>
 <a class="sourceLine" id="cb624-2" title="2">   <span class="fu">print</span> <span class="kw">*</span></a>
 <a class="sourceLine" id="cb624-3" title="3">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;y=22&#39;</span></a>
 <a class="sourceLine" id="cb624-4" title="4">   <span class="kw">end</span></a></code></pre></div>
 <p>produces: x=11</p>
 <pre><code>y=22</code></pre>
-<p><code>Alternatively, a "/" descriptor in a format is used to generate a newline on the output. For example:</code>fortran write(,‘(a,1x,i0,/,a)’) ‘x =’,11,‘is the answer’ end <code>produces:</code>text x = 11 is the answer <code>Also, for formatted sequential output if more data is listed on the output statement than can be represented by the format statement a newline is generated and then the format is reused until the output list is exhausted.</code>fortran write(,‘(a,“=”,i0)’) ‘x’, 10, ‘y’, 20 end <code>produces</code>text x=10 y=20 ``` But there are occasions, particularly when non-advancing I/O or stream I/O is being generated (which does not generate a new-line at the end of each WRITE statement, as normally occurs) where it is preferable to place a new-line explicitly in the output at specified points.</p>
-<p>To do so you must make sure you are generating the correct new-line character, which the techniques above do automatically.</p>
-<p>The new-line character varies between some platforms, and can even depend on the encoding (ie. which character set is being used) of the output file. In these cases selecting the correct character to output can be determined by the <strong>new_line</strong>(3) procedure.</p>
+<p><code>Alternatively, a "/" descriptor in a format is used to generate a newline on the output. For example:</code>fortran write(,‘(a,1x,i0,/,a)’) ‘x =’,11,‘is the answer’ end <code>produces:</code>text x = 11 is the answer <code>Also, for formatted sequential output if more data is listed on the output statement than can be represented by the format statement a newline is generated and then the format is reused until the output list is exhausted.</code>fortran write(,‘(a,“=”,i0)’) ‘x’, 10, ‘y’, 20 end <code>produces</code>text x=10 y=20 ``` But there are occasions, particularly when non-advancing I/O or stream I/O is being generated (which does not generate a newline at the end of each WRITE statement, as normally occurs) where it is preferable to place a newline explicitly in the output at specified points.</p>
+<p>To do so you must make sure you are generating the correct newline character, which the techniques above do automatically.</p>
+<p>The newline character varies between some platforms, and can even depend on the encoding (ie. which character set is being used) of the output file. In these cases selecting the correct character to output can be determined by the <strong>new_line</strong>(3) procedure.</p>
+</div><div id="options-140" class="slide section level3">
+<h1><strong>Options</strong></h1>
+<ul>
+<li><dl>
+<dt><strong>c</strong></dt>
+<dd>an arbitrary character whose kind is used to decide on the output character that represents a newline.
+</dd>
+</dl></li>
+</ul>
+</div><div id="result-121" class="slide section level3">
+<h1><strong>Result</strong></h1>
 <dl>
 <dt>Case (i)</dt>
 <dd>If <strong>a</strong> is default character and the character in position <strong>10</strong> of the ASCII collating sequence is representable in the default character set, then the result is <strong>achar(10)</strong>.
@@ -11355,18 +11394,6 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <dd>If not of the previous cases apply, the result is the blank character.
 </dd>
 </dl>
-</div><div id="options-140" class="slide section level3">
-<h1><strong>Options</strong></h1>
-<ul>
-<li><dl>
-<dt><strong>c</strong></dt>
-<dd>an arbitrary character whose kind is used to decide on the output character that represents a new-line.
-</dd>
-</dl></li>
-</ul>
-</div><div id="result-121" class="slide section level3">
-<h1><strong>Result</strong></h1>
-<p>Returns a character scalar of length one with the new-line character of the same kind as parameter <strong>c</strong>.</p>
 </div><div id="examples-136" class="slide section level3">
 <h1><strong>Examples</strong></h1>
 <p>Sample program:</p>
@@ -11378,11 +11405,11 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb626-6" title="6"><span class="dt">integer</span> <span class="dt">::</span> i, <span class="fu">count</span></a>
 <a class="sourceLine" id="cb626-7" title="7"></a>
 <a class="sourceLine" id="cb626-8" title="8">  <span class="co">! basics</span></a>
-<a class="sourceLine" id="cb626-9" title="9">   <span class="co">! print a string with a new-line embedded in it</span></a>
+<a class="sourceLine" id="cb626-9" title="9">   <span class="co">! print a string with a newline embedded in it</span></a>
 <a class="sourceLine" id="cb626-10" title="10">   string<span class="kw">=</span><span class="st">&#39;This is record 1.&#39;</span><span class="kw">//</span>nl<span class="kw">//</span><span class="st">&#39;This is record 2.&#39;</span></a>
 <a class="sourceLine" id="cb626-11" title="11">   <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span> string</a>
 <a class="sourceLine" id="cb626-12" title="12"></a>
-<a class="sourceLine" id="cb626-13" title="13">   <span class="co">! print a new-line character string</span></a>
+<a class="sourceLine" id="cb626-13" title="13">   <span class="co">! print a newline character string</span></a>
 <a class="sourceLine" id="cb626-14" title="14">   <span class="fu">write(*</span>,<span class="st">&#39;(*(a))&#39;</span>,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span> <span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb626-15" title="15">      nl,<span class="st">&#39;This is record 1.&#39;</span>,nl,<span class="st">&#39;This is record 2.&#39;</span>,nl</a>
 <a class="sourceLine" id="cb626-16" title="16"></a>

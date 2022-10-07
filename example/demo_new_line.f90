@@ -6,11 +6,11 @@
       integer :: i, count
 
         ! basics
-         ! print a string with a new-line embedded in it
+         ! print a string with a newline embedded in it
          string='This is record 1.'//nl//'This is record 2.'
          write(*,'(a)') string
 
-         ! print a new-line character string
+         ! print a newline character string
          write(*,'(*(a))',advance='no') &
             nl,'This is record 1.',nl,'This is record 2.',nl
 

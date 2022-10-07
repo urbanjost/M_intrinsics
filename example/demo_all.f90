@@ -1,10 +1,11 @@
       program demo_all
       implicit none
+      logical,parameter :: T=.true., F=.false.
       logical bool
         ! basic usage
          ! is everything true?
-         bool = all([ .true., .true., .true. ])
-         bool = all([ .true., .false., .true. ])
+         bool = all([ T,T,T ])
+         bool = all([ T,F,T ])
          print *, bool
         ! by a dimension
          ARRAYS: block
@@ -14,8 +15,8 @@
           b = 1
           b(2,2) = 2
           ! now compare those two arrays
-          print *,'entire array :', all(a .eq. b )
-          print *,'compare columns:', all(a .eq. b, dim=1)
-          print *,'compare rows:', all(a .eq. b, dim=2)
+          print *,'entire array :', all(a ==  b )
+          print *,'compare columns:', all(a ==  b, dim=1)
+          print *,'compare rows:', all(a ==  b, dim=2)
         end block ARRAYS
       end program demo_all

@@ -2,24 +2,27 @@
 
 ### **Name**
 
-**new_line**(3) - \[CHARACTER\] New-line character
+**new_line**(3) - \[CHARACTER:INQUIRY\] Newline character
 
 ### **Synopsis**
 ```fortran
     result = new_line(c)
 ```
 ```fortran
-     character(len=1,kind=kind(c)) function new_line(c)
+     character(len=1,kind=KIND) function new_line(c)
 
       character(len=1,kind=KIND),intent(in) :: c(..)
 ```
 ### **Characteristics**
 
+ - **c** shall be of type _character_. It may be a scalar or an array.
+ - the result is a _character_ scalar of length one with the same kind type parameter as **c**.
+
 ### **Description**
 
-**new_line**(3) returns the new-line character.
+**new_line**(3) returns the newline character.
 
-Normally, new-lines are generated with regular formatted I/O statements like
+Normally, newlines are generated with regular formatted I/O statements like
 WRITE() and PRINT() when each statement completes:
 ```fortran
    print *, 'x=11'
@@ -57,17 +60,26 @@ produces
    y=20
 ```
 But there are occasions, particularly when non-advancing I/O or stream
-I/O is being generated (which does not generate a new-line at the end
+I/O is being generated (which does not generate a newline at the end
 of each WRITE statement, as normally occurs) where it is preferable to
-place a new-line explicitly in the output at specified points.
+place a newline explicitly in the output at specified points.
 
-To do so you must make sure you are generating the correct new-line
+To do so you must make sure you are generating the correct newline
 character, which the techniques above do automatically.
 
-The new-line character varies between some platforms, and can even
+The newline character varies between some platforms, and can even
 depend on the encoding (ie. which character set is being used) of the
 output file.  In these cases selecting the correct character to output
 can be determined by the **new_line**(3) procedure.
+
+
+### **Options**
+
+- **c**
+  : an arbitrary character whose kind is used to decide on the output
+  character that represents a newline.
+
+### **Result**
 
 Case (i)
   : If **a** is default _character_ and the character in position **10**
@@ -88,17 +100,6 @@ Case (iii)
 Case (iv)
   : If not of the previous cases apply, the result is the blank character.
 
-### **Options**
-
-- **c**
-  : an arbitrary character whose kind is used to decide on the output
-  character that represents a new-line.
-
-### **Result**
-
-Returns a _character_ scalar of length one with the new-line character of
-the same kind as parameter **c**.
-
 ### **Examples**
 
 Sample program:
@@ -111,11 +112,11 @@ real :: r
 integer :: i, count
 
   ! basics
-   ! print a string with a new-line embedded in it
+   ! print a string with a newline embedded in it
    string='This is record 1.'//nl//'This is record 2.'
    write(*,'(a)') string
 
-   ! print a new-line character string
+   ! print a newline character string
    write(*,'(*(a))',advance='no') &
       nl,'This is record 1.',nl,'This is record 2.',nl
 

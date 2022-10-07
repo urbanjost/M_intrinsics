@@ -9,7 +9,7 @@
     result = anint(a [,kind])
 ```
 ```fortran
-     elemental real(kind=KIND) function iaint(x,KIND)
+     elemental real(kind=KIND) function anint(x,KIND)
 
       real(kind=KIND),intent(in)   :: x
       integer,intent(in),optional :: KIND

@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**aint**(3) - \[NUMERIC\] Truncate toward zero to  a whole number
+**aint**(3) - \[NUMERIC\] Truncate toward zero to a whole number
 
 ### **Synopsis**
 ```fortran

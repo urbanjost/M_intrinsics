@@ -789,7 +789,7 @@ logical expressions:
 
 ### **Name**
 
-**aint**(3) - \[NUMERIC\] Truncate toward zero to  a whole number
+**aint**(3) - \[NUMERIC\] Truncate toward zero to a whole number
 
 ### **Synopsis**
 ```fortran
@@ -901,75 +901,73 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
+ - **mask** is a _logical_ array
+ - **dim** is an _integer_
+ - the result is a logical array if **dim** is supplied,
+   otherwise it is a logical scalar.
+
 ### **Description**
 
-**all**(3) determines if all the values are true in **mask**
-in the array along dimension **dim**.
+  **all**(3) determines if all the values are true in **mask** in the
+  array along dimension **dim** if **dim** is specified; otherwise all
+  elements are tested together.
 
-This is called a logical conjunction of elements of **mask** along
-dimension **dim**.
+  This testing type is called a logical conjunction of elements of
+  **mask** along dimension **dim**.
 
-The mask is generally a _logical_ expression, allowing for comparing
-arrays and many other common operations.
+  The mask is generally a _logical_ expression, allowing for comparing
+  arrays and many other common operations.
 
 ### **Options**
 
 - **mask**
-  : shall be a logical array.
+  : the logical array to be tested for all elements being _.true_.
 
 - **dim**
-  : (optional) **dim** shall be a scalar integer with a value that lies
-  between one and the rank of **mask**. The corresponding actual argument
-  shall not be an optional dummy argument.
+  : **dim** indicates the direction through the elements of **mask**
+  to group elements for testing.
+  : **dim** has a value that lies between one and the rank of **mask**.
+  : The corresponding actual argument shall not be an optional dummy
+  argument.
+  : If **dim** is not present all elements are tested and a single
+  scalar value is returned.
 
 ### **Result**
 
 "**all(mask)**" returns a scalar value of type _logical_ where the kind
-type parameter is the same as the kind type parameter of **mask**. If
-**dim** is present, then **all(mask, dim)** returns an array with the rank
-of **mask** minus 1. The shape is determined from the shape of **mask**
-where the **dim** dimension is elided.
+type parameter is the same as the kind type parameter of **mask**.
+
+If **dim** is present, then **all(mask, dim)** returns an array with
+the rank of **mask** minus 1. The shape is determined from the shape of
+**mask** where the **dim** dimension is elided.
 
 1.  **all(mask)** is true if all elements of **mask** are true. It also is
     true if **mask** has zero size; otherwise, it is false.
 
 2.  If the rank of **mask** is one, then **all(mask, dim)** is equivalent
-    to **all(mask)**. If the rank is greater than one, then **all(mask,
+    to **all(mask)**.
+
+3.  If the rank of **mask** is greater than one, then **all(mask,
     dim)** is determined by applying **all()** to the array sections.
 
-3.  Result Characteristics. The result is of type _logical_ with the
-    same kind type parameter as **mask**. It is scalar if **dim**
-    is absent or **n = 1**; otherwise, the result has rank **n - 1**
-    and shape **\[d1, d2, . . ., dDIM-1, dDIM+1, . . ., dn \]**
-    where **\[d1, d2, . . ., dn \]** is the shape of **mask**.
-
-4.  Result Value.
-
-    Case (i):
-    : The result of **all(mask)** has the value true if all
-    elements of **mask** are true or if **mask** has
-    size zero, and the result has value false if any element
-    of **mask** is false.
-
-    Case (ii):
-    : If **mask** has rank one, **all(mask,dim)** is equal to
-    **all(mask)**. Otherwise, the value of element **(s1, s2,
-    . . ., sdim-1, sdim+1, . . ., sn )** of all **(mask,
-    dim)** is equal to **all(mask (s1, s2, . . ., sdim-1,
-    :, sdim+1, . . ., sn ))**.
+4.  The result is of type _logical_ with the
+    same kind type parameter as **mask**. It is scalar if **dim** is
+    absent or **1**; otherwise, the result has rank **rank(mask) - 1**
+    and the shape is the shape of **mask** with the nth dimension
+    where n is specified by **dim** is removed.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_all
 implicit none
+logical,parameter :: T=.true., F=.false.
 logical bool
   ! basic usage
    ! is everything true?
-   bool = all([ .true., .true., .true. ])
-   bool = all([ .true., .false., .true. ])
+   bool = all([ T,T,T ])
+   bool = all([ T,F,T ])
    print *, bool
   ! by a dimension
    ARRAYS: block
@@ -979,9 +977,9 @@ logical bool
     b = 1
     b(2,2) = 2
     ! now compare those two arrays
-    print *,'entire array :', all(a .eq. b )
-    print *,'compare columns:', all(a .eq. b, dim=1)
-    print *,'compare rows:', all(a .eq. b, dim=2)
+    print *,'entire array :', all(a ==  b )
+    print *,'compare columns:', all(a ==  b, dim=1)
+    print *,'compare rows:', all(a ==  b, dim=2)
   end block ARRAYS
 end program demo_all
 ```
@@ -1001,7 +999,7 @@ Fortran 95
 
 [**any**(3)](#any)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## allocated
 
@@ -1109,7 +1107,7 @@ Results:
     result = anint(a [,kind])
 ```
 ```fortran
-     elemental real(kind=KIND) function iaint(x,KIND)
+     elemental real(kind=KIND) function anint(x,KIND)
 
       real(kind=KIND),intent(in)   :: x
       integer,intent(in),optional :: KIND
@@ -1209,6 +1207,7 @@ FORTRAN 77
       integer,intent(in),optional   :: dim
 ```
 ### **Characteristics**
+
 - **mask** is a _logical_ array
 - **dim** is a scalar integer
 - the result is a logical array if **dim** is supplied,
@@ -1216,8 +1215,8 @@ FORTRAN 77
 
 ### **Description**
 
-**any**(3) determines if any of the values in the logical
-array **mask** along dimension **dim** are _.true._.
+  **any**(3) determines if any of the values in the logical
+  array **mask** along dimension **dim** are _.true._.
 
 ### **Options**
 
@@ -1250,7 +1249,6 @@ where the **dim** dimension is elided.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_any
 implicit none
@@ -8384,28 +8382,38 @@ not greater than argument
     result = floor(a [,kind])
 ```
 ```fortran
-     elemental integer(kind=kind) function floor( a ,kind )
+     elemental integer(kind=KIND) function floor( a ,kind )
 
-      real(kind=KIND),intent(in) :: a
-      integer,intent(in),optional :: kind
+      real(kind=**),intent(in) :: a
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-where _KIND_ is any valid value for type _integer_.
+- a kind designated as ** may be any supported kind value for the type
+- **a** is a _real_ of any kind
+- _KIND_ is any valid value for type _integer_.
+- the result is an _integer_ of the specified or default kind
 
 ### **Description**
 
 **floor**(3) returns the greatest integer less than or equal to **a**.
-That is, it picks the whole number at or to the left of the value on
-the scale **-huge(int(a,kind=KIND))-1** to **huge(int(a),kind=KIND)**.
+
+In other words, it picks the whole number at or to the left of the value on
+the number scale.
+
+This means care has to be taken that the magnitude of the _real_ value **a**
+does not exceed the range of the output value, as the range of values supported
+by _real_ values is typically larger than the range for _integers_.
 
 ### **Options**
 
 - **a**
-  : The type shall be _real_.
+  : The value to operate on. Valid values are restricted by the size of
+  the returned _integer_ kind to the range **-huge(int(a,kind=KIND))-1**
+  to **huge(int(a),kind=KIND)**.
 
 - **kind**
-  : (Optional) A scalar _integer_ constant initialization expression
+  : A scalar _integer_ constant initialization expression
   indicating the kind parameter of the result.
 
 ### **Result**
@@ -8415,6 +8423,15 @@ default-kind _integer_ otherwise.
 
 The result is undefined if it cannot be represented in the specified
 integer type.
+
+If in range for the kind of the result the result is the whole number
+at or to the left of the input value on the number line.
+
+If **a** is positive the result is the value with the fractional part
+removed.
+
+If **a** is negative, it is the whole number at or to the left of the
+input value.
 
 ### **Examples**
 
@@ -8440,7 +8457,6 @@ real :: y = -63.59
    ! A=Nan, Infinity or  <huge(0_KIND)-1 < A > huge(0_KIND) is undefined
 end program demo_floor
 ```
-
 Results:
 
 ```text
@@ -8452,7 +8468,6 @@ Results:
       2.000000       2.000000       2.000000
               2           1           1
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -8460,14 +8475,24 @@ Fortran 95
 ### **See Also**
 
 [**ceiling**(3)](#ceiling),
-[**nint**(3)](#nint)
-
+[**nint**(3)](#nint),
 [**aint**(3)](#aint),
 [**anint**(3)](#anint),
 [**int**(3)](#int),
 [**selected_int_kind**(3)](#selected_int_kind)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+<!--
+real function floor(fval0)
+!@(#) return largest integer not greater than x as a real
+   fval=fval0
+   if(fval.ne.float(int(fval))) then
+      if(fval.gt.0.0) fval = int(fval)
+      if(fval.lt.0.0) fval = int(fval)-1
+   endif
+   floor=fval
+end function floor
+-->
 
 ## fraction
 
@@ -14519,24 +14544,27 @@ Fortran 95
 
 ### **Name**
 
-**new_line**(3) - \[CHARACTER\] New-line character
+**new_line**(3) - \[CHARACTER:INQUIRY\] Newline character
 
 ### **Synopsis**
 ```fortran
     result = new_line(c)
 ```
 ```fortran
-     character(len=1,kind=kind(c)) function new_line(c)
+     character(len=1,kind=KIND) function new_line(c)
 
       character(len=1,kind=KIND),intent(in) :: c(..)
 ```
 ### **Characteristics**
 
+ - **c** shall be of type _character_. It may be a scalar or an array.
+ - the result is a _character_ scalar of length one with the same kind type parameter as **c**.
+
 ### **Description**
 
-**new_line**(3) returns the new-line character.
+**new_line**(3) returns the newline character.
 
-Normally, new-lines are generated with regular formatted I/O statements like
+Normally, newlines are generated with regular formatted I/O statements like
 WRITE() and PRINT() when each statement completes:
 ```fortran
    print *, 'x=11'
@@ -14574,17 +14602,25 @@ produces
    y=20
 ```
 But there are occasions, particularly when non-advancing I/O or stream
-I/O is being generated (which does not generate a new-line at the end
+I/O is being generated (which does not generate a newline at the end
 of each WRITE statement, as normally occurs) where it is preferable to
-place a new-line explicitly in the output at specified points.
+place a newline explicitly in the output at specified points.
 
-To do so you must make sure you are generating the correct new-line
+To do so you must make sure you are generating the correct newline
 character, which the techniques above do automatically.
 
-The new-line character varies between some platforms, and can even
+The newline character varies between some platforms, and can even
 depend on the encoding (ie. which character set is being used) of the
 output file.  In these cases selecting the correct character to output
 can be determined by the **new_line**(3) procedure.
+
+### **Options**
+
+- **c**
+  : an arbitrary character whose kind is used to decide on the output
+  character that represents a newline.
+
+### **Result**
 
 Case (i)
   : If **a** is default _character_ and the character in position **10**
@@ -14605,17 +14641,6 @@ Case (iii)
 Case (iv)
   : If not of the previous cases apply, the result is the blank character.
 
-### **Options**
-
-- **c**
-  : an arbitrary character whose kind is used to decide on the output
-  character that represents a new-line.
-
-### **Result**
-
-Returns a _character_ scalar of length one with the new-line character of
-the same kind as parameter **c**.
-
 ### **Examples**
 
 Sample program:
@@ -14628,11 +14653,11 @@ real :: r
 integer :: i, count
 
   ! basics
-   ! print a string with a new-line embedded in it
+   ! print a string with a newline embedded in it
    string='This is record 1.'//nl//'This is record 2.'
    write(*,'(a)') string
 
-   ! print a new-line character string
+   ! print a newline character string
    write(*,'(*(a))',advance='no') &
       nl,'This is record 1.',nl,'This is record 2.',nl
 

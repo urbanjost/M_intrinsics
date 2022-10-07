@@ -10,28 +10,38 @@ not greater than argument
     result = floor(a [,kind])
 ```
 ```fortran
-     elemental integer(kind=kind) function floor( a ,kind )
+     elemental integer(kind=KIND) function floor( a ,kind )
 
-      real(kind=KIND),intent(in) :: a
-      integer,intent(in),optional :: kind
+      real(kind=**),intent(in) :: a
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-where _KIND_ is any valid value for type _integer_.
+- a kind designated as ** may be any supported kind value for the type
+- **a** is a _real_ of any kind
+- _KIND_ is any valid value for type _integer_.
+- the result is an _integer_ of the specified or default kind
 
 ### **Description**
 
 **floor**(3) returns the greatest integer less than or equal to **a**.
-That is, it picks the whole number at or to the left of the value on
-the scale **-huge(int(a,kind=KIND))-1** to **huge(int(a),kind=KIND)**.
+
+In other words, it picks the whole number at or to the left of the value on
+the number scale.
+
+This means care has to be taken that the magnitude of the _real_ value **a**
+does not exceed the range of the output value, as the range of values supported
+by _real_ values is typically larger than the range for _integers_.
 
 ### **Options**
 
 - **a**
-  : The type shall be _real_.
+  : The value to operate on. Valid values are restricted by the size of
+  the returned _integer_ kind to the range **-huge(int(a,kind=KIND))-1**
+  to **huge(int(a),kind=KIND)**.
 
 - **kind**
-  : (Optional) A scalar _integer_ constant initialization expression
+  : A scalar _integer_ constant initialization expression
   indicating the kind parameter of the result.
 
 ### **Result**
@@ -41,6 +51,15 @@ default-kind _integer_ otherwise.
 
 The result is undefined if it cannot be represented in the specified
 integer type.
+
+If in range for the kind of the result the result is the whole number
+at or to the left of the input value on the number line.
+
+If **a** is positive the result is the value with the fractional part
+removed.
+
+If **a** is negative, it is the whole number at or to the left of the
+input value.
 
 ### **Examples**
 
@@ -66,7 +85,6 @@ real :: y = -63.59
    ! A=Nan, Infinity or  <huge(0_KIND)-1 < A > huge(0_KIND) is undefined
 end program demo_floor
 ```
-
 Results:
 
 ```text
@@ -78,7 +96,6 @@ Results:
       2.000000       2.000000       2.000000
               2           1           1
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -86,11 +103,21 @@ Fortran 95
 ### **See Also**
 
 [**ceiling**(3)](#ceiling),
-[**nint**(3)](#nint)
-
+[**nint**(3)](#nint),
 [**aint**(3)](#aint),
 [**anint**(3)](#anint),
 [**int**(3)](#int),
 [**selected_int_kind**(3)](#selected_int_kind)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+<!--
+real function floor(fval0)
+!@(#) return largest integer not greater than x as a real
+   fval=fval0
+   if(fval.ne.float(int(fval))) then
+      if(fval.gt.0.0) fval = int(fval)
+      if(fval.lt.0.0) fval = int(fval)-1
+   endif
+   floor=fval
+end function floor
+-->

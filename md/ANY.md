@@ -15,6 +15,7 @@
       integer,intent(in),optional   :: dim
 ```
 ### **Characteristics**
+
 - **mask** is a _logical_ array
 - **dim** is a scalar integer
 - the result is a logical array if **dim** is supplied,
@@ -22,8 +23,8 @@
 
 ### **Description**
 
-**any**(3) determines if any of the values in the logical
-array **mask** along dimension **dim** are _.true._.
+  **any**(3) determines if any of the values in the logical
+  array **mask** along dimension **dim** are _.true._.
 
 ### **Options**
 
@@ -56,7 +57,6 @@ where the **dim** dimension is elided.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_any
 implicit none
