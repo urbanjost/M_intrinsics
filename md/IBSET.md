@@ -26,13 +26,13 @@
 
 ### **Options**
 
-- **i**
-  : The initial value to be modified
+ - **i**
+   : The initial value to be modified
 
-- **pos**
-  : The position of the bit to change in the input value. A value
-  of zero refers to the right-most bit.  The value of **pos** must be
-  nonnegative and less than **(bit_size(i)**).
+ - **pos**
+   : The position of the bit to change in the input value. A value
+   of zero refers to the right-most bit.  The value of **pos** must be
+   nonnegative and less than **(bit_size(i)**).
 
 ### **Result**
 
@@ -67,6 +67,22 @@ integer(kind=int16) :: i,j
    ! both may be arrays if of the same size
 
 end program demo_ibset
+```
+Results:
+```text
+ >           14 ibset(12,1) has the value 14
+ > 0001000000000110 4102 6
+ >  an array of initial values may be given as well
+ >            4        4100
+ >  
+ >  a list of positions results in multiple returned values
+ >  not multiple bits set in one value, as the routine is  
+ >  a scalar function; calling it elementally essentially  
+ >  calls it multiple times.                               
+ > 0000000000000010
+ > 0000000000000100
+ > 0000000000001000
+ > 0000000000010000
 ```
 ### **Standard**
 

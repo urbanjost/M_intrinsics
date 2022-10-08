@@ -27,13 +27,13 @@
 
 ### **Options**
 
-- **i**
-  : The initial value to be modified
+ - **i**
+   : The initial value to be modified
 
-- **pos**
-  : The position of the bit to change in the input value. A value
-  of zero refers to the right-most bit.  The value of **pos** must be
-  nonnegative and less than **(bit_size(i)**).
+ - **pos**
+   : The position of the bit to change in the input value. A value
+   of zero refers to the right-most bit.  The value of **pos** must be
+   nonnegative and less than **(bit_size(i)**).
 
 ### **Result**
 
@@ -71,19 +71,19 @@ end program demo_ibclr
 ```
 Results:
 ```text
-             16  ==> ibclr(16,1) has the value 15
-   0000000000110111 55
-    an array of initial values may be given as well
-              3        4096           9
-    
-    a list of positions results in multiple returned values
-    not multiple bits set in one value, as the routine is  
-    a scalar function; calling it elementally essentially  
-    calls it multiple times.                               
-   1111111111111101
-   1111111111111011
-   1111111111110111
-   1111111111101111
+ >           16  ==> ibclr(16,1) has the value 15
+ > 0000000000110111 55
+ >  an array of initial values may be given as well
+ >            3        4096           9
+ >  
+ >  a list of positions results in multiple returned values
+ >  not multiple bits set in one value, as the routine is  
+ >  a scalar function; calling it elementally essentially  
+ >  calls it multiple times.                               
+ > 1111111111111101
+ > 1111111111111011
+ > 1111111111110111
+ > 1111111111101111
 ```
 ### **Standard**
 
@@ -101,4 +101,4 @@ Fortran 95
 [**ieor**(3)](#ieor),
 [**mvbits**(3)](#mvbits)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
