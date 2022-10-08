@@ -59,6 +59,8 @@ Sample program:
 ```fortran
   ! program demo_same_type_as
   module M_ether
+  implicit none
+  private
 
   type   :: dot
     real :: x=0
@@ -72,10 +74,15 @@ Sample program:
   type something_else
   end type something_else
 
+  public :: dot
+  public :: point
+  public :: something_else
+
   end module M_ether
 
   program demo_same_type_as
   use M_ether, only : dot, point, something_else
+  implicit none
   type(dot) :: dad, mom
   type(point) :: me
   type(something_else) :: alien

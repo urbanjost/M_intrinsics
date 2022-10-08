@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**spread**(3) - \[ARRAY CONSTRUCTION\] Add a dimension and replicate data
+**spread**(3) - \[ARRAY:CONSTRUCTION\] Add a dimension and replicate data
 
 ### **Synopsis**
 ```fortran

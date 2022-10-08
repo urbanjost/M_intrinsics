@@ -24,8 +24,8 @@
 
 ### **Description**
 
-  **maskl**(3) has its leftmost **i** bits set to **1**, and the
-  remaining bits set to **0**.
+  **maskl**(3) has its leftmost **i** bits set to **1**, and the remaining
+  bits set to **0**.
 
 ### **Options**
 
@@ -73,9 +73,6 @@ Results:
           -256 11111111111111111111111100000000
            -16 11111111111111111111111111110000
             -1 11111111111111111111111111111111
-```
-Results:
-```text
 ```
 ### **Standard**
 

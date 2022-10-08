@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**compiler_options**(3) - \[COMPILER INQUIRY\] Options passed to the compiler
+**compiler_options**(3) - \[COMPILER:INQUIRY\] Options passed to the compiler
 
 ### **Synopsis**
 ```fortran

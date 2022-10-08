@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**maxval**(3) - \[ARRAY REDUCTION\] Determines the maximum value in an array or row
+**maxval**(3) - \[ARRAY:REDUCTION\] Determines the maximum value in an array or row
 
 ### **Synopsis**
 ```fortran

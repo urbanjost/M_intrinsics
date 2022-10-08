@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**lbound**(3) - \[ARRAY INQUIRY\] Lower dimension bounds of an array
+**lbound**(3) - \[ARRAY:INQUIRY\] Lower dimension bounds of an array
 
 ### **Synopsis**
 ```fortran

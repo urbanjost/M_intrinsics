@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**allocated**(3) - \[ARRAY INQUIRY\] Status of an allocatable entity
+**allocated**(3) - \[ARRAY:INQUIRY\] Status of an allocatable entity
 
 ### **Synopsis**
 ```fortran

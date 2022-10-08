@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**sum**(3) - \[ARRAY REDUCTION\] Sum the elements of an array
+**sum**(3) - \[ARRAY:REDUCTION\] Sum the elements of an array
 
 ### **Synopsis**
 ```fortran

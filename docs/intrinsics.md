@@ -887,7 +887,7 @@ FORTRAN 77
 
 ### **Name**
 
-**all**(3) - \[ARRAY REDUCTION\] Determines if all the values are true
+**all**(3) - \[ARRAY:REDUCTION\] Determines if all the values are true
 
 ### **Synopsis**
 ```fortran
@@ -1005,7 +1005,7 @@ Fortran 95
 
 ### **Name**
 
-**allocated**(3) - \[ARRAY INQUIRY\] Status of an allocatable entity
+**allocated**(3) - \[ARRAY:INQUIRY\] Status of an allocatable entity
 
 ### **Synopsis**
 ```fortran
@@ -1194,7 +1194,7 @@ FORTRAN 77
 
 ### **Name**
 
-**any**(3) - \[ARRAY REDUCTION\] Determines if any of the values in the logical array are _.true._
+**any**(3) - \[ARRAY:REDUCTION\] Determines if any of the values in the logical array are _.true._
 
 ### **Synopsis**
 ```fortran
@@ -5174,7 +5174,7 @@ Fortran 2003
 
 ### **Name**
 
-**compiler_options**(3) - \[COMPILER INQUIRY\] Options passed to the compiler
+**compiler_options**(3) - \[COMPILER:INQUIRY\] Options passed to the compiler
 
 ### **Synopsis**
 ```fortran
@@ -5242,7 +5242,7 @@ Fortran 2008
 
 ### **Name**
 
-**compiler_version**(3) - \[COMPILER INQUIRY\] Compiler version string
+**compiler_version**(3) - \[COMPILER:INQUIRY\] Compiler version string
 
 ### **Synopsis**
 ```fortran
@@ -5841,7 +5841,7 @@ Fortran 2008
 
 ### **Name**
 
-**count**(3) - \[ARRAY REDUCTION\] Count true values in an array
+**count**(3) - \[ARRAY:REDUCTION\] Count true values in an array
 
 ### **Synopsis**
 ```fortran
@@ -8080,6 +8080,8 @@ Sample program:
 ```fortran
   ! program demo_extends_type_of
   module M_demo_extends_type_of
+  implicit none
+  private
 
   type nothing
   end type nothing
@@ -8096,10 +8098,16 @@ Sample program:
   type something_else
   end type something_else
 
+  public :: nothing
+  public :: dot
+  public :: point
+  public :: something_else
+
   end module M_demo_extends_type_of
 
   program demo_extends_type_of
   use M_demo_extends_type_of, only : nothing, dot, point, something_else
+  implicit none
   type(nothing) :: grandpa
   type(dot) :: dad
   type(point) :: me
@@ -8399,7 +8407,7 @@ not greater than argument
 **floor**(3) returns the greatest integer less than or equal to **a**.
 
 In other words, it picks the whole number at or to the left of the value on
-the number scale.
+the number line.
 
 This means care has to be taken that the magnitude of the _real_ value **a**
 does not exceed the range of the output value, as the range of values supported
@@ -9792,8 +9800,8 @@ Fortran 2008
       integer(kind=**),intent(in) :: pos
 ```
 ### **Characteristics**
-  - a kind designated as ** may be any supported kind value for the type
 
+  - a kind designated as ** may be any supported kind value for the type
   - The return value is of the same kind as **i**. Otherwise,
     any _integer_ kinds are allowed.
 
@@ -9805,18 +9813,63 @@ Fortran 2008
 ### **Options**
 
 - **i**
-  : The type shall be _integer_.
+  : The initial value to be modified
 
 - **pos**
-  : The type shall be _integer_. A value of zero refers to the least
-  significant bit. **pos** is an **intent(in)** scalar or array of type
-  _integer_. The value of **pos** must be within the range zero to
-  **(bit_size(i)-1**).
+  : The position of the bit to change in the input value. A value
+  of zero refers to the right-most bit.  The value of **pos** must be
+  nonnegative and less than **(bit_size(i)**).
 
 ### **Result**
 
-The return value is of type _integer_ and of the same kind as **i**.
+The returned value has the same bit sequence as **i** except the
+designated bit is unconditionally set to **0**.
 
+### **Examples**
+
+Sample program:
+```fortran
+program demo_ibclr
+use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64
+implicit none
+integer(kind=int16) :: i,j
+  ! basic usage
+   print *,ibclr (16, 1), ' ==> ibclr(16,1) has the value 15'
+
+   ! it is easier to see using binary representation
+   i=int(b'0000000000111111',kind=int16)
+   write(*,'(b16.16,1x,i0)'),ibclr(i,3), ibclr(i,3)
+
+  ! elemental
+   print *,'an array of initial values may be given as well'
+   print *,ibclr(i=[7,4096,9], pos=2)
+   print *
+   print *,'a list of positions results in multiple returned values'
+   print *,'not multiple bits set in one value, as the routine is  '
+   print *,'a scalar function; calling it elementally essentially  '
+   print *,'calls it multiple times.                               '
+   write(*,'(b16.16)') ibclr(i=-1_int16, pos=[1,2,3,4])
+
+   ! both may be arrays if of the same size
+
+end program demo_ibclr
+```
+Results:
+```text
+             16  ==> ibclr(16,1) has the value 15
+   0000000000110111 55
+    an array of initial values may be given as well
+              3        4096           9
+
+    a list of positions results in multiple returned values
+    not multiple bits set in one value, as the routine is
+    a scalar function; calling it elementally essentially
+    calls it multiple times.
+   1111111111111101
+   1111111111111011
+   1111111111110111
+   1111111111101111
+```
 ### **Standard**
 
 Fortran 95
@@ -9826,9 +9879,8 @@ Fortran 95
 [**ieor**(3)](#ieor),
 [**not**(3)](#not),
 [**btest**(3)](#btest),
-[**ibclr**(3)](#ibclr),
+[**ibset**(3)](#ibclr),
 [**ibits**(3)](#ibits),
-[**ibset**(3)](#ibset),
 [**iand**(3)](#iand),
 [**ior**(3)](#ior),
 [**ieor**(3)](#ieor),
@@ -9840,7 +9892,7 @@ Fortran 95
 
 ### **Name**
 
-**ibits**(3) - \[BIT:COPY\] Bit extraction
+**ibits**(3) - \[BIT:COPY\] extraction of a subset of bits
 
 ### **Synopsis**
 ```fortran
@@ -9855,34 +9907,80 @@ Fortran 95
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
-  - The return value is of the same kind as **i**. Otherwise,
-    any _integer_ kinds are allowed.
-```fortran
-```
+  - a kind designated as ** may be any supported _integer_ kind
+  - **i** may be any supported _integer_ kind as well
+  - the return value will be the same kind as **i**
+
 ### **Description**
 
-**ibits**(3) extracts a field of length **len** from **i**, starting from
-bit position **pos** and extending left for **len** bits. The result is
-right-justified and the remaining bits are zeroed. The value of pos+len
-must be less than or equal to the value **bit_size(i)**.
+**ibits**(3) extracts a field of bits from **i**, starting
+from bit position **pos** and extending left for a total of **len** bits.
+
+The result is then right-justified and the remaining left-most bits in the
+result are zeroed.
+
+The position **pos** is calculated assuming the right-most bit is zero and
+the positions increment to the left.
 
 ### **Options**
 
-- **i**
-  : The type shall be _integer_.
+ - **i**
+   : The value to extract bits from
 
-- **pos**
-  : The type shall be _integer_. A value of zero refers to the least
-  significant bit.
+ - **pos**
+   : The position of the bit to start copying at. **pos** is
+   non-negative.
 
-- **len**
-  : The type shall be _integer_.
+ - **len**
+   : the number of bits to copy from **i**. It must be non-negative.
+
+**pos + len** shall be less than or equal to **bit_size(i)**.
 
 ### **Result**
 
-The return value is of type _integer_ and of the same kind as **i**.
+The return value is composed of the selected bits right-justified,
+left-padded with zeros.
 
+### **Examples**
+
+Sample program:
+```fortran
+program demo_ibits
+use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64
+implicit none
+integer(kind=int16) :: i,j
+  ! basic usage
+   print *,ibits (14, 1, 3) ! should be seven
+   print *,ibits(-1,10,3)   ! and so is this
+   ! it is easier to see using binary representation
+   i=int(b'0101010101011101',kind=int16)
+   write(*,'(b16.16,1x,i0)'),ibits(i,3,3), ibits(i,3,3)
+
+  ! we can illustrate this as
+   !        #-- position 15
+   !        |              #-- position 0
+   !        |   <-- +len   |
+   !        V              V
+   !        5432109876543210
+   i =int(b'1111111111111111',kind=int16)
+   !          ^^^^
+   j=ibits(i,10,4) ! start at 10th from left and proceed
+                   ! left for a total of 4 characters
+   write(*,'(a,b16.16)')'j=',j
+  ! lets do something less ambiguous
+   i =int(b'0010011000000000',kind=int16)
+   j=ibits(i,9,5)
+   write(*,'(a,b16.16)')'j=',j
+end program demo_ibits
+```
+Results:
+```text
+              7
+              7
+   0000000000000011 3
+   j=0000000000001111
+   j=0000000000010011
+```
 ### **Standard**
 
 Fortran 95
@@ -9900,13 +9998,13 @@ Fortran 95
 [**ieor**(3)](#ieor),
 [**mvbits**(3)](#mvbits)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ibset
 
 ### **Name**
 
-**ibset**(3) - \[BIT:SET\] Set bit
+**ibset**(3) - \[BIT:SET\] Set a bit to one in an integer value
 
 ### **Synopsis**
 ```fortran
@@ -9921,7 +10019,6 @@ Fortran 95
 ### **Characteristics**
 
   - a kind designated as ** may be any supported kind value for the type
-
   - The return value is of the same kind as **i**. Otherwise,
     any _integer_ kinds are allowed.
 
@@ -9932,36 +10029,65 @@ Fortran 95
 ### **Options**
 
 - **i**
-  : The type shall be _integer_.
+  : The initial value to be modified
 
 - **pos**
-  : The type shall be _integer_. A value of zero refers to the least
-  significant bit. pos is an **intent(in)** scalar or array of type
-  _integer_. The value of pos must be within the range zero to
-  **(bit_size(i)-1**).
+  : The position of the bit to change in the input value. A value
+  of zero refers to the right-most bit.  The value of **pos** must be
+  nonnegative and less than **(bit_size(i)**).
 
 ### **Result**
 
-The return value is of type _integer_ and of the same kind as **i**.
+The returned value has the same bit sequence as **i** except the
+designated bit is unconditionally set to **1**.
 
+### **Examples**
+
+Sample program:
+```fortran
+program demo_ibset
+use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64
+implicit none
+integer(kind=int16) :: i,j
+  ! basic usage
+   print *,ibset (12, 1), 'ibset(12,1) has the value 14'
+
+   ! it is easier to see using binary representation
+   i=int(b'0000000000000110',kind=int16)
+   write(*,'(b16.16,1x,i0,1x,i0)'),ibset(i,12), ibset(i,12), i
+
+  ! elemental
+   print *,'an array of initial values may be given as well'
+   print *,ibset(i=[0,4096], pos=2)
+   print *
+   print *,'a list of positions results in multiple returned values'
+   print *,'not multiple bits set in one value, as the routine is  '
+   print *,'a scalar function; calling it elementally essentially  '
+   print *,'calls it multiple times.                               '
+   write(*,'(b16.16)') ibset(i=0, pos=[1,2,3,4])
+
+   ! both may be arrays if of the same size
+
+end program demo_ibset
+```
 ### **Standard**
 
 Fortran 95
 
 ### **See Also**
 
+[**ibclr**(3)](#ibclr)
+
 [**ieor**(3)](#ieor),
-[**ibclr**(3)](#ibclr),
 [**not**(3)](#not),
 [**btest**(3)](#btest),
-[**ibclr**(3)](#ibclr),
 [**ibits**(3)](#ibits),
 [**iand**(3)](#iand),
 [**ior**(3)](#ior),
 [**ieor**(3)](#ieor),
 [**mvbits**(3)](#mvbits)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ichar
 
@@ -10580,7 +10706,7 @@ Fortran 2008
 
 ### **Name**
 
-**is_contiguous**(3) - \[ARRAY INQUIRY\] Test if object is contiguous
+**is_contiguous**(3) - \[ARRAY:INQUIRY\] Test if object is contiguous
 
 ### **Synopsis**
 ```fortran
@@ -11044,7 +11170,7 @@ Fortran 2003
 
 ### **Name**
 
-**kind**(3) - \[KIND INQUIRY\] Kind of an entity
+**kind**(3) - \[KIND:INQUIRY\] Kind of an entity
 
 ### **Synopsis**
 ```fortran
@@ -11111,7 +11237,7 @@ Fortran 95
 
 ### **Name**
 
-**lbound**(3) - \[ARRAY INQUIRY\] Lower dimension bounds of an array
+**lbound**(3) - \[ARRAY:INQUIRY\] Lower dimension bounds of an array
 
 ### **Synopsis**
 ```fortran
@@ -12215,6 +12341,8 @@ program demo_logical
 ! Access array containing the kind type parameter values supported by this
 ! compiler for entities of logical type
 use iso_fortran_env, only : logical_kinds
+implicit none
+integer :: i
 
    ! list kind values supported on this platform, which generally vary
    ! in storage size
@@ -12335,8 +12463,8 @@ FORTRAN 77
 
 ### **Description**
 
-  **maskl**(3) has its leftmost **i** bits set to **1**, and the
-  remaining bits set to **0**.
+  **maskl**(3) has its leftmost **i** bits set to **1**, and the remaining
+  bits set to **0**.
 
 ### **Options**
 
@@ -12384,9 +12512,6 @@ Results:
           -256 11111111111111111111111100000000
            -16 11111111111111111111111111110000
             -1 11111111111111111111111111111111
-```
-Results:
-```text
 ```
 ### **Standard**
 
@@ -13048,7 +13173,7 @@ integer :: box(3,4)= reshape([-6,-5,-4,-3,-2,-1,1,2,3,4,5,6],shape(box))
 
    ! strings in a single array do need to be of the same length
    ! but the different objects can still be of different lengths.
-   write(*,"(*('""'a,'""':,1x))")MAX(['A','Z'],['BB','Y '])
+   write(*,"(*('""',a,'""':,1x))")MAX(['A','Z'],['BB','Y '])
    ! note the result is now an array with the max of every element
    ! position, as can be illustrated numerically as well:
    write(*,'(a,*(i3,1x))')'box=   ',box
@@ -13107,7 +13232,7 @@ FORTRAN 77
 
 ### **Name**
 
-**maxval**(3) - \[ARRAY REDUCTION\] Determines the maximum value in an array or row
+**maxval**(3) - \[ARRAY:REDUCTION\] Determines the maximum value in an array or row
 
 ### **Synopsis**
 ```fortran
@@ -13340,7 +13465,7 @@ Fortran 2008
 
 ### **Name**
 
-**merge**(3) - \[ARRAY CONSTRUCTION\] Merge variables
+**merge**(3) - \[ARRAY:CONSTRUCTION\] Merge variables
 
 ### **Synopsis**
 ```fortran
@@ -13776,7 +13901,7 @@ FORTRAN 77
 
 ### **Name**
 
-**minval**(3) - \[ARRAY REDUCTION\] Minimum value of an array
+**minval**(3) - \[ARRAY:REDUCTION\] Minimum value of an array
 
 ### **Synopsis**
 ```fortran
@@ -15365,7 +15490,7 @@ Results:
 
 ### **Name**
 
-**pack**(3) - \[ARRAY CONSTRUCTION\] Pack an array into an array of rank one
+**pack**(3) - \[ARRAY:CONSTRUCTION\] Pack an array into an array of rank one
 
 ### **Synopsis**
 ```fortran
@@ -15957,7 +16082,7 @@ Fortran 95
 
 ### **Name**
 
-**product**(3) - \[ARRAY REDUCTION\] Product of array elements
+**product**(3) - \[ARRAY:REDUCTION\] Product of array elements
 
 ### **Synopsis**
 ```fortran
@@ -16545,7 +16670,7 @@ Fortran 95
 
 ### **Name**
 
-**rank**(3) - \[ARRAY INQUIRY\] Rank of a data object
+**rank**(3) - \[ARRAY:INQUIRY\] Rank of a data object
 
 ### **Synopsis**
 ```fortran
@@ -17114,7 +17239,7 @@ Functions that perform operations on character strings:
 
 ### **Name**
 
-**reshape**(3) - \[ARRAY RESHAPE\] Function to reshape an array
+**reshape**(3) - \[ARRAY:RESHAPE\] Function to reshape an array
 
 ### **Synopsis**
 ```fortran
@@ -17446,6 +17571,8 @@ Sample program:
 ```fortran
   ! program demo_same_type_as
   module M_ether
+  implicit none
+  private
 
   type   :: dot
     real :: x=0
@@ -17459,10 +17586,15 @@ Sample program:
   type something_else
   end type something_else
 
+  public :: dot
+  public :: point
+  public :: something_else
+
   end module M_ether
 
   program demo_same_type_as
   use M_ether, only : dot, point, something_else
+  implicit none
   type(dot) :: dad, mom
   type(point) :: me
   type(something_else) :: alien
@@ -18098,7 +18230,7 @@ Fortran 95
 
 ### **Name**
 
-**shape**(3) - \[ARRAY INQUIRY\] Determine the shape of an array
+**shape**(3) - \[ARRAY:INQUIRY\] Determine the shape of an array
 
 ### **Synopsis**
 ```fortran
@@ -18922,7 +19054,7 @@ FORTRAN 77
 
 ### **Name**
 
-**size**(3) - \[ARRAY INQUIRY\] Determine the size of an array
+**size**(3) - \[ARRAY:INQUIRY\] Determine the size of an array
 
 ### **Synopsis**
 ```fortran
@@ -18994,7 +19126,6 @@ Sample program:
 ```fortran
 program demo_size
 implicit none
-integer :: i, j
 integer :: arr(0:2,-5:5)
    write(*,*)'SIZE of simple two-dimensional array'
    write(*,*)'SIZE(arr)       :total count of elements:',size(arr)
@@ -19185,7 +19316,7 @@ Fortran 95
 
 ### **Name**
 
-**spread**(3) - \[ARRAY CONSTRUCTION\] Add a dimension and replicate data
+**spread**(3) - \[ARRAY:CONSTRUCTION\] Add a dimension and replicate data
 
 ### **Synopsis**
 ```fortran
@@ -19575,7 +19706,7 @@ Fortran 2008
 
 ### **Name**
 
-**sum**(3) - \[ARRAY REDUCTION\] Sum the elements of an array
+**sum**(3) - \[ARRAY:REDUCTION\] Sum the elements of an array
 
 ### **Synopsis**
 ```fortran
@@ -20363,7 +20494,7 @@ Fortran 90
 
 ### **Name**
 
-**transpose**(3) - \[ARRAY MANIPULATION\] Transpose an array of rank two
+**transpose**(3) - \[ARRAY:MANIPULATION\] Transpose an array of rank two
 
 ### **Synopsis**
 ```fortran
@@ -20576,7 +20707,7 @@ of arguments, and search for certain arguments:
 
 ### **Name**
 
-**ubound**(3) - \[ARRAY INQUIRY\] Upper dimension bounds of an array
+**ubound**(3) - \[ARRAY:INQUIRY\] Upper dimension bounds of an array
 
 ### **Synopsis**
 ```fortran
@@ -20738,7 +20869,7 @@ Fortran 95 , with KIND argument Fortran 2003
 
 ### **Name**
 
-**unpack**(3) - \[ARRAY CONSTRUCTION\] Scatter the elements of a vector
+**unpack**(3) - \[ARRAY:CONSTRUCTION\] Scatter the elements of a vector
 into an array using a mask
 
 ### **Synopsis**

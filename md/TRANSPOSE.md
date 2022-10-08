@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**transpose**(3) - \[ARRAY MANIPULATION\] Transpose an array of rank two
+**transpose**(3) - \[ARRAY:MANIPULATION\] Transpose an array of rank two
 
 ### **Synopsis**
 ```fortran

@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**pack**(3) - \[ARRAY CONSTRUCTION\] Pack an array into an array of rank one
+**pack**(3) - \[ARRAY:CONSTRUCTION\] Pack an array into an array of rank one
 
 ### **Synopsis**
 ```fortran

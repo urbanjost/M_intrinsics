@@ -100,7 +100,7 @@ integer :: box(3,4)= reshape([-6,-5,-4,-3,-2,-1,1,2,3,4,5,6],shape(box))
 
    ! strings in a single array do need to be of the same length
    ! but the different objects can still be of different lengths.
-   write(*,"(*('""'a,'""':,1x))")MAX(['A','Z'],['BB','Y '])
+   write(*,"(*('""',a,'""':,1x))")MAX(['A','Z'],['BB','Y '])
    ! note the result is now an array with the max of every element
    ! position, as can be illustrated numerically as well:
    write(*,'(a,*(i3,1x))')'box=   ',box

@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**unpack**(3) - \[ARRAY CONSTRUCTION\] Scatter the elements of a vector
+**unpack**(3) - \[ARRAY:CONSTRUCTION\] Scatter the elements of a vector
 into an array using a mask
 
 ### **Synopsis**

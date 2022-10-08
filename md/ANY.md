@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**any**(3) - \[ARRAY REDUCTION\] Determines if any of the values in the logical array are _.true._
+**any**(3) - \[ARRAY:REDUCTION\] Determines if any of the values in the logical array are _.true._
 
 ### **Synopsis**
 ```fortran

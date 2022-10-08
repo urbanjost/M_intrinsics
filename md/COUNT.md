@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**count**(3) - \[ARRAY REDUCTION\] Count true values in an array
+**count**(3) - \[ARRAY:REDUCTION\] Count true values in an array
 
 ### **Synopsis**
 ```fortran

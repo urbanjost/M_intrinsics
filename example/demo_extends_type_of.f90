@@ -1,5 +1,7 @@
         ! program demo_extends_type_of
         module M_demo_extends_type_of
+        implicit none
+        private
 
         type nothing
         end type nothing
@@ -16,10 +18,16 @@
         type something_else
         end type something_else
 
+        public :: nothing
+        public :: dot
+        public :: point
+        public :: something_else
+
         end module M_demo_extends_type_of
 
         program demo_extends_type_of
         use M_demo_extends_type_of, only : nothing, dot, point, something_else
+        implicit none
         type(nothing) :: grandpa
         type(dot) :: dad
         type(point) :: me

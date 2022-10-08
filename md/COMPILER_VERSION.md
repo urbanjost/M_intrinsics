@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**compiler_version**(3) - \[COMPILER INQUIRY\] Compiler version string
+**compiler_version**(3) - \[COMPILER:INQUIRY\] Compiler version string
 
 ### **Synopsis**
 ```fortran

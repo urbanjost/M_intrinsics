@@ -1,6 +1,5 @@
       program demo_size
       implicit none
-      integer :: i, j
       integer :: arr(0:2,-5:5)
          write(*,*)'SIZE of simple two-dimensional array'
          write(*,*)'SIZE(arr)       :total count of elements:',size(arr)

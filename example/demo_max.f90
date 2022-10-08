@@ -26,7 +26,7 @@
 
          ! strings in a single array do need to be of the same length
          ! but the different objects can still be of different lengths.
-         write(*,"(*('""'a,'""':,1x))")MAX(['A','Z'],['BB','Y '])
+         write(*,"(*('""',a,'""':,1x))")MAX(['A','Z'],['BB','Y '])
          ! note the result is now an array with the max of every element
          ! position, as can be illustrated numerically as well:
          write(*,'(a,*(i3,1x))')'box=   ',box

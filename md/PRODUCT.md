@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**product**(3) - \[ARRAY REDUCTION\] Product of array elements
+**product**(3) - \[ARRAY:REDUCTION\] Product of array elements
 
 ### **Synopsis**
 ```fortran

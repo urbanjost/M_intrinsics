@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**minval**(3) - \[ARRAY REDUCTION\] Minimum value of an array
+**minval**(3) - \[ARRAY:REDUCTION\] Minimum value of an array
 
 ### **Synopsis**
 ```fortran

@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**rank**(3) - \[ARRAY INQUIRY\] Rank of a data object
+**rank**(3) - \[ARRAY:INQUIRY\] Rank of a data object
 
 ### **Synopsis**
 ```fortran

@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**ubound**(3) - \[ARRAY INQUIRY\] Upper dimension bounds of an array
+**ubound**(3) - \[ARRAY:INQUIRY\] Upper dimension bounds of an array
 
 ### **Synopsis**
 ```fortran

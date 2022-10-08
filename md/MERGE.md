@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**merge**(3) - \[ARRAY CONSTRUCTION\] Merge variables
+**merge**(3) - \[ARRAY:CONSTRUCTION\] Merge variables
 
 ### **Synopsis**
 ```fortran

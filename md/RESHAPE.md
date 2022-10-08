@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**reshape**(3) - \[ARRAY RESHAPE\] Function to reshape an array
+**reshape**(3) - \[ARRAY:RESHAPE\] Function to reshape an array
 
 ### **Synopsis**
 ```fortran

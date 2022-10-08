@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**shape**(3) - \[ARRAY INQUIRY\] Determine the shape of an array
+**shape**(3) - \[ARRAY:INQUIRY\] Determine the shape of an array
 
 ### **Synopsis**
 ```fortran

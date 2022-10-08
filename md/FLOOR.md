@@ -27,7 +27,7 @@ not greater than argument
 **floor**(3) returns the greatest integer less than or equal to **a**.
 
 In other words, it picks the whole number at or to the left of the value on
-the number scale.
+the number line.
 
 This means care has to be taken that the magnitude of the _real_ value **a**
 does not exceed the range of the output value, as the range of values supported

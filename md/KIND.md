@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**kind**(3) - \[KIND INQUIRY\] Kind of an entity
+**kind**(3) - \[KIND:INQUIRY\] Kind of an entity
 
 ### **Synopsis**
 ```fortran
