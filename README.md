@@ -98,7 +98,7 @@ should be able to use the man-pages. For example:
         cd $HOME/man/man3
         tar xvfz $WHERE_YOU_PUT_TARFILE/manpages.tgz
 	cd man
-        mandb -c
+        mandb -c .
         export MANPATH=$HOME/man:$MANPATH
 	export MANWIDTH=80 # optional, displays manpages in columns 1 to 80
         man -s 3fortran -k .
@@ -107,10 +107,10 @@ should be able to use the man-pages. For example:
 Typical installation on a Linux platform as an administrator ( but it varies) :
 ```bash
      # as the administrator
-     cd /usr/share
-     tar xvfz /tmp/fortran.tgz
-     cd man
-     mandb -c
+     cd /usr/share/man/man3
+     tar xvfz /$WHERE_YOU_PUT_TARFILE/manpages.tgz
+     cd /usr/share/man
+     mandb -c .
 ```
      then anyone on that platform can enter commands like 
 ```bash
