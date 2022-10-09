@@ -57,7 +57,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-MATMUL(3) - [TRANSFORMATIONAL] Numeric or logical matrix multiplication
+<B>MATMUL</B>(3) - [TRANSFORMATIONAL] Numeric or logical matrix multiplication
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
@@ -69,7 +69,7 @@ MATMUL(3) - [TRANSFORMATIONAL] Numeric or logical matrix multiplication
 </A>
 <BLOCKQUOTE>
 <P>
-result = matmul(matrix_a,matrix_b)
+<B>result</B> = <B>matmul</B>(matrix_a,matrix_b)
 <P>
 <PRE>
          function matmul(matrix_a, matrix_b)
@@ -112,7 +112,7 @@ If one argument is logical, both must be logical.
 </A>
 <BLOCKQUOTE>
 <P>
-MATMUL(3) performs a matrix multiplication on numeric or logical
+<B>MATMUL</B>(3) performs a matrix multiplication on numeric or logical
 arguments.
 </BLOCKQUOTE>
 <A name=4>
@@ -153,22 +153,22 @@ Note that MATRIX_A and MATRIX_B may be different numeric types.
 </A>
 <BLOCKQUOTE>
 <P>
-If MATRIX_A and MATRIX_B are numeric the result is an array containing
+If MATRIX_A and MATRIX_B are numeric the <B>result</B> is an array containing
 the conventional matrix product of MATRIX_A and MATRIX_B.
 <P>
-First, for the numeric expression C=MATMUL(A,B)
-<TABLE cellpadding=3><!-- tsb: First, for the numeric expression C=MATMUL(A,B)
+First, for the numeric expression <B>C=MATMUL</B>(A,B)
+<TABLE cellpadding=3><!-- tsb: First, for the numeric expression <B>C=MATMUL</B>(A,B)
  -->
 <TR></TR><TR></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-Any vector A(N) is treated as a row vector A(1,N).
+Any vector <B>A</B>(N) is treated as a row vector <B>A</B>(1,N).
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-Any vector B(N) is treated as a column vector B(N,1).
+Any vector <B>B</B>(N) is treated as a column vector <B>B</B>(N,1).
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=7>
@@ -178,30 +178,30 @@ Any vector B(N) is treated as a column vector B(N,1).
 </A>
 <BLOCKQUOTE>
 <P>
-The shape of the result can then be determined as the number of rows of
+The shape of the <B>result</B> can then be determined as the number of rows of
 the first matrix and the number of columns of the second; but if any
-argument is of rank one (a vector) the result is also rank one.
-Conversely when both arguments are of rank two, the result has a rank of
+argument is of rank one (a vector) the <B>result</B> is also rank one.
+Conversely when both arguments are of rank two, the <B>result</B> has a rank of
 two. That is &#46;&#46;&#46;
-<TABLE cellpadding=3><!-- tsb: The shape of the result can then be determined as the number of rows of
+<TABLE cellpadding=3><!-- tsb: The shape of the <B>result</B> can then be determined as the number of rows of
  -->
 <TR></TR><TR></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-If MATRIX_A has shape [n,m] and MATRIX_B has shape [m,k], the result
+If MATRIX_A has shape [n,m] and MATRIX_B has shape [m,k], the <B>result</B>
 has shape [n,k].
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-If MATRIX_A has shape [m] and MATRIX_B has shape [m,k], the result
+If MATRIX_A has shape [m] and MATRIX_B has shape [m,k], the <B>result</B>
 has shape [k].
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-If MATRIX_A has shape [n,m] and MATRIX_B has shape [m], the result
+If MATRIX_A has shape [n,m] and MATRIX_B has shape [m], the <B>result</B>
 has shape [n].
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
@@ -212,9 +212,9 @@ has shape [n].
 </A>
 <BLOCKQUOTE>
 <P>
-Then element C(I,J) of the product is obtained by multiplying
+Then element <B>C</B>(I,J) of the product is obtained by multiplying
 term-by-term the entries of the ith row of A and the jth column of B,
-and summing these products. In other words, C(I,J) is the dot product of
+and summing these products. In other words, <B>C</B>(I,J) is the dot product of
 the ith row of A and the jth column of B.
 </BLOCKQUOTE>
 <A name=12>
@@ -225,7 +225,7 @@ the ith row of A and the jth column of B.
 <BLOCKQUOTE>
 <P>
 The returned array will be promoted to the same type and kind as would
-result from multiplication between an element of each argument (like the
+<B>result</B> from multiplication between an element of each argument (like the
 multiplication operator (*) had been used between the elements).
 </BLOCKQUOTE>
 <A name=10>
@@ -244,7 +244,7 @@ multiplication operator (*) had been used between the elements).
 <BLOCKQUOTE>
 <P>
 If MATRIX_A and MATRIX_B are of type logical, the array elements of the
-result are instead:
+<B>result</B> are instead:
 <P>
 <PRE>
       Value_of_Element (i,j) = &
@@ -404,7 +404,7 @@ Fortran 95
 </A>
 <BLOCKQUOTE>
 <P>
-PRODUCT(3), TRANSPOSE(3)
+<B>PRODUCT</B>(3), <B>TRANSPOSE</B>(3)
 </BLOCKQUOTE>
 <A name=16>
 
@@ -442,7 +442,7 @@ multiplication requires special processing.
 fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>matmul (3fortran)</TD> <TD align=right width=33%><I>October 08, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 9def8cf5-10f9-4742-8e06-43aad493b7c6 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>matmul (3fortran)</TD> <TD align=right width=33%><I>October 09, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 11da128e-18dd-426d-a29f-a38ff5684301 using man macros.</FONT>
 <br><br><center><img src="images/matmul.3fortran.gif"></center>
 </div>
 </div>

@@ -46,7 +46,7 @@
 - **x**
   : If **x** is _real_ its value must be greater than or equal to zero.
   The type shall be _real_ or _complex_.
-
+    
 ### **Result**
 
   The return value is of type _real_ or _complex_. The kind type parameter
@@ -68,26 +68,32 @@ implicit none
 real(kind=real64) :: x, x2
 complex :: z, z2
 
+  ! basics
    x = 2.0_real64
+   ! complex
    z = (1.0, 2.0)
-   write(*,*)x,z
+   write(*,*)'input values ',x,z
 
    x2 = sqrt(x)
    z2 = sqrt(z)
-   write(*,*)x2,z2
+   write(*,*)'output values ',x2,z2
 
+  ! elemental
+  write(*,*)'elemental',sqrt([64.0,121.0,30.0])
+
+  ! alternatives
    x2 = x**0.5
    z2 = z**0.5
-   write(*,*)x2,z2
+   write(*,*)'alternatively',x2,z2
 
 end program demo_sqrt
 ```
 Results:
-
 ```text
-  2.0000000000000000    (1.00000000,2.00000000)
-  1.4142135623730951    (1.27201962,0.786151350)
-  1.4142135623730951    (1.27201962,0.786151350)
+    input values    2.00000000000000      (1.000000,2.000000)
+    output values    1.41421356237310      (1.272020,0.7861513)
+    elemental   8.000000       11.00000       5.477226    
+    alternatively   1.41421356237310      (1.272020,0.7861513)
 ```
 ### **Standard**
 
@@ -95,6 +101,8 @@ FORTRAN 77
 
 ### **See also**
 
-[****(3)](#)
+[**exp**(3)](#exp),
+[**log**(3)](#log),
+[**log10**(3)](#log10)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

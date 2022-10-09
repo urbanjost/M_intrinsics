@@ -57,205 +57,22 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-FLOOR(3) - [NUMERIC] Function to return largest integral value not
+<B>FLOOR</B>(3) - [NUMERIC] Function to return largest integral value not
 greater than argument
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=9>
+<A name=2>
 
      <H3>SYNOPSIS</H3>
 
 </A>
 <BLOCKQUOTE>
 <P>
-result = floor(a [,kind])
-<P>
-<PRE>
-         elemental integer(kind=KIND) function floor( a ,kind )
-<P>
-          real(kind=**),intent(in) :: a
-          integer(kind=**),intent(in),optional :: KIND
-<P>
-</PRE>
-</BLOCKQUOTE>
-<A name=2>
-
-     <H3>CHARACTERISTICS</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-<TABLE cellpadding=3>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-a kind designated as ** may be any supported kind value for the type
-</TD></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-A is a real of any kind
-</TD></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-KIND is any valid value for type integer.
-</TD></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-the result is an integer of the specified or default kind
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=3>
-
-     <H3>DESCRIPTION</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-FLOOR(3) returns the greatest integer less than or equal to A.
-<P>
-In other words, it picks the whole number at or to the left of the value
-on the number line.
-<P>
-This means care has to be taken that the magnitude of the real value A
-does not exceed the range of the output value, as the range of values
-supported by real values is typically larger than the range for
-integers.
-</BLOCKQUOTE>
-<A name=4>
-
-     <H3>OPTIONS</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-<TABLE cellpadding=3>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-A : The value to operate on. Valid values are restricted by the size
-of the returned integer kind to the range <B>-HUGE</B>(INT(A,KIND=KIND))<B>-1</B>
-to HUGE(INT(A),KIND=KIND).
-</TD></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-KIND : A scalar integer constant initialization expression
-indicating the kind parameter of the result.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=5>
-
-     <H3>RESULT</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-The return value is of type integer(kind) if KIND is present and of
-default-kind integer otherwise.
-<P>
-The result is undefined if it cannot be represented in the specified
-integer type.
-<P>
-If in range for the kind of the result the result is the whole number at
-or to the left of the input value on the number line.
-<P>
-If A is positive the result is the value with the fractional part
-removed.
-<P>
-If A is negative, it is the whole number at or to the left of the input
-value.
-</BLOCKQUOTE>
-<A name=6>
-
-     <H3>EXAMPLES</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-Sample program:
-<P>
-<PRE>
-    program demo_floor
-    implicit none
-    real :: x = 63.29
-    real :: y = -63.59
-        print *, x, floor(x)
-        print *, y, floor(y)
-       ! elemental
-       print *,floor([ &
-       &  -2.7,  -2.5, -2.2, -2.0, -1.5, -1.0, -0.5, &
-       &  0.0,   &
-       &  +0.5,  +1.0, +1.5, +2.0, +2.2, +2.5, +2.7  ])
-<P>
-       ! note even a small deviation from the whole number changes the result
-       print *,      [2.0,2.0-epsilon(0.0),2.0-2*epsilon(0.0)]
-       print *,floor([2.0,2.0-epsilon(0.0),2.0-2*epsilon(0.0)])
-<P>
-       ! A=Nan, Infinity or  &lt;huge(0_KIND)-1 &lt; A &gt; huge(0_KIND) is undefined
-    end program demo_floor
-<P>
-</PRE>
-Results:
-<P>
-<PRE>
-          63.29000              63
-</PRE>
-<BLOCKQUOTE>
-<TABLE cellpadding=3><!-- tsb:           63.29000              63
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD colspan=2>
-<B></B><B>-63.59000</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-<B>-64</B>
-<TABLE width=100% cellpadding=3><!-- tsb: <B>-64</B>
- -->
-<TR></TR><TR></TR>
-<TR valign=top><TD width=6% nowrap>
-<B></B><B>-3</B> </TD><TD valign=bottom>
-<B>-3</B>          <B>-3</B>          -          -          <B>-1</B>
-</TD></TR>
-<TR valign=top><TD width=6% nowrap>
-<B></B><B>-1</B> </TD><TD valign=bottom>
-0           0           1           1          
-</TD></TR>
-<TR></TR></TABLE><!-- .TP -->
-</TD></TR>
-<TR valign=top><TD colspan=2>
-<B>.000000</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-<TABLE width=100% cellpadding=3>
-<TR valign=top><TD width=6% nowrap>
-<B>1</B> </TD><TD valign=bottom>
-</TD></TR>
-<TR></TR></TABLE></TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=7>
-
-     <H3>STANDARD</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-Fortran 95
-</BLOCKQUOTE>
-<A name=8>
-
-     <H3>SEE ALSO</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-CEILING(3), NINT(3), AINT(3), ANINT(3), INT(3), SELECTED_INT_KIND(3)
-<P>
-fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>floor (3fortran)</TD> <TD align=right width=33%><I>October 08, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from b9fe5a98-9698-4201-a9d3-50946bfdeea6 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>floor (3fortran)</TD> <TD align=right width=33%><I>October 09, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 74f998c4-5dfe-41e3-b2d5-6f0effdc0522 using man macros.</FONT>
 <br><br><center><img src="images/floor.3fortran.gif"></center>
 </div>
 </div>

@@ -167,18 +167,41 @@ Results:
 
 ### **Description**
 
-**achar**(3) returns the character located at position **i** (commonly
-called the _ADE_ or ASCII Decimal Equivalent) in the ASCII collating
-sequence.
+  **achar**(3) returns the character located at position **i** (commonly
+  called the _ADE_ or ASCII Decimal Equivalent) in the ASCII collating
+  sequence.
 
-The **achar**(3) function is often used for generating in-band escape
-sequences to control terminal attributes, as it makes it easy to
-print unprintable characters such as escape and tab. For example:
+  The **achar**(3) function is often used for generating in-band escape
+  sequences to control terminal attributes, as it makes it easy to print
+  unprintable characters such as escape and tab. For example:
 ```fortran
    write(*,'(*(a))')achar(27),'[2J'
 ```
-will clear the screen on an ANSI-compatible terminal display,
+  will clear the screen on an ANSI-compatible terminal display,
 
+### **Note**
+
+The ADEs (ASCII Decimal Equivalents) for ASCII are
+```text
+*-------*-------*-------*-------*-------*-------*-------*-------*
+| 00 nul| 01 soh| 02 stx| 03 etx| 04 eot| 05 enq| 06 ack| 07 bel|
+| 08 bs | 09 ht | 10 nl | 11 vt | 12 np | 13 cr | 14 so | 15 si |
+| 16 dle| 17 dc1| 18 dc2| 19 dc3| 20 dc4| 21 nak| 22 syn| 23 etb|
+| 24 can| 25 em | 26 sub| 27 esc| 28 fs | 29 gs | 30 rs | 31 us |
+| 32 sp | 33  ! | 34  " | 35  # | 36  $ | 37  % | 38  & | 39  ' |
+| 40  ( | 41  ) | 42  * | 43  + | 44  , | 45  - | 46  . | 47  / |
+| 48  0 | 49  1 | 50  2 | 51  3 | 52  4 | 53  5 | 54  6 | 55  7 |
+| 56  8 | 57  9 | 58  : | 59  ; | 60  < | 61  = | 62  > | 63  ? |
+| 64  @ | 65  A | 66  B | 67  C | 68  D | 69  E | 70  F | 71  G |
+| 72  H | 73  I | 74  J | 75  K | 76  L | 77  M | 78  N | 79  O |
+| 80  P | 81  Q | 82  R | 83  S | 84  T | 85  U | 86  V | 87  W |
+| 88  X | 89  Y | 90  Z | 91  [ | 92  \ | 93  ] | 94  ^ | 95  _ |
+| 96  ` | 97  a | 98  b | 99  c |100  d |101  e |102  f |103  g |
+|104  h |105  i |106  j |107  k |108  l |109  m |110  n |111  o |
+|112  p |113  q |114  r |115  s |116  t |117  u |118  v |119  w |
+|120  x |121  y |122  z |123  { |124  | |125  } |126  ~ |127 del|
+*-------*-------*-------*-------*-------*-------*-------*-------*
+```
 ### **Options**
 
 - **i**
@@ -192,7 +215,6 @@ will clear the screen on an ANSI-compatible terminal display,
   parameter of the result.
 
 ### **Result**
-
   Assuming **i** has a value in the range 0 <= I <= 127, the result is the
   character in position **i** of the ASCII collating sequence, provided
   the processor is capable of representing that character in the character
@@ -276,32 +298,9 @@ Results:
    120 x 121 y 122 z 123 { 124 | 125 } 126 ~
    MIXED CASE
 ```
-### **Note**
-
-The ADEs (ASCII Decimal Equivalents) for ASCII are
-```
-*-------*-------*-------*-------*-------*-------*-------*-------*
-| 00 nul| 01 soh| 02 stx| 03 etx| 04 eot| 05 enq| 06 ack| 07 bel|
-| 08 bs | 09 ht | 10 nl | 11 vt | 12 np | 13 cr | 14 so | 15 si |
-| 16 dle| 17 dc1| 18 dc2| 19 dc3| 20 dc4| 21 nak| 22 syn| 23 etb|
-| 24 can| 25 em | 26 sub| 27 esc| 28 fs | 29 gs | 30 rs | 31 us |
-| 32 sp | 33  ! | 34  " | 35  # | 36  $ | 37  % | 38  & | 39  ' |
-| 40  ( | 41  ) | 42  * | 43  + | 44  , | 45  - | 46  . | 47  / |
-| 48  0 | 49  1 | 50  2 | 51  3 | 52  4 | 53  5 | 54  6 | 55  7 |
-| 56  8 | 57  9 | 58  : | 59  ; | 60  < | 61  = | 62  > | 63  ? |
-| 64  @ | 65  A | 66  B | 67  C | 68  D | 69  E | 70  F | 71  G |
-| 72  H | 73  I | 74  J | 75  K | 76  L | 77  M | 78  N | 79  O |
-| 80  P | 81  Q | 82  R | 83  S | 84  T | 85  U | 86  V | 87  W |
-| 88  X | 89  Y | 90  Z | 91  [ | 92  \ | 93  ] | 94  ^ | 95  _ |
-| 96  ` | 97  a | 98  b | 99  c |100  d |101  e |102  f |103  g |
-|104  h |105  i |106  j |107  k |108  l |109  m |110  n |111  o |
-|112  p |113  q |114  r |115  s |116  t |117  u |118  v |119  w |
-|120  x |121  y |122  z |123  { |124  | |125  } |126  ~ |127 del|
-*-------*-------*-------*-------*-------*-------*-------*-------*
-```
 ### **Standard**
 
-FORTRAN 77 , with KIND argument Fortran 2003
+FORTRAN 77. KIND argument added Fortran 2003
 
 ### **See Also**
 
@@ -1109,34 +1108,39 @@ Results:
 ```fortran
      elemental real(kind=KIND) function anint(x,KIND)
 
-      real(kind=KIND),intent(in)   :: x
+      real(kind=**),intent(in)   :: x
       integer,intent(in),optional :: KIND
 ```
-- the _kind_ of the result is the same as **x** unless
-  **kind** is present.
-
 ### **Characteristics**
+
+- **a** is type __real__ of any kind
+- **KIND** is a scalar integer constant expression.
+- the result is type __real__. The kind of the result is the same as **x**
+  unless specified by **kind**.
 
 ### **Description**
 
-**anint**(3) rounds its argument to the nearest whole number.
+  **anint**(3) rounds its argument to the nearest whole number.
+
+  Unlike **nint**(3) which returns an _integer_ the full range or real
+  values can be returned (_integer_ types typically have a smaller range
+  of values than _real_ types).
 
 ### **Options**
 
 - **a**
-  : the type of the argument shall be _real_.
+  : the value to round
 
 - **kind**
-  : (optional) an _integer_ initialization expression indicating the kind
-  parameter of the result.
+  : specifies the kind of the result. The default is the kind of **a**.
 
 ### **Result**
 
-The return value is of type real with the kind type parameter of the
-argument if the optional **kind** is absent; otherwise, the kind type
-parameter will be given by **kind**. If **a** is greater than zero,
-**anint(a)**(3) returns **aint(a + 0.5)**. If **a** is less than or equal
-to zero then it returns **aint(a - 0.5)**.
+The return value is the whole number nearest **a**.
+
+If **a** is greater than zero, **anint(a)**(3) returns **aint(a + 0.5)**.
+
+If **a** is less than or equal to zero then it returns **aint(a - 0.5)**.
 
 ### **Examples**
 
@@ -1144,36 +1148,50 @@ Sample program:
 
 ```fortran
 program demo_anint
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
-& real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
-real(kind=real32) :: x4
-real(kind=real64) :: x8
+real,allocatable :: arr(:)
 
-   x4 = 1.234E0_real32
-   x8 = 4.321_real64
-   print *, anint(x4), dnint(x8)
-   x8 = anint(x4,kind=real64)
-   print *, x8
-   print *
-   ! elemental
-   print *,anint([ &
-    & -2.7,  -2.5, -2.2, -2.0, -1.5, -1.0, -0.5, &
-    &  0.0, &
-    & +0.5,  +1.0, +1.5, +2.0, +2.2, +2.5, +2.7  ])
+  ! basics
+   print *, 'ANINT (2.783) has the value 3.0 =>', anint(2.783)
+   print *, 'ANINT (−2.783) has the value −3.0 =>', anint(-2.783)
+
+   print *, 'by default the kind of the output is the kind of the input'
+   print *, anint(1234567890.1234567890e0)
+   print *, anint(1234567890.1234567890d0)
+
+   print *, 'sometimes specifying the result kind is useful when passing'
+   print *, 'results as an argument, for example.'
+   print *, 'do you know why the results are different?'
+   print *, anint(1234567890.1234567890,kind=real64)
+   print *, anint(1234567890.1234567890d0,kind=real64)
+
+  ! elemental
+   print *, 'numbers on a cusp are always the most troublesome'
+   print *, anint([ -2.7, -2.5, -2.2, -2.0, -1.5, -1.0, -0.5, 0.0 ])
+
+   arr=[ 0.0, 0.5, 1.0, 1.5, 2.0, 2.2, 2.5, 2.7 ]
+   print *, anint(arr)
 
 end program demo_anint
 ```
-Results:
-
+  Results:
 ```text
-    1.00000000       4.0000000000000000
-    1.0000000000000000
-
-   -3.00000000      -3.00000000      -2.00000000      -2.00000000
-   -2.00000000      -1.00000000      -1.00000000       0.00000000
-    1.00000000       1.00000000       2.00000000       2.00000000
-    2.00000000       3.00000000       3.00000000
+    ANINT (2.783) has the value 3.0 =>   3.000000
+    ANINT (−2.783) has the value −3.0 =>  -3.000000
+    by default the kind of the output is the kind of the input
+     1.2345679E+09
+      1234567890.00000
+    sometimes specifying the result kind is useful when passing
+    results as an argument, for example.
+    do you know why the results are different?
+      1234567936.00000
+      1234567890.00000
+    numbers on a cusp are always the most troublesome
+     -3.000000  -3.000000  -2.000000  -2.000000  -2.000000
+     -1.000000  -1.000000  0.0000000E+00
+     0.0000000E+00   1.000000   1.000000   2.000000   2.000000
+      2.000000   3.000000   3.000000
 ```
 ### **Standard**
 
@@ -1188,7 +1206,7 @@ FORTRAN 77
 [**ceiling**(3)](#ceiling),
 [**floor**(3)](#floor)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## any
 
@@ -1566,8 +1584,8 @@ or
 
 ### **Description**
 
-**associated**(3) determines the status of the pointer **pointer**
-or if **pointer** is associated with the target **target**.
+  **associated**(3) determines the status of the pointer **pointer**
+  or if **pointer** is associated with the target **target**.
 
 ### **Options**
 
@@ -1585,35 +1603,35 @@ or if **pointer** is associated with the target **target**.
 There are several cases:
 
 1.  When the optional **target** is not present then **associated(pointer)**
-    is _.true._ if **pointer** is associated with a target; otherwise, it
-    returns _.false._.
+    is _\.true._ if **pointer** is associated with a target; otherwise, it
+    returns _\.false._.
 
-2.  If **target** is present and a scalar target, the result is _.true._ if
+2.  If **target** is present and a scalar target, the result is _\.true._ if
     **target** is not a zero-sized storage sequence and the target
     associated with **pointer** occupies the same storage units. If **pointer**
-    is disassociated, the result is _.false._.
+    is disassociated, the result is _\.false._.
 
-3.  If **target** is present and an array target, the result is _.true._ if
+3.  If **target** is present and an array target, the result is _\.true._ if
     **target** and **pointer** have the same shape, are not zero-sized arrays,
     are arrays whose elements are not zero-sized storage sequences, and
     **target** and **pointer** occupy the same storage units in array element
     order.
 
-    As in case 2, the result is _.false._, if **pointer** is disassociated.
+    As in case 2, the result is _\.false._, if **pointer** is disassociated.
 
-4.  If **target** is present and an scalar pointer, the result is _.true._ if
+4.  If **target** is present and an scalar pointer, the result is _\.true._ if
     **target** is associated with **pointer**, the target associated with **target**
     are not zero-sized storage sequences and occupy the same storage
     units.
 
-    The result is _.false._, if either **target** or **pointer** is disassociated.
+    The result is _\.false._, if either **target** or **pointer** is disassociated.
 
-5.  If **target** is present and an array pointer, the result is _.true._ if
+5.  If **target** is present and an array pointer, the result is _\.true._ if
     target associated with **pointer** and the target associated with **target**
     have the same shape, are not zero-sized arrays, are arrays whose
     elements are not zero-sized storage sequences, and **target** and
     **pointer** occupy the same storage units in array element order. The
-    result is _.false._, if either **target** or **pointer** is disassociated.
+    result is _\.false._, if either **target** or **pointer** is disassociated.
 
 ### **Examples**
 
@@ -19646,26 +19664,32 @@ implicit none
 real(kind=real64) :: x, x2
 complex :: z, z2
 
+  ! basics
    x = 2.0_real64
+   ! complex
    z = (1.0, 2.0)
-   write(*,*)x,z
+   write(*,*)'input values ',x,z
 
    x2 = sqrt(x)
    z2 = sqrt(z)
-   write(*,*)x2,z2
+   write(*,*)'output values ',x2,z2
 
+  ! elemental
+  write(*,*)'elemental',sqrt([64.0,121.0,30.0])
+
+  ! alternatives
    x2 = x**0.5
    z2 = z**0.5
-   write(*,*)x2,z2
+   write(*,*)'alternatively',x2,z2
 
 end program demo_sqrt
 ```
 Results:
-
 ```text
-  2.0000000000000000    (1.00000000,2.00000000)
-  1.4142135623730951    (1.27201962,0.786151350)
-  1.4142135623730951    (1.27201962,0.786151350)
+    input values    2.00000000000000      (1.000000,2.000000)
+    output values    1.41421356237310      (1.272020,0.7861513)
+    elemental   8.000000       11.00000       5.477226
+    alternatively   1.41421356237310      (1.272020,0.7861513)
 ```
 ### **Standard**
 
@@ -19673,7 +19697,9 @@ FORTRAN 77
 
 ### **See also**
 
-[****(3)](#)
+[**exp**(3)](#exp),
+[**log**(3)](#log),
+[**log10**(3)](#log10)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -20317,28 +20343,44 @@ Fortran 95
 
 ### **Synopsis**
 ```fortran
-    result = trailz(i)
+ result = trailz(i)
 ```
 ```fortran
-     elemental integer function trailz(i)
+  elemental integer function trailz(i)
 
-      integer(kind=KIND),intent(in) :: i
+   integer(kind=KIND),intent(in) :: i
 ```
 ### **Characteristics**
 
+ - **i** is an _integer_ of any kind.
+ - the result is an _integer_ of default kind
+
 ### **Description**
 
-**trailz**(3) returns the number of trailing zero bits of an _integer_ value.
+  **trailz**(3) returns the number of trailing zero bits of an _integer_
+  value.
 
 ### **Options**
 
 - **i**
-  : Shall be of type _integer_.
+  : the value to count trailing zero bits in
 
 ### **Result**
+  The number of trailing rightmost zero bits in an _integer_ value after
+  the last non-zero bit.
+```text
+       >      right-most non-zero bit
+       >                 V
+       >  |0|0|0|1|1|1|0|1|0|0|0|0|0|0|
+       >  ^               |___________| trailing zero bits
+       >   bit_size(i)
+```
+  If all the bits of **i** are zero, the result is the size of the input
+  value in bits, ie. **bit_size(i)**.
 
-The type of the return value is the default _integer_. If all the bits of
-I are zero, the result value is **bit_size(i)**.
+  The result may also be seen as the position of the rightmost 1 bit
+  in **i**, starting with the rightmost bit being zero and counting to
+  the left.
 
 ### **Examples**
 
@@ -20346,81 +20388,49 @@ Sample program:
 
 ```fortran
 program demo_trailz
+
+! some common integer kinds
 use, intrinsic :: iso_fortran_env, only : &
  & integer_kinds, int8, int16, int32, int64
+
 implicit none
-integer(kind=int64) :: i, value
-   write(*,*)'Default integer:'
-   write(*,*)'bit_size=',bit_size(0)
-   write(*,'(1x,i3,1x,i3,1x,b0)')-1,trailz(1),-1
-   write(*,'(1x,i3,1x,i3,1x,b0)')0,trailz(0),0
-   write(*,'(1x,i3,1x,i3,1x,b0)')1,trailz(1),1
-   write(*,'(" huge(0)=",i0,1x,i0,1x,b0)') &
-   & huge(0),trailz(huge(0)),huge(0)
-   write(*,*)
-   write(*,*)'integer(kind=int64):'
 
-   do i=-1,62,5
-      value=2**i
-      write(*,'(1x,i19,1x,i3)')value,trailz(value)
-   enddo
-   value=huge(i)
-   write(*,'(1x,i19,1x,i3,"(huge(0_int64))")')value,trailz(value)
+! a handy format
+character(len=*),parameter :: &
+ & show = '(1x,"value=",i4,", value(bits)=",b32.32,1x,", trailz=",i3)'
 
-   do i=-1,62,5
-      value=2**i
-      write(*,'(1x,i3,2x,b64.64)')i,value
-   enddo
-   value=huge(i)
-   write(*,'(1x,a,1x,b64.64)') "huge",value
+integer             :: i
+integer(kind=int64) :: bigi
+  ! basics
+   write(*,*)'Note default integer is',bit_size(0),'bits'
+   print  show,  -1, -1,  trailz(-1)
+   print  show,   0,  0,  trailz(0)
+   print  show,   1,  1,  trailz(1)
+   print  show,  96, 96,  trailz(96)
+  ! elemental
+   print *, 'elemental and any integer kind:'
+   bigi=2**5
+   write(*,*) trailz( [ bigi, bigi*256, bigi/2 ] )
+   write(*,'(1x,b64.64)')[ bigi, bigi*256, bigi/2 ]
 
 end program demo_trailz
 ```
-
-Results:
-
+  Results:
+```text
+    Note default integer is          32 bits
+    value=  -1, value(bits)=11111111111111111111111111111111 , trailz=  0
+    value=   0, value(bits)=00000000000000000000000000000000 , trailz= 32
+    value=   1, value(bits)=00000000000000000000000000000001 , trailz=  0
+    value=  96, value(bits)=00000000000000000000000001100000 , trailz=  5
+    elemental and any integer kind:
+              5          13           4
+    0000000000000000000000000000000000000000000000000000000000100000
+    0000000000000000000000000000000000000000000000000010000000000000
+    0000000000000000000000000000000000000000000000000000000000010000
 ```
- Default integer:
- bit_size=          32
-  -1   0 11111111111111111111111111111111
-   0  32 0
-   1   0 1
- huge(0)=2147483647 0 1111111111111111111111111111111
-
- integer(kind=int64):
-                   0  64
-                  16   4
-                 512   9
-               16384  14
-              524288  19
-            16777216  24
-           536870912  29
-         17179869184  34
-        549755813888  39
-      17592186044416  44
-     562949953421312  49
-   18014398509481984  54
-  576460752303423488  59
- 9223372036854775807   0(huge(0_int64))
-  -1  0000000000000000000000000000000000000000000000000000000000000000
-   4  0000000000000000000000000000000000000000000000000000000000010000
-   9  0000000000000000000000000000000000000000000000000000001000000000
-  14  0000000000000000000000000000000000000000000000000100000000000000
-  19  0000000000000000000000000000000000000000000010000000000000000000
-  24  0000000000000000000000000000000000000001000000000000000000000000
-  29  0000000000000000000000000000000000100000000000000000000000000000
-  34  0000000000000000000000000000010000000000000000000000000000000000
-  39  0000000000000000000000001000000000000000000000000000000000000000
-  44  0000000000000000000100000000000000000000000000000000000000000000
-  49  0000000000000010000000000000000000000000000000000000000000000000
-  54  0000000001000000000000000000000000000000000000000000000000000000
-  59  0000100000000000000000000000000000000000000000000000000000000000
- huge 0111111111111111111111111111111111111111111111111111111111111111
-```
-
 ### **Standard**
 
-Fortran 2008
+  Fortran 2008
 
 ### **See Also**
 

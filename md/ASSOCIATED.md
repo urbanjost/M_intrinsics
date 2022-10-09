@@ -33,8 +33,8 @@ or
 
 ### **Description**
 
-**associated**(3) determines the status of the pointer **pointer**
-or if **pointer** is associated with the target **target**.
+  **associated**(3) determines the status of the pointer **pointer**
+  or if **pointer** is associated with the target **target**.
 
 ### **Options**
 
@@ -52,35 +52,35 @@ or if **pointer** is associated with the target **target**.
 There are several cases:
 
 1.  When the optional **target** is not present then **associated(pointer)**
-    is _.true._ if **pointer** is associated with a target; otherwise, it
-    returns _.false._.
+    is _\.true._ if **pointer** is associated with a target; otherwise, it
+    returns _\.false._.
 
-2.  If **target** is present and a scalar target, the result is _.true._ if
+2.  If **target** is present and a scalar target, the result is _\.true._ if
     **target** is not a zero-sized storage sequence and the target
     associated with **pointer** occupies the same storage units. If **pointer**
-    is disassociated, the result is _.false._.
+    is disassociated, the result is _\.false._.
 
-3.  If **target** is present and an array target, the result is _.true._ if
+3.  If **target** is present and an array target, the result is _\.true._ if
     **target** and **pointer** have the same shape, are not zero-sized arrays,
     are arrays whose elements are not zero-sized storage sequences, and
     **target** and **pointer** occupy the same storage units in array element
     order.
 
-    As in case 2, the result is _.false._, if **pointer** is disassociated.
+    As in case 2, the result is _\.false._, if **pointer** is disassociated.
 
-4.  If **target** is present and an scalar pointer, the result is _.true._ if
+4.  If **target** is present and an scalar pointer, the result is _\.true._ if
     **target** is associated with **pointer**, the target associated with **target**
     are not zero-sized storage sequences and occupy the same storage
     units.
 
-    The result is _.false._, if either **target** or **pointer** is disassociated.
+    The result is _\.false._, if either **target** or **pointer** is disassociated.
 
-5.  If **target** is present and an array pointer, the result is _.true._ if
+5.  If **target** is present and an array pointer, the result is _\.true._ if
     target associated with **pointer** and the target associated with **target**
     have the same shape, are not zero-sized arrays, are arrays whose
     elements are not zero-sized storage sequences, and **target** and
     **pointer** occupy the same storage units in array element order. The
-    result is _.false._, if either **target** or **pointer** is disassociated.
+    result is _\.false._, if either **target** or **pointer** is disassociated.
 
 ### **Examples**
 
