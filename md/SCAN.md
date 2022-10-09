@@ -28,9 +28,9 @@ present. Otherwise a default _integer_ kind is returned.
 **scan**(3) scans a **string** for any of the characters in a **set**
 of characters.
 
-If **back** is either absent or equals _.false._, this function
+If **back** is either absent or equals _\.false._, this function
 returns the position of the leftmost character of **STRING** that is
-in **set**. If **back** equals _.true._, the rightmost position is
+in **set**. If **back** equals _\.true._, the rightmost position is
 returned. If no character of **set** is found in **string**, the result
 is zero.
 

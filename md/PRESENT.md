@@ -36,8 +36,8 @@ is specified
 
 ### **Result**
 
-  Returns _.true._ if the optional argument **a** is present (was passed
-  on the call to the procedure) , or _.false._ otherwise.
+  Returns _\.true._ if the optional argument **a** is present (was passed
+  on the call to the procedure) , or _\.false._ otherwise.
 
 ### **Examples**
 

@@ -24,7 +24,7 @@
 
 **product**(3) multiplies together all the selected elements of **array**,
 or along dimension **dim** if the corresponding element in **mask**
-is _.true._.
+is _\.true._.
 
 If **dim** is absent, a scalar with the product of all elements in **array** is
 returned. (Note a zero-sized **array** returns **1**).

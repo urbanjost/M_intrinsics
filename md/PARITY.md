@@ -37,8 +37,8 @@ __mask__ along dimension __dim__.
 The result is of the same type as __mask__.
 
 If __dim__ is absent, a scalar with the parity of all elements in __mask__
-is returned: __.true.__ if an odd number of elements are __.true.__
-and __.false.__ otherwise.
+is returned: __\.true.__ if an odd number of elements are __\.true.__
+and __\.false.__ otherwise.
 
 When __dim__ is specified the returned shape is similar to that of
 __mask__ with dimension __dim__ dropped.

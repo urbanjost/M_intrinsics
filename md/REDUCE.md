@@ -99,7 +99,7 @@ or
 
 - **ordered**
   : shall be a logical scalar. If **ordered** is present with the value
-  _.true._, the calls to the **operator** function begins with the first
+  _\.true._, the calls to the **operator** function begins with the first
   two elements of **array** and the process continues in row-column
   order until the sequence has only one element which is the value of the
   reduction. Otherwise, the compiler is free to assume that the operation

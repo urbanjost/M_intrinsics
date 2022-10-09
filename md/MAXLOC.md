@@ -38,7 +38,7 @@ the locations of the maximum element along each row of the array in the
 **dim** direction.
 
 If **mask** is present, only the elements for which **mask**
-is _.true._ are considered. If more than one element in the array has
+is _\.true._ are considered. If more than one element in the array has
 the maximum value, the location returned is that of the first such element
 in array element order.
 

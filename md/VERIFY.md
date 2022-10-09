@@ -52,7 +52,7 @@ of characters that does not appear in a given set of characters.
 - **back**
   : The direction to look for an unmatched character. The left-most
   unmatched character position is returned unless **back** is present
-  and _.false._, which causes the position of the right-most unmatched
+  and _\.false._, which causes the position of the right-most unmatched
   character to be returned instead of the left-most unmatched character.
 
 - **kind**
@@ -61,7 +61,7 @@ of characters that does not appear in a given set of characters.
 
 ### **Result**
 
-The position of the first or last (if **back** is _.false._) unmatched
+The position of the first or last (if **back** is _\.false._) unmatched
 character in **string**.
 
 If all characters of **string** are found in **set**, the result is zero.

@@ -57,7 +57,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-<B>REDUCE</B>(3) - [TRANSFORMATIONAL] General reduction of an array
+REDUCE(3) - [TRANSFORMATIONAL] General reduction of an array
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
@@ -69,13 +69,13 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-<B>There</B> <I>are</I> <I>two</I> <I>forms</I> <I>to</I> <I>this</I> function:
+There are two forms to this function:
 <P>
 <PRE>
        result = reduce(array, operation [,mask]  [,identity]  [,ordered] )
 <P>
 </PRE>
-<B>or</B>
+or
 <P>
 <PRE>
        result = reduce (array, operation &
@@ -110,21 +110,21 @@ IDENTITY.
 </A>
 <BLOCKQUOTE>
 <P>
-<B>REDUCE</B>(3) reduces a list of conditionally selected values from an array
-<I>to</I> a single value by iteratively applying a binary function.
+REDUCE(3) reduces a list of conditionally selected values from an array
+to a single value by iteratively applying a binary function.
 <P>
 Common in functional programming, a REDUCE function applies a binary
-operator (a pure function with <I>two</I> arguments) <I>to</I> all elements
+operator (a pure function with two arguments) to all elements
 cumulatively.
 <P>
 REDUCE is a "higher-order" function; ie. it is a function that receives
 other functions as arguments.
 <P>
-The REDUCE function receives a binary operator (a function with <I>two</I>
+The REDUCE function receives a binary operator (a function with two
 arguments, just like the basic arithmetic operators). It is first
-applied <I>to</I> <I>two</I> unused values in the list <I>to</I> generate an accumulator
-value which is subsequently used as the first argument <I>to</I> the function
-as the function is recursively applied <I>to</I> all the remaining selected
+applied to two unused values in the list to generate an accumulator
+value which is subsequently used as the first argument to the function
+as the function is recursively applied to all the remaining selected
 values in the input array.
 </BLOCKQUOTE>
 <A name=4>
@@ -138,16 +138,16 @@ values in the input array.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-ARRAY : An array of any type and allowed rank <I>to</I> select values from.
+ARRAY : An array of any type and allowed rank to select values from.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-OPERATION : shall be a pure function with exactly <I>two</I> arguments;
+OPERATION : shall be a pure function with exactly two arguments;
 each argument shall be a scalar, nonallocatable, nonpointer,
 nonpolymorphic, nonoptional dummy data object with the same type and
 type parameters as ARRAY. If one argument has the ASYNCHRONOUS,
-TARGET, <B>or</B> VALUE attribute, the other shall have that attribute. Its
+TARGET, or VALUE attribute, the other shall have that attribute. Its
 result shall be a nonpolymorphic scalar and have the same type and
 type parameters as ARRAY. OPERATION should implement a
 mathematically associative operation. It need not be commutative.
@@ -162,13 +162,13 @@ mathematically associative operation. It need not be commutative.
 If OPERATION is not computationally associative, REDUCE without
 ORDERED=.TRUE. with the same argument values might not always
 produce the same result, as the processor can apply the associative
-law <I>to</I> the evaluation.
+law to the evaluation.
 <P>
-Many operations that mathematically <I>are</I> associative <I>are</I> not when
-applied <I>to</I> floating-point numbers. The order you sum values in may
+Many operations that mathematically are associative are not when
+applied to floating-point numbers. The order you sum values in may
 affect the result, for example.
 </BLOCKQUOTE>
-<TABLE cellpadding=3><!-- tsb: Many operations that mathematically <I>are</I> associative <I>are</I> not when
+<TABLE cellpadding=3><!-- tsb: Many operations that mathematically are associative are not when
  -->
 <TR></TR><TR></TR>
 <TR valign=top><TD width=3%>
@@ -185,9 +185,9 @@ o
 MASK : (optional) shall be of type logical and shall be conformable
 with ARRAY.
 <P>
-When present only those elements of ARRAY <I>are</I> passed <I>to</I> OPERATION
-for which the corresponding elements of MASK <I>are</I> true, as if *array
-was filtered with <B>PACK</B>(3).
+When present only those elements of ARRAY are passed to OPERATION
+for which the corresponding elements of MASK are true, as if *array
+was filtered with PACK(3).
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
@@ -201,10 +201,10 @@ initiated.
 o
 </TD><TD>
 ORDERED : shall be a logical scalar. If ORDERED is present with the
-value .true., the calls <I>to</I> the OPERATOR function begins with the
-first <I>two</I> elements of ARRAY and the process continues in row-column
+value .true., the calls to the OPERATOR function begins with the
+first two elements of ARRAY and the process continues in row-column
 order until the sequence has only one element which is the value of
-the reduction. Otherwise, the compiler is free <I>to</I> assume that the
+the reduction. Otherwise, the compiler is free to assume that the
 operation is commutative and may evaluate the reduction in the most
 optimal way.
 </TD></TR>
@@ -219,9 +219,9 @@ optimal way.
 The result is of the same type and type parameters as ARRAY. It is
 scalar if DIM does not appear.
 <P>
-If DIM is present, it indicates the one dimension along which <I>to</I> perform
+If DIM is present, it indicates the one dimension along which to perform
 the reduction, and the resultant array has a rank reduced by one
-relative <I>to</I> the input array.
+relative to the input array.
 </BLOCKQUOTE>
 <A name=6>
 
@@ -231,7 +231,7 @@ relative <I>to</I> the input array.
 <BLOCKQUOTE>
 <P>
 The following examples all use the function MY_MULT, which returns the
-product of its <I>two</I> real arguments.
+product of its two real arguments.
 <P>
 <PRE>
        program demo_reduce
@@ -320,7 +320,7 @@ Fortran 2018
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-<B>co_reduce</B>(3)
+co_reduce(3)
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=9>
@@ -339,7 +339,7 @@ associative:wikipedia
 <TR></TR></TABLE>fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>reduce (3fortran)</TD> <TD align=right width=33%><I>October 09, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 650e3570-04e3-4f37-ae5b-ddcec8d4a3a0 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>reduce (3fortran)</TD> <TD align=right width=33%><I>October 09, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from a951e2f2-f771-40fe-9bfa-28142c9420e1 using man macros.</FONT>
 <br><br><center><img src="images/reduce.3fortran.gif"></center>
 </div>
 </div>

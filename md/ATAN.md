@@ -12,15 +12,14 @@
      elemental TYPE(kind=KIND) function atan(y,x)
 
       TYPE(kind=KIND),intent(in) :: x
-      TYPE(kind=KIND),intent(in),optional :: y
+      TYPE(kind=**),intent(in),optional :: y
 ```
 ### **Characteristics**
 
-If **y**
-is present **x** and **y** must both be _real_. Otherwise, **x** may be
-_complex_. **KIND** can be any kind supported by the associated type.
-
-The returned value is of the same type and kind as **x**.
+ - If **y** is present **x** and **y** must both be _real_. 
+   Otherwise, **x** may be _complex_.
+ - **KIND** can be any kind supported by the associated type.
+ - The returned value is of the same type and kind as **x**.
 
 ### **Description**
 

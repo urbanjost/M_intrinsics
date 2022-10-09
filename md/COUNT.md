@@ -29,7 +29,7 @@
 
 ### **Description**
 
-  **count**(3) counts the number of _.true._ elements in a logical
+  **count**(3) counts the number of _\.true._ elements in a logical
   **mask**, or, if the **dim** argument is supplied, counts the number
   of elements along each row of the array in the **dim** direction. If
   the array has zero size or all of the elements of **mask** are false,
@@ -38,11 +38,11 @@
 ### **Options**
 
 - **mask**
-  : an array to count the number of _.true._ values in
+  : an array to count the number of _\.true._ values in
 
 - **dim**
   : specifies to remove this dimension from the result and produce an
-    array of counts of _.true._ values along the removed dimension.
+    array of counts of _\.true._ values along the removed dimension.
 
 - **kind**
   : An _integer_ initialization expression indicating the kind
@@ -56,7 +56,7 @@ is not present.
 If **dim** is present, the result is an array with a rank one less
 than the rank of the input array **mask**, and a size corresponding
 to the shape of **array** with the **dim** dimension removed, with the
-remaining elements containing the number of _.true._ elements along the
+remaining elements containing the number of _\.true._ elements along the
 removed dimension.
 
 ### **Examples**

@@ -38,10 +38,10 @@
   value along each row of the array in the **dim** direction.
 
   If **mask** is present, only the elements for which **mask** is
-  _.true._ are considered.
+  _\.true._ are considered.
 
   If the array has zero size, or all of the elements of **mask**
-  are _.false._, then the result is **huge(array)** if **array** is
+  are _\.false._, then the result is **huge(array)** if **array** is
   numeric, or a string of **char(len=255)** characters if **array**
   is of character type.
 

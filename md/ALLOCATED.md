@@ -11,12 +11,13 @@
 ```fortran
      logical function allocated(entity)
 
-      type(TYPE(kind=KIND)),allocatable :: entity(..)
+      type(TYPE(kind=**)),allocatable :: entity(..)
 ```
 ### **Characteristics**
 
-  where **entity** may be any allocatable scalar or array object
-  of any type.
+ - a kind designated as ** may be any supported kind value for the type
+
+ - **entity** may be any allocatable scalar or array object of any type.
 
 ### **Description**
 
@@ -30,8 +31,8 @@
 
 ### **Result**
 
-  If the argument is allocated then the result is _.true._; otherwise,
-  it returns _.false._.
+  If the argument is allocated then the result is _\.true._; otherwise,
+  it returns _\.false._.
 
 ### **Examples**
 

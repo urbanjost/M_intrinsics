@@ -52,13 +52,13 @@ to **value**.
 If both **array** and **value** are of type logical, the comparison is
 performed with the **.eqv.** operator; otherwise, the comparison is
 performed with the == operator. If the value of the comparison is
-_.true._, that element of **array** matches **value**.
+_\.true._, that element of **array** matches **value**.
 
 If only one element matches **value**, that element's subscripts are
 returned. Otherwise, if more than one element matches **value** and
-**back** is absent or present with the value _.false._, the element whose
+**back** is absent or present with the value _\.false._, the element whose
 subscripts are returned is the first such element, taken in array
-element order. If **back** is present with the value _.true._, the element
+element order. If **back** is present with the value _\.true._, the element
 whose subscripts are returned is the last such element, taken in array
 element order.
 

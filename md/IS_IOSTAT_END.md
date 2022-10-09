@@ -30,9 +30,9 @@ The function is equivalent to comparing the variable with the
 
 ### **Result**
 
-Returns a _logical_ of the default kind, _.true._ if **i** has the value
+Returns a _logical_ of the default kind, _\.true._ if **i** has the value
 which indicates an end of file condition for **iostat=** specifiers, and is
-_.false._ otherwise.
+_\.false._ otherwise.
 
 ### **Examples**
 

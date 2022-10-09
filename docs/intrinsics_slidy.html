@@ -831,9 +831,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb41"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb41-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">allocated</span>(entity)</a></code></pre></div>
 <div class="sourceCode" id="cb42"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb42-1" title="1">     <span class="dt">logical</span> <span class="kw">function</span> <span class="fu">allocated</span>(entity)</a>
 <a class="sourceLine" id="cb42-2" title="2"></a>
-<a class="sourceLine" id="cb42-3" title="3">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">allocatable</span> <span class="dt">::</span> entity(..)</a></code></pre></div>
+<a class="sourceLine" id="cb42-3" title="3">      <span class="dt">type(TYPE(kind=**))</span>,<span class="dt">allocatable</span> <span class="dt">::</span> entity(..)</a></code></pre></div>
 <h3 id="characteristics-9"><strong>Characteristics</strong></h3>
-<p>where <strong>entity</strong> may be any allocatable scalar or array object of any type.</p>
+<ul>
+<li><p>a kind designated as ** may be any supported kind value for the type</p></li>
+<li><p><strong>entity</strong> may be any allocatable scalar or array object of any type.</p></li>
+</ul>
 <h3 id="description-9"><strong>Description</strong></h3>
 <p><strong>allocated</strong>(3) checks the allocation status of both arrays and scalars.</p>
 <h3 id="options-9"><strong>Options</strong></h3>
@@ -1504,10 +1507,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb79"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb79-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="bu">atan</span>(y,x)</a>
 <a class="sourceLine" id="cb79-2" title="2"></a>
 <a class="sourceLine" id="cb79-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
-<a class="sourceLine" id="cb79-4" title="4">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> y</a></code></pre></div>
+<a class="sourceLine" id="cb79-4" title="4">      <span class="dt">TYPE(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> y</a></code></pre></div>
 <h3 id="characteristics-17"><strong>Characteristics</strong></h3>
-<p>If <strong>y</strong> is present <strong>x</strong> and <strong>y</strong> must both be real. Otherwise, <strong>x</strong> may be complex. <strong>KIND</strong> can be any kind supported by the associated type.</p>
-<p>The returned value is of the same type and kind as <strong>x</strong>.</p>
+<ul>
+<li>If <strong>y</strong> is present <strong>x</strong> and <strong>y</strong> must both be real. Otherwise, <strong>x</strong> may be complex.</li>
+<li><strong>KIND</strong> can be any kind supported by the associated type.</li>
+<li>The returned value is of the same type and kind as <strong>x</strong>.</li>
+</ul>
 <h3 id="description-17"><strong>Description</strong></h3>
 <p><strong>atan</strong>(3) computes the arctangent of <strong>x</strong>.</p>
 <h3 id="options-17"><strong>Options</strong></h3>

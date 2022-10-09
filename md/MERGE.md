@@ -27,8 +27,8 @@
 
 The elemental function **merge**(3) selects values from two arrays or
 scalars according to a logical mask. The result is equal to an element
-of **tsource** where the corresponding element of **mask** is _.true._, or an
-element of **fsource** when it is _.false._ .
+of **tsource** where the corresponding element of **mask** is _\.true._, or an
+element of **fsource** when it is _\.false._ .
 
 Multi-dimensional arrays are supported.
 

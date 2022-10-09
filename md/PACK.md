@@ -25,7 +25,7 @@
   **pack**(3) stores the elements of ARRAY in an array of rank one.
 
   The beginning of the resulting array is made up of elements whose
-  **mask** equals _.true._. Afterwards, positions are filled with elements
+  **mask** equals _\.true._. Afterwards, positions are filled with elements
   taken from **vector**.
 
 ### **Options**
@@ -48,7 +48,7 @@
 
 The result is an array of rank one and the same type as that of **array**.
 If **vector** is present, the result size is that of **vector**, the number of
-_.true._ values in **mask** otherwise.
+_\.true._ values in **mask** otherwise.
 
 ### **Examples**
 

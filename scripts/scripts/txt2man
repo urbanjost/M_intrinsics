@@ -429,7 +429,7 @@ section == "SYNOPSIS" {
 	# word attributes
 	for (i in subwords){
 	    gensub(/([()])/, " \1",1)
-	    gsub(i, subwords[i])
+	    #gsub(i, subwords[i])
 	}
 	# shell options
 	gsub(/\B\-+\w+(\-\w+)*/, "\\fB&\\fP")
