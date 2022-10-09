@@ -7,7 +7,7 @@
          print *,ibits(-1,10,3)   ! and so is this
          ! it is easier to see using binary representation
          i=int(b'0101010101011101',kind=int16)
-         write(*,'(b16.16,1x,i0)'),ibits(i,3,3), ibits(i,3,3)
+         write(*,'(b16.16,1x,i0)') ibits(i,3,3), ibits(i,3,3)
 
         ! we can illustrate this as
          !        #-- position 15

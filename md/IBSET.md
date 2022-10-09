@@ -52,7 +52,7 @@ integer(kind=int16) :: i,j
 
    ! it is easier to see using binary representation
    i=int(b'0000000000000110',kind=int16)
-   write(*,'(b16.16,1x,i0,1x,i0)'),ibset(i,12), ibset(i,12), i
+   write(*,'(b16.16,1x,i0,1x,i0)') ibset(i,12), ibset(i,12), i
 
   ! elemental
    print *,'an array of initial values may be given as well'

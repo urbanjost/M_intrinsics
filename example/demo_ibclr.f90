@@ -7,7 +7,7 @@
 
          ! it is easier to see using binary representation
          i=int(b'0000000000111111',kind=int16)
-         write(*,'(b16.16,1x,i0)'),ibclr(i,3), ibclr(i,3)
+         write(*,'(b16.16,1x,i0)') ibclr(i,3), ibclr(i,3)
 
         ! elemental
          print *,'an array of initial values may be given as well'

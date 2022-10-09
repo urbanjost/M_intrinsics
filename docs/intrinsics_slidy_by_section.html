@@ -7706,7 +7706,7 @@ $$</span><br /></p>
 </ul>
 </div><div id="result-77" class="slide section level3">
 <h1><strong>Result</strong></h1>
-<p>The returned value has the same bit sequence as <strong>i</strong> except the designated bit is unconditionally set to <strong>0</strong>.</p>
+<p>The returned value has the same bit sequence as <strong>i</strong> except the designated bit is unconditionally set to <strong>0</strong></p>
 </div><div id="examples-94" class="slide section level3">
 <h1><strong>Examples</strong></h1>
 <p>Sample program:</p>
@@ -7719,7 +7719,7 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb429-7" title="7"></a>
 <a class="sourceLine" id="cb429-8" title="8">   <span class="co">! it is easier to see using binary representation</span></a>
 <a class="sourceLine" id="cb429-9" title="9">   i<span class="kw">=</span><span class="bu">int</span>(<span class="dv">b&#39;0000000000111111&#39;</span>,<span class="fu">kind</span><span class="kw">=</span>int16)</a>
-<a class="sourceLine" id="cb429-10" title="10">   <span class="fu">write(*</span>,<span class="st">&#39;(b16.16,1x,i0)&#39;</span><span class="fu">)</span>,<span class="bu">ibclr</span>(i,<span class="dv">3</span>), <span class="bu">ibclr</span>(i,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb429-10" title="10">   <span class="fu">write(*</span>,<span class="st">&#39;(b16.16,1x,i0)&#39;</span><span class="fu">)</span> <span class="bu">ibclr</span>(i,<span class="dv">3</span>), <span class="bu">ibclr</span>(i,<span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb429-11" title="11"></a>
 <a class="sourceLine" id="cb429-12" title="12">  <span class="co">! elemental</span></a>
 <a class="sourceLine" id="cb429-13" title="13">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;an array of initial values may be given as well&#39;</span></a>
@@ -7814,7 +7814,7 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb433-7" title="7">   <span class="fu">print</span> <span class="kw">*</span>,<span class="bu">ibits</span>(<span class="kw">-</span><span class="dv">1</span>,<span class="dv">10</span>,<span class="dv">3</span>)   <span class="co">! and so is this</span></a>
 <a class="sourceLine" id="cb433-8" title="8">   <span class="co">! it is easier to see using binary representation</span></a>
 <a class="sourceLine" id="cb433-9" title="9">   i<span class="kw">=</span><span class="bu">int</span>(<span class="dv">b&#39;0101010101011101&#39;</span>,<span class="fu">kind</span><span class="kw">=</span>int16)</a>
-<a class="sourceLine" id="cb433-10" title="10">   <span class="fu">write(*</span>,<span class="st">&#39;(b16.16,1x,i0)&#39;</span><span class="fu">)</span>,<span class="bu">ibits</span>(i,<span class="dv">3</span>,<span class="dv">3</span>), <span class="bu">ibits</span>(i,<span class="dv">3</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb433-10" title="10">   <span class="fu">write(*</span>,<span class="st">&#39;(b16.16,1x,i0)&#39;</span><span class="fu">)</span> <span class="bu">ibits</span>(i,<span class="dv">3</span>,<span class="dv">3</span>), <span class="bu">ibits</span>(i,<span class="dv">3</span>,<span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb433-11" title="11"></a>
 <a class="sourceLine" id="cb433-12" title="12">  <span class="co">! we can illustrate this as</span></a>
 <a class="sourceLine" id="cb433-13" title="13">   <span class="co">!        #-- position 15</span></a>
@@ -7894,7 +7894,7 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb437-7" title="7"></a>
 <a class="sourceLine" id="cb437-8" title="8">   <span class="co">! it is easier to see using binary representation</span></a>
 <a class="sourceLine" id="cb437-9" title="9">   i<span class="kw">=</span><span class="bu">int</span>(<span class="dv">b&#39;0000000000000110&#39;</span>,<span class="fu">kind</span><span class="kw">=</span>int16)</a>
-<a class="sourceLine" id="cb437-10" title="10">   <span class="fu">write(*</span>,<span class="st">&#39;(b16.16,1x,i0,1x,i0)&#39;</span><span class="fu">)</span>,<span class="bu">ibset</span>(i,<span class="dv">12</span>), <span class="bu">ibset</span>(i,<span class="dv">12</span>), i</a>
+<a class="sourceLine" id="cb437-10" title="10">   <span class="fu">write(*</span>,<span class="st">&#39;(b16.16,1x,i0,1x,i0)&#39;</span><span class="fu">)</span> <span class="bu">ibset</span>(i,<span class="dv">12</span>), <span class="bu">ibset</span>(i,<span class="dv">12</span>), i</a>
 <a class="sourceLine" id="cb437-11" title="11"></a>
 <a class="sourceLine" id="cb437-12" title="12">  <span class="co">! elemental</span></a>
 <a class="sourceLine" id="cb437-13" title="13">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;an array of initial values may be given as well&#39;</span></a>
@@ -15925,21 +15925,20 @@ it would take if it were stored in memory.</code></pre>
 <a class="sourceLine" id="cb849-10" title="10"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> <span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb849-11" title="11"> <span class="kw">&amp;</span> show <span class="kw">=</span> <span class="st">&#39;(1x,&quot;value=&quot;,i4,&quot;, value(bits)=&quot;,b32.32,1x,&quot;, trailz=&quot;,i3)&#39;</span></a>
 <a class="sourceLine" id="cb849-12" title="12"></a>
-<a class="sourceLine" id="cb849-13" title="13"><span class="dt">integer</span>             <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb849-14" title="14"><span class="dt">integer(kind=int64)</span> <span class="dt">::</span> bigi</a>
-<a class="sourceLine" id="cb849-15" title="15">  <span class="co">! basics</span></a>
-<a class="sourceLine" id="cb849-16" title="16">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;Note default integer is&#39;</span>,<span class="fu">bit_size</span>(<span class="dv">0</span>),<span class="st">&#39;bits&#39;</span></a>
-<a class="sourceLine" id="cb849-17" title="17">   <span class="fu">print</span>  show,  <span class="kw">-</span><span class="dv">1</span>, <span class="kw">-</span><span class="dv">1</span>,  trailz(<span class="kw">-</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb849-18" title="18">   <span class="fu">print</span>  show,   <span class="dv">0</span>,  <span class="dv">0</span>,  trailz(<span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb849-19" title="19">   <span class="fu">print</span>  show,   <span class="dv">1</span>,  <span class="dv">1</span>,  trailz(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb849-20" title="20">   <span class="fu">print</span>  show,  <span class="dv">96</span>, <span class="dv">96</span>,  trailz(<span class="dv">96</span>)</a>
-<a class="sourceLine" id="cb849-21" title="21">  <span class="co">! elemental</span></a>
-<a class="sourceLine" id="cb849-22" title="22">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;elemental and any integer kind:&#39;</span></a>
-<a class="sourceLine" id="cb849-23" title="23">   bigi<span class="kw">=</span><span class="dv">2</span><span class="kw">**</span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb849-24" title="24">   <span class="fu">write(*</span>,<span class="fu">*)</span> trailz( <span class="kw">[</span> bigi, bigi<span class="kw">*</span><span class="dv">256</span>, bigi<span class="kw">/</span><span class="dv">2</span> <span class="kw">]</span> )</a>
-<a class="sourceLine" id="cb849-25" title="25">   <span class="fu">write(*</span>,<span class="st">&#39;(1x,b64.64)&#39;</span><span class="fu">)</span><span class="kw">[</span> bigi, bigi<span class="kw">*</span><span class="dv">256</span>, bigi<span class="kw">/</span><span class="dv">2</span> <span class="kw">]</span></a>
-<a class="sourceLine" id="cb849-26" title="26"></a>
-<a class="sourceLine" id="cb849-27" title="27"><span class="kw">end program</span> demo_trailz</a></code></pre></div>
+<a class="sourceLine" id="cb849-13" title="13"><span class="dt">integer(kind=int64)</span> <span class="dt">::</span> bigi</a>
+<a class="sourceLine" id="cb849-14" title="14">  <span class="co">! basics</span></a>
+<a class="sourceLine" id="cb849-15" title="15">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;Note default integer is&#39;</span>,<span class="fu">bit_size</span>(<span class="dv">0</span>),<span class="st">&#39;bits&#39;</span></a>
+<a class="sourceLine" id="cb849-16" title="16">   <span class="fu">print</span>  show,  <span class="kw">-</span><span class="dv">1</span>, <span class="kw">-</span><span class="dv">1</span>,  trailz(<span class="kw">-</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb849-17" title="17">   <span class="fu">print</span>  show,   <span class="dv">0</span>,  <span class="dv">0</span>,  trailz(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb849-18" title="18">   <span class="fu">print</span>  show,   <span class="dv">1</span>,  <span class="dv">1</span>,  trailz(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb849-19" title="19">   <span class="fu">print</span>  show,  <span class="dv">96</span>, <span class="dv">96</span>,  trailz(<span class="dv">96</span>)</a>
+<a class="sourceLine" id="cb849-20" title="20">  <span class="co">! elemental</span></a>
+<a class="sourceLine" id="cb849-21" title="21">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;elemental and any integer kind:&#39;</span></a>
+<a class="sourceLine" id="cb849-22" title="22">   bigi<span class="kw">=</span><span class="dv">2</span><span class="kw">**</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb849-23" title="23">   <span class="fu">write(*</span>,<span class="fu">*)</span> trailz( <span class="kw">[</span> bigi, bigi<span class="kw">*</span><span class="dv">256</span>, bigi<span class="kw">/</span><span class="dv">2</span> <span class="kw">]</span> )</a>
+<a class="sourceLine" id="cb849-24" title="24">   <span class="fu">write(*</span>,<span class="st">&#39;(1x,b64.64)&#39;</span><span class="fu">)</span><span class="kw">[</span> bigi, bigi<span class="kw">*</span><span class="dv">256</span>, bigi<span class="kw">/</span><span class="dv">2</span> <span class="kw">]</span></a>
+<a class="sourceLine" id="cb849-25" title="25"></a>
+<a class="sourceLine" id="cb849-26" title="26"><span class="kw">end program</span> demo_trailz</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>    Note default integer is          32 bits
     value=  -1, value(bits)=11111111111111111111111111111111 , trailz=  0

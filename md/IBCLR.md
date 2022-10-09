@@ -38,7 +38,7 @@
 ### **Result**
 
 The returned value has the same bit sequence as **i** except the
-designated bit is unconditionally set to **0**.
+designated bit is unconditionally set to **0** 
 
 ### **Examples**
 
@@ -53,7 +53,7 @@ integer(kind=int16) :: i,j
 
    ! it is easier to see using binary representation
    i=int(b'0000000000111111',kind=int16)
-   write(*,'(b16.16,1x,i0)'),ibclr(i,3), ibclr(i,3)
+   write(*,'(b16.16,1x,i0)') ibclr(i,3), ibclr(i,3)
 
   ! elemental
    print *,'an array of initial values may be given as well'

@@ -15,6 +15,11 @@ do
    tail -n +3 $NAME|pandoc -f $MD -t html -i - -o ../docs/$SHORTNAME.3fortran.html
 done
 )
+(
+cd man/man3
+sed -i -e 's/^\.true/\\.true/' *
+sed -i -e 's/^\.false/\\.false/' *
+)
 cd txt
 sed -i -e 's/^\./\\./' *.man
 exit

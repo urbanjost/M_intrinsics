@@ -9428,7 +9428,7 @@ textblock=[character(len=256) :: &
 '', &
 'RESULT', &
 '  The returned value has the same bit sequence as I except the designated bit', &
-'  is unconditionally set to 0.', &
+'  is unconditionally set to 0', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -9442,7 +9442,7 @@ textblock=[character(len=256) :: &
 '', &
 '         ! it is easier to see using binary representation', &
 '         i=int(b''0000000000111111'',kind=int16)', &
-'         write(*,''(b16.16,1x,i0)''),ibclr(i,3), ibclr(i,3)', &
+'         write(*,''(b16.16,1x,i0)'') ibclr(i,3), ibclr(i,3)', &
 '', &
 '        ! elemental', &
 '         print *,''an array of initial values may be given as well''', &
@@ -9550,7 +9550,7 @@ textblock=[character(len=256) :: &
 '         print *,ibits(-1,10,3)   ! and so is this', &
 '         ! it is easier to see using binary representation', &
 '         i=int(b''0101010101011101'',kind=int16)', &
-'         write(*,''(b16.16,1x,i0)''),ibits(i,3,3), ibits(i,3,3)', &
+'         write(*,''(b16.16,1x,i0)'') ibits(i,3,3), ibits(i,3,3)', &
 '', &
 '        ! we can illustrate this as', &
 '         !        #-- position 15', &
@@ -9642,7 +9642,7 @@ textblock=[character(len=256) :: &
 '', &
 '         ! it is easier to see using binary representation', &
 '         i=int(b''0000000000000110'',kind=int16)', &
-'         write(*,''(b16.16,1x,i0,1x,i0)''),ibset(i,12), ibset(i,12), i', &
+'         write(*,''(b16.16,1x,i0,1x,i0)'') ibset(i,12), ibset(i,12), i', &
 '', &
 '        ! elemental', &
 '         print *,''an array of initial values may be given as well''', &
@@ -19237,7 +19237,6 @@ textblock=[character(len=256) :: &
 '      character(len=*),parameter :: &', &
 '       & show = ''(1x,"value=",i4,", value(bits)=",b32.32,1x,", trailz=",i3)''', &
 '', &
-'      integer             :: i', &
 '      integer(kind=int64) :: bigi', &
 '        ! basics', &
 '         write(*,*)''Note default integer is'',bit_size(0),''bits''', &

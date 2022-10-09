@@ -10,7 +10,6 @@
       character(len=*),parameter :: &
        & show = '(1x,"value=",i4,", value(bits)=",b32.32,1x,", trailz=",i3)'
 
-      integer             :: i
       integer(kind=int64) :: bigi
         ! basics
          write(*,*)'Note default integer is',bit_size(0),'bits'
