@@ -158,7 +158,7 @@ ARRAY
     has a value that is less than the rank of ARRAY.
 
 DIM (optional)
-    An INTEGER scalar. Its value must be in the range 1 ≤ DIM ≤
+    An INTEGER scalar. Its value must be in the range 1 <= DIM <=
     RANK(ARRAY). It must not be present if ARRAY is an
     assumed-rank object that is associated with a scalar.
 

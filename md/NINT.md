@@ -5,7 +5,7 @@
 
 ### **Name**
 
-**nint**(3) - \[TYPE:NUMERIC\] Nearest whole number
+**nint**(3) - \[TYPE:NUMERIC\] Integre nearest whole number
 
 ### **Synopsis**
 ```fortran

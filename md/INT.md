@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**int**(3) - \[TYPE:NUMERIC\] Convert to integer type by truncating towards zero
+**int**(3) - \[TYPE:NUMERIC\] truncate towards zero and convert to integer
 
 ### **Synopsis**
 ```fortran
@@ -18,7 +18,7 @@
 
 ### **Description**
 
-**int**(3) converts a value to _integer_ type by truncating towards zero.
+**int**(3) truncate towards zero and return an _integer_.
 
 ### **Options**
 

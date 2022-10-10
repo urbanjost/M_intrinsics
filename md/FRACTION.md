@@ -15,7 +15,7 @@
 ```
 ### **Characteristics**
 
-  The result has the same characteristics as the argument.
+  - The result has the same characteristics as the argument.
 
 ### **Description**
 
@@ -51,9 +51,8 @@ real :: x
 end program demo_fraction
 ```
 Results:
-
 ```text
-     0.570043862      0.570043862
+     0.5700439      0.5700439    
 ```
 ### **Standard**
 

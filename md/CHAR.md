@@ -36,7 +36,7 @@
   characters to their collating sequence value.
 
 <!--
-   ICHAR (CHAR (I, KIND (C))) shall have the value I for 0 ≤ I ≤ n − 1 and
+   ICHAR (CHAR (I, KIND (C))) shall have the value I for 0 <= I <= n - 1 and
   CHAR (ICHAR (C), KIND (C)) shall have the value C for any character C capable of representation in the
   processor.
 -->
@@ -44,7 +44,7 @@
 ### **Options**
 
 - **i**
-  : a value in the range **0 <= I <= n−1**, where **n** is the number of characters
+  : a value in the range **0 <= I <= n-1**, where **n** is the number of characters
   in the collating sequence associated with the specified kind type parameter.
   : For ASCII, **n** is 127. The default character set may or may not allow higher
   values.
