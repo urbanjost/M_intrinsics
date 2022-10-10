@@ -17,44 +17,41 @@
 
  - **TYPE** may be _real_ or _complex_.
  - **KIND** may be any kind valid for the declared type.
+ - the result has the same characteristics as **x**.
 
 ### **Description**
 
   **sqrt**(3) computes the principal square root of **x**.
 
-  In mathematics, a square root of a number **x** is a number **y**
-  such that **y\*y = x**.
-
   The number whose square root is being considered is known as the
   _radicand_.
 
-  Every nonnegative number _x_ has two square roots of the same unique
+  In mathematics, a square root of a radicand **x** is a number **y**
+  such that **y\*y = x**.
+
+  Every nonnegative radicand  _x_ has two square roots of the same unique
   magnitude, one positive and one negative. The nonnegative square root
   is called the principal square root.
 
   The principal square root of 9 is 3, for example, even though (-3)\*(-3)
   is also 9.
 
-  A _real_ radicand must be positive.
-
   Square roots of negative numbers are a special case of complex numbers,
-  where the components of the _radicand_ need not be positive in order
-  to have a valid square root.
+  where with **complex** input the components of the _radicand_ need
+  not be positive in order to have a valid square root.
 
 ### **Options**
 
 - **x**
   : If **x** is _real_ its value must be greater than or equal to zero.
-  The type shall be _real_ or _complex_.
     
 ### **Result**
 
-  The return value is of type _real_ or _complex_. The kind type parameter
-  is the same as **x**.
-
-  A result of type complex is the principal value with the real part
+  The square root of **x** is returned.
+  
+  A _complex_ is the principal value with the real part
   greater than or equal to zero. When the real part of the result is zero,
-  the imaginary part has the same sign as the imaginary part of X.
+  the imaginary part has the same sign as the imaginary part of **x**.
 
 ### **Examples**
 

@@ -15,20 +15,33 @@
 ```
 ### **Characteristics**
 
-The return type is of the same kind as the argument.
+- **i** may be an _integer_ of any kind
+- The return type is of the same type and kind as the argument.
 
 ### **Description**
 
-**not**(3) returns the bitwise Boolean inverse of **i**.
+  **not**(3) returns the bitwise Boolean inverse of **i**. This is also
+  known as the Bitwise complement. Every bit on input that is a one is
+  changed to zero; and every bit that is zero is changed to one.
 
 ### **Options**
 
 - **i**
-  : The type shall be _integer_.
+  : The value to flip the bits of.
 
 ### **Result**
 
-The return type is _integer_, of the same kind as the argument.
+  The result has the value obtained by complementing **i** bit-by-bit
+  according to the following table:
+
+       >    I   |  NOT(I)
+       >    ----#----------
+       >    1   |   0
+       >    0   |   1
+
+  That is, every input bit is flipped. If it is a one, that position
+  is a zero on output. Conversely any input bit that is zero is a one
+  on output.
 
 ### **Examples**
 
@@ -38,21 +51,22 @@ Sample program
 program demo_not
 implicit none
 integer :: i
-
+  ! basics
    i=13741
-   write(*,'(b32.32,1x,i0)')i,i
-   write(*,'(b32.32,1x,i0)')not(i),not(i)
-
+   print *,'the input value',i,'represented in bits is'
+   write(*,'(1x,b32.32,1x,i0)') i, i
+   i=not(i)
+   print *,'on output it is',i
+   write(*,'(1x,b32.32,1x,i0)') i, i
 end program demo_not
 ```
-
 Results:
-
+```text
+    the input value 13741 represented in bits is
+    00000000000000000011010110101101 13741
+    on output it is -13742
+    11111111111111111100101001010010 -13742
 ```
-   00000000000000000011010110101101 13741
-   11111111111111111100101001010010 -13742
-```
-
 ### **Standard**
 
 Fortran 95
