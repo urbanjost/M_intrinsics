@@ -18994,7 +18994,19 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  intrinsics', &
+'  o  ALL(3) - Determines if all the values are true', &
+'', &
+'  o  ANY(3) - Determines if any of the values in the logical array are true.', &
+'', &
+'  o  COUNT(3) - Count function', &
+'', &
+'  o  MAXVAL(3) - Determines the maximum value in an array or row', &
+'', &
+'  o  MINVAL(3) - Minimum value of an array', &
+'', &
+'  o  PRODUCT(3) - Product of array elements', &
+'', &
+'  o  MERGE(3) - Merge variables', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
