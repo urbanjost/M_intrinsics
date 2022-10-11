@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**trim**(3) - \[CHARACTER:WHITESPACE\] Remove trailing blank characters of a string
+**trim**(3) - \[CHARACTER:WHITESPACE\] Remove trailing blank characters from a string
 
 ### **Synopsis**
 ```fortran
@@ -15,8 +15,8 @@
 ```
 ### **Characteristics**
 
-  **KIND** can be any kind supported for the _character_ type.
-  The result has the same kind as the input argument **string**.
+ - **KIND** can be any kind supported for the _character_ type.
+ - The result has the same type and kind as the input argument **string**.
 
 ### **Description**
 

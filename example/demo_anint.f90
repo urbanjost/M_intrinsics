@@ -5,7 +5,7 @@
 
         ! basics
          print *, 'ANINT (2.783) has the value 3.0 =>', anint(2.783)
-         print *, 'ANINT (−2.783) has the value −3.0 =>', anint(-2.783)
+         print *, 'ANINT (-2.783) has the value -3.0 =>', anint(-2.783)
 
          print *, 'by default the kind of the output is the kind of the input'
          print *, anint(1234567890.1234567890e0)

@@ -6,10 +6,11 @@
       real(kind=real64) :: nan, inf
       character(len=20) :: line
 
+        ! basics
          print *, sinh(x)
          print *, (exp(x)-exp(-x))/2.0
 
-         ! sinh(3) is elemental and can handle an array
+        ! sinh(3) is elemental and can handle an array
          print *, sinh([x,2.0*x,x/3.0])
 
          ! a NaN input returns NaN

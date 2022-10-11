@@ -86,9 +86,18 @@ result = mod(a, p)
 </A>
 <BLOCKQUOTE>
 <P>
-The result and arguments are all of the same type and kind. The type may
-be any kind of real or integer.
-</BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+The result and arguments are all of the same type and kind.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+The type may be any kind of real or integer.
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=3>
 
      <H3>DESCRIPTION</H3>
@@ -97,7 +106,24 @@ be any kind of real or integer.
 <BLOCKQUOTE>
 <P>
 MOD(3) computes the remainder of the division of A by P.
-</BLOCKQUOTE>
+<P>
+In mathematics, the remainder is the amount "left over" after performing
+some computation. In arithmetic, the remainder is the integer "left
+over" after dividing one integer by another to produce an integer
+quotient (integer division). In algebra of polynomials, the remainder is
+the polynomial "left over" after dividing one polynomial by another. The
+modulo operation is the operation that produces such a remainder when
+given a dividend and divisor.
+<TABLE cellpadding=3><!-- tsb: In mathematics, the remainder is the amount "left over" after performing
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+(remainder). (2022, October 10). In Wikipedia.
+https://en.wikipedia.org/wiki/Remainder
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
 
      <H3>OPTIONS</H3>
@@ -109,13 +135,12 @@ MOD(3) computes the remainder of the division of A by P.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-A : Shall be a scalar of type integer or real.
+A : The dividend
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-P : Shall be a scalar of the same type and kind as A and not equal
-to zero.
+P : the divisor (not equal to zero).
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
@@ -125,10 +150,13 @@ to zero.
 </A>
 <BLOCKQUOTE>
 <P>
-The return value is the result of A - (INT(A/P) * P). The type and kind
-of the return value is the same as that of the arguments. The returned
-value has the same sign as A and a magnitude less than the magnitude of
-P.
+The return value is the result of A - (INT(A/P) * P).
+<P>
+As can be seen by the formula the sign of P is canceled out. Therefore
+the returned value always has the sign of A.
+<P>
+Of course, the magnitude of the result will be less than the magnitude
+of P, as the result has been reduced by all multiples of P.
 </BLOCKQUOTE>
 <A name=6>
 
@@ -142,40 +170,82 @@ Sample program:
 <PRE>
     program demo_mod
     implicit none
-         print *, mod(17,3)           ! yields 2
-         print *, mod(17.5,5.5)       ! yields 1.0
-         print *, mod(17.5d0,5.5d0)   ! yields 1.0d0
-         print *, mod(17.5d0,5.5d0)   ! yields 1.0d0
 <P>
-         print *, mod(-17,3)          ! yields -2
-         print *, mod(-17.5,5.5)      ! yields -1.0
-         print *, mod(-17.5d0,5.5d0)  ! yields -1.0d0
-         print *, mod(-17.5d0,5.5d0)  ! yields -1.0d0
+       ! basics
+        print *, mod( -17,  3 ), modulo( -17,  3 )
+        print *, mod(  17, -3 ), modulo(  17, -3 )
+        print *, mod(  17,  3 ), modulo(  17,  3 )
+        print *, mod( -17, -3 ), modulo( -17, -3 )
 <P>
-         print *, mod(17,-3)          ! yields 2
-         print *, mod(17.5,-5.5)      ! yields 1.0
-         print *, mod(17.5d0,-5.5d0)  ! yields 1.0d0
-         print *, mod(17.5d0,-5.5d0)  ! yields 1.0d0
+        print *, mod(-17.5, 5.2), modulo(-17.5, 5.2)
+        print *, mod( 17.5,-5.2), modulo( 17.5,-5.2)
+        print *, mod( 17.5, 5.2), modulo( 17.5, 5.2)
+        print *, mod(-17.5,-5.2), modulo(-17.5,-5.2)
+<P>
+      ! with a divisor of 1 the fractional part is returned
+        print *, mod(-17.5, 1.0), modulo(-17.5, 1.0)
+        print *, mod( 17.5,-1.0), modulo( 17.5,-1.0)
+        print *, mod( 17.5, 1.0), modulo( 17.5, 1.0)
+        print *, mod(-17.5,-1.0), modulo(-17.5,-1.0)
+<P>
     end program demo_mod
 <P>
 </PRE>
 Results:
-<BLOCKQUOTE>
 <P>
-2
-1.00000000
-1.0000000000000000
-1.0000000000000000
-<B>-2</B>
-<B>-1.00000000</B>
-<B>-1.0000000000000000</B>
-<B>-1.0000000000000000</B>
-2
-1.00000000
-1.0000000000000000
-1.0000000000000000
-</BLOCKQUOTE>
-</BLOCKQUOTE>
+<PRE>
+                 -2           1
+                  2          -1
+                  2           2
+                 -2          -2
+</PRE>
+<BLOCKQUOTE>
+<TABLE cellpadding=3><!-- tsb:                  -2           1
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>-1.900001</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+3.299999
+<TABLE width=100% cellpadding=3><!-- tsb: 3.299999
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B>1.900001</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<B>-3.299999</B>
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>1.900001</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+1.900001
+</TD></TR>
+<TR></TR></TABLE><!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>-1.900001</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<B>-1.900001</B>
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+<B></B><B>-0.5000000</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+0.5000000
+<TABLE width=100% cellpadding=3><!-- tsb: 0.5000000
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B>0.5000000</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<B>-0.5000000</B>
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>0.5000000</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+0.5000000
+</TD></TR>
+<TR></TR></TABLE><!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>-0.5000000</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<B>-0.5000000</B>
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=7>
 
      <H3>STANDARD</H3>
@@ -192,12 +262,36 @@ FORTRAN 77
 </A>
 <BLOCKQUOTE>
 <P>
-MODULO(3)
-<P>
-fortran-lang intrinsic descriptions
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+MODULO(3) - Modulo function
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+AINT(3) - truncate toward zero to a whole real number
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+INT(3) - truncate toward zero to a whole integer number
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+ANINT(3) - real nearest whole number
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+NINT(3) - integer nearest whole number
+</TD></TR>
+<TR></TR></TABLE>fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>mod (3fortran)</TD> <TD align=right width=33%><I>October 09, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 9f2eebda-bc75-4e5c-aa7c-b73a0676791f using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>mod (3fortran)</TD> <TD align=right width=33%><I>October 11, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from d7551e22-a454-45e8-99c9-0a26b5631ce6 using man macros.</FONT>
 <br><br><center><img src="images/mod.3fortran.gif"></center>
 </div>
 </div>

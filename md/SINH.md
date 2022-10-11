@@ -19,6 +19,7 @@
  - **KIND** may be any kind supported by the associated type.
  - The returned value will be of the same type and kind as the argument.
 
+
 ### **Description**
 
   **sinh**(3) computes the hyperbolic sine of **x**.
@@ -27,17 +28,17 @@
 ```fortran
      sinh(x) = (exp(x) - exp(-x)) / 2.0
 ```
-  If **x** is of type _complex_ its imaginary part is regarded as a value
-  in radians.
 
 ### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_.
+  : The value to calculate the hyperbolic sine of
 
 ### **Result**
 
-  The return value has same type and kind as **x**.
+  The result has a value equal to a processor-dependent approximation
+  to sinh(X). If X is of type complex its imaginary part is regarded
+  as a value in radians.
 
 ### **Examples**
 
@@ -51,10 +52,11 @@ real(kind=real64) :: x = - 1.0_real64
 real(kind=real64) :: nan, inf
 character(len=20) :: line
 
+  ! basics
    print *, sinh(x)
    print *, (exp(x)-exp(-x))/2.0
 
-   ! sinh(3) is elemental and can handle an array
+  ! sinh(3) is elemental and can handle an array
    print *, sinh([x,2.0*x,x/3.0])
 
    ! a NaN input returns NaN
@@ -94,4 +96,4 @@ Fortran 95 , for a complex argument Fortran 2008
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

@@ -1100,7 +1100,7 @@ Results:
 
 ### **Name**
 
-**anint**(3) - \[NUMERIC\] Nearest whole number
+**anint**(3) - \[NUMERIC\] Real nearest whole number
 
 ### **Synopsis**
 ```fortran
@@ -1155,7 +1155,7 @@ real,allocatable :: arr(:)
 
   ! basics
    print *, 'ANINT (2.783) has the value 3.0 =>', anint(2.783)
-   print *, 'ANINT (−2.783) has the value −3.0 =>', anint(-2.783)
+   print *, 'ANINT (-2.783) has the value -3.0 =>', anint(-2.783)
 
    print *, 'by default the kind of the output is the kind of the input'
    print *, anint(1234567890.1234567890e0)
@@ -1176,10 +1176,10 @@ real,allocatable :: arr(:)
 
 end program demo_anint
 ```
-  Results:
+Results:
 ```text
     ANINT (2.783) has the value 3.0 =>   3.000000
-    ANINT (−2.783) has the value −3.0 =>  -3.000000
+    ANINT (-2.783) has the value -3.0 =>  -3.000000
     by default the kind of the output is the kind of the input
      1.2345679E+09
       1234567890.00000
@@ -1189,10 +1189,10 @@ end program demo_anint
       1234567936.00000
       1234567890.00000
     numbers on a cusp are always the most troublesome
-     -3.000000  -3.000000  -2.000000  -2.000000  -2.000000
-     -1.000000  -1.000000  0.0000000E+00
-     0.0000000E+00   1.000000   1.000000   2.000000   2.000000
-      2.000000   3.000000   3.000000
+     -3.000000      -3.000000    -2.000000      -2.000000    -2.000000
+     -1.000000      -1.000000    0.0000000E+00
+     0.0000000E+00   1.000000     1.000000       2.000000     2.000000
+      2.000000       3.000000     3.000000
 ```
 ### **Standard**
 
@@ -4400,7 +4400,7 @@ Fortran 2003
   characters to their collating sequence value.
 
 <!--
-   ICHAR (CHAR (I, KIND (C))) shall have the value I for 0 ≤ I ≤ n − 1 and
+   ICHAR (CHAR (I, KIND (C))) shall have the value I for 0 <= I <= n - 1 and
   CHAR (ICHAR (C), KIND (C)) shall have the value C for any character C capable of representation in the
   processor.
 -->
@@ -4408,7 +4408,7 @@ Fortran 2003
 ### **Options**
 
 - **i**
-  : a value in the range **0 <= I <= n−1**, where **n** is the number of characters
+  : a value in the range **0 <= I <= n-1**, where **n** is the number of characters
   in the collating sequence associated with the specified kind type parameter.
   : For ASCII, **n** is 127. The default character set may or may not allow higher
   values.
@@ -8537,7 +8537,7 @@ end function floor
 ```
 ### **Characteristics**
 
-  The result has the same characteristics as the argument.
+  - The result has the same characteristics as the argument.
 
 ### **Description**
 
@@ -8573,9 +8573,8 @@ real :: x
 end program demo_fraction
 ```
 Results:
-
 ```text
-     0.570043862      0.570043862
+     0.5700439      0.5700439
 ```
 ### **Standard**
 
@@ -10486,7 +10485,7 @@ of arguments, and search for certain arguments:
 
 ### **Name**
 
-**int**(3) - \[TYPE:NUMERIC\] Convert to integer type by truncating towards zero
+**int**(3) - \[TYPE:NUMERIC\] truncate towards zero and convert to integer
 
 ### **Synopsis**
 ```fortran
@@ -10502,7 +10501,7 @@ of arguments, and search for certain arguments:
 
 ### **Description**
 
-**int**(3) converts a value to _integer_ type by truncating towards zero.
+**int**(3) truncate towards zero and return an _integer_.
 
 ### **Options**
 
@@ -14177,28 +14176,41 @@ Fortran 95
 ```
 ### **Characteristics**
 
-  The result and arguments are all of the same type and kind.
-  The type may be any kind of _real_ or _integer_.
+  - The result and arguments are all of the same type and kind.
+  - The type  may be any kind of _real_ or _integer_.
 
 ### **Description**
 
 **mod**(3) computes the remainder of the division of **a** by **p**.
 
+  In mathematics, the remainder is the amount "left over" after
+  performing some computation. In arithmetic, the remainder is the
+  integer "left over" after dividing one integer by another to produce
+  an integer quotient (integer division). In algebra of polynomials, the
+  remainder is the polynomial "left over" after dividing one polynomial
+  by another. The modulo operation is the operation that produces such
+  a remainder when given a dividend and divisor.
+
+  - (remainder). (2022, October 10). In Wikipedia.
+     https://en.wikipedia.org/wiki/Remainder
+
 ### **Options**
 
 - **a**
-  : Shall be a scalar of type _integer_ or _real_.
+  : The dividend
 
 - **p**
-  : Shall be a scalar of the same type and kind as **a** and not equal to
-  zero.
+  : the divisor (not equal to zero).
 
 ### **Result**
 
-The return value is the result of **a - (int(a/p) \* p)**. The type and kind
-of the return value is the same as that of the arguments. The returned
-value has the same sign as **a** and a magnitude less than the magnitude of
-**p**.
+  The return value is the result of **a - (int(a/p) \* p)**.
+
+  As can be seen by the formula the sign of **p** is canceled out.
+  Therefore the returned value always has the sign of **a**.
+
+  Of course, the magnitude of the result will be less than the magnitude
+  of **p**, as the result has been reduced by all multiples of **p**.
 
 ### **Examples**
 
@@ -14207,49 +14219,54 @@ Sample program:
 ```fortran
 program demo_mod
 implicit none
-     print *, mod(17,3)           ! yields 2
-     print *, mod(17.5,5.5)       ! yields 1.0
-     print *, mod(17.5d0,5.5d0)   ! yields 1.0d0
-     print *, mod(17.5d0,5.5d0)   ! yields 1.0d0
 
-     print *, mod(-17,3)          ! yields -2
-     print *, mod(-17.5,5.5)      ! yields -1.0
-     print *, mod(-17.5d0,5.5d0)  ! yields -1.0d0
-     print *, mod(-17.5d0,5.5d0)  ! yields -1.0d0
+   ! basics
+    print *, mod( -17,  3 ), modulo( -17,  3 )
+    print *, mod(  17, -3 ), modulo(  17, -3 )
+    print *, mod(  17,  3 ), modulo(  17,  3 )
+    print *, mod( -17, -3 ), modulo( -17, -3 )
 
-     print *, mod(17,-3)          ! yields 2
-     print *, mod(17.5,-5.5)      ! yields 1.0
-     print *, mod(17.5d0,-5.5d0)  ! yields 1.0d0
-     print *, mod(17.5d0,-5.5d0)  ! yields 1.0d0
+    print *, mod(-17.5, 5.2), modulo(-17.5, 5.2)
+    print *, mod( 17.5,-5.2), modulo( 17.5,-5.2)
+    print *, mod( 17.5, 5.2), modulo( 17.5, 5.2)
+    print *, mod(-17.5,-5.2), modulo(-17.5,-5.2)
+
+  ! with a divisor of 1 the fractional part is returned
+    print *, mod(-17.5, 1.0), modulo(-17.5, 1.0)
+    print *, mod( 17.5,-1.0), modulo( 17.5,-1.0)
+    print *, mod( 17.5, 1.0), modulo( 17.5, 1.0)
+    print *, mod(-17.5,-1.0), modulo(-17.5,-1.0)
+
 end program demo_mod
 ```
-
 Results:
-
 ```text
-              2
-      1.00000000
-      1.0000000000000000
-      1.0000000000000000
-             -2
-     -1.00000000
-     -1.0000000000000000
-     -1.0000000000000000
-              2
-      1.00000000
-      1.0000000000000000
-      1.0000000000000000
+             -2           1
+              2          -1
+              2           2
+             -2          -2
+     -1.900001       3.299999
+      1.900001      -3.299999
+      1.900001       1.900001
+     -1.900001      -1.900001
+    -0.5000000      0.5000000
+     0.5000000     -0.5000000
+     0.5000000      0.5000000
+    -0.5000000     -0.5000000
 ```
-
 ### **Standard**
 
 FORTRAN 77
 
 ### **See Also**
 
-[**modulo**(3)](#modulo)
+ - [**modulo**(3)](#modulo) - Modulo function
+ - [**aint**(3)](#aint) - truncate toward zero to a whole _real_ number
+ - [**int**(3)](#int) - truncate toward zero to a whole _integer_ number
+ - [**anint**(3)](#anint) -  _real_ nearest whole number
+ - [**nint**(3)](#nint) - _integer_ nearest whole number
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## modulo
 
@@ -14934,54 +14951,53 @@ Fortran 2003
 
 ### **Name**
 
-**nint**(3) - \[TYPE:NUMERIC\] Nearest whole number
+**nint**(3) - \[TYPE:NUMERIC\] Integre nearest whole number
 
 ### **Synopsis**
 ```fortran
-    result = nint( x [,kind] )
+    result = nint( a [,kind] )
 ```
 ```fortran
-     elemental integer(kind=KIND) function nint(x, kind )
+     elemental integer(kind=KIND) function nint(a, kind )
 
-      real(kind=**),intent(in) :: x
+      real(kind=**),intent(in) :: a
       integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
   - a kind designated as ** may be any supported kind value for the type
-
+  - **a** is type real of any kind
+  - **KIND** is a scalar integer constant expression
   - The result is default _integer_ kind or the value of **kind**
-    if it is present.
+    if **kind** is present.
 
 ### **Description**
 
-**nint**(3) rounds its argument to the nearest whole number with its
-sign preserved.
+  **nint**(3) rounds its argument to the nearest whole number with its
+  sign preserved.
 
-The user must ensure the value is a valid value for the range of the
-**kind** returned. If the processor cannot represent the result in the kind
-specified, the result is undefined.
+  The user must ensure the value is a valid value for the range of the
+  **kind** returned. If the processor cannot represent the result in the kind
+  specified, the result is undefined.
 
-If **x** is greater than zero, **nint(x)** has the value **int(x+0.5)**.
+  If **a** is greater than zero, **nint(a)** has the value **int(a+0.5)**.
 
-If **x** is less than or equal to zero, **nint(x)** has the value
-**int(a-0.5)**.
+  If **a** is less than or equal to zero, **nint(a)** has the value
+  **int(a-0.5)**.
 
 ### **Options**
 
-- **x**
-  : The type of the argument shall be _real_.
+- **a**
+  : The value to round to the nearest whole number
 
 - **kind**
-  : (Optional) A constant _integer_ expression indicating the kind
-  parameter of the result. Otherwise, the kind type parameter is that
-  of default _integer_ type.
+  : can specify the kind of the output value. If not present, the
+  output is the default type of _integer_.
 
 ### **Result**
 
-- **answer**
-  : The result is the integer nearest **x**, or if there are two integers
-  equally near **x**, the result is whichever such _integer_ has the greater
+  The result is the integer nearest **a**, or if there are two integers
+  equally near **a**, the result is whichever such _integer_ has the greater
   magnitude.
 
   The result is undefined if it cannot be represented in the specified
@@ -14993,60 +15009,85 @@ Sample program:
 ```fortran
 program demo_nint
 implicit none
-integer,parameter :: dp=kind(0.0d0)
-real              :: x4 = 1.234E0
-real(kind=dp)     :: x8 = 4.721_dp
+integer,parameter   :: dp=kind(0.0d0)
+real,allocatable    :: in(:)
+integer,allocatable :: out(:)
+integer             :: i
+real                :: x4
+real(kind=dp)       :: x8
 
-! basic use
-   print *, nint(x4), nint(x8),nint(-x8)
-   ! elemental
-   print *,nint([ &
-   &  -2.7,  -2.5, -2.2, -2.0, -1.5, -1.0, -0.5, &
-   &  0.0,   &
-   &  +0.5,  +1.0, +1.5, +2.0, +2.2, +2.5, +2.7  ])
+  ! basic use
+   x4 = 1.234E0
+   x8 = 4.721_dp
+   print *, nint(x4), nint(-x4)
+   print *, nint(x8), nint(-x8)
 
-! issues
-ISSUES: block
-use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
-integer :: icheck
-   ! make sure input is in range for the type returned
-   write(*,*)'Range limits for typical KINDS:'
-   write(*,'(1x,g0,1x,g0)')  &
-   & int8,huge(0_int8),   &
-   & int16,huge(0_int16), &
-   & int32,huge(0_int32), &
-   & int64,huge(0_int64)
+  ! elemental
+   in = [ -2.7,  -2.5, -2.2, -2.0, -1.5, -1.0, -0.5, -0.4, &
+        &  0.0,   &
+        & +0.04, +0.5, +1.0, +1.5, +2.0, +2.2, +2.5, +2.7  ]
+   out = nint(in)
+   do i=1,size(in)
+      write(*,*)in(i),out(i)
+   enddo
 
-   ! the standard does not require this to be an error ...
-   x8=12345.67e15 ! too big of a number
-   icheck=selected_int_kind(ceiling(log10(x8)))
-   write(*,*)'Any KIND big enough? ICHECK=',icheck
-   print *, 'These are all wrong answers for ',x8
-   print *, nint(x8,kind=int8)
-   print *, nint(x8,kind=int16)
-   print *, nint(x8,kind=int32)
-   print *, nint(x8,kind=int64)
-endblock ISSUES
+  ! dusty corners
+   ISSUES: block
+   use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+   integer :: icheck
+      ! make sure input is in range for the type returned
+      write(*,*)'Range limits for typical KINDS:'
+      write(*,'(1x,g0,1x,g0)')  &
+      & int8,huge(0_int8),   &
+      & int16,huge(0_int16), &
+      & int32,huge(0_int32), &
+      & int64,huge(0_int64)
+
+      ! the standard does not require this to be an error ...
+      x8=12345.67e15 ! too big of a number
+      icheck=selected_int_kind(ceiling(log10(x8)))
+      write(*,*)'Any KIND big enough? ICHECK=',icheck
+      print *, 'These are all wrong answers for ',x8
+      print *, nint(x8,kind=int8)
+      print *, nint(x8,kind=int16)
+      print *, nint(x8,kind=int32)
+      print *, nint(x8,kind=int64)
+   endblock ISSUES
 
 end program demo_nint
 ```
 Results:
 ```text
-   >  1    5   -5
-   > -3   -3   -2   -2   -2
-   > -1   -1    0    1    1
-   >  2    2    2    3    3
-   > Range limits for typical KINDS:
-   > 1 127
-   > 2 32767
-   > 4 2147483647
-   > 8 9223372036854775807
-   > Any KIND big enough? ICHECK=          16
-   > These are all wrong answers for    1.2345669499901444E+019
-   >    0
-   >      0
-   >           0
-   > -9223372036854775808
+              1          -1
+              5          -5
+     -2.700000              -3
+     -2.500000              -3
+     -2.200000              -2
+     -2.000000              -2
+     -1.500000              -2
+     -1.000000              -1
+    -0.5000000              -1
+    -0.4000000               0
+     0.0000000E+00           0
+     3.9999999E-02           0
+     0.5000000               1
+      1.000000               1
+      1.500000               2
+      2.000000               2
+      2.200000               2
+      2.500000               3
+      2.700000               3
+    Range limits for typical KINDS:
+    1 127
+    2 32767
+    4 2147483647
+    8 9223372036854775807
+    Any KIND big enough? ICHECK=          -1
+    These are all wrong answers for   1.234566949990144E+019
+       0
+         0
+    -2147483648
+     -9223372036854775808
 ```
 ### **Standard**
 
@@ -15174,20 +15215,33 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-The return type is of the same kind as the argument.
+- **i** may be an _integer_ of any kind
+- The return type is of the same type and kind as the argument.
 
 ### **Description**
 
-**not**(3) returns the bitwise Boolean inverse of **i**.
+  **not**(3) returns the bitwise Boolean inverse of **i**. This is also
+  known as the Bitwise complement. Every bit on input that is a one is
+  changed to zero; and every bit that is zero is changed to one.
 
 ### **Options**
 
 - **i**
-  : The type shall be _integer_.
+  : The value to flip the bits of.
 
 ### **Result**
 
-The return type is _integer_, of the same kind as the argument.
+  The result has the value obtained by complementing **i** bit-by-bit
+  according to the following table:
+
+       >    I   |  NOT(I)
+       >    ----#----------
+       >    1   |   0
+       >    0   |   1
+
+  That is, every input bit is flipped. If it is a one, that position
+  is a zero on output. Conversely any input bit that is zero is a one
+  on output.
 
 ### **Examples**
 
@@ -15197,21 +15251,22 @@ Sample program
 program demo_not
 implicit none
 integer :: i
-
+  ! basics
    i=13741
-   write(*,'(b32.32,1x,i0)')i,i
-   write(*,'(b32.32,1x,i0)')not(i),not(i)
-
+   print *,'the input value',i,'represented in bits is'
+   write(*,'(1x,b32.32,1x,i0)') i, i
+   i=not(i)
+   print *,'on output it is',i
+   write(*,'(1x,b32.32,1x,i0)') i, i
 end program demo_not
 ```
-
 Results:
-
+```text
+    the input value 13741 represented in bits is
+    00000000000000000011010110101101 13741
+    on output it is -13742
+    11111111111111111100101001010010 -13742
 ```
-   00000000000000000011010110101101 13741
-   11111111111111111100101001010010 -13742
-```
-
 ### **Standard**
 
 Fortran 95
@@ -18931,17 +18986,17 @@ FORTRAN 77
 ```fortran
      sinh(x) = (exp(x) - exp(-x)) / 2.0
 ```
-  If **x** is of type _complex_ its imaginary part is regarded as a value
-  in radians.
 
 ### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_.
+  : The value to calculate the hyperbolic sine of
 
 ### **Result**
 
-  The return value has same type and kind as **x**.
+  The result has a value equal to a processor-dependent approximation
+  to sinh(X). If X is of type complex its imaginary part is regarded
+  as a value in radians.
 
 ### **Examples**
 
@@ -18955,10 +19010,11 @@ real(kind=real64) :: x = - 1.0_real64
 real(kind=real64) :: nan, inf
 character(len=20) :: line
 
+  ! basics
    print *, sinh(x)
    print *, (exp(x)-exp(-x))/2.0
 
-   ! sinh(3) is elemental and can handle an array
+  ! sinh(3) is elemental and can handle an array
    print *, sinh([x,2.0*x,x/3.0])
 
    ! a NaN input returns NaN
@@ -18998,7 +19054,7 @@ Fortran 95 , for a complex argument Fortran 2008
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## sin
 
@@ -19299,7 +19355,7 @@ ARRAY
     has a value that is less than the rank of ARRAY.
 
 DIM (optional)
-    An INTEGER scalar. Its value must be in the range 1 ≤ DIM ≤
+    An INTEGER scalar. Its value must be in the range 1 <= DIM <=
     RANK(ARRAY). It must not be present if ARRAY is an
     assumed-rank object that is associated with a scalar.
 
@@ -19613,44 +19669,41 @@ need an illustration of what happens with higher dimension array
 
  - **TYPE** may be _real_ or _complex_.
  - **KIND** may be any kind valid for the declared type.
+ - the result has the same characteristics as **x**.
 
 ### **Description**
 
   **sqrt**(3) computes the principal square root of **x**.
 
-  In mathematics, a square root of a number **x** is a number **y**
-  such that **y\*y = x**.
-
   The number whose square root is being considered is known as the
   _radicand_.
 
-  Every nonnegative number _x_ has two square roots of the same unique
+  In mathematics, a square root of a radicand **x** is a number **y**
+  such that **y\*y = x**.
+
+  Every nonnegative radicand  _x_ has two square roots of the same unique
   magnitude, one positive and one negative. The nonnegative square root
   is called the principal square root.
 
   The principal square root of 9 is 3, for example, even though (-3)\*(-3)
   is also 9.
 
-  A _real_ radicand must be positive.
-
   Square roots of negative numbers are a special case of complex numbers,
-  where the components of the _radicand_ need not be positive in order
-  to have a valid square root.
+  where with **complex** input the components of the _radicand_ need
+  not be positive in order to have a valid square root.
 
 ### **Options**
 
 - **x**
   : If **x** is _real_ its value must be greater than or equal to zero.
-  The type shall be _real_ or _complex_.
 
 ### **Result**
 
-  The return value is of type _real_ or _complex_. The kind type parameter
-  is the same as **x**.
+  The square root of **x** is returned.
 
-  A result of type complex is the principal value with the real part
+  A _complex_ is the principal value with the real part
   greater than or equal to zero. When the real part of the result is zero,
-  the imaginary part has the same sign as the imaginary part of X.
+  the imaginary part has the same sign as the imaginary part of **x**.
 
 ### **Examples**
 
@@ -19807,99 +19860,186 @@ Fortran 2008
 
 ### **Synopsis**
 ```fortran
-   result = sum(array ,[mask])
+   result = sum(array [,dim[,mask]] | [mask] )
 ```
 ```fortran
-     NUMERIC function sum(array, mask)
+     TYPE(kind=KIND) function sum(array, dim, mask)
 
-      NUMERIC,intent(in) :: array(..)
-      logical(kind=**),intent(in),optional :: mask(..)
-```
-  or
-```fortran
-   result = sum(array [,dim] [,mask])
-```
-```fortran
-     NUMERIC function sum(array, dim, mask)
-
-      NUMERIC,intent(in) :: array(..)
+      TYPE(kind=KIND),intent(in) :: array(..)
       integer(kind=**),intent(in),optional :: dim
       logical(kind=**),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
 
   - a kind designated as ** may be any supported kind value for the type
-  - **NUMERIC** is any numeric type and kind.
+  - **TYPE** is any numeric type and kind - _integer_, _real_ or _complex_.
+  - **mask** is of type logical and shall be conformable with **array**.
+  - The result is of the same type and kind as **array**. It is scalar if
+    **dim** is not present or **array** is a vector, else it is an array.
 
 ### **Description**
 
-  **sum**(3) adds the elements of ARRAY along dimension DIM if the
-  corresponding element in MASK is TRUE.
+  **sum**(3) adds the elements of **array**.
+  By default all elements are summed, but groups of sums may be returned
+  along the dimension specified by **dim** and/or elements to add may be
+  selected by a logical mask.
+
+  No method is designated for how the sum is conducted, so whether or not
+  accumulated error is compensated for is processor-dependent.
 
 ### **Options**
 
 - **array**
-  : Shall be an array of type _integer_, _real_ or _complex_.
+  : an array containing the elements to add
 
 - **dim**
-  : (Optional) shall be a scalar of type _integer_ with a value in the
-  range from 1 to n, where n equals the rank of ARRAY.
+  : a value in the range from 1 to n, where n equals the rank (the number
+  of dimensions) of **array**.  **dim**  designates the dimension
+  along which to create sums.
 
 - **mask**
-  : (Optional) shall be of type _logical_ and either be a scalar or an
-  array of the same shape as ARRAY.
+  : an array of the same shape as **array** that designates
+  which elements to add.
 
 ### **Result**
 
-The result is of the same type as ARRAY.
-
-If **dim** is absent, a scalar with the sum of all elements in ARRAY
-is returned. Otherwise, an array of rank n-1, where n equals the rank of
-ARRAY, and a shape similar to that of ARRAY with dimension DIM dropped
-is returned.
+  If **dim** is absent, a scalar with the sum of all elements in **array**
+  is returned. Otherwise, an array of rank n-1, where n equals the rank
+  of **array**, and a shape similar to that of **array** with dimension
+  **dim** dropped is returned. Since a vector has a rank of one, the result
+  is a scalar (n-1 where n=1 is a rank of zero, ie. a scalar).
 
 ### **Examples**
 
 Sample program:
-
-```fortran
-program simple_sum
-implicit none
-integer :: x(5) = [ 1, 2, 3, 4, 5 ]
-   print *, sum(x)                        ! all elements, sum = 15
-   print *, sum(x, mask=mod(x, 2)==1)     ! odd elements, sum = 9
-end program simple_sum
-```
-
-Demonstrate Fortran 90 SUM function with MASK option
-
 ```fortran
 program demo_sum
-! John Mahaffy  2/16/96
 implicit none
-integer nd, ndh, nduh, j
-parameter (nd=10,ndh=nd/2, nduh=nd-ndh)
-real csum, cpsum, cbpsum
-real, dimension(nd):: c=[(j, j=-1,nd-2)], b
-data b/ndh*-1.0, nduh*2.0/
-   csum= sum(c(1:nd))
-   cpsum= sum (c(1:nd), mask=c.gt.0)
-   cbpsum= sum(c(1:nd), mask=b.gt.0.0)
-   print *, 'Sum of all elements in c = ', csum
-   print *, 'Sum of Positive elements in c = ', cpsum
-   print *, 'Sum of elements in c when corresponding elements in b>0', &
-   & ' =', cbpsum
+integer :: vector(5) , matrix(3,4), box(5,6,7)
+
+   vector = [ 1, 2, -3, 4, 5 ]
+
+   matrix(1,:)=[  -1,   2,    -3,   4    ]
+   matrix(2,:)=[  10,   -20,  30,   -40  ]
+   matrix(3,:)=[  100,  200, -300,  400  ]
+
+   box=11
+
+  ! basics
+   print *, 'sum all elements:',sum(vector)
+  ! with MASK option
+   print *, 'sum odd elements:',sum(vector, mask=mod(vector, 2)==1)
+   print *, 'sum positive values:', sum(vector, mask=vector>0)
+
+   call printi('the input array', matrix )
+   call printi('sum of all elements in matrix', sum(matrix) )
+   call printi('sum of positive elements', sum(matrix,matrix>=0) )
+  ! along dimensions
+   call printi('sum along rows', sum(matrix,dim=1) )
+   call printi('sum along columns', sum(matrix,dim=2) )
+   call printi('sum of a vector is always a scalar', sum(vector,dim=1) )
+   call printi('sum of a volume by row', sum(box,dim=1) )
+   call printi('sum of a volume by column', sum(box,dim=2) )
+   call printi('sum of a volume by depth', sum(box,dim=3) )
+
+contains
+! CONVENIENCE ROUTINE; NOT DIRECTLY CONNECTED TO SPREAD(3)
+subroutine printi(title,a)
+use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT,&
+ & stdin=>INPUT_UNIT, stdout=>OUTPUT_UNIT
+implicit none
+
+!@(#) print small 2d integer scalar, vector, matrix in row-column format
+
+character(len=*),intent(in)  :: title
+integer,intent(in)           :: a(..)
+
+character(len=*),parameter   :: all='(" ",*(g0,1x))'
+character(len=20)            :: row
+integer,allocatable          :: b(:,:)
+integer                      :: i
+   write(*,all,advance='no')trim(title)
+   ! copy everything to a matrix to keep code simple
+   select rank(a)
+   rank (0); write(*,'(a)')' (a scalar)'; b=reshape([a],[1,1])
+   rank (1); write(*,'(a)')' (a vector)'; b=reshape(a,[size(a),1])
+   rank (2); write(*,'(a)')' (a matrix)'; b=a
+   rank default; stop '*printi* unexpected rank'
+   end select
+   ! find how many characters to use for integers
+   write(row,'(i0)')ceiling(log10(real(maxval(abs(b)))))+2
+   ! use this format to write a row
+   row='(" > [",*(i'//trim(row)//':,","))'
+   do i=1,size(b,dim=1)
+      write(*,fmt=row,advance='no')b(i,:)
+      write(*,'(" ]")')
+   enddo
+   write(*,all) '>shape=',shape(a),',rank=',rank(a),',size=',size(a)
+   write(*,*)
+end subroutine printi
 end program demo_sum
 ```
-
 Results:
-
 ```text
- Sum of all elements in c =    35.0000000
- Sum of Positive elements in c =    36.0000000
- Sum of elements in c when corresponding elements in b>0 =   30.0000000
-```
+    sum all elements:           9
+    sum odd elements:           6
+    sum positive values:          12
+    the input array  (a matrix)
+    > [   -1,    2,   -3,    4 ]
+    > [   10,  -20,   30,  -40 ]
+    > [  100,  200, -300,  400 ]
+    >shape= 3 4 ,rank= 2 ,size= 12
 
+    sum of all elements in matrix  (a scalar)
+    > [  382 ]
+    >shape= ,rank= 0 ,size= 1
+
+    sum of positive elements  (a scalar)
+    > [  746 ]
+    >shape= ,rank= 0 ,size= 1
+
+    sum along rows  (a vector)
+    > [  109 ]
+    > [  182 ]
+    > [ -273 ]
+    > [  364 ]
+    >shape= 4 ,rank= 1 ,size= 4
+
+    sum along columns  (a vector)
+    > [    2 ]
+    > [  -20 ]
+    > [  400 ]
+    >shape= 3 ,rank= 1 ,size= 3
+
+    sum of a vector is always a scalar  (a scalar)
+    > [  9 ]
+    >shape= ,rank= 0 ,size= 1
+
+    sum of a volume by row  (a matrix)
+    > [  55,  55,  55,  55,  55,  55,  55 ]
+    > [  55,  55,  55,  55,  55,  55,  55 ]
+    > [  55,  55,  55,  55,  55,  55,  55 ]
+    > [  55,  55,  55,  55,  55,  55,  55 ]
+    > [  55,  55,  55,  55,  55,  55,  55 ]
+    > [  55,  55,  55,  55,  55,  55,  55 ]
+    >shape= 6 7 ,rank= 2 ,size= 42
+
+    sum of a volume by column  (a matrix)
+    > [  66,  66,  66,  66,  66,  66,  66 ]
+    > [  66,  66,  66,  66,  66,  66,  66 ]
+    > [  66,  66,  66,  66,  66,  66,  66 ]
+    > [  66,  66,  66,  66,  66,  66,  66 ]
+    > [  66,  66,  66,  66,  66,  66,  66 ]
+    >shape= 5 7 ,rank= 2 ,size= 35
+
+    sum of a volume by depth  (a matrix)
+    > [  77,  77,  77,  77,  77,  77 ]
+    > [  77,  77,  77,  77,  77,  77 ]
+    > [  77,  77,  77,  77,  77,  77 ]
+    > [  77,  77,  77,  77,  77,  77 ]
+    > [  77,  77,  77,  77,  77,  77 ]
+    >shape= 5 6 ,rank= 2 ,size= 30
+```
 ### **Standard**
 
 Fortran 95
@@ -19908,7 +20048,7 @@ Fortran 95
 
 intrinsics
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## system_clock
 
@@ -20678,7 +20818,7 @@ Fortran 95
 
 ### **Name**
 
-**trim**(3) - \[CHARACTER:WHITESPACE\] Remove trailing blank characters of a string
+**trim**(3) - \[CHARACTER:WHITESPACE\] Remove trailing blank characters from a string
 
 ### **Synopsis**
 ```fortran
@@ -20691,8 +20831,8 @@ Fortran 95
 ```
 ### **Characteristics**
 
-  **KIND** can be any kind supported for the _character_ type.
-  The result has the same kind as the input argument **string**.
+ - **KIND** can be any kind supported for the _character_ type.
+ - The result has the same type and kind as the input argument **string**.
 
 ### **Description**
 

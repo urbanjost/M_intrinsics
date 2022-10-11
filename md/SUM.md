@@ -6,99 +6,186 @@
 
 ### **Synopsis**
 ```fortran
-   result = sum(array ,[mask])
+   result = sum(array [,dim[,mask]] | [mask] )
 ```
 ```fortran
-     NUMERIC function sum(array, mask)
+     TYPE(kind=KIND) function sum(array, dim, mask)
 
-      NUMERIC,intent(in) :: array(..)
-      logical(kind=**),intent(in),optional :: mask(..)
-```
-  or
-```fortran
-   result = sum(array [,dim] [,mask])
-```
-```fortran
-     NUMERIC function sum(array, dim, mask)
-
-      NUMERIC,intent(in) :: array(..)
+      TYPE(kind=KIND),intent(in) :: array(..)
       integer(kind=**),intent(in),optional :: dim
       logical(kind=**),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
 
   - a kind designated as ** may be any supported kind value for the type
-  - **NUMERIC** is any numeric type and kind.
+  - **TYPE** is any numeric type and kind - _integer_, _real_ or _complex_.
+  - **mask** is of type logical and shall be conformable with **array**.
+  - The result is of the same type and kind as **array**. It is scalar if
+    **dim** is not present or **array** is a vector, else it is an array.
 
 ### **Description**
 
-  **sum**(3) adds the elements of ARRAY along dimension DIM if the
-  corresponding element in MASK is TRUE.
+  **sum**(3) adds the elements of **array**. 
+  By default all elements are summed, but groups of sums may be returned 
+  along the dimension specified by **dim** and/or elements to add may be
+  selected by a logical mask.
+
+  No method is designated for how the sum is conducted, so whether or not
+  accumulated error is compensated for is processor-dependent.
 
 ### **Options**
 
 - **array**
-  : Shall be an array of type _integer_, _real_ or _complex_.
+  : an array containing the elements to add
 
 - **dim**
-  : (Optional) shall be a scalar of type _integer_ with a value in the
-  range from 1 to n, where n equals the rank of ARRAY.
+  : a value in the range from 1 to n, where n equals the rank (the number
+  of dimensions) of **array**.  **dim**  designates the dimension
+  along which to create sums.
 
 - **mask**
-  : (Optional) shall be of type _logical_ and either be a scalar or an
-  array of the same shape as ARRAY.
+  : an array of the same shape as **array** that designates
+  which elements to add.
 
 ### **Result**
 
-The result is of the same type as ARRAY.
-
-If **dim** is absent, a scalar with the sum of all elements in ARRAY
-is returned. Otherwise, an array of rank n-1, where n equals the rank of
-ARRAY, and a shape similar to that of ARRAY with dimension DIM dropped
-is returned.
+  If **dim** is absent, a scalar with the sum of all elements in **array**
+  is returned. Otherwise, an array of rank n-1, where n equals the rank
+  of **array**, and a shape similar to that of **array** with dimension
+  **dim** dropped is returned. Since a vector has a rank of one, the result
+  is a scalar (n-1 where n=1 is a rank of zero, ie. a scalar).
 
 ### **Examples**
 
 Sample program:
-
-```fortran
-program simple_sum
-implicit none
-integer :: x(5) = [ 1, 2, 3, 4, 5 ]
-   print *, sum(x)                        ! all elements, sum = 15
-   print *, sum(x, mask=mod(x, 2)==1)     ! odd elements, sum = 9
-end program simple_sum
-```
-
-Demonstrate Fortran 90 SUM function with MASK option
-
 ```fortran
 program demo_sum
-! John Mahaffy  2/16/96
 implicit none
-integer nd, ndh, nduh, j
-parameter (nd=10,ndh=nd/2, nduh=nd-ndh)
-real csum, cpsum, cbpsum
-real, dimension(nd):: c=[(j, j=-1,nd-2)], b
-data b/ndh*-1.0, nduh*2.0/
-   csum= sum(c(1:nd))
-   cpsum= sum (c(1:nd), mask=c.gt.0)
-   cbpsum= sum(c(1:nd), mask=b.gt.0.0)
-   print *, 'Sum of all elements in c = ', csum
-   print *, 'Sum of Positive elements in c = ', cpsum
-   print *, 'Sum of elements in c when corresponding elements in b>0', &
-   & ' =', cbpsum
+integer :: vector(5) , matrix(3,4), box(5,6,7)
+ 
+   vector = [ 1, 2, -3, 4, 5 ]
+
+   matrix(1,:)=[  -1,   2,    -3,   4    ]
+   matrix(2,:)=[  10,   -20,  30,   -40  ]
+   matrix(3,:)=[  100,  200, -300,  400  ]
+
+   box=11
+
+  ! basics
+   print *, 'sum all elements:',sum(vector) 
+  ! with MASK option
+   print *, 'sum odd elements:',sum(vector, mask=mod(vector, 2)==1)
+   print *, 'sum positive values:', sum(vector, mask=vector>0) 
+
+   call printi('the input array', matrix )
+   call printi('sum of all elements in matrix', sum(matrix) )
+   call printi('sum of positive elements', sum(matrix,matrix>=0) )
+  ! along dimensions
+   call printi('sum along rows', sum(matrix,dim=1) )
+   call printi('sum along columns', sum(matrix,dim=2) )
+   call printi('sum of a vector is always a scalar', sum(vector,dim=1) )
+   call printi('sum of a volume by row', sum(box,dim=1) )
+   call printi('sum of a volume by column', sum(box,dim=2) )
+   call printi('sum of a volume by depth', sum(box,dim=3) )
+
+contains
+! CONVENIENCE ROUTINE; NOT DIRECTLY CONNECTED TO SPREAD(3)
+subroutine printi(title,a)
+use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT,&
+ & stdin=>INPUT_UNIT, stdout=>OUTPUT_UNIT
+implicit none
+
+!@(#) print small 2d integer scalar, vector, matrix in row-column format
+
+character(len=*),intent(in)  :: title
+integer,intent(in)           :: a(..)
+
+character(len=*),parameter   :: all='(" ",*(g0,1x))'
+character(len=20)            :: row
+integer,allocatable          :: b(:,:)
+integer                      :: i
+   write(*,all,advance='no')trim(title)
+   ! copy everything to a matrix to keep code simple
+   select rank(a)
+   rank (0); write(*,'(a)')' (a scalar)'; b=reshape([a],[1,1])
+   rank (1); write(*,'(a)')' (a vector)'; b=reshape(a,[size(a),1])
+   rank (2); write(*,'(a)')' (a matrix)'; b=a
+   rank default; stop '*printi* unexpected rank'
+   end select
+   ! find how many characters to use for integers
+   write(row,'(i0)')ceiling(log10(real(maxval(abs(b)))))+2
+   ! use this format to write a row
+   row='(" > [",*(i'//trim(row)//':,","))'
+   do i=1,size(b,dim=1)
+      write(*,fmt=row,advance='no')b(i,:)
+      write(*,'(" ]")')
+   enddo
+   write(*,all) '>shape=',shape(a),',rank=',rank(a),',size=',size(a)
+   write(*,*)
+end subroutine printi
 end program demo_sum
 ```
-
 Results:
-
 ```text
- Sum of all elements in c =    35.0000000
- Sum of Positive elements in c =    36.0000000
- Sum of elements in c when corresponding elements in b>0 =   30.0000000
+    sum all elements:           9
+    sum odd elements:           6
+    sum positive values:          12
+    the input array  (a matrix)
+    > [   -1,    2,   -3,    4 ]
+    > [   10,  -20,   30,  -40 ]
+    > [  100,  200, -300,  400 ]
+    >shape= 3 4 ,rank= 2 ,size= 12
+    
+    sum of all elements in matrix  (a scalar)
+    > [  382 ]
+    >shape= ,rank= 0 ,size= 1
+    
+    sum of positive elements  (a scalar)
+    > [  746 ]
+    >shape= ,rank= 0 ,size= 1
+    
+    sum along rows  (a vector)
+    > [  109 ]
+    > [  182 ]
+    > [ -273 ]
+    > [  364 ]
+    >shape= 4 ,rank= 1 ,size= 4
+    
+    sum along columns  (a vector)
+    > [    2 ]
+    > [  -20 ]
+    > [  400 ]
+    >shape= 3 ,rank= 1 ,size= 3
+    
+    sum of a vector is always a scalar  (a scalar)
+    > [  9 ]
+    >shape= ,rank= 0 ,size= 1
+    
+    sum of a volume by row  (a matrix)
+    > [  55,  55,  55,  55,  55,  55,  55 ]
+    > [  55,  55,  55,  55,  55,  55,  55 ]
+    > [  55,  55,  55,  55,  55,  55,  55 ]
+    > [  55,  55,  55,  55,  55,  55,  55 ]
+    > [  55,  55,  55,  55,  55,  55,  55 ]
+    > [  55,  55,  55,  55,  55,  55,  55 ]
+    >shape= 6 7 ,rank= 2 ,size= 42
+    
+    sum of a volume by column  (a matrix)
+    > [  66,  66,  66,  66,  66,  66,  66 ]
+    > [  66,  66,  66,  66,  66,  66,  66 ]
+    > [  66,  66,  66,  66,  66,  66,  66 ]
+    > [  66,  66,  66,  66,  66,  66,  66 ]
+    > [  66,  66,  66,  66,  66,  66,  66 ]
+    >shape= 5 7 ,rank= 2 ,size= 35
+    
+    sum of a volume by depth  (a matrix)
+    > [  77,  77,  77,  77,  77,  77 ]
+    > [  77,  77,  77,  77,  77,  77 ]
+    > [  77,  77,  77,  77,  77,  77 ]
+    > [  77,  77,  77,  77,  77,  77 ]
+    > [  77,  77,  77,  77,  77,  77 ]
+    >shape= 5 6 ,rank= 2 ,size= 30
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -107,4 +194,4 @@ Fortran 95
 
 intrinsics
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
