@@ -18875,6 +18875,8 @@ textblock=[character(len=256) :: &
 '', &
 '        ! basics', &
 '         print *, ''sum all elements:'',sum(vector)', &
+'         print *, ''real :'',sum([11.0,-5.0,20.0])', &
+'         print *, ''complex :'',sum([(1.1,-3.3),(4.0,5.0),(8.0,-6.0)])', &
 '        ! with MASK option', &
 '         print *, ''sum odd elements:'',sum(vector, mask=mod(vector, 2)==1)', &
 '         print *, ''sum positive values:'', sum(vector, mask=vector>0)', &
@@ -18930,6 +18932,8 @@ textblock=[character(len=256) :: &
 '  Results:', &
 '', &
 '          sum all elements:           9', &
+'          real :   26.00000', &
+'          complex : (13.10000,-4.300000)', &
 '          sum odd elements:           6', &
 '          sum positive values:          12', &
 '          the input array  (a matrix)', &
@@ -18996,9 +19000,9 @@ textblock=[character(len=256) :: &
 '', &
 '  o  ANY(3) - Determines if any of the values in the logical array are true.', &
 '', &
-'  o  COUNT(3) - Count function', &
+'  o  COUNT(3) - Count true values in an array', &
 '', &
-'  o  MAXVAL(3) - Determines the maximum value in an array or row', &
+'  o  MAXVAL(3) - Determines the maximum value in an array', &
 '', &
 '  o  MINVAL(3) - Minimum value of an array', &
 '', &

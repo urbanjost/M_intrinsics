@@ -19927,6 +19927,8 @@ integer :: vector(5) , matrix(3,4), box(5,6,7)
 
   ! basics
    print *, 'sum all elements:',sum(vector)
+   print *, 'real :',sum([11.0,-5.0,20.0])
+   print *, 'complex :',sum([(1.1,-3.3),(4.0,5.0),(8.0,-6.0)])
   ! with MASK option
    print *, 'sum odd elements:',sum(vector, mask=mod(vector, 2)==1)
    print *, 'sum positive values:', sum(vector, mask=vector>0)
@@ -19979,9 +19981,11 @@ integer                      :: i
 end subroutine printi
 end program demo_sum
 ```
-Results:
+  Results:
 ```text
     sum all elements:           9
+    real :   26.00000
+    complex : (13.10000,-4.300000)
     sum odd elements:           6
     sum positive values:          12
     the input array  (a matrix)
@@ -20048,8 +20052,8 @@ Fortran 95
 
  - [**all**(3)](#all) - Determines if all the values are true
  - [**any**(3)](#any) - Determines if any of the values in the logical array are true.
- - [**count**(3)](#count) - Count function
- - [**maxval**(3)](#maxval) - Determines the maximum value in an array or row
+ - [**count**(3)](#count) - Count true values in an array
+ - [**maxval**(3)](#maxval) - Determines the maximum value in an array
  - [**minval**(3)](#minval) - Minimum value of an array
  - [**product**(3)](#product) - Product of array elements
  - [**merge**(3)](#merge) - Merge variables

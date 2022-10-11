@@ -12,6 +12,8 @@
 
         ! basics
          print *, 'sum all elements:',sum(vector)
+         print *, 'real :',sum([11.0,-5.0,20.0])
+         print *, 'complex :',sum([(1.1,-3.3),(4.0,5.0),(8.0,-6.0)])
         ! with MASK option
          print *, 'sum odd elements:',sum(vector, mask=mod(vector, 2)==1)
          print *, 'sum positive values:', sum(vector, mask=vector>0)
