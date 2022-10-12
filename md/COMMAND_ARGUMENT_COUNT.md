@@ -13,6 +13,8 @@
 ```
 ### **Characteristics**
 
+ - the result is of default integer scalar.
+
 ### **Description**
 
 **command_argument_count**(3) returns the number of arguments passed
@@ -24,9 +26,14 @@ None
 
 ### **Result**
 
-- **count**
   : The return value is of type default _integer_. It is the number of
   arguments passed on the command line when the program was invoked.
+
+  If there are no command arguments available or if the processor does
+  not support command arguments, then the result has the value zero.
+
+  If the processor has a concept of a command name, the command name
+  does not count as one of the command arguments.
 
 ### **Examples**
 
@@ -40,7 +47,6 @@ integer :: count
    print *, count
 end program demo_command_argument_count
 ```
-
 Sample output:
 
 ```bash
@@ -53,7 +59,6 @@ Sample output:
    ./test_command_argument_count 'count arguments'
        1
 ```
-
 ### **Standard**
 
 Fortran 2003

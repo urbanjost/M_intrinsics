@@ -10,7 +10,7 @@ of characters that does not appear in a given set of characters.
     result = verify(string, set [,back] [,kind] )
 ```
 ```fortran
-     elemental integer(kind=KIND) function verify(string,set,back,kind)
+     elemental integer(kind=KIND) function verify(string,set,back,KIND)
 
       character(len=*,kind=**),intent(in) :: string
       character(len=*,kind=**),intent(in) :: set
@@ -20,8 +20,8 @@ of characters that does not appear in a given set of characters.
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type.
-   However, **string** and **set** must have the same kind type parameter
-   for any individual call.
+   However, **string** and **set** must have the same kind for any
+   individual call.
  - the kind of the returned value is the same as **kind** if
    present. Otherwise a default _integer_ kind is returned.
  - **kind** must be a constant _integer_ initialization expression and a

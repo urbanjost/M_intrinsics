@@ -6,13 +6,13 @@
 
 ### **Synopsis**
 ```fortran
-    result = storage_size(a [,kind] )
+    result = storage_size(a [,KIND] )
 ```
 ```fortran
-     integer(kind=KIND) storage_size(a,kind)
+     integer(kind=KIND) storage_size(a,KIND)
 
       type(TYPE(kind=**)) :: a
-      integer,intent(in),optional :: kind
+      integer,intent(in),optional :: KIND
 ```
 ### **Characteristics**
   - a kind designated as ** may be any supported kind value for the type

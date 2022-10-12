@@ -9,31 +9,33 @@
     result = int(a [,kind])
 ```
 ```fortran
-     elemental integer(kind=KIND) function int(a, kind )
+     elemental integer(kind=KIND) function int(a, KIND )
 
-      TYPE(kind=KIND),intent(in) :: a
-      integer,optional :: kind
+      TYPE(kind=**),intent(in) :: a
+      integer,optional :: KIND
 ```
 ### **Characteristics**
 
+ - a kind designated as ** may be any supported kind value for the type
+ - **a** shall be of type integer, real, or complex, or a boz-literal-constant.
+ - **KIND** shall be a scalar integer constant expression.
+
 ### **Description**
 
-**int**(3) truncate towards zero and return an _integer_.
+  **int**(3) truncates towards zero and return an _integer_.
 
 ### **Options**
 
-- **a**
-  : Shall be of type _integer_, _real_, or _complex_ or a BOZ-literal-constant.
+ - **a**
+   : is the value to truncate towards zero
 
-- **kind**
-  : An _integer_ initialization expression indicating the kind
-  parameter of the result.
-
-  If not present the returned type is that of default integer type.
+ - **kind**
+   : indicates the kind parameter of the result.
+   If not present the returned type is that of default integer type.
 
 ### **Result**
 
-returns an _integer_ variable or array applying the following rules:
+returns an _integer_ variable applying the following rules:
 
 **Case**:
 

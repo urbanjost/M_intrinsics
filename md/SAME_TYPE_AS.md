@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**same_type_as**(3) - \[STATE\] Query dynamic types for equality
+**same_type_as**(3) - \[STATE:INQUIRY\] Query dynamic types for equality
 
 ### **Synopsis**
 ```fortran

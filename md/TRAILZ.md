@@ -11,7 +11,7 @@
 ```fortran
   elemental integer function trailz(i)
 
-   integer(kind=KIND),intent(in) :: i
+   integer(kind=**),intent(in) :: i
 ```
 ### **Characteristics**
 

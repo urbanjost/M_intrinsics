@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**is_iostat_eor**(3) - \[STATE\] Test for end-of-record value
+**is_iostat_eor**(3) - \[STATE:INQUIRY\] Test for end-of-record value
 
 ### **Synopsis**
 ```fortran

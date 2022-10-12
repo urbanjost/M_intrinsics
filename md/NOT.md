@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**not**(3) - \[BIT:LOGICAL\] Logical negation
+**not**(3) - \[BIT:LOGICAL\] Logical negation; flips all bits in an integer
 
 ### **Synopsis**
 ```fortran
@@ -15,14 +15,16 @@
 ```
 ### **Characteristics**
 
-- **i** may be an _integer_ of any kind
-- The return type is of the same type and kind as the argument.
+- **i** may be an _integer_ of any valid kind
+- The returned _integer_ is of the same kind as the argument **i**.
 
 ### **Description**
 
   **not**(3) returns the bitwise Boolean inverse of **i**. This is also
-  known as the Bitwise complement. Every bit on input that is a one is
-  changed to zero; and every bit that is zero is changed to one.
+  known as the "Bitwise complement" or "Logical negation" of the value.
+
+  If an input bit is a one, that position is a zero on output. Conversely
+  any input bit that is zero is a one on output.
 
 ### **Options**
 
@@ -32,16 +34,14 @@
 ### **Result**
 
   The result has the value obtained by complementing **i** bit-by-bit
-  according to the following table:
+  according to the following truth table:
 
        >    I   |  NOT(I)
        >    ----#----------
        >    1   |   0
        >    0   |   1
 
-  That is, every input bit is flipped. If it is a one, that position
-  is a zero on output. Conversely any input bit that is zero is a one
-  on output.
+  That is, every input bit is flipped.
 
 ### **Examples**
 
@@ -52,20 +52,30 @@ program demo_not
 implicit none
 integer :: i
   ! basics
-   i=13741
+   i=-13741
    print *,'the input value',i,'represented in bits is'
    write(*,'(1x,b32.32,1x,i0)') i, i
    i=not(i)
    print *,'on output it is',i
    write(*,'(1x,b32.32,1x,i0)') i, i
+   print *, " on a two's complement machine flip the bits and add 1"
+   print *, " to get the value with the sign changed, for example."
+   print *, 1234, not(1234)+1
+   print *, -1234, not(-1234)+1
+   print *, " of course 'x=-x' works just fine and more generally."
 end program demo_not
 ```
 Results:
 ```text
-    the input value 13741 represented in bits is
-    00000000000000000011010110101101 13741
-    on output it is -13742
-    11111111111111111100101001010010 -13742
+    the input value      -13741 represented in bits is
+    11111111111111111100101001010011 -13741
+    on output it is       13740
+    00000000000000000011010110101100 13740
+     on a two's complement machine flip the bits and add 1
+     to get the value with the sign changed, for example.
+           1234       -1234
+          -1234        1234
+     of course 'x=-x' works just fine and more generally.
 ```
 ### **Standard**
 

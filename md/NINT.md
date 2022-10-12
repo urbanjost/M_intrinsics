@@ -1,11 +1,8 @@
-  The result is the integer nearest A, or if there are two integers
-  equally near A, the result is whichever such integer has the greater
-  magnitude.
 ## nint
 
 ### **Name**
 
-**nint**(3) - \[TYPE:NUMERIC\] Integre nearest whole number
+**nint**(3) - \[TYPE:NUMERIC\] nearest whole number
 
 ### **Synopsis**
 ```fortran

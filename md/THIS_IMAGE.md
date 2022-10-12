@@ -7,15 +7,7 @@
 ### **Synopsis**
 
 ```fortran
- result = this_image()
-```
-or
-```fortran
- result = this_image(distance)
-```
-or
-```fortran
-  result = this_image(coarray, dim)
+result = this_image() | = this_image(distance) | = this_image(coarray,dim)
 ```
 ```fortran
    integer function this_image( distance ,coarray, dim )
@@ -27,9 +19,9 @@ or
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
- - **distance** (not permitted together with **coarray**).
  - **coarray** can be of any type. If **dim** is present it is required.
- - if **dim**  if present, coarray is required.
+ - **distance** is not permitted together with **coarray**
+ - if **dim** if present, coarray is required.
 
 ### **Description**
 
@@ -38,7 +30,7 @@ or
 ### **Options**
 
 - **distance**
-  : Nonnegative scalar integer (not permitted together with **coarray**).
+  : Nonnegative scalar _integer_ (not permitted together with **coarray**).
 
 - **coarray**
   : if **dim** present, required).

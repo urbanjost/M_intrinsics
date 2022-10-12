@@ -26,7 +26,7 @@
 ### **Description**
 
   **sum**(3) adds the elements of **array**. 
-  By default all elements are summed, but groups of sums may be returned 
+  When only **array** is specified all elements are summed, but groups of sums may be returned 
   along the dimension specified by **dim** and/or elements to add may be
   selected by a logical mask.
 
@@ -41,15 +41,16 @@
 - **dim**
   : a value in the range from 1 to n, where n equals the rank (the number
   of dimensions) of **array**.  **dim**  designates the dimension
-  along which to create sums.
+  along which to create sums. When absent a scalar sum of the elements
+  optionally selected by **mask** is returned.
 
 - **mask**
   : an array of the same shape as **array** that designates
-  which elements to add.
+  which elements to add. If absent all elements are used in the sum(s).
 
 ### **Result**
 
-  If **dim** is absent, a scalar with the sum of all elements in **array**
+  If **dim** is absent, a scalar with the sum of all selected elements in **array**
   is returned. Otherwise, an array of rank n-1, where n equals the rank
   of **array**, and a shape similar to that of **array** with dimension
   **dim** dropped is returned. Since a vector has a rank of one, the result
@@ -68,7 +69,7 @@ integer :: vector(5) , matrix(3,4), box(5,6,7)
    matrix(1,:)=[  -1,   2,    -3,   4    ]
    matrix(2,:)=[  10,   -20,  30,   -40  ]
    matrix(3,:)=[  100,  200, -300,  400  ]
-
+     
    box=11
 
   ! basics

@@ -15,9 +15,9 @@
 ```
 ### **Characteristics**
 
-where the result and all input values have the same _integer_ type and
-KIND with the exception that the mask and either **i** or **j** may be
-a BOZ constant.
+ - the result and all input values have the same _integer_ type and
+   KIND with the exception that the mask and either **i** or **j** may be
+   a BOZ constant.
 
 ### **Description**
 
@@ -56,9 +56,7 @@ so the BOZ values must be in the range of the type of the result.
 
 ### **Result**
 
-The bits blended from **i** and **j** using the mask **mask**. It is the
-same type as **i** if **i** is of type _integer_, otherwise the same type
-as **j**.
+The bits blended from **i** and **j** using the mask **mask**. 
 
 ### **Examples**
 

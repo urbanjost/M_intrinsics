@@ -11,13 +11,16 @@
 ```fortran
      elemental integer(KIND) function ceiling(a,KIND)
 
-      real(kind=KIND),intent(in)  :: a
+      real(kind=**),intent(in)  :: a
       integer,intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-where the _kind_ of the result KIND is the same as **a** unless its
-kind is specified by the optional **kind** argument.
+ - ** a is of type _real_
+ - KIND shall be a scalar integer constant expression.
+   It specifies the kind of the result if present.
+ - the result is _integer_. 
+ is specified.
 
 ### **Description**
 

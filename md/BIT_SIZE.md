@@ -15,9 +15,10 @@
 ```
 ### **Characteristics**
 
+ - **i** shall be of type integer. It may be a scalar or an array.
  - the value of **KIND** is any valid value for an _integer_ kind
    parameter on the processor.
- - the return value is of the same kind as the input value.
+ - the return value is a scalar of the same kind as the input value.
 
 ### **Description**
 
@@ -34,7 +35,7 @@
 
 ### **Result**
 
-The number of bits used to represent a value of the type
+The number of bits used to represent a value of the type and kind
 of __i__. The result is a _integer_ scalar of the same kind as __i__.
 
 ### **Examples**

@@ -15,8 +15,7 @@ result = tan(x)
 ```
 ### **Characteristics**
 
-  - **TYPE** may be _real_ or _complex_
-  - **KIND** may be any kind supported by the associated type.
+  - the **TYPE** of **x** may be _real_ or _complex_ of any supported kind
   - The returned value will be of the same type and kind as the argument
     **x**.
 

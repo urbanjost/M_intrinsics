@@ -9,7 +9,7 @@
   result = real(x [,kind])
 ```
 ```fortran
-   elemental real(kind=KIND) function real(x,kind)
+   elemental real(kind=KIND) function real(x,KIND)
 
     TYPE(kind=**),intent(in) :: x
     integer(kind=**),intent(in),optional :: KIND
@@ -17,19 +17,21 @@
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
- - the type of **x** may be _integer_, _real_, or _complex_.
+ - the type of **x** may be _integer_, _real_, or _complex_; or a BOZ-literal-constant.
  - **kind** is a _integer_ initialization expression (a constant expression)
-   + If **kind** is present it defines the kind of the result
+   + If **kind** is present it defines the kind of the _real_ result
    + if **kind** is not present
-     - when **x** is complex the result is the same kind as **x**.
-     - when **x** is real or integer the result is a _real_ of default kind
+     - when **x** is _complex_ the result is a _real_ of the same kind as **x**.
+     - when **x** is _real_ or _integer_ the result is a _real_ of default kind
 
 ### **Description**
 
 **real**(3) converts its argument **x** to a _real_ type.
 
-For complex values this is similar to the modern complex-part-designator
-**%RE** which also designates the real part of _complex_ a value.
+The real part of a complex value is returned. For complex values this
+is similar to the modern complex-part-designator **%RE** which also
+designates the real part of _complex_ a value.
+
 ```fortran
       z=(3.0,4.0)     ! if z is a complex value
       print *, z%re == real(z) ! these expressions are equivalent

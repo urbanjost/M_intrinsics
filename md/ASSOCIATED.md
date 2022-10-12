@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**associated**(3) - \[STATE\] Status of a pointer or pointer/target pair
+**associated**(3) - \[STATE:INQUIRY\] Status of a pointer or pointer/target pair
 
 ### **Synopsis**
 ```fortran
