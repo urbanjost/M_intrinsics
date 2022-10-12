@@ -65,7 +65,7 @@
 ```fortran
     1 <= DIM <= n
 ```
-  where **"n"** is the rank of **array**.  If **dim** is omitted it
+  where **"n"** is the rank of **array**. If **dim** is omitted it
   is taken to be **1**.
 
 ### **Result**

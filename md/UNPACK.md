@@ -47,7 +47,6 @@ statements, particularly when the replacements are conditional.
   : The original data to be edited. Shall be of the same type and type
   parameters as **vector** and shall be conformable with **mask**.
 
-
 ### **Result**
 
 The element of the result that corresponds to the ith true element

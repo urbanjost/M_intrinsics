@@ -41,8 +41,6 @@ to an object extensible type.
 
 ### **Result**
 
-
-
   If **mold** is unlimited polymorphic and is either a disassociated
   pointer or unallocated allocatable variable, the result is true.
 

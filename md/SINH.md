@@ -19,7 +19,6 @@
  - **KIND** may be any kind supported by the associated type.
  - The returned value will be of the same type and kind as the argument.
 
-
 ### **Description**
 
   **sinh**(3) computes the hyperbolic sine of **x**.

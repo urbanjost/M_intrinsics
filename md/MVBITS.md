@@ -63,7 +63,6 @@ The bits are numbered **0** to **bit_size(i)-1**, from right to left.
   **to** to place the specified copy of bits from **from**.
   **topos + len** must be less than or equal to **bit_size(to)**.
 
-
 ### **Examples**
 
 Sample program that populates a new 32-bit integer with its bytes in

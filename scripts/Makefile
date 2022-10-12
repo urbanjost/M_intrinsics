@@ -101,7 +101,7 @@ list:
 	: list all the manpages and run a simplistic spellcheck
 	env MANPATH=../man man -k .
 	env MANWIDTH=80 MANPATH=../man man --regex '.*'|col -b
-	env MANWIDTH=80 MANPATH=../man man --regex '.*'|bash scripts/xspell.sh
+	env MANWIDTH=80 MANPATH=../man man --regex '.*'|bash scripts/spell.sh
 	: 'to look up a word from the command line try'
 	: 'curl --silent dict://dict.org/d:"WORD:all"|more'
 

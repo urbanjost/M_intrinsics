@@ -40,7 +40,6 @@ a unique angle).
 
 ### **Result**
 
-
 The value returned is by definition the principal value of the complex
 number **(x, y)**.
 

@@ -38,7 +38,7 @@
 ### **Result**
 
 The returned value has the same bit sequence as **i** except the
-designated bit is unconditionally set to **0** 
+designated bit is unconditionally set to **0**
 
 ### **Examples**
 
@@ -75,11 +75,11 @@ Results:
  > 0000000000110111 55
  >  an array of initial values may be given as well
  >            3        4096           9
- >  
+ >
  >  a list of positions results in multiple returned values
- >  not multiple bits set in one value, as the routine is  
- >  a scalar function; calling it elementally essentially  
- >  calls it multiple times.                               
+ >  not multiple bits set in one value, as the routine is
+ >  a scalar function; calling it elementally essentially
+ >  calls it multiple times.
  > 1111111111111101
  > 1111111111111011
  > 1111111111110111

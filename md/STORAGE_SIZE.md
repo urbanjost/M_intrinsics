@@ -48,20 +48,20 @@
   applies, the result is consistent with the named constants
   defined in the intrinsic module ISO_FORTRAN_ENV.
 
-   NOTE1
+  NOTE1
 
-    An array element might take "type" more bits to store than an isolated
-    scalar, since any hardware-imposed alignment requirements for
-    array elements might not apply to a simple scalar variable.
+   An array element might take "type" more bits to store than an isolated
+   scalar, since any hardware-imposed alignment requirements for array
+   elements might not apply to a simple scalar variable.
 
-   NOTE2
+  NOTE2
 
-    This is intended to be the size in memory that an object takes when
-    it is stored; this might differ from the size it takes during
-    expression handling (which might be the native register size) or
-    when stored in a file. If an object is never stored in memory
-    but only in a register, this function nonetheless returns the size
-    it would take if it were stored in memory.
+   This is intended to be the size in memory that an object takes when it
+   is stored; this might differ from the size it takes during expression
+   handling (which might be the native register size) or when stored in a
+   file. If an object is never stored in memory but only in a register,
+   this function nonetheless returns the size it would take if it were
+   stored in memory.
 
 ### **Examples**
 

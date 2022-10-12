@@ -74,7 +74,6 @@ Fortran 2008
 
 There are many procedures that operator or query values at the bit level:
 
-
 [**popcnt**(3)](#popcnt),
 [**leadz**(3)](#leadz),
 [**trailz**(3)](#trailz)

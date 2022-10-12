@@ -129,9 +129,7 @@ Results:
 
 Fortran 95 , with KIND argument Fortran 2003
 
-
 ### **See Also**
-
 
 #### Array inquiry:
 

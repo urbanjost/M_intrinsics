@@ -19,7 +19,7 @@
  - a kind designated as ** may be any supported kind value for the type
 
  - the _integer_ _kind_ of **i** and **j** may not necessarily be
-   the same.  In addition, values may be a BOZ constant with a value
+   the same. In addition, values may be a BOZ constant with a value
    valid for the _integer_ kind available with the most bits on the
    current platform.
 
@@ -39,7 +39,6 @@
   transferred to an _integer_ type. The most bits the constant may
   contain is limited by the most bits representable by any _integer_
   kind supported by the compilation.
-
 
 #### Bit Sequence Comparison
 

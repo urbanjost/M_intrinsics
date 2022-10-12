@@ -76,7 +76,6 @@ Expected Results:
 
 FORTRAN 77 , with KIND argument Fortran 2003
 
-
 ### **See Also**
 
 Functions that perform operations on character strings, return lengths

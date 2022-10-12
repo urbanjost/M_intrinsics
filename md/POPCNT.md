@@ -56,7 +56,7 @@ end program demo_popcnt
 Results:
 
 Note that on most machines the first bit is the sign bit, and a zero is
-used for positive values; but that this is system-dependent.  These are
+used for positive values; but that this is system-dependent. These are
 typical values, where the huge(3f) function has set all but the first
 bit to 1.
 ```text
@@ -74,7 +74,6 @@ Fortran 2008
 ### **See Also**
 
 There are many procedures that operator or query values at the bit level:
-
 
 [**poppar**(3)](#poppar),
 [**leadz**(3)](#leadz),

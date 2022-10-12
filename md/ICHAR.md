@@ -38,7 +38,7 @@
   : The input character to determine the code for.
 
 - **kind**
-  : indicates the kind parameter of the result.  If **kind** is absent,
+  : indicates the kind parameter of the result. If **kind** is absent,
   the return value is of default _integer_ kind.
 
 ### **Result**

@@ -77,7 +77,7 @@ integer(kind=int64) :: bigi
 
 end program demo_trailz
 ```
-  Results:
+Results:
 ```text
     Note default integer is          32 bits
     value=  -1, value(bits)=11111111111111111111111111111111 , trailz=  0

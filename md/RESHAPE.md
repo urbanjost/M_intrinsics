@@ -77,7 +77,7 @@ C procedure.
 ### **Result**
 
 The result is an array of shape **shape** with the same type and type
-parameters as **source**.  It is first filled with the values of elements
+parameters as **source**. It is first filled with the values of elements
 of **source**, with the remainder filled with repeated copies of **pad**
 until all elements are filled. The new array may be smaller than
 **source**.

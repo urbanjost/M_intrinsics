@@ -1554,7 +1554,7 @@ Inverse function: [**sin**(3)](#sin)
 
 ### **Name**
 
-**associated**(3) - \[STATE\] Status of a pointer or pointer/target pair
+**associated**(3) - \[STATE:INQUIRY\] Status of a pointer or pointer/target pair
 
 ### **Synopsis**
 ```fortran
@@ -2171,7 +2171,7 @@ TS 18508
 **compare**; if the value is the same, **atom** is set to the value of
 **new**. Additionally, **old** is set to the value of **atom** that was
 used for the comparison. When **stat** is present and the invocation
-was successful, it is assigned the value 0.  If it is present and the
+was successful, it is assigned the value 0. If it is present and the
 invocation has failed, it is assigned a positive value; in particular,
 for a coindexed **atom**, if the remote image has stopped, it is assigned
 the value of iso_fortran_env's stat_stopped_image and if the remote
@@ -3323,7 +3323,7 @@ Fortran 2008
  - a kind designated as ** may be any supported kind value for the type
 
  - the _integer_ _kind_ of **i** and **j** may not necessarily be
-   the same.  In addition, values may be a BOZ constant with a value
+   the same. In addition, values may be a BOZ constant with a value
    valid for the _integer_ kind available with the most bits on the
    current platform.
 
@@ -3578,9 +3578,10 @@ Fortran 2008
 ```
 ### **Characteristics**
 
+ - **i** shall be of type integer. It may be a scalar or an array.
  - the value of **KIND** is any valid value for an _integer_ kind
    parameter on the processor.
- - the return value is of the same kind as the input value.
+ - the return value is a scalar of the same kind as the input value.
 
 ### **Description**
 
@@ -3597,7 +3598,7 @@ Fortran 2008
 
 ### **Result**
 
-The number of bits used to represent a value of the type
+The number of bits used to represent a value of the type and kind
 of __i__. The result is a _integer_ scalar of the same kind as __i__.
 
 ### **Examples**
@@ -4051,13 +4052,16 @@ Fortran 2003
 ```fortran
      elemental integer(KIND) function ceiling(a,KIND)
 
-      real(kind=KIND),intent(in)  :: a
+      real(kind=**),intent(in)  :: a
       integer,intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-where the _kind_ of the result KIND is the same as **a** unless its
-kind is specified by the optional **kind** argument.
+ - ** a is of type _real_
+ - KIND shall be a scalar integer constant expression.
+   It specifies the kind of the result if present.
+ - the result is _integer_.
+ is specified.
 
 ### **Description**
 
@@ -5136,6 +5140,8 @@ TS 18508
 ```
 ### **Characteristics**
 
+ - the result is of default integer scalar.
+
 ### **Description**
 
 **command_argument_count**(3) returns the number of arguments passed
@@ -5147,9 +5153,14 @@ None
 
 ### **Result**
 
-- **count**
   : The return value is of type default _integer_. It is the number of
   arguments passed on the command line when the program was invoked.
+
+  If there are no command arguments available or if the processor does
+  not support command arguments, then the result has the value zero.
+
+  If the processor has a concept of a command name, the command name
+  does not count as one of the command arguments.
 
 ### **Examples**
 
@@ -5163,7 +5174,6 @@ integer :: count
    print *, count
 end program demo_command_argument_count
 ```
-
 Sample output:
 
 ```bash
@@ -5176,7 +5186,6 @@ Sample output:
    ./test_command_argument_count 'count arguments'
        1
 ```
-
 ### **Standard**
 
 Fortran 2003
@@ -7253,7 +7262,7 @@ Fortran 2008
 ```fortran
     1 <= DIM <= n
 ```
-  where **"n"** is the rank of **array**.  If **dim** is omitted it
+  where **"n"** is the rank of **array**. If **dim** is omitted it
   is taken to be **1**.
 
 ### **Result**
@@ -8029,7 +8038,7 @@ Fortran 95
 
 ### **Name**
 
-**extends_type_of**(3) - \[STATE\] Determine if the dynamic type of **a** is an extension of the dynamic type of **mold**.
+**extends_type_of**(3) - \[STATE:INQUIRY\] Determine if the dynamic type of **a** is an extension of the dynamic type of **mold**.
 
 ### **Synopsis**
 ```fortran
@@ -10162,7 +10171,7 @@ Fortran 95
   : The input character to determine the code for.
 
 - **kind**
-  : indicates the kind parameter of the result.  If **kind** is absent,
+  : indicates the kind parameter of the result. If **kind** is absent,
   the return value is of default _integer_ kind.
 
 ### **Result**
@@ -10241,7 +10250,7 @@ of arguments, and search for certain arguments:
   **ieor**(3) returns a bitwise exclusive-**or** of **i** and **j**.
 
   An exclusive OR or "exclusive disjunction" is a logical operation that
-  is true if and only if its arguments differ.  In this case a one-bit
+  is true if and only if its arguments differ. In this case a one-bit
   and a zero-bit substitute for true and false.
 
   This is often represented with the notation "XOR", for "eXclusive OR".
@@ -10492,31 +10501,33 @@ of arguments, and search for certain arguments:
     result = int(a [,kind])
 ```
 ```fortran
-     elemental integer(kind=KIND) function int(a, kind )
+     elemental integer(kind=KIND) function int(a, KIND )
 
-      TYPE(kind=KIND),intent(in) :: a
-      integer,optional :: kind
+      TYPE(kind=**),intent(in) :: a
+      integer,optional :: KIND
 ```
 ### **Characteristics**
 
+ - a kind designated as ** may be any supported kind value for the type
+ - **a** shall be of type integer, real, or complex, or a boz-literal-constant.
+ - **KIND** shall be a scalar integer constant expression.
+
 ### **Description**
 
-**int**(3) truncate towards zero and return an _integer_.
+  **int**(3) truncates towards zero and return an _integer_.
 
 ### **Options**
 
-- **a**
-  : Shall be of type _integer_, _real_, or _complex_ or a BOZ-literal-constant.
+ - **a**
+   : is the value to truncate towards zero
 
-- **kind**
-  : An _integer_ initialization expression indicating the kind
-  parameter of the result.
-
-  If not present the returned type is that of default integer type.
+ - **kind**
+   : indicates the kind parameter of the result.
+   If not present the returned type is that of default integer type.
 
 ### **Result**
 
-returns an _integer_ variable or array applying the following rules:
+returns an _integer_ variable applying the following rules:
 
 **Case**:
 
@@ -11117,7 +11128,7 @@ Fortran 95
 
 ### **Name**
 
-**is_iostat_end**(3) - \[STATE\] Test for end-of-file value
+**is_iostat_end**(3) - \[STATE:INQUIRY\] Test for end-of-file value
 
 ### **Synopsis**
 ```fortran
@@ -11187,7 +11198,7 @@ Fortran 2003
 
 ### **Name**
 
-**is_iostat_eor**(3) - \[STATE\] Test for end-of-record value
+**is_iostat_eor**(3) - \[STATE:INQUIRY\] Test for end-of-record value
 
 ### **Synopsis**
 ```fortran
@@ -13440,9 +13451,9 @@ Fortran 95
 ```
 ### **Characteristics**
 
-where the result and all input values have the same _integer_ type and
-KIND with the exception that the mask and either **i** or **j** may be
-a BOZ constant.
+ - the result and all input values have the same _integer_ type and
+   KIND with the exception that the mask and either **i** or **j** may be
+   a BOZ constant.
 
 ### **Description**
 
@@ -13481,9 +13492,7 @@ so the BOZ values must be in the range of the type of the result.
 
 ### **Result**
 
-The bits blended from **i** and **j** using the mask **mask**. It is the
-same type as **i** if **i** is of type _integer_, otherwise the same type
-as **j**.
+The bits blended from **i** and **j** using the mask **mask**.
 
 ### **Examples**
 
@@ -14842,7 +14851,7 @@ character, which the techniques above do automatically.
 
 The newline character varies between some platforms, and can even
 depend on the encoding (ie. which character set is being used) of the
-output file.  In these cases selecting the correct character to output
+output file. In these cases selecting the correct character to output
 can be determined by the **new_line**(3) procedure.
 
 ### **Options**
@@ -14914,7 +14923,7 @@ integer :: i, count
 
 end program demo_new_line
 ```
-  Results:
+Results:
 ```text
    This is record 1.
    This is record 2.
@@ -14951,7 +14960,7 @@ Fortran 2003
 
 ### **Name**
 
-**nint**(3) - \[TYPE:NUMERIC\] Integre nearest whole number
+**nint**(3) - \[TYPE:NUMERIC\] nearest whole number
 
 ### **Synopsis**
 ```fortran
@@ -15202,7 +15211,7 @@ Fortran 2008
 
 ### **Name**
 
-**not**(3) - \[BIT:LOGICAL\] Logical negation
+**not**(3) - \[BIT:LOGICAL\] Logical negation; flips all bits in an integer
 
 ### **Synopsis**
 ```fortran
@@ -15215,14 +15224,16 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-- **i** may be an _integer_ of any kind
-- The return type is of the same type and kind as the argument.
+- **i** may be an _integer_ of any valid kind
+- The returned _integer_ is of the same kind as the argument **i**.
 
 ### **Description**
 
   **not**(3) returns the bitwise Boolean inverse of **i**. This is also
-  known as the Bitwise complement. Every bit on input that is a one is
-  changed to zero; and every bit that is zero is changed to one.
+  known as the "Bitwise complement" or "Logical negation" of the value.
+
+  If an input bit is a one, that position is a zero on output. Conversely
+  any input bit that is zero is a one on output.
 
 ### **Options**
 
@@ -15232,16 +15243,14 @@ Fortran 2008
 ### **Result**
 
   The result has the value obtained by complementing **i** bit-by-bit
-  according to the following table:
+  according to the following truth table:
 
        >    I   |  NOT(I)
        >    ----#----------
        >    1   |   0
        >    0   |   1
 
-  That is, every input bit is flipped. If it is a one, that position
-  is a zero on output. Conversely any input bit that is zero is a one
-  on output.
+  That is, every input bit is flipped.
 
 ### **Examples**
 
@@ -15252,20 +15261,30 @@ program demo_not
 implicit none
 integer :: i
   ! basics
-   i=13741
+   i=-13741
    print *,'the input value',i,'represented in bits is'
    write(*,'(1x,b32.32,1x,i0)') i, i
    i=not(i)
    print *,'on output it is',i
    write(*,'(1x,b32.32,1x,i0)') i, i
+   print *, " on a two's complement machine flip the bits and add 1"
+   print *, " to get the value with the sign changed, for example."
+   print *, 1234, not(1234)+1
+   print *, -1234, not(-1234)+1
+   print *, " of course 'x=-x' works just fine and more generally."
 end program demo_not
 ```
 Results:
 ```text
-    the input value 13741 represented in bits is
-    00000000000000000011010110101101 13741
-    on output it is -13742
-    11111111111111111100101001010010 -13742
+    the input value      -13741 represented in bits is
+    11111111111111111100101001010011 -13741
+    on output it is       13740
+    00000000000000000011010110101100 13740
+     on a two's complement machine flip the bits and add 1
+     to get the value with the sign changed, for example.
+           1234       -1234
+          -1234        1234
+     of course 'x=-x' works just fine and more generally.
 ```
 ### **Standard**
 
@@ -15852,7 +15871,7 @@ end program demo_popcnt
 Results:
 
 Note that on most machines the first bit is the sign bit, and a zero is
-used for positive values; but that this is system-dependent.  These are
+used for positive values; but that this is system-dependent. These are
 typical values, where the huge(3f) function has set all but the first
 bit to 1.
 ```text
@@ -16114,7 +16133,7 @@ Fortran 95
 
 ### **Name**
 
-**present**(3) - [STATE\] Determine whether an optional dummy argument
+**present**(3) - [STATE:INQUIRY\] Determine whether an optional dummy argument
 is specified
 
 ### **Synopsis**
@@ -16136,9 +16155,13 @@ is specified
   **present**(3) can be used in a procedure to determine if an optional
   dummy argument was present on the current call to the procedure.
 
-  When an argument is not present when the current procedure is invoked,
-  you may only pass it as an optional argument to another procedure or
-  pass it as an argument to PRESENT.
+  **a** shall be the name of an optional dummy argument that is accessible
+  in the subprogram in which the **present**(3) function reference
+  appears. There are no other requirements on **a**.
+
+  Note when an argument is not present when the current procedure is
+  invoked, you may only pass it as an optional argument to another
+  procedure or pass it as an argument to **present**.
 
 ### **Options**
 
@@ -16169,7 +16192,7 @@ contains
 integer function func(x)
 ! the optional characteristic on this definition allows this variable
 ! to not be specified on a call; and also allows it to subsequently
-! be passed to PRESENT(3f):
+! be passed to PRESENT(3):
 integer, intent(in), optional :: x
 integer :: x_local
 
@@ -16192,9 +16215,11 @@ integer :: x_local
    ! present
    ! xlocal=merge(x,0,present(x)) ! NO!!
 
-   ! We can pass it to another procedure if and only if the
-   ! other procedure declares the argument as optional as well.
+   ! We can pass it to another procedure if another
+   ! procedure declares the argument as optional as well,
+   ! or we have tested that X is present
    call tattle('optional argument x',x)
+   if(present(x))call not_optional(x)
 end function
 
 subroutine tattle(label,arg)
@@ -16207,6 +16232,11 @@ integer,intent(in),optional :: arg
    endif
 end subroutine tattle
 
+subroutine not_optional(arg)
+integer,intent(in) :: arg
+   write(*,*)'already tested X is defined',arg
+end subroutine not_optional
+
 end program demo_present
 ```
 Results:
@@ -16214,6 +16244,7 @@ Results:
     optional argument x is not present
               0
     optional argument x is present
+    already tested X is defined 1492
         2226064
 ```
 ### **Standard**
@@ -16983,7 +17014,7 @@ Results:
   result = real(x [,kind])
 ```
 ```fortran
-   elemental real(kind=KIND) function real(x,kind)
+   elemental real(kind=KIND) function real(x,KIND)
 
     TYPE(kind=**),intent(in) :: x
     integer(kind=**),intent(in),optional :: KIND
@@ -16991,19 +17022,21 @@ Results:
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
- - the type of **x** may be _integer_, _real_, or _complex_.
+ - the type of **x** may be _integer_, _real_, or _complex_; or a BOZ-literal-constant.
  - **kind** is a _integer_ initialization expression (a constant expression)
-   + If **kind** is present it defines the kind of the result
+   + If **kind** is present it defines the kind of the _real_ result
    + if **kind** is not present
-     - when **x** is complex the result is the same kind as **x**.
-     - when **x** is real or integer the result is a _real_ of default kind
+     - when **x** is _complex_ the result is a _real_ of the same kind as **x**.
+     - when **x** is _real_ or _integer_ the result is a _real_ of default kind
 
 ### **Description**
 
 **real**(3) converts its argument **x** to a _real_ type.
 
-For complex values this is similar to the modern complex-part-designator
-**%RE** which also designates the real part of _complex_ a value.
+The real part of a complex value is returned. For complex values this
+is similar to the modern complex-part-designator **%RE** which also
+designates the real part of _complex_ a value.
+
 ```fortran
       z=(3.0,4.0)     ! if z is a complex value
       print *, z%re == real(z) ! these expressions are equivalent
@@ -17458,7 +17491,7 @@ C procedure.
 ### **Result**
 
 The result is an array of shape **shape** with the same type and type
-parameters as **source**.  It is first filled with the values of elements
+parameters as **source**. It is first filled with the values of elements
 of **source**, with the remainder filled with repeated copies of **pad**
 until all elements are filled. The new array may be smaller than
 **source**.
@@ -17658,7 +17691,7 @@ Fortran 95
 
 ### **Name**
 
-**same_type_as**(3) - \[STATE\] Query dynamic types for equality
+**same_type_as**(3) - \[STATE:INQUIRY\] Query dynamic types for equality
 
 ### **Synopsis**
 ```fortran
@@ -18888,33 +18921,31 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-where TYPE may be _real_ or _integer_ and KIND is any supported kind
-for the type.
+ - **a** shall be of type integer or real.
+ - **b** shall be of the same type as **a**.
+ - the characteristics of the result are the same as **a**.
 
 ### **Description**
 
-**sign**(3) returns a value with the magnitude of _a_ but with the
-sign of _b_.
+  **sign**(3) returns a value with the magnitude of _a_ but with the
+  sign of _b_.
 
-For processors that distinguish between positive and negative zeros
-_sign()_ may be used to distinguish between _real_ values 0.0 and
--0.0. SIGN (1.0, -0.0) will return  -1.0 when a negative zero is
-distinguishable.
+  For processors that distinguish between positive and negative zeros
+  _sign()_ may be used to distinguish between _real_ values 0.0 and
+  -0.0. SIGN (1.0, -0.0) will return  -1.0 when a negative zero is
+  distinguishable.
 
 ### **Options**
 
   - **a**
-    : The value whos magnitude will be returned. Shall be of type
-    _integer_ or _real_
+    : The value whose magnitude will be returned.
 
   - **b**
-    : The value whose sign will be returned. Shall be of the same type
-    and kind as **a**
+    : The value whose sign will be returned.
 
 ### **Result**
 
-The kind of the return value is the magnitude of _a_ with the sign of
-_b_. That is,
+  a value with the magnitude of **a** with the sign of **b**. That is,
 
   - If _b \>= 0_ then the result is _abs(a)_
   - else if _b < 0_ it is -_abs(a)_.
@@ -18928,32 +18959,42 @@ Sample program:
 ```fortran
 program demo_sign
 implicit none
+  ! basics
    print *,  sign( -12,  1 )
    print *,  sign( -12,  0 )
    print *,  sign( -12, -1 )
+   print *,  sign(  12,  1 )
+   print *,  sign(  12,  0 )
+   print *,  sign(  12, -1 )
 
-   print *,  sign( -12.0, [1.0, 0.0, -1.0] )
+   if(sign(1.0,-0.0)== -1.0)then
+      print *, 'this processor distinguishes +0 from -0'
+   else
+      print *, 'this processor does not distinguish +0 from -0'
+   endif
 
-   print *,  'can I distinguish 0 from -0? ', &
-   &  sign( 1.0, -0.0 ) .ne. sign( 1.0, 0.0 )
+   print *,  'elemental', sign( -12.0, [1.0, 0.0, -1.0] )
+
 end program demo_sign
-````
+```
 Results:
-
 ```text
              12
              12
             -12
-      12.00000       12.00000      -12.00000
-    can I distinguish 0 from -0?  F
+             12
+             12
+            -12
+    this processor does not distinguish +0 from -0
+    elemental   12.00000       12.00000      -12.00000
 ```
 ### **Standard**
 
+FORTRAN 77
+
 ### **See also**
 
-[****(3)](#)
-
-FORTRAN 77
+[**abs**(3)](#abs)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -19764,13 +19805,13 @@ FORTRAN 77
 
 ### **Synopsis**
 ```fortran
-    result = storage_size(a [,kind] )
+    result = storage_size(a [,KIND] )
 ```
 ```fortran
-     integer(kind=KIND) storage_size(a,kind)
+     integer(kind=KIND) storage_size(a,KIND)
 
       type(TYPE(kind=**)) :: a
-      integer,intent(in),optional :: kind
+      integer,intent(in),optional :: KIND
 ```
 ### **Characteristics**
   - a kind designated as ** may be any supported kind value for the type
@@ -19806,20 +19847,20 @@ FORTRAN 77
   applies, the result is consistent with the named constants
   defined in the intrinsic module ISO_FORTRAN_ENV.
 
-   NOTE1
+  NOTE1
 
-    An array element might take "type" more bits to store than an isolated
-    scalar, since any hardware-imposed alignment requirements for
-    array elements might not apply to a simple scalar variable.
+   An array element might take "type" more bits to store than an isolated
+   scalar, since any hardware-imposed alignment requirements for array
+   elements might not apply to a simple scalar variable.
 
-   NOTE2
+  NOTE2
 
-    This is intended to be the size in memory that an object takes when
-    it is stored; this might differ from the size it takes during
-    expression handling (which might be the native register size) or
-    when stored in a file. If an object is never stored in memory
-    but only in a register, this function nonetheless returns the size
-    it would take if it were stored in memory.
+   This is intended to be the size in memory that an object takes when it
+   is stored; this might differ from the size it takes during expression
+   handling (which might be the native register size) or when stored in a
+   file. If an object is never stored in memory but only in a register,
+   this function nonetheless returns the size it would take if it were
+   stored in memory.
 
 ### **Examples**
 
@@ -19872,17 +19913,19 @@ Fortran 2008
 ### **Characteristics**
 
   - a kind designated as ** may be any supported kind value for the type
-  - **TYPE** is any numeric type and kind - _integer_, _real_ or _complex_.
-  - **mask** is of type logical and shall be conformable with **array**.
-  - The result is of the same type and kind as **array**. It is scalar if
-    **dim** is not present or **array** is a vector, else it is an array.
+  - **array** may be of any numeric **TYPE** - _integer_, _real_ or _complex_.
+  - **dim** is an _integer_
+  - **mask** is _logical_ and conformable with **array**.
+  - The result is of the same type and kind as **array**. It is scalar
+    if **dim** is not present or **array** is a vector, else it is an array.
 
 ### **Description**
 
   **sum**(3) adds the elements of **array**.
-  By default all elements are summed, but groups of sums may be returned
-  along the dimension specified by **dim** and/or elements to add may be
-  selected by a logical mask.
+
+  When only **array** is specified all elements are summed, but groups
+  of sums may be returned along the dimension specified by **dim**
+  and/or elements to add may be selected by a logical mask.
 
   No method is designated for how the sum is conducted, so whether or not
   accumulated error is compensated for is processor-dependent.
@@ -19894,16 +19937,17 @@ Fortran 2008
 
 - **dim**
   : a value in the range from 1 to n, where n equals the rank (the number
-  of dimensions) of **array**.  **dim**  designates the dimension
-  along which to create sums.
+  of dimensions) of **array**. **dim** designates the dimension
+  along which to create sums. When absent a scalar sum of the elements
+  optionally selected by **mask** is returned.
 
 - **mask**
   : an array of the same shape as **array** that designates
-  which elements to add.
+  which elements to add. If absent all elements are used in the sum(s).
 
 ### **Result**
 
-  If **dim** is absent, a scalar with the sum of all elements in **array**
+  If **dim** is absent, a scalar with the sum of all selected elements in **array**
   is returned. Otherwise, an array of rank n-1, where n equals the rank
   of **array**, and a shape similar to that of **array** with dimension
   **dim** dropped is returned. Since a vector has a rank of one, the result
@@ -19981,7 +20025,7 @@ integer                      :: i
 end subroutine printi
 end program demo_sum
 ```
-  Results:
+Results:
 ```text
     sum all elements:           9
     real :   26.00000
@@ -20261,8 +20305,7 @@ result = tan(x)
 ```
 ### **Characteristics**
 
-  - **TYPE** may be _real_ or _complex_
-  - **KIND** may be any kind supported by the associated type.
+  - the **TYPE** of **x** may be _real_ or _complex_ of any supported kind
   - The returned value will be of the same type and kind as the argument
     **x**.
 
@@ -20319,15 +20362,7 @@ FORTRAN 77 . For a complex argument, Fortran 2008 .
 ### **Synopsis**
 
 ```fortran
- result = this_image()
-```
-or
-```fortran
- result = this_image(distance)
-```
-or
-```fortran
-  result = this_image(coarray, dim)
+result = this_image() | = this_image(distance) | = this_image(coarray,dim)
 ```
 ```fortran
    integer function this_image( distance ,coarray, dim )
@@ -20339,9 +20374,9 @@ or
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
- - **distance** (not permitted together with **coarray**).
  - **coarray** can be of any type. If **dim** is present it is required.
- - if **dim**  if present, coarray is required.
+ - **distance** is not permitted together with **coarray**
+ - if **dim** if present, coarray is required.
 
 ### **Description**
 
@@ -20350,7 +20385,7 @@ or
 ### **Options**
 
 - **distance**
-  : Nonnegative scalar integer (not permitted together with **coarray**).
+  : Nonnegative scalar _integer_ (not permitted together with **coarray**).
 
 - **coarray**
   : if **dim** present, required).
@@ -20498,7 +20533,7 @@ Fortran 95
 ```fortran
   elemental integer function trailz(i)
 
-   integer(kind=KIND),intent(in) :: i
+   integer(kind=**),intent(in) :: i
 ```
 ### **Characteristics**
 
@@ -20564,7 +20599,7 @@ integer(kind=int64) :: bigi
 
 end program demo_trailz
 ```
-  Results:
+Results:
 ```text
     Note default integer is          32 bits
     value=  -1, value(bits)=11111111111111111111111111111111 , trailz=  0
@@ -21270,7 +21305,7 @@ of characters that does not appear in a given set of characters.
     result = verify(string, set [,back] [,kind] )
 ```
 ```fortran
-     elemental integer(kind=KIND) function verify(string,set,back,kind)
+     elemental integer(kind=KIND) function verify(string,set,back,KIND)
 
       character(len=*,kind=**),intent(in) :: string
       character(len=*,kind=**),intent(in) :: set
@@ -21280,8 +21315,8 @@ of characters that does not appear in a given set of characters.
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type.
-   However, **string** and **set** must have the same kind type parameter
-   for any individual call.
+   However, **string** and **set** must have the same kind for any
+   individual call.
  - the kind of the returned value is the same as **kind** if
    present. Otherwise a default _integer_ kind is returned.
  - **kind** must be a constant _integer_ initialization expression and a

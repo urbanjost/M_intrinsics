@@ -74,11 +74,11 @@ Results:
  > 0001000000000110 4102 6
  >  an array of initial values may be given as well
  >            4        4100
- >  
+ >
  >  a list of positions results in multiple returned values
- >  not multiple bits set in one value, as the routine is  
- >  a scalar function; calling it elementally essentially  
- >  calls it multiple times.                               
+ >  not multiple bits set in one value, as the routine is
+ >  a scalar function; calling it elementally essentially
+ >  calls it multiple times.
  > 0000000000000010
  > 0000000000000100
  > 0000000000001000

@@ -69,9 +69,8 @@ character, which the techniques above do automatically.
 
 The newline character varies between some platforms, and can even
 depend on the encoding (ie. which character set is being used) of the
-output file.  In these cases selecting the correct character to output
+output file. In these cases selecting the correct character to output
 can be determined by the **new_line**(3) procedure.
-
 
 ### **Options**
 
@@ -142,7 +141,7 @@ integer :: i, count
 
 end program demo_new_line
 ```
-  Results:
+Results:
 ```text
    This is record 1.
    This is record 2.

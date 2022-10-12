@@ -25,7 +25,7 @@
   **ieor**(3) returns a bitwise exclusive-**or** of **i** and **j**.
 
   An exclusive OR or "exclusive disjunction" is a logical operation that
-  is true if and only if its arguments differ.  In this case a one-bit
+  is true if and only if its arguments differ. In this case a one-bit
   and a zero-bit substitute for true and false.
 
   This is often represented with the notation "XOR", for "eXclusive OR".

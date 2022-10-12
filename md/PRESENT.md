@@ -108,7 +108,7 @@ end subroutine not_optional
 
 end program demo_present
 ```
-  Results:
+Results:
 ```text
     optional argument x is not present
               0

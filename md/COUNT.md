@@ -217,7 +217,6 @@ Results:
 
 Fortran 95 , with KIND argument - Fortran 2003
 
-
 ### **See Also**
 
 [****(3)](#)

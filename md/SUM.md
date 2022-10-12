@@ -18,17 +18,19 @@
 ### **Characteristics**
 
   - a kind designated as ** may be any supported kind value for the type
-  - **TYPE** is any numeric type and kind - _integer_, _real_ or _complex_.
-  - **mask** is of type logical and shall be conformable with **array**.
-  - The result is of the same type and kind as **array**. It is scalar if
-    **dim** is not present or **array** is a vector, else it is an array.
+  - **array** may be of any numeric **TYPE** - _integer_, _real_ or _complex_.
+  - **dim** is an _integer_
+  - **mask** is _logical_ and conformable with **array**.
+  - The result is of the same type and kind as **array**. It is scalar
+    if **dim** is not present or **array** is a vector, else it is an array.
 
 ### **Description**
 
   **sum**(3) adds the elements of **array**. 
-  When only **array** is specified all elements are summed, but groups of sums may be returned 
-  along the dimension specified by **dim** and/or elements to add may be
-  selected by a logical mask.
+
+  When only **array** is specified all elements are summed, but groups
+  of sums may be returned along the dimension specified by **dim**
+  and/or elements to add may be selected by a logical mask.
 
   No method is designated for how the sum is conducted, so whether or not
   accumulated error is compensated for is processor-dependent.
@@ -40,7 +42,7 @@
 
 - **dim**
   : a value in the range from 1 to n, where n equals the rank (the number
-  of dimensions) of **array**.  **dim**  designates the dimension
+  of dimensions) of **array**. **dim** designates the dimension
   along which to create sums. When absent a scalar sum of the elements
   optionally selected by **mask** is returned.
 
@@ -128,7 +130,7 @@ integer                      :: i
 end subroutine printi
 end program demo_sum
 ```
-  Results:
+Results:
 ```text
     sum all elements:           9
     real :   26.00000    
