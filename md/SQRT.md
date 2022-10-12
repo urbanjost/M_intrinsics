@@ -29,7 +29,7 @@
   In mathematics, a square root of a radicand **x** is a number **y**
   such that **y\*y = x**.
 
-  Every nonnegative radicand  _x_ has two square roots of the same unique
+  Every nonnegative radicand  **x** has two square roots of the same unique
   magnitude, one positive and one negative. The nonnegative square root
   is called the principal square root.
 
@@ -43,15 +43,17 @@
 ### **Options**
 
 - **x**
-  : If **x** is _real_ its value must be greater than or equal to zero.
+  : The radicand to find the principal square root of.
+  If **x** is _real_ its value must be greater than or equal to zero.
     
 ### **Result**
 
-  The square root of **x** is returned.
+  The principal square root of **x** is returned.
   
-  A _complex_ is the principal value with the real part
-  greater than or equal to zero. When the real part of the result is zero,
-  the imaginary part has the same sign as the imaginary part of **x**.
+  For a _complex_ result the real part is greater than or equal to zero. 
+
+  When the real part of the result is zero, the imaginary part has the
+  same sign as the imaginary part of **x**.
 
 ### **Examples**
 

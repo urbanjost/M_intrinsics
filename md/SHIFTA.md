@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**shifta**(3) - \[BIT:SHIFT\] Shift bits right with fill
+**shifta**(3) - \[BIT:SHIFT\] Right shift with fill
 
 ### **Synopsis**
 ```fortran
@@ -17,14 +17,15 @@
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
- - **array** may be any type and rank (and the result will
-   automatically be of the same type, kind and rank as **array**).
+ - **i** is an _integer_ of any kind
+ - **shift** is an _integer_ of any kind
+ - the result will automatically be of the same type, kind and rank as **i**.
 
 ### **Description**
 
   **shifta**(3) returns a value corresponding to **i** with all of the
   bits shifted right by **shift** places and the vacated bits on the
-  left filled with the value of the original left-most bit..
+  left filled with the value of the original left-most bit.
 
 ### **Options**
 
@@ -34,16 +35,13 @@
 - **shift**
   : how many bits to shift right.
     It shall be nonnegative and less than or equal to **bit_size(i)**.
-    or the value is undefined.
+    or the value is undefined. If **shift** is zero the result is **i**.
 
 ### **Result**
 
-  The result characteristics (kind, type, rank, shape, ....) are the
-  same as **i**.
-
   The result has the value obtained by shifting the bits of **i** to
   the right **shift**  bits and replicating the leftmost bit of **i**
-  in the left **shift** bits (the leftmost bit in "two's complement"
+  in the left **shift** bits (Note the leftmost bit in "two's complement"
   representation is the sign bit).
 
   Bits shifted out from the right end are lost.
@@ -116,7 +114,6 @@ Results:
  >  characteristics of the result are the same as input
  > kind= 1 shape= 2 2 size= 4
 ```
-
 ### **Standard**
 
 Fortran 2008

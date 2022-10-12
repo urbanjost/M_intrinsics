@@ -7,15 +7,12 @@
       integer(kind=int32),allocatable :: ivals(:)
       integer             :: i
 
-       ! basic usage
+        print *, ' basic usage'
         ival=100
-        write(*,*)ival, shiftl(100,3)
+        write(*,*)ival, shiftl(ival,3)
 
        ! elemental (input values may be conformant arrays)
-        ! shifting is often equivalent to multiplying be a power of two
-        write(*,*) shiftl(-1,[(i,i=1,bit_size(0))])
-        write(*,*)
-        write(*,*) shiftl(+3,[(i,i=1,bit_size(0))])
+        print *, ' elemental'
 
        ! loop through some ivalues
          shift=9
@@ -33,7 +30,7 @@
             write(*,'(  "RESULT = ",b32.32," == ",i0)') oval,oval
          enddo
 
-        ! elemental (input values may be conformant arrays)
+        ! more about elemental
          ELEM : block
          integer(kind=int8)  :: arr(2,2)=reshape([2,4,8,16],[2,2])
          write(*,*)"characteristics of the result are the same as input"

@@ -17,20 +17,27 @@
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
- - **array** may be any type and rank (and the result will
-   automatically be of the same type, kind and rank as **array**).
+ - **i** is an _integer_ of any kind
+ - **shift** is an _integer_ of any kind
+ - the result will automatically be of the same type, kind and rank as **i**.
 
 ### **Description**
 
-**shiftl**(3) returns a value corresponding to **i** with all of the
-bits shifted left by **shift** places.
+  **shiftl**(3) returns a value corresponding to **i** with all of the
+  bits shifted left by **shift** places.
 
-Bits shifted out from the left end are lost, and bits shifted in from
-the right end are set to **0**.
+  Bits shifted out from the left end are lost, and bits shifted in from
+  the right end are set to **0**.
 
-If the absolute value of **shift** is greater than **bit_size(i)**,
-the value is undefined.
+  If the absolute value of **shift** is greater than **bit_size(i)**,
+  the value is undefined.
 
+  For example, for a 16-bit integer left-shifted five ...
+```text
+    >  |a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p| <- original 16-bit example
+    >  |f|g|h|i|j|k|l|m|n|o|p|           <- left-shifted five
+    >  |f|g|h|i|j|k|l|m|n|o|p|0|0|0|0|0| <- right-padded with zeros
+```
 Note the value of the result is the same as **ishft (i, shift)**.
 
 ### **Options**
@@ -59,15 +66,12 @@ integer(kind=int32) :: ival
 integer(kind=int32),allocatable :: ivals(:)
 integer             :: i
 
- ! basic usage
+  print *, ' basic usage'
   ival=100
-  write(*,*)ival, shiftl(100,3)
+  write(*,*)ival, shiftl(ival,3)
 
  ! elemental (input values may be conformant arrays)
-  ! shifting is often equivalent to multiplying be a power of two
-  write(*,*) shiftl(-1,[(i,i=1,bit_size(0))])
-  write(*,*)
-  write(*,*) shiftl(+3,[(i,i=1,bit_size(0))])
+  print *, ' elemental'
 
  ! loop through some ivalues
    shift=9
@@ -85,7 +89,7 @@ integer             :: i
       write(*,'(  "RESULT = ",b32.32," == ",i0)') oval,oval
    enddo
 
-  ! elemental (input values may be conformant arrays)
+  ! more about elemental
    ELEM : block
    integer(kind=int8)  :: arr(2,2)=reshape([2,4,8,16],[2,2])
    write(*,*)"characteristics of the result are the same as input"
@@ -98,33 +102,20 @@ end program demo_shiftl
 ```
 Results:
 ```text
->         100         800
->
->           -2          -4          -8         -16         -32         -64
->         -128        -256        -512       -1024       -2048       -4096
->        -8192      -16384      -32768      -65536     -131072     -262144
->      -524288    -1048576    -2097152    -4194304    -8388608   -16777216
->    -33554432   -67108864  -134217728  -268435456  -536870912 -1073741824
->  -2147483648           0
->
->            6          12          24          48          96         192
->          384         768        1536        3072        6144       12288
->        24576       49152       98304      196608      393216      786432
->      1572864     3145728     6291456    12582912    25165824    50331648
->    100663296   201326592   402653184   805306368  1610612736 -1073741824
->  -2147483648           0
->
->   SHIFT =  9
->   I =      01010101010101010101010101010101 == 1431655765
->   RESULT = 10101010101010101010101000000000 == -1431655936
->   I =      10101010101010101010101010101010 == -1431655766
->   RESULT = 01010101010101010101010000000000 == 1431655424
->   I =      11111111111111111111111111111111 == -1
->   RESULT = 11111111111111111111111000000000 == -512
->    characteristics of the result are the same as input
->   kind= 1 shape= 2 2 size= 4
+ >    basic usage
+ >           100         800
+ >    elemental
+ >  
+ >  SHIFT =  9
+ >  I =      01010101010101010101010101010101 == 1431655765
+ >  RESULT = 10101010101010101010101000000000 == -1431655936
+ >  I =      10101010101010101010101010101010 == -1431655766
+ >  RESULT = 01010101010101010101010000000000 == 1431655424
+ >  I =      11111111111111111111111111111111 == -1
+ >  RESULT = 11111111111111111111111000000000 == -512
+ >   characteristics of the result are the same as input
+ >  kind= 1 shape= 2 2 size= 4
 ```
-
 ### **Standard**
 
 Fortran 2008

@@ -17451,11 +17451,11 @@ textblock=[character(len=256) :: &
 '  SHAPE(3) - [ARRAY:INQUIRY] Determine the shape of an array', &
 '', &
 'SYNOPSIS', &
-'  result = shape(source [,kind])', &
+'  result = shape( source [,kind] )', &
 '', &
-'         integer(kind=KIND) function(shape(source,kind)', &
+'         integer(kind=KIND) function shape( source, KIND )', &
 '', &
-'          type(TYPE(kind=**)),intent(in)        :: source(..)', &
+'          type(TYPE(kind=**)),intent(in)       :: source(..)', &
 '          integer(kind=**),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
@@ -17464,6 +17464,9 @@ textblock=[character(len=256) :: &
 '  o  SOURCE is an array or scalar of any type. If SOURCE is a pointer it must', &
 '     be associated and allocatable arrays must be allocated.', &
 '', &
+'  o  KIND is an integer initialization expression. If absent, the return value', &
+'     has the default integer kind otherwise the specified kind.', &
+'', &
 'DESCRIPTION', &
 '  SHAPE(3) determines the shape of an array.', &
 '', &
@@ -17471,15 +17474,16 @@ textblock=[character(len=256) :: &
 '  o  SOURCE : Shall be an array or scalar of any type. If SOURCE is a pointer', &
 '     it must be associated and allocatable arrays must be allocated.', &
 '', &
-'  o  KIND : (Optional) An integer initialization expression indicating the', &
-'     kind parameter of the result.', &
+'  o  KIND : indicates the kind parameter of the result.', &
 '', &
 'RESULT', &
 '  An integer array of rank one with as many elements as SOURCE has dimensions.', &
-'  The elements of the resulting array correspond to the extend of SOURCE along', &
-'  the respective dimensions. If SOURCE is a scalar, the result is the rank one', &
-'  array of size zero. If KIND is absent, the return value has the default', &
-'  integer kind otherwise the specified kind.', &
+'', &
+'  The elements of the resulting array correspond to the extent of SOURCE along', &
+'  the respective dimensions.', &
+'', &
+'  If SOURCE is a scalar, the result is an empty array (a rank-one array of', &
+'  size zero).', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -17512,8 +17516,6 @@ textblock=[character(len=256) :: &
 '  o  SIZE(3) - Determine the size of an array', &
 '', &
 '  o  RANK(3) - Rank of a data object', &
-'', &
-'  o  SHAPE(3) - Determine the shape of an array', &
 '', &
 '  o  UBOUND(3) - Upper dimension bounds of an array', &
 '', &
@@ -17553,7 +17555,7 @@ textblock=[character(len=256) :: &
 'shifta(3fortran)                                              shifta(3fortran)', &
 '', &
 'NAME', &
-'  SHIFTA(3) - [BIT:SHIFT] Shift bits right with fill', &
+'  SHIFTA(3) - [BIT:SHIFT] Right shift with fill', &
 '', &
 'SYNOPSIS', &
 '  result = shifta(i, shift )', &
@@ -17566,27 +17568,29 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 '  o  a kind designated as ** may be any supported kind value for the type', &
 '', &
-'  o  ARRAY may be any type and rank (and the result will automatically be of', &
-'     the same type, kind and rank as ARRAY).', &
+'  o  I is an integer of any kind', &
+'', &
+'  o  SHIFT is an integer of any kind', &
+'', &
+'  o  the result will automatically be of the same type, kind and rank as I.', &
 '', &
 'DESCRIPTION', &
 '  SHIFTA(3) returns a value corresponding to I with all of the bits shifted', &
 '  right by SHIFT places and the vacated bits on the left filled with the value', &
-'  of the original left-most bit..', &
+'  of the original left-most bit.', &
 '', &
 'OPTIONS', &
 '  o  I : The initial value to shift and fill', &
 '', &
 '  o  SHIFT : how many bits to shift right. It shall be nonnegative and less', &
-'     than or equal to BIT_SIZE(I). or the value is undefined.', &
+'     than or equal to BIT_SIZE(I). or the value is undefined. If SHIFT is zero', &
+'     the result is I.', &
 '', &
 'RESULT', &
-'  The result characteristics (kind, type, rank, shape, ....) are the same as', &
-'  I.', &
-'', &
 '  The result has the value obtained by shifting the bits of I to the right', &
-'  SHIFT bits and replicating the leftmost bit of I in the left SHIFT bits (the', &
-'  leftmost bit in "two''s complement" representation is the sign bit).', &
+'  SHIFT bits and replicating the leftmost bit of I in the left SHIFT bits', &
+'  (Note the leftmost bit in "two''s complement" representation is the sign', &
+'  bit).', &
 '', &
 '  Bits shifted out from the right end are lost.', &
 '', &
@@ -17691,8 +17695,11 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 '  o  a kind designated as ** may be any supported kind value for the type', &
 '', &
-'  o  ARRAY may be any type and rank (and the result will automatically be of', &
-'     the same type, kind and rank as ARRAY).', &
+'  o  I is an integer of any kind', &
+'', &
+'  o  SHIFT is an integer of any kind', &
+'', &
+'  o  the result will automatically be of the same type, kind and rank as I.', &
 '', &
 'DESCRIPTION', &
 '  SHIFTL(3) returns a value corresponding to I with all of the bits shifted', &
@@ -17703,6 +17710,12 @@ textblock=[character(len=256) :: &
 '', &
 '  If the absolute value of SHIFT is greater than BIT_SIZE(I), the value is', &
 '  undefined.', &
+'', &
+'  For example, for a 16-bit integer left-shifted five ...', &
+'', &
+'          >  |a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p| <- original 16-bit example', &
+'          >  |f|g|h|i|j|k|l|m|n|o|p|           <- left-shifted five', &
+'          >  |f|g|h|i|j|k|l|m|n|o|p|0|0|0|0|0| <- right-padded with zeros', &
 '', &
 '  Note the value of the result is the same as ISHFT (I, SHIFT).', &
 '', &
@@ -17727,15 +17740,12 @@ textblock=[character(len=256) :: &
 '      integer(kind=int32),allocatable :: ivals(:)', &
 '      integer             :: i', &
 '', &
-'       ! basic usage', &
+'        print *, '' basic usage''', &
 '        ival=100', &
-'        write(*,*)ival, shiftl(100,3)', &
+'        write(*,*)ival, shiftl(ival,3)', &
 '', &
 '       ! elemental (input values may be conformant arrays)', &
-'        ! shifting is often equivalent to multiplying be a power of two', &
-'        write(*,*) shiftl(-1,[(i,i=1,bit_size(0))])', &
-'        write(*,*)', &
-'        write(*,*) shiftl(+3,[(i,i=1,bit_size(0))])', &
+'        print *, '' elemental''', &
 '', &
 '       ! loop through some ivalues', &
 '         shift=9', &
@@ -17753,7 +17763,7 @@ textblock=[character(len=256) :: &
 '            write(*,''(  "RESULT = ",b32.32," == ",i0)'') oval,oval', &
 '         enddo', &
 '', &
-'        ! elemental (input values may be conformant arrays)', &
+'        ! more about elemental', &
 '         ELEM : block', &
 '         integer(kind=int8)  :: arr(2,2)=reshape([2,4,8,16],[2,2])', &
 '         write(*,*)"characteristics of the result are the same as input"', &
@@ -17766,31 +17776,19 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'      >         100         800', &
-'      >', &
-'      >           -2          -4          -8         -16         -32         -64', &
-'      >         -128        -256        -512       -1024       -2048       -4096', &
-'      >        -8192      -16384      -32768      -65536     -131072     -262144', &
-'      >      -524288    -1048576    -2097152    -4194304    -8388608   -16777216', &
-'      >    -33554432   -67108864  -134217728  -268435456  -536870912 -1073741824', &
-'      >  -2147483648           0', &
-'      >', &
-'      >            6          12          24          48          96         192', &
-'      >          384         768        1536        3072        6144       12288', &
-'      >        24576       49152       98304      196608      393216      786432', &
-'      >      1572864     3145728     6291456    12582912    25165824    50331648', &
-'      >    100663296   201326592   402653184   805306368  1610612736 -1073741824', &
-'      >  -2147483648           0', &
-'      >', &
-'      >   SHIFT =  9', &
-'      >   I =      01010101010101010101010101010101 == 1431655765', &
-'      >   RESULT = 10101010101010101010101000000000 == -1431655936', &
-'      >   I =      10101010101010101010101010101010 == -1431655766', &
-'      >   RESULT = 01010101010101010101010000000000 == 1431655424', &
-'      >   I =      11111111111111111111111111111111 == -1', &
-'      >   RESULT = 11111111111111111111111000000000 == -512', &
-'      >    characteristics of the result are the same as input', &
-'      >   kind= 1 shape= 2 2 size= 4', &
+'       >    basic usage', &
+'       >           100         800', &
+'       >    elemental', &
+'       >', &
+'       >  SHIFT =  9', &
+'       >  I =      01010101010101010101010101010101 == 1431655765', &
+'       >  RESULT = 10101010101010101010101000000000 == -1431655936', &
+'       >  I =      10101010101010101010101010101010 == -1431655766', &
+'       >  RESULT = 01010101010101010101010000000000 == 1431655424', &
+'       >  I =      11111111111111111111111111111111 == -1', &
+'       >  RESULT = 11111111111111111111111000000000 == -512', &
+'       >   characteristics of the result are the same as input', &
+'       >  kind= 1 shape= 2 2 size= 4', &
 '', &
 'STANDARD', &
 '  Fortran 2008', &
@@ -17827,25 +17825,41 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 '  o  a kind designated as ** may be any supported kind value for the type', &
 '', &
-'  o  ARRAY may be any type and rank (and the result will automatically be of', &
-'     the same type, kind and rank as ARRAY).', &
+'  o  I is an integer of any kind', &
+'', &
+'  o  SHIFT is an integer of any kind', &
+'', &
+'  o  the result will automatically be of the same type, kind and rank as I.', &
 '', &
 'DESCRIPTION', &
 '  SHIFTR(3) returns a value corresponding to I with all of the bits shifted', &
-'  right by SHIFT places. If the absolute value of SHIFT is greater than', &
-'  BIT_SIZE(I), the value is undefined. Bits shifted out from the right end are', &
-'  lost, and bits shifted in from the left end are set to 0.', &
+'  right by SHIFT places.', &
+'', &
+'  If the absolute value of SHIFT is greater than BIT_SIZE(I), the value is', &
+'  undefined.', &
+'', &
+'  Bits shifted out from the right end are lost, and bits shifted in from the', &
+'  left end are set to 0.', &
+'', &
+'  For example, for a 16-bit integer right-shifted five ...', &
+'', &
+'          >  |a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p| <- original 16-bit example', &
+'          >            |a|b|c|d|e|f|g|h|i|j|k| <- right-shifted five', &
+'          >  |0|0|0|0|0|f|g|h|i|j|k|l|m|n|o|p| <- left-padded with zeros', &
 '', &
 '  Note the value of the result is the same as ISHFT (I, -SHIFT).', &
 '', &
-'OPTIONS', &
-'  o  I : The initial value to shift and fill in with zeros', &
+'  Shifting right', &
 '', &
-'  o  SHIFT : how many bits to shift right. It shall be nonnegative and less', &
+'OPTIONS', &
+'  o  I : The value to shift', &
+'', &
+'  o  SHIFT : How many bits to shift right. It shall be nonnegative and less', &
 '     than or equal to BIT_SIZE(I).', &
 '', &
 'RESULT', &
-'  The return value is of type integer and of the same kind as I.', &
+'  The remaining bits shifted right SHIFT positions. Vacated positions on the', &
+'  left are filled with zeros.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -17859,14 +17873,12 @@ textblock=[character(len=256) :: &
 '      integer(kind=int32),allocatable :: ivals(:)', &
 '      integer             :: i', &
 '', &
-'        ! basic usage', &
+'        print *,'' basic usage''', &
 '        ival=100', &
 '        write(*,*)ival, shiftr(100,3)', &
 '', &
 '        ! elemental (input values may be conformant arrays)', &
-'        write(*,*) shiftr(-1,[(i,i=1,bit_size(0))])', &
-'', &
-'        ! loop through some ivalues', &
+'        print *,'' elemental''', &
 '         shift=9', &
 '         ivals=[ &', &
 '         & int(b"01010101010101010101010101010101"), &', &
@@ -17879,10 +17891,10 @@ textblock=[character(len=256) :: &
 '            write(*,''(  "I =      ",b32.32," == ",i0)'') ivals(i),ivals(i)', &
 '            ! print shifted value as binary and decimal', &
 '            oval=shiftr(ivals(i),shift)', &
-'            write(*,''(  "RESULT = ",b32.32," == ",i0)'') oval,oval', &
+'            write(*,''(  "RESULT = ",b32.32," == ",i0,/)'') oval,oval', &
 '         enddo', &
 '', &
-'         ! more on elemental (input values may be conformant arrays)', &
+'         ! more on elemental', &
 '         ELEM : block', &
 '         integer(kind=int8)  :: arr(2,2)=reshape([2,4,8,16],[2,2])', &
 '         write(*,*)"characteristics of the result are the same as input"', &
@@ -17895,23 +17907,22 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'      >          100          12', &
-'      >   2147483647  1073741823   536870911   268435455   134217727    67108863', &
-'      >     33554431    16777215     8388607     4194303     2097151     1048575', &
-'      >       524287      262143      131071       65535       32767       16383', &
-'      >         8191        4095        2047        1023         511         255', &
-'      >          127          63          31          15           7           3', &
-'      >            1           0', &
-'      >', &
-'      >  SHIFT =  9', &
-'      >  I =      01010101010101010101010101010101 == 1431655765', &
-'      >  RESULT = 00000000001010101010101010101010 == 2796202', &
-'      >  I =      10101010101010101010101010101010 == -1431655766', &
-'      >  RESULT = 00000000010101010101010101010101 == 5592405', &
-'      >  I =      11111111111111111111111111111111 == -1', &
-'      >  RESULT = 00000000011111111111111111111111 == 8388607', &
-'      >   characteristics of the result are the same as input', &
-'      >  kind= 1 shape= 2 2 size= 4', &
+'        >    basic usage', &
+'        >           100          12', &
+'        >    elemental', &
+'        >', &
+'        >  SHIFT =  9', &
+'        >  I =      01010101010101010101010101010101 == 1431655765', &
+'        >  RESULT = 00000000001010101010101010101010 == 2796202', &
+'        >', &
+'        >  I =      10101010101010101010101010101010 == -1431655766', &
+'        >  RESULT = 00000000010101010101010101010101 == 5592405', &
+'        >', &
+'        >  I =      11111111111111111111111111111111 == -1', &
+'        >  RESULT = 00000000011111111111111111111111 == 8388607', &
+'        >', &
+'        >   characteristics of the result are the same as input', &
+'        >  kind= 1 shape= 2 2 size= 4', &
 '', &
 'STANDARD', &
 '  Fortran 2008', &
@@ -18680,7 +18691,7 @@ textblock=[character(len=256) :: &
 '  In mathematics, a square root of a radicand X is a number Y such that Y*Y =', &
 '  X.', &
 '', &
-'  Every nonnegative radicand x has two square roots of the same unique', &
+'  Every nonnegative radicand X has two square roots of the same unique', &
 '  magnitude, one positive and one negative. The nonnegative square root is', &
 '  called the principal square root.', &
 '', &
@@ -18692,14 +18703,16 @@ textblock=[character(len=256) :: &
 '  in order to have a valid square root.', &
 '', &
 'OPTIONS', &
-'  o  X : If X is real its value must be greater than or equal to zero.', &
+'  o  X : The radicand to find the principal square root of. If X is real its', &
+'     value must be greater than or equal to zero.', &
 '', &
 'RESULT', &
-'  The square root of X is returned.', &
+'  The principal square root of X is returned.', &
 '', &
-'  A complex is the principal value with the real part greater than or equal to', &
-'  zero. When the real part of the result is zero, the imaginary part has the', &
-'  same sign as the imaginary part of X.', &
+'  For a complex result the real part is greater than or equal to zero.', &
+'', &
+'  When the real part of the result is zero, the imaginary part has the same', &
+'  sign as the imaginary part of X.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &

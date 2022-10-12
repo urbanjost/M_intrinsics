@@ -6,12 +6,12 @@
 
 ### **Synopsis**
 ```fortran
-  result = shape(source [,kind])
+  result = shape( source [,kind] )
 ```
 ```fortran
-   integer(kind=KIND) function(shape(source,kind)
+   integer(kind=KIND) function shape( source, KIND )
 
-    type(TYPE(kind=**)),intent(in)        :: source(..)
+    type(TYPE(kind=**)),intent(in)       :: source(..)
     integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
@@ -21,9 +21,13 @@
   - **source** is an array or scalar of any type. If **source** is a pointer
     it must be associated and allocatable arrays must be allocated.
 
+  - **KIND** is an _integer_ initialization expression.
+    If absent, the return value has the default integer kind otherwise
+    the specified kind.
+
 ### **Description**
 
-**shape**(3) determines the shape of an array.
+  **shape**(3) determines the shape of an array.
 
 ### **Options**
 
@@ -32,16 +36,20 @@
   must be associated and allocatable arrays must be allocated.
 
 - **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
-  parameter of the result.
+  : indicates the kind parameter of the result.
+
 
 ### **Result**
 
-An _integer_ array of rank one with as many elements as **source** has
-dimensions. The elements of the resulting array correspond to the extend
-of **source** along the respective dimensions. If **source** is a scalar, the
-result is the rank one array of size zero. If **kind** is absent, the return
-value has the default integer kind otherwise the specified kind.
+  An _integer_ array of rank one with as many elements as **source**
+  has dimensions. 
+
+  The elements of the resulting array correspond to the
+  extent of **source** along the respective dimensions.
+
+  If **source** is
+  a scalar, the result is an empty array (a rank-one array of size zero).
+
 
 ### **Examples**
 
@@ -59,9 +67,7 @@ integer, dimension(-1:1, -1:2) :: a
    print all, 'lbound of array=',lbound(a)
 end program demo_shape
 ```
-
 Results:
-
 ```text
    shape of array= 3 4
    shape of constant=
@@ -69,7 +75,6 @@ Results:
    ubound of array= 1 2
    lbound of array= -1 -1
 ```
-
 ### **Standard**
 
 Fortran 95 ; with KIND argument Fortran 2003
@@ -80,7 +85,6 @@ Fortran 95 ; with KIND argument Fortran 2003
 
 - [**size**(3)](#size) -  Determine the size of an array
 - [**rank**(3)](#rank) -  Rank of a data object
-- [**shape**(3)](#shape) -  Determine the shape of an array
 - [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
 - [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
 

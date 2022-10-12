@@ -18411,12 +18411,12 @@ Fortran 95
 
 ### **Synopsis**
 ```fortran
-  result = shape(source [,kind])
+  result = shape( source [,kind] )
 ```
 ```fortran
-   integer(kind=KIND) function(shape(source,kind)
+   integer(kind=KIND) function shape( source, KIND )
 
-    type(TYPE(kind=**)),intent(in)        :: source(..)
+    type(TYPE(kind=**)),intent(in)       :: source(..)
     integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
@@ -18426,9 +18426,13 @@ Fortran 95
   - **source** is an array or scalar of any type. If **source** is a pointer
     it must be associated and allocatable arrays must be allocated.
 
+  - **KIND** is an _integer_ initialization expression.
+    If absent, the return value has the default integer kind otherwise
+    the specified kind.
+
 ### **Description**
 
-**shape**(3) determines the shape of an array.
+  **shape**(3) determines the shape of an array.
 
 ### **Options**
 
@@ -18437,16 +18441,18 @@ Fortran 95
   must be associated and allocatable arrays must be allocated.
 
 - **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
-  parameter of the result.
+  : indicates the kind parameter of the result.
 
 ### **Result**
 
-An _integer_ array of rank one with as many elements as **source** has
-dimensions. The elements of the resulting array correspond to the extend
-of **source** along the respective dimensions. If **source** is a scalar, the
-result is the rank one array of size zero. If **kind** is absent, the return
-value has the default integer kind otherwise the specified kind.
+  An _integer_ array of rank one with as many elements as **source**
+  has dimensions.
+
+  The elements of the resulting array correspond to the
+  extent of **source** along the respective dimensions.
+
+  If **source** is
+  a scalar, the result is an empty array (a rank-one array of size zero).
 
 ### **Examples**
 
@@ -18464,9 +18470,7 @@ integer, dimension(-1:1, -1:2) :: a
    print all, 'lbound of array=',lbound(a)
 end program demo_shape
 ```
-
 Results:
-
 ```text
    shape of array= 3 4
    shape of constant=
@@ -18474,7 +18478,6 @@ Results:
    ubound of array= 1 2
    lbound of array= -1 -1
 ```
-
 ### **Standard**
 
 Fortran 95 ; with KIND argument Fortran 2003
@@ -18485,7 +18488,6 @@ Fortran 95 ; with KIND argument Fortran 2003
 
 - [**size**(3)](#size) -  Determine the size of an array
 - [**rank**(3)](#rank) -  Rank of a data object
-- [**shape**(3)](#shape) -  Determine the shape of an array
 - [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
 - [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
 
@@ -18510,7 +18512,7 @@ Fortran 95 ; with KIND argument Fortran 2003
 
 ### **Name**
 
-**shifta**(3) - \[BIT:SHIFT\] Shift bits right with fill
+**shifta**(3) - \[BIT:SHIFT\] Right shift with fill
 
 ### **Synopsis**
 ```fortran
@@ -18525,14 +18527,15 @@ Fortran 95 ; with KIND argument Fortran 2003
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
- - **array** may be any type and rank (and the result will
-   automatically be of the same type, kind and rank as **array**).
+ - **i** is an _integer_ of any kind
+ - **shift** is an _integer_ of any kind
+ - the result will automatically be of the same type, kind and rank as **i**.
 
 ### **Description**
 
   **shifta**(3) returns a value corresponding to **i** with all of the
   bits shifted right by **shift** places and the vacated bits on the
-  left filled with the value of the original left-most bit..
+  left filled with the value of the original left-most bit.
 
 ### **Options**
 
@@ -18542,16 +18545,13 @@ Fortran 95 ; with KIND argument Fortran 2003
 - **shift**
   : how many bits to shift right.
     It shall be nonnegative and less than or equal to **bit_size(i)**.
-    or the value is undefined.
+    or the value is undefined. If **shift** is zero the result is **i**.
 
 ### **Result**
 
-  The result characteristics (kind, type, rank, shape, ....) are the
-  same as **i**.
-
   The result has the value obtained by shifting the bits of **i** to
   the right **shift**  bits and replicating the leftmost bit of **i**
-  in the left **shift** bits (the leftmost bit in "two's complement"
+  in the left **shift** bits (Note the leftmost bit in "two's complement"
   representation is the sign bit).
 
   Bits shifted out from the right end are lost.
@@ -18624,7 +18624,6 @@ Results:
  >  characteristics of the result are the same as input
  > kind= 1 shape= 2 2 size= 4
 ```
-
 ### **Standard**
 
 Fortran 2008
@@ -18657,20 +18656,27 @@ Fortran 2008
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
- - **array** may be any type and rank (and the result will
-   automatically be of the same type, kind and rank as **array**).
+ - **i** is an _integer_ of any kind
+ - **shift** is an _integer_ of any kind
+ - the result will automatically be of the same type, kind and rank as **i**.
 
 ### **Description**
 
-**shiftl**(3) returns a value corresponding to **i** with all of the
-bits shifted left by **shift** places.
+  **shiftl**(3) returns a value corresponding to **i** with all of the
+  bits shifted left by **shift** places.
 
-Bits shifted out from the left end are lost, and bits shifted in from
-the right end are set to **0**.
+  Bits shifted out from the left end are lost, and bits shifted in from
+  the right end are set to **0**.
 
-If the absolute value of **shift** is greater than **bit_size(i)**,
-the value is undefined.
+  If the absolute value of **shift** is greater than **bit_size(i)**,
+  the value is undefined.
 
+  For example, for a 16-bit integer left-shifted five ...
+```text
+    >  |a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p| <- original 16-bit example
+    >  |f|g|h|i|j|k|l|m|n|o|p|           <- left-shifted five
+    >  |f|g|h|i|j|k|l|m|n|o|p|0|0|0|0|0| <- right-padded with zeros
+```
 Note the value of the result is the same as **ishft (i, shift)**.
 
 ### **Options**
@@ -18699,15 +18705,12 @@ integer(kind=int32) :: ival
 integer(kind=int32),allocatable :: ivals(:)
 integer             :: i
 
- ! basic usage
+  print *, ' basic usage'
   ival=100
-  write(*,*)ival, shiftl(100,3)
+  write(*,*)ival, shiftl(ival,3)
 
  ! elemental (input values may be conformant arrays)
-  ! shifting is often equivalent to multiplying be a power of two
-  write(*,*) shiftl(-1,[(i,i=1,bit_size(0))])
-  write(*,*)
-  write(*,*) shiftl(+3,[(i,i=1,bit_size(0))])
+  print *, ' elemental'
 
  ! loop through some ivalues
    shift=9
@@ -18725,7 +18728,7 @@ integer             :: i
       write(*,'(  "RESULT = ",b32.32," == ",i0)') oval,oval
    enddo
 
-  ! elemental (input values may be conformant arrays)
+  ! more about elemental
    ELEM : block
    integer(kind=int8)  :: arr(2,2)=reshape([2,4,8,16],[2,2])
    write(*,*)"characteristics of the result are the same as input"
@@ -18738,33 +18741,20 @@ end program demo_shiftl
 ```
 Results:
 ```text
->         100         800
->
->           -2          -4          -8         -16         -32         -64
->         -128        -256        -512       -1024       -2048       -4096
->        -8192      -16384      -32768      -65536     -131072     -262144
->      -524288    -1048576    -2097152    -4194304    -8388608   -16777216
->    -33554432   -67108864  -134217728  -268435456  -536870912 -1073741824
->  -2147483648           0
->
->            6          12          24          48          96         192
->          384         768        1536        3072        6144       12288
->        24576       49152       98304      196608      393216      786432
->      1572864     3145728     6291456    12582912    25165824    50331648
->    100663296   201326592   402653184   805306368  1610612736 -1073741824
->  -2147483648           0
->
->   SHIFT =  9
->   I =      01010101010101010101010101010101 == 1431655765
->   RESULT = 10101010101010101010101000000000 == -1431655936
->   I =      10101010101010101010101010101010 == -1431655766
->   RESULT = 01010101010101010101010000000000 == 1431655424
->   I =      11111111111111111111111111111111 == -1
->   RESULT = 11111111111111111111111000000000 == -512
->    characteristics of the result are the same as input
->   kind= 1 shape= 2 2 size= 4
+ >    basic usage
+ >           100         800
+ >    elemental
+ >
+ >  SHIFT =  9
+ >  I =      01010101010101010101010101010101 == 1431655765
+ >  RESULT = 10101010101010101010101000000000 == -1431655936
+ >  I =      10101010101010101010101010101010 == -1431655766
+ >  RESULT = 01010101010101010101010000000000 == 1431655424
+ >  I =      11111111111111111111111111111111 == -1
+ >  RESULT = 11111111111111111111111000000000 == -512
+ >   characteristics of the result are the same as input
+ >  kind= 1 shape= 2 2 size= 4
 ```
-
 ### **Standard**
 
 Fortran 2008
@@ -18797,31 +18787,44 @@ Fortran 2008
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
- - **array** may be any type and rank (and the result will
-   automatically be of the same type, kind and rank as **array**).
+ - **i** is an _integer_ of any kind
+ - **shift** is an _integer_ of any kind
+ - the result will automatically be of the same type, kind and rank as **i**.
 
 ### **Description**
 
-**shiftr**(3) returns a value corresponding to **i** with all of the bits
-shifted right by **shift** places. If the absolute value of **shift**
-is greater than **bit_size(i)**, the value is undefined. Bits shifted
-out from the right end are lost, and bits shifted in from the left end
-are set to 0.
+  **shiftr**(3) returns a value corresponding to **i** with all of the
+  bits shifted right by **shift** places.
 
-Note the value of the result is the same as **ishft (i, -shift)**.
+  If the absolute value of **shift** is greater than **bit_size(i)**,
+  the value is undefined.
+
+  Bits shifted out from the right end are lost, and bits shifted in from
+  the left end are set to 0.
+
+  For example, for a 16-bit integer right-shifted five ...
+```text
+    >  |a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p| <- original 16-bit example
+    >            |a|b|c|d|e|f|g|h|i|j|k| <- right-shifted five
+    >  |0|0|0|0|0|f|g|h|i|j|k|l|m|n|o|p| <- left-padded with zeros
+```
+  Note the value of the result is the same as **ishft (i, -shift)**.
+
+  Shifting right
 
 ### **Options**
 
 - **i**
-  : The initial value to shift and fill in with zeros
+  : The value to shift
 
 - **shift**
-  : how many bits to shift right.
+  : How many bits to shift right.
     It shall be nonnegative and less than or equal to **bit_size(i)**.
 
 ### **Result**
 
-The return value is of type _integer_ and of the same kind as **i**.
+  The remaining bits shifted right **shift** positions.
+  Vacated positions on the left are filled with zeros.
 
 ### **Examples**
 
@@ -18836,14 +18839,12 @@ integer(kind=int32) :: ival
 integer(kind=int32),allocatable :: ivals(:)
 integer             :: i
 
-  ! basic usage
+  print *,' basic usage'
   ival=100
   write(*,*)ival, shiftr(100,3)
 
   ! elemental (input values may be conformant arrays)
-  write(*,*) shiftr(-1,[(i,i=1,bit_size(0))])
-
-  ! loop through some ivalues
+  print *,' elemental'
    shift=9
    ivals=[ &
    & int(b"01010101010101010101010101010101"), &
@@ -18856,10 +18857,10 @@ integer             :: i
       write(*,'(  "I =      ",b32.32," == ",i0)') ivals(i),ivals(i)
       ! print shifted value as binary and decimal
       oval=shiftr(ivals(i),shift)
-      write(*,'(  "RESULT = ",b32.32," == ",i0)') oval,oval
+      write(*,'(  "RESULT = ",b32.32," == ",i0,/)') oval,oval
    enddo
 
-   ! more on elemental (input values may be conformant arrays)
+   ! more on elemental
    ELEM : block
    integer(kind=int8)  :: arr(2,2)=reshape([2,4,8,16],[2,2])
    write(*,*)"characteristics of the result are the same as input"
@@ -18872,25 +18873,23 @@ end program demo_shiftr
 ```
 Results:
 ```text
->          100          12
->   2147483647  1073741823   536870911   268435455   134217727    67108863
->     33554431    16777215     8388607     4194303     2097151     1048575
->       524287      262143      131071       65535       32767       16383
->         8191        4095        2047        1023         511         255
->          127          63          31          15           7           3
->            1           0
->
->  SHIFT =  9
->  I =      01010101010101010101010101010101 == 1431655765
->  RESULT = 00000000001010101010101010101010 == 2796202
->  I =      10101010101010101010101010101010 == -1431655766
->  RESULT = 00000000010101010101010101010101 == 5592405
->  I =      11111111111111111111111111111111 == -1
->  RESULT = 00000000011111111111111111111111 == 8388607
->   characteristics of the result are the same as input
->  kind= 1 shape= 2 2 size= 4
+  >    basic usage
+  >           100          12
+  >    elemental
+  >
+  >  SHIFT =  9
+  >  I =      01010101010101010101010101010101 == 1431655765
+  >  RESULT = 00000000001010101010101010101010 == 2796202
+  >
+  >  I =      10101010101010101010101010101010 == -1431655766
+  >  RESULT = 00000000010101010101010101010101 == 5592405
+  >
+  >  I =      11111111111111111111111111111111 == -1
+  >  RESULT = 00000000011111111111111111111111 == 8388607
+  >
+  >   characteristics of the result are the same as input
+  >  kind= 1 shape= 2 2 size= 4
 ```
-
 ### **Standard**
 
 Fortran 2008
@@ -19722,7 +19721,7 @@ need an illustration of what happens with higher dimension array
   In mathematics, a square root of a radicand **x** is a number **y**
   such that **y\*y = x**.
 
-  Every nonnegative radicand  _x_ has two square roots of the same unique
+  Every nonnegative radicand  **x** has two square roots of the same unique
   magnitude, one positive and one negative. The nonnegative square root
   is called the principal square root.
 
@@ -19736,15 +19735,17 @@ need an illustration of what happens with higher dimension array
 ### **Options**
 
 - **x**
-  : If **x** is _real_ its value must be greater than or equal to zero.
+  : The radicand to find the principal square root of.
+  If **x** is _real_ its value must be greater than or equal to zero.
 
 ### **Result**
 
-  The square root of **x** is returned.
+  The principal square root of **x** is returned.
 
-  A _complex_ is the principal value with the real part
-  greater than or equal to zero. When the real part of the result is zero,
-  the imaginary part has the same sign as the imaginary part of **x**.
+  For a _complex_ result the real part is greater than or equal to zero.
+
+  When the real part of the result is zero, the imaginary part has the
+  same sign as the imaginary part of **x**.
 
 ### **Examples**
 

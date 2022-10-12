@@ -7,14 +7,12 @@
       integer(kind=int32),allocatable :: ivals(:)
       integer             :: i
 
-        ! basic usage
+        print *,' basic usage'
         ival=100
         write(*,*)ival, shiftr(100,3)
 
         ! elemental (input values may be conformant arrays)
-        write(*,*) shiftr(-1,[(i,i=1,bit_size(0))])
-
-        ! loop through some ivalues
+        print *,' elemental'
          shift=9
          ivals=[ &
          & int(b"01010101010101010101010101010101"), &
@@ -27,10 +25,10 @@
             write(*,'(  "I =      ",b32.32," == ",i0)') ivals(i),ivals(i)
             ! print shifted value as binary and decimal
             oval=shiftr(ivals(i),shift)
-            write(*,'(  "RESULT = ",b32.32," == ",i0)') oval,oval
+            write(*,'(  "RESULT = ",b32.32," == ",i0,/)') oval,oval
          enddo
 
-         ! more on elemental (input values may be conformant arrays)
+         ! more on elemental
          ELEM : block
          integer(kind=int8)  :: arr(2,2)=reshape([2,4,8,16],[2,2])
          write(*,*)"characteristics of the result are the same as input"
