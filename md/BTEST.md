@@ -84,40 +84,37 @@ character(len=*),parameter :: g='(*(g0))'
     write(*,'(a,/,*(l2,1x,l2,/))')'the value of btest (2, a)',btest(2,a)
 end program demo_btest
 ```
-
 Results:
-
 ```text
-Looking at the integer: 33856=>11111111111111110111101111000000
-
-00000000000000001000010001000000
-11111111111111110111101111000000
-1000010001000000
-11111111111111110111101111000000
-from bit 0 to bit 32==>
-FFFFFFTFFFTFFFFTFFFFFFFFFFFFFFFF
-
-so for 33856 with a bit size of 32
-00000000000000001000010001000000
-________________^____^___^______
-
-and for -33856 with a bit size of 32
-11111111111111110111101111000000
-^^^^^^^^^^^^^^^^_^^^^_^^^^______
-
-given the array a ...
- 1  3
- 2  4
-
-the value of btest (a, 2)
- F  F
- F  T
-
-the value of btest (2, a)
- T  F
- F  F
+  > Looking at the integer: 33856=>11111111111111110111101111000000
+  > 
+  > 00000000000000001000010001000000
+  > 11111111111111110111101111000000
+  > 1000010001000000
+  > 11111111111111110111101111000000
+  > from bit 0 to bit 32==>
+  > FFFFFFTFFFTFFFFTFFFFFFFFFFFFFFFF
+  > 
+  > so for 33856 with a bit size of 32
+  > 00000000000000001000010001000000
+  > ________________^____^___^______
+  > 
+  > and for -33856 with a bit size of 32
+  > 11111111111111110111101111000000
+  > ^^^^^^^^^^^^^^^^_^^^^_^^^^______
+  > 
+  > given the array a ...
+  >  1  3
+  >  2  4
+  > 
+  > the value of btest (a, 2)
+  >  F  F
+  >  F  T
+  > 
+  > the value of btest (2, a)
+  >  T  F
+  >  F  F
 ```
-
 ### **Standard**
 
 Fortran 95

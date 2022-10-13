@@ -9,22 +9,23 @@
     result = maskr( i [,kind] )
 ```
 ```fortran
-     elemental integer(kind=KIND) function maskr(i,kind)
+     elemental integer(kind=KIND) function maskr(i,KIND)
 
       integer(kind=**),intent(in) :: i
-      integer(kind=**),intent(in),optional :: kind
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
 - a kind designated as ** may be any supported kind value for the type
+- **i** is an integer
 - **kind** Shall be a scalar constant expression of type _integer_
   whose value is a supported _integer_ kind.
-- The result is of the same _kind_ as **i** unless **kind** is
+- The result is an _integer_ of the same _kind_ as **i** unless **kind** is
   present, which is then used to specify the kind of the result.
 
 ### **Description**
 
-  **maskr**(3) the result is an _integer_ with its rightmost **i**
+  **maskr**(3) generates an _integer_ with its rightmost **i**
   bits set to 1, and the remaining bits set to 0.
 
 ### **Options**
@@ -54,34 +55,45 @@ Sample program:
 program demo_maskr
 implicit none
 integer :: i
+
   ! basics
-   i=maskr(1)
-   write(*,'(i0,1x,b0,1x,b0/)') i,i, shiftl(7,bit_size(0)-1)
-   i=maskr(5)
-   write(*,'(i0,1x,b0,1x,b0/)') i,i, shiftl(7,bit_size(0)-5)
-   i=maskr(11)
-   write(*,'(i0,1x,b0,1x,b0/)') i,i, shiftl(7,bit_size(0)-11)
+   print *,'basics'
+   write(*,'(i0,t5,b32.32)') 1, maskr(1)  
+   write(*,'(i0,t5,b32.32)') 5,  maskr(5) 
+   write(*,'(i0,t5,b32.32)') 11, maskr(11)
+   print *,"should be equivalent on two's-complement processors"
+   write(*,'(i0,t5,b32.32)') 1,  shiftr(-1,bit_size(0)-1)
+   write(*,'(i0,t5,b32.32)') 5,  shiftr(-1,bit_size(0)-5)
+   write(*,'(i0,t5,b32.32)') 11, shiftr(-1,bit_size(0)-11)
+
   ! elemental
+   print *,'elemental '
+   print *,'(array argument accepted like called with each element)'
    write(*,'(*(i11,1x,b0.32,1x,/))') maskr([(i,i,i=0,bit_size(0),4)])
+
 end program demo_maskr
 ```
 Results:
 ```text
-   1 1 10000000000000000000000000000000
-
-   31 11111 111000000000000000000000000000
-
-   2047 11111111111 111000000000000000000000
-
-             0 00000000000000000000000000000000
-            15 00000000000000000000000000001111
-           255 00000000000000000000000011111111
-          4095 00000000000000000000111111111111
-         65535 00000000000000001111111111111111
-       1048575 00000000000011111111111111111111
-      16777215 00000000111111111111111111111111
-     268435455 00001111111111111111111111111111
-            -1 11111111111111111111111111111111
+ >   basics
+ >  1   00000000000000000000000000000001
+ >  5   00000000000000000000000000011111
+ >  11  00000000000000000000011111111111
+ >   should be equivalent on two's-complement processors
+ >  1   00000000000000000000000000000001
+ >  5   00000000000000000000000000011111
+ >  11  00000000000000000000011111111111
+ >   elemental 
+ >   (array argument accepted like called with each element)
+ >            0 00000000000000000000000000000000
+ >           15 00000000000000000000000000001111
+ >          255 00000000000000000000000011111111
+ >         4095 00000000000000000000111111111111
+ >        65535 00000000000000001111111111111111
+ >      1048575 00000000000011111111111111111111
+ >     16777215 00000000111111111111111111111111
+ >    268435455 00001111111111111111111111111111
+ >           -1 11111111111111111111111111111111
 ```
 ### **Standard**
 

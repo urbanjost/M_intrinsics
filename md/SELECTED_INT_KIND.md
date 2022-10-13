@@ -50,9 +50,9 @@ end program demo_selected_int_kind
 Results:
 
 ```text
-     2147483647  9223372036854775807
-    T
-    T
+  >   2147483647  9223372036854775807
+  >  T
+  >  T
 ```
 
 ### **Standard**

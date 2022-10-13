@@ -71,11 +71,11 @@ end program demo_dot_prod
 ```
 Results:
 ```text
-     1  2  3
-
-     4  5  6
-
-             32
+  >  1  2  3
+  >
+  >  4  5  6
+  >
+  >           32
 ```
 ### **Standard**
 

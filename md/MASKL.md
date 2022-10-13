@@ -9,7 +9,7 @@
     result = maskl( i [,kind] )
 ```
 ```fortran
-     elemental integer(kind=KIND) function maskl(i,kind)
+     elemental integer(kind=KIND) function maskl(i,KIND)
 
       integer(kind=**),intent(in) :: i
       integer(kind=**),intent(in),optional :: KIND
@@ -17,9 +17,10 @@
 ### **Characteristics**
 
 - a kind designated as ** may be any supported kind value for the type
+- **i** is an integer
 - **kind** Shall be a scalar constant expression of type _integer_
   whose value is a supported _integer_ kind.
-- The result is of the same _kind_ as **i** unless **kind** is
+- The result is an _integer_ of the same _kind_ as **i** unless **kind** is
   present, which is then used to specify the kind of the result.
 
 ### **Description**
@@ -54,25 +55,27 @@ Sample program:
 program demo_maskl
 implicit none
 integer :: i
-   i=maskl(1)
-   write(*,'(i0,1x,b0,/)') i,i
-   ! elemental
+  ! basics
+   i=3
+   write(*,'(i0,1x,b0)') i, maskl(i)
+
+  ! elemental
    write(*,'(*(i11,1x,b0.32,1x,/))') maskl([(i,i,i=0,bit_size(0),4)])
 end program demo_maskl
 ```
 Results:
 ```text
-   -2147483648 10000000000000000000000000000000
-
-             0 00000000000000000000000000000000
-    -268435456 11110000000000000000000000000000
-     -16777216 11111111000000000000000000000000
-      -1048576 11111111111100000000000000000000
-        -65536 11111111111111110000000000000000
-         -4096 11111111111111111111000000000000
-          -256 11111111111111111111111100000000
-           -16 11111111111111111111111111110000
-            -1 11111111111111111111111111111111
+ > 3 11100000000000000000000000000000
+ >           0 00000000000000000000000000000000
+ >  -268435456 11110000000000000000000000000000
+ >   -16777216 11111111000000000000000000000000
+ >    -1048576 11111111111100000000000000000000
+ >      -65536 11111111111111110000000000000000
+ >       -4096 11111111111111111111000000000000
+ >        -256 11111111111111111111111100000000
+ >         -16 11111111111111111111111111110000
+ >          -1 11111111111111111111111111111111
+   
 ```
 ### **Standard**
 

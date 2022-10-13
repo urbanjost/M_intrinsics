@@ -1,3 +1,4 @@
+
 ## mvbits
 
 ### **Name**
@@ -9,15 +10,21 @@
    call mvbits(from, frompos, len, to, topos)
 ```
 ```fortran
-    elemental subroutine mvbits(from,frompos,len,to,topos)
+    elemental subroutine mvbits( from, frompos, len, to, topos )
 
      integer(kind=KIND),intent(in)    :: from
-     integer(kind=KIND),intent(in)    :: frompos
-     integer(kind=KIND),intent(in)    :: len
+     integer(kind=**),intent(in)      :: frompos
+     integer(kind=**),intent(in)      :: len
      integer(kind=KIND),intent(inout) :: to
-     integer(kind=KIND),intent(in)    :: topos
+     integer(kind=**),intent(in)      :: topos
 ```
 ### **Characteristics**
+
+ - **from** is an _integer_ 
+ - **frompos** is an integer 
+ - **len** is an integer 
+ - **to** is an integer of the same kind as **from**.
+ - **topos** is an integer
 
 ### **Description**
 
@@ -50,7 +57,7 @@ The bits are numbered **0** to **bit_size(i)-1**, from right to left.
 - **to**
   : The _integer_ variable to place the copied bits into. It must
   be of the same kind as **from** and may even be the same variable
-  as **from**.
+  as **from**, or associated to it.
 
   **to** is set by copying the sequence of bits of length **len**,
   starting at position **frompos** of **from** to position **topos** of
@@ -65,8 +72,8 @@ The bits are numbered **0** to **bit_size(i)-1**, from right to left.
 
 ### **Examples**
 
-Sample program that populates a new 32-bit integer with its bytes in
-reverse order (ie. changes the Endian of the integer).
+Sample program that populates a new 32-bit integer with its bytes
+in reverse order from the input value (ie. changes the Endian of the integer).
 ```fortran
 program demo_mvbits
 use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64

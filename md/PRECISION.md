@@ -50,8 +50,8 @@ end program demo_precision
 ```
 Results:
 ```text
-              6          37
-             15         307
+  >           6          37
+  >          15         307
 ```
 ### **Standard**
 

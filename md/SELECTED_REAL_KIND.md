@@ -90,9 +90,9 @@ end program demo_selected_real_kind
 Results:
 
 ```text
-              6          37
-             15         307
-             18        4931
+  >            6          37
+  >           15         307
+  >           18        4931
 ```
 
 ### **Standard**

@@ -69,15 +69,14 @@ integer, dimension(3,3) :: a
 end program demo_cshift
 ```
 Results:
-
 ```text
-     1  4  7
-     2  5  8
-     3  6  9
-
-     4  7  1
-     8  2  5
-     9  3  6
+ >   1  4  7
+ >   2  5  8
+ >   3  6  9
+ >
+ >   4  7  1
+ >   8  2  5
+ >   9  3  6
 ```
 ### **Standard**
 

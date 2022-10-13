@@ -1811,17 +1811,17 @@ end program demo_atan2
 ```
 Results:
 ```text
-    radians=   1.000000     degrees=   57.29578
-    elemental  0.3217506      0.4636476
-    elemental  0.1973956      0.3805064
-    complex (0.0000000E+00,1.000000)   1.570796
-   X=  1.00 Y=  0.00 ANGLE= .000000     DEGREES= .000   DISTANCE=1.000000
-   X=  1.00 Y=  1.00 ANGLE= .7853982    DEGREES= 45.00  DISTANCE=1.414214
-   X=  0.00 Y=  1.00 ANGLE= 1.570796    DEGREES= 90.00  DISTANCE=1.000000
-   X= -1.00 Y=  1.00 ANGLE= 2.356194    DEGREES= 135.0  DISTANCE=1.414214
-   X= -1.00 Y=  0.00 ANGLE= 3.141593    DEGREES= 180.0  DISTANCE=1.000000
-   X= -1.00 Y= -1.00 ANGLE= 3.926991    DEGREES= 225.0  DISTANCE=1.414214
-   X=  0.00 Y= -1.00 ANGLE= 4.712389    DEGREES= 270.0  DISTANCE=1.000000
+ >  radians=   1.000000     degrees=   57.29578
+ >  elemental  0.3217506      0.4636476
+ >  elemental  0.1973956      0.3805064
+ >  complex (0.0000000E+00,1.000000)   1.570796
+ > X=  1.00 Y=  0.00 ANGLE= .000000     DEGREES= .000   DISTANCE=1.000000
+ > X=  1.00 Y=  1.00 ANGLE= .7853982    DEGREES= 45.00  DISTANCE=1.414214
+ > X=  0.00 Y=  1.00 ANGLE= 1.570796    DEGREES= 90.00  DISTANCE=1.000000
+ > X= -1.00 Y=  1.00 ANGLE= 2.356194    DEGREES= 135.0  DISTANCE=1.414214
+ > X= -1.00 Y=  0.00 ANGLE= 3.141593    DEGREES= 180.0  DISTANCE=1.000000
+ > X= -1.00 Y= -1.00 ANGLE= 3.926991    DEGREES= 225.0  DISTANCE=1.414214
+ > X=  0.00 Y= -1.00 ANGLE= 4.712389    DEGREES= 270.0  DISTANCE=1.000000
 ```
 ### **Standard**
 
@@ -3910,40 +3910,37 @@ character(len=*),parameter :: g='(*(g0))'
     write(*,'(a,/,*(l2,1x,l2,/))')'the value of btest (2, a)',btest(2,a)
 end program demo_btest
 ```
-
 Results:
-
 ```text
-Looking at the integer: 33856=>11111111111111110111101111000000
-
-00000000000000001000010001000000
-11111111111111110111101111000000
-1000010001000000
-11111111111111110111101111000000
-from bit 0 to bit 32==>
-FFFFFFTFFFTFFFFTFFFFFFFFFFFFFFFF
-
-so for 33856 with a bit size of 32
-00000000000000001000010001000000
-________________^____^___^______
-
-and for -33856 with a bit size of 32
-11111111111111110111101111000000
-^^^^^^^^^^^^^^^^_^^^^_^^^^______
-
-given the array a ...
- 1  3
- 2  4
-
-the value of btest (a, 2)
- F  F
- F  T
-
-the value of btest (2, a)
- T  F
- F  F
+  > Looking at the integer: 33856=>11111111111111110111101111000000
+  >
+  > 00000000000000001000010001000000
+  > 11111111111111110111101111000000
+  > 1000010001000000
+  > 11111111111111110111101111000000
+  > from bit 0 to bit 32==>
+  > FFFFFFTFFFTFFFFTFFFFFFFFFFFFFFFF
+  >
+  > so for 33856 with a bit size of 32
+  > 00000000000000001000010001000000
+  > ________________^____^___^______
+  >
+  > and for -33856 with a bit size of 32
+  > 11111111111111110111101111000000
+  > ^^^^^^^^^^^^^^^^_^^^^_^^^^______
+  >
+  > given the array a ...
+  >  1  3
+  >  2  4
+  >
+  > the value of btest (a, 2)
+  >  F  F
+  >  F  T
+  >
+  > the value of btest (2, a)
+  >  T  F
+  >  F  F
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -5419,20 +5416,20 @@ end program demo_conjg
 ```
 Results:
 ```fortran
- (2.000000,3.000000) (2.000000,-3.000000)
-
- (1.23456789012346,-1.23456789012346)
- (1.23456789012346,1.23456789012346)
-
- original
-(-1.0    , 2.0    ) ( 3.0    , 4.0    ) ( 5.0    ,-6.0    )
-( 7.0    ,-8.0    ) ( 8.0    , 9.0    ) ( 9.0    , 9.0    )
-( 1.0    , 9.0    ) ( 2.0    , 0.0    ) (-3.0    ,-7.0    )
-
- conjugate
-(-1.0    ,-2.0    ) ( 3.0    ,-4.0    ) ( 5.0    , 6.0    )
-( 7.0    , 8.0    ) ( 8.0    ,-9.0    ) ( 9.0    ,-9.0    )
-( 1.0    ,-9.0    ) ( 2.0    , 0.0    ) (-3.0    , 7.0    )
+ >  (2.000000,3.000000) (2.000000,-3.000000)
+ >
+ >  (1.23456789012346,-1.23456789012346)
+ >  (1.23456789012346,1.23456789012346)
+ >
+ >  original
+ > (-1.0    , 2.0    ) ( 3.0    , 4.0    ) ( 5.0    ,-6.0    )
+ > ( 7.0    ,-8.0    ) ( 8.0    , 9.0    ) ( 9.0    , 9.0    )
+ > ( 1.0    , 9.0    ) ( 2.0    , 0.0    ) (-3.0    ,-7.0    )
+ >
+ >  conjugate
+ > (-1.0    ,-2.0    ) ( 3.0    ,-4.0    ) ( 5.0    , 6.0    )
+ > ( 7.0    , 8.0    ) ( 8.0    ,-9.0    ) ( 9.0    ,-9.0    )
+ > ( 1.0    ,-9.0    ) ( 2.0    , 0.0    ) (-3.0    , 7.0    )
 ```
 ### **Standard**
 
@@ -6031,53 +6028,53 @@ end program demo_count
 ```
 Results:
 ```text
-     1  3  5
-     2  4  6
-
-     0  3  5
-     7  4  8
-    count a few basic things ...
-    count a>b           1
-    count b<a           2
-    count b==a           3
-    check sum =  T
-    show mask for a.ne.b
-     T  F  F
-     T  F  T
-   number of elements not equal
-   (ie. total true elements in the mask)
-     3
-   count of elements not equal in each column
-   (ie. total true elements in each column)
-     2  0  1
-   count of elements not equal in each row
-   (ie. total true elements in each row)
-     1  2
-    lets try this with c(2,3,4)
-      taking the result of the modulo
-       z=1      z=2      z=3      z=4
-      1 3 0 || 2 4 1 || 3 0 2 || 4 1 3 |
-      2 4 1 || 3 0 2 || 4 1 3 || 0 2 4 |
-
-      would result in the mask ..
-      F F T || F F F || F T F || F F F |
-      F F F || F T F || F F F || T F F |
-
-     the total number of .true.values is
-    4
-
-   counting up along a row and removing rows :( 3 4 )
-    > [ 0, 0, 0, 1 ]
-    > [ 0, 1, 1, 0 ]
-    > [ 1, 0, 0, 0 ]
-
-   counting up along a column and removing columns :( 2 4 )
-    > [ 1, 0, 1, 0 ]
-    > [ 0, 1, 0, 1 ]
-
-   counting up along a depth and removing depths :( 2 3 )
-    > [ 0, 1, 1 ]
-    > [ 1, 1, 0 ]
+ >   1  3  5
+ >   2  4  6
+ >
+ >   0  3  5
+ >   7  4  8
+ >  count a few basic things ...
+ >  count a>b           1
+ >  count b<a           2
+ >  count b==a           3
+ >  check sum =  T
+ >  show mask for a.ne.b
+ >   T  F  F
+ >   T  F  T
+ > number of elements not equal
+ > (ie. total true elements in the mask)
+ >   3
+ > count of elements not equal in each column
+ > (ie. total true elements in each column)
+ >   2  0  1
+ > count of elements not equal in each row
+ > (ie. total true elements in each row)
+ >   1  2
+ >  lets try this with c(2,3,4)
+ >    taking the result of the modulo
+ >     z=1      z=2      z=3      z=4
+ >    1 3 0 || 2 4 1 || 3 0 2 || 4 1 3 |
+ >    2 4 1 || 3 0 2 || 4 1 3 || 0 2 4 |
+ >
+ >    would result in the mask ..
+ >    F F T || F F F || F T F || F F F |
+ >    F F F || F T F || F F F || T F F |
+ >
+ >   the total number of .true.values is
+ >  4
+ >
+ > counting up along a row and removing rows :( 3 4 )
+ >  > [ 0, 0, 0, 1 ]
+ >  > [ 0, 1, 1, 0 ]
+ >  > [ 1, 0, 0, 0 ]
+ >
+ > counting up along a column and removing columns :( 2 4 )
+ >  > [ 1, 0, 1, 0 ]
+ >  > [ 0, 1, 0, 1 ]
+ >
+ > counting up along a depth and removing depths :( 2 3 )
+ >  > [ 0, 1, 1 ]
+ >  > [ 1, 1, 0 ]
 ```
 ### **Standard**
 
@@ -6263,15 +6260,14 @@ integer, dimension(3,3) :: a
 end program demo_cshift
 ```
 Results:
-
 ```text
-     1  4  7
-     2  5  8
-     3  6  9
-
-     4  7  1
-     8  2  5
-     9  3  6
+ >   1  4  7
+ >   2  5  8
+ >   3  6  9
+ >
+ >   4  7  1
+ >   8  2  5
+ >   9  3  6
 ```
 ### **Standard**
 
@@ -6682,11 +6678,11 @@ end program demo_dim
 ```
 Results:
 ```text
-              0
-      3.21000000000000
-              0           0           1
-              0           0           2
-              0           0          10
+ >            0
+ >    3.21000000000000
+ >            0           0           1
+ >            0           0           2
+ >            0           0          10
 ```
 ### **Standard**
 
@@ -6771,11 +6767,11 @@ end program demo_dot_prod
 ```
 Results:
 ```text
-     1  2  3
-
-     4  5  6
-
-             32
+  >  1  2  3
+  >
+  >  4  5  6
+  >
+  >           32
 ```
 ### **Standard**
 
@@ -7175,15 +7171,15 @@ end program demo_dshiftr
 ```
 Results:
 ```text
-     1342177280
-   I=-1 J=0 SHIFT=5
-   11111111111111111111111111111111
-   00000000000000000000000000000000
-   11111000000000000000000000000000
-   I=31 J=-32 SHIFT=5
-   00000000000000000000000000011111
-   11111111111111111111111111100000
-   11111111111111111111111111111111
+ >    1342177280
+ >  I=-1 J=0 SHIFT=5
+ >  11111111111111111111111111111111
+ >  00000000000000000000000000000000
+ >  11111000000000000000000000000000
+ >  I=31 J=-32 SHIFT=5
+ >  00000000000000000000000000011111
+ >  11111111111111111111111111100000
+ >  11111111111111111111111111111111
 ```
 ### **Standard**
 
@@ -7296,13 +7292,13 @@ end program demo_eoshift
 Results:
 
 ```text
-     1  4  7
-     2  5  8
-     3  6  9
-
-     4  7 -5
-     8 -5 -5
-     6  9 -5
+  >  1  4  7
+  >  2  5  8
+  >  3  6  9
+  >
+  >  4  7 -5
+  >  8 -5 -5
+  >  6  9 -5
 ```
 ### **Standard**
 
@@ -8493,15 +8489,14 @@ real :: y = -63.59
 end program demo_floor
 ```
 Results:
-
 ```text
-      63.29000              63
-     -63.59000             -64
-             -3          -3          -3          -2          -2          -1
-             -1           0           0           1           1           2
-              2           2           2
-      2.000000       2.000000       2.000000
-              2           1           1
+ >     63.29000             63
+ >    -63.59000            -64
+ >            -3         -3         -3         -2         -2         -1
+ >            -1          0          0          1          1          2
+ >             2          2          2
+ >     2.000000      2.000000      2.000000
+ >             2          1          1
 ```
 ### **Standard**
 
@@ -10596,19 +10591,19 @@ end program demo_int
 Results:
 
 ```text
-            -10   10
-             42
-             -3  -3
-            -10  -10  -10   10   10  10
-    -2147483648   2.14748467E+09
-     2147484672   2.14748467E+09
-     9223372036854775807
-     9223372036854775807
-     9223372036854775807
-
-    -2          -2          -2          -2          -1
-    -1           0           0           0           1
-     1           2           2           2           2
+ >          -10   10
+ >           42
+ >           -3  -3
+ >          -10  -10  -10   10   10  10
+ >  -2147483648   2.14748467E+09
+ >   2147484672   2.14748467E+09
+ >   9223372036854775807
+ >   9223372036854775807
+ >   9223372036854775807
+ >
+ >  -2          -2          -2          -2          -1
+ >  -1           0           0           0           1
+ >   1           2           2           2           2
 ```
 
 ### **Standard**
@@ -12557,7 +12552,7 @@ FORTRAN 77
     result = maskl( i [,kind] )
 ```
 ```fortran
-     elemental integer(kind=KIND) function maskl(i,kind)
+     elemental integer(kind=KIND) function maskl(i,KIND)
 
       integer(kind=**),intent(in) :: i
       integer(kind=**),intent(in),optional :: KIND
@@ -12565,9 +12560,10 @@ FORTRAN 77
 ### **Characteristics**
 
 - a kind designated as ** may be any supported kind value for the type
+- **i** is an integer
 - **kind** Shall be a scalar constant expression of type _integer_
   whose value is a supported _integer_ kind.
-- The result is of the same _kind_ as **i** unless **kind** is
+- The result is an _integer_ of the same _kind_ as **i** unless **kind** is
   present, which is then used to specify the kind of the result.
 
 ### **Description**
@@ -12602,25 +12598,27 @@ Sample program:
 program demo_maskl
 implicit none
 integer :: i
-   i=maskl(1)
-   write(*,'(i0,1x,b0,/)') i,i
-   ! elemental
+  ! basics
+   i=3
+   write(*,'(i0,1x,b0)') i, maskl(i)
+
+  ! elemental
    write(*,'(*(i11,1x,b0.32,1x,/))') maskl([(i,i,i=0,bit_size(0),4)])
 end program demo_maskl
 ```
 Results:
 ```text
-   -2147483648 10000000000000000000000000000000
+ > 3 11100000000000000000000000000000
+ >           0 00000000000000000000000000000000
+ >  -268435456 11110000000000000000000000000000
+ >   -16777216 11111111000000000000000000000000
+ >    -1048576 11111111111100000000000000000000
+ >      -65536 11111111111111110000000000000000
+ >       -4096 11111111111111111111000000000000
+ >        -256 11111111111111111111111100000000
+ >         -16 11111111111111111111111111110000
+ >          -1 11111111111111111111111111111111
 
-             0 00000000000000000000000000000000
-    -268435456 11110000000000000000000000000000
-     -16777216 11111111000000000000000000000000
-      -1048576 11111111111100000000000000000000
-        -65536 11111111111111110000000000000000
-         -4096 11111111111111111111000000000000
-          -256 11111111111111111111111100000000
-           -16 11111111111111111111111111110000
-            -1 11111111111111111111111111111111
 ```
 ### **Standard**
 
@@ -12643,22 +12641,23 @@ Fortran 2008
     result = maskr( i [,kind] )
 ```
 ```fortran
-     elemental integer(kind=KIND) function maskr(i,kind)
+     elemental integer(kind=KIND) function maskr(i,KIND)
 
       integer(kind=**),intent(in) :: i
-      integer(kind=**),intent(in),optional :: kind
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
 - a kind designated as ** may be any supported kind value for the type
+- **i** is an integer
 - **kind** Shall be a scalar constant expression of type _integer_
   whose value is a supported _integer_ kind.
-- The result is of the same _kind_ as **i** unless **kind** is
+- The result is an _integer_ of the same _kind_ as **i** unless **kind** is
   present, which is then used to specify the kind of the result.
 
 ### **Description**
 
-  **maskr**(3) the result is an _integer_ with its rightmost **i**
+  **maskr**(3) generates an _integer_ with its rightmost **i**
   bits set to 1, and the remaining bits set to 0.
 
 ### **Options**
@@ -12688,34 +12687,45 @@ Sample program:
 program demo_maskr
 implicit none
 integer :: i
+
   ! basics
-   i=maskr(1)
-   write(*,'(i0,1x,b0,1x,b0/)') i,i, shiftl(7,bit_size(0)-1)
-   i=maskr(5)
-   write(*,'(i0,1x,b0,1x,b0/)') i,i, shiftl(7,bit_size(0)-5)
-   i=maskr(11)
-   write(*,'(i0,1x,b0,1x,b0/)') i,i, shiftl(7,bit_size(0)-11)
+   print *,'basics'
+   write(*,'(i0,t5,b32.32)') 1, maskr(1)
+   write(*,'(i0,t5,b32.32)') 5,  maskr(5)
+   write(*,'(i0,t5,b32.32)') 11, maskr(11)
+   print *,"should be equivalent on two's-complement processors"
+   write(*,'(i0,t5,b32.32)') 1,  shiftr(-1,bit_size(0)-1)
+   write(*,'(i0,t5,b32.32)') 5,  shiftr(-1,bit_size(0)-5)
+   write(*,'(i0,t5,b32.32)') 11, shiftr(-1,bit_size(0)-11)
+
   ! elemental
+   print *,'elemental '
+   print *,'(array argument accepted like called with each element)'
    write(*,'(*(i11,1x,b0.32,1x,/))') maskr([(i,i,i=0,bit_size(0),4)])
+
 end program demo_maskr
 ```
 Results:
 ```text
-   1 1 10000000000000000000000000000000
-
-   31 11111 111000000000000000000000000000
-
-   2047 11111111111 111000000000000000000000
-
-             0 00000000000000000000000000000000
-            15 00000000000000000000000000001111
-           255 00000000000000000000000011111111
-          4095 00000000000000000000111111111111
-         65535 00000000000000001111111111111111
-       1048575 00000000000011111111111111111111
-      16777215 00000000111111111111111111111111
-     268435455 00001111111111111111111111111111
-            -1 11111111111111111111111111111111
+ >   basics
+ >  1   00000000000000000000000000000001
+ >  5   00000000000000000000000000011111
+ >  11  00000000000000000000011111111111
+ >   should be equivalent on two's-complement processors
+ >  1   00000000000000000000000000000001
+ >  5   00000000000000000000000000011111
+ >  11  00000000000000000000011111111111
+ >   elemental
+ >   (array argument accepted like called with each element)
+ >            0 00000000000000000000000000000000
+ >           15 00000000000000000000000000001111
+ >          255 00000000000000000000000011111111
+ >         4095 00000000000000000000111111111111
+ >        65535 00000000000000001111111111111111
+ >      1048575 00000000000011111111111111111111
+ >     16777215 00000000111111111111111111111111
+ >    268435455 00001111111111111111111111111111
+ >           -1 11111111111111111111111111111111
 ```
 ### **Standard**
 
@@ -14539,15 +14549,21 @@ Fortran 2003
    call mvbits(from, frompos, len, to, topos)
 ```
 ```fortran
-    elemental subroutine mvbits(from,frompos,len,to,topos)
+    elemental subroutine mvbits( from, frompos, len, to, topos )
 
      integer(kind=KIND),intent(in)    :: from
-     integer(kind=KIND),intent(in)    :: frompos
-     integer(kind=KIND),intent(in)    :: len
+     integer(kind=**),intent(in)      :: frompos
+     integer(kind=**),intent(in)      :: len
      integer(kind=KIND),intent(inout) :: to
-     integer(kind=KIND),intent(in)    :: topos
+     integer(kind=**),intent(in)      :: topos
 ```
 ### **Characteristics**
+
+ - **from** is an _integer_
+ - **frompos** is an integer
+ - **len** is an integer
+ - **to** is an integer of the same kind as **from**.
+ - **topos** is an integer
 
 ### **Description**
 
@@ -14580,7 +14596,7 @@ The bits are numbered **0** to **bit_size(i)-1**, from right to left.
 - **to**
   : The _integer_ variable to place the copied bits into. It must
   be of the same kind as **from** and may even be the same variable
-  as **from**.
+  as **from**, or associated to it.
 
   **to** is set by copying the sequence of bits of length **len**,
   starting at position **frompos** of **from** to position **topos** of
@@ -14595,8 +14611,8 @@ The bits are numbered **0** to **bit_size(i)-1**, from right to left.
 
 ### **Examples**
 
-Sample program that populates a new 32-bit integer with its bytes in
-reverse order (ie. changes the Endian of the integer).
+Sample program that populates a new 32-bit integer with its bytes
+in reverse order from the input value (ie. changes the Endian of the integer).
 ```fortran
 program demo_mvbits
 use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64
@@ -15077,36 +15093,36 @@ end program demo_nint
 ```
 Results:
 ```text
-              1          -1
-              5          -5
-     -2.700000              -3
-     -2.500000              -3
-     -2.200000              -2
-     -2.000000              -2
-     -1.500000              -2
-     -1.000000              -1
-    -0.5000000              -1
-    -0.4000000               0
-     0.0000000E+00           0
-     3.9999999E-02           0
-     0.5000000               1
-      1.000000               1
-      1.500000               2
-      2.000000               2
-      2.200000               2
-      2.500000               3
-      2.700000               3
-    Range limits for typical KINDS:
-    1 127
-    2 32767
-    4 2147483647
-    8 9223372036854775807
-    Any KIND big enough? ICHECK=          -1
-    These are all wrong answers for   1.234566949990144E+019
-       0
-         0
-    -2147483648
-     -9223372036854775808
+ >               1          -1
+ >               5          -5
+ >      -2.700000              -3
+ >      -2.500000              -3
+ >      -2.200000              -2
+ >      -2.000000              -2
+ >      -1.500000              -2
+ >      -1.000000              -1
+ >     -0.5000000              -1
+ >     -0.4000000               0
+ >      0.0000000E+00           0
+ >      3.9999999E-02           0
+ >      0.5000000               1
+ >       1.000000               1
+ >       1.500000               2
+ >       2.000000               2
+ >       2.200000               2
+ >       2.500000               3
+ >       2.700000               3
+ >     Range limits for typical KINDS:
+ >     1 127
+ >     2 32767
+ >     4 2147483647
+ >     8 9223372036854775807
+ >     Any KIND big enough? ICHECK=          -1
+ >     These are all wrong answers for   1.234566949990144E+019
+ >        0
+ >          0
+ >     -2147483648
+ >      -9223372036854775808
 ```
 ### **Standard**
 
@@ -16112,8 +16128,8 @@ end program demo_precision
 ```
 Results:
 ```text
-              6          37
-             15         307
+  >           6          37
+  >          15         307
 ```
 ### **Standard**
 
@@ -17385,18 +17401,18 @@ Sample program:
 ```fortran
 program demo_repeat
 implicit none
-    write(*,'(a)') repeat("^v", 36)         ! line break
-    write(*,'(a)') repeat("_", 72)          ! line break
+    write(*,'(a)') repeat("^v", 35)         ! line break
+    write(*,'(a)') repeat("_", 70)          ! line break
     write(*,'(a)') repeat("1234567890", 7)  ! number line
     write(*,'(a)') repeat("         |", 7)  !
 end program demo_repeat
 ```
 Results:
 ```text
- ^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v
- ________________________________________________________________________
- 1234567890123456789012345678901234567890123456789012345678901234567890
-          |         |         |         |         |         |         |
+ > ^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v
+ > ______________________________________________________________________
+ > 1234567890123456789012345678901234567890123456789012345678901234567890
+ >          |         |         |         |         |         |         |
 ```
 ### **Standard**
 
@@ -18200,9 +18216,9 @@ end program demo_selected_int_kind
 Results:
 
 ```text
-     2147483647  9223372036854775807
-    T
-    T
+  >   2147483647  9223372036854775807
+  >  T
+  >  T
 ```
 
 ### **Standard**
@@ -18312,9 +18328,9 @@ end program demo_selected_real_kind
 Results:
 
 ```text
-              6          37
-             15         307
-             18        4931
+  >            6          37
+  >           15         307
+  >           18        4931
 ```
 
 ### **Standard**
