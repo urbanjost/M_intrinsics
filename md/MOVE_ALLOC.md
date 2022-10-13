@@ -125,12 +125,12 @@ Fortran 2003
     13        if FROM has an allocation status of allocated on entry to MOVE_ALLOC, TO becomes allocated with
     14        dynamic type, type parameters, bounds, cobounds, and value identical to those that FROM had on entry
     15        to MOVE_ALLOC. Note that if FROM and TO are the same variable, it shall be unallocated when
-    16        MOVE_ALLOCisinvoked.
-    17          If TO has the TARGETattribute, any pointer associated with FROM on entry to MOVE_ALLOC becomes
+    16        MOVE_ALLOC is invoked.
+    17          If TO has the TARGET attribute, any pointer associated with FROM on entry to MOVE_ALLOC becomes
     18        correspondingly associated with TO. If TO does not have the TARGET attribute, the pointer association
     19        status of any pointer associated with FROM on entry becomes undefined.
     20          The allocation status of FROM becomes unallocated.
-    21  5 Whenareference to MOVE_ALLOCisexecuted for which the FROM argument is a coarray, there is an implicit
+    21  5 When a reference to MOVE_ALLOC is executed for which the FROM argument is a coarray, there is an implicit
     22    synchronization of all active images of the current team. On those images, execution of the segment (11.6.2)
     23    following the CALL statement is delayed until all other active images of the current team have executed the same
     24    statement the same number of times. When such a reference is executed, if any image of the current team has
@@ -149,6 +149,6 @@ Fortran 2003
      1      The old grid is deallocated because TO is INTENT (OUT), and GRID then takes over the new grid allocation.
                 NOTE1
                 It is expected that the implementation of allocatable objects will typically involve descriptors to locate the
-                allocated storage; MOVE_ALLOCcouldthenbeimplementedbytransferringthecontentsofthedescriptor
+                allocated storage; MOVE_ALLOC could then be implemented by transferring the contents of the descriptor
                 for FROM to the descriptor for TO and clearing the descriptor for FROM.
 -->

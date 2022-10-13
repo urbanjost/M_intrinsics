@@ -50,7 +50,7 @@
 ### **Examples**
 
 Sample program:
-```fortrqn
+```fortran
 program demo_maskr
 implicit none
 integer :: i

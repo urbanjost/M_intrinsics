@@ -11,13 +11,16 @@
 ```fortran
      elemental integer function leadz(i)
 
-      integer(kind=KIND),intent(in) :: i
+      integer(kind=**),intent(in) :: i
 ```
 ### **Characteristics**
 
+- **i** may be an _integer_ of any kind.
+- the return value is a default integer type.
+
 ### **Description**
 
-**leadz**(3) returns the number of leading zero bits of an integer.
+  **leadz**(3) returns the number of leading zero bits of an integer.
 
 ### **Options**
 
@@ -26,8 +29,9 @@
 
 ### **Result**
 
-The type of the return value is the same as a default _integer_. If all
-the bits of **i** are zero, the result value is **bit_size(i)**.
+  The number of leading zero bits, taking into account the kind of the
+  input value. If all the bits of **i** are zero, the result value is
+  **bit_size(i)**.
 
 ### **Examples**
 

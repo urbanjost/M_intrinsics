@@ -2767,7 +2767,7 @@ textblock=[character(len=256) :: &
 '            integer,intent(out),intent(out)     :: stat', &
 '', &
 'CHARACTERISTICS', &
-'  o  ATOM is a ccalar coarray or coindexed variable of either integer type', &
+'  o  ATOM is a scalar coarray or coindexed variable of either integer type', &
 '     with atomic_int_kind kind or logical type with atomic_logical_kind kind.', &
 '', &
 '  o  VALUE is a scalar of the same type as ATOM. If the kind is different, the', &
@@ -5520,7 +5520,7 @@ textblock=[character(len=256) :: &
 '  COSH(3) computes the hyperbolic cosine of X.', &
 '', &
 'OPTIONS', &
-'  o  X : the value to compute the hyerbolic cosine of', &
+'  o  X : the value to compute the hyperbolic cosine of', &
 '', &
 'RESULT', &
 '  If X is complex, the imaginary part of the result is in radians.', &
@@ -6977,11 +6977,11 @@ textblock=[character(len=256) :: &
 '', &
 '  o  ARRAY May be any type, but not a scalar.', &
 '', &
-'  o  SHIFT is an integer of any dind', &
+'  o  SHIFT is an integer of any kind', &
 '', &
 '  o  BOUNDARY is a scalar of the same type and kind as the ARRAY.', &
 '', &
-'  o  DIM is an integer of any dind', &
+'  o  DIM is an integer of any kind', &
 '', &
 '  o  The result is an array of same type, kind and rank as the ARRAY argument.', &
 '', &
@@ -10331,7 +10331,7 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = is_contiguous(a)', &
 '', &
-'           logical function is_contigious(a)', &
+'           logical function is_contiguous(a)', &
 '', &
 '            type(TYPE(kind=**)),intent(in) :: a', &
 '', &
@@ -10344,7 +10344,7 @@ textblock=[character(len=256) :: &
 '  o  the result is a default logical scalar', &
 '', &
 'DESCRIPTION', &
-'  IS_CONTIGIOUS(3) returns .true. if and only if an object is contiguous.', &
+'  IS_CONTIGUOUS(3) returns .true. if and only if an object is contiguous.', &
 '', &
 '  An object is contiguous if it is', &
 '', &
@@ -10394,7 +10394,7 @@ textblock=[character(len=256) :: &
 '  It is processor-dependent whether any other object is contiguous.', &
 '', &
 'OPTIONS', &
-'  o  A : An array of any type to be tested for being contigious. If it is a', &
+'  o  A : An array of any type to be tested for being contiguous. If it is a', &
 '     pointer it shall be associated.', &
 '', &
 'RESULT', &
@@ -10541,6 +10541,10 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 '  o  a kind designated as ** may be any supported kind value for the type', &
 '', &
+'  o  I may be an integer of any kind', &
+'', &
+'  o  SHIFT and SIZE may be integers of any kind', &
+'', &
 '  o  the kind for I dictates the kind of the returned value.', &
 '', &
 'DESCRIPTION', &
@@ -10559,18 +10563,20 @@ textblock=[character(len=256) :: &
 '', &
 '  o  SHIFT : If SHIFT is positive, the shift is to the left; if SHIFT is', &
 '     negative, the shift is to the right; and if SHIFT is zero, no shift is', &
-'     performed. The absolute value of SHIFT must be less than SIZE (simply', &
-'     put, the number of bits to shift must be less than or equal to the number', &
-'     of bits specified to be shifting!)', &
+'     performed.', &
 '', &
-'  o  SIZE : (Optional) The type shall be integer; the value must be greater', &
-'     than zero and less than or equal to BIT_SIZE(i). The default is', &
-'     BIT_SIZE(I). That is, the default is to circularly shift the entire value', &
-'     I.', &
+'     The absolute value of SHIFT must be less than SIZE (simply put, the', &
+'     number of positions to shift must be less than or equal to the number of', &
+'     bits specified to be shifted).', &
+'', &
+'  o  SIZE : The value must be greater than zero and less than or equal to', &
+'     BIT_SIZE(i).', &
+'', &
+'     The default is BIT_SIZE(I). That is, the default is to circularly shift', &
+'     the entire value I.', &
 '', &
 'RESULT', &
-'  The result characteristics (kind, shape, size, ranke, ...) are the same as', &
-'  I.', &
+'  The result characteristics (kind, shape, size, rank, ...) are the same as I.', &
 '', &
 '  The result has the value obtained by shifting the SIZE rightmost bits of I', &
 '  circularly by SHIFT positions.', &
@@ -10599,16 +10605,16 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'      >              6  <== typically should have the value 6', &
-'      >   01111111111111111111111111111111 -32', &
-'      >   11111111111111111111111101111111 -24', &
-'      >   11111111111111110111111111111111 -16', &
-'      >   11111111011111111111111111111111 -8', &
-'      >   01111111111111111111111111111111 0', &
-'      >   11111111111111111111111101111111 8', &
-'      >   11111111111111110111111111111111 16', &
-'      >   11111111011111111111111111111111 24', &
-'      >   01111111111111111111111111111111 32', &
+'       >              6  <== typically should have the value 6', &
+'       >   01111111111111111111111111111111 -32', &
+'       >   11111111111111111111111101111111 -24', &
+'       >   11111111111111110111111111111111 -16', &
+'       >   11111111011111111111111111111111 -8', &
+'       >   01111111111111111111111111111111 0', &
+'       >   11111111111111111111111101111111 8', &
+'       >   11111111111111110111111111111111 16', &
+'       >   11111111011111111111111111111111 24', &
+'       >   01111111111111111111111111111111 32', &
 '', &
 'STANDARD', &
 '  Fortran 95', &
@@ -10999,9 +11005,13 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental integer function leadz(i)', &
 '', &
-'            integer(kind=KIND),intent(in) :: i', &
+'            integer(kind=**),intent(in) :: i', &
 '', &
 'CHARACTERISTICS', &
+'  o  I may be an integer of any kind.', &
+'', &
+'  o  the return value is a default integer type.', &
+'', &
 'DESCRIPTION', &
 '  LEADZ(3) returns the number of leading zero bits of an integer.', &
 '', &
@@ -11009,8 +11019,8 @@ textblock=[character(len=256) :: &
 '  o  I : integer to count the leading zero bits of.', &
 '', &
 'RESULT', &
-'  The type of the return value is the same as a default integer. If all the', &
-'  bits of I are zero, the result value is BIT_SIZE(I).', &
+'  The number of leading zero bits, taking into account the kind of the input', &
+'  value. If all the bits of I are zero, the result value is BIT_SIZE(I).', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -12444,7 +12454,7 @@ textblock=[character(len=256) :: &
 '  argument, or a scalar if all arguments are scalar.', &
 '', &
 '  The returned value when any argument is an array will be an array of the', &
-'  same shape where each element is the maximum value occuring at that', &
+'  same shape where each element is the maximum value occurring at that', &
 '  location, treating all the scalar values as arrays of that same shape with', &
 '  all elements set to the scalar value.', &
 '', &
@@ -16593,7 +16603,7 @@ textblock=[character(len=256) :: &
 '  o  PAD : used to fill in extra values if the result array is larger than', &
 '     SOURCE. It will be used repeatedly after all the elements of SOURCE have', &
 '     been placed in the result until the result has all elements assigned. :', &
-'     If it is absent or is a zero-sized array, you can only make OURCE into', &
+'     If it is absent or is a zero-sized array, you can only make SOURCE into', &
 '     another array of the same size as SOURCE or smaller.', &
 '', &
 '  o  ORDER : used to insert elements in the result in an order other than the', &
@@ -18319,7 +18329,7 @@ textblock=[character(len=256) :: &
 '         write(*,*)''SIZE of simple two-dimensional array''', &
 '         write(*,*)''SIZE(arr)       :total count of elements:'',size(arr)', &
 '         write(*,*)''SIZE(arr,DIM=1) :number of rows         :'',size(arr,dim=1)', &
-'         write(*,*)''SIZE(arr,DIM=2) :number of columnts     :'',size(arr,dim=2)', &
+'         write(*,*)''SIZE(arr,DIM=2) :number of columns      :'',size(arr,dim=2)', &
 '', &
 '         ! pass the same array to a procedure that passes the value two', &
 '         ! different ways', &
@@ -18352,7 +18362,7 @@ textblock=[character(len=256) :: &
 '          SIZE of simple two-dimensional array', &
 '          SIZE(arr)       :total count of elements:          33', &
 '          SIZE(arr,DIM=1) :number of rows         :           3', &
-'          SIZE(arr,DIM=2) :number of columnts     :          11', &
+'          SIZE(arr,DIM=2) :number of columns      :          11', &
 '          interfaced assumed-shape array', &
 '          SIZE(arr1)        :          33', &
 '          SIZE(arr1,DIM=1)  :           3', &
@@ -18539,7 +18549,7 @@ textblock=[character(len=256) :: &
 '         call printi(''suppose we have a scalar S'',s)', &
 '', &
 '         write(*,*) ''to add a new dimension (1) of extent 4 call''', &
-'         call printi(''spread( s, dim=1, ncopis=4 )'',spread ( s, 1, 4 ))', &
+'         call printi(''spread( s, dim=1, ncopies=4 )'',spread ( s, 1, 4 ))', &
 '', &
 '         v = [ 1, 2, 3, 4 ]', &
 '         call printi('' first we will set V to'',v)', &
@@ -19416,19 +19426,23 @@ textblock=[character(len=256) :: &
 '            real(kind=KIND) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  where KIND may be any kind supported by type real', &
+'  o  X may be any real scalar or array', &
+'', &
+'  o  the result has the same type and kind as X', &
 '', &
 'DESCRIPTION', &
 '  TINY(3) returns the smallest positive (non zero) number of the type and kind', &
 '  of X.', &
 '', &
+'  For real X', &
+'', &
+'         result = 2.0(minexponent(x)-1)', &
+'', &
 'OPTIONS', &
-'  o  X : Shall be of type real.', &
+'  o  X : The value whose kind is used to determine the model type to query', &
 '', &
 'RESULT', &
 '  The smallest positive value for the real type of the specified kind.', &
-'', &
-'  The return value is of the same type and kind as X.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &

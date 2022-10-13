@@ -15,23 +15,26 @@
 ```
 ### **Characteristics**
 
-where KIND may be any kind supported by type _real_
+ - **x** may be any _real_ scalar or array
+ - the result has the same type and kind as **x**
 
 ### **Description**
 
-**tiny**(3) returns the smallest positive (non zero) number of the type
-and kind of **x**.
+  **tiny**(3) returns the smallest positive (non zero) number of the
+  type and kind of **x**.
 
+  For real **x** 
+```fortran
+   result = 2.0(minexponent(x)-1) 
+```
 ### **Options**
 
 - **x**
-  : Shall be of type _real_.
+  : The value whose kind is used to determine the model type to query
 
 ### **Result**
 
-The smallest positive value for the _real_ type of the specified kind.
-
-The return value is of the same type and kind as **x**.
+  The smallest positive value for the _real_ type of the specified kind.
 
 ### **Examples**
 
@@ -44,7 +47,6 @@ implicit none
    print *, 'doubleprecision is from ', tiny(0.0d0), 'to',huge(0.0d0)
 end program demo_tiny
 ```
-
 Results:
 
 ```text
@@ -52,7 +54,6 @@ Results:
  doubleprecision is from 2.2250738585072014E-308 to
  1.7976931348623157E+308
 ```
-
 ### **Standard**
 
 Fortran 95

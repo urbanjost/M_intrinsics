@@ -2691,7 +2691,7 @@ TS 18508
 ```
 ### **Characteristics**
 
-- **atom** is a ccalar coarray or coindexed variable of either integer
+- **atom** is a scalar coarray or coindexed variable of either integer
   type with atomic_int_kind kind or logical type with atomic_logical_kind
   kind.
 
@@ -5614,7 +5614,7 @@ TS 18508
 ### **Options**
 
 - **x**
-  : the value to compute the hyerbolic cosine of
+  : the value to compute the hyperbolic cosine of
 
 ### **Result**
 
@@ -7217,9 +7217,9 @@ Fortran 2008
 
  - a kind designated as ** may be any supported kind value for the type
  - **array** May be any type, but not a scalar.
- - **shift** is an integer of any dind
+ - **shift** is an integer of any kind
  - **boundary** is a scalar of the same type and kind as the **array**.
- - **dim** is an integer of any dind
+ - **dim** is an integer of any kind
 
  - The result is an array of same type, kind and rank as the **array** argument.
 
@@ -10812,7 +10812,7 @@ Fortran 2008
     result = is_contiguous(a)
 ```
 ```fortran
-     logical function is_contigious(a)
+     logical function is_contiguous(a)
 
       type(TYPE(kind=**)),intent(in) :: a
 ```
@@ -10825,7 +10825,7 @@ Fortran 2008
 
 ### **Description**
 
-**is_contigious**(3) returns _\.true._ if and only if an object is
+**is_contiguous**(3) returns _\.true._ if and only if an object is
 contiguous.
 
 An object is contiguous if it is
@@ -10891,7 +10891,7 @@ It is processor-dependent whether any other object is contiguous.
 ### **Options**
 
 - **a**
-  : An array of any type to be tested for being contigious. If it is a
+  : An array of any type to be tested for being contiguous. If it is a
   pointer it shall be associated.
 
 ### **Result**
@@ -10952,6 +10952,8 @@ Fortran 2008
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
+ - **i** may be an _integer_ of any kind
+ - **shift** and **size** may be _integers_ of any kind
  - the kind for **i** dictates the kind of the returned value.
 
 ### **Description**
@@ -10975,20 +10977,24 @@ Fortran 2008
 
 - **shift**
   : If **shift** is positive, the shift is to the left; if **shift**
-  is negative, the shift is to the right; and if **shift** is zero,
-  no shift is performed. The absolute value of **shift** must be less
-  than **size** (simply put, the number of bits to shift must be less
-  than or equal to the number of bits specified to be shifting!)
+    is negative, the shift is to the right; and if **shift** is zero,
+    no shift is performed.
+
+    The absolute value of **shift** must be less than **size** (simply
+    put, the number of positions to shift must be less than or equal to
+    the number of bits specified to be shifted).
 
 - **size**
-  : (Optional) The type shall be _integer_; the value must be greater than
-  zero and less than or equal to **bit_size**(i).
-  The default is **bit_size(i)**. That is, the default is to circularly shift
-  the entire value **i**.
+  : The value must be greater than zero and less than or equal to
+    **bit_size**(i).
+
+    The default is **bit_size(i)**. That is, the default is to circularly
+    shift the entire value **i**.
 
 ### **Result**
 
-  The result characteristics (kind, shape, size, ranke, ...) are the same as **i**.
+  The result characteristics (kind, shape, size, rank, ...) are the
+  same as **i**.
 
   The result has the value obtained by shifting the **size** rightmost
   bits of **i** circularly by **shift** positions.
@@ -11018,16 +11024,16 @@ end program demo_ishftc
 ```
 Results:
 ```text
->              6  <== typically should have the value 6
->   01111111111111111111111111111111 -32
->   11111111111111111111111101111111 -24
->   11111111111111110111111111111111 -16
->   11111111011111111111111111111111 -8
->   01111111111111111111111111111111 0
->   11111111111111111111111101111111 8
->   11111111111111110111111111111111 16
->   11111111011111111111111111111111 24
->   01111111111111111111111111111111 32
+ >              6  <== typically should have the value 6
+ >   01111111111111111111111111111111 -32
+ >   11111111111111111111111101111111 -24
+ >   11111111111111110111111111111111 -16
+ >   11111111011111111111111111111111 -8
+ >   01111111111111111111111111111111 0
+ >   11111111111111111111111101111111 8
+ >   11111111111111110111111111111111 16
+ >   11111111011111111111111111111111 24
+ >   01111111111111111111111111111111 32
 ```
 
 ### **Standard**
@@ -11473,7 +11479,7 @@ Fortran 95 , with KIND argument - Fortran 2003
 #### State Inquiry:
 
 - [**allocated**(3)](#allocated) -  Status of an allocatable entity
-- [**is_contiguous**(3)](#is_contigious) -  Test if object is contiguous
+- [**is_contiguous**(3)](#is_contiguous) -  Test if object is contiguous
 
 #### Kind Inquiry:
 
@@ -11500,13 +11506,16 @@ Fortran 95 , with KIND argument - Fortran 2003
 ```fortran
      elemental integer function leadz(i)
 
-      integer(kind=KIND),intent(in) :: i
+      integer(kind=**),intent(in) :: i
 ```
 ### **Characteristics**
 
+- **i** may be an _integer_ of any kind.
+- the return value is a default integer type.
+
 ### **Description**
 
-**leadz**(3) returns the number of leading zero bits of an integer.
+  **leadz**(3) returns the number of leading zero bits of an integer.
 
 ### **Options**
 
@@ -11515,8 +11524,9 @@ Fortran 95 , with KIND argument - Fortran 2003
 
 ### **Result**
 
-The type of the return value is the same as a default _integer_. If all
-the bits of **i** are zero, the result value is **bit_size(i)**.
+  The number of leading zero bits, taking into account the kind of the
+  input value. If all the bits of **i** are zero, the result value is
+  **bit_size(i)**.
 
 ### **Examples**
 
@@ -12674,7 +12684,7 @@ Fortran 2008
 ### **Examples**
 
 Sample program:
-```fortrqn
+```fortran
 program demo_maskr
 implicit none
 integer :: i
@@ -13236,7 +13246,7 @@ Fortran 95
   array argument, or a scalar if all arguments are scalar.
 
   The returned value when any argument is an array will be an array of
-  the same shape where each element is the maximum value occuring at
+  the same shape where each element is the maximum value occurring at
   that location, treating all the scalar values as arrays of that same
   shape with all elements set to the scalar value.
 
@@ -14490,12 +14500,12 @@ Fortran 2003
     13        if FROM has an allocation status of allocated on entry to MOVE_ALLOC, TO becomes allocated with
     14        dynamic type, type parameters, bounds, cobounds, and value identical to those that FROM had on entry
     15        to MOVE_ALLOC. Note that if FROM and TO are the same variable, it shall be unallocated when
-    16        MOVE_ALLOCisinvoked.
-    17          If TO has the TARGETattribute, any pointer associated with FROM on entry to MOVE_ALLOC becomes
+    16        MOVE_ALLOC is invoked.
+    17          If TO has the TARGET attribute, any pointer associated with FROM on entry to MOVE_ALLOC becomes
     18        correspondingly associated with TO. If TO does not have the TARGET attribute, the pointer association
     19        status of any pointer associated with FROM on entry becomes undefined.
     20          The allocation status of FROM becomes unallocated.
-    21  5 Whenareference to MOVE_ALLOCisexecuted for which the FROM argument is a coarray, there is an implicit
+    21  5 When a reference to MOVE_ALLOC is executed for which the FROM argument is a coarray, there is an implicit
     22    synchronization of all active images of the current team. On those images, execution of the segment (11.6.2)
     23    following the CALL statement is delayed until all other active images of the current team have executed the same
     24    statement the same number of times. When such a reference is executed, if any image of the current team has
@@ -14514,7 +14524,7 @@ Fortran 2003
      1      The old grid is deallocated because TO is INTENT (OUT), and GRID then takes over the new grid allocation.
                 NOTE1
                 It is expected that the implementation of allocatable objects will typically involve descriptors to locate the
-                allocated storage; MOVE_ALLOCcouldthenbeimplementedbytransferringthecontentsofthedescriptor
+                allocated storage; MOVE_ALLOC could then be implemented by transferring the contents of the descriptor
                 for FROM to the descriptor for TO and clearing the descriptor for FROM.
 -->
 
@@ -16988,7 +16998,7 @@ Results:
 #### State Inquiry:
 
 - [**allocated**(3)](#allocated) -  Status of an allocatable entity
-- [**is_contiguous**(3)](#is_contigious) -  Test if object is contiguous
+- [**is_contiguous**(3)](#is_contiguous) -  Test if object is contiguous
 
 #### Kind Inquiry:
 
@@ -17476,7 +17486,7 @@ C procedure.
     It will be used repeatedly after all the elements of **source** have been
     placed in the result until the result has all elements assigned.
   : If it is absent or is a zero-sized array, you can only make
-    **ource** into another array of the same size as **source** or smaller.
+    **source** into another array of the same size as **source** or smaller.
 
 - **order**
   : used to insert elements in the result in an order other
@@ -18494,7 +18504,7 @@ Fortran 95 ; with KIND argument Fortran 2003
 #### State Inquiry:
 
 - [**allocated**(3)](#allocated) -  Status of an allocatable entity
-- [**is_contiguous**(3)](#is_contigious) -  Test if object is contiguous
+- [**is_contiguous**(3)](#is_contiguous) -  Test if object is contiguous
 
 #### Kind Inquiry:
 
@@ -19313,7 +19323,7 @@ integer :: arr(0:2,-5:5)
    write(*,*)'SIZE of simple two-dimensional array'
    write(*,*)'SIZE(arr)       :total count of elements:',size(arr)
    write(*,*)'SIZE(arr,DIM=1) :number of rows         :',size(arr,dim=1)
-   write(*,*)'SIZE(arr,DIM=2) :number of columnts     :',size(arr,dim=2)
+   write(*,*)'SIZE(arr,DIM=2) :number of columns      :',size(arr,dim=2)
 
    ! pass the same array to a procedure that passes the value two
    ! different ways
@@ -19346,7 +19356,7 @@ Results:
     SIZE of simple two-dimensional array
     SIZE(arr)       :total count of elements:          33
     SIZE(arr,DIM=1) :number of rows         :           3
-    SIZE(arr,DIM=2) :number of columnts     :          11
+    SIZE(arr,DIM=2) :number of columns      :          11
     interfaced assumed-shape array
     SIZE(arr1)        :          33
     SIZE(arr1,DIM=1)  :           3
@@ -19370,7 +19380,7 @@ Fortran 95 , with **kind** argument - Fortran 2003
 #### State Inquiry:
 
 - [**allocated**(3)](#allocated) -  Status of an allocatable entity
-- [**is_contiguous**(3)](#is_contigious) -  Test if object is contiguous
+- [**is_contiguous**(3)](#is_contiguous) -  Test if object is contiguous
 
 #### Kind Inquiry:
 
@@ -19567,7 +19577,7 @@ integer a1(4,3), a2(3,4), v(4), s
    call printi('suppose we have a scalar S',s)
 
    write(*,*) 'to add a new dimension (1) of extent 4 call'
-   call printi('spread( s, dim=1, ncopis=4 )',spread ( s, 1, 4 ))
+   call printi('spread( s, dim=1, ncopies=4 )',spread ( s, 1, 4 ))
 
    v = [ 1, 2, 3, 4 ]
    call printi(' first we will set V to',v)
@@ -20457,23 +20467,26 @@ Fortran 2008. With DISTANCE argument, TS 18508
 ```
 ### **Characteristics**
 
-where KIND may be any kind supported by type _real_
+ - **x** may be any _real_ scalar or array
+ - the result has the same type and kind as **x**
 
 ### **Description**
 
-**tiny**(3) returns the smallest positive (non zero) number of the type
-and kind of **x**.
+  **tiny**(3) returns the smallest positive (non zero) number of the
+  type and kind of **x**.
 
+  For real **x**
+```fortran
+   result = 2.0(minexponent(x)-1)
+```
 ### **Options**
 
 - **x**
-  : Shall be of type _real_.
+  : The value whose kind is used to determine the model type to query
 
 ### **Result**
 
-The smallest positive value for the _real_ type of the specified kind.
-
-The return value is of the same type and kind as **x**.
+  The smallest positive value for the _real_ type of the specified kind.
 
 ### **Examples**
 
@@ -20486,7 +20499,6 @@ implicit none
    print *, 'doubleprecision is from ', tiny(0.0d0), 'to',huge(0.0d0)
 end program demo_tiny
 ```
-
 Results:
 
 ```text
@@ -20494,7 +20506,6 @@ Results:
  doubleprecision is from 2.2250738585072014E-308 to
  1.7976931348623157E+308
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -21114,7 +21125,7 @@ Fortran 95 , with KIND argument Fortran 2003
 #### State Inquiry:
 
 - [**allocated**(3)](#allocated) -  Status of an allocatable entity
-- [**is_contiguous**(3)](#is_contigious) -  Test if object is contiguous
+- [**is_contiguous**(3)](#is_contiguous) -  Test if object is contiguous
 
 #### Kind Inquiry:
 

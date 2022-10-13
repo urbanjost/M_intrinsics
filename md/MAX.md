@@ -64,7 +64,7 @@
   array argument, or a scalar if all arguments are scalar.
 
   The returned value when any argument is an array will be an array of
-  the same shape where each element is the maximum value occuring at
+  the same shape where each element is the maximum value occurring at
   that location, treating all the scalar values as arrays of that same
   shape with all elements set to the scalar value.
 

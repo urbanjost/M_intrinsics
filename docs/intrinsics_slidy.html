@@ -2045,7 +2045,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb110-5" title="5">      <span class="dt">integer</span>,<span class="dt">intent(out)</span>,<span class="dt">intent(out)</span>     <span class="dt">::</span> stat</a></code></pre></div>
 <h3 id="characteristics-27"><strong>Characteristics</strong></h3>
 <ul>
-<li><p><strong>atom</strong> is a ccalar coarray or coindexed variable of either integer type with atomic_int_kind kind or logical type with atomic_logical_kind kind.</p></li>
+<li><p><strong>atom</strong> is a scalar coarray or coindexed variable of either integer type with atomic_int_kind kind or logical type with atomic_logical_kind kind.</p></li>
 <li><p><strong>value</strong> is a scalar of the same type as <strong>atom</strong>. If the kind is different, the value is converted to the kind of <strong>atom</strong>.</p></li>
 <li><p><strong>stat</strong> is a Scalar default-kind integer variable.</p></li>
 </ul>
@@ -4026,7 +4026,7 @@ the value of btest (2, a)
 <ul>
 <li><dl>
 <dt><strong>x</strong></dt>
-<dd>the value to compute the hyerbolic cosine of
+<dd>the value to compute the hyperbolic cosine of
 </dd>
 </dl></li>
 </ul>
@@ -5184,9 +5184,9 @@ the value of btest (2, a)
 <ul>
 <li>a kind designated as ** may be any supported kind value for the type</li>
 <li><strong>array</strong> May be any type, but not a scalar.</li>
-<li><strong>shift</strong> is an integer of any dind</li>
+<li><strong>shift</strong> is an integer of any kind</li>
 <li><strong>boundary</strong> is a scalar of the same type and kind as the <strong>array</strong>.</li>
-<li><p><strong>dim</strong> is an integer of any dind</p></li>
+<li><p><strong>dim</strong> is an integer of any kind</p></li>
 <li><p>The result is an array of same type, kind and rank as the <strong>array</strong> argument.</p></li>
 </ul>
 <h3 id="description-74"><strong>Description</strong></h3>
@@ -7724,7 +7724,7 @@ $$</span><br /></p>
 <p><strong>is_contiguous</strong>(3) - [ARRAY:INQUIRY] Test if object is contiguous</p>
 <h3 id="synopsis-107"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb470"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb470-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> is_contiguous(a)</a></code></pre></div>
-<div class="sourceCode" id="cb471"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb471-1" title="1">     <span class="dt">logical</span> <span class="kw">function</span> is_contigious(a)</a>
+<div class="sourceCode" id="cb471"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb471-1" title="1">     <span class="dt">logical</span> <span class="kw">function</span> is_contiguous(a)</a>
 <a class="sourceLine" id="cb471-2" title="2"></a>
 <a class="sourceLine" id="cb471-3" title="3">      <span class="dt">type(TYPE(kind=**))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> a</a></code></pre></div>
 <h3 id="characteristics-106"><strong>Characteristics</strong></h3>
@@ -7734,7 +7734,7 @@ $$</span><br /></p>
 <li>the result is a default logical scalar</li>
 </ul>
 <h3 id="description-106"><strong>Description</strong></h3>
-<p><strong>is_contigious</strong>(3) returns .true. if and only if an object is contiguous.</p>
+<p><strong>is_contiguous</strong>(3) returns .true. if and only if an object is contiguous.</p>
 <p>An object is contiguous if it is</p>
 <ul>
 <li><p><strong>(1)</strong> an object with the CONTIGUOUS attribute,</p></li>
@@ -7765,7 +7765,7 @@ $$</span><br /></p>
 <ul>
 <li><dl>
 <dt><strong>a</strong></dt>
-<dd>An array of any type to be tested for being contigious. If it is a pointer it shall be associated.
+<dd>An array of any type to be tested for being contiguous. If it is a pointer it shall be associated.
 </dd>
 </dl></li>
 </ul>
@@ -7808,6 +7808,8 @@ $$</span><br /></p>
 <h3 id="characteristics-107"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind value for the type</li>
+<li><strong>i</strong> may be an integer of any kind</li>
+<li><strong>shift</strong> and <strong>size</strong> may be integers of any kind</li>
 <li>the kind for <strong>i</strong> dictates the kind of the returned value.</li>
 </ul>
 <h3 id="description-107"><strong>Description</strong></h3>
@@ -7823,17 +7825,19 @@ $$</span><br /></p>
 </dl></li>
 <li><dl>
 <dt><strong>shift</strong></dt>
-<dd>If <strong>shift</strong> is positive, the shift is to the left; if <strong>shift</strong> is negative, the shift is to the right; and if <strong>shift</strong> is zero, no shift is performed. The absolute value of <strong>shift</strong> must be less than <strong>size</strong> (simply put, the number of bits to shift must be less than or equal to the number of bits specified to be shifting!)
+<dd>If <strong>shift</strong> is positive, the shift is to the left; if <strong>shift</strong> is negative, the shift is to the right; and if <strong>shift</strong> is zero, no shift is performed.
 </dd>
-</dl></li>
+</dl>
+<p>The absolute value of <strong>shift</strong> must be less than <strong>size</strong> (simply put, the number of positions to shift must be less than or equal to the number of bits specified to be shifted).</p></li>
 <li><dl>
 <dt><strong>size</strong></dt>
-<dd>(Optional) The type shall be integer; the value must be greater than zero and less than or equal to <strong>bit_size</strong>(i). The default is <strong>bit_size(i)</strong>. That is, the default is to circularly shift the entire value <strong>i</strong>.
+<dd>The value must be greater than zero and less than or equal to <strong>bit_size</strong>(i).
 </dd>
-</dl></li>
+</dl>
+<p>The default is <strong>bit_size(i)</strong>. That is, the default is to circularly shift the entire value <strong>i</strong>.</p></li>
 </ul>
 <h3 id="result-88"><strong>Result</strong></h3>
-<p>The result characteristics (kind, shape, size, ranke, …) are the same as <strong>i</strong>.</p>
+<p>The result characteristics (kind, shape, size, rank, …) are the same as <strong>i</strong>.</p>
 <p>The result has the value obtained by shifting the <strong>size</strong> rightmost bits of <strong>i</strong> circularly by <strong>shift</strong> positions.</p>
 <p>No bits are lost.</p>
 <p>The unshifted bits are unaltered.</p>
@@ -7854,16 +7858,16 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb476-13" title="13"></a>
 <a class="sourceLine" id="cb476-14" title="14"><span class="kw">end program</span> demo_ishftc</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>&gt;              6  &lt;== typically should have the value 6
-&gt;   01111111111111111111111111111111 -32
-&gt;   11111111111111111111111101111111 -24
-&gt;   11111111111111110111111111111111 -16
-&gt;   11111111011111111111111111111111 -8
-&gt;   01111111111111111111111111111111 0
-&gt;   11111111111111111111111101111111 8
-&gt;   11111111111111110111111111111111 16
-&gt;   11111111011111111111111111111111 24
-&gt;   01111111111111111111111111111111 32</code></pre>
+<pre class="text"><code> &gt;              6  &lt;== typically should have the value 6
+ &gt;   01111111111111111111111111111111 -32
+ &gt;   11111111111111111111111101111111 -24
+ &gt;   11111111111111110111111111111111 -16
+ &gt;   11111111011111111111111111111111 -8
+ &gt;   01111111111111111111111111111111 0
+ &gt;   11111111111111111111111101111111 8
+ &gt;   11111111111111110111111111111111 16
+ &gt;   11111111011111111111111111111111 24
+ &gt;   01111111111111111111111111111111 32</code></pre>
 <h3 id="standard-107"><strong>Standard</strong></h3>
 <p>Fortran 95</p>
 <h3 id="see-also-107"><strong>See Also</strong></h3>
@@ -8185,7 +8189,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <h4 id="state-inquiry">State Inquiry:</h4>
 <ul>
 <li><a href="#allocated"><strong>allocated</strong>(3)</a> - Status of an allocatable entity</li>
-<li><a href="#is_contigious"><strong>is_contiguous</strong>(3)</a> - Test if object is contiguous</li>
+<li><a href="#is_contiguous"><strong>is_contiguous</strong>(3)</a> - Test if object is contiguous</li>
 </ul>
 <h4 id="kind-inquiry">Kind Inquiry:</h4>
 <ul>
@@ -8207,8 +8211,12 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <div class="sourceCode" id="cb496"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb496-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> leadz(i)</a></code></pre></div>
 <div class="sourceCode" id="cb497"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb497-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> leadz(i)</a>
 <a class="sourceLine" id="cb497-2" title="2"></a>
-<a class="sourceLine" id="cb497-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
+<a class="sourceLine" id="cb497-3" title="3">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
 <h3 id="characteristics-113"><strong>Characteristics</strong></h3>
+<ul>
+<li><strong>i</strong> may be an integer of any kind.</li>
+<li>the return value is a default integer type.</li>
+</ul>
 <h3 id="description-113"><strong>Description</strong></h3>
 <p><strong>leadz</strong>(3) returns the number of leading zero bits of an integer.</p>
 <h3 id="options-111"><strong>Options</strong></h3>
@@ -8220,7 +8228,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 </dl></li>
 </ul>
 <h3 id="result-94"><strong>Result</strong></h3>
-<p>The type of the return value is the same as a default integer. If all the bits of <strong>i</strong> are zero, the result value is <strong>bit_size(i)</strong>.</p>
+<p>The number of leading zero bits, taking into account the kind of the input value. If all the bits of <strong>i</strong> are zero, the result value is <strong>bit_size(i)</strong>.</p>
 <h3 id="examples-111"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb498"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb498-1" title="1"><span class="kw">program</span> demo_leadz</a>
@@ -9039,19 +9047,19 @@ if <strong>str_a</strong> and <strong>str_b</strong> are both arrays they must b
 <p>The rightmost <strong>i</strong> bits of the output integer are set to 1 and the other bits are set to 0.</p>
 <h3 id="examples-123"><strong>Examples</strong></h3>
 <p>Sample program:</p>
-<pre class="fortrqn"><code>program demo_maskr
-implicit none
-integer :: i
-  ! basics
-   i=maskr(1)
-   write(*,&#39;(i0,1x,b0,1x,b0/)&#39;) i,i, shiftl(7,bit_size(0)-1)
-   i=maskr(5)
-   write(*,&#39;(i0,1x,b0,1x,b0/)&#39;) i,i, shiftl(7,bit_size(0)-5)
-   i=maskr(11)
-   write(*,&#39;(i0,1x,b0,1x,b0/)&#39;) i,i, shiftl(7,bit_size(0)-11)
-  ! elemental
-   write(*,&#39;(*(i11,1x,b0.32,1x,/))&#39;) maskr([(i,i,i=0,bit_size(0),4)])
-end program demo_maskr</code></pre>
+<div class="sourceCode" id="cb549"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb549-1" title="1"><span class="kw">program</span> demo_maskr</a>
+<a class="sourceLine" id="cb549-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb549-3" title="3"><span class="dt">integer</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb549-4" title="4">  <span class="co">! basics</span></a>
+<a class="sourceLine" id="cb549-5" title="5">   i<span class="kw">=</span>maskr(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb549-6" title="6">   <span class="fu">write(*</span>,<span class="st">&#39;(i0,1x,b0,1x,b0/)&#39;</span><span class="fu">)</span> i,i, shiftl(<span class="dv">7</span>,<span class="fu">bit_size</span>(<span class="dv">0</span>)<span class="kw">-</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb549-7" title="7">   i<span class="kw">=</span>maskr(<span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb549-8" title="8">   <span class="fu">write(*</span>,<span class="st">&#39;(i0,1x,b0,1x,b0/)&#39;</span><span class="fu">)</span> i,i, shiftl(<span class="dv">7</span>,<span class="fu">bit_size</span>(<span class="dv">0</span>)<span class="kw">-</span><span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb549-9" title="9">   i<span class="kw">=</span>maskr(<span class="dv">11</span>)</a>
+<a class="sourceLine" id="cb549-10" title="10">   <span class="fu">write(*</span>,<span class="st">&#39;(i0,1x,b0,1x,b0/)&#39;</span><span class="fu">)</span> i,i, shiftl(<span class="dv">7</span>,<span class="fu">bit_size</span>(<span class="dv">0</span>)<span class="kw">-</span><span class="dv">11</span>)</a>
+<a class="sourceLine" id="cb549-11" title="11">  <span class="co">! elemental</span></a>
+<a class="sourceLine" id="cb549-12" title="12">   <span class="fu">write(*</span>,<span class="st">&#39;(*(i11,1x,b0.32,1x,/))&#39;</span><span class="fu">)</span> maskr(<span class="kw">[</span>(i,i,i<span class="kw">=</span><span class="dv">0</span>,<span class="fu">bit_size</span>(<span class="dv">0</span>),<span class="dv">4</span>)<span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb549-13" title="13"><span class="kw">end program</span> demo_maskr</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>   1 1 10000000000000000000000000000000
 
@@ -9442,7 +9450,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </ul>
 <h3 id="result-110"><strong>Result</strong></h3>
 <p>The return value corresponds to an array of the same shape of any array argument, or a scalar if all arguments are scalar.</p>
-<p>The returned value when any argument is an array will be an array of the same shape where each element is the maximum value occuring at that location, treating all the scalar values as arrays of that same shape with all elements set to the scalar value.</p>
+<p>The returned value when any argument is an array will be an array of the same shape where each element is the maximum value occurring at that location, treating all the scalar values as arrays of that same shape with all elements set to the scalar value.</p>
 <h3 id="examples-127"><strong>Examples</strong></h3>
 <p>Sample program</p>
 <div class="sourceCode" id="cb569"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb569-1" title="1"><span class="kw">program</span> demo_max</a>
@@ -10366,12 +10374,12 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
     13        if FROM has an allocation status of allocated on entry to MOVE_ALLOC, TO becomes allocated with
     14        dynamic type, type parameters, bounds, cobounds, and value identical to those that FROM had on entry
     15        to MOVE_ALLOC. Note that if FROM and TO are the same variable, it shall be unallocated when
-    16        MOVE_ALLOCisinvoked.
-    17          If TO has the TARGETattribute, any pointer associated with FROM on entry to MOVE_ALLOC becomes
+    16        MOVE_ALLOC is invoked.
+    17          If TO has the TARGET attribute, any pointer associated with FROM on entry to MOVE_ALLOC becomes
     18        correspondingly associated with TO. If TO does not have the TARGET attribute, the pointer association
     19        status of any pointer associated with FROM on entry becomes undefined.
     20          The allocation status of FROM becomes unallocated.
-    21  5 Whenareference to MOVE_ALLOCisexecuted for which the FROM argument is a coarray, there is an implicit
+    21  5 When a reference to MOVE_ALLOC is executed for which the FROM argument is a coarray, there is an implicit
     22    synchronization of all active images of the current team. On those images, execution of the segment (11.6.2)
     23    following the CALL statement is delayed until all other active images of the current team have executed the same
     24    statement the same number of times. When such a reference is executed, if any image of the current team has
@@ -10390,7 +10398,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
      1      The old grid is deallocated because TO is INTENT (OUT), and GRID then takes over the new grid allocation.
                 NOTE1
                 It is expected that the implementation of allocatable objects will typically involve descriptors to locate the
-                allocated storage; MOVE_ALLOCcouldthenbeimplementedbytransferringthecontentsofthedescriptor
+                allocated storage; MOVE_ALLOC could then be implemented by transferring the contents of the descriptor
                 for FROM to the descriptor for TO and clearing the descriptor for FROM.
 --></p>
 </div>
@@ -12148,7 +12156,7 @@ dim=3 :( 2 3 )
 <h4 id="state-inquiry-1">State Inquiry:</h4>
 <ul>
 <li><a href="#allocated"><strong>allocated</strong>(3)</a> - Status of an allocatable entity</li>
-<li><a href="#is_contigious"><strong>is_contiguous</strong>(3)</a> - Test if object is contiguous</li>
+<li><a href="#is_contiguous"><strong>is_contiguous</strong>(3)</a> - Test if object is contiguous</li>
 </ul>
 <h4 id="kind-inquiry-1">Kind Inquiry:</h4>
 <ul>
@@ -12485,7 +12493,7 @@ dim=3 :( 2 3 )
 <dt><strong>pad</strong></dt>
 <dd>used to fill in extra values if the result array is larger than <strong>source</strong>. It will be used repeatedly after all the elements of <strong>source</strong> have been placed in the result until the result has all elements assigned.
 </dd>
-<dd>If it is absent or is a zero-sized array, you can only make <strong>ource</strong> into another array of the same size as <strong>source</strong> or smaller.
+<dd>If it is absent or is a zero-sized array, you can only make <strong>source</strong> into another array of the same size as <strong>source</strong> or smaller.
 </dd>
 </dl></li>
 <li><dl>
@@ -13221,7 +13229,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” and �
 <h4 id="state-inquiry-2">State Inquiry:</h4>
 <ul>
 <li><a href="#allocated"><strong>allocated</strong>(3)</a> - Status of an allocatable entity</li>
-<li><a href="#is_contigious"><strong>is_contiguous</strong>(3)</a> - Test if object is contiguous</li>
+<li><a href="#is_contiguous"><strong>is_contiguous</strong>(3)</a> - Test if object is contiguous</li>
 </ul>
 <h4 id="kind-inquiry-2">Kind Inquiry:</h4>
 <ul>
@@ -13849,7 +13857,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <a class="sourceLine" id="cb798-4" title="4">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE of simple two-dimensional array&#39;</span></a>
 <a class="sourceLine" id="cb798-5" title="5">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr)       :total count of elements:&#39;</span>,<span class="fu">size</span>(arr)</a>
 <a class="sourceLine" id="cb798-6" title="6">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr,DIM=1) :number of rows         :&#39;</span>,<span class="fu">size</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb798-7" title="7">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr,DIM=2) :number of columnts     :&#39;</span>,<span class="fu">size</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb798-7" title="7">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;SIZE(arr,DIM=2) :number of columns      :&#39;</span>,<span class="fu">size</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb798-8" title="8"></a>
 <a class="sourceLine" id="cb798-9" title="9">   <span class="co">! pass the same array to a procedure that passes the value two</span></a>
 <a class="sourceLine" id="cb798-10" title="10">   <span class="co">! different ways</span></a>
@@ -13880,7 +13888,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <pre class="text"><code>    SIZE of simple two-dimensional array
     SIZE(arr)       :total count of elements:          33
     SIZE(arr,DIM=1) :number of rows         :           3
-    SIZE(arr,DIM=2) :number of columnts     :          11
+    SIZE(arr,DIM=2) :number of columns      :          11
     interfaced assumed-shape array
     SIZE(arr1)        :          33
     SIZE(arr1,DIM=1)  :           3
@@ -13900,7 +13908,7 @@ LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <h4 id="state-inquiry-3">State Inquiry:</h4>
 <ul>
 <li><a href="#allocated"><strong>allocated</strong>(3)</a> - Status of an allocatable entity</li>
-<li><a href="#is_contigious"><strong>is_contiguous</strong>(3)</a> - Test if object is contiguous</li>
+<li><a href="#is_contiguous"><strong>is_contiguous</strong>(3)</a> - Test if object is contiguous</li>
 </ul>
 <h4 id="kind-inquiry-3">Kind Inquiry:</h4>
 <ul>
@@ -14046,7 +14054,7 @@ TS 29113 begins
 <a class="sourceLine" id="cb806-13" title="13">   <span class="kw">call</span> printi(<span class="st">&#39;suppose we have a scalar S&#39;</span>,s)</a>
 <a class="sourceLine" id="cb806-14" title="14"></a>
 <a class="sourceLine" id="cb806-15" title="15">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;to add a new dimension (1) of extent 4 call&#39;</span></a>
-<a class="sourceLine" id="cb806-16" title="16">   <span class="kw">call</span> printi(<span class="st">&#39;spread( s, dim=1, ncopis=4 )&#39;</span>,<span class="fu">spread</span> ( s, <span class="dv">1</span>, <span class="dv">4</span> ))</a>
+<a class="sourceLine" id="cb806-16" title="16">   <span class="kw">call</span> printi(<span class="st">&#39;spread( s, dim=1, ncopies=4 )&#39;</span>,<span class="fu">spread</span> ( s, <span class="dv">1</span>, <span class="dv">4</span> ))</a>
 <a class="sourceLine" id="cb806-17" title="17"></a>
 <a class="sourceLine" id="cb806-18" title="18">   v <span class="kw">=</span> <span class="kw">[</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span> <span class="kw">]</span></a>
 <a class="sourceLine" id="cb806-19" title="19">   <span class="kw">call</span> printi(<span class="st">&#39; first we will set V to&#39;</span>,v)</a>
@@ -14709,27 +14717,31 @@ need an illustration of what happens with higher dimension array
 <a class="sourceLine" id="cb839-2" title="2"></a>
 <a class="sourceLine" id="cb839-3" title="3"><span class="dt">      real(kind=KIND)</span> <span class="dt">::</span> x</a></code></pre></div>
 <h3 id="characteristics-192"><strong>Characteristics</strong></h3>
-<p>where KIND may be any kind supported by type real</p>
+<ul>
+<li><strong>x</strong> may be any real scalar or array</li>
+<li>the result has the same type and kind as <strong>x</strong></li>
+</ul>
 <h3 id="description-190"><strong>Description</strong></h3>
 <p><strong>tiny</strong>(3) returns the smallest positive (non zero) number of the type and kind of <strong>x</strong>.</p>
+<p>For real <strong>x</strong></p>
+<div class="sourceCode" id="cb840"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb840-1" title="1">   <span class="kw">result</span> <span class="kw">=</span> <span class="fl">2.0</span>(<span class="fu">minexponent</span>(x)<span class="kw">-</span><span class="dv">1</span>)</a></code></pre></div>
 <h3 id="options-188"><strong>Options</strong></h3>
 <ul>
 <li><dl>
 <dt><strong>x</strong></dt>
-<dd>Shall be of type real.
+<dd>The value whose kind is used to determine the model type to query
 </dd>
 </dl></li>
 </ul>
 <h3 id="result-165"><strong>Result</strong></h3>
 <p>The smallest positive value for the real type of the specified kind.</p>
-<p>The return value is of the same type and kind as <strong>x</strong>.</p>
 <h3 id="examples-186"><strong>Examples</strong></h3>
 <p>Sample program:</p>
-<div class="sourceCode" id="cb840"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb840-1" title="1"><span class="kw">program</span> demo_tiny</a>
-<a class="sourceLine" id="cb840-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb840-3" title="3">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;default real is from&#39;</span>, <span class="fu">tiny</span>(<span class="fl">0.0</span>), <span class="st">&#39;to&#39;</span>,<span class="fu">huge</span>(<span class="fl">0.0</span>)</a>
-<a class="sourceLine" id="cb840-4" title="4">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;doubleprecision is from &#39;</span>, <span class="fu">tiny</span>(<span class="fl">0.0d0</span>), <span class="st">&#39;to&#39;</span>,<span class="fu">huge</span>(<span class="fl">0.0d0</span>)</a>
-<a class="sourceLine" id="cb840-5" title="5"><span class="kw">end program</span> demo_tiny</a></code></pre></div>
+<div class="sourceCode" id="cb841"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb841-1" title="1"><span class="kw">program</span> demo_tiny</a>
+<a class="sourceLine" id="cb841-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb841-3" title="3">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;default real is from&#39;</span>, <span class="fu">tiny</span>(<span class="fl">0.0</span>), <span class="st">&#39;to&#39;</span>,<span class="fu">huge</span>(<span class="fl">0.0</span>)</a>
+<a class="sourceLine" id="cb841-4" title="4">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;doubleprecision is from &#39;</span>, <span class="fu">tiny</span>(<span class="fl">0.0d0</span>), <span class="st">&#39;to&#39;</span>,<span class="fu">huge</span>(<span class="fl">0.0d0</span>)</a>
+<a class="sourceLine" id="cb841-5" title="5"><span class="kw">end program</span> demo_tiny</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code> default real is from 1.17549435E-38 to 3.40282347E+38
  doubleprecision is from 2.2250738585072014E-308 to
@@ -14745,10 +14757,10 @@ need an illustration of what happens with higher dimension array
 <h3 id="name-192"><strong>Name</strong></h3>
 <p><strong>trailz</strong>(3) - [BIT:COUNT] Number of trailing zero bits of an integer</p>
 <h3 id="synopsis-192"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb842"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb842-1" title="1"> <span class="kw">result</span> <span class="kw">=</span> trailz(i)</a></code></pre></div>
-<div class="sourceCode" id="cb843"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb843-1" title="1">  <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> trailz(i)</a>
-<a class="sourceLine" id="cb843-2" title="2"></a>
-<a class="sourceLine" id="cb843-3" title="3">   <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
+<div class="sourceCode" id="cb843"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb843-1" title="1"> <span class="kw">result</span> <span class="kw">=</span> trailz(i)</a></code></pre></div>
+<div class="sourceCode" id="cb844"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb844-1" title="1">  <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> trailz(i)</a>
+<a class="sourceLine" id="cb844-2" title="2"></a>
+<a class="sourceLine" id="cb844-3" title="3">   <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
 <h3 id="characteristics-193"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>i</strong> is an integer of any kind.</li>
@@ -14775,32 +14787,32 @@ need an illustration of what happens with higher dimension array
 <p>The result may also be seen as the position of the rightmost 1 bit in <strong>i</strong>, starting with the rightmost bit being zero and counting to the left.</p>
 <h3 id="examples-187"><strong>Examples</strong></h3>
 <p>Sample program:</p>
-<div class="sourceCode" id="cb845"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb845-1" title="1"><span class="kw">program</span> demo_trailz</a>
-<a class="sourceLine" id="cb845-2" title="2"></a>
-<a class="sourceLine" id="cb845-3" title="3"><span class="co">! some common integer kinds</span></a>
-<a class="sourceLine" id="cb845-4" title="4"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb845-5" title="5"> <span class="kw">&amp;</span> integer_kinds, int8, int16, int32, int64</a>
-<a class="sourceLine" id="cb845-6" title="6"></a>
-<a class="sourceLine" id="cb845-7" title="7"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb845-8" title="8"></a>
-<a class="sourceLine" id="cb845-9" title="9"><span class="co">! a handy format</span></a>
-<a class="sourceLine" id="cb845-10" title="10"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb845-11" title="11"> <span class="kw">&amp;</span> show <span class="kw">=</span> <span class="st">&#39;(1x,&quot;value=&quot;,i4,&quot;, value(bits)=&quot;,b32.32,1x,&quot;, trailz=&quot;,i3)&#39;</span></a>
-<a class="sourceLine" id="cb845-12" title="12"></a>
-<a class="sourceLine" id="cb845-13" title="13"><span class="dt">integer(kind=int64)</span> <span class="dt">::</span> bigi</a>
-<a class="sourceLine" id="cb845-14" title="14">  <span class="co">! basics</span></a>
-<a class="sourceLine" id="cb845-15" title="15">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;Note default integer is&#39;</span>,<span class="fu">bit_size</span>(<span class="dv">0</span>),<span class="st">&#39;bits&#39;</span></a>
-<a class="sourceLine" id="cb845-16" title="16">   <span class="fu">print</span>  show,  <span class="kw">-</span><span class="dv">1</span>, <span class="kw">-</span><span class="dv">1</span>,  trailz(<span class="kw">-</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb845-17" title="17">   <span class="fu">print</span>  show,   <span class="dv">0</span>,  <span class="dv">0</span>,  trailz(<span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb845-18" title="18">   <span class="fu">print</span>  show,   <span class="dv">1</span>,  <span class="dv">1</span>,  trailz(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb845-19" title="19">   <span class="fu">print</span>  show,  <span class="dv">96</span>, <span class="dv">96</span>,  trailz(<span class="dv">96</span>)</a>
-<a class="sourceLine" id="cb845-20" title="20">  <span class="co">! elemental</span></a>
-<a class="sourceLine" id="cb845-21" title="21">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;elemental and any integer kind:&#39;</span></a>
-<a class="sourceLine" id="cb845-22" title="22">   bigi<span class="kw">=</span><span class="dv">2</span><span class="kw">**</span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb845-23" title="23">   <span class="fu">write(*</span>,<span class="fu">*)</span> trailz( <span class="kw">[</span> bigi, bigi<span class="kw">*</span><span class="dv">256</span>, bigi<span class="kw">/</span><span class="dv">2</span> <span class="kw">]</span> )</a>
-<a class="sourceLine" id="cb845-24" title="24">   <span class="fu">write(*</span>,<span class="st">&#39;(1x,b64.64)&#39;</span><span class="fu">)</span><span class="kw">[</span> bigi, bigi<span class="kw">*</span><span class="dv">256</span>, bigi<span class="kw">/</span><span class="dv">2</span> <span class="kw">]</span></a>
-<a class="sourceLine" id="cb845-25" title="25"></a>
-<a class="sourceLine" id="cb845-26" title="26"><span class="kw">end program</span> demo_trailz</a></code></pre></div>
+<div class="sourceCode" id="cb846"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb846-1" title="1"><span class="kw">program</span> demo_trailz</a>
+<a class="sourceLine" id="cb846-2" title="2"></a>
+<a class="sourceLine" id="cb846-3" title="3"><span class="co">! some common integer kinds</span></a>
+<a class="sourceLine" id="cb846-4" title="4"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb846-5" title="5"> <span class="kw">&amp;</span> integer_kinds, int8, int16, int32, int64</a>
+<a class="sourceLine" id="cb846-6" title="6"></a>
+<a class="sourceLine" id="cb846-7" title="7"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb846-8" title="8"></a>
+<a class="sourceLine" id="cb846-9" title="9"><span class="co">! a handy format</span></a>
+<a class="sourceLine" id="cb846-10" title="10"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb846-11" title="11"> <span class="kw">&amp;</span> show <span class="kw">=</span> <span class="st">&#39;(1x,&quot;value=&quot;,i4,&quot;, value(bits)=&quot;,b32.32,1x,&quot;, trailz=&quot;,i3)&#39;</span></a>
+<a class="sourceLine" id="cb846-12" title="12"></a>
+<a class="sourceLine" id="cb846-13" title="13"><span class="dt">integer(kind=int64)</span> <span class="dt">::</span> bigi</a>
+<a class="sourceLine" id="cb846-14" title="14">  <span class="co">! basics</span></a>
+<a class="sourceLine" id="cb846-15" title="15">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;Note default integer is&#39;</span>,<span class="fu">bit_size</span>(<span class="dv">0</span>),<span class="st">&#39;bits&#39;</span></a>
+<a class="sourceLine" id="cb846-16" title="16">   <span class="fu">print</span>  show,  <span class="kw">-</span><span class="dv">1</span>, <span class="kw">-</span><span class="dv">1</span>,  trailz(<span class="kw">-</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb846-17" title="17">   <span class="fu">print</span>  show,   <span class="dv">0</span>,  <span class="dv">0</span>,  trailz(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb846-18" title="18">   <span class="fu">print</span>  show,   <span class="dv">1</span>,  <span class="dv">1</span>,  trailz(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb846-19" title="19">   <span class="fu">print</span>  show,  <span class="dv">96</span>, <span class="dv">96</span>,  trailz(<span class="dv">96</span>)</a>
+<a class="sourceLine" id="cb846-20" title="20">  <span class="co">! elemental</span></a>
+<a class="sourceLine" id="cb846-21" title="21">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;elemental and any integer kind:&#39;</span></a>
+<a class="sourceLine" id="cb846-22" title="22">   bigi<span class="kw">=</span><span class="dv">2</span><span class="kw">**</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb846-23" title="23">   <span class="fu">write(*</span>,<span class="fu">*)</span> trailz( <span class="kw">[</span> bigi, bigi<span class="kw">*</span><span class="dv">256</span>, bigi<span class="kw">/</span><span class="dv">2</span> <span class="kw">]</span> )</a>
+<a class="sourceLine" id="cb846-24" title="24">   <span class="fu">write(*</span>,<span class="st">&#39;(1x,b64.64)&#39;</span><span class="fu">)</span><span class="kw">[</span> bigi, bigi<span class="kw">*</span><span class="dv">256</span>, bigi<span class="kw">/</span><span class="dv">2</span> <span class="kw">]</span></a>
+<a class="sourceLine" id="cb846-25" title="25"></a>
+<a class="sourceLine" id="cb846-26" title="26"><span class="kw">end program</span> demo_trailz</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>    Note default integer is          32 bits
     value=  -1, value(bits)=11111111111111111111111111111111 , trailz=  0
@@ -14823,12 +14835,12 @@ need an illustration of what happens with higher dimension array
 <h3 id="name-193"><strong>Name</strong></h3>
 <p><strong>transfer</strong>(3) - [TYPE:MOLD] Transfer bit patterns</p>
 <h3 id="synopsis-193"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb847"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb847-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">transfer</span>(source, mold <span class="kw">[</span>,<span class="fu">size</span><span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb848"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb848-1" title="1">     <span class="dt">type(TYPE(kind=KIND))</span> <span class="kw">function</span> <span class="fu">transfer</span>(source,mold,<span class="fu">size</span>)</a>
-<a class="sourceLine" id="cb848-2" title="2"></a>
-<a class="sourceLine" id="cb848-3" title="3">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> source(..)</a>
-<a class="sourceLine" id="cb848-4" title="4">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> mold(..)</a>
-<a class="sourceLine" id="cb848-5" title="5">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">size</span></a></code></pre></div>
+<div class="sourceCode" id="cb848"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb848-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">transfer</span>(source, mold <span class="kw">[</span>,<span class="fu">size</span><span class="kw">]</span> )</a></code></pre></div>
+<div class="sourceCode" id="cb849"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb849-1" title="1">     <span class="dt">type(TYPE(kind=KIND))</span> <span class="kw">function</span> <span class="fu">transfer</span>(source,mold,<span class="fu">size</span>)</a>
+<a class="sourceLine" id="cb849-2" title="2"></a>
+<a class="sourceLine" id="cb849-3" title="3">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> source(..)</a>
+<a class="sourceLine" id="cb849-4" title="4">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> mold(..)</a>
+<a class="sourceLine" id="cb849-5" title="5">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">size</span></a></code></pre></div>
 <h3 id="characteristics-194"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>source</strong> shall be a scalar or an array of any type.</li>
@@ -14865,23 +14877,23 @@ need an illustration of what happens with higher dimension array
 <p>When the resulting bit representation does not correspond to a valid representation of a variable of the same type as <strong>mold</strong>, the results are undefined, and subsequent operations on the result cannot be guaranteed to produce sensible behavior. For example, it is possible to create logical variables for which <strong>var</strong> and .not. var both appear to be true.</p>
 <h3 id="examples-188"><strong>Examples</strong></h3>
 <p>Sample program:</p>
-<div class="sourceCode" id="cb849"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb849-1" title="1"><span class="kw">program</span> demo_transfer</a>
-<a class="sourceLine" id="cb849-2" title="2"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : int32, real32</a>
-<a class="sourceLine" id="cb849-3" title="3"><span class="dt">integer(kind=int32)</span> <span class="dt">::</span> i <span class="kw">=</span> <span class="dv">2143289344</span></a>
-<a class="sourceLine" id="cb849-4" title="4"><span class="dt">real(kind=real32)</span>   <span class="dt">::</span> x</a>
-<a class="sourceLine" id="cb849-5" title="5"><span class="dt">character(len=10)</span>   <span class="dt">::</span> string</a>
-<a class="sourceLine" id="cb849-6" title="6"><span class="dt">character(len=1)</span>    <span class="dt">::</span> chars(<span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb849-7" title="7">   x<span class="kw">=</span><span class="fu">transfer</span>(i, <span class="fl">1.0</span>)    <span class="co">! prints &quot;nan&quot; on i686</span></a>
-<a class="sourceLine" id="cb849-8" title="8">   <span class="co">! the bit patterns are the same</span></a>
-<a class="sourceLine" id="cb849-9" title="9">   <span class="fu">write(*</span>,<span class="st">&#39;(b0,1x,g0)&#39;</span><span class="fu">)</span>x,x <span class="co">! create a NaN</span></a>
-<a class="sourceLine" id="cb849-10" title="10">   <span class="fu">write(*</span>,<span class="st">&#39;(b0,1x,g0)&#39;</span><span class="fu">)</span>i,i</a>
-<a class="sourceLine" id="cb849-11" title="11"></a>
-<a class="sourceLine" id="cb849-12" title="12">   <span class="co">! a string to an array of characters</span></a>
-<a class="sourceLine" id="cb849-13" title="13">   string<span class="kw">=</span><span class="st">&#39;abcdefghij&#39;</span></a>
-<a class="sourceLine" id="cb849-14" title="14">   chars<span class="kw">=</span><span class="fu">transfer</span>(string,chars)</a>
-<a class="sourceLine" id="cb849-15" title="15">   <span class="fu">write(*</span>,<span class="st">&#39;(*(&quot;[&quot;,a,&quot;]&quot;:,1x))&#39;</span><span class="fu">)</span>string</a>
-<a class="sourceLine" id="cb849-16" title="16">   <span class="fu">write(*</span>,<span class="st">&#39;(*(&quot;[&quot;,a,&quot;]&quot;:,1x))&#39;</span><span class="fu">)</span>chars</a>
-<a class="sourceLine" id="cb849-17" title="17"><span class="kw">end program</span> demo_transfer</a></code></pre></div>
+<div class="sourceCode" id="cb850"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb850-1" title="1"><span class="kw">program</span> demo_transfer</a>
+<a class="sourceLine" id="cb850-2" title="2"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : int32, real32</a>
+<a class="sourceLine" id="cb850-3" title="3"><span class="dt">integer(kind=int32)</span> <span class="dt">::</span> i <span class="kw">=</span> <span class="dv">2143289344</span></a>
+<a class="sourceLine" id="cb850-4" title="4"><span class="dt">real(kind=real32)</span>   <span class="dt">::</span> x</a>
+<a class="sourceLine" id="cb850-5" title="5"><span class="dt">character(len=10)</span>   <span class="dt">::</span> string</a>
+<a class="sourceLine" id="cb850-6" title="6"><span class="dt">character(len=1)</span>    <span class="dt">::</span> chars(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb850-7" title="7">   x<span class="kw">=</span><span class="fu">transfer</span>(i, <span class="fl">1.0</span>)    <span class="co">! prints &quot;nan&quot; on i686</span></a>
+<a class="sourceLine" id="cb850-8" title="8">   <span class="co">! the bit patterns are the same</span></a>
+<a class="sourceLine" id="cb850-9" title="9">   <span class="fu">write(*</span>,<span class="st">&#39;(b0,1x,g0)&#39;</span><span class="fu">)</span>x,x <span class="co">! create a NaN</span></a>
+<a class="sourceLine" id="cb850-10" title="10">   <span class="fu">write(*</span>,<span class="st">&#39;(b0,1x,g0)&#39;</span><span class="fu">)</span>i,i</a>
+<a class="sourceLine" id="cb850-11" title="11"></a>
+<a class="sourceLine" id="cb850-12" title="12">   <span class="co">! a string to an array of characters</span></a>
+<a class="sourceLine" id="cb850-13" title="13">   string<span class="kw">=</span><span class="st">&#39;abcdefghij&#39;</span></a>
+<a class="sourceLine" id="cb850-14" title="14">   chars<span class="kw">=</span><span class="fu">transfer</span>(string,chars)</a>
+<a class="sourceLine" id="cb850-15" title="15">   <span class="fu">write(*</span>,<span class="st">&#39;(*(&quot;[&quot;,a,&quot;]&quot;:,1x))&#39;</span><span class="fu">)</span>string</a>
+<a class="sourceLine" id="cb850-16" title="16">   <span class="fu">write(*</span>,<span class="st">&#39;(*(&quot;[&quot;,a,&quot;]&quot;:,1x))&#39;</span><span class="fu">)</span>chars</a>
+<a class="sourceLine" id="cb850-17" title="17"><span class="kw">end program</span> demo_transfer</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>   1111111110000000000000000000000 NaN
    1111111110000000000000000000000 2143289344
@@ -14904,10 +14916,10 @@ need an illustration of what happens with higher dimension array
 <h3 id="name-194"><strong>Name</strong></h3>
 <p><strong>transpose</strong>(3) - [ARRAY:MANIPULATION] Transpose an array of rank two</p>
 <h3 id="synopsis-194"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb851"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb851-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">transpose</span>(matrix)</a></code></pre></div>
-<div class="sourceCode" id="cb852"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb852-1" title="1">     <span class="dt">type(TYPE(kind=KIND) transpose(matrix)</span></a>
-<a class="sourceLine" id="cb852-2" title="2"></a>
-<a class="sourceLine" id="cb852-3" title="3">      <span class="dt">type(TYPE(kind=KIND),intent(in) :: matrix(:,:)</span></a></code></pre></div>
+<div class="sourceCode" id="cb852"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb852-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">transpose</span>(matrix)</a></code></pre></div>
+<div class="sourceCode" id="cb853"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb853-1" title="1">     <span class="dt">type(TYPE(kind=KIND) transpose(matrix)</span></a>
+<a class="sourceLine" id="cb853-2" title="2"></a>
+<a class="sourceLine" id="cb853-3" title="3">      <span class="dt">type(TYPE(kind=KIND),intent(in) :: matrix(:,:)</span></a></code></pre></div>
 <h3 id="characteristics-195"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>matrix</strong> can be of any type but must have a rank of two.</li>
@@ -14928,40 +14940,40 @@ need an illustration of what happens with higher dimension array
 <p>The transpose of the input array. The result has the same type as <strong>matrix</strong>, and has shape [ m, n ] if <strong>matrix</strong> has shape [ n, m ].</p>
 <h3 id="examples-189"><strong>Examples</strong></h3>
 <p>Sample program:</p>
-<div class="sourceCode" id="cb853"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb853-1" title="1"><span class="kw">program</span> demo_transpose</a>
-<a class="sourceLine" id="cb853-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb853-3" title="3"><span class="dt">integer</span>,<span class="dt">save</span> <span class="dt">::</span> xx(<span class="dv">3</span>,<span class="dv">5</span>)<span class="kw">=</span> <span class="fu">reshape</span>(<span class="kw">[&amp;</span></a>
-<a class="sourceLine" id="cb853-4" title="4">    <span class="dv">1</span>,  <span class="dv">2</span>,  <span class="dv">3</span>,  <span class="dv">4</span>,  <span class="dv">5</span>,    <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb853-5" title="5">   <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>,    <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb853-6" title="6">   <span class="dv">11</span>, <span class="dv">22</span>, <span class="dv">33</span>, <span class="dv">44</span>, <span class="kw">-</span><span class="dv">1055</span>  <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb853-7" title="7"> <span class="kw">]</span>,<span class="fu">shape</span>(xx),order<span class="kw">=[</span><span class="dv">2</span>,<span class="dv">1</span><span class="kw">]</span>)</a>
-<a class="sourceLine" id="cb853-8" title="8"></a>
-<a class="sourceLine" id="cb853-9" title="9"><span class="kw">call</span> print_matrix_int(<span class="st">&#39;xx array:&#39;</span>,xx)</a>
-<a class="sourceLine" id="cb853-10" title="10"><span class="kw">call</span> print_matrix_int(<span class="st">&#39;xx array transposed:&#39;</span>,<span class="fu">transpose</span>(xx))</a>
-<a class="sourceLine" id="cb853-11" title="11"></a>
-<a class="sourceLine" id="cb853-12" title="12"><span class="co">contains</span></a>
-<a class="sourceLine" id="cb853-13" title="13"></a>
-<a class="sourceLine" id="cb853-14" title="14"><span class="kw">subroutine</span> print_matrix_int(title,arr)</a>
-<a class="sourceLine" id="cb853-15" title="15"><span class="co">! print small 2d integer arrays in row-column format</span></a>
-<a class="sourceLine" id="cb853-16" title="16"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb853-17" title="17"><span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> title</a>
-<a class="sourceLine" id="cb853-18" title="18"><span class="dt">integer</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> arr(:,:)</a>
-<a class="sourceLine" id="cb853-19" title="19"><span class="dt">integer</span>                      <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb853-20" title="20"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> biggest</a>
-<a class="sourceLine" id="cb853-21" title="21">   <span class="fu">write(*</span>,<span class="fu">*)trim</span>(title)  <span class="co">! print title</span></a>
-<a class="sourceLine" id="cb853-22" title="22">   biggest<span class="kw">=</span><span class="st">&#39;           &#39;</span>  <span class="co">! make buffer to write integer into</span></a>
-<a class="sourceLine" id="cb853-23" title="23">   <span class="co">! find how many characters to use for integers</span></a>
-<a class="sourceLine" id="cb853-24" title="24">   <span class="fu">write(</span>biggest,<span class="st">&#39;(i0)&#39;</span><span class="fu">)</span><span class="bu">ceiling</span>(<span class="bu">log10</span>(<span class="bu">real</span>(<span class="fu">maxval</span>(<span class="bu">abs</span>(arr)))))<span class="kw">+</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb853-25" title="25">   <span class="co">! use this format to write a row</span></a>
-<a class="sourceLine" id="cb853-26" title="26">   biggest<span class="kw">=</span><span class="st">&#39;(&quot; &gt; [&quot;,*(i&#39;</span><span class="kw">//</span><span class="fu">trim</span>(biggest)<span class="kw">//</span><span class="st">&#39;:,&quot;,&quot;))&#39;</span></a>
-<a class="sourceLine" id="cb853-27" title="27">   <span class="co">! print one row of array at a time</span></a>
-<a class="sourceLine" id="cb853-28" title="28">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb853-29" title="29">      <span class="fu">write(*</span>,<span class="fu">fmt</span><span class="kw">=</span>biggest,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>arr(i,:)</a>
-<a class="sourceLine" id="cb853-30" title="30">      <span class="fu">write(*</span>,<span class="st">&#39;(&quot; ]&quot;)&#39;</span><span class="fu">)</span></a>
-<a class="sourceLine" id="cb853-31" title="31">   <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb853-32" title="32"><span class="kw">end subroutine</span> print_matrix_int</a>
-<a class="sourceLine" id="cb853-33" title="33"></a>
-<a class="sourceLine" id="cb853-34" title="34"><span class="kw">end program</span> demo_transpose</a></code></pre></div>
+<div class="sourceCode" id="cb854"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb854-1" title="1"><span class="kw">program</span> demo_transpose</a>
+<a class="sourceLine" id="cb854-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb854-3" title="3"><span class="dt">integer</span>,<span class="dt">save</span> <span class="dt">::</span> xx(<span class="dv">3</span>,<span class="dv">5</span>)<span class="kw">=</span> <span class="fu">reshape</span>(<span class="kw">[&amp;</span></a>
+<a class="sourceLine" id="cb854-4" title="4">    <span class="dv">1</span>,  <span class="dv">2</span>,  <span class="dv">3</span>,  <span class="dv">4</span>,  <span class="dv">5</span>,    <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb854-5" title="5">   <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>,    <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb854-6" title="6">   <span class="dv">11</span>, <span class="dv">22</span>, <span class="dv">33</span>, <span class="dv">44</span>, <span class="kw">-</span><span class="dv">1055</span>  <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb854-7" title="7"> <span class="kw">]</span>,<span class="fu">shape</span>(xx),order<span class="kw">=[</span><span class="dv">2</span>,<span class="dv">1</span><span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb854-8" title="8"></a>
+<a class="sourceLine" id="cb854-9" title="9"><span class="kw">call</span> print_matrix_int(<span class="st">&#39;xx array:&#39;</span>,xx)</a>
+<a class="sourceLine" id="cb854-10" title="10"><span class="kw">call</span> print_matrix_int(<span class="st">&#39;xx array transposed:&#39;</span>,<span class="fu">transpose</span>(xx))</a>
+<a class="sourceLine" id="cb854-11" title="11"></a>
+<a class="sourceLine" id="cb854-12" title="12"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb854-13" title="13"></a>
+<a class="sourceLine" id="cb854-14" title="14"><span class="kw">subroutine</span> print_matrix_int(title,arr)</a>
+<a class="sourceLine" id="cb854-15" title="15"><span class="co">! print small 2d integer arrays in row-column format</span></a>
+<a class="sourceLine" id="cb854-16" title="16"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb854-17" title="17"><span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> title</a>
+<a class="sourceLine" id="cb854-18" title="18"><span class="dt">integer</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> arr(:,:)</a>
+<a class="sourceLine" id="cb854-19" title="19"><span class="dt">integer</span>                      <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb854-20" title="20"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> biggest</a>
+<a class="sourceLine" id="cb854-21" title="21">   <span class="fu">write(*</span>,<span class="fu">*)trim</span>(title)  <span class="co">! print title</span></a>
+<a class="sourceLine" id="cb854-22" title="22">   biggest<span class="kw">=</span><span class="st">&#39;           &#39;</span>  <span class="co">! make buffer to write integer into</span></a>
+<a class="sourceLine" id="cb854-23" title="23">   <span class="co">! find how many characters to use for integers</span></a>
+<a class="sourceLine" id="cb854-24" title="24">   <span class="fu">write(</span>biggest,<span class="st">&#39;(i0)&#39;</span><span class="fu">)</span><span class="bu">ceiling</span>(<span class="bu">log10</span>(<span class="bu">real</span>(<span class="fu">maxval</span>(<span class="bu">abs</span>(arr)))))<span class="kw">+</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb854-25" title="25">   <span class="co">! use this format to write a row</span></a>
+<a class="sourceLine" id="cb854-26" title="26">   biggest<span class="kw">=</span><span class="st">&#39;(&quot; &gt; [&quot;,*(i&#39;</span><span class="kw">//</span><span class="fu">trim</span>(biggest)<span class="kw">//</span><span class="st">&#39;:,&quot;,&quot;))&#39;</span></a>
+<a class="sourceLine" id="cb854-27" title="27">   <span class="co">! print one row of array at a time</span></a>
+<a class="sourceLine" id="cb854-28" title="28">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb854-29" title="29">      <span class="fu">write(*</span>,<span class="fu">fmt</span><span class="kw">=</span>biggest,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>arr(i,:)</a>
+<a class="sourceLine" id="cb854-30" title="30">      <span class="fu">write(*</span>,<span class="st">&#39;(&quot; ]&quot;)&#39;</span><span class="fu">)</span></a>
+<a class="sourceLine" id="cb854-31" title="31">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb854-32" title="32"><span class="kw">end subroutine</span> print_matrix_int</a>
+<a class="sourceLine" id="cb854-33" title="33"></a>
+<a class="sourceLine" id="cb854-34" title="34"><span class="kw">end program</span> demo_transpose</a></code></pre></div>
 <p>Results:</p>
 <pre><code>    xx array:
     &gt; [     1,     2,     3,     4,     5 ]
@@ -14989,10 +15001,10 @@ need an illustration of what happens with higher dimension array
 <h3 id="name-195"><strong>Name</strong></h3>
 <p><strong>trim</strong>(3) - [CHARACTER:WHITESPACE] Remove trailing blank characters from a string</p>
 <h3 id="synopsis-195"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb855"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb855-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">trim</span>(string)</a></code></pre></div>
-<div class="sourceCode" id="cb856"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb856-1" title="1">     <span class="dt">character(len=:,kind=KIND)</span> <span class="kw">function</span> <span class="fu">trim</span>(string)</a>
-<a class="sourceLine" id="cb856-2" title="2"></a>
-<a class="sourceLine" id="cb856-3" title="3">      <span class="dt">character(len=*,kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string</a></code></pre></div>
+<div class="sourceCode" id="cb856"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb856-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">trim</span>(string)</a></code></pre></div>
+<div class="sourceCode" id="cb857"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb857-1" title="1">     <span class="dt">character(len=:,kind=KIND)</span> <span class="kw">function</span> <span class="fu">trim</span>(string)</a>
+<a class="sourceLine" id="cb857-2" title="2"></a>
+<a class="sourceLine" id="cb857-3" title="3">      <span class="dt">character(len=*,kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string</a></code></pre></div>
 <h3 id="characteristics-196"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>KIND</strong> can be any kind supported for the character type.</li>
@@ -15013,36 +15025,36 @@ need an illustration of what happens with higher dimension array
 <p>If <strong>string</strong> is composed entirely of blanks or has zero length, the result has zero length.</p>
 <h3 id="examples-190"><strong>Examples</strong></h3>
 <p>Sample program:</p>
-<div class="sourceCode" id="cb857"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb857-1" title="1"><span class="kw">program</span> demo_trim</a>
-<a class="sourceLine" id="cb857-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb857-3" title="3"><span class="dt">character(len=:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> str, strs(:)</a>
-<a class="sourceLine" id="cb857-4" title="4"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> brackets<span class="kw">=</span><span class="st">&#39;( *(&quot;[&quot;,a,&quot;]&quot;:,1x) )&#39;</span></a>
-<a class="sourceLine" id="cb857-5" title="5"><span class="dt">integer</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb857-6" title="6"></a>
-<a class="sourceLine" id="cb857-7" title="7">   str<span class="kw">=</span><span class="st">&#39;   trailing    &#39;</span></a>
-<a class="sourceLine" id="cb857-8" title="8">   <span class="fu">print</span> brackets, str,<span class="fu">trim</span>(str) <span class="co">! trims it</span></a>
-<a class="sourceLine" id="cb857-9" title="9"></a>
-<a class="sourceLine" id="cb857-10" title="10">   str<span class="kw">=</span><span class="st">&#39;   leading&#39;</span></a>
-<a class="sourceLine" id="cb857-11" title="11">   <span class="fu">print</span> brackets, str,<span class="fu">trim</span>(str) <span class="co">! no effect</span></a>
-<a class="sourceLine" id="cb857-12" title="12"></a>
-<a class="sourceLine" id="cb857-13" title="13">   str<span class="kw">=</span><span class="st">&#39;            &#39;</span></a>
-<a class="sourceLine" id="cb857-14" title="14">   <span class="fu">print</span> brackets, str,<span class="fu">trim</span>(str) <span class="co">! becomes zero length</span></a>
-<a class="sourceLine" id="cb857-15" title="15">   <span class="fu">print</span> <span class="kw">*</span>,  <span class="fu">len</span>(str), <span class="fu">len</span>(<span class="fu">trim</span>(<span class="st">&#39;               &#39;</span>))</a>
-<a class="sourceLine" id="cb857-16" title="16"></a>
-<a class="sourceLine" id="cb857-17" title="17">  <span class="co">! array elements are all the same length, so you often</span></a>
-<a class="sourceLine" id="cb857-18" title="18">  <span class="co">! want to print them</span></a>
-<a class="sourceLine" id="cb857-19" title="19">   strs<span class="kw">=[</span><span class="dt">character(len=10)</span> <span class="dt">::</span> <span class="st">&quot;Z&quot;</span>,<span class="st">&quot; a b c&quot;</span>,<span class="st">&quot;ABC&quot;</span>,<span class="st">&quot;&quot;</span><span class="kw">]</span></a>
-<a class="sourceLine" id="cb857-20" title="20"></a>
-<a class="sourceLine" id="cb857-21" title="21">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;untrimmed:&#39;</span></a>
-<a class="sourceLine" id="cb857-22" title="22">   <span class="co">! everything prints as ten characters; nice for neat columns</span></a>
-<a class="sourceLine" id="cb857-23" title="23">   <span class="fu">print</span> brackets, (strs(i), i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(strs))</a>
-<a class="sourceLine" id="cb857-24" title="24">   <span class="fu">print</span> brackets, (strs(i), i<span class="kw">=</span><span class="fu">size</span>(strs),<span class="dv">1</span>,<span class="kw">-</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb857-25" title="25">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;trimmed:&#39;</span></a>
-<a class="sourceLine" id="cb857-26" title="26">   <span class="co">! everything prints trimmed</span></a>
-<a class="sourceLine" id="cb857-27" title="27">   <span class="fu">print</span> brackets, (<span class="fu">trim</span>(strs(i)), i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(strs))</a>
-<a class="sourceLine" id="cb857-28" title="28">   <span class="fu">print</span> brackets, (<span class="fu">trim</span>(strs(i)), i<span class="kw">=</span><span class="fu">size</span>(strs),<span class="dv">1</span>,<span class="kw">-</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb857-29" title="29"></a>
-<a class="sourceLine" id="cb857-30" title="30"><span class="kw">end program</span> demo_trim</a></code></pre></div>
+<div class="sourceCode" id="cb858"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb858-1" title="1"><span class="kw">program</span> demo_trim</a>
+<a class="sourceLine" id="cb858-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb858-3" title="3"><span class="dt">character(len=:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> str, strs(:)</a>
+<a class="sourceLine" id="cb858-4" title="4"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> brackets<span class="kw">=</span><span class="st">&#39;( *(&quot;[&quot;,a,&quot;]&quot;:,1x) )&#39;</span></a>
+<a class="sourceLine" id="cb858-5" title="5"><span class="dt">integer</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb858-6" title="6"></a>
+<a class="sourceLine" id="cb858-7" title="7">   str<span class="kw">=</span><span class="st">&#39;   trailing    &#39;</span></a>
+<a class="sourceLine" id="cb858-8" title="8">   <span class="fu">print</span> brackets, str,<span class="fu">trim</span>(str) <span class="co">! trims it</span></a>
+<a class="sourceLine" id="cb858-9" title="9"></a>
+<a class="sourceLine" id="cb858-10" title="10">   str<span class="kw">=</span><span class="st">&#39;   leading&#39;</span></a>
+<a class="sourceLine" id="cb858-11" title="11">   <span class="fu">print</span> brackets, str,<span class="fu">trim</span>(str) <span class="co">! no effect</span></a>
+<a class="sourceLine" id="cb858-12" title="12"></a>
+<a class="sourceLine" id="cb858-13" title="13">   str<span class="kw">=</span><span class="st">&#39;            &#39;</span></a>
+<a class="sourceLine" id="cb858-14" title="14">   <span class="fu">print</span> brackets, str,<span class="fu">trim</span>(str) <span class="co">! becomes zero length</span></a>
+<a class="sourceLine" id="cb858-15" title="15">   <span class="fu">print</span> <span class="kw">*</span>,  <span class="fu">len</span>(str), <span class="fu">len</span>(<span class="fu">trim</span>(<span class="st">&#39;               &#39;</span>))</a>
+<a class="sourceLine" id="cb858-16" title="16"></a>
+<a class="sourceLine" id="cb858-17" title="17">  <span class="co">! array elements are all the same length, so you often</span></a>
+<a class="sourceLine" id="cb858-18" title="18">  <span class="co">! want to print them</span></a>
+<a class="sourceLine" id="cb858-19" title="19">   strs<span class="kw">=[</span><span class="dt">character(len=10)</span> <span class="dt">::</span> <span class="st">&quot;Z&quot;</span>,<span class="st">&quot; a b c&quot;</span>,<span class="st">&quot;ABC&quot;</span>,<span class="st">&quot;&quot;</span><span class="kw">]</span></a>
+<a class="sourceLine" id="cb858-20" title="20"></a>
+<a class="sourceLine" id="cb858-21" title="21">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;untrimmed:&#39;</span></a>
+<a class="sourceLine" id="cb858-22" title="22">   <span class="co">! everything prints as ten characters; nice for neat columns</span></a>
+<a class="sourceLine" id="cb858-23" title="23">   <span class="fu">print</span> brackets, (strs(i), i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(strs))</a>
+<a class="sourceLine" id="cb858-24" title="24">   <span class="fu">print</span> brackets, (strs(i), i<span class="kw">=</span><span class="fu">size</span>(strs),<span class="dv">1</span>,<span class="kw">-</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb858-25" title="25">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;trimmed:&#39;</span></a>
+<a class="sourceLine" id="cb858-26" title="26">   <span class="co">! everything prints trimmed</span></a>
+<a class="sourceLine" id="cb858-27" title="27">   <span class="fu">print</span> brackets, (<span class="fu">trim</span>(strs(i)), i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(strs))</a>
+<a class="sourceLine" id="cb858-28" title="28">   <span class="fu">print</span> brackets, (<span class="fu">trim</span>(strs(i)), i<span class="kw">=</span><span class="fu">size</span>(strs),<span class="dv">1</span>,<span class="kw">-</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb858-29" title="29"></a>
+<a class="sourceLine" id="cb858-30" title="30"><span class="kw">end program</span> demo_trim</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>    &gt; [   trailing    ] [   trailing]
     &gt; [   leading] [   leading]
@@ -15069,12 +15081,12 @@ need an illustration of what happens with higher dimension array
 <h3 id="name-196"><strong>Name</strong></h3>
 <p><strong>ubound</strong>(3) - [ARRAY:INQUIRY] Upper dimension bounds of an array</p>
 <h3 id="synopsis-196"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb859"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb859-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">ubound</span>(array <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb860"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb860-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="fu">ubound</span>(array,<span class="bu">dim</span>,<span class="fu">kind</span>)</a>
-<a class="sourceLine" id="cb860-2" title="2"></a>
-<a class="sourceLine" id="cb860-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> array</a>
-<a class="sourceLine" id="cb860-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
-<a class="sourceLine" id="cb860-5" title="5">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
+<div class="sourceCode" id="cb860"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb860-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">ubound</span>(array <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
+<div class="sourceCode" id="cb861"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb861-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="fu">ubound</span>(array,<span class="bu">dim</span>,<span class="fu">kind</span>)</a>
+<a class="sourceLine" id="cb861-2" title="2"></a>
+<a class="sourceLine" id="cb861-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> array</a>
+<a class="sourceLine" id="cb861-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb861-5" title="5">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
 <h3 id="characteristics-197"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind value for the type</li>
@@ -15111,51 +15123,51 @@ need an illustration of what happens with higher dimension array
 <h3 id="examples-191"><strong>Examples</strong></h3>
 <p>Note this function should not be used on assumed-size arrays or in any function without an explicit interface. Errors can occur if there is no interface defined.</p>
 <p>Sample program</p>
-<div class="sourceCode" id="cb861"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb861-1" title="1"><span class="co">! program demo_ubound</span></a>
-<a class="sourceLine" id="cb861-2" title="2"><span class="kw">module</span> m2_bounds</a>
-<a class="sourceLine" id="cb861-3" title="3"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb861-4" title="4"></a>
-<a class="sourceLine" id="cb861-5" title="5"><span class="co">contains</span></a>
-<a class="sourceLine" id="cb861-6" title="6"></a>
-<a class="sourceLine" id="cb861-7" title="7"><span class="kw">subroutine</span> msub(arr)</a>
-<a class="sourceLine" id="cb861-8" title="8"><span class="co">!!integer,intent(in) :: arr(*)  ! cannot be assumed-size array</span></a>
-<a class="sourceLine" id="cb861-9" title="9"><span class="dt">integer</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> arr(:)</a>
-<a class="sourceLine" id="cb861-10" title="10">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;MSUB: LOWER=&#39;</span>,<span class="fu">lbound</span>(arr),<span class="st">&#39;UPPER=&#39;</span>,<span class="fu">ubound</span>(arr), <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb861-11" title="11">   <span class="kw">&amp;</span> <span class="st">&#39;SIZE=&#39;</span>,<span class="fu">size</span>(arr)</a>
-<a class="sourceLine" id="cb861-12" title="12"><span class="kw">end subroutine</span> msub</a>
-<a class="sourceLine" id="cb861-13" title="13"></a>
-<a class="sourceLine" id="cb861-14" title="14"><span class="kw">end module</span> m2_bounds</a>
-<a class="sourceLine" id="cb861-15" title="15"></a>
-<a class="sourceLine" id="cb861-16" title="16"><span class="kw">use</span> m2_bounds, <span class="kw">only</span> : msub</a>
-<a class="sourceLine" id="cb861-17" title="17"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb861-18" title="18"><span class="kw">interface</span></a>
-<a class="sourceLine" id="cb861-19" title="19">   <span class="kw">subroutine</span> esub(arr)</a>
-<a class="sourceLine" id="cb861-20" title="20">   <span class="dt">integer</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> arr(:)</a>
-<a class="sourceLine" id="cb861-21" title="21">   <span class="kw">end subroutine</span> esub</a>
-<a class="sourceLine" id="cb861-22" title="22"><span class="kw">end interface</span></a>
-<a class="sourceLine" id="cb861-23" title="23"><span class="dt">integer</span> <span class="dt">::</span> arr(<span class="kw">-</span><span class="dv">10</span>:<span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb861-24" title="24">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;MAIN: LOWER=&#39;</span>,<span class="fu">lbound</span>(arr),<span class="st">&#39;UPPER=&#39;</span>,<span class="fu">ubound</span>(arr), <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb861-25" title="25">   <span class="kw">&amp;</span> <span class="st">&#39;SIZE=&#39;</span>,<span class="fu">size</span>(arr)</a>
-<a class="sourceLine" id="cb861-26" title="26">   <span class="kw">call</span> csub()</a>
-<a class="sourceLine" id="cb861-27" title="27">   <span class="kw">call</span> msub(arr)</a>
-<a class="sourceLine" id="cb861-28" title="28">   <span class="kw">call</span> esub(arr)</a>
-<a class="sourceLine" id="cb861-29" title="29"><span class="co">contains</span></a>
-<a class="sourceLine" id="cb861-30" title="30"><span class="kw">subroutine</span> csub</a>
-<a class="sourceLine" id="cb861-31" title="31">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;CSUB: LOWER=&#39;</span>,<span class="fu">lbound</span>(arr),<span class="st">&#39;UPPER=&#39;</span>,<span class="fu">ubound</span>(arr), <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb861-32" title="32">   <span class="kw">&amp;</span> <span class="st">&#39;SIZE=&#39;</span>,<span class="fu">size</span>(arr)</a>
-<a class="sourceLine" id="cb861-33" title="33"><span class="kw">end subroutine</span> csub</a>
-<a class="sourceLine" id="cb861-34" title="34"></a>
-<a class="sourceLine" id="cb861-35" title="35"><span class="kw">end</span></a>
-<a class="sourceLine" id="cb861-36" title="36"></a>
-<a class="sourceLine" id="cb861-37" title="37"><span class="kw">subroutine</span> esub(arr)</a>
-<a class="sourceLine" id="cb861-38" title="38"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb861-39" title="39"><span class="dt">integer</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> arr(:)</a>
-<a class="sourceLine" id="cb861-40" title="40">   <span class="co">! </span><span class="al">WARNING</span><span class="co">: IF CALLED WITHOUT AN EXPLICIT INTERFACE</span></a>
-<a class="sourceLine" id="cb861-41" title="41">   <span class="co">! THIS WILL GIVE UNDEFINED ANSWERS (like 0,0,0)</span></a>
-<a class="sourceLine" id="cb861-42" title="42">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;ESUB: LOWER=&#39;</span>,<span class="fu">lbound</span>(arr),<span class="st">&#39;UPPER=&#39;</span>,<span class="fu">ubound</span>(arr), <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb861-43" title="43">   <span class="kw">&amp;</span> <span class="st">&#39;SIZE=&#39;</span>,<span class="fu">size</span>(arr)</a>
-<a class="sourceLine" id="cb861-44" title="44"><span class="kw">end subroutine</span> esub</a>
-<a class="sourceLine" id="cb861-45" title="45"><span class="co">!end program demo_ubound</span></a></code></pre></div>
+<div class="sourceCode" id="cb862"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb862-1" title="1"><span class="co">! program demo_ubound</span></a>
+<a class="sourceLine" id="cb862-2" title="2"><span class="kw">module</span> m2_bounds</a>
+<a class="sourceLine" id="cb862-3" title="3"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb862-4" title="4"></a>
+<a class="sourceLine" id="cb862-5" title="5"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb862-6" title="6"></a>
+<a class="sourceLine" id="cb862-7" title="7"><span class="kw">subroutine</span> msub(arr)</a>
+<a class="sourceLine" id="cb862-8" title="8"><span class="co">!!integer,intent(in) :: arr(*)  ! cannot be assumed-size array</span></a>
+<a class="sourceLine" id="cb862-9" title="9"><span class="dt">integer</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> arr(:)</a>
+<a class="sourceLine" id="cb862-10" title="10">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;MSUB: LOWER=&#39;</span>,<span class="fu">lbound</span>(arr),<span class="st">&#39;UPPER=&#39;</span>,<span class="fu">ubound</span>(arr), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb862-11" title="11">   <span class="kw">&amp;</span> <span class="st">&#39;SIZE=&#39;</span>,<span class="fu">size</span>(arr)</a>
+<a class="sourceLine" id="cb862-12" title="12"><span class="kw">end subroutine</span> msub</a>
+<a class="sourceLine" id="cb862-13" title="13"></a>
+<a class="sourceLine" id="cb862-14" title="14"><span class="kw">end module</span> m2_bounds</a>
+<a class="sourceLine" id="cb862-15" title="15"></a>
+<a class="sourceLine" id="cb862-16" title="16"><span class="kw">use</span> m2_bounds, <span class="kw">only</span> : msub</a>
+<a class="sourceLine" id="cb862-17" title="17"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb862-18" title="18"><span class="kw">interface</span></a>
+<a class="sourceLine" id="cb862-19" title="19">   <span class="kw">subroutine</span> esub(arr)</a>
+<a class="sourceLine" id="cb862-20" title="20">   <span class="dt">integer</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> arr(:)</a>
+<a class="sourceLine" id="cb862-21" title="21">   <span class="kw">end subroutine</span> esub</a>
+<a class="sourceLine" id="cb862-22" title="22"><span class="kw">end interface</span></a>
+<a class="sourceLine" id="cb862-23" title="23"><span class="dt">integer</span> <span class="dt">::</span> arr(<span class="kw">-</span><span class="dv">10</span>:<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb862-24" title="24">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;MAIN: LOWER=&#39;</span>,<span class="fu">lbound</span>(arr),<span class="st">&#39;UPPER=&#39;</span>,<span class="fu">ubound</span>(arr), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb862-25" title="25">   <span class="kw">&amp;</span> <span class="st">&#39;SIZE=&#39;</span>,<span class="fu">size</span>(arr)</a>
+<a class="sourceLine" id="cb862-26" title="26">   <span class="kw">call</span> csub()</a>
+<a class="sourceLine" id="cb862-27" title="27">   <span class="kw">call</span> msub(arr)</a>
+<a class="sourceLine" id="cb862-28" title="28">   <span class="kw">call</span> esub(arr)</a>
+<a class="sourceLine" id="cb862-29" title="29"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb862-30" title="30"><span class="kw">subroutine</span> csub</a>
+<a class="sourceLine" id="cb862-31" title="31">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;CSUB: LOWER=&#39;</span>,<span class="fu">lbound</span>(arr),<span class="st">&#39;UPPER=&#39;</span>,<span class="fu">ubound</span>(arr), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb862-32" title="32">   <span class="kw">&amp;</span> <span class="st">&#39;SIZE=&#39;</span>,<span class="fu">size</span>(arr)</a>
+<a class="sourceLine" id="cb862-33" title="33"><span class="kw">end subroutine</span> csub</a>
+<a class="sourceLine" id="cb862-34" title="34"></a>
+<a class="sourceLine" id="cb862-35" title="35"><span class="kw">end</span></a>
+<a class="sourceLine" id="cb862-36" title="36"></a>
+<a class="sourceLine" id="cb862-37" title="37"><span class="kw">subroutine</span> esub(arr)</a>
+<a class="sourceLine" id="cb862-38" title="38"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb862-39" title="39"><span class="dt">integer</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> arr(:)</a>
+<a class="sourceLine" id="cb862-40" title="40">   <span class="co">! </span><span class="al">WARNING</span><span class="co">: IF CALLED WITHOUT AN EXPLICIT INTERFACE</span></a>
+<a class="sourceLine" id="cb862-41" title="41">   <span class="co">! THIS WILL GIVE UNDEFINED ANSWERS (like 0,0,0)</span></a>
+<a class="sourceLine" id="cb862-42" title="42">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;ESUB: LOWER=&#39;</span>,<span class="fu">lbound</span>(arr),<span class="st">&#39;UPPER=&#39;</span>,<span class="fu">ubound</span>(arr), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb862-43" title="43">   <span class="kw">&amp;</span> <span class="st">&#39;SIZE=&#39;</span>,<span class="fu">size</span>(arr)</a>
+<a class="sourceLine" id="cb862-44" title="44"><span class="kw">end subroutine</span> esub</a>
+<a class="sourceLine" id="cb862-45" title="45"><span class="co">!end program demo_ubound</span></a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>  MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
   CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
@@ -15176,7 +15188,7 @@ need an illustration of what happens with higher dimension array
 <h4 id="state-inquiry-4">State Inquiry:</h4>
 <ul>
 <li><a href="#allocated"><strong>allocated</strong>(3)</a> - Status of an allocatable entity</li>
-<li><a href="#is_contigious"><strong>is_contiguous</strong>(3)</a> - Test if object is contiguous</li>
+<li><a href="#is_contiguous"><strong>is_contiguous</strong>(3)</a> - Test if object is contiguous</li>
 </ul>
 <h4 id="kind-inquiry-4">Kind Inquiry:</h4>
 <ul>
@@ -15196,12 +15208,12 @@ need an illustration of what happens with higher dimension array
 <h3 id="name-197"><strong>Name</strong></h3>
 <p><strong>unpack</strong>(3) - [ARRAY:CONSTRUCTION] Scatter the elements of a vector into an array using a mask</p>
 <h3 id="synopsis-197"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb863"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb863-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">unpack</span>(vector, mask, field)</a></code></pre></div>
-<div class="sourceCode" id="cb864"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb864-1" title="1">     <span class="dt">type(TYPE(kind=KIND))</span> <span class="fu">unpack</span>(vector, mask, field)</a>
-<a class="sourceLine" id="cb864-2" title="2"></a>
-<a class="sourceLine" id="cb864-3" title="3">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> vector(:)</a>
-<a class="sourceLine" id="cb864-4" title="4">      <span class="dt">logical</span>,<span class="dt">intent(in)</span>               <span class="dt">::</span> mask(..)</a>
-<a class="sourceLine" id="cb864-5" title="5">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> field(..)</a></code></pre></div>
+<div class="sourceCode" id="cb864"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb864-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">unpack</span>(vector, mask, field)</a></code></pre></div>
+<div class="sourceCode" id="cb865"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb865-1" title="1">     <span class="dt">type(TYPE(kind=KIND))</span> <span class="fu">unpack</span>(vector, mask, field)</a>
+<a class="sourceLine" id="cb865-2" title="2"></a>
+<a class="sourceLine" id="cb865-3" title="3">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> vector(:)</a>
+<a class="sourceLine" id="cb865-4" title="4">      <span class="dt">logical</span>,<span class="dt">intent(in)</span>               <span class="dt">::</span> mask(..)</a>
+<a class="sourceLine" id="cb865-5" title="5">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> field(..)</a></code></pre></div>
 <h3 id="characteristics-198"><strong>Characteristics</strong></h3>
 <ul>
 <li>**vector* is a rank-one array of any type</li>
@@ -15257,55 +15269,55 @@ need an illustration of what happens with higher dimension array
       1 0 0
       0 0 3</code></pre>
 <p>Sample program:</p>
-<div class="sourceCode" id="cb866"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb866-1" title="1"><span class="kw">program</span> demo_unpack</a>
-<a class="sourceLine" id="cb866-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb866-3" title="3"><span class="dt">logical</span>,<span class="dt">parameter</span> <span class="dt">::</span> T<span class="kw">=</span><span class="cn">.true.</span>, F<span class="kw">=</span><span class="cn">.false.</span></a>
-<a class="sourceLine" id="cb866-4" title="4"></a>
-<a class="sourceLine" id="cb866-5" title="5"><span class="dt">integer</span> <span class="dt">::</span> vector(<span class="dv">2</span>)  <span class="kw">=</span> <span class="kw">[</span><span class="dv">1</span>,<span class="dv">1</span><span class="kw">]</span></a>
-<a class="sourceLine" id="cb866-6" title="6"></a>
-<a class="sourceLine" id="cb866-7" title="7"><span class="co">! mask and field must conform</span></a>
-<a class="sourceLine" id="cb866-8" title="8"><span class="dt">integer</span>,<span class="dt">parameter</span> <span class="dt">::</span> r<span class="kw">=</span><span class="dv">2</span>, c<span class="kw">=</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb866-9" title="9"><span class="dt">logical</span> <span class="dt">::</span> mask(r,c)  <span class="kw">=</span> <span class="fu">reshape</span>(<span class="kw">[</span> T,F,F,T <span class="kw">]</span>,<span class="kw">[</span><span class="dv">2</span>,<span class="dv">2</span><span class="kw">]</span>)</a>
-<a class="sourceLine" id="cb866-10" title="10"><span class="dt">integer</span> <span class="dt">::</span> field(r,c) <span class="kw">=</span> <span class="dv">0</span>, unity(<span class="dv">2</span>,<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb866-11" title="11"></a>
-<a class="sourceLine" id="cb866-12" title="12">   <span class="co">! basic usage</span></a>
-<a class="sourceLine" id="cb866-13" title="13">   unity <span class="kw">=</span> <span class="fu">unpack</span>( vector, mask, field )</a>
-<a class="sourceLine" id="cb866-14" title="14">   <span class="kw">call</span> print_matrix_int(<span class="st">&#39;unity=&#39;</span>, unity)</a>
-<a class="sourceLine" id="cb866-15" title="15"></a>
-<a class="sourceLine" id="cb866-16" title="16">   <span class="co">! if FIELD is a scalar it is used to fill all the elements</span></a>
-<a class="sourceLine" id="cb866-17" title="17">   <span class="co">! not assigned to by the vector and mask.</span></a>
-<a class="sourceLine" id="cb866-18" title="18">   <span class="kw">call</span> print_matrix_int(<span class="st">&#39;scalar field&#39;</span>,         <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb866-19" title="19">   <span class="kw">&amp;</span> <span class="fu">unpack</span>(                                     <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb866-20" title="20">   <span class="kw">&amp;</span> vector<span class="kw">=[</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span> <span class="kw">]</span>,                      <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb866-21" title="21">   <span class="kw">&amp;</span> mask<span class="kw">=</span><span class="fu">reshape</span>(<span class="kw">[</span> T,F,T,F,F,F,T,F,T <span class="kw">]</span>, <span class="kw">[</span><span class="dv">3</span>,<span class="dv">3</span><span class="kw">]</span>), <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb866-22" title="22">   <span class="kw">&amp;</span> field<span class="kw">=</span><span class="dv">0</span>) )</a>
-<a class="sourceLine" id="cb866-23" title="23"></a>
-<a class="sourceLine" id="cb866-24" title="24"><span class="co">contains</span></a>
-<a class="sourceLine" id="cb866-25" title="25"></a>
-<a class="sourceLine" id="cb866-26" title="26">   <span class="kw">subroutine</span> print_matrix_int(title,arr)</a>
-<a class="sourceLine" id="cb866-27" title="27">   <span class="co">! convenience routine:</span></a>
-<a class="sourceLine" id="cb866-28" title="28">   <span class="co">! just prints small integer arrays in row-column format</span></a>
-<a class="sourceLine" id="cb866-29" title="29">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb866-30" title="30">   <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> title</a>
-<a class="sourceLine" id="cb866-31" title="31">   <span class="dt">integer</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> arr(:,:)</a>
-<a class="sourceLine" id="cb866-32" title="32">   <span class="dt">integer</span>                      <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb866-33" title="33">   <span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> biggest</a>
-<a class="sourceLine" id="cb866-34" title="34"></a>
-<a class="sourceLine" id="cb866-35" title="35">        <span class="fu">write(*</span>,<span class="fu">*)trim</span>(title)</a>
-<a class="sourceLine" id="cb866-36" title="36">        <span class="co">! make buffer to write integer into</span></a>
-<a class="sourceLine" id="cb866-37" title="37">        biggest<span class="kw">=</span><span class="st">&#39;           &#39;</span></a>
-<a class="sourceLine" id="cb866-38" title="38">        <span class="co">! find how many characters to use for integers</span></a>
-<a class="sourceLine" id="cb866-39" title="39">        <span class="fu">write(</span>biggest,<span class="st">&#39;(i0)&#39;</span><span class="fu">)</span><span class="bu">ceiling</span>(<span class="bu">log10</span>(<span class="bu">real</span>(<span class="fu">maxval</span>(<span class="bu">abs</span>(arr)))))<span class="kw">+</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb866-40" title="40">        <span class="co">! use this format to write a row</span></a>
-<a class="sourceLine" id="cb866-41" title="41">        biggest<span class="kw">=</span><span class="st">&#39;(&quot;  [&quot;,*(i&#39;</span><span class="kw">//</span><span class="fu">trim</span>(biggest)<span class="kw">//</span><span class="st">&#39;:,&quot;,&quot;))&#39;</span></a>
-<a class="sourceLine" id="cb866-42" title="42">        <span class="co">! print one row of array at a time</span></a>
-<a class="sourceLine" id="cb866-43" title="43">        <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb866-44" title="44">           <span class="fu">write(*</span>,<span class="fu">fmt</span><span class="kw">=</span>biggest,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>arr(i,:)</a>
-<a class="sourceLine" id="cb866-45" title="45">           <span class="fu">write(*</span>,<span class="st">&#39;(&quot; ]&quot;)&#39;</span><span class="fu">)</span></a>
-<a class="sourceLine" id="cb866-46" title="46">        <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb866-47" title="47">   <span class="kw">end subroutine</span> print_matrix_int</a>
-<a class="sourceLine" id="cb866-48" title="48"></a>
-<a class="sourceLine" id="cb866-49" title="49"><span class="kw">end program</span> demo_unpack</a></code></pre></div>
+<div class="sourceCode" id="cb867"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb867-1" title="1"><span class="kw">program</span> demo_unpack</a>
+<a class="sourceLine" id="cb867-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb867-3" title="3"><span class="dt">logical</span>,<span class="dt">parameter</span> <span class="dt">::</span> T<span class="kw">=</span><span class="cn">.true.</span>, F<span class="kw">=</span><span class="cn">.false.</span></a>
+<a class="sourceLine" id="cb867-4" title="4"></a>
+<a class="sourceLine" id="cb867-5" title="5"><span class="dt">integer</span> <span class="dt">::</span> vector(<span class="dv">2</span>)  <span class="kw">=</span> <span class="kw">[</span><span class="dv">1</span>,<span class="dv">1</span><span class="kw">]</span></a>
+<a class="sourceLine" id="cb867-6" title="6"></a>
+<a class="sourceLine" id="cb867-7" title="7"><span class="co">! mask and field must conform</span></a>
+<a class="sourceLine" id="cb867-8" title="8"><span class="dt">integer</span>,<span class="dt">parameter</span> <span class="dt">::</span> r<span class="kw">=</span><span class="dv">2</span>, c<span class="kw">=</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb867-9" title="9"><span class="dt">logical</span> <span class="dt">::</span> mask(r,c)  <span class="kw">=</span> <span class="fu">reshape</span>(<span class="kw">[</span> T,F,F,T <span class="kw">]</span>,<span class="kw">[</span><span class="dv">2</span>,<span class="dv">2</span><span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb867-10" title="10"><span class="dt">integer</span> <span class="dt">::</span> field(r,c) <span class="kw">=</span> <span class="dv">0</span>, unity(<span class="dv">2</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb867-11" title="11"></a>
+<a class="sourceLine" id="cb867-12" title="12">   <span class="co">! basic usage</span></a>
+<a class="sourceLine" id="cb867-13" title="13">   unity <span class="kw">=</span> <span class="fu">unpack</span>( vector, mask, field )</a>
+<a class="sourceLine" id="cb867-14" title="14">   <span class="kw">call</span> print_matrix_int(<span class="st">&#39;unity=&#39;</span>, unity)</a>
+<a class="sourceLine" id="cb867-15" title="15"></a>
+<a class="sourceLine" id="cb867-16" title="16">   <span class="co">! if FIELD is a scalar it is used to fill all the elements</span></a>
+<a class="sourceLine" id="cb867-17" title="17">   <span class="co">! not assigned to by the vector and mask.</span></a>
+<a class="sourceLine" id="cb867-18" title="18">   <span class="kw">call</span> print_matrix_int(<span class="st">&#39;scalar field&#39;</span>,         <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb867-19" title="19">   <span class="kw">&amp;</span> <span class="fu">unpack</span>(                                     <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb867-20" title="20">   <span class="kw">&amp;</span> vector<span class="kw">=[</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span> <span class="kw">]</span>,                      <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb867-21" title="21">   <span class="kw">&amp;</span> mask<span class="kw">=</span><span class="fu">reshape</span>(<span class="kw">[</span> T,F,T,F,F,F,T,F,T <span class="kw">]</span>, <span class="kw">[</span><span class="dv">3</span>,<span class="dv">3</span><span class="kw">]</span>), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb867-22" title="22">   <span class="kw">&amp;</span> field<span class="kw">=</span><span class="dv">0</span>) )</a>
+<a class="sourceLine" id="cb867-23" title="23"></a>
+<a class="sourceLine" id="cb867-24" title="24"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb867-25" title="25"></a>
+<a class="sourceLine" id="cb867-26" title="26">   <span class="kw">subroutine</span> print_matrix_int(title,arr)</a>
+<a class="sourceLine" id="cb867-27" title="27">   <span class="co">! convenience routine:</span></a>
+<a class="sourceLine" id="cb867-28" title="28">   <span class="co">! just prints small integer arrays in row-column format</span></a>
+<a class="sourceLine" id="cb867-29" title="29">   <span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb867-30" title="30">   <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> title</a>
+<a class="sourceLine" id="cb867-31" title="31">   <span class="dt">integer</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> arr(:,:)</a>
+<a class="sourceLine" id="cb867-32" title="32">   <span class="dt">integer</span>                      <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb867-33" title="33">   <span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> biggest</a>
+<a class="sourceLine" id="cb867-34" title="34"></a>
+<a class="sourceLine" id="cb867-35" title="35">        <span class="fu">write(*</span>,<span class="fu">*)trim</span>(title)</a>
+<a class="sourceLine" id="cb867-36" title="36">        <span class="co">! make buffer to write integer into</span></a>
+<a class="sourceLine" id="cb867-37" title="37">        biggest<span class="kw">=</span><span class="st">&#39;           &#39;</span></a>
+<a class="sourceLine" id="cb867-38" title="38">        <span class="co">! find how many characters to use for integers</span></a>
+<a class="sourceLine" id="cb867-39" title="39">        <span class="fu">write(</span>biggest,<span class="st">&#39;(i0)&#39;</span><span class="fu">)</span><span class="bu">ceiling</span>(<span class="bu">log10</span>(<span class="bu">real</span>(<span class="fu">maxval</span>(<span class="bu">abs</span>(arr)))))<span class="kw">+</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb867-40" title="40">        <span class="co">! use this format to write a row</span></a>
+<a class="sourceLine" id="cb867-41" title="41">        biggest<span class="kw">=</span><span class="st">&#39;(&quot;  [&quot;,*(i&#39;</span><span class="kw">//</span><span class="fu">trim</span>(biggest)<span class="kw">//</span><span class="st">&#39;:,&quot;,&quot;))&#39;</span></a>
+<a class="sourceLine" id="cb867-42" title="42">        <span class="co">! print one row of array at a time</span></a>
+<a class="sourceLine" id="cb867-43" title="43">        <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(arr,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb867-44" title="44">           <span class="fu">write(*</span>,<span class="fu">fmt</span><span class="kw">=</span>biggest,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>arr(i,:)</a>
+<a class="sourceLine" id="cb867-45" title="45">           <span class="fu">write(*</span>,<span class="st">&#39;(&quot; ]&quot;)&#39;</span><span class="fu">)</span></a>
+<a class="sourceLine" id="cb867-46" title="46">        <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb867-47" title="47">   <span class="kw">end subroutine</span> print_matrix_int</a>
+<a class="sourceLine" id="cb867-48" title="48"></a>
+<a class="sourceLine" id="cb867-49" title="49"><span class="kw">end program</span> demo_unpack</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>   &gt; unity=
    &gt;  [ 1, 0 ]
@@ -15325,13 +15337,13 @@ need an illustration of what happens with higher dimension array
 <h3 id="name-198"><strong>Name</strong></h3>
 <p><strong>verify</strong>(3) - [CHARACTER:SEARCH] Position of a character in a string of characters that does not appear in a given set of characters.</p>
 <h3 id="synopsis-198"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb868"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb868-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">verify</span>(string, set <span class="kw">[</span>,back<span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb869"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb869-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">verify</span>(string,set,back,<span class="fu">KIND</span>)</a>
-<a class="sourceLine" id="cb869-2" title="2"></a>
-<a class="sourceLine" id="cb869-3" title="3">      <span class="dt">character(len=*,kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string</a>
-<a class="sourceLine" id="cb869-4" title="4">      <span class="dt">character(len=*,kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> set</a>
-<a class="sourceLine" id="cb869-5" title="5">      <span class="dt">logical</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> back</a>
-<a class="sourceLine" id="cb869-6" title="6">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
+<div class="sourceCode" id="cb869"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb869-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">verify</span>(string, set <span class="kw">[</span>,back<span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
+<div class="sourceCode" id="cb870"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb870-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">verify</span>(string,set,back,<span class="fu">KIND</span>)</a>
+<a class="sourceLine" id="cb870-2" title="2"></a>
+<a class="sourceLine" id="cb870-3" title="3">      <span class="dt">character(len=*,kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string</a>
+<a class="sourceLine" id="cb870-4" title="4">      <span class="dt">character(len=*,kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> set</a>
+<a class="sourceLine" id="cb870-5" title="5">      <span class="dt">logical</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> back</a>
+<a class="sourceLine" id="cb870-6" title="6">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
 <h3 id="characteristics-199"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>string</strong> and <strong>set</strong> must be of type character and have the same kind for any individual call, but that can be any supported character kind.</li>
@@ -15371,82 +15383,82 @@ need an illustration of what happens with higher dimension array
 <p>Otherwise, if an unmatched character is found The position of the first or last (if <strong>back</strong> is .false.) unmatched character in <strong>string</strong> is returned, starting with position one on the left end of the string.</p>
 <h3 id="examples-193"><strong>Examples</strong></h3>
 <h4 id="sample-program-i">Sample program I:</h4>
-<div class="sourceCode" id="cb870"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb870-1" title="1"><span class="kw">program</span> demo_verify</a>
-<a class="sourceLine" id="cb870-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb870-3" title="3"><span class="co">! some useful character sets</span></a>
-<a class="sourceLine" id="cb870-4" title="4"><span class="dt">character</span>,<span class="dt">parameter</span> <span class="dt">::</span> <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb870-5" title="5"> <span class="kw">&amp;</span> <span class="bu">int</span><span class="kw">*</span>(<span class="kw">*</span>)   <span class="kw">=</span> <span class="st">&#39;1234567890&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb870-6" title="6"> <span class="kw">&amp;</span> low<span class="kw">*</span>(<span class="kw">*</span>)   <span class="kw">=</span> <span class="st">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb870-7" title="7"> <span class="kw">&amp;</span> upp<span class="kw">*</span>(<span class="kw">*</span>)   <span class="kw">=</span> <span class="st">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb870-8" title="8"> <span class="kw">&amp;</span> punc<span class="kw">*</span>(<span class="kw">*</span>)  <span class="kw">=</span> <span class="st">&quot;!&quot;&quot;#$%&amp;&#39;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~&quot;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb870-9" title="9"> <span class="kw">&amp;</span> blank<span class="kw">*</span>(<span class="kw">*</span>) <span class="kw">=</span> <span class="st">&#39; &#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb870-10" title="10"> <span class="kw">&amp;</span> tab       <span class="kw">=</span> <span class="bu">char</span>(<span class="dv">11</span>), <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb870-11" title="11"> <span class="kw">&amp;</span> prnt<span class="kw">*</span>(<span class="kw">*</span>) <span class="kw">=</span> <span class="bu">int</span><span class="kw">//</span>low<span class="kw">//</span>upp<span class="kw">//</span>blank<span class="kw">//</span>punc</a>
-<a class="sourceLine" id="cb870-12" title="12"></a>
-<a class="sourceLine" id="cb870-13" title="13"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> string</a>
-<a class="sourceLine" id="cb870-14" title="14"><span class="dt">integer</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb870-15" title="15">    <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;basics:&#39;</span></a>
-<a class="sourceLine" id="cb870-16" title="16">    <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">VERIFY</span> (<span class="st">&#39;ABBA&#39;</span>, <span class="st">&#39;A&#39;</span>)                <span class="co">! has the value 2.</span></a>
-<a class="sourceLine" id="cb870-17" title="17">    <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">VERIFY</span> (<span class="st">&#39;ABBA&#39;</span>, <span class="st">&#39;A&#39;</span>, BACK <span class="kw">=</span> <span class="cn">.TRUE.</span>) <span class="co">! has the value 3.</span></a>
-<a class="sourceLine" id="cb870-18" title="18">    <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">VERIFY</span> (<span class="st">&#39;ABBA&#39;</span>, <span class="st">&#39;AB&#39;</span>)               <span class="co">! has the value 0.</span></a>
-<a class="sourceLine" id="cb870-19" title="19"></a>
-<a class="sourceLine" id="cb870-20" title="20">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;find first non-uppercase letter&#39;</span></a>
-<a class="sourceLine" id="cb870-21" title="21">   <span class="co">! will produce the location of &quot;d&quot;, because there is no match in UPP</span></a>
-<a class="sourceLine" id="cb870-22" title="22">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;something unmatched&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;ABCdEFG&quot;</span>, upp)</a>
-<a class="sourceLine" id="cb870-23" title="23"></a>
-<a class="sourceLine" id="cb870-24" title="24">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;if everything is matched return zero&#39;</span></a>
-<a class="sourceLine" id="cb870-25" title="25">   <span class="co">! will produce 0 as all letters have a match</span></a>
-<a class="sourceLine" id="cb870-26" title="26">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;everything matched&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;ffoorrttrraann&quot;</span>, <span class="st">&quot;nartrof&quot;</span>)</a>
-<a class="sourceLine" id="cb870-27" title="27"></a>
-<a class="sourceLine" id="cb870-28" title="28">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;easily categorize strings as uppercase, lowercase, ...&#39;</span></a>
-<a class="sourceLine" id="cb870-29" title="29">   <span class="co">! easy C-like functionality but does entire strings not just characters</span></a>
-<a class="sourceLine" id="cb870-30" title="30">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isdigit 123?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;123&quot;</span>, <span class="bu">int</span>) <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-31" title="31">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;islower abc?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;abc&quot;</span>, low) <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-32" title="32">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isalpha aBc?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;aBc&quot;</span>, low<span class="kw">//</span>upp) <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-33" title="33">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isblank aBc dEf?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;aBc dEf&quot;</span>, blank<span class="kw">//</span>tab ) <span class="op">/=</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-34" title="34">   <span class="co">! check if all printable characters</span></a>
-<a class="sourceLine" id="cb870-35" title="35">   string<span class="kw">=</span><span class="st">&quot;aB;cde,fgHI!Jklmno PQRSTU vwxyz&quot;</span></a>
-<a class="sourceLine" id="cb870-36" title="36">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isprint?&#39;</span>,<span class="bu">verify</span>(string,prnt) <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-37" title="37">   <span class="co">! this now has a nonprintable tab character in it</span></a>
-<a class="sourceLine" id="cb870-38" title="38">   string(<span class="dv">10</span>:<span class="dv">10</span>)<span class="kw">=</span><span class="bu">char</span>(<span class="dv">11</span>)</a>
-<a class="sourceLine" id="cb870-39" title="39">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isprint?&#39;</span>,<span class="bu">verify</span>(string,prnt) <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-40" title="40"></a>
-<a class="sourceLine" id="cb870-41" title="41">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;VERIFY(3) is very powerful using expressions as masks&#39;</span></a>
-<a class="sourceLine" id="cb870-42" title="42">   <span class="co">! verify(3f) is often used in a logical expression</span></a>
-<a class="sourceLine" id="cb870-43" title="43">   string<span class="kw">=</span><span class="st">&quot; This is NOT all UPPERCASE &quot;</span></a>
-<a class="sourceLine" id="cb870-44" title="44">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;all uppercase/spaces?&#39;</span>,<span class="bu">verify</span>(string, blank<span class="kw">//</span>upp) <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-45" title="45">   string<span class="kw">=</span><span class="st">&quot; This IS all uppercase &quot;</span></a>
-<a class="sourceLine" id="cb870-46" title="46">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;string=[&#39;</span><span class="kw">//</span>string<span class="kw">//</span><span class="st">&#39;]&#39;</span></a>
-<a class="sourceLine" id="cb870-47" title="47">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;all uppercase/spaces?&#39;</span>,<span class="bu">verify</span>(string, blank<span class="kw">//</span>upp) <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-48" title="48"></a>
-<a class="sourceLine" id="cb870-49" title="49">  <span class="co">! set and show complex string to be tested</span></a>
-<a class="sourceLine" id="cb870-50" title="50">   string<span class="kw">=</span><span class="st">&#39;  Check this out. Let me know  &#39;</span></a>
-<a class="sourceLine" id="cb870-51" title="51">   <span class="co">! show the string being examined</span></a>
-<a class="sourceLine" id="cb870-52" title="52">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;string=[&#39;</span><span class="kw">//</span>string<span class="kw">//</span><span class="st">&#39;]&#39;</span></a>
-<a class="sourceLine" id="cb870-53" title="53">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;        &#39;</span><span class="kw">//</span><span class="fu">repeat</span>(<span class="bu">int</span>,<span class="dv">4</span>) <span class="co">! number line</span></a>
-<a class="sourceLine" id="cb870-54" title="54"></a>
-<a class="sourceLine" id="cb870-55" title="55">   <span class="co">! the Fortran functions returns a position just not a logical like C</span></a>
-<a class="sourceLine" id="cb870-56" title="56">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;returning a position not just a logical is useful&#39;</span></a>
-<a class="sourceLine" id="cb870-57" title="57">   <span class="co">! which can be very useful for parsing strings</span></a>
-<a class="sourceLine" id="cb870-58" title="58">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;first non-blank character&#39;</span>,<span class="bu">verify</span>(string, blank)</a>
-<a class="sourceLine" id="cb870-59" title="59">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;last non-blank character&#39;</span>,<span class="bu">verify</span>(string, blank,back<span class="kw">=</span><span class="cn">.true.</span>)</a>
-<a class="sourceLine" id="cb870-60" title="60">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;first non-letter non-blank&#39;</span>,<span class="bu">verify</span>(string,low<span class="kw">//</span>upp<span class="kw">//</span>blank)</a>
-<a class="sourceLine" id="cb870-61" title="61"></a>
-<a class="sourceLine" id="cb870-62" title="62">  <span class="co">!VERIFY(3) is elemental so you can check an array of strings in one call</span></a>
-<a class="sourceLine" id="cb870-63" title="63">  <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;elemental&#39;</span></a>
-<a class="sourceLine" id="cb870-64" title="64">   <span class="co">! are strings all letters (or blanks)?</span></a>
-<a class="sourceLine" id="cb870-65" title="65">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;array of strings&#39;</span>,<span class="bu">verify</span>( <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb870-66" title="66">   <span class="co">! strings must all be same length, so force to length 10</span></a>
-<a class="sourceLine" id="cb870-67" title="67">   <span class="kw">&amp;</span> <span class="kw">[</span><span class="dt">character(len=10)</span> <span class="dt">::</span> <span class="st">&quot;YES&quot;</span>,<span class="st">&quot;ok&quot;</span>,<span class="st">&quot;000&quot;</span>,<span class="st">&quot;good one&quot;</span>,<span class="st">&quot;Nope!&quot;</span><span class="kw">]</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb870-68" title="68">   <span class="kw">&amp;</span> low<span class="kw">//</span>upp<span class="kw">//</span>blank) <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-69" title="69"></a>
-<a class="sourceLine" id="cb870-70" title="70">   <span class="co">! rarer, but the set can be an array, not just the strings to test</span></a>
-<a class="sourceLine" id="cb870-71" title="71">   <span class="co">! you could do ISPRINT() this (harder) way :&gt;</span></a>
-<a class="sourceLine" id="cb870-72" title="72">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isprint?&#39;</span>,<span class="op">.not.</span><span class="fu">all</span>(<span class="bu">verify</span>(<span class="st">&quot;aBc&quot;</span>, <span class="kw">[</span>(<span class="bu">char</span>(i),i<span class="kw">=</span><span class="dv">32</span>,<span class="dv">126</span>)<span class="kw">]</span>)<span class="op">==</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb870-73" title="73">   <span class="co">! instead of this way</span></a>
-<a class="sourceLine" id="cb870-74" title="74">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isprint?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;aBc&quot;</span>,prnt) <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-75" title="75"></a>
-<a class="sourceLine" id="cb870-76" title="76"><span class="kw">end program</span> demo_verify</a></code></pre></div>
+<div class="sourceCode" id="cb871"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb871-1" title="1"><span class="kw">program</span> demo_verify</a>
+<a class="sourceLine" id="cb871-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb871-3" title="3"><span class="co">! some useful character sets</span></a>
+<a class="sourceLine" id="cb871-4" title="4"><span class="dt">character</span>,<span class="dt">parameter</span> <span class="dt">::</span> <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb871-5" title="5"> <span class="kw">&amp;</span> <span class="bu">int</span><span class="kw">*</span>(<span class="kw">*</span>)   <span class="kw">=</span> <span class="st">&#39;1234567890&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb871-6" title="6"> <span class="kw">&amp;</span> low<span class="kw">*</span>(<span class="kw">*</span>)   <span class="kw">=</span> <span class="st">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb871-7" title="7"> <span class="kw">&amp;</span> upp<span class="kw">*</span>(<span class="kw">*</span>)   <span class="kw">=</span> <span class="st">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb871-8" title="8"> <span class="kw">&amp;</span> punc<span class="kw">*</span>(<span class="kw">*</span>)  <span class="kw">=</span> <span class="st">&quot;!&quot;&quot;#$%&amp;&#39;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~&quot;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb871-9" title="9"> <span class="kw">&amp;</span> blank<span class="kw">*</span>(<span class="kw">*</span>) <span class="kw">=</span> <span class="st">&#39; &#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb871-10" title="10"> <span class="kw">&amp;</span> tab       <span class="kw">=</span> <span class="bu">char</span>(<span class="dv">11</span>), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb871-11" title="11"> <span class="kw">&amp;</span> prnt<span class="kw">*</span>(<span class="kw">*</span>) <span class="kw">=</span> <span class="bu">int</span><span class="kw">//</span>low<span class="kw">//</span>upp<span class="kw">//</span>blank<span class="kw">//</span>punc</a>
+<a class="sourceLine" id="cb871-12" title="12"></a>
+<a class="sourceLine" id="cb871-13" title="13"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> string</a>
+<a class="sourceLine" id="cb871-14" title="14"><span class="dt">integer</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb871-15" title="15">    <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;basics:&#39;</span></a>
+<a class="sourceLine" id="cb871-16" title="16">    <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">VERIFY</span> (<span class="st">&#39;ABBA&#39;</span>, <span class="st">&#39;A&#39;</span>)                <span class="co">! has the value 2.</span></a>
+<a class="sourceLine" id="cb871-17" title="17">    <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">VERIFY</span> (<span class="st">&#39;ABBA&#39;</span>, <span class="st">&#39;A&#39;</span>, BACK <span class="kw">=</span> <span class="cn">.TRUE.</span>) <span class="co">! has the value 3.</span></a>
+<a class="sourceLine" id="cb871-18" title="18">    <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">VERIFY</span> (<span class="st">&#39;ABBA&#39;</span>, <span class="st">&#39;AB&#39;</span>)               <span class="co">! has the value 0.</span></a>
+<a class="sourceLine" id="cb871-19" title="19"></a>
+<a class="sourceLine" id="cb871-20" title="20">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;find first non-uppercase letter&#39;</span></a>
+<a class="sourceLine" id="cb871-21" title="21">   <span class="co">! will produce the location of &quot;d&quot;, because there is no match in UPP</span></a>
+<a class="sourceLine" id="cb871-22" title="22">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;something unmatched&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;ABCdEFG&quot;</span>, upp)</a>
+<a class="sourceLine" id="cb871-23" title="23"></a>
+<a class="sourceLine" id="cb871-24" title="24">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;if everything is matched return zero&#39;</span></a>
+<a class="sourceLine" id="cb871-25" title="25">   <span class="co">! will produce 0 as all letters have a match</span></a>
+<a class="sourceLine" id="cb871-26" title="26">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;everything matched&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;ffoorrttrraann&quot;</span>, <span class="st">&quot;nartrof&quot;</span>)</a>
+<a class="sourceLine" id="cb871-27" title="27"></a>
+<a class="sourceLine" id="cb871-28" title="28">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;easily categorize strings as uppercase, lowercase, ...&#39;</span></a>
+<a class="sourceLine" id="cb871-29" title="29">   <span class="co">! easy C-like functionality but does entire strings not just characters</span></a>
+<a class="sourceLine" id="cb871-30" title="30">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isdigit 123?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;123&quot;</span>, <span class="bu">int</span>) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb871-31" title="31">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;islower abc?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;abc&quot;</span>, low) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb871-32" title="32">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isalpha aBc?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;aBc&quot;</span>, low<span class="kw">//</span>upp) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb871-33" title="33">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isblank aBc dEf?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;aBc dEf&quot;</span>, blank<span class="kw">//</span>tab ) <span class="op">/=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb871-34" title="34">   <span class="co">! check if all printable characters</span></a>
+<a class="sourceLine" id="cb871-35" title="35">   string<span class="kw">=</span><span class="st">&quot;aB;cde,fgHI!Jklmno PQRSTU vwxyz&quot;</span></a>
+<a class="sourceLine" id="cb871-36" title="36">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isprint?&#39;</span>,<span class="bu">verify</span>(string,prnt) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb871-37" title="37">   <span class="co">! this now has a nonprintable tab character in it</span></a>
+<a class="sourceLine" id="cb871-38" title="38">   string(<span class="dv">10</span>:<span class="dv">10</span>)<span class="kw">=</span><span class="bu">char</span>(<span class="dv">11</span>)</a>
+<a class="sourceLine" id="cb871-39" title="39">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isprint?&#39;</span>,<span class="bu">verify</span>(string,prnt) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb871-40" title="40"></a>
+<a class="sourceLine" id="cb871-41" title="41">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;VERIFY(3) is very powerful using expressions as masks&#39;</span></a>
+<a class="sourceLine" id="cb871-42" title="42">   <span class="co">! verify(3f) is often used in a logical expression</span></a>
+<a class="sourceLine" id="cb871-43" title="43">   string<span class="kw">=</span><span class="st">&quot; This is NOT all UPPERCASE &quot;</span></a>
+<a class="sourceLine" id="cb871-44" title="44">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;all uppercase/spaces?&#39;</span>,<span class="bu">verify</span>(string, blank<span class="kw">//</span>upp) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb871-45" title="45">   string<span class="kw">=</span><span class="st">&quot; This IS all uppercase &quot;</span></a>
+<a class="sourceLine" id="cb871-46" title="46">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;string=[&#39;</span><span class="kw">//</span>string<span class="kw">//</span><span class="st">&#39;]&#39;</span></a>
+<a class="sourceLine" id="cb871-47" title="47">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;all uppercase/spaces?&#39;</span>,<span class="bu">verify</span>(string, blank<span class="kw">//</span>upp) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb871-48" title="48"></a>
+<a class="sourceLine" id="cb871-49" title="49">  <span class="co">! set and show complex string to be tested</span></a>
+<a class="sourceLine" id="cb871-50" title="50">   string<span class="kw">=</span><span class="st">&#39;  Check this out. Let me know  &#39;</span></a>
+<a class="sourceLine" id="cb871-51" title="51">   <span class="co">! show the string being examined</span></a>
+<a class="sourceLine" id="cb871-52" title="52">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;string=[&#39;</span><span class="kw">//</span>string<span class="kw">//</span><span class="st">&#39;]&#39;</span></a>
+<a class="sourceLine" id="cb871-53" title="53">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;        &#39;</span><span class="kw">//</span><span class="fu">repeat</span>(<span class="bu">int</span>,<span class="dv">4</span>) <span class="co">! number line</span></a>
+<a class="sourceLine" id="cb871-54" title="54"></a>
+<a class="sourceLine" id="cb871-55" title="55">   <span class="co">! the Fortran functions returns a position just not a logical like C</span></a>
+<a class="sourceLine" id="cb871-56" title="56">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;returning a position not just a logical is useful&#39;</span></a>
+<a class="sourceLine" id="cb871-57" title="57">   <span class="co">! which can be very useful for parsing strings</span></a>
+<a class="sourceLine" id="cb871-58" title="58">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;first non-blank character&#39;</span>,<span class="bu">verify</span>(string, blank)</a>
+<a class="sourceLine" id="cb871-59" title="59">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;last non-blank character&#39;</span>,<span class="bu">verify</span>(string, blank,back<span class="kw">=</span><span class="cn">.true.</span>)</a>
+<a class="sourceLine" id="cb871-60" title="60">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;first non-letter non-blank&#39;</span>,<span class="bu">verify</span>(string,low<span class="kw">//</span>upp<span class="kw">//</span>blank)</a>
+<a class="sourceLine" id="cb871-61" title="61"></a>
+<a class="sourceLine" id="cb871-62" title="62">  <span class="co">!VERIFY(3) is elemental so you can check an array of strings in one call</span></a>
+<a class="sourceLine" id="cb871-63" title="63">  <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;elemental&#39;</span></a>
+<a class="sourceLine" id="cb871-64" title="64">   <span class="co">! are strings all letters (or blanks)?</span></a>
+<a class="sourceLine" id="cb871-65" title="65">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;array of strings&#39;</span>,<span class="bu">verify</span>( <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb871-66" title="66">   <span class="co">! strings must all be same length, so force to length 10</span></a>
+<a class="sourceLine" id="cb871-67" title="67">   <span class="kw">&amp;</span> <span class="kw">[</span><span class="dt">character(len=10)</span> <span class="dt">::</span> <span class="st">&quot;YES&quot;</span>,<span class="st">&quot;ok&quot;</span>,<span class="st">&quot;000&quot;</span>,<span class="st">&quot;good one&quot;</span>,<span class="st">&quot;Nope!&quot;</span><span class="kw">]</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb871-68" title="68">   <span class="kw">&amp;</span> low<span class="kw">//</span>upp<span class="kw">//</span>blank) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb871-69" title="69"></a>
+<a class="sourceLine" id="cb871-70" title="70">   <span class="co">! rarer, but the set can be an array, not just the strings to test</span></a>
+<a class="sourceLine" id="cb871-71" title="71">   <span class="co">! you could do ISPRINT() this (harder) way :&gt;</span></a>
+<a class="sourceLine" id="cb871-72" title="72">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isprint?&#39;</span>,<span class="op">.not.</span><span class="fu">all</span>(<span class="bu">verify</span>(<span class="st">&quot;aBc&quot;</span>, <span class="kw">[</span>(<span class="bu">char</span>(i),i<span class="kw">=</span><span class="dv">32</span>,<span class="dv">126</span>)<span class="kw">]</span>)<span class="op">==</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb871-73" title="73">   <span class="co">! instead of this way</span></a>
+<a class="sourceLine" id="cb871-74" title="74">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isprint?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;aBc&quot;</span>,prnt) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb871-75" title="75"></a>
+<a class="sourceLine" id="cb871-76" title="76"><span class="kw">end program</span> demo_verify</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code> &gt;  basics:
  &gt;            2
@@ -15479,161 +15491,161 @@ need an illustration of what happens with higher dimension array
  &gt;  isprint? T</code></pre>
 <h4 id="sample-program-ii">Sample program II:</h4>
 <p>Determine if strings are valid integer representations</p>
-<div class="sourceCode" id="cb872"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb872-1" title="1"><span class="kw">program</span> fortran_ints</a>
-<a class="sourceLine" id="cb872-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb872-3" title="3"><span class="dt">integer</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb872-4" title="4"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> ints(<span class="kw">*</span>)<span class="kw">=[</span><span class="dt">character(len=10)</span> <span class="dt">::</span> <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb872-5" title="5"> <span class="st">&#39;+1 &#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb872-6" title="6"> <span class="st">&#39;3044848 &#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb872-7" title="7"> <span class="st">&#39;30.40 &#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb872-8" title="8"> <span class="st">&#39;September &#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb872-9" title="9"> <span class="st">&#39;1 2 3&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb872-10" title="10"> <span class="st">&#39;  -3000 &#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb872-11" title="11"> <span class="st">&#39; &#39;</span><span class="kw">]</span></a>
-<a class="sourceLine" id="cb872-12" title="12">   <span class="co">! show the strings to test</span></a>
-<a class="sourceLine" id="cb872-13" title="13">   <span class="fu">write(*</span>,<span class="st">&#39;(&quot;|&quot;,*(g0,&quot;|&quot;))&#39;</span><span class="fu">)</span> ints</a>
-<a class="sourceLine" id="cb872-14" title="14">   <span class="co">! show if strings pass or fail the test done by isint(3f)</span></a>
-<a class="sourceLine" id="cb872-15" title="15">   <span class="fu">write(*</span>,<span class="st">&#39;(&quot;|&quot;,*(1x,l1,8x,&quot;|&quot;))&#39;</span><span class="fu">)</span> isint(ints)</a>
-<a class="sourceLine" id="cb872-16" title="16"></a>
-<a class="sourceLine" id="cb872-17" title="17"><span class="co">contains</span></a>
-<a class="sourceLine" id="cb872-18" title="18"></a>
-<a class="sourceLine" id="cb872-19" title="19"><span class="kw">elemental</span> <span class="kw">function</span> isint(line) <span class="kw">result</span> (lout)</a>
-<a class="sourceLine" id="cb872-20" title="20"><span class="co">!</span></a>
-<a class="sourceLine" id="cb872-21" title="21"><span class="co">! determine if string is a valid integer representation</span></a>
-<a class="sourceLine" id="cb872-22" title="22"><span class="co">! ignoring trailing spaces and leading spaces</span></a>
-<a class="sourceLine" id="cb872-23" title="23"><span class="co">!</span></a>
-<a class="sourceLine" id="cb872-24" title="24"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>   <span class="dt">::</span> <span class="fu">digits</span><span class="kw">=</span><span class="st">&#39;0123456789&#39;</span></a>
-<a class="sourceLine" id="cb872-25" title="25"><span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> line</a>
-<a class="sourceLine" id="cb872-26" title="26"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> name</a>
-<a class="sourceLine" id="cb872-27" title="27"><span class="dt">logical</span>                      <span class="dt">::</span> lout</a>
-<a class="sourceLine" id="cb872-28" title="28">   lout<span class="kw">=</span><span class="cn">.false.</span></a>
-<a class="sourceLine" id="cb872-29" title="29">   <span class="co">! make sure at least two characters long to simplify tests</span></a>
-<a class="sourceLine" id="cb872-30" title="30">   name<span class="kw">=</span><span class="bu">adjustl</span>(line)<span class="kw">//</span><span class="st">&#39;  &#39;</span></a>
-<a class="sourceLine" id="cb872-31" title="31">   <span class="co">! blank string</span></a>
-<a class="sourceLine" id="cb872-32" title="32">   <span class="kw">if</span>( name <span class="op">==</span> <span class="st">&#39;&#39;</span> )<span class="kw">return</span></a>
-<a class="sourceLine" id="cb872-33" title="33">   <span class="co">! allow one leading sign</span></a>
-<a class="sourceLine" id="cb872-34" title="34">   <span class="kw">if</span>( <span class="bu">verify</span>(name(<span class="dv">1</span>:<span class="dv">1</span>),<span class="st">&#39;+-&#39;</span>) <span class="op">==</span> <span class="dv">0</span> ) name<span class="kw">=</span>name(<span class="dv">2</span>:)</a>
-<a class="sourceLine" id="cb872-35" title="35">   <span class="co">! was just a sign</span></a>
-<a class="sourceLine" id="cb872-36" title="36">   <span class="kw">if</span>( name <span class="op">==</span> <span class="st">&#39;&#39;</span> )<span class="kw">return</span></a>
-<a class="sourceLine" id="cb872-37" title="37">   lout<span class="kw">=</span><span class="bu">verify</span>(<span class="fu">trim</span>(name), <span class="fu">digits</span>)  <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb872-38" title="38"><span class="kw">end function</span> isint</a>
-<a class="sourceLine" id="cb872-39" title="39"></a>
-<a class="sourceLine" id="cb872-40" title="40"><span class="kw">end program</span> fortran_ints</a></code></pre></div>
+<div class="sourceCode" id="cb873"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb873-1" title="1"><span class="kw">program</span> fortran_ints</a>
+<a class="sourceLine" id="cb873-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb873-3" title="3"><span class="dt">integer</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb873-4" title="4"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> ints(<span class="kw">*</span>)<span class="kw">=[</span><span class="dt">character(len=10)</span> <span class="dt">::</span> <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb873-5" title="5"> <span class="st">&#39;+1 &#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb873-6" title="6"> <span class="st">&#39;3044848 &#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb873-7" title="7"> <span class="st">&#39;30.40 &#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb873-8" title="8"> <span class="st">&#39;September &#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb873-9" title="9"> <span class="st">&#39;1 2 3&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb873-10" title="10"> <span class="st">&#39;  -3000 &#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb873-11" title="11"> <span class="st">&#39; &#39;</span><span class="kw">]</span></a>
+<a class="sourceLine" id="cb873-12" title="12">   <span class="co">! show the strings to test</span></a>
+<a class="sourceLine" id="cb873-13" title="13">   <span class="fu">write(*</span>,<span class="st">&#39;(&quot;|&quot;,*(g0,&quot;|&quot;))&#39;</span><span class="fu">)</span> ints</a>
+<a class="sourceLine" id="cb873-14" title="14">   <span class="co">! show if strings pass or fail the test done by isint(3f)</span></a>
+<a class="sourceLine" id="cb873-15" title="15">   <span class="fu">write(*</span>,<span class="st">&#39;(&quot;|&quot;,*(1x,l1,8x,&quot;|&quot;))&#39;</span><span class="fu">)</span> isint(ints)</a>
+<a class="sourceLine" id="cb873-16" title="16"></a>
+<a class="sourceLine" id="cb873-17" title="17"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb873-18" title="18"></a>
+<a class="sourceLine" id="cb873-19" title="19"><span class="kw">elemental</span> <span class="kw">function</span> isint(line) <span class="kw">result</span> (lout)</a>
+<a class="sourceLine" id="cb873-20" title="20"><span class="co">!</span></a>
+<a class="sourceLine" id="cb873-21" title="21"><span class="co">! determine if string is a valid integer representation</span></a>
+<a class="sourceLine" id="cb873-22" title="22"><span class="co">! ignoring trailing spaces and leading spaces</span></a>
+<a class="sourceLine" id="cb873-23" title="23"><span class="co">!</span></a>
+<a class="sourceLine" id="cb873-24" title="24"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>   <span class="dt">::</span> <span class="fu">digits</span><span class="kw">=</span><span class="st">&#39;0123456789&#39;</span></a>
+<a class="sourceLine" id="cb873-25" title="25"><span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> line</a>
+<a class="sourceLine" id="cb873-26" title="26"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> name</a>
+<a class="sourceLine" id="cb873-27" title="27"><span class="dt">logical</span>                      <span class="dt">::</span> lout</a>
+<a class="sourceLine" id="cb873-28" title="28">   lout<span class="kw">=</span><span class="cn">.false.</span></a>
+<a class="sourceLine" id="cb873-29" title="29">   <span class="co">! make sure at least two characters long to simplify tests</span></a>
+<a class="sourceLine" id="cb873-30" title="30">   name<span class="kw">=</span><span class="bu">adjustl</span>(line)<span class="kw">//</span><span class="st">&#39;  &#39;</span></a>
+<a class="sourceLine" id="cb873-31" title="31">   <span class="co">! blank string</span></a>
+<a class="sourceLine" id="cb873-32" title="32">   <span class="kw">if</span>( name <span class="op">==</span> <span class="st">&#39;&#39;</span> )<span class="kw">return</span></a>
+<a class="sourceLine" id="cb873-33" title="33">   <span class="co">! allow one leading sign</span></a>
+<a class="sourceLine" id="cb873-34" title="34">   <span class="kw">if</span>( <span class="bu">verify</span>(name(<span class="dv">1</span>:<span class="dv">1</span>),<span class="st">&#39;+-&#39;</span>) <span class="op">==</span> <span class="dv">0</span> ) name<span class="kw">=</span>name(<span class="dv">2</span>:)</a>
+<a class="sourceLine" id="cb873-35" title="35">   <span class="co">! was just a sign</span></a>
+<a class="sourceLine" id="cb873-36" title="36">   <span class="kw">if</span>( name <span class="op">==</span> <span class="st">&#39;&#39;</span> )<span class="kw">return</span></a>
+<a class="sourceLine" id="cb873-37" title="37">   lout<span class="kw">=</span><span class="bu">verify</span>(<span class="fu">trim</span>(name), <span class="fu">digits</span>)  <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb873-38" title="38"><span class="kw">end function</span> isint</a>
+<a class="sourceLine" id="cb873-39" title="39"></a>
+<a class="sourceLine" id="cb873-40" title="40"><span class="kw">end program</span> fortran_ints</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>|+1       |3044848  |30.40    |September|1 2 3    |  -3000  |         |
 | T       | T       | F       | F       | F       | T       | F       |</code></pre>
 <h4 id="sample-program-iii">Sample program III:</h4>
 <p>Determine if strings represent valid Fortran symbol names</p>
-<div class="sourceCode" id="cb874"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb874-1" title="1"><span class="kw">program</span> fortran_symbol_name</a>
-<a class="sourceLine" id="cb874-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb874-3" title="3"><span class="dt">integer</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb874-4" title="4"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> symbols(<span class="kw">*</span>)<span class="kw">=[</span><span class="dt">character(len=10)</span> <span class="dt">::</span> <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb874-5" title="5"> <span class="st">&#39;A_ &#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb874-6" title="6"> <span class="st">&#39;10 &#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb874-7" title="7"> <span class="st">&#39;September &#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb874-8" title="8"> <span class="st">&#39;A B&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb874-9" title="9"> <span class="st">&#39;_A &#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb874-10" title="10"> <span class="st">&#39; &#39;</span><span class="kw">]</span></a>
-<a class="sourceLine" id="cb874-11" title="11"></a>
-<a class="sourceLine" id="cb874-12" title="12">   <span class="fu">write(*</span>,<span class="st">&#39;(&quot;|&quot;,*(g0,&quot;|&quot;))&#39;</span><span class="fu">)</span> symbols</a>
-<a class="sourceLine" id="cb874-13" title="13">   <span class="fu">write(*</span>,<span class="st">&#39;(&quot;|&quot;,*(1x,l1,8x,&quot;|&quot;))&#39;</span><span class="fu">)</span> fortran_name(symbols)</a>
-<a class="sourceLine" id="cb874-14" title="14"></a>
-<a class="sourceLine" id="cb874-15" title="15"><span class="co">contains</span></a>
-<a class="sourceLine" id="cb874-16" title="16"></a>
-<a class="sourceLine" id="cb874-17" title="17"><span class="kw">elemental</span> <span class="kw">function</span> fortran_name(line) <span class="kw">result</span> (lout)</a>
-<a class="sourceLine" id="cb874-18" title="18"><span class="co">!</span></a>
-<a class="sourceLine" id="cb874-19" title="19"><span class="co">! determine if a string is a valid Fortran name</span></a>
-<a class="sourceLine" id="cb874-20" title="20"><span class="co">! ignoring trailing spaces (but not leading spaces)</span></a>
-<a class="sourceLine" id="cb874-21" title="21"><span class="co">!</span></a>
-<a class="sourceLine" id="cb874-22" title="22"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>   <span class="dt">::</span> <span class="bu">int</span><span class="kw">=</span><span class="st">&#39;0123456789&#39;</span></a>
-<a class="sourceLine" id="cb874-23" title="23"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>   <span class="dt">::</span> lower<span class="kw">=</span><span class="st">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span></a>
-<a class="sourceLine" id="cb874-24" title="24"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>   <span class="dt">::</span> upper<span class="kw">=</span><span class="st">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span></a>
-<a class="sourceLine" id="cb874-25" title="25"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>   <span class="dt">::</span> allowed<span class="kw">=</span>upper<span class="kw">//</span>lower<span class="kw">//</span><span class="bu">int</span><span class="kw">//</span><span class="st">&#39;_&#39;</span></a>
-<a class="sourceLine" id="cb874-26" title="26"></a>
-<a class="sourceLine" id="cb874-27" title="27"><span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> line</a>
-<a class="sourceLine" id="cb874-28" title="28"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> name</a>
-<a class="sourceLine" id="cb874-29" title="29"><span class="dt">logical</span>                      <span class="dt">::</span> lout</a>
-<a class="sourceLine" id="cb874-30" title="30">   name<span class="kw">=</span><span class="fu">trim</span>(line)</a>
-<a class="sourceLine" id="cb874-31" title="31">   <span class="kw">if</span>(<span class="fu">len</span>(name)<span class="op">.ne.</span><span class="dv">0</span>)<span class="kw">then</span></a>
-<a class="sourceLine" id="cb874-32" title="32">      <span class="co">! first character is alphameric</span></a>
-<a class="sourceLine" id="cb874-33" title="33">      lout <span class="kw">=</span> <span class="bu">verify</span>(name(<span class="dv">1</span>:<span class="dv">1</span>), lower<span class="kw">//</span>upper) <span class="op">==</span> <span class="dv">0</span>  <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb874-34" title="34">       <span class="co">! other characters are allowed in a symbol name</span></a>
-<a class="sourceLine" id="cb874-35" title="35">       <span class="kw">&amp;</span> <span class="op">.and.</span> <span class="bu">verify</span>(name,allowed) <span class="op">==</span> <span class="dv">0</span>           <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb874-36" title="36">       <span class="co">! allowable length</span></a>
-<a class="sourceLine" id="cb874-37" title="37">       <span class="kw">&amp;</span> <span class="op">.and.</span> <span class="fu">len</span>(name) <span class="op">&lt;</span><span class="kw">=</span> <span class="dv">63</span></a>
-<a class="sourceLine" id="cb874-38" title="38">   <span class="kw">else</span></a>
-<a class="sourceLine" id="cb874-39" title="39">      lout <span class="kw">=</span> <span class="cn">.false.</span></a>
-<a class="sourceLine" id="cb874-40" title="40">   <span class="kw">endif</span></a>
-<a class="sourceLine" id="cb874-41" title="41"><span class="kw">end function</span> fortran_name</a>
-<a class="sourceLine" id="cb874-42" title="42"></a>
-<a class="sourceLine" id="cb874-43" title="43"><span class="kw">end program</span> fortran_symbol_name</a></code></pre></div>
+<div class="sourceCode" id="cb875"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb875-1" title="1"><span class="kw">program</span> fortran_symbol_name</a>
+<a class="sourceLine" id="cb875-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb875-3" title="3"><span class="dt">integer</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb875-4" title="4"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> symbols(<span class="kw">*</span>)<span class="kw">=[</span><span class="dt">character(len=10)</span> <span class="dt">::</span> <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb875-5" title="5"> <span class="st">&#39;A_ &#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb875-6" title="6"> <span class="st">&#39;10 &#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb875-7" title="7"> <span class="st">&#39;September &#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb875-8" title="8"> <span class="st">&#39;A B&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb875-9" title="9"> <span class="st">&#39;_A &#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb875-10" title="10"> <span class="st">&#39; &#39;</span><span class="kw">]</span></a>
+<a class="sourceLine" id="cb875-11" title="11"></a>
+<a class="sourceLine" id="cb875-12" title="12">   <span class="fu">write(*</span>,<span class="st">&#39;(&quot;|&quot;,*(g0,&quot;|&quot;))&#39;</span><span class="fu">)</span> symbols</a>
+<a class="sourceLine" id="cb875-13" title="13">   <span class="fu">write(*</span>,<span class="st">&#39;(&quot;|&quot;,*(1x,l1,8x,&quot;|&quot;))&#39;</span><span class="fu">)</span> fortran_name(symbols)</a>
+<a class="sourceLine" id="cb875-14" title="14"></a>
+<a class="sourceLine" id="cb875-15" title="15"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb875-16" title="16"></a>
+<a class="sourceLine" id="cb875-17" title="17"><span class="kw">elemental</span> <span class="kw">function</span> fortran_name(line) <span class="kw">result</span> (lout)</a>
+<a class="sourceLine" id="cb875-18" title="18"><span class="co">!</span></a>
+<a class="sourceLine" id="cb875-19" title="19"><span class="co">! determine if a string is a valid Fortran name</span></a>
+<a class="sourceLine" id="cb875-20" title="20"><span class="co">! ignoring trailing spaces (but not leading spaces)</span></a>
+<a class="sourceLine" id="cb875-21" title="21"><span class="co">!</span></a>
+<a class="sourceLine" id="cb875-22" title="22"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>   <span class="dt">::</span> <span class="bu">int</span><span class="kw">=</span><span class="st">&#39;0123456789&#39;</span></a>
+<a class="sourceLine" id="cb875-23" title="23"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>   <span class="dt">::</span> lower<span class="kw">=</span><span class="st">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span></a>
+<a class="sourceLine" id="cb875-24" title="24"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>   <span class="dt">::</span> upper<span class="kw">=</span><span class="st">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span></a>
+<a class="sourceLine" id="cb875-25" title="25"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>   <span class="dt">::</span> allowed<span class="kw">=</span>upper<span class="kw">//</span>lower<span class="kw">//</span><span class="bu">int</span><span class="kw">//</span><span class="st">&#39;_&#39;</span></a>
+<a class="sourceLine" id="cb875-26" title="26"></a>
+<a class="sourceLine" id="cb875-27" title="27"><span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> line</a>
+<a class="sourceLine" id="cb875-28" title="28"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> name</a>
+<a class="sourceLine" id="cb875-29" title="29"><span class="dt">logical</span>                      <span class="dt">::</span> lout</a>
+<a class="sourceLine" id="cb875-30" title="30">   name<span class="kw">=</span><span class="fu">trim</span>(line)</a>
+<a class="sourceLine" id="cb875-31" title="31">   <span class="kw">if</span>(<span class="fu">len</span>(name)<span class="op">.ne.</span><span class="dv">0</span>)<span class="kw">then</span></a>
+<a class="sourceLine" id="cb875-32" title="32">      <span class="co">! first character is alphameric</span></a>
+<a class="sourceLine" id="cb875-33" title="33">      lout <span class="kw">=</span> <span class="bu">verify</span>(name(<span class="dv">1</span>:<span class="dv">1</span>), lower<span class="kw">//</span>upper) <span class="op">==</span> <span class="dv">0</span>  <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb875-34" title="34">       <span class="co">! other characters are allowed in a symbol name</span></a>
+<a class="sourceLine" id="cb875-35" title="35">       <span class="kw">&amp;</span> <span class="op">.and.</span> <span class="bu">verify</span>(name,allowed) <span class="op">==</span> <span class="dv">0</span>           <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb875-36" title="36">       <span class="co">! allowable length</span></a>
+<a class="sourceLine" id="cb875-37" title="37">       <span class="kw">&amp;</span> <span class="op">.and.</span> <span class="fu">len</span>(name) <span class="op">&lt;</span><span class="kw">=</span> <span class="dv">63</span></a>
+<a class="sourceLine" id="cb875-38" title="38">   <span class="kw">else</span></a>
+<a class="sourceLine" id="cb875-39" title="39">      lout <span class="kw">=</span> <span class="cn">.false.</span></a>
+<a class="sourceLine" id="cb875-40" title="40">   <span class="kw">endif</span></a>
+<a class="sourceLine" id="cb875-41" title="41"><span class="kw">end function</span> fortran_name</a>
+<a class="sourceLine" id="cb875-42" title="42"></a>
+<a class="sourceLine" id="cb875-43" title="43"><span class="kw">end program</span> fortran_symbol_name</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>    |A_        |10        |September |A B       |_A        |          |
     | T        | F        | T        | F        | F        | F        |</code></pre>
 <h4 id="sample-program-iv">Sample program IV:</h4>
 <p>check if string is of form NN-HHHHH</p>
-<div class="sourceCode" id="cb876"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb876-1" title="1"><span class="kw">program</span> checkform</a>
-<a class="sourceLine" id="cb876-2" title="2"><span class="co">! check if string is of form NN-HHHHH</span></a>
-<a class="sourceLine" id="cb876-3" title="3"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb876-4" title="4"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> <span class="bu">int</span><span class="kw">=</span><span class="st">&#39;1234567890&#39;</span></a>
-<a class="sourceLine" id="cb876-5" title="5"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> hex<span class="kw">=</span><span class="st">&#39;abcdefABCDEF0123456789&#39;</span></a>
-<a class="sourceLine" id="cb876-6" title="6"><span class="dt">logical</span>                    <span class="dt">::</span> lout</a>
-<a class="sourceLine" id="cb876-7" title="7"><span class="dt">character(len=80)</span>          <span class="dt">::</span> chars</a>
-<a class="sourceLine" id="cb876-8" title="8"></a>
-<a class="sourceLine" id="cb876-9" title="9">   chars<span class="kw">=</span><span class="st">&#39;32-af43d&#39;</span></a>
-<a class="sourceLine" id="cb876-10" title="10">   lout<span class="kw">=</span><span class="cn">.true.</span></a>
-<a class="sourceLine" id="cb876-11" title="11"></a>
-<a class="sourceLine" id="cb876-12" title="12">   <span class="co">! are the first two characters integer characters?</span></a>
-<a class="sourceLine" id="cb876-13" title="13">   lout <span class="kw">=</span> lout<span class="op">.and.</span>(<span class="bu">verify</span>(chars(<span class="dv">1</span>:<span class="dv">2</span>), <span class="bu">int</span>) <span class="op">==</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb876-14" title="14"></a>
-<a class="sourceLine" id="cb876-15" title="15">   <span class="co">! is the third character a dash?</span></a>
-<a class="sourceLine" id="cb876-16" title="16">   lout <span class="kw">=</span> lout<span class="op">.and.</span>(<span class="bu">verify</span>(chars(<span class="dv">3</span>:<span class="dv">3</span>), <span class="st">&#39;-&#39;</span>) <span class="op">==</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb876-17" title="17"></a>
-<a class="sourceLine" id="cb876-18" title="18">   <span class="co">! is remaining string a valid representation of a hex value?</span></a>
-<a class="sourceLine" id="cb876-19" title="19">   lout <span class="kw">=</span> lout<span class="op">.and.</span>(<span class="bu">verify</span>(chars(<span class="dv">4</span>:<span class="dv">8</span>), hex) <span class="op">==</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb876-20" title="20"></a>
-<a class="sourceLine" id="cb876-21" title="21">   <span class="kw">if</span>(lout)<span class="kw">then</span></a>
-<a class="sourceLine" id="cb876-22" title="22">      <span class="fu">write(*</span>,<span class="fu">*)trim</span>(chars),<span class="st">&#39; passed&#39;</span></a>
-<a class="sourceLine" id="cb876-23" title="23">   <span class="kw">else</span></a>
-<a class="sourceLine" id="cb876-24" title="24">      <span class="fu">write(*</span>,<span class="fu">*)trim</span>(chars),<span class="st">&#39; failed&#39;</span></a>
-<a class="sourceLine" id="cb876-25" title="25">   <span class="kw">endif</span></a>
-<a class="sourceLine" id="cb876-26" title="26"><span class="kw">end program</span> checkform</a></code></pre></div>
+<div class="sourceCode" id="cb877"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb877-1" title="1"><span class="kw">program</span> checkform</a>
+<a class="sourceLine" id="cb877-2" title="2"><span class="co">! check if string is of form NN-HHHHH</span></a>
+<a class="sourceLine" id="cb877-3" title="3"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb877-4" title="4"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> <span class="bu">int</span><span class="kw">=</span><span class="st">&#39;1234567890&#39;</span></a>
+<a class="sourceLine" id="cb877-5" title="5"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> hex<span class="kw">=</span><span class="st">&#39;abcdefABCDEF0123456789&#39;</span></a>
+<a class="sourceLine" id="cb877-6" title="6"><span class="dt">logical</span>                    <span class="dt">::</span> lout</a>
+<a class="sourceLine" id="cb877-7" title="7"><span class="dt">character(len=80)</span>          <span class="dt">::</span> chars</a>
+<a class="sourceLine" id="cb877-8" title="8"></a>
+<a class="sourceLine" id="cb877-9" title="9">   chars<span class="kw">=</span><span class="st">&#39;32-af43d&#39;</span></a>
+<a class="sourceLine" id="cb877-10" title="10">   lout<span class="kw">=</span><span class="cn">.true.</span></a>
+<a class="sourceLine" id="cb877-11" title="11"></a>
+<a class="sourceLine" id="cb877-12" title="12">   <span class="co">! are the first two characters integer characters?</span></a>
+<a class="sourceLine" id="cb877-13" title="13">   lout <span class="kw">=</span> lout<span class="op">.and.</span>(<span class="bu">verify</span>(chars(<span class="dv">1</span>:<span class="dv">2</span>), <span class="bu">int</span>) <span class="op">==</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb877-14" title="14"></a>
+<a class="sourceLine" id="cb877-15" title="15">   <span class="co">! is the third character a dash?</span></a>
+<a class="sourceLine" id="cb877-16" title="16">   lout <span class="kw">=</span> lout<span class="op">.and.</span>(<span class="bu">verify</span>(chars(<span class="dv">3</span>:<span class="dv">3</span>), <span class="st">&#39;-&#39;</span>) <span class="op">==</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb877-17" title="17"></a>
+<a class="sourceLine" id="cb877-18" title="18">   <span class="co">! is remaining string a valid representation of a hex value?</span></a>
+<a class="sourceLine" id="cb877-19" title="19">   lout <span class="kw">=</span> lout<span class="op">.and.</span>(<span class="bu">verify</span>(chars(<span class="dv">4</span>:<span class="dv">8</span>), hex) <span class="op">==</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb877-20" title="20"></a>
+<a class="sourceLine" id="cb877-21" title="21">   <span class="kw">if</span>(lout)<span class="kw">then</span></a>
+<a class="sourceLine" id="cb877-22" title="22">      <span class="fu">write(*</span>,<span class="fu">*)trim</span>(chars),<span class="st">&#39; passed&#39;</span></a>
+<a class="sourceLine" id="cb877-23" title="23">   <span class="kw">else</span></a>
+<a class="sourceLine" id="cb877-24" title="24">      <span class="fu">write(*</span>,<span class="fu">*)trim</span>(chars),<span class="st">&#39; failed&#39;</span></a>
+<a class="sourceLine" id="cb877-25" title="25">   <span class="kw">endif</span></a>
+<a class="sourceLine" id="cb877-26" title="26"><span class="kw">end program</span> checkform</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>    32-af43d passed</code></pre>
 <h4 id="sample-program-v">Sample program V:</h4>
 <p>exploring uses of elemental functionality and dusty corners</p>
-<div class="sourceCode" id="cb878"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb878-1" title="1"><span class="kw">program</span> more_verify</a>
-<a class="sourceLine" id="cb878-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb878-3" title="3"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb878-4" title="4">  <span class="kw">&amp;</span> <span class="bu">int</span><span class="kw">=</span><span class="st">&#39;0123456789&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb878-5" title="5">  <span class="kw">&amp;</span> low<span class="kw">=</span><span class="st">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb878-6" title="6">  <span class="kw">&amp;</span> upp<span class="kw">=</span><span class="st">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb878-7" title="7">  <span class="kw">&amp;</span> blank<span class="kw">=</span><span class="st">&#39; &#39;</span></a>
-<a class="sourceLine" id="cb878-8" title="8"><span class="co">! note character variables in an array have to be of the same length</span></a>
-<a class="sourceLine" id="cb878-9" title="9"><span class="dt">character(len=6)</span> <span class="dt">::</span> strings(<span class="dv">3</span>)<span class="kw">=[</span><span class="st">&quot;Go    &quot;</span>,<span class="st">&quot;right &quot;</span>,<span class="st">&quot;home! &quot;</span><span class="kw">]</span></a>
-<a class="sourceLine" id="cb878-10" title="10"><span class="dt">character(len=2)</span> <span class="dt">::</span> sets(<span class="dv">3</span>)<span class="kw">=[</span><span class="st">&quot;do&quot;</span>,<span class="st">&quot;re&quot;</span>,<span class="st">&quot;me&quot;</span><span class="kw">]</span></a>
-<a class="sourceLine" id="cb878-11" title="11"></a>
-<a class="sourceLine" id="cb878-12" title="12">  <span class="co">! elemental -- you can use arrays for both strings and for sets</span></a>
-<a class="sourceLine" id="cb878-13" title="13"></a>
-<a class="sourceLine" id="cb878-14" title="14">   <span class="co">! check each string from right to left for non-letter/non-blank</span></a>
-<a class="sourceLine" id="cb878-15" title="15">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;last non-letter&#39;</span>,<span class="bu">verify</span>(strings,upp<span class="kw">//</span>low<span class="kw">//</span>blank,back<span class="kw">=</span><span class="cn">.true.</span>)</a>
-<a class="sourceLine" id="cb878-16" title="16"></a>
-<a class="sourceLine" id="cb878-17" title="17">   <span class="co">! even BACK can be an array</span></a>
-<a class="sourceLine" id="cb878-18" title="18">   <span class="co">! find last non-uppercase character in &quot;Howdy &quot;</span></a>
-<a class="sourceLine" id="cb878-19" title="19">   <span class="co">! and first non-lowercase in &quot;there &quot;</span></a>
-<a class="sourceLine" id="cb878-20" title="20">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="bu">verify</span>(strings(<span class="dv">1</span>:<span class="dv">2</span>),<span class="kw">[</span>upp,low<span class="kw">]</span>,back<span class="kw">=[</span><span class="cn">.true.</span>,<span class="cn">.false.</span><span class="kw">]</span>)</a>
-<a class="sourceLine" id="cb878-21" title="21"></a>
-<a class="sourceLine" id="cb878-22" title="22">   <span class="co">! using a null string for a set is not well defined. Avoid it</span></a>
-<a class="sourceLine" id="cb878-23" title="23">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;null&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;for tran &quot;</span>, <span class="st">&quot;&quot;</span>, <span class="cn">.true.</span>) <span class="co">! 8,length of string?</span></a>
-<a class="sourceLine" id="cb878-24" title="24">   <span class="co">! probably what you expected</span></a>
-<a class="sourceLine" id="cb878-25" title="25">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;blank&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;for tran &quot;</span>, <span class="st">&quot; &quot;</span>, <span class="cn">.true.</span>) <span class="co">! 7,found &#39;n&#39;</span></a>
-<a class="sourceLine" id="cb878-26" title="26"></a>
-<a class="sourceLine" id="cb878-27" title="27">   <span class="co">! first character in  &quot;Go    &quot; not in &quot;do&quot;,</span></a>
-<a class="sourceLine" id="cb878-28" title="28">   <span class="co">! and first letter in &quot;right &quot; not in &quot;ri&quot;</span></a>
-<a class="sourceLine" id="cb878-29" title="29">   <span class="co">! and first letter in &quot;home! &quot; not in &quot;me&quot;</span></a>
-<a class="sourceLine" id="cb878-30" title="30">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="bu">verify</span>(strings,sets)</a>
-<a class="sourceLine" id="cb878-31" title="31"></a>
-<a class="sourceLine" id="cb878-32" title="32"><span class="kw">end program</span> more_verify</a></code></pre></div>
+<div class="sourceCode" id="cb879"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb879-1" title="1"><span class="kw">program</span> more_verify</a>
+<a class="sourceLine" id="cb879-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb879-3" title="3"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb879-4" title="4">  <span class="kw">&amp;</span> <span class="bu">int</span><span class="kw">=</span><span class="st">&#39;0123456789&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb879-5" title="5">  <span class="kw">&amp;</span> low<span class="kw">=</span><span class="st">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb879-6" title="6">  <span class="kw">&amp;</span> upp<span class="kw">=</span><span class="st">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb879-7" title="7">  <span class="kw">&amp;</span> blank<span class="kw">=</span><span class="st">&#39; &#39;</span></a>
+<a class="sourceLine" id="cb879-8" title="8"><span class="co">! note character variables in an array have to be of the same length</span></a>
+<a class="sourceLine" id="cb879-9" title="9"><span class="dt">character(len=6)</span> <span class="dt">::</span> strings(<span class="dv">3</span>)<span class="kw">=[</span><span class="st">&quot;Go    &quot;</span>,<span class="st">&quot;right &quot;</span>,<span class="st">&quot;home! &quot;</span><span class="kw">]</span></a>
+<a class="sourceLine" id="cb879-10" title="10"><span class="dt">character(len=2)</span> <span class="dt">::</span> sets(<span class="dv">3</span>)<span class="kw">=[</span><span class="st">&quot;do&quot;</span>,<span class="st">&quot;re&quot;</span>,<span class="st">&quot;me&quot;</span><span class="kw">]</span></a>
+<a class="sourceLine" id="cb879-11" title="11"></a>
+<a class="sourceLine" id="cb879-12" title="12">  <span class="co">! elemental -- you can use arrays for both strings and for sets</span></a>
+<a class="sourceLine" id="cb879-13" title="13"></a>
+<a class="sourceLine" id="cb879-14" title="14">   <span class="co">! check each string from right to left for non-letter/non-blank</span></a>
+<a class="sourceLine" id="cb879-15" title="15">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;last non-letter&#39;</span>,<span class="bu">verify</span>(strings,upp<span class="kw">//</span>low<span class="kw">//</span>blank,back<span class="kw">=</span><span class="cn">.true.</span>)</a>
+<a class="sourceLine" id="cb879-16" title="16"></a>
+<a class="sourceLine" id="cb879-17" title="17">   <span class="co">! even BACK can be an array</span></a>
+<a class="sourceLine" id="cb879-18" title="18">   <span class="co">! find last non-uppercase character in &quot;Howdy &quot;</span></a>
+<a class="sourceLine" id="cb879-19" title="19">   <span class="co">! and first non-lowercase in &quot;there &quot;</span></a>
+<a class="sourceLine" id="cb879-20" title="20">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="bu">verify</span>(strings(<span class="dv">1</span>:<span class="dv">2</span>),<span class="kw">[</span>upp,low<span class="kw">]</span>,back<span class="kw">=[</span><span class="cn">.true.</span>,<span class="cn">.false.</span><span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb879-21" title="21"></a>
+<a class="sourceLine" id="cb879-22" title="22">   <span class="co">! using a null string for a set is not well defined. Avoid it</span></a>
+<a class="sourceLine" id="cb879-23" title="23">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;null&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;for tran &quot;</span>, <span class="st">&quot;&quot;</span>, <span class="cn">.true.</span>) <span class="co">! 8,length of string?</span></a>
+<a class="sourceLine" id="cb879-24" title="24">   <span class="co">! probably what you expected</span></a>
+<a class="sourceLine" id="cb879-25" title="25">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;blank&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;for tran &quot;</span>, <span class="st">&quot; &quot;</span>, <span class="cn">.true.</span>) <span class="co">! 7,found &#39;n&#39;</span></a>
+<a class="sourceLine" id="cb879-26" title="26"></a>
+<a class="sourceLine" id="cb879-27" title="27">   <span class="co">! first character in  &quot;Go    &quot; not in &quot;do&quot;,</span></a>
+<a class="sourceLine" id="cb879-28" title="28">   <span class="co">! and first letter in &quot;right &quot; not in &quot;ri&quot;</span></a>
+<a class="sourceLine" id="cb879-29" title="29">   <span class="co">! and first letter in &quot;home! &quot; not in &quot;me&quot;</span></a>
+<a class="sourceLine" id="cb879-30" title="30">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="bu">verify</span>(strings,sets)</a>
+<a class="sourceLine" id="cb879-31" title="31"></a>
+<a class="sourceLine" id="cb879-32" title="32"><span class="kw">end program</span> more_verify</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>    &gt; last non-letter 0 0 5
     &gt; 6 6

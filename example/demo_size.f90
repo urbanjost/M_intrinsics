@@ -4,7 +4,7 @@
          write(*,*)'SIZE of simple two-dimensional array'
          write(*,*)'SIZE(arr)       :total count of elements:',size(arr)
          write(*,*)'SIZE(arr,DIM=1) :number of rows         :',size(arr,dim=1)
-         write(*,*)'SIZE(arr,DIM=2) :number of columnts     :',size(arr,dim=2)
+         write(*,*)'SIZE(arr,DIM=2) :number of columns      :',size(arr,dim=2)
 
          ! pass the same array to a procedure that passes the value two
          ! different ways

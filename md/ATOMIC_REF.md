@@ -17,7 +17,7 @@
 ```
 ### **Characteristics**
 
-- **atom** is a ccalar coarray or coindexed variable of either integer
+- **atom** is a scalar coarray or coindexed variable of either integer
   type with atomic_int_kind kind or logical type with atomic_logical_kind
   kind.
 

@@ -18,6 +18,8 @@
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
+ - **i** may be an _integer_ of any kind
+ - **shift** and **size** may be _integers_ of any kind
  - the kind for **i** dictates the kind of the returned value.
 
 ### **Description**
@@ -41,20 +43,24 @@
 
 - **shift**
   : If **shift** is positive, the shift is to the left; if **shift**
-  is negative, the shift is to the right; and if **shift** is zero,
-  no shift is performed. The absolute value of **shift** must be less
-  than **size** (simply put, the number of bits to shift must be less
-  than or equal to the number of bits specified to be shifting!)
+    is negative, the shift is to the right; and if **shift** is zero,
+    no shift is performed.
+
+    The absolute value of **shift** must be less than **size** (simply
+    put, the number of positions to shift must be less than or equal to
+    the number of bits specified to be shifted).
 
 - **size**
-  : (Optional) The type shall be _integer_; the value must be greater than
-  zero and less than or equal to **bit_size**(i).
-  The default is **bit_size(i)**. That is, the default is to circularly shift
-  the entire value **i**.
+  : The value must be greater than zero and less than or equal to
+    **bit_size**(i).
+
+    The default is **bit_size(i)**. That is, the default is to circularly
+    shift the entire value **i**.
 
 ### **Result**
 
-  The result characteristics (kind, shape, size, ranke, ...) are the same as **i**.
+  The result characteristics (kind, shape, size, rank, ...) are the
+  same as **i**.
 
   The result has the value obtained by shifting the **size** rightmost
   bits of **i** circularly by **shift** positions.
@@ -84,16 +90,16 @@ end program demo_ishftc
 ```
 Results:
 ```text
->              6  <== typically should have the value 6
->   01111111111111111111111111111111 -32
->   11111111111111111111111101111111 -24
->   11111111111111110111111111111111 -16
->   11111111011111111111111111111111 -8
->   01111111111111111111111111111111 0
->   11111111111111111111111101111111 8
->   11111111111111110111111111111111 16
->   11111111011111111111111111111111 24
->   01111111111111111111111111111111 32
+ >              6  <== typically should have the value 6
+ >   01111111111111111111111111111111 -32
+ >   11111111111111111111111101111111 -24
+ >   11111111111111110111111111111111 -16
+ >   11111111011111111111111111111111 -8
+ >   01111111111111111111111111111111 0
+ >   11111111111111111111111101111111 8
+ >   11111111111111110111111111111111 16
+ >   11111111011111111111111111111111 24
+ >   01111111111111111111111111111111 32
 ```
 
 ### **Standard**

@@ -25,7 +25,7 @@
 ### **Options**
 
 - **x**
-  : the value to compute the hyerbolic cosine of
+  : the value to compute the hyperbolic cosine of
 
 ### **Result**
 

@@ -20,9 +20,9 @@
 
  - a kind designated as ** may be any supported kind value for the type
  - **array** May be any type, but not a scalar.
- - **shift** is an integer of any dind
+ - **shift** is an integer of any kind
  - **boundary** is a scalar of the same type and kind as the **array**.
- - **dim** is an integer of any dind
+ - **dim** is an integer of any kind
 
  - The result is an array of same type, kind and rank as the **array** argument.
 

@@ -78,7 +78,7 @@ integer :: arr(0:2,-5:5)
    write(*,*)'SIZE of simple two-dimensional array'
    write(*,*)'SIZE(arr)       :total count of elements:',size(arr)
    write(*,*)'SIZE(arr,DIM=1) :number of rows         :',size(arr,dim=1)
-   write(*,*)'SIZE(arr,DIM=2) :number of columnts     :',size(arr,dim=2)
+   write(*,*)'SIZE(arr,DIM=2) :number of columns      :',size(arr,dim=2)
 
    ! pass the same array to a procedure that passes the value two
    ! different ways
@@ -111,7 +111,7 @@ Results:
     SIZE of simple two-dimensional array
     SIZE(arr)       :total count of elements:          33
     SIZE(arr,DIM=1) :number of rows         :           3
-    SIZE(arr,DIM=2) :number of columnts     :          11
+    SIZE(arr,DIM=2) :number of columns      :          11
     interfaced assumed-shape array
     SIZE(arr1)        :          33
     SIZE(arr1,DIM=1)  :           3
@@ -135,7 +135,7 @@ Fortran 95 , with **kind** argument - Fortran 2003
 #### State Inquiry:
 
 - [**allocated**(3)](#allocated) -  Status of an allocatable entity
-- [**is_contiguous**(3)](#is_contigious) -  Test if object is contiguous
+- [**is_contiguous**(3)](#is_contiguous) -  Test if object is contiguous
 
 #### Kind Inquiry:
 

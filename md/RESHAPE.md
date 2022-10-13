@@ -62,7 +62,7 @@ C procedure.
     It will be used repeatedly after all the elements of **source** have been
     placed in the result until the result has all elements assigned.
   : If it is absent or is a zero-sized array, you can only make
-    **ource** into another array of the same size as **source** or smaller.
+    **source** into another array of the same size as **source** or smaller.
 
 - **order**
   : used to insert elements in the result in an order other

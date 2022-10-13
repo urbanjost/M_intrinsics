@@ -42,7 +42,7 @@
 ### **Result**
 
   An _integer_ array of rank one with as many elements as **source**
-  has dimensions. 
+  has dimensions.
 
   The elements of the resulting array correspond to the
   extent of **source** along the respective dimensions.
@@ -91,7 +91,7 @@ Fortran 95 ; with KIND argument Fortran 2003
 #### State Inquiry:
 
 - [**allocated**(3)](#allocated) -  Status of an allocatable entity
-- [**is_contiguous**(3)](#is_contigious) -  Test if object is contiguous
+- [**is_contiguous**(3)](#is_contiguous) -  Test if object is contiguous
 
 #### Kind Inquiry:
 

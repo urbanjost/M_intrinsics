@@ -145,7 +145,7 @@ Fortran 95 , with KIND argument Fortran 2003
 #### State Inquiry:
 
 - [**allocated**(3)](#allocated) -  Status of an allocatable entity
-- [**is_contiguous**(3)](#is_contigious) -  Test if object is contiguous
+- [**is_contiguous**(3)](#is_contiguous) -  Test if object is contiguous
 
 #### Kind Inquiry:
 

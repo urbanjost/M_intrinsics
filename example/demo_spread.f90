@@ -13,7 +13,7 @@
          call printi('suppose we have a scalar S',s)
 
          write(*,*) 'to add a new dimension (1) of extent 4 call'
-         call printi('spread( s, dim=1, ncopis=4 )',spread ( s, 1, 4 ))
+         call printi('spread( s, dim=1, ncopies=4 )',spread ( s, 1, 4 ))
 
          v = [ 1, 2, 3, 4 ]
          call printi(' first we will set V to',v)
