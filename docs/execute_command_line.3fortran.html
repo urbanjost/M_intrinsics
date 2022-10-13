@@ -62,7 +62,7 @@ EXECUTE_COMMAND_LINE(3) - [SYSTEM:PROCESSES] Execute a shell command
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=9>
+<A name=8>
 
      <H3>SYNOPSIS</H3>
 
@@ -75,11 +75,11 @@ call execute_command_line( &
 <PRE>
          subroutine execute_command_line(command,wait,exitstat,cmdstat,cmdmsg)
 <P>
-          character(len=*),intent(in)  :: command
-          logical,intent(in),optional  :: wait
-          integer,intent(out),optional :: exitstat
-          integer,intent(out),optional :: cmdstat
-          character(len=*),intent(out),optional :: cmdmsg
+          character(len=*),intent(in)             :: command
+          logical,intent(in),optional             :: wait
+          integer,intent(inout),optional          :: exitstat
+          integer,intent(inout),optional          :: cmdstat
+          character(len=*),intent(inout),optional :: cmdmsg
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -90,7 +90,35 @@ call execute_command_line( &
 </A>
 <BLOCKQUOTE>
 <P>
-</BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+COMMAND is a default character scalar
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+WAIT is a default logical scalar. If WAIT is present with the
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+EXITSTAT is an integer of the default kind. It must be of a kind
+with at least a decimal exponent range of 9.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+CMDSTAT is an integer of default kind The kind of the variable must
+support at least a decimal exponent range of four.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+CMDMSG is a character scalar of the default kind.
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=3>
 
      <H3>DESCRIPTION</H3>
@@ -117,6 +145,13 @@ concurrently if required.
 When the command is executed synchronously, EXECUTE_COMMAND_LINE returns
 after the command line has completed execution. Otherwise,
 EXECUTE_COMMAND_LINE returns without waiting.
+<P>
+Because this intrinsic is making a system call, it is very system
+dependent. Its behavior with respect to signaling is processor
+dependent. In particular, on POSIX-compliant systems, the SIGINT and
+SIGQUIT signals will be ignored, and the SIGCHLD will be blocked. As
+such, if the parent process is terminated, the child process might not
+be terminated alongside.
 </BLOCKQUOTE>
 <A name=4>
 
@@ -129,32 +164,36 @@ EXECUTE_COMMAND_LINE returns without waiting.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-COMMAND : a default character scalar containing the command line to
-be executed. The interpretation is programming-environment
-dependent.
+COMMAND : the command line to be executed. The interpretation is
+programming-environment dependent.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-WAIT : (Optional) a default logical scalar. If WAIT is present with
-the value .false., and the processor supports asynchronous execution
-of the command, the command is executed asynchronously; otherwise it
-is executed synchronously.
+WAIT : If WAIT is present with the value .false., and the processor
+supports asynchronous execution of the command, the command is
+executed asynchronously; otherwise it is executed synchronously.
+<P>
+When the command is executed synchronously, EXECUTE_COMMAND_LINE(3)
+returns after the command line has completed execution. Otherwise,
+EXECUTE_COMMAND_LINE(3) returns without waiting.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-EXITSTAT : (Optional) an integer of the default kind with
-INTENT(INOUT). If the command is executed synchronously, it is
-assigned the value of the processor-dependent exit status.
-Otherwise, the value of EXITSTAT is unchanged.
+EXITSTAT : If the command is executed synchronously, it is assigned
+the value of the processor-dependent exit status. Otherwise, the
+value of EXITSTAT is unchanged.
+<P>
+If the command is executed synchronously, it is assigned the value
+of the processor-dependent exit status. Otherwise, the value of
+EXITSTAT is unchanged.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-CMDSTAT : (Optional) an integer of default kind with INTENT(INOUT).
-If an error condition occurs and CMDSTAT is not present, error
-termination of execution of the image is initiated.
+CMDSTAT : If an error condition occurs and CMDSTAT is not present,
+error termination of execution of the image is initiated.
 <P>
 It is assigned the value <B>-1</B> if the processor does not support
 command line execution, a processor-dependent positive value if an
@@ -166,10 +205,8 @@ value 0.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-CMDMSG : (Optional) a character scalar of the default kind. It is an
-INTENT (INOUT) argument.If an error condition occurs, it is assigned
-a processor-dependent explanatory message.Otherwise, it is
-unchanged.
+CMDMSG : If an error condition occurs, it is assigned a
+processor-dependent explanatory message. Otherwise, it is unchanged.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
@@ -197,20 +234,6 @@ Sample program:
 </BLOCKQUOTE>
 <A name=6>
 
-     <H3>NOTE</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-Because this intrinsic is making a system call, it is very system
-dependent. Its behavior with respect to signaling is processor
-dependent. In particular, on POSIX-compliant systems, the SIGINT and
-SIGQUIT signals will be ignored, and the SIGCHLD will be blocked. As
-such, if the parent process is terminated, the child process might not
-be terminated alongside.
-</BLOCKQUOTE>
-<A name=7>
-
      <H3>STANDARD</H3>
 
 </A>
@@ -218,19 +241,19 @@ be terminated alongside.
 <P>
 Fortran 2008
 </BLOCKQUOTE>
-<A name=8>
+<A name=7>
 
      <H3>SEE ALSO</H3>
 
 </A>
 <BLOCKQUOTE>
 <P>
-****(3)
+GET_ENVIRONMENT_VARIABLE(3)
 <P>
-fortran-lang intrinsic descriptions
+fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>execute_command_line (3fortran)</TD> <TD align=right width=33%><I>October 13, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from b8760ae7-150c-408c-ae47-e2f411af0ce6 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>execute_command_line (3fortran)</TD> <TD align=right width=33%><I>October 13, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 55a34bd2-fbb9-422d-84e9-bcb26b2bec95 using man macros.</FONT>
 <br><br><center><img src="images/execute_command_line.3fortran.gif"></center>
 </div>
 </div>

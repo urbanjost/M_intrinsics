@@ -893,10 +893,11 @@ FORTRAN 77
    result = all(mask [,dim])
 ```
 ```fortran
-     logical function all(mask ,dim)
+     function all(mask ,dim)
 
-      logical,intent(in)          :: mask(..)
-      integer,intent(in),optional :: dim
+      logical(kind=KIND),intent(in) :: mask(..)
+      integer,intent(in),optional   :: dim
+      logical(kind=KIND)            :: all(..)
 ```
 ### **Characteristics**
 
@@ -1220,10 +1221,11 @@ FORTRAN 77
     result = any(mask [,dim])
 ```
 ```fortran
-     logical(kind=KIND) function any(mask, dim)
+     function any(mask, dim)
 
       logical(kind=KIND),intent(in) :: mask(..)
       integer,intent(in),optional   :: dim
+      logical(kind=KIND)            :: any(..)
 ```
 ### **Characteristics**
 
@@ -6616,41 +6618,42 @@ Fortran 95
 
 ### **Name**
 
-**dim**(3) - \[NUMERIC\] Positive difference
+**dim**(3) - \[NUMERIC\] Positive difference of X - Y
 
 ### **Synopsis**
 ```fortran
     result = dim(x, y)
 ```
 ```fortran
-     elemental TYPE(kind=KIND) function dim(x, y)
+     elemental TYPE(kind=KIND) function dim(x, y )
 
       TYPE(kind=KIND),intent(in) :: x, y
 ```
 ### **Characteristics**
 
-where TYPE may be _real_ or _integer_ and KIND is any supported kind
-for the type.
+- **x** and **y** may be any _real_ or _integer_ but of the same type
+  and kind
+- the result is of the same type and kind as the arguments
 
 ### **Description**
 
-**dim**(3) returns the difference **x - y** if the result is positive;
-otherwise it returns zero. It is equivalent to **max(0,x-y)** where the
-arguments are all of the same type.
-
+  **dim((3) returns the maximum of **x - y** and zero.
+  That is, it returns the difference **x - y** if the result is positive;
+  otherwise it returns zero. It is equivalent to
+```fortran
+  **max(0,x-y)**
+```
 ### **Options**
 
 - **x**
-  : The type shall be _integer_ or _real_
+  : the subtrahend, ie. the number being subtracted from.
 
 - **y**
-  : The type shall be the same type and kind as **x**.
+  : the minuend; ie. the number being subtracted
 
 ### **Result**
 
-Returns the difference **xx -y** or zero, whichever is larger.
-The return value is the same type and kind as the input arguments **x**
-and **y**.
+Returns the difference **x - y** or zero, whichever is larger.
 
 ### **Examples**
 
@@ -7742,58 +7745,79 @@ TS 18508
 ```fortran
      subroutine execute_command_line(command,wait,exitstat,cmdstat,cmdmsg)
 
-      character(len=*),intent(in)  :: command
-      logical,intent(in),optional  :: wait
-      integer,intent(out),optional :: exitstat
-      integer,intent(out),optional :: cmdstat
-      character(len=*),intent(out),optional :: cmdmsg
+      character(len=*),intent(in)             :: command
+      logical,intent(in),optional             :: wait
+      integer,intent(inout),optional          :: exitstat
+      integer,intent(inout),optional          :: cmdstat
+      character(len=*),intent(inout),optional :: cmdmsg
 ```
 ### **Characteristics**
+ - **command** is a default _character_ scalar
+ - **wait** is a default _logical_ scalar. If **wait** is present with the
+ - **exitstat** is an _integer_ of the default kind.
+   It must be of a kind with at least a decimal exponent range of 9.
+ - **cmdstat** is an _integer_ of default kind
+   The kind of the variable must support at least a decimal exponent range of four.
+
+ - **cmdmsg** is a _character_ scalar of the default kind.
 
 ### **Description**
 
-For **execute_command_line**(3) the **command** argument is passed to the
-shell and executed. (The shell is generally **sh**(1) on Unix systems, and
-cmd.exe on Windows.) If **wait** is present and has the value _\.false._,
-the execution of the command is asynchronous if the system supports it;
-otherwise, the command is executed synchronously.
+  For **execute_command_line**(3) the **command** argument is passed
+  to the shell and executed. (The shell is generally **sh**(1) on Unix
+  systems, and cmd.exe on Windows.) If **wait** is present and has the
+  value _\.false._, the execution of the command is asynchronous if the
+  system supports it; otherwise, the command is executed synchronously.
 
-The three last arguments allow the user to get status information. After
-synchronous execution, **exitstat** contains the integer exit code of the
-command, as returned by **system**. **cmdstat** is set to zero if the command
-line was executed (whatever its exit status was). **cmdmsg** is assigned an
-error message if an error has occurred.
+  The three last arguments allow the user to get status information. After
+  synchronous execution, **exitstat** contains the integer exit code of
+  the command, as returned by **system**. **cmdstat** is set to zero if
+  the command line was executed (whatever its exit status was). **cmdmsg**
+  is assigned an error message if an error has occurred.
 
-Note that the system call need not be thread-safe. It is the
-responsibility of the user to ensure that the system is not called
-concurrently if required.
+  Note that the system call need not be thread-safe. It is the
+  responsibility of the user to ensure that the system is not called
+  concurrently if required.
 
-When the command is executed synchronously, **execute_command_line**
-returns after the command line has completed execution. Otherwise,
-**execute_command_line** returns without waiting.
+  When the command is executed synchronously, **execute_command_line**
+  returns after the command line has completed execution. Otherwise,
+  **execute_command_line** returns without waiting.
+
+  Because this intrinsic is making a system call, it is very system
+  dependent. Its behavior with respect to signaling is processor
+  dependent. In particular, on POSIX-compliant systems, the SIGINT and
+  SIGQUIT signals will be ignored, and the SIGCHLD will be blocked. As
+  such, if the parent process is terminated, the child process might
+  not be terminated alongside.
 
 ### **Options**
 
 - **command**
-  : a default _character_ scalar containing the command line to be
-  executed. The interpretation is programming-environment dependent.
+  : the command line to be executed. The interpretation is
+  programming-environment dependent.
 
 - **wait**
-  : (Optional) a default _logical_ scalar. If **wait** is present with the
-  value .false., and the processor supports asynchronous execution of
+  : If **wait** is present with the
+  value _.false._, and the processor supports asynchronous execution of
   the command, the command is executed asynchronously; otherwise it is
   executed synchronously.
 
+  When the command is executed synchronously, **execute_command_line**(3)
+  returns after the command line has completed execution. Otherwise,
+  **execute_command_line**(3) returns without waiting.
+
 - **exitstat**
-  : (Optional) an _integer_ of the default kind with **intent(inout)**. If
-  the command is executed synchronously, it is assigned the value of
-  the processor-dependent exit status. Otherwise, the value of
+  : If the command is executed synchronously, it is assigned the value
+  of the processor-dependent exit status. Otherwise, the value of
   **exitstat** is unchanged.
 
+  If the command is executed synchronously, it is assigned the value of
+  the processor-dependent exit status. Otherwise, the value of EXITSTAT
+  is unchanged.
+
 - **cmdstat**
-  : (Optional) an _integer_ of default kind with **intent(inout)**. If an
-  error condition occurs and **cmdstat** is not present, error termination
-  of execution of the image is initiated.
+  : If an error condition occurs and **cmdstat** is not present, error
+  termination of execution of the image is initiated.
 
   It is assigned the value **-1** if the processor does not support
   command line execution, a processor-dependent positive value if an
@@ -7803,14 +7827,12 @@ returns after the command line has completed execution. Otherwise,
   the value 0.
 
 - **cmdmsg**
-  : (Optional) a _character_ scalar of the default kind. It is an **intent
-  (inout)** argument.If an error condition occurs, it is assigned a
-  processor-dependent explanatory message.Otherwise, it is unchanged.
+  : If an error condition occurs, it is assigned a processor-dependent
+  explanatory message. Otherwise, it is unchanged.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_exec
 implicit none
@@ -7823,24 +7845,15 @@ implicit none
    print *, "Now reindexing files in the background"
 end program demo_exec
 ```
-### **Note**
-
-Because this intrinsic is making a system call, it is very system
-dependent. Its behavior with respect to signaling is processor
-dependent. In particular, on POSIX-compliant systems, the SIGINT and
-SIGQUIT signals will be ignored, and the SIGCHLD will be blocked. As
-such, if the parent process is terminated, the child process might not
-be terminated alongside.
-
 ### **Standard**
 
 Fortran 2008
 
 ### **See also**
 
-[****(3)](#)
+[**get_environment_variable**(3)](#get_environment_variable)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## exp
 

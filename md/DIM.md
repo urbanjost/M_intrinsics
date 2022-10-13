@@ -2,41 +2,42 @@
 
 ### **Name**
 
-**dim**(3) - \[NUMERIC\] Positive difference
+**dim**(3) - \[NUMERIC\] Positive difference of X - Y 
 
 ### **Synopsis**
 ```fortran
     result = dim(x, y)
 ```
 ```fortran
-     elemental TYPE(kind=KIND) function dim(x, y)
+     elemental TYPE(kind=KIND) function dim(x, y )
 
       TYPE(kind=KIND),intent(in) :: x, y
 ```
 ### **Characteristics**
 
-where TYPE may be _real_ or _integer_ and KIND is any supported kind
-for the type.
+- **x** and **y** may be any _real_ or _integer_ but of the same type
+  and kind
+- the result is of the same type and kind as the arguments
 
 ### **Description**
 
-**dim**(3) returns the difference **x - y** if the result is positive;
-otherwise it returns zero. It is equivalent to **max(0,x-y)** where the
-arguments are all of the same type.
-
+  **dim((3) returns the maximum of **x - y** and zero.
+  That is, it returns the difference **x - y** if the result is positive;
+  otherwise it returns zero. It is equivalent to
+```fortran
+  **max(0,x-y)**
+```
 ### **Options**
 
 - **x**
-  : The type shall be _integer_ or _real_
+  : the subtrahend, ie. the number being subtracted from.
 
 - **y**
-  : The type shall be the same type and kind as **x**.
+  : the minuend; ie. the number being subtracted
 
 ### **Result**
 
-Returns the difference **xx -y** or zero, whichever is larger.
-The return value is the same type and kind as the input arguments **x**
-and **y**.
+Returns the difference **x - y** or zero, whichever is larger.
 
 ### **Examples**
 

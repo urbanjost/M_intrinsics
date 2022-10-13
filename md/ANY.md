@@ -9,10 +9,11 @@
     result = any(mask [,dim])
 ```
 ```fortran
-     logical(kind=KIND) function any(mask, dim)
+     function any(mask, dim)
 
       logical(kind=KIND),intent(in) :: mask(..)
       integer,intent(in),optional   :: dim
+      logical(kind=KIND)            :: any(..)
 ```
 ### **Characteristics**
 

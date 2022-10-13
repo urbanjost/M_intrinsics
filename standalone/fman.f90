@@ -1060,10 +1060,11 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = all(mask [,dim])', &
 '', &
-'           logical function all(mask ,dim)', &
+'           function all(mask ,dim)', &
 '', &
-'            logical,intent(in)          :: mask(..)', &
-'            integer,intent(in),optional :: dim', &
+'            logical(kind=KIND),intent(in) :: mask(..)', &
+'            integer,intent(in),optional   :: dim', &
+'            logical(kind=KIND)            :: all(..)', &
 '', &
 'CHARACTERISTICS', &
 '  o  MASK is a logical array', &
@@ -1377,10 +1378,11 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = any(mask [,dim])', &
 '', &
-'           logical(kind=KIND) function any(mask, dim)', &
+'           function any(mask, dim)', &
 '', &
 '            logical(kind=KIND),intent(in) :: mask(..)', &
 '            integer,intent(in),optional   :: dim', &
+'            logical(kind=KIND)            :: any(..)', &
 '', &
 'CHARACTERISTICS', &
 '  o  MASK is a logical array', &
@@ -6372,32 +6374,34 @@ textblock=[character(len=256) :: &
 'dim(3fortran)                                                    dim(3fortran)', &
 '', &
 'NAME', &
-'  DIM(3) - [NUMERIC] Positive difference', &
+'  DIM(3) - [NUMERIC] Positive difference of X - Y', &
 '', &
 'SYNOPSIS', &
 '  result = dim(x, y)', &
 '', &
-'           elemental TYPE(kind=KIND) function dim(x, y)', &
+'           elemental TYPE(kind=KIND) function dim(x, y )', &
 '', &
 '            TYPE(kind=KIND),intent(in) :: x, y', &
 '', &
 'CHARACTERISTICS', &
-'  where TYPE may be real or integer and KIND is any supported kind for the', &
-'  type.', &
+'  o  X and Y may be any real or integer but of the same type and kind', &
+'', &
+'  o  the result is of the same type and kind as the arguments', &
 '', &
 'DESCRIPTION', &
-'  DIM(3) returns the difference X - Y if the result is positive; otherwise it', &
-'  returns zero. It is equivalent to MAX(0,X-Y) where the arguments are all of', &
-'  the same type.', &
+'  **dim((3) returns the maximum of X - Y and zero. That is, it returns the', &
+'  difference X - Y if the result is positive; otherwise it returns zero.  It', &
+'  is equivalent to', &
+'', &
+'        **max(0,x-y)**', &
 '', &
 'OPTIONS', &
-'  o  X : The type shall be integer or real', &
+'  o  X : the subtrahend, ie. the number being subtracted from.', &
 '', &
-'  o  Y : The type shall be the same type and kind as X.', &
+'  o  Y : the minuend; ie. the number being subtracted', &
 '', &
 'RESULT', &
-'  Returns the difference XX -Y or zero, whichever is larger. The return value', &
-'  is the same type and kind as the input arguments X and Y.', &
+'  Returns the difference X - Y or zero, whichever is larger.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -7434,13 +7438,25 @@ textblock=[character(len=256) :: &
 '', &
 '           subroutine execute_command_line(command,wait,exitstat,cmdstat,cmdmsg)', &
 '', &
-'            character(len=*),intent(in)  :: command', &
-'            logical,intent(in),optional  :: wait', &
-'            integer,intent(out),optional :: exitstat', &
-'            integer,intent(out),optional :: cmdstat', &
-'            character(len=*),intent(out),optional :: cmdmsg', &
+'            character(len=*),intent(in)             :: command', &
+'            logical,intent(in),optional             :: wait', &
+'            integer,intent(inout),optional          :: exitstat', &
+'            integer,intent(inout),optional          :: cmdstat', &
+'            character(len=*),intent(inout),optional :: cmdmsg', &
 '', &
 'CHARACTERISTICS', &
+'  o  COMMAND is a default character scalar', &
+'', &
+'  o  WAIT is a default logical scalar. If WAIT is present with the', &
+'', &
+'  o  EXITSTAT is an integer of the default kind. It must be of a kind with at', &
+'     least a decimal exponent range of 9.', &
+'', &
+'  o  CMDSTAT is an integer of default kind The kind of the variable must', &
+'     support at least a decimal exponent range of four.', &
+'', &
+'  o  CMDMSG is a character scalar of the default kind.', &
+'', &
 'DESCRIPTION', &
 '  For EXECUTE_COMMAND_LINE(3) the COMMAND argument is passed to the shell and', &
 '  executed. (The shell is generally SH(1) on Unix systems, and cmd.exe on', &
@@ -7462,23 +7478,34 @@ textblock=[character(len=256) :: &
 '  after the command line has completed execution. Otherwise,', &
 '  EXECUTE_COMMAND_LINE returns without waiting.', &
 '', &
+'  Because this intrinsic is making a system call, it is very system dependent.', &
+'  Its behavior with respect to signaling is processor dependent. In', &
+'  particular, on POSIX-compliant systems, the SIGINT and SIGQUIT signals will', &
+'  be ignored, and the SIGCHLD will be blocked. As such, if the parent process', &
+'  is terminated, the child process might not be terminated alongside.', &
+'', &
 'OPTIONS', &
-'  o  COMMAND : a default character scalar containing the command line to be', &
-'     executed. The interpretation is programming-environment dependent.', &
+'  o  COMMAND : the command line to be executed. The interpretation is', &
+'     programming-environment dependent.', &
 '', &
-'  o  WAIT : (Optional) a default logical scalar. If WAIT is present with the', &
-'     value .false., and the processor supports asynchronous execution of the', &
-'     command, the command is executed asynchronously; otherwise it is executed', &
-'     synchronously.', &
+'  o  WAIT : If WAIT is present with the value .false., and the processor', &
+'     supports asynchronous execution of the command, the command is executed', &
+'     asynchronously; otherwise it is executed synchronously.', &
 '', &
-'  o  EXITSTAT : (Optional) an integer of the default kind with INTENT(INOUT).', &
+'     When the command is executed synchronously, EXECUTE_COMMAND_LINE(3)', &
+'     returns after the command line has completed execution. Otherwise,', &
+'     EXECUTE_COMMAND_LINE(3) returns without waiting.', &
+'', &
+'  o  EXITSTAT : If the command is executed synchronously, it is assigned the', &
+'     value of the processor-dependent exit status. Otherwise, the value of', &
+'     EXITSTAT is unchanged.', &
+'', &
 '     If the command is executed synchronously, it is assigned the value of the', &
-'     processor-dependent exit status.  Otherwise, the value of EXITSTAT is', &
+'     processor-dependent exit status. Otherwise, the value of EXITSTAT is', &
 '     unchanged.', &
 '', &
-'  o  CMDSTAT : (Optional) an integer of default kind with INTENT(INOUT).  If', &
-'     an error condition occurs and CMDSTAT is not present, error termination', &
-'     of execution of the image is initiated.', &
+'  o  CMDSTAT : If an error condition occurs and CMDSTAT is not present, error', &
+'     termination of execution of the image is initiated.', &
 '', &
 '     It is assigned the value -1 if the processor does not support command', &
 '     line execution, a processor-dependent positive value if an error', &
@@ -7486,9 +7513,8 @@ textblock=[character(len=256) :: &
 '     is present with the value false and the processor does not support', &
 '     asynchronous execution. Otherwise it is assigned the value 0.', &
 '', &
-'  o  CMDMSG : (Optional) a character scalar of the default kind. It is an', &
-'     INTENT (INOUT) argument.If an error condition occurs, it is assigned a', &
-'     processor-dependent explanatory message.Otherwise, it is unchanged.', &
+'  o  CMDMSG : If an error condition occurs, it is assigned a processor-', &
+'     dependent explanatory message. Otherwise, it is unchanged.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -7504,20 +7530,13 @@ textblock=[character(len=256) :: &
 '         print *, "Now reindexing files in the background"', &
 '      end program demo_exec', &
 '', &
-'NOTE', &
-'  Because this intrinsic is making a system call, it is very system dependent.', &
-'  Its behavior with respect to signaling is processor dependent. In', &
-'  particular, on POSIX-compliant systems, the SIGINT and SIGQUIT signals will', &
-'  be ignored, and the SIGCHLD will be blocked. As such, if the parent process', &
-'  is terminated, the child process might not be terminated alongside.', &
-'', &
 'STANDARD', &
 '  Fortran 2008', &
 '', &
 'SEE ALSO', &
-'  ****(3)', &
+'  GET_ENVIRONMENT_VARIABLE(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 13, 2022 execute_command_line(3fortran)', &
 '']
