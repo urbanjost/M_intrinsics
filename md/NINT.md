@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**nint**(3) - \[TYPE:NUMERIC\] nearest whole number
+**nint**(3) - \[TYPE:NUMERIC\] Nearest whole number
 
 ### **Synopsis**
 ```fortran

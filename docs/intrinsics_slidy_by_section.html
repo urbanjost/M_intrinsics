@@ -7764,7 +7764,7 @@ $$</span><br /></p>
 </div>
 <div id="ibits" class="title-slide slide section level2"><h1>ibits</h1></div><div id="name-98" class="slide section level3">
 <h1><strong>Name</strong></h1>
-<p><strong>ibits</strong>(3) - [BIT:COPY] extraction of a subset of bits</p>
+<p><strong>ibits</strong>(3) - [BIT:COPY] Extraction of a subset of bits</p>
 </div><div id="synopsis-98" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb431"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb431-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">ibits</span>(i, pos, <span class="fu">len</span>)</a></code></pre></div>
@@ -8217,7 +8217,7 @@ $$</span><br /></p>
 </div>
 <div id="int" class="title-slide slide section level2"><h1>int</h1></div><div id="name-104" class="slide section level3">
 <h1><strong>Name</strong></h1>
-<p><strong>int</strong>(3) - [TYPE:NUMERIC] truncate towards zero and convert to integer</p>
+<p><strong>int</strong>(3) - [TYPE:NUMERIC] Truncate towards zero and convert to integer</p>
 </div><div id="synopsis-104" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb455"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb455-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">int</span>(a <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
@@ -11690,7 +11690,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </div>
 <div id="nint" class="title-slide slide section level2"><h1>nint</h1></div><div id="name-144" class="slide section level3">
 <h1><strong>Name</strong></h1>
-<p><strong>nint</strong>(3) - [TYPE:NUMERIC] nearest whole number</p>
+<p><strong>nint</strong>(3) - [TYPE:NUMERIC] Nearest whole number</p>
 </div><div id="synopsis-144" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb635"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb635-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">nint</span>( a <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
@@ -14689,7 +14689,6 @@ Currently, supported character sets include “ASCII” and “DEFAULT” and �
     &gt;            |a|b|c|d|e|f|g|h|i|j|k| &lt;- right-shifted five
     &gt;  |0|0|0|0|0|f|g|h|i|j|k|l|m|n|o|p| &lt;- left-padded with zeros</code></pre>
 <p>Note the value of the result is the same as <strong>ishft (i, -shift)</strong>.</p>
-<p>Shifting right</p>
 </div><div id="options-174" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -16568,7 +16567,12 @@ need an illustration of what happens with higher dimension array
 <a class="sourceLine" id="cb864-5" title="5">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> field(..)</a></code></pre></div>
 </div><div id="characteristics-198" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
-<p>The result is an array of the same type and type parameters as <strong>vector</strong> and the same shape as <strong>mask</strong>.</p>
+<ul>
+<li>**vector* is a rank-one array of any type</li>
+<li><strong>mask</strong> is a logical array</li>
+<li><strong>field</strong> is the same type and type parameters as VECTOR conformable with <strong>mask</strong>.</li>
+<li>The result is an array of the same type and type parameters as <strong>vector</strong> and the same shape as <strong>mask</strong>.</li>
+</ul>
 </div><div id="description-196" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p><strong>unpack</strong>(3) scatters the elements of <strong>vector</strong> into a copy of an array <strong>field</strong> of any rank using .true. values from <strong>mask</strong> in array element order to specify placement of the <strong>vector</strong> values.</p>
@@ -16578,17 +16582,17 @@ need an illustration of what happens with higher dimension array
 <ul>
 <li><dl>
 <dt><strong>vector</strong></dt>
-<dd>New values to place into specified locations in <strong>field</strong>. Shall be an array of any type and rank one. It shall have at least as many elements as <strong>mask</strong> has .true. values.
+<dd>New values to place into specified locations in <strong>field</strong>. It shall have at least as many elements as <strong>mask</strong> has .true. values.
 </dd>
 </dl></li>
 <li><dl>
 <dt><strong>mask</strong></dt>
-<dd>Shall be an array of type logical that specifies which values in <strong>field</strong> are to be replaced with values from <strong>vector</strong>.
+<dd>Shall be an array that specifies which values in <strong>field</strong> are to be replaced with values from <strong>vector</strong>.
 </dd>
 </dl></li>
 <li><dl>
 <dt><strong>field</strong></dt>
-<dd>The original data to be edited. Shall be of the same type and type parameters as <strong>vector</strong> and shall be conformable with <strong>mask</strong>.
+<dd>The input array to be altered.
 </dd>
 </dl></li>
 </ul>
@@ -16701,9 +16705,10 @@ need an illustration of what happens with higher dimension array
 </div><div id="characteristics-199" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
 <ul>
-<li>a kind designated as ** may be any supported kind value for the type. However, <strong>string</strong> and <strong>set</strong> must have the same kind for any individual call.</li>
+<li><strong>string</strong> and <strong>set</strong> must be of type character and have the same kind for any individual call, but that can be any supported character kind.</li>
+<li><strong>KIND</strong> must be a constant integer initialization expression and a valid kind for the integer type.</li>
+<li><strong>back</strong> shall be of type logical.</li>
 <li>the kind of the returned value is the same as <strong>kind</strong> if present. Otherwise a default integer kind is returned.</li>
-<li><strong>kind</strong> must be a constant integer initialization expression and a valid kind for the integer type.</li>
 </ul>
 </div><div id="description-197" class="slide section level3">
 <h1><strong>Description</strong></h1>
@@ -16735,9 +16740,9 @@ need an illustration of what happens with higher dimension array
 </ul>
 </div><div id="result-172" class="slide section level3">
 <h1><strong>Result</strong></h1>
-<p>The position of the first or last (if <strong>back</strong> is .false.) unmatched character in <strong>string</strong>.</p>
 <p>If all characters of <strong>string</strong> are found in <strong>set</strong>, the result is zero.</p>
 <p>If <strong>string</strong> is of zero length a zero (0) is always returned.</p>
+<p>Otherwise, if an unmatched character is found The position of the first or last (if <strong>back</strong> is .false.) unmatched character in <strong>string</strong> is returned, starting with position one on the left end of the string.</p>
 </div><div id="examples-193" class="slide section level3">
 <h1><strong>Examples</strong></h1>
 <h4 id="sample-program-i">Sample program I:</h4>
@@ -16755,80 +16760,98 @@ need an illustration of what happens with higher dimension array
 <a class="sourceLine" id="cb870-12" title="12"></a>
 <a class="sourceLine" id="cb870-13" title="13"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> string</a>
 <a class="sourceLine" id="cb870-14" title="14"><span class="dt">integer</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb870-15" title="15"></a>
-<a class="sourceLine" id="cb870-16" title="16">   <span class="co">! find first non-uppercase letter</span></a>
-<a class="sourceLine" id="cb870-17" title="17">   <span class="co">! will produce the location of &quot;d&quot;, because there is no match in UPP</span></a>
-<a class="sourceLine" id="cb870-18" title="18">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;something unmatched&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;ABCdEFG&quot;</span>, upp)</a>
+<a class="sourceLine" id="cb870-15" title="15">    <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;basics:&#39;</span></a>
+<a class="sourceLine" id="cb870-16" title="16">    <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">VERIFY</span> (<span class="st">&#39;ABBA&#39;</span>, <span class="st">&#39;A&#39;</span>)                <span class="co">! has the value 2.</span></a>
+<a class="sourceLine" id="cb870-17" title="17">    <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">VERIFY</span> (<span class="st">&#39;ABBA&#39;</span>, <span class="st">&#39;A&#39;</span>, BACK <span class="kw">=</span> <span class="cn">.TRUE.</span>) <span class="co">! has the value 3.</span></a>
+<a class="sourceLine" id="cb870-18" title="18">    <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">VERIFY</span> (<span class="st">&#39;ABBA&#39;</span>, <span class="st">&#39;AB&#39;</span>)               <span class="co">! has the value 0.</span></a>
 <a class="sourceLine" id="cb870-19" title="19"></a>
-<a class="sourceLine" id="cb870-20" title="20">   <span class="co">! if everything is matched return zero</span></a>
-<a class="sourceLine" id="cb870-21" title="21">   <span class="co">! will produce 0 as all letters have a match</span></a>
-<a class="sourceLine" id="cb870-22" title="22">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;everything matched&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;ffoorrttrraann&quot;</span>, <span class="st">&quot;nartrof&quot;</span>)</a>
+<a class="sourceLine" id="cb870-20" title="20">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;find first non-uppercase letter&#39;</span></a>
+<a class="sourceLine" id="cb870-21" title="21">   <span class="co">! will produce the location of &quot;d&quot;, because there is no match in UPP</span></a>
+<a class="sourceLine" id="cb870-22" title="22">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;something unmatched&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;ABCdEFG&quot;</span>, upp)</a>
 <a class="sourceLine" id="cb870-23" title="23"></a>
-<a class="sourceLine" id="cb870-24" title="24">   <span class="co">! easy C-like functionality but does entire strings not just characters</span></a>
-<a class="sourceLine" id="cb870-25" title="25">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isdigit 123?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;123&quot;</span>, <span class="bu">int</span>) <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-26" title="26">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;islower abc?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;abc&quot;</span>, low) <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-27" title="27">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isalpha aBc?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;aBc&quot;</span>, low<span class="kw">//</span>upp) <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-28" title="28">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isblank aBc dEf?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;aBc dEf&quot;</span>, blank<span class="kw">//</span>tab ) <span class="op">/=</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-29" title="29">   <span class="co">! check if all printable characters</span></a>
-<a class="sourceLine" id="cb870-30" title="30">   string<span class="kw">=</span><span class="st">&quot;aB;cde,fgHI!Jklmno PQRSTU vwxyz&quot;</span></a>
-<a class="sourceLine" id="cb870-31" title="31">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isprint?&#39;</span>,<span class="bu">verify</span>(string,prnt) <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-32" title="32">   <span class="co">! this now has a nonprintable tab character in it</span></a>
-<a class="sourceLine" id="cb870-33" title="33">   string(<span class="dv">10</span>:<span class="dv">10</span>)<span class="kw">=</span><span class="bu">char</span>(<span class="dv">11</span>)</a>
-<a class="sourceLine" id="cb870-34" title="34">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isprint?&#39;</span>,<span class="bu">verify</span>(string,prnt) <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-35" title="35"></a>
-<a class="sourceLine" id="cb870-36" title="36">   <span class="co">! verify(3f) is often used in a logical expression</span></a>
-<a class="sourceLine" id="cb870-37" title="37">   string<span class="kw">=</span><span class="st">&quot; This is NOT all UPPERCASE &quot;</span></a>
-<a class="sourceLine" id="cb870-38" title="38">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;all uppercase/spaces?&#39;</span>,<span class="bu">verify</span>(string, blank<span class="kw">//</span>upp) <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-39" title="39">   string<span class="kw">=</span><span class="st">&quot; This IS all uppercase &quot;</span></a>
-<a class="sourceLine" id="cb870-40" title="40">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;string=[&#39;</span><span class="kw">//</span>string<span class="kw">//</span><span class="st">&#39;]&#39;</span></a>
-<a class="sourceLine" id="cb870-41" title="41">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;all uppercase/spaces?&#39;</span>,<span class="bu">verify</span>(string, blank<span class="kw">//</span>upp) <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-42" title="42"></a>
-<a class="sourceLine" id="cb870-43" title="43">  <span class="co">! set and show complex string to be tested</span></a>
-<a class="sourceLine" id="cb870-44" title="44">   string<span class="kw">=</span><span class="st">&#39;  Check this out. Let me know  &#39;</span></a>
-<a class="sourceLine" id="cb870-45" title="45">   <span class="co">! show the string being examined</span></a>
+<a class="sourceLine" id="cb870-24" title="24">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;if everything is matched return zero&#39;</span></a>
+<a class="sourceLine" id="cb870-25" title="25">   <span class="co">! will produce 0 as all letters have a match</span></a>
+<a class="sourceLine" id="cb870-26" title="26">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;everything matched&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;ffoorrttrraann&quot;</span>, <span class="st">&quot;nartrof&quot;</span>)</a>
+<a class="sourceLine" id="cb870-27" title="27"></a>
+<a class="sourceLine" id="cb870-28" title="28">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;easily categorize strings as uppercase, lowercase, ...&#39;</span></a>
+<a class="sourceLine" id="cb870-29" title="29">   <span class="co">! easy C-like functionality but does entire strings not just characters</span></a>
+<a class="sourceLine" id="cb870-30" title="30">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isdigit 123?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;123&quot;</span>, <span class="bu">int</span>) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb870-31" title="31">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;islower abc?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;abc&quot;</span>, low) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb870-32" title="32">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isalpha aBc?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;aBc&quot;</span>, low<span class="kw">//</span>upp) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb870-33" title="33">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isblank aBc dEf?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;aBc dEf&quot;</span>, blank<span class="kw">//</span>tab ) <span class="op">/=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb870-34" title="34">   <span class="co">! check if all printable characters</span></a>
+<a class="sourceLine" id="cb870-35" title="35">   string<span class="kw">=</span><span class="st">&quot;aB;cde,fgHI!Jklmno PQRSTU vwxyz&quot;</span></a>
+<a class="sourceLine" id="cb870-36" title="36">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isprint?&#39;</span>,<span class="bu">verify</span>(string,prnt) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb870-37" title="37">   <span class="co">! this now has a nonprintable tab character in it</span></a>
+<a class="sourceLine" id="cb870-38" title="38">   string(<span class="dv">10</span>:<span class="dv">10</span>)<span class="kw">=</span><span class="bu">char</span>(<span class="dv">11</span>)</a>
+<a class="sourceLine" id="cb870-39" title="39">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isprint?&#39;</span>,<span class="bu">verify</span>(string,prnt) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb870-40" title="40"></a>
+<a class="sourceLine" id="cb870-41" title="41">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;VERIFY(3) is very powerful using expressions as masks&#39;</span></a>
+<a class="sourceLine" id="cb870-42" title="42">   <span class="co">! verify(3f) is often used in a logical expression</span></a>
+<a class="sourceLine" id="cb870-43" title="43">   string<span class="kw">=</span><span class="st">&quot; This is NOT all UPPERCASE &quot;</span></a>
+<a class="sourceLine" id="cb870-44" title="44">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;all uppercase/spaces?&#39;</span>,<span class="bu">verify</span>(string, blank<span class="kw">//</span>upp) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb870-45" title="45">   string<span class="kw">=</span><span class="st">&quot; This IS all uppercase &quot;</span></a>
 <a class="sourceLine" id="cb870-46" title="46">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;string=[&#39;</span><span class="kw">//</span>string<span class="kw">//</span><span class="st">&#39;]&#39;</span></a>
-<a class="sourceLine" id="cb870-47" title="47">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;        &#39;</span><span class="kw">//</span><span class="fu">repeat</span>(<span class="bu">int</span>,<span class="dv">4</span>) <span class="co">! number line</span></a>
+<a class="sourceLine" id="cb870-47" title="47">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;all uppercase/spaces?&#39;</span>,<span class="bu">verify</span>(string, blank<span class="kw">//</span>upp) <span class="op">==</span> <span class="dv">0</span></a>
 <a class="sourceLine" id="cb870-48" title="48"></a>
-<a class="sourceLine" id="cb870-49" title="49">   <span class="co">! the Fortran functions returns a position just not a logical like C</span></a>
-<a class="sourceLine" id="cb870-50" title="50">   <span class="co">! which can be very useful for parsing strings</span></a>
-<a class="sourceLine" id="cb870-51" title="51">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;first non-blank character&#39;</span>,<span class="bu">verify</span>(string, blank)</a>
-<a class="sourceLine" id="cb870-52" title="52">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;last non-blank character&#39;</span>,<span class="bu">verify</span>(string, blank,back<span class="kw">=</span><span class="cn">.true.</span>)</a>
-<a class="sourceLine" id="cb870-53" title="53">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;first non-letter non-blank&#39;</span>,<span class="bu">verify</span>(string,low<span class="kw">//</span>upp<span class="kw">//</span>blank)</a>
+<a class="sourceLine" id="cb870-49" title="49">  <span class="co">! set and show complex string to be tested</span></a>
+<a class="sourceLine" id="cb870-50" title="50">   string<span class="kw">=</span><span class="st">&#39;  Check this out. Let me know  &#39;</span></a>
+<a class="sourceLine" id="cb870-51" title="51">   <span class="co">! show the string being examined</span></a>
+<a class="sourceLine" id="cb870-52" title="52">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;string=[&#39;</span><span class="kw">//</span>string<span class="kw">//</span><span class="st">&#39;]&#39;</span></a>
+<a class="sourceLine" id="cb870-53" title="53">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;        &#39;</span><span class="kw">//</span><span class="fu">repeat</span>(<span class="bu">int</span>,<span class="dv">4</span>) <span class="co">! number line</span></a>
 <a class="sourceLine" id="cb870-54" title="54"></a>
-<a class="sourceLine" id="cb870-55" title="55">  <span class="co">!VERIFY(3) is elemental so you can check an array of strings in one call</span></a>
-<a class="sourceLine" id="cb870-56" title="56">   <span class="co">! are strings all letters (or blanks)?</span></a>
-<a class="sourceLine" id="cb870-57" title="57">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;array of strings&#39;</span>,<span class="bu">verify</span>( <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb870-58" title="58">   <span class="co">! strings must all be same length, so force to length 10</span></a>
-<a class="sourceLine" id="cb870-59" title="59">   <span class="kw">&amp;</span> <span class="kw">[</span><span class="dt">character(len=10)</span> <span class="dt">::</span> <span class="st">&quot;YES&quot;</span>,<span class="st">&quot;ok&quot;</span>,<span class="st">&quot;000&quot;</span>,<span class="st">&quot;good one&quot;</span>,<span class="st">&quot;Nope!&quot;</span><span class="kw">]</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb870-60" title="60">   <span class="kw">&amp;</span> low<span class="kw">//</span>upp<span class="kw">//</span>blank) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb870-55" title="55">   <span class="co">! the Fortran functions returns a position just not a logical like C</span></a>
+<a class="sourceLine" id="cb870-56" title="56">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;returning a position not just a logical is useful&#39;</span></a>
+<a class="sourceLine" id="cb870-57" title="57">   <span class="co">! which can be very useful for parsing strings</span></a>
+<a class="sourceLine" id="cb870-58" title="58">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;first non-blank character&#39;</span>,<span class="bu">verify</span>(string, blank)</a>
+<a class="sourceLine" id="cb870-59" title="59">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;last non-blank character&#39;</span>,<span class="bu">verify</span>(string, blank,back<span class="kw">=</span><span class="cn">.true.</span>)</a>
+<a class="sourceLine" id="cb870-60" title="60">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;first non-letter non-blank&#39;</span>,<span class="bu">verify</span>(string,low<span class="kw">//</span>upp<span class="kw">//</span>blank)</a>
 <a class="sourceLine" id="cb870-61" title="61"></a>
-<a class="sourceLine" id="cb870-62" title="62">   <span class="co">! rarer, but the set can be an array, not just the strings to test</span></a>
-<a class="sourceLine" id="cb870-63" title="63">   <span class="co">! you could do ISPRINT() this (harder) way :&gt;</span></a>
-<a class="sourceLine" id="cb870-64" title="64">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isprint?&#39;</span>,<span class="op">.not.</span><span class="fu">all</span>(<span class="bu">verify</span>(<span class="st">&quot;aBc&quot;</span>, <span class="kw">[</span>(<span class="bu">char</span>(i),i<span class="kw">=</span><span class="dv">32</span>,<span class="dv">126</span>)<span class="kw">]</span>)<span class="op">==</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb870-65" title="65">   <span class="co">! instead of this way</span></a>
-<a class="sourceLine" id="cb870-66" title="66">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isprint?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;aBc&quot;</span>,prnt) <span class="op">==</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb870-67" title="67"></a>
-<a class="sourceLine" id="cb870-68" title="68"><span class="kw">end program</span> demo_verify</a></code></pre></div>
+<a class="sourceLine" id="cb870-62" title="62">  <span class="co">!VERIFY(3) is elemental so you can check an array of strings in one call</span></a>
+<a class="sourceLine" id="cb870-63" title="63">  <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;elemental&#39;</span></a>
+<a class="sourceLine" id="cb870-64" title="64">   <span class="co">! are strings all letters (or blanks)?</span></a>
+<a class="sourceLine" id="cb870-65" title="65">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;array of strings&#39;</span>,<span class="bu">verify</span>( <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb870-66" title="66">   <span class="co">! strings must all be same length, so force to length 10</span></a>
+<a class="sourceLine" id="cb870-67" title="67">   <span class="kw">&amp;</span> <span class="kw">[</span><span class="dt">character(len=10)</span> <span class="dt">::</span> <span class="st">&quot;YES&quot;</span>,<span class="st">&quot;ok&quot;</span>,<span class="st">&quot;000&quot;</span>,<span class="st">&quot;good one&quot;</span>,<span class="st">&quot;Nope!&quot;</span><span class="kw">]</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb870-68" title="68">   <span class="kw">&amp;</span> low<span class="kw">//</span>upp<span class="kw">//</span>blank) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb870-69" title="69"></a>
+<a class="sourceLine" id="cb870-70" title="70">   <span class="co">! rarer, but the set can be an array, not just the strings to test</span></a>
+<a class="sourceLine" id="cb870-71" title="71">   <span class="co">! you could do ISPRINT() this (harder) way :&gt;</span></a>
+<a class="sourceLine" id="cb870-72" title="72">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isprint?&#39;</span>,<span class="op">.not.</span><span class="fu">all</span>(<span class="bu">verify</span>(<span class="st">&quot;aBc&quot;</span>, <span class="kw">[</span>(<span class="bu">char</span>(i),i<span class="kw">=</span><span class="dv">32</span>,<span class="dv">126</span>)<span class="kw">]</span>)<span class="op">==</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb870-73" title="73">   <span class="co">! instead of this way</span></a>
+<a class="sourceLine" id="cb870-74" title="74">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;isprint?&#39;</span>,<span class="bu">verify</span>(<span class="st">&quot;aBc&quot;</span>,prnt) <span class="op">==</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb870-75" title="75"></a>
+<a class="sourceLine" id="cb870-76" title="76"><span class="kw">end program</span> demo_verify</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>    &gt; something unmatched           4
-    &gt; everything matched           0
-    &gt; isdigit 123? T
-    &gt; islower abc? T
-    &gt; isalpha aBc? T
-    &gt; isblank aBc dEf? T
-    &gt; isprint? T
-    &gt; isprint? F
-    &gt; true if all uppercase/spaces: F
-    &gt; string=[ THIS IS ALL UPPERCASE ]
-    &gt; true if all uppercase/spaces: T
-    &gt; string=[  Check this out. Let me know  ]
-    &gt;        1234567890123456789012345678901234567890
-    &gt; first non-blank character            3
-    &gt; last non-blank character           29
-    &gt; first non-letter non-blank           17
-    &gt; array of strings T T F T F
-    &gt; isprint? T
-    &gt; isprint? T</code></pre>
+<pre class="text"><code> &gt;  basics:
+ &gt;            2
+ &gt;            3
+ &gt;            0
+ &gt;  find first non-uppercase letter
+ &gt;  something unmatched           4
+ &gt;  if everything is matched return zero
+ &gt;  everything matched           0
+ &gt;  easily categorize strings as uppercase, lowercase, ...
+ &gt;  isdigit 123? T
+ &gt;  islower abc? T
+ &gt;  isalpha aBc? T
+ &gt;  isblank aBc dEf? T
+ &gt;  isprint? T
+ &gt;  isprint? F
+ &gt;  VERIFY(3) is very powerful using expressions as masks
+ &gt;  all uppercase/spaces? F
+ &gt;  string=[ This IS all uppercase ]
+ &gt;  all uppercase/spaces? F
+ &gt;  string=[  Check this out. Let me know  ]
+ &gt;          1234567890123456789012345678901234567890
+ &gt;  returning a position not just a logical is useful
+ &gt;  first non-blank character           3
+ &gt;  last non-blank character          29
+ &gt;  first non-letter non-blank          17
+ &gt;  elemental
+ &gt;  array of strings T T F T F
+ &gt;  isprint? T
+ &gt;  isprint? T</code></pre>
 <h4 id="sample-program-ii">Sample program II:</h4>
 <p>Determine if strings are valid integer representations</p>
 <div class="sourceCode" id="cb872"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb872-1" title="1"><span class="kw">program</span> fortran_ints</a>

@@ -19,13 +19,13 @@ of characters that does not appear in a given set of characters.
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type.
-   However, **string** and **set** must have the same kind for any
-   individual call.
+ - **string** and **set** must be of type _character_ and have the same kind for any
+   individual call, but that can be any supported _character_ kind.
+ - **KIND** must be a constant _integer_ initialization expression and a
+   valid kind for the _integer_ type.
+ - **back** shall be of type logical.
  - the kind of the returned value is the same as **kind** if
    present. Otherwise a default _integer_ kind is returned.
- - **kind** must be a constant _integer_ initialization expression and a
-   valid kind for the _integer_ type.
 
 ### **Description**
 
@@ -61,12 +61,14 @@ of characters that does not appear in a given set of characters.
 
 ### **Result**
 
-The position of the first or last (if **back** is _\.false._) unmatched
-character in **string**.
-
 If all characters of **string** are found in **set**, the result is zero.
 
 If **string** is of zero length a zero (0) is always returned.
+
+Otherwise, if an unmatched character is found
+The position of the first or last (if **back** is _\.false._) unmatched
+character in **string** is returned, starting with position one on the
+left end of the string.
 
 ### **Examples**
 
@@ -86,15 +88,20 @@ character,parameter :: &
 
 character(len=:),allocatable :: string
 integer :: i
+    print *, 'basics:'
+    print *, VERIFY ('ABBA', 'A')                ! has the value 2.
+    print *, VERIFY ('ABBA', 'A', BACK = .TRUE.) ! has the value 3.
+    print *, VERIFY ('ABBA', 'AB')               ! has the value 0.
 
-   ! find first non-uppercase letter
+   print *,'find first non-uppercase letter'
    ! will produce the location of "d", because there is no match in UPP
    write(*,*) 'something unmatched',verify("ABCdEFG", upp)
 
-   ! if everything is matched return zero
+   print *,'if everything is matched return zero'
    ! will produce 0 as all letters have a match
    write(*,*) 'everything matched',verify("ffoorrttrraann", "nartrof")
 
+   print *,'easily categorize strings as uppercase, lowercase, ...'
    ! easy C-like functionality but does entire strings not just characters
    write(*,*)'isdigit 123?',verify("123", int) == 0
    write(*,*)'islower abc?',verify("abc", low) == 0
@@ -107,6 +114,7 @@ integer :: i
    string(10:10)=char(11)
    write(*,*)'isprint?',verify(string,prnt) == 0
 
+   print *,'VERIFY(3) is very powerful using expressions as masks'
    ! verify(3f) is often used in a logical expression
    string=" This is NOT all UPPERCASE "
    write(*,*)'all uppercase/spaces?',verify(string, blank//upp) == 0
@@ -121,12 +129,14 @@ integer :: i
    write(*,*) '        '//repeat(int,4) ! number line
 
    ! the Fortran functions returns a position just not a logical like C
+   print *, 'returning a position not just a logical is useful'
    ! which can be very useful for parsing strings
    write(*,*)'first non-blank character',verify(string, blank)
    write(*,*)'last non-blank character',verify(string, blank,back=.true.)
    write(*,*)'first non-letter non-blank',verify(string,low//upp//blank)
 
   !VERIFY(3) is elemental so you can check an array of strings in one call
+  print *, 'elemental'
    ! are strings all letters (or blanks)?
    write(*,*) 'array of strings',verify( &
    ! strings must all be same length, so force to length 10
@@ -143,25 +153,35 @@ end program demo_verify
 ```
 Results:
 ```text
-    > something unmatched           4
-    > everything matched           0
-    > isdigit 123? T
-    > islower abc? T
-    > isalpha aBc? T
-    > isblank aBc dEf? T
-    > isprint? T
-    > isprint? F
-    > true if all uppercase/spaces: F
-    > string=[ THIS IS ALL UPPERCASE ]
-    > true if all uppercase/spaces: T
-    > string=[  Check this out. Let me know  ]
-    >        1234567890123456789012345678901234567890
-    > first non-blank character            3
-    > last non-blank character           29
-    > first non-letter non-blank           17
-    > array of strings T T F T F
-    > isprint? T
-    > isprint? T
+ >  basics:
+ >            2
+ >            3
+ >            0
+ >  find first non-uppercase letter
+ >  something unmatched           4
+ >  if everything is matched return zero
+ >  everything matched           0
+ >  easily categorize strings as uppercase, lowercase, ...
+ >  isdigit 123? T
+ >  islower abc? T
+ >  isalpha aBc? T
+ >  isblank aBc dEf? T
+ >  isprint? T
+ >  isprint? F
+ >  VERIFY(3) is very powerful using expressions as masks
+ >  all uppercase/spaces? F
+ >  string=[ This IS all uppercase ]
+ >  all uppercase/spaces? F
+ >  string=[  Check this out. Let me know  ]
+ >          1234567890123456789012345678901234567890
+ >  returning a position not just a logical is useful
+ >  first non-blank character           3
+ >  last non-blank character          29
+ >  first non-letter non-blank          17
+ >  elemental
+ >  array of strings T T F T F
+ >  isprint? T
+ >  isprint? T
 ```
 #### Sample program II:
 

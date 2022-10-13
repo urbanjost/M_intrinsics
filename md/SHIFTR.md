@@ -40,8 +40,6 @@
 ```
   Note the value of the result is the same as **ishft (i, -shift)**.
 
-  Shifting right 
-
 ### **Options**
 
 - **i**

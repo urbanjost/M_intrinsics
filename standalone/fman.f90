@@ -9513,7 +9513,7 @@ textblock=[character(len=256) :: &
 'ibits(3fortran)                                                ibits(3fortran)', &
 '', &
 'NAME', &
-'  IBITS(3) - [BIT:COPY] extraction of a subset of bits', &
+'  IBITS(3) - [BIT:COPY] Extraction of a subset of bits', &
 '', &
 'SYNOPSIS', &
 '  result = ibits(i, pos, len)', &
@@ -10033,7 +10033,7 @@ textblock=[character(len=256) :: &
 'int(3fortran)                                                    int(3fortran)', &
 '', &
 'NAME', &
-'  INT(3) - [TYPE:NUMERIC] truncate towards zero and convert to integer', &
+'  INT(3) - [TYPE:NUMERIC] Truncate towards zero and convert to integer', &
 '', &
 'SYNOPSIS', &
 '  result = int(a [,kind])', &
@@ -14240,7 +14240,7 @@ textblock=[character(len=256) :: &
 'nint(3fortran)                                                  nint(3fortran)', &
 '', &
 'NAME', &
-'  NINT(3) - [TYPE:NUMERIC] nearest whole number', &
+'  NINT(3) - [TYPE:NUMERIC] Nearest whole number', &
 '', &
 'SYNOPSIS', &
 '  result = nint( a [,kind] )', &
@@ -17851,8 +17851,6 @@ textblock=[character(len=256) :: &
 '', &
 '  Note the value of the result is the same as ISHFT (I, -SHIFT).', &
 '', &
-'  Shifting right', &
-'', &
 'OPTIONS', &
 '  o  I : The value to shift', &
 '', &
@@ -20087,8 +20085,15 @@ textblock=[character(len=256) :: &
 '            type(TYPE(kind=KIND)),intent(in) :: field(..)', &
 '', &
 'CHARACTERISTICS', &
-'  The result is an array of the same type and type parameters as VECTOR and', &
-'  the same shape as MASK.', &
+'  o  *vector is a rank-one array of any type', &
+'', &
+'  o  MASK is a logical array', &
+'', &
+'  o  FIELD is the same type and type parameters as VECTOR conformable with', &
+'     MASK.', &
+'', &
+'  o  The result is an array of the same type and type parameters as VECTOR and', &
+'     the same shape as MASK.', &
 '', &
 'DESCRIPTION', &
 '  UNPACK(3) scatters the elements of VECTOR into a copy of an array FIELD of', &
@@ -20101,15 +20106,13 @@ textblock=[character(len=256) :: &
 '  particularly when the replacements are conditional.', &
 '', &
 'OPTIONS', &
-'  o  VECTOR : New values to place into specified locations in FIELD.  Shall be', &
-'     an array of any type and rank one. It shall have at least as many', &
-'     elements as MASK has .true. values.', &
+'  o  VECTOR : New values to place into specified locations in FIELD. It shall', &
+'     have at least as many elements as MASK has .true. values.', &
 '', &
-'  o  MASK : Shall be an array of type logical that specifies which values in', &
-'     FIELD are to be replaced with values from VECTOR.', &
+'  o  MASK : Shall be an array that specifies which values in FIELD are to be', &
+'     replaced with values from VECTOR.', &
 '', &
-'  o  FIELD : The original data to be edited. Shall be of the same type and', &
-'     type parameters as VECTOR and shall be conformable with MASK.', &
+'  o  FIELD : The input array to be altered.', &
 '', &
 'RESULT', &
 '  The element of the result that corresponds to the ith true element of MASK,', &
@@ -20242,14 +20245,16 @@ textblock=[character(len=256) :: &
 '            integer,intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type.', &
-'     However, STRING and SET must have the same kind for any individual call.', &
-'', &
-'  o  the kind of the returned value is the same as KIND if present.  Otherwise', &
-'     a default integer kind is returned.', &
+'  o  STRING and SET must be of type character and have the same kind for any', &
+'     individual call, but that can be any supported character kind.', &
 '', &
 '  o  KIND must be a constant integer initialization expression and a valid', &
 '     kind for the integer type.', &
+'', &
+'  o  BACK shall be of type logical.', &
+'', &
+'  o  the kind of the returned value is the same as KIND if present.  Otherwise', &
+'     a default integer kind is returned.', &
 '', &
 'DESCRIPTION', &
 '  VERIFY(3) verifies that all the characters in STRING belong to the set of', &
@@ -20277,12 +20282,13 @@ textblock=[character(len=256) :: &
 '     of the result.', &
 '', &
 'RESULT', &
-'  The position of the first or last (if BACK is .false.) unmatched character', &
-'  in STRING.', &
-'', &
 '  If all characters of STRING are found in SET, the result is zero.', &
 '', &
 '  If STRING is of zero length a zero (0) is always returned.', &
+'', &
+'  Otherwise, if an unmatched character is found The position of the first or', &
+'  last (if BACK is .false.) unmatched character in STRING is returned,', &
+'  starting with position one on the left end of the string.', &
 '', &
 'EXAMPLES', &
 '  Sample program I:', &
@@ -20301,15 +20307,20 @@ textblock=[character(len=256) :: &
 '', &
 '      character(len=:),allocatable :: string', &
 '      integer :: i', &
+'          print *, ''basics:''', &
+'          print *, VERIFY (''ABBA'', ''A'')                ! has the value 2.', &
+'          print *, VERIFY (''ABBA'', ''A'', BACK = .TRUE.) ! has the value 3.', &
+'          print *, VERIFY (''ABBA'', ''AB'')               ! has the value 0.', &
 '', &
-'         ! find first non-uppercase letter', &
+'         print *,''find first non-uppercase letter''', &
 '         ! will produce the location of "d", because there is no match in UPP', &
 '         write(*,*) ''something unmatched'',verify("ABCdEFG", upp)', &
 '', &
-'         ! if everything is matched return zero', &
+'         print *,''if everything is matched return zero''', &
 '         ! will produce 0 as all letters have a match', &
 '         write(*,*) ''everything matched'',verify("ffoorrttrraann", "nartrof")', &
 '', &
+'         print *,''easily categorize strings as uppercase, lowercase, ...''', &
 '         ! easy C-like functionality but does entire strings not just characters', &
 '         write(*,*)''isdigit 123?'',verify("123", int) == 0', &
 '         write(*,*)''islower abc?'',verify("abc", low) == 0', &
@@ -20322,6 +20333,7 @@ textblock=[character(len=256) :: &
 '         string(10:10)=char(11)', &
 '         write(*,*)''isprint?'',verify(string,prnt) == 0', &
 '', &
+'         print *,''VERIFY(3) is very powerful using expressions as masks''', &
 '         ! verify(3f) is often used in a logical expression', &
 '         string=" This is NOT all UPPERCASE "', &
 '         write(*,*)''all uppercase/spaces?'',verify(string, blank//upp) == 0', &
@@ -20336,12 +20348,14 @@ textblock=[character(len=256) :: &
 '         write(*,*) ''        ''//repeat(int,4) ! number line', &
 '', &
 '         ! the Fortran functions returns a position just not a logical like C', &
+'         print *, ''returning a position not just a logical is useful''', &
 '         ! which can be very useful for parsing strings', &
 '         write(*,*)''first non-blank character'',verify(string, blank)', &
 '         write(*,*)''last non-blank character'',verify(string, blank,back=.true.)', &
 '         write(*,*)''first non-letter non-blank'',verify(string,low//upp//blank)', &
 '', &
 '        !VERIFY(3) is elemental so you can check an array of strings in one call', &
+'        print *, ''elemental''', &
 '         ! are strings all letters (or blanks)?', &
 '         write(*,*) ''array of strings'',verify( &', &
 '         ! strings must all be same length, so force to length 10', &
@@ -20358,25 +20372,35 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'          > something unmatched           4', &
-'          > everything matched           0', &
-'          > isdigit 123? T', &
-'          > islower abc? T', &
-'          > isalpha aBc? T', &
-'          > isblank aBc dEf? T', &
-'          > isprint? T', &
-'          > isprint? F', &
-'          > true if all uppercase/spaces: F', &
-'          > string=[ THIS IS ALL UPPERCASE ]', &
-'          > true if all uppercase/spaces: T', &
-'          > string=[  Check this out. Let me know  ]', &
-'          >        1234567890123456789012345678901234567890', &
-'          > first non-blank character            3', &
-'          > last non-blank character           29', &
-'          > first non-letter non-blank           17', &
-'          > array of strings T T F T F', &
-'          > isprint? T', &
-'          > isprint? T', &
+'       >  basics:', &
+'       >            2', &
+'       >            3', &
+'       >            0', &
+'       >  find first non-uppercase letter', &
+'       >  something unmatched           4', &
+'       >  if everything is matched return zero', &
+'       >  everything matched           0', &
+'       >  easily categorize strings as uppercase, lowercase, ...', &
+'       >  isdigit 123? T', &
+'       >  islower abc? T', &
+'       >  isalpha aBc? T', &
+'       >  isblank aBc dEf? T', &
+'       >  isprint? T', &
+'       >  isprint? F', &
+'       >  VERIFY(3) is very powerful using expressions as masks', &
+'       >  all uppercase/spaces? F', &
+'       >  string=[ This IS all uppercase ]', &
+'       >  all uppercase/spaces? F', &
+'       >  string=[  Check this out. Let me know  ]', &
+'       >          1234567890123456789012345678901234567890', &
+'       >  returning a position not just a logical is useful', &
+'       >  first non-blank character           3', &
+'       >  last non-blank character          29', &
+'       >  first non-letter non-blank          17', &
+'       >  elemental', &
+'       >  array of strings T T F T F', &
+'       >  isprint? T', &
+'       >  isprint? T', &
 '', &
 '  Sample program II:', &
 '', &

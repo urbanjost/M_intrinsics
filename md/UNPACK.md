@@ -18,8 +18,11 @@ into an array using a mask
 ```
 ### **Characteristics**
 
-The result is an array of the same type and type parameters as **vector**
-and the same shape as **mask**.
+ - **vector* is a rank-one array of any type
+ - **mask** is a logical array
+ - **field** is the same type and type parameters as VECTOR conformable with **mask**.
+ - The result is an array of the same type and type parameters as **vector**
+   and the same shape as **mask**.
 
 ### **Description**
 
@@ -35,28 +38,27 @@ statements, particularly when the replacements are conditional.
 ### **Options**
 
 - **vector**
-  : New values to place into specified locations in **field**. Shall
-  be an array of any type and rank one. It shall have at least as many
-  elements as **mask** has _\.true._ values.
+  : New values to place into specified locations in **field**. 
+  It shall have at least as many elements as **mask** has _\.true._
+  values.
 
 - **mask**
-  : Shall be an array of type _logical_ that specifies which values
+  : Shall be an array that specifies which values
   in **field** are to be replaced with values from **vector**.
 
 - **field**
-  : The original data to be edited. Shall be of the same type and type
-  parameters as **vector** and shall be conformable with **mask**.
+  : The input array to be altered. 
 
 ### **Result**
 
-The element of the result that corresponds to the ith true element
-of MASK, in array element order, has the value VECTOR (i) for i =
-1, 2, . . ., t, where t is the number of true values in MASK. Each
-other element has a value equal to FIELD if FIELD is scalar or to the
-corresponding element of FIELD if it is an array.
+  The element of the result that corresponds to the ith true element
+  of MASK, in array element order, has the value VECTOR (i) for i =
+  1, 2, . . ., t, where t is the number of true values in MASK. Each
+  other element has a value equal to FIELD if FIELD is scalar or to the
+  corresponding element of FIELD if it is an array.
 
-The resulting array corresponds to **field** with _\.true._ elements
-of **mask** replaced by values from **vector** in array element order.
+  The resulting array corresponds to **field** with _\.true._ elements
+  of **mask** replaced by values from **vector** in array element order.
 
 ### **Examples**
 Particular values may be "scattered" to particular positions in an array by using

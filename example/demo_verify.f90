@@ -12,15 +12,20 @@
 
       character(len=:),allocatable :: string
       integer :: i
+          print *, 'basics:'
+          print *, VERIFY ('ABBA', 'A')                ! has the value 2.
+          print *, VERIFY ('ABBA', 'A', BACK = .TRUE.) ! has the value 3.
+          print *, VERIFY ('ABBA', 'AB')               ! has the value 0.
 
-         ! find first non-uppercase letter
+         print *,'find first non-uppercase letter'
          ! will produce the location of "d", because there is no match in UPP
          write(*,*) 'something unmatched',verify("ABCdEFG", upp)
 
-         ! if everything is matched return zero
+         print *,'if everything is matched return zero'
          ! will produce 0 as all letters have a match
          write(*,*) 'everything matched',verify("ffoorrttrraann", "nartrof")
 
+         print *,'easily categorize strings as uppercase, lowercase, ...'
          ! easy C-like functionality but does entire strings not just characters
          write(*,*)'isdigit 123?',verify("123", int) == 0
          write(*,*)'islower abc?',verify("abc", low) == 0
@@ -33,6 +38,7 @@
          string(10:10)=char(11)
          write(*,*)'isprint?',verify(string,prnt) == 0
 
+         print *,'VERIFY(3) is very powerful using expressions as masks'
          ! verify(3f) is often used in a logical expression
          string=" This is NOT all UPPERCASE "
          write(*,*)'all uppercase/spaces?',verify(string, blank//upp) == 0
@@ -47,12 +53,14 @@
          write(*,*) '        '//repeat(int,4) ! number line
 
          ! the Fortran functions returns a position just not a logical like C
+         print *, 'returning a position not just a logical is useful'
          ! which can be very useful for parsing strings
          write(*,*)'first non-blank character',verify(string, blank)
          write(*,*)'last non-blank character',verify(string, blank,back=.true.)
          write(*,*)'first non-letter non-blank',verify(string,low//upp//blank)
 
         !VERIFY(3) is elemental so you can check an array of strings in one call
+        print *, 'elemental'
          ! are strings all letters (or blanks)?
          write(*,*) 'array of strings',verify( &
          ! strings must all be same length, so force to length 10

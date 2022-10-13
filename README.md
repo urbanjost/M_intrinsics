@@ -28,7 +28,7 @@ the intrinsics.
 
 <!--
 Converting from the primary source in txt/ in txt2man(1) format and
-generating the markdown to the Kramdown markdown in md/ being used to
+generating the markdown to the Myst markdown in md/ being used to
 generate the txt/ directory with pandoc made sense as the primary
 target became fortran-lang.org documents instead of man-pages but the
 pandoc(1) conversion to /txt and then manpages leaves the plain text
@@ -97,11 +97,11 @@ should be able to use the man-pages. For example:
         mkdir -p $HOME/man/man3
         cd $HOME/man/man3
         tar xvfz $WHERE_YOU_PUT_TARFILE/manpages.tgz
-	cd man
+	cd ..
         mandb -c .
         export MANPATH=$HOME/man:$MANPATH
 	export MANWIDTH=80 # optional, displays manpages in columns 1 to 80
-        man -s 3fortran -k .
+        man -s 3fortran -k .  # list topic line for all Fortran man-pages
 ```
 
 Typical installation on a Linux platform as an administrator ( but it varies) :
@@ -115,6 +115,7 @@ Typical installation on a Linux platform as an administrator ( but it varies) :
      then anyone on that platform can enter commands like 
 ```bash
      man sinh.3fortran     # specifically show Fortran sinh(3) documentation
+     man sinh.3f           # section abbreviations are often supported for this format
      man -k . -s 3fortran  # list all fortran pages
      man -s 3fortran --regex '.*' |col -b # show all Fortran intrinsics
 ```
@@ -122,7 +123,7 @@ Typical installation on a Linux platform as an administrator ( but it varies) :
     
 ## DOCUMENTATION FORMATS  ![docs](docs/images/docs.gif)
 
-The documents are maintained as Kramdown markdown files to be compatible
+The documents are maintained as Myst markdown files to be compatible
 with the fortran-lang.org site.
 
 Using pandoc(1) they are then converted to flat-text files which are

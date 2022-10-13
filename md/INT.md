@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**int**(3) - \[TYPE:NUMERIC\] truncate towards zero and convert to integer
+**int**(3) - \[TYPE:NUMERIC\] Truncate towards zero and convert to integer
 
 ### **Synopsis**
 ```fortran

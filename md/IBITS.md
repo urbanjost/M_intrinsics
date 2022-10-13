@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**ibits**(3) - \[BIT:COPY\] extraction of a subset of bits
+**ibits**(3) - \[BIT:COPY\] Extraction of a subset of bits
 
 ### **Synopsis**
 ```fortran
