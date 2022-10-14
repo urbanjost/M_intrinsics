@@ -9272,8 +9272,7 @@ Fortran 95
 
 ### **Name**
 
-**hypot**(3) - \[MATHEMATICS\] Returns the distance between the point
-and the origin.
+**hypot**(3) - \[MATHEMATICS\] Returns the Euclidean distance - the distance between a point and the origin.
 
 ### **Synopsis**
 ```fortran
@@ -9287,7 +9286,7 @@ and the origin.
 ```
 ### **Characteristics**
 
- - **x,y** and the result shall all be of the same **kind**.
+ - **x,y** and the result shall all be _real_ and of the same **kind**.
 
 ### **Description**
 

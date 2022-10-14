@@ -8885,8 +8885,8 @@ textblock=[character(len=256) :: &
 'hypot(3fortran)                                                hypot(3fortran)', &
 '', &
 'NAME', &
-'  HYPOT(3) - [MATHEMATICS] Returns the distance between the point and the', &
-'  origin.', &
+'  HYPOT(3) - [MATHEMATICS] Returns the Euclidean distance - the distance', &
+'  between a point and the origin.', &
 '', &
 'SYNOPSIS', &
 '  result = hypot(x, y)', &
@@ -8897,7 +8897,7 @@ textblock=[character(len=256) :: &
 '            real(kind=KIND),intent(in) :: y', &
 '', &
 'CHARACTERISTICS', &
-'  o  X,Y and the result shall all be of the same KIND.', &
+'  o  X,Y and the result shall all be real and of the same KIND.', &
 '', &
 'DESCRIPTION', &
 '  HYPOT(3) is referred to as the Euclidean distance function. It is equal to', &

@@ -6635,7 +6635,7 @@ $$</span><br /></p>
 <div id="hypot" class="slide section level2">
 <h1>hypot</h1>
 <h3 id="name-92"><strong>Name</strong></h3>
-<p><strong>hypot</strong>(3) - [MATHEMATICS] Returns the distance between the point and the origin.</p>
+<p><strong>hypot</strong>(3) - [MATHEMATICS] Returns the Euclidean distance - the distance between a point and the origin.</p>
 <h3 id="synopsis-92"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb402"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb402-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> hypot(x, y)</a></code></pre></div>
 <div class="sourceCode" id="cb403"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb403-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> hypot(x,y)</a>
@@ -6644,7 +6644,7 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb403-4" title="4"><span class="dt">      real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> y</a></code></pre></div>
 <h3 id="characteristics-92"><strong>Characteristics</strong></h3>
 <ul>
-<li><strong>x,y</strong> and the result shall all be of the same <strong>kind</strong>.</li>
+<li><strong>x,y</strong> and the result shall all be real and of the same <strong>kind</strong>.</li>
 </ul>
 <h3 id="description-91"><strong>Description</strong></h3>
 <p><strong>hypot</strong>(3) is referred to as the Euclidean distance function. It is equal to</p>
