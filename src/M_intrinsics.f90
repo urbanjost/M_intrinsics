@@ -7553,6 +7553,10 @@ textblock=[character(len=256) :: &
 '', &
 'exp(3fortran)                                                    exp(3fortran)', &
 '', &
+'              regarded as a value in radians.', &
+'', &
+'         exp', &
+'', &
 'NAME', &
 '  EXP(3) - [MATHEMATICS] Base-e exponential function', &
 '', &
@@ -7564,7 +7568,7 @@ textblock=[character(len=256) :: &
 '            TYPE(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  o  X may be real or complex.', &
+'  o  X may be real or complex of any kind.', &
 '', &
 '  o  The return value has the same type and kind as X.', &
 '', &
@@ -8786,27 +8790,28 @@ textblock=[character(len=256) :: &
 '', &
 '           TYPE(kind=KIND) function huge(x)', &
 '', &
-'            TYPE(kind=KIND),intent(in) :: x', &
+'            TYPE(kind=KIND),intent(in) :: x(..)', &
 '', &
 'CHARACTERISTICS', &
-'  where TYPE may be real or integer and KIND is any supported associated kind.', &
-'  It need not be defined, as only its characteristics are used.', &
+'  o  X may be any real or integer scalar or array and any kind.', &
 '', &
-'  The result will be of the same type and kind as the input to ensure the', &
-'  returned value does not overflow. Any assignment of the result should take', &
-'  this into consideration.', &
+'  o  The result will be a scalar of the same type and kind as the input X', &
 '', &
 'DESCRIPTION', &
 '  HUGE(3) returns the largest number that is not an infinity for the kind and', &
 '  type of X.', &
 '', &
 'OPTIONS', &
-'  o  X : XX is an arbitrary value which is used merely to determine what kind', &
-'     and type of scalar is being queried.', &
+'  o  X : X is an arbitrary value which is used merely to determine what kind', &
+'     and type of scalar is being queried. It need not be defined, as only its', &
+'     characteristics are used.', &
 '', &
 'RESULT', &
-'  The return value is of the same type and kind as x and is the largest value', &
-'  supported by the specified model.', &
+'  The result is the largest value supported by the specified type and kind.', &
+'', &
+'  Note is is as the same kind as the input to ensure the returned value does', &
+'  not overflow. Any assignment of the result to a variable should take this', &
+'  into consideration.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &

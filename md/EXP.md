@@ -1,3 +1,6 @@
+  Result Value. The result has a value equal to a processor-dependent
+  approximation to e . If X is of type complex, its imaginary part is
+  regarded as a value in radians.
 ## exp
 
 ### **Name**
@@ -15,7 +18,7 @@
 ```
 ### **Characteristics**
 
- - **x** may be _real_ or _complex_.
+ - **x** may be _real_ or _complex_ of any kind.
  - The return value has the same type and kind as **x**.
 
 ### **Description**

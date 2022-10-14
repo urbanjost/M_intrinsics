@@ -11,38 +11,37 @@
 ```fortran
      TYPE(kind=KIND) function huge(x)
 
-      TYPE(kind=KIND),intent(in) :: x
+      TYPE(kind=KIND),intent(in) :: x(..)
 ```
 ### **Characteristics**
 
-where **TYPE** may be _real_ or _integer_ and **KIND** is any supported
-associated _kind_. It need not be defined, as only its characteristics
-are used.
-
-The result will be of the same type and kind as the input to ensure the
-returned value does not overflow. Any assignment of the result should
-take this into consideration.
+ - **x** may be any _real_ or _integer_ scalar or array and any kind.
+ - The result will be a scalar of the same type and kind as the input **x**
 
 ### **Description**
 
-**huge**(3) returns the largest number that is not an infinity for the
-kind and type of **x**.
+  **huge**(3) returns the largest number that is not an infinity for the
+  kind and type of **x**.
 
 ### **Options**
 
 - **x**
-  : **xx** is an arbitrary value which is used merely to determine what
+  : **x** is an arbitrary value which is used merely to determine what
   _kind_ and _type_ of scalar is being queried.
+  It need not be defined, as only its characteristics are used.
 
 ### **Result**
 
-The return value is of the same type and kind as _x_ and is the
-largest value supported by the specified model.
+  The result is the largest value supported by the specified type
+  and kind.
+
+  Note is is as the same kind as the input to ensure the returned value
+  does not overflow. Any assignment of the result to a variable should
+  take this into consideration.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_huge
 implicit none
