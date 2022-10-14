@@ -5063,6 +5063,9 @@ textblock=[character(len=256) :: &
 '           character(len=:) function compiler_options()', &
 '', &
 'CHARACTERISTICS', &
+'  o  the return value is a default-kind character variable with system-', &
+'     dependent length.', &
+'', &
 'DESCRIPTION', &
 '  COMPILER_OPTIONS(3) returns a string with the options used for compiling.', &
 '', &
@@ -5070,9 +5073,8 @@ textblock=[character(len=256) :: &
 '  None.', &
 '', &
 'RESULT', &
-'  The return value is a default-kind string with system-dependent length.  It', &
-'  contains the compiler flags used to compile the file, which called the', &
-'  compiler_options intrinsic.', &
+'  The result contains the compiler flags used to compile the file comtaining', &
+'  the COMPILER_OPTIONS(3) call.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -5090,12 +5092,27 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         This file was compiled by GCC version 5.4.0 using the options', &
-'         -I /usr/include/w32api -I /home/urbanjs/V600/lib/CYGWIN64_GFORTRAN', &
-'         -mtune=generic -march=x86-64 -g -Wunused -Wuninitialized -Wall', &
-'         -std=f2008 -fbounds-check -fbacktrace -finit-real=nan', &
-'         -fno-range-check -frecord-marker=4', &
-'         -J /home/urbanjs/V600/lib/CYGWIN64_GFORTRAN', &
+'      This file was compiled by GCC version 10.3.0 using', &
+'      the options -I build/gfortran_2A42023B310FA28D', &
+'      -mtune=generic -march=x86-64 -auxbase-strip', &
+'      build/gfortran_2A42023B310FA28D/compiler_options/app_main.f90.o', &
+'      -g -Wall -Wextra -Wimplicit-interface -fPIC -fmax-errors=1', &
+'      -fcheck=bounds -fcheck=array-temps -fbacktrace', &
+'      -fcoarray=single -J build/gfortran_2A42023B310FA28D', &
+'      -fpre-include=/usr/include/finclude/math-vector-fortran.h', &
+'', &
+'      This file was compiled by nvfortran 21.5-0 LLVM', &
+'      using the options app/main.f90 -c -Minform=inform', &
+'      -Mbackslash -Mbounds -Mchkptr -Mchkstk -traceback -module', &
+'      build/nvfortran_78229DCE997517A4 -Ibuild/nvfortran_78229DCE997517A4 -o', &
+'      build/nvfortran_78229DCE997517A4/compiler_options/app_main.f90.o', &
+'', &
+'      This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler Classic', &
+'      for applications running on Intel(R) 64, Version 2021.3.0 Build', &
+'      20210609_000000 using the options -Ibuild/ifort_5C58216731706F11', &
+'      -c -warn all -check all -error-limit 1 -O0 -g -assume', &
+'      byterecl -traceback -module build/ifort_5C58216731706F11 -o', &
+'      build/ifort_5C58216731706F11/compiler_options/app_main.f90.o', &
 '', &
 'STANDARD', &
 '  Fortran 2008', &
@@ -5103,7 +5120,7 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  COMPILER_VERSION(3), ISO_FORTRAN_ENV(7)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 13, 2022     compiler_options(3fortran)', &
 '']
@@ -5127,6 +5144,9 @@ textblock=[character(len=256) :: &
 '           character(len=:) function compiler_version()', &
 '', &
 'CHARACTERISTICS', &
+'  o  The return value is a default-kind scalar character with system-dependent', &
+'     length.', &
+'', &
 'DESCRIPTION', &
 '  COMPILER_VERSION(3) returns a string containing the name and version of the', &
 '  compiler.', &
@@ -5135,31 +5155,29 @@ textblock=[character(len=256) :: &
 '  None.', &
 '', &
 'RESULT', &
-'  The return value is a default-kind string with system-dependent length.  It', &
-'  contains the name of the compiler and its version number.', &
+'  The return value contains the name of the compiler and its version number', &
+'  used to compile the file containing the COMPILER_VERSION(3) call.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
 '      program demo_compiler_version', &
 '      use, intrinsic :: iso_fortran_env, only : compiler_version', &
-'      use, intrinsic :: iso_fortran_env, only : compiler_options', &
 '      implicit none', &
-'         print ''(4a)'', &', &
+'         print ''(2a)'', &', &
 '            ''This file was compiled by '', &', &
-'            compiler_version(),           &', &
-'            '' using the options '',        &', &
-'            compiler_options()', &
+'            compiler_version()', &
 '      end program demo_compiler_version', &
 '', &
 '  Results:', &
 '', &
-'         This file was compiled by GCC version 5.4.0 using the options', &
-'         -I /usr/include/w32api -I /home/urbanjs/V600/lib/CYGWIN64_GFORTRAN', &
-'         -mtune=generic -march=x86-64 -g -Wunused -Wuninitialized -Wall', &
-'         -std=f2008 -fbounds-check -fbacktrace -finit-real=nan', &
-'         -fno-range-check -frecord-marker=4', &
-'         -J /home/urbanjs/V600/lib/CYGWIN64_GFORTRAN', &
+'      This file was compiled by GCC version 10.3.0', &
+'', &
+'      This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler', &
+'      Classic for applications running on Intel(R) 64, Version 2021.3.0 Build', &
+'      20210609_000000', &
+'', &
+'      This file was compiled by nvfortran 21.5-0 LLVM', &
 '', &
 'STANDARD', &
 '  Fortran 2008', &
@@ -5167,7 +5185,7 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  COMPILER_OPTIONS(3), ISO_FORTRAN_ENV(7)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 13, 2022     compiler_version(3fortran)', &
 '']
@@ -9951,31 +9969,53 @@ textblock=[character(len=256) :: &
 '', &
 '       elemental integer(kind=KIND) function index(string,substring,back,kind)', &
 '', &
-'        character(len=*),intent(in) :: string', &
-'        character(len=*),intent(in) :: substring', &
-'        logical,intent(in),optional :: back', &
-'        integer,intent(in),optional :: kind', &
+'        character(len=*,kind=KIND),intent(in) :: string', &
+'        character(len=*,kind=KIND),intent(in) :: substring', &
+'        logical(kind=**),intent(in),optional :: back', &
+'        integer(kind=**),intent(in),optional :: kind', &
 '', &
 'CHARACTERISTICS', &
+'  o  STRING is a character variable of any kind', &
+'', &
+'  o  SUBSTRING is a character variable of the same kind as STRING', &
+'', &
+'  o  BACK is a logical variable of any supported kind', &
+'', &
+'  o  KIND is a scalar integer constant expression.', &
+'', &
 'DESCRIPTION', &
 '  INDEX(3) returns the position of the start of the leftmost or rightmost', &
 '  occurrence of string SUBSTRING in STRING, counting from one. If SUBSTRING is', &
 '  not present in STRING, zero is returned.', &
 '', &
 'OPTIONS', &
-'  o  STRING : string to be searched', &
+'  o  STRING : string to be searched for a match', &
 '', &
 '  o  SUBSTRING : string to attempt to locate in STRING', &
 '', &
 '  o  BACK : If the BACK argument is present and true, the return value is the', &
 '     start of the rightmost occurrence rather than the leftmost.', &
 '', &
-'  o  KIND : An integer initialization expression indicating the kind parameter', &
-'     of the result.', &
+'  o  KIND : if KIND is present, the kind type parameter is that specied by the', &
+'     value of KIND; otherwise the kind type parameter is that of default', &
+'     integer type.', &
 '', &
 'RESULT', &
-'  o  START : The return value is of type integer and of kind KIND. If KIND is', &
-'     absent, the return value is of default integer kind.', &
+'  The result is the starting position of the first substring **substring**', &
+'  found in **string**.', &
+'', &
+'  If the length of **substring** is longer than **string** the result is zero.', &
+'', &
+'  If the substring is not found the result is zero.', &
+'', &
+'  If **back** is _.true._ the greatest starting position is returned (that is,', &
+'  the position of the right-most match). Otherwise, the smallest position', &
+'  starting a match (ie. the left-most match) is returned.', &
+'', &
+'  The position returned is measured from the left with the first character of', &
+'  **string** being position one.', &
+'', &
+'  Otherwise, if no match is found zero is returned.', &
 '', &
 'EXAMPLES', &
 '  Example program', &
@@ -10891,6 +10931,7 @@ textblock=[character(len=256) :: &
 '          end subroutine msub', &
 '       end module m_bounds', &
 '', &
+'       program demo_lbound', &
 '       use m_bounds, only : msub', &
 '       implicit none', &
 '       interface', &
@@ -14668,6 +14709,7 @@ textblock=[character(len=256) :: &
 '', &
 '      end module showit', &
 '', &
+'      program demo_null', &
 '      use showit, only : gen', &
 '', &
 '      real,target :: x = 200.0', &
@@ -14694,8 +14736,7 @@ textblock=[character(len=256) :: &
 '      call gen (3, real_ptr ) ! invokes s2', &
 '      call gen (4, integer_ptr ) ! invokes s1', &
 '', &
-'      end', &
-'      !end program demo_null', &
+'      end program demo_null', &
 '', &
 '  Results:', &
 '', &
@@ -19977,7 +20018,8 @@ textblock=[character(len=256) :: &
 '      end subroutine msub', &
 '', &
 '      end module m2_bounds', &
-'', &
+'      !', &
+'      program demo_ubound', &
 '      use m2_bounds, only : msub', &
 '      implicit none', &
 '      interface', &

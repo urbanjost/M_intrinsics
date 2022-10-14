@@ -11,6 +11,7 @@
           end subroutine msub
        end module m_bounds
 
+       program demo_lbound
        use m_bounds, only : msub
        implicit none
        interface

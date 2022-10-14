@@ -83,7 +83,8 @@ integer,intent(in) :: arr(:)
 end subroutine msub
 
 end module m2_bounds
-
+!
+program demo_ubound
 use m2_bounds, only : msub
 implicit none
 interface

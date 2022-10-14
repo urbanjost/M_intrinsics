@@ -60,7 +60,6 @@ arrays or in any function without an explicit interface. Errors can
 occur if there is no interface defined.
 
 Sample program
-
 ```fortran
 ! program demo_lbound
 module m_bounds
@@ -75,6 +74,7 @@ implicit none
     end subroutine msub
  end module m_bounds
 
+ program demo_lbound
  use m_bounds, only : msub
  implicit none
  interface
@@ -109,16 +109,13 @@ end
 
 !end program demo_lbound
 ```
-
 Results:
-
 ```
    MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
    CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
    MSUB: LOWER=           1 UPPER=          21 SIZE=          21
    ESUB: LOWER=           1 UPPER=          21 SIZE=          21
 ```
-
 ### **Standard**
 
 Fortran 95 , with KIND argument - Fortran 2003

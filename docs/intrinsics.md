@@ -5212,19 +5212,22 @@ Fortran 2003
 ```
 ### **Characteristics**
 
+ - the return value is a default-kind _character_ variable with
+   system-dependent length.
+
 ### **Description**
 
-**compiler_options**(3) returns a string with the options used for compiling.
+  **compiler_options**(3) returns a string with the options used for
+  compiling.
 
 ### **Options**
 
-None.
+  None.
 
 ### **Result**
 
-The return value is a default-kind string with system-dependent length.
-It contains the compiler flags used to compile the file, which called
-the compiler_options intrinsic.
+  The result contains the compiler flags used to compile the file
+  comtaining the **compiler_options**(3) call.
 
 ### **Examples**
 
@@ -5242,18 +5245,30 @@ implicit none
       compiler_options()
 end program demo_compiler_version
 ```
-
 Results:
+```text
+This file was compiled by GCC version 10.3.0 using
+the options -I build/gfortran_2A42023B310FA28D
+-mtune=generic -march=x86-64 -auxbase-strip
+build/gfortran_2A42023B310FA28D/compiler_options/app_main.f90.o
+-g -Wall -Wextra -Wimplicit-interface -fPIC -fmax-errors=1
+-fcheck=bounds -fcheck=array-temps -fbacktrace
+-fcoarray=single -J build/gfortran_2A42023B310FA28D
+-fpre-include=/usr/include/finclude/math-vector-fortran.h
 
-```
-   This file was compiled by GCC version 5.4.0 using the options
-   -I /usr/include/w32api -I /home/urbanjs/V600/lib/CYGWIN64_GFORTRAN
-   -mtune=generic -march=x86-64 -g -Wunused -Wuninitialized -Wall
-   -std=f2008 -fbounds-check -fbacktrace -finit-real=nan
-   -fno-range-check -frecord-marker=4
-   -J /home/urbanjs/V600/lib/CYGWIN64_GFORTRAN
-```
+This file was compiled by nvfortran 21.5-0 LLVM
+using the options app/main.f90 -c -Minform=inform
+-Mbackslash -Mbounds -Mchkptr -Mchkstk -traceback -module
+build/nvfortran_78229DCE997517A4 -Ibuild/nvfortran_78229DCE997517A4 -o
+build/nvfortran_78229DCE997517A4/compiler_options/app_main.f90.o
 
+This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler Classic
+for applications running on Intel(R) 64, Version 2021.3.0 Build
+20210609_000000 using the options -Ibuild/ifort_5C58216731706F11
+-c -warn all -check all -error-limit 1 -O0 -g -assume
+byterecl -traceback -module build/ifort_5C58216731706F11 -o
+build/ifort_5C58216731706F11/compiler_options/app_main.f90.o
+```
 ### **Standard**
 
 Fortran 2008
@@ -5263,7 +5278,7 @@ Fortran 2008
 [**compiler_version**(3)](#compiler_version),
 **iso_fortran_env**(7)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## compiler_version
 
@@ -5280,48 +5295,46 @@ Fortran 2008
 ```
 ### **Characteristics**
 
+- The return value is a default-kind scalar _character_  with
+  system-dependent length.
+
 ### **Description**
 
-**compiler_version**(3) returns a string containing the name and
-version of the compiler.
+  **compiler_version**(3) returns a string containing the name and
+  version of the compiler.
 
 ### **Options**
 
-None.
+  None.
 
 ### **Result**
 
-The return value is a default-kind string with system-dependent length.
-It contains the name of the compiler and its version number.
+  The return value contains the name of the compiler and its version
+  number used to compile the file containing the **compiler_version**(3)
+  call.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_compiler_version
 use, intrinsic :: iso_fortran_env, only : compiler_version
-use, intrinsic :: iso_fortran_env, only : compiler_options
 implicit none
-   print '(4a)', &
+   print '(2a)', &
       'This file was compiled by ', &
-      compiler_version(),           &
-      ' using the options ',        &
-      compiler_options()
+      compiler_version()
 end program demo_compiler_version
 ```
-
 Results:
+```text
+This file was compiled by GCC version 10.3.0
 
-```
-   This file was compiled by GCC version 5.4.0 using the options
-   -I /usr/include/w32api -I /home/urbanjs/V600/lib/CYGWIN64_GFORTRAN
-   -mtune=generic -march=x86-64 -g -Wunused -Wuninitialized -Wall
-   -std=f2008 -fbounds-check -fbacktrace -finit-real=nan
-   -fno-range-check -frecord-marker=4
-   -J /home/urbanjs/V600/lib/CYGWIN64_GFORTRAN
-```
+This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler
+Classic for applications running on Intel(R) 64, Version 2021.3.0 Build
+20210609_000000
 
+This file was compiled by nvfortran 21.5-0 LLVM
+```
 ### **Standard**
 
 Fortran 2008
@@ -5331,7 +5344,7 @@ Fortran 2008
 [**compiler_options**(3)](#compiler_options),
 **iso_fortran_env**(7)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## conjg
 
@@ -10421,12 +10434,17 @@ result = index( string, substring [,back] [,kind] )
 ```fortran
  elemental integer(kind=KIND) function index(string,substring,back,kind)
 
-  character(len=*),intent(in) :: string
-  character(len=*),intent(in) :: substring
-  logical,intent(in),optional :: back
-  integer,intent(in),optional :: kind
+  character(len=*,kind=KIND),intent(in) :: string
+  character(len=*,kind=KIND),intent(in) :: substring
+  logical(kind=**),intent(in),optional :: back
+  integer(kind=**),intent(in),optional :: kind
 ```
 ### **Characteristics**
+
+- **string** is a _character_ variable of any kind
+- **substring** is a _character_ variable of the same kind as **string**
+- **back** is a _logical_ variable of any supported kind
+- **KIND** is a scalar integer constant expression.
 
 ### **Description**
 
@@ -10438,7 +10456,7 @@ result = index( string, substring [,back] [,kind] )
 ### **Options**
 
 - **string**
-  : string to be searched
+  : string to be searched for a match
 
 - **substring**
   : string to attempt to locate in **string**
@@ -10448,19 +10466,32 @@ result = index( string, substring [,back] [,kind] )
   start of the rightmost occurrence rather than the leftmost.
 
 - **kind**
-  : An _integer_ initialization expression indicating the kind parameter
-  of the result.
+  : if **kind** is present, the kind type parameter is that speciﬁed by the value of
+    **kind**; otherwise the kind type parameter is that of default integer type.
 
 ### **Result**
 
-- **START**
-  : The return value is of type _integer_ and of kind **kind**. If **kind** is
-  absent, the return value is of default integer kind.
+    The result is the starting position of the first substring
+    **substring** found in **string**.
+
+    If the length of **substring** is longer than **string** the result
+    is zero.
+
+    If the substring is not found the result is zero.
+
+    If **back** is _.true._ the greatest starting position is returned
+    (that is, the position of the right-most match). Otherwise,
+    the smallest position starting a match (ie. the left-most match)
+    is returned.
+
+    The position returned is measured from the left with the first
+    character of **string** being position one.
+
+    Otherwise, if no match is found zero is returned.
 
 ### **Examples**
 
 Example program
-
 ```fortran
 program demo_index
 implicit none
@@ -10475,13 +10506,11 @@ character(len=*),parameter :: str=&
       index(str,'This').eq.0
 end program demo_index
 ```
-
 Expected Results:
 
 ```text
    T T T
 ```
-
 ### **Standard**
 
 FORTRAN 77 , with KIND argument Fortran 2003
@@ -11412,7 +11441,6 @@ arrays or in any function without an explicit interface. Errors can
 occur if there is no interface defined.
 
 Sample program
-
 ```fortran
 ! program demo_lbound
 module m_bounds
@@ -11427,6 +11455,7 @@ implicit none
     end subroutine msub
  end module m_bounds
 
+ program demo_lbound
  use m_bounds, only : msub
  implicit none
  interface
@@ -11461,16 +11490,13 @@ end
 
 !end program demo_lbound
 ```
-
 Results:
-
 ```
    MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
    CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
    MSUB: LOWER=           1 UPPER=          21 SIZE=          21
    ESUB: LOWER=           1 UPPER=          21 SIZE=          21
 ```
-
 ### **Standard**
 
 Fortran 95 , with KIND argument - Fortran 2003
@@ -15427,6 +15453,7 @@ end subroutine s2
 
 end module showit
 
+program demo_null
 use showit, only : gen
 
 real,target :: x = 200.0
@@ -15453,8 +15480,7 @@ integer_ptr => i
 call gen (3, real_ptr ) ! invokes s2
 call gen (4, integer_ptr ) ! invokes s1
 
-end
-!end program demo_null
+end program demo_null
 ```
 Results:
 ```text
@@ -21096,7 +21122,8 @@ integer,intent(in) :: arr(:)
 end subroutine msub
 
 end module m2_bounds
-
+!
+program demo_ubound
 use m2_bounds, only : msub
 implicit none
 interface
