@@ -32,18 +32,18 @@
          integer                      :: i
          character(len=:),allocatable :: biggest
 
-              write(*,*)trim(title)
-              ! make buffer to write integer into
-              biggest='           '
-              ! find how many characters to use for integers
-              write(biggest,'(i0)')ceiling(log10(real(maxval(abs(arr)))))+2
-              ! use this format to write a row
-              biggest='("  [",*(i'//trim(biggest)//':,","))'
-              ! print one row of array at a time
-              do i=1,size(arr,dim=1)
-                 write(*,fmt=biggest,advance='no')arr(i,:)
-                 write(*,'(" ]")')
-              enddo
+            write(*,*)trim(title)
+            ! make buffer to write integer into
+            biggest='           '
+            ! find how many characters to use for integers
+            write(biggest,'(i0)')ceiling(log10(real(maxval(abs(arr)))))+2
+            ! use this format to write a row
+            biggest='("  [",*(i'//trim(biggest)//':,","))'
+            ! print one row of array at a time
+            do i=1,size(arr,dim=1)
+               write(*,fmt=biggest,advance='no')arr(i,:)
+               write(*,'(" ]")')
+            enddo
          end subroutine print_matrix_int
 
       end program demo_unpack

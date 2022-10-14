@@ -99,7 +99,7 @@ or
 
 - **ordered**
   : shall be a logical scalar. If **ordered** is present with the value
-  _\.true._, the calls to the **operator** function begins with the first
+  _.true._, the calls to the **operator** function begins with the first
   two elements of **array** and the process continues in row-column
   order until the sequence has only one element which is the value of the
   reduction. Otherwise, the compiler is free to assume that the operation
@@ -116,7 +116,7 @@ one relative to the input array.
 
 ### **Examples**
 
-   The following examples all use the function MY_MULT, which returns
+   The following examples all use the function MY\_MULT, which returns
    the product of its two real arguments.
 ```fortran
    program demo_reduce
@@ -180,8 +180,7 @@ Results:
      > [720, should be [720],
      > [2, 12, 30, should be [2,12,30],
      > [15, 48, should be [15, 48],
-````
-
+```
 ### **Standard**
 
    Fortran 2018

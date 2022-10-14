@@ -36,7 +36,7 @@
 ### **Result**
 
 The number of bits used to represent a value of the type and kind
-of __i__. The result is a _integer_ scalar of the same kind as __i__.
+of _i_. The result is a _integer_ scalar of the same kind as _i_.
 
 ### **Examples**
 

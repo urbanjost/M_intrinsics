@@ -69,7 +69,7 @@
 
 ### **Result**
 
-  Returns _\.true._ if **i** is bit-wise greater than **j** and _\.false._
+  Returns _.true._ if **i** is bit-wise greater than **j** and _.false._
   otherwise.
 
 ### **Examples**

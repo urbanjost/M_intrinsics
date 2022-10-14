@@ -25,7 +25,7 @@
 
   For real **x** 
 ```fortran
-   result = 2.0(minexponent(x)-1) 
+   result = 2.0**(minexponent(x)-1) 
 ```
 ### **Options**
 

@@ -16,9 +16,9 @@
 ```
 ### **Characteristics**
 
-- **a** is type __real__ of any kind
+- **a** is type _real_ of any kind
 - **KIND** is a scalar integer constant expression.
-- the result is type __real__. The kind of the result is the same as **x**
+- the result is type _real_. The kind of the result is the same as **x**
   unless specified by **kind**.
 
 ### **Description**

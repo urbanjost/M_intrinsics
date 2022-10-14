@@ -6,17 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result = maxloc(array [,mask])
-```
-```fortran
-     NUMERIC function maxloc(array, mask)
-
-      NUMERIC,intent(in) :: array(..)
-      logical(kind=**),intent(in),optional :: mask(..)
-```
-or
-```fortran
-    result = maxloc(array [,dim] [,mask])
+    result = maxloc(array [,mask]) | maxloc(array [,dim] [,mask])
 ```
 ```fortran
      NUMERIC function maxloc(array, dim, mask)
@@ -38,7 +28,7 @@ the locations of the maximum element along each row of the array in the
 **dim** direction.
 
 If **mask** is present, only the elements for which **mask**
-is _\.true._ are considered. If more than one element in the array has
+is _.true._ are considered. If more than one element in the array has
 the maximum value, the location returned is that of the first such element
 in array element order.
 
@@ -107,16 +97,16 @@ end program demo_maxloc
 Results:
 
 ```text
-      3       5
-      3       3       3       3       3
-      5       5       5
-   -3 47
-   -2 48
-   -1 49
-   0 50
-   1 49
-   2 48
-   3 47
+ >     3       5
+ >     3       3       3       3       3
+ >     5       5       5
+ >  -3 47
+ >  -2 48
+ >  -1 49
+ >  0 50
+ >  1 49
+ >  2 48
+ >  3 47
 ```
 
 ### **Standard**

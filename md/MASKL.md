@@ -35,7 +35,7 @@
   must be from 0 to the number of bits for the kind of the result.
   The default kind of the result is the same as **i** unless the result
   size is specified by **kind**. That is, these Fortran statements must
-  be _\.true._ :
+  be _.true._ :
 ```fortran
    i >= 0 .and. i < bitsize(i) ! if KIND is not specified
    i >= 0 .and. i < bitsize(0_KIND) ! if KIND is specified
@@ -75,7 +75,7 @@ Results:
  >        -256 11111111111111111111111100000000
  >         -16 11111111111111111111111111110000
  >          -1 11111111111111111111111111111111
-   
+
 ```
 ### **Standard**
 

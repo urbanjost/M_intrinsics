@@ -18,7 +18,7 @@
 ### **Description**
 
   **selected_char_kind**(3) returns the kind value for the character
-  set named NAME, if a character set with such a name is supported, or
+  set named **name**, if a character set with such a name is supported, or
   **-1** otherwise.
 
 ### **Options**
@@ -36,18 +36,18 @@
 
 If a name is not supported, -1 is returned. Otherwise
 
- + If NAME has the value "DEFAULT", then the result has a value equal to
+ + If **name** has the value "DEFAULT", then the result has a value equal to
    that of the kind type parameter of default character. This name is
    always supported.
 
- + If NAME has the value "ASCII", then the result has a value equal
+ + If **name** has the value "ASCII", then the result has a value equal
    to that of the kind type parameter of ASCII character.
 
- + If NAME has the value "ISO_10646", then the result has a value equal
+ + If **name** has the value "ISO_10646", then the result has a value equal
    to that of the kind type parameter of the ISO 10646 character kind
    (corresponding to UCS-4 as specified in ISO/IEC 10646).
 
- + If NAME is a processor-defined name of some other character kind
+ + If **name** is a processor-defined name of some other character kind
    supported by the processor, then the result has a value equal to that
    kind type parameter value.
 

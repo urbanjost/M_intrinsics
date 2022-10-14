@@ -1,7 +1,7 @@
       program demo_ibset
       use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64
       implicit none
-      integer(kind=int16) :: i,j
+      integer(kind=int16) :: i
         ! basic usage
          print *,ibset (12, 1), 'ibset(12,1) has the value 14'
 

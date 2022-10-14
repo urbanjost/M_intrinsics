@@ -128,7 +128,7 @@ value%RE     ! %RE specifies the real part
 or
 value%IM     ! %IM specifies the imaginary part
 
-````
+```
 Where the designator value is of course of complex type.
 
 The type of a complex-part-designator is _real_, and its kind and shape
@@ -142,7 +142,7 @@ The following are examples of complex part designators:
        fft%im                 !-- Same value as AIMAG(fft)
        x%im = 0.0             !-- Sets the imaginary part of x to zero
        x(1:2)%re=[10,20]      !-- even if x is an array
-````
+```
 
 #### NOTE for I/O
   Note that if format statements are specified a complex value is
@@ -168,7 +168,7 @@ The following are examples of complex part designators:
    possible change of kind.
 
 - **y**
-  : **y* is only allowed if **x** is not _complex_. Its value
+  : **y** is only allowed if **x** is not _complex_. Its value
   is assigned to the imaginary component of the result and defaults
   to a value of zero if absent.
 

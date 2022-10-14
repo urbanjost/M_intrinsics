@@ -20,7 +20,7 @@ where **KIND** is any _integer_ kind supported by the programming environment.
 
 ### **Description**
 
-**btest**(3) returns logical _\.true._ if the bit at **pos** in **i** is set.
+**btest**(3) returns logical _.true._ if the bit at **pos** in **i** is set.
 
 ### **Options**
 
@@ -35,9 +35,9 @@ where **KIND** is any _integer_ kind supported by the programming environment.
 
 ### **Result**
 
-The result is a _logical_ that has the value _\.true._ if bit
+The result is a _logical_ that has the value _.true._ if bit
 position **pos** of **i** has the value **1** and the value
-_\.false._ if bit **pos** of **i** has the value **0**.
+_.false._ if bit **pos** of **i** has the value **0**.
 
 ### **Examples**
 
@@ -87,30 +87,30 @@ end program demo_btest
 Results:
 ```text
   > Looking at the integer: 33856=>11111111111111110111101111000000
-  > 
+  >
   > 00000000000000001000010001000000
   > 11111111111111110111101111000000
   > 1000010001000000
   > 11111111111111110111101111000000
   > from bit 0 to bit 32==>
   > FFFFFFTFFFTFFFFTFFFFFFFFFFFFFFFF
-  > 
+  >
   > so for 33856 with a bit size of 32
   > 00000000000000001000010001000000
   > ________________^____^___^______
-  > 
+  >
   > and for -33856 with a bit size of 32
   > 11111111111111110111101111000000
   > ^^^^^^^^^^^^^^^^_^^^^_^^^^______
-  > 
+  >
   > given the array a ...
   >  1  3
   >  2  4
-  > 
+  >
   > the value of btest (a, 2)
   >  F  F
   >  F  T
-  > 
+  >
   > the value of btest (2, a)
   >  T  F
   >  F  F

@@ -18,7 +18,7 @@ into an array using a mask
 ```
 ### **Characteristics**
 
- - **vector* is a rank-one array of any type
+ - **vector** is a rank-one array of any type
  - **mask** is a logical array
  - **field** is the same type and type parameters as VECTOR conformable with **mask**.
  - The result is an array of the same type and type parameters as **vector**
@@ -27,7 +27,7 @@ into an array using a mask
 ### **Description**
 
 **unpack**(3) scatters the elements of **vector** into a copy of an
-array **field** of any rank using _\.true._ values from **mask** in array
+array **field** of any rank using _.true._ values from **mask** in array
 element order to specify placement of the **vector** values.
 
 So a copy of **field** is generated with select elements replaced with
@@ -39,7 +39,7 @@ statements, particularly when the replacements are conditional.
 
 - **vector**
   : New values to place into specified locations in **field**. 
-  It shall have at least as many elements as **mask** has _\.true._
+  It shall have at least as many elements as **mask** has _.true._
   values.
 
 - **mask**
@@ -52,12 +52,12 @@ statements, particularly when the replacements are conditional.
 ### **Result**
 
   The element of the result that corresponds to the ith true element
-  of MASK, in array element order, has the value VECTOR (i) for i =
-  1, 2, . . ., t, where t is the number of true values in MASK. Each
-  other element has a value equal to FIELD if FIELD is scalar or to the
-  corresponding element of FIELD if it is an array.
+  of **mask**, in array element order, has the value **vector(i)** for i =
+  1, 2, . . ., t, where t is the number of true values in **mask**. Each
+  other element has a value equal to **field* if **field* is scalar or to the
+  corresponding element of **field* if it is an array.
 
-  The resulting array corresponds to **field** with _\.true._ elements
+  The resulting array corresponds to **field** with _.true._ elements
   of **mask** replaced by values from **vector** in array element order.
 
 ### **Examples**
@@ -123,18 +123,18 @@ contains
    integer                      :: i
    character(len=:),allocatable :: biggest
 
-        write(*,*)trim(title)
-        ! make buffer to write integer into
-        biggest='           '
-        ! find how many characters to use for integers
-        write(biggest,'(i0)')ceiling(log10(real(maxval(abs(arr)))))+2
-        ! use this format to write a row
-        biggest='("  [",*(i'//trim(biggest)//':,","))'
-        ! print one row of array at a time
-        do i=1,size(arr,dim=1)
-           write(*,fmt=biggest,advance='no')arr(i,:)
-           write(*,'(" ]")')
-        enddo
+      write(*,*)trim(title)
+      ! make buffer to write integer into
+      biggest='           '
+      ! find how many characters to use for integers
+      write(biggest,'(i0)')ceiling(log10(real(maxval(abs(arr)))))+2
+      ! use this format to write a row
+      biggest='("  [",*(i'//trim(biggest)//':,","))'
+      ! print one row of array at a time
+      do i=1,size(arr,dim=1)
+         write(*,fmt=biggest,advance='no')arr(i,:)
+         write(*,'(" ]")')
+      enddo
    end subroutine print_matrix_int
 
 end program demo_unpack

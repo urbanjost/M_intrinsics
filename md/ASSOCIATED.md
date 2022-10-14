@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**associated**(3) - \[STATE:INQUIRY\] Status of a pointer or pointer/target pair
+**associated**(3) - \[STATE:INQUIRY\] Association status of a pointer or pointer/target pair
 
 ### **Synopsis**
 ```fortran
@@ -12,24 +12,17 @@
      logical function associated(pointer,target)
 
       type(TYPE(kind=KIND),pointer :: pointer
-      type(TYPE(kind=KIND),target,optional :: target
-```
-or
-```fortran
-     logical function associated(pointer,target)
-
-      type(TYPE(kind=KIND),pointer :: pointer
       type(TYPE(kind=KIND),pointer,optional :: target
 ```
 ### **Characteristics**
 
-  **pointer** shall have the _pointer_ attribute and it can be any type.
-
-  **target** shall be a pointer or a target. It must have the
-  same type, kind type parameter, and array rank as **pointer**.
-
-  The association status of neither **pointer** nor **target** shall
-  be undefined.
+ - **pointer** shall have the _pointer_ attribute and it can be any type
+   or may be a procedure pointer
+ - **target** shall be a pointer or a target. It must have the
+   same type, kind type parameter, and array rank as **pointer**.
+ - The association status of neither **pointer** nor **target** shall
+   be undefined.
+ - the result is a default _logical_ value
 
 ### **Description**
 
@@ -39,7 +32,8 @@ or
 ### **Options**
 
 - **pointer**
-  : A pointer to test for association
+  : A pointer to test for association.
+    Its pointer association status shall not be undefined.
 
 - **target**
   : A target that is to be tested for occupying the same storage
@@ -48,39 +42,47 @@ or
 
 ### **Result**
 
-****associated**(3f) returns a scalar value of type _logical_.
+**associated**(3f) returns a scalar value of type _logical_.
 There are several cases:
 
 1.  When the optional **target** is not present then **associated(pointer)**
-    is _\.true._ if **pointer** is associated with a target; otherwise, it
-    returns _\.false._.
+    is _.true._ if **pointer** is associated with a target; otherwise, it
+    returns _.false._.
 
-2.  If **target** is present and a scalar target, the result is _\.true._ if
+2.  If **target** is present and a scalar target, the result is _.true._ if
     **target** is not a zero-sized storage sequence and the target
     associated with **pointer** occupies the same storage units. If **pointer**
-    is disassociated, the result is _\.false._.
+    is disassociated, the result is _.false._.
 
-3.  If **target** is present and an array target, the result is _\.true._ if
+3.  If **target** is present and an array target, the result is _.true._ if
     **target** and **pointer** have the same shape, are not zero-sized arrays,
     are arrays whose elements are not zero-sized storage sequences, and
     **target** and **pointer** occupy the same storage units in array element
     order.
 
-    As in case 2, the result is _\.false._, if **pointer** is disassociated.
+    As in case 2, the result is _.false._, if **pointer** is disassociated.
 
-4.  If **target** is present and an scalar pointer, the result is _\.true._ if
+4.  If **target** is present and an scalar pointer, the result is _.true._ if
     **target** is associated with **pointer**, the target associated with **target**
     are not zero-sized storage sequences and occupy the same storage
     units.
 
-    The result is _\.false._, if either **target** or **pointer** is disassociated.
+    The result is _.false._, if either **target** or **pointer** is disassociated.
 
-5.  If **target** is present and an array pointer, the result is _\.true._ if
+5.  If **target** is present and an array pointer, the result is _.true._ if
     target associated with **pointer** and the target associated with **target**
     have the same shape, are not zero-sized arrays, are arrays whose
     elements are not zero-sized storage sequences, and **target** and
-    **pointer** occupy the same storage units in array element order. The
-    result is _\.false._, if either **target** or **pointer** is disassociated.
+    **pointer** occupy the same storage units in array element order.
+
+6.  If **target** is present and is a procedure, the result is true if and
+    only if **pointer** is associated with **target** and, if **target** is an
+    internal procedure, they have the same host instance.
+
+7.  If **target** is present and is a procedure pointer, the result is true
+    if and only if **pointer** and **target** are associated with the same
+    procedure and, if the procedure is an internal procedure, they have
+    the same host instance.
 
 ### **Examples**
 

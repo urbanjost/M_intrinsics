@@ -39,7 +39,7 @@ or
 
   **iany**(3) reduces with bitwise a **OR** (inclusive **OR**) the
   elements of **array** along dimension **dim** if the corresponding
-  element in **mask** is _\.true._.
+  element in **mask** is _.true._.
 
 ### **Options**
 

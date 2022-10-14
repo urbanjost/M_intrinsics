@@ -31,8 +31,8 @@
 
 ### **Result**
 
-  If the argument is allocated then the result is _\.true._; otherwise,
-  it returns _\.false._.
+  If the argument is allocated then the result is _.true._; otherwise,
+  it returns _.false._.
 
 ### **Examples**
 

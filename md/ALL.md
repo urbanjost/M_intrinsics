@@ -101,11 +101,11 @@ end program demo_all
 ```
 Results:
 ```text
-    T
-    F
-    entire array : F
-    compare columns: T F T
-    compare rows: T F
+ >  T
+ >  F
+ >  entire array : F
+ >  compare columns: T F T
+ >  compare rows: T F
 ```
 ### **Standard**
 

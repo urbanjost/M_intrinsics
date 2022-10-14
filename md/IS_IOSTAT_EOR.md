@@ -29,9 +29,9 @@ variable with the **iostat_eor** parameter of the intrinsic module
 
 ### **Result**
 
-Returns a _logical_ of the default kind, which is _\.true._ if **i**
+Returns a _logical_ of the default kind, which is _.true._ if **i**
 has the value which indicates an end of file condition for iostat=
-specifiers, and is _\.false._ otherwise.
+specifiers, and is _.false._ otherwise.
 
 ### **Examples**
 

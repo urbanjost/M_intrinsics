@@ -6,19 +6,12 @@
 
 ### **Synopsis**
 ```fortran
-    result = num_images()
-```
-```fortran
-     integer function num_images ()
-```
-or
-```fortran
-    result = num_images(team)
+    result = num_images([team])
 ```
 ```fortran
      integer function num_images (team)
 
-      type(TEAM_TYPE),intent(in) :: team
+      type(TEAM_TYPE),intent(in),optional :: team
 ```
 or
 ```fortran

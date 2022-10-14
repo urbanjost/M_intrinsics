@@ -22,13 +22,13 @@ to an object extensible type.
 **mold** an object of any extensible type; it may also be a pointer
 to an object extensible type.
 
-**description**
+### **Description**
 
   **extends_type_of**(3) is .true. if and only if the dynamic type of
   **a** is or could be (for unlimited polymorphic) an extension of the
   dynamic type of **mold**.
 
-**options**
+### **options**
 - **a**
     : be an object of extensible declared type or unlimited
     polymorphic. If it is a polymorphic pointer, it shall not have an

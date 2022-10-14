@@ -11,44 +11,46 @@
 ```fortran
      elemental integer function maxexponent(x)
 
-      real(kind=KIND),intent(in)   :: x
+      real(kind=**),intent(in)   :: x
 ```
 ### **Characteristics**
 
-where KIND is any _real_ kind.
+ - **x**  is a _real_ scalar or array of any _real_ kind
+ - the result is a default _integer_ scalar
 
 ### **Description**
 
-**maxexponent**(3) returns the maximum exponent in the model of the type
-of **x**.
+  **maxexponent**(3) returns the maximum exponent in the model of the
+  type of **x**.
 
 ### **Options**
 
 - **x**
-  : Shall be of type _real_.
+  : A value used to select the kind of _real_ to return a value for.
 
 ### **Result**
 
-The return value is of type _integer_ and of the default integer kind.
+  The value returned is the maximum exponent for the kind of the value
+  queried
 
 ### **Examples**
 
 Sample program:
 ```fortran
 program demo_maxexponent
-use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
+use, intrinsic :: iso_fortran_env, only : real32,real64,real128
 implicit none
-real(kind=sp) :: x
-real(kind=dp) :: y
-
-   print *, minexponent(x), maxexponent(x)
-   print *, minexponent(y), maxexponent(y)
+character(len=*),parameter :: g='(*(g0,1x))'
+   print  g,  minexponent(0.0_real32),   maxexponent(0.0_real32)
+   print  g,  minexponent(0.0_real64),   maxexponent(0.0_real64)
+   print  g,  minexponent(0.0_real128),  maxexponent(0.0_real128)
 end program demo_maxexponent
 ```
 Results:
 ```text
-           -125         128
-          -1021        1024
+   -125 128
+   -1021 1024
+   -16381 16384
 ```
 ### **Standard**
 
@@ -72,4 +74,4 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

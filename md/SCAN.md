@@ -18,21 +18,21 @@
 ```
 ### **Characteristics**
 
-**string** and **set**  must have the same kind type parameter.
-
-the kind of the returned value is the same as **kind** if
-present. Otherwise a default _integer_ kind is returned.
+ - **string** is a _character_ string of any kind
+ - **set** must be a _character_ string with the same kind as **string**
+ - **back** is a _logical_ scalar
+ - **kind** is a constant _integer_
 
 ### **Description**
 
-**scan**(3) scans a **string** for any of the characters in a **set**
-of characters.
+  **scan**(3) scans a **string** for any of the characters in a **set**
+  of characters.
 
-If **back** is either absent or equals _\.false._, this function
-returns the position of the leftmost character of **STRING** that is
-in **set**. If **back** equals _\.true._, the rightmost position is
-returned. If no character of **set** is found in **string**, the result
-is zero.
+  If **back** is either absent or equals _.false._, this function
+  returns the position of the leftmost character of **STRING** that is
+  in **set**. If **back** equals _.true._, the rightmost position is
+  returned. If no character of **set** is found in **string**, the result
+  is zero.
 
 ### **Options**
 
@@ -48,6 +48,8 @@ is zero.
 - **kind**
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
+  the kind of the returned value is the same as **kind** if
+  present. Otherwise a default _integer_ kind is returned.
 
 ### **Result**
 
@@ -57,7 +59,6 @@ the return value is of default integer kind.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_scan
 implicit none
@@ -66,15 +67,12 @@ implicit none
    write(*,*) scan("fortran", "c++")         ! 0, found none
 end program demo_scan
 ```
-
 Results:
-
 ```text
               2
               6
               0
 ```
-
 ### **Standard**
 
 Fortran 95 , with KIND argument - Fortran 2003

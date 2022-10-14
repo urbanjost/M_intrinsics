@@ -11,15 +11,17 @@
 ```fortran
      elemental logical function blt(i, j)
 
-      integer(kind=KIND),intent(in) :: i
-      integer(kind=KIND),intent(in) :: j
+      integer(kind=**),intent(in) :: i
+      integer(kind=**),intent(in) :: j
 ```
 ### **Characteristics**
 
-  where the _kind_ of **i** and **j** may be of any supported _integer_
+  - the _kind_ of **i** and **j** may be of any supported _integer_
   kind, not necessarily the same. An exception is that values may be a
   BOZ constant with a value valid for the _integer_ kind available with
   the most bits on the current platform.
+
+  - the result is of default logical kind
 
 ### **Description**
 
@@ -53,7 +55,8 @@ integer(kind=int8) :: byte
       byte=i
       write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,blt(byte,64_int8),byte
    enddo
-
+  ! BOZ literals
+   write(*,*)blt(z'1000', z'101011010')
    ! see the BGE() description for an extended description
    ! of related information
 
@@ -69,6 +72,7 @@ Results:
    > +0032  T 00100000
    > +0064  F 01000000
    > +0096  F 01100000
+   > T
 ```
 ### **Standard**
 

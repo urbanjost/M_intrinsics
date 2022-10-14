@@ -132,7 +132,7 @@ character(len=*),parameter :: fmt= '(g0,t30,a,t40,b32.32)'
  end function int_swap32
 
  end program demo_mvbits
-````
+```
 Results:
 ```text
 
@@ -144,8 +144,7 @@ Results:
    1684234849                   abcd      01100100011000110110001001100001
     non-native
    1633837924                   dcba      01100001011000100110001101100100
-````
-
+```
 ### **Standard**
 
 Fortran 95

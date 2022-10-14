@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**any**(3) - \[ARRAY:REDUCTION\] Determines if any of the values in the logical array are _\.true._
+**any**(3) - \[ARRAY:REDUCTION\] Determines if any of the values in the logical array are _.true._
 
 ### **Synopsis**
 ```fortran
@@ -25,13 +25,13 @@
 ### **Description**
 
   **any**(3) determines if any of the values in the logical
-  array **mask** along dimension **dim** are _\.true._.
+  array **mask** along dimension **dim** are _.true._.
 
 ### **Options**
 
 - **mask**
   : an array of _logical_ expressions or values to be tested in groups
-  or in total for a _\.true._ value.
+  or in total for a _.true._ value.
 
 - **dim**
   : a whole number value that lies between one and **rank(mask)** that
@@ -46,8 +46,8 @@ is present, then **any(mask, dim)** returns an array with the rank of
 **mask** minus 1. The shape is determined from the shape of **mask**
 where the **dim** dimension is elided.
 
-1.  **any(mask)** is _\.true._ if any element of **mask** is _\.true._;
-    otherwise, it is _\.false._. It also is _\.false._ if **mask** has
+1.  **any(mask)** is _.true._ if any element of **mask** is _.true._;
+    otherwise, it is _.false._. It also is _.false._ if **mask** has
     zero size.
 
 2.  If the rank of **mask** is one, then **any(mask, dim)** is
@@ -128,24 +128,24 @@ end program demo_any
 ```
 Results:
 ```text
-    T
-    F
-
-   first print b > a : shape=23,rank=2,size=6(a matrix)
-    > [ F,T,T ]
-    > [ F,T,T ]
-
-   any true values?  any(b > a) : shape=,rank=0,size=1(a scalar)
-    > [ T ]
-
-   again by columns? any(b > a,1) : shape=3,rank=1,size=3(a vector)
-    > [ F ]
-    > [ T ]
-    > [ T ]
-
-   again by rows?    any(b > a,2) : shape=2,rank=1,size=2(a vector)
-    > [ T ]
-    > [ T ]
+ >  T
+ >  F
+ >
+ > first print b > a : shape=23,rank=2,size=6(a matrix)
+ >  > [ F,T,T ]
+ >  > [ F,T,T ]
+ >
+ > any true values?  any(b > a) : shape=,rank=0,size=1(a scalar)
+ >  > [ T ]
+ >
+ > again by columns? any(b > a,1) : shape=3,rank=1,size=3(a vector)
+ >  > [ F ]
+ >  > [ T ]
+ >  > [ T ]
+ >
+ > again by rows?    any(b > a,2) : shape=2,rank=1,size=2(a vector)
+ >  > [ T ]
+ >  > [ T ]
 ```
 ### **Standard**
 

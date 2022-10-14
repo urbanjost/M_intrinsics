@@ -985,11 +985,11 @@ end program demo_all
 ```
 Results:
 ```text
-    T
-    F
-    entire array : F
-    compare columns: T F T
-    compare rows: T F
+ >  T
+ >  F
+ >  entire array : F
+ >  compare columns: T F T
+ >  compare rows: T F
 ```
 ### **Standard**
 
@@ -1034,8 +1034,8 @@ Fortran 95
 
 ### **Result**
 
-  If the argument is allocated then the result is _\.true._; otherwise,
-  it returns _\.false._.
+  If the argument is allocated then the result is _.true._; otherwise,
+  it returns _.false._.
 
 ### **Examples**
 
@@ -1115,9 +1115,9 @@ Results:
 ```
 ### **Characteristics**
 
-- **a** is type __real__ of any kind
+- **a** is type _real_ of any kind
 - **KIND** is a scalar integer constant expression.
-- the result is type __real__. The kind of the result is the same as **x**
+- the result is type _real_. The kind of the result is the same as **x**
   unless specified by **kind**.
 
 ### **Description**
@@ -1214,7 +1214,7 @@ FORTRAN 77
 
 ### **Name**
 
-**any**(3) - \[ARRAY:REDUCTION\] Determines if any of the values in the logical array are _\.true._
+**any**(3) - \[ARRAY:REDUCTION\] Determines if any of the values in the logical array are _.true._
 
 ### **Synopsis**
 ```fortran
@@ -1237,13 +1237,13 @@ FORTRAN 77
 ### **Description**
 
   **any**(3) determines if any of the values in the logical
-  array **mask** along dimension **dim** are _\.true._.
+  array **mask** along dimension **dim** are _.true._.
 
 ### **Options**
 
 - **mask**
   : an array of _logical_ expressions or values to be tested in groups
-  or in total for a _\.true._ value.
+  or in total for a _.true._ value.
 
 - **dim**
   : a whole number value that lies between one and **rank(mask)** that
@@ -1258,8 +1258,8 @@ is present, then **any(mask, dim)** returns an array with the rank of
 **mask** minus 1. The shape is determined from the shape of **mask**
 where the **dim** dimension is elided.
 
-1.  **any(mask)** is _\.true._ if any element of **mask** is _\.true._;
-    otherwise, it is _\.false._. It also is _\.false._ if **mask** has
+1.  **any(mask)** is _.true._ if any element of **mask** is _.true._;
+    otherwise, it is _.false._. It also is _.false._ if **mask** has
     zero size.
 
 2.  If the rank of **mask** is one, then **any(mask, dim)** is
@@ -1340,24 +1340,24 @@ end program demo_any
 ```
 Results:
 ```text
-    T
-    F
-
-   first print b > a : shape=23,rank=2,size=6(a matrix)
-    > [ F,T,T ]
-    > [ F,T,T ]
-
-   any true values?  any(b > a) : shape=,rank=0,size=1(a scalar)
-    > [ T ]
-
-   again by columns? any(b > a,1) : shape=3,rank=1,size=3(a vector)
-    > [ F ]
-    > [ T ]
-    > [ T ]
-
-   again by rows?    any(b > a,2) : shape=2,rank=1,size=2(a vector)
-    > [ T ]
-    > [ T ]
+ >  T
+ >  F
+ >
+ > first print b > a : shape=23,rank=2,size=6(a matrix)
+ >  > [ F,T,T ]
+ >  > [ F,T,T ]
+ >
+ > any true values?  any(b > a) : shape=,rank=0,size=1(a scalar)
+ >  > [ T ]
+ >
+ > again by columns? any(b > a,1) : shape=3,rank=1,size=3(a vector)
+ >  > [ F ]
+ >  > [ T ]
+ >  > [ T ]
+ >
+ > again by rows?    any(b > a,2) : shape=2,rank=1,size=2(a vector)
+ >  > [ T ]
+ >  > [ T ]
 ```
 ### **Standard**
 
@@ -1556,7 +1556,7 @@ Inverse function: [**sin**(3)](#sin)
 
 ### **Name**
 
-**associated**(3) - \[STATE:INQUIRY\] Status of a pointer or pointer/target pair
+**associated**(3) - \[STATE:INQUIRY\] Association status of a pointer or pointer/target pair
 
 ### **Synopsis**
 ```fortran
@@ -1566,24 +1566,17 @@ Inverse function: [**sin**(3)](#sin)
      logical function associated(pointer,target)
 
       type(TYPE(kind=KIND),pointer :: pointer
-      type(TYPE(kind=KIND),target,optional :: target
-```
-or
-```fortran
-     logical function associated(pointer,target)
-
-      type(TYPE(kind=KIND),pointer :: pointer
       type(TYPE(kind=KIND),pointer,optional :: target
 ```
 ### **Characteristics**
 
-  **pointer** shall have the _pointer_ attribute and it can be any type.
-
-  **target** shall be a pointer or a target. It must have the
-  same type, kind type parameter, and array rank as **pointer**.
-
-  The association status of neither **pointer** nor **target** shall
-  be undefined.
+ - **pointer** shall have the _pointer_ attribute and it can be any type
+   or may be a procedure pointer
+ - **target** shall be a pointer or a target. It must have the
+   same type, kind type parameter, and array rank as **pointer**.
+ - The association status of neither **pointer** nor **target** shall
+   be undefined.
+ - the result is a default _logical_ value
 
 ### **Description**
 
@@ -1593,7 +1586,8 @@ or
 ### **Options**
 
 - **pointer**
-  : A pointer to test for association
+  : A pointer to test for association.
+    Its pointer association status shall not be undefined.
 
 - **target**
   : A target that is to be tested for occupying the same storage
@@ -1602,39 +1596,47 @@ or
 
 ### **Result**
 
-****associated**(3f) returns a scalar value of type _logical_.
+**associated**(3f) returns a scalar value of type _logical_.
 There are several cases:
 
 1.  When the optional **target** is not present then **associated(pointer)**
-    is _\.true._ if **pointer** is associated with a target; otherwise, it
-    returns _\.false._.
+    is _.true._ if **pointer** is associated with a target; otherwise, it
+    returns _.false._.
 
-2.  If **target** is present and a scalar target, the result is _\.true._ if
+2.  If **target** is present and a scalar target, the result is _.true._ if
     **target** is not a zero-sized storage sequence and the target
     associated with **pointer** occupies the same storage units. If **pointer**
-    is disassociated, the result is _\.false._.
+    is disassociated, the result is _.false._.
 
-3.  If **target** is present and an array target, the result is _\.true._ if
+3.  If **target** is present and an array target, the result is _.true._ if
     **target** and **pointer** have the same shape, are not zero-sized arrays,
     are arrays whose elements are not zero-sized storage sequences, and
     **target** and **pointer** occupy the same storage units in array element
     order.
 
-    As in case 2, the result is _\.false._, if **pointer** is disassociated.
+    As in case 2, the result is _.false._, if **pointer** is disassociated.
 
-4.  If **target** is present and an scalar pointer, the result is _\.true._ if
+4.  If **target** is present and an scalar pointer, the result is _.true._ if
     **target** is associated with **pointer**, the target associated with **target**
     are not zero-sized storage sequences and occupy the same storage
     units.
 
-    The result is _\.false._, if either **target** or **pointer** is disassociated.
+    The result is _.false._, if either **target** or **pointer** is disassociated.
 
-5.  If **target** is present and an array pointer, the result is _\.true._ if
+5.  If **target** is present and an array pointer, the result is _.true._ if
     target associated with **pointer** and the target associated with **target**
     have the same shape, are not zero-sized arrays, are arrays whose
     elements are not zero-sized storage sequences, and **target** and
-    **pointer** occupy the same storage units in array element order. The
-    result is _\.false._, if either **target** or **pointer** is disassociated.
+    **pointer** occupy the same storage units in array element order.
+
+6.  If **target** is present and is a procedure, the result is true if and
+    only if **pointer** is associated with **target** and, if **target** is an
+    internal procedure, they have the same host instance.
+
+7.  If **target** is present and is a procedure pointer, the result is true
+    if and only if **pointer** and **target** are associated with the same
+    procedure and, if the procedure is an internal procedure, they have
+    the same host instance.
 
 ### **Examples**
 
@@ -1680,9 +1682,8 @@ function
 ```
 ### **Characteristics**
 
-**x** and **y** must be reals of the same kind.
-
-The return value has the same type and kind as **y** and **x**.
+ - **x** and **y** must be reals of the same kind.
+ - The return value has the same type and kind as **y** and **x**.
 
 ### **Description**
 
@@ -2730,20 +2731,18 @@ image has failed, the value **stat_failed_image**.
 
 Sample program:
 
-````fortran
+```fortran
 program demo_atomic_ref
 use iso_fortran_env
 implicit none
 logical(atomic_logical_kind) :: atom[*]
 logical :: val
    call atomic_ref( val, atom[1] )
-   ! ```
-   call atomic_ref( val, atom[1] )
    if (val) then
       print *, "Obtained"
    endif
 end program demo_atomic_ref
-````
+```
 
 ### **Standard**
 
@@ -3375,7 +3374,7 @@ Fortran 2008
 
 ### **Result**
 
-  Returns _\.true._ if **i** is bit-wise greater than **j** and _\.false._
+  Returns _.true._ if **i** is bit-wise greater than **j** and _.false._
   otherwise.
 
 ### **Examples**
@@ -3601,7 +3600,7 @@ Fortran 2008
 ### **Result**
 
 The number of bits used to represent a value of the type and kind
-of __i__. The result is a _integer_ scalar of the same kind as __i__.
+of _i_. The result is a _integer_ scalar of the same kind as _i_.
 
 ### **Examples**
 
@@ -3686,8 +3685,8 @@ Fortran 95
 
 ### **Result**
 
-The return value is _\.true._ if any bit in **j** is less than any bit in
-**i** starting with the rightmost bit and continuing tests leftward.
+The return value is _.true._ if any bit in **j** is less than any bit
+in **i** starting with the rightmost bit and continuing tests leftward.
 
 ### **Examples**
 
@@ -3756,15 +3755,17 @@ Fortran 2008
 ```fortran
      elemental logical function blt(i, j)
 
-      integer(kind=KIND),intent(in) :: i
-      integer(kind=KIND),intent(in) :: j
+      integer(kind=**),intent(in) :: i
+      integer(kind=**),intent(in) :: j
 ```
 ### **Characteristics**
 
-  where the _kind_ of **i** and **j** may be of any supported _integer_
+  - the _kind_ of **i** and **j** may be of any supported _integer_
   kind, not necessarily the same. An exception is that values may be a
   BOZ constant with a value valid for the _integer_ kind available with
   the most bits on the current platform.
+
+  - the result is of default logical kind
 
 ### **Description**
 
@@ -3798,7 +3799,8 @@ integer(kind=int8) :: byte
       byte=i
       write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,blt(byte,64_int8),byte
    enddo
-
+  ! BOZ literals
+   write(*,*)blt(z'1000', z'101011010')
    ! see the BGE() description for an extended description
    ! of related information
 
@@ -3814,6 +3816,7 @@ Results:
    > +0032  T 00100000
    > +0064  F 01000000
    > +0096  F 01100000
+   > T
 ```
 ### **Standard**
 
@@ -3849,7 +3852,7 @@ where **KIND** is any _integer_ kind supported by the programming environment.
 
 ### **Description**
 
-**btest**(3) returns logical _\.true._ if the bit at **pos** in **i** is set.
+**btest**(3) returns logical _.true._ if the bit at **pos** in **i** is set.
 
 ### **Options**
 
@@ -3864,9 +3867,9 @@ where **KIND** is any _integer_ kind supported by the programming environment.
 
 ### **Result**
 
-The result is a _logical_ that has the value _\.true._ if bit
+The result is a _logical_ that has the value _.true._ if bit
 position **pos** of **i** has the value **1** and the value
-_\.false._ if bit **pos** of **i** has the value **0**.
+_.false._ if bit **pos** of **i** has the value **0**.
 
 ### **Examples**
 
@@ -4689,7 +4692,7 @@ value%RE     ! %RE specifies the real part
 or
 value%IM     ! %IM specifies the imaginary part
 
-````
+```
 Where the designator value is of course of complex type.
 
 The type of a complex-part-designator is _real_, and its kind and shape
@@ -4703,7 +4706,7 @@ The following are examples of complex part designators:
        fft%im                 !-- Same value as AIMAG(fft)
        x%im = 0.0             !-- Sets the imaginary part of x to zero
        x(1:2)%re=[10,20]      !-- even if x is an array
-````
+```
 
 #### NOTE for I/O
   Note that if format statements are specified a complex value is
@@ -4729,7 +4732,7 @@ The following are examples of complex part designators:
    possible change of kind.
 
 - **y**
-  : **y* is only allowed if **x** is not _complex_. Its value
+  : **y** is only allowed if **x** is not _complex_. Its value
   is assigned to the imaginary component of the result and defaults
   to a value of zero if absent.
 
@@ -5908,7 +5911,7 @@ Fortran 2008
 
 ### **Description**
 
-  **count**(3) counts the number of _\.true._ elements in a logical
+  **count**(3) counts the number of _.true._ elements in a logical
   **mask**, or, if the **dim** argument is supplied, counts the number
   of elements along each row of the array in the **dim** direction. If
   the array has zero size or all of the elements of **mask** are false,
@@ -5917,11 +5920,11 @@ Fortran 2008
 ### **Options**
 
 - **mask**
-  : an array to count the number of _\.true._ values in
+  : an array to count the number of _.true._ values in
 
 - **dim**
   : specifies to remove this dimension from the result and produce an
-    array of counts of _\.true._ values along the removed dimension.
+    array of counts of _.true._ values along the removed dimension.
 
 - **kind**
   : An _integer_ initialization expression indicating the kind
@@ -5935,7 +5938,7 @@ is not present.
 If **dim** is present, the result is an array with a rank one less
 than the rank of the input array **mask**, and a size corresponding
 to the shape of **array** with the **dim** dimension removed, with the
-remaining elements containing the number of _\.true._ elements along the
+remaining elements containing the number of _.true._ elements along the
 removed dimension.
 
 ### **Examples**
@@ -6353,7 +6356,7 @@ Results:
     T
 ```
 
-The example will print _\.true._ unless you are using a platform where
+The example will print _.true._ unless you are using a platform where
 default _real_ variables are unusually padded.
 
 ### **Standard**
@@ -6656,11 +6659,11 @@ Fortran 95
 
 ### **Description**
 
-  **dim((3) returns the maximum of **x - y** and zero.
+  **dim**(3) returns the maximum of **x - y** and zero.
   That is, it returns the difference **x - y** if the result is positive;
   otherwise it returns zero. It is equivalent to
 ```fortran
-  **max(0,x-y)**
+  max(0,x-y)
 ```
 ### **Options**
 
@@ -6768,7 +6771,7 @@ If the vectors are _logical_, the result is
 
 If the arguments are numeric, the return value is a scalar of numeric
 type, _integer_, _real_, or _complex_. If the arguments are _logical_, the
-return value is _\.true._ or _\.false._.
+return value is _.true._ or _.false._.
 
 ### **Examples**
 
@@ -7540,7 +7543,7 @@ Results:
 
 Fortran 2008
 
-### ***See also**
+### **See also**
 
 [**erf**(3)](#erf)
 [**erf_scaled**(3)](#erf_scaled)
@@ -7785,7 +7788,7 @@ TS 18508
   For **execute_command_line**(3) the **command** argument is passed
   to the shell and executed. (The shell is generally **sh**(1) on Unix
   systems, and cmd.exe on Windows.) If **wait** is present and has the
-  value _\.false._, the execution of the command is asynchronous if the
+  value _.false._, the execution of the command is asynchronous if the
   system supports it; otherwise, the command is executed synchronously.
 
   The three last arguments allow the user to get status information. After
@@ -8086,13 +8089,13 @@ to an object extensible type.
 **mold** an object of any extensible type; it may also be a pointer
 to an object extensible type.
 
-**description**
+### **Description**
 
   **extends_type_of**(3) is .true. if and only if the dynamic type of
   **a** is or could be (for unlimited polymorphic) an extension of the
   dynamic type of **mold**.
 
-**options**
+### **options**
 - **a**
     : be an object of extensible declared type or unlimited
     polymorphic. If it is a polymorphic pointer, it shall not have an
@@ -8288,13 +8291,13 @@ to **value**.
 If both **array** and **value** are of type logical, the comparison is
 performed with the **.eqv.** operator; otherwise, the comparison is
 performed with the == operator. If the value of the comparison is
-_\.true._, that element of **array** matches **value**.
+_.true._, that element of **array** matches **value**.
 
 If only one element matches **value**, that element's subscripts are
 returned. Otherwise, if more than one element matches **value** and
-**back** is absent or present with the value _\.false._, the element whose
+**back** is absent or present with the value _.false._, the element whose
 subscripts are returned is the first such element, taken in array
-element order. If **back** is present with the value _\.true._, the element
+element order. If **back** is present with the value _.true._, the element
 whose subscripts are returned is the last such element, taken in array
 element order.
 
@@ -9095,7 +9098,7 @@ images whether the values are the same or different.
   variables; in all other cases **status** is zero.
 
 - **trim_name**
-  : If **trim_name** is present with the value _\.false._, the trailing
+  : If **trim_name** is present with the value _.false._, the trailing
   blanks in **name** are significant; otherwise they are not part of
   the environment variable name.
 
@@ -9556,7 +9559,7 @@ Results:
 ### **Description**
 
 **iall**(3) reduces with a bitwise _and_ the elements of **array** along
-dimension **dim** if the corresponding element in **mask** is _\.true._.
+dimension **dim** if the corresponding element in **mask** is _.true._.
 
 ### **Options**
 
@@ -9750,7 +9753,7 @@ or
 
   **iany**(3) reduces with bitwise a **OR** (inclusive **OR**) the
   elements of **array** along dimension **dim** if the corresponding
-  element in **mask** is _\.true._.
+  element in **mask** is _.true._.
 
 ### **Options**
 
@@ -9883,7 +9886,7 @@ Sample program:
 program demo_ibclr
 use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64
 implicit none
-integer(kind=int16) :: i,j
+integer(kind=int16) :: i
   ! basic usage
    print *,ibclr (16, 1), ' ==> ibclr(16,1) has the value 15'
 
@@ -10099,7 +10102,7 @@ Sample program:
 program demo_ibset
 use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64
 implicit none
-integer(kind=int16) :: i,j
+integer(kind=int16) :: i
   ! basic usage
    print *,ibset (12, 1), 'ibset(12,1) has the value 14'
 
@@ -10471,23 +10474,23 @@ result = index( string, substring [,back] [,kind] )
 
 ### **Result**
 
-    The result is the starting position of the first substring
-    **substring** found in **string**.
+  The result is the starting position of the first substring
+  **substring** found in **string**.
 
-    If the length of **substring** is longer than **string** the result
-    is zero.
+  If the length of **substring** is longer than **string** the result
+  is zero.
 
-    If the substring is not found the result is zero.
+  If the substring is not found the result is zero.
 
-    If **back** is _.true._ the greatest starting position is returned
-    (that is, the position of the right-most match). Otherwise,
-    the smallest position starting a match (ie. the left-most match)
-    is returned.
+  If **back** is _.true._ the greatest starting position is returned
+  (that is, the position of the right-most match). Otherwise,
+  the smallest position starting a match (ie. the left-most match)
+  is returned.
 
-    The position returned is measured from the left with the first
-    character of **string** being position one.
+  The position returned is measured from the left with the first
+  character of **string** being position one.
 
-    Otherwise, if no match is found zero is returned.
+  Otherwise, if no match is found zero is returned.
 
 ### **Examples**
 
@@ -10789,7 +10792,7 @@ or
 
 **iparity**(3) reduces with bitwise _xor_ (exclusive _or_) the elements
 of **array** along dimension **dim** if the corresponding element in
-**mask** is _\.true._.
+**mask** is _.true._.
 
 ### **Options**
 
@@ -10866,7 +10869,7 @@ Fortran 2008
 
 ### **Description**
 
-**is_contiguous**(3) returns _\.true._ if and only if an object is
+**is_contiguous**(3) returns _.true._ if and only if an object is
 contiguous.
 
 An object is contiguous if it is
@@ -10937,7 +10940,7 @@ It is processor-dependent whether any other object is contiguous.
 
 ### **Result**
 
-  The result has the value _\.true._ if **a** is contiguous, and _\.false._
+  The result has the value _.true._ if **a** is contiguous, and _.false._
   otherwise.
 
 ### **Examples**
@@ -11203,9 +11206,9 @@ The function is equivalent to comparing the variable with the
 
 ### **Result**
 
-Returns a _logical_ of the default kind, _\.true._ if **i** has the value
+Returns a _logical_ of the default kind, _.true._ if **i** has the value
 which indicates an end of file condition for **iostat=** specifiers, and is
-_\.false._ otherwise.
+_.false._ otherwise.
 
 ### **Examples**
 
@@ -11272,9 +11275,9 @@ variable with the **iostat_eor** parameter of the intrinsic module
 
 ### **Result**
 
-Returns a _logical_ of the default kind, which is _\.true._ if **i**
+Returns a _logical_ of the default kind, which is _.true._ if **i**
 has the value which indicates an end of file condition for iostat=
-specifiers, and is _\.false._ otherwise.
+specifiers, and is _.false._ otherwise.
 
 ### **Examples**
 
@@ -11917,10 +11920,10 @@ of arguments, and search for certain arguments:
 
 ### **Result**
 
-Returns _\.true._ if string_a == string_b, and _\.false._ otherwise,
+Returns _.true._ if string_a == string_b, and _.false._ otherwise,
 based on the ASCII ordering.
 
-If both input arguments are null strings, _\.true._ is always returned.
+If both input arguments are null strings, _.true._ is always returned.
 
 ### **Examples**
 
@@ -12025,10 +12028,10 @@ of arguments, and search for certain arguments:
 
 ### **Result**
 
-  Returns _\.true._ if string_a \> string_b, and _\.false._ otherwise,
+  Returns _.true._ if string_a \> string_b, and _.false._ otherwise,
   based on the ASCII ordering.
 
-  If both input arguments are null strings, _\.false._ is always returned.
+  If both input arguments are null strings, _.false._ is always returned.
 
 ### **Examples**
 
@@ -12138,10 +12141,10 @@ FORTRAN 77
 ### **Result**
 
 - **result**
-  Returns _\.true._ if **STR_A \<= STR_B**, and _\.false._ otherwise, based on
+  Returns _.true._ if **STR_A \<= STR_B**, and _.false._ otherwise, based on
   the ASCII ordering.
 
-  If both input arguments are null strings, _\.true._ is always returned.
+  If both input arguments are null strings, _.true._ is always returned.
 
 ### **Examples**
 
@@ -12247,10 +12250,10 @@ of arguments, and search for certain arguments:
 
 ### **Result**
 
-  Returns _\.true._ if string_a \<= string_b, and _\.false._ otherwise,
+  Returns _.true._ if string_a \<= string_b, and _.false._ otherwise,
   based on the ASCII ordering.
 
-  If both input arguments are null strings, _\.false._ is always returned.
+  If both input arguments are null strings, _.false._ is always returned.
 
 ### **Examples**
 
@@ -12621,7 +12624,7 @@ FORTRAN 77
   must be from 0 to the number of bits for the kind of the result.
   The default kind of the result is the same as **i** unless the result
   size is specified by **kind**. That is, these Fortran statements must
-  be _\.true._ :
+  be _.true._ :
 ```fortran
    i >= 0 .and. i < bitsize(i) ! if KIND is not specified
    i >= 0 .and. i < bitsize(0_KIND) ! if KIND is specified
@@ -12710,7 +12713,7 @@ Fortran 2008
   must be from 0 to the number of bits for the kind of the result.
   The default kind of the result is the same as **i** unless the result
   size is specified by **kind**. That is, these Fortran statements must
-  be _\.true._ :
+  be _.true._ :
 ```fortran
    i >= 0 .and. i < bitsize(i) ! if KIND is not specified
    i >= 0 .and. i < bitsize(0_KIND) ! if KIND is specified
@@ -13035,44 +13038,46 @@ Fortran 95
 ```fortran
      elemental integer function maxexponent(x)
 
-      real(kind=KIND),intent(in)   :: x
+      real(kind=**),intent(in)   :: x
 ```
 ### **Characteristics**
 
-where KIND is any _real_ kind.
+ - **x**  is a _real_ scalar or array of any _real_ kind
+ - the result is a default _integer_ scalar
 
 ### **Description**
 
-**maxexponent**(3) returns the maximum exponent in the model of the type
-of **x**.
+  **maxexponent**(3) returns the maximum exponent in the model of the
+  type of **x**.
 
 ### **Options**
 
 - **x**
-  : Shall be of type _real_.
+  : A value used to select the kind of _real_ to return a value for.
 
 ### **Result**
 
-The return value is of type _integer_ and of the default integer kind.
+  The value returned is the maximum exponent for the kind of the value
+  queried
 
 ### **Examples**
 
 Sample program:
 ```fortran
 program demo_maxexponent
-use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
+use, intrinsic :: iso_fortran_env, only : real32,real64,real128
 implicit none
-real(kind=sp) :: x
-real(kind=dp) :: y
-
-   print *, minexponent(x), maxexponent(x)
-   print *, minexponent(y), maxexponent(y)
+character(len=*),parameter :: g='(*(g0,1x))'
+   print  g,  minexponent(0.0_real32),   maxexponent(0.0_real32)
+   print  g,  minexponent(0.0_real64),   maxexponent(0.0_real64)
+   print  g,  minexponent(0.0_real128),  maxexponent(0.0_real128)
 end program demo_maxexponent
 ```
 Results:
 ```text
-           -125         128
-          -1021        1024
+   -125 128
+   -1021 1024
+   -16381 16384
 ```
 ### **Standard**
 
@@ -13096,7 +13101,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## maxloc
 
@@ -13106,17 +13111,7 @@ Fortran 95
 
 ### **Synopsis**
 ```fortran
-    result = maxloc(array [,mask])
-```
-```fortran
-     NUMERIC function maxloc(array, mask)
-
-      NUMERIC,intent(in) :: array(..)
-      logical(kind=**),intent(in),optional :: mask(..)
-```
-or
-```fortran
-    result = maxloc(array [,dim] [,mask])
+    result = maxloc(array [,mask]) | maxloc(array [,dim] [,mask])
 ```
 ```fortran
      NUMERIC function maxloc(array, dim, mask)
@@ -13138,7 +13133,7 @@ the locations of the maximum element along each row of the array in the
 **dim** direction.
 
 If **mask** is present, only the elements for which **mask**
-is _\.true._ are considered. If more than one element in the array has
+is _.true._ are considered. If more than one element in the array has
 the maximum value, the location returned is that of the first such element
 in array element order.
 
@@ -13207,16 +13202,16 @@ end program demo_maxloc
 Results:
 
 ```text
-      3       5
-      3       3       3       3       3
-      5       5       5
-   -3 47
-   -2 48
-   -1 49
-   0 50
-   1 49
-   2 48
-   3 47
+ >     3       5
+ >     3       3       3       3       3
+ >     5       5       5
+ >  -3 47
+ >  -2 48
+ >  -1 49
+ >  0 50
+ >  1 49
+ >  2 48
+ >  3 47
 ```
 
 ### **Standard**
@@ -13398,17 +13393,7 @@ FORTRAN 77
 
 ### **Synopsis**
 ```fortran
-    result = maxval(array [,mask])
-```
-```fortran
-     NUMERIC function maxval(array ,mask)
-
-      NUMERIC,intent(in) :: array(..)
-      logical(kind=**),intent(in),optional :: mask(..)
-```
-or
-```fortran
-    result = maxval(array [,dim] [,mask])
+    result = maxval(array [,mask]) | maxval(array [,dim] [,mask])
 ```
 ```fortran
      NUMERIC function maxval(array ,dim, mask)
@@ -13420,7 +13405,6 @@ or
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
-
  - **NUMERIC** designates any numeric type and kind.
 
 ### **Description**
@@ -13428,9 +13412,9 @@ or
 **maxval**(3) determines the maximum value of the elements in an
 array value, or, if the **dim** argument is supplied, determines the
 maximum value along each row of the array in the **dim** direction. If
-**mask** is present, only the elements for which **mask** is _\.true._
+**mask** is present, only the elements for which **mask** is _.true._
 are considered. If the array has zero size, or all of the elements of
-**mask** are _\.false._, then the result is the most negative number of
+**mask** are _.false._, then the result is the most negative number of
 the type and kind of **array** if **array** is numeric, or a string of
 nulls if **array** is of character type.
 
@@ -13478,10 +13462,10 @@ end program demo_maxval
 ```
 Results:
 ```
-   55
-   11     22     33     44     55
-    5     50     55
-   22
+ >  55
+ >  11     22     33     44     55
+ >   5     50     55
+ >  22
 ```
 ### **Standard**
 
@@ -13650,8 +13634,8 @@ Fortran 2008
 
 The elemental function **merge**(3) selects values from two arrays or
 scalars according to a logical mask. The result is equal to an element
-of **tsource** where the corresponding element of **mask** is _\.true._, or an
-element of **fsource** when it is _\.false._ .
+of **tsource** where the corresponding element of **mask** is _.true._, or an
+element of **fsource** when it is _.false._ .
 
 Multi-dimensional arrays are supported.
 
@@ -13811,30 +13795,31 @@ Fortran 95
 ```fortran
      elemental integer function minexponent(x)
 
-      real(kind=KIND),intent(in)   :: x
+      real(kind=**),intent(in) :: x
 ```
 ### **Characteristics**
 
-where KIND is any _real_ kind.
+ - **x**  is a _real_ scalar or array of any _real_ kind
+ - the result is a default _integer_ scalar
 
 ### **Description**
 
-**minexponent**(3) returns the minimum exponent in the model of the type
-of **x**.
+  **minexponent**(3) returns the minimum exponent in the model of the
+  type of **x**.
 
 ### **Options**
 
 - **x**
-  : Shall be of type _real_.
+  : A value used to select the kind of _real_ to return a value for.
 
 ### **Result**
 
-The return value is of type _integer_ and of the default integer kind.
+  The value returned is the maximum exponent for the kind of the value
+  queried
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_minexponent
 use, intrinsic :: iso_fortran_env, only : &
@@ -13873,7 +13858,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## minloc
 
@@ -13883,17 +13868,7 @@ Fortran 95
 
 ### **Synopsis**
 ```fortran
-    result = minloc(array [,mask])
-```
-```fortran
-     NUMERIC function minloc(array, mask)
-
-      NUMERIC,intent(in) :: array(..)
-      logical(kind=**),intent(in),optional :: mask(..)
-```
-or
-```fortran
-    result = minloc(array [,dim] [,mask])
+    result = minloc(array [,mask]) | minloc(array [,dim] [,mask])
 ```
 ```fortran
      NUMERIC function minloc(array, dim, mask)
@@ -13912,14 +13887,19 @@ or
   **minloc**(3) determines the location of the element in the array with
   the minimum value, or, if the **dim** argument is supplied, determines
   the locations of the minimum element along each row of the array in
-  the **dim** direction. If **mask** is present, only the elements for
-  which **mask** is _\.true._ are considered. If more than one element in
-  the array has the minimum value, the location returned is that of the
-  first such element in array element order. If the array has zero size,
-  or all of the elements of **mask** are _\.false._, then the result is
-  an array of zeroes. Similarly, if **dim** is supplied and all of the
-  elements of **mask** along a given row are zero, the result value for
-  that row is zero.
+  the **dim** direction.
+
+  If **mask** is present, only the elements for which **mask** is _true._
+  are considered.
+
+  If more than one element in the array has the minimum value, the
+  location returned is that of the first such element in array element
+  order.
+
+  If the array has zero size, or all of the elements of **mask** are
+  _.false._, then the result is an array of zeroes. Similarly, if **dim**
+  is supplied and all of the elements of **mask** along a given row are
+  zero, the result value for that row is zero.
 
 ### **Options**
 
@@ -13966,11 +13946,11 @@ end program demo_minloc
 ```
 Results:
 ```text
-         1       3
-         1       3       1       3       2
-         3       5       4
-         5       4       3
-         7
+ >        1       3
+ >        1       3       1       3       2
+ >        3       5       4
+ >        5       4       3
+ >        7
 ```
 ### **Standard**
 
@@ -14065,17 +14045,7 @@ FORTRAN 77
 
 ### **Synopsis**
 ```fortran
-    result = minval(array, [mask])
-```
-```fortran
-     NUMERIC function minval(array ,mask)
-
-      NUMERIC,intent(in) :: array(..)
-      logical(kind=**),intent(in),optional :: mask(..)
-```
-  or
-```fortran
-    result = minval(array [,dim] [,mask])
+    result = minval(array, [mask]) | minval(array [,dim] [,mask])
 ```
 ```fortran
      NUMERIC function minval(array, dim, mask)
@@ -14087,7 +14057,6 @@ FORTRAN 77
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
-
  - **NUMERIC** is any numeric type and kind.
 
 ### **Description**
@@ -14097,10 +14066,10 @@ FORTRAN 77
   value along each row of the array in the **dim** direction.
 
   If **mask** is present, only the elements for which **mask** is
-  _\.true._ are considered.
+  _.true._ are considered.
 
   If the array has zero size, or all of the elements of **mask**
-  are _\.false._, then the result is **huge(array)** if **array** is
+  are _.false._, then the result is **huge(array)** if **array** is
   numeric, or a string of **char(len=255)** characters if **array**
   is of character type.
 
@@ -14188,33 +14157,33 @@ end program demo_minval
 ```
 Results:
 ```text
- Given the array
-    1   -2    3    4    5
-   10   20  -30   40   50
-   11   22   33  -44   55
-
- What is the smallest element in the array?
-   -44 at < 3 4 >
- What is the smallest element in each column?
-   1 -2 -30 -44 5
- What is the smallest element in each row?
-   -2 -30 -44
- What is the smallest element in each column,
- considering only those elements that are
- greater than zero?
-   1 20 3 4 5
- if everything is false a zero-sized array is NOT returned
-  2147483647  2147483647  2147483647  2147483647  2147483647
- even for a zero-sized input
-   2147483647
- a scalar answer for everything false is huge()
-   2147483647
-   2147483647
- some calls with three dimensions
-   -55
-   1 -2 -30 -44 5 -11 -22 -33 -40 -55
-   -2 -30 -44 -5 -50 -55
-   shape of answer is  3 2
+ > Given the array
+ >    1   -2    3    4    5
+ >   10   20  -30   40   50
+ >   11   22   33  -44   55
+ >
+ > What is the smallest element in the array?
+ >   -44 at < 3 4 >
+ > What is the smallest element in each column?
+ >   1 -2 -30 -44 5
+ > What is the smallest element in each row?
+ >   -2 -30 -44
+ > What is the smallest element in each column,
+ > considering only those elements that are
+ > greater than zero?
+ >   1 20 3 4 5
+ > if everything is false a zero-sized array is NOT returned
+ >  2147483647  2147483647  2147483647  2147483647  2147483647
+ > even for a zero-sized input
+ >   2147483647
+ > a scalar answer for everything false is huge()
+ >   2147483647
+ >   2147483647
+ > some calls with three dimensions
+ >   -55
+ >   1 -2 -30 -44 5 -11 -22 -33 -40 -55
+ >   -2 -30 -44 -5 -50 -55
+ >   shape of answer is  3 2
 ```
 ### **Standard**
 
@@ -14714,7 +14683,7 @@ character(len=*),parameter :: fmt= '(g0,t30,a,t40,b32.32)'
  end function int_swap32
 
  end program demo_mvbits
-````
+```
 Results:
 ```text
 
@@ -14726,8 +14695,7 @@ Results:
    1684234849                   abcd      01100100011000110110001001100001
     non-native
    1633837924                   dcba      01100001011000100110001101100100
-````
-
+```
 ### **Standard**
 
 Fortran 95
@@ -15507,19 +15475,12 @@ Fortran 95
 
 ### **Synopsis**
 ```fortran
-    result = num_images()
-```
-```fortran
-     integer function num_images ()
-```
-or
-```fortran
-    result = num_images(team)
+    result = num_images([team])
 ```
 ```fortran
      integer function num_images (team)
 
-      type(TEAM_TYPE),intent(in) :: team
+      type(TEAM_TYPE),intent(in),optional :: team
 ```
 or
 ```fortran
@@ -15745,7 +15706,7 @@ Results:
   **pack**(3) stores the elements of ARRAY in an array of rank one.
 
   The beginning of the resulting array is made up of elements whose
-  **mask** equals _\.true._. Afterwards, positions are filled with elements
+  **mask** equals _.true._. Afterwards, positions are filled with elements
   taken from **vector**.
 
 ### **Options**
@@ -15768,7 +15729,7 @@ Results:
 
 The result is an array of rank one and the same type as that of **array**.
 If **vector** is present, the result size is that of **vector**, the number of
-_\.true._ values in **mask** otherwise.
+_.true._ values in **mask** otherwise.
 
 ### **Examples**
 
@@ -15837,27 +15798,27 @@ Fortran 95
 ### **Description**
 
 **parity**(3) calculates the parity (i.e. the reduction using .xor.) of
-__mask__ along dimension __dim__.
+**mask** along dimension **dim**.
 
 ### **Options**
 
-  - __mask__
+  - **mask**
     : Shall be an array of type _logical_.
 
-  - __dim__
+  - **dim**
     : (Optional) shall be a scalar of type _integer_ with a value in the
-    range from __1 to n__, where __n__ equals the rank of __mask__.
+    range from _1 to n_, where _n_ equals the rank of **mask**.
 
 ### **Result**
 
-The result is of the same type as __mask__.
+  The result is of the same type as **mask**.
 
-If __dim__ is absent, a scalar with the parity of all elements in __mask__
-is returned: __\.true.__ if an odd number of elements are __\.true.__
-and __\.false.__ otherwise.
+  If **dim** is absent, a scalar with the parity of all elements in **mask**
+  is returned: _.true._ if an odd number of elements are _.true._
+  and _.false._ otherwise.
 
-When __dim__ is specified the returned shape is similar to that of
-__mask__ with dimension __dim__ dropped.
+  When **dim** is specified the returned shape is similar to that of
+  **mask** with dimension **dim** dropped.
 
 ### **Examples**
 
@@ -15868,10 +15829,11 @@ implicit none
 logical :: x(2) = [ .true., .false. ]
    print *, parity(x)
 end program demo_parity
-````
+```
 Results:
 ```text
     T
+```
 ### **Standard**
 
 Fortran 2008
@@ -16240,8 +16202,8 @@ is specified
 
 ### **Result**
 
-  Returns _\.true._ if the optional argument **a** is present (was passed
-  on the call to the procedure) , or _\.false._ otherwise.
+  Returns _.true._ if the optional argument **a** is present (was passed
+  on the call to the procedure) , or _.false._ otherwise.
 
 ### **Examples**
 
@@ -16348,7 +16310,7 @@ Fortran 95
 
 **product**(3) multiplies together all the selected elements of **array**,
 or along dimension **dim** if the corresponding element in **mask**
-is _\.true._.
+is _.true._.
 
 If **dim** is absent, a scalar with the product of all elements in **array** is
 returned. (Note a zero-sized **array** returns **1**).
@@ -17302,7 +17264,7 @@ or
 
 - **ordered**
   : shall be a logical scalar. If **ordered** is present with the value
-  _\.true._, the calls to the **operator** function begins with the first
+  _.true._, the calls to the **operator** function begins with the first
   two elements of **array** and the process continues in row-column
   order until the sequence has only one element which is the value of the
   reduction. Otherwise, the compiler is free to assume that the operation
@@ -17319,7 +17281,7 @@ one relative to the input array.
 
 ### **Examples**
 
-   The following examples all use the function MY_MULT, which returns
+   The following examples all use the function MY\_MULT, which returns
    the product of its two real arguments.
 ```fortran
    program demo_reduce
@@ -17383,8 +17345,7 @@ Results:
      > [720, should be [720],
      > [2, 12, 30, should be [2,12,30],
      > [15, 48, should be [15, 48],
-````
-
+```
 ### **Standard**
 
    Fortran 2018
@@ -17986,21 +17947,21 @@ Fortran 95
 ```
 ### **Characteristics**
 
-**string** and **set**  must have the same kind type parameter.
-
-the kind of the returned value is the same as **kind** if
-present. Otherwise a default _integer_ kind is returned.
+ - **string** is a _character_ string of any kind
+ - **set** must be a _character_ string with the same kind as **string**
+ - **back** is a _logical_ scalar
+ - **kind** is a constant _integer_
 
 ### **Description**
 
-**scan**(3) scans a **string** for any of the characters in a **set**
-of characters.
+  **scan**(3) scans a **string** for any of the characters in a **set**
+  of characters.
 
-If **back** is either absent or equals _\.false._, this function
-returns the position of the leftmost character of **STRING** that is
-in **set**. If **back** equals _\.true._, the rightmost position is
-returned. If no character of **set** is found in **string**, the result
-is zero.
+  If **back** is either absent or equals _.false._, this function
+  returns the position of the leftmost character of **STRING** that is
+  in **set**. If **back** equals _.true._, the rightmost position is
+  returned. If no character of **set** is found in **string**, the result
+  is zero.
 
 ### **Options**
 
@@ -18016,6 +17977,8 @@ is zero.
 - **kind**
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
+  the kind of the returned value is the same as **kind** if
+  present. Otherwise a default _integer_ kind is returned.
 
 ### **Result**
 
@@ -18025,7 +17988,6 @@ the return value is of default integer kind.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_scan
 implicit none
@@ -18034,15 +17996,12 @@ implicit none
    write(*,*) scan("fortran", "c++")         ! 0, found none
 end program demo_scan
 ```
-
 Results:
-
 ```text
               2
               6
               0
 ```
-
 ### **Standard**
 
 Fortran 95 , with KIND argument - Fortran 2003
@@ -18083,7 +18042,7 @@ of arguments, and search for certain arguments:
 ### **Description**
 
   **selected_char_kind**(3) returns the kind value for the character
-  set named NAME, if a character set with such a name is supported, or
+  set named **name**, if a character set with such a name is supported, or
   **-1** otherwise.
 
 ### **Options**
@@ -18101,18 +18060,18 @@ of arguments, and search for certain arguments:
 
 If a name is not supported, -1 is returned. Otherwise
 
- + If NAME has the value "DEFAULT", then the result has a value equal to
+ + If **name** has the value "DEFAULT", then the result has a value equal to
    that of the kind type parameter of default character. This name is
    always supported.
 
- + If NAME has the value "ASCII", then the result has a value equal
+ + If **name** has the value "ASCII", then the result has a value equal
    to that of the kind type parameter of ASCII character.
 
- + If NAME has the value "ISO_10646", then the result has a value equal
+ + If **name** has the value "ISO_10646", then the result has a value equal
    to that of the kind type parameter of the ISO 10646 character kind
    (corresponding to UCS-4 as specified in ISO/IEC 10646).
 
- + If NAME is a processor-defined name of some other character kind
+ + If **name** is a processor-defined name of some other character kind
    supported by the processor, then the result has a value equal to that
    kind type parameter value.
 
@@ -18255,15 +18214,12 @@ integer(kind=k15) :: i15
     print *, huge(i15) >= 10_k15**15-1
 end program demo_selected_int_kind
 ```
-
 Results:
-
 ```text
   >   2147483647  9223372036854775807
   >  T
   >  T
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -18367,15 +18323,12 @@ real(kind=r400) :: z
    print *, precision(z), range(z)
 end program demo_selected_real_kind
 ```
-
 Results:
-
 ```text
   >            6          37
   >           15         307
   >           18        4931
 ```
-
 ### **Standard**
 
 Fortran 95 ; with RADIX - Fortran 2008
@@ -20493,7 +20446,6 @@ integer :: i
 end program demo_this_image
 ```
 Results:
-
 ```text
    value[1] is 1
 ```
@@ -20507,7 +20459,6 @@ Fortran 2008. With DISTANCE argument, TS 18508
 [**image\_index**(3)](#image_index)
 
  _fortran-lang intrinsic descriptions_
-```
 
 ## tiny
 
@@ -20536,7 +20487,7 @@ Fortran 2008. With DISTANCE argument, TS 18508
 
   For real **x**
 ```fortran
-   result = 2.0(minexponent(x)-1)
+   result = 2.0**(minexponent(x)-1)
 ```
 ### **Options**
 
@@ -20800,19 +20751,19 @@ _Joe Krahn_: Fortran uses **molding** rather than **casting**.
 Casting, as in C, is an in-place reinterpretation. A cast is a device
 that is built around an object to change its shape.
 
-Fortran TRANSFER reinterprets data out-of-place. It can be considered
+Fortran **transfer**(3) reinterprets data out-of-place. It can be considered
 **molding** rather than casting. A **mold** is a device that
 confers a shape onto an object placed into it.
 
 The advantage of molding is that data is always valid in the context
 of the variable that holds it. For many cases, a decent compiler should
-optimize TRANSFER into a simple assignment.
+optimize **transfer**(3) into a simple assignment.
 
 There are disadvantages of this approach. It is problematic to define a
 union of data types because you must know the largest data object, which
-can vary by compiler or compile options. In many cases, an EQUIVALENCE
+can vary by compiler or compile options. In many cases, an _EQUIVALENCE_
 would be far more effective, but Fortran Standards committees seem
-oblivious to the benefits of EQUIVALENCEs when used sparingly.
+oblivious to the benefits of _EQUIVALENCE_s when used sparingly.
 
 ### **Standard**
 
@@ -21220,7 +21171,7 @@ into an array using a mask
 ```
 ### **Characteristics**
 
- - **vector* is a rank-one array of any type
+ - **vector** is a rank-one array of any type
  - **mask** is a logical array
  - **field** is the same type and type parameters as VECTOR conformable with **mask**.
  - The result is an array of the same type and type parameters as **vector**
@@ -21229,7 +21180,7 @@ into an array using a mask
 ### **Description**
 
 **unpack**(3) scatters the elements of **vector** into a copy of an
-array **field** of any rank using _\.true._ values from **mask** in array
+array **field** of any rank using _.true._ values from **mask** in array
 element order to specify placement of the **vector** values.
 
 So a copy of **field** is generated with select elements replaced with
@@ -21241,7 +21192,7 @@ statements, particularly when the replacements are conditional.
 
 - **vector**
   : New values to place into specified locations in **field**.
-  It shall have at least as many elements as **mask** has _\.true._
+  It shall have at least as many elements as **mask** has _.true._
   values.
 
 - **mask**
@@ -21254,12 +21205,12 @@ statements, particularly when the replacements are conditional.
 ### **Result**
 
   The element of the result that corresponds to the ith true element
-  of MASK, in array element order, has the value VECTOR (i) for i =
-  1, 2, . . ., t, where t is the number of true values in MASK. Each
-  other element has a value equal to FIELD if FIELD is scalar or to the
-  corresponding element of FIELD if it is an array.
+  of **mask**, in array element order, has the value **vector(i)** for i =
+  1, 2, . . ., t, where t is the number of true values in **mask**. Each
+  other element has a value equal to **field* if **field* is scalar or to the
+  corresponding element of **field* if it is an array.
 
-  The resulting array corresponds to **field** with _\.true._ elements
+  The resulting array corresponds to **field** with _.true._ elements
   of **mask** replaced by values from **vector** in array element order.
 
 ### **Examples**
@@ -21325,18 +21276,18 @@ contains
    integer                      :: i
    character(len=:),allocatable :: biggest
 
-        write(*,*)trim(title)
-        ! make buffer to write integer into
-        biggest='           '
-        ! find how many characters to use for integers
-        write(biggest,'(i0)')ceiling(log10(real(maxval(abs(arr)))))+2
-        ! use this format to write a row
-        biggest='("  [",*(i'//trim(biggest)//':,","))'
-        ! print one row of array at a time
-        do i=1,size(arr,dim=1)
-           write(*,fmt=biggest,advance='no')arr(i,:)
-           write(*,'(" ]")')
-        enddo
+      write(*,*)trim(title)
+      ! make buffer to write integer into
+      biggest='           '
+      ! find how many characters to use for integers
+      write(biggest,'(i0)')ceiling(log10(real(maxval(abs(arr)))))+2
+      ! use this format to write a row
+      biggest='("  [",*(i'//trim(biggest)//':,","))'
+      ! print one row of array at a time
+      do i=1,size(arr,dim=1)
+         write(*,fmt=biggest,advance='no')arr(i,:)
+         write(*,'(" ]")')
+      enddo
    end subroutine print_matrix_int
 
 end program demo_unpack
@@ -21419,7 +21370,7 @@ of characters that does not appear in a given set of characters.
 - **back**
   : The direction to look for an unmatched character. The left-most
   unmatched character position is returned unless **back** is present
-  and _\.false._, which causes the position of the right-most unmatched
+  and _.false._, which causes the position of the right-most unmatched
   character to be returned instead of the left-most unmatched character.
 
 - **kind**
@@ -21433,7 +21384,7 @@ If all characters of **string** are found in **set**, the result is zero.
 If **string** is of zero length a zero (0) is always returned.
 
 Otherwise, if an unmatched character is found
-The position of the first or last (if **back** is _\.false._) unmatched
+The position of the first or last (if **back** is _.false._) unmatched
 character in **string** is returned, starting with position one on the
 left end of the string.
 

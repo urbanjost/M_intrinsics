@@ -6,17 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result = minval(array, [mask])
-```
-```fortran
-     NUMERIC function minval(array ,mask)
-
-      NUMERIC,intent(in) :: array(..)
-      logical(kind=**),intent(in),optional :: mask(..)
-```
-  or
-```fortran
-    result = minval(array [,dim] [,mask])
+    result = minval(array, [mask]) | minval(array [,dim] [,mask])
 ```
 ```fortran
      NUMERIC function minval(array, dim, mask)
@@ -28,7 +18,6 @@
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind value for the type
-
  - **NUMERIC** is any numeric type and kind.
 
 ### **Description**
@@ -38,10 +27,10 @@
   value along each row of the array in the **dim** direction.
 
   If **mask** is present, only the elements for which **mask** is
-  _\.true._ are considered.
+  _.true._ are considered.
 
   If the array has zero size, or all of the elements of **mask**
-  are _\.false._, then the result is **huge(array)** if **array** is
+  are _.false._, then the result is **huge(array)** if **array** is
   numeric, or a string of **char(len=255)** characters if **array**
   is of character type.
 
@@ -129,33 +118,33 @@ end program demo_minval
 ```
 Results:
 ```text
- Given the array
-    1   -2    3    4    5
-   10   20  -30   40   50
-   11   22   33  -44   55
-
- What is the smallest element in the array?
-   -44 at < 3 4 >
- What is the smallest element in each column?
-   1 -2 -30 -44 5
- What is the smallest element in each row?
-   -2 -30 -44
- What is the smallest element in each column,
- considering only those elements that are
- greater than zero?
-   1 20 3 4 5
- if everything is false a zero-sized array is NOT returned
-  2147483647  2147483647  2147483647  2147483647  2147483647
- even for a zero-sized input
-   2147483647
- a scalar answer for everything false is huge()
-   2147483647
-   2147483647
- some calls with three dimensions
-   -55
-   1 -2 -30 -44 5 -11 -22 -33 -40 -55
-   -2 -30 -44 -5 -50 -55
-   shape of answer is  3 2
+ > Given the array
+ >    1   -2    3    4    5
+ >   10   20  -30   40   50
+ >   11   22   33  -44   55
+ >
+ > What is the smallest element in the array?
+ >   -44 at < 3 4 >
+ > What is the smallest element in each column?
+ >   1 -2 -30 -44 5
+ > What is the smallest element in each row?
+ >   -2 -30 -44
+ > What is the smallest element in each column,
+ > considering only those elements that are
+ > greater than zero?
+ >   1 20 3 4 5
+ > if everything is false a zero-sized array is NOT returned
+ >  2147483647  2147483647  2147483647  2147483647  2147483647
+ > even for a zero-sized input
+ >   2147483647
+ > a scalar answer for everything false is huge()
+ >   2147483647
+ >   2147483647
+ > some calls with three dimensions
+ >   -55
+ >   1 -2 -30 -44 5 -11 -22 -33 -40 -55
+ >   -2 -30 -44 -5 -50 -55
+ >   shape of answer is  3 2
 ```
 ### **Standard**
 

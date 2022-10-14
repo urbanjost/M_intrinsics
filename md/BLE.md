@@ -38,8 +38,8 @@
 
 ### **Result**
 
-The return value is _\.true._ if any bit in **j** is less than any bit in
-**i** starting with the rightmost bit and continuing tests leftward.
+The return value is _.true._ if any bit in **j** is less than any bit
+in **i** starting with the rightmost bit and continuing tests leftward.
 
 ### **Examples**
 

@@ -70,7 +70,7 @@ images whether the values are the same or different.
   variables; in all other cases **status** is zero.
 
 - **trim_name**
-  : If **trim_name** is present with the value _\.false._, the trailing
+  : If **trim_name** is present with the value _.false._, the trailing
   blanks in **name** are significant; otherwise they are not part of
   the environment variable name.
 

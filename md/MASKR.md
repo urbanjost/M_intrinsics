@@ -35,7 +35,7 @@
   must be from 0 to the number of bits for the kind of the result.
   The default kind of the result is the same as **i** unless the result
   size is specified by **kind**. That is, these Fortran statements must
-  be _\.true._ :
+  be _.true._ :
 ```fortran
    i >= 0 .and. i < bitsize(i) ! if KIND is not specified
    i >= 0 .and. i < bitsize(0_KIND) ! if KIND is specified
@@ -58,8 +58,8 @@ integer :: i
 
   ! basics
    print *,'basics'
-   write(*,'(i0,t5,b32.32)') 1, maskr(1)  
-   write(*,'(i0,t5,b32.32)') 5,  maskr(5) 
+   write(*,'(i0,t5,b32.32)') 1, maskr(1)
+   write(*,'(i0,t5,b32.32)') 5,  maskr(5)
    write(*,'(i0,t5,b32.32)') 11, maskr(11)
    print *,"should be equivalent on two's-complement processors"
    write(*,'(i0,t5,b32.32)') 1,  shiftr(-1,bit_size(0)-1)
@@ -83,7 +83,7 @@ Results:
  >  1   00000000000000000000000000000001
  >  5   00000000000000000000000000011111
  >  11  00000000000000000000011111111111
- >   elemental 
+ >   elemental
  >   (array argument accepted like called with each element)
  >            0 00000000000000000000000000000000
  >           15 00000000000000000000000000001111

@@ -22,7 +22,7 @@
 
 ### **Description**
 
-**is_contiguous**(3) returns _\.true._ if and only if an object is
+**is_contiguous**(3) returns _.true._ if and only if an object is
 contiguous.
 
 An object is contiguous if it is
@@ -93,7 +93,7 @@ It is processor-dependent whether any other object is contiguous.
 
 ### **Result**
 
-  The result has the value _\.true._ if **a** is contiguous, and _\.false._
+  The result has the value _.true._ if **a** is contiguous, and _.false._
   otherwise.
 
 ### **Examples**

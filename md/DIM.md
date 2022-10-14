@@ -21,11 +21,11 @@
 
 ### **Description**
 
-  **dim((3) returns the maximum of **x - y** and zero.
+  **dim**(3) returns the maximum of **x - y** and zero.
   That is, it returns the difference **x - y** if the result is positive;
   otherwise it returns zero. It is equivalent to
 ```fortran
-  **max(0,x-y)**
+  max(0,x-y)
 ```
 ### **Options**
 

@@ -45,10 +45,10 @@
 ### **Result**
 
 - **result**
-  Returns _\.true._ if **STR_A \<= STR_B**, and _\.false._ otherwise, based on
+  Returns _.true._ if **STR_A \<= STR_B**, and _.false._ otherwise, based on
   the ASCII ordering.
 
-  If both input arguments are null strings, _\.true._ is always returned.
+  If both input arguments are null strings, _.true._ is always returned.
 
 ### **Examples**
 

@@ -70,7 +70,6 @@ integer :: i
 end program demo_this_image
 ```
 Results:
-
 ```text
    value[1] is 1
 ```
@@ -84,4 +83,3 @@ Fortran 2008. With DISTANCE argument, TS 18508
 [**image\_index**(3)](#image_index)
 
  _fortran-lang intrinsic descriptions_
-```

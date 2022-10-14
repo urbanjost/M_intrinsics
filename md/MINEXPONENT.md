@@ -11,30 +11,31 @@
 ```fortran
      elemental integer function minexponent(x)
 
-      real(kind=KIND),intent(in)   :: x
+      real(kind=**),intent(in) :: x
 ```
 ### **Characteristics**
 
-where KIND is any _real_ kind.
+ - **x**  is a _real_ scalar or array of any _real_ kind
+ - the result is a default _integer_ scalar
 
 ### **Description**
 
-**minexponent**(3) returns the minimum exponent in the model of the type
-of **x**.
+  **minexponent**(3) returns the minimum exponent in the model of the
+  type of **x**.
 
 ### **Options**
 
 - **x**
-  : Shall be of type _real_.
+  : A value used to select the kind of _real_ to return a value for.
 
 ### **Result**
 
-The return value is of type _integer_ and of the default integer kind.
+  The value returned is the maximum exponent for the kind of the value
+  queried
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_minexponent
 use, intrinsic :: iso_fortran_env, only : &
@@ -73,4 +74,4 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

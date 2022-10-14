@@ -50,7 +50,7 @@ If the vectors are _logical_, the result is
 
 If the arguments are numeric, the return value is a scalar of numeric
 type, _integer_, _real_, or _complex_. If the arguments are _logical_, the
-return value is _\.true._ or _\.false._.
+return value is _.true._ or _.false._.
 
 ### **Examples**
 

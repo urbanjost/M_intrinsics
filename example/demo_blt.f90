@@ -10,7 +10,8 @@
             byte=i
             write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,blt(byte,64_int8),byte
          enddo
-
+        ! BOZ literals
+         write(*,*)blt(z'1000', z'101011010')
          ! see the BGE() description for an extended description
          ! of related information
 

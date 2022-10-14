@@ -32,7 +32,7 @@ or
 
 **iparity**(3) reduces with bitwise _xor_ (exclusive _or_) the elements
 of **array** along dimension **dim** if the corresponding element in
-**mask** is _\.true._.
+**mask** is _.true._.
 
 ### **Options**
 

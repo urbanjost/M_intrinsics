@@ -19,11 +19,11 @@
       character(len=*),intent(inout),optional :: cmdmsg
 ```
 ### **Characteristics**
- - **command** is a default _character_ scalar 
+ - **command** is a default _character_ scalar
  - **wait** is a default _logical_ scalar. If **wait** is present with the
  - **exitstat** is an _integer_ of the default kind.
    It must be of a kind with at least a decimal exponent range of 9.
- - **cmdstat** is an _integer_ of default kind 
+ - **cmdstat** is an _integer_ of default kind
    The kind of the variable must support at least a decimal exponent range of four.
 
  - **cmdmsg** is a _character_ scalar of the default kind.
@@ -33,7 +33,7 @@
   For **execute_command_line**(3) the **command** argument is passed
   to the shell and executed. (The shell is generally **sh**(1) on Unix
   systems, and cmd.exe on Windows.) If **wait** is present and has the
-  value _\.false._, the execution of the command is asynchronous if the
+  value _.false._, the execution of the command is asynchronous if the
   system supports it; otherwise, the command is executed synchronously.
 
   The three last arguments allow the user to get status information. After
@@ -68,7 +68,7 @@
   value _.false._, and the processor supports asynchronous execution of
   the command, the command is executed asynchronously; otherwise it is
   executed synchronously.
-    
+
   When the command is executed synchronously, **execute_command_line**(3)
   returns after the command line has completed execution. Otherwise,
   **execute_command_line**(3) returns without waiting.
@@ -76,7 +76,7 @@
 - **exitstat**
   : If the command is executed synchronously, it is assigned the value
   of the processor-dependent exit status. Otherwise, the value of
-  **exitstat** is unchanged. 
+  **exitstat** is unchanged.
 
   If the command is executed synchronously, it is assigned the value of
   the processor-dependent exit status. Otherwise, the value of EXITSTAT
