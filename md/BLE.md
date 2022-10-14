@@ -11,26 +11,27 @@
 ```fortran
      elemental logical function ble(i, j)
 
-      integer(kind=KIND),intent(in) :: i
-      integer(kind=KIND),intent(in) :: j
+      integer(kind=**),intent(in) :: i
+      integer(kind=**),intent(in) :: j
 ```
 ### **Characteristics**
 
-  - the _kind_ of **i** and **j** may be of any supported _integer_
-  kind, not necessarily the same. An exception is that values may be a
-  BOZ constant with a value valid for the _integer_ kind available with
-  the most bits on the current platform.
-  - a logical scalar of default kind is returned.
+ - **i** and **j** may be of any supported _integer_ kind, not
+   necessarily the same. An exception is that values may be a
+   BOZ constant with a value valid for the _integer_ kind available with
+   the most bits on the current platform.
+ - the returned value is a logical scalar of default kind
 
 ### **Description**
 
-  **ble**(3) determines whether an integer is bitwise less than or equal
-  to another.
+  **ble**(3) determines whether an integer is bitwise less than or
+  equal to another, assuming any shorter value is padded on the left
+  with zeros to the length of the longer value.
 
 ### **Options**
 
 - **i**
-  : the value to use for testing **j**
+  : the value to compare **j** to
 
 - **j**
   : the value to be tested for being less than or equal to **i**

@@ -3633,23 +3633,23 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental logical function ble(i, j)', &
 '', &
-'            integer(kind=KIND),intent(in) :: i', &
-'            integer(kind=KIND),intent(in) :: j', &
+'            integer(kind=**),intent(in) :: i', &
+'            integer(kind=**),intent(in) :: j', &
 '', &
 'CHARACTERISTICS', &
-'  o  the kind of I and J may be of any supported integer kind, not necessarily', &
-'     the same. An exception is that values may be a BOZ constant with a value', &
-'     valid for the integer kind available with the most bits on the current', &
-'     platform.', &
+'  o  I and J may be of any supported integer kind, not necessarily the same.', &
+'     An exception is that values may be a BOZ constant with a value valid for', &
+'     the integer kind available with the most bits on the current platform.', &
 '', &
-'  o  a logical scalar of default kind is returned.', &
+'  o  the returned value is a logical scalar of default kind', &
 '', &
 'DESCRIPTION', &
 '  BLE(3) determines whether an integer is bitwise less than or equal to', &
-'  another.', &
+'  another, assuming any shorter value is padded on the left with zeros to the', &
+'  length of the longer value.', &
 '', &
 'OPTIONS', &
-'  o  I : the value to use for testing J', &
+'  o  I : the value to compare J to', &
 '', &
 '  o  J : the value to be tested for being less than or equal to I', &
 '', &
@@ -5879,7 +5879,7 @@ textblock=[character(len=256) :: &
 'cpu_time(3fortran)                                          cpu_time(3fortran)', &
 '', &
 'NAME', &
-'  CPU_TIME(3) - [SYSTEM:TIME] Return CPU processor time in seconds', &
+'  CPU_TIME(3) - [SYSTEM:TIME] Return CPU processor time used in seconds', &
 '', &
 'SYNOPSIS', &
 '  call cpu_time(time)', &
@@ -5889,32 +5889,36 @@ textblock=[character(len=256) :: &
 '             real,intent(out) :: time', &
 '', &
 'CHARACTERISTICS', &
-'  o  TIME is of type real and any kind, with INTENT(OUT).', &
+'  o  TIME is a real of any kind', &
 '', &
 'DESCRIPTION', &
 '  CPU_TIME(3) returns a real value representing the elapsed CPU time in', &
 '  seconds. This is useful for testing segments of code to determine execution', &
 '  time.', &
 '', &
+'  If no time source is available, TIME is set to a negative value.', &
+'', &
 '  The exact definition of time is left imprecise because of the variability in', &
 '  what different processors are able to provide.', &
-'', &
-'  If no time source is available, TIME is set to a negative value.', &
 '', &
 '  Note that TIME may contain a system dependent, arbitrary offset and may not', &
 '  start with 0.0. For CPU_TIME(3) the absolute value is meaningless.  Only', &
 '  differences between subsequent calls, as shown in the example below, should', &
 '  be used.', &
 '', &
+'PARALLEL PROCESSING', &
+'  Whether the value assigned is an approximation to the amount of time used by', &
+'  the invoking image, or the amount of time used by the whole program, is', &
+'  processor dependent.', &
+'', &
 '  A processor for which a single result is inadequate (for example, a parallel', &
 '  processor) might choose to provide an additional version for which TIME is', &
 '  an array.', &
 '', &
 'RESULT', &
-'  o  TIME : The type shall be real with INTENT(OUT). It is assigned a', &
-'     processor-dependent approximation to the processor time in seconds.  If', &
-'     the processor cannot return a meaningful time, a processor-dependent', &
-'     negative value is returned.', &
+'  o  TIME : is assigned a processor-dependent approximation to the processor', &
+'     time in seconds. If the processor cannot return a meaningful time, a', &
+'     processor-dependent negative value is returned.', &
 '', &
 '     : The start time is left imprecise because the purpose is to time', &
 '     sections of code, as in the example. This might or might not include', &

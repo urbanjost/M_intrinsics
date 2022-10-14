@@ -2703,20 +2703,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb154"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb154-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> ble(i,j)</a></code></pre></div>
 <div class="sourceCode" id="cb155"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb155-1" title="1">     <span class="kw">elemental</span> <span class="dt">logical</span> <span class="kw">function</span> ble(i, j)</a>
 <a class="sourceLine" id="cb155-2" title="2"></a>
-<a class="sourceLine" id="cb155-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb155-4" title="4">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a></code></pre></div>
+<a class="sourceLine" id="cb155-3" title="3">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb155-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a></code></pre></div>
 <h3 id="characteristics-38"><strong>Characteristics</strong></h3>
 <ul>
-<li>the kind of <strong>i</strong> and <strong>j</strong> may be of any supported integer kind, not necessarily the same. An exception is that values may be a BOZ constant with a value valid for the integer kind available with the most bits on the current platform.</li>
-<li>a logical scalar of default kind is returned.</li>
+<li><strong>i</strong> and <strong>j</strong> may be of any supported integer kind, not necessarily the same. An exception is that values may be a BOZ constant with a value valid for the integer kind available with the most bits on the current platform.</li>
+<li>the returned value is a logical scalar of default kind</li>
 </ul>
 <h3 id="description-38"><strong>Description</strong></h3>
-<p><strong>ble</strong>(3) determines whether an integer is bitwise less than or equal to another.</p>
+<p><strong>ble</strong>(3) determines whether an integer is bitwise less than or equal to another, assuming any shorter value is padded on the left with zeros to the length of the longer value.</p>
 <h3 id="options-38"><strong>Options</strong></h3>
 <ul>
 <li><dl>
 <dt><strong>i</strong></dt>
-<dd>the value to use for testing <strong>j</strong>
+<dd>the value to compare <strong>j</strong> to
 </dd>
 </dl></li>
 <li><dl>
@@ -4402,7 +4402,7 @@ A value of zero refers to the least significant bit.</li>
 <div id="cpu_time" class="slide section level2">
 <h1>cpu_time</h1>
 <h3 id="name-63"><strong>Name</strong></h3>
-<p><strong>cpu_time</strong>(3) - [SYSTEM:TIME] Return CPU processor time in seconds</p>
+<p><strong>cpu_time</strong>(3) - [SYSTEM:TIME] Return CPU processor time used in seconds</p>
 <h3 id="synopsis-63"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb252"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb252-1" title="1">     <span class="kw">call</span> cpu_time(time)</a></code></pre></div>
 <div class="sourceCode" id="cb253"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb253-1" title="1">      <span class="kw">subroutine</span> cpu_time(time)</a>
@@ -4410,19 +4410,21 @@ A value of zero refers to the least significant bit.</li>
 <a class="sourceLine" id="cb253-3" title="3"><span class="dt">       real</span>,<span class="dt">intent(out)</span> <span class="dt">::</span> time</a></code></pre></div>
 <h3 id="characteristics-63"><strong>Characteristics</strong></h3>
 <ul>
-<li><strong>time</strong> is of type real and any kind, with <strong>intent(out)</strong>.</li>
+<li><strong>time</strong> is a real of any kind</li>
 </ul>
 <h3 id="description-63"><strong>Description</strong></h3>
 <p><strong>cpu_time</strong>(3) returns a real value representing the elapsed CPU time in seconds. This is useful for testing segments of code to determine execution time.</p>
+<p>If no time source is available, <strong>time</strong> is set to a negative value.</p>
 <p>The exact definition of time is left imprecise because of the variability in what different processors are able to provide.</p>
-<p>If no time source is available, TIME is set to a negative value.</p>
-<p>Note that TIME may contain a system dependent, arbitrary offset and may not start with 0.0. For <strong>cpu_time</strong>(3) the absolute value is meaningless. Only differences between subsequent calls, as shown in the example below, should be used.</p>
+<p>Note that <strong>time</strong> may contain a system dependent, arbitrary offset and may not start with 0.0. For <strong>cpu_time</strong>(3) the absolute value is meaningless. Only differences between subsequent calls, as shown in the example below, should be used.</p>
+<p>PARALLEL PROCESSING</p>
+<p>Whether the value assigned is an approximation to the amount of time used by the invoking image, or the amount of time used by the whole program, is processor dependent.</p>
 <p>A processor for which a single result is inadequate (for example, a parallel processor) might choose to provide an additional version for which <strong>time</strong> is an array.</p>
 <h3 id="result-45"><strong>Result</strong></h3>
 <ul>
 <li><dl>
 <dt><strong>time</strong></dt>
-<dd>The type shall be real with <strong>intent(out)</strong>. It is assigned a processor-dependent approximation to the processor time in seconds. If the processor cannot return a meaningful time, a processor-dependent negative value is returned.
+<dd>is assigned a processor-dependent approximation to the processor time in seconds. If the processor cannot return a meaningful time, a processor-dependent negative value is returned.
 </dd>
 <dd><p>The start time is left imprecise because the purpose is to time sections of code, as in the example. This might or might not include system overhead time.</p>
 </dd>

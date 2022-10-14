@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**cpu_time**(3) - \[SYSTEM:TIME\] Return CPU processor time in seconds
+**cpu_time**(3) - \[SYSTEM:TIME\] Return CPU processor time used in seconds
 
 ### **Synopsis**
 ```fortran
@@ -15,39 +15,44 @@
 ```
 ### **Characteristics**
 
-  - **time** is of type _real_ and any kind, with **intent(out)**.
+ - **time** is a _real_ of any kind
 
 ### **Description**
 
-**cpu_time**(3) returns a _real_ value representing the elapsed CPU time
-in seconds. This is useful for testing segments of code to determine
-execution time.
+  **cpu_time**(3) returns a _real_ value representing the elapsed CPU time
+  in seconds. This is useful for testing segments of code to determine
+  execution time.
 
-The exact definition of time is left imprecise because of the variability
-in what different processors are able to provide.
+  If no time source is available, **time** is set to a negative value.
 
-If no time source is available, TIME is set to a negative value.
+  The exact definition of time is left imprecise because of the variability
+  in what different processors are able to provide.
 
-Note that TIME may contain a system dependent, arbitrary offset and may
-not start with 0.0. For **cpu_time**(3) the absolute value is meaningless.
-Only differences between subsequent calls, as shown in the example below,
-should be used.
+  Note that **time** may contain a system dependent, arbitrary offset and may
+  not start with 0.0. For **cpu_time**(3) the absolute value is meaningless.
+  Only differences between subsequent calls, as shown in the example below,
+  should be used.
 
-A processor for which a single result is inadequate (for example, a
-parallel processor) might choose to provide an additional version for
-which **time** is an array.
+  PARALLEL PROCESSING
+
+  Whether the value assigned is an approximation to the amount of time used
+  by the invoking image, or the amount of time used by the whole program,
+  is processor dependent.
+
+  A processor for which a single result is inadequate (for example, a
+  parallel processor) might choose to provide an additional version for
+  which **time** is an array.
 
 ### **Result**
 
 - **time**
-  : The type shall be _real_ with **intent(out)**. It is assigned a
-  processor-dependent approximation to the processor time in seconds.
-  If the processor cannot return a meaningful time, a
-  processor-dependent negative value is returned.
+  : is assigned a processor-dependent approximation to the processor
+    time in seconds. If the processor cannot return a meaningful time,
+    a processor-dependent negative value is returned.
 
   : The start time is left imprecise because the purpose is to time
-  sections of code, as in the example. This might or might not
-  include system overhead time.
+    sections of code, as in the example. This might or might not
+    include system overhead time.
 
 ### **Examples**
 
