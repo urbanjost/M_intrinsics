@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - **string** is a scalar _character_ type.
 - **ncopies** is a scalar integer.
 - the result is a new scalar of type _character_ of the same type as

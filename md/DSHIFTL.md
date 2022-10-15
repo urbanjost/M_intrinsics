@@ -25,7 +25,7 @@
     first converted as if by the intrinsic function **int**(3) to type
     _integer_ with the kind type parameter of the other.
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 

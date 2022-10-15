@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
   - The return value is of the same kind as **i**. Otherwise,
     any _integer_ kinds are allowed.
 

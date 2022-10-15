@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - **i** is an integer
 - **kind** Shall be a scalar constant expression of type _integer_
   whose value is a supported _integer_ kind.

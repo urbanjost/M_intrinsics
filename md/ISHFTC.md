@@ -17,7 +17,7 @@
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **i** may be an _integer_ of any kind
  - **shift** and **size** may be _integers_ of any kind
  - the kind for **i** dictates the kind of the returned value.

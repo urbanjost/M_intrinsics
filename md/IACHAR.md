@@ -19,7 +19,7 @@
  - The return value is of type _integer_ and of kind **KIND**. If **KIND**
    is absent, the return value is of default integer kind.
  - **kind** may be of any _integer_ kind.
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 

@@ -17,34 +17,36 @@
 ### **Characteristics**
 
  - ** a is of type _real_
- - KIND shall be a scalar integer constant expression.
+ - **KIND** shall be a scalar integer constant expression.
    It specifies the kind of the result if present.
- - the result is _integer_. 
- is specified.
+ - the result is _integer_. It is default kind if **KIND** is not
+   specified
 
 ### **Description**
 
-**ceiling**(3) returns the least integer greater than or equal to **a**.
+  **ceiling**(3) returns the least integer greater than or equal to **a**.
+
+  On the number line -n <-- 0 -> +n the value returned is always at or
+  to the right of the input value.
 
 ### **Options**
 
 - **a**
-  : A _real_ value to produce a result for.
+  : A _real_ value to produce a ceiling for.
 
 - **kind**
-  : An _integer_ initialization expression indicating the kind
-  parameter of the result.
+  : indicates the kind parameter of the result.
 
 ### **Result**
 
-The result will be the _integer_ value equal to **a** or the least integer
-greater than **a** if the input value is not equal to a whole number.
+  The result will be the _integer_ value equal to **a** or the least
+  integer greater than **a** if the input value is not equal to a
+  whole number.
 
-On the number line -n <-- 0 -> +n the value returned is always at or to the
-right of the input value.
+  If **a** is equal to a whole number, the returned value is **int(a)**.
 
-The result is undefined if it cannot be represented in the specified
-_integer_ type.
+  The result is undefined if it cannot be represented in the specified
+  _integer_ type.
 
 ### **Examples**
 
@@ -103,4 +105,4 @@ Fortran 95
 [**int**(3)](#int),
 [**selected_int_kind**(3)](#selected_int_kind)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

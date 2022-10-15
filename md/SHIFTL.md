@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **i** is an _integer_ of any kind
  - **shift** is an _integer_ of any kind
  - the result will automatically be of the same type, kind and rank as **i**.
@@ -105,7 +105,7 @@ Results:
  >    basic usage
  >           100         800
  >    elemental
- >  
+ >
  >  SHIFT =  9
  >  I =      01010101010101010101010101010101 == 1431655765
  >  RESULT = 10101010101010101010101000000000 == -1431655936

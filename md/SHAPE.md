@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
 
   - **source** is an array or scalar of any type. If **source** is a pointer
     it must be associated and allocatable arrays must be allocated.

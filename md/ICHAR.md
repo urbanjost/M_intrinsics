@@ -2,22 +2,22 @@
 
 ### **Name**
 
-**ichar**(3) - \[CHARACTER:CONVERSION\] Character-to-integer conversion function
+**ichar**(3) - \[CHARACTER:CONVERSION\] Character-to-integer code conversion function
 
 ### **Synopsis**
 ```fortran
     result = ichar(c [,kind])
 ```
 ```fortran
-     elemental function ichar(c,kind)
+     elemental integer(kind=KIND) function ichar(c,KIND)
 
-      character(len=1),intent(in) :: c
-      integer,intent(in),optional :: kind
+      character(len=1,kind=**),intent(in) :: c
+      integer,intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-- **c** is a single scalar _character_
-- **kind** a constant _integer_ initialization expression indicating
+- **c** is a scalar _character_
+- **kind** is a constant _integer_ initialization expression indicating
   the kind parameter of the result.
 - The return value is of type _integer_ and of kind **kind**. If **kind**
   is absent, the return value is of default _integer_ kind.
@@ -36,6 +36,7 @@
 
 - **c**
   : The input character to determine the code for.
+    Its value shall be that of a character capable of representation in the processor.
 
 - **kind**
   : indicates the kind parameter of the result. If **kind** is absent,
@@ -43,7 +44,21 @@
 
 ### **Result**
 
-The code in the systems default character set for the character being queried.
+  The code in the system default character set for the character being
+  queried is returned.
+
+  The result is the position of **c** in the processor collating sequence
+  associated with the kind type parameter of **c**.
+
+  it is nonnegative and less than n, where n is the number of characters
+  in the collating sequence.
+
+  The kind type parameter of the result shall specify an integer kind
+  that is capable of representing n.
+
+  For any characters C and D capable of representation in the processor,
+  C <= D is true if and only if ICHAR (C) <= ICHAR (D) is true and C ==
+  D is true if and only if ICHAR (C) == ICHAR (D) is true.
 
 ### **Examples**
 
@@ -88,4 +103,4 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

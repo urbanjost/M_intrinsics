@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**log**(3) - \[MATHEMATICS\] Logarithm function
+**log**(3) - \[MATHEMATICS\] Natural logarithm
 
 ### **Synopsis**
 ```fortran
@@ -15,7 +15,7 @@
 ```
 ### **Characteristics**
 
- - **x** may be any kind of _real_ or _complex_ value
+ - **x** may be any _real_ or _complex_ kind.
  - the result is the same type and characteristics as **x**.
 
 ### **Description**
@@ -26,15 +26,24 @@
 ### **Options**
 
 - **x**
-  : The value to take the log of
+  : The value to compute the natual log of.
+    If **x** is _real_, its value shall be greater than zero.
+    If **x** is _complex_, its value shall not be zero.
+
 
 ### **Result**
 
-  The natural logarithm of **xx**.
-  If **x** is _complex_, the imaginary part OMEGA is in the range
+  The natural logarithm of **x**.
+  If **x** is the _complex_ value **(r,i)** , the imaginary part "i" is in the range
 ```fortran
-    -PI < OMEGA <= PI
+    -PI < i <= PI
 ```
+   If the real part of **x** is less than zero and the imaginary part of
+   **x** is zero, then the imaginary part of the result is approximately
+   **PI** if the imaginary part of **PI** is positive real zero or the
+   processor does not distinguish between positive and negative real zero,
+   and approximately **-PI** if the imaginary part of **x** is negative
+   real zero.
 
 ### **Examples**
 
@@ -61,4 +70,4 @@ FORTRAN 77
 
 [****(3)](#)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

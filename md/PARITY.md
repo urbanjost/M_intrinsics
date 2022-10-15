@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
@@ -35,11 +35,11 @@
 ### **Result**
 
   The result is of the same type as **mask**.
-  
+
   If **dim** is absent, a scalar with the parity of all elements in **mask**
   is returned: _.true._ if an odd number of elements are _.true._
   and _.false._ otherwise.
-  
+
   When **dim** is specified the returned shape is similar to that of
   **mask** with dimension **dim** dropped.
 

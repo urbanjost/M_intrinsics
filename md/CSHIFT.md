@@ -17,7 +17,7 @@
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **array** may be any type and rank (and the result will
    automatically be of the same type, kind and rank as **array**).
 

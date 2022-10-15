@@ -15,7 +15,7 @@
       integer,intent(in),optional :: KIND
 ```
 ### **Characteristics**
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
 
   - **a** may be of any type and kind. If it is polymorphic it shall not
     be an undefined pointer. If it is unlimited polymorphic or has any

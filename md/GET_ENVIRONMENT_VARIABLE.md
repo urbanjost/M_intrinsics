@@ -22,7 +22,7 @@
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
    meeting the conditions described herein.
  - **name**, **value**, and **errmsg**  are a scalar _character_ of
    default kind.

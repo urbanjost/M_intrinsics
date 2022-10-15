@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
   - **a** is type real of any kind
   - **KIND** is a scalar integer constant expression
   - The result is default _integer_ kind or the value of **kind**

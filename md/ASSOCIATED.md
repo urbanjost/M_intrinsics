@@ -107,4 +107,4 @@ Fortran 95
 
 [**null**(3)](#null)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

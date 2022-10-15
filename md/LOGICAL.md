@@ -2,21 +2,26 @@
 
 ### **Name**
 
-**logical**(3) - \[TYPE:LOGICAL\] Converts one kind of _logical_ variable to another
+**logical**(3) - \[TYPE:LOGICAL\] Conversion between kinds of logical values
 
 ### **Synopsis**
 ```fortran
     result = logical(l [,kind])
 ```
 ```fortran
-     elemental logical(kind=KIND) function logical(l,kind)
+     elemental logical(kind=KIND) function logical(l,KIND)
 
-      logical(kind=KIND),intent(in) :: l
-      integer(kind=**),intent(in),optional :: kind
+      logical(kind=**),intent(in) :: l
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
+  - **l** is of type logical
+  - **KIND** shall be a scalar integer constant expression.
+    If **KIND** is present, the kind type parameter of the result is
+    that speciﬁed by the value of **KIND**; otherwise, the kind type
+    parameter is that of default logical.
 
 ### **Description**
 
@@ -25,11 +30,11 @@
 ### **Options**
 
 - **l**
-  : The type shall be _logical_.
+  : The _logical_ value to produce a copy of with kind **kind**
 
 - **kind**
-  : An _integer_ initialization expression indicating the kind parameter
-  of the result. If not present, the default kind is returned.
+  : indicates the kind parameter of the result.
+  If not present, the default kind is returned.
 
 ### **Result**
 
@@ -41,6 +46,7 @@ is not given.
 
 Sample program:
 ```fortran
+Linux
 program demo_logical
 ! Access array containing the kind type parameter values supported by this
 ! compiler for entities of logical type
@@ -58,11 +64,11 @@ end program demo_logical
 ```
 Results:
 ```text
-              1
-              2
-              4
-              8
-             16
+ >            1
+ >            2
+ >            4
+ >            8
+ >           16
 ```
 ### **Standard**
 
@@ -74,4 +80,4 @@ Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 [**real**(3)](#real),
 [**cmplx**(3)](#cmplx)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

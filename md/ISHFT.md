@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**ishft**(3) - \[BIT:SHIFT\] Shift bits
+**ishft**(3) - \[BIT:SHIFT\] Logical shift of bits in an integer
 
 ### **Synopsis**
 ```fortran
@@ -16,8 +16,9 @@
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
- -  the kind for **i** dictates the kind of the returned value.
+ - a kind designated as ** may be any supported kind for the type
+ - **i** is an _integer_ of any kind. the kind for **i** dictates the kind of the returned value.
+ - **shift** is an _integer_ of any kind.
 
 ### **Description**
 
@@ -41,9 +42,17 @@
   If the absolute value of **shift** is
   greater than **bit_size(i)**, the value is undefined.
 
+
 ### **Result**
 
-  The return value has the same characteristics (shape, kind, ...)  as  **i**.
+  The result has the value obtained by shifting the bits of **i** by **shift** positions.
+
+  1. If **shift** is positive, the shift is to the left
+  2. if **shift** is negative, the shift is to the right
+  3.  if **shift** is zero, no shift is performed.
+
+  Bits shifted out from the left or from the right, as appropriate,
+  are lost. Zeros are shifted in from the opposite end.
 
 ### **Examples**
 
@@ -80,4 +89,4 @@ Fortran 95
 
 [**ishftc**(3)](#ishftc)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

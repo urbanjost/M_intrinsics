@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - the type of **x** may be _integer_, _real_, or _complex_; or a BOZ-literal-constant.
  - **kind** is a _integer_ initialization expression (a constant expression)
    + If **kind** is present it defines the kind of the _real_ result

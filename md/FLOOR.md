@@ -17,7 +17,7 @@ not greater than argument
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - **a** is a _real_ of any kind
 - _KIND_ is any valid value for type _integer_.
 - the result is an _integer_ of the specified or default kind

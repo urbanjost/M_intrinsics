@@ -16,7 +16,7 @@
 ### **Characteristics**
 
  -  **a** can be of any type **TYPE** and rank.
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 

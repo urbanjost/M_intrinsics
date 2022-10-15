@@ -17,7 +17,7 @@
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - **array** shall be an array, of any type.
 - **dim** shall be a scalar _integer_.
 - **kind** an _integer_ initialization expression indicating the kind

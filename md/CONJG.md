@@ -11,24 +11,23 @@
 ```fortran
      elemental complex(kind=KIND) function conjg(z)
 
-      complex(kind=KIND),intent(in) :: z
+      complex(kind=**),intent(in) :: z
 ```
 ### **Characteristics**
 
-- **KIND** may be any supported value for the _complex_ input value.
-
-- The returned value with be the same _complex_ type as the input.
+- **z** is a _complex_ value of any valid kind.
+- The returned value has the same _complex_ type as the input.
 
 ### **Description**
 
 **conjg**(3) returns the complex conjugate of the _complex_ value **z**.
 
+That is, If **z** is the _complex_ value **(x, y)** then the result is
+**(x, -y)**.
+
 In mathematics, the complex conjugate of a complex number is a value
 whose real and imaginary part are equal parts are equal in magnitude to
 each other but the **y** value has opposite sign.
-
-That is, If **z** is the _complex_ value **(x, y)** then the result is
-**(x, -y)**.
 
 For matrices of complex numbers, **conjg(array)** represents the
 element-by-element conjugation of **array**; not the conjugate transpose
@@ -37,12 +36,15 @@ of the **array** .
 ### **Options**
 
 - **z**
-  : The _complex_ value to create the conjugate of.
+  : The value to create the conjugate of.
 
 ### **Result**
 
-Returns a complex value equal to the input value except the sign of
+Returns a value equal to the input value except the sign of
 the imaginary component is the opposite of the input value.
+
+That is, if **z** has the value **(x,y)**, the result has the value
+**(x,−y)**.
 
 ### **Examples**
 

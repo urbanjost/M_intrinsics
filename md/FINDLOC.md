@@ -35,7 +35,7 @@ or
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - **array** shall be an array of intrinsic type.
 - **value** shall be scalar but in type conformance with **array**
 - **dim** The corresponding actual argument shall not be an optional dummy argument.

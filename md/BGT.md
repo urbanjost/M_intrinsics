@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
 
  - the _integer_ _kind_ of **i** and **j** may not necessarily be the same.
    kind. In addition, values may be a BOZ constant with a value valid

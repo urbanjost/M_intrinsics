@@ -161,4 +161,4 @@ Fortran 95
 [**pack**(3)](#pack),
 [**spread**(3)](#spread)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

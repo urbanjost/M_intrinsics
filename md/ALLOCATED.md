@@ -15,7 +15,7 @@
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
 
  - **entity** may be any allocatable scalar or array object of any type.
 

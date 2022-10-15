@@ -18,7 +18,7 @@
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
    meeting the conditions described herein.
  - **command** and **errmsg** are scalar _character_ variables of default kind.
  - **length** and **status** are scalar _integer_ with a decimal exponent

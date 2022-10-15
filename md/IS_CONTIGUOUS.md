@@ -15,7 +15,7 @@
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - **a** may be of any type. It shall be an array. If it is a pointer it
   shall be associated.
 - the result is a default logical scalar

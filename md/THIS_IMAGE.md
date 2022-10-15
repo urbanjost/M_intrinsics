@@ -18,7 +18,7 @@ result = this_image() | = this_image(distance) | = this_image(coarray,dim)
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **coarray** can be of any type. If **dim** is present it is required.
  - **distance** is not permitted together with **coarray**
  - if **dim** if present, coarray is required.

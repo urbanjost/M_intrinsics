@@ -9,7 +9,7 @@
     result = count(mask [,dim] [,kind] )
 ```
 ```fortran
-     integer(kind=KIND) function count(mask, dim, kind )
+     integer(kind=KIND) function count(mask, dim, KIND )
 
       logical(kind=**),intent(in) :: mask(..)
       integer(kind=**),intent(in),optional :: dim
@@ -17,13 +17,11 @@
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
-
-  - **mask** is an array of any shape.
-
+  - a kind designated as ** may be any supported kind for the type
+  - **mask** is a _logical_ array of any shape and kind.
   - If **dim** is present, the result is an array with the specified rank
     removed.
-
+  - **KIND** is a scalar integer constant expression valid as an _integer_ kind
   - The return value is of default _integer_ type unless **kind** is specified
     to declare the kind of the result.
 
@@ -43,6 +41,12 @@
 - **dim**
   : specifies to remove this dimension from the result and produce an
     array of counts of _.true._ values along the removed dimension.
+    If not present, the result is a scalar count of the true elements in **mask**
+    the value must be in the range 1 <= dim <= n, where n is the
+    rank(number of dimensions) of **mask**.
+
+    The corresponding actual argument shall not be an optional dummy
+    argument, a disassociated pointer, or an unallocated allocatable.
 
 - **kind**
   : An _integer_ initialization expression indicating the kind
@@ -50,14 +54,14 @@
 
 ### **Result**
 
-The return value is the number of _.true_. values in **mask** if **dim**
-is not present.
+  The return value is the number of _.true_. values in **mask** if **dim**
+  is not present.
 
-If **dim** is present, the result is an array with a rank one less
-than the rank of the input array **mask**, and a size corresponding
-to the shape of **array** with the **dim** dimension removed, with the
-remaining elements containing the number of _.true._ elements along the
-removed dimension.
+  If **dim** is present, the result is an array with a rank one less
+  than the rank of the input array **mask**, and a size corresponding
+  to the shape of **array** with the **dim** dimension removed, with the
+  remaining elements containing the number of _.true._ elements along the
+  removed dimension.
 
 ### **Examples**
 
@@ -72,10 +76,11 @@ integer, dimension(2,3) :: a, b
 logical, dimension(2,3) :: mymask
 integer :: i
 integer :: c(2,3,4)
+
+   print *,'the numeric arrays we will compare'
    a = reshape( [ 1, 2, 3, 4, 5, 6 ], [ 2, 3 ])
    b = reshape( [ 0, 7, 3, 4, 5, 8 ], [ 2, 3 ])
    c = reshape( [( i,i=1,24)], [ 2, 3 ,4])
-  ! show numeric arrays we will compare
    print '(3i3)', a(1,:)
    print '(3i3)', a(2,:)
    print *
@@ -83,7 +88,7 @@ integer :: c(2,3,4)
    print '(3i3)', b(2,:)
 
   ! basic calls
-   print *, 'count a few basic things ...'
+   print *, 'count a few basic things creating a mask from an expression'
    print *, 'count a>b',count(a>b)
    print *, 'count b<a',count(a<b)
    print *, 'count b==a',count(a==b)
@@ -93,13 +98,14 @@ integer :: c(2,3,4)
 
    ! The common usage is just getting a count, but if you want
    ! to specify the DIM argument and get back reduced arrays
-   ! of counts this is easier to visualize if we look at a mask
-   ! make a mask identifying unequal elements
+   ! of counts this is easier to visualize if we look at a mask.
+   print *, 'make a mask identifying unequal elements ...'
    mymask = a.ne.b
-   print *, 'show mask for a.ne.b'
+   print *, 'the mask generated from a.ne.b'
    print '(3l3)', mymask(1,:)
    print '(3l3)', mymask(2,:)
-   ! count total and along rows and columns
+
+   print *,'count total and along rows and columns ...'
 
    print '(a)', 'number of elements not equal'
    print '(a)', '(ie. total true elements in the mask)'
@@ -163,55 +169,58 @@ contains
    end subroutine printi
 end program demo_count
 ```
-Results:
+  Results:
 ```text
- >   1  3  5
- >   2  4  6
+ >   the numeric arrays we will compare
+ >    1  3  5
+ >    2  4  6
  >
- >   0  3  5
- >   7  4  8
- >  count a few basic things ...
- >  count a>b           1
- >  count b<a           2
- >  count b==a           3
- >  check sum =  T
- >  show mask for a.ne.b
- >   T  F  F
- >   T  F  T
- > number of elements not equal
- > (ie. total true elements in the mask)
- >   3
- > count of elements not equal in each column
- > (ie. total true elements in each column)
- >   2  0  1
- > count of elements not equal in each row
- > (ie. total true elements in each row)
- >   1  2
- >  lets try this with c(2,3,4)
- >    taking the result of the modulo
- >     z=1      z=2      z=3      z=4
- >    1 3 0 || 2 4 1 || 3 0 2 || 4 1 3 |
- >    2 4 1 || 3 0 2 || 4 1 3 || 0 2 4 |
+ >    0  3  5
+ >    7  4  8
+ >   count a few basic things creating a mask from an expression
+ >   count a>b           1
+ >   count b<a           2
+ >   count b==a           3
+ >   check sum =  T
+ >   make a mask identifying unequal elements ...
+ >   the mask generated from a.ne.b
+ >    T  F  F
+ >    T  F  T
+ >   count total and along rows and columns ...
+ >  number of elements not equal
+ >  (ie. total true elements in the mask)
+ >    3
+ >  count of elements not equal in each column
+ >  (ie. total true elements in each column)
+ >    2  0  1
+ >  count of elements not equal in each row
+ >  (ie. total true elements in each row)
+ >    1  2
+ >   lets try this with c(2,3,4)
+ >     taking the result of the modulo
+ >      z=1      z=2      z=3      z=4
+ >     1 3 0 || 2 4 1 || 3 0 2 || 4 1 3 |
+ >     2 4 1 || 3 0 2 || 4 1 3 || 0 2 4 |
  >
- >    would result in the mask ..
- >    F F T || F F F || F T F || F F F |
- >    F F F || F T F || F F F || T F F |
+ >     would result in the mask ..
+ >     F F T || F F F || F T F || F F F |
+ >     F F F || F T F || F F F || T F F |
  >
- >   the total number of .true.values is
- >  4
+ >    the total number of .true.values is
+ >   4
  >
- > counting up along a row and removing rows :( 3 4 )
- >  > [ 0, 0, 0, 1 ]
- >  > [ 0, 1, 1, 0 ]
- >  > [ 1, 0, 0, 0 ]
+ >  counting up along a row and removing rows :( 3 4 )
+ >   > [ 0, 0, 0, 1 ]
+ >   > [ 0, 1, 1, 0 ]
+ >   > [ 1, 0, 0, 0 ]
  >
- > counting up along a column and removing columns :( 2 4 )
- >  > [ 1, 0, 1, 0 ]
- >  > [ 0, 1, 0, 1 ]
+ >  counting up along a column and removing columns :( 2 4 )
+ >   > [ 1, 0, 1, 0 ]
+ >   > [ 0, 1, 0, 1 ]
  >
- > counting up along a depth and removing depths :( 2 3 )
- >  > [ 0, 1, 1 ]
- >  > [ 1, 1, 0 ]
+ >  counting up along a depth and removing depths :( 2 3 )
+ >   > [ 0, 1, 1 ]
+ >   > [ 1, 1, 0 ]
 ```
 ### **Standard**
 
@@ -219,6 +228,8 @@ Fortran 95 , with KIND argument - Fortran 2003
 
 ### **See Also**
 
-[****(3)](#)
+[**any**(3)](#any),
+[**all**(3)](#all),
+[**sum**(3)](#sum),
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

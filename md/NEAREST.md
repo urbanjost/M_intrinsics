@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - **x** may be a _real_ value of any kind.
 - The return value is of the same type and kind as **x**.
 
@@ -32,7 +32,7 @@
 
 - **s**
   : a non-zero value whose sign is used to determine the direction in
-  which to search from **xx** to the representable value.
+  which to search from **x** to the representable value.
 
   If **s** is positive, **nearest** returns the processor-representable
   number greater than **x** and nearest to it.

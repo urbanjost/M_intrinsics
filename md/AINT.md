@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - the result is a real of the default kind unless **kind** is specified.
 - **kind** is an _integer_ initialization expression indicating the
   kind parameter of the result.

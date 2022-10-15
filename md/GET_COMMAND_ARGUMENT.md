@@ -21,7 +21,7 @@
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
    meeting the conditions described herein.
  - **number**, **length**, and **status** are scalar _integer_
    with a decimal exponent range of at least four.

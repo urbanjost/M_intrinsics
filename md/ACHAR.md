@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 
 - The _character_ kind returned is the value of **kind** if present.
   otherwise, a single default _character_ is returned.

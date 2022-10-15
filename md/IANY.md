@@ -27,7 +27,7 @@ or
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **array** must be an array.
  - **dim** may be of any _integer_ kind.
  - **mask** is a _logical_ array that conforms to **array** of

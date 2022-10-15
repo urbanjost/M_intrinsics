@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **a** shall be of type integer, real, or complex, or a boz-literal-constant.
  - **KIND** shall be a scalar integer constant expression.
 
