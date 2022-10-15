@@ -160,7 +160,7 @@ Results:
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 
 - The _character_ kind returned is the value of **kind** if present.
   otherwise, a single default _character_ is returned.
@@ -802,7 +802,7 @@ logical expressions:
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - the result is a real of the default kind unless **kind** is specified.
 - **kind** is an _integer_ initialization expression indicating the
   kind parameter of the result.
@@ -1018,7 +1018,7 @@ Fortran 95
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
 
  - **entity** may be any allocatable scalar or array object of any type.
 
@@ -1661,7 +1661,7 @@ Fortran 95
 
 [**null**(3)](#null)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## atan2
 
@@ -3321,7 +3321,7 @@ Fortran 2008
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
 
  - the _integer_ _kind_ of **i** and **j** may not necessarily be
    the same. In addition, values may be a BOZ constant with a value
@@ -3488,7 +3488,7 @@ Fortran 2008
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
 
  - the _integer_ _kind_ of **i** and **j** may not necessarily be the same.
    kind. In addition, values may be a BOZ constant with a value valid
@@ -4061,34 +4061,36 @@ Fortran 2003
 ### **Characteristics**
 
  - ** a is of type _real_
- - KIND shall be a scalar integer constant expression.
+ - **KIND** shall be a scalar integer constant expression.
    It specifies the kind of the result if present.
- - the result is _integer_.
- is specified.
+ - the result is _integer_. It is default kind if **KIND** is not
+   specified
 
 ### **Description**
 
-**ceiling**(3) returns the least integer greater than or equal to **a**.
+  **ceiling**(3) returns the least integer greater than or equal to **a**.
+
+  On the number line -n <-- 0 -> +n the value returned is always at or
+  to the right of the input value.
 
 ### **Options**
 
 - **a**
-  : A _real_ value to produce a result for.
+  : A _real_ value to produce a ceiling for.
 
 - **kind**
-  : An _integer_ initialization expression indicating the kind
-  parameter of the result.
+  : indicates the kind parameter of the result.
 
 ### **Result**
 
-The result will be the _integer_ value equal to **a** or the least integer
-greater than **a** if the input value is not equal to a whole number.
+  The result will be the _integer_ value equal to **a** or the least
+  integer greater than **a** if the input value is not equal to a
+  whole number.
 
-On the number line -n <-- 0 -> +n the value returned is always at or to the
-right of the input value.
+  If **a** is equal to a whole number, the returned value is **int(a)**.
 
-The result is undefined if it cannot be represented in the specified
-_integer_ type.
+  The result is undefined if it cannot be represented in the specified
+  _integer_ type.
 
 ### **Examples**
 
@@ -4147,7 +4149,7 @@ Fortran 95
 [**int**(3)](#int),
 [**selected_int_kind**(3)](#selected_int_kind)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## c_f_pointer
 
@@ -4387,7 +4389,7 @@ Fortran 2003
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
   - **i** is an _integer_ of any kind
   - **kind** is an _integer_ initialization expression indicating the kind
     parameter of the result.
@@ -4581,7 +4583,7 @@ Fortran 2003
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - The type of **x** **TYPE** may be _integer_, _real_, or _complex_.
 - **y** is allowed only if **x** is not _complex_. The **TYPE** for
   **y** may be _integer_ or _real_.
@@ -5362,24 +5364,23 @@ Fortran 2008
 ```fortran
      elemental complex(kind=KIND) function conjg(z)
 
-      complex(kind=KIND),intent(in) :: z
+      complex(kind=**),intent(in) :: z
 ```
 ### **Characteristics**
 
-- **KIND** may be any supported value for the _complex_ input value.
-
-- The returned value with be the same _complex_ type as the input.
+- **z** is a _complex_ value of any valid kind.
+- The returned value has the same _complex_ type as the input.
 
 ### **Description**
 
 **conjg**(3) returns the complex conjugate of the _complex_ value **z**.
 
+That is, If **z** is the _complex_ value **(x, y)** then the result is
+**(x, -y)**.
+
 In mathematics, the complex conjugate of a complex number is a value
 whose real and imaginary part are equal parts are equal in magnitude to
 each other but the **y** value has opposite sign.
-
-That is, If **z** is the _complex_ value **(x, y)** then the result is
-**(x, -y)**.
 
 For matrices of complex numbers, **conjg(array)** represents the
 element-by-element conjugation of **array**; not the conjugate transpose
@@ -5388,12 +5389,15 @@ of the **array** .
 ### **Options**
 
 - **z**
-  : The _complex_ value to create the conjugate of.
+  : The value to create the conjugate of.
 
 ### **Result**
 
-Returns a complex value equal to the input value except the sign of
+Returns a value equal to the input value except the sign of
 the imaginary component is the opposite of the input value.
+
+That is, if **z** has the value **(x,y)**, the result has the value
+**(x, -y)**.
 
 ### **Examples**
 
@@ -5891,7 +5895,7 @@ Fortran 2008
     result = count(mask [,dim] [,kind] )
 ```
 ```fortran
-     integer(kind=KIND) function count(mask, dim, kind )
+     integer(kind=KIND) function count(mask, dim, KIND )
 
       logical(kind=**),intent(in) :: mask(..)
       integer(kind=**),intent(in),optional :: dim
@@ -5899,13 +5903,11 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
-
-  - **mask** is an array of any shape.
-
+  - a kind designated as ** may be any supported kind for the type
+  - **mask** is a _logical_ array of any shape and kind.
   - If **dim** is present, the result is an array with the specified rank
     removed.
-
+  - **KIND** is a scalar integer constant expression valid as an _integer_ kind
   - The return value is of default _integer_ type unless **kind** is specified
     to declare the kind of the result.
 
@@ -5925,6 +5927,12 @@ Fortran 2008
 - **dim**
   : specifies to remove this dimension from the result and produce an
     array of counts of _.true._ values along the removed dimension.
+    If not present, the result is a scalar count of the true elements in **mask**
+    the value must be in the range 1 <= dim <= n, where n is the
+    rank(number of dimensions) of **mask**.
+
+    The corresponding actual argument shall not be an optional dummy
+    argument, a disassociated pointer, or an unallocated allocatable.
 
 - **kind**
   : An _integer_ initialization expression indicating the kind
@@ -5932,14 +5940,14 @@ Fortran 2008
 
 ### **Result**
 
-The return value is the number of _.true_. values in **mask** if **dim**
-is not present.
+  The return value is the number of _.true_. values in **mask** if **dim**
+  is not present.
 
-If **dim** is present, the result is an array with a rank one less
-than the rank of the input array **mask**, and a size corresponding
-to the shape of **array** with the **dim** dimension removed, with the
-remaining elements containing the number of _.true._ elements along the
-removed dimension.
+  If **dim** is present, the result is an array with a rank one less
+  than the rank of the input array **mask**, and a size corresponding
+  to the shape of **array** with the **dim** dimension removed, with the
+  remaining elements containing the number of _.true._ elements along the
+  removed dimension.
 
 ### **Examples**
 
@@ -5954,10 +5962,11 @@ integer, dimension(2,3) :: a, b
 logical, dimension(2,3) :: mymask
 integer :: i
 integer :: c(2,3,4)
+
+   print *,'the numeric arrays we will compare'
    a = reshape( [ 1, 2, 3, 4, 5, 6 ], [ 2, 3 ])
    b = reshape( [ 0, 7, 3, 4, 5, 8 ], [ 2, 3 ])
    c = reshape( [( i,i=1,24)], [ 2, 3 ,4])
-  ! show numeric arrays we will compare
    print '(3i3)', a(1,:)
    print '(3i3)', a(2,:)
    print *
@@ -5965,7 +5974,7 @@ integer :: c(2,3,4)
    print '(3i3)', b(2,:)
 
   ! basic calls
-   print *, 'count a few basic things ...'
+   print *, 'count a few basic things creating a mask from an expression'
    print *, 'count a>b',count(a>b)
    print *, 'count b<a',count(a<b)
    print *, 'count b==a',count(a==b)
@@ -5975,13 +5984,14 @@ integer :: c(2,3,4)
 
    ! The common usage is just getting a count, but if you want
    ! to specify the DIM argument and get back reduced arrays
-   ! of counts this is easier to visualize if we look at a mask
-   ! make a mask identifying unequal elements
+   ! of counts this is easier to visualize if we look at a mask.
+   print *, 'make a mask identifying unequal elements ...'
    mymask = a.ne.b
-   print *, 'show mask for a.ne.b'
+   print *, 'the mask generated from a.ne.b'
    print '(3l3)', mymask(1,:)
    print '(3l3)', mymask(2,:)
-   ! count total and along rows and columns
+
+   print *,'count total and along rows and columns ...'
 
    print '(a)', 'number of elements not equal'
    print '(a)', '(ie. total true elements in the mask)'
@@ -6045,55 +6055,58 @@ contains
    end subroutine printi
 end program demo_count
 ```
-Results:
+  Results:
 ```text
- >   1  3  5
- >   2  4  6
+ >   the numeric arrays we will compare
+ >    1  3  5
+ >    2  4  6
  >
- >   0  3  5
- >   7  4  8
- >  count a few basic things ...
- >  count a>b           1
- >  count b<a           2
- >  count b==a           3
- >  check sum =  T
- >  show mask for a.ne.b
- >   T  F  F
- >   T  F  T
- > number of elements not equal
- > (ie. total true elements in the mask)
- >   3
- > count of elements not equal in each column
- > (ie. total true elements in each column)
- >   2  0  1
- > count of elements not equal in each row
- > (ie. total true elements in each row)
- >   1  2
- >  lets try this with c(2,3,4)
- >    taking the result of the modulo
- >     z=1      z=2      z=3      z=4
- >    1 3 0 || 2 4 1 || 3 0 2 || 4 1 3 |
- >    2 4 1 || 3 0 2 || 4 1 3 || 0 2 4 |
+ >    0  3  5
+ >    7  4  8
+ >   count a few basic things creating a mask from an expression
+ >   count a>b           1
+ >   count b<a           2
+ >   count b==a           3
+ >   check sum =  T
+ >   make a mask identifying unequal elements ...
+ >   the mask generated from a.ne.b
+ >    T  F  F
+ >    T  F  T
+ >   count total and along rows and columns ...
+ >  number of elements not equal
+ >  (ie. total true elements in the mask)
+ >    3
+ >  count of elements not equal in each column
+ >  (ie. total true elements in each column)
+ >    2  0  1
+ >  count of elements not equal in each row
+ >  (ie. total true elements in each row)
+ >    1  2
+ >   lets try this with c(2,3,4)
+ >     taking the result of the modulo
+ >      z=1      z=2      z=3      z=4
+ >     1 3 0 || 2 4 1 || 3 0 2 || 4 1 3 |
+ >     2 4 1 || 3 0 2 || 4 1 3 || 0 2 4 |
  >
- >    would result in the mask ..
- >    F F T || F F F || F T F || F F F |
- >    F F F || F T F || F F F || T F F |
+ >     would result in the mask ..
+ >     F F T || F F F || F T F || F F F |
+ >     F F F || F T F || F F F || T F F |
  >
- >   the total number of .true.values is
- >  4
+ >    the total number of .true.values is
+ >   4
  >
- > counting up along a row and removing rows :( 3 4 )
- >  > [ 0, 0, 0, 1 ]
- >  > [ 0, 1, 1, 0 ]
- >  > [ 1, 0, 0, 0 ]
+ >  counting up along a row and removing rows :( 3 4 )
+ >   > [ 0, 0, 0, 1 ]
+ >   > [ 0, 1, 1, 0 ]
+ >   > [ 1, 0, 0, 0 ]
  >
- > counting up along a column and removing columns :( 2 4 )
- >  > [ 1, 0, 1, 0 ]
- >  > [ 0, 1, 0, 1 ]
+ >  counting up along a column and removing columns :( 2 4 )
+ >   > [ 1, 0, 1, 0 ]
+ >   > [ 0, 1, 0, 1 ]
  >
- > counting up along a depth and removing depths :( 2 3 )
- >  > [ 0, 1, 1 ]
- >  > [ 1, 1, 0 ]
+ >  counting up along a depth and removing depths :( 2 3 )
+ >   > [ 0, 1, 1 ]
+ >   > [ 1, 1, 0 ]
 ```
 ### **Standard**
 
@@ -6101,7 +6114,9 @@ Fortran 95 , with KIND argument - Fortran 2003
 
 ### **See Also**
 
-[****(3)](#)
+[**any**(3)](#any),
+[**all**(3)](#all),
+[**sum**(3)](#sum),
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -6232,7 +6247,7 @@ Fortran 95
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **array** may be any type and rank (and the result will
    automatically be of the same type, kind and rank as **array**).
 
@@ -6946,7 +6961,7 @@ FORTRAN 77
     first converted as if by the intrinsic function **int**(3) to type
     _integer_ with the kind type parameter of the other.
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
@@ -7236,7 +7251,7 @@ Fortran 2008
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **array** May be any type, but not a scalar.
  - **shift** is an integer of any kind
  - **boundary** is a scalar of the same type and kind as the **array**.
@@ -8274,7 +8289,7 @@ or
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - **array** shall be an array of intrinsic type.
 - **value** shall be scalar but in type conformance with **array**
 - **dim** The corresponding actual argument shall not be an optional dummy argument.
@@ -8455,7 +8470,7 @@ not greater than argument
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - **a** is a _real_ of any kind
 - _KIND_ is any valid value for type _integer_.
 - the result is an _integer_ of the specified or default kind
@@ -8803,7 +8818,7 @@ Logarithm of the Gamma function: [**log_gamma**(3)](#log_gamma)
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
    meeting the conditions described herein.
  - **number**, **length**, and **status** are scalar _integer_
    with a decimal exponent range of at least four.
@@ -8942,7 +8957,7 @@ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
    meeting the conditions described herein.
  - **command** and **errmsg** are scalar _character_ variables of default kind.
  - **length** and **status** are scalar _integer_ with a decimal exponent
@@ -9050,7 +9065,7 @@ Fortran 2003
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
    meeting the conditions described herein.
  - **name**, **value**, and **errmsg**  are a scalar _character_ of
    default kind.
@@ -9417,7 +9432,7 @@ Fortran 2008
  - The return value is of type _integer_ and of kind **KIND**. If **KIND**
    is absent, the return value is of default integer kind.
  - **kind** may be of any _integer_ kind.
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
@@ -9549,7 +9564,7 @@ Results:
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **array** must be an _integer_ array
  - **mask** is a _logical_ array that conforms to **array** of any
    _logical_ kind.
@@ -9741,7 +9756,7 @@ or
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **array** must be an array.
  - **dim** may be of any _integer_ kind.
  - **mask** is a _logical_ array that conforms to **array** of
@@ -9855,7 +9870,7 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
   - The return value is of the same kind as **i**. Otherwise,
     any _integer_ kinds are allowed.
 
@@ -10072,7 +10087,7 @@ Fortran 95
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
   - The return value is of the same kind as **i**. Otherwise,
     any _integer_ kinds are allowed.
 
@@ -10163,22 +10178,22 @@ Fortran 95
 
 ### **Name**
 
-**ichar**(3) - \[CHARACTER:CONVERSION\] Character-to-integer conversion function
+**ichar**(3) - \[CHARACTER:CONVERSION\] Character-to-integer code conversion function
 
 ### **Synopsis**
 ```fortran
     result = ichar(c [,kind])
 ```
 ```fortran
-     elemental function ichar(c,kind)
+     elemental integer(kind=KIND) function ichar(c,KIND)
 
-      character(len=1),intent(in) :: c
-      integer,intent(in),optional :: kind
+      character(len=1,kind=**),intent(in) :: c
+      integer,intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-- **c** is a single scalar _character_
-- **kind** a constant _integer_ initialization expression indicating
+- **c** is a scalar _character_
+- **kind** is a constant _integer_ initialization expression indicating
   the kind parameter of the result.
 - The return value is of type _integer_ and of kind **kind**. If **kind**
   is absent, the return value is of default _integer_ kind.
@@ -10197,6 +10212,7 @@ Fortran 95
 
 - **c**
   : The input character to determine the code for.
+    Its value shall be that of a character capable of representation in the processor.
 
 - **kind**
   : indicates the kind parameter of the result. If **kind** is absent,
@@ -10204,7 +10220,21 @@ Fortran 95
 
 ### **Result**
 
-The code in the systems default character set for the character being queried.
+  The code in the system default character set for the character being
+  queried is returned.
+
+  The result is the position of **c** in the processor collating sequence
+  associated with the kind type parameter of **c**.
+
+  it is nonnegative and less than n, where n is the number of characters
+  in the collating sequence.
+
+  The kind type parameter of the result shall specify an integer kind
+  that is capable of representing n.
+
+  For any characters C and D capable of representation in the processor,
+  C <= D is true if and only if ICHAR (C) <= ICHAR (D) is true and C ==
+  D is true if and only if ICHAR (C) == ICHAR (D) is true.
 
 ### **Examples**
 
@@ -10249,7 +10279,7 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ieor
 
@@ -10469,7 +10499,7 @@ result = index( string, substring [,back] [,kind] )
   start of the rightmost occurrence rather than the leftmost.
 
 - **kind**
-  : if **kind** is present, the kind type parameter is that speciﬁed by the value of
+  : if **kind** is present, the kind type parameter is that specified by the value of
     **kind**; otherwise the kind type parameter is that of default integer type.
 
 ### **Result**
@@ -10552,7 +10582,7 @@ of arguments, and search for certain arguments:
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **a** shall be of type integer, real, or complex, or a boz-literal-constant.
  - **KIND** shall be a scalar integer constant expression.
 
@@ -10862,7 +10892,7 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - **a** may be of any type. It shall be an array. If it is a pointer it
   shall be associated.
 - the result is a default logical scalar
@@ -10995,7 +11025,7 @@ Fortran 2008
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **i** may be an _integer_ of any kind
  - **shift** and **size** may be _integers_ of any kind
  - the kind for **i** dictates the kind of the returned value.
@@ -11094,7 +11124,7 @@ Fortran 95
 
 ### **Name**
 
-**ishft**(3) - \[BIT:SHIFT\] Shift bits
+**ishft**(3) - \[BIT:SHIFT\] Logical shift of bits in an integer
 
 ### **Synopsis**
 ```fortran
@@ -11108,8 +11138,9 @@ Fortran 95
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
- -  the kind for **i** dictates the kind of the returned value.
+ - a kind designated as ** may be any supported kind for the type
+ - **i** is an _integer_ of any kind. the kind for **i** dictates the kind of the returned value.
+ - **shift** is an _integer_ of any kind.
 
 ### **Description**
 
@@ -11135,7 +11166,14 @@ Fortran 95
 
 ### **Result**
 
-  The return value has the same characteristics (shape, kind, ...)  as  **i**.
+  The result has the value obtained by shifting the bits of **i** by **shift** positions.
+
+  1. If **shift** is positive, the shift is to the left
+  2. if **shift** is negative, the shift is to the right
+  3.  if **shift** is zero, no shift is performed.
+
+  Bits shifted out from the left or from the right, as appropriate,
+  are lost. Zeros are shifted in from the opposite end.
 
 ### **Examples**
 
@@ -11172,7 +11210,7 @@ Fortran 95
 
 [**ishftc**(3)](#ishftc)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## is_iostat_end
 
@@ -12448,21 +12486,26 @@ Gamma function: [**gamma**(3)](#gamma)
 
 ### **Name**
 
-**logical**(3) - \[TYPE:LOGICAL\] Converts one kind of _logical_ variable to another
+**logical**(3) - \[TYPE:LOGICAL\] Conversion between kinds of logical values
 
 ### **Synopsis**
 ```fortran
     result = logical(l [,kind])
 ```
 ```fortran
-     elemental logical(kind=KIND) function logical(l,kind)
+     elemental logical(kind=KIND) function logical(l,KIND)
 
-      logical(kind=KIND),intent(in) :: l
-      integer(kind=**),intent(in),optional :: kind
+      logical(kind=**),intent(in) :: l
+      integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
+  - **l** is of type logical
+  - **KIND** shall be a scalar integer constant expression.
+    If **KIND** is present, the kind type parameter of the result is
+    that specified by the value of **KIND**; otherwise, the kind type
+    parameter is that of default logical.
 
 ### **Description**
 
@@ -12471,11 +12514,11 @@ Gamma function: [**gamma**(3)](#gamma)
 ### **Options**
 
 - **l**
-  : The type shall be _logical_.
+  : The _logical_ value to produce a copy of with kind **kind**
 
 - **kind**
-  : An _integer_ initialization expression indicating the kind parameter
-  of the result. If not present, the default kind is returned.
+  : indicates the kind parameter of the result.
+  If not present, the default kind is returned.
 
 ### **Result**
 
@@ -12487,6 +12530,7 @@ is not given.
 
 Sample program:
 ```fortran
+Linux
 program demo_logical
 ! Access array containing the kind type parameter values supported by this
 ! compiler for entities of logical type
@@ -12504,11 +12548,11 @@ end program demo_logical
 ```
 Results:
 ```text
-              1
-              2
-              4
-              8
-             16
+ >            1
+ >            2
+ >            4
+ >            8
+ >           16
 ```
 ### **Standard**
 
@@ -12520,13 +12564,13 @@ Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 [**real**(3)](#real),
 [**cmplx**(3)](#cmplx)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## log
 
 ### **Name**
 
-**log**(3) - \[MATHEMATICS\] Logarithm function
+**log**(3) - \[MATHEMATICS\] Natural logarithm
 
 ### **Synopsis**
 ```fortran
@@ -12539,7 +12583,7 @@ Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 ```
 ### **Characteristics**
 
- - **x** may be any kind of _real_ or _complex_ value
+ - **x** may be any _real_ or _complex_ kind.
  - the result is the same type and characteristics as **x**.
 
 ### **Description**
@@ -12550,15 +12594,23 @@ Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 ### **Options**
 
 - **x**
-  : The value to take the log of
+  : The value to compute the natual log of.
+    If **x** is _real_, its value shall be greater than zero.
+    If **x** is _complex_, its value shall not be zero.
 
 ### **Result**
 
-  The natural logarithm of **xx**.
-  If **x** is _complex_, the imaginary part OMEGA is in the range
+  The natural logarithm of **x**.
+  If **x** is the _complex_ value **(r,i)** , the imaginary part "i" is in the range
 ```fortran
-    -PI < OMEGA <= PI
+    -PI < i <= PI
 ```
+   If the real part of **x** is less than zero and the imaginary part of
+   **x** is zero, then the imaginary part of the result is approximately
+   **PI** if the imaginary part of **PI** is positive real zero or the
+   processor does not distinguish between positive and negative real zero,
+   and approximately **-PI** if the imaginary part of **x** is negative
+   real zero.
 
 ### **Examples**
 
@@ -12585,7 +12637,7 @@ FORTRAN 77
 
 [****(3)](#)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## maskl
 
@@ -12605,7 +12657,7 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - **i** is an integer
 - **kind** Shall be a scalar constant expression of type _integer_
   whose value is a supported _integer_ kind.
@@ -12694,7 +12746,7 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - **i** is an integer
 - **kind** Shall be a scalar constant expression of type _integer_
   whose value is a supported _integer_ kind.
@@ -13122,7 +13174,7 @@ Fortran 95
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
   - **NUMERIC** designates any intrinsic numeric type and kind.
 
 ### **Description**
@@ -13404,7 +13456,7 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **NUMERIC** designates any numeric type and kind.
 
 ### **Description**
@@ -13625,7 +13677,7 @@ Fortran 2008
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **tsource** May be of any type, including user-defined.
  - **fsource** Shall be of the same type and type parameters as **tsource**.
  - The result will by of the same type and type parameters as **tsource** too.
@@ -13879,7 +13931,7 @@ Fortran 95
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
   - **NUMERIC** is any numeric type and kind.
 
 ### **Description**
@@ -14056,7 +14108,7 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **NUMERIC** is any numeric type and kind.
 
 ### **Description**
@@ -14733,7 +14785,7 @@ Fortran 95
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - **x** may be a _real_ value of any kind.
 - The return value is of the same type and kind as **x**.
 
@@ -14749,7 +14801,7 @@ Fortran 95
 
 - **s**
   : a non-zero value whose sign is used to determine the direction in
-  which to search from **xx** to the representable value.
+  which to search from **x** to the representable value.
 
   If **s** is positive, **nearest** returns the processor-representable
   number greater than **x** and nearest to it.
@@ -15011,7 +15063,7 @@ Fortran 2003
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
   - **a** is type real of any kind
   - **KIND** is a scalar integer constant expression
   - The result is default _integer_ kind or the value of **kind**
@@ -15465,7 +15517,7 @@ Fortran 95
 
 [**associated**(3)](#associated)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## num_images
 
@@ -15793,7 +15845,7 @@ Fortran 95
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
@@ -16303,7 +16355,7 @@ Fortran 95
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
   - **NUMERIC** is any numeric type and kind.
 
 ### **Description**
@@ -16890,7 +16942,7 @@ Fortran 95
 ### **Characteristics**
 
  -  **a** can be of any type **TYPE** and rank.
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
@@ -17052,7 +17104,7 @@ Results:
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - the type of **x** may be _integer_, _real_, or _complex_; or a BOZ-literal-constant.
  - **kind** is a _integer_ initialization expression (a constant expression)
    + If **kind** is present it defines the kind of the _real_ result
@@ -17377,7 +17429,7 @@ Results:
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - **string** is a scalar _character_ type.
 - **ncopies** is a scalar integer.
 - the result is a new scalar of type _character_ of the same type as
@@ -17462,7 +17514,7 @@ Functions that perform operations on character strings:
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **source** is an array of any type
  - **shape** defines a Fortran shape and therefore an _integer_ vector
    (of rank one) of constant size of up to 16 non-negative values.
@@ -17866,27 +17918,37 @@ Fortran 2003
 ```fortran
      elemental real(kind=KIND) function scale(x, i)
 
-      real(kind=KIND),intent(in) :: x
-      integer,intent(in)         :: i
+      real(kind=KIND),intent(in)   :: x
+      integer(kind=**),intent(in)  :: i
 ```
 ### **Characteristics**
 
+    - **x** is type _real_ of any kind
+    - **i** is type an _integer_ of any kind
+    - the result is _real_ of the same kind as **x**
+
 ### **Description**
 
-**scale**(3) returns x \* **radix(x)\*\*i**.
+   **scale**(3) returns x \* **radix(x)\*\*i**.
+
+   It is almost certain the radix(base) of the platform is two, therefore
+   **scale**(3) is generally the same as **x*2\*\*i**
 
 ### **Options**
 
 - **x**
-  : The type of the argument shall be a _real_.
+  : the value to multiply by **radix(x)\*\*i**. Its type and kind is used
+  to determine the radix for values with its characteristics and determines
+  the characteristics of the result, so care must be taken the returned
+  value is within the range of the characteristics of **x**.
 
 - **i**
-  : The type of the argument shall be a _integer_.
+  : The power to raise the radix of the machine to
 
 ### **Result**
 
-The return value is of the same type and kind as **x**. Its value is
-**x \* radix(x)\*\*i**.
+The return value is **x \* radix(x)\*\*i**, assuming that value can be
+represented by a value of the type and kind of **x**.
 
 ### **Examples**
 
@@ -17925,7 +17987,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## scan
 
@@ -18359,7 +18421,7 @@ Fortran 95 ; with RADIX - Fortran 2008
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
 
  - The return value is of the same type and kind as **x**.
 
@@ -18443,7 +18505,7 @@ Fortran 95
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
 
   - **source** is an array or scalar of any type. If **source** is a pointer
     it must be associated and allocatable arrays must be allocated.
@@ -18548,7 +18610,7 @@ Fortran 95 ; with KIND argument Fortran 2003
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **i** is an _integer_ of any kind
  - **shift** is an _integer_ of any kind
  - the result will automatically be of the same type, kind and rank as **i**.
@@ -18677,7 +18739,7 @@ Fortran 2008
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **i** is an _integer_ of any kind
  - **shift** is an _integer_ of any kind
  - the result will automatically be of the same type, kind and rank as **i**.
@@ -18808,7 +18870,7 @@ Fortran 2008
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **i** is an _integer_ of any kind
  - **shift** is an _integer_ of any kind
  - the result will automatically be of the same type, kind and rank as **i**.
@@ -19274,7 +19336,7 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
 
 -  **array** may be of any type and associated kind.
 
@@ -19835,7 +19897,7 @@ FORTRAN 77
       integer,intent(in),optional :: KIND
 ```
 ### **Characteristics**
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
 
   - **a** may be of any type and kind. If it is polymorphic it shall not
     be an undefined pointer. If it is unlimited polymorphic or has any
@@ -19933,7 +19995,7 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-  - a kind designated as ** may be any supported kind value for the type
+  - a kind designated as ** may be any supported kind for the type
   - **array** may be of any numeric **TYPE** - _integer_, _real_ or _complex_.
   - **dim** is an _integer_
   - **mask** is _logical_ and conformable with **array**.
@@ -20394,7 +20456,7 @@ result = this_image() | = this_image(distance) | = this_image(coarray,dim)
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind value for the type
+ - a kind designated as ** may be any supported kind for the type
  - **coarray** can be of any type. If **dim** is present it is required.
  - **distance** is not permitted together with **coarray**
  - if **dim** if present, coarray is required.
@@ -20538,7 +20600,7 @@ Fortran 95
 [**set_exponent**(3)](#set_exponent),
 [**spacing**(3)](#spacing)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## trailz
 
@@ -21007,7 +21069,7 @@ of arguments, and search for certain arguments:
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind value for the type
+- a kind designated as ** may be any supported kind for the type
 - **array** shall be an array, of any type.
 - **dim** shall be a scalar _integer_.
 - **kind** an _integer_ initialization expression indicating the kind
@@ -21314,7 +21376,7 @@ Fortran 95
 [**pack**(3)](#pack),
 [**spread**(3)](#spread)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## verify
 

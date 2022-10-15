@@ -20,7 +20,7 @@
   - **l** is of type logical
   - **KIND** shall be a scalar integer constant expression.
     If **KIND** is present, the kind type parameter of the result is
-    that speciﬁed by the value of **KIND**; otherwise, the kind type
+    that specified by the value of **KIND**; otherwise, the kind type
     parameter is that of default logical.
 
 ### **Description**

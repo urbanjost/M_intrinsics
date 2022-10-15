@@ -6,10 +6,11 @@
       logical, dimension(2,3) :: mymask
       integer :: i
       integer :: c(2,3,4)
+
+         print *,'the numeric arrays we will compare'
          a = reshape( [ 1, 2, 3, 4, 5, 6 ], [ 2, 3 ])
          b = reshape( [ 0, 7, 3, 4, 5, 8 ], [ 2, 3 ])
          c = reshape( [( i,i=1,24)], [ 2, 3 ,4])
-        ! show numeric arrays we will compare
          print '(3i3)', a(1,:)
          print '(3i3)', a(2,:)
          print *
@@ -17,7 +18,7 @@
          print '(3i3)', b(2,:)
 
         ! basic calls
-         print *, 'count a few basic things ...'
+         print *, 'count a few basic things creating a mask from an expression'
          print *, 'count a>b',count(a>b)
          print *, 'count b<a',count(a<b)
          print *, 'count b==a',count(a==b)
@@ -27,13 +28,14 @@
 
          ! The common usage is just getting a count, but if you want
          ! to specify the DIM argument and get back reduced arrays
-         ! of counts this is easier to visualize if we look at a mask
-         ! make a mask identifying unequal elements
+         ! of counts this is easier to visualize if we look at a mask.
+         print *, 'make a mask identifying unequal elements ...'
          mymask = a.ne.b
-         print *, 'show mask for a.ne.b'
+         print *, 'the mask generated from a.ne.b'
          print '(3l3)', mymask(1,:)
          print '(3l3)', mymask(2,:)
-         ! count total and along rows and columns
+
+         print *,'count total and along rows and columns ...'
 
          print '(a)', 'number of elements not equal'
          print '(a)', '(ie. total true elements in the mask)'

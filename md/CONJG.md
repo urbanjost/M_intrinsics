@@ -44,7 +44,7 @@ Returns a value equal to the input value except the sign of
 the imaginary component is the opposite of the input value.
 
 That is, if **z** has the value **(x,y)**, the result has the value
-**(x,−y)**.
+**(x, -y)**.
 
 ### **Examples**
 

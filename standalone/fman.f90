@@ -358,7 +358,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  The character kind returned is the value of KIND if present.  otherwise,', &
 '     a single default character is returned.', &
@@ -973,7 +973,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  the result is a real of the default kind unless KIND is specified.', &
 '', &
@@ -1182,7 +1182,7 @@ textblock=[character(len=256) :: &
 '            type(TYPE(kind=**)),allocatable :: entity(..)', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  ENTITY may be any allocatable scalar or array object of any type.', &
 '', &
@@ -1811,7 +1811,7 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  NULL(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 14, 2022           associated(3fortran)', &
 '']
@@ -3322,7 +3322,7 @@ textblock=[character(len=256) :: &
 '             integer(kind=**),intent(in) :: j', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  the integer kind of I and J may not necessarily be the same. In addition,', &
 '     values may be a BOZ constant with a value valid for the integer kind', &
@@ -3480,7 +3480,7 @@ textblock=[character(len=256) :: &
 '             integer(kind=KIND),intent(in) :: j', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  the integer kind of I and J may not necessarily be the same. kind.  In', &
 '     addition, values may be a BOZ constant with a value valid for the integer', &
@@ -4031,23 +4031,24 @@ textblock=[character(len=256) :: &
 '  o  KIND shall be a scalar integer constant expression. It specifies the kind', &
 '     of the result if present.', &
 '', &
-'  o  the result is integer. is specified.', &
+'  o  the result is integer. It is default kind if KIND is not specified', &
 '', &
 'DESCRIPTION', &
 '  CEILING(3) returns the least integer greater than or equal to A.', &
 '', &
-'OPTIONS', &
-'  o  A : A real value to produce a result for.', &
+'  On the number line -n <-- 0 -> +n the value returned is always at or to the', &
+'  right of the input value.', &
 '', &
-'  o  KIND : An integer initialization expression indicating the kind parameter', &
-'     of the result.', &
+'OPTIONS', &
+'  o  A : A real value to produce a ceiling for.', &
+'', &
+'  o  KIND : indicates the kind parameter of the result.', &
 '', &
 'RESULT', &
 '  The result will be the integer value equal to A or the least integer greater', &
 '  than A if the input value is not equal to a whole number.', &
 '', &
-'  On the number line -n <-- 0 -> +n the value returned is always at or to the', &
-'  right of the input value.', &
+'  If A is equal to a whole number, the returned value is INT(A).', &
 '', &
 '  The result is undefined if it cannot be represented in the specified integer', &
 '  type.', &
@@ -4101,7 +4102,7 @@ textblock=[character(len=256) :: &
 '', &
 '  AINT(3), ANINT(3), INT(3), SELECTED_INT_KIND(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 14, 2022              ceiling(3fortran)', &
 '']
@@ -4333,7 +4334,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  I is an integer of any kind', &
 '', &
@@ -4509,7 +4510,7 @@ textblock=[character(len=256) :: &
 '            integer,intent(in),optional       :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  The type of X TYPE may be integer, real, or complex.', &
 '', &
@@ -5226,31 +5227,33 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental complex(kind=KIND) function conjg(z)', &
 '', &
-'            complex(kind=KIND),intent(in) :: z', &
+'            complex(kind=**),intent(in) :: z', &
 '', &
 'CHARACTERISTICS', &
-'  o  KIND may be any supported value for the complex input value.', &
+'  o  Z is a complex value of any valid kind.', &
 '', &
-'  o  The returned value with be the same complex type as the input.', &
+'  o  The returned value has the same complex type as the input.', &
 '', &
 'DESCRIPTION', &
 '  CONJG(3) returns the complex conjugate of the complex value Z.', &
+'', &
+'  That is, If Z is the complex value (X, Y) then the result is (X, -Y).', &
 '', &
 '  In mathematics, the complex conjugate of a complex number is a value whose', &
 '  real and imaginary part are equal parts are equal in magnitude to each other', &
 '  but the Y value has opposite sign.', &
 '', &
-'  That is, If Z is the complex value (X, Y) then the result is (X, -Y).', &
-'', &
 '  For matrices of complex numbers, CONJG(ARRAY) represents the element-by-', &
 '  element conjugation of ARRAY; not the conjugate transpose of the ARRAY .', &
 '', &
 'OPTIONS', &
-'  o  Z : The complex value to create the conjugate of.', &
+'  o  Z : The value to create the conjugate of.', &
 '', &
 'RESULT', &
-'  Returns a complex value equal to the input value except the sign of the', &
-'  imaginary component is the opposite of the input value.', &
+'  Returns a value equal to the input value except the sign of the imaginary', &
+'  component is the opposite of the input value.', &
+'', &
+'  That is, if Z has the value (X,Y), the result has the value (X, -Y).', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -5700,19 +5703,21 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = count(mask [,dim] [,kind] )', &
 '', &
-'           integer(kind=KIND) function count(mask, dim, kind )', &
+'           integer(kind=KIND) function count(mask, dim, KIND )', &
 '', &
 '            logical(kind=**),intent(in) :: mask(..)', &
 '            integer(kind=**),intent(in),optional :: dim', &
 '            integer(kind=**),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
-'  o  MASK is an array of any shape.', &
+'  o  MASK is a logical array of any shape and kind.', &
 '', &
 '  o  If DIM is present, the result is an array with the specified rank', &
 '     removed.', &
+'', &
+'  o  KIND is a scalar integer constant expression valid as an integer kind', &
 '', &
 '  o  The return value is of default integer type unless KIND is specified to', &
 '     declare the kind of the result.', &
@@ -5727,7 +5732,13 @@ textblock=[character(len=256) :: &
 '  o  MASK : an array to count the number of .true. values in', &
 '', &
 '  o  DIM : specifies to remove this dimension from the result and produce an', &
-'     array of counts of .true. values along the removed dimension.', &
+'     array of counts of .true. values along the removed dimension. If not', &
+'     present, the result is a scalar count of the true elements in MASK the', &
+'     value must be in the range 1 <= dim <= n, where n is the rank(number of', &
+'     dimensions) of MASK.', &
+'', &
+'     The corresponding actual argument shall not be an optional dummy', &
+'     argument, a disassociated pointer, or an unallocated allocatable.', &
 '', &
 '  o  KIND : An integer initialization expression indicating the kind parameter', &
 '     of the result.', &
@@ -5752,10 +5763,11 @@ textblock=[character(len=256) :: &
 '      logical, dimension(2,3) :: mymask', &
 '      integer :: i', &
 '      integer :: c(2,3,4)', &
+'', &
+'         print *,''the numeric arrays we will compare''', &
 '         a = reshape( [ 1, 2, 3, 4, 5, 6 ], [ 2, 3 ])', &
 '         b = reshape( [ 0, 7, 3, 4, 5, 8 ], [ 2, 3 ])', &
 '         c = reshape( [( i,i=1,24)], [ 2, 3 ,4])', &
-'        ! show numeric arrays we will compare', &
 '         print ''(3i3)'', a(1,:)', &
 '         print ''(3i3)'', a(2,:)', &
 '         print *', &
@@ -5763,7 +5775,7 @@ textblock=[character(len=256) :: &
 '         print ''(3i3)'', b(2,:)', &
 '', &
 '        ! basic calls', &
-'         print *, ''count a few basic things ...''', &
+'         print *, ''count a few basic things creating a mask from an expression''', &
 '         print *, ''count a>b'',count(a>b)', &
 '         print *, ''count b<a'',count(a<b)', &
 '         print *, ''count b==a'',count(a==b)', &
@@ -5773,13 +5785,14 @@ textblock=[character(len=256) :: &
 '', &
 '         ! The common usage is just getting a count, but if you want', &
 '         ! to specify the DIM argument and get back reduced arrays', &
-'         ! of counts this is easier to visualize if we look at a mask', &
-'         ! make a mask identifying unequal elements', &
+'         ! of counts this is easier to visualize if we look at a mask.', &
+'         print *, ''make a mask identifying unequal elements ...''', &
 '         mymask = a.ne.b', &
-'         print *, ''show mask for a.ne.b''', &
+'         print *, ''the mask generated from a.ne.b''', &
 '         print ''(3l3)'', mymask(1,:)', &
 '         print ''(3l3)'', mymask(2,:)', &
-'         ! count total and along rows and columns', &
+'', &
+'         print *,''count total and along rows and columns ...''', &
 '', &
 '         print ''(a)'', ''number of elements not equal''', &
 '         print ''(a)'', ''(ie. total true elements in the mask)''', &
@@ -5845,59 +5858,62 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       >   1  3  5', &
-'       >   2  4  6', &
+'       >   the numeric arrays we will compare', &
+'       >    1  3  5', &
+'       >    2  4  6', &
 '       >', &
-'       >   0  3  5', &
-'       >   7  4  8', &
-'       >  count a few basic things ...', &
-'       >  count a>b           1', &
-'       >  count b<a           2', &
-'       >  count b==a           3', &
-'       >  check sum =  T', &
-'       >  show mask for a.ne.b', &
-'       >   T  F  F', &
-'       >   T  F  T', &
-'       > number of elements not equal', &
-'       > (ie. total true elements in the mask)', &
-'       >   3', &
-'       > count of elements not equal in each column', &
-'       > (ie. total true elements in each column)', &
-'       >   2  0  1', &
-'       > count of elements not equal in each row', &
-'       > (ie. total true elements in each row)', &
-'       >   1  2', &
-'       >  lets try this with c(2,3,4)', &
-'       >    taking the result of the modulo', &
-'       >     z=1      z=2      z=3      z=4', &
-'       >    1 3 0 || 2 4 1 || 3 0 2 || 4 1 3 |', &
-'       >    2 4 1 || 3 0 2 || 4 1 3 || 0 2 4 |', &
+'       >    0  3  5', &
+'       >    7  4  8', &
+'       >   count a few basic things creating a mask from an expression', &
+'       >   count a>b           1', &
+'       >   count b<a           2', &
+'       >   count b==a           3', &
+'       >   check sum =  T', &
+'       >   make a mask identifying unequal elements ...', &
+'       >   the mask generated from a.ne.b', &
+'       >    T  F  F', &
+'       >    T  F  T', &
+'       >   count total and along rows and columns ...', &
+'       >  number of elements not equal', &
+'       >  (ie. total true elements in the mask)', &
+'       >    3', &
+'       >  count of elements not equal in each column', &
+'       >  (ie. total true elements in each column)', &
+'       >    2  0  1', &
+'       >  count of elements not equal in each row', &
+'       >  (ie. total true elements in each row)', &
+'       >    1  2', &
+'       >   lets try this with c(2,3,4)', &
+'       >     taking the result of the modulo', &
+'       >      z=1      z=2      z=3      z=4', &
+'       >     1 3 0 || 2 4 1 || 3 0 2 || 4 1 3 |', &
+'       >     2 4 1 || 3 0 2 || 4 1 3 || 0 2 4 |', &
 '       >', &
-'       >    would result in the mask ..', &
-'       >    F F T || F F F || F T F || F F F |', &
-'       >    F F F || F T F || F F F || T F F |', &
+'       >     would result in the mask ..', &
+'       >     F F T || F F F || F T F || F F F |', &
+'       >     F F F || F T F || F F F || T F F |', &
 '       >', &
-'       >   the total number of .true.values is', &
-'       >  4', &
+'       >    the total number of .true.values is', &
+'       >   4', &
 '       >', &
-'       > counting up along a row and removing rows :( 3 4 )', &
-'       >  > [ 0, 0, 0, 1 ]', &
-'       >  > [ 0, 1, 1, 0 ]', &
-'       >  > [ 1, 0, 0, 0 ]', &
+'       >  counting up along a row and removing rows :( 3 4 )', &
+'       >   > [ 0, 0, 0, 1 ]', &
+'       >   > [ 0, 1, 1, 0 ]', &
+'       >   > [ 1, 0, 0, 0 ]', &
 '       >', &
-'       > counting up along a column and removing columns :( 2 4 )', &
-'       >  > [ 1, 0, 1, 0 ]', &
-'       >  > [ 0, 1, 0, 1 ]', &
+'       >  counting up along a column and removing columns :( 2 4 )', &
+'       >   > [ 1, 0, 1, 0 ]', &
+'       >   > [ 0, 1, 0, 1 ]', &
 '       >', &
-'       > counting up along a depth and removing depths :( 2 3 )', &
-'       >  > [ 0, 1, 1 ]', &
-'       >  > [ 1, 1, 0 ]', &
+'       >  counting up along a depth and removing depths :( 2 3 )', &
+'       >   > [ 0, 1, 1 ]', &
+'       >   > [ 1, 1, 0 ]', &
 '', &
 'STANDARD', &
 '  Fortran 95 , with KIND argument - Fortran 2003', &
 '', &
 'SEE ALSO', &
-'  ****(3)', &
+'  ANY(3), ALL(3), SUM(3),', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -6033,7 +6049,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in)  :: dim', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  ARRAY may be any type and rank (and the result will automatically be of', &
 '     the same type, kind and rank as ARRAY).', &
@@ -6712,7 +6728,7 @@ textblock=[character(len=256) :: &
 '     converted as if by the intrinsic function INT(3) to type integer with the', &
 '     kind type parameter of the other.', &
 '', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 'DESCRIPTION', &
 '  DSHIFTL(3) combines bits of I and J. The rightmost SHIFT bits of the result', &
@@ -6993,7 +7009,7 @@ textblock=[character(len=256) :: &
 '          integer(kind=**),intent(in)      :: dim', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  ARRAY May be any type, but not a scalar.', &
 '', &
@@ -7962,7 +7978,7 @@ textblock=[character(len=256) :: &
 '            logical(kind=**),intent(in),optional  :: back', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  ARRAY shall be an array of intrinsic type.', &
 '', &
@@ -8140,7 +8156,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  A is a real of any kind', &
 '', &
@@ -8459,8 +8475,8 @@ textblock=[character(len=256) :: &
 '            character(len=*),intent(inout),optional :: errmsg', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
-'     meeting the conditions described herein.', &
+'  o  a kind designated as ** may be any supported kind for the type meeting', &
+'     the conditions described herein.', &
 '', &
 '  o  COMMAND and ERRMSG are scalar character variables of default kind.', &
 '', &
@@ -8562,8 +8578,8 @@ textblock=[character(len=256) :: &
 '          character(len=*),intent(inout),optional :: errmsg', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
-'     meeting the conditions described herein.', &
+'  o  a kind designated as ** may be any supported kind for the type meeting', &
+'     the conditions described herein.', &
 '', &
 '  o  NUMBER, LENGTH, and STATUS are scalar integer with a decimal exponent', &
 '     range of at least four.', &
@@ -8698,8 +8714,8 @@ textblock=[character(len=256) :: &
 '            character(len=*),intent(inout),optional :: errmsg', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
-'     meeting the conditions described herein.', &
+'  o  a kind designated as ** may be any supported kind for the type meeting', &
+'     the conditions described herein.', &
 '', &
 '  o  NAME, VALUE, and ERRMSG are a scalar character of default kind.', &
 '', &
@@ -9045,7 +9061,7 @@ textblock=[character(len=256) :: &
 '', &
 '  o  KIND may be of any integer kind.', &
 '', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 'DESCRIPTION', &
 '  IACHAR(3) returns the code for the ASCII character in the first character', &
@@ -9165,7 +9181,7 @@ textblock=[character(len=256) :: &
 '            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  ARRAY must be an integer array', &
 '', &
@@ -9344,7 +9360,7 @@ textblock=[character(len=256) :: &
 '            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  ARRAY must be an array.', &
 '', &
@@ -9452,7 +9468,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in) :: pos', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  The return value is of the same kind as I. Otherwise, any integer kinds', &
 '     are allowed.', &
@@ -9652,7 +9668,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in) :: pos', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  The return value is of the same kind as I. Otherwise, any integer kinds', &
 '     are allowed.', &
@@ -9739,20 +9755,21 @@ textblock=[character(len=256) :: &
 'ichar(3fortran)                                                ichar(3fortran)', &
 '', &
 'NAME', &
-'  ICHAR(3) - [CHARACTER:CONVERSION] Character-to-integer conversion function', &
+'  ICHAR(3) - [CHARACTER:CONVERSION] Character-to-integer code conversion', &
+'  function', &
 '', &
 'SYNOPSIS', &
 '  result = ichar(c [,kind])', &
 '', &
-'           elemental function ichar(c,kind)', &
+'           elemental integer(kind=KIND) function ichar(c,KIND)', &
 '', &
-'            character(len=1),intent(in) :: c', &
-'            integer,intent(in),optional :: kind', &
+'            character(len=1,kind=**),intent(in) :: c', &
+'            integer,intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  C is a single scalar character', &
+'  o  C is a scalar character', &
 '', &
-'  o  KIND a constant integer initialization expression indicating the kind', &
+'  o  KIND is a constant integer initialization expression indicating the kind', &
 '     parameter of the result.', &
 '', &
 '  o  The return value is of type integer and of kind KIND. If KIND is absent,', &
@@ -9768,14 +9785,28 @@ textblock=[character(len=256) :: &
 '  See IACHAR(3) for specifically working with the ASCII character set.', &
 '', &
 'OPTIONS', &
-'  o  C : The input character to determine the code for.', &
+'  o  C : The input character to determine the code for. Its value shall be', &
+'     that of a character capable of representation in the processor.', &
 '', &
 '  o  KIND : indicates the kind parameter of the result. If KIND is absent, the', &
 '     return value is of default integer kind.', &
 '', &
 'RESULT', &
-'  The code in the systems default character set for the character being', &
-'  queried.', &
+'  The code in the system default character set for the character being queried', &
+'  is returned.', &
+'', &
+'  The result is the position of C in the processor collating sequence', &
+'  associated with the kind type parameter of C.', &
+'', &
+'  it is nonnegative and less than n, where n is the number of characters in', &
+'  the collating sequence.', &
+'', &
+'  The kind type parameter of the result shall specify an integer kind that is', &
+'  capable of representing n.', &
+'', &
+'  For any characters C and D capable of representation in the processor, C <=', &
+'  D is true if and only if ICHAR (C) <= ICHAR (D) is true and C == D is true', &
+'  if and only if ICHAR (C) == ICHAR (D) is true.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -9806,7 +9837,7 @@ textblock=[character(len=256) :: &
 '', &
 '  o  NONELEMENTAL: LEN_TRIM(3), LEN(3), REPEAT(3), TRIM(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 14, 2022                ichar(3fortran)', &
 '']
@@ -10013,8 +10044,8 @@ textblock=[character(len=256) :: &
 '  o  BACK : If the BACK argument is present and true, the return value is the', &
 '     start of the rightmost occurrence rather than the leftmost.', &
 '', &
-'  o  KIND : if KIND is present, the kind type parameter is that specied by the', &
-'     value of KIND; otherwise the kind type parameter is that of default', &
+'  o  KIND : if KIND is present, the kind type parameter is that specified by', &
+'     the value of KIND; otherwise the kind type parameter is that of default', &
 '     integer type.', &
 '', &
 'RESULT', &
@@ -10091,7 +10122,7 @@ textblock=[character(len=256) :: &
 '            integer,optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  A shall be of type integer, real, or complex, or a boz-literal-constant.', &
 '', &
@@ -10379,7 +10410,7 @@ textblock=[character(len=256) :: &
 '            type(TYPE(kind=**)),intent(in) :: a', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  A may be of any type. It shall be an array. If it is a pointer it shall', &
 '     be associated.', &
@@ -10486,7 +10517,7 @@ textblock=[character(len=256) :: &
 'ishft(3fortran)                                                ishft(3fortran)', &
 '', &
 'NAME', &
-'  ISHFT(3) - [BIT:SHIFT] Shift bits', &
+'  ISHFT(3) - [BIT:SHIFT] Logical shift of bits in an integer', &
 '', &
 'SYNOPSIS', &
 '  result = ishftc( i, shift )', &
@@ -10497,9 +10528,12 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in) :: shift', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
-'  o  the kind for I dictates the kind of the returned value.', &
+'  o  I is an integer of any kind. the kind for I dictates the kind of the', &
+'     returned value.', &
+'', &
+'  o  SHIFT is an integer of any kind.', &
 '', &
 'DESCRIPTION', &
 '  ISHFT(3) returns a value corresponding to I with all of the bits shifted', &
@@ -10519,7 +10553,17 @@ textblock=[character(len=256) :: &
 '     undefined.', &
 '', &
 'RESULT', &
-'  The return value has the same characteristics (shape, kind, ...) as I.', &
+'  The result has the value obtained by shifting the bits of I by SHIFT', &
+'  positions.', &
+'', &
+'  1.  If SHIFT is positive, the shift is to the left', &
+'', &
+'  2.  if SHIFT is negative, the shift is to the right', &
+'', &
+'  3.  if SHIFT is zero, no shift is performed.', &
+'', &
+'  Bits shifted out from the left or from the right, as appropriate, are lost.', &
+'  Zeros are shifted in from the opposite end.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -10553,7 +10597,7 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  ISHFTC(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 14, 2022                ishft(3fortran)', &
 '']
@@ -10582,7 +10626,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in),optional :: size', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  I may be an integer of any kind', &
 '', &
@@ -11831,7 +11875,7 @@ textblock=[character(len=256) :: &
 'log(3fortran)                                                    log(3fortran)', &
 '', &
 'NAME', &
-'  LOG(3) - [MATHEMATICS] Logarithm function', &
+'  LOG(3) - [MATHEMATICS] Natural logarithm', &
 '', &
 'SYNOPSIS', &
 '  result = log(x)', &
@@ -11841,7 +11885,7 @@ textblock=[character(len=256) :: &
 '          TYPE(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  o  X may be any kind of real or complex value', &
+'  o  X may be any real or complex kind.', &
 '', &
 '  o  the result is the same type and characteristics as X.', &
 '', &
@@ -11850,13 +11894,20 @@ textblock=[character(len=256) :: &
 '  "e".', &
 '', &
 'OPTIONS', &
-'  o  X : The value to take the log of', &
+'  o  X : The value to compute the natual log of. If X is real, its value shall', &
+'     be greater than zero. If X is complex, its value shall not be zero.', &
 '', &
 'RESULT', &
-'  The natural logarithm of XX. If X is complex, the imaginary part OMEGA is in', &
-'  the range', &
+'  The natural logarithm of X. If X is the complex value (R,I) , the imaginary', &
+'  part "i" is in the range', &
 '', &
-'          -PI < OMEGA <= PI', &
+'          -PI < i <= PI', &
+'', &
+'  If the real part of X is less than zero and the imaginary part of X is zero,', &
+'  then the imaginary part of the result is approximately PI if the imaginary', &
+'  part of PI is positive real zero or the processor does not distinguish', &
+'  between positive and negative real zero, and approximately -PI if the', &
+'  imaginary part of X is negative real zero.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -11880,7 +11931,7 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  ****(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 14, 2022                  log(3fortran)', &
 '']
@@ -11960,27 +12011,33 @@ textblock=[character(len=256) :: &
 'logical(3fortran)                                            logical(3fortran)', &
 '', &
 'NAME', &
-'  LOGICAL(3) - [TYPE:LOGICAL] Converts one kind of logical variable to another', &
+'  LOGICAL(3) - [TYPE:LOGICAL] Conversion between kinds of logical values', &
 '', &
 'SYNOPSIS', &
 '  result = logical(l [,kind])', &
 '', &
-'           elemental logical(kind=KIND) function logical(l,kind)', &
+'           elemental logical(kind=KIND) function logical(l,KIND)', &
 '', &
-'            logical(kind=KIND),intent(in) :: l', &
-'            integer(kind=**),intent(in),optional :: kind', &
+'            logical(kind=**),intent(in) :: l', &
+'            integer(kind=**),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
+'', &
+'  o  L is of type logical', &
+'', &
+'  o  KIND shall be a scalar integer constant expression. If KIND is present,', &
+'     the kind type parameter of the result is that specified by the value of', &
+'     KIND; otherwise, the kind type parameter is that of default logical.', &
 '', &
 'DESCRIPTION', &
 '  LOGICAL(3) converts one kind of logical variable to another.', &
 '', &
 'OPTIONS', &
-'  o  L : The type shall be logical.', &
+'  o  L : The logical value to produce a copy of with kind KIND', &
 '', &
-'  o  KIND : An integer initialization expression indicating the kind parameter', &
-'     of the result. If not present, the default kind is returned.', &
+'  o  KIND : indicates the kind parameter of the result. If not present, the', &
+'     default kind is returned.', &
 '', &
 'RESULT', &
 '  The return value is a logical value equal to L, with a kind corresponding to', &
@@ -11989,6 +12046,7 @@ textblock=[character(len=256) :: &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
+'      Linux', &
 '      program demo_logical', &
 '      ! Access array containing the kind type parameter values supported by this', &
 '      ! compiler for entities of logical type', &
@@ -12006,7 +12064,11 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'    1 2 4 8 16', &
+'       >            1', &
+'       >            2', &
+'       >            4', &
+'       >            8', &
+'       >           16', &
 '', &
 'STANDARD', &
 '  Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009', &
@@ -12014,7 +12076,7 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  INT(3), REAL(3), CMPLX(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 14, 2022              logical(3fortran)', &
 '']
@@ -12041,7 +12103,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  I is an integer', &
 '', &
@@ -12131,7 +12193,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  I is an integer', &
 '', &
@@ -12702,7 +12764,7 @@ textblock=[character(len=256) :: &
 '            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  NUMERIC designates any intrinsic numeric type and kind.', &
 '', &
@@ -12817,7 +12879,7 @@ textblock=[character(len=256) :: &
 '            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  NUMERIC designates any numeric type and kind.', &
 '', &
@@ -12906,7 +12968,7 @@ textblock=[character(len=256) :: &
 '            mask** : Shall be of type _logical_.', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  TSOURCE May be of any type, including user-defined.', &
 '', &
@@ -13331,7 +13393,7 @@ textblock=[character(len=256) :: &
 '            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  NUMERIC is any numeric type and kind.', &
 '', &
@@ -13429,7 +13491,7 @@ textblock=[character(len=256) :: &
 '            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  NUMERIC is any numeric type and kind.', &
 '', &
@@ -14047,7 +14109,7 @@ textblock=[character(len=256) :: &
 '            real(kind=**),intent(in) :: s', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  X may be a real value of any kind.', &
 '', &
@@ -14061,7 +14123,7 @@ textblock=[character(len=256) :: &
 '  o  X : the value to find the nearest representable value of', &
 '', &
 '  o  S : a non-zero value whose sign is used to determine the direction in', &
-'     which to search from XX to the representable value.', &
+'     which to search from X to the representable value.', &
 '', &
 '     If S is positive, NEAREST returns the processor-representable number', &
 '     greater than X and nearest to it.', &
@@ -14306,7 +14368,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  A is type real of any kind', &
 '', &
@@ -14741,7 +14803,7 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  ASSOCIATED(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 14, 2022                 null(3fortran)', &
 '']
@@ -15056,7 +15118,7 @@ textblock=[character(len=256) :: &
 '            type(integer(kind=**)),intent(in),optional :: dim', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 'DESCRIPTION', &
 '  PARITY(3) calculates the parity (i.e. the reduction using .xor.) of MASK', &
@@ -15486,7 +15548,7 @@ textblock=[character(len=256) :: &
 '            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  NUMERIC is any numeric type and kind.', &
 '', &
@@ -16028,7 +16090,7 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 '  o  A can be of any type TYPE and rank.', &
 '', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 'DESCRIPTION', &
 '  RANK(3) returns the rank of a scalar or array data object.', &
@@ -16201,7 +16263,7 @@ textblock=[character(len=256) :: &
 '          integer(kind=**),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  the type of X may be integer, real, or complex; or a BOZ-literal-', &
 '     constant.', &
@@ -16495,7 +16557,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in)   :: ncopies', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  STRING is a scalar character type.', &
 '', &
@@ -16573,7 +16635,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in),optional     :: order(:)', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  SOURCE is an array of any type', &
 '', &
@@ -16964,21 +17026,33 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental real(kind=KIND) function scale(x, i)', &
 '', &
-'            real(kind=KIND),intent(in) :: x', &
-'            integer,intent(in)         :: i', &
+'            real(kind=KIND),intent(in)   :: x', &
+'            integer(kind=**),intent(in)  :: i', &
 '', &
 'CHARACTERISTICS', &
+'  o  **x** is type _real_ of any kind', &
+'', &
+'  o  **i** is type an _integer_ of any kind', &
+'', &
+'  o  the result is _real_ of the same kind as **x**', &
+'', &
 'DESCRIPTION', &
 '  SCALE(3) returns x * RADIX(X)**I.', &
 '', &
-'OPTIONS', &
-'  o  X : The type of the argument shall be a real.', &
+'  It is almost certain the radix(base) of the platform is two, therefore', &
+'  SCALE(3) is generally the same as X*2**I', &
 '', &
-'  o  I : The type of the argument shall be a integer.', &
+'OPTIONS', &
+'  o  X : the value to multiply by RADIX(X)**I. Its type and kind is used to', &
+'     determine the radix for values with its characteristics and determines', &
+'     the characteristics of the result, so care must be taken the returned', &
+'     value is within the range of the characteristics of X.', &
+'', &
+'  o  I : The power to raise the radix of the machine to', &
 '', &
 'RESULT', &
-'  The return value is of the same type and kind as X. Its value is X *', &
-'  RADIX(X)**I.', &
+'  The return value is X * RADIX(X)**I, assuming that value can be represented', &
+'  by a value of the type and kind of X.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -17002,7 +17076,7 @@ textblock=[character(len=256) :: &
 '  MINEXPONENT(3), NEAREST(3), PRECISION(3), RADIX(3), RANGE(3), RRSPACING(3),', &
 '  SET_EXPONENT(3), SPACING(3), TINY(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 14, 2022                scale(3fortran)', &
 '']
@@ -17415,7 +17489,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in) :: i', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  The return value is of the same type and kind as X.', &
 '', &
@@ -17482,7 +17556,7 @@ textblock=[character(len=256) :: &
 '          integer(kind=**),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  SOURCE is an array or scalar of any type. If SOURCE is a pointer it must', &
 '     be associated and allocatable arrays must be allocated.', &
@@ -17589,7 +17663,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in) :: shift', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  I is an integer of any kind', &
 '', &
@@ -17716,7 +17790,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in) :: shift', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  I is an integer of any kind', &
 '', &
@@ -17846,7 +17920,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in) :: shift', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  I is an integer of any kind', &
 '', &
@@ -18292,7 +18366,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  ARRAY may be of any type and associated kind.', &
 '', &
@@ -18805,7 +18879,7 @@ textblock=[character(len=256) :: &
 '            integer,intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  A may be of any type and kind. If it is polymorphic it shall not be an', &
 '     undefined pointer. If it is unlimited polymorphic or has any deferred', &
@@ -18901,7 +18975,7 @@ textblock=[character(len=256) :: &
 '            logical(kind=**),intent(in),optional :: mask(..)', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  ARRAY may be of any numeric TYPE - integer, real or complex.', &
 '', &
@@ -19356,7 +19430,7 @@ textblock=[character(len=256) :: &
 '          integer,intent(in),optional :: dim', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  COARRAY can be of any type. If DIM is present it is required.', &
 '', &
@@ -19480,7 +19554,7 @@ textblock=[character(len=256) :: &
 '  MINEXPONENT(3), NEAREST(3), PRECISION(3), RADIX(3), RANGE(3), RRSPACING(3),', &
 '  SCALE(3), SET_EXPONENT(3), SPACING(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 14, 2022                 tiny(3fortran)', &
 '']
@@ -19944,7 +20018,7 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in),optional :: kind', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind value for the type', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  ARRAY shall be an array, of any type.', &
 '', &
@@ -20241,7 +20315,7 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  MERGE(3), PACK(3), SPREAD(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 14, 2022               unpack(3fortran)', &
 '']

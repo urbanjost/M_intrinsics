@@ -43,7 +43,7 @@ result = index( string, substring [,back] [,kind] )
   start of the rightmost occurrence rather than the leftmost.
 
 - **kind**
-  : if **kind** is present, the kind type parameter is that speciﬁed by the value of
+  : if **kind** is present, the kind type parameter is that specified by the value of
     **kind**; otherwise the kind type parameter is that of default integer type.
     
 
