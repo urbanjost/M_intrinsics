@@ -16,6 +16,10 @@
 ```
 ### **Characteristics**
 
+    - **string_a** is default _character_ or an ASCII character.
+    - **string_b** is the same type and kind as **string_a**
+    - the result is a default logical
+
 ### **Description**
 
   **llt**(3) determines whether one string is lexically less than
@@ -32,18 +36,22 @@
 
 ### **Options**
 
+
 - **string_a**
-  : Shall be of default _character_ type.
+  : string to be tested
 
 - **string_b**
-  : Shall be of default _character_ type.
+  : string to compare to **string_a**
 
 ### **Result**
 
   Returns _.true._ if string_a \<= string_b, and _.false._ otherwise,
-  based on the ASCII ordering.
+  based on the ASCII collating sequence.
 
   If both input arguments are null strings, _.false._ is always returned.
+
+  If either string contains a character not in the ASCII character set,
+  the result is processor dependent.
 
 ### **Examples**
 
@@ -52,30 +60,42 @@ Sample program:
 program demo_llt
 implicit none
 integer :: i
-   write(*,'(*(a))')(char(i),i=32,126)  ! ASCII order
-   write(*,*) llt('abc','ABC')          ! [F] lowercase is > uppercase
-   write(*,*) llt('abc','abc  ')        ! [F] trailing spaces
+
+   print *,'the ASCII collating sequence for printable characters'
+   write(*,'(1x,19a)')(char(i),i=32,126) ! ASCII order
+
+  ! basics
+   print *,'case matters'
+   write(*,*) llt('abc','ABC')           ! [F] lowercase is > uppercase
+   write(*,*) llt('abc','abc  ')         ! [F] trailing spaces
    ! If both strings are of zero length the result is false.
-   write(*,*) llt('','')                ! [F]
-   write(*,*) llt('','a')               ! [T] the null string is padded
-   write(*,*) llt('a','')               ! [F]
-   write(*,*) llt('abc',['abc','123'])  ! [F F]  scalar and array
-   write(*,*) llt(['cba', '123'],'abc') ! [F T]
+   write(*,*) llt('','')                 ! [F]
+   write(*,*) llt('','a')                ! [T] the null string is padded
+   write(*,*) llt('a','')                ! [F]
+   print *,'elemental'
+   write(*,*) llt('abc',['abc','123'])   ! [F F]  scalar and array
+   write(*,*) llt(['cba', '123'],'abc')  ! [F T]
    write(*,*) llt(['abc','123'],['cba','123']) ! [T F]  both arrays
 end program demo_llt
 ```
 Results:
 ```text
-  > !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
-  > [\]^_`abcdefghijklmnopqrstuvwxyz{|}~
-  > F
-  > F
-  > F
-  > T
-  > F
-  > F F
-  > F T
-  > T F
+ >  the ASCII collating sequence for printable characters
+ >   !"#$%&'()*+,-./012
+ >  3456789:;<=>?@ABCDE
+ >  FGHIJKLMNOPQRSTUVWX
+ >  YZ[\]^_`abcdefghijk
+ >  lmnopqrstuvwxyz{|}~
+ >  case matters
+ >  F
+ >  F
+ >  F
+ >  T
+ >  F
+ >  elemental
+ >  F F
+ >  F T
+ >  T F
 ```
 ### **Standard**
 

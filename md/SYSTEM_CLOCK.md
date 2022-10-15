@@ -17,29 +17,33 @@
 ```
 ### **Characteristics**
 
-where TYPE may be _real_ or _integer_.
+  where TYPE may be _real_ or _integer_.
 
 ### **Description**
 
-**system_clock**(3) lets you measure durations of time with the precision of
-the smallest time increment generally available on a system by returning
-processor-dependent values based on the current value of the processor
-clock. The **clock** value is incremented by one for each clock count until
-the value **count_max** is reached and is then reset to zero at the next
-count. **clock** therefore is a modulo value that lies in the range **0 to
-count_max**. **count_rate** and **count_max** are assumed constant (even though
-CPU rates can vary on a single platform).
+  **system_clock**(3) lets you measure durations of time with the
+  precision of the smallest time increment generally available on a
+  system by returning processor-dependent values based on the current
+  value of the processor clock.
 
-**count_rate** is system dependent and can vary depending on the kind of
-the arguments.
+  The **clock** value is incremented by one for each clock count until
+  the value **count_max** is reached and is then reset to zero at the
+  next count. **clock** therefore is a modulo value that lies in the
+  range **0 to count_max**.
 
-If there is no clock, or querying the clock fails, **count** is set to
-**-huge(count)**, and **count_rate** and **count_max** are set to zero.
+  **count_rate** and **count_max** are assumed constant (even though
+  CPU rates can vary on a single platform).
 
-**system_clock** is typically used to measure short time intervals (system
-clocks may be 24-hour clocks or measure processor clock ticks since
-boot, for example). It is most often used for measuring or tracking the
-time spent in code blocks in lieu of using profiling tools.
+  **count_rate** is system dependent and can vary depending on the kind
+  of the arguments.
+
+  If there is no clock, or querying the clock fails, **count** is set to
+  **-huge(count)**, and **count_rate** and **count_max** are set to zero.
+
+  **system_clock** is typically used to measure short time intervals
+  (system clocks may be 24-hour clocks or measure processor clock ticks
+  since boot, for example). It is most often used for measuring or
+  tracking the time spent in code blocks in lieu of using profiling tools.
 
 ### **Options**
 
@@ -64,7 +68,6 @@ time spent in code blocks in lieu of using profiling tools.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_system_clock
 implicit none
@@ -84,22 +87,18 @@ real    :: time_read
 
 end program demo_system_clock
 ```
-
 If the processor clock is a 24-hour clock that registers time at
 approximately 18.20648193 ticks per second, at 11:30 A.M. the reference
 
 ```fortran
       call system_clock (count = c, count_rate = r, count_max = m)
 ```
-
 defines
-
 ```text
       C = (11*3600+30*60)*18.20648193 = 753748,
       R = 18.20648193, and
       M = 24*3600*18.20648193-1 = 1573039.
 ```
-
 ### **Standard**
 
 Fortran 95

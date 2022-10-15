@@ -16,6 +16,10 @@
 ```
 ### **Characteristics**
 
+    - **string_a** is default _character_ or an ASCII character.
+    - **string_b** is the same type and kind as **string_a**
+    - the result is a default logical
+
 ### **Description**
 
   **lgt**(3) determines whether one string is lexically greater than
@@ -33,17 +37,20 @@
 ### **Options**
 
 - **string_a**
-  : Shall be of default _character_ type.
+  : string to be tested
 
 - **string_b**
-  : Shall be of default _character_ type.
+  : string to compare to **string_a**
 
 ### **Result**
 
   Returns _.true._ if string_a \> string_b, and _.false._ otherwise,
   based on the ASCII ordering.
 
-  If both input arguments are null strings, _.false._ is always returned.
+  If both input arguments are null strings, _.false._ is returned.
+
+  If either string contains a character not in the ASCII character set,
+  the result is processor dependent.
 
 ### **Examples**
 
@@ -52,9 +59,12 @@ Sample program:
 program demo_lgt
 implicit none
 integer :: i
-   write(*,'(*(a))')(char(i),i=32,126)  ! ASCII order
+   print *,'the ASCII collating sequence for printable characters'
+   write(*,'(1x,19a)')(char(i),i=32,126)
+   
    write(*,*) lgt('abc','ABC')          ! [T] lowercase is > uppercase
    write(*,*) lgt('abc','abc  ')        ! [F] trailing spaces
+
    ! If both strings are of zero length the result is false.
    write(*,*) lgt('','')                ! [F]
    write(*,*) lgt('','a')               ! [F] the null string is padded
@@ -66,16 +76,20 @@ end program demo_lgt
 ```
 Results:
 ```text
-    !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
-    [\]^_`abcdefghijklmnopqrstuvwxyz{|}~
-    T
-    F
-    F
-    F
-    T
-    F T
-    T F
-    F F
+ >  the ASCII collating sequence for printable characters
+ >   !"#$%&'()*+,-./012
+ >  3456789:;<=>?@ABCDE
+ >  FGHIJKLMNOPQRSTUVWX
+ >  YZ[\]^_`abcdefghijk
+ >  lmnopqrstuvwxyz{|}~
+ >  T
+ >  F
+ >  F
+ >  F
+ >  T
+ >  F T
+ >  T F
+ >  F F
 ```
 ### **Standard**
 

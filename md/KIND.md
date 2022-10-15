@@ -50,7 +50,6 @@ integer,parameter :: dl = kind(.true.)
 end program demo_kind
 ```
 Results:
-
 ```text
     The default character kind is            1
     The default logical kind is            4

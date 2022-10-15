@@ -9,22 +9,24 @@
     result = len(string [,kind])
 ```
 ```fortran
-     integer(kind=KIND) function len(string,kind)
+     integer(kind=KIND) function len(string,KIND)
 
-      character(len=*),intent(in) :: string
-      integer,optional,intent(in) :: kind
+      character(len=*),intent(in) :: string(..)
+      integer,optional,intent(in) :: KIND
 ```
 ### **Characteristics**
 
-  where the returned value is the same integer kind as the **kind**
-  argument, or of the default integer kind if **kind** is not specified.
+ - **string** is a scalar or array _character_ variable
+ - **KIND** is a scalar integer constant expression.
+ - the returned value is the same integer kind as the **kind**
+   argument, or of the default integer kind if **kind** is not specified.
 
 ### **Description**
 
   **len**(3) returns the length of a _character_ string.
 
-  If **string** is an array, the length of an element of **string** is
-  returned, as all elements of an array are the same length.
+  If **string** is an array, the length of a single element of **string**
+  is returned, as all elements of an array are the same length.
 
   Note that **string** need not be defined when this intrinsic is invoked,
   as only the length (not the content) of **string** is needed.
@@ -32,16 +34,17 @@
 ### **Options**
 
 - **string**
-  : A scalar or array of type _character_ to return the length of
+  : A scalar or array string to return the length of.
+    If it is an unallocated allocatable variable or a pointer that is
+    not associated, its length type parameter shall not be deferred.
 
 - **kind**
-  : A constant _integer_ initialization expression indicating the _kind_
-  parameter of the result.
+  : A constant indicating the _kind_ parameter of the result.
 
 ### **Result**
 
-  The return value is of type _integer_ and of kind **kind**. If **kind**
-  is absent, the return value is of default integer kind.
+  The result has a value equal to the number of characters in STRING
+  if it is scalar or in an element of STRING if it is an array.
 
 ### **Examples**
 
@@ -108,16 +111,16 @@ end program demo_len
 ```
 Results:
 ```text
-    length =          40
-     How long is this allocatable string?  LEN=          38
-    ======================================
-    New allocatable string LEN=          22
-    ======================
-     How long is this fixed string?          LEN=          40
-    New fixed string                         LEN=          40
-    length of ALL elements of array=           7
-    length from type parameter inquiry=          40
-    length of passed value is           11
+ >  length =          40
+ >   How long is this allocatable string?  LEN=          38
+ >  ======================================
+ >  New allocatable string LEN=          22
+ >  ======================
+ >   How long is this fixed string?          LEN=          40
+ >  New fixed string                         LEN=          40
+ >  length of ALL elements of array=           7
+ >  length from type parameter inquiry=          40
+ >  length of passed value is           11
 ```
 ### **Standard**
 
@@ -139,6 +142,9 @@ of arguments, and search for certain arguments:
   [**verify**(3)](#verify)
 
 - **Nonelemental:**
-  [**len_trim**(3)](#len_trim), [**len**(3)](#len), [**repeat**(3)](#repeat), [**trim**(3)](#trim)
+  [**len_trim**(3)](#len_trim),
+  [**len**(3)](#len),
+  [**repeat**(3)](#repeat),
+  [**trim**(3)](#trim)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

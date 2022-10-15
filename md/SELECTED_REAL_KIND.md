@@ -17,6 +17,11 @@
 ```
 ### **Characteristics**
 
+ - **r** is an integer 
+ - **p** is an integer 
+ - **radix** is an integer 
+ - the result is an integer value 
+
 ### **Description**
 
 **selected_real_kind**(3) return the kind value of a real data type with

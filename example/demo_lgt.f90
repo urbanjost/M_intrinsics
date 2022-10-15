@@ -1,9 +1,12 @@
       program demo_lgt
       implicit none
       integer :: i
-         write(*,'(*(a))')(char(i),i=32,126)  ! ASCII order
+         print *,'the ASCII collating sequence for printable characters'
+         write(*,'(1x,19a)')(char(i),i=32,126)
+
          write(*,*) lgt('abc','ABC')          ! [T] lowercase is > uppercase
          write(*,*) lgt('abc','abc  ')        ! [F] trailing spaces
+
          ! If both strings are of zero length the result is false.
          write(*,*) lgt('','')                ! [F]
          write(*,*) lgt('','a')               ! [F] the null string is padded

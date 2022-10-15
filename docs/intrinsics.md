@@ -3845,7 +3845,10 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-where **KIND** is any _integer_ kind supported by the programming environment.
+ - **i** is an _integer_
+ - **pos** is a _logical_
+ - **KIND** is any _integer_ kind supported by the programming environment.
+ - the result is the same type and kind as **i**
 
 ### **Description**
 
@@ -3854,19 +3857,19 @@ where **KIND** is any _integer_ kind supported by the programming environment.
 ### **Options**
 
 - **i**
-  : The type shall be _integer_.
+  : The _integer_ containing the bit to be tested
 
 - **pos**
-  : The bit position to query. it must be a valid position for the
+  : The position of the bit to query. it must be a valid position for the
   value **i**; ie. **0 <= pos <= bit_size(i)** .
 
   A value of zero refers to the least significant bit.
 
 ### **Result**
 
-The result is a _logical_ that has the value _.true._ if bit
-position **pos** of **i** has the value **1** and the value
-_.false._ if bit **pos** of **i** has the value **0**.
+  The result is a _logical_ that has the value _.true._ if bit position
+  **pos** of **i** has the value **1** and the value _.false._ if bit
+  **pos** of **i** has the value **0**.
 
 ### **Examples**
 
@@ -7534,7 +7537,6 @@ the range
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_erfc
 use, intrinsic :: iso_fortran_env, only : &
@@ -7544,13 +7546,10 @@ real(kind=real64) :: x = 0.17_real64
     write(*,*)x, erfc(x)
 end program demo_erfc
 ```
-
 Results:
-
 ```text
      0.17000000000000001       0.81000753879819121
 ```
-
 ### **Standard**
 
 Fortran 2008
@@ -7605,7 +7604,6 @@ The return value is of type _real_ and of the same kind as **x**.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_erfc_scaled
 implicit none
@@ -7615,7 +7613,6 @@ real(kind(0.0d0)) :: x = 0.17d0
 end program demo_erfc_scaled
 ```
 Results:
-
 ```text
      0.83375830214998126
 ```
@@ -8034,7 +8031,6 @@ The return value is of type default _integer_.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_exponent
 implicit none
@@ -8045,14 +8041,10 @@ integer :: i
    print *, exponent(0.0)
 end program demo_exponent
 ```
-
 Results:
 
 ```text
-              1
-              0
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -11217,14 +11209,17 @@ Fortran 95
 
 ### **Synopsis**
 ```fortran
-    result = is_iostat_end(iostat)
+    result = is_iostat_end(i)
 ```
 ```fortran
-     elemental logical function is_iostat_end(iostat)
+     elemental logical function is_iostat_end(i)
 
-      integer,intent(in) :: iostat
+      integer,intent(in) :: i
 ```
 ### **Characteristics**
+
+ - **i** is _integer_ of any kind
+ - the return value is a default _logical_
 
 ### **Description**
 
@@ -11241,7 +11236,7 @@ The function is equivalent to comparing the variable with the
 
 ### **Result**
 
-Returns a _logical_ of the default kind, _.true._ if **i** has the value
+returns  _.true._ if and only if**i** has the value
 which indicates an end of file condition for **iostat=** specifiers, and is
 _.false._ otherwise.
 
@@ -11264,6 +11259,7 @@ character(len=256) :: message
          stop 'end of file. Goodbye!'
       else
          write(*,*)'ERROR:',ios,trim(message)
+         exit
       endif
       !
    enddo
@@ -11292,16 +11288,19 @@ Fortran 2003
 ```fortran
      elemental integer function is_iostat_eor(i)
 
-      integer(kind=KIND),intent(in) :: iostat
+      integer(kind=KIND),intent(in) :: i
 ```
 ### **Characteristics**
 
+ - **i** is _integer_ of any kind
+ - the return value is a default _logical_
+
 ### **Description**
 
-**is_iostat_eor**(3) tests whether a variable has the value of the I/O
-status "end of record". The function is equivalent to comparing the
-variable with the **iostat_eor** parameter of the intrinsic module
-**iso_fortran_env**.
+  **is_iostat_eor**(3) tests whether a variable has the value of the
+  I/O status "end of record". The function is equivalent to comparing
+  the variable with the **iostat_eor** parameter of the intrinsic module
+  **iso_fortran_env**.
 
 ### **Options**
 
@@ -11310,9 +11309,9 @@ variable with the **iostat_eor** parameter of the intrinsic module
 
 ### **Result**
 
-Returns a _logical_ of the default kind, which is _.true._ if **i**
-has the value which indicates an end of file condition for iostat=
-specifiers, and is _.false._ otherwise.
+  Returns _.true._ if and only if **i** has the value which indicates
+  an end-of-record condition for iostat= specifiers, and is _.false._
+  otherwise.
 
 ### **Examples**
 
@@ -11322,23 +11321,39 @@ Sample program:
 program demo_is_iostat_eor
 use iso_fortran_env, only : iostat_eor
 implicit none
-integer :: inums(50), lun, ios
+integer :: inums(5), lun, ios
 
-  open(newunit=lun, file='_test.dat', form='unformatted')
-  write(lun, '(a)') '10 20 30'
-  write(lun, '(a)') '40 50 60 70'
-  write(lun, '(a)') '80 90'
-  write(lun, '(a)') '100'
+  ! create a test file to read from
+   open(newunit=lun, form='formatted',status='scratch')
+   write(lun, '(a)') '10 20 30'
+   write(lun, '(a)') '40 50 60 70'
+   write(lun, '(a)') '80 90'
+   write(lun, '(a)') '100'
+   rewind(lun)
 
-  do
-     read(lun, *, iostat=ios) inums
-     write(*,*)'iostat=',ios
-     if(is_iostat_eor(ios)) stop 'end of record'
-  enddo
+   do
+      read(lun, *, iostat=ios) inums
+      write(*,*)'iostat=',ios
+      if(is_iostat_eor(ios)) then
+         stop 'end of record'
+      elseif(is_iostat_end(ios)) then
+         print *,'end of file'
+         exit
+      elseif(ios.ne.0)then
+         print *,'I/O error',ios
+         exit
+      endif
+   enddo
 
-  close(lun,iostat=ios,status='delete')
+   close(lun,iostat=ios,status='delete')
 
 end program demo_is_iostat_eor
+```
+Results:
+```text
+ >  iostat=           0
+ >  iostat=          -1
+ >  end of file
 ```
 ### **Standard**
 
@@ -11402,7 +11417,6 @@ integer,parameter :: dl = kind(.true.)
 end program demo_kind
 ```
 Results:
-
 ```text
     The default character kind is            1
     The default logical kind is            4
@@ -11666,22 +11680,24 @@ Fortran 2008
     result = len(string [,kind])
 ```
 ```fortran
-     integer(kind=KIND) function len(string,kind)
+     integer(kind=KIND) function len(string,KIND)
 
-      character(len=*),intent(in) :: string
-      integer,optional,intent(in) :: kind
+      character(len=*),intent(in) :: string(..)
+      integer,optional,intent(in) :: KIND
 ```
 ### **Characteristics**
 
-  where the returned value is the same integer kind as the **kind**
-  argument, or of the default integer kind if **kind** is not specified.
+ - **string** is a scalar or array _character_ variable
+ - **KIND** is a scalar integer constant expression.
+ - the returned value is the same integer kind as the **kind**
+   argument, or of the default integer kind if **kind** is not specified.
 
 ### **Description**
 
   **len**(3) returns the length of a _character_ string.
 
-  If **string** is an array, the length of an element of **string** is
-  returned, as all elements of an array are the same length.
+  If **string** is an array, the length of a single element of **string**
+  is returned, as all elements of an array are the same length.
 
   Note that **string** need not be defined when this intrinsic is invoked,
   as only the length (not the content) of **string** is needed.
@@ -11689,16 +11705,17 @@ Fortran 2008
 ### **Options**
 
 - **string**
-  : A scalar or array of type _character_ to return the length of
+  : A scalar or array string to return the length of.
+    If it is an unallocated allocatable variable or a pointer that is
+    not associated, its length type parameter shall not be deferred.
 
 - **kind**
-  : A constant _integer_ initialization expression indicating the _kind_
-  parameter of the result.
+  : A constant indicating the _kind_ parameter of the result.
 
 ### **Result**
 
-  The return value is of type _integer_ and of kind **kind**. If **kind**
-  is absent, the return value is of default integer kind.
+  The result has a value equal to the number of characters in STRING
+  if it is scalar or in an element of STRING if it is an array.
 
 ### **Examples**
 
@@ -11765,16 +11782,16 @@ end program demo_len
 ```
 Results:
 ```text
-    length =          40
-     How long is this allocatable string?  LEN=          38
-    ======================================
-    New allocatable string LEN=          22
-    ======================
-     How long is this fixed string?          LEN=          40
-    New fixed string                         LEN=          40
-    length of ALL elements of array=           7
-    length from type parameter inquiry=          40
-    length of passed value is           11
+ >  length =          40
+ >   How long is this allocatable string?  LEN=          38
+ >  ======================================
+ >  New allocatable string LEN=          22
+ >  ======================
+ >   How long is this fixed string?          LEN=          40
+ >  New fixed string                         LEN=          40
+ >  length of ALL elements of array=           7
+ >  length from type parameter inquiry=          40
+ >  length of passed value is           11
 ```
 ### **Standard**
 
@@ -11796,7 +11813,10 @@ of arguments, and search for certain arguments:
   [**verify**(3)](#verify)
 
 - **Nonelemental:**
-  [**len_trim**(3)](#len_trim), [**len**(3)](#len), [**repeat**(3)](#repeat), [**trim**(3)](#trim)
+  [**len_trim**(3)](#len_trim),
+  [**len**(3)](#len),
+  [**repeat**(3)](#repeat),
+  [**trim**(3)](#trim)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -11818,18 +11838,16 @@ of arguments, and search for certain arguments:
 ```
 ### **Characteristics**
 
-**string** is a scalar or array of type _character_
-
-**kind** is a scalar integer constant expression specifying the kind
-of the returned value.
-
-The return value is of type _integer_ and of kind **kind**. If **kind**
-is absent, the return value is of default _integer_ kind.
+ - **string** is of type _character_
+ - **kind** is a scalar integer constant expression specifying the kind
+   of the returned value.
+ - The return value is of type _integer_ and of kind **kind**. If **kind**
+   is absent, the return value is of default _integer_ kind.
 
 ### **Description**
 
-**len_trim**(3) returns the length of a character string, ignoring any
-trailing blanks.
+  **len_trim**(3) returns the length of a character string, ignoring
+  any trailing blanks.
 
 ### **Options**
 
@@ -11931,11 +11949,15 @@ of arguments, and search for certain arguments:
 ```
 ### **Characteristics**
 
+    - **string_a** is default _character_ or an ASCII character.
+    - **string_b** is the same type and kind as **string_a**
+    - the result is a default logical
+
 ### **Description**
 
   **lge**(3) determines whether one string is lexically greater than
   or equal to another string, where the two strings are interpreted as
-  containing ASCII character codes. If the String **a** and String **b**
+  containing ASCII character codes. If **string_a** and **string_b**
   are not the same length, the shorter is compared as if spaces were
   appended to it to form a value that has the same length as the longer.
 
@@ -11948,17 +11970,20 @@ of arguments, and search for certain arguments:
 ### **Options**
 
 - **string_a**
-  : Shall be of default _character_ type.
+  : string to be tested
 
 - **string_b**
-  : Shall be of default _character_ type.
+  : string to compare to **string_a**
 
 ### **Result**
 
-Returns _.true._ if string_a == string_b, and _.false._ otherwise,
-based on the ASCII ordering.
+  Returns _.true._ if string_a == string_b, and _.false._ otherwise,
+  based on the ASCII collating sequence.
 
-If both input arguments are null strings, _.true._ is always returned.
+  If both input arguments are null strings, _.true._ is always returned.
+
+  If either string contains a character not in the ASCII character set,
+  the result is processor dependent.
 
 ### **Examples**
 
@@ -11967,30 +11992,36 @@ Sample program:
 program demo_lge
 implicit none
 integer :: i
-   write(*,'(*(a))')(char(i),i=32,126)  ! ASCII order
-   write(*,*) lge('abc','ABC')          ! [T] lowercase is > uppercase
-   write(*,*) lge('abc','abc  ')        ! [T] trailing spaces
+   print *,'the ASCII collating sequence for printable characters'
+   write(*,'(1x,19a)')(char(i),i=32,126) ! ASCII order
+   write(*,*) lge('abc','ABC')           ! [T] lowercase is > uppercase
+   write(*,*) lge('abc','abc  ')         ! [T] trailing spaces
    ! If both strings are of zero length the result is true
-   write(*,*) lge('','')                ! [T]
-   write(*,*) lge('','a')               ! [F] the null string is padded
-   write(*,*) lge('a','')               ! [T]
-   write(*,*) lge('abc',['abc','123'])  ! [T T]  scalar and array
-   write(*,*) lge(['cba', '123'],'abc') ! [T F]
+   write(*,*) lge('','')                 ! [T]
+   write(*,*) lge('','a')                ! [F] the null string is padded
+   write(*,*) lge('a','')                ! [T]
+   ! elemental
+   write(*,*) lge('abc',['abc','123'])   ! [T T]  scalar and array
+   write(*,*) lge(['cba', '123'],'abc')  ! [T F]
    write(*,*) lge(['abc','123'],['cba','123']) ! [F T]  both arrays
 end program demo_lge
 ```
 Results:
 ```text
-    !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
-    [\]^_`abcdefghijklmnopqrstuvwxyz{|}~
-    T
-    T
-    T
-    F
-    T
-    T T
-    T F
-    F T
+ >  the ASCII collating sequence for printable characters
+ >   !"#$%&'()*+,-./012
+ >  3456789:;<=>?@ABCDE
+ >  FGHIJKLMNOPQRSTUVWX
+ >  YZ[\]^_`abcdefghijk
+ >  lmnopqrstuvwxyz{|}~
+ >  T
+ >  T
+ >  T
+ >  F
+ >  T
+ >  T T
+ >  T F
+ >  F T
 ```
 ### **Standard**
 
@@ -12039,6 +12070,10 @@ of arguments, and search for certain arguments:
 ```
 ### **Characteristics**
 
+    - **string_a** is default _character_ or an ASCII character.
+    - **string_b** is the same type and kind as **string_a**
+    - the result is a default logical
+
 ### **Description**
 
   **lgt**(3) determines whether one string is lexically greater than
@@ -12056,17 +12091,20 @@ of arguments, and search for certain arguments:
 ### **Options**
 
 - **string_a**
-  : Shall be of default _character_ type.
+  : string to be tested
 
 - **string_b**
-  : Shall be of default _character_ type.
+  : string to compare to **string_a**
 
 ### **Result**
 
   Returns _.true._ if string_a \> string_b, and _.false._ otherwise,
   based on the ASCII ordering.
 
-  If both input arguments are null strings, _.false._ is always returned.
+  If both input arguments are null strings, _.false._ is returned.
+
+  If either string contains a character not in the ASCII character set,
+  the result is processor dependent.
 
 ### **Examples**
 
@@ -12075,9 +12113,12 @@ Sample program:
 program demo_lgt
 implicit none
 integer :: i
-   write(*,'(*(a))')(char(i),i=32,126)  ! ASCII order
+   print *,'the ASCII collating sequence for printable characters'
+   write(*,'(1x,19a)')(char(i),i=32,126)
+
    write(*,*) lgt('abc','ABC')          ! [T] lowercase is > uppercase
    write(*,*) lgt('abc','abc  ')        ! [F] trailing spaces
+
    ! If both strings are of zero length the result is false.
    write(*,*) lgt('','')                ! [F]
    write(*,*) lgt('','a')               ! [F] the null string is padded
@@ -12089,16 +12130,20 @@ end program demo_lgt
 ```
 Results:
 ```text
-    !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
-    [\]^_`abcdefghijklmnopqrstuvwxyz{|}~
-    T
-    F
-    F
-    F
-    T
-    F T
-    T F
-    F F
+ >  the ASCII collating sequence for printable characters
+ >   !"#$%&'()*+,-./012
+ >  3456789:;<=>?@ABCDE
+ >  FGHIJKLMNOPQRSTUVWX
+ >  YZ[\]^_`abcdefghijk
+ >  lmnopqrstuvwxyz{|}~
+ >  T
+ >  F
+ >  F
+ >  F
+ >  T
+ >  F T
+ >  T F
+ >  F F
 ```
 ### **Standard**
 
@@ -12147,39 +12192,46 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
+    - **string_a** is default _character_ or an ASCII character.
+    - **string_b** is the same type and kind as **string_a**
+    - the result is a default logical
+
 ### **Description**
 
   **lle**(3) determines whether one string is lexically less than or equal
   to another string, where the two strings are interpreted as containing
-  ASCII character codes. if the **string_a** and **string_b** are not
-  the same length, the shorter is compared as if spaces were appended
-  to it to form a value that has the same length as the longer. Leading
-  spaces are significant.
+  ASCII character codes.
+
+  If **string_a** and **string_b** are not the
+  same length, the shorter is compared as if spaces were appended to it
+  to form a value that has the same length as the longer.
+
+  Leading spaces are significant.
 
   In general, the lexical comparison intrinsics **lge**, **lgt**, **lle**,
   and **llt** differ from the corresponding intrinsic operators _.ge.,
   .gt., .le., and .lt._, in that the latter use the processor's character
-  ordering (which is not ASCII on some targets), whereas the former
-  always use the ASCII ordering.
+  ordering (which is not ASCII on some targets), whereas **lle**(3)
+  always uses the ASCII ordering.
 
 ### **Options**
 
-- **str_a**
-  : variable or array of default _character_ type.
+- **string_a**
+  : string to be tested
 
-- **str_b**
-  : variable or array of default _character_ type.
-
-  if **str_a** and **str_b** are both arrays they must be of the
-  same shape.
+- **string_b**
+  : string to compare to **string_a**
 
 ### **Result**
 
 - **result**
-  Returns _.true._ if **STR_A \<= STR_B**, and _.false._ otherwise, based on
-  the ASCII ordering.
+  Returns _.true._ if **string_a \<= string_b**, and _.false._ otherwise,
+  based on the ASCII collating sequence.
 
   If both input arguments are null strings, _.true._ is always returned.
+
+  If either string contains a character not in the ASCII character set,
+  the result is processor dependent.
 
 ### **Examples**
 
@@ -12189,30 +12241,58 @@ Sample program:
 program demo_lle
 implicit none
 integer :: i
-   write(*,'(*(a))')(char(i),i=32,126)
+   print *,'the ASCII collating sequence for printable characters'
+   write(*,'(1x,19a)')(char(i),i=32,126)
+  ! basics
+
+   print *,'case matters'
    write(*,*) lle('abc','ABC')          ! F lowercase is > uppercase
+
+   print *,'a space is the lowest printable character'
+   write(*,*) lle('abcd','abc')         ! F  d > space
+   write(*,*) lle('abc','abcd')         ! T  space < d
+
+   print *,'leading spaces matter, trailing spaces do not'
    write(*,*) lle('abc','abc  ')        ! T trailing spaces
+   write(*,*) lle('abc',' abc')         ! F leading spaces are significant
+
+   print *,'even null strings are padded and compared'
    ! If both strings are of zero length the result is true.
    write(*,*) lle('','')                ! T
    write(*,*) lle('','a')               ! T the null string is padded
    write(*,*) lle('a','')               ! F
+   print *,'elemental'
    write(*,*) lle('abc',['abc','123'])  ! [T,F] scalar and array
    write(*,*) lle(['cba', '123'],'abc') ! [F,T]
+   ! per the rules for elemental procedures arrays must be the same size
    write(*,*) lle(['abc','123'],['cba','123']) ! [T,T] both arrays
 end program demo_lle
 ```
 Results:
 ```text
-  !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
-  [\]^_`abcdefghijklmnopqrstuvwxyz{|}~
-  F
-  T
-  T
-  T
-  F
-  T F
-  F T
-  T T
+ >  the ASCII collating sequence for printable characters
+ >   !"#$%&'()*+,-./012
+ >  3456789:;<=>?@ABCDE
+ >  FGHIJKLMNOPQRSTUVWX
+ >  YZ[\]^_`abcdefghijk
+ >  lmnopqrstuvwxyz{|}~
+ >  case matters
+ >  F
+ >  a space is the lowest printable character
+ >  F
+ >  T
+ >  leading spaces matter, trailing spaces do not
+ >  T
+ >  F
+ >  even null strings are padded and compared
+ >  T
+ >  T
+ >  F
+ >  elemental
+ >  T F
+ >  F T
+ >  T T
+================================================================================
 ```
 ### **Standard**
 
@@ -12261,6 +12341,10 @@ of arguments, and search for certain arguments:
 ```
 ### **Characteristics**
 
+    - **string_a** is default _character_ or an ASCII character.
+    - **string_b** is the same type and kind as **string_a**
+    - the result is a default logical
+
 ### **Description**
 
   **llt**(3) determines whether one string is lexically less than
@@ -12278,17 +12362,20 @@ of arguments, and search for certain arguments:
 ### **Options**
 
 - **string_a**
-  : Shall be of default _character_ type.
+  : string to be tested
 
 - **string_b**
-  : Shall be of default _character_ type.
+  : string to compare to **string_a**
 
 ### **Result**
 
   Returns _.true._ if string_a \<= string_b, and _.false._ otherwise,
-  based on the ASCII ordering.
+  based on the ASCII collating sequence.
 
   If both input arguments are null strings, _.false._ is always returned.
+
+  If either string contains a character not in the ASCII character set,
+  the result is processor dependent.
 
 ### **Examples**
 
@@ -12297,30 +12384,42 @@ Sample program:
 program demo_llt
 implicit none
 integer :: i
-   write(*,'(*(a))')(char(i),i=32,126)  ! ASCII order
-   write(*,*) llt('abc','ABC')          ! [F] lowercase is > uppercase
-   write(*,*) llt('abc','abc  ')        ! [F] trailing spaces
+
+   print *,'the ASCII collating sequence for printable characters'
+   write(*,'(1x,19a)')(char(i),i=32,126) ! ASCII order
+
+  ! basics
+   print *,'case matters'
+   write(*,*) llt('abc','ABC')           ! [F] lowercase is > uppercase
+   write(*,*) llt('abc','abc  ')         ! [F] trailing spaces
    ! If both strings are of zero length the result is false.
-   write(*,*) llt('','')                ! [F]
-   write(*,*) llt('','a')               ! [T] the null string is padded
-   write(*,*) llt('a','')               ! [F]
-   write(*,*) llt('abc',['abc','123'])  ! [F F]  scalar and array
-   write(*,*) llt(['cba', '123'],'abc') ! [F T]
+   write(*,*) llt('','')                 ! [F]
+   write(*,*) llt('','a')                ! [T] the null string is padded
+   write(*,*) llt('a','')                ! [F]
+   print *,'elemental'
+   write(*,*) llt('abc',['abc','123'])   ! [F F]  scalar and array
+   write(*,*) llt(['cba', '123'],'abc')  ! [F T]
    write(*,*) llt(['abc','123'],['cba','123']) ! [T F]  both arrays
 end program demo_llt
 ```
 Results:
 ```text
-  > !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
-  > [\]^_`abcdefghijklmnopqrstuvwxyz{|}~
-  > F
-  > F
-  > F
-  > T
-  > F
-  > F F
-  > F T
-  > T F
+ >  the ASCII collating sequence for printable characters
+ >   !"#$%&'()*+,-./012
+ >  3456789:;<=>?@ABCDE
+ >  FGHIJKLMNOPQRSTUVWX
+ >  YZ[\]^_`abcdefghijk
+ >  lmnopqrstuvwxyz{|}~
+ >  case matters
+ >  F
+ >  F
+ >  F
+ >  T
+ >  F
+ >  elemental
+ >  F F
+ >  F T
+ >  T F
 ```
 ### **Standard**
 
@@ -18100,26 +18199,18 @@ of arguments, and search for certain arguments:
 ```
 ### **Characteristics**
 
+ - **name** is a default _character_ scalar
+ - the result is a default _integer_ scalar
+
 ### **Description**
 
-  **selected_char_kind**(3) returns the kind value for the character
-  set named **name**, if a character set with such a name is supported, or
-  **-1** otherwise.
+  **selected_char_kind**(3) returns a kind parameter value for the
+  character set named **name**.
 
-### **Options**
+  If a name is not supported, -1 is returned. Otherwise the result is a
+  value equal to that kind type parameter value.
 
-- **name**
-  : A name to query the processor kind value of , and/or to determine
-  if it is supported. **name** is interpreted without respect to case
-  or trailing blanks.
-
-  Currently, supported character sets include "ASCII" and "DEFAULT" and
-  "ISO_10646" (Universal Character Set, UCS-4) which is commonly known as
-  "Unicode". Supported names other than "DEFAULT" are processor dependent.
-
-### **Result**
-
-If a name is not supported, -1 is returned. Otherwise
+  The list of supported names is processor-dependent except for "DEFAULT".
 
  + If **name** has the value "DEFAULT", then the result has a value equal to
    that of the kind type parameter of default character. This name is
@@ -18135,23 +18226,45 @@ If a name is not supported, -1 is returned. Otherwise
  + If **name** is a processor-defined name of some other character kind
    supported by the processor, then the result has a value equal to that
    kind type parameter value.
+  Pre-defined names include "ASCII" and "ISO_10646".
+
+  The NAME is interpreted without respect to case or trailing blanks.
+
+### **Options**
+
+- **name**
+  : A name to query the processor-dependent kind value of, and/or to determine
+  if supported. **name**, interpreted without respect to case or
+  trailing blanks.
+
+  Currently, supported character sets include "ASCII" and "DEFAULT" and
+  "ISO_10646" (Universal Character Set, UCS-4) which is commonly known as
+  "Unicode". Supported names other than "DEFAULT" are processor dependent.
+
+### **Result**
 
 ### **Examples**
 
 Sample program:
 
 ```fortran
+Linux
 program demo_selected_char_kind
 use iso_fortran_env
 implicit none
 
 intrinsic date_and_time,selected_char_kind
 
+! set some aliases for common character kinds
+! as the numbers can vary from platform to platform
+
 integer, parameter :: default = selected_char_kind ("default")
 integer, parameter :: ascii =   selected_char_kind ("ascii")
 integer, parameter :: ucs4  =   selected_char_kind ('ISO_10646')
 integer, parameter :: utf8  =   selected_char_kind ('utf-8')
 
+! assuming ASCII and UCS4 are supported (ie. not equal to -1)
+! define some string variables
 character(len=26, kind=ascii ) :: alphabet
 character(len=30, kind=ucs4  ) :: hello_world
 character(len=30, kind=ucs4  ) :: string
@@ -18167,7 +18280,8 @@ character(len=30, kind=ucs4  ) :: string
        write(*,*)'ASCII is the default on this processor'
    endif
 
-  ! the kind precedes the value, somewhat like a BOZ constant
+  ! for constants the the kind precedes the value, somewhat like a
+  ! BOZ constant
    alphabet = ascii_"abcdefghijklmnopqrstuvwxyz"
    write (*,*) alphabet
 
@@ -18175,7 +18289,7 @@ character(len=30, kind=ucs4  ) :: string
                  // char (int (z'4F60'), ucs4)     &
                  // char (int (z'597D'), ucs4)
 
-  ! an  encoding option is required on OPEN for non-default I/O
+  ! an encoding option is required on OPEN for non-default I/O
    if(ucs4 /= -1 )then
       open (output_unit, encoding='UTF-8')
       write (*,*) trim (hello_world)
@@ -18196,11 +18310,11 @@ character(len=1,kind=ucs4),parameter :: &
        nen =   char(int( z'5e74' ),ucs4), & ! year
        gatsu = char(int( z'6708' ),ucs4), & ! month
        nichi = char(int( z'65e5' ),ucs4)    ! day
-     character(len= *, kind= ucs4) string
-     integer values(8)
-     call date_and_time(values=values)
-     write(string,1) values(1),nen,values(2),gatsu,values(3),nichi
-   1 format(i0,a,i0,a,i0,a)
+character(len= *, kind= ucs4) string
+integer values(8)
+   call date_and_time(values=values)
+   write(string,101) values(1),nen,values(2),gatsu,values(3),nichi
+ 101 format(*(i0,a))
 end subroutine create_date_string
 
 end program demo_selected_char_kind
@@ -18209,13 +18323,13 @@ Results:
 
 The results are very processor-dependent
 ```text
- ASCII     Supported
- ISO_10646 Supported
- UTF-8     Not Supported
- ASCII is the default on this processor
- abcdefghijklmnopqrstuvwxyz
- Hello World and Ni Hao -- 你好
- 2022年10月5日
+ >  ASCII     Supported
+ >  ISO_10646 Supported
+ >  UTF-8     Not Supported
+ >  ASCII is the default on this processor
+ >  abcdefghijklmnopqrstuvwxyz
+ >  Hello World and Ni Hao -- 你好
+ >  2022年10月15日
 ```
 ### **Standard**
 
@@ -18223,7 +18337,13 @@ Fortran 2003
 
 ### **See also**
 
-[**achar**(3)](#achar)
+[**selected_int_kind**(3)](#selected_int_kind),
+[**selected_real_kind**(3)](#selected_real_kind)
+
+[**achar**(3)](#achar),
+[**char**(3)](#char),
+[**ichar**(3)](#ichar),
+[**iachar**(3)](#iachar)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -18243,6 +18363,9 @@ Fortran 2003
      integer(kind=KIND),intent(in) :: r
 ```
 ### **Characteristics**
+
+ - **r** is a _integer_
+ - the result is an integer value
 
 ### **Description**
 
@@ -18314,6 +18437,11 @@ Fortran 95
      real(kind=KIND),intent(in),optional :: radix
 ```
 ### **Characteristics**
+
+ - **r** is an integer
+ - **p** is an integer
+ - **radix** is an integer
+ - the result is an integer value
 
 ### **Description**
 
@@ -19995,7 +20123,7 @@ Fortran 2008
 ### **Characteristics**
 
   - a kind designated as ** may be any supported kind for the type
-  - **array** may be of any numeric **TYPE** - _integer_, _real_ or _complex_.
+  - **array** may be of any numeric type - _integer_, _real_ or _complex_.
   - **dim** is an _integer_
   - **mask** is _logical_ and conformable with **array**.
   - The result is of the same type and kind as **array**. It is scalar
@@ -20029,11 +20157,12 @@ Fortran 2008
 
 ### **Result**
 
-  If **dim** is absent, a scalar with the sum of all selected elements in **array**
-  is returned. Otherwise, an array of rank n-1, where n equals the rank
-  of **array**, and a shape similar to that of **array** with dimension
-  **dim** dropped is returned. Since a vector has a rank of one, the result
-  is a scalar (n-1 where n=1 is a rank of zero, ie. a scalar).
+  If **dim** is absent, a scalar with the sum of all selected elements
+  in **array** is returned. Otherwise, an array of rank n-1, where n
+  equals the rank of **array**, and a shape similar to that of **array**
+  with dimension **dim** dropped is returned. Since a vector has a rank
+  of one, the result is a scalar (if n==1, n-1 is zero; and a rank of
+  zero means a scalar).
 
 ### **Examples**
 
@@ -20205,29 +20334,33 @@ Fortran 95
 ```
 ### **Characteristics**
 
-where TYPE may be _real_ or _integer_.
+  where TYPE may be _real_ or _integer_.
 
 ### **Description**
 
-**system_clock**(3) lets you measure durations of time with the precision of
-the smallest time increment generally available on a system by returning
-processor-dependent values based on the current value of the processor
-clock. The **clock** value is incremented by one for each clock count until
-the value **count_max** is reached and is then reset to zero at the next
-count. **clock** therefore is a modulo value that lies in the range **0 to
-count_max**. **count_rate** and **count_max** are assumed constant (even though
-CPU rates can vary on a single platform).
+  **system_clock**(3) lets you measure durations of time with the
+  precision of the smallest time increment generally available on a
+  system by returning processor-dependent values based on the current
+  value of the processor clock.
 
-**count_rate** is system dependent and can vary depending on the kind of
-the arguments.
+  The **clock** value is incremented by one for each clock count until
+  the value **count_max** is reached and is then reset to zero at the
+  next count. **clock** therefore is a modulo value that lies in the
+  range **0 to count_max**.
 
-If there is no clock, or querying the clock fails, **count** is set to
-**-huge(count)**, and **count_rate** and **count_max** are set to zero.
+  **count_rate** and **count_max** are assumed constant (even though
+  CPU rates can vary on a single platform).
 
-**system_clock** is typically used to measure short time intervals (system
-clocks may be 24-hour clocks or measure processor clock ticks since
-boot, for example). It is most often used for measuring or tracking the
-time spent in code blocks in lieu of using profiling tools.
+  **count_rate** is system dependent and can vary depending on the kind
+  of the arguments.
+
+  If there is no clock, or querying the clock fails, **count** is set to
+  **-huge(count)**, and **count_rate** and **count_max** are set to zero.
+
+  **system_clock** is typically used to measure short time intervals
+  (system clocks may be 24-hour clocks or measure processor clock ticks
+  since boot, for example). It is most often used for measuring or
+  tracking the time spent in code blocks in lieu of using profiling tools.
 
 ### **Options**
 
@@ -20252,7 +20385,6 @@ time spent in code blocks in lieu of using profiling tools.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_system_clock
 implicit none
@@ -20272,22 +20404,18 @@ real    :: time_read
 
 end program demo_system_clock
 ```
-
 If the processor clock is a 24-hour clock that registers time at
 approximately 18.20648193 ticks per second, at 11:30 A.M. the reference
 
 ```fortran
       call system_clock (count = c, count_rate = r, count_max = m)
 ```
-
 defines
-
 ```text
       C = (11*3600+30*60)*18.20648193 = 753748,
       R = 18.20648193, and
       M = 24*3600*18.20648193-1 = 1573039.
 ```
-
 ### **Standard**
 
 Fortran 95

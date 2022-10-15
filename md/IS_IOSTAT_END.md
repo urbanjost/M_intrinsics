@@ -6,14 +6,17 @@
 
 ### **Synopsis**
 ```fortran
-    result = is_iostat_end(iostat)
+    result = is_iostat_end(i)
 ```
 ```fortran
-     elemental logical function is_iostat_end(iostat)
+     elemental logical function is_iostat_end(i)
 
-      integer,intent(in) :: iostat
+      integer,intent(in) :: i
 ```
 ### **Characteristics**
+
+ - **i** is _integer_ of any kind
+ - the return value is a default _logical_
 
 ### **Description**
 
@@ -30,7 +33,7 @@ The function is equivalent to comparing the variable with the
 
 ### **Result**
 
-Returns a _logical_ of the default kind, _.true._ if **i** has the value
+returns  _.true._ if and only if**i** has the value
 which indicates an end of file condition for **iostat=** specifiers, and is
 _.false._ otherwise.
 
@@ -53,6 +56,7 @@ character(len=256) :: message
          stop 'end of file. Goodbye!'
       else
          write(*,*)'ERROR:',ios,trim(message)
+	 exit
       endif
       !
    enddo

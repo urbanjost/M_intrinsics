@@ -16,18 +16,16 @@
 ```
 ### **Characteristics**
 
-**string** is a scalar or array of type _character_
-
-**kind** is a scalar integer constant expression specifying the kind
-of the returned value.
-
-The return value is of type _integer_ and of kind **kind**. If **kind**
-is absent, the return value is of default _integer_ kind.
+ - **string** is of type _character_
+ - **kind** is a scalar integer constant expression specifying the kind
+   of the returned value.
+ - The return value is of type _integer_ and of kind **kind**. If **kind**
+   is absent, the return value is of default _integer_ kind.
 
 ### **Description**
 
-**len_trim**(3) returns the length of a character string, ignoring any
-trailing blanks.
+  **len_trim**(3) returns the length of a character string, ignoring
+  any trailing blanks.
 
 ### **Options**
 

@@ -3828,16 +3828,22 @@ textblock=[character(len=256) :: &
 '            logical,intent(out) :: pos', &
 '', &
 'CHARACTERISTICS', &
-'  where KIND is any integer kind supported by the programming environment.', &
+'  o  I is an integer', &
+'', &
+'  o  POS is a logical', &
+'', &
+'  o  KIND is any integer kind supported by the programming environment.', &
+'', &
+'  o  the result is the same type and kind as I', &
 '', &
 'DESCRIPTION', &
 '  BTEST(3) returns logical .true. if the bit at POS in I is set.', &
 '', &
 'OPTIONS', &
-'  o  I : The type shall be integer.', &
+'  o  I : The integer containing the bit to be tested', &
 '', &
-'  o  POS : The bit position to query. it must be a valid position for the', &
-'     value I; ie. 0 <= POS <= BIT_SIZE(I) .', &
+'  o  POS : The position of the bit to query. it must be a valid position for', &
+'     the value I; ie. 0 <= POS <= BIT_SIZE(I) .', &
 '', &
 '     A value of zero refers to the least significant bit.', &
 '', &
@@ -7750,8 +7756,6 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'    1 0', &
-'', &
 'STANDARD', &
 '  Fortran 95', &
 '', &
@@ -10726,13 +10730,17 @@ textblock=[character(len=256) :: &
 '  IS_IOSTAT_END(3) - [STATE:INQUIRY] Test for end-of-file value', &
 '', &
 'SYNOPSIS', &
-'  result = is_iostat_end(iostat)', &
+'  result = is_iostat_end(i)', &
 '', &
-'           elemental logical function is_iostat_end(iostat)', &
+'           elemental logical function is_iostat_end(i)', &
 '', &
-'            integer,intent(in) :: iostat', &
+'            integer,intent(in) :: i', &
 '', &
 'CHARACTERISTICS', &
+'  o  I is integer of any kind', &
+'', &
+'  o  the return value is a default logical', &
+'', &
 'DESCRIPTION', &
 '  IS_IOSTAT_END(3) tests whether a variable (assumed returned as a status from', &
 '  an I/O statement) has the "end of file" I/O status value.', &
@@ -10744,9 +10752,8 @@ textblock=[character(len=256) :: &
 '  o  I : An integer status value to test if indicating end of file.', &
 '', &
 'RESULT', &
-'  Returns a logical of the default kind, .true. if I has the value which', &
-'  indicates an end of file condition for IOSTAT= specifiers, and is .false.', &
-'  otherwise.', &
+'  returns .true. if and only ifI has the value which indicates an end of file', &
+'  condition for IOSTAT= specifiers, and is .false. otherwise.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -10765,6 +10772,7 @@ textblock=[character(len=256) :: &
 '               stop ''end of file. Goodbye!''', &
 '            else', &
 '               write(*,*)''ERROR:'',ios,trim(message)', &
+'           exit', &
 '            endif', &
 '            !', &
 '         enddo', &
@@ -10799,9 +10807,13 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental integer function is_iostat_eor(i)', &
 '', &
-'            integer(kind=KIND),intent(in) :: iostat', &
+'            integer(kind=KIND),intent(in) :: i', &
 '', &
 'CHARACTERISTICS', &
+'  o  I is integer of any kind', &
+'', &
+'  o  the return value is a default logical', &
+'', &
 'DESCRIPTION', &
 '  IS_IOSTAT_EOR(3) tests whether a variable has the value of the I/O status', &
 '  "end of record". The function is equivalent to comparing the variable with', &
@@ -10811,9 +10823,8 @@ textblock=[character(len=256) :: &
 '  o  I : The value to test as indicating "end of record".', &
 '', &
 'RESULT', &
-'  Returns a logical of the default kind, which is .true. if I has the value', &
-'  which indicates an end of file condition for iostat= specifiers, and is', &
-'  .false. otherwise.', &
+'  Returns .true. if and only if I has the value which indicates an end-of-', &
+'  record condition for iostat= specifiers, and is .false.  otherwise.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -10821,23 +10832,39 @@ textblock=[character(len=256) :: &
 '      program demo_is_iostat_eor', &
 '      use iso_fortran_env, only : iostat_eor', &
 '      implicit none', &
-'      integer :: inums(50), lun, ios', &
+'      integer :: inums(5), lun, ios', &
 '', &
-'        open(newunit=lun, file=''_test.dat'', form=''unformatted'')', &
-'        write(lun, ''(a)'') ''10 20 30''', &
-'        write(lun, ''(a)'') ''40 50 60 70''', &
-'        write(lun, ''(a)'') ''80 90''', &
-'        write(lun, ''(a)'') ''100''', &
+'        ! create a test file to read from', &
+'         open(newunit=lun, form=''formatted'',status=''scratch'')', &
+'         write(lun, ''(a)'') ''10 20 30''', &
+'         write(lun, ''(a)'') ''40 50 60 70''', &
+'         write(lun, ''(a)'') ''80 90''', &
+'         write(lun, ''(a)'') ''100''', &
+'         rewind(lun)', &
 '', &
-'        do', &
-'           read(lun, *, iostat=ios) inums', &
-'           write(*,*)''iostat='',ios', &
-'           if(is_iostat_eor(ios)) stop ''end of record''', &
-'        enddo', &
+'         do', &
+'            read(lun, *, iostat=ios) inums', &
+'            write(*,*)''iostat='',ios', &
+'            if(is_iostat_eor(ios)) then', &
+'               stop ''end of record''', &
+'            elseif(is_iostat_end(ios)) then', &
+'               print *,''end of file''', &
+'           exit', &
+'            elseif(ios.ne.0)then', &
+'               print *,''I/O error'',ios', &
+'           exit', &
+'            endif', &
+'         enddo', &
 '', &
-'        close(lun,iostat=ios,status=''delete'')', &
+'         close(lun,iostat=ios,status=''delete'')', &
 '', &
 '      end program demo_is_iostat_eor', &
+'', &
+'  Results:', &
+'', &
+'       >  iostat=           0', &
+'       >  iostat=          -1', &
+'       >  end of file', &
 '', &
 'STANDARD', &
 '  Fortran 2003', &
@@ -11171,33 +11198,38 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = len(string [,kind])', &
 '', &
-'           integer(kind=KIND) function len(string,kind)', &
+'           integer(kind=KIND) function len(string,KIND)', &
 '', &
-'            character(len=*),intent(in) :: string', &
-'            integer,optional,intent(in) :: kind', &
+'            character(len=*),intent(in) :: string(..)', &
+'            integer,optional,intent(in) :: KIND', &
 '', &
 'CHARACTERISTICS', &
-'  where the returned value is the same integer kind as the KIND argument, or', &
-'  of the default integer kind if KIND is not specified.', &
+'  o  STRING is a scalar or array character variable', &
+'', &
+'  o  KIND is a scalar integer constant expression.', &
+'', &
+'  o  the returned value is the same integer kind as the KIND argument, or of', &
+'     the default integer kind if KIND is not specified.', &
 '', &
 'DESCRIPTION', &
 '  LEN(3) returns the length of a character string.', &
 '', &
-'  If STRING is an array, the length of an element of STRING is returned, as', &
-'  all elements of an array are the same length.', &
+'  If STRING is an array, the length of a single element of STRING is returned,', &
+'  as all elements of an array are the same length.', &
 '', &
 '  Note that STRING need not be defined when this intrinsic is invoked, as only', &
 '  the length (not the content) of STRING is needed.', &
 '', &
 'OPTIONS', &
-'  o  STRING : A scalar or array of type character to return the length of', &
+'  o  STRING : A scalar or array string to return the length of. If it is an', &
+'     unallocated allocatable variable or a pointer that is not associated, its', &
+'     length type parameter shall not be deferred.', &
 '', &
-'  o  KIND : A constant integer initialization expression indicating the kind', &
-'     parameter of the result.', &
+'  o  KIND : A constant indicating the kind parameter of the result.', &
 '', &
 'RESULT', &
-'  The return value is of type integer and of kind KIND. If KIND is absent, the', &
-'  return value is of default integer kind.', &
+'  The result has a value equal to the number of characters in STRING if it is', &
+'  scalar or in an element of STRING if it is an array.', &
 '', &
 'EXAMPLES', &
 '  Sample program', &
@@ -11262,16 +11294,16 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'          length =          40', &
-'           How long is this allocatable string?  LEN=          38', &
-'          ======================================', &
-'          New allocatable string LEN=          22', &
-'          ======================', &
-'           How long is this fixed string?          LEN=          40', &
-'          New fixed string                         LEN=          40', &
-'          length of ALL elements of array=           7', &
-'          length from type parameter inquiry=          40', &
-'          length of passed value is           11', &
+'       >  length =          40', &
+'       >   How long is this allocatable string?  LEN=          38', &
+'       >  ======================================', &
+'       >  New allocatable string LEN=          22', &
+'       >  ======================', &
+'       >   How long is this fixed string?          LEN=          40', &
+'       >  New fixed string                         LEN=          40', &
+'       >  length of ALL elements of array=           7', &
+'       >  length from type parameter inquiry=          40', &
+'       >  length of passed value is           11', &
 '', &
 'STANDARD', &
 '  FORTRAN 77 ; with KIND argument - Fortran 2003', &
@@ -11315,13 +11347,13 @@ textblock=[character(len=256) :: &
 '          integer(kind=KIND),intent(in),optional :: kind', &
 '', &
 'CHARACTERISTICS', &
-'  STRING is a scalar or array of type character', &
+'  o  STRING is of type character', &
 '', &
-'  KIND is a scalar integer constant expression specifying the kind of the', &
-'  returned value.', &
+'  o  KIND is a scalar integer constant expression specifying the kind of the', &
+'     returned value.', &
 '', &
-'  The return value is of type integer and of kind KIND. If KIND is absent, the', &
-'  return value is of default integer kind.', &
+'  o  The return value is of type integer and of kind KIND. If KIND is absent,', &
+'     the return value is of default integer kind.', &
 '', &
 'DESCRIPTION', &
 '  LEN_TRIM(3) returns the length of a character string, ignoring any trailing', &
@@ -11430,10 +11462,16 @@ textblock=[character(len=256) :: &
 '            character(len=*),intent(in) :: string_b', &
 '', &
 'CHARACTERISTICS', &
+'  o  **string_a** is default _character_ or an ASCII character.', &
+'', &
+'  o  **string_b** is the same type and kind as **string_a**', &
+'', &
+'  o  the result is a default logical', &
+'', &
 'DESCRIPTION', &
 '  LGE(3) determines whether one string is lexically greater than or equal to', &
 '  another string, where the two strings are interpreted as containing ASCII', &
-'  character codes. If the String A and String B are not the same length, the', &
+'  character codes. If STRING_A and STRING_B are not the same length, the', &
 '  shorter is compared as if spaces were appended to it to form a value that', &
 '  has the same length as the longer.', &
 '', &
@@ -11443,15 +11481,18 @@ textblock=[character(len=256) :: &
 '  on some targets), whereas the former always use the ASCII ordering.', &
 '', &
 'OPTIONS', &
-'  o  STRING_A : Shall be of default character type.', &
+'  o  STRING_A : string to be tested', &
 '', &
-'  o  STRING_B : Shall be of default character type.', &
+'  o  STRING_B : string to compare to STRING_A', &
 '', &
 'RESULT', &
 '  Returns .true. if string_a == string_b, and .false. otherwise, based on the', &
-'  ASCII ordering.', &
+'  ASCII collating sequence.', &
 '', &
 '  If both input arguments are null strings, .true. is always returned.', &
+'', &
+'  If either string contains a character not in the ASCII character set, the', &
+'  result is processor dependent.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -11459,31 +11500,37 @@ textblock=[character(len=256) :: &
 '      program demo_lge', &
 '      implicit none', &
 '      integer :: i', &
-'         write(*,''(*(a))'')(char(i),i=32,126)  ! ASCII order', &
-'         write(*,*) lge(''abc'',''ABC'')          ! [T] lowercase is > uppercase', &
-'         write(*,*) lge(''abc'',''abc  '')        ! [T] trailing spaces', &
+'         print *,''the ASCII collating sequence for printable characters''', &
+'         write(*,''(1x,19a)'')(char(i),i=32,126) ! ASCII order', &
+'         write(*,*) lge(''abc'',''ABC'')           ! [T] lowercase is > uppercase', &
+'         write(*,*) lge(''abc'',''abc  '')         ! [T] trailing spaces', &
 '         ! If both strings are of zero length the result is true', &
-'         write(*,*) lge('''','''')                ! [T]', &
-'         write(*,*) lge('''',''a'')               ! [F] the null string is padded', &
-'         write(*,*) lge(''a'','''')               ! [T]', &
-'         write(*,*) lge(''abc'',[''abc'',''123''])  ! [T T]  scalar and array', &
-'         write(*,*) lge([''cba'', ''123''],''abc'') ! [T F]', &
+'         write(*,*) lge('''','''')                 ! [T]', &
+'         write(*,*) lge('''',''a'')                ! [F] the null string is padded', &
+'         write(*,*) lge(''a'','''')                ! [T]', &
+'         ! elemental', &
+'         write(*,*) lge(''abc'',[''abc'',''123''])   ! [T T]  scalar and array', &
+'         write(*,*) lge([''cba'', ''123''],''abc'')  ! [T F]', &
 '         write(*,*) lge([''abc'',''123''],[''cba'',''123'']) ! [F T]  both arrays', &
 '      end program demo_lge', &
 '', &
 '  Results:', &
 '', &
-'          !"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ', &
-'          [\]^_`abcdefghijklmnopqrstuvwxyz{|}~', &
+'       >  the ASCII collating sequence for printable characters', &
+'       >   !"#$%&''()*+,-./012', &
+'       >  3456789:;<=>?@ABCDE', &
+'       >  FGHIJKLMNOPQRSTUVWX', &
+'       >  YZ[\]^_`abcdefghijk', &
+'       >  lmnopqrstuvwxyz{|}~', &
+'       >  T', &
+'       >  T', &
+'       >  T', &
+'       >  F', &
+'       >  T', &
+'       >  T T', &
+'       >  T F', &
+'       >  F T', &
 '', &
-'   T', &
-'   T', &
-'   T', &
-'   F', &
-'   T', &
-'   T T', &
-'   T F', &
-'   F T', &
 'STANDARD', &
 '  FORTRAN 77', &
 '', &
@@ -11526,6 +11573,12 @@ textblock=[character(len=256) :: &
 '             character(len=*),intent(in) :: string_b', &
 '', &
 'CHARACTERISTICS', &
+'  o  **string_a** is default _character_ or an ASCII character.', &
+'', &
+'  o  **string_b** is the same type and kind as **string_a**', &
+'', &
+'  o  the result is a default logical', &
+'', &
 'DESCRIPTION', &
 '  LGT(3) determines whether one string is lexically greater than another', &
 '  string, where the two strings are interpreted as containing ASCII character', &
@@ -11539,15 +11592,18 @@ textblock=[character(len=256) :: &
 '  on some targets), whereas the former always use the ASCII ordering.', &
 '', &
 'OPTIONS', &
-'  o  STRING_A : Shall be of default character type.', &
+'  o  STRING_A : string to be tested', &
 '', &
-'  o  STRING_B : Shall be of default character type.', &
+'  o  STRING_B : string to compare to STRING_A', &
 '', &
 'RESULT', &
 '  Returns .true. if string_a > string_b, and .false. otherwise, based on the', &
 '  ASCII ordering.', &
 '', &
-'  If both input arguments are null strings, .false. is always returned.', &
+'  If both input arguments are null strings, .false. is returned.', &
+'', &
+'  If either string contains a character not in the ASCII character set, the', &
+'  result is processor dependent.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -11555,9 +11611,12 @@ textblock=[character(len=256) :: &
 '      program demo_lgt', &
 '      implicit none', &
 '      integer :: i', &
-'         write(*,''(*(a))'')(char(i),i=32,126)  ! ASCII order', &
+'         print *,''the ASCII collating sequence for printable characters''', &
+'         write(*,''(1x,19a)'')(char(i),i=32,126)', &
+'', &
 '         write(*,*) lgt(''abc'',''ABC'')          ! [T] lowercase is > uppercase', &
 '         write(*,*) lgt(''abc'',''abc  '')        ! [F] trailing spaces', &
+'', &
 '         ! If both strings are of zero length the result is false.', &
 '         write(*,*) lgt('''','''')                ! [F]', &
 '         write(*,*) lgt('''',''a'')               ! [F] the null string is padded', &
@@ -11569,17 +11628,21 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'          !"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ', &
-'          [\]^_`abcdefghijklmnopqrstuvwxyz{|}~', &
+'       >  the ASCII collating sequence for printable characters', &
+'       >   !"#$%&''()*+,-./012', &
+'       >  3456789:;<=>?@ABCDE', &
+'       >  FGHIJKLMNOPQRSTUVWX', &
+'       >  YZ[\]^_`abcdefghijk', &
+'       >  lmnopqrstuvwxyz{|}~', &
+'       >  T', &
+'       >  F', &
+'       >  F', &
+'       >  F', &
+'       >  T', &
+'       >  F T', &
+'       >  T F', &
+'       >  F F', &
 '', &
-'   T', &
-'   F', &
-'   F', &
-'   F', &
-'   T', &
-'   F T', &
-'   T F', &
-'   F F', &
 'STANDARD', &
 '  FORTRAN 77', &
 '', &
@@ -11622,30 +11685,41 @@ textblock=[character(len=256) :: &
 '             character(len=*),intent(in) :: string_b', &
 '', &
 'CHARACTERISTICS', &
+'  o  **string_a** is default _character_ or an ASCII character.', &
+'', &
+'  o  **string_b** is the same type and kind as **string_a**', &
+'', &
+'  o  the result is a default logical', &
+'', &
 'DESCRIPTION', &
 '  LLE(3) determines whether one string is lexically less than or equal to', &
 '  another string, where the two strings are interpreted as containing ASCII', &
-'  character codes. if the STRING_A and STRING_B are not the same length, the', &
-'  shorter is compared as if spaces were appended to it to form a value that', &
-'  has the same length as the longer. Leading spaces are significant.', &
+'  character codes.', &
+'', &
+'  If STRING_A and STRING_B are not the same length, the shorter is compared as', &
+'  if spaces were appended to it to form a value that has the same length as', &
+'  the longer.', &
+'', &
+'  Leading spaces are significant.', &
 '', &
 '  In general, the lexical comparison intrinsics LGE, LGT, LLE, and LLT differ', &
 '  from the corresponding intrinsic operators .ge., .gt., .le., and .lt., in', &
 '  that the latter use the processor''s character ordering (which is not ASCII', &
-'  on some targets), whereas the former always use the ASCII ordering.', &
+'  on some targets), whereas LLE(3) always uses the ASCII ordering.', &
 '', &
 'OPTIONS', &
-'  o  STR_A : variable or array of default character type.', &
+'  o  STRING_A : string to be tested', &
 '', &
-'  o  STR_B : variable or array of default character type.', &
-'', &
-'      if STR_A and STR_B are both arrays they must be of the same shape.', &
+'  o  STRING_B : string to compare to STRING_A', &
 '', &
 'RESULT', &
-'  o  RESULT Returns .true. if STR_A <= STR_B, and .false. otherwise, based on', &
-'     the ASCII ordering.', &
+'  o  RESULT Returns .true. if STRING_A <= STRING_B, and .false.  otherwise,', &
+'     based on the ASCII collating sequence.', &
 '', &
 '     If both input arguments are null strings, .true. is always returned.', &
+'', &
+'     If either string contains a character not in the ASCII character set, the', &
+'     result is processor dependent.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -11653,31 +11727,59 @@ textblock=[character(len=256) :: &
 '      program demo_lle', &
 '      implicit none', &
 '      integer :: i', &
-'         write(*,''(*(a))'')(char(i),i=32,126)', &
+'         print *,''the ASCII collating sequence for printable characters''', &
+'         write(*,''(1x,19a)'')(char(i),i=32,126)', &
+'        ! basics', &
+'', &
+'         print *,''case matters''', &
 '         write(*,*) lle(''abc'',''ABC'')          ! F lowercase is > uppercase', &
+'', &
+'         print *,''a space is the lowest printable character''', &
+'         write(*,*) lle(''abcd'',''abc'')         ! F  d > space', &
+'         write(*,*) lle(''abc'',''abcd'')         ! T  space < d', &
+'', &
+'         print *,''leading spaces matter, trailing spaces do not''', &
 '         write(*,*) lle(''abc'',''abc  '')        ! T trailing spaces', &
+'         write(*,*) lle(''abc'','' abc'')         ! F leading spaces are significant', &
+'', &
+'         print *,''even null strings are padded and compared''', &
 '         ! If both strings are of zero length the result is true.', &
 '         write(*,*) lle('''','''')                ! T', &
 '         write(*,*) lle('''',''a'')               ! T the null string is padded', &
 '         write(*,*) lle(''a'','''')               ! F', &
+'         print *,''elemental''', &
 '         write(*,*) lle(''abc'',[''abc'',''123''])  ! [T,F] scalar and array', &
 '         write(*,*) lle([''cba'', ''123''],''abc'') ! [F,T]', &
+'         ! per the rules for elemental procedures arrays must be the same size', &
 '         write(*,*) lle([''abc'',''123''],[''cba'',''123'']) ! [T,T] both arrays', &
 '      end program demo_lle', &
 '', &
 '  Results:', &
 '', &
-'        !"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ', &
-'        [\]^_`abcdefghijklmnopqrstuvwxyz{|}~', &
+'       >  the ASCII collating sequence for printable characters', &
+'       >   !"#$%&''()*+,-./012', &
+'       >  3456789:;<=>?@ABCDE', &
+'       >  FGHIJKLMNOPQRSTUVWX', &
+'       >  YZ[\]^_`abcdefghijk', &
+'       >  lmnopqrstuvwxyz{|}~', &
+'       >  case matters', &
+'       >  F', &
+'       >  a space is the lowest printable character', &
+'       >  F', &
+'       >  T', &
+'       >  leading spaces matter, trailing spaces do not', &
+'       >  T', &
+'       >  F', &
+'       >  even null strings are padded and compared', &
+'       >  T', &
+'       >  T', &
+'       >  F', &
+'       >  elemental', &
+'       >  T F', &
+'       >  F T', &
+'       >  T T', &
+'  ================================================================================', &
 '', &
-'   F', &
-'   T', &
-'   T', &
-'   T', &
-'   F', &
-'   T F', &
-'   F T', &
-'   T T', &
 'STANDARD', &
 '  FORTRAN 77', &
 '', &
@@ -11720,6 +11822,12 @@ textblock=[character(len=256) :: &
 '             character(len=*),intent(in) :: string_b', &
 '', &
 'CHARACTERISTICS', &
+'  o  **string_a** is default _character_ or an ASCII character.', &
+'', &
+'  o  **string_b** is the same type and kind as **string_a**', &
+'', &
+'  o  the result is a default logical', &
+'', &
 'DESCRIPTION', &
 '  LLT(3) determines whether one string is lexically less than another string,', &
 '  where the two strings are interpreted as containing ASCII character codes.', &
@@ -11733,15 +11841,18 @@ textblock=[character(len=256) :: &
 '  on some targets), whereas the former always use the ASCII ordering.', &
 '', &
 'OPTIONS', &
-'  o  STRING_A : Shall be of default character type.', &
+'  o  STRING_A : string to be tested', &
 '', &
-'  o  STRING_B : Shall be of default character type.', &
+'  o  STRING_B : string to compare to STRING_A', &
 '', &
 'RESULT', &
 '  Returns .true. if string_a <= string_b, and .false. otherwise, based on the', &
-'  ASCII ordering.', &
+'  ASCII collating sequence.', &
 '', &
 '  If both input arguments are null strings, .false. is always returned.', &
+'', &
+'  If either string contains a character not in the ASCII character set, the', &
+'  result is processor dependent.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -11749,30 +11860,42 @@ textblock=[character(len=256) :: &
 '      program demo_llt', &
 '      implicit none', &
 '      integer :: i', &
-'         write(*,''(*(a))'')(char(i),i=32,126)  ! ASCII order', &
-'         write(*,*) llt(''abc'',''ABC'')          ! [F] lowercase is > uppercase', &
-'         write(*,*) llt(''abc'',''abc  '')        ! [F] trailing spaces', &
+'', &
+'         print *,''the ASCII collating sequence for printable characters''', &
+'         write(*,''(1x,19a)'')(char(i),i=32,126) ! ASCII order', &
+'', &
+'        ! basics', &
+'         print *,''case matters''', &
+'         write(*,*) llt(''abc'',''ABC'')           ! [F] lowercase is > uppercase', &
+'         write(*,*) llt(''abc'',''abc  '')         ! [F] trailing spaces', &
 '         ! If both strings are of zero length the result is false.', &
-'         write(*,*) llt('''','''')                ! [F]', &
-'         write(*,*) llt('''',''a'')               ! [T] the null string is padded', &
-'         write(*,*) llt(''a'','''')               ! [F]', &
-'         write(*,*) llt(''abc'',[''abc'',''123''])  ! [F F]  scalar and array', &
-'         write(*,*) llt([''cba'', ''123''],''abc'') ! [F T]', &
+'         write(*,*) llt('''','''')                 ! [F]', &
+'         write(*,*) llt('''',''a'')                ! [T] the null string is padded', &
+'         write(*,*) llt(''a'','''')                ! [F]', &
+'         print *,''elemental''', &
+'         write(*,*) llt(''abc'',[''abc'',''123''])   ! [F F]  scalar and array', &
+'         write(*,*) llt([''cba'', ''123''],''abc'')  ! [F T]', &
 '         write(*,*) llt([''abc'',''123''],[''cba'',''123'']) ! [T F]  both arrays', &
 '      end program demo_llt', &
 '', &
 '  Results:', &
 '', &
-'        > !"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ', &
-'        > [\]^_`abcdefghijklmnopqrstuvwxyz{|}~', &
-'        > F', &
-'        > F', &
-'        > F', &
-'        > T', &
-'        > F', &
-'        > F F', &
-'        > F T', &
-'        > T F', &
+'       >  the ASCII collating sequence for printable characters', &
+'       >   !"#$%&''()*+,-./012', &
+'       >  3456789:;<=>?@ABCDE', &
+'       >  FGHIJKLMNOPQRSTUVWX', &
+'       >  YZ[\]^_`abcdefghijk', &
+'       >  lmnopqrstuvwxyz{|}~', &
+'       >  case matters', &
+'       >  F', &
+'       >  F', &
+'       >  F', &
+'       >  T', &
+'       >  F', &
+'       >  elemental', &
+'       >  F F', &
+'       >  F T', &
+'       >  T F', &
 '', &
 'STANDARD', &
 '  FORTRAN 77', &
@@ -17192,21 +17315,18 @@ textblock=[character(len=256) :: &
 '            character(len=*),intent(in) :: name', &
 '', &
 'CHARACTERISTICS', &
+'  o  NAME is a default character scalar', &
+'', &
+'  o  the result is a default integer scalar', &
+'', &
 'DESCRIPTION', &
-'  SELECTED_CHAR_KIND(3) returns the kind value for the character set named', &
-'  NAME, if a character set with such a name is supported, or -1 otherwise.', &
+'  SELECTED_CHAR_KIND(3) returns a kind parameter value for the character set', &
+'  named NAME.', &
 '', &
-'OPTIONS', &
-'  o  NAME : A name to query the processor kind value of , and/or to determine', &
-'     if it is supported. NAME is interpreted without respect to case or', &
-'     trailing blanks.', &
+'  If a name is not supported, -1 is returned. Otherwise the result is a value', &
+'  equal to that kind type parameter value.', &
 '', &
-'     Currently, supported character sets include "ASCII" and "DEFAULT" and', &
-'     "ISO_10646" (Universal Character Set, UCS-4) which is commonly known as', &
-'     "Unicode". Supported names other than "DEFAULT" are processor dependent.', &
-'', &
-'RESULT', &
-'  If a name is not supported, -1 is returned. Otherwise', &
+'  The list of supported names is processor-dependent except for "DEFAULT".', &
 '', &
 '  o  If NAME has the value "DEFAULT", then the result has a value equal to', &
 '     that of the kind type parameter of default character. This name is always', &
@@ -17221,22 +17341,41 @@ textblock=[character(len=256) :: &
 '', &
 '  o  If NAME is a processor-defined name of some other character kind', &
 '     supported by the processor, then the result has a value equal to that', &
-'     kind type parameter value.', &
+'     kind type parameter value. Pre-defined names include "ASCII" and', &
+'     "ISO_10646".', &
 '', &
+'  The NAME is interpreted without respect to case or trailing blanks.', &
+'', &
+'OPTIONS', &
+'  o  NAME : A name to query the processor-dependent kind value of, and/or to', &
+'     determine if supported. NAME, interpreted without respect to case or', &
+'     trailing blanks.', &
+'', &
+'     Currently, supported character sets include "ASCII" and "DEFAULT" and', &
+'     "ISO_10646" (Universal Character Set, UCS-4) which is commonly known as', &
+'     "Unicode". Supported names other than "DEFAULT" are processor dependent.', &
+'', &
+'RESULT', &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
+'      Linux', &
 '      program demo_selected_char_kind', &
 '      use iso_fortran_env', &
 '      implicit none', &
 '', &
 '      intrinsic date_and_time,selected_char_kind', &
 '', &
+'      ! set some aliases for common character kinds', &
+'      ! as the numbers can vary from platform to platform', &
+'', &
 '      integer, parameter :: default = selected_char_kind ("default")', &
 '      integer, parameter :: ascii =   selected_char_kind ("ascii")', &
 '      integer, parameter :: ucs4  =   selected_char_kind (''ISO_10646'')', &
 '      integer, parameter :: utf8  =   selected_char_kind (''utf-8'')', &
 '', &
+'      ! assuming ASCII and UCS4 are supported (ie. not equal to -1)', &
+'      ! define some string variables', &
 '      character(len=26, kind=ascii ) :: alphabet', &
 '      character(len=30, kind=ucs4  ) :: hello_world', &
 '      character(len=30, kind=ucs4  ) :: string', &
@@ -17252,7 +17391,8 @@ textblock=[character(len=256) :: &
 '             write(*,*)''ASCII is the default on this processor''', &
 '         endif', &
 '', &
-'        ! the kind precedes the value, somewhat like a BOZ constant', &
+'        ! for constants the the kind precedes the value, somewhat like a', &
+'        ! BOZ constant', &
 '         alphabet = ascii_"abcdefghijklmnopqrstuvwxyz"', &
 '         write (*,*) alphabet', &
 '', &
@@ -17260,7 +17400,7 @@ textblock=[character(len=256) :: &
 '                       // char (int (z''4F60''), ucs4)     &', &
 '                       // char (int (z''597D''), ucs4)', &
 '', &
-'        ! an  encoding option is required on OPEN for non-default I/O', &
+'        ! an encoding option is required on OPEN for non-default I/O', &
 '         if(ucs4 /= -1 )then', &
 '            open (output_unit, encoding=''UTF-8'')', &
 '            write (*,*) trim (hello_world)', &
@@ -17281,11 +17421,11 @@ textblock=[character(len=256) :: &
 '             nen =   char(int( z''5e74'' ),ucs4), & ! year', &
 '             gatsu = char(int( z''6708'' ),ucs4), & ! month', &
 '             nichi = char(int( z''65e5'' ),ucs4)    ! day', &
-'           character(len= *, kind= ucs4) string', &
-'           integer values(8)', &
-'           call date_and_time(values=values)', &
-'           write(string,1) values(1),nen,values(2),gatsu,values(3),nichi', &
-'         1 format(i0,a,i0,a,i0,a)', &
+'      character(len= *, kind= ucs4) string', &
+'      integer values(8)', &
+'         call date_and_time(values=values)', &
+'         write(string,101) values(1),nen,values(2),gatsu,values(3),nichi', &
+'       101 format(*(i0,a))', &
 '      end subroutine create_date_string', &
 '', &
 '      end program demo_selected_char_kind', &
@@ -17294,19 +17434,21 @@ textblock=[character(len=256) :: &
 '', &
 '  The results are very processor-dependent', &
 '', &
-'       ASCII     Supported', &
-'       ISO_10646 Supported', &
-'       UTF-8     Not Supported', &
-'       ASCII is the default on this processor', &
-'       abcdefghijklmnopqrstuvwxyz', &
-'       Hello World and Ni Hao --', &
-'       2022105', &
+'       >  ASCII     Supported', &
+'       >  ISO_10646 Supported', &
+'       >  UTF-8     Not Supported', &
+'       >  ASCII is the default on this processor', &
+'       >  abcdefghijklmnopqrstuvwxyz', &
+'       >  Hello World and Ni Hao --', &
+'       >  20221015', &
 '', &
 'STANDARD', &
 '  Fortran 2003', &
 '', &
 'SEE ALSO', &
-'  ACHAR(3)', &
+'  SELECTED_INT_KIND(3), SELECTED_REAL_KIND(3)', &
+'', &
+'  ACHAR(3), CHAR(3), ICHAR(3), IACHAR(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -17334,6 +17476,10 @@ textblock=[character(len=256) :: &
 '           integer(kind=KIND),intent(in) :: r', &
 '', &
 'CHARACTERISTICS', &
+'  o  R is a integer', &
+'', &
+'  o  the result is an integer value', &
+'', &
 'DESCRIPTION', &
 '  SELECTED_INT_KIND(3) return the kind value of the smallest integer type that', &
 '  can represent all values ranging from -10**R (exclusive) to 10**R', &
@@ -17400,6 +17546,14 @@ textblock=[character(len=256) :: &
 '           real(kind=KIND),intent(in),optional :: radix', &
 '', &
 'CHARACTERISTICS', &
+'  o  R is an integer', &
+'', &
+'  o  P is an integer', &
+'', &
+'  o  RADIX is an integer', &
+'', &
+'  o  the result is an integer value', &
+'', &
 'DESCRIPTION', &
 '  SELECTED_REAL_KIND(3) return the kind value of a real data type with decimal', &
 '  precision of at least P digits, exponent range of at least R, and with a', &
@@ -18981,7 +19135,7 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 '  o  a kind designated as ** may be any supported kind for the type', &
 '', &
-'  o  ARRAY may be of any numeric TYPE - integer, real or complex.', &
+'  o  ARRAY may be of any numeric type - integer, real or complex.', &
 '', &
 '  o  DIM is an integer', &
 '', &
@@ -19015,8 +19169,8 @@ textblock=[character(len=256) :: &
 '  If DIM is absent, a scalar with the sum of all selected elements in ARRAY is', &
 '  returned. Otherwise, an array of rank n-1, where n equals the rank of ARRAY,', &
 '  and a shape similar to that of ARRAY with dimension DIM dropped is returned.', &
-'  Since a vector has a rank of one, the result is a scalar (n-1 where n=1 is a', &
-'  rank of zero, ie. a scalar).', &
+'  Since a vector has a rank of one, the result is a scalar (if n==1, n-1 is', &
+'  zero; and a rank of zero means a scalar).', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -19204,9 +19358,12 @@ textblock=[character(len=256) :: &
 '  SYSTEM_CLOCK(3) lets you measure durations of time with the precision of the', &
 '  smallest time increment generally available on a system by returning', &
 '  processor-dependent values based on the current value of the processor', &
-'  clock. The CLOCK value is incremented by one for each clock count until the', &
-'  value COUNT_MAX is reached and is then reset to zero at the next count.', &
-'  CLOCK therefore is a modulo value that lies in the range 0 TO COUNT_MAX.', &
+'  clock.', &
+'', &
+'  The CLOCK value is incremented by one for each clock count until the value', &
+'  COUNT_MAX is reached and is then reset to zero at the next count.  CLOCK', &
+'  therefore is a modulo value that lies in the range 0 TO COUNT_MAX.', &
+'', &
 '  COUNT_RATE and COUNT_MAX are assumed constant (even though CPU rates can', &
 '  vary on a single platform).', &
 '', &

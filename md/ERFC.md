@@ -49,7 +49,6 @@ the range
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_erfc
 use, intrinsic :: iso_fortran_env, only : &
@@ -59,13 +58,10 @@ real(kind=real64) :: x = 0.17_real64
     write(*,*)x, erfc(x)
 end program demo_erfc
 ```
-
 Results:
-
 ```text
      0.17000000000000001       0.81000753879819121
 ```
-
 ### **Standard**
 
 Fortran 2008

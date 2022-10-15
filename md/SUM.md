@@ -18,7 +18,7 @@
 ### **Characteristics**
 
   - a kind designated as ** may be any supported kind for the type
-  - **array** may be of any numeric **TYPE** - _integer_, _real_ or _complex_.
+  - **array** may be of any numeric type - _integer_, _real_ or _complex_.
   - **dim** is an _integer_
   - **mask** is _logical_ and conformable with **array**.
   - The result is of the same type and kind as **array**. It is scalar
@@ -52,11 +52,12 @@
 
 ### **Result**
 
-  If **dim** is absent, a scalar with the sum of all selected elements in **array**
-  is returned. Otherwise, an array of rank n-1, where n equals the rank
-  of **array**, and a shape similar to that of **array** with dimension
-  **dim** dropped is returned. Since a vector has a rank of one, the result
-  is a scalar (n-1 where n=1 is a rank of zero, ie. a scalar).
+  If **dim** is absent, a scalar with the sum of all selected elements
+  in **array** is returned. Otherwise, an array of rank n-1, where n
+  equals the rank of **array**, and a shape similar to that of **array**
+  with dimension **dim** dropped is returned. Since a vector has a rank
+  of one, the result is a scalar (if n==1, n-1 is zero; and a rank of
+  zero means a scalar).
 
 ### **Examples**
 

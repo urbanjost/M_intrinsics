@@ -15,6 +15,9 @@
 ```
 ### **Characteristics**
 
+ - **r** is a _integer_
+ - the result is an integer value 
+
 ### **Description**
 
 **selected_int_kind**(3) return the kind value of the smallest integer

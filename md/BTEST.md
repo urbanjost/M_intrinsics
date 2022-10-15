@@ -16,7 +16,10 @@
 ```
 ### **Characteristics**
 
-where **KIND** is any _integer_ kind supported by the programming environment.
+ - **i** is an _integer_
+ - **pos** is a _logical_
+ - **KIND** is any _integer_ kind supported by the programming environment.
+ - the result is the same type and kind as **i**
 
 ### **Description**
 
@@ -25,19 +28,19 @@ where **KIND** is any _integer_ kind supported by the programming environment.
 ### **Options**
 
 - **i**
-  : The type shall be _integer_.
+  : The _integer_ containing the bit to be tested
 
 - **pos**
-  : The bit position to query. it must be a valid position for the
+  : The position of the bit to query. it must be a valid position for the
   value **i**; ie. **0 <= pos <= bit_size(i)** .
 
   A value of zero refers to the least significant bit.
 
 ### **Result**
 
-The result is a _logical_ that has the value _.true._ if bit
-position **pos** of **i** has the value **1** and the value
-_.false._ if bit **pos** of **i** has the value **0**.
+  The result is a _logical_ that has the value _.true._ if bit position
+  **pos** of **i** has the value **1** and the value _.false._ if bit
+  **pos** of **i** has the value **0**.
 
 ### **Examples**
 

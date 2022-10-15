@@ -32,7 +32,6 @@ The return value is of type default _integer_.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_exponent
 implicit none
@@ -43,14 +42,10 @@ integer :: i
    print *, exponent(0.0)
 end program demo_exponent
 ```
-
 Results:
 
 ```text
-              1
-              0
 ```
-
 ### **Standard**
 
 Fortran 95

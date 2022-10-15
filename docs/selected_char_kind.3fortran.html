@@ -85,7 +85,18 @@ result = selected_char_kind(name)
 </A>
 <BLOCKQUOTE>
 <P>
-</BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+NAME is a default character scalar
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+the result is a default integer scalar
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=3>
 
      <H3>DESCRIPTION</H3>
@@ -93,39 +104,14 @@ result = selected_char_kind(name)
 </A>
 <BLOCKQUOTE>
 <P>
-SELECTED_CHAR_KIND(3) returns the kind value for the character set named
-NAME, if a character set with such a name is supported, or <B>-1</B> otherwise.
-</BLOCKQUOTE>
-<A name=4>
-
-     <H3>OPTIONS</H3>
-
-</A>
-<BLOCKQUOTE>
+SELECTED_CHAR_KIND(3) returns a kind parameter value for the character
+set named NAME.
 <P>
-<TABLE cellpadding=3>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-NAME : A name to query the processor kind value of , and/or to
-determine if it is supported. NAME is interpreted without respect to
-case or trailing blanks.
+If a name is not supported, <B>-1</B> is returned. Otherwise the result is a
+value equal to that kind type parameter value.
 <P>
-Currently, supported character sets include "ASCII" and "DEFAULT"
-and "ISO_10646" (Universal Character Set, UCS-4) which is commonly
-known as "Unicode". Supported names other than "DEFAULT" are
-processor dependent.
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=5>
-
-     <H3>RESULT</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-If a name is not supported, <B>-1</B> is returned. Otherwise
-<TABLE cellpadding=3><!-- tsb: If a name is not supported, <B>-1</B> is returned. Otherwise
+The list of supported names is processor-dependent except for "DEFAULT".
+<TABLE cellpadding=3><!-- tsb: The list of supported names is processor-dependent except for "DEFAULT".
  -->
 <TR></TR><TR></TR>
 <TR valign=top><TD width=3%>
@@ -153,9 +139,40 @@ o
 </TD><TD>
 If NAME is a processor-defined name of some other character kind
 supported by the processor, then the result has a value equal to
-that kind type parameter value.
+that kind type parameter value. Pre-defined names include "ASCII"
+and "ISO_10646".
+</TD></TR>
+<TR></TR></TABLE>The NAME is interpreted without respect to case or trailing blanks.
+</BLOCKQUOTE>
+<A name=4>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+NAME : A name to query the processor-dependent kind value of, and/or
+to determine if supported. NAME, interpreted without respect to case
+or trailing blanks.
+<P>
+Currently, supported character sets include "ASCII" and "DEFAULT"
+and "ISO_10646" (Universal Character Set, UCS-4) which is commonly
+known as "Unicode". Supported names other than "DEFAULT" are
+processor dependent.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
+<A name=5>
+
+     <H3>RESULT</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+</BLOCKQUOTE>
 <A name=6>
 
      <H3>EXAMPLES</H3>
@@ -166,17 +183,23 @@ that kind type parameter value.
 Sample program:
 <P>
 <PRE>
+    Linux
     program demo_selected_char_kind
     use iso_fortran_env
     implicit none
 <P>
     intrinsic date_and_time,selected_char_kind
 <P>
+    ! set some aliases for common character kinds
+    ! as the numbers can vary from platform to platform
+<P>
     integer, parameter :: default = selected_char_kind ("default")
     integer, parameter :: ascii =   selected_char_kind ("ascii")
     integer, parameter :: ucs4  =   selected_char_kind (&#146;ISO_10646&#146;)
     integer, parameter :: utf8  =   selected_char_kind (&#146;utf-8&#146;)
 <P>
+    ! assuming ASCII and UCS4 are supported (ie. not equal to -1)
+    ! define some string variables
     character(len=26, kind=ascii ) :: alphabet
     character(len=30, kind=ucs4  ) :: hello_world
     character(len=30, kind=ucs4  ) :: string
@@ -192,7 +215,8 @@ Sample program:
            write(*,*)&#146;ASCII is the default on this processor&#146;
        endif
 <P>
-      ! the kind precedes the value, somewhat like a BOZ constant
+      ! for constants the the kind precedes the value, somewhat like a
+      ! BOZ constant
        alphabet = ascii_"abcdefghijklmnopqrstuvwxyz"
        write (*,*) alphabet
 <P>
@@ -200,7 +224,7 @@ Sample program:
                      // char (int (z&#146;4F60&#146;), ucs4)     &
                      // char (int (z&#146;597D&#146;), ucs4)
 <P>
-      ! an  encoding option is required on OPEN for non-default I/O
+      ! an encoding option is required on OPEN for non-default I/O
        if(ucs4 /= -1 )then
           open (output_unit, encoding=&#146;UTF-8&#146;)
           write (*,*) trim (hello_world)
@@ -221,11 +245,11 @@ Sample program:
            nen =   char(int( z&#146;5e74&#146; ),ucs4), & ! year
            gatsu = char(int( z&#146;6708&#146; ),ucs4), & ! month
            nichi = char(int( z&#146;65e5&#146; ),ucs4)    ! day
-         character(len= *, kind= ucs4) string
-         integer values(8)
-         call date_and_time(values=values)
-         write(string,1) values(1),nen,values(2),gatsu,values(3),nichi
-       1 format(i0,a,i0,a,i0,a)
+    character(len= *, kind= ucs4) string
+    integer values(8)
+       call date_and_time(values=values)
+       write(string,101) values(1),nen,values(2),gatsu,values(3),nichi
+     101 format(*(i0,a))
     end subroutine create_date_string
 <P>
     end program demo_selected_char_kind
@@ -236,13 +260,13 @@ Results:
 The results are very processor-dependent
 <P>
 <PRE>
-     ASCII     Supported
-     ISO_10646 Supported
-     UTF-8     Not Supported
-     ASCII is the default on this processor
-     abcdefghijklmnopqrstuvwxyz
-     Hello World and Ni Hao -- 你好
-     2022年10月5日
+     &gt;  ASCII     Supported
+     &gt;  ISO_10646 Supported
+     &gt;  UTF-8     Not Supported
+     &gt;  ASCII is the default on this processor
+     &gt;  abcdefghijklmnopqrstuvwxyz
+     &gt;  Hello World and Ni Hao -- 你好
+     &gt;  2022年10月15日
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -262,12 +286,14 @@ Fortran 2003
 </A>
 <BLOCKQUOTE>
 <P>
-ACHAR(3)
+SELECTED_INT_KIND(3), SELECTED_REAL_KIND(3)
+<P>
+ACHAR(3), CHAR(3), ICHAR(3), IACHAR(3)
 <P>
 fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>selected_char_kind (3fortran)</TD> <TD align=right width=33%><I>October 15, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from c88b66cb-56bf-416c-a8c5-69410270c42b using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>selected_char_kind (3fortran)</TD> <TD align=right width=33%><I>October 15, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 112ecbfd-7dda-44af-b51a-b48424116dae using man macros.</FONT>
 <br><br><center><img src="images/selected_char_kind.3fortran.gif"></center>
 </div>
 </div>

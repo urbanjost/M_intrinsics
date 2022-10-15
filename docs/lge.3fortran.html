@@ -86,7 +86,23 @@ result = lge(string_a, stringb)
 </A>
 <BLOCKQUOTE>
 <P>
-</BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+**string_a** is default _character_ or an ASCII character.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+**string_b** is the same type and kind as **string_a**
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+the result is a default logical
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=3>
 
      <H3>DESCRIPTION</H3>
@@ -96,9 +112,9 @@ result = lge(string_a, stringb)
 <P>
 LGE(3) determines whether one string is lexically greater than or equal
 to another string, where the two strings are interpreted as containing
-ASCII character codes. If the String A and String B are not the same
-length, the shorter is compared as if spaces were appended to it to form
-a value that has the same length as the longer.
+ASCII character codes. If STRING_A and STRING_B are not the same length,
+the shorter is compared as if spaces were appended to it to form a value
+that has the same length as the longer.
 <P>
 The lexical comparison intrinsics LGE(3), LGT(3), LLE(3), and LLT(3)
 differ from the corresponding intrinsic operators .ge., .gt., .le., and
@@ -117,12 +133,12 @@ ordering.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-STRING_A : Shall be of default character type.
+STRING_A : string to be tested
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-STRING_B : Shall be of default character type.
+STRING_B : string to compare to STRING_A
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
@@ -133,9 +149,12 @@ STRING_B : Shall be of default character type.
 <BLOCKQUOTE>
 <P>
 Returns .true. if string_a == string_b, and .false. otherwise, based on
-the ASCII ordering.
+the ASCII collating sequence.
 <P>
 If both input arguments are null strings, .true. is always returned.
+<P>
+If either string contains a character not in the ASCII character set,
+the result is processor dependent.
 </BLOCKQUOTE>
 <A name=6>
 
@@ -150,15 +169,17 @@ Sample program:
     program demo_lge
     implicit none
     integer :: i
-       write(*,&#146;(*(a))&#146;)(char(i),i=32,126)  ! ASCII order
-       write(*,*) lge(&#146;abc&#146;,&#146;ABC&#146;)          ! [T] lowercase is &gt; uppercase
-       write(*,*) lge(&#146;abc&#146;,&#146;abc  &#146;)        ! [T] trailing spaces
+       print *,&#146;the ASCII collating sequence for printable characters&#146;
+       write(*,&#146;(1x,19a)&#146;)(char(i),i=32,126) ! ASCII order
+       write(*,*) lge(&#146;abc&#146;,&#146;ABC&#146;)           ! [T] lowercase is &gt; uppercase
+       write(*,*) lge(&#146;abc&#146;,&#146;abc  &#146;)         ! [T] trailing spaces
        ! If both strings are of zero length the result is true
-       write(*,*) lge(&#146;&#146;,&#146;&#146;)                ! [T]
-       write(*,*) lge(&#146;&#146;,&#146;a&#146;)               ! [F] the null string is padded
-       write(*,*) lge(&#146;a&#146;,&#146;&#146;)               ! [T]
-       write(*,*) lge(&#146;abc&#146;,[&#146;abc&#146;,&#146;123&#146;])  ! [T T]  scalar and array
-       write(*,*) lge([&#146;cba&#146;, &#146;123&#146;],&#146;abc&#146;) ! [T F]
+       write(*,*) lge(&#146;&#146;,&#146;&#146;)                 ! [T]
+       write(*,*) lge(&#146;&#146;,&#146;a&#146;)                ! [F] the null string is padded
+       write(*,*) lge(&#146;a&#146;,&#146;&#146;)                ! [T]
+       ! elemental
+       write(*,*) lge(&#146;abc&#146;,[&#146;abc&#146;,&#146;123&#146;])   ! [T T]  scalar and array
+       write(*,*) lge([&#146;cba&#146;, &#146;123&#146;],&#146;abc&#146;)  ! [T F]
        write(*,*) lge([&#146;abc&#146;,&#146;123&#146;],[&#146;cba&#146;,&#146;123&#146;]) ! [F T]  both arrays
     end program demo_lge
 <P>
@@ -166,58 +187,22 @@ Sample program:
 Results:
 <P>
 <PRE>
-        !"#$%&&#146;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
-        [\]^_&#145;abcdefghijklmnopqrstuvwxyz{|}~
-</PRE>
-</BLOCKQUOTE>
-<A name=>
-
-    <H4>&nbsp; &nbsp; T</H4>
-</A>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=>
-
-    <H4>&nbsp; &nbsp; T</H4>
-</A>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=>
-
-    <H4>&nbsp; &nbsp; T</H4>
-</A>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=>
-
-    <H4>&nbsp; &nbsp; F</H4>
-</A>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=>
-
-    <H4>&nbsp; &nbsp; T</H4>
-</A>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=>
-
-    <H4>&nbsp; &nbsp; T T</H4>
-</A>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=>
-
-    <H4>&nbsp; &nbsp; T F</H4>
-</A>
-<BLOCKQUOTE>
-</BLOCKQUOTE>
-<A name=>
-
-    <H4>&nbsp; &nbsp; F T</H4>
-</A>
-<BLOCKQUOTE>
+     &gt;  the ASCII collating sequence for printable characters
+     &gt;   !"#$%&&#146;()*+,-./012
+     &gt;  3456789:;&lt;=&gt;?@ABCDE
+     &gt;  FGHIJKLMNOPQRSTUVWX
+     &gt;  YZ[\]^_&#145;abcdefghijk
+     &gt;  lmnopqrstuvwxyz{|}~
+     &gt;  T
+     &gt;  T
+     &gt;  T
+     &gt;  F
+     &gt;  T
+     &gt;  T T
+     &gt;  T F
+     &gt;  F T
 <P>
+</PRE>
 </BLOCKQUOTE>
 <A name=7>
 
@@ -259,7 +244,7 @@ NONELEMENTAL: LEN_TRIM(3), LEN(3), REPEAT(3), TRIM(3)
 <TR></TR></TABLE>fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>lge (3fortran)</TD> <TD align=right width=33%><I>October 15, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 9bb948bd-af5d-4d77-b166-2c99e46bd259 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>lge (3fortran)</TD> <TD align=right width=33%><I>October 15, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 921c8913-3f88-48b2-8c38-42ff75d09100 using man macros.</FONT>
 <br><br><center><img src="images/lge.3fortran.gif"></center>
 </div>
 </div>

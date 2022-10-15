@@ -16,11 +16,15 @@
 ```
 ### **Characteristics**
 
+    - **string_a** is default _character_ or an ASCII character.
+    - **string_b** is the same type and kind as **string_a**
+    - the result is a default logical
+
 ### **Description**
 
   **lge**(3) determines whether one string is lexically greater than
   or equal to another string, where the two strings are interpreted as
-  containing ASCII character codes. If the String **a** and String **b**
+  containing ASCII character codes. If **string_a** and **string_b**
   are not the same length, the shorter is compared as if spaces were
   appended to it to form a value that has the same length as the longer.
 
@@ -33,17 +37,20 @@
 ### **Options**
 
 - **string_a**
-  : Shall be of default _character_ type.
+  : string to be tested
 
 - **string_b**
-  : Shall be of default _character_ type.
+  : string to compare to **string_a**
 
 ### **Result**
 
-Returns _.true._ if string_a == string_b, and _.false._ otherwise,
-based on the ASCII ordering.
+  Returns _.true._ if string_a == string_b, and _.false._ otherwise,
+  based on the ASCII collating sequence.
 
-If both input arguments are null strings, _.true._ is always returned.
+  If both input arguments are null strings, _.true._ is always returned.
+
+  If either string contains a character not in the ASCII character set,
+  the result is processor dependent.
 
 ### **Examples**
 
@@ -52,30 +59,36 @@ Sample program:
 program demo_lge
 implicit none
 integer :: i
-   write(*,'(*(a))')(char(i),i=32,126)  ! ASCII order
-   write(*,*) lge('abc','ABC')          ! [T] lowercase is > uppercase
-   write(*,*) lge('abc','abc  ')        ! [T] trailing spaces
+   print *,'the ASCII collating sequence for printable characters'
+   write(*,'(1x,19a)')(char(i),i=32,126) ! ASCII order
+   write(*,*) lge('abc','ABC')           ! [T] lowercase is > uppercase
+   write(*,*) lge('abc','abc  ')         ! [T] trailing spaces
    ! If both strings are of zero length the result is true
-   write(*,*) lge('','')                ! [T]
-   write(*,*) lge('','a')               ! [F] the null string is padded
-   write(*,*) lge('a','')               ! [T]
-   write(*,*) lge('abc',['abc','123'])  ! [T T]  scalar and array
-   write(*,*) lge(['cba', '123'],'abc') ! [T F]
+   write(*,*) lge('','')                 ! [T]
+   write(*,*) lge('','a')                ! [F] the null string is padded
+   write(*,*) lge('a','')                ! [T]
+   ! elemental
+   write(*,*) lge('abc',['abc','123'])   ! [T T]  scalar and array
+   write(*,*) lge(['cba', '123'],'abc')  ! [T F]
    write(*,*) lge(['abc','123'],['cba','123']) ! [F T]  both arrays
 end program demo_lge
 ```
 Results:
 ```text
-    !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
-    [\]^_`abcdefghijklmnopqrstuvwxyz{|}~
-    T
-    T
-    T
-    F
-    T
-    T T
-    T F
-    F T
+ >  the ASCII collating sequence for printable characters
+ >   !"#$%&'()*+,-./012
+ >  3456789:;<=>?@ABCDE
+ >  FGHIJKLMNOPQRSTUVWX
+ >  YZ[\]^_`abcdefghijk
+ >  lmnopqrstuvwxyz{|}~
+ >  T
+ >  T
+ >  T
+ >  F
+ >  T
+ >  T T
+ >  T F
+ >  F T
 ```
 ### **Standard**
 
