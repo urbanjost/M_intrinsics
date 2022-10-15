@@ -20,7 +20,8 @@
  - **mask** is a _logical_ array
  - **dim** is an _integer_ 
  - the result is a logical array if **dim** is supplied,
-   otherwise it is a logical scalar.
+   otherwise it is a logical scalar. It has the same characteristics
+   as **mask**
 
 ### **Description**
 
@@ -50,27 +51,19 @@
 
 ### **Result**
 
-"**all(mask)**" returns a scalar value of type _logical_ where the kind
-type parameter is the same as the kind type parameter of **mask**.
 
-If **dim** is present, then **all(mask, dim)** returns an array with
-the rank of **mask** minus 1. The shape is determined from the shape of
-**mask** where the **dim** dimension is elided.
-
-1.  **all(mask)** is true if all elements of **mask** are true. It also is
-    true if **mask** has zero size; otherwise, it is false.
+1.  If **dim** is not present **all(mask)** is _.true._ if all elements
+    of **mask** are _.true._. It also is _.true._ if **mask** has zero size;
+    otherwise, it is _.false._ .
 
 2.  If the rank of **mask** is one, then **all(mask, dim)** is equivalent
     to **all(mask)**. 
 
-3.  If the rank of **mask** is greater than one, then **all(mask,
-    dim)** is determined by applying **all()** to the array sections.
-
-4.  The result is of type _logical_ with the
-    same kind type parameter as **mask**. It is scalar if **dim** is
-    absent or **1**; otherwise, the result has rank **rank(mask) - 1**
-    and the shape is the shape of **mask** with the nth dimension
-    where n is specified by **dim** is removed.
+3.  If the rank of **mask** is greater than one and **dim** is present then 
+    **all(mask,dim)** returns an array with the rank (number of
+    dimensions)  of **mask** minus 1. The shape is determined from the
+    shape of **mask** where the **dim** dimension is elided. A value is
+    returned for each set of elements along the **dim** dimension.
 
 ### **Examples**
 
@@ -85,6 +78,7 @@ logical bool
    bool = all([ T,T,T ])
    bool = all([ T,F,T ])
    print *, bool
+
   ! by a dimension
    ARRAYS: block
    integer :: a(2,3), b(2,3)
@@ -97,6 +91,7 @@ logical bool
     print *,'compare columns:', all(a ==  b, dim=1)
     print *,'compare rows:', all(a ==  b, dim=2)
   end block ARRAYS
+
 end program demo_all
 ```
 Results:

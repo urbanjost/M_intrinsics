@@ -21,7 +21,9 @@
  - a kind designated as ** may be any supported kind for the type
  - **tsource** May be of any type, including user-defined.
  - **fsource** Shall be of the same type and type parameters as **tsource**.
- - The result will by of the same type and type parameters as **tsource** too.
+ - **mask** shall be of type logical.
+ - The result will by of the same type and type parameters as **tsource**.
+
 
 ### **Description**
 
@@ -76,9 +78,13 @@ instead of the more obscure
 Note that (currently) _character_ values must be of the same length.
 
 ### **Result**
+  The result is built from an element of **tsource** if **mask** is
+  _.true._ and from **fsource** otherwise.
 
-The result is of the same type and type parameters as **tsource**. For any
-element the result is **tsource** if **mask** is true and **fsource** otherwise.
+  Because **tsource** and **fsource** are required to have the same type
+  and type parameters (for both the declared and dynamic types), the
+  result is polymorphic if and only if both **tsource** and **fsource**
+  are polymorphic.
 
 ### **Examples**
 
@@ -141,27 +147,24 @@ end subroutine printme
 
 end program demo_merge
 ```
-
 Expected Results:
-
 ```
-    mask of logicals
-     10   3  50
-      7   4 -60
-    highest values
-     10   3  50
-      7  40   8
-    lowest values
-      0 -60   2
-    -20   4 -60
-    zero out negative values
-      0 -60   0
-    -20   0 -60
-    binary choice
-     10  20  30
-      1   2   3
+ >     mask of logicals
+ >      10   3  50
+ >       7   4 -60
+ >     highest values
+ >      10   3  50
+ >       7  40   8
+ >     lowest values
+ >       0 -60   2
+ >     -20   4 -60
+ >     zero out negative values
+ >       0 -60   0
+ >     -20   0 -60
+ >     binary choice
+ >      10  20  30
+ >       1   2   3
 ```
-
 ### **Standard**
 
 Fortran 95

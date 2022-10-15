@@ -15,9 +15,9 @@
 ```
 ### **Characteristics**
 
- - **TYPE** may be _real_ or _complex_
- - **KIND** may be any kind supported by the associated type.
- - The returned value will be of the same type and kind as the argument.
+ - **x** may be any _real_ or _complex_ type
+ - **KIND** may be any kind supported by the associated type
+ - The returned value will be of the same type and kind as the argument **x**
 
 ### **Description**
 
@@ -30,8 +30,10 @@
 
 ### **Result**
 
-The return value is of the same type and kind as **x**. If **x** is
-_complex_, the imaginary part of the result is in radians and lies
+  The result has a value equal to a processor-dependent approximation
+  to the inverse hyperbolic sine function of **x**.
+
+  If **x** is _complex_, the imaginary part of the result is in radians and lies
 between **-PI/2 \<= aimag(asinh(x)) \<= PI/2**.
 
 ### **Examples**
@@ -43,6 +45,7 @@ use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
 implicit none
 real(kind=dp), dimension(3) :: x = [ -1.0d0, 0.0d0, 1.0d0 ]
 
+   ! elemental
     write (*,*) asinh(x)
 
 end program demo_asinh
@@ -63,4 +66,4 @@ Inverse function: [**sinh**(3)](#sinh)
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

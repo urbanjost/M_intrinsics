@@ -904,7 +904,8 @@ FORTRAN 77
  - **mask** is a _logical_ array
  - **dim** is an _integer_
  - the result is a logical array if **dim** is supplied,
-   otherwise it is a logical scalar.
+   otherwise it is a logical scalar. It has the same characteristics
+   as **mask**
 
 ### **Description**
 
@@ -934,27 +935,18 @@ FORTRAN 77
 
 ### **Result**
 
-"**all(mask)**" returns a scalar value of type _logical_ where the kind
-type parameter is the same as the kind type parameter of **mask**.
-
-If **dim** is present, then **all(mask, dim)** returns an array with
-the rank of **mask** minus 1. The shape is determined from the shape of
-**mask** where the **dim** dimension is elided.
-
-1.  **all(mask)** is true if all elements of **mask** are true. It also is
-    true if **mask** has zero size; otherwise, it is false.
+1.  If **dim** is not present **all(mask)** is _.true._ if all elements
+    of **mask** are _.true._. It also is _.true._ if **mask** has zero size;
+    otherwise, it is _.false._ .
 
 2.  If the rank of **mask** is one, then **all(mask, dim)** is equivalent
     to **all(mask)**.
 
-3.  If the rank of **mask** is greater than one, then **all(mask,
-    dim)** is determined by applying **all()** to the array sections.
-
-4.  The result is of type _logical_ with the
-    same kind type parameter as **mask**. It is scalar if **dim** is
-    absent or **1**; otherwise, the result has rank **rank(mask) - 1**
-    and the shape is the shape of **mask** with the nth dimension
-    where n is specified by **dim** is removed.
+3.  If the rank of **mask** is greater than one and **dim** is present then
+    **all(mask,dim)** returns an array with the rank (number of
+    dimensions)  of **mask** minus 1. The shape is determined from the
+    shape of **mask** where the **dim** dimension is elided. A value is
+    returned for each set of elements along the **dim** dimension.
 
 ### **Examples**
 
@@ -969,6 +961,7 @@ logical bool
    bool = all([ T,T,T ])
    bool = all([ T,F,T ])
    print *, bool
+
   ! by a dimension
    ARRAYS: block
    integer :: a(2,3), b(2,3)
@@ -981,6 +974,7 @@ logical bool
     print *,'compare columns:', all(a ==  b, dim=1)
     print *,'compare rows:', all(a ==  b, dim=2)
   end block ARRAYS
+
 end program demo_all
 ```
 Results:
@@ -1386,9 +1380,9 @@ Fortran 95
 ```
 ### **Characteristics**
 
- - **TYPE** may be _real_ or _complex_
- - **KIND** may be any kind supported by the associated type.
- - The returned value will be of the same type and kind as the argument.
+ - **x** may be any _real_ or _complex_ type
+ - **KIND** may be any kind supported by the associated type
+ - The returned value will be of the same type and kind as the argument **x**
 
 ### **Description**
 
@@ -1401,8 +1395,10 @@ Fortran 95
 
 ### **Result**
 
-The return value is of the same type and kind as **x**. If **x** is
-_complex_, the imaginary part of the result is in radians and lies
+  The result has a value equal to a processor-dependent approximation
+  to the inverse hyperbolic sine function of **x**.
+
+  If **x** is _complex_, the imaginary part of the result is in radians and lies
 between **-PI/2 \<= aimag(asinh(x)) \<= PI/2**.
 
 ### **Examples**
@@ -1414,6 +1410,7 @@ use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
 implicit none
 real(kind=dp), dimension(3) :: x = [ -1.0d0, 0.0d0, 1.0d0 ]
 
+   ! elemental
     write (*,*) asinh(x)
 
 end program demo_asinh
@@ -1434,7 +1431,7 @@ Inverse function: [**sinh**(3)](#sinh)
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## asin
 
@@ -13680,7 +13677,8 @@ Fortran 2008
  - a kind designated as ** may be any supported kind for the type
  - **tsource** May be of any type, including user-defined.
  - **fsource** Shall be of the same type and type parameters as **tsource**.
- - The result will by of the same type and type parameters as **tsource** too.
+ - **mask** shall be of type logical.
+ - The result will by of the same type and type parameters as **tsource**.
 
 ### **Description**
 
@@ -13735,9 +13733,13 @@ instead of the more obscure
 Note that (currently) _character_ values must be of the same length.
 
 ### **Result**
+  The result is built from an element of **tsource** if **mask** is
+  _.true._ and from **fsource** otherwise.
 
-The result is of the same type and type parameters as **tsource**. For any
-element the result is **tsource** if **mask** is true and **fsource** otherwise.
+  Because **tsource** and **fsource** are required to have the same type
+  and type parameters (for both the declared and dynamic types), the
+  result is polymorphic if and only if both **tsource** and **fsource**
+  are polymorphic.
 
 ### **Examples**
 
@@ -13800,27 +13802,24 @@ end subroutine printme
 
 end program demo_merge
 ```
-
 Expected Results:
-
 ```
-    mask of logicals
-     10   3  50
-      7   4 -60
-    highest values
-     10   3  50
-      7  40   8
-    lowest values
-      0 -60   2
-    -20   4 -60
-    zero out negative values
-      0 -60   0
-    -20   0 -60
-    binary choice
-     10  20  30
-      1   2   3
+ >     mask of logicals
+ >      10   3  50
+ >       7   4 -60
+ >     highest values
+ >      10   3  50
+ >       7  40   8
+ >     lowest values
+ >       0 -60   2
+ >     -20   4 -60
+ >     zero out negative values
+ >       0 -60   0
+ >     -20   0 -60
+ >     binary choice
+ >      10  20  30
+ >       1   2   3
 ```
-
 ### **Standard**
 
 Fortran 95

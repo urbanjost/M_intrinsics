@@ -7,6 +7,7 @@
          bool = all([ T,T,T ])
          bool = all([ T,F,T ])
          print *, bool
+
         ! by a dimension
          ARRAYS: block
          integer :: a(2,3), b(2,3)
@@ -19,4 +20,5 @@
           print *,'compare columns:', all(a ==  b, dim=1)
           print *,'compare rows:', all(a ==  b, dim=2)
         end block ARRAYS
+
       end program demo_all

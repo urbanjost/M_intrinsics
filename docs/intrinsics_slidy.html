@@ -754,7 +754,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><strong>mask</strong> is a logical array</li>
 <li><strong>dim</strong> is an integer</li>
-<li>the result is a logical array if <strong>dim</strong> is supplied, otherwise it is a logical scalar.</li>
+<li>the result is a logical array if <strong>dim</strong> is supplied, otherwise it is a logical scalar. It has the same characteristics as <strong>mask</strong></li>
 </ul>
 <h3 id="description-8"><strong>Description</strong></h3>
 <p><strong>all</strong>(3) determines if all the values are true in <strong>mask</strong> in the array along dimension <strong>dim</strong> if <strong>dim</strong> is specified; otherwise all elements are tested together.</p>
@@ -780,13 +780,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dl></li>
 </ul>
 <h3 id="result-8"><strong>Result</strong></h3>
-<p>“<strong>all(mask)</strong>” returns a scalar value of type logical where the kind type parameter is the same as the kind type parameter of <strong>mask</strong>.</p>
-<p>If <strong>dim</strong> is present, then <strong>all(mask, dim)</strong> returns an array with the rank of <strong>mask</strong> minus 1. The shape is determined from the shape of <strong>mask</strong> where the <strong>dim</strong> dimension is elided.</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>all(mask)</strong> is true if all elements of <strong>mask</strong> are true. It also is true if <strong>mask</strong> has zero size; otherwise, it is false.</p></li>
+<li><p>If <strong>dim</strong> is not present <strong>all(mask)</strong> is .true. if all elements of <strong>mask</strong> are .true.. It also is .true. if <strong>mask</strong> has zero size; otherwise, it is .false. .</p></li>
 <li><p>If the rank of <strong>mask</strong> is one, then <strong>all(mask, dim)</strong> is equivalent to <strong>all(mask)</strong>.</p></li>
-<li><p>If the rank of <strong>mask</strong> is greater than one, then <strong>all(mask, dim)</strong> is determined by applying <strong>all()</strong> to the array sections.</p></li>
-<li><p>The result is of type logical with the same kind type parameter as <strong>mask</strong>. It is scalar if <strong>dim</strong> is absent or <strong>1</strong>; otherwise, the result has rank <strong>rank(mask) - 1</strong> and the shape is the shape of <strong>mask</strong> with the nth dimension where n is specified by <strong>dim</strong> is removed.</p></li>
+<li><p>If the rank of <strong>mask</strong> is greater than one and <strong>dim</strong> is present then <strong>all(mask,dim)</strong> returns an array with the rank (number of dimensions) of <strong>mask</strong> minus 1. The shape is determined from the shape of <strong>mask</strong> where the <strong>dim</strong> dimension is elided. A value is returned for each set of elements along the <strong>dim</strong> dimension.</p></li>
 </ol>
 <h3 id="examples-8"><strong>Examples</strong></h3>
 <p>Sample program:</p>
@@ -799,19 +796,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb39-7" title="7">   bool <span class="kw">=</span> <span class="fu">all</span>(<span class="kw">[</span> T,T,T <span class="kw">]</span>)</a>
 <a class="sourceLine" id="cb39-8" title="8">   bool <span class="kw">=</span> <span class="fu">all</span>(<span class="kw">[</span> T,F,T <span class="kw">]</span>)</a>
 <a class="sourceLine" id="cb39-9" title="9">   <span class="fu">print</span> <span class="kw">*</span>, bool</a>
-<a class="sourceLine" id="cb39-10" title="10">  <span class="co">! by a dimension</span></a>
-<a class="sourceLine" id="cb39-11" title="11">   ARRAYS: block</a>
-<a class="sourceLine" id="cb39-12" title="12">   <span class="dt">integer</span> <span class="dt">::</span> a(<span class="dv">2</span>,<span class="dv">3</span>), b(<span class="dv">2</span>,<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb39-13" title="13">    <span class="co">! set everything to one except one value in b</span></a>
-<a class="sourceLine" id="cb39-14" title="14">    a <span class="kw">=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb39-15" title="15">    b <span class="kw">=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb39-16" title="16">    b(<span class="dv">2</span>,<span class="dv">2</span>) <span class="kw">=</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb39-17" title="17">    <span class="co">! now compare those two arrays</span></a>
-<a class="sourceLine" id="cb39-18" title="18">    <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;entire array :&#39;</span>, <span class="fu">all</span>(a <span class="op">==</span>  b )</a>
-<a class="sourceLine" id="cb39-19" title="19">    <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;compare columns:&#39;</span>, <span class="fu">all</span>(a <span class="op">==</span>  b, <span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb39-20" title="20">    <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;compare rows:&#39;</span>, <span class="fu">all</span>(a <span class="op">==</span>  b, <span class="bu">dim</span><span class="kw">=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb39-21" title="21">  <span class="kw">end</span> block ARRAYS</a>
-<a class="sourceLine" id="cb39-22" title="22"><span class="kw">end program</span> demo_all</a></code></pre></div>
+<a class="sourceLine" id="cb39-10" title="10"></a>
+<a class="sourceLine" id="cb39-11" title="11">  <span class="co">! by a dimension</span></a>
+<a class="sourceLine" id="cb39-12" title="12">   ARRAYS: block</a>
+<a class="sourceLine" id="cb39-13" title="13">   <span class="dt">integer</span> <span class="dt">::</span> a(<span class="dv">2</span>,<span class="dv">3</span>), b(<span class="dv">2</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb39-14" title="14">    <span class="co">! set everything to one except one value in b</span></a>
+<a class="sourceLine" id="cb39-15" title="15">    a <span class="kw">=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb39-16" title="16">    b <span class="kw">=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb39-17" title="17">    b(<span class="dv">2</span>,<span class="dv">2</span>) <span class="kw">=</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb39-18" title="18">    <span class="co">! now compare those two arrays</span></a>
+<a class="sourceLine" id="cb39-19" title="19">    <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;entire array :&#39;</span>, <span class="fu">all</span>(a <span class="op">==</span>  b )</a>
+<a class="sourceLine" id="cb39-20" title="20">    <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;compare columns:&#39;</span>, <span class="fu">all</span>(a <span class="op">==</span>  b, <span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb39-21" title="21">    <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;compare rows:&#39;</span>, <span class="fu">all</span>(a <span class="op">==</span>  b, <span class="bu">dim</span><span class="kw">=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb39-22" title="22">  <span class="kw">end</span> block ARRAYS</a>
+<a class="sourceLine" id="cb39-23" title="23"></a>
+<a class="sourceLine" id="cb39-24" title="24"><span class="kw">end program</span> demo_all</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code> &gt;  T
  &gt;  F
@@ -1129,9 +1128,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb54-3" title="3">      <span class="dt">TYPE(kind=KIND)</span> <span class="dt">::</span> x</a></code></pre></div>
 <h3 id="characteristics-12"><strong>Characteristics</strong></h3>
 <ul>
-<li><strong>TYPE</strong> may be real or complex</li>
-<li><strong>KIND</strong> may be any kind supported by the associated type.</li>
-<li>The returned value will be of the same type and kind as the argument.</li>
+<li><strong>x</strong> may be any real or complex type</li>
+<li><strong>KIND</strong> may be any kind supported by the associated type</li>
+<li>The returned value will be of the same type and kind as the argument <strong>x</strong></li>
 </ul>
 <h3 id="description-12"><strong>Description</strong></h3>
 <p><strong>asinh</strong>(3) computes the inverse hyperbolic sine of <strong>x</strong>.</p>
@@ -1144,7 +1143,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dl></li>
 </ul>
 <h3 id="result-12"><strong>Result</strong></h3>
-<p>The return value is of the same type and kind as <strong>x</strong>. If <strong>x</strong> is complex, the imaginary part of the result is in radians and lies between <strong>-PI/2 &lt;= aimag(asinh(x)) &lt;= PI/2</strong>.</p>
+<p>The result has a value equal to a processor-dependent approximation to the inverse hyperbolic sine function of <strong>x</strong>.</p>
+<p>If <strong>x</strong> is complex, the imaginary part of the result is in radians and lies between <strong>-PI/2 &lt;= aimag(asinh(x)) &lt;= PI/2</strong>.</p>
 <h3 id="examples-12"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">program</span> demo_asinh</a>
@@ -1152,9 +1152,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb55-3" title="3"><span class="kw">implicit</span> <span class="kw">none</span></a>
 <a class="sourceLine" id="cb55-4" title="4"><span class="dt">real(kind=dp)</span>, <span class="dt">dimension(3)</span> <span class="dt">::</span> x <span class="kw">=</span> <span class="kw">[</span> <span class="kw">-</span><span class="fl">1.0d0</span>, <span class="fl">0.0d0</span>, <span class="fl">1.0d0</span> <span class="kw">]</span></a>
 <a class="sourceLine" id="cb55-5" title="5"></a>
-<a class="sourceLine" id="cb55-6" title="6">    <span class="fu">write (*</span>,<span class="fu">*)</span> asinh(x)</a>
-<a class="sourceLine" id="cb55-7" title="7"></a>
-<a class="sourceLine" id="cb55-8" title="8"><span class="kw">end program</span> demo_asinh</a></code></pre></div>
+<a class="sourceLine" id="cb55-6" title="6">   <span class="co">! elemental</span></a>
+<a class="sourceLine" id="cb55-7" title="7">    <span class="fu">write (*</span>,<span class="fu">*)</span> asinh(x)</a>
+<a class="sourceLine" id="cb55-8" title="8"></a>
+<a class="sourceLine" id="cb55-9" title="9"><span class="kw">end program</span> demo_asinh</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>  -0.88137358701954305  0.0000000000000000  0.88137358701954305</code></pre>
 <h3 id="standard-12"><strong>Standard</strong></h3>
@@ -1165,7 +1166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Hyperbolic_functions">Wikipedia:hyperbolic functions</a></li>
 </ul>
-<p>fortran-lang intrinsic descriptions</p>
+<p>fortran-lang intrinsic descriptions (license: MIT) @urbanjost</p>
 </div>
 <div id="asin" class="slide section level2">
 <h1>asin</h1>
@@ -9791,7 +9792,8 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <li>a kind designated as ** may be any supported kind for the type</li>
 <li><strong>tsource</strong> May be of any type, including user-defined.</li>
 <li><strong>fsource</strong> Shall be of the same type and type parameters as <strong>tsource</strong>.</li>
-<li>The result will by of the same type and type parameters as <strong>tsource</strong> too.</li>
+<li><strong>mask</strong> shall be of type logical.</li>
+<li>The result will by of the same type and type parameters as <strong>tsource</strong>.</li>
 </ul>
 <h3 id="description-133"><strong>Description</strong></h3>
 <p>The elemental function <strong>merge</strong>(3) selects values from two arrays or scalars according to a logical mask. The result is equal to an element of <strong>tsource</strong> where the corresponding element of <strong>mask</strong> is .true., or an element of <strong>fsource</strong> when it is .false. .</p>
@@ -9827,7 +9829,8 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </ul>
 <p>Note that (currently) character values must be of the same length.</p>
 <h3 id="result-113"><strong>Result</strong></h3>
-<p>The result is of the same type and type parameters as <strong>tsource</strong>. For any element the result is <strong>tsource</strong> if <strong>mask</strong> is true and <strong>fsource</strong> otherwise.</p>
+<p>The result is built from an element of <strong>tsource</strong> if <strong>mask</strong> is .true. and from <strong>fsource</strong> otherwise.</p>
+<p>Because <strong>tsource</strong> and <strong>fsource</strong> are required to have the same type and type parameters (for both the declared and dynamic types), the result is polymorphic if and only if both <strong>tsource</strong> and <strong>fsource</strong> are polymorphic.</p>
 <h3 id="examples-130"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb583"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb583-1" title="1"><span class="kw">program</span> demo_merge</a>
@@ -9887,21 +9890,21 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb583-55" title="55"></a>
 <a class="sourceLine" id="cb583-56" title="56"><span class="kw">end program</span> demo_merge</a></code></pre></div>
 <p>Expected Results:</p>
-<pre><code>    mask of logicals
-     10   3  50
-      7   4 -60
-    highest values
-     10   3  50
-      7  40   8
-    lowest values
-      0 -60   2
-    -20   4 -60
-    zero out negative values
-      0 -60   0
-    -20   0 -60
-    binary choice
-     10  20  30
-      1   2   3</code></pre>
+<pre><code> &gt;     mask of logicals
+ &gt;      10   3  50
+ &gt;       7   4 -60
+ &gt;     highest values
+ &gt;      10   3  50
+ &gt;       7  40   8
+ &gt;     lowest values
+ &gt;       0 -60   2
+ &gt;     -20   4 -60
+ &gt;     zero out negative values
+ &gt;       0 -60   0
+ &gt;     -20   0 -60
+ &gt;     binary choice
+ &gt;      10  20  30
+ &gt;       1   2   3</code></pre>
 <h3 id="standard-132"><strong>Standard</strong></h3>
 <p>Fortran 95</p>
 <h3 id="see-also-132"><strong>See Also</strong></h3>
