@@ -15,19 +15,19 @@
 ```
 ### **Characteristics**
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind
-supported by the associated type.
-
-The returned value will be of the same type and kind as the argument.
+  - **x** may be any _real_ or _complex_ type 
+  - **KIND** may be any kind supported by the associated type of **x**
+  - The returned value will be of the same type and kind as the argument
+    **x**
 
 ### **Description**
 
-**sin**(3) computes the sine of an angle given the size of the angle in
-radians.
+  **sin**(3) computes the sine of an angle given the size of the angle
+  in radians.
 
-The sine of an angle in a right-angled triangle is the ratio of the
-length of the side opposite the given angle divided by the length of the
-hypotenuse.
+  The sine of an angle in a right-angled triangle is the ratio of the
+  length of the side opposite the given angle divided by the length of
+  the hypotenuse.
 
 ### **Options**
 
@@ -37,7 +37,13 @@ hypotenuse.
 ### **Result**
 
 - **result**
-  : The return value contains the sine of **x**.
+  The return value contains the processor-dependent approximation of
+  the sine of **x**
+
+  If X is of type _real_, it is regarded as a value in radians. 
+
+  If X is of type _complex_, its real part is regarded as a value
+  in radians.
 
 ### **Examples**
 
@@ -48,43 +54,43 @@ program sample_sin
 implicit none
 real :: x = 0.0
    x = sin(x)
+   write(*,*)'X=',x
 end program sample_sin
 ```
-
-### **Haversine Formula**
-
-From the article on "Haversine formula" in Wikipedia:
-
+Results:
 ```text
-The haversine formula is an equation important in navigation,
-giving great-circle distances between two points on a sphere from
-their longitudes and latitudes.
+ >  X=  0.0000000E+00
 ```
+### Extended Example
 
-So to show the great-circle distance between the Nashville International
-Airport (BNA) in TN, USA, and the Los Angeles International Airport
-(LAX) in CA, USA you would start with their latitude and longitude,
-commonly given as
+####**Haversine Formula**
 
+  From the article on "Haversine formula" in Wikipedia:
 ```text
-BNA: N 36 degrees 7.2',   W 86 degrees 40.2'
-LAX: N 33 degrees 56.4',  W 118 degrees 24.0'
+    The haversine formula is an equation important in navigation,
+    giving great-circle distances between two points on a sphere from
+    their longitudes and latitudes.
 ```
-
-which converted to floating-point values in degrees is:
-
+  So to show the great-circle distance between the Nashville International
+  Airport (BNA) in TN, USA, and the Los Angeles International Airport
+  (LAX) in CA, USA you would start with their latitude and longitude,
+  commonly given as
 ```text
-     Latitude Longitude
-
-   - BNA
-     36.12, -86.67
-
-   - LAX
-     33.94, -118.40
+  BNA: N 36 degrees 7.2',   W 86 degrees 40.2'
+  LAX: N 33 degrees 56.4',  W 118 degrees 24.0'
 ```
-
-And then use the haversine formula to roughly calculate the distance
-along the surface of the Earth between the locations:
+  which converted to floating-point values in degrees is:
+```text
+       Latitude Longitude
+  
+     - BNA
+       36.12, -86.67
+  
+     - LAX
+       33.94, -118.40
+```
+  And then use the haversine formula to roughly calculate the distance
+  along the surface of the Earth between the locations:
 
 Sample program:
 ```fortran
@@ -119,7 +125,7 @@ end program demo_sin
 ```
 Results:
 ```text
-    distance: 2886.4446 km
+ > distance: 2886.4446 km
 ```
 ### **Standard**
 
@@ -129,7 +135,15 @@ FORTRAN 77
 
 [**asin**(3)](#asin),
 [**cos**(3)](#cos),
-[**tan**(3)](#tan)
+[**tan**(3)](#tan),
+[**acosh**(3)](#acosh),
+[**acos**(3)](#acos),
+[**asinh**(3)](#asinh),
+[**atan2**(3)](#atan2),
+[**atanh**(3)](#atanh),
+[**acosh**(3)](#acosh),
+[**asinh**(3)](#asinh),
+[**atanh**(3)](#atanh)
 
 ### **Resources**
 

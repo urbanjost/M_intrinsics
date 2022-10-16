@@ -15,20 +15,34 @@
 ```
 ### **Characteristics**
 
- - **r** is a _integer_
- - the result is an integer value 
+ - **r** is an _integer_ scalar.
+ - the result is an default integer scalar.
 
 ### **Description**
 
-**selected_int_kind**(3) return the kind value of the smallest integer
-type that can represent all values ranging from **-10\*\*r** (exclusive)
-to **10\*\*r** (exclusive). If there is no integer kind that accommodates
-this range, selected_int_kind returns **-1**.
+  **selected_int_kind**(3) return the kind value of the smallest
+  integer type that can represent all values ranging from **-10\*\*r**
+  (exclusive) to **10\*\*r** (exclusive). If there is no integer kind
+  that accommodates this range, selected_int_kind returns **-1**.
 
 ### **Options**
 
 - **r**
-  : Shall be a scalar and of type _integer_.
+  : The value specifies the required range of powers of ten that need
+    supported by the kind type being returned.
+
+### **Result**
+
+  The result has a value equal to the value of the kind type parameter
+  of an integer type that represents all values in the requested range.
+
+  if no such kind type parameter is available on the processor, the
+  result is −1.
+
+  If more than one kind type parameter meets the criterion, the value
+  returned is the one with the smallest decimal exponent range, unless
+  there are several such values, in which case the smallest of these
+  kind values is returned.
 
 ### **Examples**
 
@@ -68,4 +82,4 @@ Fortran 95
 [**ceiling**(3)](#ceiling),
 [**floor**(3)](#floor)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

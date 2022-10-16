@@ -17,28 +17,28 @@
 ```
 ### **Characteristics**
 
-**x** and **y** must both be real values of default kind.
+ - **x** is a default real.
+ - **y** is a default real.
+ - the result is a _doubleprecision_ real.
 
-The return value is doubleprecision (ie. _real(kind=kind(0.0d0))_).
-
-The setting of compiler options specifying the size of a default _real_
-can affect this function.
+  The setting of compiler options specifying the size of a default _real_
+  can affect this function.
 
 ### **Description**
 
-**dprod**(3) produces a _doubleprecision_ product of default _real_
-values **x** and **y**.
+  **dprod**(3) produces a _doubleprecision_ product of default _real_
+  values **x** and **y**.
 
-That is, it is expected to convert the arguments to double precision
-before multiplying, which a simple expression **x\*y** would not be
-required to do. This can be significant in specialized computations
-requiring high precision.
+  That is, it is expected to convert the arguments to double precision
+  before multiplying, which a simple expression **x\*y** would not be
+  required to do. This can be significant in specialized computations
+  requiring high precision.
 
-The result has a value equal to a processor-dependent approximation to
-the product of **x** and **y**. Note it is recommended in the standard
-that the processor compute the product in double precision, rather than
-in single precision then converted to double precision; but is only
-a recommendation.
+  The result has a value equal to a processor-dependent approximation
+  to the product of **x** and **y**. Note it is recommended in the
+  standard that the processor compute the product in double precision,
+  rather than in single precision then converted to double precision;
+  but is only a recommendation.
 
 ### **Options**
 
@@ -88,16 +88,16 @@ end program demo_dprod
 Results:
 (this can vary between programming environments):
 ```text
-    algebraically 5.2 x 2.3 is exactly 11.96
-    as floating point values results may differ slightly:
-    compare dprod(xy)=   11.959999313354501      to x*y=   11.9599991
-    to dble(x)*dble(y)=   11.959999313354501
-    test if an expected result is produced
-     -6.0000000000000000       -6.0000000000000000
-    PASSED
-    elemental
-      22.999999523162842        34.000000953674316        45.000000000000000
-      22.539999971389761        25.840000400543204        24.300000429153442
+ >  algebraically 5.2 x 2.3 is exactly 11.96
+ >  as floating point values results may differ slightly:
+ >  compare dprod(xy)=   11.9599993133545      to x*y=   11.96000
+ >  to dble(x)*dble(y)=   11.9599993133545
+ >  test if an expected result is produced
+ >   -6.00000000000000       -6.00000000000000
+ >  PASSED
+ >  elemental
+ >    22.9999995231628     34.0000009536743     45.0000000000000
+ >    22.5399999713898     25.8400004005432     24.3000004291534
 ```
 ### **Standard**
 
@@ -105,6 +105,7 @@ FORTRAN 77
 
 ### **See Also**
 
-[****(3)](#)
+[**dble**(3)](#dble)
+[**real**(3)](#real)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

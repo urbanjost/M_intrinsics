@@ -1,8 +1,9 @@
+
 ## erfc_scaled
 
 ### **Name**
 
-**erfc_scaled**(3) - \[MATHEMATICS\] Error function
+**erfc_scaled**(3) - \[MATHEMATICS\] Scaled complementary error function
 
 ### **Synopsis**
 ```fortran
@@ -15,6 +16,10 @@
 ```
 ### **Characteristics**
 
+ - **x** is of type _real_ of any valid kind
+ - **KIND** is any kind valid for a _real_ type
+ - the result has the same characteristics as **x**
+
 ### **Description**
 
 **erfc_scaled**(3) computes the exponentially-scaled complementary
@@ -25,14 +30,23 @@ e^{x^2} \frac{2}{\sqrt{\pi}} \int_{x}^{\infty}
 e^{-t^2} dt.
 $$
 
+#### NOTE1
+
+  The complementary error function is asymptotic to
+  exp(−X2)/(X√π). As such it underﬂows for X >≈ 9 when
+  using ISO/IEC/IEEE 60559:2011 single precision arithmetic. The
+  exponentially-scaled complementary error function is asymptotic to
+  1/(X   π). As such it does not underflow until X > HUGE (X)/ π.
+
 ### **Options**
 
 - **x**
-  : The type shall be _real_.
+  the value to apply the **erfc** function to
 
 ### **Result**
 
-The return value is of type _real_ and of the same kind as **x**.
+The approximation to the exponentially-scaled complementary error function
+of **x**
 
 ### **Examples**
 
@@ -47,7 +61,7 @@ end program demo_erfc_scaled
 ```
 Results:
 ```text
-     0.83375830214998126
+ >   0.833758302149981     
 ```
 ### **Standard**
 
@@ -55,7 +69,8 @@ Fortran 2008
 
 ### **See also**
 
-[**erf**(3)](#erf)
+[**erf**(3)](#erf),
+[**exp**(3)](#exp),
 [**erfc**(3)](#erfc)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

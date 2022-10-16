@@ -999,27 +999,31 @@ Fortran 95
 
 ### **Name**
 
-**allocated**(3) - \[ARRAY:INQUIRY\] Status of an allocatable entity
+**allocated**(3) - \[ARRAY:INQUIRY\] Allocation status of an allocatable entity
 
 ### **Synopsis**
 ```fortran
-    result = allocated(entity)
+    result = allocated(array|scalar)
 ```
 ```fortran
-     logical function allocated(entity)
+     logical function allocated(array,scalar)
 
-      type(TYPE(kind=**)),allocatable :: entity(..)
+      type(TYPE(kind=**)),allocatable,optional :: array(..)
+      type(TYPE(kind=**)),allocatable,optional :: scalar
 ```
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind for the type
-
- - **entity** may be any allocatable scalar or array object of any type.
+ - **array** may be any allocatable array object of any type.
+ - **scalar** may be any allocatable scalar of any type.
+ - the result is a default logical scalar
 
 ### **Description**
 
   **allocated**(3) checks the allocation status of both arrays
   and scalars.
+
+ At least one and only one of **array** or **scalar** must be specified.
 
 ### **Options**
 
@@ -1076,10 +1080,9 @@ end program demo_allocated
 ```
 Results:
 ```text
-    T           4
-    do things if allocated
-    note it was allocated in calling program F
-    note it is deallocated! F
+ >  do things if not allocated
+ >  note it was allocated in calling program F
+ >  note it is deallocated! F
 ```
 ### **Standard**
 
@@ -1089,7 +1092,7 @@ Results:
 
 [**move_alloc**(3)](#move_alloc)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## anint
 
@@ -3325,7 +3328,7 @@ Fortran 2008
    valid for the _integer_ kind available with the most bits on the
    current platform.
 
- - The return value is of type _logical_ and of the default kind.
+ - The return value is of type default _logical_.
 
 ### **Description**
 
@@ -6388,7 +6391,7 @@ Fortran 2008
 
 ### **Name**
 
-**date_and_time**(3) - \[SYSTEM:TIME\] Gets current time
+**date_and_time**(3) - \[SYSTEM:TIME\] Gets current date time
 
 ### **Synopsis**
 ```fortran
@@ -6404,36 +6407,84 @@ Fortran 2008
 ```
 ### **Characteristics**
 
+ - **date* is a default _character_ scalar
+ - **time* is a default _character_ scalar
+ - **zone* is a default _character_ scalar
+ - **values** is a rank-one array of type integer with a decimal
+ exponent range of at least four.
+
 ### **Description**
 
-**date_and_time**(3) gets the corresponding
-date and time information from the real-time system clock.
+  **date_and_time**(3) gets the corresponding date and time information
+  from the real-time system clock.
 
-Unavailable time and date _character_ parameters return blanks.
+  Unavailable time and date _character_ parameters return blanks.
+
+  Unavailable numeric parameters return **-huge(value)**.
+
+  These forms are compatible with the representations deﬁned in ISO
+  8601:2004. UTC is established by the International Bureau of Weights
+  and Measures (BIPM, i.e. Bureau International des Poids et Mesures)
+  and the International Earth Rotation Service (IERS).
 
 ### **Options**
 
 - **date**
-  : A character string of default kind of the form CCYYMMDD, of length 8 or larger.
+  : A character string of default kind of the form CCYYMMDD, of length
+    8 or larger, where
+
+      + CCYY is the year in the Gregorian calendar
+      + MM is the month within the year
+      + DD is the day within the month.
+
+    The characters of this value are all decimal digits.
+
+    If there is no date available, DATE is assigned all blanks.
 
 - **time**
-  : A character string of default kind of the form HHMMSS.SSS, of length 10 or larger.
+  : A character string of default kind of the form HHMMSS.SSS, of length
+    10 or larger, where
+
+     + hh is the hour of the day,
+     + mm is the minutes of the hour,
+     + and ss.sss is the seconds and milliseconds of the minute.
+
+    Except for the decimal point, the characters of this value shall
+    all be decimal digits.
+
+    If there is no clock available, TIME is assigned all blanks.
 
 - **zone**
-  : A character string of default kind of the form (+-)HHMM, of length 5 or larger,
-  representing the difference with respect to Coordinated Universal Time (UTC).
+  : A string of the form (+-)HHMM, of length 5 or larger, representing
+    the difference with respect to Coordinated Universal Time (UTC), where
+
+     + hh and mm are the time difference with respect to Coordinated
+       Universal Time (UTC) in hours and minutes, respectively.
+
+   The characters of this value following the sign character are
+   alldecimal digits.
+
+   If this information is not available, ZONE is assigned all blanks.
 
 - **values**
-  : An _integer_ array of eight elements that contains:
+  : An array of at least eight elements.  If there is no data
+  available for a value it is set to **−huge(values)**. Otherwise,
+  it contains:
 
-   - **values**(1) : The year
-   - **values**(2) : The month
-   - **values**(3) : The day of the month
-   - **values**(4) : Time difference with UTC in minutes
-   - **values**(5) : The hour of the day
-   - **values**(6) : The minutes of the hour
-   - **values**(7) : The seconds of the minute
-   - **values**(8) : The milliseconds of the second
+  - **values**(1) : The year, including the century.
+  - **values**(2) : The month of the year
+  - **values**(3) : The day of the month
+  - **values**(4) : Time difference in minutes between the reported time
+                    and UTC time.
+  - **values**(5) : The hour of the day, in the range 0 to 23.
+  - **values**(6) : The minutes of the hour, in the range 0 to 59
+  - **values**(7) : The seconds of the minute, in the range 0 to 60
+  - **values**(8) : The milliseconds of the second, in the range 0 to 999.
+
+ The date, clock, and time zone information might be available on some
+ images and not others. If the date, clock, or time zone information is
+ available on more than one image, it is processor dependent whether or
+ not those images share the same information.
 
 ### **Examples**
 
@@ -6465,21 +6516,18 @@ integer,dimension(8) :: values
      & values(8),' - The milliseconds of the second'
 end program demo_date_and_time
 ```
-
 Results:
-
 ```
-   DATE="20201222" TIME="165738.779" ZONE="-0500"
-    2020 - The year
-      12 - The month
-      22 - The day of the month
-    -300 - Time difference with UTC in minutes
-      16 - The hour of the day
-      57 - The minutes of the hour
-      38 - The seconds of the minute
-     779 - The milliseconds of the second
+ > DATE="20201222" TIME="165738.779" ZONE="-0500"
+ >  2020 - The year
+ >    12 - The month
+ >    22 - The day of the month
+ >  -300 - Time difference with UTC in minutes
+ >    16 - The hour of the day
+ >    57 - The minutes of the hour
+ >    38 - The seconds of the minute
+ >   779 - The milliseconds of the second
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -6559,10 +6607,14 @@ Results:
 
 FORTRAN 77
 
-### **See Also**
+### **See also**
 
-[**float**(3)](#float),
-[**real**(3)](#real)
+- [**aimag**(3)](#aimag) - Imaginary part of complex number
+- [**cmplx**(3)](#cmplx) - Convert values to a complex type
+- [**int**(3)](#int) - Truncate towards zero and convert to integer
+- [**nint**(3)](#nint) - Nearest whole number
+- [**out\_of\_range**(3)](#out_of_range) - Whether a value cannot be converted safely.
+- [**real**(3)](#real) - Convert to real type
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -6842,28 +6894,28 @@ Fortran 95
 ```
 ### **Characteristics**
 
-**x** and **y** must both be real values of default kind.
+ - **x** is a default real.
+ - **y** is a default real.
+ - the result is a _doubleprecision_ real.
 
-The return value is doubleprecision (ie. _real(kind=kind(0.0d0))_).
-
-The setting of compiler options specifying the size of a default _real_
-can affect this function.
+  The setting of compiler options specifying the size of a default _real_
+  can affect this function.
 
 ### **Description**
 
-**dprod**(3) produces a _doubleprecision_ product of default _real_
-values **x** and **y**.
+  **dprod**(3) produces a _doubleprecision_ product of default _real_
+  values **x** and **y**.
 
-That is, it is expected to convert the arguments to double precision
-before multiplying, which a simple expression **x\*y** would not be
-required to do. This can be significant in specialized computations
-requiring high precision.
+  That is, it is expected to convert the arguments to double precision
+  before multiplying, which a simple expression **x\*y** would not be
+  required to do. This can be significant in specialized computations
+  requiring high precision.
 
-The result has a value equal to a processor-dependent approximation to
-the product of **x** and **y**. Note it is recommended in the standard
-that the processor compute the product in double precision, rather than
-in single precision then converted to double precision; but is only
-a recommendation.
+  The result has a value equal to a processor-dependent approximation
+  to the product of **x** and **y**. Note it is recommended in the
+  standard that the processor compute the product in double precision,
+  rather than in single precision then converted to double precision;
+  but is only a recommendation.
 
 ### **Options**
 
@@ -6913,16 +6965,16 @@ end program demo_dprod
 Results:
 (this can vary between programming environments):
 ```text
-    algebraically 5.2 x 2.3 is exactly 11.96
-    as floating point values results may differ slightly:
-    compare dprod(xy)=   11.959999313354501      to x*y=   11.9599991
-    to dble(x)*dble(y)=   11.959999313354501
-    test if an expected result is produced
-     -6.0000000000000000       -6.0000000000000000
-    PASSED
-    elemental
-      22.999999523162842        34.000000953674316        45.000000000000000
-      22.539999971389761        25.840000400543204        24.300000429153442
+ >  algebraically 5.2 x 2.3 is exactly 11.96
+ >  as floating point values results may differ slightly:
+ >  compare dprod(xy)=   11.9599993133545      to x*y=   11.96000
+ >  to dble(x)*dble(y)=   11.9599993133545
+ >  test if an expected result is produced
+ >   -6.00000000000000       -6.00000000000000
+ >  PASSED
+ >  elemental
+ >    22.9999995231628     34.0000009536743     45.0000000000000
+ >    22.5399999713898     25.8400004005432     24.3000004291534
 ```
 ### **Standard**
 
@@ -6930,7 +6982,8 @@ FORTRAN 77
 
 ### **See Also**
 
-[****(3)](#)
+[**dble**(3)](#dble)
+[**real**(3)](#real)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -7503,14 +7556,18 @@ Fortran 95
 ```
 ### **Characteristics**
 
+ - **x** is of type _real_ and any valid kind
+ - **KIND** is any value valid for type _real_
+ - the result has the same characteristics as **x**
+
 ### **Description**
 
-**erfc**(3) computes the complementary error function of **x**. Simply put
-this is equivalent to **1 - erf(x)**, but **erfc** is provided because
-of the extreme loss of relative accuracy if **erf(x)** is called for
-large **x** and the result is subtracted from **1**.
+  **erfc**(3) computes the complementary error function of **x**. Simply
+  put this is equivalent to **1 - erf(x)**, but **erfc** is provided
+  because of the extreme loss of relative accuracy if **erf(x)** is
+  called for large **x** and the result is subtracted from **1**.
 
-**erfc(x)** is defined as
+  **erfc(x)** is defined as
 
 <!--
 $$
@@ -7529,10 +7586,13 @@ $$
 
 ### **Result**
 
-The return value is of type _real_ and of the same kind as **x**. It lies in
-the range
-
-> 0 \<= **erfc**(x) \<= 2.
+  The return value is of type _real_ and of the same kind as **x**. It lies in
+  the range
+```fortran
+     0 \<= **erfc**(x) \<= 2.
+```
+and is a  processor-dependent approximation to the complementary error
+function of **x** ( **1-erf(x) ).
 
 ### **Examples**
 
@@ -7543,12 +7603,14 @@ use, intrinsic :: iso_fortran_env, only : &
  & real_kinds, real32, real64, real128
 implicit none
 real(kind=real64) :: x = 0.17_real64
-    write(*,*)x, erfc(x)
+   write(*,'(*(g0))')'X=',x, ' ERFC(X)=',erfc(x)
+   write(*,'(*(g0))')'equivalently 1-ERF(X)=',1-erf(x)
 end program demo_erfc
 ```
 Results:
 ```text
-     0.17000000000000001       0.81000753879819121
+ > X=.1700000000000000 ERFC(X)=.8100075387981912
+ > equivalently 1-ERF(X)=.8100075387981912
 ```
 ### **Standard**
 
@@ -7569,7 +7631,7 @@ Fortran 2008
 
 ### **Name**
 
-**erfc_scaled**(3) - \[MATHEMATICS\] Error function
+**erfc_scaled**(3) - \[MATHEMATICS\] Scaled complementary error function
 
 ### **Synopsis**
 ```fortran
@@ -7582,6 +7644,10 @@ Fortran 2008
 ```
 ### **Characteristics**
 
+ - **x** is of type _real_ of any valid kind
+ - **KIND** is any kind valid for a _real_ type
+ - the result has the same characteristics as **x**
+
 ### **Description**
 
 **erfc_scaled**(3) computes the exponentially-scaled complementary
@@ -7592,14 +7658,23 @@ e^{x^2} \frac{2}{\sqrt{\pi}} \int_{x}^{\infty}
 e^{-t^2} dt.
 $$
 
+#### NOTE1
+
+  The complementary error function is asymptotic to
+  exp(−X2)/(X√π). As such it underﬂows for X >≈ 9 when
+  using ISO/IEC/IEEE 60559:2011 single precision arithmetic. The
+  exponentially-scaled complementary error function is asymptotic to
+  1/(X   π). As such it does not underflow until X > HUGE (X)/ π.
+
 ### **Options**
 
 - **x**
-  : The type shall be _real_.
+  the value to apply the **erfc** function to
 
 ### **Result**
 
-The return value is of type _real_ and of the same kind as **x**.
+The approximation to the exponentially-scaled complementary error function
+of **x**
 
 ### **Examples**
 
@@ -7614,7 +7689,7 @@ end program demo_erfc_scaled
 ```
 Results:
 ```text
-     0.83375830214998126
+ >   0.833758302149981
 ```
 ### **Standard**
 
@@ -7622,10 +7697,11 @@ Fortran 2008
 
 ### **See also**
 
-[**erf**(3)](#erf)
+[**erf**(3)](#erf),
+[**exp**(3)](#exp),
 [**erfc**(3)](#erfc)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## erf
 
@@ -11831,17 +11907,17 @@ of arguments, and search for certain arguments:
   result = len_trim(string [,kind])
 ```
 ```fortran
-   elemental integer(kind=KIND) function len_trim(string,kind)
+   elemental integer(kind=KIND) function len_trim(string,KIND)
 
     character(len=*),intent(in) :: string
-    integer(kind=KIND),intent(in),optional :: kind
+    integer(kind=KIND),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
  - **string** is of type _character_
  - **kind** is a scalar integer constant expression specifying the kind
    of the returned value.
- - The return value is of type _integer_ and of kind **kind**. If **kind**
+ - The return value is of type _integer_ and of kind **KIND**. If **KIND**
    is absent, the return value is of default _integer_ kind.
 
 ### **Description**
@@ -11859,9 +11935,11 @@ of arguments, and search for certain arguments:
 
 ### **Result**
 
-  The result has a value equal to the number of characters remaining
-  after any trailing blanks in STRING are removed. If the argument
-  contains no nonblank characters, the result is zero.
+  The result equals the number of characters remaining
+  after any trailing blanks in **string** are removed.
+
+  If the input argument is of zero length or all blanks
+  the result is zero.
 
 ### **Examples**
 
@@ -15625,23 +15703,20 @@ Fortran 95
 
 ### **Synopsis**
 ```fortran
-    result = num_images([team])
+    result = num_images([team|team_number])
 ```
 ```fortran
      integer function num_images (team)
 
-      type(TEAM_TYPE),intent(in),optional :: team
-```
-or
-```fortran
-    result = num_images(team_number)
-```
-```fortran
-     integer function num_images (team_number)
-
-      integer(kind=KIND),intent(in) :: team_number
+      type(TEAM_TYPE),intent(in),optional    :: team
+      integer(kind=KIND),intent(in),optional :: team_number
 ```
 ### **Characteristics**
+
+ - use of **team** and **team_number** is mutually exclusive
+ - **team** is is a scalar of of type **TEAM_TYPE** from the intrinsic module ISO_FORTRAN_ENV.
+ - **team_number** is an _integer_ scalar.
+ - the result is a default _integer_ scalar.
 
 ### **Description**
 
@@ -15655,8 +15730,8 @@ or
   ancestor team.
 
 - **team_number**
-  : shall be an integer scalar. It shall identify the initial team or
-  a team whose parent is the same as that of the current team.
+  : identifies the initial team or a team whose parent is the same as
+  that of the current team.
 
 ### **Result**
 
@@ -15666,11 +15741,11 @@ or
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_num_images
 implicit none
 integer :: value[*]
+real    :: p[*]
 integer :: i
 
    value = this_image()
@@ -15681,9 +15756,17 @@ integer :: i
      end do
    endif
 
+ ! The following code uses image 1 to read data and broadcast it to other images.
+   if (this_image()==1) then
+      p=1234.5678
+      do i = 2, num_images()
+         p[i] = p
+      end do
+   end if
+   sync all
+
 end program demo_num_images
 ```
-
 ### **Standard**
 
 Fortran 2008 . With DISTANCE or FAILED argument, TS 18508
@@ -15693,7 +15776,7 @@ Fortran 2008 . With DISTANCE or FAILED argument, TS 18508
 [**this_image**(3)](#this_image),
 [**image_index**(3)](#this_index)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## out_of_range
 
@@ -15714,22 +15797,32 @@ Fortran 2008 . With DISTANCE or FAILED argument, TS 18508
 ```
 ### **Characteristics**
 
-   where TYPE may be _real_ or _integer_ of any available KIND.
+ - **x** is of type _integer_ or _real_.
+ - **mold** is an _integer_ or _real_ scalar.
+ - **round** is a _logical_ scalar.
+ - the result is a default _logical_.
 
 ### **Description**
 
    **out_of_range**(3) determines whether a value **x** can be converted
-   safely to a _real_ or _integer_ variable the same type and kind as
-   **mold**.
+   safely to a _real_ or _integer_ variable the same type and kind
+   as **mold**.
+
+   For example, if **int8** is the kind value for an 8-bit binary integer
+   type, **out_of_range(−128.5, 0_int8)** will have the value false and
+   **out_of_range(−128.5, 0_int8, .true.)** will have the value _.true._
+   because the value will be truncated when converted to an _integer_
+   and -128 is a representable value on a two's complement machine in
+   eight bits even though +128 is not.
 
 ### **Options**
    - **x**
-     : a scalar of type _integer_ or _real_ to be tested for whether
+     : a scalar to be tested for whether
      it can be stored in a variable of the type and kind of **mold**
 
    - **mold**
-     : shall be an _integer_ or _real_ scalar. If it is a variable, it
-     need not be defined, as only the type and kind are queried.
+     and kind are queried to determine the characteristics of what
+     needs to be fit into.
 
    - **round**
      : flag whether to round the value of **xx** before validating it as
@@ -15742,35 +15835,35 @@ Fortran 2008 . With DISTANCE or FAILED argument, TS 18508
 
 From the standard:
 
-   Case (i):     If MOLD is of type integer, and ROUND is absent or
+   Case (i):     If **mold** is of type integer, and **round** is absent or
                  present with the value false, the result is true
                  if and only if the value of X is an IEEE infinity or
                  NaN, or if the integer with largest magnitude that lies
                  between zero and X inclusive is not representable by
-                 objects with the type and kind of MOLD.
+                 objects with the type and kind of **mold**.
 
-   Case (ii):    If MOLD is of type integer, and ROUND is present with
+   Case (ii):    If **mold** is of type integer, and **round** is present with
                  the value true, the result is true if and only
                  if the value of X is an IEEE infinity or NaN, or
                  if the integer nearest X, or the integer of greater
                  magnitude if two integers are equally near to X, is not
-                 representable by objects with the type and kind of MOLD.
+                 representable by objects with the type and kind of **mold**.
 
    Case (iii):   Otherwise, the result is true if and only if the value
                  of X is an IEEE infinity or NaN that is not
-                 supported by objects of the type and kind of MOLD,
+                 supported by objects of the type and kind of **mold**,
                  or if X is a finite number and the result of rounding
                  the value of X (according to the IEEE rounding mode if
-                 appropriate) to the extended model for the kind of MOLD
+                 appropriate) to the extended model for the kind of **mold**
                  has magnitude larger than that of the largest finite
                  number with the same sign as X that is representable
-                 by objects with the type and kind of MOLD.
+                 by objects with the type and kind of **mold**.
 
    NOTE
 
-   MOLD is required to be a scalar because the only information
-   taken from it is its type and kind. Allowing an array MOLD would
-   require that it be conformable with X. ROUND is scalar because
+   **mold** is required to be a scalar because the only information
+   taken from it is its type and kind. Allowing an array **mold** would
+   require that it be conformable with **x**. **round** is scalar because
    allowing an array rounding mode would have severe performance
    difficulties on many processors.
 
@@ -15806,9 +15899,7 @@ integer(kind=int8) :: i8, j8
 
 end program demo_out_of_range
 ```
-
 Results:
-
 ```text
   >  127 -127  might have expected         127        -127 F F
   > -128 -128  might have expected         128        -128 T F
@@ -15818,14 +15909,18 @@ Results:
   > F
   > T
 ```
-
 ### **Standard**
 
    FORTRAN 2018
 
 ### **See also**
 
-[****(3)](#)
+- [**aimag**(3)](#aimag) - Imaginary part of complex number
+- [**cmplx**(3)](#cmplx) - Convert values to a complex type
+- [**dble**(3)](#dble) - Double conversion function
+- [**int**(3)](#int) - Truncate towards zero and convert to integer
+- [**nint**(3)](#nint) - Nearest whole number
+- [**real**(3)](#real) - Convert to real type
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -16135,18 +16230,23 @@ There are many procedures that operator or query values at the bit level:
 
 ### **Description**
 
-**poppar**(3) returns the parity of an integer's binary representation
-(i.e., the parity of the number of bits set).
+  **poppar**(3) returns the parity of an integer's binary representation
+  (i.e., the parity of the number of bits set).
+
+  The parity is expressed as
+
+  + **0** (zero) if **i** has an even number of bits set to **1**.
+  + **1** (one) if the number of bits set to one **1** is odd,
 
 ### **Options**
 
 - **i**
-  : The value to query the bits of
+  : The value to query for its bit parity
 
 ### **Result**
 
-The return value is equal to **0** if **i** has an even number of bits
-set and **1** if an odd number of bits are set.
+  The return value is equal to **0** if **i** has an even number of bits
+  set and **1** if an odd number of bits are set.
 
 ### **Examples**
 
@@ -16946,7 +17046,7 @@ Fortran 95
 
 ### **Name**
 
-**range**(3) - \[NUMERIC MODEL\] Decimal exponent range of a real kind
+**range**(3) - \[NUMERIC MODEL\] Decimal exponent range of a numeric kind
 
 ### **Synopsis**
 ```fortran
@@ -16959,22 +17059,42 @@ Fortran 95
 ```
 ### **Characteristics**
 
-where TYPE is _real_ or _complex_ and KIND is any kind supported by
-TYPE.
+ - **x** may be of type _integer_, _real_, or _complex_. It may be a scalar or an array.
+ - **KIND** is any kind supported by the type of **x**
+ - the result is a default _integer_ scalar
 
 ### **Description**
 
-**range**(3) returns the decimal exponent range in the model of the type
-of **x**.
+  **range**(3) returns the decimal exponent range in the model of the
+  type of **x**.
+
+  Since **x** is only used to determine the type and kind being
+  interrogated, the value need not be defined.
 
 ### **Options**
 
 - **x**
-  : Shall be of type _real_ or _complex_.
+  : the value whose type and kind are used for the query
 
 ### **Result**
 
-The return value is of type _integer_ and of the default integer kind.
+  Case (i)
+  : For an integer argument, the result has the value
+```fortran
+  int (log10 (huge(x)))
+```
+
+  Case (ii)
+  : For a real argument, the result has the value
+```fortran
+  int(min (log10 (huge(x)), ­log10(tiny(x) )))
+  ```
+
+  Case (iii)
+  : For a complex argument, the result has the value
+```fortran
+  range(real(x))
+```
 
 ### **Examples**
 
@@ -16990,14 +17110,11 @@ complex(kind=dp) :: y
    print *, precision(y), range(y)
 end program demo_range
 ```
-
 Results:
-
 ```text
-              6          37
-             15         307
+ >            6          37
+ >           15         307
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -17527,11 +17644,11 @@ Results:
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind for the type
-- **string** is a scalar _character_ type.
-- **ncopies** is a scalar integer.
-- the result is a new scalar of type _character_ of the same type as
-  **string**
+ - a kind designated as ** may be any supported kind for the type
+ - **string** is a scalar _character_ type.
+ - **ncopies** is a scalar integer.
+ - the result is a new scalar of type _character_ of the same kind as
+   **string**
 
 ### **Description**
 
@@ -17813,7 +17930,7 @@ Fortran 95
 
 ### **Name**
 
-**rrspacing**(3) - \[MODEL_COMPONENTS\] Reciprocal of the relative spacing
+**rrspacing**(3) - \[MODEL_COMPONENTS\] Reciprocal of the relative spacing of a numeric type
 
 ### **Synopsis**
 ```fortran
@@ -17826,12 +17943,21 @@ Fortran 95
 ```
 ### **Characteristics**
 
-The return value is of the same type and kind as **x**.
+ - **x** is type _real_ an any kind
+ - The return value is of the same type and kind as **x**.
 
 ### **Description**
 
 **rrspacing**(3) returns the reciprocal of the relative spacing of model
 numbers near **x**.
+
+<!--
+ 5 Result Value. The result has the value |Y×b−e|×bp = ABS (FRACTION (Y)) * RADIX (X) / EPSILON (X),
+    where b, e, and p are as deﬁned in 16.4 for Y, the value nearest to X in the model for real values whose kind type
+    parameter is that of X; if there are two such values, the value of greater absolute value is taken. If X is an IEEE
+    inﬁnity, the result is an IEEE NaN. If X is an IEEE NaN, the result is that NaN.
+ 6 Example. RRSPACING (−3.0) has the value 0:75×224 for reals whose model is as in 16.4, NOTE 1.
+-->
 
 ### **Options**
 
@@ -17840,8 +17966,8 @@ numbers near **x**.
 
 ### **Result**
 
-The return value is of the same type and kind as **x**. The value returned
-is equal to **abs(fraction(x)) \* float(radix(x))\*\*digits(x)**.
+  The return value is of the same type and kind as **x**. The value returned
+  is equal to **abs(fraction(x)) \* float(radix(x))\*\*digits(x)**.
 
 ### **Standard**
 
@@ -18364,20 +18490,34 @@ Fortran 2003
 ```
 ### **Characteristics**
 
- - **r** is a _integer_
- - the result is an integer value
+ - **r** is an _integer_ scalar.
+ - the result is an default integer scalar.
 
 ### **Description**
 
-**selected_int_kind**(3) return the kind value of the smallest integer
-type that can represent all values ranging from **-10\*\*r** (exclusive)
-to **10\*\*r** (exclusive). If there is no integer kind that accommodates
-this range, selected_int_kind returns **-1**.
+  **selected_int_kind**(3) return the kind value of the smallest
+  integer type that can represent all values ranging from **-10\*\*r**
+  (exclusive) to **10\*\*r** (exclusive). If there is no integer kind
+  that accommodates this range, selected_int_kind returns **-1**.
 
 ### **Options**
 
 - **r**
-  : Shall be a scalar and of type _integer_.
+  : The value specifies the required range of powers of ten that need
+    supported by the kind type being returned.
+
+### **Result**
+
+  The result has a value equal to the value of the kind type parameter
+  of an integer type that represents all values in the requested range.
+
+  if no such kind type parameter is available on the processor, the
+  result is −1.
+
+  If more than one kind type parameter meets the criterion, the value
+  returned is the one with the smallest decimal exponent range, unless
+  there are several such values, in which case the smallest of these
+  kind values is returned.
 
 ### **Examples**
 
@@ -18417,7 +18557,7 @@ Fortran 95
 [**ceiling**(3)](#ceiling),
 [**floor**(3)](#floor)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## selected_real_kind
 
@@ -18438,41 +18578,59 @@ Fortran 95
 ```
 ### **Characteristics**
 
- - **r** is an integer
- - **p** is an integer
- - **radix** is an integer
- - the result is an integer value
+ - **p** is an _integer_ scalar
+ - **r** is an _integer_ scalar
+ - **radix** is an _integer_ scalar
+ - the result is an default _integer_ scalar
 
 ### **Description**
 
-**selected_real_kind**(3) return the kind value of a real data type with
-decimal precision of at least **p** digits, exponent range of at least
-**r**, and with a radix of **radix**.
+   **selected_real_kind**(3) return the kind value of a _real_ data type with
+   decimal precision of at least **p** digits, exponent range of at least
+   **r**, and with a radix of **radix**. That is, if such a kind exists
+
+    + it has the decimal precision as returned by **precision**(3) of at
+      least **p** digits.
+    + a decimal exponent range, as returned by the function **range**(3)
+      of at least **r**
+    + a radix, as returned by the function **radix**(3) , of **radix**,
+
+   If the requested kind does not exist, -1 is returned.
+
+   At least one argument shall be present.
 
 ### **Options**
 
 - **p**
-  : shall be a scalar and of type _integer_.
+  : the requested precision
 
 - **r**
-  : shall be a scalar and of type _integer_.
+  : the requested range
 
 - **radix**
-  : shall be a scalar and of type _integer_.
+  : the desired radix
 
-Before **Fortran 2008**, at least one of the arguments **r** or **p** shall
-be present; since **Fortran 2008**, they are assumed to be zero if
-absent.
+  Before **Fortran 2008**, at least one of the arguments **r** or **p** shall
+  be present; since **Fortran 2008**, they are assumed to be zero if
+  absent.
 
 ### **Result**
 
-selected_real_kind returns the value of the kind type parameter of a
-real data type with decimal precision of at least **p** digits, a decimal
-exponent range of at least R, and with the requested **radix**. If the **radix**
-parameter is absent, real kinds with any radix can be returned. If more
-than one real data type meet the criteria, the kind of the data type
-with the smallest decimal precision is returned. If no real data type
-matches the criteria, the result is
+  selected_real_kind returns the value of the kind type parameter of
+  a real data type with decimal precision of at least **p** digits,
+  a decimal exponent range of at least R, and with the requested
+  **radix**.
+
+  If **p** or **r** is absent, the result value is the same as if it
+  were present with the value zero.
+
+  If the **radix** parameter is absent, there is no requirement on
+  the radix of the selected kind and real kinds with any radix can be
+  returned.
+
+  If more than one real data type meet the criteria, the kind
+  of the data type with the smallest decimal precision is returned. If
+  no real data type matches the criteria, the result is
 
   - **-1**
   : if the processor does not support a real data type with a
@@ -18528,7 +18686,7 @@ Fortran 95 ; with RADIX - Fortran 2008
 [**range**(3)](#range),
 [**radix**(3)](#radix)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## set_exponent
 
@@ -19322,19 +19480,19 @@ Fortran 95 , for a complex argument Fortran 2008
 ```
 ### **Characteristics**
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any kind
-supported by the associated type.
-
-The returned value will be of the same type and kind as the argument.
+  - **x** may be any _real_ or _complex_ type
+  - **KIND** may be any kind supported by the associated type of **x**
+  - The returned value will be of the same type and kind as the argument
+    **x**
 
 ### **Description**
 
-**sin**(3) computes the sine of an angle given the size of the angle in
-radians.
+  **sin**(3) computes the sine of an angle given the size of the angle
+  in radians.
 
-The sine of an angle in a right-angled triangle is the ratio of the
-length of the side opposite the given angle divided by the length of the
-hypotenuse.
+  The sine of an angle in a right-angled triangle is the ratio of the
+  length of the side opposite the given angle divided by the length of
+  the hypotenuse.
 
 ### **Options**
 
@@ -19344,7 +19502,13 @@ hypotenuse.
 ### **Result**
 
 - **result**
-  : The return value contains the sine of **x**.
+  The return value contains the processor-dependent approximation of
+  the sine of **x**
+
+  If X is of type _real_, it is regarded as a value in radians.
+
+  If X is of type _complex_, its real part is regarded as a value
+  in radians.
 
 ### **Examples**
 
@@ -19355,43 +19519,43 @@ program sample_sin
 implicit none
 real :: x = 0.0
    x = sin(x)
+   write(*,*)'X=',x
 end program sample_sin
 ```
-
-### **Haversine Formula**
-
-From the article on "Haversine formula" in Wikipedia:
-
+Results:
 ```text
-The haversine formula is an equation important in navigation,
-giving great-circle distances between two points on a sphere from
-their longitudes and latitudes.
+ >  X=  0.0000000E+00
 ```
+### Extended Example
 
-So to show the great-circle distance between the Nashville International
-Airport (BNA) in TN, USA, and the Los Angeles International Airport
-(LAX) in CA, USA you would start with their latitude and longitude,
-commonly given as
+####**Haversine Formula**
 
+  From the article on "Haversine formula" in Wikipedia:
 ```text
-BNA: N 36 degrees 7.2',   W 86 degrees 40.2'
-LAX: N 33 degrees 56.4',  W 118 degrees 24.0'
+    The haversine formula is an equation important in navigation,
+    giving great-circle distances between two points on a sphere from
+    their longitudes and latitudes.
 ```
-
-which converted to floating-point values in degrees is:
-
+  So to show the great-circle distance between the Nashville International
+  Airport (BNA) in TN, USA, and the Los Angeles International Airport
+  (LAX) in CA, USA you would start with their latitude and longitude,
+  commonly given as
 ```text
-     Latitude Longitude
-
-   - BNA
-     36.12, -86.67
-
-   - LAX
-     33.94, -118.40
+  BNA: N 36 degrees 7.2',   W 86 degrees 40.2'
+  LAX: N 33 degrees 56.4',  W 118 degrees 24.0'
 ```
+  which converted to floating-point values in degrees is:
+```text
+       Latitude Longitude
 
-And then use the haversine formula to roughly calculate the distance
-along the surface of the Earth between the locations:
+     - BNA
+       36.12, -86.67
+
+     - LAX
+       33.94, -118.40
+```
+  And then use the haversine formula to roughly calculate the distance
+  along the surface of the Earth between the locations:
 
 Sample program:
 ```fortran
@@ -19426,7 +19590,7 @@ end program demo_sin
 ```
 Results:
 ```text
-    distance: 2886.4446 km
+ > distance: 2886.4446 km
 ```
 ### **Standard**
 
@@ -19436,7 +19600,15 @@ FORTRAN 77
 
 [**asin**(3)](#asin),
 [**cos**(3)](#cos),
-[**tan**(3)](#tan)
+[**tan**(3)](#tan),
+[**acosh**(3)](#acosh),
+[**acos**(3)](#acos),
+[**asinh**(3)](#asinh),
+[**atan2**(3)](#atan2),
+[**atanh**(3)](#atanh),
+[**acosh**(3)](#acosh),
+[**asinh**(3)](#asinh),
+[**atanh**(3)](#atanh)
 
 ### **Resources**
 
@@ -20319,7 +20491,7 @@ Fortran 95
 
 ### **Name**
 
-**system_clock**(3) - \[SYSTEM:TIME\] Return numeric data from a real-time clock.
+**system_clock**(3) - \[SYSTEM:TIME\] Query system clock
 
 ### **Synopsis**
 ```fortran
@@ -20334,7 +20506,9 @@ Fortran 95
 ```
 ### **Characteristics**
 
-  where TYPE may be _real_ or _integer_.
+ - **count** is an _integer_ scalar
+ - **count_rate** an _integer_ or _real_ scalar
+ - **count_max** an _integer_ scalar
 
 ### **Description**
 
@@ -20343,46 +20517,57 @@ Fortran 95
   system by returning processor-dependent values based on the current
   value of the processor clock.
 
-  The **clock** value is incremented by one for each clock count until
-  the value **count_max** is reached and is then reset to zero at the
-  next count. **clock** therefore is a modulo value that lies in the
-  range **0 to count_max**.
-
-  **count_rate** and **count_max** are assumed constant (even though
-  CPU rates can vary on a single platform).
-
-  **count_rate** is system dependent and can vary depending on the kind
-  of the arguments.
-
-  If there is no clock, or querying the clock fails, **count** is set to
-  **-huge(count)**, and **count_rate** and **count_max** are set to zero.
-
   **system_clock** is typically used to measure short time intervals
   (system clocks may be 24-hour clocks or measure processor clock ticks
   since boot, for example). It is most often used for measuring or
   tracking the time spent in code blocks in lieu of using profiling tools.
 
+  **count_rate** and **count_max** are assumed constant (even though
+  CPU rates can vary on a single platform).
+
+  Whether an image has no clock, has a single clock of its own, or shares
+  a clock with another image, is processor dependent.
+
+  If there is no clock, or querying the clock fails, **count** is set to
+  **-huge(count)**, and **count_rate** and **count_max** are set to zero.
+
 ### **Options**
 
 - **count**
-  : (optional) shall be an _integer_ scalar. It is assigned a
-  processor-dependent value based on the current value of the
-  processor clock, or **-huge(count)** if there is no clock. The
-  processor-dependent value is incremented by one for each clock count
-  until the value **count_max** is reached and is reset to zero at the
-  next count. It lies in the range **0** to **count_max** if there is a
-  clock.
+
+  If there is no clock, **count** is returned as the negative value
+  **-huge(count)**.
+
+  Otherwise, the **clock** value is incremented by one for each clock
+  count until the value **count_max** is reached and is then reset to
+  zero at the next count. **clock** therefore is a modulo value that
+  lies in the range **0 to count_max**.
 
 - **count_rate**
-  : (optional) shall be an _integer_ or _real_ scalar. It is assigned a
-  processor-dependent approximation to the number of processor clock
-  counts per second, or zero if there is no clock.
+  : is assigned a processor-dependent approximation to the number of
+  processor clock counts per second, or zero if there is no clock.
+  **count_rate** is system dependent and can vary depending on the kind
+  of the arguments. Generally, a large _real_ may generate a more precise
+  interval.
 
 - **count_max**
-  : (optional) shall be an _integer_ scalar. It is assigned the maximum
+  : is assigned the maximum
   value that **COUNT** can have, or zero if there is no clock.
 
 ### **Examples**
+
+  If the processor clock is a 24-hour clock that registers time at
+  approximately 18.20648193 ticks per second, at 11:30 A.M. the reference
+
+```fortran
+      call system_clock (count = c, count_rate = r, count_max = m)
+```
+  defines
+```text
+      C = (11*3600+30*60)*18.20648193 = 753748,
+      R = 18.20648193, and
+      M = 24*3600*18.20648193-1 = 1573039.
+```
 
 Sample program:
 ```fortran
@@ -20394,27 +20579,25 @@ integer :: start, finish
 real    :: time_read
 
    call system_clock(count, count_rate, count_max)
-   write(*,*) count, count_rate, count_max
+   write(*,*)'COUNT_MAX=',count_max
+   write(*,*)'COUNT_RATE=',count_rate
+   write(*,*)'CURRENT COUNT=',count
 
-   call system_clock(start, count_rate)
+   call system_clock(start)
    ! <<<< code to time
    call system_clock(finish)
+
    time_read=(finish-start)/real(count_rate,wp)
    write(*,'(a30,1x,f7.4,1x,a)') 'time * : ', time_read, ' seconds'
 
 end program demo_system_clock
 ```
-If the processor clock is a 24-hour clock that registers time at
-approximately 18.20648193 ticks per second, at 11:30 A.M. the reference
-
-```fortran
-      call system_clock (count = c, count_rate = r, count_max = m)
-```
-defines
+Results:
 ```text
-      C = (11*3600+30*60)*18.20648193 = 753748,
-      R = 18.20648193, and
-      M = 24*3600*18.20648193-1 = 1573039.
+ >  COUNT_MAX=  2147483647
+ >  COUNT_RATE=       10000
+ >  CURRENT COUNT=   693921394
+ >                      time * :   0.0000  seconds
 ```
 ### **Standard**
 

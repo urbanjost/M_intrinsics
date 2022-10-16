@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**range**(3) - \[NUMERIC MODEL\] Decimal exponent range of a real kind
+**range**(3) - \[NUMERIC MODEL\] Decimal exponent range of a numeric kind
 
 ### **Synopsis**
 ```fortran
@@ -15,22 +15,42 @@
 ```
 ### **Characteristics**
 
-where TYPE is _real_ or _complex_ and KIND is any kind supported by
-TYPE.
+ - **x** may be of type _integer_, _real_, or _complex_. It may be a scalar or an array.
+ - **KIND** is any kind supported by the type of **x**
+ - the result is a default _integer_ scalar
 
 ### **Description**
 
-**range**(3) returns the decimal exponent range in the model of the type
-of **x**.
+  **range**(3) returns the decimal exponent range in the model of the
+  type of **x**.
+
+  Since **x** is only used to determine the type and kind being
+  interrogated, the value need not be defined.
 
 ### **Options**
 
 - **x**
-  : Shall be of type _real_ or _complex_.
+  : the value whose type and kind are used for the query
 
 ### **Result**
 
-The return value is of type _integer_ and of the default integer kind.
+  Case (i)
+  : For an integer argument, the result has the value 
+```fortran
+  int (log10 (huge(x)))
+```
+
+  Case (ii)
+  : For a real argument, the result has the value 
+```fortran
+  int(min (log10 (huge(x)), ­log10(tiny(x) )))
+  ```
+
+  Case (iii)
+  : For a complex argument, the result has the value 
+```fortran
+  range(real(x))
+```
 
 ### **Examples**
 
@@ -46,14 +66,11 @@ complex(kind=dp) :: y
    print *, precision(y), range(y)
 end program demo_range
 ```
-
 Results:
-
 ```text
-              6          37
-             15         307
+ >            6          37
+ >           15         307
 ```
-
 ### **Standard**
 
 Fortran 95

@@ -58,9 +58,13 @@ Results:
 
 FORTRAN 77
 
-### **See Also**
+### **See also**
 
-[**float**(3)](#float),
-[**real**(3)](#real)
+- [**aimag**(3)](#aimag) - Imaginary part of complex number
+- [**cmplx**(3)](#cmplx) - Convert values to a complex type
+- [**int**(3)](#int) - Truncate towards zero and convert to integer
+- [**nint**(3)](#nint) - Nearest whole number
+- [**out\_of\_range**(3)](#out_of_range) - Whether a value cannot be converted safely.
+- [**real**(3)](#real) - Convert to real type
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

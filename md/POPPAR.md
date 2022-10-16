@@ -20,18 +20,23 @@
 
 ### **Description**
 
-**poppar**(3) returns the parity of an integer's binary representation
-(i.e., the parity of the number of bits set).
+  **poppar**(3) returns the parity of an integer's binary representation
+  (i.e., the parity of the number of bits set).
+
+  The parity is expressed as
+
+  + **0** (zero) if **i** has an even number of bits set to **1**. 
+  + **1** (one) if the number of bits set to one **1** is odd,
 
 ### **Options**
 
 - **i**
-  : The value to query the bits of
+  : The value to query for its bit parity 
 
 ### **Result**
 
-The return value is equal to **0** if **i** has an even number of bits
-set and **1** if an odd number of bits are set.
+  The return value is equal to **0** if **i** has an even number of bits
+  set and **1** if an odd number of bits are set.
 
 ### **Examples**
 

@@ -2,27 +2,31 @@
 
 ### **Name**
 
-**allocated**(3) - \[ARRAY:INQUIRY\] Status of an allocatable entity
+**allocated**(3) - \[ARRAY:INQUIRY\] Allocation status of an allocatable entity
 
 ### **Synopsis**
 ```fortran
-    result = allocated(entity)
+    result = allocated(array|scalar)
 ```
 ```fortran
-     logical function allocated(entity)
+     logical function allocated(array,scalar)
 
-      type(TYPE(kind=**)),allocatable :: entity(..)
+      type(TYPE(kind=**)),allocatable,optional :: array(..)
+      type(TYPE(kind=**)),allocatable,optional :: scalar
 ```
 ### **Characteristics**
 
  - a kind designated as ** may be any supported kind for the type
-
- - **entity** may be any allocatable scalar or array object of any type.
+ - **array** may be any allocatable array object of any type.
+ - **scalar** may be any allocatable scalar of any type.
+ - the result is a default logical scalar
 
 ### **Description**
 
   **allocated**(3) checks the allocation status of both arrays
   and scalars.
+
+ At least one and only one of **array** or **scalar** must be specified.
 
 ### **Options**
 
@@ -79,10 +83,9 @@ end program demo_allocated
 ```
 Results:
 ```text
-    T           4
-    do things if allocated
-    note it was allocated in calling program F
-    note it is deallocated! F
+ >  do things if not allocated
+ >  note it was allocated in calling program F
+ >  note it is deallocated! F
 ```
 ### **Standard**
 
@@ -92,4 +95,4 @@ Results:
 
 [**move_alloc**(3)](#move_alloc)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

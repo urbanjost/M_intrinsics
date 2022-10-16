@@ -17,22 +17,32 @@
 ```
 ### **Characteristics**
 
-   where TYPE may be _real_ or _integer_ of any available KIND.
+ - **x** is of type _integer_ or _real_.
+ - **mold** is an _integer_ or _real_ scalar.
+ - **round** is a _logical_ scalar.
+ - the result is a default _logical_.
 
 ### **Description**
 
    **out_of_range**(3) determines whether a value **x** can be converted
-   safely to a _real_ or _integer_ variable the same type and kind as
-   **mold**.
+   safely to a _real_ or _integer_ variable the same type and kind
+   as **mold**.
+
+   For example, if **int8** is the kind value for an 8-bit binary integer
+   type, **out_of_range(−128.5, 0_int8)** will have the value false and
+   **out_of_range(−128.5, 0_int8, .true.)** will have the value _.true._
+   because the value will be truncated when converted to an _integer_
+   and -128 is a representable value on a two's complement machine in
+   eight bits even though +128 is not.
 
 ### **Options**
    - **x**
-     : a scalar of type _integer_ or _real_ to be tested for whether
+     : a scalar to be tested for whether
      it can be stored in a variable of the type and kind of **mold**
 
    - **mold**
-     : shall be an _integer_ or _real_ scalar. If it is a variable, it
-     need not be defined, as only the type and kind are queried.
+     and kind are queried to determine the characteristics of what 
+     needs to be fit into.
 
    - **round**
      : flag whether to round the value of **xx** before validating it as
@@ -45,35 +55,35 @@
 
 From the standard:
 
-   Case (i):     If MOLD is of type integer, and ROUND is absent or
+   Case (i):     If **mold** is of type integer, and **round** is absent or
                  present with the value false, the result is true
                  if and only if the value of X is an IEEE infinity or
                  NaN, or if the integer with largest magnitude that lies
                  between zero and X inclusive is not representable by
-                 objects with the type and kind of MOLD.
+                 objects with the type and kind of **mold**.
 
-   Case (ii):    If MOLD is of type integer, and ROUND is present with
+   Case (ii):    If **mold** is of type integer, and **round** is present with
                  the value true, the result is true if and only
                  if the value of X is an IEEE infinity or NaN, or
                  if the integer nearest X, or the integer of greater
                  magnitude if two integers are equally near to X, is not
-                 representable by objects with the type and kind of MOLD.
+                 representable by objects with the type and kind of **mold**.
 
    Case (iii):   Otherwise, the result is true if and only if the value
                  of X is an IEEE infinity or NaN that is not
-                 supported by objects of the type and kind of MOLD,
+                 supported by objects of the type and kind of **mold**,
                  or if X is a finite number and the result of rounding
                  the value of X (according to the IEEE rounding mode if
-                 appropriate) to the extended model for the kind of MOLD
+                 appropriate) to the extended model for the kind of **mold**
                  has magnitude larger than that of the largest finite
                  number with the same sign as X that is representable
-                 by objects with the type and kind of MOLD.
+                 by objects with the type and kind of **mold**.
 
    NOTE
 
-   MOLD is required to be a scalar because the only information
-   taken from it is its type and kind. Allowing an array MOLD would
-   require that it be conformable with X. ROUND is scalar because
+   **mold** is required to be a scalar because the only information
+   taken from it is its type and kind. Allowing an array **mold** would
+   require that it be conformable with **x**. **round** is scalar because
    allowing an array rounding mode would have severe performance
    difficulties on many processors.
 
@@ -109,9 +119,7 @@ integer(kind=int8) :: i8, j8
 
 end program demo_out_of_range
 ```
-
 Results:
-
 ```text
   >  127 -127  might have expected         127        -127 F F
   > -128 -128  might have expected         128        -128 T F
@@ -121,13 +129,17 @@ Results:
   > F
   > T
 ```
-
 ### **Standard**
 
    FORTRAN 2018
 
 ### **See also**
 
-[****(3)](#)
+- [**aimag**(3)](#aimag) - Imaginary part of complex number
+- [**cmplx**(3)](#cmplx) - Convert values to a complex type
+- [**dble**(3)](#dble) - Double conversion function
+- [**int**(3)](#int) - Truncate towards zero and convert to integer
+- [**nint**(3)](#nint) - Nearest whole number
+- [**real**(3)](#real) - Convert to real type
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

@@ -9,17 +9,17 @@
   result = len_trim(string [,kind])
 ```
 ```fortran
-   elemental integer(kind=KIND) function len_trim(string,kind)
+   elemental integer(kind=KIND) function len_trim(string,KIND)
 
     character(len=*),intent(in) :: string
-    integer(kind=KIND),intent(in),optional :: kind
+    integer(kind=KIND),intent(in),optional :: KIND
 ```
 ### **Characteristics**
 
  - **string** is of type _character_
  - **kind** is a scalar integer constant expression specifying the kind
    of the returned value.
- - The return value is of type _integer_ and of kind **kind**. If **kind**
+ - The return value is of type _integer_ and of kind **KIND**. If **KIND**
    is absent, the return value is of default _integer_ kind.
 
 ### **Description**
@@ -37,9 +37,11 @@
 
 ### **Result**
 
-  The result has a value equal to the number of characters remaining
-  after any trailing blanks in STRING are removed. If the argument
-  contains no nonblank characters, the result is zero.
+  The result equals the number of characters remaining
+  after any trailing blanks in **string** are removed. 
+
+  If the input argument is of zero length or all blanks
+  the result is zero.
 
 ### **Examples**
 

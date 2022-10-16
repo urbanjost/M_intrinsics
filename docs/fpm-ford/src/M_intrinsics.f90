@@ -1164,22 +1164,29 @@ textblock=[character(len=256) :: &
 'allocated(3fortran)                                        allocated(3fortran)', &
 '', &
 'NAME', &
-'  ALLOCATED(3) - [ARRAY:INQUIRY] Status of an allocatable entity', &
+'  ALLOCATED(3) - [ARRAY:INQUIRY] Allocation status of an allocatable entity', &
 '', &
 'SYNOPSIS', &
-'  result = allocated(entity)', &
+'  result = allocated(array|scalar)', &
 '', &
-'           logical function allocated(entity)', &
+'           logical function allocated(array,scalar)', &
 '', &
-'            type(TYPE(kind=**)),allocatable :: entity(..)', &
+'            type(TYPE(kind=**)),allocatable,optional :: array(..)', &
+'            type(TYPE(kind=**)),allocatable,optional :: scalar', &
 '', &
 'CHARACTERISTICS', &
 '  o  a kind designated as ** may be any supported kind for the type', &
 '', &
-'  o  ENTITY may be any allocatable scalar or array object of any type.', &
+'  o  ARRAY may be any allocatable array object of any type.', &
+'', &
+'  o  SCALAR may be any allocatable scalar of any type.', &
+'', &
+'  o  the result is a default logical scalar', &
 '', &
 'DESCRIPTION', &
 '  ALLOCATED(3) checks the allocation status of both arrays and scalars.', &
+'', &
+'  At least one and only one of ARRAY or SCALAR must be specified.', &
 '', &
 'OPTIONS', &
 '  o  ENTITY : the allocatable object to test.', &
@@ -1231,10 +1238,9 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'          T           4', &
-'          do things if allocated', &
-'          note it was allocated in calling program F', &
-'          note it is deallocated! F', &
+'       >  do things if not allocated', &
+'       >  note it was allocated in calling program F', &
+'       >  note it is deallocated! F', &
 '', &
 'STANDARD', &
 '  Fortran 95. allocatable scalar entities were added in Fortran 2003.', &
@@ -1242,7 +1248,7 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  MOVE_ALLOC(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 15, 2022            allocated(3fortran)', &
 '']
@@ -3324,7 +3330,7 @@ textblock=[character(len=256) :: &
 '     values may be a BOZ constant with a value valid for the integer kind', &
 '     available with the most bits on the current platform.', &
 '', &
-'  o  The return value is of type logical and of the default kind.', &
+'  o  The return value is of type default logical.', &
 '', &
 'DESCRIPTION', &
 '  BGE(3) Determines whether one integer is bitwise greater than or equal to', &
@@ -6184,7 +6190,7 @@ textblock=[character(len=256) :: &
 'date_and_time(3fortran)                                date_and_time(3fortran)', &
 '', &
 'NAME', &
-'  DATE_AND_TIME(3) - [SYSTEM:TIME] Gets current time', &
+'  DATE_AND_TIME(3) - [SYSTEM:TIME] Gets current date time', &
 '', &
 'SYNOPSIS', &
 '  call date_and_time( [date] [,time] [,zone] [,values] )', &
@@ -6197,40 +6203,89 @@ textblock=[character(len=256) :: &
 '            integer,intent(out),optional :: values(8)', &
 '', &
 'CHARACTERISTICS', &
+'  o  *date is a default character scalar', &
+'', &
+'  o  *time is a default character scalar', &
+'', &
+'  o  *zone is a default character scalar', &
+'', &
+'  o  VALUES is a rank-one array of type integer with a decimal exponent range', &
+'     of at least four.', &
+'', &
 'DESCRIPTION', &
 '  DATE_AND_TIME(3) gets the corresponding date and time information from the', &
 '  real-time system clock.', &
 '', &
 '  Unavailable time and date character parameters return blanks.', &
 '', &
+'  Unavailable numeric parameters return -HUGE(VALUE).', &
+'', &
+'  These forms are compatible with the representations dened in ISO 8601:2004.', &
+'  UTC is established by the International Bureau of Weights and Measures', &
+'  (BIPM, i.e. Bureau International des Poids et Mesures) and the International', &
+'  Earth Rotation Service (IERS).', &
+'', &
 'OPTIONS', &
 '  o  DATE : A character string of default kind of the form CCYYMMDD, of length', &
-'     8 or larger.', &
+'     8 or larger, where', &
+'', &
+'          + CCYY is the year in the Gregorian calendar', &
+'          + MM is the month within the year', &
+'          + DD is the day within the month.', &
+'', &
+'  The characters of this value are all decimal digits.', &
+'', &
+'    If there is no date available, DATE is assigned all blanks.', &
 '', &
 '  o  TIME : A character string of default kind of the form HHMMSS.SSS, of', &
-'     length 10 or larger.', &
+'     length 10 or larger, where', &
 '', &
-'  o  ZONE : A character string of default kind of the form (+-)HHMM, of length', &
-'     5 or larger, representing the difference with respect to Coordinated', &
-'     Universal Time (UTC).', &
+'     o  hh is the hour of the day,', &
 '', &
-'  o  VALUES : An integer array of eight elements that contains:', &
+'     o  mm is the minutes of the hour,', &
 '', &
-'     o  VALUES(1) : The year', &
+'     o  and ss.sss is the seconds and milliseconds of the minute.', &
 '', &
-'     o  VALUES(2) : The month', &
+'     Except for the decimal point, the characters of this value shall all be', &
+'     decimal digits.', &
+'', &
+'     If there is no clock available, TIME is assigned all blanks.', &
+'', &
+'  o  ZONE : A string of the form (+-)HHMM, of length 5 or larger, representing', &
+'     the difference with respect to Coordinated Universal Time (UTC), where', &
+'', &
+'     o  hh and mm are the time difference with respect to Coordinated', &
+'        Universal Time (UTC) in hours and minutes, respectively.', &
+'', &
+'     The characters of this value following the sign character are alldecimal', &
+'     digits.', &
+'', &
+'     If this information is not available, ZONE is assigned all blanks.', &
+'', &
+'  o  VALUES : An array of at least eight elements. If there is no data', &
+'     available for a value it is set to -HUGE(VALUES). Otherwise, it contains:', &
+'', &
+'     o  VALUES(1) : The year, including the century.', &
+'', &
+'     o  VALUES(2) : The month of the year', &
 '', &
 '     o  VALUES(3) : The day of the month', &
 '', &
-'     o  VALUES(4) : Time difference with UTC in minutes', &
+'     o  VALUES(4) : Time difference in minutes between the reported time and', &
+'        UTC time.', &
 '', &
-'     o  VALUES(5) : The hour of the day', &
+'     o  VALUES(5) : The hour of the day, in the range 0 to 23.', &
 '', &
-'     o  VALUES(6) : The minutes of the hour', &
+'     o  VALUES(6) : The minutes of the hour, in the range 0 to 59', &
 '', &
-'     o  VALUES(7) : The seconds of the minute', &
+'     o  VALUES(7) : The seconds of the minute, in the range 0 to 60', &
 '', &
-'     o  VALUES(8) : The milliseconds of the second', &
+'     o  VALUES(8) : The milliseconds of the second, in the range 0 to 999.', &
+'', &
+'  The date, clock, and time zone information might be available on some images', &
+'  and not others. If the date, clock, or time zone information is available on', &
+'  more than one image, it is processor dependent whether or not those images', &
+'  share the same information.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -6262,15 +6317,15 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         DATE="20201222" TIME="165738.779" ZONE="-0500"', &
-'          2020 - The year', &
-'            12 - The month', &
-'            22 - The day of the month', &
-'          -300 - Time difference with UTC in minutes', &
-'            16 - The hour of the day', &
-'            57 - The minutes of the hour', &
-'            38 - The seconds of the minute', &
-'           779 - The milliseconds of the second', &
+'       > DATE="20201222" TIME="165738.779" ZONE="-0500"', &
+'       >  2020 - The year', &
+'       >    12 - The month', &
+'       >    22 - The day of the month', &
+'       >  -300 - Time difference with UTC in minutes', &
+'       >    16 - The hour of the day', &
+'       >    57 - The minutes of the hour', &
+'       >    38 - The seconds of the minute', &
+'       >   779 - The milliseconds of the second', &
 '', &
 'STANDARD', &
 '  Fortran 95', &
@@ -6346,7 +6401,17 @@ textblock=[character(len=256) :: &
 '  FORTRAN 77', &
 '', &
 'SEE ALSO', &
-'  FLOAT(3), REAL(3)', &
+'  o  AIMAG(3) - Imaginary part of complex number', &
+'', &
+'  o  CMPLX(3) - Convert values to a complex type', &
+'', &
+'  o  INT(3) - Truncate towards zero and convert to integer', &
+'', &
+'  o  NINT(3) - Nearest whole number', &
+'', &
+'  o  OUT_OF_RANGE(3) - Whether a value cannot be converted safely.', &
+'', &
+'  o  REAL(3) - Convert to real type', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -6612,9 +6677,11 @@ textblock=[character(len=256) :: &
 '            doubleprecision :: dprod', &
 '', &
 'CHARACTERISTICS', &
-'  X and Y must both be real values of default kind.', &
+'  o  X is a default real.', &
 '', &
-'  The return value is doubleprecision (ie. real(kind=kind(0.0d0))).', &
+'  o  Y is a default real.', &
+'', &
+'  o  the result is a doubleprecision real.', &
 '', &
 '  The setting of compiler options specifying the size of a default real can', &
 '  affect this function.', &
@@ -6672,27 +6739,22 @@ textblock=[character(len=256) :: &
 '', &
 '  Results: (this can vary between programming environments):', &
 '', &
-'          algebraically 5.2 x 2.3 is exactly 11.96', &
-'          as floating point values results may differ slightly:', &
-'          compare dprod(xy)=   11.959999313354501      to x*y=   11.9599991', &
-'          to dble(x)*dble(y)=   11.959999313354501', &
-'          test if an expected result is produced', &
-'           -6.0000000000000000       -6.0000000000000000', &
-'', &
-'   PASSED', &
-'  elemental', &
-'', &
-'    22.999999523162842', &
-'      34.000000953674316        45.000000000000000', &
-'', &
-'    22.539999971389761', &
-'      25.840000400543204        24.300000429153442', &
+'       >  algebraically 5.2 x 2.3 is exactly 11.96', &
+'       >  as floating point values results may differ slightly:', &
+'       >  compare dprod(xy)=   11.9599993133545      to x*y=   11.96000', &
+'       >  to dble(x)*dble(y)=   11.9599993133545', &
+'       >  test if an expected result is produced', &
+'       >   -6.00000000000000       -6.00000000000000', &
+'       >  PASSED', &
+'       >  elemental', &
+'       >    22.9999995231628     34.0000009536743     45.0000000000000', &
+'       >    22.5399999713898     25.8400004005432     24.3000004291534', &
 '', &
 'STANDARD', &
 '  FORTRAN 77', &
 '', &
 'SEE ALSO', &
-'  ****(3)', &
+'  DBLE(3) REAL(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -7309,6 +7371,12 @@ textblock=[character(len=256) :: &
 '            real(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
+'  o  X is of type real and any valid kind', &
+'', &
+'  o  KIND is any value valid for type real', &
+'', &
+'  o  the result has the same characteristics as X', &
+'', &
 'DESCRIPTION', &
 '  ERFC(3) computes the complementary error function of X. Simply put this is', &
 '  equivalent to 1 - ERF(X), but ERFC is provided because of the extreme loss', &
@@ -7327,7 +7395,10 @@ textblock=[character(len=256) :: &
 '  The return value is of type real and of the same kind as X. It lies in the', &
 '  range', &
 '', &
-'    0 <= ERFC(x) <= 2.', &
+'    0 \<= **erfc**(x) \<= 2.', &
+'', &
+'  and is a processor-dependent approximation to the complementary error', &
+'  function of X ( **1-erf(x) ).', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -7337,12 +7408,14 @@ textblock=[character(len=256) :: &
 '       & real_kinds, real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real64) :: x = 0.17_real64', &
-'          write(*,*)x, erfc(x)', &
+'         write(*,''(*(g0))'')''X='',x, '' ERFC(X)='',erfc(x)', &
+'         write(*,''(*(g0))'')''equivalently 1-ERF(X)='',1-erf(x)', &
 '      end program demo_erfc', &
 '', &
 '  Results:', &
 '', &
-'           0.17000000000000001       0.81000753879819121', &
+'       > X=.1700000000000000 ERFC(X)=.8100075387981912', &
+'       > equivalently 1-ERF(X)=.8100075387981912', &
 '', &
 'STANDARD', &
 '  Fortran 2008', &
@@ -7369,7 +7442,7 @@ textblock=[character(len=256) :: &
 'erfc_scaled(3fortran)                                    erfc_scaled(3fortran)', &
 '', &
 'NAME', &
-'  ERFC_SCALED(3) - [MATHEMATICS] Error function', &
+'  ERFC_SCALED(3) - [MATHEMATICS] Scaled complementary error function', &
 '', &
 'SYNOPSIS', &
 '  result = erfc_scaled(x)', &
@@ -7379,17 +7452,32 @@ textblock=[character(len=256) :: &
 '            real(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
+'  o  X is of type real of any valid kind', &
+'', &
+'  o  KIND is any kind valid for a real type', &
+'', &
+'  o  the result has the same characteristics as X', &
+'', &
 'DESCRIPTION', &
 '  ERFC_SCALED(3) computes the exponentially-scaled complementary error', &
 '  function of X:', &
 '', &
 '  $$ e^{x^2} \frac{2}{\sqrt{\pi}} \int_{x}^{\infty} e^{-t^2} dt. $$', &
 '', &
+'  NOTE1', &
+'', &
+'  The complementary error function is asymptotic to exp(-X2)/(X<sqrt><pi>). As', &
+'  such it underows for X >~~ 9 when using ISO/IEC/IEEE 60559:2011 single', &
+'  precision arithmetic. The exponentially-scaled complementary error function', &
+'  is asymptotic to 1/(X <pi>). As such it does not underflow until X > HUGE', &
+'  (X)/ <pi>.', &
+'', &
 'OPTIONS', &
-'  o  X : The type shall be real.', &
+'  o  X the value to apply the ERFC function to', &
 '', &
 'RESULT', &
-'  The return value is of type real and of the same kind as X.', &
+'  The approximation to the exponentially-scaled complementary error function', &
+'  of X', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -7403,15 +7491,15 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'           0.83375830214998126', &
+'       >   0.833758302149981', &
 '', &
 'STANDARD', &
 '  Fortran 2008', &
 '', &
 'SEE ALSO', &
-'  ERF(3) ERFC(3)', &
+'  ERF(3), EXP(3), ERFC(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 15, 2022          erfc_scaled(3fortran)', &
 '']
@@ -11339,10 +11427,10 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = len_trim(string [,kind])', &
 '', &
-'         elemental integer(kind=KIND) function len_trim(string,kind)', &
+'         elemental integer(kind=KIND) function len_trim(string,KIND)', &
 '', &
 '          character(len=*),intent(in) :: string', &
-'          integer(kind=KIND),intent(in),optional :: kind', &
+'          integer(kind=KIND),intent(in),optional :: KIND', &
 '', &
 'CHARACTERISTICS', &
 '  o  STRING is of type character', &
@@ -11363,9 +11451,10 @@ textblock=[character(len=256) :: &
 '  o  KIND : Indicates the kind parameter of the result.', &
 '', &
 'RESULT', &
-'  The result has a value equal to the number of characters remaining after any', &
-'  trailing blanks in STRING are removed. If the argument contains no nonblank', &
-'  characters, the result is zero.', &
+'  The result equals the number of characters remaining after any trailing', &
+'  blanks in STRING are removed.', &
+'', &
+'  If the input argument is of zero length or all blanks the result is zero.', &
 '', &
 'EXAMPLES', &
 '  Sample program', &
@@ -14947,21 +15036,23 @@ textblock=[character(len=256) :: &
 '  NUM_IMAGES(3) - [COLLECTIVE] Number of images', &
 '', &
 'SYNOPSIS', &
-'  result = num_images([team])', &
+'  result = num_images([team|team_number])', &
 '', &
 '           integer function num_images (team)', &
 '', &
-'            type(TEAM_TYPE),intent(in),optional :: team', &
-'', &
-'  or', &
-'', &
-'          result = num_images(team_number)', &
-'', &
-'           integer function num_images (team_number)', &
-'', &
-'            integer(kind=KIND),intent(in) :: team_number', &
+'            type(TEAM_TYPE),intent(in),optional    :: team', &
+'            integer(kind=KIND),intent(in),optional :: team_number', &
 '', &
 'CHARACTERISTICS', &
+'  o  use of TEAM and TEAM_NUMBER is mutually exclusive', &
+'', &
+'  o  TEAM is is a scalar of of type TEAM_TYPE from the intrinsic module', &
+'     ISO_FORTRAN_ENV.', &
+'', &
+'  o  TEAM_NUMBER is an integer scalar.', &
+'', &
+'  o  the result is a default integer scalar.', &
+'', &
 'DESCRIPTION', &
 '  NUM_IMAGES(3) Returns the number of images.', &
 '', &
@@ -14970,8 +15061,8 @@ textblock=[character(len=256) :: &
 '     ISO_FORTRAN_ENV, with a value that identifies the current or an ancestor', &
 '     team.', &
 '', &
-'  o  TEAM_NUMBER : shall be an integer scalar. It shall identify the initial', &
-'     team or a team whose parent is the same as that of the current team.', &
+'  o  TEAM_NUMBER : identifies the initial team or a team whose parent is the', &
+'     same as that of the current team.', &
 '', &
 'RESULT', &
 '  The number of images in the specified team, or in the current team if no', &
@@ -14983,6 +15074,7 @@ textblock=[character(len=256) :: &
 '      program demo_num_images', &
 '      implicit none', &
 '      integer :: value[*]', &
+'      real    :: p[*]', &
 '      integer :: i', &
 '', &
 '         value = this_image()', &
@@ -14993,6 +15085,15 @@ textblock=[character(len=256) :: &
 '           end do', &
 '         endif', &
 '', &
+'       ! The following code uses image 1 to read data and broadcast it to other images.', &
+'         if (this_image()==1) then', &
+'            p=1234.5678', &
+'            do i = 2, num_images()', &
+'               p[i] = p', &
+'            end do', &
+'         end if', &
+'         sync all', &
+'', &
 '      end program demo_num_images', &
 '', &
 'STANDARD', &
@@ -15001,7 +15102,7 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  THIS_IMAGE(3), IMAGE_INDEX(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 15, 2022           num_images(3fortran)', &
 '']
@@ -15029,18 +15130,31 @@ textblock=[character(len=256) :: &
 '            logical,intent(in),optional     :: round', &
 '', &
 'CHARACTERISTICS', &
-'  where TYPE may be real or integer of any available KIND.', &
+'  o  X is of type integer or real.', &
+'', &
+'  o  MOLD is an integer or real scalar.', &
+'', &
+'  o  ROUND is a logical scalar.', &
+'', &
+'  o  the result is a default logical.', &
 '', &
 'DESCRIPTION', &
 '  OUT_OF_RANGE(3) determines whether a value X can be converted safely to a', &
 '  real or integer variable the same type and kind as MOLD.', &
 '', &
-'OPTIONS', &
-'  o  X : a scalar of type integer or real to be tested for whether it can be', &
-'     stored in a variable of the type and kind of MOLD', &
+'  For example, if INT8 is the kind value for an 8-bit binary integer type,', &
+'  OUT_OF_RANGE(-128.5, 0_INT8) will have the value false and', &
+'  OUT_OF_RANGE(-128.5, 0_INT8, .TRUE.) will have the value .true. because the', &
+'  value will be truncated when converted to an integer and -128 is a', &
+'  representable value on a two''s complement machine in eight bits even though', &
+'  +128 is not.', &
 '', &
-'  o  MOLD : shall be an integer or real scalar. If it is a variable, it need', &
-'     not be defined, as only the type and kind are queried.', &
+'OPTIONS', &
+'  o  X : a scalar to be tested for whether it can be stored in a variable of', &
+'     the type and kind of MOLD', &
+'', &
+'  o  MOLD and kind are queried to determine the characteristics of what needs', &
+'     to be fit into.', &
 '', &
 '  o  ROUND : flag whether to round the value of XX before validating it as an', &
 '     integer value like MOLD.', &
@@ -15121,7 +15235,17 @@ textblock=[character(len=256) :: &
 '  FORTRAN 2018', &
 '', &
 'SEE ALSO', &
-'  ****(3)', &
+'  o  AIMAG(3) - Imaginary part of complex number', &
+'', &
+'  o  CMPLX(3) - Convert values to a complex type', &
+'', &
+'  o  DBLE(3) - Double conversion function', &
+'', &
+'  o  INT(3) - Truncate towards zero and convert to integer', &
+'', &
+'  o  NINT(3) - Nearest whole number', &
+'', &
+'  o  REAL(3) - Convert to real type', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -15403,8 +15527,14 @@ textblock=[character(len=256) :: &
 '  POPPAR(3) returns the parity of an integer''s binary representation (i.e.,', &
 '  the parity of the number of bits set).', &
 '', &
+'  The parity is expressed as', &
+'', &
+'  o  0 (zero) if I has an even number of bits set to 1.', &
+'', &
+'  o  1 (one) if the number of bits set to one 1 is odd,', &
+'', &
 'OPTIONS', &
-'  o  I : The value to query the bits of', &
+'  o  I : The value to query for its bit parity', &
 '', &
 'RESULT', &
 '  The return value is equal to 0 if I has an even number of bits set and 1 if', &
@@ -16139,7 +16269,7 @@ textblock=[character(len=256) :: &
 'range(3fortran)                                                range(3fortran)', &
 '', &
 'NAME', &
-'  RANGE(3) - [NUMERIC MODEL] Decimal exponent range of a real kind', &
+'  RANGE(3) - [NUMERIC MODEL] Decimal exponent range of a numeric kind', &
 '', &
 'SYNOPSIS', &
 '  result = range(x)', &
@@ -16149,16 +16279,34 @@ textblock=[character(len=256) :: &
 '             TYPE(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  where TYPE is real or complex and KIND is any kind supported by TYPE.', &
+'  o  X may be of type integer, real, or complex. It may be a scalar or an', &
+'     array.', &
+'', &
+'  o  KIND is any kind supported by the type of X', &
+'', &
+'  o  the result is a default integer scalar', &
 '', &
 'DESCRIPTION', &
 '  RANGE(3) returns the decimal exponent range in the model of the type of X.', &
 '', &
+'  Since X is only used to determine the type and kind being interrogated, the', &
+'  value need not be defined.', &
+'', &
 'OPTIONS', &
-'  o  X : Shall be of type real or complex.', &
+'  o  X : the value whose type and kind are used for the query', &
 '', &
 'RESULT', &
-'  The return value is of type integer and of the default integer kind.', &
+'  Case (i) : For an integer argument, the result has the value', &
+'', &
+'        int (log10 (huge(x)))', &
+'', &
+'  Case (ii) : For a real argument, the result has the value', &
+'', &
+'        int(min (log10 (huge(x)), log10(tiny(x) )))', &
+'', &
+'  Case (iii) : For a complex argument, the result has the value', &
+'', &
+'        range(real(x))', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -16174,10 +16322,8 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'    6 37', &
-'', &
-'  15', &
-'    307', &
+'       >            6          37', &
+'       >           15         307', &
 '', &
 'STANDARD', &
 '  Fortran 95', &
@@ -16688,7 +16834,7 @@ textblock=[character(len=256) :: &
 '', &
 '  o  NCOPIES is a scalar integer.', &
 '', &
-'  o  the result is a new scalar of type character of the same type as', &
+'  o  the result is a new scalar of type character of the same kind as', &
 '', &
 '   STRING', &
 'DESCRIPTION', &
@@ -16961,7 +17107,8 @@ textblock=[character(len=256) :: &
 'rrspacing(3fortran)                                        rrspacing(3fortran)', &
 '', &
 'NAME', &
-'  RRSPACING(3) - [MODEL_COMPONENTS] Reciprocal of the relative spacing', &
+'  RRSPACING(3) - [MODEL_COMPONENTS] Reciprocal of the relative spacing of a', &
+'  numeric type', &
 '', &
 'SYNOPSIS', &
 '  result = rrspacing(x)', &
@@ -16971,7 +17118,9 @@ textblock=[character(len=256) :: &
 '            real(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  The return value is of the same type and kind as X.', &
+'  o  X is type real an any kind', &
+'', &
+'  o  The return value is of the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
 '  RRSPACING(3) returns the reciprocal of the relative spacing of model numbers', &
@@ -17474,9 +17623,9 @@ textblock=[character(len=256) :: &
 '           integer(kind=KIND),intent(in) :: r', &
 '', &
 'CHARACTERISTICS', &
-'  o  R is a integer', &
+'  o  R is an integer scalar.', &
 '', &
-'  o  the result is an integer value', &
+'  o  the result is an default integer scalar.', &
 '', &
 'DESCRIPTION', &
 '  SELECTED_INT_KIND(3) return the kind value of the smallest integer type that', &
@@ -17485,7 +17634,20 @@ textblock=[character(len=256) :: &
 '  selected_int_kind returns -1.', &
 '', &
 'OPTIONS', &
-'  o  R : Shall be a scalar and of type integer.', &
+'  o  R : The value specifies the required range of powers of ten that need', &
+'     supported by the kind type being returned.', &
+'', &
+'RESULT', &
+'  The result has a value equal to the value of the kind type parameter of an', &
+'  integer type that represents all values in the requested range.', &
+'', &
+'  if no such kind type parameter is available on the processor, the result is', &
+'  -1.', &
+'', &
+'  If more than one kind type parameter meets the criterion, the value returned', &
+'  is the one with the smallest decimal exponent range, unless there are', &
+'  several such values, in which case the smallest of these kind values is', &
+'  returned.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -17516,7 +17678,7 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  AINT(3), ANINT(3), INT(3), NINT(3), CEILING(3), FLOOR(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 15, 2022    selected_int_kind(3fortran)', &
 '']
@@ -17544,37 +17706,53 @@ textblock=[character(len=256) :: &
 '           real(kind=KIND),intent(in),optional :: radix', &
 '', &
 'CHARACTERISTICS', &
-'  o  R is an integer', &
+'  o  P is an integer scalar', &
 '', &
-'  o  P is an integer', &
+'  o  R is an integer scalar', &
 '', &
-'  o  RADIX is an integer', &
+'  o  RADIX is an integer scalar', &
 '', &
-'  o  the result is an integer value', &
+'  o  the result is an default integer scalar', &
 '', &
 'DESCRIPTION', &
 '  SELECTED_REAL_KIND(3) return the kind value of a real data type with decimal', &
 '  precision of at least P digits, exponent range of at least R, and with a', &
-'  radix of RADIX.', &
+'  radix of RADIX. That is, if such a kind exists', &
+'', &
+'      + it has the decimal precision as returned by **precision**(3) of at', &
+'        least **p** digits.', &
+'      + a decimal exponent range, as returned by the function **range**(3)', &
+'        of at least **r**', &
+'      + a radix, as returned by the function **radix**(3) , of **radix**,', &
+'', &
+'  If the requested kind does not exist, -1 is returned.', &
+'', &
+'  At least one argument shall be present.', &
 '', &
 'OPTIONS', &
-'  o  P : shall be a scalar and of type integer.', &
+'  o  P : the requested precision', &
 '', &
-'  o  R : shall be a scalar and of type integer.', &
+'  o  R : the requested range', &
 '', &
-'  o  RADIX : shall be a scalar and of type integer.', &
+'  o  RADIX : the desired radix', &
 '', &
-'  Before FORTRAN 2008, at least one of the arguments R or P shall be present;', &
-'  since FORTRAN 2008, they are assumed to be zero if absent.', &
+'      Before FORTRAN 2008, at least one of the arguments R or P shall be', &
+'      present; since FORTRAN 2008, they are assumed to be zero if absent.', &
 '', &
 'RESULT', &
 '  selected_real_kind returns the value of the kind type parameter of a real', &
 '  data type with decimal precision of at least P digits, a decimal exponent', &
-'  range of at least R, and with the requested RADIX. If the RADIX parameter is', &
-'  absent, real kinds with any radix can be returned. If more than one real', &
-'  data type meet the criteria, the kind of the data type with the smallest', &
-'  decimal precision is returned. If no real data type matches the criteria,', &
-'  the result is', &
+'  range of at least R, and with the requested RADIX.', &
+'', &
+'  If P or R is absent, the result value is the same as if it were present with', &
+'  the value zero.', &
+'', &
+'  If the RADIX parameter is absent, there is no requirement on the radix of', &
+'  the selected kind and real kinds with any radix can be returned.', &
+'', &
+'  If more than one real data type meet the criteria, the kind of the data type', &
+'  with the smallest decimal precision is returned. If no real data type', &
+'  matches the criteria, the result is', &
 '', &
 '  o  -1 : if the processor does not support a real data type with a precision', &
 '     greater than or equal to P, but the R and RADIX requirements can be', &
@@ -17618,7 +17796,7 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  PRECISION(3), RANGE(3), RADIX(3)', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 15, 2022   selected_real_kind(3fortran)', &
 '']
@@ -18299,11 +18477,13 @@ textblock=[character(len=256) :: &
 '            TYPE(kind=KIND) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  where TYPE may be real or complex and KIND may be any kind supported by the', &
-'  associated type.', &
+'  o  X may be any real or complex type', &
 '', &
-'  The returned value will be of the same type and kind as the argument.', &
+'  o  KIND may be any kind supported by the associated type of X', &
 '', &
+'  o  The returned value will be of the same type and kind as the argument', &
+'', &
+'   X', &
 'DESCRIPTION', &
 '  SIN(3) computes the sine of an angle given the size of the angle in radians.', &
 '', &
@@ -18315,7 +18495,12 @@ textblock=[character(len=256) :: &
 '  o  X : The angle in radians to compute the sine of.', &
 '', &
 'RESULT', &
-'  o  RESULT : The return value contains the sine of X.', &
+'  o  RESULT The return value contains the processor-dependent approximation of', &
+'     the sine of X', &
+'', &
+'     If X is of type real, it is regarded as a value in radians.', &
+'', &
+'     If X is of type complex, its real part is regarded as a value in radians.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -18324,25 +18509,33 @@ textblock=[character(len=256) :: &
 '      implicit none', &
 '      real :: x = 0.0', &
 '         x = sin(x)', &
+'         write(*,*)''X='',x', &
 '      end program sample_sin', &
 '', &
-'HAVERSINE FORMULA', &
+'  Results:', &
+'', &
+'       >  X=  0.0000000E+00', &
+'', &
+'  Extended Example', &
+'', &
+'  ####HAVERSINE FORMULA', &
+'', &
 '  From the article on "Haversine formula" in Wikipedia:', &
 '', &
-'      The haversine formula is an equation important in navigation,', &
-'      giving great-circle distances between two points on a sphere from', &
-'      their longitudes and latitudes.', &
+'          The haversine formula is an equation important in navigation,', &
+'          giving great-circle distances between two points on a sphere from', &
+'          their longitudes and latitudes.', &
 '', &
 '  So to show the great-circle distance between the Nashville International', &
 '  Airport (BNA) in TN, USA, and the Los Angeles International Airport (LAX) in', &
 '  CA, USA you would start with their latitude and longitude, commonly given as', &
 '', &
-'      BNA: N 36 degrees 7.2'',   W 86 degrees 40.2''', &
-'      LAX: N 33 degrees 56.4'',  W 118 degrees 24.0''', &
+'        BNA: N 36 degrees 7.2'',   W 86 degrees 40.2''', &
+'        LAX: N 33 degrees 56.4'',  W 118 degrees 24.0''', &
 '', &
 '  which converted to floating-point values in degrees is:', &
 '', &
-'           Latitude Longitude', &
+'             Latitude Longitude', &
 '', &
 '    o  BNA 36.12, -86.67', &
 '', &
@@ -18384,13 +18577,14 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'          distance: 2886.4446 km', &
+'       > distance: 2886.4446 km', &
 '', &
 'STANDARD', &
 '  FORTRAN 77', &
 '', &
 'SEE ALSO', &
-'  ASIN(3), COS(3), TAN(3)', &
+'  ASIN(3), COS(3), TAN(3), ACOSH(3), ACOS(3), ASINH(3), ATAN2(3), ATANH(3),', &
+'  ACOSH(3), ASINH(3), ATANH(3)', &
 '', &
 'RESOURCES', &
 '  o  Wikipedia:sine and cosine', &
@@ -19338,7 +19532,7 @@ textblock=[character(len=256) :: &
 'system_clock(3fortran)                                  system_clock(3fortran)', &
 '', &
 'NAME', &
-'  SYSTEM_CLOCK(3) - [SYSTEM:TIME] Return numeric data from a real-time clock.', &
+'  SYSTEM_CLOCK(3) - [SYSTEM:TIME] Query system clock', &
 '', &
 'SYNOPSIS', &
 '  call system_clock([count] [,count_rate] [,count_max] )', &
@@ -19350,7 +19544,11 @@ textblock=[character(len=256) :: &
 '            integer,intent(out),optional  :: count_max', &
 '', &
 'CHARACTERISTICS', &
-'  where TYPE may be real or integer.', &
+'  o  COUNT is an integer scalar', &
+'', &
+'  o  COUNT_RATE an integer or real scalar', &
+'', &
+'  o  COUNT_MAX an integer scalar', &
 '', &
 'DESCRIPTION', &
 '  SYSTEM_CLOCK(3) lets you measure durations of time with the precision of the', &
@@ -19358,60 +19556,41 @@ textblock=[character(len=256) :: &
 '  processor-dependent values based on the current value of the processor', &
 '  clock.', &
 '', &
-'  The CLOCK value is incremented by one for each clock count until the value', &
-'  COUNT_MAX is reached and is then reset to zero at the next count.  CLOCK', &
-'  therefore is a modulo value that lies in the range 0 TO COUNT_MAX.', &
-'', &
-'  COUNT_RATE and COUNT_MAX are assumed constant (even though CPU rates can', &
-'  vary on a single platform).', &
-'', &
-'  COUNT_RATE is system dependent and can vary depending on the kind of the', &
-'  arguments.', &
-'', &
-'  If there is no clock, or querying the clock fails, COUNT is set to', &
-'  -HUGE(COUNT), and COUNT_RATE and COUNT_MAX are set to zero.', &
-'', &
 '  SYSTEM_CLOCK is typically used to measure short time intervals (system', &
 '  clocks may be 24-hour clocks or measure processor clock ticks since boot,', &
 '  for example). It is most often used for measuring or tracking the time spent', &
 '  in code blocks in lieu of using profiling tools.', &
 '', &
+'  COUNT_RATE and COUNT_MAX are assumed constant (even though CPU rates can', &
+'  vary on a single platform).', &
+'', &
+'  Whether an image has no clock, has a single clock of its own, or shares a', &
+'  clock with another image, is processor dependent.', &
+'', &
+'  If there is no clock, or querying the clock fails, COUNT is set to', &
+'  -HUGE(COUNT), and COUNT_RATE and COUNT_MAX are set to zero.', &
+'', &
 'OPTIONS', &
-'  o  COUNT : (optional) shall be an integer scalar. It is assigned a', &
-'     processor-dependent value based on the current value of the processor', &
-'     clock, or -HUGE(COUNT) if there is no clock. The processor-dependent', &
-'     value is incremented by one for each clock count until the value', &
-'     COUNT_MAX is reached and is reset to zero at the next count. It lies in', &
-'     the range 0 to COUNT_MAX if there is a clock.', &
+'  o  COUNT', &
 '', &
-'  o  COUNT_RATE : (optional) shall be an integer or real scalar. It is', &
-'     assigned a processor-dependent approximation to the number of processor', &
-'     clock counts per second, or zero if there is no clock.', &
+'      If there is no clock, COUNT is returned as the negative value', &
+'      -HUGE(COUNT).', &
 '', &
-'  o  COUNT_MAX : (optional) shall be an integer scalar. It is assigned the', &
-'     maximum value that COUNT can have, or zero if there is no clock.', &
+'      Otherwise, the CLOCK value is incremented by one for each clock', &
+'      count until the value COUNT_MAX is reached and is then reset to zero', &
+'      at the next count. CLOCK therefore is a modulo value that lies in', &
+'      the range 0 TO COUNT_MAX.', &
+'', &
+'  o  COUNT_RATE : is assigned a processor-dependent approximation to the', &
+'     number of processor clock counts per second, or zero if there is no', &
+'     clock. COUNT_RATE is system dependent and can vary depending on the kind', &
+'     of the arguments. Generally, a large real may generate a more precise', &
+'     interval.', &
+'', &
+'  o  COUNT_MAX : is assigned the maximum value that COUNT can have, or zero if', &
+'     there is no clock.', &
 '', &
 'EXAMPLES', &
-'  Sample program:', &
-'', &
-'      program demo_system_clock', &
-'      implicit none', &
-'      integer, parameter :: wp = kind(1.0d0)', &
-'      integer :: count, count_rate, count_max', &
-'      integer :: start, finish', &
-'      real    :: time_read', &
-'', &
-'         call system_clock(count, count_rate, count_max)', &
-'         write(*,*) count, count_rate, count_max', &
-'', &
-'         call system_clock(start, count_rate)', &
-'         ! <<<< code to time', &
-'         call system_clock(finish)', &
-'         time_read=(finish-start)/real(count_rate,wp)', &
-'         write(*,''(a30,1x,f7.4,1x,a)'') ''time * : '', time_read, '' seconds''', &
-'', &
-'      end program demo_system_clock', &
-'', &
 '  If the processor clock is a 24-hour clock that registers time at', &
 '  approximately 18.20648193 ticks per second, at 11:30 A.M. the reference', &
 '', &
@@ -19422,6 +19601,36 @@ textblock=[character(len=256) :: &
 '            C = (11*3600+30*60)*18.20648193 = 753748,', &
 '            R = 18.20648193, and', &
 '            M = 24*3600*18.20648193-1 = 1573039.', &
+'', &
+'  Sample program:', &
+'', &
+'      program demo_system_clock', &
+'      implicit none', &
+'      integer, parameter :: wp = kind(1.0d0)', &
+'      integer :: count, count_rate, count_max', &
+'      integer :: start, finish', &
+'      real    :: time_read', &
+'', &
+'         call system_clock(count, count_rate, count_max)', &
+'         write(*,*)''COUNT_MAX='',count_max', &
+'         write(*,*)''COUNT_RATE='',count_rate', &
+'         write(*,*)''CURRENT COUNT='',count', &
+'', &
+'         call system_clock(start)', &
+'         ! <<<< code to time', &
+'         call system_clock(finish)', &
+'', &
+'         time_read=(finish-start)/real(count_rate,wp)', &
+'         write(*,''(a30,1x,f7.4,1x,a)'') ''time * : '', time_read, '' seconds''', &
+'', &
+'      end program demo_system_clock', &
+'', &
+'  Results:', &
+'', &
+'       >  COUNT_MAX=  2147483647', &
+'       >  COUNT_RATE=       10000', &
+'       >  CURRENT COUNT=   693921394', &
+'       >                      time * :   0.0000  seconds', &
 '', &
 'STANDARD', &
 '  Fortran 95', &
