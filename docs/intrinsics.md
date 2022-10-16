@@ -6790,7 +6790,7 @@ FORTRAN 77
 
 ### **Name**
 
-**dot_product**(3) - \[TRANSFORMATIONAL\] Dot product function
+**dot_product**(3) - \[TRANSFORMATIONAL\] Dot product of two vectors
 
 ### **Synopsis**
 ```fortran
@@ -6804,6 +6804,13 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
+ - **vector_a**, **vector_b**  may be any numeric or logical type array
+   of rank one of the same size
+ - the two vectors need not be of the same kind, but both must be logical
+   or numeric for any given call.
+ - the result is the same type and kind of the vector that is the higher
+   type that the other vector is optionally promoted to if they differ.
+
 The two vectors may be either numeric or logical and must be arrays
 of rank one and of equal size.
 
@@ -6811,6 +6818,23 @@ of rank one and of equal size.
 
 **dot_product**(3) computes the dot product
 multiplication of two vectors **vector_a** and **vector_b**.
+
+```
+### **Options**
+
+- **vector_a**
+  : A rank 1 vector of values
+
+- **vector_b**
+  : The type shall be numeric if **vector_a** is of numeric type
+  or _logical_ if vector_a is of type _logical_. vector_b shall be a
+  rank-one array of the same size as **vector_a**.
+
+### **Result**
+
+If the arguments are numeric, the return value is a scalar of numeric
+type.  If the arguments are _logical_, the
+return value is _.true._ or _.false._.
 
 If the vectors are _integer_ or _real_, the result is
 ```fortran
@@ -6823,22 +6847,6 @@ If the vectors are _complex_, the result is
 If the vectors are _logical_, the result is
 ```fortran
      any(vector_a .and. vector_b)
-```
-### **Options**
-
-- **vector_a**
-  : The type shall be numeric or _logical_, rank 1.
-
-- **vector_b**
-  : The type shall be numeric if vector_a is of numeric type or _logical_
-  if vector_a is of type _logical_. vector_b shall be a rank-one
-  array.
-
-### **Result**
-
-If the arguments are numeric, the return value is a scalar of numeric
-type, _integer_, _real_, or _complex_. If the arguments are _logical_, the
-return value is _.true._ or _.false._.
 
 ### **Examples**
 
@@ -6871,9 +6879,11 @@ Fortran 95
 
 ### **See Also**
 
-[****(3)](#)
+[**sum**(3)](#sum),
+[**conjg**(3)](#conjg),
+[**any**(3)](#any)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## dprod
 
@@ -7417,9 +7427,12 @@ Fortran 95
 ```fortran
      real(kind=kind(x)) function epsilon(x)
 
-      real(kind=kind(x),intent(in)   :: x
+      real(kind=kind(x),intent(in)   :: x(..)
 ```
 ### **Characteristics**
+
+ - **x** shall be of type _real_. It may be a scalar or an array.
+ - the result is a scalar of the same type and kind type parameter as **x**.
 
 ### **Description**
 
@@ -8077,7 +8090,7 @@ FORTRAN 77
 
 ### **Name**
 
-**exponent**(3) - \[MODEL_COMPONENTS\] Exponent function
+**exponent**(3) - \[MODEL_COMPONENTS\] Exponent of floating-point number
 
 ### **Synopsis**
 ```fortran
@@ -8086,23 +8099,29 @@ FORTRAN 77
 ```fortran
      elemental integer function exponent(x)
 
-      real(kind=KIND),intent(in) :: x
+      real(kind=**),intent(in) :: x
 ```
 ### **Characteristics**
+ - **x**  shall be of type _real_ of any valid kind
+ - the result is a default _integer_ type
 
 ### **Description**
 
-**exponent**(3) returns the value of the exponent part of **x**. If **x** is
-zero the value returned is zero.
+  **exponent**(3) returns the value of the exponent part of **x**, provided
+  the exponent is within the range of default _integers_.
 
 ### **Options**
 
 - **x**
-  : The type shall be _real_.
+  : the value to query the exponent of
 
 ### **Result**
 
-The return value is of type default _integer_.
+  **exponent**(3) returns the value of the exponent part of **x**
+
+  If **x** is zero the value returned is zero.
+
+  If **x** is an IEEE infinity or NaN, the result has the value HUGE(0).
 
 ### **Examples**
 
@@ -8115,11 +8134,17 @@ integer :: i
    i = exponent(x)
    print *, i
    print *, exponent(0.0)
+   print *, exponent([10.0,100.0,1000.0,-10000.0])
+   print *, 2**[10.0,100.0,1000.0,-10000.0]
+   print *, exponent(huge(0.0))
+   print *, exponent(tiny(0.0))
 end program demo_exponent
 ```
 Results:
-
 ```text
+ >            4           7          10          14
+ >          128
+ >         -125
 ```
 ### **Standard**
 
@@ -8149,7 +8174,8 @@ Fortran 95
 
 ### **Name**
 
-**extends_type_of**(3) - \[STATE:INQUIRY\] Determine if the dynamic type of **a** is an extension of the dynamic type of **mold**.
+**extends_type_of**(3) - \[STATE:INQUIRY\] Determine if the dynamic type
+of **a** is an extension of the dynamic type of **mold**.
 
 ### **Synopsis**
 ```fortran
@@ -8162,18 +8188,30 @@ Fortran 95
       type(TYPE(kind=KIND),intent(in) :: mold
 ```
 ### **Characteristics**
-
-**a** an object of any extensible type; it may also be a pointer
-to an object extensible type.
-
-**mold** an object of any extensible type; it may also be a pointer
-to an object extensible type.
+ -**a** shall be an object or pointer to an extensible declared type,
+        or unlimited polymorphic. If it is a polymorphic pointer, it
+        shall not have an undeﬁned association status.
+ -**mole** shall be an object or pointer to an extensible declared type
+           or unlimited polymorphic. If it is a polymorphic pointer,
+           it shall not have an undeﬁned association status.
+ - the result is a scalar default logical type.
 
 ### **Description**
 
   **extends_type_of**(3) is .true. if and only if the dynamic type of
   **a** is or could be (for unlimited polymorphic) an extension of the
   dynamic type of **mold**.
+
+#### NOTE1
+
+  The dynamic type of a disassociated pointer or unallocated allocatable
+  variable is its declared type.
+
+#### NOTE2
+
+  The test performed by **extends_type_of** is not the same as the
+  test performed by the type guard **class is**. The test performed by
+  **extends_type_of** does not consider kind type parameters.
 
 ### **options**
 - **a**
@@ -8200,17 +8238,6 @@ to an object extensible type.
   if the dynamic type of A or MOLD is extensible, the result is true if
   and only if the dynamic type of A is an extension type of the dynamic
   type of MOLD; otherwise the result is processor dependent.
-
-  NOTE1
-
-  The dynamic type of a disassociated pointer or unallocated allocatable
-  variable is its declared type.
-
-  NOTE2
-
-  The test performed by **extends_type_of** is not the same as the
-  test performed by the type guard **class is**. The test performed by
-  **extends_type_of** does not consider kind type parameters.
 
 ### **Examples**
 
@@ -11445,7 +11472,7 @@ Fortran 2003
 
 ### **Name**
 
-**kind**(3) - \[KIND:INQUIRY\] Kind of an entity
+**kind**(3) - \[KIND:INQUIRY\] Query kind of an entity
 
 ### **Synopsis**
 ```fortran
@@ -11454,14 +11481,11 @@ Fortran 2003
 ```fortran
      integer function kind(x)
 
-      type(TYPE,kind=KIND),intent(in) :: x(..)
+      type(TYPE,kind=**),intent(in) :: x(..)
 ```
 ### **Characteristics**
-
-  **TYPE** may _logical_, _integer_, _real_, _complex_ or _character_.
-
-  **x** may be of any kind supported by the type, and may be
-  scalar or an array.
+ - **x** may be of any intrinsic type. It may be a scalar or an array.
+ - the result is a default _integer_ scalar
 
 ### **Description**
 
@@ -11503,7 +11527,16 @@ Fortran 95
 
 ### **See also**
 
-[****(3)](#)
+- [**allocated**(3)](#allocated) -  Status of an allocatable entity
+- [**is_contiguous**(3)](#is_contiguous) -  test if object is contiguous
+- [**lbound**(3)](#lbound)    -  Lower dimension bounds of an array
+- [**rank**(3)](#rank)      -  Rank of a data object
+- [**shape**(3)](#shape)     -  Determine the shape of an array
+- [**size**(3)](#size)      -  Determine the size of an array
+- [**ubound**(3)](#ubound)    -  Upper dimension bounds of an array
+- [**bit_size**(3)](#bit_size)  -  Bit size inquiry function
+- [**storage_size**(3)](#storage_size) -  Storage size in bits
+- [**kind**(3)](#kind)      -  Kind of an entity
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -13029,7 +13062,7 @@ multiplication
 ```
 ### **Characteristics**
 
- - Arguments may be numeric (_integer_, _real_, or _complex_ )
+ - **matrix_a** may be numeric (_integer_, _real_, or _complex_ )
    or _logical_ and must be one or two-dimensional arrays.
  - At least one argument must be rank two.
  - If one argument is _logical_, both must be _logical_.
@@ -14555,8 +14588,9 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
-  The result and arguments are all of the same type and kind.
-  The type may be any kind of _real_ or _integer_.
+  - The type of **a** may be any kind of _real_ or _integer_.
+  - **p** is the same type and kind as **a**
+  - The result and arguments are all of the same type and kind.
 
 ### **Description**
 
@@ -14565,11 +14599,11 @@ FORTRAN 77
 ### **Options**
 
 - **a**
-  : Shall be a scalar of type _integer_ or _real_.
+  : the value to take the **modulo** of
 
 - **p**
-  : Shall be a scalar of the same type and kind as **a**. It shall not be
-  zero.
+  : The value to reduce **a** by till the remainder is <= **p**.
+    It shall not be zero.
 
 ### **Result**
 
@@ -14601,7 +14635,6 @@ implicit none
      print *, modulo(17.5,-5.5)   ! yields -4.5
 end program demo_modulo
 ```
-
 Results:
 
 ```text
@@ -14612,7 +14645,6 @@ Results:
              -1
      -4.50000000
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -16344,28 +16376,33 @@ There are many procedures that operator or query values at the bit level:
 ```fortran
      integer function precision(x)
 
-      TYPE(kind=KIND),intent(in) :: x
+      TYPE(kind=**),intent(in) :: x
 ```
 ### **Characteristics**
 
-where **TYPE** may be _real_ or _complex_
-
-The return value is of type _integer_ and of the default integer kind.
+ - **x** shall be of type _real_ or _complex_. It may be a scalar or an array.
+ - the result is a default _integer_ scalar.
 
 ### **Description**
 
-**precision**(3) returns the decimal precision in the model of the type
-of **x**.
+  **precision**(3) returns the decimal precision in the model of the type
+  of **x**.
 
 ### **Options**
 
 - **x**
-  : Shall be of type _real_ or _complex_.
+  : the type and kind of the argument are used to determine which number
+  model to query.  The value of the argument is not unused; it may even
+  be undefined.
 
 ### **Result**
 
    The precision of values of the type and kind of **x**
-
+<!--
+   Result Value. The result has the value INT ((p − 1) * LOG10 (b)) + k, where b and p are as deﬁned in 16.4
+   for the model representing real numbers with the same value for the kind type parameter as X, and where k is 1
+   if b is an integral power of 10 and 0 otherwise.
+-->
 ### **Examples**
 
 Sample program:
@@ -16379,6 +16416,7 @@ complex(kind=dp) :: y
 
    print *, precision(x), range(x)
    print *, precision(y), range(y)
+
 end program demo_precision
 ```
 Results:
@@ -16408,7 +16446,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## present
 
@@ -16880,12 +16918,6 @@ Fortran 95
 
 - **harvest** and the result are default _real_ variables
 
-REAL X, Y (10, 10)
-! Initialize X with a pseudorandom number
-CALL RANDOM_NUMBER (HARVEST = X)
-CALL RANDOM_NUMBER (Y)
-! X and Y contain uniformly distributed random numbers
-
 ### **Description**
 
 **random_number**(3) returns a single pseudorandom number or an array of
@@ -16984,6 +17016,10 @@ Fortran 95
       integer,intent(out),optional :: get(*)
 ```
 ### **Characteristics**
+ - **size** a scalar default _integer_
+ - **put** a rank-one default _integer_ array
+ - **get** a rank-one default _integer_ array
+ - the result
 
 ### **Description**
 
@@ -16996,18 +17032,15 @@ data retrieved from the operating system.
 ### **Options**
 
 - **size**
-  : (Optional) Shall be a scalar and of type default _integer_, with
-  **intent(out)**. It specifies the minimum size of the arrays used
-  with the **put** and **get** arguments.
+  : specifies the minimum size of the arrays used with the **put**
+  and **get** arguments.
 
 - **put**
-  : (Optional) Shall be an array of type default _integer_ and rank one.
-  It is **intent(in)** and the size of the array must be larger than
-  or equal to the number returned by the **size** argument.
+  : the size of the array must be larger than or equal to the number
+  returned by the **size** argument.
 
 - **get**
-  : (Optional) Shall be an array of type default _integer_ and rank one.
-  It is **intent(out)** and the size of the array must be larger than
+  : It is **intent(out)** and the size of the array must be larger than
   or equal to the number returned by the **size** argument.
 
 ### **Examples**
@@ -17095,7 +17128,6 @@ Fortran 95
 ```fortran
   range(real(x))
 ```
-
 ### **Examples**
 
 Sample program:
@@ -17137,7 +17169,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## rank
 
@@ -17444,8 +17476,8 @@ There are two forms to this function:
 ```
 or
 ```fortran
-   result = reduce (array, operation &
-   & [,dim] [,mask] [,identity] [,ordered] )
+   result = reduce (array, operation, dim  &
+   & [,mask] [,identity] [,ordered] )
 ```
 ```fortran
     type(TYPE(kind=KIND)) function reduce &
@@ -17460,8 +17492,17 @@ or
 ```
 ### **Characteristics**
 
-   where TYPE may be of any type. TYPE must be the same for **array**
-   and **identity**.
+ - **array** is an array of any type
+ - **operation** is a pure function with exactly two arguments
+   + each argument is scalar, non-allocatable, a nonpointer,
+     nonpolymorphic and nonoptional with the same type and kind as array.
+   + if one argument has the asynchronous, target, or value attribute so
+     shall the other.
+ - **dim** is an _integer_ scalar
+ - **mask** is a logical conformable with **array**
+ - **identity** is a scalar with the same type and type parameters as **array**
+ - **ordered** is a logical scalar
+ - the result is of the same type and type parameters as **array**.
 
 ### **Description**
 
@@ -19812,7 +19853,8 @@ TS 29113 begins
 ```
 ### **Characteristics**
 
-  The result is of the same type as the input argument **x**.
+  - **x** is type real of any valid kind
+  - The result is of the same type as the input argument **x**.
 
 ### **Description**
 
@@ -19826,7 +19868,20 @@ TS 29113 begins
 
 ### **Result**
 
-The result is of the same type as the input argument **x**.
+   If **x** does not have the value zero and is not an IEEE infinity or NaN, the result has the value
+   nearest to **x** for values of the same type and kind assuming the value is representable.
+
+   Otherwise, the value is the same as **tiny(x)**.
+     + zero produces **tiny(x)**
+     + IEEE Infinity produces an IEEE Nan
+     + if an IEEE NaN, that NaN is returned
+
+   If there are two extended model values equally near to **x**, the
+   value of greater absolute value is taken.
+<!--
+        e−p
+       b      , where b, e, and p are as deﬁned in 16.4
+-->
 
 ### **Examples**
 
@@ -19876,7 +19931,7 @@ Fortran 95
 [**set_exponent**(3)](#set_exponent),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## spread
 

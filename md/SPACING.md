@@ -15,7 +15,8 @@
 ```
 ### **Characteristics**
 
-  The result is of the same type as the input argument **x**.
+  - **x** is type real of any valid kind
+  - The result is of the same type as the input argument **x**.
 
 ### **Description**
 
@@ -29,7 +30,20 @@
 
 ### **Result**
 
-The result is of the same type as the input argument **x**.
+   If **x** does not have the value zero and is not an IEEE infinity or NaN, the result has the value
+   nearest to **x** for values of the same type and kind assuming the value is representable.
+
+   Otherwise, the value is the same as **tiny(x)**.
+     + zero produces **tiny(x)**
+     + IEEE Infinity produces an IEEE Nan
+     + if an IEEE NaN, that NaN is returned
+
+   If there are two extended model values equally near to **x**, the
+   value of greater absolute value is taken.
+<!--
+        e−p
+       b      , where b, e, and p are as deﬁned in 16.4 
+-->
 
 ### **Examples**
 
@@ -79,4 +93,4 @@ Fortran 95
 [**set_exponent**(3)](#set_exponent),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

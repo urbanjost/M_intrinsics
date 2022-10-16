@@ -18,7 +18,7 @@ multiplication
 ```
 ### **Characteristics**
 
- - Arguments may be numeric (_integer_, _real_, or _complex_ )
+ - **matrix_a** may be numeric (_integer_, _real_, or _complex_ )
    or _logical_ and must be one or two-dimensional arrays.
  - At least one argument must be rank two.
  - If one argument is _logical_, both must be _logical_.

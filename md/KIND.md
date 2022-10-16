@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**kind**(3) - \[KIND:INQUIRY\] Kind of an entity
+**kind**(3) - \[KIND:INQUIRY\] Query kind of an entity
 
 ### **Synopsis**
 ```fortran
@@ -11,14 +11,11 @@
 ```fortran
      integer function kind(x)
 
-      type(TYPE,kind=KIND),intent(in) :: x(..)
+      type(TYPE,kind=**),intent(in) :: x(..)
 ```
 ### **Characteristics**
-
-  **TYPE** may _logical_, _integer_, _real_, _complex_ or _character_.
-
-  **x** may be of any kind supported by the type, and may be
-  scalar or an array.
+ - **x** may be of any intrinsic type. It may be a scalar or an array.
+ - the result is a default _integer_ scalar
 
 ### **Description**
 
@@ -60,6 +57,15 @@ Fortran 95
 
 ### **See also**
 
-[****(3)](#)
+- [**allocated**(3)](#allocated) -  Status of an allocatable entity
+- [**is_contiguous**(3)](#is_contiguous) -  test if object is contiguous
+- [**lbound**(3)](#lbound)    -  Lower dimension bounds of an array
+- [**rank**(3)](#rank)      -  Rank of a data object
+- [**shape**(3)](#shape)     -  Determine the shape of an array
+- [**size**(3)](#size)      -  Determine the size of an array
+- [**ubound**(3)](#ubound)    -  Upper dimension bounds of an array
+- [**bit_size**(3)](#bit_size)  -  Bit size inquiry function
+- [**storage_size**(3)](#storage_size) -  Storage size in bits
+- [**kind**(3)](#kind)      -  Kind of an entity
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

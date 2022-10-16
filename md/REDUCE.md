@@ -12,8 +12,8 @@ There are two forms to this function:
 ```
 or
 ```fortran
-   result = reduce (array, operation &
-   & [,dim] [,mask] [,identity] [,ordered] )
+   result = reduce (array, operation, dim  &
+   & [,mask] [,identity] [,ordered] )
 ```
 ```fortran
     type(TYPE(kind=KIND)) function reduce &
@@ -28,8 +28,17 @@ or
 ```
 ### **Characteristics**
 
-   where TYPE may be of any type. TYPE must be the same for **array**
-   and **identity**.
+ - **array** is an array of any type
+ - **operation** is a pure function with exactly two arguments
+   + each argument is scalar, non-allocatable, a nonpointer,
+     nonpolymorphic and nonoptional with the same type and kind as array.
+   + if one argument has the asynchronous, target, or value attribute so
+     shall the other.
+ - **dim** is an _integer_ scalar
+ - **mask** is a logical conformable with **array**
+ - **identity** is a scalar with the same type and type parameters as **array**
+ - **ordered** is a logical scalar
+ - the result is of the same type and type parameters as **array**.
 
 ### **Description**
 

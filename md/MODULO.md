@@ -16,8 +16,9 @@
 ```
 ### **Characteristics**
 
-  The result and arguments are all of the same type and kind.
-  The type may be any kind of _real_ or _integer_.
+  - The type of **a** may be any kind of _real_ or _integer_.
+  - **p** is the same type and kind as **a**
+  - The result and arguments are all of the same type and kind.
 
 ### **Description**
 
@@ -26,11 +27,11 @@
 ### **Options**
 
 - **a**
-  : Shall be a scalar of type _integer_ or _real_.
+  : the value to take the **modulo** of
 
 - **p**
-  : Shall be a scalar of the same type and kind as **a**. It shall not be
-  zero.
+  : The value to reduce **a** by till the remainder is <= **p**.
+    It shall not be zero.
 
 ### **Result**
 
@@ -62,7 +63,6 @@ implicit none
      print *, modulo(17.5,-5.5)   ! yields -4.5
 end program demo_modulo
 ```
-
 Results:
 
 ```text
@@ -73,7 +73,6 @@ Results:
              -1
      -4.50000000
 ```
-
 ### **Standard**
 
 Fortran 95

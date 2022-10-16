@@ -2,7 +2,8 @@
 
 ### **Name**
 
-**extends_type_of**(3) - \[STATE:INQUIRY\] Determine if the dynamic type of **a** is an extension of the dynamic type of **mold**.
+**extends_type_of**(3) - \[STATE:INQUIRY\] Determine if the dynamic type
+of **a** is an extension of the dynamic type of **mold**.
 
 ### **Synopsis**
 ```fortran
@@ -15,18 +16,30 @@
       type(TYPE(kind=KIND),intent(in) :: mold
 ```
 ### **Characteristics**
-
-**a** an object of any extensible type; it may also be a pointer
-to an object extensible type.
-
-**mold** an object of any extensible type; it may also be a pointer
-to an object extensible type.
+ -**a** shall be an object or pointer to an extensible declared type,
+        or unlimited polymorphic. If it is a polymorphic pointer, it
+        shall not have an undeﬁned association status.
+ -**mole** shall be an object or pointer to an extensible declared type
+           or unlimited polymorphic. If it is a polymorphic pointer,
+           it shall not have an undeﬁned association status.
+ - the result is a scalar default logical type.
 
 ### **Description**
 
   **extends_type_of**(3) is .true. if and only if the dynamic type of
   **a** is or could be (for unlimited polymorphic) an extension of the
   dynamic type of **mold**.
+
+#### NOTE1
+
+  The dynamic type of a disassociated pointer or unallocated allocatable
+  variable is its declared type.
+
+#### NOTE2
+
+  The test performed by **extends_type_of** is not the same as the
+  test performed by the type guard **class is**. The test performed by
+  **extends_type_of** does not consider kind type parameters.
 
 ### **options**
 - **a**
@@ -54,16 +67,6 @@ to an object extensible type.
   and only if the dynamic type of A is an extension type of the dynamic
   type of MOLD; otherwise the result is processor dependent.
 
-  NOTE1
-
-  The dynamic type of a disassociated pointer or unallocated allocatable
-  variable is its declared type.
-
-  NOTE2
-
-  The test performed by **extends_type_of** is not the same as the
-  test performed by the type guard **class is**. The test performed by
-  **extends_type_of** does not consider kind type parameters.
 
 ### **Examples**
 

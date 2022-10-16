@@ -51,7 +51,6 @@
 ```fortran
   range(real(x))
 ```
-
 ### **Examples**
 
 Sample program:
@@ -93,4 +92,4 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

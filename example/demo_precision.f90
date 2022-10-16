@@ -6,4 +6,5 @@
 
          print *, precision(x), range(x)
          print *, precision(y), range(y)
+
       end program demo_precision

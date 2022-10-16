@@ -17,12 +17,6 @@
 
 - **harvest** and the result are default _real_ variables
 
-REAL X, Y (10, 10)
-! Initialize X with a pseudorandom number
-CALL RANDOM_NUMBER (HARVEST = X)
-CALL RANDOM_NUMBER (Y)
-! X and Y contain uniformly distributed random numbers
-
 ### **Description**
 
 **random_number**(3) returns a single pseudorandom number or an array of

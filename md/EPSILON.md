@@ -11,9 +11,12 @@
 ```fortran
      real(kind=kind(x)) function epsilon(x)
 
-      real(kind=kind(x),intent(in)   :: x
+      real(kind=kind(x),intent(in)   :: x(..)
 ```
 ### **Characteristics**
+
+ - **x** shall be of type _real_. It may be a scalar or an array.
+ - the result is a scalar of the same type and kind type parameter as **x**.
 
 ### **Description**
 

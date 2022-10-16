@@ -16,6 +16,10 @@
       integer,intent(out),optional :: get(*)
 ```
 ### **Characteristics**
+ - **size** a scalar default _integer_
+ - **put** a rank-one default _integer_ array
+ - **get** a rank-one default _integer_ array
+ - the result
 
 ### **Description**
 
@@ -28,18 +32,15 @@ data retrieved from the operating system.
 ### **Options**
 
 - **size**
-  : (Optional) Shall be a scalar and of type default _integer_, with
-  **intent(out)**. It specifies the minimum size of the arrays used
-  with the **put** and **get** arguments.
+  : specifies the minimum size of the arrays used with the **put**
+  and **get** arguments.
 
 - **put**
-  : (Optional) Shall be an array of type default _integer_ and rank one.
-  It is **intent(in)** and the size of the array must be larger than
-  or equal to the number returned by the **size** argument.
+  : the size of the array must be larger than or equal to the number
+  returned by the **size** argument.
 
 - **get**
-  : (Optional) Shall be an array of type default _integer_ and rank one.
-  It is **intent(out)** and the size of the array must be larger than
+  : It is **intent(out)** and the size of the array must be larger than
   or equal to the number returned by the **size** argument.
 
 ### **Examples**

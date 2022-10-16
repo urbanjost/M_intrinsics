@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**exponent**(3) - \[MODEL_COMPONENTS\] Exponent function
+**exponent**(3) - \[MODEL_COMPONENTS\] Exponent of floating-point number
 
 ### **Synopsis**
 ```fortran
@@ -11,23 +11,29 @@
 ```fortran
      elemental integer function exponent(x)
 
-      real(kind=KIND),intent(in) :: x
+      real(kind=**),intent(in) :: x
 ```
 ### **Characteristics**
+ - **x**  shall be of type _real_ of any valid kind
+ - the result is a default _integer_ type
 
 ### **Description**
 
-**exponent**(3) returns the value of the exponent part of **x**. If **x** is
-zero the value returned is zero.
+  **exponent**(3) returns the value of the exponent part of **x**, provided
+  the exponent is within the range of default _integers_.
 
 ### **Options**
 
 - **x**
-  : The type shall be _real_.
+  : the value to query the exponent of
 
 ### **Result**
 
-The return value is of type default _integer_.
+  **exponent**(3) returns the value of the exponent part of **x**
+
+  If **x** is zero the value returned is zero.
+
+  If **x** is an IEEE infinity or NaN, the result has the value HUGE(0).
 
 ### **Examples**
 
@@ -40,11 +46,17 @@ integer :: i
    i = exponent(x)
    print *, i
    print *, exponent(0.0)
+   print *, exponent([10.0,100.0,1000.0,-10000.0])
+   print *, 2**[10.0,100.0,1000.0,-10000.0]
+   print *, exponent(huge(0.0))
+   print *, exponent(tiny(0.0))
 end program demo_exponent
 ```
 Results:
-
 ```text
+ >            4           7          10          14
+ >          128
+ >         -125
 ```
 ### **Standard**
 
