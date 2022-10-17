@@ -18,10 +18,10 @@ of **a** is an extension of the dynamic type of **mold**.
 ### **Characteristics**
  -**a** shall be an object or pointer to an extensible declared type,
         or unlimited polymorphic. If it is a polymorphic pointer, it
-        shall not have an undeﬁned association status.
+        shall not have an undefined association status.
  -**mole** shall be an object or pointer to an extensible declared type
            or unlimited polymorphic. If it is a polymorphic pointer,
-           it shall not have an undeﬁned association status.
+           it shall not have an undefined association status.
  - the result is a scalar default logical type.
 
 ### **Description**
