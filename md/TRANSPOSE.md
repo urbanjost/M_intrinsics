@@ -9,15 +9,16 @@
     result = transpose(matrix)
 ```
 ```fortran
-     type(TYPE(kind=KIND) transpose(matrix)
+     function transpose(matrix)
 
-      type(TYPE(kind=KIND),intent(in) :: matrix(:,:)
+      type(TYPE(kind=KIND)            :: transpose(N,M)
+      type(TYPE(kind=KIND),intent(in) :: matrix(M,N)
 ```
 ### **Characteristics**
 
-  - **matrix** can be of any type but must have a rank of two.
+  - **matrix** is an array of any type with a rank of two.
   - The result will be the same type and kind as **matrix** and the
-    reversed shape of the input array.
+    reversed shape of the input array 
 
 ### **Description**
 

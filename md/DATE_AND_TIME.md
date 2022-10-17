@@ -33,7 +33,7 @@
 
   Unavailable numeric parameters return **-huge(value)**.
 
-  These forms are compatible with the representations deﬁned in ISO
+  These forms are compatible with the representations defined in ISO
   8601:2004. UTC is established by the International Bureau of Weights
   and Measures (BIPM, i.e. Bureau International des Poids et Mesures)
   and the International Earth Rotation Service (IERS).
@@ -78,8 +78,8 @@
    If this information is not available, ZONE is assigned all blanks.
 
 - **values**
-  : An array of at least eight elements.  If there is no data
-  available for a value it is set to **−huge(values)**. Otherwise,
+  : An array of at least eight elements. If there is no data
+  available for a value it is set to **-huge(values)**. Otherwise,
   it contains:
 
   - **values**(1) : The year, including the century.

@@ -54,8 +54,8 @@
   : The value must be greater than zero and less than or equal to
     **bit_size**(i).
 
-    The default is **bit_size(i)**. That is, the default is to circularly
-    shift the entire value **i**.
+    The default if **bit_size(i)** is absent is to circularly shift the
+    entire value **i**.
 
 ### **Result**
 
@@ -78,36 +78,59 @@ use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
 implicit none
 integer             :: i
 character(len=*),parameter :: g='(b32.32,1x,i0)'
-
+  ! basics
    write(*,*) ishftc(3, 1),' <== typically should have the value 6'
 
-  ! shift a value by various amounts
+   print *, 'lets start with this:'
+   write(*,'(b32.32)')huge(0)
+   print *, 'shift the value by various amounts, negative and positive'
    do i= -bit_size(0), bit_size(0), 8
       write(*,g) ishftc(huge(0),i), i
    enddo
+  print *,'elemental'
+  i=huge(0)
+  write(*,*)ishftc(i,[2,3,4,5])
+  write(*,*)ishftc([2**1,2**3,-2**7],3)
+  print *,'note the arrays have to conform when elemental'
+  write(*,*)ishftc([2**1,2**3,-2**7],[5,20,0])
 
 end program demo_ishftc
 ```
 Results:
 ```text
- >              6  <== typically should have the value 6
- >   01111111111111111111111111111111 -32
- >   11111111111111111111111101111111 -24
- >   11111111111111110111111111111111 -16
- >   11111111011111111111111111111111 -8
- >   01111111111111111111111111111111 0
- >   11111111111111111111111101111111 8
- >   11111111111111110111111111111111 16
- >   11111111011111111111111111111111 24
- >   01111111111111111111111111111111 32
+ >            6  <== typically should have the value 6
+ >  lets start with this:
+ > 01111111111111111111111111111111
+ >  shift the value by various amounts, negative and positive
+ > 01111111111111111111111111111111 -32
+ > 11111111111111111111111101111111 -24
+ > 11111111111111110111111111111111 -16
+ > 11111111011111111111111111111111 -8
+ > 01111111111111111111111111111111 0
+ > 11111111111111111111111101111111 8
+ > 11111111111111110111111111111111 16
+ > 11111111011111111111111111111111 24
+ > 01111111111111111111111111111111 32
+ >  elemental
+ >           -3          -5          -9         -17
+ >           16          64       -1017
+ >  note the arrays have to conform when elemental
+ >           64     8388608        -128
+================================================================================
 ```
-
 ### **Standard**
 
 Fortran 95
 
 ### **See Also**
 
-[**ishft**(3)](#ishft)
+- [**ishft**(3)](#ishft)   - Logical shift of bits in an integer
+- [**shifta**(3)](#shifta) - Right shift with fill
+- [**shiftl**(3)](#shiftl) - Shift bits left
+- [**shiftr**(3)](#shiftr) - Combined right shift of the bits of two int...
+- [**dshiftl**(3)](#dshiftl) - Combined left shift of the bits of two inte...
+- [**dshiftr**(3)](#dshiftr) - Combined right shift of the bits of two int...
+- [**cshift**(3)](#cshift)   - Circular shift elements of an array
+- [**eoshift**(3)](#eoshift) - End-off shift elements of an array
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

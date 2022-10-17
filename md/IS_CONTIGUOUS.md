@@ -6,17 +6,17 @@
 
 ### **Synopsis**
 ```fortran
-    result = is_contiguous(a)
+    result = is_contiguous(array)
 ```
 ```fortran
-     logical function is_contiguous(a)
+     logical function is_contiguous(array)
 
-      type(TYPE(kind=**)),intent(in) :: a
+      type(TYPE(kind=**)),intent(in) :: array
 ```
 ### **Characteristics**
 
 - a kind designated as ** may be any supported kind for the type
-- **a** may be of any type. It shall be an array. If it is a pointer it
+- **array** may be of any type. It shall be an array or assumed-rank. If it is a pointer it
   shall be associated.
 - the result is a default logical scalar
 
@@ -87,13 +87,13 @@ It is processor-dependent whether any other object is contiguous.
 
 ### **Options**
 
-- **a**
+- **array**
   : An array of any type to be tested for being contiguous. If it is a
   pointer it shall be associated.
 
 ### **Result**
 
-  The result has the value _.true._ if **a** is contiguous, and _.false._
+  The result has the value _.true._ if **array** is contiguous, and _.false._
   otherwise.
 
 ### **Examples**

@@ -33,6 +33,10 @@
   input value. If all the bits of **i** are zero, the result value is
   **bit_size(i)**.
 
+  The result  may also be thought of as **bit_size(i)-1-k** where **k**
+  is the position of the leftmost 1 bit in the input **i**. Positions
+  are from 0 to bit-size(), with 0 at the right-most bit.
+
 ### **Examples**
 
 Sample program:
