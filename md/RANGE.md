@@ -37,24 +37,21 @@
   Case (i)
   : For an integer argument, the result has the value 
 ```fortran
-  int (log10 (huge(x)))
+    int (log10 (huge(x)))
 ```
-
   Case (ii)
   : For a real argument, the result has the value 
 ```fortran
-  int(min (log10 (huge(x)), ­log10(tiny(x) )))
+     int(min (log10 (huge(x)), -log10(tiny(x) )))
   ```
-
   Case (iii)
   : For a complex argument, the result has the value 
 ```fortran
-  range(real(x))
+    range(real(x))
 ```
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_range
 use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
