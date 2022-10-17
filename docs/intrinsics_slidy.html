@@ -2786,9 +2786,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb158-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a></code></pre></div>
 <h3 id="characteristics-39"><strong>Characteristics</strong></h3>
 <ul>
-<li><p>the kind of <strong>i</strong> and <strong>j</strong> may be of any supported integer kind, not necessarily the same. An exception is that values may be a BOZ constant with a value valid for the integer kind available with the most bits on the current platform.</p></li>
-<li><p>the result is of default logical kind</p></li>
+<li><strong>i</strong> is an integer of any kind or a BOZ-literal-constant</li>
+<li><strong>j</strong> is an integer of any kind or a BOZ-literal-constant, not necessarily the same as <strong>i</strong>.</li>
+<li>the result is of default logical kind</li>
 </ul>
+<p>BOZ constants must have a value valid for the integer kind available with the most bits on the current platform.</p>
 <h3 id="description-39"><strong>Description</strong></h3>
 <p><strong>blt</strong>(3) determines whether an integer is bitwise less than another.</p>
 <h3 id="options-39"><strong>Options</strong></h3>
@@ -2848,19 +2850,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>btest</strong>(3) - [BIT:INQUIRY] Tests a bit of an integer value.</p>
 <h3 id="synopsis-40"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb161"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb161-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">btest</span>(i,pos)</a></code></pre></div>
-<div class="sourceCode" id="cb162"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb162-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">btest</span>(i,pos)</a>
+<div class="sourceCode" id="cb162"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb162-1" title="1">     <span class="kw">elemental</span> <span class="dt">logical</span> <span class="kw">function</span> <span class="bu">btest</span>(i,pos)</a>
 <a class="sourceLine" id="cb162-2" title="2"></a>
-<a class="sourceLine" id="cb162-3" title="3">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb162-4" title="4">      <span class="dt">logical</span>,<span class="dt">intent(out)</span> <span class="dt">::</span> pos</a></code></pre></div>
+<a class="sourceLine" id="cb162-3" title="3">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb162-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> pos</a></code></pre></div>
 <h3 id="characteristics-40"><strong>Characteristics</strong></h3>
 <ul>
-<li><strong>i</strong> is an integer</li>
-<li><strong>pos</strong> is a logical</li>
-<li><strong>KIND</strong> is any integer kind supported by the programming environment.</li>
-<li>the result is the same type and kind as <strong>i</strong></li>
+<li><strong>i</strong> is an integer of any kind</li>
+<li><strong>pos</strong> is a _integer of any kind</li>
+<li>the result is a default logical</li>
 </ul>
 <h3 id="description-40"><strong>Description</strong></h3>
-<p><strong>btest</strong>(3) returns logical .true. if the bit at <strong>pos</strong> in <strong>i</strong> is set.</p>
+<p><strong>btest</strong>(3) returns logical .true. if the bit at <strong>pos</strong> in <strong>i</strong> is set to 1. Position zero is the right-most bit. Bit position increases from right to left up to <strong>bitsize(i)-1</strong>.</p>
 <h3 id="options-40"><strong>Options</strong></h3>
 <ul>
 <li><dl>
@@ -2870,13 +2871,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dl></li>
 <li><dl>
 <dt><strong>pos</strong></dt>
-<dd>The position of the bit to query. it must be a valid position for the value <strong>i</strong>; ie. <strong>0 &lt;= pos &lt;= bit_size(i)</strong> .
+<dd>The position of the bit to query. it must be a valid position for the value <strong>i</strong>; ie. <strong>0 &lt;= pos &lt;= bit_size(i)</strong>.
 </dd>
-</dl>
-A value of zero refers to the least significant bit.</li>
+</dl></li>
 </ul>
 <h3 id="result-29"><strong>Result</strong></h3>
 <p>The result is a logical that has the value .true. if bit position <strong>pos</strong> of <strong>i</strong> has the value <strong>1</strong> and the value .false. if bit <strong>pos</strong> of <strong>i</strong> has the value <strong>0</strong>.</p>
+<p>Positions of bits in the sequence are numbered from right to left, with the position of the rightmost bit being zero.</p>
 <h3 id="examples-40"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb163"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb163-1" title="1"><span class="kw">program</span> demo_btest</a>
@@ -4638,7 +4639,7 @@ This file was compiled by nvfortran 21.5-0 LLVM</code></pre>
 <p><strong>date_and_time</strong>(3) gets the corresponding date and time information from the real-time system clock.</p>
 <p>Unavailable time and date character parameters return blanks.</p>
 <p>Unavailable numeric parameters return <strong>-huge(value)</strong>.</p>
-<p>These forms are compatible with the representations deﬁned in ISO 8601:2004. UTC is established by the International Bureau of Weights and Measures (BIPM, i.e. Bureau International des Poids et Mesures) and the International Earth Rotation Service (IERS).</p>
+<p>These forms are compatible with the representations defined in ISO 8601:2004. UTC is established by the International Bureau of Weights and Measures (BIPM, i.e. Bureau International des Poids et Mesures) and the International Earth Rotation Service (IERS).</p>
 <h3 id="options-65"><strong>Options</strong></h3>
 <ul>
 <li><dl>
@@ -4677,7 +4678,7 @@ This file was compiled by nvfortran 21.5-0 LLVM</code></pre>
 <p>If this information is not available, ZONE is assigned all blanks.</p></li>
 <li><dl>
 <dt><strong>values</strong></dt>
-<dd>An array of at least eight elements. If there is no data available for a value it is set to <strong>−huge(values)</strong>. Otherwise, it contains:
+<dd>An array of at least eight elements. If there is no data available for a value it is set to <strong>-huge(values)</strong>. Otherwise, it contains:
 </dd>
 </dl>
 <ul>
@@ -5528,8 +5529,9 @@ $$</span><br /></p>
 e^{x^2} \frac{2}{\sqrt{\pi}} \int_{x}^{\infty}
 e^{-t^2} dt.
 $$</span><br /></p>
+<p>erfc_scaled(x)=exp(x*x)erfc(x)</p>
 <h4 id="note1">NOTE1</h4>
-<p>The complementary error function is asymptotic to exp(−X2)/(X√π). As such it underﬂows for X &gt;≈ 9 when using ISO/IEC/IEEE 60559:2011 single precision arithmetic. The exponentially-scaled complementary error function is asymptotic to 1/(X π). As such it does not underflow until X &gt; HUGE (X)/ π.</p>
+<p>The complementary error function is asymptotic to exp(-X2)/(X/PI). As such it underflows at approximately X &gt;= 9 when using ISO/IEC/IEEE 60559:2011 single precision arithmetic. The exponentially-scaled complementary error function is asymptotic to 1/(X PI). As such it does not underflow until X &gt; HUGE (X)/PI.</p>
 <h3 id="options-75"><strong>Options</strong></h3>
 <ul>
 <li><strong>x</strong> the value to apply the <strong>erfc</strong> function to</li>
@@ -5872,7 +5874,7 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb350-3" title="3">      <span class="dt">type(TYPE(kind=KIND),intent(in) :: a</span></a>
 <a class="sourceLine" id="cb350-4" title="4">      <span class="dt">type(TYPE(kind=KIND),intent(in) :: mold</span></a></code></pre></div>
 <h3 id="characteristics-83"><strong>Characteristics</strong></h3>
-<p>-<strong>a</strong> shall be an object or pointer to an extensible declared type, or unlimited polymorphic. If it is a polymorphic pointer, it shall not have an undeﬁned association status. -<strong>mole</strong> shall be an object or pointer to an extensible declared type or unlimited polymorphic. If it is a polymorphic pointer, it shall not have an undeﬁned association status. - the result is a scalar default logical type.</p>
+<p>-<strong>a</strong> shall be an object or pointer to an extensible declared type, or unlimited polymorphic. If it is a polymorphic pointer, it shall not have an undefined association status. -<strong>mole</strong> shall be an object or pointer to an extensible declared type or unlimited polymorphic. If it is a polymorphic pointer, it shall not have an undefined association status. - the result is a scalar default logical type.</p>
 <h3 id="description-83"><strong>Description</strong></h3>
 <p><strong>extends_type_of</strong>(3) is .true. if and only if the dynamic type of <strong>a</strong> is or could be (for unlimited polymorphic) an extension of the dynamic type of <strong>mold</strong>.</p>
 <h4 id="note1-1">NOTE1</h4>
@@ -7863,14 +7865,14 @@ $$</span><br /></p>
 <h3 id="name-107"><strong>Name</strong></h3>
 <p><strong>is_contiguous</strong>(3) - [ARRAY:INQUIRY] Test if object is contiguous</p>
 <h3 id="synopsis-107"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb470"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb470-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> is_contiguous(a)</a></code></pre></div>
-<div class="sourceCode" id="cb471"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb471-1" title="1">     <span class="dt">logical</span> <span class="kw">function</span> is_contiguous(a)</a>
+<div class="sourceCode" id="cb470"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb470-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> is_contiguous(array)</a></code></pre></div>
+<div class="sourceCode" id="cb471"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb471-1" title="1">     <span class="dt">logical</span> <span class="kw">function</span> is_contiguous(array)</a>
 <a class="sourceLine" id="cb471-2" title="2"></a>
-<a class="sourceLine" id="cb471-3" title="3">      <span class="dt">type(TYPE(kind=**))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> a</a></code></pre></div>
+<a class="sourceLine" id="cb471-3" title="3">      <span class="dt">type(TYPE(kind=**))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> array</a></code></pre></div>
 <h3 id="characteristics-106"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind for the type</li>
-<li><strong>a</strong> may be of any type. It shall be an array. If it is a pointer it shall be associated.</li>
+<li><strong>array</strong> may be of any type. It shall be an array or assumed-rank. If it is a pointer it shall be associated.</li>
 <li>the result is a default logical scalar</li>
 </ul>
 <h3 id="description-107"><strong>Description</strong></h3>
@@ -7904,13 +7906,13 @@ $$</span><br /></p>
 <h3 id="options-104"><strong>Options</strong></h3>
 <ul>
 <li><dl>
-<dt><strong>a</strong></dt>
+<dt><strong>array</strong></dt>
 <dd>An array of any type to be tested for being contiguous. If it is a pointer it shall be associated.
 </dd>
 </dl></li>
 </ul>
 <h3 id="result-87"><strong>Result</strong></h3>
-<p>The result has the value .true. if <strong>a</strong> is contiguous, and .false. otherwise.</p>
+<p>The result has the value .true. if <strong>array</strong> is contiguous, and .false. otherwise.</p>
 <h3 id="examples-104"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb472"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb472-1" title="1"><span class="kw">program</span> demo_is_contiguous</a>
@@ -7974,7 +7976,7 @@ $$</span><br /></p>
 <dd>The value must be greater than zero and less than or equal to <strong>bit_size</strong>(i).
 </dd>
 </dl>
-<p>The default is <strong>bit_size(i)</strong>. That is, the default is to circularly shift the entire value <strong>i</strong>.</p></li>
+<p>The default if <strong>bit_size(i)</strong> is absent is to circularly shift the entire value <strong>i</strong>.</p></li>
 </ul>
 <h3 id="result-88"><strong>Result</strong></h3>
 <p>The result characteristics (kind, shape, size, rank, …) are the same as <strong>i</strong>.</p>
@@ -7988,30 +7990,56 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb476-3" title="3"><span class="kw">implicit</span> <span class="kw">none</span></a>
 <a class="sourceLine" id="cb476-4" title="4"><span class="dt">integer</span>             <span class="dt">::</span> i</a>
 <a class="sourceLine" id="cb476-5" title="5"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> g<span class="kw">=</span><span class="st">&#39;(b32.32,1x,i0)&#39;</span></a>
-<a class="sourceLine" id="cb476-6" title="6"></a>
+<a class="sourceLine" id="cb476-6" title="6">  <span class="co">! basics</span></a>
 <a class="sourceLine" id="cb476-7" title="7">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="bu">ishftc</span>(<span class="dv">3</span>, <span class="dv">1</span>),<span class="st">&#39; &lt;== typically should have the value 6&#39;</span></a>
 <a class="sourceLine" id="cb476-8" title="8"></a>
-<a class="sourceLine" id="cb476-9" title="9">  <span class="co">! shift a value by various amounts</span></a>
-<a class="sourceLine" id="cb476-10" title="10">   <span class="kw">do</span> i<span class="kw">=</span> <span class="kw">-</span><span class="fu">bit_size</span>(<span class="dv">0</span>), <span class="fu">bit_size</span>(<span class="dv">0</span>), <span class="dv">8</span></a>
-<a class="sourceLine" id="cb476-11" title="11">      <span class="fu">write(*</span>,g<span class="fu">)</span> <span class="bu">ishftc</span>(<span class="fu">huge</span>(<span class="dv">0</span>),i), i</a>
-<a class="sourceLine" id="cb476-12" title="12">   <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb476-13" title="13"></a>
-<a class="sourceLine" id="cb476-14" title="14"><span class="kw">end program</span> demo_ishftc</a></code></pre></div>
+<a class="sourceLine" id="cb476-9" title="9">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;lets start with this:&#39;</span></a>
+<a class="sourceLine" id="cb476-10" title="10">   <span class="fu">write(*</span>,<span class="st">&#39;(b32.32)&#39;</span><span class="fu">)huge</span>(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb476-11" title="11">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;shift the value by various amounts, negative and positive&#39;</span></a>
+<a class="sourceLine" id="cb476-12" title="12">   <span class="kw">do</span> i<span class="kw">=</span> <span class="kw">-</span><span class="fu">bit_size</span>(<span class="dv">0</span>), <span class="fu">bit_size</span>(<span class="dv">0</span>), <span class="dv">8</span></a>
+<a class="sourceLine" id="cb476-13" title="13">      <span class="fu">write(*</span>,g<span class="fu">)</span> <span class="bu">ishftc</span>(<span class="fu">huge</span>(<span class="dv">0</span>),i), i</a>
+<a class="sourceLine" id="cb476-14" title="14">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb476-15" title="15">  <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;elemental&#39;</span></a>
+<a class="sourceLine" id="cb476-16" title="16">  i<span class="kw">=</span><span class="fu">huge</span>(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb476-17" title="17">  <span class="fu">write(*</span>,<span class="fu">*)</span><span class="bu">ishftc</span>(i,<span class="kw">[</span><span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span><span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb476-18" title="18">  <span class="fu">write(*</span>,<span class="fu">*)</span><span class="bu">ishftc</span>(<span class="kw">[</span><span class="dv">2</span><span class="kw">**</span><span class="dv">1</span>,<span class="dv">2</span><span class="kw">**</span><span class="dv">3</span>,<span class="kw">-</span><span class="dv">2</span><span class="kw">**</span><span class="dv">7</span><span class="kw">]</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb476-19" title="19">  <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;note the arrays have to conform when elemental&#39;</span></a>
+<a class="sourceLine" id="cb476-20" title="20">  <span class="fu">write(*</span>,<span class="fu">*)</span><span class="bu">ishftc</span>(<span class="kw">[</span><span class="dv">2</span><span class="kw">**</span><span class="dv">1</span>,<span class="dv">2</span><span class="kw">**</span><span class="dv">3</span>,<span class="kw">-</span><span class="dv">2</span><span class="kw">**</span><span class="dv">7</span><span class="kw">]</span>,<span class="kw">[</span><span class="dv">5</span>,<span class="dv">20</span>,<span class="dv">0</span><span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb476-21" title="21"></a>
+<a class="sourceLine" id="cb476-22" title="22"><span class="kw">end program</span> demo_ishftc</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code> &gt;              6  &lt;== typically should have the value 6
- &gt;   01111111111111111111111111111111 -32
- &gt;   11111111111111111111111101111111 -24
- &gt;   11111111111111110111111111111111 -16
- &gt;   11111111011111111111111111111111 -8
- &gt;   01111111111111111111111111111111 0
- &gt;   11111111111111111111111101111111 8
- &gt;   11111111111111110111111111111111 16
- &gt;   11111111011111111111111111111111 24
- &gt;   01111111111111111111111111111111 32</code></pre>
+<pre class="text"><code> &gt;            6  &lt;== typically should have the value 6
+ &gt;  lets start with this:
+ &gt; 01111111111111111111111111111111
+ &gt;  shift the value by various amounts, negative and positive
+ &gt; 01111111111111111111111111111111 -32
+ &gt; 11111111111111111111111101111111 -24
+ &gt; 11111111111111110111111111111111 -16
+ &gt; 11111111011111111111111111111111 -8
+ &gt; 01111111111111111111111111111111 0
+ &gt; 11111111111111111111111101111111 8
+ &gt; 11111111111111110111111111111111 16
+ &gt; 11111111011111111111111111111111 24
+ &gt; 01111111111111111111111111111111 32
+ &gt;  elemental
+ &gt;           -3          -5          -9         -17
+ &gt;           16          64       -1017
+ &gt;  note the arrays have to conform when elemental
+ &gt;           64     8388608        -128
+================================================================================</code></pre>
 <h3 id="standard-107"><strong>Standard</strong></h3>
 <p>Fortran 95</p>
 <h3 id="see-also-107"><strong>See Also</strong></h3>
-<p><a href="#ishft"><strong>ishft</strong>(3)</a></p>
+<ul>
+<li><a href="#ishft"><strong>ishft</strong>(3)</a> - Logical shift of bits in an integer</li>
+<li><a href="#shifta"><strong>shifta</strong>(3)</a> - Right shift with fill</li>
+<li><a href="#shiftl"><strong>shiftl</strong>(3)</a> - Shift bits left</li>
+<li><a href="#shiftr"><strong>shiftr</strong>(3)</a> - Combined right shift of the bits of two int…</li>
+<li><a href="#dshiftl"><strong>dshiftl</strong>(3)</a> - Combined left shift of the bits of two inte…</li>
+<li><a href="#dshiftr"><strong>dshiftr</strong>(3)</a> - Combined right shift of the bits of two int…</li>
+<li><a href="#cshift"><strong>cshift</strong>(3)</a> - Circular shift elements of an array</li>
+<li><a href="#eoshift"><strong>eoshift</strong>(3)</a> - End-off shift elements of an array</li>
+</ul>
 <p>fortran-lang intrinsic descriptions (license: MIT) @urbanjost</p>
 </div>
 <div id="ishft" class="slide section level2">
@@ -8413,6 +8441,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 </ul>
 <h3 id="result-94"><strong>Result</strong></h3>
 <p>The number of leading zero bits, taking into account the kind of the input value. If all the bits of <strong>i</strong> are zero, the result value is <strong>bit_size(i)</strong>.</p>
+<p>The result may also be thought of as <strong>bit_size(i)-1-k</strong> where <strong>k</strong> is the position of the leftmost 1 bit in the input <strong>i</strong>. Positions are from 0 to bit-size(), with 0 at the right-most bit.</p>
 <h3 id="examples-111"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb499"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb499-1" title="1"><span class="kw">program</span> demo_leadz</a>
@@ -11436,7 +11465,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </ul>
 <h3 id="description-149"><strong>Description</strong></h3>
 <p><strong>out_of_range</strong>(3) determines whether a value <strong>x</strong> can be converted safely to a real or integer variable the same type and kind as <strong>mold</strong>.</p>
-<p>For example, if <strong>int8</strong> is the kind value for an 8-bit binary integer type, <strong>out_of_range(−128.5, 0_int8)</strong> will have the value false and <strong>out_of_range(−128.5, 0_int8, .true.)</strong> will have the value .true. because the value will be truncated when converted to an integer and -128 is a representable value on a two’s complement machine in eight bits even though +128 is not.</p>
+<p>For example, if <strong>int8</strong> is the kind value for an 8-bit binary integer type, <strong>out_of_range(-128.5, 0_int8)</strong> will have the value false and <strong>out_of_range(-128.5, 0_int8, .true.)</strong> will have the value .true. because the value will be truncated when converted to an integer and -128 is a representable value on a two’s complement machine in eight bits even though +128 is not.</p>
 <h3 id="options-146"><strong>Options</strong></h3>
 <ul>
 <li><dl>
@@ -11776,7 +11805,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </ul>
 <h3 id="result-132"><strong>Result</strong></h3>
 <p>The precision of values of the type and kind of <strong>x</strong> <!--
-   Result Value. The result has the value INT ((p − 1) * LOG10 (b)) + k, where b and p are as deﬁned in 16.4
+   Result Value. The result has the value INT ((p - 1) * LOG10 (b)) + k, where b and p are as defined in 16.4
    for the model representing real numbers with the same value for the kind type parameter as X, and where k is 1
    if b is an integral power of 10 and 0 otherwise.
 --> ### <strong>Examples</strong></p>
@@ -12333,15 +12362,15 @@ dim=3 :( 2 3 )
 <dl>
 <dt>Case (i)</dt>
 <dd><p>For an integer argument, the result has the value</p>
-<div class="sourceCode" id="cb698"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb698-1" title="1">  <span class="bu">int</span> (<span class="bu">log10</span> (<span class="fu">huge</span>(x)))</a></code></pre></div>
+<div class="sourceCode" id="cb698"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb698-1" title="1"><span class="bu">int</span> (<span class="bu">log10</span> (<span class="fu">huge</span>(x)))</a></code></pre></div>
+Case (ii)
 </dd>
-<dt>Case (ii)</dt>
 <dd><p>For a real argument, the result has the value</p>
-<div class="sourceCode" id="cb699"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb699-1" title="1">  <span class="bu">int</span>(<span class="bu">min</span> (<span class="bu">log10</span> (<span class="fu">huge</span>(x)), ­log10(<span class="fu">tiny</span>(x) )))</a></code></pre></div>
+<div class="sourceCode" id="cb699"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb699-1" title="1"> <span class="bu">int</span>(<span class="bu">min</span> (<span class="bu">log10</span> (<span class="fu">huge</span>(x)), <span class="kw">-</span><span class="bu">log10</span>(<span class="fu">tiny</span>(x) )))</a></code></pre></div>
+Case (iii)
 </dd>
-<dt>Case (iii)</dt>
 <dd><p>For a complex argument, the result has the value</p>
-<div class="sourceCode" id="cb700"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb700-1" title="1">  <span class="fu">range</span>(<span class="bu">real</span>(x))</a></code></pre></div>
+<div class="sourceCode" id="cb700"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb700-1" title="1"><span class="fu">range</span>(<span class="bu">real</span>(x))</a></code></pre></div>
 <h3 id="examples-156"><strong>Examples</strong></h3>
 </dd>
 </dl>
@@ -12990,11 +13019,11 @@ dim=3 :( 2 3 )
 <h3 id="description-166"><strong>Description</strong></h3>
 <p><strong>rrspacing</strong>(3) returns the reciprocal of the relative spacing of model numbers near <strong>x</strong>.</p>
 <!--
- 5 Result Value. The result has the value |Y×b−e|×bp = ABS (FRACTION (Y)) * RADIX (X) / EPSILON (X),
-    where b, e, and p are as deﬁned in 16.4 for Y, the value nearest to X in the model for real values whose kind type
+ 5 Result Value. The result has the value |Y* b-e|*bp = ABS (FRACTION (Y)) * RADIX (X) / EPSILON (X),
+    where b, e, and p are as defined in 16.4 for Y, the value nearest to X in the model for real values whose kind type
     parameter is that of X; if there are two such values, the value of greater absolute value is taken. If X is an IEEE
-    inﬁnity, the result is an IEEE NaN. If X is an IEEE NaN, the result is that NaN.
- 6 Example. RRSPACING (−3.0) has the value 0:75×224 for reals whose model is as in 16.4, NOTE 1.
+    infinity, the result is an IEEE NaN. If X is an IEEE NaN, the result is that NaN.
+ 6 Example. RRSPACING (-3.0) has the value 0:75x224 for reals whose model is as in 16.4, NOTE 1.
 -->
 <h3 id="options-163"><strong>Options</strong></h3>
 <ul>
@@ -13385,7 +13414,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” and �
 </ul>
 <h3 id="result-147"><strong>Result</strong></h3>
 <p>The result has a value equal to the value of the kind type parameter of an integer type that represents all values in the requested range.</p>
-<p>if no such kind type parameter is available on the processor, the result is −1.</p>
+<p>if no such kind type parameter is available on the processor, the result is -1.</p>
 <p>If more than one kind type parameter meets the criterion, the value returned is the one with the smallest decimal exponent range, unless there are several such values, in which case the smallest of these kind values is returned.</p>
 <h3 id="examples-165"><strong>Examples</strong></h3>
 <p>Sample program:</p>
@@ -14382,8 +14411,7 @@ TS 29113 begins
 <p>If <strong>x</strong> does not have the value zero and is not an IEEE infinity or NaN, the result has the value nearest to <strong>x</strong> for values of the same type and kind assuming the value is representable.</p>
 <p>Otherwise, the value is the same as <strong>tiny(x)</strong>. + zero produces <strong>tiny(x)</strong> + IEEE Infinity produces an IEEE Nan + if an IEEE NaN, that NaN is returned</p>
 <p>If there are two extended model values equally near to <strong>x</strong>, the value of greater absolute value is taken. <!--
-        e−p
-       b      , where b, e, and p are as deﬁned in 16.4
+       b**(e-p), where b, e, and p are as defined in 16.4
 --></p>
 <h3 id="examples-176"><strong>Examples</strong></h3>
 <p>Sample program:</p>
@@ -15341,13 +15369,14 @@ need an illustration of what happens with higher dimension array
 <p><strong>transpose</strong>(3) - [ARRAY:MANIPULATION] Transpose an array of rank two</p>
 <h3 id="synopsis-194"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb853"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb853-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">transpose</span>(matrix)</a></code></pre></div>
-<div class="sourceCode" id="cb854"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb854-1" title="1">     <span class="dt">type(TYPE(kind=KIND) transpose(matrix)</span></a>
+<div class="sourceCode" id="cb854"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb854-1" title="1">     <span class="kw">function</span> <span class="fu">transpose</span>(matrix)</a>
 <a class="sourceLine" id="cb854-2" title="2"></a>
-<a class="sourceLine" id="cb854-3" title="3">      <span class="dt">type(TYPE(kind=KIND),intent(in) :: matrix(:,:)</span></a></code></pre></div>
+<a class="sourceLine" id="cb854-3" title="3">      <span class="dt">type(TYPE(kind=KIND)            :: transpose(N,M)</span></a>
+<a class="sourceLine" id="cb854-4" title="4">      <span class="dt">type(TYPE(kind=KIND),intent(in) :: matrix(M,N)</span></a></code></pre></div>
 <h3 id="characteristics-195"><strong>Characteristics</strong></h3>
 <ul>
-<li><strong>matrix</strong> can be of any type but must have a rank of two.</li>
-<li>The result will be the same type and kind as <strong>matrix</strong> and the reversed shape of the input array.</li>
+<li><strong>matrix</strong> is an array of any type with a rank of two.</li>
+<li>The result will be the same type and kind as <strong>matrix</strong> and the reversed shape of the input array</li>
 </ul>
 <h3 id="description-194"><strong>Description</strong></h3>
 <p><strong>transpose</strong>(3) transposes an array of rank two.</p>

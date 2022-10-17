@@ -3749,12 +3749,15 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in) :: j', &
 '', &
 'CHARACTERISTICS', &
-'  o  the kind of I and J may be of any supported integer kind, not necessarily', &
-'     the same. An exception is that values may be a BOZ constant with a value', &
-'     valid for the integer kind available with the most bits on the current', &
-'     platform.', &
+'  o  I is an integer of any kind or a BOZ-literal-constant', &
+'', &
+'  o  J is an integer of any kind or a BOZ-literal-constant, not necessarily', &
+'     the same as I.', &
 '', &
 '  o  the result is of default logical kind', &
+'', &
+'  BOZ constants must have a value valid for the integer kind available with', &
+'  the most bits on the current platform.', &
 '', &
 'DESCRIPTION', &
 '  BLT(3) determines whether an integer is bitwise less than another.', &
@@ -3828,34 +3831,35 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = btest(i,pos)', &
 '', &
-'           elemental integer(kind=KIND) function btest(i,pos)', &
+'           elemental logical function btest(i,pos)', &
 '', &
-'            integer,intent(in)  :: i', &
-'            logical,intent(out) :: pos', &
+'            integer(kind=**),intent(in)  :: i', &
+'            integer(kind=**),intent(in)  :: pos', &
 '', &
 'CHARACTERISTICS', &
-'  o  I is an integer', &
+'  o  I is an integer of any kind', &
 '', &
-'  o  POS is a logical', &
+'  o  POS is a _integer of any kind', &
 '', &
-'  o  KIND is any integer kind supported by the programming environment.', &
-'', &
-'  o  the result is the same type and kind as I', &
+'  o  the result is a default logical', &
 '', &
 'DESCRIPTION', &
-'  BTEST(3) returns logical .true. if the bit at POS in I is set.', &
+'  BTEST(3) returns logical .true. if the bit at POS in I is set to 1.', &
+'  Position zero is the right-most bit. Bit position increases from right to', &
+'  left up to BITSIZE(I)-1.', &
 '', &
 'OPTIONS', &
 '  o  I : The integer containing the bit to be tested', &
 '', &
 '  o  POS : The position of the bit to query. it must be a valid position for', &
-'     the value I; ie. 0 <= POS <= BIT_SIZE(I) .', &
-'', &
-'     A value of zero refers to the least significant bit.', &
+'     the value I; ie. 0 <= POS <= BIT_SIZE(I).', &
 '', &
 'RESULT', &
 '  The result is a logical that has the value .true. if bit position POS of I', &
 '  has the value 1 and the value .false. if bit POS of I has the value 0.', &
+'', &
+'  Positions of bits in the sequence are numbered from right to left, with the', &
+'  position of the rightmost bit being zero.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -6222,10 +6226,10 @@ textblock=[character(len=256) :: &
 '', &
 '  Unavailable numeric parameters return -HUGE(VALUE).', &
 '', &
-'  These forms are compatible with the representations dened in ISO 8601:2004.', &
-'  UTC is established by the International Bureau of Weights and Measures', &
-'  (BIPM, i.e. Bureau International des Poids et Mesures) and the International', &
-'  Earth Rotation Service (IERS).', &
+'  These forms are compatible with the representations defined in ISO', &
+'  8601:2004. UTC is established by the International Bureau of Weights and', &
+'  Measures (BIPM, i.e. Bureau International des Poids et Mesures) and the', &
+'  International Earth Rotation Service (IERS).', &
 '', &
 'OPTIONS', &
 '  o  DATE : A character string of default kind of the form CCYYMMDD, of length', &
@@ -7476,13 +7480,15 @@ textblock=[character(len=256) :: &
 '', &
 '  $$ e^{x^2} \frac{2}{\sqrt{\pi}} \int_{x}^{\infty} e^{-t^2} dt. $$', &
 '', &
+'  erfc_scaled(x)=exp(x*x)erfc(x)', &
+'', &
 '  NOTE1', &
 '', &
-'  The complementary error function is asymptotic to exp(-X2)/(X<sqrt><pi>). As', &
-'  such it underows for X >~~ 9 when using ISO/IEC/IEEE 60559:2011 single', &
-'  precision arithmetic. The exponentially-scaled complementary error function', &
-'  is asymptotic to 1/(X <pi>). As such it does not underflow until X > HUGE', &
-'  (X)/ <pi>.', &
+'  The complementary error function is asymptotic to exp(-X2)/(X/PI). As such', &
+'  it underflows at approximately X >= 9 when using ISO/IEC/IEEE 60559:2011', &
+'  single precision arithmetic. The exponentially-scaled complementary error', &
+'  function is asymptotic to 1/(X PI). As such it does not underflow until X >', &
+'  HUGE (X)/PI.', &
 '', &
 'OPTIONS', &
 '  o  X the value to apply the ERFC function to', &
@@ -7908,9 +7914,9 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 '  -A shall be an object or pointer to an extensible declared type, or', &
 '  unlimited polymorphic. If it is a polymorphic pointer, it shall not have an', &
-'  undened association status. -MOLE shall be an object or pointer to an', &
+'  undefined association status. -MOLE shall be an object or pointer to an', &
 '  extensible declared type or unlimited polymorphic. If it is a polymorphic', &
-'  pointer, it shall not have an undened association status.', &
+'  pointer, it shall not have an undefined association status.', &
 '', &
 '  o  the result is a scalar default logical type.', &
 '', &
@@ -10521,17 +10527,17 @@ textblock=[character(len=256) :: &
 '  IS_CONTIGUOUS(3) - [ARRAY:INQUIRY] Test if object is contiguous', &
 '', &
 'SYNOPSIS', &
-'  result = is_contiguous(a)', &
+'  result = is_contiguous(array)', &
 '', &
-'           logical function is_contiguous(a)', &
+'           logical function is_contiguous(array)', &
 '', &
-'            type(TYPE(kind=**)),intent(in) :: a', &
+'            type(TYPE(kind=**)),intent(in) :: array', &
 '', &
 'CHARACTERISTICS', &
 '  o  a kind designated as ** may be any supported kind for the type', &
 '', &
-'  o  A may be of any type. It shall be an array. If it is a pointer it shall', &
-'     be associated.', &
+'  o  ARRAY may be of any type. It shall be an array or assumed-rank. If it is', &
+'     a pointer it shall be associated.', &
 '', &
 '  o  the result is a default logical scalar', &
 '', &
@@ -10586,11 +10592,12 @@ textblock=[character(len=256) :: &
 '  It is processor-dependent whether any other object is contiguous.', &
 '', &
 'OPTIONS', &
-'  o  A : An array of any type to be tested for being contiguous. If it is a', &
-'     pointer it shall be associated.', &
+'  o  ARRAY : An array of any type to be tested for being contiguous. If it is', &
+'     a pointer it shall be associated.', &
 '', &
 'RESULT', &
-'  The result has the value .true. if A is contiguous, and .false.  otherwise.', &
+'  The result has the value .true. if ARRAY is contiguous, and .false.', &
+'  otherwise.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -10777,8 +10784,8 @@ textblock=[character(len=256) :: &
 '  o  SIZE : The value must be greater than zero and less than or equal to', &
 '     BIT_SIZE(i).', &
 '', &
-'     The default is BIT_SIZE(I). That is, the default is to circularly shift', &
-'     the entire value I.', &
+'     The default if BIT_SIZE(I) is absent is to circularly shift the entire', &
+'     value I.', &
 '', &
 'RESULT', &
 '  The result characteristics (kind, shape, size, rank, ...) are the same as I.', &
@@ -10798,34 +10805,65 @@ textblock=[character(len=256) :: &
 '      implicit none', &
 '      integer             :: i', &
 '      character(len=*),parameter :: g=''(b32.32,1x,i0)''', &
-'', &
+'        ! basics', &
 '         write(*,*) ishftc(3, 1),'' <== typically should have the value 6''', &
 '', &
-'        ! shift a value by various amounts', &
+'         print *, ''lets start with this:''', &
+'         write(*,''(b32.32)'')huge(0)', &
+'         print *, ''shift the value by various amounts, negative and positive''', &
 '         do i= -bit_size(0), bit_size(0), 8', &
 '            write(*,g) ishftc(huge(0),i), i', &
 '         enddo', &
+'        print *,''elemental''', &
+'        i=huge(0)', &
+'        write(*,*)ishftc(i,[2,3,4,5])', &
+'        write(*,*)ishftc([2**1,2**3,-2**7],3)', &
+'        print *,''note the arrays have to conform when elemental''', &
+'        write(*,*)ishftc([2**1,2**3,-2**7],[5,20,0])', &
 '', &
 '      end program demo_ishftc', &
 '', &
 '  Results:', &
 '', &
-'       >              6  <== typically should have the value 6', &
-'       >   01111111111111111111111111111111 -32', &
-'       >   11111111111111111111111101111111 -24', &
-'       >   11111111111111110111111111111111 -16', &
-'       >   11111111011111111111111111111111 -8', &
-'       >   01111111111111111111111111111111 0', &
-'       >   11111111111111111111111101111111 8', &
-'       >   11111111111111110111111111111111 16', &
-'       >   11111111011111111111111111111111 24', &
-'       >   01111111111111111111111111111111 32', &
+'       >            6  <== typically should have the value 6', &
+'       >  lets start with this:', &
+'       > 01111111111111111111111111111111', &
+'       >  shift the value by various amounts, negative and positive', &
+'       > 01111111111111111111111111111111 -32', &
+'       > 11111111111111111111111101111111 -24', &
+'       > 11111111111111110111111111111111 -16', &
+'       > 11111111011111111111111111111111 -8', &
+'       > 01111111111111111111111111111111 0', &
+'       > 11111111111111111111111101111111 8', &
+'       > 11111111111111110111111111111111 16', &
+'       > 11111111011111111111111111111111 24', &
+'       > 01111111111111111111111111111111 32', &
+'       >  elemental', &
+'       >           -3          -5          -9         -17', &
+'       >           16          64       -1017', &
+'       >  note the arrays have to conform when elemental', &
+'       >           64     8388608        -128', &
+'  ================================================================================', &
 '', &
 'STANDARD', &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  ISHFT(3)', &
+'  o  ISHFT(3) - Logical shift of bits in an integer', &
+'', &
+'  o  SHIFTA(3) - Right shift with fill', &
+'', &
+'  o  SHIFTL(3) - Shift bits left', &
+'', &
+'  o  SHIFTR(3) - Combined right shift of the bits of two int...', &
+'', &
+'  o  DSHIFTL(3) - Combined left shift of the bits of two inte...', &
+'', &
+'  o  DSHIFTR(3) - Combined right shift of the bits of two int...', &
+'', &
+'  o  CSHIFT(3) - Circular shift elements of an array', &
+'', &
+'  o  EOSHIFT(3) - End-off shift elements of an array', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -11268,6 +11306,10 @@ textblock=[character(len=256) :: &
 'RESULT', &
 '  The number of leading zero bits, taking into account the kind of the input', &
 '  value. If all the bits of I are zero, the result value is BIT_SIZE(I).', &
+'', &
+'  The result may also be thought of as BIT_SIZE(I)-1-K where K is the position', &
+'  of the leftmost 1 bit in the input I. Positions are from 0 to bit-size(),', &
+'  with 0 at the right-most bit.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -16353,15 +16395,15 @@ textblock=[character(len=256) :: &
 'RESULT', &
 '  Case (i) : For an integer argument, the result has the value', &
 '', &
-'        int (log10 (huge(x)))', &
+'          int (log10 (huge(x)))', &
 '', &
 '  Case (ii) : For a real argument, the result has the value', &
 '', &
-'        int(min (log10 (huge(x)), log10(tiny(x) )))', &
+'           int(min (log10 (huge(x)), -log10(tiny(x) )))', &
 '', &
 '  Case (iii) : For a complex argument, the result has the value', &
 '', &
-'        range(real(x))', &
+'          range(real(x))', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -20253,15 +20295,16 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = transpose(matrix)', &
 '', &
-'           type(TYPE(kind=KIND) transpose(matrix)', &
+'           function transpose(matrix)', &
 '', &
-'            type(TYPE(kind=KIND),intent(in) :: matrix(:,:)', &
+'            type(TYPE(kind=KIND)            :: transpose(N,M)', &
+'            type(TYPE(kind=KIND),intent(in) :: matrix(M,N)', &
 '', &
 'CHARACTERISTICS', &
-'  o  MATRIX can be of any type but must have a rank of two.', &
+'  o  MATRIX is an array of any type with a rank of two.', &
 '', &
 '  o  The result will be the same type and kind as MATRIX and the reversed', &
-'     shape of the input array.', &
+'     shape of the input array', &
 '', &
 'DESCRIPTION', &
 '  TRANSPOSE(3) transposes an array of rank two.', &

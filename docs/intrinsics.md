@@ -3760,16 +3760,17 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-  - the _kind_ of **i** and **j** may be of any supported _integer_
-  kind, not necessarily the same. An exception is that values may be a
-  BOZ constant with a value valid for the _integer_ kind available with
-  the most bits on the current platform.
-
+  - **i** is an _integer_ of any kind or a BOZ-literal-constant
+  - **j** is an _integer_ of any kind or a BOZ-literal-constant, not
+    necessarily the same as **i**.
   - the result is of default logical kind
+
+  BOZ constants must have a value valid for the _integer_ kind available
+  with the most bits on the current platform.
 
 ### **Description**
 
-  **blt**(3) determines whether an integer is bitwise less than another.
+  **blt**(3) determines whether an _integer_ is bitwise less than another.
 
 ### **Options**
 
@@ -3841,21 +3842,22 @@ Fortran 2008
     result = btest(i,pos)
 ```
 ```fortran
-     elemental integer(kind=KIND) function btest(i,pos)
+     elemental logical function btest(i,pos)
 
-      integer,intent(in)  :: i
-      logical,intent(out) :: pos
+      integer(kind=**),intent(in)  :: i
+      integer(kind=**),intent(in)  :: pos
 ```
 ### **Characteristics**
 
- - **i** is an _integer_
- - **pos** is a _logical_
- - **KIND** is any _integer_ kind supported by the programming environment.
- - the result is the same type and kind as **i**
+ - **i** is an _integer_ of any kind
+ - **pos** is a _integer of any kind
+ - the result is a default logical
 
 ### **Description**
 
-**btest**(3) returns logical _.true._ if the bit at **pos** in **i** is set.
+  **btest**(3) returns logical _.true._ if the bit at **pos** in **i** is
+  set to 1.  Position zero is the right-most bit. Bit position increases
+  from right to left up to **bitsize(i)-1**.
 
 ### **Options**
 
@@ -3864,15 +3866,16 @@ Fortran 2008
 
 - **pos**
   : The position of the bit to query. it must be a valid position for the
-  value **i**; ie. **0 <= pos <= bit_size(i)** .
-
-  A value of zero refers to the least significant bit.
+  value **i**; ie. **0 <= pos <= bit_size(i)**.
 
 ### **Result**
 
   The result is a _logical_ that has the value _.true._ if bit position
   **pos** of **i** has the value **1** and the value _.false._ if bit
   **pos** of **i** has the value **0**.
+
+  Positions of bits in the sequence are numbered from right to left,
+  with the position of the rightmost bit being zero.
 
 ### **Examples**
 
@@ -6422,7 +6425,7 @@ Fortran 2008
 
   Unavailable numeric parameters return **-huge(value)**.
 
-  These forms are compatible with the representations deﬁned in ISO
+  These forms are compatible with the representations defined in ISO
   8601:2004. UTC is established by the International Bureau of Weights
   and Measures (BIPM, i.e. Bureau International des Poids et Mesures)
   and the International Earth Rotation Service (IERS).
@@ -6467,8 +6470,8 @@ Fortran 2008
    If this information is not available, ZONE is assigned all blanks.
 
 - **values**
-  : An array of at least eight elements.  If there is no data
-  available for a value it is set to **−huge(values)**. Otherwise,
+  : An array of at least eight elements. If there is no data
+  available for a value it is set to **-huge(values)**. Otherwise,
   it contains:
 
   - **values**(1) : The year, including the century.
@@ -7671,13 +7674,15 @@ e^{x^2} \frac{2}{\sqrt{\pi}} \int_{x}^{\infty}
 e^{-t^2} dt.
 $$
 
+erfc_scaled(x)=exp(x*x)erfc(x)
+
 #### NOTE1
 
   The complementary error function is asymptotic to
-  exp(−X2)/(X√π). As such it underﬂows for X >≈ 9 when
+  exp(-X2)/(X/PI). As such it underflows at approximately X >= 9 when
   using ISO/IEC/IEEE 60559:2011 single precision arithmetic. The
   exponentially-scaled complementary error function is asymptotic to
-  1/(X   π). As such it does not underflow until X > HUGE (X)/ π.
+  1/(X  PI). As such it does not underflow until X > HUGE (X)/PI.
 
 ### **Options**
 
@@ -8190,10 +8195,10 @@ of **a** is an extension of the dynamic type of **mold**.
 ### **Characteristics**
  -**a** shall be an object or pointer to an extensible declared type,
         or unlimited polymorphic. If it is a polymorphic pointer, it
-        shall not have an undeﬁned association status.
+        shall not have an undefined association status.
  -**mole** shall be an object or pointer to an extensible declared type
            or unlimited polymorphic. If it is a polymorphic pointer,
-           it shall not have an undeﬁned association status.
+           it shall not have an undefined association status.
  - the result is a scalar default logical type.
 
 ### **Description**
@@ -10975,17 +10980,17 @@ Fortran 2008
 
 ### **Synopsis**
 ```fortran
-    result = is_contiguous(a)
+    result = is_contiguous(array)
 ```
 ```fortran
-     logical function is_contiguous(a)
+     logical function is_contiguous(array)
 
-      type(TYPE(kind=**)),intent(in) :: a
+      type(TYPE(kind=**)),intent(in) :: array
 ```
 ### **Characteristics**
 
 - a kind designated as ** may be any supported kind for the type
-- **a** may be of any type. It shall be an array. If it is a pointer it
+- **array** may be of any type. It shall be an array or assumed-rank. If it is a pointer it
   shall be associated.
 - the result is a default logical scalar
 
@@ -11056,13 +11061,13 @@ It is processor-dependent whether any other object is contiguous.
 
 ### **Options**
 
-- **a**
+- **array**
   : An array of any type to be tested for being contiguous. If it is a
   pointer it shall be associated.
 
 ### **Result**
 
-  The result has the value _.true._ if **a** is contiguous, and _.false._
+  The result has the value _.true._ if **array** is contiguous, and _.false._
   otherwise.
 
 ### **Examples**
@@ -11154,8 +11159,8 @@ Fortran 2008
   : The value must be greater than zero and less than or equal to
     **bit_size**(i).
 
-    The default is **bit_size(i)**. That is, the default is to circularly
-    shift the entire value **i**.
+    The default if **bit_size(i)** is absent is to circularly shift the
+    entire value **i**.
 
 ### **Result**
 
@@ -11178,37 +11183,60 @@ use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
 implicit none
 integer             :: i
 character(len=*),parameter :: g='(b32.32,1x,i0)'
-
+  ! basics
    write(*,*) ishftc(3, 1),' <== typically should have the value 6'
 
-  ! shift a value by various amounts
+   print *, 'lets start with this:'
+   write(*,'(b32.32)')huge(0)
+   print *, 'shift the value by various amounts, negative and positive'
    do i= -bit_size(0), bit_size(0), 8
       write(*,g) ishftc(huge(0),i), i
    enddo
+  print *,'elemental'
+  i=huge(0)
+  write(*,*)ishftc(i,[2,3,4,5])
+  write(*,*)ishftc([2**1,2**3,-2**7],3)
+  print *,'note the arrays have to conform when elemental'
+  write(*,*)ishftc([2**1,2**3,-2**7],[5,20,0])
 
 end program demo_ishftc
 ```
 Results:
 ```text
- >              6  <== typically should have the value 6
- >   01111111111111111111111111111111 -32
- >   11111111111111111111111101111111 -24
- >   11111111111111110111111111111111 -16
- >   11111111011111111111111111111111 -8
- >   01111111111111111111111111111111 0
- >   11111111111111111111111101111111 8
- >   11111111111111110111111111111111 16
- >   11111111011111111111111111111111 24
- >   01111111111111111111111111111111 32
+ >            6  <== typically should have the value 6
+ >  lets start with this:
+ > 01111111111111111111111111111111
+ >  shift the value by various amounts, negative and positive
+ > 01111111111111111111111111111111 -32
+ > 11111111111111111111111101111111 -24
+ > 11111111111111110111111111111111 -16
+ > 11111111011111111111111111111111 -8
+ > 01111111111111111111111111111111 0
+ > 11111111111111111111111101111111 8
+ > 11111111111111110111111111111111 16
+ > 11111111011111111111111111111111 24
+ > 01111111111111111111111111111111 32
+ >  elemental
+ >           -3          -5          -9         -17
+ >           16          64       -1017
+ >  note the arrays have to conform when elemental
+ >           64     8388608        -128
+================================================================================
 ```
-
 ### **Standard**
 
 Fortran 95
 
 ### **See Also**
 
-[**ishft**(3)](#ishft)
+- [**ishft**(3)](#ishft)   - Logical shift of bits in an integer
+- [**shifta**(3)](#shifta) - Right shift with fill
+- [**shiftl**(3)](#shiftl) - Shift bits left
+- [**shiftr**(3)](#shiftr) - Combined right shift of the bits of two int...
+- [**dshiftl**(3)](#dshiftl) - Combined left shift of the bits of two inte...
+- [**dshiftr**(3)](#dshiftr) - Combined right shift of the bits of two int...
+- [**cshift**(3)](#cshift)   - Circular shift elements of an array
+- [**eoshift**(3)](#eoshift) - End-off shift elements of an array
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -11726,6 +11754,10 @@ Fortran 95 , with KIND argument - Fortran 2003
   The number of leading zero bits, taking into account the kind of the
   input value. If all the bits of **i** are zero, the result value is
   **bit_size(i)**.
+
+  The result  may also be thought of as **bit_size(i)-1-k** where **k**
+  is the position of the leftmost 1 bit in the input **i**. Positions
+  are from 0 to bit-size(), with 0 at the right-most bit.
 
 ### **Examples**
 
@@ -15841,8 +15873,8 @@ Fortran 2008 . With DISTANCE or FAILED argument, TS 18508
    as **mold**.
 
    For example, if **int8** is the kind value for an 8-bit binary integer
-   type, **out_of_range(−128.5, 0_int8)** will have the value false and
-   **out_of_range(−128.5, 0_int8, .true.)** will have the value _.true._
+   type, **out_of_range(-128.5, 0_int8)** will have the value false and
+   **out_of_range(-128.5, 0_int8, .true.)** will have the value _.true._
    because the value will be truncated when converted to an _integer_
    and -128 is a representable value on a two's complement machine in
    eight bits even though +128 is not.
@@ -16399,7 +16431,7 @@ There are many procedures that operator or query values at the bit level:
 
    The precision of values of the type and kind of **x**
 <!--
-   Result Value. The result has the value INT ((p − 1) * LOG10 (b)) + k, where b and p are as deﬁned in 16.4
+   Result Value. The result has the value INT ((p - 1) * LOG10 (b)) + k, where b and p are as defined in 16.4
    for the model representing real numbers with the same value for the kind type parameter as X, and where k is 1
    if b is an integral power of 10 and 0 otherwise.
 -->
@@ -17114,24 +17146,21 @@ Fortran 95
   Case (i)
   : For an integer argument, the result has the value
 ```fortran
-  int (log10 (huge(x)))
+    int (log10 (huge(x)))
 ```
-
   Case (ii)
   : For a real argument, the result has the value
 ```fortran
-  int(min (log10 (huge(x)), ­log10(tiny(x) )))
+     int(min (log10 (huge(x)), -log10(tiny(x) )))
   ```
-
   Case (iii)
   : For a complex argument, the result has the value
 ```fortran
-  range(real(x))
+    range(real(x))
 ```
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_range
 use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
@@ -17993,11 +18022,11 @@ Fortran 95
 numbers near **x**.
 
 <!--
- 5 Result Value. The result has the value |Y×b−e|×bp = ABS (FRACTION (Y)) * RADIX (X) / EPSILON (X),
-    where b, e, and p are as deﬁned in 16.4 for Y, the value nearest to X in the model for real values whose kind type
+ 5 Result Value. The result has the value |Y* b-e|*bp = ABS (FRACTION (Y)) * RADIX (X) / EPSILON (X),
+    where b, e, and p are as defined in 16.4 for Y, the value nearest to X in the model for real values whose kind type
     parameter is that of X; if there are two such values, the value of greater absolute value is taken. If X is an IEEE
-    inﬁnity, the result is an IEEE NaN. If X is an IEEE NaN, the result is that NaN.
- 6 Example. RRSPACING (−3.0) has the value 0:75×224 for reals whose model is as in 16.4, NOTE 1.
+    infinity, the result is an IEEE NaN. If X is an IEEE NaN, the result is that NaN.
+ 6 Example. RRSPACING (-3.0) has the value 0:75x224 for reals whose model is as in 16.4, NOTE 1.
 -->
 
 ### **Options**
@@ -18553,7 +18582,7 @@ Fortran 2003
   of an integer type that represents all values in the requested range.
 
   if no such kind type parameter is available on the processor, the
-  result is −1.
+  result is -1.
 
   If more than one kind type parameter meets the criterion, the value
   returned is the one with the smallest decimal exponent range, unless
@@ -19879,8 +19908,7 @@ TS 29113 begins
    If there are two extended model values equally near to **x**, the
    value of greater absolute value is taken.
 <!--
-        e−p
-       b      , where b, e, and p are as deﬁned in 16.4
+       b**(e-p), where b, e, and p are as defined in 16.4
 -->
 
 ### **Examples**
@@ -21213,15 +21241,16 @@ Fortran 90
     result = transpose(matrix)
 ```
 ```fortran
-     type(TYPE(kind=KIND) transpose(matrix)
+     function transpose(matrix)
 
-      type(TYPE(kind=KIND),intent(in) :: matrix(:,:)
+      type(TYPE(kind=KIND)            :: transpose(N,M)
+      type(TYPE(kind=KIND),intent(in) :: matrix(M,N)
 ```
 ### **Characteristics**
 
-  - **matrix** can be of any type but must have a rank of two.
+  - **matrix** is an array of any type with a rank of two.
   - The result will be the same type and kind as **matrix** and the
-    reversed shape of the input array.
+    reversed shape of the input array
 
 ### **Description**
 

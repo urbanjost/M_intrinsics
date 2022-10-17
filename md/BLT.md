@@ -16,16 +16,18 @@
 ```
 ### **Characteristics**
 
-  - the _kind_ of **i** and **j** may be of any supported _integer_
-  kind, not necessarily the same. An exception is that values may be a
-  BOZ constant with a value valid for the _integer_ kind available with
-  the most bits on the current platform.
-
+  - **i** is an _integer_ of any kind or a BOZ-literal-constant
+  - **j** is an _integer_ of any kind or a BOZ-literal-constant, not
+    necessarily the same as **i**.
   - the result is of default logical kind
+
+  BOZ constants must have a value valid for the _integer_ kind available
+  with the most bits on the current platform.
 
 ### **Description**
 
-  **blt**(3) determines whether an integer is bitwise less than another.
+  **blt**(3) determines whether an _integer_ is bitwise less than another.
+
 
 ### **Options**
 

@@ -30,13 +30,16 @@ e^{x^2} \frac{2}{\sqrt{\pi}} \int_{x}^{\infty}
 e^{-t^2} dt.
 $$
 
+erfc_scaled(x)=exp(x*x)erfc(x)
+
+
 #### NOTE1
 
   The complementary error function is asymptotic to
-  exp(−X2)/(X√π). As such it underﬂows for X >≈ 9 when
+  exp(-X2)/(X/PI). As such it underflows at approximately X >= 9 when
   using ISO/IEC/IEEE 60559:2011 single precision arithmetic. The
   exponentially-scaled complementary error function is asymptotic to
-  1/(X   π). As such it does not underflow until X > HUGE (X)/ π.
+  1/(X  PI). As such it does not underflow until X > HUGE (X)/PI.
 
 ### **Options**
 
