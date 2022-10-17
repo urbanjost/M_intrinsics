@@ -34,7 +34,7 @@
 
    The precision of values of the type and kind of **x**
 <!--
-   Result Value. The result has the value INT ((p − 1) * LOG10 (b)) + k, where b and p are as deﬁned in 16.4
+   Result Value. The result has the value INT ((p - 1) * LOG10 (b)) + k, where b and p are as defined in 16.4
    for the model representing real numbers with the same value for the kind type parameter as X, and where k is 1
    if b is an integral power of 10 and 0 otherwise.
 -->
