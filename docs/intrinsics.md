@@ -1675,7 +1675,7 @@ function
     result = atan2(y, x)
 ```
 ```fortran
-     elemental function atan2(y, x)
+     elemental real(kind=KIND) function atan2(y, x)
 
       real,kind=KIND) :: atan2
       real,kind=KIND),intent(in) :: y, x
@@ -1687,10 +1687,15 @@ function
 
 ### **Description**
 
-**atan2**(3) computes in radians a processor-dependent approximation of
-the arctangent of the complex number ( **x**, **y** ) or equivalently the
-principal value of the arctangent of the value **y/x** (which determines
-a unique angle).
+  **atan2**(3) computes in radians a processor-dependent approximation of
+  the arctangent of the complex number ( **x**, **y** ) or equivalently the
+  principal value of the arctangent of the value **y/x** (which determines
+  a unique angle).
+
+  If **y** has the value zero, **x** shall not have the value zero.
+
+  It lies in the range -PI <= ATAN2 (Y,X) <= PI and is equal to a
+  processor-dependent approximation to a value of arctan(Y/X).
 
 ### **Options**
 
@@ -1856,13 +1861,12 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
- - **TYPE** may be _real_ or _complex_
- - **KIND** may be any kind supported by the associated type.
+ - **x** may be _real_ or _complex_ of any associated type
  - The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
-**atanh**(3) computes the inverse hyperbolic tangent of **x**.
+  **atanh**(3) computes the inverse hyperbolic tangent of **x**.
 
 ### **Options**
 
@@ -1871,10 +1875,10 @@ FORTRAN 77
 
 ### **Result**
 
-The return value has same type and kind as **x**. If **x** is _complex_, the
-imaginary part of the result is in radians and lies between
+  The return value has same type and kind as **x**. If **x** is _complex_, the
+  imaginary part of the result is in radians and lies between
 ```fortran
-     **-PI/2 <= aimag(atanh(x)) <= PI/2**
+       **-PI/2 <= aimag(atanh(x)) <= PI/2**
 ```
 ### **Examples**
 
@@ -1890,7 +1894,7 @@ end program demo_atanh
 ```
 Results:
 ```text
-   -Infinity   0.00000000             Infinity
+ >       -Infinity  0.0000000E+00       Infinity
 ```
 ### **Standard**
 
@@ -1904,17 +1908,17 @@ Inverse function: [**tanh**(3)](#tanh)
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## atan
 
 ### **Name**
 
-**atan**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arctangent function
+**atan**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arctangent AKA inverse tangent function
 
 ### **Synopsis**
 ```fortran
-    result = atan([y], x)
+    result = atan([x) | atan(y, x)
 ```
 ```fortran
      elemental TYPE(kind=KIND) function atan(y,x)

@@ -10,7 +10,7 @@ function
     result = atan2(y, x)
 ```
 ```fortran
-     elemental function atan2(y, x)
+     elemental real(kind=KIND) function atan2(y, x)
 
       real,kind=KIND) :: atan2
       real,kind=KIND),intent(in) :: y, x
@@ -22,10 +22,15 @@ function
 
 ### **Description**
 
-**atan2**(3) computes in radians a processor-dependent approximation of
-the arctangent of the complex number ( **x**, **y** ) or equivalently the
-principal value of the arctangent of the value **y/x** (which determines
-a unique angle).
+  **atan2**(3) computes in radians a processor-dependent approximation of
+  the arctangent of the complex number ( **x**, **y** ) or equivalently the
+  principal value of the arctangent of the value **y/x** (which determines
+  a unique angle).
+
+  If **y** has the value zero, **x** shall not have the value zero.
+
+  It lies in the range -PI <= ATAN2 (Y,X) <= PI and is equal to a
+  processor-dependent approximation to a value of arctan(Y/X).
 
 ### **Options**
 

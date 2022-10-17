@@ -1316,7 +1316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>atan2</strong>(3) - [MATHEMATICS:TRIGONOMETRIC] Arctangent (inverse tangent) function</p>
 <h3 id="synopsis-15"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb67"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb67-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">atan2</span>(y, x)</a></code></pre></div>
-<div class="sourceCode" id="cb68"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb68-1" title="1">     <span class="kw">elemental</span> <span class="kw">function</span> <span class="bu">atan2</span>(y, x)</a>
+<div class="sourceCode" id="cb68"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb68-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> <span class="bu">atan2</span>(y, x)</a>
 <a class="sourceLine" id="cb68-2" title="2"></a>
 <a class="sourceLine" id="cb68-3" title="3"><span class="dt">      real</span>,<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="dt">::</span> <span class="bu">atan2</span></a>
 <a class="sourceLine" id="cb68-4" title="4"><span class="dt">      real</span>,<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>),<span class="dt">intent(in)</span> <span class="dt">::</span> y, x</a></code></pre></div>
@@ -1327,6 +1327,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <h3 id="description-15"><strong>Description</strong></h3>
 <p><strong>atan2</strong>(3) computes in radians a processor-dependent approximation of the arctangent of the complex number ( <strong>x</strong>, <strong>y</strong> ) or equivalently the principal value of the arctangent of the value <strong>y/x</strong> (which determines a unique angle).</p>
+<p>If <strong>y</strong> has the value zero, <strong>x</strong> shall not have the value zero.</p>
+<p>It lies in the range -PI &lt;= ATAN2 (Y,X) &lt;= PI and is equal to a processor-dependent approximation to a value of arctan(Y/X).</p>
 <h3 id="options-15"><strong>Options</strong></h3>
 <ul>
 <li><dl>
@@ -1468,8 +1470,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb73-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <h3 id="characteristics-16"><strong>Characteristics</strong></h3>
 <ul>
-<li><strong>TYPE</strong> may be real or complex</li>
-<li><strong>KIND</strong> may be any kind supported by the associated type.</li>
+<li><strong>x</strong> may be real or complex of any associated type</li>
 <li>The returned value will be of the same type and kind as the argument.</li>
 </ul>
 <h3 id="description-16"><strong>Description</strong></h3>
@@ -1484,7 +1485,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <h3 id="result-16"><strong>Result</strong></h3>
 <p>The return value has same type and kind as <strong>x</strong>. If <strong>x</strong> is complex, the imaginary part of the result is in radians and lies between</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb74-1" title="1">     <span class="kw">**-</span>PI<span class="kw">/</span><span class="dv">2</span> <span class="op">&lt;</span><span class="kw">=</span> <span class="bu">aimag</span>(atanh(x)) <span class="op">&lt;</span><span class="kw">=</span> PI<span class="kw">/</span><span class="dv">2</span><span class="kw">**</span></a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb74-1" title="1">       <span class="kw">**-</span>PI<span class="kw">/</span><span class="dv">2</span> <span class="op">&lt;</span><span class="kw">=</span> <span class="bu">aimag</span>(atanh(x)) <span class="op">&lt;</span><span class="kw">=</span> PI<span class="kw">/</span><span class="dv">2</span><span class="kw">**</span></a></code></pre></div>
 <h3 id="examples-16"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb75-1" title="1"><span class="kw">program</span> demo_atanh</a>
@@ -1495,7 +1496,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb75-6" title="6"></a>
 <a class="sourceLine" id="cb75-7" title="7"><span class="kw">end program</span> demo_atanh</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>   -Infinity   0.00000000             Infinity</code></pre>
+<pre class="text"><code> &gt;       -Infinity  0.0000000E+00       Infinity</code></pre>
 <h3 id="standard-16"><strong>Standard</strong></h3>
 <p>Fortran 2008</p>
 <h3 id="see-also-16"><strong>See Also</strong></h3>
@@ -1504,14 +1505,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Hyperbolic_functions">Wikipedia:hyperbolic functions</a></li>
 </ul>
-<p>fortran-lang intrinsic descriptions</p>
+<p>fortran-lang intrinsic descriptions (license: MIT) @urbanjost</p>
 </div>
 <div id="atan" class="slide section level2">
 <h1>atan</h1>
 <h3 id="name-17"><strong>Name</strong></h3>
-<p><strong>atan</strong>(3) - [MATHEMATICS:TRIGONOMETRIC] Arctangent function</p>
+<p><strong>atan</strong>(3) - [MATHEMATICS:TRIGONOMETRIC] Arctangent AKA inverse tangent function</p>
 <h3 id="synopsis-17"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb77"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb77-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">atan</span>(<span class="kw">[</span>y<span class="kw">]</span>, x)</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb77-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">atan</span>(<span class="kw">[</span>x) <span class="kw">|</span> <span class="bu">atan</span>(y, x)</a></code></pre></div>
 <div class="sourceCode" id="cb78"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb78-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="bu">atan</span>(y,x)</a>
 <a class="sourceLine" id="cb78-2" title="2"></a>
 <a class="sourceLine" id="cb78-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>

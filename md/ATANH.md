@@ -15,13 +15,12 @@
 ```
 ### **Characteristics**
 
- - **TYPE** may be _real_ or _complex_
- - **KIND** may be any kind supported by the associated type.
+ - **x** may be _real_ or _complex_ of any associated type
  - The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
-**atanh**(3) computes the inverse hyperbolic tangent of **x**.
+  **atanh**(3) computes the inverse hyperbolic tangent of **x**.
 
 ### **Options**
 
@@ -30,10 +29,10 @@
 
 ### **Result**
 
-The return value has same type and kind as **x**. If **x** is _complex_, the
-imaginary part of the result is in radians and lies between
+  The return value has same type and kind as **x**. If **x** is _complex_, the
+  imaginary part of the result is in radians and lies between
 ```fortran
-     **-PI/2 <= aimag(atanh(x)) <= PI/2**
+       **-PI/2 <= aimag(atanh(x)) <= PI/2**
 ```
 ### **Examples**
 
@@ -49,7 +48,7 @@ end program demo_atanh
 ```
 Results:
 ```text
-   -Infinity   0.00000000             Infinity
+ >       -Infinity  0.0000000E+00       Infinity
 ```
 ### **Standard**
 
@@ -63,4 +62,4 @@ Inverse function: [**tanh**(3)](#tanh)
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

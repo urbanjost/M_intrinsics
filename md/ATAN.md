@@ -1,12 +1,13 @@
+
 ## atan
 
 ### **Name**
 
-**atan**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arctangent function
+**atan**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arctangent AKA inverse tangent function
 
 ### **Synopsis**
 ```fortran
-    result = atan([y], x)
+    result = atan([x) | atan(y, x)
 ```
 ```fortran
      elemental TYPE(kind=KIND) function atan(y,x)

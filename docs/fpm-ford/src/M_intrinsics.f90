@@ -1834,7 +1834,7 @@ textblock=[character(len=256) :: &
 'SYNOPSIS', &
 '  result = atan2(y, x)', &
 '', &
-'           elemental function atan2(y, x)', &
+'           elemental real(kind=KIND) function atan2(y, x)', &
 '', &
 '            real,kind=KIND) :: atan2', &
 '            real,kind=KIND),intent(in) :: y, x', &
@@ -1848,6 +1848,11 @@ textblock=[character(len=256) :: &
 '  ATAN2(3) computes in radians a processor-dependent approximation of the', &
 '  arctangent of the complex number ( X, Y ) or equivalently the principal', &
 '  value of the arctangent of the value Y/X (which determines a unique angle).', &
+'', &
+'  If Y has the value zero, X shall not have the value zero.', &
+'', &
+'  It lies in the range -PI <= ATAN2 (Y,X) <= PI and is equal to a processor-', &
+'  dependent approximation to a value of arctan(Y/X).', &
 '', &
 'OPTIONS', &
 '  o  Y : The imaginary component of the complex value (X,Y) or the Y component', &
@@ -2002,10 +2007,11 @@ textblock=[character(len=256) :: &
 'atan(3fortran)                                                  atan(3fortran)', &
 '', &
 'NAME', &
-'  ATAN(3) - [MATHEMATICS:TRIGONOMETRIC] Arctangent function', &
+'  ATAN(3) - [MATHEMATICS:TRIGONOMETRIC] Arctangent AKA inverse tangent', &
+'  function', &
 '', &
 'SYNOPSIS', &
-'  result = atan([y], x)', &
+'  result = atan([x) | atan(y, x)', &
 '', &
 '           elemental TYPE(kind=KIND) function atan(y,x)', &
 '', &
@@ -2099,9 +2105,7 @@ textblock=[character(len=256) :: &
 '            TYPE(kind=KIND),intent(in) :: x', &
 '', &
 'CHARACTERISTICS', &
-'  o  TYPE may be real or complex', &
-'', &
-'  o  KIND may be any kind supported by the associated type.', &
+'  o  X may be real or complex of any associated type', &
 '', &
 '  o  The returned value will be of the same type and kind as the argument.', &
 '', &
@@ -2115,7 +2119,7 @@ textblock=[character(len=256) :: &
 '  The return value has same type and kind as X. If X is complex, the imaginary', &
 '  part of the result is in radians and lies between', &
 '', &
-'           **-PI/2 <= aimag(atanh(x)) <= PI/2**', &
+'             **-PI/2 <= aimag(atanh(x)) <= PI/2**', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -2130,7 +2134,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         -Infinity   0.00000000             Infinity', &
+'       >       -Infinity  0.0000000E+00       Infinity', &
 '', &
 'STANDARD', &
 '  Fortran 2008', &
@@ -2141,7 +2145,7 @@ textblock=[character(len=256) :: &
 'RESOURCES', &
 '  o  Wikipedia:hyperbolic functions', &
 '', &
-'  fortran-lang intrinsic descriptions', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                               October 16, 2022                atanh(3fortran)', &
 '']
