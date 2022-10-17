@@ -29,8 +29,8 @@
    as **mold**.
 
    For example, if **int8** is the kind value for an 8-bit binary integer
-   type, **out_of_range(−128.5, 0_int8)** will have the value false and
-   **out_of_range(−128.5, 0_int8, .true.)** will have the value _.true._
+   type, **out_of_range(-128.5, 0_int8)** will have the value false and
+   **out_of_range(-128.5, 0_int8, .true.)** will have the value _.true._
    because the value will be truncated when converted to an _integer_
    and -128 is a representable value on a two's complement machine in
    eight bits even though +128 is not.
