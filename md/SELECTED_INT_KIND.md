@@ -37,7 +37,7 @@
   of an integer type that represents all values in the requested range.
 
   if no such kind type parameter is available on the processor, the
-  result is −1.
+  result is -1.
 
   If more than one kind type parameter meets the criterion, the value
   returned is the one with the smallest decimal exponent range, unless
