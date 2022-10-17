@@ -5108,7 +5108,7 @@ textblock=[character(len=256) :: &
 '  None.', &
 '', &
 'RESULT', &
-'  The result contains the compiler flags used to compile the file comtaining', &
+'  The result contains the compiler flags used to compile the file containing', &
 '  the COMPILER_OPTIONS(3) call.', &
 '', &
 'EXAMPLES', &
@@ -6265,7 +6265,7 @@ textblock=[character(len=256) :: &
 '     o  hh and mm are the time difference with respect to Coordinated', &
 '        Universal Time (UTC) in hours and minutes, respectively.', &
 '', &
-'     The characters of this value following the sign character are alldecimal', &
+'     The characters of this value following the sign character are all decimal', &
 '     digits.', &
 '', &
 '     If this information is not available, ZONE is assigned all blanks.', &
@@ -12192,8 +12192,8 @@ textblock=[character(len=256) :: &
 '  "e".', &
 '', &
 'OPTIONS', &
-'  o  X : The value to compute the natual log of. If X is real, its value shall', &
-'     be greater than zero. If X is complex, its value shall not be zero.', &
+'  o  X : The value to compute the natural log of. If X is real, its value', &
+'     shall be greater than zero. If X is complex, its value shall not be zero.', &
 '', &
 'RESULT', &
 '  The natural logarithm of X. If X is the complex value (R,I) , the imaginary', &

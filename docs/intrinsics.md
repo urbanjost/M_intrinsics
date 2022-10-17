@@ -5242,7 +5242,7 @@ Fortran 2003
 ### **Result**
 
   The result contains the compiler flags used to compile the file
-  comtaining the **compiler_options**(3) call.
+  containing the **compiler_options**(3) call.
 
 ### **Examples**
 
@@ -6469,7 +6469,7 @@ Fortran 2008
        Universal Time (UTC) in hours and minutes, respectively.
 
    The characters of this value following the sign character are
-   alldecimal digits.
+   all decimal digits.
 
    If this information is not available, ZONE is assigned all blanks.
 
@@ -12835,7 +12835,7 @@ Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 ### **Options**
 
 - **x**
-  : The value to compute the natual log of.
+  : The value to compute the natural log of.
     If **x** is _real_, its value shall be greater than zero.
     If **x** is _complex_, its value shall not be zero.
 

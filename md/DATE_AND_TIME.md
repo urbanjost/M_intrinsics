@@ -73,7 +73,7 @@
        Universal Time (UTC) in hours and minutes, respectively.
 
    The characters of this value following the sign character are
-   alldecimal digits.
+   all decimal digits.
 
    If this information is not available, ZONE is assigned all blanks.
 

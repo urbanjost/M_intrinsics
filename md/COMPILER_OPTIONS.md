@@ -28,7 +28,7 @@
 ### **Result**
 
   The result contains the compiler flags used to compile the file
-  comtaining the **compiler_options**(3) call.
+  containing the **compiler_options**(3) call.
 
 ### **Examples**
 

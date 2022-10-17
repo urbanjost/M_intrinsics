@@ -26,7 +26,7 @@
 ### **Options**
 
 - **x**
-  : The value to compute the natual log of.
+  : The value to compute the natural log of.
     If **x** is _real_, its value shall be greater than zero.
     If **x** is _complex_, its value shall not be zero.
 
