@@ -24,11 +24,11 @@
 numbers near **x**.
 
 <!--
- 5 Result Value. The result has the value |Y×b−e|×bp = ABS (FRACTION (Y)) * RADIX (X) / EPSILON (X),
-    where b, e, and p are as deﬁned in 16.4 for Y, the value nearest to X in the model for real values whose kind type
+ 5 Result Value. The result has the value |Y* b-e|*bp = ABS (FRACTION (Y)) * RADIX (X) / EPSILON (X),
+    where b, e, and p are as defined in 16.4 for Y, the value nearest to X in the model for real values whose kind type
     parameter is that of X; if there are two such values, the value of greater absolute value is taken. If X is an IEEE
-    inﬁnity, the result is an IEEE NaN. If X is an IEEE NaN, the result is that NaN.
- 6 Example. RRSPACING (−3.0) has the value 0:75×224 for reals whose model is as in 16.4, NOTE 1.
+    infinity, the result is an IEEE NaN. If X is an IEEE NaN, the result is that NaN.
+ 6 Example. RRSPACING (-3.0) has the value 0:75x224 for reals whose model is as in 16.4, NOTE 1.
 -->
 
 ### **Options**
