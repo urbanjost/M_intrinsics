@@ -8026,8 +8026,7 @@ $$</span><br /></p>
  &gt;           -3          -5          -9         -17
  &gt;           16          64       -1017
  &gt;  note the arrays have to conform when elemental
- &gt;           64     8388608        -128
-================================================================================</code></pre>
+ &gt;           64     8388608        -128</code></pre>
 <h3 id="standard-107"><strong>Standard</strong></h3>
 <p>Fortran 95</p>
 <h3 id="see-also-107"><strong>See Also</strong></h3>
@@ -8935,8 +8934,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
  &gt;  elemental
  &gt;  T F
  &gt;  F T
- &gt;  T T
-================================================================================</code></pre>
+ &gt;  T T</code></pre>
 <h3 id="standard-118"><strong>Standard</strong></h3>
 <p>FORTRAN 77</p>
 <h3 id="see-also-118"><strong>See Also</strong></h3>
@@ -11430,16 +11428,17 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb651-12" title="12">     <span class="kw">end do</span></a>
 <a class="sourceLine" id="cb651-13" title="13">   <span class="kw">endif</span></a>
 <a class="sourceLine" id="cb651-14" title="14"></a>
-<a class="sourceLine" id="cb651-15" title="15"> <span class="co">! The following code uses image 1 to read data and broadcast it to other images.</span></a>
-<a class="sourceLine" id="cb651-16" title="16">   <span class="kw">if</span> (this_image()<span class="op">==</span><span class="dv">1</span>) <span class="kw">then</span></a>
-<a class="sourceLine" id="cb651-17" title="17">      p<span class="kw">=</span><span class="fl">1234.5678</span></a>
-<a class="sourceLine" id="cb651-18" title="18">      <span class="kw">do</span> i <span class="kw">=</span> <span class="dv">2</span>, num_images()</a>
-<a class="sourceLine" id="cb651-19" title="19">         p<span class="kw">[</span>i<span class="kw">]</span> <span class="kw">=</span> p</a>
-<a class="sourceLine" id="cb651-20" title="20">      <span class="kw">end do</span></a>
-<a class="sourceLine" id="cb651-21" title="21">   <span class="kw">end if</span></a>
-<a class="sourceLine" id="cb651-22" title="22">   sync <span class="fu">all</span></a>
-<a class="sourceLine" id="cb651-23" title="23"></a>
-<a class="sourceLine" id="cb651-24" title="24"><span class="kw">end program</span> demo_num_images</a></code></pre></div>
+<a class="sourceLine" id="cb651-15" title="15"> <span class="co">! The following code uses image 1 to read data and</span></a>
+<a class="sourceLine" id="cb651-16" title="16"> <span class="co">! broadcast it to other images.</span></a>
+<a class="sourceLine" id="cb651-17" title="17">   <span class="kw">if</span> (this_image()<span class="op">==</span><span class="dv">1</span>) <span class="kw">then</span></a>
+<a class="sourceLine" id="cb651-18" title="18">      p<span class="kw">=</span><span class="fl">1234.5678</span></a>
+<a class="sourceLine" id="cb651-19" title="19">      <span class="kw">do</span> i <span class="kw">=</span> <span class="dv">2</span>, num_images()</a>
+<a class="sourceLine" id="cb651-20" title="20">         p<span class="kw">[</span>i<span class="kw">]</span> <span class="kw">=</span> p</a>
+<a class="sourceLine" id="cb651-21" title="21">      <span class="kw">end do</span></a>
+<a class="sourceLine" id="cb651-22" title="22">   <span class="kw">end if</span></a>
+<a class="sourceLine" id="cb651-23" title="23">   sync <span class="fu">all</span></a>
+<a class="sourceLine" id="cb651-24" title="24"></a>
+<a class="sourceLine" id="cb651-25" title="25"><span class="kw">end program</span> demo_num_images</a></code></pre></div>
 <h3 id="standard-147"><strong>Standard</strong></h3>
 <p>Fortran 2008 . With DISTANCE or FAILED argument, TS 18508</p>
 <h3 id="see-also-147"><strong>See Also</strong></h3>

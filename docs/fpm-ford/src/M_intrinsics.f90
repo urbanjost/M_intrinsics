@@ -10845,7 +10845,6 @@ textblock=[character(len=256) :: &
 '       >           16          64       -1017', &
 '       >  note the arrays have to conform when elemental', &
 '       >           64     8388608        -128', &
-'  ================================================================================', &
 '', &
 'STANDARD', &
 '  Fortran 95', &
@@ -11957,7 +11956,6 @@ textblock=[character(len=256) :: &
 '       >  T F', &
 '       >  F T', &
 '       >  T T', &
-'  ================================================================================', &
 '', &
 'STANDARD', &
 '  FORTRAN 77', &
@@ -15180,7 +15178,8 @@ textblock=[character(len=256) :: &
 '           end do', &
 '         endif', &
 '', &
-'       ! The following code uses image 1 to read data and broadcast it to other images.', &
+'       ! The following code uses image 1 to read data and', &
+'       ! broadcast it to other images.', &
 '         if (this_image()==1) then', &
 '            p=1234.5678', &
 '            do i = 2, num_images()', &

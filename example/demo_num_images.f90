@@ -12,7 +12,8 @@
            end do
          endif
 
-       ! The following code uses image 1 to read data and broadcast it to other images.
+       ! The following code uses image 1 to read data and
+       ! broadcast it to other images.
          if (this_image()==1) then
             p=1234.5678
             do i = 2, num_images()

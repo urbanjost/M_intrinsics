@@ -11225,7 +11225,6 @@ Results:
  >           16          64       -1017
  >  note the arrays have to conform when elemental
  >           64     8388608        -128
-================================================================================
 ```
 ### **Standard**
 
@@ -12439,7 +12438,6 @@ Results:
  >  T F
  >  F T
  >  T T
-================================================================================
 ```
 ### **Standard**
 
@@ -15824,7 +15822,8 @@ integer :: i
      end do
    endif
 
- ! The following code uses image 1 to read data and broadcast it to other images.
+ ! The following code uses image 1 to read data and
+ ! broadcast it to other images.
    if (this_image()==1) then
       p=1234.5678
       do i = 2, num_images()
