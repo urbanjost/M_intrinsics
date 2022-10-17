@@ -41,8 +41,7 @@
    If there are two extended model values equally near to **x**, the
    value of greater absolute value is taken.
 <!--
-        e−p
-       b      , where b, e, and p are as deﬁned in 16.4 
+       b**(e-p), where b, e, and p are as defined in 16.4 
 -->
 
 ### **Examples**
