@@ -3487,18 +3487,18 @@ Fortran 2008
 ```fortran
       elemental logical function bgt(i, j)
 
-       integer(kind=KIND),intent(in) :: i
-       integer(kind=KIND),intent(in) :: j
+       integer(kind=**),intent(in) :: i
+       integer(kind=**),intent(in) :: j
 ```
 ### **Characteristics**
 
+ - **i** is an _integer_ or a boz-literal-constant.
+ - **j** is an _integer_ or a boz-literal-constant.
  - a kind designated as ** may be any supported kind for the type
-
- - the _integer_ _kind_ of **i** and **j** may not necessarily be the same.
+   The _integer_ _kind_ of **i** and **j** may not necessarily be the same.
    kind. In addition, values may be a BOZ constant with a value valid
    for the _integer_ kind available with the most bits on the current
    platform.
-
  - The return value is of type _logical_ and of the default kind.
 
 ### **Description**
@@ -3509,10 +3509,10 @@ Fortran 2008
 ### **Options**
 
 - **i**
-  : Shall be of _integer_ type or a BOZ literal constant.
+  : reference value to compare against
 
 - **j**
-  : Shall be of _integer_ type or a BOZ literal constant.
+  : value to compare to **i**
 
 ### **Result**
 
@@ -3520,6 +3520,8 @@ Fortran 2008
   result is true if the sequence of bits represented by _i_ is greater
   than the sequence of bits represented by _j_, otherwise the result
   is false.
+
+  Bits are compared from right to left.
 
 ### **Examples**
 
@@ -3533,6 +3535,14 @@ integer(kind=int8) :: byte
   ! Compare some one-byte values to 64.
    ! Notice that the values are tested as bits not as integers
    ! so sign bits in the integer are treated just like any other
+   write(*,'(a)') 'we will compare other values to 64'
+   i=64
+   byte=i
+   write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,bgt(byte,64_int8),byte
+
+   write(*,'(a)') "comparing at the bit level, not as whole numbers."
+   write(*,'(a)') "so pay particular attention to the negative"
+   write(*,'(a)') "values on this two's complement platform ..."
    do i=-128,127,32
       byte=i
       write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,bgt(byte,64_int8),byte
@@ -3545,14 +3555,19 @@ end program demo_bgt
 ```
 Results:
 ```text
-   > -0128  T 10000000
-   > -0096  T 10100000
-   > -0064  T 11000000
-   > -0032  T 11100000
-   > +0000  F 00000000
-   > +0032  F 00100000
-   > +0064  F 01000000
-   > +0096  T 01100000
+ > we will compare other values to 64
+ > +0064  F 01000000
+ > comparing at the bit level, not as whole numbers.
+ > so pay particular attention to the negative
+ > values on this two's complement platform ...
+ > -0128  T 10000000
+ > -0096  T 10100000
+ > -0064  T 11000000
+ > -0032  T 11100000
+ > +0000  F 00000000
+ > +0032  F 00100000
+ > +0064  F 01000000
+ > +0096  T 01100000
 ```
 ### **Standard**
 
@@ -4578,26 +4593,25 @@ Fortran 2003
 
 ### **Name**
 
-**cmplx**(3) - \[TYPE:NUMERIC\] Convert values to a complex type
+**cmplx**(3) - \[TYPE:NUMERIC\] Conversion to a complex type
 
 ### **Synopsis**
 ```fortran
-    result = cmplx(x [,y] [,kind])
+    result = cmplx(x [,kind]) | cmplx(x [,y] [,kind])
 ```
 ```fortran
      elemental complex(kind=KIND) function cmplx( x, y, kind )
 
-      TYPE(kind=**),intent(in)          :: x
-      TYPE(kind=**),intent(in),optional :: y
-      integer,intent(in),optional       :: KIND
+      type(TYPE(kind=**)),intent(in)          :: x
+      type(TYPE(kind=**)),intent(in),optional :: y
+      integer(kind=**),intent(in),optional    :: KIND
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind for the type
-- The type of **x** **TYPE** may be _integer_, _real_, or _complex_.
-- **y** is allowed only if **x** is not _complex_. The **TYPE** for
-  **y** may be _integer_ or _real_.
-- **kind** is a constant _integer_ initialization expression indicating the kind
+- **x** may be _integer_, _real_, or _complex_.
+- **y** may be _integer_ or _real_.
+  **y** is allowed only if **x** is not _complex_.
+- **KIND** is a constant _integer_ initialization expression indicating the kind
   parameter of the result.
 
 The type of the arguments does not affect the kind of the result except
@@ -4608,6 +4622,8 @@ for a _complex_ **x** value.
 
 - if **kind** is not present and **x** is not _complex_ the result if of default
   _complex_ kind.
+
+NOTE: a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 

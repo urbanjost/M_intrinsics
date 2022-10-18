@@ -2,26 +2,25 @@
 
 ### **Name**
 
-**cmplx**(3) - \[TYPE:NUMERIC\] Convert values to a complex type
+**cmplx**(3) - \[TYPE:NUMERIC\] Conversion to a complex type
 
 ### **Synopsis**
 ```fortran
-    result = cmplx(x [,y] [,kind])
+    result = cmplx(x [,kind]) | cmplx(x [,y] [,kind])
 ```
 ```fortran
      elemental complex(kind=KIND) function cmplx( x, y, kind )
 
-      TYPE(kind=**),intent(in)          :: x
-      TYPE(kind=**),intent(in),optional :: y
-      integer,intent(in),optional       :: KIND
+      type(TYPE(kind=**)),intent(in)          :: x
+      type(TYPE(kind=**)),intent(in),optional :: y
+      integer(kind=**),intent(in),optional    :: KIND
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind for the type
-- The type of **x** **TYPE** may be _integer_, _real_, or _complex_.
-- **y** is allowed only if **x** is not _complex_. The **TYPE** for
-  **y** may be _integer_ or _real_.
-- **kind** is a constant _integer_ initialization expression indicating the kind
+- **x** may be _integer_, _real_, or _complex_.
+- **y** may be _integer_ or _real_.
+  **y** is allowed only if **x** is not _complex_.
+- **KIND** is a constant _integer_ initialization expression indicating the kind
   parameter of the result.
 
 The type of the arguments does not affect the kind of the result except
@@ -32,6 +31,8 @@ for a _complex_ **x** value.
 
 - if **kind** is not present and **x** is not _complex_ the result if of default
   _complex_ kind.
+
+NOTE: a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 

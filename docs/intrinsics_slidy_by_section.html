@@ -2830,14 +2830,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb145"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb145-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> bgt(i, j)</a></code></pre></div>
 <div class="sourceCode" id="cb146"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb146-1" title="1">      <span class="kw">elemental</span> <span class="dt">logical</span> <span class="kw">function</span> bgt(i, j)</a>
 <a class="sourceLine" id="cb146-2" title="2"></a>
-<a class="sourceLine" id="cb146-3" title="3">       <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb146-4" title="4">       <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a></code></pre></div>
+<a class="sourceLine" id="cb146-3" title="3">       <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb146-4" title="4">       <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> j</a></code></pre></div>
 </div><div id="characteristics-36" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
 <ul>
-<li><p>a kind designated as ** may be any supported kind for the type</p></li>
-<li><p>the integer kind of <strong>i</strong> and <strong>j</strong> may not necessarily be the same. kind. In addition, values may be a BOZ constant with a value valid for the integer kind available with the most bits on the current platform.</p></li>
-<li><p>The return value is of type logical and of the default kind.</p></li>
+<li><strong>i</strong> is an integer or a boz-literal-constant.</li>
+<li><strong>j</strong> is an integer or a boz-literal-constant.</li>
+<li>a kind designated as ** may be any supported kind for the type The integer kind of <strong>i</strong> and <strong>j</strong> may not necessarily be the same. kind. In addition, values may be a BOZ constant with a value valid for the integer kind available with the most bits on the current platform.</li>
+<li>The return value is of type logical and of the default kind.</li>
 </ul>
 </div><div id="description-36" class="slide section level3">
 <h1><strong>Description</strong></h1>
@@ -2847,18 +2848,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><dl>
 <dt><strong>i</strong></dt>
-<dd>Shall be of integer type or a BOZ literal constant.
+<dd>reference value to compare against
 </dd>
 </dl></li>
 <li><dl>
 <dt><strong>j</strong></dt>
-<dd>Shall be of integer type or a BOZ literal constant.
+<dd>value to compare to <strong>i</strong>
 </dd>
 </dl></li>
 </ul>
 </div><div id="result-25" class="slide section level3">
 <h1><strong>Result</strong></h1>
 <p>The return value is of type logical and of the default kind. The result is true if the sequence of bits represented by i is greater than the sequence of bits represented by j, otherwise the result is false.</p>
+<p>Bits are compared from right to left.</p>
 </div><div id="examples-36" class="slide section level3">
 <h1><strong>Examples</strong></h1>
 <p>Sample program:</p>
@@ -2870,24 +2872,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb147-6" title="6">  <span class="co">! Compare some one-byte values to 64.</span></a>
 <a class="sourceLine" id="cb147-7" title="7">   <span class="co">! Notice that the values are tested as bits not as integers</span></a>
 <a class="sourceLine" id="cb147-8" title="8">   <span class="co">! so sign bits in the integer are treated just like any other</span></a>
-<a class="sourceLine" id="cb147-9" title="9">   <span class="kw">do</span> i<span class="kw">=-</span><span class="dv">128</span>,<span class="dv">127</span>,<span class="dv">32</span></a>
-<a class="sourceLine" id="cb147-10" title="10">      byte<span class="kw">=</span>i</a>
-<a class="sourceLine" id="cb147-11" title="11">      <span class="fu">write(*</span>,<span class="st">&#39;(sp,i0.4,*(1x,1l,1x,b0.8))&#39;</span><span class="fu">)</span>i,bgt(byte,<span class="dv">64_int8</span>),byte</a>
-<a class="sourceLine" id="cb147-12" title="12">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb147-9" title="9">   <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span> <span class="st">&#39;we will compare other values to 64&#39;</span></a>
+<a class="sourceLine" id="cb147-10" title="10">   i<span class="kw">=</span><span class="dv">64</span></a>
+<a class="sourceLine" id="cb147-11" title="11">   byte<span class="kw">=</span>i</a>
+<a class="sourceLine" id="cb147-12" title="12">   <span class="fu">write(*</span>,<span class="st">&#39;(sp,i0.4,*(1x,1l,1x,b0.8))&#39;</span><span class="fu">)</span>i,bgt(byte,<span class="dv">64_int8</span>),byte</a>
 <a class="sourceLine" id="cb147-13" title="13"></a>
-<a class="sourceLine" id="cb147-14" title="14">   <span class="co">! see the BGE() description for an extended description</span></a>
-<a class="sourceLine" id="cb147-15" title="15">   <span class="co">! of related information</span></a>
-<a class="sourceLine" id="cb147-16" title="16"></a>
-<a class="sourceLine" id="cb147-17" title="17"><span class="kw">end program</span> demo_bgt</a></code></pre></div>
+<a class="sourceLine" id="cb147-14" title="14">   <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span> <span class="st">&quot;comparing at the bit level, not as whole numbers.&quot;</span></a>
+<a class="sourceLine" id="cb147-15" title="15">   <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span> <span class="st">&quot;so pay particular attention to the negative&quot;</span></a>
+<a class="sourceLine" id="cb147-16" title="16">   <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span> <span class="st">&quot;values on this two&#39;s complement platform ...&quot;</span></a>
+<a class="sourceLine" id="cb147-17" title="17">   <span class="kw">do</span> i<span class="kw">=-</span><span class="dv">128</span>,<span class="dv">127</span>,<span class="dv">32</span></a>
+<a class="sourceLine" id="cb147-18" title="18">      byte<span class="kw">=</span>i</a>
+<a class="sourceLine" id="cb147-19" title="19">      <span class="fu">write(*</span>,<span class="st">&#39;(sp,i0.4,*(1x,1l,1x,b0.8))&#39;</span><span class="fu">)</span>i,bgt(byte,<span class="dv">64_int8</span>),byte</a>
+<a class="sourceLine" id="cb147-20" title="20">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb147-21" title="21"></a>
+<a class="sourceLine" id="cb147-22" title="22">   <span class="co">! see the BGE() description for an extended description</span></a>
+<a class="sourceLine" id="cb147-23" title="23">   <span class="co">! of related information</span></a>
+<a class="sourceLine" id="cb147-24" title="24"></a>
+<a class="sourceLine" id="cb147-25" title="25"><span class="kw">end program</span> demo_bgt</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>   &gt; -0128  T 10000000
-   &gt; -0096  T 10100000
-   &gt; -0064  T 11000000
-   &gt; -0032  T 11100000
-   &gt; +0000  F 00000000
-   &gt; +0032  F 00100000
-   &gt; +0064  F 01000000
-   &gt; +0096  T 01100000</code></pre>
+<pre class="text"><code> &gt; we will compare other values to 64
+ &gt; +0064  F 01000000
+ &gt; comparing at the bit level, not as whole numbers.
+ &gt; so pay particular attention to the negative
+ &gt; values on this two&#39;s complement platform ...
+ &gt; -0128  T 10000000
+ &gt; -0096  T 10100000
+ &gt; -0064  T 11000000
+ &gt; -0032  T 11100000
+ &gt; +0000  F 00000000
+ &gt; +0032  F 00100000
+ &gt; +0064  F 01000000
+ &gt; +0096  T 01100000</code></pre>
 </div><div id="standard-36" class="slide section level3">
 <h1><strong>Standard</strong></h1>
 <p>Fortran 2008</p>
@@ -3721,28 +3736,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="cmplx" class="title-slide slide section level2"><h1>cmplx</h1></div><div id="name-48" class="slide section level3">
 <h1><strong>Name</strong></h1>
-<p><strong>cmplx</strong>(3) - [TYPE:NUMERIC] Convert values to a complex type</p>
+<p><strong>cmplx</strong>(3) - [TYPE:NUMERIC] Conversion to a complex type</p>
 </div><div id="synopsis-48" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
-<div class="sourceCode" id="cb188"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb188-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">cmplx</span>(x <span class="kw">[</span>,y<span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb188-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">cmplx</span>(x <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>) <span class="kw">|</span> <span class="bu">cmplx</span>(x <span class="kw">[</span>,y<span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb189"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb189-1" title="1">     <span class="kw">elemental</span> <span class="dt">complex(kind=KIND)</span> <span class="kw">function</span> <span class="bu">cmplx</span>( x, y, <span class="fu">kind</span> )</a>
 <a class="sourceLine" id="cb189-2" title="2"></a>
-<a class="sourceLine" id="cb189-3" title="3">      <span class="dt">TYPE(kind=**)</span>,<span class="dt">intent(in)</span>          <span class="dt">::</span> x</a>
-<a class="sourceLine" id="cb189-4" title="4">      <span class="dt">TYPE(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> y</a>
-<a class="sourceLine" id="cb189-5" title="5">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span>       <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
+<a class="sourceLine" id="cb189-3" title="3">      <span class="dt">type(TYPE(kind=**))</span>,<span class="dt">intent(in)</span>          <span class="dt">::</span> x</a>
+<a class="sourceLine" id="cb189-4" title="4">      <span class="dt">type(TYPE(kind=**))</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> y</a>
+<a class="sourceLine" id="cb189-5" title="5">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span>    <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
 </div><div id="characteristics-48" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
 <ul>
-<li>a kind designated as ** may be any supported kind for the type</li>
-<li>The type of <strong>x</strong> <strong>TYPE</strong> may be integer, real, or complex.</li>
-<li><strong>y</strong> is allowed only if <strong>x</strong> is not complex. The <strong>TYPE</strong> for <strong>y</strong> may be integer or real.</li>
-<li><strong>kind</strong> is a constant integer initialization expression indicating the kind parameter of the result.</li>
+<li><strong>x</strong> may be integer, real, or complex.</li>
+<li><strong>y</strong> may be integer or real. <strong>y</strong> is allowed only if <strong>x</strong> is not complex.</li>
+<li><strong>KIND</strong> is a constant integer initialization expression indicating the kind parameter of the result.</li>
 </ul>
 <p>The type of the arguments does not affect the kind of the result except for a complex <strong>x</strong> value.</p>
 <ul>
 <li><p>if <strong>kind</strong> is not present and <strong>x</strong> is complex the result is of the kind of <strong>x</strong>.</p></li>
 <li><p>if <strong>kind</strong> is not present and <strong>x</strong> is not complex the result if of default complex kind.</p></li>
 </ul>
+<p>NOTE: a kind designated as ** may be any supported kind for the type</p>
 </div><div id="description-48" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p>The <strong>cmplx</strong>(3) function converts numeric values to a complex value.</p>
