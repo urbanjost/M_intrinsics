@@ -16,6 +16,7 @@
 ### **Characteristics**
 
  - KIND may be any supported _real_ KIND.
+ - the characteristics (type, kind)  of the result are the same as **x**
 
 ### **Description**
 
@@ -26,6 +27,7 @@ kind of order 1 of **x**.
 
 - **x**
   : The type shall be _real_.
+  Its value shall be greater than zero.
 
 ### **Result**
 
@@ -34,7 +36,6 @@ The return value is _real_. It has the same kind as **x**.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_bessel_y1
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
@@ -44,7 +45,10 @@ implicit none
   write(*,*)x, bessel_y1(x)
 end program demo_bessel_y1
 ```
-
+Results:
+```text
+ >    1.00000000000000      -0.781212821300289     
+```
 ### **Standard**
 
 Fortran 2008

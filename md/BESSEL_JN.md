@@ -6,17 +6,16 @@
 
 ### **Synopsis**
 ```fortran
-    result = bessel_jn(n, x)
+    result = bessel_jn(n, x) 
 ```
 ```fortran
      elemental real(kind=KIND) function bessel_jn(n,x)
 
-      integer(kind=KIND),intent(in) :: n(..)
-      real(kind=KIND),intent(in) :: x(..)
+      integer(kind=**),intent(in) :: n
+      real(kind=KIND),intent(in) :: x
 ```
- - If **n** and **x** are arrays, their ranks and shapes
-   shall conform.
-
+ - KIND may be any valid value for type _real_
+ - **x** is _real_
  - The return value has the same type and kind as **x**.
 
 ```fortran
@@ -25,11 +24,14 @@
 ```fortran
      real(kind=KIND) function bessel_jn(n1, n2, ,x)
 
-     integer(kind=KIND),intent(in) :: n1(..)
-     integer(kind=KIND),intent(in) :: n2(..)
+     integer(kind=**),intent(in) :: n1
+     integer(kind=**),intent(in) :: n2
      real(kind=KIND),intent(in) :: x
 ```
-  The return value has the same type and kind as **x**.
+  - **n1** is _integer_
+  - **n2** is _integer_
+  - **x** is _real_
+  - The return value has the same type and kind as **x**.
 
 ### **Description**
 
@@ -43,27 +45,32 @@
 ### **Options**
 
 - **n**
-  : Shall be a scalar or an array of type _integer_.
+  : a non-negative scalar integer..
 
 - **n1**
-  : Shall be a non-negative scalar of type _integer_.
+  : a non-negative scalar _integer_.
 
 - **n2**
-  : Shall be a non-negative scalar of type _integer_.
+  : a non-negative scalar _integer_.
 
 - **x**
-  : Shall be a scalar or an array of type _real_.
-  For **bessel_jn(n1, n2, x)** it shall be scalar.
+  : Shall be a scalar for **bessel\_jn(n,x)** or an array 
+  For **bessel_jn(n1, n2, x)**.
 
 ### **Result**
+      
+  The result value of BESSEL_JN (N, X) is a processor-dependent
+  approximation to the Bessel function of the ﬁrst kind and order N
+  of X.
 
-The return value is a scalar of type _real_. It has the same kind
-as **x**.
+  The result of BESSEL_JN (N1, N2, X) is a rank-one array with extent
+  MAX (N2−N1+1, 0). Element i of the result value of BESSEL_JN (N1,
+  N2, X) is a processor-dependent approximation to the Bessel function
+  of the ﬁrst kind and order N1+i−1 of X.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_bessel_jn
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
@@ -74,13 +81,11 @@ real(kind=real64) :: x = 1.0_real64
     write(*,*)x
 end program demo_bessel_jn
 ```
-
 Results:
 
 ```text
       2.4975773021123450E-004
 ```
-
 ### **Standard**
 
 Fortran 2008

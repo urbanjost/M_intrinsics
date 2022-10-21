@@ -16,6 +16,7 @@
 ### **Characteristics**
 
  - KIND may be any supported _real_ KIND.
+ - the result characteristics (type, kind)  are the same as **x**
 
 ### **Description**
 
@@ -26,6 +27,7 @@ kind of order 0 of **x**.
 
 - **x**
   : The type shall be _real_.
+    Its value shall be greater than zero.
 
 ### **Result**
 
@@ -45,13 +47,10 @@ implicit none
   write(*,*)x
 end program demo_bessel_y0
 ```
-
 Results:
-
 ```text
                     -Infinity
 ```
-
 ### **Standard**
 
 Fortran 2008

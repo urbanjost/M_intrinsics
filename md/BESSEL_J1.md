@@ -16,6 +16,7 @@
 ### **Characteristics**
 
  -  KIND may be any supported _real_ KIND.
+ -  the result is of the same type and kind as **x**
 
 ### **Description**
 
@@ -35,7 +36,6 @@ The return value is of type _real_ and lies in the range
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_bessel_j1
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
@@ -46,13 +46,10 @@ real(kind=real64) :: x = 1.0_real64
    write(*,*)x
 end program demo_bessel_j1
 ```
-
 Results:
-
 ```text
      0.44005058574493350
 ```
-
 ### **Standard**
 
 Fortran 2008
