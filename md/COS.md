@@ -15,7 +15,7 @@
 ```
 ### **Characteristics**
 
- - where **TYPE** may be _real_ or _complex_ of any kind.
+ - **x** shall be of type real or complex of any valid kind.
  - the returned value will be of the same type and kind as the argument.
 
 ### **Description**
@@ -35,8 +35,11 @@
 
   The return value is the tangent of **x**.
 
-  If **x** is of the type _real_, the return value lies in
+  If **x** is of the type _real_, the return value is in radians and lies in
   the range **-1 \<= cos(x) \<= 1** .
+
+  If **x** is of type complex, its real part is regarded as a value in
+  radians, often called the phase.
 
 ### **Examples**
 

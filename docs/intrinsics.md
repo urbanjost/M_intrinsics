@@ -1694,7 +1694,7 @@ function
 
   If **y** has the value zero, **x** shall not have the value zero.
 
-  It lies in the range -PI <= ATAN2 (Y,X) <= PI and is equal to a
+  The resulting phase lies in the range -PI <= ATAN2 (Y,X) <= PI and is equal to a
   processor-dependent approximation to a value of arctan(Y/X).
 
 ### **Options**
@@ -1710,7 +1710,7 @@ function
 ### **Result**
 
 The value returned is by definition the principal value of the complex
-number **(x, y)**.
+number **(x, y)**, or in other terms, the phase of the phasor x+i*y.
 
 The principal value is simply what we get when we adjust a radian value
 to lie between **-PI** and **PI** inclusive,
@@ -2890,7 +2890,8 @@ program demo_bessel_j0
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
 & real32, real64, real128
    implicit none
-   real(kind=real64) :: x = 0.0_real64
+   real(kind=real64) :: x
+   x = 0.0_real64
    x = bessel_j0(x)
    write(*,*)x
 end program demo_bessel_j0
@@ -2932,6 +2933,7 @@ Fortran 2008
 ### **Characteristics**
 
  -  KIND may be any supported _real_ KIND.
+ -  the result is of the same type and kind as **x**
 
 ### **Description**
 
@@ -2951,7 +2953,6 @@ The return value is of type _real_ and lies in the range
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_bessel_j1
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
@@ -2962,13 +2963,10 @@ real(kind=real64) :: x = 1.0_real64
    write(*,*)x
 end program demo_bessel_j1
 ```
-
 Results:
-
 ```text
      0.44005058574493350
 ```
-
 ### **Standard**
 
 Fortran 2008
@@ -2996,12 +2994,11 @@ Fortran 2008
 ```fortran
      elemental real(kind=KIND) function bessel_jn(n,x)
 
-      integer(kind=KIND),intent(in) :: n(..)
-      real(kind=KIND),intent(in) :: x(..)
+      integer(kind=**),intent(in) :: n
+      real(kind=KIND),intent(in) :: x
 ```
- - If **n** and **x** are arrays, their ranks and shapes
-   shall conform.
-
+ - KIND may be any valid value for type _real_
+ - **x** is _real_
  - The return value has the same type and kind as **x**.
 
 ```fortran
@@ -3010,11 +3007,14 @@ Fortran 2008
 ```fortran
      real(kind=KIND) function bessel_jn(n1, n2, ,x)
 
-     integer(kind=KIND),intent(in) :: n1(..)
-     integer(kind=KIND),intent(in) :: n2(..)
+     integer(kind=**),intent(in) :: n1
+     integer(kind=**),intent(in) :: n2
      real(kind=KIND),intent(in) :: x
 ```
-  The return value has the same type and kind as **x**.
+  - **n1** is _integer_
+  - **n2** is _integer_
+  - **x** is _real_
+  - The return value has the same type and kind as **x**.
 
 ### **Description**
 
@@ -3028,27 +3028,32 @@ Fortran 2008
 ### **Options**
 
 - **n**
-  : Shall be a scalar or an array of type _integer_.
+  : a non-negative scalar integer..
 
 - **n1**
-  : Shall be a non-negative scalar of type _integer_.
+  : a non-negative scalar _integer_.
 
 - **n2**
-  : Shall be a non-negative scalar of type _integer_.
+  : a non-negative scalar _integer_.
 
 - **x**
-  : Shall be a scalar or an array of type _real_.
-  For **bessel_jn(n1, n2, x)** it shall be scalar.
+  : Shall be a scalar for **bessel\_jn(n,x)** or an array
+  For **bessel_jn(n1, n2, x)**.
 
 ### **Result**
 
-The return value is a scalar of type _real_. It has the same kind
-as **x**.
+  The result value of BESSEL_JN (N, X) is a processor-dependent
+  approximation to the Bessel function of the ﬁrst kind and order N
+  of X.
+
+  The result of BESSEL_JN (N1, N2, X) is a rank-one array with extent
+  MAX (N2−N1+1, 0). Element i of the result value of BESSEL_JN (N1,
+  N2, X) is a processor-dependent approximation to the Bessel function
+  of the ﬁrst kind and order N1+i−1 of X.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_bessel_jn
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
@@ -3059,13 +3064,11 @@ real(kind=real64) :: x = 1.0_real64
     write(*,*)x
 end program demo_bessel_jn
 ```
-
 Results:
 
 ```text
       2.4975773021123450E-004
 ```
-
 ### **Standard**
 
 Fortran 2008
@@ -3098,6 +3101,7 @@ Fortran 2008
 ### **Characteristics**
 
  - KIND may be any supported _real_ KIND.
+ - the result characteristics (type, kind)  are the same as **x**
 
 ### **Description**
 
@@ -3108,6 +3112,7 @@ kind of order 0 of **x**.
 
 - **x**
   : The type shall be _real_.
+    Its value shall be greater than zero.
 
 ### **Result**
 
@@ -3127,13 +3132,10 @@ implicit none
   write(*,*)x
 end program demo_bessel_y0
 ```
-
 Results:
-
 ```text
                     -Infinity
 ```
-
 ### **Standard**
 
 Fortran 2008
@@ -3166,6 +3168,7 @@ Fortran 2008
 ### **Characteristics**
 
  - KIND may be any supported _real_ KIND.
+ - the characteristics (type, kind)  of the result are the same as **x**
 
 ### **Description**
 
@@ -3176,6 +3179,7 @@ kind of order 1 of **x**.
 
 - **x**
   : The type shall be _real_.
+  Its value shall be greater than zero.
 
 ### **Result**
 
@@ -3184,7 +3188,6 @@ The return value is _real_. It has the same kind as **x**.
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_bessel_y1
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
@@ -3194,7 +3197,10 @@ implicit none
   write(*,*)x, bessel_y1(x)
 end program demo_bessel_y1
 ```
-
+Results:
+```text
+ >    1.00000000000000      -0.781212821300289
+```
 ### **Standard**
 
 Fortran 2008
@@ -3222,14 +3228,12 @@ Fortran 2008
 ```fortran
      elemental real(kind=KIND) function bessel_yn(n,x)
 
-      integer(kind=KIND),intent(in) :: n(..)
-      real(kind=KIND),intent(in) :: x(..)
+      integer(kind=**),intent(in) :: n
+      real(kind=KIND),intent(in) :: x
 ```
 ### **Characteristics**
-
- - If **n** and **x** are arrays, their ranks and shapes
-   shall conform.
-
+ - **n** is _integer_
+ - **x** is _real_
  - The return value has the same type and kind as **x**.
 
 ```fortran
@@ -3238,17 +3242,19 @@ Fortran 2008
 ```fortran
      real(kind=KIND) function bessel_yn(n1, n2, ,x)
 
-      integer(kind=KIND),intent(in) :: n1(..)
-      integer(kind=KIND),intent(in) :: n2(..)
+      integer(kind=**),intent(in) :: n1
+      integer(kind=**),intent(in) :: n2
       real(kind=KIND),intent(in) :: x
 ```
-  The return value has the same type and kind as **x**.
+ - **n1** is _integer_
+ - **n2** is _integer_
+ - **x** is _real_
+ - The return value has the same type and kind as **x**.
 
 ### **Description**
 
   **bessel_yn(n, x)** computes the Bessel function of the second kind
-  of order **n** of **x**. If **n** and **x** are arrays, their ranks
-  and shapes shall conform.
+  of order **n** of **x**.
 
   **bessel_yn(n1, n2, x)** returns an array with the Bessel
   function\|Bessel functions of the first kind of the orders **n1**
@@ -3257,26 +3263,32 @@ Fortran 2008
 ### **Options**
 
 - **n**
-  : Shall be a scalar or an array of type _integer_.
+  : Shall be a scalar or an array of type _integer_ and non-negative.
 
 - **n1**
-  : Shall be a non-negative scalar of type _integer_.
+  : Shall be a non-negative scalar of type _integer_ and non-negative.
 
 - **n2**
-  : Shall be a non-negative scalar of type _integer_.
+  : Shall be a non-negative scalar of type _integer_ and non-negative.
 
 - **x**
-  : Shall be a scalar or an array of type _real_; for
-  **bessel_yn(n1, n2, x)** it shall be scalar.
+  : A _real_ non-negative value. Note **bessel_yn(n1, n2, x)** is not
+  elemental, in which case it must be a scalar.
 
 ### **Result**
 
-The return value is _real_. It has the same kind as **x**.
+  The result value of BESSEL_YN (N, X) is a processor-dependent
+  approximation to the Bessel function of the second kind and order N
+  of X.
+
+  The result of **BESSEL_YN (N1, N2, X)** is a rank-one array with extent
+  **MAX (N2−N1+1, 0)**.  Element i of the result value of BESSEL_YN
+  (N1, N2, X) is a processor-dependent approximation to the Bessel
+  function of the second kind and order N1+i−1 of X.
 
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_bessel_yn
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
@@ -3286,13 +3298,11 @@ real(kind=real64) :: x = 1.0_real64
   write(*,*) x,bessel_yn(5,x)
 end program demo_bessel_yn
 ```
-
 Results:
 
 ```text
       1.0000000000000000       -260.40586662581222
 ```
-
 ### **Standard**
 
 Fortran 2008
@@ -5651,11 +5661,14 @@ TS 18508
 ### **Characteristics**
 
  - **TYPE** may be _real_ or _complex_ of any kind.
- -  The returned value will be of the same type and kind as the argument.
+ - The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
 **cosh**(3) computes the hyperbolic cosine of **x**.
+
+If **x** is of type complex its imaginary part is regarded as a value
+in radians.
 
 ### **Options**
 
@@ -5678,8 +5691,12 @@ use, intrinsic :: iso_fortran_env, only : &
  & real_kinds, real32, real64, real128
 implicit none
 real(kind=real64) :: x = 1.0_real64
-    x = cosh(x)
+    write(*,*)'X=',x,'COSH(X=)',cosh(x)
 end program demo_cosh
+```
+Results:
+```text
+ >  X=   1.00000000000000      COSH(X=)   1.54308063481524
 ```
 ### **Standard**
 
@@ -5712,7 +5729,7 @@ Inverse function: [**acosh**(3)](#acosh)
 ```
 ### **Characteristics**
 
- - where **TYPE** may be _real_ or _complex_ of any kind.
+ - **x** shall be of type real or complex of any valid kind.
  - the returned value will be of the same type and kind as the argument.
 
 ### **Description**
@@ -5732,8 +5749,11 @@ Inverse function: [**acosh**(3)](#acosh)
 
   The return value is the tangent of **x**.
 
-  If **x** is of the type _real_, the return value lies in
+  If **x** is of the type _real_, the return value is in radians and lies in
   the range **-1 \<= cos(x) \<= 1** .
+
+  If **x** is of type complex, its real part is regarded as a value in
+  radians, often called the phase.
 
 ### **Examples**
 
@@ -12610,7 +12630,7 @@ of arguments, and search for certain arguments:
 
 ### **Name**
 
-**log10**(3) - \[MATHEMATICS\] Base 10 logarithm function
+**log10**(3) - \[MATHEMATICS\] Base 10 or common logarithm
 
 ### **Synopsis**
 ```fortran
@@ -12661,9 +12681,9 @@ end program demo_log10
 ```
 Results:
 ```text
-   log10(1.0000000000000000) is 0.0000000000000000
-      0.00000000       1.00000000       2.00000000       3.00000000
-      4.00000000       5.00000000       6.00000000       7.00000000
+ > log10(1.000000000000000) is .000000000000000
+ >   0.0000000E+00   1.000000       2.000000       3.000000       4.000000
+ >    5.000000       6.000000       7.000000
 ```
 ### **Standard**
 

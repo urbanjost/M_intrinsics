@@ -16,11 +16,14 @@
 ### **Characteristics**
 
  - **TYPE** may be _real_ or _complex_ of any kind.
- -  The returned value will be of the same type and kind as the argument.
+ - The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
 **cosh**(3) computes the hyperbolic cosine of **x**.
+
+If **x** is of type complex its imaginary part is regarded as a value
+in radians.
 
 ### **Options**
 
@@ -43,8 +46,12 @@ use, intrinsic :: iso_fortran_env, only : &
  & real_kinds, real32, real64, real128
 implicit none
 real(kind=real64) :: x = 1.0_real64
-    x = cosh(x)
+    write(*,*)'X=',x,'COSH(X=)',cosh(x)
 end program demo_cosh
+```
+Results:
+```text
+ >  X=   1.00000000000000      COSH(X=)   1.54308063481524     
 ```
 ### **Standard**
 

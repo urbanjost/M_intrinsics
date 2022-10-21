@@ -29,7 +29,7 @@ function
 
   If **y** has the value zero, **x** shall not have the value zero.
 
-  It lies in the range -PI <= ATAN2 (Y,X) <= PI and is equal to a
+  The resulting phase lies in the range -PI <= ATAN2 (Y,X) <= PI and is equal to a
   processor-dependent approximation to a value of arctan(Y/X).
 
 ### **Options**
@@ -45,7 +45,7 @@ function
 ### **Result**
 
 The value returned is by definition the principal value of the complex
-number **(x, y)**.
+number **(x, y)**, or in other terms, the phase of the phasor x+i*y.
 
 The principal value is simply what we get when we adjust a radian value
 to lie between **-PI** and **PI** inclusive,

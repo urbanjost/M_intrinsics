@@ -3,5 +3,5 @@
        & real_kinds, real32, real64, real128
       implicit none
       real(kind=real64) :: x = 1.0_real64
-          x = cosh(x)
+          write(*,*)'X=',x,'COSH(X=)',cosh(x)
       end program demo_cosh
