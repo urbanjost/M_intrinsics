@@ -9988,7 +9988,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <ul>
 <li><dl>
 <dt><strong>x</strong></dt>
-<dd>A non-negative (neither negative nor zero) value to render the result for.
+<dd>neither negative nor zero value to render the result for.
 </dd>
 </dl></li>
 </ul>
@@ -10005,8 +10005,8 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <a class="sourceLine" id="cb537-5" title="5">   <span class="fu">write(*</span>,<span class="fu">*)</span>x,log_gamma(<span class="fl">3.0</span>) <span class="co">! returns 0.693 (approximately)</span></a>
 <a class="sourceLine" id="cb537-6" title="6"><span class="kw">end program</span> demo_log_gamma</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>      1.000000      0.0000000E+00
-      1.000000      0.6931472</code></pre>
+<pre class="text"><code> &gt;    1.000000      0.0000000E+00
+ &gt;    1.000000      0.6931472</code></pre>
 </div><div id="standard-121" class="slide section level3">
 <h1><strong>Standard</strong></h1>
 <p>Fortran 2008</p>
@@ -14776,7 +14776,7 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 </div>
 <div id="set_exponent" class="title-slide slide section level2"><h1>set_exponent</h1></div><div id="name-173" class="slide section level3">
 <h1><strong>Name</strong></h1>
-<p><strong>set_exponent</strong>(3) - [MODEL_COMPONENTS] Set the exponent of the model</p>
+<p><strong>set_exponent</strong>(3) - [MODEL_COMPONENTS] real value with specified exponent</p>
 </div><div id="synopsis-173" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb758"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb758-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">set_exponent</span>(x, i)</a></code></pre></div>
@@ -14787,6 +14787,8 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 </div><div id="characteristics-174" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
 <ul>
+<li><strong>x</strong> is type real</li>
+<li><strong>i</strong> is type integer</li>
 <li><p>a kind designated as ** may be any supported kind for the type</p></li>
 <li><p>The return value is of the same type and kind as <strong>x</strong>.</p></li>
 </ul>
@@ -14810,6 +14812,9 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 </div><div id="result-149" class="slide section level3">
 <h1><strong>Result</strong></h1>
 <p>The return value is of the same type and kind as <strong>x</strong>. The real number whose fractional part is that that of <strong>x</strong> and whose exponent part if <strong>i</strong> is returned; it is <strong>fraction(x) * radix(x)**i</strong>.</p>
+<p>If <strong>x</strong> has the value zero, the result has the same value as <strong>x</strong>.</p>
+<p>If <strong>x</strong> is an IEEE infinity, the result is an IEEE NaN.</p>
+<p>If <strong>x</strong> is an IEEE NaN, the result is the same NaN.</p>
 </div><div id="examples-167" class="slide section level3">
 <h1><strong>Examples</strong></h1>
 <p>Sample program:</p>
@@ -16939,7 +16944,7 @@ need an illustration of what happens with higher dimension array
 <h1><strong>Characteristics</strong></h1>
 <ul>
 <li>a kind designated as ** may be any supported kind for the type</li>
-<li><strong>array</strong> shall be an array, of any type.</li>
+<li><strong>array</strong> shall be assumed-rank or an array, of any type. It cannot be an unallocated allocatable array or a pointer that is not associated.</li>
 <li><strong>dim</strong> shall be a scalar integer.</li>
 <li><strong>kind</strong> an integer initialization expression indicating the kind parameter of the result.</li>
 <li>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</li>
@@ -16952,12 +16957,12 @@ need an illustration of what happens with higher dimension array
 <ul>
 <li><dl>
 <dt><strong>array</strong></dt>
-<dd>The array to determine the upper bounds of
+<dd>The assumed-rank or array of any type whose upper bounds are to be determined. If allocatable it must be allocated; if a pointer it must be associated. If an assumed-size array, <strong>dim</strong> must be present.
 </dd>
 </dl></li>
 <li><dl>
 <dt><strong>dim</strong></dt>
-<dd>a specific rank to determine the bounds of If <strong>dim</strong> is absent, the result is an array of the upper bounds of <strong>array</strong>.
+<dd>a specific dimension of <strong>array</strong> to determine the bounds of. If <strong>dim</strong> is absent, the result is an array of the upper bounds of <strong>array</strong>. <strong>dim</strong> is required if <strong>array</strong> is an assumed-size array, and in that case must be less than or equal to the rank of <strong>array</strong>.
 </dd>
 </dl></li>
 <li><dl>
@@ -16969,7 +16974,7 @@ need an illustration of what happens with higher dimension array
 </div><div id="result-171" class="slide section level3">
 <h1><strong>Result</strong></h1>
 <p>The return value is of type integer and of kind <strong>kind</strong>. If <strong>kind</strong> is absent, the return value is of default integer kind.</p>
-<p>If <strong>dim</strong> is absent, the result is an array of the upper bounds of <strong>array</strong>.</p>
+<p>If <strong>dim</strong> is absent, the result is an array of the upper bounds of each dimension of the <strong>array</strong>.</p>
 <p>If <strong>dim</strong> is present, the result is a scalar corresponding to the upper bound of the array along that dimension.</p>
 <p>If <strong>array</strong> is an expression rather than a whole array or array structure component, or if it has a zero extent along the relevant dimension, the upper bound is taken to be the number of elements along the relevant dimension.</p>
 </div><div id="examples-190" class="slide section level3">
@@ -17023,10 +17028,10 @@ need an illustration of what happens with higher dimension array
 <a class="sourceLine" id="cb865-45" title="45"><span class="kw">end subroutine</span> esub</a>
 <a class="sourceLine" id="cb865-46" title="46"><span class="co">!end program demo_ubound</span></a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>  MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
-  CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
-  MSUB: LOWER=           1 UPPER=          21 SIZE=          21
-  ESUB: LOWER=           1 UPPER=          21 SIZE=          21</code></pre>
+<pre class="text"><code> &gt;  MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
+ &gt;  CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
+ &gt;  MSUB: LOWER=           1 UPPER=          21 SIZE=          21
+ &gt;  ESUB: LOWER=           1 UPPER=          21 SIZE=          21</code></pre>
 </div><div id="standard-195" class="slide section level3">
 <h1><strong>Standard</strong></h1>
 <p>Fortran 95 , with KIND argument Fortran 2003</p>

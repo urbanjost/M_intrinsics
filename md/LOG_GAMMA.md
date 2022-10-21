@@ -27,8 +27,7 @@ the Gamma function
 ### **Options**
 
 - **x**
-  : A non-negative (neither negative nor zero) value to render the
-  result for.
+  : neither negative nor zero value to render the result for.
 
 ### **Result**
 
@@ -49,8 +48,8 @@ end program demo_log_gamma
 ```
 Results:
 ```text
-      1.000000      0.0000000E+00
-      1.000000      0.6931472
+ >    1.000000      0.0000000E+00
+ >    1.000000      0.6931472    
 ```
 ### **Standard**
 

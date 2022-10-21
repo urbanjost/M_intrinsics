@@ -12724,8 +12724,7 @@ the Gamma function
 ### **Options**
 
 - **x**
-  : A non-negative (neither negative nor zero) value to render the
-  result for.
+  : neither negative nor zero value to render the result for.
 
 ### **Result**
 
@@ -12746,8 +12745,8 @@ end program demo_log_gamma
 ```
 Results:
 ```text
-      1.000000      0.0000000E+00
-      1.000000      0.6931472
+ >    1.000000      0.0000000E+00
+ >    1.000000      0.6931472
 ```
 ### **Standard**
 
@@ -18801,7 +18800,7 @@ Fortran 95 ; with RADIX - Fortran 2008
 
 ### **Name**
 
-**set_exponent**(3) - \[MODEL_COMPONENTS\] Set the exponent of the model
+**set_exponent**(3) - \[MODEL_COMPONENTS\] real value with specified exponent
 
 ### **Synopsis**
 ```fortran
@@ -18815,14 +18814,16 @@ Fortran 95 ; with RADIX - Fortran 2008
 ```
 ### **Characteristics**
 
+ - **x** is type _real_
+ - **i** is type _integer_
  - a kind designated as ** may be any supported kind for the type
 
  - The return value is of the same type and kind as **x**.
 
 ### **Description**
 
-**set_exponent**(3) returns the real number whose fractional part is
-that of **x** and whose exponent part is **i**.
+  **set_exponent**(3) returns the real number whose fractional part is
+  that of **x** and whose exponent part is **i**.
 
 ### **Options**
 
@@ -18834,9 +18835,15 @@ that of **x** and whose exponent part is **i**.
 
 ### **Result**
 
-The return value is of the same type and kind as **x**. The real number
-whose fractional part is that that of **x** and whose exponent part if **i** is
-returned; it is **fraction(x) \* radix(x)\*\*i**.
+  The return value is of the same type and kind as **x**. The real number
+  whose fractional part is that that of **x** and whose exponent part
+  if **i** is returned; it is **fraction(x) \* radix(x)\*\*i**.
+
+  If **x** has the value zero, the result has the same value as **x**.
+
+  If **x** is an IEEE infinity, the result is an IEEE NaN.
+
+  If **x** is an IEEE NaN, the result is the same NaN.
 
 ### **Examples**
 
@@ -18850,13 +18857,10 @@ integer :: i = 17
    print *, set_exponent(x, i), fraction(x) * radix(x)**i
 end program demo_setexp
 ```
-
 Results:
-
 ```text
       74716.7891       74716.7891
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -21503,7 +21507,8 @@ of arguments, and search for certain arguments:
 ### **Characteristics**
 
 - a kind designated as ** may be any supported kind for the type
-- **array** shall be an array, of any type.
+- **array** shall be assumed-rank or an array, of any type.
+  It cannot be an unallocated allocatable array or a pointer that is not associated.
 - **dim** shall be a scalar _integer_.
 - **kind** an _integer_ initialization expression indicating the kind
   parameter of the result.
@@ -21518,12 +21523,15 @@ bound along the **dim** dimension.
 ### **Options**
 
 - **array**
-  : The array to determine the upper bounds of
+  : The assumed-rank or array of any type whose upper bounds are to be
+    determined. If allocatable it must be allocated; if a pointer it must
+    be associated. If an assumed-size array, **dim** must be present.
 
 - **dim**
-  : a specific rank to determine the bounds of
+  : a specific dimension of **array** to determine the bounds of.
   If **dim** is absent, the result is an array of the upper bounds of
-  **array**.
+  **array**. **dim** is required if **array** is an assumed-size array,
+  and in that case must be less than or equal to the rank of **array**.
 
 - **kind**
   : indicates the kind parameter of the result. If absent, an _integer_
@@ -21535,7 +21543,7 @@ The return value is of type _integer_ and of kind **kind**. If **kind**
 is absent, the return value is of default integer kind.
 
 If **dim** is absent, the result is an array of the upper bounds of
-**array**.
+each dimension of the **array**.
 
 If **dim** is present, the result is a scalar corresponding to the upper
 bound of the array along that dimension.
@@ -21601,16 +21609,13 @@ integer,intent(in) :: arr(:)
 end subroutine esub
 !end program demo_ubound
 ```
-
 Results:
-
 ```text
-  MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
-  CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
-  MSUB: LOWER=           1 UPPER=          21 SIZE=          21
-  ESUB: LOWER=           1 UPPER=          21 SIZE=          21
+ >  MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
+ >  CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
+ >  MSUB: LOWER=           1 UPPER=          21 SIZE=          21
+ >  ESUB: LOWER=           1 UPPER=          21 SIZE=          21
 ```
-
 ### **Standard**
 
 Fortran 95 , with KIND argument Fortran 2003

@@ -1,3 +1,23 @@
+Result Value.
+    Case (i):                 If DIM is present, ARRAY is a whole array, and dimension DIM of ARRAY has nonzero extent,
+                              the result has a value equal to the upper bound for subscript DIM of ARRAY. Otherwise, if DIM
+                              is present and ARRAY is assumed-rank, the value of the result is as if ARRAY were a whole array,
+                              with the extent of the ﬁnal dimension of ARRAY when ARRAY is associated with an assumed-size
+                              array being considered to be −1. Otherwise, if DIM is present, the result has a value equal to the
+                              number of elements in dimension DIM of ARRAY.
+    Case (ii):                If ARRAY has rank zero, UBOUND (ARRAY) has a value that is a zero-sized array. Otherwise,
+                                                                                                                    th
+                               UBOUND(ARRAY)hasavaluewhosei elementisequaltoUBOUND(ARRAY,i),fori = 1, 2,
+                                                                                                                                                                                                                                th
+                               : : : ,  n, where n is the rank of ARRAY. UBOUND (ARRAY, KIND=KIND) has a value whose i
+                               element is equal to UBOUND (ARRAY, i, KIND=KIND), for i = 1, 2, :::, n, where n is the
+                               rank of ARRAY.
+ Examples. If A is declared by the statement
+             REAL A (2:3, 7:10)
+     then UBOUND (A) is [3, 10] and UBOUND (A, DIM = 2) is 10.
+  NOTE1
+  If ARRAYisassumed-rankandhasrankzero,DIMcannotbepresentsinceitcannotsatisfytherequirement
+  1 ≤ DIM ≤ 0.
 ## ubound
 
 ### **Name**
@@ -18,7 +38,8 @@
 ### **Characteristics**
 
 - a kind designated as ** may be any supported kind for the type
-- **array** shall be an array, of any type.
+- **array** shall be assumed-rank or an array, of any type.
+  It cannot be an unallocated allocatable array or a pointer that is not associated.
 - **dim** shall be a scalar _integer_.
 - **kind** an _integer_ initialization expression indicating the kind
   parameter of the result.
@@ -33,12 +54,15 @@ bound along the **dim** dimension.
 ### **Options**
 
 - **array**
-  : The array to determine the upper bounds of
+  : The assumed-rank or array of any type whose upper bounds are to be
+    determined. If allocatable it must be allocated; if a pointer it must
+    be associated. If an assumed-size array, **dim** must be present.
 
 - **dim**
-  : a specific rank to determine the bounds of
+  : a specific dimension of **array** to determine the bounds of.
   If **dim** is absent, the result is an array of the upper bounds of
-  **array**.
+  **array**. **dim** is required if **array** is an assumed-size array,
+  and in that case must be less than or equal to the rank of **array**.
 
 - **kind**
   : indicates the kind parameter of the result. If absent, an _integer_
@@ -50,7 +74,7 @@ The return value is of type _integer_ and of kind **kind**. If **kind**
 is absent, the return value is of default integer kind.
 
 If **dim** is absent, the result is an array of the upper bounds of
-**array**.
+each dimension of the **array**.
 
 If **dim** is present, the result is a scalar corresponding to the upper
 bound of the array along that dimension.
@@ -116,16 +140,13 @@ integer,intent(in) :: arr(:)
 end subroutine esub
 !end program demo_ubound
 ```
-
 Results:
-
 ```text
-  MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
-  CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
-  MSUB: LOWER=           1 UPPER=          21 SIZE=          21
-  ESUB: LOWER=           1 UPPER=          21 SIZE=          21
+ >  MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
+ >  CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
+ >  MSUB: LOWER=           1 UPPER=          21 SIZE=          21
+ >  ESUB: LOWER=           1 UPPER=          21 SIZE=          21
 ```
-
 ### **Standard**
 
 Fortran 95 , with KIND argument Fortran 2003

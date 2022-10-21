@@ -12331,8 +12331,7 @@ textblock=[character(len=256) :: &
 '  Gamma function.', &
 '', &
 'OPTIONS', &
-'  o  X : A non-negative (neither negative nor zero) value to render the result', &
-'     for.', &
+'  o  X : neither negative nor zero value to render the result for.', &
 '', &
 'RESULT', &
 '  The result has a value equal to a processor-dependent approximation to the', &
@@ -12350,8 +12349,8 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'            1.000000      0.0000000E+00', &
-'            1.000000      0.6931472', &
+'       >    1.000000      0.0000000E+00', &
+'       >    1.000000      0.6931472', &
 '', &
 'STANDARD', &
 '  Fortran 2008', &
@@ -17994,7 +17993,7 @@ textblock=[character(len=256) :: &
 'set_exponent(3fortran)                                  set_exponent(3fortran)', &
 '', &
 'NAME', &
-'  SET_EXPONENT(3) - [MODEL_COMPONENTS] Set the exponent of the model', &
+'  SET_EXPONENT(3) - [MODEL_COMPONENTS] real value with specified exponent', &
 '', &
 'SYNOPSIS', &
 '  result = set_exponent(x, i)', &
@@ -18005,6 +18004,10 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in) :: i', &
 '', &
 'CHARACTERISTICS', &
+'  o  X is type real', &
+'', &
+'  o  I is type integer', &
+'', &
 '  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 '  o  The return value is of the same type and kind as X.', &
@@ -18022,6 +18025,12 @@ textblock=[character(len=256) :: &
 '  The return value is of the same type and kind as X. The real number whose', &
 '  fractional part is that that of X and whose exponent part if I is returned;', &
 '  it is FRACTION(X) * RADIX(X)**I.', &
+'', &
+'  If X has the value zero, the result has the same value as X.', &
+'', &
+'  If X is an IEEE infinity, the result is an IEEE NaN.', &
+'', &
+'  If X is an IEEE NaN, the result is the same NaN.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -20566,6 +20575,33 @@ textblock=[character(len=256) :: &
 '', &
 'ubound(3fortran)                                              ubound(3fortran)', &
 '', &
+'              the result has a value equal to the upper bound for subscript', &
+'              DIM of ARRAY. Otherwise, if DIM is present and ARRAY is assumed-', &
+'              rank, the value of the result is as if ARRAY were a whole array,', &
+'              with the extent of the nal dimension of ARRAY when ARRAY is', &
+'              associated with an assumed-size array being considered to be -1.', &
+'              Otherwise, if DIM is present, the result has a value equal to', &
+'              the number of elements in dimension DIM of ARRAY.', &
+'', &
+'       Case (ii):', &
+'              If ARRAY has rank zero, UBOUND (ARRAY) has a value that is a', &
+'              zero-sized array. Otherwise, th UBOUND(ARRAY)hasavaluewhosei', &
+'              elementisequaltoUBOUND(ARRAY,i),fori = 1, 2, th', &
+'', &
+'              : : : ,', &
+'                n, where n is the rank of ARRAY. UBOUND (ARRAY, KIND=KIND) has', &
+'                a value whose i element is equal to UBOUND (ARRAY, i,', &
+'                KIND=KIND), for i = 1, 2, :::, n, where n is the rank of', &
+'                ARRAY.', &
+'', &
+'       Examples. If A is declared by the statement REAL A (2:3, 7:10) then', &
+'       UBOUND (A) is [3, 10] and UBOUND (A, DIM = 2) is 10. NOTE1 If', &
+'       ARRAYisassumed-', &
+'       rankandhasrankzero,DIMcannotbepresentsinceitcannotsatisfytherequirement', &
+'       1 <= DIM <= 0.', &
+'', &
+'         ubound', &
+'', &
 'NAME', &
 '  UBOUND(3) - [ARRAY:INQUIRY] Upper dimension bounds of an array', &
 '', &
@@ -20581,7 +20617,8 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 '  o  a kind designated as ** may be any supported kind for the type', &
 '', &
-'  o  ARRAY shall be an array, of any type.', &
+'  o  ARRAY shall be assumed-rank or an array, of any type. It cannot be an', &
+'     unallocated allocatable array or a pointer that is not associated.', &
 '', &
 '  o  DIM shall be a scalar integer.', &
 '', &
@@ -20596,10 +20633,14 @@ textblock=[character(len=256) :: &
 '  along the DIM dimension.', &
 '', &
 'OPTIONS', &
-'  o  ARRAY : The array to determine the upper bounds of', &
+'  o  ARRAY : The assumed-rank or array of any type whose upper bounds are to', &
+'     be determined. If allocatable it must be allocated; if a pointer it must', &
+'     be associated. If an assumed-size array, DIM must be present.', &
 '', &
-'  o  DIM : a specific rank to determine the bounds of If DIM is absent, the', &
-'     result is an array of the upper bounds of ARRAY.', &
+'  o  DIM : a specific dimension of ARRAY to determine the bounds of. If DIM is', &
+'     absent, the result is an array of the upper bounds of ARRAY.  DIM is', &
+'     required if ARRAY is an assumed-size array, and in that case must be less', &
+'     than or equal to the rank of ARRAY.', &
 '', &
 '  o  KIND : indicates the kind parameter of the result. If absent, an integer', &
 '     of the default kind is returned.', &
@@ -20608,7 +20649,8 @@ textblock=[character(len=256) :: &
 '  The return value is of type integer and of kind KIND. If KIND is absent, the', &
 '  return value is of default integer kind.', &
 '', &
-'  If DIM is absent, the result is an array of the upper bounds of ARRAY.', &
+'  If DIM is absent, the result is an array of the upper bounds of each', &
+'  dimension of the ARRAY.', &
 '', &
 '  If DIM is present, the result is a scalar corresponding to the upper bound', &
 '  of the array along that dimension.', &
@@ -20674,10 +20716,10 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        MAIN: LOWER=         -10 UPPER=          10 SIZE=          21', &
-'        CSUB: LOWER=         -10 UPPER=          10 SIZE=          21', &
-'        MSUB: LOWER=           1 UPPER=          21 SIZE=          21', &
-'        ESUB: LOWER=           1 UPPER=          21 SIZE=          21', &
+'       >  MAIN: LOWER=         -10 UPPER=          10 SIZE=          21', &
+'       >  CSUB: LOWER=         -10 UPPER=          10 SIZE=          21', &
+'       >  MSUB: LOWER=           1 UPPER=          21 SIZE=          21', &
+'       >  ESUB: LOWER=           1 UPPER=          21 SIZE=          21', &
 '', &
 'STANDARD', &
 '  Fortran 95 , with KIND argument Fortran 2003', &
