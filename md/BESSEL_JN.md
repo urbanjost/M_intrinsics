@@ -60,13 +60,13 @@
 ### **Result**
       
   The result value of BESSEL_JN (N, X) is a processor-dependent
-  approximation to the Bessel function of the ﬁrst kind and order N
+  approximation to the Bessel function of the first kind and order N
   of X.
 
   The result of BESSEL_JN (N1, N2, X) is a rank-one array with extent
-  MAX (N2−N1+1, 0). Element i of the result value of BESSEL_JN (N1,
+  MAX (N2-N1+1, 0). Element i of the result value of BESSEL_JN (N1,
   N2, X) is a processor-dependent approximation to the Bessel function
-  of the ﬁrst kind and order N1+i−1 of X.
+  of the first kind and order N1+i-1 of X.
 
 ### **Examples**
 

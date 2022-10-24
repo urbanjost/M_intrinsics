@@ -1,23 +1,3 @@
-Result Value.
-    Case (i):                 If DIM is present, ARRAY is a whole array, and dimension DIM of ARRAY has nonzero extent,
-                              the result has a value equal to the upper bound for subscript DIM of ARRAY. Otherwise, if DIM
-                              is present and ARRAY is assumed-rank, the value of the result is as if ARRAY were a whole array,
-                              with the extent of the ﬁnal dimension of ARRAY when ARRAY is associated with an assumed-size
-                              array being considered to be −1. Otherwise, if DIM is present, the result has a value equal to the
-                              number of elements in dimension DIM of ARRAY.
-    Case (ii):                If ARRAY has rank zero, UBOUND (ARRAY) has a value that is a zero-sized array. Otherwise,
-                                                                                                                    th
-                               UBOUND(ARRAY)hasavaluewhosei elementisequaltoUBOUND(ARRAY,i),fori = 1, 2,
-                                                                                                                                                                                                                                th
-                               : : : ,  n, where n is the rank of ARRAY. UBOUND (ARRAY, KIND=KIND) has a value whose i
-                               element is equal to UBOUND (ARRAY, i, KIND=KIND), for i = 1, 2, :::, n, where n is the
-                               rank of ARRAY.
- Examples. If A is declared by the statement
-             REAL A (2:3, 7:10)
-     then UBOUND (A) is [3, 10] and UBOUND (A, DIM = 2) is 10.
-  NOTE1
-  If ARRAYisassumed-rankandhasrankzero,DIMcannotbepresentsinceitcannotsatisfytherequirement
-  1 ≤ DIM ≤ 0.
 ## ubound
 
 ### **Name**
@@ -83,6 +63,11 @@ If **array** is an expression rather than a whole array or array
 structure component, or if it has a zero extent along the relevant
 dimension, the upper bound is taken to be the number of elements along
 the relevant dimension.
+
+  NOTE1
+  If ARRAY is assumed-rank and has rank zero, DIM cannot be present
+  since it cannot satisfy the requirement
+  1 <=  DIM <= 0.
 
 ### **Examples**
 

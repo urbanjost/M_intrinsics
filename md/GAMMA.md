@@ -15,13 +15,14 @@
 ```
 ### **Characteristics**
 
-- **gamma**(3) returns a _real_ value with the kind as **x**.
+ - **x** is a _real_ value
+ - returns a _real_ value with the kind as **x**.
 
 ### **Description**
 
-**gamma(x)** computes Gamma of **x**. For positive whole number values of **n** the
-Gamma function can be used to calculate factorials, as **(n-1)! == gamma(real(n))**.
-That is
+  **gamma(x)** computes Gamma of **x**. For positive whole number values of **n** the
+  Gamma function can be used to calculate factorials, as **(n-1)! == gamma(real(n))**.
+  That is
 ```text
 n! == gamma(real(n+1))
 ```
@@ -37,7 +38,9 @@ $$
 
 ### **Result**
 
-The return value is of type _real_ of the same kind as _x_.
+  The return value is of type _real_ of the same kind as _x_.  The result
+  has a value equal to a processor-dependent approximation to the gamma
+  function of **x**.
 
 ### **Examples**
 

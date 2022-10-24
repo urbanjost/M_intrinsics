@@ -66,9 +66,9 @@
   of X.
 
   The result of **BESSEL_YN (N1, N2, X)** is a rank-one array with extent
-  **MAX (N2−N1+1, 0)**.  Element i of the result value of BESSEL_YN
+  **MAX (N2-N1+1, 0)**. Element i of the result value of BESSEL_YN
   (N1, N2, X) is a processor-dependent approximation to the Bessel
-  function of the second kind and order N1+i−1 of X.
+  function of the second kind and order N1+i-1 of X.
 
 ### **Examples**
 

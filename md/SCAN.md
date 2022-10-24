@@ -20,8 +20,10 @@
 
  - **string** is a _character_ string of any kind
  - **set** must be a _character_ string with the same kind as **string**
- - **back** is a _logical_ scalar
- - **kind** is a constant _integer_
+ - **back** is a _logical_ 
+ - **kind** is a scalar _integer_ constant expression
+ - the result is an _integer_ with the kind specified by **kind**. If
+   **kind** is not present the result is a default _integer_.
 
 ### **Description**
 
@@ -37,24 +39,32 @@
 ### **Options**
 
 - **string**
-  : Shall be of type _character_.
+  : the string to be scanned
 
 - **set**
-  : Shall be of type _character_.
+  : the set of characters which will be matched
 
 - **back**
-  : (Optional) shall be of type _logical_.
+  : if _.true._ the position of the rightmost character matched is
+  returned, instead of the leftmost.
 
 - **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
-  parameter of the result.
-  the kind of the returned value is the same as **kind** if
+  : the kind of the returned value is the same as **kind** if
   present. Otherwise a default _integer_ kind is returned.
 
 ### **Result**
 
-The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
-the return value is of default integer kind.
+  If **back** is absent or is present with the value false and if
+  **string** contains at least one character that is in **set**, the value
+  of the result is the position of the leftmost character of **string**
+  that is in **set**.
+
+  If **back** is present with the value true and if **string** contains at
+  least one character that is in **set**, the value of the result is the
+  position of the rightmost character of **string** that is in **set**.
+
+  The value of the result is zero if no character of STRING is in SET
+  or if the length of STRING or SET is zero.
 
 ### **Examples**
 
@@ -69,9 +79,9 @@ end program demo_scan
 ```
 Results:
 ```text
-              2
-              6
-              0
+ >            2
+ >            6
+ >            0
 ```
 ### **Standard**
 
@@ -91,4 +101,4 @@ of arguments, and search for certain arguments:
   [**len**(3)](#len),
   [**repeat**(3)](#repeat), [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

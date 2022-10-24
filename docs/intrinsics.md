@@ -3043,13 +3043,13 @@ Fortran 2008
 ### **Result**
 
   The result value of BESSEL_JN (N, X) is a processor-dependent
-  approximation to the Bessel function of the ﬁrst kind and order N
+  approximation to the Bessel function of the first kind and order N
   of X.
 
   The result of BESSEL_JN (N1, N2, X) is a rank-one array with extent
-  MAX (N2−N1+1, 0). Element i of the result value of BESSEL_JN (N1,
+  MAX (N2-N1+1, 0). Element i of the result value of BESSEL_JN (N1,
   N2, X) is a processor-dependent approximation to the Bessel function
-  of the ﬁrst kind and order N1+i−1 of X.
+  of the first kind and order N1+i-1 of X.
 
 ### **Examples**
 
@@ -3282,9 +3282,9 @@ Fortran 2008
   of X.
 
   The result of **BESSEL_YN (N1, N2, X)** is a rank-one array with extent
-  **MAX (N2−N1+1, 0)**.  Element i of the result value of BESSEL_YN
+  **MAX (N2-N1+1, 0)**. Element i of the result value of BESSEL_YN
   (N1, N2, X) is a processor-dependent approximation to the Bessel
-  function of the second kind and order N1+i−1 of X.
+  function of the second kind and order N1+i-1 of X.
 
 ### **Examples**
 
@@ -6274,28 +6274,35 @@ Fortran 95
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
-## cshift
-
 ### **Name**
 
 **cshift**(3) - \[TRANSFORMATIONAL\] Circular shift elements of an array
 
 ### **Synopsis**
 ```fortran
-    result = cshift(array, shift, dim)
+   result = cshift(array, shift [,dim])
 ```
 ```fortran
-     type(TYPE, kind=KIND) function cshift(array, shift, dim )
+    type(TYPE, kind=KIND) function cshift(array, shift, dim )
 
-      type(TYPE,kind=KIND),intent(in) :: array(..)
-      integer(kind=**),intent(in)  :: shift
-      integer(kind=**),intent(in)  :: dim
+     type(TYPE,kind=KIND),intent(in) :: array(..)
+     integer(kind=**),intent(in)  :: shift
+     integer(kind=**),intent(in)  :: dim
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind for the type
- - **array** may be any type and rank (and the result will
-   automatically be of the same type, kind and rank as **array**).
+ - **array** may be any type and rank
+ - **shift** an _integer_ scalar if **array** has rank one.
+   Otherwise, it shall be scalar or of rank n-1 and of shape [d1, d2,
+   ..., dDIM-1, dDIM+1, ..., dn] where [d1, d2, ..., dn] is the shape
+   of **array**.
+ - **dim** is an _integer_ scalar with a value in the range 1 <= **dim**
+   <= n, where n is the rank of **array**.
+   If **dim** is absent, it is as if it were present with the value 1.
+ - the result will automatically be of the same type, kind and shape as **array**.
+
+ NOTE:
+ :a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
@@ -6313,17 +6320,24 @@ Fortran 95
 ### **Options**
 
 - **array**
-  : Shall be an array of any type.
+  : An array of any type which is to be shifted
 
 - **shift**
-  : The type shall be _integer_.
+  : the number of positions to circularly shift. A negative value produces
+  a right shift, a positive value produces a left shift.
 
 - **dim**
-  : The type shall be _integer_.
+  : the dimension along which to shift a multi-rank **array**. Defaults
+  to 1.
 
 ### **Result**
 
 Returns an array of same type and rank as the **array** argument.
+
+The rows of an array of rank two may all be shifted by the same amount
+or by different amounts.
+
+## cshift
 
 ### **Examples**
 
@@ -6332,27 +6346,47 @@ Sample program:
 ```fortran
 program demo_cshift
 implicit none
-integer, dimension(3,3) :: a
-    a = reshape( [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], [ 3, 3 ])
-    print '(3i3)', a(1,:)
-    print '(3i3)', a(2,:)
-    print '(3i3)', a(3,:)
-    a = cshift(a, SHIFT=[1, 2, -1], DIM=2)
+integer, dimension(5)   :: i1,i2,i3
+integer, dimension(3,4) :: a, b
+   !basics
+    i1=[10,20,30,40,50]
+    print *,'start with:'
+    print '(1x,5i3)', i1
+    print *,'shift -2'
+    print '(1x,5i3)', cshift(i1,-2)
+    print *,'shift +2'
+    print '(1x,5i3)', cshift(i1,+2)
+
+    print *,'start with a matrix'
+    a = reshape( [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ], [ 3, 4 ])
+    print '(4i3)', a(1,:)
+    print '(4i3)', a(2,:)
+    print '(4i3)', a(3,:)
+    print *,'matrix shifted along rows, each by its own amount [-1,0,1]'
+    b = cshift(a, SHIFT=[1, 0, -1], DIM=2)
     print *
-    print '(3i3)', a(1,:)
-    print '(3i3)', a(2,:)
-    print '(3i3)', a(3,:)
+    print '(4i3)', b(1,:)
+    print '(4i3)', b(2,:)
+    print '(4i3)', b(3,:)
 end program demo_cshift
 ```
 Results:
 ```text
- >   1  4  7
- >   2  5  8
- >   3  6  9
+ >  start with:
+ >   10 20 30 40 50
+ >  shift -2
+ >   40 50 10 20 30
+ >  shift +2
+ >   30 40 50 10 20
+ >  start with a matrix
+ >   1  4  7 10
+ >   2  5  8 11
+ >   3  6  9 12
+ >  matrix shifted along rows, each by its own amount
  >
- >   4  7  1
- >   8  2  5
- >   9  3  6
+ >   4  7 10  1
+ >   2  5  8 11
+ >  12  3  6  9
 ```
 ### **Standard**
 
@@ -6360,7 +6394,14 @@ Fortran 95
 
 ### **See Also**
 
-[****(3)](#)
+ - [**eoshift**(3)](#eoshift)  -  End-off shift elements of an array
+ <!--
+ - [**cshift**(3)](#cshift)   -  Circular shift elements of an array
+ -->
+ - [**sum**(3)](#sum)      -  sum the elements of an array
+ - [**product**(3)](#product)  -  Product of array elements
+ - [**findloc**(3)](#findloc)  -  Location of first element of ARRAY identified by MASK along dimension DIM having a value
+ - [**maxloc**(3)](#maxloc)    -  Location of the maximum value within an array
 
  _fortran-lang intrinsic descriptions_
 
@@ -6594,7 +6635,7 @@ date and time conversion, formatting and computation
 
 ### **Name**
 
-**dble**(3) - \[TYPE:NUMERIC\] Double conversion function
+**dble**(3) - \[TYPE:NUMERIC\] Converstion to double precision real
 
 ### **Synopsis**
 ```fortran
@@ -6608,8 +6649,8 @@ date and time conversion, formatting and computation
 ```
 ### **Characteristics**
 
-where TYPE may be _integer_, _real_, or _complex_ and KIND any kind
-supported by the TYPE.
+ - **a** my be _integer_, _real_, _complex_, or a BOZ-literal-constant
+ - the result is a doubleprecision _real_.
 
 ### **Description**
 
@@ -6618,7 +6659,7 @@ supported by the TYPE.
 ### **Options**
 
 - **a**
-  : The type shall be _integer_, _real_, or _complex_.
+  : a value to convert to a doubleprecision _real_.
 
 ### **Result**
 
@@ -6639,13 +6680,11 @@ complex :: z = (2.3,1.14)
    print *, dble(x), dble(i), dble(z)
 end program demo_dble
 ```
-
 Results:
 
 ```text
   2.1800000667572021  5.0000000000000000   2.2999999523162842
 ```
-
 ### **Standard**
 
 FORTRAN 77
@@ -6665,7 +6704,7 @@ FORTRAN 77
 
 ### **Name**
 
-**digits**(3) - \[NUMERIC MODEL\] Significant digits function
+**digits**(3) - \[NUMERIC MODEL\] Significant digits in the numeric model
 
 ### **Synopsis**
 ```fortran
@@ -6678,25 +6717,26 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
-where TYPE may be _integer_ or _real_ and KIND is any kind supported by
-TYPE.
+ - **x** an _integer_ or _ral_ scalar or array
 
-The return value is of type _integer_ of default kind.
+ - The return value is an _integer_ of default kind.
 
 ### **Description**
 
-**digits**(3) returns the number of significant digits of the internal
-model representation of **x**. For example, on a system using a 32-bit
-floating point representation, a default real number would likely return 24.
+  **digits**(3) returns the number of significant digits of the internal
+  model representation of **x**. For example, on a system using a 32-bit
+  floating point representation, a default real number would likely
+  return 24.
 
 ### **Options**
 
 - **x**
-  : The type may be a scalar or array of type _integer_ or _real_.
+  : a value of the type and kind to query
 
 ### **Result**
 
-The return value is of type _integer_ of default kind.
+  The number of significant digits in a variable of the type and kind
+  of **x**.
 
 ### **Examples**
 
@@ -6713,15 +6753,12 @@ doubleprecision :: y = 2.33d0
    print *,'default doubleprecision:', digits(y)
 end program demo_digits
 ```
-
-Typical Results:
-
+Results:
+```text
+ >  default integer:          31
+ >  default real:             24
+ >  default doubleprecision:          53
 ```
-    default integer:                  31
-    default real:                     24
-    default doubleprecision:          53
-```
-
 ### **Standard**
 
 Fortran 95
@@ -8808,13 +8845,14 @@ Fortran 95
 ```
 ### **Characteristics**
 
-- **gamma**(3) returns a _real_ value with the kind as **x**.
+ - **x** is a _real_ value
+ - returns a _real_ value with the kind as **x**.
 
 ### **Description**
 
-**gamma(x)** computes Gamma of **x**. For positive whole number values of **n** the
-Gamma function can be used to calculate factorials, as **(n-1)! == gamma(real(n))**.
-That is
+  **gamma(x)** computes Gamma of **x**. For positive whole number values of **n** the
+  Gamma function can be used to calculate factorials, as **(n-1)! == gamma(real(n))**.
+  That is
 ```text
 n! == gamma(real(n+1))
 ```
@@ -8830,7 +8868,9 @@ $$
 
 ### **Result**
 
-The return value is of type _real_ of the same kind as _x_.
+  The return value is of type _real_ of the same kind as _x_.  The result
+  has a value equal to a processor-dependent approximation to the gamma
+  function of **x**.
 
 ### **Examples**
 
@@ -9566,10 +9606,12 @@ Fortran 2008
 ```
 ### **Characteristics**
 
+ - **c** is a single character
  - The return value is of type _integer_ and of kind **KIND**. If **KIND**
    is absent, the return value is of default integer kind.
- - **kind** may be of any _integer_ kind.
- - a kind designated as ** may be any supported kind for the type
+
+ NOTE:
+ : a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
@@ -9680,24 +9722,14 @@ Results:
 
 ### **Synopsis**
 ```fortran
-    result = iall(array [,mask])
-```
-```fortran
-     integer(kind=KIND) function iall(array,mask)
-
-      integer(kind=KIND),intent(in)        :: array(..)
-      logical(kind=**),intent(in),optional :: mask(..)
-```
-  or
-```fortran
-    result = iall(array [,dim] [,mask])
+    result = iall(array [,mask]) | iall(array ,dim [,mask])
 ```
 ```fortran
      integer(kind=KIND) function iall(array,dim,mask)
 
-      integer(kind=KIND),intent(in)        :: array(..)
+      integer(kind=KIND),intent(in)        :: array(*)
       integer(kind=**),intent(in),optional :: dim
-      logical(kind=**),intent(in),optional :: mask(..)
+      logical(kind=**),intent(in),optional :: mask(*)
 ```
 ### **Characteristics**
 
@@ -9710,8 +9742,8 @@ Results:
 
 ### **Description**
 
-**iall**(3) reduces with a bitwise _and_ the elements of **array** along
-dimension **dim** if the corresponding element in **mask** is _.true._.
+  **iall**(3) reduces with a bitwise _and_ the elements of **array** along
+  dimension **dim** if the corresponding element in **mask** is _.true._.
 
 ### **Options**
 
@@ -9728,12 +9760,12 @@ dimension **dim** if the corresponding element in **mask** is _.true._.
 
 ### **Result**
 
-The result is of the same type as **array**.
+  The result is of the same type as **array**.
 
-If **dim** is absent, a scalar with the bitwise _all_ of all elements in **array**
-is returned. Otherwise, an array of rank **n-1**, where **n** equals the
-rank of **array**, and a shape similar to that of **array** with dimension **dim**
-dropped is returned.
+  If **dim** is absent, a scalar with the bitwise _all_ of all elements in
+  **array** is returned. Otherwise, an array of rank **n-1**, where **n**
+  equals the rank of **array**, and a shape similar to that of **array**
+  with dimension **dim** dropped is returned.
 
 ### **Examples**
 
@@ -9753,13 +9785,10 @@ integer(kind=int8) :: a(2)
 
 end program demo_iall
 ```
-
 Results:
-
 ```text
-   00100000
+ > 00100000
 ```
-
 ### **Standard**
 
 Fortran 2008
@@ -9770,7 +9799,7 @@ Fortran 2008
 [**iparity**(3)](#iparity),
 [**iand**(3)](#iand)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## iand
 
@@ -14657,7 +14686,7 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
-  - The type of **a** may be any kind of _real_ or _integer_.
+  - **a** may be any kind of _real_ or _integer_.
   - **p** is the same type and kind as **a**
   - The result and arguments are all of the same type and kind.
 
@@ -14686,7 +14715,6 @@ The type and kind of the result are those of the arguments.
 
 The returned value has the same sign as **p** and a magnitude less than the
 magnitude of **p**.
-
 ### **Examples**
 
 Sample program:
@@ -14705,14 +14733,13 @@ implicit none
 end program demo_modulo
 ```
 Results:
-
 ```text
-              2
-      1.00000000
-              1
-      4.50000000
-             -1
-     -4.50000000
+ >            2
+ >    1.000000
+ >            1
+ >    4.500000
+ >           -1
+ >   -4.500000
 ```
 ### **Standard**
 
@@ -18343,8 +18370,10 @@ Fortran 95
 
  - **string** is a _character_ string of any kind
  - **set** must be a _character_ string with the same kind as **string**
- - **back** is a _logical_ scalar
- - **kind** is a constant _integer_
+ - **back** is a _logical_
+ - **kind** is a scalar _integer_ constant expression
+ - the result is an _integer_ with the kind specified by **kind**. If
+   **kind** is not present the result is a default _integer_.
 
 ### **Description**
 
@@ -18360,24 +18389,32 @@ Fortran 95
 ### **Options**
 
 - **string**
-  : Shall be of type _character_.
+  : the string to be scanned
 
 - **set**
-  : Shall be of type _character_.
+  : the set of characters which will be matched
 
 - **back**
-  : (Optional) shall be of type _logical_.
+  : if _.true._ the position of the rightmost character matched is
+  returned, instead of the leftmost.
 
 - **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
-  parameter of the result.
-  the kind of the returned value is the same as **kind** if
+  : the kind of the returned value is the same as **kind** if
   present. Otherwise a default _integer_ kind is returned.
 
 ### **Result**
 
-The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
-the return value is of default integer kind.
+  If **back** is absent or is present with the value false and if
+  **string** contains at least one character that is in **set**, the value
+  of the result is the position of the leftmost character of **string**
+  that is in **set**.
+
+  If **back** is present with the value true and if **string** contains at
+  least one character that is in **set**, the value of the result is the
+  position of the rightmost character of **string** that is in **set**.
+
+  The value of the result is zero if no character of STRING is in SET
+  or if the length of STRING or SET is zero.
 
 ### **Examples**
 
@@ -18392,9 +18429,9 @@ end program demo_scan
 ```
 Results:
 ```text
-              2
-              6
-              0
+ >            2
+ >            6
+ >            0
 ```
 ### **Standard**
 
@@ -18414,7 +18451,7 @@ of arguments, and search for certain arguments:
   [**len**(3)](#len),
   [**repeat**(3)](#repeat), [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## selected_char_kind
 
@@ -21552,6 +21589,11 @@ If **array** is an expression rather than a whole array or array
 structure component, or if it has a zero extent along the relevant
 dimension, the upper bound is taken to be the number of elements along
 the relevant dimension.
+
+  NOTE1
+  If ARRAY is assumed-rank and has rank zero, DIM cannot be present
+  since it cannot satisfy the requirement
+  1 <=  DIM <= 0.
 
 ### **Examples**
 

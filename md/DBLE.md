@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**dble**(3) - \[TYPE:NUMERIC\] Double conversion function
+**dble**(3) - \[TYPE:NUMERIC\] Converstion to double precision real
 
 ### **Synopsis**
 ```fortran
@@ -16,8 +16,8 @@
 ```
 ### **Characteristics**
 
-where TYPE may be _integer_, _real_, or _complex_ and KIND any kind
-supported by the TYPE.
+ - **a** my be _integer_, _real_, _complex_, or a BOZ-literal-constant
+ - the result is a doubleprecision _real_.
 
 ### **Description**
 
@@ -26,7 +26,7 @@ supported by the TYPE.
 ### **Options**
 
 - **a**
-  : The type shall be _integer_, _real_, or _complex_.
+  : a value to convert to a doubleprecision _real_.
 
 ### **Result**
 
@@ -47,13 +47,11 @@ complex :: z = (2.3,1.14)
    print *, dble(x), dble(i), dble(z)
 end program demo_dble
 ```
-
 Results:
 
 ```text
   2.1800000667572021  5.0000000000000000   2.2999999523162842
 ```
-
 ### **Standard**
 
 FORTRAN 77

@@ -6,24 +6,14 @@
 
 ### **Synopsis**
 ```fortran
-    result = iall(array [,mask])
-```
-```fortran
-     integer(kind=KIND) function iall(array,mask)
-
-      integer(kind=KIND),intent(in)        :: array(..)
-      logical(kind=**),intent(in),optional :: mask(..)
-```
-  or
-```fortran
-    result = iall(array [,dim] [,mask])
+    result = iall(array [,mask]) | iall(array ,dim [,mask])
 ```
 ```fortran
      integer(kind=KIND) function iall(array,dim,mask)
 
-      integer(kind=KIND),intent(in)        :: array(..)
+      integer(kind=KIND),intent(in)        :: array(*)
       integer(kind=**),intent(in),optional :: dim
-      logical(kind=**),intent(in),optional :: mask(..)
+      logical(kind=**),intent(in),optional :: mask(*)
 ```
 ### **Characteristics**
 
@@ -36,8 +26,8 @@
 
 ### **Description**
 
-**iall**(3) reduces with a bitwise _and_ the elements of **array** along
-dimension **dim** if the corresponding element in **mask** is _.true._.
+  **iall**(3) reduces with a bitwise _and_ the elements of **array** along
+  dimension **dim** if the corresponding element in **mask** is _.true._.
 
 ### **Options**
 
@@ -54,12 +44,12 @@ dimension **dim** if the corresponding element in **mask** is _.true._.
 
 ### **Result**
 
-The result is of the same type as **array**.
+  The result is of the same type as **array**.
 
-If **dim** is absent, a scalar with the bitwise _all_ of all elements in **array**
-is returned. Otherwise, an array of rank **n-1**, where **n** equals the
-rank of **array**, and a shape similar to that of **array** with dimension **dim**
-dropped is returned.
+  If **dim** is absent, a scalar with the bitwise _all_ of all elements in
+  **array** is returned. Otherwise, an array of rank **n-1**, where **n**
+  equals the rank of **array**, and a shape similar to that of **array**
+  with dimension **dim** dropped is returned.
 
 ### **Examples**
 
@@ -79,13 +69,10 @@ integer(kind=int8) :: a(2)
 
 end program demo_iall
 ```
-
 Results:
-
 ```text
-   00100000
+ > 00100000
 ```
-
 ### **Standard**
 
 Fortran 2008
@@ -96,4 +83,4 @@ Fortran 2008
 [**iparity**(3)](#iparity),
 [**iand**(3)](#iand)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

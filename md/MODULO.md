@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
-  - The type of **a** may be any kind of _real_ or _integer_.
+  - **a** may be any kind of _real_ or _integer_.
   - **p** is the same type and kind as **a**
   - The result and arguments are all of the same type and kind.
 
@@ -45,7 +45,6 @@ The type and kind of the result are those of the arguments.
 
 The returned value has the same sign as **p** and a magnitude less than the
 magnitude of **p**.
-
 ### **Examples**
 
 Sample program:
@@ -64,14 +63,13 @@ implicit none
 end program demo_modulo
 ```
 Results:
-
 ```text
-              2
-      1.00000000
-              1
-      4.50000000
-             -1
-     -4.50000000
+ >            2
+ >    1.000000    
+ >            1
+ >    4.500000    
+ >           -1
+ >   -4.500000    
 ```
 ### **Standard**
 
