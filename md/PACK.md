@@ -12,21 +12,23 @@
      TYPE(kind=KIND) function pack(array,mask,vector)
 
       TYPE(kind=KIND),option(in) :: array(..)
-      logical  :: mask(*)
+      logical  :: mask(..)
       TYPE(kind=KIND),option(in),optional :: vector(*)
 ```
 ### **Characteristics**
 
-  - **array**, **vector** and the returned value are all of the same kind and type.
-  - **mask** may be a scalar as well an an array.
+  - **array** is an array of any type
+  - **mask** a _logical_ scalar as well an an array conformable with **array**.
+  - **vector** is of the same kind and type as **array** and of rank one
+  - the returned value is of the same kind and type as **array**
 
 ### **Description**
 
-  **pack**(3) stores the elements of ARRAY in an array of rank one.
+  **pack**(3) stores the elements of **array** in an array of rank one.
 
   The beginning of the resulting array is made up of elements whose
-  **mask** equals _.true._. Afterwards, positions are filled with elements
-  taken from **vector**.
+  **mask** equals _.true._. Afterwards, remaining positions are filled with elements
+  taken from **vector**
 
 ### **Options**
 
@@ -38,17 +40,22 @@
   alternatively, it may be a _logical_ scalar.
 
 - **vector**
-  : (Optional) shall be an array of the same type as **array** and of rank
+  : an array of the same type as **array** and of rank
   one. If present, the number of elements in **vector** shall be equal to
   or greater than the number of true elements in **mask**. If **mask** is
   scalar, the number of elements in **vector** shall be equal to or
   greater than the number of elements in **array**.
+
+**vector** shall have at least as many elements as there are in **array**.
 
 ### **Result**
 
 The result is an array of rank one and the same type as that of **array**.
 If **vector** is present, the result size is that of **vector**, the number of
 _.true._ values in **mask** otherwise.
+
+If **mask** is scalar with the value _.true._, in which case the result
+size is the size of **array**.
 
 ### **Examples**
 
@@ -69,6 +76,7 @@ character(len=10) :: c(4)
  ! mask is scalar):
    m = [ 1, 0, 0, 2 ]
    write(*, fmt="(*(i0, ' '))") pack(m, m /= 0, [ 0, 0, 3, 4 ])
+   write(*, fmt="(*(i0, ' '))") pack(m, m /= 0 )
 
  ! select strings whose second character is "a"
    c = [ character(len=10) :: 'ape', 'bat', 'cat', 'dog']
@@ -78,9 +86,10 @@ end program demo_pack
 ```
 Results:
 ```text
-   1 5
-   1 2 3 4
-   bat        cat
+ > 1 5 
+ > 1 2 3 4 
+ > 1 2 
+ > bat        cat        
 ```
 ### **Standard**
 

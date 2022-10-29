@@ -12,6 +12,7 @@
        ! mask is scalar):
          m = [ 1, 0, 0, 2 ]
          write(*, fmt="(*(i0, ' '))") pack(m, m /= 0, [ 0, 0, 3, 4 ])
+         write(*, fmt="(*(i0, ' '))") pack(m, m /= 0 )
 
        ! select strings whose second character is "a"
          c = [ character(len=10) :: 'ape', 'bat', 'cat', 'dog']

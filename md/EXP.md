@@ -1,6 +1,3 @@
-  Result Value. The result has a value equal to a processor-dependent
-  approximation to e . If X is of type complex, its imaginary part is
-  regarded as a value in radians.
 ## exp
 
 ### **Name**
@@ -48,6 +45,9 @@ of the _real_ component of **x** is **log(huge(x))**.
 ### **Result**
 
 The value of the result is **e\*\*x** where **e** is Euler's constant.
+
+If **x** is of type complex, its imaginary part is
+regarded as a value in radians.
 
 ### **Examples**
 

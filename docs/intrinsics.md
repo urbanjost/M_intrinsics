@@ -6274,6 +6274,8 @@ Fortran 95
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
+## cshift
+
 ### **Name**
 
 **cshift**(3) - \[TRANSFORMATIONAL\] Circular shift elements of an array
@@ -8104,6 +8106,9 @@ of the _real_ component of **x** is **log(huge(x))**.
 ### **Result**
 
 The value of the result is **e\*\*x** where **e** is Euler's constant.
+
+If **x** is of type complex, its imaginary part is
+regarded as a value in radians.
 
 ### **Examples**
 
@@ -10022,7 +10027,7 @@ Fortran 2008
 
 ### **Name**
 
-**ibclr**(3) - \[BIT:SET\] Clear bit
+**ibclr**(3) - \[BIT:SET\] Clear a bit
 
 ### **Synopsis**
 ```fortran
@@ -10036,9 +10041,11 @@ Fortran 2008
 ```
 ### **Characteristics**
 
+  - **i** shall be type _integer_.
+  - **pos** shall be type _integer_.
+  - The return value is of the same kind as **i**.
+
   - a kind designated as ** may be any supported kind for the type
-  - The return value is of the same kind as **i**. Otherwise,
-    any _integer_ kinds are allowed.
 
 ### **Description**
 
@@ -10958,32 +10965,23 @@ Fortran 95
 
 ### **Name**
 
-**iparity**(3) - \[BIT:LOGICAL\] Bitwise exclusive or of array elements
+**iparity**(3) - \[BIT:LOGICAL\] Bitwise exclusive OR of array elements
 
 ### **Synopsis**
 ```fortran
-    result = iparity(array [,mask])
+    result = iparity( array [,mask] ) | iparity( array, dim [,mask] )
 ```
 ```fortran
-     integer(kind=KIND) function iparity(array, mask )
+     integer(kind=KIND) function iparity(array, dim, mask )
 
       integer(kind=KIND),intent(in) :: array(..)
-      logical(kind=KIND),intent(in),optional :: mask(..)
+      logical(kind=**),intent(in),optional :: dim
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
-   **array** must be an array. **mask** may be either an array of the
-   same shape as **array** or a scalar.
+ - **array** - An _integer_ array.
+ - **dim** - an _integer_ scalar from 1 to the rank of **array**
+ - **mask** - _logical_ conformable with **array**.
 
-or
-```fortran
-    result = iparity(array, dim [,mask] )
-```
-```fortran
-     integer(kind=KIND) function iparity( array ,dim ,mask )
-
-      integer(kind=KIND),intent(in)          :: array(..)
-      logical(kind=KIND),intent(in)          :: dim
-      logical(kind=KIND),intent(in),optional :: mask(..)
-```
 ### **Description**
 
 **iparity**(3) reduces with bitwise _xor_ (exclusive _or_) the elements
@@ -10993,15 +10991,13 @@ of **array** along dimension **dim** if the corresponding element in
 ### **Options**
 
 - **array**
-  : Shall be an array of type _integer_
+  : an array of _integer_ values
 
-- **dim**
-  : (Optional) shall be a scalar of type _integer_ with a value in the
-  range from **"1" to "n"**, where **"n"** equals the rank of **array**.
+- **dim** a value from 1 to the rank of **array**.
 
 - **mask**
-  : (Optional) shall be of type _logical_ and either be a scalar or an
-  array of the same shape as **array**.
+  : a _logical_ mask either a scalar or an array of the same shape
+  as **array**.
 
 ### **Result**
 
@@ -11011,6 +11007,22 @@ If **dim** is absent, a scalar with the bitwise _xor_ of all elements in **array
 is returned. Otherwise, an array of rank **n-1**, where **n** equals the
 rank of **array**, and a shape similar to that of **array** with dimension **dim**
 dropped is returned.
+
+  Case (i):    The result of IPARITY (ARRAY) has a value equal to the
+               bitwise exclusive OR of all the elements of ARRAY. If
+               ARRAY has size zero the result has the value zero.
+
+  Case (ii):   The result of IPARITY (ARRAY, MASK=MASK) has a value
+               equal to that of
+```fortran
+               IPARITY (PACK (ARRAY, MASK)).
+```
+  Case (iii):  The result of IPARITY (ARRAY, DIM=DIM [, MASK=MASK])
+               has a value equal to that of IPARITY (ARRAY [, MASK=MASK])
+               if ARRAY has rank one.
+
+               Otherwise, an array of values reduced along the dimension
+               **dim** is returned.
 
 ### **Examples**
 
@@ -16067,21 +16079,23 @@ Results:
      TYPE(kind=KIND) function pack(array,mask,vector)
 
       TYPE(kind=KIND),option(in) :: array(..)
-      logical  :: mask(*)
+      logical  :: mask(..)
       TYPE(kind=KIND),option(in),optional :: vector(*)
 ```
 ### **Characteristics**
 
-  - **array**, **vector** and the returned value are all of the same kind and type.
-  - **mask** may be a scalar as well an an array.
+  - **array** is an array of any type
+  - **mask** a _logical_ scalar as well an an array conformable with **array**.
+  - **vector** is of the same kind and type as **array** and of rank one
+  - the returned value is of the same kind and type as **array**
 
 ### **Description**
 
-  **pack**(3) stores the elements of ARRAY in an array of rank one.
+  **pack**(3) stores the elements of **array** in an array of rank one.
 
   The beginning of the resulting array is made up of elements whose
-  **mask** equals _.true._. Afterwards, positions are filled with elements
-  taken from **vector**.
+  **mask** equals _.true._. Afterwards, remaining positions are filled with elements
+  taken from **vector**
 
 ### **Options**
 
@@ -16093,17 +16107,22 @@ Results:
   alternatively, it may be a _logical_ scalar.
 
 - **vector**
-  : (Optional) shall be an array of the same type as **array** and of rank
+  : an array of the same type as **array** and of rank
   one. If present, the number of elements in **vector** shall be equal to
   or greater than the number of true elements in **mask**. If **mask** is
   scalar, the number of elements in **vector** shall be equal to or
   greater than the number of elements in **array**.
+
+**vector** shall have at least as many elements as there are in **array**.
 
 ### **Result**
 
 The result is an array of rank one and the same type as that of **array**.
 If **vector** is present, the result size is that of **vector**, the number of
 _.true._ values in **mask** otherwise.
+
+If **mask** is scalar with the value _.true._, in which case the result
+size is the size of **array**.
 
 ### **Examples**
 
@@ -16124,6 +16143,7 @@ character(len=10) :: c(4)
  ! mask is scalar):
    m = [ 1, 0, 0, 2 ]
    write(*, fmt="(*(i0, ' '))") pack(m, m /= 0, [ 0, 0, 3, 4 ])
+   write(*, fmt="(*(i0, ' '))") pack(m, m /= 0 )
 
  ! select strings whose second character is "a"
    c = [ character(len=10) :: 'ape', 'bat', 'cat', 'dog']
@@ -16133,9 +16153,10 @@ end program demo_pack
 ```
 Results:
 ```text
-   1 5
-   1 2 3 4
-   bat        cat
+ > 1 5
+ > 1 2 3 4
+ > 1 2
+ > bat        cat
 ```
 ### **Standard**
 
@@ -16914,7 +16935,7 @@ directly using the star character.
 
 ### **Name**
 
-**radix**(3) - \[NUMERIC MODEL\] Base of a model number
+**radix**(3) - \[NUMERIC MODEL\] Base of a numeric model
 
 ### **Synopsis**
 ```fortran
@@ -16927,8 +16948,8 @@ directly using the star character.
 ```
 ### **Characteristics**
 
-   - TYPE may be _real_ or _integer_
-   - **x** may be scalar or an array
+   - **x** may be scalar or an array of any _real_ or _integer_ type.
+   - the result is a default integer scalar.
 
 ### **Description**
 
@@ -16965,13 +16986,11 @@ implicit none
 end program demo_radix
 ```
 Results:
-
 ```text
-    The radix for the default integer kind is           2
-    The radix for the default real kind is           2
-    The radix for the doubleprecision real kind is          2
+ >  The radix for the default integer kind is           2
+ >  The radix for the default real kind is           2
+ >  The radix for the doubleprecision real kind is           2
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -18926,7 +18945,7 @@ Fortran 95
 
 ### **Name**
 
-**shape**(3) - \[ARRAY:INQUIRY\] Determine the shape of an array
+**shape**(3) - \[ARRAY:INQUIRY\] Determine the shape of an array or scalar
 
 ### **Synopsis**
 ```fortran
@@ -18943,20 +18962,23 @@ Fortran 95
   - a kind designated as ** may be any supported kind for the type
 
   - **source** is an array or scalar of any type. If **source** is a pointer
-    it must be associated and allocatable arrays must be allocated.
+    it must be associated and allocatable arrays must be allocated. It shall
+    not be an assumed-size array.
 
-  - **KIND** is an _integer_ initialization expression.
-    If absent, the return value has the default integer kind otherwise
-    the specified kind.
+  - **KIND** is a constant _integer_ initialization expression.
+
+  - the result is an _integer_ array of rank one with size equal to the
+    rank of **source** of the kind specified by **KIND** if **KIND**
+    is present, otherwise it has the default integer kind.
 
 ### **Description**
 
-  **shape**(3) determines the shape of an array.
+  **shape**(3) queries the shape of an array.
 
 ### **Options**
 
 - **source**
-  : Shall be an array or scalar of any type. If **source** is a pointer it
+  : an array or scalar of any type. If **source** is a pointer it
   must be associated and allocatable arrays must be allocated.
 
 - **kind**
@@ -18967,11 +18989,11 @@ Fortran 95
   An _integer_ array of rank one with as many elements as **source**
   has dimensions.
 
-  The elements of the resulting array correspond to the
-  extent of **source** along the respective dimensions.
+  The elements of the resulting array correspond to the extent of
+  **source** along the respective dimensions.
 
-  If **source** is
-  a scalar, the result is an empty array (a rank-one array of size zero).
+  If **source** is a scalar, the result is an empty array (a rank-one
+  array of size zero).
 
 ### **Examples**
 
@@ -19770,7 +19792,7 @@ FORTRAN 77
 
 ### **Name**
 
-**size**(3) - \[ARRAY:INQUIRY\] Determine the size of an array
+**size**(3) - \[ARRAY:INQUIRY\] Determine the size of an array or extent of one dimension
 
 ### **Synopsis**
 ```fortran
@@ -19785,12 +19807,16 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind for the type
+- **array** is an assumed-rank array or array of any type and associated
+  kind.
 
--  **array** may be of any type and associated kind.
-
-   If **array** is a pointer it must be associated and allocatable arrays
-   must be allocated.
+  If **array** is a pointer it must be associated and allocatable arrays
+  must be allocated.
+- **dim** is an integer scalar
+- **kind** is a scalar integer constant expression.
+- the result is an integer scalar of kind **KIND**. If **KIND** is absent
+  a _integer_ of default kind is returned.
+- a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
@@ -19806,6 +19832,8 @@ FORTRAN 77
 
 - **array**
   : the array to measure the number of elements of.
+  If **array* is an assumed-size array, **dim** shall be present with a value less
+  than the rank of **array**.
 
 - **dim**
   : a value shall be
@@ -19814,13 +19842,12 @@ FORTRAN 77
   If not present the total number of elements of the entire array
   are returned.
 
-    If KIND is present, the KIND type parameter is that specified by
-    the value of KIND; otherwise, the KIND type parameter is that of
-    default integer type.
-
 - **kind**
   : An _integer_ initialization expression indicating the kind
   parameter of the result.
+
+  If absent the kind type parameter of the returned value is that of
+  default integer type.
 
   The **kind** must allow for the magnitude returned by **size** or
   results are undefined.
@@ -19829,11 +19856,21 @@ FORTRAN 77
 
 ### **Result**
 
-  If **dim** is not present the total number of elements in the array
-  are returned.
+  If **dim** is not present **array** is assumed-rank, the result has a
+  value equal to **PRODUCT(SHAPE(ARRAY,KIND))**. Otherwise, the result
+  has a value equal to the total number of elements of **array**.
 
   If **dim** is present the number of elements along that dimension
-  are returned.
+  are returned, except that if ARRAY is assumed-rank and associated
+  with an assumed-size array and DIM is present with a value equal to
+  the rank of **array**, the value is -1.
+
+  NOTE1
+
+  If **array** is assumed-rank and has rank zero, **dim** cannot be
+  present since it cannot satisfy the requirement
+
+   1 <= DIM <= 0.
 
 ### **Examples**
 
@@ -19916,34 +19953,6 @@ Fortran 95 , with **kind** argument - Fortran 2003
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
-<!--
-ARRAY
-    An array of any data type or an assumed-rank object.
-
-   The corresponding actual argument must not be a scalar,
-    disassociated pointer, or allocatable array that is not allocated. The
-    actual argument can be an assumed-size array if DIM is present and
-    has a value that is less than the rank of ARRAY.
-
-DIM (optional)
-    An INTEGER scalar. Its value must be in the range 1 <= DIM <=
-    RANK(ARRAY). It must not be present if ARRAY is an
-    assumed-rank object that is associated with a scalar.
-
-    An INTEGER scalar. Its value must be specified by a constant expression. Fortran 2003 ends
-
-    result is of type scalar integer.
-
-Result value
-
-The result equals the extent of ARRAY along dimension DIM; or, if DIM is not specified, it is the total number of array elements in ARRAY.
-TS 29113 begins
-
-    If ARRAY is an assumed-rank object that is associated with a scalar, the result is 1.
-    If ARRAY is an assumed-rank object that is associated with an assumed-size array, and
-        If DIM is present and equal to the rank of ARRAY, the result is -1.
-        If DIM is not present, the result is a negative value that is equal to PRODUCT([(SIZE(ARRAY, I, KIND), I=1, RANK(ARRAY))]).
--->
 
 ## spacing
 

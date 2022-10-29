@@ -56,7 +56,7 @@ character(len=256) :: message
          stop 'end of file. Goodbye!'
       else
          write(*,*)'ERROR:',ios,trim(message)
-	 exit
+         exit
       endif
       !
    enddo

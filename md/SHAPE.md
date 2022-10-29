@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**shape**(3) - \[ARRAY:INQUIRY\] Determine the shape of an array
+**shape**(3) - \[ARRAY:INQUIRY\] Determine the shape of an array or scalar
 
 ### **Synopsis**
 ```fortran
@@ -19,37 +19,38 @@
   - a kind designated as ** may be any supported kind for the type
 
   - **source** is an array or scalar of any type. If **source** is a pointer
-    it must be associated and allocatable arrays must be allocated.
+    it must be associated and allocatable arrays must be allocated. It shall
+    not be an assumed-size array.
 
-  - **KIND** is an _integer_ initialization expression.
-    If absent, the return value has the default integer kind otherwise
-    the specified kind.
+  - **KIND** is a constant _integer_ initialization expression.
+
+  - the result is an _integer_ array of rank one with size equal to the
+    rank of **source** of the kind specified by **KIND** if **KIND**
+    is present, otherwise it has the default integer kind.
 
 ### **Description**
 
-  **shape**(3) determines the shape of an array.
+  **shape**(3) queries the shape of an array.
 
 ### **Options**
 
 - **source**
-  : Shall be an array or scalar of any type. If **source** is a pointer it
+  : an array or scalar of any type. If **source** is a pointer it
   must be associated and allocatable arrays must be allocated.
 
 - **kind**
   : indicates the kind parameter of the result.
-
 
 ### **Result**
 
   An _integer_ array of rank one with as many elements as **source**
   has dimensions.
 
-  The elements of the resulting array correspond to the
-  extent of **source** along the respective dimensions.
+  The elements of the resulting array correspond to the extent of
+  **source** along the respective dimensions.
 
-  If **source** is
-  a scalar, the result is an empty array (a rank-one array of size zero).
-
+  If **source** is a scalar, the result is an empty array (a rank-one
+  array of size zero).
 
 ### **Examples**
 

@@ -2,32 +2,23 @@
 
 ### **Name**
 
-**iparity**(3) - \[BIT:LOGICAL\] Bitwise exclusive or of array elements
+**iparity**(3) - \[BIT:LOGICAL\] Bitwise exclusive OR of array elements
 
 ### **Synopsis**
 ```fortran
-    result = iparity(array [,mask])
+    result = iparity( array [,mask] ) | iparity( array, dim [,mask] )
 ```
 ```fortran
-     integer(kind=KIND) function iparity(array, mask )
+     integer(kind=KIND) function iparity(array, dim, mask )
 
       integer(kind=KIND),intent(in) :: array(..)
-      logical(kind=KIND),intent(in),optional :: mask(..)
+      logical(kind=**),intent(in),optional :: dim
+      logical(kind=**),intent(in),optional :: mask(..)
 ```
-   **array** must be an array. **mask** may be either an array of the
-   same shape as **array** or a scalar.
+ - **array** - An _integer_ array.
+ - **dim** - an _integer_ scalar from 1 to the rank of **array**
+ - **mask** - _logical_ conformable with **array**.
 
-or
-```fortran
-    result = iparity(array, dim [,mask] )
-```
-```fortran
-     integer(kind=KIND) function iparity( array ,dim ,mask )
-
-      integer(kind=KIND),intent(in)          :: array(..)
-      logical(kind=KIND),intent(in)          :: dim
-      logical(kind=KIND),intent(in),optional :: mask(..)
-```
 ### **Description**
 
 **iparity**(3) reduces with bitwise _xor_ (exclusive _or_) the elements
@@ -37,15 +28,13 @@ of **array** along dimension **dim** if the corresponding element in
 ### **Options**
 
 - **array**
-  : Shall be an array of type _integer_
+  : an array of _integer_ values
 
-- **dim**
-  : (Optional) shall be a scalar of type _integer_ with a value in the
-  range from **"1" to "n"**, where **"n"** equals the rank of **array**.
+- **dim** a value from 1 to the rank of **array**.
 
 - **mask**
-  : (Optional) shall be of type _logical_ and either be a scalar or an
-  array of the same shape as **array**.
+  : a _logical_ mask either a scalar or an array of the same shape
+  as **array**.
 
 ### **Result**
 
@@ -55,6 +44,22 @@ If **dim** is absent, a scalar with the bitwise _xor_ of all elements in **array
 is returned. Otherwise, an array of rank **n-1**, where **n** equals the
 rank of **array**, and a shape similar to that of **array** with dimension **dim**
 dropped is returned.
+
+  Case (i):    The result of IPARITY (ARRAY) has a value equal to the
+               bitwise exclusive OR of all the elements of ARRAY. If
+               ARRAY has size zero the result has the value zero.
+
+  Case (ii):   The result of IPARITY (ARRAY, MASK=MASK) has a value
+               equal to that of
+```fortran
+               IPARITY (PACK (ARRAY, MASK)).
+```
+  Case (iii):  The result of IPARITY (ARRAY, DIM=DIM [, MASK=MASK])
+               has a value equal to that of IPARITY (ARRAY [, MASK=MASK])
+               if ARRAY has rank one.
+
+               Otherwise, an array of values reduced along the dimension
+               **dim** is returned.
 
 ### **Examples**
 

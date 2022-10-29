@@ -1,4 +1,3 @@
-
 ## dot_product
 
 ### **Name**

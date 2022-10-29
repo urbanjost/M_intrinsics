@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**size**(3) - \[ARRAY:INQUIRY\] Determine the size of an array
+**size**(3) - \[ARRAY:INQUIRY\] Determine the size of an array or extent of one dimension
 
 ### **Synopsis**
 ```fortran
@@ -17,12 +17,17 @@
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind for the type
+- **array** is an assumed-rank array or array of any type and associated
+  kind.
 
--  **array** may be of any type and associated kind.
+  If **array** is a pointer it must be associated and allocatable arrays
+  must be allocated.
+- **dim** is an integer scalar 
+- **kind** is a scalar integer constant expression.
+- the result is an integer scalar of kind **KIND**. If **KIND** is absent
+  a _integer_ of default kind is returned.
+- a kind designated as ** may be any supported kind for the type
 
-   If **array** is a pointer it must be associated and allocatable arrays
-   must be allocated.
 
 ### **Description**
 
@@ -38,6 +43,8 @@
 
 - **array**
   : the array to measure the number of elements of.
+  If **array* is an assumed-size array, **dim** shall be present with a value less
+  than the rank of **array**.
 
 - **dim**
   : a value shall be
@@ -46,13 +53,12 @@
   If not present the total number of elements of the entire array
   are returned.
 
-    If KIND is present, the KIND type parameter is that specified by
-    the value of KIND; otherwise, the KIND type parameter is that of
-    default integer type.
-
 - **kind**
   : An _integer_ initialization expression indicating the kind
   parameter of the result.
+
+  If absent the kind type parameter of the returned value is that of
+  default integer type.
 
   The **kind** must allow for the magnitude returned by **size** or
   results are undefined.
@@ -61,11 +67,21 @@
 
 ### **Result**
 
-  If **dim** is not present the total number of elements in the array
-  are returned.
+  If **dim** is not present **array** is assumed-rank, the result has a
+  value equal to **PRODUCT(SHAPE(ARRAY,KIND))**. Otherwise, the result
+  has a value equal to the total number of elements of **array**.
 
   If **dim** is present the number of elements along that dimension
-  are returned.
+  are returned, except that if ARRAY is assumed-rank and associated
+  with an assumed-size array and DIM is present with a value equal to
+  the rank of **array**, the value is -1.
+
+  NOTE1
+
+  If **array** is assumed-rank and has rank zero, **dim** cannot be
+  present since it cannot satisfy the requirement
+
+   1 <= DIM <= 0.
 
 ### **Examples**
 
@@ -148,31 +164,3 @@ Fortran 95 , with **kind** argument - Fortran 2003
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
-<!--
-ARRAY
-    An array of any data type or an assumed-rank object.
-
-   The corresponding actual argument must not be a scalar,
-    disassociated pointer, or allocatable array that is not allocated. The
-    actual argument can be an assumed-size array if DIM is present and
-    has a value that is less than the rank of ARRAY.
-
-DIM (optional)
-    An INTEGER scalar. Its value must be in the range 1 <= DIM <=
-    RANK(ARRAY). It must not be present if ARRAY is an
-    assumed-rank object that is associated with a scalar.
-
-    An INTEGER scalar. Its value must be specified by a constant expression. Fortran 2003 ends
-
-    result is of type scalar integer.
-
-Result value
-
-The result equals the extent of ARRAY along dimension DIM; or, if DIM is not specified, it is the total number of array elements in ARRAY.
-TS 29113 begins
-
-    If ARRAY is an assumed-rank object that is associated with a scalar, the result is 1.
-    If ARRAY is an assumed-rank object that is associated with an assumed-size array, and
-        If DIM is present and equal to the rank of ARRAY, the result is -1.
-        If DIM is not present, the result is a negative value that is equal to PRODUCT([(SIZE(ARRAY, I, KIND), I=1, RANK(ARRAY))]).
--->

@@ -4550,6 +4550,9 @@ This file was compiled by nvfortran 21.5-0 LLVM</code></pre>
 <h3 id="see-also-63"><strong>See Also</strong></h3>
 <p><a href="#system_clock"><strong>system_clock</strong>(3)</a>, <a href="#date_and_time"><strong>date_and_time</strong>(3)</a></p>
 <p>fortran-lang intrinsic descriptions (license: MIT) @urbanjost</p>
+</div>
+<div id="cshift" class="slide section level2">
+<h1>cshift</h1>
 <h3 id="name-64"><strong>Name</strong></h3>
 <p><strong>cshift</strong>(3) - [TRANSFORMATIONAL] Circular shift elements of an array</p>
 <h3 id="synopsis-64"><strong>Synopsis</strong></h3>
@@ -4592,7 +4595,7 @@ This file was compiled by nvfortran 21.5-0 LLVM</code></pre>
 <p>Returns an array of same type and rank as the <strong>array</strong> argument.</p>
 <p>The rows of an array of rank two may all be shifted by the same amount or by different amounts.</p>
 </div>
-<div id="cshift" class="slide section level2">
+<div id="cshift-1" class="slide section level2">
 <h1>cshift</h1>
 <h3 id="examples-62"><strong>Examples</strong></h3>
 <p>Sample program:</p>
@@ -5837,6 +5840,7 @@ $$</span><br /></p>
 </ul>
 <h3 id="result-60"><strong>Result</strong></h3>
 <p>The value of the result is <strong>e**x</strong> where <strong>e</strong> is Euler’s constant.</p>
+<p>If <strong>x</strong> is of type complex, its imaginary part is regarded as a value in radians.</p>
 <h3 id="examples-79"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb345"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb345-1" title="1"><span class="kw">program</span> demo_exp</a>
@@ -7222,7 +7226,7 @@ $$</span><br /></p>
 <div id="ibclr" class="slide section level2">
 <h1>ibclr</h1>
 <h3 id="name-97"><strong>Name</strong></h3>
-<p><strong>ibclr</strong>(3) - [BIT:SET] Clear bit</p>
+<p><strong>ibclr</strong>(3) - [BIT:SET] Clear a bit</p>
 <h3 id="synopsis-97"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb427"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb427-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">ibclr</span>(i, pos)</a></code></pre></div>
 <div class="sourceCode" id="cb428"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb428-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">ibclr</span>(i,pos)</a>
@@ -7231,8 +7235,10 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb428-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> pos</a></code></pre></div>
 <h3 id="characteristics-97"><strong>Characteristics</strong></h3>
 <ul>
-<li>a kind designated as ** may be any supported kind for the type</li>
-<li>The return value is of the same kind as <strong>i</strong>. Otherwise, any integer kinds are allowed.</li>
+<li><strong>i</strong> shall be type integer.</li>
+<li><strong>pos</strong> shall be type integer.</li>
+<li><p>The return value is of the same kind as <strong>i</strong>.</p></li>
+<li><p>a kind designated as ** may be any supported kind for the type</p></li>
 </ul>
 <h3 id="description-97"><strong>Description</strong></h3>
 <p><strong>ibclr</strong>(3) returns the value of <strong>i</strong> with the bit at position <strong>pos</strong> set to zero.</p>
@@ -7881,44 +7887,44 @@ $$</span><br /></p>
 <div id="iparity" class="slide section level2">
 <h1>iparity</h1>
 <h3 id="name-106"><strong>Name</strong></h3>
-<p><strong>iparity</strong>(3) - [BIT:LOGICAL] Bitwise exclusive or of array elements</p>
+<p><strong>iparity</strong>(3) - [BIT:LOGICAL] Bitwise exclusive OR of array elements</p>
 <h3 id="synopsis-106"><strong>Synopsis</strong></h3>
-<div class="sourceCode" id="cb464"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb464-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> iparity(array <span class="kw">[</span>,mask<span class="kw">]</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb465"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb465-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> iparity(array, mask )</a>
+<div class="sourceCode" id="cb464"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb464-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> iparity( array <span class="kw">[</span>,mask<span class="kw">]</span> ) <span class="kw">|</span> iparity( array, <span class="bu">dim</span> <span class="kw">[</span>,mask<span class="kw">]</span> )</a></code></pre></div>
+<div class="sourceCode" id="cb465"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb465-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> iparity(array, <span class="bu">dim</span>, mask )</a>
 <a class="sourceLine" id="cb465-2" title="2"></a>
 <a class="sourceLine" id="cb465-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb465-4" title="4">      <span class="dt">logical(kind=KIND)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
-<p><strong>array</strong> must be an array. <strong>mask</strong> may be either an array of the same shape as <strong>array</strong> or a scalar.</p>
-<p>or</p>
-<div class="sourceCode" id="cb466"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb466-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> iparity(array, <span class="bu">dim</span> <span class="kw">[</span>,mask<span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb467"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb467-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> iparity( array ,<span class="bu">dim</span> ,mask )</a>
-<a class="sourceLine" id="cb467-2" title="2"></a>
-<a class="sourceLine" id="cb467-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>          <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb467-4" title="4">      <span class="dt">logical(kind=KIND)</span>,<span class="dt">intent(in)</span>          <span class="dt">::</span> <span class="bu">dim</span></a>
-<a class="sourceLine" id="cb467-5" title="5">      <span class="dt">logical(kind=KIND)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<a class="sourceLine" id="cb465-4" title="4">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
+<a class="sourceLine" id="cb465-5" title="5">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
+<ul>
+<li><strong>array</strong> - An integer array.</li>
+<li><strong>dim</strong> - an integer scalar from 1 to the rank of <strong>array</strong></li>
+<li><strong>mask</strong> - logical conformable with <strong>array</strong>.</li>
+</ul>
 <h3 id="description-106"><strong>Description</strong></h3>
 <p><strong>iparity</strong>(3) reduces with bitwise xor (exclusive or) the elements of <strong>array</strong> along dimension <strong>dim</strong> if the corresponding element in <strong>mask</strong> is .true..</p>
 <h3 id="options-103"><strong>Options</strong></h3>
 <ul>
 <li><dl>
 <dt><strong>array</strong></dt>
-<dd>Shall be an array of type integer
+<dd>an array of integer values
 </dd>
 </dl></li>
-<li><dl>
-<dt><strong>dim</strong></dt>
-<dd>(Optional) shall be a scalar of type integer with a value in the range from <strong>“1” to “n”</strong>, where <strong>“n”</strong> equals the rank of <strong>array</strong>.
-</dd>
-</dl></li>
+<li><p><strong>dim</strong> a value from 1 to the rank of <strong>array</strong>.</p></li>
 <li><dl>
 <dt><strong>mask</strong></dt>
-<dd>(Optional) shall be of type logical and either be a scalar or an array of the same shape as <strong>array</strong>.
+<dd>a logical mask either a scalar or an array of the same shape as <strong>array</strong>.
 </dd>
 </dl></li>
 </ul>
 <h3 id="result-86"><strong>Result</strong></h3>
 <p>The result is of the same type as <strong>array</strong>.</p>
 <p>If <strong>dim</strong> is absent, a scalar with the bitwise xor of all elements in <strong>array</strong> is returned. Otherwise, an array of rank <strong>n-1</strong>, where <strong>n</strong> equals the rank of <strong>array</strong>, and a shape similar to that of <strong>array</strong> with dimension <strong>dim</strong> dropped is returned.</p>
+<p>Case (i): The result of IPARITY (ARRAY) has a value equal to the bitwise exclusive OR of all the elements of ARRAY. If ARRAY has size zero the result has the value zero.</p>
+<p>Case (ii): The result of IPARITY (ARRAY, MASK=MASK) has a value equal to that of</p>
+<div class="sourceCode" id="cb466"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb466-1" title="1">               IPARITY (<span class="fu">PACK</span> (ARRAY, MASK)).</a></code></pre></div>
+<p>Case (iii): The result of IPARITY (ARRAY, DIM=DIM [, MASK=MASK]) has a value equal to that of IPARITY (ARRAY [, MASK=MASK]) if ARRAY has rank one.</p>
+<pre><code>           Otherwise, an array of values reduced along the dimension
+           **dim** is returned.</code></pre>
 <h3 id="examples-103"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb468"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb468-1" title="1"><span class="kw">program</span> demo_iparity</a>
@@ -11620,16 +11626,18 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div class="sourceCode" id="cb657"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb657-1" title="1">     <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="fu">pack</span>(array,mask,vector)</a>
 <a class="sourceLine" id="cb657-2" title="2"></a>
 <a class="sourceLine" id="cb657-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>,option(in) <span class="dt">::</span> array(..)</a>
-<a class="sourceLine" id="cb657-4" title="4">      <span class="dt">logical</span>  <span class="dt">::</span> mask(<span class="kw">*</span>)</a>
+<a class="sourceLine" id="cb657-4" title="4">      <span class="dt">logical</span>  <span class="dt">::</span> mask(..)</a>
 <a class="sourceLine" id="cb657-5" title="5">      <span class="dt">TYPE(kind=KIND)</span>,option(in),<span class="dt">optional</span> <span class="dt">::</span> vector(<span class="kw">*</span>)</a></code></pre></div>
 <h3 id="characteristics-151"><strong>Characteristics</strong></h3>
 <ul>
-<li><strong>array</strong>, <strong>vector</strong> and the returned value are all of the same kind and type.</li>
-<li><strong>mask</strong> may be a scalar as well an an array.</li>
+<li><strong>array</strong> is an array of any type</li>
+<li><strong>mask</strong> a logical scalar as well an an array conformable with <strong>array</strong>.</li>
+<li><strong>vector</strong> is of the same kind and type as <strong>array</strong> and of rank one</li>
+<li>the returned value is of the same kind and type as <strong>array</strong></li>
 </ul>
 <h3 id="description-150"><strong>Description</strong></h3>
-<p><strong>pack</strong>(3) stores the elements of ARRAY in an array of rank one.</p>
-<p>The beginning of the resulting array is made up of elements whose <strong>mask</strong> equals .true.. Afterwards, positions are filled with elements taken from <strong>vector</strong>.</p>
+<p><strong>pack</strong>(3) stores the elements of <strong>array</strong> in an array of rank one.</p>
+<p>The beginning of the resulting array is made up of elements whose <strong>mask</strong> equals .true.. Afterwards, remaining positions are filled with elements taken from <strong>vector</strong></p>
 <h3 id="options-147"><strong>Options</strong></h3>
 <ul>
 <li><dl>
@@ -11644,12 +11652,14 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </dl></li>
 <li><dl>
 <dt><strong>vector</strong></dt>
-<dd>(Optional) shall be an array of the same type as <strong>array</strong> and of rank one. If present, the number of elements in <strong>vector</strong> shall be equal to or greater than the number of true elements in <strong>mask</strong>. If <strong>mask</strong> is scalar, the number of elements in <strong>vector</strong> shall be equal to or greater than the number of elements in <strong>array</strong>.
+<dd>an array of the same type as <strong>array</strong> and of rank one. If present, the number of elements in <strong>vector</strong> shall be equal to or greater than the number of true elements in <strong>mask</strong>. If <strong>mask</strong> is scalar, the number of elements in <strong>vector</strong> shall be equal to or greater than the number of elements in <strong>array</strong>.
 </dd>
 </dl></li>
 </ul>
+<p><strong>vector</strong> shall have at least as many elements as there are in <strong>array</strong>.</p>
 <h3 id="result-128"><strong>Result</strong></h3>
 <p>The result is an array of rank one and the same type as that of <strong>array</strong>. If <strong>vector</strong> is present, the result size is that of <strong>vector</strong>, the number of .true. values in <strong>mask</strong> otherwise.</p>
+<p>If <strong>mask</strong> is scalar with the value .true., in which case the result size is the size of <strong>array</strong>.</p>
 <h3 id="examples-146"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb658"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb658-1" title="1"><span class="kw">program</span> demo_pack</a>
@@ -11666,16 +11676,18 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb658-12" title="12"> <span class="co">! mask is scalar):</span></a>
 <a class="sourceLine" id="cb658-13" title="13">   m <span class="kw">=</span> <span class="kw">[</span> <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span> <span class="kw">]</span></a>
 <a class="sourceLine" id="cb658-14" title="14">   <span class="fu">write(*</span>, <span class="fu">fmt</span><span class="kw">=</span><span class="st">&quot;(*(i0, &#39; &#39;))&quot;</span><span class="fu">)</span> <span class="fu">pack</span>(m, m <span class="op">/=</span> <span class="dv">0</span>, <span class="kw">[</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">4</span> <span class="kw">]</span>)</a>
-<a class="sourceLine" id="cb658-15" title="15"></a>
-<a class="sourceLine" id="cb658-16" title="16"> <span class="co">! select strings whose second character is &quot;a&quot;</span></a>
-<a class="sourceLine" id="cb658-17" title="17">   c <span class="kw">=</span> <span class="kw">[</span> <span class="dt">character(len=10)</span> <span class="dt">::</span> <span class="st">&#39;ape&#39;</span>, <span class="st">&#39;bat&#39;</span>, <span class="st">&#39;cat&#39;</span>, <span class="st">&#39;dog&#39;</span><span class="kw">]</span></a>
-<a class="sourceLine" id="cb658-18" title="18">   <span class="fu">write(*</span>, <span class="fu">fmt</span><span class="kw">=</span><span class="st">&quot;(*(g0, &#39; &#39;))&quot;</span><span class="fu">)</span> <span class="fu">pack</span>(c, c(:)(<span class="dv">2</span>:<span class="dv">2</span>) <span class="op">==</span> <span class="st">&#39;a&#39;</span> )</a>
-<a class="sourceLine" id="cb658-19" title="19"></a>
-<a class="sourceLine" id="cb658-20" title="20"><span class="kw">end program</span> demo_pack</a></code></pre></div>
+<a class="sourceLine" id="cb658-15" title="15">   <span class="fu">write(*</span>, <span class="fu">fmt</span><span class="kw">=</span><span class="st">&quot;(*(i0, &#39; &#39;))&quot;</span><span class="fu">)</span> <span class="fu">pack</span>(m, m <span class="op">/=</span> <span class="dv">0</span> )</a>
+<a class="sourceLine" id="cb658-16" title="16"></a>
+<a class="sourceLine" id="cb658-17" title="17"> <span class="co">! select strings whose second character is &quot;a&quot;</span></a>
+<a class="sourceLine" id="cb658-18" title="18">   c <span class="kw">=</span> <span class="kw">[</span> <span class="dt">character(len=10)</span> <span class="dt">::</span> <span class="st">&#39;ape&#39;</span>, <span class="st">&#39;bat&#39;</span>, <span class="st">&#39;cat&#39;</span>, <span class="st">&#39;dog&#39;</span><span class="kw">]</span></a>
+<a class="sourceLine" id="cb658-19" title="19">   <span class="fu">write(*</span>, <span class="fu">fmt</span><span class="kw">=</span><span class="st">&quot;(*(g0, &#39; &#39;))&quot;</span><span class="fu">)</span> <span class="fu">pack</span>(c, c(:)(<span class="dv">2</span>:<span class="dv">2</span>) <span class="op">==</span> <span class="st">&#39;a&#39;</span> )</a>
+<a class="sourceLine" id="cb658-20" title="20"></a>
+<a class="sourceLine" id="cb658-21" title="21"><span class="kw">end program</span> demo_pack</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>   1 5
-   1 2 3 4
-   bat        cat</code></pre>
+<pre class="text"><code> &gt; 1 5
+ &gt; 1 2 3 4
+ &gt; 1 2
+ &gt; bat        cat</code></pre>
 <h3 id="standard-149"><strong>Standard</strong></h3>
 <p>Fortran 95</p>
 <h3 id="see-also-149"><strong>See Also</strong></h3>
@@ -12220,7 +12232,7 @@ dim=3 :( 2 3 )
 <div id="radix" class="slide section level2">
 <h1>radix</h1>
 <h3 id="name-157"><strong>Name</strong></h3>
-<p><strong>radix</strong>(3) - [NUMERIC MODEL] Base of a model number</p>
+<p><strong>radix</strong>(3) - [NUMERIC MODEL] Base of a numeric model</p>
 <h3 id="synopsis-157"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb684"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb684-1" title="1">   <span class="kw">result</span> <span class="kw">=</span> <span class="fu">radix</span>(x)</a></code></pre></div>
 <div class="sourceCode" id="cb685"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb685-1" title="1">    <span class="dt">integer</span> <span class="kw">function</span> <span class="fu">radix</span>(x)</a>
@@ -12228,8 +12240,8 @@ dim=3 :( 2 3 )
 <a class="sourceLine" id="cb685-3" title="3">     <span class="dt">TYPE(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x(..)</a></code></pre></div>
 <h3 id="characteristics-158"><strong>Characteristics</strong></h3>
 <ul>
-<li>TYPE may be real or integer</li>
-<li><strong>x</strong> may be scalar or an array</li>
+<li><strong>x</strong> may be scalar or an array of any real or integer type.</li>
+<li>the result is a default integer scalar.</li>
 </ul>
 <h3 id="description-157"><strong>Description</strong></h3>
 <p><strong>radix</strong>(3) returns the base of the internal model representing the numeric entity <strong>x</strong>.</p>
@@ -12254,9 +12266,9 @@ dim=3 :( 2 3 )
 <a class="sourceLine" id="cb686-5" title="5">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&quot;The radix for the doubleprecision real kind is&quot;</span>, <span class="fu">radix</span>(<span class="fl">0.0d0</span>)</a>
 <a class="sourceLine" id="cb686-6" title="6"><span class="kw">end program</span> demo_radix</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>    The radix for the default integer kind is           2
-    The radix for the default real kind is           2
-    The radix for the doubleprecision real kind is          2</code></pre>
+<pre class="text"><code> &gt;  The radix for the default integer kind is           2
+ &gt;  The radix for the default real kind is           2
+ &gt;  The radix for the doubleprecision real kind is           2</code></pre>
 <h3 id="standard-156"><strong>Standard</strong></h3>
 <p>Fortran 95</p>
 <h3 id="see-also-155"><strong>See Also</strong></h3>
@@ -13677,7 +13689,7 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <div id="shape" class="slide section level2">
 <h1>shape</h1>
 <h3 id="name-174"><strong>Name</strong></h3>
-<p><strong>shape</strong>(3) - [ARRAY:INQUIRY] Determine the shape of an array</p>
+<p><strong>shape</strong>(3) - [ARRAY:INQUIRY] Determine the shape of an array or scalar</p>
 <h3 id="synopsis-174"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb760"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb760-1" title="1">  <span class="kw">result</span> <span class="kw">=</span> <span class="fu">shape</span>( source <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
 <div class="sourceCode" id="cb761"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb761-1" title="1">   <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="fu">shape</span>( source, <span class="fu">KIND</span> )</a>
@@ -13687,16 +13699,17 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <h3 id="characteristics-175"><strong>Characteristics</strong></h3>
 <ul>
 <li><p>a kind designated as ** may be any supported kind for the type</p></li>
-<li><p><strong>source</strong> is an array or scalar of any type. If <strong>source</strong> is a pointer it must be associated and allocatable arrays must be allocated.</p></li>
-<li><p><strong>KIND</strong> is an integer initialization expression. If absent, the return value has the default integer kind otherwise the specified kind.</p></li>
+<li><p><strong>source</strong> is an array or scalar of any type. If <strong>source</strong> is a pointer it must be associated and allocatable arrays must be allocated. It shall not be an assumed-size array.</p></li>
+<li><p><strong>KIND</strong> is a constant integer initialization expression.</p></li>
+<li><p>the result is an integer array of rank one with size equal to the rank of <strong>source</strong> of the kind specified by <strong>KIND</strong> if <strong>KIND</strong> is present, otherwise it has the default integer kind.</p></li>
 </ul>
 <h3 id="description-174"><strong>Description</strong></h3>
-<p><strong>shape</strong>(3) determines the shape of an array.</p>
+<p><strong>shape</strong>(3) queries the shape of an array.</p>
 <h3 id="options-171"><strong>Options</strong></h3>
 <ul>
 <li><dl>
 <dt><strong>source</strong></dt>
-<dd>Shall be an array or scalar of any type. If <strong>source</strong> is a pointer it must be associated and allocatable arrays must be allocated.
+<dd>an array or scalar of any type. If <strong>source</strong> is a pointer it must be associated and allocatable arrays must be allocated.
 </dd>
 </dl></li>
 <li><dl>
@@ -14323,7 +14336,7 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <div id="size" class="slide section level2">
 <h1>size</h1>
 <h3 id="name-181"><strong>Name</strong></h3>
-<p><strong>size</strong>(3) - [ARRAY:INQUIRY] Determine the size of an array</p>
+<p><strong>size</strong>(3) - [ARRAY:INQUIRY] Determine the size of an array or extent of one dimension</p>
 <h3 id="synopsis-181"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb796"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb796-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">size</span>(array <span class="kw">[</span>,<span class="bu">dim</span><span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb797"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb797-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="fu">size</span>(array,<span class="bu">dim</span>,<span class="fu">kind</span>)</a>
@@ -14333,9 +14346,12 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <a class="sourceLine" id="cb797-5" title="5">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
 <h3 id="characteristics-182"><strong>Characteristics</strong></h3>
 <ul>
+<li><p><strong>array</strong> is an assumed-rank array or array of any type and associated kind.</p>
+If <strong>array</strong> is a pointer it must be associated and allocatable arrays must be allocated.</li>
+<li><strong>dim</strong> is an integer scalar</li>
+<li><strong>kind</strong> is a scalar integer constant expression.</li>
+<li>the result is an integer scalar of kind <strong>KIND</strong>. If <strong>KIND</strong> is absent a integer of default kind is returned.</li>
 <li><p>a kind designated as ** may be any supported kind for the type</p></li>
-<li><p><strong>array</strong> may be of any type and associated kind.</p>
-<p>If <strong>array</strong> is a pointer it must be associated and allocatable arrays must be allocated.</p></li>
 </ul>
 <h3 id="description-181"><strong>Description</strong></h3>
 <p><strong>size(3)</strong> returns the total number of elements in an array, or if <strong>dim</strong> is specified returns the number of elements along that dimension.</p>
@@ -14344,7 +14360,7 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <ul>
 <li><dl>
 <dt><strong>array</strong></dt>
-<dd>the array to measure the number of elements of.
+<dd>the array to measure the number of elements of. If <strong>array* is an assumed-size array, </strong>dim** shall be present with a value less than the rank of <strong>array</strong>.
 </dd>
 </dl></li>
 <li><dl>
@@ -14352,19 +14368,22 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <dd>a value shall be in the range from 1 to n, where n equals the rank of <strong>array</strong>.
 </dd>
 </dl>
-<p>If not present the total number of elements of the entire array are returned.</p>
-<p>If KIND is present, the KIND type parameter is that specified by the value of KIND; otherwise, the KIND type parameter is that of default integer type.</p></li>
+<p>If not present the total number of elements of the entire array are returned.</p></li>
 <li><dl>
 <dt><strong>kind</strong></dt>
 <dd>An integer initialization expression indicating the kind parameter of the result.
 </dd>
 </dl>
+<p>If absent the kind type parameter of the returned value is that of default integer type.</p>
 <p>The <strong>kind</strong> must allow for the magnitude returned by <strong>size</strong> or results are undefined.</p>
 <p>If <strong>kind</strong> is absent, the return value is of default integer kind.</p></li>
 </ul>
 <h3 id="result-157"><strong>Result</strong></h3>
-<p>If <strong>dim</strong> is not present the total number of elements in the array are returned.</p>
-<p>If <strong>dim</strong> is present the number of elements along that dimension are returned.</p>
+<p>If <strong>dim</strong> is not present <strong>array</strong> is assumed-rank, the result has a value equal to <strong>PRODUCT(SHAPE(ARRAY,KIND))</strong>. Otherwise, the result has a value equal to the total number of elements of <strong>array</strong>.</p>
+<p>If <strong>dim</strong> is present the number of elements along that dimension are returned, except that if ARRAY is assumed-rank and associated with an assumed-size array and DIM is present with a value equal to the rank of <strong>array</strong>, the value is -1.</p>
+<p>NOTE1</p>
+<p>If <strong>array</strong> is assumed-rank and has rank zero, <strong>dim</strong> cannot be present since it cannot satisfy the requirement</p>
+<p>1 &lt;= DIM &lt;= 0.</p>
 <h3 id="examples-174"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb798"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb798-1" title="1"><span class="kw">program</span> demo_size</a>
@@ -14436,34 +14455,7 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <li><a href="#bit_size"><strong>bit_size</strong>(3)</a> - Bit size inquiry function</li>
 <li><a href="#btest"><strong>btest</strong>(3)</a> - Tests a bit of an integer value.</li>
 </ul>
-<p>fortran-lang intrinsic descriptions (license: MIT) @urbanjost <!--
-ARRAY
-    An array of any data type or an assumed-rank object.
-
-   The corresponding actual argument must not be a scalar,
-    disassociated pointer, or allocatable array that is not allocated. The
-    actual argument can be an assumed-size array if DIM is present and
-    has a value that is less than the rank of ARRAY.
-
-DIM (optional)
-    An INTEGER scalar. Its value must be in the range 1 <= DIM <=
-    RANK(ARRAY). It must not be present if ARRAY is an
-    assumed-rank object that is associated with a scalar.
-
-    An INTEGER scalar. Its value must be specified by a constant expression. Fortran 2003 ends
-
-    result is of type scalar integer.
-
-Result value
-
-The result equals the extent of ARRAY along dimension DIM; or, if DIM is not specified, it is the total number of array elements in ARRAY.
-TS 29113 begins
-
-    If ARRAY is an assumed-rank object that is associated with a scalar, the result is 1.
-    If ARRAY is an assumed-rank object that is associated with an assumed-size array, and
-        If DIM is present and equal to the rank of ARRAY, the result is -1.
-        If DIM is not present, the result is a negative value that is equal to PRODUCT([(SIZE(ARRAY, I, KIND), I=1, RANK(ARRAY))]).
---></p>
+<p>fortran-lang intrinsic descriptions (license: MIT) @urbanjost</p>
 </div>
 <div id="spacing" class="slide section level2">
 <h1>spacing</h1>

@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**ibclr**(3) - \[BIT:SET\] Clear bit
+**ibclr**(3) - \[BIT:SET\] Clear a bit
 
 ### **Synopsis**
 ```fortran
@@ -16,9 +16,11 @@
 ```
 ### **Characteristics**
 
+  - **i** shall be type _integer_.
+  - **pos** shall be type _integer_. 
+  - The return value is of the same kind as **i**. 
+
   - a kind designated as ** may be any supported kind for the type
-  - The return value is of the same kind as **i**. Otherwise,
-    any _integer_ kinds are allowed.
 
 ### **Description**
 

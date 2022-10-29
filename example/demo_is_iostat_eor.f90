@@ -18,10 +18,10 @@
                stop 'end of record'
             elseif(is_iostat_end(ios)) then
                print *,'end of file'
-           exit
+               exit
             elseif(ios.ne.0)then
                print *,'I/O error',ios
-           exit
+               exit
             endif
          enddo
 

@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**radix**(3) - \[NUMERIC MODEL\] Base of a model number
+**radix**(3) - \[NUMERIC MODEL\] Base of a numeric model
 
 ### **Synopsis**
 ```fortran
@@ -15,8 +15,8 @@
 ```
 ### **Characteristics**
 
-   - TYPE may be _real_ or _integer_
-   - **x** may be scalar or an array
+   - **x** may be scalar or an array of any _real_ or _integer_ type.
+   - the result is a default integer scalar.
 
 ### **Description**
 
@@ -53,13 +53,11 @@ implicit none
 end program demo_radix
 ```
 Results:
-
 ```text
-    The radix for the default integer kind is           2
-    The radix for the default real kind is           2
-    The radix for the doubleprecision real kind is          2
+ >  The radix for the default integer kind is           2
+ >  The radix for the default real kind is           2
+ >  The radix for the doubleprecision real kind is           2
 ```
-
 ### **Standard**
 
 Fortran 95
