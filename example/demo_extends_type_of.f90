@@ -39,7 +39,7 @@
          write(*,*)extends_type_of(me,dad),'Dad is my ancestor'
 
          write(*,*)'is an object an extension of itself?'
-         write(*,*)extends_type_of(grandpa,grandpa) ,'self-propogating!'
+         write(*,*)extends_type_of(grandpa,grandpa) ,'self-propagating!'
          write(*,*)extends_type_of(dad,dad) ,'clone!'
 
          write(*,*)' you did not father your grandfather'

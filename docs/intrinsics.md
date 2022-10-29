@@ -8371,7 +8371,7 @@ Sample program:
    write(*,*)extends_type_of(me,dad),'Dad is my ancestor'
 
    write(*,*)'is an object an extension of itself?'
-   write(*,*)extends_type_of(grandpa,grandpa) ,'self-propogating!'
+   write(*,*)extends_type_of(grandpa,grandpa) ,'self-propagating!'
    write(*,*)extends_type_of(dad,dad) ,'clone!'
 
    write(*,*)' you did not father your grandfather'
@@ -8410,7 +8410,7 @@ Results:
     T Dad is descended from Grandpa
     T Dad is my ancestor
     is an object an extension of itself?
-    T self-propogating!
+    T self-propagating!
     T clone!
      you did not father your grandfather
     F no paradox here
