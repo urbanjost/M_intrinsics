@@ -1,3 +1,5 @@
+
+
 ## reshape
 
 ### **Name**
@@ -18,17 +20,17 @@
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind for the type
  - **source** is an array of any type
  - **shape** defines a Fortran shape and therefore an _integer_ vector
    (of rank one) of constant size of up to 16 non-negative values.
  - **pad** is the same type as **source**
  - **order** is the same shape as **shape**
  - The result is an array of shape **shape** with the same type as **source**.
+ - a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
-**reshape** constructs an array of shape **shape** using the elements
+**reshape** constructs an array of arbitrary shape **shape** using the elements
 from **source** and possibly **pad** to fill it.
 
 If necessary, the new array may be padded with elements from **pad**

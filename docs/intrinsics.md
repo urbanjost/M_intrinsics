@@ -6627,9 +6627,9 @@ Fortran 95
 
 date and time conversion, formatting and computation
 
-- [M_time](https://github.com/urbanjost/M_time)
-- [datetime](https://github.com/wavebitscientific/datetime-fortran)
-- [datetime-fortran](https://github.com/wavebitscientific/datetime-fortran)
+- [M_time](https://github.com/urbanjost/M_time) - https://github.com/urbanjost/M_time
+- [datetime](https://github.com/wavebitscientific/datetime-fortran) - https://github.com/wavebitscientific/datetime-fortran
+- [datetime-fortran](https://github.com/wavebitscientific/datetime-fortran) - https://github.com/wavebitscientific/datetime-fortran
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -7817,7 +7817,8 @@ Fortran 2008
 ```
 ### **Characteristics**
 
-- The result is of the same _type_ and _kind_ as **x**.
+ - **x** is of type _real_
+ - The result is of the same _type_ and _kind_ as **x**.
 
 ### **Description**
 
@@ -7850,13 +7851,10 @@ real(kind=real64) :: x = 0.17_real64
     write(*,*)x, erf(x)
 end program demo_erf
 ```
-
 Results:
-
 ```text
      0.17000000000000001       0.18999246120180879
 ```
-
 ### **Standard**
 
 Fortran 2008
@@ -8770,6 +8768,7 @@ end function floor
 ```
 ### **Characteristics**
 
+  - **x** is of type _real_
   - The result has the same characteristics as the argument.
 
 ### **Description**
@@ -9906,17 +9905,7 @@ Fortran 95
 
 ### **Synopsis**
 ```fortran
-    result = iany(array [,mask])
-```
-```fortran
-     integer(kind=KIND) function iany(array,mask)
-
-      integer(kind=KIND),intent(in)        :: array(..)
-      logical(kind=**),intent(in),optional :: mask(..)
-```
-or
-```fortran
-    result = iany(array [,dim] [,mask])
+    result = iany(array [,mask]) | iany(array ,dim [,mask])
 ```
 ```fortran
      integer(kind=KIND) function iany(array,dim,mask)
@@ -9927,17 +9916,19 @@ or
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind for the type
- - **array** must be an array.
+ - **array** is an _integer_ array
  - **dim** may be of any _integer_ kind.
- - **mask** is a _logical_ array that conforms to **array** of
-   any _logical_ kind.
+ - **mask** is a _logical_ array that conforms to **array**
  - The result will by of the same type and kind
-   as **array**.
+   as **array**. It is scalar if **dim** does not appear or is 1.
+   Otherwise, it is the shape and rank of array reduced by the
+   dimension **dim**.
+
+  note a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
-  **iany**(3) reduces with bitwise a **OR** (inclusive **OR**) the
+  **iany**(3) reduces with bitwise **OR** (inclusive **OR**) the
   elements of **array** along dimension **dim** if the corresponding
   element in **mask** is _.true._.
 
@@ -10021,7 +10012,7 @@ Fortran 2008
 [**iall**(3)](#iall),
 [**ior**(3)](#ior)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ibclr
 
@@ -15101,9 +15092,10 @@ Fortran 95
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind for the type
 - **x** may be a _real_ value of any kind.
+- **s** may be a _real_ value of any kind.
 - The return value is of the same type and kind as **x**.
+- a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
@@ -16174,7 +16166,7 @@ Fortran 95
 
 ### **Name**
 
-**parity**(3) - \[TRANSFORMATIONAL\] Reduction with exclusive **OR**()
+**parity**(3) - \[ARRAY:REDUCTION\] Array reduction by .NEQV. operation
 
 ### **Synopsis**
 ```fortran
@@ -16188,12 +16180,18 @@ Fortran 95
 ```
 ### **Characteristics**
 
+  - **mask** is a _logical_ array
+  - **dim** is an integer scalar
+  - the result is of type _logical_ with the same kind type parameter as **mask**.
+    It is a scalar if **dim** does not appear; otherwise it is the rank and shape
+    of **mask** with the dimension specified by **dim** removed.
   - a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
-**parity**(3) calculates the parity (i.e. the reduction using .xor.) of
-**mask** along dimension **dim**.
+**parity**(3) calculates the parity array (i.e. the reduction using .neqv.) of
+**mask** along dimension **dim** if **dim** is present and not 1. Otherwise, it
+returns the parity of the entire **mask** array as a scalar.
 
 ### **Options**
 
@@ -16212,8 +16210,8 @@ Fortran 95
   is returned: _.true._ if an odd number of elements are _.true._
   and _.false._ otherwise.
 
-  When **dim** is specified the returned shape is similar to that of
-  **mask** with dimension **dim** dropped.
+  If MASK has rank one, PARITY (MASK, DIM) is equal to PARITY (MASK). Otherwise, the
+  result is an array of parity values with dimension **dim** dropped.
 
 ### **Examples**
 
@@ -16221,13 +16219,30 @@ Sample program:
 ```fortran
 program demo_parity
 implicit none
-logical :: x(2) = [ .true., .false. ]
+logical, parameter :: T=.true., F=.false.
+logical :: x(3,4)
+  ! basics
+   print *, parity([T,F])
+   print *, parity([T,F,F])
+   print *, parity([T,F,F,T])
+   print *, parity([T,F,F,T,T])
+   x(1,:)=[T,T,T,T]
+   x(2,:)=[T,T,T,T]
+   x(3,:)=[T,T,T,T]
    print *, parity(x)
+   print *, parity(x,dim=1)
+   print *, parity(x,dim=2)
 end program demo_parity
 ```
 Results:
 ```text
-    T
+ >  T
+ >  T
+ >  F
+ >  T
+ >  F
+ >  T T T T
+ >  F F F
 ```
 ### **Standard**
 
@@ -16235,9 +16250,16 @@ Fortran 2008
 
 ### **See also**
 
-[****(3)](#)
+ - [**all**(3)](#all) - Determines if all the values are true
+ - [**any**(3)](#any) - Determines if any of the values in the logical array are _.true._
+ - [**count**(3)](#count) - Count true values in an array
+ - [**sum**(3)](#sum) - Sum the elements of an array
+ - [**maxval**(3)](#maxval) - Determines the maximum value in an array or row
+ - [**minval**(3)](#minval) - Minimum value of an array
+ - [**product**(3)](#product) - Product of array elements
+ - [**reduce**(3)](#reduce) - General array reduction
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## popcnt
 
@@ -17883,17 +17905,17 @@ Functions that perform operations on character strings:
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind for the type
  - **source** is an array of any type
  - **shape** defines a Fortran shape and therefore an _integer_ vector
    (of rank one) of constant size of up to 16 non-negative values.
  - **pad** is the same type as **source**
  - **order** is the same shape as **shape**
  - The result is an array of shape **shape** with the same type as **source**.
+ - a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
-**reshape** constructs an array of shape **shape** using the elements
+**reshape** constructs an array of arbitrary shape **shape** using the elements
 from **source** and possibly **pad** to fill it.
 
 If necessary, the new array may be padded with elements from **pad**
@@ -20697,6 +20719,8 @@ Fortran 95
   **count_rate** and **count_max** are assumed constant (even though
   CPU rates can vary on a single platform).
 
+  The accuracy of the measurements may depend on the kind of the arguments!
+
   Whether an image has no clock, has a single clock of its own, or shares
   a clock with another image, is processor dependent.
 
@@ -20744,32 +20768,58 @@ Fortran 95
 Sample program:
 ```fortran
 program demo_system_clock
+use, intrinsic :: iso_fortran_env, only : wp=>real64,int32,int64
 implicit none
-integer, parameter :: wp = kind(1.0d0)
-integer :: count, count_rate, count_max
-integer :: start, finish
-real    :: time_read
+character(len=*),parameter :: g='(1x,*(g0,1x))'
+integer(kind=int64) :: count64, count_rate64, count_max64
+integer(kind=int64) :: start64, finish64
+integer(kind=int32) :: count32, count_rate32, count_max32
+integer(kind=int32) :: start32, finish32
+real(kind=wp)       :: time_read
+real(kind=wp)       :: sum
+integer             :: i
 
-   call system_clock(count, count_rate, count_max)
-   write(*,*)'COUNT_MAX=',count_max
-   write(*,*)'COUNT_RATE=',count_rate
-   write(*,*)'CURRENT COUNT=',count
+  print g,'accuracy may vary with argument type!'
+  call system_clock(count_rate=count_rate64)
+  print g,'COUNT RATE FOR INT64:',count_rate64
+  call system_clock(count_rate=count_rate32)
+  print g,'COUNT RATE FOR INT32:',count_rate32
 
-   call system_clock(start)
-   ! <<<< code to time
-   call system_clock(finish)
+  print g,'query all arguments'
+  call system_clock(count64, count_rate64, count_max64)
+  print g, 'COUNT_MAX=',count_max64
+  print g, 'COUNT_RATE=',count_rate64
+  print g, 'CURRENT COUNT=',count64
 
-   time_read=(finish-start)/real(count_rate,wp)
-   write(*,'(a30,1x,f7.4,1x,a)') 'time * : ', time_read, ' seconds'
+  print g,'time some computation'
+  call system_clock(start64)
+
+  ! some code to time
+  sum=0.0_wp
+  do i=-huge(0)-1, huge(0)-1, 10
+     sum=sum+sqrt(real(i))
+  enddo
+  print g,'SUM=',sum
+
+  call system_clock(finish64)
+
+  time_read=(finish64-start64)/real(count_rate64,wp)
+  write(*,'(a30,1x,f7.4,1x,a)') 'time : ', time_read, ' seconds'
 
 end program demo_system_clock
 ```
 Results:
 ```text
- >  COUNT_MAX=  2147483647
- >  COUNT_RATE=       10000
- >  CURRENT COUNT=   693921394
- >                      time * :   0.0000  seconds
+ accuracy may vary with argument type!
+ COUNT RATE FOR INT64: 1000000000
+ COUNT RATE FOR INT32: 1000
+ query all arguments
+ COUNT_MAX= 9223372036854775807
+ COUNT_RATE= 1000000000
+ CURRENT COUNT= 518240530647469
+ time some computation
+ SUM= NaN
+                       time :   1.6686  seconds
 ```
 ### **Standard**
 

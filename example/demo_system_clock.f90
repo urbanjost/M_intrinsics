@@ -1,20 +1,40 @@
       program demo_system_clock
+      use, intrinsic :: iso_fortran_env, only : wp=>real64,int32,int64
       implicit none
-      integer, parameter :: wp = kind(1.0d0)
-      integer :: count, count_rate, count_max
-      integer :: start, finish
-      real    :: time_read
+      character(len=*),parameter :: g='(1x,*(g0,1x))'
+      integer(kind=int64) :: count64, count_rate64, count_max64
+      integer(kind=int64) :: start64, finish64
+      integer(kind=int32) :: count32, count_rate32, count_max32
+      integer(kind=int32) :: start32, finish32
+      real(kind=wp)       :: time_read
+      real(kind=wp)       :: sum
+      integer             :: i
 
-         call system_clock(count, count_rate, count_max)
-         write(*,*)'COUNT_MAX=',count_max
-         write(*,*)'COUNT_RATE=',count_rate
-         write(*,*)'CURRENT COUNT=',count
+        print g,'accuracy may vary with argument type!'
+        call system_clock(count_rate=count_rate64)
+        print g,'COUNT RATE FOR INT64:',count_rate64
+        call system_clock(count_rate=count_rate32)
+        print g,'COUNT RATE FOR INT32:',count_rate32
 
-         call system_clock(start)
-         ! <<<< code to time
-         call system_clock(finish)
+        print g,'query all arguments'
+        call system_clock(count64, count_rate64, count_max64)
+        print g, 'COUNT_MAX=',count_max64
+        print g, 'COUNT_RATE=',count_rate64
+        print g, 'CURRENT COUNT=',count64
 
-         time_read=(finish-start)/real(count_rate,wp)
-         write(*,'(a30,1x,f7.4,1x,a)') 'time * : ', time_read, ' seconds'
+        print g,'time some computation'
+        call system_clock(start64)
+
+        ! some code to time
+        sum=0.0_wp
+        do i=-huge(0)-1, huge(0)-1, 10
+           sum=sum+sqrt(real(i))
+        enddo
+        print g,'SUM=',sum
+
+        call system_clock(finish64)
+
+        time_read=(finish64-start64)/real(count_rate64,wp)
+        write(*,'(a30,1x,f7.4,1x,a)') 'time : ', time_read, ' seconds'
 
       end program demo_system_clock

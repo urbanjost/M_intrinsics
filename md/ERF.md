@@ -15,7 +15,8 @@
 ```
 ### **Characteristics**
 
-- The result is of the same _type_ and _kind_ as **x**.
+ - **x** is of type _real_
+ - The result is of the same _type_ and _kind_ as **x**.
 
 ### **Description**
 
@@ -48,13 +49,10 @@ real(kind=real64) :: x = 0.17_real64
     write(*,*)x, erf(x)
 end program demo_erf
 ```
-
 Results:
-
 ```text
      0.17000000000000001       0.18999246120180879
 ```
-
 ### **Standard**
 
 Fortran 2008

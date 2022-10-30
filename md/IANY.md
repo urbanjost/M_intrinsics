@@ -6,17 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result = iany(array [,mask])
-```
-```fortran
-     integer(kind=KIND) function iany(array,mask)
-
-      integer(kind=KIND),intent(in)        :: array(..)
-      logical(kind=**),intent(in),optional :: mask(..)
-```
-or
-```fortran
-    result = iany(array [,dim] [,mask])
+    result = iany(array [,mask]) | iany(array ,dim [,mask])
 ```
 ```fortran
      integer(kind=KIND) function iany(array,dim,mask)
@@ -27,17 +17,19 @@ or
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind for the type
- - **array** must be an array.
+ - **array** is an _integer_ array
  - **dim** may be of any _integer_ kind.
- - **mask** is a _logical_ array that conforms to **array** of
-   any _logical_ kind.
+ - **mask** is a _logical_ array that conforms to **array**
  - The result will by of the same type and kind
-   as **array**.
+   as **array**. It is scalar if **dim** does not appear or is 1.
+   Otherwise, it is the shape and rank of array reduced by the
+   dimension **dim**.
+
+  note a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
-  **iany**(3) reduces with bitwise a **OR** (inclusive **OR**) the
+  **iany**(3) reduces with bitwise **OR** (inclusive **OR**) the
   elements of **array** along dimension **dim** if the corresponding
   element in **mask** is _.true._.
 
@@ -121,4 +113,4 @@ Fortran 2008
 [**iall**(3)](#iall),
 [**ior**(3)](#ior)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

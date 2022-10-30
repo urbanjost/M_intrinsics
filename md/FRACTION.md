@@ -15,6 +15,7 @@
 ```
 ### **Characteristics**
 
+  - **x** is of type _real_
   - The result has the same characteristics as the argument.
 
 ### **Description**

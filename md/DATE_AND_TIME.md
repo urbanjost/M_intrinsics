@@ -152,8 +152,8 @@ Fortran 95
 
 date and time conversion, formatting and computation
 
-- [M_time](https://github.com/urbanjost/M_time)
-- [datetime](https://github.com/wavebitscientific/datetime-fortran)
-- [datetime-fortran](https://github.com/wavebitscientific/datetime-fortran)
+- [M_time](https://github.com/urbanjost/M_time) - https://github.com/urbanjost/M_time
+- [datetime](https://github.com/wavebitscientific/datetime-fortran) - https://github.com/wavebitscientific/datetime-fortran
+- [datetime-fortran](https://github.com/wavebitscientific/datetime-fortran) - https://github.com/wavebitscientific/datetime-fortran
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
