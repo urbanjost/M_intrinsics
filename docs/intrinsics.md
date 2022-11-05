@@ -6628,7 +6628,7 @@ Fortran 95
 date and time conversion, formatting and computation
 
 - [M_time](https://github.com/urbanjost/M_time) - https://github.com/urbanjost/M_time
-- [datetime](https://github.com/wavebitscientific/datetime-fortran) - https://github.com/wavebitscientific/datetime-fortran
+- [fortran-datetime](https://github.com/dongli/fortran-datetime) https://github.com/dongli/fortran-datetime
 - [datetime-fortran](https://github.com/wavebitscientific/datetime-fortran) - https://github.com/wavebitscientific/datetime-fortran
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
@@ -8439,40 +8439,37 @@ identified by MASK along dimension DIM matching a target value
 ### **Synopsis**
 
 ```fortran
-    result = findloc (array, value, dim [,mask] [,kind] [,back])
+    result = findloc (array, value, dim [,mask] [,kind] [,back]) |
+             findloc (array, value [,mask] [,kind] [,back])
 ```
 ```fortran
      function findloc (array, value, dim, mask, kind, back)
 
-      integer(kind=KIND),  intent(in)      :: array(..)
-      integer(kind=KIND),  intent(in)      :: value
-      integer(kind=KIND),  intent(in)      :: dim
+      type TYPE(kind=KIND),intent(in)      :: array(..)
+      type TYPE(kind=KIND),intent(in)      :: value
+      integer(kind=**),intent(in),optional :: dim
       logical(kind=**),intent(in),optional :: mask(..)
       integer(kind=**),intent(in),optional :: kind
       logical(kind=**),intent(in),optional :: back
 ```
-or
-```fortran
-    result = findloc(array, value [,mask] [,kind] [,back])
-```
-```fortran
-     function findloc (array, value, mask, kind, back)
-
-      integer(kind=KIND),  intent(in)       :: array(..)
-      integer(kind=KIND),  intent(in)       :: value
-      logical(kind=**), intent(in),optional :: mask(..)
-      integer(kind=**), intent(in),optional :: kind
-      logical(kind=**),intent(in),optional  :: back
-```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind for the type
-- **array** shall be an array of intrinsic type.
-- **value** shall be scalar but in type conformance with **array**
-- **dim** The corresponding actual argument shall not be an optional dummy argument.
+- **array** is an array of any intrinsic type.
+- **value** shall be scalar but in type conformance with **array**,
+  as specified for the operator == or the operator .EQV..
+- **dim** an _integer_ corresponding to a dimension of **array**.
+  The corresponding actual argument shall not be an optional dummy
+  argument.
 - **mask** shall be conformable with **array**.
 - **kind** a scalar integer initialization expression (ie. a constant)
 - **back** a logical scalar.
+- the result is _integer_ of default kind or kind **kind** if the
+  **kind** argument is present. If **dim** does not appear, the result
+  is an array of rank one and of size equal to the rank of **array**;
+  otherwise, the result is an array of the same rank and shape as
+  **array** reduced by the dimension **dim**.
+
+**NOTE**: a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
@@ -8499,13 +8496,12 @@ element order.
   : shall be an array of intrinsic type.
 
 - **value**
-  : shall be scalar and in type conformance with **array**, as specified
-  in Table 7.3 for relational intrinsic operations 7.1.5.5.2).
+  : shall be scalar and in type conformance with **array**.
 
 - **dim**
-  : shall be an integer scalar with a value in the range 1 **DIM** n, where
-  n is the rank of **array**. The corresponding actual argument shall
-  not be an optional dummy argument.
+  : shall be an integer scalar with a value in the range 1 <= **DIM** <=
+  n, where n is the rank of **array**. The corresponding actual argument
+  shall not be an optional dummy argument.
 
 - **mask**
   : (optional) shall be of type logical and shall be conformable with
@@ -8519,7 +8515,7 @@ element order.
 
 ### **Result**
 
-Result Characteristics. Integer. If **kind** is present, the kind type
+**kind** is present, the kind type
 parameter is that specified by the value of **kind**; otherwise the kind
 type parameter is that of default integer type. If **dim** does not appear,
 the result is an array of rank one and of size equal to the rank of
@@ -8553,80 +8549,119 @@ is the shape of **array**.
   **value**, **array** has size zero, or every element of **mask** has the
   value false, all elements of the result are zero.
 
-- **Case (iii):**
-  If **array** has rank one, the result of
-```
-      findloc (array, value, dim=dim [, mask = mask])
-```
-is a scalar whose value is equal to that of the first element of
-```
-      findloc (array, value [, mask = mask])
-```
-Otherwise, the value of element
-```
-      (s1, s2, . . ., sDIM-1, sDIM+1, . . ., sn )
-```
-of the result is equal to
-```
-      findloc (array (s1, s2, ..., sdim-1, :, sdim+1, ..., sn ), &
-      value, dim=1 [, mask = mask (s1, s2, ..., sdim-1, :,
-                      sdim+1, ..., sn )]).
-```
 ### **Examples**
 
-- **Case (i):**
-  The value of
-```
-        findloc ([2, 6, 4, 6,], value = 6)
-```
-is \[2\], and the value of
-```
-        findloc ([2, 6, 4, 6], value = 6, back = .true.)
-```
-is \[4\].
+Sample program:
 
-- **Case (ii):**
-  If **a** has the value
-```text
-      0 -5  7 7
-      3  4 -1 2
-      1  5  6 7
-```
-and **m** has the value
-```text
-       T T F T
-       T T F T
-       T T F T
+```fortran
+program demo_findloc
+logical,parameter :: T=.true., F=.false.
+integer,allocatable :: ibox(:,:)
+logical,allocatable :: mask(:,:)
+  ! basics
+   ! the first element matching the value is returned AS AN ARRAY
+   call printi('== 6',findloc ([2, 6, 4, 6], value = 6))
+   call printi('== 6',findloc ([2, 6, 4, 6], value = 6,back=.true.))
+   ! the first element matching the value is returned AS A SCALAR
+   call printi('== 6',findloc ([2, 6, 4, 6], value = 6,dim=1))
+   call printi('== 6',findloc ([2, 6, 4, 6], value = 6,back=.true.,dim=1))
 
-      findloc (a, 7, mask = m)
-```
-has the value \[1, 4\] and
-```
-      findloc (a, 7, mask = m, back = .true.)
-```
-has the value \[3, 4\]. This is independent of the declared lower
-bounds for **a** .
+   ibox=reshape([ 0,-5,  7, 7, &
+                  3, 4, -1, 2, &
+                  1, 5,  6, 7] ,shape=[3,4],order=[2,1])
 
-- **Case (iii):**
-  The value of
-```
-      findloc ([2, 6, 4], value = 6, dim = 1)
-```
-is 2. If **b** has the value
-```
-       1 2 -9
-       2 2  6
-```
-> findloc (b, **value** = 2, dim = 1)
+   mask=reshape([ T, T, F, T, &
+                  T, T, F, T, &
+                  T, T, F, T] ,shape=[3,4],order=[2,1])
 
-has the value \[2, 1, 0\] and
-```
-      findloc (b, value = 2, dim = 2)
-```
-has the value \[2, 1\]. This is independent of the declared lower
-bounds for **b**.
+   call printi('array is', ibox )
+   call printl('mask  is', mask )
+   print *, 'so for == 7 and back=.false.'
+   call printi('so for == 7 the address of the element is', &
+           & findloc (ibox, 7, mask = mask) )
+   print *, 'so for == 7 and back=.true.'
+   call printi('so for == 7 the address of the element is', &
+           & findloc (ibox, 7, mask = mask, back=.true.) )
 
- _fortran-lang intrinsic descriptions_
+   print *,'This is independent of declared lower bounds for the array'
+
+   print *, ' using dim=N'
+   ibox=reshape([ 1,  2, -9,  &
+                  2,  2,  6 ] ,shape=[2,3],order=[2,1])
+
+   call printi('array is', ibox )
+   ! has the value [2, 1, 0] and
+   call printi('',findloc (ibox, value = 2, dim = 1) )
+   ! has the value [2, 1].
+   call printi('',findloc (ibox, value = 2, dim = 2) )
+contains
+! GENERIC ROUTINES TO PRINT MATRICES
+subroutine printl(title,a)
+implicit none
+!@(#) print small 2d logical scalar, vector, matrix in row-column format
+character(len=*),intent(in)  :: title
+logical,intent(in)           :: a(..)
+
+character(len=*),parameter   :: row='(" > [ ",*(l1:,","))'
+character(len=*),parameter   :: all='(" ",*(g0,1x))'
+logical,allocatable          :: b(:,:)
+integer                      :: i
+   write(*,all,advance='no')trim(title)
+   ! copy everything to a matrix to keep code simple
+   select rank(a)
+   rank (0); write(*,'(a)')' (a scalar)'; b=reshape([a],[1,1])
+   rank (1); write(*,'(a)')' (a vector)'; b=reshape(a,[size(a),1])
+   rank (2); write(*,'(a)')' (a matrix)'; b=a
+   rank default; stop '*printl* unexpected rank'
+   end select
+   do i=1,size(b,dim=1)
+      write(*,fmt=row,advance='no')b(i,:)
+      write(*,'(" ]")')
+   enddo
+   write(*,all) '>shape=',shape(a),',rank=',rank(a),',size=',size(a)
+   write(*,*)
+end subroutine printl
+
+subroutine printi(title,a)
+implicit none
+!@(#) print small 2d integer scalar, vector, matrix in row-column format
+character(len=*),intent(in)  :: title
+integer,intent(in)           :: a(..)
+character(len=*),parameter   :: all='(" ",*(g0,1x))'
+character(len=20)            :: row
+integer,allocatable          :: b(:,:)
+integer                      :: i
+   write(*,all,advance='no')trim(title)
+   ! copy everything to a matrix to keep code simple
+   select rank(a)
+   rank (0); write(*,'(a)')' (a scalar)'; b=reshape([a],[1,1])
+   rank (1); write(*,'(a)')' (a vector)'; b=reshape(a,[size(a),1])
+   rank (2); write(*,'(a)')' (a matrix)'; b=a
+   rank default; stop '*printi* unexpected rank'
+   end select
+   ! find how many characters to use for integers
+   write(row,'(i0)')ceiling(log10(real(maxval(abs(b)))))+2
+   ! use this format to write a row
+   row='(" > [",*(i'//trim(row)//':,","))'
+   do i=1,size(b,dim=1)
+      write(*,fmt=row,advance='no')b(i,:)
+      write(*,'(" ]")')
+   enddo
+   write(*,all) '>shape=',shape(a),',rank=',rank(a),',size=',size(a)
+   write(*,*)
+end subroutine printi
+end program demo_findloc
+```
+### **Standard**
+
+Fortran 95
+
+### **See Also**
+
+ - [**maxloc**(3)](#maxloc) - Location of the maximum value within an array
+ - [**minloc**(3)](#minloc) - Location of the minimum value within an array
+
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## floor
 
@@ -13580,11 +13615,12 @@ Fortran 95
 
 ### **See Also**
 
-[**maxloc**(3)](#maxloc),
-[**minloc**(3)](#minloc),
-[**maxval**(3)](#maxval),
-[**minval**(3)](#minval),
-[**max**(3)](#max)
+ - [**findloc**(3)](#findloc) - Location of first element of ARRAY
+   identified by MASK along dimension DIM matching a target
+ - [**minloc**(3)](#minloc) - Location of the minimum value within an array
+ - [**maxval**(3)](#maxval)
+ - [**minval**(3)](#minval)
+ - [**max**(3)](#max)
 
  _fortran-lang intrinsic descriptions_
 
@@ -14320,13 +14356,16 @@ Fortran 95
 
 ### **See Also**
 
-[**min**(3)](#min),
-[**maxloc**(3)](#maxloc),
-[**minval**(3)](#minval),
-[**maxval**(3)](#maxval),
-[**max**(3)](#max)
+ - [**findloc**(3)](#findloc) - Location of first element of ARRAY
+   identified by MASK along dimension DIM matching a target
+ - [**maxloc**(3)](#maxloc) - Location of the maximum value within an array
+ - [**minloc**(3)](#minloc) - Location of the minimum value within an array
+ - [**min**(3)](#min)
+ - [**minval**(3)](#minval)
+ - [**maxval**(3)](#maxval)
+ - [**max**(3)](#max)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## min
 
@@ -15521,21 +15560,21 @@ FORTRAN 77 , with KIND argument - Fortran 90
     result = norm2(array, [dim])
 ```
 ```fortran
-     real function norm2(array, dim)
+     real(kind=KIND) function norm2(array, dim)
 
-      real,intent(in) :: array(..)
-      integer,intent(in),optional :: dim
+      real(kind=KIND),intent(in) :: array(..)
+      integer(kind=**),intent(in),optional :: dim
 ```
 ### **Characteristics**
 
-- **array** shall be an array of type _real_.
-- **dim** shall be a scalar of type _integer_
-- The result is of the same type as **array**.
+ - **array** shall be an array of type _real_.
+ - **dim** shall be a scalar of type _integer_
+ - The result is of the same type as **array**.
 
 ### **Description**
 
-  **norm2**(3) calculates the Euclidean vector norm (L_2 norm) of
-  **array** along dimension **dim**.
+  **norm2**(3) calculates the Euclidean vector norm (L_2 norm or
+  generalized L norm) of **array** along dimension **dim**.
 
 ### **Options**
 
@@ -15554,6 +15593,22 @@ FORTRAN 77 , with KIND argument - Fortran 90
   **array**, and a shape similar to that of **array** with dimension DIM
   dropped is returned.
 
+      Case (i):     The result of NORM2 (X) has a value equal to a
+                    processor-dependent approximation to the generalized
+                    L norm of X, which is the square root of the sum of
+                    the squares of the elements of X. If X has size zero,
+                    the result has the value zero.
+
+      Case (ii):    The result of NORM2 (X, DIM=DIM) has a value equal
+                    to that of NORM2 (X) if X has rank one. Otherwise,
+                    the resulting array is reduced in rank with dimension
+                    **dim** removed, and each remaining elment is the
+                    result of NORM2(X) for the values along dimension
+                    **dim**.
+
+  It is recommended that the processor compute the result without undue
+  overflow or underflow.
+
 ### **Examples**
 
 Sample program:
@@ -15561,36 +15616,51 @@ Sample program:
 ```fortran
 program demo_norm2
 implicit none
-
-real :: x(3,3) = reshape([ &
+integer :: i
+real :: x(2,3) = reshape([ &
    1, 2, 3, &
-   4, 5, 6, &
-   7, 8, 9  &
+   4, 5, 6  &
    ],shape(x),order=[2,1])
 
+  write(*,*) 'input in row-column order'
   write(*,*) 'x='
   write(*,'(4x,3f4.0)')transpose(x)
-
+  write(*,*)
   write(*,*) 'norm2(x)=',norm2(x)
-
+  write(*,*) 'which is equivalent to'
+  write(*,*) 'sqrt(sum(x**2))=',sqrt(sum(x**2))
+  write(*,*)
+  write(*,*) 'for reference the array squared is'
   write(*,*) 'x**2='
   write(*,'(4x,3f4.0)')transpose(x**2)
-  write(*,*)'sqrt(sum(x**2))=',sqrt(sum(x**2))
+  write(*,*)
+  write(*,*) 'norm2(x,dim=1)=',norm2(x,dim=1)
+  write(*,*) 'norm2(x,dim=2)=',norm2(x,dim=2)
+  write(*,*) '(sqrt(sum(x(:,i)**2)),i=1,3)=',(sqrt(sum(x(:,i)**2)),i=1,3)
+  write(*,*) '(sqrt(sum(x(i,:)**2)),i=1,2)=',(sqrt(sum(x(i,:)**2)),i=1,2)
 
 end program demo_norm2
 ```
 Results:
 ```text
- x=
-      1.  2.  3.
-      4.  5.  6.
-      7.  8.  9.
- norm2(x)=   16.88194
- x**2=
-      1.  4.  9.
-     16. 25. 36.
-     49. 64. 81.
- sqrt(sum(x**2))=   16.88194
+ >  input in row-column order
+ >  x=
+ >       1.  2.  3.
+ >       4.  5.  6.
+ >
+ >  norm2(x)=   9.539392
+ >  which is equivalent to
+ >  sqrt(sum(x**2))=   9.539392
+ >
+ >  for reference the array squared is
+ >  x**2=
+ >       1.  4.  9.
+ >      16. 25. 36.
+ >
+ >  norm2(x,dim=1)=   4.123106       5.385165       6.708204
+ >  norm2(x,dim=2)=   3.741657       8.774964
+ >  (sqrt(sum(x(:,i)**2)),i=1,3)=   4.123106       5.385165       6.708204
+ >  (sqrt(sum(x(i,:)**2)),i=1,2)=   3.741657       8.774964
 ```
 ### **Standard**
 
@@ -15602,7 +15672,7 @@ Fortran 2008
 [**sum**(3)](#sum),
 [**hypot**(3)](#hypot)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## not
 

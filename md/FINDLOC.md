@@ -8,40 +8,37 @@ identified by MASK along dimension DIM matching a target value
 ### **Synopsis**
 
 ```fortran
-    result = findloc (array, value, dim [,mask] [,kind] [,back])
+    result = findloc (array, value, dim [,mask] [,kind] [,back]) |
+             findloc (array, value [,mask] [,kind] [,back])
 ```
 ```fortran
      function findloc (array, value, dim, mask, kind, back)
 
-      integer(kind=KIND),  intent(in)      :: array(..)
-      integer(kind=KIND),  intent(in)      :: value
-      integer(kind=KIND),  intent(in)      :: dim
+      type TYPE(kind=KIND),intent(in)      :: array(..)
+      type TYPE(kind=KIND),intent(in)      :: value
+      integer(kind=**),intent(in),optional :: dim
       logical(kind=**),intent(in),optional :: mask(..)
       integer(kind=**),intent(in),optional :: kind
       logical(kind=**),intent(in),optional :: back
 ```
-or
-```fortran
-    result = findloc(array, value [,mask] [,kind] [,back])
-```
-```fortran
-     function findloc (array, value, mask, kind, back)
-
-      integer(kind=KIND),  intent(in)       :: array(..)
-      integer(kind=KIND),  intent(in)       :: value
-      logical(kind=**), intent(in),optional :: mask(..)
-      integer(kind=**), intent(in),optional :: kind
-      logical(kind=**),intent(in),optional  :: back
-```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind for the type
-- **array** shall be an array of intrinsic type.
-- **value** shall be scalar but in type conformance with **array**
-- **dim** The corresponding actual argument shall not be an optional dummy argument.
+- **array** is an array of any intrinsic type.
+- **value** shall be scalar but in type conformance with **array**,
+  as specified for the operator == or the operator .EQV..
+- **dim** an _integer_ corresponding to a dimension of **array**.
+  The corresponding actual argument shall not be an optional dummy
+  argument.
 - **mask** shall be conformable with **array**.
 - **kind** a scalar integer initialization expression (ie. a constant)
 - **back** a logical scalar.
+- the result is _integer_ of default kind or kind **kind** if the
+  **kind** argument is present. If **dim** does not appear, the result
+  is an array of rank one and of size equal to the rank of **array**;
+  otherwise, the result is an array of the same rank and shape as
+  **array** reduced by the dimension **dim**.
+
+**NOTE**: a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
@@ -68,13 +65,12 @@ element order.
   : shall be an array of intrinsic type.
 
 - **value**
-  : shall be scalar and in type conformance with **array**, as specified
-  in Table 7.3 for relational intrinsic operations 7.1.5.5.2).
+  : shall be scalar and in type conformance with **array**.
 
 - **dim**
-  : shall be an integer scalar with a value in the range 1 **DIM** n, where
-  n is the rank of **array**. The corresponding actual argument shall
-  not be an optional dummy argument.
+  : shall be an integer scalar with a value in the range 1 <= **DIM** <=
+  n, where n is the rank of **array**. The corresponding actual argument
+  shall not be an optional dummy argument.
 
 - **mask**
   : (optional) shall be of type logical and shall be conformable with
@@ -88,7 +84,7 @@ element order.
 
 ### **Result**
 
-Result Characteristics. Integer. If **kind** is present, the kind type
+**kind** is present, the kind type
 parameter is that specified by the value of **kind**; otherwise the kind
 type parameter is that of default integer type. If **dim** does not appear,
 the result is an array of rank one and of size equal to the rank of
@@ -122,77 +118,116 @@ is the shape of **array**.
   **value**, **array** has size zero, or every element of **mask** has the
   value false, all elements of the result are zero.
 
-- **Case (iii):**
-  If **array** has rank one, the result of
-```
-      findloc (array, value, dim=dim [, mask = mask])
-```
-is a scalar whose value is equal to that of the first element of
-```
-      findloc (array, value [, mask = mask])
-```
-Otherwise, the value of element
-```
-      (s1, s2, . . ., sDIM-1, sDIM+1, . . ., sn )
-```
-of the result is equal to
-```
-      findloc (array (s1, s2, ..., sdim-1, :, sdim+1, ..., sn ), &
-      value, dim=1 [, mask = mask (s1, s2, ..., sdim-1, :,
-                      sdim+1, ..., sn )]).
-```
 ### **Examples**
 
-- **Case (i):**
-  The value of
-```
-        findloc ([2, 6, 4, 6,], value = 6)
-```
-is \[2\], and the value of
-```
-        findloc ([2, 6, 4, 6], value = 6, back = .true.)
-```
-is \[4\].
+Sample program:
 
-- **Case (ii):**
-  If **a** has the value
-```text
-      0 -5  7 7
-      3  4 -1 2
-      1  5  6 7
-```
-and **m** has the value
-```text
-       T T F T
-       T T F T
-       T T F T
+```fortran
+program demo_findloc
+logical,parameter :: T=.true., F=.false.
+integer,allocatable :: ibox(:,:)
+logical,allocatable :: mask(:,:)
+  ! basics
+   ! the first element matching the value is returned AS AN ARRAY
+   call printi('== 6',findloc ([2, 6, 4, 6], value = 6))
+   call printi('== 6',findloc ([2, 6, 4, 6], value = 6,back=.true.))
+   ! the first element matching the value is returned AS A SCALAR
+   call printi('== 6',findloc ([2, 6, 4, 6], value = 6,dim=1))
+   call printi('== 6',findloc ([2, 6, 4, 6], value = 6,back=.true.,dim=1))
 
-      findloc (a, 7, mask = m)
-```
-has the value \[1, 4\] and
-```
-      findloc (a, 7, mask = m, back = .true.)
-```
-has the value \[3, 4\]. This is independent of the declared lower
-bounds for **a** .
+   ibox=reshape([ 0,-5,  7, 7, &
+                  3, 4, -1, 2, &
+                  1, 5,  6, 7] ,shape=[3,4],order=[2,1])
+   
+   mask=reshape([ T, T, F, T, &
+                  T, T, F, T, &
+                  T, T, F, T] ,shape=[3,4],order=[2,1])
 
-- **Case (iii):**
-  The value of
-```
-      findloc ([2, 6, 4], value = 6, dim = 1)
-```
-is 2. If **b** has the value
-```
-       1 2 -9
-       2 2  6
-```
-> findloc (b, **value** = 2, dim = 1)
+   call printi('array is', ibox )
+   call printl('mask  is', mask )
+   print *, 'so for == 7 and back=.false.' 
+   call printi('so for == 7 the address of the element is', &
+           & findloc (ibox, 7, mask = mask) )
+   print *, 'so for == 7 and back=.true.' 
+   call printi('so for == 7 the address of the element is', &
+           & findloc (ibox, 7, mask = mask, back=.true.) )
 
-has the value \[2, 1, 0\] and
-```
-      findloc (b, value = 2, dim = 2)
-```
-has the value \[2, 1\]. This is independent of the declared lower
-bounds for **b**.
+   print *,'This is independent of declared lower bounds for the array'
 
- _fortran-lang intrinsic descriptions_
+   print *, ' using dim=N'
+   ibox=reshape([ 1,  2, -9,  &
+                  2,  2,  6 ] ,shape=[2,3],order=[2,1])
+
+   call printi('array is', ibox )
+   ! has the value [2, 1, 0] and
+   call printi('',findloc (ibox, value = 2, dim = 1) ) 
+   ! has the value [2, 1].
+   call printi('',findloc (ibox, value = 2, dim = 2) ) 
+contains
+! GENERIC ROUTINES TO PRINT MATRICES
+subroutine printl(title,a)
+implicit none
+!@(#) print small 2d logical scalar, vector, matrix in row-column format
+character(len=*),intent(in)  :: title
+logical,intent(in)           :: a(..)
+
+character(len=*),parameter   :: row='(" > [ ",*(l1:,","))'
+character(len=*),parameter   :: all='(" ",*(g0,1x))'
+logical,allocatable          :: b(:,:)
+integer                      :: i
+   write(*,all,advance='no')trim(title)
+   ! copy everything to a matrix to keep code simple
+   select rank(a)
+   rank (0); write(*,'(a)')' (a scalar)'; b=reshape([a],[1,1])
+   rank (1); write(*,'(a)')' (a vector)'; b=reshape(a,[size(a),1])
+   rank (2); write(*,'(a)')' (a matrix)'; b=a
+   rank default; stop '*printl* unexpected rank'
+   end select
+   do i=1,size(b,dim=1)
+      write(*,fmt=row,advance='no')b(i,:)
+      write(*,'(" ]")')
+   enddo
+   write(*,all) '>shape=',shape(a),',rank=',rank(a),',size=',size(a)
+   write(*,*)
+end subroutine printl
+
+subroutine printi(title,a)
+implicit none
+!@(#) print small 2d integer scalar, vector, matrix in row-column format
+character(len=*),intent(in)  :: title
+integer,intent(in)           :: a(..)
+character(len=*),parameter   :: all='(" ",*(g0,1x))'
+character(len=20)            :: row
+integer,allocatable          :: b(:,:)
+integer                      :: i
+   write(*,all,advance='no')trim(title)
+   ! copy everything to a matrix to keep code simple
+   select rank(a)
+   rank (0); write(*,'(a)')' (a scalar)'; b=reshape([a],[1,1])
+   rank (1); write(*,'(a)')' (a vector)'; b=reshape(a,[size(a),1])
+   rank (2); write(*,'(a)')' (a matrix)'; b=a
+   rank default; stop '*printi* unexpected rank'
+   end select
+   ! find how many characters to use for integers
+   write(row,'(i0)')ceiling(log10(real(maxval(abs(b)))))+2
+   ! use this format to write a row
+   row='(" > [",*(i'//trim(row)//':,","))'
+   do i=1,size(b,dim=1)
+      write(*,fmt=row,advance='no')b(i,:)
+      write(*,'(" ]")')
+   enddo
+   write(*,all) '>shape=',shape(a),',rank=',rank(a),',size=',size(a)
+   write(*,*)
+end subroutine printi
+end program demo_findloc
+```
+### **Standard**
+
+Fortran 95
+
+### **See Also**
+
+ - [**maxloc**(3)](#maxloc) - Location of the maximum value within an array
+ - [**minloc**(3)](#minloc) - Location of the minimum value within an array
+
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

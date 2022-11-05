@@ -96,10 +96,13 @@ Fortran 95
 
 ### **See Also**
 
-[**min**(3)](#min),
-[**maxloc**(3)](#maxloc),
-[**minval**(3)](#minval),
-[**maxval**(3)](#maxval),
-[**max**(3)](#max)
+ - [**findloc**(3)](#findloc) - Location of first element of ARRAY
+   identified by MASK along dimension DIM matching a target
+ - [**maxloc**(3)](#maxloc) - Location of the maximum value within an array
+ - [**minloc**(3)](#minloc) - Location of the minimum value within an array
+ - [**min**(3)](#min)
+ - [**minval**(3)](#minval)
+ - [**maxval**(3)](#maxval)
+ - [**max**(3)](#max)
 
- _fortran-lang intrinsic descriptions_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
