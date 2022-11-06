@@ -11,20 +11,28 @@
 ```fortran
      elemental TYPE(kind=KIND) function ubound(array,dim,kind)
 
-      TYPE(kind=KIND),intent(in)  :: array
+      TYPE(kind=KIND),intent(in)           :: array
       integer(kind=**),intent(in),optional :: dim
       integer(kind=**),intent(in),optional :: kind
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind for the type
 - **array** shall be assumed-rank or an array, of any type.
   It cannot be an unallocated allocatable array or a pointer that is not associated.
+
 - **dim** shall be a scalar _integer_.
+  The corresponding actual argument shall not be an optional dummy
+  argument, a disassociated pointer, or an unallocated allocatable.
+
 - **kind** an _integer_ initialization expression indicating the kind
   parameter of the result.
+
 - The return value is of type _integer_ and of kind **kind**. If **kind**
   is absent, the return value is of default integer kind.
+  The result is scalar if **dim** is present; otherwise, the result is
+  an array of rank one and size n, where n is the rank of **array**.
+
+- a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
@@ -67,7 +75,7 @@ the relevant dimension.
   NOTE1
   If ARRAY is assumed-rank and has rank zero, DIM cannot be present
   since it cannot satisfy the requirement
-  1 <=  DIM <= 0.
+  **1 <=  DIM <= 0**.
 
 ### **Examples**
 
@@ -143,11 +151,10 @@ Fortran 95 , with KIND argument Fortran 2003
 - [**size**(3)](#size) -  Determine the size of an array
 - [**rank**(3)](#rank) -  Rank of a data object
 - [**shape**(3)](#shape) -  Determine the shape of an array
-- [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
 - [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
 
-[**co_ubound**(3)](#co_ubound),
-[__co\_lbound__(3)(co_lbound)]
+[**co\_ubound**(3)](#co_ubound),
+[**\_lbound**(3)](co_lbound)
 
 #### State Inquiry:
 

@@ -7380,7 +7380,7 @@ Fortran 2008
 
 ### **Name**
 
-**eoshift**(3) - \[TRANSFORMATIONAL\] End-off shift elements of an array
+**eoshift**(3) - \[TRANSFORMATIONAL\] End-off shift of elements of an array
 
 ### **Synopsis**
 ```fortran
@@ -7390,17 +7390,24 @@ Fortran 2008
    type(TYPE(kind=KIND)) function eoshift(array,shift,boundary,dim)
 
     type(TYPE(kind=KIND)),intent(in) :: array(..)
-    integer(kind=**),intent(in)      :: shift
-    type(TYPE(kind=KIND)),intent(in) :: boundary
+    integer(kind=**),intent(in)      :: shift(..)
+    type(TYPE(kind=KIND)),intent(in) :: boundary(..)
     integer(kind=**),intent(in)      :: dim
 ```
 ### **Characteristics**
 
+ - **array** an array of any type
+ - **shift** is an integer of any kind. It may be a scalar.
+   If the rank of **array** is greater than one, and **dim** is
+   specified it is the same shape as **array** reduced by removing
+   dimension **dim**.
+ - **boundary** May be a scalar of the same type and kind as **array**.
+   It must be a scalar when **array** has a rank of one. Otherwise,
+   it may be an array of the same shape as **array** reduced by dimension
+   **dim**. It may only be absent for certain types, as described below.
+ - **dim** is an integer of any kind. It defaults to one.
+ - the result has the same type, type parameters, and shape as **array**.
  - a kind designated as ** may be any supported kind for the type
- - **array** May be any type, but not a scalar.
- - **shift** is an integer of any kind
- - **boundary** is a scalar of the same type and kind as the **array**.
- - **dim** is an integer of any kind
 
  - The result is an array of same type, kind and rank as the **array** argument.
 
@@ -7425,7 +7432,8 @@ Fortran 2008
   are shifted.
 
 - **shift**
-  : the number of elements to shift
+  : the number of elements to shift. A negative value shifts to the
+  right, a positive value to the left of the vector(s) being shifted.
 
 - **boundary**
   : the value to use to fill in the elements vacated by the shift.
@@ -7434,10 +7442,12 @@ Fortran 2008
 ```text
     Array Type     | Boundary Value
     -----------------------------------------------------
-    Numeric        | 0 of the type and kind of "array"
+    Numeric        | 0, 0.0, or (0.0, 0.0)  of the type and kind of "array"
     Logical        | .false.
     Character(len) |  LEN blanks
 ```
+  These are the only types for which **boundary** may not be present.
+  For these types the kind is converted as neccessary to the kind of **array**.
 - **dim**
   :  **dim** is in the range of
 ```fortran
@@ -8460,7 +8470,7 @@ identified by MASK along dimension DIM matching a target value
 - **dim** an _integer_ corresponding to a dimension of **array**.
   The corresponding actual argument shall not be an optional dummy
   argument.
-- **mask** shall be conformable with **array**.
+- **mask** is logical and shall be conformable with **array**.
 - **kind** a scalar integer initialization expression (ie. a constant)
 - **back** a logical scalar.
 - the result is _integer_ of default kind or kind **kind** if the
@@ -8651,6 +8661,67 @@ integer                      :: i
    write(*,*)
 end subroutine printi
 end program demo_findloc
+```
+Results:
+```text
+ >  == 6  (a vector)
+ >  > [  2 ]
+ >  >shape= 1 ,rank= 1 ,size= 1
+ >
+ >  == 6  (a vector)
+ >  > [  4 ]
+ >  >shape= 1 ,rank= 1 ,size= 1
+ >
+ >  == 6  (a scalar)
+ >  > [  2 ]
+ >  >shape= ,rank= 0 ,size= 1
+ >
+ >  == 6  (a scalar)
+ >  > [  4 ]
+ >  >shape= ,rank= 0 ,size= 1
+ >
+ >  array is  (a matrix)
+ >  > [  0, -5,  7,  7 ]
+ >  > [  3,  4, -1,  2 ]
+ >  > [  1,  5,  6,  7 ]
+ >  >shape= 3 4 ,rank= 2 ,size= 12
+ >
+ >  mask  is  (a matrix)
+ >  > [ T,T,F,T ]
+ >  > [ T,T,F,T ]
+ >  > [ T,T,F,T ]
+ >  >shape= 3 4 ,rank= 2 ,size= 12
+ >
+ >  so for == 7 and back=.false.
+ >  so for == 7 the address of the element is  (a vector)
+ >  > [  1 ]
+ >  > [  4 ]
+ >  >shape= 2 ,rank= 1 ,size= 2
+ >
+ >  so for == 7 and back=.true.
+ >  so for == 7 the address of the element is  (a vector)
+ >  > [  3 ]
+ >  > [  4 ]
+ >  >shape= 2 ,rank= 1 ,size= 2
+ >
+ >  This is independent of declared lower bounds for the array
+ >   using dim=N
+ >  array is  (a matrix)
+ >  > [  1,  2, -9 ]
+ >  > [  2,  2,  6 ]
+ >  >shape= 2 3 ,rank= 2 ,size= 6
+ >
+ >    (a vector)
+ >  > [  2 ]
+ >  > [  1 ]
+ >  > [  0 ]
+ >  >shape= 3 ,rank= 1 ,size= 3
+ >
+ >    (a vector)
+ >  > [  2 ]
+ >  > [  1 ]
+ >  >shape= 2 ,rank= 1 ,size= 2
+ >
 ```
 ### **Standard**
 
@@ -11687,18 +11758,28 @@ Fortran 95
 ```fortran
      elemental TYPE(kind=KIND) function lbound(array,dim,kind)
 
-      TYPE(kind=KIND),intent(in)  :: array
-      integer,intent(in),optional :: dim
-      integer,intent(in),optional :: kind
+      TYPE(kind=KIND),intent(in)           :: array(..)
+      integer(kind=**),intent(in),optional :: dim
+      integer(kind=**),intent(in),optional :: kind
 ```
 ### **Characteristics**
 
-- **array** shall be an array, of any type.
+- **array** shall be assumed-rank or an array, of any type.
+  It cannot be an unallocated allocatable array or a pointer that is not associated.
+
 - **dim** shall be a scalar _integer_.
+  The corresponding actual argument shall not be an optional dummy
+  argument, a disassociated pointer, or an unallocated allocatable.
+
 - **kind** an _integer_ initialization expression indicating the kind
   parameter of the result.
+
 - The return value is of type _integer_ and of kind **kind**. If **kind**
   is absent, the return value is of default integer kind.
+  The result is scalar if **dim** is present; otherwise, the result is
+  an array of rank one and size n, where n is the rank of **array**.
+
+- a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
@@ -11721,13 +11802,19 @@ Fortran 95
 
 ### **Result**
 
-The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
-the return value is of default integer kind. If **dim** is absent, the
-result is an array of the lower bounds of **array**. If **dim** is present, the
-result is a scalar corresponding to the lower bound of the array along
-that dimension. If **array** is an expression rather than a whole array or
-array structure component, or if it has a zero extent along the relevant
-dimension, the lower bound is taken to be 1.
+If **dim** is absent,
+the result is an array of the lower bounds of **array**.
+
+If **dim** is
+present, the result is a scalar corresponding to the lower bound of the
+array along that dimension. If **array** is an expression rather than
+a whole array or array structure component, or if it has a zero extent
+along the relevant dimension, the lower bound is taken to be 1.
+
+    NOTE1
+
+    If **array** is assumed-rank and has rank zero, **dim** cannot be
+    present since it cannot satisfy the requirement **1 <= dim <= 0**.
 
 ### **Examples**
 
@@ -11804,10 +11891,9 @@ Fortran 95 , with KIND argument - Fortran 2003
 - [**rank**(3)](#rank) -  Rank of a data object
 - [**shape**(3)](#shape) -  Determine the shape of an array
 - [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
-- [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
 
-[**ubound**(3)](#ubound),
-[**co_lbound**(3)](#co_lbound)
+[**co\_ubound**(3)](#co_ubound),
+[**\_lbound**(3)](co_lbound)
 
 #### State Inquiry:
 
@@ -12882,20 +12968,21 @@ implicit none
 integer :: i
 
    ! list kind values supported on this platform, which generally vary
-   ! in storage size
+   ! in storage size as alias declarations
    do i =1, size(logical_kinds)
-      write(*,*)logical_kinds(i)
+      write(*,'(*(g0))')'integer,parameter :: boolean', &
+      & logical_kinds(i),'=', logical_kinds(i)
    enddo
 
 end program demo_logical
 ```
 Results:
 ```text
- >            1
- >            2
- >            4
- >            8
- >           16
+ > integer,parameter :: boolean1=1
+ > integer,parameter :: boolean2=2
+ > integer,parameter :: boolean4=4
+ > integer,parameter :: boolean8=8
+ > integer,parameter :: boolean16=16
 ```
 ### **Standard**
 
@@ -21666,20 +21753,28 @@ of arguments, and search for certain arguments:
 ```fortran
      elemental TYPE(kind=KIND) function ubound(array,dim,kind)
 
-      TYPE(kind=KIND),intent(in)  :: array
+      TYPE(kind=KIND),intent(in)           :: array
       integer(kind=**),intent(in),optional :: dim
       integer(kind=**),intent(in),optional :: kind
 ```
 ### **Characteristics**
 
-- a kind designated as ** may be any supported kind for the type
 - **array** shall be assumed-rank or an array, of any type.
   It cannot be an unallocated allocatable array or a pointer that is not associated.
+
 - **dim** shall be a scalar _integer_.
+  The corresponding actual argument shall not be an optional dummy
+  argument, a disassociated pointer, or an unallocated allocatable.
+
 - **kind** an _integer_ initialization expression indicating the kind
   parameter of the result.
+
 - The return value is of type _integer_ and of kind **kind**. If **kind**
   is absent, the return value is of default integer kind.
+  The result is scalar if **dim** is present; otherwise, the result is
+  an array of rank one and size n, where n is the rank of **array**.
+
+- a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
@@ -21722,7 +21817,7 @@ the relevant dimension.
   NOTE1
   If ARRAY is assumed-rank and has rank zero, DIM cannot be present
   since it cannot satisfy the requirement
-  1 <=  DIM <= 0.
+  **1 <=  DIM <= 0**.
 
 ### **Examples**
 
@@ -21798,11 +21893,10 @@ Fortran 95 , with KIND argument Fortran 2003
 - [**size**(3)](#size) -  Determine the size of an array
 - [**rank**(3)](#rank) -  Rank of a data object
 - [**shape**(3)](#shape) -  Determine the shape of an array
-- [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
 - [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
 
-[**co_ubound**(3)](#co_ubound),
-[__co\_lbound__(3)(co_lbound)]
+[**co\_ubound**(3)](#co_ubound),
+[**\_lbound**(3)](co_lbound)
 
 #### State Inquiry:
 

@@ -7188,7 +7188,7 @@ textblock=[character(len=256) :: &
 'eoshift(3fortran)                                            eoshift(3fortran)', &
 '', &
 'NAME', &
-'  EOSHIFT(3) - [TRANSFORMATIONAL] End-off shift elements of an array', &
+'  EOSHIFT(3) - [TRANSFORMATIONAL] End-off shift of elements of an array', &
 '', &
 'SYNOPSIS', &
 '  result = eoshift( array, shift [,boundary] [,dim] )', &
@@ -7196,20 +7196,27 @@ textblock=[character(len=256) :: &
 '         type(TYPE(kind=KIND)) function eoshift(array,shift,boundary,dim)', &
 '', &
 '          type(TYPE(kind=KIND)),intent(in) :: array(..)', &
-'          integer(kind=**),intent(in)      :: shift', &
-'          type(TYPE(kind=KIND)),intent(in) :: boundary', &
+'          integer(kind=**),intent(in)      :: shift(..)', &
+'          type(TYPE(kind=KIND)),intent(in) :: boundary(..)', &
 '          integer(kind=**),intent(in)      :: dim', &
 '', &
 'CHARACTERISTICS', &
+'  o  ARRAY an array of any type', &
+'', &
+'  o  SHIFT is an integer of any kind. It may be a scalar. If the rank of ARRAY', &
+'     is greater than one, and DIM is specified it is the same shape as ARRAY', &
+'     reduced by removing dimension DIM.', &
+'', &
+'  o  BOUNDARY May be a scalar of the same type and kind as ARRAY. It must be a', &
+'     scalar when ARRAY has a rank of one. Otherwise, it may be an array of the', &
+'     same shape as ARRAY reduced by dimension DIM. It may only be absent for', &
+'     certain types, as described below.', &
+'', &
+'  o  DIM is an integer of any kind. It defaults to one.', &
+'', &
+'  o  the result has the same type, type parameters, and shape as ARRAY.', &
+'', &
 '  o  a kind designated as ** may be any supported kind for the type', &
-'', &
-'  o  ARRAY May be any type, but not a scalar.', &
-'', &
-'  o  SHIFT is an integer of any kind', &
-'', &
-'  o  BOUNDARY is a scalar of the same type and kind as the ARRAY.', &
-'', &
-'  o  DIM is an integer of any kind', &
 '', &
 '  o  The result is an array of same type, kind and rank as the ARRAY argument.', &
 '', &
@@ -7228,7 +7235,8 @@ textblock=[character(len=256) :: &
 '     If rank is greater than one, then all complete rank one sections of ARRAY', &
 '     along the given dimension are shifted.', &
 '', &
-'  o  SHIFT : the number of elements to shift', &
+'  o  SHIFT : the number of elements to shift. A negative value shifts to the', &
+'     right, a positive value to the left of the vector(s) being shifted.', &
 '', &
 '  o  BOUNDARY : the value to use to fill in the elements vacated by the shift.', &
 '     If BOUNDARY is not present then the following are copied in depending on', &
@@ -7236,9 +7244,12 @@ textblock=[character(len=256) :: &
 '', &
 '          Array Type     | Boundary Value', &
 '          -----------------------------------------------------', &
-'          Numeric        | 0 of the type and kind of "array"', &
+'          Numeric        | 0, 0.0, or (0.0, 0.0)  of the type and kind of "array"', &
 '          Logical        | .false.', &
 '          Character(len) |  LEN blanks', &
+'', &
+'  These are the only types for which BOUNDARY may not be present. For these', &
+'  types the kind is converted as neccessary to the kind of ARRAY.', &
 '', &
 '  o  DIM : DIM is in the range of', &
 '', &
@@ -8216,7 +8227,7 @@ textblock=[character(len=256) :: &
 '  o  DIM an integer corresponding to a dimension of ARRAY. The corresponding', &
 '     actual argument shall not be an optional dummy argument.', &
 '', &
-'  o  MASK shall be conformable with ARRAY.', &
+'  o  MASK is logical and shall be conformable with ARRAY.', &
 '', &
 '  o  KIND a scalar integer initialization expression (ie. a constant)', &
 '', &
@@ -8391,6 +8402,67 @@ textblock=[character(len=256) :: &
 '         write(*,*)', &
 '      end subroutine printi', &
 '      end program demo_findloc', &
+'', &
+'  Results:', &
+'', &
+'       >  == 6  (a vector)', &
+'       >  > [  2 ]', &
+'       >  >shape= 1 ,rank= 1 ,size= 1', &
+'       >', &
+'       >  == 6  (a vector)', &
+'       >  > [  4 ]', &
+'       >  >shape= 1 ,rank= 1 ,size= 1', &
+'       >', &
+'       >  == 6  (a scalar)', &
+'       >  > [  2 ]', &
+'       >  >shape= ,rank= 0 ,size= 1', &
+'       >', &
+'       >  == 6  (a scalar)', &
+'       >  > [  4 ]', &
+'       >  >shape= ,rank= 0 ,size= 1', &
+'       >', &
+'       >  array is  (a matrix)', &
+'       >  > [  0, -5,  7,  7 ]', &
+'       >  > [  3,  4, -1,  2 ]', &
+'       >  > [  1,  5,  6,  7 ]', &
+'       >  >shape= 3 4 ,rank= 2 ,size= 12', &
+'       >', &
+'       >  mask  is  (a matrix)', &
+'       >  > [ T,T,F,T ]', &
+'       >  > [ T,T,F,T ]', &
+'       >  > [ T,T,F,T ]', &
+'       >  >shape= 3 4 ,rank= 2 ,size= 12', &
+'       >', &
+'       >  so for == 7 and back=.false.', &
+'       >  so for == 7 the address of the element is  (a vector)', &
+'       >  > [  1 ]', &
+'       >  > [  4 ]', &
+'       >  >shape= 2 ,rank= 1 ,size= 2', &
+'       >', &
+'       >  so for == 7 and back=.true.', &
+'       >  so for == 7 the address of the element is  (a vector)', &
+'       >  > [  3 ]', &
+'       >  > [  4 ]', &
+'       >  >shape= 2 ,rank= 1 ,size= 2', &
+'       >', &
+'       >  This is independent of declared lower bounds for the array', &
+'       >   using dim=N', &
+'       >  array is  (a matrix)', &
+'       >  > [  1,  2, -9 ]', &
+'       >  > [  2,  2,  6 ]', &
+'       >  >shape= 2 3 ,rank= 2 ,size= 6', &
+'       >', &
+'       >    (a vector)', &
+'       >  > [  2 ]', &
+'       >  > [  1 ]', &
+'       >  > [  0 ]', &
+'       >  >shape= 3 ,rank= 1 ,size= 3', &
+'       >', &
+'       >    (a vector)', &
+'       >  > [  2 ]', &
+'       >  > [  1 ]', &
+'       >  >shape= 2 ,rank= 1 ,size= 2', &
+'       >', &
 '', &
 'STANDARD', &
 '  Fortran 95', &
@@ -11280,20 +11352,27 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental TYPE(kind=KIND) function lbound(array,dim,kind)', &
 '', &
-'            TYPE(kind=KIND),intent(in)  :: array', &
-'            integer,intent(in),optional :: dim', &
-'            integer,intent(in),optional :: kind', &
+'            TYPE(kind=KIND),intent(in)           :: array(..)', &
+'            integer(kind=**),intent(in),optional :: dim', &
+'            integer(kind=**),intent(in),optional :: kind', &
 '', &
 'CHARACTERISTICS', &
-'  o  ARRAY shall be an array, of any type.', &
+'  o  ARRAY shall be assumed-rank or an array, of any type. It cannot be an', &
+'     unallocated allocatable array or a pointer that is not associated.', &
 '', &
-'  o  DIM shall be a scalar integer.', &
+'  o  DIM shall be a scalar integer. The corresponding actual argument shall', &
+'     not be an optional dummy argument, a disassociated pointer, or an', &
+'     unallocated allocatable.', &
 '', &
 '  o  KIND an integer initialization expression indicating the kind parameter', &
 '     of the result.', &
 '', &
 '  o  The return value is of type integer and of kind KIND. If KIND is absent,', &
-'     the return value is of default integer kind.', &
+'     the return value is of default integer kind. The result is scalar if DIM', &
+'     is present; otherwise, the result is an array of rank one and size n,', &
+'     where n is the rank of ARRAY.', &
+'', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 'DESCRIPTION', &
 '  RESULT(3) returns the lower bounds of an array, or a single lower bound', &
@@ -11309,13 +11388,19 @@ textblock=[character(len=256) :: &
 '     of the result.', &
 '', &
 'RESULT', &
-'  The return value is of type integer and of kind KIND. If KIND is absent, the', &
-'  return value is of default integer kind. If DIM is absent, the result is an', &
-'  array of the lower bounds of ARRAY. If DIM is present, the result is a', &
-'  scalar corresponding to the lower bound of the array along that dimension.', &
-'  If ARRAY is an expression rather than a whole array or array structure', &
-'  component, or if it has a zero extent along the relevant dimension, the', &
-'  lower bound is taken to be 1.', &
+'  If DIM is absent, the result is an array of the lower bounds of ARRAY.', &
+'', &
+'  If DIM is present, the result is a scalar corresponding to the lower bound', &
+'  of the array along that dimension. If ARRAY is an expression rather than a', &
+'  whole array or array structure component, or if it has a zero extent along', &
+'  the relevant dimension, the lower bound is taken to be', &
+'', &
+'  1.', &
+'', &
+'      NOTE1', &
+'', &
+'      If **array** is assumed-rank and has rank zero, **dim** cannot be', &
+'      present since it cannot satisfy the requirement **1 <= dim <= 0**.', &
 '', &
 'EXAMPLES', &
 '  Note that in my opinion this function should not be used on assumed-size', &
@@ -11393,9 +11478,7 @@ textblock=[character(len=256) :: &
 '', &
 '  o  UBOUND(3) - Upper dimension bounds of an array', &
 '', &
-'  o  LBOUND(3) - Lower dimension bounds of an array', &
-'', &
-'  UBOUND(3), CO_LBOUND(3)', &
+'  CO_UBOUND(3), _LBOUND(3)', &
 '', &
 '  State Inquiry:', &
 '', &
@@ -12499,20 +12582,21 @@ textblock=[character(len=256) :: &
 '      integer :: i', &
 '', &
 '         ! list kind values supported on this platform, which generally vary', &
-'         ! in storage size', &
+'         ! in storage size as alias declarations', &
 '         do i =1, size(logical_kinds)', &
-'            write(*,*)logical_kinds(i)', &
+'            write(*,''(*(g0))'')''integer,parameter :: boolean'', &', &
+'            & logical_kinds(i),''='', logical_kinds(i)', &
 '         enddo', &
 '', &
 '      end program demo_logical', &
 '', &
 '  Results:', &
 '', &
-'       >            1', &
-'       >            2', &
-'       >            4', &
-'       >            8', &
-'       >           16', &
+'       > integer,parameter :: boolean1=1', &
+'       > integer,parameter :: boolean2=2', &
+'       > integer,parameter :: boolean4=4', &
+'       > integer,parameter :: boolean8=8', &
+'       > integer,parameter :: boolean16=16', &
 '', &
 'STANDARD', &
 '  Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009', &
@@ -20843,23 +20927,27 @@ textblock=[character(len=256) :: &
 '', &
 '           elemental TYPE(kind=KIND) function ubound(array,dim,kind)', &
 '', &
-'            TYPE(kind=KIND),intent(in)  :: array', &
+'            TYPE(kind=KIND),intent(in)           :: array', &
 '            integer(kind=**),intent(in),optional :: dim', &
 '            integer(kind=**),intent(in),optional :: kind', &
 '', &
 'CHARACTERISTICS', &
-'  o  a kind designated as ** may be any supported kind for the type', &
-'', &
 '  o  ARRAY shall be assumed-rank or an array, of any type. It cannot be an', &
 '     unallocated allocatable array or a pointer that is not associated.', &
 '', &
-'  o  DIM shall be a scalar integer.', &
+'  o  DIM shall be a scalar integer. The corresponding actual argument shall', &
+'     not be an optional dummy argument, a disassociated pointer, or an', &
+'     unallocated allocatable.', &
 '', &
 '  o  KIND an integer initialization expression indicating the kind parameter', &
 '     of the result.', &
 '', &
 '  o  The return value is of type integer and of kind KIND. If KIND is absent,', &
-'     the return value is of default integer kind.', &
+'     the return value is of default integer kind. The result is scalar if DIM', &
+'     is present; otherwise, the result is an array of rank one and size n,', &
+'     where n is the rank of ARRAY.', &
+'', &
+'  o  a kind designated as ** may be any supported kind for the type', &
 '', &
 'DESCRIPTION', &
 '  UBOUND(3) returns the upper bounds of an array, or a single upper bound', &
@@ -20969,11 +21057,9 @@ textblock=[character(len=256) :: &
 '', &
 '  o  SHAPE(3) - Determine the shape of an array', &
 '', &
-'  o  UBOUND(3) - Upper dimension bounds of an array', &
-'', &
 '  o  LBOUND(3) - Lower dimension bounds of an array', &
 '', &
-'  CO_UBOUND(3), [CO_LBOUND(3)(co_lbound)]', &
+'  CO_UBOUND(3), _LBOUND(3)', &
 '', &
 '  State Inquiry:', &
 '', &

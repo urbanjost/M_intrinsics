@@ -55,20 +55,21 @@ implicit none
 integer :: i
 
    ! list kind values supported on this platform, which generally vary
-   ! in storage size
+   ! in storage size as alias declarations
    do i =1, size(logical_kinds)
-      write(*,*)logical_kinds(i)
+      write(*,'(*(g0))')'integer,parameter :: boolean', &
+      & logical_kinds(i),'=', logical_kinds(i)
    enddo
 
 end program demo_logical
 ```
 Results:
 ```text
- >            1
- >            2
- >            4
- >            8
- >           16
+ > integer,parameter :: boolean1=1
+ > integer,parameter :: boolean2=2
+ > integer,parameter :: boolean4=4
+ > integer,parameter :: boolean8=8
+ > integer,parameter :: boolean16=16
 ```
 ### **Standard**
 

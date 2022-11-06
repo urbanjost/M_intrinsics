@@ -29,7 +29,7 @@ identified by MASK along dimension DIM matching a target value
 - **dim** an _integer_ corresponding to a dimension of **array**.
   The corresponding actual argument shall not be an optional dummy
   argument.
-- **mask** shall be conformable with **array**.
+- **mask** is logical and shall be conformable with **array**.
 - **kind** a scalar integer initialization expression (ie. a constant)
 - **back** a logical scalar.
 - the result is _integer_ of default kind or kind **kind** if the
@@ -220,6 +220,67 @@ integer                      :: i
    write(*,*)
 end subroutine printi
 end program demo_findloc
+```
+Results:
+```text
+ >  == 6  (a vector)
+ >  > [  2 ]
+ >  >shape= 1 ,rank= 1 ,size= 1
+ >  
+ >  == 6  (a vector)
+ >  > [  4 ]
+ >  >shape= 1 ,rank= 1 ,size= 1
+ >  
+ >  == 6  (a scalar)
+ >  > [  2 ]
+ >  >shape= ,rank= 0 ,size= 1
+ >  
+ >  == 6  (a scalar)
+ >  > [  4 ]
+ >  >shape= ,rank= 0 ,size= 1
+ >  
+ >  array is  (a matrix)
+ >  > [  0, -5,  7,  7 ]
+ >  > [  3,  4, -1,  2 ]
+ >  > [  1,  5,  6,  7 ]
+ >  >shape= 3 4 ,rank= 2 ,size= 12
+ >  
+ >  mask  is  (a matrix)
+ >  > [ T,T,F,T ]
+ >  > [ T,T,F,T ]
+ >  > [ T,T,F,T ]
+ >  >shape= 3 4 ,rank= 2 ,size= 12
+ >  
+ >  so for == 7 and back=.false.
+ >  so for == 7 the address of the element is  (a vector)
+ >  > [  1 ]
+ >  > [  4 ]
+ >  >shape= 2 ,rank= 1 ,size= 2
+ >  
+ >  so for == 7 and back=.true.
+ >  so for == 7 the address of the element is  (a vector)
+ >  > [  3 ]
+ >  > [  4 ]
+ >  >shape= 2 ,rank= 1 ,size= 2
+ >  
+ >  This is independent of declared lower bounds for the array
+ >   using dim=N
+ >  array is  (a matrix)
+ >  > [  1,  2, -9 ]
+ >  > [  2,  2,  6 ]
+ >  >shape= 2 3 ,rank= 2 ,size= 6
+ >  
+ >    (a vector)
+ >  > [  2 ]
+ >  > [  1 ]
+ >  > [  0 ]
+ >  >shape= 3 ,rank= 1 ,size= 3
+ >  
+ >    (a vector)
+ >  > [  2 ]
+ >  > [  1 ]
+ >  >shape= 2 ,rank= 1 ,size= 2
+ >  
 ```
 ### **Standard**
 

@@ -44,6 +44,7 @@ echo 'Check for long lines'
 fpm-man manual |findll -l 80
 echo 'Check for lines that will be accidently seen as *roff directives'
 grep '^\.' txt/*.man
+file md/*.md|grep -v ASCII
 )|tee /tmp/M_intrinsics.log
 ######################################
 exit

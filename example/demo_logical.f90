@@ -6,9 +6,10 @@
       integer :: i
 
          ! list kind values supported on this platform, which generally vary
-         ! in storage size
+         ! in storage size as alias declarations
          do i =1, size(logical_kinds)
-            write(*,*)logical_kinds(i)
+            write(*,'(*(g0))')'integer,parameter :: boolean', &
+            & logical_kinds(i),'=', logical_kinds(i)
          enddo
 
       end program demo_logical

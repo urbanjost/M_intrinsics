@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**eoshift**(3) - \[TRANSFORMATIONAL\] End-off shift elements of an array
+**eoshift**(3) - \[TRANSFORMATIONAL\] End-off shift of elements of an array
 
 ### **Synopsis**
 ```fortran
@@ -12,17 +12,24 @@
    type(TYPE(kind=KIND)) function eoshift(array,shift,boundary,dim)
 
     type(TYPE(kind=KIND)),intent(in) :: array(..)
-    integer(kind=**),intent(in)      :: shift
-    type(TYPE(kind=KIND)),intent(in) :: boundary
+    integer(kind=**),intent(in)      :: shift(..)
+    type(TYPE(kind=KIND)),intent(in) :: boundary(..)
     integer(kind=**),intent(in)      :: dim
 ```
 ### **Characteristics**
 
+ - **array** an array of any type
+ - **shift** is an integer of any kind. It may be a scalar. 
+   If the rank of **array** is greater than one, and **dim** is
+   specified it is the same shape as **array** reduced by removing
+   dimension **dim**.
+ - **boundary** May be a scalar of the same type and kind as **array**.
+   It must be a scalar when **array** has a rank of one. Otherwise,
+   it may be an array of the same shape as **array** reduced by dimension
+   **dim**. It may only be absent for certain types, as described below.
+ - **dim** is an integer of any kind. It defaults to one.
+ - the result has the same type, type parameters, and shape as **array**.
  - a kind designated as ** may be any supported kind for the type
- - **array** May be any type, but not a scalar.
- - **shift** is an integer of any kind
- - **boundary** is a scalar of the same type and kind as the **array**.
- - **dim** is an integer of any kind
 
  - The result is an array of same type, kind and rank as the **array** argument.
 
@@ -47,7 +54,8 @@
   are shifted.
 
 - **shift**
-  : the number of elements to shift
+  : the number of elements to shift. A negative value shifts to the
+  right, a positive value to the left of the vector(s) being shifted.
 
 - **boundary**
   : the value to use to fill in the elements vacated by the shift.
@@ -56,10 +64,12 @@
 ```text
     Array Type     | Boundary Value
     -----------------------------------------------------
-    Numeric        | 0 of the type and kind of "array"
+    Numeric        | 0, 0.0, or (0.0, 0.0)  of the type and kind of "array"
     Logical        | .false.
     Character(len) |  LEN blanks
 ```
+  These are the only types for which **boundary** may not be present.
+  For these types the kind is converted as neccessary to the kind of **array**.
 - **dim**
   :  **dim** is in the range of
 ```fortran
