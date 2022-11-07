@@ -15,8 +15,10 @@
 ```
 ### **Characteristics**
 
- - **x** shall be of type real or complex of any valid kind.
- - the returned value will be of the same type and kind as the argument.
+ - **x** is of type _real_ or _complex_ of any valid kind.
+ - **KIND** may be any kind supported by the associated type of **x**.
+ - The returned value will be of the same type and kind as the argument
+   **x**.
 
 ### **Description**
 
@@ -47,25 +49,27 @@ Sample program:
 ```fortran
 program demo_cos
 implicit none
+character(len=*),parameter :: g2='(a,t20,g0)'
 doubleprecision,parameter :: PI=atan(1.0d0)*4.0d0
-   write(*,*)'COS(0.0)=',cos(0.0)
-   write(*,*)'COS(PI)=',cos(PI)
-   write(*,*)'COS(PI/2.0d0)=',cos(PI/2.0d0),' EPSILON=',epsilon(PI)
-   write(*,*)'COS(2*PI)=',cos(2*PI)
-   write(*,*)'COS(-2*PI)=',cos(-2*PI)
-   write(*,*)'COS(-2000*PI)=',cos(-2000*PI)
-   write(*,*)'COS(3000*PI)=',cos(3000*PI)
+   write(*,g2)'COS(0.0)=',cos(0.0)
+   write(*,g2)'COS(PI)=',cos(PI)
+   write(*,g2)'COS(PI/2.0d0)=',cos(PI/2.0d0),'EPSILON=',epsilon(PI)
+   write(*,g2)'COS(2*PI)=',cos(2*PI)
+   write(*,g2)'COS(-2*PI)=',cos(-2*PI)
+   write(*,g2)'COS(-2000*PI)=',cos(-2000*PI)
+   write(*,g2)'COS(3000*PI)=',cos(3000*PI)
 end program demo_cos
 ```
 Results:
-```
-   COS(0.0)=        1.00000000
-   COS(PI)=        -1.0000000000000000
-   COS(PI/2.0d0)=   6.1232339957367660E-017
-   EPSILON=         2.2204460492503131E-016
-   COS(2*PI)=       1.0000000000000000
-   COS(-2*PI)=      1.0000000000000000
-   COS(-2000*PI)=   1.0000000000000000
+```text
+ > COS(0.0)=          1.000000
+ > COS(PI)=           -1.000000000000000
+ > COS(PI/2.0d0)=     .6123233995736766E-16
+ > EPSILON=           .2220446049250313E-15
+ > COS(2*PI)=         1.000000000000000
+ > COS(-2*PI)=        1.000000000000000
+ > COS(-2000*PI)=     1.000000000000000
+ > COS(3000*PI)=      1.000000000000000
 ```
 ### **Standard**
 

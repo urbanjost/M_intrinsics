@@ -12,16 +12,28 @@ multiplication
 ```fortran
      function matmul(matrix_a, matrix_b)
 
-      type(NUMERIC_OR_LOGICAL) :: matrix_a(..)
-      type(NUMERIC_OR_LOGICAL) :: matrix_b(..)
-      type(PROMOTED) :: matmul(..)
+      type(TYPE1(kind=**)       :: matrix_a(..)
+      type(TYPE2(kind=**)       :: matrix_b(..)
+      type(TYPE(kind=PROMOTED)) :: matmul(..)
 ```
 ### **Characteristics**
 
- - **matrix_a** may be numeric (_integer_, _real_, or _complex_ )
-   or _logical_ and must be one or two-dimensional arrays.
+ - **matrix_a** is a numeric (_integer_, _real_, or _complex_ ) or
+   _logical_ array of rank one two.
+ - **matrix_b** is a numeric (_integer_, _real_, or _complex_ ) or
+   _logical_ array of rank one two.
  - At least one argument must be rank two.
- - If one argument is _logical_, both must be _logical_.
+ - the size of the first dimension of **matrix_b** must equal the size
+   of the last dimension of **matrix_a**.
+ - the type of the result is the same as if an element of each argument
+   had been multiplied as a RHS expression (that is, if the arguments
+   are not of the same type the result follows the same rules of promotion
+   as a simple scalar multiplication of the two types would produce)
+ - If one argument is _logical_, both must be _logical_. For logicals
+   the resulting type is as if the _.and._ operator has been used on
+   elements from the arrays.
+ - The shape of the result depends on the shapes of the arguments 
+   as described below.
 
 ### **Description**
 
@@ -76,12 +88,6 @@ multiplication
   of **B**, and summing these products. In other words, **C(i,j)**
   is the dot product of the ith row of **A** and the jth column of **B**.
 
-#####  **Characteristics**
-
-  The returned array will be promoted to the same type and kind as would
-  result from multiplication between an element of each argument (like
-  the multiplication operator (\*) had been used between the elements).
-
 #### **Logical Arguments**
 
 #####  **Values**
@@ -92,11 +98,6 @@ multiplication
   Value_of_Element (i,j) = &
   ANY( (row_i_of_MATRIX_A) .AND. (column_j_of_MATRIX_B) )
 ```
-#####  **Characteristics**
-
-  The returned array is of the type and kind that results if any element of
-  each argument had been operated on by the **.AND.** operator.
-
 ### **Examples**
 
 Sample program:

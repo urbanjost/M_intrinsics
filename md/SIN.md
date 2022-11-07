@@ -16,9 +16,9 @@
 ### **Characteristics**
 
   - **x** may be any _real_ or _complex_ type 
-  - **KIND** may be any kind supported by the associated type of **x**
+  - **KIND** may be any kind supported by the associated type of **x**.
   - The returned value will be of the same type and kind as the argument
-    **x**
+    **x**.
 
 ### **Description**
 
