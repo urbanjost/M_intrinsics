@@ -9588,14 +9588,18 @@ present since it cannot satisfy the requirement **1 &lt;= dim &lt;= 0**.</code><
 <div class="sourceCode" id="cb543"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb543-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">matmul</span>(matrix_a,matrix_b)</a></code></pre></div>
 <div class="sourceCode" id="cb544"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb544-1" title="1">     <span class="kw">function</span> <span class="fu">matmul</span>(matrix_a, matrix_b)</a>
 <a class="sourceLine" id="cb544-2" title="2"></a>
-<a class="sourceLine" id="cb544-3" title="3">      <span class="dt">type(NUMERIC_OR_LOGICAL)</span> <span class="dt">::</span> matrix_a(..)</a>
-<a class="sourceLine" id="cb544-4" title="4">      <span class="dt">type(NUMERIC_OR_LOGICAL)</span> <span class="dt">::</span> matrix_b(..)</a>
-<a class="sourceLine" id="cb544-5" title="5">      <span class="dt">type(PROMOTED)</span> <span class="dt">::</span> <span class="fu">matmul</span>(..)</a></code></pre></div>
+<a class="sourceLine" id="cb544-3" title="3">      <span class="dt">type(TYPE1(kind=**)       :: matrix_a(..)</span></a>
+<a class="sourceLine" id="cb544-4" title="4">      <span class="dt">type(TYPE2(kind=**)       :: matrix_b(..)</span></a>
+<a class="sourceLine" id="cb544-5" title="5">      <span class="dt">type(TYPE(kind=PROMOTED))</span> <span class="dt">::</span> <span class="fu">matmul</span>(..)</a></code></pre></div>
 <h3 id="characteristics-126"><strong>Characteristics</strong></h3>
 <ul>
-<li><strong>matrix_a</strong> may be numeric (integer, real, or complex ) or logical and must be one or two-dimensional arrays.</li>
+<li><strong>matrix_a</strong> is a numeric (integer, real, or complex ) or logical array of rank one two.</li>
+<li><strong>matrix_b</strong> is a numeric (integer, real, or complex ) or logical array of rank one two.</li>
 <li>At least one argument must be rank two.</li>
-<li>If one argument is logical, both must be logical.</li>
+<li>the size of the first dimension of <strong>matrix_b</strong> must equal the size of the last dimension of <strong>matrix_a</strong>.</li>
+<li>the type of the result is the same as if an element of each argument had been multiplied as a RHS expression (that is, if the arguments are not of the same type the result follows the same rules of promotion as a simple scalar multiplication of the two types would produce)</li>
+<li>If one argument is logical, both must be logical. For logicals the resulting type is as if the .and. operator has been used on elements from the arrays.</li>
+<li>The shape of the result depends on the shapes of the arguments as described below.</li>
 </ul>
 <h3 id="description-127"><strong>Description</strong></h3>
 <p><strong>matmul</strong>(3) performs a matrix multiplication on numeric or logical arguments.</p>
@@ -9630,15 +9634,11 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </ul>
 <h5 id="values"><strong>Values</strong></h5>
 <p>Then element <strong>C(i,j)</strong> of the product is obtained by multiplying term-by-term the entries of the ith row of <strong>A</strong> and the jth column of <strong>B</strong>, and summing these products. In other words, <strong>C(i,j)</strong> is the dot product of the ith row of <strong>A</strong> and the jth column of <strong>B</strong>.</p>
-<h5 id="characteristics-127"><strong>Characteristics</strong></h5>
-<p>The returned array will be promoted to the same type and kind as would result from multiplication between an element of each argument (like the multiplication operator (*) had been used between the elements).</p>
 <h4 id="logical-arguments"><strong>Logical Arguments</strong></h4>
 <h5 id="values-1"><strong>Values</strong></h5>
 <p>If <strong>matrix_a</strong> and <strong>matrix_b</strong> are of type logical, the array elements of the result are instead:</p>
 <div class="sourceCode" id="cb545"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb545-1" title="1">  Value_of_Element (i,j) <span class="kw">=</span> <span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb545-2" title="2">  <span class="fu">ANY</span>( (row_i_of_MATRIX_A) <span class="op">.AND.</span> (column_j_of_MATRIX_B) )</a></code></pre></div>
-<h5 id="characteristics-128"><strong>Characteristics</strong></h5>
-<p>The returned array is of the type and kind that results if any element of each argument had been operated on by the <strong>.AND.</strong> operator.</p>
 <h3 id="examples-124"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb546"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb546-1" title="1"><span class="kw">program</span> demo_matmul</a>
@@ -9779,7 +9779,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div class="sourceCode" id="cb550"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb550-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> <span class="fu">maxexponent</span>(x)</a>
 <a class="sourceLine" id="cb550-2" title="2"></a>
 <a class="sourceLine" id="cb550-3" title="3"><span class="dt">      real(kind=**)</span>,<span class="dt">intent(in)</span>   <span class="dt">::</span> x</a></code></pre></div>
-<h3 id="characteristics-129"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-127"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>x</strong> is a real scalar or array of any real kind</li>
 <li>the result is a default integer scalar</li>
@@ -9827,7 +9827,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb554-3" title="3">      NUMERIC,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
 <a class="sourceLine" id="cb554-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb554-5" title="5">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
-<h3 id="characteristics-130"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-128"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind for the type</li>
 <li><strong>NUMERIC</strong> designates any intrinsic numeric type and kind.</li>
@@ -9920,7 +9920,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb558-6" title="6">                :</a>
 <a class="sourceLine" id="cb558-7" title="7">                :</a>
 <a class="sourceLine" id="cb558-8" title="8">                :</a></code></pre></div>
-<h3 id="characteristics-131"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-129"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>a3, a3, a4, …</strong> must be of the same type and kind as <strong>a1</strong></li>
 <li>the arguments may (all) be integer, real or character</li>
@@ -10037,7 +10037,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb562-3" title="3">      NUMERIC,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
 <a class="sourceLine" id="cb562-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb562-5" title="5">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
-<h3 id="characteristics-132"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-130"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind for the type</li>
 <li><strong>NUMERIC</strong> designates any numeric type and kind.</li>
@@ -10100,7 +10100,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div class="sourceCode" id="cb566"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb566-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> merge_bits(i,j,mask)</a>
 <a class="sourceLine" id="cb566-2" title="2"></a>
 <a class="sourceLine" id="cb566-3" title="3">      <span class="dt">integer(kind=KIND)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> i, j, mask</a></code></pre></div>
-<h3 id="characteristics-133"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-131"><strong>Characteristics</strong></h3>
 <ul>
 <li>the result and all input values have the same integer type and KIND with the exception that the mask and either <strong>i</strong> or <strong>j</strong> may be a BOZ constant.</li>
 </ul>
@@ -10197,7 +10197,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb571-4" title="4">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> fsource</a>
 <a class="sourceLine" id="cb571-5" title="5">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>   <span class="dt">::</span> mask</a>
 <a class="sourceLine" id="cb571-6" title="6">      mask<span class="kw">**</span> : Shall be of <span class="dt">type</span> _logical_.</a></code></pre></div>
-<h3 id="characteristics-134"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-132"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind for the type</li>
 <li><strong>tsource</strong> May be of any type, including user-defined.</li>
@@ -10335,7 +10335,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div class="sourceCode" id="cb578"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb578-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> <span class="fu">minexponent</span>(x)</a>
 <a class="sourceLine" id="cb578-2" title="2"></a>
 <a class="sourceLine" id="cb578-3" title="3"><span class="dt">      real(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
-<h3 id="characteristics-135"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-133"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>x</strong> is a real scalar or array of any real kind</li>
 <li>the result is a default integer scalar</li>
@@ -10383,7 +10383,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb582-3" title="3">      NUMERIC,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
 <a class="sourceLine" id="cb582-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb582-5" title="5">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
-<h3 id="characteristics-136"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-134"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind for the type</li>
 <li><strong>NUMERIC</strong> is any numeric type and kind.</li>
@@ -10464,7 +10464,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb586-6" title="6">                :</a>
 <a class="sourceLine" id="cb586-7" title="7">                :</a>
 <a class="sourceLine" id="cb586-8" title="8">                :</a></code></pre></div>
-<h3 id="characteristics-137"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-135"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>TYPE</strong> may be integer, real or character.</li>
 </ul>
@@ -10511,7 +10511,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb590-3" title="3">      NUMERIC,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
 <a class="sourceLine" id="cb590-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb590-5" title="5">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
-<h3 id="characteristics-138"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-136"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind for the type</li>
 <li><strong>NUMERIC</strong> is any numeric type and kind.</li>
@@ -10642,7 +10642,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb594-2" title="2"></a>
 <a class="sourceLine" id="cb594-3" title="3">      <span class="dt">type(TYPE(kind=KIND),intent(in) :: a</span></a>
 <a class="sourceLine" id="cb594-4" title="4">      <span class="dt">type(TYPE(kind=KIND),intent(in) :: p</span></a></code></pre></div>
-<h3 id="characteristics-139"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-137"><strong>Characteristics</strong></h3>
 <ul>
 <li>The result and arguments are all of the same type and kind.</li>
 <li>The type may be any kind of real or integer.</li>
@@ -10728,7 +10728,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb598-2" title="2"></a>
 <a class="sourceLine" id="cb598-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> a</a>
 <a class="sourceLine" id="cb598-4" title="4">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> p</a></code></pre></div>
-<h3 id="characteristics-140"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-138"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>a</strong> may be any kind of real or integer.</li>
 <li><strong>p</strong> is the same type and kind as <strong>a</strong></li>
@@ -10793,7 +10793,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb602-4" title="4">      <span class="dt">type(TYPE(kind=**))</span>,<span class="dt">intent(out)</span>,<span class="dt">allocatable</span>   <span class="dt">::</span> <span class="kw">to</span>(..)</a>
 <a class="sourceLine" id="cb602-5" title="5">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(out)</span>     <span class="dt">::</span> stat</a>
 <a class="sourceLine" id="cb602-6" title="6">      <span class="dt">character(len=*)</span>,<span class="dt">intent(inout)</span>   <span class="dt">::</span> errmsg</a></code></pre></div>
-<h3 id="characteristics-141"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-139"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>from</strong> may be of any type and kind.</li>
 <li><strong>to</strong> shall be of the same type, kind and rank as <strong>from</strong>.</li>
@@ -10917,7 +10917,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb606-5" title="5">     <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>      <span class="dt">::</span> <span class="fu">len</span></a>
 <a class="sourceLine" id="cb606-6" title="6">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(inout)</span> <span class="dt">::</span> <span class="kw">to</span></a>
 <a class="sourceLine" id="cb606-7" title="7">     <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>      <span class="dt">::</span> topos</a></code></pre></div>
-<h3 id="characteristics-142"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-140"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>from</strong> is an integer</li>
 <li><strong>frompos</strong> is an integer</li>
@@ -11043,7 +11043,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb610-2" title="2"></a>
 <a class="sourceLine" id="cb610-3" title="3"><span class="dt">      real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
 <a class="sourceLine" id="cb610-4" title="4"><span class="dt">      real(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> s</a></code></pre></div>
-<h3 id="characteristics-143"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-141"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>x</strong> may be a real value of any kind.</li>
 <li><strong>s</strong> may be a real value of any kind.</li>
@@ -11107,7 +11107,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div class="sourceCode" id="cb614"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb614-1" title="1">     <span class="dt">character(len=1,kind=KIND)</span> <span class="kw">function</span> new_line(c)</a>
 <a class="sourceLine" id="cb614-2" title="2"></a>
 <a class="sourceLine" id="cb614-3" title="3">      <span class="dt">character(len=1,kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> c(..)</a></code></pre></div>
-<h3 id="characteristics-144"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-142"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>c</strong> shall be of type character. It may be a scalar or an array.</li>
 <li>the result is a character scalar of length one with the same kind type parameter as <strong>c</strong>.</li>
@@ -11222,7 +11222,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb620-2" title="2"></a>
 <a class="sourceLine" id="cb620-3" title="3"><span class="dt">      real(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> a</a>
 <a class="sourceLine" id="cb620-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
-<h3 id="characteristics-145"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-143"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind for the type</li>
 <li><strong>a</strong> is type real of any kind</li>
@@ -11347,7 +11347,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb624-2" title="2"></a>
 <a class="sourceLine" id="cb624-3" title="3"><span class="dt">      real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
 <a class="sourceLine" id="cb624-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a></code></pre></div>
-<h3 id="characteristics-146"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-144"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>array</strong> shall be an array of type real.</li>
 <li><strong>dim</strong> shall be a scalar of type integer</li>
@@ -11446,7 +11446,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div class="sourceCode" id="cb629"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb629-1" title="1">    <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">not</span>(i)</a>
 <a class="sourceLine" id="cb629-2" title="2"></a>
 <a class="sourceLine" id="cb629-3" title="3">     <span class="dt">integer(kind=KIND)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
-<h3 id="characteristics-147"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-145"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>i</strong> may be an integer of any valid kind</li>
 <li>The returned integer is of the same kind as the argument <strong>i</strong>.</li>
@@ -11513,7 +11513,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div class="sourceCode" id="cb634"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb634-1" title="1">     <span class="kw">function</span> null(mold)</a>
 <a class="sourceLine" id="cb634-2" title="2"></a>
 <a class="sourceLine" id="cb634-3" title="3">      <span class="dt">type(TYPE(kind=**))</span>,<span class="dt">pointer</span>,<span class="dt">optional</span> <span class="dt">::</span> mold</a></code></pre></div>
-<h3 id="characteristics-148"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-146"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>mold</strong> is a pointer of any association status and of any type.</li>
 <li>The result is a disassociated pointer or an unallocated allocatable entity.</li>
@@ -11620,7 +11620,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb638-2" title="2"></a>
 <a class="sourceLine" id="cb638-3" title="3">      <span class="dt">type(TEAM_TYPE)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span>    <span class="dt">::</span> team</a>
 <a class="sourceLine" id="cb638-4" title="4">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> team_number</a></code></pre></div>
-<h3 id="characteristics-149"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-147"><strong>Characteristics</strong></h3>
 <ul>
 <li>use of <strong>team</strong> and <strong>team_number</strong> is mutually exclusive</li>
 <li><strong>team</strong> is is a scalar of of type <strong>TEAM_TYPE</strong> from the intrinsic module ISO_FORTRAN_ENV.</li>
@@ -11688,7 +11688,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb641-3" title="3">      <span class="dt">TYPE</span>,<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>),<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
 <a class="sourceLine" id="cb641-4" title="4">      <span class="dt">TYPE</span>,<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>),<span class="dt">intent(in)</span> <span class="dt">::</span> mold</a>
 <a class="sourceLine" id="cb641-5" title="5">      <span class="dt">logical</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span>     <span class="dt">::</span> round</a></code></pre></div>
-<h3 id="characteristics-150"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-148"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>x</strong> is of type integer or real.</li>
 <li><strong>mold</strong> is an integer or real scalar.</li>
@@ -11780,7 +11780,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb645-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>,option(in) <span class="dt">::</span> array(..)</a>
 <a class="sourceLine" id="cb645-4" title="4">      <span class="dt">logical</span>  <span class="dt">::</span> mask(..)</a>
 <a class="sourceLine" id="cb645-5" title="5">      <span class="dt">TYPE(kind=KIND)</span>,option(in),<span class="dt">optional</span> <span class="dt">::</span> vector(<span class="kw">*</span>)</a></code></pre></div>
-<h3 id="characteristics-151"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-149"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>array</strong> is an array of any type</li>
 <li><strong>mask</strong> a logical scalar as well an an array conformable with <strong>array</strong>.</li>
@@ -11856,7 +11856,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb649-2" title="2"></a>
 <a class="sourceLine" id="cb649-3" title="3">      <span class="dt">type(logical(kind=KIND))</span>,<span class="dt">intent(in)</span>        <span class="dt">::</span> mask(..)</a>
 <a class="sourceLine" id="cb649-4" title="4">      <span class="dt">type(integer(kind=**))</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a></code></pre></div>
-<h3 id="characteristics-152"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-150"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>mask</strong> is a logical array</li>
 <li><strong>dim</strong> is an integer scalar</li>
@@ -11932,7 +11932,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div class="sourceCode" id="cb653"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb653-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> popcnt(i)</a>
 <a class="sourceLine" id="cb653-2" title="2"></a>
 <a class="sourceLine" id="cb653-3" title="3">      <span class="dt">integer(kind=KIND)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
-<h3 id="characteristics-153"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-151"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>i</strong> may be an integer of any kind.</li>
 <li>The return value is an integer of the default integer kind.</li>
@@ -11990,7 +11990,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div class="sourceCode" id="cb657"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb657-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> poppar(i)</a>
 <a class="sourceLine" id="cb657-2" title="2"></a>
 <a class="sourceLine" id="cb657-3" title="3">      <span class="dt">integer(kind=KIND)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
-<h3 id="characteristics-154"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-152"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>i</strong> is an integer of any kind</li>
 <li>the return value is a default kind integer</li>
@@ -12055,7 +12055,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div class="sourceCode" id="cb661"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb661-1" title="1">     <span class="dt">integer</span> <span class="kw">function</span> <span class="dt">precision</span>(x)</a>
 <a class="sourceLine" id="cb661-2" title="2"></a>
 <a class="sourceLine" id="cb661-3" title="3">      <span class="dt">TYPE(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
-<h3 id="characteristics-155"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-153"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>x</strong> shall be of type real or complex. It may be a scalar or an array.</li>
 <li>the result is a default integer scalar.</li>
@@ -12105,7 +12105,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <div class="sourceCode" id="cb665"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb665-1" title="1">     <span class="dt">logical</span> <span class="kw">function</span> <span class="fu">present</span> (a)</a>
 <a class="sourceLine" id="cb665-2" title="2"></a>
 <a class="sourceLine" id="cb665-3" title="3">      <span class="dt">type(TYPE(kind=KIND))</span> <span class="dt">::</span> a(..)</a></code></pre></div>
-<h3 id="characteristics-156"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-154"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>a</strong> May be of any type and may be a pointer, scalar or array value, or a dummy procedure.</li>
 </ul>
@@ -12206,7 +12206,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb669-3" title="3">      NUMERIC,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
 <a class="sourceLine" id="cb669-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb669-5" title="5">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
-<h3 id="characteristics-157"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-155"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind for the type</li>
 <li><strong>NUMERIC</strong> is any numeric type and kind.</li>
@@ -12419,7 +12419,7 @@ dim=3 :( 2 3 )
 <div class="sourceCode" id="cb673"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb673-1" title="1">    <span class="dt">integer</span> <span class="kw">function</span> <span class="fu">radix</span>(x)</a>
 <a class="sourceLine" id="cb673-2" title="2"></a>
 <a class="sourceLine" id="cb673-3" title="3">     <span class="dt">TYPE(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x(..)</a></code></pre></div>
-<h3 id="characteristics-158"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-156"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>x</strong> may be scalar or an array of any real or integer type.</li>
 <li>the result is a default integer scalar.</li>
@@ -12465,7 +12465,7 @@ dim=3 :( 2 3 )
 <div class="sourceCode" id="cb677"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb677-1" title="1">     <span class="kw">subroutine</span> <span class="fu">random_number</span>(harvest)</a>
 <a class="sourceLine" id="cb677-2" title="2"></a>
 <a class="sourceLine" id="cb677-3" title="3"><span class="dt">      real</span>,<span class="dt">intent(out)</span> <span class="dt">::</span> harvest(..)</a></code></pre></div>
-<h3 id="characteristics-159"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-157"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>harvest</strong> and the result are default real variables</li>
 </ul>
@@ -12549,7 +12549,7 @@ dim=3 :( 2 3 )
 <a class="sourceLine" id="cb681-3" title="3">      <span class="dt">integer</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">size</span></a>
 <a class="sourceLine" id="cb681-4" title="4">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> put(<span class="kw">*</span>)</a>
 <a class="sourceLine" id="cb681-5" title="5">      <span class="dt">integer</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span> <span class="dt">::</span> get(<span class="kw">*</span>)</a></code></pre></div>
-<h3 id="characteristics-160"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-158"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>size</strong> a scalar default integer</li>
 <li><strong>put</strong> a rank-one default integer array</li>
@@ -12608,7 +12608,7 @@ dim=3 :( 2 3 )
 <div class="sourceCode" id="cb685"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb685-1" title="1">      <span class="dt">integer</span> <span class="kw">function</span> <span class="fu">range</span> (x)</a>
 <a class="sourceLine" id="cb685-2" title="2"></a>
 <a class="sourceLine" id="cb685-3" title="3">       <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
-<h3 id="characteristics-161"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-159"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>x</strong> may be of type integer, real, or complex. It may be a scalar or an array.</li>
 <li><strong>KIND</strong> is any kind supported by the type of <strong>x</strong></li>
@@ -12668,7 +12668,7 @@ Case (iii)
 <div class="sourceCode" id="cb692"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb692-1" title="1">     <span class="dt">integer</span> <span class="kw">function</span> rank(a)</a>
 <a class="sourceLine" id="cb692-2" title="2"></a>
 <a class="sourceLine" id="cb692-3" title="3">      <span class="dt">type(TYPE(kind=**))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> a(..)</a></code></pre></div>
-<h3 id="characteristics-162"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-160"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>a</strong> can be of any type <strong>TYPE</strong> and rank.</li>
 <li>a kind designated as ** may be any supported kind for the type</li>
@@ -12808,7 +12808,7 @@ Case (iii)
 <a class="sourceLine" id="cb696-2" title="2"></a>
 <a class="sourceLine" id="cb696-3" title="3">    <span class="dt">TYPE(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
 <a class="sourceLine" id="cb696-4" title="4">    <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
-<h3 id="characteristics-163"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-161"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind for the type</li>
 <li>the type of <strong>x</strong> may be integer, real, or complex; or a BOZ-literal-constant.</li>
@@ -12895,7 +12895,7 @@ Case (iii)
 <a class="sourceLine" id="cb702-7" title="7">     <span class="dt">logical</span>,<span class="dt">optional</span>               <span class="dt">::</span> mask</a>
 <a class="sourceLine" id="cb702-8" title="8">     <span class="dt">type(TYPE)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> identity</a>
 <a class="sourceLine" id="cb702-9" title="9">     <span class="dt">logical</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span>    <span class="dt">::</span> ordered</a></code></pre></div>
-<h3 id="characteristics-164"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-162"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>array</strong> is an array of any type</li>
 <li><strong>operation</strong> is a pure function with exactly two arguments
@@ -13037,7 +13037,7 @@ Case (iii)
 <a class="sourceLine" id="cb706-2" title="2"></a>
 <a class="sourceLine" id="cb706-3" title="3">      <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>   <span class="dt">::</span> string</a>
 <a class="sourceLine" id="cb706-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>   <span class="dt">::</span> ncopies</a></code></pre></div>
-<h3 id="characteristics-165"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-163"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind for the type</li>
 <li><strong>string</strong> is a scalar character type.</li>
@@ -13097,7 +13097,7 @@ Case (iii)
 <a class="sourceLine" id="cb710-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>              <span class="dt">::</span> <span class="fu">shape</span>(:)</a>
 <a class="sourceLine" id="cb710-5" title="5">      <span class="dt">type(TYPE(kind=KIND),intent(in),optional :: pad(..)</span></a>
 <a class="sourceLine" id="cb710-6" title="6">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span>     <span class="dt">::</span> order(:)</a></code></pre></div>
-<h3 id="characteristics-166"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-164"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>source</strong> is an array of any type</li>
 <li><strong>shape</strong> defines a Fortran shape and therefore an integer vector (of rank one) of constant size of up to 16 non-negative values.</li>
@@ -13278,7 +13278,7 @@ Case (iii)
 <div class="sourceCode" id="cb715"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb715-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> <span class="bu">rrspacing</span>(x)</a>
 <a class="sourceLine" id="cb715-2" title="2"></a>
 <a class="sourceLine" id="cb715-3" title="3"><span class="dt">      real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
-<h3 id="characteristics-167"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-165"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>x</strong> is type real an any kind</li>
 <li>The return value is of the same type and kind as <strong>x</strong>.</li>
@@ -13318,7 +13318,7 @@ Case (iii)
 <a class="sourceLine" id="cb717-2" title="2"></a>
 <a class="sourceLine" id="cb717-3" title="3">      <span class="dt">type(TYPE(kind=KIND),intent(in) :: a</span></a>
 <a class="sourceLine" id="cb717-4" title="4">      <span class="dt">type(TYPE(kind=KIND),intent(in) :: b</span></a></code></pre></div>
-<h3 id="characteristics-168"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-166"><strong>Characteristics</strong></h3>
 <ul>
 <li><p><strong>a</strong> shall be an object of extensible declared type or unlimited polymorphic. If it is a polymorphic pointer, it shall not have an undefined association status.</p></li>
 <li><p><strong>b</strong> shall be an object of extensible declared type or unlimited polymorphic. If it is a polymorphic pointer, it shall not have an undefined association status.</p></li>
@@ -13425,7 +13425,7 @@ Case (iii)
 <a class="sourceLine" id="cb723-2" title="2"></a>
 <a class="sourceLine" id="cb723-3" title="3"><span class="dt">      real(kind=KIND)</span>,<span class="dt">intent(in)</span>   <span class="dt">::</span> x</a>
 <a class="sourceLine" id="cb723-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> i</a></code></pre></div>
-<h3 id="characteristics-169"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-167"><strong>Characteristics</strong></h3>
 <pre><code>- **x** is type _real_ of any kind
 - **i** is type an _integer_ of any kind
 - the result is _real_ of the same kind as **x**</code></pre>
@@ -13475,7 +13475,7 @@ Case (iii)
 <a class="sourceLine" id="cb728-4" title="4">      <span class="dt">character(len=*,kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> set</a>
 <a class="sourceLine" id="cb728-5" title="5">      <span class="dt">logical</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> back</a>
 <a class="sourceLine" id="cb728-6" title="6">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
-<h3 id="characteristics-170"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-168"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>string</strong> is a character string of any kind</li>
 <li><strong>set</strong> must be a character string with the same kind as <strong>string</strong></li>
@@ -13544,7 +13544,7 @@ Case (iii)
 <div class="sourceCode" id="cb732"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb732-1" title="1">     <span class="dt">integer</span> <span class="kw">function</span> selected_char_kind(name)</a>
 <a class="sourceLine" id="cb732-2" title="2"></a>
 <a class="sourceLine" id="cb732-3" title="3">      <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> name</a></code></pre></div>
-<h3 id="characteristics-171"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-169"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>name</strong> is a default character scalar</li>
 <li>the result is a default integer scalar</li>
@@ -13667,7 +13667,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” and �
 <div class="sourceCode" id="cb736"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb736-1" title="1">    <span class="dt">integer</span> <span class="kw">function</span> <span class="fu">selected_int_kind</span>(r)</a>
 <a class="sourceLine" id="cb736-2" title="2"></a>
 <a class="sourceLine" id="cb736-3" title="3">     <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> r</a></code></pre></div>
-<h3 id="characteristics-172"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-170"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>r</strong> is an integer scalar.</li>
 <li>the result is an default integer scalar.</li>
@@ -13722,7 +13722,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” and �
 <a class="sourceLine" id="cb740-3" title="3"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> p</a>
 <a class="sourceLine" id="cb740-4" title="4"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> r</a>
 <a class="sourceLine" id="cb740-5" title="5"><span class="dt">     real(kind=KIND)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">radix</span></a></code></pre></div>
-<h3 id="characteristics-173"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-171"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>p</strong> is an integer scalar</li>
 <li><strong>r</strong> is an integer scalar</li>
@@ -13824,7 +13824,7 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <a class="sourceLine" id="cb745-2" title="2"></a>
 <a class="sourceLine" id="cb745-3" title="3"><span class="dt">      real(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a>
 <a class="sourceLine" id="cb745-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
-<h3 id="characteristics-174"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-172"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>x</strong> is type real</li>
 <li><strong>i</strong> is type integer</li>
@@ -13877,7 +13877,7 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <a class="sourceLine" id="cb749-2" title="2"></a>
 <a class="sourceLine" id="cb749-3" title="3">    <span class="dt">type(TYPE(kind=**))</span>,<span class="dt">intent(in)</span>       <span class="dt">::</span> source(..)</a>
 <a class="sourceLine" id="cb749-4" title="4">    <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
-<h3 id="characteristics-175"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-173"><strong>Characteristics</strong></h3>
 <ul>
 <li><p>a kind designated as ** may be any supported kind for the type</p></li>
 <li><p><strong>source</strong> is an array or scalar of any type. If <strong>source</strong> is a pointer it must be associated and allocatable arrays must be allocated. It shall not be an assumed-size array.</p></li>
@@ -13958,7 +13958,7 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <a class="sourceLine" id="cb753-2" title="2"></a>
 <a class="sourceLine" id="cb753-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
 <a class="sourceLine" id="cb753-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> shift</a></code></pre></div>
-<h3 id="characteristics-176"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-174"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind for the type</li>
 <li><strong>i</strong> is an integer of any kind</li>
@@ -14060,7 +14060,7 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <a class="sourceLine" id="cb757-2" title="2"></a>
 <a class="sourceLine" id="cb757-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
 <a class="sourceLine" id="cb757-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> shift</a></code></pre></div>
-<h3 id="characteristics-177"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-175"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind for the type</li>
 <li><strong>i</strong> is an integer of any kind</li>
@@ -14165,7 +14165,7 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <a class="sourceLine" id="cb762-2" title="2"></a>
 <a class="sourceLine" id="cb762-3" title="3">      <span class="dt">integer(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a>
 <a class="sourceLine" id="cb762-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> shift</a></code></pre></div>
-<h3 id="characteristics-178"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-176"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind for the type</li>
 <li><strong>i</strong> is an integer of any kind</li>
@@ -14270,7 +14270,7 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <div class="sourceCode" id="cb767"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb767-1" title="1">     <span class="kw">elemental</span> <span class="dt">type(TYPE(kind=KIND))</span><span class="kw">function</span> <span class="bu">sign</span>(a, b)</a>
 <a class="sourceLine" id="cb767-2" title="2"></a>
 <a class="sourceLine" id="cb767-3" title="3">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> a, b</a></code></pre></div>
-<h3 id="characteristics-179"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-177"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>a</strong> shall be of type integer or real.</li>
 <li><strong>b</strong> shall be of the same type as <strong>a</strong>.</li>
@@ -14344,7 +14344,7 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <div class="sourceCode" id="cb771"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb771-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="bu">sinh</span>(x)</a>
 <a class="sourceLine" id="cb771-2" title="2"></a>
 <a class="sourceLine" id="cb771-3" title="3">      <span class="dt">TYPE(kind=KIND)</span> <span class="dt">::</span> x</a></code></pre></div>
-<h3 id="characteristics-180"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-178"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>TYPE</strong> may be real or complex</li>
 <li><strong>KIND</strong> may be any kind supported by the associated type.</li>
@@ -14422,7 +14422,7 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <div class="sourceCode" id="cb776"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb776-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="bu">sin</span>(x)</a>
 <a class="sourceLine" id="cb776-2" title="2"></a>
 <a class="sourceLine" id="cb776-3" title="3">      <span class="dt">TYPE(kind=KIND)</span> <span class="dt">::</span> x</a></code></pre></div>
-<h3 id="characteristics-181"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-179"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>x</strong> may be any real or complex type</li>
 <li><strong>KIND</strong> may be any kind supported by the associated type of <strong>x</strong></li>
@@ -14525,7 +14525,7 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <a class="sourceLine" id="cb785-3" title="3">      <span class="dt">type(TYPE(kind=KIND),intent(in) :: array(..)</span></a>
 <a class="sourceLine" id="cb785-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb785-5" title="5">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
-<h3 id="characteristics-182"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-180"><strong>Characteristics</strong></h3>
 <ul>
 <li><p><strong>array</strong> is an assumed-rank array or array of any type and associated kind.</p>
 If <strong>array</strong> is a pointer it must be associated and allocatable arrays must be allocated.</li>
@@ -14647,7 +14647,7 @@ If <strong>array</strong> is a pointer it must be associated and allocatable arr
 <div class="sourceCode" id="cb789"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb789-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> <span class="bu">spacing</span>(x)</a>
 <a class="sourceLine" id="cb789-2" title="2"></a>
 <a class="sourceLine" id="cb789-3" title="3"><span class="dt">      real(kind=KIND)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
-<h3 id="characteristics-183"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-181"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>x</strong> is type real of any valid kind</li>
 <li>The result is of the same type as the input argument <strong>x</strong>.</li>
@@ -14703,7 +14703,7 @@ If <strong>array</strong> is a pointer it must be associated and allocatable arr
 <a class="sourceLine" id="cb793-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>             <span class="dt">::</span> source(..)</a>
 <a class="sourceLine" id="cb793-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb793-5" title="5">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> ncopies</a></code></pre></div>
-<h3 id="characteristics-184"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-182"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>source</strong> is a scalar or array of any type.</li>
 <li><strong>dim</strong> is an integer scalar</li>
@@ -14870,7 +14870,7 @@ need an illustration of what happens with higher dimension array
 <div class="sourceCode" id="cb797"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb797-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="bu">sqrt</span>(x)</a>
 <a class="sourceLine" id="cb797-2" title="2"></a>
 <a class="sourceLine" id="cb797-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
-<h3 id="characteristics-185"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-183"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>TYPE</strong> may be real or complex.</li>
 <li><strong>KIND</strong> may be any kind valid for the declared type.</li>
@@ -14944,11 +14944,12 @@ need an illustration of what happens with higher dimension array
 <a class="sourceLine" id="cb801-2" title="2"></a>
 <a class="sourceLine" id="cb801-3" title="3">      <span class="dt">type(TYPE(kind=**))</span> <span class="dt">::</span> a</a>
 <a class="sourceLine" id="cb801-4" title="4">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
-<h3 id="characteristics-186"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-184"><strong>Characteristics</strong></h3>
 <ul>
 <li><p>a kind designated as ** may be any supported kind for the type</p></li>
 <li><p><strong>a</strong> may be of any type and kind. If it is polymorphic it shall not be an undefined pointer. If it is unlimited polymorphic or has any deferred type parameters, it shall not be an unallocated allocatable variable or a disassociated or undefined pointer.</p></li>
 <li><p>The kind type parameter of the returned value is that specified by the value of <strong>kind</strong>; otherwise, the kind type parameter is that of default integer type.</p></li>
+<li><p>The result is an integer scalar of default kind unless <strong>kind</strong> is specified, in which case it has the kind specified by <strong>kind</strong>.</p></li>
 </ul>
 <h3 id="description-185"><strong>Description</strong></h3>
 <p><strong>storage_size</strong>(3) returns the storage size of argument <strong>a</strong> in bits.</p>
@@ -14976,12 +14977,18 @@ need an illustration of what happens with higher dimension array
 <p>Sample program</p>
 <div class="sourceCode" id="cb802"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb802-1" title="1"><span class="kw">program</span> demo_storage_size</a>
 <a class="sourceLine" id="cb802-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb802-3" title="3">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;size of integer       &#39;</span>,storage_size(<span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb802-4" title="4">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;size of real          &#39;</span>,storage_size(<span class="fl">0.0</span>)</a>
-<a class="sourceLine" id="cb802-5" title="5">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;size of logical       &#39;</span>,storage_size(<span class="cn">.true.</span>)</a>
-<a class="sourceLine" id="cb802-6" title="6">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;size of complex       &#39;</span>,storage_size((<span class="fl">0.0</span>,<span class="fl">0.0</span>))</a>
-<a class="sourceLine" id="cb802-7" title="7">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;size of integer array &#39;</span>,storage_size(<span class="kw">[</span><span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span><span class="kw">]</span>)</a>
-<a class="sourceLine" id="cb802-8" title="8"><span class="kw">end program</span> demo_storage_size</a></code></pre></div>
+<a class="sourceLine" id="cb802-3" title="3"></a>
+<a class="sourceLine" id="cb802-4" title="4">   <span class="co">! a default real, integer, and logical are the same storage size</span></a>
+<a class="sourceLine" id="cb802-5" title="5">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;size of integer       &#39;</span>,storage_size(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb802-6" title="6">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;size of real          &#39;</span>,storage_size(<span class="fl">0.0</span>)</a>
+<a class="sourceLine" id="cb802-7" title="7">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;size of logical       &#39;</span>,storage_size(<span class="cn">.true.</span>)</a>
+<a class="sourceLine" id="cb802-8" title="8">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;size of complex       &#39;</span>,storage_size((<span class="fl">0.0</span>,<span class="fl">0.0</span>))</a>
+<a class="sourceLine" id="cb802-9" title="9"></a>
+<a class="sourceLine" id="cb802-10" title="10">   <span class="co">! note the size of an element of the array, not the storage size of</span></a>
+<a class="sourceLine" id="cb802-11" title="11">   <span class="co">! the entire array is returned for array arguments</span></a>
+<a class="sourceLine" id="cb802-12" title="12">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;size of integer array &#39;</span>,storage_size(<span class="kw">[</span><span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span><span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb802-13" title="13"></a>
+<a class="sourceLine" id="cb802-14" title="14"><span class="kw">end program</span> demo_storage_size</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>    size of integer                 32
     size of real                    32
@@ -15005,7 +15012,7 @@ need an illustration of what happens with higher dimension array
 <a class="sourceLine" id="cb805-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> array(..)</a>
 <a class="sourceLine" id="cb805-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb805-5" title="5">      <span class="dt">logical(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> mask(..)</a></code></pre></div>
-<h3 id="characteristics-187"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-185"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind for the type</li>
 <li><strong>array</strong> may be of any numeric type - integer, real or complex.</li>
@@ -15192,7 +15199,7 @@ need an illustration of what happens with higher dimension array
 <a class="sourceLine" id="cb809-3" title="3">      <span class="dt">integer</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span>  <span class="dt">::</span> <span class="fu">count</span></a>
 <a class="sourceLine" id="cb809-4" title="4">      <span class="dt">type(TYPE(kind=KIND),intent(out),optional  :: count_rate</span></a>
 <a class="sourceLine" id="cb809-5" title="5">      <span class="dt">integer</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span>  <span class="dt">::</span> count_max</a></code></pre></div>
-<h3 id="characteristics-188"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-186"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>count</strong> is an integer scalar</li>
 <li><strong>count_rate</strong> an integer or real scalar</li>
@@ -15295,7 +15302,7 @@ need an illustration of what happens with higher dimension array
 <div class="sourceCode" id="cb815"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb815-1" title="1">     <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="bu">tanh</span>(x)</a>
 <a class="sourceLine" id="cb815-2" title="2"></a>
 <a class="sourceLine" id="cb815-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
-<h3 id="characteristics-189"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-187"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>x</strong> may be real or complex and any associated kind supported by the processor.</li>
 <li>The returned value will be of the same type and kind as the argument.</li>
@@ -15345,7 +15352,7 @@ need an illustration of what happens with higher dimension array
 <div class="sourceCode" id="cb820"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb820-1" title="1"> <span class="kw">elemental</span> <span class="dt">TYPE(kind=KIND)</span> <span class="kw">function</span> <span class="bu">tan</span>(x)</a>
 <a class="sourceLine" id="cb820-2" title="2"></a>
 <a class="sourceLine" id="cb820-3" title="3">  <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
-<h3 id="characteristics-190"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-188"><strong>Characteristics</strong></h3>
 <ul>
 <li>the <strong>TYPE</strong> of <strong>x</strong> may be real or complex of any supported kind</li>
 <li>The returned value will be of the same type and kind as the argument <strong>x</strong>.</li>
@@ -15390,7 +15397,7 @@ need an illustration of what happens with higher dimension array
 <a class="sourceLine" id="cb824-3" title="3">    <span class="dt">type(TYPE(kind=**),optional :: coarray[*]</span></a>
 <a class="sourceLine" id="cb824-4" title="4">    <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> distance</a>
 <a class="sourceLine" id="cb824-5" title="5">    <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a></code></pre></div>
-<h3 id="characteristics-191"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-189"><strong>Characteristics</strong></h3>
 <ul>
 <li>a kind designated as ** may be any supported kind for the type</li>
 <li><strong>coarray</strong> can be of any type. If <strong>dim</strong> is present it is required.</li>
@@ -15450,7 +15457,7 @@ need an illustration of what happens with higher dimension array
 <div class="sourceCode" id="cb828"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb828-1" title="1"><span class="dt">     real(kind=KIND)</span> <span class="kw">function</span> <span class="fu">tiny</span>(x)</a>
 <a class="sourceLine" id="cb828-2" title="2"></a>
 <a class="sourceLine" id="cb828-3" title="3"><span class="dt">      real(kind=KIND)</span> <span class="dt">::</span> x</a></code></pre></div>
-<h3 id="characteristics-192"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-190"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>x</strong> may be any real scalar or array</li>
 <li>the result has the same type and kind as <strong>x</strong></li>
@@ -15495,7 +15502,7 @@ need an illustration of what happens with higher dimension array
 <div class="sourceCode" id="cb833"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb833-1" title="1">  <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> trailz(i)</a>
 <a class="sourceLine" id="cb833-2" title="2"></a>
 <a class="sourceLine" id="cb833-3" title="3">   <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> i</a></code></pre></div>
-<h3 id="characteristics-193"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-191"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>i</strong> is an integer of any kind.</li>
 <li>the result is an integer of default kind</li>
@@ -15575,7 +15582,7 @@ need an illustration of what happens with higher dimension array
 <a class="sourceLine" id="cb838-3" title="3">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> source(..)</a>
 <a class="sourceLine" id="cb838-4" title="4">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> mold(..)</a>
 <a class="sourceLine" id="cb838-5" title="5">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">size</span></a></code></pre></div>
-<h3 id="characteristics-194"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-192"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>source</strong> shall be a scalar or an array of any type.</li>
 <li><strong>mold</strong> shall be a scalar or an array of any type.</li>
@@ -15655,7 +15662,7 @@ need an illustration of what happens with higher dimension array
 <a class="sourceLine" id="cb842-2" title="2"></a>
 <a class="sourceLine" id="cb842-3" title="3">      <span class="dt">type(TYPE(kind=KIND)            :: transpose(N,M)</span></a>
 <a class="sourceLine" id="cb842-4" title="4">      <span class="dt">type(TYPE(kind=KIND),intent(in) :: matrix(M,N)</span></a></code></pre></div>
-<h3 id="characteristics-195"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-193"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>matrix</strong> is an array of any type with a rank of two.</li>
 <li>The result will be the same type and kind as <strong>matrix</strong> and the reversed shape of the input array</li>
@@ -15740,7 +15747,7 @@ need an illustration of what happens with higher dimension array
 <div class="sourceCode" id="cb846"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb846-1" title="1">     <span class="dt">character(len=:,kind=KIND)</span> <span class="kw">function</span> <span class="fu">trim</span>(string)</a>
 <a class="sourceLine" id="cb846-2" title="2"></a>
 <a class="sourceLine" id="cb846-3" title="3">      <span class="dt">character(len=*,kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> string</a></code></pre></div>
-<h3 id="characteristics-196"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-194"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>KIND</strong> can be any kind supported for the character type.</li>
 <li>The result has the same type and kind as the input argument <strong>string</strong>.</li>
@@ -15822,7 +15829,7 @@ need an illustration of what happens with higher dimension array
 <a class="sourceLine" id="cb850-3" title="3">      <span class="dt">TYPE(kind=KIND)</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> array</a>
 <a class="sourceLine" id="cb850-4" title="4">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="bu">dim</span></a>
 <a class="sourceLine" id="cb850-5" title="5">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">kind</span></a></code></pre></div>
-<h3 id="characteristics-197"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-195"><strong>Characteristics</strong></h3>
 <ul>
 <li><p><strong>array</strong> shall be assumed-rank or an array, of any type. It cannot be an unallocated allocatable array or a pointer that is not associated.</p></li>
 <li><p><strong>dim</strong> shall be a scalar integer. The corresponding actual argument shall not be an optional dummy argument, a disassociated pointer, or an unallocated allocatable.</p></li>
@@ -15950,7 +15957,7 @@ need an illustration of what happens with higher dimension array
 <a class="sourceLine" id="cb854-3" title="3">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> vector(:)</a>
 <a class="sourceLine" id="cb854-4" title="4">      <span class="dt">logical</span>,<span class="dt">intent(in)</span>               <span class="dt">::</span> mask(..)</a>
 <a class="sourceLine" id="cb854-5" title="5">      <span class="dt">type(TYPE(kind=KIND))</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> field(..)</a></code></pre></div>
-<h3 id="characteristics-198"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-196"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>vector</strong> is a rank-one array of any type</li>
 <li><strong>mask</strong> is a logical array</li>
@@ -16080,7 +16087,7 @@ need an illustration of what happens with higher dimension array
 <a class="sourceLine" id="cb859-4" title="4">      <span class="dt">character(len=*,kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> set</a>
 <a class="sourceLine" id="cb859-5" title="5">      <span class="dt">logical</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> back</a>
 <a class="sourceLine" id="cb859-6" title="6">      <span class="dt">integer</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
-<h3 id="characteristics-199"><strong>Characteristics</strong></h3>
+<h3 id="characteristics-197"><strong>Characteristics</strong></h3>
 <ul>
 <li><strong>string</strong> and <strong>set</strong> must be of type character and have the same kind for any individual call, but that can be any supported character kind.</li>
 <li><strong>KIND</strong> must be a constant integer initialization expression and a valid kind for the integer type.</li>

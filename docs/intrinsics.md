@@ -13279,16 +13279,28 @@ multiplication
 ```fortran
      function matmul(matrix_a, matrix_b)
 
-      type(NUMERIC_OR_LOGICAL) :: matrix_a(..)
-      type(NUMERIC_OR_LOGICAL) :: matrix_b(..)
-      type(PROMOTED) :: matmul(..)
+      type(TYPE1(kind=**)       :: matrix_a(..)
+      type(TYPE2(kind=**)       :: matrix_b(..)
+      type(TYPE(kind=PROMOTED)) :: matmul(..)
 ```
 ### **Characteristics**
 
- - **matrix_a** may be numeric (_integer_, _real_, or _complex_ )
-   or _logical_ and must be one or two-dimensional arrays.
+ - **matrix_a** is a numeric (_integer_, _real_, or _complex_ ) or
+   _logical_ array of rank one two.
+ - **matrix_b** is a numeric (_integer_, _real_, or _complex_ ) or
+   _logical_ array of rank one two.
  - At least one argument must be rank two.
- - If one argument is _logical_, both must be _logical_.
+ - the size of the first dimension of **matrix_b** must equal the size
+   of the last dimension of **matrix_a**.
+ - the type of the result is the same as if an element of each argument
+   had been multiplied as a RHS expression (that is, if the arguments
+   are not of the same type the result follows the same rules of promotion
+   as a simple scalar multiplication of the two types would produce)
+ - If one argument is _logical_, both must be _logical_. For logicals
+   the resulting type is as if the _.and._ operator has been used on
+   elements from the arrays.
+ - The shape of the result depends on the shapes of the arguments
+   as described below.
 
 ### **Description**
 
@@ -13343,12 +13355,6 @@ multiplication
   of **B**, and summing these products. In other words, **C(i,j)**
   is the dot product of the ith row of **A** and the jth column of **B**.
 
-#####  **Characteristics**
-
-  The returned array will be promoted to the same type and kind as would
-  result from multiplication between an element of each argument (like
-  the multiplication operator (\*) had been used between the elements).
-
 #### **Logical Arguments**
 
 #####  **Values**
@@ -13359,11 +13365,6 @@ multiplication
   Value_of_Element (i,j) = &
   ANY( (row_i_of_MATRIX_A) .AND. (column_j_of_MATRIX_B) )
 ```
-#####  **Characteristics**
-
-  The returned array is of the type and kind that results if any element of
-  each argument had been operated on by the **.AND.** operator.
-
 ### **Examples**
 
 Sample program:
@@ -13892,14 +13893,14 @@ FORTRAN 77
 
 ### **Description**
 
-**maxval**(3) determines the maximum value of the elements in an
-array value, or, if the **dim** argument is supplied, determines the
-maximum value along each row of the array in the **dim** direction. If
-**mask** is present, only the elements for which **mask** is _.true._
-are considered. If the array has zero size, or all of the elements of
-**mask** are _.false._, then the result is the most negative number of
-the type and kind of **array** if **array** is numeric, or a string of
-nulls if **array** is of character type.
+  **maxval**(3) determines the maximum value of the elements in an
+  array value, or, if the **dim** argument is supplied, determines the
+  maximum value along each row of the array in the **dim** direction. If
+  **mask** is present, only the elements for which **mask** is _.true._
+  are considered. If the array has zero size, or all of the elements of
+  **mask** are _.false._, then the result is the most negative number
+  of the type and kind of **array** if **array** is numeric, or a string
+  of nulls if **array** is of character type.
 
 ### **Options**
 
@@ -20558,6 +20559,9 @@ FORTRAN 77
     the value of **kind**; otherwise, the kind type parameter is that of
     default integer type.
 
+  - The result is an _integer_ scalar of default kind unless **kind** is
+    specified, in which case it has the kind specified by **kind**.
+
 ### **Description**
 
 **storage_size**(3) returns the storage size of argument **a** in bits.
@@ -20601,11 +20605,17 @@ Sample program
 ```fortran
 program demo_storage_size
 implicit none
+
+   ! a default real, integer, and logical are the same storage size
    write(*,*)'size of integer       ',storage_size(0)
    write(*,*)'size of real          ',storage_size(0.0)
    write(*,*)'size of logical       ',storage_size(.true.)
    write(*,*)'size of complex       ',storage_size((0.0,0.0))
+
+   ! note the size of an element of the array, not the storage size of
+   ! the entire array is returned for array arguments
    write(*,*)'size of integer array ',storage_size([0,1,2,3,4,5,6,7,8,9])
+
 end program demo_storage_size
 ```
 Results:
