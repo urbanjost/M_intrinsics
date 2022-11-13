@@ -59,6 +59,7 @@ If the vectors are _complex_, the result is
 If the vectors are _logical_, the result is
 ```fortran
      any(vector_a .and. vector_b)
+```
 
 ### **Examples**
 
