@@ -63,7 +63,7 @@ Results:
 ```
 ### Extended Example
 
-####**Haversine Formula**
+#### Haversine Formula
 
   From the article on "Haversine formula" in Wikipedia:
 ```text

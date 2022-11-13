@@ -23,7 +23,6 @@
  - the result is the same type and kind of the vector that is the higher
    type that the other vector is optionally promoted to if they differ.
 
-
 The two vectors may be either numeric or logical and must be arrays
 of rank one and of equal size.
 

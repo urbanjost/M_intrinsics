@@ -6905,7 +6905,6 @@ of rank one and of equal size.
 **dot_product**(3) computes the dot product
 multiplication of two vectors **vector_a** and **vector_b**.
 
-```
 ### **Options**
 
 - **vector_a**
@@ -6933,6 +6932,7 @@ If the vectors are _complex_, the result is
 If the vectors are _logical_, the result is
 ```fortran
      any(vector_a .and. vector_b)
+```
 
 ### **Examples**
 
@@ -19884,7 +19884,7 @@ Results:
 ```
 ### Extended Example
 
-####**Haversine Formula**
+#### Haversine Formula
 
   From the article on "Haversine formula" in Wikipedia:
 ```text
