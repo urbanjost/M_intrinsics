@@ -32,7 +32,6 @@ of rank one and of equal size.
 **dot_product**(3) computes the dot product
 multiplication of two vectors **vector_a** and **vector_b**.
 
-```
 ### **Options**
 
 - **vector_a**
