@@ -12814,7 +12814,6 @@ Case (iii)
 <a class="sourceLine" id="cb697-4" title="4">    <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span>,<span class="dt">optional</span> <span class="dt">::</span> <span class="fu">KIND</span></a></code></pre></div>
 <h3 id="characteristics-161"><strong>Characteristics</strong></h3>
 <ul>
-<li>a kind designated as ** may be any supported kind for the type</li>
 <li>the type of <strong>x</strong> may be integer, real, or complex; or a BOZ-literal-constant.</li>
 <li><strong>kind</strong> is a integer initialization expression (a constant expression)
 <ul>
@@ -12825,17 +12824,18 @@ Case (iii)
 <li>when <strong>x</strong> is real or integer the result is a real of default kind</li>
 </ul></li>
 </ul></li>
+<li>a kind designated as ** may be any supported kind for the type</li>
 </ul>
 <h3 id="description-162"><strong>Description</strong></h3>
 <p><strong>real</strong>(3) converts its argument <strong>x</strong> to a real type.</p>
-<p>The real part of a complex value is returned. For complex values this is similar to the modern complex-part-designator <strong>%RE</strong> which also designates the real part of complex a value.</p>
+<p>The real part of a complex value is returned. For complex values this is similar to the modern complex-part-designator <strong>%RE</strong> which also designates the real part of a complex value.</p>
 <div class="sourceCode" id="cb698"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb698-1" title="1">      z<span class="kw">=</span>(<span class="fl">3.0</span>,<span class="fl">4.0</span>)     <span class="co">! if z is a complex value</span></a>
 <a class="sourceLine" id="cb698-2" title="2">      <span class="fu">print</span> <span class="kw">*</span>, z%re <span class="op">==</span> <span class="bu">real</span>(z) <span class="co">! these expressions are equivalent</span></a></code></pre></div>
 <h3 id="options-160"><strong>Options</strong></h3>
 <ul>
 <li><dl>
 <dt><strong>x</strong></dt>
-<dd>A integer, real, or complex value to convert to real.
+<dd>An integer, real, or complex value to convert to real.
 </dd>
 </dl></li>
 <li><dl>

@@ -16,13 +16,13 @@
 ```
 ### **Characteristics**
 
- - a kind designated as ** may be any supported kind for the type
  - the type of **x** may be _integer_, _real_, or _complex_; or a BOZ-literal-constant.
  - **kind** is a _integer_ initialization expression (a constant expression)
    + If **kind** is present it defines the kind of the _real_ result
    + if **kind** is not present
      - when **x** is _complex_ the result is a _real_ of the same kind as **x**.
      - when **x** is _real_ or _integer_ the result is a _real_ of default kind
+ - a kind designated as ** may be any supported kind for the type
 
 ### **Description**
 
@@ -30,7 +30,7 @@
 
 The real part of a complex value is returned. For complex values this
 is similar to the modern complex-part-designator **%RE** which also
-designates the real part of _complex_ a value.
+designates the real part of a _complex_ value.
 
 ```fortran
       z=(3.0,4.0)     ! if z is a complex value
@@ -39,7 +39,7 @@ designates the real part of _complex_ a value.
 ### **Options**
 
 - **x**
-  : A _integer_, _real_, or _complex_ value to convert to _real_.
+  : An _integer_, _real_, or _complex_ value to convert to _real_.
 
 - **kind**
   : When present the value of **kind** defines the kind of the result.
