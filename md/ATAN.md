@@ -32,7 +32,7 @@
   if **y** is present, **x** shall be _real_.
 
 - **y**
-  : Shall be of the same type and kind as **x**. If **x** is zero, **y**
+  : is of the same type and kind as **x**. If **x** is zero, **y**
   must not be zero.
 
 ### **Result**

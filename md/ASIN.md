@@ -45,7 +45,7 @@ the hypotenuse and the opposite side of a right triangle are known.
 ```fortran
         PI/2 <= ASIN (X) <= PI/2.
 ```
-  If the argument (and therefore the result) is imaginary The real part
+  If the argument (and therefore the result) is imaginary the real part
   of the result is in radians and lies in the range
 ```fortran
     -PI/2 <= real(asin(x)) <= PI/2
