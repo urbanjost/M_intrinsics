@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-     result = lgt(string_a, stringb)
+     result = lgt(string_a, string_b)
 ```
 ```fortran
       elemental logical function lgt(string_a, string_b)
@@ -16,9 +16,9 @@
 ```
 ### **Characteristics**
 
-    - **string_a** is default _character_ or an ASCII character.
-    - **string_b** is the same type and kind as **string_a**
-    - the result is a default logical
+ - **string_a** is default _character_ or an ASCII character.
+ - **string_b** is the same type and kind as **string_a**
+ - the result is a default logical
 
 ### **Description**
 

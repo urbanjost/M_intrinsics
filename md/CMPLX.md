@@ -139,7 +139,7 @@ complex value by default, unlike with **cmplx**.
 The following are examples of complex part designators:
 
 ```fortran
-       impedance%re           !-- Same value as _real_(impedance)
+       impedance%re           !-- Same value as real(impedance)
        fft%im                 !-- Same value as AIMAG(fft)
        x%im = 0.0             !-- Sets the imaginary part of x to zero
        x(1:2)%re=[10,20]      !-- even if x is an array

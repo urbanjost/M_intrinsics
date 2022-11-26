@@ -3899,7 +3899,7 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 '  o  I is an integer of any kind', &
 '', &
-'  o  POS is a _integer of any kind', &
+'  o  POS is a integer of any kind', &
 '', &
 '  o  the result is a default logical', &
 '', &
@@ -4696,7 +4696,7 @@ textblock=[character(len=256) :: &
 '', &
 '  The following are examples of complex part designators:', &
 '', &
-'             impedance%re           !-- Same value as _real_(impedance)', &
+'             impedance%re           !-- Same value as real(impedance)', &
 '             fft%im                 !-- Same value as AIMAG(fft)', &
 '             x%im = 0.0             !-- Sets the imaginary part of x to zero', &
 '             x(1:2)%re=[10,20]      !-- even if x is an array', &
@@ -6270,7 +6270,7 @@ textblock=[character(len=256) :: &
 '', &
 'RESULT', &
 '  The return value is of type integer and of the system-dependent kind csize_t', &
-'  (from the _iso_c_binding module). Its value is the number of bytes occupied', &
+'  (from the iso_c_binding module). Its value is the number of bytes occupied', &
 '  by the argument. If the argument has the pointer attribute, the number of', &
 '  bytes of the storage area pointed to is returned. If the argument is of a', &
 '  derived type with pointer or allocatable components, the return value does', &
@@ -11483,7 +11483,7 @@ textblock=[character(len=256) :: &
 '', &
 '  o  UBOUND(3) - Upper dimension bounds of an array', &
 '', &
-'  CO_UBOUND(3), _LBOUND(3)', &
+'  CO_UBOUND(3), CO_LBOUND(3)', &
 '', &
 '  State Inquiry:', &
 '', &
@@ -11875,9 +11875,9 @@ textblock=[character(len=256) :: &
 '            character(len=*),intent(in) :: string_b', &
 '', &
 'CHARACTERISTICS', &
-'  o  **string_a** is default _character_ or an ASCII character.', &
+'  o  STRING_A is default character or an ASCII character.', &
 '', &
-'  o  **string_b** is the same type and kind as **string_a**', &
+'  o  STRING_B is the same type and kind as STRING_A', &
 '', &
 '  o  the result is a default logical', &
 '', &
@@ -11978,7 +11978,7 @@ textblock=[character(len=256) :: &
 '  LGT(3) - [CHARACTER:COMPARE] ASCII Lexical greater than', &
 '', &
 'SYNOPSIS', &
-'  result = lgt(string_a, stringb)', &
+'  result = lgt(string_a, string_b)', &
 '', &
 '            elemental logical function lgt(string_a, string_b)', &
 '', &
@@ -11986,9 +11986,9 @@ textblock=[character(len=256) :: &
 '             character(len=*),intent(in) :: string_b', &
 '', &
 'CHARACTERISTICS', &
-'  o  **string_a** is default _character_ or an ASCII character.', &
+'  o  STRING_A is default character or an ASCII character.', &
 '', &
-'  o  **string_b** is the same type and kind as **string_a**', &
+'  o  STRING_B is the same type and kind as STRING_A', &
 '', &
 '  o  the result is a default logical', &
 '', &
@@ -12098,9 +12098,9 @@ textblock=[character(len=256) :: &
 '             character(len=*),intent(in) :: string_b', &
 '', &
 'CHARACTERISTICS', &
-'  o  **string_a** is default _character_ or an ASCII character.', &
+'  o  STRING_A is default character or an ASCII character.', &
 '', &
-'  o  **string_b** is the same type and kind as **string_a**', &
+'  o  STRING_B is the same type and kind as STRING_A', &
 '', &
 '  o  the result is a default logical', &
 '', &
@@ -12234,9 +12234,9 @@ textblock=[character(len=256) :: &
 '             character(len=*),intent(in) :: string_b', &
 '', &
 'CHARACTERISTICS', &
-'  o  **string_a** is default _character_ or an ASCII character.', &
+'  o  STRING_A is default character or an ASCII character.', &
 '', &
-'  o  **string_b** is the same type and kind as **string_a**', &
+'  o  STRING_B is the same type and kind as STRING_A', &
 '', &
 '  o  the result is a default logical', &
 '', &
@@ -13514,7 +13514,7 @@ textblock=[character(len=256) :: &
 '            type(TYPE(kind=KIND)),intent(in) :: tsource', &
 '            type(TYPE(kind=KIND)),intent(in) :: fsource', &
 '            logical(kind=**),intent(in)   :: mask', &
-'            mask** : Shall be of type _logical_.', &
+'            mask** : Shall be of type logical.', &
 '', &
 'CHARACTERISTICS', &
 '  o  a kind designated as ** may be any supported kind for the type', &
@@ -17776,11 +17776,11 @@ textblock=[character(len=256) :: &
 '            integer(kind=**),intent(in)  :: i', &
 '', &
 'CHARACTERISTICS', &
-'  o  **x** is type _real_ of any kind', &
+'  o  X is type real of any kind', &
 '', &
-'  o  **i** is type an _integer_ of any kind', &
+'  o  I is type an integer of any kind', &
 '', &
-'  o  the result is _real_ of the same kind as **x**', &
+'  o  the result is real of the same kind as X', &
 '', &
 'DESCRIPTION', &
 '  SCALE(3) returns x * RADIX(X)**I.', &
@@ -21079,7 +21079,7 @@ textblock=[character(len=256) :: &
 '', &
 '  o  LBOUND(3) - Lower dimension bounds of an array', &
 '', &
-'  CO_UBOUND(3), _LBOUND(3)', &
+'  CO_UBOUND(3), CO_LBOUND(3)', &
 '', &
 '  State Inquiry:', &
 '', &

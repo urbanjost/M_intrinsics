@@ -154,7 +154,7 @@ Fortran 95 , with KIND argument Fortran 2003
 - [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
 
 [**co\_ubound**(3)](#co_ubound),
-[**\_lbound**(3)](co_lbound)
+[**co\_lbound**(3)](co_lbound)
 
 #### State Inquiry:
 

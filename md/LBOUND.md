@@ -146,7 +146,7 @@ Fortran 95 , with KIND argument - Fortran 2003
 - [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
 
 [**co\_ubound**(3)](#co_ubound),
-[**\_lbound**(3)](co_lbound)
+[**co\_lbound**(3)](co_lbound)
 
 #### State Inquiry:
 

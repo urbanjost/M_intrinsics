@@ -3879,7 +3879,7 @@ Fortran 2008
 ### **Characteristics**
 
  - **i** is an _integer_ of any kind
- - **pos** is a _integer of any kind
+ - **pos** is a _integer_ of any kind
  - the result is a default logical
 
 ### **Description**
@@ -4740,7 +4740,7 @@ complex value by default, unlike with **cmplx**.
 The following are examples of complex part designators:
 
 ```fortran
-       impedance%re           !-- Same value as _real_(impedance)
+       impedance%re           !-- Same value as real(impedance)
        fft%im                 !-- Same value as AIMAG(fft)
        x%im = 0.0             !-- Sets the imaginary part of x to zero
        x(1:2)%re=[10,20]      !-- even if x is an array
@@ -6438,7 +6438,7 @@ expression **x** occupies.
 ### **Result**
 
 The return value is of type integer and of the system-dependent kind
-c*size_t (from the \_iso_c_binding* module). Its value is the
+c*size_t (from the iso\_c\_binding* module). Its value is the
 number of bytes occupied by the argument. If the argument has the
 _pointer_ attribute, the number of bytes of the storage area pointed to is
 returned. If the argument is of a derived type with _pointer_ or
@@ -11897,7 +11897,7 @@ Fortran 95 , with KIND argument - Fortran 2003
 - [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
 
 [**co\_ubound**(3)](#co_ubound),
-[**\_lbound**(3)](co_lbound)
+[**co\_lbound**(3)](co_lbound)
 
 #### State Inquiry:
 
@@ -12288,9 +12288,9 @@ of arguments, and search for certain arguments:
 ```
 ### **Characteristics**
 
-    - **string_a** is default _character_ or an ASCII character.
-    - **string_b** is the same type and kind as **string_a**
-    - the result is a default logical
+ - **string_a** is default _character_ or an ASCII character.
+ - **string_b** is the same type and kind as **string\_a**
+ - the result is a default logical
 
 ### **Description**
 
@@ -12399,7 +12399,7 @@ of arguments, and search for certain arguments:
 
 ### **Synopsis**
 ```fortran
-     result = lgt(string_a, stringb)
+     result = lgt(string_a, string_b)
 ```
 ```fortran
       elemental logical function lgt(string_a, string_b)
@@ -12409,9 +12409,9 @@ of arguments, and search for certain arguments:
 ```
 ### **Characteristics**
 
-    - **string_a** is default _character_ or an ASCII character.
-    - **string_b** is the same type and kind as **string_a**
-    - the result is a default logical
+ - **string_a** is default _character_ or an ASCII character.
+ - **string_b** is the same type and kind as **string_a**
+ - the result is a default logical
 
 ### **Description**
 
@@ -12531,9 +12531,9 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
-    - **string_a** is default _character_ or an ASCII character.
-    - **string_b** is the same type and kind as **string_a**
-    - the result is a default logical
+ - **string_a** is default _character_ or an ASCII character.
+ - **string_b** is the same type and kind as **string_a**
+ - the result is a default logical
 
 ### **Description**
 
@@ -12679,9 +12679,9 @@ of arguments, and search for certain arguments:
 ```
 ### **Characteristics**
 
-    - **string_a** is default _character_ or an ASCII character.
-    - **string_b** is the same type and kind as **string_a**
-    - the result is a default logical
+ - **string_a** is default _character_ or an ASCII character.
+ - **string_b** is the same type and kind as **string_a**
+ - the result is a default logical
 
 ### **Description**
 
@@ -14109,7 +14109,7 @@ Fortran 2008
       type(TYPE(kind=KIND)),intent(in) :: tsource
       type(TYPE(kind=KIND)),intent(in) :: fsource
       logical(kind=**),intent(in)   :: mask
-      mask** : Shall be of type _logical_.
+      mask** : Shall be of type logical.
 ```
 ### **Characteristics**
 
@@ -18485,9 +18485,9 @@ Fortran 2003
 ```
 ### **Characteristics**
 
-    - **x** is type _real_ of any kind
-    - **i** is type an _integer_ of any kind
-    - the result is _real_ of the same kind as **x**
+   - **x** is type _real_ of any kind
+   - **i** is type an _integer_ of any kind
+   - the result is _real_ of the same kind as **x**
 
 ### **Description**
 
@@ -21910,7 +21910,7 @@ Fortran 95 , with KIND argument Fortran 2003
 - [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
 
 [**co\_ubound**(3)](#co_ubound),
-[**\_lbound**(3)](co_lbound)
+[**co\_lbound**(3)](co_lbound)
 
 #### State Inquiry:
 

@@ -16,9 +16,9 @@
 ```
 ### **Characteristics**
 
-    - **x** is type _real_ of any kind
-    - **i** is type an _integer_ of any kind
-    - the result is _real_ of the same kind as **x**
+   - **x** is type _real_ of any kind
+   - **i** is type an _integer_ of any kind
+   - the result is _real_ of the same kind as **x**
 
 ### **Description**
 

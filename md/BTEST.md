@@ -17,7 +17,7 @@
 ### **Characteristics**
 
  - **i** is an _integer_ of any kind
- - **pos** is a _integer of any kind
+ - **pos** is a _integer_ of any kind
  - the result is a default logical
 
 ### **Description**
