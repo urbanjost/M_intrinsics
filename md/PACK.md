@@ -18,7 +18,7 @@
 ### **Characteristics**
 
   - **array** is an array of any type
-  - **mask** a _logical_ scalar as well an an array conformable with **array**.
+  - **mask** a _logical_ scalar as well as an array conformable with **array**.
   - **vector** is of the same kind and type as **array** and of rank one
   - the returned value is of the same kind and type as **array**
 

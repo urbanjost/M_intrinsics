@@ -29,7 +29,7 @@
              write(*,*)'ASCII is the default on this processor'
          endif
 
-        ! for constants the the kind precedes the value, somewhat like a
+        ! for constants the kind precedes the value, somewhat like a
         ! BOZ constant
          alphabet = ascii_"abcdefghijklmnopqrstuvwxyz"
          write (*,*) alphabet

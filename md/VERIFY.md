@@ -39,7 +39,7 @@ of characters that does not appear in a given set of characters.
   **isalpha**(3c), **isascii**(3c), **isblank**(3c), **iscntrl**(3c),
   **isdigit**(3c), **isgraph**(3c), **islower**(3c), **isprint**(3c),
   **ispunct**(3c), **isspace**(3c), **isupper**(3c), and **isxdigit**(3c);
-  but for a string as well an an array of strings.
+  but for a string as well as an array of strings.
 
 ### **Options**
 

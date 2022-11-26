@@ -16239,7 +16239,7 @@ Results:
 ### **Characteristics**
 
   - **array** is an array of any type
-  - **mask** a _logical_ scalar as well an an array conformable with **array**.
+  - **mask** a _logical_ scalar as well as an array conformable with **array**.
   - **vector** is of the same kind and type as **array** and of rank one
   - the returned value is of the same kind and type as **array**
 
@@ -16510,7 +16510,6 @@ There are many procedures that operator or query values at the bit level:
 [**atomic_or**(3)](#atomic_or),
 [**atomic_xor**(3)](#atomic_xor),
 [**bge**(3)](#bge),
-[**bge**(3)](#bge),
 [**bgt**(3)](#bgt),
 [**bit_size**(3)](#bit_size),
 [**ble**(3)](#ble),
@@ -16532,7 +16531,6 @@ There are many procedures that operator or query values at the bit level:
 [**maskl**(3)](#maskl),
 [**maskr**(3)](#maskr),
 [**merge_bits**(3)](#merge_bits),
-[**mvbits**(3)](#mvbits),
 [**mvbits**(3)](#mvbits),
 [**not**(3)](#not),
 [**shifta**(3)](#shifta),
@@ -16633,7 +16631,6 @@ There are many procedures that operator or query values at the bit level:
 [**atomic_or**(3)](#atomic_or),
 [**atomic_xor**(3)](#atomic_xor),
 [**bge**(3)](#bge),
-[**bge**(3)](#bge),
 [**bgt**(3)](#bgt),
 [**bit_size**(3)](#bit_size),
 [**ble**(3)](#ble),
@@ -16655,7 +16652,6 @@ There are many procedures that operator or query values at the bit level:
 [**maskl**(3)](#maskl),
 [**maskr**(3)](#maskr),
 [**merge_bits**(3)](#merge_bits),
-[**mvbits**(3)](#mvbits),
 [**mvbits**(3)](#mvbits),
 [**not**(3)](#not),
 [**shifta**(3)](#shifta),
@@ -18754,7 +18750,7 @@ character(len=30, kind=ucs4  ) :: string
        write(*,*)'ASCII is the default on this processor'
    endif
 
-  ! for constants the the kind precedes the value, somewhat like a
+  ! for constants the kind precedes the value, somewhat like a
   ! BOZ constant
    alphabet = ascii_"abcdefghijklmnopqrstuvwxyz"
    write (*,*) alphabet
@@ -19076,7 +19072,7 @@ Fortran 95 ; with RADIX - Fortran 2008
 ### **Result**
 
   The return value is of the same type and kind as **x**. The real number
-  whose fractional part is that that of **x** and whose exponent part
+  whose fractional part is that of **x** and whose exponent part
   if **i** is returned; it is **fraction(x) \* radix(x)\*\*i**.
 
   If **x** has the value zero, the result has the same value as **x**.
@@ -21425,7 +21421,7 @@ Results:
 
       type(TYPE(kind=KIND)),intent(in) :: source(..)
       type(TYPE(kind=KIND)),intent(in) :: mold(..)
-      integer,intent(in),intent(in),optional :: size
+      integer(kind=**),intent(in),optional :: size
 ```
 ### **Characteristics**
 
@@ -21516,8 +21512,8 @@ _Joe Krahn_: Fortran uses **molding** rather than **casting**.
 Casting, as in C, is an in-place reinterpretation. A cast is a device
 that is built around an object to change its shape.
 
-Fortran **transfer**(3) reinterprets data out-of-place. It can be considered
-**molding** rather than casting. A **mold** is a device that
+Fortran **transfer**(3) reinterprets data out-of-place. It can be
+considered **molding** rather than casting. A **mold** is a device that
 confers a shape onto an object placed into it.
 
 The advantage of molding is that data is always valid in the context
@@ -21528,7 +21524,7 @@ There are disadvantages of this approach. It is problematic to define a
 union of data types because you must know the largest data object, which
 can vary by compiler or compile options. In many cases, an _EQUIVALENCE_
 would be far more effective, but Fortran Standards committees seem
-oblivious to the benefits of _EQUIVALENCE_s when used sparingly.
+oblivious to the benefits of _EQUIVALENCE_ when used sparingly.
 
 ### **Standard**
 
@@ -22136,7 +22132,7 @@ of characters that does not appear in a given set of characters.
   **isalpha**(3c), **isascii**(3c), **isblank**(3c), **iscntrl**(3c),
   **isdigit**(3c), **isgraph**(3c), **islower**(3c), **isprint**(3c),
   **ispunct**(3c), **isspace**(3c), **isupper**(3c), and **isxdigit**(3c);
-  but for a string as well an an array of strings.
+  but for a string as well as an array of strings.
 
 ### **Options**
 

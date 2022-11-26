@@ -13,7 +13,7 @@
 
       type(TYPE(kind=KIND)),intent(in) :: source(..)
       type(TYPE(kind=KIND)),intent(in) :: mold(..)
-      integer,intent(in),intent(in),optional :: size
+      integer(kind=**),intent(in),optional :: size
 ```
 ### **Characteristics**
 
@@ -104,8 +104,8 @@ _Joe Krahn_: Fortran uses **molding** rather than **casting**.
 Casting, as in C, is an in-place reinterpretation. A cast is a device
 that is built around an object to change its shape.
 
-Fortran **transfer**(3) reinterprets data out-of-place. It can be considered
-**molding** rather than casting. A **mold** is a device that
+Fortran **transfer**(3) reinterprets data out-of-place. It can be
+considered **molding** rather than casting. A **mold** is a device that
 confers a shape onto an object placed into it.
 
 The advantage of molding is that data is always valid in the context
@@ -116,7 +116,7 @@ There are disadvantages of this approach. It is problematic to define a
 union of data types because you must know the largest data object, which
 can vary by compiler or compile options. In many cases, an _EQUIVALENCE_
 would be far more effective, but Fortran Standards committees seem
-oblivious to the benefits of _EQUIVALENCE_s when used sparingly.
+oblivious to the benefits of _EQUIVALENCE_ when used sparingly.
 
 ### **Standard**
 

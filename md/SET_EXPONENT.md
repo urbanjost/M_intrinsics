@@ -38,7 +38,7 @@
 ### **Result**
 
   The return value is of the same type and kind as **x**. The real number
-  whose fractional part is that that of **x** and whose exponent part
+  whose fractional part is that of **x** and whose exponent part
   if **i** is returned; it is **fraction(x) \* radix(x)\*\*i**.
 
   If **x** has the value zero, the result has the same value as **x**.

@@ -15671,7 +15671,7 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 '  o  ARRAY is an array of any type', &
 '', &
-'  o  MASK a logical scalar as well an an array conformable with ARRAY.', &
+'  o  MASK a logical scalar as well as an array conformable with ARRAY.', &
 '', &
 '  o  VECTOR is of the same kind and type as ARRAY and of rank one', &
 '', &
@@ -15933,11 +15933,11 @@ textblock=[character(len=256) :: &
 '', &
 '  POPPAR(3), LEADZ(3), TRAILZ(3) ATOMIC_AND(3), ATOMIC_FETCH_AND(3),', &
 '  ATOMIC_FETCH_OR(3), ATOMIC_FETCH_XOR(3), ATOMIC_OR(3), ATOMIC_XOR(3),', &
-'  BGE(3), BGE(3), BGT(3), BIT_SIZE(3), BLE(3), BLT(3), BTEST(3), DSHIFTL(3),', &
+'  BGE(3), BGT(3), BIT_SIZE(3), BLE(3), BLT(3), BTEST(3), DSHIFTL(3),', &
 '  DSHIFTR(3), IALL(3), IAND(3), IANY(3), IBCLR(3), IBITS(3), IBSET(3),', &
 '  IEOR(3), IOR(3), IPARITY(3), ISHFTC(3), ISHFT(3), MASKL(3), MASKR(3),', &
-'  MERGE_BITS(3), MVBITS(3), MVBITS(3), NOT(3), SHIFTA(3), SHIFTL(3),', &
-'  SHIFTR(3), STORAGE_SIZE(3)', &
+'  MERGE_BITS(3), MVBITS(3), NOT(3), SHIFTA(3), SHIFTL(3), SHIFTR(3),', &
+'  STORAGE_SIZE(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -16025,11 +16025,11 @@ textblock=[character(len=256) :: &
 '', &
 '  POPCNT(3), LEADZ(3), TRAILZ(3) ATOMIC_AND(3), ATOMIC_FETCH_AND(3),', &
 '  ATOMIC_FETCH_OR(3), ATOMIC_FETCH_XOR(3), ATOMIC_OR(3), ATOMIC_XOR(3),', &
-'  BGE(3), BGE(3), BGT(3), BIT_SIZE(3), BLE(3), BLT(3), BTEST(3), DSHIFTL(3),', &
+'  BGE(3), BGT(3), BIT_SIZE(3), BLE(3), BLT(3), BTEST(3), DSHIFTL(3),', &
 '  DSHIFTR(3), IALL(3), IAND(3), IANY(3), IBCLR(3), IBITS(3), IBSET(3),', &
 '  IEOR(3), IOR(3), IPARITY(3), ISHFTC(3), ISHFT(3), MASKL(3), MASKR(3),', &
-'  MERGE_BITS(3), MVBITS(3), MVBITS(3), NOT(3), SHIFTA(3), SHIFTL(3),', &
-'  SHIFTR(3), STORAGE_SIZE(3)', &
+'  MERGE_BITS(3), MVBITS(3), NOT(3), SHIFTA(3), SHIFTL(3), SHIFTR(3),', &
+'  STORAGE_SIZE(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
@@ -18021,7 +18021,7 @@ textblock=[character(len=256) :: &
 '             write(*,*)''ASCII is the default on this processor''', &
 '         endif', &
 '', &
-'        ! for constants the the kind precedes the value, somewhat like a', &
+'        ! for constants the kind precedes the value, somewhat like a', &
 '        ! BOZ constant', &
 '         alphabet = ascii_"abcdefghijklmnopqrstuvwxyz"', &
 '         write (*,*) alphabet', &
@@ -18325,8 +18325,8 @@ textblock=[character(len=256) :: &
 '', &
 'RESULT', &
 '  The return value is of the same type and kind as X. The real number whose', &
-'  fractional part is that that of X and whose exponent part if I is returned;', &
-'  it is FRACTION(X) * RADIX(X)**I.', &
+'  fractional part is that of X and whose exponent part if I is returned; it is', &
+'  FRACTION(X) * RADIX(X)**I.', &
 '', &
 '  If X has the value zero, the result has the same value as X.', &
 '', &
@@ -20611,7 +20611,7 @@ textblock=[character(len=256) :: &
 '', &
 '            type(TYPE(kind=KIND)),intent(in) :: source(..)', &
 '            type(TYPE(kind=KIND)),intent(in) :: mold(..)', &
-'            integer,intent(in),intent(in),optional :: size', &
+'            integer(kind=**),intent(in),optional :: size', &
 '', &
 'CHARACTERISTICS', &
 '  o  SOURCE shall be a scalar or an array of any type.', &
@@ -20704,7 +20704,7 @@ textblock=[character(len=256) :: &
 '  union of data types because you must know the largest data object, which can', &
 '  vary by compiler or compile options. In many cases, an EQUIVALENCE would be', &
 '  far more effective, but Fortran Standards committees seem oblivious to the', &
-'  benefits of _EQUIVALENCE_s when used sparingly.', &
+'  benefits of EQUIVALENCE when used sparingly.', &
 '', &
 'STANDARD', &
 '  Fortran 90', &
@@ -21309,7 +21309,7 @@ textblock=[character(len=256) :: &
 '  conditions tested for with the C routines ISALNUM(3c), ISALPHA(3c),', &
 '  ISASCII(3c), ISBLANK(3c), ISCNTRL(3c), ISDIGIT(3c), ISGRAPH(3c),', &
 '  ISLOWER(3c), ISPRINT(3c), ISPUNCT(3c), ISSPACE(3c), ISUPPER(3c), and', &
-'  ISXDIGIT(3c); but for a string as well an an array of strings.', &
+'  ISXDIGIT(3c); but for a string as well as an array of strings.', &
 '', &
 'OPTIONS', &
 '  o  STRING : The string to search in for an unmatched character.', &
