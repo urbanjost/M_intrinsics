@@ -20,24 +20,24 @@
 
 ### **Description**
 
-  **huge**(3) returns the largest number that is not an infinity for the
-  kind and type of **x**.
+  **huge**(3) returns the largest number that is not an overflow
+  for the kind and type of **x**.
 
 ### **Options**
 
 - **x**
   : **x** is an arbitrary value which is used merely to determine what
-  _kind_ and _type_ of scalar is being queried.
-  It need not be defined, as only its characteristics are used.
+  _kind_ and _type_ of scalar is being queried. It need not be defined,
+  as only its characteristics are used.
 
 ### **Result**
 
   The result is the largest value supported by the specified type
   and kind.
 
-  Note is is as the same kind as the input to ensure the returned value
-  does not overflow. Any assignment of the result to a variable should
-  take this into consideration.
+  Note the result is as the same kind as the input to ensure the returned
+  value does not overflow. Any assignment of the result to a variable
+  should take this into consideration.
 
 ### **Examples**
 

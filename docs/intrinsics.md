@@ -1483,7 +1483,7 @@ the hypotenuse and the opposite side of a right triangle are known.
 ```fortran
         PI/2 <= ASIN (X) <= PI/2.
 ```
-  If the argument (and therefore the result) is imaginary The real part
+  If the argument (and therefore the result) is imaginary the real part
   of the result is in radians and lies in the range
 ```fortran
     -PI/2 <= real(asin(x)) <= PI/2
@@ -1944,7 +1944,7 @@ Inverse function: [**tanh**(3)](#tanh)
   if **y** is present, **x** shall be _real_.
 
 - **y**
-  : Shall be of the same type and kind as **x**. If **x** is zero, **y**
+  : is of the same type and kind as **x**. If **x** is zero, **y**
   must not be zero.
 
 ### **Result**
@@ -9498,24 +9498,24 @@ Fortran 2003
 
 ### **Description**
 
-  **huge**(3) returns the largest number that is not an infinity for the
-  kind and type of **x**.
+  **huge**(3) returns the largest number that is not an overflow
+  for the kind and type of **x**.
 
 ### **Options**
 
 - **x**
   : **x** is an arbitrary value which is used merely to determine what
-  _kind_ and _type_ of scalar is being queried.
-  It need not be defined, as only its characteristics are used.
+  _kind_ and _type_ of scalar is being queried. It need not be defined,
+  as only its characteristics are used.
 
 ### **Result**
 
   The result is the largest value supported by the specified type
   and kind.
 
-  Note is is as the same kind as the input to ensure the returned value
-  does not overflow. Any assignment of the result to a variable should
-  take this into consideration.
+  Note the result is as the same kind as the input to ensure the returned
+  value does not overflow. Any assignment of the result to a variable
+  should take this into consideration.
 
 ### **Examples**
 

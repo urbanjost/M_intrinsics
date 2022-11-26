@@ -1204,7 +1204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong>result</strong> The result has a value equal to a processor-dependent approximation to arcsin(x).</p>
 <p>If <strong>x</strong> is real the result is real and it is expressed in radians and lies in the range</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb59-1" title="1">      PI<span class="kw">/</span><span class="dv">2</span> <span class="op">&lt;</span><span class="kw">=</span> <span class="bu">ASIN</span> (X) <span class="op">&lt;</span><span class="kw">=</span> PI<span class="kw">/</span><span class="fl">2.</span></a></code></pre></div>
-<p>If the argument (and therefore the result) is imaginary The real part of the result is in radians and lies in the range</p>
+<p>If the argument (and therefore the result) is imaginary the real part of the result is in radians and lies in the range</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb60-1" title="1">  <span class="kw">-</span>PI<span class="kw">/</span><span class="dv">2</span> <span class="op">&lt;</span><span class="kw">=</span> <span class="bu">real</span>(<span class="bu">asin</span>(x)) <span class="op">&lt;</span><span class="kw">=</span> PI<span class="kw">/</span><span class="dv">2</span></a></code></pre></div>
 <h3 id="examples-13"><strong>Examples</strong></h3></li>
 </ul>
@@ -1534,7 +1534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dl></li>
 <li><dl>
 <dt><strong>y</strong></dt>
-<dd>Shall be of the same type and kind as <strong>x</strong>. If <strong>x</strong> is zero, <strong>y</strong> must not be zero.
+<dd>is of the same type and kind as <strong>x</strong>. If <strong>x</strong> is zero, <strong>y</strong> must not be zero.
 </dd>
 </dl></li>
 </ul>
@@ -6879,7 +6879,7 @@ $$</span><br /></p>
 <li>The result will be a scalar of the same type and kind as the input <strong>x</strong></li>
 </ul>
 <h3 id="description-91"><strong>Description</strong></h3>
-<p><strong>huge</strong>(3) returns the largest number that is not an infinity for the kind and type of <strong>x</strong>.</p>
+<p><strong>huge</strong>(3) returns the largest number that is not an overflow for the kind and type of <strong>x</strong>.</p>
 <h3 id="options-89"><strong>Options</strong></h3>
 <ul>
 <li><dl>
@@ -6890,7 +6890,7 @@ $$</span><br /></p>
 </ul>
 <h3 id="result-71"><strong>Result</strong></h3>
 <p>The result is the largest value supported by the specified type and kind.</p>
-<p>Note is is as the same kind as the input to ensure the returned value does not overflow. Any assignment of the result to a variable should take this into consideration.</p>
+<p>Note the result is as the same kind as the input to ensure the returned value does not overflow. Any assignment of the result to a variable should take this into consideration.</p>
 <h3 id="examples-89"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb390"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb390-1" title="1"><span class="kw">program</span> demo_huge</a>
