@@ -46,6 +46,9 @@ kind type parameter of the other.
           0   1        1
           0   0        0
 ```
+ Where if the bit is set in either input value, it is set in the
+ result. Otherwise the result bit is zero.
+
  This is commonly called the "bitwise logical inclusive OR" of the two values.
 
 ### **Examples**

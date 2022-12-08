@@ -94,10 +94,10 @@ of arguments, and search for certain arguments:
 
 - **Elemental:**
   [**adjustl**(3)](#adjustl), [**adjustr**(3)](#adjustr), [**index**(3)](#index),
-  [**scan**(3)](#scan), [**verify**(3)](#verify)
+  [**verify**(3)](#verify)
 
 - **Nonelemental:**
-  [**len_trim**(3)](#len_trim),
+  [**len\_trim**(3)](#len_trim),
   [**len**(3)](#len),
   [**repeat**(3)](#repeat), [**trim**(3)](#trim)
 

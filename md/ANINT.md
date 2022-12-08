@@ -39,11 +39,16 @@
 
 ### **Result**
 
-The return value is the whole number nearest **a**.
+The return value is the real whole number nearest **a**.
 
 If **a** is greater than zero, **anint(a)**(3) returns **aint(a + 0.5)**.
 
-If **a** is less than or equal to zero then it returns **aint(a - 0.5)**.
+If **a** is less than or equal to zero then it returns **aint(a - 0.5)**,
+except **aint** specifies that for |**a**| < 1 the result is zero (0).
+
+It is processor-dependent whether anint(a) returns negative zero when
+-0.5 < a <= -0.0.  Compiler switches are often available which enable
+or disable support of negative zero.
 
 ### **Examples**
 
@@ -73,28 +78,34 @@ real,allocatable :: arr(:)
    print *, 'numbers on a cusp are always the most troublesome'
    print *, anint([ -2.7, -2.5, -2.2, -2.0, -1.5, -1.0, -0.5, 0.0 ])
 
-   arr=[ 0.0, 0.5, 1.0, 1.5, 2.0, 2.2, 2.5, 2.7 ]
+   print *, 'negative zero is processor dependent'
+   arr=[ 0.0, 0.1, 0.5, 1.0, 1.5, 2.0, 2.2, 2.5, 2.7 ]
+   print *, anint(arr)
+   arr=[ -0.0, -0.1, -0.5, -1.0, -1.5, -2.0, -2.2, -2.5, -2.7 ]
    print *, anint(arr)
 
 end program demo_anint
 ```
 Results:
 ```text
-    ANINT (2.783) has the value 3.0 =>   3.000000
-    ANINT (-2.783) has the value -3.0 =>  -3.000000
-    by default the kind of the output is the kind of the input
-     1.2345679E+09
-      1234567890.00000
-    sometimes specifying the result kind is useful when passing
-    results as an argument, for example.
-    do you know why the results are different?
-      1234567936.00000
-      1234567890.00000
-    numbers on a cusp are always the most troublesome
-     -3.000000      -3.000000    -2.000000      -2.000000    -2.000000
-     -1.000000      -1.000000    0.0000000E+00
-     0.0000000E+00   1.000000     1.000000       2.000000     2.000000
-      2.000000       3.000000     3.000000
+ >  ANINT (2.783) has the value 3.0 =>   3.000000    
+ >  ANINT (-2.783) has the value -3.0 =>  -3.000000    
+ >  by default the kind of the output is the kind of the input
+ >   1.2345679E+09
+ >    1234567890.00000     
+ >  sometimes specifying the result kind is useful when passing
+ >  results as an argument, for example.
+ >  do you know why the results are different?
+ >    1234567936.00000     
+ >    1234567890.00000     
+ >  numbers on a cusp are always the most troublesome
+ >   -3.000000      -3.000000      -2.000000      -2.000000      -2.000000    
+ >   -1.000000      -1.000000      0.0000000E+00
+ >  negative zero is processor dependent
+ >   0.0000000E+00  0.0000000E+00   1.000000       1.000000       2.000000    
+ >    2.000000       2.000000       3.000000       3.000000    
+ >   0.0000000E+00  0.0000000E+00  -1.000000      -1.000000      -2.000000    
+ >   -2.000000      -2.000000      -3.000000      -3.000000    
 ```
 ### **Standard**
 
@@ -110,3 +121,4 @@ FORTRAN 77
 [**floor**(3)](#floor)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+

@@ -21,7 +21,10 @@
          print *, 'numbers on a cusp are always the most troublesome'
          print *, anint([ -2.7, -2.5, -2.2, -2.0, -1.5, -1.0, -0.5, 0.0 ])
 
-         arr=[ 0.0, 0.5, 1.0, 1.5, 2.0, 2.2, 2.5, 2.7 ]
+         print *, 'negative zero is processor dependent'
+         arr=[ 0.0, 0.1, 0.5, 1.0, 1.5, 2.0, 2.2, 2.5, 2.7 ]
+         print *, anint(arr)
+         arr=[ -0.0, -0.1, -0.5, -1.0, -1.5, -2.0, -2.2, -2.5, -2.7 ]
          print *, anint(arr)
 
       end program demo_anint
