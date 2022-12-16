@@ -11779,8 +11779,8 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb599-2" title="2"></a>
 <a class="sourceLine" id="cb599-3" title="3">      <span class="dt">type(TYPE(kind=**))</span>,<span class="dt">intent(inout)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> from(..)</a>
 <a class="sourceLine" id="cb599-4" title="4">      <span class="dt">type(TYPE(kind=**))</span>,<span class="dt">intent(out)</span>,<span class="dt">allocatable</span>   <span class="dt">::</span> <span class="kw">to</span>(..)</a>
-<a class="sourceLine" id="cb599-5" title="5">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(out)</span>     <span class="dt">::</span> stat</a>
-<a class="sourceLine" id="cb599-6" title="6">      <span class="dt">character(len=*)</span>,<span class="dt">intent(inout)</span>   <span class="dt">::</span> errmsg</a></code></pre></div>
+<a class="sourceLine" id="cb599-5" title="5">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(out)</span>   <span class="dt">::</span> stat</a>
+<a class="sourceLine" id="cb599-6" title="6">      <span class="dt">character(len=*)</span>,<span class="dt">intent(inout)</span> <span class="dt">::</span> errmsg</a></code></pre></div>
 </div><div id="characteristics-139" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
 <ul>
@@ -11806,12 +11806,17 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </dl></li>
 <li><dl>
 <dt><strong>stat</strong></dt>
-<dd>If STAT is present and execution is successful, it is assigned the value zero.
+<dd>If <strong>stat</strong> is present and execution is successful, it is assigned the value zero.
 </dd>
-<dd>If an error condition occurs, o if STAT is absent, error termination is initiated; o otherwise, if FROM is a coarray and the current team contains a stopped image, STAT is assigned the value STAT_STOPPED_IMAGE from the intrinsic module ISO_FORTRAN_ENV; o otherwise, if FROM is a coarray and the current team contains a failed image, and no other error condition occurs, STAT is assigned the value STAT_FAILED_IMAGE from the intrinsic module ISO_FORTRAN_ENV; o otherwise, STAT is assigned a processor-dependent positive value that differs from that of STAT_STOPPED_IMAGE or STAT_FAILED_IMAGE.
+<dd><p>If an error condition occurs,</p>
+<p>o if <strong>stat</strong> is absent, error termination is initiated; o otherwise, if <strong>from</strong> is a coarray and the current team contains a stopped image, <strong>stat</strong> is assigned the value STAT_STOPPED_IMAGE from the intrinsic module ISO_FORTRAN_ENV; o otherwise, if <strong>from</strong> is a coarray and the current team contains a failed image, and no other error condition occurs, <strong>stat</strong> is assigned the value STAT_FAILED_IMAGE from the intrinsic module ISO_FORTRAN_ENV; o otherwise, <strong>stat</strong> is assigned a processor-dependent positive value that differs from that of STAT_STOPPED_IMAGE or STAT_FAILED_IMAGE.</p>
 </dd>
 </dl></li>
-<li><strong>errmsg</strong></li>
+<li><dl>
+<dt><strong>errmsg</strong></dt>
+<dd>If the <strong>errmsg</strong> argument is present and an error condition occurs, it is assigned an explanatory message. If no error condition occurs, the definition status and value of <strong>errmsg</strong> are unchanged.
+</dd>
+</dl></li>
 </ul>
 </div><div id="examples-136" class="slide section level3">
 <h1><strong>Examples</strong></h1>
@@ -11848,7 +11853,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
       1.000   1.500   2.000   2.500   3.000   3.500</code></pre>
 </div><div id="standard-140" class="slide section level3">
 <h1><strong>Standard</strong></h1>
-<p>Fortran 2003</p>
+<p>Fortran 2003, STAT and ERRMSG options added 2018</p>
 </div><div id="see-also-140" class="slide section level3">
 <h1><strong>See Also</strong></h1>
 <p><a href="#allocated"><strong>allocated</strong>(3)</a></p>
@@ -11880,8 +11885,6 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
     23    following the CALL statement is delayed until all other active images of the current team have executed the same
     24    statement the same number of times. When such a reference is executed, if any image of the current team has
     25    stopped or failed, an error condition occurs.
-    36  8 If the ERRMSG argument is present and an error condition occurs, it is assigned an explanatory message. If no
-    37    error condition occurs, the definition status and value of ERRMSG are unchanged.
     38  9 Example. The example below demonstrates reallocation of GRID to twice its previous size, with its previous
     39    contents evenly distributed over the new elements so that intermediate points can be inserted.
     40          REAL,ALLOCATABLE :: GRID(:),TEMPGRID(:)

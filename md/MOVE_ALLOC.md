@@ -13,8 +13,8 @@
 
       type(TYPE(kind=**)),intent(inout),allocatable :: from(..)
       type(TYPE(kind=**)),intent(out),allocatable   :: to(..)
-      integer(kind=**),intent(out)     :: stat
-      character(len=*),intent(inout)   :: errmsg
+      integer(kind=**),intent(out)   :: stat
+      character(len=*),intent(inout) :: errmsg
 ```
 ### **Characteristics**
 
@@ -41,21 +41,25 @@ the elements of the array.
   to. Typically, it is a different shape than **from**.
 
 - **stat**
-  : If STAT is present and execution is successful, it is assigned the
+  : If **stat** is present and execution is successful, it is assigned the
     value zero.
   : If an error condition occurs,
-      o if STAT is absent, error termination is initiated;
-      o otherwise, if FROM is a coarray and the current team contains a
-        stopped image, STAT is assigned the value STAT_STOPPED_IMAGE
-        from the intrinsic module ISO_FORTRAN_ENV;
-      o otherwise, if FROM is a coarray and the current team contains
+
+      o if **stat** is absent, error termination is initiated;
+      o otherwise, if **from** is a coarray and the current team contains a
+        stopped image, **stat** is assigned the value STAT\_STOPPED\_IMAGE
+        from the intrinsic module ISO\_FORTRAN\_ENV;
+      o otherwise, if **from** is a coarray and the current team contains
       a failed image, and no other error condition
-        occurs, STAT is assigned the value STAT_FAILED_IMAGE from the
-        intrinsic module ISO_FORTRAN_ENV;
-      o otherwise, STAT is assigned a processor-dependent positive value
-        that differs from that of STAT_STOPPED_IMAGE or STAT_FAILED_IMAGE.
+        occurs, **stat** is assigned the value STAT\_FAILED\_IMAGE from the
+        intrinsic module ISO\_FORTRAN\_ENV;
+      o otherwise, **stat** is assigned a processor-dependent positive value
+        that differs from that of STAT\_STOPPED\_IMAGE or STAT\_FAILED\_IMAGE.
 
 - **errmsg**
+  : If the **errmsg** argument is present and an error condition occurs,
+    it is assigned an explanatory message. If no error condition occurs,
+    the definition status and value of **errmsg** are unchanged.
 
 ### **Examples**
 
@@ -100,7 +104,7 @@ Results:
 
 ### **Standard**
 
-Fortran 2003
+Fortran 2003, STAT and ERRMSG options added 2018
 
 ### **See Also**
 
@@ -135,8 +139,6 @@ Fortran 2003
     23    following the CALL statement is delayed until all other active images of the current team have executed the same
     24    statement the same number of times. When such a reference is executed, if any image of the current team has
     25    stopped or failed, an error condition occurs.
-    36  8 If the ERRMSG argument is present and an error condition occurs, it is assigned an explanatory message. If no
-    37    error condition occurs, the definition status and value of ERRMSG are unchanged.
     38  9 Example. The example below demonstrates reallocation of GRID to twice its previous size, with its previous
     39    contents evenly distributed over the new elements so that intermediate points can be inserted.
     40          REAL,ALLOCATABLE :: GRID(:),TEMPGRID(:)
