@@ -2,6 +2,9 @@ The short version is to take the standalone/fman.f90 file, compile it
 and you have a CLI (Command Line Interface) to descriptions of the
 Fortran intrinsics; with instructions available via "fman --help".
 
+The descriptions can be previewed as
+[HTML](https://urbanjost.github.io/M_intrinsics/index3.html)
+
 If you want man-pages, HTML, or markdown descriptions; a Fortran module
 you can call with your own programs to display the descriptions, or to
 integrate the descriptions into fpm(1) as a plugin, read on.
@@ -57,8 +60,8 @@ should be able to use the man-pages. For example:
 	cd ..
         mandb -c .
         export MANPATH=$HOME/man:$MANPATH
-	export MANWIDTH=80 # optional, displays manpages in columns 1 to 80
-        man -s 3fortran -k .  # list topic line for all Fortran man-pages
+	export MANWIDTH=80   # optional, displays manpages in columns 1 to 80
+        man -s 3fortran -k . # list topic line for all Fortran man-pages
 ```
 
 Typical installation on a Linux platform as an administrator ( but it varies) :
