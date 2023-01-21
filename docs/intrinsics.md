@@ -1762,28 +1762,28 @@ Sample program:
 program demo_atan2
 real :: z
 complex :: c
-
+ !
  ! basic usage
   ! ATAN2 (1.5574077, 1.0) has the value 1.0 (approximately).
   z=atan2(1.5574077, 1.0)
   write(*,*) 'radians=',z,'degrees=',r2d(z)
-
+ !
  ! elemental arrays
   write(*,*)'elemental',atan2( [10.0, 20.0], [30.0,40.0] )
-
+ !
  ! elemental arrays and scalars
   write(*,*)'elemental',atan2( [10.0, 20.0], 50.0 )
-
+ !
  ! break complex values into real and imaginary components
  ! (note TAN2() can take a complex type value )
   c=(0.0,1.0)
   write(*,*)'complex',c,atan2( x=c%re, y=c%im )
-
+ !
  ! extended sample converting cartesian coordinates to polar
   COMPLEX_VALS: block
   real                :: ang, radius
   complex,allocatable :: vals(:)
-
+ !
   vals=[ &
     ( 1.0, 0.0 ), & ! 0
     ( 1.0, 1.0 ), & ! 45
@@ -1803,16 +1803,16 @@ complex :: c
   & T38,'DEGREES= ',g0.4, &
   & T54,'DISTANCE=',g0)
  endblock COMPLEX_VALS
-
+!
 contains
-
+!
 elemental real function r2d(radians)
 ! input radians to convert to degrees
 doubleprecision,parameter :: DEGREE=0.017453292519943d0 ! radians
 real,intent(in)           :: radians
    r2d=radians / DEGREE ! do the conversion
 end function r2d
-
+!
 subroutine cartesian_to_polar(x,y,radius,inclination)
 ! return angle in radians in range 0 to 2*PI
 implicit none
@@ -1826,7 +1826,7 @@ real,intent(out) :: radius,inclination
       if(inclination < 0.0)inclination=inclination+2*atan2(0.0d0,-1.0d0)
    endif
 end subroutine cartesian_to_polar
-
+!
 end program demo_atan2
 ```
 Results:
@@ -6016,14 +6016,14 @@ Fortran 2008
 Sample program:
 
 ```fortran
-program demo_count
-implicit none
-character(len=*),parameter :: ints='(*(i2,1x))'
-! two arrays and a mask all with the same shape
-integer, dimension(2,3) :: a, b
-logical, dimension(2,3) :: mymask
-integer :: i
-integer :: c(2,3,4)
+   program demo_count
+   implicit none
+   character(len=*),parameter :: ints='(*(i2,1x))'
+   ! two arrays and a mask all with the same shape
+   integer, dimension(2,3) :: a, b
+   logical, dimension(2,3) :: mymask
+   integer :: i
+   integer :: c(2,3,4)
 
    print *,'the numeric arrays we will compare'
    a = reshape( [ 1, 2, 3, 4, 5, 6 ], [ 2, 3 ])
@@ -6034,8 +6034,8 @@ integer :: c(2,3,4)
    print *
    print '(3i3)', b(1,:)
    print '(3i3)', b(2,:)
-
-  ! basic calls
+   !
+   ! basic calls
    print *, 'count a few basic things creating a mask from an expression'
    print *, 'count a>b',count(a>b)
    print *, 'count b<a',count(a<b)
@@ -6043,7 +6043,7 @@ integer :: c(2,3,4)
    print *, 'check sum = ',count(a>b) + &
                          & count(a<b) + &
                          & count(a==b).eq.size(a)
-
+   !
    ! The common usage is just getting a count, but if you want
    ! to specify the DIM argument and get back reduced arrays
    ! of counts this is easier to visualize if we look at a mask.
@@ -6052,21 +6052,21 @@ integer :: c(2,3,4)
    print *, 'the mask generated from a.ne.b'
    print '(3l3)', mymask(1,:)
    print '(3l3)', mymask(2,:)
-
+   !
    print *,'count total and along rows and columns ...'
-
+   !
    print '(a)', 'number of elements not equal'
    print '(a)', '(ie. total true elements in the mask)'
    print '(3i3)', count(mymask)
-
+   !
    print '(a)', 'count of elements not equal in each column'
    print '(a)', '(ie. total true elements in each column)'
    print '(3i3)', count(mymask, dim=1)
-
+   !
    print '(a)', 'count of elements not equal in each row'
    print '(a)', '(ie. total true elements in each row)'
    print '(3i3)', count(mymask, dim=2)
-
+   !
    ! working with rank=3 ...
    print *, 'lets try this with c(2,3,4)'
    print *,'  taking the result of the modulo   '
@@ -6086,21 +6086,21 @@ integer :: c(2,3,4)
    count(modulo(c,5).eq.0,dim=2))
    call printi('counting up along a depth and removing depths',&
    count(modulo(c,5).eq.0,dim=3))
-
-contains
-
+   !
+   contains
+   !
    ! CONVENIENCE ROUTINE FOR PRINTING SMALL INTEGER MATRICES
    subroutine printi(title,arr)
    implicit none
-
+   !
    !@(#) print small 2d integer arrays in row-column format
-
+   !
    character(len=*),parameter :: all='(*(g0,1x))' ! a handy format
    character(len=*),intent(in)  :: title
    integer,intent(in)           :: arr(:,:)
    integer                      :: i
    character(len=:),allocatable :: biggest
-
+      !
       print all
       print all, trim(title),':(',shape(arr),')'  ! print title
       biggest='           '  ! make buffer to write integer into
@@ -6113,9 +6113,9 @@ contains
          write(*,fmt=biggest,advance='no')arr(i,:)
          write(*,'(" ]")')
       enddo
-
+      !
    end subroutine printi
-end program demo_count
+   end program demo_count
 ```
   Results:
 ```text
@@ -6735,7 +6735,7 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
- - **x** an _integer_ or _ral_ scalar or array
+ - **x** an _integer_ or _real_ scalar or array
 
  - The return value is an _integer_ of default kind.
 
@@ -7418,14 +7418,15 @@ Fortran 2008
    specified it is the same shape as **array** reduced by removing
    dimension **dim**.
  - **boundary** May be a scalar of the same type and kind as **array**.
-   It must be a scalar when **array** has a rank of one. Otherwise,
-   it may be an array of the same shape as **array** reduced by dimension
+   It must be a scalar when **array** has a rank of one. Otherwise, it
+   may be an array of the same shape as **array** reduced by dimension
    **dim**. It may only be absent for certain types, as described below.
  - **dim** is an integer of any kind. It defaults to one.
  - the result has the same type, type parameters, and shape as **array**.
  - a kind designated as ** may be any supported kind for the type
 
- - The result is an array of same type, kind and rank as the **array** argument.
+ - The result is an array of same type, kind and rank as the **array**
+   argument.
 
 ### **Description**
 
@@ -7456,14 +7457,15 @@ Fortran 2008
   If **boundary** is not present then the following are copied in
   depending on the type of **array**.
 ```text
-    Array Type     | Boundary Value
+    Array Type    | Boundary Value
     -----------------------------------------------------
-    Numeric        | 0, 0.0, or (0.0, 0.0)  of the type and kind of "array"
-    Logical        | .false.
-    Character(len) |  LEN blanks
+    Numeric       | 0, 0.0, or (0.0, 0.0) of the type and kind of "array"
+    Logical       | .false.
+    Character(len)|  LEN blanks
 ```
   These are the only types for which **boundary** may not be present.
-  For these types the kind is converted as neccessary to the kind of **array**.
+  For these types the kind is converted as neccessary to the kind of
+  **array**.
 - **dim**
   :  **dim** is in the range of
 ```fortran
@@ -8038,10 +8040,6 @@ TS 18508
   : If the command is executed synchronously, it is assigned the value
   of the processor-dependent exit status. Otherwise, the value of
   **exitstat** is unchanged.
-
-  If the command is executed synchronously, it is assigned the value of
-  the processor-dependent exit status. Otherwise, the value of EXITSTAT
-  is unchanged.
 
 - **cmdstat**
   : If an error condition occurs and **cmdstat** is not present, error
@@ -8994,7 +8992,7 @@ $$
 
 ### **Result**
 
-  The return value is of type _real_ of the same kind as _x_.  The result
+  The return value is of type _real_ of the same kind as _x_. The result
   has a value equal to a processor-dependent approximation to the gamma
   function of **x**.
 
@@ -10172,7 +10170,7 @@ Fortran 2008
 
  - **pos**
    : The position of the bit to change in the input value. A value
-   of zero refers to the right-most bit.  The value of **pos** must be
+   of zero refers to the right-most bit. The value of **pos** must be
    nonnegative and less than **(bit_size(i)**).
 
 ### **Result**
@@ -10388,7 +10386,7 @@ Fortran 95
 
  - **pos**
    : The position of the bit to change in the input value. A value
-   of zero refers to the right-most bit.  The value of **pos** must be
+   of zero refers to the right-most bit. The value of **pos** must be
    nonnegative and less than **(bit_size(i)**).
 
 ### **Result**
@@ -16822,15 +16820,15 @@ integer :: answer
    answer=func(1492)
    write(*,*) answer
 contains
-
+!
 integer function func(x)
 ! the optional characteristic on this definition allows this variable
 ! to not be specified on a call; and also allows it to subsequently
 ! be passed to PRESENT(3):
 integer, intent(in), optional :: x
 integer :: x_local
-
-  ! basic
+   !
+   ! basic
    if(present(x))then
      ! if present, you can use x like any other variable.
      x_local=x
@@ -16840,22 +16838,22 @@ integer :: x_local
      ! or in a call to present(3f)
      x_local=0
    endif
-
+   !
    func=x_local**2
-
-  ! passing the argument on to other procedures
+   !
+   ! passing the argument on to other procedures
    ! so something like this is a bad idea because x is used
    ! as the first argument to merge(3f) when it might not be
    ! present
    ! xlocal=merge(x,0,present(x)) ! NO!!
-
+   !
    ! We can pass it to another procedure if another
    ! procedure declares the argument as optional as well,
    ! or we have tested that X is present
    call tattle('optional argument x',x)
    if(present(x))call not_optional(x)
 end function
-
+!
 subroutine tattle(label,arg)
 character(len=*),intent(in) :: label
 integer,intent(in),optional :: arg
@@ -16865,12 +16863,12 @@ integer,intent(in),optional :: arg
       write(*,*)label,' is not present'
    endif
 end subroutine tattle
-
+!
 subroutine not_optional(arg)
 integer,intent(in) :: arg
    write(*,*)'already tested X is defined',arg
 end subroutine not_optional
-
+!
 end program demo_present
 ```
 Results:

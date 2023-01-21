@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
- - If **y** is present **x** and **y** must both be _real_. 
+ - If **y** is present **x** and **y** must both be _real_.
    Otherwise, **x** may be _complex_.
  - **KIND** can be any kind supported by the associated type.
  - The returned value is of the same type and kind as **x**.

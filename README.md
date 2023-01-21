@@ -1,4 +1,4 @@
-## NOTE
+## Note
 [https://fortran-lang.org/en/learn/intrinsics](https://fortran-lang.org)
 now includes these documents. They may be changed using the instructions
 found in the github [webpage](https://github.com/fortran-lang/webpage) repository.
@@ -19,7 +19,7 @@ machines with the man(1) command) so it will continue to be maintained,
 but the differences between these and the on-line fortran-lang.org pages
 may become more extensive as time goes on.
 
-## TODO
+## Todo
 
 Additional descriptions of procedures from the standard modules
 
@@ -49,11 +49,11 @@ Add
  + TEAM_NUMBER
  + UCOBOUND
 
-## NAME
+## Name
 
    # M_intrinsics(7f) - [FORTRAN] intrinsic man-pages
 
-## DESCRIPTION
+## Description
 
 Unlike many parts of a language, intrinsics can naturally be described
 in discrete units using man-page-like descriptions.
@@ -65,7 +65,7 @@ This is a project to
 + extract demo programs from each document into an fpm(1) package for easy verification
 + generate a platform-independent Fortran program for displaying the documents
 
-## MANPAGES AND STANDALONE SOURCE
+## Man-pages and Standalone Source
 
 The man-pages can be used on *nix systems and Cygwin as well as other
 platforms; providing a convenient CLI (Command Line Interface).
@@ -81,9 +81,9 @@ A single-file version of the CLI program fpm-man(1) is in
    - builds with `gfortran  fman.f90`
    - builds with `ifort -O1 fman.f90`
 
-## PROJECT INFORMATION
+## Project Information
 
-### USE AND INSTALLATION
+### Use and Installation
 
 The man-pages can often be integrated with editors or IDEs. This is a
 powerful reference when inspecting code that uses unfamiliar procedures
@@ -121,7 +121,7 @@ Typical installation on a Linux platform as an administrator ( but it varies) :
 ```
     See man(1) (ie. enter "man man") for more information.
     
-## DOCUMENTATION FORMATS  ![docs](docs/images/docs.gif)
+## Documentation Formats  ![docs](docs/images/docs.gif)
 
 The documents are maintained as Myst markdown files to be compatible
 with the fortran-lang.org site.
@@ -138,9 +138,9 @@ Using pandoc(1) they are then converted to flat-text files which are
    - All pages in a single [slidy HTML file](https://urbanjost.github.io/M_intrinsics/intrinsics_slidy.html)
    - [documentation shortcuts](https://urbanjost.github.io/M_intrinsics)
 
-* the example programs are extracted into the example/ directory.
+* the example programs are extracted into the [example/](example/) directory.
 
-## BASIC VIM USAGE
+## Basic VIM Usage
 
 The vim(1) editor will call up a man(1) page for a word
 if the letter "K" is pressed over the word and the manpage directory
@@ -154,7 +154,7 @@ an example, create a little Fortran file called "test.f90" and try:
 ```bash
    vim -c 'set keywordprg=env\ MANPATH=$HOME/man\ man\ -s\ 3fortran\ -a' test.f90
 ```
-## CONTRIBUTING
+## Contributing
 
 _Collaborators are welcome_. This is a public github repository. Anyone
 can contribute, and is encouraged to do so. First, create a fork of this
@@ -162,7 +162,7 @@ site from github. obtain a copy of the repository:
 ```bash
     git clone https://github.com/YOUR_SITE/M_intrinsics.git
 ```
-### MINIMAL CHANGES
+### Minimal Changes
 
 At a minimum, you can cd(1) into the md/ directory and change the files
 there. Then push the git repository back to your fork and make a pull
@@ -178,7 +178,7 @@ The repository is set up as public, so I believe anyone with a github ID
 can change these files but it is unclear to me exactly how this should
 work, or whether a branch is required. Looking for more information ...
 
-### USING THE MAKE FILE
+### Using the Make File
 
 You have to have a Fortran compiler, fpm(1) and pandoc(1) installed to
 use the method used here to convert the markdown files to man-pages,
@@ -194,7 +194,7 @@ make ship
 and check out the HTML page generated in docs/, the manpages in man/man3/
 and the demo programs in example
 
-## REFERENCES
+## References
  - The [Fortran 2018 Standard](https://j3-fortran.org/doc/year/18/18-007r1.pdf)
    as described at https://j3-fortran.org/doc/year/18/18-007r1.pdf
 

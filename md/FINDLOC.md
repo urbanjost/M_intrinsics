@@ -138,17 +138,17 @@ logical,allocatable :: mask(:,:)
    ibox=reshape([ 0,-5,  7, 7, &
                   3, 4, -1, 2, &
                   1, 5,  6, 7] ,shape=[3,4],order=[2,1])
-   
+
    mask=reshape([ T, T, F, T, &
                   T, T, F, T, &
                   T, T, F, T] ,shape=[3,4],order=[2,1])
 
    call printi('array is', ibox )
    call printl('mask  is', mask )
-   print *, 'so for == 7 and back=.false.' 
+   print *, 'so for == 7 and back=.false.'
    call printi('so for == 7 the address of the element is', &
            & findloc (ibox, 7, mask = mask) )
-   print *, 'so for == 7 and back=.true.' 
+   print *, 'so for == 7 and back=.true.'
    call printi('so for == 7 the address of the element is', &
            & findloc (ibox, 7, mask = mask, back=.true.) )
 
@@ -160,9 +160,9 @@ logical,allocatable :: mask(:,:)
 
    call printi('array is', ibox )
    ! has the value [2, 1, 0] and
-   call printi('',findloc (ibox, value = 2, dim = 1) ) 
+   call printi('',findloc (ibox, value = 2, dim = 1) )
    ! has the value [2, 1].
-   call printi('',findloc (ibox, value = 2, dim = 2) ) 
+   call printi('',findloc (ibox, value = 2, dim = 2) )
 contains
 ! GENERIC ROUTINES TO PRINT MATRICES
 subroutine printl(title,a)
@@ -226,61 +226,61 @@ Results:
  >  == 6  (a vector)
  >  > [  2 ]
  >  >shape= 1 ,rank= 1 ,size= 1
- >  
+ >
  >  == 6  (a vector)
  >  > [  4 ]
  >  >shape= 1 ,rank= 1 ,size= 1
- >  
+ >
  >  == 6  (a scalar)
  >  > [  2 ]
  >  >shape= ,rank= 0 ,size= 1
- >  
+ >
  >  == 6  (a scalar)
  >  > [  4 ]
  >  >shape= ,rank= 0 ,size= 1
- >  
+ >
  >  array is  (a matrix)
  >  > [  0, -5,  7,  7 ]
  >  > [  3,  4, -1,  2 ]
  >  > [  1,  5,  6,  7 ]
  >  >shape= 3 4 ,rank= 2 ,size= 12
- >  
+ >
  >  mask  is  (a matrix)
  >  > [ T,T,F,T ]
  >  > [ T,T,F,T ]
  >  > [ T,T,F,T ]
  >  >shape= 3 4 ,rank= 2 ,size= 12
- >  
+ >
  >  so for == 7 and back=.false.
  >  so for == 7 the address of the element is  (a vector)
  >  > [  1 ]
  >  > [  4 ]
  >  >shape= 2 ,rank= 1 ,size= 2
- >  
+ >
  >  so for == 7 and back=.true.
  >  so for == 7 the address of the element is  (a vector)
  >  > [  3 ]
  >  > [  4 ]
  >  >shape= 2 ,rank= 1 ,size= 2
- >  
+ >
  >  This is independent of declared lower bounds for the array
  >   using dim=N
  >  array is  (a matrix)
  >  > [  1,  2, -9 ]
  >  > [  2,  2,  6 ]
  >  >shape= 2 3 ,rank= 2 ,size= 6
- >  
+ >
  >    (a vector)
  >  > [  2 ]
  >  > [  1 ]
  >  > [  0 ]
  >  >shape= 3 ,rank= 1 ,size= 3
- >  
+ >
  >    (a vector)
  >  > [  2 ]
  >  > [  1 ]
  >  >shape= 2 ,rank= 1 ,size= 2
- >  
+ >
 ```
 ### **Standard**
 

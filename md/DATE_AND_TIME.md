@@ -46,7 +46,7 @@
 
       + CCYY is the year in the Gregorian calendar
       + MM is the month within the year
-      + DD is the day within the month. 
+      + DD is the day within the month.
 
     The characters of this value are all decimal digits.
 

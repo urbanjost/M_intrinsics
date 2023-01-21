@@ -38,7 +38,7 @@ $$
 
 ### **Result**
 
-  The return value is of type _real_ of the same kind as _x_.  The result
+  The return value is of type _real_ of the same kind as _x_. The result
   has a value equal to a processor-dependent approximation to the gamma
   function of **x**.
 

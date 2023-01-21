@@ -31,7 +31,7 @@
 
  - **pos**
    : The position of the bit to change in the input value. A value
-   of zero refers to the right-most bit.  The value of **pos** must be
+   of zero refers to the right-most bit. The value of **pos** must be
    nonnegative and less than **(bit_size(i)**).
 
 ### **Result**

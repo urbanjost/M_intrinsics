@@ -63,7 +63,7 @@ end program demo_erfc_scaled
 ```
 Results:
 ```text
- >   0.833758302149981     
+ >   0.833758302149981
 ```
 ### **Standard**
 

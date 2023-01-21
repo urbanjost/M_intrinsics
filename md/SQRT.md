@@ -45,12 +45,12 @@
 - **x**
   : The radicand to find the principal square root of.
   If **x** is _real_ its value must be greater than or equal to zero.
-    
+
 ### **Result**
 
   The principal square root of **x** is returned.
-  
-  For a _complex_ result the real part is greater than or equal to zero. 
+
+  For a _complex_ result the real part is greater than or equal to zero.
 
   When the real part of the result is zero, the imaginary part has the
   same sign as the imaginary part of **x**.
@@ -91,7 +91,7 @@ Results:
 ```text
     input values    2.00000000000000      (1.000000,2.000000)
     output values    1.41421356237310      (1.272020,0.7861513)
-    elemental   8.000000       11.00000       5.477226    
+    elemental   8.000000       11.00000       5.477226
     alternatively   1.41421356237310      (1.272020,0.7861513)
 ```
 ### **Standard**

@@ -41,7 +41,7 @@
      it can be stored in a variable of the type and kind of **mold**
 
    - **mold**
-     and kind are queried to determine the characteristics of what 
+     and kind are queried to determine the characteristics of what
      needs to be fit into.
 
    - **round**

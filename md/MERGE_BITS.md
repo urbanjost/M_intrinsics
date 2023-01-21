@@ -56,7 +56,7 @@ so the BOZ values must be in the range of the type of the result.
 
 ### **Result**
 
-The bits blended from **i** and **j** using the mask **mask**. 
+The bits blended from **i** and **j** using the mask **mask**.
 
 ### **Examples**
 

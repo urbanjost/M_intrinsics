@@ -22,7 +22,7 @@
 
   If **array** is a pointer it must be associated and allocatable arrays
   must be allocated.
-- **dim** is an integer scalar 
+- **dim** is an integer scalar
 - **kind** is a scalar integer constant expression.
 - the result is an integer scalar of kind **KIND**. If **KIND** is absent
   a _integer_ of default kind is returned.

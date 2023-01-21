@@ -78,10 +78,6 @@
   of the processor-dependent exit status. Otherwise, the value of
   **exitstat** is unchanged.
 
-  If the command is executed synchronously, it is assigned the value of
-  the processor-dependent exit status. Otherwise, the value of EXITSTAT
-  is unchanged.
-
 - **cmdstat**
   : If an error condition occurs and **cmdstat** is not present, error
   termination of execution of the image is initiated.

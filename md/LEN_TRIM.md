@@ -38,7 +38,7 @@
 ### **Result**
 
   The result equals the number of characters remaining
-  after any trailing blanks in **string** are removed. 
+  after any trailing blanks in **string** are removed.
 
   If the input argument is of zero length or all blanks
   the result is zero.

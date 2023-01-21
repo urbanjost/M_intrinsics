@@ -20,7 +20,7 @@
 
  - **string** is a _character_ string of any kind
  - **set** must be a _character_ string with the same kind as **string**
- - **back** is a _logical_ 
+ - **back** is a _logical_
  - **kind** is a scalar _integer_ constant expression
  - the result is an _integer_ with the kind specified by **kind**. If
    **kind** is not present the result is a default _integer_.

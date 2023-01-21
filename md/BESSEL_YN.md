@@ -37,7 +37,7 @@
 ### **Description**
 
   **bessel_yn(n, x)** computes the Bessel function of the second kind
-  of order **n** of **x**. 
+  of order **n** of **x**.
 
   **bessel_yn(n1, n2, x)** returns an array with the Bessel
   function\|Bessel functions of the first kind of the orders **n1**

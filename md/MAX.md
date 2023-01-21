@@ -21,7 +21,7 @@
 ### **Characteristics**
 
  - **a3, a3, a4, ...** must be of the same type and kind as **a1**
- - the arguments may (all) be _integer_, _real_ or _character_ 
+ - the arguments may (all) be _integer_, _real_ or _character_
  - there must be at least two arguments
  - the length of a character result is the length of the longest argument
  - the type and kind of the result is the same as those of the arguments
@@ -128,16 +128,16 @@ end program demo_max
 ```
 Results:
 ```text
-    scalars:   30.00000    
+    scalars:   30.00000
     scalars: -9.9999997E-05
     characters:words
     characters:c
-    characters:b 
+    characters:b
    "BB" "Z "
    box=    -6  -5  -4  -3  -2  -1   1   2   3   4   5   6
    box**2=-36 -25 -16  -9  -4  -1   1   4   9  16  25  36
    max     -6  -5  -4  -3  -2  -1   1   4   9  16  25  36
-   20.00000  21.00000  32.00000  -100.0000    
+   20.00000  21.00000  32.00000  -100.0000
    0  0  0  0  0  0
    1  2  3  4  5  6
 ```

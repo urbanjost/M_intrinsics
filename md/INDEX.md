@@ -45,7 +45,7 @@ result = index( string, substring [,back] [,kind] )
 - **kind**
   : if **kind** is present, the kind type parameter is that specified by the value of
     **kind**; otherwise the kind type parameter is that of default integer type.
-    
+
 
 ### **Result**
 

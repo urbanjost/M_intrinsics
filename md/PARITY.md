@@ -26,7 +26,7 @@
 ### **Description**
 
 **parity**(3) calculates the parity array (i.e. the reduction using .neqv.) of
-**mask** along dimension **dim** if **dim** is present and not 1. Otherwise, it 
+**mask** along dimension **dim** if **dim** is present and not 1. Otherwise, it
 returns the parity of the entire **mask** array as a scalar.
 
 ### **Options**
@@ -56,7 +56,7 @@ Sample program:
 program demo_parity
 implicit none
 logical, parameter :: T=.true., F=.false.
-logical :: x(3,4) 
+logical :: x(3,4)
   ! basics
    print *, parity([T,F])
    print *, parity([T,F,F])

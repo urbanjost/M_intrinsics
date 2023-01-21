@@ -18,7 +18,7 @@
 
   - **matrix** is an array of any type with a rank of two.
   - The result will be the same type and kind as **matrix** and the
-    reversed shape of the input array 
+    reversed shape of the input array
 
 ### **Description**
 

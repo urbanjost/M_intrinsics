@@ -1,7 +1,7 @@
 #!/bin/bash
 #@(#) rebuild pages
 # requires a lot of infrastructure to run, including
-# panddoc
+# pandoc
 # fpm-standalone
 # fpm
 # fortran compiler, defaults to gfortran

@@ -38,7 +38,7 @@ statements, particularly when the replacements are conditional.
 ### **Options**
 
 - **vector**
-  : New values to place into specified locations in **field**. 
+  : New values to place into specified locations in **field**.
   It shall have at least as many elements as **mask** has _.true._
   values.
 
@@ -47,7 +47,7 @@ statements, particularly when the replacements are conditional.
   in **field** are to be replaced with values from **vector**.
 
 - **field**
-  : The input array to be altered. 
+  : The input array to be altered.
 
 ### **Result**
 

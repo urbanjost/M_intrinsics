@@ -86,10 +86,10 @@ end program demo_pack
 ```
 Results:
 ```text
- > 1 5 
- > 1 2 3 4 
- > 1 2 
- > bat        cat        
+ > 1 5
+ > 1 2 3 4
+ > 1 2
+ > bat        cat
 ```
 ### **Standard**
 

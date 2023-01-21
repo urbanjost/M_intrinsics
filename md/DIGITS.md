@@ -15,7 +15,7 @@
 ```
 ### **Characteristics**
 
- - **x** an _integer_ or _ral_ scalar or array
+ - **x** an _integer_ or _real_ scalar or array
 
  - The return value is an _integer_ of default kind.
 

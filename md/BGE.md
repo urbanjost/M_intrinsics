@@ -23,7 +23,7 @@
    valid for the _integer_ kind available with the most bits on the
    current platform.
 
- - The return value is of type default _logical_. 
+ - The return value is of type default _logical_.
 
 ### **Description**
 

@@ -15,7 +15,7 @@
 ```
 ### **Characteristics**
 
-  - **x** may be any _real_ or _complex_ type 
+  - **x** may be any _real_ or _complex_ type
   - **KIND** may be any kind supported by the associated type of **x**.
   - The returned value will be of the same type and kind as the argument
     **x**.
@@ -40,7 +40,7 @@
   The return value contains the processor-dependent approximation of
   the sine of **x**
 
-  If X is of type _real_, it is regarded as a value in radians. 
+  If X is of type _real_, it is regarded as a value in radians.
 
   If X is of type _complex_, its real part is regarded as a value
   in radians.
@@ -82,10 +82,10 @@ Results:
   which converted to floating-point values in degrees is:
 ```text
        Latitude Longitude
-  
+
      - BNA
        36.12, -86.67
-  
+
      - LAX
        33.94, -118.40
 ```

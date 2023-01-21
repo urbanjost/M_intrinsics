@@ -51,7 +51,7 @@ end program demo_cosh
 ```
 Results:
 ```text
- >  X=   1.00000000000000      COSH(X=)   1.54308063481524     
+ >  X=   1.00000000000000      COSH(X=)   1.54308063481524
 ```
 ### **Standard**
 

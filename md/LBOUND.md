@@ -56,7 +56,7 @@
 ### **Result**
 
 If **dim** is absent,
-the result is an array of the lower bounds of **array**. 
+the result is an array of the lower bounds of **array**.
 
 If **dim** is
 present, the result is a scalar corresponding to the lower bound of the

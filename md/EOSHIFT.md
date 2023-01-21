@@ -19,19 +19,20 @@
 ### **Characteristics**
 
  - **array** an array of any type
- - **shift** is an integer of any kind. It may be a scalar. 
+ - **shift** is an integer of any kind. It may be a scalar.
    If the rank of **array** is greater than one, and **dim** is
    specified it is the same shape as **array** reduced by removing
    dimension **dim**.
  - **boundary** May be a scalar of the same type and kind as **array**.
-   It must be a scalar when **array** has a rank of one. Otherwise,
-   it may be an array of the same shape as **array** reduced by dimension
+   It must be a scalar when **array** has a rank of one. Otherwise, it
+   may be an array of the same shape as **array** reduced by dimension
    **dim**. It may only be absent for certain types, as described below.
  - **dim** is an integer of any kind. It defaults to one.
  - the result has the same type, type parameters, and shape as **array**.
  - a kind designated as ** may be any supported kind for the type
 
- - The result is an array of same type, kind and rank as the **array** argument.
+ - The result is an array of same type, kind and rank as the **array**
+   argument.
 
 ### **Description**
 
@@ -62,14 +63,15 @@
   If **boundary** is not present then the following are copied in
   depending on the type of **array**.
 ```text
-    Array Type     | Boundary Value
+    Array Type    | Boundary Value
     -----------------------------------------------------
-    Numeric        | 0, 0.0, or (0.0, 0.0)  of the type and kind of "array"
-    Logical        | .false.
-    Character(len) |  LEN blanks
+    Numeric       | 0, 0.0, or (0.0, 0.0) of the type and kind of "array"
+    Logical       | .false.
+    Character(len)|  LEN blanks
 ```
   These are the only types for which **boundary** may not be present.
-  For these types the kind is converted as neccessary to the kind of **array**.
+  For these types the kind is converted as neccessary to the kind of
+  **array**.
 - **dim**
   :  **dim** is in the range of
 ```fortran

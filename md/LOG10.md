@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**log10**(3) - \[MATHEMATICS\] Base 10 or common logarithm 
+**log10**(3) - \[MATHEMATICS\] Base 10 or common logarithm
 
 ### **Synopsis**
 ```fortran
@@ -54,8 +54,8 @@ end program demo_log10
 Results:
 ```text
  > log10(1.000000000000000) is .000000000000000
- >   0.0000000E+00   1.000000       2.000000       3.000000       4.000000    
- >    5.000000       6.000000       7.000000    
+ >   0.0000000E+00   1.000000       2.000000       3.000000       4.000000
+ >    5.000000       6.000000       7.000000
 ```
 ### **Standard**
 

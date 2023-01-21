@@ -18,7 +18,7 @@
 ### **Characteristics**
 
  - **mask** is a _logical_ array
- - **dim** is an _integer_ 
+ - **dim** is an _integer_
  - the result is a logical array if **dim** is supplied,
    otherwise it is a logical scalar. It has the same characteristics
    as **mask**
@@ -57,9 +57,9 @@
     otherwise, it is _.false._ .
 
 2.  If the rank of **mask** is one, then **all(mask, dim)** is equivalent
-    to **all(mask)**. 
+    to **all(mask)**.
 
-3.  If the rank of **mask** is greater than one and **dim** is present then 
+3.  If the rank of **mask** is greater than one and **dim** is present then
     **all(mask,dim)** returns an array with the rank (number of
     dimensions)  of **mask** minus 1. The shape is determined from the
     shape of **mask** where the **dim** dimension is elided. A value is

@@ -57,7 +57,7 @@
   zero at the next count. **clock** therefore is a modulo value that
   lies in the range **0 to count_max**.
 
-- **count_rate** 
+- **count_rate**
   : is assigned a processor-dependent approximation to the number of
   processor clock counts per second, or zero if there is no clock.
   **count_rate** is system dependent and can vary depending on the kind

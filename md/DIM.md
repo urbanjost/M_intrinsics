@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**dim**(3) - \[NUMERIC\] Positive difference of X - Y 
+**dim**(3) - \[NUMERIC\] Positive difference of X - Y
 
 ### **Synopsis**
 ```fortran

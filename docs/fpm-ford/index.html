@@ -90,7 +90,7 @@ author_pic:
 twitter:
 website:
 -->
-<h2 id="note">NOTE</h2>
+<h2 id="note">Note</h2>
 <p><a href="https://fortran-lang.org">https://fortran-lang.org/en/learn/intrinsics</a>
 now includes these documents. They may be changed using the instructions
 found in the github <a href="https://github.com/fortran-lang/webpage">webpage</a> repository.</p>
@@ -108,7 +108,7 @@ an archive file with the intrinsic manpages on *nix machines (ie. on
 machines with the man(1) command) so it will continue to be maintained,
 but the differences between these and the on-line fortran-lang.org pages
 may become more extensive as time goes on.</p>
-<h2 id="todo">TODO</h2>
+<h2 id="todo">Todo</h2>
 <p>Additional descriptions of procedures from the standard modules</p>
 <p>Descriptions of most statements (READ, WRITE, EXIT, &hellip;) in addition to
 the intrinsics.</p>
@@ -135,9 +135,9 @@ being explored to provide better formatting.
 <li>TEAM_NUMBER</li>
 <li>UCOBOUND</li>
 </ul>
-<h2 id="name">NAME</h2>
+<h2 id="name">Name</h2>
 <p># M_intrinsics(7f) - [FORTRAN] intrinsic man-pages</p>
-<h2 id="description">DESCRIPTION</h2>
+<h2 id="description">Description</h2>
 <p>Unlike many parts of a language, intrinsics can naturally be described
 in discrete units using man-page-like descriptions.</p>
 <p>This is a project to </p>
@@ -147,7 +147,7 @@ in discrete units using man-page-like descriptions.</p>
 <li>extract demo programs from each document into an fpm(1) package for easy verification</li>
 <li>generate a platform-independent Fortran program for displaying the documents</li>
 </ul>
-<h2 id="manpages-and-standalone-source">MANPAGES AND STANDALONE SOURCE</h2>
+<h2 id="man-pages-and-standalone-source">Man-pages and Standalone Source</h2>
 <p>The man-pages can be used on *nix systems and Cygwin as well as other
 platforms; providing a convenient CLI (Command Line Interface).</p>
 <p>The man-pages are available as archive files:</p>
@@ -161,8 +161,8 @@ platforms; providing a convenient CLI (Command Line Interface).</p>
 <li>builds with <code>gfortran  fman.f90</code></li>
 <li>builds with <code>ifort -O1 fman.f90</code></li>
 </ul>
-<h2 id="project-information">PROJECT INFORMATION</h2>
-<h3 id="use-and-installation">USE AND INSTALLATION</h3>
+<h2 id="project-information">Project Information</h2>
+<h3 id="use-and-installation">Use and Installation</h3>
 <p>The man-pages can often be integrated with editors or IDEs. This is a
 powerful reference when inspecting code that uses unfamiliar procedures
 and to verify correct usage when creating code in a CLI environment.</p>
@@ -200,7 +200,7 @@ should be able to use the man-pages. For example:</p>
 <div class="codehilite"><pre><span></span><code><span class="nv">See</span> <span class="nv">man</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span> <span class="ss">(</span><span class="nv">ie</span>. <span class="nv">enter</span> <span class="s2">&quot;</span><span class="s">man man</span><span class="s2">&quot;</span><span class="ss">)</span> <span class="k">for</span> <span class="nv">more</span> <span class="nv">information</span>.
 </code></pre></div>
 
-<h2 id="documentation-formats">DOCUMENTATION FORMATS  <img alt="docs" src="docs/images/docs.gif"></h2>
+<h2 id="documentation-formats">Documentation Formats  <img alt="docs" src="docs/images/docs.gif"></h2>
 <p>The documents are maintained as Myst markdown files to be compatible
 with the fortran-lang.org site.</p>
 <p>Using pandoc(1) they are then converted to flat-text files which are</p>
@@ -217,10 +217,10 @@ with the fortran-lang.org site.</p>
 <p><a href="https://urbanjost.github.io/M_intrinsics">documentation shortcuts</a></p>
 </li>
 <li>
-<p>the example programs are extracted into the example/ directory.</p>
+<p>the example programs are extracted into the <a href="example/">example/</a> directory.</p>
 </li>
 </ul>
-<h2 id="basic-vim-usage">BASIC VIM USAGE</h2>
+<h2 id="basic-vim-usage">Basic VIM Usage</h2>
 <p>The vim(1) editor will call up a man(1) page for a word
 if the letter &ldquo;K&rdquo; is pressed over the word and the manpage directory
 is in the searchpath (among other ways, append the man/ pathname to
@@ -232,14 +232,14 @@ an example, create a little Fortran file called &ldquo;test.f90&rdquo; and try:<
 <div class="codehilite"><pre><span></span><code>   vim -c <span class="s1">&#39;set keywordprg=env\ MANPATH=$HOME/man\ man\ -s\ 3fortran\ -a&#39;</span> test.f90
 </code></pre></div>
 
-<h2 id="contributing">CONTRIBUTING</h2>
+<h2 id="contributing">Contributing</h2>
 <p><em>Collaborators are welcome</em>. This is a public github repository. Anyone
 can contribute, and is encouraged to do so. First, create a fork of this
 site from github. obtain a copy of the repository:</p>
 <div class="codehilite"><pre><span></span><code>    git clone https://github.com/YOUR_SITE/M_intrinsics.git
 </code></pre></div>
 
-<h3 id="minimal-changes">MINIMAL CHANGES</h3>
+<h3 id="minimal-changes">Minimal Changes</h3>
 <p>At a minimum, you can cd(1) into the md/ directory and change the files
 there. Then push the git repository back to your fork and make a pull
 request. </p>
@@ -250,7 +250,7 @@ the distribution files and HTML documents.</p>
 <p>The repository is set up as public, so I believe anyone with a github ID
 can change these files but it is unclear to me exactly how this should
 work, or whether a branch is required. Looking for more information &hellip;</p>
-<h3 id="using-the-make-file">USING THE MAKE FILE</h3>
+<h3 id="using-the-make-file">Using the Make File</h3>
 <p>You have to have a Fortran compiler, fpm(1) and pandoc(1) installed to
 use the method used here to convert the markdown files to man-pages,
 a Fortran utility program, and HTML. For reference</p>
@@ -264,7 +264,7 @@ make ship
 
 <p>and check out the HTML page generated in docs/, the manpages in man/man3/
 and the demo programs in example</p>
-<h2 id="references">REFERENCES</h2>
+<h2 id="references">References</h2>
 <ul>
 <li>
 <p>The <a href="https://j3-fortran.org/doc/year/18/18-007r1.pdf">Fortran 2018 Standard</a>
@@ -320,14 +320,14 @@ and the demo programs in example</p>
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-6"><p>M_intrinsics was developed by John S. Urban<br>&copy; 2022 
+        <div class="col-xs-6 col-md-6"><p>M_intrinsics was developed by John S. Urban<br>&copy; 2023 
 </p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2022-12-16 14:42            </p>
+ on 2023-01-21 11:41            </p>
         </div>
       </div>
       <br>

@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-    result = bessel_jn(n, x) 
+    result = bessel_jn(n, x)
 ```
 ```fortran
      elemental real(kind=KIND) function bessel_jn(n,x)
@@ -54,11 +54,11 @@
   : a non-negative scalar _integer_.
 
 - **x**
-  : Shall be a scalar for **bessel\_jn(n,x)** or an array 
+  : Shall be a scalar for **bessel\_jn(n,x)** or an array
   For **bessel_jn(n1, n2, x)**.
 
 ### **Result**
-      
+
   The result value of BESSEL_JN (N, X) is a processor-dependent
   approximation to the Bessel function of the first kind and order N
   of X.

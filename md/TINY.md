@@ -23,9 +23,9 @@
   **tiny**(3) returns the smallest positive (non zero) number of the
   type and kind of **x**.
 
-  For real **x** 
+  For real **x**
 ```fortran
-   result = 2.0**(minexponent(x)-1) 
+   result = 2.0**(minexponent(x)-1)
 ```
 ### **Options**
 

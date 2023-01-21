@@ -80,7 +80,7 @@ implicit none
    write(*,*)'size of logical       ',storage_size(.true.)
    write(*,*)'size of complex       ',storage_size((0.0,0.0))
 
-   ! note the size of an element of the array, not the storage size of 
+   ! note the size of an element of the array, not the storage size of
    ! the entire array is returned for array arguments
    write(*,*)'size of integer array ',storage_size([0,1,2,3,4,5,6,7,8,9])
 

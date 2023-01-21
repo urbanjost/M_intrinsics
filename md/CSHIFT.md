@@ -17,7 +17,7 @@
 ```
 ### **Characteristics**
 
- - **array** may be any type and rank 
+ - **array** may be any type and rank
  - **shift** an _integer_ scalar if **array** has rank one.
    Otherwise, it shall be scalar or of rank n-1 and of shape [d1, d2,
    ..., dDIM-1, dDIM+1, ..., dn] where [d1, d2, ..., dn] is the shape
@@ -27,7 +27,7 @@
    If **dim** is absent, it is as if it were present with the value 1.
  - the result will automatically be of the same type, kind and shape as **array**.
 
- NOTE: 
+ NOTE:
  :a kind designated as ** may be any supported kind for the type
 
 ### **Description**
@@ -109,7 +109,7 @@ Results:
  >   2  5  8 11
  >   3  6  9 12
  >  matrix shifted along rows, each by its own amount
- >  
+ >
  >   4  7 10  1
  >   2  5  8 11
  >  12  3  6  9

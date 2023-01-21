@@ -35,17 +35,17 @@
 ### **Result**
 
   Case (i)
-  : For an integer argument, the result has the value 
+  : For an integer argument, the result has the value
 ```fortran
     int (log10 (huge(x)))
 ```
   Case (ii)
-  : For a real argument, the result has the value 
+  : For a real argument, the result has the value
 ```fortran
      int(min (log10 (huge(x)), -log10(tiny(x) )))
   ```
   Case (iii)
-  : For a complex argument, the result has the value 
+  : For a complex argument, the result has the value
 ```fortran
     range(real(x))
 ```

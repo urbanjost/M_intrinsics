@@ -88,24 +88,24 @@ end program demo_anint
 ```
 Results:
 ```text
- >  ANINT (2.783) has the value 3.0 =>   3.000000    
- >  ANINT (-2.783) has the value -3.0 =>  -3.000000    
+ >  ANINT (2.783) has the value 3.0 =>   3.000000
+ >  ANINT (-2.783) has the value -3.0 =>  -3.000000
  >  by default the kind of the output is the kind of the input
  >   1.2345679E+09
- >    1234567890.00000     
+ >    1234567890.00000
  >  sometimes specifying the result kind is useful when passing
  >  results as an argument, for example.
  >  do you know why the results are different?
- >    1234567936.00000     
- >    1234567890.00000     
+ >    1234567936.00000
+ >    1234567890.00000
  >  numbers on a cusp are always the most troublesome
- >   -3.000000      -3.000000      -2.000000      -2.000000      -2.000000    
+ >   -3.000000      -3.000000      -2.000000      -2.000000      -2.000000
  >   -1.000000      -1.000000      0.0000000E+00
  >  negative zero is processor dependent
- >   0.0000000E+00  0.0000000E+00   1.000000       1.000000       2.000000    
- >    2.000000       2.000000       3.000000       3.000000    
- >   0.0000000E+00  0.0000000E+00  -1.000000      -1.000000      -2.000000    
- >   -2.000000      -2.000000      -3.000000      -3.000000    
+ >   0.0000000E+00  0.0000000E+00   1.000000       1.000000       2.000000
+ >    2.000000       2.000000       3.000000       3.000000
+ >   0.0000000E+00  0.0000000E+00  -1.000000      -1.000000      -2.000000
+ >   -2.000000      -2.000000      -3.000000      -3.000000
 ```
 ### **Standard**
 

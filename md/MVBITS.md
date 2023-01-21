@@ -19,9 +19,9 @@
 ```
 ### **Characteristics**
 
- - **from** is an _integer_ 
- - **frompos** is an integer 
- - **len** is an integer 
+ - **from** is an _integer_
+ - **frompos** is an integer
+ - **len** is an integer
  - **to** is an integer of the same kind as **from**.
  - **topos** is an integer
 

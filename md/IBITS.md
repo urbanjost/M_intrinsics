@@ -19,7 +19,7 @@
 
   - a kind designated as ** may be any supported _integer_ kind
   - **i** may be any supported _integer_ kind as well
-  - the return value will be the same kind as **i** 
+  - the return value will be the same kind as **i**
 
 ### **Description**
 
@@ -36,11 +36,11 @@ the positions increment to the left.
 
  - **i**
    : The value to extract bits from
- 
+
  - **pos**
    : The position of the bit to start copying at. **pos** is
    non-negative.
- 
+
  - **len**
    : the number of bits to copy from **i**. It must be non-negative.
 
@@ -48,7 +48,7 @@ the positions increment to the left.
 
 ### **Result**
 
-The return value is composed of the selected bits right-justified, 
+The return value is composed of the selected bits right-justified,
 left-padded with zeros.
 
 ### **Examples**
@@ -67,17 +67,17 @@ integer(kind=int16) :: i,j
    write(*,'(b16.16,1x,i0)') ibits(i,3,3), ibits(i,3,3)
 
   ! we can illustrate this as
-   !        #-- position 15  
+   !        #-- position 15
    !        |              #-- position 0
    !        |   <-- +len   |
    !        V              V
    !        5432109876543210
    i =int(b'1111111111111111',kind=int16)
-   !          ^^^^ 
+   !          ^^^^
    j=ibits(i,10,4) ! start at 10th from left and proceed
                    ! left for a total of 4 characters
    write(*,'(a,b16.16)')'j=',j
-  ! lets do something less ambiguous 
+  ! lets do something less ambiguous
    i =int(b'0010011000000000',kind=int16)
    j=ibits(i,9,5)
    write(*,'(a,b16.16)')'j=',j

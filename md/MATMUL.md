@@ -32,7 +32,7 @@ multiplication
  - If one argument is _logical_, both must be _logical_. For logicals
    the resulting type is as if the _.and._ operator has been used on
    elements from the arrays.
- - The shape of the result depends on the shapes of the arguments 
+ - The shape of the result depends on the shapes of the arguments
    as described below.
 
 ### **Description**

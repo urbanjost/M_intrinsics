@@ -25,13 +25,13 @@
 
   The parity is expressed as
 
-  + **0** (zero) if **i** has an even number of bits set to **1**. 
+  + **0** (zero) if **i** has an even number of bits set to **1**.
   + **1** (one) if the number of bits set to one **1** is odd,
 
 ### **Options**
 
 - **i**
-  : The value to query for its bit parity 
+  : The value to query for its bit parity
 
 ### **Result**
 

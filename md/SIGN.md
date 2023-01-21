@@ -32,10 +32,10 @@
 ### **Options**
 
   - **a**
-    : The value whose magnitude will be returned. 
+    : The value whose magnitude will be returned.
 
   - **b**
-    : The value whose sign will be returned. 
+    : The value whose sign will be returned.
 
 ### **Result**
 
@@ -80,7 +80,7 @@ Results:
              12
             -12
     this processor does not distinguish +0 from -0
-    elemental   12.00000       12.00000      -12.00000    
+    elemental   12.00000       12.00000      -12.00000
 ```
 ### **Standard**
 

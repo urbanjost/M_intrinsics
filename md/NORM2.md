@@ -31,7 +31,7 @@
   : the array of input values for the L_2 norm computations
 
 - **dim**
-  : a value in the range from **1** to **rank(array)**. 
+  : a value in the range from **1** to **rank(array)**.
 
 ### **Result**
 
@@ -47,14 +47,14 @@
                     L norm of X, which is the square root of the sum of
                     the squares of the elements of X. If X has size zero,
                     the result has the value zero.
-  
+
       Case (ii):    The result of NORM2 (X, DIM=DIM) has a value equal
                     to that of NORM2 (X) if X has rank one. Otherwise,
                     the resulting array is reduced in rank with dimension
                     **dim** removed, and each remaining elment is the
                     result of NORM2(X) for the values along dimension
                     **dim**.
-  
+
   It is recommended that the processor compute the result without undue
   overflow or underflow.
 
@@ -96,20 +96,20 @@ Results:
  >  x=
  >       1.  2.  3.
  >       4.  5.  6.
- >  
- >  norm2(x)=   9.539392    
+ >
+ >  norm2(x)=   9.539392
  >  which is equivalent to
- >  sqrt(sum(x**2))=   9.539392    
- >  
+ >  sqrt(sum(x**2))=   9.539392
+ >
  >  for reference the array squared is
  >  x**2=
  >       1.  4.  9.
  >      16. 25. 36.
- >  
- >  norm2(x,dim=1)=   4.123106       5.385165       6.708204    
- >  norm2(x,dim=2)=   3.741657       8.774964    
- >  (sqrt(sum(x(:,i)**2)),i=1,3)=   4.123106       5.385165       6.708204    
- >  (sqrt(sum(x(i,:)**2)),i=1,2)=   3.741657       8.774964    
+ >
+ >  norm2(x,dim=1)=   4.123106       5.385165       6.708204
+ >  norm2(x,dim=2)=   3.741657       8.774964
+ >  (sqrt(sum(x(:,i)**2)),i=1,3)=   4.123106       5.385165       6.708204
+ >  (sqrt(sum(x(i,:)**2)),i=1,2)=   3.741657       8.774964
 ```
 ### **Standard**
 

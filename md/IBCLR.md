@@ -17,8 +17,8 @@
 ### **Characteristics**
 
   - **i** shall be type _integer_.
-  - **pos** shall be type _integer_. 
-  - The return value is of the same kind as **i**. 
+  - **pos** shall be type _integer_.
+  - The return value is of the same kind as **i**.
 
   - a kind designated as ** may be any supported kind for the type
 
@@ -34,7 +34,7 @@
 
  - **pos**
    : The position of the bit to change in the input value. A value
-   of zero refers to the right-most bit.  The value of **pos** must be
+   of zero refers to the right-most bit. The value of **pos** must be
    nonnegative and less than **(bit_size(i)**).
 
 ### **Result**

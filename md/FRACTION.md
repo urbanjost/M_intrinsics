@@ -53,7 +53,7 @@ end program demo_fraction
 ```
 Results:
 ```text
-     0.5700439      0.5700439    
+     0.5700439      0.5700439
 ```
 ### **Standard**
 

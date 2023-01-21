@@ -49,7 +49,7 @@ end program demo_log_gamma
 Results:
 ```text
  >    1.000000      0.0000000E+00
- >    1.000000      0.6931472    
+ >    1.000000      0.6931472
 ```
 ### **Standard**
 
