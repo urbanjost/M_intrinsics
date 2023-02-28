@@ -90,56 +90,19 @@ author_pic:
 twitter:
 website:
 -->
-<h2 id="note">Note</h2>
-<p><a href="https://fortran-lang.org">https://fortran-lang.org/en/learn/intrinsics</a>
-now includes these documents. They may be changed using the instructions
-found in the github <a href="https://github.com/fortran-lang/webpage">webpage</a> repository.</p>
-<p>Keeping these original documents synced with those may be complicated by
-the fact that graphics, Unicode  and math expressions may be included
-in the descriptions in the future, so further development there might
-create documentation difficult to maintain as man-pages that display
-well with man(1) (as the current translator does not handle the *roff
-syntax for tables, graphics, and formulas); and those features do not
-typically display well if at all with the man(1) command.</p>
-<p>This page allows you to generate the CLI (Command Line Interface)
-command fpm-man (which is often renamed to fman(1)) that allows the
-fpm command to display the documents with &ldquo;fpm man TOPIC&rdquo; and provides
-an archive file with the intrinsic manpages on *nix machines (ie. on
-machines with the man(1) command) so it will continue to be maintained,
-but the differences between these and the on-line fortran-lang.org pages
-may become more extensive as time goes on.</p>
-<h2 id="todo">Todo</h2>
-<p>Additional descriptions of procedures from the standard modules</p>
-<p>Descriptions of most statements (READ, WRITE, EXIT, &hellip;) in addition to
-the intrinsics.</p>
-<!--
-Converting from the primary source in txt/ in txt2man(1) format and
-generating the markdown to the Myst markdown in md/ being used to
-generate the txt/ directory with pandoc made sense as the primary
-target became fortran-lang.org documents instead of man-pages but the
-pandoc(1) conversion to /txt and then manpages leaves the plain text
-without proper indentation. Other conversion paths like going straight
-to manpages and generating text from them for the CLI interface are
-being explored to provide better formatting.
--->
-
-<p>Add</p>
-<ul>
-<li>RANDOM_INIT</li>
-<li>COSHAPE</li>
-<li>FAILED_IMAGES</li>
-<li>GET_TEAM</li>
-<li>IMAGE_STATUS</li>
-<li>LCOBOUND</li>
-<li>STOPPED_IMAGES</li>
-<li>TEAM_NUMBER</li>
-<li>UCOBOUND</li>
-</ul>
+<p>The short version is to take the standalone/fman.f90 file, compile it
+and you have a CLI (Command Line Interface) to descriptions of the
+Fortran intrinsics; with instructions available via &ldquo;fman &ndash;help&rdquo;.</p>
+<p>The descriptions can be previewed as
+<a href="https://urbanjost.github.io/M_intrinsics/index3.html">HTML</a></p>
+<p>If you want man-pages, HTML, or markdown descriptions; a Fortran module
+you can call with your own programs to display the descriptions, or to
+integrate the descriptions into fpm(1) as a plugin, read on.</p>
 <h2 id="name">Name</h2>
 <p># M_intrinsics(7f) - [FORTRAN] intrinsic man-pages</p>
 <h2 id="description">Description</h2>
-<p>Unlike many parts of a language, intrinsics can naturally be described
-in discrete units using man-page-like descriptions.</p>
+<p>Unlike many parts of the Fortran language, intrinsics can naturally be
+described in discrete units using man-page-like descriptions.</p>
 <p>This is a project to </p>
 <ul>
 <li>provide standard Fortran intrinsic markdown descriptions for the fortran-lang.org site </li>
@@ -176,8 +139,8 @@ should be able to use the man-pages. For example:</p>
     <span class="nb">cd</span> ..
         mandb -c .
         <span class="nb">export</span> <span class="nv">MANPATH</span><span class="o">=</span><span class="nv">$HOME</span>/man:<span class="nv">$MANPATH</span>
-    <span class="nb">export</span> <span class="nv">MANWIDTH</span><span class="o">=</span><span class="m">80</span> <span class="c1"># optional, displays manpages in columns 1 to 80</span>
-        man -s 3fortran -k .  <span class="c1"># list topic line for all Fortran man-pages</span>
+    <span class="nb">export</span> <span class="nv">MANWIDTH</span><span class="o">=</span><span class="m">80</span>   <span class="c1"># optional, displays manpages in columns 1 to 80</span>
+        man -s 3fortran -k . <span class="c1"># list topic line for all Fortran man-pages</span>
 </code></pre></div>
 
 <p>Typical installation on a Linux platform as an administrator ( but it varies) :</p>
@@ -225,7 +188,7 @@ with the fortran-lang.org site.</p>
 if the letter &ldquo;K&rdquo; is pressed over the word and the manpage directory
 is in the searchpath (among other ways, append the man/ pathname to
 the environment variable MANPATH -see man(1) for more information).</p>
-<p>Because their are name collisions with the Fortran procedures and
+<p>Because there are name collisions with the Fortran procedures and
 other languages you may want to customize your .vimrc file to use
 a custom script or command when editing Fortran files. Just as 
 an example, create a little Fortran file called &ldquo;test.f90&rdquo; and try:</p>
@@ -285,6 +248,52 @@ and the demo programs in example</p>
 <li><a href="https://pandoc.org/">pandoc</a></li>
 <li><a href="https://github.com/mvertes/txt2man">txt2man</a></li>
 </ul>
+<h2 id="footnotes">Footnotes</h2>
+<p><a href="https://fortran-lang.org">https://fortran-lang.org/en/learn/intrinsics</a>
+now includes an earlier version of these documents. They
+may be changed using the instructions found in the github
+<a href="https://github.com/fortran-lang/webpage">webpage</a> repository.</p>
+<p>Keeping these original documents synced with those may be complicated by
+the fact that graphics, Unicode  and math expressions may be included
+in the descriptions in the future, so further development there might
+create documentation difficult to maintain as man-pages that display
+well with man(1) (as the current translator does not handle the *roff
+syntax for tables, graphics, and formulas); and those features do not
+typically display well if at all with the man(1) command.</p>
+<p>This page allows you to generate the CLI (Command Line Interface)
+command fpm-man (which is often renamed to fman(1)) that allows the
+fpm command to display the documents with &ldquo;fpm man TOPIC&rdquo; and provides
+an archive file with the intrinsic manpages on *nix machines (ie. on
+machines with the man(1) command) so it will continue to be maintained,
+but the differences between these and the on-line fortran-lang.org pages
+may become more extensive as time goes on.</p>
+<h2 id="todo">Todo</h2>
+<p>Additional descriptions of procedures from the standard modules</p>
+<p>Descriptions of most statements (READ, WRITE, EXIT, &hellip;) in addition to
+the intrinsics.</p>
+<!--
+Converting from the primary source in txt/ in txt2man(1) format and
+generating the markdown to the Myst markdown in md/ being used to
+generate the txt/ directory with pandoc made sense as the primary
+target became fortran-lang.org documents instead of man-pages but the
+pandoc(1) conversion to /txt and then manpages leaves the plain text
+without proper indentation. Other conversion paths like going straight
+to manpages and generating text from them for the CLI interface are
+being explored to provide better formatting.
+-->
+
+<p>Add</p>
+<ul>
+<li>RANDOM_INIT</li>
+<li>COSHAPE</li>
+<li>FAILED_IMAGES</li>
+<li>GET_TEAM</li>
+<li>IMAGE_STATUS</li>
+<li>LCOBOUND</li>
+<li>STOPPED_IMAGES</li>
+<li>TEAM_NUMBER</li>
+<li>UCOBOUND</li>
+</ul>
 <hr>
         </div>
         <div class="col-md-4">
@@ -327,7 +336,7 @@ and the demo programs in example</p>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2023-01-21 11:41            </p>
+ on 2023-02-27 21:48            </p>
         </div>
       </div>
       <br>

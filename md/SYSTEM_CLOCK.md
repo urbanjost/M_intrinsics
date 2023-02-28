@@ -11,16 +11,15 @@
 ```fortran
      subroutine system_clock(count, count_rate, count_max)
 
-      integer,intent(out),optional  :: count
-      type(TYPE(kind=KIND),intent(out),optional  :: count_rate
-      integer,intent(out),optional  :: count_max
+      integer(kind=**),intent(out),optional   :: count
+      type(TYPE(kind=**),intent(out),optional :: count_rate
+      integer(kind=**),intent(out),optional   :: count_max
 ```
 ### **Characteristics**
 
  - **count** is an _integer_ scalar
- - **count_rate** an _integer_ or _real_ scalar
- - **count_max** an _integer_ scalar
-
+ - **count_rate** is an _integer_ or _real_ scalar
+ - **count_max** is an _integer_ scalar
 
 ### **Description**
 
@@ -37,20 +36,24 @@
   **count_rate** and **count_max** are assumed constant (even though
   CPU rates can vary on a single platform).
 
-  The accuracy of the measurements may depend on the kind of the arguments!
-
   Whether an image has no clock, has a single clock of its own, or shares
   a clock with another image, is processor dependent.
 
   If there is no clock, or querying the clock fails, **count** is set to
   **-huge(count)**, and **count_rate** and **count_max** are set to zero.
 
+  The accuracy of the measurements may depend on the kind of the
+  arguments!
+
+  Timing-related procedures are obviously processor and system-dependent.
+  More specific information may generally be found in compiler-specific
+  documentation.
+
 ### **Options**
 
 - **count**
-
-  If there is no clock, **count** is returned as the negative value
-  **-huge(count)**.
+  If there is no clock, the returned value for **count** is the negative
+  value **-huge(count)**.
 
   Otherwise, the **clock** value is incremented by one for each clock
   count until the value **count_max** is reached and is then reset to
@@ -65,8 +68,8 @@
   interval.
 
 - **count_max**
-  : is assigned the maximum
-  value that **COUNT** can have, or zero if there is no clock.
+  : is assigned the maximum value that **COUNT** can have, or zero if
+  there is no clock.
 
 ### **Examples**
 
@@ -86,58 +89,64 @@
 Sample program:
 ```fortran
 program demo_system_clock
-use, intrinsic :: iso_fortran_env, only : wp=>real64,int32,int64
+use, intrinsic :: iso_fortran_env, only: wp => real64, int32, int64
 implicit none
-character(len=*),parameter :: g='(1x,*(g0,1x))'
+character(len=*), parameter :: g = '(1x,*(g0,1x))'
+
 integer(kind=int64) :: count64, count_rate64, count_max64
 integer(kind=int64) :: start64, finish64
+
 integer(kind=int32) :: count32, count_rate32, count_max32
 integer(kind=int32) :: start32, finish32
+
 real(kind=wp)       :: time_read
 real(kind=wp)       :: sum
 integer             :: i
 
-  print g,'accuracy may vary with argument type!'
-  call system_clock(count_rate=count_rate64)
-  print g,'COUNT RATE FOR INT64:',count_rate64
-  call system_clock(count_rate=count_rate32)
-  print g,'COUNT RATE FOR INT32:',count_rate32
+   print g, 'accuracy may vary with argument type!'
 
-  print g,'query all arguments'
-  call system_clock(count64, count_rate64, count_max64)
-  print g, 'COUNT_MAX=',count_max64
-  print g, 'COUNT_RATE=',count_rate64
-  print g, 'CURRENT COUNT=',count64
+   print g, 'query all arguments'
 
-  print g,'time some computation'
-  call system_clock(start64)
+   call system_clock(count64, count_rate64, count_max64)
+   print g, 'COUNT_MAX(64bit)=', count_max64
+   print g, 'COUNT_RATE(64bit)=', count_rate64
+   print g, 'CURRENT COUNT(64bit)=', count64
 
-  ! some code to time
-  sum=0.0_wp
-  do i=-huge(0)-1, huge(0)-1, 10
-     sum=sum+sqrt(real(i))
-  enddo
-  print g,'SUM=',sum
+   call system_clock(count32, count_rate32, count_max32)
+   print g, 'COUNT_MAX(32bit)=', count_max32
+   print g, 'COUNT_RATE(32bit)=', count_rate32
+   print g, 'CURRENT COUNT(32bit)=', count32
 
-  call system_clock(finish64)
+   print g, 'time some computation'
+   call system_clock(start64)
 
-  time_read=(finish64-start64)/real(count_rate64,wp)
-  write(*,'(a30,1x,f7.4,1x,a)') 'time : ', time_read, ' seconds'
+   ! some code to time
+   sum = 0.0_wp
+   do i = -0, huge(0) - 1
+      sum = sum + sqrt(real(i))
+   end do
+   print g, 'SUM=', sum
+
+   call system_clock(finish64)
+
+   time_read = (finish64 - start64)/real(count_rate64, wp)
+   write (*, '(1x,a,1x,g0,1x,a)') 'time : ', time_read, ' seconds'
 
 end program demo_system_clock
 ```
 Results:
 ```text
- accuracy may vary with argument type!
- COUNT RATE FOR INT64: 1000000000
- COUNT RATE FOR INT32: 1000
- query all arguments
- COUNT_MAX= 9223372036854775807
- COUNT_RATE= 1000000000
- CURRENT COUNT= 518240530647469
- time some computation
- SUM= NaN
-                       time :   1.6686  seconds
+ >  accuracy may vary with argument type!
+ >  query all arguments
+ >  COUNT_MAX(64bit)= 9223372036854775807
+ >  COUNT_RATE(64bit)= 1000000000
+ >  CURRENT COUNT(64bit)= 1105422387865806
+ >  COUNT_MAX(32bit)= 2147483647
+ >  COUNT_RATE(32bit)= 1000
+ >  CURRENT COUNT(32bit)= 1105422387
+ >  time some computation
+ >  SUM= 66344288183024.266
+ >  time :  6.1341038460000004  seconds
 ```
 ### **Standard**
 

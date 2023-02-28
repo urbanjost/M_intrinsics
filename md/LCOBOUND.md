@@ -1,12 +1,12 @@
-## co_ubound
+## lcobound
 
 ### **Name**
 
-**co_ubound**(3) - \[COLLECTIVE\] Upper codimension bounds of an array
+**lcobound**(3) - \[COLLECTIVE\] Lower codimension bounds of an array
 
 ### **Synopsis**
 ```fortran
-    result = co_ubound(coarray [,dim] [,kind] )
+     result = lcobound( coarray [,dim] [,kind] )
 ```
 ```fortran
 ```
@@ -14,8 +14,8 @@
 
 ### **Description**
 
-**co_ubound**(3) returns the upper cobounds of a coarray, or a single
-upper cobound along the **dim** codimension.
+**lcobound**(3) returns the lower bounds of a coarray, or a single
+lower cobound along the **dim** codimension.
 
 ### **Options**
 
@@ -43,8 +43,7 @@ Fortran 2008
 
 ### **See Also**
 
-[**co_lbound**(3)](#co_lbound),
-[**lbound**(3)](#lbound),
-[**ubound**(3)](#ubound)
+[**ucobound**(3)](#ucobound),
+[**lbound**(3)](#lbound)
 
  _fortran-lang intrinsic descriptions_

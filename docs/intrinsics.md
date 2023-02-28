@@ -111,7 +111,7 @@ character(len=*),parameter :: &
   ! distance from the origin <0,0>
     write(*, g) ' distance of (', z, ') from zero is', abs( z )
     write(*, g) ' so beware of overflow with complex values'
-    write(*, g) abs(cmplx( huge(0.0), huge(0.0) ))
+    !write(*, g) abs(cmplx( huge(0.0), huge(0.0) ))
     write(*, g) ' because the biggest default real is',huge(0.0)
 
 end program demo_abs
@@ -4980,56 +4980,6 @@ Fortran xx
 
  _fortran-lang intrinsic descriptions_
 
-## co_lbound
-
-### **Name**
-
-**co_lbound**(3) - \[COLLECTIVE\] Lower codimension bounds of an array
-
-### **Synopsis**
-```fortran
-     result = co_lbound( coarray [,dim] [,kind] )
-```
-```fortran
-```
-### **Characteristics**
-
-### **Description**
-
-**co_lbound**(3) returns the lower bounds of a coarray, or a single
-lower cobound along the **dim** codimension.
-
-### **Options**
-
-- **array**
-  : Shall be an coarray, of any type.
-
-- **dim**
-  : (Optional) Shall be a scalar _integer_.
-
-- **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
-  parameter of the result.
-
-### **Result**
-
-The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
-the return value is of default integer kind. If **dim** is absent, the
-result is an array of the lower cobounds of **coarray**. If **dim** is present,
-the result is a scalar corresponding to the lower cobound of the array
-along that codimension.
-
-### **Standard**
-
-Fortran 2008
-
-### **See Also**
-
-[**co_ubound**(3)](#co_ubound),
-[**lbound**(3)](#lbound)
-
- _fortran-lang intrinsic descriptions_
-
 ## co_max
 
 ### **Name**
@@ -5892,57 +5842,6 @@ TS 18508
 [**co_min**(3)](#co_min),
 [**co_reduce**(3)](#co_reduce),
 [**co_broadcast**(3)](#co_broadcast)
-
- _fortran-lang intrinsic descriptions_
-
-## co_ubound
-
-### **Name**
-
-**co_ubound**(3) - \[COLLECTIVE\] Upper codimension bounds of an array
-
-### **Synopsis**
-```fortran
-    result = co_ubound(coarray [,dim] [,kind] )
-```
-```fortran
-```
-### **Characteristics**
-
-### **Description**
-
-**co_ubound**(3) returns the upper cobounds of a coarray, or a single
-upper cobound along the **dim** codimension.
-
-### **Options**
-
-- **array**
-  : Shall be an coarray, of any type.
-
-- **dim**
-  : (Optional) Shall be a scalar _integer_.
-
-- **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
-  parameter of the result.
-
-### **Result**
-
-The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
-the return value is of default integer kind. If **dim** is absent, the
-result is an array of the lower cobounds of **coarray**. If **dim** is present,
-the result is a scalar corresponding to the lower cobound of the array
-along that codimension.
-
-### **Standard**
-
-Fortran 2008
-
-### **See Also**
-
-[**co_lbound**(3)](#co_lbound),
-[**lbound**(3)](#lbound),
-[**ubound**(3)](#ubound)
 
  _fortran-lang intrinsic descriptions_
 
@@ -9540,6 +9439,13 @@ real :: v, w
    print *, huge(0), huge(0.0), huge(0.0d0)
    print *, tiny(0.0), tiny(0.0d0)
 
+   sum=0.0d0
+   ! note subtracting one because counter is the end value+1 on exit
+   do i=0,huge(0)-1
+      sum=sum+i
+   enddo
+   write(*,*)'sum=',sum
+
    ! advanced
    biggest=huge(0)
    ! be careful of overflow when using integers in computation
@@ -9548,11 +9454,13 @@ real :: v, w
       w=6**i   ! Danger, Danger
       v=6.0**i
       k=v      ! Danger, Danger
+
       if(v.gt.biggest)then
          write(*,f) i, j, k, v, v.eq.w, 'wrong j and k and w'
       else
          write(*,f) i, j, k, v, v.eq.w
       endif
+
    enddo
 end program demo_huge
 ```
@@ -11909,8 +11817,8 @@ Fortran 95 , with KIND argument - Fortran 2003
 - [**shape**(3)](#shape) -  Determine the shape of an array
 - [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
 
-[**co\_ubound**(3)](#co_ubound),
-[**co\_lbound**(3)](co_lbound)
+[**co\_ubound**(3)](#ucobound),
+[**co\_lbound**(3)](lcobound)
 
 #### State Inquiry:
 
@@ -11928,6 +11836,56 @@ Fortran 95 , with KIND argument - Fortran 2003
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
+## lcobound
+
+### **Name**
+
+**lcobound**(3) - \[COLLECTIVE\] Lower codimension bounds of an array
+
+### **Synopsis**
+```fortran
+     result = lcobound( coarray [,dim] [,kind] )
+```
+```fortran
+```
+### **Characteristics**
+
+### **Description**
+
+**lcobound**(3) returns the lower bounds of a coarray, or a single
+lower cobound along the **dim** codimension.
+
+### **Options**
+
+- **array**
+  : Shall be an coarray, of any type.
+
+- **dim**
+  : (Optional) Shall be a scalar _integer_.
+
+- **kind**
+  : (Optional) An _integer_ initialization expression indicating the kind
+  parameter of the result.
+
+### **Result**
+
+The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
+the return value is of default integer kind. If **dim** is absent, the
+result is an array of the lower cobounds of **coarray**. If **dim** is present,
+the result is a scalar corresponding to the lower cobound of the array
+along that codimension.
+
+### **Standard**
+
+Fortran 2008
+
+### **See Also**
+
+[**ucobound**(3)](#ucobound),
+[**lbound**(3)](#lbound)
+
+ _fortran-lang intrinsic descriptions_
 
 ## leadz
 
@@ -16023,7 +15981,7 @@ Fortran 95
 ### **Characteristics**
 
  - use of **team** and **team_number** is mutually exclusive
- - **team** is is a scalar of of type **TEAM_TYPE** from the intrinsic module ISO_FORTRAN_ENV.
+ - **team** is a scalar of type **TEAM_TYPE** from the intrinsic module ISO_FORTRAN_ENV.
  - **team_number** is an _integer_ scalar.
  - the result is a default _integer_ scalar.
 
@@ -17209,6 +17167,70 @@ Fortran 95
 [**tiny**(3)](#tiny)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
+## random_init
+
+### **Name**
+
+**random_init**(3) - \[MATHEMATICS:RANDOM\] Initializes the state of
+the pseudorandom number generator
+
+### **Synopsis**
+```fortran
+    call random_init(repeatable, image_distinct)
+
+     logical,intent(in) :: repeatable
+     logical,intent(in) :: image_distinct
+```
+### **Characteristics**
+
+- **harvest** and **image_distinct** are logical scalars
+
+### Description
+
+Initializes the state of the pseudorandom number generator used by
+**random_number**.
+
+### **Options**
+
+**repeatable**
+: If it is **.true.**, the seed is set to a processor-dependent
+value that is the same each time **random_init** is called from the
+same image. The term "same image" means a single instance of program
+execution. The sequence of random numbers is different for repeated
+execution of the program.
+
+If it is **.false.**, the seed is set to a processor-dependent value.
+
+**image_distinct**
+: If is `.true.`, the seed is set to a processor-dependent value that
+is distinct from the seed set by a call to **random_init**in another
+image. If it is **.false.**, the seed is set value that does depend
+which image called **random_init**.
+
+## **Standard**
+
+Fortran 2018
+
+## **Example**
+```fortran
+program demo_random_seed
+implicit none
+real x(3), y(3)
+   call random_init(.true., .true.)
+   call random_number(x)
+   call random_init(.true., .true.)
+   call random_number(y)
+   ! x and y should be the same sequence
+   if ( any(x /= y) ) stop "x(:) and y(:) are not all equal"
+end program demo_random_seed
+```
+## **See also**
+
+[random_number](#random_number),
+[random_seed](random_seed)
+
+ _fortran-lang intrinsic descriptions
 
 ## random_number
 
@@ -20876,15 +20898,15 @@ Fortran 95
 ```fortran
      subroutine system_clock(count, count_rate, count_max)
 
-      integer,intent(out),optional  :: count
-      type(TYPE(kind=KIND),intent(out),optional  :: count_rate
-      integer,intent(out),optional  :: count_max
+      integer(kind=**),intent(out),optional   :: count
+      type(TYPE(kind=**),intent(out),optional :: count_rate
+      integer(kind=**),intent(out),optional   :: count_max
 ```
 ### **Characteristics**
 
  - **count** is an _integer_ scalar
- - **count_rate** an _integer_ or _real_ scalar
- - **count_max** an _integer_ scalar
+ - **count_rate** is an _integer_ or _real_ scalar
+ - **count_max** is an _integer_ scalar
 
 ### **Description**
 
@@ -20901,20 +20923,24 @@ Fortran 95
   **count_rate** and **count_max** are assumed constant (even though
   CPU rates can vary on a single platform).
 
-  The accuracy of the measurements may depend on the kind of the arguments!
-
   Whether an image has no clock, has a single clock of its own, or shares
   a clock with another image, is processor dependent.
 
   If there is no clock, or querying the clock fails, **count** is set to
   **-huge(count)**, and **count_rate** and **count_max** are set to zero.
 
+  The accuracy of the measurements may depend on the kind of the
+  arguments!
+
+  Timing-related procedures are obviously processor and system-dependent.
+  More specific information may generally be found in compiler-specific
+  documentation.
+
 ### **Options**
 
 - **count**
-
-  If there is no clock, **count** is returned as the negative value
-  **-huge(count)**.
+  If there is no clock, the returned value for **count** is the negative
+  value **-huge(count)**.
 
   Otherwise, the **clock** value is incremented by one for each clock
   count until the value **count_max** is reached and is then reset to
@@ -20929,8 +20955,8 @@ Fortran 95
   interval.
 
 - **count_max**
-  : is assigned the maximum
-  value that **COUNT** can have, or zero if there is no clock.
+  : is assigned the maximum value that **COUNT** can have, or zero if
+  there is no clock.
 
 ### **Examples**
 
@@ -20950,58 +20976,64 @@ Fortran 95
 Sample program:
 ```fortran
 program demo_system_clock
-use, intrinsic :: iso_fortran_env, only : wp=>real64,int32,int64
+use, intrinsic :: iso_fortran_env, only: wp => real64, int32, int64
 implicit none
-character(len=*),parameter :: g='(1x,*(g0,1x))'
+character(len=*), parameter :: g = '(1x,*(g0,1x))'
+
 integer(kind=int64) :: count64, count_rate64, count_max64
 integer(kind=int64) :: start64, finish64
+
 integer(kind=int32) :: count32, count_rate32, count_max32
 integer(kind=int32) :: start32, finish32
+
 real(kind=wp)       :: time_read
 real(kind=wp)       :: sum
 integer             :: i
 
-  print g,'accuracy may vary with argument type!'
-  call system_clock(count_rate=count_rate64)
-  print g,'COUNT RATE FOR INT64:',count_rate64
-  call system_clock(count_rate=count_rate32)
-  print g,'COUNT RATE FOR INT32:',count_rate32
+   print g, 'accuracy may vary with argument type!'
 
-  print g,'query all arguments'
-  call system_clock(count64, count_rate64, count_max64)
-  print g, 'COUNT_MAX=',count_max64
-  print g, 'COUNT_RATE=',count_rate64
-  print g, 'CURRENT COUNT=',count64
+   print g, 'query all arguments'
 
-  print g,'time some computation'
-  call system_clock(start64)
+   call system_clock(count64, count_rate64, count_max64)
+   print g, 'COUNT_MAX(64bit)=', count_max64
+   print g, 'COUNT_RATE(64bit)=', count_rate64
+   print g, 'CURRENT COUNT(64bit)=', count64
 
-  ! some code to time
-  sum=0.0_wp
-  do i=-huge(0)-1, huge(0)-1, 10
-     sum=sum+sqrt(real(i))
-  enddo
-  print g,'SUM=',sum
+   call system_clock(count32, count_rate32, count_max32)
+   print g, 'COUNT_MAX(32bit)=', count_max32
+   print g, 'COUNT_RATE(32bit)=', count_rate32
+   print g, 'CURRENT COUNT(32bit)=', count32
 
-  call system_clock(finish64)
+   print g, 'time some computation'
+   call system_clock(start64)
 
-  time_read=(finish64-start64)/real(count_rate64,wp)
-  write(*,'(a30,1x,f7.4,1x,a)') 'time : ', time_read, ' seconds'
+   ! some code to time
+   sum = 0.0_wp
+   do i = -0, huge(0) - 1
+      sum = sum + sqrt(real(i))
+   end do
+   print g, 'SUM=', sum
+
+   call system_clock(finish64)
+
+   time_read = (finish64 - start64)/real(count_rate64, wp)
+   write (*, '(1x,a,1x,g0,1x,a)') 'time : ', time_read, ' seconds'
 
 end program demo_system_clock
 ```
 Results:
 ```text
- accuracy may vary with argument type!
- COUNT RATE FOR INT64: 1000000000
- COUNT RATE FOR INT32: 1000
- query all arguments
- COUNT_MAX= 9223372036854775807
- COUNT_RATE= 1000000000
- CURRENT COUNT= 518240530647469
- time some computation
- SUM= NaN
-                       time :   1.6686  seconds
+ >  accuracy may vary with argument type!
+ >  query all arguments
+ >  COUNT_MAX(64bit)= 9223372036854775807
+ >  COUNT_RATE(64bit)= 1000000000
+ >  CURRENT COUNT(64bit)= 1105422387865806
+ >  COUNT_MAX(32bit)= 2147483647
+ >  COUNT_RATE(32bit)= 1000
+ >  CURRENT COUNT(32bit)= 1105422387
+ >  time some computation
+ >  SUM= 66344288183024.266
+ >  time :  6.1341038460000004  seconds
 ```
 ### **Standard**
 
@@ -21920,8 +21952,8 @@ Fortran 95 , with KIND argument Fortran 2003
 - [**shape**(3)](#shape) -  Determine the shape of an array
 - [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
 
-[**co\_ubound**(3)](#co_ubound),
-[**co\_lbound**(3)](co_lbound)
+[**co\_ubound**(3)](#ucobound),
+[**co\_lbound**(3)](lcobound)
 
 #### State Inquiry:
 
@@ -21940,6 +21972,55 @@ Fortran 95 , with KIND argument Fortran 2003
 - [**lbound**(3)](#lbound),
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
+## ucobound
+
+### **Name**
+
+**ucobound**(3) - \[COLLECTIVE\] Upper codimension bounds of an array
+
+### **Synopsis**
+```fortran
+    result = ucobound(coarray [,dim] [,kind] )
+```
+```fortran
+```
+### **Characteristics**
+
+### **Description**
+
+**ucobound**(3) returns the upper cobounds of a coarray, or a single
+upper cobound along the **dim** codimension.
+
+### **Options**
+
+- **array**
+  : Shall be an coarray, of any type.
+
+- **dim**
+  : (Optional) Shall be a scalar _integer_.
+
+- **kind**
+  : (Optional) An _integer_ initialization expression indicating the kind
+  parameter of the result.
+
+### **Result**
+
+The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
+the return value is of default integer kind. If **dim** is absent, the
+result is an array of the lower cobounds of **coarray**. If **dim** is present,
+the result is a scalar corresponding to the lower cobound of the array
+along that codimension.
+
+### **Standard**
+
+Fortran 2008
+
+### **See Also**
+
+[**lcobound**(3)](#lcobound),
+[**lbound**(3)](#lbound),
+[**ubound**(3)](#ubound)
 
 ## unpack
 

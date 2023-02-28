@@ -107,7 +107,7 @@ if the letter "K" is pressed over the word and the manpage directory
 is in the searchpath (among other ways, append the man/ pathname to
 the environment variable MANPATH -see man(1) for more information).
 
-Because their are name collisions with the Fortran procedures and
+Because there are name collisions with the Fortran procedures and
 other languages you may want to customize your .vimrc file to use
 a custom script or command when editing Fortran files. Just as 
 an example, create a little Fortran file called "test.f90" and try:

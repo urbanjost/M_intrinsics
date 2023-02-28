@@ -145,8 +145,8 @@ Fortran 95 , with KIND argument - Fortran 2003
 - [**shape**(3)](#shape) -  Determine the shape of an array
 - [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
 
-[**co\_ubound**(3)](#co_ubound),
-[**co\_lbound**(3)](co_lbound)
+[**co\_ubound**(3)](#ucobound),
+[**co\_lbound**(3)](lcobound)
 
 #### State Inquiry:
 

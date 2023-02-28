@@ -17,7 +17,7 @@
 ### **Characteristics**
 
  - use of **team** and **team_number** is mutually exclusive
- - **team** is is a scalar of of type **TEAM_TYPE** from the intrinsic module ISO_FORTRAN_ENV.
+ - **team** is a scalar of type **TEAM_TYPE** from the intrinsic module ISO_FORTRAN_ENV.
  - **team_number** is an _integer_ scalar.
  - the result is a default _integer_ scalar.
 

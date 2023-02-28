@@ -153,8 +153,8 @@ Fortran 95 , with KIND argument Fortran 2003
 - [**shape**(3)](#shape) -  Determine the shape of an array
 - [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
 
-[**co\_ubound**(3)](#co_ubound),
-[**co\_lbound**(3)](co_lbound)
+[**co\_ubound**(3)](#ucobound),
+[**co\_lbound**(3)](lcobound)
 
 #### State Inquiry:
 
