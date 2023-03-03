@@ -16050,7 +16050,8 @@ Fortran 2008 . With DISTANCE or FAILED argument, TS 18508
 
 ### **Name**
 
-**out_of_range**(3) - \[TYPE:NUMERIC\] Whether a value cannot be converted safely.
+**out_of_range**(3) - \[TYPE:NUMERIC\] Whether a numeric value can be
+converted safely to another type
 
 ### **Synopsis**
 ```fortran
@@ -16076,25 +16077,33 @@ Fortran 2008 . With DISTANCE or FAILED argument, TS 18508
    safely to a _real_ or _integer_ variable the same type and kind
    as **mold**.
 
-   For example, if **int8** is the kind value for an 8-bit binary integer
-   type, **out_of_range(-128.5, 0_int8)** will have the value false and
-   **out_of_range(-128.5, 0_int8, .true.)** will have the value _.true._
-   because the value will be truncated when converted to an _integer_
-   and -128 is a representable value on a two's complement machine in
-   eight bits even though +128 is not.
+   For example, if **int8** is the __kind__ name for an 8-bit binary integer type,
+   then for
+```fortran
+    logical :: L1, L2
+    L1=out_of_range(-128.5, 0_int8)
+    L2=out_of_range(-128.5, 0_int8,.true.)
+    end
+```
+    L1 likely will have the value __.false.__ because the value will
+    be truncated to -128.0, which is a representable integer number on a two's
+    complement machine.
+
+    L2 will be __.true.__ because it will be rounded to -129.0, which is not
+    likely to be a representable eight-bit integer.
 
 ### **Options**
    - **x**
-     : a scalar to be tested for whether
-     it can be stored in a variable of the type and kind of **mold**
+     : a scalar to be tested for whether it can be stored in a variable
+     of the type and kind of **mold**
 
    - **mold**
-     and kind are queried to determine the characteristics of what
-     needs to be fit into.
+     : the type and kind of the variable (but not the value) is used to
+     identify the characteristics of the variable type to fit **x** into.
 
    - **round**
-     : flag whether to round the value of **xx** before validating it as
-     an integer value like **mold**.
+     : flag whether to round the value of **x** before validating it as
+     a value like **mold**.
 
      **round** can only be present if **x** is of type
      _real_ and **mold** is of type _integer_.
