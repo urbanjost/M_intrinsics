@@ -50,7 +50,7 @@
             write(*,'(" > [ ",i0," ]")')a
          rank (1); write(*,'(a)')' (a vector)'
             ! find how many characters to use for integers
-            write(row,'(i0)')ceiling(log10(real(maxval(abs(a)))))+2
+            write(row,'(i0)')ceiling(log10(max(1.0,real(maxval(abs(a))))))+2
             ! use this format to write a row
             row='(" > [",*(i'//trim(row)//':,","))'
             do i=1,size(a)
@@ -59,7 +59,7 @@
             enddo
          rank (2); write(*,'(a)')' (a matrix) '
             ! find how many characters to use for integers
-            write(row,'(i0)')ceiling(log10(real(maxval(abs(a)))))+2
+            write(row,'(i0)')ceiling(log10(max(1.0,real(maxval(abs(a))))))+2
             ! use this format to write a row
             row='(" > [",*(i'//trim(row)//':,","))'
             do i=1,size(a,dim=1)

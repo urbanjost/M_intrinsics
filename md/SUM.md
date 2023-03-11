@@ -119,7 +119,7 @@ integer                      :: i
    rank default; stop '*printi* unexpected rank'
    end select
    ! find how many characters to use for integers
-   write(row,'(i0)')ceiling(log10(real(maxval(abs(b)))))+2
+   write(row,'(i0)')ceiling(log10(max(1.0,real(maxval(abs(b))))))+2
    ! use this format to write a row
    row='(" > [",*(i'//trim(row)//':,","))'
    do i=1,size(b,dim=1)

@@ -21,7 +21,7 @@
          write(*,*)trim(title)  ! print title
          biggest='           '  ! make buffer to write integer into
          ! find how many characters to use for integers
-         write(biggest,'(i0)')ceiling(log10(real(maxval(abs(arr)))))+2
+         write(biggest,'(i0)')ceiling(log10(max(1.0,real(maxval(abs(arr))))))+2
          ! use this format to write a row
          biggest='(" > [",*(i'//trim(biggest)//':,","))'
          ! print one row of array at a time

@@ -186,106 +186,106 @@ containing the number of .true. elements along the removed dimension.
 Sample program:
 <P>
 <PRE>
-       program demo_count
-       implicit none
-       character(len=*),parameter :: ints=&#146;(*(i2,1x))&#146;
-       ! two arrays and a mask all with the same shape
-       integer, dimension(2,3) :: a, b
-       logical, dimension(2,3) :: mymask
-       integer :: i
-       integer :: c(2,3,4)
+    program demo_count
+    implicit none
+    character(len=*),parameter :: ints=&#146;(*(i2,1x))&#146;
+    ! two arrays and a mask all with the same shape
+    integer, dimension(2,3) :: a, b
+    logical, dimension(2,3) :: mymask
+    integer :: i
+    integer :: c(2,3,4)
 <P>
-       print *,&#146;the numeric arrays we will compare&#146;
-       a = reshape( [ 1, 2, 3, 4, 5, 6 ], [ 2, 3 ])
-       b = reshape( [ 0, 7, 3, 4, 5, 8 ], [ 2, 3 ])
-       c = reshape( [( i,i=1,24)], [ 2, 3 ,4])
-       print &#146;(3i3)&#146;, a(1,:)
-       print &#146;(3i3)&#146;, a(2,:)
-       print *
-       print &#146;(3i3)&#146;, b(1,:)
-       print &#146;(3i3)&#146;, b(2,:)
+    print *,&#146;the numeric arrays we will compare&#146;
+    a = reshape( [ 1, 2, 3, 4, 5, 6 ], [ 2, 3 ])
+    b = reshape( [ 0, 7, 3, 4, 5, 8 ], [ 2, 3 ])
+    c = reshape( [( i,i=1,24)], [ 2, 3 ,4])
+    print &#146;(3i3)&#146;, a(1,:)
+    print &#146;(3i3)&#146;, a(2,:)
+    print *
+    print &#146;(3i3)&#146;, b(1,:)
+    print &#146;(3i3)&#146;, b(2,:)
+    !
+    ! basic calls
+    print *, &#146;count a few basic things creating a mask from an expression&#146;
+    print *, &#146;count a&gt;b&#146;,count(a&gt;b)
+    print *, &#146;count b&lt;a&#146;,count(a&lt;b)
+    print *, &#146;count b==a&#146;,count(a==b)
+    print *, &#146;check sum = &#146;,count(a&gt;b) + &
+                          & count(a&lt;b) + &
+                          & count(a==b).eq.size(a)
+    !
+    ! The common usage is just getting a count, but if you want
+    ! to specify the DIM argument and get back reduced arrays
+    ! of counts this is easier to visualize if we look at a mask.
+    print *, &#146;make a mask identifying unequal elements &#46;&#46;&#46;&#146;
+    mymask = a.ne.b
+    print *, &#146;the mask generated from a.ne.b&#146;
+    print &#146;(3l3)&#146;, mymask(1,:)
+    print &#146;(3l3)&#146;, mymask(2,:)
+    !
+    print *,&#146;count total and along rows and columns &#46;&#46;&#46;&#146;
+    !
+    print &#146;(a)&#146;, &#146;number of elements not equal&#146;
+    print &#146;(a)&#146;, &#146;(ie. total true elements in the mask)&#146;
+    print &#146;(3i3)&#146;, count(mymask)
+    !
+    print &#146;(a)&#146;, &#146;count of elements not equal in each column&#146;
+    print &#146;(a)&#146;, &#146;(ie. total true elements in each column)&#146;
+    print &#146;(3i3)&#146;, count(mymask, dim=1)
+    !
+    print &#146;(a)&#146;, &#146;count of elements not equal in each row&#146;
+    print &#146;(a)&#146;, &#146;(ie. total true elements in each row)&#146;
+    print &#146;(3i3)&#146;, count(mymask, dim=2)
+    !
+    ! working with rank=3 &#46;&#46;&#46;
+    print *, &#146;lets try this with c(2,3,4)&#146;
+    print *,&#146;  taking the result of the modulo   &#146;
+    print *,&#146;   z=1      z=2      z=3      z=4   &#146;
+    print *,&#146;  1 3 0 || 2 4 1 || 3 0 2 || 4 1 3 |&#146;
+    print *,&#146;  2 4 1 || 3 0 2 || 4 1 3 || 0 2 4 |&#146;
+    print *,&#146;                                    &#146;
+    print *,&#146;  would result in the mask ..       &#146;
+    print *,&#146;  F F T || F F F || F T F || F F F |&#146;
+    print *,&#146;  F F F || F T F || F F F || T F F |&#146;
+    print *,&#146;                                    &#146;
+    print *,&#146; the total number of .true.values is&#146;
+    print ints, count(modulo(c,5).eq.0)
+    call printi(&#146;counting up along a row and removing rows&#146;,&
+    count(modulo(c,5).eq.0,dim=1))
+    call printi(&#146;counting up along a column and removing columns&#146;,&
+    count(modulo(c,5).eq.0,dim=2))
+    call printi(&#146;counting up along a depth and removing depths&#146;,&
+    count(modulo(c,5).eq.0,dim=3))
+    !
+    contains
+    !
+    ! CONVENIENCE ROUTINE FOR PRINTING SMALL INTEGER MATRICES
+    subroutine printi(title,arr)
+    implicit none
+    !
+    !@(#) print small 2d integer arrays in row-column format
+    !
+    character(len=*),parameter :: all=&#146;(*(g0,1x))&#146; ! a handy format
+    character(len=*),intent(in)  :: title
+    integer,intent(in)           :: arr(:,:)
+    integer                      :: i
+    character(len=:),allocatable :: biggest
        !
-       ! basic calls
-       print *, &#146;count a few basic things creating a mask from an expression&#146;
-       print *, &#146;count a&gt;b&#146;,count(a&gt;b)
-       print *, &#146;count b&lt;a&#146;,count(a&lt;b)
-       print *, &#146;count b==a&#146;,count(a==b)
-       print *, &#146;check sum = &#146;,count(a&gt;b) + &
-                             & count(a&lt;b) + &
-                             & count(a==b).eq.size(a)
+       print all
+       print all, trim(title),&#146;:(&#146;,shape(arr),&#146;)&#146;  ! print title
+       biggest=&#146;           &#146;  ! make buffer to write integer into
+       ! find how many characters to use for integers
+       write(biggest,&#146;(i0)&#146;)ceiling(log10(max(1.0,real(maxval(abs(arr))))))+2
+       ! use this format to write a row
+       biggest=&#146;(" &gt; [",*(i&#146;//trim(biggest)//&#146;:,","))&#146;
+       ! print one row of array at a time
+       do i=1,size(arr,dim=1)
+          write(*,fmt=biggest,advance=&#146;no&#146;)arr(i,:)
+          write(*,&#146;(" ]")&#146;)
+       enddo
        !
-       ! The common usage is just getting a count, but if you want
-       ! to specify the DIM argument and get back reduced arrays
-       ! of counts this is easier to visualize if we look at a mask.
-       print *, &#146;make a mask identifying unequal elements &#46;&#46;&#46;&#146;
-       mymask = a.ne.b
-       print *, &#146;the mask generated from a.ne.b&#146;
-       print &#146;(3l3)&#146;, mymask(1,:)
-       print &#146;(3l3)&#146;, mymask(2,:)
-       !
-       print *,&#146;count total and along rows and columns &#46;&#46;&#46;&#146;
-       !
-       print &#146;(a)&#146;, &#146;number of elements not equal&#146;
-       print &#146;(a)&#146;, &#146;(ie. total true elements in the mask)&#146;
-       print &#146;(3i3)&#146;, count(mymask)
-       !
-       print &#146;(a)&#146;, &#146;count of elements not equal in each column&#146;
-       print &#146;(a)&#146;, &#146;(ie. total true elements in each column)&#146;
-       print &#146;(3i3)&#146;, count(mymask, dim=1)
-       !
-       print &#146;(a)&#146;, &#146;count of elements not equal in each row&#146;
-       print &#146;(a)&#146;, &#146;(ie. total true elements in each row)&#146;
-       print &#146;(3i3)&#146;, count(mymask, dim=2)
-       !
-       ! working with rank=3 &#46;&#46;&#46;
-       print *, &#146;lets try this with c(2,3,4)&#146;
-       print *,&#146;  taking the result of the modulo   &#146;
-       print *,&#146;   z=1      z=2      z=3      z=4   &#146;
-       print *,&#146;  1 3 0 || 2 4 1 || 3 0 2 || 4 1 3 |&#146;
-       print *,&#146;  2 4 1 || 3 0 2 || 4 1 3 || 0 2 4 |&#146;
-       print *,&#146;                                    &#146;
-       print *,&#146;  would result in the mask ..       &#146;
-       print *,&#146;  F F T || F F F || F T F || F F F |&#146;
-       print *,&#146;  F F F || F T F || F F F || T F F |&#146;
-       print *,&#146;                                    &#146;
-       print *,&#146; the total number of .true.values is&#146;
-       print ints, count(modulo(c,5).eq.0)
-       call printi(&#146;counting up along a row and removing rows&#146;,&
-       count(modulo(c,5).eq.0,dim=1))
-       call printi(&#146;counting up along a column and removing columns&#146;,&
-       count(modulo(c,5).eq.0,dim=2))
-       call printi(&#146;counting up along a depth and removing depths&#146;,&
-       count(modulo(c,5).eq.0,dim=3))
-       !
-       contains
-       !
-       ! CONVENIENCE ROUTINE FOR PRINTING SMALL INTEGER MATRICES
-       subroutine printi(title,arr)
-       implicit none
-       !
-       !@(#) print small 2d integer arrays in row-column format
-       !
-       character(len=*),parameter :: all=&#146;(*(g0,1x))&#146; ! a handy format
-       character(len=*),intent(in)  :: title
-       integer,intent(in)           :: arr(:,:)
-       integer                      :: i
-       character(len=:),allocatable :: biggest
-          !
-          print all
-          print all, trim(title),&#146;:(&#146;,shape(arr),&#146;)&#146;  ! print title
-          biggest=&#146;           &#146;  ! make buffer to write integer into
-          ! find how many characters to use for integers
-          write(biggest,&#146;(i0)&#146;)ceiling(log10(real(maxval(abs(arr)))))+2
-          ! use this format to write a row
-          biggest=&#146;(" &gt; [",*(i&#146;//trim(biggest)//&#146;:,","))&#146;
-          ! print one row of array at a time
-          do i=1,size(arr,dim=1)
-             write(*,fmt=biggest,advance=&#146;no&#146;)arr(i,:)
-             write(*,&#146;(" ]")&#146;)
-          enddo
-          !
-       end subroutine printi
-       end program demo_count
+    end subroutine printi
+    end program demo_count
 <P>
 </PRE>
 Results:
@@ -365,7 +365,7 @@ ANY(3), ALL(3), SUM(3),
 fortran-lang intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>count (3fortran)</TD> <TD align=right width=33%><I>March 02, 2023</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 9e926a97-3388-4c5f-8457-e87dbdc4b074 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>count (3fortran)</TD> <TD align=right width=33%><I>March 11, 2023</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from b1cbbe32-a97e-49f6-b565-09467d40a7a8 using man macros.</FONT>
 <br><br><center><img src="images/count.3fortran.gif"></center>
 </div>
 </div>
