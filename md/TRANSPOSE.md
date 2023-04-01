@@ -11,8 +11,8 @@
 ```fortran
      function transpose(matrix)
 
-      type(TYPE(kind=KIND)            :: transpose(N,M)
-      type(TYPE(kind=KIND),intent(in) :: matrix(M,N)
+      type(TYPE(kind=KIND))            :: transpose(N,M)
+      type(TYPE(kind=KIND)),intent(in) :: matrix(M,N)
 ```
 ### **Characteristics**
 

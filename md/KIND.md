@@ -11,7 +11,7 @@
 ```fortran
      integer function kind(x)
 
-      type(TYPE,kind=**),intent(in) :: x(..)
+      type(TYPE(kind=**)),intent(in) :: x(..)
 ```
 ### **Characteristics**
  - **x** may be of any intrinsic type. It may be a scalar or an array.

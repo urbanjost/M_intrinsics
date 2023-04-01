@@ -12,8 +12,8 @@ of **a** is an extension of the dynamic type of **mold**.
 ```fortran
      logical extends_type_of(a, mold)
 
-      type(TYPE(kind=KIND),intent(in) :: a
-      type(TYPE(kind=KIND),intent(in) :: mold
+      type(TYPE(kind=KIND)),intent(in) :: a
+      type(TYPE(kind=KIND)),intent(in) :: mold
 ```
 ### **Characteristics**
  -**a** shall be an object or pointer to an extensible declared type,

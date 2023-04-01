@@ -117,8 +117,8 @@ character(len=:),allocatable :: arg
 end program demo_get_command_argument
 ```
 Results:
-```bash
- ./demo_get_command_argument a  test 'of getting  arguments ' " leading"
+```text
+./demo_get_command_argument a  test 'of getting  arguments ' " leading"
 ```
 ```text
  The program's name is ./demo_get_command_argument

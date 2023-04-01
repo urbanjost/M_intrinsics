@@ -11,12 +11,12 @@
     result = reshape( source, shape [,pad] [,order] )
 ```
 ```fortran
-     type(TYPE(kind=KIND) function reshape
+     type(TYPE(kind=KIND)) function reshape
 
-      type(TYPE(kind=KIND),intent(in)          :: source(..)
-      integer(kind=**),intent(in)              :: shape(:)
-      type(TYPE(kind=KIND),intent(in),optional :: pad(..)
-      integer(kind=**),intent(in),optional     :: order(:)
+      type(TYPE(kind=KIND)),intent(in)          :: source(..)
+      integer(kind=**),intent(in)               :: shape(:)
+      type(TYPE(kind=KIND)),intent(in),optional :: pad(..)
+      integer(kind=**),intent(in),optional      :: order(:)
 ```
 ### **Characteristics**
 

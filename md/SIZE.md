@@ -11,7 +11,7 @@
 ```fortran
      integer(kind=KIND) function size(array,dim,kind)
 
-      type(TYPE(kind=KIND),intent(in) :: array(..)
+      type(TYPE(kind=KIND)),intent(in) :: array(..)
       integer(kind=**),intent(in),optional :: dim
       integer(kind=**),intent(in),optional :: KIND
 ```

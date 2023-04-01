@@ -52,19 +52,20 @@ roff: $(FULLMANS)
 $(FULLMAN3) : ../man/man3/%.3fortran : ../txt/%.3fortran.man
 	scripts/txt2man -s 3fortran -t "$*" $< |tee $@ |\
 	env AUX_FILENAME=$< bash scripts/man2html >../docs/$*.3fortran.html
-	env MANWIDTH=80 man --ascii --encoding=ascii -l $@ > ../text/$*.3fortran.man
+	env MANWIDTH=80 man -Tutf8 --ascii --encoding=ascii -l $@ |col -b > ../text/$*.3fortran.man
+
 	bash scripts/man2f90 $*
 
 $(FULLMAN5) : ../man/man5/%.5fortran : ../txt/%.5fortran.man
 	scripts/txt2man -s 5fortran -t "$*" $< |tee $@ |\
 	env AUX_FILENAME=$< bash scripts/man2html >../docs/$*.5fortran.html
-	env MANWIDTH=80 man --ascii --encoding=ascii -l $@ > ../text/$*.3fortran.man
+	env MANWIDTH=80 man -Tutf8 --ascii --encoding=ascii -l $@ |col -b > ../text/$*.3fortran.man
 	bash scripts/man2f90 $*
 
 $(FULLMAN7) : ../man/man7/%.7fortran : ../txt/%.7fortran.man
 	scripts/txt2man -s 7fortran -t "$*" $< |tee $@ |\
 	env AUX_FILENAME=$< bash scripts/man2html >../docs/$*.7fortran.html
-	env MANWIDTH=80 man --ascii --encoding=ascii -l $@ > ../text/$*.3fortran.man
+	env MANWIDTH=80 man -Tutf8 --ascii --encoding=ascii -l $@ |col -b > ../text/$*.3fortran.man
 	bash scripts/man2f90 $*
 
 .PHONY: install
@@ -99,9 +100,9 @@ vi:
 .PHONY : list
 list:
 	: list all the manpages and run a simplistic spellcheck
-	env MANPATH=../man MANWIDTH= man -k .
-	env MANWIDTH=80 MANPATH=../man man --regex '.*'|col -b
-	env MANWIDTH=80 MANPATH=../man man --regex '.*'|bash scripts/spell.sh
+	env MANPATH=../man MANWIDTH= man -Tutf8 -k . 
+	env MANWIDTH=80 MANPATH=../man man -Tutf8 --regex '.*'
+	env MANWIDTH=80 MANPATH=../man man -Tutf8 --regex '.*'|col -b |bash scripts/spell.sh
 	: 'to look up a word from the command line try'
 	: 'curl --silent dict://dict.org/d:"WORD:all"|more'
 

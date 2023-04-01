@@ -12,8 +12,8 @@ multiplication
 ```fortran
      function matmul(matrix_a, matrix_b)
 
-      type(TYPE1(kind=**)       :: matrix_a(..)
-      type(TYPE2(kind=**)       :: matrix_b(..)
+      type(TYPE1(kind=**))      :: matrix_a(..)
+      type(TYPE2(kind=**))      :: matrix_b(..)
       type(TYPE(kind=PROMOTED)) :: matmul(..)
 ```
 ### **Characteristics**

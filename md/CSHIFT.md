@@ -9,9 +9,9 @@
    result = cshift(array, shift [,dim])
 ```
 ```fortran
-    type(TYPE, kind=KIND) function cshift(array, shift, dim )
+    type(TYPE(kind=KIND)) function cshift(array, shift, dim )
 
-     type(TYPE,kind=KIND),intent(in) :: array(..)
+     type(TYPE(kind=KIND)),intent(in) :: array(..)
      integer(kind=**),intent(in)  :: shift
      integer(kind=**),intent(in)  :: dim
 ```

@@ -11,8 +11,8 @@
 ```fortran
      logical same_type_as(a, b)
 
-      type(TYPE(kind=KIND),intent(in) :: a
-      type(TYPE(kind=KIND),intent(in) :: b
+      type(TYPE(kind=KIND)),intent(in) :: a
+      type(TYPE(kind=KIND)),intent(in) :: b
 ```
 ### **Characteristics**
 

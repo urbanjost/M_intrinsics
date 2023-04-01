@@ -14,8 +14,8 @@ identified by MASK along dimension DIM matching a target value
 ```fortran
      function findloc (array, value, dim, mask, kind, back)
 
-      type TYPE(kind=KIND),intent(in)      :: array(..)
-      type TYPE(kind=KIND),intent(in)      :: value
+      type(TYPE(kind=KIND)),intent(in)     :: array(..)
+      type(TYPE(kind=KIND)),intent(in)     :: value
       integer(kind=**),intent(in),optional :: dim
       logical(kind=**),intent(in),optional :: mask(..)
       integer(kind=**),intent(in),optional :: kind

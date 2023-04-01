@@ -12,9 +12,9 @@ result = this_image() | = this_image(distance) | = this_image(coarray,dim)
 ```fortran
    integer function this_image( distance ,coarray, dim )
 
-    type(TYPE(kind=**),optional :: coarray[*]
-    integer,intent(in),optional :: distance
-    integer,intent(in),optional :: dim
+    type(TYPE(kind=**)),optional :: coarray[*]
+    integer,intent(in),optional  :: distance
+    integer,intent(in),optional  :: dim
 ```
 ### **Characteristics**
 

@@ -1577,8 +1577,8 @@ Inverse function: [**sin**(3)](#sin)
 ```fortran
      logical function associated(pointer,target)
 
-      type(TYPE(kind=KIND),pointer :: pointer
-      type(TYPE(kind=KIND),pointer,optional :: target
+      type(TYPE(kind=KIND)),pointer :: pointer
+      type(TYPE(kind=KIND)),pointer,optional :: target
 ```
 ### **Characteristics**
 
@@ -6199,9 +6199,9 @@ Fortran 95
    result = cshift(array, shift [,dim])
 ```
 ```fortran
-    type(TYPE, kind=KIND) function cshift(array, shift, dim )
+    type(TYPE(kind=KIND)) function cshift(array, shift, dim )
 
-     type(TYPE,kind=KIND),intent(in) :: array(..)
+     type(TYPE(kind=KIND)),intent(in) :: array(..)
      integer(kind=**),intent(in)  :: shift
      integer(kind=**),intent(in)  :: dim
 ```
@@ -8191,8 +8191,8 @@ of **a** is an extension of the dynamic type of **mold**.
 ```fortran
      logical extends_type_of(a, mold)
 
-      type(TYPE(kind=KIND),intent(in) :: a
-      type(TYPE(kind=KIND),intent(in) :: mold
+      type(TYPE(kind=KIND)),intent(in) :: a
+      type(TYPE(kind=KIND)),intent(in) :: mold
 ```
 ### **Characteristics**
  -**a** shall be an object or pointer to an extensible declared type,
@@ -8367,8 +8367,8 @@ identified by MASK along dimension DIM matching a target value
 ```fortran
      function findloc (array, value, dim, mask, kind, back)
 
-      type TYPE(kind=KIND),intent(in)      :: array(..)
-      type TYPE(kind=KIND),intent(in)      :: value
+      type(TYPE(kind=KIND)),intent(in)     :: array(..)
+      type(TYPE(kind=KIND)),intent(in)     :: value
       integer(kind=**),intent(in),optional :: dim
       logical(kind=**),intent(in),optional :: mask(..)
       integer(kind=**),intent(in),optional :: kind
@@ -9113,8 +9113,8 @@ character(len=:),allocatable :: arg
 end program demo_get_command_argument
 ```
 Results:
-```bash
- ./demo_get_command_argument a  test 'of getting  arguments ' " leading"
+```text
+./demo_get_command_argument a  test 'of getting  arguments ' " leading"
 ```
 ```text
  The program's name is ./demo_get_command_argument
@@ -11610,7 +11610,7 @@ Fortran 2003
 ```fortran
      integer function kind(x)
 
-      type(TYPE,kind=**),intent(in) :: x(..)
+      type(TYPE(kind=**)),intent(in) :: x(..)
 ```
 ### **Characteristics**
  - **x** may be of any intrinsic type. It may be a scalar or an array.
@@ -12555,21 +12555,21 @@ integer :: i
   ! basics
 
    print *,'case matters'
-   write(*,*) lle('abc','ABC')          ! F lowercase is > uppercase
+   write(*,*) lle('abc','ABC')       ! F lowercase is > uppercase
 
    print *,'a space is the lowest printable character'
-   write(*,*) lle('abcd','abc')         ! F  d > space
-   write(*,*) lle('abc','abcd')         ! T  space < d
+   write(*,*) lle('abcd','abc')      ! F  d > space
+   write(*,*) lle('abc','abcd')      ! T  space < d
 
    print *,'leading spaces matter, trailing spaces do not'
-   write(*,*) lle('abc','abc  ')        ! T trailing spaces
-   write(*,*) lle('abc',' abc')         ! F leading spaces are significant
+   write(*,*) lle('abc','abc  ')     ! T trailing spaces
+   write(*,*) lle('abc',' abc')      ! F leading spaces are significant
 
    print *,'even null strings are padded and compared'
    ! If both strings are of zero length the result is true.
-   write(*,*) lle('','')                ! T
-   write(*,*) lle('','a')               ! T the null string is padded
-   write(*,*) lle('a','')               ! F
+   write(*,*) lle('','')             ! T
+   write(*,*) lle('','a')            ! T the null string is padded
+   write(*,*) lle('a','')            ! F
    print *,'elemental'
    write(*,*) lle('abc',['abc','123'])  ! [T,F] scalar and array
    write(*,*) lle(['cba', '123'],'abc') ! [F,T]
@@ -13253,8 +13253,8 @@ multiplication
 ```fortran
      function matmul(matrix_a, matrix_b)
 
-      type(TYPE1(kind=**)       :: matrix_a(..)
-      type(TYPE2(kind=**)       :: matrix_b(..)
+      type(TYPE1(kind=**))      :: matrix_a(..)
+      type(TYPE2(kind=**))      :: matrix_b(..)
       type(TYPE(kind=PROMOTED)) :: matmul(..)
 ```
 ### **Characteristics**
@@ -14677,8 +14677,8 @@ Fortran 95
 ```fortran
      elemental type(TYPE(kind=KIND)) function mod(a,p)
 
-      type(TYPE(kind=KIND),intent(in) :: a
-      type(TYPE(kind=KIND),intent(in) :: p
+      type(TYPE(kind=KIND)),intent(in) :: a
+      type(TYPE(kind=KIND)),intent(in) :: p
 ```
 ### **Characteristics**
 
@@ -16061,9 +16061,9 @@ converted safely to another type
 ```fortran
      elemental logical function(x, mold, round)
 
-      TYPE,kind=KIND),intent(in) :: x
-      TYPE,kind=KIND),intent(in) :: mold
-      logical,intent(in),optional     :: round
+      type(TYPE(kind=**)),intent(in) :: x
+      type(TYPE(kind=**)),intent(in) :: mold
+      logical,intent(in),optional    :: round
 ```
 ### **Characteristics**
 
@@ -18101,12 +18101,12 @@ Functions that perform operations on character strings:
     result = reshape( source, shape [,pad] [,order] )
 ```
 ```fortran
-     type(TYPE(kind=KIND) function reshape
+     type(TYPE(kind=KIND)) function reshape
 
-      type(TYPE(kind=KIND),intent(in)          :: source(..)
-      integer(kind=**),intent(in)              :: shape(:)
-      type(TYPE(kind=KIND),intent(in),optional :: pad(..)
-      integer(kind=**),intent(in),optional     :: order(:)
+      type(TYPE(kind=KIND)),intent(in)          :: source(..)
+      integer(kind=**),intent(in)               :: shape(:)
+      type(TYPE(kind=KIND)),intent(in),optional :: pad(..)
+      integer(kind=**),intent(in),optional      :: order(:)
 ```
 ### **Characteristics**
 
@@ -18387,8 +18387,8 @@ Fortran 95
 ```fortran
      logical same_type_as(a, b)
 
-      type(TYPE(kind=KIND),intent(in) :: a
-      type(TYPE(kind=KIND),intent(in) :: b
+      type(TYPE(kind=KIND)),intent(in) :: a
+      type(TYPE(kind=KIND)),intent(in) :: b
 ```
 ### **Characteristics**
 
@@ -20028,7 +20028,7 @@ FORTRAN 77
 ```fortran
      integer(kind=KIND) function size(array,dim,kind)
 
-      type(TYPE(kind=KIND),intent(in) :: array(..)
+      type(TYPE(kind=KIND)),intent(in) :: array(..)
       integer(kind=**),intent(in),optional :: dim
       integer(kind=**),intent(in),optional :: KIND
 ```
@@ -20905,9 +20905,9 @@ Fortran 95
 ```fortran
      subroutine system_clock(count, count_rate, count_max)
 
-      integer(kind=**),intent(out),optional   :: count
-      type(TYPE(kind=**),intent(out),optional :: count_rate
-      integer(kind=**),intent(out),optional   :: count_max
+      integer(kind=**),intent(out),optional    :: count
+      type(TYPE(kind=**)),intent(out),optional :: count_rate
+      integer(kind=**),intent(out),optional    :: count_max
 ```
 ### **Characteristics**
 
@@ -21203,9 +21203,9 @@ result = this_image() | = this_image(distance) | = this_image(coarray,dim)
 ```fortran
    integer function this_image( distance ,coarray, dim )
 
-    type(TYPE(kind=**),optional :: coarray[*]
-    integer,intent(in),optional :: distance
-    integer,intent(in),optional :: dim
+    type(TYPE(kind=**)),optional :: coarray[*]
+    integer,intent(in),optional  :: distance
+    integer,intent(in),optional  :: dim
 ```
 ### **Characteristics**
 
@@ -21603,8 +21603,8 @@ Fortran 90
 ```fortran
      function transpose(matrix)
 
-      type(TYPE(kind=KIND)            :: transpose(N,M)
-      type(TYPE(kind=KIND),intent(in) :: matrix(M,N)
+      type(TYPE(kind=KIND))            :: transpose(N,M)
+      type(TYPE(kind=KIND)),intent(in) :: matrix(M,N)
 ```
 ### **Characteristics**
 
