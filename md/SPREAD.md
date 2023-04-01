@@ -17,7 +17,7 @@
 ```
 ### **Characteristics**
 
-- **source** is a scalar or array of any type.
+- **source** is a scalar or array of any type and a rank less than fifteen.
 - **dim** is an _integer_ scalar
 - **ncopies** is an integer scalar
 
@@ -35,11 +35,10 @@ and each element of the result has a value equal to **source**.
 ### **Options**
 
 - **source**
-  : a scalar or array of any type and a rank less than fifteen.
+  : the input data to duplicate
 
 - **dim**
-
-  : The additional dimension  value in the range from
+  : The additional dimension value in the range from
   **1** to **n+1**, where **n** equals the rank of **source**.
 
 - **ncopies**
@@ -77,13 +76,10 @@ integer a1(4,3), a2(3,4), v(4), s
 
    write(*,'(a)')' and then do "spread ( v, dim=2, ncopies=3 )"'
    a1 = spread ( v, dim=2, ncopies=3 )
-   call printi('this adds a new dimension (2) of extent 3',a1)
+   call printi('uses v as a column and makes 3 columns',a1)
 
    a2 = spread ( v, 1, 3 )
-   call printi(' spread(v,1,3) adds a new dimension (1) of extent 3',a2)
-   ! add more
-   a2 = spread ( v, 1, 3 )
-   call printi(' spread(v,1,3) adds a new dimension (1) of extent 3',a2)
+   call printi(' spread(v,1,3) uses v as a row and makes 3 rows',a2)
 
 contains
 ! CONVENIENCE ROUTINE; NOT DIRECTLY CONNECTED TO SPREAD(3)
@@ -137,42 +133,43 @@ end program demo_spread
 ```
 Results:
 ```text
-   TEST SPREAD(3)
-     SPREAD(3) is a FORTRAN90 function which replicates
-     an array by adding a dimension.
-
-    suppose we have a scalar S  (a scalar)
-    > [ 99 ]
-    >shape= ,rank= 0 ,size= 1
-
-    to add a new dimension (1) of extent 4 call
-    spread( s, dim=1, ncopies=4 )  (a vector)
-    > [  99 ]
-    > [  99 ]
-    > [  99 ]
-    > [  99 ]
-    >shape= 4 ,rank= 1 ,size= 4
-
-     first we will set V to  (a vector)
-    > [  1 ]
-    > [  2 ]
-    > [  3 ]
-    > [  4 ]
-    >shape= 4 ,rank= 1 ,size= 4
-
-    and then do "spread ( v, dim=2, ncopies=3 )"
-    this adds a new dimension (2) of extent 3  (a matrix)
-    > [  1,  1,  1 ]
-    > [  2,  2,  2 ]
-    > [  3,  3,  3 ]
-    > [  4,  4,  4 ]
-    >shape= 4 3 ,rank= 2 ,size= 12
-
-     spread(v,dim=1,ncopies=3) adds a new dimension (1) (a matrix)
-    > [  1,  2,  3,  4 ]
-    > [  1,  2,  3,  4 ]
-    > [  1,  2,  3,  4 ]
-    >shape= 3 4 ,rank= 2 ,size= 12
+ > TEST SPREAD(3)                                      
+ >   SPREAD(3) is a FORTRAN90 function which replicates
+ >   an array by adding a dimension.                   
+ >  
+ >  suppose we have a scalar S  (a scalar)
+ >  > [ 99 ]
+ >  >shape= ,rank= 0 ,size= 1
+ > 
+ >  to add a new dimension (1) of extent 4 call
+ >  spread( s, dim=1, ncopies=4 )  (a vector)
+ >  > [  99 ]
+ >  > [  99 ]
+ >  > [  99 ]
+ >  > [   0 ]
+ >  >shape= 4 ,rank= 1 ,size= 4
+ > 
+ >   first we will set V to  (a vector)
+ >  > [  1 ]
+ >  > [  2 ]
+ >  > [  3 ]
+ >  > [  4 ]
+ >  >shape= 4 ,rank= 1 ,size= 4
+ > 
+ >  and then do "spread ( v, dim=2, ncopies=3 )"
+ >  uses v as a column and makes 3 columns  (a matrix) 
+ >  > [  1,  1,  1 ]
+ >  > [  2,  2,  2 ]
+ >  > [  3,  3,  3 ]
+ >  > [  4,  4,  4 ]
+ >  >shape= 4 3 ,rank= 2 ,size= 12
+ > 
+ >   spread(v,1,3) uses v as a row and makes 3 rows  (a matrix) 
+ >  > [  1,  2,  3,  4 ]
+ >  > [  1,  2,  3,  4 ]
+ >  > [  1,  2,  3,  4 ]
+ >  >shape= 3 4 ,rank= 2 ,size= 12
+ > 
 ```
 ### **Standard**
 

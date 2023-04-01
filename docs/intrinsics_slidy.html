@@ -14766,7 +14766,7 @@ If <strong>array</strong> is a pointer it must be associated and allocatable arr
 <a class="sourceLine" id="cb791-5" title="5">      <span class="dt">integer(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> ncopies</a></code></pre></div>
 <h3 id="characteristics-182"><strong>Characteristics</strong></h3>
 <ul>
-<li><strong>source</strong> is a scalar or array of any type.</li>
+<li><strong>source</strong> is a scalar or array of any type and a rank less than fifteen.</li>
 <li><strong>dim</strong> is an integer scalar</li>
 <li><strong>ncopies</strong> is an integer scalar</li>
 </ul>
@@ -14778,12 +14778,12 @@ If <strong>array</strong> is a pointer it must be associated and allocatable arr
 <ul>
 <li><dl>
 <dt><strong>source</strong></dt>
-<dd>a scalar or array of any type and a rank less than fifteen.
+<dd>the input data to duplicate
 </dd>
 </dl></li>
 <li><dl>
 <dt><strong>dim</strong></dt>
-<dd><p>The additional dimension value in the range from <strong>1</strong> to <strong>n+1</strong>, where <strong>n</strong> equals the rank of <strong>source</strong>.</p>
+<dd>The additional dimension value in the range from <strong>1</strong> to <strong>n+1</strong>, where <strong>n</strong> equals the rank of <strong>source</strong>.
 </dd>
 </dl></li>
 <li><dl>
@@ -14818,100 +14818,98 @@ If <strong>array</strong> is a pointer it must be associated and allocatable arr
 <a class="sourceLine" id="cb792-20" title="20"></a>
 <a class="sourceLine" id="cb792-21" title="21">   <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span><span class="st">&#39; and then do &quot;spread ( v, dim=2, ncopies=3 )&quot;&#39;</span></a>
 <a class="sourceLine" id="cb792-22" title="22">   a1 <span class="kw">=</span> <span class="fu">spread</span> ( v, <span class="bu">dim</span><span class="kw">=</span><span class="dv">2</span>, ncopies<span class="kw">=</span><span class="dv">3</span> )</a>
-<a class="sourceLine" id="cb792-23" title="23">   <span class="kw">call</span> printi(<span class="st">&#39;this adds a new dimension (2) of extent 3&#39;</span>,a1)</a>
+<a class="sourceLine" id="cb792-23" title="23">   <span class="kw">call</span> printi(<span class="st">&#39;uses v as a column and makes 3 columns&#39;</span>,a1)</a>
 <a class="sourceLine" id="cb792-24" title="24"></a>
 <a class="sourceLine" id="cb792-25" title="25">   a2 <span class="kw">=</span> <span class="fu">spread</span> ( v, <span class="dv">1</span>, <span class="dv">3</span> )</a>
-<a class="sourceLine" id="cb792-26" title="26">   <span class="kw">call</span> printi(<span class="st">&#39; spread(v,1,3) adds a new dimension (1) of extent 3&#39;</span>,a2)</a>
-<a class="sourceLine" id="cb792-27" title="27">   <span class="co">! add more</span></a>
-<a class="sourceLine" id="cb792-28" title="28">   a2 <span class="kw">=</span> <span class="fu">spread</span> ( v, <span class="dv">1</span>, <span class="dv">3</span> )</a>
-<a class="sourceLine" id="cb792-29" title="29">   <span class="kw">call</span> printi(<span class="st">&#39; spread(v,1,3) adds a new dimension (1) of extent 3&#39;</span>,a2)</a>
-<a class="sourceLine" id="cb792-30" title="30"></a>
-<a class="sourceLine" id="cb792-31" title="31"><span class="co">contains</span></a>
-<a class="sourceLine" id="cb792-32" title="32"><span class="co">! CONVENIENCE ROUTINE; NOT DIRECTLY CONNECTED TO SPREAD(3)</span></a>
-<a class="sourceLine" id="cb792-33" title="33"><span class="kw">subroutine</span> printi(title,a)</a>
-<a class="sourceLine" id="cb792-34" title="34"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : stderr<span class="kw">=</span><span class="op">&gt;</span>ERROR_UNIT,<span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb792-35" title="35"> <span class="kw">&amp;</span> stdin<span class="kw">=</span><span class="op">&gt;</span>INPUT_UNIT, stdout<span class="kw">=</span><span class="op">&gt;</span>OUTPUT_UNIT</a>
-<a class="sourceLine" id="cb792-36" title="36"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb792-37" title="37"></a>
-<a class="sourceLine" id="cb792-38" title="38"><span class="co">!@(#) print small 2d integer scalar, vector, matrix in row-column format</span></a>
-<a class="sourceLine" id="cb792-39" title="39"></a>
-<a class="sourceLine" id="cb792-40" title="40"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>   <span class="dt">::</span> <span class="fu">all</span><span class="kw">=</span><span class="st">&#39;(&quot; &quot;,*(g0,1x))&#39;</span></a>
-<a class="sourceLine" id="cb792-41" title="41"><span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> title</a>
-<a class="sourceLine" id="cb792-42" title="42"><span class="dt">character(len=20)</span>            <span class="dt">::</span> row</a>
-<a class="sourceLine" id="cb792-43" title="43"><span class="dt">integer</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> a(..)</a>
-<a class="sourceLine" id="cb792-44" title="44"><span class="dt">integer</span>                      <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb792-45" title="45"></a>
-<a class="sourceLine" id="cb792-46" title="46">   <span class="fu">write(*</span>,<span class="fu">all</span>,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)trim</span>(title)</a>
-<a class="sourceLine" id="cb792-47" title="47">   <span class="co">! select rank of input</span></a>
-<a class="sourceLine" id="cb792-48" title="48">   <span class="kw">select</span> rank(a)</a>
-<a class="sourceLine" id="cb792-49" title="49">   rank (<span class="dv">0</span>); <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span><span class="st">&#39; (a scalar)&#39;</span></a>
-<a class="sourceLine" id="cb792-50" title="50">      <span class="fu">write(*</span>,<span class="st">&#39;(&quot; &gt; [ &quot;,i0,&quot; ]&quot;)&#39;</span><span class="fu">)</span>a</a>
-<a class="sourceLine" id="cb792-51" title="51">   rank (<span class="dv">1</span>); <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span><span class="st">&#39; (a vector)&#39;</span></a>
-<a class="sourceLine" id="cb792-52" title="52">      <span class="co">! find how many characters to use for integers</span></a>
-<a class="sourceLine" id="cb792-53" title="53">      <span class="fu">write(</span>row,<span class="st">&#39;(i0)&#39;</span><span class="fu">)</span><span class="bu">ceiling</span>(<span class="bu">log10</span>(<span class="bu">max</span>(<span class="fl">1.0</span>,<span class="bu">real</span>(<span class="fu">maxval</span>(<span class="bu">abs</span>(a))))))<span class="kw">+</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb792-54" title="54">      <span class="co">! use this format to write a row</span></a>
-<a class="sourceLine" id="cb792-55" title="55">      row<span class="kw">=</span><span class="st">&#39;(&quot; &gt; [&quot;,*(i&#39;</span><span class="kw">//</span><span class="fu">trim</span>(row)<span class="kw">//</span><span class="st">&#39;:,&quot;,&quot;))&#39;</span></a>
-<a class="sourceLine" id="cb792-56" title="56">      <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(a)</a>
-<a class="sourceLine" id="cb792-57" title="57">         <span class="fu">write(*</span>,<span class="fu">fmt</span><span class="kw">=</span>row,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>a(i)</a>
-<a class="sourceLine" id="cb792-58" title="58">         <span class="fu">write(*</span>,<span class="st">&#39;(&quot; ]&quot;)&#39;</span><span class="fu">)</span></a>
-<a class="sourceLine" id="cb792-59" title="59">      <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb792-60" title="60">   rank (<span class="dv">2</span>); <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span><span class="st">&#39; (a matrix) &#39;</span></a>
-<a class="sourceLine" id="cb792-61" title="61">      <span class="co">! find how many characters to use for integers</span></a>
-<a class="sourceLine" id="cb792-62" title="62">      <span class="fu">write(</span>row,<span class="st">&#39;(i0)&#39;</span><span class="fu">)</span><span class="bu">ceiling</span>(<span class="bu">log10</span>(<span class="bu">max</span>(<span class="fl">1.0</span>,<span class="bu">real</span>(<span class="fu">maxval</span>(<span class="bu">abs</span>(a))))))<span class="kw">+</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb792-63" title="63">      <span class="co">! use this format to write a row</span></a>
-<a class="sourceLine" id="cb792-64" title="64">      row<span class="kw">=</span><span class="st">&#39;(&quot; &gt; [&quot;,*(i&#39;</span><span class="kw">//</span><span class="fu">trim</span>(row)<span class="kw">//</span><span class="st">&#39;:,&quot;,&quot;))&#39;</span></a>
-<a class="sourceLine" id="cb792-65" title="65">      <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(a,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb792-66" title="66">         <span class="fu">write(*</span>,<span class="fu">fmt</span><span class="kw">=</span>row,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>a(i,:)</a>
-<a class="sourceLine" id="cb792-67" title="67">         <span class="fu">write(*</span>,<span class="st">&#39;(&quot; ]&quot;)&#39;</span><span class="fu">)</span></a>
-<a class="sourceLine" id="cb792-68" title="68">      <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb792-69" title="69">   rank <span class="kw">default</span></a>
-<a class="sourceLine" id="cb792-70" title="70">      <span class="fu">write(</span>stderr,<span class="fu">*)</span><span class="st">&#39;*printi* did not expect rank=&#39;</span>, rank(a), <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb792-71" title="71">       <span class="kw">&amp;</span> <span class="st">&#39;shape=&#39;</span>, <span class="fu">shape</span>(a),<span class="st">&#39;size=&#39;</span>,<span class="fu">size</span>(a)</a>
-<a class="sourceLine" id="cb792-72" title="72">      <span class="kw">stop</span> <span class="st">&#39;*printi* unexpected rank&#39;</span></a>
-<a class="sourceLine" id="cb792-73" title="73">   <span class="kw">end select</span></a>
-<a class="sourceLine" id="cb792-74" title="74">   <span class="fu">write(*</span>,<span class="fu">all)</span> <span class="st">&#39;&gt;shape=&#39;</span>,<span class="fu">shape</span>(a),<span class="st">&#39;,rank=&#39;</span>,rank(a),<span class="st">&#39;,size=&#39;</span>,<span class="fu">size</span>(a)</a>
-<a class="sourceLine" id="cb792-75" title="75">   <span class="fu">write(*</span>,<span class="fu">*)</span></a>
-<a class="sourceLine" id="cb792-76" title="76"></a>
-<a class="sourceLine" id="cb792-77" title="77"><span class="kw">end subroutine</span> printi</a>
-<a class="sourceLine" id="cb792-78" title="78"></a>
-<a class="sourceLine" id="cb792-79" title="79"><span class="kw">end program</span> demo_spread</a></code></pre></div>
+<a class="sourceLine" id="cb792-26" title="26">   <span class="kw">call</span> printi(<span class="st">&#39; spread(v,1,3) uses v as a row and makes 3 rows&#39;</span>,a2)</a>
+<a class="sourceLine" id="cb792-27" title="27"></a>
+<a class="sourceLine" id="cb792-28" title="28"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb792-29" title="29"><span class="co">! CONVENIENCE ROUTINE; NOT DIRECTLY CONNECTED TO SPREAD(3)</span></a>
+<a class="sourceLine" id="cb792-30" title="30"><span class="kw">subroutine</span> printi(title,a)</a>
+<a class="sourceLine" id="cb792-31" title="31"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : stderr<span class="kw">=</span><span class="op">&gt;</span>ERROR_UNIT,<span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb792-32" title="32"> <span class="kw">&amp;</span> stdin<span class="kw">=</span><span class="op">&gt;</span>INPUT_UNIT, stdout<span class="kw">=</span><span class="op">&gt;</span>OUTPUT_UNIT</a>
+<a class="sourceLine" id="cb792-33" title="33"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb792-34" title="34"></a>
+<a class="sourceLine" id="cb792-35" title="35"><span class="co">!@(#) print small 2d integer scalar, vector, matrix in row-column format</span></a>
+<a class="sourceLine" id="cb792-36" title="36"></a>
+<a class="sourceLine" id="cb792-37" title="37"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>   <span class="dt">::</span> <span class="fu">all</span><span class="kw">=</span><span class="st">&#39;(&quot; &quot;,*(g0,1x))&#39;</span></a>
+<a class="sourceLine" id="cb792-38" title="38"><span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> title</a>
+<a class="sourceLine" id="cb792-39" title="39"><span class="dt">character(len=20)</span>            <span class="dt">::</span> row</a>
+<a class="sourceLine" id="cb792-40" title="40"><span class="dt">integer</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> a(..)</a>
+<a class="sourceLine" id="cb792-41" title="41"><span class="dt">integer</span>                      <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb792-42" title="42"></a>
+<a class="sourceLine" id="cb792-43" title="43">   <span class="fu">write(*</span>,<span class="fu">all</span>,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)trim</span>(title)</a>
+<a class="sourceLine" id="cb792-44" title="44">   <span class="co">! select rank of input</span></a>
+<a class="sourceLine" id="cb792-45" title="45">   <span class="kw">select</span> rank(a)</a>
+<a class="sourceLine" id="cb792-46" title="46">   rank (<span class="dv">0</span>); <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span><span class="st">&#39; (a scalar)&#39;</span></a>
+<a class="sourceLine" id="cb792-47" title="47">      <span class="fu">write(*</span>,<span class="st">&#39;(&quot; &gt; [ &quot;,i0,&quot; ]&quot;)&#39;</span><span class="fu">)</span>a</a>
+<a class="sourceLine" id="cb792-48" title="48">   rank (<span class="dv">1</span>); <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span><span class="st">&#39; (a vector)&#39;</span></a>
+<a class="sourceLine" id="cb792-49" title="49">      <span class="co">! find how many characters to use for integers</span></a>
+<a class="sourceLine" id="cb792-50" title="50">      <span class="fu">write(</span>row,<span class="st">&#39;(i0)&#39;</span><span class="fu">)</span><span class="bu">ceiling</span>(<span class="bu">log10</span>(<span class="bu">max</span>(<span class="fl">1.0</span>,<span class="bu">real</span>(<span class="fu">maxval</span>(<span class="bu">abs</span>(a))))))<span class="kw">+</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb792-51" title="51">      <span class="co">! use this format to write a row</span></a>
+<a class="sourceLine" id="cb792-52" title="52">      row<span class="kw">=</span><span class="st">&#39;(&quot; &gt; [&quot;,*(i&#39;</span><span class="kw">//</span><span class="fu">trim</span>(row)<span class="kw">//</span><span class="st">&#39;:,&quot;,&quot;))&#39;</span></a>
+<a class="sourceLine" id="cb792-53" title="53">      <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(a)</a>
+<a class="sourceLine" id="cb792-54" title="54">         <span class="fu">write(*</span>,<span class="fu">fmt</span><span class="kw">=</span>row,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>a(i)</a>
+<a class="sourceLine" id="cb792-55" title="55">         <span class="fu">write(*</span>,<span class="st">&#39;(&quot; ]&quot;)&#39;</span><span class="fu">)</span></a>
+<a class="sourceLine" id="cb792-56" title="56">      <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb792-57" title="57">   rank (<span class="dv">2</span>); <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span><span class="st">&#39; (a matrix) &#39;</span></a>
+<a class="sourceLine" id="cb792-58" title="58">      <span class="co">! find how many characters to use for integers</span></a>
+<a class="sourceLine" id="cb792-59" title="59">      <span class="fu">write(</span>row,<span class="st">&#39;(i0)&#39;</span><span class="fu">)</span><span class="bu">ceiling</span>(<span class="bu">log10</span>(<span class="bu">max</span>(<span class="fl">1.0</span>,<span class="bu">real</span>(<span class="fu">maxval</span>(<span class="bu">abs</span>(a))))))<span class="kw">+</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb792-60" title="60">      <span class="co">! use this format to write a row</span></a>
+<a class="sourceLine" id="cb792-61" title="61">      row<span class="kw">=</span><span class="st">&#39;(&quot; &gt; [&quot;,*(i&#39;</span><span class="kw">//</span><span class="fu">trim</span>(row)<span class="kw">//</span><span class="st">&#39;:,&quot;,&quot;))&#39;</span></a>
+<a class="sourceLine" id="cb792-62" title="62">      <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(a,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb792-63" title="63">         <span class="fu">write(*</span>,<span class="fu">fmt</span><span class="kw">=</span>row,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>a(i,:)</a>
+<a class="sourceLine" id="cb792-64" title="64">         <span class="fu">write(*</span>,<span class="st">&#39;(&quot; ]&quot;)&#39;</span><span class="fu">)</span></a>
+<a class="sourceLine" id="cb792-65" title="65">      <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb792-66" title="66">   rank <span class="kw">default</span></a>
+<a class="sourceLine" id="cb792-67" title="67">      <span class="fu">write(</span>stderr,<span class="fu">*)</span><span class="st">&#39;*printi* did not expect rank=&#39;</span>, rank(a), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb792-68" title="68">       <span class="kw">&amp;</span> <span class="st">&#39;shape=&#39;</span>, <span class="fu">shape</span>(a),<span class="st">&#39;size=&#39;</span>,<span class="fu">size</span>(a)</a>
+<a class="sourceLine" id="cb792-69" title="69">      <span class="kw">stop</span> <span class="st">&#39;*printi* unexpected rank&#39;</span></a>
+<a class="sourceLine" id="cb792-70" title="70">   <span class="kw">end select</span></a>
+<a class="sourceLine" id="cb792-71" title="71">   <span class="fu">write(*</span>,<span class="fu">all)</span> <span class="st">&#39;&gt;shape=&#39;</span>,<span class="fu">shape</span>(a),<span class="st">&#39;,rank=&#39;</span>,rank(a),<span class="st">&#39;,size=&#39;</span>,<span class="fu">size</span>(a)</a>
+<a class="sourceLine" id="cb792-72" title="72">   <span class="fu">write(*</span>,<span class="fu">*)</span></a>
+<a class="sourceLine" id="cb792-73" title="73"></a>
+<a class="sourceLine" id="cb792-74" title="74"><span class="kw">end subroutine</span> printi</a>
+<a class="sourceLine" id="cb792-75" title="75"></a>
+<a class="sourceLine" id="cb792-76" title="76"><span class="kw">end program</span> demo_spread</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>   TEST SPREAD(3)
-     SPREAD(3) is a FORTRAN90 function which replicates
-     an array by adding a dimension.
-
-    suppose we have a scalar S  (a scalar)
-    &gt; [ 99 ]
-    &gt;shape= ,rank= 0 ,size= 1
-
-    to add a new dimension (1) of extent 4 call
-    spread( s, dim=1, ncopies=4 )  (a vector)
-    &gt; [  99 ]
-    &gt; [  99 ]
-    &gt; [  99 ]
-    &gt; [  99 ]
-    &gt;shape= 4 ,rank= 1 ,size= 4
-
-     first we will set V to  (a vector)
-    &gt; [  1 ]
-    &gt; [  2 ]
-    &gt; [  3 ]
-    &gt; [  4 ]
-    &gt;shape= 4 ,rank= 1 ,size= 4
-
-    and then do &quot;spread ( v, dim=2, ncopies=3 )&quot;
-    this adds a new dimension (2) of extent 3  (a matrix)
-    &gt; [  1,  1,  1 ]
-    &gt; [  2,  2,  2 ]
-    &gt; [  3,  3,  3 ]
-    &gt; [  4,  4,  4 ]
-    &gt;shape= 4 3 ,rank= 2 ,size= 12
-
-     spread(v,dim=1,ncopies=3) adds a new dimension (1) (a matrix)
-    &gt; [  1,  2,  3,  4 ]
-    &gt; [  1,  2,  3,  4 ]
-    &gt; [  1,  2,  3,  4 ]
-    &gt;shape= 3 4 ,rank= 2 ,size= 12</code></pre>
+<pre class="text"><code> &gt; TEST SPREAD(3)
+ &gt;   SPREAD(3) is a FORTRAN90 function which replicates
+ &gt;   an array by adding a dimension.
+ &gt;
+ &gt;  suppose we have a scalar S  (a scalar)
+ &gt;  &gt; [ 99 ]
+ &gt;  &gt;shape= ,rank= 0 ,size= 1
+ &gt;
+ &gt;  to add a new dimension (1) of extent 4 call
+ &gt;  spread( s, dim=1, ncopies=4 )  (a vector)
+ &gt;  &gt; [  99 ]
+ &gt;  &gt; [  99 ]
+ &gt;  &gt; [  99 ]
+ &gt;  &gt; [   0 ]
+ &gt;  &gt;shape= 4 ,rank= 1 ,size= 4
+ &gt;
+ &gt;   first we will set V to  (a vector)
+ &gt;  &gt; [  1 ]
+ &gt;  &gt; [  2 ]
+ &gt;  &gt; [  3 ]
+ &gt;  &gt; [  4 ]
+ &gt;  &gt;shape= 4 ,rank= 1 ,size= 4
+ &gt;
+ &gt;  and then do &quot;spread ( v, dim=2, ncopies=3 )&quot;
+ &gt;  uses v as a column and makes 3 columns  (a matrix)
+ &gt;  &gt; [  1,  1,  1 ]
+ &gt;  &gt; [  2,  2,  2 ]
+ &gt;  &gt; [  3,  3,  3 ]
+ &gt;  &gt; [  4,  4,  4 ]
+ &gt;  &gt;shape= 4 3 ,rank= 2 ,size= 12
+ &gt;
+ &gt;   spread(v,1,3) uses v as a row and makes 3 rows  (a matrix)
+ &gt;  &gt; [  1,  2,  3,  4 ]
+ &gt;  &gt; [  1,  2,  3,  4 ]
+ &gt;  &gt; [  1,  2,  3,  4 ]
+ &gt;  &gt;shape= 3 4 ,rank= 2 ,size= 12
+ &gt;</code></pre>
 <h3 id="standard-183"><strong>Standard</strong></h3>
 <p>Fortran 95</p>
 <h3 id="see-also-182"><strong>See Also</strong></h3>

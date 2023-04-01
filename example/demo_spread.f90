@@ -20,13 +20,10 @@
 
          write(*,'(a)')' and then do "spread ( v, dim=2, ncopies=3 )"'
          a1 = spread ( v, dim=2, ncopies=3 )
-         call printi('this adds a new dimension (2) of extent 3',a1)
+         call printi('uses v as a column and makes 3 columns',a1)
 
          a2 = spread ( v, 1, 3 )
-         call printi(' spread(v,1,3) adds a new dimension (1) of extent 3',a2)
-         ! add more
-         a2 = spread ( v, 1, 3 )
-         call printi(' spread(v,1,3) adds a new dimension (1) of extent 3',a2)
+         call printi(' spread(v,1,3) uses v as a row and makes 3 rows',a2)
 
       contains
       ! CONVENIENCE ROUTINE; NOT DIRECTLY CONNECTED TO SPREAD(3)
