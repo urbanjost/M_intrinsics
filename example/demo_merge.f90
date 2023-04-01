@@ -38,7 +38,7 @@
          call printme()
 
          write(*, *)'zero out negative values'
-         answer=merge( tvals, 0, tvals < 0)
+         answer=merge( 0, tvals, tvals < 0)
          call printme()
 
          write(*, *)'binary choice'

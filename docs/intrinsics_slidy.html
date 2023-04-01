@@ -10275,7 +10275,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb570-38" title="38">   <span class="kw">call</span> printme()</a>
 <a class="sourceLine" id="cb570-39" title="39"></a>
 <a class="sourceLine" id="cb570-40" title="40">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;zero out negative values&#39;</span></a>
-<a class="sourceLine" id="cb570-41" title="41">   answer<span class="kw">=</span><span class="bu">merge</span>( tvals, <span class="dv">0</span>, tvals <span class="op">&lt;</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb570-41" title="41">   answer<span class="kw">=</span><span class="bu">merge</span>( <span class="dv">0</span>, tvals, tvals <span class="op">&lt;</span> <span class="dv">0</span>)</a>
 <a class="sourceLine" id="cb570-42" title="42">   <span class="kw">call</span> printme()</a>
 <a class="sourceLine" id="cb570-43" title="43"></a>
 <a class="sourceLine" id="cb570-44" title="44">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;binary choice&#39;</span></a>
@@ -10292,21 +10292,23 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb570-55" title="55"></a>
 <a class="sourceLine" id="cb570-56" title="56"><span class="kw">end program</span> demo_merge</a></code></pre></div>
 <p>Expected Results:</p>
-<pre><code> &gt;     mask of logicals
- &gt;      10   3  50
- &gt;       7   4 -60
- &gt;     highest values
- &gt;      10   3  50
- &gt;       7  40   8
- &gt;     lowest values
- &gt;       0 -60   2
- &gt;     -20   4 -60
- &gt;     zero out negative values
- &gt;       0 -60   0
- &gt;     -20   0 -60
- &gt;     binary choice
- &gt;      10  20  30
- &gt;       1   2   3</code></pre>
+<pre class="text"><code> &gt;    1.00000000
+ &gt;    0.00000000
+ &gt;  mask of logicals
+ &gt;   10   3  50
+ &gt;    7   4 -60
+ &gt;  highest values
+ &gt;   10   3  50
+ &gt;    7  40   8
+ &gt;  lowest values
+ &gt;    0 -60   2
+ &gt;  -20   4 -60
+ &gt;  zero out negative values
+ &gt;   10   0  50
+ &gt;    0  40   0
+ &gt;  binary choice
+ &gt;   10  20  30
+ &gt;    1   2   3</code></pre>
 <h3 id="standard-132"><strong>Standard</strong></h3>
 <p>Fortran 95</p>
 <h3 id="see-also-132"><strong>See Also</strong></h3>

@@ -13683,7 +13683,7 @@ textblock=[character(len=256) :: &
 '         call printme()', &
 '', &
 '         write(*, *)''zero out negative values''', &
-'         answer=merge( tvals, 0, tvals < 0)', &
+'         answer=merge( 0, tvals, tvals < 0)', &
 '         call printme()', &
 '', &
 '         write(*, *)''binary choice''', &
@@ -13702,21 +13702,23 @@ textblock=[character(len=256) :: &
 '', &
 '  Expected Results:', &
 '', &
-'       >     mask of logicals', &
-'       >      10   3  50', &
-'       >       7   4 -60', &
-'       >     highest values', &
-'       >      10   3  50', &
-'       >       7  40   8', &
-'       >     lowest values', &
-'       >       0 -60   2', &
-'       >     -20   4 -60', &
-'       >     zero out negative values', &
-'       >       0 -60   0', &
-'       >     -20   0 -60', &
-'       >     binary choice', &
-'       >      10  20  30', &
-'       >       1   2   3', &
+'       >    1.00000000', &
+'       >    0.00000000', &
+'       >  mask of logicals', &
+'       >   10   3  50', &
+'       >    7   4 -60', &
+'       >  highest values', &
+'       >   10   3  50', &
+'       >    7  40   8', &
+'       >  lowest values', &
+'       >    0 -60   2', &
+'       >  -20   4 -60', &
+'       >  zero out negative values', &
+'       >   10   0  50', &
+'       >    0  40   0', &
+'       >  binary choice', &
+'       >   10  20  30', &
+'       >    1   2   3', &
 '', &
 'STANDARD', &
 '  Fortran 95', &
