@@ -28,7 +28,7 @@
 
 This is potentially more efficient than other methods of assigning
 the values in **from** to **to** and explicitly deallocating **from**,
-which are for more likely to require a temporary object or a copy of
+which are far more likely to require a temporary object or a copy of
 the elements of the array.
 
 ### **Options**

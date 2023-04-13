@@ -48,6 +48,7 @@ implicit none
 character(len=*),parameter :: f='(i2,1x,2(i11,1x),f14.0:,1x,l1,1x,a)'
 integer :: i,j,k,biggest
 real :: v, w
+doubleprecision :: sum
    ! basic
    print *, huge(0), huge(0.0), huge(0.0d0)
    print *, tiny(0.0), tiny(0.0d0)

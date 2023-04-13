@@ -6832,34 +6832,35 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb386-3" title="3"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> f<span class="kw">=</span><span class="st">&#39;(i2,1x,2(i11,1x),f14.0:,1x,l1,1x,a)&#39;</span></a>
 <a class="sourceLine" id="cb386-4" title="4"><span class="dt">integer</span> <span class="dt">::</span> i,j,k,biggest</a>
 <a class="sourceLine" id="cb386-5" title="5"><span class="dt">real</span> <span class="dt">::</span> v, w</a>
-<a class="sourceLine" id="cb386-6" title="6">   <span class="co">! basic</span></a>
-<a class="sourceLine" id="cb386-7" title="7">   <span class="fu">print</span> <span class="kw">*</span>, <span class="fu">huge</span>(<span class="dv">0</span>), <span class="fu">huge</span>(<span class="fl">0.0</span>), <span class="fu">huge</span>(<span class="fl">0.0d0</span>)</a>
-<a class="sourceLine" id="cb386-8" title="8">   <span class="fu">print</span> <span class="kw">*</span>, <span class="fu">tiny</span>(<span class="fl">0.0</span>), <span class="fu">tiny</span>(<span class="fl">0.0d0</span>)</a>
-<a class="sourceLine" id="cb386-9" title="9"></a>
-<a class="sourceLine" id="cb386-10" title="10">   <span class="fu">sum</span><span class="kw">=</span><span class="fl">0.0d0</span></a>
-<a class="sourceLine" id="cb386-11" title="11">   <span class="co">! note subtracting one because counter is the end value+1 on exit</span></a>
-<a class="sourceLine" id="cb386-12" title="12">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">0</span>,<span class="fu">huge</span>(<span class="dv">0</span>)<span class="kw">-</span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb386-13" title="13">      <span class="fu">sum</span><span class="kw">=</span><span class="fu">sum</span><span class="kw">+</span>i</a>
-<a class="sourceLine" id="cb386-14" title="14">   <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb386-15" title="15">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;sum=&#39;</span>,<span class="fu">sum</span></a>
-<a class="sourceLine" id="cb386-16" title="16"></a>
-<a class="sourceLine" id="cb386-17" title="17">   <span class="co">! advanced</span></a>
-<a class="sourceLine" id="cb386-18" title="18">   biggest<span class="kw">=</span><span class="fu">huge</span>(<span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb386-19" title="19">   <span class="co">! be careful of overflow when using integers in computation</span></a>
-<a class="sourceLine" id="cb386-20" title="20">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="dv">14</span></a>
-<a class="sourceLine" id="cb386-21" title="21">      j<span class="kw">=</span><span class="dv">6</span><span class="kw">**</span>i   <span class="co">! Danger, Danger</span></a>
-<a class="sourceLine" id="cb386-22" title="22">      w<span class="kw">=</span><span class="dv">6</span><span class="kw">**</span>i   <span class="co">! Danger, Danger</span></a>
-<a class="sourceLine" id="cb386-23" title="23">      v<span class="kw">=</span><span class="fl">6.0</span><span class="kw">**</span>i</a>
-<a class="sourceLine" id="cb386-24" title="24">      k<span class="kw">=</span>v      <span class="co">! Danger, Danger</span></a>
-<a class="sourceLine" id="cb386-25" title="25"></a>
-<a class="sourceLine" id="cb386-26" title="26">      <span class="kw">if</span>(v<span class="op">.gt.</span>biggest)<span class="kw">then</span></a>
-<a class="sourceLine" id="cb386-27" title="27">         <span class="fu">write(*</span>,f<span class="fu">)</span> i, j, k, v, v<span class="op">.eq.</span>w, <span class="st">&#39;wrong j and k and w&#39;</span></a>
-<a class="sourceLine" id="cb386-28" title="28">      <span class="kw">else</span></a>
-<a class="sourceLine" id="cb386-29" title="29">         <span class="fu">write(*</span>,f<span class="fu">)</span> i, j, k, v, v<span class="op">.eq.</span>w</a>
-<a class="sourceLine" id="cb386-30" title="30">      <span class="kw">endif</span></a>
-<a class="sourceLine" id="cb386-31" title="31"></a>
-<a class="sourceLine" id="cb386-32" title="32">   <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb386-33" title="33"><span class="kw">end program</span> demo_huge</a></code></pre></div>
+<a class="sourceLine" id="cb386-6" title="6">doubleprecision <span class="dt">::</span> <span class="fu">sum</span></a>
+<a class="sourceLine" id="cb386-7" title="7">   <span class="co">! basic</span></a>
+<a class="sourceLine" id="cb386-8" title="8">   <span class="fu">print</span> <span class="kw">*</span>, <span class="fu">huge</span>(<span class="dv">0</span>), <span class="fu">huge</span>(<span class="fl">0.0</span>), <span class="fu">huge</span>(<span class="fl">0.0d0</span>)</a>
+<a class="sourceLine" id="cb386-9" title="9">   <span class="fu">print</span> <span class="kw">*</span>, <span class="fu">tiny</span>(<span class="fl">0.0</span>), <span class="fu">tiny</span>(<span class="fl">0.0d0</span>)</a>
+<a class="sourceLine" id="cb386-10" title="10"></a>
+<a class="sourceLine" id="cb386-11" title="11">   <span class="fu">sum</span><span class="kw">=</span><span class="fl">0.0d0</span></a>
+<a class="sourceLine" id="cb386-12" title="12">   <span class="co">! note subtracting one because counter is the end value+1 on exit</span></a>
+<a class="sourceLine" id="cb386-13" title="13">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">0</span>,<span class="fu">huge</span>(<span class="dv">0</span>)<span class="kw">-</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb386-14" title="14">      <span class="fu">sum</span><span class="kw">=</span><span class="fu">sum</span><span class="kw">+</span>i</a>
+<a class="sourceLine" id="cb386-15" title="15">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb386-16" title="16">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;sum=&#39;</span>,<span class="fu">sum</span></a>
+<a class="sourceLine" id="cb386-17" title="17"></a>
+<a class="sourceLine" id="cb386-18" title="18">   <span class="co">! advanced</span></a>
+<a class="sourceLine" id="cb386-19" title="19">   biggest<span class="kw">=</span><span class="fu">huge</span>(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb386-20" title="20">   <span class="co">! be careful of overflow when using integers in computation</span></a>
+<a class="sourceLine" id="cb386-21" title="21">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="dv">14</span></a>
+<a class="sourceLine" id="cb386-22" title="22">      j<span class="kw">=</span><span class="dv">6</span><span class="kw">**</span>i   <span class="co">! Danger, Danger</span></a>
+<a class="sourceLine" id="cb386-23" title="23">      w<span class="kw">=</span><span class="dv">6</span><span class="kw">**</span>i   <span class="co">! Danger, Danger</span></a>
+<a class="sourceLine" id="cb386-24" title="24">      v<span class="kw">=</span><span class="fl">6.0</span><span class="kw">**</span>i</a>
+<a class="sourceLine" id="cb386-25" title="25">      k<span class="kw">=</span>v      <span class="co">! Danger, Danger</span></a>
+<a class="sourceLine" id="cb386-26" title="26"></a>
+<a class="sourceLine" id="cb386-27" title="27">      <span class="kw">if</span>(v<span class="op">.gt.</span>biggest)<span class="kw">then</span></a>
+<a class="sourceLine" id="cb386-28" title="28">         <span class="fu">write(*</span>,f<span class="fu">)</span> i, j, k, v, v<span class="op">.eq.</span>w, <span class="st">&#39;wrong j and k and w&#39;</span></a>
+<a class="sourceLine" id="cb386-29" title="29">      <span class="kw">else</span></a>
+<a class="sourceLine" id="cb386-30" title="30">         <span class="fu">write(*</span>,f<span class="fu">)</span> i, j, k, v, v<span class="op">.eq.</span>w</a>
+<a class="sourceLine" id="cb386-31" title="31">      <span class="kw">endif</span></a>
+<a class="sourceLine" id="cb386-32" title="32"></a>
+<a class="sourceLine" id="cb386-33" title="33">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb386-34" title="34"><span class="kw">end program</span> demo_huge</a></code></pre></div>
 <p>Results:</p>
 <pre><code>  2147483647  3.4028235E+38  1.797693134862316E+308
   1.1754944E-38  2.225073858507201E-308
@@ -10794,7 +10795,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </ul>
 <h3 id="description-139"><strong>Description</strong></h3>
 <p><strong>move_alloc</strong>(3) moves the allocation from <strong>from</strong> to <strong>to</strong>. <strong>from</strong> will become deallocated in the process.</p>
-<p>This is potentially more efficient than other methods of assigning the values in <strong>from</strong> to <strong>to</strong> and explicitly deallocating <strong>from</strong>, which are for more likely to require a temporary object or a copy of the elements of the array.</p>
+<p>This is potentially more efficient than other methods of assigning the values in <strong>from</strong> to <strong>to</strong> and explicitly deallocating <strong>from</strong>, which are far more likely to require a temporary object or a copy of the elements of the array.</p>
 <h3 id="options-137"><strong>Options</strong></h3>
 <ul>
 <li><dl>
@@ -12501,16 +12502,16 @@ dim=3 :( 2 3 )
 </div>
 <div id="example" class="slide section level2">
 <h1><strong>Example</strong></h1>
-<div class="sourceCode" id="cb674"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb674-1" title="1"><span class="kw">program</span> demo_random_seed</a>
-<a class="sourceLine" id="cb674-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb674-3" title="3"><span class="dt">real</span> x(<span class="dv">3</span>), y(<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb674-4" title="4">   <span class="kw">call</span> random_init(<span class="cn">.true.</span>, <span class="cn">.true.</span>)</a>
-<a class="sourceLine" id="cb674-5" title="5">   <span class="kw">call</span> <span class="fu">random_number</span>(x)</a>
-<a class="sourceLine" id="cb674-6" title="6">   <span class="kw">call</span> random_init(<span class="cn">.true.</span>, <span class="cn">.true.</span>)</a>
-<a class="sourceLine" id="cb674-7" title="7">   <span class="kw">call</span> <span class="fu">random_number</span>(y)</a>
-<a class="sourceLine" id="cb674-8" title="8">   <span class="co">! x and y should be the same sequence</span></a>
-<a class="sourceLine" id="cb674-9" title="9">   <span class="kw">if</span> ( <span class="fu">any</span>(x <span class="op">/=</span> y) ) <span class="kw">stop</span> <span class="st">&quot;x(:) and y(:) are not all equal&quot;</span></a>
-<a class="sourceLine" id="cb674-10" title="10"><span class="kw">end program</span> demo_random_seed</a></code></pre></div>
+<div class="sourceCode" id="cb674"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb674-1" title="1">    <span class="kw">program</span> demo_random_init</a>
+<a class="sourceLine" id="cb674-2" title="2">    <span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb674-3" title="3"><span class="dt">    real</span> x(<span class="dv">3</span>), y(<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb674-4" title="4">       <span class="kw">call</span> random_init(<span class="cn">.true.</span>, <span class="cn">.true.</span>)</a>
+<a class="sourceLine" id="cb674-5" title="5">       <span class="kw">call</span> <span class="fu">random_number</span>(x)</a>
+<a class="sourceLine" id="cb674-6" title="6">       <span class="kw">call</span> random_init(<span class="cn">.true.</span>, <span class="cn">.true.</span>)</a>
+<a class="sourceLine" id="cb674-7" title="7">       <span class="kw">call</span> <span class="fu">random_number</span>(y)</a>
+<a class="sourceLine" id="cb674-8" title="8">       <span class="co">! x and y should be the same sequence</span></a>
+<a class="sourceLine" id="cb674-9" title="9">       <span class="kw">if</span> ( <span class="fu">any</span>(x <span class="op">/=</span> y) ) <span class="kw">stop</span> <span class="st">&quot;x(:) and y(:) are not all equal&quot;</span></a>
+<a class="sourceLine" id="cb674-10" title="10">    <span class="kw">end program</span> demo_random_init</a></code></pre></div>
 </div>
 <div id="see-also-156" class="slide section level2">
 <h1><strong>See also</strong></h1>
@@ -12640,17 +12641,17 @@ dim=3 :( 2 3 )
 </ul>
 <h3 id="examples-154"><strong>Examples</strong></h3>
 <p>Sample program:</p>
-<div class="sourceCode" id="cb681"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb681-1" title="1"><span class="kw">program</span> demo_random_seed</a>
-<a class="sourceLine" id="cb681-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb681-3" title="3"><span class="dt">integer</span>, <span class="dt">allocatable</span> <span class="dt">::</span> seed(:)</a>
-<a class="sourceLine" id="cb681-4" title="4"><span class="dt">integer</span> <span class="dt">::</span> n</a>
+<div class="sourceCode" id="cb681"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb681-1" title="1">    <span class="kw">program</span> demo_random_seed</a>
+<a class="sourceLine" id="cb681-2" title="2">    <span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb681-3" title="3">    <span class="dt">integer</span>, <span class="dt">allocatable</span> <span class="dt">::</span> seed(:)</a>
+<a class="sourceLine" id="cb681-4" title="4">    <span class="dt">integer</span> <span class="dt">::</span> n</a>
 <a class="sourceLine" id="cb681-5" title="5"></a>
-<a class="sourceLine" id="cb681-6" title="6">   <span class="kw">call</span> <span class="fu">random_seed</span>(<span class="fu">size</span> <span class="kw">=</span> n)</a>
-<a class="sourceLine" id="cb681-7" title="7">   <span class="kw">allocate</span>(seed(n))</a>
-<a class="sourceLine" id="cb681-8" title="8">   <span class="kw">call</span> <span class="fu">random_seed</span>(get<span class="kw">=</span>seed)</a>
-<a class="sourceLine" id="cb681-9" title="9">   <span class="fu">write (*</span>, <span class="fu">*)</span> seed</a>
+<a class="sourceLine" id="cb681-6" title="6">       <span class="kw">call</span> <span class="fu">random_seed</span>(<span class="fu">size</span> <span class="kw">=</span> n)</a>
+<a class="sourceLine" id="cb681-7" title="7">       <span class="kw">allocate</span>(seed(n))</a>
+<a class="sourceLine" id="cb681-8" title="8">       <span class="kw">call</span> <span class="fu">random_seed</span>(get<span class="kw">=</span>seed)</a>
+<a class="sourceLine" id="cb681-9" title="9">       <span class="fu">write (*</span>, <span class="fu">*)</span> seed</a>
 <a class="sourceLine" id="cb681-10" title="10"></a>
-<a class="sourceLine" id="cb681-11" title="11"><span class="kw">end program</span> demo_random_seed</a></code></pre></div>
+<a class="sourceLine" id="cb681-11" title="11">    <span class="kw">end program</span> demo_random_seed</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>     -674862499 -1750483360  -183136071  -317862567   682500039
      349459   344020729 -1725483289</code></pre>

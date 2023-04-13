@@ -9434,6 +9434,7 @@ implicit none
 character(len=*),parameter :: f='(i2,1x,2(i11,1x),f14.0:,1x,l1,1x,a)'
 integer :: i,j,k,biggest
 real :: v, w
+doubleprecision :: sum
    ! basic
    print *, huge(0), huge(0.0), huge(0.0d0)
    print *, tiny(0.0), tiny(0.0d0)
@@ -14887,7 +14888,7 @@ Fortran 95
 
 This is potentially more efficient than other methods of assigning
 the values in **from** to **to** and explicitly deallocating **from**,
-which are for more likely to require a temporary object or a copy of
+which are far more likely to require a temporary object or a copy of
 the elements of the array.
 
 ### **Options**
@@ -17224,16 +17225,16 @@ Fortran 2018
 
 ## **Example**
 ```fortran
-program demo_random_seed
-implicit none
-real x(3), y(3)
-   call random_init(.true., .true.)
-   call random_number(x)
-   call random_init(.true., .true.)
-   call random_number(y)
-   ! x and y should be the same sequence
-   if ( any(x /= y) ) stop "x(:) and y(:) are not all equal"
-end program demo_random_seed
+    program demo_random_init
+    implicit none
+    real x(3), y(3)
+       call random_init(.true., .true.)
+       call random_number(x)
+       call random_init(.true., .true.)
+       call random_number(y)
+       ! x and y should be the same sequence
+       if ( any(x /= y) ) stop "x(:) and y(:) are not all equal"
+    end program demo_random_init
 ```
 ## **See also**
 
@@ -17391,17 +17392,17 @@ data retrieved from the operating system.
 Sample program:
 
 ```fortran
-program demo_random_seed
-implicit none
-integer, allocatable :: seed(:)
-integer :: n
+    program demo_random_seed
+    implicit none
+    integer, allocatable :: seed(:)
+    integer :: n
 
-   call random_seed(size = n)
-   allocate(seed(n))
-   call random_seed(get=seed)
-   write (*, *) seed
+       call random_seed(size = n)
+       allocate(seed(n))
+       call random_seed(get=seed)
+       write (*, *) seed
 
-end program demo_random_seed
+    end program demo_random_seed
 ```
 Results:
 ```text
