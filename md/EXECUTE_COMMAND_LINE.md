@@ -57,6 +57,15 @@
   such, if the parent process is terminated, the child process might
   not be terminated alongside.
 
+  One of the most common causes of errors is that the program requested
+  is not in the search path. You should make sure that the program to be
+  executed is installed on your system and that it is in the system’s
+  path when the program calls it. You can check if it’s installed by
+  running it from the command prompt. If it runs successfully from the
+  command prompt, it means that it’s installed, and so you should
+  next check that it is in the search path when the program executes
+  (usually this means checking the environment variable PATH).
+
 ### **Options**
 
 - **command**
