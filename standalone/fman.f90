@@ -339,7 +339,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   abs(3fortran)', &
+'                                June 04, 2023                   abs(3fortran)', &
 '']
 
 shortname="abs"
@@ -515,7 +515,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 achar(3fortran)', &
+'                                June 04, 2023                 achar(3fortran)', &
 '']
 
 shortname="achar"
@@ -615,7 +615,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  acos(3fortran)', &
+'                                June 04, 2023                  acos(3fortran)', &
 '']
 
 shortname="acos"
@@ -692,7 +692,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 acosh(3fortran)', &
+'                                June 04, 2023                 acosh(3fortran)', &
 '']
 
 shortname="acosh"
@@ -789,7 +789,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               adjustl(3fortran)', &
+'                                June 04, 2023               adjustl(3fortran)', &
 '']
 
 shortname="adjustl"
@@ -882,7 +882,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               adjustr(3fortran)', &
+'                                June 04, 2023               adjustr(3fortran)', &
 '']
 
 shortname="adjustr"
@@ -997,7 +997,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 aimag(3fortran)', &
+'                                June 04, 2023                 aimag(3fortran)', &
 '']
 
 shortname="aimag"
@@ -1097,7 +1097,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  aint(3fortran)', &
+'                                June 04, 2023                  aint(3fortran)', &
 '']
 
 shortname="aint"
@@ -1175,13 +1175,15 @@ textblock=[character(len=256) :: &
 '      implicit none', &
 '      logical,parameter :: T=.true., F=.false.', &
 '      logical bool', &
+'', &
 '       ! basic usage', &
 '        ! is everything true?', &
 '        bool = all([ T,T,T ])', &
+'        print *, ''are all values true?'', bool', &
 '        bool = all([ T,F,T ])', &
-'        print *, bool', &
+'        print *, ''are all values true now?'', bool', &
 '', &
-'       ! by a dimension', &
+'       ! compare matrices, even by a dimension', &
 '        ARRAYS: block', &
 '        integer :: a(2,3), b(2,3)', &
 '         ! set everything to one except one value in b', &
@@ -1215,7 +1217,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   all(3fortran)', &
+'                                June 04, 2023                   all(3fortran)', &
 '']
 
 shortname="all"
@@ -1322,7 +1324,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             allocated(3fortran)', &
+'                                June 04, 2023             allocated(3fortran)', &
 '']
 
 shortname="allocated"
@@ -1448,7 +1450,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 anint(3fortran)', &
+'                                June 04, 2023                 anint(3fortran)', &
 '']
 
 shortname="anint"
@@ -1614,7 +1616,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   any(3fortran)', &
+'                                June 04, 2023                   any(3fortran)', &
 '']
 
 shortname="any"
@@ -1736,7 +1738,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  asin(3fortran)', &
+'                                June 04, 2023                  asin(3fortran)', &
 '']
 
 shortname="asin"
@@ -1815,7 +1817,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 asinh(3fortran)', &
+'                                June 04, 2023                 asinh(3fortran)', &
 '']
 
 shortname="asinh"
@@ -1933,7 +1935,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            associated(3fortran)', &
+'                                June 04, 2023            associated(3fortran)', &
 '']
 
 shortname="associated"
@@ -2119,7 +2121,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 atan2(3fortran)', &
+'                                June 04, 2023                 atan2(3fortran)', &
 '']
 
 shortname="atan2"
@@ -2213,7 +2215,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  atan(3fortran)', &
+'                                June 04, 2023                  atan(3fortran)', &
 '']
 
 shortname="atan"
@@ -2287,7 +2289,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 atanh(3fortran)', &
+'                                June 04, 2023                 atanh(3fortran)', &
 '']
 
 shortname="atanh"
@@ -2364,7 +2366,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            atomic_add(3fortran)', &
+'                                June 04, 2023            atomic_add(3fortran)', &
 '']
 
 shortname="atomic_add"
@@ -2442,7 +2444,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            atomic_and(3fortran)', &
+'                                June 04, 2023            atomic_and(3fortran)', &
 '']
 
 shortname="atomic_and"
@@ -2512,7 +2514,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            atomic_cas(3fortran)', &
+'                                June 04, 2023            atomic_cas(3fortran)', &
 '']
 
 shortname="atomic_cas"
@@ -2588,7 +2590,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023         atomic_define(3fortran)', &
+'                                June 04, 2023         atomic_define(3fortran)', &
 '']
 
 shortname="atomic_define"
@@ -2659,7 +2661,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023      atomic_fetch_add(3fortran)', &
+'                                June 04, 2023      atomic_fetch_add(3fortran)', &
 '']
 
 shortname="atomic_fetch_add"
@@ -2731,7 +2733,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023      atomic_fetch_and(3fortran)', &
+'                                June 04, 2023      atomic_fetch_and(3fortran)', &
 '']
 
 shortname="atomic_fetch_and"
@@ -2803,7 +2805,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023       atomic_fetch_or(3fortran)', &
+'                                June 04, 2023       atomic_fetch_or(3fortran)', &
 '']
 
 shortname="atomic_fetch_or"
@@ -2875,7 +2877,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023      atomic_fetch_xor(3fortran)', &
+'                                June 04, 2023      atomic_fetch_xor(3fortran)', &
 '']
 
 shortname="atomic_fetch_xor"
@@ -2956,7 +2958,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             atomic_or(3fortran)', &
+'                                June 04, 2023             atomic_or(3fortran)', &
 '']
 
 shortname="atomic_or"
@@ -3040,7 +3042,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            atomic_ref(3fortran)', &
+'                                June 04, 2023            atomic_ref(3fortran)', &
 '']
 
 shortname="atomic_ref"
@@ -3119,7 +3121,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            atomic_xor(3fortran)', &
+'                                June 04, 2023            atomic_xor(3fortran)', &
 '']
 
 shortname="atomic_xor"
@@ -3189,7 +3191,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             bessel_j0(3fortran)', &
+'                                June 04, 2023             bessel_j0(3fortran)', &
 '']
 
 shortname="bessel_j0"
@@ -3258,7 +3260,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             bessel_j1(3fortran)', &
+'                                June 04, 2023             bessel_j1(3fortran)', &
 '']
 
 shortname="bessel_j1"
@@ -3362,7 +3364,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             bessel_jn(3fortran)', &
+'                                June 04, 2023             bessel_jn(3fortran)', &
 '']
 
 shortname="bessel_jn"
@@ -3431,7 +3433,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             bessel_y0(3fortran)', &
+'                                June 04, 2023             bessel_y0(3fortran)', &
 '']
 
 shortname="bessel_y0"
@@ -3499,7 +3501,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             bessel_y1(3fortran)', &
+'                                June 04, 2023             bessel_y1(3fortran)', &
 '']
 
 shortname="bessel_y1"
@@ -3603,7 +3605,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             bessel_yn(3fortran)', &
+'                                June 04, 2023             bessel_yn(3fortran)', &
 '']
 
 shortname="bessel_yn"
@@ -3768,7 +3770,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   bge(3fortran)', &
+'                                June 04, 2023                   bge(3fortran)', &
 '']
 
 shortname="bge"
@@ -3880,7 +3882,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   bgt(3fortran)', &
+'                                June 04, 2023                   bgt(3fortran)', &
 '']
 
 shortname="bgt"
@@ -3971,7 +3973,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              bit_size(3fortran)', &
+'                                June 04, 2023              bit_size(3fortran)', &
 '']
 
 shortname="bit_size"
@@ -4072,7 +4074,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   ble(3fortran)', &
+'                                June 04, 2023                   ble(3fortran)', &
 '']
 
 shortname="ble"
@@ -4167,7 +4169,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   blt(3fortran)', &
+'                                June 04, 2023                   blt(3fortran)', &
 '']
 
 shortname="blt"
@@ -4299,14 +4301,13 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  IEOR(3), IBCLR(3), NOT(3), IBCLR(3), IBITS(3), IBSET(3), IAND(3), IOR(3),', &
-'  IEOR(3), MVBITS(3)', &
+'  IAND(3), IBCLR(3), IBITS(3), IBSET(3), IEOR(3), IOR(3), MVBITS(3), NOT(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 btest(3fortran)', &
+'                                June 04, 2023                 btest(3fortran)', &
 '']
 
 shortname="btest"
@@ -4384,7 +4385,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023          c_associated(3fortran)', &
+'                                June 04, 2023          c_associated(3fortran)', &
 '']
 
 shortname="c_associated"
@@ -4494,7 +4495,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               ceiling(3fortran)', &
+'                                June 04, 2023               ceiling(3fortran)', &
 '']
 
 shortname="ceiling"
@@ -4570,7 +4571,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           c_f_pointer(3fortran)', &
+'                                June 04, 2023           c_f_pointer(3fortran)', &
 '']
 
 shortname="c_f_pointer"
@@ -4645,7 +4646,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023       c_f_procpointer(3fortran)', &
+'                                June 04, 2023       c_f_procpointer(3fortran)', &
 '']
 
 shortname="c_f_procpointer"
@@ -4719,7 +4720,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              c_funloc(3fortran)', &
+'                                June 04, 2023              c_funloc(3fortran)', &
 '']
 
 shortname="c_funloc"
@@ -4845,7 +4846,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  char(3fortran)', &
+'                                June 04, 2023                  char(3fortran)', &
 '']
 
 shortname="char"
@@ -4906,7 +4907,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 c_loc(3fortran)', &
+'                                June 04, 2023                 c_loc(3fortran)', &
 '']
 
 shortname="c_loc"
@@ -5178,7 +5179,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 cmplx(3fortran)', &
+'                                June 04, 2023                 cmplx(3fortran)', &
 '']
 
 shortname="cmplx"
@@ -5246,7 +5247,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023          co_broadcast(3fortran)', &
+'                                June 04, 2023          co_broadcast(3fortran)', &
 '']
 
 shortname="co_broadcast"
@@ -5366,7 +5367,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                co_max(3fortran)', &
+'                                June 04, 2023                co_max(3fortran)', &
 '']
 
 shortname="co_max"
@@ -5435,7 +5436,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                co_min(3fortran)', &
+'                                June 04, 2023                co_min(3fortran)', &
 '']
 
 shortname="co_min"
@@ -5513,7 +5514,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023command_argument_count(3fortran)', &
+'                                June 04, 2023command_argument_count(3fortran)', &
 '']
 
 shortname="command_argument_count"
@@ -5601,7 +5602,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023      compiler_options(3fortran)', &
+'                                June 04, 2023      compiler_options(3fortran)', &
 '']
 
 shortname="compiler_options"
@@ -5673,7 +5674,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023      compiler_version(3fortran)', &
+'                                June 04, 2023      compiler_version(3fortran)', &
 '']
 
 shortname="compiler_version"
@@ -5804,7 +5805,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 conjg(3fortran)', &
+'                                June 04, 2023                 conjg(3fortran)', &
 '']
 
 shortname="conjg"
@@ -5906,7 +5907,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             co_reduce(3fortran)', &
+'                                June 04, 2023             co_reduce(3fortran)', &
 '']
 
 shortname="co_reduce"
@@ -6000,7 +6001,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   cos(3fortran)', &
+'                                June 04, 2023                   cos(3fortran)', &
 '']
 
 shortname="cos"
@@ -6075,7 +6076,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  cosh(3fortran)', &
+'                                June 04, 2023                  cosh(3fortran)', &
 '']
 
 shortname="cosh"
@@ -6152,7 +6153,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                co_sum(3fortran)', &
+'                                June 04, 2023                co_sum(3fortran)', &
 '']
 
 shortname="co_sum"
@@ -6439,7 +6440,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 count(3fortran)', &
+'                                June 04, 2023                 count(3fortran)', &
 '']
 
 shortname="count"
@@ -6552,7 +6553,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              cpu_time(3fortran)', &
+'                                June 04, 2023              cpu_time(3fortran)', &
 '']
 
 shortname="cpu_time"
@@ -6690,7 +6691,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                cshift(3fortran)', &
+'                                June 04, 2023                cshift(3fortran)', &
 '']
 
 shortname="cshift"
@@ -6754,7 +6755,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              c_sizeof(3fortran)', &
+'                                June 04, 2023              c_sizeof(3fortran)', &
 '']
 
 shortname="c_sizeof"
@@ -6929,7 +6930,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023         date_and_time(3fortran)', &
+'                                June 04, 2023         date_and_time(3fortran)', &
 '']
 
 shortname="date_and_time"
@@ -7008,7 +7009,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  dble(3fortran)', &
+'                                June 04, 2023                  dble(3fortran)', &
 '']
 
 shortname="dble"
@@ -7083,7 +7084,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                digits(3fortran)', &
+'                                June 04, 2023                digits(3fortran)', &
 '']
 
 shortname="digits"
@@ -7172,7 +7173,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   dim(3fortran)', &
+'                                June 04, 2023                   dim(3fortran)', &
 '']
 
 shortname="dim"
@@ -7275,7 +7276,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           dot_product(3fortran)', &
+'                                June 04, 2023           dot_product(3fortran)', &
 '']
 
 shortname="dot_product"
@@ -7389,7 +7390,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 dprod(3fortran)', &
+'                                June 04, 2023                 dprod(3fortran)', &
 '']
 
 shortname="dprod"
@@ -7540,7 +7541,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               dshiftl(3fortran)', &
+'                                June 04, 2023               dshiftl(3fortran)', &
 '']
 
 shortname="dshiftl"
@@ -7695,7 +7696,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               dshiftr(3fortran)', &
+'                                June 04, 2023               dshiftr(3fortran)', &
 '']
 
 shortname="dshiftr"
@@ -7828,7 +7829,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               eoshift(3fortran)', &
+'                                June 04, 2023               eoshift(3fortran)', &
 '']
 
 shortname="eoshift"
@@ -7960,7 +7961,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               epsilon(3fortran)', &
+'                                June 04, 2023               epsilon(3fortran)', &
 '']
 
 shortname="epsilon"
@@ -8033,7 +8034,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   erf(3fortran)', &
+'                                June 04, 2023                   erf(3fortran)', &
 '']
 
 shortname="erf"
@@ -8121,7 +8122,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  erfc(3fortran)', &
+'                                June 04, 2023                  erfc(3fortran)', &
 '']
 
 shortname="erfc"
@@ -8203,7 +8204,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           erfc_scaled(3fortran)', &
+'                                June 04, 2023           erfc_scaled(3fortran)', &
 '']
 
 shortname="erfc_scaled"
@@ -8269,7 +8270,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           event_query(3fortran)', &
+'                                June 04, 2023           event_query(3fortran)', &
 '']
 
 shortname="event_query"
@@ -8341,6 +8342,15 @@ textblock=[character(len=256) :: &
 '  be ignored, and the SIGCHLD will be blocked. As such, if the parent process', &
 '  is terminated, the child process might not be terminated alongside.', &
 '', &
+'  One of the most common causes of errors is that the program requested is not', &
+'  in the search path. You should make sure that the program to be executed is', &
+'  installed on your system and that it is in the system''s path when the', &
+'  program calls it. You can check if it is installed by running it from the', &
+'  command prompt. If it runs successfully from the command prompt, it means', &
+'  that it is installed, and so you should next check that it is in the search', &
+'  path when the program executes (usually this means checking the environment', &
+'  variable PATH).', &
+'', &
 'OPTIONS', &
 '  o  COMMAND : the command line to be executed. The interpretation is', &
 '     programming-environment dependent.', &
@@ -8394,7 +8404,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023  execute_command_line(3fortran)', &
+'                                June 04, 2023  execute_command_line(3fortran)', &
 '']
 
 shortname="execute_command_line"
@@ -8511,7 +8521,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   exp(3fortran)', &
+'                                June 04, 2023                   exp(3fortran)', &
 '']
 
 shortname="exp"
@@ -8592,7 +8602,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              exponent(3fortran)', &
+'                                June 04, 2023              exponent(3fortran)', &
 '']
 
 shortname="exponent"
@@ -8773,7 +8783,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023       extends_type_of(3fortran)', &
+'                                June 04, 2023       extends_type_of(3fortran)', &
 '']
 
 shortname="extends_type_of"
@@ -9066,7 +9076,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               findloc(3fortran)', &
+'                                June 04, 2023               findloc(3fortran)', &
 '']
 
 shortname="findloc"
@@ -9180,7 +9190,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 floor(3fortran)', &
+'                                June 04, 2023                 floor(3fortran)', &
 '']
 
 shortname="floor"
@@ -9255,7 +9265,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              fraction(3fortran)', &
+'                                June 04, 2023              fraction(3fortran)', &
 '']
 
 shortname="fraction"
@@ -9309,11 +9319,12 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_gamma', &
-'      use, intrinsic :: iso_fortran_env, only : wp=>real64', &
+'      use, intrinsic :: iso_fortran_env, only : wp=>real64, int64', &
 '      implicit none', &
 '      real :: x, xa(4)', &
-'      integer :: i', &
+'      integer :: i, j', &
 '', &
+'        ! basic usage', &
 '        x = gamma(1.0)', &
 '        write(*,*)''gamma(1.0)='',x', &
 '', &
@@ -9322,79 +9333,79 @@ textblock=[character(len=256) :: &
 '        write(*,*)xa', &
 '        write(*,*)', &
 '', &
-'        ! gamma(3) is related to the factorial function', &
-'        do i=1,20', &
+'', &
+'        ! gamma() is related to the factorial function', &
+'        do i = 1, 171', &
 '           ! check value is not too big for default integer type', &
-'           if(factorial(i).gt.huge(0))then', &
-'              write(*,*)i,factorial(i)', &
+'           if (factorial(i)  <=  huge(0)) then', &
+'              write(*,*) i, nint(factorial(i)), ''integer''', &
+'           elseif (factorial(i)  <=  huge(0_int64)) then', &
+'              write(*,*) i, nint(factorial(i),kind=int64),''integer(kind=int64)''', &
 '           else', &
-'              write(*,*)i,factorial(i),int(factorial(i))', &
+'              write(*,*) i, factorial(i) , ''user factorial function''', &
+'              write(*,*) i, product([(real(j, kind=wp), j=1, i)]), ''product''', &
+'              write(*,*) i, gamma(real(i + 1, kind=wp)), ''gamma directly''', &
 '           endif', &
 '        enddo', &
-'        ! more factorials', &
-'        FAC: block', &
-'        integer,parameter :: n(*)=[0,1,5,11,170]', &
-'        integer :: j', &
-'           do j=1,size(n)', &
-'              write(*,''(*(g0,1x))'')''factorial of'', n(j),'' is '', &', &
-'               & product([(real(i,kind=wp),i=1,n(j))]),  &', &
-'               & gamma(real(n(j)+1,kind=wp))', &
-'           enddo', &
-'        endblock FAC', &
 '', &
-'        contains', &
-'        function factorial(i) result(f)', &
-'        integer,parameter :: dp=kind(0d0)', &
-'        integer,intent(in) :: i', &
-'        real :: f', &
-'           if(i.le.0)then', &
-'              write(*,''(*(g0))'')''<ERROR> gamma(3) function value '',i,'' <= 0''', &
-'              stop      ''<STOP> bad value in gamma function''', &
-'           endif', &
-'           f=gamma(real(i+1))', &
-'        end function factorial', &
+'', &
+'      contains', &
+'      function factorial(i) result(f)', &
+'      !  GAMMA(X) computes Gamma of X. For positive whole number values of N the', &
+'      !  Gamma function can be used to calculate factorials, as (N-1)! ==', &
+'      !  GAMMA(REAL(N)). That is', &
+'      !', &
+'      !      n! == gamma(real(n+1))', &
+'      !', &
+'      integer, intent(in) :: i', &
+'      real(kind=wp) :: f', &
+'        if (i  <=  0) then', &
+'           write(*,''(*(g0))'') ''<ERROR> gamma(3) function value '', i, '' <= 0''', &
+'           stop ''<STOP> bad value in gamma function''', &
+'        endif', &
+'        f = anint(gamma(real(i + 1,kind=wp)))', &
+'      end function factorial', &
+'', &
 '      end program demo_gamma', &
 '', &
 '  Results:', &
 '', &
-'         gamma(1.0)=   1.000000', &
-'           1.000000       1.000000       2.000000       6.000000', &
+'       >  gamma(1.0)=  1.00000000', &
+'       >    1.00000000      1.00000000       2.00000000       6.00000000', &
+'       >', &
+'       >           1           1 integer', &
+'       >           2           2 integer', &
+'       >           3           6 integer', &
+'       >           4          24 integer', &
+'       >           5         120 integer', &
+'       >           6         720 integer', &
+'       >           7        5040 integer', &
+'       >           8       40320 integer', &
+'       >           9      362880 integer', &
+'       >          10     3628800 integer', &
+'       >          11    39916800 integer', &
+'       >          12   479001600 integer', &
+'       >          13           6227020800 integer(kind=int64)', &
+'       >          14          87178291200 integer(kind=int64)', &
+'       >          15        1307674368000 integer(kind=int64)', &
+'       >          16       20922789888000 integer(kind=int64)', &
+'       >          17      355687428096000 integer(kind=int64)', &
+'       >          18     6402373705728001 integer(kind=int64)', &
+'       >          19   121645100408832000 integer(kind=int64)', &
+'       >          20  2432902008176640000 integer(kind=int64)', &
+'       >          21   5.1090942171709440E+019 user factorial function', &
+'       >          21   5.1090942171709440E+019 product', &
+'       >          21   5.1090942171709440E+019 gamma directly', &
+'       >           :', &
+'       >           :', &
+'       >           :', &
+'       >         170   7.2574156153079990E+306 user factorial function', &
+'       >         170   7.2574156153079940E+306 product', &
+'       >         170   7.2574156153079990E+306 gamma directly', &
+'       >         171                  Infinity user factorial function', &
+'       >         171                  Infinity product', &
+'       >         171                  Infinity gamma directly', &
 '', &
-'                   1   1.000000               1', &
-'                   2   2.000000               2', &
-'                   3   6.000000               6', &
-'                   4   24.00000              24', &
-'                   5   120.0000             120', &
-'                   6   720.0000             720', &
-'                   7   5040.000            5040', &
-'                   8   40320.00           40320', &
-'                   9   362880.0          362880', &
-'                  10   3628800.         3628800', &
-'                  11  3.9916800E+07    39916800', &
-'                  12  4.7900160E+08   479001600', &
-'                  13  6.2270208E+09', &
-'                  14  8.7178289E+10', &
-'                  15  1.3076744E+12', &
-'                  16  2.0922791E+13', &
-'                  17  3.5568741E+14', &
-'                  18  6.4023735E+15', &
-'                  19  1.2164510E+17', &
-'                  20  2.4329020E+18', &
-'', &
-'    factorial of 0', &
-'      is  1.000000000000000 1.000000000000000', &
-'', &
-'    factorial of 1', &
-'      is  1.000000000000000 1.000000000000000', &
-'', &
-'    factorial of 5', &
-'      is  120.0000000000000 120.0000000000000', &
-'', &
-'    factorial of 11', &
-'      is  39916800.00000000 39916800.00000000', &
-'', &
-'    factorial of 170', &
-'      is  .7257415615307994E+307 .7257415615307999E+307', &
 '', &
 'STANDARD', &
 '  Fortran 2008', &
@@ -9409,7 +9420,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 gamma(3fortran)', &
+'                                June 04, 2023                 gamma(3fortran)', &
 '']
 
 shortname="gamma"
@@ -9518,7 +9529,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           get_command(3fortran)', &
+'                                June 04, 2023           get_command(3fortran)', &
 '']
 
 shortname="get_command"
@@ -9658,7 +9669,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023  get_command_argument(3fortran)', &
+'                                June 04, 2023  get_command_argument(3fortran)', &
 '']
 
 shortname="get_command_argument"
@@ -9805,7 +9816,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 20get_environment_variable(3fortran)', &
+'                                June 04, 20get_environment_variable(3fortran)', &
 '']
 
 shortname="get_environment_variable"
@@ -9861,17 +9872,17 @@ textblock=[character(len=256) :: &
 '      character(len=*),parameter :: f=''(i2,1x,2(i11,1x),f14.0:,1x,l1,1x,a)''', &
 '      integer :: i,j,k,biggest', &
 '      real :: v, w', &
-'      doubleprecision :: sum', &
+'      doubleprecision :: tally', &
 '        ! basic', &
 '        print *, huge(0), huge(0.0), huge(0.0d0)', &
 '        print *, tiny(0.0), tiny(0.0d0)', &
 '', &
-'        sum=0.0d0', &
+'        tally=0.0d0', &
 '        ! note subtracting one because counter is the end value+1 on exit', &
 '        do i=0,huge(0)-1', &
-'           sum=sum+i', &
+'           tally=tally+i', &
 '        enddo', &
-'        write(*,*)''sum='',sum', &
+'        write(*,*)''tally='',tally', &
 '', &
 '        ! advanced', &
 '        biggest=huge(0)', &
@@ -9924,7 +9935,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  huge(3fortran)', &
+'                                June 04, 2023                  huge(3fortran)', &
 '']
 
 shortname="huge"
@@ -10038,7 +10049,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 hypot(3fortran)', &
+'                                June 04, 2023                 hypot(3fortran)', &
 '']
 
 shortname="hypot"
@@ -10160,7 +10171,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                iachar(3fortran)', &
+'                                June 04, 2023                iachar(3fortran)', &
 '']
 
 shortname="iachar"
@@ -10251,7 +10262,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  iall(3fortran)', &
+'                                June 04, 2023                  iall(3fortran)', &
 '']
 
 shortname="iall"
@@ -10336,14 +10347,13 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IOR(3),', &
-'  IEOR(3), MVBITS(3)', &
+'  BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IEOR(3), IOR(3), MVBITS(3), NOT(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  iand(3fortran)', &
+'                                June 04, 2023                  iand(3fortran)', &
 '']
 
 shortname="iand"
@@ -10460,7 +10470,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  iany(3fortran)', &
+'                                June 04, 2023                  iany(3fortran)', &
 '']
 
 shortname="iany"
@@ -10560,14 +10570,13 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  IEOR(3), NOT(3), BTEST(3), IBSET(3), IBITS(3), IAND(3), IOR(3), IEOR(3),', &
-'  MVBITS(3)', &
+'  BTEST(3), IAND(3), IBITS(3), IBSET(3), IEOR(3), IOR(3), MVBITS(3), NOT(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 ibclr(3fortran)', &
+'                                June 04, 2023                 ibclr(3fortran)', &
 '']
 
 shortname="ibclr"
@@ -10670,14 +10679,13 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBSET(3), IAND(3), IOR(3),', &
-'  IEOR(3), MVBITS(3)', &
+'  BTEST(3), IAND(3), IBCLR(3), IBSET(3), IEOR(3), IOR(3), MVBITS(3), NOT(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 ibits(3fortran)', &
+'                                June 04, 2023                 ibits(3fortran)', &
 '']
 
 shortname="ibits"
@@ -10776,13 +10784,13 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  IBCLR(3)', &
 '', &
-'  IEOR(3), NOT(3), BTEST(3), IBITS(3), IAND(3), IOR(3), IEOR(3), MVBITS(3)', &
+'  BTEST(3), IAND(3), IBITS(3), IEOR(3), IOR(3), MVBITS(3), NOT(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 ibset(3fortran)', &
+'                                June 04, 2023                 ibset(3fortran)', &
 '']
 
 shortname="ibset"
@@ -10887,7 +10895,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 ichar(3fortran)', &
+'                                June 04, 2023                 ichar(3fortran)', &
 '']
 
 shortname="ichar"
@@ -10994,14 +11002,14 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IAND(3),', &
-'  IOR(3), MVBITS(3)', &
+'  BTEST(3), IAND(3), IBCLR(3), IBITS(3), IBSET(3), IEOR(3), IOR(3), MVBITS(3),', &
+'  NOT(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  ieor(3fortran)', &
+'                                June 04, 2023                  ieor(3fortran)', &
 '']
 
 shortname="ieor"
@@ -11058,7 +11066,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           image_index(3fortran)', &
+'                                June 04, 2023           image_index(3fortran)', &
 '']
 
 shortname="image_index"
@@ -11165,7 +11173,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 index(3fortran)', &
+'                                June 04, 2023                 index(3fortran)', &
 '']
 
 shortname="index"
@@ -11301,7 +11309,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   int(3fortran)', &
+'                                June 04, 2023                   int(3fortran)', &
 '']
 
 shortname="int"
@@ -11384,14 +11392,13 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IAND(3),', &
-'  IEOR(3), MVBITS(3)', &
+'  BTEST(3), IAND(3), IBCLR(3), IBITS(3), IBSET(3), IEOR(3), MVBITS(3), NOT(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   ior(3fortran)', &
+'                                June 04, 2023                   ior(3fortran)', &
 '']
 
 shortname="ior"
@@ -11487,7 +11494,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               iparity(3fortran)', &
+'                                June 04, 2023               iparity(3fortran)', &
 '']
 
 shortname="iparity"
@@ -11612,7 +11619,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023         is_contiguous(3fortran)', &
+'                                June 04, 2023         is_contiguous(3fortran)', &
 '']
 
 shortname="is_contiguous"
@@ -11715,7 +11722,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 ishft(3fortran)', &
+'                                June 04, 2023                 ishft(3fortran)', &
 '']
 
 shortname="ishft"
@@ -11864,7 +11871,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                ishftc(3fortran)', &
+'                                June 04, 2023                ishftc(3fortran)', &
 '']
 
 shortname="ishftc"
@@ -11944,7 +11951,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023         is_iostat_end(3fortran)', &
+'                                June 04, 2023         is_iostat_end(3fortran)', &
 '']
 
 shortname="is_iostat_end"
@@ -12039,7 +12046,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023         is_iostat_eor(3fortran)', &
+'                                June 04, 2023         is_iostat_eor(3fortran)', &
 '']
 
 shortname="is_iostat_eor"
@@ -12129,7 +12136,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  kind(3fortran)', &
+'                                June 04, 2023                  kind(3fortran)', &
 '']
 
 shortname="kind"
@@ -12307,7 +12314,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                lbound(3fortran)', &
+'                                June 04, 2023                lbound(3fortran)', &
 '']
 
 shortname="lbound"
@@ -12359,7 +12366,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              lcobound(3fortran)', &
+'                                June 04, 2023              lcobound(3fortran)', &
 '']
 
 shortname="lcobound"
@@ -12452,7 +12459,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 leadz(3fortran)', &
+'                                June 04, 2023                 leadz(3fortran)', &
 '']
 
 shortname="leadz"
@@ -12601,7 +12608,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   len(3fortran)', &
+'                                June 04, 2023                   len(3fortran)', &
 '']
 
 shortname="len"
@@ -12724,7 +12731,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              len_trim(3fortran)', &
+'                                June 04, 2023              len_trim(3fortran)', &
 '']
 
 shortname="len_trim"
@@ -12842,7 +12849,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   lge(3fortran)', &
+'                                June 04, 2023                   lge(3fortran)', &
 '']
 
 shortname="lge"
@@ -12961,7 +12968,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   lgt(3fortran)', &
+'                                June 04, 2023                   lgt(3fortran)', &
 '']
 
 shortname="lgt"
@@ -13104,7 +13111,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   lle(3fortran)', &
+'                                June 04, 2023                   lle(3fortran)', &
 '']
 
 shortname="lle"
@@ -13226,7 +13233,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   llt(3fortran)', &
+'                                June 04, 2023                   llt(3fortran)', &
 '']
 
 shortname="llt"
@@ -13303,7 +13310,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 log10(3fortran)', &
+'                                June 04, 2023                 log10(3fortran)', &
 '']
 
 shortname="log10"
@@ -13381,7 +13388,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   log(3fortran)', &
+'                                June 04, 2023                   log(3fortran)', &
 '']
 
 shortname="log"
@@ -13451,7 +13458,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             log_gamma(3fortran)', &
+'                                June 04, 2023             log_gamma(3fortran)', &
 '']
 
 shortname="log_gamma"
@@ -13540,7 +13547,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               logical(3fortran)', &
+'                                June 04, 2023               logical(3fortran)', &
 '']
 
 shortname="logical"
@@ -13639,7 +13646,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 maskl(3fortran)', &
+'                                June 04, 2023                 maskl(3fortran)', &
 '']
 
 shortname="maskl"
@@ -13755,7 +13762,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 maskr(3fortran)', &
+'                                June 04, 2023                 maskr(3fortran)', &
 '']
 
 shortname="maskr"
@@ -14002,7 +14009,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                matmul(3fortran)', &
+'                                June 04, 2023                matmul(3fortran)', &
 '']
 
 shortname="matmul"
@@ -14173,7 +14180,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   max(3fortran)', &
+'                                June 04, 2023                   max(3fortran)', &
 '']
 
 shortname="max"
@@ -14245,7 +14252,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           maxexponent(3fortran)', &
+'                                June 04, 2023           maxexponent(3fortran)', &
 '']
 
 shortname="maxexponent"
@@ -14375,7 +14382,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                maxloc(3fortran)', &
+'                                June 04, 2023                maxloc(3fortran)', &
 '']
 
 shortname="maxloc"
@@ -14471,7 +14478,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                maxval(3fortran)', &
+'                                June 04, 2023                maxval(3fortran)', &
 '']
 
 shortname="maxval"
@@ -14622,7 +14629,7 @@ textblock=[character(len=256) :: &
 '', &
 '      end program demo_merge', &
 '', &
-'  Expected Results:', &
+'  Results:', &
 '', &
 '       >    1.00000000', &
 '       >    0.00000000', &
@@ -14659,7 +14666,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 merge(3fortran)', &
+'                                June 04, 2023                 merge(3fortran)', &
 '']
 
 shortname="merge"
@@ -14788,7 +14795,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            merge_bits(3fortran)', &
+'                                June 04, 2023            merge_bits(3fortran)', &
 '']
 
 shortname="merge_bits"
@@ -14861,7 +14868,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   min(3fortran)', &
+'                                June 04, 2023                   min(3fortran)', &
 '']
 
 shortname="min"
@@ -14934,7 +14941,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           minexponent(3fortran)', &
+'                                June 04, 2023           minexponent(3fortran)', &
 '']
 
 shortname="minexponent"
@@ -15052,7 +15059,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                minloc(3fortran)', &
+'                                June 04, 2023                minloc(3fortran)', &
 '']
 
 shortname="minloc"
@@ -15215,7 +15222,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                minval(3fortran)', &
+'                                June 04, 2023                minval(3fortran)', &
 '']
 
 shortname="minval"
@@ -15350,7 +15357,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   mod(3fortran)', &
+'                                June 04, 2023                   mod(3fortran)', &
 '']
 
 shortname="mod"
@@ -15441,7 +15448,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                modulo(3fortran)', &
+'                                June 04, 2023                modulo(3fortran)', &
 '']
 
 shortname="modulo"
@@ -15558,7 +15565,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            move_alloc(3fortran)', &
+'                                June 04, 2023            move_alloc(3fortran)', &
 '']
 
 shortname="move_alloc"
@@ -15713,14 +15720,13 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IAND(3),', &
-'  IOR(3), IEOR(3)', &
+'  BTEST(3), IAND(3), IBCLR(3), IBITS(3), IBSET(3), IEOR(3), IOR(3), NOT(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 12, 2023                mvbits(3fortran)', &
+'                                June 04, 2023                mvbits(3fortran)', &
 '']
 
 shortname="mvbits"
@@ -15819,7 +15825,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               nearest(3fortran)', &
+'                                June 04, 2023               nearest(3fortran)', &
 '']
 
 shortname="nearest"
@@ -15995,7 +16001,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              new_line(3fortran)', &
+'                                June 04, 2023              new_line(3fortran)', &
 '']
 
 shortname="new_line"
@@ -16154,7 +16160,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  nint(3fortran)', &
+'                                June 04, 2023                  nint(3fortran)', &
 '']
 
 shortname="nint"
@@ -16283,7 +16289,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 norm2(3fortran)', &
+'                                June 04, 2023                 norm2(3fortran)', &
 '']
 
 shortname="norm2"
@@ -16381,7 +16387,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   not(3fortran)', &
+'                                June 04, 2023                   not(3fortran)', &
 '']
 
 shortname="not"
@@ -16516,7 +16522,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  null(3fortran)', &
+'                                June 04, 2023                  null(3fortran)', &
 '']
 
 shortname="null"
@@ -16609,7 +16615,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            num_images(3fortran)', &
+'                                June 04, 2023            num_images(3fortran)', &
 '']
 
 shortname="num_images"
@@ -16770,7 +16776,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023          out_of_range(3fortran)', &
+'                                June 04, 2023          out_of_range(3fortran)', &
 '']
 
 shortname="out_of_range"
@@ -16880,7 +16886,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  pack(3fortran)', &
+'                                June 04, 2023                  pack(3fortran)', &
 '']
 
 shortname="pack"
@@ -16996,7 +17002,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                parity(3fortran)', &
+'                                June 04, 2023                parity(3fortran)', &
 '']
 
 shortname="parity"
@@ -17089,7 +17095,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                popcnt(3fortran)', &
+'                                June 04, 2023                popcnt(3fortran)', &
 '']
 
 shortname="popcnt"
@@ -17188,7 +17194,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                poppar(3fortran)', &
+'                                June 04, 2023                poppar(3fortran)', &
 '']
 
 shortname="poppar"
@@ -17263,7 +17269,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             precision(3fortran)', &
+'                                June 04, 2023             precision(3fortran)', &
 '']
 
 shortname="precision"
@@ -17395,7 +17401,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               present(3fortran)', &
+'                                June 04, 2023               present(3fortran)', &
 '']
 
 shortname="present"
@@ -17638,7 +17644,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               product(3fortran)', &
+'                                June 04, 2023               product(3fortran)', &
 '']
 
 shortname="product"
@@ -17717,7 +17723,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 radix(3fortran)', &
+'                                June 04, 2023                 radix(3fortran)', &
 '']
 
 shortname="radix"
@@ -17782,7 +17788,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           random_init(3fortran)', &
+'                                June 04, 2023           random_init(3fortran)', &
 '']
 
 shortname="random_init"
@@ -17879,7 +17885,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023         random_number(3fortran)', &
+'                                June 04, 2023         random_number(3fortran)', &
 '']
 
 shortname="random_number"
@@ -17966,7 +17972,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           random_seed(3fortran)', &
+'                                June 04, 2023           random_seed(3fortran)', &
 '']
 
 shortname="random_seed"
@@ -18054,7 +18060,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 range(3fortran)', &
+'                                June 04, 2023                 range(3fortran)', &
 '']
 
 shortname="range"
@@ -18234,7 +18240,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  rank(3fortran)', &
+'                                June 04, 2023                  rank(3fortran)', &
 '']
 
 shortname="rank"
@@ -18351,7 +18357,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  real(3fortran)', &
+'                                June 04, 2023                  real(3fortran)', &
 '']
 
 shortname="real"
@@ -18561,7 +18567,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                reduce(3fortran)', &
+'                                June 04, 2023                reduce(3fortran)', &
 '']
 
 shortname="reduce"
@@ -18644,7 +18650,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                repeat(3fortran)', &
+'                                June 04, 2023                repeat(3fortran)', &
 '']
 
 shortname="repeat"
@@ -18868,7 +18874,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               reshape(3fortran)', &
+'                                June 04, 2023               reshape(3fortran)', &
 '']
 
 shortname="reshape"
@@ -18924,7 +18930,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             rrspacing(3fortran)', &
+'                                June 04, 2023             rrspacing(3fortran)', &
 '']
 
 shortname="rrspacing"
@@ -19066,7 +19072,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023          same_type_as(3fortran)', &
+'                                June 04, 2023          same_type_as(3fortran)', &
 '']
 
 shortname="same_type_as"
@@ -19147,7 +19153,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 scale(3fortran)', &
+'                                June 04, 2023                 scale(3fortran)', &
 '']
 
 shortname="scale"
@@ -19253,7 +19259,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  scan(3fortran)', &
+'                                June 04, 2023                  scan(3fortran)', &
 '']
 
 shortname="scan"
@@ -19421,7 +19427,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023    selected_char_kind(3fortran)', &
+'                                June 04, 2023    selected_char_kind(3fortran)', &
 '']
 
 shortname="selected_char_kind"
@@ -19509,7 +19515,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023     selected_int_kind(3fortran)', &
+'                                June 04, 2023     selected_int_kind(3fortran)', &
 '']
 
 shortname="selected_int_kind"
@@ -19635,7 +19641,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023    selected_real_kind(3fortran)', &
+'                                June 04, 2023    selected_real_kind(3fortran)', &
 '']
 
 shortname="selected_real_kind"
@@ -19719,7 +19725,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023          set_exponent(3fortran)', &
+'                                June 04, 2023          set_exponent(3fortran)', &
 '']
 
 shortname="set_exponent"
@@ -19837,7 +19843,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 shape(3fortran)', &
+'                                June 04, 2023                 shape(3fortran)', &
 '']
 
 shortname="shape"
@@ -19971,7 +19977,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                shifta(3fortran)', &
+'                                June 04, 2023                shifta(3fortran)', &
 '']
 
 shortname="shifta"
@@ -20108,7 +20114,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                shiftl(3fortran)', &
+'                                June 04, 2023                shiftl(3fortran)', &
 '']
 
 shortname="shiftl"
@@ -20247,7 +20253,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                shiftr(3fortran)', &
+'                                June 04, 2023                shiftr(3fortran)', &
 '']
 
 shortname="shiftr"
@@ -20345,7 +20351,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  sign(3fortran)', &
+'                                June 04, 2023                  sign(3fortran)', &
 '']
 
 shortname="sign"
@@ -20490,7 +20496,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   sin(3fortran)', &
+'                                June 04, 2023                   sin(3fortran)', &
 '']
 
 shortname="sin"
@@ -20597,7 +20603,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  sinh(3fortran)', &
+'                                June 04, 2023                  sinh(3fortran)', &
 '']
 
 shortname="sinh"
@@ -20776,7 +20782,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  size(3fortran)', &
+'                                June 04, 2023                  size(3fortran)', &
 '']
 
 shortname="size"
@@ -20863,7 +20869,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               spacing(3fortran)', &
+'                                June 04, 2023               spacing(3fortran)', &
 '']
 
 shortname="spacing"
@@ -21052,7 +21058,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                spread(3fortran)', &
+'                                June 04, 2023                spread(3fortran)', &
 '']
 
 shortname="spread"
@@ -21165,7 +21171,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  sqrt(3fortran)', &
+'                                June 04, 2023                  sqrt(3fortran)', &
 '']
 
 shortname="sqrt"
@@ -21276,7 +21282,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023          storage_size(3fortran)', &
+'                                June 04, 2023          storage_size(3fortran)', &
 '']
 
 shortname="storage_size"
@@ -21502,7 +21508,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   sum(3fortran)', &
+'                                June 04, 2023                   sum(3fortran)', &
 '']
 
 shortname="sum"
@@ -21667,7 +21673,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023          system_clock(3fortran)', &
+'                                June 04, 2023          system_clock(3fortran)', &
 '']
 
 shortname="system_clock"
@@ -21735,7 +21741,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   tan(3fortran)', &
+'                                June 04, 2023                   tan(3fortran)', &
 '']
 
 shortname="tan"
@@ -21814,7 +21820,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  tanh(3fortran)', &
+'                                June 04, 2023                  tanh(3fortran)', &
 '']
 
 shortname="tanh"
@@ -21906,7 +21912,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            this_image(3fortran)', &
+'                                June 04, 2023            this_image(3fortran)', &
 '']
 
 shortname="this_image"
@@ -21981,7 +21987,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  tiny(3fortran)', &
+'                                June 04, 2023                  tiny(3fortran)', &
 '']
 
 shortname="tiny"
@@ -22089,7 +22095,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                trailz(3fortran)', &
+'                                June 04, 2023                trailz(3fortran)', &
 '']
 
 shortname="trailz"
@@ -22222,7 +22228,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              transfer(3fortran)', &
+'                                June 04, 2023              transfer(3fortran)', &
 '']
 
 shortname="transfer"
@@ -22338,7 +22344,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             transpose(3fortran)', &
+'                                June 04, 2023             transpose(3fortran)', &
 '']
 
 shortname="transpose"
@@ -22446,7 +22452,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  trim(3fortran)', &
+'                                June 04, 2023                  trim(3fortran)', &
 '']
 
 shortname="trim"
@@ -22630,7 +22636,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                ubound(3fortran)', &
+'                                June 04, 2023                ubound(3fortran)', &
 '']
 
 shortname="ubound"
@@ -22680,7 +22686,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              ucobound(3fortran)', &
+'                                June 04, 2023              ucobound(3fortran)', &
 '']
 
 shortname="ucobound"
@@ -22846,7 +22852,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                unpack(3fortran)', &
+'                                June 04, 2023                unpack(3fortran)', &
 '']
 
 shortname="unpack"
@@ -23234,7 +23240,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                verify(3fortran)', &
+'                                June 04, 2023                verify(3fortran)', &
 '']
 
 shortname="verify"
@@ -30225,7 +30231,7 @@ end module M_match
 !!    substrings, locating strings with simple wildcard expressions, removing
 !!    tabs and line terminators and other string manipulations are included.
 !!
-!!    M_strings_oop(3fm) is a companion module that provides an OOP interface
+!!    M_strings__oop(3fm) is a companion module that provides an OOP interface
 !!    to the M_strings module.
 !!
 !!##SYNOPSIS
@@ -30238,7 +30244,7 @@ end module M_match
 !!              & reverse, squeeze
 !!      use M_strings,only : replace, join
 !!      use M_strings,only : upper, lower, upper_quoted
-!!      use M_strings,only : rotate13
+!!      use M_strings,only : rotate13, percent_encode
 !!      use M_strings,only : adjustc, compact, nospace, indent
 !!      use M_strings,only : crop, clip, unquote, quote, matching_delimiter
 !!      use M_strings,only : len_white, pad, lpad, cpad, rpad, zpad, &
@@ -30300,6 +30306,7 @@ end module M_match
 !!       join           join an array of CHARACTER variables with specified
 !!                      separator
 !!       rotate13       apply trivial encryption algorithm ROT13 to a string
+!!       percent_encode apply percent-encryption (aka. URL encryption) to characters
 !!       squeeze        delete adjacent duplicate characters from a string
 !!
 !!   CASE
@@ -30473,7 +30480,7 @@ end module M_match
 !!
 !!   OOPS INTERFACE
 !!
-!!    The M_strings_oop(3fm) module (included with the M_strings(3fm)
+!!    The M_strings__oop(3fm) module (included with the M_strings(3fm)
 !!    module) provides an OOP (Object-Oriented Programming) interface to
 !!    the M_strings(3fm) module.
 !!
@@ -30498,6 +30505,7 @@ end module M_match
 !!     use M_strings,only : replace, join
 !!     use M_strings,only : upper, lower, upper_quoted
 !!     use M_strings,only : rotate13
+!!     use M_strings,only : percent_encode
 !!     use M_strings,only : adjustc, compact, nospace, indent
 !!     use M_strings,only : crop, clip, unquote, quote, matching_delimiter
 !!     use M_strings,only : len_white, pad, lpad, cpad, rpad, zpad, &
@@ -30561,6 +30569,8 @@ public reverse         !  elemental function reverses character order in a strin
 public join            !  append an array of character variables with specified separator into a single CHARACTER variable
 public squeeze         !  delete adjacent duplicate characters from a string
 public rotate13        !  apply trivial encryption algorithm ROT13 to string
+public percent_encode  !  percent-encode characters or a string
+interface percent_encode;    module procedure percent_encode_string, percent_encode_characters;  end interface
 !----------------------# CHARACTER ARRAY VERSUS STRING
 public switch          !  generic switch between a string and an array of single characters (a2s,s2a)
 private a2s            !  function to copy char array to string
@@ -30571,7 +30581,7 @@ public c2s             !  convert null-terminated array of character(len=1) to s
 public upper           !  elemental function converts string to uppercase
 interface upper;    module procedure upper_all, upper_range;  end interface
 public lower           !  elemental function converts string to miniscule
-public upper_quoted    !  elemental function converts string to miniscule skipping strings quoted per Fortran syntax rules
+public upper_quoted    !  elemental function converts string to uppercase skipping strings quoted per Fortran syntax rules
 !----------------------# WHITE SPACE
 public adjustc         !  elemental function centers string within the length of the input string
 public compact         !  left justify string and replace duplicate whitespace with single characters or nothing
@@ -33443,6 +33453,113 @@ end function rotate13
 !==================================================================================================================================!
 !>
 !!##NAME
+!!    percent_encode(3f) - [M_strings:ENCODE] percent-encode strings and
+!!    character arrays
+!!    (LICENSE:PD)
+!!
+!!##SYNOPSIS
+!!
+!!
+!!     function percent_encode(text)
+!!
+!!      character(len=1),intent(in)  :: text(:)
+!!      character(len=;),allocatable :: percent_encode
+!!
+!!     or
+!!
+!!     function percent_encode(text)
+!!
+!!      character(len=*),intent(in)  :: text
+!!      character(len=;),allocatable :: percent_encode
+!!
+!!##DESCRIPTION
+!!
+!!    This function percent-encodes ASCII strings or ASCII character arrays.
+!!    "Reserved" characters are encoded.
+!!
+!!    URI containing spaces or most other non-alphanumeric characters must
+!!    be encoded using percent encoding (aka. URL encoding).
+!!
+!!    The characters allowed in a URI are either reserved or unreserved
+!!    (or a percent character as part of a percent-encoding). Reserved
+!!    characters are those characters that sometimes have special meaning,
+!!    while unreserved characters have no such meaning. Using percent-encoding,
+!!    characters which otherwise would not be allowed are represented using
+!!    allowed characters. The sets of reserved and unreserved characters and
+!!    the circumstances under which certain reserved characters have special
+!!    meaning have changed slightly with each revision of specifications that
+!!    govern URIs and URI schemes.
+!!
+!!    According to RFC 3986, the characters in a URL have to be taken from
+!!    a defined set of unreserved and reserved ASCII characters. Any other
+!!    characters are not allowed in a URL.
+!!
+!!    The unreserved characters can be encoded, but should not be. The
+!!    unreserved characters are:
+!!
+!!       > ABCDEFGHIJKLMNOPQRSTUVWXYZ
+!!       > abcdefghijklmnopqrstuvwxyz
+!!       > 0123456789-_.~
+!!
+!!    The reserved characters have to be encoded only under certain
+!!    circumstances. The reserved characters are:
+!!
+!!       >  * ' ( ) ; : @ & = + $ , / ? % # [ ]
+!!
+!!##OPTIONS
+!!     SOURCE_STRING   string or character array to encode
+!!
+!!##RETURNS
+!!     percent_encode  a string holding a percent-encoded copy of the input
+!!
+!!##EXAMPLES
+!!
+!!   Sample program:
+!!
+!!    program demo_percent_encode
+!!    use M_strings, only : percent_encode
+!!    use, intrinsic :: iso_fortran_env, only : stdout=>output_unit
+!!    implicit none
+!!       write(*,*)percent_encode('[this is a string]')
+!!    end program demo_percent_encode
+!!
+!! Results:
+!!
+!!  >  %5Bthis%20is%20a%20string%5D
+!!
+!!##AUTHOR
+!!    John S. Urban
+
+function percent_encode_string(text)
+character(len=*),intent(in)  :: text
+character(len=:),allocatable :: percent_encode_string
+   percent_encode_string=percent_encode_characters(switch(text))
+end function percent_encode_string
+
+function percent_encode_characters(text)
+character(len=1),intent(in) :: text(:)
+character(len=:),allocatable :: percent_encode_characters
+integer :: i,pos
+allocate(character(len=3*size(text)) :: percent_encode_characters )
+percent_encode_characters(:)=repeat(' ',len(percent_encode_characters))
+   pos=1
+   do i=1,size(text)
+      select case(text(i))
+      case('a':'z','A':'Z','0':'9','-','_','.','~')
+         percent_encode_characters(pos:pos)=text(i)
+         pos=pos+1
+      case default
+         write(percent_encode_characters(pos:pos+2),'(a1,z2.2)')'%',text(i)
+         pos=pos+3
+      end select
+   enddo
+   percent_encode_characters=trim(percent_encode_characters)
+end function percent_encode_characters
+!==================================================================================================================================!
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!==================================================================================================================================!
+!>
+!!##NAME
 !!    join(3f) - [M_strings:EDITING] append CHARACTER variable array into
 !!    a single CHARACTER variable with specified separator
 !!    (LICENSE:PD)
@@ -33620,7 +33737,7 @@ end function reverse
 !>
 !!##NAME
 !! upper_quoted(3f) - [M_strings:CASE] elemental function converts string to
-!!                miniscule skipping strings quoted per Fortran syntax rules
+!!                uppercase skipping strings quoted per Fortran syntax rules
 !! (LICENSE:PD)
 !!
 !!##SYNOPSIS
@@ -33678,7 +33795,7 @@ end function reverse
 !!    Public Domain
 elemental pure function upper_quoted(str) result (string)
 
-! ident_22="@(#) M_strings upper_quoted(3f) elemental function converts string to miniscule skipping strings quoted per Fortran syntax rules"
+! ident_22="@(#) M_strings upper_quoted(3f) elemental function converts string to uppercase skipping strings quoted per Fortran syntax rules"
 
 character(len=*), intent(in)   :: str     ! The input string
 character(len=len(str))        :: string  ! The output string
@@ -34094,22 +34211,31 @@ end function s2a
 !!
 !!##EXAMPLES
 !!
+!!
+!! character(len=3),allocatable :: array(:)
+!! integer                      :: i
+!!    ! put one character into each 3-character element of array
+!!    array = [(string(i:i),i=1,len(string))]
+!!    ! write array with ASCII Decimal Equivalent below it except show
+!!    ! unprintable characters like NULL as "XXX"
+!!    write(*,g) merge('XXX',array,iachar(array(:)(1:1)) < 32)
+!!    write(*,g) iachar(array(:)(1:1))
+!!
 !!    Sample Program:
 !!
 !!     program demo_s2c
 !!     use M_strings, only : s2c
 !!     implicit none
 !!     character(len=*),parameter   :: string="single string"
+!!     character(len=*),parameter   :: g= '(1x,*("[",g3.3,"]":))'
 !!     character(len=3),allocatable :: array(:)
 !!        write(*,*)'INPUT STRING ',trim(string)
 !!        ! put one character into each 3-character element of array
 !!        array=s2c(string)
 !!        ! write array with ASCII Decimal Equivalent below it except show
 !!        ! unprintable characters like NULL as "XXX"
-!!        write(*,'(1x,*("[",a3,"]":))')&
-!!             & merge('XXX',array,iachar(array(:)(1:1)) < 32)
-!!        write(*,'(1x,*("[",i3,"]":))')&
-!!             & iachar(array(:)(1:1))
+!!        write(*,g) merge('XXX',array,iachar(array(:)(1:1)) < 32)
+!!        write(*,g) iachar(array(:)(1:1))
 !!     end program demo_s2c
 !!
 !!   Expected output:
@@ -39663,7 +39789,7 @@ end function isalnum
 !!
 !!##SYNOPSIS
 !!
-!!   logical function base(x,b,y,a)
+!!   elemental impure logical function base(x,b,y,a)
 !!
 !!    character(len=*),intent(in)  :: x
 !!    character(len=*),intent(out) :: y
@@ -39712,25 +39838,25 @@ end function isalnum
 !!    John S. Urban
 !!##LICENSE
 !!    Public Domain
-logical function base(x,b,y,a)
-character(len=*),intent(in)  :: x
-character(len=*),intent(out) :: y
-integer,intent(in)           :: b,a
-integer                      :: temp
+elemental impure logical function base(x, b, y, a)
+character(len=*), intent(in)  :: x
+character(len=*), intent(out) :: y
+integer, intent(in)           :: b, a
+integer                       :: temp
 
 ! ident_80="@(#) M_strings base(3f) convert whole number string in base [2-36] to string in alternate base [2-36]"
 
-base=.true.
-if(decodebase(x,b,temp)) then
-   if(codebase(temp,a,y)) then
+   base = .true.
+   if (decodebase(x, b, temp)) then
+      if (codebase(temp, a, y)) then
+      else
+         print *, 'Error in coding number.'
+         base = .false.
+      endif
    else
-      print *,'Error in coding number.'
-      base=.false.
+      print *, 'Error in decoding number.'
+      base = .false.
    endif
-else
-   print *,'Error in decoding number.'
-   base=.false.
-endif
 
 end function base
 !===================================================================================================================================
@@ -40407,7 +40533,8 @@ end function setbits64
 !!
 !!        ! create a format on the fly
 !!        biggest=huge(0)
-!!        frmt=msg('(*(i',int(log10(real(biggest))),':,1x))',sep='')
+!!        ! +0 for gfortran-11 bug
+!!        frmt=msg('(*(i',int(log10(real(biggest)))+0,':,1x))',sep='')
 !!        write(*,*)'format=',frmt
 !!
 !!        ! although it will often work, using msg(3f) in an I/O statement
@@ -41870,25 +41997,26 @@ integer                       :: i, ipos, ios, too_many_digit_count
       read(str,fmt=*,iostat=ios) val ! use internal read for INF, NAN for now
       if(ios == 0)then
          ator_real32 = .true.
+         if(present(msg)) msg=''
       else
          if(present(msg))then
             if(cnt(5) /= 0)then
-                  msg='illegal character in value "'//trim(str)//'"'
-               elseif(cnt(5) /= 0)then
-                  msg='decimal in exponent in "'//trim(str)//'"'
-               elseif(cnt(1) >= 2)then
-                  msg='multiple decimals in "'//trim(str)//'"'
-               elseif(cnt(2) >= 2)then
-                  msg='more than one exponent prefix (e,d,E,D) in "'//trim(str)//'"'
-               elseif(cnt(3) >= 2)then
-                  msg='more than one sign character in "'//trim(str)//'"'
-               elseif(cnt(6) /= 0)then
-                  msg='- sign character not first in "'//trim(str)//'"'
-               elseif(cnt(4) >= 2)then
-                  msg='+ sign character not first in "'//trim(str)//'"'
-               else
-                  msg='error in data conversion in "'//trim(str)//'"'
-               endif
+               msg='illegal character in value "'//trim(str)//'"'
+            elseif(cnt(5) /= 0)then
+               msg='decimal in exponent in "'//trim(str)//'"'
+            elseif(cnt(1) >= 2)then
+               msg='multiple decimals in "'//trim(str)//'"'
+            elseif(cnt(2) >= 2)then
+               msg='more than one exponent prefix (e,d,E,D) in "'//trim(str)//'"'
+            elseif(cnt(3) >= 2)then
+               msg='more than one sign character in "'//trim(str)//'"'
+            elseif(cnt(6) /= 0)then
+               msg='- sign character not first in "'//trim(str)//'"'
+            elseif(cnt(4) >= 2)then
+               msg='+ sign character not first in "'//trim(str)//'"'
+            else
+               msg='error in data conversion in "'//trim(str)//'"'
+            endif
          endif
          ator_real32 = .false.
       endif
@@ -41979,25 +42107,26 @@ integer                       :: i, ipos, ios, too_many_digit_count
       read(str,fmt=*,iostat=ios) val ! use internal read for INF, NAN for now
       if(ios == 0)then
          ator_real64 = .true.
+         if(present(msg)) msg=''
       else
          if(present(msg))then
             if(cnt(5) /= 0)then
-                  msg='illegal character in value "'//trim(str)//'"'
-               elseif(cnt(5) /= 0)then
-                  msg='decimal in exponent in "'//trim(str)//'"'
-               elseif(cnt(1) >= 2)then
-                  msg='multiple decimals in "'//trim(str)//'"'
-               elseif(cnt(2) >= 2)then
-                  msg='more than one exponent prefix (e,d,E,D) in "'//trim(str)//'"'
-               elseif(cnt(3) >= 2)then
-                  msg='more than one sign character in "'//trim(str)//'"'
-               elseif(cnt(6) /= 0)then
-                  msg='- sign character not first in "'//trim(str)//'"'
-               elseif(cnt(4) >= 2)then
-                  msg='+ sign character not first in "'//trim(str)//'"'
-               else
-                  msg='error in data conversion in "'//trim(str)//'"'
-               endif
+               msg='illegal character in value "'//trim(str)//'"'
+            elseif(cnt(5) /= 0)then
+               msg='decimal in exponent in "'//trim(str)//'"'
+            elseif(cnt(1) >= 2)then
+               msg='multiple decimals in "'//trim(str)//'"'
+            elseif(cnt(2) >= 2)then
+               msg='more than one exponent prefix (e,d,E,D) in "'//trim(str)//'"'
+            elseif(cnt(3) >= 2)then
+               msg='more than one sign character in "'//trim(str)//'"'
+            elseif(cnt(6) /= 0)then
+               msg='- sign character not first in "'//trim(str)//'"'
+            elseif(cnt(4) >= 2)then
+               msg='+ sign character not first in "'//trim(str)//'"'
+            else
+               msg='error in data conversion in "'//trim(str)//'"'
+            endif
          endif
          ator_real64 = .false.
       endif
@@ -42052,6 +42181,7 @@ integer                       :: i, ipos, too_many_digit_count
    val = sign(value,sval)* 10**too_many_digit_count
    if(all(cnt <= 1).and.ipos /= 0)then
       atoi_int8 = .true.
+      if(present(msg)) msg=''
    else
       if(present(msg))then
          if(cnt(5) /= 0)then
@@ -42118,6 +42248,7 @@ integer                       :: i, ipos, too_many_digit_count
    val = sign(value,sval)* 10**too_many_digit_count
    if(all(cnt <= 1).and.ipos /= 0)then
       atoi_int16 = .true.
+      if(present(msg)) msg=''
    else
       if(present(msg))then
          if(cnt(5) /= 0)then
@@ -42184,6 +42315,7 @@ integer                       :: i, ipos, too_many_digit_count
    val = sign(value,sval)* 10**too_many_digit_count
    if(all(cnt <= 1).and.ipos /= 0)then
       atoi_int32 = .true.
+      if(present(msg)) msg=''
    else
       if(present(msg))then
          if(cnt(5) /= 0)then
@@ -42250,6 +42382,7 @@ integer                       :: i, ipos, too_many_digit_count
    val = sign(value,sval)* 10**too_many_digit_count
    if(all(cnt <= 1).and.ipos /= 0)then
       atoi_int64 = .true.
+      if(present(msg)) msg=''
    else
       if(present(msg))then
          if(cnt(5) /= 0)then
@@ -42273,20 +42406,20 @@ end function atoi_int64
 end module M_strings
  
  
-!>>>>> build/dependencies/M_escape/src/M_list2.f90
+!>>>>> build/dependencies/M_escape/src/M_escape__list.f90
 !>
 !!##NAME
-!!    M_list2(3f) - [M_list2] maintain simple lists
+!!    M_escape__list(3f) - [M_escape__list] maintain simple lists
 !!    (LICENSE:PD)
 !!
 !!##SYNOPSIS
 !!
-!!    use M_list2, only : insert, replace, remove
-!!    use M_list2, only : dictionary
+!!    use M_escape__list, only : insert, replace, remove
+!!    use M_escape__list, only : dictionary
 !!
 !!##DESCRIPTION
 !!
-!!    The M_list2(3fm) module allows for maintaining an array as a sorted
+!!    The M_escape__list(3fm) module allows for maintaining an array as a sorted
 !!    list. An example is given that creates a keyword-value dictionary
 !!    using the lists.
 !!
@@ -42333,11 +42466,11 @@ end module M_strings
 !!   Sample program
 !!
 !!    program demo_M_list
-!!    use M_list2, only : insert, locate, replace, remove
+!!    use M_escape__list, only : insert, locate, replace, remove
 !!    ! create a dictionary with character keywords, values, and value lengths
 !!    ! using the routines for maintaining a list
 !!
-!!     use M_list2, only : locate, insert, replace
+!!     use M_escape__list, only : locate, insert, replace
 !!     implicit none
 !!     character(len=:),allocatable   :: keywords(:)
 !!     character(len=:),allocatable   :: values(:)
@@ -42426,29 +42559,29 @@ end module M_strings
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
-module M_list2
+module M_escape__list
 use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT,stdout=>OUTPUT_UNIT    ! access computing environment
 implicit none
 private
 
-public locate        ! [M_list2] find PLACE in sorted character array where value can be found or should be placed
+public locate        ! [M_escape__list] find PLACE in sorted character array where value can be found or should be placed
    private locate_c
    private locate_d
    private locate_r
    private locate_i
-public insert        ! [M_list2] insert entry into a sorted allocatable array at specified position
+public insert        ! [M_escape__list] insert entry into a sorted allocatable array at specified position
    private insert_c
    private insert_d
    private insert_r
    private insert_i
    private insert_l
-public replace       ! [M_list2] replace entry by index from a sorted allocatable array if it is present
+public replace       ! [M_escape__list] replace entry by index from a sorted allocatable array if it is present
    private replace_c
    private replace_d
    private replace_r
    private replace_i
    private replace_l
-public remove        ! [M_list2] delete entry by index from a sorted allocatable array if it is present
+public remove        ! [M_escape__list] delete entry by index from a sorted allocatable array if it is present
    private remove_c
    private remove_d
    private remove_r
@@ -42456,25 +42589,25 @@ public remove        ! [M_list2] delete entry by index from a sorted allocatable
    private remove_l
 
 !character(len=*),parameter::ident_1="&
-!&@(#)M_list2::locate(3f): Generic subroutine locates where element is or should be in sorted allocatable array"
+!&@(#)M_escape__list::locate(3f): Generic subroutine locates where element is or should be in sorted allocatable array"
 interface locate
    module procedure locate_c, locate_d, locate_r, locate_i
 end interface
 
 !character(len=*),parameter::ident_2="&
-!&@(#)M_list2::insert(3f): Generic subroutine inserts element into allocatable array at specified position"
+!&@(#)M_escape__list::insert(3f): Generic subroutine inserts element into allocatable array at specified position"
 interface insert
    module procedure insert_c, insert_d, insert_r, insert_i, insert_l
 end interface
 
 !character(len=*),parameter::ident_3="&
-!&@(#)M_list2::replace(3f): Generic subroutine replaces element from allocatable array at specified position"
+!&@(#)M_escape__list::replace(3f): Generic subroutine replaces element from allocatable array at specified position"
 interface replace
    module procedure replace_c, replace_d, replace_r, replace_i, replace_l
 end interface
 
 !character(len=*),parameter::ident_4="&
-!&@(#)M_list2::remove(3f): Generic subroutine deletes element from allocatable array at specified position"
+!&@(#)M_escape__list::remove(3f): Generic subroutine deletes element from allocatable array at specified position"
 interface remove
    module procedure remove_c, remove_d, remove_r, remove_i, remove_l
 end interface
@@ -42501,7 +42634,7 @@ contains
 !===================================================================================================================================
 !>
 !!##NAME
-!!    locate(3f) - [M_list2] finds the index where a string is found or should be in a sorted array
+!!    locate(3f) - [M_escape__list] finds the index where a string is found or should be in a sorted array
 !!    (LICENSE:PD)
 !!
 !!##SYNOPSIS
@@ -42553,7 +42686,7 @@ contains
 !!
 !!     program demo_locate
 !!     use M_sort, only : sort_shell
-!!     use M_list2, only : locate
+!!     use M_escape__list, only : locate
 !!     implicit none
 !!     character(len=:),allocatable  :: arr(:)
 !!     integer                       :: i
@@ -42622,7 +42755,7 @@ contains
 subroutine locate_c(list,value,place,ier,errmsg)
 
 !character(len=*),parameter::ident_5="&
-!&@(#)M_list2::locate_c(3f): find PLACE in sorted character array where VALUE can be found or should be placed"
+!&@(#)M_escape__list::locate_c(3f): find PLACE in sorted character array where VALUE can be found or should be placed"
 
 character(len=*),intent(in)             :: value
 integer,intent(out)                     :: place
@@ -42697,7 +42830,7 @@ end subroutine locate_c
 subroutine locate_d(list,value,place,ier,errmsg)
 
 !character(len=*),parameter::ident_6="&
-!&@(#)M_list2::locate_d(3f): find PLACE in sorted doubleprecision array where VALUE can be found or should be placed"
+!&@(#)M_escape__list::locate_d(3f): find PLACE in sorted doubleprecision array where VALUE can be found or should be placed"
 
 ! Assuming an array sorted in descending order
 !
@@ -42778,7 +42911,7 @@ end subroutine locate_d
 subroutine locate_r(list,value,place,ier,errmsg)
 
 !character(len=*),parameter::ident_7="&
-!&@(#)M_list2::locate_r(3f): find PLACE in sorted real array where VALUE can be found or should be placed"
+!&@(#)M_escape__list::locate_r(3f): find PLACE in sorted real array where VALUE can be found or should be placed"
 
 ! Assuming an array sorted in descending order
 !
@@ -42859,7 +42992,7 @@ end subroutine locate_r
 subroutine locate_i(list,value,place,ier,errmsg)
 
 !character(len=*),parameter::ident_8="&
-!&@(#)M_list2::locate_i(3f): find PLACE in sorted integer array where VALUE can be found or should be placed"
+!&@(#)M_escape__list::locate_i(3f): find PLACE in sorted integer array where VALUE can be found or should be placed"
 
 ! Assuming an array sorted in descending order
 !
@@ -42942,7 +43075,7 @@ end subroutine locate_i
 !===================================================================================================================================
 !>
 !!##NAME
-!!    remove(3f) - [M_list2] remove entry from an allocatable array at specified position
+!!    remove(3f) - [M_escape__list] remove entry from an allocatable array at specified position
 !!    (LICENSE:PD)
 !!
 !!##SYNOPSIS
@@ -42970,7 +43103,7 @@ end subroutine locate_i
 !!
 !!     program demo_remove
 !!     use M_sort, only : sort_shell
-!!     use M_list2, only : locate, remove
+!!     use M_escape__list, only : locate, remove
 !!     implicit none
 !!     character(len=:),allocatable :: arr(:)
 !!     integer                       :: i
@@ -43005,7 +43138,7 @@ end subroutine locate_i
 !!    Public Domain
 subroutine remove_c(list,place)
 
-!character(len=*),parameter::ident_9="@(#)M_list2::remove_c(3fp): remove string from allocatable string array at specified position"
+!character(len=*),parameter::ident_9="@(#)M_escape__list::remove_c(3fp): remove string from allocatable string array at specified position"
 
 character(len=:),allocatable :: list(:)
 integer,intent(in)           :: place
@@ -43027,7 +43160,7 @@ end subroutine remove_c
 subroutine remove_d(list,place)
 
 !character(len=*),parameter::ident_10="&
-!&@(#)M_list2::remove_d(3fp): remove doubleprecision value from allocatable array at specified position"
+!&@(#)M_escape__list::remove_d(3fp): remove doubleprecision value from allocatable array at specified position"
 
 doubleprecision,allocatable  :: list(:)
 integer,intent(in)           :: place
@@ -43048,7 +43181,7 @@ integer                      :: end
 end subroutine remove_d
 subroutine remove_r(list,place)
 
-!character(len=*),parameter::ident_11="@(#)M_list2::remove_r(3fp): remove value from allocatable array at specified position"
+!character(len=*),parameter::ident_11="@(#)M_escape__list::remove_r(3fp): remove value from allocatable array at specified position"
 
 real,allocatable    :: list(:)
 integer,intent(in)  :: place
@@ -43069,7 +43202,7 @@ integer             :: end
 end subroutine remove_r
 subroutine remove_l(list,place)
 
-!character(len=*),parameter::ident_12="@(#)M_list2::remove_l(3fp): remove value from allocatable array at specified position"
+!character(len=*),parameter::ident_12="@(#)M_escape__list::remove_l(3fp): remove value from allocatable array at specified position"
 
 logical,allocatable    :: list(:)
 integer,intent(in)     :: place
@@ -43091,7 +43224,7 @@ integer                :: end
 end subroutine remove_l
 subroutine remove_i(list,place)
 
-!character(len=*),parameter::ident_13="@(#)M_list2::remove_i(3fp): remove value from allocatable array at specified position"
+!character(len=*),parameter::ident_13="@(#)M_escape__list::remove_i(3fp): remove value from allocatable array at specified position"
 integer,allocatable    :: list(:)
 integer,intent(in)     :: place
 integer                :: end
@@ -43115,7 +43248,7 @@ end subroutine remove_i
 !===================================================================================================================================
 !>
 !!##NAME
-!!    replace(3f) - [M_list2] replace entry in a string array at specified position
+!!    replace(3f) - [M_escape__list] replace entry in a string array at specified position
 !!    (LICENSE:PD)
 !!
 !!##SYNOPSIS
@@ -43149,7 +43282,7 @@ end subroutine remove_i
 !!   Replace key-value pairs in a dictionary
 !!
 !!     program demo_replace
-!!     use M_list2, only  : insert, locate, replace
+!!     use M_escape__list, only  : insert, locate, replace
 !!     ! Find if a key is in a list and insert it
 !!     ! into the key list and value list if it is not present
 !!     ! or replace the associated value if the key existed
@@ -43208,7 +43341,7 @@ end subroutine remove_i
 !!    Public Domain
 subroutine replace_c(list,value,place)
 
-!character(len=*),parameter::ident_14="@(#)M_list2::replace_c(3fp): replace string in allocatable string array at specified position"
+!character(len=*),parameter::ident_14="@(#)M_escape__list::replace_c(3fp): replace string in allocatable string array at specified position"
 
 character(len=*),intent(in)  :: value
 character(len=:),allocatable :: list(:)
@@ -43238,7 +43371,7 @@ end subroutine replace_c
 subroutine replace_d(list,value,place)
 
 !character(len=*),parameter::ident_15="&
-!&@(#)M_list2::replace_d(3fp): place doubleprecision value into allocatable array at specified position"
+!&@(#)M_escape__list::replace_d(3fp): place doubleprecision value into allocatable array at specified position"
 
 doubleprecision,intent(in)   :: value
 doubleprecision,allocatable  :: list(:)
@@ -43260,7 +43393,7 @@ integer                      :: end
 end subroutine replace_d
 subroutine replace_r(list,value,place)
 
-!character(len=*),parameter::ident_16="@(#)M_list2::replace_r(3fp): place value into allocatable array at specified position"
+!character(len=*),parameter::ident_16="@(#)M_escape__list::replace_r(3fp): place value into allocatable array at specified position"
 
 real,intent(in)       :: value
 real,allocatable      :: list(:)
@@ -43282,7 +43415,7 @@ integer               :: end
 end subroutine replace_r
 subroutine replace_l(list,value,place)
 
-!character(len=*),parameter::ident_17="@(#)M_list2::replace_l(3fp): place value into allocatable array at specified position"
+!character(len=*),parameter::ident_17="@(#)M_escape__list::replace_l(3fp): place value into allocatable array at specified position"
 
 logical,allocatable   :: list(:)
 logical,intent(in)    :: value
@@ -43304,7 +43437,7 @@ integer               :: end
 end subroutine replace_l
 subroutine replace_i(list,value,place)
 
-!character(len=*),parameter::ident_18="@(#)M_list2::replace_i(3fp): place value into allocatable array at specified position"
+!character(len=*),parameter::ident_18="@(#)M_escape__list::replace_i(3fp): place value into allocatable array at specified position"
 
 integer,intent(in)    :: value
 integer,allocatable   :: list(:)
@@ -43329,7 +43462,7 @@ end subroutine replace_i
 !===================================================================================================================================
 !>
 !!##NAME
-!!    insert(3f) - [M_list2] insert entry into a string array at specified position
+!!    insert(3f) - [M_escape__list] insert entry into a string array at specified position
 !!    (LICENSE:PD)
 !!
 !!##SYNOPSIS
@@ -43360,7 +43493,7 @@ end subroutine replace_i
 !!
 !!     program demo_insert
 !!     use M_sort, only : sort_shell
-!!     use M_list2, only : locate, insert
+!!     use M_escape__list, only : locate, insert
 !!     implicit none
 !!     character(len=:),allocatable :: arr(:)
 !!     integer                       :: i
@@ -43413,7 +43546,7 @@ end subroutine replace_i
 !!    Public Domain
 subroutine insert_c(list,value,place)
 
-!character(len=*),parameter::ident_19="@(#)M_list2::insert_c(3fp): place string into allocatable string array at specified position"
+!character(len=*),parameter::ident_19="@(#)M_escape__list::insert_c(3fp): place string into allocatable string array at specified position"
 
 character(len=*),intent(in)  :: value
 character(len=:),allocatable :: list(:)
@@ -43449,7 +43582,7 @@ integer                      :: end
 end subroutine insert_c
 subroutine insert_r(list,value,place)
 
-!character(len=*),parameter::ident_20="@(#)M_list2::insert_r(3fp): place real value into allocatable array at specified position"
+!character(len=*),parameter::ident_20="@(#)M_escape__list::insert_r(3fp): place real value into allocatable array at specified position"
 
 real,intent(in)       :: value
 real,allocatable      :: list(:)
@@ -43479,7 +43612,7 @@ end subroutine insert_r
 subroutine insert_d(list,value,place)
 
 !character(len=*),parameter::ident_21="&
-!&@(#)M_list2::insert_d(3fp): place doubleprecision value into allocatable array at specified position"
+!&@(#)M_escape__list::insert_d(3fp): place doubleprecision value into allocatable array at specified position"
 
 doubleprecision,intent(in)       :: value
 doubleprecision,allocatable      :: list(:)
@@ -43505,7 +43638,7 @@ integer                          :: end
 end subroutine insert_d
 subroutine insert_l(list,value,place)
 
-!character(len=*),parameter::ident_22="@(#)M_list2::insert_l(3fp): place value into allocatable array at specified position"
+!character(len=*),parameter::ident_22="@(#)M_escape__list::insert_l(3fp): place value into allocatable array at specified position"
 
 logical,allocatable   :: list(:)
 logical,intent(in)    :: value
@@ -43532,7 +43665,7 @@ integer               :: end
 end subroutine insert_l
 subroutine insert_i(list,value,place)
 
-!character(len=*),parameter::ident_23="@(#)M_list2::insert_i(3fp): place value into allocatable array at specified position"
+!character(len=*),parameter::ident_23="@(#)M_escape__list::insert_i(3fp): place value into allocatable array at specified position"
 
 integer,allocatable   :: list(:)
 integer,intent(in)    :: value
@@ -43562,7 +43695,7 @@ end subroutine insert_i
 !===================================================================================================================================
 !>
 !!##NAME
-!!    dict_delete(3f) - [M_list2] delete entry by name from an allocatable sorted string array if it is present
+!!    dict_delete(3f) - [M_escape__list] delete entry by name from an allocatable sorted string array if it is present
 !!    (LICENSE:PD)
 !!
 !!##SYNOPSIS
@@ -43588,7 +43721,7 @@ end subroutine insert_i
 !!    delete a key from a dictionary by name.
 !!
 !!     program demo_dict_delete
-!!     use M_list2, only : dictionary
+!!     use M_escape__list, only : dictionary
 !!     implicit none
 !!     type(dictionary) :: caps
 !!     integer                       :: i
@@ -43622,7 +43755,7 @@ end subroutine insert_i
 !!    Public Domain
 subroutine dict_delete(self,key)
 
-!character(len=*),parameter::ident_24="@(#)M_list2::dict_delete(3f): remove string from sorted allocatable string array if present"
+!character(len=*),parameter::ident_24="@(#)M_escape__list::dict_delete(3f): remove string from sorted allocatable string array if present"
 
 class(dictionary),intent(inout) :: self
 character(len=*),intent(in)     :: key
@@ -43641,7 +43774,7 @@ end subroutine dict_delete
 !===================================================================================================================================
 !>
 !!##NAME
-!!    dict_get(3f) - [M_list2] get value of key-value pair in a dictionary given key
+!!    dict_get(3f) - [M_escape__list] get value of key-value pair in a dictionary given key
 !!    (LICENSE:PD)
 !!
 !!##SYNOPSIS
@@ -43668,7 +43801,7 @@ end subroutine dict_delete
 !!
 !!
 !!     program demo_locate
-!!     use M_list2, only : dictionary
+!!     use M_escape__list, only : dictionary
 !!     implicit none
 !!     type(dictionary)             :: table
 !!     character(len=:),allocatable :: val
@@ -43699,7 +43832,7 @@ end subroutine dict_delete
 !!    Public Domain
 function dict_get(self,key) result(value)
 
-!character(len=*),parameter::ident_25="@(#)M_list2::dict_get(3f): get value of key-value pair in dictionary, given key"
+!character(len=*),parameter::ident_25="@(#)M_escape__list::dict_get(3f): get value of key-value pair in dictionary, given key"
 
 !!class(dictionary),intent(inout) :: self
 class(dictionary)               :: self
@@ -43718,7 +43851,7 @@ end function dict_get
 !===================================================================================================================================
 !>
 !!##NAME
-!!    dict_add(3f) - [M_list2] add or replace a key-value pair in a dictionary
+!!    dict_add(3f) - [M_escape__list] add or replace a key-value pair in a dictionary
 !!    (LICENSE:PD)
 !!
 !!##SYNOPSIS
@@ -43742,7 +43875,7 @@ end function dict_get
 !!    If string is not found in a sorted array, insert the string
 !!
 !!     program demo_add
-!!     use M_list2, only : dictionary
+!!     use M_escape__list, only : dictionary
 !!     implicit none
 !!     type(dictionary) :: dict
 !!     integer          :: i
@@ -43766,7 +43899,7 @@ end function dict_get
 !!    Public Domain
 subroutine dict_add(self,key,value)
 
-!character(len=*),parameter::ident_26="@(#)M_list2::dict_add(3f): place key-value pair into dictionary, adding the key if required"
+!character(len=*),parameter::ident_26="@(#)M_escape__list::dict_add(3f): place key-value pair into dictionary, adding the key if required"
 
 class(dictionary),intent(inout) :: self
 character(len=*),intent(in)     :: key
@@ -43787,7 +43920,7 @@ end subroutine dict_add
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
-end module M_list2
+end module M_escape__list
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
@@ -43960,7 +44093,7 @@ end module M_list2
 !!    end subroutine printme
 !!    end program functional
 module M_escape
-use M_list2, only : insert, locate, replace, remove
+use M_escape__list, only : insert, locate, replace, remove
 use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT,stdin=>INPUT_UNIT    ! access computing environment
 use, intrinsic :: iso_c_binding, only: c_int
 implicit none

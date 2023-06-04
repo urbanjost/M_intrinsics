@@ -126,15 +126,13 @@ Fortran 95
 
 ### **See Also**
 
-[**ieor**(3)](#ieor),
-[**ibclr**(3)](#ibclr),
-[**not**(3)](#not),
+[**iand**(3)](#iand),
 [**ibclr**(3)](#ibclr),
 [**ibits**(3)](#ibits),
 [**ibset**(3)](#ibset),
-[**iand**(3)](#iand),
-[**ior**(3)](#ior),
 [**ieor**(3)](#ieor),
-[**mvbits**(3)](#mvbits)
+[**ior**(3)](#ior),
+[**mvbits**(3)](#mvbits),
+[**not**(3)](#not)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

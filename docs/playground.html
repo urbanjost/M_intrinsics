@@ -274,7 +274,7 @@
           &  +0.5,  +1.0, +1.5, +2.0, +2.2, +2.5, +2.7  ])
       end program demo_aint
   </xmp>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fall%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20logical%2Cparameter%20%3A%3A%20T%3D%2Etrue%2E%2C%20F%3D%2Efalse%2E%0D%0A%20%20%20%20%20%20logical%20bool%0D%0A%20%20%20%20%20%20%20%20%21%20basic%20usage%0D%0A%20%20%20%20%20%20%20%20%20%21%20is%20everything%20true%3F%0D%0A%20%20%20%20%20%20%20%20%20bool%20%3D%20all%28%5B%20T%2CT%2CT%20%5D%29%0D%0A%20%20%20%20%20%20%20%20%20bool%20%3D%20all%28%5B%20T%2CF%2CT%20%5D%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20bool%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20by%20a%20dimension%0D%0A%20%20%20%20%20%20%20%20%20ARRAYS%3A%20block%0D%0A%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20a%282%2C3%29%2C%20b%282%2C3%29%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20set%20everything%20to%20one%20except%20one%20value%20in%20b%0D%0A%20%20%20%20%20%20%20%20%20%20a%20%3D%201%0D%0A%20%20%20%20%20%20%20%20%20%20b%20%3D%201%0D%0A%20%20%20%20%20%20%20%20%20%20b%282%2C2%29%20%3D%202%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20now%20compare%20those%20two%20arrays%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%27entire%20array%20%3A%27%2C%20all%28a%20%3D%3D%20%20b%20%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%27compare%20columns%3A%27%2C%20all%28a%20%3D%3D%20%20b%2C%20dim%3D1%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%27compare%20rows%3A%27%2C%20all%28a%20%3D%3D%20%20b%2C%20dim%3D2%29%0D%0A%20%20%20%20%20%20%20%20end%20block%20ARRAYS%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fall%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fall%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20logical%2Cparameter%20%3A%3A%20T%3D%2Etrue%2E%2C%20F%3D%2Efalse%2E%0D%0A%20%20%20%20%20%20logical%20bool%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20basic%20usage%0D%0A%20%20%20%20%20%20%20%20%20%21%20is%20everything%20true%3F%0D%0A%20%20%20%20%20%20%20%20%20bool%20%3D%20all%28%5B%20T%2CT%2CT%20%5D%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27are%20all%20values%20true%3F%27%2C%20bool%0D%0A%20%20%20%20%20%20%20%20%20bool%20%3D%20all%28%5B%20T%2CF%2CT%20%5D%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27are%20all%20values%20true%20now%3F%27%2C%20bool%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20compare%20matrices%2C%20even%20by%20a%20dimension%0D%0A%20%20%20%20%20%20%20%20%20ARRAYS%3A%20block%0D%0A%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20a%282%2C3%29%2C%20b%282%2C3%29%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20set%20everything%20to%20one%20except%20one%20value%20in%20b%0D%0A%20%20%20%20%20%20%20%20%20%20a%20%3D%201%0D%0A%20%20%20%20%20%20%20%20%20%20b%20%3D%201%0D%0A%20%20%20%20%20%20%20%20%20%20b%282%2C2%29%20%3D%202%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20now%20compare%20those%20two%20arrays%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%27entire%20array%20%3A%27%2C%20all%28a%20%3D%3D%20%20b%20%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%27compare%20columns%3A%27%2C%20all%28a%20%3D%3D%20%20b%2C%20dim%3D1%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%27compare%20rows%3A%27%2C%20all%28a%20%3D%3D%20%20b%2C%20dim%3D2%29%0D%0A%20%20%20%20%20%20%20%20end%20block%20ARRAYS%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fall%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> all
@@ -284,13 +284,15 @@
       implicit none
       logical,parameter :: T=.true., F=.false.
       logical bool
+
         ! basic usage
          ! is everything true?
          bool = all([ T,T,T ])
+         print *, 'are all values true?', bool
          bool = all([ T,F,T ])
-         print *, bool
+         print *, 'are all values true now?', bool
 
-        ! by a dimension
+        ! compare matrices, even by a dimension
          ARRAYS: block
          integer :: a(2,3), b(2,3)
           ! set everything to one except one value in b
@@ -2340,18 +2342,19 @@
          print *, fraction(x), x * radix(x)**(-exponent(x))
       end program demo_fraction
   </xmp>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fgamma%0D%0A%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20wp%3D%3Ereal64%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20real%20%3A%3A%20x%2C%20xa%284%29%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20x%20%3D%20gamma%281%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27gamma%281%2E0%29%3D%27%2Cx%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20elemental%0D%0A%20%20%20%20%20%20%20%20%20xa%3Dgamma%28%5B1%2E0%2C2%2E0%2C3%2E0%2C4%2E0%5D%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29xa%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20gamma%283%29%20is%20related%20to%20the%20factorial%20function%0D%0A%20%20%20%20%20%20%20%20%20do%20i%3D1%2C20%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20check%20value%20is%20not%20too%20big%20for%20default%20integer%20type%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20if%28factorial%28i%29%2Egt%2Ehuge%280%29%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29i%2Cfactorial%28i%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20else%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29i%2Cfactorial%28i%29%2Cint%28factorial%28i%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%21%20more%20factorials%0D%0A%20%20%20%20%20%20%20%20%20FAC%3A%20block%0D%0A%20%20%20%20%20%20%20%20%20integer%2Cparameter%20%3A%3A%20n%28%2A%29%3D%5B0%2C1%2C5%2C11%2C170%5D%0D%0A%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20j%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20do%20j%3D1%2Csize%28n%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28g0%2C1x%29%29%27%29%27factorial%20of%27%2C%20n%28j%29%2C%27%20is%20%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%20product%28%5B%28real%28i%2Ckind%3Dwp%29%2Ci%3D1%2Cn%28j%29%29%5D%29%2C%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%20gamma%28real%28n%28j%29%2B1%2Ckind%3Dwp%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20endblock%20FAC%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20%20%20%20function%20factorial%28i%29%20result%28f%29%0D%0A%20%20%20%20%20%20%20%20%20integer%2Cparameter%20%3A%3A%20dp%3Dkind%280d0%29%0D%0A%20%20%20%20%20%20%20%20%20integer%2Cintent%28in%29%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%20real%20%3A%3A%20f%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20if%28i%2Ele%2E0%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28g0%29%29%27%29%27%3CERROR%3E%20gamma%283%29%20function%20value%20%27%2Ci%2C%27%20%3C%3D%200%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20stop%20%20%20%20%20%20%27%3CSTOP%3E%20bad%20value%20in%20gamma%20function%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20f%3Dgamma%28real%28i%2B1%29%29%0D%0A%20%20%20%20%20%20%20%20%20end%20function%20factorial%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fgamma%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fgamma%0D%0A%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20wp%3D%3Ereal64%2C%20int64%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20real%20%3A%3A%20x%2C%20xa%284%29%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%2C%20j%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20basic%20usage%0D%0A%20%20%20%20%20%20%20%20%20x%20%3D%20gamma%281%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27gamma%281%2E0%29%3D%27%2Cx%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20elemental%0D%0A%20%20%20%20%20%20%20%20%20xa%3Dgamma%28%5B1%2E0%2C2%2E0%2C3%2E0%2C4%2E0%5D%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29xa%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20gamma%28%29%20is%20related%20to%20the%20factorial%20function%0D%0A%20%20%20%20%20%20%20%20%20do%20i%20%3D%201%2C%20171%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20check%20value%20is%20not%20too%20big%20for%20default%20integer%20type%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20%28factorial%28i%29%20%20%3C%3D%20%20huge%280%29%29%20then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20i%2C%20nint%28factorial%28i%29%29%2C%20%27integer%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20elseif%20%28factorial%28i%29%20%20%3C%3D%20%20huge%280%5Fint64%29%29%20then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20i%2C%20nint%28factorial%28i%29%2Ckind%3Dint64%29%2C%27integer%28kind%3Dint64%29%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20else%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20i%2C%20factorial%28i%29%20%2C%20%27user%20factorial%20function%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20i%2C%20product%28%5B%28real%28j%2C%20kind%3Dwp%29%2C%20j%3D1%2C%20i%29%5D%29%2C%20%27product%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20i%2C%20gamma%28real%28i%20%2B%201%2C%20kind%3Dwp%29%29%2C%20%27gamma%20directly%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20%20%20%20%20%20%20%20enddo%0D%0A%0D%0A%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20function%20factorial%28i%29%20result%28f%29%0D%0A%20%20%20%20%20%20%21%20%20GAMMA%28X%29%20computes%20Gamma%20of%20X%2E%20For%20positive%20whole%20number%20values%20of%20N%20the%0D%0A%20%20%20%20%20%20%21%20%20Gamma%20function%20can%20be%20used%20to%20calculate%20factorials%2C%20as%20%28N%2D1%29%21%20%3D%3D%0D%0A%20%20%20%20%20%20%21%20%20GAMMA%28REAL%28N%29%29%2E%20That%20is%0D%0A%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%21%20%20%20%20%20%20n%21%20%3D%3D%20gamma%28real%28n%2B1%29%29%0D%0A%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20integer%2C%20intent%28in%29%20%3A%3A%20i%0D%0A%20%20%20%20%20%20real%28kind%3Dwp%29%20%3A%3A%20f%0D%0A%20%20%20%20%20%20%20%20%20if%20%28i%20%20%3C%3D%20%200%29%20then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28g0%29%29%27%29%20%27%3CERROR%3E%20gamma%283%29%20function%20value%20%27%2C%20i%2C%20%27%20%3C%3D%200%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20stop%20%27%3CSTOP%3E%20bad%20value%20in%20gamma%20function%27%0D%0A%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20%20%20%20%20%20%20%20f%20%3D%20anint%28gamma%28real%28i%20%2B%201%2Ckind%3Dwp%29%29%29%0D%0A%20%20%20%20%20%20end%20function%20factorial%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fgamma%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> gamma
   </a>
   <xmp>
       program demo_gamma
-      use, intrinsic :: iso_fortran_env, only : wp=>real64
+      use, intrinsic :: iso_fortran_env, only : wp=>real64, int64
       implicit none
       real :: x, xa(4)
-      integer :: i
+      integer :: i, j
 
+         ! basic usage
          x = gamma(1.0)
          write(*,*)'gamma(1.0)=',x
 
@@ -2360,37 +2363,37 @@
          write(*,*)xa
          write(*,*)
 
-         ! gamma(3) is related to the factorial function
-         do i=1,20
+         ! gamma() is related to the factorial function
+         do i = 1, 171
             ! check value is not too big for default integer type
-            if(factorial(i).gt.huge(0))then
-               write(*,*)i,factorial(i)
+            if (factorial(i)  <=  huge(0)) then
+               write(*,*) i, nint(factorial(i)), 'integer'
+            elseif (factorial(i)  <=  huge(0_int64)) then
+               write(*,*) i, nint(factorial(i),kind=int64),'integer(kind=int64)'
             else
-               write(*,*)i,factorial(i),int(factorial(i))
+               write(*,*) i, factorial(i) , 'user factorial function'
+               write(*,*) i, product([(real(j, kind=wp), j=1, i)]), 'product'
+               write(*,*) i, gamma(real(i + 1, kind=wp)), 'gamma directly'
             endif
          enddo
-         ! more factorials
-         FAC: block
-         integer,parameter :: n(*)=[0,1,5,11,170]
-         integer :: j
-            do j=1,size(n)
-               write(*,'(*(g0,1x))')'factorial of', n(j),' is ', &
-                & product([(real(i,kind=wp),i=1,n(j))]),  &
-                & gamma(real(n(j)+1,kind=wp))
-            enddo
-         endblock FAC
 
-         contains
-         function factorial(i) result(f)
-         integer,parameter :: dp=kind(0d0)
-         integer,intent(in) :: i
-         real :: f
-            if(i.le.0)then
-               write(*,'(*(g0))')'<ERROR> gamma(3) function value ',i,' <= 0'
-               stop      '<STOP> bad value in gamma function'
-            endif
-            f=gamma(real(i+1))
-         end function factorial
+      contains
+      function factorial(i) result(f)
+      !  GAMMA(X) computes Gamma of X. For positive whole number values of N the
+      !  Gamma function can be used to calculate factorials, as (N-1)! ==
+      !  GAMMA(REAL(N)). That is
+      !
+      !      n! == gamma(real(n+1))
+      !
+      integer, intent(in) :: i
+      real(kind=wp) :: f
+         if (i  <=  0) then
+            write(*,'(*(g0))') '<ERROR> gamma(3) function value ', i, ' <= 0'
+            stop '<STOP> bad value in gamma function'
+         endif
+         f = anint(gamma(real(i + 1,kind=wp)))
+      end function factorial
+
       end program demo_gamma
   </xmp>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fget%5Fcommand%5Fargument%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20character%28len%3D255%29%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20progname%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20count%2C%20i%2C%20argument%5Flength%2C%20istat%0D%0A%20%20%20%20%20%20character%28len%3D%3A%29%2Callocatable%20%3A%3A%20arg%0D%0A%0D%0A%20%20%20%20%20%20%20%21%20command%20name%20assuming%20it%20is%20less%20than%20255%20characters%20in%20length%0D%0A%20%20%20%20%20%20%20%20call%20get%5Fcommand%5Fargument%20%280%2C%20progname%2C%20status%3Distat%29%0D%0A%20%20%20%20%20%20%20%20if%20%28istat%20%3D%3D%200%29%20then%0D%0A%20%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%22The%20program%27s%20name%20is%20%22%20%2F%2F%20trim%20%28progname%29%0D%0A%20%20%20%20%20%20%20%20else%0D%0A%20%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%22Could%20not%20get%20the%20program%27s%20name%20%22%20%2F%2F%20trim%20%28progname%29%0D%0A%20%20%20%20%20%20%20%20endif%0D%0A%0D%0A%20%20%20%20%20%20%20%21%20get%20number%20of%20arguments%0D%0A%20%20%20%20%20%20%20%20count%20%3D%20command%5Fargument%5Fcount%28%29%0D%0A%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27The%20number%20of%20arguments%20is%20%27%2Ccount%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%21%20allocate%20string%20array%20big%20enough%20to%20hold%20command%20line%0D%0A%20%20%20%20%20%20%20%20%21%20argument%20strings%20and%20related%20information%0D%0A%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20do%20i%3D1%2Ccount%0D%0A%20%20%20%20%20%20%20%20%20%20%20call%20get%5Fcommand%5Fargument%28number%3Di%2Clength%3Dargument%5Flength%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20if%28allocated%28arg%29%29deallocate%28arg%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20allocate%28character%28len%3Dargument%5Flength%29%20%3A%3A%20arg%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20call%20get%5Fcommand%5Fargument%28i%2C%20arg%2Cstatus%3Distat%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%21%20show%20the%20results%0D%0A%20%20%20%20%20%20%20%20%20%20%20write%20%28%2A%2C%27%28i3%2E3%2C1x%2Ci0%2E5%2C1x%2Ci0%2E5%2C1x%2C%22%5B%22%2Ca%2C%22%5D%22%29%27%29%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20i%2Cistat%2Cargument%5Flength%2Carg%0D%0A%20%20%20%20%20%20%20%20enddo%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fget%5Fcommand%5Fargument%0D%0A"
@@ -2508,7 +2511,7 @@
 
       end program demo_getenv
   </xmp>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fhuge%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20f%3D%27%28i2%2C1x%2C2%28i11%2C1x%29%2Cf14%2E0%3A%2C1x%2Cl1%2C1x%2Ca%29%27%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%2Cj%2Ck%2Cbiggest%0D%0A%20%20%20%20%20%20real%20%3A%3A%20v%2C%20w%0D%0A%20%20%20%20%20%20doubleprecision%20%3A%3A%20sum%0D%0A%20%20%20%20%20%20%20%20%20%21%20basic%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20huge%280%29%2C%20huge%280%2E0%29%2C%20huge%280%2E0d0%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20tiny%280%2E0%29%2C%20tiny%280%2E0d0%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20sum%3D0%2E0d0%0D%0A%20%20%20%20%20%20%20%20%20%21%20note%20subtracting%20one%20because%20counter%20is%20the%20end%20value%2B1%20on%20exit%0D%0A%20%20%20%20%20%20%20%20%20do%20i%3D0%2Chuge%280%29%2D1%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20sum%3Dsum%2Bi%0D%0A%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27sum%3D%27%2Csum%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20advanced%0D%0A%20%20%20%20%20%20%20%20%20biggest%3Dhuge%280%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20be%20careful%20of%20overflow%20when%20using%20integers%20in%20computation%0D%0A%20%20%20%20%20%20%20%20%20do%20i%3D1%2C14%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20j%3D6%2A%2Ai%20%20%20%21%20Danger%2C%20Danger%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20w%3D6%2A%2Ai%20%20%20%21%20Danger%2C%20Danger%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20v%3D6%2E0%2A%2Ai%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20k%3Dv%20%20%20%20%20%20%21%20Danger%2C%20Danger%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20if%28v%2Egt%2Ebiggest%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cf%29%20i%2C%20j%2C%20k%2C%20v%2C%20v%2Eeq%2Ew%2C%20%27wrong%20j%20and%20k%20and%20w%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20else%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cf%29%20i%2C%20j%2C%20k%2C%20v%2C%20v%2Eeq%2Ew%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20endif%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fhuge%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fhuge%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20f%3D%27%28i2%2C1x%2C2%28i11%2C1x%29%2Cf14%2E0%3A%2C1x%2Cl1%2C1x%2Ca%29%27%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%2Cj%2Ck%2Cbiggest%0D%0A%20%20%20%20%20%20real%20%3A%3A%20v%2C%20w%0D%0A%20%20%20%20%20%20doubleprecision%20%3A%3A%20tally%0D%0A%20%20%20%20%20%20%20%20%20%21%20basic%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20huge%280%29%2C%20huge%280%2E0%29%2C%20huge%280%2E0d0%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20tiny%280%2E0%29%2C%20tiny%280%2E0d0%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20tally%3D0%2E0d0%0D%0A%20%20%20%20%20%20%20%20%20%21%20note%20subtracting%20one%20because%20counter%20is%20the%20end%20value%2B1%20on%20exit%0D%0A%20%20%20%20%20%20%20%20%20do%20i%3D0%2Chuge%280%29%2D1%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20tally%3Dtally%2Bi%0D%0A%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27tally%3D%27%2Ctally%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20advanced%0D%0A%20%20%20%20%20%20%20%20%20biggest%3Dhuge%280%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20be%20careful%20of%20overflow%20when%20using%20integers%20in%20computation%0D%0A%20%20%20%20%20%20%20%20%20do%20i%3D1%2C14%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20j%3D6%2A%2Ai%20%20%20%21%20Danger%2C%20Danger%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20w%3D6%2A%2Ai%20%20%20%21%20Danger%2C%20Danger%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20v%3D6%2E0%2A%2Ai%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20k%3Dv%20%20%20%20%20%20%21%20Danger%2C%20Danger%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20if%28v%2Egt%2Ebiggest%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cf%29%20i%2C%20j%2C%20k%2C%20v%2C%20v%2Eeq%2Ew%2C%20%27wrong%20j%20and%20k%20and%20w%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20else%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cf%29%20i%2C%20j%2C%20k%2C%20v%2C%20v%2Eeq%2Ew%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20endif%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fhuge%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> huge
@@ -2519,17 +2522,17 @@
       character(len=*),parameter :: f='(i2,1x,2(i11,1x),f14.0:,1x,l1,1x,a)'
       integer :: i,j,k,biggest
       real :: v, w
-      doubleprecision :: sum
+      doubleprecision :: tally
          ! basic
          print *, huge(0), huge(0.0), huge(0.0d0)
          print *, tiny(0.0), tiny(0.0d0)
 
-         sum=0.0d0
+         tally=0.0d0
          ! note subtracting one because counter is the end value+1 on exit
          do i=0,huge(0)-1
-            sum=sum+i
+            tally=tally+i
          enddo
-         write(*,*)'sum=',sum
+         write(*,*)'tally=',tally
 
          ! advanced
          biggest=huge(0)
@@ -4682,7 +4685,7 @@
          print *, "The radix for the doubleprecision real kind is", radix(0.0d0)
       end program demo_radix
   </xmp>
-  <a href="https://play.fortran-lang.org/?code=%20%20program%20demo%5Frandom%5Finit%20implicit%20none%20real%20x%283%29%2C%20y%283%29%20call%0D%0A%20%20random%5Finit%28%2Etrue%2E%2C%20%2Etrue%2E%29%20%20call%20random%5Fnumber%28x%29%20call%20random%5Finit%28%2Etrue%2E%2C%0D%0A%20%20%2Etrue%2E%29%20%20call%20random%5Fnumber%28y%29%20%21%20x%20and%20y%20should%20be%20the%20same%20sequence%20if%20%28%0D%0A%20%20any%28x%20%2F%3D%20y%29%20%29%20stop%20%22x%28%3A%29%20and%20y%28%3A%29%20are%20not%20all%20equal%22%20end%20program%0D%0A%20%20demo%5Frandom%5Finit%0D%0A%0D%0ASEE%20ALSO%0D%0A%20%20random%5Fnumber%2C%20random%5Fseed%0D%0A%0D%0A%20%20%5Ffortran%2Dlang%20intrinsic%20descriptions%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20April%2012%2C%202023%20%20%20%20%20%20%20%20%20%20%20random%5Finit%283fortran%29%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20program%20demo%5Frandom%5Finit%20implicit%20none%20real%20x%283%29%2C%20y%283%29%20call%0D%0A%20%20random%5Finit%28%2Etrue%2E%2C%20%2Etrue%2E%29%20%20call%20random%5Fnumber%28x%29%20call%20random%5Finit%28%2Etrue%2E%2C%0D%0A%20%20%2Etrue%2E%29%20%20call%20random%5Fnumber%28y%29%20%21%20x%20and%20y%20should%20be%20the%20same%20sequence%20if%20%28%0D%0A%20%20any%28x%20%2F%3D%20y%29%20%29%20stop%20%22x%28%3A%29%20and%20y%28%3A%29%20are%20not%20all%20equal%22%20end%20program%0D%0A%20%20demo%5Frandom%5Finit%0D%0A%0D%0ASEE%20ALSO%0D%0A%20%20random%5Fnumber%2C%20random%5Fseed%0D%0A%0D%0A%20%20%5Ffortran%2Dlang%20intrinsic%20descriptions%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20June%2004%2C%202023%20%20%20%20%20%20%20%20%20%20%20random%5Finit%283fortran%29%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> random_init
@@ -4699,7 +4702,7 @@ SEE ALSO
 
   _fortran-lang intrinsic descriptions
 
-                                April 12, 2023           random_init(3fortran)
+                                 June 04, 2023           random_init(3fortran)
   </xmp>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Frandom%5Fnumber%0D%0A%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20dp%3D%3Ereal64%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%2C%20allocatable%20%3A%3A%20seed%28%3A%29%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20n%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20first%2Clast%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20rand%5Fint%0D%0A%20%20%20%20%20%20integer%2Callocatable%20%20%3A%3A%20count%28%3A%29%0D%0A%20%20%20%20%20%20real%28kind%3Ddp%29%20%20%20%20%20%20%20%20%3A%3A%20rand%5Fval%0D%0A%20%20%20%20%20%20%20%20%20call%20random%5Fseed%28size%20%3D%20n%29%0D%0A%20%20%20%20%20%20%20%20%20allocate%28seed%28n%29%29%0D%0A%20%20%20%20%20%20%20%20%20call%20random%5Fseed%28get%3Dseed%29%0D%0A%20%20%20%20%20%20%20%20%20first%3D1%0D%0A%20%20%20%20%20%20%20%20%20last%3D10%0D%0A%20%20%20%20%20%20%20%20%20allocate%28count%28last%2Dfirst%2B1%29%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20To%20have%20a%20discrete%20uniform%20distribution%20on%20the%20integers%0D%0A%20%20%20%20%20%20%20%20%20%21%20%5Bfirst%2C%20first%2B1%2C%20%2E%2E%2E%2C%20last%2D1%2C%20last%5D%20carve%20the%20continuous%0D%0A%20%20%20%20%20%20%20%20%20%21%20distribution%20up%20into%20last%2B1%2Dfirst%20equal%20sized%20chunks%2C%0D%0A%20%20%20%20%20%20%20%20%20%21%20mapping%20each%20chunk%20to%20an%20integer%2E%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%21%20One%20way%20is%3A%0D%0A%20%20%20%20%20%20%20%20%20%21%20%20%20call%20random%5Fnumber%28rand%5Fval%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20choose%20one%20from%20last%2Dfirst%2B1%20integers%0D%0A%20%20%20%20%20%20%20%20%20%21%20%20%20rand%5Fint%20%3D%20first%20%2B%20FLOOR%28%28last%2B1%2Dfirst%29%2Arand%5Fval%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20count%3D0%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20generate%20a%20lot%20of%20random%20integers%20from%201%20to%2010%20and%20count%20them%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20with%20a%20large%20number%20of%20values%20you%20should%20get%20about%20the%20same%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20number%20of%20each%20value%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20do%20i%3D1%2C100000000%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20call%20random%5Fnumber%28rand%5Fval%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20rand%5Fint%3Dfirst%2Bfloor%28%28last%2B1%2Dfirst%29%2Arand%5Fval%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%28rand%5Fint%2Ege%2Efirst%2Eand%2Erand%5Fint%2Ele%2Elast%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20count%28rand%5Fint%29%3Dcount%28rand%5Fint%29%2B1%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20else%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29rand%5Fint%2C%27%20is%20out%20of%20range%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28i0%2C1x%2Ci0%29%27%29%28i%2Ccount%28i%29%2Ci%3D1%2Csize%28count%29%29%0D%0A%20%20%20%20%20%20end%20program%20demo%5Frandom%5Fnumber%0D%0A"
   target="_blank" title="Open in Fortran Playground">

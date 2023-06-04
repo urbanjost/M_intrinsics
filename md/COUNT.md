@@ -168,7 +168,7 @@ character(len=:),allocatable :: biggest
 end subroutine printi
 end program demo_count
 ```
-  Results:
+Results:
 ```text
  >   the numeric arrays we will compare
  >    1  3  5

@@ -22,7 +22,8 @@ This is a project to
 
 + provide standard Fortran intrinsic markdown descriptions for the fortran-lang.org site 
 + generate a set of man-page and HTML Fortran intrinsic documents
-+ extract demo programs from each document into an fpm(1) package for easy verification
++ extract [demo programs](https://urbanjost.github.io/M_intrinsics/playground.html)
+  from each document into an fpm(1) package for easy verification
 + generate a platform-independent Fortran program for displaying the documents
 
 ## Man-pages and Standalone Source

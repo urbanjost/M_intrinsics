@@ -147,7 +147,7 @@ end subroutine printme
 
 end program demo_merge
 ```
-Expected Results:
+Results:
 ```text
  >    1.00000000    
  >    0.00000000    

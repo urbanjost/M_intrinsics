@@ -88,7 +88,7 @@ integer :: i
 
 end program demo_char
 ```
-  Results:
+Results:
 ```text
     ASCII character           74 is J
     a selection of ASCII characters (shows hex if not printable)

@@ -337,7 +337,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   abs(3fortran)', &
+'                                June 04, 2023                   abs(3fortran)', &
 '']
 
 shortname="abs"
@@ -513,7 +513,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 achar(3fortran)', &
+'                                June 04, 2023                 achar(3fortran)', &
 '']
 
 shortname="achar"
@@ -613,7 +613,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  acos(3fortran)', &
+'                                June 04, 2023                  acos(3fortran)', &
 '']
 
 shortname="acos"
@@ -690,7 +690,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 acosh(3fortran)', &
+'                                June 04, 2023                 acosh(3fortran)', &
 '']
 
 shortname="acosh"
@@ -787,7 +787,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               adjustl(3fortran)', &
+'                                June 04, 2023               adjustl(3fortran)', &
 '']
 
 shortname="adjustl"
@@ -880,7 +880,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               adjustr(3fortran)', &
+'                                June 04, 2023               adjustr(3fortran)', &
 '']
 
 shortname="adjustr"
@@ -995,7 +995,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 aimag(3fortran)', &
+'                                June 04, 2023                 aimag(3fortran)', &
 '']
 
 shortname="aimag"
@@ -1095,7 +1095,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  aint(3fortran)', &
+'                                June 04, 2023                  aint(3fortran)', &
 '']
 
 shortname="aint"
@@ -1173,13 +1173,15 @@ textblock=[character(len=256) :: &
 '      implicit none', &
 '      logical,parameter :: T=.true., F=.false.', &
 '      logical bool', &
+'', &
 '       ! basic usage', &
 '        ! is everything true?', &
 '        bool = all([ T,T,T ])', &
+'        print *, ''are all values true?'', bool', &
 '        bool = all([ T,F,T ])', &
-'        print *, bool', &
+'        print *, ''are all values true now?'', bool', &
 '', &
-'       ! by a dimension', &
+'       ! compare matrices, even by a dimension', &
 '        ARRAYS: block', &
 '        integer :: a(2,3), b(2,3)', &
 '         ! set everything to one except one value in b', &
@@ -1213,7 +1215,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   all(3fortran)', &
+'                                June 04, 2023                   all(3fortran)', &
 '']
 
 shortname="all"
@@ -1320,7 +1322,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             allocated(3fortran)', &
+'                                June 04, 2023             allocated(3fortran)', &
 '']
 
 shortname="allocated"
@@ -1446,7 +1448,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 anint(3fortran)', &
+'                                June 04, 2023                 anint(3fortran)', &
 '']
 
 shortname="anint"
@@ -1612,7 +1614,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   any(3fortran)', &
+'                                June 04, 2023                   any(3fortran)', &
 '']
 
 shortname="any"
@@ -1734,7 +1736,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  asin(3fortran)', &
+'                                June 04, 2023                  asin(3fortran)', &
 '']
 
 shortname="asin"
@@ -1813,7 +1815,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 asinh(3fortran)', &
+'                                June 04, 2023                 asinh(3fortran)', &
 '']
 
 shortname="asinh"
@@ -1931,7 +1933,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            associated(3fortran)', &
+'                                June 04, 2023            associated(3fortran)', &
 '']
 
 shortname="associated"
@@ -2117,7 +2119,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 atan2(3fortran)', &
+'                                June 04, 2023                 atan2(3fortran)', &
 '']
 
 shortname="atan2"
@@ -2211,7 +2213,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  atan(3fortran)', &
+'                                June 04, 2023                  atan(3fortran)', &
 '']
 
 shortname="atan"
@@ -2285,7 +2287,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 atanh(3fortran)', &
+'                                June 04, 2023                 atanh(3fortran)', &
 '']
 
 shortname="atanh"
@@ -2362,7 +2364,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            atomic_add(3fortran)', &
+'                                June 04, 2023            atomic_add(3fortran)', &
 '']
 
 shortname="atomic_add"
@@ -2440,7 +2442,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            atomic_and(3fortran)', &
+'                                June 04, 2023            atomic_and(3fortran)', &
 '']
 
 shortname="atomic_and"
@@ -2510,7 +2512,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            atomic_cas(3fortran)', &
+'                                June 04, 2023            atomic_cas(3fortran)', &
 '']
 
 shortname="atomic_cas"
@@ -2586,7 +2588,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023         atomic_define(3fortran)', &
+'                                June 04, 2023         atomic_define(3fortran)', &
 '']
 
 shortname="atomic_define"
@@ -2657,7 +2659,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023      atomic_fetch_add(3fortran)', &
+'                                June 04, 2023      atomic_fetch_add(3fortran)', &
 '']
 
 shortname="atomic_fetch_add"
@@ -2729,7 +2731,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023      atomic_fetch_and(3fortran)', &
+'                                June 04, 2023      atomic_fetch_and(3fortran)', &
 '']
 
 shortname="atomic_fetch_and"
@@ -2801,7 +2803,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023       atomic_fetch_or(3fortran)', &
+'                                June 04, 2023       atomic_fetch_or(3fortran)', &
 '']
 
 shortname="atomic_fetch_or"
@@ -2873,7 +2875,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023      atomic_fetch_xor(3fortran)', &
+'                                June 04, 2023      atomic_fetch_xor(3fortran)', &
 '']
 
 shortname="atomic_fetch_xor"
@@ -2954,7 +2956,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             atomic_or(3fortran)', &
+'                                June 04, 2023             atomic_or(3fortran)', &
 '']
 
 shortname="atomic_or"
@@ -3038,7 +3040,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            atomic_ref(3fortran)', &
+'                                June 04, 2023            atomic_ref(3fortran)', &
 '']
 
 shortname="atomic_ref"
@@ -3117,7 +3119,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            atomic_xor(3fortran)', &
+'                                June 04, 2023            atomic_xor(3fortran)', &
 '']
 
 shortname="atomic_xor"
@@ -3187,7 +3189,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             bessel_j0(3fortran)', &
+'                                June 04, 2023             bessel_j0(3fortran)', &
 '']
 
 shortname="bessel_j0"
@@ -3256,7 +3258,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             bessel_j1(3fortran)', &
+'                                June 04, 2023             bessel_j1(3fortran)', &
 '']
 
 shortname="bessel_j1"
@@ -3360,7 +3362,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             bessel_jn(3fortran)', &
+'                                June 04, 2023             bessel_jn(3fortran)', &
 '']
 
 shortname="bessel_jn"
@@ -3429,7 +3431,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             bessel_y0(3fortran)', &
+'                                June 04, 2023             bessel_y0(3fortran)', &
 '']
 
 shortname="bessel_y0"
@@ -3497,7 +3499,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             bessel_y1(3fortran)', &
+'                                June 04, 2023             bessel_y1(3fortran)', &
 '']
 
 shortname="bessel_y1"
@@ -3601,7 +3603,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             bessel_yn(3fortran)', &
+'                                June 04, 2023             bessel_yn(3fortran)', &
 '']
 
 shortname="bessel_yn"
@@ -3766,7 +3768,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   bge(3fortran)', &
+'                                June 04, 2023                   bge(3fortran)', &
 '']
 
 shortname="bge"
@@ -3878,7 +3880,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   bgt(3fortran)', &
+'                                June 04, 2023                   bgt(3fortran)', &
 '']
 
 shortname="bgt"
@@ -3969,7 +3971,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              bit_size(3fortran)', &
+'                                June 04, 2023              bit_size(3fortran)', &
 '']
 
 shortname="bit_size"
@@ -4070,7 +4072,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   ble(3fortran)', &
+'                                June 04, 2023                   ble(3fortran)', &
 '']
 
 shortname="ble"
@@ -4165,7 +4167,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   blt(3fortran)', &
+'                                June 04, 2023                   blt(3fortran)', &
 '']
 
 shortname="blt"
@@ -4297,14 +4299,13 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  IEOR(3), IBCLR(3), NOT(3), IBCLR(3), IBITS(3), IBSET(3), IAND(3), IOR(3),', &
-'  IEOR(3), MVBITS(3)', &
+'  IAND(3), IBCLR(3), IBITS(3), IBSET(3), IEOR(3), IOR(3), MVBITS(3), NOT(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 btest(3fortran)', &
+'                                June 04, 2023                 btest(3fortran)', &
 '']
 
 shortname="btest"
@@ -4382,7 +4383,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023          c_associated(3fortran)', &
+'                                June 04, 2023          c_associated(3fortran)', &
 '']
 
 shortname="c_associated"
@@ -4492,7 +4493,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               ceiling(3fortran)', &
+'                                June 04, 2023               ceiling(3fortran)', &
 '']
 
 shortname="ceiling"
@@ -4568,7 +4569,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           c_f_pointer(3fortran)', &
+'                                June 04, 2023           c_f_pointer(3fortran)', &
 '']
 
 shortname="c_f_pointer"
@@ -4643,7 +4644,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023       c_f_procpointer(3fortran)', &
+'                                June 04, 2023       c_f_procpointer(3fortran)', &
 '']
 
 shortname="c_f_procpointer"
@@ -4717,7 +4718,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              c_funloc(3fortran)', &
+'                                June 04, 2023              c_funloc(3fortran)', &
 '']
 
 shortname="c_funloc"
@@ -4843,7 +4844,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  char(3fortran)', &
+'                                June 04, 2023                  char(3fortran)', &
 '']
 
 shortname="char"
@@ -4904,7 +4905,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 c_loc(3fortran)', &
+'                                June 04, 2023                 c_loc(3fortran)', &
 '']
 
 shortname="c_loc"
@@ -5176,7 +5177,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 cmplx(3fortran)', &
+'                                June 04, 2023                 cmplx(3fortran)', &
 '']
 
 shortname="cmplx"
@@ -5244,7 +5245,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023          co_broadcast(3fortran)', &
+'                                June 04, 2023          co_broadcast(3fortran)', &
 '']
 
 shortname="co_broadcast"
@@ -5364,7 +5365,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                co_max(3fortran)', &
+'                                June 04, 2023                co_max(3fortran)', &
 '']
 
 shortname="co_max"
@@ -5433,7 +5434,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                co_min(3fortran)', &
+'                                June 04, 2023                co_min(3fortran)', &
 '']
 
 shortname="co_min"
@@ -5511,7 +5512,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023command_argument_count(3fortran)', &
+'                                June 04, 2023command_argument_count(3fortran)', &
 '']
 
 shortname="command_argument_count"
@@ -5599,7 +5600,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023      compiler_options(3fortran)', &
+'                                June 04, 2023      compiler_options(3fortran)', &
 '']
 
 shortname="compiler_options"
@@ -5671,7 +5672,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023      compiler_version(3fortran)', &
+'                                June 04, 2023      compiler_version(3fortran)', &
 '']
 
 shortname="compiler_version"
@@ -5802,7 +5803,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 conjg(3fortran)', &
+'                                June 04, 2023                 conjg(3fortran)', &
 '']
 
 shortname="conjg"
@@ -5904,7 +5905,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             co_reduce(3fortran)', &
+'                                June 04, 2023             co_reduce(3fortran)', &
 '']
 
 shortname="co_reduce"
@@ -5998,7 +5999,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   cos(3fortran)', &
+'                                June 04, 2023                   cos(3fortran)', &
 '']
 
 shortname="cos"
@@ -6073,7 +6074,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  cosh(3fortran)', &
+'                                June 04, 2023                  cosh(3fortran)', &
 '']
 
 shortname="cosh"
@@ -6150,7 +6151,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                co_sum(3fortran)', &
+'                                June 04, 2023                co_sum(3fortran)', &
 '']
 
 shortname="co_sum"
@@ -6437,7 +6438,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 count(3fortran)', &
+'                                June 04, 2023                 count(3fortran)', &
 '']
 
 shortname="count"
@@ -6550,7 +6551,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              cpu_time(3fortran)', &
+'                                June 04, 2023              cpu_time(3fortran)', &
 '']
 
 shortname="cpu_time"
@@ -6688,7 +6689,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                cshift(3fortran)', &
+'                                June 04, 2023                cshift(3fortran)', &
 '']
 
 shortname="cshift"
@@ -6752,7 +6753,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              c_sizeof(3fortran)', &
+'                                June 04, 2023              c_sizeof(3fortran)', &
 '']
 
 shortname="c_sizeof"
@@ -6927,7 +6928,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023         date_and_time(3fortran)', &
+'                                June 04, 2023         date_and_time(3fortran)', &
 '']
 
 shortname="date_and_time"
@@ -7006,7 +7007,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  dble(3fortran)', &
+'                                June 04, 2023                  dble(3fortran)', &
 '']
 
 shortname="dble"
@@ -7081,7 +7082,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                digits(3fortran)', &
+'                                June 04, 2023                digits(3fortran)', &
 '']
 
 shortname="digits"
@@ -7170,7 +7171,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   dim(3fortran)', &
+'                                June 04, 2023                   dim(3fortran)', &
 '']
 
 shortname="dim"
@@ -7273,7 +7274,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           dot_product(3fortran)', &
+'                                June 04, 2023           dot_product(3fortran)', &
 '']
 
 shortname="dot_product"
@@ -7387,7 +7388,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 dprod(3fortran)', &
+'                                June 04, 2023                 dprod(3fortran)', &
 '']
 
 shortname="dprod"
@@ -7538,7 +7539,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               dshiftl(3fortran)', &
+'                                June 04, 2023               dshiftl(3fortran)', &
 '']
 
 shortname="dshiftl"
@@ -7693,7 +7694,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               dshiftr(3fortran)', &
+'                                June 04, 2023               dshiftr(3fortran)', &
 '']
 
 shortname="dshiftr"
@@ -7826,7 +7827,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               eoshift(3fortran)', &
+'                                June 04, 2023               eoshift(3fortran)', &
 '']
 
 shortname="eoshift"
@@ -7958,7 +7959,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               epsilon(3fortran)', &
+'                                June 04, 2023               epsilon(3fortran)', &
 '']
 
 shortname="epsilon"
@@ -8031,7 +8032,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   erf(3fortran)', &
+'                                June 04, 2023                   erf(3fortran)', &
 '']
 
 shortname="erf"
@@ -8119,7 +8120,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  erfc(3fortran)', &
+'                                June 04, 2023                  erfc(3fortran)', &
 '']
 
 shortname="erfc"
@@ -8201,7 +8202,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           erfc_scaled(3fortran)', &
+'                                June 04, 2023           erfc_scaled(3fortran)', &
 '']
 
 shortname="erfc_scaled"
@@ -8267,7 +8268,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           event_query(3fortran)', &
+'                                June 04, 2023           event_query(3fortran)', &
 '']
 
 shortname="event_query"
@@ -8339,6 +8340,15 @@ textblock=[character(len=256) :: &
 '  be ignored, and the SIGCHLD will be blocked. As such, if the parent process', &
 '  is terminated, the child process might not be terminated alongside.', &
 '', &
+'  One of the most common causes of errors is that the program requested is not', &
+'  in the search path. You should make sure that the program to be executed is', &
+'  installed on your system and that it is in the system''s path when the', &
+'  program calls it. You can check if it is installed by running it from the', &
+'  command prompt. If it runs successfully from the command prompt, it means', &
+'  that it is installed, and so you should next check that it is in the search', &
+'  path when the program executes (usually this means checking the environment', &
+'  variable PATH).', &
+'', &
 'OPTIONS', &
 '  o  COMMAND : the command line to be executed. The interpretation is', &
 '     programming-environment dependent.', &
@@ -8392,7 +8402,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023  execute_command_line(3fortran)', &
+'                                June 04, 2023  execute_command_line(3fortran)', &
 '']
 
 shortname="execute_command_line"
@@ -8509,7 +8519,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   exp(3fortran)', &
+'                                June 04, 2023                   exp(3fortran)', &
 '']
 
 shortname="exp"
@@ -8590,7 +8600,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              exponent(3fortran)', &
+'                                June 04, 2023              exponent(3fortran)', &
 '']
 
 shortname="exponent"
@@ -8771,7 +8781,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023       extends_type_of(3fortran)', &
+'                                June 04, 2023       extends_type_of(3fortran)', &
 '']
 
 shortname="extends_type_of"
@@ -9064,7 +9074,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               findloc(3fortran)', &
+'                                June 04, 2023               findloc(3fortran)', &
 '']
 
 shortname="findloc"
@@ -9178,7 +9188,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 floor(3fortran)', &
+'                                June 04, 2023                 floor(3fortran)', &
 '']
 
 shortname="floor"
@@ -9253,7 +9263,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              fraction(3fortran)', &
+'                                June 04, 2023              fraction(3fortran)', &
 '']
 
 shortname="fraction"
@@ -9307,11 +9317,12 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_gamma', &
-'      use, intrinsic :: iso_fortran_env, only : wp=>real64', &
+'      use, intrinsic :: iso_fortran_env, only : wp=>real64, int64', &
 '      implicit none', &
 '      real :: x, xa(4)', &
-'      integer :: i', &
+'      integer :: i, j', &
 '', &
+'        ! basic usage', &
 '        x = gamma(1.0)', &
 '        write(*,*)''gamma(1.0)='',x', &
 '', &
@@ -9320,79 +9331,79 @@ textblock=[character(len=256) :: &
 '        write(*,*)xa', &
 '        write(*,*)', &
 '', &
-'        ! gamma(3) is related to the factorial function', &
-'        do i=1,20', &
+'', &
+'        ! gamma() is related to the factorial function', &
+'        do i = 1, 171', &
 '           ! check value is not too big for default integer type', &
-'           if(factorial(i).gt.huge(0))then', &
-'              write(*,*)i,factorial(i)', &
+'           if (factorial(i)  <=  huge(0)) then', &
+'              write(*,*) i, nint(factorial(i)), ''integer''', &
+'           elseif (factorial(i)  <=  huge(0_int64)) then', &
+'              write(*,*) i, nint(factorial(i),kind=int64),''integer(kind=int64)''', &
 '           else', &
-'              write(*,*)i,factorial(i),int(factorial(i))', &
+'              write(*,*) i, factorial(i) , ''user factorial function''', &
+'              write(*,*) i, product([(real(j, kind=wp), j=1, i)]), ''product''', &
+'              write(*,*) i, gamma(real(i + 1, kind=wp)), ''gamma directly''', &
 '           endif', &
 '        enddo', &
-'        ! more factorials', &
-'        FAC: block', &
-'        integer,parameter :: n(*)=[0,1,5,11,170]', &
-'        integer :: j', &
-'           do j=1,size(n)', &
-'              write(*,''(*(g0,1x))'')''factorial of'', n(j),'' is '', &', &
-'               & product([(real(i,kind=wp),i=1,n(j))]),  &', &
-'               & gamma(real(n(j)+1,kind=wp))', &
-'           enddo', &
-'        endblock FAC', &
 '', &
-'        contains', &
-'        function factorial(i) result(f)', &
-'        integer,parameter :: dp=kind(0d0)', &
-'        integer,intent(in) :: i', &
-'        real :: f', &
-'           if(i.le.0)then', &
-'              write(*,''(*(g0))'')''<ERROR> gamma(3) function value '',i,'' <= 0''', &
-'              stop      ''<STOP> bad value in gamma function''', &
-'           endif', &
-'           f=gamma(real(i+1))', &
-'        end function factorial', &
+'', &
+'      contains', &
+'      function factorial(i) result(f)', &
+'      !  GAMMA(X) computes Gamma of X. For positive whole number values of N the', &
+'      !  Gamma function can be used to calculate factorials, as (N-1)! ==', &
+'      !  GAMMA(REAL(N)). That is', &
+'      !', &
+'      !      n! == gamma(real(n+1))', &
+'      !', &
+'      integer, intent(in) :: i', &
+'      real(kind=wp) :: f', &
+'        if (i  <=  0) then', &
+'           write(*,''(*(g0))'') ''<ERROR> gamma(3) function value '', i, '' <= 0''', &
+'           stop ''<STOP> bad value in gamma function''', &
+'        endif', &
+'        f = anint(gamma(real(i + 1,kind=wp)))', &
+'      end function factorial', &
+'', &
 '      end program demo_gamma', &
 '', &
 '  Results:', &
 '', &
-'         gamma(1.0)=   1.000000', &
-'           1.000000       1.000000       2.000000       6.000000', &
+'       >  gamma(1.0)=  1.00000000', &
+'       >    1.00000000      1.00000000       2.00000000       6.00000000', &
+'       >', &
+'       >           1           1 integer', &
+'       >           2           2 integer', &
+'       >           3           6 integer', &
+'       >           4          24 integer', &
+'       >           5         120 integer', &
+'       >           6         720 integer', &
+'       >           7        5040 integer', &
+'       >           8       40320 integer', &
+'       >           9      362880 integer', &
+'       >          10     3628800 integer', &
+'       >          11    39916800 integer', &
+'       >          12   479001600 integer', &
+'       >          13           6227020800 integer(kind=int64)', &
+'       >          14          87178291200 integer(kind=int64)', &
+'       >          15        1307674368000 integer(kind=int64)', &
+'       >          16       20922789888000 integer(kind=int64)', &
+'       >          17      355687428096000 integer(kind=int64)', &
+'       >          18     6402373705728001 integer(kind=int64)', &
+'       >          19   121645100408832000 integer(kind=int64)', &
+'       >          20  2432902008176640000 integer(kind=int64)', &
+'       >          21   5.1090942171709440E+019 user factorial function', &
+'       >          21   5.1090942171709440E+019 product', &
+'       >          21   5.1090942171709440E+019 gamma directly', &
+'       >           :', &
+'       >           :', &
+'       >           :', &
+'       >         170   7.2574156153079990E+306 user factorial function', &
+'       >         170   7.2574156153079940E+306 product', &
+'       >         170   7.2574156153079990E+306 gamma directly', &
+'       >         171                  Infinity user factorial function', &
+'       >         171                  Infinity product', &
+'       >         171                  Infinity gamma directly', &
 '', &
-'                   1   1.000000               1', &
-'                   2   2.000000               2', &
-'                   3   6.000000               6', &
-'                   4   24.00000              24', &
-'                   5   120.0000             120', &
-'                   6   720.0000             720', &
-'                   7   5040.000            5040', &
-'                   8   40320.00           40320', &
-'                   9   362880.0          362880', &
-'                  10   3628800.         3628800', &
-'                  11  3.9916800E+07    39916800', &
-'                  12  4.7900160E+08   479001600', &
-'                  13  6.2270208E+09', &
-'                  14  8.7178289E+10', &
-'                  15  1.3076744E+12', &
-'                  16  2.0922791E+13', &
-'                  17  3.5568741E+14', &
-'                  18  6.4023735E+15', &
-'                  19  1.2164510E+17', &
-'                  20  2.4329020E+18', &
-'', &
-'    factorial of 0', &
-'      is  1.000000000000000 1.000000000000000', &
-'', &
-'    factorial of 1', &
-'      is  1.000000000000000 1.000000000000000', &
-'', &
-'    factorial of 5', &
-'      is  120.0000000000000 120.0000000000000', &
-'', &
-'    factorial of 11', &
-'      is  39916800.00000000 39916800.00000000', &
-'', &
-'    factorial of 170', &
-'      is  .7257415615307994E+307 .7257415615307999E+307', &
 '', &
 'STANDARD', &
 '  Fortran 2008', &
@@ -9407,7 +9418,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 gamma(3fortran)', &
+'                                June 04, 2023                 gamma(3fortran)', &
 '']
 
 shortname="gamma"
@@ -9516,7 +9527,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           get_command(3fortran)', &
+'                                June 04, 2023           get_command(3fortran)', &
 '']
 
 shortname="get_command"
@@ -9656,7 +9667,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023  get_command_argument(3fortran)', &
+'                                June 04, 2023  get_command_argument(3fortran)', &
 '']
 
 shortname="get_command_argument"
@@ -9803,7 +9814,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 20get_environment_variable(3fortran)', &
+'                                June 04, 20get_environment_variable(3fortran)', &
 '']
 
 shortname="get_environment_variable"
@@ -9859,17 +9870,17 @@ textblock=[character(len=256) :: &
 '      character(len=*),parameter :: f=''(i2,1x,2(i11,1x),f14.0:,1x,l1,1x,a)''', &
 '      integer :: i,j,k,biggest', &
 '      real :: v, w', &
-'      doubleprecision :: sum', &
+'      doubleprecision :: tally', &
 '        ! basic', &
 '        print *, huge(0), huge(0.0), huge(0.0d0)', &
 '        print *, tiny(0.0), tiny(0.0d0)', &
 '', &
-'        sum=0.0d0', &
+'        tally=0.0d0', &
 '        ! note subtracting one because counter is the end value+1 on exit', &
 '        do i=0,huge(0)-1', &
-'           sum=sum+i', &
+'           tally=tally+i', &
 '        enddo', &
-'        write(*,*)''sum='',sum', &
+'        write(*,*)''tally='',tally', &
 '', &
 '        ! advanced', &
 '        biggest=huge(0)', &
@@ -9922,7 +9933,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  huge(3fortran)', &
+'                                June 04, 2023                  huge(3fortran)', &
 '']
 
 shortname="huge"
@@ -10036,7 +10047,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 hypot(3fortran)', &
+'                                June 04, 2023                 hypot(3fortran)', &
 '']
 
 shortname="hypot"
@@ -10158,7 +10169,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                iachar(3fortran)', &
+'                                June 04, 2023                iachar(3fortran)', &
 '']
 
 shortname="iachar"
@@ -10249,7 +10260,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  iall(3fortran)', &
+'                                June 04, 2023                  iall(3fortran)', &
 '']
 
 shortname="iall"
@@ -10334,14 +10345,13 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IOR(3),', &
-'  IEOR(3), MVBITS(3)', &
+'  BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IEOR(3), IOR(3), MVBITS(3), NOT(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  iand(3fortran)', &
+'                                June 04, 2023                  iand(3fortran)', &
 '']
 
 shortname="iand"
@@ -10458,7 +10468,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  iany(3fortran)', &
+'                                June 04, 2023                  iany(3fortran)', &
 '']
 
 shortname="iany"
@@ -10558,14 +10568,13 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  IEOR(3), NOT(3), BTEST(3), IBSET(3), IBITS(3), IAND(3), IOR(3), IEOR(3),', &
-'  MVBITS(3)', &
+'  BTEST(3), IAND(3), IBITS(3), IBSET(3), IEOR(3), IOR(3), MVBITS(3), NOT(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 ibclr(3fortran)', &
+'                                June 04, 2023                 ibclr(3fortran)', &
 '']
 
 shortname="ibclr"
@@ -10668,14 +10677,13 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBSET(3), IAND(3), IOR(3),', &
-'  IEOR(3), MVBITS(3)', &
+'  BTEST(3), IAND(3), IBCLR(3), IBSET(3), IEOR(3), IOR(3), MVBITS(3), NOT(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 ibits(3fortran)', &
+'                                June 04, 2023                 ibits(3fortran)', &
 '']
 
 shortname="ibits"
@@ -10774,13 +10782,13 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  IBCLR(3)', &
 '', &
-'  IEOR(3), NOT(3), BTEST(3), IBITS(3), IAND(3), IOR(3), IEOR(3), MVBITS(3)', &
+'  BTEST(3), IAND(3), IBITS(3), IEOR(3), IOR(3), MVBITS(3), NOT(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 ibset(3fortran)', &
+'                                June 04, 2023                 ibset(3fortran)', &
 '']
 
 shortname="ibset"
@@ -10885,7 +10893,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 ichar(3fortran)', &
+'                                June 04, 2023                 ichar(3fortran)', &
 '']
 
 shortname="ichar"
@@ -10992,14 +11000,14 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IAND(3),', &
-'  IOR(3), MVBITS(3)', &
+'  BTEST(3), IAND(3), IBCLR(3), IBITS(3), IBSET(3), IEOR(3), IOR(3), MVBITS(3),', &
+'  NOT(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  ieor(3fortran)', &
+'                                June 04, 2023                  ieor(3fortran)', &
 '']
 
 shortname="ieor"
@@ -11056,7 +11064,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           image_index(3fortran)', &
+'                                June 04, 2023           image_index(3fortran)', &
 '']
 
 shortname="image_index"
@@ -11163,7 +11171,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 index(3fortran)', &
+'                                June 04, 2023                 index(3fortran)', &
 '']
 
 shortname="index"
@@ -11299,7 +11307,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   int(3fortran)', &
+'                                June 04, 2023                   int(3fortran)', &
 '']
 
 shortname="int"
@@ -11382,14 +11390,13 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IAND(3),', &
-'  IEOR(3), MVBITS(3)', &
+'  BTEST(3), IAND(3), IBCLR(3), IBITS(3), IBSET(3), IEOR(3), MVBITS(3), NOT(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   ior(3fortran)', &
+'                                June 04, 2023                   ior(3fortran)', &
 '']
 
 shortname="ior"
@@ -11485,7 +11492,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               iparity(3fortran)', &
+'                                June 04, 2023               iparity(3fortran)', &
 '']
 
 shortname="iparity"
@@ -11610,7 +11617,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023         is_contiguous(3fortran)', &
+'                                June 04, 2023         is_contiguous(3fortran)', &
 '']
 
 shortname="is_contiguous"
@@ -11713,7 +11720,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 ishft(3fortran)', &
+'                                June 04, 2023                 ishft(3fortran)', &
 '']
 
 shortname="ishft"
@@ -11862,7 +11869,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                ishftc(3fortran)', &
+'                                June 04, 2023                ishftc(3fortran)', &
 '']
 
 shortname="ishftc"
@@ -11942,7 +11949,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023         is_iostat_end(3fortran)', &
+'                                June 04, 2023         is_iostat_end(3fortran)', &
 '']
 
 shortname="is_iostat_end"
@@ -12037,7 +12044,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023         is_iostat_eor(3fortran)', &
+'                                June 04, 2023         is_iostat_eor(3fortran)', &
 '']
 
 shortname="is_iostat_eor"
@@ -12127,7 +12134,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  kind(3fortran)', &
+'                                June 04, 2023                  kind(3fortran)', &
 '']
 
 shortname="kind"
@@ -12305,7 +12312,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                lbound(3fortran)', &
+'                                June 04, 2023                lbound(3fortran)', &
 '']
 
 shortname="lbound"
@@ -12357,7 +12364,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              lcobound(3fortran)', &
+'                                June 04, 2023              lcobound(3fortran)', &
 '']
 
 shortname="lcobound"
@@ -12450,7 +12457,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 leadz(3fortran)', &
+'                                June 04, 2023                 leadz(3fortran)', &
 '']
 
 shortname="leadz"
@@ -12599,7 +12606,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   len(3fortran)', &
+'                                June 04, 2023                   len(3fortran)', &
 '']
 
 shortname="len"
@@ -12722,7 +12729,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              len_trim(3fortran)', &
+'                                June 04, 2023              len_trim(3fortran)', &
 '']
 
 shortname="len_trim"
@@ -12840,7 +12847,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   lge(3fortran)', &
+'                                June 04, 2023                   lge(3fortran)', &
 '']
 
 shortname="lge"
@@ -12959,7 +12966,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   lgt(3fortran)', &
+'                                June 04, 2023                   lgt(3fortran)', &
 '']
 
 shortname="lgt"
@@ -13102,7 +13109,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   lle(3fortran)', &
+'                                June 04, 2023                   lle(3fortran)', &
 '']
 
 shortname="lle"
@@ -13224,7 +13231,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   llt(3fortran)', &
+'                                June 04, 2023                   llt(3fortran)', &
 '']
 
 shortname="llt"
@@ -13301,7 +13308,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 log10(3fortran)', &
+'                                June 04, 2023                 log10(3fortran)', &
 '']
 
 shortname="log10"
@@ -13379,7 +13386,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   log(3fortran)', &
+'                                June 04, 2023                   log(3fortran)', &
 '']
 
 shortname="log"
@@ -13449,7 +13456,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             log_gamma(3fortran)', &
+'                                June 04, 2023             log_gamma(3fortran)', &
 '']
 
 shortname="log_gamma"
@@ -13538,7 +13545,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               logical(3fortran)', &
+'                                June 04, 2023               logical(3fortran)', &
 '']
 
 shortname="logical"
@@ -13637,7 +13644,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 maskl(3fortran)', &
+'                                June 04, 2023                 maskl(3fortran)', &
 '']
 
 shortname="maskl"
@@ -13753,7 +13760,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 maskr(3fortran)', &
+'                                June 04, 2023                 maskr(3fortran)', &
 '']
 
 shortname="maskr"
@@ -14000,7 +14007,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                matmul(3fortran)', &
+'                                June 04, 2023                matmul(3fortran)', &
 '']
 
 shortname="matmul"
@@ -14171,7 +14178,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   max(3fortran)', &
+'                                June 04, 2023                   max(3fortran)', &
 '']
 
 shortname="max"
@@ -14243,7 +14250,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           maxexponent(3fortran)', &
+'                                June 04, 2023           maxexponent(3fortran)', &
 '']
 
 shortname="maxexponent"
@@ -14373,7 +14380,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                maxloc(3fortran)', &
+'                                June 04, 2023                maxloc(3fortran)', &
 '']
 
 shortname="maxloc"
@@ -14469,7 +14476,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                maxval(3fortran)', &
+'                                June 04, 2023                maxval(3fortran)', &
 '']
 
 shortname="maxval"
@@ -14620,7 +14627,7 @@ textblock=[character(len=256) :: &
 '', &
 '      end program demo_merge', &
 '', &
-'  Expected Results:', &
+'  Results:', &
 '', &
 '       >    1.00000000', &
 '       >    0.00000000', &
@@ -14657,7 +14664,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 merge(3fortran)', &
+'                                June 04, 2023                 merge(3fortran)', &
 '']
 
 shortname="merge"
@@ -14786,7 +14793,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            merge_bits(3fortran)', &
+'                                June 04, 2023            merge_bits(3fortran)', &
 '']
 
 shortname="merge_bits"
@@ -14859,7 +14866,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   min(3fortran)', &
+'                                June 04, 2023                   min(3fortran)', &
 '']
 
 shortname="min"
@@ -14932,7 +14939,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           minexponent(3fortran)', &
+'                                June 04, 2023           minexponent(3fortran)', &
 '']
 
 shortname="minexponent"
@@ -15050,7 +15057,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                minloc(3fortran)', &
+'                                June 04, 2023                minloc(3fortran)', &
 '']
 
 shortname="minloc"
@@ -15213,7 +15220,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                minval(3fortran)', &
+'                                June 04, 2023                minval(3fortran)', &
 '']
 
 shortname="minval"
@@ -15348,7 +15355,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   mod(3fortran)', &
+'                                June 04, 2023                   mod(3fortran)', &
 '']
 
 shortname="mod"
@@ -15439,7 +15446,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                modulo(3fortran)', &
+'                                June 04, 2023                modulo(3fortran)', &
 '']
 
 shortname="modulo"
@@ -15556,7 +15563,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            move_alloc(3fortran)', &
+'                                June 04, 2023            move_alloc(3fortran)', &
 '']
 
 shortname="move_alloc"
@@ -15711,14 +15718,13 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  IEOR(3), IBCLR(3), NOT(3), BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IAND(3),', &
-'  IOR(3), IEOR(3)', &
+'  BTEST(3), IAND(3), IBCLR(3), IBITS(3), IBSET(3), IEOR(3), IOR(3), NOT(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 12, 2023                mvbits(3fortran)', &
+'                                June 04, 2023                mvbits(3fortran)', &
 '']
 
 shortname="mvbits"
@@ -15817,7 +15823,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               nearest(3fortran)', &
+'                                June 04, 2023               nearest(3fortran)', &
 '']
 
 shortname="nearest"
@@ -15993,7 +15999,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              new_line(3fortran)', &
+'                                June 04, 2023              new_line(3fortran)', &
 '']
 
 shortname="new_line"
@@ -16152,7 +16158,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  nint(3fortran)', &
+'                                June 04, 2023                  nint(3fortran)', &
 '']
 
 shortname="nint"
@@ -16281,7 +16287,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 norm2(3fortran)', &
+'                                June 04, 2023                 norm2(3fortran)', &
 '']
 
 shortname="norm2"
@@ -16379,7 +16385,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   not(3fortran)', &
+'                                June 04, 2023                   not(3fortran)', &
 '']
 
 shortname="not"
@@ -16514,7 +16520,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  null(3fortran)', &
+'                                June 04, 2023                  null(3fortran)', &
 '']
 
 shortname="null"
@@ -16607,7 +16613,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            num_images(3fortran)', &
+'                                June 04, 2023            num_images(3fortran)', &
 '']
 
 shortname="num_images"
@@ -16768,7 +16774,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023          out_of_range(3fortran)', &
+'                                June 04, 2023          out_of_range(3fortran)', &
 '']
 
 shortname="out_of_range"
@@ -16878,7 +16884,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  pack(3fortran)', &
+'                                June 04, 2023                  pack(3fortran)', &
 '']
 
 shortname="pack"
@@ -16994,7 +17000,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                parity(3fortran)', &
+'                                June 04, 2023                parity(3fortran)', &
 '']
 
 shortname="parity"
@@ -17087,7 +17093,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                popcnt(3fortran)', &
+'                                June 04, 2023                popcnt(3fortran)', &
 '']
 
 shortname="popcnt"
@@ -17186,7 +17192,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                poppar(3fortran)', &
+'                                June 04, 2023                poppar(3fortran)', &
 '']
 
 shortname="poppar"
@@ -17261,7 +17267,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             precision(3fortran)', &
+'                                June 04, 2023             precision(3fortran)', &
 '']
 
 shortname="precision"
@@ -17393,7 +17399,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               present(3fortran)', &
+'                                June 04, 2023               present(3fortran)', &
 '']
 
 shortname="present"
@@ -17636,7 +17642,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               product(3fortran)', &
+'                                June 04, 2023               product(3fortran)', &
 '']
 
 shortname="product"
@@ -17715,7 +17721,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 radix(3fortran)', &
+'                                June 04, 2023                 radix(3fortran)', &
 '']
 
 shortname="radix"
@@ -17780,7 +17786,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           random_init(3fortran)', &
+'                                June 04, 2023           random_init(3fortran)', &
 '']
 
 shortname="random_init"
@@ -17877,7 +17883,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023         random_number(3fortran)', &
+'                                June 04, 2023         random_number(3fortran)', &
 '']
 
 shortname="random_number"
@@ -17964,7 +17970,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023           random_seed(3fortran)', &
+'                                June 04, 2023           random_seed(3fortran)', &
 '']
 
 shortname="random_seed"
@@ -18052,7 +18058,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 range(3fortran)', &
+'                                June 04, 2023                 range(3fortran)', &
 '']
 
 shortname="range"
@@ -18232,7 +18238,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  rank(3fortran)', &
+'                                June 04, 2023                  rank(3fortran)', &
 '']
 
 shortname="rank"
@@ -18349,7 +18355,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  real(3fortran)', &
+'                                June 04, 2023                  real(3fortran)', &
 '']
 
 shortname="real"
@@ -18559,7 +18565,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                reduce(3fortran)', &
+'                                June 04, 2023                reduce(3fortran)', &
 '']
 
 shortname="reduce"
@@ -18642,7 +18648,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                repeat(3fortran)', &
+'                                June 04, 2023                repeat(3fortran)', &
 '']
 
 shortname="repeat"
@@ -18866,7 +18872,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               reshape(3fortran)', &
+'                                June 04, 2023               reshape(3fortran)', &
 '']
 
 shortname="reshape"
@@ -18922,7 +18928,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             rrspacing(3fortran)', &
+'                                June 04, 2023             rrspacing(3fortran)', &
 '']
 
 shortname="rrspacing"
@@ -19064,7 +19070,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023          same_type_as(3fortran)', &
+'                                June 04, 2023          same_type_as(3fortran)', &
 '']
 
 shortname="same_type_as"
@@ -19145,7 +19151,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 scale(3fortran)', &
+'                                June 04, 2023                 scale(3fortran)', &
 '']
 
 shortname="scale"
@@ -19251,7 +19257,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  scan(3fortran)', &
+'                                June 04, 2023                  scan(3fortran)', &
 '']
 
 shortname="scan"
@@ -19419,7 +19425,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023    selected_char_kind(3fortran)', &
+'                                June 04, 2023    selected_char_kind(3fortran)', &
 '']
 
 shortname="selected_char_kind"
@@ -19507,7 +19513,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023     selected_int_kind(3fortran)', &
+'                                June 04, 2023     selected_int_kind(3fortran)', &
 '']
 
 shortname="selected_int_kind"
@@ -19633,7 +19639,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023    selected_real_kind(3fortran)', &
+'                                June 04, 2023    selected_real_kind(3fortran)', &
 '']
 
 shortname="selected_real_kind"
@@ -19717,7 +19723,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023          set_exponent(3fortran)', &
+'                                June 04, 2023          set_exponent(3fortran)', &
 '']
 
 shortname="set_exponent"
@@ -19835,7 +19841,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                 shape(3fortran)', &
+'                                June 04, 2023                 shape(3fortran)', &
 '']
 
 shortname="shape"
@@ -19969,7 +19975,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                shifta(3fortran)', &
+'                                June 04, 2023                shifta(3fortran)', &
 '']
 
 shortname="shifta"
@@ -20106,7 +20112,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                shiftl(3fortran)', &
+'                                June 04, 2023                shiftl(3fortran)', &
 '']
 
 shortname="shiftl"
@@ -20245,7 +20251,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                shiftr(3fortran)', &
+'                                June 04, 2023                shiftr(3fortran)', &
 '']
 
 shortname="shiftr"
@@ -20343,7 +20349,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  sign(3fortran)', &
+'                                June 04, 2023                  sign(3fortran)', &
 '']
 
 shortname="sign"
@@ -20488,7 +20494,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   sin(3fortran)', &
+'                                June 04, 2023                   sin(3fortran)', &
 '']
 
 shortname="sin"
@@ -20595,7 +20601,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  sinh(3fortran)', &
+'                                June 04, 2023                  sinh(3fortran)', &
 '']
 
 shortname="sinh"
@@ -20774,7 +20780,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  size(3fortran)', &
+'                                June 04, 2023                  size(3fortran)', &
 '']
 
 shortname="size"
@@ -20861,7 +20867,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023               spacing(3fortran)', &
+'                                June 04, 2023               spacing(3fortran)', &
 '']
 
 shortname="spacing"
@@ -21050,7 +21056,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                spread(3fortran)', &
+'                                June 04, 2023                spread(3fortran)', &
 '']
 
 shortname="spread"
@@ -21163,7 +21169,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  sqrt(3fortran)', &
+'                                June 04, 2023                  sqrt(3fortran)', &
 '']
 
 shortname="sqrt"
@@ -21274,7 +21280,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023          storage_size(3fortran)', &
+'                                June 04, 2023          storage_size(3fortran)', &
 '']
 
 shortname="storage_size"
@@ -21500,7 +21506,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   sum(3fortran)', &
+'                                June 04, 2023                   sum(3fortran)', &
 '']
 
 shortname="sum"
@@ -21665,7 +21671,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023          system_clock(3fortran)', &
+'                                June 04, 2023          system_clock(3fortran)', &
 '']
 
 shortname="system_clock"
@@ -21733,7 +21739,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                   tan(3fortran)', &
+'                                June 04, 2023                   tan(3fortran)', &
 '']
 
 shortname="tan"
@@ -21812,7 +21818,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  tanh(3fortran)', &
+'                                June 04, 2023                  tanh(3fortran)', &
 '']
 
 shortname="tanh"
@@ -21904,7 +21910,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023            this_image(3fortran)', &
+'                                June 04, 2023            this_image(3fortran)', &
 '']
 
 shortname="this_image"
@@ -21979,7 +21985,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  tiny(3fortran)', &
+'                                June 04, 2023                  tiny(3fortran)', &
 '']
 
 shortname="tiny"
@@ -22087,7 +22093,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                trailz(3fortran)', &
+'                                June 04, 2023                trailz(3fortran)', &
 '']
 
 shortname="trailz"
@@ -22220,7 +22226,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              transfer(3fortran)', &
+'                                June 04, 2023              transfer(3fortran)', &
 '']
 
 shortname="transfer"
@@ -22336,7 +22342,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023             transpose(3fortran)', &
+'                                June 04, 2023             transpose(3fortran)', &
 '']
 
 shortname="transpose"
@@ -22444,7 +22450,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                  trim(3fortran)', &
+'                                June 04, 2023                  trim(3fortran)', &
 '']
 
 shortname="trim"
@@ -22628,7 +22634,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                ubound(3fortran)', &
+'                                June 04, 2023                ubound(3fortran)', &
 '']
 
 shortname="ubound"
@@ -22678,7 +22684,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023              ucobound(3fortran)', &
+'                                June 04, 2023              ucobound(3fortran)', &
 '']
 
 shortname="ucobound"
@@ -22844,7 +22850,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                unpack(3fortran)', &
+'                                June 04, 2023                unpack(3fortran)', &
 '']
 
 shortname="unpack"
@@ -23232,7 +23238,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 12, 2023                verify(3fortran)', &
+'                                June 04, 2023                verify(3fortran)', &
 '']
 
 shortname="verify"

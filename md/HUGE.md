@@ -48,17 +48,17 @@ implicit none
 character(len=*),parameter :: f='(i2,1x,2(i11,1x),f14.0:,1x,l1,1x,a)'
 integer :: i,j,k,biggest
 real :: v, w
-doubleprecision :: sum
+doubleprecision :: tally
    ! basic
    print *, huge(0), huge(0.0), huge(0.0d0)
    print *, tiny(0.0), tiny(0.0d0)
 
-   sum=0.0d0
+   tally=0.0d0
    ! note subtracting one because counter is the end value+1 on exit
    do i=0,huge(0)-1
-      sum=sum+i
+      tally=tally+i
    enddo
-   write(*,*)'sum=',sum
+   write(*,*)'tally=',tally
 
    ! advanced
    biggest=huge(0)

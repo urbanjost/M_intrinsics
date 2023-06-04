@@ -37,6 +37,11 @@ gfortran fman.f90 -o fpm-man
 rm -f fpm-man
 )
 ######################################
+(
+cd example
+bash ../scripts/play.sh demo_*.f90 > ../docs/playground.html
+)
+######################################
 # wrap up
 set +x
 fpm install

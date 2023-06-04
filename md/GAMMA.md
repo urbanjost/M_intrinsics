@@ -48,11 +48,12 @@ Sample program:
 
 ```fortran
 program demo_gamma
-use, intrinsic :: iso_fortran_env, only : wp=>real64
+use, intrinsic :: iso_fortran_env, only : wp=>real64, int64
 implicit none
 real :: x, xa(4)
-integer :: i
+integer :: i, j
 
+   ! basic usage
    x = gamma(1.0)
    write(*,*)'gamma(1.0)=',x
 
@@ -61,71 +62,78 @@ integer :: i
    write(*,*)xa
    write(*,*)
 
-   ! gamma(3) is related to the factorial function
-   do i=1,20
+
+   ! gamma() is related to the factorial function
+   do i = 1, 171
       ! check value is not too big for default integer type
-      if(factorial(i).gt.huge(0))then
-         write(*,*)i,factorial(i)
+      if (factorial(i)  <=  huge(0)) then
+         write(*,*) i, nint(factorial(i)), 'integer'
+      elseif (factorial(i)  <=  huge(0_int64)) then
+         write(*,*) i, nint(factorial(i),kind=int64),'integer(kind=int64)'
       else
-         write(*,*)i,factorial(i),int(factorial(i))
+         write(*,*) i, factorial(i) , 'user factorial function'
+         write(*,*) i, product([(real(j, kind=wp), j=1, i)]), 'product'
+         write(*,*) i, gamma(real(i + 1, kind=wp)), 'gamma directly'
       endif
    enddo
-   ! more factorials
-   FAC: block
-   integer,parameter :: n(*)=[0,1,5,11,170]
-   integer :: j
-      do j=1,size(n)
-         write(*,'(*(g0,1x))')'factorial of', n(j),' is ', &
-          & product([(real(i,kind=wp),i=1,n(j))]),  &
-          & gamma(real(n(j)+1,kind=wp))
-      enddo
-   endblock FAC
 
-   contains
-   function factorial(i) result(f)
-   integer,parameter :: dp=kind(0d0)
-   integer,intent(in) :: i
-   real :: f
-      if(i.le.0)then
-         write(*,'(*(g0))')'<ERROR> gamma(3) function value ',i,' <= 0'
-         stop      '<STOP> bad value in gamma function'
-      endif
-      f=gamma(real(i+1))
-   end function factorial
+
+contains
+function factorial(i) result(f)
+!  GAMMA(X) computes Gamma of X. For positive whole number values of N the
+!  Gamma function can be used to calculate factorials, as (N-1)! ==
+!  GAMMA(REAL(N)). That is
+!
+!      n! == gamma(real(n+1))
+!
+integer, intent(in) :: i
+real(kind=wp) :: f
+   if (i  <=  0) then
+      write(*,'(*(g0))') '<ERROR> gamma(3) function value ', i, ' <= 0'
+      stop '<STOP> bad value in gamma function'
+   endif
+   f = anint(gamma(real(i + 1,kind=wp)))
+end function factorial
+
 end program demo_gamma
 ```
-
 Results:
-
 ```text
-    gamma(1.0)=   1.000000
-      1.000000       1.000000       2.000000       6.000000
-
-              1   1.000000               1
-              2   2.000000               2
-              3   6.000000               6
-              4   24.00000              24
-              5   120.0000             120
-              6   720.0000             720
-              7   5040.000            5040
-              8   40320.00           40320
-              9   362880.0          362880
-             10   3628800.         3628800
-             11  3.9916800E+07    39916800
-             12  4.7900160E+08   479001600
-             13  6.2270208E+09
-             14  8.7178289E+10
-             15  1.3076744E+12
-             16  2.0922791E+13
-             17  3.5568741E+14
-             18  6.4023735E+15
-             19  1.2164510E+17
-             20  2.4329020E+18
-   factorial of 0  is  1.000000000000000 1.000000000000000
-   factorial of 1  is  1.000000000000000 1.000000000000000
-   factorial of 5  is  120.0000000000000 120.0000000000000
-   factorial of 11  is  39916800.00000000 39916800.00000000
-   factorial of 170  is  .7257415615307994E+307 .7257415615307999E+307
+ >  gamma(1.0)=   1.00000000    
+ >    1.00000000       1.00000000       2.00000000       6.00000000    
+ > 
+ >            1           1 integer
+ >            2           2 integer
+ >            3           6 integer
+ >            4          24 integer
+ >            5         120 integer
+ >            6         720 integer
+ >            7        5040 integer
+ >            8       40320 integer
+ >            9      362880 integer
+ >           10     3628800 integer
+ >           11    39916800 integer
+ >           12   479001600 integer
+ >           13           6227020800 integer(kind=int64)
+ >           14          87178291200 integer(kind=int64)
+ >           15        1307674368000 integer(kind=int64)
+ >           16       20922789888000 integer(kind=int64)
+ >           17      355687428096000 integer(kind=int64)
+ >           18     6402373705728001 integer(kind=int64)
+ >           19   121645100408832000 integer(kind=int64)
+ >           20  2432902008176640000 integer(kind=int64)
+ >           21   5.1090942171709440E+019 user factorial function
+ >           21   5.1090942171709440E+019 product
+ >           21   5.1090942171709440E+019 gamma directly
+ >            :
+ >            :
+ >            :
+ >          170   7.2574156153079990E+306 user factorial function
+ >          170   7.2574156153079940E+306 product
+ >          170   7.2574156153079990E+306 gamma directly
+ >          171                  Infinity user factorial function
+ >          171                  Infinity product
+ >          171                  Infinity gamma directly
 ```
 
 ### **Standard**
