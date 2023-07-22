@@ -24,4 +24,5 @@ main="fpm-man.f90"
 M_CLI2        =  {  git  =  "https://github.com/urbanjost/M_CLI2.git"        }
 M_match       =  {  git  =  "https://github.com/urbanjost/M_match.git"       }
 M_strings     =  {  git  =  "https://github.com/urbanjost/M_strings.git"     }
-M_escape      =  {  git  =  "https://github.com/urbanjost/M_escape.git"      }
+M_attr        =  {  git  =  "https://github.com/urbanjost/M_attr.git"        }
+M_framework   =  {  git  =  "https://github.com/urbanjost/M_framework.git"   }

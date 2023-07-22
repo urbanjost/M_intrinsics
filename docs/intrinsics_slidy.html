@@ -350,7 +350,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><dl>
 <dt><strong>x</strong></dt>
-<dd>The value to compute the hyperbolic cosine of
+<dd>The value to compute the hyperbolic cosine of. A real value should be &gt;= 1 or the result with be a Nan.
 </dd>
 </dl></li>
 </ul>
@@ -364,8 +364,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb15-2" title="2"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : dp<span class="kw">=</span><span class="op">&gt;</span>real64,sp<span class="kw">=</span><span class="op">&gt;</span>real32</a>
 <a class="sourceLine" id="cb15-3" title="3"><span class="kw">implicit</span> <span class="kw">none</span></a>
 <a class="sourceLine" id="cb15-4" title="4"><span class="dt">real(kind=dp)</span>, <span class="dt">dimension(3)</span> <span class="dt">::</span> x <span class="kw">=</span> <span class="kw">[</span> <span class="fl">1.0d0</span>, <span class="fl">2.0d0</span>, <span class="fl">3.0d0</span> <span class="kw">]</span></a>
-<a class="sourceLine" id="cb15-5" title="5">   <span class="fu">write (*</span>,<span class="fu">*)</span> acosh(x)</a>
-<a class="sourceLine" id="cb15-6" title="6"><span class="kw">end program</span> demo_acosh</a></code></pre></div>
+<a class="sourceLine" id="cb15-5" title="5">   <span class="kw">if</span>(<span class="fu">any</span>(x)<span class="op">.lt.</span><span class="dv">1</span>)<span class="kw">then</span></a>
+<a class="sourceLine" id="cb15-6" title="6">      <span class="fu">write (*</span>,<span class="fu">*)</span> <span class="st">&#39; warning: values &lt; 1 are present&#39;</span></a>
+<a class="sourceLine" id="cb15-7" title="7">   <span class="kw">endif</span></a>
+<a class="sourceLine" id="cb15-8" title="8">   <span class="fu">write (*</span>,<span class="fu">*)</span> acosh(x)</a>
+<a class="sourceLine" id="cb15-9" title="9"><span class="kw">end program</span> demo_acosh</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code> 0.000000000000000E+000   1.31695789692482        1.76274717403909</code></pre>
 <h3 id="standard-2"><strong>Standard</strong></h3>
@@ -5157,18 +5160,19 @@ This file was compiled by nvfortran 21.5-0 LLVM</code></pre>
 <a class="sourceLine" id="cb295-33" title="33"></a>
 <a class="sourceLine" id="cb295-34" title="34"><span class="kw">end program</span> demo_dshiftl</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>   &gt; I=-1 J=0 SHIFT=5
-   &gt; 11111111111111111111111111111111
-   &gt; 00000000000000000000000000000000
-   &gt; 11111111111111111111111111100000
-   &gt; I=0 J=-134217728 SHIFT=5
-   &gt; 00000000000000000000000000000000
-   &gt; 11111000000000000000000000000000
-   &gt; 00000000000000000000000000011111
-   &gt; I=134217727 J=-134217728 SHIFT=5
-   &gt; 00000111111111111111111111111111
-   &gt; 11111000000000000000000000000000
-   &gt; 11111111111111111111111111111111</code></pre>
+<pre class="text"><code> &gt;            5
+ &gt; I=-1 J=0 SHIFT=5
+ &gt; 11111111111111111111111111111111
+ &gt; 00000000000000000000000000000000
+ &gt; 11111111111111111111111111100000
+ &gt; I=0 J=-134217728 SHIFT=5
+ &gt; 00000000000000000000000000000000
+ &gt; 11111000000000000000000000000000
+ &gt; 00000000000000000000000000011111
+ &gt; I=134217727 J=-134217728 SHIFT=5
+ &gt; 00000111111111111111111111111111
+ &gt; 11111000000000000000000000000000
+ &gt; 11111111111111111111111111111111</code></pre>
 <h3 id="standard-70"><strong>Standard</strong></h3>
 <p>Fortran 2008</p>
 <h3 id="see-also-70"><strong>See Also</strong></h3>

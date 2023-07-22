@@ -343,7 +343,8 @@ FORTRAN 77. KIND argument added Fortran 2003
 ### **Options**
 
 - **x**
-  : The value to compute the hyperbolic cosine of
+  : The value to compute the hyperbolic cosine of. A real value should
+  be \>= 1 or the result with be a Nan.
 
 ### **Result**
 
@@ -363,6 +364,9 @@ program demo_acosh
 use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
 implicit none
 real(kind=dp), dimension(3) :: x = [ 1.0d0, 2.0d0, 3.0d0 ]
+   if(any(x).lt.1)then
+      write (*,*) ' warning: values < 1 are present'
+   endif
    write (*,*) acosh(x)
 end program demo_acosh
 ```
@@ -7115,18 +7119,19 @@ end program demo_dshiftl
 ```
 Results:
 ```text
-   > I=-1 J=0 SHIFT=5
-   > 11111111111111111111111111111111
-   > 00000000000000000000000000000000
-   > 11111111111111111111111111100000
-   > I=0 J=-134217728 SHIFT=5
-   > 00000000000000000000000000000000
-   > 11111000000000000000000000000000
-   > 00000000000000000000000000011111
-   > I=134217727 J=-134217728 SHIFT=5
-   > 00000111111111111111111111111111
-   > 11111000000000000000000000000000
-   > 11111111111111111111111111111111
+ >            5
+ > I=-1 J=0 SHIFT=5
+ > 11111111111111111111111111111111
+ > 00000000000000000000000000000000
+ > 11111111111111111111111111100000
+ > I=0 J=-134217728 SHIFT=5
+ > 00000000000000000000000000000000
+ > 11111000000000000000000000000000
+ > 00000000000000000000000000011111
+ > I=134217727 J=-134217728 SHIFT=5
+ > 00000111111111111111111111111111
+ > 11111000000000000000000000000000
+ > 11111111111111111111111111111111
 ```
 ### **Standard**
 

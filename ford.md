@@ -4,7 +4,7 @@ output_dir: docs/fpm-ford
 project: M_intrinsics
 summary: M_intrinsics module
 project_github: https://github.com/urbanjost/M_intrinsics
-project_download:
+project_download: https://github.com/urbanjost/M_intrinsics/archive/refs/heads/master.zip
 author: John S. Urban
 author_email: urbanjost@comcast.net
 github: https://github.com/urbanjost/M_intrinsics

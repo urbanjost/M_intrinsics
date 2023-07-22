@@ -4,7 +4,7 @@ use M_CLI2,       only : set_args, sget, lget, specified, topics=>unnamed
 use M_match,      only : getpat, match, regex_pattern
 use M_match,      only : YES, ERR
 use M_strings,    only : lower, indent, atleast
-use M_escape,     only : esc
+use M_attr,       only : attr
 implicit none
 type(regex_pattern)          :: p, start_p, end_p
 character(len=:),allocatable :: help_text(:), version_text(:)
@@ -225,21 +225,22 @@ integer :: lead
 logical :: program_text
    program_text=.false.
    newblock= oldblock
+   lead=0
    do j=1,size(oldblock)
       if( index(oldblock(j),'end program demo_') .eq. 0 .and. index(oldblock(j),'program demo_') .ne. 0)then
          program_text=.true.
          lead=indent(oldblock(j))
       endif
       if(program_text .eqv. .true.)then
-        newblock(j)=esc('<E>'//repeat(' ',lead)//'<E><y>'//atleast(oldblock(j)(lead+1:),80-lead) )
+        newblock(j)=attr('<E>'//repeat(' ',lead)//'<E><y>'//atleast(trim(oldblock(j)(lead+1:)),80-lead) )
       elseif(verify(oldblock(j)(1:1), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' ) == 0 .and. &
       & verify(oldblock(j), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ _') == 0 )then
          ilen=len_trim(oldblock(j))
-         newblock(j)=esc('<E><y><bo> '//trim(oldblock(j))//' </bo>'//repeat(' ',max(0,80-ilen-2))//'<reset>')
+         newblock(j)=attr('<E><y><bo> '//trim(oldblock(j))//' </bo>'//repeat(' ',max(0,80-ilen-2))//'<reset>')
        else
           ilen=len_trim(oldblock(j))
           ilen=len_trim(than(oldblock(j)))-ilen
-          newblock(j)=esc('<E><w>'//atleast(than(oldblock(j)),80+ilen)//'<reset>')
+          newblock(j)=attr('<E><w>'//atleast(than(oldblock(j)),80+ilen)//'<reset>')
        endif
       if( index(oldblock(j),'end program demo_') .ne.0)then
          program_text=.false.

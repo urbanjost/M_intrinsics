@@ -9,4 +9,4 @@ SEE ALSO
 
   _fortran-lang intrinsic descriptions
 
-                                 June 04, 2023           random_init(3fortran)
+                                 July 22, 2023           random_init(3fortran)

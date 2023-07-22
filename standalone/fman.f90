@@ -339,7 +339,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   abs(3fortran)', &
+'                                July 22, 2023                   abs(3fortran)', &
 '']
 
 shortname="abs"
@@ -515,7 +515,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 achar(3fortran)', &
+'                                July 22, 2023                 achar(3fortran)', &
 '']
 
 shortname="achar"
@@ -615,7 +615,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  acos(3fortran)', &
+'                                July 22, 2023                  acos(3fortran)', &
 '']
 
 shortname="acos"
@@ -653,7 +653,8 @@ textblock=[character(len=256) :: &
 '  ACOSH(3) computes the inverse hyperbolic cosine of X in radians.', &
 '', &
 'OPTIONS', &
-'  o  X : The value to compute the hyperbolic cosine of', &
+'  o  X : The value to compute the hyperbolic cosine of. A real value should be', &
+'     >= 1 or the result with be a Nan.', &
 '', &
 'RESULT', &
 '  The result has a value equal to a processor-dependent approximation to the', &
@@ -671,6 +672,9 @@ textblock=[character(len=256) :: &
 '      use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32', &
 '      implicit none', &
 '      real(kind=dp), dimension(3) :: x = [ 1.0d0, 2.0d0, 3.0d0 ]', &
+'        if(any(x).lt.1)then', &
+'           write (*,*) '' warning: values < 1 are present''', &
+'        endif', &
 '        write (*,*) acosh(x)', &
 '      end program demo_acosh', &
 '', &
@@ -692,7 +696,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 acosh(3fortran)', &
+'                                July 22, 2023                 acosh(3fortran)', &
 '']
 
 shortname="acosh"
@@ -789,7 +793,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023               adjustl(3fortran)', &
+'                                July 22, 2023               adjustl(3fortran)', &
 '']
 
 shortname="adjustl"
@@ -882,7 +886,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023               adjustr(3fortran)', &
+'                                July 22, 2023               adjustr(3fortran)', &
 '']
 
 shortname="adjustr"
@@ -997,7 +1001,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 aimag(3fortran)', &
+'                                July 22, 2023                 aimag(3fortran)', &
 '']
 
 shortname="aimag"
@@ -1097,7 +1101,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  aint(3fortran)', &
+'                                July 22, 2023                  aint(3fortran)', &
 '']
 
 shortname="aint"
@@ -1217,7 +1221,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   all(3fortran)', &
+'                                July 22, 2023                   all(3fortran)', &
 '']
 
 shortname="all"
@@ -1324,7 +1328,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023             allocated(3fortran)', &
+'                                July 22, 2023             allocated(3fortran)', &
 '']
 
 shortname="allocated"
@@ -1450,7 +1454,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 anint(3fortran)', &
+'                                July 22, 2023                 anint(3fortran)', &
 '']
 
 shortname="anint"
@@ -1616,7 +1620,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   any(3fortran)', &
+'                                July 22, 2023                   any(3fortran)', &
 '']
 
 shortname="any"
@@ -1738,7 +1742,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  asin(3fortran)', &
+'                                July 22, 2023                  asin(3fortran)', &
 '']
 
 shortname="asin"
@@ -1817,7 +1821,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 asinh(3fortran)', &
+'                                July 22, 2023                 asinh(3fortran)', &
 '']
 
 shortname="asinh"
@@ -1935,7 +1939,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023            associated(3fortran)', &
+'                                July 22, 2023            associated(3fortran)', &
 '']
 
 shortname="associated"
@@ -2121,7 +2125,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 atan2(3fortran)', &
+'                                July 22, 2023                 atan2(3fortran)', &
 '']
 
 shortname="atan2"
@@ -2215,7 +2219,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  atan(3fortran)', &
+'                                July 22, 2023                  atan(3fortran)', &
 '']
 
 shortname="atan"
@@ -2289,7 +2293,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 atanh(3fortran)', &
+'                                July 22, 2023                 atanh(3fortran)', &
 '']
 
 shortname="atanh"
@@ -2366,7 +2370,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023            atomic_add(3fortran)', &
+'                                July 22, 2023            atomic_add(3fortran)', &
 '']
 
 shortname="atomic_add"
@@ -2444,7 +2448,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023            atomic_and(3fortran)', &
+'                                July 22, 2023            atomic_and(3fortran)', &
 '']
 
 shortname="atomic_and"
@@ -2514,7 +2518,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023            atomic_cas(3fortran)', &
+'                                July 22, 2023            atomic_cas(3fortran)', &
 '']
 
 shortname="atomic_cas"
@@ -2590,7 +2594,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023         atomic_define(3fortran)', &
+'                                July 22, 2023         atomic_define(3fortran)', &
 '']
 
 shortname="atomic_define"
@@ -2661,7 +2665,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023      atomic_fetch_add(3fortran)', &
+'                                July 22, 2023      atomic_fetch_add(3fortran)', &
 '']
 
 shortname="atomic_fetch_add"
@@ -2733,7 +2737,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023      atomic_fetch_and(3fortran)', &
+'                                July 22, 2023      atomic_fetch_and(3fortran)', &
 '']
 
 shortname="atomic_fetch_and"
@@ -2805,7 +2809,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023       atomic_fetch_or(3fortran)', &
+'                                July 22, 2023       atomic_fetch_or(3fortran)', &
 '']
 
 shortname="atomic_fetch_or"
@@ -2877,7 +2881,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023      atomic_fetch_xor(3fortran)', &
+'                                July 22, 2023      atomic_fetch_xor(3fortran)', &
 '']
 
 shortname="atomic_fetch_xor"
@@ -2958,7 +2962,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023             atomic_or(3fortran)', &
+'                                July 22, 2023             atomic_or(3fortran)', &
 '']
 
 shortname="atomic_or"
@@ -3042,7 +3046,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023            atomic_ref(3fortran)', &
+'                                July 22, 2023            atomic_ref(3fortran)', &
 '']
 
 shortname="atomic_ref"
@@ -3121,7 +3125,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023            atomic_xor(3fortran)', &
+'                                July 22, 2023            atomic_xor(3fortran)', &
 '']
 
 shortname="atomic_xor"
@@ -3191,7 +3195,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023             bessel_j0(3fortran)', &
+'                                July 22, 2023             bessel_j0(3fortran)', &
 '']
 
 shortname="bessel_j0"
@@ -3260,7 +3264,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023             bessel_j1(3fortran)', &
+'                                July 22, 2023             bessel_j1(3fortran)', &
 '']
 
 shortname="bessel_j1"
@@ -3364,7 +3368,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023             bessel_jn(3fortran)', &
+'                                July 22, 2023             bessel_jn(3fortran)', &
 '']
 
 shortname="bessel_jn"
@@ -3433,7 +3437,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023             bessel_y0(3fortran)', &
+'                                July 22, 2023             bessel_y0(3fortran)', &
 '']
 
 shortname="bessel_y0"
@@ -3501,7 +3505,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023             bessel_y1(3fortran)', &
+'                                July 22, 2023             bessel_y1(3fortran)', &
 '']
 
 shortname="bessel_y1"
@@ -3605,7 +3609,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023             bessel_yn(3fortran)', &
+'                                July 22, 2023             bessel_yn(3fortran)', &
 '']
 
 shortname="bessel_yn"
@@ -3770,7 +3774,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   bge(3fortran)', &
+'                                July 22, 2023                   bge(3fortran)', &
 '']
 
 shortname="bge"
@@ -3882,7 +3886,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   bgt(3fortran)', &
+'                                July 22, 2023                   bgt(3fortran)', &
 '']
 
 shortname="bgt"
@@ -3973,7 +3977,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023              bit_size(3fortran)', &
+'                                July 22, 2023              bit_size(3fortran)', &
 '']
 
 shortname="bit_size"
@@ -4074,7 +4078,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   ble(3fortran)', &
+'                                July 22, 2023                   ble(3fortran)', &
 '']
 
 shortname="ble"
@@ -4169,7 +4173,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   blt(3fortran)', &
+'                                July 22, 2023                   blt(3fortran)', &
 '']
 
 shortname="blt"
@@ -4307,7 +4311,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 btest(3fortran)', &
+'                                July 22, 2023                 btest(3fortran)', &
 '']
 
 shortname="btest"
@@ -4385,7 +4389,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023          c_associated(3fortran)', &
+'                                July 22, 2023          c_associated(3fortran)', &
 '']
 
 shortname="c_associated"
@@ -4495,7 +4499,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023               ceiling(3fortran)', &
+'                                July 22, 2023               ceiling(3fortran)', &
 '']
 
 shortname="ceiling"
@@ -4571,7 +4575,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023           c_f_pointer(3fortran)', &
+'                                July 22, 2023           c_f_pointer(3fortran)', &
 '']
 
 shortname="c_f_pointer"
@@ -4646,7 +4650,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023       c_f_procpointer(3fortran)', &
+'                                July 22, 2023       c_f_procpointer(3fortran)', &
 '']
 
 shortname="c_f_procpointer"
@@ -4720,7 +4724,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023              c_funloc(3fortran)', &
+'                                July 22, 2023              c_funloc(3fortran)', &
 '']
 
 shortname="c_funloc"
@@ -4846,7 +4850,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  char(3fortran)', &
+'                                July 22, 2023                  char(3fortran)', &
 '']
 
 shortname="char"
@@ -4907,7 +4911,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 c_loc(3fortran)', &
+'                                July 22, 2023                 c_loc(3fortran)', &
 '']
 
 shortname="c_loc"
@@ -5179,7 +5183,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 cmplx(3fortran)', &
+'                                July 22, 2023                 cmplx(3fortran)', &
 '']
 
 shortname="cmplx"
@@ -5247,7 +5251,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023          co_broadcast(3fortran)', &
+'                                July 22, 2023          co_broadcast(3fortran)', &
 '']
 
 shortname="co_broadcast"
@@ -5367,7 +5371,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                co_max(3fortran)', &
+'                                July 22, 2023                co_max(3fortran)', &
 '']
 
 shortname="co_max"
@@ -5436,7 +5440,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                co_min(3fortran)', &
+'                                July 22, 2023                co_min(3fortran)', &
 '']
 
 shortname="co_min"
@@ -5514,7 +5518,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023command_argument_count(3fortran)', &
+'                                July 22, 2023command_argument_count(3fortran)', &
 '']
 
 shortname="command_argument_count"
@@ -5602,7 +5606,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023      compiler_options(3fortran)', &
+'                                July 22, 2023      compiler_options(3fortran)', &
 '']
 
 shortname="compiler_options"
@@ -5674,7 +5678,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023      compiler_version(3fortran)', &
+'                                July 22, 2023      compiler_version(3fortran)', &
 '']
 
 shortname="compiler_version"
@@ -5805,7 +5809,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 conjg(3fortran)', &
+'                                July 22, 2023                 conjg(3fortran)', &
 '']
 
 shortname="conjg"
@@ -5907,7 +5911,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023             co_reduce(3fortran)', &
+'                                July 22, 2023             co_reduce(3fortran)', &
 '']
 
 shortname="co_reduce"
@@ -6001,7 +6005,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   cos(3fortran)', &
+'                                July 22, 2023                   cos(3fortran)', &
 '']
 
 shortname="cos"
@@ -6076,7 +6080,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  cosh(3fortran)', &
+'                                July 22, 2023                  cosh(3fortran)', &
 '']
 
 shortname="cosh"
@@ -6153,7 +6157,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                co_sum(3fortran)', &
+'                                July 22, 2023                co_sum(3fortran)', &
 '']
 
 shortname="co_sum"
@@ -6440,7 +6444,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 count(3fortran)', &
+'                                July 22, 2023                 count(3fortran)', &
 '']
 
 shortname="count"
@@ -6553,7 +6557,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023              cpu_time(3fortran)', &
+'                                July 22, 2023              cpu_time(3fortran)', &
 '']
 
 shortname="cpu_time"
@@ -6691,7 +6695,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                cshift(3fortran)', &
+'                                July 22, 2023                cshift(3fortran)', &
 '']
 
 shortname="cshift"
@@ -6755,7 +6759,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023              c_sizeof(3fortran)', &
+'                                July 22, 2023              c_sizeof(3fortran)', &
 '']
 
 shortname="c_sizeof"
@@ -6930,7 +6934,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023         date_and_time(3fortran)', &
+'                                July 22, 2023         date_and_time(3fortran)', &
 '']
 
 shortname="date_and_time"
@@ -7009,7 +7013,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  dble(3fortran)', &
+'                                July 22, 2023                  dble(3fortran)', &
 '']
 
 shortname="dble"
@@ -7084,7 +7088,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                digits(3fortran)', &
+'                                July 22, 2023                digits(3fortran)', &
 '']
 
 shortname="digits"
@@ -7173,7 +7177,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   dim(3fortran)', &
+'                                July 22, 2023                   dim(3fortran)', &
 '']
 
 shortname="dim"
@@ -7276,7 +7280,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023           dot_product(3fortran)', &
+'                                July 22, 2023           dot_product(3fortran)', &
 '']
 
 shortname="dot_product"
@@ -7390,7 +7394,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 dprod(3fortran)', &
+'                                July 22, 2023                 dprod(3fortran)', &
 '']
 
 shortname="dprod"
@@ -7517,18 +7521,19 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        > I=-1 J=0 SHIFT=5', &
-'        > 11111111111111111111111111111111', &
-'        > 00000000000000000000000000000000', &
-'        > 11111111111111111111111111100000', &
-'        > I=0 J=-134217728 SHIFT=5', &
-'        > 00000000000000000000000000000000', &
-'        > 11111000000000000000000000000000', &
-'        > 00000000000000000000000000011111', &
-'        > I=134217727 J=-134217728 SHIFT=5', &
-'        > 00000111111111111111111111111111', &
-'        > 11111000000000000000000000000000', &
-'        > 11111111111111111111111111111111', &
+'       >           5', &
+'       > I=-1 J=0 SHIFT=5', &
+'       > 11111111111111111111111111111111', &
+'       > 00000000000000000000000000000000', &
+'       > 11111111111111111111111111100000', &
+'       > I=0 J=-134217728 SHIFT=5', &
+'       > 00000000000000000000000000000000', &
+'       > 11111000000000000000000000000000', &
+'       > 00000000000000000000000000011111', &
+'       > I=134217727 J=-134217728 SHIFT=5', &
+'       > 00000111111111111111111111111111', &
+'       > 11111000000000000000000000000000', &
+'       > 11111111111111111111111111111111', &
 '', &
 '', &
 'STANDARD', &
@@ -7541,7 +7546,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023               dshiftl(3fortran)', &
+'                                July 22, 2023               dshiftl(3fortran)', &
 '']
 
 shortname="dshiftl"
@@ -7696,7 +7701,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023               dshiftr(3fortran)', &
+'                                July 22, 2023               dshiftr(3fortran)', &
 '']
 
 shortname="dshiftr"
@@ -7829,7 +7834,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023               eoshift(3fortran)', &
+'                                July 22, 2023               eoshift(3fortran)', &
 '']
 
 shortname="eoshift"
@@ -7961,7 +7966,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023               epsilon(3fortran)', &
+'                                July 22, 2023               epsilon(3fortran)', &
 '']
 
 shortname="epsilon"
@@ -8034,7 +8039,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   erf(3fortran)', &
+'                                July 22, 2023                   erf(3fortran)', &
 '']
 
 shortname="erf"
@@ -8122,7 +8127,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  erfc(3fortran)', &
+'                                July 22, 2023                  erfc(3fortran)', &
 '']
 
 shortname="erfc"
@@ -8204,7 +8209,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023           erfc_scaled(3fortran)', &
+'                                July 22, 2023           erfc_scaled(3fortran)', &
 '']
 
 shortname="erfc_scaled"
@@ -8270,7 +8275,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023           event_query(3fortran)', &
+'                                July 22, 2023           event_query(3fortran)', &
 '']
 
 shortname="event_query"
@@ -8404,7 +8409,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023  execute_command_line(3fortran)', &
+'                                July 22, 2023  execute_command_line(3fortran)', &
 '']
 
 shortname="execute_command_line"
@@ -8521,7 +8526,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   exp(3fortran)', &
+'                                July 22, 2023                   exp(3fortran)', &
 '']
 
 shortname="exp"
@@ -8602,7 +8607,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023              exponent(3fortran)', &
+'                                July 22, 2023              exponent(3fortran)', &
 '']
 
 shortname="exponent"
@@ -8783,7 +8788,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023       extends_type_of(3fortran)', &
+'                                July 22, 2023       extends_type_of(3fortran)', &
 '']
 
 shortname="extends_type_of"
@@ -9076,7 +9081,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023               findloc(3fortran)', &
+'                                July 22, 2023               findloc(3fortran)', &
 '']
 
 shortname="findloc"
@@ -9190,7 +9195,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 floor(3fortran)', &
+'                                July 22, 2023                 floor(3fortran)', &
 '']
 
 shortname="floor"
@@ -9265,7 +9270,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023              fraction(3fortran)', &
+'                                July 22, 2023              fraction(3fortran)', &
 '']
 
 shortname="fraction"
@@ -9420,7 +9425,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 gamma(3fortran)', &
+'                                July 22, 2023                 gamma(3fortran)', &
 '']
 
 shortname="gamma"
@@ -9529,7 +9534,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023           get_command(3fortran)', &
+'                                July 22, 2023           get_command(3fortran)', &
 '']
 
 shortname="get_command"
@@ -9669,7 +9674,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023  get_command_argument(3fortran)', &
+'                                July 22, 2023  get_command_argument(3fortran)', &
 '']
 
 shortname="get_command_argument"
@@ -9816,7 +9821,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 20get_environment_variable(3fortran)', &
+'                                July 22, 20get_environment_variable(3fortran)', &
 '']
 
 shortname="get_environment_variable"
@@ -9935,7 +9940,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  huge(3fortran)', &
+'                                July 22, 2023                  huge(3fortran)', &
 '']
 
 shortname="huge"
@@ -10049,7 +10054,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 hypot(3fortran)', &
+'                                July 22, 2023                 hypot(3fortran)', &
 '']
 
 shortname="hypot"
@@ -10171,7 +10176,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                iachar(3fortran)', &
+'                                July 22, 2023                iachar(3fortran)', &
 '']
 
 shortname="iachar"
@@ -10262,7 +10267,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  iall(3fortran)', &
+'                                July 22, 2023                  iall(3fortran)', &
 '']
 
 shortname="iall"
@@ -10353,7 +10358,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  iand(3fortran)', &
+'                                July 22, 2023                  iand(3fortran)', &
 '']
 
 shortname="iand"
@@ -10470,7 +10475,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  iany(3fortran)', &
+'                                July 22, 2023                  iany(3fortran)', &
 '']
 
 shortname="iany"
@@ -10576,7 +10581,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 ibclr(3fortran)', &
+'                                July 22, 2023                 ibclr(3fortran)', &
 '']
 
 shortname="ibclr"
@@ -10685,7 +10690,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 ibits(3fortran)', &
+'                                July 22, 2023                 ibits(3fortran)', &
 '']
 
 shortname="ibits"
@@ -10790,7 +10795,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 ibset(3fortran)', &
+'                                July 22, 2023                 ibset(3fortran)', &
 '']
 
 shortname="ibset"
@@ -10895,7 +10900,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 ichar(3fortran)', &
+'                                July 22, 2023                 ichar(3fortran)', &
 '']
 
 shortname="ichar"
@@ -11009,7 +11014,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  ieor(3fortran)', &
+'                                July 22, 2023                  ieor(3fortran)', &
 '']
 
 shortname="ieor"
@@ -11066,7 +11071,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023           image_index(3fortran)', &
+'                                July 22, 2023           image_index(3fortran)', &
 '']
 
 shortname="image_index"
@@ -11173,7 +11178,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 index(3fortran)', &
+'                                July 22, 2023                 index(3fortran)', &
 '']
 
 shortname="index"
@@ -11309,7 +11314,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   int(3fortran)', &
+'                                July 22, 2023                   int(3fortran)', &
 '']
 
 shortname="int"
@@ -11398,7 +11403,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   ior(3fortran)', &
+'                                July 22, 2023                   ior(3fortran)', &
 '']
 
 shortname="ior"
@@ -11494,7 +11499,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023               iparity(3fortran)', &
+'                                July 22, 2023               iparity(3fortran)', &
 '']
 
 shortname="iparity"
@@ -11619,7 +11624,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023         is_contiguous(3fortran)', &
+'                                July 22, 2023         is_contiguous(3fortran)', &
 '']
 
 shortname="is_contiguous"
@@ -11722,7 +11727,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 ishft(3fortran)', &
+'                                July 22, 2023                 ishft(3fortran)', &
 '']
 
 shortname="ishft"
@@ -11871,7 +11876,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                ishftc(3fortran)', &
+'                                July 22, 2023                ishftc(3fortran)', &
 '']
 
 shortname="ishftc"
@@ -11951,7 +11956,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023         is_iostat_end(3fortran)', &
+'                                July 22, 2023         is_iostat_end(3fortran)', &
 '']
 
 shortname="is_iostat_end"
@@ -12046,7 +12051,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023         is_iostat_eor(3fortran)', &
+'                                July 22, 2023         is_iostat_eor(3fortran)', &
 '']
 
 shortname="is_iostat_eor"
@@ -12136,7 +12141,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  kind(3fortran)', &
+'                                July 22, 2023                  kind(3fortran)', &
 '']
 
 shortname="kind"
@@ -12314,7 +12319,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                lbound(3fortran)', &
+'                                July 22, 2023                lbound(3fortran)', &
 '']
 
 shortname="lbound"
@@ -12366,7 +12371,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023              lcobound(3fortran)', &
+'                                July 22, 2023              lcobound(3fortran)', &
 '']
 
 shortname="lcobound"
@@ -12459,7 +12464,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 leadz(3fortran)', &
+'                                July 22, 2023                 leadz(3fortran)', &
 '']
 
 shortname="leadz"
@@ -12608,7 +12613,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   len(3fortran)', &
+'                                July 22, 2023                   len(3fortran)', &
 '']
 
 shortname="len"
@@ -12731,7 +12736,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023              len_trim(3fortran)', &
+'                                July 22, 2023              len_trim(3fortran)', &
 '']
 
 shortname="len_trim"
@@ -12849,7 +12854,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   lge(3fortran)', &
+'                                July 22, 2023                   lge(3fortran)', &
 '']
 
 shortname="lge"
@@ -12968,7 +12973,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   lgt(3fortran)', &
+'                                July 22, 2023                   lgt(3fortran)', &
 '']
 
 shortname="lgt"
@@ -13111,7 +13116,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   lle(3fortran)', &
+'                                July 22, 2023                   lle(3fortran)', &
 '']
 
 shortname="lle"
@@ -13233,7 +13238,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   llt(3fortran)', &
+'                                July 22, 2023                   llt(3fortran)', &
 '']
 
 shortname="llt"
@@ -13310,7 +13315,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 log10(3fortran)', &
+'                                July 22, 2023                 log10(3fortran)', &
 '']
 
 shortname="log10"
@@ -13388,7 +13393,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   log(3fortran)', &
+'                                July 22, 2023                   log(3fortran)', &
 '']
 
 shortname="log"
@@ -13458,7 +13463,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023             log_gamma(3fortran)', &
+'                                July 22, 2023             log_gamma(3fortran)', &
 '']
 
 shortname="log_gamma"
@@ -13547,7 +13552,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023               logical(3fortran)', &
+'                                July 22, 2023               logical(3fortran)', &
 '']
 
 shortname="logical"
@@ -13646,7 +13651,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 maskl(3fortran)', &
+'                                July 22, 2023                 maskl(3fortran)', &
 '']
 
 shortname="maskl"
@@ -13762,7 +13767,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 maskr(3fortran)', &
+'                                July 22, 2023                 maskr(3fortran)', &
 '']
 
 shortname="maskr"
@@ -14009,7 +14014,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                matmul(3fortran)', &
+'                                July 22, 2023                matmul(3fortran)', &
 '']
 
 shortname="matmul"
@@ -14180,7 +14185,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   max(3fortran)', &
+'                                July 22, 2023                   max(3fortran)', &
 '']
 
 shortname="max"
@@ -14252,7 +14257,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023           maxexponent(3fortran)', &
+'                                July 22, 2023           maxexponent(3fortran)', &
 '']
 
 shortname="maxexponent"
@@ -14382,7 +14387,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                maxloc(3fortran)', &
+'                                July 22, 2023                maxloc(3fortran)', &
 '']
 
 shortname="maxloc"
@@ -14478,7 +14483,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                maxval(3fortran)', &
+'                                July 22, 2023                maxval(3fortran)', &
 '']
 
 shortname="maxval"
@@ -14666,7 +14671,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 merge(3fortran)', &
+'                                July 22, 2023                 merge(3fortran)', &
 '']
 
 shortname="merge"
@@ -14795,7 +14800,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023            merge_bits(3fortran)', &
+'                                July 22, 2023            merge_bits(3fortran)', &
 '']
 
 shortname="merge_bits"
@@ -14868,7 +14873,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   min(3fortran)', &
+'                                July 22, 2023                   min(3fortran)', &
 '']
 
 shortname="min"
@@ -14941,7 +14946,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023           minexponent(3fortran)', &
+'                                July 22, 2023           minexponent(3fortran)', &
 '']
 
 shortname="minexponent"
@@ -15059,7 +15064,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                minloc(3fortran)', &
+'                                July 22, 2023                minloc(3fortran)', &
 '']
 
 shortname="minloc"
@@ -15222,7 +15227,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                minval(3fortran)', &
+'                                July 22, 2023                minval(3fortran)', &
 '']
 
 shortname="minval"
@@ -15357,7 +15362,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   mod(3fortran)', &
+'                                July 22, 2023                   mod(3fortran)', &
 '']
 
 shortname="mod"
@@ -15448,7 +15453,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                modulo(3fortran)', &
+'                                July 22, 2023                modulo(3fortran)', &
 '']
 
 shortname="modulo"
@@ -15565,7 +15570,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023            move_alloc(3fortran)', &
+'                                July 22, 2023            move_alloc(3fortran)', &
 '']
 
 shortname="move_alloc"
@@ -15726,7 +15731,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                mvbits(3fortran)', &
+'                                July 22, 2023                mvbits(3fortran)', &
 '']
 
 shortname="mvbits"
@@ -15825,7 +15830,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023               nearest(3fortran)', &
+'                                July 22, 2023               nearest(3fortran)', &
 '']
 
 shortname="nearest"
@@ -16001,7 +16006,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023              new_line(3fortran)', &
+'                                July 22, 2023              new_line(3fortran)', &
 '']
 
 shortname="new_line"
@@ -16160,7 +16165,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  nint(3fortran)', &
+'                                July 22, 2023                  nint(3fortran)', &
 '']
 
 shortname="nint"
@@ -16289,7 +16294,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 norm2(3fortran)', &
+'                                July 22, 2023                 norm2(3fortran)', &
 '']
 
 shortname="norm2"
@@ -16387,7 +16392,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   not(3fortran)', &
+'                                July 22, 2023                   not(3fortran)', &
 '']
 
 shortname="not"
@@ -16522,7 +16527,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  null(3fortran)', &
+'                                July 22, 2023                  null(3fortran)', &
 '']
 
 shortname="null"
@@ -16615,7 +16620,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023            num_images(3fortran)', &
+'                                July 22, 2023            num_images(3fortran)', &
 '']
 
 shortname="num_images"
@@ -16776,7 +16781,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023          out_of_range(3fortran)', &
+'                                July 22, 2023          out_of_range(3fortran)', &
 '']
 
 shortname="out_of_range"
@@ -16886,7 +16891,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  pack(3fortran)', &
+'                                July 22, 2023                  pack(3fortran)', &
 '']
 
 shortname="pack"
@@ -17002,7 +17007,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                parity(3fortran)', &
+'                                July 22, 2023                parity(3fortran)', &
 '']
 
 shortname="parity"
@@ -17095,7 +17100,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                popcnt(3fortran)', &
+'                                July 22, 2023                popcnt(3fortran)', &
 '']
 
 shortname="popcnt"
@@ -17194,7 +17199,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                poppar(3fortran)', &
+'                                July 22, 2023                poppar(3fortran)', &
 '']
 
 shortname="poppar"
@@ -17269,7 +17274,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023             precision(3fortran)', &
+'                                July 22, 2023             precision(3fortran)', &
 '']
 
 shortname="precision"
@@ -17401,7 +17406,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023               present(3fortran)', &
+'                                July 22, 2023               present(3fortran)', &
 '']
 
 shortname="present"
@@ -17644,7 +17649,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023               product(3fortran)', &
+'                                July 22, 2023               product(3fortran)', &
 '']
 
 shortname="product"
@@ -17723,7 +17728,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 radix(3fortran)', &
+'                                July 22, 2023                 radix(3fortran)', &
 '']
 
 shortname="radix"
@@ -17788,7 +17793,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023           random_init(3fortran)', &
+'                                July 22, 2023           random_init(3fortran)', &
 '']
 
 shortname="random_init"
@@ -17885,7 +17890,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023         random_number(3fortran)', &
+'                                July 22, 2023         random_number(3fortran)', &
 '']
 
 shortname="random_number"
@@ -17972,7 +17977,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023           random_seed(3fortran)', &
+'                                July 22, 2023           random_seed(3fortran)', &
 '']
 
 shortname="random_seed"
@@ -18060,7 +18065,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 range(3fortran)', &
+'                                July 22, 2023                 range(3fortran)', &
 '']
 
 shortname="range"
@@ -18240,7 +18245,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  rank(3fortran)', &
+'                                July 22, 2023                  rank(3fortran)', &
 '']
 
 shortname="rank"
@@ -18357,7 +18362,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  real(3fortran)', &
+'                                July 22, 2023                  real(3fortran)', &
 '']
 
 shortname="real"
@@ -18567,7 +18572,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                reduce(3fortran)', &
+'                                July 22, 2023                reduce(3fortran)', &
 '']
 
 shortname="reduce"
@@ -18650,7 +18655,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                repeat(3fortran)', &
+'                                July 22, 2023                repeat(3fortran)', &
 '']
 
 shortname="repeat"
@@ -18874,7 +18879,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023               reshape(3fortran)', &
+'                                July 22, 2023               reshape(3fortran)', &
 '']
 
 shortname="reshape"
@@ -18930,7 +18935,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023             rrspacing(3fortran)', &
+'                                July 22, 2023             rrspacing(3fortran)', &
 '']
 
 shortname="rrspacing"
@@ -19072,7 +19077,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023          same_type_as(3fortran)', &
+'                                July 22, 2023          same_type_as(3fortran)', &
 '']
 
 shortname="same_type_as"
@@ -19153,7 +19158,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 scale(3fortran)', &
+'                                July 22, 2023                 scale(3fortran)', &
 '']
 
 shortname="scale"
@@ -19259,7 +19264,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  scan(3fortran)', &
+'                                July 22, 2023                  scan(3fortran)', &
 '']
 
 shortname="scan"
@@ -19427,7 +19432,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023    selected_char_kind(3fortran)', &
+'                                July 22, 2023    selected_char_kind(3fortran)', &
 '']
 
 shortname="selected_char_kind"
@@ -19515,7 +19520,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023     selected_int_kind(3fortran)', &
+'                                July 22, 2023     selected_int_kind(3fortran)', &
 '']
 
 shortname="selected_int_kind"
@@ -19641,7 +19646,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023    selected_real_kind(3fortran)', &
+'                                July 22, 2023    selected_real_kind(3fortran)', &
 '']
 
 shortname="selected_real_kind"
@@ -19725,7 +19730,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023          set_exponent(3fortran)', &
+'                                July 22, 2023          set_exponent(3fortran)', &
 '']
 
 shortname="set_exponent"
@@ -19843,7 +19848,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                 shape(3fortran)', &
+'                                July 22, 2023                 shape(3fortran)', &
 '']
 
 shortname="shape"
@@ -19977,7 +19982,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                shifta(3fortran)', &
+'                                July 22, 2023                shifta(3fortran)', &
 '']
 
 shortname="shifta"
@@ -20114,7 +20119,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                shiftl(3fortran)', &
+'                                July 22, 2023                shiftl(3fortran)', &
 '']
 
 shortname="shiftl"
@@ -20253,7 +20258,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                shiftr(3fortran)', &
+'                                July 22, 2023                shiftr(3fortran)', &
 '']
 
 shortname="shiftr"
@@ -20351,7 +20356,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  sign(3fortran)', &
+'                                July 22, 2023                  sign(3fortran)', &
 '']
 
 shortname="sign"
@@ -20496,7 +20501,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   sin(3fortran)', &
+'                                July 22, 2023                   sin(3fortran)', &
 '']
 
 shortname="sin"
@@ -20603,7 +20608,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  sinh(3fortran)', &
+'                                July 22, 2023                  sinh(3fortran)', &
 '']
 
 shortname="sinh"
@@ -20782,7 +20787,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  size(3fortran)', &
+'                                July 22, 2023                  size(3fortran)', &
 '']
 
 shortname="size"
@@ -20869,7 +20874,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023               spacing(3fortran)', &
+'                                July 22, 2023               spacing(3fortran)', &
 '']
 
 shortname="spacing"
@@ -21058,7 +21063,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                spread(3fortran)', &
+'                                July 22, 2023                spread(3fortran)', &
 '']
 
 shortname="spread"
@@ -21171,7 +21176,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  sqrt(3fortran)', &
+'                                July 22, 2023                  sqrt(3fortran)', &
 '']
 
 shortname="sqrt"
@@ -21282,7 +21287,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023          storage_size(3fortran)', &
+'                                July 22, 2023          storage_size(3fortran)', &
 '']
 
 shortname="storage_size"
@@ -21508,7 +21513,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   sum(3fortran)', &
+'                                July 22, 2023                   sum(3fortran)', &
 '']
 
 shortname="sum"
@@ -21673,7 +21678,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023          system_clock(3fortran)', &
+'                                July 22, 2023          system_clock(3fortran)', &
 '']
 
 shortname="system_clock"
@@ -21741,7 +21746,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                   tan(3fortran)', &
+'                                July 22, 2023                   tan(3fortran)', &
 '']
 
 shortname="tan"
@@ -21820,7 +21825,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  tanh(3fortran)', &
+'                                July 22, 2023                  tanh(3fortran)', &
 '']
 
 shortname="tanh"
@@ -21912,7 +21917,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023            this_image(3fortran)', &
+'                                July 22, 2023            this_image(3fortran)', &
 '']
 
 shortname="this_image"
@@ -21987,7 +21992,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  tiny(3fortran)', &
+'                                July 22, 2023                  tiny(3fortran)', &
 '']
 
 shortname="tiny"
@@ -22095,7 +22100,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                trailz(3fortran)', &
+'                                July 22, 2023                trailz(3fortran)', &
 '']
 
 shortname="trailz"
@@ -22228,7 +22233,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023              transfer(3fortran)', &
+'                                July 22, 2023              transfer(3fortran)', &
 '']
 
 shortname="transfer"
@@ -22344,7 +22349,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023             transpose(3fortran)', &
+'                                July 22, 2023             transpose(3fortran)', &
 '']
 
 shortname="transpose"
@@ -22452,7 +22457,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                  trim(3fortran)', &
+'                                July 22, 2023                  trim(3fortran)', &
 '']
 
 shortname="trim"
@@ -22636,7 +22641,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                ubound(3fortran)', &
+'                                July 22, 2023                ubound(3fortran)', &
 '']
 
 shortname="ubound"
@@ -22686,7 +22691,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023              ucobound(3fortran)', &
+'                                July 22, 2023              ucobound(3fortran)', &
 '']
 
 shortname="ucobound"
@@ -22852,7 +22857,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                unpack(3fortran)', &
+'                                July 22, 2023                unpack(3fortran)', &
 '']
 
 shortname="unpack"
@@ -23240,7 +23245,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                                June 04, 2023                verify(3fortran)', &
+'                                July 22, 2023                verify(3fortran)', &
 '']
 
 shortname="verify"
@@ -30231,8 +30236,8 @@ end module M_match
 !!    substrings, locating strings with simple wildcard expressions, removing
 !!    tabs and line terminators and other string manipulations are included.
 !!
-!!    M_strings__oop(3fm) is a companion module that provides an OOP interface
-!!    to the M_strings module.
+!!    M_strings__oop(3fm) is a companion module that provides an OOP
+!!    interface to the M_strings module.
 !!
 !!##SYNOPSIS
 !!
@@ -30441,8 +30446,10 @@ end module M_match
 !!
 !!   MISCELLANEOUS
 !!
-!!       bundle     return up to twenty strings of arbitrary length as an array
-!!       describe   returns a string describing the name of a single character
+!!       bundle         return up to twenty strings of arbitrary length as
+!!                      an array
+!!       describe       returns a string describing the name of a single
+!!                      character
 !!       edit_distance  returns a naive edit distance using the Levenshtein
 !!                      distance algorithm
 !!       longest_common_substring  function that returns the longest common
@@ -30492,46 +30499,8 @@ end module M_match
 !!
 !!##EXAMPLES
 !!
-!!    Each of the procedural functions includes an example program in the
-!!    corresponding man(1) page for the function. The object-oriented
-!!    interface does not have individual man(1) pages, but is instead
-!!    demonstrated using the following example program:
-!!
-!!     program demo_M_strings
-!!     use M_strings,only : split, sep, delim, chomp, strtok
-!!     use M_strings,only : split2020, find_field
-!!     use M_strings,only : substitute, change, modif, transliterate, &
-!!             & reverse, squeeze
-!!     use M_strings,only : replace, join
-!!     use M_strings,only : upper, lower, upper_quoted
-!!     use M_strings,only : rotate13
-!!     use M_strings,only : percent_encode
-!!     use M_strings,only : adjustc, compact, nospace, indent
-!!     use M_strings,only : crop, clip, unquote, quote, matching_delimiter
-!!     use M_strings,only : len_white, pad, lpad, cpad, rpad, zpad, &
-!!             & stretch, lenset, merge_str
-!!     use M_strings,only : switch, s2c, c2s
-!!     use M_strings,only : noesc, notabs, dilate, expand, visible
-!!     use M_strings,only : longest_common_substring
-!!     use M_strings,only : string_to_value, string_to_values, s2v, s2vs
-!!     use M_strings,only : int, real, dble, nint
-!!     use M_strings,only : atoi, atol, aton
-!!     use M_strings,only : value_to_string, v2s, msg
-!!     use M_strings,only : listout, getvals
-!!     use M_strings,only : glob, ends_with
-!!     use M_strings,only : paragraph
-!!     use M_strings,only : base, decodebase, codebase, base2
-!!     use M_strings,only : isalnum, isalpha, iscntrl, isdigit
-!!     use M_strings,only : isgraph, islower, isprint, ispunct
-!!     use M_strings,only : isspace, isupper, isascii, isblank, isxdigit
-!!     use M_strings,only : isnumber
-!!     use M_strings,only : fortran_name
-!!     use M_strings,only : describe
-!!     use M_strings,only : edit_distance
-!!     use M_strings,only : bundle
-!!     end program demo_M_strings
-!!
-!!   Expected output
+!!    Each of the procedures includes an [example](example/) program in
+!!    the corresponding man(1) page for the function.
 !!
 !!##AUTHOR
 !!    John S. Urban
@@ -34782,9 +34751,7 @@ end subroutine notabs
 !!
 !!    program demo_dilate
 !!
-!!    !  test filter to remove tabs and trailing white space from input
-!!    !  on files up to 1024 characters wide
-!!    use M_strings, only : dilate
+!!    use M_strings, only : dilate, visible
 !!    implicit none
 !!    character(len=:),allocatable :: in
 !!    integer                      :: i
@@ -34793,8 +34760,14 @@ end subroutine notabs
 !!       do i=1,len(in)
 !!          if(in(i:i) == ' ')in(i:i)=char(9)
 !!       enddo
-!!       write(*,'(a)')in,dilate(in)
+!!       write(*,'("[",a,"]")')visible(in)
+!!       write(*,'("[",a,"]")')visible(dilate(in))
 !!    end program demo_dilate
+!!
+!!   Results:
+!!
+!!    > [^I^Ithis^Iis^Imy^Istring^I^I]
+!!    > [                this    is      my      string]
 !!
 !!##AUTHOR
 !!     John S. Urban
@@ -34817,7 +34790,7 @@ integer                       :: lgth
    allocate(character(len=(len(instr)+8*icount)) :: outstr)
    call notabs(instr,outstr,lgth)
    outstr=outstr(:lgth)
-!===================================================================================================================================
+
 END function dilate
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
@@ -34884,10 +34857,10 @@ pure function adjustc(string,length)
 ! ident_35="@(#) M_strings adjustc(3f) center text"
 
 !>
-!! PROCEDURE   adjustc(3f)
-!! DESCRIPTION center text using implicit or explicit length
-!!##VERSION     2.0, 20160711
-!! AUTHOR      John S. Urban
+!! PROCEDURE:   adjustc(3f)
+!! DESCRIPTION: center text using implicit or explicit length
+!!##VERSION:     2.0, 20160711
+!! AUTHOR:      John S. Urban
 !-----------------------------------------------------------------------------------------------------------------------------------
 character(len=*),intent(in)  :: string         ! input string to trim and center
 integer,intent(in),optional  :: length         ! line length to center text in
@@ -42406,1720 +42379,190 @@ end function atoi_int64
 end module M_strings
  
  
-!>>>>> build/dependencies/M_escape/src/M_escape__list.f90
+!>>>>> build/dependencies/M_attr/src/M_attr.f90
 !>
 !!##NAME
-!!    M_escape__list(3f) - [M_escape__list] maintain simple lists
-!!    (LICENSE:PD)
+!!    M_attr(3f) - [M_attr::INTRO] control text attributes on terminals
+!!    (LICENSE:MIT)
 !!
 !!##SYNOPSIS
 !!
-!!    use M_escape__list, only : insert, replace, remove
-!!    use M_escape__list, only : dictionary
+!!
+!!      use M_attr, only : attr, attr_mode, attr_update
+!!
+!!      use M_attr, only : alert ! generate standard messages
 !!
 !!##DESCRIPTION
+!!    M_attr(3f) is a Fortran module that uses common ANSI escape sequences
+!!    to control terminal text attributes.
 !!
-!!    The M_escape__list(3fm) module allows for maintaining an array as a sorted
-!!    list. An example is given that creates a keyword-value dictionary
-!!    using the lists.
+!!         use M_attr
+!!         write(*,*)attr('<red>Red Text!</red> <green>Green Text!</green>')
+!!         end
 !!
-!!    The lists are maintained as simple allocatable arrays. Each time an
-!!    entry is added or deleted the array is re-allocated. Because of the
-!!    expense of reallocating the data these routines are best suited for
-!!    maintaining small lists that do not change size frequently.
+!!    It is designed to use three simple procedures to
 !!
-!!    The advantage is that the dictionary components are simple arrays
-!!    which can be easily accessed with standard routines.
+!!     + Specify attributes using simple HTML-like syntax
+!!     + allow the sequences to be suppressed when desired
+!!     + permit the  user program to completely customize the keywords.
+!!       The user can add, delete and replace the sequences associated with
+!!       a keyword without changing the code.
 !!
-!!    BASIC LIST
+!!    One advantage of the approach of using formatting directives which
+!!    are replaced with in-band escape sequences is that it is easy to turn
+!!    off when running batch.
 !!
-!!    subroutine locate(list,value,place,ier,errmsg)  finds the index where a
-!!                                                    value is found or should
-!!                                                    be in a sorted array and
-!!                                                    flag if the value exists
-!!                                                    already
-!!    subroutine insert(list,value,place)     insert entry into an allocatable
-!!                                            array at specified position
-!!    subroutine replace(list,value,place)    replace entry in an allocatable
-!!                                            array at specified position
-!!    subroutine remove(list,place)           remove entry from an allocatable
-!!                                            array at specified position
+!!    Another important capability is that programs can be run in "raw" mode
+!!    and create a simple text file with the formatting directives in it
+!!    that can then be read back in by a simple filter program that strips
+!!    it back to plain text( see app/plain.f90), or displays it to a screen
+!!    in color(see app/light.f90) or perhaps converts it to another format.
 !!
-!!    BASIC DICTIONARY
+!!    So this approach makes it trivial to read specially-formatted data
+!!    from a file like a message catalog (perhaps with various versions in
+!!    different languages) and colorize it or display it as plain text
 !!
-!!    Due to bugs in gfortran up to at least 7.4.0, this next section
-!!    does not work.
+!!    By making each line self-contained (by default) lines can be filtered
+!!    by external utilities and still display correctly.
 !!
-!!    type dictionary
+!!##ACCESS
+!!    Via git(1):
 !!
-!!       character(len=:),allocatable :: key(:)
-!!       character(len=:),allocatable :: value(:)
-!!       integer,allocatable          :: count(:)
+!!        git clone https://github.com/urbanjost/M_attr.git
+!!        cd M_attr/src
+!!        # change Makefile if not using one of the listed compilers
+!!        make clean; make gfortran    # for gfortran
+!!        make clean; make ifort       # for ifort
+!!        make clean; make nvfortran   # for nvfortran
 !!
-!!    %get      get value from type(dictionary) given an existing key
-!!    %set      set or replace value for type(dictionary) given a key
-!!    %del      delete an existing key from type(dictionary)
-!!    %clr      empty a type(dictionary)
+!!    This will compile the M_attr module and example programs.
+!!
+!!    Alternatively, via fpm (see https://github.com/fortran-lang/fpm):
+!!
+!!         git clone https://github.com/urbanjost/M_attr.git
+!!
+!!    or just list it as a dependency in your fpm.toml project file.
+!!
+!!         [dependencies]
+!!         M_attr = { git = "https://github.com/urbanjost/M_attr.git" }
+!!
+!!##LIMITATIONS
+!!   o colors are not nestable.
+!!   o keywords are case-sensitive,
+!!   o ANSI escape sequences are not universally supported by
+!!     all terminal emulators; and normally should be suppressed
+!!     when not going to a tty device. Therefore, you should use
+!!     M_system::system_istty(3f) or the common Fortran extension
+!!     ISATTY() to set the default to "plain" instead of "color"
+!!     when the output file is not a conforming terminal. On basic
+!!     MSWindows console windows, it is best to use Windows 10+ and/or
+!!     the Linux mode; you may have to enable ANSI escape sequence
+!!     mode on MSWindows. It does work as-is with CygWin and MinGW and
+!!     Putty windows and mintty(1) as tested.
 !!
 !!##EXAMPLE
-!!
-!!   Sample program
-!!
-!!    program demo_M_list
-!!    use M_escape__list, only : insert, locate, replace, remove
-!!    ! create a dictionary with character keywords, values, and value lengths
-!!    ! using the routines for maintaining a list
-!!
-!!     use M_escape__list, only : locate, insert, replace
-!!     implicit none
-!!     character(len=:),allocatable   :: keywords(:)
-!!     character(len=:),allocatable   :: values(:)
-!!     integer,allocatable            :: counts(:)
-!!     integer                        :: i
-!!     ! insert and replace entries
-!!     call update('b','value of b')
-!!     call update('a','value of a')
-!!     call update('c','value of c')
-!!     call update('c','value of c again')
-!!     call update('d','value of d')
-!!     call update('a','value of a again')
-!!     ! show array
-!!     write(*,'(*(a,"==>","[",a,"]",/))')(trim(keywords(i)),values(i)(:counts(i)),i=1,size(keywords))
-!!     ! remove some entries
-!!     call update('a')
-!!     call update('c')
-!!     write(*,'(*(a,"==>","[",a,"]",/))')(trim(keywords(i)),values(i)(:counts(i)),i=1,size(keywords))
-!!     ! get some values
-!!     write(*,*)'get b=>',get('b')
-!!     write(*,*)'get d=>',get('d')
-!!     write(*,*)'get notthere=>',get('notthere')
-!!
-!!     contains
-!!     subroutine update(key,valin)
-!!     character(len=*),intent(in)           :: key
-!!     character(len=*),intent(in),optional  :: valin
-!!     integer                               :: place
-!!     integer                               :: ilen
-!!     character(len=:),allocatable          :: val
-!!     if(present(valin))then
-!!        val=valin
-!!        ilen=len_trim(val)
-!!        ! find where string is or should be
-!!        call locate(keywords,key,place)
-!!        ! if string was not found insert it
-!!        if(place.lt.1)then
-!!           call insert(keywords,key,iabs(place))
-!!           call insert(values,val,iabs(place))
-!!           call insert(counts,ilen,iabs(place))
-!!        else
-!!           call replace(values,val,place)
-!!           call replace(counts,ilen,place)
-!!        endif
-!!     else
-!!        call locate(keywords,key,place)
-!!        if(place.gt.0)then
-!!           call remove(keywords,place)
-!!           call remove(values,place)
-!!           call remove(counts,place)
-!!        endif
-!!     endif
-!!     end subroutine update
-!!     function get(key) result(valout)
-!!     character(len=*),intent(in)   :: key
-!!     character(len=:),allocatable  :: valout
-!!     integer                       :: place
-!!        ! find where string is or should be
-!!        call locate(keywords,key,place)
-!!        if(place.lt.1)then
-!!           valout=''
-!!        else
-!!           valout=values(place)(:counts(place))
-!!        endif
-!!     end function get
-!!    end program demo_M_list
-!!
-!!   Results:
-!!
-!!    d==>[value of d]
-!!    c==>[value of c again]
-!!    b==>[value of b]
-!!    a==>[value of a again]
-!!
-!!    d==>[value of d]
-!!    b==>[value of b]
-!!
-!!     get b=>value of b
-!!     get d=>value of d
-!!     get notthere=>
-!!
-!!##AUTHOR
-!!    John S. Urban
-!!##LICENSE
-!!    Public Domain
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-module M_escape__list
-use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT,stdout=>OUTPUT_UNIT    ! access computing environment
-implicit none
-private
-
-public locate        ! [M_escape__list] find PLACE in sorted character array where value can be found or should be placed
-   private locate_c
-   private locate_d
-   private locate_r
-   private locate_i
-public insert        ! [M_escape__list] insert entry into a sorted allocatable array at specified position
-   private insert_c
-   private insert_d
-   private insert_r
-   private insert_i
-   private insert_l
-public replace       ! [M_escape__list] replace entry by index from a sorted allocatable array if it is present
-   private replace_c
-   private replace_d
-   private replace_r
-   private replace_i
-   private replace_l
-public remove        ! [M_escape__list] delete entry by index from a sorted allocatable array if it is present
-   private remove_c
-   private remove_d
-   private remove_r
-   private remove_i
-   private remove_l
-
-!character(len=*),parameter::ident_1="&
-!&@(#)M_escape__list::locate(3f): Generic subroutine locates where element is or should be in sorted allocatable array"
-interface locate
-   module procedure locate_c, locate_d, locate_r, locate_i
-end interface
-
-!character(len=*),parameter::ident_2="&
-!&@(#)M_escape__list::insert(3f): Generic subroutine inserts element into allocatable array at specified position"
-interface insert
-   module procedure insert_c, insert_d, insert_r, insert_i, insert_l
-end interface
-
-!character(len=*),parameter::ident_3="&
-!&@(#)M_escape__list::replace(3f): Generic subroutine replaces element from allocatable array at specified position"
-interface replace
-   module procedure replace_c, replace_d, replace_r, replace_i, replace_l
-end interface
-
-!character(len=*),parameter::ident_4="&
-!&@(#)M_escape__list::remove(3f): Generic subroutine deletes element from allocatable array at specified position"
-interface remove
-   module procedure remove_c, remove_d, remove_r, remove_i, remove_l
-end interface
-
-logical,save :: debug=.false.
-!-----------------------------------------------------------------------------------------------------------------------------------
-public dictionary
-
-type dictionary
-   character(len=:),allocatable :: key(:)
-   character(len=:),allocatable :: value(:)
-   integer,allocatable          :: count(:)
-   contains
-      procedure,private :: get => dict_get
-      procedure,private :: set => dict_add    ! insert entry by name into a sorted allocatable character array if it is not present
-      procedure,private :: del => dict_delete ! delete entry by name from a sorted allocatable character array if it is present
-end type dictionary
-!==================================================================================================================================!
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
-!==================================================================================================================================!
-contains
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-!>
-!!##NAME
-!!    locate(3f) - [M_escape__list] finds the index where a string is found or should be in a sorted array
-!!    (LICENSE:PD)
-!!
-!!##SYNOPSIS
-!!
-!!   subroutine locate(list,value,place,ier,errmsg)
-!!
-!!    character(len=:)|doubleprecision|real|integer,allocatable :: list(:)
-!!    character(len=*)|doubleprecision|real|integer,intent(in)  :: value
-!!    integer, intent(out)                  :: PLACE
-!!
-!!    integer, intent(out),optional         :: IER
-!!    character(len=*),intent(out),optional :: ERRMSG
-!!
-!!##DESCRIPTION
-!!
-!!    LOCATE(3f) finds the index where the VALUE is found or should
-!!    be found in an array. The array must be sorted in descending
-!!    order (highest at top). If VALUE is not found it returns the index
-!!    where the name should be placed at with a negative sign.
-!!
-!!    The array and list must be of the same type (CHARACTER, DOUBLEPRECISION,
-!!    REAL,INTEGER)
-!!
-!!##OPTIONS
-!!
-!!    VALUE         the value to locate in the list.
-!!    LIST          is the list array.
-!!
-!!##RETURNS
-!!    PLACE         is the subscript that the entry was found at if it is
-!!                  greater than zero(0).
-!!
-!!                  If PLACE is negative, the absolute value of
-!!                  PLACE indicates the subscript value where the
-!!                  new entry should be placed in order to keep the
-!!                  list alphabetized.
-!!
-!!    IER           is zero(0) if no error occurs.
-!!                  If an error occurs and IER is not
-!!                  present, the program is stopped.
-!!
-!!    ERRMSG        description of any error
-!!
-!!##EXAMPLES
-!!
-!!
-!!    Find if a string is in a sorted array, and insert the string into
-!!    the list if it is not present ...
-!!
-!!     program demo_locate
-!!     use M_sort, only : sort_shell
-!!     use M_escape__list, only : locate
-!!     implicit none
-!!     character(len=:),allocatable  :: arr(:)
-!!     integer                       :: i
-!!
-!!     arr=[character(len=20) :: '', 'ZZZ', 'aaa', 'b', 'xxx' ]
-!!     ! make sure sorted in descending order
-!!     call sort_shell(arr,order='d')
-!!
-!!     call update(arr,'b')
-!!     call update(arr,'[')
-!!     call update(arr,'c')
-!!     call update(arr,'ZZ')
-!!     call update(arr,'ZZZZ')
-!!     call update(arr,'z')
-!!
-!!     contains
-!!     subroutine update(arr,string)
-!!     character(len=:),allocatable :: arr(:)
-!!     character(len=*)             :: string
-!!     integer                      :: place, plus, ii, end
-!!     ! find where string is or should be
-!!     call locate(arr,string,place)
-!!     write(*,*)'for "'//string//'" index is ',place, size(arr)
-!!     ! if string was not found insert it
-!!     if(place.lt.1)then
-!!        plus=abs(place)
-!!        ii=len(arr)
-!!        end=size(arr)
-!!        ! empty array
-!!        if(end.eq.0)then
-!!           arr=[character(len=ii) :: string ]
-!!        ! put in front of array
-!!        elseif(plus.eq.1)then
-!!           arr=[character(len=ii) :: string, arr]
-!!        ! put at end of array
-!!        elseif(plus.eq.end)then
-!!           arr=[character(len=ii) :: arr, string ]
-!!        ! put in middle of array
-!!        else
-!!           arr=[character(len=ii) :: arr(:plus-1), string,arr(plus:) ]
-!!        endif
-!!        ! show array
-!!        write(*,'("SIZE=",i0,1x,*(a,","))')end,(trim(arr(i)),i=1,end)
-!!     endif
-!!     end subroutine update
-!!     end program demo_locate
-!!
-!!   Results:
-!!
-!!     for "b" index is            2           5
-!!     for "[" index is           -4           5
-!!    SIZE=5 xxx,b,aaa,[,ZZZ,
-!!     for "c" index is           -2           6
-!!    SIZE=6 xxx,c,b,aaa,[,ZZZ,
-!!     for "ZZ" index is           -7           7
-!!    SIZE=7 xxx,c,b,aaa,[,ZZZ,,
-!!     for "ZZZZ" index is           -6           8
-!!    SIZE=8 xxx,c,b,aaa,[,ZZZZ,ZZZ,,
-!!     for "z" index is           -1           9
-!!    SIZE=9 z,xxx,c,b,aaa,[,ZZZZ,ZZZ,,
-!!
-!!##AUTHOR
-!!    1989,2017 John S. Urban
-!!##LICENSE
-!!    Public Domain
-subroutine locate_c(list,value,place,ier,errmsg)
-
-!character(len=*),parameter::ident_5="&
-!&@(#)M_escape__list::locate_c(3f): find PLACE in sorted character array where VALUE can be found or should be placed"
-
-character(len=*),intent(in)             :: value
-integer,intent(out)                     :: place
-character(len=:),allocatable            :: list(:)
-integer,intent(out),optional            :: ier
-character(len=*),intent(out),optional   :: errmsg
-integer                                 :: i
-character(len=:),allocatable            :: message
-integer                                 :: arraysize
-integer                                 :: maxtry
-integer                                 :: imin, imax
-integer                                 :: error
-   if(.not.allocated(list))then
-      list=[character(len=max(len_trim(value),2)) :: ]
-   endif
-   arraysize=size(list)
-   if(debug)write(stderr,*)'*locate_c* START ARRAYSIZE=',size(list)
-
-   error=0
-   if(arraysize.eq.0)then
-      maxtry=0
-      place=-1
-   else
-      maxtry=int(log(float(arraysize))/log(2.0)+1.0)
-      place=(arraysize+1)/2
-   endif
-   imin=1
-   imax=arraysize
-   message=''
-
-   LOOP: block
-   do i=1,maxtry
-
-      if(value.eq.list(PLACE))then
-         exit LOOP
-      else if(value.gt.list(place))then
-         imax=place-1
-      else
-         imin=place+1
-      endif
-
-      if(imin.gt.imax)then
-         place=-imin
-         if(iabs(place).gt.arraysize)then ! ran off end of list. Where new value should go or an unsorted input array'
-            exit LOOP
-         endif
-         exit LOOP
-      endif
-
-      place=(imax+imin)/2
-
-      if(place.gt.arraysize.or.place.le.0)then
-         message='*locate* error: search is out of bounds of list. Probably an unsorted input array'
-         error=-1
-         exit LOOP
-      endif
-
-   enddo
-   message='*locate* exceeded allowed tries. Probably an unsorted input array'
-   endblock LOOP
-   if(present(ier))then
-      ier=error
-   else if(error.ne.0)then
-      write(stderr,*)message//' VALUE=',trim(value)//' PLACE=',place
-      stop 1
-   endif
-   if(present(errmsg))then
-      errmsg=message
-   endif
-   if(debug)write(stderr,*)'*locate_c* END PLACE=',place,' ARRAYSIZE=',size(list),' LENGTH=',len(list)
-end subroutine locate_c
-subroutine locate_d(list,value,place,ier,errmsg)
-
-!character(len=*),parameter::ident_6="&
-!&@(#)M_escape__list::locate_d(3f): find PLACE in sorted doubleprecision array where VALUE can be found or should be placed"
-
-! Assuming an array sorted in descending order
-!
-!  1. If it is not found report where it should be placed as a NEGATIVE index number.
-
-doubleprecision,allocatable            :: list(:)
-doubleprecision,intent(in)             :: value
-integer,intent(out)                    :: place
-integer,intent(out),optional           :: ier
-character(len=*),intent(out),optional  :: errmsg
-
-integer                                :: i
-character(len=:),allocatable           :: message
-integer                                :: arraysize
-integer                                :: maxtry
-integer                                :: imin, imax
-integer                                :: error
-
-   if(.not.allocated(list))then
-      list=[doubleprecision :: ]
-   endif
-   arraysize=size(list)
-   if(debug)write(stderr,*)'*locate_d* START ARRAYSIZE=',size(list)
-
-   error=0
-   if(arraysize.eq.0)then
-      maxtry=0
-      place=-1
-   else
-      maxtry=int(log(float(arraysize))/log(2.0)+1.0)
-      place=(arraysize+1)/2
-   endif
-   imin=1
-   imax=arraysize
-   message=''
-
-   LOOP: block
-   do i=1,maxtry
-
-      if(value.eq.list(PLACE))then
-         exit LOOP
-      else if(value.gt.list(place))then
-         imax=place-1
-      else
-         imin=place+1
-      endif
-
-      if(imin.gt.imax)then
-         place=-imin
-         if(iabs(place).gt.arraysize)then ! ran off end of list. Where new value should go or an unsorted input array'
-            exit LOOP
-         endif
-         exit LOOP
-      endif
-
-      place=(imax+imin)/2
-
-      if(place.gt.arraysize.or.place.le.0)then
-         message='*locate* error: search is out of bounds of list. Probably an unsorted input array'
-         error=-1
-         exit LOOP
-      endif
-
-   enddo
-   message='*locate* exceeded allowed tries. Probably an unsorted input array'
-   endblock LOOP
-   if(present(ier))then
-      ier=error
-   else if(error.ne.0)then
-      write(stderr,*)message//' VALUE=',value,' PLACE=',place
-      stop 1
-   endif
-   if(present(errmsg))then
-      errmsg=message
-   endif
-   if(debug)write(stderr,*)'*locate_d* END PLACE=',place,' ARRAYSIZE=',size(list)
-end subroutine locate_d
-subroutine locate_r(list,value,place,ier,errmsg)
-
-!character(len=*),parameter::ident_7="&
-!&@(#)M_escape__list::locate_r(3f): find PLACE in sorted real array where VALUE can be found or should be placed"
-
-! Assuming an array sorted in descending order
-!
-!  1. If it is not found report where it should be placed as a NEGATIVE index number.
-
-real,allocatable                       :: list(:)
-real,intent(in)                        :: value
-integer,intent(out)                    :: place
-integer,intent(out),optional           :: ier
-character(len=*),intent(out),optional  :: errmsg
-
-integer                                :: i
-character(len=:),allocatable           :: message
-integer                                :: arraysize
-integer                                :: maxtry
-integer                                :: imin, imax
-integer                                :: error
-
-   if(.not.allocated(list))then
-      list=[real :: ]
-   endif
-   arraysize=size(list)
-   if(debug)write(stderr,*)'*locate_r* START ARRAYSIZE=',size(list)
-
-   error=0
-   if(arraysize.eq.0)then
-      maxtry=0
-      place=-1
-   else
-      maxtry=int(log(float(arraysize))/log(2.0)+1.0)
-      place=(arraysize+1)/2
-   endif
-   imin=1
-   imax=arraysize
-   message=''
-
-   LOOP: block
-   do i=1,maxtry
-
-      if(value.eq.list(PLACE))then
-         exit LOOP
-      else if(value.gt.list(place))then
-         imax=place-1
-      else
-         imin=place+1
-      endif
-
-      if(imin.gt.imax)then
-         place=-imin
-         if(iabs(place).gt.arraysize)then ! ran off end of list. Where new value should go or an unsorted input array'
-            exit LOOP
-         endif
-         exit LOOP
-      endif
-
-      place=(imax+imin)/2
-
-      if(place.gt.arraysize.or.place.le.0)then
-         message='*locate* error: search is out of bounds of list. Probably an unsorted input array'
-         error=-1
-         exit LOOP
-      endif
-
-   enddo
-   message='*locate* exceeded allowed tries. Probably an unsorted input array'
-   endblock LOOP
-   if(present(ier))then
-      ier=error
-   else if(error.ne.0)then
-      write(stderr,*)message//' VALUE=',value,' PLACE=',place
-      stop 1
-   endif
-   if(present(errmsg))then
-      errmsg=message
-   endif
-   if(debug)write(stderr,*)'*locate_r* END PLACE=',place,' ARRAYSIZE=',size(list)
-end subroutine locate_r
-subroutine locate_i(list,value,place,ier,errmsg)
-
-!character(len=*),parameter::ident_8="&
-!&@(#)M_escape__list::locate_i(3f): find PLACE in sorted integer array where VALUE can be found or should be placed"
-
-! Assuming an array sorted in descending order
-!
-!  1. If it is not found report where it should be placed as a NEGATIVE index number.
-
-integer,allocatable                    :: list(:)
-integer,intent(in)                     :: value
-integer,intent(out)                    :: place
-integer,intent(out),optional           :: ier
-character(len=*),intent(out),optional  :: errmsg
-
-integer                                :: i
-character(len=:),allocatable           :: message
-integer                                :: arraysize
-integer                                :: maxtry
-integer                                :: imin, imax
-integer                                :: error
-
-   if(.not.allocated(list))then
-      list=[integer :: ]
-   endif
-   arraysize=size(list)
-   if(debug)write(stderr,*)'*locate_i* START ARRAYSIZE=',size(list)
-
-   error=0
-   if(arraysize.eq.0)then
-      maxtry=0
-      place=-1
-   else
-      maxtry=int(log(float(arraysize))/log(2.0)+1.0)
-      place=(arraysize+1)/2
-   endif
-   imin=1
-   imax=arraysize
-   message=''
-
-   LOOP: block
-   do i=1,maxtry
-
-      if(value.eq.list(PLACE))then
-         exit LOOP
-      else if(value.gt.list(place))then
-         imax=place-1
-      else
-         imin=place+1
-      endif
-
-      if(imin.gt.imax)then
-         place=-imin
-         if(iabs(place).gt.arraysize)then ! ran off end of list. Where new value should go or an unsorted input array'
-            exit LOOP
-         endif
-         exit LOOP
-      endif
-
-      place=(imax+imin)/2
-
-      if(place.gt.arraysize.or.place.le.0)then
-         message='*locate* error: search is out of bounds of list. Probably an unsorted input array'
-         error=-1
-         exit LOOP
-      endif
-
-   enddo
-   message='*locate* exceeded allowed tries. Probably an unsorted input array'
-   endblock LOOP
-   if(present(ier))then
-      ier=error
-   else if(error.ne.0)then
-      write(stderr,*)message//' VALUE=',value,' PLACE=',place
-      stop 1
-   endif
-   if(present(errmsg))then
-      errmsg=message
-   endif
-   if(debug)write(stderr,*)'*locate_i* END PLACE=',place,' ARRAYSIZE=',size(list)
-end subroutine locate_i
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-!>
-!!##NAME
-!!    remove(3f) - [M_escape__list] remove entry from an allocatable array at specified position
-!!    (LICENSE:PD)
-!!
-!!##SYNOPSIS
-!!
-!!   subroutine remove(list,place)
-!!
-!!    character(len=:)|doubleprecision|real|integer,intent(inout) :: list(:)
-!!    integer, intent(out) :: PLACE
-!!
-!!##DESCRIPTION
-!!
-!!    Remove a value from an allocatable array at the specified index.
-!!    The array is assumed to be sorted in descending order. It may be of
-!!    type CHARACTER, DOUBLEPRECISION, REAL, or INTEGER.
-!!
-!!##OPTIONS
-!!
-!!    list    is the list array.
-!!    PLACE   is the subscript for the entry that should be removed
-!!
-!!##EXAMPLES
-!!
 !!
 !!    Sample program
 !!
-!!     program demo_remove
-!!     use M_sort, only : sort_shell
-!!     use M_escape__list, only : locate, remove
+!!     program demo_M_attr
+!!     use M_attr, only : attr, attr_mode, attr_update, alert
 !!     implicit none
-!!     character(len=:),allocatable :: arr(:)
-!!     integer                       :: i
-!!     integer                       :: end
+!!     character(len=256) :: line
+!!     character(len=*),parameter :: f='( &
+!!      &"   <bo><w><G> GREAT: </G></w>&
+!!      &The new value <Y><b>",f8.4,1x,"</b></Y> is in range"&
+!!      &)'
+!!     real :: value
 !!
-!!     arr=[character(len=20) :: '', 'ZZZ', 'Z', 'aaa', 'b', 'b', 'ab', 'bb', 'xxx' ]
-!!     ! make sure sorted in descending order
-!!     call sort_shell(arr,order='d')
+!!        write(*,'(a)')&
+!!        &attr('   <r><W><bo> ERROR: </W>red text on a white background</y>')
 !!
-!!     end=size(arr)
-!!     write(*,'("SIZE=",i0,1x,*(a,","))')end,(trim(arr(i)),i=1,end)
-!!     call remove(arr,1)
-!!     end=size(arr)
-!!     write(*,'("SIZE=",i0,1x,*(a,","))')end,(trim(arr(i)),i=1,end)
-!!     call remove(arr,4)
-!!     end=size(arr)
-!!     write(*,'("SIZE=",i0,1x,*(a,","))')end,(trim(arr(i)),i=1,end)
+!!        value=3.4567
+!!        write(line,fmt=f) value
+!!        write(*,'(a)')attr(trim(line))
 !!
-!!     end program demo_remove
+!!        ! write same string as plain text
+!!        write(*,*)
+!!        call attr_mode(manner='plain')
+!!        write(*,'(a)')attr(trim(line))
 !!
-!!   Results:
+!!        call attr_mode(manner='color')
+!!        ! use pre-defined or user defined strings
+!!        write(*,*)
+!!        write(*,'(a)')attr('<ERROR> Woe is nigh.')
+!!        write(*,'(a)')attr('<WARNING> The night is young.')
+!!        write(*,'(a)')attr('<INFO> It is Monday')
 !!
-!!    Expected output
+!!        call alert('<ERROR>', 'Woe is nigh.')
+!!        call alert('<WARNING>', 'The night is young.')
+!!        call alert('<INFO>', 'It is Monday')
 !!
-!!     SIZE=9 xxx,bb,b,b,ab,aaa,ZZZ,Z,,
-!!     SIZE=8 bb,b,b,ab,aaa,ZZZ,Z,,
-!!     SIZE=7 bb,b,b,aaa,ZZZ,Z,,
+!!        ! create a custom mnemonic
+!!        call attr_update('MYERROR',attr(&
+!!        ' <R><e> E<w>-<e>R<w>-<e>R<w>-<e>O<w>-<e>R: </e></R></bo>'&
+!!        ))
+!!        write(*,*)
+!!        write(*,'(a)')attr('<MYERROR> my custom message style')
+!!
+!!     end program demo_M_attr
 !!
 !!##AUTHOR
-!!    1989,2017 John S. Urban
+!!    John S. Urban, 2021
+!!
 !!##LICENSE
-!!    Public Domain
-subroutine remove_c(list,place)
-
-!character(len=*),parameter::ident_9="@(#)M_escape__list::remove_c(3fp): remove string from allocatable string array at specified position"
-
-character(len=:),allocatable :: list(:)
-integer,intent(in)           :: place
-integer                      :: ii, end
-   if(debug) write(stderr,*)'*remove_c* START PLACE=',place,' ORIGINALSIZE=',size(list)
-   if(.not.allocated(list))then
-      list=[character(len=2) :: ]
-   endif
-   ii=len(list)
-   end=size(list)
-   if(place.le.0.or.place.gt.end)then                       ! index out of bounds of array
-   elseif(place.eq.end)then                                 ! remove from array
-      list=[character(len=ii) :: list(:place-1) ]
-   else
-      list=[character(len=ii) :: list(:place-1), list(place+1:) ]
-   endif
-   if(debug)write(stderr,*)'*remove_c* END PLACE=',place,' NEWSIZE=',size(list),' LENGTH=',len(list)
-end subroutine remove_c
-subroutine remove_d(list,place)
-
-!character(len=*),parameter::ident_10="&
-!&@(#)M_escape__list::remove_d(3fp): remove doubleprecision value from allocatable array at specified position"
-
-doubleprecision,allocatable  :: list(:)
-integer,intent(in)           :: place
-integer                      :: end
-   if(debug) write(stderr,*)'*remove_d* START PLACE=',place,' ORIGINALSIZE=',size(list)
-   if(.not.allocated(list))then
-           list=[doubleprecision :: ]
-   endif
-   end=size(list)
-   if(place.le.0.or.place.gt.end)then                       ! index out of bounds of array
-   elseif(place.eq.end)then                                 ! remove from array
-      list=[ list(:place-1)]
-   else
-      list=[ list(:place-1), list(place+1:) ]
-   endif
-   if(debug)write(stderr,*)'*remove_d* END PLACE=',place,' NEWSIZE=',size(list)
-
-end subroutine remove_d
-subroutine remove_r(list,place)
-
-!character(len=*),parameter::ident_11="@(#)M_escape__list::remove_r(3fp): remove value from allocatable array at specified position"
-
-real,allocatable    :: list(:)
-integer,intent(in)  :: place
-integer             :: end
-   if(debug) write(stderr,*)'*remove_r* START PLACE=',place,' ORIGINALSIZE=',size(list)
-   if(.not.allocated(list))then
-      list=[real :: ]
-   endif
-   end=size(list)
-   if(place.le.0.or.place.gt.end)then                       ! index out of bounds of array
-   elseif(place.eq.end)then                                 ! remove from array
-      list=[ list(:place-1)]
-   else
-      list=[ list(:place-1), list(place+1:) ]
-   endif
-   if(debug)write(stderr,*)'*remove_r* END PLACE=',place,' NEWSIZE=',size(list)
-
-end subroutine remove_r
-subroutine remove_l(list,place)
-
-!character(len=*),parameter::ident_12="@(#)M_escape__list::remove_l(3fp): remove value from allocatable array at specified position"
-
-logical,allocatable    :: list(:)
-integer,intent(in)     :: place
-integer                :: end
-
-   if(debug) write(stderr,*)'*remove_l* START PLACE=',place,' ORIGINALSIZE=',size(list)
-   if(.not.allocated(list))then
-      list=[logical :: ]
-   endif
-   end=size(list)
-   if(place.le.0.or.place.gt.end)then                       ! index out of bounds of array
-   elseif(place.eq.end)then                                 ! remove from array
-      list=[ list(:place-1)]
-   else
-      list=[ list(:place-1), list(place+1:) ]
-   endif
-   if(debug)write(stderr,*)'*remove_l* END PLACE=',place,' NEWSIZE=',size(list)
-
-end subroutine remove_l
-subroutine remove_i(list,place)
-
-!character(len=*),parameter::ident_13="@(#)M_escape__list::remove_i(3fp): remove value from allocatable array at specified position"
-integer,allocatable    :: list(:)
-integer,intent(in)     :: place
-integer                :: end
-
-   if(debug) write(stderr,*)'*remove_i* START PLACE=',place,' ORIGINALSIZE=',size(list)
-   if(.not.allocated(list))then
-      list=[integer :: ]
-   endif
-   end=size(list)
-   if(place.le.0.or.place.gt.end)then                       ! index out of bounds of array
-   elseif(place.eq.end)then                                 ! remove from array
-      list=[ list(:place-1)]
-   else
-      list=[ list(:place-1), list(place+1:) ]
-   endif
-   if(debug)write(stderr,*)'*remove_i* END PLACE=',place,' NEWSIZE=',size(list)
-
-end subroutine remove_i
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-!>
-!!##NAME
-!!    replace(3f) - [M_escape__list] replace entry in a string array at specified position
-!!    (LICENSE:PD)
+!!    MIT
 !!
-!!##SYNOPSIS
+!!##SEE ALSO
+!!    attr(3f), attr_mode(3f), attr_update(3f)
 !!
-!!   subroutine replace(list,value,place)
+!!    Related information:
 !!
-!!    character(len=*)|doubleprecision|real|integer,intent(in) :: value
-!!    character(len=:)|doubleprecision|real|integer,intent(in) :: list(:)
-!!    integer, intent(out)          :: PLACE
-!!
-!!##DESCRIPTION
-!!
-!!    replace a value in an allocatable array at the specified index. Unless the
-!!    array needs the string length to increase this is merely an assign of a value
-!!    to an array element.
-!!
-!!    The array may be of type CHARACTER, DOUBLEPRECISION, REAL, or INTEGER>
-!!    It is assumed to be sorted in descending order without duplicate values.
-!!
-!!    The value and list must be of the same type.
-!!
-!!##OPTIONS
-!!
-!!    VALUE         the value to place in the array
-!!    LIST          is the array.
-!!    PLACE         is the subscript that the entry should be placed at
-!!
-!!##EXAMPLES
-!!
-!!
-!!   Replace key-value pairs in a dictionary
-!!
-!!     program demo_replace
-!!     use M_escape__list, only  : insert, locate, replace
-!!     ! Find if a key is in a list and insert it
-!!     ! into the key list and value list if it is not present
-!!     ! or replace the associated value if the key existed
-!!     implicit none
-!!     character(len=20)            :: key
-!!     character(len=100)           :: val
-!!     character(len=:),allocatable :: keywords(:)
-!!     character(len=:),allocatable :: values(:)
-!!     integer                      :: i
-!!     integer                      :: place
-!!     call update('b','value of b')
-!!     call update('a','value of a')
-!!     call update('c','value of c')
-!!     call update('c','value of c again')
-!!     call update('d','value of d')
-!!     call update('a','value of a again')
-!!     ! show array
-!!     write(*,'(*(a,"==>",a,/))')(trim(keywords(i)),trim(values(i)),i=1,size(keywords))
-!!
-!!     call locate(keywords,'a',place)
-!!     if(place.gt.0)then
-!!        write(*,*)'The value of "a" is',trim(values(place))
-!!     else
-!!        write(*,*)'"a" not found'
-!!     endif
-!!
-!!     contains
-!!     subroutine update(key,val)
-!!     character(len=*),intent(in)  :: key
-!!     character(len=*),intent(in)  :: val
-!!     integer                      :: place
-!!
-!!     ! find where string is or should be
-!!     call locate(keywords,key,place)
-!!     ! if string was not found insert it
-!!     if(place.lt.1)then
-!!        call insert(keywords,key,abs(place))
-!!        call insert(values,val,abs(place))
-!!     else ! replace
-!!        call replace(values,val,place)
-!!     endif
-!!
-!!     end subroutine update
-!!    end program demo_replace
-!!
-!!   Expected output
-!!
-!!    d==>value of d
-!!    c==>value of c again
-!!    b==>value of b
-!!    a==>value of a again
-!!
-!!##AUTHOR
-!!    1989,2017 John S. Urban
-!!##LICENSE
-!!    Public Domain
-subroutine replace_c(list,value,place)
-
-!character(len=*),parameter::ident_14="@(#)M_escape__list::replace_c(3fp): replace string in allocatable string array at specified position"
-
-character(len=*),intent(in)  :: value
-character(len=:),allocatable :: list(:)
-character(len=:),allocatable :: kludge(:)
-integer,intent(in)           :: place
-integer                      :: ii
-integer                      :: tlen
-integer                      :: end
-   if(debug) write(stderr,*)'*replace_c* START VALUE=',trim(value),' PLACE=',place,' ORIGINALSIZE=',size(list)
-   if(.not.allocated(list))then
-      list=[character(len=max(len_trim(value),2)) :: ]
-   endif
-   tlen=len_trim(value)
-   end=size(list)
-   if(place.lt.0.or.place.gt.end)then
-           write(stderr,*)'*replace_c* error: index out of range. end=',end,' index=',place
-   elseif(len_trim(value).le.len(list))then
-      list(place)=value
-   else  ! increase length of variable
-      ii=max(tlen,len(list))
-      kludge=[character(len=ii) :: list ]
-      list=kludge
-      list(place)=value
-   endif
-   if(debug)write(stderr,*)'*replace_c* END VALUE=',trim(value),' PLACE=',place,' NEWSIZE=',size(list),' LENGTH=',len(list)
-end subroutine replace_c
-subroutine replace_d(list,value,place)
-
-!character(len=*),parameter::ident_15="&
-!&@(#)M_escape__list::replace_d(3fp): place doubleprecision value into allocatable array at specified position"
-
-doubleprecision,intent(in)   :: value
-doubleprecision,allocatable  :: list(:)
-integer,intent(in)           :: place
-integer                      :: end
-   if(debug) write(stderr,*)'*replace_d* START VALUE=',value,' PLACE=',place,' ORIGINALSIZE=',size(list)
-   if(.not.allocated(list))then
-           list=[doubleprecision :: ]
-   endif
-   end=size(list)
-   if(end.eq.0)then                                          ! empty array
-      list=[value]
-   elseif(place.gt.0.and.place.le.end)then
-      list(place)=value
-   else                                                      ! put in middle of array
-      write(stderr,*)'*replace_d* error: index out of range. end=',end,' index=',place
-   endif
-   if(debug)write(stderr,*)'*replace_d* END VALUE=',value,' PLACE=',place,' NEWSIZE=',size(list)
-end subroutine replace_d
-subroutine replace_r(list,value,place)
-
-!character(len=*),parameter::ident_16="@(#)M_escape__list::replace_r(3fp): place value into allocatable array at specified position"
-
-real,intent(in)       :: value
-real,allocatable      :: list(:)
-integer,intent(in)    :: place
-integer               :: end
-   if(debug) write(stderr,*)'*replace_r* START REPLACE_R VALUE=',value,' PLACE=',place,' ORIGINALSIZE=',size(list)
-   if(.not.allocated(list))then
-      list=[real :: ]
-   endif
-   end=size(list)
-   if(end.eq.0)then                                          ! empty array
-      list=[value]
-   elseif(place.gt.0.and.place.le.end)then
-      list(place)=value
-   else                                                      ! put in middle of array
-      write(stderr,*)'*replace_r* error: index out of range. end=',end,' index=',place
-   endif
-   if(debug)write(stderr,*)'*replace_r* END REPLACE_R VALUE=',value,' PLACE=',place,' NEWSIZE=',size(list)
-end subroutine replace_r
-subroutine replace_l(list,value,place)
-
-!character(len=*),parameter::ident_17="@(#)M_escape__list::replace_l(3fp): place value into allocatable array at specified position"
-
-logical,allocatable   :: list(:)
-logical,intent(in)    :: value
-integer,intent(in)    :: place
-integer               :: end
-   if(.not.allocated(list))then
-      list=[logical :: ]
-   endif
-   end=size(list)
-   if(debug)write(stderr,*)'*replace_l* START REPLACE_L VALUE=',value,' PLACE=',place,' ORIGINALSIZE=',size(list)
-   if(end.eq.0)then                                          ! empty array
-      list=[value]
-   elseif(place.gt.0.and.place.le.end)then
-      list(place)=value
-   else                                                      ! put in middle of array
-      write(stderr,*)'*replace_l* error: index out of range. end=',end,' index=',place
-   endif
-   if(debug)write(stderr,*)'*replace_l* END REPLACE_L VALUE=',value,' PLACE=',place,' NEWSIZE=',size(list)
-end subroutine replace_l
-subroutine replace_i(list,value,place)
-
-!character(len=*),parameter::ident_18="@(#)M_escape__list::replace_i(3fp): place value into allocatable array at specified position"
-
-integer,intent(in)    :: value
-integer,allocatable   :: list(:)
-integer,intent(in)    :: place
-integer               :: end
-   if(.not.allocated(list))then
-      list=[integer :: ]
-   endif
-   end=size(list)
-   if(debug)write(stderr,*)'*replace_i* START VALUE=',value,' PLACE=',place,' ORIGINALSIZE=',size(list)
-   if(end.eq.0)then                                          ! empty array
-      list=[value]
-   elseif(place.gt.0.and.place.le.end)then
-      list(place)=value
-   else                                                      ! put in middle of array
-      write(stderr,*)'*replace_i* error: index out of range. end=',end,' index=',place
-   endif
-   if(debug)write(stderr,*)'*replace_i* END VALUE=',value,' PLACE=',place,' NEWSIZE=',size(list)
-end subroutine replace_i
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-!>
-!!##NAME
-!!    insert(3f) - [M_escape__list] insert entry into a string array at specified position
-!!    (LICENSE:PD)
-!!
-!!##SYNOPSIS
-!!
-!!   subroutine insert(list,value,place)
-!!
-!!    character(len=*)|doubleprecision|real|integer,intent(in) :: value
-!!    character(len=:)|doubleprecision|real|integer,intent(in) :: list(:)
-!!    integer,intent(in)    :: place
-!!
-!!##DESCRIPTION
-!!
-!!    Insert a value into an allocatable array at the specified index.
-!!    The list and value must be of the same type (CHARACTER, DOUBLEPRECISION,
-!!    REAL, or INTEGER)
-!!
-!!##OPTIONS
-!!
-!!    list    is the list array. Must be sorted in descending order.
-!!    value   the value to place in the array
-!!    PLACE   is the subscript that the entry should be placed at
-!!
-!!##EXAMPLES
-!!
-!!
-!!    Find if a string is in a sorted array, and insert the string into
-!!    the list if it is not present ...
-!!
-!!     program demo_insert
-!!     use M_sort, only : sort_shell
-!!     use M_escape__list, only : locate, insert
-!!     implicit none
-!!     character(len=:),allocatable :: arr(:)
-!!     integer                       :: i
-!!
-!!     arr=[character(len=20) :: '', 'ZZZ', 'aaa', 'b', 'xxx' ]
-!!     ! make sure sorted in descending order
-!!     call sort_shell(arr,order='d')
-!!     ! add or replace values
-!!     call update(arr,'b')
-!!     call update(arr,'[')
-!!     call update(arr,'c')
-!!     call update(arr,'ZZ')
-!!     call update(arr,'ZZZ')
-!!     call update(arr,'ZZZZ')
-!!     call update(arr,'')
-!!     call update(arr,'z')
-!!
-!!     contains
-!!     subroutine update(arr,string)
-!!     character(len=:),allocatable :: arr(:)
-!!     character(len=*)             :: string
-!!     integer                      :: place, end
-!!
-!!     end=size(arr)
-!!     ! find where string is or should be
-!!     call locate(arr,string,place)
-!!     ! if string was not found insert it
-!!     if(place.lt.1)then
-!!        call insert(arr,string,abs(place))
-!!     endif
-!!     ! show array
-!!     end=size(arr)
-!!     write(*,'("array is now SIZE=",i0,1x,*(a,","))')end,(trim(arr(i)),i=1,end)
-!!
-!!     end subroutine update
-!!     end program demo_insert
-!!
-!!   Results:
-!!
-!!     array is now SIZE=5 xxx,b,aaa,ZZZ,,
-!!     array is now SIZE=6 xxx,b,aaa,[,ZZZ,,
-!!     array is now SIZE=7 xxx,c,b,aaa,[,ZZZ,,
-!!     array is now SIZE=8 xxx,c,b,aaa,[,ZZZ,ZZ,,
-!!     array is now SIZE=9 xxx,c,b,aaa,[,ZZZZ,ZZZ,ZZ,,
-!!     array is now SIZE=10 z,xxx,c,b,aaa,[,ZZZZ,ZZZ,ZZ,,
-!!
-!!##AUTHOR
-!!    1989,2017 John S. Urban
-!!##LICENSE
-!!    Public Domain
-subroutine insert_c(list,value,place)
-
-!character(len=*),parameter::ident_19="@(#)M_escape__list::insert_c(3fp): place string into allocatable string array at specified position"
-
-character(len=*),intent(in)  :: value
-character(len=:),allocatable :: list(:)
-character(len=:),allocatable :: kludge(:)
-integer,intent(in)           :: place
-integer                      :: ii
-integer                      :: end
-   if(debug) write(stderr,*)'*insert_c* START VALUE=',trim(value),' PLACE=',place,' ORIGINALSIZE=',size(list)
-
-   if(.not.allocated(list))then
-      list=[character(len=max(len_trim(value),2)) :: ]
-   endif
-
-   ii=max(len_trim(value),len(list),2)
-   end=size(list)
-
-   if(end.eq.0)then                                          ! empty array
-      list=[character(len=ii) :: value ]
-   elseif(place.eq.1)then                                    ! put in front of array
-      kludge=[character(len=ii) :: value, list]
-      list=kludge
-   elseif(place.gt.end)then                                  ! put at end of array
-      kludge=[character(len=ii) :: list, value ]
-      list=kludge
-   elseif(place.ge.2.and.place.le.end)then                 ! put in middle of array
-      kludge=[character(len=ii) :: list(:place-1), value,list(place:) ]
-      list=kludge
-   else                                                      ! index out of range
-      write(stderr,*)'*insert_c* error: index out of range. end=',end,' index=',place,' value=',value
-   endif
-
-   if(debug)write(stderr,*)'*insert_c* END VALUE=',trim(value),' PLACE=',place,' NEWSIZE=',size(list)
-end subroutine insert_c
-subroutine insert_r(list,value,place)
-
-!character(len=*),parameter::ident_20="@(#)M_escape__list::insert_r(3fp): place real value into allocatable array at specified position"
-
-real,intent(in)       :: value
-real,allocatable      :: list(:)
-integer,intent(in)    :: place
-integer               :: end
-
-   if(debug) write(stderr,*)'*insert_r* START VALUE=',value,' PLACE=',place,' ORIGINALSIZE=',size(list)
-   if(.not.allocated(list))then
-      list=[real :: ]
-   endif
-
-   end=size(list)
-   if(end.eq.0)then                                          ! empty array
-      list=[value]
-   elseif(place.eq.1)then                                    ! put in front of array
-      list=[value, list]
-   elseif(place.gt.end)then                                  ! put at end of array
-      list=[list, value ]
-   elseif(place.ge.2.and.place.le.end)then                   ! put in middle of array
-      list=[list(:place-1), value,list(place:) ]
-   else                                                      ! index out of range
-      write(stderr,*)'*insert_r* error: index out of range. end=',end,' index=',place,' value=',value
-   endif
-
-   if(debug)write(stderr,*)'*insert_r* END VALUE=',value,' PLACE=',place,' NEWSIZE=',size(list)
-end subroutine insert_r
-subroutine insert_d(list,value,place)
-
-!character(len=*),parameter::ident_21="&
-!&@(#)M_escape__list::insert_d(3fp): place doubleprecision value into allocatable array at specified position"
-
-doubleprecision,intent(in)       :: value
-doubleprecision,allocatable      :: list(:)
-integer,intent(in)               :: place
-integer                          :: end
-   if(debug) write(stderr,*)'*insert_d* START VALUE=',value,' PLACE=',place,' ORIGINALSIZE=',size(list)
-   if(.not.allocated(list))then
-      list=[doubleprecision :: ]
-   endif
-   end=size(list)
-   if(end.eq.0)then                                          ! empty array
-      list=[value]
-   elseif(place.eq.1)then                                    ! put in front of array
-      list=[value, list]
-   elseif(place.gt.end)then                                  ! put at end of array
-      list=[list, value ]
-   elseif(place.ge.2.and.place.le.end)then                 ! put in middle of array
-      list=[list(:place-1), value,list(place:) ]
-   else                                                      ! index out of range
-      write(stderr,*)'*insert_d* error: index out of range. end=',end,' index=',place,' value=',value
-   endif
-   if(debug)write(stderr,*)'*insert_d* END VALUE=',value,' PLACE=',place,' NEWSIZE=',size(list)
-end subroutine insert_d
-subroutine insert_l(list,value,place)
-
-!character(len=*),parameter::ident_22="@(#)M_escape__list::insert_l(3fp): place value into allocatable array at specified position"
-
-logical,allocatable   :: list(:)
-logical,intent(in)    :: value
-integer,intent(in)    :: place
-integer               :: end
-   if(.not.allocated(list))then
-      list=[logical :: ]
-   endif
-   end=size(list)
-   if(debug)write(stderr,*)'*insert_l* START VALUE=',value,' PLACE=',place,' ORIGINALSIZE=',size(list)
-   if(end.eq.0)then                                          ! empty array
-      list=[value]
-   elseif(place.eq.1)then                                    ! put in front of array
-      list=[value, list]
-   elseif(place.gt.end)then                                  ! put at end of array
-      list=[list, value ]
-   elseif(place.ge.2.and.place.le.end)then                 ! put in middle of array
-      list=[list(:place-1), value,list(place:) ]
-   else                                                      ! index out of range
-      write(stderr,*)'*insert_l* error: index out of range. end=',end,' index=',place,' value=',value
-   endif
-
-   if(debug)write(stderr,*)'*insert_l* END VALUE=',value,' PLACE=',place,' NEWSIZE=',size(list)
-end subroutine insert_l
-subroutine insert_i(list,value,place)
-
-!character(len=*),parameter::ident_23="@(#)M_escape__list::insert_i(3fp): place value into allocatable array at specified position"
-
-integer,allocatable   :: list(:)
-integer,intent(in)    :: value
-integer,intent(in)    :: place
-integer               :: end
-   if(.not.allocated(list))then
-      list=[integer :: ]
-   endif
-   end=size(list)
-   if(debug)write(stderr,*)'*insert_i* START VALUE=',value,' PLACE=',place,' ORIGINALSIZE=',size(list)
-   if(end.eq.0)then                                          ! empty array
-      list=[value]
-   elseif(place.eq.1)then                                    ! put in front of array
-      list=[value, list]
-   elseif(place.gt.end)then                                  ! put at end of array
-      list=[list, value ]
-   elseif(place.ge.2.and.place.le.end)then                 ! put in middle of array
-      list=[list(:place-1), value,list(place:) ]
-   else                                                      ! index out of range
-      write(stderr,*)'*insert_i* error: index out of range. end=',end,' index=',place,' value=',value
-   endif
-
-   if(debug)write(stderr,*)'*insert_i* END VALUE=',value,' PLACE=',place,' NEWSIZE=',size(list)
-end subroutine insert_i
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-!>
-!!##NAME
-!!    dict_delete(3f) - [M_escape__list] delete entry by name from an allocatable sorted string array if it is present
-!!    (LICENSE:PD)
-!!
-!!##SYNOPSIS
-!!
-!!   subroutine dict_delete(key,dict)
-!!
-!!    character(len=*),intent(in) :: key
-!!    type(dictionary)            :: dict
-!!
-!!##DESCRIPTION
-!!
-!!    Find if a string is in a sorted array, and delete the string
-!!    from the dictionary if it is present.
-!!
-!!##OPTIONS
-!!
-!!    KEY           the key name to find and delete from the dictionary.
-!!    DICTIONARY    the dictionary.
-!!
-!!##EXAMPLES
-!!
-!!
-!!    delete a key from a dictionary by name.
-!!
-!!     program demo_dict_delete
-!!     use M_escape__list, only : dictionary
-!!     implicit none
-!!     type(dictionary) :: caps
-!!     integer                       :: i
-!!     call caps%set(caps,'A','aye')
-!!     call caps%set(caps,'B','bee')
-!!     call caps%set(caps,'C','see')
-!!     call caps%set(caps,'D','dee')
-!!
-!!     write(*,101)(trim(arr(i)),i=1,size(caps%keys)) ! show array
-!!     call  caps%del(caps,'A')
-!!     call  caps%del(caps,'C')
-!!     call  caps%del(caps,'z')
-!!     write(*,101)(trim(arr(i)),i=1,size(arr)) ! show array
-!!     101 format (1x,*("[",a,"]",:,","))
-!!     end program demo_dict_delete
-!!
-!!    Results:
-!!
-!!     [z],[xxx],[c],[b],[b],[aaa],[ZZZ],[ZZ]
-!!     [z],[xxx],[b],[b],[aaa],[ZZZ],[ZZ]
-!!     [z],[xxx],[b],[b],[aaa],[ZZZ],[ZZ]
-!!     [z],[xxx],[b],[b],[aaa],[ZZZ],[ZZ]
-!!     [z],[xxx],[aaa],[ZZZ],[ZZ]
-!!     [z],[xxx],[aaa],[ZZZ]
-!!     [z],[xxx],[aaa],[ZZZ]
-!!     [xxx],[aaa],[ZZZ]
-!!
-!!##AUTHOR
-!!    John S. Urban
-!!##LICENSE
-!!    Public Domain
-subroutine dict_delete(self,key)
-
-!character(len=*),parameter::ident_24="@(#)M_escape__list::dict_delete(3f): remove string from sorted allocatable string array if present"
-
-class(dictionary),intent(inout) :: self
-character(len=*),intent(in)     :: key
-integer                         :: place
-
-   call locate(self%key,key,place)
-   if(place.ge.1)then
-      call remove(self%key,place)
-      call remove(self%value,place)
-      call remove(self%count,place)
-   endif
-
-end subroutine dict_delete
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-!>
-!!##NAME
-!!    dict_get(3f) - [M_escape__list] get value of key-value pair in a dictionary given key
-!!    (LICENSE:PD)
-!!
-!!##SYNOPSIS
-!!
-!!   subroutine dict_get(dict,key,value)
-!!
-!!    type(dictionary)            :: dict
-!!    character(len=*),intent(in) :: key
-!!    character(len=*),intent(in) :: VALUE
-!!
-!!##DESCRIPTION
-!!
-!!    get a value given a key from a key-value dictionary
-!!
-!!    If key is not found in dictionary , return a blank
-!!
-!!##OPTIONS
-!!
-!!    DICT     is the dictionary.
-!!    KEY      key name
-!!    VALUE    value associated with key
-!!
-!!##EXAMPLES
-!!
-!!
-!!     program demo_locate
-!!     use M_escape__list, only : dictionary
-!!     implicit none
-!!     type(dictionary)             :: table
-!!     character(len=:),allocatable :: val
-!!     integer          :: i
-!!
-!!     call table%set('A','value for A')
-!!     call table%set('B','value for B')
-!!     call table%set('C','value for C')
-!!     call table%set('D','value for D')
-!!     call table%set('E','value for E')
-!!     call table%set('F','value for F')
-!!     call table%set('G','value for G')
-!!     write(*,*)table%get('A')
-!!     write(*,*)table%get('B')
-!!     write(*,*)table%get('C')
-!!     write(*,*)table%get('D')
-!!     write(*,*)table%get('E')
-!!     write(*,*)table%get('F')
-!!     write(*,*)table%get('G')
-!!     write(*,*)table%get('H')
-!!     end program demo_locate
-!!
-!!    Results:
-!!
-!!##AUTHOR
-!!    John S. Urban
-!!##LICENSE
-!!    Public Domain
-function dict_get(self,key) result(value)
-
-!character(len=*),parameter::ident_25="@(#)M_escape__list::dict_get(3f): get value of key-value pair in dictionary, given key"
-
-!!class(dictionary),intent(inout) :: self
-class(dictionary)               :: self
-character(len=*),intent(in)     :: key
-character(len=:),allocatable    :: value
-integer                         :: place
-   call locate(self%key,key,place)
-   if(place.lt.1)then
-      value=''
-   else
-      value=self%value(place)(:self%count(place))
-   endif
-end function dict_get
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-!>
-!!##NAME
-!!    dict_add(3f) - [M_escape__list] add or replace a key-value pair in a dictionary
-!!    (LICENSE:PD)
-!!
-!!##SYNOPSIS
-!!
-!!   subroutine dict_add(dict,key,value)
-!!
-!!    type(dictionary)            :: dict
-!!    character(len=*),intent(in) :: key
-!!    character(len=*),intent(in) :: VALUE
-!!
-!!##DESCRIPTION
-!!    Add or replace a key-value pair in a dictionary.
-!!
-!!##OPTIONS
-!!    DICT     is the dictionary.
-!!    key      key name
-!!    VALUE    value associated with key
-!!
-!!##EXAMPLES
-!!
-!!    If string is not found in a sorted array, insert the string
-!!
-!!     program demo_add
-!!     use M_escape__list, only : dictionary
-!!     implicit none
-!!     type(dictionary) :: dict
-!!     integer          :: i
-!!
-!!     call dict%set('A','b')
-!!     call dict%set('B','^')
-!!     call dict%set('C',' ')
-!!     call dict%set('D','c')
-!!     call dict%set('E','ZZ')
-!!     call dict%set('F','ZZZZ')
-!!     call dict%set('G','z')
-!!     call dict%set('A','new value for A')
-!!     write(*,'(*(a,"==>","[",a,"]",/))')(trim(dict%key(i)),dict%value(i)(:dict%count(i)),i=1,size(dict%key))
-!!     end program demo_add
-!!
-!!    Results:
-!!
-!!##AUTHOR
-!!    John S. Urban
-!!##LICENSE
-!!    Public Domain
-subroutine dict_add(self,key,value)
-
-!character(len=*),parameter::ident_26="@(#)M_escape__list::dict_add(3f): place key-value pair into dictionary, adding the key if required"
-
-class(dictionary),intent(inout) :: self
-character(len=*),intent(in)     :: key
-character(len=*),intent(in)     :: value
-integer                         :: place
-integer                         :: place2
-   call locate(self%key,key,place)
-   if(place.lt.1)then
-      place2=iabs(place)
-      call insert( self%key,   key,             place2 )
-      call insert( self%value, value,           place2 )
-      call insert( self%count, len_trim(value), place2 )
-   elseif(place.gt.0)then  ! replace instead of insert
-      call insert( self%value, value,           place )
-      call insert( self%count, len_trim(value), place )
-   endif
-end subroutine dict_add
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-end module M_escape__list
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
- 
- 
-!>>>>> build/dependencies/M_escape/src/M_escape.f90
-!>
-!!##NAME
-!!    M_escape(3f) - [M_escape::INTRO] substitute escape sequences for HTML-like
-!!                   syntax in strings
-!!
-!!##SYNOPSIS
-!!
-!!     use M_escape, only : esc, esc_mode, update
-!!     use M_escape, only : attr
-!!     use M_escape, only : color, color_mode
-!!
-!!##DESCRIPTION
-!!    M_escape is a Fortran module for using HTML-like syntax to add
-!!    attributes to terminal output such as color.
-!!
-!!    ANSI escape sequences are not universally supported by all terminal
-!!    emulators; and normally should be suppressed when not going to a tty
-!!    device. This routine provides the basic structure to support such
-!!    behaviors, or to perhaps in the future generate a CSS style sheet
-!!    and HTML instead of text to the terminal, ...
-!!
-!!    Alternatively, direct use of the escape sequences is supported,
-!!    as well as a functional interface, and an object-oriented approach.
-!!
-!!    The original concept was to allow formatting by using an existing
-!!    HTML library to allow the user to write HTML and to format it on a
-!!    terminal like w3m, lynx, and link do. And in some ways this is an
-!!    opposite approach in that it is directly formatting the text by using
-!!    a similar syntax to directly generate text attributes; but it is a
-!!    much simpler approach programmatically.
-!!
-!!    Typically, you should use M_system::system_istty(3f) or the common
-!!    Fortran extension ISATTY() to set the default
-!!    to "plain" instead of "color" when the output file is not a terminal.
-!!
-!!##MAJOR FEATURES
-!!    o Add ANSI terminal escape sequences with an HTML-like syntax with
-!!      ESC(3f).
-!!    o suppress the escape sequence output with ESC_MODE(3f).
-!!    o add, delete, and replace what strings are produced using UPDATE(3f).
-!!
-!!##LIMITATIONS
-!!      o colors are not nestable, keywords are case-sensitive,
-!!      o not all terminals obey the sequences. On Windows, it is best if
-!!        you use Windows 10+ and/or the Linux mode; although it has worked
-!!        with all CygWin and MinGW and Putty windows and mintty(1).
-!!
-!!##FUTURE
-!!     Full support for alternate output formats like HTML and popular markdown
-!!     syntax. For example
-!!
-!!       ANSI  HTML        Markdown
-!!             <h1></h1>   #
-!!             <h2></h2>   ##
-!!             <b></b>     ** and **
-!!             <i></i>     __ and __
-!!
-!!    Apparently have to make a stack of colors to allow nesting colors
-!!
-!!    How common are extensions like xterm-256 has to set RGB values for
-!!    colors and so on?
-!!
-!!    Should a call to system_istty(3f) be built in to turn off escape sequences
-!!    when a terminal is not present?
-!!
-!!    For color or pre-defined words a case statement could be used to call
-!!    specific functions to support platforms like old Microsoft consoles that
-!!    require a function call to assign text attributes instead of in-band ANSI
-!!    escape control sequences. See the "Rosetta Code" web site for examples
-!!    of generating color in Microsoft consoles.
-!!
-!!    Attributes are currently ended at the end of each call to esc(3f). Perhaps
-!!    allow multi-line formatting?
-!!
-!!    Ultimately, an object-oriented package with capabilities like ncurses to
-!!    define a "pad" and move and resize and format it would be ideal and very
-!!    useful. Also see fixedform(3f) in the GPF (General Fortran Package).
-!!
-!!    It is a shame xterm(1) does not support pixel-oriented abilities to define
-!!    a "graphics" area or support canvas(3c)-like in-band graphics, somewhat
-!!    like Tektronix terminals, although it does have a Tektronix 4010 mode.
-!!
-!!    Perhaps overload + to replace //
-!!
-!!##EXAMPLE
-!!
-!!   Sample program
-!!
-!!    program demo_M_escape
-!!    use M_escape, only : esc, esc_mode
-!!    implicit none
-!!    character(len=1024) :: line
-!!    real :: value
-!!       write(*,'(a)')&
-!!       &esc('<r><W>ERROR:</W>This should appear as red text</y>')
-!!       write(*,'(a)')&
-!!       &esc('<y><B>WARNING:</B></y> This should appear as default text')
-!!
-!!       value=3.4567
-!!       if( (value>0.0) .and. (value<100.0))then
-!!          write(line,fmt=&
-!!          &'("<w><G>GREAT</G></w>:&
-!!          &The new value <Y><b>",f8.4,"</b></Y> is in range")')value
-!!       else
-!!          write(line,fmt=&
-!!          &'("<R><e>ERROR</e></R>:&
-!!          &The new value <Y><b>",g0,"</b></Y> is out of range")')value
-!!       endif
-!!
-!!       write(*,'(a)')esc(trim(line))
-!!       ! write as plain text
-!!       call esc_mode(manner='plain')
-!!       write(*,'(a)')esc(trim(line))
-!!
-!!    end program demo_M_escape
-!!
-!!##ALTERNATE DIRECT USE
-!!
-!!   Alternatively, you may use the escape sequences directly
-!!
-!!    program direct
-!!       use M_escape, only : &
-!!      ! FOREGROUND COLORS
-!!         & fg_red, fg_cyan, fg_magenta, fg_blue, &
-!!         & fg_green, fg_yellow, fg_white, fg_ebony, &
-!!         & fg_default, &
-!!      ! BACKGROUND COLORS
-!!         & bg_red, bg_cyan, bg_magenta, bg_blue, &
-!!         & bg_green, bg_yellow, bg_white, bg_ebony, &
-!!         & bg_default, &
-!!      ! ATTRIBUTES
-!!         & bold, italic, inverse, underline,  &
-!!         & unbold, unitalic, uninverse, ununderline,  &
-!!         & reset, &
-!!      ! DISPLAY
-!!         & clear
-!!       implicit none
-!!         write(*,'(*(g0))')fg_red,bg_green,bold,'Hello!',reset
-!!    end program direct
-!!
-!!##ALTERNATE FUNCTIONAL INTERFACE
-!!
-!!  If you prefer a functional interface, use the attr(3f) function with
-!!  the same keywords as with the esc(3f) function. Note that esc_mode(3f)
-!!  will work with this function.
-!!
-!!    program functional
-!!    use M_escape, only : attr, esc_mode
-!!    implicit none
-!!         call printme('color')
-!!         call printme('plain')
-!!         call printme('raw')
-!!    contains
-!!    subroutine printme(mymode)
-!!    character(len=*),intent(in) :: mymode
-!!       call esc_mode(mymode)
-!!       write(*,'(a)')mymode
-!!       write(*,'(*(g0))',advance='no') &
-!!        & attr('red:BLUE:bold','Hello!'), &
-!!        & 'and everything is back to defaults or ', &
-!!        & attr('RED:blue:bold'),'Hello Again!', &
-!!        & attr('/BLUE'),' Well, the text color is still on.',attr('reset')
-!!       write(*,'(*(g0))',advance='yes')' Back to normal writes.'
-!!    end subroutine printme
-!!    end program functional
-module M_escape
-use M_escape__list, only : insert, locate, replace, remove
-use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT,stdin=>INPUT_UNIT    ! access computing environment
+!!     terminfo(3c), termlib(3c), tput(1), reset(1), clear(1),
+!!     console_codes(4), ECMA-48,
+!!     https://en.wikipedia.org/wiki/ANSI_escape_code
+module M_attr
+use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT,stdin=>INPUT_UNIT,stdout=>OUTPUT_UNIT
 use, intrinsic :: iso_c_binding, only: c_int
 implicit none
 private
-public esc
-public esc_mode
-public update
-public print_dictionary
-public M_escape_initialize
+public  :: attr
+public  :: attr_mode
+public  :: attr_update
+public  :: alert, advice
 
-!-!public flush_colors, init_colors
-public attr
+private :: attr_matrix
+private :: attr_scalar
+private :: attr_scalar_width
+private :: get
+
+private :: locate   ! find PLACE in sorted character array where value can be found or should be placed
+private :: insert   ! insert entry into a sorted allocatable array at specified position
+private :: replace  ! replace entry by index from a sorted allocatable array if it is present
+private :: remove   ! delete entry by index from a sorted allocatable array if it is present
+private :: wipe_dictionary
+
+private :: vt102
+
+interface attr
+   module procedure attr_scalar
+   module procedure attr_matrix
+   module procedure attr_scalar_width
+end interface
+
+interface advice  ! deprecated old name for alert(3f)
+   module procedure alert
+end interface
 
 ! direct use of constant strings
-public color
-public color_mode
-logical,save :: G_color=.true.
-
-logical,save :: debug=.false.
 
 character(len=:),allocatable,save :: keywords(:)
 character(len=:),allocatable,save :: values(:)
-integer,allocatable,save :: counts(:)
+character(len=:),allocatable,save :: mono_values(:)
 
 character(len=:),allocatable,save :: mode
 
+! mnemonics
+character(len=*),parameter  :: NL=new_line('a')                     ! New line character.
 ! DECIMAL
 ! *-------*-------*-------*-------*-------*-------*-------*-------*
 ! | 00 nul| 01 soh| 02 stx| 03 etx| 04 eot| 05 enq| 06 ack| 07 bel|
@@ -44139,114 +42582,113 @@ character(len=:),allocatable,save :: mode
 ! |112  p |113  q |114  r |115  s |116  t |117  u |118  v |119  w |
 ! |120  x |121  y |122  z |123  { |124  | |125  } |126  ~ |127 del|
 ! *-------*-------*-------*-------*-------*-------*-------*-------*
-
-! mnemonics
-character(len=*),parameter  :: NL=new_line('a')                     ! New line character.
-character(len=*),parameter  :: HT=char(09)                          ! Horizontal tab
-character(len=*),parameter  :: ESCAPE=achar(27)                     ! "\" character.
+character(len=*),parameter  :: nul=achar(0)
+character(len=*),parameter  :: bel =achar(7)   ! ^G beeps;
+character(len=*),parameter  :: bs =achar(8)    ! ^H backspaces one column (but not past the beginning of the line);
+character(len=*),parameter  :: ht =achar(9)    ! ^I goes to next tab stop or to the end of the line if there is no earlier tab stop
+character(len=*),parameter  :: lf =achar(10)   ! ^J
+character(len=*),parameter  :: vt =achar(11)   ! ^K
+character(len=*),parameter  :: ff =achar(12)   ! ^L all give a linefeed, and if LF/NL (new-line mode) is set also a carriage return
+character(len=*),parameter  :: cr =achar(13)   ! ^M gives a carriage return;
+character(len=*),parameter  :: so =achar(14)   ! ^N activates the G1 character set;
+character(len=*),parameter  :: si =achar(15)   ! ^O activates the G0 character set;
+character(len=*),parameter  :: can =achar(24)  ! ^X interrupt escape sequences;
+character(len=*),parameter  :: sub=achar(26)   ! ^Z interrupt escape sequences;
+character(len=*),parameter  :: esc =achar(27)  ! ^[ starts an escape sequence;
+character(len=*),parameter  :: del =achar(127) ! is ignored;
 ! codes
-character(len=*),parameter  :: CODE_START=ESCAPE//'['               ! Start ANSI code, "\[".
+character(len=*),parameter  :: CODE_START=esc//'['               ! Start ANSI code, "\[".
 character(len=*),parameter  :: CODE_END='m'                         ! End ANSI code, "m".
 character(len=*),parameter  :: CODE_RESET=CODE_START//'0'//CODE_END ! Clear all styles, "\[0m".
 
 character(len=*),parameter  :: CLEAR_DISPLAY=CODE_START//'2J'
 character(len=*),parameter  :: HOME_DISPLAY=CODE_START//'H'
 character(len=*),parameter  :: BELL=achar(7)
-character(len=*),parameter  :: NEWLINE=achar(7)
 
-character(len=*),parameter  :: BOLD_ON='1',   ITALIC_ON='3',   UNDERLINE_ON='4',   INVERSE_ON='7'
-character(len=*),parameter  :: BOLD_OFF='22', ITALIC_OFF='23', UNDERLINE_OFF='24', INVERSE_OFF='27'
+character(len=*),parameter  :: AT_BOLD='1', AT_ITALIC='3', AT_UNDERLINE='4', AT_INVERSE='7'
+character(len=*),parameter  :: BLACK='0', RED='1', GREEN='2', YELLOW='3', BLUE='4', MAGENTA='5', CYAN='6', WHITE='7', DEFAULT='9'
+!prefixes
+character(len=*),parameter  :: FG='3'
+character(len=*),parameter  :: BG='4'
+character(len=*),parameter  :: FG_INTENSE='9'
+character(len=*),parameter  :: BG_INTENSE='10'
+character(len=*),parameter  :: ON=''
+character(len=*),parameter  :: OFF='2'
 
-character(len=*),parameter  :: COLOR_FG_BLACK='30', COLOR_FG_RED='31',     COLOR_FG_GREEN='32', COLOR_FG_YELLOW='33'
-character(len=*),parameter  :: COLOR_FG_BLUE='34',  COLOR_FG_MAGENTA='35', COLOR_FG_CYAN='36',  COLOR_FG_WHITE='37'
-character(len=*),parameter  :: COLOR_FG_DEFAULT='39'
-
-character(len=*),parameter  :: COLOR_FG_BLACK_INTENSE='90', COLOR_FG_RED_INTENSE='91'
-character(len=*),parameter  :: COLOR_FG_GREEN_INTENSE='92', COLOR_FG_YELLOW_INTENSE='93'
-character(len=*),parameter  :: COLOR_FG_BLUE_INTENSE='94',  COLOR_FG_MAGENTA_INTENSE='95'
-character(len=*),parameter  :: COLOR_FG_CYAN_INTENSE='96',  COLOR_FG_WHITE_INTENSE='97'
-
-character(len=*),parameter  :: COLOR_BG_BLACK='40', COLOR_BG_RED='41',     COLOR_BG_GREEN='42', COLOR_BG_YELLOW='43'
-character(len=*),parameter  :: COLOR_BG_BLUE='44',  COLOR_BG_MAGENTA='45', COLOR_BG_CYAN='46',  COLOR_BG_WHITE='47'
-
-character(len=*),parameter  :: COLOR_BG_DEFAULT='49'
-
-character(len=*),parameter  :: COLOR_BG_BLACK_INTENSE='100', COLOR_BG_RED_INTENSE='101'
-character(len=*),parameter  :: COLOR_BG_GREEN_INTENSE='102', COLOR_BG_YELLOW_INTENSE='103'
-character(len=*),parameter  :: COLOR_BG_BLUE_INTENSE='104',  COLOR_BG_MAGENTA_INTENSE='105'
-character(len=*),parameter  :: COLOR_BG_CYAN_INTENSE='106',  COLOR_BG_WHITE_INTENSE='107'
-
-! for direct use of escape sequences
 
 ! foreground colors
-character(len=*),parameter,public :: fg_red      =  CODE_START//COLOR_FG_RED//CODE_END
-character(len=*),parameter,public :: fg_cyan     =  CODE_START//COLOR_FG_CYAN//CODE_END
-character(len=*),parameter,public :: fg_magenta  =  CODE_START//COLOR_FG_MAGENTA//CODE_END
-character(len=*),parameter,public :: fg_blue     =  CODE_START//COLOR_FG_BLUE//CODE_END
-character(len=*),parameter,public :: fg_green    =  CODE_START//COLOR_FG_GREEN//CODE_END
-character(len=*),parameter,public :: fg_yellow   =  CODE_START//COLOR_FG_YELLOW//CODE_END
-character(len=*),parameter,public :: fg_white    =  CODE_START//COLOR_FG_WHITE//CODE_END
-character(len=*),parameter,public :: fg_ebony    =  CODE_START//COLOR_FG_BLACK//CODE_END
-character(len=*),parameter,public :: fg_black    =  CODE_START//COLOR_FG_BLACK//CODE_END
-character(len=*),parameter,public :: fg_default  =  CODE_START//COLOR_FG_DEFAULT//CODE_END
-
+character(len=*),parameter,public :: fg_red      =  CODE_START//FG//RED//CODE_END
+character(len=*),parameter,public :: fg_cyan     =  CODE_START//FG//CYAN//CODE_END
+character(len=*),parameter,public :: fg_magenta  =  CODE_START//FG//MAGENTA//CODE_END
+character(len=*),parameter,public :: fg_blue     =  CODE_START//FG//BLUE//CODE_END
+character(len=*),parameter,public :: fg_green    =  CODE_START//FG//GREEN//CODE_END
+character(len=*),parameter,public :: fg_yellow   =  CODE_START//FG//YELLOW//CODE_END
+character(len=*),parameter,public :: fg_white    =  CODE_START//FG//WHITE//CODE_END
+character(len=*),parameter,public :: fg_ebony    =  CODE_START//FG//BLACK//CODE_END
+character(len=*),parameter,public :: fg_black    =  CODE_START//FG//BLACK//CODE_END
+character(len=*),parameter,public :: fg_default  =  CODE_START//FG//DEFAULT//CODE_END
 ! background colors
-character(len=*),parameter,public :: bg_red      =  CODE_START//COLOR_BG_RED//CODE_END
-character(len=*),parameter,public :: bg_cyan     =  CODE_START//COLOR_BG_CYAN//CODE_END
-character(len=*),parameter,public :: bg_magenta  =  CODE_START//COLOR_BG_MAGENTA//CODE_END
-character(len=*),parameter,public :: bg_blue     =  CODE_START//COLOR_BG_BLUE//CODE_END
-character(len=*),parameter,public :: bg_green    =  CODE_START//COLOR_BG_GREEN//CODE_END
-character(len=*),parameter,public :: bg_yellow   =  CODE_START//COLOR_BG_YELLOW//CODE_END
-character(len=*),parameter,public :: bg_white    =  CODE_START//COLOR_BG_WHITE//CODE_END
-character(len=*),parameter,public :: bg_ebony    =  CODE_START//COLOR_BG_BLACK//CODE_END
-character(len=*),parameter,public :: bg_black    =  CODE_START//COLOR_BG_BLACK//CODE_END
-character(len=*),parameter,public :: bg_default  =  CODE_START//COLOR_BG_DEFAULT//CODE_END
-
+character(len=*),parameter,public :: bg_red      =  CODE_START//BG//RED//CODE_END
+character(len=*),parameter,public :: bg_cyan     =  CODE_START//BG//CYAN//CODE_END
+character(len=*),parameter,public :: bg_magenta  =  CODE_START//BG//MAGENTA//CODE_END
+character(len=*),parameter,public :: bg_blue     =  CODE_START//BG//BLUE//CODE_END
+character(len=*),parameter,public :: bg_green    =  CODE_START//BG//GREEN//CODE_END
+character(len=*),parameter,public :: bg_yellow   =  CODE_START//BG//YELLOW//CODE_END
+character(len=*),parameter,public :: bg_white    =  CODE_START//BG//WHITE//CODE_END
+character(len=*),parameter,public :: bg_ebony    =  CODE_START//BG//BLACK//CODE_END
+character(len=*),parameter,public :: bg_black    =  CODE_START//BG//BLACK//CODE_END
+character(len=*),parameter,public :: bg_default  =  CODE_START//BG//DEFAULT//CODE_END
 ! attributes
-character(len=*),parameter,public :: bold        =  CODE_START//BOLD_ON//CODE_END
-character(len=*),parameter,public :: italic      =  CODE_START//ITALIC_ON//CODE_END
-character(len=*),parameter,public :: inverse     =  CODE_START//INVERSE_ON//CODE_END
-character(len=*),parameter,public :: underline   =  CODE_START//UNDERLINE_ON//CODE_END
-character(len=*),parameter,public :: unbold      =  CODE_START//BOLD_OFF//CODE_END
-character(len=*),parameter,public :: unitalic    =  CODE_START//ITALIC_OFF//CODE_END
-character(len=*),parameter,public :: uninverse   =  CODE_START//INVERSE_OFF//CODE_END
-character(len=*),parameter,public :: ununderline =  CODE_START//UNDERLINE_OFF//CODE_END
+character(len=*),parameter,public :: bold        =  CODE_START//ON//AT_BOLD//CODE_END
+character(len=*),parameter,public :: italic      =  CODE_START//ON//AT_ITALIC//CODE_END
+character(len=*),parameter,public :: inverse     =  CODE_START//ON//AT_INVERSE//CODE_END
+character(len=*),parameter,public :: underline   =  CODE_START//ON//AT_UNDERLINE//CODE_END
+character(len=*),parameter,public :: unbold      =  CODE_START//'22'//CODE_END
+character(len=*),parameter,public :: unitalic    =  CODE_START//OFF//AT_ITALIC//CODE_END
+character(len=*),parameter,public :: uninverse   =  CODE_START//OFF//AT_INVERSE//CODE_END
+character(len=*),parameter,public :: ununderline =  CODE_START//OFF//AT_UNDERLINE//CODE_END
 
 character(len=*),parameter,public :: reset       =  CODE_RESET
 character(len=*),parameter,public :: clear       =  HOME_DISPLAY//CLEAR_DISPLAY
 
-interface
-    function M_escape_initialize() result(r) bind(c, name="M_escape_initialize")
-        import c_int
-        integer(kind=c_int) :: r
-    end function
-end interface
+!private fmt
+private str
 
+integer,save :: alert_unit=stdout
+logical,save :: alert_debug=.true.
+logical,save :: alert_warn=.true.
+logical,save :: alert_info=.true.
+logical,save :: alert_error=.true.
+logical,save :: alert_other=.true.
+
+interface str
+   module procedure msg_scalar, msg_one
+end interface str
 
 contains
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
 !>
 !!##NAME
-!!    esc(3f) - [M_escape] substitute escape sequences for HTML-like syntax
-!!              in strings
+!!    attr(3f) - [M_attr] substitute escape sequences for HTML-like syntax
+!!               in strings
+!!    (LICENSE:MIT)
 !!
 !!##SYNOPSIS
 !!
-!!     function esc(string,clear_at_end) result (expanded)
+!!      function attr(string,reset) result (expanded)
 !!
-!!       character(len=*),intent(in) :: string
-!!       logical,intent(in),optional :: clear_at_end
-!!       character(len=:),allocatable :: expanded
+!!        ! scalar
+!!        character(len=*),intent(in)  :: string
+!!        logical,intent(in),optional  :: reset
+!!        character(len=:),allocatable :: expanded
+!!        ! or array
+!!        character(len=*),intent(in)  :: string(:)
+!!        logical,intent(in),optional  :: reset
+!!        character(len=:),allocatable :: expanded(:)
+!!        integer,intent(in),optional  :: chars
 !!
 !!##DESCRIPTION
-!!    Use HTML-like syntax to add attributes to terminal output such as color.
-!!
-!!    ANSI escape sequences are not universally supported by all terminal
-!!    emulators; and normally should be suppressed when not going to a
-!!    tty device. This routine provides the basic structure to support
-!!    such behaviors.
+!!    Use HTML-like syntax to add attributes to terminal output such as
+!!    color on devices that recognize ANSI escape sequences.
 !!
 !!##OPTIONS
 !!    string        input string  of form
@@ -44256,119 +42698,168 @@ contains
 !!                   where the current attributes are color names,
 !!                   bold, italic, underline, ...
 !!
-!!    clear_at_end   By default, a sequence to clear all text attributes
-!!                   is sent at the end of the returned text if an escape
+!!    reset          By default, a sequence to clear all text attributes
+!!                   is sent at the end of each returned line if an escape
 !!                   character appears in the output string. This can be
-!!                   turned off by setting this value to false.
-!!##KEYWORDS
-!!    current keywords
+!!                   turned off by setting RESET to .false. .
 !!
-!!     colors:
-!!       r,         red,       R,  RED
-!!       g,         green,     G,  GREEN
-!!       b,         blue,      B,  BLUE
-!!       m,         magenta,   M,  MAGENTA
-!!       c,         cyan,      C,  CYAN
-!!       y,         yellow,    Y,  YELLOW
-!!       e,         ebony,     E,  EBONY
-!!       w,         white,     W,  WHITE
-!!     attributes:
-!!       it,        italic
-!!       bo,        bold
-!!       un,        underline
+!!                   Note if turning off the reset attributes may be
+!!                   continued across lines, but if each line is not
+!!                   self-contained attributes may not display properly
+!!                   when filtered with commands such as grep(1).
+!!
+!!    chars          For arrays, a reset will be placed after the Nth
+!!                   displayable column count in order to make it easier
+!!                   to generate consistent right borders for non-default
+!!                   background colors for a text block.
+!!##KEYWORDS
+!!    primary default keywords
+!!
+!!      colors:
+!!        r,         red,       R,  RED
+!!        g,         green,     G,  GREEN
+!!        b,         blue,      B,  BLUE
+!!        m,         magenta,   M,  MAGENTA
+!!        c,         cyan,      C,  CYAN
+!!        y,         yellow,    Y,  YELLOW
+!!        e,         ebony,     E,  EBONY
+!!        w,         white,     W,  WHITE
+!!
+!!      attributes:
+!!        it,        italic
+!!        bo,        bold
+!!        un,        underline
+!!
+!!      basic control characters:
+!!       nul
+!!       bel  (0x07, ^G) beeps;
+!!       bs   (0x08, ^H) backspaces one column (but not past the beginning of
+!!                       the line);
+!!       ht   (0x09, ^I) goes to the next tab stop or to the end of the line if
+!!                       there is no earlier tab stop;
+!!       lf   (0x0A, ^J),
+!!       vt   (0x0B, ^K)
+!!       ff   (0x0C, ^L) all give a linefeed, and if LF/NL (new-line mode) is
+!!                       set also a carriage return
+!!       cr   (0x0D, ^M) gives a carriage return;
+!!       so   (0x0E, ^N) activates the G1 character set;
+!!       si   (0x0F, ^O) activates the G0 character set;
+!!       can  (0x18, ^X) and SUB (0x1A, ^Z) interrupt escape sequences;
+!!       sub
+!!       esc  (0x1B, ^[) starts an escape sequence;
+!!       del  (0x7F) is ignored;
+!!
 !!      other:
-!!       clear
-!!       esc,       escape
-!!       default
-!!       gt
-!!       lt
+!!        clear
+!!        default
+!!        reset
+!!        gt
+!!        lt
+!!        save,DECSC     Save  current state (cursor coordinates, attributes,
+!!                       character sets pointed at by G0, G1).
+!!        restore,DECRC  Restore state most recently saved by ESC 7.
+!!        CSI            "Control Sequence Introducer"(0x9B) is equivalent to
+!!                       "ESC [".
+!!
+!!      dual-value (one for color, one for mono):
+!!
+!!        write(*,*)attr('<ERROR>an error message')
+!!        write(*,*)attr('<WARNING>a warning message')
+!!        write(*,*)attr('<INFO>an informational message')
 !!
 !!    By default, if the color mnemonics (ie. the keywords) are uppercase
 !!    they change the background color. If lowercase, the foreground color.
+!!    When preceded by a "/" character the attribute is returned to the
+!!    default.
 !!
-!!    The "default" keyword is typically used explicitly when
-!!    clear_at_end=.false.
-!!
-!!    Add, delete, and replace what strings are produced using UPDATE(3f).
+!!    The "default" keyword is typically used explicitly when reset=.false,
+!!    and sets all text attributes to their initial defaults.
 !!
 !!##LIMITATIONS
-!!      o colors are not nestable, keywords are case-sensitive,
-!!      o not all terminals obey the sequences. On Windows, it is best if
-!!        you use Windows 10+ and/or the Linux mode; although it has worked
-!!        with all CygWin and MinGW and Putty windows and mintty.
-!!      o you should use "<gt>" and "<lt>" instead of ">" and "<" in a string
-!!        processed by esc(3f) instead of in any plain text output so that
-!!        the raw mode will create correct input for the esc(3f) function
-!!        if read back in.
+!!    o colors are not nestable, keywords are case-sensitive,
+!!    o not all terminals obey the sequences. On Windows, it is best if
+!!      you use Windows 10+ and/or the Linux mode; although it has worked
+!!      with all CygWin and MinGW and Putty windows and mintty.
+!!    o you should use "<gt>" and "<lt>" instead of ">" and "<" in a string
+!!      processed by attr(3f) instead of in any plain text output so that
+!!      the raw mode will create correct input for the attr(3f) function
+!!      if read back in.
 !!
 !!##EXAMPLE
 !!
-!!   Sample program
+!!    Sample program
 !!
-!!    program demo_esc
-!!    use M_escape, only : esc, esc_mode, update
-!!       write(*,'(a)') esc('<clear>TEST DEFAULTS:')
-!!       call printstuff()
+!!     program demo_attr
+!!     use M_attr, only : attr, attr_mode, attr_update
+!!        call printstuff('defaults')
 !!
-!!       write(*,'(a)') esc('TEST MANNER=PLAIN:')
-!!       call esc_mode(manner='plain')
-!!       call printstuff()
+!!        call attr_mode(manner='plain')
+!!        call printstuff('plain:')
 !!
-!!       write(*,'(a)') esc('TEST MANNER=RAW:')
-!!       call esc_mode(manner='raw')
-!!       call printstuff()
+!!        call printstuff('raw')
 !!
-!!       write(*,'(a)') esc('TEST MANNER=color:')
-!!       call esc_mode(manner='color')
-!!       call printstuff()
+!!        call attr_mode(manner='color')
+!!        call printstuff('')
 !!
-!!       write(*,'(a)') esc('TEST ADDING A CUSTOM SEQUENCE:')
-!!       call update('blink',char(27)//'[5m')
-!!       call update('/blink',char(27)//'[38m')
-!!       write(*,'(a)') esc('<blink>Items for Friday</blink>')
+!!        write(*,'(a)') attr('TEST ADDING A CUSTOM SEQUENCE:')
+!!        call attr_update('blink',char(27)//'[5m')
+!!        call attr_update('/blink',char(27)//'[25m')
+!!        write(*,'(a)') attr('<blink>Items for Friday</blink>')
 !!
-!!    contains
-!!    subroutine printstuff()
+!!     contains
+!!     subroutine printstuff(label)
+!!     character(len=*),intent(in)  :: label
+!!     character(len=:),allocatable :: array(:)
+!!       call attr_mode(manner=label)
 !!
-!!      write(*,'(a)') esc('<r>RED</r>,<g>GREEN</g>,<b>BLUE</b>')
-!!      write(*,'(a)') esc('<c>CYAN</c>,<m>MAGENTA</g>,<y>YELLOW</y>')
-!!      write(*,'(a)') esc('<w>WHITE</w> and <e>EBONY</e>')
+!!       array=[character(len=60) ::    &
+!!        'TEST MANNER='//label,                      &
+!!        '<r>RED</r>,<g>GREEN</g>,<b>BLUE</b>',      &
+!!        '<c>CYAN</c>,<m>MAGENTA</g>,<y>YELLOW</y>', &
+!!        '<w>WHITE</w> and <e>EBONY</e>']
+!!       write(*,'(a)') attr(array)
 !!
-!!      write(*,'(a)') esc('Adding <bo>bold</bo>')
-!!      write(*,'(a)') esc('<bo><r>RED</r>,<g>GREEN</g>,<b>BLUE</b></bo>')
-!!      write(*,'(a)') esc('<bo><c>CYAN</c>,<m>MAGENTA</g>,<y>YELLOW</y></bo>')
-!!      write(*,'(a)') esc('<bo><w>WHITE</w> and <e>EBONY</e></bo>')
+!!       write(*,'(a)') attr('Adding <bo>bold</bo>')
+!!       write(*,'(a)') attr('<bo><r>RED</r>,<g>GREEN</g>,<b>BLUE</b></bo>')
+!!       write(*,'(a)') attr('<bo><c>CYAN</c>,<m>MAGENTA</g>,<y>YELLOW</y></bo>')
+!!       write(*,'(a)') attr('<bo><w>WHITE</w> and <e>EBONY</e></bo>')
 !!
-!!      write(*,'(a)') esc('Adding <ul>underline</ul>')
-!!      write(*,'(a)') esc(&
-!!       &'<bo><ul><r>RED</r>,<g>GREEN</g>,<b>BLUE</b></ul></bo>')
-!!      write(*,'(a)') esc(&
-!!       &'<bo><ul><c>CYAN</c>,<m>MAGENTA</g>,<y>YELLOW</y></ul></bo>')
-!!      write(*,'(a)') esc('<bo><ul><w>WHITE</w> and <e>EBONY</e></ul></bo>')
+!!       write(*,'(a)') attr('Adding <ul>underline</ul>')
+!!       write(*,'(a)') attr(&
+!!        &'<bo><ul><r>RED</r>,<g>GREEN</g>,<b>BLUE</b></ul></bo>')
+!!       write(*,'(a)') attr(&
+!!        &'<bo><ul><c>CYAN</c>,<m>MAGENTA</g>,<y>YELLOW</y></ul></bo>')
+!!       write(*,'(a)') attr('<bo><ul><w>WHITE</w> and <e>EBONY</e></ul></bo>')
 !!
-!!      write(*,'(a)') esc('Adding <ul>italic</ul>')
-!!      write(*,'(a)') esc(&
-!!       &'<bo><ul><it><r>RED</r>,<g>GREEN</g>,<b>BLUE</b></it></ul></bo>')
-!!      write(*,'(a)') esc(&
-!!       &'<bo><ul><it><c>CYAN</c>,<m>MAGENTA</g>,<y>YELLOW</it></y></ul></bo>')
-!!      write(*,'(a)') esc('<bo><ul><it><w>WHITE</w> and <e>EBONY</e></ul></bo>')
+!!       write(*,'(a)') attr('Adding <ul>italic</ul>')
+!!       write(*,'(a)') attr(&
+!!        &'<bo><ul><it><r>RED</r>,<g>GREEN</g>,<b>BLUE</b></it></ul></bo>')
+!!       write(*,'(a)') attr(&
+!!        &'<bo><ul><it><c>CYAN</c>,<m>MAGENTA</g>,<y>YELLOW</it></y></ul></bo>')
+!!       write(*,'(a)') attr('<bo><ul><it><w>WHITE</w> and <e>EBONY</e></ul></bo>')
 !!
-!!      write(*,'(a)') esc('Adding <in>inverse</in>')
-!!      write(*,'(a)') esc(&
-!!       &'<in><bo><ul><it><r>RED</r>,<g>GREEN</g>,&
-!!       &<b>BLUE</b></it></ul></bo></in>')
-!!      write(*,'(a)') esc(&
-!!       &'<in><bo><ul><it><c>CYAN</c>,<m>MAGENTA</g>,&
-!!       &<y>YELLOW</it></y></ul></bo></in>')
-!!      write(*,'(a)') esc(&
-!!       &'<in><bo><ul><it><w>WHITE</w> and <e>EBONY</e></ul></bo></in>')
-!!    end subroutine printstuff
+!!       write(*,'(a)') attr('Adding <in>inverse</in>')
+!!       write(*,'(a)') attr('<in><bo><ul><it><r>RED</r>,<g>GREEN</g>,&
+!!        &<b>BLUE</b></it></ul></bo></in>')
+!!       write(*,'(a)') attr('<in><bo><ul><it><c>CYAN</c>,<m>MAGENTA</g>,&
+!!        &<y>YELLOW</it></y></ul></bo></in>')
+!!       write(*,'(a)') attr(&
+!!        &'<in><bo><ul><it><w>WHITE</w> and <e>EBONY</e></ul></bo></in>')
+!!     end subroutine printstuff
+!!     end program demo_attr
 !!
-!!    end program demo_esc
-function esc(string,clear_at_end) result (expanded)
+!!##AUTHOR
+!!    John S. Urban, 2021
+!!
+!!##LICENSE
+!!    MIT
+!!
+!!##SEE ALSO
+!!    attr_mode(3f), attr_update(3f)
+function attr_scalar(string,reset) result (expanded)
 character(len=*),intent(in)  :: string
-logical,intent(in),optional  :: clear_at_end
-logical                      :: clear_at_end_local
+logical,intent(in),optional  :: reset
+logical                      :: clear_at_end
 character(len=:),allocatable :: padded
 character(len=:),allocatable :: expanded
 character(len=:),allocatable :: name
@@ -44376,410 +42867,362 @@ integer                      :: i
 integer                      :: ii
 integer                      :: maxlen
 integer                      :: place
-if(present(clear_at_end))then
-   clear_at_end_local=clear_at_end
+   if(present(reset))then
+      clear_at_end=reset
+   else
+      clear_at_end=.true.
+   endif
+   if(.not.allocated(mode))then  ! set substitution mode
+      mode='color' ! 'color'|'raw'|'plain'
+      call vt102()
+   endif
+
+   if(mode=='raw')then
+      expanded=string
+      return
+   endif
+
+   maxlen=len(string)
+   padded=string//' '
+   i=1
+   expanded=''
+   do
+      select case(padded(i:i))
+      case('>')  ! should not get here unless unmatched
+         i=i+1
+         expanded=expanded//'>'
+      case('<')  ! assuming not nested for now
+         ii=index(padded(i+1:),'>')
+         if(ii.eq.0)then
+            expanded=expanded//'<'
+            i=i+1
+         else
+            name=padded(i+1:i+ii-1)
+            name=trim(adjustl(name))
+            call locate(keywords,name,place)
+
+            if(mode.eq.'plain')then
+               expanded=expanded//get(name)
+            elseif(place.le.0)then     ! unknown name; print what you found
+               expanded=expanded//padded(i:i+ii)
+               maxlen=maxlen-ii-1
+            else
+               expanded=expanded//get(name)
+            endif
+            i=ii+i+1
+         endif
+      case default
+         expanded=expanded//padded(i:i)
+         i=i+1
+      end select
+      if(i >= maxlen+1)exit
+   enddo
+   if( (index(expanded,esc).ne.0).and.(clear_at_end))then
+      if((mode.ne.'raw').and.(mode.ne.'plain'))then
+         expanded=expanded//CODE_RESET                                   ! Clear all styles
+      endif
+   endif
+   expanded=expanded
+end function attr_scalar
+
+function attr_matrix(strings,reset,chars) result (expanded)
+character(len=*),intent(in)  :: strings(:)
+logical,intent(in),optional  :: reset
+integer,intent(in),optional  :: chars
+character(len=:),allocatable :: expanded(:)
+   ! gfortran does not return allocatable array from a function properly, but works with subroutine
+   call kludge_bug(strings,reset,chars,expanded)
+end function attr_matrix
+
+subroutine kludge_bug(strings,reset,chars,expanded)
+character(len=*),intent(in)  :: strings(:)
+logical,intent(in),optional  :: reset
+integer,intent(in),optional  :: chars
+character(len=:),allocatable :: expanded(:)
+integer                      :: width
+character(len=:),allocatable :: hold
+integer                      :: i
+integer                      :: right
+integer                      :: len_local
+
+allocate(character(len=0) :: expanded(0))
+if(present(chars))then
+   right=chars
 else
-   clear_at_end_local=.false.
+   right=len(strings)
 endif
+
 if(.not.allocated(mode))then  ! set substitution mode
    mode='color' ! 'color'|'raw'|'plain'
    call vt102()
 endif
 
-if(mode=='raw')then
-   expanded=string
-   return
-endif
+do i=1,size(strings)
 
-maxlen=len(string)
-padded=string//' '
-i=1
-expanded=''
-do
-   if(debug)write(*,*)'DEBUG:*esc*: processing',padded(i:i),' from',string(i:),' EXPANDED=',expanded
-   select case(padded(i:i))
-   case('>')  ! should not get here unless unmatched
-      i=i+1
-      expanded=expanded//'>'
-   case('<')  ! assuming not nested for now
-      ii=index(padded(i+1:),'>')
-      if(ii == 0)then
-         expanded=expanded//'<'
-         i=i+1
-      else
-         name=padded(i+1:i+ii-1)
-         name=trim(adjustl(name))
-         if(debug)write(*,*)'DEBUG:*esc* 1: NAME=',name,get(name)
-         call locate(keywords,name,place)
-         if(debug)write(*,*)'DEBUG:*esc* 1: LOCATE=',place
-
-         if(mode == 'plain')then
-         elseif(place <= 0)then     ! unknown name; print what you found
-            expanded=expanded//padded(i:i+ii)
-         else
-            expanded=expanded//get(name)
-         endif
-         if(name == 'debug')debug=.true.   !! development version
-         if(name == '/debug')debug=.false. !! development version
-         i=ii+i+1
-      endif
-   case default
-      expanded=expanded//padded(i:i)
-      i=i+1
-   end select
-   if(i >= maxlen+1)exit
-enddo
-if( (index(expanded,escape) /= 0).and.(.not.clear_at_end_local))then
-   if((mode /= 'raw').and.(mode /= 'plain'))then
-      expanded=expanded//CODE_RESET                                   ! Clear all styles
+   if(mode.eq.'color')then
+      mode='plain'
+      len_local=len(attr_scalar(strings(i)))
+      hold=trim(strings(i))//repeat(' ',max(0,right-len_local))
+      mode='color'
+   else
+      hold=strings(i)
    endif
-endif
-end function esc
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-!>
-!!##NAME
-!!    color(3f) - [M_escape] colorize text using a simple function-based approach
-!!    (LICENSE:PD)
-!!##SYNOPSIS
-!!
-!!    use M_escape, only : color, color_mode, &
-!!
-!!     ! FOREGROUND COLORS
-!!         & fg_red, fg_cyan, fg_magenta, fg_blue, &
-!!         & fg_green, fg_yellow, fg_white, fg_ebony, &
-!!         & fg_default, &
-!!     ! BACKGROUND COLORS
-!!         & bg_red, bg_cyan, bg_magenta, bg_blue, &
-!!         & bg_green, bg_yellow, bg_white, bg_ebony, &
-!!         & bg_default, &
-!!      ! ATTRIBUTES
-!!         & bold, italic, inverse, underline,  &
-!!         & unbold, unitalic, uninverse, ununderline,  &
-!!         & reset, &
-!!      ! DISPLAY
-!!         & clear
-!!
-!!     function color(string,fg,bg,style) result (out)
-!!
-!!      character(len=*),intent(in)          :: string
-!!      character(len=*),intent(in),optional :: fg
-!!      character(len=*),intent(in),optional :: bg
-!!      character(len=*),intent(in),optional :: style
-!!
-!!##DESCRIPTION
-!!     The color constant strings can be used directly but unconditionally
-!!     in an output statement. To allow the attributes to be ignored they
-!!     can be called with the color(3f) routine, which the color_mode(3f)
-!!     procedure can be used to toggle on and off. Note that this routine
-!!     does an implicit reset at the end of each use.
-!!
-!!##OPTIONS
-!!    string     string to assign attributes to
-!!    fg         foreground color constant
-!!    bg         background color constant
-!!    style      style keyword or concatenated style keywords
-!!
-!!##EXAMPLE
-!!
-!!   Sample program
-!!
-!!    program demo_color
-!!       use M_escape, only : color, color_mode, &
-!!      ! FOREGROUND COLORS
-!!         & fg_red, fg_cyan, fg_magenta, fg_blue, &
-!!         & fg_green, fg_yellow, fg_white, fg_ebony, &
-!!         & fg_default, &
-!!      ! BACKGROUND COLORS
-!!         & bg_red, bg_cyan, bg_magenta, bg_blue, &
-!!         & bg_green, bg_yellow, bg_white, bg_ebony, &
-!!         & bg_default, &
-!!      ! ATTRIBUTES
-!!         & bold, italic, inverse, underline,  &
-!!         & unbold, unitalic, uninverse, ununderline,  &
-!!         & reset, &
-!!      ! DISPLAY
-!!         & clear
-!!       implicit none
-!!         write(*,'(*(g0))')fg_red,bg_green,bold,' Hello! ',reset
-!!
-!!         write(*,'(a)')color(' Hello! ',&
-!!          & fg=fg_white,bg=bg_red,style=italic//bold)
-!!         call color_mode(.false.)
-!!         write(*,'(a)')color(' Hello! ',&
-!!          & fg=fg_red,bg=bg_red,style=italic//bold)
-!!    end program demo_color
-!!
-!!##AUTHOR
-!!    John S. Urban, 2020
-!!##LICENSE
-!!    Public Domain
-function color(string,fg,bg,style) result (out)
 
-! ident_1="@(#) use the color string constants optionally ignoring them if G_switch is .false. as set by color_mode(3f)"
+   hold=trim(attr_scalar(hold,reset=reset))
+   width=max(len(hold),len(expanded))
+   expanded=[character(len=width) :: expanded,hold]
+enddo
 
-character(len=*),intent(in)          :: string
-character(len=*),intent(in),optional :: fg
-character(len=*),intent(in),optional :: bg
-character(len=*),intent(in),optional :: style
-character(len=:),allocatable         :: out
-out=''
-if(G_color)then
-   if(present(style))out=out//style
-   if(present(bg))out=out//bg
-   if(present(fg))out=out//fg
-   out=out//string
-   out=out//reset
-else
-   out=string
-endif
-end function color
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-!>
-!!##NAME
-!!    color_mode(3f) - [M_escape] toggle style effects of color(3f) on and off
-!!    (LICENSE:PD)
-!!##SYNOPSIS
-!!
-!!     subroutine color_mode(switch)
-!!
-!!      logical,intent(in) :: switch
-!!
-!!##DESCRIPTION
-!!     The color constant strings can be used directly but unconditionally
-!!     in an output statement. To allow the attributes to be ignored they
-!!     can be called with the color(3f) routine, which the color_mode(3f)
-!!     procedure can be used to toggle on and off. Note that this routine
-!!     does an implicit reset at the end of each use.
-!!
-!!##OPTIONS
-!!     switch   turn attributes set by color(3f) on and off
-!!
-!!##EXAMPLE
-!!
-!!   Sample program
-!!
-!!    program demo_color_mode
-!!       use M_escape, only : color, color_mode, &
-!!      ! FOREGROUND COLORS
-!!         & fg_red, fg_cyan, fg_magenta, fg_blue, &
-!!         & fg_green, fg_yellow, fg_white, fg_ebony, &
-!!         & fg_default, &
-!!      ! BACKGROUND COLORS
-!!         & bg_red, bg_cyan, bg_magenta, bg_blue, &
-!!         & bg_green, bg_yellow, bg_white, bg_ebony, &
-!!         & bg_default, &
-!!      ! ATTRIBUTES
-!!         & bold, italic, inverse, underline,  &
-!!         & unbold, unitalic, uninverse, ununderline,  &
-!!         & reset, &
-!!      ! DISPLAY
-!!         & clear
-!!       implicit none
-!!         write(*,'(*(g0))')fg_red,bg_green,bold,' Hello! ',reset
-!!
-!!         write(*,'(a)')color(' Hello! ',&
-!!          & fg=fg_white,bg=bg_red,style=italic//bold)
-!!         call color_mode(.false.)
-!!         write(*,'(a)')color(' Hello! ',&
-!!          & fg=fg_red,bg=bg_red,style=italic//bold)
-!!    end program demo_color_mode
-!!
-!!##AUTHOR
-!!    John S. Urban, 2020
-!!##LICENSE
-!!    Public Domain
-subroutine color_mode(switch)
-logical,intent(in) :: switch
-   G_color=switch
-end subroutine color_mode
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
+end subroutine kludge_bug
+
+function attr_scalar_width(string,reset,chars) result (expanded)
+character(len=*),intent(in)  :: string
+logical,intent(in),optional  :: reset
+integer,intent(in)           :: chars
+character(len=:),allocatable :: expanded_arr(:)
+character(len=:),allocatable :: expanded
+   expanded_arr=attr_matrix([string],reset,chars)
+   expanded=expanded_arr(1)
+end function attr_scalar_width
+
 subroutine vt102()
 ! create a dictionary with character keywords, values, and value lengths
 ! using the routines for maintaining a list
 
    call wipe_dictionary()
    ! insert and replace entries
+   call attr_update('bold',bold)
+   call attr_update('/bold',unbold)
+   call attr_update('bo',bold)
+   call attr_update('/bo',unbold)
+   call attr_update('italic',italic)
+   call attr_update('/italic',unitalic)
+   call attr_update('it',italic)
+   call attr_update('/it',unitalic)
+   call attr_update('inverse',inverse)
+   call attr_update('/inverse',uninverse)
+   call attr_update('in',inverse)
+   call attr_update('/in',uninverse)
+   call attr_update('underline',underline)
+   call attr_update('/underline',ununderline)
+   call attr_update('un',underline)
+   call attr_update('/un',ununderline)
+   call attr_update('ul',underline)
+   call attr_update('/ul',ununderline)
 
-   call update('bold',bold)
-   call update('/bold',unbold)
-   call update('bo',bold)
-   call update('/bo',unbold)
-   call update('livid',bold)
-   call update('/livid',unbold)
-   call update('li',bold)
-   call update('/li',unbold)
+   call attr_update('bell',BELL)
+   call attr_update('nul', nul )
+   call attr_update('bel', bel )
+   call attr_update('bs', bs )
+   call attr_update('ht', ht )
+   call attr_update('lf', lf )
+   call attr_update('vt', vt )
+   call attr_update('ff', ff )
+   call attr_update('cr', cr )
+   call attr_update('so', so )
+   call attr_update('si', si )
+   call attr_update('can', can )
+   call attr_update('sub', sub )
+   call attr_update('esc', esc )
+   call attr_update('escape',esc)
+   call attr_update('del', del )
 
-   call update('italic',italic)
-   call update('/italic',unitalic)
-   call update('it',italic)
-   call update('/it',unitalic)
+   call attr_update('save',esc//'7')
+   call attr_update('DECSC',esc//'7')
+   call attr_update('restore',esc//'8')
+   call attr_update('DECRC',esc//'8')
+   call attr_update('CSI',esc//'[')
 
-   call update('inverse',inverse)
-   call update('/inverse',uninverse)
-   call update('in',inverse)
-   call update('/in',uninverse)
+   call attr_update('clear',clear)
+   call attr_update('reset',reset)
 
-   call update('underline',underline)
-   call update('/underline',ununderline)
-   call update('un',underline)
-   call update('/un',ununderline)
-
-   call update('esc',ESCAPE)
-   call update('escape',ESCAPE)
-
-   call update('clear',clear)
-   call update('reset',reset)
-   call update('bell',BELL)
-   call update('n',NL)
-   call update('t',HT)
-   call update('gt','>')
-   call update('lt','<')
+   call attr_update('gt','>','>')
+   call attr_update('lt','<','<')
 
    ! foreground colors
-   call update('r',fg_red)
-       call update('/r',fg_default)
-       call update('red',fg_red)
-       call update('/red',fg_default)
-   call update('c',fg_cyan)
-       call update('/c',fg_default)
-       call update('cyan',fg_cyan)
-       call update('/cyan',fg_default)
-   call update('m',fg_magenta)
-       call update('/m',fg_default)
-       call update('magenta',fg_magenta)
-       call update('/magenta',fg_default)
-   call update('b',fg_blue)
-       call update('/b',fg_default)
-       call update('blue',fg_blue)
-       call update('/blue',fg_default)
-   call update('g',fg_green)
-       call update('/g',fg_default)
-       call update('green',fg_green)
-       call update('/green',fg_default)
-   call update('y',fg_yellow)
-       call update('/y',fg_default)
-       call update('yellow',fg_yellow)
-       call update('/yellow',fg_default)
-   call update('w',fg_white)
-       call update('/w',fg_default)
-       call update('white',fg_white)
-       call update('/white',fg_default)
-   call update('e',fg_ebony)
-       call update('/e',fg_default)
-       call update('ebony',fg_ebony)
-       call update('/ebony',fg_default)
-   call update('x',fg_ebony)
-       call update('/x',fg_default)
-       call update('black',fg_ebony)
-       call update('/black',fg_default)
+   call attr_update('r',fg_red)
+       call attr_update('/r',fg_default)
+       call attr_update('red',fg_red)
+       call attr_update('/red',fg_default)
+       call attr_update('fg_red',fg_red)
+       call attr_update('/fg_red',fg_default)
+   call attr_update('c',fg_cyan)
+       call attr_update('/c',fg_default)
+       call attr_update('cyan',fg_cyan)
+       call attr_update('/cyan',fg_default)
+       call attr_update('fg_cyan',fg_cyan)
+       call attr_update('/fg_cyan',fg_default)
+   call attr_update('m',fg_magenta)
+       call attr_update('/m',fg_default)
+       call attr_update('magenta',fg_magenta)
+       call attr_update('/magenta',fg_default)
+       call attr_update('fg_magenta',fg_magenta)
+       call attr_update('/fg_magenta',fg_default)
+   call attr_update('b',fg_blue)
+       call attr_update('/b',fg_default)
+       call attr_update('blue',fg_blue)
+       call attr_update('fg_blue',fg_blue)
+       call attr_update('/fg_blue',fg_default)
+   call attr_update('g',fg_green)
+       call attr_update('/g',fg_default)
+       call attr_update('green',fg_green)
+       call attr_update('/green',fg_default)
+       call attr_update('fg_green',fg_green)
+       call attr_update('/fg_green',fg_default)
+   call attr_update('y',fg_yellow)
+       call attr_update('/y',fg_default)
+       call attr_update('yellow',fg_yellow)
+       call attr_update('/yellow',fg_default)
+       call attr_update('fg_yellow',fg_yellow)
+       call attr_update('/fg_yellow',fg_default)
+   call attr_update('w',fg_white)
+       call attr_update('/w',fg_default)
+       call attr_update('white',fg_white)
+       call attr_update('/white',fg_default)
+       call attr_update('fg_white',fg_white)
+       call attr_update('/fg_white',fg_default)
+   call attr_update('e',fg_ebony)
+       call attr_update('/e',fg_default)
+       call attr_update('ebony',fg_ebony)
+       call attr_update('/ebony',fg_default)
+       call attr_update('fg_ebony',fg_ebony)
+       call attr_update('/fg_ebony',fg_default)
+   call attr_update('x',fg_ebony)
+       call attr_update('/x',fg_default)
+       call attr_update('black',fg_ebony)
+       call attr_update('/black',fg_default)
+       call attr_update('fg_black',fg_ebony)
+       call attr_update('/fg_black',fg_default)
 
    ! background colors
-   call update('R',bg_red)
-       call update('/R',bg_default)
-       call update('RED',bg_red)
-       call update('/RED',bg_default)
-   call update('C',bg_cyan)
-       call update('/C',bg_default)
-       call update('CYAN',bg_cyan)
-       call update('/CYAN',bg_default)
-   call update('M',bg_magenta)
-       call update('/M',bg_default)
-       call update('MAGENTA',bg_magenta)
-       call update('/MAGENTA',bg_default)
-   call update('B',bg_blue)
-       call update('/B',bg_default)
-       call update('BLUE',bg_blue)
-       call update('/BLUE',bg_default)
-   call update('G',bg_green)
-       call update('/G',bg_default)
-       call update('GREEN',bg_green)
-       call update('/GREEN',bg_default)
-   call update('Y',bg_yellow)
-       call update('/Y',bg_default)
-       call update('YELLOW',bg_yellow)
-       call update('/YELLOW',bg_default)
-   call update('W',bg_white)
-       call update('/W',bg_default)
-       call update('WHITE',bg_white)
-       call update('/WHITE',bg_default)
-   call update('E',bg_ebony)
-       call update('/E',bg_default)
-       call update('EBONY',bg_ebony)
-       call update('/EBONY',bg_default)
-   call update('X',bg_ebony)
-       call update('/X',bg_default)
-       call update('BLACK',bg_ebony)
-       call update('/BLACK',bg_default)
+   call attr_update('R',bg_red)
+       call attr_update('/R',bg_default)
+       call attr_update('RED',bg_red)
+       call attr_update('/RED',bg_default)
+       call attr_update('bg_red',bg_red)
+       call attr_update('/bg_red',bg_default)
+   call attr_update('C',bg_cyan)
+       call attr_update('/C',bg_default)
+       call attr_update('CYAN',bg_cyan)
+       call attr_update('/CYAN',bg_default)
+       call attr_update('bg_cyan',bg_cyan)
+       call attr_update('/bg_cyan',bg_default)
+   call attr_update('M',bg_magenta)
+       call attr_update('/M',bg_default)
+       call attr_update('MAGENTA',bg_magenta)
+       call attr_update('/MAGENTA',bg_default)
+       call attr_update('bg_magenta',bg_magenta)
+       call attr_update('/bg_magenta',bg_default)
+   call attr_update('B',bg_blue)
+       call attr_update('/B',bg_default)
+       call attr_update('BLUE',bg_blue)
+       call attr_update('/BLUE',bg_default)
+       call attr_update('bg_blue',bg_blue)
+       call attr_update('/bg_blue',bg_default)
+   call attr_update('G',bg_green)
+       call attr_update('/G',bg_default)
+       call attr_update('GREEN',bg_green)
+       call attr_update('/GREEN',bg_default)
+       call attr_update('bg_green',bg_green)
+       call attr_update('/bg_green',bg_default)
+   call attr_update('Y',bg_yellow)
+       call attr_update('/Y',bg_default)
+       call attr_update('YELLOW',bg_yellow)
+       call attr_update('/YELLOW',bg_default)
+       call attr_update('bg_yellow',bg_yellow)
+       call attr_update('/bg_yellow',bg_default)
+   call attr_update('W',bg_white)
+       call attr_update('/W',bg_default)
+       call attr_update('WHITE',bg_white)
+       call attr_update('/WHITE',bg_default)
+       call attr_update('bg_white',bg_white)
+       call attr_update('/bg_white',bg_default)
+   call attr_update('E',bg_ebony)
+       call attr_update('/E',bg_default)
+       call attr_update('EBONY',bg_ebony)
+       call attr_update('/EBONY',bg_default)
+       call attr_update('bg_ebony',bg_ebony)
+       call attr_update('/bg_ebony',bg_default)
+   call attr_update('X',bg_ebony)
+       call attr_update('/X',bg_default)
+       call attr_update('BLACK',bg_ebony)
+       call attr_update('/BLACK',bg_default)
+       call attr_update('bg_black',bg_ebony)
+       call attr_update('/bg_black',bg_default)
+
+   ! compound
+   call attr_update('ERROR',fg_red//bold//bg_ebony     //':error:  '//bg_default//fg_default,':error:')
+   call attr_update('WARNING',fg_yellow//bold//bg_ebony//':warning:'//bg_default//fg_default,':warning:')
+   call attr_update('INFO',fg_green//bold//bg_ebony    //':info:   '//bg_default//fg_default,':info:')
 
 end subroutine vt102
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
 !>
+!! !>
 !!##NAME
-!!    esc_mode(3f) - [M_escape] select processing mode for output from esc(3f)
+!!    attr_mode(3f) - [M_attr] select processing mode for output from attr(3f)
+!!    (LICENSE:MIT)
 !!
 !!##SYNOPSIS
 !!
-!!    subroutine esc_mode(manner)
+!!     subroutine attr_mode(manner)
 !!
-!!       character(len=*),intent(in) :: manner
+!!        character(len=*),intent(in) :: manner
 !!
 !!##DESCRIPTION
-!!       Turn off the generation of strings associated with the HTML keywords
-!!       in the string generated by the esc(3f) function, or display the
-!!       text in raw mode as it was passed to esc(3f) or return to ANSI
-!!       escape control sequence generation.
+!!    Turn off the generation of strings associated with the HTML keywords
+!!    in the string generated by the attr(3f) function, or display the
+!!    text in raw mode as it was passed to attr(3f) or return to ANSI
+!!    escape control sequence generation.
 !!
 !!##OPTIONS
-!!    MANNER  The current manners or modes supported via the ESC_MODE(3f)
-!!            procedure are
+!!    MANNER  The current manners or modes supported via the attr_mode(3f)
+!!             procedure are
 !!
-!!        plain          suppress the output associated with keywords
-!!        color(default) commonly supported escape sequences
-!!        raw            echo the input to ESC(3f) as its output
-!!        reload         restore original keyword meanings deleted or
-!!                       replaced by calls to update(3f).
+!!         plain          suppress the output associated with keywords
+!!         color(default) commonly supported escape sequences
+!!         raw            echo the input to attr(3f) as its output
+!!         reload         restore original keyword meanings deleted or
+!!                        replaced by calls to attr_update(3f).
 !!
 !!##EXAMPLE
 !!
-!!   Sample program
+!!    Sample program
 !!
-!!    program demo_esc_mode
-!!    use M_escape, only : esc, esc_mode
-!!    implicit none
-!!    character(len=1024) :: line
-!!    real :: value
+!!     program demo_attr_mode
+!!     use M_attr, only : attr, attr_mode
+!!     implicit none
+!!     character(len=:),allocatable :: lines(:)
+!!     character(len=:),allocatable :: outlines(:)
+!!     integer :: i
+!!        lines=[character(len=110):: &
+!!        &'<M><y>',&
+!!        &'<M><y>  Suffice it to say that black and white are also colors',&
+!!        &'<M><y>  for their simultaneous contrast is as striking as that ',&
+!!        &'<M><y>  of green and red, for instance. &
+!!        & --- <y><bo>Vincent van Gogh</bo></y>',&
+!!        &' ']
 !!
-!!      value=3.4567
-!!      if( (value>0.0) .and. (value<100.0))then
-!!        write(line,fmt='("&
-!!       &<w><G>GREAT</G></w>: The value <Y><b>",f8.4,"</b></Y> is in range &
-!!       &")')value
-!!      else
-!!        write(line,fmt='("&
-!!       &<R><e>ERROR</e></R>:The new value <Y><b>",g0,"</b></Y> is out of range&
-!!       & ")')value
-!!      endif
+!!        outlines=attr(lines,chars=57)
+!!        write(*,'(a)')(trim(outlines(i)),i=1,size(outlines))
 !!
-!!      write(*,'(a)')esc(trim(line))
+!!        call attr_mode(manner='plain') ! write as plain text
+!!        write(*,'(a)')attr(lines)
 !!
-!!      call esc_mode(manner='plain') ! write as plain text
-!!      write(*,'(a)')esc(trim(line))
-!!      call esc_mode(manner='raw')   ! write as-is
-!!      write(*,'(a)')esc(trim(line))
-!!      call esc_mode(manner='ansi')  ! return to default mode
-!!      write(*,'(a)')esc(trim(line))
+!!        call attr_mode(manner='raw')   ! write as-is
+!!        write(*,'(a)')attr(lines)
 !!
-!!    end program demo_esc_mode
-subroutine esc_mode(manner)
+!!        call attr_mode(manner='ansi')  ! return to default mode
+!!
+!!     end program demo_attr_mode
+!!
+!!##AUTHOR
+!!    John S. Urban, 2021
+!!
+!!##LICENSE
+!!    MIT
+subroutine attr_mode(manner)
 character(len=*),intent(in) :: manner
+integer                     :: i
    if(.not.allocated(mode))then  ! set substitution mode
       mode='color'
       call vt102()
@@ -44787,482 +43230,664 @@ character(len=*),intent(in) :: manner
    select case(manner)
    case('vt102','ANSI','ansi','color','COLOR')
       mode='color'
-   case('reload')
+   case('reload','default','defaults','')
       call vt102()
       mode='color'
-   case('xterm')
-      mode=manner
    case('raw')
-      mode=manner
+      mode='raw'
+   case('dump')  ! dump dictionary for debugging
+      if(allocated(keywords))then
+         if(size(keywords).gt.0)then
+            write(stderr,'(*(a,t30,a))')'KEYWORD','VALUE'
+            write(stderr,'(*(a,t30,2("[",a,"]"),/))')(trim(keywords(i)),values(i),mono_values(i),i=1,size(keywords))
+         endif
+      endif
    case('dummy','plain','text')
       mode='plain'
    case default
       write(*,*)'unknown manner. Try color|raw|plain'
       mode='color'
    end select
-end subroutine esc_mode
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
+end subroutine attr_mode
+
 subroutine wipe_dictionary()
    if(allocated(keywords))deallocate(keywords)
    allocate(character(len=0) :: keywords(0))
    if(allocated(values))deallocate(values)
    allocate(character(len=0) :: values(0))
-   if(allocated(counts))deallocate(counts)
-   allocate(counts(0))
+   if(allocated(mono_values))deallocate(mono_values)
+   allocate(character(len=0) :: mono_values(0))
 end subroutine wipe_dictionary
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
+
 !>
+!! !>
 !!##NAME
-!!    update(3f) - [M_escape] update internal dictionary given keyword and value
-!!    (LICENSE:PD)
+!!    attr_update(3f) - [M_attr] update internal dictionary given keyword
+!!                      and value
+!!    (LICENSE:MIT)
 !!
 !!##SYNOPSIS
 !!
-!!   subroutine update(key,val)
+!!    subroutine attr_update(key,val)
 !!
-!!    character(len=*),intent(in)           :: key
-!!    character(len=*),intent(in),optional  :: val
+!!     character(len=*),intent(in)           :: key
+!!     character(len=*),intent(in),optional  :: val
+!!     character(len=*),intent(in),optional  :: mono_val
 !!
 !!##DESCRIPTION
-!!    Update internal dictionary in M_escape(3fm) module.
+!!    Update internal dictionary in M_attr(3fm) module.
 !!
 !!##OPTIONS
-!!    key  name of keyword to add, replace, or delete from dictionary
-!!    val  if present add or replace value associated with keyword. If not
-!!         present remove keyword entry from dictionary.
+!!    key       name of keyword to add, replace, or delete from dictionary
+!!    val       if present add or replace value associated with keyword. If
+!!              not present remove keyword entry from dictionary.
+!!    mono_val  if present add or replace second value associated with
+!!              keyword used for plain text mode.
+!!              Must only be specified if VAL is also specified.
+!!
+!!##KEYWORDS
+!!    The following keywords are defined by default
+!!
+!!    colors:
+!!
+!!      r,red     c,cyan     w,white
+!!      g,green   m,magenta  e,ebony
+!!      b,blue    y,yellow
+!!
+!!    If the color keywords are capitalized they control the text background
+!!    instead of the text color.
+!!
+!!    attributes:
+!!
+!!      ul,underline
+!!      it,italics (often produces inverse colors on many devices
+!!
 !!##EXAMPLE
 !!
-!!   Sample program
+!!    Sample program
 !!
-!!    program demo_update
-!!    use M_escape, only : esc, update
-!!       write(*,'(a)') esc('<clear>TEST CUSTOMIZED:')
-!!       ! add custom keywords
-!!       call update('blink',char(27)//'[5m')
-!!       call update('/blink',char(27)//'[38m')
-!!
-!!       write(*,'(a)') esc('<blink>Items for Friday</blink>')
-!!
-!!       write(*,'(a)',advance='no') esc('<r>RED</r>,')
-!!       write(*,'(a)',advance='no') esc('<b>BLUE</b>,')
-!!       write(*,'(a)',advance='yes') esc('<g>GREEN</g>')
-!!
-!!       ! delete
-!!       call update('r')
-!!       call update('/r')
-!!       ! replace
-!!       call update('b','<<<<')
-!!       call update('/b','>>>>')
-!!       write(*,'(a)',advance='no') esc('<r>RED</r>,')
-!!       write(*,'(a)',advance='no') esc('<b>BLUE</b>,')
-!!       write(*,'(a)',advance='yes') esc('<g>GREEN</g>')
-!!
-!!    end program demo_update
+!!      program demo_update
+!!      use M_attr, only : attr, attr_update
+!!         write(*,'(a)') attr('<clear>TEST CUSTOMIZATIONS:')
+!!         ! add custom keywords
+!!         call attr_update('blink',char(27)//'[5m')
+!!         call attr_update('/blink',char(27)//'[25m')
+!!         write(*,*)
+!!         write(*,'(a)') attr('<blink>Items for Friday</blink>')
+!!         call attr_update('ouch',attr( &
+!!         ' <R><bo><w>BIG mistake!</R></w> '))
+!!         write(*,*)
+!!         write(*,'(a)') attr('<ouch> Did not see that coming.')
+!!         write(*,*)
+!!         write(*,'(a)') attr( &
+!!         'ORIGINALLY: <r>Apple</r>, <b>Sky</b>, <g>Grass</g>')
+!!         ! delete
+!!         call attr_update('r')
+!!         call attr_update('/r')
+!!         ! replace (or create)
+!!         call attr_update('b','<<<<')
+!!         call attr_update('/b','>>>>')
+!!         write(*,*)
+!!         write(*,'(a)') attr( &
+!!         'CUSTOMIZED: <r>Apple</r>, <b>Sky</b>, <g>Grass</g>')
+!!      end program demo_update
 !!
 !!##AUTHOR
-!!    John S. Urban, 2020
+!!    John S. Urban, 2021
 !!
 !!##LICENSE
-!!    Public Domain
-subroutine update(key,valin)
+!!    MIT
+subroutine attr_update(key,valin,mono_valin)
 character(len=*),intent(in)           :: key
 character(len=*),intent(in),optional  :: valin
+character(len=*),intent(in),optional  :: mono_valin
 integer                               :: place
-integer                               :: iilen
 character(len=:),allocatable          :: val
+character(len=:),allocatable          :: mono_val
+
+if(.not.allocated(mode))then  ! set substitution mode
+   mode='color' ! 'color'|'raw'|'plain'
+   call vt102()
+endif
+
+if(present(mono_valin))then
+   mono_val=mono_valin
+else
+   mono_val=''
+endif
+
 if(present(valin))then
    val=valin
-   iilen=len_trim(val)
    ! find where string is or should be
    call locate(keywords,key,place)
    ! if string was not found insert it
-   if(place < 1)then
+   if(place.lt.1)then
       call insert(keywords,key,iabs(place))
       call insert(values,val,iabs(place))
-      call insert(counts,iilen,iabs(place))
+      call insert(mono_values,mono_val,iabs(place))
    else
       call replace(values,val,place)
-      call replace(counts,iilen,place)
+      call replace(mono_values,mono_val,place)
    endif
 else
    call locate(keywords,key,place)
-   if(place > 0)then
+   if(place.gt.0)then
       call remove(keywords,place)
       call remove(values,place)
-      call remove(counts,place)
+      call remove(mono_values,place)
    endif
 endif
-end subroutine update
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
+end subroutine attr_update
+
 function get(key) result(valout)
 character(len=*),intent(in)   :: key
 character(len=:),allocatable  :: valout
 integer                       :: place
    ! find where string is or should be
    call locate(keywords,key,place)
-   if(place < 1)then
+   if(place.lt.1)then
       valout=''
    else
-      valout=values(place)(:counts(place))
+      if(mode.eq.'plain')then
+         valout=trim(mono_values(place))
+      else
+         valout=trim(values(place))
+      endif
    endif
 end function get
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-!>
-!!##NAME
-!!    print_dictionary(3f) - [ARGUMENTS:M_CLI2] print internal dictionary
-!!                           created by calls to update(3f)
-!!    (LICENSE:PD)
-!!
-!!##SYNOPSIS
-!!
-!!
-!!    subroutine print_dictionary(header)
-!!
-!!     character(len=*),intent(in),optional :: header
-!!
-!!##DESCRIPTION
-!!    Print the internal dictionary created by calls to update(3f).
-!!    This routine is intended to print the state of the argument list
-!!    if an error occurs in using the update(3f) procedure.
-!!
-!!##OPTIONS
-!!     HEADER  label to print before printing the state of the command
-!!             argument list.
-!!##EXAMPLE
-!!
-!!
-!!   Typical usage:
-!!
-!!    program demo_print_dictionary
-!!    use M_escape, only : esc, update, print_dictionary
-!!    implicit none
-!!       write(*,'(a)') esc('<clear>TEST CUSTOMIZED:')
-!!       ! add custom keywords
-!!       call update('blink',char(27)//'[5m')
-!!       call update('/blink',char(27)//'[38m')
-!!       call print_dictionary('DICTIONARY')
-!!       write(*,'(a)') esc('<blink>Items for Friday</blink>')
-!!    end program demo_print_dictionary
-!!
-!!   Sample output
-!!
-!!    demo_print_dictionary |cat -v -e -t
-!!
-!!##AUTHOR
-!!      John S. Urban, 2020
-!!
-!!##LICENSE
-!!      Public Domain
-!===================================================================================================================================
-subroutine print_dictionary(header)
-character(len=*),intent(in),optional :: header
-integer          :: i
-   if(present(header))then
-      if(header /= '')then
-         write(stderr,'(a)')header
-      endif
-   endif
-   if(allocated(keywords))then
-      if(size(keywords) > 0)then
-         write(stderr,'(*(a,t30,a))')'KEYWORD','VALUE'
-         write(stderr,'(*(a,t30,"[",a,"]",/))')(trim(keywords(i)),values(i)(:counts(i)),i=1,size(keywords))
-      endif
-   endif
-end subroutine print_dictionary
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-subroutine split(input_line,array,delimiters)
-!-----------------------------------------------------------------------------------------------------------------------------------
 
-!$@(#) M_escape::split(3f): parse string on delimiter characters and store tokens into an allocatable array
-
-!  John S. Urban
-!-----------------------------------------------------------------------------------------------------------------------------------
-intrinsic index, min, present, len
-!-----------------------------------------------------------------------------------------------------------------------------------
-!  given a line of structure " par1 par2 par3 ... parn " store each par(n) into a separate variable in array.
-!    o by default adjacent delimiters in the input string do not create an empty string in the output array
-!    o no quoting of delimiters is supported
-character(len=*),intent(in)              :: input_line  ! input string to tokenize
-character(len=*),optional,intent(in)     :: delimiters  ! list of delimiter characters
-character(len=:),allocatable,intent(out) :: array(:)    ! output array of tokens
-!-----------------------------------------------------------------------------------------------------------------------------------
-integer                       :: n                      ! max number of strings INPUT_LINE could split into if all delimiter
-integer,allocatable           :: ibegin(:)              ! positions in input string where tokens start
-integer,allocatable           :: iterm(:)               ! positions in input string where tokens end
-character(len=:),allocatable  :: dlim                   ! string containing delimiter characters
-integer                       :: ii                     ! loop parameters used to control print order
-integer                       :: icount                 ! number of tokens found
-integer                       :: iilen                  ! length of input string with trailing spaces trimmed
-integer                       :: i10,i20,i30            ! loop counters
-integer                       :: icol                   ! pointer into input string as it is being parsed
-integer                       :: idlim                  ! number of delimiter characters
-integer                       :: ifound                 ! where next delimiter character is found in remaining input string data
-integer                       :: inotnull               ! count strings not composed of delimiters
-integer                       :: ireturn                ! number of tokens returned
-integer                       :: imax                   ! length of longest token
-!-----------------------------------------------------------------------------------------------------------------------------------
-   ! decide on value for optional DELIMITERS parameter
-   if (present(delimiters)) then                                     ! optional delimiter list was present
-      if(delimiters /= '')then                                       ! if DELIMITERS was specified and not null use it
-         dlim=delimiters
-      else                                                           ! DELIMITERS was specified on call as empty string
-         dlim=' '//char(9)//char(10)//char(11)//char(12)//char(13)//char(0) ! use default delimiter when not specified
-      endif
-   else                                                              ! no delimiter value was specified
-      dlim=' '//char(9)//char(10)//char(11)//char(12)//char(13)//char(0)    ! use default delimiter when not specified
+subroutine locate(list,value,place,ier,errmsg)
+character(len=*),intent(in)             :: value
+integer,intent(out)                     :: place
+character(len=:),allocatable            :: list(:)
+integer,intent(out),optional            :: ier
+character(len=*),intent(out),optional   :: errmsg
+integer                                 :: i
+character(len=:),allocatable            :: message
+integer                                 :: arraysize
+integer                                 :: maxtry
+integer                                 :: imin, imax
+integer                                 :: error
+   if(.not.allocated(list))then
+      list=[character(len=max(len_trim(value),2)) :: ]
    endif
-   idlim=len(dlim)                                                   ! dlim a lot of blanks on some machines if dlim is a big string
-!-----------------------------------------------------------------------------------------------------------------------------------
-   n=len(input_line)+1                        ! max number of strings INPUT_LINE could split into if all delimiter
-   if(allocated(ibegin))deallocate(ibegin)
-   allocate(ibegin(n))                        ! allocate enough space to hold starting location of tokens if string all tokens
-   if(allocated(iterm))deallocate(iterm)
-   allocate(iterm(n))                         ! allocate enough space to hold ending location of tokens if string all tokens
-   ibegin(:)=1
-   iterm(:)=1
-!-----------------------------------------------------------------------------------------------------------------------------------
-   iilen=len(input_line)                                          ! IILEN is the column position of the last non-blank character
-   icount=0                                                       ! how many tokens found
-   inotnull=0                                                     ! how many tokens found not composed of delimiters
-   imax=0                                                         ! length of longest token found
-!-----------------------------------------------------------------------------------------------------------------------------------
-   select case (iilen)
-!-----------------------------------------------------------------------------------------------------------------------------------
-   case (:0)                                                      ! command was totally blank
-!-----------------------------------------------------------------------------------------------------------------------------------
-   case default                                                   ! there is at least one non-delimiter in INPUT_LINE if get here
-      icol=1                                                      ! initialize pointer into input line
-      INFINITE: do i30=1,iilen,1                                  ! store into each array element
-         ibegin(i30)=icol                                         ! assume start new token on the character
-         if(index(dlim(1:idlim),input_line(icol:icol)) == 0)then  ! if current character is not a delimiter
-            iterm(i30)=iilen                                      ! initially assume no more tokens
-            do i10=1,idlim                                        ! search for next delimiter
-               ifound=index(input_line(ibegin(i30):iilen),dlim(i10:i10))
-               IF(ifound > 0)then
-                  iterm(i30)=min(iterm(i30),ifound+ibegin(i30)-2)
-               endif
-            enddo
-            icol=iterm(i30)+2                                     ! next place to look as found end of this token
-            inotnull=inotnull+1                                   ! increment count of number of tokens not composed of delimiters
-         else                                                     ! character is a delimiter for a null string
-            iterm(i30)=icol-1                                     ! record assumed end of string. Will be less than beginning
-            icol=icol+1                                           ! advance pointer into input string
-         endif
-         imax=max(imax,iterm(i30)-ibegin(i30)+1)
-         icount=i30                                               ! increment count of number of tokens found
-         if(icol > iilen)then                                    ! no text left
-            exit INFINITE
-         endif
-      enddo INFINITE
-!-----------------------------------------------------------------------------------------------------------------------------------
-   end select
-!-----------------------------------------------------------------------------------------------------------------------------------
-      ireturn=inotnull
-   if(allocated(array))deallocate(array)
-   allocate(character(len=imax) :: array(ireturn))                ! allocate the array to return
-!-----------------------------------------------------------------------------------------------------------------------------------
-   ii=1
-   do i20=1,icount                                                ! fill the array with the tokens that were found
-      if(iterm(i20) < ibegin(i20))then
+   arraysize=size(list)
+
+   error=0
+   if(arraysize.eq.0)then
+      maxtry=0
+      place=-1
+   else
+      maxtry=int(log(float(arraysize))/log(2.0)+1.0)
+      place=(arraysize+1)/2
+   endif
+   imin=1
+   imax=arraysize
+   message=''
+
+   LOOP: block
+   do i=1,maxtry
+      if(value.eq.list(PLACE))then
+         exit LOOP
+      else if(value.gt.list(place))then
+         imax=place-1
       else
-         array(ii)=input_line(ibegin(i20):iterm(i20))
-         ii=ii+1
+         imin=place+1
+      endif
+      if(imin.gt.imax)then
+         place=-imin
+         if(iabs(place).gt.arraysize)then ! ran off end of list. Where new value should go or an unsorted input array'
+            exit LOOP
+         endif
+         exit LOOP
+      endif
+      place=(imax+imin)/2
+      if(place.gt.arraysize.or.place.le.0)then
+         message='*locate* error: search is out of bounds of list. Probably an unsorted input array'
+         error=-1
+         exit LOOP
       endif
    enddo
-!-----------------------------------------------------------------------------------------------------------------------------------
-   if(allocated(ibegin))deallocate(ibegin)
-   if(allocated(iterm))deallocate(iterm)
-   end subroutine split
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
+   message='*locate* exceeded allowed tries. Probably an unsorted input array'
+   endblock LOOP
+   if(present(ier))then
+      ier=error
+   else if(error.ne.0)then
+      write(stderr,*)message//' VALUE=',trim(value)//' PLACE=',place
+      stop 1
+   endif
+   if(present(errmsg))then
+      errmsg=message
+   endif
+end subroutine locate
+
+subroutine remove(list,place)
+character(len=:),allocatable :: list(:)
+integer,intent(in)           :: place
+integer                      :: ii, end
+   if(.not.allocated(list))then
+      list=[character(len=2) :: ]
+   endif
+   ii=len(list)
+   end=size(list)
+   if(place.le.0.or.place.gt.end)then                       ! index out of bounds of array
+   elseif(place.eq.end)then                                 ! remove from array
+      list=[character(len=ii) :: list(:place-1) ]
+   else
+      list=[character(len=ii) :: list(:place-1), list(place+1:) ]
+   endif
+end subroutine remove
+
+subroutine replace(list,value,place)
+character(len=*),intent(in)  :: value
+character(len=:),allocatable :: list(:)
+character(len=:),allocatable :: kludge(:)
+integer,intent(in)           :: place
+integer                      :: ii
+integer                      :: tlen
+integer                      :: end
+   if(.not.allocated(list))then
+      list=[character(len=max(len_trim(value),2)) :: ]
+   endif
+   tlen=len_trim(value)
+   end=size(list)
+   if(place.lt.0.or.place.gt.end)then
+           write(stderr,*)'*replace* error: index out of range. end=',end,' index=',place
+   elseif(len_trim(value).le.len(list))then
+      list(place)=value
+   else  ! increase length of variable
+      ii=max(tlen,len(list))
+      kludge=[character(len=ii) :: list ]
+      list=kludge
+      list(place)=value
+   endif
+end subroutine replace
+
+subroutine insert(list,value,place)
+character(len=*),intent(in)  :: value
+character(len=:),allocatable :: list(:)
+character(len=:),allocatable :: kludge(:)
+integer,intent(in)           :: place
+integer                      :: ii
+integer                      :: end
+   if(.not.allocated(list))then
+      list=[character(len=max(len_trim(value),2)) :: ]
+   endif
+   ii=max(len_trim(value),len(list),2)
+   end=size(list)
+   if(end.eq.0)then                                          ! empty array
+      list=[character(len=ii) :: value ]
+   elseif(place.eq.1)then                                    ! put in front of array
+      kludge=[character(len=ii) :: value, list]
+      list=kludge
+   elseif(place.gt.end)then                                  ! put at end of array
+      kludge=[character(len=ii) :: list, value ]
+      list=kludge
+   elseif(place.ge.2.and.place.le.end)then                 ! put in middle of array
+      kludge=[character(len=ii) :: list(:place-1), value,list(place:) ]
+      list=kludge
+   else                                                      ! index out of range
+      write(stderr,*)'*insert* error: index out of range. end=',end,' index=',place,' value=',value
+   endif
+end subroutine insert
+!>
+!! !>
+!!##NAME
+!!    alert(3f) - [M_attr] print messages using a standard format including
+!!    time and program name
+!!    (LICENSE:MIT)
+!!
+!!##SYNOPSIS
+!!
+!!     subroutine alert(message,&
+!!     g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,ga,gb,gc,gd,ge,gf,gg,gh,gi,gj)
+!!
+!!        character(len=*),intent(in),optional :: type
+!!        character(len=*),intent(in),optional :: message
+!!        class(*),intent(in),optional :: g0,g1,g2,g3,g4,g5,g6,g7,g8,g9, &
+!!                                      & ga,gb,gc,gd,ge,gf,gg,gh,gi,gj
+!!
+!!##DESCRIPTION
+!!    Display a message prefixed with a timestamp and the name
+!!    of the calling program when the TYPE is specified as any
+!!    of 'error','warn', or 'info'.
+!!
+!!    It also allows the keywords
+!!    <ARG0>,<TZ>,<YE>,<MO>,<DA>,<HR>,<MI>,<SE>,<MS> to be used in the
+!!    message (which is passed to ATTR(3f)).
+!!
+!!    Note that time stamp keywords will only be updated when using ALERT(3f)
+!!    and will only be displayed in color mode!
+!!
+!!##OPTIONS
+!!    TYPE     if present and one of 'warn','message','info', or 'debug'
+!!             a predefined message is written to stderr of the form
+!!
+!!              : <HR>:<MI>:<SE>.<MS> : (<ARG0>) : TYPE -> message
+!!
+!!    MESSAGE  the user-supplied message to display via a call to ATTR(3f)
+!!
+!!    g[0-9a-j]   optional values to print after the message. May
+!!                be of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION,
+!!                COMPLEX, or CHARACTER.
+!!
+!!    if no parameters are supplied the macros are updated but no output
+!!    is generated.
+!!
+!!##EXAMPLE
+!!
+!!    Sample program
+!!
+!!     program demo_alert
+!!     use M_attr, only : alert, attr, attr_mode
+!!     implicit none
+!!     real X
+!!      call attr_mode(manner='plain')
+!!      call attr_mode(manner='color')
+!!      call alert("error",&
+!!                "Say you didn't!")
+!!      call alert("warn", &
+!!                "I wouldn't if I were you, Will Robinson.")
+!!      call alert("info", &
+!!                "I fixed that for you, but it was a bad idea.")
+!!      call alert("debug", &
+!!                "Who knows what is happening now?.")
+!!      call alert("???    ",  "not today you don't")
+!!      ! call to just update the macros
+!!      call alert()
+!!      ! conventional call to ATTR(3f) using the ALERT(3f)-defined macros
+!!      write(*,*)attr(&
+!!              '<bo>The year was <g><YE></g>, the month was <g><MO></g>')
+!!      ! optional arguments
+!!      X=211.3
+!!      call alert('error',&
+!!              'allowed range of X is 0 <lt> X <lt> 100, X=<r>',X)
+!!      ! up to twenty values are allowed of intrinsic type
+!!      call alert('info','values are<g>',10,234.567,&
+!!              cmplx(11.0,22.0),123.456d0,'</g>today')
+!!     end program demo_alert
+!!
+!!   Results:
+!!
+!!     00:38:30: (prg) : error    -> Say you didn't!
+!!     00:38:30: (prg) : warning  -> I wouldn't if I were you, ...
+!!                                   Will Robinson.
+!!     00:38:30: (prg) : info     -> I fixed that for you,  ...
+!!                                   but it was a bad idea.
+!!     00:38:30: (prg) : debug    -> Who knows what is happening now?. ...
+!!     00:38:30: (prg) : ???      -> not today you don't
+!!     00:38:30: (prg) : error    -> allowed range of X is 0  X  100, ...
+!!                                   X= 211.300003
+!!     00:38:30: (prg) : info     -> values are 10 234.567001 ...
+!!                                   (11.0000000,22.0000000) ...
+!!                                   123.45600000000000 today
+!!
+!!##AUTHOR
+!!    John S. Urban, 2021
+!!
+!!##LICENSE
+!!    MIT
+subroutine alert(type,message,g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,ga,gb,gc,gd,ge,gf,gg,gh,gi,gj)
+! TODO: could add a warning level to ignore info, or info|warning, or all
+implicit none
+character(len=*),intent(in),optional :: type
+character(len=*),intent(in),optional :: message
+class(*),intent(in),optional  :: g0,g1,g2,g3,g4,g5,g6,g7,g8,g9
+class(*),intent(in),optional  :: ga,gb,gc,gd,ge,gf,gg,gh,gi,gj
+character(len=8)      :: dt
+character(len=10)     :: tm
+character(len=5)      :: zone
+integer,dimension(8)  :: values
+character(len=4096)   :: arg0
+character(len=:),allocatable :: new_message
+character(len=:),allocatable :: other
+logical :: printme
+   call date_and_time(dt,tm,zone,values)
+   call attr_update('YE',dt(1:4),dt(1:4))
+   call attr_update('MO',dt(5:6),dt(5:6))
+   call attr_update('DA',dt(7:8),dt(7:8))
+   call attr_update('HR',tm(1:2),tm(1:2))
+   call attr_update('MI',tm(3:4),tm(3:4))
+   call attr_update('SE',tm(5:6),tm(5:6))
+   call attr_update('MS',tm(8:10),tm(8:10))
+   call attr_update('TZ',zone,zone)
+   call get_command_argument(0,arg0)
+   if(index(arg0,'/').ne.0) arg0=arg0(index(arg0,'/',back=.true.)+1:)
+   if(index(arg0,'\').ne.0) arg0=arg0(index(arg0,'\',back=.true.)+1:)
+   call attr_update('ARG0',arg0,arg0)
+   printme=.true.
+   if(present(type))then
+      new_message= ' <b>'//tm(1:2)//':'//tm(3:4)//':'//tm(5:6)//'.'//tm(8:10)//'</b> : ('//trim(arg0)//') : '
+      other=message//' '//str(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,ga,gb,gc,gd,ge,gf,gg,gh,gi,gj)
+      select case(type)
+
+      case('warn','WARN','warning','WARNING')
+       new_message= new_message//'<EBONY><bo><y>warning </y></EBONY> -<gt> '
+       printme=alert_warn
+
+      case('info','INFO','information','INFORMATION')
+       new_message= new_message//'<EBONY><bo><g>info    </g></EBONY> -<gt> '
+       printme=alert_info
+
+      case('error','ERROR')
+       new_message= new_message//'<EBONY><bo><r>error   </r></EBONY> -<gt> '
+       printme=alert_error
+
+      case('debug','DEBUG')
+       new_message= new_message//'<EBONY><white><bo>debug   </white></EBONY> -<gt> '
+       printme=alert_debug
+
+      case default
+       new_message= new_message//'<EBONY><bo><c>'//type//' </c></EBONY> -<gt> '
+       printme=alert_other
+
+      end select
+    if(printme)then
+       write(alert_unit,'(a)')attr(trim(new_message//other))
+    endif
+
+   elseif(present(message))then
+    write(alert_unit,'(a)')attr(trim(other))
+   endif
+end subroutine alert
 !>
 !!##NAME
-!!    attr(3f) - [M_escape] colorize text using a simple function-based approach
+!!    str(3f) - [M_attr] converts any standard scalar type to a string
 !!    (LICENSE:PD)
 !!
 !!##SYNOPSIS
 !!
-!!   function attr(attribute) result (out)
+!!    Syntax:
 !!
-!!    character(len=*),intent(in)  :: attribute
-!!    character(len=:),allocatable :: out
+!!      function str(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,&
+!!      & ga,gb,gc,gd,ge,gf,gg,gh,gi,gj,sep)
+!!      class(*),intent(in),optional  :: g0,g1,g2,g3,g4,g5,g6,g7,g8,g9
+!!      class(*),intent(in),optional  :: ga,gb,gc,gd,ge,gf,gg,gh,gi,gj
+!!      character(len=*),intent(in),optional :: sep
+!!      character,len=(:),allocatable :: str
 !!
 !!##DESCRIPTION
-!!    attr(3f) uses the same keywords as esc(3f) to send ANSI escape
-!!    sequences to the display screen, except instead of using a pseudo-HTML
-!!    string to select the codes it uses a simple colon-delimited list of
-!!    the keywords.
+!!    str(3f) builds a space-separated string from up to twenty scalar
+!!    values.
 !!
 !!##OPTIONS
-!!    attribute  colon, space, or comma-delimited list of attribute keywords
-!!               as defined in the esc(3f) procedure.
-!!    text       if supplied it is printed and then an attribute reset is added
+!!    g[0-9a-j]   optional value to print the value of after the message. May
+!!                be of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION,
+!!                COMPLEX, or CHARACTER.
+!!
+!!                Optionally, all the generic values can be
+!!                single-dimensioned arrays. Currently, mixing scalar
+!!                arguments and array arguments is not supported.
+!!
+!!    sep         separator string used between values. Defaults to a space.
 !!
 !!##RETURNS
-!!    out        output the strings assigned by the keywords (by default
-!!    ANSI video
-!!               display escape sequences, see update(3f) )
-!!##EXAMPLE
+!!    str     description to print
 !!
-!!   Sample program
+!!##EXAMPLES
 !!
-!!    program demo_attr
-!!    use M_escape, only : attr, esc_mode
-!!    implicit none
-!!         call printme('color')
-!!         call printme('plain')
-!!         call printme('raw')
-!!    contains
-!!    subroutine printme(mymode)
-!!    character(len=*),intent(in) :: mymode
-!!       call esc_mode(mymode)
-!!       write(*,'(a)')mymode
-!!       write(*,'(*(g0))',advance='no')attr('red:BLUE:bold','Hello!'), &
-!!        & 'and everything is back to defaults or ', &
-!!        & attr('RED:blue:bold'),'Hello Again!', &
-!!        & attr('/RED'),' Well, the text color is still blue.',attr('reset')
-!!       write(*,'(*(g0))',advance='yes')' Back to a normal write statement.'
-!!    end subroutine printme
-!!    end program demo_attr
+!!   Sample program:
+!!
+!!    program demo_msg
+!!    use M_attr, only : alert
+!!    end program demo_msg
+!!
+!!   Output
+!!
 !!
 !!##AUTHOR
-!!    John S. Urban, 2020
+!!    John S. Urban
 !!
 !!##LICENSE
 !!    Public Domain
-function attr(attribute,text) result(out)
-! colon,space, or comma-delimited string of attributes
-character(len=*),intent(in)          :: attribute
-character(len=*),intent(in),optional :: text
-character(len=:),allocatable         :: out
-character(len=:),allocatable         :: array(:)
-integer                              :: i
-   if(.not.allocated(mode))then  ! set substitution mode
-      mode='color'
-      call vt102()
+function msg_scalar(generic0, generic1, generic2, generic3, generic4, generic5, generic6, generic7, generic8, generic9, &
+                  & generica, genericb, genericc, genericd, generice, genericf, genericg, generich, generici, genericj, &
+                  & sep)
+implicit none
+
+! ident_1="@(#)M_attr::msg_scalar(3fp): writes a message to a string composed of any standard scalar types"
+
+class(*),intent(in),optional  :: generic0, generic1, generic2, generic3, generic4
+class(*),intent(in),optional  :: generic5, generic6, generic7, generic8, generic9
+class(*),intent(in),optional  :: generica, genericb, genericc, genericd, generice
+class(*),intent(in),optional  :: genericf, genericg, generich, generici, genericj
+character(len=:),allocatable  :: msg_scalar
+character(len=4096)           :: line
+integer                       :: istart
+integer                       :: increment
+character(len=*),intent(in),optional :: sep
+character(len=:),allocatable  :: sep_local
+   if(present(sep))then
+      increment=len(sep)+1
+      sep_local=sep
+   else
+      increment=2
+      sep_local=' '
    endif
-   out=''
-   call split(attribute,array,delimiters=' :,')
-   do i=1,size(array)
-      if(mode=='raw')then
-         out=out//'<'//trim(array(i))//'>'
-      elseif(mode=='plain')then
-         out=''
-      else
-         out=out//get(trim(array(i)))
-      endif
-   enddo
-   if(present(text))then
-   out=out//text//esc('<reset>')
+
+   istart=1
+   line=''
+   if(present(generic0))call print_generic(generic0)
+   if(present(generic1))call print_generic(generic1)
+   if(present(generic2))call print_generic(generic2)
+   if(present(generic3))call print_generic(generic3)
+   if(present(generic4))call print_generic(generic4)
+   if(present(generic5))call print_generic(generic5)
+   if(present(generic6))call print_generic(generic6)
+   if(present(generic7))call print_generic(generic7)
+   if(present(generic8))call print_generic(generic8)
+   if(present(generic9))call print_generic(generic9)
+   if(present(generica))call print_generic(generica)
+   if(present(genericb))call print_generic(genericb)
+   if(present(genericc))call print_generic(genericc)
+   if(present(genericd))call print_generic(genericd)
+   if(present(generice))call print_generic(generice)
+   if(present(genericf))call print_generic(genericf)
+   if(present(genericg))call print_generic(genericg)
+   if(present(generich))call print_generic(generich)
+   if(present(generici))call print_generic(generici)
+   if(present(genericj))call print_generic(genericj)
+   msg_scalar=trim(line)
+contains
+
+subroutine print_generic(generic)
+!use, intrinsic :: iso_fortran_env, only : int8, int16, int32, biggest=>int64, real32, real64, dp=>real128
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64, real32, real64, real128
+class(*),intent(in) :: generic
+   select type(generic)
+      type is (integer(kind=int8));     write(line(istart:),'(i0)') generic
+      type is (integer(kind=int16));    write(line(istart:),'(i0)') generic
+      type is (integer(kind=int32));    write(line(istart:),'(i0)') generic
+      type is (integer(kind=int64));    write(line(istart:),'(i0)') generic
+      type is (real(kind=real32));      write(line(istart:),'(1pg0)') generic
+      type is (real(kind=real64));      write(line(istart:),'(1pg0)') generic
+      type is (real(kind=real128));     write(line(istart:),'(1pg0)') generic
+      type is (logical);                write(line(istart:),'(l1)') generic
+      type is (character(len=*));       write(line(istart:),'(a)') trim(generic)
+      type is (complex);                write(line(istart:),'("(",1pg0,",",1pg0,")")') generic
+   end select
+   istart=len_trim(line)+increment
+   line=trim(line)//sep_local
+end subroutine print_generic
+
+end function msg_scalar
+function msg_one(generic0,generic1, generic2, generic3, generic4, generic5, generic6, generic7, generic8, generic9,&
+               & generica,genericb, genericc, genericd, generice, genericf, genericg, generich, generici, genericj,&
+               & sep)
+implicit none
+
+! ident_2="@(#)M_attr::msg_one(3fp): writes a message to a string composed of any standard one dimensional types"
+
+class(*),intent(in)           :: generic0(:)
+class(*),intent(in),optional  :: generic1(:), generic2(:), generic3(:), generic4(:), generic5(:)
+class(*),intent(in),optional  :: generic6(:), generic7(:), generic8(:), generic9(:)
+class(*),intent(in),optional  :: generica(:), genericb(:), genericc(:), genericd(:), generice(:)
+class(*),intent(in),optional  :: genericf(:), genericg(:), generich(:), generici(:), genericj(:)
+character(len=*),intent(in),optional :: sep
+character(len=:),allocatable  :: sep_local
+character(len=:), allocatable :: msg_one
+character(len=4096)           :: line
+integer                       :: istart
+integer                       :: increment
+   if(present(sep))then
+      increment=1+len(sep)
+      sep_local=sep
+   else
+      sep_local=' '
+      increment=2
    endif
-end function attr
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-! one question would be if the strings should not be parameters so you could flush and reset them.
-!-!subroutine color_reset()
-!-!! for direct use of escape sequences
-!-!
-!-!! foreground colors
-!-! fg_red      =  CODE_START//COLOR_FG_RED//CODE_END
-!-! fg_cyan     =  CODE_START//COLOR_FG_CYAN//CODE_END
-!-! fg_magenta  =  CODE_START//COLOR_FG_MAGENTA//CODE_END
-!-! fg_blue     =  CODE_START//COLOR_FG_BLUE//CODE_END
-!-! fg_green    =  CODE_START//COLOR_FG_GREEN//CODE_END
-!-! fg_yellow   =  CODE_START//COLOR_FG_YELLOW//CODE_END
-!-! fg_white    =  CODE_START//COLOR_FG_WHITE//CODE_END
-!-! fg_ebony    =  CODE_START//COLOR_FG_BLACK//CODE_END
-!-! fg_default  =  CODE_START//COLOR_FG_DEFAULT//CODE_END
-!-!
-!-!! background colors
-!-! bg_red      =  CODE_START//COLOR_BG_RED//CODE_END
-!-! bg_cyan     =  CODE_START//COLOR_BG_CYAN//CODE_END
-!-! bg_magenta  =  CODE_START//COLOR_BG_MAGENTA//CODE_END
-!-! bg_blue     =  CODE_START//COLOR_BG_BLUE//CODE_END
-!-! bg_green    =  CODE_START//COLOR_BG_GREEN//CODE_END
-!-! bg_yellow   =  CODE_START//COLOR_BG_YELLOW//CODE_END
-!-! bg_white    =  CODE_START//COLOR_BG_WHITE//CODE_END
-!-! bg_ebony    =  CODE_START//COLOR_BG_BLACK//CODE_END
-!-! bg_default  =  CODE_START//COLOR_BG_DEFAULT//CODE_END
-!-!
-!-!! attributes
-!-! bold        =  CODE_START//BOLD_ON//CODE_END
-!-! italic      =  CODE_START//ITALIC_ON//CODE_END
-!-! inverse     =  CODE_START//INVERSE_ON//CODE_END
-!-! underline   =  CODE_START//UNDERLINE_ON//CODE_END
-!-! unbold      =  CODE_START//BOLD_OFF//CODE_END
-!-! unitalic    =  CODE_START//ITALIC_OFF//CODE_END
-!-! uninverse   =  CODE_START//INVERSE_OFF//CODE_END
-!-! ununderline =  CODE_START//UNDERLINE_OFF//CODE_END
-!-!
-!-! reset       =  CODE_RESET
-!-! clear       =  CLEAR_DISPLAY
-!-!subroutine color_reset()
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-!-!subroutine color_flush()
-!-!! for direct use of escape sequences
-!-!
-!-!! foreground colors
-!-! fg_red      =  ''
-!-! fg_cyan     =  ''
-!-! fg_magenta  =  ''
-!-! fg_blue     =  ''
-!-! fg_green    =  ''
-!-! fg_yellow   =  ''
-!-! fg_white    =  ''
-!-! fg_ebony    =  ''
-!-! fg_default  =  ''
-!-!
-!-!! background colors
-!-! bg_red      =  ''
-!-! bg_cyan     =  ''
-!-! bg_magenta  =  ''
-!-! bg_blue     =  ''
-!-! bg_green    =  ''
-!-! bg_yellow   =  ''
-!-! bg_white    =  ''
-!-! bg_ebony    =  ''
-!-! bg_default  =  ''
-!-!
-!-!! attributes
-!-! bold        =  ''
-!-! italic      =  ''
-!-! inverse     =  ''
-!-! underline   =  ''
-!-! unbold      =  ''
-!-! unitalic    =  ''
-!-! uninverse   =  ''
-!-! ununderline =  ''
-!-!
-!-! reset       =  CODE_RESET
-!-! clear       =  CLEAR_DISPLAY
-!-!end subroutine color_flush
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-end module M_escape
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
-!===================================================================================================================================
+
+   istart=1
+   line=' '
+   call print_generic(generic0)
+   if(present(generic1))call print_generic(generic1)
+   if(present(generic2))call print_generic(generic2)
+   if(present(generic3))call print_generic(generic3)
+   if(present(generic4))call print_generic(generic4)
+   if(present(generic5))call print_generic(generic5)
+   if(present(generic6))call print_generic(generic6)
+   if(present(generic7))call print_generic(generic7)
+   if(present(generic8))call print_generic(generic8)
+   if(present(generic9))call print_generic(generic9)
+   if(present(generica))call print_generic(generica)
+   if(present(genericb))call print_generic(genericb)
+   if(present(genericc))call print_generic(genericc)
+   if(present(genericd))call print_generic(genericd)
+   if(present(generice))call print_generic(generice)
+   if(present(genericf))call print_generic(genericf)
+   if(present(genericg))call print_generic(genericg)
+   if(present(generich))call print_generic(generich)
+   if(present(generici))call print_generic(generici)
+   if(present(genericj))call print_generic(genericj)
+   msg_one=trim(line)
+contains
+
+subroutine print_generic(generic)
+!use, intrinsic :: iso_fortran_env, only : int8, int16, int32, biggest=>int64, real32, real64, dp=>real128
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64, real32, real64, real128
+class(*),intent(in),optional :: generic(:)
+integer :: i
+   select type(generic)
+      type is (integer(kind=int8));     write(line(istart:),'("[",*(i0,1x))') generic
+      type is (integer(kind=int16));    write(line(istart:),'("[",*(i0,1x))') generic
+      type is (integer(kind=int32));    write(line(istart:),'("[",*(i0,1x))') generic
+      type is (integer(kind=int64));    write(line(istart:),'("[",*(i0,1x))') generic
+      type is (real(kind=real32));      write(line(istart:),'("[",*(1pg0,1x))') generic
+      type is (real(kind=real64));      write(line(istart:),'("[",*(1pg0,1x))') generic
+      type is (real(kind=real128));     write(line(istart:),'("[",*(1pg0,1x))') generic
+      !type is (real(kind=real256));     write(error_unit,'(1pg0)',advance='no') generic
+      type is (logical);                write(line(istart:),'("[",*(l1,1x))') generic
+      type is (character(len=*));       write(line(istart:),'("[",:*("""",a,"""",1x))') (trim(generic(i)),i=1,size(generic))
+      type is (complex);                write(line(istart:),'("[",*("(",1pg0,",",1pg0,")",1x))') generic
+      class default
+         stop 'unknown type in *print_generic*'
+   end select
+   istart=len_trim(line)+increment+1
+   line=trim(line)//']'//sep_local
+end subroutine print_generic
+
+end function msg_one
+end module M_attr
  
  
 !>>>>> app/fpm-man.f90
@@ -45272,7 +43897,7 @@ use M_CLI2,       only : set_args, sget, lget, specified, topics=>unnamed
 use M_match,      only : getpat, match, regex_pattern
 use M_match,      only : YES, ERR
 use M_strings,    only : lower, indent, atleast
-use M_escape,     only : esc
+use M_attr,       only : attr
 implicit none
 type(regex_pattern)          :: p, start_p, end_p
 character(len=:),allocatable :: help_text(:), version_text(:)
@@ -45493,21 +44118,22 @@ integer :: lead
 logical :: program_text
    program_text=.false.
    newblock= oldblock
+   lead=0
    do j=1,size(oldblock)
       if( index(oldblock(j),'end program demo_') .eq. 0 .and. index(oldblock(j),'program demo_') .ne. 0)then
          program_text=.true.
          lead=indent(oldblock(j))
       endif
       if(program_text .eqv. .true.)then
-        newblock(j)=esc('<E>'//repeat(' ',lead)//'<E><y>'//atleast(oldblock(j)(lead+1:),80-lead) )
+        newblock(j)=attr('<E>'//repeat(' ',lead)//'<E><y>'//atleast(trim(oldblock(j)(lead+1:)),80-lead) )
       elseif(verify(oldblock(j)(1:1), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' ) == 0 .and. &
       & verify(oldblock(j), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ _') == 0 )then
          ilen=len_trim(oldblock(j))
-         newblock(j)=esc('<E><y><bo> '//trim(oldblock(j))//' </bo>'//repeat(' ',max(0,80-ilen-2))//'<reset>')
+         newblock(j)=attr('<E><y><bo> '//trim(oldblock(j))//' </bo>'//repeat(' ',max(0,80-ilen-2))//'<reset>')
        else
           ilen=len_trim(oldblock(j))
           ilen=len_trim(than(oldblock(j)))-ilen
-          newblock(j)=esc('<E><w>'//atleast(than(oldblock(j)),80+ilen)//'<reset>')
+          newblock(j)=attr('<E><w>'//atleast(than(oldblock(j)),80+ilen)//'<reset>')
        endif
       if( index(oldblock(j),'end program demo_') .ne.0)then
          program_text=.false.
@@ -45535,56 +44161,56 @@ end function than
 subroutine setup()
 help_text=[ CHARACTER(LEN=128) :: &
 'help_text=[ CHARACTER(LEN=128) :: &',&
-'NAME',&
+'NAME                               ',&
 '    fman(1f) - [DEVELOPER] output descriptions of Fortran intrinsics',&
-'    (LICENSE:PD)',&
-'',&
-'SYNOPSIS',&
+'    (LICENSE:PD)                                                    ',&
+'                                                                    ',&
+'SYNOPSIS                                                            ',&
 '    fman NAME(s) [[-ignorecase][--regex Regular_Expression]]|[-topic_only]',&
-'                [--color][--demo]',&
-'',&
-'    fman [ --help| --version]',&
-'',&
-'DESCRIPTION',&
-'   fman(1) prints descriptions of Fortran intrinsics as simple flat text.',&
-'',&
+'                [--color][--demo]                                         ',&
+'                                                                          ',&
+'    fman [ --help| --version]                                             ',&
+'                                                                          ',&
+'DESCRIPTION                                                               ',&
+'   fman(1) prints descriptions of Fortran intrinsics as simple flat text. ',&
+'                                                                          ',&
 '   The text is formatted in the txt2man(1) markdown language so one can easily',&
-'   generate man-pages on ULS (Unix-Like Systems).',&
-'',&
-'OPTIONS',&
-'  TOPIC(s)          A list of Fortran intrinsic names or the special names',&
-'                    "toc" and "manual" (which generate a table of contents',&
-'                    and the entire set of documents respecively).',&
-'                    The default is "toc" and to ignore case.',&
-'  --regex,-e        Search all output per the provided Regular Expression.',&
-'                    Output is prefixed with the topic it was found in.',&
-'  --topic_only,-t   Only show topic names. Other switches are ignored.',&
-'  --ignorecase,-i   Ignore case when searching for a Regular Expression.',&
+'   generate man-pages on ULS (Unix-Like Systems).                             ',&
+'                                                                              ',&
+'OPTIONS                                                                       ',&
+'  TOPIC(s)          A list of Fortran intrinsic names or the special names    ',&
+'                    "toc" and "manual" (which generate a table of contents    ',&
+'                    and the entire set of documents respecively).             ',&
+'                    The default is "toc" and to ignore case.                  ',&
+'  --regex,-e        Search all output per the provided Regular Expression.    ',&
+'                    Output is prefixed with the topic it was found in.        ',&
+'  --topic_only,-t   Only show topic names. Other switches are ignored.        ',&
+'  --ignorecase,-i   Ignore case when searching for a Regular Expression.      ',&
 '  --demo,-d         extract first demo program found for a topic (starting with',&
-'                    "program demo_*" and ending with "end program demo_*").',&
-'  --color           Use ANSI in-line escape sequences to display the text in',&
-'                    set colors. Does not work with all terminal emulators or',&
-'                    terminals. Must use the -r switch with less(1) for less(1)',&
-'                    to display colors.',&
-'  --help            Display this help and exit',&
-'  --version         Output version information and exit',&
-'',&
-'EXAMPLES',&
-'  Sample commands',&
-'',&
-'   fman                 # list table of contents',&
-'   fman -e character    # check TOC for string. try "trigo","size","complex"',&
-'   fman tan|less        # display a description of tan(3f)',&
-'',&
-'   fman --regex ''''character'''' # look for string in the TOC ignoring case',&
-'',&
-'   fman manual>fortran.txt    # create a copy of all descriptions',&
-'',&
+'                    "program demo_*" and ending with "end program demo_*").    ',&
+'  --color           Use ANSI in-line escape sequences to display the text in   ',&
+'                    set colors. Does not work with all terminal emulators or   ',&
+'                    terminals. Must use the -r switch with less(1) for less(1) ',&
+'                    to display colors.                                         ',&
+'  --help            Display this help and exit                                 ',&
+'  --version         Output version information and exit                        ',&
+'                                                                               ',&
+'EXAMPLES                                                                       ',&
+'  Sample commands                                                              ',&
+'                                                                               ',&
+'   fman                 # list table of contents                               ',&
+'   fman -e character    # check TOC for string. try "trigo","size","complex"   ',&
+'   fman tan|less        # display a description of tan(3f)                     ',&
+'                                                                               ',&
+'   fman --regex ''''character'''' # look for string in the TOC ignoring case   ',&
+'                                                                               ',&
+'   fman manual>fortran.txt    # create a copy of all descriptions              ',&
+'                                                                               ',&
 '   # list the topic "scan" if found and lines containing "scan" from the entire',&
-'   # manual, prefixing the lines with the section name, while ignoring case.',&
-'   fman -e scan -i manual',&
-'',&
-'   fman -d verify >demo_verify.f90 # get sample program to try VERIFY(3f).',&
+'   # manual, prefixing the lines with the section name, while ignoring case.   ',&
+'   fman -e scan -i manual                                                      ',&
+'                                                                               ',&
+'   fman -d verify >demo_verify.f90 # get sample program to try VERIFY(3f).     ',&
 '']
 version_text=[ CHARACTER(LEN=128) :: &
 '@(#) PRODUCT:         GPF (General Purpose Fortran) utilities and examples    >',&
