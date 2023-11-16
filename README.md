@@ -33,8 +33,12 @@ platforms; providing a convenient CLI (Command Line Interface).
 
 The man-pages are available as archive files:
 
+<!--
    - [manpages.tgz](docs/manpages.zip)
    - [manpages.zip](docs/manpages.tgz)
+   -->
+   - [manpages.tgz](https://urbanjost.github.io/M_intrinsics/manpages.tgz)
+   - [manpages.zip](https://urbanjost.github.io/M_intrinsics/manpages.zip)
 
 A single-file version of the CLI program fpm-man(1) is in 
 [fman.f90](https://raw.githubusercontent.com/urbanjost/M_intrinsics/master/standalone/fman.f90).

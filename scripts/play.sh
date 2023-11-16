@@ -18,11 +18,14 @@ cat <<EOF
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> `basename $NAME .f90|sed -e 's/^demo_//'`
   </a>
+  <details>
+    <summary>Source</summary>
   <xmp>
 EOF
 cat $NAME
 cat <<\EOF
   </xmp>
+  </details>
 EOF
 done
 ###############################################################################

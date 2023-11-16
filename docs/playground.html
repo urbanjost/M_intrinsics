@@ -2105,7 +2105,7 @@
 
       end program demo_exp
   </xmp>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fexponent%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20real%20%3A%3A%20x%20%3D%201%2E0%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%20i%20%3D%20exponent%28x%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20i%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20exponent%280%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20exponent%28%5B10%2E0%2C100%2E0%2C1000%2E0%2C%2D10000%2E0%5D%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%202%2A%2A%5B10%2E0%2C100%2E0%2C1000%2E0%2C%2D10000%2E0%5D%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20exponent%28huge%280%2E0%29%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20exponent%28tiny%280%2E0%29%29%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fexponent%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fexponent%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20real%20%3A%3A%20x%20%3D%201%2E0%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%20i%20%3D%20exponent%28x%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20i%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20exponent%280%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20exponent%28%5B10%2E0%2C100%2E0%2C1000%2E0%2C%2D10000%2E0%5D%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20beware%20of%20overflow%2C%20it%20may%20occur%20silently%0D%0A%20%20%20%20%20%20%20%20%20%21print%20%2A%2C%202%2A%2A%5B10%2E0%2C100%2E0%2C1000%2E0%2C%2D10000%2E0%5D%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20exponent%28huge%280%2E0%29%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20exponent%28tiny%280%2E0%29%29%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fexponent%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> exponent
@@ -2119,7 +2119,8 @@
          print *, i
          print *, exponent(0.0)
          print *, exponent([10.0,100.0,1000.0,-10000.0])
-         print *, 2**[10.0,100.0,1000.0,-10000.0]
+         ! beware of overflow, it may occur silently
+         !print *, 2**[10.0,100.0,1000.0,-10000.0]
          print *, exponent(huge(0.0))
          print *, exponent(tiny(0.0))
       end program demo_exponent
