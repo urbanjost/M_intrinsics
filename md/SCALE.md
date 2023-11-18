@@ -49,15 +49,43 @@ Sample program:
 ```fortran
 program demo_scale
 implicit none
-real :: x = 178.1387e-4
-integer :: i = 5
-   print *, scale(x,i), x*radix(x)**i
+real :: x 
+complex :: c
+integer :: i
+   x = 1.0
+   print *, (scale(x,i),i=1,5)
+   x = 3.0
+   print *, (scale(x,i),i=1,5)
+   print *, (scale(log(1.0),i),i=1,5)
+   ! on modern machines radix(x) is almost certainly 2
+   x = 178.1387e-4
+   i = 5
+   print *, x, i, scale(x, i), x*radix(x)**i
+   ! x*radix(x)**i is the same except roundoff errors are not restricted
+   i = 2
+   print *, x, i, scale(x, i), x*radix(x)**i
+   ! relatively easy to do complex values as well
+   c=(3.0,4.0)
+   print *, c, i, scale_complex(c, i)!, c*radix(c)**i
+contains
+   function scale_complex(x, n)
+   ! example supporting complex value for default kinds
+      complex, intent(in) :: x
+      integer, intent(in) :: n
+      complex :: scale_complex
+      scale_complex = cmplx(scale(x%re, n), scale(x%im, n), kind=kind(x%im))
+   end function scale_complex
 end program demo_scale
 ```
 Results:
-```
-    0.570043862      0.570043862
-```
+```text
+ > 2.00000000 4.00000000  8.00000000     16.0000000 32.0000000    
+ > 6.00000000 12.0000000 24.0000000      48.0000000 96.0000000    
+ > 0.00000000 0.00000000  0.00000000     0.00000000 0.00000000    
+ > 1.78138707E-02    5   0.570043862      0.570043862    
+ > 1.78138707E-02    2   7.12554827E-02   7.12554827E-02
+ > (3.00000000,4.00000000) 2 (12.0000000,16.0000000)
+
 ### **Standard**
 
 Fortran 95

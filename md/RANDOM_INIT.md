@@ -38,11 +38,11 @@ is distinct from the seed set by a call to **random_init**in another
 image. If it is **.false.**, the seed is set value that does depend
 which image called **random_init**.
 
-## **Standard**
 
-Fortran 2018
+### **Examples**
 
-## **Example**
+Sample program:
+
 ```fortran
     program demo_random_init
     implicit none
@@ -54,6 +54,10 @@ Fortran 2018
        ! x and y should be the same sequence
        if ( any(x /= y) ) stop "x(:) and y(:) are not all equal"
     end program demo_random_init
+```
+## **Standard**
+
+Fortran 2018
 ```
 ## **See also**
 
