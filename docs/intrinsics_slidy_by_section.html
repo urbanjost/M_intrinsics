@@ -6395,13 +6395,13 @@ end function floor
 <p><strong>gamma</strong>(3) - [MATHEMATICS] Gamma function, which yields factorials for positive whole numbers</p>
 <h3 id="synopsis-85"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb366"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb366-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> gamma(x)</a></code></pre></div>
-<div class="sourceCode" id="cb367"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb367-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span><span class="fu">KIND</span>) <span class="kw">function</span> gamma( x)</a>
+<div class="sourceCode" id="cb367"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb367-1" title="1">     <span class="kw">elemental</span> <span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=**</span>) <span class="kw">function</span> gamma( x)</a>
 <a class="sourceLine" id="cb367-2" title="2"></a>
-<a class="sourceLine" id="cb367-3" title="3">      <span class="dt">type(real,kind=KIND)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
+<a class="sourceLine" id="cb367-3" title="3">      <span class="dt">type(real,kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 <h3 id="characteristics-85"><strong>Characteristics</strong></h3>
 <ul>
-<li><strong>x</strong> is a real value</li>
-<li>returns a real value with the kind as <strong>x</strong>.</li>
+<li><strong>x</strong> is a real value of any available KIND</li>
+<li>returns a real value with the same kind as <strong>x</strong>.</li>
 </ul>
 <h3 id="description-85"><strong>Description</strong></h3>
 <p><strong>gamma(x)</strong> computes Gamma of <strong>x</strong>. For positive whole number values of <strong>n</strong> the Gamma function can be used to calculate factorials, as <strong>(n-1)! == gamma(real(n))</strong>. That is</p>

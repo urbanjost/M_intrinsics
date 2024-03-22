@@ -1605,6 +1605,16 @@
       end program demo_conjg
   </xmp>
   </details>
+  <a href="https://play.fortran-lang.org/?code="
+  target="_blank" title="Open in Fortran Playground">
+  <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
+  alt="Fortran logo" class="align-text-bottom" height="15.5" /> continue
+  </a>
+  <details>
+    <summary>Source</summary>
+  <xmp>
+  </xmp>
+  </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fco%5Freduce%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20val%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20val%20%3D%20this%5Fimage%28%29%0D%0A%20%20%20%20%20%20%20%20%20call%20co%5Freduce%28val%2C%20myprod%2C%201%29%0D%0A%20%20%20%20%20%20%20%20%20if%20%28this%5Fimage%28%29%20%3D%3D%201%29%20then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20%22Product%20value%22%2C%20val%20%20%21%20prints%20num%5Fimages%28%29%20factorial%0D%0A%20%20%20%20%20%20%20%20%20endif%0D%0A%0D%0A%20%20%20%20%20%20contains%0D%0A%0D%0A%20%20%20%20%20%20pure%20function%20myprod%28a%2C%20b%29%0D%0A%20%20%20%20%20%20%20%20%20integer%2C%20value%20%3A%3A%20a%2C%20b%0D%0A%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20myprod%0D%0A%20%20%20%20%20%20%20%20%20myprod%20%3D%20a%20%2A%20b%0D%0A%20%20%20%20%20%20end%20function%20myprod%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fco%5Freduce%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
@@ -6256,6 +6266,59 @@
          write(*,*)'alternatively',x2,z2
 
       end program demo_sqrt
+  </xmp>
+  </details>
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20program%20demo%5Fstop%0D%0A%20%20%20%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20stderr%3D%3EERROR%5FUNIT%0D%0A%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20stopcode%0D%0A%20%20%20%20%20%20%20%20%20character%28len%3D%3A%29%2Callocatable%20%3A%3A%20message%0D%0A%20%20%20%20%20%20%20%20%20character%28len%3D20%29%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20which%0D%0A%20%20%20%20%20%20%20%20%20INFINITE%3A%20do%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20Normal%20terminations%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%29%27%29%27enter%20a%20stop%20type%3A%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%20%27%7Bbasic%2C%20text%2C%20zero%2C%20nonzero%2C%20variable%2C%20expression%7D%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%20%27%7Berror%2C%20errornum%2C%20errorstring%7D%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20read%28%2A%2C%27%28a%29%27%29which%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20select%20case%28which%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20normal%20terminations%3A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20A%20STOP%20with%20no%20non%2Dzero%20numeric%20parameter%20is%20a%20normal%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20termination%20and%20generally%20returns%20a%20zero%20status%20value%20if%20the%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20system%20supports%20return%20statuses%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27basic%27%29%3B%20stop%20%20%20%20%21%20usually%20displays%20nothing%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27zero%27%29%3B%20%20stop%200%20%20%21%20sometimes%20displays%20%22STOP%200%22%20or%20%220%22%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27text%27%29%3B%20%20stop%20%27That%20is%20all%2C%20folks%21%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20All%20other%20stops%20are%20generally%20used%20to%20indicate%20an%20error%20or%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20special%20exit%20type%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27nonzero%27%29%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20stop%2010%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27variable%27%29%3B%20stopcode%3D11%3B%20%20%20stop%20stopcode%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27expression%27%29%3B%20stopcode%3D11%3B%20stop%20110%2Fstopcode%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27string%27%29%3B%20message%3D%27oops%27%3B%20%20stop%20%27%3CERROR%3E%3A%3C%27%2F%2Fmessage%2F%2F%27%3E%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20Error%20terminations%3A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20ERROR%20STOP%20is%20always%20an%20error%20stop%2C%20even%20without%20a%20stop%2Dcode%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20ERROR%20STOP%20often%20displays%20a%20traceback%20but%20that%20is%20not%20required%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27error%27%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20error%20stop%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27errornum%27%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20stopcode%3D10%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20error%20stop%20stopcode%2B3%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27errorstring%27%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20message%3D%27That%20is%20all%2C%20folks%21%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20error%20stop%20%27%3CERROR%3E%27%2F%2Fmessage%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%20default%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27try%20again%20%2E%2E%2E%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20end%20select%0D%0A%20%20%20%20%20%20%20%20%20enddo%20INFINITE%0D%0A%20%20%20%20%20%20%20%20%20end%20program%20demo%5Fstop%0D%0A"
+  target="_blank" title="Open in Fortran Playground">
+  <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
+  alt="Fortran logo" class="align-text-bottom" height="15.5" /> stop
+  </a>
+  <details>
+    <summary>Source</summary>
+  <xmp>
+         program demo_stop
+         use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT
+         implicit none
+         integer :: stopcode
+         character(len=:),allocatable :: message
+         character(len=20)            :: which
+         INFINITE: do
+            ! Normal terminations
+            write(*,'(a)')'enter a stop type:', &
+                    & '{basic, text, zero, nonzero, variable, expression}', &
+                    & '{error, errornum, errorstring}'
+            read(*,'(a)')which
+            select case(which)
+               ! normal terminations:
+               ! A STOP with no non-zero numeric parameter is a normal
+               ! termination and generally returns a zero status value if the
+               ! system supports return statuses
+            case('basic'); stop    ! usually displays nothing
+            case('zero');  stop 0  ! sometimes displays "STOP 0" or "0"
+            case('text');  stop 'That is all, folks!'
+               !
+               ! All other stops are generally used to indicate an error or
+               ! special exit type
+            case('nonzero');                 stop 10
+            case('variable'); stopcode=11;   stop stopcode
+            case('expression'); stopcode=11; stop 110/stopcode
+            case('string'); message='oops';  stop '<ERROR>:<'//message//'>'
+               ! Error terminations:
+               ! ERROR STOP is always an error stop, even without a stop-code
+               ! ERROR STOP often displays a traceback but that is not required
+            case('error')
+               error stop
+            case('errornum')
+               stopcode=10
+               error stop stopcode+3
+            case('errorstring')
+               message='That is all, folks!'
+               error stop '<ERROR>'//message
+            case default
+               write(*,*)'try again ...'
+            end select
+         enddo INFINITE
+         end program demo_stop
   </xmp>
   </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fstorage%5Fsize%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20a%20default%20real%2C%20integer%2C%20and%20logical%20are%20the%20same%20storage%20size%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27size%20of%20integer%20%20%20%20%20%20%20%27%2Cstorage%5Fsize%280%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27size%20of%20real%20%20%20%20%20%20%20%20%20%20%27%2Cstorage%5Fsize%280%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27size%20of%20logical%20%20%20%20%20%20%20%27%2Cstorage%5Fsize%28%2Etrue%2E%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27size%20of%20complex%20%20%20%20%20%20%20%27%2Cstorage%5Fsize%28%280%2E0%2C0%2E0%29%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20note%20the%20size%20of%20an%20element%20of%20the%20array%2C%20not%20the%20storage%20size%20of%0D%0A%20%20%20%20%20%20%20%20%20%21%20the%20entire%20array%20is%20returned%20for%20array%20arguments%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27size%20of%20integer%20array%20%27%2Cstorage%5Fsize%28%5B0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C8%2C9%5D%29%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fstorage%5Fsize%0D%0A"

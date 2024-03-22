@@ -8877,14 +8877,14 @@ Fortran 95
     result = gamma(x)
 ```
 ```fortran
-     elemental real(kind=KIND) function gamma( x)
+     elemental real(kind=**) function gamma( x)
 
-      type(real,kind=KIND),intent(in) :: x
+      type(real,kind=**),intent(in) :: x
 ```
 ### **Characteristics**
 
- - **x** is a _real_ value
- - returns a _real_ value with the kind as **x**.
+ - **x** is a _real_ value of any available KIND
+ - returns a _real_ value with the same kind as **x**.
 
 ### **Description**
 
