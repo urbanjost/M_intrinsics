@@ -54,5 +54,8 @@ grep ' _' txt/*.man
 file md/*.md|grep -v ASCII
 )|tee /tmp/M_intrinsics.log
 ######################################
+fpm install
+cp standalone/fpm.f90 $HOME/github/index/bootstrap/fpm.f90
+######################################
 exit
 ######################################

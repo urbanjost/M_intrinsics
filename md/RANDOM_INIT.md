@@ -18,7 +18,7 @@ the pseudorandom number generator
 
 ### Description
 
-Initializes the state of the pseudorandom number generator used by 
+Initializes the state of the pseudorandom number generator used by
 **random_number**.
 
 ### **Options**
@@ -28,7 +28,7 @@ Initializes the state of the pseudorandom number generator used by
 value that is the same each time **random_init** is called from the
 same image. The term "same image" means a single instance of program
 execution. The sequence of random numbers is different for repeated
-execution of the program. 
+execution of the program.
 
 If it is **.false.**, the seed is set to a processor-dependent value.
 
@@ -58,7 +58,7 @@ Sample program:
 ## **Standard**
 
 Fortran 2018
-```
+
 ## **See also**
 
 [random_number](#random_number),

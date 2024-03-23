@@ -19,46 +19,51 @@ in jumping to an executable line. Specifically:
   + Therefore, all numerically labeled executable lines should be a **continue**.
 
 A **continue** statement is most often used as a target for transfer
-control statements such as **goto**. by adding a numeric label to
-the line.
+control statements such as **goto**. That is,  a numeric label is added
+to the line.
 
-It is rarely used in new code but was very commonly encountered in older
-FORTRAN code before the advent of constructs like **enddo**.
+CONTINUE(7f)  is rarely used in new code but was very commonly encountered
+in older FORTRAN code before the advent of constructs like **enddo**,
+**cycle**, **block**, and **exit**.
 
 ### **Examples**
 
 Sample program:
 ```fortran
-   program oldstyle
-   integer :: i,j
-         j=5
-         do 100 i=1,20
-            if(i.lt.5)goto 100
-            j=3
-   100   write(*,*)'J=',j
-   end
-
-   program better
-   integer :: i,j
-         j=5
-         do 100 i=1,20
-            if(i.lt.5)goto 50 
-               j=3
-   50       continue
-            write(*,*)'J=',j
-   100   continue
-   end
-
-   program newer
-   implicit none
-   integer :: i,j
+>      program oldstyle
+>      integer i,j
+>      j=5
+>      do 100 i=1,20
+>         if(i.lt.5)goto 100
+>         j=3
+>100   write(*,*)'J=',j
+>      end
+```
+```fortran
+program demo_continue
+! numbered targets should (almost?) always be a continue statement
+! with a unique label for each looping structure
+integer :: i,j
+  j=5
+  do 100 i=1,20
+     if(i.lt.5)goto 50
+     j=3
+     50 continue
+     write(*,*)'J=',j
+  100 continue
+end program demo_continue
+```
+```fortran
+program newer
+implicit none
+integer :: i,j
    j=5
    do i=1,20
-      if(i.ge.5)then
+      if(i >= 5)then
          j=3
-      endif   
+      endif
       write(*,*)'J=',j
-   enddo   
-   end program newer
+   enddo
+end program newer
 ```
  _fortran-lang statement descriptions (license: MIT) \@urbanjost_

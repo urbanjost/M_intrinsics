@@ -133,14 +133,14 @@ end program demo_spread
 ```
 Results:
 ```text
- > TEST SPREAD(3)                                      
+ > TEST SPREAD(3)
  >   SPREAD(3) is a FORTRAN90 function which replicates
- >   an array by adding a dimension.                   
- >  
+ >   an array by adding a dimension.
+ >
  >  suppose we have a scalar S  (a scalar)
  >  > [ 99 ]
  >  >shape= ,rank= 0 ,size= 1
- > 
+ >
  >  to add a new dimension (1) of extent 4 call
  >  spread( s, dim=1, ncopies=4 )  (a vector)
  >  > [  99 ]
@@ -148,28 +148,28 @@ Results:
  >  > [  99 ]
  >  > [   0 ]
  >  >shape= 4 ,rank= 1 ,size= 4
- > 
+ >
  >   first we will set V to  (a vector)
  >  > [  1 ]
  >  > [  2 ]
  >  > [  3 ]
  >  > [  4 ]
  >  >shape= 4 ,rank= 1 ,size= 4
- > 
+ >
  >  and then do "spread ( v, dim=2, ncopies=3 )"
- >  uses v as a column and makes 3 columns  (a matrix) 
+ >  uses v as a column and makes 3 columns  (a matrix)
  >  > [  1,  1,  1 ]
  >  > [  2,  2,  2 ]
  >  > [  3,  3,  3 ]
  >  > [  4,  4,  4 ]
  >  >shape= 4 3 ,rank= 2 ,size= 12
- > 
- >   spread(v,1,3) uses v as a row and makes 3 rows  (a matrix) 
+ >
+ >   spread(v,1,3) uses v as a row and makes 3 rows  (a matrix)
  >  > [  1,  2,  3,  4 ]
  >  > [  1,  2,  3,  4 ]
  >  > [  1,  2,  3,  4 ]
  >  >shape= 3 4 ,rank= 2 ,size= 12
- > 
+ >
 ```
 ### **Standard**
 

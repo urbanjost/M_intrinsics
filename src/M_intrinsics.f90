@@ -337,7 +337,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   abs(3fortran)', &
+'                               March 23, 2024                   abs(3fortran)', &
 '']
 
 shortname="abs"
@@ -513,7 +513,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 achar(3fortran)', &
+'                               March 23, 2024                 achar(3fortran)', &
 '']
 
 shortname="achar"
@@ -613,7 +613,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  acos(3fortran)', &
+'                               March 23, 2024                  acos(3fortran)', &
 '']
 
 shortname="acos"
@@ -694,7 +694,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 acosh(3fortran)', &
+'                               March 23, 2024                 acosh(3fortran)', &
 '']
 
 shortname="acosh"
@@ -791,7 +791,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024               adjustl(3fortran)', &
+'                               March 23, 2024               adjustl(3fortran)', &
 '']
 
 shortname="adjustl"
@@ -884,7 +884,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024               adjustr(3fortran)', &
+'                               March 23, 2024               adjustr(3fortran)', &
 '']
 
 shortname="adjustr"
@@ -999,7 +999,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 aimag(3fortran)', &
+'                               March 23, 2024                 aimag(3fortran)', &
 '']
 
 shortname="aimag"
@@ -1099,7 +1099,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  aint(3fortran)', &
+'                               March 23, 2024                  aint(3fortran)', &
 '']
 
 shortname="aint"
@@ -1219,7 +1219,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   all(3fortran)', &
+'                               March 23, 2024                   all(3fortran)', &
 '']
 
 shortname="all"
@@ -1326,7 +1326,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024             allocated(3fortran)', &
+'                               March 23, 2024             allocated(3fortran)', &
 '']
 
 shortname="allocated"
@@ -1452,7 +1452,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 anint(3fortran)', &
+'                               March 23, 2024                 anint(3fortran)', &
 '']
 
 shortname="anint"
@@ -1618,7 +1618,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   any(3fortran)', &
+'                               March 23, 2024                   any(3fortran)', &
 '']
 
 shortname="any"
@@ -1740,7 +1740,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  asin(3fortran)', &
+'                               March 23, 2024                  asin(3fortran)', &
 '']
 
 shortname="asin"
@@ -1819,7 +1819,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 asinh(3fortran)', &
+'                               March 23, 2024                 asinh(3fortran)', &
 '']
 
 shortname="asinh"
@@ -1937,7 +1937,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024            associated(3fortran)', &
+'                               March 23, 2024            associated(3fortran)', &
 '']
 
 shortname="associated"
@@ -2124,7 +2124,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 atan2(3fortran)', &
+'                               March 23, 2024                 atan2(3fortran)', &
 '']
 
 shortname="atan2"
@@ -2218,7 +2218,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  atan(3fortran)', &
+'                               March 23, 2024                  atan(3fortran)', &
 '']
 
 shortname="atan"
@@ -2292,7 +2292,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 atanh(3fortran)', &
+'                               March 23, 2024                 atanh(3fortran)', &
 '']
 
 shortname="atanh"
@@ -2369,7 +2369,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024            atomic_add(3fortran)', &
+'                               March 23, 2024            atomic_add(3fortran)', &
 '']
 
 shortname="atomic_add"
@@ -2447,7 +2447,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024            atomic_and(3fortran)', &
+'                               March 23, 2024            atomic_and(3fortran)', &
 '']
 
 shortname="atomic_and"
@@ -2517,7 +2517,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024            atomic_cas(3fortran)', &
+'                               March 23, 2024            atomic_cas(3fortran)', &
 '']
 
 shortname="atomic_cas"
@@ -2593,7 +2593,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024         atomic_define(3fortran)', &
+'                               March 23, 2024         atomic_define(3fortran)', &
 '']
 
 shortname="atomic_define"
@@ -2664,7 +2664,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024      atomic_fetch_add(3fortran)', &
+'                               March 23, 2024      atomic_fetch_add(3fortran)', &
 '']
 
 shortname="atomic_fetch_add"
@@ -2736,7 +2736,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024      atomic_fetch_and(3fortran)', &
+'                               March 23, 2024      atomic_fetch_and(3fortran)', &
 '']
 
 shortname="atomic_fetch_and"
@@ -2808,7 +2808,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024       atomic_fetch_or(3fortran)', &
+'                               March 23, 2024       atomic_fetch_or(3fortran)', &
 '']
 
 shortname="atomic_fetch_or"
@@ -2880,7 +2880,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024      atomic_fetch_xor(3fortran)', &
+'                               March 23, 2024      atomic_fetch_xor(3fortran)', &
 '']
 
 shortname="atomic_fetch_xor"
@@ -2961,7 +2961,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024             atomic_or(3fortran)', &
+'                               March 23, 2024             atomic_or(3fortran)', &
 '']
 
 shortname="atomic_or"
@@ -3045,7 +3045,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024            atomic_ref(3fortran)', &
+'                               March 23, 2024            atomic_ref(3fortran)', &
 '']
 
 shortname="atomic_ref"
@@ -3124,14 +3124,148 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024            atomic_xor(3fortran)', &
+'                               March 23, 2024            atomic_xor(3fortran)', &
 '']
 
 shortname="atomic_xor"
 call process()
 
 
-case('30','bessel_j0')
+case('30','backspace')
+
+textblock=[character(len=256) :: &
+'', &
+'backspace(7fortran)                                       backspace(7fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  BACKSPACE(7f) - [FORTRAN:FILE_POSITIONING] - backspace one record on', &
+'  specified I/O unit', &
+'', &
+'', &
+'SYNOPSIS', &
+'  BACKSPACE file-unit-number', &
+'', &
+'  BACKSPACE([UNIT=]unit-number][,IOMSG=iomsg][,IOSTAT=iostat][,ERR=label])', &
+'', &
+'DESCRIPTION', &
+'  backspace(7f) positions the specified file back to the beginning of the', &
+'  current record or if already at the beginning of a record, back to the', &
+'  beginning of the previous record.', &
+'', &
+'  If the file is at its initial point, the position of the file is not', &
+'  changed.', &
+'', &
+'  It is most often used when a program has partially read a line and then', &
+'  wants to go back and reread the line using the information from the previous', &
+'  read(7f),', &
+'', &
+'  backspace(7f) is rarely used in new code as the subsequent addition of', &
+'  Fortran features such as non-advancing I/O and internal reads into a', &
+'  CHARACTER variable (which can be read from multiple times) are typically far', &
+'  more efficient and provide much of the same functionality when re-reading', &
+'  the current line.', &
+'', &
+'  Backspacing is very inefficient on many current platforms. Reading a file', &
+'  with stream-I/O and indexing relevant line positions to return to; or using', &
+'  direct-access files is far more efficient than backspacing through a file', &
+'  when moving back large numbers of lines on Linux and Unix platforms.', &
+'', &
+'  A unit open for direct access or unformatted access cannot be referenced by', &
+'  backspace(7f). backspace(7f) only works with formatted sequential files that', &
+'  may be repositioned. So it does not generally work with standard input from', &
+'  a terminal, pipes, and other formatted sequential file types that cannot be', &
+'  rewound or positioned.', &
+'', &
+'  Backspacing over records written using list-directed or namelist formatting', &
+'  is prohibited. It will usually work, but since the compiler is free to write', &
+'  list-directed or namelist output on a varying number of lines it is not', &
+'  supported, as it is not certain what data is on which line unless the', &
+'  program itself searches for particular strings.', &
+'', &
+'  Backspacing a file that is connected but does not exist is prohibited.', &
+'', &
+'  If a BACKSPACE statement causes the implicit writing of an endfile record,', &
+'  the file is positioned before the record that precedes the endfile record.', &
+'', &
+'  If the preceding record is an endfile record, the file is positioned before', &
+'  the endfile record.', &
+'', &
+'OPTIONS', &
+'  UNIT : unit number of file to backspace one line on. A unit open for direct', &
+'  access or unformatted access cannot be referenced by a BACKSPACE.  IOSTAT :', &
+'  a compiler-specific number that indicates an error occurred if non-zero.', &
+'  IOMSG : a message describing error IOSTAT if IOSTAT is not zero. ERR : a', &
+'  label number to jump to if an error occurs', &
+'', &
+'EXAMPLE', &
+'  An example of a BACKSPACE statement is:', &
+'', &
+'        program demo_backspace', &
+'        implicit none', &
+'        character(len=256) :: line', &
+'        character(len=256) :: mssge', &
+'        integer            :: i', &
+'        integer            :: j', &
+'        integer            :: ios', &
+'        integer,allocatable :: iarr(:)', &
+'', &
+'           ! create a basic sequential file', &
+'           open(10,file=''dem_backspace.txt'') ! open a file', &
+'           do i=1,30                         ! write lines to it', &
+'              write(10,''(a,i3,*(i3))'') ''line '',i, (j,j=1,i)', &
+'           enddo', &
+'', &
+'           ! back up several lines', &
+'           do i=1,14', &
+'              backspace(10, iostat=ios,iomsg=mssge)', &
+'              if(ios.ne.0)then', &
+'                      write(*,''(*(a))'') ''*dem_backspace* ERROR:'',mssge', &
+'              endif', &
+'           enddo', &
+'           read(10,''(a)'')line', &
+'           write(*,*)''back at a previous record !''', &
+'', &
+'           ! read line as a string', &
+'           write(*,''("string=",a)'')trim(line)', &
+'', &
+'           ! backspace so can read again as numbers', &
+'           backspace(10)', &
+'           ! read part of a line numerically to get size of array to read', &
+'           read(10,''(5x,i3)'')i', &
+'           allocate(iarr(i))', &
+'', &
+'           ! reread line just reading array', &
+'           backspace(10)', &
+'           read(10,''(8x,*(i3))'')iarr', &
+'           write(*,''(*(g0,1x))'')''size='',i,''array='',iarr', &
+'', &
+'           !! Note: writing a new line will truncate file', &
+'           !!       to current record position', &
+'', &
+'           close(10,status=''delete'')', &
+'', &
+'        end program demo_backspace', &
+'', &
+'  Results:', &
+'', &
+'       >  back at a previous record !', &
+'       > string=line  17  1  2 3  4  5  6  7  8  9 10 11 12 13 14 15 16 17', &
+'       > size= 17 array= 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17', &
+'', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                               March 23, 2024             backspace(7fortran)', &
+'']
+
+shortname="backspace"
+call process()
+
+
+case('31','bessel_j0')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3194,14 +3328,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024             bessel_j0(3fortran)', &
+'                               March 23, 2024             bessel_j0(3fortran)', &
 '']
 
 shortname="bessel_j0"
 call process()
 
 
-case('31','bessel_j1')
+case('32','bessel_j1')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3263,14 +3397,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024             bessel_j1(3fortran)', &
+'                               March 23, 2024             bessel_j1(3fortran)', &
 '']
 
 shortname="bessel_j1"
 call process()
 
 
-case('32','bessel_jn')
+case('33','bessel_jn')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3367,14 +3501,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024             bessel_jn(3fortran)', &
+'                               March 23, 2024             bessel_jn(3fortran)', &
 '']
 
 shortname="bessel_jn"
 call process()
 
 
-case('33','bessel_y0')
+case('34','bessel_y0')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3436,14 +3570,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024             bessel_y0(3fortran)', &
+'                               March 23, 2024             bessel_y0(3fortran)', &
 '']
 
 shortname="bessel_y0"
 call process()
 
 
-case('34','bessel_y1')
+case('35','bessel_y1')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3504,14 +3638,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024             bessel_y1(3fortran)', &
+'                               March 23, 2024             bessel_y1(3fortran)', &
 '']
 
 shortname="bessel_y1"
 call process()
 
 
-case('35','bessel_yn')
+case('36','bessel_yn')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3608,14 +3742,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024             bessel_yn(3fortran)', &
+'                               March 23, 2024             bessel_yn(3fortran)', &
 '']
 
 shortname="bessel_yn"
 call process()
 
 
-case('36','bge')
+case('37','bge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3773,14 +3907,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   bge(3fortran)', &
+'                               March 23, 2024                   bge(3fortran)', &
 '']
 
 shortname="bge"
 call process()
 
 
-case('37','bgt')
+case('38','bgt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3885,14 +4019,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   bgt(3fortran)', &
+'                               March 23, 2024                   bgt(3fortran)', &
 '']
 
 shortname="bgt"
 call process()
 
 
-case('38','bit_size')
+case('39','bit_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3976,14 +4110,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024              bit_size(3fortran)', &
+'                               March 23, 2024              bit_size(3fortran)', &
 '']
 
 shortname="bit_size"
 call process()
 
 
-case('39','ble')
+case('40','ble')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4077,14 +4211,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   ble(3fortran)', &
+'                               March 23, 2024                   ble(3fortran)', &
 '']
 
 shortname="ble"
 call process()
 
 
-case('40','blt')
+case('41','blt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4172,14 +4306,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   blt(3fortran)', &
+'                               March 23, 2024                   blt(3fortran)', &
 '']
 
 shortname="blt"
 call process()
 
 
-case('41','btest')
+case('42','btest')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4310,14 +4444,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 btest(3fortran)', &
+'                               March 23, 2024                 btest(3fortran)', &
 '']
 
 shortname="btest"
 call process()
 
 
-case('42','c_associated')
+case('43','c_associated')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4388,14 +4522,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024          c_associated(3fortran)', &
+'                               March 23, 2024          c_associated(3fortran)', &
 '']
 
 shortname="c_associated"
 call process()
 
 
-case('43','ceiling')
+case('44','ceiling')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4498,14 +4632,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024               ceiling(3fortran)', &
+'                               March 23, 2024               ceiling(3fortran)', &
 '']
 
 shortname="ceiling"
 call process()
 
 
-case('44','c_f_pointer')
+case('45','c_f_pointer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4574,14 +4708,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024           c_f_pointer(3fortran)', &
+'                               March 23, 2024           c_f_pointer(3fortran)', &
 '']
 
 shortname="c_f_pointer"
 call process()
 
 
-case('45','c_f_procpointer')
+case('46','c_f_procpointer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4649,14 +4783,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024       c_f_procpointer(3fortran)', &
+'                               March 23, 2024       c_f_procpointer(3fortran)', &
 '']
 
 shortname="c_f_procpointer"
 call process()
 
 
-case('46','c_funloc')
+case('47','c_funloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4723,14 +4857,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024              c_funloc(3fortran)', &
+'                               March 23, 2024              c_funloc(3fortran)', &
 '']
 
 shortname="c_funloc"
 call process()
 
 
-case('47','char')
+case('48','char')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4849,14 +4983,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  char(3fortran)', &
+'                               March 23, 2024                  char(3fortran)', &
 '']
 
 shortname="char"
 call process()
 
 
-case('48','c_loc')
+case('49','c_loc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4910,14 +5044,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 c_loc(3fortran)', &
+'                               March 23, 2024                 c_loc(3fortran)', &
 '']
 
 shortname="c_loc"
 call process()
 
 
-case('49','cmplx')
+case('50','cmplx')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5182,14 +5316,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 cmplx(3fortran)', &
+'                               March 23, 2024                 cmplx(3fortran)', &
 '']
 
 shortname="cmplx"
 call process()
 
 
-case('50','co_broadcast')
+case('51','co_broadcast')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5250,14 +5384,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024          co_broadcast(3fortran)', &
+'                               March 23, 2024          co_broadcast(3fortran)', &
 '']
 
 shortname="co_broadcast"
 call process()
 
 
-case('51','co_lbound')
+case('52','co_lbound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5304,7 +5438,7 @@ shortname="co_lbound"
 call process()
 
 
-case('52','co_max')
+case('53','co_max')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5370,14 +5504,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                co_max(3fortran)', &
+'                               March 23, 2024                co_max(3fortran)', &
 '']
 
 shortname="co_max"
 call process()
 
 
-case('53','co_min')
+case('54','co_min')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5439,14 +5573,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                co_min(3fortran)', &
+'                               March 23, 2024                co_min(3fortran)', &
 '']
 
 shortname="co_min"
 call process()
 
 
-case('54','command_argument_count')
+case('55','command_argument_count')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5517,14 +5651,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024command_argument_count(3fortran)', &
+'                               March 23, 2024command_argument_count(3fortran)', &
 '']
 
 shortname="command_argument_count"
 call process()
 
 
-case('55','compiler_options')
+case('56','compiler_options')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5605,14 +5739,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024      compiler_options(3fortran)', &
+'                               March 23, 2024      compiler_options(3fortran)', &
 '']
 
 shortname="compiler_options"
 call process()
 
 
-case('56','compiler_version')
+case('57','compiler_version')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5677,14 +5811,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024      compiler_version(3fortran)', &
+'                               March 23, 2024      compiler_version(3fortran)', &
 '']
 
 shortname="compiler_version"
 call process()
 
 
-case('57','conjg')
+case('58','conjg')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5808,14 +5942,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 conjg(3fortran)', &
+'                               March 23, 2024                 conjg(3fortran)', &
 '']
 
 shortname="conjg"
 call process()
 
 
-case('58','continue')
+case('59','continue')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5843,58 +5977,61 @@ textblock=[character(len=256) :: &
 '  o  Therefore, all numerically labeled executable lines should be a CONTINUE.', &
 '', &
 '  A CONTINUE statement is most often used as a target for transfer control', &
-'  statements such as GOTO. by adding a numeric label to the line.', &
+'  statements such as GOTO. That is, a numeric label is added to the line.', &
 '', &
-'  It is rarely used in new code but was very commonly encountered in older', &
-'  FORTRAN code before the advent of constructs like ENDDO.', &
+'  CONTINUE(7f) is rarely used in new code but was very commonly encountered in', &
+'  older FORTRAN code before the advent of constructs like ENDDO, CYCLE, BLOCK,', &
+'  and EXIT.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
-'        program oldstyle', &
-'        integer :: i,j', &
-'              j=5', &
-'              do 100 i=1,20', &
-'                 if(i.lt.5)goto 100', &
-'                 j=3', &
-'        100   write(*,*)''J='',j', &
-'        end', &
+'      >      program oldstyle', &
+'      >      integer i,j', &
+'      >      j=5', &
+'      >      do 100 i=1,20', &
+'      >        if(i.lt.5)goto 100', &
+'      >        j=3', &
+'      >100   write(*,*)''J='',j', &
+'      >      end', &
 '', &
-'        program better', &
-'        integer :: i,j', &
-'              j=5', &
-'              do 100 i=1,20', &
-'                 if(i.lt.5)goto 50', &
-'                    j=3', &
-'        50       continue', &
-'                 write(*,*)''J='',j', &
-'        100   continue', &
-'        end', &
+'      program demo_continue', &
+'      ! numbered targets should (almost?) always be a continue statement', &
+'      ! with a unique label for each looping structure', &
+'      integer :: i,j', &
+'       j=5', &
+'       do 100 i=1,20', &
+'          if(i.lt.5)goto 50', &
+'          j=3', &
+'          50 continue', &
+'          write(*,*)''J='',j', &
+'       100 continue', &
+'      end program demo_continue', &
 '', &
-'        program newer', &
-'        implicit none', &
-'        integer :: i,j', &
+'      program newer', &
+'      implicit none', &
+'      integer :: i,j', &
 '        j=5', &
 '        do i=1,20', &
-'           if(i.ge.5)then', &
+'           if(i >= 5)then', &
 '              j=3', &
 '           endif', &
 '           write(*,*)''J='',j', &
 '        enddo', &
-'        end program newer', &
+'      end program newer', &
 '', &
 '  fortran-lang statement descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               March 22, 2024              continue(7fortran)', &
+'                               March 23, 2024              continue(7fortran)', &
 '']
 
 shortname="continue"
 call process()
 
 
-case('59','co_reduce')
+case('60','co_reduce')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5989,14 +6126,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024             co_reduce(3fortran)', &
+'                               March 23, 2024             co_reduce(3fortran)', &
 '']
 
 shortname="co_reduce"
 call process()
 
 
-case('60','cos')
+case('61','cos')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6083,14 +6220,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   cos(3fortran)', &
+'                               March 23, 2024                   cos(3fortran)', &
 '']
 
 shortname="cos"
 call process()
 
 
-case('61','cosh')
+case('62','cosh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6158,14 +6295,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  cosh(3fortran)', &
+'                               March 23, 2024                  cosh(3fortran)', &
 '']
 
 shortname="cosh"
 call process()
 
 
-case('62','co_sum')
+case('63','co_sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6235,14 +6372,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                co_sum(3fortran)', &
+'                               March 23, 2024                co_sum(3fortran)', &
 '']
 
 shortname="co_sum"
 call process()
 
 
-case('63','co_ubound')
+case('64','co_ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6289,7 +6426,7 @@ shortname="co_ubound"
 call process()
 
 
-case('64','count')
+case('65','count')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6522,14 +6659,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 count(3fortran)', &
+'                               March 23, 2024                 count(3fortran)', &
 '']
 
 shortname="count"
 call process()
 
 
-case('65','cpu_time')
+case('66','cpu_time')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6635,14 +6772,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024              cpu_time(3fortran)', &
+'                               March 23, 2024              cpu_time(3fortran)', &
 '']
 
 shortname="cpu_time"
 call process()
 
 
-case('66','cshift')
+case('67','cshift')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6773,14 +6910,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                cshift(3fortran)', &
+'                               March 23, 2024                cshift(3fortran)', &
 '']
 
 shortname="cshift"
 call process()
 
 
-case('67','c_sizeof')
+case('68','c_sizeof')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6837,14 +6974,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024              c_sizeof(3fortran)', &
+'                               March 23, 2024              c_sizeof(3fortran)', &
 '']
 
 shortname="c_sizeof"
 call process()
 
 
-case('68','date_and_time')
+case('69','date_and_time')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7012,14 +7149,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024         date_and_time(3fortran)', &
+'                               March 23, 2024         date_and_time(3fortran)', &
 '']
 
 shortname="date_and_time"
 call process()
 
 
-case('69','dble')
+case('70','dble')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7091,14 +7228,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  dble(3fortran)', &
+'                               March 23, 2024                  dble(3fortran)', &
 '']
 
 shortname="dble"
 call process()
 
 
-case('70','digits')
+case('71','digits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7166,14 +7303,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                digits(3fortran)', &
+'                               March 23, 2024                digits(3fortran)', &
 '']
 
 shortname="digits"
 call process()
 
 
-case('71','dim')
+case('72','dim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7255,14 +7392,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   dim(3fortran)', &
+'                               March 23, 2024                   dim(3fortran)', &
 '']
 
 shortname="dim"
 call process()
 
 
-case('72','dot_product')
+case('73','dot_product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7358,14 +7495,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024           dot_product(3fortran)', &
+'                               March 23, 2024           dot_product(3fortran)', &
 '']
 
 shortname="dot_product"
 call process()
 
 
-case('73','dprod')
+case('74','dprod')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7472,14 +7609,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 dprod(3fortran)', &
+'                               March 23, 2024                 dprod(3fortran)', &
 '']
 
 shortname="dprod"
 call process()
 
 
-case('74','dshiftl')
+case('75','dshiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7624,14 +7761,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024               dshiftl(3fortran)', &
+'                               March 23, 2024               dshiftl(3fortran)', &
 '']
 
 shortname="dshiftl"
 call process()
 
 
-case('75','dshiftr')
+case('76','dshiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7779,14 +7916,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024               dshiftr(3fortran)', &
+'                               March 23, 2024               dshiftr(3fortran)', &
 '']
 
 shortname="dshiftr"
 call process()
 
 
-case('76','eoshift')
+case('77','eoshift')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7912,14 +8049,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024               eoshift(3fortran)', &
+'                               March 23, 2024               eoshift(3fortran)', &
 '']
 
 shortname="eoshift"
 call process()
 
 
-case('77','epsilon')
+case('78','epsilon')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8044,14 +8181,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024               epsilon(3fortran)', &
+'                               March 23, 2024               epsilon(3fortran)', &
 '']
 
 shortname="epsilon"
 call process()
 
 
-case('78','erf')
+case('79','erf')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8117,14 +8254,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   erf(3fortran)', &
+'                               March 23, 2024                   erf(3fortran)', &
 '']
 
 shortname="erf"
 call process()
 
 
-case('79','erfc')
+case('80','erfc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8205,14 +8342,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  erfc(3fortran)', &
+'                               March 23, 2024                  erfc(3fortran)', &
 '']
 
 shortname="erfc"
 call process()
 
 
-case('80','erfc_scaled')
+case('81','erfc_scaled')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8287,14 +8424,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024           erfc_scaled(3fortran)', &
+'                               March 23, 2024           erfc_scaled(3fortran)', &
 '']
 
 shortname="erfc_scaled"
 call process()
 
 
-case('81','event_query')
+case('82','event_query')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8353,14 +8490,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024           event_query(3fortran)', &
+'                               March 23, 2024           event_query(3fortran)', &
 '']
 
 shortname="event_query"
 call process()
 
 
-case('82','execute_command_line')
+case('83','execute_command_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8487,14 +8624,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024  execute_command_line(3fortran)', &
+'                               March 23, 2024  execute_command_line(3fortran)', &
 '']
 
 shortname="execute_command_line"
 call process()
 
 
-case('83','exp')
+case('84','exp')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8604,14 +8741,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   exp(3fortran)', &
+'                               March 23, 2024                   exp(3fortran)', &
 '']
 
 shortname="exp"
 call process()
 
 
-case('84','exponent')
+case('85','exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8686,14 +8823,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024              exponent(3fortran)', &
+'                               March 23, 2024              exponent(3fortran)', &
 '']
 
 shortname="exponent"
 call process()
 
 
-case('85','extends_type_of')
+case('86','extends_type_of')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8867,14 +9004,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024       extends_type_of(3fortran)', &
+'                               March 23, 2024       extends_type_of(3fortran)', &
 '']
 
 shortname="extends_type_of"
 call process()
 
 
-case('86','findloc')
+case('87','findloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9160,14 +9297,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024               findloc(3fortran)', &
+'                               March 23, 2024               findloc(3fortran)', &
 '']
 
 shortname="findloc"
 call process()
 
 
-case('87','floor')
+case('88','floor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9274,14 +9411,111 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 floor(3fortran)', &
+'                               March 23, 2024                 floor(3fortran)', &
 '']
 
 shortname="floor"
 call process()
 
 
-case('88','fraction')
+case('89','flush')
+
+textblock=[character(len=256) :: &
+'', &
+'flush(7fortran)                                               flush(7fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  flush(7f) - [FORTRAN:IO] flush I/O buffers of specified files', &
+'', &
+'', &
+'SYNOPSIS', &
+'  flush file-unit-number', &
+'  flush([UNIT=]file_unit_number,[iostat=i],[iomsg=str],[err=label_number])', &
+'', &
+'DESCRIPTION', &
+'  I/O statements can buffer output before delivering it to the host system in', &
+'  order to minimize the overhead of system calls. Use FLUSH(7F) to deliver any', &
+'  such pending I/O for the identified file to the host system.', &
+'', &
+'  This is generally not required accept to ensure critical information is', &
+'  displayed or written as reliably as possible or to synchronise data from', &
+'  different units going to the same device. Do not arbitrarily flush all I/O', &
+'  operations or programs using large amounts of I/O might experience', &
+'  significant performance degradation, particularly if the I/O is to a block-', &
+'  oriented device.', &
+'', &
+'  Note execution of a FLUSH(7F) statement performs a wait operation for all', &
+'  pending asynchronous data transfer operations for the specified unit.', &
+'', &
+'  More generally execution of a FLUSH(7F) statement causes data written to an', &
+'  external file not only to be available to other processes, causes data', &
+'  placed in an external file by means other than Fortran to be available to a', &
+'  READ(7F) statement; but these actions are processor dependent.', &
+'', &
+'  Execution of a FLUSH(7F) statement for a file that is connected but does not', &
+'  exist is permitted and has no effect on any file.', &
+'', &
+'  A FLUSH(7F) statement has no effect on file position.', &
+'', &
+'OPTIONS', &
+'  UNIT A file-unit-number is required; if the optional characters "UNIT=" are', &
+'  omitted, the unit-number must be the first item in the FLUSH(7) statement.', &
+'', &
+'RETURNS', &
+'  IOSTAT : status variable. It is set to a processor-dependent positive value', &
+'  if an error occurs, to zero if the flush operation was successful, or to a', &
+'  processor-dependent negative value if the flush operation is not supported', &
+'  for the unit specified. IOMSG : character variable holding error description', &
+'  when iostat is not zero. ERR : The numeric line label of a target statement', &
+'  in the same scope as the FLUSH(7F) statement.', &
+'', &
+'  NOTE From the Fortran standard:', &
+'', &
+'       Because the Fortran standard does not specify the mechanism of file', &
+'       storage, the exact meaning of the flush operation is not precisely', &
+'       defined. It is expected that the flush operation will make all data', &
+'       written to a file available to other processes or devices, or make data', &
+'       recently added to a file by other processes or devices available to', &
+'       the program via a subsequent read operation. This is commonly called', &
+'       flushing input/output buffers.', &
+'', &
+'', &
+'EXAMPLES', &
+'  Sample program:', &
+'', &
+'         program demo_flush', &
+'         use, intrinsic :: iso_fortran_env, only : &', &
+'         & stderr=>ERROR_UNIT, &', &
+'         & stdin=>INPUT_UNIT,  &', &
+'         & stdout=>OUTPUT_UNIT', &
+'         implicit none', &
+'         integer :: iostat', &
+'         character(len=255) :: iomsg', &
+'            flush (stderr, iostat=iostat, iomsg=iomsg)', &
+'            if(iostat.ne.0)then', &
+'               write(*,*)''ERROR:''//trim(iomsg)', &
+'               error stop 1', &
+'            endif', &
+'            flush (stdout, err = 999 )', &
+'            stop', &
+'            999 continue', &
+'            stop 10', &
+'         end program demo_flush', &
+'', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                               March 23, 2024                 flush(7fortran)', &
+'']
+
+shortname="flush"
+call process()
+
+
+case('90','fraction')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9349,14 +9583,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024              fraction(3fortran)', &
+'                               March 23, 2024              fraction(3fortran)', &
 '']
 
 shortname="fraction"
 call process()
 
 
-case('89','gamma')
+case('91','gamma')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9504,14 +9738,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 gamma(3fortran)', &
+'                               March 23, 2024                 gamma(3fortran)', &
 '']
 
 shortname="gamma"
 call process()
 
 
-case('90','get_command')
+case('92','get_command')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9613,14 +9847,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024           get_command(3fortran)', &
+'                               March 23, 2024           get_command(3fortran)', &
 '']
 
 shortname="get_command"
 call process()
 
 
-case('91','get_command_argument')
+case('93','get_command_argument')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9753,14 +9987,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024  get_command_argument(3fortran)', &
+'                               March 23, 2024  get_command_argument(3fortran)', &
 '']
 
 shortname="get_command_argument"
 call process()
 
 
-case('92','get_environment_variable')
+case('94','get_environment_variable')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9900,14 +10134,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 20get_environment_variable(3fortran)', &
+'                               March 23, 20get_environment_variable(3fortran)', &
 '']
 
 shortname="get_environment_variable"
 call process()
 
 
-case('93','huge')
+case('95','huge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10019,14 +10253,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  huge(3fortran)', &
+'                               March 23, 2024                  huge(3fortran)', &
 '']
 
 shortname="huge"
 call process()
 
 
-case('94','hypot')
+case('96','hypot')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10133,14 +10367,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 hypot(3fortran)', &
+'                               March 23, 2024                 hypot(3fortran)', &
 '']
 
 shortname="hypot"
 call process()
 
 
-case('95','iachar')
+case('97','iachar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10255,14 +10489,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                iachar(3fortran)', &
+'                               March 23, 2024                iachar(3fortran)', &
 '']
 
 shortname="iachar"
 call process()
 
 
-case('96','iall')
+case('98','iall')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10346,14 +10580,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  iall(3fortran)', &
+'                               March 23, 2024                  iall(3fortran)', &
 '']
 
 shortname="iall"
 call process()
 
 
-case('97','iand')
+case('99','iand')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10437,14 +10671,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  iand(3fortran)', &
+'                               March 23, 2024                  iand(3fortran)', &
 '']
 
 shortname="iand"
 call process()
 
 
-case('98','iany')
+case('100','iany')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10554,14 +10788,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  iany(3fortran)', &
+'                               March 23, 2024                  iany(3fortran)', &
 '']
 
 shortname="iany"
 call process()
 
 
-case('99','ibclr')
+case('101','ibclr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10660,14 +10894,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 ibclr(3fortran)', &
+'                               March 23, 2024                 ibclr(3fortran)', &
 '']
 
 shortname="ibclr"
 call process()
 
 
-case('100','ibits')
+case('102','ibits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10769,14 +11003,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 ibits(3fortran)', &
+'                               March 23, 2024                 ibits(3fortran)', &
 '']
 
 shortname="ibits"
 call process()
 
 
-case('101','ibset')
+case('103','ibset')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10874,14 +11108,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 ibset(3fortran)', &
+'                               March 23, 2024                 ibset(3fortran)', &
 '']
 
 shortname="ibset"
 call process()
 
 
-case('102','ichar')
+case('104','ichar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10979,14 +11213,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 ichar(3fortran)', &
+'                               March 23, 2024                 ichar(3fortran)', &
 '']
 
 shortname="ichar"
 call process()
 
 
-case('103','ieor')
+case('105','ieor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11093,14 +11327,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  ieor(3fortran)', &
+'                               March 23, 2024                  ieor(3fortran)', &
 '']
 
 shortname="ieor"
 call process()
 
 
-case('104','image_index')
+case('106','image_index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11150,14 +11384,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024           image_index(3fortran)', &
+'                               March 23, 2024           image_index(3fortran)', &
 '']
 
 shortname="image_index"
 call process()
 
 
-case('105','index')
+case('107','index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11257,14 +11491,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 index(3fortran)', &
+'                               March 23, 2024                 index(3fortran)', &
 '']
 
 shortname="index"
 call process()
 
 
-case('106','int')
+case('108','int')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11393,14 +11627,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   int(3fortran)', &
+'                               March 23, 2024                   int(3fortran)', &
 '']
 
 shortname="int"
 call process()
 
 
-case('107','ior')
+case('109','ior')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11482,14 +11716,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   ior(3fortran)', &
+'                               March 23, 2024                   ior(3fortran)', &
 '']
 
 shortname="ior"
 call process()
 
 
-case('108','iparity')
+case('110','iparity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11578,14 +11812,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024               iparity(3fortran)', &
+'                               March 23, 2024               iparity(3fortran)', &
 '']
 
 shortname="iparity"
 call process()
 
 
-case('109','is_contiguous')
+case('111','is_contiguous')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11703,14 +11937,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024         is_contiguous(3fortran)', &
+'                               March 23, 2024         is_contiguous(3fortran)', &
 '']
 
 shortname="is_contiguous"
 call process()
 
 
-case('110','ishft')
+case('112','ishft')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11806,14 +12040,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 ishft(3fortran)', &
+'                               March 23, 2024                 ishft(3fortran)', &
 '']
 
 shortname="ishft"
 call process()
 
 
-case('111','ishftc')
+case('113','ishftc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11955,14 +12189,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                ishftc(3fortran)', &
+'                               March 23, 2024                ishftc(3fortran)', &
 '']
 
 shortname="ishftc"
 call process()
 
 
-case('112','is_iostat_end')
+case('114','is_iostat_end')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12035,14 +12269,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024         is_iostat_end(3fortran)', &
+'                               March 23, 2024         is_iostat_end(3fortran)', &
 '']
 
 shortname="is_iostat_end"
 call process()
 
 
-case('113','is_iostat_eor')
+case('115','is_iostat_eor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12130,14 +12364,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024         is_iostat_eor(3fortran)', &
+'                               March 23, 2024         is_iostat_eor(3fortran)', &
 '']
 
 shortname="is_iostat_eor"
 call process()
 
 
-case('114','kind')
+case('116','kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12220,14 +12454,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  kind(3fortran)', &
+'                               March 23, 2024                  kind(3fortran)', &
 '']
 
 shortname="kind"
 call process()
 
 
-case('115','lbound')
+case('117','lbound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12398,14 +12632,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                lbound(3fortran)', &
+'                               March 23, 2024                lbound(3fortran)', &
 '']
 
 shortname="lbound"
 call process()
 
 
-case('116','lcobound')
+case('118','lcobound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12450,14 +12684,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024              lcobound(3fortran)', &
+'                               March 23, 2024              lcobound(3fortran)', &
 '']
 
 shortname="lcobound"
 call process()
 
 
-case('117','leadz')
+case('119','leadz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12543,14 +12777,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 leadz(3fortran)', &
+'                               March 23, 2024                 leadz(3fortran)', &
 '']
 
 shortname="leadz"
 call process()
 
 
-case('118','len')
+case('120','len')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12692,14 +12926,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   len(3fortran)', &
+'                               March 23, 2024                   len(3fortran)', &
 '']
 
 shortname="len"
 call process()
 
 
-case('119','len_trim')
+case('121','len_trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12815,14 +13049,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024              len_trim(3fortran)', &
+'                               March 23, 2024              len_trim(3fortran)', &
 '']
 
 shortname="len_trim"
 call process()
 
 
-case('120','lge')
+case('122','lge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12933,14 +13167,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   lge(3fortran)', &
+'                               March 23, 2024                   lge(3fortran)', &
 '']
 
 shortname="lge"
 call process()
 
 
-case('121','lgt')
+case('123','lgt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13052,14 +13286,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   lgt(3fortran)', &
+'                               March 23, 2024                   lgt(3fortran)', &
 '']
 
 shortname="lgt"
 call process()
 
 
-case('122','lle')
+case('124','lle')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13195,14 +13429,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   lle(3fortran)', &
+'                               March 23, 2024                   lle(3fortran)', &
 '']
 
 shortname="lle"
 call process()
 
 
-case('123','llt')
+case('125','llt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13317,14 +13551,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   llt(3fortran)', &
+'                               March 23, 2024                   llt(3fortran)', &
 '']
 
 shortname="llt"
 call process()
 
 
-case('124','log10')
+case('126','log10')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13394,14 +13628,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 log10(3fortran)', &
+'                               March 23, 2024                 log10(3fortran)', &
 '']
 
 shortname="log10"
 call process()
 
 
-case('125','log')
+case('127','log')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13472,14 +13706,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   log(3fortran)', &
+'                               March 23, 2024                   log(3fortran)', &
 '']
 
 shortname="log"
 call process()
 
 
-case('126','log_gamma')
+case('128','log_gamma')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13542,14 +13776,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024             log_gamma(3fortran)', &
+'                               March 23, 2024             log_gamma(3fortran)', &
 '']
 
 shortname="log_gamma"
 call process()
 
 
-case('127','logical')
+case('129','logical')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13631,14 +13865,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024               logical(3fortran)', &
+'                               March 23, 2024               logical(3fortran)', &
 '']
 
 shortname="logical"
 call process()
 
 
-case('128','maskl')
+case('130','maskl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13730,14 +13964,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 maskl(3fortran)', &
+'                               March 23, 2024                 maskl(3fortran)', &
 '']
 
 shortname="maskl"
 call process()
 
 
-case('129','maskr')
+case('131','maskr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13846,14 +14080,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 maskr(3fortran)', &
+'                               March 23, 2024                 maskr(3fortran)', &
 '']
 
 shortname="maskr"
 call process()
 
 
-case('130','matmul')
+case('132','matmul')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14093,14 +14327,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                matmul(3fortran)', &
+'                               March 23, 2024                matmul(3fortran)', &
 '']
 
 shortname="matmul"
 call process()
 
 
-case('131','max')
+case('133','max')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14264,14 +14498,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   max(3fortran)', &
+'                               March 23, 2024                   max(3fortran)', &
 '']
 
 shortname="max"
 call process()
 
 
-case('132','maxexponent')
+case('134','maxexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14336,14 +14570,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024           maxexponent(3fortran)', &
+'                               March 23, 2024           maxexponent(3fortran)', &
 '']
 
 shortname="maxexponent"
 call process()
 
 
-case('133','maxloc')
+case('135','maxloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14466,14 +14700,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                maxloc(3fortran)', &
+'                               March 23, 2024                maxloc(3fortran)', &
 '']
 
 shortname="maxloc"
 call process()
 
 
-case('134','maxval')
+case('136','maxval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14562,14 +14796,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                maxval(3fortran)', &
+'                               March 23, 2024                maxval(3fortran)', &
 '']
 
 shortname="maxval"
 call process()
 
 
-case('135','merge')
+case('137','merge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14750,14 +14984,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 merge(3fortran)', &
+'                               March 23, 2024                 merge(3fortran)', &
 '']
 
 shortname="merge"
 call process()
 
 
-case('136','merge_bits')
+case('138','merge_bits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14879,14 +15113,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024            merge_bits(3fortran)', &
+'                               March 23, 2024            merge_bits(3fortran)', &
 '']
 
 shortname="merge_bits"
 call process()
 
 
-case('137','min')
+case('139','min')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14952,14 +15186,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   min(3fortran)', &
+'                               March 23, 2024                   min(3fortran)', &
 '']
 
 shortname="min"
 call process()
 
 
-case('138','minexponent')
+case('140','minexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15025,14 +15259,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024           minexponent(3fortran)', &
+'                               March 23, 2024           minexponent(3fortran)', &
 '']
 
 shortname="minexponent"
 call process()
 
 
-case('139','minloc')
+case('141','minloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15143,14 +15377,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                minloc(3fortran)', &
+'                               March 23, 2024                minloc(3fortran)', &
 '']
 
 shortname="minloc"
 call process()
 
 
-case('140','minval')
+case('142','minval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15306,14 +15540,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                minval(3fortran)', &
+'                               March 23, 2024                minval(3fortran)', &
 '']
 
 shortname="minval"
 call process()
 
 
-case('141','mod')
+case('143','mod')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15441,14 +15675,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   mod(3fortran)', &
+'                               March 23, 2024                   mod(3fortran)', &
 '']
 
 shortname="mod"
 call process()
 
 
-case('142','modulo')
+case('144','modulo')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15532,14 +15766,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                modulo(3fortran)', &
+'                               March 23, 2024                modulo(3fortran)', &
 '']
 
 shortname="modulo"
 call process()
 
 
-case('143','move_alloc')
+case('145','move_alloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15649,14 +15883,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024            move_alloc(3fortran)', &
+'                               March 23, 2024            move_alloc(3fortran)', &
 '']
 
 shortname="move_alloc"
 call process()
 
 
-case('144','mvbits')
+case('146','mvbits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15810,14 +16044,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                mvbits(3fortran)', &
+'                               March 23, 2024                mvbits(3fortran)', &
 '']
 
 shortname="mvbits"
 call process()
 
 
-case('145','nearest')
+case('147','nearest')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15909,14 +16143,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024               nearest(3fortran)', &
+'                               March 23, 2024               nearest(3fortran)', &
 '']
 
 shortname="nearest"
 call process()
 
 
-case('146','new_line')
+case('148','new_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16085,14 +16319,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024              new_line(3fortran)', &
+'                               March 23, 2024              new_line(3fortran)', &
 '']
 
 shortname="new_line"
 call process()
 
 
-case('147','nint')
+case('149','nint')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16244,14 +16478,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  nint(3fortran)', &
+'                               March 23, 2024                  nint(3fortran)', &
 '']
 
 shortname="nint"
 call process()
 
 
-case('148','norm2')
+case('150','norm2')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16373,14 +16607,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 norm2(3fortran)', &
+'                               March 23, 2024                 norm2(3fortran)', &
 '']
 
 shortname="norm2"
 call process()
 
 
-case('149','not')
+case('151','not')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16471,14 +16705,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   not(3fortran)', &
+'                               March 23, 2024                   not(3fortran)', &
 '']
 
 shortname="not"
 call process()
 
 
-case('150','null')
+case('152','null')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16606,14 +16840,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  null(3fortran)', &
+'                               March 23, 2024                  null(3fortran)', &
 '']
 
 shortname="null"
 call process()
 
 
-case('151','num_images')
+case('153','num_images')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16699,14 +16933,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024            num_images(3fortran)', &
+'                               March 23, 2024            num_images(3fortran)', &
 '']
 
 shortname="num_images"
 call process()
 
 
-case('152','out_of_range')
+case('154','out_of_range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16860,14 +17094,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024          out_of_range(3fortran)', &
+'                               March 23, 2024          out_of_range(3fortran)', &
 '']
 
 shortname="out_of_range"
 call process()
 
 
-case('153','pack')
+case('155','pack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16970,14 +17204,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  pack(3fortran)', &
+'                               March 23, 2024                  pack(3fortran)', &
 '']
 
 shortname="pack"
 call process()
 
 
-case('154','parity')
+case('156','parity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17086,14 +17320,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                parity(3fortran)', &
+'                               March 23, 2024                parity(3fortran)', &
 '']
 
 shortname="parity"
 call process()
 
 
-case('155','popcnt')
+case('157','popcnt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17179,14 +17413,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                popcnt(3fortran)', &
+'                               March 23, 2024                popcnt(3fortran)', &
 '']
 
 shortname="popcnt"
 call process()
 
 
-case('156','poppar')
+case('158','poppar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17278,14 +17512,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                poppar(3fortran)', &
+'                               March 23, 2024                poppar(3fortran)', &
 '']
 
 shortname="poppar"
 call process()
 
 
-case('157','precision')
+case('159','precision')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17353,14 +17587,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024             precision(3fortran)', &
+'                               March 23, 2024             precision(3fortran)', &
 '']
 
 shortname="precision"
 call process()
 
 
-case('158','present')
+case('160','present')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17485,14 +17719,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024               present(3fortran)', &
+'                               March 23, 2024               present(3fortran)', &
 '']
 
 shortname="present"
 call process()
 
 
-case('159','product')
+case('161','product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17728,14 +17962,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024               product(3fortran)', &
+'                               March 23, 2024               product(3fortran)', &
 '']
 
 shortname="product"
 call process()
 
 
-case('160','radix')
+case('162','radix')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17807,14 +18041,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 radix(3fortran)', &
+'                               March 23, 2024                 radix(3fortran)', &
 '']
 
 shortname="radix"
 call process()
 
 
-case('161','random_init')
+case('163','random_init')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17874,23 +18108,21 @@ textblock=[character(len=256) :: &
 'STANDARD', &
 '  Fortran 2018', &
 '', &
-'      ## **See also**', &
+'SEE ALSO', &
+'  random_number, random_seed', &
 '', &
-'      [random_number](#random_number),', &
-'      [random_seed](random_seed)', &
-'', &
-'       _fortran-lang intrinsic descriptions', &
+'  _fortran-lang intrinsic descriptions', &
 '', &
 '', &
 '', &
-'                               March 22, 2024           random_init(3fortran)', &
+'                               March 23, 2024           random_init(3fortran)', &
 '']
 
 shortname="random_init"
 call process()
 
 
-case('162','random_number')
+case('164','random_number')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17980,14 +18212,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024         random_number(3fortran)', &
+'                               March 23, 2024         random_number(3fortran)', &
 '']
 
 shortname="random_number"
 call process()
 
 
-case('163','random_seed')
+case('165','random_seed')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18067,14 +18299,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024           random_seed(3fortran)', &
+'                               March 23, 2024           random_seed(3fortran)', &
 '']
 
 shortname="random_seed"
 call process()
 
 
-case('164','range')
+case('166','range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18155,14 +18387,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 range(3fortran)', &
+'                               March 23, 2024                 range(3fortran)', &
 '']
 
 shortname="range"
 call process()
 
 
-case('165','rank')
+case('167','rank')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18335,14 +18567,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  rank(3fortran)', &
+'                               March 23, 2024                  rank(3fortran)', &
 '']
 
 shortname="rank"
 call process()
 
 
-case('166','real')
+case('168','real')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18452,14 +18684,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  real(3fortran)', &
+'                               March 23, 2024                  real(3fortran)', &
 '']
 
 shortname="real"
 call process()
 
 
-case('167','reduce')
+case('169','reduce')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18662,14 +18894,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                reduce(3fortran)', &
+'                               March 23, 2024                reduce(3fortran)', &
 '']
 
 shortname="reduce"
 call process()
 
 
-case('168','repeat')
+case('170','repeat')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18745,14 +18977,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                repeat(3fortran)', &
+'                               March 23, 2024                repeat(3fortran)', &
 '']
 
 shortname="repeat"
 call process()
 
 
-case('169','reshape')
+case('171','reshape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18969,14 +19201,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024               reshape(3fortran)', &
+'                               March 23, 2024               reshape(3fortran)', &
 '']
 
 shortname="reshape"
 call process()
 
 
-case('170','rrspacing')
+case('172','rrspacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19025,14 +19257,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024             rrspacing(3fortran)', &
+'                               March 23, 2024             rrspacing(3fortran)', &
 '']
 
 shortname="rrspacing"
 call process()
 
 
-case('171','same_type_as')
+case('173','same_type_as')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19167,14 +19399,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024          same_type_as(3fortran)', &
+'                               March 23, 2024          same_type_as(3fortran)', &
 '']
 
 shortname="same_type_as"
 call process()
 
 
-case('172','scale')
+case('174','scale')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19245,13 +19477,13 @@ textblock=[character(len=256) :: &
 '        c=(3.0,4.0)', &
 '        print *, c, i, scale_complex(c, i)!, c*radix(c)**i', &
 '      contains', &
-'        function scale_complex(x, n)', &
-'        ! example supporting complex value for default kinds', &
-'           complex, intent(in) :: x', &
-'           integer, intent(in) :: n', &
-'           complex :: scale_complex', &
-'           scale_complex = cmplx(scale(x%re, n), scale(x%im, n), kind=kind(x%im))', &
-'        end function scale_complex', &
+'      function scale_complex(x, n)', &
+'      ! example supporting complex value for default kinds', &
+'      complex, intent(in) :: x', &
+'      integer, intent(in) :: n', &
+'      complex :: scale_complex', &
+'        scale_complex=cmplx(scale(x%re, n), scale(x%im, n), kind=kind(x%im))', &
+'      end function scale_complex', &
 '      end program demo_scale', &
 '', &
 '  Results:', &
@@ -19263,33 +19495,27 @@ textblock=[character(len=256) :: &
 '       > 1.78138707E-02    2   7.12554827E-02  7.12554827E-02', &
 '       > (3.00000000,4.00000000) 2 (12.0000000,16.0000000)', &
 '', &
-'  ### **Standard**', &
 '', &
-'    Fortran 95', &
+'STANDARD', &
+'  Fortran 95', &
 '', &
-'    ### **See Also**', &
+'SEE ALSO', &
+'  DIGITS(3), EPSILON(3), EXPONENT(3), FRACTION(3), HUGE(3), MAXEXPONENT(3),', &
+'  MINEXPONENT(3), NEAREST(3), PRECISION(3), RADIX(3), RANGE(3), RRSPACING(3),', &
+'  SET_EXPONENT(3), SPACING(3), TINY(3)', &
 '', &
-'    [**digits**(3)](#digits), [**epsilon**(3)](#epsilon),', &
-'    [**exponent**(3)](#exponent), [**fraction**(3)](#fraction),', &
-'    [**huge**(3)](#huge), [**maxexponent**(3)](#maxexponent),', &
-'    [**minexponent**(3)](#minexponent), [**nearest**(3)](#nearest),', &
-'    [**precision**(3)](#precision), [**radix**(3)](#radix),', &
-'    [**range**(3)](#range), [**rrspacing**(3)](#rrspacing),', &
-'    [**set_exponent**(3)](#set_exponent), [**spacing**(3)](#spacing),', &
-'    [**tiny**(3)](#tiny)', &
-'', &
-'        _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 scale(3fortran)', &
+'                               March 23, 2024                 scale(3fortran)', &
 '']
 
 shortname="scale"
 call process()
 
 
-case('173','scan')
+case('175','scan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19388,14 +19614,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  scan(3fortran)', &
+'                               March 23, 2024                  scan(3fortran)', &
 '']
 
 shortname="scan"
 call process()
 
 
-case('174','selected_char_kind')
+case('176','selected_char_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19556,14 +19782,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024    selected_char_kind(3fortran)', &
+'                               March 23, 2024    selected_char_kind(3fortran)', &
 '']
 
 shortname="selected_char_kind"
 call process()
 
 
-case('175','selected_int_kind')
+case('177','selected_int_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19644,14 +19870,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024     selected_int_kind(3fortran)', &
+'                               March 23, 2024     selected_int_kind(3fortran)', &
 '']
 
 shortname="selected_int_kind"
 call process()
 
 
-case('176','selected_real_kind')
+case('178','selected_real_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19770,14 +19996,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024    selected_real_kind(3fortran)', &
+'                               March 23, 2024    selected_real_kind(3fortran)', &
 '']
 
 shortname="selected_real_kind"
 call process()
 
 
-case('177','set_exponent')
+case('179','set_exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19854,14 +20080,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024          set_exponent(3fortran)', &
+'                               March 23, 2024          set_exponent(3fortran)', &
 '']
 
 shortname="set_exponent"
 call process()
 
 
-case('178','shape')
+case('180','shape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19972,14 +20198,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                 shape(3fortran)', &
+'                               March 23, 2024                 shape(3fortran)', &
 '']
 
 shortname="shape"
 call process()
 
 
-case('179','shifta')
+case('181','shifta')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20106,14 +20332,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                shifta(3fortran)', &
+'                               March 23, 2024                shifta(3fortran)', &
 '']
 
 shortname="shifta"
 call process()
 
 
-case('180','shiftl')
+case('182','shiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20243,14 +20469,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                shiftl(3fortran)', &
+'                               March 23, 2024                shiftl(3fortran)', &
 '']
 
 shortname="shiftl"
 call process()
 
 
-case('181','shiftr')
+case('183','shiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20382,14 +20608,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                shiftr(3fortran)', &
+'                               March 23, 2024                shiftr(3fortran)', &
 '']
 
 shortname="shiftr"
 call process()
 
 
-case('182','sign')
+case('184','sign')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20480,14 +20706,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  sign(3fortran)', &
+'                               March 23, 2024                  sign(3fortran)', &
 '']
 
 shortname="sign"
 call process()
 
 
-case('183','sin')
+case('185','sin')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20625,14 +20851,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   sin(3fortran)', &
+'                               March 23, 2024                   sin(3fortran)', &
 '']
 
 shortname="sin"
 call process()
 
 
-case('184','sinh')
+case('186','sinh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20732,14 +20958,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  sinh(3fortran)', &
+'                               March 23, 2024                  sinh(3fortran)', &
 '']
 
 shortname="sinh"
 call process()
 
 
-case('185','size')
+case('187','size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20911,14 +21137,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  size(3fortran)', &
+'                               March 23, 2024                  size(3fortran)', &
 '']
 
 shortname="size"
 call process()
 
 
-case('186','spacing')
+case('188','spacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20998,14 +21224,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024               spacing(3fortran)', &
+'                               March 23, 2024               spacing(3fortran)', &
 '']
 
 shortname="spacing"
 call process()
 
 
-case('187','spread')
+case('189','spread')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21187,14 +21413,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                spread(3fortran)', &
+'                               March 23, 2024                spread(3fortran)', &
 '']
 
 shortname="spread"
 call process()
 
 
-case('188','sqrt')
+case('190','sqrt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21300,14 +21526,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  sqrt(3fortran)', &
+'                               March 23, 2024                  sqrt(3fortran)', &
 '']
 
 shortname="sqrt"
 call process()
 
 
-case('189','stop')
+case('191','stop')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21396,7 +21622,7 @@ textblock=[character(len=256) :: &
 '           case(''nonzero'');               stop 10', &
 '           case(''variable''); stopcode=11;   stop stopcode', &
 '           case(''expression''); stopcode=11; stop 110/stopcode', &
-'           case(''string''); message=''oops'';  stop ''<ERROR>:<''//message//''>''', &
+'           case(''string''); message=''oops'';  stop ''ERROR:[''//message//'']''', &
 '              ! Error terminations:', &
 '              ! ERROR STOP is always an error stop, even without a stop-code', &
 '              ! ERROR STOP often displays a traceback but that is not required', &
@@ -21407,7 +21633,7 @@ textblock=[character(len=256) :: &
 '              error stop stopcode+3', &
 '           case(''errorstring'')', &
 '              message=''That is all, folks!''', &
-'              error stop ''<ERROR>''//message', &
+'              error stop ''ERROR:''//message', &
 '           case default', &
 '              write(*,*)''try again ...''', &
 '           end select', &
@@ -21418,21 +21644,18 @@ textblock=[character(len=256) :: &
 'STANDARD', &
 '  FORTRAN 77, ERROR STOP introduced in Fortran f2018', &
 '', &
-'SEE ALSO', &
-'  [ERROR STOP(3)](#error stop)', &
-'', &
 '  fortran-lang statement descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  stop(7fortran)', &
+'                               March 23, 2024                  stop(7fortran)', &
 '']
 
 shortname="stop"
 call process()
 
 
-case('190','storage_size')
+case('192','storage_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21536,14 +21759,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024          storage_size(3fortran)', &
+'                               March 23, 2024          storage_size(3fortran)', &
 '']
 
 shortname="storage_size"
 call process()
 
 
-case('191','sum')
+case('193','sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21762,14 +21985,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   sum(3fortran)', &
+'                               March 23, 2024                   sum(3fortran)', &
 '']
 
 shortname="sum"
 call process()
 
 
-case('192','system_clock')
+case('194','system_clock')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21927,14 +22150,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024          system_clock(3fortran)', &
+'                               March 23, 2024          system_clock(3fortran)', &
 '']
 
 shortname="system_clock"
 call process()
 
 
-case('193','tan')
+case('195','tan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21995,14 +22218,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                   tan(3fortran)', &
+'                               March 23, 2024                   tan(3fortran)', &
 '']
 
 shortname="tan"
 call process()
 
 
-case('194','tanh')
+case('196','tanh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22074,14 +22297,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  tanh(3fortran)', &
+'                               March 23, 2024                  tanh(3fortran)', &
 '']
 
 shortname="tanh"
 call process()
 
 
-case('195','this_image')
+case('197','this_image')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22166,14 +22389,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024            this_image(3fortran)', &
+'                               March 23, 2024            this_image(3fortran)', &
 '']
 
 shortname="this_image"
 call process()
 
 
-case('196','tiny')
+case('198','tiny')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22241,14 +22464,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  tiny(3fortran)', &
+'                               March 23, 2024                  tiny(3fortran)', &
 '']
 
 shortname="tiny"
 call process()
 
 
-case('197','trailz')
+case('199','trailz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22349,14 +22572,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                trailz(3fortran)', &
+'                               March 23, 2024                trailz(3fortran)', &
 '']
 
 shortname="trailz"
 call process()
 
 
-case('198','transfer')
+case('200','transfer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22482,14 +22705,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024              transfer(3fortran)', &
+'                               March 23, 2024              transfer(3fortran)', &
 '']
 
 shortname="transfer"
 call process()
 
 
-case('199','transpose')
+case('201','transpose')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22598,14 +22821,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024             transpose(3fortran)', &
+'                               March 23, 2024             transpose(3fortran)', &
 '']
 
 shortname="transpose"
 call process()
 
 
-case('200','trim')
+case('202','trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22706,14 +22929,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                  trim(3fortran)', &
+'                               March 23, 2024                  trim(3fortran)', &
 '']
 
 shortname="trim"
 call process()
 
 
-case('201','ubound')
+case('203','ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22890,14 +23113,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                ubound(3fortran)', &
+'                               March 23, 2024                ubound(3fortran)', &
 '']
 
 shortname="ubound"
 call process()
 
 
-case('202','ucobound')
+case('204','ucobound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22940,14 +23163,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024              ucobound(3fortran)', &
+'                               March 23, 2024              ucobound(3fortran)', &
 '']
 
 shortname="ucobound"
 call process()
 
 
-case('203','unpack')
+case('205','unpack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23106,14 +23329,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                unpack(3fortran)', &
+'                               March 23, 2024                unpack(3fortran)', &
 '']
 
 shortname="unpack"
 call process()
 
 
-case('204','verify')
+case('206','verify')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23494,7 +23717,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 22, 2024                verify(3fortran)', &
+'                               March 23, 2024                verify(3fortran)', &
 '']
 
 shortname="verify"

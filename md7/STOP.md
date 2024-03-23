@@ -1,4 +1,4 @@
-## STOP
+## stop
 
 ### **Name**
 
@@ -6,7 +6,7 @@
 
 ### **Synopsis**
 ```fortran
-stop [ stop-code ] 
+stop [ stop-code ]
 ```
 ```fortran
 error stop [ stop-code ]
@@ -26,7 +26,7 @@ status code, depending on the system.
 
 Any messages generated appear on the ERROR\_UNIT file, as identified in
 the intrinsic module ISO\_FORTRAN\_ENV. This unit is often referred to
-as "stderr". 
+as "stderr".
 
 It is recommended that systems write the value of the stop code whether
 numeric or a string.
@@ -85,24 +85,24 @@ Sample:
       case('basic'); stop    ! usually displays nothing
       case('zero');  stop 0  ! sometimes displays "STOP 0" or "0"
       case('text');  stop 'That is all, folks!'
-         ! 
+         !
          ! All other stops are generally used to indicate an error or
          ! special exit type
       case('nonzero');                 stop 10
       case('variable'); stopcode=11;   stop stopcode
       case('expression'); stopcode=11; stop 110/stopcode
-      case('string'); message='oops';  stop '<ERROR>:<'//message//'>'
+      case('string'); message='oops';  stop 'ERROR:['//message//']'
          ! Error terminations:
          ! ERROR STOP is always an error stop, even without a stop-code
          ! ERROR STOP often displays a traceback but that is not required
-      case('error')  
+      case('error')
          error stop
-      case('errornum')  
+      case('errornum')
          stopcode=10
          error stop stopcode+3
-      case('errorstring')  
+      case('errorstring')
          message='That is all, folks!'
-         error stop '<ERROR>'//message
+         error stop 'ERROR:'//message
       case default
          write(*,*)'try again ...'
       end select
@@ -113,9 +113,5 @@ Sample:
 ### **Standard**
 
    FORTRAN 77, ERROR STOP introduced in Fortran f2018
-
-### **See Also**
-
-[**error stop**(3)](#error stop)
 
  _fortran-lang statement descriptions (license: MIT) \@urbanjost_

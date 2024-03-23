@@ -872,6 +872,61 @@
       end program demo_atomic_xor
   </xmp>
   </details>
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20program%20demo%5Fbackspace%0D%0A%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20character%28len%3D256%29%20%3A%3A%20line%0D%0A%20%20%20%20%20%20%20%20%20character%28len%3D256%29%20%3A%3A%20mssge%0D%0A%20%20%20%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20j%0D%0A%20%20%20%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20ios%0D%0A%20%20%20%20%20%20%20%20%20integer%2Callocatable%20%3A%3A%20iarr%28%3A%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20create%20a%20basic%20sequential%20file%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20open%2810%2Cfile%3D%27dem%5Fbackspace%2Etxt%27%29%20%21%20open%20a%20file%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20do%20i%3D1%2C30%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20write%20lines%20to%20it%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%2810%2C%27%28a%2Ci3%2C%2A%28i3%29%29%27%29%20%27line%20%27%2Ci%2C%20%28j%2Cj%3D1%2Ci%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20back%20up%20several%20lines%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20do%20i%3D1%2C14%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20backspace%2810%2C%20iostat%3Dios%2Ciomsg%3Dmssge%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%28ios%2Ene%2E0%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28a%29%29%27%29%20%27%2Adem%5Fbackspace%2A%20ERROR%3A%27%2Cmssge%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20read%2810%2C%27%28a%29%27%29line%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27back%20at%20a%20previous%20record%20%21%27%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20read%20line%20as%20a%20string%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22string%3D%22%2Ca%29%27%29trim%28line%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20backspace%20so%20can%20read%20again%20as%20numbers%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20backspace%2810%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20read%20part%20of%20a%20line%20numerically%20to%20get%20size%20of%20array%20to%20read%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20read%2810%2C%27%285x%2Ci3%29%27%29i%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20allocate%28iarr%28i%29%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20reread%20line%20just%20reading%20array%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20backspace%2810%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20read%2810%2C%27%288x%2C%2A%28i3%29%29%27%29iarr%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28g0%2C1x%29%29%27%29%27size%3D%27%2Ci%2C%27array%3D%27%2Ciarr%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%21%20Note%3A%20writing%20a%20new%20line%20will%20truncate%20file%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%21%20%20%20%20%20%20%20to%20current%20record%20position%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20close%2810%2Cstatus%3D%27delete%27%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20end%20program%20demo%5Fbackspace%0D%0A"
+  target="_blank" title="Open in Fortran Playground">
+  <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
+  alt="Fortran logo" class="align-text-bottom" height="15.5" /> backspace
+  </a>
+  <details>
+    <summary>Source</summary>
+  <xmp>
+         program demo_backspace
+         implicit none
+         character(len=256) :: line
+         character(len=256) :: mssge
+         integer            :: i
+         integer            :: j
+         integer            :: ios
+         integer,allocatable :: iarr(:)
+
+            ! create a basic sequential file
+            open(10,file='dem_backspace.txt') ! open a file
+            do i=1,30                         ! write lines to it
+               write(10,'(a,i3,*(i3))') 'line ',i, (j,j=1,i)
+            enddo
+
+            ! back up several lines
+            do i=1,14
+               backspace(10, iostat=ios,iomsg=mssge)
+               if(ios.ne.0)then
+                       write(*,'(*(a))') '*dem_backspace* ERROR:',mssge
+               endif
+            enddo
+            read(10,'(a)')line
+            write(*,*)'back at a previous record !'
+
+            ! read line as a string
+            write(*,'("string=",a)')trim(line)
+
+            ! backspace so can read again as numbers
+            backspace(10)
+            ! read part of a line numerically to get size of array to read
+            read(10,'(5x,i3)')i
+            allocate(iarr(i))
+
+            ! reread line just reading array
+            backspace(10)
+            read(10,'(8x,*(i3))')iarr
+            write(*,'(*(g0,1x))')'size=',i,'array=',iarr
+
+            !! Note: writing a new line will truncate file
+            !!       to current record position
+
+            close(10,status='delete')
+
+         end program demo_backspace
+  </xmp>
+  </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fbessel%5Fj0%0D%0A%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20real%5Fkinds%2C%20%26%0D%0A%20%20%20%20%20%20%26%20real32%2C%20real64%2C%20real128%0D%0A%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20real%28kind%3Dreal64%29%20%3A%3A%20x%0D%0A%20%20%20%20%20%20%20%20%20x%20%3D%200%2E0%5Freal64%0D%0A%20%20%20%20%20%20%20%20%20x%20%3D%20bessel%5Fj0%28x%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29x%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fbessel%5Fj0%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
@@ -1605,7 +1660,7 @@
       end program demo_conjg
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code="
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fcontinue%0D%0A%20%20%20%20%20%20%21%20numbered%20targets%20should%20%28almost%3F%29%20always%20be%20a%20continue%20statement%0D%0A%20%20%20%20%20%20%21%20with%20a%20unique%20label%20for%20each%20looping%20structure%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%2Cj%0D%0A%20%20%20%20%20%20%20%20j%3D5%0D%0A%20%20%20%20%20%20%20%20do%20100%20i%3D1%2C20%0D%0A%20%20%20%20%20%20%20%20%20%20%20if%28i%2Elt%2E5%29goto%2050%0D%0A%20%20%20%20%20%20%20%20%20%20%20j%3D3%0D%0A%20%20%20%20%20%20%20%20%20%20%2050%20continue%0D%0A%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27J%3D%27%2Cj%0D%0A%20%20%20%20%20%20%20%20100%20continue%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fcontinue%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> continue
@@ -1613,6 +1668,18 @@
   <details>
     <summary>Source</summary>
   <xmp>
+      program demo_continue
+      ! numbered targets should (almost?) always be a continue statement
+      ! with a unique label for each looping structure
+      integer :: i,j
+        j=5
+        do 100 i=1,20
+           if(i.lt.5)goto 50
+           j=3
+           50 continue
+           write(*,*)'J=',j
+        100 continue
+      end program demo_continue
   </xmp>
   </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fco%5Freduce%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20val%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20val%20%3D%20this%5Fimage%28%29%0D%0A%20%20%20%20%20%20%20%20%20call%20co%5Freduce%28val%2C%20myprod%2C%201%29%0D%0A%20%20%20%20%20%20%20%20%20if%20%28this%5Fimage%28%29%20%3D%3D%201%29%20then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20%22Product%20value%22%2C%20val%20%20%21%20prints%20num%5Fimages%28%29%20factorial%0D%0A%20%20%20%20%20%20%20%20%20endif%0D%0A%0D%0A%20%20%20%20%20%20contains%0D%0A%0D%0A%20%20%20%20%20%20pure%20function%20myprod%28a%2C%20b%29%0D%0A%20%20%20%20%20%20%20%20%20integer%2C%20value%20%3A%3A%20a%2C%20b%0D%0A%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20myprod%0D%0A%20%20%20%20%20%20%20%20%20myprod%20%3D%20a%20%2A%20b%0D%0A%20%20%20%20%20%20end%20function%20myprod%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fco%5Freduce%0D%0A"
@@ -2594,6 +2661,34 @@
 
          ! A=Nan, Infinity or  <huge(0_KIND)-1 < A > huge(0_KIND) is undefined
       end program demo_floor
+  </xmp>
+  </details>
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20%20program%20demo%5Fflush%0D%0A%20%20%20%20%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26%20stderr%3D%3EERROR%5FUNIT%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26%20stdin%3D%3EINPUT%5FUNIT%2C%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26%20stdout%3D%3EOUTPUT%5FUNIT%0D%0A%20%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20iostat%0D%0A%20%20%20%20%20%20%20%20%20%20character%28len%3D255%29%20%3A%3A%20iomsg%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20flush%20%28stderr%2C%20iostat%3Diostat%2C%20iomsg%3Diomsg%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20if%28iostat%2Ene%2E0%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27ERROR%3A%27%2F%2Ftrim%28iomsg%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20error%20stop%201%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20flush%20%28stdout%2C%20err%20%3D%20999%20%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20stop%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20999%20continue%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20stop%2010%0D%0A%20%20%20%20%20%20%20%20%20%20end%20program%20demo%5Fflush%0D%0A"
+  target="_blank" title="Open in Fortran Playground">
+  <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
+  alt="Fortran logo" class="align-text-bottom" height="15.5" /> flush
+  </a>
+  <details>
+    <summary>Source</summary>
+  <xmp>
+          program demo_flush
+          use, intrinsic :: iso_fortran_env, only : &
+          & stderr=>ERROR_UNIT, &
+          & stdin=>INPUT_UNIT,  &
+          & stdout=>OUTPUT_UNIT
+          implicit none
+          integer :: iostat
+          character(len=255) :: iomsg
+             flush (stderr, iostat=iostat, iomsg=iomsg)
+             if(iostat.ne.0)then
+                write(*,*)'ERROR:'//trim(iomsg)
+                error stop 1
+             endif
+             flush (stdout, err = 999 )
+             stop
+             999 continue
+             stop 10
+          end program demo_flush
   </xmp>
   </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Ffraction%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20real%20%3A%3A%20x%0D%0A%20%20%20%20%20%20%20%20%20x%20%3D%20178%2E1387e%2D4%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20fraction%28x%29%2C%20x%20%2A%20radix%28x%29%2A%2A%28%2Dexponent%28x%29%29%0D%0A%20%20%20%20%20%20end%20program%20demo%5Ffraction%0D%0A"
@@ -5610,7 +5705,7 @@
         end program demo_same_type_as
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fscale%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20real%20%3A%3A%20x%0D%0A%20%20%20%20%20%20complex%20%3A%3A%20c%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%20x%20%3D%201%2E0%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%28scale%28x%2Ci%29%2Ci%3D1%2C5%29%0D%0A%20%20%20%20%20%20%20%20%20x%20%3D%203%2E0%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%28scale%28x%2Ci%29%2Ci%3D1%2C5%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%28scale%28log%281%2E0%29%2Ci%29%2Ci%3D1%2C5%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20on%20modern%20machines%20radix%28x%29%20is%20almost%20certainly%202%0D%0A%20%20%20%20%20%20%20%20%20x%20%3D%20178%2E1387e%2D4%0D%0A%20%20%20%20%20%20%20%20%20i%20%3D%205%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20x%2C%20i%2C%20scale%28x%2C%20i%29%2C%20x%2Aradix%28x%29%2A%2Ai%0D%0A%20%20%20%20%20%20%20%20%20%21%20x%2Aradix%28x%29%2A%2Ai%20is%20the%20same%20except%20roundoff%20errors%20are%20not%20restricted%0D%0A%20%20%20%20%20%20%20%20%20i%20%3D%202%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20x%2C%20i%2C%20scale%28x%2C%20i%29%2C%20x%2Aradix%28x%29%2A%2Ai%0D%0A%20%20%20%20%20%20%20%20%20%21%20relatively%20easy%20to%20do%20complex%20values%20as%20well%0D%0A%20%20%20%20%20%20%20%20%20c%3D%283%2E0%2C4%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20c%2C%20i%2C%20scale%5Fcomplex%28c%2C%20i%29%21%2C%20c%2Aradix%28c%29%2A%2Ai%0D%0A%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20%20%20%20function%20scale%5Fcomplex%28x%2C%20n%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20example%20supporting%20complex%20value%20for%20default%20kinds%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20complex%2C%20intent%28in%29%20%3A%3A%20x%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20integer%2C%20intent%28in%29%20%3A%3A%20n%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20complex%20%3A%3A%20scale%5Fcomplex%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20scale%5Fcomplex%20%3D%20cmplx%28scale%28x%25re%2C%20n%29%2C%20scale%28x%25im%2C%20n%29%2C%20kind%3Dkind%28x%25im%29%29%0D%0A%20%20%20%20%20%20%20%20%20end%20function%20scale%5Fcomplex%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fscale%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fscale%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20real%20%3A%3A%20x%0D%0A%20%20%20%20%20%20complex%20%3A%3A%20c%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%20x%20%3D%201%2E0%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%28scale%28x%2Ci%29%2Ci%3D1%2C5%29%0D%0A%20%20%20%20%20%20%20%20%20x%20%3D%203%2E0%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%28scale%28x%2Ci%29%2Ci%3D1%2C5%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%28scale%28log%281%2E0%29%2Ci%29%2Ci%3D1%2C5%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20on%20modern%20machines%20radix%28x%29%20is%20almost%20certainly%202%0D%0A%20%20%20%20%20%20%20%20%20x%20%3D%20178%2E1387e%2D4%0D%0A%20%20%20%20%20%20%20%20%20i%20%3D%205%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20x%2C%20i%2C%20scale%28x%2C%20i%29%2C%20x%2Aradix%28x%29%2A%2Ai%0D%0A%20%20%20%20%20%20%20%20%20%21%20x%2Aradix%28x%29%2A%2Ai%20is%20the%20same%20except%20roundoff%20errors%20are%20not%20restricted%0D%0A%20%20%20%20%20%20%20%20%20i%20%3D%202%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20x%2C%20i%2C%20scale%28x%2C%20i%29%2C%20x%2Aradix%28x%29%2A%2Ai%0D%0A%20%20%20%20%20%20%20%20%20%21%20relatively%20easy%20to%20do%20complex%20values%20as%20well%0D%0A%20%20%20%20%20%20%20%20%20c%3D%283%2E0%2C4%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20c%2C%20i%2C%20scale%5Fcomplex%28c%2C%20i%29%21%2C%20c%2Aradix%28c%29%2A%2Ai%0D%0A%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20function%20scale%5Fcomplex%28x%2C%20n%29%0D%0A%20%20%20%20%20%20%21%20example%20supporting%20complex%20value%20for%20default%20kinds%0D%0A%20%20%20%20%20%20complex%2C%20intent%28in%29%20%3A%3A%20x%0D%0A%20%20%20%20%20%20integer%2C%20intent%28in%29%20%3A%3A%20n%0D%0A%20%20%20%20%20%20complex%20%3A%3A%20scale%5Fcomplex%0D%0A%20%20%20%20%20%20%20%20%20scale%5Fcomplex%3Dcmplx%28scale%28x%25re%2C%20n%29%2C%20scale%28x%25im%2C%20n%29%2C%20kind%3Dkind%28x%25im%29%29%0D%0A%20%20%20%20%20%20end%20function%20scale%5Fcomplex%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fscale%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> scale
@@ -5639,13 +5734,13 @@
          c=(3.0,4.0)
          print *, c, i, scale_complex(c, i)!, c*radix(c)**i
       contains
-         function scale_complex(x, n)
-         ! example supporting complex value for default kinds
-            complex, intent(in) :: x
-            integer, intent(in) :: n
-            complex :: scale_complex
-            scale_complex = cmplx(scale(x%re, n), scale(x%im, n), kind=kind(x%im))
-         end function scale_complex
+      function scale_complex(x, n)
+      ! example supporting complex value for default kinds
+      complex, intent(in) :: x
+      integer, intent(in) :: n
+      complex :: scale_complex
+         scale_complex=cmplx(scale(x%re, n), scale(x%im, n), kind=kind(x%im))
+      end function scale_complex
       end program demo_scale
   </xmp>
   </details>
@@ -6268,7 +6363,7 @@
       end program demo_sqrt
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20program%20demo%5Fstop%0D%0A%20%20%20%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20stderr%3D%3EERROR%5FUNIT%0D%0A%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20stopcode%0D%0A%20%20%20%20%20%20%20%20%20character%28len%3D%3A%29%2Callocatable%20%3A%3A%20message%0D%0A%20%20%20%20%20%20%20%20%20character%28len%3D20%29%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20which%0D%0A%20%20%20%20%20%20%20%20%20INFINITE%3A%20do%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20Normal%20terminations%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%29%27%29%27enter%20a%20stop%20type%3A%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%20%27%7Bbasic%2C%20text%2C%20zero%2C%20nonzero%2C%20variable%2C%20expression%7D%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%20%27%7Berror%2C%20errornum%2C%20errorstring%7D%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20read%28%2A%2C%27%28a%29%27%29which%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20select%20case%28which%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20normal%20terminations%3A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20A%20STOP%20with%20no%20non%2Dzero%20numeric%20parameter%20is%20a%20normal%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20termination%20and%20generally%20returns%20a%20zero%20status%20value%20if%20the%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20system%20supports%20return%20statuses%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27basic%27%29%3B%20stop%20%20%20%20%21%20usually%20displays%20nothing%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27zero%27%29%3B%20%20stop%200%20%20%21%20sometimes%20displays%20%22STOP%200%22%20or%20%220%22%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27text%27%29%3B%20%20stop%20%27That%20is%20all%2C%20folks%21%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20All%20other%20stops%20are%20generally%20used%20to%20indicate%20an%20error%20or%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20special%20exit%20type%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27nonzero%27%29%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20stop%2010%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27variable%27%29%3B%20stopcode%3D11%3B%20%20%20stop%20stopcode%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27expression%27%29%3B%20stopcode%3D11%3B%20stop%20110%2Fstopcode%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27string%27%29%3B%20message%3D%27oops%27%3B%20%20stop%20%27%3CERROR%3E%3A%3C%27%2F%2Fmessage%2F%2F%27%3E%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20Error%20terminations%3A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20ERROR%20STOP%20is%20always%20an%20error%20stop%2C%20even%20without%20a%20stop%2Dcode%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20ERROR%20STOP%20often%20displays%20a%20traceback%20but%20that%20is%20not%20required%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27error%27%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20error%20stop%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27errornum%27%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20stopcode%3D10%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20error%20stop%20stopcode%2B3%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27errorstring%27%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20message%3D%27That%20is%20all%2C%20folks%21%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20error%20stop%20%27%3CERROR%3E%27%2F%2Fmessage%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%20default%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27try%20again%20%2E%2E%2E%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20end%20select%0D%0A%20%20%20%20%20%20%20%20%20enddo%20INFINITE%0D%0A%20%20%20%20%20%20%20%20%20end%20program%20demo%5Fstop%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20program%20demo%5Fstop%0D%0A%20%20%20%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20stderr%3D%3EERROR%5FUNIT%0D%0A%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20stopcode%0D%0A%20%20%20%20%20%20%20%20%20character%28len%3D%3A%29%2Callocatable%20%3A%3A%20message%0D%0A%20%20%20%20%20%20%20%20%20character%28len%3D20%29%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20which%0D%0A%20%20%20%20%20%20%20%20%20INFINITE%3A%20do%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20Normal%20terminations%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%29%27%29%27enter%20a%20stop%20type%3A%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%20%27%7Bbasic%2C%20text%2C%20zero%2C%20nonzero%2C%20variable%2C%20expression%7D%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%20%27%7Berror%2C%20errornum%2C%20errorstring%7D%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20read%28%2A%2C%27%28a%29%27%29which%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20select%20case%28which%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20normal%20terminations%3A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20A%20STOP%20with%20no%20non%2Dzero%20numeric%20parameter%20is%20a%20normal%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20termination%20and%20generally%20returns%20a%20zero%20status%20value%20if%20the%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20system%20supports%20return%20statuses%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27basic%27%29%3B%20stop%20%20%20%20%21%20usually%20displays%20nothing%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27zero%27%29%3B%20%20stop%200%20%20%21%20sometimes%20displays%20%22STOP%200%22%20or%20%220%22%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27text%27%29%3B%20%20stop%20%27That%20is%20all%2C%20folks%21%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20All%20other%20stops%20are%20generally%20used%20to%20indicate%20an%20error%20or%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20special%20exit%20type%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27nonzero%27%29%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20stop%2010%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27variable%27%29%3B%20stopcode%3D11%3B%20%20%20stop%20stopcode%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27expression%27%29%3B%20stopcode%3D11%3B%20stop%20110%2Fstopcode%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27string%27%29%3B%20message%3D%27oops%27%3B%20%20stop%20%27ERROR%3A%5B%27%2F%2Fmessage%2F%2F%27%5D%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20Error%20terminations%3A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20ERROR%20STOP%20is%20always%20an%20error%20stop%2C%20even%20without%20a%20stop%2Dcode%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20ERROR%20STOP%20often%20displays%20a%20traceback%20but%20that%20is%20not%20required%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27error%27%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20error%20stop%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27errornum%27%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20stopcode%3D10%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20error%20stop%20stopcode%2B3%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%28%27errorstring%27%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20message%3D%27That%20is%20all%2C%20folks%21%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20error%20stop%20%27ERROR%3A%27%2F%2Fmessage%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%20default%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27try%20again%20%2E%2E%2E%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20end%20select%0D%0A%20%20%20%20%20%20%20%20%20enddo%20INFINITE%0D%0A%20%20%20%20%20%20%20%20%20end%20program%20demo%5Fstop%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> stop
@@ -6302,7 +6397,7 @@
             case('nonzero');                 stop 10
             case('variable'); stopcode=11;   stop stopcode
             case('expression'); stopcode=11; stop 110/stopcode
-            case('string'); message='oops';  stop '<ERROR>:<'//message//'>'
+            case('string'); message='oops';  stop 'ERROR:['//message//']'
                ! Error terminations:
                ! ERROR STOP is always an error stop, even without a stop-code
                ! ERROR STOP often displays a traceback but that is not required
@@ -6313,7 +6408,7 @@
                error stop stopcode+3
             case('errorstring')
                message='That is all, folks!'
-               error stop '<ERROR>'//message
+               error stop 'ERROR:'//message
             case default
                write(*,*)'try again ...'
             end select

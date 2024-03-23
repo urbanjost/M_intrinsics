@@ -19,11 +19,11 @@
          c=(3.0,4.0)
          print *, c, i, scale_complex(c, i)!, c*radix(c)**i
       contains
-         function scale_complex(x, n)
-         ! example supporting complex value for default kinds
-            complex, intent(in) :: x
-            integer, intent(in) :: n
-            complex :: scale_complex
-            scale_complex = cmplx(scale(x%re, n), scale(x%im, n), kind=kind(x%im))
-         end function scale_complex
+      function scale_complex(x, n)
+      ! example supporting complex value for default kinds
+      complex, intent(in) :: x
+      integer, intent(in) :: n
+      complex :: scale_complex
+         scale_complex=cmplx(scale(x%re, n), scale(x%im, n), kind=kind(x%im))
+      end function scale_complex
       end program demo_scale

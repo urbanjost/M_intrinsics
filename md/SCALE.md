@@ -49,7 +49,7 @@ Sample program:
 ```fortran
 program demo_scale
 implicit none
-real :: x 
+real :: x
 complex :: c
 integer :: i
    x = 1.0
@@ -68,24 +68,24 @@ integer :: i
    c=(3.0,4.0)
    print *, c, i, scale_complex(c, i)!, c*radix(c)**i
 contains
-   function scale_complex(x, n)
-   ! example supporting complex value for default kinds
-      complex, intent(in) :: x
-      integer, intent(in) :: n
-      complex :: scale_complex
-      scale_complex = cmplx(scale(x%re, n), scale(x%im, n), kind=kind(x%im))
-   end function scale_complex
+function scale_complex(x, n)
+! example supporting complex value for default kinds
+complex, intent(in) :: x
+integer, intent(in) :: n
+complex :: scale_complex
+   scale_complex=cmplx(scale(x%re, n), scale(x%im, n), kind=kind(x%im))
+end function scale_complex
 end program demo_scale
 ```
 Results:
 ```text
- > 2.00000000 4.00000000  8.00000000     16.0000000 32.0000000    
- > 6.00000000 12.0000000 24.0000000      48.0000000 96.0000000    
- > 0.00000000 0.00000000  0.00000000     0.00000000 0.00000000    
- > 1.78138707E-02    5   0.570043862      0.570043862    
+ > 2.00000000 4.00000000  8.00000000     16.0000000 32.0000000
+ > 6.00000000 12.0000000 24.0000000      48.0000000 96.0000000
+ > 0.00000000 0.00000000  0.00000000     0.00000000 0.00000000
+ > 1.78138707E-02    5   0.570043862      0.570043862
  > 1.78138707E-02    2   7.12554827E-02   7.12554827E-02
  > (3.00000000,4.00000000) 2 (12.0000000,16.0000000)
-
+```
 ### **Standard**
 
 Fortran 95

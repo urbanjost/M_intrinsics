@@ -24,7 +24,7 @@
             case('nonzero');                 stop 10
             case('variable'); stopcode=11;   stop stopcode
             case('expression'); stopcode=11; stop 110/stopcode
-            case('string'); message='oops';  stop '<ERROR>:<'//message//'>'
+            case('string'); message='oops';  stop 'ERROR:['//message//']'
                ! Error terminations:
                ! ERROR STOP is always an error stop, even without a stop-code
                ! ERROR STOP often displays a traceback but that is not required
@@ -35,7 +35,7 @@
                error stop stopcode+3
             case('errorstring')
                message='That is all, folks!'
-               error stop '<ERROR>'//message
+               error stop 'ERROR:'//message
             case default
                write(*,*)'try again ...'
             end select

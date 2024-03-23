@@ -131,6 +131,11 @@ ship:
 	   zip -r ../../docs/manpages.zip *gz;\
 	   tar cvfz ../../docs/manpages.tgz *gz;\
 	   gunzip *.3fortran.gz
+	cd ../man/man7;\
+	   gzip *.7fortran;\
+	   zip -r ../../docs/manpages7.zip *gz;\
+	   tar cvfz ../../docs/manpages7.tgz *gz;\
+	   gunzip *.7fortran.gz
 
 .PHONY: debug
 debug:

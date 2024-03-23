@@ -149,8 +149,8 @@ end program demo_merge
 ```
 Results:
 ```text
- >    1.00000000    
- >    0.00000000    
+ >    1.00000000
+ >    0.00000000
  >  mask of logicals
  >   10   3  50
  >    7   4 -60
