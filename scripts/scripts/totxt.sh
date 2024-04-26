@@ -1,5 +1,6 @@
 #!/bin/bash
 # https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html  Sphinx uses reST.
+####################################################################################################################################
 (
 cd md
 MD=markdown_mmd
@@ -13,6 +14,19 @@ do
    #tail -n +3 $NAME|pandoc -f $MD --wrap preserve -t plain -i - -o ../txt/$SHORTNAME.3fortran.man
    tail -n +3 $NAME|pandoc --lua-filter ../scripts/deEmph.lua -f $MD -t plain -i - -o ../txt/$SHORTNAME.3fortran.man
    tail -n +3 $NAME|pandoc -f $MD -t html -i - -o ../docs/$SHORTNAME.3fortran.html
+done
+)
+####################################################################################################################################
+(
+cd md
+MD=markdown_mmd
+MD=commonmark
+for NAME in *.md
+do
+   SHORTNAME=$(basename $NAME .md)
+   SHORTNAME=${SHORTNAME,,}
+   echo $NAME
+   tail -n +3 $NAME|pandoc -f $MD -t json -i - -o ../json/$SHORTNAME.3fortran.json
 done
 )
 ####################################################################################################################################

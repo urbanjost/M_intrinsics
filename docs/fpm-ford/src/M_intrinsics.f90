@@ -337,7 +337,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   abs(3fortran)', &
+'                               April 26, 2024                   abs(3fortran)', &
 '']
 
 shortname="abs"
@@ -513,7 +513,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 achar(3fortran)', &
+'                               April 26, 2024                 achar(3fortran)', &
 '']
 
 shortname="achar"
@@ -613,7 +613,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  acos(3fortran)', &
+'                               April 26, 2024                  acos(3fortran)', &
 '']
 
 shortname="acos"
@@ -694,7 +694,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 acosh(3fortran)', &
+'                               April 26, 2024                 acosh(3fortran)', &
 '']
 
 shortname="acosh"
@@ -791,7 +791,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024               adjustl(3fortran)', &
+'                               April 26, 2024               adjustl(3fortran)', &
 '']
 
 shortname="adjustl"
@@ -884,7 +884,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024               adjustr(3fortran)', &
+'                               April 26, 2024               adjustr(3fortran)', &
 '']
 
 shortname="adjustr"
@@ -999,7 +999,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 aimag(3fortran)', &
+'                               April 26, 2024                 aimag(3fortran)', &
 '']
 
 shortname="aimag"
@@ -1099,7 +1099,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  aint(3fortran)', &
+'                               April 26, 2024                  aint(3fortran)', &
 '']
 
 shortname="aint"
@@ -1219,7 +1219,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   all(3fortran)', &
+'                               April 26, 2024                   all(3fortran)', &
 '']
 
 shortname="all"
@@ -1326,7 +1326,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024             allocated(3fortran)', &
+'                               April 26, 2024             allocated(3fortran)', &
 '']
 
 shortname="allocated"
@@ -1452,7 +1452,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 anint(3fortran)', &
+'                               April 26, 2024                 anint(3fortran)', &
 '']
 
 shortname="anint"
@@ -1618,7 +1618,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   any(3fortran)', &
+'                               April 26, 2024                   any(3fortran)', &
 '']
 
 shortname="any"
@@ -1740,7 +1740,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  asin(3fortran)', &
+'                               April 26, 2024                  asin(3fortran)', &
 '']
 
 shortname="asin"
@@ -1819,7 +1819,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 asinh(3fortran)', &
+'                               April 26, 2024                 asinh(3fortran)', &
 '']
 
 shortname="asinh"
@@ -1937,7 +1937,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024            associated(3fortran)', &
+'                               April 26, 2024            associated(3fortran)', &
 '']
 
 shortname="associated"
@@ -2124,7 +2124,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 atan2(3fortran)', &
+'                               April 26, 2024                 atan2(3fortran)', &
 '']
 
 shortname="atan2"
@@ -2218,7 +2218,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  atan(3fortran)', &
+'                               April 26, 2024                  atan(3fortran)', &
 '']
 
 shortname="atan"
@@ -2292,7 +2292,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 atanh(3fortran)', &
+'                               April 26, 2024                 atanh(3fortran)', &
 '']
 
 shortname="atanh"
@@ -2369,7 +2369,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024            atomic_add(3fortran)', &
+'                               April 26, 2024            atomic_add(3fortran)', &
 '']
 
 shortname="atomic_add"
@@ -2447,7 +2447,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024            atomic_and(3fortran)', &
+'                               April 26, 2024            atomic_and(3fortran)', &
 '']
 
 shortname="atomic_and"
@@ -2517,7 +2517,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024            atomic_cas(3fortran)', &
+'                               April 26, 2024            atomic_cas(3fortran)', &
 '']
 
 shortname="atomic_cas"
@@ -2593,7 +2593,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024         atomic_define(3fortran)', &
+'                               April 26, 2024         atomic_define(3fortran)', &
 '']
 
 shortname="atomic_define"
@@ -2664,7 +2664,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024      atomic_fetch_add(3fortran)', &
+'                               April 26, 2024      atomic_fetch_add(3fortran)', &
 '']
 
 shortname="atomic_fetch_add"
@@ -2736,7 +2736,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024      atomic_fetch_and(3fortran)', &
+'                               April 26, 2024      atomic_fetch_and(3fortran)', &
 '']
 
 shortname="atomic_fetch_and"
@@ -2808,7 +2808,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024       atomic_fetch_or(3fortran)', &
+'                               April 26, 2024       atomic_fetch_or(3fortran)', &
 '']
 
 shortname="atomic_fetch_or"
@@ -2880,7 +2880,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024      atomic_fetch_xor(3fortran)', &
+'                               April 26, 2024      atomic_fetch_xor(3fortran)', &
 '']
 
 shortname="atomic_fetch_xor"
@@ -2961,7 +2961,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024             atomic_or(3fortran)', &
+'                               April 26, 2024             atomic_or(3fortran)', &
 '']
 
 shortname="atomic_or"
@@ -3045,7 +3045,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024            atomic_ref(3fortran)', &
+'                               April 26, 2024            atomic_ref(3fortran)', &
 '']
 
 shortname="atomic_ref"
@@ -3124,7 +3124,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024            atomic_xor(3fortran)', &
+'                               April 26, 2024            atomic_xor(3fortran)', &
 '']
 
 shortname="atomic_xor"
@@ -3258,7 +3258,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024             backspace(7fortran)', &
+'                               April 26, 2024             backspace(7fortran)', &
 '']
 
 shortname="backspace"
@@ -3328,7 +3328,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024             bessel_j0(3fortran)', &
+'                               April 26, 2024             bessel_j0(3fortran)', &
 '']
 
 shortname="bessel_j0"
@@ -3397,7 +3397,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024             bessel_j1(3fortran)', &
+'                               April 26, 2024             bessel_j1(3fortran)', &
 '']
 
 shortname="bessel_j1"
@@ -3501,7 +3501,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024             bessel_jn(3fortran)', &
+'                               April 26, 2024             bessel_jn(3fortran)', &
 '']
 
 shortname="bessel_jn"
@@ -3570,7 +3570,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024             bessel_y0(3fortran)', &
+'                               April 26, 2024             bessel_y0(3fortran)', &
 '']
 
 shortname="bessel_y0"
@@ -3638,7 +3638,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024             bessel_y1(3fortran)', &
+'                               April 26, 2024             bessel_y1(3fortran)', &
 '']
 
 shortname="bessel_y1"
@@ -3742,7 +3742,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024             bessel_yn(3fortran)', &
+'                               April 26, 2024             bessel_yn(3fortran)', &
 '']
 
 shortname="bessel_yn"
@@ -3907,7 +3907,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   bge(3fortran)', &
+'                               April 26, 2024                   bge(3fortran)', &
 '']
 
 shortname="bge"
@@ -4019,7 +4019,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   bgt(3fortran)', &
+'                               April 26, 2024                   bgt(3fortran)', &
 '']
 
 shortname="bgt"
@@ -4110,7 +4110,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024              bit_size(3fortran)', &
+'                               April 26, 2024              bit_size(3fortran)', &
 '']
 
 shortname="bit_size"
@@ -4211,7 +4211,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   ble(3fortran)', &
+'                               April 26, 2024                   ble(3fortran)', &
 '']
 
 shortname="ble"
@@ -4306,7 +4306,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   blt(3fortran)', &
+'                               April 26, 2024                   blt(3fortran)', &
 '']
 
 shortname="blt"
@@ -4444,7 +4444,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 btest(3fortran)', &
+'                               April 26, 2024                 btest(3fortran)', &
 '']
 
 shortname="btest"
@@ -4522,7 +4522,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024          c_associated(3fortran)', &
+'                               April 26, 2024          c_associated(3fortran)', &
 '']
 
 shortname="c_associated"
@@ -4632,7 +4632,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024               ceiling(3fortran)', &
+'                               April 26, 2024               ceiling(3fortran)', &
 '']
 
 shortname="ceiling"
@@ -4708,7 +4708,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024           c_f_pointer(3fortran)', &
+'                               April 26, 2024           c_f_pointer(3fortran)', &
 '']
 
 shortname="c_f_pointer"
@@ -4783,7 +4783,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024       c_f_procpointer(3fortran)', &
+'                               April 26, 2024       c_f_procpointer(3fortran)', &
 '']
 
 shortname="c_f_procpointer"
@@ -4857,7 +4857,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024              c_funloc(3fortran)', &
+'                               April 26, 2024              c_funloc(3fortran)', &
 '']
 
 shortname="c_funloc"
@@ -4983,7 +4983,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  char(3fortran)', &
+'                               April 26, 2024                  char(3fortran)', &
 '']
 
 shortname="char"
@@ -5044,14 +5044,156 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 c_loc(3fortran)', &
+'                               April 26, 2024                 c_loc(3fortran)', &
 '']
 
 shortname="c_loc"
 call process()
 
 
-case('50','cmplx')
+case('50','close')
+
+textblock=[character(len=256) :: &
+'', &
+'close(7fortran)                                               close(7fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  CLOSE(7f) - [FORTRAN:IO] terminate the connection of a specified unit to an', &
+'  external file.', &
+'', &
+'', &
+'SYNOPSIS', &
+'  CLOSE ( [UNIT= ] file-unit-number,', &
+'', &
+'         [IOSTAT= scalar-int-variable,]', &
+'         [IOMSG= iomsg-variable,]', &
+'         [ERR= label,]', &
+'         [STATUS= scalar-default-char-expr]', &
+'  )', &
+'', &
+'DESCRIPTION', &
+'  The CLOSE statement is used to terminate the connection of a specified unit', &
+'  to an external file.', &
+'', &
+'  Execution of a CLOSE statement for a unit may occur in any program unit of a', &
+'  program and need not occur in the same program unit as the execution of an', &
+'  OPEN statement referring to that unit.', &
+'', &
+'  Execution of a CLOSE statement performs a wait operation for any pending', &
+'  asynchronous data transfer operations for the specified unit.', &
+'', &
+'  Execution of a CLOSE statement specifying a unit that does not exist or has', &
+'  no file connected to it is permitted and affects no file or unit.', &
+'', &
+'  After a unit has been disconnected by execution of a CLOSE statement, it may', &
+'  be connected again within the same program, either to the same file or to a', &
+'  different file. After a named file has been disconnected by execution of a', &
+'  CLOSE statement, it may be connected again within the same program, either', &
+'  to the same unit or to a different unit, provided that the file still', &
+'  exists.', &
+'', &
+'  The input/output statements are the OPEN, CLOSE, READ, WRITE, PRINT,', &
+'  BACKSPACE, ENDFILE, REWIND, FLUSH, WAIT, and INQUIRE statements.', &
+'', &
+'  OPEN, CLOSE, BACKSPACE, ENDFILE, and REWIND statements shall not be executed', &
+'  while a parent data transfer statement is active.', &
+'', &
+'  A pure subprogram shall not contain a print-stmt, open-stmt, close-stmt,', &
+'  backspace-stmt, endfile-stmt, rewind-stmt, flush-stmt, wait-stmt, or', &
+'  inquire-stmt.', &
+'', &
+'  The READ statement is a data transfer input statement. The WRITE statement', &
+'  and the PRINT statement are data transfer output statements. The OPEN', &
+'  statement and the CLOSE statement are file connection statements. The', &
+'  INQUIRE statement is a file inquiry statement. The BACKSPACE, ENDFILE, and', &
+'  REWIND statements are file positioning statements.', &
+'', &
+'  All input/output statements may refer to files that exist. An INQUIRE, OPEN,', &
+'  CLOSE, WRITE, PRINT, REWIND, FLUSH, or ENDFILE statement also may refer to a', &
+'  file that does not exist. Execution of a WRITE, PRINT, or ENDFILE statement', &
+'  referring to a preconnected file that does not exist creates the file. This', &
+'  file is a different file from one preconnected on any other image.', &
+'', &
+'  AT PROGRAM TERMINATION During the completion step of termination of', &
+'  execution of a program, all units that are connected are closed. Each unit', &
+'  is closed with status KEEP unless the file status prior to termination of', &
+'  execution was SCRATCH, in which case the unit is closed with status DELETE.', &
+'', &
+'  The effect is as though a CLOSE statement without a STATUS= specifier were', &
+'  executed on each connected unit.', &
+'', &
+'OPTIONS', &
+'  No specifier shall appear more than once in a given close-spec-list.', &
+'', &
+'  UNIT=file-unit-number : A file-unit-number shall be specified in a close-', &
+'  spec-list; if the optional characters UNIT= are omitted, the file-unit-', &
+'  number shall be the first item in the close-spec-list.  IOSTAT=scalar-int-', &
+'  variable : 0 means no error occurred IOMSG=iomsg-variable : Character', &
+'  variable to hold message if an error occurred. ERR=label : The label used in', &
+'  the ERR= specifier shall be the statement label of a branch target statement', &
+'  that appears in the same scoping unit as the CLOSE statement. STATUS=scalar-', &
+'  default-char-expr : The expression has a limited list of character values.', &
+'  Any trailing blanks are ignored. The value specified is without regard to', &
+'  case.', &
+'', &
+'      The scalar-default-char-expr shall evaluate to KEEP or DELETE. The', &
+'      STATUS= specifier determines the disposition of the file that', &
+'      is connected to the specified unit. KEEP shall not be specified', &
+'      for a file whose status prior to execution of a CLOSE statement', &
+'      is SCRATCH. If KEEP is specified for a file that exists, the file', &
+'      continues to exist after the execution of a CLOSE statement. If KEEP', &
+'      is specified for a file that does not exist, the file will not exist', &
+'      after the execution of a CLOSE statement. If DELETE is specified,', &
+'      the file will not exist after the execution of a CLOSE statement. If', &
+'      this specifier is omitted, the default value is KEEP, unless the', &
+'      file status prior to execution of the CLOSE statement is SCRATCH,', &
+'      in which case the default value is DELETE.', &
+'', &
+'', &
+'EXAMPLES', &
+'  sample program:', &
+'', &
+'  program demo_close implicit none character(len=256) :: message integer ::', &
+'  ios open (10, file=''employee.names'', action=''read'',', &
+'  iostat=ios,iomsg=message) if (ios < 0) then ! perform end-of-file processing', &
+'  on the file connected to unit 10.', &
+'', &
+'          close (10, status=''keep'',iostat=ios,iomsg=message)', &
+'          if(ios.ne.0)then', &
+'             write(*,''(*(a))'')''*demo_close* close error: '',trim(message)', &
+'             stop 1', &
+'          endif', &
+'  elseif (ios > 0) then ! perform error processing on open', &
+'  write(*,''(*(a))'')''*demo_close* open error: '',trim(message) stop 2 endif', &
+'', &
+'  end program demo_close', &
+'', &
+'      ### **See Also**', &
+'', &
+'      [**backspace**(3)](#backspace),', &
+'      [**close**(3)](#close),', &
+'      [**endfile**(3)](#endfile),', &
+'      [**flush**(3)](#flush),', &
+'      [**inquire**(3)](#inquire),', &
+'      [**open**(3)](#open),', &
+'      [**print**(3)](#print),', &
+'      [**read**(3)](#read),', &
+'      [**rewind**(3)](#rewind),', &
+'      [**wait**(3)](#wait),', &
+'      [**write**(3)](#write)', &
+'', &
+'', &
+'', &
+'                               April 26, 2024                 close(7fortran)', &
+'']
+
+shortname="close"
+call process()
+
+
+case('51','cmplx')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5316,14 +5458,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 cmplx(3fortran)', &
+'                               April 26, 2024                 cmplx(3fortran)', &
 '']
 
 shortname="cmplx"
 call process()
 
 
-case('51','co_broadcast')
+case('52','co_broadcast')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5384,14 +5526,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024          co_broadcast(3fortran)', &
+'                               April 26, 2024          co_broadcast(3fortran)', &
 '']
 
 shortname="co_broadcast"
 call process()
 
 
-case('52','co_lbound')
+case('53','co_lbound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5438,7 +5580,7 @@ shortname="co_lbound"
 call process()
 
 
-case('53','co_max')
+case('54','co_max')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5504,14 +5646,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                co_max(3fortran)', &
+'                               April 26, 2024                co_max(3fortran)', &
 '']
 
 shortname="co_max"
 call process()
 
 
-case('54','co_min')
+case('55','co_min')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5573,14 +5715,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                co_min(3fortran)', &
+'                               April 26, 2024                co_min(3fortran)', &
 '']
 
 shortname="co_min"
 call process()
 
 
-case('55','command_argument_count')
+case('56','command_argument_count')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5651,14 +5793,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024command_argument_count(3fortran)', &
+'                               April 26, 2024command_argument_count(3fortran)', &
 '']
 
 shortname="command_argument_count"
 call process()
 
 
-case('56','compiler_options')
+case('57','compiler_options')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5739,14 +5881,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024      compiler_options(3fortran)', &
+'                               April 26, 2024      compiler_options(3fortran)', &
 '']
 
 shortname="compiler_options"
 call process()
 
 
-case('57','compiler_version')
+case('58','compiler_version')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5811,14 +5953,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024      compiler_version(3fortran)', &
+'                               April 26, 2024      compiler_version(3fortran)', &
 '']
 
 shortname="compiler_version"
 call process()
 
 
-case('58','conjg')
+case('59','conjg')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5942,14 +6084,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 conjg(3fortran)', &
+'                               April 26, 2024                 conjg(3fortran)', &
 '']
 
 shortname="conjg"
 call process()
 
 
-case('59','continue')
+case('60','continue')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6024,14 +6166,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024              continue(7fortran)', &
+'                               April 26, 2024              continue(7fortran)', &
 '']
 
 shortname="continue"
 call process()
 
 
-case('60','co_reduce')
+case('61','co_reduce')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6126,14 +6268,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024             co_reduce(3fortran)', &
+'                               April 26, 2024             co_reduce(3fortran)', &
 '']
 
 shortname="co_reduce"
 call process()
 
 
-case('61','cos')
+case('62','cos')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6220,14 +6362,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   cos(3fortran)', &
+'                               April 26, 2024                   cos(3fortran)', &
 '']
 
 shortname="cos"
 call process()
 
 
-case('62','cosh')
+case('63','cosh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6295,14 +6437,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  cosh(3fortran)', &
+'                               April 26, 2024                  cosh(3fortran)', &
 '']
 
 shortname="cosh"
 call process()
 
 
-case('63','co_sum')
+case('64','co_sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6372,14 +6514,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                co_sum(3fortran)', &
+'                               April 26, 2024                co_sum(3fortran)', &
 '']
 
 shortname="co_sum"
 call process()
 
 
-case('64','co_ubound')
+case('65','co_ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6426,7 +6568,7 @@ shortname="co_ubound"
 call process()
 
 
-case('65','count')
+case('66','count')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6659,14 +6801,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 count(3fortran)', &
+'                               April 26, 2024                 count(3fortran)', &
 '']
 
 shortname="count"
 call process()
 
 
-case('66','cpu_time')
+case('67','cpu_time')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6772,14 +6914,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024              cpu_time(3fortran)', &
+'                               April 26, 2024              cpu_time(3fortran)', &
 '']
 
 shortname="cpu_time"
 call process()
 
 
-case('67','cshift')
+case('68','cshift')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6910,14 +7052,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                cshift(3fortran)', &
+'                               April 26, 2024                cshift(3fortran)', &
 '']
 
 shortname="cshift"
 call process()
 
 
-case('68','c_sizeof')
+case('69','c_sizeof')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6974,14 +7116,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024              c_sizeof(3fortran)', &
+'                               April 26, 2024              c_sizeof(3fortran)', &
 '']
 
 shortname="c_sizeof"
 call process()
 
 
-case('69','date_and_time')
+case('70','date_and_time')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7149,14 +7291,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024         date_and_time(3fortran)', &
+'                               April 26, 2024         date_and_time(3fortran)', &
 '']
 
 shortname="date_and_time"
 call process()
 
 
-case('70','dble')
+case('71','dble')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7228,14 +7370,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  dble(3fortran)', &
+'                               April 26, 2024                  dble(3fortran)', &
 '']
 
 shortname="dble"
 call process()
 
 
-case('71','digits')
+case('72','digits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7303,14 +7445,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                digits(3fortran)', &
+'                               April 26, 2024                digits(3fortran)', &
 '']
 
 shortname="digits"
 call process()
 
 
-case('72','dim')
+case('73','dim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7392,14 +7534,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   dim(3fortran)', &
+'                               April 26, 2024                   dim(3fortran)', &
 '']
 
 shortname="dim"
 call process()
 
 
-case('73','dot_product')
+case('74','dot_product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7495,14 +7637,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024           dot_product(3fortran)', &
+'                               April 26, 2024           dot_product(3fortran)', &
 '']
 
 shortname="dot_product"
 call process()
 
 
-case('74','dprod')
+case('75','dprod')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7609,14 +7751,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 dprod(3fortran)', &
+'                               April 26, 2024                 dprod(3fortran)', &
 '']
 
 shortname="dprod"
 call process()
 
 
-case('75','dshiftl')
+case('76','dshiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7761,14 +7903,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024               dshiftl(3fortran)', &
+'                               April 26, 2024               dshiftl(3fortran)', &
 '']
 
 shortname="dshiftl"
 call process()
 
 
-case('76','dshiftr')
+case('77','dshiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7916,14 +8058,107 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024               dshiftr(3fortran)', &
+'                               April 26, 2024               dshiftr(3fortran)', &
 '']
 
 shortname="dshiftr"
 call process()
 
 
-case('77','eoshift')
+case('78','endfile')
+
+textblock=[character(len=256) :: &
+'', &
+'endfile(7fortran)                                           endfile(7fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'SYNOPSIS', &
+'  endfile unit_number', &
+'', &
+'DESCRIPTION', &
+'  An ENDFILE(7F) ends or truncates a file at the current record.', &
+'', &
+'  Execution of an ENDFILE(7F) statement for a file connected for SEQUENTIAL', &
+'  ACCESS writes an endfile record as the next record of the file. The file is', &
+'  then positioned after the endfile record, which becomes the last record of', &
+'  the file.', &
+'', &
+'  o  SEQUENTIAL ACCESS : After execution of an ENDFILE(7F) statement for a', &
+'     file connected for sequential access, a BACKSPACE(7F) or REWIND(7F)', &
+'     statement shall be used to reposition the file prior to execution of any', &
+'     data transfer input/output statement or ENDFILE(7F) statement.', &
+'', &
+'  o  DIRECT ACCESS : For a file connected for DIRECT ACCESS, only those', &
+'     records before the endfile record are considered to have been written.', &
+'     Thus, only those records or additional records subsequently written shall', &
+'     be read during subsequent direct access connections to the file.', &
+'', &
+'  o  STREAM ACCESS : Execution of an ENDFILE(7F) statement for a file', &
+'     connected for STREAM ACCESS causes the terminal point of the file to', &
+'     become equal to the current file position. Only file storage units before', &
+'     the current position are considered to have been written; thus only those', &
+'     file storage units shall be subsequently read.  Subsequent stream output', &
+'     statements may be used to write further data to the file.', &
+'', &
+'  Execution of an ENDFILE(7F) statement for a file that is connected but does', &
+'  not exist creates the file; if the file is connected for sequential access,', &
+'  it is created prior to writing the endfile record.', &
+'', &
+'OPTIONS', &
+'   LUN', &
+'  : A unit number of a connected file', &
+'', &
+'EXAMPLES', &
+'  An example of an **endfile(7f) statement is:', &
+'', &
+'      program demo_endfile', &
+'      implicit none', &
+'      integer :: lun, i, j, iostat', &
+'      integer,parameter:: isz=10', &
+'        !', &
+'        ! create a little scratch file', &
+'        open(newunit=lun,file=''_scr.txt'', form=''formatted'')', &
+'        write(lun,''(i0)'')(100+i,i=1,isz)', &
+'        !', &
+'        ! write end of file after reading half of file', &
+'        rewind(lun)', &
+'        write(*,*)''rewind and read'',isz/2,''lines''', &
+'        read(lun,*)(j,i=1,isz/2)', &
+'        endfile lun ! will truncate line at current position', &
+'        !', &
+'        ! NOTE: backspace before writing any addition lines', &
+'        !       once an ENDFILE(7f) statement is executed', &
+'        ! backspace(lun)', &
+'        !', &
+'        ! rewind and echo remaining file', &
+'        rewind(lun)', &
+'        j=0', &
+'        do i=1,huge(0)-1', &
+'           read(lun,*,iostat=iostat)j', &
+'           if(iostat.ne.0)exit', &
+'           write(*,*)i,j', &
+'        enddo', &
+'        write(*,*)''number of lines in file was '',isz,'', is now '',i-1', &
+'        close(unit=lun,status=''delete'')', &
+'      end program demo_endfile', &
+'', &
+'', &
+'SEE ALSO', &
+'  BACKSPACE(3), CLOSE(3), ENDFILE(3), FLUSH(3), INQUIRE(3), OPEN(3), PRINT(3),', &
+'  READ(3), REWIND(3), WAIT(3), WRITE(3)', &
+'', &
+'', &
+'', &
+'                               March 23, 2024               endfile(7fortran)', &
+'']
+
+shortname="endfile"
+call process()
+
+
+case('79','eoshift')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8049,14 +8284,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024               eoshift(3fortran)', &
+'                               April 26, 2024               eoshift(3fortran)', &
 '']
 
 shortname="eoshift"
 call process()
 
 
-case('78','epsilon')
+case('80','epsilon')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8181,14 +8416,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024               epsilon(3fortran)', &
+'                               April 26, 2024               epsilon(3fortran)', &
 '']
 
 shortname="epsilon"
 call process()
 
 
-case('79','erf')
+case('81','erf')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8254,14 +8489,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   erf(3fortran)', &
+'                               April 26, 2024                   erf(3fortran)', &
 '']
 
 shortname="erf"
 call process()
 
 
-case('80','erfc')
+case('82','erfc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8342,14 +8577,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  erfc(3fortran)', &
+'                               April 26, 2024                  erfc(3fortran)', &
 '']
 
 shortname="erfc"
 call process()
 
 
-case('81','erfc_scaled')
+case('83','erfc_scaled')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8424,14 +8659,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024           erfc_scaled(3fortran)', &
+'                               April 26, 2024           erfc_scaled(3fortran)', &
 '']
 
 shortname="erfc_scaled"
 call process()
 
 
-case('82','event_query')
+case('84','event_query')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8490,14 +8725,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024           event_query(3fortran)', &
+'                               April 26, 2024           event_query(3fortran)', &
 '']
 
 shortname="event_query"
 call process()
 
 
-case('83','execute_command_line')
+case('85','execute_command_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8624,14 +8859,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024  execute_command_line(3fortran)', &
+'                               April 26, 2024  execute_command_line(3fortran)', &
 '']
 
 shortname="execute_command_line"
 call process()
 
 
-case('84','exp')
+case('86','exp')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8741,14 +8976,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   exp(3fortran)', &
+'                               April 26, 2024                   exp(3fortran)', &
 '']
 
 shortname="exp"
 call process()
 
 
-case('85','exponent')
+case('87','exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8823,14 +9058,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024              exponent(3fortran)', &
+'                               April 26, 2024              exponent(3fortran)', &
 '']
 
 shortname="exponent"
 call process()
 
 
-case('86','extends_type_of')
+case('88','extends_type_of')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9004,14 +9239,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024       extends_type_of(3fortran)', &
+'                               April 26, 2024       extends_type_of(3fortran)', &
 '']
 
 shortname="extends_type_of"
 call process()
 
 
-case('87','findloc')
+case('89','findloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9297,14 +9532,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024               findloc(3fortran)', &
+'                               April 26, 2024               findloc(3fortran)', &
 '']
 
 shortname="findloc"
 call process()
 
 
-case('88','floor')
+case('90','floor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9411,14 +9646,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 floor(3fortran)', &
+'                               April 26, 2024                 floor(3fortran)', &
 '']
 
 shortname="floor"
 call process()
 
 
-case('89','flush')
+case('91','flush')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9508,14 +9743,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 flush(7fortran)', &
+'                               April 26, 2024                 flush(7fortran)', &
 '']
 
 shortname="flush"
 call process()
 
 
-case('90','fraction')
+case('92','fraction')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9583,14 +9818,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024              fraction(3fortran)', &
+'                               April 26, 2024              fraction(3fortran)', &
 '']
 
 shortname="fraction"
 call process()
 
 
-case('91','gamma')
+case('93','gamma')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9738,14 +9973,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 gamma(3fortran)', &
+'                               April 26, 2024                 gamma(3fortran)', &
 '']
 
 shortname="gamma"
 call process()
 
 
-case('92','get_command')
+case('94','get_command')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9847,14 +10082,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024           get_command(3fortran)', &
+'                               April 26, 2024           get_command(3fortran)', &
 '']
 
 shortname="get_command"
 call process()
 
 
-case('93','get_command_argument')
+case('95','get_command_argument')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9987,14 +10222,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024  get_command_argument(3fortran)', &
+'                               April 26, 2024  get_command_argument(3fortran)', &
 '']
 
 shortname="get_command_argument"
 call process()
 
 
-case('94','get_environment_variable')
+case('96','get_environment_variable')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10134,14 +10369,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 20get_environment_variable(3fortran)', &
+'                               April 26, 20get_environment_variable(3fortran)', &
 '']
 
 shortname="get_environment_variable"
 call process()
 
 
-case('95','huge')
+case('97','huge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10253,14 +10488,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  huge(3fortran)', &
+'                               April 26, 2024                  huge(3fortran)', &
 '']
 
 shortname="huge"
 call process()
 
 
-case('96','hypot')
+case('98','hypot')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10367,14 +10602,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 hypot(3fortran)', &
+'                               April 26, 2024                 hypot(3fortran)', &
 '']
 
 shortname="hypot"
 call process()
 
 
-case('97','iachar')
+case('99','iachar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10489,14 +10724,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                iachar(3fortran)', &
+'                               April 26, 2024                iachar(3fortran)', &
 '']
 
 shortname="iachar"
 call process()
 
 
-case('98','iall')
+case('100','iall')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10580,14 +10815,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  iall(3fortran)', &
+'                               April 26, 2024                  iall(3fortran)', &
 '']
 
 shortname="iall"
 call process()
 
 
-case('99','iand')
+case('101','iand')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10671,14 +10906,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  iand(3fortran)', &
+'                               April 26, 2024                  iand(3fortran)', &
 '']
 
 shortname="iand"
 call process()
 
 
-case('100','iany')
+case('102','iany')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10788,14 +11023,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  iany(3fortran)', &
+'                               April 26, 2024                  iany(3fortran)', &
 '']
 
 shortname="iany"
 call process()
 
 
-case('101','ibclr')
+case('103','ibclr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10894,14 +11129,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 ibclr(3fortran)', &
+'                               April 26, 2024                 ibclr(3fortran)', &
 '']
 
 shortname="ibclr"
 call process()
 
 
-case('102','ibits')
+case('104','ibits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11003,14 +11238,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 ibits(3fortran)', &
+'                               April 26, 2024                 ibits(3fortran)', &
 '']
 
 shortname="ibits"
 call process()
 
 
-case('103','ibset')
+case('105','ibset')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11108,14 +11343,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 ibset(3fortran)', &
+'                               April 26, 2024                 ibset(3fortran)', &
 '']
 
 shortname="ibset"
 call process()
 
 
-case('104','ichar')
+case('106','ichar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11213,14 +11448,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 ichar(3fortran)', &
+'                               April 26, 2024                 ichar(3fortran)', &
 '']
 
 shortname="ichar"
 call process()
 
 
-case('105','ieor')
+case('107','ieor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11327,14 +11562,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  ieor(3fortran)', &
+'                               April 26, 2024                  ieor(3fortran)', &
 '']
 
 shortname="ieor"
 call process()
 
 
-case('106','image_index')
+case('108','image_index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11384,14 +11619,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024           image_index(3fortran)', &
+'                               April 26, 2024           image_index(3fortran)', &
 '']
 
 shortname="image_index"
 call process()
 
 
-case('107','index')
+case('109','index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11491,14 +11726,484 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 index(3fortran)', &
+'                               April 26, 2024                 index(3fortran)', &
 '']
 
 shortname="index"
 call process()
 
 
-case('108','int')
+case('110','inquire')
+
+textblock=[character(len=256) :: &
+'', &
+'inquire(7fortran)                                           inquire(7fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  inquire(7f) - [FORTRAN:FILE_INQUIRE] File inquiry statement', &
+'', &
+'', &
+'SYNOPSIS', &
+'  INQUIRE([UNIT=file_unit_number]|[FILE=file_name_expr])', &
+'', &
+'         and  ACCESS = scalar_default_char_variable', &
+'         or   ACTION = scalar_default_char_variable', &
+'         or   ASYNCHRONOUS = scalar_default_char_variable', &
+'         or   DIRECT = scalar_default_char_variable', &
+'', &
+'         or   BLANK = scalar_default_char_variable', &
+'         or   DECIMAL = scalar_default_char_variable', &
+'         or   DELIM = scalar_default_char_variable', &
+'         or   ENCODING = scalar_default_char_variable', &
+'         or   PAD = scalar_default_char_variable', &
+'         or   SIGN = scalar_default_char_variable', &
+'', &
+'         or   ERR = label', &
+'         or   IOMSG = iomsg_variable', &
+'         or   IOSTAT = scalar_int_variable', &
+'', &
+'         or   EXIST = scalar_logical_variable', &
+'         or   FORM = scalar_default_char_variable', &
+'         or   FORMATTED = scalar_default_char_variable', &
+'         or   ID = scalar_int_expr', &
+'         or   NAME = scalar_default_char_variable', &
+'         or   NAMED = scalar_logical_variable', &
+'         or   NEXTREC = scalar_int_variable', &
+'         or   NUMBER = scalar_int_variable', &
+'         or   OPENED = scalar_logical_variable', &
+'         or   PENDING = scalar_logical_variable', &
+'         or   POS = scalar_int_variable', &
+'         or   POSITION = scalar_default_char_variable', &
+'         or   READ = scalar_default_char_variable', &
+'         or   READWRITE = scalar_default_char_variable', &
+'         or   RECL = scalar_int_variable', &
+'         or   ROUND = scalar_default_char_variable', &
+'         or   SEQUENTIAL = scalar_default_char_variable', &
+'         or   SIZE = scalar_int_variable', &
+'         or   STREAM = scalar_default_char_variable', &
+'         or   UNFORMATTED = scalar_default_char_variable', &
+'         or   WRITE = scalar_default_char_variable', &
+'', &
+'          or', &
+'', &
+'         INQUIRE(IOLENGTH=scalar_int_variable) output_item_list', &
+'', &
+'', &
+'DESCRIPTION', &
+'  The INQUIRE statement may be used to inquire about properties of a', &
+'  particular named file or of the connection to a particular unit. There are', &
+'  three forms of the INQUIRE statement:', &
+'', &
+'    o  inquire by file, which uses the FILE= specifier', &
+'', &
+'    o  inquire by unit, which uses the UNIT= specifier', &
+'', &
+'    o  inquire by output list, which uses only the IOLENGTH= specifier.', &
+'', &
+'  All specifier value assignments are performed according to the rules for', &
+'  assignment statements.', &
+'', &
+'  For inquiry by unit, the unit specified need not exist or be connected to a', &
+'  file. If it is connected to a file, the inquiry is being made about the', &
+'  connection and about the file connected.', &
+'', &
+'  An INQUIRE statement may be executed before, while, or after a file is', &
+'  connected to a unit. All values assigned by an INQUIRE statement are those', &
+'  that are current at the time the statement is executed.', &
+'', &
+'ERROR PROCESSING', &
+'  If an error condition occurs during execution of an INQUIRE statement, all', &
+'  of the inquiry specifier variables become undefined, except for variables in', &
+'  the IOSTAT= and IOMSG= specifiers (if any).', &
+'', &
+'  The IOSTAT=, ERR=, and IOMSG= specifiers are described in 9.11.', &
+'', &
+'OPTIONS', &
+'  Unless constrained, the following inquiry specifiers may be used in either', &
+'  of the inquire by file or inquire by unit forms of the INQUIRE statement.', &
+'', &
+'  o  No specifier shall appear more than once in a given inquire_spec_list.', &
+'', &
+'  o  An inquire_spec_list shall contain one FILE= specifier or one UNIT=', &
+'     specifier, but not both.', &
+'', &
+'  o  In the inquire by unit form of the INQUIRE statement, if the optional', &
+'     characters UNIT= are omitted, the file_unit-number shall be the first', &
+'     item in the inquire_spec_list.', &
+'', &
+'  o  If an ID= specifier appears in an inquire_spec_list, a PENDING= specifier', &
+'     shall also appear.', &
+'', &
+'  o  The label in the ERR= specifier shall be the statement label of a branch', &
+'     target statement that appears in the same scoping unit as the INQUIRE', &
+'     statement.', &
+'', &
+'  If file_unit-number identifies an internal unit, an error condition occurs.', &
+'', &
+'  When a returned value of a specifier other than the NAME= specifier is of', &
+'  type character, the value returned is in upper case.', &
+'', &
+'  The specifier that receives the returned value is a a default scalar', &
+'  variable.', &
+'', &
+'INPUTS', &
+'FILE', &
+'  The value of the file_name_expr in the FILE= specifier specifies the name of', &
+'  the file being inquired about. The named file need not exist or be connected', &
+'  to a unit. The value of the file_name_expr shall be of a form acceptable to', &
+'  the processor as a file name. Any trailing blanks are ignored. The', &
+'  interpretation of case is processor dependent.', &
+'', &
+'UNIT', &
+'OUTPUTS', &
+'ACCESS', &
+'  SEQUENTIAL if the connection is for sequential access', &
+'', &
+'  DIRECT', &
+'    if the connection is for direct access', &
+'', &
+'  STREAM', &
+'    if the connection is for stream access.', &
+'', &
+'  UNDEFINED', &
+'    If there is no connection,', &
+'', &
+'ACTION', &
+'  READ', &
+'    the connection is for input only,', &
+'', &
+'  WRITE', &
+'    the connection is for output only', &
+'', &
+'  READWRITE', &
+'    the connection is for both input and output.', &
+'', &
+'  UNDEFINED', &
+'    if there is no connection,', &
+'', &
+'ASYNCHRONOUS', &
+'  YES', &
+'    if the connection allows asynchronous input/output', &
+'', &
+'  NO', &
+'    if the connection does not allow asynchronous input/output.', &
+'', &
+'  UNDEFINED', &
+'    If there is no connection', &
+'', &
+'BLANK', &
+'  ZERO', &
+'    blanks are interpreted as zeros on input', &
+'', &
+'  NULL', &
+'    blanks are interpreted as a null on input', &
+'', &
+'  UNDEFINED', &
+'    no connection or the connection is not for formatted input/output', &
+'', &
+'DECIMAL', &
+'  COMMA', &
+'    treat a comma as the separator between mantissa and decimal', &
+'', &
+'  POINT', &
+'    use a decimal point as the separator', &
+'', &
+'  UNDEFINED', &
+'    no connection or the connection is not for formatted input/output', &
+'', &
+'DELIM', &
+'  APOSTROPHE,', &
+'    the delimiter mode in effect for a connection for formatted input/output.', &
+'    QUOTE,', &
+'', &
+'   NONE', &
+'  UNDEFINED', &
+'    no connection or the connection is not for formatted input/output', &
+'', &
+'DIRECT', &
+'  YES', &
+'    if DIRECT is included in the set of allowed access methods for the file', &
+'', &
+'  NO', &
+'    if DIRECT is not included in the set of allowed access methods for the', &
+'    file UNKNOWN if the processor is unable to determine whether DIRECT is', &
+'    included in the set of allowed access methods for the file.', &
+'', &
+'ENCODING', &
+'  UTF-8', &
+'    if the connection is for formatted input/output with an encoding form of', &
+'    UTF-8', &
+'', &
+'  UNDEFINED', &
+'    the connection is for unformatted input/output.', &
+'', &
+'  If there is no connection,', &
+'', &
+'  UTF-8', &
+'    if the processor is able to determine that the encoding form of the file', &
+'    is UTF-8', &
+'', &
+'  UNKNOWN', &
+'    if the processor is unable to determine the encoding form of the file', &
+'', &
+'   NOTE', &
+'  The value assigned may be something other than UTF-8, UNDEFINED, or UNKNOWN', &
+'  if the processor supports other specific encoding forms (e.g. UTF-16BE).', &
+'', &
+'EXIST', &
+'  .true. if there exists a file with the specified name if inquire is by', &
+'  FILE=filename statement or if by UNIT=number and the specified unit exists.', &
+'', &
+'  .false. otherwise, false is assigned.', &
+'', &
+'FORM', &
+'  FORMATTED if the connection is for formatted input/output, UNFORMATTED if', &
+'  the connection is for unformatted input/output. UNDEFINED If there is no', &
+'  connection', &
+'', &
+'FORMATTED', &
+'  YES if FORMATTED is included in the set of allowed forms for the file NO if', &
+'  FORMATTED is not included in the set of allowed forms for the file UNKNOWN', &
+'  if the processor is unable to determine whether FORMATTED is included in the', &
+'  set of allowed forms for the file.', &
+'', &
+'ID', &
+'  The value of the expression specified in the ID= specifier shall be the', &
+'  identifier of a pending data transfer operation for the specified unit.', &
+'  This specifier interacts with the PENDING= specifier (9.10.2.21).', &
+'', &
+'NAME', &
+'  The scalar_default_char_variable in the NAME= specifier is assigned the', &
+'  value of the name of the file if the file has a name; otherwise, it becomes', &
+'  undefined.', &
+'', &
+'', &
+'   NOTE', &
+'  If this specifier appears in an INQUIRE by file statement, its value is not', &
+'  necessarily the same as the name given in the FILE= specifier. However, the', &
+'  value returned shall be suitable for use as the value of the file_name_expr', &
+'  in the FILE= specifier in an OPEN statement.', &
+'', &
+'  The processor may return a file name qualified by a user identification,', &
+'  device, directory, or other relevant information.', &
+'', &
+'  The case of the characters assigned to scalar_default_char_variable is', &
+'  processor dependent.', &
+'', &
+'NAMED', &
+'  The scalar_logical_variable in the NAMED= specifier is assigned the value', &
+'  true if the file has a name; otherwise, it is assigned the value false.', &
+'', &
+'NEXTREC', &
+'  The scalar_int_variable in the NEXTREC= specifier is assigned the value n +', &
+'  1, where n is the record number of the last record read from or written to', &
+'  the connection for direct access. If there is a connection but no records', &
+'  have been read or written since the connection, the scalar_int_variable is', &
+'  assigned the value 1. If there is no connection, the connection is not for', &
+'  direct access, or the position is indeterminate because of a previous error', &
+'  condition, the scalar_int_variable becomes undefined. If there are pending', &
+'  data transfer operations for the specified unit, the value assigned is', &
+'  computed as if all the pending data transfers had already completed.', &
+'', &
+'NUMBER', &
+'  The scalar_int_variable in the NUMBER= specifier is assigned the value of', &
+'  the external unit number of the unit that is connected to the file.  If', &
+'  there is no unit connected to the file, the value -1 is assigned.', &
+'', &
+'OPENED', &
+'  .true. if the file specified is connected to a unit .false. otherwise', &
+'', &
+'PAD', &
+'  YES, corresponding to the pad mode in effect for a connection. NO', &
+'', &
+'UNDEFINED', &
+'  If there is no connection or if the connection is not for formatted', &
+'  input/output,', &
+'', &
+'PENDING', &
+'  The PENDING= specifier is used to determine whether previously pending', &
+'  asynchronous data transfers are complete. A data transfer operation is', &
+'  previously pending if it is pending at the beginning of execution of the', &
+'  INQUIRE statement.', &
+'', &
+'  If an ID= specifier appears and the specified data transfer operation is', &
+'  complete, then the variable specified in the PENDING= specifier is assigned', &
+'  the value false and the INQUIRE statement performs the wait operation for', &
+'  the specified data transfer.', &
+'', &
+'  If the ID= specifier is omitted and all previously pending data transfer', &
+'  operations for the specified unit are complete, then the variable specified', &
+'  in the PENDING= specifier is assigned the value false and the INQUIRE', &
+'  statement performs wait operations for all previously pending data transfers', &
+'  for the specified unit.', &
+'', &
+'  In all other cases, the variable specified in the PENDING= specifier is', &
+'  assigned the value true and no wait operations are performed; in this case', &
+'  the previously pending data transfers remain pending after the execution of', &
+'  the INQUIRE statement.', &
+'', &
+'         NOTE:', &
+'         The processor has considerable flexibility in defining when', &
+'         it considers a transfer to be complete. Any of the following', &
+'         approaches could be used:', &
+'', &
+'            o The INQUIRE statement could consider an asynchronous data', &
+'              transfer to be incomplete until after', &
+'              the corresponding wait operation. In this case PENDING=', &
+'              would always return true unless there were no previously', &
+'              pending data transfers for the unit.', &
+'', &
+'            o The INQUIRE statement could wait for all specified data', &
+'              transfers to complete and then always return', &
+'              false for PENDING=.', &
+'', &
+'            o The INQUIRE statement could actually test the state of the', &
+'              specified data transfer operations.', &
+'', &
+'', &
+'POS', &
+'  The scalar_int_variable in the POS= specifier is assigned the number of the', &
+'  file storage unit immediately following the current position of a file', &
+'  connected for stream access. If the file is positioned at its terminal', &
+'  position, the variable is assigned a value one greater than the number of', &
+'  the highest-numbered file storage unit in the file. If the file is not', &
+'  connected for stream access or if the position of the file is indeterminate', &
+'  because of previous error conditions, the variable becomes undefined.', &
+'', &
+'POSITION', &
+'  The scalar_default_char_variable in the POSITION= specifier is assigned the', &
+'  value REWIND if the connection was opened for positioning at its initial', &
+'  point, APPEND if the connection was opened for positioning before its', &
+'  endfile record or at its terminal point, and ASIS if the connection was', &
+'  opened without changing its position. If there is no connection or if the', &
+'  file is connected for direct access, the scalar_default_char_variable is', &
+'  assigned the value UNDEFINED. If the file has been repositioned since the', &
+'  connection, the scalar_default_char_variable is assigned a processor-', &
+'  dependent value, which shall not be REWIND unless the file is positioned at', &
+'  its initial point and shall not be APPEND unless the file is positioned so', &
+'  that its endfile record is the next record or at its terminal point if it', &
+'  has no endfile record.', &
+'', &
+'READ', &
+'  The scalar_default_char_variable in the READ= specifier is assigned the', &
+'  value YES if READ is included in the set of allowed actions for the file, NO', &
+'  if READ is not included in the set of allowed actions for the file, and', &
+'  UNKNOWN if the processor is unable to determine whether READ is included in', &
+'  the set of allowed actions for the file.', &
+'', &
+'READWRITE', &
+'  The scalar_default_char_variable in the READWRITE= specifier is assigned the', &
+'  value YES if READWRITE is included in the set of allowed actions for the', &
+'  file, NO if READWRITE is not included in the set of allowed actions for the', &
+'  file, and UNKNOWN if the processor is unable to determine whether READWRITE', &
+'  is included in the set of allowed actions for the file.', &
+'', &
+'RECL', &
+'  The scalar_int_variable in the RECL= specifier is assigned the value of the', &
+'  record length of a connection for direct access, or the value of the maximum', &
+'  record length of a connection for sequential access. If the connection is', &
+'  for formatted input/output, the length is the number of characters for all', &
+'  records that contain only characters of default kind.  If the connection is', &
+'  for unformatted input/output, the length is measured in file storage units.', &
+'  If there is no connection, or if the connection is for stream access, the', &
+'  scalar_int_variable becomes undefined.', &
+'', &
+'ROUND', &
+'  The scalar_default_char_variable in the ROUND= specifier is assigned the', &
+'  value UP, DOWN, ZERO, NEAREST, COMPATIBLE, or PROCESSOR DEFINED,', &
+'  corresponding to the I/O rounding mode in effect for a connection for', &
+'  formatted input/output. If there is no connection or if the connection is', &
+'  not for formatted input/output, the scalar_default_char_variable is assigned', &
+'  the value UNDEFINED. The processor shall return the value PROCESSOR DEFINED', &
+'  only if the behavior of the current I/O rounding mode is different from that', &
+'  of the UP, DOWN, ZERO, NEAREST, and COMPATIBLE modes.', &
+'', &
+'SEQUENTIAL', &
+'  The scalar_default_char_variable in the SEQUENTIAL= specifier is assigned', &
+'  the value YES if SEQUENTIAL is included in the set of allowed access methods', &
+'  for the file, NO if SEQUENTIAL is not included in the set of allowed access', &
+'  methods for the file, and UNKNOWN if the processor is unable to determine', &
+'  whether SEQUENTIAL is included in the set of allowed access methods for the', &
+'  file.', &
+'', &
+'SIGN', &
+'  The scalar_default_char_variable in the SIGN= specifier is assigned the', &
+'  value PLUS, SUPPRESS, or PROCESSOR DEFINED, corresponding to the sign mode', &
+'  in effect for a connection for formatted input/output. If there is no', &
+'  connection, or if the connection is not for formatted input/output, the', &
+'  scalar_default_char_variable is assigned the value UNDEFINED.', &
+'', &
+'SIZE', &
+'  The scalar_int_variable in the SIZE= specifier is assigned the size of the', &
+'  file in file storage units. If the file size cannot be determined, the', &
+'  variable is assigned the value -1.', &
+'', &
+'  For a file that may be connected for stream access, the file size is the', &
+'  number of the highest-numbered file storage unit in the file.', &
+'', &
+'  For a file that may be connected for sequential or direct access, the file', &
+'  size may be different from the number of storage units implied by the data', &
+'  in the records; the exact relationship is processor-dependent.', &
+'', &
+'STREAM', &
+'  The scalar_default_char_variable in the STREAM= specifier is assigned the', &
+'  value YES if STREAM is included in the set of allowed access methods for the', &
+'  file, NO if STREAM is not included in the set of allowed access methods for', &
+'  the file, and UNKNOWN if the processor is unable to determine whether STREAM', &
+'  is included in the set of allowed access methods for the file.', &
+'', &
+'UNFORMATTED', &
+'  The scalar_default_char_variable in the UNFORMATTED= specifier is assigned', &
+'  the value YES if UNFORMATTED is included in the set of allowed forms for the', &
+'  file, NO if UNFORMATTED is not included in the set of allowed forms for the', &
+'  file, and UNKNOWN if the processor is unable to determine whether', &
+'  UNFORMATTED is included in the set of allowed forms for the file.', &
+'', &
+'WRITE', &
+'  The scalar_default_char_variable in the WRITE= specifier is assigned the', &
+'  value YES if WRITE is included in the set of allowed actions for the file,', &
+'  NO if WRITE is not included in the set of allowed actions for the file, and', &
+'  UNKNOWN if the processor is unable to determine whether WRITE is included in', &
+'  the set of allowed actions for the file.', &
+'', &
+'INQUIRE BY OUTPUT LIST', &
+'  The scalar_int_variable in the IOLENGTH= specifier is assigned the', &
+'  processor-dependent number of file storage units that would be required to', &
+'  store the data of the output list in an unformatted file. The value shall be', &
+'  suitable as a RECL= specifier in an OPEN statement that connects a file for', &
+'  unformatted direct access when there are input/output statements with the', &
+'  same input/output list.', &
+'', &
+'  The output list in an INQUIRE statement shall not contain any derived-type', &
+'  list items that require a defined input/output procedure as described in', &
+'  subclause 9.6.3. If a derived-type list item appears in the output list, the', &
+'  value returned for the IOLENGTH= specifier assumes that no defined', &
+'  input/output procedure will be invoked.', &
+'', &
+'EXAMPLES', &
+'  Examples of INQUIRE statements are:', &
+'', &
+'       INQUIRE (IOLENGTH = IOL) A (1:N)', &
+'       INQUIRE (UNIT = JOAN, OPENED = LOG_01, NAMED = LOG_02, &', &
+'         FORM = CHAR_VAR, IOSTAT = IOS)', &
+'', &
+'', &
+'SEE ALSO', &
+'  BACKSPACE(3), CLOSE(3), ENDFILE(3), FLUSH(3), INQUIRE(3), OPEN(3), PRINT(3),', &
+'  READ(3), REWIND(3), WAIT(3), WRITE(3)', &
+'', &
+'', &
+'', &
+'                               April 26, 2024               inquire(7fortran)', &
+'']
+
+shortname="inquire"
+call process()
+
+
+case('111','int')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11627,14 +12332,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   int(3fortran)', &
+'                               April 26, 2024                   int(3fortran)', &
 '']
 
 shortname="int"
 call process()
 
 
-case('109','ior')
+case('112','ior')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11716,14 +12421,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   ior(3fortran)', &
+'                               April 26, 2024                   ior(3fortran)', &
 '']
 
 shortname="ior"
 call process()
 
 
-case('110','iparity')
+case('113','iparity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11812,14 +12517,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024               iparity(3fortran)', &
+'                               April 26, 2024               iparity(3fortran)', &
 '']
 
 shortname="iparity"
 call process()
 
 
-case('111','is_contiguous')
+case('114','is_contiguous')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11937,14 +12642,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024         is_contiguous(3fortran)', &
+'                               April 26, 2024         is_contiguous(3fortran)', &
 '']
 
 shortname="is_contiguous"
 call process()
 
 
-case('112','ishft')
+case('115','ishft')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12040,14 +12745,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 ishft(3fortran)', &
+'                               April 26, 2024                 ishft(3fortran)', &
 '']
 
 shortname="ishft"
 call process()
 
 
-case('113','ishftc')
+case('116','ishftc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12189,14 +12894,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                ishftc(3fortran)', &
+'                               April 26, 2024                ishftc(3fortran)', &
 '']
 
 shortname="ishftc"
 call process()
 
 
-case('114','is_iostat_end')
+case('117','is_iostat_end')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12269,14 +12974,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024         is_iostat_end(3fortran)', &
+'                               April 26, 2024         is_iostat_end(3fortran)', &
 '']
 
 shortname="is_iostat_end"
 call process()
 
 
-case('115','is_iostat_eor')
+case('118','is_iostat_eor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12364,14 +13069,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024         is_iostat_eor(3fortran)', &
+'                               April 26, 2024         is_iostat_eor(3fortran)', &
 '']
 
 shortname="is_iostat_eor"
 call process()
 
 
-case('116','kind')
+case('119','kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12454,14 +13159,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  kind(3fortran)', &
+'                               April 26, 2024                  kind(3fortran)', &
 '']
 
 shortname="kind"
 call process()
 
 
-case('117','lbound')
+case('120','lbound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12632,14 +13337,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                lbound(3fortran)', &
+'                               April 26, 2024                lbound(3fortran)', &
 '']
 
 shortname="lbound"
 call process()
 
 
-case('118','lcobound')
+case('121','lcobound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12684,14 +13389,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024              lcobound(3fortran)', &
+'                               April 26, 2024              lcobound(3fortran)', &
 '']
 
 shortname="lcobound"
 call process()
 
 
-case('119','leadz')
+case('122','leadz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12777,14 +13482,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 leadz(3fortran)', &
+'                               April 26, 2024                 leadz(3fortran)', &
 '']
 
 shortname="leadz"
 call process()
 
 
-case('120','len')
+case('123','len')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12926,14 +13631,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   len(3fortran)', &
+'                               April 26, 2024                   len(3fortran)', &
 '']
 
 shortname="len"
 call process()
 
 
-case('121','len_trim')
+case('124','len_trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13049,14 +13754,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024              len_trim(3fortran)', &
+'                               April 26, 2024              len_trim(3fortran)', &
 '']
 
 shortname="len_trim"
 call process()
 
 
-case('122','lge')
+case('125','lge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13167,14 +13872,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   lge(3fortran)', &
+'                               April 26, 2024                   lge(3fortran)', &
 '']
 
 shortname="lge"
 call process()
 
 
-case('123','lgt')
+case('126','lgt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13286,14 +13991,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   lgt(3fortran)', &
+'                               April 26, 2024                   lgt(3fortran)', &
 '']
 
 shortname="lgt"
 call process()
 
 
-case('124','lle')
+case('127','lle')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13429,14 +14134,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   lle(3fortran)', &
+'                               April 26, 2024                   lle(3fortran)', &
 '']
 
 shortname="lle"
 call process()
 
 
-case('125','llt')
+case('128','llt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13551,14 +14256,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   llt(3fortran)', &
+'                               April 26, 2024                   llt(3fortran)', &
 '']
 
 shortname="llt"
 call process()
 
 
-case('126','log10')
+case('129','log10')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13628,14 +14333,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 log10(3fortran)', &
+'                               April 26, 2024                 log10(3fortran)', &
 '']
 
 shortname="log10"
 call process()
 
 
-case('127','log')
+case('130','log')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13706,14 +14411,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   log(3fortran)', &
+'                               April 26, 2024                   log(3fortran)', &
 '']
 
 shortname="log"
 call process()
 
 
-case('128','log_gamma')
+case('131','log_gamma')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13776,14 +14481,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024             log_gamma(3fortran)', &
+'                               April 26, 2024             log_gamma(3fortran)', &
 '']
 
 shortname="log_gamma"
 call process()
 
 
-case('129','logical')
+case('132','logical')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13865,14 +14570,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024               logical(3fortran)', &
+'                               April 26, 2024               logical(3fortran)', &
 '']
 
 shortname="logical"
 call process()
 
 
-case('130','maskl')
+case('133','maskl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13964,14 +14669,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 maskl(3fortran)', &
+'                               April 26, 2024                 maskl(3fortran)', &
 '']
 
 shortname="maskl"
 call process()
 
 
-case('131','maskr')
+case('134','maskr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14080,14 +14785,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 maskr(3fortran)', &
+'                               April 26, 2024                 maskr(3fortran)', &
 '']
 
 shortname="maskr"
 call process()
 
 
-case('132','matmul')
+case('135','matmul')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14327,14 +15032,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                matmul(3fortran)', &
+'                               April 26, 2024                matmul(3fortran)', &
 '']
 
 shortname="matmul"
 call process()
 
 
-case('133','max')
+case('136','max')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14498,14 +15203,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   max(3fortran)', &
+'                               April 26, 2024                   max(3fortran)', &
 '']
 
 shortname="max"
 call process()
 
 
-case('134','maxexponent')
+case('137','maxexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14570,14 +15275,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024           maxexponent(3fortran)', &
+'                               April 26, 2024           maxexponent(3fortran)', &
 '']
 
 shortname="maxexponent"
 call process()
 
 
-case('135','maxloc')
+case('138','maxloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14700,14 +15405,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                maxloc(3fortran)', &
+'                               April 26, 2024                maxloc(3fortran)', &
 '']
 
 shortname="maxloc"
 call process()
 
 
-case('136','maxval')
+case('139','maxval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14796,14 +15501,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                maxval(3fortran)', &
+'                               April 26, 2024                maxval(3fortran)', &
 '']
 
 shortname="maxval"
 call process()
 
 
-case('137','merge')
+case('140','merge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14984,14 +15689,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 merge(3fortran)', &
+'                               April 26, 2024                 merge(3fortran)', &
 '']
 
 shortname="merge"
 call process()
 
 
-case('138','merge_bits')
+case('141','merge_bits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15113,14 +15818,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024            merge_bits(3fortran)', &
+'                               April 26, 2024            merge_bits(3fortran)', &
 '']
 
 shortname="merge_bits"
 call process()
 
 
-case('139','min')
+case('142','min')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15186,14 +15891,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   min(3fortran)', &
+'                               April 26, 2024                   min(3fortran)', &
 '']
 
 shortname="min"
 call process()
 
 
-case('140','minexponent')
+case('143','minexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15259,14 +15964,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024           minexponent(3fortran)', &
+'                               April 26, 2024           minexponent(3fortran)', &
 '']
 
 shortname="minexponent"
 call process()
 
 
-case('141','minloc')
+case('144','minloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15377,14 +16082,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                minloc(3fortran)', &
+'                               April 26, 2024                minloc(3fortran)', &
 '']
 
 shortname="minloc"
 call process()
 
 
-case('142','minval')
+case('145','minval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15540,14 +16245,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                minval(3fortran)', &
+'                               April 26, 2024                minval(3fortran)', &
 '']
 
 shortname="minval"
 call process()
 
 
-case('143','mod')
+case('146','mod')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15675,14 +16380,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   mod(3fortran)', &
+'                               April 26, 2024                   mod(3fortran)', &
 '']
 
 shortname="mod"
 call process()
 
 
-case('144','modulo')
+case('147','modulo')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15766,14 +16471,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                modulo(3fortran)', &
+'                               April 26, 2024                modulo(3fortran)', &
 '']
 
 shortname="modulo"
 call process()
 
 
-case('145','move_alloc')
+case('148','move_alloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15883,14 +16588,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024            move_alloc(3fortran)', &
+'                               April 26, 2024            move_alloc(3fortran)', &
 '']
 
 shortname="move_alloc"
 call process()
 
 
-case('146','mvbits')
+case('149','mvbits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16044,14 +16749,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                mvbits(3fortran)', &
+'                               April 26, 2024                mvbits(3fortran)', &
 '']
 
 shortname="mvbits"
 call process()
 
 
-case('147','nearest')
+case('150','nearest')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16143,14 +16848,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024               nearest(3fortran)', &
+'                               April 26, 2024               nearest(3fortran)', &
 '']
 
 shortname="nearest"
 call process()
 
 
-case('148','new_line')
+case('151','new_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16319,14 +17024,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024              new_line(3fortran)', &
+'                               April 26, 2024              new_line(3fortran)', &
 '']
 
 shortname="new_line"
 call process()
 
 
-case('149','nint')
+case('152','nint')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16478,14 +17183,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  nint(3fortran)', &
+'                               April 26, 2024                  nint(3fortran)', &
 '']
 
 shortname="nint"
 call process()
 
 
-case('150','norm2')
+case('153','norm2')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16607,14 +17312,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 norm2(3fortran)', &
+'                               April 26, 2024                 norm2(3fortran)', &
 '']
 
 shortname="norm2"
 call process()
 
 
-case('151','not')
+case('154','not')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16705,14 +17410,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   not(3fortran)', &
+'                               April 26, 2024                   not(3fortran)', &
 '']
 
 shortname="not"
 call process()
 
 
-case('152','null')
+case('155','null')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16840,14 +17545,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  null(3fortran)', &
+'                               April 26, 2024                  null(3fortran)', &
 '']
 
 shortname="null"
 call process()
 
 
-case('153','num_images')
+case('156','num_images')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16933,14 +17638,328 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024            num_images(3fortran)', &
+'                               April 26, 2024            num_images(3fortran)', &
 '']
 
 shortname="num_images"
 call process()
 
 
-case('154','out_of_range')
+case('157','open')
+
+textblock=[character(len=256) :: &
+'', &
+'open(7fortran)                                                 open(7fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  OPEN(7f) - [FORTRAN:IO] Initiates or modifies a connection between an', &
+'  external file and a specified unit.', &
+'', &
+'', &
+'SYNOPSIS', &
+'  OPEN ( [ UNIT = ] file-unit-number ACCESS = scalar-default-char-expr ACTION', &
+'  = scalar-default-char-expr ASYNCHRONOUS = scalar-default-char-expr BLANK =', &
+'  scalar-default-char-expr DECIMAL = scalar-default-char-expr DELIM = scalar-', &
+'  default-char-expr ENCODING = scalar-default-char-expr ERR = label FILE =', &
+'  file-name-scalar-default-char-expr FORM = scalar-default-char-expr IOMSG =', &
+'  scalar-default-char-variable IOSTAT = scalar-int-variable NEWUNIT = scalar-', &
+'  int-variable PAD = scalar-default-char-expr POSITION = scalar-default-char-', &
+'  expr RECL = scalar-int-expr ROUND = scalar-default-char-expr SIGN = scalar-', &
+'  default-char-expr STATUS = scalar-default-char-expr )', &
+'', &
+'DESCRIPTION', &
+'  An OPEN statement initiates or modifies the connection between an external', &
+'  file and a specified unit. The OPEN statement may be used to connect an', &
+'  existing file to a unit, create a file that is preconnected, create a file', &
+'  and connect it to a unit, or change certain modes of a connection between a', &
+'  file and a unit.', &
+'', &
+'  An external unit may be connected by an OPEN statement in the main program', &
+'  or any subprogram and, once connected, a reference to it may appear in any', &
+'  program unit of the program.', &
+'', &
+'  If the file to be connected to the unit does not exist but is the same as', &
+'  the file to which the unit is preconnected, the modes specified by an OPEN', &
+'  statement become a part of the connection.', &
+'', &
+'  If the file to be connected to the unit is not the same as the file to which', &
+'  the unit is connected, the effect is as if a CLOSE statement without a', &
+'  STATUS= specifier had been executed for the unit immediately prior to the', &
+'  execution of an OPEN statement.', &
+'', &
+'  If a unit is connected to a file that exists, execution of an OPEN statement', &
+'  for that unit is permitted. If the FILE= specifier is not included in such', &
+'  an OPEN statement, the file to be connected to the unit is the same as the', &
+'  file to which the unit is already connected.', &
+'', &
+'  If the file to be connected to the unit is the same as the file to which the', &
+'  unit is connected, only the specifiers for changeable modes (9.5.2) may have', &
+'  values different from those currently in effect. If the POSITION= specifier', &
+'  appears in such an OPEN statement, the value specified shall not disagree', &
+'  with the current position of the file. If the STATUS= specifier is included', &
+'  in such an OPEN statement, it shall be specified with the value OLD.', &
+'  Execution of such an OPEN statement causes any new values of the specifiers', &
+'  for changeable modes to be in effect, but does not cause any change in any', &
+'  of the unspecified specifiers and the position of the file is unaffected.', &
+'  The ERR=, IOSTAT=, and IOMSG= specifiers from any previously executed OPEN', &
+'  statement have no effect on any currently executed OPEN statement.', &
+'', &
+'  A STATUS= specifier with a value of OLD is always allowed when the file to', &
+'  be connected to the unit is the same as the file to which the unit is', &
+'  connected. In this case, if the status of the file was SCRATCH before', &
+'  execution of the OPEN statement, the file will still be deleted when the', &
+'  unit is closed, and the file is still considered to have a status of', &
+'  SCRATCH.', &
+'', &
+'  If a file is already connected to a unit, an OPEN statement on that file', &
+'  with a different unit shall not be executed.', &
+'', &
+'OPTIONS', &
+'  A specifier that requires a scalar-default-char-expr may have a limited list', &
+'  of character values. These values are listed for each such specifier. Any', &
+'  trailing blanks are ignored. The value specified is without regard to case.', &
+'  Some specifiers have a default value if the specifier is omitted. No', &
+'  specifier shall appear more than once in a given connect-spec-list.', &
+'', &
+'  If the NEWUNIT= specifier does not appear, a file-unit-number shall be', &
+'  specified; if the optional characters UNIT= are omitted, the file-unit-', &
+'  number shall be the first item in the connect-spec-list.', &
+'', &
+'  The label used in the ERR= specifier shall be the statement label of a', &
+'  branch target statement that appears in the same scoping unit as the OPEN', &
+'  statement.', &
+'', &
+'  If a NEWUNIT= specifier appears, a file-unit-number shall not appear.', &
+'', &
+'  IOSTAT=, ERR=, and IOMSG= specifiers are described in 9.11.', &
+'', &
+'KEYWORDS', &
+'  ACCESS : The scalar-default-char-expr shall evaluate to SEQUENTIAL, DIRECT,', &
+'  or STREAM. The ACCESS= specifier specifies the access method for the', &
+'  connection of the file as being sequential, direct, or stream. If this', &
+'  specifier is omitted, the default value is SEQUENTIAL. For an existing file,', &
+'  the specified access method shall be included in the set of allowed access', &
+'  methods for the file. For a new file, the processor creates the file with a', &
+'  set of allowed access methods that includes the specified method.', &
+'', &
+'  ACTION : The scalar-default-char-expr shall evaluate to READ, WRITE, or', &
+'  READWRITE. READ specifies that the WRITE, PRINT, and ENDFILE statements', &
+'  shall not refer to this connection. WRITE specifies that READ statements', &
+'  shall not refer to this connection. READWRITE permits any input/output', &
+'  statements to refer to this connection. If this specifier is omitted, the', &
+'  default value is processor dependent. If READWRITE is included in the set of', &
+'  allowable actions for a file, both READ and WRITE also shall be included in', &
+'  the set of allowed actions for that file. For an existing file, the', &
+'  specified action shall be included in the set of allowed actions for the', &
+'  file. For a new file, the processor creates the file with a set of allowed', &
+'  actions that includes the specified action.', &
+'', &
+'  ASYNCHRONOUS : The scalar-default-char-expr shall evaluate to YES or NO.  If', &
+'  YES is specified, asynchronous input/output on the unit is allowed.  If NO', &
+'  is specified, asynchronous input/output on the unit is not allowed. If this', &
+'  specifier is omitted, the default value is NO.', &
+'', &
+'  BLANK : The scalar-default-char-expr shall evaluate to NULL or ZERO. The', &
+'  BLANK= specifier is permitted only for a connection for formatted', &
+'  input/output. It specifies the current value of the blank interpretation', &
+'  mode (10.8.6, 9.6.2.6) for input for this connection. This mode has no', &
+'  effect on output. It is a changeable mode (9.5.2). If this specifier is', &
+'  omitted in an OPEN statement that initiates a connection, the default value', &
+'  is NULL.', &
+'', &
+'  DECIMAL : The scalar-default-char-expr shall evaluate to COMMA or POINT.', &
+'  The DECIMAL= specifier is permitted only for a connection for formatted', &
+'  input/output. It specifies the current value of the decimal edit mode (10.6,', &
+'  10.8.8, 9.6.2.7) for this connection. This is a changeable mode (9.5.2). If', &
+'  this specifier is omitted in an OPEN statement that initiates a connection,', &
+'  the default value is POINT.', &
+'', &
+'  DELIM : The scalar-default-char-expr shall evaluate to APOSTROPHE, QUOTE, or', &
+'  NONE. The DELIM= specifier is permitted only for a connection for formatted', &
+'  input/output. It specifies the current value of the delimiter mode (9.6.2.8)', &
+'  for list-directed (10.10.4) and namelist (10.11.4.2) output for the', &
+'  connection. This mode has no effect on input.  It is a changeable mode', &
+'  (9.5.2). If this specifier is omitted in an OPEN statement that initiates a', &
+'  connection, the default value is NONE.', &
+'', &
+'  ENCODING : The scalar-default-char-expr shall evaluate to UTF-8 or DEFAULT.', &
+'  The ENCODING= specifier is permitted only for a connection for formatted', &
+'  input/output. The value UTF-8 specifies that the encoding form of the file', &
+'  is UTF-8 as specified by ISO/IEC 10646-1:2000. Such a file is called a', &
+'  Unicode file, and all characters therein are of ISO 10646 character type.', &
+'  The value UTF-8 shall not be specified if the processor does not support the', &
+'  ISO 10646 character type. The value DEFAULT specifies that the encoding form', &
+'  of the file is processor-dependent. If this specifier is omitted in an OPEN', &
+'  statement that initiates a connection, the default value is DEFAULT.', &
+'', &
+'  FILE : The value of the FILE= specifier is the name of the file to be', &
+'  connected to the specified unit. Any trailing blanks are ignored. The file-', &
+'  name-expr shall be a name that is allowed by the processor. If this', &
+'  specifier is omitted and the unit is not connected to a file, the STATUS=', &
+'  specifier shall be specified with a value of SCRATCH; in this case, the', &
+'  connection is made to a processor-dependent file. The interpretation of case', &
+'  is processor dependent.', &
+'', &
+'  FORM : The scalar-default-char-expr shall evaluate to FORMATTED or', &
+'  UNFORMATTED. The FORM= specifier determines whether the file is being', &
+'  connected for formatted or unformatted input/output. If this specifier is', &
+'  omitted, the default value is UNFORMATTED if the file is being connected for', &
+'  direct access or stream access, and the default value is FORMATTED if the', &
+'  file is being connected for sequential access. For an existing file, the', &
+'  specified form shall be included in the set of allowed forms for the file.', &
+'  For a new file, the processor creates the file with a set of allowed forms', &
+'  that includes the specified form.', &
+'', &
+'  NEWUNIT : If the NEWUNIT= specifier appears in an OPEN statement, either the', &
+'  FILE= specifier shall appear, or the STATUS= specifier shall appear with a', &
+'  value of SCRATCH. The unit identified by a NEWUNIT value shall not be', &
+'  preconnected.', &
+'', &
+'  The variable is defined with a processor determined NEWUNIT value if no', &
+'  error occurs during the execution of the OPEN statement. If an error occurs,', &
+'  the processor shall not change the value of the variable.', &
+'', &
+'  A NEWUNIT value is a negative number, and shall not be equal to -1, any of', &
+'  the named constants ERROR_UNIT, INPUT_UNIT, or OUTPUT_UNIT from the', &
+'  intrinsic module ISO_FORTRAN_ENV (13.8.2), any value used by the processor', &
+'  for the unit argument to a defined input/output procedure, nor any previous', &
+'  NEWUNIT value that identifies a file that is currently connected.', &
+'', &
+'  PAD : The scalar-default-char-expr shall evaluate to YES or NO. The PAD=', &
+'  specifier is permitted only for a connection for formatted input/output.  It', &
+'  specifies the current value of the pad mode (9.6.4.4.3, 9.6.2.10) for input', &
+'  for this connection. This mode has no effect on output. It is a changeable', &
+'  mode (9.5.2). If this specifier is omitted in an OPEN statement that', &
+'  initiates a connection, the default value is YES.', &
+'', &
+'  POSITION : The scalar-default-char-expr shall evaluate to ASIS, REWIND, or', &
+'  APPEND. The connection shall be for sequential or stream access. A new file', &
+'  is positioned at its initial point. REWIND positions an existing file at its', &
+'  initial point. APPEND positions an existing file such that the endfile', &
+'  record is the next record, if it has one. If an existing file does not have', &
+'  an endfile record, APPEND positions the file at its terminal point. ASIS', &
+'  leaves the position unchanged if the file exists and already is connected.', &
+'  ASIS leaves the position unspecified if the file exists but is not', &
+'  connected. If this specifier is omitted, the default value is ASIS.', &
+'', &
+'  RECL : The value of the RECL= specifier shall be positive. It specifies the', &
+'  length of each record in a file being connected for direct access, or', &
+'  specifies the maximum length of a record in a file being connected for', &
+'  sequential access. This specifier shall not appear when a file is being', &
+'  connected for stream access. This specifier shall appear when a file is', &
+'  being connected for direct access. If this specifier is omitted when a file', &
+'  is being connected for sequential access, the default value is processor', &
+'  dependent. If the file is being connected for formatted input/output, the', &
+'  length is the number of characters for all records that contain only', &
+'  characters of default kind. When a record contains any nondefault', &
+'  characters, the effect of the RECL= specifier is processor dependent. If the', &
+'  file is being connected for unformatted input/output, the length is measured', &
+'  in file storage units. For an existing file, the value of the RECL=', &
+'  specifier shall be included in the set of allowed record lengths for the', &
+'  file. For a new file, the processor creates the file with a set of allowed', &
+'  record lengths that includes the specified value.', &
+'', &
+'  ROUND : The scalar-default-char-expr shall evaluate to one of UP, DOWN,', &
+'  ZERO, NEAREST, COMPATIBLE, or PROCESSOR DEFINED. The ROUND= specifier is', &
+'  permitted only for a connection for formatted input/output. It specifies the', &
+'  current value of the I/O rounding mode (10.7.2.3.7, 9.6.2.13) for this', &
+'  connection. This is a changeable mode (9.5.2). If this specifier is omitted', &
+'  in an OPEN statement that initiates a connection, the I/O rounding mode is', &
+'  processor dependent; it shall be one of the above modes.', &
+'', &
+'  A processor is free to select any I/O rounding mode for the default mode.', &
+'  The mode might correspond to UP, DOWN, ZERO, NEAREST, or COMPATIBLE; or it', &
+'  might be a completely different I/O rounding mode.', &
+'', &
+'  SIGN : The scalar-default-char-expr shall evaluate to one of PLUS, SUPPRESS,', &
+'  or PROCESSOR DEFINED. The SIGN= specifier is permitted only for a connection', &
+'  for formatted input/output. It specifies the current value of the sign mode', &
+'  (10.8.4, 9.6.2.14) for this connection. This is a changeable mode (9.5.2).', &
+'  If this specifier is omitted in an OPEN statement that initiates a', &
+'  connection, the default value is PROCESSOR DEFINED.', &
+'', &
+'  STATUS : If the STATUS= specifier has the value NEW or REPLACE, the FILE=', &
+'  specifier shall appear. If the STATUS= specifier has the value SCRATCH, the', &
+'  FILE= specifier shall not appear. If the STATUS= specifier has the value', &
+'  OLD, the FILE= specifier shall appear unless the unit is connected and the', &
+'  file connected to the unit exists.', &
+'', &
+'  The scalar-default-char-expr shall evaluate to OLD, NEW, SCRATCH, REPLACE,', &
+'  or UNKNOWN. If OLD is specified, the file shall exist. If NEW is specified,', &
+'  the file shall not exist.', &
+'', &
+'  Successful execution of an OPEN statement with NEW specified creates the', &
+'  file and changes the status to OLD. If REPLACE is specified and the file', &
+'  does not already exist, the file is created and the status is changed to', &
+'  OLD. If REPLACE is specified and the file does exist, the file is deleted, a', &
+'  new file is created with the same name, and the status is changed to OLD. If', &
+'  SCRATCH is specified, the file is created and connected to the specified', &
+'  unit for use by the program but is deleted at the execution of a CLOSE', &
+'  statement referring to the same unit or at the normal termination of the', &
+'  program.', &
+'', &
+'  SCRATCH shall not be specified with a named file.', &
+'', &
+'  If UNKNOWN is specified, the status is processor dependent. If this', &
+'  specifier is omitted, the default value is UNKNOWN.', &
+'', &
+'EXAMPLES', &
+'  An example of an OPEN statement is:', &
+'', &
+'      program demo_open', &
+'      integer :: ios', &
+'      character(len=256) :: message', &
+'      integer :: lun', &
+'        open  (                  &', &
+'        & newunit=lun,           &', &
+'        & file=''employee.names'', &', &
+'        & action=''read'',       &', &
+'        & iostat=ios,            &', &
+'        & iomsg=message)', &
+'        if (ios < 0) then', &
+'           ! Perform end-of-file processing on the file connected to unit', &
+'           call end_processing()', &
+'        elseif (ios > 0) then', &
+'           ! Perform error processing', &
+'           write(*,''(a)'')trim(message)', &
+'           call error_processing()', &
+'           stop', &
+'        else', &
+'           write(*,*)''OPENED FILE''', &
+'        endif', &
+'      contains', &
+'      !', &
+'      subroutine end_processing()', &
+'        write(*,*)''END OF FILE:'',ios,''MESSAGE='',trim(message)', &
+'        close(unit=lun,iostat=ios)', &
+'        stop', &
+'      end subroutine end_processing', &
+'      !', &
+'      subroutine error_processing()', &
+'        write(*,*)''ERROR:'',ios,''MESSAGE='',trim(message)', &
+'        close(unit=lun,iostat=ios)', &
+'        stop', &
+'      end subroutine error_processing', &
+'      !', &
+'      end program demo_open', &
+'', &
+'', &
+'SEE ALSO', &
+'  BACKSPACE(3), CLOSE(3), ENDFILE(3), FLUSH(3), INQUIRE(3), OPEN(3), PRINT(3),', &
+'  READ(3), REWIND(3), WAIT(3), WRITE(3)', &
+'', &
+'', &
+'', &
+'                               April 26, 2024                  open(7fortran)', &
+'']
+
+shortname="open"
+call process()
+
+
+case('158','out_of_range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17094,14 +18113,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024          out_of_range(3fortran)', &
+'                               April 26, 2024          out_of_range(3fortran)', &
 '']
 
 shortname="out_of_range"
 call process()
 
 
-case('155','pack')
+case('159','pack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17204,14 +18223,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  pack(3fortran)', &
+'                               April 26, 2024                  pack(3fortran)', &
 '']
 
 shortname="pack"
 call process()
 
 
-case('156','parity')
+case('160','parity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17320,14 +18339,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                parity(3fortran)', &
+'                               April 26, 2024                parity(3fortran)', &
 '']
 
 shortname="parity"
 call process()
 
 
-case('157','popcnt')
+case('161','popcnt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17413,14 +18432,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                popcnt(3fortran)', &
+'                               April 26, 2024                popcnt(3fortran)', &
 '']
 
 shortname="popcnt"
 call process()
 
 
-case('158','poppar')
+case('162','poppar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17512,14 +18531,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                poppar(3fortran)', &
+'                               April 26, 2024                poppar(3fortran)', &
 '']
 
 shortname="poppar"
 call process()
 
 
-case('159','precision')
+case('163','precision')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17587,14 +18606,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024             precision(3fortran)', &
+'                               April 26, 2024             precision(3fortran)', &
 '']
 
 shortname="precision"
 call process()
 
 
-case('160','present')
+case('164','present')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17719,14 +18738,39 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024               present(3fortran)', &
+'                               April 26, 2024               present(3fortran)', &
 '']
 
 shortname="present"
 call process()
 
 
-case('161','product')
+case('165','print')
+
+textblock=[character(len=256) :: &
+'', &
+'print(7fortran)                                               print(7fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'SYNOPSIS', &
+'DESCRIPTION', &
+'OPTIONS', &
+'SEE ALSO', &
+'  BACKSPACE(3), CLOSE(3), ENDFILE(3), FLUSH(3), INQUIRE(3), OPEN(3), PRINT(3),', &
+'  READ(3), REWIND(3), WAIT(3), WRITE(3)', &
+'', &
+'', &
+'', &
+'                               April 26, 2024                 print(7fortran)', &
+'']
+
+shortname="print"
+call process()
+
+
+case('166','product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17962,14 +19006,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024               product(3fortran)', &
+'                               April 26, 2024               product(3fortran)', &
 '']
 
 shortname="product"
 call process()
 
 
-case('162','radix')
+case('167','radix')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18041,14 +19085,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 radix(3fortran)', &
+'                               April 26, 2024                 radix(3fortran)', &
 '']
 
 shortname="radix"
 call process()
 
 
-case('163','random_init')
+case('168','random_init')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18115,14 +19159,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024           random_init(3fortran)', &
+'                               April 26, 2024           random_init(3fortran)', &
 '']
 
 shortname="random_init"
 call process()
 
 
-case('164','random_number')
+case('169','random_number')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18212,14 +19256,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024         random_number(3fortran)', &
+'                               April 26, 2024         random_number(3fortran)', &
 '']
 
 shortname="random_number"
 call process()
 
 
-case('165','random_seed')
+case('170','random_seed')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18299,14 +19343,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024           random_seed(3fortran)', &
+'                               April 26, 2024           random_seed(3fortran)', &
 '']
 
 shortname="random_seed"
 call process()
 
 
-case('166','range')
+case('171','range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18387,14 +19431,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 range(3fortran)', &
+'                               April 26, 2024                 range(3fortran)', &
 '']
 
 shortname="range"
 call process()
 
 
-case('167','rank')
+case('172','rank')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18567,14 +19611,84 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  rank(3fortran)', &
+'                               April 26, 2024                  rank(3fortran)', &
 '']
 
 shortname="rank"
 call process()
 
 
-case('168','real')
+case('173','read')
+
+textblock=[character(len=256) :: &
+'', &
+'read(7fortran)                                                 read(7fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  read(7f) - [FORTRAN:IO] read data', &
+'', &
+'', &
+'SYNOPSIS', &
+'DESCRIPTION', &
+'OPTIONS', &
+'EXAMPLES', &
+'  Sample:', &
+'', &
+'        program testit', &
+'        use,intrinsic :: iso_fortran_env, only : stdin=>input_unit', &
+'        implicit none', &
+'        character(len=:),allocatable :: line', &
+'        character(len=*),parameter   :: gen=''(*(g0))''', &
+'        integer                      :: ichars=0, ilines=0, ilength=0, ios', &
+'           open(unit=stdin,pad=''no'')', &
+'           READFILE: do', &
+'              call getl(line,ios)', &
+'              if(ios.ne.0)exit READFILE', &
+'              ilines=ilines+1', &
+'              ilength=len(line)', &
+'              ichars=ichars+ilength', &
+'              write(*,''(i9,i9,i9,"[",a,"]")'')ichars,ilines,ilength,line', &
+'           enddo READFILE', &
+'           write(*,gen)''CHARS+LINES='',ichars+ilines', &
+'        contains', &
+'        subroutine getl(line,ios)', &
+'        use,intrinsic :: iso_fortran_env, only : iostat_eor, iostat_end, &', &
+'         & stderr=>error_unit', &
+'        character(len=:),intent(out),allocatable :: line', &
+'        integer,intent(out) :: ios', &
+'        character :: a*1,msg*256', &
+'           line=''''', &
+'           READLINE: do', &
+'              read(stdin,advance=''no'',iostat=ios,fmt=''(a)'',iomsg=msg) a', &
+'              select case(ios)', &
+'              case(IOSTAT_END);              exit READLINE', &
+'              case(IOSTAT_EOR); ios=0;       exit READLINE', &
+'              case(0);          line=line//a', &
+'              case default', &
+'                 write(stderr,gen)''LINE '',ilines,'' ERROR:'',trim(msg)', &
+'                 exit READLINE', &
+'              end select', &
+'           enddo READLINE', &
+'        end subroutine getl', &
+'        end program testit', &
+'', &
+'', &
+'SEE ALSO', &
+'  BACKSPACE(3), CLOSE(3), ENDFILE(3), FLUSH(3), INQUIRE(3), OPEN(3), PRINT(3),', &
+'  READ(3), REWIND(3), WAIT(3), WRITE(3)', &
+'', &
+'', &
+'', &
+'                               April 26, 2024                  read(7fortran)', &
+'']
+
+shortname="read"
+call process()
+
+
+case('174','real')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18684,14 +19798,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  real(3fortran)', &
+'                               April 26, 2024                  real(3fortran)', &
 '']
 
 shortname="real"
 call process()
 
 
-case('169','reduce')
+case('175','reduce')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18894,14 +20008,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                reduce(3fortran)', &
+'                               April 26, 2024                reduce(3fortran)', &
 '']
 
 shortname="reduce"
 call process()
 
 
-case('170','repeat')
+case('176','repeat')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18977,14 +20091,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                repeat(3fortran)', &
+'                               April 26, 2024                repeat(3fortran)', &
 '']
 
 shortname="repeat"
 call process()
 
 
-case('171','reshape')
+case('177','reshape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19201,14 +20315,119 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024               reshape(3fortran)', &
+'                               April 26, 2024               reshape(3fortran)', &
 '']
 
 shortname="reshape"
 call process()
 
 
-case('172','rrspacing')
+case('178','rewind')
+
+textblock=[character(len=256) :: &
+'', &
+'rewind(7fortran)                                             rewind(7fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  REWIND(7f) - [FORTRAN:FILE_POSITIONING] rewind specified sequential access', &
+'  I/O unit', &
+'', &
+'', &
+'SYNOPSIS', &
+'  REWIND file-unit-number', &
+'', &
+'  REWIND ( [UNIT=]file-unit-number][,IOMSG=iomsg-variable] & &', &
+'  [,IOSTAT=scalar-int-variable][,ERR=label] )', &
+'', &
+'DESCRIPTION', &
+'  Execution of a REWIND(7F) statement causes the file connected to the', &
+'  specified unit to be positioned at the beginning of the file.', &
+'', &
+'  If the file is already positioned at its initial point, execution of this', &
+'  statement has no effect on the position of the file.', &
+'', &
+'  Execution of a REWIND(7F) statement for a file that is connected but does', &
+'  not exist is permitted and has no effect on any file.', &
+'', &
+'OPTIONS', &
+'  UNIT : unit number of file to rewind. A unit open for direct access or', &
+'  stream access cannot be referenced by a REWIND(7F) (e.g. you cannot', &
+'  typically rewind stdin and stdout).', &
+'', &
+'  IOSTAT : (Optional) a compiler-specific number that indicates an error', &
+'  occurred if non-zero. If not present and an error occurs the program', &
+'  terminates.', &
+'', &
+'  IOMSG : (Optional) a message describing the error if IOSTAT is not zero.', &
+'', &
+'  ERR : (Optional) a label number to jump to if an error occurs', &
+'', &
+'EXAMPLES', &
+'  An example of a REWIND(7F) statement is:', &
+'', &
+'      program demo_rewind', &
+'      implicit none', &
+'      character(len=256) :: line', &
+'      character(len=256) :: mssge', &
+'      integer           :: i', &
+'      integer           :: ios', &
+'        open (10, file=''demo_rewind.txt'') ! open a file', &
+'        do i = 1, 100                     ! write lines to it', &
+'           write (10, ''(a,i0)'') ''line '', i', &
+'        enddo', &
+'        rewind (10, iostat=ios, iomsg=mssge)', &
+'        if (ios .ne. 0) then', &
+'           write (*, *) ''*error* '', trim(mssge)', &
+'           stop', &
+'        endif', &
+'        write (*, *) ''wrote 100 lines, but now at line ...''', &
+'        read (10, ''(a)'') line', &
+'        write (*, ''(a)'') line', &
+'        read (10)', &
+'        read (10)', &
+'        read (10)', &
+'        write (*, *) ''skipped a few lines, now at ...''', &
+'        read (10, ''(a)'') line', &
+'        write (*, ''(a)'') line', &
+'        close (10, status=''delete'')', &
+'      end program demo_rewind', &
+'', &
+'', &
+'', &
+'SEE ALSO', &
+'  The input/output statements are the OPEN(3), CLOSE(3), READ(3), WRITE(3),', &
+'  PRINT(3), BACKSPACE(3), ENDFILE(3), REWIND(3), FLUSH(3), WAIT(3) and', &
+'  INQUIRE(3) statements.', &
+'', &
+'  o  The READ(3) statement is a data transfer input statement.', &
+'', &
+'  o  The WRITE(3) statement and the PRINT(3) statement are data transfer', &
+'     output statements.', &
+'', &
+'  o  The WAIT(3) and FLUSH(3) statements are data transfer statements.', &
+'', &
+'  o  The OPEN(3) statement and the CLOSE(3) statement are file connection', &
+'     statements.', &
+'', &
+'  o  The INQUIRE(3) statement is a file inquiry statement.', &
+'', &
+'  o  The BACKSPACE(3), ENDFILE(3), and REWIND(3) statements are file', &
+'     positioning statements.', &
+'', &
+'  fortran-lang statement descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                               March 23, 2024                rewind(7fortran)', &
+'']
+
+shortname="rewind"
+call process()
+
+
+case('179','rrspacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19257,14 +20476,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024             rrspacing(3fortran)', &
+'                               April 26, 2024             rrspacing(3fortran)', &
 '']
 
 shortname="rrspacing"
 call process()
 
 
-case('173','same_type_as')
+case('180','same_type_as')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19399,14 +20618,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024          same_type_as(3fortran)', &
+'                               April 26, 2024          same_type_as(3fortran)', &
 '']
 
 shortname="same_type_as"
 call process()
 
 
-case('174','scale')
+case('181','scale')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19508,14 +20727,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 scale(3fortran)', &
+'                               April 26, 2024                 scale(3fortran)', &
 '']
 
 shortname="scale"
 call process()
 
 
-case('175','scan')
+case('182','scan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19614,14 +20833,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  scan(3fortran)', &
+'                               April 26, 2024                  scan(3fortran)', &
 '']
 
 shortname="scan"
 call process()
 
 
-case('176','selected_char_kind')
+case('183','selected_char_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19782,14 +21001,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024    selected_char_kind(3fortran)', &
+'                               April 26, 2024    selected_char_kind(3fortran)', &
 '']
 
 shortname="selected_char_kind"
 call process()
 
 
-case('177','selected_int_kind')
+case('184','selected_int_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19870,14 +21089,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024     selected_int_kind(3fortran)', &
+'                               April 26, 2024     selected_int_kind(3fortran)', &
 '']
 
 shortname="selected_int_kind"
 call process()
 
 
-case('178','selected_real_kind')
+case('185','selected_real_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19996,14 +21215,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024    selected_real_kind(3fortran)', &
+'                               April 26, 2024    selected_real_kind(3fortran)', &
 '']
 
 shortname="selected_real_kind"
 call process()
 
 
-case('179','set_exponent')
+case('186','set_exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20080,14 +21299,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024          set_exponent(3fortran)', &
+'                               April 26, 2024          set_exponent(3fortran)', &
 '']
 
 shortname="set_exponent"
 call process()
 
 
-case('180','shape')
+case('187','shape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20198,14 +21417,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                 shape(3fortran)', &
+'                               April 26, 2024                 shape(3fortran)', &
 '']
 
 shortname="shape"
 call process()
 
 
-case('181','shifta')
+case('188','shifta')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20332,14 +21551,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                shifta(3fortran)', &
+'                               April 26, 2024                shifta(3fortran)', &
 '']
 
 shortname="shifta"
 call process()
 
 
-case('182','shiftl')
+case('189','shiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20469,14 +21688,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                shiftl(3fortran)', &
+'                               April 26, 2024                shiftl(3fortran)', &
 '']
 
 shortname="shiftl"
 call process()
 
 
-case('183','shiftr')
+case('190','shiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20608,14 +21827,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                shiftr(3fortran)', &
+'                               April 26, 2024                shiftr(3fortran)', &
 '']
 
 shortname="shiftr"
 call process()
 
 
-case('184','sign')
+case('191','sign')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20706,14 +21925,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  sign(3fortran)', &
+'                               April 26, 2024                  sign(3fortran)', &
 '']
 
 shortname="sign"
 call process()
 
 
-case('185','sin')
+case('192','sin')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20851,14 +22070,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   sin(3fortran)', &
+'                               April 26, 2024                   sin(3fortran)', &
 '']
 
 shortname="sin"
 call process()
 
 
-case('186','sinh')
+case('193','sinh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20958,14 +22177,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  sinh(3fortran)', &
+'                               April 26, 2024                  sinh(3fortran)', &
 '']
 
 shortname="sinh"
 call process()
 
 
-case('187','size')
+case('194','size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21137,14 +22356,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  size(3fortran)', &
+'                               April 26, 2024                  size(3fortran)', &
 '']
 
 shortname="size"
 call process()
 
 
-case('188','spacing')
+case('195','spacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21224,14 +22443,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024               spacing(3fortran)', &
+'                               April 26, 2024               spacing(3fortran)', &
 '']
 
 shortname="spacing"
 call process()
 
 
-case('189','spread')
+case('196','spread')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21413,14 +22632,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                spread(3fortran)', &
+'                               April 26, 2024                spread(3fortran)', &
 '']
 
 shortname="spread"
 call process()
 
 
-case('190','sqrt')
+case('197','sqrt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21526,14 +22745,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  sqrt(3fortran)', &
+'                               April 26, 2024                  sqrt(3fortran)', &
 '']
 
 shortname="sqrt"
 call process()
 
 
-case('191','stop')
+case('198','stop')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21648,14 +22867,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  stop(7fortran)', &
+'                               April 26, 2024                  stop(7fortran)', &
 '']
 
 shortname="stop"
 call process()
 
 
-case('192','storage_size')
+case('199','storage_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21759,14 +22978,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024          storage_size(3fortran)', &
+'                               April 26, 2024          storage_size(3fortran)', &
 '']
 
 shortname="storage_size"
 call process()
 
 
-case('193','sum')
+case('200','sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21985,14 +23204,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   sum(3fortran)', &
+'                               April 26, 2024                   sum(3fortran)', &
 '']
 
 shortname="sum"
 call process()
 
 
-case('194','system_clock')
+case('201','system_clock')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22150,14 +23369,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024          system_clock(3fortran)', &
+'                               April 26, 2024          system_clock(3fortran)', &
 '']
 
 shortname="system_clock"
 call process()
 
 
-case('195','tan')
+case('202','tan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22218,14 +23437,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                   tan(3fortran)', &
+'                               April 26, 2024                   tan(3fortran)', &
 '']
 
 shortname="tan"
 call process()
 
 
-case('196','tanh')
+case('203','tanh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22297,14 +23516,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  tanh(3fortran)', &
+'                               April 26, 2024                  tanh(3fortran)', &
 '']
 
 shortname="tanh"
 call process()
 
 
-case('197','this_image')
+case('204','this_image')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22389,14 +23608,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024            this_image(3fortran)', &
+'                               April 26, 2024            this_image(3fortran)', &
 '']
 
 shortname="this_image"
 call process()
 
 
-case('198','tiny')
+case('205','tiny')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22464,14 +23683,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  tiny(3fortran)', &
+'                               April 26, 2024                  tiny(3fortran)', &
 '']
 
 shortname="tiny"
 call process()
 
 
-case('199','trailz')
+case('206','trailz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22572,14 +23791,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                trailz(3fortran)', &
+'                               April 26, 2024                trailz(3fortran)', &
 '']
 
 shortname="trailz"
 call process()
 
 
-case('200','transfer')
+case('207','transfer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22705,14 +23924,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024              transfer(3fortran)', &
+'                               April 26, 2024              transfer(3fortran)', &
 '']
 
 shortname="transfer"
 call process()
 
 
-case('201','transpose')
+case('208','transpose')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22821,14 +24040,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024             transpose(3fortran)', &
+'                               April 26, 2024             transpose(3fortran)', &
 '']
 
 shortname="transpose"
 call process()
 
 
-case('202','trim')
+case('209','trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22929,14 +24148,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                  trim(3fortran)', &
+'                               April 26, 2024                  trim(3fortran)', &
 '']
 
 shortname="trim"
 call process()
 
 
-case('203','ubound')
+case('210','ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23113,14 +24332,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                ubound(3fortran)', &
+'                               April 26, 2024                ubound(3fortran)', &
 '']
 
 shortname="ubound"
 call process()
 
 
-case('204','ucobound')
+case('211','ucobound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23163,14 +24382,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024              ucobound(3fortran)', &
+'                               April 26, 2024              ucobound(3fortran)', &
 '']
 
 shortname="ucobound"
 call process()
 
 
-case('205','unpack')
+case('212','unpack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23329,14 +24548,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                unpack(3fortran)', &
+'                               April 26, 2024                unpack(3fortran)', &
 '']
 
 shortname="unpack"
 call process()
 
 
-case('206','verify')
+case('213','verify')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23717,10 +24936,115 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                verify(3fortran)', &
+'                               April 26, 2024                verify(3fortran)', &
 '']
 
 shortname="verify"
+call process()
+
+
+case('214','wait')
+
+textblock=[character(len=256) :: &
+'', &
+'wait(7fortran)                                                 wait(7fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  wait(7f) - [FORTRAN:IO] statement performs a wait operation for specified', &
+'  pending asynchronous data transfer operations', &
+'', &
+'', &
+'SYNOPSIS', &
+'  WAIT( [UNIT=] file-unit-number,', &
+'', &
+'          [END=label,] [EOR=label,] [ERR=label,]', &
+'          [ID=scalar-int-expr,] [IOMSG=iomsg-variable,] [IOSTAT=scalar-int-variable]', &
+'          )', &
+'', &
+'', &
+'DESCRIPTION', &
+'  The WAIT(7f) statement performs a wait operation for specified pending', &
+'  asynchronous data transfer operations.', &
+'', &
+'  The CLOSE, INQUIRE, and file positioning statements may also perform wait', &
+'  operations.', &
+'', &
+'  Execution of a WAIT statement specifying a unit that does not exist, has no', &
+'  file connected to it, or is not open for asynchronous input/output is', &
+'  permitted, provided that the WAIT statement has no ID= specifier; such a', &
+'  WAIT statement does not cause an error or end-of-file condition to occur.', &
+'', &
+'  An EOR= specifier has no effect if the pending data transfer operation is', &
+'  not a nonadvancing read.', &
+'', &
+'  An END= specifier has no effect if the pending data transfer operation is', &
+'  not a READ.', &
+'', &
+'OPTIONS', &
+'  No specifier shall appear more than once in a given wait-spec-list.', &
+'', &
+'      [UNIT=]file-unit-number    A file-unit-number shall be specified', &
+'                                 in a wait-spec-list; if the optional', &
+'                                 characters UNIT= are omitted, the', &
+'                                 file-unit-number shall be the first item', &
+'                                 in the wait-spec-list.', &
+'      END=label, EOR=label, ERR=label  The label in the ERR=, EOR=,', &
+'                                       or END= specifier is a statement', &
+'                                       label of a branch target statement', &
+'                                       that appears in the same scoping', &
+'                                       unit as the WAIT statement.', &
+'      ID=scalar-int-expr   The value of the expression specified in', &
+'                          the ID= specifier shall be the identifier', &
+'                          of a pending data transfer operation for the', &
+'                          specified unit. If the ID= specifier appears, a', &
+'                          wait operation for the specified data transfer', &
+'                          operation is performed. If the ID= specifier is', &
+'                          omitted, wait operations for all pending data', &
+'                          transfers for the specified unit are performed.', &
+'      IOMSG=iomsg-variable  if IOSTAT is not zero, a corresponding message', &
+'                           describing the error', &
+'      IOSTAT=scalar-int-variable  status value indicating if an error occurred.', &
+'                                 zero (0) indicates no error occurred.', &
+'', &
+'', &
+'EXAMPLE', &
+'SEE ALSO', &
+'  BACKSPACE(3), CLOSE(3), ENDFILE(3), FLUSH(3), INQUIRE(3), OPEN(3), PRINT(3),', &
+'  READ(3), REWIND(3), WAIT(3), WRITE(3)', &
+'', &
+'', &
+'', &
+'                               April 26, 2024                  wait(7fortran)', &
+'']
+
+shortname="wait"
+call process()
+
+
+case('215','write')
+
+textblock=[character(len=256) :: &
+'', &
+'write(7fortran)                                               write(7fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'SYNOPSIS', &
+'DESCRIPTION', &
+'OPTIONS', &
+'SEE ALSO', &
+'  BACKSPACE(3), CLOSE(3), ENDFILE(3), FLUSH(3), INQUIRE(3), OPEN(3), PRINT(3),', &
+'  READ(3), REWIND(3), WAIT(3), WRITE(3)', &
+'', &
+'', &
+'', &
+'                               April 26, 2024                 write(7fortran)', &
+'']
+
+shortname="write"
 call process()
 
 case default
