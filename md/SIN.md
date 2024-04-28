@@ -36,7 +36,6 @@
 
 ### **Result**
 
-- **result**
   The return value contains the processor-dependent approximation of
   the sine of **x**
 
@@ -67,9 +66,9 @@ Results:
 
   From the article on "Haversine formula" in Wikipedia:
 ```text
-    The haversine formula is an equation important in navigation,
-    giving great-circle distances between two points on a sphere from
-    their longitudes and latitudes.
+   The haversine formula is an equation important in navigation,
+   giving great-circle distances between two points on a sphere from
+   their longitudes and latitudes.
 ```
   So to show the great-circle distance between the Nashville International
   Airport (BNA) in TN, USA, and the Los Angeles International Airport
@@ -80,15 +79,13 @@ Results:
   LAX: N 33 degrees 56.4',  W 118 degrees 24.0'
 ```
   which converted to floating-point values in degrees is:
-```text
-       Latitude Longitude
 
      - BNA
-       36.12, -86.67
+       latitude=36.12, longitude=-86.67
 
      - LAX
-       33.94, -118.40
-```
+       latitude=33.94, longitude=-118.40
+
   And then use the haversine formula to roughly calculate the distance
   along the surface of the Earth between the locations:
 

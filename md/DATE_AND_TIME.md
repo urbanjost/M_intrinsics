@@ -18,9 +18,7 @@
 ```
 ### **Characteristics**
 
- - **date* is a default _character_ scalar
- - **time* is a default _character_ scalar
- - **zone* is a default _character_ scalar
+ - **date*, - **time*, and **zone* are default _character_ scalar types
  - **values** is a rank-one array of type integer with a decimal
  exponent range of at least four.
 
@@ -103,41 +101,57 @@ Sample program:
 
 ```fortran
 program demo_date_and_time
-implicit none
-character(len=8)     :: date
-character(len=10)    :: time
-character(len=5)     :: zone
-integer,dimension(8) :: values
+   implicit none
+   character(len=8)     :: date
+   character(len=10)    :: time
+   character(len=5)     :: zone
+   integer, dimension(8) :: values
 
-    call date_and_time(date,time,zone,values)
+   call date_and_time(date, time, zone, values)
 
-    ! using keyword arguments
-    call date_and_time(DATE=date,TIME=time,ZONE=zone)
-    print '(*(g0))','DATE="',date,'" TIME="',time,'" ZONE="',zone,'"'
+   ! using keyword arguments
+   call date_and_time(DATE=date, TIME=time, ZONE=zone)
+   print '(*(g0))','DATE="',date,'" TIME="',time,'" ZONE="',zone,'"'
 
-    call date_and_time(VALUES=values)
-    write(*,'(i5,a)') &
-     & values(1),' - The year', &
-     & values(2),' - The month', &
-     & values(3),' - The day of the month', &
-     & values(4),' - Time difference with UTC in minutes', &
-     & values(5),' - The hour of the day', &
-     & values(6),' - The minutes of the hour', &
-     & values(7),' - The seconds of the minute', &
-     & values(8),' - The milliseconds of the second'
+   call date_and_time(VALUES=values)
+   write (*, '(i5,a)') &
+    & values(1), ' - The year', &
+    & values(2), ' - The month', &
+    & values(3), ' - The day of the month', &
+    & values(4), ' - Time difference with UTC in minutes', &
+    & values(5), ' - The hour of the day', &
+    & values(6), ' - The minutes of the hour', &
+    & values(7), ' - The seconds of the minute', &
+    & values(8), ' - The milliseconds of the second'
+
+   write (*, '(a)') iso_8601()
+contains
+   function iso_8601()
+   ! return date using ISO-8601 format at a resolution of seconds
+   character(len=8)  :: dt
+   character(len=10) :: tm
+   character(len=5)  :: zone
+   character(len=25) :: iso_8601
+   call date_and_time(dt, tm, zone)
+      ISO_8601 = dt(1:4)//'-'//dt(5:6)//'-'//dt(7:8) &
+               & //'T'//                             &
+               & tm(1:2)//':'//tm(3:4)//':'//tm(5:6) &
+               & //zone(1:3)//':'//zone(4:5)
+   end function iso_8601
 end program demo_date_and_time
 ```
 Results:
-```
- > DATE="20201222" TIME="165738.779" ZONE="-0500"
- >  2020 - The year
- >    12 - The month
- >    22 - The day of the month
- >  -300 - Time difference with UTC in minutes
- >    16 - The hour of the day
- >    57 - The minutes of the hour
- >    38 - The seconds of the minute
- >   779 - The milliseconds of the second
+```text
+ > DATE="20240426" TIME="111545.335" ZONE="-0400"
+ >  2024 - The year
+ >     4 - The month
+ >    26 - The day of the month
+ >  -240 - Time difference with UTC in minutes
+ >    11 - The hour of the day
+ >    15 - The minutes of the hour
+ >    45 - The seconds of the minute
+ >   335 - The milliseconds of the second
+ > 2024-04-26T11:15:45-04:00
 ```
 ### **Standard**
 
@@ -153,7 +167,7 @@ Fortran 95
 date and time conversion, formatting and computation
 
 - [M_time](https://github.com/urbanjost/M_time) - https://github.com/urbanjost/M_time
-- [fortran-datetime](https://github.com/dongli/fortran-datetime) https://github.com/dongli/fortran-datetime
+- [fortran-datetime](https://github.com/dongli/fortran-datetime) - https://github.com/dongli/fortran-datetime
 - [datetime-fortran](https://github.com/wavebitscientific/datetime-fortran) - https://github.com/wavebitscientific/datetime-fortran
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

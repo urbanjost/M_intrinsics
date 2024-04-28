@@ -36,7 +36,6 @@ the hypotenuse and the opposite side of a right triangle are known.
 
 ### **Result**
 
-- **result**
   The result has a value equal to a processor-dependent approximation
   to arcsin(x).
 

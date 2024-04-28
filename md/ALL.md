@@ -51,7 +51,6 @@
 
 ### **Result**
 
-
 1.  If **dim** is not present **all(mask)** is _.true._ if all elements
     of **mask** are _.true._. It also is _.true._ if **mask** has zero size;
     otherwise, it is _.false._ .

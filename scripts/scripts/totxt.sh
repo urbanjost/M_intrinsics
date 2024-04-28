@@ -18,19 +18,6 @@ done
 )
 ####################################################################################################################################
 (
-cd md
-MD=markdown_mmd
-MD=commonmark
-for NAME in *.md
-do
-   SHORTNAME=$(basename $NAME .md)
-   SHORTNAME=${SHORTNAME,,}
-   echo $NAME
-   tail -n +3 $NAME|pandoc -f $MD -t json -i - -o ../json/$SHORTNAME.3fortran.json
-done
-)
-####################################################################################################################################
-(
 cd md7
 MD=markdown_mmd
 MD=commonmark

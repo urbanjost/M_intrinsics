@@ -1492,7 +1492,6 @@ the hypotenuse and the opposite side of a right triangle are known.
 
 ### **Result**
 
-- **result**
   The result has a value equal to a processor-dependent approximation
   to arcsin(x).
 
@@ -6412,9 +6411,7 @@ Fortran 2008
 ```
 ### **Characteristics**
 
- - **date* is a default _character_ scalar
- - **time* is a default _character_ scalar
- - **zone* is a default _character_ scalar
+ - **date*, - **time*, and **zone* are default _character_ scalar types
  - **values** is a rank-one array of type integer with a decimal
  exponent range of at least four.
 
@@ -6497,41 +6494,57 @@ Sample program:
 
 ```fortran
 program demo_date_and_time
-implicit none
-character(len=8)     :: date
-character(len=10)    :: time
-character(len=5)     :: zone
-integer,dimension(8) :: values
+   implicit none
+   character(len=8)     :: date
+   character(len=10)    :: time
+   character(len=5)     :: zone
+   integer, dimension(8) :: values
 
-    call date_and_time(date,time,zone,values)
+   call date_and_time(date, time, zone, values)
 
-    ! using keyword arguments
-    call date_and_time(DATE=date,TIME=time,ZONE=zone)
-    print '(*(g0))','DATE="',date,'" TIME="',time,'" ZONE="',zone,'"'
+   ! using keyword arguments
+   call date_and_time(DATE=date, TIME=time, ZONE=zone)
+   print '(*(g0))','DATE="',date,'" TIME="',time,'" ZONE="',zone,'"'
 
-    call date_and_time(VALUES=values)
-    write(*,'(i5,a)') &
-     & values(1),' - The year', &
-     & values(2),' - The month', &
-     & values(3),' - The day of the month', &
-     & values(4),' - Time difference with UTC in minutes', &
-     & values(5),' - The hour of the day', &
-     & values(6),' - The minutes of the hour', &
-     & values(7),' - The seconds of the minute', &
-     & values(8),' - The milliseconds of the second'
+   call date_and_time(VALUES=values)
+   write (*, '(i5,a)') &
+    & values(1), ' - The year', &
+    & values(2), ' - The month', &
+    & values(3), ' - The day of the month', &
+    & values(4), ' - Time difference with UTC in minutes', &
+    & values(5), ' - The hour of the day', &
+    & values(6), ' - The minutes of the hour', &
+    & values(7), ' - The seconds of the minute', &
+    & values(8), ' - The milliseconds of the second'
+
+   write (*, '(a)') iso_8601()
+contains
+   function iso_8601()
+   ! return date using ISO-8601 format at a resolution of seconds
+   character(len=8)  :: dt
+   character(len=10) :: tm
+   character(len=5)  :: zone
+   character(len=25) :: iso_8601
+   call date_and_time(dt, tm, zone)
+      ISO_8601 = dt(1:4)//'-'//dt(5:6)//'-'//dt(7:8) &
+               & //'T'//                             &
+               & tm(1:2)//':'//tm(3:4)//':'//tm(5:6) &
+               & //zone(1:3)//':'//zone(4:5)
+   end function iso_8601
 end program demo_date_and_time
 ```
 Results:
-```
- > DATE="20201222" TIME="165738.779" ZONE="-0500"
- >  2020 - The year
- >    12 - The month
- >    22 - The day of the month
- >  -300 - Time difference with UTC in minutes
- >    16 - The hour of the day
- >    57 - The minutes of the hour
- >    38 - The seconds of the minute
- >   779 - The milliseconds of the second
+```text
+ > DATE="20240426" TIME="111545.335" ZONE="-0400"
+ >  2024 - The year
+ >     4 - The month
+ >    26 - The day of the month
+ >  -240 - Time difference with UTC in minutes
+ >    11 - The hour of the day
+ >    15 - The minutes of the hour
+ >    45 - The seconds of the minute
+ >   335 - The milliseconds of the second
+ > 2024-04-26T11:15:45-04:00
 ```
 ### **Standard**
 
@@ -6547,7 +6560,7 @@ Fortran 95
 date and time conversion, formatting and computation
 
 - [M_time](https://github.com/urbanjost/M_time) - https://github.com/urbanjost/M_time
-- [fortran-datetime](https://github.com/dongli/fortran-datetime) https://github.com/dongli/fortran-datetime
+- [fortran-datetime](https://github.com/dongli/fortran-datetime) - https://github.com/dongli/fortran-datetime
 - [datetime-fortran](https://github.com/wavebitscientific/datetime-fortran) - https://github.com/wavebitscientific/datetime-fortran
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
@@ -11721,7 +11734,7 @@ Fortran 95
 
 ### **Description**
 
-  **result**(3) returns the lower bounds of an array, or a single lower
+  **lbound**(3) returns the lower bounds of an array, or a single lower
   bound along the **dim** dimension.
 
 ### **Options**
@@ -11743,8 +11756,8 @@ Fortran 95
 If **dim** is absent,
 the result is an array of the lower bounds of **array**.
 
-If **dim** is
-present, the result is a scalar corresponding to the lower bound of the
+If **dim** is present,
+the result is a scalar corresponding to the lower bound of the
 array along that dimension. If **array** is an expression rather than
 a whole array or array structure component, or if it has a zero extent
 along the relevant dimension, the lower bound is taken to be 1.
@@ -12547,7 +12560,6 @@ FORTRAN 77
 
 ### **Result**
 
-- **result**
   Returns _.true._ if **string_a \<= string_b**, and _.false._ otherwise,
   based on the ASCII collating sequence.
 
@@ -19943,7 +19955,6 @@ Fortran 95 , for a complex argument Fortran 2008
 
 ### **Result**
 
-- **result**
   The return value contains the processor-dependent approximation of
   the sine of **x**
 
@@ -19974,9 +19985,9 @@ Results:
 
   From the article on "Haversine formula" in Wikipedia:
 ```text
-    The haversine formula is an equation important in navigation,
-    giving great-circle distances between two points on a sphere from
-    their longitudes and latitudes.
+   The haversine formula is an equation important in navigation,
+   giving great-circle distances between two points on a sphere from
+   their longitudes and latitudes.
 ```
   So to show the great-circle distance between the Nashville International
   Airport (BNA) in TN, USA, and the Los Angeles International Airport
@@ -19987,15 +19998,13 @@ Results:
   LAX: N 33 degrees 56.4',  W 118 degrees 24.0'
 ```
   which converted to floating-point values in degrees is:
-```text
-       Latitude Longitude
 
      - BNA
-       36.12, -86.67
+       latitude=36.12, longitude=-86.67
 
      - LAX
-       33.94, -118.40
-```
+       latitude=33.94, longitude=-118.40
+
   And then use the haversine formula to roughly calculate the distance
   along the surface of the Earth between the locations:
 

@@ -36,7 +36,7 @@
 
 ### **Description**
 
-  **result**(3) returns the lower bounds of an array, or a single lower
+  **lbound**(3) returns the lower bounds of an array, or a single lower
   bound along the **dim** dimension.
 
 ### **Options**
@@ -58,8 +58,8 @@
 If **dim** is absent,
 the result is an array of the lower bounds of **array**.
 
-If **dim** is
-present, the result is a scalar corresponding to the lower bound of the
+If **dim** is present, 
+the result is a scalar corresponding to the lower bound of the
 array along that dimension. If **array** is an expression rather than
 a whole array or array structure component, or if it has a zero extent
 along the relevant dimension, the lower bound is taken to be 1.

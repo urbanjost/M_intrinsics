@@ -55,7 +55,8 @@ file md/*.md|grep -v ASCII
 )|tee /tmp/M_intrinsics.log
 ######################################
 fpm install
-cp standalone/fpm.f90 $HOME/github/index/bootstrap/fpm.f90
+cp standalone/fman.f90 $HOME/github/index/bootstrap/fman.f90
 ######################################
 exit
 ######################################
+https://fortran-lang.org/en/learn/intrinsics/array/#pack

@@ -1212,14 +1212,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dl></li>
 </ul>
 <h3 id="result-13"><strong>Result</strong></h3>
-<ul>
-<li><p><strong>result</strong> The result has a value equal to a processor-dependent approximation to arcsin(x).</p>
+<p>The result has a value equal to a processor-dependent approximation to arcsin(x).</p>
 <p>If <strong>x</strong> is real the result is real and it is expressed in radians and lies in the range</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb59-1" title="1">      PI<span class="kw">/</span><span class="dv">2</span> <span class="op">&lt;</span><span class="kw">=</span> <span class="bu">ASIN</span> (X) <span class="op">&lt;</span><span class="kw">=</span> PI<span class="kw">/</span><span class="fl">2.</span></a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb59-1" title="1">        PI<span class="kw">/</span><span class="dv">2</span> <span class="op">&lt;</span><span class="kw">=</span> <span class="bu">ASIN</span> (X) <span class="op">&lt;</span><span class="kw">=</span> PI<span class="kw">/</span><span class="fl">2.</span></a></code></pre></div>
 <p>If the argument (and therefore the result) is imaginary the real part of the result is in radians and lies in the range</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb60-1" title="1">  <span class="kw">-</span>PI<span class="kw">/</span><span class="dv">2</span> <span class="op">&lt;</span><span class="kw">=</span> <span class="bu">real</span>(<span class="bu">asin</span>(x)) <span class="op">&lt;</span><span class="kw">=</span> PI<span class="kw">/</span><span class="dv">2</span></a></code></pre></div>
-<h3 id="examples-13"><strong>Examples</strong></h3></li>
-</ul>
+<div class="sourceCode" id="cb60"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb60-1" title="1">    <span class="kw">-</span>PI<span class="kw">/</span><span class="dv">2</span> <span class="op">&lt;</span><span class="kw">=</span> <span class="bu">real</span>(<span class="bu">asin</span>(x)) <span class="op">&lt;</span><span class="kw">=</span> PI<span class="kw">/</span><span class="dv">2</span></a></code></pre></div>
+<h3 id="examples-13"><strong>Examples</strong></h3>
 <p>The arcsine will allow you to find the measure of a right angle when you know the ratio of the side opposite the angle to the hypotenuse.</p>
 <p>So if you knew that a train track rose 1.25 vertical miles on a track that was 50 miles long, you could determine the average angle of incline of the track using the arcsine. Given</p>
 <pre><code> sin(theta) = 1.25 miles/50 miles (opposite/hypotenuse)</code></pre>
@@ -4649,9 +4647,7 @@ This file was compiled by nvfortran 21.5-0 LLVM</code></pre>
 <a class="sourceLine" id="cb262-6" title="6">      <span class="dt">integer</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span> <span class="dt">::</span> values(<span class="dv">8</span>)</a></code></pre></div>
 <h3 id="characteristics-64"><strong>Characteristics</strong></h3>
 <ul>
-<li>**date* is a default character scalar</li>
-<li>**time* is a default character scalar</li>
-<li>**zone* is a default character scalar</li>
+<li>**date*, - **time*, and **zone* are default character scalar types</li>
 <li><strong>values</strong> is a rank-one array of type integer with a decimal exponent range of at least four.</li>
 </ul>
 <h3 id="description-64"><strong>Description</strong></h3>
@@ -4715,39 +4711,55 @@ This file was compiled by nvfortran 21.5-0 LLVM</code></pre>
 <h3 id="examples-64"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb263"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb263-1" title="1"><span class="kw">program</span> demo_date_and_time</a>
-<a class="sourceLine" id="cb263-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb263-3" title="3"><span class="dt">character(len=8)</span>     <span class="dt">::</span> date</a>
-<a class="sourceLine" id="cb263-4" title="4"><span class="dt">character(len=10)</span>    <span class="dt">::</span> time</a>
-<a class="sourceLine" id="cb263-5" title="5"><span class="dt">character(len=5)</span>     <span class="dt">::</span> zone</a>
-<a class="sourceLine" id="cb263-6" title="6"><span class="dt">integer</span>,<span class="dt">dimension(8)</span> <span class="dt">::</span> values</a>
+<a class="sourceLine" id="cb263-2" title="2">   <span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb263-3" title="3">   <span class="dt">character(len=8)</span>     <span class="dt">::</span> date</a>
+<a class="sourceLine" id="cb263-4" title="4">   <span class="dt">character(len=10)</span>    <span class="dt">::</span> time</a>
+<a class="sourceLine" id="cb263-5" title="5">   <span class="dt">character(len=5)</span>     <span class="dt">::</span> zone</a>
+<a class="sourceLine" id="cb263-6" title="6">   <span class="dt">integer</span>, <span class="dt">dimension(8)</span> <span class="dt">::</span> values</a>
 <a class="sourceLine" id="cb263-7" title="7"></a>
-<a class="sourceLine" id="cb263-8" title="8">    <span class="kw">call</span> <span class="fu">date_and_time</span>(date,time,zone,values)</a>
+<a class="sourceLine" id="cb263-8" title="8">   <span class="kw">call</span> <span class="fu">date_and_time</span>(date, time, zone, values)</a>
 <a class="sourceLine" id="cb263-9" title="9"></a>
-<a class="sourceLine" id="cb263-10" title="10">    <span class="co">! using keyword arguments</span></a>
-<a class="sourceLine" id="cb263-11" title="11">    <span class="kw">call</span> <span class="fu">date_and_time</span>(DATE<span class="kw">=</span>date,TIME<span class="kw">=</span>time,ZONE<span class="kw">=</span>zone)</a>
-<a class="sourceLine" id="cb263-12" title="12">    <span class="fu">print</span> <span class="st">&#39;(*(g0))&#39;</span>,<span class="st">&#39;DATE=&quot;&#39;</span>,date,<span class="st">&#39;&quot; TIME=&quot;&#39;</span>,time,<span class="st">&#39;&quot; ZONE=&quot;&#39;</span>,zone,<span class="st">&#39;&quot;&#39;</span></a>
+<a class="sourceLine" id="cb263-10" title="10">   <span class="co">! using keyword arguments</span></a>
+<a class="sourceLine" id="cb263-11" title="11">   <span class="kw">call</span> <span class="fu">date_and_time</span>(DATE<span class="kw">=</span>date, TIME<span class="kw">=</span>time, ZONE<span class="kw">=</span>zone)</a>
+<a class="sourceLine" id="cb263-12" title="12">   <span class="fu">print</span> <span class="st">&#39;(*(g0))&#39;</span>,<span class="st">&#39;DATE=&quot;&#39;</span>,date,<span class="st">&#39;&quot; TIME=&quot;&#39;</span>,time,<span class="st">&#39;&quot; ZONE=&quot;&#39;</span>,zone,<span class="st">&#39;&quot;&#39;</span></a>
 <a class="sourceLine" id="cb263-13" title="13"></a>
-<a class="sourceLine" id="cb263-14" title="14">    <span class="kw">call</span> <span class="fu">date_and_time</span>(VALUES<span class="kw">=</span>values)</a>
-<a class="sourceLine" id="cb263-15" title="15">    <span class="fu">write(*</span>,<span class="st">&#39;(i5,a)&#39;</span><span class="fu">)</span> <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb263-16" title="16">     <span class="kw">&amp;</span> values(<span class="dv">1</span>),<span class="st">&#39; - The year&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb263-17" title="17">     <span class="kw">&amp;</span> values(<span class="dv">2</span>),<span class="st">&#39; - The month&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb263-18" title="18">     <span class="kw">&amp;</span> values(<span class="dv">3</span>),<span class="st">&#39; - The day of the month&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb263-19" title="19">     <span class="kw">&amp;</span> values(<span class="dv">4</span>),<span class="st">&#39; - Time difference with UTC in minutes&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb263-20" title="20">     <span class="kw">&amp;</span> values(<span class="dv">5</span>),<span class="st">&#39; - The hour of the day&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb263-21" title="21">     <span class="kw">&amp;</span> values(<span class="dv">6</span>),<span class="st">&#39; - The minutes of the hour&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb263-22" title="22">     <span class="kw">&amp;</span> values(<span class="dv">7</span>),<span class="st">&#39; - The seconds of the minute&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb263-23" title="23">     <span class="kw">&amp;</span> values(<span class="dv">8</span>),<span class="st">&#39; - The milliseconds of the second&#39;</span></a>
-<a class="sourceLine" id="cb263-24" title="24"><span class="kw">end program</span> demo_date_and_time</a></code></pre></div>
+<a class="sourceLine" id="cb263-14" title="14">   <span class="kw">call</span> <span class="fu">date_and_time</span>(VALUES<span class="kw">=</span>values)</a>
+<a class="sourceLine" id="cb263-15" title="15">   <span class="fu">write (*</span>, <span class="st">&#39;(i5,a)&#39;</span><span class="fu">)</span> <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb263-16" title="16">    <span class="kw">&amp;</span> values(<span class="dv">1</span>), <span class="st">&#39; - The year&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb263-17" title="17">    <span class="kw">&amp;</span> values(<span class="dv">2</span>), <span class="st">&#39; - The month&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb263-18" title="18">    <span class="kw">&amp;</span> values(<span class="dv">3</span>), <span class="st">&#39; - The day of the month&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb263-19" title="19">    <span class="kw">&amp;</span> values(<span class="dv">4</span>), <span class="st">&#39; - Time difference with UTC in minutes&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb263-20" title="20">    <span class="kw">&amp;</span> values(<span class="dv">5</span>), <span class="st">&#39; - The hour of the day&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb263-21" title="21">    <span class="kw">&amp;</span> values(<span class="dv">6</span>), <span class="st">&#39; - The minutes of the hour&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb263-22" title="22">    <span class="kw">&amp;</span> values(<span class="dv">7</span>), <span class="st">&#39; - The seconds of the minute&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb263-23" title="23">    <span class="kw">&amp;</span> values(<span class="dv">8</span>), <span class="st">&#39; - The milliseconds of the second&#39;</span></a>
+<a class="sourceLine" id="cb263-24" title="24"></a>
+<a class="sourceLine" id="cb263-25" title="25">   <span class="fu">write (*</span>, <span class="st">&#39;(a)&#39;</span><span class="fu">)</span> iso_<span class="dv">8601</span>()</a>
+<a class="sourceLine" id="cb263-26" title="26"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb263-27" title="27">   <span class="kw">function</span> iso_<span class="dv">8601</span>()</a>
+<a class="sourceLine" id="cb263-28" title="28">   <span class="co">! return date using ISO-8601 format at a resolution of seconds</span></a>
+<a class="sourceLine" id="cb263-29" title="29">   <span class="dt">character(len=8)</span>  <span class="dt">::</span> dt</a>
+<a class="sourceLine" id="cb263-30" title="30">   <span class="dt">character(len=10)</span> <span class="dt">::</span> tm</a>
+<a class="sourceLine" id="cb263-31" title="31">   <span class="dt">character(len=5)</span>  <span class="dt">::</span> zone</a>
+<a class="sourceLine" id="cb263-32" title="32">   <span class="dt">character(len=25)</span> <span class="dt">::</span> iso_<span class="dv">8601</span></a>
+<a class="sourceLine" id="cb263-33" title="33">   <span class="kw">call</span> <span class="fu">date_and_time</span>(dt, tm, zone)</a>
+<a class="sourceLine" id="cb263-34" title="34">      ISO_<span class="dv">8601</span> <span class="kw">=</span> dt(<span class="dv">1</span>:<span class="dv">4</span>)<span class="kw">//</span><span class="st">&#39;-&#39;</span><span class="kw">//</span>dt(<span class="dv">5</span>:<span class="dv">6</span>)<span class="kw">//</span><span class="st">&#39;-&#39;</span><span class="kw">//</span>dt(<span class="dv">7</span>:<span class="dv">8</span>) <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb263-35" title="35">               <span class="kw">&amp;</span> <span class="kw">//</span><span class="st">&#39;T&#39;</span><span class="kw">//</span>                             <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb263-36" title="36">               <span class="kw">&amp;</span> tm(<span class="dv">1</span>:<span class="dv">2</span>)<span class="kw">//</span><span class="st">&#39;:&#39;</span><span class="kw">//</span>tm(<span class="dv">3</span>:<span class="dv">4</span>)<span class="kw">//</span><span class="st">&#39;:&#39;</span><span class="kw">//</span>tm(<span class="dv">5</span>:<span class="dv">6</span>) <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb263-37" title="37">               <span class="kw">&amp;</span> <span class="kw">//</span>zone(<span class="dv">1</span>:<span class="dv">3</span>)<span class="kw">//</span><span class="st">&#39;:&#39;</span><span class="kw">//</span>zone(<span class="dv">4</span>:<span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb263-38" title="38">   <span class="kw">end function</span> iso_<span class="dv">8601</span></a>
+<a class="sourceLine" id="cb263-39" title="39"><span class="kw">end program</span> demo_date_and_time</a></code></pre></div>
 <p>Results:</p>
-<pre><code> &gt; DATE=&quot;20201222&quot; TIME=&quot;165738.779&quot; ZONE=&quot;-0500&quot;
- &gt;  2020 - The year
- &gt;    12 - The month
- &gt;    22 - The day of the month
- &gt;  -300 - Time difference with UTC in minutes
- &gt;    16 - The hour of the day
- &gt;    57 - The minutes of the hour
- &gt;    38 - The seconds of the minute
- &gt;   779 - The milliseconds of the second</code></pre>
+<pre class="text"><code> &gt; DATE=&quot;20240426&quot; TIME=&quot;111545.335&quot; ZONE=&quot;-0400&quot;
+ &gt;  2024 - The year
+ &gt;     4 - The month
+ &gt;    26 - The day of the month
+ &gt;  -240 - Time difference with UTC in minutes
+ &gt;    11 - The hour of the day
+ &gt;    15 - The minutes of the hour
+ &gt;    45 - The seconds of the minute
+ &gt;   335 - The milliseconds of the second
+ &gt; 2024-04-26T11:15:45-04:00</code></pre>
 <h3 id="standard-64"><strong>Standard</strong></h3>
 <p>Fortran 95</p>
 <h3 id="see-also-64"><strong>See Also</strong></h3>
@@ -4756,7 +4768,7 @@ This file was compiled by nvfortran 21.5-0 LLVM</code></pre>
 <p>date and time conversion, formatting and computation</p>
 <ul>
 <li><a href="https://github.com/urbanjost/M_time">M_time</a> - https://github.com/urbanjost/M_time</li>
-<li><a href="https://github.com/dongli/fortran-datetime">fortran-datetime</a> https://github.com/dongli/fortran-datetime</li>
+<li><a href="https://github.com/dongli/fortran-datetime">fortran-datetime</a> - https://github.com/dongli/fortran-datetime</li>
 <li><a href="https://github.com/wavebitscientific/datetime-fortran">datetime-fortran</a> - https://github.com/wavebitscientific/datetime-fortran</li>
 </ul>
 <p>fortran-lang intrinsic descriptions (license: MIT) @urbanjost</p>
@@ -8461,7 +8473,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <li><p>a kind designated as ** may be any supported kind for the type</p></li>
 </ul>
 <h3 id="description-111"><strong>Description</strong></h3>
-<p><strong>result</strong>(3) returns the lower bounds of an array, or a single lower bound along the <strong>dim</strong> dimension.</p>
+<p><strong>lbound</strong>(3) returns the lower bounds of an array, or a single lower bound along the <strong>dim</strong> dimension.</p>
 <h3 id="options-109"><strong>Options</strong></h3>
 <ul>
 <li><dl>
@@ -9073,11 +9085,9 @@ present since it cannot satisfy the requirement **1 &lt;= dim &lt;= 0**.</code><
 </dl></li>
 </ul>
 <h3 id="result-98"><strong>Result</strong></h3>
-<ul>
-<li><p><strong>result</strong> Returns .true. if <strong>string_a &lt;= string_b</strong>, and .false. otherwise, based on the ASCII collating sequence.</p>
+<p>Returns .true. if <strong>string_a &lt;= string_b</strong>, and .false. otherwise, based on the ASCII collating sequence.</p>
 <p>If both input arguments are null strings, .true. is always returned.</p>
-<p>If either string contains a character not in the ASCII character set, the result is processor dependent.</p></li>
-</ul>
+<p>If either string contains a character not in the ASCII character set, the result is processor dependent.</p>
 <h3 id="examples-116"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb505"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb505-1" title="1"><span class="kw">program</span> demo_lle</a>
@@ -14548,11 +14558,9 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 </dl></li>
 </ul>
 <h3 id="result-155"><strong>Result</strong></h3>
-<ul>
-<li><p><strong>result</strong> The return value contains the processor-dependent approximation of the sine of <strong>x</strong></p>
+<p>The return value contains the processor-dependent approximation of the sine of <strong>x</strong></p>
 <p>If X is of type real, it is regarded as a value in radians.</p>
-<p>If X is of type complex, its real part is regarded as a value in radians.</p></li>
-</ul>
+<p>If X is of type complex, its real part is regarded as a value in radians.</p>
 <h3 id="examples-174"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb775"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb775-1" title="1"><span class="kw">program</span> sample_sin</a>
@@ -14566,20 +14574,18 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <h3 id="extended-example">Extended Example</h3>
 <h4 id="haversine-formula">Haversine Formula</h4>
 <p>From the article on “Haversine formula” in Wikipedia:</p>
-<pre class="text"><code>    The haversine formula is an equation important in navigation,
-    giving great-circle distances between two points on a sphere from
-    their longitudes and latitudes.</code></pre>
+<pre class="text"><code>   The haversine formula is an equation important in navigation,
+   giving great-circle distances between two points on a sphere from
+   their longitudes and latitudes.</code></pre>
 <p>So to show the great-circle distance between the Nashville International Airport (BNA) in TN, USA, and the Los Angeles International Airport (LAX) in CA, USA you would start with their latitude and longitude, commonly given as</p>
 <pre class="text"><code>  BNA: N 36 degrees 7.2&#39;,   W 86 degrees 40.2&#39;
   LAX: N 33 degrees 56.4&#39;,  W 118 degrees 24.0&#39;</code></pre>
 <p>which converted to floating-point values in degrees is:</p>
-<pre class="text"><code>       Latitude Longitude
+<pre><code> - BNA
+   latitude=36.12, longitude=-86.67
 
-     - BNA
-       36.12, -86.67
-
-     - LAX
-       33.94, -118.40</code></pre>
+ - LAX
+   latitude=33.94, longitude=-118.40</code></pre>
 <p>And then use the haversine formula to roughly calculate the distance along the surface of the Earth between the locations:</p>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb780"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb780-1" title="1"><span class="kw">program</span> demo_sin</a>
