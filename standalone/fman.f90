@@ -46203,7 +46203,7 @@ help_text=[ CHARACTER(LEN=128) :: &
 'OPTIONS                                                                       ',&
 '  TOPIC(s)          A list of Fortran intrinsic names or the special names    ',&
 '                    "toc" and "manual" (which generate a table of contents    ',&
-'                    and the entire set of documents respecively).             ',&
+'                    and the entire set of documents respectively).            ',&
 '                    The default is "toc" and to ignore case.                  ',&
 '  --regex,-e        Search all output per the provided Regular Expression.    ',&
 '                    Output is prefixed with the topic it was found in.        ',&

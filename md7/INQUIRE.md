@@ -3,7 +3,6 @@
 ### **Name**
    inquire(7f) - [FORTRAN:FILE_INQUIRE] File inquiry statement
    
-
 ### **Synopsis**
 ```fortran
    INQUIRE([UNIT=file_unit_number]|[FILE=file_name_expr])
@@ -446,10 +445,11 @@ INQUIRE BY OUTPUT LIST
 
 ### **Examples**
   Examples of INQUIRE statements are:
-
+```fortran
      INQUIRE (IOLENGTH = IOL) A (1:N)
      INQUIRE (UNIT = JOAN, OPENED = LOG_01, NAMED = LOG_02, &
         FORM = CHAR_VAR, IOSTAT = IOS)
+```
 ### **See Also**
 
 [**backspace**(3)](#backspace),

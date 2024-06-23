@@ -18,7 +18,7 @@
 
   - a kind designated as ** may be any supported kind for the type
   - **i** is an _integer_ of any kind
-  - **kind** is an _integer_ initialization expression indicating the kind
+  - **KIND** is an _integer_ initialization expression indicating the kind
     parameter of the result.
   - The returned value is a character with the kind specified by **kind**
     or if **kind** is not present, the default _character_ kind.
@@ -65,12 +65,16 @@ Sample program:
 program demo_char
 implicit none
 integer, parameter :: ascii =  selected_char_kind ("ascii")
-character(len=1, kind=ascii ) :: c
+character(len=1, kind=ascii ) :: c, esc
 integer :: i
   ! basic
    i=74
    c=char(i)
    write(*,*)'ASCII character ',i,'is ',c
+   write(*,'(*(g0))')'Uppercase ASCII: ',(char(i),i=65,90)
+   write(*,'(*(g0))')'lowercase ASCII: ',(char(i),i=97,122)
+   esc=char(27)
+   write(*,'(*(g0))')'Elemental: ',char([65,97,90,122])
   !
    print *, 'a selection of ASCII characters (shows hex if not printable)'
    do i=0,127,10
@@ -90,22 +94,25 @@ end program demo_char
 ```
 Results:
 ```text
-    ASCII character           74 is J
-    a selection of ASCII characters (shows hex if not printable)
-     0 00
-    10 0A
-    20 14
-    30 1E
-    40 (
-    50 2
-    60 <
-    70 F
-    80 P
-    90 Z
-   100 d
-   110 n
-   120 x
-```
+ >  ASCII character           74 is J
+ > Uppercase ASCII: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+ > lowercase ASCII: abcdefghijklmnopqrstuvwxyz
+ > Elemental: AaZz
+ >  a selection of ASCII characters (shows hex if not printable)
+ >   0 00
+ >  10 0A
+ >  20 14
+ >  30 1E
+ >  40 (
+ >  50 2
+ >  60 <
+ >  70 F
+ >  80 P
+ >  90 Z
+ > 100 d
+ > 110 n
+ > 120 x
+
 ### **Standard**
 
 FORTRAN 77

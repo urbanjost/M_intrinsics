@@ -287,7 +287,7 @@ help_text=[ CHARACTER(LEN=128) :: &
 'OPTIONS                                                                       ',&
 '  TOPIC(s)          A list of Fortran intrinsic names or the special names    ',&
 '                    "toc" and "manual" (which generate a table of contents    ',&
-'                    and the entire set of documents respecively).             ',&
+'                    and the entire set of documents respectively).            ',&
 '                    The default is "toc" and to ignore case.                  ',&
 '  --regex,-e        Search all output per the provided Regular Expression.    ',&
 '                    Output is prefixed with the topic it was found in.        ',&
@@ -305,19 +305,18 @@ help_text=[ CHARACTER(LEN=128) :: &
 'EXAMPLES                                                                       ',&
 '  Sample commands                                                              ',&
 '                                                                               ',&
-'   fman                 # list table of contents                               ',&
-'   fman -e character    # check TOC for string. try "trigo","size","complex"   ',&
-'   fman tan|less        # display a description of tan(3f)                     ',&
-'                                                                               ',&
-'   fman --regex ''''character'''' # look for string in the TOC ignoring case   ',&
-'                                                                               ',&
-'   fman manual>fortran.txt    # create a copy of all descriptions              ',&
-'                                                                               ',&
-'   # list the topic "scan" if found and lines containing "scan" from the entire',&
-'   # manual, prefixing the lines with the section name, while ignoring case.   ',&
-'   fman -e scan -i manual                                                      ',&
-'                                                                               ',&
-'   fman -d verify >demo_verify.f90 # get sample program to try VERIFY(3f).     ',&
+'   fman tan|less            # display a description of tan(3f)                 ',&
+'   fman                     # list table of contents                           ',&
+'   fman manual>fortran.txt  # create a copy of all descriptions                ',&
+'   fman -e character        # check TOC for string. try "trigo","size","complex"',&
+'                                                                                ',&
+'   fman --regex ''character''   # look for string in the TOC ignoring case      ',&
+'                                                                                ',&
+'   # list the topic "scan" if found and lines containing "scan" from the entire ',&
+'   # manual, prefixing the lines with the section name, while ignoring case.    ',&
+'   fman -e scan -i manual                                                       ',&
+'                                                                                ',&
+'   fman -d verify >demo_verify.f90 # get demo program to try VERIFY(3f).        ',&
 '']
 version_text=[ CHARACTER(LEN=128) :: &
 '@(#) PRODUCT:         GPF (General Purpose Fortran) utilities and examples    >',&
