@@ -175,7 +175,7 @@ and the demo programs in example
  - [txt2man](https://github.com/mvertes/txt2man)
 
 ## Footnotes
-[https://fortran-lang.org/en/learn/intrinsics](https://fortran-lang.org/en/learn/intrinsics)
+[Fortran-lang.org](https://fortran-lang.org/en/learn/intrinsics)
 now includes an earlier version of these documents. They
 may be changed using the instructions found in the github
 [webpage](https://github.com/fortran-lang/webpage) repository.
