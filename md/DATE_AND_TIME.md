@@ -18,7 +18,7 @@
 ```
 ### **Characteristics**
 
- - **date*, - **time*, and **zone* are default _character_ scalar types
+ - **date**, - **time**, and **zone** are default _character_ scalar types
  - **values** is a rank-one array of type integer with a decimal
  exponent range of at least four.
 
