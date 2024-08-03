@@ -227,8 +227,8 @@ Fortran 95 , with KIND argument - Fortran 2003
 
 ### **See Also**
 
-[**any**(3)](#any),
-[**all**(3)](#all),
-[**sum**(3)](#sum),
+ - [**any**(3)](#any)
+ - [**all**(3)](#all)
+ - [**sum**(3)](#sum)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

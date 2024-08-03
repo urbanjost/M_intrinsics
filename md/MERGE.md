@@ -13,8 +13,7 @@
 
       type(TYPE(kind=KIND)),intent(in) :: tsource
       type(TYPE(kind=KIND)),intent(in) :: fsource
-      logical(kind=**),intent(in)   :: mask
-      mask** : Shall be of type logical.
+      logical(kind=**),intent(in)      :: mask
 ```
 ### **Characteristics**
 

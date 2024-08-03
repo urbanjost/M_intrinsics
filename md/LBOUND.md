@@ -58,22 +58,22 @@
 If **dim** is absent,
 the result is an array of the lower bounds of **array**.
 
-If **dim** is present, 
+If **dim** is present,
 the result is a scalar corresponding to the lower bound of the
 array along that dimension. If **array** is an expression rather than
 a whole array or array structure component, or if it has a zero extent
 along the relevant dimension, the lower bound is taken to be 1.
 
-    NOTE1
+   NOTE1
 
-    If **array** is assumed-rank and has rank zero, **dim** cannot be
-    present since it cannot satisfy the requirement **1 <= dim <= 0**.
+   If **array** is assumed-rank and has rank zero, **dim** cannot be
+   present since it cannot satisfy the requirement **1 <= dim <= 0**.
 
 ### **Examples**
 
-Note that in my opinion this function should not be used on assumed-size
-arrays or in any function without an explicit interface. Errors can
-occur if there is no interface defined.
+Note that this function should not be used on assumed-size arrays or in
+any function without an explicit interface. Errors can occur if there
+is no interface defined.
 
 Sample program
 ```fortran

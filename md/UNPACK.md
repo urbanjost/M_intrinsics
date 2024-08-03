@@ -51,17 +51,18 @@ statements, particularly when the replacements are conditional.
 
 ### **Result**
 
-  The element of the result that corresponds to the ith true element
-  of **mask**, in array element order, has the value **vector(i)** for i =
+  The element of the result that corresponds to the ith true element of
+  **mask**, in array element order, has the value **vector(i)** for i =
   1, 2, . . ., t, where t is the number of true values in **mask**. Each
-  other element has a value equal to **field* if **field* is scalar or to the
-  corresponding element of **field* if it is an array.
+  other element has a value equal to **field** if **field** is scalar
+  or to the corresponding element of **field** if it is an array.
 
   The resulting array corresponds to **field** with _.true._ elements
   of **mask** replaced by values from **vector** in array element order.
 
 ### **Examples**
-Particular values may be "scattered" to particular positions in an array by using
+Particular values may be "scattered" to particular positions in an array
+by using
 ```text
                        1 0 0
     If M is the array  0 1 0
@@ -85,7 +86,6 @@ Particular values may be "scattered" to particular positions in an array by usin
       1 0 0
       0 0 3
 ```
-
 Sample program:
 
 ```fortran
@@ -150,7 +150,6 @@ Results:
    >  [  0,  0,  0 ]
    >  [  2,  0,  4 ]
 ```
-
 ### **Standard**
 
 Fortran 95

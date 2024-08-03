@@ -105,6 +105,7 @@
 ### **Examples**
 sample program:
 
+```fortran
    program demo_close
    implicit none
    character(len=256) :: message

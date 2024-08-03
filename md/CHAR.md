@@ -112,7 +112,7 @@ Results:
  > 100 d
  > 110 n
  > 120 x
-
+```
 ### **Standard**
 
 FORTRAN 77

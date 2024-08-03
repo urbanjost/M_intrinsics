@@ -97,7 +97,7 @@ or
 
   When present only those elements of **array** are passed
   to **operation** for which the corresponding elements
-  of **mask** are true, as if **array* was filtered with
+  of **mask** are true, as if **array** was filtered with
   **pack(3)**.
 
 - **identity**

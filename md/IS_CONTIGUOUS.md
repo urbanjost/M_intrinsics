@@ -125,6 +125,12 @@ Fortran 2008
 
 ### **See also**
 
-[****(3)](#)
+ - [allocated(3)](#allocated) -  Allocation status of an allocatable entity
+ - [is_contiguous(3)](#is_contigious) -  Test if object is contiguous
+ - [lbound(3)](#lbound)    -  Lower dimension bounds of an array
+ - [rank(3)](#rank)      -  Rank of a data object
+ - [shape(3)](#shape)     -  Determine the shape of an array or scalar
+ - [size(3)](#size)      -  Determine the size of an array or extent of one dimension
+ - [ubound(3)](#ubound)    -  Upper dimension bounds of an array
 
  _fortran-lang intrinsic descriptions_

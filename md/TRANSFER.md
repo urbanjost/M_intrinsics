@@ -124,6 +124,6 @@ Fortran 90
 
 ### **See also**
 
-[****(3)](#)
+ -[equivalence(7)](#equivalence)  - alias storage
 
  _fortran-lang intrinsic descriptions_

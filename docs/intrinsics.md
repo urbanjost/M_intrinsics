@@ -71,66 +71,121 @@ program demo_abs
 implicit none
 integer,parameter :: dp=kind(0.0d0)
 
+! some values to use with ABS(3f)
 integer           :: i = -1
 real              :: x = -1.0
 complex           :: z = (-3.0,-4.0)
 doubleprecision   :: rr = -45.78_dp
 
+! some formats for pretty-printing some information
 character(len=*),parameter :: &
-   ! some formats
    frmt  =  '(1x,a15,1x," In: ",g0,            T51," Out: ",g0)', &
    frmtc = '(1x,a15,1x," In: (",g0,",",g0,")",T51," Out: ",g0)',  &
-   g     = '(*(g0,1x))'
+   gen   = '(*(g0,1x))'
 
-  ! basic usage
-    ! any integer, real, or complex type
-    write(*, frmt)  'integer         ',  i, abs(i)
-    write(*, frmt)  'real            ',  x, abs(x)
-    write(*, frmt)  'doubleprecision ', rr, abs(rr)
-    write(*, frmtc) 'complex         ',  z, abs(z)
-
-  ! You can take the absolute value of any value whose positive value
-  ! is representable with the same type and kind.
-    write(*, *) 'abs range test : ', abs(huge(0)), abs(-huge(0))
-    write(*, *) 'abs range test : ', abs(huge(0.0)), abs(-huge(0.0))
-    write(*, *) 'abs range test : ', abs(tiny(0.0)), abs(-tiny(0.0))
-    ! A dusty corner is that abs(-huge(0)-1) of an integer would be
-    ! a representable negative value on most machines but result in a
-    ! positive value out of range.
+  ! the basics
+   print gen,  'basic usage:'
+   ! any integer, real, or complex type
+   write(*, frmt)  'integer         ',  i, abs(i)
+   write(*, frmt)  'real            ',  x, abs(x)
+   write(*, frmt)  'doubleprecision ', rr, abs(rr)
+   write(*, frmtc) 'complex         ',  z, abs(z)
 
   ! elemental
-    write(*, g) ' abs is elemental:', abs([20,  0,  -1,  -3,  100])
-
-  ! COMPLEX input produces REAL output
-    write(*, g)' complex input produces real output', &
-    & abs(cmplx(30.0_dp,40.0_dp,kind=dp))
-    ! dusty corner: "kind=dp" is required or the value returned by
-    ! CMPLX() is a default real instead of double precision
+   print gen, 'abs is elemental:', abs([20,  0,  -1,  -3,  100])
 
   ! the returned value for complex input can be thought of as the
   ! distance from the origin <0,0>
-    write(*, g) ' distance of (', z, ') from zero is', abs( z )
-    write(*, g) ' so beware of overflow with complex values'
-    !write(*, g) abs(cmplx( huge(0.0), huge(0.0) ))
-    write(*, g) ' because the biggest default real is',huge(0.0)
+   print gen, 'distance of (', z, ') from zero is', abs( z )
+
+call DUSTY_CORNERS_1("beware of abs(-huge(0)-1)")
+call DUSTY_CORNERS_2("beware of losing precision using CMPLX(3f)")
+call DUSTY_CORNERS_3("beware of overflow of complex values")
+call DUSTY_CORNERS_4("custom meaning for absolute value of COMPLEX")
+
+contains
+
+subroutine DUSTY_CORNERS_1(message)
+character(len=*),intent(in) :: message
+
+   ! A dusty corner is that abs(-huge(0)-1) of an integer would be
+   ! a representable negative value on most machines but result in a
+   ! positive value out of range.
+
+   print gen,  message
+   ! By definition:
+   !   You can take the absolute value of any value whose POSITIVE value
+   !   is representable with the same type and kind.
+
+   print gen, 'abs range test : ', abs(huge(0)), abs(-huge(0))
+   print gen, 'abs range test : ', abs(huge(0.0)), abs(-huge(0.0))
+   print gen, 'abs range test : ', abs(tiny(0.0)), abs(-tiny(0.0))
+
+end subroutine DUSTY_CORNERS_1
+
+subroutine DUSTY_CORNERS_2(message)
+character(len=*),intent(in) :: message
+
+   ! dusty corner: "kind=dp" is required or the value returned by
+   ! CMPLX() is a default real instead of double precision.
+
+   ! Working with complex values you often encounter the CMPLX(3f) function.
+   ! CMPLX(3f) defaults to returning a default REAL regardless of input type.
+   ! Not really a direct problem with ABS(2f) per-se, but a common error
+   ! when working with doubleprecision complex values
+
+   print gen,  message
+   print gen, 'real result versus doubleprecision result', &
+   & abs(cmplx(30.0_dp,40.0_dp)), &
+   & abs(cmplx(30.0_dp,40.0_dp,kind=dp))
+
+end subroutine DUSTY_CORNERS_2
+
+subroutine DUSTY_CORNERS_3(message)
+character(len=*),intent(in) :: message
+   print gen, message
+
+   ! this will probably cause an overflow error, or
+   !print gen,  abs(cmplx( huge(0.0), huge(0.0) ))
+
+   print gen, 'because the biggest default real is',huge(0.0)
+   print gen, 'because returning magnitude of sqrt(x%re**2,x%im**2)'
+
+end subroutine DUSTY_CORNERS_3
+
+subroutine DUSTY_CORNERS_4(message)
+character(len=*),intent(in) :: message
+   print gen, message
+
+   ! if you do not want the distance for a complex value you
+   ! might want something like returning a complex value with
+   ! both the imaginary and real parts. One way to do that is
+
+   print gen, cmplx(abs(z%re),abs(z%im),kind=kind(z))
+
+end subroutine DUSTY_CORNERS_4
 
 end program demo_abs
 ```
 Results:
 ```text
-    integer          In: -1                     Out: 1
-    real             In: -1.000000              Out: 1.000000
-    doubleprecision  In: -45.78000000000000     Out: 45.78000000000000
-    complex          In: (-3.000000,-4.000000)  Out: 5.000000
-    abs range test :   2147483647  2147483647
-    abs range test :   3.4028235E+38  3.4028235E+38
-    abs range test :   1.1754944E-38  1.1754944E-38
-    abs is elemental: 20 0 1 3 100
-    complex input produces real output 50.00000000000000
-    distance of ( -3.000000 -4.000000 ) from zero is 5.000000
-    so beware of overflow with complex values
-    Inf
-    because the biggest default real is .3402823E+39
+ >  integer          In: -1                           Out: 1
+ >  real             In: -1.00000000                  Out: 1.00000000
+ >  doubleprecision  In: -45.780000000000001          Out: 45.780000000000001
+ >  complex          In: (-3.00000000,-4.00000000)    Out: 5.00000000
+ > abs is elemental: 20 0 1 3 100
+ > distance of ( -3.00000000 -4.00000000 ) from zero is 5.00000000
+ > beware of abs(-huge(0)-1)
+ > abs range test :  2147483647 2147483647
+ > abs range test :  0.340282347E+39 0.340282347E+39
+ > abs range test :  0.117549435E-37 0.117549435E-37
+ > beware of losing precision using CMPLX(3f)
+ > real result versus doubleprecision result 50.0000000 50.000000000000000
+ > beware of overflow of complex values
+ > because the biggest default real is 0.340282347E+39
+ > because returning magnitude of sqrt(x%re**2,x%im**2)
+ > making your own meaning for ABS(COMPLEX_VALUE)
+ > 3.00000000 4.00000000
 ```
 ### **Standard**
 
@@ -1420,8 +1475,10 @@ Fortran 95
   to the inverse hyperbolic sine function of **x**.
 
   If **x** is _complex_, the imaginary part of the result is in radians and lies
-between **-PI/2 \<= aimag(asinh(x)) \<= PI/2**.
-
+  between
+```fortran
+       -PI/2 <= aimag(asinh(x)) <= PI/2
+```
 ### **Examples**
 
 Sample program:
@@ -1896,7 +1953,7 @@ FORTRAN 77
   The return value has same type and kind as **x**. If **x** is _complex_, the
   imaginary part of the result is in radians and lies between
 ```fortran
-       **-PI/2 <= aimag(atanh(x)) <= PI/2**
+       -PI/2 <= aimag(atanh(x)) <= PI/2
 ```
 ### **Examples**
 
@@ -3688,7 +3745,8 @@ Fortran 95
 
 ### **See Also**
 
-[****(3)](#)
++ [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
++ [**storage_size**(3f)](#storage) - Storage size in bits
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -4111,7 +4169,7 @@ Fortran 2003
 ```
 ### **Characteristics**
 
- - ** a is of type _real_
+ - **a** is of type _real_
  - **KIND** shall be a scalar integer constant expression.
    It specifies the kind of the result if present.
  - the result is _integer_. It is default kind if **KIND** is not
@@ -4442,7 +4500,7 @@ Fortran 2003
 
   - a kind designated as ** may be any supported kind for the type
   - **i** is an _integer_ of any kind
-  - **kind** is an _integer_ initialization expression indicating the kind
+  - **KIND** is an _integer_ initialization expression indicating the kind
     parameter of the result.
   - The returned value is a character with the kind specified by **kind**
     or if **kind** is not present, the default _character_ kind.
@@ -4489,12 +4547,16 @@ Sample program:
 program demo_char
 implicit none
 integer, parameter :: ascii =  selected_char_kind ("ascii")
-character(len=1, kind=ascii ) :: c
+character(len=1, kind=ascii ) :: c, esc
 integer :: i
   ! basic
    i=74
    c=char(i)
    write(*,*)'ASCII character ',i,'is ',c
+   write(*,'(*(g0))')'Uppercase ASCII: ',(char(i),i=65,90)
+   write(*,'(*(g0))')'lowercase ASCII: ',(char(i),i=97,122)
+   esc=char(27)
+   write(*,'(*(g0))')'Elemental: ',char([65,97,90,122])
   !
    print *, 'a selection of ASCII characters (shows hex if not printable)'
    do i=0,127,10
@@ -4514,21 +4576,24 @@ end program demo_char
 ```
 Results:
 ```text
-    ASCII character           74 is J
-    a selection of ASCII characters (shows hex if not printable)
-     0 00
-    10 0A
-    20 14
-    30 1E
-    40 (
-    50 2
-    60 <
-    70 F
-    80 P
-    90 Z
-   100 d
-   110 n
-   120 x
+ >  ASCII character           74 is J
+ > Uppercase ASCII: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+ > lowercase ASCII: abcdefghijklmnopqrstuvwxyz
+ > Elemental: AaZz
+ >  a selection of ASCII characters (shows hex if not printable)
+ >   0 00
+ >  10 0A
+ >  20 14
+ >  30 1E
+ >  40 (
+ >  50 2
+ >  60 <
+ >  70 F
+ >  80 P
+ >  90 Z
+ > 100 d
+ > 110 n
+ > 120 x
 ```
 ### **Standard**
 
@@ -6078,9 +6143,9 @@ Fortran 95 , with KIND argument - Fortran 2003
 
 ### **See Also**
 
-[**any**(3)](#any),
-[**all**(3)](#all),
-[**sum**(3)](#sum),
+ - [**any**(3)](#any)
+ - [**all**(3)](#all)
+ - [**sum**(3)](#sum)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -6411,7 +6476,7 @@ Fortran 2008
 ```
 ### **Characteristics**
 
- - **date*, - **time*, and **zone* are default _character_ scalar types
+ - **date**, - **time**, and **zone** are default _character_ scalar types
  - **values** is a rank-one array of type integer with a decimal
  exponent range of at least four.
 
@@ -6435,9 +6500,9 @@ Fortran 2008
   : A character string of default kind of the form CCYYMMDD, of length
     8 or larger, where
 
-      + CCYY is the year in the Gregorian calendar
-      + MM is the month within the year
-      + DD is the day within the month.
+     + CCYY is the year in the Gregorian calendar
+     + MM is the month within the year
+     + DD is the day within the month.
 
     The characters of this value are all decimal digits.
 
@@ -6796,7 +6861,18 @@ FORTRAN 77
 
 ### **See Also**
 
-[****(3)](#)
+ - [**abs**(3)](#abs) - Absolute value
+ - [**aint**(3)](#aint) -  Truncate toward zero to a whole number
+ - [**anint**(3)](#anint) -  Real nearest whole number
+ - [**ceiling**(3)](#ceiling) -  Integer ceiling function
+ - [**conjg**(3)](#conjg) -  Complex conjugate of a complex value
+ - [**dim**(3)](#dim) -  Positive difference of X - Y
+ - [**dprod**(3)](#dprod) -  Double precision real product
+ - [**floor**(3)](#floor) -  Function to return largest integral value
+ - [**max**(3)](#max) -  Maximum value of an argument list
+ - [**min**(3)](#min) -  Minimum value of an argument list
+ - [**mod**(3)](#mode) -  Remainder function
+ - [**sign**(3)](#sign) -  Sign copying function
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -7629,10 +7705,10 @@ $$
   The return value is of type _real_ and of the same kind as **x**. It lies in
   the range
 ```fortran
-     0 \<= **erfc**(x) \<= 2.
+     0 <= erfc(x) <= 2.
 ```
 and is a  processor-dependent approximation to the complementary error
-function of **x** ( **1-erf(x) ).
+function of **x** ( **1-erf(x)** ).
 
 ### **Examples**
 
@@ -7874,7 +7950,19 @@ TS 18508
 
 ### **See also**
 
-[****(3)](#)
+ - [co_broadcast(3)](#co_broadcast) - Copy a value to all images the current set of images
+ - [co_lbound(3)](#co_lbound) - Lower codimension bounds of an array
+ - [co_max(3)](#co_max) - Maximal value on the current set of images
+ - [co_min(3)](#co_min) - Minimal value on the current set of images
+ - [co_reduce(3)](#co_reduce) - Reduction of values on the current set of images
+ - [co_sum(3)](#co_sum) - Sum of values on the current set of images
+ - [co_ubound(3)](#co_ubound) - Upper codimension bounds of an array
+ - [event_query(3)](#event_query) - Query whether a coarray event has occurred
+ - [image_index(3)](#image_index) - Cosubscript to image index conversion
+ - [lcobound(3)](#lcobound) - Lower codimension bounds of an array
+ - [num_images(3)](#num_images) - Number of images
+ - [this_image(3)](#this_image) - Cosubscript index of this image
+ - [ucobound(3)](#ucobound) - Upper codimension bounds of an array
 
  _fortran-lang intrinsic descriptions_
 
@@ -8831,8 +8919,10 @@ end function floor
 ### **Result**
 
 The fractional part of the model representation of **x** is returned;
-it is **x \* radix(x)\*\*(-exponent(x))**.
-
+it is
+```fortran
+    x * radix(x)**(-exponent(x))
+```
 If **x** has the value zero, the result is zero.
 
 If **x** is an IEEE NaN, the result is that NaN.
@@ -9651,7 +9741,39 @@ Fortran 2008
 
 ### **See also**
 
-[****(3)](#)
+ - [acos(3)](#acos)   - Arccosine (inverse cosine) function
+ - [acosh(3)](#acosh) - Inverse hyperbolic cosine function
+ - [asin(3)](#asin)   - Arcsine function
+ - [asinh(3)](#asinh) - Inverse hyperbolic sine function
+ - [atan(3)](#atan)   - Arctangent AKA inverse tangent function
+ - [atan2(3)](#atan2) - Arctangent (inverse tangent) function
+ - [atanh(3)](#atanh) - Inverse hyperbolic tangent function
+ - [cos(3)](#cos)     - Cosine function
+ - [cosh(3)](#cosh)   - Hyperbolic cosine function
+ - [sin(3)](#sin)     - Sine function
+ - [sinh(3)](#sinh)   - Hyperbolic sine function
+ - [tan(3)](#tan)     - Tangent function
+ - [tanh(3)](#tanh)   - Hyperbolic tangent function
+ - [bessel_j0(3)](#bessel_j0) -  Bessel function of the first kind of order 0
+ - [bessel_j1(3)](#bessel_j1) -  Bessel function of the first kind of order 1
+ - [bessel_jn(3)](#bessel_jn) -  Bessel function of the first kind
+ - [bessel_y0(3)](#bessel_y0) -  Bessel function of the second kind of order 0
+ - [bessel_y1(3)](#bessel_y1) -  Bessel function of the second kind of order 1
+ - [bessel_yn(3)](#bessel_y2) -  Bessel function of the second kind
+ - [erf(3)](#erf)     -  Error function
+ - [erfc(3)](#erfc)   -  Complementary error function
+ - [erfc_scaled(3)](#erfc_scaled) -  Scaled complementary error function
+ - [exp(3)](#exp)     -  Base-e exponential function
+ - [gamma(3)](#gamma) -  Gamma function, which yields factorials for positive whole numbers
+ - [hypot(3)](#hypot) -  Returns the Euclidean distance - the distance between a point and the origin.
+ - [log(3)](#log)     -  Natural logarithm
+ - [log10(3)](#log10) -  Base 10 or common logarithm
+ - [log_gamma(3)](#log_gamma) -  Logarithm of the absolute value of the Gamma function
+ - [norm2(3)](#norm2) -  Euclidean vector norm
+ - [sqrt(3)](#sqrt)   -  Square-root function
+ - [random_init(3)](#random_init) - Initializes the state of the pseudorandom number generator
+ - [random_number(3)](#random_number) - Pseudo-random number
+ - [random_seed(3)](#random_seed) - Initialize a pseudo-random number sequence
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -11228,7 +11350,13 @@ Fortran 2008
 
 ### **See also**
 
-[****(3)](#)
+ - [allocated(3)](#allocated) -  Allocation status of an allocatable entity
+ - [is_contiguous(3)](#is_contigious) -  Test if object is contiguous
+ - [lbound(3)](#lbound)    -  Lower dimension bounds of an array
+ - [rank(3)](#rank)      -  Rank of a data object
+ - [shape(3)](#shape)     -  Determine the shape of an array or scalar
+ - [size(3)](#size)      -  Determine the size of an array or extent of one dimension
+ - [ubound(3)](#ubound)    -  Upper dimension bounds of an array
 
  _fortran-lang intrinsic descriptions_
 
@@ -11530,7 +11658,12 @@ Fortran 2003
 
 ### **See also**
 
-[****(3)](#)
+ - [associated(3)](#associated) -  Association status of a pointer or pointer/target pair
+ - [extends_type_of(3)](#extends_type_of) -  Determine if the dynamic type of A is an extension of the dynamic type of MOLD.
+ - [is_iostat_end(3)](#is_iostat_end) -  Test for end-of-file value
+ - [is_iostat_eor(3)](#is_iostat_eor) -  Test for end-of-record value
+ - [present(3)](#present)   -  Determine whether an optional dummy argument is specified
+ - [same_type_as(3)](#same_type_as) -  Query dynamic types for equality
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -11620,7 +11753,12 @@ Fortran 2003
 
 ### **See also**
 
-[****(3)](#)
+ - [associated(3)](#associated) -  Association status of a pointer or pointer/target pair
+ - [extends_type_of(3)](#extends_type_of) -  Determine if the dynamic type of A is an extension of the dynamic type of MOLD.
+ - [is_iostat_end(3)](#is_iostat_end) -  Test for end-of-file value
+ - [is_iostat_eor(3)](#is_iostat_eor) -  Test for end-of-record value
+ - [present(3)](#present)   -  Determine whether an optional dummy argument is specified
+ - [same_type_as(3)](#same_type_as) -  Query dynamic types for equality
 
  _fortran-lang intrinsic descriptions_
 
@@ -11762,16 +11900,16 @@ array along that dimension. If **array** is an expression rather than
 a whole array or array structure component, or if it has a zero extent
 along the relevant dimension, the lower bound is taken to be 1.
 
-    NOTE1
+   NOTE1
 
-    If **array** is assumed-rank and has rank zero, **dim** cannot be
-    present since it cannot satisfy the requirement **1 <= dim <= 0**.
+   If **array** is assumed-rank and has rank zero, **dim** cannot be
+   present since it cannot satisfy the requirement **1 <= dim <= 0**.
 
 ### **Examples**
 
-Note that in my opinion this function should not be used on assumed-size
-arrays or in any function without an explicit interface. Errors can
-occur if there is no interface defined.
+Note that this function should not be used on assumed-size arrays or in
+any function without an explicit interface. Errors can occur if there
+is no interface defined.
 
 Sample program
 ```fortran
@@ -12844,7 +12982,39 @@ FORTRAN 77
 
 ### **See also**
 
-[****(3)](#)
+ - [acos(3)](#acos)   - Arccosine (inverse cosine) function
+ - [acosh(3)](#acosh) - Inverse hyperbolic cosine function
+ - [asin(3)](#asin)   - Arcsine function
+ - [asinh(3)](#asinh) - Inverse hyperbolic sine function
+ - [atan(3)](#atan)   - Arctangent AKA inverse tangent function
+ - [atan2(3)](#atan2) - Arctangent (inverse tangent) function
+ - [atanh(3)](#atanh) - Inverse hyperbolic tangent function
+ - [cos(3)](#cos)     - Cosine function
+ - [cosh(3)](#cosh)   - Hyperbolic cosine function
+ - [sin(3)](#sin)     - Sine function
+ - [sinh(3)](#sinh)   - Hyperbolic sine function
+ - [tan(3)](#tan)     - Tangent function
+ - [tanh(3)](#tanh)   - Hyperbolic tangent function
+ - [bessel_j0(3)](#bessel_j0) -  Bessel function of the first kind of order 0
+ - [bessel_j1(3)](#bessel_j1) -  Bessel function of the first kind of order 1
+ - [bessel_jn(3)](#bessel_jn) -  Bessel function of the first kind
+ - [bessel_y0(3)](#bessel_y0) -  Bessel function of the second kind of order 0
+ - [bessel_y1(3)](#bessel_y1) -  Bessel function of the second kind of order 1
+ - [bessel_yn(3)](#bessel_y2) -  Bessel function of the second kind
+ - [erf(3)](#erf)     -  Error function
+ - [erfc(3)](#erfc)   -  Complementary error function
+ - [erfc_scaled(3)](#erfc_scaled) -  Scaled complementary error function
+ - [exp(3)](#exp)     -  Base-e exponential function
+ - [gamma(3)](#gamma) -  Gamma function, which yields factorials for positive whole numbers
+ - [hypot(3)](#hypot) -  Returns the Euclidean distance - the distance between a point and the origin.
+ - [log(3)](#log)     -  Natural logarithm
+ - [log10(3)](#log10) -  Base 10 or common logarithm
+ - [log_gamma(3)](#log_gamma) -  Logarithm of the absolute value of the Gamma function
+ - [norm2(3)](#norm2) -  Euclidean vector norm
+ - [sqrt(3)](#sqrt)   -  Square-root function
+ - [random_init(3)](#random_init) - Initializes the state of the pseudorandom number generator
+ - [random_number(3)](#random_number) - Pseudo-random number
+ - [random_seed(3)](#random_seed) - Initialize a pseudo-random number sequence
 
  _fortran-lang intrinsic descriptions_
 
@@ -13065,7 +13235,39 @@ FORTRAN 77
 
 ### **See also**
 
-[****(3)](#)
+ - [acos(3)](#acos)   - Arccosine (inverse cosine) function
+ - [acosh(3)](#acosh) - Inverse hyperbolic cosine function
+ - [asin(3)](#asin)   - Arcsine function
+ - [asinh(3)](#asinh) - Inverse hyperbolic sine function
+ - [atan(3)](#atan)   - Arctangent AKA inverse tangent function
+ - [atan2(3)](#atan2) - Arctangent (inverse tangent) function
+ - [atanh(3)](#atanh) - Inverse hyperbolic tangent function
+ - [cos(3)](#cos)     - Cosine function
+ - [cosh(3)](#cosh)   - Hyperbolic cosine function
+ - [sin(3)](#sin)     - Sine function
+ - [sinh(3)](#sinh)   - Hyperbolic sine function
+ - [tan(3)](#tan)     - Tangent function
+ - [tanh(3)](#tanh)   - Hyperbolic tangent function
+ - [bessel_j0(3)](#bessel_j0) -  Bessel function of the first kind of order 0
+ - [bessel_j1(3)](#bessel_j1) -  Bessel function of the first kind of order 1
+ - [bessel_jn(3)](#bessel_jn) -  Bessel function of the first kind
+ - [bessel_y0(3)](#bessel_y0) -  Bessel function of the second kind of order 0
+ - [bessel_y1(3)](#bessel_y1) -  Bessel function of the second kind of order 1
+ - [bessel_yn(3)](#bessel_y2) -  Bessel function of the second kind
+ - [erf(3)](#erf)     -  Error function
+ - [erfc(3)](#erfc)   -  Complementary error function
+ - [erfc_scaled(3)](#erfc_scaled) -  Scaled complementary error function
+ - [exp(3)](#exp)     -  Base-e exponential function
+ - [gamma(3)](#gamma) -  Gamma function, which yields factorials for positive whole numbers
+ - [hypot(3)](#hypot) -  Returns the Euclidean distance - the distance between a point and the origin.
+ - [log(3)](#log)     -  Natural logarithm
+ - [log10(3)](#log10) -  Base 10 or common logarithm
+ - [log_gamma(3)](#log_gamma) -  Logarithm of the absolute value of the Gamma function
+ - [norm2(3)](#norm2) -  Euclidean vector norm
+ - [sqrt(3)](#sqrt)   -  Square-root function
+ - [random_init(3)](#random_init) - Initializes the state of the pseudorandom number generator
+ - [random_number(3)](#random_number) - Pseudo-random number
+ - [random_seed(3)](#random_seed) - Initialize a pseudo-random number sequence
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -14085,7 +14287,11 @@ Fortran 2008
 
 ### **See also**
 
-[****(3)](#)
+ - [dshiftl(3)](#dshiftl)   -  Combined left shift of the bits of two integers
+ - [dshiftr(3)](#dshiftr)   -  Combined right shift of the bits of two integers
+ - [ibits(3)](#ibits)     -  Extraction of a subset of bits
+ - [merge_bits(3)](#merge_bits) -  Merge bits using a mask
+ - [mvbits(3)](#mvbits)    -  Reproduce bit patterns found in one integer in another
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -14104,8 +14310,7 @@ Fortran 2008
 
       type(TYPE(kind=KIND)),intent(in) :: tsource
       type(TYPE(kind=KIND)),intent(in) :: fsource
-      logical(kind=**),intent(in)   :: mask
-      mask** : Shall be of type logical.
+      logical(kind=**),intent(in)      :: mask
 ```
 ### **Characteristics**
 
@@ -14928,18 +15133,19 @@ the elements of the array.
 - **stat**
   : If **stat** is present and execution is successful, it is assigned the
     value zero.
+
   : If an error condition occurs,
 
-      o if **stat** is absent, error termination is initiated;
-      o otherwise, if **from** is a coarray and the current team contains a
-        stopped image, **stat** is assigned the value STAT\_STOPPED\_IMAGE
-        from the intrinsic module ISO\_FORTRAN\_ENV;
-      o otherwise, if **from** is a coarray and the current team contains
+    o if **stat** is absent, error termination is initiated;
+    o otherwise, if **from** is a coarray and the current team contains a
+      stopped image, **stat** is assigned the value STAT\_STOPPED\_IMAGE
+      from the intrinsic module ISO\_FORTRAN\_ENV;
+    o otherwise, if **from** is a coarray and the current team contains
       a failed image, and no other error condition
-        occurs, **stat** is assigned the value STAT\_FAILED\_IMAGE from the
-        intrinsic module ISO\_FORTRAN\_ENV;
-      o otherwise, **stat** is assigned a processor-dependent positive value
-        that differs from that of STAT\_STOPPED\_IMAGE or STAT\_FAILED\_IMAGE.
+      occurs, **stat** is assigned the value STAT\_FAILED\_IMAGE from the
+      intrinsic module ISO\_FORTRAN\_ENV;
+    o otherwise, **stat** is assigned a processor-dependent positive value
+      that differs from that of STAT\_STOPPED\_IMAGE or STAT\_FAILED\_IMAGE.
 
 - **errmsg**
   : If the **errmsg** argument is present and an error condition occurs,
@@ -17928,7 +18134,7 @@ or
 
   When present only those elements of **array** are passed
   to **operation** for which the corresponding elements
-  of **mask** are true, as if **array* was filtered with
+  of **mask** are true, as if **array** was filtered with
   **pack(3)**.
 
 - **identity**
@@ -19035,11 +19241,11 @@ Fortran 95
    decimal precision of at least **p** digits, exponent range of at least
    **r**, and with a radix of **radix**. That is, if such a kind exists
 
-    + it has the decimal precision as returned by **precision**(3) of at
-      least **p** digits.
-    + a decimal exponent range, as returned by the function **range**(3)
-      of at least **r**
-    + a radix, as returned by the function **radix**(3) , of **radix**,
+   + it has the decimal precision as returned by **precision**(3) of at
+     least **p** digits.
+   + a decimal exponent range, as returned by the function **range**(3)
+     of at least **r**
+   + a radix, as returned by the function **radix**(3) , of **radix**,
 
    If the requested kind does not exist, -1 is returned.
 
@@ -20111,7 +20317,7 @@ FORTRAN 77
 
 - **array**
   : the array to measure the number of elements of.
-  If **array* is an assumed-size array, **dim** shall be present with a value less
+  If **array** is an assumed-size array, **dim** shall be present with a value less
   than the rank of **array**.
 
 - **dim**
@@ -21576,7 +21782,7 @@ When the resulting bit representation does not correspond to a valid
 representation of a variable of the same type as **mold**, the results are
 undefined, and subsequent operations on the result cannot be guaranteed to
 produce sensible behavior. For example, it is possible to create _logical_
-variables for which **var** and .not. var both appear to be true.
+variables for which **var** and **.not.var** both appear to be true.
 
 ### **Examples**
 
@@ -21638,7 +21844,7 @@ Fortran 90
 
 ### **See also**
 
-[****(3)](#)
+ -[equivalence(7)](#equivalence)  - alias storage
 
  _fortran-lang intrinsic descriptions_
 
@@ -22134,17 +22340,18 @@ statements, particularly when the replacements are conditional.
 
 ### **Result**
 
-  The element of the result that corresponds to the ith true element
-  of **mask**, in array element order, has the value **vector(i)** for i =
+  The element of the result that corresponds to the ith true element of
+  **mask**, in array element order, has the value **vector(i)** for i =
   1, 2, . . ., t, where t is the number of true values in **mask**. Each
-  other element has a value equal to **field* if **field* is scalar or to the
-  corresponding element of **field* if it is an array.
+  other element has a value equal to **field** if **field** is scalar
+  or to the corresponding element of **field** if it is an array.
 
   The resulting array corresponds to **field** with _.true._ elements
   of **mask** replaced by values from **vector** in array element order.
 
 ### **Examples**
-Particular values may be "scattered" to particular positions in an array by using
+Particular values may be "scattered" to particular positions in an array
+by using
 ```text
                        1 0 0
     If M is the array  0 1 0
@@ -22168,7 +22375,6 @@ Particular values may be "scattered" to particular positions in an array by usin
       1 0 0
       0 0 3
 ```
-
 Sample program:
 
 ```fortran
@@ -22233,7 +22439,6 @@ Results:
    >  [  0,  0,  0 ]
    >  [  2,  0,  4 ]
 ```
-
 ### **Standard**
 
 Fortran 95

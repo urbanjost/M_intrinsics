@@ -84,6 +84,11 @@ Fortran 2003
 
 ### **See also**
 
-[****(3)](#)
+ - [associated(3)](#associated) -  Association status of a pointer or pointer/target pair
+ - [extends_type_of(3)](#extends_type_of) -  Determine if the dynamic type of A is an extension of the dynamic type of MOLD.
+ - [is_iostat_end(3)](#is_iostat_end) -  Test for end-of-file value
+ - [is_iostat_eor(3)](#is_iostat_eor) -  Test for end-of-record value
+ - [present(3)](#present)   -  Determine whether an optional dummy argument is specified
+ - [same_type_as(3)](#same_type_as) -  Query dynamic types for equality
 
  _fortran-lang intrinsic descriptions_

@@ -18,7 +18,7 @@
 ```
 ### **Characteristics**
 
- - **date*, - **time*, and **zone* are default _character_ scalar types
+ - **date**, - **time**, and **zone** are default _character_ scalar types
  - **values** is a rank-one array of type integer with a decimal
  exponent range of at least four.
 
@@ -42,9 +42,9 @@
   : A character string of default kind of the form CCYYMMDD, of length
     8 or larger, where
 
-      + CCYY is the year in the Gregorian calendar
-      + MM is the month within the year
-      + DD is the day within the month.
+     + CCYY is the year in the Gregorian calendar
+     + MM is the month within the year
+     + DD is the day within the month.
 
     The characters of this value are all decimal digits.
 

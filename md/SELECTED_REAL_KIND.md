@@ -28,11 +28,11 @@
    decimal precision of at least **p** digits, exponent range of at least
    **r**, and with a radix of **radix**. That is, if such a kind exists
 
-    + it has the decimal precision as returned by **precision**(3) of at
-      least **p** digits.
-    + a decimal exponent range, as returned by the function **range**(3)
-      of at least **r**
-    + a radix, as returned by the function **radix**(3) , of **radix**,
+   + it has the decimal precision as returned by **precision**(3) of at
+     least **p** digits.
+   + a decimal exponent range, as returned by the function **range**(3)
+     of at least **r**
+   + a radix, as returned by the function **radix**(3) , of **radix**,
 
    If the requested kind does not exist, -1 is returned.
 

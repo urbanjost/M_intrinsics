@@ -43,18 +43,19 @@ the elements of the array.
 - **stat**
   : If **stat** is present and execution is successful, it is assigned the
     value zero.
+
   : If an error condition occurs,
 
-      o if **stat** is absent, error termination is initiated;
-      o otherwise, if **from** is a coarray and the current team contains a
-        stopped image, **stat** is assigned the value STAT\_STOPPED\_IMAGE
-        from the intrinsic module ISO\_FORTRAN\_ENV;
-      o otherwise, if **from** is a coarray and the current team contains
+    o if **stat** is absent, error termination is initiated;
+    o otherwise, if **from** is a coarray and the current team contains a
+      stopped image, **stat** is assigned the value STAT\_STOPPED\_IMAGE
+      from the intrinsic module ISO\_FORTRAN\_ENV;
+    o otherwise, if **from** is a coarray and the current team contains
       a failed image, and no other error condition
-        occurs, **stat** is assigned the value STAT\_FAILED\_IMAGE from the
-        intrinsic module ISO\_FORTRAN\_ENV;
-      o otherwise, **stat** is assigned a processor-dependent positive value
-        that differs from that of STAT\_STOPPED\_IMAGE or STAT\_FAILED\_IMAGE.
+      occurs, **stat** is assigned the value STAT\_FAILED\_IMAGE from the
+      intrinsic module ISO\_FORTRAN\_ENV;
+    o otherwise, **stat** is assigned a processor-dependent positive value
+      that differs from that of STAT\_STOPPED\_IMAGE or STAT\_FAILED\_IMAGE.
 
 - **errmsg**
   : If the **errmsg** argument is present and an error condition occurs,

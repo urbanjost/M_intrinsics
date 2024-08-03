@@ -118,6 +118,10 @@ Fortran 2008
 
 ### **See also**
 
-[****(3)](#)
+ - [dshiftl(3)](#dshiftl)   -  Combined left shift of the bits of two integers
+ - [dshiftr(3)](#dshiftr)   -  Combined right shift of the bits of two integers
+ - [ibits(3)](#ibits)     -  Extraction of a subset of bits
+ - [merge_bits(3)](#merge_bits) -  Merge bits using a mask
+ - [mvbits(3)](#mvbits)    -  Reproduce bit patterns found in one integer in another
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

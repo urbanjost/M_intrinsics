@@ -267,66 +267,121 @@ textblock=[character(len=256) :: &
 '      implicit none', &
 '      integer,parameter :: dp=kind(0.0d0)', &
 '', &
+'      ! some values to use with ABS(3f)', &
 '      integer          :: i = -1', &
 '      real             :: x = -1.0', &
 '      complex          :: z = (-3.0,-4.0)', &
 '      doubleprecision  :: rr = -45.78_dp', &
 '', &
+'      ! some formats for pretty-printing some information', &
 '      character(len=*),parameter :: &', &
-'        ! some formats', &
 '        frmt  =  ''(1x,a15,1x," In: ",g0,           T51," Out: ",g0)'', &', &
 '        frmtc = ''(1x,a15,1x," In: (",g0,",",g0,")",T51," Out: ",g0)'',        &', &
-'        g     = ''(*(g0,1x))''', &
+'        gen   = ''(*(g0,1x))''', &
 '', &
-'       ! basic usage', &
-'         ! any integer, real, or complex type', &
-'         write(*, frmt)  ''integer        '',  i, abs(i)', &
-'         write(*, frmt)  ''real           '',  x, abs(x)', &
-'         write(*, frmt)  ''doubleprecision '', rr, abs(rr)', &
-'         write(*, frmtc) ''complex        '',  z, abs(z)', &
-'', &
-'       ! You can take the absolute value of any value whose positive value', &
-'       ! is representable with the same type and kind.', &
-'         write(*, *) ''abs range test : '', abs(huge(0)), abs(-huge(0))', &
-'         write(*, *) ''abs range test : '', abs(huge(0.0)), abs(-huge(0.0))', &
-'         write(*, *) ''abs range test : '', abs(tiny(0.0)), abs(-tiny(0.0))', &
-'         ! A dusty corner is that abs(-huge(0)-1) of an integer would be', &
-'         ! a representable negative value on most machines but result in a', &
-'         ! positive value out of range.', &
+'       ! the basics', &
+'        print gen,  ''basic usage:''', &
+'        ! any integer, real, or complex type', &
+'        write(*, frmt)  ''integer        '',  i, abs(i)', &
+'        write(*, frmt)  ''real           '',  x, abs(x)', &
+'        write(*, frmt)  ''doubleprecision '', rr, abs(rr)', &
+'        write(*, frmtc) ''complex        '',  z, abs(z)', &
 '', &
 '       ! elemental', &
-'         write(*, g) '' abs is elemental:'', abs([20,  0,  -1,  -3,  100])', &
-'', &
-'       ! COMPLEX input produces REAL output', &
-'         write(*, g)'' complex input produces real output'', &', &
-'         & abs(cmplx(30.0_dp,40.0_dp,kind=dp))', &
-'         ! dusty corner: "kind=dp" is required or the value returned by', &
-'         ! CMPLX() is a default real instead of double precision', &
+'        print gen, ''abs is elemental:'', abs([20,  0,  -1,  -3,  100])', &
 '', &
 '       ! the returned value for complex input can be thought of as the', &
 '       ! distance from the origin <0,0>', &
-'         write(*, g) '' distance of ('', z, '') from zero is'', abs( z )', &
-'         write(*, g) '' so beware of overflow with complex values''', &
-'         !write(*, g) abs(cmplx( huge(0.0), huge(0.0) ))', &
-'         write(*, g) '' because the biggest default real is'',huge(0.0)', &
+'        print gen, ''distance of ('', z, '') from zero is'', abs( z )', &
+'', &
+'      call DUSTY_CORNERS_1("beware of abs(-huge(0)-1)")', &
+'      call DUSTY_CORNERS_2("beware of losing precision using CMPLX(3f)")', &
+'      call DUSTY_CORNERS_3("beware of overflow of complex values")', &
+'      call DUSTY_CORNERS_4("custom meaning for absolute value of COMPLEX")', &
+'', &
+'      contains', &
+'', &
+'      subroutine DUSTY_CORNERS_1(message)', &
+'      character(len=*),intent(in) :: message', &
+'', &
+'        ! A dusty corner is that abs(-huge(0)-1) of an integer would be', &
+'        ! a representable negative value on most machines but result in a', &
+'        ! positive value out of range.', &
+'', &
+'        print gen,  message', &
+'        ! By definition:', &
+'        !   You can take the absolute value of any value whose POSITIVE value', &
+'        !   is representable with the same type and kind.', &
+'', &
+'        print gen, ''abs range test : '', abs(huge(0)), abs(-huge(0))', &
+'        print gen, ''abs range test : '', abs(huge(0.0)), abs(-huge(0.0))', &
+'        print gen, ''abs range test : '', abs(tiny(0.0)), abs(-tiny(0.0))', &
+'', &
+'      end subroutine DUSTY_CORNERS_1', &
+'', &
+'      subroutine DUSTY_CORNERS_2(message)', &
+'      character(len=*),intent(in) :: message', &
+'', &
+'        ! dusty corner: "kind=dp" is required or the value returned by', &
+'        ! CMPLX() is a default real instead of double precision.', &
+'', &
+'        ! Working with complex values you often encounter the CMPLX(3f) function.', &
+'        ! CMPLX(3f) defaults to returning a default REAL regardless of input type.', &
+'        ! Not really a direct problem with ABS(2f) per-se, but a common error', &
+'        ! when working with doubleprecision complex values', &
+'', &
+'        print gen,  message', &
+'        print gen, ''real result versus doubleprecision result'', &', &
+'        & abs(cmplx(30.0_dp,40.0_dp)), &', &
+'        & abs(cmplx(30.0_dp,40.0_dp,kind=dp))', &
+'', &
+'      end subroutine DUSTY_CORNERS_2', &
+'', &
+'      subroutine DUSTY_CORNERS_3(message)', &
+'      character(len=*),intent(in) :: message', &
+'        print gen, message', &
+'', &
+'        ! this will probably cause an overflow error, or', &
+'        !print gen,  abs(cmplx( huge(0.0), huge(0.0) ))', &
+'', &
+'        print gen, ''because the biggest default real is'',huge(0.0)', &
+'        print gen, ''because returning magnitude of sqrt(x%re**2,x%im**2)''', &
+'', &
+'      end subroutine DUSTY_CORNERS_3', &
+'', &
+'      subroutine DUSTY_CORNERS_4(message)', &
+'      character(len=*),intent(in) :: message', &
+'        print gen, message', &
+'', &
+'        ! if you do not want the distance for a complex value you', &
+'        ! might want something like returning a complex value with', &
+'        ! both the imaginary and real parts. One way to do that is', &
+'', &
+'        print gen, cmplx(abs(z%re),abs(z%im),kind=kind(z))', &
+'', &
+'      end subroutine DUSTY_CORNERS_4', &
 '', &
 '      end program demo_abs', &
 '', &
 '  Results:', &
 '', &
-'         integer          In: -1                     Out: 1', &
-'         real             In: -1.000000              Out: 1.000000', &
-'         doubleprecision  In: -45.78000000000000     Out: 45.78000000000000', &
-'         complex          In: (-3.000000,-4.000000)  Out: 5.000000', &
-'         abs range test :   2147483647  2147483647', &
-'         abs range test :   3.4028235E+38  3.4028235E+38', &
-'         abs range test :   1.1754944E-38  1.1754944E-38', &
-'         abs is elemental: 20 0 1 3 100', &
-'         complex input produces real output 50.00000000000000', &
-'         distance of ( -3.000000 -4.000000 ) from zero is 5.000000', &
-'         so beware of overflow with complex values', &
-'         Inf', &
-'         because the biggest default real is .3402823E+39', &
+'       >  integer         In: -1                           Out: 1', &
+'       >  real            In: -1.00000000                  Out: 1.00000000', &
+'       >  doubleprecision  In: -45.780000000000001         Out: 45.780000000000001', &
+'       >  complex         In: (-3.00000000,-4.00000000)    Out: 5.00000000', &
+'       > abs is elemental: 20 0 1 3 100', &
+'       > distance of ( -3.00000000 -4.00000000 ) from zero is 5.00000000', &
+'       > beware of abs(-huge(0)-1)', &
+'       > abs range test :  2147483647 2147483647', &
+'       > abs range test :  0.340282347E+39 0.340282347E+39', &
+'       > abs range test :  0.117549435E-37 0.117549435E-37', &
+'       > beware of losing precision using CMPLX(3f)', &
+'       > real result versus doubleprecision result 50.0000000 50.000000000000000', &
+'       > beware of overflow of complex values', &
+'       > because the biggest default real is 0.340282347E+39', &
+'       > because returning magnitude of sqrt(x%re**2,x%im**2)', &
+'       > making your own meaning for ABS(COMPLEX_VALUE)', &
+'       > 3.00000000 4.00000000', &
 '', &
 '', &
 'STANDARD', &
@@ -339,7 +394,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   abs(3fortran)', &
+'                               August 03, 2024                  abs(3fortran)', &
 '']
 
 shortname="abs"
@@ -515,7 +570,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 achar(3fortran)', &
+'                               August 03, 2024                achar(3fortran)', &
 '']
 
 shortname="achar"
@@ -615,7 +670,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  acos(3fortran)', &
+'                               August 03, 2024                 acos(3fortran)', &
 '']
 
 shortname="acos"
@@ -696,7 +751,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 acosh(3fortran)', &
+'                               August 03, 2024                acosh(3fortran)', &
 '']
 
 shortname="acosh"
@@ -793,7 +848,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024               adjustl(3fortran)', &
+'                               August 03, 2024              adjustl(3fortran)', &
 '']
 
 shortname="adjustl"
@@ -886,7 +941,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024               adjustr(3fortran)', &
+'                               August 03, 2024              adjustr(3fortran)', &
 '']
 
 shortname="adjustr"
@@ -1001,7 +1056,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 aimag(3fortran)', &
+'                               August 03, 2024                aimag(3fortran)', &
 '']
 
 shortname="aimag"
@@ -1101,7 +1156,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  aint(3fortran)', &
+'                               August 03, 2024                 aint(3fortran)', &
 '']
 
 shortname="aint"
@@ -1221,7 +1276,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   all(3fortran)', &
+'                               August 03, 2024                  all(3fortran)', &
 '']
 
 shortname="all"
@@ -1328,7 +1383,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024             allocated(3fortran)', &
+'                               August 03, 2024            allocated(3fortran)', &
 '']
 
 shortname="allocated"
@@ -1454,7 +1509,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 anint(3fortran)', &
+'                               August 03, 2024                anint(3fortran)', &
 '']
 
 shortname="anint"
@@ -1620,7 +1675,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   any(3fortran)', &
+'                               August 03, 2024                  any(3fortran)', &
 '']
 
 shortname="any"
@@ -1742,7 +1797,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  asin(3fortran)', &
+'                               August 03, 2024                 asin(3fortran)', &
 '']
 
 shortname="asin"
@@ -1788,7 +1843,10 @@ textblock=[character(len=256) :: &
 '  inverse hyperbolic sine function of X.', &
 '', &
 '  If X is complex, the imaginary part of the result is in radians and lies', &
-'  between -PI/2 <= AIMAG(ASINH(X)) <= PI/2.', &
+'  between', &
+'', &
+'            -PI/2 <= aimag(asinh(x)) <= PI/2', &
+'', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -1821,7 +1879,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 asinh(3fortran)', &
+'                               August 03, 2024                asinh(3fortran)', &
 '']
 
 shortname="asinh"
@@ -1939,7 +1997,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024            associated(3fortran)', &
+'                               August 03, 2024           associated(3fortran)', &
 '']
 
 shortname="associated"
@@ -2126,7 +2184,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 atan2(3fortran)', &
+'                               August 03, 2024                atan2(3fortran)', &
 '']
 
 shortname="atan2"
@@ -2220,7 +2278,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  atan(3fortran)', &
+'                               August 03, 2024                 atan(3fortran)', &
 '']
 
 shortname="atan"
@@ -2262,7 +2320,7 @@ textblock=[character(len=256) :: &
 '  The return value has same type and kind as X. If X is complex, the imaginary', &
 '  part of the result is in radians and lies between', &
 '', &
-'            **-PI/2 <= aimag(atanh(x)) <= PI/2**', &
+'            -PI/2 <= aimag(atanh(x)) <= PI/2', &
 '', &
 '', &
 'EXAMPLES', &
@@ -2294,7 +2352,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 atanh(3fortran)', &
+'                               August 03, 2024                atanh(3fortran)', &
 '']
 
 shortname="atanh"
@@ -2371,7 +2429,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024            atomic_add(3fortran)', &
+'                               August 03, 2024           atomic_add(3fortran)', &
 '']
 
 shortname="atomic_add"
@@ -2449,7 +2507,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024            atomic_and(3fortran)', &
+'                               August 03, 2024           atomic_and(3fortran)', &
 '']
 
 shortname="atomic_and"
@@ -2519,7 +2577,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024            atomic_cas(3fortran)', &
+'                               August 03, 2024           atomic_cas(3fortran)', &
 '']
 
 shortname="atomic_cas"
@@ -2595,7 +2653,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024         atomic_define(3fortran)', &
+'                               August 03, 2024        atomic_define(3fortran)', &
 '']
 
 shortname="atomic_define"
@@ -2666,7 +2724,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024      atomic_fetch_add(3fortran)', &
+'                               August 03, 2024     atomic_fetch_add(3fortran)', &
 '']
 
 shortname="atomic_fetch_add"
@@ -2738,7 +2796,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024      atomic_fetch_and(3fortran)', &
+'                               August 03, 2024     atomic_fetch_and(3fortran)', &
 '']
 
 shortname="atomic_fetch_and"
@@ -2810,7 +2868,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024       atomic_fetch_or(3fortran)', &
+'                               August 03, 2024      atomic_fetch_or(3fortran)', &
 '']
 
 shortname="atomic_fetch_or"
@@ -2882,7 +2940,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024      atomic_fetch_xor(3fortran)', &
+'                               August 03, 2024     atomic_fetch_xor(3fortran)', &
 '']
 
 shortname="atomic_fetch_xor"
@@ -2963,7 +3021,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024             atomic_or(3fortran)', &
+'                               August 03, 2024            atomic_or(3fortran)', &
 '']
 
 shortname="atomic_or"
@@ -3047,7 +3105,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024            atomic_ref(3fortran)', &
+'                               August 03, 2024           atomic_ref(3fortran)', &
 '']
 
 shortname="atomic_ref"
@@ -3126,7 +3184,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024            atomic_xor(3fortran)', &
+'                               August 03, 2024           atomic_xor(3fortran)', &
 '']
 
 shortname="atomic_xor"
@@ -3260,7 +3318,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024             backspace(7fortran)', &
+'                               August 03, 2024            backspace(7fortran)', &
 '']
 
 shortname="backspace"
@@ -3330,7 +3388,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024             bessel_j0(3fortran)', &
+'                               August 03, 2024            bessel_j0(3fortran)', &
 '']
 
 shortname="bessel_j0"
@@ -3399,7 +3457,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024             bessel_j1(3fortran)', &
+'                               August 03, 2024            bessel_j1(3fortran)', &
 '']
 
 shortname="bessel_j1"
@@ -3503,7 +3561,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024             bessel_jn(3fortran)', &
+'                               August 03, 2024            bessel_jn(3fortran)', &
 '']
 
 shortname="bessel_jn"
@@ -3572,7 +3630,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024             bessel_y0(3fortran)', &
+'                               August 03, 2024            bessel_y0(3fortran)', &
 '']
 
 shortname="bessel_y0"
@@ -3640,7 +3698,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024             bessel_y1(3fortran)', &
+'                               August 03, 2024            bessel_y1(3fortran)', &
 '']
 
 shortname="bessel_y1"
@@ -3744,7 +3802,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024             bessel_yn(3fortran)', &
+'                               August 03, 2024            bessel_yn(3fortran)', &
 '']
 
 shortname="bessel_yn"
@@ -3909,7 +3967,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   bge(3fortran)', &
+'                               August 03, 2024                  bge(3fortran)', &
 '']
 
 shortname="bge"
@@ -4021,7 +4079,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   bgt(3fortran)', &
+'                               August 03, 2024                  bgt(3fortran)', &
 '']
 
 shortname="bgt"
@@ -4106,13 +4164,15 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  ****(3)', &
+'  o  BTEST(3) - Tests a bit of an integer value.', &
+'', &
+'  o  STORAGE_SIZE(3f) - Storage size in bits', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 28, 2024              bit_size(3fortran)', &
+'                               August 03, 2024             bit_size(3fortran)', &
 '']
 
 shortname="bit_size"
@@ -4213,7 +4273,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   ble(3fortran)', &
+'                               August 03, 2024                  ble(3fortran)', &
 '']
 
 shortname="ble"
@@ -4308,7 +4368,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   blt(3fortran)', &
+'                               August 03, 2024                  blt(3fortran)', &
 '']
 
 shortname="blt"
@@ -4446,7 +4506,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 btest(3fortran)', &
+'                               August 03, 2024                btest(3fortran)', &
 '']
 
 shortname="btest"
@@ -4524,7 +4584,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024          c_associated(3fortran)', &
+'                               August 03, 2024         c_associated(3fortran)', &
 '']
 
 shortname="c_associated"
@@ -4553,7 +4613,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'CHARACTERISTICS', &
-'  o  ** a is of type real', &
+'  o  A is of type real', &
 '', &
 '  o  KIND shall be a scalar integer constant expression. It specifies the kind', &
 '     of the result if present.', &
@@ -4634,7 +4694,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024               ceiling(3fortran)', &
+'                               August 03, 2024              ceiling(3fortran)', &
 '']
 
 shortname="ceiling"
@@ -4710,7 +4770,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024           c_f_pointer(3fortran)', &
+'                               August 03, 2024          c_f_pointer(3fortran)', &
 '']
 
 shortname="c_f_pointer"
@@ -4785,7 +4845,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024       c_f_procpointer(3fortran)', &
+'                               August 03, 2024      c_f_procpointer(3fortran)', &
 '']
 
 shortname="c_f_procpointer"
@@ -4859,7 +4919,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024              c_funloc(3fortran)', &
+'                               August 03, 2024             c_funloc(3fortran)', &
 '']
 
 shortname="c_funloc"
@@ -4929,12 +4989,16 @@ textblock=[character(len=256) :: &
 '      program demo_char', &
 '      implicit none', &
 '      integer, parameter :: ascii =  selected_char_kind ("ascii")', &
-'      character(len=1, kind=ascii ) :: c', &
+'      character(len=1, kind=ascii ) :: c, esc', &
 '      integer :: i', &
 '       ! basic', &
 '        i=74', &
 '        c=char(i)', &
 '        write(*,*)''ASCII character '',i,''is '',c', &
+'        write(*,''(*(g0))'')''Uppercase ASCII: '',(char(i),i=65,90)', &
+'        write(*,''(*(g0))'')''lowercase ASCII: '',(char(i),i=97,122)', &
+'        esc=char(27)', &
+'        write(*,''(*(g0))'')''Elemental: '',char([65,97,90,122])', &
 '       !', &
 '        print *, ''a selection of ASCII characters (shows hex if not printable)''', &
 '        do i=0,127,10', &
@@ -4954,19 +5018,25 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         ASCII character           74 is J', &
-'         a selection of ASCII characters (shows hex if not printable)', &
-'          0 00', &
-'         10 0A', &
-'         20 14', &
-'         30 1E', &
-'         40 (', &
-'         50 2', &
-'         60 <', &
-'         70 F', &
-'         80 P', &
-'         90 Z', &
-'  100 d 110 n 120 x', &
+'       >  ASCII character          74 is J', &
+'       > Uppercase ASCII: ABCDEFGHIJKLMNOPQRSTUVWXYZ', &
+'       > lowercase ASCII: abcdefghijklmnopqrstuvwxyz', &
+'       > Elemental: AaZz', &
+'       >  a selection of ASCII characters (shows hex if not printable)', &
+'       >   0 00', &
+'       >  10 0A', &
+'       >  20 14', &
+'       >  30 1E', &
+'       >  40 (', &
+'       >  50 2', &
+'       >  60 <', &
+'       >  70 F', &
+'       >  80 P', &
+'       >  90 Z', &
+'       > 100 d', &
+'       > 110 n', &
+'       > 120 x', &
+'', &
 '', &
 'STANDARD', &
 '  FORTRAN 77', &
@@ -4985,7 +5055,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  char(3fortran)', &
+'                               August 03, 2024                 char(3fortran)', &
 '']
 
 shortname="char"
@@ -5046,7 +5116,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 c_loc(3fortran)', &
+'                               August 03, 2024                c_loc(3fortran)', &
 '']
 
 shortname="c_loc"
@@ -5157,38 +5227,34 @@ textblock=[character(len=256) :: &
 'EXAMPLES', &
 '  sample program:', &
 '', &
-'  program demo_close implicit none character(len=256) :: message integer ::', &
-'  ios open (10, file=''employee.names'', action=''read'',', &
-'  iostat=ios,iomsg=message) if (ios < 0) then ! perform end-of-file processing', &
-'  on the file connected to unit 10.', &
+'        program demo_close', &
+'        implicit none', &
+'        character(len=256) :: message', &
+'        integer            :: ios', &
+'           open (10, file=''employee.names'', action=''read'', iostat=ios,iomsg=message)', &
+'           if (ios < 0) then', &
+'              ! perform end-of-file processing on the file connected to unit 10.', &
 '', &
-'          close (10, status=''keep'',iostat=ios,iomsg=message)', &
-'          if(ios.ne.0)then', &
-'             write(*,''(*(a))'')''*demo_close* close error: '',trim(message)', &
-'             stop 1', &
-'          endif', &
-'  elseif (ios > 0) then ! perform error processing on open', &
-'  write(*,''(*(a))'')''*demo_close* open error: '',trim(message) stop 2 endif', &
+'              close (10, status=''keep'',iostat=ios,iomsg=message)', &
+'              if(ios.ne.0)then', &
+'                 write(*,''(*(a))'')''*demo_close* close error: '',trim(message)', &
+'                 stop 1', &
+'              endif', &
+'           elseif (ios > 0) then', &
+'              ! perform error processing on open', &
+'              write(*,''(*(a))'')''*demo_close* open error: '',trim(message)', &
+'              stop 2', &
+'           endif', &
+'        end program demo_close', &
 '', &
-'  end program demo_close', &
 '', &
-'      ### **See Also**', &
-'', &
-'      [**backspace**(3)](#backspace),', &
-'      [**close**(3)](#close),', &
-'      [**endfile**(3)](#endfile),', &
-'      [**flush**(3)](#flush),', &
-'      [**inquire**(3)](#inquire),', &
-'      [**open**(3)](#open),', &
-'      [**print**(3)](#print),', &
-'      [**read**(3)](#read),', &
-'      [**rewind**(3)](#rewind),', &
-'      [**wait**(3)](#wait),', &
-'      [**write**(3)](#write)', &
+'SEE ALSO', &
+'  BACKSPACE(3), CLOSE(3), ENDFILE(3), FLUSH(3), INQUIRE(3), OPEN(3), PRINT(3),', &
+'  READ(3), REWIND(3), WAIT(3), WRITE(3)', &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 close(7fortran)', &
+'                               August 03, 2024                close(7fortran)', &
 '']
 
 shortname="close"
@@ -5460,7 +5526,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 cmplx(3fortran)', &
+'                               August 03, 2024                cmplx(3fortran)', &
 '']
 
 shortname="cmplx"
@@ -5528,7 +5594,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024          co_broadcast(3fortran)', &
+'                               August 03, 2024         co_broadcast(3fortran)', &
 '']
 
 shortname="co_broadcast"
@@ -5648,7 +5714,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                co_max(3fortran)', &
+'                               August 03, 2024               co_max(3fortran)', &
 '']
 
 shortname="co_max"
@@ -5717,7 +5783,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                co_min(3fortran)', &
+'                               August 03, 2024               co_min(3fortran)', &
 '']
 
 shortname="co_min"
@@ -5795,7 +5861,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024command_argument_count(3fortran)', &
+'                               August 03, 202command_argument_count(3fortran)', &
 '']
 
 shortname="command_argument_count"
@@ -5883,7 +5949,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024      compiler_options(3fortran)', &
+'                               August 03, 2024     compiler_options(3fortran)', &
 '']
 
 shortname="compiler_options"
@@ -5955,7 +6021,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024      compiler_version(3fortran)', &
+'                               August 03, 2024     compiler_version(3fortran)', &
 '']
 
 shortname="compiler_version"
@@ -6086,7 +6152,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 conjg(3fortran)', &
+'                               August 03, 2024                conjg(3fortran)', &
 '']
 
 shortname="conjg"
@@ -6168,7 +6234,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024              continue(7fortran)', &
+'                               August 03, 2024             continue(7fortran)', &
 '']
 
 shortname="continue"
@@ -6270,7 +6336,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024             co_reduce(3fortran)', &
+'                               August 03, 2024            co_reduce(3fortran)', &
 '']
 
 shortname="co_reduce"
@@ -6364,7 +6430,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   cos(3fortran)', &
+'                               August 03, 2024                  cos(3fortran)', &
 '']
 
 shortname="cos"
@@ -6439,7 +6505,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  cosh(3fortran)', &
+'                               August 03, 2024                 cosh(3fortran)', &
 '']
 
 shortname="cosh"
@@ -6516,7 +6582,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                co_sum(3fortran)', &
+'                               August 03, 2024               co_sum(3fortran)', &
 '']
 
 shortname="co_sum"
@@ -6797,13 +6863,17 @@ textblock=[character(len=256) :: &
 '  Fortran 95 , with KIND argument - Fortran 2003', &
 '', &
 'SEE ALSO', &
-'  ANY(3), ALL(3), SUM(3),', &
+'  o  ANY(3)', &
+'', &
+'  o  ALL(3)', &
+'', &
+'  o  SUM(3)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 count(3fortran)', &
+'                               August 03, 2024                count(3fortran)', &
 '']
 
 shortname="count"
@@ -6916,7 +6986,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024              cpu_time(3fortran)', &
+'                               August 03, 2024             cpu_time(3fortran)', &
 '']
 
 shortname="cpu_time"
@@ -7054,7 +7124,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                cshift(3fortran)', &
+'                               August 03, 2024               cshift(3fortran)', &
 '']
 
 shortname="cshift"
@@ -7118,7 +7188,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024              c_sizeof(3fortran)', &
+'                               August 03, 2024             c_sizeof(3fortran)', &
 '']
 
 shortname="c_sizeof"
@@ -7149,7 +7219,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'CHARACTERISTICS', &
-'  o  *date, - *time, and *zone are default character scalar types', &
+'  o  DATE, - TIME, and ZONE are default character scalar types', &
 '', &
 '  o  VALUES is a rank-one array of type integer with a decimal exponent range', &
 '     of at least four.', &
@@ -7171,13 +7241,15 @@ textblock=[character(len=256) :: &
 '  o  DATE : A character string of default kind of the form CCYYMMDD, of length', &
 '     8 or larger, where', &
 '', &
-'         + CCYY is the year in the Gregorian calendar', &
-'         + MM is the month within the year', &
-'         + DD is the day within the month.', &
+'     o CCYY is the year in the Gregorian calendar', &
 '', &
-'  The characters of this value are all decimal digits.', &
+'     o MM is the month within the year', &
 '', &
-'    If there is no date available, DATE is assigned all blanks.', &
+'     o DD is the day within the month.', &
+'', &
+'     The characters of this value are all decimal digits.', &
+'', &
+'     If there is no date available, DATE is assigned all blanks.', &
 '', &
 '  o  TIME : A character string of default kind of the form HHMMSS.SSS, of', &
 '     length 10 or larger, where', &
@@ -7305,7 +7377,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024         date_and_time(3fortran)', &
+'                               August 03, 2024        date_and_time(3fortran)', &
 '']
 
 shortname="date_and_time"
@@ -7384,7 +7456,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  dble(3fortran)', &
+'                               August 03, 2024                 dble(3fortran)', &
 '']
 
 shortname="dble"
@@ -7459,7 +7531,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                digits(3fortran)', &
+'                               August 03, 2024               digits(3fortran)', &
 '']
 
 shortname="digits"
@@ -7542,13 +7614,35 @@ textblock=[character(len=256) :: &
 '  FORTRAN 77', &
 '', &
 'SEE ALSO', &
-'  ****(3)', &
+'  o  ABS(3) - Absolute value', &
+'', &
+'  o  AINT(3) - Truncate toward zero to a whole number', &
+'', &
+'  o  ANINT(3) - Real nearest whole number', &
+'', &
+'  o  CEILING(3) - Integer ceiling function', &
+'', &
+'  o  CONJG(3) - Complex conjugate of a complex value', &
+'', &
+'  o  DIM(3) - Positive difference of X - Y', &
+'', &
+'  o  DPROD(3) - Double precision real product', &
+'', &
+'  o  FLOOR(3) - Function to return largest integral value', &
+'', &
+'  o  MAX(3) - Maximum value of an argument list', &
+'', &
+'  o  MIN(3) - Minimum value of an argument list', &
+'', &
+'  o  MOD(3) - Remainder function', &
+'', &
+'  o  SIGN(3) - Sign copying function', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   dim(3fortran)', &
+'                               August 03, 2024                  dim(3fortran)', &
 '']
 
 shortname="dim"
@@ -7651,7 +7745,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024           dot_product(3fortran)', &
+'                               August 03, 2024          dot_product(3fortran)', &
 '']
 
 shortname="dot_product"
@@ -7765,7 +7859,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 dprod(3fortran)', &
+'                               August 03, 2024                dprod(3fortran)', &
 '']
 
 shortname="dprod"
@@ -7917,7 +8011,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024               dshiftl(3fortran)', &
+'                               August 03, 2024              dshiftl(3fortran)', &
 '']
 
 shortname="dshiftl"
@@ -8072,7 +8166,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024               dshiftr(3fortran)', &
+'                               August 03, 2024              dshiftr(3fortran)', &
 '']
 
 shortname="dshiftr"
@@ -8088,11 +8182,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
+'  ENDFILE(7) - [NUMERIC] Absolute value', &
+'', &
+'', &
 'SYNOPSIS', &
 '  endfile unit_number', &
 '', &
 'DESCRIPTION', &
-'  An ENDFILE(7F) ends or truncates a file at the current record.', &
+'  An ENDFILE(7f) ends or truncates a file at the current record.', &
 '', &
 '  Execution of an ENDFILE(7F) statement for a file connected for SEQUENTIAL', &
 '  ACCESS writes an endfile record as the next record of the file. The file is', &
@@ -8121,42 +8218,42 @@ textblock=[character(len=256) :: &
 '  it is created prior to writing the endfile record.', &
 '', &
 'OPTIONS', &
-'   LUN', &
-'  : A unit number of a connected file', &
+'  LUN', &
+'    A unit number of a connected file', &
 '', &
 'EXAMPLES', &
-'  An example of an **endfile(7f) statement is:', &
+'  An example of an ENDFILE(7f) statement is:', &
 '', &
-'      program demo_endfile', &
-'      implicit none', &
-'      integer :: lun, i, j, iostat', &
-'      integer,parameter:: isz=10', &
-'        !', &
-'        ! create a little scratch file', &
-'        open(newunit=lun,file=''_scr.txt'', form=''formatted'')', &
-'        write(lun,''(i0)'')(100+i,i=1,isz)', &
-'        !', &
-'        ! write end of file after reading half of file', &
-'        rewind(lun)', &
-'        write(*,*)''rewind and read'',isz/2,''lines''', &
-'        read(lun,*)(j,i=1,isz/2)', &
-'        endfile lun ! will truncate line at current position', &
-'        !', &
-'        ! NOTE: backspace before writing any addition lines', &
-'        !       once an ENDFILE(7f) statement is executed', &
-'        ! backspace(lun)', &
-'        !', &
-'        ! rewind and echo remaining file', &
-'        rewind(lun)', &
-'        j=0', &
-'        do i=1,huge(0)-1', &
-'           read(lun,*,iostat=iostat)j', &
-'           if(iostat.ne.0)exit', &
-'           write(*,*)i,j', &
-'        enddo', &
-'        write(*,*)''number of lines in file was '',isz,'', is now '',i-1', &
-'        close(unit=lun,status=''delete'')', &
-'      end program demo_endfile', &
+'         program demo_endfile', &
+'         implicit none', &
+'         integer :: lun, i, j, iostat', &
+'         integer,parameter:: isz=10', &
+'            !', &
+'            ! create a little scratch file', &
+'            open(newunit=lun,file=''_scr.txt'', form=''formatted'')', &
+'            write(lun,''(i0)'')(100+i,i=1,isz)', &
+'            !', &
+'            ! write end of file after reading half of file', &
+'            rewind(lun)', &
+'            write(*,*)''rewind and read'',isz/2,''lines''', &
+'            read(lun,*)(j,i=1,isz/2)', &
+'            endfile lun ! will truncate line at current position', &
+'            !', &
+'            ! NOTE: backspace before writing any addition lines', &
+'            !       once an ENDFILE(7f) statement is executed', &
+'            ! backspace(lun)', &
+'            !', &
+'            ! rewind and echo remaining file', &
+'            rewind(lun)', &
+'            j=0', &
+'            do i=1,huge(0)-1', &
+'               read(lun,*,iostat=iostat)j', &
+'               if(iostat.ne.0)exit', &
+'               write(*,*)i,j', &
+'            enddo', &
+'            write(*,*)''number of lines in file was '',isz,'', is now '',i-1', &
+'            close(unit=lun,status=''delete'')', &
+'         end program demo_endfile', &
 '', &
 '', &
 'SEE ALSO', &
@@ -8165,7 +8262,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024               endfile(7fortran)', &
+'                               August 03, 2024              endfile(7fortran)', &
 '']
 
 shortname="endfile"
@@ -8298,7 +8395,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024               eoshift(3fortran)', &
+'                               August 03, 2024              eoshift(3fortran)', &
 '']
 
 shortname="eoshift"
@@ -8430,7 +8527,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024               epsilon(3fortran)', &
+'                               August 03, 2024              epsilon(3fortran)', &
 '']
 
 shortname="epsilon"
@@ -8503,7 +8600,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   erf(3fortran)', &
+'                               August 03, 2024                  erf(3fortran)', &
 '']
 
 shortname="erf"
@@ -8555,10 +8652,10 @@ textblock=[character(len=256) :: &
 '  The return value is of type real and of the same kind as X. It lies in the', &
 '  range', &
 '', &
-'    0 \<= **erfc**(x) \<= 2.', &
+'    0 <= erfc(x) <= 2.', &
 '', &
 '  and is a processor-dependent approximation to the complementary error', &
-'  function of X ( **1-erf(x) ).', &
+'  function of X ( 1-ERF(X) ).', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -8591,7 +8688,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  erfc(3fortran)', &
+'                               August 03, 2024                 erfc(3fortran)', &
 '']
 
 shortname="erfc"
@@ -8673,7 +8770,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024           erfc_scaled(3fortran)', &
+'                               August 03, 2024          erfc_scaled(3fortran)', &
 '']
 
 shortname="erfc_scaled"
@@ -8733,13 +8830,37 @@ textblock=[character(len=256) :: &
 '  TS 18508', &
 '', &
 'SEE ALSO', &
-'  ****(3)', &
+'  o  co_broadcast(3) - Copy a value to all images the current set of images', &
+'', &
+'  o  co_lbound(3) - Lower codimension bounds of an array', &
+'', &
+'  o  co_max(3) - Maximal value on the current set of images', &
+'', &
+'  o  co_min(3) - Minimal value on the current set of images', &
+'', &
+'  o  co_reduce(3) - Reduction of values on the current set of images', &
+'', &
+'  o  co_sum(3) - Sum of values on the current set of images', &
+'', &
+'  o  co_ubound(3) - Upper codimension bounds of an array', &
+'', &
+'  o  event_query(3) - Query whether a coarray event has occurred', &
+'', &
+'  o  image_index(3) - Cosubscript to image index conversion', &
+'', &
+'  o  lcobound(3) - Lower codimension bounds of an array', &
+'', &
+'  o  num_images(3) - Number of images', &
+'', &
+'  o  this_image(3) - Cosubscript index of this image', &
+'', &
+'  o  ucobound(3) - Upper codimension bounds of an array', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
 '', &
 '', &
-'                               April 28, 2024           event_query(3fortran)', &
+'                               August 03, 2024          event_query(3fortran)', &
 '']
 
 shortname="event_query"
@@ -8873,7 +8994,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024  execute_command_line(3fortran)', &
+'                               August 03, 2024 execute_command_line(3fortran)', &
 '']
 
 shortname="execute_command_line"
@@ -8990,7 +9111,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   exp(3fortran)', &
+'                               August 03, 2024                  exp(3fortran)', &
 '']
 
 shortname="exp"
@@ -9072,7 +9193,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024              exponent(3fortran)', &
+'                               August 03, 2024             exponent(3fortran)', &
 '']
 
 shortname="exponent"
@@ -9253,7 +9374,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024       extends_type_of(3fortran)', &
+'                               August 03, 2024      extends_type_of(3fortran)', &
 '']
 
 shortname="extends_type_of"
@@ -9546,7 +9667,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024               findloc(3fortran)', &
+'                               August 03, 2024              findloc(3fortran)', &
 '']
 
 shortname="findloc"
@@ -9660,7 +9781,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 floor(3fortran)', &
+'                               August 03, 2024                floor(3fortran)', &
 '']
 
 shortname="floor"
@@ -9757,7 +9878,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 flush(7fortran)', &
+'                               August 03, 2024                flush(7fortran)', &
 '']
 
 shortname="flush"
@@ -9796,8 +9917,9 @@ textblock=[character(len=256) :: &
 '  o  X : The value to interrogate', &
 '', &
 'RESULT', &
-'  The fractional part of the model representation of X is returned; it is X *', &
-'  RADIX(X)**(-EXPONENT(X)).', &
+'  The fractional part of the model representation of X is returned; it is', &
+'', &
+'         x * radix(x)**(-exponent(x))', &
 '', &
 '  If X has the value zero, the result is zero.', &
 '', &
@@ -9832,7 +9954,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024              fraction(3fortran)', &
+'                               August 03, 2024             fraction(3fortran)', &
 '']
 
 shortname="fraction"
@@ -9987,7 +10109,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 gamma(3fortran)', &
+'                               August 03, 2024                gamma(3fortran)', &
 '']
 
 shortname="gamma"
@@ -10096,7 +10218,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024           get_command(3fortran)', &
+'                               August 03, 2024          get_command(3fortran)', &
 '']
 
 shortname="get_command"
@@ -10236,7 +10358,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024  get_command_argument(3fortran)', &
+'                               August 03, 2024 get_command_argument(3fortran)', &
 '']
 
 shortname="get_command_argument"
@@ -10383,7 +10505,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 20get_environment_variable(3fortran)', &
+'                               August 03, 2get_environment_variable(3fortran)', &
 '']
 
 shortname="get_environment_variable"
@@ -10502,7 +10624,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  huge(3fortran)', &
+'                               August 03, 2024                 huge(3fortran)', &
 '']
 
 shortname="huge"
@@ -10610,13 +10732,80 @@ textblock=[character(len=256) :: &
 '  Fortran 2008', &
 '', &
 'SEE ALSO', &
-'  ****(3)', &
+'  o  acos(3) - Arccosine (inverse cosine) function', &
+'', &
+'  o  acosh(3) - Inverse hyperbolic cosine function', &
+'', &
+'  o  asin(3) - Arcsine function', &
+'', &
+'  o  asinh(3) - Inverse hyperbolic sine function', &
+'', &
+'  o  atan(3) - Arctangent AKA inverse tangent function', &
+'', &
+'  o  atan2(3) - Arctangent (inverse tangent) function', &
+'', &
+'  o  atanh(3) - Inverse hyperbolic tangent function', &
+'', &
+'  o  cos(3) - Cosine function', &
+'', &
+'  o  cosh(3) - Hyperbolic cosine function', &
+'', &
+'  o  sin(3) - Sine function', &
+'', &
+'  o  sinh(3) - Hyperbolic sine function', &
+'', &
+'  o  tan(3) - Tangent function', &
+'', &
+'  o  tanh(3) - Hyperbolic tangent function', &
+'', &
+'  o  bessel_j0(3) - Bessel function of the first kind of order 0', &
+'', &
+'  o  bessel_j1(3) - Bessel function of the first kind of order 1', &
+'', &
+'  o  bessel_jn(3) - Bessel function of the first kind', &
+'', &
+'  o  bessel_y0(3) - Bessel function of the second kind of order 0', &
+'', &
+'  o  bessel_y1(3) - Bessel function of the second kind of order 1', &
+'', &
+'  o  bessel_yn(3) - Bessel function of the second kind', &
+'', &
+'  o  erf(3) - Error function', &
+'', &
+'  o  erfc(3) - Complementary error function', &
+'', &
+'  o  erfc_scaled(3) - Scaled complementary error function', &
+'', &
+'  o  exp(3) - Base-e exponential function', &
+'', &
+'  o  gamma(3) - Gamma function, which yields factorials for positive whole', &
+'     numbers', &
+'', &
+'  o  hypot(3) - Returns the Euclidean distance - the distance between a point', &
+'     and the origin.', &
+'', &
+'  o  log(3) - Natural logarithm', &
+'', &
+'  o  log10(3) - Base 10 or common logarithm', &
+'', &
+'  o  log_gamma(3) - Logarithm of the absolute value of the Gamma function', &
+'', &
+'  o  norm2(3) - Euclidean vector norm', &
+'', &
+'  o  sqrt(3) - Square-root function', &
+'', &
+'  o  random_init(3) - Initializes the state of the pseudorandom number', &
+'     generator', &
+'', &
+'  o  random_number(3) - Pseudo-random number', &
+'', &
+'  o  random_seed(3) - Initialize a pseudo-random number sequence', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 hypot(3fortran)', &
+'                               August 03, 2024                hypot(3fortran)', &
 '']
 
 shortname="hypot"
@@ -10738,7 +10927,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                iachar(3fortran)', &
+'                               August 03, 2024               iachar(3fortran)', &
 '']
 
 shortname="iachar"
@@ -10829,7 +11018,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  iall(3fortran)', &
+'                               August 03, 2024                 iall(3fortran)', &
 '']
 
 shortname="iall"
@@ -10920,7 +11109,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  iand(3fortran)', &
+'                               August 03, 2024                 iand(3fortran)', &
 '']
 
 shortname="iand"
@@ -11037,7 +11226,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  iany(3fortran)', &
+'                               August 03, 2024                 iany(3fortran)', &
 '']
 
 shortname="iany"
@@ -11143,7 +11332,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 ibclr(3fortran)', &
+'                               August 03, 2024                ibclr(3fortran)', &
 '']
 
 shortname="ibclr"
@@ -11252,7 +11441,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 ibits(3fortran)', &
+'                               August 03, 2024                ibits(3fortran)', &
 '']
 
 shortname="ibits"
@@ -11357,7 +11546,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 ibset(3fortran)', &
+'                               August 03, 2024                ibset(3fortran)', &
 '']
 
 shortname="ibset"
@@ -11462,7 +11651,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 ichar(3fortran)', &
+'                               August 03, 2024                ichar(3fortran)', &
 '']
 
 shortname="ichar"
@@ -11576,7 +11765,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  ieor(3fortran)', &
+'                               August 03, 2024                 ieor(3fortran)', &
 '']
 
 shortname="ieor"
@@ -11633,7 +11822,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024           image_index(3fortran)', &
+'                               August 03, 2024          image_index(3fortran)', &
 '']
 
 shortname="image_index"
@@ -11740,7 +11929,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 index(3fortran)', &
+'                               August 03, 2024                index(3fortran)', &
 '']
 
 shortname="index"
@@ -12199,9 +12388,9 @@ textblock=[character(len=256) :: &
 'EXAMPLES', &
 '  Examples of INQUIRE statements are:', &
 '', &
-'       INQUIRE (IOLENGTH = IOL) A (1:N)', &
-'       INQUIRE (UNIT = JOAN, OPENED = LOG_01, NAMED = LOG_02, &', &
-'         FORM = CHAR_VAR, IOSTAT = IOS)', &
+'          INQUIRE (IOLENGTH = IOL) A (1:N)', &
+'          INQUIRE (UNIT = JOAN, OPENED = LOG_01, NAMED = LOG_02, &', &
+'             FORM = CHAR_VAR, IOSTAT = IOS)', &
 '', &
 '', &
 'SEE ALSO', &
@@ -12210,7 +12399,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024               inquire(7fortran)', &
+'                               August 03, 2024              inquire(7fortran)', &
 '']
 
 shortname="inquire"
@@ -12346,7 +12535,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   int(3fortran)', &
+'                               August 03, 2024                  int(3fortran)', &
 '']
 
 shortname="int"
@@ -12435,7 +12624,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   ior(3fortran)', &
+'                               August 03, 2024                  ior(3fortran)', &
 '']
 
 shortname="ior"
@@ -12531,7 +12720,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024               iparity(3fortran)', &
+'                               August 03, 2024              iparity(3fortran)', &
 '']
 
 shortname="iparity"
@@ -12650,13 +12839,25 @@ textblock=[character(len=256) :: &
 '  Fortran 2008', &
 '', &
 'SEE ALSO', &
-'  ****(3)', &
+'  o  allocated(3) - Allocation status of an allocatable entity', &
+'', &
+'  o  is_contiguous(3) - Test if object is contiguous', &
+'', &
+'  o  lbound(3) - Lower dimension bounds of an array', &
+'', &
+'  o  rank(3) - Rank of a data object', &
+'', &
+'  o  shape(3) - Determine the shape of an array or scalar', &
+'', &
+'  o  size(3) - Determine the size of an array or extent of one dimension', &
+'', &
+'  o  ubound(3) - Upper dimension bounds of an array', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
 '', &
 '', &
-'                               April 28, 2024         is_contiguous(3fortran)', &
+'                               August 03, 2024        is_contiguous(3fortran)', &
 '']
 
 shortname="is_contiguous"
@@ -12759,7 +12960,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 ishft(3fortran)', &
+'                               August 03, 2024                ishft(3fortran)', &
 '']
 
 shortname="ishft"
@@ -12908,7 +13109,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                ishftc(3fortran)', &
+'                               August 03, 2024               ishftc(3fortran)', &
 '']
 
 shortname="ishftc"
@@ -12982,13 +13183,24 @@ textblock=[character(len=256) :: &
 '  Fortran 2003', &
 '', &
 'SEE ALSO', &
-'  ****(3)', &
+'  o  associated(3) - Association status of a pointer or pointer/target pair', &
+'', &
+'  o  extends_type_of(3) - Determine if the dynamic type of A is an extension', &
+'     of the dynamic type of MOLD.', &
+'', &
+'  o  is_iostat_end(3) - Test for end-of-file value', &
+'', &
+'  o  is_iostat_eor(3) - Test for end-of-record value', &
+'', &
+'  o  present(3) - Determine whether an optional dummy argument is specified', &
+'', &
+'  o  same_type_as(3) - Query dynamic types for equality', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 28, 2024         is_iostat_end(3fortran)', &
+'                               August 03, 2024        is_iostat_end(3fortran)', &
 '']
 
 shortname="is_iostat_end"
@@ -13077,13 +13289,24 @@ textblock=[character(len=256) :: &
 '  Fortran 2003', &
 '', &
 'SEE ALSO', &
-'  ****(3)', &
+'  o  associated(3) - Association status of a pointer or pointer/target pair', &
+'', &
+'  o  extends_type_of(3) - Determine if the dynamic type of A is an extension', &
+'     of the dynamic type of MOLD.', &
+'', &
+'  o  is_iostat_end(3) - Test for end-of-file value', &
+'', &
+'  o  is_iostat_eor(3) - Test for end-of-record value', &
+'', &
+'  o  present(3) - Determine whether an optional dummy argument is specified', &
+'', &
+'  o  same_type_as(3) - Query dynamic types for equality', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
 '', &
 '', &
-'                               April 28, 2024         is_iostat_eor(3fortran)', &
+'                               August 03, 2024        is_iostat_eor(3fortran)', &
 '']
 
 shortname="is_iostat_eor"
@@ -13173,7 +13396,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  kind(3fortran)', &
+'                               August 03, 2024                 kind(3fortran)', &
 '']
 
 shortname="kind"
@@ -13244,16 +13467,15 @@ textblock=[character(len=256) :: &
 '  1.', &
 '', &
 '', &
-'      NOTE1', &
+'  NOTE1', &
 '', &
-'      If **array** is assumed-rank and has rank zero, **dim** cannot be', &
-'      present since it cannot satisfy the requirement **1 <= dim <= 0**.', &
-'', &
+'  If ARRAY is assumed-rank and has rank zero, DIM cannot be present since it', &
+'  cannot satisfy the requirement 1 <= DIM <= 0.', &
 '', &
 'EXAMPLES', &
-'  Note that in my opinion this function should not be used on assumed-size', &
-'  arrays or in any function without an explicit interface. Errors can occur if', &
-'  there is no interface defined.', &
+'  Note that this function should not be used on assumed-size arrays or in any', &
+'  function without an explicit interface. Errors can occur if there is no', &
+'  interface defined.', &
 '', &
 '  Sample program', &
 '', &
@@ -13351,7 +13573,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                lbound(3fortran)', &
+'                               August 03, 2024               lbound(3fortran)', &
 '']
 
 shortname="lbound"
@@ -13403,7 +13625,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024              lcobound(3fortran)', &
+'                               August 03, 2024             lcobound(3fortran)', &
 '']
 
 shortname="lcobound"
@@ -13496,7 +13718,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 leadz(3fortran)', &
+'                               August 03, 2024                leadz(3fortran)', &
 '']
 
 shortname="leadz"
@@ -13645,7 +13867,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   len(3fortran)', &
+'                               August 03, 2024                  len(3fortran)', &
 '']
 
 shortname="len"
@@ -13768,7 +13990,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024              len_trim(3fortran)', &
+'                               August 03, 2024             len_trim(3fortran)', &
 '']
 
 shortname="len_trim"
@@ -13886,7 +14108,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   lge(3fortran)', &
+'                               August 03, 2024                  lge(3fortran)', &
 '']
 
 shortname="lge"
@@ -14005,7 +14227,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   lgt(3fortran)', &
+'                               August 03, 2024                  lgt(3fortran)', &
 '']
 
 shortname="lgt"
@@ -14148,7 +14370,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   lle(3fortran)', &
+'                               August 03, 2024                  lle(3fortran)', &
 '']
 
 shortname="lle"
@@ -14270,7 +14492,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   llt(3fortran)', &
+'                               August 03, 2024                  llt(3fortran)', &
 '']
 
 shortname="llt"
@@ -14341,13 +14563,80 @@ textblock=[character(len=256) :: &
 '  FORTRAN 77', &
 '', &
 'SEE ALSO', &
-'  ****(3)', &
+'  o  acos(3) - Arccosine (inverse cosine) function', &
+'', &
+'  o  acosh(3) - Inverse hyperbolic cosine function', &
+'', &
+'  o  asin(3) - Arcsine function', &
+'', &
+'  o  asinh(3) - Inverse hyperbolic sine function', &
+'', &
+'  o  atan(3) - Arctangent AKA inverse tangent function', &
+'', &
+'  o  atan2(3) - Arctangent (inverse tangent) function', &
+'', &
+'  o  atanh(3) - Inverse hyperbolic tangent function', &
+'', &
+'  o  cos(3) - Cosine function', &
+'', &
+'  o  cosh(3) - Hyperbolic cosine function', &
+'', &
+'  o  sin(3) - Sine function', &
+'', &
+'  o  sinh(3) - Hyperbolic sine function', &
+'', &
+'  o  tan(3) - Tangent function', &
+'', &
+'  o  tanh(3) - Hyperbolic tangent function', &
+'', &
+'  o  bessel_j0(3) - Bessel function of the first kind of order 0', &
+'', &
+'  o  bessel_j1(3) - Bessel function of the first kind of order 1', &
+'', &
+'  o  bessel_jn(3) - Bessel function of the first kind', &
+'', &
+'  o  bessel_y0(3) - Bessel function of the second kind of order 0', &
+'', &
+'  o  bessel_y1(3) - Bessel function of the second kind of order 1', &
+'', &
+'  o  bessel_yn(3) - Bessel function of the second kind', &
+'', &
+'  o  erf(3) - Error function', &
+'', &
+'  o  erfc(3) - Complementary error function', &
+'', &
+'  o  erfc_scaled(3) - Scaled complementary error function', &
+'', &
+'  o  exp(3) - Base-e exponential function', &
+'', &
+'  o  gamma(3) - Gamma function, which yields factorials for positive whole', &
+'     numbers', &
+'', &
+'  o  hypot(3) - Returns the Euclidean distance - the distance between a point', &
+'     and the origin.', &
+'', &
+'  o  log(3) - Natural logarithm', &
+'', &
+'  o  log10(3) - Base 10 or common logarithm', &
+'', &
+'  o  log_gamma(3) - Logarithm of the absolute value of the Gamma function', &
+'', &
+'  o  norm2(3) - Euclidean vector norm', &
+'', &
+'  o  sqrt(3) - Square-root function', &
+'', &
+'  o  random_init(3) - Initializes the state of the pseudorandom number', &
+'     generator', &
+'', &
+'  o  random_number(3) - Pseudo-random number', &
+'', &
+'  o  random_seed(3) - Initialize a pseudo-random number sequence', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 log10(3fortran)', &
+'                               August 03, 2024                log10(3fortran)', &
 '']
 
 shortname="log10"
@@ -14419,13 +14708,80 @@ textblock=[character(len=256) :: &
 '  FORTRAN 77', &
 '', &
 'SEE ALSO', &
-'  ****(3)', &
+'  o  acos(3) - Arccosine (inverse cosine) function', &
+'', &
+'  o  acosh(3) - Inverse hyperbolic cosine function', &
+'', &
+'  o  asin(3) - Arcsine function', &
+'', &
+'  o  asinh(3) - Inverse hyperbolic sine function', &
+'', &
+'  o  atan(3) - Arctangent AKA inverse tangent function', &
+'', &
+'  o  atan2(3) - Arctangent (inverse tangent) function', &
+'', &
+'  o  atanh(3) - Inverse hyperbolic tangent function', &
+'', &
+'  o  cos(3) - Cosine function', &
+'', &
+'  o  cosh(3) - Hyperbolic cosine function', &
+'', &
+'  o  sin(3) - Sine function', &
+'', &
+'  o  sinh(3) - Hyperbolic sine function', &
+'', &
+'  o  tan(3) - Tangent function', &
+'', &
+'  o  tanh(3) - Hyperbolic tangent function', &
+'', &
+'  o  bessel_j0(3) - Bessel function of the first kind of order 0', &
+'', &
+'  o  bessel_j1(3) - Bessel function of the first kind of order 1', &
+'', &
+'  o  bessel_jn(3) - Bessel function of the first kind', &
+'', &
+'  o  bessel_y0(3) - Bessel function of the second kind of order 0', &
+'', &
+'  o  bessel_y1(3) - Bessel function of the second kind of order 1', &
+'', &
+'  o  bessel_yn(3) - Bessel function of the second kind', &
+'', &
+'  o  erf(3) - Error function', &
+'', &
+'  o  erfc(3) - Complementary error function', &
+'', &
+'  o  erfc_scaled(3) - Scaled complementary error function', &
+'', &
+'  o  exp(3) - Base-e exponential function', &
+'', &
+'  o  gamma(3) - Gamma function, which yields factorials for positive whole', &
+'     numbers', &
+'', &
+'  o  hypot(3) - Returns the Euclidean distance - the distance between a point', &
+'     and the origin.', &
+'', &
+'  o  log(3) - Natural logarithm', &
+'', &
+'  o  log10(3) - Base 10 or common logarithm', &
+'', &
+'  o  log_gamma(3) - Logarithm of the absolute value of the Gamma function', &
+'', &
+'  o  norm2(3) - Euclidean vector norm', &
+'', &
+'  o  sqrt(3) - Square-root function', &
+'', &
+'  o  random_init(3) - Initializes the state of the pseudorandom number', &
+'     generator', &
+'', &
+'  o  random_number(3) - Pseudo-random number', &
+'', &
+'  o  random_seed(3) - Initialize a pseudo-random number sequence', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   log(3fortran)', &
+'                               August 03, 2024                  log(3fortran)', &
 '']
 
 shortname="log"
@@ -14495,7 +14851,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024             log_gamma(3fortran)', &
+'                               August 03, 2024            log_gamma(3fortran)', &
 '']
 
 shortname="log_gamma"
@@ -14584,7 +14940,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024               logical(3fortran)', &
+'                               August 03, 2024              logical(3fortran)', &
 '']
 
 shortname="logical"
@@ -14683,7 +15039,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 maskl(3fortran)', &
+'                               August 03, 2024                maskl(3fortran)', &
 '']
 
 shortname="maskl"
@@ -14799,7 +15155,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 maskr(3fortran)', &
+'                               August 03, 2024                maskr(3fortran)', &
 '']
 
 shortname="maskr"
@@ -15046,7 +15402,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                matmul(3fortran)', &
+'                               August 03, 2024               matmul(3fortran)', &
 '']
 
 shortname="matmul"
@@ -15217,7 +15573,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   max(3fortran)', &
+'                               August 03, 2024                  max(3fortran)', &
 '']
 
 shortname="max"
@@ -15289,7 +15645,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024           maxexponent(3fortran)', &
+'                               August 03, 2024          maxexponent(3fortran)', &
 '']
 
 shortname="maxexponent"
@@ -15419,7 +15775,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                maxloc(3fortran)', &
+'                               August 03, 2024               maxloc(3fortran)', &
 '']
 
 shortname="maxloc"
@@ -15515,7 +15871,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                maxval(3fortran)', &
+'                               August 03, 2024               maxval(3fortran)', &
 '']
 
 shortname="maxval"
@@ -15541,8 +15897,7 @@ textblock=[character(len=256) :: &
 '', &
 '           type(TYPE(kind=KIND)),intent(in) :: tsource', &
 '           type(TYPE(kind=KIND)),intent(in) :: fsource', &
-'           logical(kind=**),intent(in)   :: mask', &
-'           mask** : Shall be of type logical.', &
+'           logical(kind=**),intent(in)      :: mask', &
 '', &
 '', &
 'CHARACTERISTICS', &
@@ -15703,7 +16058,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 merge(3fortran)', &
+'                               August 03, 2024                merge(3fortran)', &
 '']
 
 shortname="merge"
@@ -15826,13 +16181,21 @@ textblock=[character(len=256) :: &
 '  Fortran 2008', &
 '', &
 'SEE ALSO', &
-'  ****(3)', &
+'  o  dshiftl(3) - Combined left shift of the bits of two integers', &
+'', &
+'  o  dshiftr(3) - Combined right shift of the bits of two integers', &
+'', &
+'  o  ibits(3) - Extraction of a subset of bits', &
+'', &
+'  o  merge_bits(3) - Merge bits using a mask', &
+'', &
+'  o  mvbits(3) - Reproduce bit patterns found in one integer in another', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               April 28, 2024            merge_bits(3fortran)', &
+'                               August 03, 2024           merge_bits(3fortran)', &
 '']
 
 shortname="merge_bits"
@@ -15905,7 +16268,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   min(3fortran)', &
+'                               August 03, 2024                  min(3fortran)', &
 '']
 
 shortname="min"
@@ -15978,7 +16341,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024           minexponent(3fortran)', &
+'                               August 03, 2024          minexponent(3fortran)', &
 '']
 
 shortname="minexponent"
@@ -16096,7 +16459,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                minloc(3fortran)', &
+'                               August 03, 2024               minloc(3fortran)', &
 '']
 
 shortname="minloc"
@@ -16259,7 +16622,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                minval(3fortran)', &
+'                               August 03, 2024               minval(3fortran)', &
 '']
 
 shortname="minval"
@@ -16394,7 +16757,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   mod(3fortran)', &
+'                               August 03, 2024                  mod(3fortran)', &
 '']
 
 shortname="mod"
@@ -16485,7 +16848,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                modulo(3fortran)', &
+'                               August 03, 2024               modulo(3fortran)', &
 '']
 
 shortname="modulo"
@@ -16535,21 +16898,19 @@ textblock=[character(len=256) :: &
 '     to. Typically, it is a different shape than FROM.', &
 '', &
 '  o  STAT : If STAT is present and execution is successful, it is assigned the', &
-'     value zero. : If an error condition occurs,', &
+'     value zero.', &
 '', &
-'     o if **stat** is absent, error termination is initiated;', &
+'     : If an error condition occurs,', &
 '', &
-'     o otherwise, if **from** is a coarray and the current team contains a', &
-'       stopped image, **stat** is assigned the value STAT\_STOPPED\_IMAGE', &
-'       from the intrinsic module ISO\_FORTRAN\_ENV;', &
-'', &
-'     o otherwise, if **from** is a coarray and the current team contains a', &
-'       failed image, and no other error condition occurs, **stat** is', &
-'       assigned the value STAT\_FAILED\_IMAGE from the intrinsic module', &
-'       ISO\_FORTRAN\_ENV;', &
-'', &
-'     o otherwise, **stat** is assigned a processor-dependent positive value', &
-'       that differs from that of STAT\_STOPPED\_IMAGE or STAT\_FAILED\_IMAGE.', &
+'     o if STAT is absent, error termination is initiated; o otherwise, if', &
+'       FROM is a coarray and the current team contains a stopped image, STAT', &
+'       is assigned the value STAT_STOPPED_IMAGE from the intrinsic module', &
+'       ISO_FORTRAN_ENV; o otherwise, if FROM is a coarray and the current', &
+'       team contains a failed image, and no other error condition occurs,', &
+'       STAT is assigned the value STAT_FAILED_IMAGE from the intrinsic module', &
+'       ISO_FORTRAN_ENV; o otherwise, STAT is assigned a processor-dependent', &
+'       positive value that differs from that of STAT_STOPPED_IMAGE or', &
+'       STAT_FAILED_IMAGE.', &
 '', &
 '  o  ERRMSG : If the ERRMSG argument is present and an error condition occurs,', &
 '     it is assigned an explanatory message. If no error condition occurs, the', &
@@ -16602,7 +16963,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024            move_alloc(3fortran)', &
+'                               August 03, 2024           move_alloc(3fortran)', &
 '']
 
 shortname="move_alloc"
@@ -16763,14 +17124,622 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                mvbits(3fortran)', &
+'                               August 03, 2024               mvbits(3fortran)', &
 '']
 
 shortname="mvbits"
 call process()
 
 
-case('150','nearest')
+case('150','namelist')
+
+textblock=[character(len=256) :: &
+'', &
+'namelist(7fortran)                                         namelist(7fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  NAMELIST(7f) - [FORTRAN:STATEMENT] specify a group of data to be referred to', &
+'  by a single name in data input/output', &
+'', &
+'', &
+'SYNOPSIS', &
+'  NAMELIST /namelist-group-name/ namelist-group-object-list [[,] /namelist-', &
+'  group-name/ namelist-group-object-list ] ...', &
+'', &
+'    namelist-group-object is variable-name', &
+'', &
+'DESCRIPTION', &
+'  A NAMELIST statement specifies a group of named data objects, which may be', &
+'  referred to by a single name for the purpose of data transfer.', &
+'', &
+'  The order in which the variables are specified in the NAMELIST statement', &
+'  determines the order in which the values appear on output.', &
+'', &
+'    o  The namelist-group-name shall not be a name accessed by use', &
+'       association.', &
+'', &
+'    o  A namelist-group-object shall not be an assumed-size array.', &
+'', &
+'    o  A namelist-group-object shall not have the PRIVATE attribute if the', &
+'       namelist-group-name has the PUBLIC attribute.', &
+'', &
+'  Any namelist-group-name may occur more than once in the NAMELIST statements', &
+'  in a scoping unit. The namelist-group-object-list following each successive', &
+'  appearance of the same namelist-group-name in a scoping unit is treated as a', &
+'  continuation of the list for that namelist-group-name.', &
+'', &
+'  A namelist group object may be a member of more than one namelist group.', &
+'', &
+'  A namelist group object shall either be accessed by use or host association', &
+'  or shall have its type, type parameters, and shape specified by previous', &
+'  specification statements or the procedure heading in the same scoping unit', &
+'  or by the implicit typing rules in effect for the scoping unit. If a', &
+'  namelist group object is typed by the implicit typing rules, its appearance', &
+'  in any subsequent type declaration statement shall confirm the implied type', &
+'  and type parameters.', &
+'', &
+'  The specification-part of a BLOCK construct shall not contain a NAMELIST', &
+'  statement.', &
+'', &
+'  Why is NAMELIST not allowed in a BLOCK unit? Would be handy for quick', &
+'  writes, like list-directed output', &
+'', &
+'         block', &
+'            namelist /nlist/ a,b,c,d', &
+'            write(*,nlist)', &
+'         endblock', &
+'', &
+'  Input for a namelist input statement consists of', &
+'', &
+'       1) optional blanks and namelist comments,', &
+'       2) the character & followed immediately by the namelist-group-name as specified in the NAMELIST', &
+'          statement,', &
+'       3) one or more blanks,', &
+'       4) a sequence of zero or more name-value subsequences separated by value separators, and', &
+'       5) a slash to terminate the namelist input.', &
+'', &
+'          A slash encountered in a namelist input record causes the input statement to terminate. A slash cannot be', &
+'          used to separate two values in a namelist input statement.', &
+'', &
+'  A group name or object name is without regard to case.', &
+'', &
+'EXAMPLE', &
+'  An example of a NAMELIST statement is:', &
+'', &
+'          NAMELIST /NLIST/ A, B, C', &
+'', &
+'  or a group may be defined by multiple statements using the same group name', &
+'  in a scoping unit:', &
+'', &
+'          NAMELIST /NLIST/ A, B', &
+'          NAMELIST /NLIST/ C', &
+'', &
+'          ! READ/WRITE EXAMPLES: [ NML = ] namelist-group-name', &
+'          READ(*,NML=NLIST)', &
+'          WRITE(*,NLIST)', &
+'          WRITE(*,NML=NLIST)', &
+'', &
+'           program sample_namelist', &
+'           implicit none', &
+'           logical           :: l=.true.', &
+'           character(len=10) :: c=''XXXXXXXXXX''', &
+'           real              :: r=12.3456', &
+'           integer           :: i=789', &
+'           complex           :: x=(12345.6789,9876.54321)', &
+'           doubleprecision   :: d= 123456789.123456789d0', &
+'           namelist /nlist/ l,c,r,i,x,d', &
+'              write(*,nlist)', &
+'           end program sample_namelist', &
+'', &
+'  Results:', &
+'', &
+'           &NLIST', &
+'            L=T,', &
+'            C="XXXXXXXXXX",', &
+'            R=  12.3456001    ,', &
+'            I=        789,', &
+'            X=(  12345.6787    ,  9876.54297    ),', &
+'            D=  123456789.12345679     ,', &
+'            /', &
+'', &
+'  Longer example:', &
+'', &
+'           program demo_namelist', &
+'           implicit none', &
+'           integer           :: lun', &
+'', &
+'           ! create a namelist and initialize the values', &
+'           logical           :: l=.true.', &
+'           character(len=10) :: c=''XXXXXXXXXX''', &
+'           real              :: r=12.3456', &
+'           integer           :: i=789', &
+'           complex           :: x=(12345.6789,9876.54321)', &
+'           doubleprecision   :: d= 123456789.123456789d0', &
+'           integer           :: a(5)=[1,2,3,4,5]', &
+'           type point', &
+'            integer           :: x=0', &
+'            integer           :: y=0', &
+'            character(len=10) :: color=''red''', &
+'           endtype point', &
+'           type(point) :: dot', &
+'           namelist /nlist/ l,c,r,i,x,d,a,dot', &
+'', &
+'           open(file=''_tmp_'',newunit=lun)', &
+'', &
+'              write(*,*)''initial nlist''', &
+'              write(*,nlist)', &
+'              write(lun,nlist)', &
+'', &
+'              write(*,*)''change values and print nlist again''', &
+'              a=[10,20,30,40,50]', &
+'              dot%color=''orange''', &
+'              write(lun,nlist)', &
+'', &
+'              write(*,*)''read back values. Can have multiple sets in a file''', &
+'              rewind(lun)', &
+'              read(lun,nlist)', &
+'              read(lun,nlist)', &
+'              write(*,nlist)', &
+'', &
+'           end program demo_namelist', &
+'', &
+'  Results:', &
+'', &
+'         initial nlist', &
+'  &NLIST L=T, C="XXXXXXXXXX",', &
+'', &
+'    R=', &
+'      12.3456001    ,', &
+'', &
+'    I=', &
+'      789, X=(12345.6787,9876.54297),', &
+'', &
+'    D=', &
+'      123456789.12345679     ,', &
+'', &
+'    A=', &
+'      1,         2,          3,          4,          5,', &
+'', &
+'    DOT%X=', &
+'      0,', &
+'', &
+'    DOT%Y=', &
+'      0,', &
+'', &
+'    DOT%COLOR="red', &
+'      ", / change values and print nlist again read back values. Can have', &
+'      multiple sets in a file &NLIST L=T, C="XXXXXXXXXX",', &
+'', &
+'    R=', &
+'      12.3456001    ,', &
+'', &
+'    I=', &
+'      789, X=(12345.6787,9876.54297),', &
+'', &
+'    D=', &
+'      123456789.12345679     ,', &
+'', &
+'    A=', &
+'      10,        20,         30,         40,         50,', &
+'', &
+'    DOT%X=', &
+'      0,', &
+'', &
+'    DOT%Y=', &
+'      0,', &
+'', &
+'    DOT%COLOR="orange', &
+'      ", /', &
+'', &
+'  o  Scanning on input till group name is found', &
+'', &
+'     o reading partial lists', &
+'', &
+'     o string quoting', &
+'', &
+'     o NAMELIST in internal read and write. See', &
+'', &
+'            ./arguments/namelist', &
+'', &
+'', &
+'OTHER', &
+'OTHER', &
+'  C915 (R913) A namelist-group-name shall be the name of a namelist group.', &
+'', &
+'  C916 (R913) A namelist-group-name shall not appear if a REC= specifier,', &
+'  format, input-item-list, or an output-item-list appears in the data transfer', &
+'  statement. C917 (R913) An io-control-spec-list shall not contain both a', &
+'  format and a namelist-group-name. C919 (R913) If namelist-group-name appears', &
+'  without a preceding NML=, it shall be the second item in the io-control-', &
+'  spec-list and the first item shall be io-unit. C928 (R913) If a DECIMAL=,', &
+'  BLANK=, PAD=, SIGN=, or ROUND= specifier appears, a format or namelist-', &
+'  group-name shall also appear.  C929 (R913) If a DELIM= specifier appears,', &
+'  either format shall be an asterisk or namelist-group-name shall appear. 3.', &
+'  If the data transfer statement contains a format or namelist-group-name, the', &
+'  statement is a formatted input/output statement; otherwise, it is an', &
+'  unformatted input/output statement.', &
+'', &
+'  1.  The NML= specifier supplies the namelist-group-name (5.6). This name', &
+'      identifies a particular collection of data objects on which transfer is', &
+'      to be performed.', &
+'', &
+'  2.  If a namelist-group-name appears, the statement is a namelist', &
+'      input/output statement.', &
+'', &
+'  3.  All values following the name= part of the namelist entity (10.11)', &
+'      within the input records are transmitted to the matching entity', &
+'      specified in the namelist-group-object-list prior to processing any', &
+'      succeeding entity within the input record for namelist input statements.', &
+'      If an entity is specified more than once within the input record during', &
+'      a namelist formatted data transfer input statement, the last occurrence', &
+'      of the entity specifies the value or values to be used for that entity.', &
+'', &
+'  9.6.4.6 Namelist formatting', &
+'', &
+'  1.  If namelist formatting has been established, editing is performed as', &
+'      described in 10.11.', &
+'', &
+'  2.  Every allocatable namelist-group-object in the namelist group shall be', &
+'      allocated and every namelist-group-object that is a pointer shall be', &
+'      associated with a target. If a namelist-group-object is polymorphic or', &
+'      has an ultimate component that is allocatable or a pointer, that object', &
+'      shall be processed by a defined input/output procedure (9.6.4.7).', &
+'', &
+'  9.6.5 Termination of data transfer statements', &
+'', &
+'  1.  Termination of an input/output data transfer statement occurs when', &
+'', &
+'          format processing encounters a colon or data edit descriptor and there are no remaining elements in the', &
+'          input-item-list or output-item-list,', &
+'          unformatted or list-directed data transfer exhausts the input-item-list or output-item-list,', &
+'          namelist output exhausts the namelist-group-object-list,', &
+'          an error condition occurs,', &
+'          an end-of-file condition occurs,', &
+'', &
+'          a slash (/) is encountered as a value separator (10.10, 10.11) in the record being read during list-directed', &
+'          or namelist input, or', &
+'          an end-of-record condition occurs during execution of a nonadvancing input statement (9.11).', &
+'', &
+'', &
+'  2.  If an error condition occurs during execution of an input/output', &
+'      statement that contains neither an ERR= nor IOSTAT= specifier, error', &
+'      termination of the program is initiated. If an error condition occurs', &
+'      during execution of an input/output statement that contains either an', &
+'      ERR= specifier or an IOSTAT= specifier then: 1. processing of the', &
+'      input/output list, if any, terminates;', &
+'', &
+'      2.  if the statement is a data transfer statement or the error occurs', &
+'         during a wait operation, all do-variables in the statement that', &
+'         initiated the transfer become undefined;', &
+'', &
+'      3.  if an IOSTAT= specifier appears, the scalar-int-variable in the', &
+'         IOSTAT= specifier becomes defined as specified in 9.11.5;', &
+'', &
+'      4.  if an IOMSG= specifier appears, the iomsg-variable becomes defined', &
+'         as specified in 9.11.6;', &
+'', &
+'      5.  if the statement is a READ statement and it contains a SIZE=', &
+'         specifier, the scalar-int-variable in the SIZE= specifier becomes', &
+'         defined as specified in 9.6.2.15;', &
+'', &
+'      6.  if the statement is a READ statement or the error condition occurs', &
+'         in a wait operation for a transfer initiated by a READ statement,', &
+'         all input items or namelist group objects in the statement that', &
+'         initiated the transfer become undefined;', &
+'', &
+'      7.  if an ERR= specifier appears, a branch to the statement labeled by', &
+'         the label in the ERR= specifier occurs.', &
+'', &
+'  3.  In a data transfer statement, the variable specified in an IOSTAT=,', &
+'      IOMSG=, or SIZE= specifier, if any, shall not be associated with any', &
+'      entity in the data transfer input/output list (9.6.3) or namelist-group-', &
+'      object-list, nor with a do-variable of an io-implied-do in the data', &
+'      transfer input/output list. 10.11 Namelist formatting 10.11.1 General', &
+'', &
+'  4.  Namelist input/output allows data editing with NAME=value subsequences.', &
+'      This facilitates documentation of input and output files and more', &
+'      flexibility on input.', &
+'', &
+'  10.11.2 Name-value subsequences', &
+'', &
+'  1.  The characters in one or more namelist records constitute a sequence of', &
+'      name-value subsequences, each of which consists of an object designator', &
+'      followed by an equals and followed by one or more values and value', &
+'      separators. The equals may optionally be preceded or followed by one or', &
+'      more contiguous blanks. The end of a record has the same effect as a', &
+'      blank character, unless it is within a character constant. Any sequence', &
+'      of two or more consecutive blanks is treated as a single blank, unless', &
+'      it is within a character constant.', &
+'', &
+'  2.  The name may be any name in the namelist-group-object-list (5.6).', &
+'', &
+'  3.  A value separator for namelist formatting is the same as for list-', &
+'      directed formatting (10.10).', &
+'', &
+'  10.11.3 Namelist input 10.11.3.1 Overall syntax', &
+'', &
+'  2.  In each name-value subsequence, the name shall be the name of a namelist', &
+'      group object list item with an optional qualification and the name with', &
+'      the optional qualification shall not be a zero-sized array, a zero-sized', &
+'      array section, or a zero-length character string. The optional', &
+'      qualification, if any, shall not contain a vector subscript.', &
+'', &
+'  10.11.3.2 Namelist group object names', &
+'', &
+'  1.  Within the input data, each name shall correspond to a particular', &
+'      namelist group object name. Subscripts, strides, and substring range', &
+'      expressions used to qualify group object names shall be optionally', &
+'      signed integer literal constants with no kind type parameters specified.', &
+'      If a namelist group object is an array, the input record corresponding', &
+'      to it may contain either the array name or the designator of a subobject', &
+'      of that array, using the syntax of object designators (R601). If the', &
+'      namelist group object name is the name of a variable of derived type,', &
+'      the name in the input record may be either the name of the variable or', &
+'      the designator of one of its components, indicated by qualifying the', &
+'      variable name with the appropriate component name. Successive', &
+'      qualifications may be applied as appropriate to the shape and type of', &
+'      the variable represented.', &
+'', &
+'  2.  The order of names in the input records need not match the order of the', &
+'      namelist group object items. The input records need not contain all the', &
+'      names of the namelist group object items. The definition status of any', &
+'      names from the namelist-group-object-list that do not occur in the input', &
+'      record remains unchanged. In the input record, each object name or', &
+'      subobject designator may be preceded and followed by one or more', &
+'      optional blanks but shall not contain embedded blanks.', &
+'', &
+'  10.11.3.3 Namelist group object list items', &
+'', &
+'  1.  The name-value subsequences are evaluated serially, in left-to-right', &
+'      order. A namelist group object designator may appear in more than one', &
+'      name-value sequence.', &
+'', &
+'  2.  When the name in the input record represents an array variable or a', &
+'      variable of derived type, the effect is as if the variable represented', &
+'      were expanded into a sequence of scalar list items, in the same way that', &
+'      formatted input/output list items are expanded (9.6.3). Each input value', &
+'      following the equals shall then be acceptable to format specifications', &
+'      for the type of the list item in the corresponding position in the', &
+'      expanded sequence, except as noted in this subclause. The number of', &
+'      values following the equals shall not exceed the number of list items in', &
+'      the expanded sequence, but may be less; in the latter case, the effect', &
+'      is as if sufficient null values had been appended to match any remaining', &
+'      list items in the expanded sequence.', &
+'', &
+'          NOTE 10.35', &
+'          For example, if the name in the input record is the name of an integer array of size 100, at most 100 values,', &
+'          each of which is either a digit string or a null value, may follow the equals; these values would then be', &
+'          assigned to the elements of the array in array element order.', &
+'', &
+'', &
+'  3.  A slash encountered as a value separator during the execution of a', &
+'      namelist input statement causes termination of execution of that input', &
+'      statement after transference of the previous value. If there are', &
+'      additional items in the namelist group object being transferred, the', &
+'      effect is as if null values had been supplied for them.', &
+'', &
+'  4.  A namelist comment may appear after any value separator except a slash.', &
+'      A namelist comment is also permitted to start in the first nonblank', &
+'      position of an input record except within a character literal constant.', &
+'', &
+'  5.  Successive namelist records are read by namelist input until a slash is', &
+'      encountered; the remainder of the record is ignored and need not follow', &
+'      the rules for namelist input values.', &
+'', &
+'      10.11.3.4 Namelist input values', &
+'', &
+'  6.  Each value is either a null value (10.11.3.5), c, r *c, or r *, where c', &
+'      is a literal constant, optionally signed if integer or real, and r is an', &
+'      unsigned, nonzero, integer literal constant. A kind type parameter shall', &
+'      not be specified for c or r. The constant c is interpreted as though it', &
+'      had the same kind type parameter as the corresponding effective item.', &
+'      The r *c form is equivalent to r successive appearances of the constant', &
+'      c, and the r * form is equivalent to r successive null values. Neither', &
+'      of these forms may contain embedded blanks, except where permitted', &
+'      within the constant c.', &
+'', &
+'  7.  The datum c (10.11) is any input value acceptable to format', &
+'      specifications for a given type, except for a restriction on the form of', &
+'      input values corresponding to list items of types logical, integer, and', &
+'      character as specified in this subclause. The form of a real or complex', &
+'      value is dependent on the decimal edit mode in effect (10.6). The form', &
+'', &
+'      of an input value shall be acceptable for the type of the namelist group', &
+'      object list item. The number and forms of the input values that may', &
+'      follow the equals in a name-value subsequence depend on the shape and', &
+'      type of the object represented by the name in the input record. When the', &
+'      name in the input record is that of a scalar variable of an intrinsic', &
+'      type, the equals shall not be followed by more than one value. Blanks', &
+'      are never used as zeros, and embedded blanks are not permitted in', &
+'      constants except within character constants and complex constants as', &
+'      specified in this subclause.', &
+'', &
+'  8.  When the next effective item is of type real, the input form of the', &
+'      input value is that of a numeric input field. A numeric input field is a', &
+'      field suitable for F editing (10.7.2.3.2) that is assumed to have no', &
+'      fractional digits unless a decimal symbol appears within the field.', &
+'', &
+'  9.  When the next effective item is of type complex, the input form of the', &
+'      input value consists of a left parenthesis followed by an ordered pair', &
+'      of numeric input fields separated by a comma (if the decimal edit mode', &
+'      is POINT) or a semicolon (if the decimal edit mode is COMMA), and', &
+'      followed by a right parenthesis. The first numeric input field is the', &
+'      real part of the complex constant and the second part is the imaginary', &
+'      part. Each of the numeric input fields may be preceded or followed by', &
+'      any number of blanks and ends of records.  The end of a record may occur', &
+'      between the real part and the comma or semicolon, or between the comma', &
+'      or semicolon and the imaginary part.', &
+'', &
+'  10. When the next effective item is of type logical, the input form of the', &
+'      input value shall not include equals or value separators among the', &
+'      optional characters permitted for L editing (10.7.3).', &
+'', &
+'  11. When the next effective item is of type integer, the value in the input', &
+'      record is interpreted as if an Iw edit descriptor with a suitable value', &
+'      of w were used.', &
+'', &
+'  12. When the next effective item is of type character, the input form', &
+'      consists of a delimited sequence of zero or more rep-char s whose kind', &
+'      type parameter is implied by the kind of the corresponding list item.', &
+'      Such a sequence may be continued from the end of one record to the', &
+'      beginning of the next record, but the end of record shall not occur', &
+'      between a doubled apostrophe in an apostrophe-delimited sequence, nor', &
+'      between a doubled quote in a quote-delimited sequence.  The end of the', &
+'      record does not cause a blank or any other character to become part of', &
+'      the sequence. The sequence may be continued on as many records as', &
+'      needed. The characters blank, comma, semicolon, and slash may appear in', &
+'      such character sequences.', &
+'', &
+'            NOTE 10.36', &
+'            A character sequence corresponding to a namelist input item of character type shall be delimited either with', &
+'            apostrophes or with quotes. The delimiter is required to avoid ambiguity between undelimited character', &
+'            sequences and object names. The value of the DELIM= specifier, if any, in the OPEN statement for an', &
+'            external file is ignored during namelist input (9.5.6.8).', &
+'', &
+'', &
+'  13. Let len be the length of the next effective item, and let w be the', &
+'      length of the character sequence. If len is less than or equal to w, the', &
+'      leftmost len characters of the sequence are transmitted to the next', &
+'      effective item. If len is greater than w, the constant is transmitted to', &
+'      the leftmost w characters of the next effective item and the remaining', &
+'      len-w characters of the next effective item are filled with blanks. The', &
+'      effect is as though the sequence were assigned to the next effective', &
+'      item in an intrinsic assignment statement (7.2.1.3).', &
+'', &
+'  10.11.3.5 Null values', &
+'', &
+'  1.  A null value is specified by', &
+'', &
+'            the r * form,', &
+'            blanks between two consecutive nonblank value separators following an equals,', &
+'            zero or more blanks preceding the first value separator and following an equals, or', &
+'            two consecutive nonblank value separators.', &
+'', &
+'', &
+'  2.  A null value has no effect on the definition status of the corresponding', &
+'      input list item. If the namelist group object list item is defined, it', &
+'      retains its previous value; if it is undefined, it remains undefined. A', &
+'      null value shall', &
+'', &
+'      not be used as either the real or imaginary part of a complex constant,', &
+'      but a single null value may represent an entire complex constant.', &
+'', &
+'      NOTE 10.37 The end of a record following a value separator, with or', &
+'      without intervening blanks, does not specify a null value in namelist', &
+'      input.', &
+'', &
+'  10.11.3.6 Blanks', &
+'', &
+'  1.  All blanks in a namelist input record are considered to be part of some', &
+'      value separator except for', &
+'', &
+'      o  blanks embedded in a character constant, o embedded blanks', &
+'        surrounding the real or imaginary part of a complex constant, o', &
+'        leading blanks following the equals unless followed immediately by a', &
+'        slash or comma, or a semicolon if the o decimal edit mode is comma,', &
+'        and o blanks between a name and the following equals.', &
+'', &
+'  10.11.3.7 Namelist Comments', &
+'', &
+'  1.  Except within a character literal constant, a "!" character after a', &
+'      value separator or in the first nonblank position of a namelist input', &
+'      record initiates a comment. The comment extends to the end of the', &
+'      current input record and may contain any graphic character in the', &
+'      processor-dependent character set. The comment is ignored. A slash', &
+'      within the namelist comment does not terminate execution of the namelist', &
+'      input statement. Namelist comments are not allowed in stream input', &
+'      because comments depend on record structure.', &
+'', &
+'          NOTE 10.38', &
+'          Namelist input example:', &
+'', &
+'             INTEGER I; REAL X (8); CHARACTER (11) P; COMPLEX Z;', &
+'             LOGICAL :: G', &
+'             NAMELIST / TODAY / G, I, P, Z, X', &
+'             READ (*, NML = TODAY)', &
+'', &
+'  The input data records are:', &
+'', &
+'             &TODAY I = 12345, X(1) = 12345, X(3:4) = 2*1.5, I=6, ! This is a comment.', &
+'             P = ''''ISN''T_BOB''S'''', Z = (123,0)/', &
+'', &
+'  The results stored are:', &
+'', &
+'                     Variable                         Value', &
+'                     I                                6', &
+'                     X (1)                            12345.0', &
+'                     X (2)                            unchanged', &
+'                     X (3)                            1.5', &
+'                     X (4)                            1.5', &
+'                     X (5)   X (8)                    unchanged', &
+'                     P                                ISN''T BOB''S', &
+'                     Z                                (123.0,0.0)', &
+'                     G                                unchanged', &
+'', &
+'  10.11.4 Namelist output 10.11.4.1 Form of namelist output', &
+'', &
+'  1.  The form of the output produced is the same as that required for input,', &
+'      except for the forms of real, character, and logical values.  The name', &
+'      in the output is in upper case. With the exception of adjacent', &
+'      undelimited character values, the values are separated by one or more', &
+'      blanks or by a comma, or a semicolon if the decimal edit mode is COMMA,', &
+'      optionally preceded by one or more blanks and optionally followed by one', &
+'      or more blanks.', &
+'', &
+'  2.  Namelist output shall not include namelist comments.', &
+'', &
+'  3.  The processor may begin new records as necessary. However, except for', &
+'      complex constants and character values, the end of a record shall not', &
+'      occur within a constant, character value, or name, and blanks shall not', &
+'      appear within a constant, character value, or name.', &
+'', &
+'          NOTE 10.39', &
+'          The length of the output records is not specified exactly and may be processor dependent.', &
+'', &
+'  10.11.4.2 Namelist output editing', &
+'', &
+'  1.  Values in namelist output records are edited as for list-directed output', &
+'      (10.10.4).', &
+'', &
+'          NOTE 10.40', &
+'          Namelist output records produced with a DELIM= specifier with a value of NONE and which contain a', &
+'          character sequence might not be acceptable as namelist input records.', &
+'', &
+'  10.11.4.3 Namelist output records', &
+'', &
+'  1.  If two or more successive values for the same namelist group item in an', &
+'      output record produced have identical values, the processor has the', &
+'      option of producing a repeated constant of the form r *c instead of the', &
+'      sequence of identical values.', &
+'', &
+'  2.  The name of each namelist group object list item is placed in the output', &
+'      record followed by an equals and a list of values of the namelist group', &
+'      object list item.', &
+'', &
+'  3.  An ampersand character followed immediately by a namelist-group-name', &
+'      will be produced by namelist formatting at the start of the first output', &
+'      record to indicate which particular group of data objects is being', &
+'      output. A slash is produced by namelist formatting to indicate the end', &
+'      of the namelist formatting.', &
+'', &
+'  4.  A null value is not produced by namelist formatting.', &
+'', &
+'  5.  Except for new records created by explicit formatting within a defined', &
+'      output procedure or by continuation of delimited character sequences,', &
+'      each output record begins with a blank character.', &
+'', &
+'', &
+'', &
+'                               August 03, 2024             namelist(7fortran)', &
+'']
+
+shortname="namelist"
+call process()
+
+
+case('151','nearest')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16862,14 +17831,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024               nearest(3fortran)', &
+'                               August 03, 2024              nearest(3fortran)', &
 '']
 
 shortname="nearest"
 call process()
 
 
-case('151','new_line')
+case('152','new_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17038,14 +18007,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024              new_line(3fortran)', &
+'                               August 03, 2024             new_line(3fortran)', &
 '']
 
 shortname="new_line"
 call process()
 
 
-case('152','nint')
+case('153','nint')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17197,14 +18166,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  nint(3fortran)', &
+'                               August 03, 2024                 nint(3fortran)', &
 '']
 
 shortname="nint"
 call process()
 
 
-case('153','norm2')
+case('154','norm2')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17326,14 +18295,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 norm2(3fortran)', &
+'                               August 03, 2024                norm2(3fortran)', &
 '']
 
 shortname="norm2"
 call process()
 
 
-case('154','not')
+case('155','not')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17424,14 +18393,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   not(3fortran)', &
+'                               August 03, 2024                  not(3fortran)', &
 '']
 
 shortname="not"
 call process()
 
 
-case('155','null')
+case('156','null')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17559,14 +18528,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  null(3fortran)', &
+'                               August 03, 2024                 null(3fortran)', &
 '']
 
 shortname="null"
 call process()
 
 
-case('156','num_images')
+case('157','num_images')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17652,14 +18621,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024            num_images(3fortran)', &
+'                               August 03, 2024           num_images(3fortran)', &
 '']
 
 shortname="num_images"
 call process()
 
 
-case('157','open')
+case('158','open')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17966,14 +18935,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  open(7fortran)', &
+'                               August 03, 2024                 open(7fortran)', &
 '']
 
 shortname="open"
 call process()
 
 
-case('158','out_of_range')
+case('159','out_of_range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18127,14 +19096,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024          out_of_range(3fortran)', &
+'                               August 03, 2024         out_of_range(3fortran)', &
 '']
 
 shortname="out_of_range"
 call process()
 
 
-case('159','pack')
+case('160','pack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18237,14 +19206,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  pack(3fortran)', &
+'                               August 03, 2024                 pack(3fortran)', &
 '']
 
 shortname="pack"
 call process()
 
 
-case('160','parity')
+case('161','parity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18353,14 +19322,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                parity(3fortran)', &
+'                               August 03, 2024               parity(3fortran)', &
 '']
 
 shortname="parity"
 call process()
 
 
-case('161','popcnt')
+case('162','popcnt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18446,14 +19415,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                popcnt(3fortran)', &
+'                               August 03, 2024               popcnt(3fortran)', &
 '']
 
 shortname="popcnt"
 call process()
 
 
-case('162','poppar')
+case('163','poppar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18545,14 +19514,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                poppar(3fortran)', &
+'                               August 03, 2024               poppar(3fortran)', &
 '']
 
 shortname="poppar"
 call process()
 
 
-case('163','precision')
+case('164','precision')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18620,14 +19589,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024             precision(3fortran)', &
+'                               August 03, 2024            precision(3fortran)', &
 '']
 
 shortname="precision"
 call process()
 
 
-case('164','present')
+case('165','present')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18752,14 +19721,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024               present(3fortran)', &
+'                               August 03, 2024              present(3fortran)', &
 '']
 
 shortname="present"
 call process()
 
 
-case('165','print')
+case('166','print')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18777,14 +19746,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 print(7fortran)', &
+'                               August 03, 2024                print(7fortran)', &
 '']
 
 shortname="print"
 call process()
 
 
-case('166','product')
+case('167','product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19020,14 +19989,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024               product(3fortran)', &
+'                               August 03, 2024              product(3fortran)', &
 '']
 
 shortname="product"
 call process()
 
 
-case('167','radix')
+case('168','radix')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19099,14 +20068,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 radix(3fortran)', &
+'                               August 03, 2024                radix(3fortran)', &
 '']
 
 shortname="radix"
 call process()
 
 
-case('168','random_init')
+case('169','random_init')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19173,14 +20142,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024           random_init(3fortran)', &
+'                               August 03, 2024          random_init(3fortran)', &
 '']
 
 shortname="random_init"
 call process()
 
 
-case('169','random_number')
+case('170','random_number')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19270,14 +20239,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024         random_number(3fortran)', &
+'                               August 03, 2024        random_number(3fortran)', &
 '']
 
 shortname="random_number"
 call process()
 
 
-case('170','random_seed')
+case('171','random_seed')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19357,14 +20326,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024           random_seed(3fortran)', &
+'                               August 03, 2024          random_seed(3fortran)', &
 '']
 
 shortname="random_seed"
 call process()
 
 
-case('171','range')
+case('172','range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19445,14 +20414,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 range(3fortran)', &
+'                               August 03, 2024                range(3fortran)', &
 '']
 
 shortname="range"
 call process()
 
 
-case('172','rank')
+case('173','rank')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19625,14 +20594,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  rank(3fortran)', &
+'                               August 03, 2024                 rank(3fortran)', &
 '']
 
 shortname="rank"
 call process()
 
 
-case('173','read')
+case('174','read')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19695,14 +20664,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  read(7fortran)', &
+'                               August 03, 2024                 read(7fortran)', &
 '']
 
 shortname="read"
 call process()
 
 
-case('174','real')
+case('175','real')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19812,14 +20781,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  real(3fortran)', &
+'                               August 03, 2024                 real(3fortran)', &
 '']
 
 shortname="real"
 call process()
 
 
-case('175','reduce')
+case('176','reduce')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19918,7 +20887,7 @@ textblock=[character(len=256) :: &
 '       with ARRAY.', &
 '', &
 '       When present only those elements of ARRAY are passed to OPERATION for', &
-'       which the corresponding elements of MASK are true, as if *array was', &
+'       which the corresponding elements of MASK are true, as if ARRAY was', &
 '       filtered with PACK(3).', &
 '', &
 '     o IDENTITY : shall be scalar with the same type and type parameters as', &
@@ -20022,14 +20991,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                reduce(3fortran)', &
+'                               August 03, 2024               reduce(3fortran)', &
 '']
 
 shortname="reduce"
 call process()
 
 
-case('176','repeat')
+case('177','repeat')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20105,14 +21074,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                repeat(3fortran)', &
+'                               August 03, 2024               repeat(3fortran)', &
 '']
 
 shortname="repeat"
 call process()
 
 
-case('177','reshape')
+case('178','reshape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20329,14 +21298,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024               reshape(3fortran)', &
+'                               August 03, 2024              reshape(3fortran)', &
 '']
 
 shortname="reshape"
 call process()
 
 
-case('178','rewind')
+case('179','rewind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20441,7 +21410,7 @@ shortname="rewind"
 call process()
 
 
-case('179','rrspacing')
+case('180','rrspacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20490,14 +21459,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024             rrspacing(3fortran)', &
+'                               August 03, 2024            rrspacing(3fortran)', &
 '']
 
 shortname="rrspacing"
 call process()
 
 
-case('180','same_type_as')
+case('181','same_type_as')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20632,14 +21601,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024          same_type_as(3fortran)', &
+'                               August 03, 2024         same_type_as(3fortran)', &
 '']
 
 shortname="same_type_as"
 call process()
 
 
-case('181','scale')
+case('182','scale')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20741,14 +21710,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 scale(3fortran)', &
+'                               August 03, 2024                scale(3fortran)', &
 '']
 
 shortname="scale"
 call process()
 
 
-case('182','scan')
+case('183','scan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20847,14 +21816,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  scan(3fortran)', &
+'                               August 03, 2024                 scan(3fortran)', &
 '']
 
 shortname="scan"
 call process()
 
 
-case('183','selected_char_kind')
+case('184','selected_char_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21015,14 +21984,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024    selected_char_kind(3fortran)', &
+'                               August 03, 2024   selected_char_kind(3fortran)', &
 '']
 
 shortname="selected_char_kind"
 call process()
 
 
-case('184','selected_int_kind')
+case('185','selected_int_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21103,14 +22072,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024     selected_int_kind(3fortran)', &
+'                               August 03, 2024    selected_int_kind(3fortran)', &
 '']
 
 shortname="selected_int_kind"
 call process()
 
 
-case('185','selected_real_kind')
+case('186','selected_real_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21146,11 +22115,13 @@ textblock=[character(len=256) :: &
 '  precision of at least P digits, exponent range of at least R, and with a', &
 '  radix of RADIX. That is, if such a kind exists', &
 '', &
-'      + it has the decimal precision as returned by **precision**(3) of at', &
-'       least **p** digits.', &
-'      + a decimal exponent range, as returned by the function **range**(3)', &
-'       of at least **r**', &
-'      + a radix, as returned by the function **radix**(3) , of **radix**,', &
+'  o  it has the decimal precision as returned by PRECISION(3) of at least P', &
+'     digits.', &
+'', &
+'  o  a decimal exponent range, as returned by the function RANGE(3) of at', &
+'     least R', &
+'', &
+'  o  a radix, as returned by the function RADIX(3) , of RADIX,', &
 '', &
 '  If the requested kind does not exist, -1 is returned.', &
 '', &
@@ -21229,14 +22200,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024    selected_real_kind(3fortran)', &
+'                               August 03, 2024   selected_real_kind(3fortran)', &
 '']
 
 shortname="selected_real_kind"
 call process()
 
 
-case('186','set_exponent')
+case('187','set_exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21313,14 +22284,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024          set_exponent(3fortran)', &
+'                               August 03, 2024         set_exponent(3fortran)', &
 '']
 
 shortname="set_exponent"
 call process()
 
 
-case('187','shape')
+case('188','shape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21431,14 +22402,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 shape(3fortran)', &
+'                               August 03, 2024                shape(3fortran)', &
 '']
 
 shortname="shape"
 call process()
 
 
-case('188','shifta')
+case('189','shifta')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21565,14 +22536,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                shifta(3fortran)', &
+'                               August 03, 2024               shifta(3fortran)', &
 '']
 
 shortname="shifta"
 call process()
 
 
-case('189','shiftl')
+case('190','shiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21702,14 +22673,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                shiftl(3fortran)', &
+'                               August 03, 2024               shiftl(3fortran)', &
 '']
 
 shortname="shiftl"
 call process()
 
 
-case('190','shiftr')
+case('191','shiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21841,14 +22812,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                shiftr(3fortran)', &
+'                               August 03, 2024               shiftr(3fortran)', &
 '']
 
 shortname="shiftr"
 call process()
 
 
-case('191','sign')
+case('192','sign')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21939,14 +22910,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  sign(3fortran)', &
+'                               August 03, 2024                 sign(3fortran)', &
 '']
 
 shortname="sign"
 call process()
 
 
-case('192','sin')
+case('193','sin')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22081,14 +23052,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   sin(3fortran)', &
+'                               August 03, 2024                  sin(3fortran)', &
 '']
 
 shortname="sin"
 call process()
 
 
-case('193','sinh')
+case('194','sinh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22188,14 +23159,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  sinh(3fortran)', &
+'                               August 03, 2024                 sinh(3fortran)', &
 '']
 
 shortname="sinh"
 call process()
 
 
-case('194','size')
+case('195','size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22241,7 +23212,7 @@ textblock=[character(len=256) :: &
 '  the total number of elements in ARRAY if DIM is absent.', &
 '', &
 'OPTIONS', &
-'  o  ARRAY : the array to measure the number of elements of. If *array is an', &
+'  o  ARRAY : the array to measure the number of elements of. If ARRAY is an', &
 '     assumed-size array, DIM shall be present with a value less than the rank', &
 '     of ARRAY.', &
 '', &
@@ -22367,14 +23338,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  size(3fortran)', &
+'                               August 03, 2024                 size(3fortran)', &
 '']
 
 shortname="size"
 call process()
 
 
-case('195','spacing')
+case('196','spacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22454,14 +23425,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024               spacing(3fortran)', &
+'                               August 03, 2024              spacing(3fortran)', &
 '']
 
 shortname="spacing"
 call process()
 
 
-case('196','spread')
+case('197','spread')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22643,14 +23614,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                spread(3fortran)', &
+'                               August 03, 2024               spread(3fortran)', &
 '']
 
 shortname="spread"
 call process()
 
 
-case('197','sqrt')
+case('198','sqrt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22756,14 +23727,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  sqrt(3fortran)', &
+'                               August 03, 2024                 sqrt(3fortran)', &
 '']
 
 shortname="sqrt"
 call process()
 
 
-case('198','stop')
+case('199','stop')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22878,14 +23849,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  stop(7fortran)', &
+'                               August 03, 2024                 stop(7fortran)', &
 '']
 
 shortname="stop"
 call process()
 
 
-case('199','storage_size')
+case('200','storage_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22989,14 +23960,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024          storage_size(3fortran)', &
+'                               August 03, 2024         storage_size(3fortran)', &
 '']
 
 shortname="storage_size"
 call process()
 
 
-case('200','sum')
+case('201','sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23215,14 +24186,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   sum(3fortran)', &
+'                               August 03, 2024                  sum(3fortran)', &
 '']
 
 shortname="sum"
 call process()
 
 
-case('201','system_clock')
+case('202','system_clock')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23380,14 +24351,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024          system_clock(3fortran)', &
+'                               August 03, 2024         system_clock(3fortran)', &
 '']
 
 shortname="system_clock"
 call process()
 
 
-case('202','tan')
+case('203','tan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23448,14 +24419,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                   tan(3fortran)', &
+'                               August 03, 2024                  tan(3fortran)', &
 '']
 
 shortname="tan"
 call process()
 
 
-case('203','tanh')
+case('204','tanh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23527,14 +24498,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  tanh(3fortran)', &
+'                               August 03, 2024                 tanh(3fortran)', &
 '']
 
 shortname="tanh"
 call process()
 
 
-case('204','this_image')
+case('205','this_image')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23619,14 +24590,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024            this_image(3fortran)', &
+'                               August 03, 2024           this_image(3fortran)', &
 '']
 
 shortname="this_image"
 call process()
 
 
-case('205','tiny')
+case('206','tiny')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23694,14 +24665,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  tiny(3fortran)', &
+'                               August 03, 2024                 tiny(3fortran)', &
 '']
 
 shortname="tiny"
 call process()
 
 
-case('206','trailz')
+case('207','trailz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23802,14 +24773,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                trailz(3fortran)', &
+'                               August 03, 2024               trailz(3fortran)', &
 '']
 
 shortname="trailz"
 call process()
 
 
-case('207','transfer')
+case('208','transfer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23874,7 +24845,7 @@ textblock=[character(len=256) :: &
 '  representation of a variable of the same type as MOLD, the results are', &
 '  undefined, and subsequent operations on the result cannot be guaranteed to', &
 '  produce sensible behavior. For example, it is possible to create logical', &
-'  variables for which VAR and .not. var both appear to be true.', &
+'  variables for which VAR and .NOT.VAR both appear to be true.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -23929,20 +24900,20 @@ textblock=[character(len=256) :: &
 '  Fortran 90', &
 '', &
 'SEE ALSO', &
-'  ****(3)', &
+'  -equivalence(7) - alias storage', &
 '', &
 '  fortran-lang intrinsic descriptions', &
 '', &
 '', &
 '', &
-'                               April 28, 2024              transfer(3fortran)', &
+'                               August 03, 2024             transfer(3fortran)', &
 '']
 
 shortname="transfer"
 call process()
 
 
-case('208','transpose')
+case('209','transpose')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24051,14 +25022,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024             transpose(3fortran)', &
+'                               August 03, 2024            transpose(3fortran)', &
 '']
 
 shortname="transpose"
 call process()
 
 
-case('209','trim')
+case('210','trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24159,14 +25130,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  trim(3fortran)', &
+'                               August 03, 2024                 trim(3fortran)', &
 '']
 
 shortname="trim"
 call process()
 
 
-case('210','ubound')
+case('211','ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24343,14 +25314,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                ubound(3fortran)', &
+'                               August 03, 2024               ubound(3fortran)', &
 '']
 
 shortname="ubound"
 call process()
 
 
-case('211','ucobound')
+case('212','ucobound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24393,14 +25364,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024              ucobound(3fortran)', &
+'                               August 03, 2024             ucobound(3fortran)', &
 '']
 
 shortname="ucobound"
 call process()
 
 
-case('212','unpack')
+case('213','unpack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24457,8 +25428,8 @@ textblock=[character(len=256) :: &
 '  The element of the result that corresponds to the ith true element of MASK,', &
 '  in array element order, has the value VECTOR(I) for i = 1, 2, . .  ., t,', &
 '  where t is the number of true values in MASK. Each other element has a value', &
-'  equal to *field if *field is scalar or to the corresponding element of', &
-'  *field if it is an array.', &
+'  equal to FIELD if FIELD is scalar or to the corresponding element of FIELD', &
+'  if it is an array.', &
 '', &
 '  The resulting array corresponds to FIELD with .true. elements of MASK', &
 '  replaced by values from VECTOR in array element order.', &
@@ -24559,14 +25530,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                unpack(3fortran)', &
+'                               August 03, 2024               unpack(3fortran)', &
 '']
 
 shortname="unpack"
 call process()
 
 
-case('213','verify')
+case('214','verify')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24947,14 +25918,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                verify(3fortran)', &
+'                               August 03, 2024               verify(3fortran)', &
 '']
 
 shortname="verify"
 call process()
 
 
-case('214','wait')
+case('215','wait')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25031,14 +26002,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                  wait(7fortran)', &
+'                               August 03, 2024                 wait(7fortran)', &
 '']
 
 shortname="wait"
 call process()
 
 
-case('215','write')
+case('216','write')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25056,7 +26027,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               April 28, 2024                 write(7fortran)', &
+'                               August 03, 2024                write(7fortran)', &
 '']
 
 shortname="write"
@@ -25152,7 +26123,7 @@ end module M_intrinsics
 !===================================================================================================================================
  
  
-!>>>>> build/dependencies/M_CLI2/src/M_CLI2.F90
+!>>>>> ./././/../GLINKS/M_CLI2/src/M_CLI2.F90
 !VERSION 1.0 20200115
 !VERSION 2.0 20200802
 !VERSION 3.0 20201021  LONG:SHORT syntax
@@ -25196,23 +26167,23 @@ end module M_intrinsics
 !!##EXAMPLE
 !!
 !!
-!! Sample minimal program which may be called in various ways:
-!!
-!!     mimimal -x 100.3 -y 3.0e4
-!!     mimimal --xvalue=300 --debug
-!!     mimimal --yvalue 400
-!!     mimimal -x 10 file1 file2 file3
-!!
-!! Program example:
+!! Sample minimal program:
 !!
 !!     program minimal
 !!     use M_CLI2,  only : set_args, lget, rget, sgets
 !!     implicit none
 !!     real    :: x, y
 !!     integer :: i
+!!     character(len=:),allocatable :: version_text(:), help_text(:)
 !!     character(len=:),allocatable :: filenames(:)
-!!        ! define and crack command line
-!!        call set_args(' --yvalue:y 0.0 --xvalue:x 0.0 --debug F')
+!!        ! define and crack command line.
+!!        ! creates argument --yvalue with short name y with default value 0
+!!        ! creates argument --xvalue with short name x with default value 0
+!!        ! creates boolean argument
+!!        call setup() ! define help text and version text
+!!        call set_args(' --yvalue:y 0.0 --xvalue:x 0.0 --debug F',&
+!!             & help_text=help_text,&
+!!             & version_text=version_text)
 !!        ! get values
 !!        x=rget('xvalue')
 !!        y=rget('yvalue')
@@ -25223,12 +26194,30 @@ end module M_intrinsics
 !!        else
 !!           write(*,*)atan2(x=x,y=y)
 !!        endif
-!!        filenames=sgets() ! sget with no name gets "unnamed" values
+!!        filenames=sgets() ! sgets(3f) with no name gets "unnamed" values
 !!        if(size(filenames) > 0)then
 !!           write(*,'(g0)')'filenames:'
 !!           write(*,'(i6.6,3a)')(i,'[',filenames(i),']',i=1,size(filenames))
 !!        endif
+!!     contains
+!!     subroutine setup()
+!!
+!!     help_text=[character(len=80) :: &
+!!                 & "wish I put instructions", &
+!!                 & "here I suppose.        ", &
+!!                 & " "]
+!!
+!!     version_text=[character(len=80) :: "version 1.0","author: me"]
+!!
+!!     end subroutine setup
 !!     end program minimal
+!!
+!! which may be called in various ways:
+!!
+!!     mimimal -x 100.3 -y 3.0e4
+!!     mimimal --xvalue=300 --debug
+!!     mimimal --yvalue 400
+!!     mimimal -x 10 file1 file2 file3
 !!
 !! Sample program using get_args() and variants
 !!
@@ -25237,8 +26226,8 @@ end module M_intrinsics
 !!     use M_CLI2,  only : filenames=>unnamed
 !!     use M_CLI2,  only : get_args_fixed_length, get_args_fixed_size
 !!     implicit none
-!!     integer                      :: i
 !!     integer,parameter            :: dp=kind(0.0d0)
+!!     integer                      :: i
 !!      !
 !!      ! Define ARGS
 !!     real                         :: x, y, z
@@ -25313,6 +26302,18 @@ end module M_intrinsics
 !!     endif
 !!      !
 !!     end program demo_M_CLI2
+!!
+!! Results:
+!!
+!!  >  x=1.00000000     y=2.00000000     z=3.00000000       6.00000000
+!!  >  p=  -1.00000000      -2.00000000      -3.00000000
+!!  >  point=   11.109999999999999 22.219999999999999 33.329999999999998
+!!  >  title=my title
+!!  >  label=
+!!  >  l= F
+!!  >  L= F
+!!  >  logicals= F F F F F
+!!  >  logi= F T F
 !!
 !!##AUTHOR
 !!     John S. Urban, 2019
@@ -25394,6 +26395,7 @@ logical,save,public               :: CLI_RESPONSE_FILE=.false. ! allow @name abb
 logical,save                      :: G_OPTIONS_ONLY            ! process response file only looking for options for get_subcommand()
 logical,save                      :: G_RESPONSE                ! allow @name abbreviations
 character(len=:),allocatable,save :: G_RESPONSE_IGNORED
+character(len=:),allocatable,save :: G_RESPONSE_PREFIX
 
 ! return allocatable arrays
 interface  get_args;  module  procedure  get_anyarray_d;  end interface  ! any size array
@@ -25503,7 +26505,7 @@ contains
 !!      character(len=:),allocatable :: version_text(:), help_text(:)
 !!      real               :: x, y, z
 !!      character(len=*),parameter :: cmd='-x 1 -y 2 -z 3'
-!!         version_text=[character(len=80) :: "version 1.0","author: me"]
+!!         version_text=[character(len=80) :: "version: 1.0","author: me"]
 !!         help_text=[character(len=80) :: &
 !!                 & "wish I put instructions","here","I suppose?"]
 !!         call set_args(cmd,help_text,version_text)
@@ -25525,7 +26527,15 @@ character(len=:),allocatable         :: line
 integer                              :: i
 integer                              :: istart
 integer                              :: iback
+character(len=255)                   :: string
    if(get('usage') == 'T')then
+      ! kludge to test interactive mode concept
+      !   do
+      !      call print_dictionary_usage()
+      !      read(*,'(a)')string
+      !      if(string.eq.'.')exit
+      !      call prototype_to_dictionary(string)
+      !   enddo
       call print_dictionary_usage()
       call mystop(32)
       return
@@ -25618,13 +26628,14 @@ end subroutine check_commandline
 !!##OPTIONS
 !!
 !!    PROTOTYPE   composed of all command arguments concatenated
-!!                into a Unix-like command prototype string. For
-!!                example:
+!!                into a Unix-like command prototype string. For example:
 !!
 !!                 call set_args('-L F --ints 1,2,3 --title "my title" -R 10.3')
 !!
-!!                The following options are predefined for all commands:
-!!                '--verbose F --usage F --help F --version F'.
+!!                Note that the following options are predefined for all
+!!                commands:
+!!
+!!                    --verbose F --usage F --help F --version F
 !!
 !!                see "DEFINING THE PROTOTYPE" in the next section for
 !!                further details.
@@ -25673,7 +26684,7 @@ end subroutine check_commandline
 !!
 !!    o It is recommended long names (--keyword) should be all lowercase
 !!      but are case-sensitive by default, unless
-!!      "set_mode('ignorelongcase')" of "set_mode('ignoreallcase')" is
+!!      "set_mode('ignorelongcase')" or "set_mode('ignoreallcase')" is
 !!      in effect.
 !!
 !!    o Long names should always be more than one character.
@@ -25687,10 +26698,10 @@ end subroutine check_commandline
 !!    SPECIAL BEHAVIORS
 !!
 !!    o A special behavior occurs if a keyword name ends in ::.
-!!      When the program is called the next parameter is taken as
-!!      a value even if it starts with -. This is not generally
-!!      recommended but is useful in rare cases where non-numeric
-!!      values starting with a dash are desired.
+!!      When the program is called the next parameter is taken as a value
+!!      even if it starts with -. This is not generally needed but is
+!!      useful in rare cases where non-numeric values starting with a dash
+!!      are desired.
 !!
 !!    o If the prototype ends with "--" a special mode is turned
 !!      on where anything after "--" on input goes into the variable
@@ -25725,12 +26736,12 @@ end subroutine check_commandline
 !!       ARGS= ['A','B','C,' dd']
 !!
 !!##USAGE NOTES
-!!      When invoking the program line note the (subject to change)
-!!      following restrictions (which often differ between various
-!!      command-line parsers):
+!!      When invoking the program line note the following restrictions
+!!      (which often differ between various command-line parsers and are
+!!      subject to change):
 !!
-!!      o values for duplicate keywords are appended together with a space
-!!        separator when a command line is executed by default.
+!!      o By defaul tvalues for duplicate keywords are appended together
+!!        with a space separator.
 !!
 !!      o shuffling is not supported. Values immediately follow their
 !!        keywords.
@@ -25844,8 +26855,19 @@ end subroutine check_commandline
 !!
 !!  They are case-sensitive names.
 !!
-!!  Note "@" s a special character in Powershell, and requires being escaped
-!!  with a grave character.
+!!  Note "@" is a special character in Powershell, and there requires being
+!!  escaped with a grave character or placed in double-quotes if the name
+!!  is alphanumeric (using names like "a-b" or other non-alphanumeric
+!!  characters also prevents the "@" from being treated specially). To
+!!  accomodate this the "@" character may alternatively appear on the end
+!!  of the name instead of the beginning. It will be internally moved to
+!!  the beginning before processing commences.
+!!
+!!  It is not recommended in general but the response name prefix may
+!!  be changed via the environment variable CLI_RESPONSE_PREFIX if in an
+!!  environment preventing the use of the "@" character. Typically "^" or
+!!  "%" or "_" are unused characters. In the very worst case an arbitrary
+!!  string is allowed such as "rsp_".
 !!
 !!   LOCATING RESPONSE FILES
 !!
@@ -26094,6 +27116,7 @@ character(len=:),allocatable                      :: debug_mode
    end select
 
    G_response=CLI_RESPONSE_FILE
+
    G_options_only=.false.
    G_passed_in=''
    G_STOP=0
@@ -26280,6 +27303,8 @@ character(len=:),allocatable  :: prototype
 integer                       :: ilongest
 integer                       :: i
 integer                       :: j
+integer                       :: iend
+   G_RESPONSE_PREFIX=get_env('CLI_RESPONSE_PREFIX','@')
    G_subcommand=''
    G_options_only=.true.
    sub=''
@@ -26294,7 +27319,8 @@ integer                       :: j
    ! look for @NAME if CLI_RESPONSE_FILE=.TRUE. AND LOAD THEM
    do i = 1, command_argument_count()
       call get_command_argument(i, cmdarg)
-      if(scan(adjustl(cmdarg(1:1)),'@')  ==  1)then
+      call move_from_end(cmdarg)
+      if(scan(adjustl(cmdarg(1:len(G_RESPONSE_PREFIX))),G_RESPONSE_PREFIX)  ==  1)then
          call get_prototype(cmdarg,prototype)
          call split(prototype,array)
          ! assume that if using subcommands first word not starting with dash is the subcommand
@@ -26327,10 +27353,22 @@ end function get_subcommand
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
+subroutine move_from_end(string)
+character(len=*) :: string
+integer          :: iend
+! @ is treated as a special character in powershell so allow the prefix to be a suffix and move it to beginning of line
+   iend=len_trim(string)
+   if(string(iend-len(G_RESPONSE_PREFIX)+1:iend)== G_RESPONSE_PREFIX)then
+      string(:)= G_RESPONSE_PREFIX//string(1:iend-len(G_RESPONSE_PREFIX))
+   endif
+end subroutine move_from_end
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!===================================================================================================================================
 !>
 !!##NAME
 !!    set_usage(3f) - [ARGUMENTS:M_CLI2] allow setting a short description
-!!    for keywords for the --usage switch
+!!    of keywords for the --usage switch
 !!    (LICENSE:PD)
 !!
 !!##SYNOPSIS
@@ -26351,7 +27389,22 @@ end function get_subcommand
 !!
 !! sample program:
 !!
-!!     Results:
+!!    program demo_set_usage
+!!    use M_CLI2,  only : set_args, igets, rgets, specified, sget, lget
+!!    implicit none
+!!
+!!    integer,allocatable  :: ints(:)
+!!    logical              :: flag
+!!       call set_args(' --flag:f F --ints:i 1,10,11 ')
+!!       call set_usage('flag','This is my flag')
+!!       call set_usage('ints','These are my whole numbers')
+!!       flag=lget('flag')
+!!       ints=igets('ints')
+!!       write(*,*)'flag=',flag
+!!       write(*,*)'ints=',ints
+!!    end program demo_set_usage
+!!
+!!    Results:
 !!
 !!##AUTHOR
 !!      John S. Urban, 2019
@@ -26428,24 +27481,24 @@ recursive subroutine prototype_to_dictionary(string)
 
 ! ident_3="@(#) M_CLI2 prototype_to_dictionary(3f) parse user command and store tokens into dictionary"
 
-character(len=*),intent(in)       :: string ! string is character input string of options and values
+character(len=*),intent(in)   :: string  ! string is character input string of options and values
 
-character(len=:),allocatable      :: dummy   ! working copy of string
-character(len=:),allocatable      :: value
-character(len=:),allocatable      :: keyword
-character(len=3)                  :: delmt   ! flag if in a delimited string or not
-character(len=1)                  :: currnt  ! current character being processed
-character(len=1)                  :: prev    ! character to left of CURRNT
-character(len=1)                  :: forwrd  ! character to right of CURRNT
-integer,dimension(2)              :: ipnt
-integer                           :: islen   ! number of characters in input string
-integer                           :: ipoint
-integer                           :: itype
-integer,parameter                 :: VAL=1, KEYW=2
-integer                           :: ifwd
-integer                           :: ibegin
-integer                           :: iend
-integer                           :: place
+character(len=:),allocatable  :: dummy   ! working copy of string
+character(len=:),allocatable  :: value
+character(len=:),allocatable  :: keyword
+character(len=3)              :: delmt   ! flag if in a delimited string or not
+character(len=1)              :: currnt  ! current character being processed
+character(len=1)              :: prev    ! character to left of CURRNT
+character(len=1)              :: forwrd  ! character to right of CURRNT
+integer,dimension(2)          :: ipnt
+integer                       :: islen   ! number of characters in input string
+integer                       :: ipoint
+integer                       :: itype
+integer,parameter             :: VAL=1, KEYW=2
+integer                       :: ifwd
+integer                       :: ibegin
+integer                       :: iend
+integer                       :: place
 
    islen=len_trim(string)                               ! find number of characters in input string
    if(islen  ==  0)then                                 ! if input string is blank, even default variable will not be changed
@@ -27098,15 +28151,16 @@ character(len=256)                       :: message
 character(len=:),allocatable             :: array(:) ! output array of tokens
 integer                                  :: lines_processed
 
+   G_RESPONSE_PREFIX=get_env('CLI_RESPONSE_PREFIX','@')
    lines_processed=0
    plain_name=name//'  '
-   plain_name=trim(name(2:))
-   os= '@' // get_env('OSTYPE',get_env('OS'))
+   plain_name=trim(name(len(G_RESPONSE_PREFIX)+1:))
+   os= G_RESPONSE_PREFIX // get_env('OSTYPE',get_env('OS'))
    if(G_DEBUG)write(*,gen)'<DEBUG>GET_PROTOTYPE:OS=',OS
 
    search_for=''
    ! look for NAME.rsp and see if there is an @OS  section in it and position to it and read
-   if(os /= '@')then
+   if(os /= G_RESPONSE_PREFIX)then
       search_for=os
       call find_and_read_response_file(plain_name)
       if(lines_processed /= 0)return
@@ -27118,15 +28172,15 @@ integer                                  :: lines_processed
    if(lines_processed /= 0)return
 
    ! look for ARG0.rsp  with @OS@NAME  section in it and position to it
-   if(os /= '@')then
+   if(os /= G_RESPONSE_PREFIX)then
       search_for=os//name
-      call find_and_read_response_file(basename(get_name(),suffix=.false.))
+      call find_and_read_response_file(basename(get_name(),keep_suffix=.false.))
       if(lines_processed /= 0)return
    endif
 
    ! look for ARG0.rsp  with a section called @NAME in it and position to it
    search_for=name
-   call find_and_read_response_file(basename(get_name(),suffix=.false.))
+   call find_and_read_response_file(basename(get_name(),keep_suffix=.false.))
    if(lines_processed /= 0)return
 
    write(*,gen)'<ERROR> response name ['//trim(name)//'] not found'
@@ -27158,7 +28212,7 @@ integer                      :: ios
    if(G_DEBUG)write(*,gen)'<DEBUG>FIND_AND_READ_RESPONSE_FILE:FILENAME=',filename
 
    ! look for name.rsp in directories from environment variable assumed to be a colon-separated list of directories
-   call split(get_env('CLI_RESPONSE_PATH','~/.local/share/rsp'),paths)
+   call split(get_env('CLI_RESPONSE_PATH',join_path(get_env('HOME'),'/.local/share/rsp')),paths)
    paths=[character(len=len(paths)) :: ' ',paths]
    if(G_DEBUG)write(*,gen)'<DEBUG>FIND_AND_READ_RESPONSE_FILE:PATHS=',paths
 
@@ -27199,6 +28253,7 @@ end subroutine position_response
 subroutine process_response()
 character(len=:),allocatable :: padded
 character(len=:),allocatable :: temp
+   G_RESPONSE_PREFIX=get_env('CLI_RESPONSE_PREFIX','@')
    line=''
    lines_processed=0
       INFINITE: do
@@ -27215,7 +28270,7 @@ character(len=:),allocatable :: temp
       if(index(temp//' ','#') == 1)cycle
       if(temp /= '')then
 
-         if(index(temp,'@') == 1.and.lines_processed /= 0)exit INFINITE
+         if(index(temp,G_RESPONSE_PREFIX) == 1.and.lines_processed /= 0)exit INFINITE
 
          call split(temp,array) ! get first word
          itrim=len_trim(array(1))+2
@@ -27254,7 +28309,7 @@ character(len=:),allocatable :: temp
                endif
                lines_processed= lines_processed+1
             else
-               if(array(1)(1:1) == '@')cycle INFINITE !skip adjacent @ lines from first
+               if(array(1)(1:len(G_RESPONSE_PREFIX)) == G_RESPONSE_PREFIX)cycle INFINITE !skip adjacent @ lines from first
                lines_processed= lines_processed+1
                write(*,'(*(g0))')'unknown response keyword [',array(1),'] with options of [',trim(temp),']'
             endif
@@ -27340,8 +28395,9 @@ function join_path(a1,a2,a3,a4,a5) result(path)
    if (present(a3)) path = path // filesep // trim(a3)
    if (present(a4)) path = path // filesep // trim(a4)
    if (present(a5)) path = path // filesep // trim(a5)
-   path=adjustl(path//'  ')
-   path=path(1:1)//replace_str(path,filesep//filesep,'') ! some systems allow names starting with '//' or '\\'
+   path=adjustl(path//'   ')
+   ! clean up duplicate adjacent separators
+   path=path(1:2)//replace_str(path(3:),filesep//filesep,filesep) ! some systems allow filepath starting with // or \\
    path=trim(path)
 end function join_path
 !===================================================================================================================================
@@ -27369,37 +28425,33 @@ character(len=:),allocatable :: name
    endif
 end function get_name
 !===================================================================================================================================
-function basename(path,suffix) result (base)
-    ! Extract filename from path with/without suffix
+function basename(path,keep_suffix) result (base)
+    ! Extract filename from path with/without keep_suffix
     !
 character(*), intent(In) :: path
-logical, intent(in), optional :: suffix
+logical, intent(in), optional :: keep_suffix
 character(:), allocatable :: base
 
 character(:), allocatable :: file_parts(:)
-logical :: with_suffix
+logical :: return_with_suffix
+integer :: iend
 
-   if (.not.present(suffix)) then
-      with_suffix = .true.
+   if (.not.present(keep_suffix)) then
+      return_with_suffix = .true.
    else
-      with_suffix = suffix
+      return_with_suffix = keep_suffix
    endif
 
-   if (with_suffix) then
-      call split(path,file_parts,delimiters='\/')
-      if(size(file_parts) > 0)then
-         base = trim(file_parts(size(file_parts)))
-      else
-         base = ''
-      endif
+   call split(path,file_parts,delimiters='\/')
+   if(size(file_parts) > 0)then
+      base = trim(file_parts(size(file_parts)))
    else
-      call split(path,file_parts,delimiters='\/.')
-      if(size(file_parts) >= 2)then
-         base = trim(file_parts(size(file_parts)-1))
-      elseif(size(file_parts) == 1)then
-         base = trim(file_parts(1))
-      else
-         base = ''
+      base = ''
+   endif
+   if(.not.return_with_suffix)then
+      iend=index(base,'.',back=.true.)
+      if(iend.gt.1)then
+         base=base(:iend-1)
       endif
    endif
 end function basename
@@ -27510,6 +28562,7 @@ character(len=:),allocatable :: oldvalue
 logical                      :: nomore
 logical                      :: next_mandatory
    if(G_DEBUG)write(*,gen)'<DEBUG>CMD_ARGS_TO_DICTIONARY:START'
+   G_RESPONSE_PREFIX=get_env('CLI_RESPONSE_PREFIX','@')
    next_mandatory=.false.
    nomore=.false.
    pointer=0
@@ -27625,7 +28678,7 @@ logical                      :: next_mandatory
             args=[character(len=imax) :: args,current_argument]
          else
             imax=max(len(unnamed),len(current_argument))
-            if(scan(current_argument//' ','@') == 1.and.G_response)then
+            if(scan(current_argument//' ',G_RESPONSE_PREFIX) == 1.and.G_response)then
                if(G_DEBUG)write(*,gen)'<DEBUG>CMD_ARGS_TO_DICTIONARY:1:CALL EXPAND_RESPONSE:CURRENT_ARGUMENT=',current_argument
                call expand_response(current_argument)
             else
@@ -27653,7 +28706,7 @@ logical                      :: next_mandatory
                   args=[character(len=imax) :: args,current_argument]
                else
                   imax=max(len(unnamed),len(current_argument))
-                  if(scan(current_argument//' ','@') == 1.and.G_response)then
+                  if(scan(current_argument//' ',G_RESPONSE_PREFIX) == 1.and.G_response)then
                     if(G_DEBUG)write(*,gen)'<DEBUG>CMD_ARGS_TO_DICTIONARY:2:CALL EXPAND_RESPONSE:CURRENT_ARGUMENT=',current_argument
                     call expand_response(current_argument)
                   else
@@ -27947,7 +29000,7 @@ end subroutine print_dictionary
 !!        & ')
 !!      ! Assign values to elements
 !!      ! Scalars
-!!     call get_args('x',x,'y',y,'z',z,'l',l,'L',lbig)
+!!     call get_args( 'x',x, 'y',y, 'z',z, 'l',l, 'L',lbig )
 !!      ! Allocatable string
 !!     call get_args('title',title)
 !!      ! Allocatable arrays
@@ -30812,9 +31865,16 @@ end subroutine locate_key
 !!      Public Domain
 !===================================================================================================================================
 elemental impure subroutine set_mode(key,mode)
-character(len=*),intent(in) :: key
-logical,intent(in),optional :: mode
-logical :: local_mode
+character(len=*),intent(in)   :: key
+logical,intent(in),optional   :: mode
+logical                       :: local_mode
+character(len=:),allocatable  :: debug_mode
+
+   debug_mode= upper(get_env('CLI_DEBUG_MODE','FALSE'))//' '
+   select case(debug_mode(1:1))
+   case('Y','T')
+      G_DEBUG=.true.
+   end select
 
    if(present(mode))then
       local_mode=mode
@@ -30835,7 +31895,7 @@ logical :: local_mode
       call journal('*set_mode* unknown key name ',key)
    end select
 
-   if(G_DEBUG)write(*,gen)'<DEBUG>EXPAND_RESPONSE:END'
+   if(G_DEBUG)write(*,gen)'<DEBUG>SET_MODE:END'
 
 end subroutine set_mode
 !===================================================================================================================================
@@ -30865,7 +31925,7 @@ end module M_CLI2
 !===================================================================================================================================
  
  
-!>>>>> build/dependencies/M_match/src/M_match.f90
+!>>>>> ./././/../GLINKS/M_match/src/M_match.f90
 !09/22/1980  15:38:34
 !04/19/2020  11:05:06
 !==================================================================================================================================!
@@ -32035,7 +33095,7 @@ end module M_match
 !==================================================================================================================================!
  
  
-!>>>>> build/dependencies/M_strings/src/M_strings.F90
+!>>>>> ./././/../GLINKS/M_strings/src/M_strings.F90
 !>
 !!##NAME
 !!    M_strings(3f) - [M_strings::INTRO] Fortran string module
@@ -32060,7 +33120,7 @@ end module M_match
 !!              & reverse, squeeze
 !!      use M_strings,only : replace, join
 !!      use M_strings,only : upper, lower, upper_quoted
-!!      use M_strings,only : rotate13, percent_encode
+!!      use M_strings,only : rotate13, percent_encode, percent_decode
 !!      use M_strings,only : adjustc, compact, nospace, indent
 !!      use M_strings,only : crop, clip, unquote, quote, matching_delimiter
 !!      use M_strings,only : len_white, pad, lpad, cpad, rpad, zpad, &
@@ -32071,7 +33131,7 @@ end module M_match
 !!      use M_strings,only : string_to_value, string_to_values, s2v, s2vs
 !!      use M_strings,only : int, real, dble, nint
 !!      use M_strings,only : atoi, atol, aton
-!!      use M_strings,only : value_to_string, v2s, msg
+!!      use M_strings,only : value_to_string, v2s, str, fmt
 !!      use M_strings,only : listout, getvals
 !!      use M_strings,only : glob, ends_with
 !!      use M_strings,only : paragraph
@@ -32107,32 +33167,33 @@ end module M_match
 !!
 !!   EDITING
 !!
-!!       substitute     subroutine non-recursively globally replaces old
-!!                      substring with new substring
-!!       replace        function non-recursively globally replaces old
-!!                      substring with new substring using allocatable string
-!!                      (version of substitute(3f) without limitation on
-!!                      length of output string)
-!!       change         subroutine non-recursively globally replaces old
-!!                      substring with new substring with a directive like
-!!                      line editor
-!!       modif          subroutine modifies a string with a directive like the
-!!                      XEDIT line editor MODIFY command
-!!       transliterate  replace characters found in set one with characters
-!!                      from set two
-!!       reverse        reverse character order in a string
-!!       join           join an array of CHARACTER variables with specified
-!!                      separator
-!!       rotate13       apply trivial encryption algorithm ROT13 to a string
-!!       percent_encode apply percent-encryption (aka. URL encryption) to characters
-!!       squeeze        delete adjacent duplicate characters from a string
+!!       substitute      subroutine non-recursively globally replaces old
+!!                       substring with new substring
+!!       replace         function non-recursively globally replaces old
+!!                       substring with new substring using allocatable string
+!!                       (version of substitute(3f) without limitation on
+!!                       length of output string)
+!!       change          subroutine non-recursively globally replaces old
+!!                       substring with new substring with a directive like
+!!                       line editor
+!!       modif           subroutine modifies a string with a directive like the
+!!                       XEDIT line editor MODIFY command
+!!       transliterate   replace characters found in set one with characters
+!!                       from set two
+!!       reverse         reverse character order in a string
+!!       join            join an array of CHARACTER variables with specified
+!!                       separator
+!!       rotate13        apply trivial encryption algorithm ROT13 to a string
+!!       percent_encode  apply percent-encryption (aka. URL encryption) to characters
+!!       percent_decode  apply percent-decryption (aka. URL decryption) to characters
+!!       squeeze         delete adjacent duplicate characters from a string
 !!
 !!   CASE
 !!
-!!       upper          function converts string to uppercase
-!!       lower          function converts string to miniscule
-!!       upper_quoted   function converts string to uppercase skipping strings
-!!                      quoted per Fortran rules
+!!       upper           function converts string to uppercase
+!!       lower           function converts string to miniscule
+!!       upper_quoted    function converts string to uppercase skipping strings
+!!                       quoted per Fortran rules
 !!
 !!   STRING LENGTH AND PADDING
 !!
@@ -32160,7 +33221,8 @@ end module M_match
 !!       indent   find number of leading spaces
 !!       crop     function trims leading and trailing spaces and control
 !!                characters
-!!       clip     function trims leading and trailing spaces
+!!       clip     trim leading and trailings spaces or set of characters
+!!                from string
 !!
 !!       See Also: squeeze
 !!
@@ -32168,7 +33230,7 @@ end module M_match
 !!
 !!       matching_delimiter  find position of matching delimiter
 !!       unquote  remove quotes from string as if read with list-directed input
-!!       quote    add quotes to string as if written with list-directed input
+!!       quote    add quotes to string as if written with list-directed output
 !!
 !!
 !!   CHARACTER ARRAY VERSUS STRING
@@ -32206,8 +33268,12 @@ end module M_match
 !!       atoi              function returns INTEGER(kind=int32)  from a string
 !!       atol              function returns INTEGER(kind=int64)  from a string
 !!       aton              changes string to numeric value
-!!       msg               append the values of up to nine values into a string
 !!
+!!       str               append the values of up to twenty values into
+!!                         a string, including user-specified separator
+!!                         and a CSV-style option
+!!       fmt               return string from generic  intrinsic value
+!!                         using optionally specified format.
 !!       value_to_string   generic subroutine returns string given numeric value
 !!                         (REAL, DOUBLEPRECISION, INTEGER, LOGICAL )
 !!       v2s               generic function returns string from numeric value
@@ -32314,6 +33380,61 @@ end module M_match
 !!
 !!    Each of the procedures includes an [example](example/) program in
 !!    the corresponding man(1) page for the function.
+!!##EXAMPLE
+!!
+!!    Sample program:
+!!
+!!      program demo_M_strings
+!!      use M_strings,only : SPLIT, slice, sep, delim, chomp, strtok
+!!      use M_strings,only : split2020, find_field
+!!      use M_strings,only : substitute, change, modif, transliterate, &
+!!              & reverse, squeeze
+!!      use M_strings,only : REPLACE, join
+!!      use M_strings,only : UPPER, LOWER, upper_quoted
+!!      use M_strings,only : rotate13, percent_encode, percent_decode
+!!      use M_strings,only : adjustc, compact, nospace, indent
+!!      use M_strings,only : crop, clip, unquote, quote, matching_delimiter
+!!      use M_strings,only : len_white, pad, lpad, cpad, rpad, zpad, &
+!!              & stretch, lenset, merge_str
+!!      use M_strings,only : switch, s2c, c2s
+!!      use M_strings,only : noesc, notabs, dilate, expand, visible
+!!      use M_strings,only : longest_common_substring
+!!      use M_strings,only : string_to_value, string_to_values, s2v, s2vs
+!!      use M_strings,only : int, real, dble, nint
+!!      use M_strings,only : atoi, atol, aton
+!!      use M_strings,only : value_to_string, v2s, str, fmt
+!!      use M_strings,only : listout, getvals
+!!      use M_strings,only : glob, ends_with
+!!      use M_strings,only : paragraph
+!!      use M_strings,only : base, decodebase, codebase, base2
+!!      use M_strings,only : isalnum, isalpha, iscntrl, isdigit
+!!      use M_strings,only : isgraph, islower, isprint, ispunct
+!!      use M_strings,only : isspace, isupper, isascii, isblank, isxdigit
+!!      use M_strings,only : isnumber
+!!      use M_strings,only : fortran_name
+!!      use M_strings,only : describe
+!!      use M_strings,only : edit_distance
+!!      use M_strings,only : bundle
+!!      character(len=:),allocatable :: string
+!!      character(len=:),allocatable :: array(:) ! output array of tokens
+!!      character(len=*),parameter   :: gen='(*(g0))'
+!!      character(len=*),parameter   :: genx='(*("[",g0,"] ":))'
+!!      string='abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 01234567890'
+!!      write(*,gen)string
+!!      write(*,gen)upper(string)
+!!      write(*,gen)lower(string)
+!!      call split(string,array)
+!!      write(*,genx)array
+!!      write(*,gen)replace(string,'qrs','--RePlace--',ignorecase=.true.)
+!!      end program demo_M_strings
+!!
+!! Results:
+!!
+!!  > abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 01234567890
+!!  > ABCDEFGHIJKLMNOPQRSTUVWXYZ ABCDEFGHIJKLMNOPQRSTUVWXYZ 01234567890
+!!  > abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz 01234567890
+!!  > [abcdefghijklmnopqrstuvwxyz] [ABCDEFGHIJKLMNOPQRSTUVWXYZ] [01234567890               ]
+!!  > abcdefghijklmnop--RePlace--tuvwxyz ABCDEFGHIJKLMNOP--RePlace--TUVWXYZ 01234567890
 !!
 !!##AUTHOR
 !!    John S. Urban
@@ -32324,7 +33445,6 @@ end module M_match
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
 MODULE M_strings !
-use, intrinsic :: iso_fortran_env, only : ERROR_UNIT        ! access computing environment
 use, intrinsic :: iso_fortran_env, only : output_unit, stderr=>error_unit
 use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64, real32, real64, real128
 implicit none
@@ -32334,92 +33454,95 @@ implicit none
 !-----------------------------------------------------------------------------------------------------------------------------------
 private
 
-!----------------------# TOKENS
-public split           !  subroutine parses a string using specified delimiter characters and store tokens into an allocatable array
-public slice           !  subroutine parses a string using specified delimiter characters and stores positions into arrays
-public sep             !  function interface to split
-public chomp           !  function consumes input line as it returns next token in a string using specified delimiters
-public delim           !  subroutine parses a string using specified delimiter characters and store tokens into an array
-public strtok          !  gets next token. Used by change(3f)
-public paragraph       !  convert a long string into a paragraph
-!----------------------# EDITING
-public substitute      !  subroutine non-recursively globally replaces old substring with new substring in string
-public replace         !  function non-recursively globally replaces old substring with new substring in string
-public change          !  replaces old substring with new substring in string with a directive like a line editor
-public modif           !  change string using a directive using rules similar to XEDIT line editor MODIFY command
-public transliterate   !  when characters in set one are found replace them with characters from set two
-public reverse         !  elemental function reverses character order in a string
-public join            !  append an array of character variables with specified separator into a single CHARACTER variable
-public squeeze         !  delete adjacent duplicate characters from a string
-public rotate13        !  apply trivial encryption algorithm ROT13 to string
-public percent_encode  !  percent-encode characters or a string
+!-------------------------# TOKENS
+public split              !  subroutine parses a string on specified delimiter characters and store tokens into an allocatable array
+public slice              !  subroutine parses a string on specified delimiter characters and stores positions into arrays
+public sep                !  function interface to split
+public chomp              !  function consumes input line as it returns next token in a string using specified delimiters
+public delim              !  subroutine parses a string using specified delimiter characters and store tokens into an array
+public strtok             !  gets next token. Used by change(3f)
+public paragraph          !  convert a long string into a paragraph
+!-------------------------# EDITING
+public substitute         !  subroutine non-recursively globally replaces old substring with new substring in string
+public replace            !  function non-recursively globally replaces old substring with new substring in string
+public change             !  replaces old substring with new substring in string with a directive like a line editor
+public modif              !  change string using a directive using rules similar to XEDIT line editor MODIFY command
+public transliterate      !  when characters in set one are found replace them with characters from set two
+public reverse            !  elemental function reverses character order in a string
+public join               !  append an array of character variables with specified separator into a single CHARACTER variable
+public squeeze            !  delete adjacent duplicate characters from a string
+public rotate13           !  apply trivial encryption algorithm ROT13 to string
+public percent_encode     !  percent-encode characters or a string
 interface percent_encode;    module procedure percent_encode_string, percent_encode_characters;  end interface
-!----------------------# CHARACTER ARRAY VERSUS STRING
-public switch          !  generic switch between a string and an array of single characters (a2s,s2a)
-private a2s            !  function to copy char array to string
-private s2a            !  function to copy string(1:Clen(string)) to char array
-public s2c             !  convert character variable to array of character(len=1) with null terminator for C compatibility
-public c2s             !  convert null-terminated array of character(len=1) to string for strings returned by C
-!----------------------# CASE
-public upper           !  elemental function converts string to uppercase
+public percent_decode     !  percent-decode characters or a string
+interface percent_decode;    module procedure percent_decode_string, percent_decode_characters;  end interface
+!-------------------------# CHARACTER ARRAY VERSUS STRING
+public switch             !  generic switch between a string and an array of single characters (a2s,s2a)
+private a2s               !  function to copy char array to string
+private s2a               !  function to copy string(1:Clen(string)) to char array
+public s2c                !  convert character variable to array of character(len=1) with null terminator for C compatibility
+public c2s                !  convert null-terminated array of character(len=1) to string for strings returned by C
+!-------------------------# CASE
+public upper              !  elemental function converts string to uppercase
 interface upper;    module procedure upper_all, upper_range;  end interface
-public lower           !  elemental function converts string to miniscule
-public upper_quoted    !  elemental function converts string to uppercase skipping strings quoted per Fortran syntax rules
-!----------------------# WHITE SPACE
-public adjustc         !  elemental function centers string within the length of the input string
-public compact         !  left justify string and replace duplicate whitespace with single characters or nothing
-public nospace         !  function replaces whitespace with nothing
-public indent          !  count number of leading spaces
-public crop            !  function trims leading and trailing spaces and control characters
-public clip            !  function trims leading and trailing spaces
-!----------------------# QUOTES
+public lower              !  elemental function converts string to miniscule
+public upper_quoted       !  elemental function converts string to uppercase skipping strings quoted per Fortran syntax rules
+!-------------------------# WHITE SPACE
+public adjustc            !  elemental function centers string within the length of the input string
+public compact            !  left justify string and replace duplicate whitespace with single characters or nothing
+public nospace            !  function replaces whitespace with nothing
+public indent             !  count number of leading spaces
+public crop               !  function trims leading and trailing spaces and control characters
+public clip               !  function trims leading and trailing spaces or set of characters from string
+!-------------------------# QUOTES
 public matching_delimiter !  find position of matching delimiter
-public unquote         !  remove quotes from string as if read with list-directed input
-public quote           !  add quotes to string as if written with list-directed input
-!----------------------# STRING LENGTH
-public lenset          !  return a string as specified length
-public pad             !  return a string of at least specified length
-public zpad            !  return a string of at least specified length padded on left with zeros
+public unquote            !  remove quotes from string as if read with list-directed input
+public quote              !  add quotes to string as if written with list-directed output
+!-------------------------# STRING LENGTH
+public lenset             !  return a string as specified length
+public pad                !  return a string of at least specified length
+public zpad               !  return a string of at least specified length padded on left with zeros
 interface zpad;    module procedure zpad_scalar, zpad_vector;  end interface
-public lpad            !  convert value to a string of at least specified length padded on left with zeros
+public lpad               !  convert value to a string of at least specified length padded on left with zeros
 interface lpad;    module procedure lpad_scalar, lpad_vector;  end interface
-public cpad            !  convert value to a centered string of at least specified length
+public cpad               !  convert value to a centered string of at least specified length
 interface cpad;    module procedure cpad_scalar, cpad_vector;  end interface
-public rpad            !  convert value to a string of at least specified length padded on right with zeros
+public rpad               !  convert value to a string of at least specified length padded on right with zeros
 interface rpad;    module procedure rpad_scalar, rpad_vector;  end interface
-public stretch         !  return a string of at least specified length with suffix
-public merge_str       !  make strings of equal length and then call MERGE(3f) intrinsic
-public len_white       !  find location of last non-whitespace character
-!----------------------# NONALPHA
-public noesc           !  elemental function converts non-printable ASCII8 characters to a space
-public notabs          !  convert tabs to spaces in output while maintaining columns, assuming a tab is set every 8 characters
-public dilate          !  convert tabs to spaces in output while maintaining columns, assuming a tab is set every 8 characters
-public expand          !  expand escape sequences in a string
-public visible         !  expand escape sequences in a string to control and meta-control representations
-!----------------------# NUMERIC STRINGS
-public string_to_value !  generic subroutine returns REAL|DOUBLEPRECISION|INTEGER value from string (a2d,a2r,a2i)
- private a2d           !  subroutine returns double value from string
- private a2r           !  subroutine returns real value from string
- private a2i           !  subroutine returns integer value from string
-public string_to_values!  subroutine returns values from a string
-public getvals         !  subroutine returns values from a string
-public s2v             !  function returns doubleprecision value from string
-public s2vs            !  function returns a doubleprecision array of numbers from a string
-                       !  NOT USING INTERNAL READ FOR CONVERSION
-public atoi            !   function returns an INTEGER(kind=int32) value from a string
-public atol            !   function returns an INTEGER(kind=int64) value from a string
-public aton            !   function returns true or false as to whether string converts to numeric value, and numeric value
-                       !------------------------------------------------------------------------------------------------------------
-public msg             !  function returns a string representing up to nine scalar intrinsic values
-public value_to_string !  generic subroutine returns string given numeric REAL|DOUBLEPRECISION|INTEGER|LOGICAL value
-public v2s             !  generic function returns string given numeric REAL|DOUBLEPRECISION|INTEGER|LOGICAL value
- private d2s           !  function returns string from doubleprecision value
- private r2s           !  function returns string from real value
- private i2s           !  function returns string from integer value
- private l2s           !  function returns string from logical value
-public isnumber        !  determine if string represents a number
- private trimzeros_    !  Delete trailing zeros from numeric decimal string
-public listout         !  expand a list of numbers where  negative numbers denote range ends (1 -10 means 1 thru 10)
+public stretch            !  return a string of at least specified length with suffix
+public merge_str          !  make strings of equal length and then call MERGE(3f) intrinsic
+public len_white          !  find location of last non-whitespace character
+!-------------------------# NONALPHA
+public noesc              !  elemental function converts non-printable ASCII8 characters to a space
+public notabs             !  convert tabs to spaces in output while maintaining columns, assuming a tab is set every 8 characters
+public dilate             !  convert tabs to spaces in output while maintaining columns, assuming a tab is set every 8 characters
+public expand             !  expand escape sequences in a string
+public visible            !  expand escape sequences in a string to control and meta-control representations
+!-------------------------# NUMERIC STRINGS
+public string_to_value    !  generic subroutine returns REAL|DOUBLEPRECISION|INTEGER value from string (a2d,a2r,a2i)
+ private a2d              !  subroutine returns double value from string
+ private a2r              !  subroutine returns real value from string
+ private a2i              !  subroutine returns integer value from string
+public string_to_values   !  subroutine returns values from a string
+public getvals            !  subroutine returns values from a string
+public s2v                !  function returns doubleprecision value from string
+public s2vs               !  function returns a doubleprecision array of numbers from a string
+                          !  NOT USING INTERNAL READ FOR CONVERSION
+public atoi               !   function returns an INTEGER(kind=int32) value from a string
+public atol               !   function returns an INTEGER(kind=int64) value from a string
+public aton               !   function returns true or false as to whether string converts to numeric value, and numeric value
+!------------------------------------------------------------------------------------------------------------
+public str                !  function returns a string representing up to twenty scalar intrinsic values, including CSV style
+public fmt                !  function returns a string representing an intrinsic value using optionally specified format
+public value_to_string    !  generic subroutine returns string given numeric REAL|DOUBLEPRECISION|INTEGER|LOGICAL value
+public v2s                !  generic function returns string given numeric REAL|DOUBLEPRECISION|INTEGER|LOGICAL value
+ private d2s              !  function returns string from doubleprecision value
+ private r2s              !  function returns string from real value
+ private i2s              !  function returns string from integer value
+ private l2s              !  function returns string from logical value
+public isnumber           !  determine if string represents a number
+ private trimzeros_       !  Delete trailing zeros from numeric decimal string
+public listout            !  expand a list of numbers where  negative numbers denote range ends (1 -10 means 1 thru 10)
 !-----------------------------------------------------------------------------------------------------------------------------------
 !
 ! extend intrinsics to accept CHARACTER values
@@ -32503,11 +33626,11 @@ end interface
 !-!end interface
 !-----------------------------------------------------------------------------------------------------------------------------------
 
-! ident_5="@(#) M_strings msg(3f) convert up to nine scalar values to a string. Alternatively can also handle one-dimensional arrays"
+! ident_5="@(#) M_strings str(3f) convert up to twenty scalar values to a (CSV) string. Alternatively can also handle one-dimensional arrays"
 
-interface msg
-   module procedure msg_scalar, msg_one
-end interface msg
+interface str
+   module procedure str_scalar, str_one
+end interface str
 !-----------------------------------------------------------------------------------------------------------------------------------
 ! ASCII character constants
 character, public, parameter :: ascii_nul = char(0)   ! null
@@ -32533,21 +33656,17 @@ end interface split2020
 !-----------------------------------------------------------------------------------------------------------------------------------
 !-----------------------------------------------------------------------------------------------------------------------------------
 !This contains a conditionally built mini-version of M_journal which allows the M_strings.f90 module
-!to be built using make as a stand-alone distribution but still have make.shell built a true version
+!to be built using make as a stand-alone distribution but still have make.shell build a true version
 !
 !This is so when built with make.shell(1) or fpm(1) it will use the
 !real M_journal.f90 file but that fpm(1) will not auto-discover the mini
-!M_journal.f90 file and built it and cause duplicates.
+!M_journal.f90 file and build it and cause duplicates.
 
 interface journal
-   module procedure flush_trail               ! journal()                ! no options
-   module procedure write_message_only        ! journal(c)               ! must have one string
-   module procedure where_write_message_all   ! journal(where,[g1-g9])   ! must have two strings
+   module procedure flush_trail                    ! journal()        ! no options
+   module procedure write_message_only             ! journal(c)       ! must have one string
+   module procedure where_write_message            ! journal(where,c)
 end interface journal
-
-interface str
-   module procedure str_scalar, str_one
-end interface str
 
 !$@(#) M_journal::journal(3fg): provides public message routine, no paging or graphic mode change
 
@@ -32559,12 +33678,14 @@ integer,save               :: last_int=0
 !-----------------------------------------------------------------------------------------------------------------------------------
 !-----------------------------------------------------------------------------------------------------------------------------------
 ! for compatibility allow old name for renamed procedures
-interface matchw;  module procedure glob;    end interface
-interface atleast; module procedure pad;     end interface
-interface cc;      module procedure bundle;  end interface
+interface matchw;   module procedure  glob;                end interface
+interface atleast;  module procedure  pad;                 end interface
+interface cc;       module procedure  bundle;              end interface
+interface msg;      module procedure  str_scalar,str_one;  end interface  msg
 public matchw          !  clone of glob -- for backward compatibiity
 public atleast         !  clone of pad -- for backward compatibiity
 public cc              !  clone of pad -- for backward compatibiity
+public msg                !  function returns a string representing up to twenty scalar intrinsic values, including CSV style
 !-----------------------------------------------------------------------------------------------------------------------------------
 CONTAINS
 !===================================================================================================================================
@@ -32584,28 +33705,36 @@ CONTAINS
 !!     character(len=*),intent(in) :: pattern
 !!
 !!##DESCRIPTION
-!!    glob(3f) compares given (entire) STRING for a match to PATTERN which may
-!!    contain basic wildcard "globbing" characters.
+!!    glob(3f) compares an (entire) STRING for a match to a PATTERN which
+!!    may contain basic wildcard "globbing" characters.
 !!
-!!    In this version to get a match the entire string must be described
-!!    by PATTERN. Trailing whitespace is significant, so trim the input
-!!    string to have trailing whitespace ignored.
+!!    "*" matches any string. "?" matches any single character.
 !!
-!!    Patterns like "b*ba" fail on a string like "babababa" because the
-!!    algorithm finds an early match. To skip over the early matches insert
-!!    an extra character at the end of the string and pattern that does
-!!    not occur in the pattern. Typically a NULL is used (char(0)).
+!!    In this version to get a match the entire string must be described by
+!!    PATTERN. Trailing whitespace is significant, so trim the input string
+!!    to have trailing whitespace ignored.
+!!
+!!    Patterns like "b*ba" fail on a string like "babababa" because the first
+!!    match found is not at the end of the string so 'baba' does not match
+!!    'babababa'. So the algorithm is said to find an early match.
+!!
+!!    To skip over the early matches insert an extra character at the end of
+!!    the string and pattern that does not occur in the pattern. Typically a
+!!    NULL is used (char(0)). So searching for b*ba\0 in babababa\0 matches
+!!    the entire string.
 !!
 !!##OPTIONS
-!!    string   the input string to test to see if it contains the pattern.
-!!    pattern  the following simple globbing options are available
+!!    string   the input string to be tested for a match to the pattern.
+!!    pattern  the globbing pattern to search for. The following simple
+!!             globbing options are available
 !!
 !!             o "?" matching any one character
 !!             o "*" matching zero or more characters.
 !!               Do NOT use adjacent asterisks.
-!!             o spaces are significant and must be matched or pretrimmed
+!!             o spaces are significant and must be matched or trimmed
+!!               before the comparison.
 !!             o There is no escape character, so matching strings with
-!!               literal question mark and asterisk is problematic.
+!!               a literal question mark and asterisk is problematic.
 !!
 !!##EXAMPLES
 !!
@@ -32827,7 +33956,7 @@ CONTAINS
 !!##AUTHOR
 !!   John S. Urban
 !!
-!!##REFERENCE
+!!##REFERENCES
 !!   The article "Matching Wildcards: An Empirical Way to Tame an Algorithm"
 !!   in Dr Dobb's Journal, By Kirk J. Krauss, October 07, 2014
 !!
@@ -32938,22 +34067,24 @@ end function glob
 !!
 !!##SYNOPSIS
 !!
-!!    function ends_with(source_string,suffix)
-!!
-!!     or
-!!
-!!    function ends_with(source_string,[suffix])
+!!    pure function ends_with(source_string[,suffix][,ignorecase])
 !!
 !!     character(len=*),intent(in)          :: source_string
 !!     character(len=*),intent(in)          :: suffix(..)
+!!     logical,intent(in),optional          :: ignorecase
 !!     logical                              :: ends_with
 !!
 !!##DESCRIPTION
 !!
+!!    ends_with(3f) tests if a string ends with any specified suffix. Differs
+!!    from using index(3f) in that the input file and multiple suffices
+!!    are trimmed by ends_with(3f),
+!!
 !!##OPTIONS
-!!     SOURCE_STRING  string to tokenize
+!!     SOURCE_STRING  string to search
 !!     SUFFIX         list of separator strings. May be scalar or an array.
-!!                    Trailing spaces are ignored.
+!!                    Trailing spaces in SUFFIX are ignored.
+!!     IGNORECASE     If .true. case is ignored.
 !!
 !!##RETURNS
 !!     ENDS_WITH      returns .TRUE. if one of the suffix match the end
@@ -32967,46 +34098,88 @@ end function glob
 !!    use M_strings, only : ends_with
 !!    use, intrinsic :: iso_fortran_env, only : stdout=>output_unit
 !!    implicit none
+!!    character(len=:),allocatable :: line, pattern
+!!    !
+!!       write(*,*)'basic usage'
+!!       write(stdout,*)ends_with('prog.a','.a'), 'should be true'
+!!       write(stdout,*)ends_with('prog.a','.o'), 'should be false'
 !!       write(stdout,*)ends_with('prog.a',['.o','.i','.s'])
 !!       write(stdout,*)ends_with('prog.f90',['.F90','.f90','.f  ','.F  '])
+!!       !
+!!       write(*,*)'ignored case'
+!!       write(stdout,*)ends_with('prog.F90',['.f90','.f  '],ignorecase=.true.)
+!!       !
+!!       write(*,*)'trailing whitespace is ignored'
 !!       write(stdout,*)ends_with('prog.pdf','.pdf')
-!!       write(stdout,*)ends_with('prog.doc','.txt')
+!!       write(stdout,*)ends_with('prog.pdf','.pdf ')
+!!       write(stdout,*)ends_with('prog.pdf ','.pdf ')
+!!       write(stdout,*)ends_with('prog.pdf  ','.pdf ')
+!!       !
+!!       write(*,*)'equivalent using index(3f)'
+!!       line=   'myfile.doc  '
+!!       pattern='.doc        '
+!!       write(stdout,*)&
+!!       &index(trim(line),trim(pattern),back=.true.)==len_trim(line)-len_trim(pattern)+1
+!!       write(stdout,*)ends_with(line,pattern)
 !!    end program demo_ends_with
 !!
-!!   Results:
+!! Results:
 !!
-!!     F
-!!     T
-!!     T
-!!     F
+!!     >  basic usage
+!!     >  T should be true
+!!     >  F should be false
+!!     >  F
+!!     >  T
+!!     >  ignored case
+!!     >  T
+!!     >  trailing whitespace is ignored
+!!     >  T
+!!     >  T
+!!     >  T
+!!     >  T
+!!     >  equivalent using index(3f)
+!!     >  T
+!!     >  T
 !!
 !!##AUTHOR
 !!    John S. Urban
 !!
 !!##LICENSE
 !!    Public Domain
-pure function ends_with_str(string, ending) result(matched)
-character(*), intent(in) :: string, ending
-integer                  :: n1, n2
-logical                  :: matched
-   n1 = len(string) - len(ending) + 1
-   n2 = len(string)
+pure function ends_with_str(string, ending,ignorecase) result(matched)
+character(*), intent(in)     :: string, ending
+logical,intent(in),optional  :: ignorecase
+integer                      :: n1, n2
+logical                      :: matched
+logical                      :: ignorecase_local
+   if(present(ignorecase))then
+           ignorecase_local=ignorecase
+   else
+           ignorecase_local=.false.
+   endif
+   n1 = len_trim(string) - len_trim(ending) + 1
+   n2 = len_trim(string)
    if (n1 < 1) then
        matched = .false.
    else
-       matched = (string(n1:n2) == ending)
+       if(ignorecase_local)then
+          matched = (upper(string(n1:n2)) == upper(ending))
+       else
+          matched = (string(n1:n2) == ending)
+       endif
    endif
 end function ends_with_str
 !-----------------------------------------------------------------------------------------------------------------------------------
-pure function ends_with_any(string, endings) result(matched)
-character(*), intent(in) :: string
-character(*), intent(in) :: endings(:)
-logical                  :: matched
-integer                  :: i
+pure function ends_with_any(string, endings,ignorecase) result(matched)
+character(*), intent(in)     :: string
+character(*), intent(in)     :: endings(:)
+logical,intent(in),optional  :: ignorecase
+logical                      :: matched
+integer                      :: i
    matched = .true.
    FINDIT: block
    do i=1, size(endings)
-       if(ends_with_str(string,trim(endings(i)))) exit FINDIT
+       if( ends_with_str(string,endings(i),ignorecase) ) exit FINDIT
    enddo
    matched = .false.
    endblock FINDIT
@@ -33645,13 +34818,13 @@ end subroutine slice
 !!    character(len=100)            :: inline
 !!    character(len=:),allocatable  :: token
 !!    character(len=*),parameter    :: delimiters=' ;,'
-!!    integer                       :: ios
+!!    integer                       :: iostat
 !!    integer                       :: icount
 !!    integer                       :: itoken
 !!       icount=0
 !!       do        ! read lines from stdin until end-of-file or error
-!!          read (unit=*,fmt="(a)",iostat=ios) inline
-!!          if(ios /= 0)stop
+!!          read (unit=*,fmt="(a)",iostat=iostat) inline
+!!          if(iostat /= 0)stop
 !!          icount=icount+1
 !!          itoken=0
 !!          write(*,*)'INLINE ',trim(inline)
@@ -34665,7 +35838,7 @@ end subroutine change
 !!     itoken         token count should be set to zero for a new string
 !!     delimiters     characters used to determine the end of tokens
 !!
-!!##RETURN
+!!##RETURNS
 !!     token_start    beginning position in SOURCE_STRING where token was found
 !!     token_end      ending position in SOURCE_STRING where token was found
 !!     strtok_status
@@ -34679,10 +35852,10 @@ end subroutine change
 !!     implicit none
 !!     character(len=264)          :: inline
 !!     character(len=*),parameter  :: delimiters=' ;,'
-!!     integer                     :: ios, itoken, ibegin, iend
+!!     integer                     :: iostat, itoken, ibegin, iend
 !!        do ! read lines from stdin until end-of-file or error
-!!           read (unit=*,fmt="(a)",iostat=ios) inline
-!!           if(ios /= 0)stop
+!!           read (unit=*,fmt="(a)",iostat=iostat) inline
+!!           if(iostat /= 0)stop
 !!           ! must set ITOKEN=0 before looping on strtok(3f)
 !!           ! on a new string.
 !!           itoken=0
@@ -34830,7 +36003,7 @@ end function strtok
 !!    use M_strings, only : modif
 !!    implicit none
 !!    character(len=256)           :: line
-!!    integer                      :: ios
+!!    integer                      :: iostat
 !!    integer                      :: count
 !!    integer                      :: COMMAND_LINE_LENGTH
 !!    character(len=:),allocatable :: COMMAND_LINE
@@ -34847,8 +36020,8 @@ end function strtok
 !!       ! remove command name
 !!       COMMAND_LINE=adjustl(COMMAND_LINE(COUNT+2:))
 !!       INFINITE: do
-!!          read(*,'(a)',iostat=ios)line
-!!          if(ios /= 0)exit
+!!          read(*,'(a)',iostat=iostat)line
+!!          if(iostat /= 0)exit
 !!          call modif(line,COMMAND_LINE)
 !!          write(*,'(a)')trim(line)
 !!       enddo INFINITE
@@ -34866,100 +36039,100 @@ subroutine modif(cline,mod)
 !
 ! MODIF
 ! =====
-! ACTION- MODIFIES THE LINE CURRENTLY POINTED AT. THE INPUT STRING CLINE IS ASSUMED TO BE LONG ENOUGH TO ACCOMMODATE THE CHANGES
-!         THE MODIFY DIRECTIVES ARE AS FOLLOWS-
+! ACTION- Modifies the line currently pointed at. The input string CLINE
+!         is assumed to be long enough to accommodate the changes.
+!         The MODIFY directives are as follows-
 !
 !   DIRECTIVE                       EXPLANATION
 !   ---------                       ------------
-!   ^STRING#   CAUSES THE STRING OF CHARACTERS BETWEEN THE ^ AND THE
-!              NEXT  # TO BE INSERTED BEFORE THE CHARACTERS POINTED TO
-!              BY THE ^. AN ^ OR & WITHIN THE STRING IS TREATED AS A
-!              REGULAR CHARACTER. IF THE CLOSING # IS NOT SPECIFIED,
-!              MODIF(3f) INSERTS THE REMAINDER OFTHELINE AS IF A # WAS
-!              SPECIFIED AFTER THE LAST NONBLANK CHARACTER.
+!   ^STRING#   Causes the string of characters between the ^ and the
+!              next  # to be inserted before the characters pointed to
+!              by the ^. An ^ or & within the string is treated as a
+!              regular character. If the closing # is not specified,
+!              MODIF(3f) inserts the remainder of the line as if a # was
+!              specified after the last nonblank character.
 !
-!              THERE ARE TWO EXCEPTIONS. THE COMBINATION ^# CAUSES A #
-!              TO BE INSERTED BEFORE THE CHARACTER POINTED TO BY THE
-!              ^,  AND AN ^ AS THE LAST CHARACTER OF THE DIRECTIVES
-!              CAUSES A BLANK TO BE INSERTED.
+!              There are two exceptions. The combination ^# causes a #
+!              to be inserted before the character pointed to by the
+!              ^,  and an ^ as the last character of the directives
+!              causes a blank to be inserted.
 !
-!   #          (WHEN NOT THE FIRST # AFTER AN ^) CAUSES THE CHARACTER
-!              ABOVE IT TO BE DELETED.
+!   #          (When not the first # after an ^) causes the character
+!              above it to be deleted.
 !
-!   &          REPLACES THE CHARACTER ABOVE IT WITH A SPACE.
+!   &          Replaces the character above it with a space.
 !
-!   (SPACE)    A SPACE BELOW A CHARACTER LEAVES IT UNCHANGED.
+!   (SPACE)    A Space below a character leaves it unchanged.
 !
-!   ANY OTHER CHARACTER REPLACES THE CHARACTER ABOVE IT.
+!   Any other character replaces the character above it.
 !
 ! EXAMPLE-
 ! THE INPUT LINE........ 10 THIS STRING  TO BE MORTIFD
 ! THE DIRECTIVES LINE...        ^ IS THE#        D#  ^IE
 ! ALTERED INPUT LINE.... 10 THIS IS THE STRING  TO BE MODIFIED
 !CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
-character(len=*)            :: cline        !STRING TO BE MODIFIED
-character(len=*),intent(in) :: mod          !STRING TO DIRECT MODIFICATION
+character(len=*)            :: cline           !STRING TO BE MODIFIED
+character(len=*),intent(in) :: mod             !STRING TO DIRECT MODIFICATION
 character(len=len(cline))   :: cmod
-character(len=3),parameter  :: c='#&^'      !ASSIGN DEFAULT EDIT CHARACTERS
-integer                     :: maxscra      !LENGTH OF SCRATCH BUFFER
-character(len=len(cline))   :: dum2         !SCRATCH CHARACTER BUFFER
-logical                     :: linsrt       !FLAG FOR INSERTING DATA ON LINE
+character(len=3),parameter  :: c='#&^'         !ASSIGN DEFAULT EDIT CHARACTERS
+integer                     :: maxscra         !LENGTH OF SCRATCH BUFFER
+character(len=len(cline))   :: dum2            !SCRATCH CHARACTER BUFFER
+logical                     :: linsrt          !FLAG FOR INSERTING DATA ON LINE
 integer :: i, j, ic, ichr, iend, lmax, lmx1
 maxscra=len(cline)
    cmod=trim(mod)
-   lmax=min0(len(cline),maxscra)         !DETERMINE MAXIMUM LINE LENGTH
-   lmx1=lmax-1                           !MAX LINE LENGTH -1
-   dum2=' '                              !INITIALIZE NEW LINE
-   linsrt=.false.                        !INITIALIZE INSERT MODE
-   iend=len_trim(cmod)                   !DETERMINE END OF MODS
-   i=0                                   !CHAR COUNTER FOR MOD LINE CMOD
-   ic=0                                  !CHAR COUNTER FOR CURRENT LINE CLINE
-   ichr=0                                !CHAR COUNTER NEW LINE DUM2
-11 continue
-   i=i+1                                 !NEXT CHAR IN MOD LINE
-   if(ichr > lmx1)goto 999              !IF TOO MANY CHARS IN NEW LINE
-   if(linsrt) then                       !IF INSERTING NEW CHARS
-      if(i > iend) cmod(i:i)=c(1:1)     !FORCE END OF INSERT MODE
-      if(cmod(i:i) == c(1:1))then        !IF END OF INSERT MODE
-         linsrt=.false.                  !RESET INSERT MODE FLAG
-         if(ic+1 == i)then               !NULL INSERT STRING
-            ichr=ichr+1                  !INCREMENT COUNTER FOR NEW LINE
-            dum2(ichr:ichr)=c(1:1)       !INSERT INSERT MODE TERMINATOR
-         endif
-         do j=ic,i                       !LOOP OF NUMBER OF CHARS INSERTED
-            ichr=ichr+1                  !INCREMENT COUNTER FOR NEW LINE
-            if(ichr > lmax)goto 999     !IF AT BUFFER LIMIT, QUIT
-            dum2(ichr:ichr)=cline(j:j)   !APPEND CHARS FROM ORIG LINE
-         enddo                           !...WHICH ALIGN WITH INSERTED CHARS
-         ic=i                            !RESET CHAR COUNT TO END OF INSERT
-         goto 1                          !CHECK NEW LINE LENGTH AND CYCLE
-      endif                              !END OF TERMINATED INSERT LOGIC
-      ichr=ichr+1                        !INCREMENT NEW LINE COUNT
-      dum2(ichr:ichr)=cmod(i:i)          !SET NEWLINE CHAR TO INSERTED CHAR
-   else                                  !IF NOT INSERTING CHARACTERS
-      ic=ic+1                            !INCREMENT ORIGINAL LINE COUNTER
-      if(cmod(i:i) == c(1:1))goto 1      !IF DELETE CHAR. NO COPY AND CYCLE
-      if(cmod(i:i) == c(3:3))then        !IF BEGIN INSERT MODE
-         linsrt=.true.                   !SET INSERT FLAG TRUE
-         goto 1                          !CHECK LINE LENGTH AND CONTINUE
-      endif                              !IF NOT BEGINNING INSERT MODE
-      ichr=ichr+1                        !INCREMENT NEW LINE COUNTER
-      if(cmod(i:i) == c(2:2))then        !IF REPLACE WITH BLANK
-         dum2(ichr:ichr)=' '             !SET NEWLINE CHAR TO BLANK
-         goto 1                          !CHECK LINE LENGTH AND CYCLE
-      endif                              !IF NOT REPLACE WITH BLANK
-      if(cmod(i:i) == ' ')then           !IF BLANK, KEEP ORIGINAL CHARACTER
-         dum2(ichr:ichr)=cline(ic:ic)    !SET NEW CHAR TO ORIGINAL CHAR
-      else                               !IF NOT KEEPING OLD CHAR
-         dum2(ichr:ichr)=cmod(i:i)       !REPLACE ORIGINAL CHAR WITH NEW
-      endif                              !END CHAR KEEP OR REPLACE
-   endif                                 !END INSERT OR NO-INSERT
-1  continue
-   if(i < lmax)goto 11                  !CHECK FOR END OF LINE REACHED
-                                         !AND CYCLE IF OK
-999   continue
-   cline=dum2                            !SET ORIGINAL CHARS TO NEW CHARS
-end subroutine modif                     !RETURN
+   lmax=min0(len(cline),maxscra)               !DETERMINE MAXIMUM LINE LENGTH
+   lmx1=lmax-1                                 !MAX LINE LENGTH -1
+   dum2=' '                                    !INITIALIZE NEW LINE
+   linsrt=.false.                              !INITIALIZE INSERT MODE
+   iend=len_trim(cmod)                         !DETERMINE END OF MODS
+   i=0                                         !CHAR COUNTER FOR MOD LINE CMOD
+   ic=0                                        !CHAR COUNTER FOR CURRENT LINE CLINE
+   ichr=0                                      !CHAR COUNTER NEW LINE DUM2
+   INFINITE: do
+      if(i >= lmax)exit INFINITE               !CHECK FOR END OF LINE REACHED
+      i=i+1                                    !NEXT CHAR IN MOD LINE
+      if(ichr > lmx1)exit INFINITE             !IF TOO MANY CHARS IN NEW LINE
+      if(linsrt) then                          !IF INSERTING NEW CHARS
+         if(i > iend) cmod(i:i)=c(1:1)         !FORCE END OF INSERT MODE
+         if(cmod(i:i) == c(1:1))then           !IF END OF INSERT MODE
+            linsrt=.false.                     !RESET INSERT MODE FLAG
+            if(ic+1 == i)then                  !NULL INSERT STRING
+               ichr=ichr+1                     !INCREMENT COUNTER FOR NEW LINE
+               dum2(ichr:ichr)=c(1:1)          !INSERT INSERT MODE TERMINATOR
+            endif
+            do j=ic,i                          !LOOP OF NUMBER OF CHARS INSERTED
+               ichr=ichr+1                     !INCREMENT COUNTER FOR NEW LINE
+               if(ichr > lmax)exit INFINITE    !IF AT BUFFER LIMIT, QUIT
+               dum2(ichr:ichr)=cline(j:j)      !APPEND CHARS FROM ORIG LINE
+            enddo                              !...WHICH ALIGN WITH INSERTED CHARS
+            ic=i                               !RESET CHAR COUNT TO END OF INSERT
+            cycle INFINITE                     !CHECK NEW LINE LENGTH AND CYCLE
+         endif                                 !END OF TERMINATED INSERT LOGIC
+         ichr=ichr+1                           !INCREMENT NEW LINE COUNT
+         dum2(ichr:ichr)=cmod(i:i)             !SET NEWLINE CHAR TO INSERTED CHAR
+      else                                     !IF NOT INSERTING CHARACTERS
+         ic=ic+1                               !INCREMENT ORIGINAL LINE COUNTER
+         if(cmod(i:i) == c(1:1))cycle INFINITE !IF DELETE CHAR. NO COPY AND CYCLE
+         if(cmod(i:i) == c(3:3))then           !IF BEGIN INSERT MODE
+            linsrt=.true.                      !SET INSERT FLAG TRUE
+            cycle INFINITE                     !CHECK LINE LENGTH AND CONTINUE
+         endif                                 !IF NOT BEGINNING INSERT MODE
+         ichr=ichr+1                           !INCREMENT NEW LINE COUNTER
+         if(cmod(i:i) == c(2:2))then           !IF REPLACE WITH BLANK
+            dum2(ichr:ichr)=' '                !SET NEWLINE CHAR TO BLANK
+            cycle INFINITE                     !CHECK LINE LENGTH AND CYCLE
+         endif                                 !IF NOT REPLACE WITH BLANK
+         if(cmod(i:i) == ' ')then              !IF BLANK, KEEP ORIGINAL CHARACTER
+            dum2(ichr:ichr)=cline(ic:ic)       !SET NEW CHAR TO ORIGINAL CHAR
+         else                                  !IF NOT KEEPING OLD CHAR
+            dum2(ichr:ichr)=cmod(i:i)          !REPLACE ORIGINAL CHAR WITH NEW
+         endif                                 !END CHAR KEEP OR REPLACE
+      endif                                    !END INSERT OR NO-INSERT
+   enddo INFINITE
+                                               !AND CYCLE IF OK
+   cline=dum2                                  !SET ORIGINAL CHARS TO NEW CHARS
+end subroutine modif                           !RETURN
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
@@ -34992,7 +36165,7 @@ end subroutine modif                     !RETURN
 !!##RETURNS
 !!      len_white  the number of characters in the trimmed string
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample Program:
 !!
@@ -35096,9 +36269,12 @@ end function len_white
 !!     character(len=:),allocatable :: strout
 !!
 !!##DESCRIPTION
-!!    All control characters throughout the string are replaced with spaces
+!!    Tabs are expanded assuming a stop every eight characters.  All other
+!!    control characters throughout the string are replaced with spaces
 !!    and leading and trailing spaces are trimmed from the resulting string.
-!!    Tabs are expanded assuming a stop every eight characters.
+!!
+!!    This means trailing characters like linefeed and carriage returns are
+!!    removed. If this is not desired, see clip(3f).
 !!
 !!##OPTIONS
 !!    strin   input string to trim leading and trailing space and control
@@ -35107,7 +36283,7 @@ end function len_white
 !!##RETURNS
 !!    strout  cropped version of input string
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample program:
 !!
@@ -35123,6 +36299,8 @@ end function len_white
 !!
 !!      untrimmed string=[   ABCDEFG abcdefg                      ]
 !!      cropped string=[ABCDEFG abcdefg]
+!!##SEE ALSO
+!!    clip(3f)
 !!
 !!##AUTHOR
 !!    John S. Urban
@@ -35142,26 +36320,30 @@ end function crop
 !===================================================================================================================================
 !>
 !!##NAME
-!!    clip(3f) - [M_strings:WHITESPACE] trim leading and trailing blanks from a string
+!!    clip(3f) - [M_strings:WHITESPACE] trim leading and trailing blanks
+!!    or set of characters from a string
 !!    (LICENSE:PD)
 !!
 !!##SYNOPSIS
 !!
-!!    function clip(strin) result (strout)
+!!    function clip(strin,set) result (strout)
 !!
-!!     character(len=*),intent(in)  :: strin
-!!     character(len=:),allocatable :: strout
+!!     character(len=*),intent(in)          :: strin
+!!     character(len=*),intent(in),optional :: set
+!!     character(len=:),allocatable         :: strout
 !!
 !!##DESCRIPTION
-!!    leading and trailing spaces are trimmed from the resulting string.
+!!    leading and trailing spaces or set of characters are trimmed from
+!!    the input string.
 !!
 !!##OPTIONS
-!!    strin   input string to trim leading and trailing space characters from
+!!    strin   input string to trim leading and trailing characters from
+!!    set     set of characters to trim. Defaults to a space.
 !!
 !!##RETURNS
 !!    strout  clipped version of input string
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample program:
 !!
@@ -35171,32 +36353,50 @@ end function crop
 !!    character(len=20) ::  untrimmed = '   ABCDEFG abcdefg  '
 !!       write(*,*) 'untrimmed string=[',untrimmed,']'
 !!       write(*,*) 'clipped string=[',clip(untrimmed),']'
+!!       ! which is equivalent to
+!!       write(*,*) 'clipped string=[',trim(adjustl(untrimmed)),']'
+!!       write(*,*)'non-space:'
+!!       write(*,*) '['//clip('----single-character----',set='-')//']'
+!!       write(*,*) '['//clip('  ... . .multi-character . ...',set='. ')//']'
 !!    end program demo_clip
 !!
-!!   Expected output
+!!   Results:
 !!
-!!      untrimmed string=[   ABCDEFG abcdefg                      ]
-!!      clipped string=[ABCDEFG abcdefg]
+!!       >  untrimmed string=[   ABCDEFG abcdefg  ]
+!!       >  clipped string=[ABCDEFG abcdefg]
+!!       >  clipped string=[ABCDEFG abcdefg]
+!!       >  non-space:
+!!       >  [single-character]
+!!       >  [multi-character]
 !!
 !!##AUTHOR
 !!    John S. Urban
 !!
 !!##LICENSE
 !!    Public Domain
-function clip(string) result(lopped)
+function clip(string,set) result(lopped)
 
-! ident_18="@(#) M_strings clip(3f) trim leading and trailings spaces from resulting string"
+! ident_18="@(#) M_strings clip(3f) trim leading and trailings spaces or set of characters from string"
 
-logical,parameter            :: T=.true.,F=.false.
-character(len=*),intent(in)  :: string
-character(len=:),allocatable :: lopped
-integer                      :: ends(2)
-   ends=verify( string, " ", [F,T] )
+logical,parameter                     :: T=.true.,F=.false.
+character(len=*),intent(in)           :: string
+character(len=*),intent(in),optional  :: set
+character(len=:),allocatable          :: lopped
+integer                               :: ends(2)
+
+   ! find first and last non-blank character positions, or the same for specified character set
+   if(present(set))then
+      ends=verify(string, set=set, back=[F,T]) ! Position of a character in a string that does not appear in given set
+   else
+      ends=verify(string, set=' ', back=[F,T])
+   endif
+
    if(ends(1) == 0)then
       lopped=""
    else
       lopped=string(ends(1):ends(2))
    endif
+
 end function clip
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
@@ -35282,33 +36482,33 @@ PURE FUNCTION transliterate(instr,old_set,new_set) RESULT(outstr)
 ! ident_19="@(#) M_strings transliterate(3f) replace characters from old set with new set"
 
 !-----------------------------------------------------------------------------------------------------------------------------------
-CHARACTER(LEN=*),INTENT(IN)  :: instr                             ! input string to change
-CHARACTER(LEN=*),intent(in)  :: old_set
-CHARACTER(LEN=*),intent(in)  :: new_set
+CHARACTER(LEN=*),INTENT(IN)  :: instr                  ! input string to change
+CHARACTER(LEN=*),intent(in)  :: old_set                ! set of characters to replace
+CHARACTER(LEN=*),intent(in)  :: new_set                ! new characters to replace old characcters
 !-----------------------------------------------------------------------------------------------------------------------------------
-CHARACTER(LEN=LEN(instr))    :: outstr                            ! output string to generate
+CHARACTER(LEN=LEN(instr))    :: outstr                 ! output string to generate
 !-----------------------------------------------------------------------------------------------------------------------------------
-INTEGER                      :: i10                               ! loop counter for stepping thru string
+INTEGER                      :: i10                    ! loop counter for stepping thru string
 INTEGER                      :: ii,jj
 !-----------------------------------------------------------------------------------------------------------------------------------
    jj=LEN(new_set)
    IF(jj /= 0)THEN
-      outstr=instr                                                ! initially assume output string equals input string
+      outstr=instr                                     ! initially assume output string equals input string
       stepthru: DO i10 = 1, LEN(instr)
-         ii=iNDEX(old_set,instr(i10:i10))                         ! see if current character is in old_set
+         ii=iNDEX(old_set,instr(i10:i10))              ! see if current character is in old_set
          IF (ii /= 0)THEN
-            if(ii <= jj)then                                      ! use corresponding character in new_set
+            if(ii <= jj)then                           ! use corresponding character in new_set
                outstr(i10:i10) = new_set(ii:ii)
             else
-               outstr(i10:i10) = new_set(jj:jj)                   ! new_set not as long as old_set; use last character in new_set
+               outstr(i10:i10) = new_set(jj:jj)        ! new_set not as long as old_set; use last character in new_set
             endif
          ENDIF
       ENDDO stepthru
-   else                                                           ! new_set is null string so delete characters in old_set
+   else                                                ! new_set is null string so delete characters in old_set
       outstr=' '
       hopthru: DO i10 = 1, LEN(instr)
-         ii=iNDEX(old_set,instr(i10:i10))                         ! see if current character is in old_set
-         IF (ii == 0)THEN                                         ! only keep characters not in old_set
+         ii=iNDEX(old_set,instr(i10:i10))              ! see if current character is in old_set
+         IF (ii == 0)THEN                              ! only keep characters not in old_set
             jj=jj+1
             outstr(jj:jj) = instr(i10:i10)
          ENDIF
@@ -35386,7 +36586,7 @@ END FUNCTION transliterate
 !!##REFERENCES
 !!    Wikipedia, the free encyclopedia
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample program
 !!
@@ -35394,10 +36594,10 @@ END FUNCTION transliterate
 !!    use M_strings, only : rotate13
 !!    implicit none
 !!    character(len=256) :: line
-!!    integer            :: ios
+!!    integer            :: iostat
 !!    do
-!!       read(*,'(a)',iostat=ios)line
-!!       if(ios /= 0)exit
+!!       read(*,'(a)',iostat=iostat)line
+!!       if(iostat /= 0)exit
 !!       write(*,'(a)')rotate13(line)
 !!    enddo
 !!    end program demo_rotate13
@@ -35515,13 +36715,12 @@ end function rotate13
 !!
 !!##AUTHOR
 !!    John S. Urban
-
 function percent_encode_string(text)
 character(len=*),intent(in)  :: text
 character(len=:),allocatable :: percent_encode_string
    percent_encode_string=percent_encode_characters(switch(text))
 end function percent_encode_string
-
+!-----------------------------------------------------------------------------------------------------------------------------------
 function percent_encode_characters(text)
 character(len=1),intent(in) :: text(:)
 character(len=:),allocatable :: percent_encode_characters
@@ -35541,6 +36740,193 @@ percent_encode_characters(:)=repeat(' ',len(percent_encode_characters))
    enddo
    percent_encode_characters=trim(percent_encode_characters)
 end function percent_encode_characters
+!==================================================================================================================================!
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!==================================================================================================================================!
+!>
+!!##NAME
+!!    percent_decode(3f) - [M_strings:ENCODE] percent-decode strings and
+!!    character arrays
+!!    (LICENSE:ISC)
+!!
+!!##SYNOPSIS
+!!
+!!
+!!     function percent_decode(text,exit_code)
+!!
+!!      character(len=1),intent(in)  :: text(:)
+!!      integer,optional,intent(out) :: exit_code
+!!      character(len=:),allocatable :: percent_decode
+!!
+!!     or
+!!
+!!     function percent_decode(text,exit_code)
+!!
+!!      character(len=*),intent(in)  :: text
+!!      integer,optional,intent(out) :: exit_code
+!!      character(len=:),allocatable :: percent_decode
+!!
+!!##DESCRIPTION
+!!
+!!    percent_decode(3f) percent-decodes percent-encoded strings or character
+!!    arrays.
+!!
+!!    URI containing spaces or most other non-alphanumeric characters must
+!!    be encoded using percent encoding (aka. URL encoding). This procedure
+!!    unwinds the encryption.
+!!
+!!    The characters allowed in a URI are either reserved or unreserved
+!!    (or a percent character as part of a percent-encoding). Reserved
+!!    characters are those characters that sometimes have special meaning,
+!!    while unreserved characters have no such meaning. Using percent-encoding,
+!!    characters which otherwise would not be allowed are represented using
+!!    allowed characters. The sets of reserved and unreserved characters and
+!!    the circumstances under which certain reserved characters have special
+!!    meaning have changed slightly with each revision of specifications that
+!!    govern URIs and URI schemes.
+!!
+!!    According to RFC 3986, the characters in a URL have to be taken from
+!!    a defined set of unreserved and reserved ASCII characters. Any other
+!!    characters are not allowed in a URL.
+!!
+!!    The unreserved characters can be encoded, but should not be. The
+!!    unreserved characters are:
+!!
+!!       > ABCDEFGHIJKLMNOPQRSTUVWXYZ
+!!       > abcdefghijklmnopqrstuvwxyz
+!!       > 0123456789-_.~
+!!
+!!    The reserved characters have to be encoded only under certain
+!!    circumstances. The reserved characters are:
+!!
+!!       >  * ' ( ) ; : @ & = + $ , / ? % # [ ]
+!!
+!!##OPTIONS
+!!     SOURCE_STRING   string or character array to decode
+!!     EXIT_CODE       non-zero if decoding failed
+!!
+!!##RETURNS
+!!     percent_decode  a string holding a percent-decoded copy of the input
+!!
+!!##EXAMPLES
+!!
+!!   Sample program:
+!!
+!!       program demo_percent_decode
+!!       use M_strings, only : percent_encode, percent_decode
+!!       implicit none
+!!       character(len=:),allocatable :: input,output
+!!       character(len=*),parameter :: see='(g0,*("""",g0,"""":))'
+!!       character(len=*),parameter :: expected='&
+!!       &%01%02%03%04%05%06%07%08%09%0A%0B%0C%0D%0E%0F%10%11%12%13%14%15%&
+!!       &16%17%18%19%1A%1B%1C%1D%1E%1F%20%21%22%23%24%25%26%27%28%29%2A%2&
+!!       &B%2C-.%2F0123456789%3A%3B%3C%3D%3E%3F%40ABCDEFGHIJKLMNOPQRSTUVWX&
+!!       &YZ%5B%5C%5D%5E_%60abcdefghijklmnopqrstuvwxyz%7B%7C%7D~%7F%80%81%&
+!!       &82%83%84%85%86%87%88%89%8A%8B%8C%8D%8E%8F%90%91%92%93%94%95%96%9&
+!!       &7%98%99%9A%9B%9C%9D%9E%9F%A0%A1%A2%A3%A4%A5%A6%A7%A8%A9%AA%AB%AC&
+!!       &%AD%AE%AF%B0%B1%B2%B3%B4%B5%B6%B7%B8%B9%BA%BB%BC%BD%BE%BF%C0%C1%&
+!!       &C2%C3%C4%C5%C6%C7%C8%C9%CA%CB%CC%CD%CE%CF%D0%D1%D2%D3%D4%D5%D6%D&
+!!       &7%D8%D9%DA%DB%DC%DD%DE%DF%E0%E1%E2%E3%E4%E5%E6%E7%E8%E9%EA%EB%EC&
+!!       &%ED%EE%EF%F0%F1%F2%F3%F4%F5%F6%F7%F8%F9%FA%FB%FC%FD%FE%FF%20'
+!!       integer :: j
+!!          input='[this is a string]'
+!!          write(*,see)'INPUT=',input
+!!          output=percent_encode(input)
+!!          write(*,see)'ENCODED=',output
+!!          output=percent_decode(output)
+!!          write(*,see)'DECODED=',output
+!!          input=repeat(' ',256)
+!!          do j=0,255
+!!                input(j:j)=char(j)
+!!          enddo
+!!          output=percent_encode(input)
+!!          write(*,*)'ENCODING PASSED:',output==expected
+!!          output=percent_decode(output)
+!!          write(*,*)'DECODING PASSED:',input == output
+!!       end program demo_percent_decode
+!!
+!! Results:
+!!
+!!     > INPUT="[this is a string]"
+!!     > ENCODED="%5Bthis%20is%20a%20string%5D"
+!!     > DECODED="[this is a string]"
+!!     >  ENCODING PASSED: T
+!!     >  DECODING PASSED: T
+!!
+!!##AUTHOR
+!!    o based on dm_cgi_encode.f90, Copyright (c) 2023, Philipp Engel
+!!    o Modified to be more aligned with percent_encode(3f), John S. Urban, 2024
+!-----------------------------------------------------------------------------------------------------------------------------------
+function percent_decode_characters(text,exit_code)
+character(len=1),intent(in)  :: text(:)
+integer,intent(out),optional :: exit_code
+character(len=:),allocatable :: percent_decode_characters
+   percent_decode_characters=percent_decode_string(switch(text),exit_code)
+end function percent_decode_characters
+!-----------------------------------------------------------------------------------------------------------------------------------
+function percent_decode_string(input, exit_code) result(output)
+!! Unwinds percent-encoding in given input string.
+!
+! based on dm_cgi_encode.f90
+! Copyright (c) 2023, Philipp Engel
+! modified 2024-06-22, JSU
+
+! Original Copyright:
+! Permission to use, copy, modify, and/or distribute this software for any
+! purpose with or without fee is hereby granted, provided that the above
+! copyright notice and this permission notice appear in all copies.
+!
+! THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+! WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+! MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+! ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+! WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+! ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+! OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+!
+character(len=*), intent(in)   :: input  !! Encoded input string.
+character(len=:), allocatable  :: output !! Decoded output string.
+integer,intent(out),optional   :: exit_code
+character(len=2)  :: hex
+integer           :: input_col, output_col, hex_chars, input_len, output_len
+integer           :: iostat
+integer,parameter :: ERROR_BOUNDS=1, ERROR_NONE=0
+   if(present(exit_code))then
+      exit_code = ERROR_BOUNDS ! initially assume an error has occurred if return
+   endif
+   input_len = len_trim(input)
+   output=repeat(' ',len(input)) ! output should be at most length of input
+   output_len = len(output)
+   if (output_len < input_len) return ! should not occur in this version
+   input_col = 1
+   output_col = 1
+   do
+      if (input_col > input_len) exit
+      if (output_col > output_len) return
+      CONVERT: select case (input(input_col:input_col))
+      case ('%')
+         if (input_col + 2 > input_len) exit CONVERT ! ignoring, which is probably not right
+         hex = input(input_col + 1:input_col + 2)
+         read (hex, '(z2)', iostat=iostat) hex_chars
+         if (iostat == 0) then
+            output(output_col:output_col) = achar(hex_chars)   ! Bytes are in hex.
+            input_col = input_col + 2
+         else
+            output(output_col:output_col) = input(input_col:input_col) ! Bytes are not in hex.
+         endif
+      case ('+')
+         output(output_col:output_col) = ' '
+      case default
+         output(output_col:output_col) = input(input_col:input_col)
+      end select CONVERT
+      input_col = input_col + 1
+      output_col = output_col + 1
+   enddo
+   output=output(:output_col-1)
+   if(present(exit_code))then
+      exit_code = ERROR_NONE
+   endif
+end function percent_decode_string
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
@@ -35580,44 +36966,72 @@ end function percent_encode_characters
 !!      TRM     option to trim each element of STR of trailing
 !!              spaces. Defaults to .TRUE.
 !!
-!!##RESULT
+!!##RETURNS
 !!      STRING  CHARACTER variable composed of all of the elements of STR()
 !!              appended together with the optional separator SEP placed
 !!              between the elements.
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!  Sample program:
 !!
-!!   program demo_join
-!!   use M_strings, only: join
-!!   implicit none
-!!   character(len=:),allocatable  :: s(:)
-!!   character(len=:),allocatable  :: out
-!!   integer                       :: i
-!!     s=[character(len=10) :: 'United',' we',' stand,', &
-!!     & ' divided',' we fall.']
-!!     out=join(s)
-!!     write(*,'(a)') out
-!!     write(*,'(a)') join(s,trm=.false.)
-!!     write(*,'(a)') (join(s,trm=.false.,sep='|'),i=1,3)
-!!     write(*,'(a)') join(s,sep='<>')
-!!     write(*,'(a)') join(s,sep=';',left='[',right=']')
-!!     write(*,'(a)') join(s,left='[',right=']')
-!!     write(*,'(a)') join(s,left='>>')
-!!   end program demo_join
+!!     program demo_join
+!!     use M_strings, only: join
+!!     implicit none
+!!     character(len=:),allocatable  :: s(:)
+!!       s=[character(len=10) :: 'United','we','stand,', &
+!!       & 'divided','we fall.']
 !!
-!!  Expected output:
+!!       write(*,'(a)') 'SIMPLE JOIN:                  ',&
+!!          join(s)
+!!       write(*,'(a)') 'SIMPLE JOIN WITH SEPARATOR:   ',&
+!!          join(s,sep=' ')
+!!       write(*,'(a)') 'CUSTOM SEPARATOR:             ',&
+!!          join(s,sep='==>')
+!!       write(*,'(a)') 'LEFT AND RIGHT AND SEPARATOR: ',&
+!!          join(s,sep=';',left='[',right=']')
+!!       write(*,'(a)') 'NO TRIMMING:                  ',&
+!!          join(s,trm=.false.)
+!!       write(*,'(a)') 'LEFT AND RIGHT:               ',&
+!!          join(s,left='[',right=']')
+!!       write(*,'(a)') 'START,END AND EVERYTHING:     ',&
+!!          join(s,trm=.false.,sep=',',start='[',end=']',left='"',right='"')
 !!
-!!   United we stand, divided we fall.
-!!   United     we        stand,    divided   we fall.
-!!   United    | we       | stand,   | divided  | we fall.
-!!   United    | we       | stand,   | divided  | we fall.
-!!   United    | we       | stand,   | divided  | we fall.
-!!   United<> we<> stand,<> divided<> we fall.
-!!   [United];[ we];[ stand,];[ divided];[ we fall.]
-!!   [United][ we][ stand,][ divided][ we fall.]
-!!   >>United>> we>> stand,>> divided>> we fall.
+!!       write(*,'(a)') 'TABLE'
+!!       call line()
+!!       write(*,'(a)') join(s(1:3),trm=.false.,sep='|',start='|',end='|')
+!!       write(*,'(a)') join([s(4:5),repeat(' ',len(s))],&
+!!       & trm=.false.,sep='|',start='|',end='|')
+!!       call line()
+!!     contains
+!!     subroutine line()
+!!     integer :: i
+!!       write(*,'(a)') join([(repeat('-',len(s)),i=1,3)],&
+!!       & sep='#',start='#',end='#')
+!!     end subroutine line
+!!     end program demo_join
+!!
+!! Results:
+!!
+!!  > SIMPLE JOIN:
+!!  > Unitedwestand,dividedwe fall.
+!!  > SIMPLE JOIN WITH SEPARATOR:
+!!  > United we stand, divided we fall.
+!!  > CUSTOM SEPARATOR:
+!!  > United==>we==>stand,==>divided==>we fall.
+!!  > LEFT AND RIGHT AND SEPARATOR:
+!!  > [United];[we];[stand,];[divided];[we fall.]
+!!  > NO TRIMMING:
+!!  > United    we        stand,    divided   we fall.
+!!  > LEFT AND RIGHT:
+!!  > [United][we][stand,][divided][we fall.]
+!!  > START,END AND EVERYTHING:
+!!  > ["United    ","we        ","stand,    ","divided   ","we fall.  "]
+!!  > TABLE
+!!  > #----------#----------#----------#
+!!  > |United    |we        |stand,    |
+!!  > |divided   |we fall.  |          |
+!!  > #----------#----------#----------#
 !!
 !!##AUTHOR
 !!    John S. Urban
@@ -35678,7 +37092,7 @@ end function join
 !!      reverse(string) returns a copy of the input string with
 !!      all characters reversed from right to left.
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!    Sample program:
 !!
@@ -35746,11 +37160,11 @@ end function reverse
 !!##OPTIONS
 !!    str    string to convert to uppercase
 !!
-!!##RESULTS
+!!##RETURNS
 !!    upper  copy of the input string with all unquoted characters converted
 !!           to uppercase
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!    Sample program:
 !!
@@ -35838,7 +37252,7 @@ end function upper_quoted
 !!    end    optional ending position in "str" to stop converting to
 !!           uppercase
 !!
-!!##RESULTS
+!!##RETURNS
 !!    upper  copy of the input string with all characters converted to
 !!           uppercase over optionally specified range.
 !!
@@ -35852,7 +37266,7 @@ end function upper_quoted
 !!    lower cases of the work bench. The less often needed, capitalized,
 !!    majuscule letters, ended up in the harder to reach upper cases.
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!    Sample program:
 !!
@@ -35962,33 +37376,33 @@ end function upper_range
 !!     character(len(str))      :: string  ! output string
 !!
 !!##DESCRIPTION
-!!      lower(string) returns a copy of the input string with all characters
-!!      converted to miniscule over the specified range, assuming ASCII
-!!      character sets are being used. If no range is specified the entire
-!!      string is converted to miniscule.
+!!      lower(str) returns a copy of the ASCII input string with all
+!!      characters converted to miniscule (ie. "lowercase") over the
+!!      specified range, If no range is specified the entire string is
+!!      converted to miniscule.
 !!
 !!##OPTIONS
 !!    str    string to convert to miniscule
 !!    begin  optional starting position in "str" to begin converting to
-!!           miniscule
+!!           miniscule. Defaults to the beginning of the string (ie. "1").
 !!    end    optional ending position in "str" to stop converting to
-!!           miniscule
+!!           miniscule. Defaults to the end of the string (ie. "len(str)").
 !!
-!!##RESULTS
-!!    lower  copy of the input string with all characters converted to
+!!##RETURNS
+!!    lower  copy of the entire input string with all characters converted to
 !!           miniscule over optionally specified range.
 !!
 !!##TRIVIA
-!!    The terms "uppercase" and "lowercase" date back to the early days of
-!!    the mechanical printing press. Individual metal alloy casts of each
-!!    needed letter, or punctuation symbol, were meticulously added to a
-!!    press block, by hand, before rolling out copies of a page. These
-!!    metal casts were stored and organized in wooden cases. The more
-!!    often needed miniscule letters were placed closer to hand, in the
-!!    lower cases of the work bench. The less often needed, capitalized,
-!!    majuscule letters, ended up in the harder to reach upper cases.
+!!    The terms "uppercase" and "lowercase" date back to the early days
+!!    of the mechanical printing press. Individual metal alloy casts of
+!!    each needed letter or punctuation symbol were meticulously added to a
+!!    press block, by hand, before rolling out copies of a page. These metal
+!!    casts were stored and organized in wooden cases. The more-often-needed
+!!    miniscule letters were placed closer to hand, in the lower cases of
+!!    the work bench. The less often needed, capitalized, majuscule letters,
+!!    ended up in the harder to reach upper cases.
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!    Sample program:
 !!
@@ -36033,7 +37447,7 @@ integer,parameter             :: diff = iachar('A')-iachar('a')
       iend= max(1,min(iend,end))
    endif
 
-   do concurrent (i = ibegin:iend)                   ! step thru each letter in the string in specified range
+   do concurrent (i = ibegin:iend)                    ! step thru each letter in the string in specified range
       select case (str(i:i))
       case ('A':'Z')
          string(i:i) = achar(iachar(str(i:i))-diff)   ! change letter to miniscule
@@ -36127,20 +37541,20 @@ end function lower
 !!
 !!  Expected output
 !!
-!!     F T T T T T
-!!     T
-!!     F
-!!     DASHES is all dashes
-!!     F
-!!     F
-!!     T
-!!     This is a string
-!!     [T][h][i][s][ ][i][s][ ][a][ ][s][t][r][i][n][g]
-!!      F  T  T  T  F  T  T  F  T  F  T  T  T  T  T  T
-!!     LINE=Thisisastring
-!!     F T T T T T T T T T T T T
-!!     F
-!!     T
+!!     > F T T T T T
+!!     > T
+!!     > F
+!!     > DASHES is all dashes
+!!     > F
+!!     > F
+!!     > T
+!!     > This is a string
+!!     > [T][h][i][s][ ][i][s][ ][a][ ][s][t][r][i][n][g]
+!!     >  F  T  T  T  F  T  T  F  T  F  T  T  T  T  T  T
+!!     > LINE=Thisisastring
+!!     > F T T T T T T T T T T T T
+!!     > F
+!!     > T
 !!
 !!##AUTHOR
 !!    John S. Urban
@@ -36277,7 +37691,7 @@ end function s2c
 !!##RETURNS
 !!    f_string          Fortran character variable to return
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!
 !!##AUTHOR
@@ -36346,19 +37760,19 @@ end function c2s
 !!    use M_strings, only : indent
 !!    implicit none
 !!    character(len=1024) :: in
-!!    integer             :: ios
+!!    integer             :: iostat
 !!       READFILE: do
-!!          read(*,'(A)',iostat=ios)in
-!!          if(ios /= 0) exit READFILE
+!!          read(*,'(A)',iostat=iostat)in
+!!          if(iostat /= 0) exit READFILE
 !!          write(*,'(i3,"",a)')indent(in),trim(in)
 !!       enddo READFILE
 !!    end program demo_indent
 !!
 !! Results:
 !!
-!!      3   a b c
-!!      0a b c
-!!      6      a b c
+!!      > 3   a b c
+!!      > 0a b c
+!!      > 6      a b c
 !!
 !!##AUTHOR
 !!    John S. Urban
@@ -36494,6 +37908,7 @@ end function visible
 !!     sequences or control characters. By default ...
 !!
 !!     Escape sequences
+!!
 !!       \      backslash
 !!       a      alert (BEL) -- g is an alias for a
 !!       b      backspace
@@ -36529,14 +37944,15 @@ end function visible
 !!    end program demo_expand
 !!
 !! Results (with nonprintable characters shown visible):
-!!  > ^[[H^[[2J
-!!  > ^IABC^Iabc
-!!  > ^IA^G
-!!  >
-!!  > ONE
-!!  > TWO
-!!  > THREE
-!!  > \
+!!
+!!     > ^[[H^[[2J
+!!     > ^IABC^Iabc
+!!     > ^IA^G
+!!     >
+!!     > ONE
+!!     > TWO
+!!     > THREE
+!!     > \
 !!
 !!##AUTHOR
 !!    John S. Urban
@@ -36568,7 +37984,7 @@ integer                               :: i
 integer                               :: lgth
 character(len=3)                      :: thr
 integer                               :: xxx
-integer                               :: ios
+integer                               :: iostat
    i=0 ! pointer into input
 
    lgth=len_trim(line)
@@ -36595,7 +38011,7 @@ integer                               :: ios
             case('c','C');exit EXP                           ! %c     suppress further output
             case('d','D')                                    ! %d     Dnnn decimal value
                       thr=line(i+1:)
-                   read(thr,'(i3)',iostat=ios)xxx
+                   read(thr,'(i3)',iostat=iostat)xxx
                       lineout=lineout//char(xxx)
                    i=i+3
             case('e','E');lineout=lineout//char( 27)         ! %e     escape
@@ -36604,7 +38020,7 @@ integer                               :: ios
            !case('n','N');lineout=lineout//new_line('A')     ! %n     new line
             case('o','O')
                       thr=line(i+1:)
-                   read(thr,'(o3)',iostat=ios)xxx
+                   read(thr,'(o3)',iostat=iostat)xxx
                       lineout=lineout//char(xxx)
                    i=i+3
             case('r','R');lineout=lineout//char( 13)         ! %r     carriage return
@@ -36612,7 +38028,7 @@ integer                               :: ios
             case('v','V');lineout=lineout//char( 11)         ! %v     vertical tab
             case('x','X','h','H')                            ! %x     xHH  byte with hexadecimal value HH (1 to 2 digits)
                       thr=line(i+1:)
-                   read(thr,'(z2)',iostat=ios)xxx
+                   read(thr,'(z2)',iostat=iostat)xxx
                       lineout=lineout//char(xxx)
                    i=i+2
             end select BACKSLASH
@@ -36659,7 +38075,7 @@ end function expand
 !!##OPTIONS
 !!     instr     Input line to remove tabs from
 !!
-!!##RESULTS
+!!##RETURNS
 !!     outstr    Output string with tabs expanded. Assumed to be of sufficient
 !!               length
 !!     lgth      Significant length of returned string
@@ -36674,10 +38090,10 @@ end function expand
 !!    !  on files up to 1024 characters wide
 !!    use M_strings, only : notabs
 !!    character(len=1024) :: in,out
-!!    integer             :: ios,iout
+!!    integer             :: iostat,iout
 !!       do
-!!          read(*,'(A)',iostat=ios)in
-!!          if(ios /= 0) exit
+!!          read(*,'(A)',iostat=iostat)in
+!!          if(iostat /= 0) exit
 !!          call notabs(in,out,iout)
 !!          write(*,'(a)')out(:iout)
 !!       enddo
@@ -36761,7 +38177,7 @@ end subroutine notabs
 !!##OPTIONS
 !!     instr     Input line to remove tabs from
 !!
-!!##RESULTS
+!!##RETURNS
 !!     outstr    Output string with tabs expanded.
 !!
 !!##EXAMPLES
@@ -37010,7 +38426,7 @@ end function nospace
 !!            the trimmed input string if the input string is
 !!            longer than the requested length.
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!  Sample Program:
 !!
@@ -37119,7 +38535,7 @@ end function stretch
 !!    strout  The input string padded to the requested length
 !!            on the right with spaces.
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!  Sample Program:
 !!
@@ -37248,7 +38664,7 @@ end function rpad_vector
 !!    strout  The input string center-padded to the requested length
 !!            with spaces.
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!  Sample Program:
 !!
@@ -37367,7 +38783,7 @@ end function cpad_vector
 !!    strout  The input string padded to the requested length
 !!            on the left with spaces.
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!  Sample Program:
 !!
@@ -37512,7 +38928,7 @@ end function lpad_vector
 !!    strout  A trimmed string padded on the left with zeros to
 !!            the requested length
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!  Sample Program:
 !!
@@ -37679,7 +39095,7 @@ end function zpad_vector
 !!           the trimmed input string if the input string is
 !!           longer than the requested length.
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!  Sample Program:
 !!
@@ -37819,10 +39235,10 @@ end function pad
 !!    str     input string
 !!    length  output string length
 !!
-!!##RESULTS
+!!##RETURNS
 !!    strout  output string
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!    Sample Program:
 !!
@@ -37892,7 +39308,7 @@ end function lenset
 !!    STR2    string to return if the logical expression EXPR is false
 !!    EXPR    logical expression to evaluate to determine whether to return
 !!            STR1 when true, and STR2 when false.
-!!##RESULT
+!!##RETURNS
 !!     MERGE_STR  a trimmed string is returned that is otherwise the value
 !!                of STR1 or STR2, depending on the logical expression EXPR.
 !!
@@ -38326,7 +39742,7 @@ end function noesc
 !!              DOUBLEPRECISION.
 !!    IERR   error flag (0 == no error)
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample Program:
 !!
@@ -38360,7 +39776,7 @@ doubleprecision             :: valu8
       if(valu8 <= huge(valu))then
          valu=real(valu8)
       else
-         call journal('sc','*a2r*','- value too large',valu8,'>',huge(valu))
+         call journal('sc','*a2r* - value too large'//str(valu8)//'>'//str(huge(valu)))
          valu=huge(valu)
          ierr=-1
       endif
@@ -38381,7 +39797,7 @@ doubleprecision             :: valu8
       if(valu8 <= huge(valu))then
          valu=int(valu8)
       else
-         call journal('sc','*a2i*','- value too large',valu8,'>',huge(valu))
+         call journal('sc','*a2i* - value too large'//str(valu8)//'>'//str(huge(valu)))
          valu=huge(valu)
          ierr=-1
       endif
@@ -38407,7 +39823,7 @@ class(*),optional,intent(in) :: onerr
 !----------------------------------------------------------------------------------------------------------------------------------
 character(len=*),parameter   :: fmt="('(bn,g',i5,'.0)')"     ! format used to build frmt
 character(len=15)            :: frmt                         ! holds format built to read input string
-character(len=256)           :: msg                          ! hold message from I/O errors
+character(len=256)           :: iomsg                        ! hold message from I/O errors
 integer                      :: intg
 integer                      :: pnd
 integer                      :: basevalue, ivalu
@@ -38415,13 +39831,13 @@ character(len=3),save        :: nan_string='NaN'
 !----------------------------------------------------------------------------------------------------------------------------------
    ierr=0                                                       ! initialize error flag to zero
    local_chars=unquote(chars)
-   msg=''
+   iomsg=''
    if(len(local_chars) == 0)local_chars=' '
    call substitute(local_chars,',','')                          ! remove any comma characters
    pnd=scan(local_chars,'#:')
    if(pnd /= 0)then
       write(frmt,fmt)pnd-1                                      ! build format of form '(BN,Gn.0)'
-      read(local_chars(:pnd-1),fmt=frmt,iostat=ierr,iomsg=msg)basevalue   ! try to read value from string
+      read(local_chars(:pnd-1),fmt=frmt,iostat=ierr,iomsg=iomsg)basevalue   ! try to read value from string
       if(decodebase(local_chars(pnd+1:),basevalue,ivalu))then
          valu=real(ivalu,kind=kind(0.0d0))
       else
@@ -38432,19 +39848,19 @@ character(len=3),save        :: nan_string='NaN'
       select case(local_chars(1:1))
       case('z','Z','h','H')                                     ! assume hexadecimal
          frmt='(Z'//v2s(len(local_chars))//')'
-         read(local_chars(2:),frmt,iostat=ierr,iomsg=msg)intg
+         read(local_chars(2:),frmt,iostat=ierr,iomsg=iomsg)intg
          valu=dble(intg)
       case('b','B')                                             ! assume binary (base 2)
          frmt='(B'//v2s(len(local_chars))//')'
-         read(local_chars(2:),frmt,iostat=ierr,iomsg=msg)intg
+         read(local_chars(2:),frmt,iostat=ierr,iomsg=iomsg)intg
          valu=dble(intg)
       case('o','O')                                             ! assume octal
          frmt='(O'//v2s(len(local_chars))//')'
-         read(local_chars(2:),frmt,iostat=ierr,iomsg=msg)intg
+         read(local_chars(2:),frmt,iostat=ierr,iomsg=iomsg)intg
          valu=dble(intg)
       case default
          write(frmt,fmt)len(local_chars)                        ! build format of form '(BN,Gn.0)'
-         read(local_chars,fmt=frmt,iostat=ierr,iomsg=msg)valu   ! try to read value from string
+         read(local_chars,fmt=frmt,iostat=ierr,iomsg=iomsg)valu   ! try to read value from string
       end select
    endif
    if(ierr /= 0)then                                            ! if an error occurred ierr will be non-zero.
@@ -38462,8 +39878,8 @@ character(len=3),save        :: nan_string='NaN'
       endif
       if(local_chars /= 'eod')then                           ! print warning message except for special value "eod"
          call journal('sc','*a2d* - cannot produce number from string ['//trim(chars)//']')
-         if(msg /= '')then
-            call journal('sc','*a2d* - ['//trim(msg)//']')
+         if(iomsg /= '')then
+            call journal('sc','*a2d* - ['//trim(iomsg)//']')
          endif
       endif
    endif
@@ -38505,7 +39921,7 @@ end subroutine a2d
 !!##RETURNS
 !!     s2v      numeric value read from string
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample Program:
 !!
@@ -38613,7 +40029,7 @@ class(*),intent(in),optional :: onerr
       ierr=ierr_local
       s2v=valu
    elseif(ierr_local /= 0)then
-      write(*,*)'*s2v* stopped while reading '//trim(chars)
+      write(stderr,*)'*s2v* stopped while reading '//trim(chars)
       stop 1
    else
       s2v=valu
@@ -38648,7 +40064,7 @@ end function s2v
 !!##RETURNS
 !!    DBLE  double precision value represented by input string
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!    Sample program:
 !!
@@ -38703,7 +40119,7 @@ end function dble_s2v
 !!##RETURNS
 !!       REAL  real value represented by input string
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!    Sample program:
 !!
@@ -38758,7 +40174,7 @@ end function real_s2v
 !!##RETURNS
 !!       INT  integer represented by input string
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!    Sample program:
 !!
@@ -38811,7 +40227,7 @@ end function real_s2v
 !!##RETURNS
 !!       NINT  integer represented by input string
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!    Sample program:
 !!
@@ -38892,7 +40308,7 @@ end function nint_s2v
 !!               optional.
 !!       IERR    If not zero, error occurred; optional.
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!    Sample program:
 !!
@@ -38944,7 +40360,7 @@ integer                                  :: err_local
 character(len=*),optional,intent(in)     :: fmt         ! format to write value with
 logical,intent(in),optional              :: trimz
 character(len=:),allocatable             :: fmt_local
-character(len=1024)                      :: msg
+character(len=1024)                      :: iomsg
 
 !  Notice that the value GVAL can be any of several types ( INTEGER,REAL,DOUBLEPRECISION,LOGICAL)
 
@@ -38953,20 +40369,20 @@ character(len=1024)                      :: msg
       type is (integer)
          fmt_local='(i0)'
          if(fmt /= '') fmt_local=fmt
-         write(chars,fmt_local,iostat=err_local,iomsg=msg)gval
+         write(chars,fmt_local,iostat=err_local,iomsg=iomsg)gval
       type is (real)
          fmt_local='(bz,g23.10e3)'
          fmt_local='(bz,g0.8)'
          if(fmt /= '') fmt_local=fmt
-         write(chars,fmt_local,iostat=err_local,iomsg=msg)gval
+         write(chars,fmt_local,iostat=err_local,iomsg=iomsg)gval
       type is (doubleprecision)
          fmt_local='(bz,g0)'
          if(fmt /= '') fmt_local=fmt
-         write(chars,fmt_local,iostat=err_local,iomsg=msg)gval
+         write(chars,fmt_local,iostat=err_local,iomsg=iomsg)gval
       type is (logical)
          fmt_local='(l1)'
          if(fmt /= '') fmt_local=fmt
-         write(chars,fmt_local,iostat=err_local,iomsg=msg)gval
+         write(chars,fmt_local,iostat=err_local,iomsg=iomsg)gval
       class default
          call journal('*value_to_string* UNKNOWN TYPE')
          chars=' '
@@ -38979,13 +40395,13 @@ character(len=1024)                      :: msg
       err_local=-1
       select type(gval)
       type is (integer)
-         write(chars,*,iostat=err_local,iomsg=msg)gval
+         write(chars,*,iostat=err_local,iomsg=iomsg)gval
       type is (real)
-         write(chars,*,iostat=err_local,iomsg=msg)gval
+         write(chars,*,iostat=err_local,iomsg=iomsg)gval
       type is (doubleprecision)
-         write(chars,*,iostat=err_local,iomsg=msg)gval
+         write(chars,*,iostat=err_local,iomsg=iomsg)gval
       type is (logical)
-         write(chars,*,iostat=err_local,iomsg=msg)gval
+         write(chars,*,iostat=err_local,iomsg=iomsg)gval
       class default
          chars=''
       end select
@@ -39007,8 +40423,8 @@ character(len=1024)                      :: msg
       err=err_local
    elseif(err_local /= 0)then
        ! cannot currently do I/O from a function being called from I/O
-       !write(ERROR_UNIT,'(a)')'*value_to_string* WARNING:['//trim(msg)//']'
-      chars=chars//' *value_to_string* WARNING:['//trim(msg)//']'
+       !write(stderr,'(a)')'*value_to_string* WARNING:['//trim(iomsg)//']'
+      chars=chars//' *value_to_string* WARNING:['//trim(iomsg)//']'
    endif
 
 end subroutine value_to_string
@@ -39043,7 +40459,7 @@ end subroutine value_to_string
 !!##RETURNS
 !!    OUTSTR  returned string representing input value,
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample Program:
 !!
@@ -39500,7 +40916,7 @@ end subroutine trimzeros_
 !!    inums                number of icurve_expanded numbers on output
 !!    ierr                 zero if no error occurred
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample program:
 !!
@@ -39618,7 +41034,7 @@ end subroutine listout
 !>
 !!##NAME
 !!     quote(3f) - [M_strings:QUOTES] add quotes to string as if written
-!!     with list-directed input
+!!     with list-directed output
 !!     (LICENSE:PD)
 !!
 !!##SYNOPSIS
@@ -39632,12 +41048,12 @@ end subroutine listout
 !!
 !!##DESCRIPTION
 !!    Add quotes to a CHARACTER variable as if it was written using
-!!    list-directed input. This is particularly useful for processing
+!!    list-directed output. This is particularly useful for processing
 !!    strings to add to CSV files.
 !!
 !!##OPTIONS
 !!    str    input string to add quotes to, using the rules of
-!!           list-directed input (single quotes are replaced by two
+!!           list-directed output (single quotes are replaced by two
 !!           adjacent quotes)
 !!    mode   alternate quoting methods are supported:
 !!
@@ -39648,42 +41064,49 @@ end subroutine listout
 !!    clip   default is to trim leading and trailing spaces from the
 !!           string. If CLIP is .FALSE. spaces are not trimmed
 !!
-!!##RESULT
+!!##RETURNS
 !!    quoted_str  The output string, which is based on adding quotes to STR.
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample program:
 !!
 !!    program demo_quote
 !!    use M_strings, only : quote
 !!    implicit none
+!!    integer                      :: i
+!!    character(len=*),parameter   :: f='(*(g0))'
 !!    character(len=:),allocatable :: str
-!!    character(len=1024)          :: msg
-!!    integer                      :: ios
-!!    character(len=80)            :: inline
-!!       do
-!!          write(*,'(a)',advance='no')'Enter test string:'
-!!          read(*,'(a)',iostat=ios,iomsg=msg)inline
-!!          if(ios /= 0)then
-!!             write(*,*)trim(inline)
-!!             exit
-!!          endif
-!!
+!!    character(len=80),parameter  :: data(3)=[character(len=80)::&
+!!       'test string',&
+!!       'quote="',&
+!!       '"word1" "word2"']
+!!       do i=1,size(data)
 !!          ! the original string
-!!          write(*,'(a)')'ORIGINAL     ['//trim(inline)//']'
+!!          write(*,'(a)')'ORIGINAL      '//trim(data(i))
 !!
 !!          ! the string processed by quote(3f)
-!!          str=quote(inline)
-!!          write(*,'(a)')'QUOTED     ['//str//']'
+!!          str=quote(data(i))
+!!          write(*,'(a)')'QUOTED        '//str
 !!
 !!          ! write the string list-directed to compare the results
-!!          write(*,'(a)',iostat=ios,iomsg=msg) 'LIST DIRECTED:'
-!!          write(*,*,iostat=ios,iomsg=msg,delim='none') inline
-!!          write(*,*,iostat=ios,iomsg=msg,delim='quote') inline
-!!          write(*,*,iostat=ios,iomsg=msg,delim='apostrophe') inline
+!!          write(*,f,advance='no') 'LIST DIRECTED'
+!!          ! default is often NONE or APOSTROPHE
+!!          write(*,*,delim='quote') trim(data(i))
 !!       enddo
 !!    end program demo_quote
+!!
+!! Results:
+!!
+!!  > ORIGINAL      test string
+!!  > QUOTED        "test string"
+!!  > LIST DIRECTED "test string"
+!!  > ORIGINAL      quote="
+!!  > QUOTED        "quote="""
+!!  > LIST DIRECTED "quote="""
+!!  > ORIGINAL      "word1" "word2"
+!!  > QUOTED        """word1"" ""word2"""
+!!  > LIST DIRECTED """word1"" ""word2"""
 !!
 !!##AUTHOR
 !!    John S. Urban
@@ -39717,7 +41140,7 @@ character(len=20)                    :: local_mode
    case('escape')
       quoted_str=double_quote//trim(replace(quoted_str,'"','\"'))//double_quote
    case default
-      call journal('sc','*quote* ERROR: unknown quote mode ',local_mode)
+      call journal('sc','*quote* ERROR: unknown quote mode '//local_mode)
       quoted_str=str
    end select
 !-----------------------------------------------------------------------------------------------------------------------------------
@@ -39758,11 +41181,11 @@ end function quote
 !!                character from being processed as a quote, but simply as
 !!                a plain character.
 !!
-!!##RESULT
+!!##RETURNS
 !!    unquoted_str  The output string, which is based on removing quotes
 !!                  from quoted_str.
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample program:
 !!
@@ -39772,14 +41195,14 @@ end function quote
 !!       character(len=128)           :: quoted_str
 !!       character(len=:),allocatable :: unquoted_str
 !!       character(len=1),parameter   :: esc='\'
-!!       character(len=1024)          :: msg
-!!       integer                      :: ios
+!!       character(len=1024)          :: iomsg
+!!       integer                      :: iostat
 !!       character(len=1024)          :: dummy
 !!       do
 !!          write(*,'(a)',advance='no')'Enter test string:'
-!!          read(*,'(a)',iostat=ios,iomsg=msg)quoted_str
-!!          if(ios /= 0)then
-!!             write(*,*)trim(msg)
+!!          read(*,'(a)',iostat=iostat,iomsg=iomsg)quoted_str
+!!          if(iostat /= 0)then
+!!             write(*,*)trim(iomsg)
 !!             exit
 !!          endif
 !!
@@ -39791,9 +41214,9 @@ end function quote
 !!          write(*,'(a)')'UNQUOTED     ['//unquoted_str//']'
 !!
 !!          ! read the string list-directed to compare the results
-!!          read(quoted_str,*,iostat=ios,iomsg=msg)dummy
-!!          if(ios /= 0)then
-!!             write(*,*)trim(msg)
+!!          read(quoted_str,*,iostat=iostat,iomsg=iomsg)dummy
+!!          if(iostat /= 0)then
+!!             write(*,*)trim(iomsg)
 !!          else
 !!             write(*,'(a)')'LIST DIRECTED['//trim(dummy)//']'
 !!          endif
@@ -39904,9 +41327,9 @@ end function unquote
 !!
 !!   Expected output
 !!
-!!     T
-!!     T
-!!     T
+!!     > T
+!!     > T
+!!     > T
 !!
 !!##AUTHOR
 !!    John S. Urban
@@ -39956,7 +41379,7 @@ end function edit_distance
 !!
 !!##DESCRIPTION
 !!    Given a list of up to twenty strings create a string array. The
-!!    length of the variables with be the same as the maximum length
+!!    length of the variables will be the same as the maximum length
 !!    of the input strings unless explicitly specified via LEN.
 !!
 !!    This is an alternative to the syntax
@@ -40444,10 +41867,10 @@ end function describe
 !!       integer,parameter  :: longest_line=256
 !!       character(len=longest_line) :: line
 !!       real               :: values(longest_line/2+1)
-!!       integer            :: ios,icount,ierr
+!!       integer            :: iostat,icount,ierr
 !!       INFINITE: do
-!!          read(*,'(a)',iostat=ios) line
-!!          if(ios /= 0)exit INFINITE
+!!          read(*,'(a)',iostat=iostat) line
+!!          if(iostat /= 0)exit INFINITE
 !!          call getvals(line,values,icount,ierr)
 !!          write(*,'(4(g0,1x))')'VALUES=',values(:icount)
 !!       enddo INFINITE
@@ -40500,7 +41923,7 @@ integer,intent(out),optional :: ierr
 
 character(len=:),allocatable :: buffer
 character(len=len(line))     :: words(size(values))
-integer                      :: ios, i, ierr_local,isize
+integer                      :: iostat, i, ierr_local,isize
 
    isize=0
    select type(values)
@@ -40514,30 +41937,30 @@ integer                      :: ios, i, ierr_local,isize
 
    words=' '                            ! make sure words() is initialized to null+blanks
    buffer=trim(unquote(line))//"/"      ! add a slash to the end so how the read behaves with missing values is clearly defined
-   read(buffer,*,iostat=ios) words      ! undelimited strings are read into an array
+   read(buffer,*,iostat=iostat) words      ! undelimited strings are read into an array
    icount=0
    do i=1,isize                         ! loop thru array and convert non-blank words to numbers
       if(words(i) == ' ')cycle
 
       select type(values)
-      type is (integer);          read(words(i),*,iostat=ios)values(icount+1)
-      type is (real);             read(words(i),*,iostat=ios)values(icount+1)
-      type is (doubleprecision);  read(words(i),*,iostat=ios)values(icount+1)
+      type is (integer);          read(words(i),*,iostat=iostat)values(icount+1)
+      type is (real);             read(words(i),*,iostat=iostat)values(icount+1)
+      type is (doubleprecision);  read(words(i),*,iostat=iostat)values(icount+1)
       type is (character(len=*)); values(icount+1)=words(i)
       end select
 
-      if(ios == 0)then
+      if(iostat == 0)then
          icount=icount+1
       else
-         ierr_local=ios
-         write(ERROR_UNIT,*)'*getvals* WARNING:['//trim(words(i))//'] is not a number of specified type'
+         ierr_local=iostat
+         write(stderr,*)'*getvals* WARNING:['//trim(words(i))//'] is not a number of specified type'
       endif
    enddo
 
    if(present(ierr))then
       ierr=ierr_local
    elseif(ierr_local /= 0)then        ! error occurred and not returning error to main program to print message and stop program
-      write(ERROR_UNIT,*)'*getval* error reading line ['//trim(line)//']'
+      write(stderr,*)'*getval* error reading line ['//trim(line)//']'
       stop 2
    endif
 
@@ -40570,7 +41993,7 @@ end subroutine getvals
 !!       LINE     Input string containing numbers
 !!       IREAD    maximum number of values to try to read from input string
 !!
-!!##RESULTS
+!!##RETURNS
 !!       VALUES   real array to be filled with numbers
 !!       INUMS    number of values successfully read (before error occurs
 !!                if one does)
@@ -40580,7 +42003,7 @@ end subroutine getvals
 !!       IERR     error flag (0=no error, else column number string starts
 !!                at that error occurred on).
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!    Sample Program:
 !!
@@ -40740,10 +42163,10 @@ end subroutine string_to_values
 !!              in the list. The default is " ;," (spaces, semi-colons,
 !!              and commas).
 !!
-!!##RESULTS
+!!##RETURNS
 !!       S2VS   doubleprecision array
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample Program:
 !!
@@ -40839,7 +42262,7 @@ end function s2vs
 !!##RETURNS
 !!    isprint  logical value returns true if character is a
 !!             printable ASCII character else false.
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample Program:
 !!
@@ -40900,7 +42323,7 @@ end function isprint
 !!##RETURNS
 !!    isgraph   logical value returns true if character is a printable
 !!              non-space character
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample Program:
 !!
@@ -40963,7 +42386,7 @@ end function isgraph
 !!##RETURNS
 !!    isalpha  logical value returns .true. if character is a ASCII letter
 !!             or false otherwise.
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!
 !!   Sample program
@@ -41026,7 +42449,7 @@ end function isalpha
 !!##RETURNS
 !!    isxdigit  logical value returns true if character is a hexadecimal digit
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample program
 !!
@@ -41157,7 +42580,7 @@ end function isdigit
 !!##RETURNS
 !!    isblank  logical value returns true if character is a "blank"
 !!             ( an ASCII  space or horizontal tab character).
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample program:
 !!
@@ -41219,7 +42642,7 @@ end function isblank
 !!##RETURNS
 !!    isupper  logical value returns true if character is an ASCII
 !!             character.
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!  Sample program
 !!
@@ -41293,7 +42716,7 @@ end function isascii
 !!##RETURNS
 !!    isspace  returns true if character is ASCII white space
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!  Sample program:
 !!
@@ -41359,7 +42782,7 @@ end function isspace
 !!##RETURNS
 !!    iscntrl  logical value returns true if character is a control character
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!  Sample program
 !!
@@ -41423,7 +42846,7 @@ end function iscntrl
 !!    ispunct  logical value returns true if character is a printable
 !!             punctuation character.
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!  Sample program:
 !!
@@ -41473,6 +42896,7 @@ end function ispunct
 !!##NAME
 !!     fortran_name(3f) - [M_strings:COMPARE] test if string meets criteria
 !!     for being a fortran name
+!!     (LICENSE:PD)
 !!
 !!##SYNOPSIS
 !!
@@ -41496,7 +42920,7 @@ end function ispunct
 !!     LOUT   a logical value indicating if the input string passed or failed
 !!            the test to see if it is a valid Fortran name or not.
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!    Sample program
 !!
@@ -41527,6 +42951,11 @@ end function ispunct
 !!      > 10 Variable-name        F
 !!      > 11 A                    T
 !!      > 12 x@x                  F
+!!##AUTHOR
+!!     John S. Urban
+!!
+!!##LICENSE
+!!     Public Domain
 elemental function fortran_name(line) result (lout)
 
 ! ident_77="@(#) M_strings fortran_name(3f) Return .true. if name is a valid Fortran name"
@@ -41542,9 +42971,9 @@ character(len=:),allocatable :: name
 logical                      :: lout
    name=trim(line)
    if(len(name) /= 0)then
-      lout = verify(name(1:1), lower//upper) == 0  &
-       & .and. verify(name,allowed) == 0           &
-       & .and. len(name) <= 63
+      lout = verify(name(1:1), lower//upper) == 0  &  ! first character is a letter
+       & .and. verify(name,allowed) == 0           &  ! composed of alphanumeric and underscore in its entirety
+       & .and. len(name) <= 63                        ! length less than 64 characters
    else
       lout = .false.
    endif
@@ -41574,7 +43003,7 @@ end function fortran_name
 !!##RETURNS
 !!    isupper  logical value returns true if character is an uppercase
 !!             ASCII character else false.
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!  Sample program:
 !!
@@ -41591,12 +43020,12 @@ end function fortran_name
 !!
 !!  Results:
 !!
-!!    ISUPPER:  65 66 67 68 69 70 71 72 73
-!!    74 75 76 77 78 79 80 81 82 83
-!!    84 85 86 87 88 89 90
-!!    ISUPPER:  A B C D E F G H I
-!!    J K L M N O P Q R S
-!!    T U V W X Y Z
+!!     > ISUPPER:  65 66 67 68 69 70 71 72 73
+!!     > 74 75 76 77 78 79 80 81 82 83
+!!     > 84 85 86 87 88 89 90
+!!     > ISUPPER:  A B C D E F G H I
+!!     > J K L M N O P Q R S
+!!     > T U V W X Y Z
 !!
 !!##AUTHOR
 !!     John S. Urban
@@ -41640,7 +43069,7 @@ end function isupper
 !!##RETURNS
 !!    islower  logical value returns true if character is a lowercase
 !!             ASCII character else false.
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!  Sample program
 !!
@@ -41794,41 +43223,59 @@ end function isalnum
 !!
 !!    Convert a numeric string from base B to base A. The function returns
 !!    FALSE if B is not in the range [2..36] or if string X contains invalid
-!!    characters in base B or if result Y is too big
+!!    characters in base B or if result Y is too big.
 !!
 !!    The letters A,B,...,Z represent 10,11,...,36 in a base > 10.
 !!
 !!##OPTIONS
 !!    x   input string representing numeric whole value
 !!    b   assumed base of input string
-!!    y   output string
+!!    y   output string.
+!!        Y is assumed long enough to hold the computed value.
+!!        If an error occurs Y is filled with asterisks (*).
 !!    a   base specified for output string
+!!##RETURNS
+!!        Returns .TRUE. if no error occurred, else returns .FALSE. .
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample program:
 !!
 !!    program demo_base
-!!    use M_strings, only : base
+!!    use M_strings, only: base
 !!    implicit none
-!!    integer           :: ba,bd
-!!    character(len=40) :: x,y
+!!    integer           :: ba, bd, i
+!!    character(len=40) :: x, y
+!!    character(len=*), parameter :: input(*) = [character(len=80) :: &
+!!       '10 12345 10', &
+!!       '2 10111 10', &
+!!       '10 12345 20', &
+!!       '10 abcdef 2', &
+!!       '0 0 0']
+!!    character(len=:),allocatable :: line
+!!       print *, 'Base Conversion using base(3f)'
+!!       do i = 1, size(input)
+!!          line=input(i)
+!!          read (line, *) bd, x, ba
+!!          if (x == '0') exit
+!!          if (base(x, bd, y, ba)) then
+!!          else
+!!             print *, 'Error in decoding/encoding numbers'
+!!          end if
+!!          write (*, '(a," in base ",i0," is ",a," in base ",i0)')&
+!!          & trim(x),bd,trim(y),ba
+!!       end do
+!!    end program demo_base
 !!
-!!    print *,' BASE CONVERSION'
-!!    write(*,'("Start   Base (2 to 36): ")',advance='no'); read *, bd
-!!    write(*,'("Arrival Base (2 to 36): ")',advance='no'); read *, ba
-!!    INFINITE: do
-!!       write(*,'("Enter number in start base (0 to quit): ")',advance='no')
-!!       read *, x
-!!       if(x == '0') exit INFINITE
-!!       if(base(x,bd,y,ba))then
-!!            write(*,'("In base ",I2,": ",A20)')  ba, y
-!!        else
-!!          print *,'Error in decoding/encoding number.'
-!!        endif
-!!     enddo INFINITE
+!! Results:
 !!
-!!     end program demo_base
+!!    fpm: Entering directory '/home/urbanjs/venus/V600/github/M_strings'
+!!     Base Conversion using base(3f)
+!!    12345 in base 10 is 12345 in base 10
+!!    10111 in base 2 is 23 in base 10
+!!    12345 in base 10 is 1AH5 in base 20
+!!     Error in decoding/encoding numbers
+!!    abcdef in base 10 is **************************************** in base 2
 !!
 !!##AUTHOR
 !!    John S. Urban
@@ -41838,20 +43285,29 @@ elemental impure logical function base(x, b, y, a)
 character(len=*), intent(in)  :: x
 character(len=*), intent(out) :: y
 integer, intent(in)           :: b, a
-integer                       :: temp
+integer                       :: tempx
+integer                       :: iostat
 
 ! ident_81="@(#) M_strings base(3f) convert whole number string in base [2-36] to string in alternate base [2-36]"
 
+! Y is assumed long enough to hold the computed value
+
    base = .true.
-   if (decodebase(x, b, temp)) then
-      if (codebase(temp, a, y)) then
+   if (decodebase(x, b, tempx)) then
+      if (codebase(tempx, a, y)) then
       else
-         print *, 'Error in coding number.'
+         flush(unit=output_unit,iostat=iostat)
+         write(stderr,'(*(g0))') 'Error in coding number ',trim(x),' in base ',a
+         flush(unit=stderr,iostat=iostat)
          base = .false.
+         y=repeat('*',len(y))
       endif
    else
-      print *, 'Error in decoding number.'
+      flush(unit=output_unit,iostat=iostat)
+      write(stderr,'(*(g0))') 'Error in decoding number ',trim(x),' in base ',b
+      flush(unit=stderr,iostat=iostat)
       base = .false.
+      y=repeat('*',len(y))
    endif
 
 end function base
@@ -41880,9 +43336,11 @@ end function base
 !!
 !!##OPTIONS
 !!    int   input string representing numeric whole value
+!!
 !!##RETURNS
 !!    base2   string representing input value in base 2
-!!##EXAMPLE
+!!
+!!##EXAMPLES
 !!
 !!   Sample program:
 !!
@@ -41895,6 +43353,7 @@ end function base
 !!         write(*,'(a)') base2(-64)
 !!         write(*,'(a)') base2(-huge(0)-1)
 !!      end program demo_base2
+!!
 !! Results:
 !!
 !!     > 1111111111111111111111111111111
@@ -41957,36 +43416,46 @@ end function base2
 !!    basein   base of input string; either 0 or from 2 to 36.
 !!    out10    output value in base 10
 !!
-!!##EXAMPLE
+!!##RETURNS
+!!    Returns .true. if no error occurred, else returns .false. .
+!!
+!!##EXAMPLES
 !!
 !!   Sample program:
 !!
 !!    program demo_decodebase
 !!    use M_strings, only : codebase, decodebase
 !!    implicit none
-!!    integer           :: ba,bd
-!!    character(len=40) :: x,y
-!!    integer           :: r
-!!
-!!    print *,' BASE CONVERSION'
-!!    write(*,'("Start   Base (2 to 36): ")',advance='no'); read *, bd
-!!    write(*,'("Arrival Base (2 to 36): ")',advance='no'); read *, ba
-!!    INFINITE: do
-!!       print *,''
-!!       write(*,'("Enter number in start base: ")',advance='no'); read *, x
-!!       if(x == '0') exit INFINITE
-!!       if(decodebase(x,bd,r)) then
-!!          if(codebase(r,ba,y)) then
-!!            write(*,'("In base ",I2,": ",A20)')  ba, y
-!!          else
-!!            print *,'Error in coding number.'
+!!    integer           :: bd, i, r
+!!    character(len=40) :: x
+!!    character(len=*), parameter :: input(*) = [character(len=80) :: &
+!!       '10  12345',   &
+!!       '2   10111',   &
+!!       '6   12345',   &
+!!       '10  abcdef',  &
+!!       '0   0']
+!!    character(len=:),allocatable :: line
+!!       print *, 'Base Conversion using decodebase(3f)'
+!!       do i = 1, size(input)
+!!          line=input(i)
+!!          read (line, *) bd, x
+!!          if (x == '0') exit
+!!          if(.not.decodebase(x,bd,r)) then
+!!            print *,'Error in decoding number.'
 !!          endif
-!!       else
-!!          print *,'Error in decoding number.'
-!!       endif
-!!    enddo INFINITE
-!!
+!!          write (*, '(a," in base ",i0," becomes ",i0," in base 10")')&
+!!          & trim(x),bd,r
+!!       end do
 !!    end program demo_decodebase
+!!
+!! Results:
+!!
+!!  >  Base Conversion using decodebase(3f)
+!!  > 12345 in base 10 becomes 12345 in base 10
+!!  > 10111 in base 2 becomes 23 in base 10
+!!  > 12345 in base 6 becomes 1865 in base 10
+!!  >  Error in decoding number.
+!!  > abcdef in base 10 becomes 0 in base 10
 !!
 !!##AUTHOR
 !!    John S. Urban
@@ -41999,6 +43468,9 @@ end function base2
 !!
 !!##LICENSE
 !!    Public Domain
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!===================================================================================================================================
 logical function decodebase(string,basein,out_baseten)
 
 ! ident_82="@(#) M_strings decodebase(3f) convert whole number string in base [2-36] to base 10 number"
@@ -42036,10 +43508,11 @@ integer           :: ierr
      out_sign=1
   endif
 
-  out_baseten=0
+  out_baseten=huge(0)
   y=0.0
   ALL: if(basein_local<2.or.basein_local>36) then
-    print *,'(*decodebase* ERROR: Base must be between 2 and 36. base=',basein_local
+    write(stderr,*) '(*decodebase* ERROR: Base must be between 2 and 36. base=',basein_local
+    out_baseten=huge(0)
   else ALL
      out_baseten=0;y=0.0; mult=1.0
      long=LEN_TRIM(string_local)
@@ -42051,7 +43524,8 @@ integer           :: ierr
            cycle
         endif
         if(ch<'0'.or.ch>'Z'.or.(ch>'9'.and.ch<'A'))then
-           write(*,*)'*decodebase* ERROR: invalid character ',ch
+           write(stderr,*)'*decodebase* ERROR: invalid character ',ch
+           out_baseten=huge(0)
            exit ALL
         endif
         if(ch<='9') then
@@ -42091,12 +43565,21 @@ end function decodebase
 !!
 !!##DESCRIPTION
 !!    Convert a number from base 10 to base OUT_BASE. The function returns
-!!    .FALSE. if OUT_BASE is not in [2..36] or if number IN_BASE10 is
-!!    too big.
+!!    .FALSE. if OUT_BASE is not in the range [2..36] or if number IN_BASE10
+!!    is too big.
 !!
 !!    The letters A,B,...,Z represent 10,11,...,36 in the base > 10.
 !!
-!!##EXAMPLE
+!!##OPTIONS
+!!    in_base10   whole number to convert to an alternate base
+!!    out_base    the desired base of the output
+!!    answer      the input value converted to a string representing
+!!                the original number IN_BASE10 in base OUT_BASE.
+!!
+!!##RETURNS
+!!    Returns .true. if no error occurred, else returns .false. .
+!!
+!!##EXAMPLES
 !!
 !!   Sample program:
 !!
@@ -42141,7 +43624,7 @@ integer                      :: in_sign
   inval10_local=abs(inval10)
   outbase_local=abs(outbase)
   if(outbase_local<2.or.outbase_local>36) then
-    print *,'*codebase* ERROR: base must be between 2 and 36. base was',outbase_local
+    write(stderr,*) '*codebase* ERROR: base must be between 2 and 36. base was',outbase_local
     codebase=.false.
   else
      do while(inval10_local>0.0 )
@@ -42248,7 +43731,8 @@ end function tobase
 !!
 !!    Given a long string break it on spaces into an array such that no
 !!    variable is longer than the specified length. Individual words longer
-!!    than LENGTH will be placed in variables by themselves.
+!!    than LENGTH will be placed in lines by themselves and the paragraph
+!!    width will be increased to the length of the longest word.
 !!
 !!##OPTIONS
 !!     SOURCE_STRING  input string to break into an array of shorter strings
@@ -42259,7 +43743,7 @@ end function tobase
 !!     PARAGRAPH  character array filled with data from source_string
 !!                broken at spaces into variables of length LENGTH.
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!  sample program
 !!
@@ -42479,77 +43963,101 @@ end function setbits64
 !===================================================================================================================================
 !>
 !!##NAME
-!!     msg(3f) - [M_strings:TYPE] converts any standard scalar type to a string
+!!     str(3f) - [M_strings:TYPE] converts multiple values to a (CSV) string
 !!     (LICENSE:PD)
 !!##SYNOPSIS
 !!
 !!
-!!     function msg(g1,g2g3,g4,g5,g6,g7,g8,g9,sep)
+!!     function str( g1,g2,g3,g4,g5,g6,g7,g8,g9,g10, &
+!!                 & g11,g12,g13,g14,g15,g16,g17,g18,g19,g20,sep,csv)
 !!
-!!      class(*),intent(in),optional  :: g1,g2,g3,g4,g5,g6,g7,g8,g9
+!!      class(*),intent(in),optional  :: g1,g2,g3,g4,g5,g6,g7,g8,g9,g10
+!!      class(*),intent(in),optional  :: g11,g12,g13,g14,g15,g16,g17,g18,g19,g20
 !!      character(len=*),intent(in),optional :: sep
-!!      character(len=:),allocatable :: msg
+!!      logical,intent(in),optional :: csv
+!!      character(len=:),allocatable :: str
 !!
 !!##DESCRIPTION
-!!     msg(3f) builds a space-separated string from up to nine scalar values.
+!!     str(3f) builds a string from up to twenty scalar values.
 !!
 !!##OPTIONS
-!!     g[1-9]  optional value to print the value of after the message. May
-!!             be of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX,
-!!             or CHARACTER.
-!!     sep     separator between values. Defaults to a space
+!!     g[1-20]  optional value to print the value of after the message. May
+!!              be of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX,
+!!              or CHARACTER.
+!!     sep      separator between values. Defaults to a space
+!!     csv      write output conforming to RFC 1080 for CSV (Comma-Separated
+!!              Values) files
 !!
 !!##RETURNS
-!!     msg     description to print
+!!     str      description to print
 !!
 !!##EXAMPLES
 !!
 !!
 !!   Sample program:
 !!
-!!        program demo_msg
-!!        use M_strings, only : msg
+!!        program demo_str
+!!        use M_strings, only : str, quote
 !!        implicit none
 !!        character(len=:),allocatable :: pr
 !!        character(len=:),allocatable :: frmt
 !!        integer                      :: biggest
 !!
-!!        pr=msg('HUGE(3f) integers',huge(0),&
+!!        pr=str('HUGE(3f) integers',huge(0),&
 !!        & 'and real',huge(0.0),'and double',huge(0.0d0))
 !!        write(*,'(a)')pr
-!!        pr=msg('real            :',&
+!!        pr=str('real            :',&
 !!         & huge(0.0),0.0,12345.6789,tiny(0.0) )
 !!        write(*,'(a)')pr
-!!        pr=msg('doubleprecision :',&
+!!        pr=str('doubleprecision :',&
 !!         & huge(0.0d0),0.0d0,12345.6789d0,tiny(0.0d0) )
 !!        write(*,'(a)')pr
-!!        pr=msg('complex         :',&
+!!        pr=str('complex         :',&
 !!         & cmplx(huge(0.0),tiny(0.0)) )
 !!        write(*,'(a)')pr
 !!
 !!        ! create a format on the fly
 !!        biggest=huge(0)
 !!        ! +0 for gfortran-11 bug
-!!        frmt=msg('(*(i',int(log10(real(biggest)))+0,':,1x))',sep='')
+!!        frmt=str('(*(i',int(log10(real(biggest)))+0,':,1x))',sep='')
 !!        write(*,*)'format=',frmt
 !!
-!!        ! although it will often work, using msg(3f) in an I/O statement
+!!        ! compound output
+!!        pr=str(10,100.0,"string",(11.0,22.0),.false.)
+!!        write(*,'(a)')pr
+!!        ! a separator and also use of quote(3f)
+!!        pr=str(10,100.0,quote("string"),(11.0,22.0),.false.,sep=';')
+!!        write(*,'(a)')pr
+!!        ! CSV mode
+!!        pr=str(10,100.0,"string",(11.0,22.0),.false.,csv=.true.)
+!!        write(*,'(a)')pr
+!!        ! everything a vector instead of a scalar
+!!        pr=str([10,20,30],["string"],[(11.0,22.0)],[.false.,.true.])
+!!        write(*,'(a)')pr
+!!        pr=str([10,20,30],["string"],[(11.0,22.0)],[.false.,.true.],sep='|')
+!!        write(*,'(a)')pr
+!!        pr=str([10,20,30],["string"],[(11.0,22.0)],[.false.,.true.],csv=.true.)
+!!        write(*,'(a)')pr
+!!
+!!        ! although it will often work, using str(3f) in an I/O statement
 !!        ! is not recommended
-!!        write(*,*)msg('program will now stop')
+!!        write(*,*)str('program will now attempt to stop')
 !!
-!!        end program demo_msg
+!!        end program demo_str
 !!
-!!   Output
+!! Results:
 !!
-!!       HUGE(3f) integers 2147483647 and real 3.40282347E+38
-!!       and double 1.7976931348623157E+308
-!!       real            : 3.40282347E+38 0.00000000
-!!       12345.6787 1.17549435E-38
-!!       doubleprecision : 1.7976931348623157E+308 0.0000000000000000
-!!       12345.678900000001 2.2250738585072014E-308
-!!       complex         : (3.40282347E+38,1.17549435E-38)
-!!        format=(*(i9:,1x))
-!!        program will now stop
+!!  > HUGE(3f) integers 2147483647 and real 3.40282347E+38 and ...
+!!  > ... double 1.7976931348623157E+308
+!!  > real            : 3.40282347E+38 0.00000000 12345.6787 1.17549435E-38
+!!  > doubleprecision : 1.7976931348623157E+308 0.0000000000000000 ...
+!!  > ... 12345.678900000001 2.2250738585072014E-308
+!!  > complex         : (3.40282347E+38,1.17549435E-38)
+!!  >  format=(*(i9:,1x))
+!!  > 10 100.000000 string (11.0000000,22.0000000) F
+!!  > 10;100.000000;"string";(11.0000000,22.0000000);F
+!!  > 10,100.000000,"string",11.0000000,22.0000000,F
+!!  >  program will now attempt to stop
 !!
 !!##AUTHOR
 !!    John S. Urban
@@ -42557,38 +44065,58 @@ end function setbits64
 !!##LICENSE
 !!    Public Domain
 !===================================================================================================================================
-function msg_scalar(generic1, generic2, generic3, generic4, generic5, generic6, generic7, generic8, generic9,sep)
+function str_scalar(g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, g13, g14, g15, g16, g17, g18, g19, g20, sep, csv)
 
-! ident_87="@(#) M_strings msg_scalar(3fp) writes a message to a string composed of any standard scalar types"
+! ident_87="@(#) M_strings str_scalar(3fp) writes a message to a string composed of any standard scalar types"
 
-class(*),intent(in),optional  :: generic1 ,generic2 ,generic3 ,generic4 ,generic5
-class(*),intent(in),optional  :: generic6 ,generic7 ,generic8 ,generic9
+class(*),intent(in),optional  :: g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, g13, g14, g15, g16, g17, g18, g19, g20
 character(len=*),intent(in),optional :: sep
+logical,intent(in),optional   :: csv
 character(len=:),allocatable  :: sep_local
-character(len=:), allocatable :: msg_scalar
+logical                       :: csv_local
+character(len=:), allocatable :: str_scalar
 character(len=4096)           :: line
 integer                       :: ibegin
 integer                       :: increment
+
+   if(present(csv))then
+      csv_local=csv
+   else
+      csv_local=.false.
+   endif
+
    if(present(sep))then
       sep_local=sep
       increment=len(sep)+1
    else
-      sep_local=' '
+      sep_local=merge(',',' ',csv_local)
       increment=2
    endif
 
    ibegin=1
    line=' '
-   if(present(generic1))call print_generic(generic1)
-   if(present(generic2))call print_generic(generic2)
-   if(present(generic3))call print_generic(generic3)
-   if(present(generic4))call print_generic(generic4)
-   if(present(generic5))call print_generic(generic5)
-   if(present(generic6))call print_generic(generic6)
-   if(present(generic7))call print_generic(generic7)
-   if(present(generic8))call print_generic(generic8)
-   if(present(generic9))call print_generic(generic9)
-   msg_scalar=trim(line)
+   if(present(g1))call print_generic(g1)
+   if(present(g2))call print_generic(g2)
+   if(present(g3))call print_generic(g3)
+   if(present(g4))call print_generic(g4)
+   if(present(g5))call print_generic(g5)
+   if(present(g6))call print_generic(g6)
+   if(present(g7))call print_generic(g7)
+   if(present(g8))call print_generic(g8)
+   if(present(g9))call print_generic(g9)
+   if(present(g10))call print_generic(g10)
+   if(present(g11))call print_generic(g11)
+   if(present(g12))call print_generic(g12)
+   if(present(g13))call print_generic(g13)
+   if(present(g14))call print_generic(g14)
+   if(present(g15))call print_generic(g15)
+   if(present(g16))call print_generic(g16)
+   if(present(g17))call print_generic(g17)
+   if(present(g18))call print_generic(g18)
+   if(present(g19))call print_generic(g19)
+   if(present(g20))call print_generic(g20)
+   str_scalar=trim(line)
+   if(sep_local.ne.'')str_scalar=str_scalar(:len(str_scalar)-1)
 contains
 !===================================================================================================================================
 subroutine print_generic(generic)
@@ -42603,73 +44131,268 @@ class(*),intent(in) :: generic
       !x!type is (real(kind=real128));     write(line(ibegin:),'(1pg0)') generic
       !x!type is (real(kind=real256));     write(line(ibegin:),'(1pg0)') generic
       type is (logical);                write(line(ibegin:),'(l1)') generic
-      type is (character(len=*));       write(line(ibegin:),'(a)') trim(generic)
-      type is (complex);                write(line(ibegin:),'("(",1pg0,",",1pg0,")")') generic
+      type is (character(len=*))
+         if(csv_local)then
+            write(line(ibegin:),'(a)') quote(trim(generic))
+         else
+            write(line(ibegin:),'(a)') trim(generic)
+         endif
+      type is (complex)
+         if(csv_local)then
+            write(line(ibegin:),'(1pg0,a,1pg0)') generic%re,sep_local,generic%im
+         else
+            write(line(ibegin:),'("(",1pg0,",",1pg0,")")') generic
+         endif
    end select
    ibegin=len_trim(line)+increment
    line=trim(line)//sep_local
 end subroutine print_generic
 !===================================================================================================================================
-end function msg_scalar
+end function str_scalar
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
-function msg_one(generic1, generic2, generic3, generic4, generic5, generic6, generic7, generic8, generic9,sep)
+function str_one(g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, g13, g14, g15, g16, g17, g18, g19, g20, sep, csv)
 
-! ident_88="@(#) M_strings msg_one(3fp) writes a message to a string composed of any standard one dimensional types"
+! ident_88="@(#) M_strings str_one(3fp) writes a message to a string composed of any standard one dimensional types"
 
-class(*),intent(in)           :: generic1(:)
-class(*),intent(in),optional  :: generic2(:), generic3(:), generic4(:), generic5(:)
-class(*),intent(in),optional  :: generic6(:), generic7(:), generic8(:), generic9(:)
+class(*),intent(in)           :: g1(:)
+class(*),intent(in),optional  :: g2(:),g3(:),g4(:),g5(:),g6(:),g7(:),g8(:),g9(:),g10(:)
+class(*),intent(in),optional  :: g11(:),g12(:),g13(:),g14(:),g15(:),g16(:),g17(:),g18(:),g19(:),g20(:)
 character(len=*),intent(in),optional :: sep
-character(len=:),allocatable   :: sep_local
-character(len=:), allocatable :: msg_one
+logical,intent(in),optional   :: csv
+character(len=:),allocatable  :: sep_local
+logical                       :: csv_local
+character(len=:), allocatable :: str_one
 character(len=4096)           :: line
 integer                       :: ibegin
 integer                       :: increment
+
+   if(present(csv))then
+      csv_local=csv
+   else
+      csv_local=.false.
+   endif
+
    if(present(sep))then
       sep_local=sep
       increment=len(sep)+1
    else
-      sep_local=' '
+      sep_local=merge(',',' ',csv_local)
       increment=2
    endif
 
    ibegin=1
    line=' '
-   call print_generic(generic1)
-   if(present(generic2))call print_generic(generic2)
-   if(present(generic3))call print_generic(generic3)
-   if(present(generic4))call print_generic(generic4)
-   if(present(generic5))call print_generic(generic5)
-   if(present(generic6))call print_generic(generic6)
-   if(present(generic7))call print_generic(generic7)
-   if(present(generic8))call print_generic(generic8)
-   if(present(generic9))call print_generic(generic9)
-   msg_one=trim(line)
+   call print_generic(g1)
+   if(present(g2))call print_generic(g2)
+   if(present(g3))call print_generic(g3)
+   if(present(g4))call print_generic(g4)
+   if(present(g5))call print_generic(g5)
+   if(present(g6))call print_generic(g6)
+   if(present(g7))call print_generic(g7)
+   if(present(g8))call print_generic(g8)
+   if(present(g9))call print_generic(g9)
+   if(present(g10))call print_generic(g10)
+   if(present(g11))call print_generic(g11)
+   if(present(g12))call print_generic(g12)
+   if(present(g13))call print_generic(g13)
+   if(present(g14))call print_generic(g14)
+   if(present(g15))call print_generic(g15)
+   if(present(g16))call print_generic(g16)
+   if(present(g17))call print_generic(g17)
+   if(present(g18))call print_generic(g18)
+   if(present(g19))call print_generic(g19)
+   if(present(g20))call print_generic(g20)
+   str_one=trim(line)
+   if(sep_local.ne.'')str_one=str_one(:len(str_one)-1)
 contains
 !===================================================================================================================================
 subroutine print_generic(generic)
 class(*),intent(in),optional :: generic(:)
 integer :: i
-   select type(generic)
-      type is (integer(kind=int8));     write(line(ibegin:),'("[",*(i0,1x))') generic
-      type is (integer(kind=int16));    write(line(ibegin:),'("[",*(i0,1x))') generic
-      type is (integer(kind=int32));    write(line(ibegin:),'("[",*(i0,1x))') generic
-      type is (integer(kind=int64));    write(line(ibegin:),'("[",*(i0,1x))') generic
-      type is (real(kind=real32));      write(line(ibegin:),'("[",*(1pg0,1x))') generic
-      type is (real(kind=real64));      write(line(ibegin:),'("[",*(1pg0,1x))') generic
-      !x!type is (real(kind=real128));     write(line(ibegin:),'("[",*(1pg0,1x))') generic
-      !x!type is (real(kind=real256));     write(line(ibegin:),'("[",*(1pg0,1x))') generic
-      type is (logical);                write(line(ibegin:),'("[",*(l1,1x))') generic
-      type is (character(len=*));       write(line(ibegin:),'("[",:*("""",a,"""",1x))') (trim(generic(i)),i=1,size(generic))
-      type is (complex);                write(line(ibegin:),'("[",*("(",1pg0,",",1pg0,")",1x))') generic
-   end select
-   ibegin=len_trim(line)+increment
-   line=trim(line)//"]"//sep_local
+   if(csv_local)then
+      select type(generic)
+         type is (integer(kind=int8));     write(line(ibegin:),'(*(i0:,","))') generic
+         type is (integer(kind=int16));    write(line(ibegin:),'(*(i0:,","))') generic
+         type is (integer(kind=int32));    write(line(ibegin:),'(*(i0:,","))') generic
+         type is (integer(kind=int64));    write(line(ibegin:),'(*(i0:,","))') generic
+         type is (real(kind=real32));      write(line(ibegin:),'(*(1pg0:,","))') generic
+         type is (real(kind=real64));      write(line(ibegin:),'(*(1pg0:,","))') generic
+         !x!type is (real(kind=real128));     write(line(ibegin:),'(*(1pg0:,","))') generic
+         !x!type is (real(kind=real256));     write(line(ibegin:),'(*(1pg0:,","))') generic
+         type is (logical);                write(line(ibegin:),'(*(l1:,","))') generic
+         type is (character(len=*));       write(line(ibegin:),'(:*(a:,","))') (quote(trim(generic(i))),i=1,size(generic))
+         type is (complex);                write(line(ibegin:),'(*(1pg0,",",1pg0:))') generic
+      end select
+      ibegin=len_trim(line)+increment
+      line=trim(line)//sep_local
+   else
+      select type(generic)
+         type is (integer(kind=int8));     write(line(ibegin:),'("[",*(i0:,","))') generic
+         type is (integer(kind=int16));    write(line(ibegin:),'("[",*(i0:,","))') generic
+         type is (integer(kind=int32));    write(line(ibegin:),'("[",*(i0:,","))') generic
+         type is (integer(kind=int64));    write(line(ibegin:),'("[",*(i0:,","))') generic
+         type is (real(kind=real32));      write(line(ibegin:),'("[",*(1pg0:,","))') generic
+         type is (real(kind=real64));      write(line(ibegin:),'("[",*(1pg0:,","))') generic
+         !x!type is (real(kind=real128));     write(line(ibegin:),'("[",*(1pg0:,","))') generic
+         !x!type is (real(kind=real256));     write(line(ibegin:),'("[",*(1pg0:,","))') generic
+         type is (logical);                write(line(ibegin:),'("[",*(l1:,","))') generic
+         type is (character(len=*));       write(line(ibegin:),'("[",:*(:"""",a,"""":,","))') (trim(generic(i)),i=1,size(generic))
+         type is (complex);                write(line(ibegin:),'("[",*(:"(",1pg0,",",1pg0,")":,","))') generic
+      end select
+      line=trim(line)//"]"
+      ibegin=len_trim(line)+increment
+      line=trim(line)//sep_local
+   endif
 end subroutine print_generic
+
+end function str_one
 !===================================================================================================================================
-end function msg_one
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!===================================================================================================================================
+!>
+!!##NAME
+!!    fmt(3f) - [M_strings] convert any intrinsic to a string using specified format
+!!    (LICENSE:PD)
+!!##SYNOPSIS
+!!
+!!    function fmt(value,format) result(string)
+!!
+!!     class(*),intent(in),optional :: value
+!!     character(len=*),intent(in),optional :: format
+!!     character(len=:),allocatable :: string
+!!##DESCRIPTION
+!!    FMT(3f) converts any standard intrinsic value to a string using the specified
+!!    format.
+!!##OPTIONS
+!!    value    value to print the value of. May be of type INTEGER, LOGICAL,
+!!             REAL, DOUBLEPRECISION, COMPLEX, or CHARACTER.
+!!    format   format to use to print value. It is up to the user to use an
+!!             appropriate format. The format does not require being
+!!             surrounded by parenthesis. If not present a default is selected
+!!             similar to what would be produced with free format, with
+!!             trailing zeros removed.
+!!##RETURNS
+!!    string   A string value
+!!##EXAMPLES
+!!
+!!   Sample program:
+!!
+!!     program demo_fmt
+!!     use :: M_strings, only : fmt
+!!     implicit none
+!!     character(len=:),allocatable :: output
+!!
+!!        output=fmt(10,"'[',i0,']'")
+!!        write(*,*)'result is ',output
+!!
+!!        output=fmt(10.0/3.0,"'[',g0.5,']'")
+!!        write(*,*)'result is ',output
+!!
+!!        output=fmt(.true.,"'The final answer is [',g0,']'")
+!!        write(*,*)'result is ',output
+!!
+!!     end program demo_fmt
+!!
+!!   Results:
+!!
+!!     result is [10]
+!!     result is [3.3333]
+!!     result is The final answer is [T]
+!!
+!!##AUTHOR
+!!    John S. Urban
+!!
+!!##LICENSE
+!!    Public Domain
+recursive function fmt(generic,format) result (line)
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64, real32, real64, real128
+
+! ident_89="@(#) M_strings fmt(3f) convert any intrinsic to a string using specified format"
+
+class(*),intent(in)          :: generic
+character(len=*),intent(in),optional  :: format
+character(len=:),allocatable :: line
+character(len=:),allocatable :: fmt_local
+character(len=:),allocatable :: re,im
+integer                      :: iostat
+character(len=255)           :: iomsg
+character(len=1),parameter   :: null=char(0)
+integer                      :: ilen
+logical                      :: trimit
+   if(present(format))then
+      fmt_local=format
+      trimit=.false.
+   else
+      fmt_local=''
+      trimit=.true.
+   endif
+   ! add ",a" and print null and use position of null to find length of output
+   ! add cannot use SIZE= or POS= or ADVANCE='NO' on WRITE() on INTERNAL READ,
+   ! and do not want to trim as trailing spaces can be significant
+   if(fmt_local == '')then
+      select type(generic)
+         type is (integer(kind=int8));     fmt_local='(i0,a)'
+         type is (integer(kind=int16));    fmt_local='(i0,a)'
+         type is (integer(kind=int32));    fmt_local='(i0,a)'
+         type is (integer(kind=int64));    fmt_local='(i0,a)'
+         type is (real(kind=real32));      fmt_local='(1pg0,a)'
+         type is (real(kind=real64));      fmt_local='(1pg0,a)'
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     fmt_local='(1pg0,a)'
+#endif
+         type is (logical);                fmt_local='(l1,a)'
+         type is (character(len=*));       fmt_local='(a,a)'
+         type is (complex);                fmt_local='("(",1pg0,",",1pg0,")",a)'
+      end select
+   else
+      if(format(1:1) == '(')then
+         fmt_local=format(:len_trim(format)-1)//',a)'
+      else
+         fmt_local='('//fmt_local//',a)'
+      endif
+   endif
+   allocate(character(len=256) :: line) ! cannot currently write into allocatable variable
+   iostat=0
+   select type(generic)
+      type is (integer(kind=int8));     write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
+      type is (integer(kind=int16));    write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
+      type is (integer(kind=int32));    write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
+      type is (integer(kind=int64));    write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
+      type is (real(kind=real32));      write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
+      type is (real(kind=real64));      write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
+#ifdef __NVCOMPILER
+#else
+      type is (real(kind=real128));     write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
+#endif
+      type is (logical);                write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
+      type is (character(len=*));       write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
+      type is (complex);
+              if(trimit)then
+                 re=fmt(generic%re)
+                 im=fmt(generic%im)
+                 call trimzeros_(re)
+                 call trimzeros_(im)
+                 fmt_local='("(",g0,",",g0,")",a)'
+                 write(line,fmt_local,iostat=iostat,iomsg=iomsg) trim(re),trim(im),null
+                 trimit=.false.
+              else
+                 write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
+              endif
+   end select
+   if(iostat /= 0)then
+      line='<ERROR>'//trim(iomsg)
+   else
+      ilen=index(line,null,back=.true.)
+      if(ilen == 0)ilen=len(line)
+      line=line(:ilen-1)
+   endif
+
+   if(index(line,'.') /= 0 .and. trimit) call trimzeros_(line)
+
+end function fmt
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
@@ -42712,7 +44435,7 @@ end function msg_one
 !!    information is in the argument descriptions. Note that most of the
 !!    arguments are optional.
 !!
-!!        from comp.lang.fortran @ Richard Maine
+!!    from comp.lang.fortran @ Richard Maine
 !!
 !!##OPTIONS
 !!    STRING     The string input.
@@ -42776,31 +44499,31 @@ end function msg_one
 !!        write(*,'(*(g0))')repeat('=',70)
 !!
 !!        end program demo_find_field
-!! ```
+!!
 !! Results:
-!! ```text
-!!  > [a,b,[ccc,ddd],and more]
-!!  > <>
-!!  > <a>
-!!  > <b>
-!!  > <>
-!!  > <ccc>
-!!  > <ddd>
-!!  > <>
-!!  > <and more>
-!!  > <>
-!!  > ======================================================================
-!!  > [a,b,[ccc,ddd],and more]
-!!  > <>2 [
-!!  > <a>4 ,
-!!  > <b>6 ,
-!!  > <>7 [
-!!  > <ccc>11 ,
-!!  > <ddd>15 ]
-!!  > <>16 ,
-!!  > <and>20
-!!  > <more>257 ]
-!!  > ======================================================================
+!!
+!!     > [a,b,[ccc,ddd],and more]
+!!     > <>
+!!     > <a>
+!!     > <b>
+!!     > <>
+!!     > <ccc>
+!!     > <ddd>
+!!     > <>
+!!     > <and more>
+!!     > <>
+!!     > ==================================================================
+!!     > [a,b,[ccc,ddd],and more]
+!!     > <>2 [
+!!     > <a>4 ,
+!!     > <b>6 ,
+!!     > <>7 [
+!!     > <ccc>11 ,
+!!     > <ddd>15 ]
+!!     > <>16 ,
+!!     > <and>20
+!!     > <more>257 ]
+!!     > ==================================================================
 !!
 !!##AUTHOR
 !!    Richard Maine
@@ -43259,7 +44982,7 @@ logical,save                       :: trailopen=.false.
 integer,save                       :: itrail
 character,save                     :: comment='#'
 integer                            :: i
-integer                            :: ios
+integer                            :: iostat
 integer                            :: times             ! number of times written to stdout
 character(len=3)                   :: adv               ! whether remaining writes from this call use advancing I/O
 
@@ -43307,16 +45030,16 @@ character(len=4096)                :: mssge
       !-----------------------------------------------------------------------------------------------------------------------------
       case('N')                                                   ! new name for stdout
          if(msg /= ' '.and.msg /= '#N#'.and.msg /= '"#N#"')then   ! if filename not special or blank open new file
-            close(unit=last_int,iostat=ios)
-            open(unit=last_int,file=clip(msg),iostat=ios)
-            if(ios == 0)then
+            close(unit=last_int,iostat=iostat)
+            open(unit=last_int,file=clip(msg),iostat=iostat)
+            if(iostat == 0)then
                stdout=last_int
             else
-               write(*,*)'*journal* error opening redirected output file, ioerr=',ios
+               write(*,*)'*journal* error opening redirected output file, ioerr=',iostat
                write(*,*)'*journal* msg='//trim(msg)
             endif
          elseif(msg == ' ')then
-            close(unit=last_int,iostat=ios)
+            close(unit=last_int,iostat=iostat)
             stdout=6
          endif
       !-----------------------------------------------------------------------------------------------------------------------------
@@ -43337,25 +45060,25 @@ character(len=4096)                :: mssge
             endif
          endif
       case('F','f')
-         flush(unit=itrail,iostat=ios,iomsg=mssge)
-         if(ios /= 0)then
+         flush(unit=itrail,iostat=iostat,iomsg=mssge)
+         if(iostat /= 0)then
             write(*,'(a)') trim(mssge)
          endif
       case('A','a')
          if(msg /= '')then
             open(newunit=itrail,status='unknown',access='sequential',file=clip(msg),&
-            & form='formatted',iostat=ios,position='append')
+            & form='formatted',iostat=iostat,position='append')
             trailopen=.true.
          endif
       case('O','o')
          if(msg /= '')then
-            open(newunit=itrail,status='unknown',access='sequential', file=clip(msg),form='formatted',iostat=ios)
+            open(newunit=itrail,status='unknown',access='sequential', file=clip(msg),form='formatted',iostat=iostat)
             trailopen=.true.
          else
             if(trailopen)then
                write(itrail,'(4a)',advance=adv)prefix,comment,'closing trail file:',trim(msg)
             endif
-            close(unit=itrail,iostat=ios)
+            close(unit=itrail,iostat=iostat)
             trailopen=.false.
          endif
       case default
@@ -43373,19 +45096,6 @@ end subroutine flush_trail
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
-subroutine where_write_message_all(where, g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,nospace)
-
-!$(#) M_journal::where_write_message_all(3f): writes a message to a string composed of any standard scalar types
-
-character(len=*),intent(in)   :: where
-class(*),intent(in)           :: g0
-class(*),intent(in),optional  :: g1,g2,g3,g4,g5,g6,g7,g8,g9
-logical,intent(in),optional   :: nospace
- !call where_write_message(where,str(g0, g1, g2, g3, g4, g5, g6, g7, g8, g9,nospace))
-end subroutine where_write_message_all
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
-!===================================================================================================================================
 subroutine write_message_only(message)
 
 !$(#) M_journal::write_message_only(3fp): calls JOURNAL('sc',message)
@@ -43397,130 +45107,6 @@ character(len=*),intent(in)          :: message
 end subroutine write_message_only
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
-!===================================================================================================================================
-function str_scalar(generic0, generic1, generic2, generic3, generic4, generic5, generic6, generic7, generic8, generic9, &
-                  & generica, genericb, genericc, genericd, generice, genericf, genericg, generich, generici, genericj, &
-                  & sep)
-class(*),intent(in),optional  :: generic0, generic1, generic2, generic3, generic4
-class(*),intent(in),optional  :: generic5, generic6, generic7, generic8, generic9
-class(*),intent(in),optional  :: generica, genericb, genericc, genericd, generice
-class(*),intent(in),optional  :: genericf, genericg, generich, generici, genericj
-character(len=*),intent(in),optional :: sep
-character(len=:), allocatable :: str_scalar
-character(len=4096)           :: line
-integer                       :: ibegin
-integer                       :: increment
-character(len=:),allocatable  :: sep_local
-   if(present(sep))then
-      sep_local=sep
-      increment=len(sep)+1
-   else
-      sep_local=' '
-      increment=2
-   endif
-
-   ibegin=1
-   line=''
-   if(present(generic0))call print_generic(generic0)
-   if(present(generic1))call print_generic(generic1)
-   if(present(generic2))call print_generic(generic2)
-   if(present(generic3))call print_generic(generic3)
-   if(present(generic4))call print_generic(generic4)
-   if(present(generic5))call print_generic(generic5)
-   if(present(generic6))call print_generic(generic6)
-   if(present(generic7))call print_generic(generic7)
-   if(present(generic8))call print_generic(generic8)
-   if(present(generic9))call print_generic(generic9)
-   if(present(generica))call print_generic(generica)
-   if(present(genericb))call print_generic(genericb)
-   if(present(genericc))call print_generic(genericc)
-   if(present(genericd))call print_generic(genericd)
-   if(present(generice))call print_generic(generice)
-   if(present(genericf))call print_generic(genericf)
-   if(present(genericg))call print_generic(genericg)
-   if(present(generich))call print_generic(generich)
-   if(present(generici))call print_generic(generici)
-   if(present(genericj))call print_generic(genericj)
-   str_scalar=trim(line)
-contains
-!===================================================================================================================================
-subroutine print_generic(generic)
-class(*),intent(in) :: generic
-   select type(generic)
-      type is (integer(kind=int8));     write(line(ibegin:),'(i0)') generic
-      type is (integer(kind=int16));    write(line(ibegin:),'(i0)') generic
-      type is (integer(kind=int32));    write(line(ibegin:),'(i0)') generic
-      type is (integer(kind=int64));    write(line(ibegin:),'(i0)') generic
-      type is (real(kind=real32));      write(line(ibegin:),'(1pg0)') generic
-      type is (real(kind=real64));      write(line(ibegin:),'(1pg0)') generic
-      !x!type is (real(kind=real128));     write(line(ibegin:),'(1pg0)') generic
-      !x!type is (real(kind=real256));     write(line(ibegin:),'(1pg0)') generic
-      type is (logical);                write(line(ibegin:),'(l1)') generic
-      type is (character(len=*));       write(line(ibegin:),'(a)') trim(generic)
-      type is (complex);                write(line(ibegin:),'("(",1pg0,",",1pg0,")")') generic
-   end select
-   ibegin=len_trim(line)+increment
-   line=trim(line)//sep_local
-end subroutine print_generic
-
-end function str_scalar
-!===================================================================================================================================
-function str_one(generic0,generic1, generic2, generic3, generic4, generic5, generic6, generic7, generic8, generic9,sep)
-class(*),intent(in)           :: generic0(:)
-class(*),intent(in),optional  :: generic1(:), generic2(:), generic3(:), generic4(:), generic5(:)
-class(*),intent(in),optional  :: generic6(:), generic7(:), generic8(:), generic9(:)
-character(len=*),intent(in),optional :: sep
-character(len=:),allocatable  :: sep_local
-character(len=:), allocatable :: str_one
-character(len=4096)           :: line
-integer                       :: ibegin
-integer                       :: increment
-   if(present(sep))then
-      sep_local=sep
-      increment=len(sep)+1
-   else
-      sep_local=' '
-      increment=2
-   endif
-
-   ibegin=1
-   line=' '
-   call print_generic(generic0)
-   if(present(generic1))call print_generic(generic1)
-   if(present(generic2))call print_generic(generic2)
-   if(present(generic3))call print_generic(generic3)
-   if(present(generic4))call print_generic(generic4)
-   if(present(generic5))call print_generic(generic5)
-   if(present(generic6))call print_generic(generic6)
-   if(present(generic7))call print_generic(generic7)
-   if(present(generic8))call print_generic(generic8)
-   if(present(generic9))call print_generic(generic9)
-   str_one=trim(line)
-contains
-
-subroutine print_generic(generic)
-class(*),intent(in),optional :: generic(:)
-integer :: i
-   select type(generic)
-      type is (integer(kind=int8));     write(line(ibegin:),'("[",*(i0,1x))') generic
-      type is (integer(kind=int16));    write(line(ibegin:),'("[",*(i0,1x))') generic
-      type is (integer(kind=int32));    write(line(ibegin:),'("[",*(i0,1x))') generic
-      type is (integer(kind=int64));    write(line(ibegin:),'("[",*(i0,1x))') generic
-      type is (real(kind=real32));      write(line(ibegin:),'("[",*(1pg0,1x))') generic
-      type is (real(kind=real64));      write(line(ibegin:),'("[",*(1pg0,1x))') generic
-      !x!type is (real(kind=real128));     write(line(ibegin:),'("[",*(1pg0,1x))') generic
-      !x!type is (real(kind=real256));     write(line(ibegin:),'("[",*(1pg0,1x))') generic
-      type is (logical);                write(line(ibegin:),'("[",*(l1,1x))') generic
-      type is (character(len=*));       write(line(ibegin:),'("[",:*("""",a,"""",1x))') (trim(generic(i)),i=1,size(generic))
-      type is (complex);                write(line(ibegin:),'("[",*("(",1pg0,",",1pg0,")",1x))') generic
-      class default
-         stop 'unknown type in *print_generic*'
-   end select
-   line=trim(line)//"]"//sep_local
-   ibegin=len_trim(line)+increment
-end subroutine print_generic
-
-end function str_one
 !===================================================================================================================================
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
@@ -43548,7 +45134,7 @@ end function str_one
 !!    imatch  location of matching delimiter. If no match is found, zero (0)
 !!            is returned.
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample program:
 !!
@@ -43627,11 +45213,11 @@ select case(delim1)
       iend=1
       inc=-1
    case default
-      write(*,*) delim1,' is not a valid delimiter'
+      write(stderr,*) '*matching_delimiter*',delim1,' is not a valid delimiter'
       return
 end select
 if(ibegin < 1 .or. ibegin > lenstr) then
-   write(*,*) delim1,' has no matching delimiter'
+   write(stderr,*) '*matching_delimiter*',delim1,' has no matching delimiter'
    return
 endif
 delim2=achar(idelim2) ! matching delimiter
@@ -43645,7 +45231,7 @@ do i=ibegin,iend,inc
    if(isum == 0) exit
 enddo
 if(isum /= 0) then
-   write(*,*) delim1,' has no matching delimiter'
+   write(stderr,*) '*matching_delimiter*',delim1,' has no matching delimiter'
    return
 endif
 imatch=i
@@ -43679,7 +45265,7 @@ end subroutine matching_delimiter
 !!    a,b  strings to search for the longest common substring.
 !!##RETURNS
 !!    longest_common_substring  the longest common substring found
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!  Sample program
 !!
@@ -43867,7 +45453,7 @@ end function atol
 !!##RETURNS
 !!     aton     .true. if the conversion was successful, .false. otherwise
 !!
-!!##EXAMPLE
+!!##EXAMPLES
 !!
 !!   Sample Program:
 !!
@@ -43924,7 +45510,7 @@ real(kind=wp)                 :: whole, fractional
 integer                       :: power
 integer                       :: cnt(6)
 integer(kind=int8)            :: a, part
-integer                       :: i, ipos, ios, too_many_digit_count
+integer                       :: i, ipos, iostat, too_many_digit_count
 
    value=0.0_wp
    cnt=0
@@ -43990,8 +45576,8 @@ integer                       :: i, ipos, ios, too_many_digit_count
    if(all(cnt <= 1).and.ipos /= 0)then
       ator_real32 = .true.
    else
-      read(str,fmt=*,iostat=ios) val ! use internal read for INF, NAN for now
-      if(ios == 0)then
+      read(str,fmt=*,iostat=iostat) val ! use internal read for INF, NAN for now
+      if(iostat == 0)then
          ator_real32 = .true.
          if(present(msg)) msg=''
       else
@@ -44034,7 +45620,7 @@ real(kind=wp)                 :: whole, fractional
 integer                       :: power
 integer                       :: cnt(6)
 integer(kind=int8)            :: a, part
-integer                       :: i, ipos, ios, too_many_digit_count
+integer                       :: i, ipos, iostat, too_many_digit_count
 
    value=0.0_wp
    cnt=0
@@ -44100,8 +45686,8 @@ integer                       :: i, ipos, ios, too_many_digit_count
    if(all(cnt <= 1).and.ipos /= 0)then
       ator_real64 = .true.
    else
-      read(str,fmt=*,iostat=ios) val ! use internal read for INF, NAN for now
-      if(ios == 0)then
+      read(str,fmt=*,iostat=iostat) val ! use internal read for INF, NAN for now
+      if(iostat == 0)then
          ator_real64 = .true.
          if(present(msg)) msg=''
       else
@@ -44402,7 +45988,7 @@ end function atoi_int64
 end module M_strings
  
  
-!>>>>> build/dependencies/M_attr/src/M_attr.f90
+!>>>>> ./././/../GLINKS/M_attr/src/M_attr.f90
 !>
 !!##NAME
 !!    M_attr(3f) - [M_attr::INTRO] control text attributes on terminals
@@ -46221,19 +47807,18 @@ help_text=[ CHARACTER(LEN=128) :: &
 'EXAMPLES                                                                       ',&
 '  Sample commands                                                              ',&
 '                                                                               ',&
-'   fman                 # list table of contents                               ',&
-'   fman -e character    # check TOC for string. try "trigo","size","complex"   ',&
-'   fman tan|less        # display a description of tan(3f)                     ',&
-'                                                                               ',&
-'   fman --regex ''''character'''' # look for string in the TOC ignoring case   ',&
-'                                                                               ',&
-'   fman manual>fortran.txt    # create a copy of all descriptions              ',&
-'                                                                               ',&
-'   # list the topic "scan" if found and lines containing "scan" from the entire',&
-'   # manual, prefixing the lines with the section name, while ignoring case.   ',&
-'   fman -e scan -i manual                                                      ',&
-'                                                                               ',&
-'   fman -d verify >demo_verify.f90 # get sample program to try VERIFY(3f).     ',&
+'   fman tan|less            # display a description of tan(3f)                 ',&
+'   fman                     # list table of contents                           ',&
+'   fman manual>fortran.txt  # create a copy of all descriptions                ',&
+'   fman -e character        # check TOC for string. try "trigo","size","complex"',&
+'                                                                                ',&
+'   fman --regex ''character''   # look for string in the TOC ignoring case      ',&
+'                                                                                ',&
+'   # list the topic "scan" if found and lines containing "scan" from the entire ',&
+'   # manual, prefixing the lines with the section name, while ignoring case.    ',&
+'   fman -e scan -i manual                                                       ',&
+'                                                                                ',&
+'   fman -d verify >demo_verify.f90 # get demo program to try VERIFY(3f).        ',&
 '']
 version_text=[ CHARACTER(LEN=128) :: &
 '@(#) PRODUCT:         GPF (General Purpose Fortran) utilities and examples    >',&

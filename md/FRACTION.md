@@ -31,8 +31,10 @@
 ### **Result**
 
 The fractional part of the model representation of **x** is returned;
-it is **x \* radix(x)\*\*(-exponent(x))**.
-
+it is
+```fortran
+    x * radix(x)**(-exponent(x))
+```
 If **x** has the value zero, the result is zero.
 
 If **x** is an IEEE NaN, the result is that NaN.

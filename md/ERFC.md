@@ -48,10 +48,10 @@ $$
   The return value is of type _real_ and of the same kind as **x**. It lies in
   the range
 ```fortran
-     0 \<= **erfc**(x) \<= 2.
+     0 <= erfc(x) <= 2.
 ```
 and is a  processor-dependent approximation to the complementary error
-function of **x** ( **1-erf(x) ).
+function of **x** ( **1-erf(x)** ).
 
 ### **Examples**
 

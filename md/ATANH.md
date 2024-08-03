@@ -32,7 +32,7 @@
   The return value has same type and kind as **x**. If **x** is _complex_, the
   imaginary part of the result is in radians and lies between
 ```fortran
-       **-PI/2 <= aimag(atanh(x)) <= PI/2**
+       -PI/2 <= aimag(atanh(x)) <= PI/2
 ```
 ### **Examples**
 

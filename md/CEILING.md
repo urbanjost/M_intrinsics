@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
- - ** a is of type _real_
+ - **a** is of type _real_
  - **KIND** shall be a scalar integer constant expression.
    It specifies the kind of the result if present.
  - the result is _integer_. It is default kind if **KIND** is not

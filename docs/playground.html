@@ -5,7 +5,7 @@
   <title></title>
 </head>
 <body>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fabs%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%2Cparameter%20%3A%3A%20dp%3Dkind%280%2E0d0%29%0D%0A%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%20%3D%20%2D1%0D%0A%20%20%20%20%20%20real%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20x%20%3D%20%2D1%2E0%0D%0A%20%20%20%20%20%20complex%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20z%20%3D%20%28%2D3%2E0%2C%2D4%2E0%29%0D%0A%20%20%20%20%20%20doubleprecision%20%20%20%3A%3A%20rr%20%3D%20%2D45%2E78%5Fdp%0D%0A%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20%26%0D%0A%20%20%20%20%20%20%20%20%20%21%20some%20formats%0D%0A%20%20%20%20%20%20%20%20%20frmt%20%20%3D%20%20%27%281x%2Ca15%2C1x%2C%22%20In%3A%20%22%2Cg0%2C%20%20%20%20%20%20%20%20%20%20%20%20T51%2C%22%20Out%3A%20%22%2Cg0%29%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20frmtc%20%3D%20%27%281x%2Ca15%2C1x%2C%22%20In%3A%20%28%22%2Cg0%2C%22%2C%22%2Cg0%2C%22%29%22%2CT51%2C%22%20Out%3A%20%22%2Cg0%29%27%2C%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20g%20%20%20%20%20%3D%20%27%28%2A%28g0%2C1x%29%29%27%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20basic%20usage%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20any%20integer%2C%20real%2C%20or%20complex%20type%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%20frmt%29%20%20%27integer%20%20%20%20%20%20%20%20%20%27%2C%20%20i%2C%20abs%28i%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%20frmt%29%20%20%27real%20%20%20%20%20%20%20%20%20%20%20%20%27%2C%20%20x%2C%20abs%28x%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%20frmt%29%20%20%27doubleprecision%20%27%2C%20rr%2C%20abs%28rr%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%20frmtc%29%20%27complex%20%20%20%20%20%20%20%20%20%27%2C%20%20z%2C%20abs%28z%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20You%20can%20take%20the%20absolute%20value%20of%20any%20value%20whose%20positive%20value%0D%0A%20%20%20%20%20%20%20%20%21%20is%20representable%20with%20the%20same%20type%20and%20kind%2E%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%20%2A%29%20%27abs%20range%20test%20%3A%20%27%2C%20abs%28huge%280%29%29%2C%20abs%28%2Dhuge%280%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%20%2A%29%20%27abs%20range%20test%20%3A%20%27%2C%20abs%28huge%280%2E0%29%29%2C%20abs%28%2Dhuge%280%2E0%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%20%2A%29%20%27abs%20range%20test%20%3A%20%27%2C%20abs%28tiny%280%2E0%29%29%2C%20abs%28%2Dtiny%280%2E0%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20A%20dusty%20corner%20is%20that%20abs%28%2Dhuge%280%29%2D1%29%20of%20an%20integer%20would%20be%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20a%20representable%20negative%20value%20on%20most%20machines%20but%20result%20in%20a%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20positive%20value%20out%20of%20range%2E%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20elemental%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%20g%29%20%27%20abs%20is%20elemental%3A%27%2C%20abs%28%5B20%2C%20%200%2C%20%20%2D1%2C%20%20%2D3%2C%20%20100%5D%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20COMPLEX%20input%20produces%20REAL%20output%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%20g%29%27%20complex%20input%20produces%20real%20output%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26%20abs%28cmplx%2830%2E0%5Fdp%2C40%2E0%5Fdp%2Ckind%3Ddp%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20dusty%20corner%3A%20%22kind%3Ddp%22%20is%20required%20or%20the%20value%20returned%20by%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20CMPLX%28%29%20is%20a%20default%20real%20instead%20of%20double%20precision%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20the%20returned%20value%20for%20complex%20input%20can%20be%20thought%20of%20as%20the%0D%0A%20%20%20%20%20%20%20%20%21%20distance%20from%20the%20origin%20%3C0%2C0%3E%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%20g%29%20%27%20distance%20of%20%28%27%2C%20z%2C%20%27%29%20from%20zero%20is%27%2C%20abs%28%20z%20%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%20g%29%20%27%20so%20beware%20of%20overflow%20with%20complex%20values%27%0D%0A%20%20%20%20%20%20%20%20%20%20%21write%28%2A%2C%20g%29%20abs%28cmplx%28%20huge%280%2E0%29%2C%20huge%280%2E0%29%20%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%20g%29%20%27%20because%20the%20biggest%20default%20real%20is%27%2Chuge%280%2E0%29%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fabs%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fabs%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%2Cparameter%20%3A%3A%20dp%3Dkind%280%2E0d0%29%0D%0A%0D%0A%20%20%20%20%20%20%21%20some%20values%20to%20use%20with%20ABS%283f%29%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%20%3D%20%2D1%0D%0A%20%20%20%20%20%20real%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20x%20%3D%20%2D1%2E0%0D%0A%20%20%20%20%20%20complex%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20z%20%3D%20%28%2D3%2E0%2C%2D4%2E0%29%0D%0A%20%20%20%20%20%20doubleprecision%20%20%20%3A%3A%20rr%20%3D%20%2D45%2E78%5Fdp%0D%0A%0D%0A%20%20%20%20%20%20%21%20some%20formats%20for%20pretty%2Dprinting%20some%20information%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20%26%0D%0A%20%20%20%20%20%20%20%20%20frmt%20%20%3D%20%20%27%281x%2Ca15%2C1x%2C%22%20In%3A%20%22%2Cg0%2C%20%20%20%20%20%20%20%20%20%20%20%20T51%2C%22%20Out%3A%20%22%2Cg0%29%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20frmtc%20%3D%20%27%281x%2Ca15%2C1x%2C%22%20In%3A%20%28%22%2Cg0%2C%22%2C%22%2Cg0%2C%22%29%22%2CT51%2C%22%20Out%3A%20%22%2Cg0%29%27%2C%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20gen%20%20%20%3D%20%27%28%2A%28g0%2C1x%29%29%27%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20the%20basics%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%20%20%27basic%20usage%3A%27%0D%0A%20%20%20%20%20%20%20%20%20%21%20any%20integer%2C%20real%2C%20or%20complex%20type%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%20frmt%29%20%20%27integer%20%20%20%20%20%20%20%20%20%27%2C%20%20i%2C%20abs%28i%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%20frmt%29%20%20%27real%20%20%20%20%20%20%20%20%20%20%20%20%27%2C%20%20x%2C%20abs%28x%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%20frmt%29%20%20%27doubleprecision%20%27%2C%20rr%2C%20abs%28rr%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%20frmtc%29%20%27complex%20%20%20%20%20%20%20%20%20%27%2C%20%20z%2C%20abs%28z%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20elemental%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%20%27abs%20is%20elemental%3A%27%2C%20abs%28%5B20%2C%20%200%2C%20%20%2D1%2C%20%20%2D3%2C%20%20100%5D%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20the%20returned%20value%20for%20complex%20input%20can%20be%20thought%20of%20as%20the%0D%0A%20%20%20%20%20%20%20%20%21%20distance%20from%20the%20origin%20%3C0%2C0%3E%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%20%27distance%20of%20%28%27%2C%20z%2C%20%27%29%20from%20zero%20is%27%2C%20abs%28%20z%20%29%0D%0A%0D%0A%20%20%20%20%20%20call%20DUSTY%5FCORNERS%5F1%28%22beware%20of%20abs%28%2Dhuge%280%29%2D1%29%22%29%0D%0A%20%20%20%20%20%20call%20DUSTY%5FCORNERS%5F2%28%22beware%20of%20losing%20precision%20using%20CMPLX%283f%29%22%29%0D%0A%20%20%20%20%20%20call%20DUSTY%5FCORNERS%5F3%28%22beware%20of%20overflow%20of%20complex%20values%22%29%0D%0A%20%20%20%20%20%20call%20DUSTY%5FCORNERS%5F4%28%22custom%20meaning%20for%20absolute%20value%20of%20COMPLEX%22%29%0D%0A%0D%0A%20%20%20%20%20%20contains%0D%0A%0D%0A%20%20%20%20%20%20subroutine%20DUSTY%5FCORNERS%5F1%28message%29%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cintent%28in%29%20%3A%3A%20message%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20A%20dusty%20corner%20is%20that%20abs%28%2Dhuge%280%29%2D1%29%20of%20an%20integer%20would%20be%0D%0A%20%20%20%20%20%20%20%20%20%21%20a%20representable%20negative%20value%20on%20most%20machines%20but%20result%20in%20a%0D%0A%20%20%20%20%20%20%20%20%20%21%20positive%20value%20out%20of%20range%2E%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%20%20message%0D%0A%20%20%20%20%20%20%20%20%20%21%20By%20definition%3A%0D%0A%20%20%20%20%20%20%20%20%20%21%20%20%20You%20can%20take%20the%20absolute%20value%20of%20any%20value%20whose%20POSITIVE%20value%0D%0A%20%20%20%20%20%20%20%20%20%21%20%20%20is%20representable%20with%20the%20same%20type%20and%20kind%2E%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%20%27abs%20range%20test%20%3A%20%27%2C%20abs%28huge%280%29%29%2C%20abs%28%2Dhuge%280%29%29%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%20%27abs%20range%20test%20%3A%20%27%2C%20abs%28huge%280%2E0%29%29%2C%20abs%28%2Dhuge%280%2E0%29%29%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%20%27abs%20range%20test%20%3A%20%27%2C%20abs%28tiny%280%2E0%29%29%2C%20abs%28%2Dtiny%280%2E0%29%29%0D%0A%0D%0A%20%20%20%20%20%20end%20subroutine%20DUSTY%5FCORNERS%5F1%0D%0A%0D%0A%20%20%20%20%20%20subroutine%20DUSTY%5FCORNERS%5F2%28message%29%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cintent%28in%29%20%3A%3A%20message%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20dusty%20corner%3A%20%22kind%3Ddp%22%20is%20required%20or%20the%20value%20returned%20by%0D%0A%20%20%20%20%20%20%20%20%20%21%20CMPLX%28%29%20is%20a%20default%20real%20instead%20of%20double%20precision%2E%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20Working%20with%20complex%20values%20you%20often%20encounter%20the%20CMPLX%283f%29%20function%2E%0D%0A%20%20%20%20%20%20%20%20%20%21%20CMPLX%283f%29%20defaults%20to%20returning%20a%20default%20REAL%20regardless%20of%20input%20type%2E%0D%0A%20%20%20%20%20%20%20%20%20%21%20Not%20really%20a%20direct%20problem%20with%20ABS%282f%29%20per%2Dse%2C%20but%20a%20common%20error%0D%0A%20%20%20%20%20%20%20%20%20%21%20when%20working%20with%20doubleprecision%20complex%20values%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%20%20message%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%20%27real%20result%20versus%20doubleprecision%20result%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20abs%28cmplx%2830%2E0%5Fdp%2C40%2E0%5Fdp%29%29%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20abs%28cmplx%2830%2E0%5Fdp%2C40%2E0%5Fdp%2Ckind%3Ddp%29%29%0D%0A%0D%0A%20%20%20%20%20%20end%20subroutine%20DUSTY%5FCORNERS%5F2%0D%0A%0D%0A%20%20%20%20%20%20subroutine%20DUSTY%5FCORNERS%5F3%28message%29%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cintent%28in%29%20%3A%3A%20message%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%20message%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20this%20will%20probably%20cause%20an%20overflow%20error%2C%20or%0D%0A%20%20%20%20%20%20%20%20%20%21print%20gen%2C%20%20abs%28cmplx%28%20huge%280%2E0%29%2C%20huge%280%2E0%29%20%29%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%20%27because%20the%20biggest%20default%20real%20is%27%2Chuge%280%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%20%27because%20returning%20magnitude%20of%20sqrt%28x%25re%2A%2A2%2Cx%25im%2A%2A2%29%27%0D%0A%0D%0A%20%20%20%20%20%20end%20subroutine%20DUSTY%5FCORNERS%5F3%0D%0A%0D%0A%20%20%20%20%20%20subroutine%20DUSTY%5FCORNERS%5F4%28message%29%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cintent%28in%29%20%3A%3A%20message%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%20message%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20if%20you%20do%20not%20want%20the%20distance%20for%20a%20complex%20value%20you%0D%0A%20%20%20%20%20%20%20%20%20%21%20might%20want%20something%20like%20returning%20a%20complex%20value%20with%0D%0A%20%20%20%20%20%20%20%20%20%21%20both%20the%20imaginary%20and%20real%20parts%2E%20One%20way%20to%20do%20that%20is%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%20cmplx%28abs%28z%25re%29%2Cabs%28z%25im%29%2Ckind%3Dkind%28z%29%29%0D%0A%0D%0A%20%20%20%20%20%20end%20subroutine%20DUSTY%5FCORNERS%5F4%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fabs%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> abs
@@ -17,48 +17,99 @@
       implicit none
       integer,parameter :: dp=kind(0.0d0)
 
+      ! some values to use with ABS(3f)
       integer           :: i = -1
       real              :: x = -1.0
       complex           :: z = (-3.0,-4.0)
       doubleprecision   :: rr = -45.78_dp
 
+      ! some formats for pretty-printing some information
       character(len=*),parameter :: &
-         ! some formats
          frmt  =  '(1x,a15,1x," In: ",g0,            T51," Out: ",g0)', &
          frmtc = '(1x,a15,1x," In: (",g0,",",g0,")",T51," Out: ",g0)',  &
-         g     = '(*(g0,1x))'
+         gen   = '(*(g0,1x))'
 
-        ! basic usage
-          ! any integer, real, or complex type
-          write(*, frmt)  'integer         ',  i, abs(i)
-          write(*, frmt)  'real            ',  x, abs(x)
-          write(*, frmt)  'doubleprecision ', rr, abs(rr)
-          write(*, frmtc) 'complex         ',  z, abs(z)
-
-        ! You can take the absolute value of any value whose positive value
-        ! is representable with the same type and kind.
-          write(*, *) 'abs range test : ', abs(huge(0)), abs(-huge(0))
-          write(*, *) 'abs range test : ', abs(huge(0.0)), abs(-huge(0.0))
-          write(*, *) 'abs range test : ', abs(tiny(0.0)), abs(-tiny(0.0))
-          ! A dusty corner is that abs(-huge(0)-1) of an integer would be
-          ! a representable negative value on most machines but result in a
-          ! positive value out of range.
+        ! the basics
+         print gen,  'basic usage:'
+         ! any integer, real, or complex type
+         write(*, frmt)  'integer         ',  i, abs(i)
+         write(*, frmt)  'real            ',  x, abs(x)
+         write(*, frmt)  'doubleprecision ', rr, abs(rr)
+         write(*, frmtc) 'complex         ',  z, abs(z)
 
         ! elemental
-          write(*, g) ' abs is elemental:', abs([20,  0,  -1,  -3,  100])
-
-        ! COMPLEX input produces REAL output
-          write(*, g)' complex input produces real output', &
-          & abs(cmplx(30.0_dp,40.0_dp,kind=dp))
-          ! dusty corner: "kind=dp" is required or the value returned by
-          ! CMPLX() is a default real instead of double precision
+         print gen, 'abs is elemental:', abs([20,  0,  -1,  -3,  100])
 
         ! the returned value for complex input can be thought of as the
         ! distance from the origin <0,0>
-          write(*, g) ' distance of (', z, ') from zero is', abs( z )
-          write(*, g) ' so beware of overflow with complex values'
-          !write(*, g) abs(cmplx( huge(0.0), huge(0.0) ))
-          write(*, g) ' because the biggest default real is',huge(0.0)
+         print gen, 'distance of (', z, ') from zero is', abs( z )
+
+      call DUSTY_CORNERS_1("beware of abs(-huge(0)-1)")
+      call DUSTY_CORNERS_2("beware of losing precision using CMPLX(3f)")
+      call DUSTY_CORNERS_3("beware of overflow of complex values")
+      call DUSTY_CORNERS_4("custom meaning for absolute value of COMPLEX")
+
+      contains
+
+      subroutine DUSTY_CORNERS_1(message)
+      character(len=*),intent(in) :: message
+
+         ! A dusty corner is that abs(-huge(0)-1) of an integer would be
+         ! a representable negative value on most machines but result in a
+         ! positive value out of range.
+
+         print gen,  message
+         ! By definition:
+         !   You can take the absolute value of any value whose POSITIVE value
+         !   is representable with the same type and kind.
+
+         print gen, 'abs range test : ', abs(huge(0)), abs(-huge(0))
+         print gen, 'abs range test : ', abs(huge(0.0)), abs(-huge(0.0))
+         print gen, 'abs range test : ', abs(tiny(0.0)), abs(-tiny(0.0))
+
+      end subroutine DUSTY_CORNERS_1
+
+      subroutine DUSTY_CORNERS_2(message)
+      character(len=*),intent(in) :: message
+
+         ! dusty corner: "kind=dp" is required or the value returned by
+         ! CMPLX() is a default real instead of double precision.
+
+         ! Working with complex values you often encounter the CMPLX(3f) function.
+         ! CMPLX(3f) defaults to returning a default REAL regardless of input type.
+         ! Not really a direct problem with ABS(2f) per-se, but a common error
+         ! when working with doubleprecision complex values
+
+         print gen,  message
+         print gen, 'real result versus doubleprecision result', &
+         & abs(cmplx(30.0_dp,40.0_dp)), &
+         & abs(cmplx(30.0_dp,40.0_dp,kind=dp))
+
+      end subroutine DUSTY_CORNERS_2
+
+      subroutine DUSTY_CORNERS_3(message)
+      character(len=*),intent(in) :: message
+         print gen, message
+
+         ! this will probably cause an overflow error, or
+         !print gen,  abs(cmplx( huge(0.0), huge(0.0) ))
+
+         print gen, 'because the biggest default real is',huge(0.0)
+         print gen, 'because returning magnitude of sqrt(x%re**2,x%im**2)'
+
+      end subroutine DUSTY_CORNERS_3
+
+      subroutine DUSTY_CORNERS_4(message)
+      character(len=*),intent(in) :: message
+         print gen, message
+
+         ! if you do not want the distance for a complex value you
+         ! might want something like returning a complex value with
+         ! both the imaginary and real parts. One way to do that is
+
+         print gen, cmplx(abs(z%re),abs(z%im),kind=kind(z))
+
+      end subroutine DUSTY_CORNERS_4
 
       end program demo_abs
   </xmp>
@@ -1410,7 +1461,7 @@
       end program demo_c_funloc
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fchar%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%2C%20parameter%20%3A%3A%20ascii%20%3D%20%20selected%5Fchar%5Fkind%20%28%22ascii%22%29%0D%0A%20%20%20%20%20%20character%28len%3D1%2C%20kind%3Dascii%20%29%20%3A%3A%20c%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%21%20basic%0D%0A%20%20%20%20%20%20%20%20%20i%3D74%0D%0A%20%20%20%20%20%20%20%20%20c%3Dchar%28i%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27ASCII%20character%20%27%2Ci%2C%27is%20%27%2Cc%0D%0A%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27a%20selection%20of%20ASCII%20characters%20%28shows%20hex%20if%20not%20printable%29%27%0D%0A%20%20%20%20%20%20%20%20%20do%20i%3D0%2C127%2C10%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20c%20%3D%20char%28i%2Ckind%3Dascii%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20select%20case%28i%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%2832%3A126%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28i3%2C1x%2Ca%29%27%29i%2Cc%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%280%3A31%2C127%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20print%20hexadecimal%20value%20for%20unprintable%20characters%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28i3%2C1x%2Cz2%2E2%29%27%29i%2Cc%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%20default%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28i3%2C1x%2Ca%2C1x%2Ca%29%27%29i%2Cc%2C%27non%2Dstandard%20ASCII%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20end%20select%0D%0A%20%20%20%20%20%20%20%20%20enddo%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fchar%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fchar%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%2C%20parameter%20%3A%3A%20ascii%20%3D%20%20selected%5Fchar%5Fkind%20%28%22ascii%22%29%0D%0A%20%20%20%20%20%20character%28len%3D1%2C%20kind%3Dascii%20%29%20%3A%3A%20c%2C%20esc%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%21%20basic%0D%0A%20%20%20%20%20%20%20%20%20i%3D74%0D%0A%20%20%20%20%20%20%20%20%20c%3Dchar%28i%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27ASCII%20character%20%27%2Ci%2C%27is%20%27%2Cc%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28g0%29%29%27%29%27Uppercase%20ASCII%3A%20%27%2C%28char%28i%29%2Ci%3D65%2C90%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28g0%29%29%27%29%27lowercase%20ASCII%3A%20%27%2C%28char%28i%29%2Ci%3D97%2C122%29%0D%0A%20%20%20%20%20%20%20%20%20esc%3Dchar%2827%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28g0%29%29%27%29%27Elemental%3A%20%27%2Cchar%28%5B65%2C97%2C90%2C122%5D%29%0D%0A%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27a%20selection%20of%20ASCII%20characters%20%28shows%20hex%20if%20not%20printable%29%27%0D%0A%20%20%20%20%20%20%20%20%20do%20i%3D0%2C127%2C10%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20c%20%3D%20char%28i%2Ckind%3Dascii%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20select%20case%28i%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%2832%3A126%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28i3%2C1x%2Ca%29%27%29i%2Cc%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%280%3A31%2C127%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20print%20hexadecimal%20value%20for%20unprintable%20characters%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28i3%2C1x%2Cz2%2E2%29%27%29i%2Cc%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%20default%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28i3%2C1x%2Ca%2C1x%2Ca%29%27%29i%2Cc%2C%27non%2Dstandard%20ASCII%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20end%20select%0D%0A%20%20%20%20%20%20%20%20%20enddo%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fchar%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> char
@@ -1421,12 +1472,16 @@
       program demo_char
       implicit none
       integer, parameter :: ascii =  selected_char_kind ("ascii")
-      character(len=1, kind=ascii ) :: c
+      character(len=1, kind=ascii ) :: c, esc
       integer :: i
         ! basic
          i=74
          c=char(i)
          write(*,*)'ASCII character ',i,'is ',c
+         write(*,'(*(g0))')'Uppercase ASCII: ',(char(i),i=65,90)
+         write(*,'(*(g0))')'lowercase ASCII: ',(char(i),i=97,122)
+         esc=char(27)
+         write(*,'(*(g0))')'Elemental: ',char([65,97,90,122])
         !
          print *, 'a selection of ASCII characters (shows hex if not printable)'
          do i=0,127,10
@@ -1455,7 +1510,7 @@
   <xmp>
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20program%20demo%5Fclose%20implicit%20none%20character%28len%3D256%29%20%3A%3A%20message%20integer%20%3A%3A%0D%0A%20%20ios%20open%20%2810%2C%20file%3D%27employee%2Enames%27%2C%20action%3D%27read%27%2C%0D%0A%20%20iostat%3Dios%2Ciomsg%3Dmessage%29%20if%20%28ios%20%3C%200%29%20then%20%21%20perform%20end%2Dof%2Dfile%20processing%0D%0A%20%20on%20the%20file%20connected%20to%20unit%2010%2E%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20close%20%2810%2C%20status%3D%27keep%27%2Ciostat%3Dios%2Ciomsg%3Dmessage%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20if%28ios%2Ene%2E0%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28a%29%29%27%29%27%2Ademo%5Fclose%2A%20close%20error%3A%20%27%2Ctrim%28message%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20stop%201%0D%0A%20%20%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20elseif%20%28ios%20%3E%200%29%20then%20%21%20perform%20error%20processing%20on%20open%0D%0A%20%20write%28%2A%2C%27%28%2A%28a%29%29%27%29%27%2Ademo%5Fclose%2A%20open%20error%3A%20%27%2Ctrim%28message%29%20stop%202%20endif%0D%0A%0D%0A%20%20end%20program%20demo%5Fclose%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20program%20demo%5Fclose%0D%0A%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20character%28len%3D256%29%20%3A%3A%20message%0D%0A%20%20%20%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20ios%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20open%20%2810%2C%20file%3D%27employee%2Enames%27%2C%20action%3D%27read%27%2C%20iostat%3Dios%2Ciomsg%3Dmessage%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20%28ios%20%3C%200%29%20then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20perform%20end%2Dof%2Dfile%20processing%20on%20the%20file%20connected%20to%20unit%2010%2E%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20close%20%2810%2C%20status%3D%27keep%27%2Ciostat%3Dios%2Ciomsg%3Dmessage%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%28ios%2Ene%2E0%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28a%29%29%27%29%27%2Ademo%5Fclose%2A%20close%20error%3A%20%27%2Ctrim%28message%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20stop%201%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20elseif%20%28ios%20%3E%200%29%20then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20perform%20error%20processing%20on%20open%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28a%29%29%27%29%27%2Ademo%5Fclose%2A%20open%20error%3A%20%27%2Ctrim%28message%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20stop%202%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20%20%20%20%20%20%20%20end%20program%20demo%5Fclose%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> close
@@ -1463,20 +1518,25 @@
   <details>
     <summary>Source</summary>
   <xmp>
-  program demo_close implicit none character(len=256) :: message integer ::
-  ios open (10, file='employee.names', action='read',
-  iostat=ios,iomsg=message) if (ios < 0) then ! perform end-of-file processing
-  on the file connected to unit 10.
+         program demo_close
+         implicit none
+         character(len=256) :: message
+         integer            :: ios
+            open (10, file='employee.names', action='read', iostat=ios,iomsg=message)
+            if (ios < 0) then
+               ! perform end-of-file processing on the file connected to unit 10.
 
-           close (10, status='keep',iostat=ios,iomsg=message)
-           if(ios.ne.0)then
-              write(*,'(*(a))')'*demo_close* close error: ',trim(message)
-              stop 1
-           endif
-  elseif (ios > 0) then ! perform error processing on open
-  write(*,'(*(a))')'*demo_close* open error: ',trim(message) stop 2 endif
-
-  end program demo_close
+               close (10, status='keep',iostat=ios,iomsg=message)
+               if(ios.ne.0)then
+                  write(*,'(*(a))')'*demo_close* close error: ',trim(message)
+                  stop 1
+               endif
+            elseif (ios > 0) then
+               ! perform error processing on open
+               write(*,'(*(a))')'*demo_close* open error: ',trim(message)
+               stop 2
+            endif
+         end program demo_close
   </xmp>
   </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Faimag%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%2Cparameter%20%3A%3A%20dp%3Dkind%280%2E0d0%29%0D%0A%20%20%20%20%20%20real%28kind%3Ddp%29%20%20%20%20%20%3A%3A%20precise%0D%0A%20%20%20%20%20%20complex%28kind%3Ddp%29%20%20%3A%3A%20z8%0D%0A%20%20%20%20%20%20complex%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20z4%2C%20zthree%283%29%0D%0A%20%20%20%20%20%20%20%20%20precise%3D1%2E2345678901234567d0%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20basic%0D%0A%20%20%20%20%20%20%20%20%20z4%20%3D%20cmplx%28%2D3%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27Z4%3D%27%2Cz4%0D%0A%20%20%20%20%20%20%20%20%20z4%20%3D%20cmplx%281%2E23456789%2C%201%2E23456789%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27Z4%3D%27%2Cz4%0D%0A%20%20%20%20%20%20%20%20%20%21%20with%20a%20format%20treat%20a%20complex%20as%20two%20real%20values%0D%0A%20%20%20%20%20%20%20%20%20print%20%27%281x%2Cg0%2C1x%2Cg0%2C1x%2Cg0%29%27%2C%27Z4%3D%27%2Cz4%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20working%20with%20higher%20precision%20values%0D%0A%20%20%20%20%20%20%20%20%20%21%20using%20kind%3Ddp%20makes%20it%20keep%20DOUBLEPRECISION%20precision%0D%0A%20%20%20%20%20%20%20%20%20%21%20otherwise%20the%20result%20would%20be%20of%20default%20kind%0D%0A%20%20%20%20%20%20%20%20%20z8%20%3D%20cmplx%28precise%2C%20%2Dprecise%20%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27lost%20precision%20Z8%3D%27%2Cz8%0D%0A%20%20%20%20%20%20%20%20%20z8%20%3D%20cmplx%28precise%2C%20%2Dprecise%20%2Ckind%3Ddp%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27kept%20precision%20Z8%3D%27%2Cz8%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20assignment%20of%20constant%20values%20does%20not%20require%20cmplx%283%2900%0D%0A%20%20%20%20%20%20%20%20%20%21%20The%20following%20is%20intuitive%20and%20works%20without%20calling%20cmplx%283%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20but%20does%20not%20work%20for%20variables%20just%20constants%0D%0A%20%20%20%20%20%20%20%20%20z8%20%3D%20%281%2E1111111111111111d0%2C%202%2E2222222222222222d0%20%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27Z8%20defined%20with%20constants%3D%27%2Cz8%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20what%20happens%20when%20you%20assign%20a%20complex%20to%20a%20real%3F%0D%0A%20%20%20%20%20%20%20%20%20precise%3Dz8%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27LHS%3D%27%2Cprecise%2C%27RHS%3D%27%2Cz8%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20elemental%0D%0A%20%20%20%20%20%20%20%20%20zthree%3Dcmplx%28%5B10%2C20%2C30%5D%2C%2D1%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27zthree%3D%27%2Czthree%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20descriptors%20are%20an%20alternative%0D%0A%20%20%20%20%20%20%20%20%20zthree%281%3A2%29%25re%3D%5B100%2C200%5D%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27zthree%3D%27%2Czthree%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Faimag%0D%0A"
@@ -2245,6 +2305,46 @@
           write(*,'(b32.32)') i,j, dshiftr (i, j, shift)
 
       end program demo_dshiftr
+  </xmp>
+  </details>
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20%20program%20demo%5Fendfile%0D%0A%20%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20lun%2C%20i%2C%20j%2C%20iostat%0D%0A%20%20%20%20%20%20%20%20%20%20integer%2Cparameter%3A%3A%20isz%3D10%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20create%20a%20little%20scratch%20file%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20open%28newunit%3Dlun%2Cfile%3D%27%5Fscr%2Etxt%27%2C%20form%3D%27formatted%27%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20write%28lun%2C%27%28i0%29%27%29%28100%2Bi%2Ci%3D1%2Cisz%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20write%20end%20of%20file%20after%20reading%20half%20of%20file%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20rewind%28lun%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27rewind%20and%20read%27%2Cisz%2F2%2C%27lines%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20read%28lun%2C%2A%29%28j%2Ci%3D1%2Cisz%2F2%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20endfile%20lun%20%21%20will%20truncate%20line%20at%20current%20position%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20NOTE%3A%20backspace%20before%20writing%20any%20addition%20lines%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20%20%20%20%20%20%20once%20an%20ENDFILE%287f%29%20statement%20is%20executed%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20backspace%28lun%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20rewind%20and%20echo%20remaining%20file%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20rewind%28lun%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20j%3D0%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20do%20i%3D1%2Chuge%280%29%2D1%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20read%28lun%2C%2A%2Ciostat%3Diostat%29j%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%28iostat%2Ene%2E0%29exit%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29i%2Cj%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27number%20of%20lines%20in%20file%20was%20%27%2Cisz%2C%27%2C%20is%20now%20%27%2Ci%2D1%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20close%28unit%3Dlun%2Cstatus%3D%27delete%27%29%0D%0A%20%20%20%20%20%20%20%20%20%20end%20program%20demo%5Fendfile%0D%0A"
+  target="_blank" title="Open in Fortran Playground">
+  <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
+  alt="Fortran logo" class="align-text-bottom" height="15.5" /> endfile
+  </a>
+  <details>
+    <summary>Source</summary>
+  <xmp>
+          program demo_endfile
+          implicit none
+          integer :: lun, i, j, iostat
+          integer,parameter:: isz=10
+             !
+             ! create a little scratch file
+             open(newunit=lun,file='_scr.txt', form='formatted')
+             write(lun,'(i0)')(100+i,i=1,isz)
+             !
+             ! write end of file after reading half of file
+             rewind(lun)
+             write(*,*)'rewind and read',isz/2,'lines'
+             read(lun,*)(j,i=1,isz/2)
+             endfile lun ! will truncate line at current position
+             !
+             ! NOTE: backspace before writing any addition lines
+             !       once an ENDFILE(7f) statement is executed
+             ! backspace(lun)
+             !
+             ! rewind and echo remaining file
+             rewind(lun)
+             j=0
+             do i=1,huge(0)-1
+                read(lun,*,iostat=iostat)j
+                if(iostat.ne.0)exit
+                write(*,*)i,j
+             enddo
+             write(*,*)'number of lines in file was ',isz,', is now ',i-1
+             close(unit=lun,status='delete')
+          end program demo_endfile
   </xmp>
   </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Feoshift%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%2C%20dimension%283%2C3%29%20%3A%3A%20a%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20a%20%3D%20reshape%28%20%5B%201%2C%202%2C%203%2C%204%2C%205%2C%206%2C%207%2C%208%2C%209%20%5D%2C%20%5B%203%2C%203%20%5D%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%27%283i3%29%27%2C%20%28a%28i%2C%3A%29%2Ci%3D1%2C3%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20shift%20it%0D%0A%20%20%20%20%20%20%20%20%20%20a%20%3D%20eoshift%28a%2C%20SHIFT%3D%5B1%2C%202%2C%201%5D%2C%20BOUNDARY%3D%2D5%2C%20DIM%3D2%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%27%283i3%29%27%2C%20%28a%28i%2C%3A%29%2Ci%3D1%2C3%29%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Feoshift%0D%0A"
@@ -4639,6 +4739,54 @@
        end function int_swap32
 
        end program demo_mvbits
+  </xmp>
+  </details>
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20%20%20%20program%20demo%5Fnamelist%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20lun%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20create%20a%20namelist%20and%20initialize%20the%20values%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20logical%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20l%3D%2Etrue%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20character%28len%3D10%29%20%3A%3A%20c%3D%27XXXXXXXXXX%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20real%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20r%3D12%2E3456%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%3D789%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20complex%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20x%3D%2812345%2E6789%2C9876%2E54321%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20doubleprecision%20%20%20%3A%3A%20d%3D%20123456789%2E123456789d0%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20a%285%29%3D%5B1%2C2%2C3%2C4%2C5%5D%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20type%20point%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20x%3D0%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20y%3D0%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20character%28len%3D10%29%20%3A%3A%20color%3D%27red%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20endtype%20point%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20type%28point%29%20%3A%3A%20dot%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20namelist%20%2Fnlist%2F%20l%2Cc%2Cr%2Ci%2Cx%2Cd%2Ca%2Cdot%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20open%28file%3D%27%5Ftmp%5F%27%2Cnewunit%3Dlun%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27initial%20nlist%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cnlist%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28lun%2Cnlist%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27change%20values%20and%20print%20nlist%20again%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20a%3D%5B10%2C20%2C30%2C40%2C50%5D%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20dot%25color%3D%27orange%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28lun%2Cnlist%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27read%20back%20values%2E%20Can%20have%20multiple%20sets%20in%20a%20file%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20rewind%28lun%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20read%28lun%2Cnlist%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20read%28lun%2Cnlist%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cnlist%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20end%20program%20demo%5Fnamelist%0D%0A"
+  target="_blank" title="Open in Fortran Playground">
+  <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
+  alt="Fortran logo" class="align-text-bottom" height="15.5" /> namelist
+  </a>
+  <details>
+    <summary>Source</summary>
+  <xmp>
+            program demo_namelist
+            implicit none
+            integer           :: lun
+
+            ! create a namelist and initialize the values
+            logical           :: l=.true.
+            character(len=10) :: c='XXXXXXXXXX'
+            real              :: r=12.3456
+            integer           :: i=789
+            complex           :: x=(12345.6789,9876.54321)
+            doubleprecision   :: d= 123456789.123456789d0
+            integer           :: a(5)=[1,2,3,4,5]
+            type point
+             integer           :: x=0
+             integer           :: y=0
+             character(len=10) :: color='red'
+            endtype point
+            type(point) :: dot
+            namelist /nlist/ l,c,r,i,x,d,a,dot
+
+            open(file='_tmp_',newunit=lun)
+
+               write(*,*)'initial nlist'
+               write(*,nlist)
+               write(lun,nlist)
+
+               write(*,*)'change values and print nlist again'
+               a=[10,20,30,40,50]
+               dot%color='orange'
+               write(lun,nlist)
+
+               write(*,*)'read back values. Can have multiple sets in a file'
+               rewind(lun)
+               read(lun,nlist)
+               read(lun,nlist)
+               write(*,nlist)
+
+            end program demo_namelist
   </xmp>
   </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fnearest%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20real%20%3A%3A%20x%2C%20y%0D%0A%20%20%20%20%20%20%20%20%20x%20%3D%20nearest%2842%2E0%2C%201%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20y%20%3D%20nearest%2842%2E0%2C%20%2D1%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20write%20%28%2A%2C%22%283%28g20%2E15%29%29%22%29%20x%2C%20y%2C%20x%20%2D%20y%0D%0A%0D%0A%20%20%20%20%20%20%21%20%20write%20%28%2A%2C%22%283%28g20%2E15%29%29%22%29%20%26%0D%0A%20%20%20%20%20%20%21%20%20%20nearest%28tiny%280%2E0%29%2C1%2E0%29%2C%20%26%0D%0A%20%20%20%20%20%20%21%20%20%20nearest%28tiny%280%2E0%29%2C%2D1%2E0%29%2C%20%26%0D%0A%20%20%20%20%20%20%21%20%20%20nearest%28tiny%280%2E0%29%2C1%2E0%29%20%2Dnearest%28tiny%280%2E0%29%2C%2D1%2E0%29%0D%0A%0D%0A%20%20%20%20%20%20%21%20%20write%20%28%2A%2C%22%283%28g20%2E15%29%29%22%29%20%26%0D%0A%20%20%20%20%20%20%21%20%20%20nearest%28huge%280%2E0%29%2C1%2E0%29%2C%20%26%0D%0A%20%20%20%20%20%20%21%20%20%20nearest%28huge%280%2E0%29%2C%2D1%2E0%29%2C%20%26%0D%0A%20%20%20%20%20%20%21%20%20%20nearest%28huge%280%2E0%29%2C1%2E0%29%2D%20nearest%28huge%280%2E0%29%2C%2D1%2E0%29%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fnearest%0D%0A"

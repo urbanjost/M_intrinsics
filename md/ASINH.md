@@ -34,8 +34,10 @@
   to the inverse hyperbolic sine function of **x**.
 
   If **x** is _complex_, the imaginary part of the result is in radians and lies
-between **-PI/2 \<= aimag(asinh(x)) \<= PI/2**.
-
+  between 
+```fortran
+       -PI/2 <= aimag(asinh(x)) <= PI/2
+```
 ### **Examples**
 
 Sample program:
