@@ -165,6 +165,34 @@
       end program demo_achar
   </xmp>
   </details>
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Facosd%0D%0A%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20real%5Fkinds%2Creal32%2Creal64%2Creal128%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20all%3D%27%28%2A%28g0%2C1x%29%29%27%0D%0A%20%20%20%20%20%20real%28kind%3Dreal64%29%20%3A%3A%20x%20%2C%20d2r%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20basics%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%27acosd%28%2D1%2E0%29%20%2D%2D%3E%27%2Cacosd%28%20%2D1%2E0%20%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%27acosd%28%200%2E0%29%20%2D%2D%3E%27%2Cacosd%28%20%2D1%2E0%20%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%27acosd%28%201%2E0%29%20%2D%2D%3E%27%2Cacosd%28%20%200%2E0%20%29%0D%0A%20%20%20%20%20%20%20%20%20%20x%20%3D%200%2E866%5Freal64%0D%0A%20%20%20%20%20%20%20%20%20%20print%20all%2C%27acosd%28%27%2Cx%2C%27%29%20is%20%27%2C%20acosd%28x%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20any%20real%20kind%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20acosd%28%2D1%2E0%5Freal64%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20elemental%0D%0A%20%20%20%20%20%20%20%20%20%20print%20all%2C%27elemental%27%2Cacosd%28%5B%2D1%2E0%2C%2D0%2E5%2C0%2E0%2C0%2E50%2C1%2E0%5D%29%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20end%20program%20demo%5Facosd%0D%0A"
+  target="_blank" title="Open in Fortran Playground">
+  <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
+  alt="Fortran logo" class="align-text-bottom" height="15.5" /> acosd
+  </a>
+  <details>
+    <summary>Source</summary>
+  <xmp>
+      program demo_acosd
+      use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128
+      implicit none
+      character(len=*),parameter :: all='(*(g0,1x))'
+      real(kind=real64) :: x , d2r
+
+         ! basics
+          print *,'acosd(-1.0) -->',acosd( -1.0 )
+          print *,'acosd( 0.0) -->',acosd( -1.0 )
+          print *,'acosd( 1.0) -->',acosd(  0.0 )
+          x = 0.866_real64
+          print all,'acosd(',x,') is ', acosd(x)
+         ! any real kind
+          write(*,*) acosd(-1.0_real64)
+         ! elemental
+          print all,'elemental',acosd([-1.0,-0.5,0.0,0.50,1.0])
+         !
+      end program demo_acosd
+  </xmp>
+  </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Facos%0D%0A%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20real%5Fkinds%2Creal32%2Creal64%2Creal128%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20all%3D%27%28%2A%28g0%2C1x%29%29%27%0D%0A%20%20%20%20%20%20real%28kind%3Dreal64%29%20%3A%3A%20x%20%2C%20d2r%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20basics%0D%0A%20%20%20%20%20%20%20%20%20%20x%20%3D%200%2E866%5Freal64%0D%0A%20%20%20%20%20%20%20%20%20%20print%20all%2C%27acos%28%27%2Cx%2C%27%29%20is%20%27%2C%20acos%28x%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20acos%28%2D1%29%20should%20be%20PI%0D%0A%20%20%20%20%20%20%20%20%20%20print%20all%2C%27for%20reference%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26PI%20%7E%3D%203%2E14159265358979323846264338327950288419716939937510%27%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20acos%28%2D1%2E0%5Freal64%29%0D%0A%20%20%20%20%20%20%20%20%20%20d2r%3Dacos%28%2D1%2E0%5Freal64%29%2F180%2E0%5Freal64%0D%0A%20%20%20%20%20%20%20%20%20%20print%20all%2C%2790%20degrees%20is%20%27%2C%20d2r%2A90%2E0%5Freal64%2C%20%27%20radians%27%0D%0A%20%20%20%20%20%20%20%20%20%21%20elemental%0D%0A%20%20%20%20%20%20%20%20%20%20print%20all%2C%27elemental%27%2Cacos%28%5B%2D1%2E0%2C%2D0%2E5%2C0%2E0%2C0%2E50%2C1%2E0%5D%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20complex%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%27complex%27%2Cacos%28%20%28%2D1%2E0%2C%20%200%2E0%29%20%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%27complex%27%2Cacos%28%20%28%2D1%2E0%2C%20%2D1%2E0%29%20%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%27complex%27%2Cacos%28%20%28%200%2E0%2C%20%2D0%2E0%29%20%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%27complex%27%2Cacos%28%20%28%201%2E0%2C%20%200%2E0%29%20%29%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Facos%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
@@ -217,6 +245,40 @@
          endif
          write (*,*) acosh(x)
       end program demo_acosh
+  </xmp>
+  </details>
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Facospi%0D%0A%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20real%5Fkinds%2Creal32%2Creal64%2Creal128%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20all%3D%27%28%2A%28g0%2C1x%29%29%27%0D%0A%20%20%20%20%20%20real%28kind%3Dreal64%29%20%3A%3A%20x%20%2C%20d2r%0D%0A%20%20%20%20%20%20real%28kind%3Dreal64%29%2Cparameter%20%3A%3A%20%26%0D%0A%20%20%20%20%20%20%26%20PI%20%3D%203%2E14159265358979323846264338327950288419716939937510%5Freal64%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20basics%0D%0A%20%20%20%20%20%20%20%20%20%20x%20%3D%20PI%2F4%2E0%5Freal64%0D%0A%20%20%20%20%20%20%20%20%20%20print%20all%2C%27acospi%28%27%2Cx%2C%27%29%20is%20%27%2C%20acospi%28x%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20acospi%28%2D1%29%20should%20be%20PI%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20acospi%28%2D1%2E0%5Freal64%29%0D%0A%20%20%20%20%20%20%20%20%20%20d2r%3Dacospi%28%2D1%2E0%5Freal64%29%2F180%2E0%5Freal64%0D%0A%20%20%20%20%20%20%20%20%20%20print%20all%2C%2790%20degrees%20is%20%27%2C%20d2r%2A90%2E0%5Freal64%2C%20%27%20radians%27%0D%0A%20%20%20%20%20%20%20%20%20%21%20elemental%0D%0A%20%20%20%20%20%20%20%20%20%20print%20all%2C%27elemental%27%2Cacospi%28%5B%2D1%2E0%2C%2D0%2E5%2C0%2E0%2C0%2E50%2C1%2E0%5D%29%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%27%2D1%2E0%27%2Cacospi%28%20%2D1%2E0%20%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%27%200%2E0%27%2Cacospi%28%20%200%2E0%20%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%27%201%2E0%27%2Cacospi%28%20%201%2E0%20%29%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Facospi%0D%0A"
+  target="_blank" title="Open in Fortran Playground">
+  <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
+  alt="Fortran logo" class="align-text-bottom" height="15.5" /> acospi
+  </a>
+  <details>
+    <summary>Source</summary>
+  <xmp>
+      program demo_acospi
+      use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128
+      implicit none
+      character(len=*),parameter :: all='(*(g0,1x))'
+      real(kind=real64) :: x , d2r
+      real(kind=real64),parameter :: &
+      & PI = 3.14159265358979323846264338327950288419716939937510_real64
+
+         ! basics
+          x = PI/4.0_real64
+          print all,'acospi(',x,') is ', acospi(x)
+
+         ! acospi(-1) should be PI
+          write(*,*) acospi(-1.0_real64)
+          d2r=acospi(-1.0_real64)/180.0_real64
+          print all,'90 degrees is ', d2r*90.0_real64, ' radians'
+         ! elemental
+          print all,'elemental',acospi([-1.0,-0.5,0.0,0.50,1.0])
+         !
+          print *,'-1.0',acospi( -1.0 )
+          print *,' 0.0',acospi(  0.0 )
+          print *,' 1.0',acospi(  1.0 )
+
+      end program demo_acospi
   </xmp>
   </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fadjustl%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%3A%3A%20str%20%3D%20%27%20%20%20sample%20string%27%0D%0A%20%20%20%20%20%20character%28len%3D%3A%29%2Callocatable%20%3A%3A%20astr%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20length%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20basic%20use%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%2C%22%5B%22%2Ca%2C%22%5D%22%29%27%29%20%27original%3A%20%27%2Cstr%0D%0A%20%20%20%20%20%20%20%20%20%20str%3Dadjustl%28str%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%2C%22%5B%22%2Ca%2C%22%5D%22%29%27%29%20%27adjusted%3A%20%27%2Cstr%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20a%20fixed%2Dlength%20string%20can%20be%20printed%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20trimmed%20using%20trim%283f%29%20or%20len%5Ftrim%283f%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%2C%22%5B%22%2Ca%2C%22%5D%22%29%27%29%20%27trimmed%3A%20%20%27%2Ctrim%28str%29%0D%0A%20%20%20%20%20%20%20%20%20%20length%3Dlen%5Ftrim%28str%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%2C%22%5B%22%2Ca%2C%22%5D%22%29%27%29%20%27substring%3A%27%2Cstr%28%3Alength%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20note%20an%20allocatable%20string%20stays%20the%20same%20length%20too%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20and%20is%20not%20trimmed%20by%20just%20an%20adjustl%283f%29%20call%2E%0D%0A%20%20%20%20%20%20%20%20%20%20astr%3D%27%20%20%20%20allocatable%20string%20%20%20%27%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%2C%22%5B%22%2Ca%2C%22%5D%22%29%27%29%20%27original%3A%27%2Castr%0D%0A%20%20%20%20%20%20%20%20%20%20astr%20%3D%20adjustl%28astr%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%2C%22%5B%22%2Ca%2C%22%5D%22%29%27%29%20%27adjusted%3A%27%2Castr%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20trim%283f%29%20can%20be%20used%20to%20change%20the%20length%0D%0A%20%20%20%20%20%20%20%20%20%20astr%20%3D%20trim%28astr%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%2C%22%5B%22%2Ca%2C%22%5D%22%29%27%29%20%27trimmed%3A%20%27%2Castr%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fadjustl%0D%0A"

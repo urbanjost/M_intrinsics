@@ -370,6 +370,88 @@ FORTRAN 77. KIND argument added Fortran 2003
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
+## acosd
+
+### **Name**
+
+**acosd**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arccosine (inverse cosine) function in degrees
+
+### **Synopsis**
+```fortran
+    result = acosd(x)
+```
+```fortran
+     elemental real(kind=KIND) function acosd(x)
+
+      real(kind=KIND),intent(in) :: x
+```
+### **Characteristics**
+
+ - **KIND** may be any kind supported by the _real_ type.
+ - The returned value will be of the same type and kind as the argument.
+
+### **Description**
+
+**acosd**(3) computes the arccosine of **x** in degrees(inverse of **cosd(x)**).
+For example, **ACOSD(−1.0)** has the value 180.0 (approximately).
+
+### **Options**
+
+- **x**
+  : The value to compute the arctangent of.
+  : If the type is _real_, the value must satisfy |**x**| <= 1.
+
+### **Result**
+
+The return value is of the same type and kind as **x**.
+The result has a value equal to a processor-dependent approximation to the arc cosine of X. It
+is expressed in degrees and lies in the range 0 <= ACOSD (X) <= 180.
+
+### **Examples**
+
+Sample program:
+
+```fortran
+program demo_acosd
+use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128
+implicit none
+character(len=*),parameter :: all='(*(g0,1x))'
+real(kind=real64) :: x , d2r
+
+   ! basics
+    print *,'acosd(-1.0) -->',acosd( -1.0 )
+    print *,'acosd( 0.0) -->',acosd( -1.0 )
+    print *,'acosd( 1.0) -->',acosd(  0.0 )
+    x = 0.866_real64
+    print all,'acosd(',x,') is ', acosd(x)
+   ! any real kind
+    write(*,*) acosd(-1.0_real64)
+   ! elemental
+    print all,'elemental',acosd([-1.0,-0.5,0.0,0.50,1.0])
+   !
+end program demo_acosd
+```
+Results:
+```text
+ >  acosd(-1.0) -->   180.000000
+ >  acosd( 0.0) -->   180.000000
+ >  acosd( 1.0) -->   90.0000000
+ > acosd( 0.86599999999999999 ) is  30.002910931188026
+ >    180.00000000000000
+ > elemental 180.000000 120.000000 90.0000000 60.0000000 0.00000000
+```
+### **Standard**
+
+FORTRAN 2023
+
+### **See Also**
+Inverse function: [**cosd**(3)](cosd)
+
+### **Resources**
+- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
+
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
 ## acosh
 
 ### **Name**
@@ -526,6 +608,96 @@ FORTRAN 77 ; for a _complex_ argument - Fortran 2008
 
 ### **See Also**
 Inverse function: [**cos**(3)](cos)
+
+### **Resources**
+- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
+
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
+## acospi
+
+### **Name**
+
+**acospi**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Circular Arccosine (inverse circular cosine) function
+
+### **Synopsis**
+```fortran
+    result = acospi(x)
+```
+```fortran
+     elemental real(kind=KIND) function acospi(x)
+
+      real(kind=KIND),intent(in) :: x
+```
+### **Characteristics**
+
+ - **KIND** may be any _real_ kind
+ - The returned value will be of the same type and kind as the argument.
+
+### **Description**
+
+**acospi**(3) computes the circular arccosine of **x** (inverse of
+**cospi(x)**).  The result is expressed in half-revolutions (ie. PI's)
+and lies in the range
+```fortran
+    0 <= ACOSPI (X) <= 1.
+```
+
+### **Options**
+
+- **x**
+  : The value to compute the circular arctangent of.
+  : The value must satisfy |**x**| <= 1.
+
+### **Result**
+
+The result has a value equal to a processor-dependent approximation to the arc cosine of X.
+
+The return value is of the same type and kind as **x**.
+
+It is expressed in half-revolutions and lies in the range 0 <= ACOSPI (X) <= 1.
+
+### **Examples**
+
+Sample program:
+
+```fortran
+program demo_acospi
+use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128
+implicit none
+character(len=*),parameter :: all='(*(g0,1x))'
+real(kind=real64) :: x , d2r
+real(kind=real64),parameter :: &
+& PI = 3.14159265358979323846264338327950288419716939937510_real64
+
+   ! basics
+    x = PI/4.0_real64
+    print all,'acospi(',x,') is ', acospi(x)
+
+   ! acospi(-1) should be PI
+    write(*,*) acospi(-1.0_real64)
+    d2r=acospi(-1.0_real64)/180.0_real64
+    print all,'90 degrees is ', d2r*90.0_real64, ' radians'
+   ! elemental
+    print all,'elemental',acospi([-1.0,-0.5,0.0,0.50,1.0])
+   !
+    print *,'-1.0',acospi( -1.0 )
+    print *,' 0.0',acospi(  0.0 )
+    print *,' 1.0',acospi(  1.0 )
+
+end program demo_acospi
+```
+Results:
+```text
+```
+### **Standard**
+
+FORTRAN 2023
+
+### **See Also**
+ - arc cosine in radians: [**acos**(3)](cos)
+ - arc cosine in degrees: [**acosd**(3)](cos)
+ - Inverse function: [**cos**(3)](cos)
 
 ### **Resources**
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)

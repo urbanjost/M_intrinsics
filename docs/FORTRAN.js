@@ -2,7 +2,9 @@ function loadthem(){
 append("abs.3fortran.html");
 append("achar.3fortran.html");
 append("acos.3fortran.html");
+append("acosd.3fortran.html");
 append("acosh.3fortran.html");
+append("acospi.3fortran.html");
 append("adjustl.3fortran.html");
 append("adjustr.3fortran.html");
 append("aimag.3fortran.html");

@@ -677,7 +677,101 @@ shortname="acos"
 call process()
 
 
-case('4','acosh')
+case('4','acosd')
+
+textblock=[character(len=256) :: &
+'', &
+'acosd(3fortran)                                               acosd(3fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  ACOSD(3) - [MATHEMATICS:TRIGONOMETRIC] Arccosine (inverse cosine) function', &
+'  in degrees', &
+'', &
+'', &
+'SYNOPSIS', &
+'  result = acosd(x)', &
+'', &
+'          elemental real(kind=KIND) function acosd(x)', &
+'', &
+'           real(kind=KIND),intent(in) :: x', &
+'', &
+'', &
+'CHARACTERISTICS', &
+'  o  KIND may be any kind supported by the real type.', &
+'', &
+'  o  The returned value will be of the same type and kind as the argument.', &
+'', &
+'DESCRIPTION', &
+'  ACOSD(3) computes the arccosine of X in degrees(inverse of COSD(X)). For', &
+'  example, ACOSD(-1.0) has the value 180.0 (approximately).', &
+'', &
+'OPTIONS', &
+'  o  X : The value to compute the arctangent of. : If the type is real, the', &
+'     value must satisfy |X| <= 1.', &
+'', &
+'RESULT', &
+'  The return value is of the same type and kind as X. The result has a value', &
+'  equal to a processor-dependent approximation to the arc cosine of X. It is', &
+'  expressed in degrees and lies in the range 0 <= ACOSD (X) <=', &
+'', &
+'  180.', &
+'', &
+'', &
+'EXAMPLES', &
+'  Sample program:', &
+'', &
+'      program demo_acosd', &
+'      use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128', &
+'      implicit none', &
+'      character(len=*),parameter :: all=''(*(g0,1x))''', &
+'      real(kind=real64) :: x , d2r', &
+'', &
+'        ! basics', &
+'         print *,''acosd(-1.0) -->'',acosd( -1.0 )', &
+'         print *,''acosd( 0.0) -->'',acosd( -1.0 )', &
+'         print *,''acosd( 1.0) -->'',acosd(  0.0 )', &
+'         x = 0.866_real64', &
+'         print all,''acosd('',x,'') is '', acosd(x)', &
+'        ! any real kind', &
+'         write(*,*) acosd(-1.0_real64)', &
+'        ! elemental', &
+'         print all,''elemental'',acosd([-1.0,-0.5,0.0,0.50,1.0])', &
+'        !', &
+'      end program demo_acosd', &
+'', &
+'  Results:', &
+'', &
+'       >  acosd(-1.0) -->   180.000000', &
+'       >  acosd( 0.0) -->   180.000000', &
+'       >  acosd( 1.0) -->   90.0000000', &
+'       > acosd( 0.86599999999999999 ) is  30.002910931188026', &
+'       >    180.00000000000000', &
+'       > elemental 180.000000 120.000000 90.0000000 60.0000000 0.00000000', &
+'', &
+'', &
+'STANDARD', &
+'  FORTRAN 2023', &
+'', &
+'SEE ALSO', &
+'  Inverse function: COSD(3)', &
+'', &
+'RESOURCES', &
+'  o  wikipedia: inverse trigonometric functions', &
+'', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                               August 03, 2024                acosd(3fortran)', &
+'']
+
+shortname="acosd"
+call process()
+
+
+case('5','acosh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -758,7 +852,106 @@ shortname="acosh"
 call process()
 
 
-case('5','adjustl')
+case('6','acospi')
+
+textblock=[character(len=256) :: &
+'', &
+'acospi(3fortran)                                             acospi(3fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  ACOSPI(3) - [MATHEMATICS:TRIGONOMETRIC] Circular Arccosine (inverse circular', &
+'  cosine) function', &
+'', &
+'', &
+'SYNOPSIS', &
+'  result = acospi(x)', &
+'', &
+'          elemental real(kind=KIND) function acospi(x)', &
+'', &
+'           real(kind=KIND),intent(in) :: x', &
+'', &
+'', &
+'CHARACTERISTICS', &
+'  o  KIND may be any real kind', &
+'', &
+'  o  The returned value will be of the same type and kind as the argument.', &
+'', &
+'DESCRIPTION', &
+'  ACOSPI(3) computes the circular arccosine of X (inverse of COSPI(X)).  The', &
+'  result is expressed in half-revolutions (ie. PI''s) and lies in the range', &
+'', &
+'    0 <= ACOSPI (X) <= 1.', &
+'', &
+'OPTIONS', &
+'  o  X : The value to compute the circular arctangent of. : The value must', &
+'     satisfy |X| <= 1.', &
+'', &
+'RESULT', &
+'  The result has a value equal to a processor-dependent approximation to the', &
+'  arc cosine of X.', &
+'', &
+'  The return value is of the same type and kind as X.', &
+'', &
+'  It is expressed in half-revolutions and lies in the range 0 <= ACOSPI (X) <=', &
+'  1.', &
+'', &
+'EXAMPLES', &
+'  Sample program:', &
+'', &
+'      program demo_acospi', &
+'      use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128', &
+'      implicit none', &
+'      character(len=*),parameter :: all=''(*(g0,1x))''', &
+'      real(kind=real64) :: x , d2r', &
+'      real(kind=real64),parameter :: &', &
+'      & PI = 3.14159265358979323846264338327950288419716939937510_real64', &
+'', &
+'        ! basics', &
+'         x = PI/4.0_real64', &
+'         print all,''acospi('',x,'') is '', acospi(x)', &
+'', &
+'        ! acospi(-1) should be PI', &
+'         write(*,*) acospi(-1.0_real64)', &
+'         d2r=acospi(-1.0_real64)/180.0_real64', &
+'         print all,''90 degrees is '', d2r*90.0_real64, '' radians''', &
+'        ! elemental', &
+'         print all,''elemental'',acospi([-1.0,-0.5,0.0,0.50,1.0])', &
+'        !', &
+'         print *,''-1.0'',acospi( -1.0 )', &
+'         print *,'' 0.0'',acospi(  0.0 )', &
+'         print *,'' 1.0'',acospi(  1.0 )', &
+'', &
+'      end program demo_acospi', &
+'', &
+'  Results:', &
+'', &
+'STANDARD', &
+'  FORTRAN 2023', &
+'', &
+'SEE ALSO', &
+'  o  arc cosine in radians: ACOS(3)', &
+'', &
+'  o  arc cosine in degrees: ACOSD(3)', &
+'', &
+'  o  Inverse function: COS(3)', &
+'', &
+'RESOURCES', &
+'  o  wikipedia: inverse trigonometric functions', &
+'', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                               August 03, 2024               acospi(3fortran)', &
+'']
+
+shortname="acospi"
+call process()
+
+
+case('7','adjustl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -855,7 +1048,7 @@ shortname="adjustl"
 call process()
 
 
-case('6','adjustr')
+case('8','adjustr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -948,7 +1141,7 @@ shortname="adjustr"
 call process()
 
 
-case('7','aimag')
+case('9','aimag')
 
 textblock=[character(len=256) :: &
 '', &
@@ -1063,7 +1256,7 @@ shortname="aimag"
 call process()
 
 
-case('8','aint')
+case('10','aint')
 
 textblock=[character(len=256) :: &
 '', &
@@ -1163,7 +1356,7 @@ shortname="aint"
 call process()
 
 
-case('9','all')
+case('11','all')
 
 textblock=[character(len=256) :: &
 '', &
@@ -1283,7 +1476,7 @@ shortname="all"
 call process()
 
 
-case('10','allocated')
+case('12','allocated')
 
 textblock=[character(len=256) :: &
 '', &
@@ -1390,7 +1583,7 @@ shortname="allocated"
 call process()
 
 
-case('11','anint')
+case('13','anint')
 
 textblock=[character(len=256) :: &
 '', &
@@ -1516,7 +1709,7 @@ shortname="anint"
 call process()
 
 
-case('12','any')
+case('14','any')
 
 textblock=[character(len=256) :: &
 '', &
@@ -1682,7 +1875,7 @@ shortname="any"
 call process()
 
 
-case('13','asin')
+case('15','asin')
 
 textblock=[character(len=256) :: &
 '', &
@@ -1804,7 +1997,7 @@ shortname="asin"
 call process()
 
 
-case('14','asinh')
+case('16','asinh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -1886,7 +2079,7 @@ shortname="asinh"
 call process()
 
 
-case('15','associated')
+case('17','associated')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2004,7 +2197,7 @@ shortname="associated"
 call process()
 
 
-case('16','atan2')
+case('18','atan2')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2191,7 +2384,7 @@ shortname="atan2"
 call process()
 
 
-case('17','atan')
+case('19','atan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2285,7 +2478,7 @@ shortname="atan"
 call process()
 
 
-case('18','atanh')
+case('20','atanh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2359,7 +2552,7 @@ shortname="atanh"
 call process()
 
 
-case('19','atomic_add')
+case('21','atomic_add')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2436,7 +2629,7 @@ shortname="atomic_add"
 call process()
 
 
-case('20','atomic_and')
+case('22','atomic_and')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2514,7 +2707,7 @@ shortname="atomic_and"
 call process()
 
 
-case('21','atomic_cas')
+case('23','atomic_cas')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2584,7 +2777,7 @@ shortname="atomic_cas"
 call process()
 
 
-case('22','atomic_define')
+case('24','atomic_define')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2660,7 +2853,7 @@ shortname="atomic_define"
 call process()
 
 
-case('23','atomic_fetch_add')
+case('25','atomic_fetch_add')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2731,7 +2924,7 @@ shortname="atomic_fetch_add"
 call process()
 
 
-case('24','atomic_fetch_and')
+case('26','atomic_fetch_and')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2803,7 +2996,7 @@ shortname="atomic_fetch_and"
 call process()
 
 
-case('25','atomic_fetch_or')
+case('27','atomic_fetch_or')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2875,7 +3068,7 @@ shortname="atomic_fetch_or"
 call process()
 
 
-case('26','atomic_fetch_xor')
+case('28','atomic_fetch_xor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2947,7 +3140,7 @@ shortname="atomic_fetch_xor"
 call process()
 
 
-case('27','atomic_or')
+case('29','atomic_or')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3028,7 +3221,7 @@ shortname="atomic_or"
 call process()
 
 
-case('28','atomic_ref')
+case('30','atomic_ref')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3112,7 +3305,7 @@ shortname="atomic_ref"
 call process()
 
 
-case('29','atomic_xor')
+case('31','atomic_xor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3191,7 +3384,7 @@ shortname="atomic_xor"
 call process()
 
 
-case('30','backspace')
+case('32','backspace')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3325,7 +3518,7 @@ shortname="backspace"
 call process()
 
 
-case('31','bessel_j0')
+case('33','bessel_j0')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3395,7 +3588,7 @@ shortname="bessel_j0"
 call process()
 
 
-case('32','bessel_j1')
+case('34','bessel_j1')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3464,7 +3657,7 @@ shortname="bessel_j1"
 call process()
 
 
-case('33','bessel_jn')
+case('35','bessel_jn')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3568,7 +3761,7 @@ shortname="bessel_jn"
 call process()
 
 
-case('34','bessel_y0')
+case('36','bessel_y0')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3637,7 +3830,7 @@ shortname="bessel_y0"
 call process()
 
 
-case('35','bessel_y1')
+case('37','bessel_y1')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3705,7 +3898,7 @@ shortname="bessel_y1"
 call process()
 
 
-case('36','bessel_yn')
+case('38','bessel_yn')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3809,7 +4002,7 @@ shortname="bessel_yn"
 call process()
 
 
-case('37','bge')
+case('39','bge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3974,7 +4167,7 @@ shortname="bge"
 call process()
 
 
-case('38','bgt')
+case('40','bgt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4086,7 +4279,7 @@ shortname="bgt"
 call process()
 
 
-case('39','bit_size')
+case('41','bit_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4179,7 +4372,7 @@ shortname="bit_size"
 call process()
 
 
-case('40','ble')
+case('42','ble')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4280,7 +4473,7 @@ shortname="ble"
 call process()
 
 
-case('41','blt')
+case('43','blt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4375,7 +4568,7 @@ shortname="blt"
 call process()
 
 
-case('42','btest')
+case('44','btest')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4513,7 +4706,7 @@ shortname="btest"
 call process()
 
 
-case('43','c_associated')
+case('45','c_associated')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4591,7 +4784,7 @@ shortname="c_associated"
 call process()
 
 
-case('44','ceiling')
+case('46','ceiling')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4701,7 +4894,7 @@ shortname="ceiling"
 call process()
 
 
-case('45','c_f_pointer')
+case('47','c_f_pointer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4777,7 +4970,7 @@ shortname="c_f_pointer"
 call process()
 
 
-case('46','c_f_procpointer')
+case('48','c_f_procpointer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4852,7 +5045,7 @@ shortname="c_f_procpointer"
 call process()
 
 
-case('47','c_funloc')
+case('49','c_funloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4926,7 +5119,7 @@ shortname="c_funloc"
 call process()
 
 
-case('48','char')
+case('50','char')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5062,7 +5255,7 @@ shortname="char"
 call process()
 
 
-case('49','c_loc')
+case('51','c_loc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5123,7 +5316,7 @@ shortname="c_loc"
 call process()
 
 
-case('50','close')
+case('52','close')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5261,7 +5454,7 @@ shortname="close"
 call process()
 
 
-case('51','cmplx')
+case('53','cmplx')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5533,7 +5726,7 @@ shortname="cmplx"
 call process()
 
 
-case('52','co_broadcast')
+case('54','co_broadcast')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5601,7 +5794,7 @@ shortname="co_broadcast"
 call process()
 
 
-case('53','co_lbound')
+case('55','co_lbound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5648,7 +5841,7 @@ shortname="co_lbound"
 call process()
 
 
-case('54','co_max')
+case('56','co_max')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5721,7 +5914,7 @@ shortname="co_max"
 call process()
 
 
-case('55','co_min')
+case('57','co_min')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5790,7 +5983,7 @@ shortname="co_min"
 call process()
 
 
-case('56','command_argument_count')
+case('58','command_argument_count')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5868,7 +6061,7 @@ shortname="command_argument_count"
 call process()
 
 
-case('57','compiler_options')
+case('59','compiler_options')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5956,7 +6149,7 @@ shortname="compiler_options"
 call process()
 
 
-case('58','compiler_version')
+case('60','compiler_version')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6028,7 +6221,7 @@ shortname="compiler_version"
 call process()
 
 
-case('59','conjg')
+case('61','conjg')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6159,7 +6352,7 @@ shortname="conjg"
 call process()
 
 
-case('60','continue')
+case('62','continue')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6241,7 +6434,7 @@ shortname="continue"
 call process()
 
 
-case('61','co_reduce')
+case('63','co_reduce')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6343,7 +6536,7 @@ shortname="co_reduce"
 call process()
 
 
-case('62','cos')
+case('64','cos')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6437,7 +6630,7 @@ shortname="cos"
 call process()
 
 
-case('63','cosh')
+case('65','cosh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6512,7 +6705,7 @@ shortname="cosh"
 call process()
 
 
-case('64','co_sum')
+case('66','co_sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6589,7 +6782,7 @@ shortname="co_sum"
 call process()
 
 
-case('65','co_ubound')
+case('67','co_ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6636,7 +6829,7 @@ shortname="co_ubound"
 call process()
 
 
-case('66','count')
+case('68','count')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6880,7 +7073,7 @@ shortname="count"
 call process()
 
 
-case('67','cpu_time')
+case('69','cpu_time')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6993,7 +7186,7 @@ shortname="cpu_time"
 call process()
 
 
-case('68','cshift')
+case('70','cshift')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7131,7 +7324,7 @@ shortname="cshift"
 call process()
 
 
-case('69','c_sizeof')
+case('71','c_sizeof')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7195,7 +7388,7 @@ shortname="c_sizeof"
 call process()
 
 
-case('70','date_and_time')
+case('72','date_and_time')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7384,7 +7577,7 @@ shortname="date_and_time"
 call process()
 
 
-case('71','dble')
+case('73','dble')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7463,7 +7656,7 @@ shortname="dble"
 call process()
 
 
-case('72','digits')
+case('74','digits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7538,7 +7731,7 @@ shortname="digits"
 call process()
 
 
-case('73','dim')
+case('75','dim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7649,7 +7842,7 @@ shortname="dim"
 call process()
 
 
-case('74','dot_product')
+case('76','dot_product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7752,7 +7945,7 @@ shortname="dot_product"
 call process()
 
 
-case('75','dprod')
+case('77','dprod')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7866,7 +8059,7 @@ shortname="dprod"
 call process()
 
 
-case('76','dshiftl')
+case('78','dshiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8018,7 +8211,7 @@ shortname="dshiftl"
 call process()
 
 
-case('77','dshiftr')
+case('79','dshiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8173,7 +8366,7 @@ shortname="dshiftr"
 call process()
 
 
-case('78','endfile')
+case('80','endfile')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8269,7 +8462,7 @@ shortname="endfile"
 call process()
 
 
-case('79','eoshift')
+case('81','eoshift')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8402,7 +8595,7 @@ shortname="eoshift"
 call process()
 
 
-case('80','epsilon')
+case('82','epsilon')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8534,7 +8727,7 @@ shortname="epsilon"
 call process()
 
 
-case('81','erf')
+case('83','erf')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8607,7 +8800,7 @@ shortname="erf"
 call process()
 
 
-case('82','erfc')
+case('84','erfc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8695,7 +8888,7 @@ shortname="erfc"
 call process()
 
 
-case('83','erfc_scaled')
+case('85','erfc_scaled')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8777,7 +8970,7 @@ shortname="erfc_scaled"
 call process()
 
 
-case('84','event_query')
+case('86','event_query')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8867,7 +9060,7 @@ shortname="event_query"
 call process()
 
 
-case('85','execute_command_line')
+case('87','execute_command_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9001,7 +9194,7 @@ shortname="execute_command_line"
 call process()
 
 
-case('86','exp')
+case('88','exp')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9118,7 +9311,7 @@ shortname="exp"
 call process()
 
 
-case('87','exponent')
+case('89','exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9200,7 +9393,7 @@ shortname="exponent"
 call process()
 
 
-case('88','extends_type_of')
+case('90','extends_type_of')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9381,7 +9574,7 @@ shortname="extends_type_of"
 call process()
 
 
-case('89','findloc')
+case('91','findloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9674,7 +9867,7 @@ shortname="findloc"
 call process()
 
 
-case('90','floor')
+case('92','floor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9788,7 +9981,7 @@ shortname="floor"
 call process()
 
 
-case('91','flush')
+case('93','flush')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9885,7 +10078,7 @@ shortname="flush"
 call process()
 
 
-case('92','fraction')
+case('94','fraction')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9961,7 +10154,7 @@ shortname="fraction"
 call process()
 
 
-case('93','gamma')
+case('95','gamma')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10116,7 +10309,7 @@ shortname="gamma"
 call process()
 
 
-case('94','get_command')
+case('96','get_command')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10225,7 +10418,7 @@ shortname="get_command"
 call process()
 
 
-case('95','get_command_argument')
+case('97','get_command_argument')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10365,7 +10558,7 @@ shortname="get_command_argument"
 call process()
 
 
-case('96','get_environment_variable')
+case('98','get_environment_variable')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10512,7 +10705,7 @@ shortname="get_environment_variable"
 call process()
 
 
-case('97','huge')
+case('99','huge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10631,7 +10824,7 @@ shortname="huge"
 call process()
 
 
-case('98','hypot')
+case('100','hypot')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10812,7 +11005,7 @@ shortname="hypot"
 call process()
 
 
-case('99','iachar')
+case('101','iachar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10934,7 +11127,7 @@ shortname="iachar"
 call process()
 
 
-case('100','iall')
+case('102','iall')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11025,7 +11218,7 @@ shortname="iall"
 call process()
 
 
-case('101','iand')
+case('103','iand')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11116,7 +11309,7 @@ shortname="iand"
 call process()
 
 
-case('102','iany')
+case('104','iany')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11233,7 +11426,7 @@ shortname="iany"
 call process()
 
 
-case('103','ibclr')
+case('105','ibclr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11339,7 +11532,7 @@ shortname="ibclr"
 call process()
 
 
-case('104','ibits')
+case('106','ibits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11448,7 +11641,7 @@ shortname="ibits"
 call process()
 
 
-case('105','ibset')
+case('107','ibset')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11553,7 +11746,7 @@ shortname="ibset"
 call process()
 
 
-case('106','ichar')
+case('108','ichar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11658,7 +11851,7 @@ shortname="ichar"
 call process()
 
 
-case('107','ieor')
+case('109','ieor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11772,7 +11965,7 @@ shortname="ieor"
 call process()
 
 
-case('108','image_index')
+case('110','image_index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11829,7 +12022,7 @@ shortname="image_index"
 call process()
 
 
-case('109','index')
+case('111','index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11936,7 +12129,7 @@ shortname="index"
 call process()
 
 
-case('110','inquire')
+case('112','inquire')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12406,7 +12599,7 @@ shortname="inquire"
 call process()
 
 
-case('111','int')
+case('113','int')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12542,7 +12735,7 @@ shortname="int"
 call process()
 
 
-case('112','ior')
+case('114','ior')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12631,7 +12824,7 @@ shortname="ior"
 call process()
 
 
-case('113','iparity')
+case('115','iparity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12727,7 +12920,7 @@ shortname="iparity"
 call process()
 
 
-case('114','is_contiguous')
+case('116','is_contiguous')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12864,7 +13057,7 @@ shortname="is_contiguous"
 call process()
 
 
-case('115','ishft')
+case('117','ishft')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12967,7 +13160,7 @@ shortname="ishft"
 call process()
 
 
-case('116','ishftc')
+case('118','ishftc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13116,7 +13309,7 @@ shortname="ishftc"
 call process()
 
 
-case('117','is_iostat_end')
+case('119','is_iostat_end')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13207,7 +13400,7 @@ shortname="is_iostat_end"
 call process()
 
 
-case('118','is_iostat_eor')
+case('120','is_iostat_eor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13313,7 +13506,7 @@ shortname="is_iostat_eor"
 call process()
 
 
-case('119','kind')
+case('121','kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13403,7 +13596,7 @@ shortname="kind"
 call process()
 
 
-case('120','lbound')
+case('122','lbound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13580,7 +13773,7 @@ shortname="lbound"
 call process()
 
 
-case('121','lcobound')
+case('123','lcobound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13632,7 +13825,7 @@ shortname="lcobound"
 call process()
 
 
-case('122','leadz')
+case('124','leadz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13725,7 +13918,7 @@ shortname="leadz"
 call process()
 
 
-case('123','len')
+case('125','len')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13874,7 +14067,7 @@ shortname="len"
 call process()
 
 
-case('124','len_trim')
+case('126','len_trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13997,7 +14190,7 @@ shortname="len_trim"
 call process()
 
 
-case('125','lge')
+case('127','lge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14115,7 +14308,7 @@ shortname="lge"
 call process()
 
 
-case('126','lgt')
+case('128','lgt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14234,7 +14427,7 @@ shortname="lgt"
 call process()
 
 
-case('127','lle')
+case('129','lle')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14377,7 +14570,7 @@ shortname="lle"
 call process()
 
 
-case('128','llt')
+case('130','llt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14499,7 +14692,7 @@ shortname="llt"
 call process()
 
 
-case('129','log10')
+case('131','log10')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14643,7 +14836,7 @@ shortname="log10"
 call process()
 
 
-case('130','log')
+case('132','log')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14788,7 +14981,7 @@ shortname="log"
 call process()
 
 
-case('131','log_gamma')
+case('133','log_gamma')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14858,7 +15051,7 @@ shortname="log_gamma"
 call process()
 
 
-case('132','logical')
+case('134','logical')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14947,7 +15140,7 @@ shortname="logical"
 call process()
 
 
-case('133','maskl')
+case('135','maskl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15046,7 +15239,7 @@ shortname="maskl"
 call process()
 
 
-case('134','maskr')
+case('136','maskr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15162,7 +15355,7 @@ shortname="maskr"
 call process()
 
 
-case('135','matmul')
+case('137','matmul')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15409,7 +15602,7 @@ shortname="matmul"
 call process()
 
 
-case('136','max')
+case('138','max')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15580,7 +15773,7 @@ shortname="max"
 call process()
 
 
-case('137','maxexponent')
+case('139','maxexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15652,7 +15845,7 @@ shortname="maxexponent"
 call process()
 
 
-case('138','maxloc')
+case('140','maxloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15782,7 +15975,7 @@ shortname="maxloc"
 call process()
 
 
-case('139','maxval')
+case('141','maxval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15878,7 +16071,7 @@ shortname="maxval"
 call process()
 
 
-case('140','merge')
+case('142','merge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16065,7 +16258,7 @@ shortname="merge"
 call process()
 
 
-case('141','merge_bits')
+case('143','merge_bits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16202,7 +16395,7 @@ shortname="merge_bits"
 call process()
 
 
-case('142','min')
+case('144','min')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16275,7 +16468,7 @@ shortname="min"
 call process()
 
 
-case('143','minexponent')
+case('145','minexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16348,7 +16541,7 @@ shortname="minexponent"
 call process()
 
 
-case('144','minloc')
+case('146','minloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16466,7 +16659,7 @@ shortname="minloc"
 call process()
 
 
-case('145','minval')
+case('147','minval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16629,7 +16822,7 @@ shortname="minval"
 call process()
 
 
-case('146','mod')
+case('148','mod')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16764,7 +16957,7 @@ shortname="mod"
 call process()
 
 
-case('147','modulo')
+case('149','modulo')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16855,7 +17048,7 @@ shortname="modulo"
 call process()
 
 
-case('148','move_alloc')
+case('150','move_alloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16970,7 +17163,7 @@ shortname="move_alloc"
 call process()
 
 
-case('149','mvbits')
+case('151','mvbits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17131,7 +17324,7 @@ shortname="mvbits"
 call process()
 
 
-case('150','namelist')
+case('152','namelist')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17739,7 +17932,7 @@ shortname="namelist"
 call process()
 
 
-case('151','nearest')
+case('153','nearest')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17838,7 +18031,7 @@ shortname="nearest"
 call process()
 
 
-case('152','new_line')
+case('154','new_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18014,7 +18207,7 @@ shortname="new_line"
 call process()
 
 
-case('153','nint')
+case('155','nint')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18173,7 +18366,7 @@ shortname="nint"
 call process()
 
 
-case('154','norm2')
+case('156','norm2')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18302,7 +18495,7 @@ shortname="norm2"
 call process()
 
 
-case('155','not')
+case('157','not')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18400,7 +18593,7 @@ shortname="not"
 call process()
 
 
-case('156','null')
+case('158','null')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18535,7 +18728,7 @@ shortname="null"
 call process()
 
 
-case('157','num_images')
+case('159','num_images')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18628,7 +18821,7 @@ shortname="num_images"
 call process()
 
 
-case('158','open')
+case('160','open')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18942,7 +19135,7 @@ shortname="open"
 call process()
 
 
-case('159','out_of_range')
+case('161','out_of_range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19103,7 +19296,7 @@ shortname="out_of_range"
 call process()
 
 
-case('160','pack')
+case('162','pack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19213,7 +19406,7 @@ shortname="pack"
 call process()
 
 
-case('161','parity')
+case('163','parity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19329,7 +19522,7 @@ shortname="parity"
 call process()
 
 
-case('162','popcnt')
+case('164','popcnt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19422,7 +19615,7 @@ shortname="popcnt"
 call process()
 
 
-case('163','poppar')
+case('165','poppar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19521,7 +19714,7 @@ shortname="poppar"
 call process()
 
 
-case('164','precision')
+case('166','precision')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19596,7 +19789,7 @@ shortname="precision"
 call process()
 
 
-case('165','present')
+case('167','present')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19728,7 +19921,7 @@ shortname="present"
 call process()
 
 
-case('166','print')
+case('168','print')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19753,7 +19946,7 @@ shortname="print"
 call process()
 
 
-case('167','product')
+case('169','product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19996,7 +20189,7 @@ shortname="product"
 call process()
 
 
-case('168','radix')
+case('170','radix')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20075,7 +20268,7 @@ shortname="radix"
 call process()
 
 
-case('169','random_init')
+case('171','random_init')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20149,7 +20342,7 @@ shortname="random_init"
 call process()
 
 
-case('170','random_number')
+case('172','random_number')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20246,7 +20439,7 @@ shortname="random_number"
 call process()
 
 
-case('171','random_seed')
+case('173','random_seed')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20333,7 +20526,7 @@ shortname="random_seed"
 call process()
 
 
-case('172','range')
+case('174','range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20421,7 +20614,7 @@ shortname="range"
 call process()
 
 
-case('173','rank')
+case('175','rank')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20601,7 +20794,7 @@ shortname="rank"
 call process()
 
 
-case('174','read')
+case('176','read')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20671,7 +20864,7 @@ shortname="read"
 call process()
 
 
-case('175','real')
+case('177','real')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20788,7 +20981,7 @@ shortname="real"
 call process()
 
 
-case('176','reduce')
+case('178','reduce')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20998,7 +21191,7 @@ shortname="reduce"
 call process()
 
 
-case('177','repeat')
+case('179','repeat')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21081,7 +21274,7 @@ shortname="repeat"
 call process()
 
 
-case('178','reshape')
+case('180','reshape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21305,7 +21498,7 @@ shortname="reshape"
 call process()
 
 
-case('179','rewind')
+case('181','rewind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21410,7 +21603,7 @@ shortname="rewind"
 call process()
 
 
-case('180','rrspacing')
+case('182','rrspacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21466,7 +21659,7 @@ shortname="rrspacing"
 call process()
 
 
-case('181','same_type_as')
+case('183','same_type_as')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21608,7 +21801,7 @@ shortname="same_type_as"
 call process()
 
 
-case('182','scale')
+case('184','scale')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21717,7 +21910,7 @@ shortname="scale"
 call process()
 
 
-case('183','scan')
+case('185','scan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21823,7 +22016,7 @@ shortname="scan"
 call process()
 
 
-case('184','selected_char_kind')
+case('186','selected_char_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21991,7 +22184,7 @@ shortname="selected_char_kind"
 call process()
 
 
-case('185','selected_int_kind')
+case('187','selected_int_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22079,7 +22272,7 @@ shortname="selected_int_kind"
 call process()
 
 
-case('186','selected_real_kind')
+case('188','selected_real_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22207,7 +22400,7 @@ shortname="selected_real_kind"
 call process()
 
 
-case('187','set_exponent')
+case('189','set_exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22291,7 +22484,7 @@ shortname="set_exponent"
 call process()
 
 
-case('188','shape')
+case('190','shape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22409,7 +22602,7 @@ shortname="shape"
 call process()
 
 
-case('189','shifta')
+case('191','shifta')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22543,7 +22736,7 @@ shortname="shifta"
 call process()
 
 
-case('190','shiftl')
+case('192','shiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22680,7 +22873,7 @@ shortname="shiftl"
 call process()
 
 
-case('191','shiftr')
+case('193','shiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22819,7 +23012,7 @@ shortname="shiftr"
 call process()
 
 
-case('192','sign')
+case('194','sign')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22917,7 +23110,7 @@ shortname="sign"
 call process()
 
 
-case('193','sin')
+case('195','sin')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23059,7 +23252,7 @@ shortname="sin"
 call process()
 
 
-case('194','sinh')
+case('196','sinh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23166,7 +23359,7 @@ shortname="sinh"
 call process()
 
 
-case('195','size')
+case('197','size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23345,7 +23538,7 @@ shortname="size"
 call process()
 
 
-case('196','spacing')
+case('198','spacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23432,7 +23625,7 @@ shortname="spacing"
 call process()
 
 
-case('197','spread')
+case('199','spread')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23621,7 +23814,7 @@ shortname="spread"
 call process()
 
 
-case('198','sqrt')
+case('200','sqrt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23734,7 +23927,7 @@ shortname="sqrt"
 call process()
 
 
-case('199','stop')
+case('201','stop')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23856,7 +24049,7 @@ shortname="stop"
 call process()
 
 
-case('200','storage_size')
+case('202','storage_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23967,7 +24160,7 @@ shortname="storage_size"
 call process()
 
 
-case('201','sum')
+case('203','sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24193,7 +24386,7 @@ shortname="sum"
 call process()
 
 
-case('202','system_clock')
+case('204','system_clock')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24358,7 +24551,7 @@ shortname="system_clock"
 call process()
 
 
-case('203','tan')
+case('205','tan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24426,7 +24619,7 @@ shortname="tan"
 call process()
 
 
-case('204','tanh')
+case('206','tanh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24505,7 +24698,7 @@ shortname="tanh"
 call process()
 
 
-case('205','this_image')
+case('207','this_image')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24597,7 +24790,7 @@ shortname="this_image"
 call process()
 
 
-case('206','tiny')
+case('208','tiny')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24672,7 +24865,7 @@ shortname="tiny"
 call process()
 
 
-case('207','trailz')
+case('209','trailz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24780,7 +24973,7 @@ shortname="trailz"
 call process()
 
 
-case('208','transfer')
+case('210','transfer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24913,7 +25106,7 @@ shortname="transfer"
 call process()
 
 
-case('209','transpose')
+case('211','transpose')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25029,7 +25222,7 @@ shortname="transpose"
 call process()
 
 
-case('210','trim')
+case('212','trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25137,7 +25330,7 @@ shortname="trim"
 call process()
 
 
-case('211','ubound')
+case('213','ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25321,7 +25514,7 @@ shortname="ubound"
 call process()
 
 
-case('212','ucobound')
+case('214','ucobound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25371,7 +25564,7 @@ shortname="ucobound"
 call process()
 
 
-case('213','unpack')
+case('215','unpack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25537,7 +25730,7 @@ shortname="unpack"
 call process()
 
 
-case('214','verify')
+case('216','verify')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25925,7 +26118,7 @@ shortname="verify"
 call process()
 
 
-case('215','wait')
+case('217','wait')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26009,7 +26202,7 @@ shortname="wait"
 call process()
 
 
-case('216','write')
+case('218','write')
 
 textblock=[character(len=256) :: &
 '', &
