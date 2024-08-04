@@ -5437,7 +5437,7 @@
       end program demo_present
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code="
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20program%20demo%5Fprint%0D%0A%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20real%20%3A%3A%20a%3D11%2E11%2C%20s%3Dsqrt%2812%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20j%3D753210%0D%0A%20%20%20%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20commas%3D%27%28%2A%28g0%3A%2C%22%2C%22%29%29%27%0D%0A%0D%0A%20%20%21%20List%2Ddirected%20output%20is%20frequently%20specified%20PRINT%20%2A%2C%20A%2C%20S%0D%0A%0D%0A%20%20%20%20%21%20a%20format%20may%20be%20placed%20on%20the%20print%287f%29%20statement%20PRINT%20%27%28%2A%28g0%2C1x%29%29%27%2C%20A%2C%0D%0A%20%20%20%20S%2C%20J%0D%0A%0D%0A%20%20%20%20%21%20the%20format%20may%20be%20in%20a%20character%20variable%20print%20commas%2C%20a%2C%20s%2C%20j%0D%0A%0D%0A%20%20%20%20%21%20or%20may%20be%20in%20a%20labeled%20format%20statement%20PRINT%2010%2C%20A%2C%20S%2C%20J%2010%20FORMAT%0D%0A%20%20%20%20%282E16%2E3%2C1x%2CI0%29%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fprint%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> print
@@ -5445,6 +5445,23 @@
   <details>
     <summary>Source</summary>
   <xmp>
+         program demo_print
+         implicit none
+         real :: a=11.11, s=sqrt(12.0)
+         integer :: j=753210
+         character(len=*),parameter :: commas='(*(g0:,","))'
+
+  ! List-directed output is frequently specified PRINT *, A, S
+
+    ! a format may be placed on the print(7f) statement PRINT '(*(g0,1x))', A,
+    S, J
+
+    ! the format may be in a character variable print commas, a, s, j
+
+    ! or may be in a labeled format statement PRINT 10, A, S, J 10 FORMAT
+    (2E16.3,1x,I0)
+
+      end program demo_print
   </xmp>
   </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fproduct%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20all%3D%27%28%2A%28g0%2C1x%29%29%27%20%21%20a%20handy%20format%0D%0A%20%20%20%20%20%20character%28len%3D1%29%2Cparameter%20%3A%3A%20nl%3Dnew%5Fline%28%27a%27%29%0D%0A%0D%0A%20%20%20%20%20%20NO%5FDIM%3A%20block%0D%0A%20%20%20%20%20%20%21%20%20%20%20If%20DIM%20is%20not%20specified%2C%20the%20result%20is%20the%20product%20of%20all%20the%0D%0A%20%20%20%20%20%20%21%20%20%20%20selected%20array%20elements%2E%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%2Cn%2C%20p1%2C%20p2%0D%0A%20%20%20%20%20%20integer%2Callocatable%20%3A%3A%20array%28%3A%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20all%20elements%20are%20selected%20by%20default%0D%0A%20%20%20%20%20%20%20%20%20do%20n%3D1%2C10%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20print%20all%2C%20%27factorial%20of%20%27%2Cn%2C%27%20is%20%27%2C%20product%28%5B%28real%28i%29%2Ci%3D1%2Cn%29%5D%29%0D%0A%20%20%20%20%20%20%20%20%20enddo%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20using%20a%20mask%0D%0A%20%20%20%20%20%20%20%20%20array%3D%5B10%2C12%2C13%2C15%2C20%2C25%2C30%5D%0D%0A%20%20%20%20%20%20%20%20%20p1%3Dproduct%28array%2C%20mask%3Dmod%28array%2C%202%29%3D%3D1%29%20%21%20only%20odd%20elements%0D%0A%20%20%20%20%20%20%20%20%20p2%3Dproduct%28array%2C%20mask%3Dmod%28array%2C%202%29%2F%3D1%29%20%21%20only%20even%20elements%0D%0A%20%20%20%20%20%20%20%20%20print%20all%2C%20nl%2C%27product%20of%20all%20elements%27%2Cproduct%28array%29%20%21%20all%20elements%0D%0A%20%20%20%20%20%20%20%20%20print%20all%2C%20%27%20odd%20%2A%20even%20%3D%27%2Cnl%2Cp1%2C%27%2A%27%2Cp2%2C%27%3D%27%2Cp1%2Ap2%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20NOTE%3A%20If%20ARRAY%20is%20a%20zero%2Dsized%20array%2C%20the%20result%20is%20equal%20to%20one%0D%0A%20%20%20%20%20%20%20%20%20print%20all%0D%0A%20%20%20%20%20%20%20%20%20print%20all%2C%20%27zero%2Dsized%20array%3D%3E%27%2Cproduct%28%5Binteger%20%3A%3A%20%5D%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20NOTE%3A%20If%20nothing%20in%20the%20mask%20is%20true%2C%20this%20also%20results%20in%20a%20null%0D%0A%20%20%20%20%20%20%20%20%20%21%20%20%20%20%20%20%20array%0D%0A%20%20%20%20%20%20%20%20%20print%20all%2C%20%27all%20elements%20have%20a%20false%20mask%3D%3E%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%20product%28array%2Cmask%3D%2Efalse%2E%29%0D%0A%0D%0A%20%20%20%20%20%20endblock%20NO%5FDIM%0D%0A%0D%0A%20%20%20%20%20%20WITH%5FDIM%3A%20block%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20rect%282%2C3%29%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20box%282%2C3%2C4%29%0D%0A%0D%0A%20%20%20%20%20%20%21%20%20lets%20fill%20a%20few%20arrays%0D%0A%20%20%20%20%20%20%20%20%20rect%20%3D%20reshape%28%5B%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%201%2C%202%2C%203%2C%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%204%2C%205%2C%206%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%5D%2Cshape%28rect%29%2Corder%3D%5B2%2C1%5D%29%0D%0A%20%20%20%20%20%20%20%20%20call%20print%5Fmatrix%5Fint%28%27rect%27%2Crect%29%0D%0A%0D%0A%20%20%20%20%20%20%21%20%20Find%20the%20product%20of%20each%20column%20in%20RECT%2E%0D%0A%20%20%20%20%20%20%20%20%20print%20all%2C%20%27product%20of%20columns%3D%27%2Cproduct%28rect%2C%20dim%20%3D%201%29%0D%0A%0D%0A%20%20%20%20%20%20%21%20Find%20the%20product%20of%20each%20row%20in%20RECT%2E%0D%0A%20%20%20%20%20%20%20%20%20print%20all%2C%20%27product%20of%20rows%3D%27%2Cproduct%28rect%2C%20dim%20%3D%202%29%0D%0A%0D%0A%20%20%20%20%20%20%21%20now%20lets%20try%20a%20box%0D%0A%20%20%20%20%20%20%20%20%20box%28%3A%2C%3A%2C1%29%3Drect%0D%0A%20%20%20%20%20%20%20%20%20box%28%3A%2C%3A%2C2%29%3Drect%2A%28%2B10%29%0D%0A%20%20%20%20%20%20%20%20%20box%28%3A%2C%3A%2C3%29%3Drect%2A%28%2D10%29%0D%0A%20%20%20%20%20%20%20%20%20box%28%3A%2C%3A%2C4%29%3Drect%2A2%0D%0A%20%20%20%20%20%20%20%20%20%21%20lets%20look%20at%20the%20values%0D%0A%20%20%20%20%20%20%20%20%20call%20print%5Fmatrix%5Fint%28%27box%201%27%2Cbox%28%3A%2C%3A%2C1%29%29%0D%0A%20%20%20%20%20%20%20%20%20call%20print%5Fmatrix%5Fint%28%27box%202%27%2Cbox%28%3A%2C%3A%2C2%29%29%0D%0A%20%20%20%20%20%20%20%20%20call%20print%5Fmatrix%5Fint%28%27box%203%27%2Cbox%28%3A%2C%3A%2C3%29%29%0D%0A%20%20%20%20%20%20%20%20%20call%20print%5Fmatrix%5Fint%28%27box%204%27%2Cbox%28%3A%2C%3A%2C4%29%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20remember%20without%20dim%3D%20even%20a%20box%20produces%20a%20scalar%0D%0A%20%20%20%20%20%20%20%20%20print%20all%2C%20%27no%20dim%20gives%20a%20scalar%27%2Cproduct%28real%28box%29%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20only%20one%20plane%20has%20negative%20values%2C%20so%20note%20all%20the%20%221%22%20values%0D%0A%20%20%20%20%20%20%20%20%20%21%20for%20vectors%20with%20no%20elements%0D%0A%20%20%20%20%20%20%20%20%20call%20print%5Fmatrix%5Fint%28%27negative%20values%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20product%28box%2Cmask%3Dbox%20%3C%200%2Cdim%3D1%29%29%0D%0A%0D%0A%20%20%20%20%20%20%21%20%20%20If%20DIM%20is%20specified%20and%20ARRAY%20has%20rank%20greater%20than%20one%2C%20the%0D%0A%20%20%20%20%20%20%21%20%20%20result%20is%20a%20new%20array%20in%20which%20dimension%20DIM%20has%20been%20eliminated%2E%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20pick%20a%20dimension%20to%20multiply%20though%0D%0A%20%20%20%20%20%20%20%20%20call%20print%5Fmatrix%5Fint%28%27dim%3D1%27%2Cproduct%28box%2Cdim%3D1%29%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20call%20print%5Fmatrix%5Fint%28%27dim%3D2%27%2Cproduct%28box%2Cdim%3D2%29%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20call%20print%5Fmatrix%5Fint%28%27dim%3D3%27%2Cproduct%28box%2Cdim%3D3%29%29%0D%0A%0D%0A%20%20%20%20%20%20endblock%20WITH%5FDIM%0D%0A%0D%0A%20%20%20%20%20%20contains%0D%0A%0D%0A%20%20%20%20%20%20subroutine%20print%5Fmatrix%5Fint%28title%2Carr%29%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%0D%0A%20%20%20%20%20%20%21%40%28%23%29%20print%20small%202d%20integer%20arrays%20in%20row%2Dcolumn%20format%0D%0A%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cintent%28in%29%20%20%3A%3A%20title%0D%0A%20%20%20%20%20%20integer%2Cintent%28in%29%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20arr%28%3A%2C%3A%29%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%0D%0A%20%20%20%20%20%20character%28len%3D%3A%29%2Callocatable%20%3A%3A%20biggest%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20all%0D%0A%20%20%20%20%20%20%20%20%20print%20all%2C%20trim%28title%29%2C%27%3A%28%27%2Cshape%28arr%29%2C%27%29%27%20%20%21%20print%20title%0D%0A%20%20%20%20%20%20%20%20%20biggest%3D%27%20%20%20%20%20%20%20%20%20%20%20%27%20%20%21%20make%20buffer%20to%20write%20integer%20into%0D%0A%20%20%20%20%20%20%20%20%20%21%20find%20how%20many%20characters%20to%20use%20for%20integers%0D%0A%20%20%20%20%20%20%20%20%20write%28biggest%2C%27%28i0%29%27%29ceiling%28log10%28max%281%2E0%2Creal%28maxval%28abs%28arr%29%29%29%29%29%29%2B2%0D%0A%20%20%20%20%20%20%20%20%20%21%20use%20this%20format%20to%20write%20a%20row%0D%0A%20%20%20%20%20%20%20%20%20biggest%3D%27%28%22%20%3E%20%5B%22%2C%2A%28i%27%2F%2Ftrim%28biggest%29%2F%2F%27%3A%2C%22%2C%22%29%29%27%0D%0A%20%20%20%20%20%20%20%20%20%21%20print%20one%20row%20of%20array%20at%20a%20time%0D%0A%20%20%20%20%20%20%20%20%20do%20i%3D1%2Csize%28arr%2Cdim%3D1%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cfmt%3Dbiggest%2Cadvance%3D%27no%27%29arr%28i%2C%3A%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22%20%5D%22%29%27%29%0D%0A%20%20%20%20%20%20%20%20%20enddo%0D%0A%0D%0A%20%20%20%20%20%20end%20subroutine%20print%5Fmatrix%5Fint%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fproduct%0D%0A"
@@ -5952,6 +5969,37 @@
       end subroutine printi
 
       end program demo_reshape
+  </xmp>
+  </details>
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20program%20demo%5Freturn%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20call%20tryreturn%281%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20call%20tryreturn%2810%29%0D%0A%20%20%20%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20subroutine%20tryreturn%28i%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20integer%2Cintent%28in%29%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20select%20case%28i%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20case%281%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27%2Aone%2A%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20case%282%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27%2Atwo%2A%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20case%20default%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27%2Adefault%2A%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20end%20select%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27%2Acannot%20get%20here%2A%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20end%20subroutine%20tryreturn%0D%0A%20%20%20%20%20%20%20%20%20end%20program%20demo%5Freturn%0D%0A"
+  target="_blank" title="Open in Fortran Playground">
+  <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
+  alt="Fortran logo" class="align-text-bottom" height="15.5" /> return
+  </a>
+  <details>
+    <summary>Source</summary>
+  <xmp>
+         program demo_return
+            call tryreturn(1)
+            call tryreturn(10)
+         contains
+            subroutine tryreturn(i)
+               integer,intent(in) :: i
+               select case(i)
+                case(1)
+                  write(*,*)'*one*'
+                  return
+                case(2)
+                  write(*,*)'*two*'
+                  return
+                case default
+                  write(*,*)'*default*'
+                  return
+               end select
+               write(*,*)'*cannot get here*'
+               return
+            end subroutine tryreturn
+         end program demo_return
   </xmp>
   </details>
   <a href="https://play.fortran-lang.org/?code="

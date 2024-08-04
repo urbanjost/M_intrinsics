@@ -3393,7 +3393,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  BACKSPACE(7f) - [FORTRAN:FILE_POSITIONING] - backspace one record on', &
+'  BACKSPACE(7f) - [FORTRAN:IO:FILE POSITIONING] - backspace one record on', &
 '  specified I/O unit', &
 '', &
 '', &
@@ -19930,12 +19930,89 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
+'  print(7f) - [FORTRAN:IO] write formatted sequential I/O to stdout', &
+'', &
+'', &
 'SYNOPSIS', &
+'  PRINT format [ , output-item-list ]', &
+'', &
 'DESCRIPTION', &
+'  print(7f) is equivalent to', &
+'', &
+'         write(*,fmt=FORMAT_SPECIFIER) LIST', &
+'', &
+'  That is, it always writes formatted sequential I/O to stdout. It may use', &
+'  list-directed I/O or a FORMAT specifier.', &
+'', &
+'  print(7f) allows for no other options and therefore cannot be used for', &
+'  binary or non-advancing or stream or asynchronous I/O or any of the other', &
+'  options provided by the more general but also more complicated write(7f)', &
+'  statement.', &
+'', &
+'  Note that pure subprograms cannot contain I/O statements such as print(7f).', &
+'', &
 'OPTIONS', &
+'  format', &
+'    a format may be used to specify how output items are displayed using the', &
+'    many Fortran format descriptors, or an asterisk (*) may be used to', &
+'    indicate to use list-directed default formatting.', &
+'', &
+'  output-item-list', &
+'    the variables whose values are to be displayed', &
+'', &
+'EXAMPLE', &
+'  A simple example program:', &
+'', &
+'        program demo_print', &
+'        implicit none', &
+'        real :: a=11.11, s=sqrt(12.0)', &
+'        integer :: j=753210', &
+'        character(len=*),parameter :: commas=''(*(g0:,","))''', &
+'', &
+'  ! List-directed output is frequently specified PRINT *, A, S', &
+'', &
+'    ! a format may be placed on the print(7f) statement PRINT ''(*(g0,1x))'', A,', &
+'    S, J', &
+'', &
+'    ! the format may be in a character variable print commas, a, s, j', &
+'', &
+'    ! or may be in a labeled format statement PRINT 10, A, S, J 10 FORMAT', &
+'    (2E16.3,1x,I0)', &
+'', &
+'      end program demo_print', &
+'', &
+'  Results:', &
+'', &
+'       >    11.1099997      3.46410155', &
+'       > 11.1099997 3.46410155 753210', &
+'       > 11.1099997,3.46410155,753210', &
+'       >       0.111E+02       0.346E+01 753210', &
+'', &
+'', &
 'SEE ALSO', &
-'  BACKSPACE(3), CLOSE(3), ENDFILE(3), FLUSH(3), INQUIRE(3), OPEN(3), PRINT(3),', &
-'  READ(3), REWIND(3), WAIT(3), WRITE(3)', &
+'  o  BACKSPACE(3)', &
+'', &
+'  o  CLOSE(3)', &
+'', &
+'  o  ENDFILE(3)', &
+'', &
+'  o  FLUSH(3)', &
+'', &
+'  o  INQUIRE(3)', &
+'', &
+'  o  OPEN(3)', &
+'', &
+'  o  PRINT(3)', &
+'', &
+'  o  READ(3)', &
+'', &
+'  o  REWIND(3)', &
+'', &
+'  o  WAIT(3)', &
+'', &
+'  o  WRITE(3)', &
+'', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
@@ -21498,7 +21575,136 @@ shortname="reshape"
 call process()
 
 
-case('181','rewind')
+case('181','return')
+
+textblock=[character(len=256) :: &
+'', &
+'return(7fortran)                                             return(7fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  return(7f) - [STATEMENT] completes execution of the instance of the', &
+'  subprogram in which it appears', &
+'', &
+'', &
+'SYNOPSIS', &
+'  RETURN [scalar-int-expr]', &
+'', &
+'DESCRIPTION', &
+'  Execution of the RETURN statement completes execution of the instance of the', &
+'  subprogram in which it appears.', &
+'', &
+'  It is generally considered good practice to avoid having multiple RETURN', &
+'  statements in a single subprogram. A RETURN is not required in a subprogram', &
+'  as reaching the end of the subprogram is equivalent to execution of a RETURN', &
+'  statement with no expression.', &
+'', &
+'  The RETURN statement must appear in the scoping unit of a function or', &
+'  subroutine subprogram.', &
+'', &
+'OPTIONS', &
+'  scalar-int-expr Alternate returns are deprecated!', &
+'', &
+'                     If the expression appears and has a value n between', &
+'                     1 and the number of asterisks in the dummy argument', &
+'                     list, the CALL statement that invoked the subroutine', &
+'                     transfers control to the statement identified by', &
+'                     the nth alternate return specifier in the actual', &
+'                     argument list of the referenced procedure. If the', &
+'                     expression is omitted or has a value outside the', &
+'                     required range, there is no transfer of control to', &
+'                     an alternate return.', &
+'', &
+'                     The scalar-int-expr is allowed only in the scoping', &
+'                     unit of a subroutine subprogram.', &
+'', &
+'', &
+'EXAMPLE', &
+'  Sample program', &
+'', &
+'        program demo_return', &
+'           call tryreturn(1)', &
+'           call tryreturn(10)', &
+'        contains', &
+'           subroutine tryreturn(i)', &
+'              integer,intent(in) :: i', &
+'              select case(i)', &
+'               case(1)', &
+'                 write(*,*)''*one*''', &
+'                 return', &
+'               case(2)', &
+'                 write(*,*)''*two*''', &
+'                 return', &
+'               case default', &
+'                 write(*,*)''*default*''', &
+'                 return', &
+'              end select', &
+'              write(*,*)''*cannot get here*''', &
+'              return', &
+'           end subroutine tryreturn', &
+'        end program demo_return', &
+'', &
+'  Results:', &
+'', &
+'       >  *one*', &
+'       >  *default*', &
+'', &
+'  Sample program using alternate returns. Alternate returns are an obsolescent', &
+'  feature.', &
+'', &
+'        program alt_return', &
+'        implicit none', &
+'           call one(2,*10,*20,*30)', &
+'           write(*,*)''did not select alternate return''', &
+'           goto 999', &
+'        10 continue', &
+'           write(*,*)''picked first alternate return''', &
+'           goto 999', &
+'        20 continue', &
+'           write(*,*)''picked second alternate return''', &
+'           goto 999', &
+'        30 continue', &
+'           write(*,*)''picked third alternate return''', &
+'           goto 999', &
+'        999 continue', &
+'        contains', &
+'        subroutine one(ipick,*,*,*)', &
+'        implicit none', &
+'        integer :: ipick', &
+'           select case(ipick)', &
+'            case(1)', &
+'              write(*,*)''first alternate return selected''', &
+'              return 1', &
+'            case(2)', &
+'              write(*,*)''second alternate return selected''', &
+'              return 2', &
+'            case(3)', &
+'              write(*,*)''third alternate return selected''', &
+'              return 3', &
+'           end select', &
+'           write(*,*)''no alternate return selected''', &
+'        end subroutine one', &
+'        end program alt_return', &
+'', &
+'  Results:', &
+'', &
+'       >  second alternate return selected', &
+'       >  picked second alternate return', &
+'', &
+'', &
+'  fortran-lang statement descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                               August 03, 2024               return(7fortran)', &
+'']
+
+shortname="return"
+call process()
+
+
+case('182','rewind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21603,7 +21809,7 @@ shortname="rewind"
 call process()
 
 
-case('182','rrspacing')
+case('183','rrspacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21659,7 +21865,7 @@ shortname="rrspacing"
 call process()
 
 
-case('183','same_type_as')
+case('184','same_type_as')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21801,7 +22007,7 @@ shortname="same_type_as"
 call process()
 
 
-case('184','scale')
+case('185','scale')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21910,7 +22116,7 @@ shortname="scale"
 call process()
 
 
-case('185','scan')
+case('186','scan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22016,7 +22222,7 @@ shortname="scan"
 call process()
 
 
-case('186','selected_char_kind')
+case('187','selected_char_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22184,7 +22390,7 @@ shortname="selected_char_kind"
 call process()
 
 
-case('187','selected_int_kind')
+case('188','selected_int_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22272,7 +22478,7 @@ shortname="selected_int_kind"
 call process()
 
 
-case('188','selected_real_kind')
+case('189','selected_real_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22400,7 +22606,7 @@ shortname="selected_real_kind"
 call process()
 
 
-case('189','set_exponent')
+case('190','set_exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22484,7 +22690,7 @@ shortname="set_exponent"
 call process()
 
 
-case('190','shape')
+case('191','shape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22602,7 +22808,7 @@ shortname="shape"
 call process()
 
 
-case('191','shifta')
+case('192','shifta')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22736,7 +22942,7 @@ shortname="shifta"
 call process()
 
 
-case('192','shiftl')
+case('193','shiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22873,7 +23079,7 @@ shortname="shiftl"
 call process()
 
 
-case('193','shiftr')
+case('194','shiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23012,7 +23218,7 @@ shortname="shiftr"
 call process()
 
 
-case('194','sign')
+case('195','sign')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23110,7 +23316,7 @@ shortname="sign"
 call process()
 
 
-case('195','sin')
+case('196','sin')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23252,7 +23458,7 @@ shortname="sin"
 call process()
 
 
-case('196','sinh')
+case('197','sinh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23359,7 +23565,7 @@ shortname="sinh"
 call process()
 
 
-case('197','size')
+case('198','size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23538,7 +23744,7 @@ shortname="size"
 call process()
 
 
-case('198','spacing')
+case('199','spacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23625,7 +23831,7 @@ shortname="spacing"
 call process()
 
 
-case('199','spread')
+case('200','spread')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23814,7 +24020,7 @@ shortname="spread"
 call process()
 
 
-case('200','sqrt')
+case('201','sqrt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23927,7 +24133,7 @@ shortname="sqrt"
 call process()
 
 
-case('201','stop')
+case('202','stop')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24049,7 +24255,7 @@ shortname="stop"
 call process()
 
 
-case('202','storage_size')
+case('203','storage_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24160,7 +24366,7 @@ shortname="storage_size"
 call process()
 
 
-case('203','sum')
+case('204','sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24386,7 +24592,7 @@ shortname="sum"
 call process()
 
 
-case('204','system_clock')
+case('205','system_clock')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24551,7 +24757,7 @@ shortname="system_clock"
 call process()
 
 
-case('205','tan')
+case('206','tan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24619,7 +24825,7 @@ shortname="tan"
 call process()
 
 
-case('206','tanh')
+case('207','tanh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24698,7 +24904,7 @@ shortname="tanh"
 call process()
 
 
-case('207','this_image')
+case('208','this_image')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24790,7 +24996,7 @@ shortname="this_image"
 call process()
 
 
-case('208','tiny')
+case('209','tiny')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24865,7 +25071,7 @@ shortname="tiny"
 call process()
 
 
-case('209','trailz')
+case('210','trailz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24973,7 +25179,7 @@ shortname="trailz"
 call process()
 
 
-case('210','transfer')
+case('211','transfer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25106,7 +25312,7 @@ shortname="transfer"
 call process()
 
 
-case('211','transpose')
+case('212','transpose')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25222,7 +25428,7 @@ shortname="transpose"
 call process()
 
 
-case('212','trim')
+case('213','trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25330,7 +25536,7 @@ shortname="trim"
 call process()
 
 
-case('213','ubound')
+case('214','ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25514,7 +25720,7 @@ shortname="ubound"
 call process()
 
 
-case('214','ucobound')
+case('215','ucobound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25564,7 +25770,7 @@ shortname="ucobound"
 call process()
 
 
-case('215','unpack')
+case('216','unpack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25730,7 +25936,7 @@ shortname="unpack"
 call process()
 
 
-case('216','verify')
+case('217','verify')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26118,7 +26324,7 @@ shortname="verify"
 call process()
 
 
-case('217','wait')
+case('218','wait')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26202,7 +26408,7 @@ shortname="wait"
 call process()
 
 
-case('218','write')
+case('219','write')
 
 textblock=[character(len=256) :: &
 '', &
