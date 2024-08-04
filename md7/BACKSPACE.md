@@ -1,7 +1,7 @@
 ## backspace
 
 ### **Name**
-   BACKSPACE(7f) - [FORTRAN:FILE_POSITIONING] - backspace one record on
+   BACKSPACE(7f) - [FORTRAN:IO:FILE POSITIONING] - backspace one record on
    specified I/O unit
 
 ### **Synopsis**

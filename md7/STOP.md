@@ -109,7 +109,6 @@ Sample:
    enddo INFINITE
    end program demo_stop
 ```
-
 ### **Standard**
 
    FORTRAN 77, ERROR STOP introduced in Fortran f2018
