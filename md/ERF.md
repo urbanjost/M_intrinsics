@@ -39,7 +39,6 @@ range **-1** \<= **erf**(x) \<= 1 .
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_erf
 use, intrinsic :: iso_fortran_env, only : real_kinds, &

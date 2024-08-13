@@ -70,7 +70,7 @@ program demo_abs
 implicit none
 integer,parameter :: dp=kind(0.0d0)
 
-! some values to use with ABS(3f)
+! some values to use with ABS(3)
 integer           :: i = -1
 real              :: x = -1.0
 complex           :: z = (-3.0,-4.0)
@@ -98,7 +98,7 @@ character(len=*),parameter :: &
    print gen, 'distance of (', z, ') from zero is', abs( z )
 
 call DUSTY_CORNERS_1("beware of abs(-huge(0)-1)")
-call DUSTY_CORNERS_2("beware of losing precision using CMPLX(3f)")
+call DUSTY_CORNERS_2("beware of losing precision using CMPLX(3)")
 call DUSTY_CORNERS_3("beware of overflow of complex values")
 call DUSTY_CORNERS_4("custom meaning for absolute value of COMPLEX")
 
@@ -128,10 +128,10 @@ character(len=*),intent(in) :: message
    ! dusty corner: "kind=dp" is required or the value returned by
    ! CMPLX() is a default real instead of double precision.
 
-   ! Working with complex values you often encounter the CMPLX(3f) function.
-   ! CMPLX(3f) defaults to returning a default REAL regardless of input type.
-   ! Not really a direct problem with ABS(2f) per-se, but a common error 
-   ! when working with doubleprecision complex values
+   ! Working with complex values you often encounter the CMPLX(3)
+   ! function. CMPLX(3) defaults to returning a default REAL regardless
+   ! of input type. Not really a direct problem with ABS(2f) per-se,
+   ! but a common error when working with doubleprecision complex values
 
    print gen,  message 
    print gen, 'real result versus doubleprecision result', &
@@ -168,17 +168,17 @@ end program demo_abs
 ```
 Results:
 ```text
- >  integer          In: -1                           Out: 1
- >  real             In: -1.00000000                  Out: 1.00000000
- >  doubleprecision  In: -45.780000000000001          Out: 45.780000000000001
- >  complex          In: (-3.00000000,-4.00000000)    Out: 5.00000000
+ >  integer          In: -1                        Out: 1
+ >  real             In: -1.00000000               Out: 1.00000000
+ >  doubleprecision  In: -45.780000000000001       Out: 45.780000000000001
+ >  complex          In: (-3.00000000,-4.00000000) Out: 5.00000000
  > abs is elemental: 20 0 1 3 100
  > distance of ( -3.00000000 -4.00000000 ) from zero is 5.00000000
  > beware of abs(-huge(0)-1)
  > abs range test :  2147483647 2147483647
  > abs range test :  0.340282347E+39 0.340282347E+39
  > abs range test :  0.117549435E-37 0.117549435E-37
- > beware of losing precision using CMPLX(3f)
+ > beware of losing precision using CMPLX(3)
  > real result versus doubleprecision result 50.0000000 50.000000000000000
  > beware of overflow of complex values
  > because the biggest default real is 0.340282347E+39

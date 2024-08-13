@@ -78,6 +78,6 @@ Fortran 95
 ### **See Also**
 
 + [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
-+ [**storage_size**(3f)](#storage) - Storage size in bits
++ [**storage_size**(3)](#storage) - Storage size in bits
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

@@ -1,23 +1,28 @@
 program fman
 use M_intrinsics, only : help_intrinsics
-use M_CLI2,       only : set_args, sget, lget, specified, topics=>unnamed
+use M_CLI2,       only : set_args, sget, iget, lget, specified, topics=>unnamed
+use M_CLI2,       only : set_mode
 use M_match,      only : getpat, match, regex_pattern
 use M_match,      only : YES, ERR
 use M_strings,    only : lower, indent, atleast
 use M_attr,       only : attr
 implicit none
-type(regex_pattern)          :: p, start_p, end_p
-character(len=:),allocatable :: help_text(:), version_text(:)
+type(regex_pattern)            :: p, start_p, end_p
+character(len=:),allocatable   :: help_text(:), version_text(:)
 character(len=256),allocatable :: manual(:),section(:)
-character(len=:),allocatable :: regex, start, end
-character(len=:),allocatable :: query
-integer                      :: i, j, k
-logical                      :: topic
-logical                      :: prefix, ignorecase, demo, color
+character(len=:),allocatable   :: regex, start, end
+character(len=:),allocatable   :: query
+integer                        :: i, j, k
+integer                        :: ilines
+integer                        :: lines
+logical                        :: topic
+logical                        :: prefix, ignorecase, demo, color
+character(len=80)              :: paws
     ! process command line
     call setup()
-    call set_args(' --regex:e " " --ignorecase:i F --topic_only:t F --demo:d F --color:c -query:Q " " &
-    & -start:S " " -end:E "^[A-Z][A-Z_ ]*$" --prefixoff:O F',&
+    call set_mode('auto_response_file',.true.)
+    call set_args(' --regex:e " " --ignorecase:i F --topic_only:t F --demo:d F --color:c --query:Q " " &
+    & -start:S " " --end:E "^[A-Z][A-Z_ ]*$" --prefixoff:O F --lines:l 0',&
     & help_text,version_text)
     regex=sget('regex')
     start=sget('start')
@@ -27,6 +32,7 @@ logical                      :: prefix, ignorecase, demo, color
     demo=lget('demo')
     color=lget('color')
     query=sget('query')
+    lines=iget('lines')
 
     ! if -t then just show topic names and exit
     if(topic)then
@@ -114,7 +120,9 @@ logical                      :: prefix, ignorecase, demo, color
        stop 1
     else
        ! display what was found
-       do i=1,size(manual)
+       ilines=0
+       i=1
+       INFINITE: do
           if(regex.ne.'')then
              select case(ignorecase)
              case(.true.)
@@ -129,7 +137,27 @@ logical                      :: prefix, ignorecase, demo, color
           else
              write(*,'(g0)')trim(manual(i))
           endif
-       enddo
+          if(lines.gt.0)then
+             if(ilines.eq.lines-1)then
+                write(*,'(a)',advance='no')'continue...'
+                read(*,'(a)')paws
+                select case(paws(1:1))
+                case('b'); i=max(0,i-2*lines) ! back
+                case('t'); i=1                ! top
+                case('q'); exit INFINITE      ! quit
+                case(' ')
+                case default
+                   write(*,'(a)')'(b)ack one page'
+                   write(*,'(a)')'(t)op '
+                   write(*,'(a)')'(q)uit '
+                end select
+                ilines=0
+             endif
+             ilines=ilines+1
+          endif
+       i=i+1
+       if(i.gt.size(manual))exit INFINITE
+       enddo INFINITE
     endif
 contains
 
@@ -299,6 +327,7 @@ help_text=[ CHARACTER(LEN=128) :: &
 '                    set colors. Does not work with all terminal emulators or   ',&
 '                    terminals. Must use the -r switch with less(1) for less(1) ',&
 '                    to display colors.                                         ',&
+'  --lines N,-l N    pause every N lines                                        ',&
 '  --help            Display this help and exit                                 ',&
 '  --version         Output version information and exit                        ',&
 '                                                                               ',&

@@ -142,16 +142,16 @@ Fortran 95 , with **kind** argument - Fortran 2003
 
 #### Array inquiry:
 
-- [**size**(3)](#size) -  Determine the size of an array
-- [**rank**(3)](#rank) -  Rank of a data object
-- [**shape**(3)](#shape) -  Determine the shape of an array
-- [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
-- [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
+- [**size**(3)](#size) - Determine the size of an array
+- [**rank**(3)](#rank) - Rank of a data object
+- [**shape**(3)](#shape) - Determine the shape of an array
+- [**ubound**(3)](#ubound) - Upper dimension bounds of an array
+- [**lbound**(3)](#lbound) - Lower dimension bounds of an array
 
 #### State Inquiry:
 
-- [**allocated**(3)](#allocated) -  Status of an allocatable entity
-- [**is_contiguous**(3)](#is_contiguous) -  Test if object is contiguous
+- [**allocated**(3)](#allocated) - Status of an allocatable entity
+- [**is_contiguous**(3)](#is_contiguous) - Test if object is contiguous
 
 #### Kind Inquiry:
 
@@ -160,7 +160,7 @@ Fortran 95 , with **kind** argument - Fortran 2003
 #### Bit Inquiry:
 
 - [**storage_size**(3)](#storage_size) - Storage size in bits
-- [**bit_size**(3)](#bit_size) -  Bit size inquiry function
+- [**bit_size**(3)](#bit_size) - Bit size inquiry function
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

@@ -15,7 +15,7 @@
 ```
 ### **Characteristics**
 
- - **x**  is a _real_ scalar or array of any _real_ kind
+ - **x** is a _real_ scalar or array of any _real_ kind
  - the result is a default _integer_ scalar
 
 ### **Description**

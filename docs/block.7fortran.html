@@ -1,0 +1,170 @@
+<html> 
+<head> 
+<title> </title>
+<style> 
+px {font-family: "Lucida Console", Monaco, monospace}
+p { font-size:100%; line-height:1.1em; }
+body {xfont-style: sans-serif}
+body {
+color:#333; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:1em; line-height:1.3em; }
+a:visited { color:#666; }
+h1,h2,h3,h4,h5,h6 { color:#333; font-family:georgia, verdana, sans-serif; }
+h1 { font-size:150%; page-break-before:auto;background-color: #aaaaff}
+h2 { font-size:143%;color:teal; }
+h3 { font-size:134%;color:blue; }
+h4 { font-size:120%;color:gray; }
+img { max-width: 55em}
+p{ padding: 0;margin:0; }
+p{ padding-right:1.4em; }
+p{ padding-bottom:1em; }
+p{ padding-top:1em; }
+p{ whitespace: pre-wrap; }
+h5,h6 { font-size:100% }
+a.nav,a:link.nav, a:visited.nav { background-color:#FFF; color:#000; }
+XXtable { border:double #000; border-collapse:collapse; }
+XXtable { border-collapse:collapse; }
+XXtd { border:thin solid #888; }
+XXtd { border:none; }
+li { margin-bottom:0.5em; }
+blockquote { display:block; font-size:100%; line-height:1.1em; margin:0 0 1.5em; padding:0 2.5em; }
+pre { background-color:#DDD; font-size:100%; overflow:auto; padding:1em; }
+a,li span { color:#000; }
+a:hover, a.nav:hover, a:hover math { background-color:#000; color:#FFF; }
+#Container { margin:0 10px; text-align:center; background-color: #BBB}
+#Content { border-top:none; margin:auto; padding:0.3em; text-align:left; width:100%; max-width:55em; background:#FFF}
+span.webName { font-size:.5em; }
+textarea#content { font-size: 1em; line-height: 1.125; }
+h1#pageName { line-height:1em; margin:0.2em 0 0.2em 0; padding:0; }
+.property { color:#666; font-size:100%; }
+a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
+.byline { color:#666; font-size:1.0em; font-style:italic; margin-bottom:1em; padding-top:1px; } 
+</style> 
+</head>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!--
+<h5><a href="index.html">[UP]</a></h5>
+-->
+<button type="button" onclick="javascript:history.back()">Back</button>
+<div id="Container">
+<div id="Content">
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>block (7fortran)</NOBR><HR></H1>
+</CENTER>
+<BLOCKQUOTE>
+BLOCK(7f) - [EXECUTION CONTROL] block construct
+</BLOCKQUOTE>
+<A name=0>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+[block-construct-name:] BLOCK
+[specification-part]
+ENDBLOCK [block-construct-name]
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+The BLOCK(7F) construct is an executable construct which may contain
+declarations, and may be exited using the EXIT(7F) statement.
+<P>
+Aside from the following restrictions a block construct is in many ways
+similiar to a contained procedure without parameters accept it is
+constructed in-line instead of after the body of the current procedure.
+<P>
+So if you are thinking about making a contained procedure that will be
+called once it will probably be clearer inlined using a block construct.
+<P>
+The specification-part of a BLOCK(7F) construct cannot contain a COMMON,
+EQUIVALENCE, IMPLICIT, INTENT, NAMELIST, or OPTIONAL statement.
+<P>
+A SAVE of a common-block-name is not allowed in a BLOCK(7F) construct.
+<P>
+Except for the ASYNCHRONOUS and VOLATILE statements, specifications in a
+BLOCK(7F) construct declare construct entities whose scope is that of
+the block construct.
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Sample programs:
+<P>
+<PRE>
+        program demo_block
+        implicit none
+        integer,parameter :: arr1(*)=[1,2,3,4,5,6,7]
+        integer,parameter :: arr2(*)=[0,1,2,3,4,5,6,7]
+<P>
+        ! so when you want error processing to be skipped
+        ! if you exhaust a series of tries and really hate GOTO &#46;&#46;&#46;
+        DEBUG: block
+        integer :: icount
+           do icount=1,100 ! look for answer up to 100 times
+              if(icount.eq.40)exit DEBUG ! found answer, go on
+           enddo
+           ! never get here unless exhausted the DO loop
+           write(*,*)&#146;never found the answer&#146;
+           stop 3
+        endblock DEBUG
+           !
+           call showme(arr1)
+           call showme(arr2)
+           !
+        contains
+        !
+        subroutine showme(a)
+        integer,intent(in) :: a(:)
+        integer :: i=-100
+        integer :: tan
+          tan=20 ! intentionally cause a conflict with intrinsic
+          ! cannot use tan(3f) right here because using name for a variable
+          TESTFORZERO: block
+             integer :: I      ! local block variable
+             intrinsic :: tan  ! can use the TAN intrinsic in the block now
+                           ! as this definition supercedes the one in the
+                   ! parent body
+             do i=1,size(a)
+                if(a(i).eq.0) then
+                   write(*,*)&#146;found zero at index&#146;,i
+                   exit TESTFORZERO
+                endif
+             enddo
+             write(*,*)&#146;Never found a zero, tried &#146;,i-1,&#146; times&#146;
+             return
+           endblock TESTFORZERO
+           ! note the variable I in the block is local to the block
+           write(*,*)&#146;this is the variable back in the main scope, I=&#146;,i
+        end subroutine showme
+<P>
+        end program demo_block
+<P>
+</PRE>
+Results:
+<P>
+<PRE>
+     &gt;  Never found a zero, tried 7  times
+     &gt;  found zero at index 1
+     &gt;  this is the variable in the main scope of the program, I=-100
+<P>
+</PRE>
+fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>block (7fortran)</TD> <TD align=right width=33%><I>August 12, 2024</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 6c6b56f5-6893-495c-b45e-7b4f42dc731b using man macros.</FONT>
+<br><br><center><img src="images/block.7fortran.gif"></center>
+</div>
+</div>
+</body>
+</HTML>

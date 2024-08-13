@@ -68,7 +68,7 @@ value
 ```
 this has the same result as a negative circular shift
 ```fortran
-     ishftc( i,   -shift ).
+     ishftc( i,  -shift ).
 ```
 ### **Options**
 

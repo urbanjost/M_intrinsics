@@ -40,7 +40,7 @@
 ### **Result**
 
   The result has the value obtained by shifting the bits of **i** to
-  the right **shift**  bits and replicating the leftmost bit of **i**
+  the right **shift** bits and replicating the leftmost bit of **i**
   in the left **shift** bits (Note the leftmost bit in "two's complement"
   representation is the sign bit).
 

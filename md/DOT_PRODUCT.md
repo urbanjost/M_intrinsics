@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
- - **vector_a**, **vector_b**  may be any numeric or logical type array
+ - **vector_a**, **vector_b** may be any numeric or logical type array
    of rank one of the same size
  - the two vectors need not be of the same kind, but both must be logical
    or numeric for any given call.

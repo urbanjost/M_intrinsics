@@ -42,7 +42,7 @@
 
 ### **Result**
 
-**associated**(3f) returns a scalar value of type _logical_.
+**associated**(3) returns a scalar value of type _logical_.
 There are several cases:
 
 1.  When the optional **target** is not present then **associated(pointer)**

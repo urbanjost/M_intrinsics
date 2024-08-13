@@ -75,7 +75,7 @@ the relevant dimension.
   NOTE1
   If ARRAY is assumed-rank and has rank zero, DIM cannot be present
   since it cannot satisfy the requirement
-  **1 <=  DIM <= 0**.
+  **1 <= DIM <= 0**.
 
 ### **Examples**
 
@@ -168,7 +168,7 @@ Fortran 95 , with KIND argument Fortran 2003
 #### Bit Inquiry:
 
 - [**storage_size**(3)](#storage_size) - Storage size in bits
-- [**bit_size**(3)](#bit_size) -  Bit size inquiry function
+- [**bit_size**(3)](#bit_size) - Bit size inquiry function
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 - [**lbound**(3)](#lbound),
 

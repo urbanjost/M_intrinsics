@@ -9,7 +9,7 @@
 ### **Description**
     print(7f) is equivalent to 
 ```fortran
-    write(*,fmt=FORMAT_SPECIFIER) LIST
+        write(*,fmt=FORMAT_SPECIFIER) LIST
 ```
     That is, it always writes formatted sequential I/O to stdout. It
     may use list-directed I/O or a FORMAT specifier.
@@ -31,28 +31,28 @@
 
 ### **Example**
 
-  A simple example program:
+A simple example program:
 ```fortran
-   program demo_print
-   implicit none
-   real :: a=11.11, s=sqrt(12.0)
-   integer :: j=753210
-   character(len=*),parameter :: commas='(*(g0:,","))'
-
-  ! List-directed output is frequently specified
-   PRINT *, A, S
-
-  ! a format may be placed on the print(7f) statement
-   PRINT '(*(g0,1x))', A, S, J
-
-  ! the format may be in a character variable
-   print commas, a, s, j
-
-  ! or may be in a labeled format statement
-   PRINT 10, A, S, J
-   10 FORMAT (2E16.3,1x,I0)
-
-   end program demo_print
+program demo_print
+implicit none
+real :: a=11.11, s=sqrt(12.0)
+integer :: j=753210
+character(len=*),parameter :: commas='(*(g0:,","))'
+ 
+ ! List-directed output is frequently specified
+  PRINT *, A, S
+ 
+ ! a format may be placed on the print(7f) statement
+  PRINT '(*(g0,1x))', A, S, J
+ 
+ ! the format may be in a character variable
+  print commas, a, s, j
+ 
+ ! or may be in a labeled format statement
+  PRINT 10, A, S, J
+  10 FORMAT (2E16.3,1x,I0)
+ 
+end program demo_print
 ```
 Results:
 ```text
@@ -63,16 +63,16 @@ Results:
 ```
 ### **See Also**
 
- - [**backspace**(3)](#backspace)
- - [**close**(3)](#close)
- - [**endfile**(3)](#endfile)
- - [**flush**(3)](#flush)
- - [**inquire**(3)](#inquire)
- - [**open**(3)](#open)
- - [**print**(3)](#print)
- - [**read**(3)](#read)
- - [**rewind**(3)](#rewind)
- - [**wait**(3)](#wait)
- - [**write**(3)](#write)
+ - [**backspace**(7)](#backspace)
+ - [**close**(7)](#close)
+ - [**endfile**(7)](#endfile)
+ - [**flush**(7)](#flush)
+ - [**inquire**(7)](#inquire)
+ - [**open**(7)](#open)
+ - [**print**(7)](#print)
+ - [**read**(7)](#read)
+ - [**rewind**(7)](#rewind)
+ - [**wait**(7)](#wait)
+ - [**write**(7)](#write)
 
 _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

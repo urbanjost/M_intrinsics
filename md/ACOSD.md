@@ -20,8 +20,9 @@
 
 ### **Description**
 
-**acosd**(3) computes the arccosine of **x** in degrees(inverse of **cosd(x)**).
-For example, **ACOSD(−1.0)** has the value 180.0 (approximately).
+   **acosd**(3) computes the arccosine of **x** in degrees (inverse
+   of **cosd(x)**). For example, **ACOSD(-1.0)** has the value 180.0
+   (approximately).
 
 ### **Options**
 
@@ -32,8 +33,9 @@ For example, **ACOSD(−1.0)** has the value 180.0 (approximately).
 ### **Result**
 
 The return value is of the same type and kind as **x**. 
-The result has a value equal to a processor-dependent approximation to the arc cosine of X. It
-is expressed in degrees and lies in the range 0 <= ACOSD (X) <= 180.
+The result has a value equal to a processor-dependent approximation to
+the arc cosine of X. It is expressed in degrees and lies in the range 0 <=
+ACOSD (X) <= 180.
 
 ### **Examples**
 

@@ -23,7 +23,7 @@
 ### **Description**
 
   **btest**(3) returns logical _.true._ if the bit at **pos** in **i** is
-  set to 1.  Position zero is the right-most bit. Bit position increases
+  set to 1. Position zero is the right-most bit. Bit position increases
   from right to left up to **bitsize(i)-1**.
 
 ### **Options**

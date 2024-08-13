@@ -31,9 +31,9 @@ ford ford.md
 ######################################
 (
 fpm standalone
-mv standalone.f90 standalone/fman.f90
+mv standalone.f90 standalone/fman.F90
 cd standalone
-gfortran fman.f90 -o fpm-man
+gfortran fman.F90 -o fpm-man
 rm -f fpm-man
 )
 ######################################
@@ -55,7 +55,9 @@ file md/*.md|grep -v ASCII
 )|tee /tmp/M_intrinsics.log
 ######################################
 fpm install
-cp standalone/fman.f90 $HOME/github/index/bootstrap/fman.f90
+cp standalone/fman.F90 $HOME/github/lockstockandbarrel/mars/bootstrap/fman.F90
+cp docs/manpages7.zip $HOME/github/lockstockandbarrel/mars/docs/7fortran.zip
+cp docs/manpages.zip  $HOME/github/lockstockandbarrel/mars/docs/3fortran.zip
 ######################################
 exit
 ######################################

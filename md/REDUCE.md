@@ -5,7 +5,6 @@
 **reduce**(3) - \[TRANSFORMATIONAL\] General reduction of an array
 
 ### **Synopsis**
-
 There are two forms to this function:
 ```fortran
    result = reduce(array, operation [,mask]  [,identity]  [,ordered] )

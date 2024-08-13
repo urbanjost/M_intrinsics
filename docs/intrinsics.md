@@ -71,7 +71,7 @@ program demo_abs
 implicit none
 integer,parameter :: dp=kind(0.0d0)
 
-! some values to use with ABS(3f)
+! some values to use with ABS(3)
 integer           :: i = -1
 real              :: x = -1.0
 complex           :: z = (-3.0,-4.0)
@@ -99,7 +99,7 @@ character(len=*),parameter :: &
    print gen, 'distance of (', z, ') from zero is', abs( z )
 
 call DUSTY_CORNERS_1("beware of abs(-huge(0)-1)")
-call DUSTY_CORNERS_2("beware of losing precision using CMPLX(3f)")
+call DUSTY_CORNERS_2("beware of losing precision using CMPLX(3)")
 call DUSTY_CORNERS_3("beware of overflow of complex values")
 call DUSTY_CORNERS_4("custom meaning for absolute value of COMPLEX")
 
@@ -129,10 +129,10 @@ character(len=*),intent(in) :: message
    ! dusty corner: "kind=dp" is required or the value returned by
    ! CMPLX() is a default real instead of double precision.
 
-   ! Working with complex values you often encounter the CMPLX(3f) function.
-   ! CMPLX(3f) defaults to returning a default REAL regardless of input type.
-   ! Not really a direct problem with ABS(2f) per-se, but a common error
-   ! when working with doubleprecision complex values
+   ! Working with complex values you often encounter the CMPLX(3)
+   ! function. CMPLX(3) defaults to returning a default REAL regardless
+   ! of input type. Not really a direct problem with ABS(2f) per-se,
+   ! but a common error when working with doubleprecision complex values
 
    print gen,  message
    print gen, 'real result versus doubleprecision result', &
@@ -169,17 +169,17 @@ end program demo_abs
 ```
 Results:
 ```text
- >  integer          In: -1                           Out: 1
- >  real             In: -1.00000000                  Out: 1.00000000
- >  doubleprecision  In: -45.780000000000001          Out: 45.780000000000001
- >  complex          In: (-3.00000000,-4.00000000)    Out: 5.00000000
+ >  integer          In: -1                        Out: 1
+ >  real             In: -1.00000000               Out: 1.00000000
+ >  doubleprecision  In: -45.780000000000001       Out: 45.780000000000001
+ >  complex          In: (-3.00000000,-4.00000000) Out: 5.00000000
  > abs is elemental: 20 0 1 3 100
  > distance of ( -3.00000000 -4.00000000 ) from zero is 5.00000000
  > beware of abs(-huge(0)-1)
  > abs range test :  2147483647 2147483647
  > abs range test :  0.340282347E+39 0.340282347E+39
  > abs range test :  0.117549435E-37 0.117549435E-37
- > beware of losing precision using CMPLX(3f)
+ > beware of losing precision using CMPLX(3)
  > real result versus doubleprecision result 50.0000000 50.000000000000000
  > beware of overflow of complex values
  > because the biggest default real is 0.340282347E+39
@@ -298,7 +298,7 @@ contains
 
 pure elemental function upper(str) result (string)
 !
-!$@(#) upper(3f): function to return a trimmed uppercase-only string
+!$@(#) upper(3): function to return a trimmed uppercase-only string
 !
 ! input string to convert to all uppercase
 character(*), intent(in)      :: str
@@ -392,8 +392,9 @@ FORTRAN 77. KIND argument added Fortran 2003
 
 ### **Description**
 
-**acosd**(3) computes the arccosine of **x** in degrees(inverse of **cosd(x)**).
-For example, **ACOSD(−1.0)** has the value 180.0 (approximately).
+   **acosd**(3) computes the arccosine of **x** in degrees (inverse
+   of **cosd(x)**). For example, **ACOSD(-1.0)** has the value 180.0
+   (approximately).
 
 ### **Options**
 
@@ -404,8 +405,9 @@ For example, **ACOSD(−1.0)** has the value 180.0 (approximately).
 ### **Result**
 
 The return value is of the same type and kind as **x**.
-The result has a value equal to a processor-dependent approximation to the arc cosine of X. It
-is expressed in degrees and lies in the range 0 <= ACOSD (X) <= 180.
+The result has a value equal to a processor-dependent approximation to
+the arc cosine of X. It is expressed in degrees and lies in the range 0 <=
+ACOSD (X) <= 180.
 
 ### **Examples**
 
@@ -618,7 +620,8 @@ Inverse function: [**cos**(3)](cos)
 
 ### **Name**
 
-**acospi**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Circular Arccosine (inverse circular cosine) function
+**acospi**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Circular Arccosine (inverse
+circular cosine) function
 
 ### **Synopsis**
 ```fortran
@@ -637,7 +640,7 @@ Inverse function: [**cos**(3)](cos)
 ### **Description**
 
 **acospi**(3) computes the circular arccosine of **x** (inverse of
-**cospi(x)**).  The result is expressed in half-revolutions (ie. PI's)
+**cospi(x)**). The result is expressed in half-revolutions (ie. PI's)
 and lies in the range
 ```fortran
     0 <= ACOSPI (X) <= 1.
@@ -651,7 +654,8 @@ and lies in the range
 
 ### **Result**
 
-The result has a value equal to a processor-dependent approximation to the arc cosine of X.
+The result has a value equal to a processor-dependent approximation to
+the arc cosine of X.
 
 The return value is of the same type and kind as **x**.
 
@@ -692,7 +696,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 2023
+Fortran 2023
 
 ### **See Also**
  - arc cosine in radians: [**acos**(3)](cos)
@@ -755,18 +759,18 @@ integer :: length
     write(*,'(a,"[",a,"]")') 'adjusted: ',str
 
     ! a fixed-length string can be printed
-    ! trimmed using trim(3f) or len_trim(3f)
+    ! trimmed using trim(3) or len_trim(3)
     write(*,'(a,"[",a,"]")') 'trimmed:  ',trim(str)
     length=len_trim(str)
     write(*,'(a,"[",a,"]")') 'substring:',str(:length)
 
     ! note an allocatable string stays the same length too
-    ! and is not trimmed by just an adjustl(3f) call.
+    ! and is not trimmed by just an adjustl(3) call.
     astr='    allocatable string   '
     write(*,'(a,"[",a,"]")') 'original:',astr
     astr = adjustl(astr)
     write(*,'(a,"[",a,"]")') 'adjusted:',astr
-    ! trim(3f) can be used to change the length
+    ! trim(3) can be used to change the length
     astr = trim(astr)
     write(*,'(a,"[",a,"]")') 'trimmed: ',astr
 
@@ -1175,7 +1179,7 @@ FORTRAN 77
 
 3.  If the rank of **mask** is greater than one and **dim** is present then
     **all(mask,dim)** returns an array with the rank (number of
-    dimensions)  of **mask** minus 1. The shape is determined from the
+    dimensions) of **mask** minus 1. The shape is determined from the
     shape of **mask** where the **dim** dimension is elided. A value is
     returned for each set of elements along the **dim** dimension.
 
@@ -1376,7 +1380,7 @@ If **a** is less than or equal to zero then it returns **aint(a - 0.5)**,
 except **aint** specifies that for |**a**| < 1 the result is zero (0).
 
 It is processor-dependent whether anint(a) returns negative zero when
--0.5 < a <= -0.0.  Compiler switches are often available which enable
+-0.5 < a <= -0.0. Compiler switches are often available which enable
 or disable support of negative zero.
 
 ### **Examples**
@@ -1611,6 +1615,132 @@ Fortran 95
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
+## asind
+
+### **Name**
+
+**asind**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arcsine function in degrees
+
+### **Synopsis**
+```fortran
+    result = asind(x)
+```
+```fortran
+     elemental real(kind=KIND) function asind(x)
+
+      real(kind=KIND) :: x
+```
+### **Characteristics**
+
+ - **KIND** may be any kind supported by the _real_ type.
+ - The returned value will be of the same type and kind as the argument.
+
+### **Description**
+
+**asind**(3) computes the arc sine of its argument **x** in degrees
+
+The arcsine is the inverse function of the sine function. It is commonly
+used in trigonometry when trying to find the angle when the lengths of
+the hypotenuse and the opposite side of a right triangle are known.
+
+Example: **asind(1.0)** has the value 90.0 (approximately).
+
+### **Options**
+
+- **x**
+  : The value to compute the arc sine of
+  : The type shall be _real_ and a magnitude that is less than or
+  : equal to one |X| <= 1.
+  : It is expressed in degrees and lies in the range 90 <= asind(x) <= 90.
+
+### **Result**
+
+  The result has a value equal to a processor-dependent approximation
+  to arcsin(x).
+
+  If **x** is real the result is _real_ and it is expressed in radians
+  and lies in the range
+```fortran
+        PI/2 <= asind (X) <= PI/2.
+```
+  If the argument (and therefore the result) is imaginary the real part
+  of the result is in radians and lies in the range
+```fortran
+    -PI/2 <= real(asind(x)) <= PI/2
+```
+### **Examples**
+
+The arcsine will allow you to find the measure of a right angle when you
+know the ratio of the side opposite the angle to the hypotenuse.
+
+So if you knew that a train track rose 1.25 vertical miles on a track
+that was 50 miles long, you could determine the average angle of incline
+of the track using the arcsine. Given
+
+     sin(theta) = 1.25 miles/50 miles (opposite/hypotenuse)
+
+Sample program:
+```fortran
+program demo_asind
+use, intrinsic :: iso_fortran_env, only : dp=>real64
+implicit none
+! value to convert degrees to radians
+real(kind=dp),parameter :: R2D=180.0_dp/acos(-1.0_dp)
+real(kind=dp)           :: angle, rise, run
+character(len=*),parameter :: all='(*(g0,1x))'
+  ! given sine(theta) = 1.25 miles/50 miles (opposite/hypotenuse)
+  ! then taking the arcsine of both sides of the equality yields
+  ! theta = arcsine(1.25 miles/50 miles) ie. arcsine(opposite/hypotenuse)
+  rise=1.250_dp
+  run=50.00_dp
+  angle = asind(rise/run)
+  print all, 'angle of incline(degrees) = ', angle
+  angle = angle/R2D
+  print all, 'angle of incline(radians) = ', angle
+
+  print all, 'percent grade=',rise/run*100.0_dp
+contains
+subroutine sub1()
+! notice the (incidently empty) type is defined below
+! the implicit statement
+implicit type(nil) (a)
+type nil
+end type nil
+type(nil) :: anull
+end subroutine sub1
+end program demo_asind
+```
+Results:
+```text
+ > angle of incline(degrees) =  1.4325437375665075
+ > angle of incline(radians) =  0.25002604899361135E-1
+ > percent grade= 2.5000000000000000
+```
+The percentage grade is the slope, written as a percent. To calculate
+the slope you divide the rise by the run. In the example the rise is
+1.25 mile over a run of 50 miles so the slope is 1.25/50 = 0.025.
+Written as a percent this is 2.5 %.
+
+For the US, two and 1/2 percent is generally thought of as the upper
+limit. This means a rise of 2.5 feet when going 100 feet forward. In
+the US this was the maximum grade on the first major US railroad, the
+Baltimore and Ohio. Note curves increase the frictional drag on a
+train reducing the allowable grade.
+
+### **Standard**
+
+Fortran 2023
+
+### **See Also**
+
+Inverse function: [**sin**(3)](#sin)
+
+### **Resources**
+
+- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
+
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
 ## asinh
 
 ### **Name**
@@ -1798,6 +1928,137 @@ Inverse function: [**sin**(3)](#sin)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
+## asinpi
+
+### **Name**
+
+**asinpi**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Circular arc sine function
+
+### **Synopsis**
+```fortran
+    result = asinpi(x)
+```
+```fortran
+     elemental real(kind=KIND) function asinpi(x)
+
+      real(kind=KIND),intent(in) :: x
+```
+### **Characteristics**
+
+ - **KIND** may be any _real_ kind
+ - The returned value will be of the same type and kind as the argument.
+
+### **Description**
+
+**asinpi**(3) computes the arcsine of its argument **x**.
+
+The arcsine is the inverse function of the sine function. It is commonly
+used in trigonometry when trying to find the angle when the lengths of
+the hypotenuse and the opposite side of a right triangle are known.
+
+The returned value is in half-revolutions (ie. in multiples
+of PI).
+
+Example: ASINPI(1:0) has the value 0:5 (approximately).
+
+### **Options**
+
+- **x**
+  : The value to compute the arcsine of; where |X| <= 1.
+  : The type shall be _real_
+
+### **Result**
+
+  The result has a value equal to a processor-dependent approximation
+  to the arc sine of X.
+  The result is _real_ and it is expressed in half-revolutions
+  and lies in the range
+```fortran
+        -1 <= asinpi (X) <= 1
+```
+  and is the same kind as the input.
+
+### **Examples**
+
+The arcsine will allow you to find the measure of a right angle when you
+know the ratio of the side opposite the angle to the hypotenuse.
+
+So if you knew that a train track rose 1.25 vertical miles on a track
+that was 50 miles long, you could determine the average angle of incline
+of the track using the arcsine. Given
+
+     sin(theta) = 1.25 miles/50 miles (opposite/hypotenuse)
+
+Sample program:
+```fortran
+program demo_asinpi
+use, intrinsic :: iso_fortran_env, only : dp=>real64
+implicit none
+! value to convert degrees to half-revolutions
+real(kind=dp),parameter :: D2HR=1/180.0_dp
+real(kind=dp)           :: angle, rise, run
+character(len=*),parameter :: all='(*(g0,1x))'
+  ! basics
+  ! elemental
+  print all, asinpi( [0.0d0, 0.5d0, -0.5d0, 1.0d0, -1.0d0 ])
+  !
+  ! sample application
+  ! given sine(theta) = 1.25 miles/50 miles (opposite/hypotenuse)
+  ! then taking the arcsine of both sides of the equality yields
+  ! theta = arcsine(1.25 miles/50 miles) ie. arcsine(opposite/hypotenuse)
+  rise=1.250_dp
+  run=50.00_dp
+  angle = asinpi(rise/run)
+  print all, 'angle of incline(half-revolutions) = ', angle
+  angle = angle/D2HR
+  print all, 'angle of incline(degrees) = ', angle
+  print all, 'percent grade=',rise/run*100.0_dp
+contains
+elemental function asinpi(x)
+real(kind=dp),parameter  :: PI=acos(-1.0_dp)
+real(kind=dp),intent(in) :: x
+real(kind=dp)            :: asinpi
+   asinpi=asin(x)/PI
+end function asinpi
+end program demo_asinpi
+```
+Results:
+```text
+ > 0.00, 0.166667, -0.166667, 0.50, -0.50
+ > angle of incline(half-revolutions) =  0.79585763198139307E-2
+ > angle of incline(degrees) =  1.4325437375665075
+ > percent grade= 2.5000000000000000
+```
+The percentage grade is the slope, written as a percent. To calculate
+the slope you divide the rise by the run. In the example the rise is
+1.25 mile over a run of 50 miles so the slope is 1.25/50 = 0.025.
+Written as a percent this is 2.5 %.
+
+For the US, two and 1/2 percent is generally thought of as the upper
+limit. This means a rise of 2.5 feet when going 100 feet forward. In
+the US this was the maximum grade on the first major US railroad, the
+Baltimore and Ohio. Note curves increase the frictional drag on a
+train reducing the allowable grade.
+
+### **Standard**
+
+Fortran 2023
+
+### **See Also**
+
+- Inverse function in half-revolutions: [**sinpi**(3)](#sinpi)
+- function in radians: [**asin**(3)](#asin)
+- function in degrees : [**asind**(3)](#asind)
+- radians: [**sin**(3)](#sin)
+- degrees: [**sind**(3)](#sind)
+
+### **Resources**
+
+- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
+
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
+
 ## associated
 
 ### **Name**
@@ -1842,7 +2103,7 @@ Inverse function: [**sin**(3)](#sin)
 
 ### **Result**
 
-**associated**(3f) returns a scalar value of type _logical_.
+**associated**(3) returns a scalar value of type _logical_.
 There are several cases:
 
 1.  When the optional **target** is not present then **associated(pointer)**
@@ -1906,6 +2167,177 @@ Fortran 95
 ### **See Also**
 
 [**null**(3)](#null)
+
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
+## atan2d
+
+### **Name**
+
+**atan2d**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arc tangent function in
+degrees (inverse tangent)
+
+### **Synopsis**
+```fortran
+    result = atan2d(y, x)
+```
+```fortran
+     elemental real(kind=KIND) function atan2d(y, x)
+
+      real,kind=KIND) :: atan2d
+      real,kind=KIND),intent(in) :: y, x
+```
+### **Characteristics**
+
+ - **x** and **y** must be reals of the same kind.
+ - The return value has the same type and kind as **y** and **x**.
+
+### **Description**
+
+  **atan2d**(3) computes in degrees a processor-dependent approximation
+  of the arctangent of the principal value of the arctangent of the
+  value **y/x** (which determines a unique angle).
+
+  If **y** has the value zero, **x** shall not have the value zero.
+
+  The resulting phase lies in the range -180 <= atan2d (Y,X) <= 180 and is
+  equal to a processor-dependent approximation to a value of arctan(Y/X)
+  expressed in degrees.
+
+  It is equivalent to **ATAN2(Y, X)\*180/PI** but limited to real values.
+
+### **Options**
+
+- **y**
+  : The imaginary component of the complex value **(x,y)** or the **y**
+  component of the point **\<x,y\>**.
+
+- **x**
+  : The real component of the complex value **(x,y)** or the **x**
+  component of the point **\<x,y\>**.
+
+### **Result**
+The result is in degrees, not radians.
+
+The radian value is by definition the principal value of the complex
+number **(x, y)**, or in other terms, the phase of the phasor x+i\*y.
+
+The principal value is simply what we get when we adjust the value
+to lie between **-180** and **180** degrees inclusive,
+
+The classic definition of the arctangent is the angle that is formed
+in Cartesian coordinates of the line from the origin point **\<0,0\>**
+to the point **\<x,y\>** .
+
+Pictured as a vector it is easy to see that if **x** and **y** are both
+zero the angle is indeterminate because it sits directly over the origin,
+so **atan2d(0.0,0.0)** will produce an error.
+
+Range of returned values by quadrant:
+```text
+>                   +90
+>                     |
+>                     |
+>     90 < z < 180    |   0 > z < 90
+>                     |
+>   +-180 ------------+---------------- +-0
+>                     |
+>     90 < -z < 180   |   0 < -z < 90
+>                     |
+>                     |
+>                   -90
+>
+     NOTES:
+
+     If the processor distinguishes -0 and +0 then the sign of the
+     returned value is that of Y when Y is zero, else when Y is zero
+     the returned value is always positive.
+```
+### **Examples**
+
+Sample program:
+```fortran
+program demo_atan2d
+implicit none
+integer,parameter  :: wp=kind(0.0)
+real(wp),parameter :: d2r=acos(-1.0_wp)/180.0_wp
+real :: z
+complex :: c
+ !
+ ! basic usage
+  ! atan2d (1.5574077, 1.0) has the value 1.0 radian (approximately).
+  z=atan2d(1.5574077, 1.0)
+  write(*,*) 'degrees=',z,'radians=',d2r*z
+ !
+ ! elemental arrays
+  write(*,*)'elemental',atan2d( [10.0, 20.0], [30.0,40.0] )
+ !
+ ! elemental arrays and scalars
+  write(*,*)'elemental',atan2d( [10.0, 20.0], 50.0 )
+ !
+ ! multi-dimensional returns multi-dimensional
+ write(*,*) atan2(reshape([1.0,1.0,1.0,1.0],[2,2]),&
+ & reshape([1.0,1.0,1.0,1.0],[2,2]) )
+ !
+ ! break complex values into real and imaginary components
+  c=(0.0,1.0)
+  write(*,*)'complex value treated as components', &
+  & c,atan2d( x=c%re, y=c%im )
+ !
+ ! extended sample
+  COMPLEX_VALS: block
+  real                :: ang
+  complex,allocatable :: vals(:)
+  integer             :: i
+ !
+  vals=[ &
+    ( 1.0, 0.0 ), & ! 0
+    ( 1.0, 1.0 ), & ! 45
+    ( 0.0, 1.0 ), & ! 90
+    (-1.0, 1.0 ), & ! 135
+    (-1.0, 0.0 ), & ! 180
+    (-1.0,-1.0 ), & ! 225
+    ( 0.0,-1.0 )]   ! 270
+  do i=1,size(vals)
+     ang=atan2d(vals(i)%im, vals(i)%re)
+     write(*,101)vals(i),ang,d2r*ang
+  enddo
+  101 format(             &
+  & 'X= ',f5.2,           &
+  & ' Y= ',f5.2,          &
+  & ' ANGLE= ',g0,        &
+  & T38,'RADIANS= ',g0.4)
+ endblock COMPLEX_VALS
+!
+end program demo_atan2d
+```
+Results:
+```text
+ >  degrees=   57.2957802     radians=   1.00000000
+ >  elemental   18.4349480       26.5650520
+ >  elemental   11.3099327       21.8014107
+ >   0.785398185  0.785398185 0.785398185  0.785398185
+ >  complex value treated as components (0.0000,1.0000) 90.000
+ > X=  1.00 Y=  0.00 ANGLE= 0.00000000  RADIANS= 0.000
+ > X=  1.00 Y=  1.00 ANGLE= 45.0000000  RADIANS= 0.7854
+ > X=  0.00 Y=  1.00 ANGLE= 90.0000000  RADIANS= 1.571
+ > X= -1.00 Y=  1.00 ANGLE= 135.000000  RADIANS= 2.356
+ > X= -1.00 Y=  0.00 ANGLE= 180.000000  RADIANS= 3.142
+ > X= -1.00 Y= -1.00 ANGLE= -135.000000 RADIANS= -2.356
+ > X=  0.00 Y= -1.00 ANGLE= -90.0000000 RADIANS= -1.571
+```
+### **Standard**
+
+Fortran 2023
+
+### **See Also**
+
+- [**atan**(3)](#atan)
+- [**atanpi**(3)](#atanpi)
+
+### **Resources**
+
+- [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -2026,6 +2458,7 @@ complex :: c
     (-1.0, 1.0 ), & ! 135
     (-1.0, 0.0 ), & ! 180
     (-1.0,-1.0 ), & ! 225
+/bin/bash: pb0: command not found
     ( 0.0,-1.0 )]   ! 270
   do i=1,size(vals)
      call cartesian_to_polar(vals(i)%re, vals(i)%im, radius,ang)
@@ -2089,6 +2522,259 @@ FORTRAN 77
 ### **Resources**
 
 - [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
+## atan2pi
+
+### **Name**
+
+**atan2pi**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Circular Arc tangent (inverse tangent)
+function
+
+### **Synopsis**
+```fortran
+    result = atan2pi(y, x)
+```
+```fortran
+     elemental real(kind=KIND) function atan2pi(y, x)
+
+      real,kind=KIND) :: atan2pi
+      real,kind=KIND),intent(in) :: y, x
+```
+### **Characteristics**
+
+ - **x** and **y** must be reals of the same kind.
+ - The return value has the same type and kind as **y** and **x**.
+
+### **Description**
+
+  **atan2pi**(3) computes in half-revolutions a processor-dependent
+  approximation of the arctangent of the components of the complex number
+  ( **x**, **y** ) or equivalently the principal value of the arctangent
+  of the value **y/x** (which determines a unique angle).
+
+  If **y** has the value zero, **x** shall not have the value zero.
+
+  The resulting phase lies in the range -1 <= atan2pi (Y,X) <= 1 and is equal to a
+  processor-dependent approximation to a value of arctan(Y/X).
+
+### **Options**
+
+- **y**
+  : The imaginary component of the complex value **(x,y)** or the **y**
+  component of the point **\<x,y\>**.
+
+- **x**
+  : The real component of the complex value **(x,y)** or the **x**
+  component of the point **\<x,y\>**.
+
+### **Result**
+
+The value returned is by definition the principal value of the complex
+number **(x, y)**, or in other terms, the phase of the phasor x+i\*y.
+
+The principal value is simply what we get when we adjust an angular
+half-revolution value to lie between **-1** and **1** inclusive,
+
+The classic definition of the arctangent is the angle that is formed
+in Cartesian coordinates of the line from the origin point **\<0,0\>**
+to the point **\<x,y\>** .
+
+Pictured as a vector it is easy to see that if **x** and **y** are both
+zero the angle is indeterminate because it sits directly over the origin,
+so **atan(0.0,0.0)** will produce an error.
+
+Range of returned values by quadrant:
+```text
+>                   +1/2
+>                     |
+>                     |
+>       1/2 < z < 1   |   0 > z < 1/2
+>                     |
+>    +-1 -------------+---------------- +-0
+>                     |
+>       1/2 < -z < 1  |   0 < -z < 1/2
+>                     |
+>                     |
+>                   -1/2
+>
+     NOTES:
+
+     If the processor distinguishes -0 and +0 then the sign of the
+     returned value is that of Y when Y is zero, else when Y is zero
+     the returned value is always positive.
+```
+### **Examples**
+
+Sample program:
+```fortran
+program demo_atan2pi
+real :: z
+complex :: c
+real, parameter :: h2d = 180.0
+ !
+ ! basic usage
+  ! atan2pi (1.5574077, 1.0) has the value 1.0 (approximately).
+  z=atan2pi(1.5574077, 1.0)
+  write(*,*) 'half-revolutions=',z,'degrees=',h2d*z
+ !
+ ! elemental arrays
+  write(*,*)'elemental',atan2pi( [10.0, 20.0], [30.0,40.0] )
+ !
+ ! elemental arrays and scalars
+  write(*,*)'elemental',atan2pi( [10.0, 20.0], 50.0 )
+ !
+ ! break complex values into real and imaginary components
+ ! (note TAN2() can take a complex type value )
+  c=(0.0,1.0)
+  write(*,*)'complex',c,atan2pi( x=c%re, y=c%im )
+ !
+ ! extended sample converting cartesian coordinates to polar
+  COMPLEX_VALS: block
+  real                :: ang
+  complex,allocatable :: vals(:)
+  integer             :: i
+ !
+  vals=[ &
+    ( 1.0, 0.0 ), & ! 0
+    ( 1.0, 1.0 ), & ! 45
+    ( 0.0, 1.0 ), & ! 90
+    (-1.0, 1.0 ), & ! 135
+    (-1.0, 0.0 ), & ! 180
+    (-1.0,-1.0 ), & ! 225
+    ( 0.0,-1.0 )]   ! 270
+    write(*,'(a)')repeat('1234567890',8)
+  do i=1,size(vals)
+     ang=atan2pi(vals(i)%im,vals(i)%re)
+     write(*,101)vals(i),ang,h2d*ang
+  enddo
+  101 format(             &
+  & 'X= ',f5.2,           &
+  & ' Y= ',f5.2,          &
+  & ' HALF-REVOLUTIONS= ',f7.3,        &
+  & T50,' DEGREES= ',g0.4)
+ endblock COMPLEX_VALS
+!
+end program demo_atan2pi
+```
+Results:
+```text
+ >  half-revolutions=  0.318309873     degrees=   57.2957764
+ >  elemental  0.102416381      0.147583619
+ >  elemental   6.28329590E-02  0.121118948
+ >  complex             (0.00000000,1.00000000)  0.500000000
+ > X=  1.00 Y=  0.00 HALF-REVOLUTIONS=   0.000       DEGREES= 0.000
+ > X=  1.00 Y=  1.00 HALF-REVOLUTIONS=   0.250       DEGREES= 45.00
+ > X=  0.00 Y=  1.00 HALF-REVOLUTIONS=   0.500       DEGREES= 90.00
+ > X= -1.00 Y=  1.00 HALF-REVOLUTIONS=   0.750       DEGREES= 135.0
+ > X= -1.00 Y=  0.00 HALF-REVOLUTIONS=   1.000       DEGREES= 180.0
+ > X= -1.00 Y= -1.00 HALF-REVOLUTIONS=  -0.750       DEGREES= -135.0
+ > X=  0.00 Y= -1.00 HALF-REVOLUTIONS=  -0.500       DEGREES= -90.00
+```
+### **Standard**
+
+Fortran 2023
+
+### **See Also**
+
+- [**atan**(3)](#atan)
+
+### **Resources**
+
+- [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
+## atand
+
+### **Name**
+
+**atand**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arc tangent AKA inverse
+tangent function in degrees
+
+### **Synopsis**
+```fortran
+    result = atand(x) | atand(y, x)
+```
+```fortran
+     elemental real(kind=KIND) function atand(y,x)
+
+      real(kind=KIND),intent(in) :: x
+      real(kind=**),intent(in),optional :: y
+```
+### **Characteristics**
+
+ - If **y** is present **x** and **y** must both be of the same
+   kind.
+ - **KIND** can be any kind supported by the associated type.
+ - The returned value is real of the same kind as **x**.
+
+### **Description**
+
+**atand**(3) calculates the Arc Tangent function in degrees.
+
+### **Options**
+
+- **x**
+  : The _real_ value to compute the arctangent of.
+
+- **y**
+  : is real of the same kind as **x**. If **x** is zero, **y**
+  must not be zero.
+
+### **Result**
+
+The returned value is a _real_ type of the same kind as **x** that
+approximates the arc tangent of **x** expressed in degrees. If **y**
+is present, the result is identical to **atan2d(y,x)**. The result lies
+in the range **-90 \<= atand(x) \<= 90** .
+
+### **Examples**
+
+atand(1.0) has the value 45.0 (approximately).
+
+Sample program:
+
+```fortran
+program demo_atan
+use, intrinsic :: iso_fortran_env, only : real_kinds, &
+ & real32, real64, real128
+implicit none
+character(len=*),parameter :: all='(*(g0,1x))'
+real(kind=real64),parameter :: &
+ Deg_Per_Rad = 57.2957795130823208767981548_real64
+real(kind=real64) :: x
+    x=2.866_real64
+    print all, atand(x)
+
+    print all, atand( 2.0d0, 2.0d0),atand( 2.0d0, 2.0d0)/Deg_Per_Rad
+    print all, atand( 2.0d0,-2.0d0),atand( 2.0d0,-2.0d0)/Deg_Per_Rad
+    print all, atand(-2.0d0, 2.0d0),atand(-2.0d0, 2.0d0)/Deg_Per_Rad
+    print all, atand(-2.0d0,-2.0d0),atand(-2.0d0,-2.0d0)/Deg_Per_Rad
+
+end program demo_atan
+```
+Results:
+```text
+ > 70.765182904405478
+ > 45.000000000000000 0.78539816339744828
+ > 135.00000000000000 2.3561944901923448
+ > -45.000000000000000 -0.78539816339744828
+ > -135.00000000000000 -2.3561944901923448
+```
+### **Standard**
+
+Fortran 2023
+
+### **See Also**
+
+[**atan2d**(3)](#atand2), [**tand**(3)](#tand),
+[**atan2**(3)](#atan2), [**tan**(3)](#tan),
+[**atan2pi**(3)](#atan2pi), [**tanpi**(3)](#tanpi)
+
+### **Resources**
+
+- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
+
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## atanh
@@ -2235,7 +2921,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77  for a complex argument; and for two
+FORTRAN 77 for a complex argument; and for two
 arguments Fortran 2008
 
 ### **See Also**
@@ -2247,6 +2933,101 @@ arguments Fortran 2008
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
+## atanpi
+
+### **Name**
+
+**atanpi**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Circular Arctangent AKA inverse tangent function
+
+### **Synopsis**
+```fortran
+    result = atanpi([x) | atanpi(y, x)
+```
+```fortran
+     elemental real(kind=KIND) function atanpi(y,x)
+
+      real(kind=KIND),intent(in) :: x
+      real(kind=KIND),intent(in),optional :: y
+```
+### **Characteristics**
+
+ - **y** and **x** must both be _real_ and of the same KIND
+ - **KIND** can be any kind supported by the real type.
+ - The returned value is of the same type and kind as **x**.
+
+### **Description**
+
+   **atan**(3) computes the circular arctangent of **x** in
+   half-revolutions.
+
+   If **y** appears, the result is the same as the result of
+   **atan2pi(y,x)**. If **y** does not appear, the result has a value
+   equal to a processor-dependent approximation to the arc tangent of
+   **x**; it is expressed in half-revolutions and lies in the range
+   **-0.5 <= atanpi(x) <= 0.5**.
+
+   Example. **atanpi(1.0)** has the value 0.25 (approximately).
+
+### **Options**
+
+- **x**
+  : The _real_ value to compute the arctangent of.
+
+- **y**
+  : is of the same type and kind as **x**. If **x** is zero, **y**
+  must not be zero.
+
+### **Result**
+
+   The returned value is of the same type and kind as **x**. If **y**
+   is present, the result is identical to **atan2pi(y,x)**. Otherwise,
+   it is the arc tangent of **x**, where the result is in half-revolutions
+   and lies in the range **-1 \<= atan(x) \<= 1**
+
+### **Examples**
+
+Sample program:
+
+```fortran
+program demo_atanpi
+use, intrinsic :: iso_fortran_env, only : real32, real64
+implicit none
+character(len=*),parameter :: all='(*(g0,1x))'
+real(kind=real64) :: x, y
+    x=2.866_real64
+    print all, atanpi(x)
+
+    print all, atanpi( 2.0d0, 2.0d0),atanpi( 2.0d0, 2.0d0)*180
+    print all, atanpi( 2.0d0,-2.0d0),atanpi( 2.0d0,-2.0d0)*180
+    print all, atanpi(-2.0d0, 2.0d0),atanpi(-2.0d0, 2.0d0)*180
+    print all, atanpi(-2.0d0,-2.0d0),atanpi(-2.0d0,-2.0d0)*180
+
+end program demo_atanpi
+```
+Results:
+```text
+   1.235085437457879
+   .7853981633974483 45.00000000000000
+   2.356194490192345 135.0000000000000
+   -.7853981633974483 -45.00000000000000
+   -2.356194490192345 -135.0000000000000
+```
+### **Standard**
+
+Fortran 2023
+
+### **See Also**
+
+[**atan2d**(3)](#tan2d),
+[**tan2d**(3)](#tan2d),
+[**atan2pi**(3)](#tan2pi),
+[**tan2pi**(3)](#tan2pi)
+
+### **Resources**
+
+- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
+
 
 ## atomic_add
 
@@ -3918,7 +4699,7 @@ Fortran 95
 ### **See Also**
 
 + [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
-+ [**storage_size**(3f)](#storage) - Storage size in bits
++ [**storage_size**(3)](#storage) - Storage size in bits
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -4133,7 +4914,7 @@ Fortran 2008
 ### **Description**
 
   **btest**(3) returns logical _.true._ if the bit at **pos** in **i** is
-  set to 1.  Position zero is the right-most bit. Bit position increases
+  set to 1. Position zero is the right-most bit. Bit position increases
   from right to left up to **bitsize(i)-1**.
 
 ### **Options**
@@ -4327,7 +5108,8 @@ Fortran 2003
 
 ### **Name**
 
-**ceiling**(3) - \[NUMERIC\] Integer ceiling function
+**ceiling**(3) - \[NUMERIC\] returns the least integer greater than or
+equal to **a**.
 
 ### **Synopsis**
 ```fortran
@@ -4342,8 +5124,8 @@ Fortran 2003
 ### **Characteristics**
 
  - **a** is of type _real_
- - **KIND** shall be a scalar integer constant expression.
-   It specifies the kind of the result if present.
+ - if present **KIND** is a scalar integer constant expression that
+   specifies the kind of the result.
  - the result is _integer_. It is default kind if **KIND** is not
    specified
 
@@ -4354,6 +5136,16 @@ Fortran 2003
   On the number line -n <-- 0 -> +n the value returned is always at or
   to the right of the input value.
 
+  For example, ceil(0.5) is 1.0, and ceil(-0.5) is 0.0.
+
+  The input value may be too large to store the result in an `integer`
+  type. To avoid an overflow (which produces an undefined result), an
+  application should perform a range check on the input value before
+  using ceiling(3).
+
+<!--
+  If x is +0, -0, NaN, or infinite, x itself is returned.
+-->
 ### **Options**
 
 - **a**
@@ -4381,40 +5173,166 @@ Sample program:
 program demo_ceiling
 implicit none
 ! just a convenient format for a list of integers
-character(len=*),parameter :: ints='(*("   > ",5(i0:,",",1x),/))'
-real :: x
-real :: y
-  ! basic usage
-   x = 63.29
-   y = -63.59
-   print ints, ceiling(x)
-   print ints, ceiling(y)
-   ! note the result was the next integer larger to the right
-
-  ! real values equal to whole numbers
-   x = 63.0
-   y = -63.0
-   print ints, ceiling(x)
-   print ints, ceiling(y)
-
-  ! elemental (so an array argument is allowed)
-   print ints , &
-   & ceiling([ &
+character(len=*),parameter :: gen='(1x,*(g0:,1x))'
+real              :: x
+real              :: y
+real,parameter    :: arr(*)=[ &
    &  -2.7,  -2.5, -2.2, -2.0, -1.5, &
    &  -1.0,  -0.5,  0.0, +0.5, +1.0, &
-   &  +1.5,  +2.0, +2.2, +2.5, +2.7  ])
+   &  +1.5,  +2.0, +2.2, +2.5, +2.7  ]
+integer           :: i
+integer           :: ierr
+character(len=80) :: message
+   print *, 'Basic Usage'
+   x = 63.29
+   y = -63.59
+   print gen, ceiling(x), ceiling(y)
+   ! note the result was the next integer larger to the right
+
+   print *, 'Whole Numbers' ! real values equal to whole numbers
+   x = 63.0
+   y = -63.0
+   print gen, ceiling(x), ceiling(y)
+
+   print *, 'Elemental' ! (so an array argument is allowed)
+   print gen , ceiling(arr)
+
+   print *, 'Advanced Usage' ! Dealing with large magnitude values
+   print '(a)',[character(len=80):: &
+   'Limits                                                           ',&
+   'You only care about Limits if you are using values near or above ',&
+   'the limits of the integer type you are using (see huge(3)).      ',&
+   '',&
+   'Surprised by some of the following results?                      ',&
+   'What do real values clearly out of the range of integers return? ',&
+   'What do values near the end of the range of integers return?     ',&
+   'The standard only specifies what happens for representable values',&
+   'in the range of integer values.                                  ',&
+   '',&
+   'It is common but not required that if the input is out of range  ',&
+   'and positive the result is -huge(0) and -huge(0)-1 if negative.  ',&
+   'Note you are out of range before you get to real(huge(0)).       ',&
+   '' ]
+   print gen , 'For reference: huge(0)=',huge(0),'-huge(0)-1=',-huge(0)-1
+
+   x=huge(0)
+   call displayx()
+
+   x=2*x
+   call displayx()
+
+   x=-huge(0)-1
+   call displayx()
+
+   x=2*x
+   call displayx()
+
+   print gen , repeat('=',80)
+
+contains
+
+subroutine displayx()
+use,intrinsic :: iso_fortran_env, only: int8,int16,int32,int64
+   print gen , repeat('=',80)
+   print gen , 'x=',x,' spacing=',spacing(x)
+   print gen , ' ceiling(x):',ceiling(x)
+   print gen , ' ceiling(x,kind=int64):',ceiling(x,kind=int64)
+   print gen , ' ceiling_robust(x):',ceiling_robust(x,ierr,message)
+   if(ierr.ne.0)then
+      print gen, ierr,'=>',trim(message)
+   endif
+end subroutine displayx
+
+elemental impure function ceiling_robust(x,ierr,message)
+! return the least integer >= x
+use,intrinsic :: iso_fortran_env, only: int8,int16,int32,int64
+use,intrinsic :: iso_fortran_env, only: real32,real64,real128
+real,intent(in)                       :: x
+integer,intent(out),optional          :: ierr
+character(len=*),intent(out),optional :: message
+character(len=80)                     :: message_local
+integer                               :: ceiling_robust
+integer                               :: ierr_local
+   ierr_local=0
+   message_local=''
+   ! allow -huge(0)-1 or not?
+   if(spacing(x) > 128)then ! bounds checking
+      if(x.ge.0)then
+         write(message_local,*)'<ERROR>X=',x,' >=',anint(real(huge(0)))
+         ierr_local=1
+         ceiling_robust=huge(0)
+      else
+         ierr_local=2
+         ceiling_robust=-huge(0)-1
+         write(message_local,*)'<ERROR>X=',x,' <=',anint(real(-huge(0)-1))
+      endif
+   else
+      ! used to use a computed goto to do this!
+      ceiling_robust = int(x)
+      if (x > 0.0) then
+         if (real(ceiling_robust) < x)then
+            ceiling_robust = ceiling_robust + 1
+         endif
+      endif
+   endif
+   if(present(ierr))then
+      ierr=ierr_local
+   elseif(ierr_local.ne.0)then
+      stop message_local
+   endif
+   if(present(message))then
+      message=message_local
+   endif
+end function ceiling_robust
 
 end program demo_ceiling
 ```
 Results:
 ```text
-   > 64
-   > -63
-   > 63
-   > -63
-   > -2, -2, -2, -2, -1,
-   > -1, 0, 0, 1, 1,
-   > 2, 2, 3, 3, 3
+ >  Basic Usage
+ >  64 -63
+ >  Whole Numbers
+ >  63 -63
+ >  Elemental
+ >  -2 -2 -2 -2 -1 -1 0 0 1 1 2 2 3 3 3
+ > Limits
+ >
+ > Surprised by some of the following results?
+ > What do real values clearly out of the range of integers return?
+ > What do values near the end of the range of integers return?
+ > The standard only specifies what happens for representable values
+ > in the range of integer values.
+ >
+ > It is common but not required that if the input is out of range
+ > and positive the result is -huge(0) and -huge(0)-1 if negative.
+ > Note you are out of range before you get to real(huge(0)).
+ >
+ >  For reference: huge(0)= 2147483647 -huge(0)-1= -2147483648
+ >  ======================================================================
+ >  x= 0.214748365E+10  spacing= 256.000000
+ >   ceiling(x): -2147483647
+ >   ceiling(x,kind=int64): 2147483648
+ >   ceiling_robust(x): 2147483647
+ >  1 =>  <ERROR>X=   2.14748365E+09  >=   2.14748365E+09
+ >  ======================================================================
+ >  x= 0.429496730E+10  spacing= 512.000000
+ >   ceiling(x): -2147483647
+ >   ceiling(x,kind=int64): 4294967296
+ >   ceiling_robust(x): 2147483647
+ >  1 =>  <ERROR>X=   4.29496730E+09  >=   2.14748365E+09
+ >  ======================================================================
+ >  x= -0.214748365E+10  spacing= 256.000000
+ >   ceiling(x): -2147483648
+ >   ceiling(x,kind=int64): -2147483648
+ >   ceiling_robust(x): -2147483648
+ >  2 =>  <ERROR>X=  -2.14748365E+09  <=  -2.14748365E+09
+ >  ======================================================================
+ >  x= -0.429496730E+10  spacing= 512.000000
+ >   ceiling(x): -2147483648
+ >   ceiling(x,kind=int64): -4294967296
+ >   ceiling_robust(x): -2147483648
+ >  2 =>  <ERROR>X=  -4.29496730E+09  <=  -2.14748365E+09
+ >  ======================================================================
 ```
 ### **Standard**
 
@@ -4429,6 +5347,10 @@ Fortran 95
 [**anint**(3)](#anint),
 [**int**(3)](#int),
 [**selected_int_kind**(3)](#selected_int_kind)
+
+[**nearest**(3)](#nearest),
+[**spacing**(3)](#spacing),
+[**epsilon**(3)](#epsilon)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -4898,7 +5820,7 @@ Even though constants can be used to define a complex variable using syntax like
 ```
 this will not work for variables. So you cannot enter
 ```fortran
-      z = (a, b)  ! NO ! (unless a and b are constants, not variables)
+      z = (a, b) ! NO ! (unless a and b are constants, not variables)
 ```
 so to construct a _complex_ value using non-complex values you must use
 the **cmplx**(3) function:
@@ -5846,6 +6768,93 @@ TS 18508
 
  _fortran-lang intrinsic descriptions_
 
+## cosd
+
+### **Name**
+
+**cosd**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Degree cosine function
+
+### **Synopsis**
+```fortran
+    result = cosd(x)
+```
+```fortran
+     elemental real(kind=KIND) function cosd(x)
+
+      real(kind=KIND),intent(in) :: x
+```
+### **Characteristics**
+
+ - **x** is of type _real_ of any valid kind.
+ - **KIND** may be any real kind.
+ - The returned value will be of the same type and kind as the argument
+   **x**.
+
+### **Description**
+
+  **cosd**(3) computes the cosine of an angle **x** given the size of
+  the angle in degrees.
+
+  The cosine is the ratio of the adjacent side to the hypotenuse of a
+  right-angled triangle.
+
+### **Options**
+
+- **x**
+  : The angle in degrees to compute the cosine of.
+
+### **Result**
+
+  The return value is an approximation of the cosine of **x**.
+
+  The return value is in degrees and lies in
+  the range **-1 \<= cosd(x) \<= 1** .
+
+### **Examples**
+
+cosd(180.0) has the value -1.0 (approximately).
+
+Sample program:
+```fortran
+program demo_cosd
+implicit none
+character(len=*),parameter :: g2='(a,t20,g0)'
+   write(*,g2)'cosd(0.0)=',cosd(0.0)
+   write(*,g2)'cosd(180.0)=',cosd(180.0)
+   write(*,g2)'cosd(90.0d0)=',cosd(90.0d0)
+   write(*,g2)'cosd(360.0)=',cosd(360.0)
+   write(*,g2)'cosd(-360.0)=',cosd(-360.0)
+   write(*,g2)'cosd(-2000*180.0)=',cosd(-2000*180.0)
+   write(*,g2)'cosd(3000*180.0)=',cosd(3000*180.0)
+end program demo_cosd
+```
+Results:
+```text
+ > cosd(0.0)=         1.00000000
+ > cosd(180.0)=       -1.00000000
+ > cosd(90.0d0)=      0.0000000000000000
+ > cosd(360.0)=       1.00000000
+ > cosd(-360.0)=      1.00000000
+ > cosd(-2000*180.0)= 1.00000000
+ > cosd(3000*180.0)=  1.00000000
+```
+### **Standard**
+
+Fortran 2023
+
+### **See Also**
+
+[**acosd**(3)](#acosd),
+[**acos**(3)](#acos),
+[**sind**(3)](#sind),
+[**tand**(3)](#tand)
+
+### **Resources**
+
+- [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
+
+ _fortran-lang intrinsic descriptions_
+
 ## cosh
 
 ### **Name**
@@ -5991,6 +7000,100 @@ Results:
 ### **Standard**
 
 FORTRAN 77
+
+### **See Also**
+
+[**acos**(3)](#acos),
+[**sin**(3)](#sin),
+[**tan**(3)](#tan)
+
+### **Resources**
+
+- [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
+
+ _fortran-lang intrinsic descriptions_
+
+## cospi
+
+### **Name**
+
+**cospi**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Circular Cosine function
+
+### **Synopsis**
+```fortran
+    result = cospi(x)
+```
+```fortran
+     elemental real(kind=KIND) function cospi(x)
+
+      real(kind=KIND),intent(in) :: x
+```
+### **Characteristics**
+
+ - **x** is of type _real_.
+ - **KIND** may be any kind supported by the associated type of **x**.
+ - The returned value will be of the same type and kind as the argument
+   **x**.
+
+### **Description**
+
+  **cospi**(3) computes the circular cosine of an angle **x** given the
+  size of the angle in half-revolutions.
+
+  The cosine of a _real_ value is the ratio of the adjacent side to the
+  hypotenuse of a right-angled triangle.
+
+  **cospi(x)** is approximately equal to **cos(x\*PI)**.
+
+### **Options**
+
+- **x**
+  : The angle in half-revolutions to compute the cosine of.
+
+### **Result**
+
+  The return value is the approximate value of the cosine of **x**.
+
+  The return value lies in the range
+  **-1 \<= cospi(x) \<= 1** .
+
+### **Examples**
+
+  Example: **cospi(1.0)** has the value -1.0 (approximately).
+
+Sample program:
+```fortran
+program demo_cos
+implicit none
+character(len=*),parameter :: g2='(a,t21,*(g0,1x))'
+   write(*,g2) 'Basics:'
+   write(*,g2) 'COSpi(0)=',      cospi(0.0d0)
+   write(*,g2) 'COSpi(1)=',      cospi(1.0d0)
+   write(*,g2) 'COSpi(1/2)=',    cospi(1.0d0/2.0d0)
+   write(*,g2) 'COSpi(2)=',      cospi(2.0d0)
+   write(*,g2) 'COSpi(-2)=',     cospi(-2.0d0)
+   write(*,g2) 'COSpi(-2000)=',  cospi(-2000.0d0)
+   write(*,g2) 'COSpi(3000)=',   cospi(3000.0d0)
+   write(*,g2) 'Elemental:'
+   write(*,g2) 'COSpi([0,1/4,-1/4])=',COSpi([0.0,0.25,-0.25])
+end program demo_cos
+```
+Results:
+```text
+ > Basics:
+ > COSpi(0)=           1.0000000000000000
+ > COSpi(1)=           -1.0000000000000000
+ > COSpi(1/2)=         0.61232339957367660E-16
+ > COSpi(2)=           1.0000000000000000
+ > COSpi(-2)=          1.0000000000000000
+ > COSpi(-2000)=       1.0000000000000000
+ > COSpi(3000)=        1.0000000000000000
+ > Elemental:
+ > COSpi([0,1/4,-1/4])=1.00000000 0.707106769 0.707106769
+```
+### **Standard**
+
+Fortran 2023
 
 ### **See Also**
 
@@ -7066,7 +8169,7 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
- - **vector_a**, **vector_b**  may be any numeric or logical type array
+ - **vector_a**, **vector_b** may be any numeric or logical type array
    of rank one of the same size
  - the two vectors need not be of the same kind, but both must be logical
    or numeric for any given call.
@@ -7475,7 +8578,7 @@ value
 ```
 this has the same result as a negative circular shift
 ```fortran
-     ishftc( i,   -shift ).
+     ishftc( i,  -shift ).
 ```
 ### **Options**
 
@@ -7702,7 +8805,7 @@ Fortran 95
 ```fortran
      real(kind=kind(x)) function epsilon(x)
 
-      real(kind=kind(x),intent(in)   :: x(..)
+      real(kind=kind(x),intent(in) :: x(..)
 ```
 ### **Characteristics**
 
@@ -7716,7 +8819,7 @@ It is the nearly negligible number relative to **1**
 such that **1+ little_number** is not equal to **1**; or more
 precisely
 ```fortran
-   real( 1.0, kind(x)) + epsilon(x) /=  real( 1.0, kind(x))
+   real( 1.0, kind(x)) + epsilon(x) /= real( 1.0, kind(x))
 ```
 It may be thought of as the distance from 1.0 to the next largest
 floating point number.
@@ -8034,7 +9137,6 @@ range **-1** \<= **erf**(x) \<= 1 .
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_erf
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
@@ -8397,7 +9499,7 @@ FORTRAN 77
       real(kind=**),intent(in) :: x
 ```
 ### **Characteristics**
- - **x**  shall be of type _real_ of any valid kind
+ - **x** shall be of type _real_ of any valid kind
  - the result is a default _integer_ type
 
 ### **Description**
@@ -8648,7 +9750,6 @@ Results:
 identified by MASK along dimension DIM matching a target value
 
 ### **Synopsis**
-
 ```fortran
     result = findloc (array, value, dim [,mask] [,kind] [,back]) |
              findloc (array, value [,mask] [,kind] [,back])
@@ -9019,7 +10120,7 @@ real :: y = -63.59
    print *,      [2.0,2.0-epsilon(0.0),2.0-2*epsilon(0.0)]
    print *,floor([2.0,2.0-epsilon(0.0),2.0-2*epsilon(0.0)])
 
-   ! A=Nan, Infinity or  <huge(0_KIND)-1 < A > huge(0_KIND) is undefined
+   ! A=Nan, Infinity or huge(0_KIND)-1 < A > huge(0_KIND) is undefined
 end program demo_floor
 ```
 Results:
@@ -10196,7 +11297,7 @@ Fortran 2008
   : one of the pair of values to compare the bits of
 
 If either **i** or **j** is a BOZ-literal-constant, it is first converted
-as if by the intrinsic function **int**(3)  to type _integer_ with the
+as if by the intrinsic function **int**(3) to type _integer_ with the
 kind type parameter of the other.
 
 ### **Result**
@@ -10237,7 +11338,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 95
+Fortran 2023
 
 ### **See Also**
 
@@ -11248,7 +12349,7 @@ FORTRAN 77
   : one of the pair of values to compare the bits of
 
 If either **i** or **j** is a BOZ-literal-constant, it is first converted
-as if by the intrinsic function **int**(3)  to type _integer_ with the
+as if by the intrinsic function **int**(3) to type _integer_ with the
 kind type parameter of the other.
 
 ### **Result**
@@ -11413,8 +12514,8 @@ Fortran 2008
 ### **Characteristics**
 
 - a kind designated as ** may be any supported kind for the type
-- **array** may be of any type. It shall be an array or assumed-rank. If it is a pointer it
-  shall be associated.
+- **array** may be of any type. It shall be an array or assumed-rank. If
+  it is a pointer it shall be associated.
 - the result is a default logical scalar
 
 ### **Description**
@@ -11718,7 +12819,7 @@ Fortran 95
 
   1. If **shift** is positive, the shift is to the left
   2. if **shift** is negative, the shift is to the right
-  3.  if **shift** is zero, no shift is performed.
+  3. if **shift** is zero, no shift is performed.
 
   Bits shifted out from the left or from the right, as appropriate,
   are lost. Zeros are shifted in from the opposite end.
@@ -11795,7 +12896,7 @@ The function is equivalent to comparing the variable with the
 
 ### **Result**
 
-returns  _.true._ if and only if**i** has the value
+returns _.true._ if and only if**i** has the value
 which indicates an end of file condition for **iostat=** specifiers, and is
 _.false._ otherwise.
 
@@ -11993,16 +13094,16 @@ Fortran 95
 
 ### **See also**
 
-- [**allocated**(3)](#allocated) -  Status of an allocatable entity
-- [**is_contiguous**(3)](#is_contiguous) -  test if object is contiguous
-- [**lbound**(3)](#lbound)    -  Lower dimension bounds of an array
-- [**rank**(3)](#rank)      -  Rank of a data object
-- [**shape**(3)](#shape)     -  Determine the shape of an array
-- [**size**(3)](#size)      -  Determine the size of an array
-- [**ubound**(3)](#ubound)    -  Upper dimension bounds of an array
-- [**bit_size**(3)](#bit_size)  -  Bit size inquiry function
-- [**storage_size**(3)](#storage_size) -  Storage size in bits
-- [**kind**(3)](#kind)      -  Kind of an entity
+- [**allocated**(3)](#allocated) - Status of an allocatable entity
+- [**is_contiguous**(3)](#is_contiguous) - test if object is contiguous
+- [**lbound**(3)](#lbound) - Lower dimension bounds of an array
+- [**rank**(3)](#rank) - Rank of a data object
+- [**shape**(3)](#shape) - Determine the shape of an array
+- [**size**(3)](#size) - Determine the size of an array
+- [**ubound**(3)](#ubound) - Upper dimension bounds of an array
+- [**bit_size**(3)](#bit_size) - Bit size inquiry function
+- [**storage_size**(3)](#storage_size) - Storage size in bits
+- [**kind**(3)](#kind) - Kind of an entity
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -12148,18 +13249,18 @@ Fortran 95 , with KIND argument - Fortran 2003
 
 #### Array inquiry:
 
-- [**size**(3)](#size) -  Determine the size of an array
-- [**rank**(3)](#rank) -  Rank of a data object
-- [**shape**(3)](#shape) -  Determine the shape of an array
-- [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
+- [**size**(3)](#size) - Determine the size of an array
+- [**rank**(3)](#rank) - Rank of a data object
+- [**shape**(3)](#shape) - Determine the shape of an array
+- [**ubound**(3)](#ubound) - Upper dimension bounds of an array
 
 [**co\_ubound**(3)](#ucobound),
 [**co\_lbound**(3)](lcobound)
 
 #### State Inquiry:
 
-- [**allocated**(3)](#allocated) -  Status of an allocatable entity
-- [**is_contiguous**(3)](#is_contiguous) -  Test if object is contiguous
+- [**allocated**(3)](#allocated) - Status of an allocatable entity
+- [**is_contiguous**(3)](#is_contiguous) - Test if object is contiguous
 
 #### Kind Inquiry:
 
@@ -12168,7 +13269,7 @@ Fortran 95 , with KIND argument - Fortran 2003
 #### Bit Inquiry:
 
 - [**storage_size**(3)](#storage_size) - Storage size in bits
-- [**bit_size**(3)](#bit_size) -  Bit size inquiry function
+- [**bit_size**(3)](#bit_size) - Bit size inquiry function
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
@@ -12258,7 +13359,7 @@ Fortran 2008
   input value. If all the bits of **i** are zero, the result value is
   **bit_size(i)**.
 
-  The result  may also be thought of as **bit_size(i)-1-k** where **k**
+  The result may also be thought of as **bit_size(i)-1-k** where **k**
   is the position of the leftmost 1 bit in the input **i**. Positions
   are from 0 to bit-size(), with 0 at the right-most bit.
 
@@ -13895,11 +14996,11 @@ Fortran 95
 ```fortran
      elemental integer function maxexponent(x)
 
-      real(kind=**),intent(in)   :: x
+      real(kind=**),intent(in) :: x
 ```
 ### **Characteristics**
 
- - **x**  is a _real_ scalar or array of any _real_ kind
+ - **x** is a _real_ scalar or array of any _real_ kind
  - the result is a default _integer_ scalar
 
 ### **Description**
@@ -14102,7 +15203,6 @@ Fortran 95
       TYPE(kind=KIND,intent(in),optional :: a1
       TYPE(kind=KIND,intent(in),optional :: a2
       TYPE(kind=KIND,intent(in),optional :: a3
-                :
                 :
                 :
 ```
@@ -14664,7 +15764,7 @@ Fortran 95
 ```
 ### **Characteristics**
 
- - **x**  is a _real_ scalar or array of any _real_ kind
+ - **x** is a _real_ scalar or array of any _real_ kind
  - the result is a default _integer_ scalar
 
 ### **Description**
@@ -15086,7 +16186,7 @@ Fortran 95
 ### **Characteristics**
 
   - The result and arguments are all of the same type and kind.
-  - The type  may be any kind of _real_ or _integer_.
+  - The type may be any kind of _real_ or _integer_.
 
 ### **Description**
 
@@ -16565,7 +17665,7 @@ integer(kind=int8) :: i8, j8
     do i=127,130
        i8=i
        j8=-i
-       ! OUT_OF_RANGE(3f) can let you check if the value will fit
+       ! OUT_OF_RANGE(3) can let you check if the value will fit
        write(*,*)i8,j8,' might have expected',i,-i, &
         & out_of_range( i,i8), &
         & out_of_range(-i,i8)
@@ -16867,7 +17967,7 @@ Results:
 
 Note that on most machines the first bit is the sign bit, and a zero is
 used for positive values; but that this is system-dependent. These are
-typical values, where the huge(3f) function has set all but the first
+typical values, where the huge(3) function has set all but the first
 bit to 1.
 ```text
  >                                                         1111111 7
@@ -17205,7 +18305,7 @@ integer :: x_local
    else
      ! if not, you cannot define or reference x except to
      ! pass it as an optional parameter to another procedure
-     ! or in a call to present(3f)
+     ! or in a call to present(3)
      x_local=0
    endif
    !
@@ -17213,7 +18313,7 @@ integer :: x_local
    !
    ! passing the argument on to other procedures
    ! so something like this is a bad idea because x is used
-   ! as the first argument to merge(3f) when it might not be
+   ! as the first argument to merge(3) when it might not be
    ! present
    ! xlocal=merge(x,0,present(x)) ! NO!!
    !
@@ -17933,7 +19033,7 @@ Fortran 95
 ```
 ### **Characteristics**
 
- -  **a** can be of any type **TYPE** and rank.
+ - **a** can be of any type **TYPE** and rank.
  - a kind designated as ** may be any supported kind for the type
 
 ### **Description**
@@ -18214,7 +19314,6 @@ logical expressions:
 **reduce**(3) - \[TRANSFORMATIONAL\] General reduction of an array
 
 ### **Synopsis**
-
 There are two forms to this function:
 ```fortran
    result = reduce(array, operation [,mask]  [,identity]  [,ordered] )
@@ -19687,15 +20786,15 @@ Fortran 95 ; with KIND argument Fortran 2003
 
 #### Array inquiry:
 
-- [**size**(3)](#size) -  Determine the size of an array
-- [**rank**(3)](#rank) -  Rank of a data object
-- [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
-- [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
+- [**size**(3)](#size) - Determine the size of an array
+- [**rank**(3)](#rank) - Rank of a data object
+- [**ubound**(3)](#ubound) - Upper dimension bounds of an array
+- [**lbound**(3)](#lbound) - Lower dimension bounds of an array
 
 #### State Inquiry:
 
-- [**allocated**(3)](#allocated) -  Status of an allocatable entity
-- [**is_contiguous**(3)](#is_contiguous) -  Test if object is contiguous
+- [**allocated**(3)](#allocated) - Status of an allocatable entity
+- [**is_contiguous**(3)](#is_contiguous) - Test if object is contiguous
 
 #### Kind Inquiry:
 
@@ -19751,7 +20850,7 @@ Fortran 95 ; with KIND argument Fortran 2003
 ### **Result**
 
   The result has the value obtained by shifting the bits of **i** to
-  the right **shift**  bits and replicating the leftmost bit of **i**
+  the right **shift** bits and replicating the leftmost bit of **i**
   in the left **shift** bits (Note the leftmost bit in "two's complement"
   representation is the sign bit).
 
@@ -20130,7 +21229,7 @@ Fortran 2008
 
   For processors that distinguish between positive and negative zeros
   _sign()_ may be used to distinguish between _real_ values 0.0 and
-  -0.0. SIGN (1.0, -0.0) will return  -1.0 when a negative zero is
+  -0.0. SIGN (1.0, -0.0) will return -1.0 when a negative zero is
   distinguishable.
 
 ### **Options**
@@ -20195,6 +21294,152 @@ FORTRAN 77
 [**abs**(3)](#abs)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
+## sind
+
+### **Name**
+
+**sind**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Degree sine function
+
+### **Synopsis**
+```fortran
+    result = sind(x)
+```
+```fortran
+     elemental real(kind=KIND) function sind(x)
+
+      real(kind=KIND) :: x
+```
+### **Characteristics**
+
+  - **x** may be any _real_ type
+  - **KIND** may be any kind supported by the associated real type of **x**.
+  - The returned value will be of the same type and kind as the argument
+    **x**.
+
+### **Description**
+
+  **sind**(3) computes the sine of an angle given the size of the angle
+  in degrees.
+
+  The sine of an angle in a right-angled triangle is the ratio of the
+  length of the side opposite the given angle divided by the length of
+  the hypotenuse.
+
+### **Options**
+
+- **x**
+  : The angle in degrees to compute the sine of.
+
+### **Result**
+
+  The return value contains the processor-dependent approximation of
+  the sine of **x**, which is regarded as a value in degrees.
+
+### **Examples**
+
+sind(180.0) has the value 0.0 (approximately).
+
+Sample program:
+
+```fortran
+program sample_sind
+implicit none
+   write(*,*)'sind(0.0)=',sind(0.0)
+   write(*,*)'sind(45.0)=',sind(45.0)
+   write(*,*)'sind(90.0)=',sind(90.0)
+   write(*,*)'sind(180.0)=',sind(180.0)
+   write(*,*)'sind(270.0)=',sind(270.0)
+   write(*,*)'sind(720.0)=',sind(720.0)
+   write(*,*)'sind(-720.0d0)=',sind(-720.0d0)
+end program sample_sind
+```
+### Extended Example
+
+#### Haversine Formula
+
+  From the article on "Haversine formula" in Wikipedia:
+```text
+   The haversine formula is an equation important in navigation,
+   giving great-circle distances between two points on a sphere from
+   their longitudes and latitudes.
+```
+  So to show the great-circle distance between the Nashville International
+  Airport (BNA) in TN, USA, and the Los Angeles International Airport
+  (LAX) in CA, USA you would start with their latitude and longitude,
+  commonly given as
+```text
+  BNA: N 36 degrees 7.2',   W 86 degrees 40.2'
+  LAX: N 33 degrees 56.4',  W 118 degrees 24.0'
+```
+  which converted to floating-point values in degrees is:
+
+     - BNA
+       latitude=36.12, longitude=-86.67
+
+     - LAX
+       latitude=33.94, longitude=-118.40
+
+  And then use the haversine formula to roughly calculate the distance
+  along the surface of the Earth between the locations:
+
+Sample program:
+```fortran
+program demo_sin
+implicit none
+real :: d
+    d = haversine(36.12,-86.67, 33.94,-118.40) ! BNA to LAX
+    print '(A,F9.4,A)', 'distance: ',d,' km'
+contains
+function haversine(latA,lonA,latB,lonB) result (dist)
+!
+! calculate great circle distance in kilometers
+! given latitude and longitude in degrees
+!
+real,intent(in) :: latA,lonA,latB,lonB
+real :: a,c,dist,delta_lat,delta_lon,lat1,lat2
+real,parameter :: radius = 6371 ! mean earth radius in kilometers,
+! recommended by the International Union of Geodesy and Geophysics
+
+   delta_lat = latB-latA
+   delta_lon = lonB-lonA
+   lat1 = latA
+   lat2 = latB
+   a = (sind(delta_lat/2))**2 + &
+          & cosd(lat1)*cosd(lat2)*(sind(delta_lon/2))**2
+   c = 2*asin(sqrt(a))
+   dist = radius*c
+end function haversine
+end program demo_sin
+```
+Results:
+```text
+ > distance: 2886.4446 km
+```
+### **Standard**
+
+Fortran 2023
+
+### **See Also**
+
+[**asin**(3)](#asin),
+[**cos**(3)](#cos),
+[**tan**(3)](#tan),
+[**acosh**(3)](#acosh),
+[**acos**(3)](#acos),
+[**asinh**(3)](#asinh),
+[**atan2**(3)](#atan2),
+[**atanh**(3)](#atanh),
+[**acosh**(3)](#acosh),
+[**asinh**(3)](#asinh),
+[**atanh**(3)](#atanh)
+
+### **Resources**
+
+- [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
+
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
 
 ## sinh
 
@@ -20445,6 +21690,103 @@ FORTRAN 77
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
+## sinpi
+
+### **Name**
+
+**sinpi**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Circular sine function
+
+### **Synopsis**
+```fortran
+    result = sinpi(x)
+```
+```fortran
+     elemental real(kind=KIND) function sinpi(x)
+
+      real(kind=KIND) :: x
+```
+### **Characteristics**
+
+  - **x** may be any _real_
+  - **KIND** may be any kind supported by the associated real type of **x**.
+  - The returned value will be of the same type and kind as the argument
+    **x**.
+
+### **Description**
+
+  **sinpi**(3) computes the circular sine of an angle given the size of the angle
+  in half-revolutions.
+
+  **sinpi(X)** is approximately equal to **sin(x\*PI)**.
+
+  The sine of an angle in a right-angled triangle is the ratio of the
+  length of the side opposite the given angle divided by the length of
+  the hypotenuse.
+
+### **Options**
+
+- **x**
+  : The angle in half-revolutions to compute the sine of.
+
+### **Result**
+
+  The return value contains the processor-dependent approximation of
+  the sine of **x**.
+
+### **Examples**
+
+Example. **sinpi(1.0)** has the value 0.0 (approximately).
+
+Sample program:
+
+```fortran
+program demo_sinpi
+implicit none
+real    :: x
+integer :: i
+real,parameter :: PI=acos(-1.0)
+   do i=0,8
+      x=i*0.25
+      write(*,*)'x=',x,' sinpi(x)=',sinpi(x)
+   enddo
+end program demo_sinpi
+```
+Results:
+```text
+ > x=   0.00000000  sinpi(x)=   0.00000000
+ > x=  0.250000000  sinpi(x)=   0.707106769
+ > x=  0.500000000  sinpi(x)=   1.00000000
+ > x=  0.750000000  sinpi(x)=   0.707106769
+ > x=   1.00000000  sinpi(x)=  -8.74227766E-08
+ > x=   1.25000000  sinpi(x)=  -0.707106888
+ > x=   1.50000000  sinpi(x)=  -1.00000000
+ > x=   1.75000000  sinpi(x)=  -0.707106531
+ > x=   2.00000000  sinpi(x)=   1.74845553E-07
+```
+### **Standard**
+
+fortran 2023
+
+### **See Also**
+
+ - [**acos**(3)](#acos), [**acosd**(3)](#acosd), [**acospi**(3)](#acospi),
+ - [**asin**(3)](#asin), [**asind**(3)](#asind),
+ - [**atan2**(3)](#atan2), [**atan2d**(3)](#atan2d), [**atan2pi**(3)](#atan2pi),
+ - [**cos**(3)](#cos), [**cosd**(3)](#cosd), [**cospi**(3)](#cospi),
+ - [**tan**(3)](#tan), [**tand**(3)](#tand), [**tanpi**(3)](#tanpi),
+ - [**acosh**(3)](#acosh),
+ - [**acosh**(3)](#acosh),
+ - [**asinh**(3)](#asinh),
+ - [**asinh**(3)](#asinh),
+ - [**atanh**(3)](#atanh)
+ - [**atanh**(3)](#atanh),
+
+### **Resources**
+
+- [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
+
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
 ## size
 
 ### **Name**
@@ -20588,16 +21930,16 @@ Fortran 95 , with **kind** argument - Fortran 2003
 
 #### Array inquiry:
 
-- [**size**(3)](#size) -  Determine the size of an array
-- [**rank**(3)](#rank) -  Rank of a data object
-- [**shape**(3)](#shape) -  Determine the shape of an array
-- [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
-- [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
+- [**size**(3)](#size) - Determine the size of an array
+- [**rank**(3)](#rank) - Rank of a data object
+- [**shape**(3)](#shape) - Determine the shape of an array
+- [**ubound**(3)](#ubound) - Upper dimension bounds of an array
+- [**lbound**(3)](#lbound) - Lower dimension bounds of an array
 
 #### State Inquiry:
 
-- [**allocated**(3)](#allocated) -  Status of an allocatable entity
-- [**is_contiguous**(3)](#is_contiguous) -  Test if object is contiguous
+- [**allocated**(3)](#allocated) - Status of an allocatable entity
+- [**is_contiguous**(3)](#is_contiguous) - Test if object is contiguous
 
 #### Kind Inquiry:
 
@@ -20606,7 +21948,7 @@ Fortran 95 , with **kind** argument - Fortran 2003
 #### Bit Inquiry:
 
 - [**storage_size**(3)](#storage_size) - Storage size in bits
-- [**bit_size**(3)](#bit_size) -  Bit size inquiry function
+- [**bit_size**(3)](#bit_size) - Bit size inquiry function
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
@@ -20928,7 +22270,7 @@ need an illustration of what happens with higher dimension array
   In mathematics, a square root of a radicand **x** is a number **y**
   such that **y\*y = x**.
 
-  Every nonnegative radicand  **x** has two square roots of the same unique
+  Every nonnegative radicand **x** has two square roots of the same unique
   magnitude, one positive and one negative. The nonnegative square root
   is called the principal square root.
 
@@ -21483,6 +22825,71 @@ Fortran 95
 
  _fortran-lang intrinsic descriptions_
 
+## tand
+
+### **Name**
+
+**tand**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Degree Tangent function
+
+### **Synopsis**
+```fortran
+result = tand(x)
+```
+```fortran
+ elemental real(kind=KIND) function tand(x)
+
+  real(kind=KIND),intent(in) :: x
+```
+### **Characteristics**
+
+  - the **TYPE** of **x** is _real_ of any supported kind
+  - The returned value will be of the same type and kind as the argument
+    **x**.
+
+### **Description**
+
+**tand**(3) computes the degree tangent of **x**.
+
+### **Options**
+
+- **x**
+  : The angle in degrees to compute the tangent of.
+
+### **Result**
+
+  The return value is a processor-dependent approximation to the tangent
+  of the value **x** where **x** is regarded as a value in degrees.
+
+### **Examples**
+
+tand(180.0) has the value 0.0 (approximately).
+
+Sample program:
+```fortran
+program demo_tand
+use, intrinsic :: iso_fortran_env, only : real_kinds, &
+& real32, real64, real128
+implicit none
+real(kind=real64) :: x = 0.5_real64
+     write(*,*)x, tand(x)
+end program demo_tand
+```
+### **Standard**
+
+Fortran 2023
+
+### **See Also**
+
+[**atand**(3)](#atand),
+[**atan**(3)](#atan),
+[**atan2d**(3)](#atan2d),
+[**atan2**(3)](#atan2),
+[**cosd**(3)](#cosd),
+[**sind**(3)](#sind)
+
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
+
 ## tanh
 
 ### **Name**
@@ -21616,6 +23023,88 @@ FORTRAN 77 . For a complex argument, Fortran 2008 .
 [**atan2**(3)](#atan2),
 [**cos**(3)](#cos),
 [**sin**(3)](#sin)
+
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
+## tanpi
+
+### **Name**
+
+**tanpi**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Circular tangent function
+
+### **Synopsis**
+```fortran
+result = tanpi(x)
+```
+```fortran
+ elemental real(kind=KIND) function tanpi(x)
+
+  real(kind=KIND),intent(in) :: x
+```
+### **Characteristics**
+
+  - the **TYPE** of **x** is _real_ any supported kind
+  - The returned value will be of the same type and kind as the argument
+    **x**.
+
+### **Description**
+
+   **tanpi**(3) computes the Circular Tangent of **x** in
+   half-revolutions.
+
+   The result has a value equal to a processor-dependent approximation
+   to the tangent of X, which is regarded as a value in half-revolutions;
+   thus, TANPI (X) is approximately equal to tan(X*PI).
+
+### **Options**
+
+- **x**
+  : The angle in half-revolutions to compute the tangent of.
+
+### **Result**
+
+  The return value is the tangent of the value **x**.
+
+### **Examples**
+
+Example: TAND(1.0) has the value 0.0 (approximately).
+
+Sample program:
+```fortran
+program demo_tanpi
+use, intrinsic :: iso_fortran_env, only : real64
+implicit none
+integer :: i
+real(kind=real64) :: x
+   do i=0,8
+      x=0.250000000d0*i
+      write(*,101)x, tanpi(x), tanpi(x)*180.0d0
+   enddo
+101 format(g0,t23,g0,t50,g0)
+end program demo_tanpi
+```
+Results:
+```text
+ > .000000000000000    0.000000000000000          0.000000000000000
+ > .2500000000000000   0.9999999999999999       180.0000000000000
+ > .5000000000000000   0.1633123935319537E+17     0.2939623083575166E+19
+ > .7500000000000000  -1.000000000000000       -180.0000000000000
+ > 1.000000000000000  -0.1224646799147353E-15    -0.2204364238465236E-13
+ > 1.250000000000000   0.9999999999999997       179.9999999999999
+ > 1.500000000000000  5443746451065123.           0.9798743611917221E+18
+ > 1.750000000000000  -1.000000000000000       -180.0000000000001
+ > 2.000000000000000  -0.2449293598294706E-15    -0.4408728476930472E-13
+```
+### **Standard**
+
+Fortran 2023
+
+### **See Also**
+
+[**atand**(3)](#atand),
+[**atand**(3)](#atand),
+[**atan2pi**(3)](#atan2pi),
+[**atan2d**(3)](#atan2d)
 
  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -22311,7 +23800,7 @@ the relevant dimension.
   NOTE1
   If ARRAY is assumed-rank and has rank zero, DIM cannot be present
   since it cannot satisfy the requirement
-  **1 <=  DIM <= 0**.
+  **1 <= DIM <= 0**.
 
 ### **Examples**
 
@@ -22404,7 +23893,7 @@ Fortran 95 , with KIND argument Fortran 2003
 #### Bit Inquiry:
 
 - [**storage_size**(3)](#storage_size) - Storage size in bits
-- [**bit_size**(3)](#bit_size) -  Bit size inquiry function
+- [**bit_size**(3)](#bit_size) - Bit size inquiry function
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 - [**lbound**(3)](#lbound),
 
@@ -22740,7 +24229,7 @@ integer :: i
    write(*,*)'isprint?',verify(string,prnt) == 0
 
    print *,'VERIFY(3) is very powerful using expressions as masks'
-   ! verify(3f) is often used in a logical expression
+   ! verify(3) is often used in a logical expression
    string=" This is NOT all UPPERCASE "
    write(*,*)'all uppercase/spaces?',verify(string, blank//upp) == 0
    string=" This IS all uppercase "
@@ -22826,7 +24315,7 @@ character(len=*),parameter :: ints(*)=[character(len=10) :: &
  ' ']
    ! show the strings to test
    write(*,'("|",*(g0,"|"))') ints
-   ! show if strings pass or fail the test done by isint(3f)
+   ! show if strings pass or fail the test done by isint(3)
    write(*,'("|",*(1x,l1,8x,"|"))') isint(ints)
 
 contains

@@ -17,7 +17,7 @@
 ### **Characteristics**
 
   - The result and arguments are all of the same type and kind.
-  - The type  may be any kind of _real_ or _integer_.
+  - The type may be any kind of _real_ or _integer_.
 
 ### **Description**
 

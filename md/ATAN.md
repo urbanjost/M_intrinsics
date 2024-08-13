@@ -76,7 +76,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 77  for a complex argument; and for two
+FORTRAN 77 for a complex argument; and for two
 arguments Fortran 2008
 
 ### **See Also**

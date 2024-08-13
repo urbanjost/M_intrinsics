@@ -115,7 +115,7 @@ integer :: i
    write(*,*)'isprint?',verify(string,prnt) == 0
 
    print *,'VERIFY(3) is very powerful using expressions as masks'
-   ! verify(3f) is often used in a logical expression
+   ! verify(3) is often used in a logical expression
    string=" This is NOT all UPPERCASE "
    write(*,*)'all uppercase/spaces?',verify(string, blank//upp) == 0
    string=" This IS all uppercase "
@@ -201,7 +201,7 @@ character(len=*),parameter :: ints(*)=[character(len=10) :: &
  ' ']
    ! show the strings to test
    write(*,'("|",*(g0,"|"))') ints
-   ! show if strings pass or fail the test done by isint(3f)
+   ! show if strings pass or fail the test done by isint(3)
    write(*,'("|",*(1x,l1,8x,"|"))') isint(ints)
 
 contains

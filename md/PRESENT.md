@@ -72,7 +72,7 @@ integer :: x_local
    else
      ! if not, you cannot define or reference x except to
      ! pass it as an optional parameter to another procedure
-     ! or in a call to present(3f)
+     ! or in a call to present(3)
      x_local=0
    endif
    !
@@ -80,7 +80,7 @@ integer :: x_local
    !
    ! passing the argument on to other procedures
    ! so something like this is a bad idea because x is used
-   ! as the first argument to merge(3f) when it might not be
+   ! as the first argument to merge(3) when it might not be
    ! present
    ! xlocal=merge(x,0,present(x)) ! NO!!
    !

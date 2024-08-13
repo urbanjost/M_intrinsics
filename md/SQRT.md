@@ -29,7 +29,7 @@
   In mathematics, a square root of a radicand **x** is a number **y**
   such that **y\*y = x**.
 
-  Every nonnegative radicand  **x** has two square roots of the same unique
+  Every nonnegative radicand **x** has two square roots of the same unique
   magnitude, one positive and one negative. The nonnegative square root
   is called the principal square root.
 

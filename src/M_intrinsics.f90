@@ -265,7 +265,7 @@ textblock=[character(len=256) :: &
 '      implicit none', &
 '      integer,parameter :: dp=kind(0.0d0)', &
 '', &
-'      ! some values to use with ABS(3f)', &
+'      ! some values to use with ABS(3)', &
 '      integer          :: i = -1', &
 '      real             :: x = -1.0', &
 '      complex          :: z = (-3.0,-4.0)', &
@@ -293,7 +293,7 @@ textblock=[character(len=256) :: &
 '        print gen, ''distance of ('', z, '') from zero is'', abs( z )', &
 '', &
 '      call DUSTY_CORNERS_1("beware of abs(-huge(0)-1)")', &
-'      call DUSTY_CORNERS_2("beware of losing precision using CMPLX(3f)")', &
+'      call DUSTY_CORNERS_2("beware of losing precision using CMPLX(3)")', &
 '      call DUSTY_CORNERS_3("beware of overflow of complex values")', &
 '      call DUSTY_CORNERS_4("custom meaning for absolute value of COMPLEX")', &
 '', &
@@ -323,10 +323,10 @@ textblock=[character(len=256) :: &
 '        ! dusty corner: "kind=dp" is required or the value returned by', &
 '        ! CMPLX() is a default real instead of double precision.', &
 '', &
-'        ! Working with complex values you often encounter the CMPLX(3f) function.', &
-'        ! CMPLX(3f) defaults to returning a default REAL regardless of input type.', &
-'        ! Not really a direct problem with ABS(2f) per-se, but a common error', &
-'        ! when working with doubleprecision complex values', &
+'        ! Working with complex values you often encounter the CMPLX(3)', &
+'        ! function. CMPLX(3) defaults to returning a default REAL regardless', &
+'        ! of input type. Not really a direct problem with ABS(2f) per-se,', &
+'        ! but a common error when working with doubleprecision complex values', &
 '', &
 '        print gen,  message', &
 '        print gen, ''real result versus doubleprecision result'', &', &
@@ -363,17 +363,17 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       >  integer         In: -1                           Out: 1', &
-'       >  real            In: -1.00000000                  Out: 1.00000000', &
-'       >  doubleprecision  In: -45.780000000000001         Out: 45.780000000000001', &
-'       >  complex         In: (-3.00000000,-4.00000000)    Out: 5.00000000', &
+'       >  integer         In: -1                        Out: 1', &
+'       >  real            In: -1.00000000               Out: 1.00000000', &
+'       >  doubleprecision  In: -45.780000000000001      Out: 45.780000000000001', &
+'       >  complex         In: (-3.00000000,-4.00000000) Out: 5.00000000', &
 '       > abs is elemental: 20 0 1 3 100', &
 '       > distance of ( -3.00000000 -4.00000000 ) from zero is 5.00000000', &
 '       > beware of abs(-huge(0)-1)', &
 '       > abs range test :  2147483647 2147483647', &
 '       > abs range test :  0.340282347E+39 0.340282347E+39', &
 '       > abs range test :  0.117549435E-37 0.117549435E-37', &
-'       > beware of losing precision using CMPLX(3f)', &
+'       > beware of losing precision using CMPLX(3)', &
 '       > real result versus doubleprecision result 50.0000000 50.000000000000000', &
 '       > beware of overflow of complex values', &
 '       > because the biggest default real is 0.340282347E+39', &
@@ -392,7 +392,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  abs(3fortran)', &
+'                               August 12, 2024                  abs(3fortran)', &
 '']
 
 shortname="abs"
@@ -498,7 +498,7 @@ textblock=[character(len=256) :: &
 '', &
 '      pure elemental function upper(str) result (string)', &
 '      !', &
-'      !$@(#) upper(3f): function to return a trimmed uppercase-only string', &
+'      !$@(#) upper(3): function to return a trimmed uppercase-only string', &
 '      !', &
 '      ! input string to convert to all uppercase', &
 '      character(*), intent(in)     :: str', &
@@ -568,7 +568,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                achar(3fortran)', &
+'                               August 12, 2024                achar(3fortran)', &
 '']
 
 shortname="achar"
@@ -668,7 +668,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 acos(3fortran)', &
+'                               August 12, 2024                 acos(3fortran)', &
 '']
 
 shortname="acos"
@@ -702,7 +702,7 @@ textblock=[character(len=256) :: &
 '  o  The returned value will be of the same type and kind as the argument.', &
 '', &
 'DESCRIPTION', &
-'  ACOSD(3) computes the arccosine of X in degrees(inverse of COSD(X)). For', &
+'  ACOSD(3) computes the arccosine of X in degrees (inverse of COSD(X)).  For', &
 '  example, ACOSD(-1.0) has the value 180.0 (approximately).', &
 '', &
 'OPTIONS', &
@@ -762,7 +762,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                acosd(3fortran)', &
+'                               August 12, 2024                acosd(3fortran)', &
 '']
 
 shortname="acosd"
@@ -843,7 +843,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                acosh(3fortran)', &
+'                               August 12, 2024                acosh(3fortran)', &
 '']
 
 shortname="acosh"
@@ -926,7 +926,7 @@ textblock=[character(len=256) :: &
 '  Results:', &
 '', &
 'STANDARD', &
-'  FORTRAN 2023', &
+'  Fortran 2023', &
 '', &
 'SEE ALSO', &
 '  o  arc cosine in radians: ACOS(3)', &
@@ -942,7 +942,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               acospi(3fortran)', &
+'                               August 12, 2024               acospi(3fortran)', &
 '']
 
 shortname="acospi"
@@ -1001,18 +1001,18 @@ textblock=[character(len=256) :: &
 '         write(*,''(a,"[",a,"]")'') ''adjusted: '',str', &
 '', &
 '         ! a fixed-length string can be printed', &
-'         ! trimmed using trim(3f) or len_trim(3f)', &
+'         ! trimmed using trim(3) or len_trim(3)', &
 '         write(*,''(a,"[",a,"]")'') ''trimmed:  '',trim(str)', &
 '         length=len_trim(str)', &
 '         write(*,''(a,"[",a,"]")'') ''substring:'',str(:length)', &
 '', &
 '         ! note an allocatable string stays the same length too', &
-'         ! and is not trimmed by just an adjustl(3f) call.', &
+'         ! and is not trimmed by just an adjustl(3) call.', &
 '         astr=''    allocatable string  ''', &
 '         write(*,''(a,"[",a,"]")'') ''original:'',astr', &
 '         astr = adjustl(astr)', &
 '         write(*,''(a,"[",a,"]")'') ''adjusted:'',astr', &
-'         ! trim(3f) can be used to change the length', &
+'         ! trim(3) can be used to change the length', &
 '         astr = trim(astr)', &
 '         write(*,''(a,"[",a,"]")'') ''trimmed: '',astr', &
 '', &
@@ -1039,7 +1039,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024              adjustl(3fortran)', &
+'                               August 12, 2024              adjustl(3fortran)', &
 '']
 
 shortname="adjustl"
@@ -1132,7 +1132,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024              adjustr(3fortran)', &
+'                               August 12, 2024              adjustr(3fortran)', &
 '']
 
 shortname="adjustr"
@@ -1247,7 +1247,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                aimag(3fortran)', &
+'                               August 12, 2024                aimag(3fortran)', &
 '']
 
 shortname="aimag"
@@ -1347,7 +1347,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 aint(3fortran)', &
+'                               August 12, 2024                 aint(3fortran)', &
 '']
 
 shortname="aint"
@@ -1467,7 +1467,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  all(3fortran)', &
+'                               August 12, 2024                  all(3fortran)', &
 '']
 
 shortname="all"
@@ -1574,7 +1574,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024            allocated(3fortran)', &
+'                               August 12, 2024            allocated(3fortran)', &
 '']
 
 shortname="allocated"
@@ -1700,7 +1700,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                anint(3fortran)', &
+'                               August 12, 2024                anint(3fortran)', &
 '']
 
 shortname="anint"
@@ -1866,7 +1866,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  any(3fortran)', &
+'                               August 12, 2024                  any(3fortran)', &
 '']
 
 shortname="any"
@@ -1988,14 +1988,146 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 asin(3fortran)', &
+'                               August 12, 2024                 asin(3fortran)', &
 '']
 
 shortname="asin"
 call process()
 
 
-case('16','asinh')
+case('16','asind')
+
+textblock=[character(len=256) :: &
+'', &
+'asind(3fortran)                                               asind(3fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  ASIND(3) - [MATHEMATICS:TRIGONOMETRIC] Arcsine function in degrees', &
+'', &
+'', &
+'SYNOPSIS', &
+'  result = asind(x)', &
+'', &
+'          elemental real(kind=KIND) function asind(x)', &
+'', &
+'           real(kind=KIND) :: x', &
+'', &
+'', &
+'CHARACTERISTICS', &
+'  o  KIND may be any kind supported by the real type.', &
+'', &
+'  o  The returned value will be of the same type and kind as the argument.', &
+'', &
+'DESCRIPTION', &
+'  ASIND(3) computes the arc sine of its argument X in degrees', &
+'', &
+'  The arcsine is the inverse function of the sine function. It is commonly', &
+'  used in trigonometry when trying to find the angle when the lengths of the', &
+'  hypotenuse and the opposite side of a right triangle are known.', &
+'', &
+'  Example: ASIND(1.0) has the value 90.0 (approximately).', &
+'', &
+'OPTIONS', &
+'  o  X : The value to compute the arc sine of : The type shall be real and a', &
+'     magnitude that is less than or : equal to one |X| <= 1. : It is expressed', &
+'     in degrees and lies in the range 90 <= asind(x) <= 90.', &
+'', &
+'RESULT', &
+'  The result has a value equal to a processor-dependent approximation to', &
+'  arcsin(x).', &
+'', &
+'  If X is real the result is real and it is expressed in radians and lies in', &
+'  the range', &
+'', &
+'             PI/2 <= asind (X) <= PI/2.', &
+'', &
+'  If the argument (and therefore the result) is imaginary the real part of the', &
+'  result is in radians and lies in the range', &
+'', &
+'         -PI/2 <= real(asind(x)) <= PI/2', &
+'', &
+'', &
+'EXAMPLES', &
+'  The arcsine will allow you to find the measure of a right angle when you', &
+'  know the ratio of the side opposite the angle to the hypotenuse.', &
+'', &
+'  So if you knew that a train track rose 1.25 vertical miles on a track that', &
+'  was 50 miles long, you could determine the average angle of incline of the', &
+'  track using the arcsine. Given', &
+'', &
+'       sin(theta) = 1.25 miles/50 miles (opposite/hypotenuse)', &
+'', &
+'  Sample program:', &
+'', &
+'      program demo_asind', &
+'      use, intrinsic :: iso_fortran_env, only : dp=>real64', &
+'      implicit none', &
+'      ! value to convert degrees to radians', &
+'      real(kind=dp),parameter :: R2D=180.0_dp/acos(-1.0_dp)', &
+'      real(kind=dp)          :: angle, rise, run', &
+'      character(len=*),parameter :: all=''(*(g0,1x))''', &
+'       ! given sine(theta) = 1.25 miles/50 miles (opposite/hypotenuse)', &
+'       ! then taking the arcsine of both sides of the equality yields', &
+'       ! theta = arcsine(1.25 miles/50 miles) ie. arcsine(opposite/hypotenuse)', &
+'       rise=1.250_dp', &
+'       run=50.00_dp', &
+'       angle = asind(rise/run)', &
+'       print all, ''angle of incline(degrees) = '', angle', &
+'       angle = angle/R2D', &
+'       print all, ''angle of incline(radians) = '', angle', &
+'', &
+'       print all, ''percent grade='',rise/run*100.0_dp', &
+'      contains', &
+'      subroutine sub1()', &
+'      ! notice the (incidently empty) type is defined below', &
+'      ! the implicit statement', &
+'      implicit type(nil) (a)', &
+'      type nil', &
+'      end type nil', &
+'      type(nil) :: anull', &
+'      end subroutine sub1', &
+'      end program demo_asind', &
+'', &
+'  Results:', &
+'', &
+'       > angle of incline(degrees) =  1.4325437375665075', &
+'       > angle of incline(radians) =  0.25002604899361135E-1', &
+'       > percent grade= 2.5000000000000000', &
+'', &
+'  The percentage grade is the slope, written as a percent. To calculate the', &
+'  slope you divide the rise by the run. In the example the rise is 1.25 mile', &
+'  over a run of 50 miles so the slope is 1.25/50 = 0.025.  Written as a', &
+'  percent this is 2.5 %.', &
+'', &
+'  For the US, two and 1/2 percent is generally thought of as the upper limit.', &
+'  This means a rise of 2.5 feet when going 100 feet forward. In the US this', &
+'  was the maximum grade on the first major US railroad, the Baltimore and', &
+'  Ohio. Note curves increase the frictional drag on a train reducing the', &
+'  allowable grade.', &
+'', &
+'STANDARD', &
+'  Fortran 2023', &
+'', &
+'SEE ALSO', &
+'  Inverse function: SIN(3)', &
+'', &
+'RESOURCES', &
+'  o  wikipedia: inverse trigonometric functions', &
+'', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                               August 12, 2024                asind(3fortran)', &
+'']
+
+shortname="asind"
+call process()
+
+
+case('17','asinh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2070,14 +2202,152 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                asinh(3fortran)', &
+'                               August 12, 2024                asinh(3fortran)', &
 '']
 
 shortname="asinh"
 call process()
 
 
-case('17','associated')
+case('18','asinpi')
+
+textblock=[character(len=256) :: &
+'', &
+'asinpi(3fortran)                                             asinpi(3fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  ASINPI(3) - [MATHEMATICS:TRIGONOMETRIC] Circular arc sine function', &
+'', &
+'', &
+'SYNOPSIS', &
+'  result = asinpi(x)', &
+'', &
+'          elemental real(kind=KIND) function asinpi(x)', &
+'', &
+'           real(kind=KIND),intent(in) :: x', &
+'', &
+'', &
+'CHARACTERISTICS', &
+'  o  KIND may be any real kind', &
+'', &
+'  o  The returned value will be of the same type and kind as the argument.', &
+'', &
+'DESCRIPTION', &
+'  ASINPI(3) computes the arcsine of its argument X.', &
+'', &
+'  The arcsine is the inverse function of the sine function. It is commonly', &
+'  used in trigonometry when trying to find the angle when the lengths of the', &
+'  hypotenuse and the opposite side of a right triangle are known.', &
+'', &
+'  The returned value is in half-revolutions (ie. in multiples of PI).', &
+'', &
+'  Example: ASINPI(1:0) has the value 0:5 (approximately).', &
+'', &
+'OPTIONS', &
+'  o  X : The value to compute the arcsine of; where |X| <= 1. : The type shall', &
+'     be real', &
+'', &
+'RESULT', &
+'  The result has a value equal to a processor-dependent approximation to the', &
+'  arc sine of X. The result is real and it is expressed in half-revolutions', &
+'  and lies in the range', &
+'', &
+'             -1 <= asinpi (X) <= 1', &
+'', &
+'  and is the same kind as the input.', &
+'', &
+'EXAMPLES', &
+'  The arcsine will allow you to find the measure of a right angle when you', &
+'  know the ratio of the side opposite the angle to the hypotenuse.', &
+'', &
+'  So if you knew that a train track rose 1.25 vertical miles on a track that', &
+'  was 50 miles long, you could determine the average angle of incline of the', &
+'  track using the arcsine. Given', &
+'', &
+'       sin(theta) = 1.25 miles/50 miles (opposite/hypotenuse)', &
+'', &
+'  Sample program:', &
+'', &
+'      program demo_asinpi', &
+'      use, intrinsic :: iso_fortran_env, only : dp=>real64', &
+'      implicit none', &
+'      ! value to convert degrees to half-revolutions', &
+'      real(kind=dp),parameter :: D2HR=1/180.0_dp', &
+'      real(kind=dp)          :: angle, rise, run', &
+'      character(len=*),parameter :: all=''(*(g0,1x))''', &
+'       ! basics', &
+'       ! elemental', &
+'       print all, asinpi( [0.0d0, 0.5d0, -0.5d0, 1.0d0, -1.0d0 ])', &
+'       !', &
+'       ! sample application', &
+'       ! given sine(theta) = 1.25 miles/50 miles (opposite/hypotenuse)', &
+'       ! then taking the arcsine of both sides of the equality yields', &
+'       ! theta = arcsine(1.25 miles/50 miles) ie. arcsine(opposite/hypotenuse)', &
+'       rise=1.250_dp', &
+'       run=50.00_dp', &
+'       angle = asinpi(rise/run)', &
+'       print all, ''angle of incline(half-revolutions) = '', angle', &
+'       angle = angle/D2HR', &
+'       print all, ''angle of incline(degrees) = '', angle', &
+'       print all, ''percent grade='',rise/run*100.0_dp', &
+'      contains', &
+'      elemental function asinpi(x)', &
+'      real(kind=dp),parameter  :: PI=acos(-1.0_dp)', &
+'      real(kind=dp),intent(in) :: x', &
+'      real(kind=dp)           :: asinpi', &
+'        asinpi=asin(x)/PI', &
+'      end function asinpi', &
+'      end program demo_asinpi', &
+'', &
+'  Results:', &
+'', &
+'       > 0.00, 0.166667, -0.166667, 0.50, -0.50', &
+'       > angle of incline(half-revolutions) =  0.79585763198139307E-2', &
+'       > angle of incline(degrees) =  1.4325437375665075', &
+'       > percent grade= 2.5000000000000000', &
+'', &
+'  The percentage grade is the slope, written as a percent. To calculate the', &
+'  slope you divide the rise by the run. In the example the rise is 1.25 mile', &
+'  over a run of 50 miles so the slope is 1.25/50 = 0.025.  Written as a', &
+'  percent this is 2.5 %.', &
+'', &
+'  For the US, two and 1/2 percent is generally thought of as the upper limit.', &
+'  This means a rise of 2.5 feet when going 100 feet forward. In the US this', &
+'  was the maximum grade on the first major US railroad, the Baltimore and', &
+'  Ohio. Note curves increase the frictional drag on a train reducing the', &
+'  allowable grade.', &
+'', &
+'STANDARD', &
+'  Fortran 2023', &
+'', &
+'SEE ALSO', &
+'  o  Inverse function in half-revolutions: SINPI(3)', &
+'', &
+'  o  function in radians: ASIN(3)', &
+'', &
+'  o  function in degrees : ASIND(3)', &
+'', &
+'  o  radians: SIN(3)', &
+'', &
+'  o  degrees: SIND(3)', &
+'', &
+'RESOURCES', &
+'  o  wikipedia: inverse trigonometric functions', &
+'', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                               August 12, 2024               asinpi(3fortran)', &
+'']
+
+shortname="asinpi"
+call process()
+
+
+case('19','associated')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2123,7 +2393,7 @@ textblock=[character(len=256) :: &
 '     pointed to by POINTER.', &
 '', &
 'RESULT', &
-'  ASSOCIATED(3f) returns a scalar value of type logical. There are several', &
+'  ASSOCIATED(3) returns a scalar value of type logical. There are several', &
 '  cases:', &
 '', &
 '  1.  When the optional TARGET is not present then ASSOCIATED(POINTER) is', &
@@ -2188,14 +2458,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024           associated(3fortran)', &
+'                               August 12, 2024           associated(3fortran)', &
 '']
 
 shortname="associated"
 call process()
 
 
-case('18','atan2')
+case('20','atan2')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2310,6 +2580,7 @@ textblock=[character(len=256) :: &
 '         (-1.0, 1.0 ), & ! 135', &
 '         (-1.0, 0.0 ), & ! 180', &
 '         (-1.0,-1.0 ), & ! 225', &
+'      /bin/bash: pb0: command not found', &
 '         ( 0.0,-1.0 )]   ! 270', &
 '       do i=1,size(vals)', &
 '          call cartesian_to_polar(vals(i)%re, vals(i)%im, radius,ang)', &
@@ -2375,14 +2646,361 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                atan2(3fortran)', &
+'                               August 12, 2024                atan2(3fortran)', &
 '']
 
 shortname="atan2"
 call process()
 
 
-case('19','atan')
+case('21','atan2d')
+
+textblock=[character(len=256) :: &
+'', &
+'atan2d(3fortran)                                             atan2d(3fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  ATAN2D(3) - [MATHEMATICS:TRIGONOMETRIC] Arc tangent function in degrees', &
+'  (inverse tangent)', &
+'', &
+'', &
+'SYNOPSIS', &
+'  result = atan2d(y, x)', &
+'', &
+'          elemental real(kind=KIND) function atan2d(y, x)', &
+'', &
+'           real,kind=KIND) :: atan2d', &
+'           real,kind=KIND),intent(in) :: y, x', &
+'', &
+'', &
+'CHARACTERISTICS', &
+'  o  X and Y must be reals of the same kind.', &
+'', &
+'  o  The return value has the same type and kind as Y and X.', &
+'', &
+'DESCRIPTION', &
+'  ATAN2D(3) computes in degrees a processor-dependent approximation of the', &
+'  arctangent of the principal value of the arctangent of the value Y/X (which', &
+'  determines a unique angle).', &
+'', &
+'  If Y has the value zero, X shall not have the value zero.', &
+'', &
+'  The resulting phase lies in the range -180 <= atan2d (Y,X) <= 180 and is', &
+'  equal to a processor-dependent approximation to a value of arctan(Y/X)', &
+'  expressed in degrees.', &
+'', &
+'  It is equivalent to ATAN2(Y, X)*180/PI but limited to real values.', &
+'', &
+'OPTIONS', &
+'  o  Y : The imaginary component of the complex value (X,Y) or the Y component', &
+'     of the point <X,Y>.', &
+'', &
+'  o  X : The real component of the complex value (X,Y) or the X component of', &
+'     the point <X,Y>.', &
+'', &
+'RESULT', &
+'  The result is in degrees, not radians.', &
+'', &
+'  The radian value is by definition the principal value of the complex number', &
+'  (X, Y), or in other terms, the phase of the phasor x+i*y.', &
+'', &
+'  The principal value is simply what we get when we adjust the value to lie', &
+'  between -180 and 180 degrees inclusive,', &
+'', &
+'  The classic definition of the arctangent is the angle that is formed in', &
+'  Cartesian coordinates of the line from the origin point <0,0> to the point', &
+'  <X,Y> .', &
+'', &
+'  Pictured as a vector it is easy to see that if X and Y are both zero the', &
+'  angle is indeterminate because it sits directly over the origin, so', &
+'  ATAN2D(0.0,0.0) will produce an error.', &
+'', &
+'  Range of returned values by quadrant:', &
+'', &
+'      >                  +90', &
+'      >                    |', &
+'      >                    |', &
+'      >     90 < z < 180    |  0 > z < 90', &
+'      >                    |', &
+'      >   +-180 ------------+---------------- +-0', &
+'      >                    |', &
+'      >     90 < -z < 180   |  0 < -z < 90', &
+'      >                    |', &
+'      >                    |', &
+'      >                  -90', &
+'      >', &
+'          NOTES:', &
+'', &
+'          If the processor distinguishes -0 and +0 then the sign of the', &
+'          returned value is that of Y when Y is zero, else when Y is zero', &
+'          the returned value is always positive.', &
+'', &
+'', &
+'EXAMPLES', &
+'  Sample program:', &
+'', &
+'      program demo_atan2d', &
+'      implicit none', &
+'      integer,parameter  :: wp=kind(0.0)', &
+'      real(wp),parameter :: d2r=acos(-1.0_wp)/180.0_wp', &
+'      real :: z', &
+'      complex :: c', &
+'       !', &
+'       ! basic usage', &
+'       ! atan2d (1.5574077, 1.0) has the value 1.0 radian (approximately).', &
+'       z=atan2d(1.5574077, 1.0)', &
+'       write(*,*) ''degrees='',z,''radians='',d2r*z', &
+'       !', &
+'       ! elemental arrays', &
+'       write(*,*)''elemental'',atan2d( [10.0, 20.0], [30.0,40.0] )', &
+'       !', &
+'       ! elemental arrays and scalars', &
+'       write(*,*)''elemental'',atan2d( [10.0, 20.0], 50.0 )', &
+'       !', &
+'       ! multi-dimensional returns multi-dimensional', &
+'       write(*,*) atan2(reshape([1.0,1.0,1.0,1.0],[2,2]),&', &
+'       & reshape([1.0,1.0,1.0,1.0],[2,2]) )', &
+'       !', &
+'       ! break complex values into real and imaginary components', &
+'       c=(0.0,1.0)', &
+'       write(*,*)''complex value treated as components'', &', &
+'       & c,atan2d( x=c%re, y=c%im )', &
+'       !', &
+'       ! extended sample', &
+'       COMPLEX_VALS: block', &
+'       real                :: ang', &
+'       complex,allocatable :: vals(:)', &
+'       integer             :: i', &
+'       !', &
+'       vals=[ &', &
+'         ( 1.0, 0.0 ), & ! 0', &
+'         ( 1.0, 1.0 ), & ! 45', &
+'         ( 0.0, 1.0 ), & ! 90', &
+'         (-1.0, 1.0 ), & ! 135', &
+'         (-1.0, 0.0 ), & ! 180', &
+'         (-1.0,-1.0 ), & ! 225', &
+'         ( 0.0,-1.0 )]   ! 270', &
+'       do i=1,size(vals)', &
+'          ang=atan2d(vals(i)%im, vals(i)%re)', &
+'          write(*,101)vals(i),ang,d2r*ang', &
+'       enddo', &
+'       101 format(             &', &
+'       & ''X= '',f5.2,         &', &
+'       & '' Y= '',f5.2,                &', &
+'       & '' ANGLE= '',g0,      &', &
+'       & T38,''RADIANS= '',g0.4)', &
+'       endblock COMPLEX_VALS', &
+'      !', &
+'      end program demo_atan2d', &
+'', &
+'  Results:', &
+'', &
+'       >  degrees=   57.2957802     radians=   1.00000000', &
+'       >  elemental   18.4349480       26.5650520', &
+'       >  elemental   11.3099327       21.8014107', &
+'       >   0.785398185 0.785398185 0.785398185  0.785398185', &
+'       >  complex value treated as components (0.0000,1.0000) 90.000', &
+'       > X=  1.00 Y=  0.00 ANGLE= 0.00000000  RADIANS= 0.000', &
+'       > X=  1.00 Y=  1.00 ANGLE= 45.0000000  RADIANS= 0.7854', &
+'       > X=  0.00 Y=  1.00 ANGLE= 90.0000000  RADIANS= 1.571', &
+'       > X= -1.00 Y=  1.00 ANGLE= 135.000000  RADIANS= 2.356', &
+'       > X= -1.00 Y=  0.00 ANGLE= 180.000000  RADIANS= 3.142', &
+'       > X= -1.00 Y= -1.00 ANGLE= -135.000000 RADIANS= -2.356', &
+'       > X=  0.00 Y= -1.00 ANGLE= -90.0000000 RADIANS= -1.571', &
+'', &
+'', &
+'STANDARD', &
+'  Fortran 2023', &
+'', &
+'SEE ALSO', &
+'  o  ATAN(3)', &
+'', &
+'  o  ATANPI(3)', &
+'', &
+'RESOURCES', &
+'  o  arctan:wikipedia', &
+'', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                               August 12, 2024               atan2d(3fortran)', &
+'']
+
+shortname="atan2d"
+call process()
+
+
+case('22','atan2pi')
+
+textblock=[character(len=256) :: &
+'', &
+'atan2pi(3fortran)                                           atan2pi(3fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  ATAN2PI(3) - [MATHEMATICS:TRIGONOMETRIC] Circular Arc tangent (inverse', &
+'  tangent) function', &
+'', &
+'', &
+'SYNOPSIS', &
+'  result = atan2pi(y, x)', &
+'', &
+'          elemental real(kind=KIND) function atan2pi(y, x)', &
+'', &
+'           real,kind=KIND) :: atan2pi', &
+'           real,kind=KIND),intent(in) :: y, x', &
+'', &
+'', &
+'CHARACTERISTICS', &
+'  o  X and Y must be reals of the same kind.', &
+'', &
+'  o  The return value has the same type and kind as Y and X.', &
+'', &
+'DESCRIPTION', &
+'  ATAN2PI(3) computes in half-revolutions a processor-dependent approximation', &
+'  of the arctangent of the components of the complex number ( X, Y ) or', &
+'  equivalently the principal value of the arctangent of the value Y/X (which', &
+'  determines a unique angle).', &
+'', &
+'  If Y has the value zero, X shall not have the value zero.', &
+'', &
+'  The resulting phase lies in the range -1 <= atan2pi (Y,X) <= 1 and is equal', &
+'  to a processor-dependent approximation to a value of arctan(Y/X).', &
+'', &
+'OPTIONS', &
+'  o  Y : The imaginary component of the complex value (X,Y) or the Y component', &
+'     of the point <X,Y>.', &
+'', &
+'  o  X : The real component of the complex value (X,Y) or the X component of', &
+'     the point <X,Y>.', &
+'', &
+'RESULT', &
+'  The value returned is by definition the principal value of the complex', &
+'  number (X, Y), or in other terms, the phase of the phasor x+i*y.', &
+'', &
+'  The principal value is simply what we get when we adjust an angular half-', &
+'  revolution value to lie between -1 and 1 inclusive,', &
+'', &
+'  The classic definition of the arctangent is the angle that is formed in', &
+'  Cartesian coordinates of the line from the origin point <0,0> to the point', &
+'  <X,Y> .', &
+'', &
+'  Pictured as a vector it is easy to see that if X and Y are both zero the', &
+'  angle is indeterminate because it sits directly over the origin, so', &
+'  ATAN(0.0,0.0) will produce an error.', &
+'', &
+'  Range of returned values by quadrant:', &
+'', &
+'      >                  +1/2', &
+'      >                    |', &
+'      >                    |', &
+'      >       1/2 < z < 1   |  0 > z < 1/2', &
+'      >                    |', &
+'      >    +-1 -------------+---------------- +-0', &
+'      >                    |', &
+'      >       1/2 < -z < 1  |  0 < -z < 1/2', &
+'      >                    |', &
+'      >                    |', &
+'      >                  -1/2', &
+'      >', &
+'          NOTES:', &
+'', &
+'          If the processor distinguishes -0 and +0 then the sign of the', &
+'          returned value is that of Y when Y is zero, else when Y is zero', &
+'          the returned value is always positive.', &
+'', &
+'', &
+'EXAMPLES', &
+'  Sample program:', &
+'', &
+'      program demo_atan2pi', &
+'      real :: z', &
+'      complex :: c', &
+'      real, parameter :: h2d = 180.0', &
+'       !', &
+'       ! basic usage', &
+'       ! atan2pi (1.5574077, 1.0) has the value 1.0 (approximately).', &
+'       z=atan2pi(1.5574077, 1.0)', &
+'       write(*,*) ''half-revolutions='',z,''degrees='',h2d*z', &
+'       !', &
+'       ! elemental arrays', &
+'       write(*,*)''elemental'',atan2pi( [10.0, 20.0], [30.0,40.0] )', &
+'       !', &
+'       ! elemental arrays and scalars', &
+'       write(*,*)''elemental'',atan2pi( [10.0, 20.0], 50.0 )', &
+'       !', &
+'       ! break complex values into real and imaginary components', &
+'       ! (note TAN2() can take a complex type value )', &
+'       c=(0.0,1.0)', &
+'       write(*,*)''complex'',c,atan2pi( x=c%re, y=c%im )', &
+'       !', &
+'       ! extended sample converting cartesian coordinates to polar', &
+'       COMPLEX_VALS: block', &
+'       real                :: ang', &
+'       complex,allocatable :: vals(:)', &
+'       integer             :: i', &
+'       !', &
+'       vals=[ &', &
+'         ( 1.0, 0.0 ), & ! 0', &
+'         ( 1.0, 1.0 ), & ! 45', &
+'         ( 0.0, 1.0 ), & ! 90', &
+'         (-1.0, 1.0 ), & ! 135', &
+'         (-1.0, 0.0 ), & ! 180', &
+'         (-1.0,-1.0 ), & ! 225', &
+'         ( 0.0,-1.0 )]   ! 270', &
+'         write(*,''(a)'')repeat(''1234567890'',8)', &
+'       do i=1,size(vals)', &
+'          ang=atan2pi(vals(i)%im,vals(i)%re)', &
+'          write(*,101)vals(i),ang,h2d*ang', &
+'       enddo', &
+'       101 format(             &', &
+'       & ''X= '',f5.2,         &', &
+'       & '' Y= '',f5.2,                &', &
+'       & '' HALF-REVOLUTIONS= '',f7.3,      &', &
+'       & T50,'' DEGREES= '',g0.4)', &
+'       endblock COMPLEX_VALS', &
+'      !', &
+'      end program demo_atan2pi', &
+'', &
+'  Results:', &
+'', &
+'       >  half-revolutions=  0.318309873     degrees=  57.2957764', &
+'       >  elemental  0.102416381      0.147583619', &
+'       >  elemental   6.28329590E-02  0.121118948', &
+'       >  complex            (0.00000000,1.00000000)  0.500000000', &
+'       > X=  1.00 Y=  0.00 HALF-REVOLUTIONS=   0.000      DEGREES= 0.000', &
+'       > X=  1.00 Y=  1.00 HALF-REVOLUTIONS=   0.250      DEGREES= 45.00', &
+'       > X=  0.00 Y=  1.00 HALF-REVOLUTIONS=   0.500      DEGREES= 90.00', &
+'       > X= -1.00 Y=  1.00 HALF-REVOLUTIONS=   0.750      DEGREES= 135.0', &
+'       > X= -1.00 Y=  0.00 HALF-REVOLUTIONS=   1.000      DEGREES= 180.0', &
+'       > X= -1.00 Y= -1.00 HALF-REVOLUTIONS=  -0.750      DEGREES= -135.0', &
+'       > X=  0.00 Y= -1.00 HALF-REVOLUTIONS=  -0.500      DEGREES= -90.00', &
+'', &
+'', &
+'STANDARD', &
+'  Fortran 2023', &
+'', &
+'SEE ALSO', &
+'  o  ATAN(3)', &
+'', &
+'RESOURCES', &
+'  o  arctan:wikipedia fortran-lang intrinsic descriptions (license: MIT)', &
+'     @urbanjost', &
+'', &
+'', &
+'', &
+'                               August 12, 2024              atan2pi(3fortran)', &
+'']
+
+shortname="atan2pi"
+call process()
+
+
+case('23','atan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2469,14 +3087,109 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 atan(3fortran)', &
+'                               August 12, 2024                 atan(3fortran)', &
 '']
 
 shortname="atan"
 call process()
 
 
-case('20','atanh')
+case('24','atand')
+
+textblock=[character(len=256) :: &
+'', &
+'atand(3fortran)                                               atand(3fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  ATAND(3) - [MATHEMATICS:TRIGONOMETRIC] Arc tangent AKA inverse tangent', &
+'  function in degrees', &
+'', &
+'', &
+'SYNOPSIS', &
+'  result = atand(x) | atand(y, x)', &
+'', &
+'          elemental real(kind=KIND) function atand(y,x)', &
+'', &
+'           real(kind=KIND),intent(in) :: x', &
+'           real(kind=**),intent(in),optional :: y', &
+'', &
+'', &
+'CHARACTERISTICS', &
+'  o  If Y is present X and Y must both be of the same kind.', &
+'', &
+'  o  KIND can be any kind supported by the associated type.', &
+'', &
+'  o  The returned value is real of the same kind as X.', &
+'', &
+'DESCRIPTION', &
+'  ATAND(3) calculates the Arc Tangent function in degrees.', &
+'', &
+'OPTIONS', &
+'  o  X : The real value to compute the arctangent of.', &
+'', &
+'  o  Y : is real of the same kind as X. If X is zero, Y must not be zero.', &
+'', &
+'RESULT', &
+'  The returned value is a real type of the same kind as X that approximates', &
+'  the arc tangent of X expressed in degrees. If Y is present, the result is', &
+'  identical to ATAN2D(Y,X). The result lies in the range -90 <= ATAND(X) <= 90', &
+'  .', &
+'', &
+'EXAMPLES', &
+'  atand(1.0) has the value 45.0 (approximately).', &
+'', &
+'  Sample program:', &
+'', &
+'      program demo_atan', &
+'      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'       & real32, real64, real128', &
+'      implicit none', &
+'      character(len=*),parameter :: all=''(*(g0,1x))''', &
+'      real(kind=real64),parameter :: &', &
+'       Deg_Per_Rad = 57.2957795130823208767981548_real64', &
+'      real(kind=real64) :: x', &
+'         x=2.866_real64', &
+'         print all, atand(x)', &
+'', &
+'         print all, atand( 2.0d0, 2.0d0),atand( 2.0d0, 2.0d0)/Deg_Per_Rad', &
+'         print all, atand( 2.0d0,-2.0d0),atand( 2.0d0,-2.0d0)/Deg_Per_Rad', &
+'         print all, atand(-2.0d0, 2.0d0),atand(-2.0d0, 2.0d0)/Deg_Per_Rad', &
+'         print all, atand(-2.0d0,-2.0d0),atand(-2.0d0,-2.0d0)/Deg_Per_Rad', &
+'', &
+'      end program demo_atan', &
+'', &
+'  Results:', &
+'', &
+'       > 70.765182904405478', &
+'       > 45.000000000000000 0.78539816339744828', &
+'       > 135.00000000000000 2.3561944901923448', &
+'       > -45.000000000000000 -0.78539816339744828', &
+'       > -135.00000000000000 -2.3561944901923448', &
+'', &
+'', &
+'STANDARD', &
+'  Fortran 2023', &
+'', &
+'SEE ALSO', &
+'  ATAN2D(3), TAND(3), ATAN2(3), TAN(3), ATAN2PI(3), TANPI(3)', &
+'', &
+'RESOURCES', &
+'  o  wikipedia: inverse trigonometric functions', &
+'', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                               August 12, 2024                atand(3fortran)', &
+'']
+
+shortname="atand"
+call process()
+
+
+case('25','atanh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2543,14 +3256,109 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                atanh(3fortran)', &
+'                               August 12, 2024                atanh(3fortran)', &
 '']
 
 shortname="atanh"
 call process()
 
 
-case('21','atomic_add')
+case('26','atanpi')
+
+textblock=[character(len=256) :: &
+'', &
+'atanpi(3fortran)                                             atanpi(3fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  ATANPI(3) - [MATHEMATICS:TRIGONOMETRIC] Circular Arctangent AKA inverse', &
+'  tangent function', &
+'', &
+'', &
+'SYNOPSIS', &
+'  result = atanpi([x) | atanpi(y, x)', &
+'', &
+'          elemental real(kind=KIND) function atanpi(y,x)', &
+'', &
+'           real(kind=KIND),intent(in) :: x', &
+'           real(kind=KIND),intent(in),optional :: y', &
+'', &
+'', &
+'CHARACTERISTICS', &
+'  o  Y and X must both be real and of the same KIND', &
+'', &
+'  o  KIND can be any kind supported by the real type.', &
+'', &
+'  o  The returned value is of the same type and kind as X.', &
+'', &
+'DESCRIPTION', &
+'  ATAN(3) computes the circular arctangent of X in half-revolutions.', &
+'', &
+'  If Y appears, the result is the same as the result of ATAN2PI(Y,X). If Y', &
+'  does not appear, the result has a value equal to a processor-dependent', &
+'  approximation to the arc tangent of X; it is expressed in half-revolutions', &
+'  and lies in the range -0.5 <= ATANPI(X) <= 0.5.', &
+'', &
+'  Example. ATANPI(1.0) has the value 0.25 (approximately).', &
+'', &
+'OPTIONS', &
+'  o  X : The real value to compute the arctangent of.', &
+'', &
+'  o  Y : is of the same type and kind as X. If X is zero, Y must not be zero.', &
+'', &
+'RESULT', &
+'  The returned value is of the same type and kind as X. If Y is present, the', &
+'  result is identical to ATAN2PI(Y,X). Otherwise, it is the arc tangent of X,', &
+'  where the result is in half-revolutions and lies in the range -1 <= ATAN(X)', &
+'  <= 1', &
+'', &
+'EXAMPLES', &
+'  Sample program:', &
+'', &
+'      program demo_atanpi', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64', &
+'      implicit none', &
+'      character(len=*),parameter :: all=''(*(g0,1x))''', &
+'      real(kind=real64) :: x, y', &
+'         x=2.866_real64', &
+'         print all, atanpi(x)', &
+'', &
+'         print all, atanpi( 2.0d0, 2.0d0),atanpi( 2.0d0, 2.0d0)*180', &
+'         print all, atanpi( 2.0d0,-2.0d0),atanpi( 2.0d0,-2.0d0)*180', &
+'         print all, atanpi(-2.0d0, 2.0d0),atanpi(-2.0d0, 2.0d0)*180', &
+'         print all, atanpi(-2.0d0,-2.0d0),atanpi(-2.0d0,-2.0d0)*180', &
+'', &
+'      end program demo_atanpi', &
+'', &
+'  Results:', &
+'', &
+'        1.235085437457879', &
+'        .7853981633974483 45.00000000000000', &
+'        2.356194490192345 135.0000000000000', &
+'        -.7853981633974483 -45.00000000000000', &
+'        -2.356194490192345 -135.0000000000000', &
+'', &
+'', &
+'STANDARD', &
+'  Fortran 2023', &
+'', &
+'SEE ALSO', &
+'  ATAN2D(3), TAN2D(3), ATAN2PI(3), TAN2PI(3)', &
+'', &
+'RESOURCES', &
+'  o  wikipedia: inverse trigonometric functions', &
+'', &
+'', &
+'', &
+'                               August 12, 2024               atanpi(3fortran)', &
+'']
+
+shortname="atanpi"
+call process()
+
+
+case('27','atomic_add')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2620,14 +3428,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024           atomic_add(3fortran)', &
+'                               August 12, 2024           atomic_add(3fortran)', &
 '']
 
 shortname="atomic_add"
 call process()
 
 
-case('22','atomic_and')
+case('28','atomic_and')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2698,14 +3506,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024           atomic_and(3fortran)', &
+'                               August 12, 2024           atomic_and(3fortran)', &
 '']
 
 shortname="atomic_and"
 call process()
 
 
-case('23','atomic_cas')
+case('29','atomic_cas')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2768,14 +3576,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024           atomic_cas(3fortran)', &
+'                               August 12, 2024           atomic_cas(3fortran)', &
 '']
 
 shortname="atomic_cas"
 call process()
 
 
-case('24','atomic_define')
+case('30','atomic_define')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2844,14 +3652,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024        atomic_define(3fortran)', &
+'                               August 12, 2024        atomic_define(3fortran)', &
 '']
 
 shortname="atomic_define"
 call process()
 
 
-case('25','atomic_fetch_add')
+case('31','atomic_fetch_add')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2915,14 +3723,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024     atomic_fetch_add(3fortran)', &
+'                               August 12, 2024     atomic_fetch_add(3fortran)', &
 '']
 
 shortname="atomic_fetch_add"
 call process()
 
 
-case('26','atomic_fetch_and')
+case('32','atomic_fetch_and')
 
 textblock=[character(len=256) :: &
 '', &
@@ -2987,14 +3795,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024     atomic_fetch_and(3fortran)', &
+'                               August 12, 2024     atomic_fetch_and(3fortran)', &
 '']
 
 shortname="atomic_fetch_and"
 call process()
 
 
-case('27','atomic_fetch_or')
+case('33','atomic_fetch_or')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3059,14 +3867,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024      atomic_fetch_or(3fortran)', &
+'                               August 12, 2024      atomic_fetch_or(3fortran)', &
 '']
 
 shortname="atomic_fetch_or"
 call process()
 
 
-case('28','atomic_fetch_xor')
+case('34','atomic_fetch_xor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3131,14 +3939,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024     atomic_fetch_xor(3fortran)', &
+'                               August 12, 2024     atomic_fetch_xor(3fortran)', &
 '']
 
 shortname="atomic_fetch_xor"
 call process()
 
 
-case('29','atomic_or')
+case('35','atomic_or')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3212,14 +4020,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024            atomic_or(3fortran)', &
+'                               August 12, 2024            atomic_or(3fortran)', &
 '']
 
 shortname="atomic_or"
 call process()
 
 
-case('30','atomic_ref')
+case('36','atomic_ref')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3296,14 +4104,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024           atomic_ref(3fortran)', &
+'                               August 12, 2024           atomic_ref(3fortran)', &
 '']
 
 shortname="atomic_ref"
 call process()
 
 
-case('31','atomic_xor')
+case('37','atomic_xor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3375,14 +4183,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024           atomic_xor(3fortran)', &
+'                               August 12, 2024           atomic_xor(3fortran)', &
 '']
 
 shortname="atomic_xor"
 call process()
 
 
-case('32','backspace')
+case('38','backspace')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3509,14 +4317,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024            backspace(7fortran)', &
+'                               August 12, 2024            backspace(7fortran)', &
 '']
 
 shortname="backspace"
 call process()
 
 
-case('33','bessel_j0')
+case('39','bessel_j0')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3579,14 +4387,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024            bessel_j0(3fortran)', &
+'                               August 12, 2024            bessel_j0(3fortran)', &
 '']
 
 shortname="bessel_j0"
 call process()
 
 
-case('34','bessel_j1')
+case('40','bessel_j1')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3648,14 +4456,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024            bessel_j1(3fortran)', &
+'                               August 12, 2024            bessel_j1(3fortran)', &
 '']
 
 shortname="bessel_j1"
 call process()
 
 
-case('35','bessel_jn')
+case('41','bessel_jn')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3752,14 +4560,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024            bessel_jn(3fortran)', &
+'                               August 12, 2024            bessel_jn(3fortran)', &
 '']
 
 shortname="bessel_jn"
 call process()
 
 
-case('36','bessel_y0')
+case('42','bessel_y0')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3821,14 +4629,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024            bessel_y0(3fortran)', &
+'                               August 12, 2024            bessel_y0(3fortran)', &
 '']
 
 shortname="bessel_y0"
 call process()
 
 
-case('37','bessel_y1')
+case('43','bessel_y1')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3889,14 +4697,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024            bessel_y1(3fortran)', &
+'                               August 12, 2024            bessel_y1(3fortran)', &
 '']
 
 shortname="bessel_y1"
 call process()
 
 
-case('38','bessel_yn')
+case('44','bessel_yn')
 
 textblock=[character(len=256) :: &
 '', &
@@ -3993,14 +4801,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024            bessel_yn(3fortran)', &
+'                               August 12, 2024            bessel_yn(3fortran)', &
 '']
 
 shortname="bessel_yn"
 call process()
 
 
-case('39','bge')
+case('45','bge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4158,14 +4966,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  bge(3fortran)', &
+'                               August 12, 2024                  bge(3fortran)', &
 '']
 
 shortname="bge"
 call process()
 
 
-case('40','bgt')
+case('46','bgt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4270,14 +5078,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  bgt(3fortran)', &
+'                               August 12, 2024                  bgt(3fortran)', &
 '']
 
 shortname="bgt"
 call process()
 
 
-case('41','bit_size')
+case('47','bit_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4357,20 +5165,20 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  o  BTEST(3) - Tests a bit of an integer value.', &
 '', &
-'  o  STORAGE_SIZE(3f) - Storage size in bits', &
+'  o  STORAGE_SIZE(3) - Storage size in bits', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               August 03, 2024             bit_size(3fortran)', &
+'                               August 12, 2024             bit_size(3fortran)', &
 '']
 
 shortname="bit_size"
 call process()
 
 
-case('42','ble')
+case('48','ble')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4464,14 +5272,116 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  ble(3fortran)', &
+'                               August 12, 2024                  ble(3fortran)', &
 '']
 
 shortname="ble"
 call process()
 
 
-case('43','blt')
+case('49','block')
+
+textblock=[character(len=256) :: &
+'', &
+'block(7fortran)                                               block(7fortran)', &
+'', &
+'', &
+'', &
+'             BLOCK(7f) - [EXECUTION CONTROL] block construct', &
+'', &
+'SYNOPSIS', &
+'  [block-construct-name:] BLOCK [specification-part] ENDBLOCK [block-', &
+'  construct-name]', &
+'', &
+'DESCRIPTION', &
+'  The BLOCK(7F) construct is an executable construct which may contain', &
+'  declarations, and may be exited using the EXIT(7F) statement.', &
+'', &
+'  Aside from the following restrictions a block construct is in many ways', &
+'  similiar to a contained procedure without parameters accept it is', &
+'  constructed in-line instead of after the body of the current procedure.', &
+'', &
+'  So if you are thinking about making a contained procedure that will be', &
+'  called once it will probably be clearer inlined using a block construct.', &
+'', &
+'  The specification-part of a BLOCK(7F) construct cannot contain a COMMON,', &
+'  EQUIVALENCE, IMPLICIT, INTENT, NAMELIST, or OPTIONAL statement.', &
+'', &
+'  A SAVE of a common-block-name is not allowed in a BLOCK(7F) construct.', &
+'', &
+'  Except for the ASYNCHRONOUS and VOLATILE statements, specifications in a', &
+'  BLOCK(7F) construct declare construct entities whose scope is that of the', &
+'  block construct.', &
+'', &
+'EXAMPLES', &
+'  Sample programs:', &
+'', &
+'         program demo_block', &
+'         implicit none', &
+'         integer,parameter :: arr1(*)=[1,2,3,4,5,6,7]', &
+'         integer,parameter :: arr2(*)=[0,1,2,3,4,5,6,7]', &
+'', &
+'         ! so when you want error processing to be skipped', &
+'         ! if you exhaust a series of tries and really hate GOTO ...', &
+'         DEBUG: block', &
+'         integer :: icount', &
+'            do icount=1,100 ! look for answer up to 100 times', &
+'               if(icount.eq.40)exit DEBUG ! found answer, go on', &
+'            enddo', &
+'            ! never get here unless exhausted the DO loop', &
+'            write(*,*)''never found the answer''', &
+'            stop 3', &
+'         endblock DEBUG', &
+'            !', &
+'            call showme(arr1)', &
+'            call showme(arr2)', &
+'            !', &
+'         contains', &
+'         !', &
+'         subroutine showme(a)', &
+'         integer,intent(in) :: a(:)', &
+'         integer :: i=-100', &
+'         integer :: tan', &
+'           tan=20 ! intentionally cause a conflict with intrinsic', &
+'           ! cannot use tan(3f) right here because using name for a variable', &
+'           TESTFORZERO: block', &
+'              integer :: I      ! local block variable', &
+'              intrinsic :: tan  ! can use the TAN intrinsic in the block now', &
+'                            ! as this definition supercedes the one in the', &
+'                    ! parent body', &
+'              do i=1,size(a)', &
+'                 if(a(i).eq.0) then', &
+'                    write(*,*)''found zero at index'',i', &
+'                    exit TESTFORZERO', &
+'                 endif', &
+'              enddo', &
+'              write(*,*)''Never found a zero, tried '',i-1,'' times''', &
+'              return', &
+'            endblock TESTFORZERO', &
+'            ! note the variable I in the block is local to the block', &
+'            write(*,*)''this is the variable back in the main scope, I='',i', &
+'         end subroutine showme', &
+'', &
+'         end program demo_block', &
+'', &
+'  Results:', &
+'', &
+'       >  Never found a zero, tried 7  times', &
+'       >  found zero at index 1', &
+'       >  this is the variable in the main scope of the program, I=-100', &
+'', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                               August 12, 2024                block(7fortran)', &
+'']
+
+shortname="block"
+call process()
+
+
+case('50','blt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4559,14 +5469,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  blt(3fortran)', &
+'                               August 12, 2024                  blt(3fortran)', &
 '']
 
 shortname="blt"
 call process()
 
 
-case('44','btest')
+case('51','btest')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4697,14 +5607,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                btest(3fortran)', &
+'                               August 12, 2024                btest(3fortran)', &
 '']
 
 shortname="btest"
 call process()
 
 
-case('45','c_associated')
+case('52','c_associated')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4775,14 +5685,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024         c_associated(3fortran)', &
+'                               August 12, 2024         c_associated(3fortran)', &
 '']
 
 shortname="c_associated"
 call process()
 
 
-case('46','ceiling')
+case('53','ceiling')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4791,7 +5701,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  CEILING(3) - [NUMERIC] Integer ceiling function', &
+'  CEILING(3) - [NUMERIC] returns the least integer greater than or equal to A.', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -4806,8 +5716,8 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 '  o  A is of type real', &
 '', &
-'  o  KIND shall be a scalar integer constant expression. It specifies the kind', &
-'     of the result if present.', &
+'  o  if present KIND is a scalar integer constant expression that specifies', &
+'     the kind of the result.', &
 '', &
 '  o  the result is integer. It is default kind if KIND is not specified', &
 '', &
@@ -4816,6 +5726,12 @@ textblock=[character(len=256) :: &
 '', &
 '  On the number line -n <-- 0 -> +n the value returned is always at or to the', &
 '  right of the input value.', &
+'', &
+'  For example, ceil(0.5) is 1.0, and ceil(-0.5) is 0.0.', &
+'', &
+'  The input value may be too large to store the result in an integer type.  To', &
+'  avoid an overflow (which produces an undefined result), an application', &
+'  should perform a range check on the input value before using ceiling(3).', &
 '', &
 'OPTIONS', &
 '  o  A : A real value to produce a ceiling for.', &
@@ -4837,40 +5753,166 @@ textblock=[character(len=256) :: &
 '      program demo_ceiling', &
 '      implicit none', &
 '      ! just a convenient format for a list of integers', &
-'      character(len=*),parameter :: ints=''(*("         > ",5(i0:,",",1x),/))''', &
-'      real :: x', &
-'      real :: y', &
-'       ! basic usage', &
-'        x = 63.29', &
-'        y = -63.59', &
-'        print ints, ceiling(x)', &
-'        print ints, ceiling(y)', &
-'        ! note the result was the next integer larger to the right', &
-'', &
-'       ! real values equal to whole numbers', &
-'        x = 63.0', &
-'        y = -63.0', &
-'        print ints, ceiling(x)', &
-'        print ints, ceiling(y)', &
-'', &
-'       ! elemental (so an array argument is allowed)', &
-'        print ints , &', &
-'        & ceiling([ &', &
+'      character(len=*),parameter :: gen=''(1x,*(g0:,1x))''', &
+'      real             :: x', &
+'      real             :: y', &
+'      real,parameter   :: arr(*)=[ &', &
 '        &  -2.7,  -2.5, -2.2, -2.0, -1.5, &', &
 '        &  -1.0,  -0.5,  0.0, +0.5, +1.0, &', &
-'        &  +1.5,  +2.0, +2.2, +2.5, +2.7  ])', &
+'        &  +1.5,  +2.0, +2.2, +2.5, +2.7  ]', &
+'      integer          :: i', &
+'      integer          :: ierr', &
+'      character(len=80) :: message', &
+'        print *, ''Basic Usage''', &
+'        x = 63.29', &
+'        y = -63.59', &
+'        print gen, ceiling(x), ceiling(y)', &
+'        ! note the result was the next integer larger to the right', &
+'', &
+'        print *, ''Whole Numbers'' ! real values equal to whole numbers', &
+'        x = 63.0', &
+'        y = -63.0', &
+'        print gen, ceiling(x), ceiling(y)', &
+'', &
+'        print *, ''Elemental'' ! (so an array argument is allowed)', &
+'        print gen , ceiling(arr)', &
+'', &
+'        print *, ''Advanced Usage'' ! Dealing with large magnitude values', &
+'        print ''(a)'',[character(len=80):: &', &
+'        ''Limits                                                          '',&', &
+'        ''You only care about Limits if you are using values near or above '',&', &
+'        ''the limits of the integer type you are using (see huge(3)).     '',&', &
+'        '''',&', &
+'        ''Surprised by some of the following results?                     '',&', &
+'        ''What do real values clearly out of the range of integers return? '',&', &
+'        ''What do values near the end of the range of integers return?    '',&', &
+'        ''The standard only specifies what happens for representable values'',&', &
+'        ''in the range of integer values.                                 '',&', &
+'        '''',&', &
+'        ''It is common but not required that if the input is out of range  '',&', &
+'        ''and positive the result is -huge(0) and -huge(0)-1 if negative.  '',&', &
+'        ''Note you are out of range before you get to real(huge(0)).      '',&', &
+'        '''' ]', &
+'        print gen , ''For reference: huge(0)='',huge(0),''-huge(0)-1='',-huge(0)-1', &
+'', &
+'        x=huge(0)', &
+'        call displayx()', &
+'', &
+'        x=2*x', &
+'        call displayx()', &
+'', &
+'        x=-huge(0)-1', &
+'        call displayx()', &
+'', &
+'        x=2*x', &
+'        call displayx()', &
+'', &
+'        print gen , repeat(''='',80)', &
+'', &
+'      contains', &
+'', &
+'      subroutine displayx()', &
+'      use,intrinsic :: iso_fortran_env, only: int8,int16,int32,int64', &
+'        print gen , repeat(''='',80)', &
+'        print gen , ''x='',x,'' spacing='',spacing(x)', &
+'        print gen , '' ceiling(x):'',ceiling(x)', &
+'        print gen , '' ceiling(x,kind=int64):'',ceiling(x,kind=int64)', &
+'        print gen , '' ceiling_robust(x):'',ceiling_robust(x,ierr,message)', &
+'        if(ierr.ne.0)then', &
+'           print gen, ierr,''=>'',trim(message)', &
+'        endif', &
+'      end subroutine displayx', &
+'', &
+'      elemental impure function ceiling_robust(x,ierr,message)', &
+'      ! return the least integer >= x', &
+'      use,intrinsic :: iso_fortran_env, only: int8,int16,int32,int64', &
+'      use,intrinsic :: iso_fortran_env, only: real32,real64,real128', &
+'      real,intent(in)                      :: x', &
+'      integer,intent(out),optional         :: ierr', &
+'      character(len=*),intent(out),optional :: message', &
+'      character(len=80)                    :: message_local', &
+'      integer                              :: ceiling_robust', &
+'      integer                              :: ierr_local', &
+'        ierr_local=0', &
+'        message_local=''''', &
+'        ! allow -huge(0)-1 or not?', &
+'        if(spacing(x) > 128)then ! bounds checking', &
+'           if(x.ge.0)then', &
+'              write(message_local,*)''<ERROR>X='',x,'' >='',anint(real(huge(0)))', &
+'              ierr_local=1', &
+'              ceiling_robust=huge(0)', &
+'           else', &
+'              ierr_local=2', &
+'              ceiling_robust=-huge(0)-1', &
+'              write(message_local,*)''<ERROR>X='',x,'' <='',anint(real(-huge(0)-1))', &
+'           endif', &
+'        else', &
+'           ! used to use a computed goto to do this!', &
+'           ceiling_robust = int(x)', &
+'           if (x > 0.0) then', &
+'              if (real(ceiling_robust) < x)then', &
+'                 ceiling_robust = ceiling_robust + 1', &
+'              endif', &
+'           endif', &
+'        endif', &
+'        if(present(ierr))then', &
+'           ierr=ierr_local', &
+'        elseif(ierr_local.ne.0)then', &
+'           stop message_local', &
+'        endif', &
+'        if(present(message))then', &
+'           message=message_local', &
+'        endif', &
+'      end function ceiling_robust', &
 '', &
 '      end program demo_ceiling', &
 '', &
 '  Results:', &
 '', &
-'        > 64', &
-'        > -63', &
-'        > 63', &
-'        > -63', &
-'        > -2, -2, -2, -2, -1,', &
-'        > -1, 0, 0, 1, 1,', &
-'        > 2, 2, 3, 3, 3', &
+'       >  Basic Usage', &
+'       >  64 -63', &
+'       >  Whole Numbers', &
+'       >  63 -63', &
+'       >  Elemental', &
+'       >  -2 -2 -2 -2 -1 -1 0 0 1 1 2 2 3 3 3', &
+'       > Limits', &
+'       >', &
+'       > Surprised by some of the following results?', &
+'       > What do real values clearly out of the range of integers return?', &
+'       > What do values near the end of the range of integers return?', &
+'       > The standard only specifies what happens for representable values', &
+'       > in the range of integer values.', &
+'       >', &
+'       > It is common but not required that if the input is out of range', &
+'       > and positive the result is -huge(0) and -huge(0)-1 if negative.', &
+'       > Note you are out of range before you get to real(huge(0)).', &
+'       >', &
+'       >  For reference: huge(0)= 2147483647 -huge(0)-1= -2147483648', &
+'       >  ======================================================================', &
+'       >  x= 0.214748365E+10  spacing= 256.000000', &
+'       >   ceiling(x): -2147483647', &
+'       >   ceiling(x,kind=int64): 2147483648', &
+'       >   ceiling_robust(x): 2147483647', &
+'       >  1 => <ERROR>X=   2.14748365E+09  >=   2.14748365E+09', &
+'       >  ======================================================================', &
+'       >  x= 0.429496730E+10  spacing= 512.000000', &
+'       >   ceiling(x): -2147483647', &
+'       >   ceiling(x,kind=int64): 4294967296', &
+'       >   ceiling_robust(x): 2147483647', &
+'       >  1 => <ERROR>X=   4.29496730E+09  >=   2.14748365E+09', &
+'       >  ======================================================================', &
+'       >  x= -0.214748365E+10  spacing= 256.000000', &
+'       >   ceiling(x): -2147483648', &
+'       >   ceiling(x,kind=int64): -2147483648', &
+'       >   ceiling_robust(x): -2147483648', &
+'       >  2 => <ERROR>X=  -2.14748365E+09  <=  -2.14748365E+09', &
+'       >  ======================================================================', &
+'       >  x= -0.429496730E+10  spacing= 512.000000', &
+'       >   ceiling(x): -2147483648', &
+'       >   ceiling(x,kind=int64): -4294967296', &
+'       >   ceiling_robust(x): -2147483648', &
+'       >  2 => <ERROR>X=  -4.29496730E+09  <=  -2.14748365E+09', &
+'       >  ======================================================================', &
 '', &
 '', &
 'STANDARD', &
@@ -4881,18 +5923,20 @@ textblock=[character(len=256) :: &
 '', &
 '  AINT(3), ANINT(3), INT(3), SELECTED_INT_KIND(3)', &
 '', &
+'  NEAREST(3), SPACING(3), EPSILON(3)', &
+'', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               August 03, 2024              ceiling(3fortran)', &
+'                               August 12, 2024              ceiling(3fortran)', &
 '']
 
 shortname="ceiling"
 call process()
 
 
-case('47','c_f_pointer')
+case('54','c_f_pointer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -4961,14 +6005,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024          c_f_pointer(3fortran)', &
+'                               August 12, 2024          c_f_pointer(3fortran)', &
 '']
 
 shortname="c_f_pointer"
 call process()
 
 
-case('48','c_f_procpointer')
+case('55','c_f_procpointer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5036,14 +6080,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024      c_f_procpointer(3fortran)', &
+'                               August 12, 2024      c_f_procpointer(3fortran)', &
 '']
 
 shortname="c_f_procpointer"
 call process()
 
 
-case('49','c_funloc')
+case('56','c_funloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5110,14 +6154,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024             c_funloc(3fortran)', &
+'                               August 12, 2024             c_funloc(3fortran)', &
 '']
 
 shortname="c_funloc"
 call process()
 
 
-case('50','char')
+case('57','char')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5246,14 +6290,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 char(3fortran)', &
+'                               August 12, 2024                 char(3fortran)', &
 '']
 
 shortname="char"
 call process()
 
 
-case('51','c_loc')
+case('58','c_loc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5307,14 +6351,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                c_loc(3fortran)', &
+'                               August 12, 2024                c_loc(3fortran)', &
 '']
 
 shortname="c_loc"
 call process()
 
 
-case('52','close')
+case('59','close')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5418,41 +6462,41 @@ textblock=[character(len=256) :: &
 'EXAMPLES', &
 '  sample program:', &
 '', &
-'        program demo_close', &
-'        implicit none', &
-'        character(len=256) :: message', &
-'        integer            :: ios', &
-'           open (10, file=''employee.names'', action=''read'', iostat=ios,iomsg=message)', &
-'           if (ios < 0) then', &
-'              ! perform end-of-file processing on the file connected to unit 10.', &
-'', &
-'              close (10, status=''keep'',iostat=ios,iomsg=message)', &
-'              if(ios.ne.0)then', &
-'                 write(*,''(*(a))'')''*demo_close* close error: '',trim(message)', &
-'                 stop 1', &
-'              endif', &
-'           elseif (ios > 0) then', &
-'              ! perform error processing on open', &
-'              write(*,''(*(a))'')''*demo_close* open error: '',trim(message)', &
-'              stop 2', &
-'           endif', &
-'        end program demo_close', &
+'         program demo_close', &
+'         implicit none', &
+'         character(len=256) :: message', &
+'         integer            :: ios', &
+'            open (10, file=''employee.names'', action=''read'', &', &
+'            & iostat=ios,iomsg=message)', &
+'            if (ios < 0) then', &
+'               ! perform error processing on the unit 10 file.', &
+'               close (10, status=''keep'',iostat=ios,iomsg=message)', &
+'               if(ios.ne.0)then', &
+'                  write(*,''(*(a))'')''*demo_close* close error: '',trim(message)', &
+'                  stop 1', &
+'               endif', &
+'            elseif (ios > 0) then', &
+'               ! perform error processing on open', &
+'               write(*,''(*(a))'')''*demo_close* open error: '',trim(message)', &
+'               stop 2', &
+'            endif', &
+'         end program demo_close', &
 '', &
 '', &
 'SEE ALSO', &
-'  BACKSPACE(3), CLOSE(3), ENDFILE(3), FLUSH(3), INQUIRE(3), OPEN(3), PRINT(3),', &
-'  READ(3), REWIND(3), WAIT(3), WRITE(3)', &
+'  BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),', &
+'  READ(7), REWIND(7), WAIT(7), WRITE(7)', &
 '', &
 '', &
 '', &
-'                               August 03, 2024                close(7fortran)', &
+'                               August 12, 2024                close(7fortran)', &
 '']
 
 shortname="close"
 call process()
 
 
-case('53','cmplx')
+case('60','cmplx')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5502,7 +6546,7 @@ textblock=[character(len=256) :: &
 '', &
 '  this will not work for variables. So you cannot enter', &
 '', &
-'           z = (a, b)  ! NO ! (unless a and b are constants, not variables)', &
+'           z = (a, b) ! NO ! (unless a and b are constants, not variables)', &
 '', &
 '  so to construct a complex value using non-complex values you must use the', &
 '  CMPLX(3) function:', &
@@ -5717,14 +6761,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                cmplx(3fortran)', &
+'                               August 12, 2024                cmplx(3fortran)', &
 '']
 
 shortname="cmplx"
 call process()
 
 
-case('54','co_broadcast')
+case('61','co_broadcast')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5785,14 +6829,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024         co_broadcast(3fortran)', &
+'                               August 12, 2024         co_broadcast(3fortran)', &
 '']
 
 shortname="co_broadcast"
 call process()
 
 
-case('55','co_lbound')
+case('62','co_lbound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5839,7 +6883,7 @@ shortname="co_lbound"
 call process()
 
 
-case('56','co_max')
+case('63','co_max')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5905,14 +6949,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               co_max(3fortran)', &
+'                               August 12, 2024               co_max(3fortran)', &
 '']
 
 shortname="co_max"
 call process()
 
 
-case('57','co_min')
+case('64','co_min')
 
 textblock=[character(len=256) :: &
 '', &
@@ -5974,14 +7018,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               co_min(3fortran)', &
+'                               August 12, 2024               co_min(3fortran)', &
 '']
 
 shortname="co_min"
 call process()
 
 
-case('58','command_argument_count')
+case('65','command_argument_count')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6052,14 +7096,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 202command_argument_count(3fortran)', &
+'                               August 12, 202command_argument_count(3fortran)', &
 '']
 
 shortname="command_argument_count"
 call process()
 
 
-case('59','compiler_options')
+case('66','compiler_options')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6140,14 +7184,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024     compiler_options(3fortran)', &
+'                               August 12, 2024     compiler_options(3fortran)', &
 '']
 
 shortname="compiler_options"
 call process()
 
 
-case('60','compiler_version')
+case('67','compiler_version')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6212,14 +7256,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024     compiler_version(3fortran)', &
+'                               August 12, 2024     compiler_version(3fortran)', &
 '']
 
 shortname="compiler_version"
 call process()
 
 
-case('61','conjg')
+case('68','conjg')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6343,14 +7387,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                conjg(3fortran)', &
+'                               August 12, 2024                conjg(3fortran)', &
 '']
 
 shortname="conjg"
 call process()
 
 
-case('62','continue')
+case('69','continue')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6425,14 +7469,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024             continue(7fortran)', &
+'                               August 12, 2024             continue(7fortran)', &
 '']
 
 shortname="continue"
 call process()
 
 
-case('63','co_reduce')
+case('70','co_reduce')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6527,14 +7571,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024            co_reduce(3fortran)', &
+'                               August 12, 2024            co_reduce(3fortran)', &
 '']
 
 shortname="co_reduce"
 call process()
 
 
-case('64','cos')
+case('71','cos')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6621,14 +7665,104 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  cos(3fortran)', &
+'                               August 12, 2024                  cos(3fortran)', &
 '']
 
 shortname="cos"
 call process()
 
 
-case('65','cosh')
+case('72','cosd')
+
+textblock=[character(len=256) :: &
+'', &
+'cosd(3fortran)                                                 cosd(3fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  COSD(3) - [MATHEMATICS:TRIGONOMETRIC] Degree cosine function', &
+'', &
+'', &
+'SYNOPSIS', &
+'  result = cosd(x)', &
+'', &
+'          elemental real(kind=KIND) function cosd(x)', &
+'', &
+'           real(kind=KIND),intent(in) :: x', &
+'', &
+'', &
+'CHARACTERISTICS', &
+'  o  X is of type real of any valid kind.', &
+'', &
+'  o  KIND may be any real kind.', &
+'', &
+'  o  The returned value will be of the same type and kind as the argument X.', &
+'', &
+'DESCRIPTION', &
+'  COSD(3) computes the cosine of an angle X given the size of the angle in', &
+'  degrees.', &
+'', &
+'  The cosine is the ratio of the adjacent side to the hypotenuse of a right-', &
+'  angled triangle.', &
+'', &
+'OPTIONS', &
+'  o  X : The angle in degrees to compute the cosine of.', &
+'', &
+'RESULT', &
+'  The return value is an approximation of the cosine of X.', &
+'', &
+'  The return value is in degrees and lies in the range -1 <= COSD(X) <= 1 .', &
+'', &
+'EXAMPLES', &
+'  cosd(180.0) has the value -1.0 (approximately).', &
+'', &
+'  Sample program:', &
+'', &
+'      program demo_cosd', &
+'      implicit none', &
+'      character(len=*),parameter :: g2=''(a,t20,g0)''', &
+'        write(*,g2)''cosd(0.0)='',cosd(0.0)', &
+'        write(*,g2)''cosd(180.0)='',cosd(180.0)', &
+'        write(*,g2)''cosd(90.0d0)='',cosd(90.0d0)', &
+'        write(*,g2)''cosd(360.0)='',cosd(360.0)', &
+'        write(*,g2)''cosd(-360.0)='',cosd(-360.0)', &
+'        write(*,g2)''cosd(-2000*180.0)='',cosd(-2000*180.0)', &
+'        write(*,g2)''cosd(3000*180.0)='',cosd(3000*180.0)', &
+'      end program demo_cosd', &
+'', &
+'  Results:', &
+'', &
+'       > cosd(0.0)=        1.00000000', &
+'       > cosd(180.0)=      -1.00000000', &
+'       > cosd(90.0d0)=     0.0000000000000000', &
+'       > cosd(360.0)=      1.00000000', &
+'       > cosd(-360.0)=     1.00000000', &
+'       > cosd(-2000*180.0)= 1.00000000', &
+'       > cosd(3000*180.0)=  1.00000000', &
+'', &
+'', &
+'STANDARD', &
+'  Fortran 2023', &
+'', &
+'SEE ALSO', &
+'  ACOSD(3), ACOS(3), SIND(3), TAND(3)', &
+'', &
+'RESOURCES', &
+'  o  Wikipedia:sine and cosine', &
+'', &
+'  fortran-lang intrinsic descriptions', &
+'', &
+'', &
+'', &
+'                               August 12, 2024                 cosd(3fortran)', &
+'']
+
+shortname="cosd"
+call process()
+
+
+case('73','cosh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6696,14 +7830,112 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 cosh(3fortran)', &
+'                               August 12, 2024                 cosh(3fortran)', &
 '']
 
 shortname="cosh"
 call process()
 
 
-case('66','co_sum')
+case('74','cospi')
+
+textblock=[character(len=256) :: &
+'', &
+'cospi(3fortran)                                               cospi(3fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  COSPI(3) - [MATHEMATICS:TRIGONOMETRIC] Circular Cosine function', &
+'', &
+'', &
+'SYNOPSIS', &
+'  result = cospi(x)', &
+'', &
+'          elemental real(kind=KIND) function cospi(x)', &
+'', &
+'           real(kind=KIND),intent(in) :: x', &
+'', &
+'', &
+'CHARACTERISTICS', &
+'  o  X is of type real.', &
+'', &
+'  o  KIND may be any kind supported by the associated type of X.', &
+'', &
+'  o  The returned value will be of the same type and kind as the argument X.', &
+'', &
+'DESCRIPTION', &
+'  COSPI(3) computes the circular cosine of an angle X given the size of the', &
+'  angle in half-revolutions.', &
+'', &
+'  The cosine of a real value is the ratio of the adjacent side to the', &
+'  hypotenuse of a right-angled triangle.', &
+'', &
+'  COSPI(X) is approximately equal to COS(X*PI).', &
+'', &
+'OPTIONS', &
+'  o  X : The angle in half-revolutions to compute the cosine of.', &
+'', &
+'RESULT', &
+'  The return value is the approximate value of the cosine of X.', &
+'', &
+'  The return value lies in the range -1 <= COSPI(X) <= 1 .', &
+'', &
+'EXAMPLES', &
+'  Example: COSPI(1.0) has the value -1.0 (approximately).', &
+'', &
+'  Sample program:', &
+'', &
+'      program demo_cos', &
+'      implicit none', &
+'      character(len=*),parameter :: g2=''(a,t21,*(g0,1x))''', &
+'        write(*,g2) ''Basics:''', &
+'        write(*,g2) ''COSpi(0)='',      cospi(0.0d0)', &
+'        write(*,g2) ''COSpi(1)='',      cospi(1.0d0)', &
+'        write(*,g2) ''COSpi(1/2)='',    cospi(1.0d0/2.0d0)', &
+'        write(*,g2) ''COSpi(2)='',      cospi(2.0d0)', &
+'        write(*,g2) ''COSpi(-2)='',     cospi(-2.0d0)', &
+'        write(*,g2) ''COSpi(-2000)='',  cospi(-2000.0d0)', &
+'        write(*,g2) ''COSpi(3000)='',   cospi(3000.0d0)', &
+'        write(*,g2) ''Elemental:''', &
+'        write(*,g2) ''COSpi([0,1/4,-1/4])='',COSpi([0.0,0.25,-0.25])', &
+'      end program demo_cos', &
+'', &
+'  Results:', &
+'', &
+'       > Basics:', &
+'       > COSpi(0)=          1.0000000000000000', &
+'       > COSpi(1)=          -1.0000000000000000', &
+'       > COSpi(1/2)=        0.61232339957367660E-16', &
+'       > COSpi(2)=          1.0000000000000000', &
+'       > COSpi(-2)=         1.0000000000000000', &
+'       > COSpi(-2000)=      1.0000000000000000', &
+'       > COSpi(3000)=       1.0000000000000000', &
+'       > Elemental:', &
+'       > COSpi([0,1/4,-1/4])=1.00000000 0.707106769 0.707106769', &
+'', &
+'', &
+'STANDARD', &
+'  Fortran 2023', &
+'', &
+'SEE ALSO', &
+'  ACOS(3), SIN(3), TAN(3)', &
+'', &
+'RESOURCES', &
+'  o  Wikipedia:sine and cosine', &
+'', &
+'  fortran-lang intrinsic descriptions', &
+'', &
+'', &
+'', &
+'                               August 12, 2024                cospi(3fortran)', &
+'']
+
+shortname="cospi"
+call process()
+
+
+case('75','co_sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6773,14 +8005,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               co_sum(3fortran)', &
+'                               August 12, 2024               co_sum(3fortran)', &
 '']
 
 shortname="co_sum"
 call process()
 
 
-case('67','co_ubound')
+case('76','co_ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -6827,7 +8059,7 @@ shortname="co_ubound"
 call process()
 
 
-case('68','count')
+case('77','count')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7064,14 +8296,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                count(3fortran)', &
+'                               August 12, 2024                count(3fortran)', &
 '']
 
 shortname="count"
 call process()
 
 
-case('69','cpu_time')
+case('78','cpu_time')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7177,14 +8409,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024             cpu_time(3fortran)', &
+'                               August 12, 2024             cpu_time(3fortran)', &
 '']
 
 shortname="cpu_time"
 call process()
 
 
-case('70','cshift')
+case('79','cshift')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7315,14 +8547,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               cshift(3fortran)', &
+'                               August 12, 2024               cshift(3fortran)', &
 '']
 
 shortname="cshift"
 call process()
 
 
-case('71','c_sizeof')
+case('80','c_sizeof')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7379,14 +8611,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024             c_sizeof(3fortran)', &
+'                               August 12, 2024             c_sizeof(3fortran)', &
 '']
 
 shortname="c_sizeof"
 call process()
 
 
-case('72','date_and_time')
+case('81','date_and_time')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7568,14 +8800,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024        date_and_time(3fortran)', &
+'                               August 12, 2024        date_and_time(3fortran)', &
 '']
 
 shortname="date_and_time"
 call process()
 
 
-case('73','dble')
+case('82','dble')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7647,14 +8879,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 dble(3fortran)', &
+'                               August 12, 2024                 dble(3fortran)', &
 '']
 
 shortname="dble"
 call process()
 
 
-case('74','digits')
+case('83','digits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7722,14 +8954,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               digits(3fortran)', &
+'                               August 12, 2024               digits(3fortran)', &
 '']
 
 shortname="digits"
 call process()
 
 
-case('75','dim')
+case('84','dim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7833,14 +9065,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  dim(3fortran)', &
+'                               August 12, 2024                  dim(3fortran)', &
 '']
 
 shortname="dim"
 call process()
 
 
-case('76','dot_product')
+case('85','dot_product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7936,14 +9168,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024          dot_product(3fortran)', &
+'                               August 12, 2024          dot_product(3fortran)', &
 '']
 
 shortname="dot_product"
 call process()
 
 
-case('77','dprod')
+case('86','dprod')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8050,14 +9282,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                dprod(3fortran)', &
+'                               August 12, 2024                dprod(3fortran)', &
 '']
 
 shortname="dprod"
 call process()
 
 
-case('78','dshiftl')
+case('87','dshiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8202,14 +9434,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024              dshiftl(3fortran)', &
+'                               August 12, 2024              dshiftl(3fortran)', &
 '']
 
 shortname="dshiftl"
 call process()
 
 
-case('79','dshiftr')
+case('88','dshiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8280,7 +9512,7 @@ textblock=[character(len=256) :: &
 '', &
 '  this has the same result as a negative circular shift', &
 '', &
-'          ishftc( i,   -shift ).', &
+'          ishftc( i,  -shift ).', &
 '', &
 '', &
 'OPTIONS', &
@@ -8357,14 +9589,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024              dshiftr(3fortran)', &
+'                               August 12, 2024              dshiftr(3fortran)', &
 '']
 
 shortname="dshiftr"
 call process()
 
 
-case('80','endfile')
+case('89','endfile')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8448,19 +9680,19 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'SEE ALSO', &
-'  BACKSPACE(3), CLOSE(3), ENDFILE(3), FLUSH(3), INQUIRE(3), OPEN(3), PRINT(3),', &
-'  READ(3), REWIND(3), WAIT(3), WRITE(3)', &
+'  BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),', &
+'  READ(7), REWIND(7), WAIT(7), WRITE(7)', &
 '', &
 '', &
 '', &
-'                               August 03, 2024              endfile(7fortran)', &
+'                               August 12, 2024              endfile(7fortran)', &
 '']
 
 shortname="endfile"
 call process()
 
 
-case('81','eoshift')
+case('90','eoshift')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8586,14 +9818,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024              eoshift(3fortran)', &
+'                               August 12, 2024              eoshift(3fortran)', &
 '']
 
 shortname="eoshift"
 call process()
 
 
-case('82','epsilon')
+case('91','epsilon')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8610,7 +9842,7 @@ textblock=[character(len=256) :: &
 '', &
 '          real(kind=kind(x)) function epsilon(x)', &
 '', &
-'           real(kind=kind(x),intent(in)   :: x(..)', &
+'           real(kind=kind(x),intent(in) :: x(..)', &
 '', &
 '', &
 'CHARACTERISTICS', &
@@ -8623,7 +9855,7 @@ textblock=[character(len=256) :: &
 '  negligible number relative to 1 such that 1+ LITTLE_NUMBER is not equal to', &
 '  1; or more precisely', &
 '', &
-'        real( 1.0, kind(x)) + epsilon(x) /=  real( 1.0, kind(x))', &
+'        real( 1.0, kind(x)) + epsilon(x) /= real( 1.0, kind(x))', &
 '', &
 '  It may be thought of as the distance from 1.0 to the next largest floating', &
 '  point number.', &
@@ -8718,14 +9950,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024              epsilon(3fortran)', &
+'                               August 12, 2024              epsilon(3fortran)', &
 '']
 
 shortname="epsilon"
 call process()
 
 
-case('83','erf')
+case('92','erf')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8791,14 +10023,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  erf(3fortran)', &
+'                               August 12, 2024                  erf(3fortran)', &
 '']
 
 shortname="erf"
 call process()
 
 
-case('84','erfc')
+case('93','erfc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8879,14 +10111,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 erfc(3fortran)', &
+'                               August 12, 2024                 erfc(3fortran)', &
 '']
 
 shortname="erfc"
 call process()
 
 
-case('85','erfc_scaled')
+case('94','erfc_scaled')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8961,14 +10193,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024          erfc_scaled(3fortran)', &
+'                               August 12, 2024          erfc_scaled(3fortran)', &
 '']
 
 shortname="erfc_scaled"
 call process()
 
 
-case('86','event_query')
+case('95','event_query')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9051,14 +10283,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024          event_query(3fortran)', &
+'                               August 12, 2024          event_query(3fortran)', &
 '']
 
 shortname="event_query"
 call process()
 
 
-case('87','execute_command_line')
+case('96','execute_command_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9185,14 +10417,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024 execute_command_line(3fortran)', &
+'                               August 12, 2024 execute_command_line(3fortran)', &
 '']
 
 shortname="execute_command_line"
 call process()
 
 
-case('88','exp')
+case('97','exp')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9302,14 +10534,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  exp(3fortran)', &
+'                               August 12, 2024                  exp(3fortran)', &
 '']
 
 shortname="exp"
 call process()
 
 
-case('89','exponent')
+case('98','exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9384,14 +10616,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024             exponent(3fortran)', &
+'                               August 12, 2024             exponent(3fortran)', &
 '']
 
 shortname="exponent"
 call process()
 
 
-case('90','extends_type_of')
+case('99','extends_type_of')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9565,14 +10797,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024      extends_type_of(3fortran)', &
+'                               August 12, 2024      extends_type_of(3fortran)', &
 '']
 
 shortname="extends_type_of"
 call process()
 
 
-case('91','findloc')
+case('100','findloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9858,14 +11090,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024              findloc(3fortran)', &
+'                               August 12, 2024              findloc(3fortran)', &
 '']
 
 shortname="findloc"
 call process()
 
 
-case('92','floor')
+case('101','floor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9948,7 +11180,7 @@ textblock=[character(len=256) :: &
 '        print *,      [2.0,2.0-epsilon(0.0),2.0-2*epsilon(0.0)]', &
 '        print *,floor([2.0,2.0-epsilon(0.0),2.0-2*epsilon(0.0)])', &
 '', &
-'        ! A=Nan, Infinity or  <huge(0_KIND)-1 < A > huge(0_KIND) is undefined', &
+'        ! A=Nan, Infinity or huge(0_KIND)-1 < A > huge(0_KIND) is undefined', &
 '      end program demo_floor', &
 '', &
 '  Results:', &
@@ -9972,14 +11204,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                floor(3fortran)', &
+'                               August 12, 2024                floor(3fortran)', &
 '']
 
 shortname="floor"
 call process()
 
 
-case('93','flush')
+case('102','flush')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10069,14 +11301,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                flush(7fortran)', &
+'                               August 12, 2024                flush(7fortran)', &
 '']
 
 shortname="flush"
 call process()
 
 
-case('94','fraction')
+case('103','fraction')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10145,14 +11377,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024             fraction(3fortran)', &
+'                               August 12, 2024             fraction(3fortran)', &
 '']
 
 shortname="fraction"
 call process()
 
 
-case('95','gamma')
+case('104','gamma')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10300,14 +11532,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                gamma(3fortran)', &
+'                               August 12, 2024                gamma(3fortran)', &
 '']
 
 shortname="gamma"
 call process()
 
 
-case('96','get_command')
+case('105','get_command')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10409,14 +11641,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024          get_command(3fortran)', &
+'                               August 12, 2024          get_command(3fortran)', &
 '']
 
 shortname="get_command"
 call process()
 
 
-case('97','get_command_argument')
+case('106','get_command_argument')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10549,14 +11781,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024 get_command_argument(3fortran)', &
+'                               August 12, 2024 get_command_argument(3fortran)', &
 '']
 
 shortname="get_command_argument"
 call process()
 
 
-case('98','get_environment_variable')
+case('107','get_environment_variable')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10696,14 +11928,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2get_environment_variable(3fortran)', &
+'                               August 12, 2get_environment_variable(3fortran)', &
 '']
 
 shortname="get_environment_variable"
 call process()
 
 
-case('99','huge')
+case('108','huge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10815,14 +12047,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 huge(3fortran)', &
+'                               August 12, 2024                 huge(3fortran)', &
 '']
 
 shortname="huge"
 call process()
 
 
-case('100','hypot')
+case('109','hypot')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10996,14 +12228,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                hypot(3fortran)', &
+'                               August 12, 2024                hypot(3fortran)', &
 '']
 
 shortname="hypot"
 call process()
 
 
-case('101','iachar')
+case('110','iachar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11118,14 +12350,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               iachar(3fortran)', &
+'                               August 12, 2024               iachar(3fortran)', &
 '']
 
 shortname="iachar"
 call process()
 
 
-case('102','iall')
+case('111','iall')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11209,14 +12441,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 iall(3fortran)', &
+'                               August 12, 2024                 iall(3fortran)', &
 '']
 
 shortname="iall"
 call process()
 
 
-case('103','iand')
+case('112','iand')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11291,7 +12523,7 @@ textblock=[character(len=256) :: &
 '  00000000000000000000000000000011', &
 '', &
 'STANDARD', &
-'  Fortran 95', &
+'  Fortran 2023', &
 '', &
 'SEE ALSO', &
 '  BTEST(3), IBCLR(3), IBITS(3), IBSET(3), IEOR(3), IOR(3), MVBITS(3), NOT(3)', &
@@ -11300,14 +12532,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 iand(3fortran)', &
+'                               August 12, 2024                 iand(3fortran)', &
 '']
 
 shortname="iand"
 call process()
 
 
-case('104','iany')
+case('113','iany')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11417,14 +12649,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 iany(3fortran)', &
+'                               August 12, 2024                 iany(3fortran)', &
 '']
 
 shortname="iany"
 call process()
 
 
-case('105','ibclr')
+case('114','ibclr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11523,14 +12755,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                ibclr(3fortran)', &
+'                               August 12, 2024                ibclr(3fortran)', &
 '']
 
 shortname="ibclr"
 call process()
 
 
-case('106','ibits')
+case('115','ibits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11632,14 +12864,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                ibits(3fortran)', &
+'                               August 12, 2024                ibits(3fortran)', &
 '']
 
 shortname="ibits"
 call process()
 
 
-case('107','ibset')
+case('116','ibset')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11737,14 +12969,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                ibset(3fortran)', &
+'                               August 12, 2024                ibset(3fortran)', &
 '']
 
 shortname="ibset"
 call process()
 
 
-case('108','ichar')
+case('117','ichar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11842,14 +13074,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                ichar(3fortran)', &
+'                               August 12, 2024                ichar(3fortran)', &
 '']
 
 shortname="ichar"
 call process()
 
 
-case('109','ieor')
+case('118','ieor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11956,14 +13188,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 ieor(3fortran)', &
+'                               August 12, 2024                 ieor(3fortran)', &
 '']
 
 shortname="ieor"
 call process()
 
 
-case('110','image_index')
+case('119','image_index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12013,14 +13245,295 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024          image_index(3fortran)', &
+'                               August 12, 2024          image_index(3fortran)', &
 '']
 
 shortname="image_index"
 call process()
 
 
-case('111','index')
+case('120','implicit')
+
+textblock=[character(len=256) :: &
+'', &
+'implicit(7fortran)                                         implicit(7fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  IMPLICIT(7f) - [FORTRAN:STATEMENT] specify default type associated to a', &
+'  starting letter or disallow implicit typing', &
+'', &
+'', &
+'SYNOPSIS', &
+'  implicit [NONE]|[declaration-type-spec (letter-spec-list)]', &
+'', &
+'DESCRIPTION', &
+'  Determine default mapping between the first letter of a data entity and a', &
+'  type. The default is the equivalent of the statement', &
+'', &
+'           implicit real(a-h,o-z),integer(i-n)', &
+'', &
+'  Compiler switches often allow the default to be the commonly recommended', &
+'', &
+'           implicit none ! require all variables to have type statements', &
+'', &
+'  This requires that the procedures be written using "strong typing"; where', &
+'  every variable subsequently has to be defined in a type declaration', &
+'  statement.', &
+'', &
+'  If implicit typing is turned off you do not need to know all the scoping', &
+'  rules for implicit typing, which by itself is a significant reason for', &
+'  turning it off.', &
+'', &
+'  When a large number of variable names are used with strong typing a', &
+'  significant number of lines of code need added to declare the variables; but', &
+'  strong typing is still almost universally recommended where terseness is not', &
+'  critical (as is sometimes the case in interactive usage or quick', &
+'  prototyping).', &
+'', &
+'  Every data entity has a type (INTEGER, REAL, CHARACTER, ...). If a type is', &
+'  not explicitly assigned to a variable or function it will (by default) be', &
+'  assigned one according to the following rule -- the type is INTEGER if the', &
+'  name starts with the letters from I to N (the first two letters of the word', &
+'  "integer"); otherwise it defaults to REAL.', &
+'', &
+'  The IMPLICIT statement allows the default rule to be changed or set to null.', &
+'', &
+'  To turn off implicit typing enter one and only one IMPLICIT statement in the', &
+'  scoping unit', &
+'', &
+'       implicit none ! Disable all implicit typing', &
+'', &
+'  Each data entity will now require having a type declared explicitly', &
+'  (INTEGER, REAL, DOUBLE, COMPLEX, ...).', &
+'', &
+'  The statement must appear after any USE statements and before any type', &
+'  declarations, including PARAMETER statements (which must know the rules to', &
+'  determine what type names are that have not been explicitly declared).', &
+'', &
+'  In most new code implicit typing is turned off either with an "IMPLICIT', &
+'  NONE" or sometimes by a compiler switch. On the other hand, the majority of', &
+'  pre-fortran90 code depends on implicit defaults.', &
+'', &
+'  Each prefix letter may have the type assigned to it declared only once in a', &
+'  unit.', &
+'', &
+'  As previously stated, the default rule, expressed as an IMPLICIT statement', &
+'  is', &
+'', &
+'           implicit real(a-h,o-z),integer(i-n)', &
+'', &
+'  To make the default for all names be a DOUBLEPRECISION type one could enter', &
+'', &
+'           implicit doubleprecision (a-z)', &
+'', &
+'  NOTE: The standard does not require constants to be affected, so a type', &
+'  suffix is required for most constants. That is, even if A is implicitly', &
+'  double-precision', &
+'', &
+'            A=123456789.01234 ! only the precision of a default REAL is retained', &
+'', &
+'            A=123456789.01234D0 ! precision of a double will be retained', &
+'', &
+'  In another unit one might specify (multiple statements and compound', &
+'  statements are allowed, as illustrated):', &
+'', &
+'           implicit complex (c), doubleprecision (d)', &
+'           implicit integer (i)', &
+'           implicit logical (l)', &
+'           implicit real (r)', &
+'           implicit character(len=8) (a,b,e-h,j,k,m-q,s-z)', &
+'', &
+'  There is no way to make some letters default to no type and others have a', &
+'  default. Either nothing has a default type or everything does. You can', &
+'  however make a default be a user-defined null type.', &
+'', &
+'           subroutine sub1()', &
+'           ! cannot do a "implicit none" on just some letters.', &
+'           ! and a type is required so', &
+'           ! implicit (a-h)  ! NOTE: NOT ALLOWED. TYPE IS REQUIRE0', &
+'           ! but you can make the default an user-defined type ...', &
+'           ! notice the (incidently empty) type is defined below', &
+'           ! the implicit statement', &
+'           implicit nil(a-h) ! or implicit type(nil) (a)', &
+'           !', &
+'           type nil', &
+'           end type nil', &
+'           type(nil) :: anull', &
+'           end subroutine sub1', &
+'', &
+'  The default for an internal or module procedure is the mapping in the host', &
+'  scoping unit. That is, a single "IMPLICIT NONE" in the global top section of', &
+'  a module makes the default be "IMPLICIT NONE" in any contained procedure.', &
+'', &
+'  Explicitly setting a variable type always overides the default so any data', &
+'  entity that is not explicitly declared by a type declaration statement, is', &
+'  not an intrinsic function, and is not accessed by use or host association is', &
+'  declared implicitly to be of the type (and type parameters) mapped from the', &
+'  first letter of its name, provided the mapping is not null. But anything', &
+'  accessed by a USE statement retains the type it had in the scoping unit in', &
+'  which it was declared.', &
+'', &
+'  This means the mapping may be to a derived type that is inaccessible in the', &
+'  local scope if the derived type is accessible in the host scoping unit. That', &
+'  is, if you import the variable "FRED" of type "GOO" from a module; "FRED" is', &
+'  of type "GOO" even if type "GOO" is private in the module defining "FRED".', &
+'  That is, variable "FRED" retains the type "GOO" even if you cannot declare', &
+'  variables of type "GOO" in the current scoping unit.', &
+'', &
+'  So the data entity is treated as if it were declared in an explicit type', &
+'  declaration in the outermost scoping unit in which it appears. An explicit', &
+'  type specification in a FUNCTION statement overrides an IMPLICIT statement', &
+'  for the name of the result variable of that function subprogram.', &
+'', &
+'  OPTIONS NONE Turns off implicit typing. Recommended. It must follow USE', &
+'  statements but be before any variable declarations, including PARAMETER', &
+'  statements. When used there shall be no other IMPLICIT statements in the', &
+'  scoping unit.', &
+'', &
+'      TYPE() letter-spec  is', &
+'                 (letter-or-range[,letter-or-range] [,letter-or-range] )', &
+'                  If the minus and second letter appear, the second', &
+'                  letter shall follow the first letter alphabetically.', &
+'                  A letter-spec consisting of two letter s separated by', &
+'                  a minus is equivalent to writing a list containing', &
+'                  all of the letters in alphabetical order in the', &
+'                  alphabetic sequence from the first letter through', &
+'                  the second letter. For example, A-C is equivalent', &
+'                  to A, B, C. The same letter shall not appear as a', &
+'                  single letter, or be included in a range of letters,', &
+'                  more than once in all of the IMPLICIT statements', &
+'                  in a scoping unit.', &
+'', &
+'  EXAMPLE The following are examples of the use of IMPLICIT statements:', &
+'', &
+'             module example_module', &
+'                implicit none', &
+'                ...', &
+'                interface', &
+'                   function fun (i)    ! not all data entities need to', &
+'                      integer fun      ! be declared explicitly, so I', &
+'                   end function fun    ! does not need declared', &
+'                end interface', &
+'             contains', &
+'                function jfun (j)      ! all data entities need to', &
+'                   integer jfun, j     ! be declared explicitly.', &
+'                   ...', &
+'                end function jfun', &
+'             end module example_module', &
+'', &
+'             subroutine sub', &
+'                implicit complex (c)', &
+'                CM = (3.0, 2.0)      ! CM is implicitly declared COMPLEX', &
+'                ...', &
+'             contains', &
+'                subroutine sub1', &
+'                   IMPLICIT INTEGER (A, C)', &
+'                   C = (0.0, 0.0) ! C is host associated and of', &
+'                                  ! type complex', &
+'                   Z = 1.0        ! Z is implicitly declared REAL', &
+'                   A = 2          ! A is implicitly declared INTEGER', &
+'                   CC = 1         ! CC is implicitly declared INTEGER', &
+'                   ...', &
+'                end subroutine sub1', &
+'                subroutine sub2', &
+'                   Z = 2.0         ! Z is implicitly declared REAL and', &
+'                                   ! is different from the variable of', &
+'                                   ! the same name in SUB1', &
+'                   ...', &
+'                end subroutine sub2', &
+'                subroutine sub3', &
+'                   USE EXAMPLE_MODULE ! Accesses integer function FUN', &
+'                                       ! by use association', &
+'                   Q = FUN (K)         ! Q is implicitly declared REAL and', &
+'                   ...                 ! K is implicitly declared INTEGER', &
+'                end subroutine sub3', &
+'             end subroutine sub', &
+'', &
+'  The following is an example of a mapping to a derived type that is', &
+'  inaccessible in the local scope:', &
+'', &
+'                   program main', &
+'                     implicit type(blob) (a)', &
+'                     type blob', &
+'                       integer :: i', &
+'                     end type blob', &
+'                     type(blob) :: b', &
+'                     call steve', &
+'                   contains', &
+'                     subroutine steve', &
+'                       integer :: blob', &
+'                       !..', &
+'                       aa = b', &
+'                       !..', &
+'                     end subroutine steve', &
+'                   end program main', &
+'', &
+'  In the subroutine STEVE(), it is not possible to explicitly declare a', &
+'  variable to be of type BLOB because BLOB has been given a different meaning,', &
+'  but implicit mapping for the letter A still maps to type BLOB, so AA is of', &
+'  type BLOB.', &
+'', &
+'        program demo_implicit', &
+'        ! everything accessed via USE already has a type and comes', &
+'        ! before an implicit statement; but implicit rules are not', &
+'        ! inherited from modules', &
+'        use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT', &
+'        !', &
+'        ! the implicit statement must come before other declarations', &
+'        ! in new code using this turns on strong typing (that is,every', &
+'        ! variable has to have its type declared in a statement). This', &
+'        ! is generally highly recommended for new code.', &
+'        implicit none', &
+'        ! it is still a convention used by many programmers to reserve', &
+'        ! starting letters of I to N for integers.', &
+'        integer    :: i, j, k', &
+'        type(real) :: x,y,z', &
+'        intrinsic sin,cos ! intrinsic types are already specified', &
+'        integer,external :: zzz ! but external functions need declared', &
+'                                ! if they do not have an interface', &
+'        call sub1()', &
+'        call sub2()', &
+'        contains', &
+'        subroutine sub1()', &
+'        ! the implicit none above became the default for contained', &
+'        ! procedures so no reason to repeat it. So only required once', &
+'        ! in main procedure or once in top of a module to change the', &
+'        ! default of all procedures defined after a CONTAINS statement', &
+'        integer :: i=10,j=20', &
+'           write(*,*)''I='',i,''J='',j', &
+'        end subroutine sub1', &
+'        subroutine sub2()', &
+'        ! a contained subroutine can override the default created in the', &
+'        ! containing scope though', &
+'        implicit complex(a-z)', &
+'           A=(10,20)', &
+'           write(*,*)''A='',a', &
+'        end subroutine sub2', &
+'        end', &
+'        integer function zzz()', &
+'            zzz=1234', &
+'        end function zzz', &
+'        !end program demo_implicit', &
+'', &
+'  Results:', &
+'', &
+'       >  I=         10 J=          20', &
+'       >  A=            (10.0000000,20.0000000)', &
+'', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                               August 12, 2024             implicit(7fortran)', &
+'']
+
+shortname="implicit"
+call process()
+
+
+case('121','index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12120,14 +13633,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                index(3fortran)', &
+'                               August 12, 2024                index(3fortran)', &
 '']
 
 shortname="index"
 call process()
 
 
-case('112','inquire')
+case('122','inquire')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12585,19 +14098,19 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'SEE ALSO', &
-'  BACKSPACE(3), CLOSE(3), ENDFILE(3), FLUSH(3), INQUIRE(3), OPEN(3), PRINT(3),', &
-'  READ(3), REWIND(3), WAIT(3), WRITE(3)', &
+'  BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),', &
+'  READ(7), REWIND(7), WAIT(7), WRITE(7)', &
 '', &
 '', &
 '', &
-'                               August 03, 2024              inquire(7fortran)', &
+'                               August 12, 2024              inquire(7fortran)', &
 '']
 
 shortname="inquire"
 call process()
 
 
-case('113','int')
+case('123','int')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12726,14 +14239,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  int(3fortran)', &
+'                               August 12, 2024                  int(3fortran)', &
 '']
 
 shortname="int"
 call process()
 
 
-case('114','ior')
+case('124','ior')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12815,14 +14328,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  ior(3fortran)', &
+'                               August 12, 2024                  ior(3fortran)', &
 '']
 
 shortname="ior"
 call process()
 
 
-case('115','iparity')
+case('125','iparity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12911,14 +14424,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024              iparity(3fortran)', &
+'                               August 12, 2024              iparity(3fortran)', &
 '']
 
 shortname="iparity"
 call process()
 
 
-case('116','is_contiguous')
+case('126','is_contiguous')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13048,14 +14561,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024        is_contiguous(3fortran)', &
+'                               August 12, 2024        is_contiguous(3fortran)', &
 '']
 
 shortname="is_contiguous"
 call process()
 
 
-case('117','ishft')
+case('127','ishft')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13151,14 +14664,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                ishft(3fortran)', &
+'                               August 12, 2024                ishft(3fortran)', &
 '']
 
 shortname="ishft"
 call process()
 
 
-case('118','ishftc')
+case('128','ishftc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13300,14 +14813,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               ishftc(3fortran)', &
+'                               August 12, 2024               ishftc(3fortran)', &
 '']
 
 shortname="ishftc"
 call process()
 
 
-case('119','is_iostat_end')
+case('129','is_iostat_end')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13391,14 +14904,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024        is_iostat_end(3fortran)', &
+'                               August 12, 2024        is_iostat_end(3fortran)', &
 '']
 
 shortname="is_iostat_end"
 call process()
 
 
-case('120','is_iostat_eor')
+case('130','is_iostat_eor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13497,14 +15010,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024        is_iostat_eor(3fortran)', &
+'                               August 12, 2024        is_iostat_eor(3fortran)', &
 '']
 
 shortname="is_iostat_eor"
 call process()
 
 
-case('121','kind')
+case('131','kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13587,14 +15100,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 kind(3fortran)', &
+'                               August 12, 2024                 kind(3fortran)', &
 '']
 
 shortname="kind"
 call process()
 
 
-case('122','lbound')
+case('132','lbound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13764,14 +15277,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               lbound(3fortran)', &
+'                               August 12, 2024               lbound(3fortran)', &
 '']
 
 shortname="lbound"
 call process()
 
 
-case('123','lcobound')
+case('133','lcobound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13816,14 +15329,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024             lcobound(3fortran)', &
+'                               August 12, 2024             lcobound(3fortran)', &
 '']
 
 shortname="lcobound"
 call process()
 
 
-case('124','leadz')
+case('134','leadz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13909,14 +15422,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                leadz(3fortran)', &
+'                               August 12, 2024                leadz(3fortran)', &
 '']
 
 shortname="leadz"
 call process()
 
 
-case('125','len')
+case('135','len')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14058,14 +15571,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  len(3fortran)', &
+'                               August 12, 2024                  len(3fortran)', &
 '']
 
 shortname="len"
 call process()
 
 
-case('126','len_trim')
+case('136','len_trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14181,14 +15694,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024             len_trim(3fortran)', &
+'                               August 12, 2024             len_trim(3fortran)', &
 '']
 
 shortname="len_trim"
 call process()
 
 
-case('127','lge')
+case('137','lge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14299,14 +15812,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  lge(3fortran)', &
+'                               August 12, 2024                  lge(3fortran)', &
 '']
 
 shortname="lge"
 call process()
 
 
-case('128','lgt')
+case('138','lgt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14418,14 +15931,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  lgt(3fortran)', &
+'                               August 12, 2024                  lgt(3fortran)', &
 '']
 
 shortname="lgt"
 call process()
 
 
-case('129','lle')
+case('139','lle')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14561,14 +16074,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  lle(3fortran)', &
+'                               August 12, 2024                  lle(3fortran)', &
 '']
 
 shortname="lle"
 call process()
 
 
-case('130','llt')
+case('140','llt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14683,14 +16196,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  llt(3fortran)', &
+'                               August 12, 2024                  llt(3fortran)', &
 '']
 
 shortname="llt"
 call process()
 
 
-case('131','log10')
+case('141','log10')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14827,14 +16340,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                log10(3fortran)', &
+'                               August 12, 2024                log10(3fortran)', &
 '']
 
 shortname="log10"
 call process()
 
 
-case('132','log')
+case('142','log')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14972,14 +16485,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  log(3fortran)', &
+'                               August 12, 2024                  log(3fortran)', &
 '']
 
 shortname="log"
 call process()
 
 
-case('133','log_gamma')
+case('143','log_gamma')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15042,14 +16555,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024            log_gamma(3fortran)', &
+'                               August 12, 2024            log_gamma(3fortran)', &
 '']
 
 shortname="log_gamma"
 call process()
 
 
-case('134','logical')
+case('144','logical')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15131,14 +16644,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024              logical(3fortran)', &
+'                               August 12, 2024              logical(3fortran)', &
 '']
 
 shortname="logical"
 call process()
 
 
-case('135','maskl')
+case('145','maskl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15230,14 +16743,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                maskl(3fortran)', &
+'                               August 12, 2024                maskl(3fortran)', &
 '']
 
 shortname="maskl"
 call process()
 
 
-case('136','maskr')
+case('146','maskr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15346,14 +16859,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                maskr(3fortran)', &
+'                               August 12, 2024                maskr(3fortran)', &
 '']
 
 shortname="maskr"
 call process()
 
 
-case('137','matmul')
+case('147','matmul')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15593,14 +17106,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               matmul(3fortran)', &
+'                               August 12, 2024               matmul(3fortran)', &
 '']
 
 shortname="matmul"
 call process()
 
 
-case('138','max')
+case('148','max')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15620,7 +17133,6 @@ textblock=[character(len=256) :: &
 '           TYPE(kind=KIND,intent(in),optional :: a1', &
 '           TYPE(kind=KIND,intent(in),optional :: a2', &
 '           TYPE(kind=KIND,intent(in),optional :: a3', &
-'                     :', &
 '                     :', &
 '                     :', &
 '', &
@@ -15764,14 +17276,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  max(3fortran)', &
+'                               August 12, 2024                  max(3fortran)', &
 '']
 
 shortname="max"
 call process()
 
 
-case('139','maxexponent')
+case('149','maxexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15788,7 +17300,7 @@ textblock=[character(len=256) :: &
 '', &
 '          elemental integer function maxexponent(x)', &
 '', &
-'           real(kind=**),intent(in)   :: x', &
+'           real(kind=**),intent(in) :: x', &
 '', &
 '', &
 'CHARACTERISTICS', &
@@ -15836,14 +17348,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024          maxexponent(3fortran)', &
+'                               August 12, 2024          maxexponent(3fortran)', &
 '']
 
 shortname="maxexponent"
 call process()
 
 
-case('140','maxloc')
+case('150','maxloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15966,14 +17478,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               maxloc(3fortran)', &
+'                               August 12, 2024               maxloc(3fortran)', &
 '']
 
 shortname="maxloc"
 call process()
 
 
-case('141','maxval')
+case('151','maxval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16062,14 +17574,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               maxval(3fortran)', &
+'                               August 12, 2024               maxval(3fortran)', &
 '']
 
 shortname="maxval"
 call process()
 
 
-case('142','merge')
+case('152','merge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16249,14 +17761,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                merge(3fortran)', &
+'                               August 12, 2024                merge(3fortran)', &
 '']
 
 shortname="merge"
 call process()
 
 
-case('143','merge_bits')
+case('153','merge_bits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16386,14 +17898,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024           merge_bits(3fortran)', &
+'                               August 12, 2024           merge_bits(3fortran)', &
 '']
 
 shortname="merge_bits"
 call process()
 
 
-case('144','min')
+case('154','min')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16459,14 +17971,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  min(3fortran)', &
+'                               August 12, 2024                  min(3fortran)', &
 '']
 
 shortname="min"
 call process()
 
 
-case('145','minexponent')
+case('155','minexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16532,14 +18044,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024          minexponent(3fortran)', &
+'                               August 12, 2024          minexponent(3fortran)', &
 '']
 
 shortname="minexponent"
 call process()
 
 
-case('146','minloc')
+case('156','minloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16650,14 +18162,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               minloc(3fortran)', &
+'                               August 12, 2024               minloc(3fortran)', &
 '']
 
 shortname="minloc"
 call process()
 
 
-case('147','minval')
+case('157','minval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16813,14 +18325,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               minval(3fortran)', &
+'                               August 12, 2024               minval(3fortran)', &
 '']
 
 shortname="minval"
 call process()
 
 
-case('148','mod')
+case('158','mod')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16948,14 +18460,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  mod(3fortran)', &
+'                               August 12, 2024                  mod(3fortran)', &
 '']
 
 shortname="mod"
 call process()
 
 
-case('149','modulo')
+case('159','modulo')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17039,14 +18551,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               modulo(3fortran)', &
+'                               August 12, 2024               modulo(3fortran)', &
 '']
 
 shortname="modulo"
 call process()
 
 
-case('150','move_alloc')
+case('160','move_alloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17154,14 +18666,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024           move_alloc(3fortran)', &
+'                               August 12, 2024           move_alloc(3fortran)', &
 '']
 
 shortname="move_alloc"
 call process()
 
 
-case('151','mvbits')
+case('161','mvbits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17315,14 +18827,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               mvbits(3fortran)', &
+'                               August 12, 2024               mvbits(3fortran)', &
 '']
 
 shortname="mvbits"
 call process()
 
 
-case('152','namelist')
+case('162','namelist')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17923,14 +19435,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024             namelist(7fortran)', &
+'                               August 12, 2024             namelist(7fortran)', &
 '']
 
 shortname="namelist"
 call process()
 
 
-case('153','nearest')
+case('163','nearest')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18022,14 +19534,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024              nearest(3fortran)', &
+'                               August 12, 2024              nearest(3fortran)', &
 '']
 
 shortname="nearest"
 call process()
 
 
-case('154','new_line')
+case('164','new_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18198,14 +19710,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024             new_line(3fortran)', &
+'                               August 12, 2024             new_line(3fortran)', &
 '']
 
 shortname="new_line"
 call process()
 
 
-case('155','nint')
+case('165','nint')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18357,14 +19869,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 nint(3fortran)', &
+'                               August 12, 2024                 nint(3fortran)', &
 '']
 
 shortname="nint"
 call process()
 
 
-case('156','norm2')
+case('166','norm2')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18486,14 +19998,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                norm2(3fortran)', &
+'                               August 12, 2024                norm2(3fortran)', &
 '']
 
 shortname="norm2"
 call process()
 
 
-case('157','not')
+case('167','not')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18584,14 +20096,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  not(3fortran)', &
+'                               August 12, 2024                  not(3fortran)', &
 '']
 
 shortname="not"
 call process()
 
 
-case('158','null')
+case('168','null')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18719,14 +20231,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 null(3fortran)', &
+'                               August 12, 2024                 null(3fortran)', &
 '']
 
 shortname="null"
 call process()
 
 
-case('159','num_images')
+case('169','num_images')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18812,14 +20324,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024           num_images(3fortran)', &
+'                               August 12, 2024           num_images(3fortran)', &
 '']
 
 shortname="num_images"
 call process()
 
 
-case('160','open')
+case('170','open')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19121,19 +20633,19 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'SEE ALSO', &
-'  BACKSPACE(3), CLOSE(3), ENDFILE(3), FLUSH(3), INQUIRE(3), OPEN(3), PRINT(3),', &
-'  READ(3), REWIND(3), WAIT(3), WRITE(3)', &
+'  BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),', &
+'  READ(7), REWIND(7), WAIT(7), WRITE(7)', &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 open(7fortran)', &
+'                               August 12, 2024                 open(7fortran)', &
 '']
 
 shortname="open"
 call process()
 
 
-case('161','out_of_range')
+case('171','out_of_range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19242,7 +20754,7 @@ textblock=[character(len=256) :: &
 '         do i=127,130', &
 '            i8=i', &
 '            j8=-i', &
-'            ! OUT_OF_RANGE(3f) can let you check if the value will fit', &
+'            ! OUT_OF_RANGE(3) can let you check if the value will fit', &
 '            write(*,*)i8,j8,'' might have expected'',i,-i, &', &
 '             & out_of_range( i,i8), &', &
 '             & out_of_range(-i,i8)', &
@@ -19287,14 +20799,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024         out_of_range(3fortran)', &
+'                               August 12, 2024         out_of_range(3fortran)', &
 '']
 
 shortname="out_of_range"
 call process()
 
 
-case('162','pack')
+case('172','pack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19397,14 +20909,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 pack(3fortran)', &
+'                               August 12, 2024                 pack(3fortran)', &
 '']
 
 shortname="pack"
 call process()
 
 
-case('163','parity')
+case('173','parity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19513,14 +21025,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               parity(3fortran)', &
+'                               August 12, 2024               parity(3fortran)', &
 '']
 
 shortname="parity"
 call process()
 
 
-case('164','popcnt')
+case('174','popcnt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19578,7 +21090,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Note that on most machines the first bit is the sign bit, and a zero is used', &
 '  for positive values; but that this is system-dependent. These are typical', &
-'  values, where the huge(3f) function has set all but the first bit to 1.', &
+'  values, where the huge(3) function has set all but the first bit to 1.', &
 '', &
 '       >                                                        1111111 7', &
 '       >                                                           1010 2', &
@@ -19606,14 +21118,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               popcnt(3fortran)', &
+'                               August 12, 2024               popcnt(3fortran)', &
 '']
 
 shortname="popcnt"
 call process()
 
 
-case('165','poppar')
+case('175','poppar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19705,14 +21217,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               poppar(3fortran)', &
+'                               August 12, 2024               poppar(3fortran)', &
 '']
 
 shortname="poppar"
 call process()
 
 
-case('166','precision')
+case('176','precision')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19780,14 +21292,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024            precision(3fortran)', &
+'                               August 12, 2024            precision(3fortran)', &
 '']
 
 shortname="precision"
 call process()
 
 
-case('167','present')
+case('177','present')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19860,7 +21372,7 @@ textblock=[character(len=256) :: &
 '        else', &
 '          ! if not, you cannot define or reference x except to', &
 '          ! pass it as an optional parameter to another procedure', &
-'          ! or in a call to present(3f)', &
+'          ! or in a call to present(3)', &
 '          x_local=0', &
 '        endif', &
 '        !', &
@@ -19868,7 +21380,7 @@ textblock=[character(len=256) :: &
 '        !', &
 '        ! passing the argument on to other procedures', &
 '        ! so something like this is a bad idea because x is used', &
-'        ! as the first argument to merge(3f) when it might not be', &
+'        ! as the first argument to merge(3) when it might not be', &
 '        ! present', &
 '        ! xlocal=merge(x,0,present(x)) ! NO!!', &
 '        !', &
@@ -19912,14 +21424,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024              present(3fortran)', &
+'                               August 12, 2024              present(3fortran)', &
 '']
 
 shortname="present"
 call process()
 
 
-case('168','print')
+case('178','print')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19937,7 +21449,7 @@ textblock=[character(len=256) :: &
 'DESCRIPTION', &
 '  print(7f) is equivalent to', &
 '', &
-'         write(*,fmt=FORMAT_SPECIFIER) LIST', &
+'             write(*,fmt=FORMAT_SPECIFIER) LIST', &
 '', &
 '  That is, it always writes formatted sequential I/O to stdout. It may use', &
 '  list-directed I/O or a FORMAT specifier.', &
@@ -19961,21 +21473,24 @@ textblock=[character(len=256) :: &
 'EXAMPLE', &
 '  A simple example program:', &
 '', &
-'        program demo_print', &
-'        implicit none', &
-'        real :: a=11.11, s=sqrt(12.0)', &
-'        integer :: j=753210', &
-'        character(len=*),parameter :: commas=''(*(g0:,","))''', &
+'      program demo_print', &
+'      implicit none', &
+'      real :: a=11.11, s=sqrt(12.0)', &
+'      integer :: j=753210', &
+'      character(len=*),parameter :: commas=''(*(g0:,","))''', &
 '', &
-'  ! List-directed output is frequently specified PRINT *, A, S', &
+'       ! List-directed output is frequently specified', &
+'       PRINT *, A, S', &
 '', &
-'    ! a format may be placed on the print(7f) statement PRINT ''(*(g0,1x))'', A,', &
-'    S, J', &
+'       ! a format may be placed on the print(7f) statement', &
+'       PRINT ''(*(g0,1x))'', A, S, J', &
 '', &
-'    ! the format may be in a character variable print commas, a, s, j', &
+'       ! the format may be in a character variable', &
+'       print commas, a, s, j', &
 '', &
-'    ! or may be in a labeled format statement PRINT 10, A, S, J 10 FORMAT', &
-'    (2E16.3,1x,I0)', &
+'       ! or may be in a labeled format statement', &
+'       PRINT 10, A, S, J', &
+'       10 FORMAT (2E16.3,1x,I0)', &
 '', &
 '      end program demo_print', &
 '', &
@@ -19988,40 +21503,40 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'SEE ALSO', &
-'  o  BACKSPACE(3)', &
+'  o  BACKSPACE(7)', &
 '', &
-'  o  CLOSE(3)', &
+'  o  CLOSE(7)', &
 '', &
-'  o  ENDFILE(3)', &
+'  o  ENDFILE(7)', &
 '', &
-'  o  FLUSH(3)', &
+'  o  FLUSH(7)', &
 '', &
-'  o  INQUIRE(3)', &
+'  o  INQUIRE(7)', &
 '', &
-'  o  OPEN(3)', &
+'  o  OPEN(7)', &
 '', &
-'  o  PRINT(3)', &
+'  o  PRINT(7)', &
 '', &
-'  o  READ(3)', &
+'  o  READ(7)', &
 '', &
-'  o  REWIND(3)', &
+'  o  REWIND(7)', &
 '', &
-'  o  WAIT(3)', &
+'  o  WAIT(7)', &
 '', &
-'  o  WRITE(3)', &
+'  o  WRITE(7)', &
 '', &
 '  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                               August 03, 2024                print(7fortran)', &
+'                               August 12, 2024                print(7fortran)', &
 '']
 
 shortname="print"
 call process()
 
 
-case('169','product')
+case('179','product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20257,14 +21772,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024              product(3fortran)', &
+'                               August 12, 2024              product(3fortran)', &
 '']
 
 shortname="product"
 call process()
 
 
-case('170','radix')
+case('180','radix')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20336,14 +21851,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                radix(3fortran)', &
+'                               August 12, 2024                radix(3fortran)', &
 '']
 
 shortname="radix"
 call process()
 
 
-case('171','random_init')
+case('181','random_init')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20410,14 +21925,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024          random_init(3fortran)', &
+'                               August 12, 2024          random_init(3fortran)', &
 '']
 
 shortname="random_init"
 call process()
 
 
-case('172','random_number')
+case('182','random_number')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20507,14 +22022,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024        random_number(3fortran)', &
+'                               August 12, 2024        random_number(3fortran)', &
 '']
 
 shortname="random_number"
 call process()
 
 
-case('173','random_seed')
+case('183','random_seed')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20594,14 +22109,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024          random_seed(3fortran)', &
+'                               August 12, 2024          random_seed(3fortran)', &
 '']
 
 shortname="random_seed"
 call process()
 
 
-case('174','range')
+case('184','range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20682,14 +22197,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                range(3fortran)', &
+'                               August 12, 2024                range(3fortran)', &
 '']
 
 shortname="range"
 call process()
 
 
-case('175','rank')
+case('185','rank')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20862,14 +22377,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 rank(3fortran)', &
+'                               August 12, 2024                 rank(3fortran)', &
 '']
 
 shortname="rank"
 call process()
 
 
-case('176','read')
+case('186','read')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20927,19 +22442,19 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'SEE ALSO', &
-'  BACKSPACE(3), CLOSE(3), ENDFILE(3), FLUSH(3), INQUIRE(3), OPEN(3), PRINT(3),', &
-'  READ(3), REWIND(3), WAIT(3), WRITE(3)', &
+'  BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),', &
+'  READ(7), REWIND(7), WAIT(7), WRITE(7)', &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 read(7fortran)', &
+'                               August 12, 2024                 read(7fortran)', &
 '']
 
 shortname="read"
 call process()
 
 
-case('177','real')
+case('187','real')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21049,14 +22564,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 real(3fortran)', &
+'                               August 12, 2024                 real(3fortran)', &
 '']
 
 shortname="real"
 call process()
 
 
-case('178','reduce')
+case('188','reduce')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21259,14 +22774,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               reduce(3fortran)', &
+'                               August 12, 2024               reduce(3fortran)', &
 '']
 
 shortname="reduce"
 call process()
 
 
-case('179','repeat')
+case('189','repeat')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21342,14 +22857,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               repeat(3fortran)', &
+'                               August 12, 2024               repeat(3fortran)', &
 '']
 
 shortname="repeat"
 call process()
 
 
-case('180','reshape')
+case('190','reshape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21566,14 +23081,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024              reshape(3fortran)', &
+'                               August 12, 2024              reshape(3fortran)', &
 '']
 
 shortname="reshape"
 call process()
 
 
-case('181','return')
+case('191','return')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21621,32 +23136,35 @@ textblock=[character(len=256) :: &
 'EXAMPLE', &
 '  Sample program', &
 '', &
-'        program demo_return', &
-'           call tryreturn(1)', &
-'           call tryreturn(10)', &
-'        contains', &
-'           subroutine tryreturn(i)', &
-'              integer,intent(in) :: i', &
-'              select case(i)', &
-'               case(1)', &
-'                 write(*,*)''*one*''', &
-'                 return', &
-'               case(2)', &
-'                 write(*,*)''*two*''', &
-'                 return', &
-'               case default', &
-'                 write(*,*)''*default*''', &
-'                 return', &
-'              end select', &
-'              write(*,*)''*cannot get here*''', &
-'              return', &
-'           end subroutine tryreturn', &
-'        end program demo_return', &
+'         program demo_return', &
+'            call tryreturn(1)', &
+'            write(*,*)''back at main program:1''', &
+'            call tryreturn(10)', &
+'            write(*,*)''back at main program:10''', &
+'         contains', &
+'         subroutine tryreturn(i)', &
+'         integer,intent(in) :: i', &
+'            select case(i)', &
+'            case(1)', &
+'               write(*,*)''*one*''', &
+'               return', &
+'            case(2)', &
+'               write(*,*)''*two*''', &
+'               return', &
+'            case default', &
+'               write(*,*)''*unexpected value*''', &
+'            end select', &
+'            write(*,*)''*<ERROR> should not get here*''', &
+'         end subroutine tryreturn', &
+'         end program demo_return', &
 '', &
 '  Results:', &
 '', &
 '       >  *one*', &
-'       >  *default*', &
+'       >  back at main program:1', &
+'       >  *unexpected value*', &
+'       >  *<ERROR> should not get here*', &
+'       >  back at main program:10', &
 '', &
 '  Sample program using alternate returns. Alternate returns are an obsolescent', &
 '  feature.', &
@@ -21695,14 +23213,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               return(7fortran)', &
+'                               August 12, 2024               return(7fortran)', &
 '']
 
 shortname="return"
 call process()
 
 
-case('182','rewind')
+case('192','rewind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21711,14 +23229,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  REWIND(7f) - [FORTRAN:FILE_POSITIONING] rewind specified sequential access', &
+'  rewind(7f) - [FORTRAN:FILE_POSITIONING] rewind specified sequential access', &
 '  I/O unit', &
 '', &
 '', &
 'SYNOPSIS', &
-'  REWIND file-unit-number', &
+'  rewind file-unit-number', &
 '', &
-'  REWIND ( [UNIT=]file-unit-number][,IOMSG=iomsg-variable] & &', &
+'  rewind ( [UNIT=]file-unit-number][,IOMSG=iomsg-variable] & &', &
 '  [,IOSTAT=scalar-int-variable][,ERR=label] )', &
 '', &
 'DESCRIPTION', &
@@ -21747,33 +23265,32 @@ textblock=[character(len=256) :: &
 'EXAMPLES', &
 '  An example of a REWIND(7F) statement is:', &
 '', &
-'      program demo_rewind', &
-'      implicit none', &
-'      character(len=256) :: line', &
-'      character(len=256) :: mssge', &
-'      integer           :: i', &
-'      integer           :: ios', &
-'        open (10, file=''demo_rewind.txt'') ! open a file', &
-'        do i = 1, 100                     ! write lines to it', &
-'           write (10, ''(a,i0)'') ''line '', i', &
-'        enddo', &
-'        rewind (10, iostat=ios, iomsg=mssge)', &
-'        if (ios .ne. 0) then', &
-'           write (*, *) ''*error* '', trim(mssge)', &
-'           stop', &
-'        endif', &
-'        write (*, *) ''wrote 100 lines, but now at line ...''', &
-'        read (10, ''(a)'') line', &
-'        write (*, ''(a)'') line', &
-'        read (10)', &
-'        read (10)', &
-'        read (10)', &
-'        write (*, *) ''skipped a few lines, now at ...''', &
-'        read (10, ''(a)'') line', &
-'        write (*, ''(a)'') line', &
-'        close (10, status=''delete'')', &
-'      end program demo_rewind', &
-'', &
+'         program demo_rewind', &
+'         implicit none', &
+'         character(len=256) :: line', &
+'         character(len=256) :: mssge', &
+'         integer            :: i', &
+'         integer            :: ios', &
+'            open (10, file=''demo_rewind.txt'') ! open a file', &
+'            do i = 1, 100                     ! write lines to it', &
+'               write (10, ''(a,i0)'') ''line '', i', &
+'            enddo', &
+'            rewind (10, iostat=ios, iomsg=mssge)', &
+'            if (ios .ne. 0) then', &
+'               write (*, *) ''*error* '', trim(mssge)', &
+'               stop', &
+'            endif', &
+'            write (*, *) ''wrote 100 lines, but now at line ...''', &
+'            read (10, ''(a)'') line', &
+'            write (*, ''(a)'') line', &
+'            read (10)', &
+'            read (10)', &
+'            read (10)', &
+'            write (*, *) ''skipped a few lines, now at ...''', &
+'            read (10, ''(a)'') line', &
+'            write (*, ''(a)'') line', &
+'            close (10, status=''delete'')', &
+'         end program demo_rewind', &
 '', &
 '', &
 'SEE ALSO', &
@@ -21800,14 +23317,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               March 23, 2024                rewind(7fortran)', &
+'                               August 12, 2024               rewind(7fortran)', &
 '']
 
 shortname="rewind"
 call process()
 
 
-case('183','rrspacing')
+case('193','rrspacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21856,14 +23373,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024            rrspacing(3fortran)', &
+'                               August 12, 2024            rrspacing(3fortran)', &
 '']
 
 shortname="rrspacing"
 call process()
 
 
-case('184','same_type_as')
+case('194','same_type_as')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21998,14 +23515,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024         same_type_as(3fortran)', &
+'                               August 12, 2024         same_type_as(3fortran)', &
 '']
 
 shortname="same_type_as"
 call process()
 
 
-case('185','scale')
+case('195','scale')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22107,14 +23624,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                scale(3fortran)', &
+'                               August 12, 2024                scale(3fortran)', &
 '']
 
 shortname="scale"
 call process()
 
 
-case('186','scan')
+case('196','scan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22213,14 +23730,182 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 scan(3fortran)', &
+'                               August 12, 2024                 scan(3fortran)', &
 '']
 
 shortname="scan"
 call process()
 
 
-case('187','selected_char_kind')
+case('197','select_case')
+
+textblock=[character(len=256) :: &
+'', &
+'select_case(7fortran)                                   select_case(7fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  select_case(7f) - [FORTRAN:EXECUTION CONTROL] select a block based on the', &
+'  value of an expression (a case)', &
+'', &
+'', &
+'SYNOPSIS', &
+'  The CASE construct selects for execution at most one of its constituent', &
+'  blocks. The selection is based on the value of an expression.', &
+'', &
+'       [ case-construct-name : ] SELECT CASE (case-expr)', &
+'       CASE (value) [case-construct-name]', &
+'          [selected code]', &
+'       CASE ([lower_value]:[upper_value]) [case-construct-name]', &
+'          [selected code]', &
+'       CASE (range_or_value,range_or_value,...) [case-construct-name]', &
+'          [selected code]', &
+'', &
+'   CASE DEFAULT', &
+'  END SELECT [ case-construct-name ]', &
+'', &
+'  The expression may be integer,character,or logical. In particular it cannot', &
+'  be real.', &
+'', &
+'    For a given case-construct, there shall be no possible value of the case-', &
+'    expr that matches more than one case-value-range.', &
+'', &
+'    If the select-case-stmt of a case-construct specifies a case-construct-', &
+'    name, the corresponding end-select-stmt shall specify the same case-', &
+'    construct-name.', &
+'', &
+'    If the select-case-stmt of a case-construct does not specify a case-', &
+'    construct-name, the corresponding end-select-stmt shall not specify a', &
+'    case-construct-name.', &
+'', &
+'    If a case-stmt specifies a case-construct-name, the corresponding select-', &
+'    case-stmt shall specify the same case-construct-name.', &
+'', &
+'    No more than one of the selectors of one of the CASE statements shall be', &
+'    DEFAULT.', &
+'', &
+'    o  For a given case-construct, each case-value shall be of the same type', &
+'       as case-expr', &
+'', &
+'    o  For character type, the kind type parameters shall be the same', &
+'', &
+'    o  character length differences are allowed.', &
+'', &
+'    o  A case-value-range using a colon shall not be used if case-expr is of', &
+'       type logical.', &
+'', &
+'DESCRIPTION', &
+'  The execution of the SELECT CASE statement causes the case expression to be', &
+'  evaluated. The resulting value is called the case index. For a case value', &
+'  range list, a match occurs if the case index matches any of the case value', &
+'  ranges in the list. For a case index with a value of c, a match is', &
+'  determined as follows.', &
+'', &
+'    1. If the case value range contains a single value v without a colon, a', &
+'       match occurs for type logical if the expression c .EQV. v is true, and', &
+'       a match occurs for type integer or character if the expression c == v', &
+'       is true.', &
+'', &
+'    2. If the case value range is of the form low : high, a match occurs if', &
+'       the expression low <= c .AND. c <= high is true.', &
+'', &
+'    3. If the case value range is of the form low :, a match occurs if the', &
+'       expression low <= c is true.', &
+'', &
+'    4. If the case value range is of the form : high, a match occurs if the', &
+'       expression c <= high is true.', &
+'', &
+'    5. If no other selector matches and a DEFAULT selector appears, it', &
+'       matches the case index.', &
+'', &
+'    6. If no other selector matches and the DEFAULT selector does not appear,', &
+'       there is no match.', &
+'', &
+'  The block following the CASE statement containing the matching selector, if', &
+'  any, is executed. This completes execution of the construct.', &
+'', &
+'  It is permissible to branch to an end-select-stmt only from within its CASE', &
+'  construct.', &
+'', &
+'EXAMPLES', &
+'  An integer signum function:', &
+'', &
+'      integer function signum (n)', &
+'        select case (n)', &
+'        case (:-1)', &
+'           signum = -1  ! if <= -1 set to negative 1', &
+'        case (0)', &
+'           signum = 0', &
+'        case (1:)', &
+'           signum = 1   ! anything >= 1 set to positive 1', &
+'        end select', &
+'      end function signum', &
+'', &
+'  A code fragment to check for balanced parentheses:', &
+'', &
+'            character (80) :: line', &
+'               ...', &
+'            level = 0', &
+'            scan_line: do i = 1, 80', &
+'               check_parens: select case (line (i:i))', &
+'               case (''('')', &
+'                  level = level + 1', &
+'               case ('')'')', &
+'                  level = level - 1', &
+'                  if (level < 0) then', &
+'                     print *, ''unexpected right parenthesis''', &
+'                     exit scan_line', &
+'                  end if', &
+'               case default', &
+'                  ! ignore all other characters', &
+'                end select check_parens', &
+'             end do scan_line', &
+'             if (level > 0) then', &
+'                print *, ''missing right parenthesis''', &
+'             end if', &
+'', &
+'  the following three fragments are equivalent:', &
+'', &
+'             if (silly == 1) then', &
+'                call this', &
+'             else', &
+'                call that', &
+'             end if', &
+'', &
+'             select case (silly == 1)', &
+'             case (.true.)', &
+'                call this', &
+'             case (.false.)', &
+'                call that', &
+'             end select', &
+'', &
+'             select case (silly)', &
+'             case default', &
+'                call that', &
+'             case (1)', &
+'                call this', &
+'             end select', &
+'', &
+'  A code fragment showing several selections of one block:', &
+'', &
+'        select case (n)', &
+'           case (1, 3:5, 8)        ! selects 1, 3, 4, 5, 8', &
+'              call sub()', &
+'           case default', &
+'              call other()', &
+'        end select', &
+'', &
+'', &
+'', &
+'                               August 12, 2024          select_case(7fortran)', &
+'']
+
+shortname="select_case"
+call process()
+
+
+case('198','selected_char_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22381,14 +24066,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024   selected_char_kind(3fortran)', &
+'                               August 12, 2024   selected_char_kind(3fortran)', &
 '']
 
 shortname="selected_char_kind"
 call process()
 
 
-case('188','selected_int_kind')
+case('199','selected_int_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22469,14 +24154,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024    selected_int_kind(3fortran)', &
+'                               August 12, 2024    selected_int_kind(3fortran)', &
 '']
 
 shortname="selected_int_kind"
 call process()
 
 
-case('189','selected_real_kind')
+case('200','selected_real_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22597,14 +24282,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024   selected_real_kind(3fortran)', &
+'                               August 12, 2024   selected_real_kind(3fortran)', &
 '']
 
 shortname="selected_real_kind"
 call process()
 
 
-case('190','set_exponent')
+case('201','set_exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22681,14 +24366,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024         set_exponent(3fortran)', &
+'                               August 12, 2024         set_exponent(3fortran)', &
 '']
 
 shortname="set_exponent"
 call process()
 
 
-case('191','shape')
+case('202','shape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22799,14 +24484,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                shape(3fortran)', &
+'                               August 12, 2024                shape(3fortran)', &
 '']
 
 shortname="shape"
 call process()
 
 
-case('192','shifta')
+case('203','shifta')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22933,14 +24618,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               shifta(3fortran)', &
+'                               August 12, 2024               shifta(3fortran)', &
 '']
 
 shortname="shifta"
 call process()
 
 
-case('193','shiftl')
+case('204','shiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23070,14 +24755,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               shiftl(3fortran)', &
+'                               August 12, 2024               shiftl(3fortran)', &
 '']
 
 shortname="shiftl"
 call process()
 
 
-case('194','shiftr')
+case('205','shiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23209,14 +24894,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               shiftr(3fortran)', &
+'                               August 12, 2024               shiftr(3fortran)', &
 '']
 
 shortname="shiftr"
 call process()
 
 
-case('195','sign')
+case('206','sign')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23307,14 +24992,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 sign(3fortran)', &
+'                               August 12, 2024                 sign(3fortran)', &
 '']
 
 shortname="sign"
 call process()
 
 
-case('196','sin')
+case('207','sin')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23449,14 +25134,153 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  sin(3fortran)', &
+'                               August 12, 2024                  sin(3fortran)', &
 '']
 
 shortname="sin"
 call process()
 
 
-case('197','sinh')
+case('208','sind')
+
+textblock=[character(len=256) :: &
+'', &
+'sind(3fortran)                                                 sind(3fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  SIND(3) - [MATHEMATICS:TRIGONOMETRIC] Degree sine function', &
+'', &
+'', &
+'SYNOPSIS', &
+'  result = sind(x)', &
+'', &
+'          elemental real(kind=KIND) function sind(x)', &
+'', &
+'           real(kind=KIND) :: x', &
+'', &
+'', &
+'CHARACTERISTICS', &
+'  o  X may be any real type', &
+'', &
+'  o  KIND may be any kind supported by the associated real type of X.', &
+'', &
+'  o  The returned value will be of the same type and kind as the argument X.', &
+'', &
+'DESCRIPTION', &
+'  SIND(3) computes the sine of an angle given the size of the angle in', &
+'  degrees.', &
+'', &
+'  The sine of an angle in a right-angled triangle is the ratio of the length', &
+'  of the side opposite the given angle divided by the length of the', &
+'  hypotenuse.', &
+'', &
+'OPTIONS', &
+'  o  X : The angle in degrees to compute the sine of.', &
+'', &
+'RESULT', &
+'  The return value contains the processor-dependent approximation of the sine', &
+'  of X, which is regarded as a value in degrees.', &
+'', &
+'EXAMPLES', &
+'  sind(180.0) has the value 0.0 (approximately).', &
+'', &
+'  Sample program:', &
+'', &
+'      program sample_sind', &
+'      implicit none', &
+'        write(*,*)''sind(0.0)='',sind(0.0)', &
+'        write(*,*)''sind(45.0)='',sind(45.0)', &
+'        write(*,*)''sind(90.0)='',sind(90.0)', &
+'        write(*,*)''sind(180.0)='',sind(180.0)', &
+'        write(*,*)''sind(270.0)='',sind(270.0)', &
+'        write(*,*)''sind(720.0)='',sind(720.0)', &
+'        write(*,*)''sind(-720.0d0)='',sind(-720.0d0)', &
+'      end program sample_sind', &
+'', &
+'  Extended Example', &
+'', &
+'  Haversine Formula', &
+'', &
+'  From the article on "Haversine formula" in Wikipedia:', &
+'', &
+'        The haversine formula is an equation important in navigation,', &
+'        giving great-circle distances between two points on a sphere from', &
+'        their longitudes and latitudes.', &
+'', &
+'  So to show the great-circle distance between the Nashville International', &
+'  Airport (BNA) in TN, USA, and the Los Angeles International Airport (LAX) in', &
+'  CA, USA you would start with their latitude and longitude, commonly given as', &
+'', &
+'       BNA: N 36 degrees 7.2'',   W 86 degrees 40.2''', &
+'       LAX: N 33 degrees 56.4'',  W 118 degrees 24.0''', &
+'', &
+'  which converted to floating-point values in degrees is:', &
+'', &
+'    o  BNA latitude=36.12, longitude=-86.67', &
+'', &
+'    o  LAX latitude=33.94, longitude=-118.40', &
+'', &
+'  And then use the haversine formula to roughly calculate the distance along', &
+'  the surface of the Earth between the locations:', &
+'', &
+'  Sample program:', &
+'', &
+'      program demo_sin', &
+'      implicit none', &
+'      real :: d', &
+'         d = haversine(36.12,-86.67, 33.94,-118.40) ! BNA to LAX', &
+'         print ''(A,F9.4,A)'', ''distance: '',d,'' km''', &
+'      contains', &
+'      function haversine(latA,lonA,latB,lonB) result (dist)', &
+'      !', &
+'      ! calculate great circle distance in kilometers', &
+'      ! given latitude and longitude in degrees', &
+'      !', &
+'      real,intent(in) :: latA,lonA,latB,lonB', &
+'      real :: a,c,dist,delta_lat,delta_lon,lat1,lat2', &
+'      real,parameter :: radius = 6371 ! mean earth radius in kilometers,', &
+'      ! recommended by the International Union of Geodesy and Geophysics', &
+'', &
+'        delta_lat = latB-latA', &
+'        delta_lon = lonB-lonA', &
+'        lat1 = latA', &
+'        lat2 = latB', &
+'        a = (sind(delta_lat/2))**2 + &', &
+'               & cosd(lat1)*cosd(lat2)*(sind(delta_lon/2))**2', &
+'        c = 2*asin(sqrt(a))', &
+'        dist = radius*c', &
+'      end function haversine', &
+'      end program demo_sin', &
+'', &
+'  Results:', &
+'', &
+'       > distance: 2886.4446 km', &
+'', &
+'', &
+'STANDARD', &
+'  Fortran 2023', &
+'', &
+'SEE ALSO', &
+'  ASIN(3), COS(3), TAN(3), ACOSH(3), ACOS(3), ASINH(3), ATAN2(3), ATANH(3),', &
+'  ACOSH(3), ASINH(3), ATANH(3)', &
+'', &
+'RESOURCES', &
+'  o  Wikipedia:sine and cosine', &
+'', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                               August 12, 2024                 sind(3fortran)', &
+'']
+
+shortname="sind"
+call process()
+
+
+case('209','sinh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23556,14 +25380,127 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 sinh(3fortran)', &
+'                               August 12, 2024                 sinh(3fortran)', &
 '']
 
 shortname="sinh"
 call process()
 
 
-case('198','size')
+case('210','sinpi')
+
+textblock=[character(len=256) :: &
+'', &
+'sinpi(3fortran)                                               sinpi(3fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  SINPI(3) - [MATHEMATICS:TRIGONOMETRIC] Circular sine function', &
+'', &
+'', &
+'SYNOPSIS', &
+'  result = sinpi(x)', &
+'', &
+'          elemental real(kind=KIND) function sinpi(x)', &
+'', &
+'           real(kind=KIND) :: x', &
+'', &
+'', &
+'CHARACTERISTICS', &
+'  o  X may be any real', &
+'', &
+'  o  KIND may be any kind supported by the associated real type of X.', &
+'', &
+'  o  The returned value will be of the same type and kind as the argument X.', &
+'', &
+'DESCRIPTION', &
+'  SINPI(3) computes the circular sine of an angle given the size of the angle', &
+'  in half-revolutions.', &
+'', &
+'  SINPI(X) is approximately equal to SIN(X*PI).', &
+'', &
+'  The sine of an angle in a right-angled triangle is the ratio of the length', &
+'  of the side opposite the given angle divided by the length of the', &
+'  hypotenuse.', &
+'', &
+'OPTIONS', &
+'  o  X : The angle in half-revolutions to compute the sine of.', &
+'', &
+'RESULT', &
+'  The return value contains the processor-dependent approximation of the sine', &
+'  of X.', &
+'', &
+'EXAMPLES', &
+'  Example. SINPI(1.0) has the value 0.0 (approximately).', &
+'', &
+'  Sample program:', &
+'', &
+'      program demo_sinpi', &
+'      implicit none', &
+'      real    :: x', &
+'      integer :: i', &
+'      real,parameter :: PI=acos(-1.0)', &
+'        do i=0,8', &
+'           x=i*0.25', &
+'           write(*,*)''x='',x,'' sinpi(x)='',sinpi(x)', &
+'        enddo', &
+'      end program demo_sinpi', &
+'', &
+'  Results:', &
+'', &
+'       > x=   0.00000000  sinpi(x)=   0.00000000', &
+'       > x=  0.250000000  sinpi(x)=   0.707106769', &
+'       > x=  0.500000000  sinpi(x)=   1.00000000', &
+'       > x=  0.750000000  sinpi(x)=   0.707106769', &
+'       > x=   1.00000000  sinpi(x)=  -8.74227766E-08', &
+'       > x=   1.25000000  sinpi(x)=  -0.707106888', &
+'       > x=   1.50000000  sinpi(x)=  -1.00000000', &
+'       > x=   1.75000000  sinpi(x)=  -0.707106531', &
+'       > x=   2.00000000  sinpi(x)=   1.74845553E-07', &
+'', &
+'', &
+'STANDARD', &
+'  fortran 2023', &
+'', &
+'SEE ALSO', &
+'  o  ACOS(3), ACOSD(3), ACOSPI(3),', &
+'', &
+'  o  ASIN(3), ASIND(3),', &
+'', &
+'  o  ATAN2(3), ATAN2D(3), ATAN2PI(3),', &
+'', &
+'  o  COS(3), COSD(3), COSPI(3),', &
+'', &
+'  o  TAN(3), TAND(3), TANPI(3),', &
+'', &
+'  o  ACOSH(3),', &
+'', &
+'  o  ACOSH(3),', &
+'', &
+'  o  ASINH(3),', &
+'', &
+'  o  ASINH(3),', &
+'', &
+'  o  ATANH(3)', &
+'', &
+'  o  ATANH(3),', &
+'', &
+'RESOURCES', &
+'  o  Wikipedia:sine and cosine', &
+'', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                               August 12, 2024                sinpi(3fortran)', &
+'']
+
+shortname="sinpi"
+call process()
+
+
+case('211','size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23735,14 +25672,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 size(3fortran)', &
+'                               August 12, 2024                 size(3fortran)', &
 '']
 
 shortname="size"
 call process()
 
 
-case('199','spacing')
+case('212','spacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23822,14 +25759,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024              spacing(3fortran)', &
+'                               August 12, 2024              spacing(3fortran)', &
 '']
 
 shortname="spacing"
 call process()
 
 
-case('200','spread')
+case('213','spread')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24011,14 +25948,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               spread(3fortran)', &
+'                               August 12, 2024               spread(3fortran)', &
 '']
 
 shortname="spread"
 call process()
 
 
-case('201','sqrt')
+case('214','sqrt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24124,14 +26061,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 sqrt(3fortran)', &
+'                               August 12, 2024                 sqrt(3fortran)', &
 '']
 
 shortname="sqrt"
 call process()
 
 
-case('202','stop')
+case('215','stop')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24246,14 +26183,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 stop(7fortran)', &
+'                               August 12, 2024                 stop(7fortran)', &
 '']
 
 shortname="stop"
 call process()
 
 
-case('203','storage_size')
+case('216','storage_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24357,14 +26294,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024         storage_size(3fortran)', &
+'                               August 12, 2024         storage_size(3fortran)', &
 '']
 
 shortname="storage_size"
 call process()
 
 
-case('204','sum')
+case('217','sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24583,14 +26520,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  sum(3fortran)', &
+'                               August 12, 2024                  sum(3fortran)', &
 '']
 
 shortname="sum"
 call process()
 
 
-case('205','system_clock')
+case('218','system_clock')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24748,14 +26685,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024         system_clock(3fortran)', &
+'                               August 12, 2024         system_clock(3fortran)', &
 '']
 
 shortname="system_clock"
 call process()
 
 
-case('206','tan')
+case('219','tan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24816,14 +26753,80 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                  tan(3fortran)', &
+'                               August 12, 2024                  tan(3fortran)', &
 '']
 
 shortname="tan"
 call process()
 
 
-case('207','tanh')
+case('220','tand')
+
+textblock=[character(len=256) :: &
+'', &
+'tand(3fortran)                                                 tand(3fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  TAND(3) - [MATHEMATICS:TRIGONOMETRIC] Degree Tangent function', &
+'', &
+'', &
+'SYNOPSIS', &
+'  result = tand(x)', &
+'', &
+'       elemental real(kind=KIND) function tand(x)', &
+'', &
+'       real(kind=KIND),intent(in) :: x', &
+'', &
+'', &
+'CHARACTERISTICS', &
+'  o  the TYPE of X is real of any supported kind', &
+'', &
+'  o  The returned value will be of the same type and kind as the argument X.', &
+'', &
+'DESCRIPTION', &
+'  TAND(3) computes the degree tangent of X.', &
+'', &
+'OPTIONS', &
+'  o  X : The angle in degrees to compute the tangent of.', &
+'', &
+'RESULT', &
+'  The return value is a processor-dependent approximation to the tangent of', &
+'  the value X where X is regarded as a value in degrees.', &
+'', &
+'EXAMPLES', &
+'  tand(180.0) has the value 0.0 (approximately).', &
+'', &
+'  Sample program:', &
+'', &
+'      program demo_tand', &
+'      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
+'      & real32, real64, real128', &
+'      implicit none', &
+'      real(kind=real64) :: x = 0.5_real64', &
+'          write(*,*)x, tand(x)', &
+'      end program demo_tand', &
+'', &
+'', &
+'STANDARD', &
+'  Fortran 2023', &
+'', &
+'SEE ALSO', &
+'  ATAND(3), ATAN(3), ATAN2D(3), ATAN2(3), COSD(3), SIND(3)', &
+'', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                               August 12, 2024                 tand(3fortran)', &
+'']
+
+shortname="tand"
+call process()
+
+
+case('221','tanh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24895,14 +26898,99 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 tanh(3fortran)', &
+'                               August 12, 2024                 tanh(3fortran)', &
 '']
 
 shortname="tanh"
 call process()
 
 
-case('208','this_image')
+case('222','tanpi')
+
+textblock=[character(len=256) :: &
+'', &
+'tanpi(3fortran)                                               tanpi(3fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  TANPI(3) - [MATHEMATICS:TRIGONOMETRIC] Circular tangent function', &
+'', &
+'', &
+'SYNOPSIS', &
+'  result = tanpi(x)', &
+'', &
+'       elemental real(kind=KIND) function tanpi(x)', &
+'', &
+'       real(kind=KIND),intent(in) :: x', &
+'', &
+'', &
+'CHARACTERISTICS', &
+'  o  the TYPE of X is real any supported kind', &
+'', &
+'  o  The returned value will be of the same type and kind as the argument X.', &
+'', &
+'DESCRIPTION', &
+'  TANPI(3) computes the Circular Tangent of X in half-revolutions.', &
+'', &
+'  The result has a value equal to a processor-dependent approximation to the', &
+'  tangent of X, which is regarded as a value in half-revolutions; thus, TANPI', &
+'  (X) is approximately equal to tan(X*PI).', &
+'', &
+'OPTIONS', &
+'  o  X : The angle in half-revolutions to compute the tangent of.', &
+'', &
+'RESULT', &
+'  The return value is the tangent of the value X.', &
+'', &
+'EXAMPLES', &
+'  Example: TAND(1.0) has the value 0.0 (approximately).', &
+'', &
+'  Sample program:', &
+'', &
+'      program demo_tanpi', &
+'      use, intrinsic :: iso_fortran_env, only : real64', &
+'      implicit none', &
+'      integer :: i', &
+'      real(kind=real64) :: x', &
+'        do i=0,8', &
+'           x=0.250000000d0*i', &
+'           write(*,101)x, tanpi(x), tanpi(x)*180.0d0', &
+'        enddo', &
+'      101 format(g0,t23,g0,t50,g0)', &
+'      end program demo_tanpi', &
+'', &
+'  Results:', &
+'', &
+'       > .000000000000000    0.000000000000000         0.000000000000000', &
+'       > .2500000000000000   0.9999999999999999       180.0000000000000', &
+'       > .5000000000000000   0.1633123935319537E+17    0.2939623083575166E+19', &
+'       > .7500000000000000  -1.000000000000000      -180.0000000000000', &
+'       > 1.000000000000000  -0.1224646799147353E-15    -0.2204364238465236E-13', &
+'       > 1.250000000000000   0.9999999999999997       179.9999999999999', &
+'       > 1.500000000000000  5443746451065123.          0.9798743611917221E+18', &
+'       > 1.750000000000000  -1.000000000000000      -180.0000000000001', &
+'       > 2.000000000000000  -0.2449293598294706E-15    -0.4408728476930472E-13', &
+'', &
+'', &
+'STANDARD', &
+'  Fortran 2023', &
+'', &
+'SEE ALSO', &
+'  ATAND(3), ATAND(3), ATAN2PI(3), ATAN2D(3)', &
+'', &
+'  fortran-lang intrinsic descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                               August 12, 2024                tanpi(3fortran)', &
+'']
+
+shortname="tanpi"
+call process()
+
+
+case('223','this_image')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24987,14 +27075,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024           this_image(3fortran)', &
+'                               August 12, 2024           this_image(3fortran)', &
 '']
 
 shortname="this_image"
 call process()
 
 
-case('209','tiny')
+case('224','tiny')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25062,14 +27150,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 tiny(3fortran)', &
+'                               August 12, 2024                 tiny(3fortran)', &
 '']
 
 shortname="tiny"
 call process()
 
 
-case('210','trailz')
+case('225','trailz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25170,14 +27258,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               trailz(3fortran)', &
+'                               August 12, 2024               trailz(3fortran)', &
 '']
 
 shortname="trailz"
 call process()
 
 
-case('211','transfer')
+case('226','transfer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25303,14 +27391,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024             transfer(3fortran)', &
+'                               August 12, 2024             transfer(3fortran)', &
 '']
 
 shortname="transfer"
 call process()
 
 
-case('212','transpose')
+case('227','transpose')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25419,14 +27507,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024            transpose(3fortran)', &
+'                               August 12, 2024            transpose(3fortran)', &
 '']
 
 shortname="transpose"
 call process()
 
 
-case('213','trim')
+case('228','trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25527,14 +27615,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 trim(3fortran)', &
+'                               August 12, 2024                 trim(3fortran)', &
 '']
 
 shortname="trim"
 call process()
 
 
-case('214','ubound')
+case('229','ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25711,14 +27799,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               ubound(3fortran)', &
+'                               August 12, 2024               ubound(3fortran)', &
 '']
 
 shortname="ubound"
 call process()
 
 
-case('215','ucobound')
+case('230','ucobound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25761,14 +27849,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024             ucobound(3fortran)', &
+'                               August 12, 2024             ucobound(3fortran)', &
 '']
 
 shortname="ucobound"
 call process()
 
 
-case('216','unpack')
+case('231','unpack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25927,14 +28015,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               unpack(3fortran)', &
+'                               August 12, 2024               unpack(3fortran)', &
 '']
 
 shortname="unpack"
 call process()
 
 
-case('217','verify')
+case('232','verify')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26048,7 +28136,7 @@ textblock=[character(len=256) :: &
 '        write(*,*)''isprint?'',verify(string,prnt) == 0', &
 '', &
 '        print *,''VERIFY(3) is very powerful using expressions as masks''', &
-'        ! verify(3f) is often used in a logical expression', &
+'        ! verify(3) is often used in a logical expression', &
 '        string=" This is NOT all UPPERCASE "', &
 '        write(*,*)''all uppercase/spaces?'',verify(string, blank//upp) == 0', &
 '        string=" This IS all uppercase "', &
@@ -26133,7 +28221,7 @@ textblock=[character(len=256) :: &
 '       '' '']', &
 '        ! show the strings to test', &
 '        write(*,''("|",*(g0,"|"))'') ints', &
-'        ! show if strings pass or fail the test done by isint(3f)', &
+'        ! show if strings pass or fail the test done by isint(3)', &
 '        write(*,''("|",*(1x,l1,8x,"|"))'') isint(ints)', &
 '', &
 '      contains', &
@@ -26315,14 +28403,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                               August 03, 2024               verify(3fortran)', &
+'                               August 12, 2024               verify(3fortran)', &
 '']
 
 shortname="verify"
 call process()
 
 
-case('218','wait')
+case('233','wait')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26394,19 +28482,19 @@ textblock=[character(len=256) :: &
 '', &
 'EXAMPLE', &
 'SEE ALSO', &
-'  BACKSPACE(3), CLOSE(3), ENDFILE(3), FLUSH(3), INQUIRE(3), OPEN(3), PRINT(3),', &
-'  READ(3), REWIND(3), WAIT(3), WRITE(3)', &
+'  BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),', &
+'  READ(7), REWIND(7), WAIT(7), WRITE(7)', &
 '', &
 '', &
 '', &
-'                               August 03, 2024                 wait(7fortran)', &
+'                               August 12, 2024                 wait(7fortran)', &
 '']
 
 shortname="wait"
 call process()
 
 
-case('219','write')
+case('234','write')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26419,12 +28507,12 @@ textblock=[character(len=256) :: &
 'DESCRIPTION', &
 'OPTIONS', &
 'SEE ALSO', &
-'  BACKSPACE(3), CLOSE(3), ENDFILE(3), FLUSH(3), INQUIRE(3), OPEN(3), PRINT(3),', &
-'  READ(3), REWIND(3), WAIT(3), WRITE(3)', &
+'  BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),', &
+'  READ(7), REWIND(7), WAIT(7), WRITE(7)', &
 '', &
 '', &
 '', &
-'                               August 03, 2024                write(7fortran)', &
+'                               August 12, 2024                write(7fortran)', &
 '']
 
 shortname="write"

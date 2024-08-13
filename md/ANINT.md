@@ -47,7 +47,7 @@ If **a** is less than or equal to zero then it returns **aint(a - 0.5)**,
 except **aint** specifies that for |**a**| < 1 the result is zero (0).
 
 It is processor-dependent whether anint(a) returns negative zero when
--0.5 < a <= -0.0.  Compiler switches are often available which enable
+-0.5 < a <= -0.0. Compiler switches are often available which enable
 or disable support of negative zero.
 
 ### **Examples**

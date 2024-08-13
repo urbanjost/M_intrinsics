@@ -44,7 +44,7 @@ Even though constants can be used to define a complex variable using syntax like
 ```
 this will not work for variables. So you cannot enter
 ```fortran
-      z = (a, b)  ! NO ! (unless a and b are constants, not variables)
+      z = (a, b) ! NO ! (unless a and b are constants, not variables)
 ```
 so to construct a _complex_ value using non-complex values you must use
 the **cmplx**(3) function:

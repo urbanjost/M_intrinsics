@@ -82,7 +82,7 @@ real :: y = -63.59
    print *,      [2.0,2.0-epsilon(0.0),2.0-2*epsilon(0.0)]
    print *,floor([2.0,2.0-epsilon(0.0),2.0-2*epsilon(0.0)])
 
-   ! A=Nan, Infinity or  <huge(0_KIND)-1 < A > huge(0_KIND) is undefined
+   ! A=Nan, Infinity or huge(0_KIND)-1 < A > huge(0_KIND) is undefined
 end program demo_floor
 ```
 Results:

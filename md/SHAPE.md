@@ -84,15 +84,15 @@ Fortran 95 ; with KIND argument Fortran 2003
 
 #### Array inquiry:
 
-- [**size**(3)](#size) -  Determine the size of an array
-- [**rank**(3)](#rank) -  Rank of a data object
-- [**ubound**(3)](#ubound) -  Upper dimension bounds of an array
-- [**lbound**(3)](#lbound) -  Lower dimension bounds of an array
+- [**size**(3)](#size) - Determine the size of an array
+- [**rank**(3)](#rank) - Rank of a data object
+- [**ubound**(3)](#ubound) - Upper dimension bounds of an array
+- [**lbound**(3)](#lbound) - Lower dimension bounds of an array
 
 #### State Inquiry:
 
-- [**allocated**(3)](#allocated) -  Status of an allocatable entity
-- [**is_contiguous**(3)](#is_contiguous) -  Test if object is contiguous
+- [**allocated**(3)](#allocated) - Status of an allocatable entity
+- [**is_contiguous**(3)](#is_contiguous) - Test if object is contiguous
 
 #### Kind Inquiry:
 

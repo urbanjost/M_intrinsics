@@ -49,7 +49,7 @@
 
   1. If **shift** is positive, the shift is to the left
   2. if **shift** is negative, the shift is to the right
-  3.  if **shift** is zero, no shift is performed.
+  3. if **shift** is zero, no shift is performed.
 
   Bits shifted out from the left or from the right, as appropriate,
   are lost. Zeros are shifted in from the opposite end.

@@ -26,7 +26,7 @@
 
   For processors that distinguish between positive and negative zeros
   _sign()_ may be used to distinguish between _real_ values 0.0 and
-  -0.0. SIGN (1.0, -0.0) will return  -1.0 when a negative zero is
+  -0.0. SIGN (1.0, -0.0) will return -1.0 when a negative zero is
   distinguishable.
 
 ### **Options**

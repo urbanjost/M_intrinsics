@@ -2,7 +2,8 @@
 
 ### **Name**
 
-**acospi**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Circular Arccosine (inverse circular cosine) function
+**acospi**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Circular Arccosine (inverse
+circular cosine) function
 
 ### **Synopsis**
 ```fortran
@@ -21,7 +22,7 @@
 ### **Description**
 
 **acospi**(3) computes the circular arccosine of **x** (inverse of
-**cospi(x)**).  The result is expressed in half-revolutions (ie. PI's)
+**cospi(x)**). The result is expressed in half-revolutions (ie. PI's)
 and lies in the range
 ```fortran
     0 <= ACOSPI (X) <= 1.
@@ -35,9 +36,10 @@ and lies in the range
 
 ### **Result**
 
-The result has a value equal to a processor-dependent approximation to the arc cosine of X. 
+The result has a value equal to a processor-dependent approximation to
+the arc cosine of X.
 
-The return value is of the same type and kind as **x**. 
+The return value is of the same type and kind as **x**.
 
 It is expressed in half-revolutions and lies in the range 0 <= ACOSPI (X) <= 1.
 
@@ -76,7 +78,7 @@ Results:
 ```
 ### **Standard**
 
-FORTRAN 2023 
+Fortran 2023 
 
 ### **See Also**
  - arc cosine in radians: [**acos**(3)](cos)

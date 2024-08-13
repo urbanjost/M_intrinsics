@@ -16,7 +16,6 @@
       TYPE(kind=KIND,intent(in),optional :: a3
                 :
                 :
-                :
 ```
 ### **Characteristics**
 

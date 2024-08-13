@@ -16,8 +16,8 @@
 ### **Characteristics**
 
 - a kind designated as ** may be any supported kind for the type
-- **array** may be of any type. It shall be an array or assumed-rank. If it is a pointer it
-  shall be associated.
+- **array** may be of any type. It shall be an array or assumed-rank. If
+  it is a pointer it shall be associated.
 - the result is a default logical scalar
 
 ### **Description**

@@ -60,7 +60,7 @@
 
 3.  If the rank of **mask** is greater than one and **dim** is present then
     **all(mask,dim)** returns an array with the rank (number of
-    dimensions)  of **mask** minus 1. The shape is determined from the
+    dimensions) of **mask** minus 1. The shape is determined from the
     shape of **mask** where the **dim** dimension is elided. A value is
     returned for each set of elements along the **dim** dimension.
 

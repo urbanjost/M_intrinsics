@@ -17,7 +17,7 @@
 
       pure elemental function upper(str) result (string)
       !
-      !$@(#) upper(3f): function to return a trimmed uppercase-only string
+      !$@(#) upper(3): function to return a trimmed uppercase-only string
       !
       ! input string to convert to all uppercase
       character(*), intent(in)      :: str

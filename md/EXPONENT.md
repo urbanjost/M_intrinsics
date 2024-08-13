@@ -14,7 +14,7 @@
       real(kind=**),intent(in) :: x
 ```
 ### **Characteristics**
- - **x**  shall be of type _real_ of any valid kind
+ - **x** shall be of type _real_ of any valid kind
  - the result is a default _integer_ type
 
 ### **Description**

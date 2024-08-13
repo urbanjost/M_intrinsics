@@ -8,14 +8,14 @@
 ### **Options**
 ### **See Also**
 
-[**backspace**(3)](#backspace),
-[**close**(3)](#close),
-[**endfile**(3)](#endfile),
-[**flush**(3)](#flush),
-[**inquire**(3)](#inquire),
-[**open**(3)](#open),
-[**print**(3)](#print),
-[**read**(3)](#read),
-[**rewind**(3)](#rewind),
-[**wait**(3)](#wait),
-[**write**(3)](#write)
+[**backspace**(7)](#backspace),
+[**close**(7)](#close),
+[**endfile**(7)](#endfile),
+[**flush**(7)](#flush),
+[**inquire**(7)](#inquire),
+[**open**(7)](#open),
+[**print**(7)](#print),
+[**read**(7)](#read),
+[**rewind**(7)](#rewind),
+[**wait**(7)](#wait),
+[**write**(7)](#write)

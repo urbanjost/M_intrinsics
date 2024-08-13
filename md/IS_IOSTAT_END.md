@@ -33,7 +33,7 @@ The function is equivalent to comparing the variable with the
 
 ### **Result**
 
-returns  _.true._ if and only if**i** has the value
+returns _.true._ if and only if**i** has the value
 which indicates an end of file condition for **iostat=** specifiers, and is
 _.false._ otherwise.
 

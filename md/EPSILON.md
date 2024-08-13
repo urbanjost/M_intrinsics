@@ -11,7 +11,7 @@
 ```fortran
      real(kind=kind(x)) function epsilon(x)
 
-      real(kind=kind(x),intent(in)   :: x(..)
+      real(kind=kind(x),intent(in) :: x(..)
 ```
 ### **Characteristics**
 
@@ -25,7 +25,7 @@ It is the nearly negligible number relative to **1**
 such that **1+ little_number** is not equal to **1**; or more
 precisely
 ```fortran
-   real( 1.0, kind(x)) + epsilon(x) /=  real( 1.0, kind(x))
+   real( 1.0, kind(x)) + epsilon(x) /= real( 1.0, kind(x))
 ```
 It may be thought of as the distance from 1.0 to the next largest
 floating point number.

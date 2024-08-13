@@ -106,36 +106,36 @@
 sample program:
 
 ```fortran
-   program demo_close
-   implicit none
-   character(len=256) :: message
-   integer            :: ios
-      open (10, file='employee.names', action='read', iostat=ios,iomsg=message)
-      if (ios < 0) then
-         ! perform end-of-file processing on the file connected to unit 10.
-
-         close (10, status='keep',iostat=ios,iomsg=message)
-         if(ios.ne.0)then
-            write(*,'(*(a))')'*demo_close* close error: ',trim(message)
-            stop 1
-         endif
-      elseif (ios > 0) then
-         ! perform error processing on open
-         write(*,'(*(a))')'*demo_close* open error: ',trim(message)
-         stop 2
-      endif
-   end program demo_close
+    program demo_close
+    implicit none
+    character(len=256) :: message
+    integer            :: ios
+       open (10, file='employee.names', action='read', &
+       & iostat=ios,iomsg=message)
+       if (ios < 0) then
+          ! perform error processing on the unit 10 file.
+          close (10, status='keep',iostat=ios,iomsg=message)
+          if(ios.ne.0)then
+             write(*,'(*(a))')'*demo_close* close error: ',trim(message)
+             stop 1
+          endif
+       elseif (ios > 0) then
+          ! perform error processing on open
+          write(*,'(*(a))')'*demo_close* open error: ',trim(message)
+          stop 2
+       endif
+    end program demo_close
 ```
 ### **See Also**
 
-[**backspace**(3)](#backspace),
-[**close**(3)](#close),
-[**endfile**(3)](#endfile),
-[**flush**(3)](#flush),
-[**inquire**(3)](#inquire),
-[**open**(3)](#open),
-[**print**(3)](#print),
-[**read**(3)](#read),
-[**rewind**(3)](#rewind),
-[**wait**(3)](#wait),
-[**write**(3)](#write)
+[**backspace**(7)](#backspace),
+[**close**(7)](#close),
+[**endfile**(7)](#endfile),
+[**flush**(7)](#flush),
+[**inquire**(7)](#inquire),
+[**open**(7)](#open),
+[**print**(7)](#print),
+[**read**(7)](#read),
+[**rewind**(7)](#rewind),
+[**wait**(7)](#wait),
+[**write**(7)](#write)

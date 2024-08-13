@@ -2,7 +2,7 @@
       implicit none
       integer,parameter :: dp=kind(0.0d0)
 
-      ! some values to use with ABS(3f)
+      ! some values to use with ABS(3)
       integer           :: i = -1
       real              :: x = -1.0
       complex           :: z = (-3.0,-4.0)
@@ -30,7 +30,7 @@
          print gen, 'distance of (', z, ') from zero is', abs( z )
 
       call DUSTY_CORNERS_1("beware of abs(-huge(0)-1)")
-      call DUSTY_CORNERS_2("beware of losing precision using CMPLX(3f)")
+      call DUSTY_CORNERS_2("beware of losing precision using CMPLX(3)")
       call DUSTY_CORNERS_3("beware of overflow of complex values")
       call DUSTY_CORNERS_4("custom meaning for absolute value of COMPLEX")
 
@@ -60,10 +60,10 @@
          ! dusty corner: "kind=dp" is required or the value returned by
          ! CMPLX() is a default real instead of double precision.
 
-         ! Working with complex values you often encounter the CMPLX(3f) function.
-         ! CMPLX(3f) defaults to returning a default REAL regardless of input type.
-         ! Not really a direct problem with ABS(2f) per-se, but a common error
-         ! when working with doubleprecision complex values
+         ! Working with complex values you often encounter the CMPLX(3)
+         ! function. CMPLX(3) defaults to returning a default REAL regardless
+         ! of input type. Not really a direct problem with ABS(2f) per-se,
+         ! but a common error when working with doubleprecision complex values
 
          print gen,  message
          print gen, 'real result versus doubleprecision result', &
