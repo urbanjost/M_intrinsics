@@ -68,4 +68,4 @@ TS 18508
 [**atomic_ref**(3)](#atomic_ref),
 [**iso_fortran_env**(3)](#)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

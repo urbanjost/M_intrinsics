@@ -15,7 +15,7 @@
 ```
 ### **Characteristics**
 
- - **KIND** may be any _real_ kind 
+ - **KIND** may be any _real_ kind
  - The returned value will be of the same type and kind as the argument.
 
 ### **Description**
@@ -35,7 +35,7 @@ Example: ASINPI(1:0) has the value 0:5 (approximately).
 
 - **x**
   : The value to compute the arcsine of; where |X| <= 1.
-  : The type shall be _real_ 
+  : The type shall be _real_
 
 ### **Result**
 
@@ -126,5 +126,5 @@ Fortran 2023
 
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 

@@ -1,7 +1,0 @@
-@fpm-man
-system banner 'GOT HERE'
-system esc -bg white -fg green
-options --color --lines 24
-@man
-system esc -bg orange -fg black
-options man --color 

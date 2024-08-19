@@ -124,4 +124,4 @@ Fortran 2008
  - [merge_bits(3)](#merge_bits) -  Merge bits using a mask
  - [mvbits(3)](#mvbits)    -  Reproduce bit patterns found in one integer in another
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

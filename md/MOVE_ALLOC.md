@@ -111,7 +111,7 @@ Fortran 2003, STAT and ERRMSG options added 2018
 
 [**allocated**(3)](#allocated)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 <!--
     35  2 Class. Subroutine, pure if and only if FROM is not a coarray.
     1   3 Arguments.

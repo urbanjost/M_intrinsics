@@ -113,4 +113,4 @@ There are many procedures that operator or query values at the bit level:
 [**shiftr**(3)](#shiftr),
 [**storage_size**(3)](#storage_size)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

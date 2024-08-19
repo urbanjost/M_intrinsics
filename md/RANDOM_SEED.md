@@ -73,4 +73,4 @@ Fortran 95
 
 [**random_number**(3)](#random_number)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

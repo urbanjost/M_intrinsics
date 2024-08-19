@@ -162,4 +162,4 @@ Fortran 2003
 [**ichar**(3)](#ichar),
 [**iachar**(3)](#iachar)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

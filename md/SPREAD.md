@@ -181,7 +181,7 @@ Fortran 95
 [**pack**(3)](#pack),
 [**unpack**(3)](#unpack)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 <!--
 when adding dimension 3,4,5, ... why is 15 not allowed if 16 is allowed?
 

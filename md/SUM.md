@@ -208,4 +208,4 @@ Fortran 95
  - [**product**(3)](#product) - Product of array elements
  - [**merge**(3)](#merge) - Merge variables
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

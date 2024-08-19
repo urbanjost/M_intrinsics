@@ -95,4 +95,4 @@ Fortran 95
 
 [**random_seed**(3)](#random_seed)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

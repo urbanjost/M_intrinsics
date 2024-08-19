@@ -83,4 +83,4 @@ Fortran 2008
 [**iparity**(3)](#iparity),
 [**iand**(3)](#iand)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

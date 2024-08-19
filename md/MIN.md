@@ -67,4 +67,4 @@ FORTRAN 77
 [**minval**(3)](#minval),
 [**max**(3)](#max),
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

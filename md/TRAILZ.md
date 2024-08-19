@@ -101,4 +101,4 @@ Results:
 [**poppar**(3)](#poppar),
 [**leadz**(3)](#leadz)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

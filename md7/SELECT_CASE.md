@@ -1,7 +1,7 @@
 ## select_case
 
 ### **Name**
-   select_case(7f) - [FORTRAN:EXECUTION CONTROL] select a block based on the
+   select_case(7f) - [EXECUTION CONTROL] select a block based on the
    value of an expression (a case)
    
 ### **Synopsis**

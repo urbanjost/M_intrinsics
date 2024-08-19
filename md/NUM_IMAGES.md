@@ -80,4 +80,4 @@ Fortran 2008 . With DISTANCE or FAILED argument, TS 18508
 [**this_image**(3)](#this_image),
 [**image_index**(3)](#this_index)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

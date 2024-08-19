@@ -46,4 +46,4 @@ Fortran 2008
 [**ucobound**(3)](#ucobound),
 [**lbound**(3)](#lbound)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

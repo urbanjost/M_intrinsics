@@ -2,7 +2,7 @@
 
 ### **Name**
 
-   **implicit**(7f) - [FORTRAN:STATEMENT]  specify default type associated
+   **implicit**(7f) - [STATEMENT]  specify default type associated
    to a starting letter or disallow implicit typing
 
 ### **Synopsis**
@@ -102,7 +102,7 @@
       ! and a type is required so
       ! implicit (a-h)  ! NOTE: NOT ALLOWED. TYPE IS REQUIRE0
       ! but you can make the default an user-defined type ...
-      ! notice the (incidently empty) type is defined below 
+      ! notice the (incidently empty) type is defined below
       ! the implicit statement
       implicit nil(a-h) ! or implicit type(nil) (a)
       !
@@ -140,12 +140,12 @@
 
 OPTIONS
     NONE         Turns off implicit typing. Recommended. It must
-		 follow USE statements but be before any variable
-		 declarations, including PARAMETER statements.	When used
-		 there shall be no other IMPLICIT statements in the
-		 scoping unit.
+                 follow USE statements but be before any variable
+                 declarations, including PARAMETER statements.  When used
+                 there shall be no other IMPLICIT statements in the
+                 scoping unit.
 
-    TYPE() letter-spec  is 
+    TYPE() letter-spec  is
                 (letter-or-range[,letter-or-range] [,letter-or-range] )
                  If the minus and second letter appear, the second
                  letter shall follow the first letter alphabetically.
@@ -244,18 +244,18 @@ EXAMPLE
    ! variable has to have its type declared in a statement). This
    ! is generally highly recommended for new code.
    implicit none
-   ! it is still a convention used by many programmers to reserve 
+   ! it is still a convention used by many programmers to reserve
    ! starting letters of I to N for integers.
    integer    :: i, j, k
    type(real) :: x,y,z
-   intrinsic sin,cos ! intrinsic types are already specified 
+   intrinsic sin,cos ! intrinsic types are already specified
    integer,external :: zzz ! but external functions need declared
                            ! if they do not have an interface
    call sub1()
    call sub2()
    contains
    subroutine sub1()
-   ! the implicit none above became the default for contained 
+   ! the implicit none above became the default for contained
    ! procedures so no reason to repeat it. So only required once
    ! in main procedure or once in top of a module to change the
    ! default of all procedures defined after a CONTAINS statement
@@ -263,13 +263,13 @@ EXAMPLE
       write(*,*)'I=',i,'J=',j
    end subroutine sub1
    subroutine sub2()
-   ! a contained subroutine can override the default created in the 
+   ! a contained subroutine can override the default created in the
    ! containing scope though
    implicit complex(a-z)
       A=(10,20)
       write(*,*)'A=',a
    end subroutine sub2
-   end 
+   end
    integer function zzz()
        zzz=1234
    end function zzz
@@ -280,4 +280,4 @@ Results:
  >  I=          10 J=          20
  >  A=             (10.0000000,20.0000000)
 ```
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_Fortran intrinsic descriptions (license: MIT) \@urbanjost_

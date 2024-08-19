@@ -195,7 +195,7 @@ Results:
 
 [**sign**(3)](#sign)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## achar
 
@@ -368,7 +368,7 @@ FORTRAN 77. KIND argument added Fortran 2003
 - [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code)
 - [M_attr module](https://github.com/urbanjost/M_attr) for controlling ANSI-compatible terminals
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## acosd
 
@@ -452,7 +452,7 @@ Inverse function: [**cosd**(3)](cosd)
 ### **Resources**
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## acosh
 
@@ -523,7 +523,7 @@ Inverse function: [**cosh**(3)](#cosh)
 ### **Resources**
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## acos
 
@@ -614,7 +614,7 @@ Inverse function: [**cos**(3)](cos)
 ### **Resources**
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## acospi
 
@@ -706,7 +706,7 @@ Fortran 2023
 ### **Resources**
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## adjustl
 
@@ -795,7 +795,7 @@ Fortran 95
 [**adjustr**(3)](#adjustr),
 [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## adjustr
 
@@ -883,7 +883,7 @@ Fortran 95
 [**adjustl**(3)](#adjustl),
 [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## aimag
 
@@ -1017,7 +1017,7 @@ logical expressions:
 [**tan**(3)](#tan),
 [**unpack**(3)](#unpack),
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## aint
 
@@ -1115,7 +1115,7 @@ FORTRAN 77
 [**ceiling**(3)](#ceiling),
 [**floor**(3)](#floor)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## all
 
@@ -1230,7 +1230,7 @@ Fortran 95
 
 [**any**(3)](#any)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## allocated
 
@@ -1329,7 +1329,7 @@ Results:
 
 [**move_alloc**(3)](#move_alloc)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## anint
 
@@ -1453,7 +1453,7 @@ FORTRAN 77
 [**ceiling**(3)](#ceiling),
 [**floor**(3)](#floor)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 
 ## any
@@ -1613,7 +1613,7 @@ Fortran 95
 
 [**all**(3)](#all)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## asind
 
@@ -1739,7 +1739,7 @@ Inverse function: [**sin**(3)](#sin)
 
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## asinh
 
@@ -1811,7 +1811,7 @@ Inverse function: [**sinh**(3)](#sinh)
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## asin
 
@@ -1926,7 +1926,7 @@ Inverse function: [**sin**(3)](#sin)
 
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## asinpi
 
@@ -2056,7 +2056,7 @@ Fortran 2023
 
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 
 ## associated
@@ -2168,7 +2168,7 @@ Fortran 95
 
 [**null**(3)](#null)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## atan2d
 
@@ -2339,7 +2339,7 @@ Fortran 2023
 
 - [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## atan2
 
@@ -2522,7 +2522,7 @@ FORTRAN 77
 ### **Resources**
 
 - [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## atan2pi
 
@@ -2682,7 +2682,7 @@ Fortran 2023
 ### **Resources**
 
 - [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## atand
 
@@ -2775,7 +2775,7 @@ Fortran 2023
 
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## atanh
 
@@ -2841,7 +2841,7 @@ Inverse function: [**tanh**(3)](#tanh)
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## atan
 
@@ -2932,7 +2932,7 @@ arguments Fortran 2008
 
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## atanpi
 
@@ -3103,7 +3103,7 @@ TS 18508
 [**atomic_xor**(3)](#atomic_xor)
 **iso_fortran_env**(3),
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## atomic_and
 
@@ -3183,7 +3183,7 @@ TS 18508
 [**atomic_or**(3)](#atomic_or),
 [**atomic_xor**(3)](#atomic_xor)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## atomic_cas
 
@@ -3255,7 +3255,7 @@ TS 18508
 [**atomic_ref**(3)](#atomic_ref),
 [**iso_fortran_env**(3)](#)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## atomic_define
 
@@ -3338,7 +3338,7 @@ Fortran 2008 ; with **stat**, TS 18508
 [**atomic_or**(3)](#atomic_or),
 [**atomic_xor**(3)](#atomic_xor)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## atomic_fetch_add
 
@@ -3409,7 +3409,7 @@ TS 18508
 
 [**atomic_fetch_xor**(3)](#atomic_fetch_xor)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## atomic_fetch_and
 
@@ -3481,7 +3481,7 @@ TS 18508
 
 [**atomic_fetch_xor**(3)](#atomic_fetch_xor)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## atomic_fetch_or
 
@@ -3553,7 +3553,7 @@ TS 18508
 
 [**atomic_fetch_xor**(3)](#atomic_fetch_xor)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## atomic_fetch_xor
 
@@ -3625,7 +3625,7 @@ TS 18508
 
 [**atomic_fetch_or**(3)](#atomic_fetch_or)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## atomic_or
 
@@ -3705,7 +3705,7 @@ TS 18508
 
 [**atomic_xor**(3)](#atomic_xor)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## atomic_ref
 
@@ -3792,7 +3792,7 @@ Fortran 2008 ; with STAT, TS 18508
 [**atomic_fetch_or**(3)](#atomic_or),
 [**atomic_fetch_xor**(3)](#atomic_xor)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## atomic_xor
 
@@ -3872,7 +3872,7 @@ TS 18508
 [**atomic_or**(3)](#atomic_or),
 [**atomic_xor**(3)](#atomic_xor)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## bessel_j0
 
@@ -3941,7 +3941,7 @@ Fortran 2008
 [**bessel_y1**(3)](#bessel_y1),
 [**bessel_yn**(3)](#bessel_yn)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## bessel_j1
 
@@ -4007,7 +4007,7 @@ Fortran 2008
 [**bessel_y1**(3)](#bessel_y1),
 [**bessel_yn**(3)](#bessel_yn)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## bessel_jn
 
@@ -4109,7 +4109,7 @@ Fortran 2008
 [**bessel_y1**(3)](#bessel_y1),
 [**bessel_yn**(3)](#bessel_yn)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## bessel_y0
 
@@ -4176,7 +4176,7 @@ Fortran 2008
 [**bessel_y1**(3)](#bessel_y1),
 [**bessel_yn**(3)](#bessel_yn)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## bessel_y1
 
@@ -4241,7 +4241,7 @@ Fortran 2008
 [**bessel_y0**(3)](#bessel_y0),
 [**bessel_yn**(3)](#bessel_yn)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## bessel_yn
 
@@ -4343,7 +4343,7 @@ Fortran 2008
 [**bessel_y0**(3)](#bessel_y0),
 [**bessel_y1**(3)](#bessel_y1)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## bge
 
@@ -4510,7 +4510,7 @@ Fortran 2008
 [**ble**(3)](#ble),
 [**blt**(3)](#blt)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## bgt
 
@@ -4617,7 +4617,7 @@ Fortran 2008
 [**ble**(3)](#ble),
 [**blt**(3)](#blt)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## bit_size
 
@@ -4701,7 +4701,7 @@ Fortran 95
 + [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 + [**storage_size**(3)](#storage) - Storage size in bits
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ble
 
@@ -4798,7 +4798,7 @@ Fortran 2008
 [**bgt**(3)](#bgt),
 [**blt**(3)](#blt)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## blt
 
@@ -4887,7 +4887,7 @@ Fortran 2008
 [**bgt**(3)](#bgt),
 [**ble**(3)](#ble)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## btest
 
@@ -5026,7 +5026,7 @@ Fortran 95
 [**mvbits**(3)](#mvbits),
 [**not**(3)](#not)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## c_associated
 
@@ -5102,7 +5102,7 @@ Fortran 2003
 [**c_funloc**(3)](#c_funloc),
 **iso_c_binding**(3)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## ceiling
 
@@ -5352,7 +5352,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**epsilon**(3)](#epsilon)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## c_f_pointer
 
@@ -5427,7 +5427,7 @@ Fortran 2003
 [**c_f_procpointer**(3)](#c_f_procpointer),
 **iso_c_binding**(3)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## c_f_procpointer
 
@@ -5498,7 +5498,7 @@ Fortran 2003
 [**c_f_pointer**(3)](#c_f_pointer),
 **iso_c_binding**(3)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## c_funloc
 
@@ -5572,7 +5572,7 @@ Fortran 2003
 [**c_f_procpointer**(3)](#c_f_procpointer),
 **iso_c_binding**(3)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## char
 
@@ -5711,7 +5711,7 @@ of arguments, and search for certain arguments:
   [**len**(3)](#len),
   [**repeat**(3)](#repeat), [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## c_loc
 
@@ -5772,7 +5772,7 @@ Fortran 2003
 [**c_f_procpointer**(3)](#c_f_procpointer),
 **iso_c_binding**(3)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## cmplx
 
@@ -6073,7 +6073,7 @@ logical expressions:
 [**tan**(3)](#tan),
 [**unpack**(3)](#unpack),
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## co_broadcast
 
@@ -6141,7 +6141,7 @@ Fortran xx
 [**co_sum**(3)](#co_sum),
 [**co_reduce**(3)](#co_reduce)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## co_max
 
@@ -6218,7 +6218,7 @@ TS 18508
 [**co_reduce**(3)](#co_reduce),
 [**co_broadcast**(3)](#co_broadcast)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## co_min
 
@@ -6289,7 +6289,7 @@ TS 18508
 [**co_reduce**(3)](#co_reduce),
 [**co_broadcast**(3)](#co_broadcast)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## command_argument_count
 
@@ -6361,7 +6361,7 @@ Fortran 2003
 [**get_command**(3)](#get_command),
 [**get_command_argument**(3)](#get_command_argument)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## compiler_options
 
@@ -6444,7 +6444,7 @@ Fortran 2008
 [**compiler_version**(3)](#compiler_version),
 **iso_fortran_env**(7)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## compiler_version
 
@@ -6510,7 +6510,7 @@ Fortran 2008
 [**compiler_options**(3)](#compiler_options),
 **iso_fortran_env**(7)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## conjg
 
@@ -6661,7 +6661,7 @@ logical expressions:
 [**tan**(3)](#tan),
 [**unpack**(3)](#unpack),
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## co_reduce
 
@@ -6766,7 +6766,7 @@ TS 18508
 [**co_sum**(3)](#co_sum),
 [**co_broadcast**(3)](#co_broadcast)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## cosd
 
@@ -6853,7 +6853,7 @@ Fortran 2023
 
 - [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## cosh
 
@@ -6922,7 +6922,7 @@ Inverse function: [**acosh**(3)](#acosh)
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## cos
 
@@ -7011,7 +7011,7 @@ FORTRAN 77
 
 - [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## cospi
 
@@ -7105,7 +7105,7 @@ Fortran 2023
 
 - [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## co_sum
 
@@ -7187,7 +7187,7 @@ TS 18508
 [**co_reduce**(3)](#co_reduce),
 [**co_broadcast**(3)](#co_broadcast)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## count
 
@@ -7422,7 +7422,7 @@ Fortran 95 , with KIND argument - Fortran 2003
  - [**all**(3)](#all)
  - [**sum**(3)](#sum)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## cpu_time
 
@@ -7530,7 +7530,7 @@ Fortran 95
 [**system_clock**(3)](#system_clock),
 [**date_and_time**(3)](#date_and_time)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## cshift
 
@@ -7663,7 +7663,7 @@ Fortran 95
  - [**findloc**(3)](#findloc)  -  Location of first element of ARRAY identified by MASK along dimension DIM having a value
  - [**maxloc**(3)](#maxloc)    -  Location of the maximum value within an array
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## c_sizeof
 
@@ -7729,7 +7729,7 @@ Fortran 2008
 
 [**storage_size**(3)](#storage_size)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## date_and_time
 
@@ -7903,7 +7903,7 @@ date and time conversion, formatting and computation
 - [fortran-datetime](https://github.com/dongli/fortran-datetime) - https://github.com/dongli/fortran-datetime
 - [datetime-fortran](https://github.com/wavebitscientific/datetime-fortran) - https://github.com/wavebitscientific/datetime-fortran
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## dble
 
@@ -7972,7 +7972,7 @@ FORTRAN 77
 - [**out\_of\_range**(3)](#out_of_range) - Whether a value cannot be converted safely.
 - [**real**(3)](#real) - Convert to real type
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## digits
 
@@ -8055,7 +8055,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## dim
 
@@ -8149,7 +8149,7 @@ FORTRAN 77
  - [**mod**(3)](#mode) -  Remainder function
  - [**sign**(3)](#sign) -  Sign copying function
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## dot_product
 
@@ -8248,7 +8248,7 @@ Fortran 95
 [**conjg**(3)](#conjg),
 [**any**(3)](#any)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## dprod
 
@@ -8360,7 +8360,7 @@ FORTRAN 77
 [**dble**(3)](#dble)
 [**real**(3)](#real)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## dshiftl
 
@@ -8506,7 +8506,7 @@ Fortran 2008
 
 [**dshiftr**(3)](#dshiftr)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## dshiftr
 
@@ -8658,7 +8658,7 @@ Fortran 2008
 
 [**dshiftl**(3)](#dshiftl)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## eoshift
 
@@ -8790,7 +8790,7 @@ Fortran 95
 [**dshiftr**(3)](#dshiftr),
 [**dshiftl**(3)](#dshiftl)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## epsilon
 
@@ -8928,7 +8928,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## erfc
 
@@ -9016,7 +9016,7 @@ Fortran 2008
 
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## erfc_scaled
 
@@ -9094,7 +9094,7 @@ Fortran 2008
 [**exp**(3)](#exp),
 [**erfc**(3)](#erfc)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## erf
 
@@ -9163,7 +9163,7 @@ Fortran 2008
 
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## event_query
 
@@ -9238,7 +9238,7 @@ TS 18508
  - [this_image(3)](#this_image) - Cosubscript index of this image
  - [ucobound(3)](#ucobound) - Upper codimension bounds of an array
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## execute_command_line
 
@@ -9367,7 +9367,7 @@ Fortran 2008
 
 [**get_environment_variable**(3)](#get_environment_variable)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## exp
 
@@ -9481,7 +9481,7 @@ FORTRAN 77
 
 - Wikipedia:[Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## exponent
 
@@ -9566,7 +9566,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## extends_type_of
 
@@ -9740,7 +9740,7 @@ Results:
 
 [**same_type_as**(3)](#same_type_as)
 
-  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## findloc
 
@@ -10034,7 +10034,7 @@ Fortran 95
  - [**maxloc**(3)](#maxloc) - Location of the maximum value within an array
  - [**minloc**(3)](#minloc) - Location of the minimum value within an array
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## floor
 
@@ -10146,7 +10146,7 @@ Fortran 95
 [**int**(3)](#int),
 [**selected_int_kind**(3)](#selected_int_kind)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 <!--
 real function floor(fval0)
 !@(#) return largest integer not greater than x as a real
@@ -10240,7 +10240,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## gamma
 
@@ -10390,7 +10390,7 @@ Logarithm of the Gamma function: [**log_gamma**(3)](#log_gamma)
 
 [Wikipedia: Gamma_function](https://en.wikipedia.org/wiki/Gamma_function)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## get_command_argument
 
@@ -10531,7 +10531,7 @@ Fortran 2003
 [**get_command**(3)](#get_command),
 [**command_argument_count**(3)](#command_argument_count)
 
-_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 #
 
 ## get_command
@@ -10635,7 +10635,7 @@ Fortran 2003
 [**get_command_argument**(3)](#get_command_argument),
 [**command_argument_count**(3)](#command_argument_count)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 #
 
 ## get_environment_variable
@@ -10779,7 +10779,7 @@ Fortran 2003
 [**get_command_argument**(3)](#get_command_argument),
 [**get_command**(3)](#get_command)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 #
 
 ## huge
@@ -10904,7 +10904,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## hypot
 
@@ -11048,7 +11048,7 @@ Fortran 2008
  - [random_number(3)](#random_number) - Pseudo-random number
  - [random_seed(3)](#random_seed) - Initialize a pseudo-random number sequence
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## iachar
 
@@ -11174,7 +11174,7 @@ Results:
   [**len**(3)](#len),
   [**repeat**(3)](#repeat), [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## iall
 
@@ -11261,7 +11261,7 @@ Fortran 2008
 [**iparity**(3)](#iparity),
 [**iand**(3)](#iand)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## iand
 
@@ -11351,7 +11351,7 @@ Fortran 2023
 [**mvbits**(3)](#mvbits),
 [**not**(3)](#not)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## iany
 
@@ -11468,7 +11468,7 @@ Fortran 2008
 [**iall**(3)](#iall),
 [**ior**(3)](#ior)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ibclr
 
@@ -11574,7 +11574,7 @@ Fortran 95
 [**mvbits**(3)](#mvbits),
 [**not**(3)](#not)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ibits
 
@@ -11684,7 +11684,7 @@ Fortran 95
 [**mvbits**(3)](#mvbits),
 [**not**(3)](#not)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ibset
 
@@ -11788,7 +11788,7 @@ Fortran 95
 [**mvbits**(3)](#mvbits),
 [**not**(3)](#not)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ichar
 
@@ -11895,7 +11895,7 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ieor
 
@@ -12010,7 +12010,7 @@ Fortran 95
 [**mvbits**(3)](#mvbits),
 [**not**(3)](#not)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## image_index
 
@@ -12067,7 +12067,7 @@ Fortran 2008
 [**this_image**(3)](#this_image),
 [**num_images**(3)](#num_images)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## index
 
@@ -12177,7 +12177,7 @@ of arguments, and search for certain arguments:
   [**len**(3)](#len),
   [**repeat**(3)](#repeat), [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## int
 
@@ -12313,7 +12313,7 @@ FORTRAN 77
 [**ceiling**(3)](#ceiling),
 [**floor**(3)](#floor)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ior
 
@@ -12402,7 +12402,7 @@ Fortran 95
 [**mvbits**(3)](#mvbits),
 [**not**(3)](#not)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## iparity
 
@@ -12494,7 +12494,7 @@ Fortran 2008
 [**ieor**(3)](#ieor),
 [**parity**(3)](#parity)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## is_contiguous
 
@@ -12631,7 +12631,7 @@ Fortran 2008
  - [size(3)](#size)      -  Determine the size of an array or extent of one dimension
  - [ubound(3)](#ubound)    -  Upper dimension bounds of an array
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## ishftc
 
@@ -12767,7 +12767,7 @@ Fortran 95
 - [**cshift**(3)](#cshift)   - Circular shift elements of an array
 - [**eoshift**(3)](#eoshift) - End-off shift elements of an array
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ishft
 
@@ -12859,7 +12859,7 @@ Fortran 95
 
 [**ishftc**(3)](#ishftc)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## is_iostat_end
 
@@ -12938,7 +12938,7 @@ Fortran 2003
  - [present(3)](#present)   -  Determine whether an optional dummy argument is specified
  - [same_type_as(3)](#same_type_as) -  Query dynamic types for equality
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## is_iostat_eor
 
@@ -13033,7 +13033,7 @@ Fortran 2003
  - [present(3)](#present)   -  Determine whether an optional dummy argument is specified
  - [same_type_as(3)](#same_type_as) -  Query dynamic types for equality
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## kind
 
@@ -13105,7 +13105,7 @@ Fortran 95
 - [**storage_size**(3)](#storage_size) - Storage size in bits
 - [**kind**(3)](#kind) - Kind of an entity
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## lbound
 
@@ -13272,7 +13272,7 @@ Fortran 95 , with KIND argument - Fortran 2003
 - [**bit_size**(3)](#bit_size) - Bit size inquiry function
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## lcobound
 
@@ -13322,7 +13322,7 @@ Fortran 2008
 [**ucobound**(3)](#ucobound),
 [**lbound**(3)](#lbound)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## leadz
 
@@ -13412,7 +13412,7 @@ Fortran 2008
 [**poppar**(3)](#poppar),
 [**trailz**(3)](#trailz)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## len
 
@@ -13563,7 +13563,7 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## len_trim
 
@@ -13676,7 +13676,7 @@ of arguments, and search for certain arguments:
   [**len**(3)](#len),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## lge
 
@@ -13797,7 +13797,7 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## lgt
 
@@ -13919,7 +13919,7 @@ FORTRAN 77
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## lle
 
@@ -14066,7 +14066,7 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## llt
 
@@ -14188,7 +14188,7 @@ of arguments, and search for certain arguments:
   [**len**(3)](#len),
   [**repeat**(3)](#repeat), [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## log10
 
@@ -14289,7 +14289,7 @@ FORTRAN 77
  - [random_number(3)](#random_number) - Pseudo-random number
  - [random_seed(3)](#random_seed) - Initialize a pseudo-random number sequence
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## log_gamma
 
@@ -14352,7 +14352,7 @@ Fortran 2008
 
 Gamma function: [**gamma**(3)](#gamma)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## logical
 
@@ -14437,7 +14437,7 @@ Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 [**real**(3)](#real),
 [**cmplx**(3)](#cmplx)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## log
 
@@ -14542,7 +14542,7 @@ FORTRAN 77
  - [random_number(3)](#random_number) - Pseudo-random number
  - [random_seed(3)](#random_seed) - Initialize a pseudo-random number sequence
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## maskl
 
@@ -14631,7 +14631,7 @@ Fortran 2008
 
 [**maskr**(3)](#maskr)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## maskr
 
@@ -14738,7 +14738,7 @@ Fortran 2008
 
 [**maskl**(3)](#maskl)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## matmul
 
@@ -14981,7 +14981,7 @@ Fortran 95
   The numerical instabilities of Strassen's method for matrix
   multiplication requires special processing.
 ```
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## maxexponent
 
@@ -15059,7 +15059,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## maxloc
 
@@ -15185,7 +15185,7 @@ Fortran 95
  - [**minval**(3)](#minval)
  - [**max**(3)](#max)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## max
 
@@ -15341,7 +15341,7 @@ FORTRAN 77
 [**minval**(3)](#minval),
 [**min**(3)](#min)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## maxval
 
@@ -15437,7 +15437,7 @@ Fortran 95
 [**max**(3)](#max),
 [**min**(3)](#min)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## merge_bits
 
@@ -15565,7 +15565,7 @@ Fortran 2008
  - [merge_bits(3)](#merge_bits) -  Merge bits using a mask
  - [mvbits(3)](#mvbits)    -  Reproduce bit patterns found in one integer in another
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## merge
 
@@ -15745,7 +15745,7 @@ Fortran 95
 - [**unpack**(3)](#unpack) scatters the elements of a vector
 - [**transpose**(3)](#transpose) - Transpose an array of rank two
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## minexponent
 
@@ -15823,7 +15823,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## minloc
 
@@ -15932,7 +15932,7 @@ Fortran 95
  - [**maxval**(3)](#maxval)
  - [**max**(3)](#max)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## min
 
@@ -16003,7 +16003,7 @@ FORTRAN 77
 [**minval**(3)](#minval),
 [**max**(3)](#max),
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## minval
 
@@ -16165,7 +16165,7 @@ Fortran 95
 [**maxval**(3)](#maxval),
 [**min**(3)](#min)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## mod
 
@@ -16275,7 +16275,7 @@ FORTRAN 77
  - [**anint**(3)](#anint) -  _real_ nearest whole number
  - [**nint**(3)](#nint) - _integer_ nearest whole number
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## modulo
 
@@ -16358,7 +16358,7 @@ Fortran 95
 
 [**mod**(3)](#mod)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## move_alloc
 
@@ -16473,7 +16473,7 @@ Fortran 2003, STAT and ERRMSG options added 2018
 
 [**allocated**(3)](#allocated)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 <!--
     35  2 Class. Subroutine, pure if and only if FROM is not a coarray.
     1   3 Arguments.
@@ -16679,7 +16679,7 @@ Fortran 95
 [**ior**(3)](#ior),
 [**not**(3)](#not)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## nearest
 
@@ -16782,7 +16782,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## new_line
 
@@ -16958,7 +16958,7 @@ Fortran 2003
 [**ichar**(3)](#ichar),
 [**selected_char_kind**(3)](#selected_char_kind)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## nint
 
@@ -17115,7 +17115,7 @@ FORTRAN 77 , with KIND argument - Fortran 90
 [**ceiling**(3)](#ceiling),
 [**floor**(3)](#floor)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## norm2
 
@@ -17240,7 +17240,7 @@ Fortran 2008
 [**sum**(3)](#sum),
 [**hypot**(3)](#hypot)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## not
 
@@ -17335,7 +17335,7 @@ Fortran 95
 
 [**ibclr**(3)](#ibclr)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## null
 
@@ -17463,7 +17463,7 @@ Fortran 95
 
 [**associated**(3)](#associated)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## num_images
 
@@ -17547,7 +17547,7 @@ Fortran 2008 . With DISTANCE or FAILED argument, TS 18508
 [**this_image**(3)](#this_image),
 [**image_index**(3)](#this_index)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## out_of_range
 
@@ -17702,7 +17702,7 @@ Results:
 - [**nint**(3)](#nint) - Nearest whole number
 - [**real**(3)](#real) - Convert to real type
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## pack
 
@@ -17807,7 +17807,7 @@ Fortran 95
 [**spread**(3)](#spread),
 [**unpack**(3)](#unpack)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## parity
 
@@ -17906,7 +17906,7 @@ Fortran 2008
  - [**product**(3)](#product) - Product of array elements
  - [**reduce**(3)](#reduce) - General array reduction
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## popcnt
 
@@ -18023,7 +18023,7 @@ There are many procedures that operator or query values at the bit level:
 [**shiftr**(3)](#shiftr),
 [**storage_size**(3)](#storage_size)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## poppar
 
@@ -18144,7 +18144,7 @@ There are many procedures that operator or query values at the bit level:
 [**shiftr**(3)](#shiftr),
 [**storage_size**(3)](#storage_size)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## precision
 
@@ -18229,7 +18229,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## present
 
@@ -18353,7 +18353,7 @@ Results:
 
 Fortran 95
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## product
 
@@ -18594,7 +18594,7 @@ Fortran 95
 [**sum**(3)](#sum), note that an element by element multiplication is done
 directly using the star character.
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## radix
 
@@ -18678,7 +18678,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## random_init
 
@@ -18736,16 +18736,16 @@ Sample program:
        if ( any(x /= y) ) stop "x(:) and y(:) are not all equal"
     end program demo_random_init
 ```
-## **Standard**
+### **Standard**
 
 Fortran 2018
 
-## **See also**
+### **See also**
 
 [random_number](#random_number),
 [random_seed](random_seed)
 
- _fortran-lang intrinsic descriptions
+ _Fortran intrinsic descriptions
 
 ## random_number
 
@@ -18844,7 +18844,7 @@ Fortran 95
 
 [**random_seed**(3)](#random_seed)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## random_seed
 
@@ -18921,7 +18921,7 @@ Fortran 95
 
 [**random_number**(3)](#random_number)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## range
 
@@ -19014,7 +19014,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## rank
 
@@ -19175,7 +19175,7 @@ Results:
 - [**bit_size**(3)](#bit_size) -  Bit size inquiry function
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 #
 
 ## real
@@ -19305,7 +19305,7 @@ logical expressions:
 [**tan**(3)](#tan),
 [**unpack**(3)](#unpack),
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## reduce
 
@@ -19509,7 +19509,7 @@ Results:
 
 - [associative:wikipedia](https://en.wikipedia.org/wiki/Associative_property)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## repeat
 
@@ -19591,7 +19591,7 @@ Functions that perform operations on character strings:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 #
 
 ## reshape
@@ -19808,7 +19808,7 @@ Fortran 95
 [**pack**(3)](#pack),
 [**transpose**(3)](#transpose)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 
 ## rrspacing
@@ -19876,7 +19876,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## same_type_as
 
@@ -20012,7 +20012,7 @@ Fortran 2003
 
 [**extends_type_of**(3)](#extends_type_of)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## scale
 
@@ -20124,7 +20124,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## scan
 
@@ -20229,7 +20229,7 @@ of arguments, and search for certain arguments:
   [**len**(3)](#len),
   [**repeat**(3)](#repeat), [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## selected_char_kind
 
@@ -20394,7 +20394,7 @@ Fortran 2003
 [**ichar**(3)](#ichar),
 [**iachar**(3)](#iachar)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## selected_int_kind
 
@@ -20480,7 +20480,7 @@ Fortran 95
 [**ceiling**(3)](#ceiling),
 [**floor**(3)](#floor)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## selected_real_kind
 
@@ -20609,7 +20609,7 @@ Fortran 95 ; with RADIX - Fortran 2008
 [**range**(3)](#range),
 [**radix**(3)](#radix)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## set_exponent
 
@@ -20698,7 +20698,7 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## shape
 
@@ -20806,7 +20806,7 @@ Fortran 95 ; with KIND argument Fortran 2003
 - [**bit_size**(3)](#bit_size) -  Bit size inquiry function
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## shifta
 
@@ -20935,7 +20935,7 @@ Fortran 2008
 [**ishft**(3)](#ishft),
 [**ishftc**(3)](#ishftc)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## shiftl
 
@@ -21066,7 +21066,7 @@ Fortran 2008
 [**ishft**(3)](#ishft),
 [**ishftc**(3)](#ishftc)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## shiftr
 
@@ -21199,7 +21199,7 @@ Fortran 2008
 [**ishft**(3)](#ishft),
 [**ishftc**(3)](#ishftc)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## sign
 
@@ -21293,7 +21293,7 @@ FORTRAN 77
 
 [**abs**(3)](#abs)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## sind
 
@@ -21438,7 +21438,7 @@ Fortran 2023
 
 - [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 
 ## sinh
@@ -21538,7 +21538,7 @@ Fortran 95 , for a complex argument Fortran 2008
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## sin
 
@@ -21688,7 +21688,7 @@ FORTRAN 77
 
 - [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## sinpi
 
@@ -21785,7 +21785,7 @@ fortran 2023
 
 - [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## size
 
@@ -21951,7 +21951,7 @@ Fortran 95 , with **kind** argument - Fortran 2003
 - [**bit_size**(3)](#bit_size) - Bit size inquiry function
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## spacing
 
@@ -22047,7 +22047,144 @@ Fortran 95
 [**set_exponent**(3)](#set_exponent),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
+
+## split
+
+### **Name**
+
+**split**(3) - \[CHARACTER:SPLIT] Parse a string into tokens, one at a time.
+
+### **Synopsis**
+```fortran
+     call split (string, set, pos [, back])
+
+      character(kind=KIND),intent(in)       :: string
+      character(len=*,kind=KIND),intent(in) :: set
+      integer,intent(inout)                 :: pos
+      logical,intent(in),optional           :: back
+```
+### **Characteristics**
+- **string** is a scalar character variable
+- **set** is a scalar character variable of the same kind as **string**.
+
+### **Description**
+
+  Find the extent of consecutive tokens in a string. Given a string and
+  a position to start looking for a token return the position of the
+  end of the token. A set of separator characters may be specified as
+  well as the direction of parsing.
+
+  Typically consecutive calls are used to parse a string into a set of
+  tokens by stepping through the start and end positions of each token.
+
+### **Options**
+
+ - **string**
+   : The string to search for tokens in.
+
+ - **set**
+   : Each character in **set** is a token delimiter. A sequence of zero or
+     more characters in **string** delimited by any token delimiter,
+     or the beginning or end of **string**, comprise a token. Thus, two
+     consecutive token delimiters in **string**, or a token delimiter
+     in the first or last character of **string**, indicate a token with
+     zero length.
+
+ - **pos**
+   : On input, the position from which to start looking for the next
+     separator from. This is typically the first character or the
+     last returned value of **pos** if searching from left to right (ie.
+     **back** is absent or _.true._) or the last character or the last
+     returned value of **pos** when searching from right to left (ie.
+     when **back** is _.false._).
+
+     If **back** is present with the value _.true._, the value of **pos**
+     shall be in the range 0 < POS <= LEN(STRING)+1; otherwise it shall
+     be in the range 0 <= POS <= LEN(STRING).
+
+     So **pos** on input is typically an end of the string or the
+     position of a separator, probably from a previous call to **split**
+     but **pos** on input can be any position in the range 1 <= POS <=
+     LEN(STRING).  If **pos** points to a non-separator character in the
+     string the call is still valid but it will start searching from
+     the specified position and that will result (somewhat obviously)
+     in the string from **pos** on input to the returned **pos** being
+     a partial token.
+
+ - **back**
+   : If **back** is absent or is present with the value _.false._,
+     **pos** is assigned the position of the leftmost token delimiter in
+     **string** whose position is greater than **pos**, or if there is no
+     such character, it is assigned a value one greater than the length
+     of **string**. This identifies a token with starting position one
+     greater than the value of **pos** on invocation, and ending position
+     one less than the value of **pos** on return.
+
+     If **back** is present with the value _.true._, **pos** is assigned
+     the position of the rightmost token delimiter in **string** whose
+     position is less than **pos**, or if there is no such character,
+     it is assigned the value zero. This identifies a token with ending
+     position one less than the value of **pos** on invocation, and
+     starting position one greater than the value of **pos** on return.
+
+### **Example**
+Sample program:
+```fortran
+program demo_split
+   !use m_strings, only: split=>split2020
+   implicit none
+   character (len=:), allocatable :: input
+   integer :: position, istart, iend
+   input = "one,last example,,x,, ,,"
+   position = 0
+   ! write a number line
+   write(*,'(t3,a)') repeat('1234567890',6)
+   ! display the input line
+   write(*,'(t3,a)') input
+   ! step through the input string locating the bounds of the
+   ! next token and printing it
+   do while (position < len(input))
+      istart = position + 1
+      call split (input, set=', ', pos=position)
+      iend = position - 1
+      if(iend >= istart)then
+         print '(t3,a,1x,i0,1x,i0)', input (istart:iend),istart,iend
+      else
+         ! maybe ignore null fields, maybe not ...
+         write(*,'(t3,*(g0))')'null between ',iend,' and ',istart
+      endif
+   end do
+end program demo_split
+```
+Results:
+```text
+ >   123456789012345678901234567890123456789012345678901234567890
+ >   one,last example,,x,, ,,
+ >   one 1 3
+ >   last 5 8
+ >   example 10 16
+ >   null between 17 and 18
+ >   x 19 19
+ >   null between 20 and 21
+ >   null between 21 and 22
+ >   null between 22 and 23
+ >   null between 23 and 24
+```
+### **Standard**
+
+Fortran 2023
+
+### **See Also**
+
+  - [**tokenize**(3)](#tokenize) - Parse a string into tokens
+  - [**index**(3)](#index) - Position of a substring within a string
+  - [**scan**(3)](#scan) - Scan a string for the presence of a set
+    of characters
+  - [**verify**(3)](#verify) - Position of a character in a string of
+    characters that does not appear in a given set of characters.
+
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## spread
 
@@ -22232,7 +22369,7 @@ Fortran 95
 [**pack**(3)](#pack),
 [**unpack**(3)](#unpack)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 <!--
 when adding dimension 3,4,5, ... why is 15 not allowed if 16 is allowed?
 
@@ -22345,7 +22482,7 @@ FORTRAN 77
 [**log**(3)](#log),
 [**log10**(3)](#log10)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## storage_size
 
@@ -22450,7 +22587,7 @@ Fortran 2008
 
 [**c_sizeof**(3)](#c_sizeof)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## sum
 
@@ -22662,7 +22799,7 @@ Fortran 95
  - [**product**(3)](#product) - Product of array elements
  - [**merge**(3)](#merge) - Merge variables
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## system_clock
 
@@ -22823,7 +22960,7 @@ Fortran 95
 [**date_and_time**(3)](#date_and_time),
 [**cpu_time**(3)](#cpu_time)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## tand
 
@@ -22887,7 +23024,7 @@ Fortran 2023
 [**cosd**(3)](#cosd),
 [**sind**(3)](#sind)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 
 ## tanh
@@ -22959,7 +23096,7 @@ FORTRAN 77 , for a complex argument Fortran 2008
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## tan
 
@@ -23024,7 +23161,7 @@ FORTRAN 77 . For a complex argument, Fortran 2008 .
 [**cos**(3)](#cos),
 [**sin**(3)](#sin)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## tanpi
 
@@ -23106,7 +23243,7 @@ Fortran 2023
 [**atan2pi**(3)](#atan2pi),
 [**atan2d**(3)](#atan2d)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## this_image
 
@@ -23192,7 +23329,7 @@ Fortran 2008. With DISTANCE argument, TS 18508
 [**num\_images**(3)](#num_images),
 [**image\_index**(3)](#image_index)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## tiny
 
@@ -23272,7 +23409,193 @@ Fortran 95
 [**set_exponent**(3)](#set_exponent),
 [**spacing**(3)](#spacing)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
+
+## tokenize
+
+### **Name**
+
+**tokenize**(3) - \[CHARACTER:PARSE] Parse a string into tokens.
+
+### **Synopsis**
+  TOKEN form (returns array of strings)
+```fortran
+    subroutine tokenize(string, set, tokens [, separator])
+
+     character(len=*),intent(in) :: string
+     character(len=*),intent(in) :: set
+     character(len=:),allocatable,intent(out) :: tokens(:)
+     character(len=1),allocatable,intent(out),optional :: separator(:)
+```
+  ARRAY BOUNDS form (returns arrays defining token positions)
+```fortran
+    subroutine tokenize (string, set, first, last)
+
+     character(len=*),intent(in) :: string
+     character(len=*),intent(in) :: set
+     integer,allocatable,intent(out) :: first(:)
+     integer,allocatable,intent(out) :: last(:)
+```
+### **Characteristics**
+  - **string** - a scalar of type character. It is an INTENT(IN) argument.
+  - **set** - a scalar of type character with the same kind type parameter
+              as **string**. It is an INTENT(IN) argument.
+  - **separator** - (optional) shall be of type character with the same
+                    kind type parameter as **string**. It is an
+                    INTENT(OUT)argument. It shall not be a coarray or
+                    a coindexed object.
+  - **tokens** - of type character with the same kind type parameter as
+                 **string**. It is an INTENT(OUT) argument. It shall
+                 not be a coarray or a coindexed object.
+  - **first**,**last** - an allocatable array of type integer and rank
+                        one. It is an INTENT(OUT) argument. It shall
+                        not be a coarray or a coindexed object.
+
+  To reiterate, **string**, **set**, **tokens** and **separator** must
+  all be of the same CHARACTER kind type parameter.
+
+### **Description**
+
+   **tokenize(3)** parses a string into tokens. There are two forms
+   of the subroutine **tokenize(3)**.
+
+   - The token form returns an array with one token per element, all of
+     the same length as the longest token.
+   - The array bounds form returns two integer arrays. One contains the
+     beginning position of the tokens and the other the end positions.
+
+   Since the token form pads all the tokens to the same length the
+   original number of trailing spaces of each token accept for the
+   longest is lost.
+
+   The array bounds form retains information regarding the exact token
+   length even when padded by spaces.
+
+### **Options**
+- **string**
+  : The string to parse into tokens.
+
+- **set**
+  : Each character in **set** is a token delimiter. A sequence of zero
+    or more characters in **string** delimited by any token delimiter,
+    or the beginning or end of **string**, comprise a token. Thus, two
+    consecutive token delimiters in **string**, or a token delimiter
+    in the first or last character of **string**, indicate a token with
+    zero length.
+
+- **tokens**
+  : It shall be an allocatable array of rank one with deferred length. It
+    is allocated with the lower bound equal to one and the upper bound
+    equal to the number of tokens in **string**, and with character
+    length equal to the length of the longest token.
+
+    The tokens in **string** are assigned in the order found, as if
+    by intrinsic assignment, to the elements of **tokens**, in array
+    element order.
+
+- **first**
+  : shall be an allocatable array of type integer and rank one. It is
+    an INTENT(OUT) argument. It shall not be a coarray or a coindexed
+    object.
+
+    It is allocated with the lower bound equal to one and the
+    upper bound equal to the number of tokens in **string**. Each element
+    is assigned, in array element order, the starting position of each
+    token in **string**, in the order found.
+
+    If a token has zero length, the starting position is equal to one
+    if the token is at the beginning of **string**, and one greater than
+    the position of the preceding delimiter otherwise.
+
+- **last**
+  : It is allocated with the lower bound equal to one and the
+    upper bound equal to the number of tokens in **string**. Each element
+    is assigned, in array element order, the ending position of each
+    token in **string**, in the order found.
+
+    If a token has zero length, the ending position is one less than
+    the starting position.
+
+### **Examples**
+
+  Sample of uses
+```fortran
+    program demo_tokenize
+    !use M_strings, only : tokenize=>split2020
+    implicit none
+    ! some useful formats
+    character(len=*),parameter :: brackets='(*("[",g0,"]":,","))'
+    character(len=*),parameter :: a_commas='(a,*(g0:,","))'
+    character(len=*),parameter :: space='(*(g0:,1x))'
+    character(len=*),parameter :: gen='(*(g0))'
+
+    ! Execution of TOKEN form (return array of tokens)
+
+    block
+       character (len=:), allocatable :: string
+       character (len=:), allocatable :: tokens(:)
+       character (len=:), allocatable :: kludge(:)
+       integer                        :: i
+       string = '  first,second ,third       '
+       call tokenize(string, set=';,', tokens=tokens )
+       write(*,brackets)tokens
+
+       string = '  first , second ,third       '
+       call tokenize(string, set=' ,', tokens=tokens )
+       write(*,brackets)(trim(tokens(i)),i=1,size(tokens))
+       ! remove blank tokens
+       ! <<<
+       !tokens=pack(tokens, tokens /= '' )
+       ! gfortran 13.1.0 bug -- concatenate //'' and use scratch
+       ! variable KLUDGE. JSU: 2024-08-18
+       kludge=pack(tokens//'', tokens /= '' )
+       ! >>>
+       write(*,brackets)kludge
+
+    endblock
+
+    ! Execution of BOUNDS form (return position of tokens)
+
+    block
+       character (len=:), allocatable :: string
+       character (len=*),parameter :: set = " ,"
+       integer, allocatable        :: first(:), last(:)
+       write(*,gen)repeat('1234567890',6)
+       string = 'first,second,,fourth'
+       write(*,gen)string
+       call tokenize (string, set, first, last)
+       write(*,a_commas)'FIRST=',first
+       write(*,a_commas)'LAST=',last
+       write(*,a_commas)'HAS LENGTH=',last-first.gt.0
+    endblock
+
+    end program demo_tokenize
+```
+Results:
+```text
+ > [  first     ],[second      ],[third       ]
+ > [],[first],[],[],[second],[],[third],[],[],[],[],[]
+ > [first ],[second],[third ]
+ > 123456789012345678901234567890123456789012345678901234567890
+ > first,second,,fourth
+ > FIRST=1,7,14,15
+ > LAST=5,12,13,20
+ > HAS LENGTH=T,T,F,T
+```
+### **Standard**
+
+Fortran 2023
+
+### **See Also**
+
+  - [**split**(3)](#split) - return tokens from a string, one at a time
+  - [**index**(3)](#index) - Position of a substring within a string
+  - [**scan**(3)](#scan) - Scan a string for the presence of a set
+    of characters
+  - [**verify**(3)](#verify) - Position of a character in a string of
+    characters that does not appear in a given set of characters.
+
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## trailz
 
@@ -23377,7 +23700,7 @@ Results:
 [**poppar**(3)](#poppar),
 [**leadz**(3)](#leadz)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## transfer
 
@@ -23507,7 +23830,7 @@ Fortran 90
 
  -[equivalence(7)](#equivalence)  - alias storage
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_
 
 ## transpose
 
@@ -23612,7 +23935,7 @@ Fortran 95
 - [**spread**(3)](#spread) - Add a dimension and replicate data
 - [**unpack**(3)](#unpack) - Scatter the elements of a vector
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## trim
 
@@ -23721,7 +24044,7 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ubound
 
@@ -23897,7 +24220,7 @@ Fortran 95 , with KIND argument Fortran 2003
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 - [**lbound**(3)](#lbound),
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## ucobound
 
@@ -24110,7 +24433,7 @@ Fortran 95
 [**pack**(3)](#pack),
 [**spread**(3)](#spread)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## verify
 
@@ -24505,4 +24828,4 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

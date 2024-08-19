@@ -66,4 +66,4 @@ integer :: i,j
    enddo
 end program newer
 ```
- _fortran-lang statement descriptions (license: MIT) \@urbanjost_
+ _Fortran statement descriptions (license: MIT) \@urbanjost_

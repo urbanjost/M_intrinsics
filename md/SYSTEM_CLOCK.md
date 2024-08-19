@@ -157,4 +157,4 @@ Fortran 95
 [**date_and_time**(3)](#date_and_time),
 [**cpu_time**(3)](#cpu_time)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

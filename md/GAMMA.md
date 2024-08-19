@@ -148,4 +148,4 @@ Logarithm of the Gamma function: [**log_gamma**(3)](#log_gamma)
 
 [Wikipedia: Gamma_function](https://en.wikipedia.org/wiki/Gamma_function)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

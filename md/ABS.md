@@ -111,7 +111,7 @@ character(len=*),intent(in) :: message
    ! a representable negative value on most machines but result in a
    ! positive value out of range.
 
-   print gen,  message 
+   print gen,  message
    ! By definition:
    !   You can take the absolute value of any value whose POSITIVE value
    !   is representable with the same type and kind.
@@ -133,7 +133,7 @@ character(len=*),intent(in) :: message
    ! of input type. Not really a direct problem with ABS(2f) per-se,
    ! but a common error when working with doubleprecision complex values
 
-   print gen,  message 
+   print gen,  message
    print gen, 'real result versus doubleprecision result', &
    & abs(cmplx(30.0_dp,40.0_dp)), &
    & abs(cmplx(30.0_dp,40.0_dp,kind=dp))
@@ -144,7 +144,7 @@ subroutine DUSTY_CORNERS_3(message)
 character(len=*),intent(in) :: message
    print gen, message
 
-   ! this will probably cause an overflow error, or 
+   ! this will probably cause an overflow error, or
    !print gen,  abs(cmplx( huge(0.0), huge(0.0) ))
 
    print gen, 'because the biggest default real is',huge(0.0)
@@ -156,7 +156,7 @@ subroutine DUSTY_CORNERS_4(message)
 character(len=*),intent(in) :: message
    print gen, message
 
-   ! if you do not want the distance for a complex value you 
+   ! if you do not want the distance for a complex value you
    ! might want something like returning a complex value with
    ! both the imaginary and real parts. One way to do that is
 
@@ -194,4 +194,4 @@ Results:
 
 [**sign**(3)](#sign)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

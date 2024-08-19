@@ -34,7 +34,7 @@
   to the inverse hyperbolic sine function of **x**.
 
   If **x** is _complex_, the imaginary part of the result is in radians and lies
-  between 
+  between
 ```fortran
        -PI/2 <= aimag(asinh(x)) <= PI/2
 ```
@@ -68,4 +68,4 @@ Inverse function: [**sinh**(3)](#sinh)
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

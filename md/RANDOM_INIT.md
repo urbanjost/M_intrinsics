@@ -55,13 +55,13 @@ Sample program:
        if ( any(x /= y) ) stop "x(:) and y(:) are not all equal"
     end program demo_random_init
 ```
-## **Standard**
+### **Standard**
 
 Fortran 2018
 
-## **See also**
+### **See also**
 
 [random_number](#random_number),
 [random_seed](random_seed)
 
- _fortran-lang intrinsic descriptions
+ _Fortran intrinsic descriptions

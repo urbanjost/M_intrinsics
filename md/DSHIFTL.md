@@ -142,4 +142,4 @@ Fortran 2008
 
 [**dshiftr**(3)](#dshiftr)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

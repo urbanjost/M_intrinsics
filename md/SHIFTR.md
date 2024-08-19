@@ -129,4 +129,4 @@ Fortran 2008
 [**ishft**(3)](#ishft),
 [**ishftc**(3)](#ishftc)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

@@ -61,4 +61,4 @@ FORTRAN 77 . For a complex argument, Fortran 2008 .
 [**cos**(3)](#cos),
 [**sin**(3)](#sin)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

@@ -79,4 +79,4 @@ Fortran 2008 ; with **stat**, TS 18508
 [**atomic_or**(3)](#atomic_or),
 [**atomic_xor**(3)](#atomic_xor)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

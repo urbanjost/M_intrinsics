@@ -85,4 +85,4 @@ Fortran 2008
 
 [**maskr**(3)](#maskr)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

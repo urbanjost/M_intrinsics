@@ -15,7 +15,7 @@
 ```
 ### **Characteristics**
 
-  - **x** may be any _real_ 
+  - **x** may be any _real_
   - **KIND** may be any kind supported by the associated real type of **x**.
   - The returned value will be of the same type and kind as the argument
     **x**.
@@ -50,7 +50,7 @@ Sample program:
 ```fortran
 program demo_sinpi
 implicit none
-real    :: x 
+real    :: x
 integer :: i
 real,parameter :: PI=acos(-1.0)
    do i=0,8
@@ -61,14 +61,14 @@ end program demo_sinpi
 ```
 Results:
 ```text
- > x=   0.00000000  sinpi(x)=   0.00000000    
- > x=  0.250000000  sinpi(x)=   0.707106769    
- > x=  0.500000000  sinpi(x)=   1.00000000    
- > x=  0.750000000  sinpi(x)=   0.707106769    
+ > x=   0.00000000  sinpi(x)=   0.00000000
+ > x=  0.250000000  sinpi(x)=   0.707106769
+ > x=  0.500000000  sinpi(x)=   1.00000000
+ > x=  0.750000000  sinpi(x)=   0.707106769
  > x=   1.00000000  sinpi(x)=  -8.74227766E-08
- > x=   1.25000000  sinpi(x)=  -0.707106888    
- > x=   1.50000000  sinpi(x)=  -1.00000000    
- > x=   1.75000000  sinpi(x)=  -0.707106531    
+ > x=   1.25000000  sinpi(x)=  -0.707106888
+ > x=   1.50000000  sinpi(x)=  -1.00000000
+ > x=   1.75000000  sinpi(x)=  -0.707106531
  > x=   2.00000000  sinpi(x)=   1.74845553E-07
 ```
 ### **Standard**
@@ -77,20 +77,20 @@ fortran 2023
 
 ### **See Also**
 
- - [**acos**(3)](#acos), [**acosd**(3)](#acosd), [**acospi**(3)](#acospi), 
+ - [**acos**(3)](#acos), [**acosd**(3)](#acosd), [**acospi**(3)](#acospi),
  - [**asin**(3)](#asin), [**asind**(3)](#asind),
- - [**atan2**(3)](#atan2), [**atan2d**(3)](#atan2d), [**atan2pi**(3)](#atan2pi), 
- - [**cos**(3)](#cos), [**cosd**(3)](#cosd), [**cospi**(3)](#cospi), 
- - [**tan**(3)](#tan), [**tand**(3)](#tand), [**tanpi**(3)](#tanpi), 
+ - [**atan2**(3)](#atan2), [**atan2d**(3)](#atan2d), [**atan2pi**(3)](#atan2pi),
+ - [**cos**(3)](#cos), [**cosd**(3)](#cosd), [**cospi**(3)](#cospi),
+ - [**tan**(3)](#tan), [**tand**(3)](#tand), [**tanpi**(3)](#tanpi),
  - [**acosh**(3)](#acosh),
- - [**acosh**(3)](#acosh), 
+ - [**acosh**(3)](#acosh),
  - [**asinh**(3)](#asinh),
  - [**asinh**(3)](#asinh),
- - [**atanh**(3)](#atanh) 
- - [**atanh**(3)](#atanh), 
+ - [**atanh**(3)](#atanh)
+ - [**atanh**(3)](#atanh),
 
 ### **Resources**
 
 - [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

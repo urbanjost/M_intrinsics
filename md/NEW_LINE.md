@@ -172,4 +172,4 @@ Fortran 2003
 [**ichar**(3)](#ichar),
 [**selected_char_kind**(3)](#selected_char_kind)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

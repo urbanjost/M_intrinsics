@@ -16,7 +16,7 @@
 ### **Characteristics**
 
  - **x** is of type _real_ of any valid kind.
- - **KIND** may be any real kind. 
+ - **KIND** may be any real kind.
  - The returned value will be of the same type and kind as the argument
    **x**.
 
@@ -83,4 +83,4 @@ Fortran 2023
 
 - [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

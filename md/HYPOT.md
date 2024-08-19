@@ -140,4 +140,4 @@ Fortran 2008
  - [random_number(3)](#random_number) - Pseudo-random number
  - [random_seed(3)](#random_seed) - Initialize a pseudo-random number sequence
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

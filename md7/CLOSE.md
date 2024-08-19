@@ -1,7 +1,7 @@
 ## close
 
 ### **Name**
-   CLOSE(7f) - [FORTRAN:IO] terminate the connection of a specified unit
+   close(7f) - [IO] terminate the connection of a specified unit
    to an external file.
    
 ### **Synopsis**

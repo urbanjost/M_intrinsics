@@ -91,4 +91,4 @@ Fortran 2003
  - [present(3)](#present)   -  Determine whether an optional dummy argument is specified
  - [same_type_as(3)](#same_type_as) -  Query dynamic types for equality
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

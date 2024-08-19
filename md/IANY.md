@@ -113,4 +113,4 @@ Fortran 2008
 [**iall**(3)](#iall),
 [**ior**(3)](#ior)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

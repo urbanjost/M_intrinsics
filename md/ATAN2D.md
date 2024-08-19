@@ -141,10 +141,10 @@ end program demo_atan2d
 ```
 Results:
 ```text
- >  degrees=   57.2957802     radians=   1.00000000    
- >  elemental   18.4349480       26.5650520    
- >  elemental   11.3099327       21.8014107    
- >   0.785398185  0.785398185 0.785398185  0.785398185    
+ >  degrees=   57.2957802     radians=   1.00000000
+ >  elemental   18.4349480       26.5650520
+ >  elemental   11.3099327       21.8014107
+ >   0.785398185  0.785398185 0.785398185  0.785398185
  >  complex value treated as components (0.0000,1.0000) 90.000
  > X=  1.00 Y=  0.00 ANGLE= 0.00000000  RADIANS= 0.000
  > X=  1.00 Y=  1.00 ANGLE= 45.0000000  RADIANS= 0.7854
@@ -167,4 +167,4 @@ Fortran 2023
 
 - [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

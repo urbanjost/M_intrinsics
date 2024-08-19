@@ -108,7 +108,7 @@ Fortran 95
 [**int**(3)](#int),
 [**selected_int_kind**(3)](#selected_int_kind)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 <!--
 real function floor(fval0)
 !@(#) return largest integer not greater than x as a real

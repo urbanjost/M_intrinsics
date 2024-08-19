@@ -1,7 +1,7 @@
 ## rewind
 
 ### **Name**
-  rewind(7f) - [FORTRAN:FILE_POSITIONING] rewind specified sequential
+  rewind(7f) - [FILE_POSITIONING] rewind specified sequential
   access I/O unit
 
 ### **Synopsis**
@@ -83,4 +83,4 @@ WAIT(3) and INQUIRE(3) statements.
 -   The BACKSPACE(3), ENDFILE(3), and REWIND(3) statements are file
     positioning statements.
 
-fortran-lang statement descriptions (license: MIT) @urbanjost
+_Fortran statement descriptions (license: MIT) @urbanjost_

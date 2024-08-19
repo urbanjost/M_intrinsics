@@ -121,4 +121,4 @@ Fortran 2008
 [**sum**(3)](#sum),
 [**hypot**(3)](#hypot)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

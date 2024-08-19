@@ -132,4 +132,4 @@ Fortran 95
 - [**cshift**(3)](#cshift)   - Circular shift elements of an array
 - [**eoshift**(3)](#eoshift) - End-off shift elements of an array
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

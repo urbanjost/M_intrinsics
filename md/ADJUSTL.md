@@ -85,4 +85,4 @@ Fortran 95
 [**adjustr**(3)](#adjustr),
 [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

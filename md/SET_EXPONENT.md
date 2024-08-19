@@ -85,4 +85,4 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

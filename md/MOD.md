@@ -106,4 +106,4 @@ FORTRAN 77
  - [**anint**(3)](#anint) -  _real_ nearest whole number
  - [**nint**(3)](#nint) - _integer_ nearest whole number
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

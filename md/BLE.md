@@ -93,4 +93,4 @@ Fortran 2008
 [**bgt**(3)](#bgt),
 [**blt**(3)](#blt)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

@@ -128,4 +128,4 @@ Fortran 95
 [**dshiftr**(3)](#dshiftr),
 [**dshiftl**(3)](#dshiftl)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

@@ -125,4 +125,4 @@ Fortran 2008
 
 [**get_environment_variable**(3)](#get_environment_variable)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

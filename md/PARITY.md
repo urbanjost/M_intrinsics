@@ -95,4 +95,4 @@ Fortran 2008
  - [**product**(3)](#product) - Product of array elements
  - [**reduce**(3)](#reduce) - General array reduction
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

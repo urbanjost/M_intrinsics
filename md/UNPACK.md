@@ -160,4 +160,4 @@ Fortran 95
 [**pack**(3)](#pack),
 [**spread**(3)](#spread)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

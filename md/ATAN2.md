@@ -179,4 +179,4 @@ FORTRAN 77
 ### **Resources**
 
 - [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

@@ -79,4 +79,4 @@ Fortran 2008
 [**compiler_version**(3)](#compiler_version),
 **iso_fortran_env**(7)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

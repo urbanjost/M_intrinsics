@@ -124,4 +124,4 @@ Fortran 95
 
 [**associated**(3)](#associated)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

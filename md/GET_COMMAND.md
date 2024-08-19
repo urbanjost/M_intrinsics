@@ -99,5 +99,5 @@ Fortran 2003
 [**get_command_argument**(3)](#get_command_argument),
 [**command_argument_count**(3)](#command_argument_count)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 #

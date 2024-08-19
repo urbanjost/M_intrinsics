@@ -65,4 +65,4 @@ Inverse function: [**acosh**(3)](#acosh)
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

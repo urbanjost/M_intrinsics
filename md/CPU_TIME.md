@@ -104,4 +104,4 @@ Fortran 95
 [**system_clock**(3)](#system_clock),
 [**date_and_time**(3)](#date_and_time)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

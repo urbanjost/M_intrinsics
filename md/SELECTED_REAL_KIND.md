@@ -126,4 +126,4 @@ Fortran 95 ; with RADIX - Fortran 2008
 [**range**(3)](#range),
 [**radix**(3)](#radix)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

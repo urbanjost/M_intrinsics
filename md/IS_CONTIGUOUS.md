@@ -133,4 +133,4 @@ Fortran 2008
  - [size(3)](#size)      -  Determine the size of an array or extent of one dimension
  - [ubound(3)](#ubound)    -  Upper dimension bounds of an array
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

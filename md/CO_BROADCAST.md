@@ -64,4 +64,4 @@ Fortran xx
 [**co_sum**(3)](#co_sum),
 [**co_reduce**(3)](#co_reduce)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

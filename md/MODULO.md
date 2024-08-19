@@ -79,4 +79,4 @@ Fortran 95
 
 [**mod**(3)](#mod)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

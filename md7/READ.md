@@ -1,8 +1,7 @@
 ## read
 
 ### **Name**
-   read(7f) - [FORTRAN:IO] read data
-   
+   read(7f) - [IO] read data
 
 ### **Synopsis**
 ```fortran

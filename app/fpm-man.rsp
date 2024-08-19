@@ -1,9 +1,9 @@
 @fpm-man
-system banner 'GOT HERE A:'
-system esc -bg white -fg black
+###############################
 options --color
-options --lines 24
+options --lines 33
+###############################
 @man
-system banner 'GOT HERE B:'
 system esc -bg orange -fg black
 options --color --lines 24
+###############################

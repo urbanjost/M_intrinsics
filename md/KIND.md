@@ -68,4 +68,4 @@ Fortran 95
 - [**storage_size**(3)](#storage_size) - Storage size in bits
 - [**kind**(3)](#kind) - Kind of an entity
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

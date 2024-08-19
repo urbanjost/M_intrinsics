@@ -132,4 +132,4 @@ Fortran 2003
 
 [**extends_type_of**(3)](#extends_type_of)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

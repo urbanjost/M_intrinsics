@@ -129,4 +129,4 @@ Fortran 95
  - [**findloc**(3)](#findloc)  -  Location of first element of ARRAY identified by MASK along dimension DIM having a value
  - [**maxloc**(3)](#maxloc)    -  Location of the maximum value within an array
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

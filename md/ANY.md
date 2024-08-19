@@ -155,4 +155,4 @@ Fortran 95
 
 [**all**(3)](#all)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

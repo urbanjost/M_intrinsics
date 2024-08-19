@@ -80,4 +80,4 @@ Fortran 95
 + [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 + [**storage_size**(3)](#storage) - Storage size in bits
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

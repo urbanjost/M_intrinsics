@@ -1,7 +1,8 @@
 ## namelist
 
 ### **Name**
-    NAMELIST(7f) - [FORTRAN:STATEMENT] specify a group of data to be referred to by a single name in data input/output
+    namelist(7f) - [STATEMENT] specify a group of data to be referred
+    to by a single name in data input/output
     
 ### **Synopsis**
 ```fortran

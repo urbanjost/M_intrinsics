@@ -85,4 +85,4 @@ FORTRAN 77
 
 - [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

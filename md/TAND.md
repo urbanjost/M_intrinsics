@@ -60,5 +60,5 @@ Fortran 2023
 [**cosd**(3)](#cosd),
 [**sind**(3)](#sind)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 

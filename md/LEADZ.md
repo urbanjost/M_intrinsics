@@ -86,4 +86,4 @@ Fortran 2008
 [**poppar**(3)](#poppar),
 [**trailz**(3)](#trailz)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

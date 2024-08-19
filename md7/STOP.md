@@ -113,4 +113,4 @@ Sample:
 
    FORTRAN 77, ERROR STOP introduced in Fortran f2018
 
- _fortran-lang statement descriptions (license: MIT) \@urbanjost_
+ _Fortran statement descriptions (license: MIT) \@urbanjost_

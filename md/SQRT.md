@@ -104,4 +104,4 @@ FORTRAN 77
 [**log**(3)](#log),
 [**log10**(3)](#log10)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

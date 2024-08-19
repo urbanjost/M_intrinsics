@@ -92,4 +92,4 @@ Fortran 95
 [**set_exponent**(3)](#set_exponent),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

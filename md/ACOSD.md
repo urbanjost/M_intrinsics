@@ -32,7 +32,7 @@
 
 ### **Result**
 
-The return value is of the same type and kind as **x**. 
+The return value is of the same type and kind as **x**.
 The result has a value equal to a processor-dependent approximation to
 the arc cosine of X. It is expressed in degrees and lies in the range 0 <=
 ACOSD (X) <= 180.
@@ -58,21 +58,21 @@ real(kind=real64) :: x , d2r
     write(*,*) acosd(-1.0_real64)
    ! elemental
     print all,'elemental',acosd([-1.0,-0.5,0.0,0.50,1.0])
-   ! 
+   !
 end program demo_acosd
 ```
 Results:
 ```text
- >  acosd(-1.0) -->   180.000000    
- >  acosd( 0.0) -->   180.000000    
- >  acosd( 1.0) -->   90.0000000    
+ >  acosd(-1.0) -->   180.000000
+ >  acosd( 0.0) -->   180.000000
+ >  acosd( 1.0) -->   90.0000000
  > acosd( 0.86599999999999999 ) is  30.002910931188026
- >    180.00000000000000     
+ >    180.00000000000000
  > elemental 180.000000 120.000000 90.0000000 60.0000000 0.00000000
 ```
 ### **Standard**
 
-FORTRAN 2023 
+FORTRAN 2023
 
 ### **See Also**
 Inverse function: [**cosd**(3)](cosd)
@@ -80,4 +80,4 @@ Inverse function: [**cosd**(3)](cosd)
 ### **Resources**
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

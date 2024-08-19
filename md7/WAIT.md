@@ -1,7 +1,8 @@
 ## wait
 
 ### **Name**
-  wait(7f) - [FORTRAN:IO] statement performs a wait operation for specified pending asynchronous data transfer operations
+  wait(7f) - [IO] statement performs a wait operation for
+  specified pending asynchronous data transfer operations
   
 ### **Synopsis**
 ```fortran

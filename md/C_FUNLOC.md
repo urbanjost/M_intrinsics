@@ -70,4 +70,4 @@ Fortran 2003
 [**c_f_procpointer**(3)](#c_f_procpointer),
 **iso_c_binding**(3)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

@@ -171,4 +171,4 @@ Results:
 
 [**same_type_as**(3)](#same_type_as)
 
-  _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

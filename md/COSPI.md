@@ -29,7 +29,7 @@
   hypotenuse of a right-angled triangle.
 
   **cospi(x)** is approximately equal to **cos(x\*PI)**.
-    
+
 ### **Options**
 
 - **x**
@@ -39,7 +39,7 @@
 
   The return value is the approximate value of the cosine of **x**.
 
-  The return value lies in the range 
+  The return value lies in the range
   **-1 \<= cospi(x) \<= 1** .
 
 
@@ -79,7 +79,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2023 
+Fortran 2023
 
 ### **See Also**
 
@@ -91,4 +91,4 @@ Fortran 2023
 
 - [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

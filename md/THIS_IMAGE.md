@@ -82,4 +82,4 @@ Fortran 2008. With DISTANCE argument, TS 18508
 [**num\_images**(3)](#num_images),
 [**image\_index**(3)](#image_index)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

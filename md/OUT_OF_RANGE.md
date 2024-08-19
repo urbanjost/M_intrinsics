@@ -151,4 +151,4 @@ Results:
 - [**nint**(3)](#nint) - Nearest whole number
 - [**real**(3)](#real) - Convert to real type
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

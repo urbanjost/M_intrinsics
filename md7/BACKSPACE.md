@@ -1,7 +1,7 @@
 ## backspace
 
 ### **Name**
-   BACKSPACE(7f) - [FORTRAN:IO:FILE POSITIONING] - backspace one record on
+   backspace(7f) - [IO:FILE POSITIONING] - backspace one record on
    specified I/O unit
 
 ### **Synopsis**
@@ -124,5 +124,4 @@ Results:
  > string=line  17  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17
  > size= 17 array= 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17
 ```
-
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

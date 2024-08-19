@@ -90,4 +90,4 @@ FORTRAN 77
  - [**mod**(3)](#mode) -  Remainder function
  - [**sign**(3)](#sign) -  Sign copying function
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

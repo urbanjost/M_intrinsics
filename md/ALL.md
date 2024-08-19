@@ -111,4 +111,4 @@ Fortran 95
 
 [**any**(3)](#any)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

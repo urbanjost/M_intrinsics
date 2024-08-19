@@ -81,4 +81,4 @@ Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 [**real**(3)](#real),
 [**cmplx**(3)](#cmplx)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

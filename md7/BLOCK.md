@@ -3,6 +3,7 @@
 **block**(7f) - \[EXECUTION CONTROL\] block construct
 
 ### **Synopsis**
+Syntax:
 ```fortran
     [block-construct-name:] BLOCK
     [specification-part]
@@ -41,9 +42,9 @@ Sample programs:
     integer,parameter :: arr1(*)=[1,2,3,4,5,6,7]
     integer,parameter :: arr2(*)=[0,1,2,3,4,5,6,7]
 
-    ! so when you want error processing to be skipped 
+    ! so when you want error processing to be skipped
     ! if you exhaust a series of tries and really hate GOTO ...
-    DEBUG: block 
+    DEBUG: block
     integer :: icount
        do icount=1,100 ! look for answer up to 100 times
           if(icount.eq.40)exit DEBUG ! found answer, go on
@@ -67,8 +68,8 @@ Sample programs:
       TESTFORZERO: block
          integer :: I      ! local block variable
          intrinsic :: tan  ! can use the TAN intrinsic in the block now
-	                   ! as this definition supercedes the one in the
-			   ! parent body
+                           ! as this definition supercedes the one in the
+                           ! parent body
          do i=1,size(a)
             if(a(i).eq.0) then
                write(*,*)'found zero at index',i
@@ -90,4 +91,4 @@ Results:
  >  found zero at index 1
  >  this is the variable in the main scope of the program, I=-100
 ```
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

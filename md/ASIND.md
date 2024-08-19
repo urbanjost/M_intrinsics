@@ -84,7 +84,7 @@ character(len=*),parameter :: all='(*(g0,1x))'
   print all, 'percent grade=',rise/run*100.0_dp
 contains
 subroutine sub1()
-! notice the (incidently empty) type is defined below 
+! notice the (incidently empty) type is defined below
 ! the implicit statement
 implicit type(nil) (a)
 type nil
@@ -122,4 +122,4 @@ Inverse function: [**sin**(3)](#sin)
 
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

@@ -72,4 +72,4 @@ Fortran 2003
 [**c_funloc**(3)](#c_funloc),
 **iso_c_binding**(3)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

@@ -159,4 +159,4 @@ Fortran 95
 [**ior**(3)](#ior),
 [**not**(3)](#not)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

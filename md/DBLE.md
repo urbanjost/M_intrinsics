@@ -65,4 +65,4 @@ FORTRAN 77
 - [**out\_of\_range**(3)](#out_of_range) - Whether a value cannot be converted safely.
 - [**real**(3)](#real) - Convert to real type
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

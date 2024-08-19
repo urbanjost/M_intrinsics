@@ -1,11 +1,11 @@
 ## flush
 
 ### **Name**
-   flush(7f) - [FORTRAN:IO] flush I/O buffers of specified files
+   flush(7f) - [IO] flush I/O buffers of specified files
 ### **Synopsis**
 ```fortran
-flush file-unit-number
-flush([UNIT=]file_unit_number,[iostat=i],[iomsg=str],[err=label_number])
+   flush file-unit-number
+   flush([UNIT=]file_unit_number,[iostat=i],[iomsg=str],[err=label_number])
 ```
 ### **Description**
 
@@ -90,4 +90,4 @@ Sample program:
        stop 10
     end program demo_flush
 ```
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

@@ -106,4 +106,4 @@ Fortran 95
 [**mvbits**(3)](#mvbits),
 [**not**(3)](#not)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

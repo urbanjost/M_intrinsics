@@ -66,7 +66,7 @@ real(kind=real64),parameter :: &
     print all,'90 degrees is ', d2r*90.0_real64, ' radians'
    ! elemental
     print all,'elemental',acospi([-1.0,-0.5,0.0,0.50,1.0])
-   ! 
+   !
     print *,'-1.0',acospi( -1.0 )
     print *,' 0.0',acospi(  0.0 )
     print *,' 1.0',acospi(  1.0 )
@@ -78,7 +78,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2023 
+Fortran 2023
 
 ### **See Also**
  - arc cosine in radians: [**acos**(3)](cos)
@@ -88,4 +88,4 @@ Fortran 2023
 ### **Resources**
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

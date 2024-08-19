@@ -92,4 +92,4 @@ Fortran 95
 [**max**(3)](#max),
 [**min**(3)](#min)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

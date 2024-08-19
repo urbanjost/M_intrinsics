@@ -68,4 +68,4 @@ Fortran 2003
 [**get_command**(3)](#get_command),
 [**get_command_argument**(3)](#get_command_argument)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

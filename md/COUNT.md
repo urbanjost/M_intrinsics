@@ -231,4 +231,4 @@ Fortran 95 , with KIND argument - Fortran 2003
  - [**all**(3)](#all)
  - [**sum**(3)](#sum)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

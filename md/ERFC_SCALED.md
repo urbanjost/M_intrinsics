@@ -75,4 +75,4 @@ Fortran 2008
 [**exp**(3)](#exp),
 [**erfc**(3)](#erfc)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

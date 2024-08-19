@@ -21,6 +21,7 @@ character(len=80)              :: paws
     ! process command line
     call setup()
     call set_mode('auto_response_file',.true.)
+    call set_mode('lastonly')
     call set_args(' --regex:e " " --ignorecase:i F --topic_only:t F --demo:d F --color:c --query:Q " " &
     & -start:S " " --end:E "^[A-Z][A-Z_ ]*$" --prefixoff:O F --lines:l 0',&
     & help_text,version_text)

@@ -239,4 +239,4 @@ Fortran 95
   The numerical instabilities of Strassen's method for matrix
   multiplication requires special processing.
 ```
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

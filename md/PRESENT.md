@@ -120,4 +120,4 @@ Results:
 
 Fortran 95
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

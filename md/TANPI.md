@@ -31,7 +31,7 @@ result = tanpi(x)
 ### **Options**
 
 - **x**
-  : The angle in half-revolutions to compute the tangent of. 
+  : The angle in half-revolutions to compute the tangent of.
 
 ### **Result**
 
@@ -47,7 +47,7 @@ program demo_tanpi
 use, intrinsic :: iso_fortran_env, only : real64
 implicit none
 integer :: i
-real(kind=real64) :: x 
+real(kind=real64) :: x
    do i=0,8
       x=0.250000000d0*i
       write(*,101)x, tanpi(x), tanpi(x)*180.0d0
@@ -78,4 +78,4 @@ Fortran 2023
 [**atan2pi**(3)](#atan2pi),
 [**atan2d**(3)](#atan2d)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

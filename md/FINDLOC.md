@@ -290,4 +290,4 @@ Fortran 95
  - [**maxloc**(3)](#maxloc) - Location of the maximum value within an array
  - [**minloc**(3)](#minloc) - Location of the minimum value within an array
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

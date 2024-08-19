@@ -177,4 +177,4 @@ Fortran 95
 - [**unpack**(3)](#unpack) scatters the elements of a vector
 - [**transpose**(3)](#transpose) - Transpose an array of rank two
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

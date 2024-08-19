@@ -105,7 +105,7 @@ real, parameter :: h2d = 180.0
  !
  ! extended sample converting cartesian coordinates to polar
   COMPLEX_VALS: block
-  real                :: ang 
+  real                :: ang
   complex,allocatable :: vals(:)
   integer             :: i
  !
@@ -133,10 +133,10 @@ end program demo_atan2pi
 ```
 Results:
 ```text
- >  half-revolutions=  0.318309873     degrees=   57.2957764    
- >  elemental  0.102416381      0.147583619    
- >  elemental   6.28329590E-02  0.121118948    
- >  complex             (0.00000000,1.00000000)  0.500000000    
+ >  half-revolutions=  0.318309873     degrees=   57.2957764
+ >  elemental  0.102416381      0.147583619
+ >  elemental   6.28329590E-02  0.121118948
+ >  complex             (0.00000000,1.00000000)  0.500000000
  > X=  1.00 Y=  0.00 HALF-REVOLUTIONS=   0.000       DEGREES= 0.000
  > X=  1.00 Y=  1.00 HALF-REVOLUTIONS=   0.250       DEGREES= 45.00
  > X=  0.00 Y=  1.00 HALF-REVOLUTIONS=   0.500       DEGREES= 90.00
@@ -147,7 +147,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2023 
+Fortran 2023
 
 ### **See Also**
 
@@ -156,4 +156,4 @@ Fortran 2023
 ### **Resources**
 
 - [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

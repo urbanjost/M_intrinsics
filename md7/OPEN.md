@@ -1,11 +1,13 @@
 ## open
 
 ### **Name**
-   OPEN(7f) - [FORTRAN:IO] Initiates or modifies a connection between an external file and a specified unit.
+   open(7f) - [IO] Initiates or modifies a connection between
+   an external file and a specified unit.
    
 ### **Synopsis**
 ```fortran
   OPEN (
+
      [ UNIT = ] file-unit-number
      ACCESS = scalar-default-char-expr
      ACTION = scalar-default-char-expr
@@ -26,6 +28,7 @@
      ROUND = scalar-default-char-expr
      SIGN = scalar-default-char-expr
      STATUS = scalar-default-char-expr
+
   )
 ```
 ### **Description**
@@ -77,7 +80,7 @@
    If a file is already connected to a unit, an OPEN statement on that
    file with a different unit shall not be executed.
 
-## **Options**
+### **Options**
 A specifier that requires a scalar-default-char-expr may have a
 limited list of character values. These values are listed for each
 such specifier. Any trailing blanks are ignored. The value specified
@@ -97,7 +100,7 @@ If a NEWUNIT= specifier appears, a file-unit-number shall not appear.
 
 IOSTAT=, ERR=, and IOMSG=   specifiers are described in 9.11.
 
-## **Keywords**
+### **Keywords**
 
 ACCESS
 : The scalar-default-char-expr shall evaluate to SEQUENTIAL,

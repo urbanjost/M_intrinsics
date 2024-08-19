@@ -1,7 +1,7 @@
 ## inquire
 
 ### **Name**
-   inquire(7f) - [FORTRAN:FILE_INQUIRE] File inquiry statement
+   inquire(7f) - [FILE_INQUIRE] File inquiry statement
    
 ### **Synopsis**
 ```fortran

@@ -126,4 +126,4 @@ Fortran 90
 
  -[equivalence(7)](#equivalence)  - alias storage
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

@@ -83,4 +83,4 @@ Fortran 2008 ; with STAT, TS 18508
 [**atomic_fetch_or**(3)](#atomic_or),
 [**atomic_fetch_xor**(3)](#atomic_xor)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

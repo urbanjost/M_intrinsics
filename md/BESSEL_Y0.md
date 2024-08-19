@@ -63,4 +63,4 @@ Fortran 2008
 [**bessel_y1**(3)](#bessel_y1),
 [**bessel_yn**(3)](#bessel_yn)
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

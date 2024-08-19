@@ -19,7 +19,7 @@ equal to **a**.
 
  - **a** is of type _real_
  - if present **KIND** is a scalar integer constant expression that
-   specifies the kind of the result. 
+   specifies the kind of the result.
  - the result is _integer_. It is default kind if **KIND** is not
    specified
 
@@ -35,7 +35,7 @@ equal to **a**.
   The input value may be too large to store the result in an `integer`
   type. To avoid an overflow (which produces an undefined result), an
   application should perform a range check on the input value before
-  using ceiling(3). 
+  using ceiling(3).
 
 <!--
   If x is +0, -0, NaN, or infinite, x itself is returned.
@@ -77,7 +77,7 @@ real,parameter    :: arr(*)=[ &
 integer           :: i
 integer           :: ierr
 character(len=80) :: message
-   print *, 'Basic Usage' 
+   print *, 'Basic Usage'
    x = 63.29
    y = -63.59
    print gen, ceiling(x), ceiling(y)
@@ -189,18 +189,18 @@ Results:
  >  63 -63
  >  Elemental
  >  -2 -2 -2 -2 -1 -1 0 0 1 1 2 2 3 3 3
- > Limits                                                                          
- >                                                                                 
- > Surprised by some of the following results?                                     
- > What do real values clearly out of the range of integers return?                
- > What do values near the end of the range of integers return?                    
- > The standard only specifies what happens for representable values               
- > in the range of integer values.                                                 
- >                                                                                 
- > It is common but not required that if the input is out of range                 
- > and positive the result is -huge(0) and -huge(0)-1 if negative.                 
- > Note you are out of range before you get to real(huge(0)).                      
- >                                                                                 
+ > Limits
+ >
+ > Surprised by some of the following results?
+ > What do real values clearly out of the range of integers return?
+ > What do values near the end of the range of integers return?
+ > The standard only specifies what happens for representable values
+ > in the range of integer values.
+ >
+ > It is common but not required that if the input is out of range
+ > and positive the result is -huge(0) and -huge(0)-1 if negative.
+ > Note you are out of range before you get to real(huge(0)).
+ >
  >  For reference: huge(0)= 2147483647 -huge(0)-1= -2147483648
  >  ======================================================================
  >  x= 0.214748365E+10  spacing= 256.000000
@@ -246,4 +246,4 @@ Fortran 95
 [**spacing**(3)](#spacing),
 [**epsilon**(3)](#epsilon)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

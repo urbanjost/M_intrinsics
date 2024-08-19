@@ -104,4 +104,4 @@ Fortran 95 ; with KIND argument Fortran 2003
 - [**bit_size**(3)](#bit_size) -  Bit size inquiry function
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

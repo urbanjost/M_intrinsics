@@ -73,7 +73,7 @@ Results:
 ```
 ### **Standard**
 
-Fortran 2023 
+Fortran 2023
 
 ### **See Also**
 
@@ -86,4 +86,4 @@ Fortran 2023
 [**mvbits**(3)](#mvbits),
 [**not**(3)](#not)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

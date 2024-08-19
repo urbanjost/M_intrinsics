@@ -71,4 +71,4 @@ TS 18508
  - [this_image(3)](#this_image) - Cosubscript index of this image
  - [ucobound(3)](#ucobound) - Upper codimension bounds of an array
 
- _fortran-lang intrinsic descriptions_
+ _Fortran intrinsic descriptions_

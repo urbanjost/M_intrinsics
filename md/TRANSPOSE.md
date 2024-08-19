@@ -101,4 +101,4 @@ Fortran 95
 - [**spread**(3)](#spread) - Add a dimension and replicate data
 - [**unpack**(3)](#unpack) - Scatter the elements of a vector
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

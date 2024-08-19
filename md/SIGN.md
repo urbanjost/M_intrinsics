@@ -90,4 +90,4 @@ FORTRAN 77
 
 [**abs**(3)](#abs)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
