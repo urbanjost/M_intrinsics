@@ -59,6 +59,9 @@ cp standalone/fman.F90 $HOME/github/lockstockandbarrel/mars/bootstrap/fman.F90
 cp docs/manpages7.zip $HOME/github/lockstockandbarrel/mars/docs/7fortran.zip
 cp docs/manpages.zip  $HOME/github/lockstockandbarrel/mars/docs/3fortran.zip
 ######################################
+# man-page source for building GPF (General Purpose Fortran) library documents
+cp txt/* $HOME/LIBRARY/libGPF/download/doc/
+######################################
 exit
 ######################################
 https://fortran-lang.org/en/learn/intrinsics/array/#pack

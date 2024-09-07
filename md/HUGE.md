@@ -37,7 +37,13 @@
 
   Note the result is as the same kind as the input to ensure the returned
   value does not overflow. Any assignment of the result to a variable
-  should take this into consideration.
+  requires the variable must be able to hold the value as well. For
+  example:
+```fortran
+     real :: r
+     r=huge(0.0d0)
+```
+  where R is single-precision would almost certainly result in overflow. 
 
 ### **Examples**
 
@@ -46,9 +52,9 @@ Sample program:
 program demo_huge
 implicit none
 character(len=*),parameter :: f='(i2,1x,2(i11,1x),f14.0:,1x,l1,1x,a)'
-integer :: i,j,k,biggest
-real :: v, w
-doubleprecision :: tally
+integer                    :: i, j, k, biggest
+real                       :: v, w
+doubleprecision            :: tally
    ! basic
    print *, huge(0), huge(0.0), huge(0.0d0)
    print *, tiny(0.0), tiny(0.0d0)
@@ -74,29 +80,50 @@ doubleprecision :: tally
       else
          write(*,f) i, j, k, v, v.eq.w
       endif
-
    enddo
+   ! a simple check of the product of two 32-bit integers
+   print *,checkprod([2,4,5,8],[10000,20000,3000000,400000000])
+
+contains
+impure elemental function checkprod(i,j) result(ij32)
+!@(#) checkprod(3f) - check for overflow when multiplying two 32-bit integers
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+integer(kind=int32),intent(in)  :: i, j
+integer(kind=int64)             :: ij64
+integer(kind=int32)             :: ij32
+integer,parameter               :: toobig=huge(0_int32)
+character(len=80)               :: message
+   ij64=int(i,kind=int64)*int(j,kind=int64)
+   if(ij64.gt.toobig)then
+      write(message,'(*(g0))')&
+      & '<ERROR>checkprod(3f):',i,'*',j,'=',ij64,'>',toobig
+      stop message
+   else
+      ij32=ij64
+   endif
+end function checkprod
 end program demo_huge
 ```
 Results:
-```
-  2147483647  3.4028235E+38  1.797693134862316E+308
-  1.1754944E-38  2.225073858507201E-308
-
-    1      6           6             6. T
-    2      36          36            36. T
-    3      216         216           216. T
-    4      1296        1296          1296. T
-    5      7776        7776          7776. T
-    6      46656       46656         46656. T
-    7      279936      279936        279936. T
-    8      1679616     1679616       1679616. T
-    9      10077696    10077696      10077696. T
-    10     60466176    60466176      60466176. T
-    11     362797056   362797056     362797056. T
-    12    -2118184960 -2147483648    2176782336. F wrong for j and k and w
-    13     175792128  -2147483648   13060694016. F wrong for j and k and w
-    14     1054752768 -2147483648   78364164096. F wrong for j and k and w
+```text
+ >   2147483647   3.40282347E+38   1.7976931348623157E+308
+ >    1.17549435E-38   2.2250738585072014E-308
+ >  tally=   2.3058430049858406E+018
+ >  1           6           6             6. T
+ >  2          36          36            36. T
+ >  3         216         216           216. T
+ >  4        1296        1296          1296. T
+ >  5        7776        7776          7776. T
+ >  6       46656       46656         46656. T
+ >  7      279936      279936        279936. T
+ >  8     1679616     1679616       1679616. T
+ >  9    10077696    10077696      10077696. T
+ > 10    60466176    60466176      60466176. T
+ > 11   362797056   362797056     362797056. T
+ > 12 -2118184960 -2147483648    2176782336. F wrong j and k and w
+ > 13   175792128 -2147483648   13060694016. F wrong j and k and w
+ > 14  1054752768 -2147483648   78364164096. F wrong j and k and w
+ > STOP <ERROR>checkprod(3f):8*400000000=3200000000>2147483647                          
 ```
 ### **Standard**
 
