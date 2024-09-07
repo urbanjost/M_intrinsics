@@ -10821,7 +10821,13 @@ Fortran 2003
 
   Note the result is as the same kind as the input to ensure the returned
   value does not overflow. Any assignment of the result to a variable
-  should take this into consideration.
+  requires the variable must be able to hold the value as well. For
+  example:
+```fortran
+     real :: r
+     r=huge(0.0d0)
+```
+  where R is single-precision would almost certainly result in overflow.
 
 ### **Examples**
 
@@ -10830,9 +10836,9 @@ Sample program:
 program demo_huge
 implicit none
 character(len=*),parameter :: f='(i2,1x,2(i11,1x),f14.0:,1x,l1,1x,a)'
-integer :: i,j,k,biggest
-real :: v, w
-doubleprecision :: tally
+integer                    :: i, j, k, biggest
+real                       :: v, w
+doubleprecision            :: tally
    ! basic
    print *, huge(0), huge(0.0), huge(0.0d0)
    print *, tiny(0.0), tiny(0.0d0)
@@ -10858,29 +10864,50 @@ doubleprecision :: tally
       else
          write(*,f) i, j, k, v, v.eq.w
       endif
-
    enddo
+   ! a simple check of the product of two 32-bit integers
+   print *,checkprod([2,4,5,8],[10000,20000,3000000,400000000])
+
+contains
+impure elemental function checkprod(i,j) result(ij32)
+!@(#) checkprod(3f) - check for overflow when multiplying two 32-bit integers
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+integer(kind=int32),intent(in)  :: i, j
+integer(kind=int64)             :: ij64
+integer(kind=int32)             :: ij32
+integer,parameter               :: toobig=huge(0_int32)
+character(len=80)               :: message
+   ij64=int(i,kind=int64)*int(j,kind=int64)
+   if(ij64.gt.toobig)then
+      write(message,'(*(g0))')&
+      & '<ERROR>checkprod(3f):',i,'*',j,'=',ij64,'>',toobig
+      stop message
+   else
+      ij32=ij64
+   endif
+end function checkprod
 end program demo_huge
 ```
 Results:
-```
-  2147483647  3.4028235E+38  1.797693134862316E+308
-  1.1754944E-38  2.225073858507201E-308
-
-    1      6           6             6. T
-    2      36          36            36. T
-    3      216         216           216. T
-    4      1296        1296          1296. T
-    5      7776        7776          7776. T
-    6      46656       46656         46656. T
-    7      279936      279936        279936. T
-    8      1679616     1679616       1679616. T
-    9      10077696    10077696      10077696. T
-    10     60466176    60466176      60466176. T
-    11     362797056   362797056     362797056. T
-    12    -2118184960 -2147483648    2176782336. F wrong for j and k and w
-    13     175792128  -2147483648   13060694016. F wrong for j and k and w
-    14     1054752768 -2147483648   78364164096. F wrong for j and k and w
+```text
+ >   2147483647   3.40282347E+38   1.7976931348623157E+308
+ >    1.17549435E-38   2.2250738585072014E-308
+ >  tally=   2.3058430049858406E+018
+ >  1           6           6             6. T
+ >  2          36          36            36. T
+ >  3         216         216           216. T
+ >  4        1296        1296          1296. T
+ >  5        7776        7776          7776. T
+ >  6       46656       46656         46656. T
+ >  7      279936      279936        279936. T
+ >  8     1679616     1679616       1679616. T
+ >  9    10077696    10077696      10077696. T
+ > 10    60466176    60466176      60466176. T
+ > 11   362797056   362797056     362797056. T
+ > 12 -2118184960 -2147483648    2176782336. F wrong j and k and w
+ > 13   175792128 -2147483648   13060694016. F wrong j and k and w
+ > 14  1054752768 -2147483648   78364164096. F wrong j and k and w
+ > STOP <ERROR>checkprod(3f):8*400000000=3200000000>2147483647
 ```
 ### **Standard**
 
@@ -15371,10 +15398,7 @@ FORTRAN 77
   array value, or, if the **dim** argument is supplied, determines the
   maximum value along each row of the array in the **dim** direction. If
   **mask** is present, only the elements for which **mask** is _.true._
-  are considered. If the array has zero size, or all of the elements of
-  **mask** are _.false._, then the result is the most negative number
-  of the type and kind of **array** if **array** is numeric, or a string
-  of nulls if **array** is of character type.
+  are considered.
 
 ### **Options**
 
@@ -15392,11 +15416,16 @@ FORTRAN 77
 
 ### **Result**
 
-If **dim** is absent, or if **array** has a rank of one, the result is a scalar.
-If **dim** is present, the result is an array with a rank one less than the
-rank of **array**, and a size corresponding to the size of **array** with the
-**dim** dimension removed. In all cases, the result is of the same type and
-kind as **array**.
+   If **dim** is absent, or if **array** has a rank of one, the result is
+   a scalar.  If **dim** is present, the result is an array with a rank
+   one less than the rank of **array**, and a size corresponding to the
+   size of **array** with the **dim** dimension removed. In all cases,
+   the result is of the same type and kind as **array**.
+
+   If the considered array has zero size then the result is the most
+   negative number of the type and kind of **array** if **array** is
+   numeric, or a string of nulls if **array** is of ASCII character type.
+   or equal to **CHAR(0, KIND(ARRAY))** otherwise.
 
 ### **Examples**
 
@@ -15410,20 +15439,61 @@ integer,save :: ints(3,5)= reshape([&
   10, 20, 30, 40, 50, &
   11, 22, 33, 44, 55  &
 ],shape(ints),order=[2,1])
+character(len=:),allocatable :: strs(:)
+integer :: i
+character(len=*),parameter :: gen='(*(g0,1x))'
+character(len=*),parameter :: ind='(3x,*(g0,1x))'
 
-   write(*,*) maxval(ints)
-   write(*,*) maxval(ints,dim=1)
-   write(*,*) maxval(ints,dim=2)
-   ! find biggest number less than 30 with mask
-   write(*,*) maxval(ints,mask=ints.lt.30)
+   print gen,'Given the array'
+   write(*,'(1x,*(g4.4,1x))') &
+   & (ints(i,:),new_line('a'),i=1,size(ints,dim=1))
+   print gen,'Basics:'
+   print ind, 'biggest value in array'
+   print ind, maxval(ints)
+   print ind, 'biggest value in each column'
+   print ind, maxval(ints,dim=1)
+   print ind, 'biggest value in each row'
+   print ind,  maxval(ints,dim=2)
+
+   print gen,'With a mask:'
+   print ind, ' find biggest number less than 30 with mask'
+   print ind, maxval(ints,mask=ints.lt.30)
+
+   print gen,'If zero size considered:'
+   print ind, 'if zero size numeric array'
+   print ind, maxval([integer :: ]),'and -huge(0) is',-huge(0),&
+   & '(often not the same!)'
+   print ind, 'if zero-size character array all nulls'
+   strs=[character(len=5)::]
+   strs=maxval(strs)
+   print ind, ichar([(strs(i),i=1,len(strs))])
+   print ind, 'if everything is false,'
+   print ind, 'same as zero-size array for each subarray'
+   print ind, maxval(ints,mask=.false.)
+   print ind, maxval(ints,mask=.false.,dim=1)
 end program demo_maxval
 ```
 Results:
 ```
- >  55
- >  11     22     33     44     55
- >   5     50     55
- >  22
+ > Given the array:
+ >    1,  2,  3,  4,  5, &
+ >   10, 20, 30, 40, 50, &
+ >   11, 22, 33, 44, 55  &
+ > biggest value in array
+ > 55
+ > biggest value in each column
+ > 11 22 33 44 55
+ > biggest value in each row
+ > 5 50 55
+ > find biggest number less than 30 with mask
+ > 22
+ > if zero size numeric array
+ > -2147483648 and -huge(0) is -2147483647 (often not the same!)
+ > if zero-size character array all nulls
+ > 0 0 0 0 0
+ > if everything is false, same as zero-size array
+ > -2147483648
+ > -2147483648 -2147483648 -2147483648 -2147483648 -2147483648
 ```
 ### **Standard**
 
@@ -15431,13 +15501,13 @@ Fortran 95
 
 ### **See Also**
 
-[**maxloc**(3)](#maxloc),
-[**minloc**(3)](#minloc),
 [**minval**(3)](#minval),
-[**max**(3)](#max),
+[**minloc**(3)](#minloc),
+[**maxloc**(3)](#maxloc),
 [**min**(3)](#min)
+[**max**(3)](#max),
 
- _Fortran intrinsic descriptions_
+ _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## merge_bits
 
@@ -16009,14 +16079,20 @@ FORTRAN 77
 
 ### **Name**
 
-**minval**(3) - \[ARRAY:REDUCTION\] Minimum value of an array
+**minval**(3) - \[ARRAY REDUCTION\] Minimum value of all the elements
+of ARRAY along dimension DIM corresponding to true elements of MASK.
 
 ### **Synopsis**
+forms
 ```fortran
-    result = minval(array, [mask]) | minval(array [,dim] [,mask])
+    result = minval(array, [mask])
+```
+or
+```fortran
+    result = minval(array [,dim] [,mask])
 ```
 ```fortran
-     NUMERIC function minval(array, dim, mask)
+     type(TYPE(kind=**)) function minval(array, dim, mask)
 
       NUMERIC,intent(in) :: array(..)
       integer(kind=**),intent(in),optional :: dim
@@ -16024,35 +16100,64 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
+ - **TYPE** may be real, integer, or character.
  - a kind designated as ** may be any supported kind for the type
- - **NUMERIC** is any numeric type and kind.
+ - **dim** is an integer scalar indicating a dimension of the array.
+   It may not be an optional dummy argument.
+ - **mask** is an array of type _logical_, and conformable with **array**.
+ - the result is of the same type and kind as **array**.
 
 ### **Description**
 
   **minval**(3) determines the minimum value of the elements in an array
-  value, or, if the **dim** argument is supplied, determines the minimum
-  value along each row of the array in the **dim** direction.
+  or, if the **dim** argument is supplied, determines the minimum value
+  in the subarrays indicated by stepping along the **dim**th dimension.
 
-  If **mask** is present, only the elements for which **mask** is
-  _.true._ are considered.
-
-  If the array has zero size, or all of the elements of **mask**
-  are _.false._, then the result is **huge(array)** if **array** is
-  numeric, or a string of **char(len=255)** characters if **array**
-  is of character type.
-
+  Note that the result of
+```fortran
+  MINVAL(ARRAY, MASK = MASK)
+```
+  has a value equal to that of
+```fortran
+  MINVAL (PACK (ARRAY, MASK)).
+```
+  and The result of
+```fortran
+  MINVAL (ARRAY, DIM = DIM [, MASK = MASK])
+```
+  has a value equal to that of
+```fortran
+  MINVAL (ARRAY [, MASK = MASK])
+```
+  if ARRAY has rank one. Otherwise, the value of element
+  (s1 , s2 , . . . , sDIM-1 , sDIM+1 , . . . , sn ) of the result is equal to
+```fortran
+  MINVAL (ARRAY (s1 , s2 , . . . , sDIM-1 , :, sDIM+1 , . . . , sn )
+  [, MASK= MASK (s1 , s2 , . . . , sDIM-1 , :, sDIM+1 , . . . , sn ) ] ).
+```
 ### **Options**
 
 - **array**
-  : Shall be an array of type _integer_, _real_, or _character_.
+  : array to search for minimum values. If the array has zero size,
+  or all of the elements of **mask** are .false., then the result is
+  **huge(array)** if **array** is numeric, or an array of strings of
+  **char(len=len(array))** characters, with each character equal to
+  CHAR (n - 1, KIND (ARRAY)), where n is the number of characters in
+  the collating sequence for characters with the kind type parameter
+  of **array**.
+
+  If ARRAY is of type character, the result is the value that would be
+  selected by application of intrinsic relational operators; that is,
+  the collating sequence for characters with the kind type parameter of
+  the arguments is applied.
 
 - **dim**
-  : (Optional) Shall be a scalar of type _integer_, with a value between
-  one and the rank of ARRAY, inclusive. It may not be an optional
-  dummy argument.
+  : Indicates which dimension to split the array into subarrays along.
+  It has a value between one and the rank of **array**, inclusive.
 
 - **mask**
-  : Shall be an array of type _logical_, and conformable with **array**.
+  ; If **mask** is present, only the elements for which **mask** is _.true._
+  are considered when searching for the minimal value.
 
 ### **Result**
 
@@ -16070,6 +16175,7 @@ sample program:
 program demo_minval
 implicit none
 integer :: i
+character(len=:),allocatable :: strs(:)
 character(len=*),parameter :: g='(3x,*(g0,1x))'
 
 integer,save :: ints(3,5)= reshape([&
@@ -16113,6 +16219,11 @@ integer,save :: box(3,5,2)
    write(*,g) minval(ints, mask = .false.)
    write(*,g) minval([integer ::], mask = .false.)
 
+   print *, 'if zero-size character array all dels if ASCII'
+   strs=[character(len=5)::]
+   strs=minval(strs)
+   print g, ichar([(strs(i),i=1,len(strs))])
+
    write(*,*)'some calls with three dimensions'
    write(*,g) minval(box, mask = .true. )
    write(*,g) minval(box, dim=1, mask = .true. )
@@ -16122,36 +16233,6 @@ integer,save :: box(3,5,2)
    & shape(minval(box, dim=2, mask = .true. ))
 
 end program demo_minval
-```
-Results:
-```text
- > Given the array
- >    1   -2    3    4    5
- >   10   20  -30   40   50
- >   11   22   33  -44   55
- >
- > What is the smallest element in the array?
- >   -44 at < 3 4 >
- > What is the smallest element in each column?
- >   1 -2 -30 -44 5
- > What is the smallest element in each row?
- >   -2 -30 -44
- > What is the smallest element in each column,
- > considering only those elements that are
- > greater than zero?
- >   1 20 3 4 5
- > if everything is false a zero-sized array is NOT returned
- >  2147483647  2147483647  2147483647  2147483647  2147483647
- > even for a zero-sized input
- >   2147483647
- > a scalar answer for everything false is huge()
- >   2147483647
- >   2147483647
- > some calls with three dimensions
- >   -55
- >   1 -2 -30 -44 5 -11 -22 -33 -40 -55
- >   -2 -30 -44 -5 -50 -55
- >   shape of answer is  3 2
 ```
 ### **Standard**
 

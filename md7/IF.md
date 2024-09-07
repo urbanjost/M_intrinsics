@@ -152,17 +152,17 @@ Syntax:
 ```
 ### **See Also**
 
-  - do  - construct
-  - if  - selects a block based on a sequence of logical expressions.
-  - cycle  - construct
-  - exit  - statement
+  - [**do**(3)](#do) - construct
+  - [**if**(3)](#if) - selects a block based on a sequence of logical expressions.
+  - [**cycle**(3)](#cycle) - construct
+  - [**exit**(3)](#exit) - statement
 
-  - associate  - associate construct
-  - block  - construct
-  - goto  - jump to target line
+  - [**associate**(3)](#associate) - associate construct
+  - [**block**(3)](#block) - construct
+  - [**goto**(3)](#goto) - jump to target line
 
-  - select  - select a block based on the value of an expression (a case)
-  - case  - select a block based on the value of an expression (a case)
-  - endselect  - select a block based on the value of an expression (a case)
+  - [**select**(3)](#select) - select a block based on the value of an expression (a case)
+  - [**case**(3)](#case) - select a block based on the value of an expression (a case)
+  - [**endselect**(3)](#endselect) - select a block based on the value of an expression (a case)
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

@@ -2,14 +2,20 @@
 
 ### **Name**
 
-**minval**(3) - \[ARRAY:REDUCTION\] Minimum value of an array
+**minval**(3) - \[ARRAY REDUCTION\] Minimum value of all the elements
+of ARRAY along dimension DIM corresponding to true elements of MASK.
 
 ### **Synopsis**
+forms
 ```fortran
-    result = minval(array, [mask]) | minval(array [,dim] [,mask])
+    result = minval(array, [mask]) 
+```
+or
+```fortran
+    result = minval(array [,dim] [,mask])
 ```
 ```fortran
-     NUMERIC function minval(array, dim, mask)
+     type(TYPE(kind=**)) function minval(array, dim, mask)
 
       NUMERIC,intent(in) :: array(..)
       integer(kind=**),intent(in),optional :: dim
@@ -17,35 +23,64 @@
 ```
 ### **Characteristics**
 
+ - **TYPE** may be real, integer, or character.
  - a kind designated as ** may be any supported kind for the type
- - **NUMERIC** is any numeric type and kind.
+ - **dim** is an integer scalar indicating a dimension of the array.
+   It may not be an optional dummy argument.
+ - **mask** is an array of type _logical_, and conformable with **array**.
+ - the result is of the same type and kind as **array**.
 
 ### **Description**
 
   **minval**(3) determines the minimum value of the elements in an array
-  value, or, if the **dim** argument is supplied, determines the minimum
-  value along each row of the array in the **dim** direction.
+  or, if the **dim** argument is supplied, determines the minimum value
+  in the subarrays indicated by stepping along the **dim**th dimension.
 
-  If **mask** is present, only the elements for which **mask** is
-  _.true._ are considered.
-
-  If the array has zero size, or all of the elements of **mask**
-  are _.false._, then the result is **huge(array)** if **array** is
-  numeric, or a string of **char(len=255)** characters if **array**
-  is of character type.
-
+  Note that the result of 
+```fortran
+  MINVAL(ARRAY, MASK = MASK) 
+```
+  has a value equal to that of 
+```fortran
+  MINVAL (PACK (ARRAY, MASK)).
+```
+  and The result of 
+```fortran
+  MINVAL (ARRAY, DIM = DIM [, MASK = MASK])
+```
+  has a value equal to that of
+```fortran
+  MINVAL (ARRAY [, MASK = MASK])
+```
+  if ARRAY has rank one. Otherwise, the value of element
+  (s1 , s2 , . . . , sDIM-1 , sDIM+1 , . . . , sn ) of the result is equal to
+```fortran
+  MINVAL (ARRAY (s1 , s2 , . . . , sDIM-1 , :, sDIM+1 , . . . , sn )
+  [, MASK= MASK (s1 , s2 , . . . , sDIM-1 , :, sDIM+1 , . . . , sn ) ] ).
+```
 ### **Options**
 
 - **array**
-  : Shall be an array of type _integer_, _real_, or _character_.
+  : array to search for minimum values. If the array has zero size,
+  or all of the elements of **mask** are .false., then the result is
+  **huge(array)** if **array** is numeric, or an array of strings of
+  **char(len=len(array))** characters, with each character equal to
+  CHAR (n - 1, KIND (ARRAY)), where n is the number of characters in
+  the collating sequence for characters with the kind type parameter
+  of **array**.
+
+  If ARRAY is of type character, the result is the value that would be
+  selected by application of intrinsic relational operators; that is,
+  the collating sequence for characters with the kind type parameter of
+  the arguments is applied.
 
 - **dim**
-  : (Optional) Shall be a scalar of type _integer_, with a value between
-  one and the rank of ARRAY, inclusive. It may not be an optional
-  dummy argument.
+  : Indicates which dimension to split the array into subarrays along.
+  It has a value between one and the rank of **array**, inclusive.
 
 - **mask**
-  : Shall be an array of type _logical_, and conformable with **array**.
+  ; If **mask** is present, only the elements for which **mask** is _.true._
+  are considered when searching for the minimal value.
 
 ### **Result**
 
@@ -63,6 +98,7 @@ sample program:
 program demo_minval
 implicit none
 integer :: i
+character(len=:),allocatable :: strs(:)
 character(len=*),parameter :: g='(3x,*(g0,1x))'
 
 integer,save :: ints(3,5)= reshape([&
@@ -106,6 +142,11 @@ integer,save :: box(3,5,2)
    write(*,g) minval(ints, mask = .false.)
    write(*,g) minval([integer ::], mask = .false.)
 
+   print *, 'if zero-size character array all dels if ASCII'
+   strs=[character(len=5)::]
+   strs=minval(strs)
+   print g, ichar([(strs(i),i=1,len(strs))])
+
    write(*,*)'some calls with three dimensions'
    write(*,g) minval(box, mask = .true. )
    write(*,g) minval(box, dim=1, mask = .true. )
@@ -115,36 +156,6 @@ integer,save :: box(3,5,2)
    & shape(minval(box, dim=2, mask = .true. ))
 
 end program demo_minval
-```
-Results:
-```text
- > Given the array
- >    1   -2    3    4    5
- >   10   20  -30   40   50
- >   11   22   33  -44   55
- >
- > What is the smallest element in the array?
- >   -44 at < 3 4 >
- > What is the smallest element in each column?
- >   1 -2 -30 -44 5
- > What is the smallest element in each row?
- >   -2 -30 -44
- > What is the smallest element in each column,
- > considering only those elements that are
- > greater than zero?
- >   1 20 3 4 5
- > if everything is false a zero-sized array is NOT returned
- >  2147483647  2147483647  2147483647  2147483647  2147483647
- > even for a zero-sized input
- >   2147483647
- > a scalar answer for everything false is huge()
- >   2147483647
- >   2147483647
- > some calls with three dimensions
- >   -55
- >   1 -2 -30 -44 5 -11 -22 -33 -40 -55
- >   -2 -30 -44 -5 -50 -55
- >   shape of answer is  3 2
 ```
 ### **Standard**
 

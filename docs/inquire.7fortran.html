@@ -62,7 +62,7 @@ inquire(7f) - [FILE_INQUIRE] File inquiry statement
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=44>
+<A name=45>
 
      <H3>SYNOPSIS</H3>
 
@@ -340,7 +340,8 @@ blanks are interpreted as zeros on input
 blanks are interpreted as a null on input
 </TD></TR>
 <TR valign=top><TD colspan=2>
-no connection or the connection is not for formatted input/output
+no connection or the connection is not for formatted
+input/output
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=13>
@@ -359,9 +360,6 @@ treat a comma as the separator between mantissa and decimal
 <B>POINT</B> </TD><TD valign=bottom>
 use a decimal point as the separator
 </TD></TR>
-<TR valign=top><TD colspan=2>
-no connection or the connection is not for formatted input/output
-</TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=14>
 
@@ -373,8 +371,11 @@ no connection or the connection is not for formatted input/output
 <TABLE cellpadding=3>
 <TR valign=top><TD colspan=2>
 <B>APOSTROPHE,</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-the delimiter mode in effect for a connection for formatted input/output.
-QUOTE,
+the delimiter mode in effect for a connection for
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+<B>QUOTE,</B> </TD><TD valign=bottom>
+formatted input/output.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=>
@@ -385,7 +386,8 @@ QUOTE,
 <P>
 <TABLE cellpadding=3>
 <TR valign=top><TD colspan=2>
-no connection or the connection is not for formatted input/output
+no connection or the connection is not for formatted
+input/output
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=15>
@@ -398,13 +400,18 @@ no connection or the connection is not for formatted input/output
 <TABLE cellpadding=3>
 <TR valign=top><TD width=6% nowrap>
 <B>YES</B> </TD><TD valign=bottom>
-if DIRECT is included in the set of allowed access methods for the file
+if DIRECT is included in the set of allowed access methods
+for the file
 </TD></TR>
 <TR valign=top><TD width=6% nowrap>
 <B>NO</B> </TD><TD valign=bottom>
-if DIRECT is not included in the set of allowed access methods for the file
-UNKNOWN if the processor is unable to determine whether DIRECT is included in the set of
-allowed access methods for the file.
+if DIRECT is not included in the set of allowed access
+methods for the file
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B>UNKNOWN</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+if the processor is unable to determine whether DIRECT is
+included in the set of allowed access methods for the file.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=16>
@@ -491,7 +498,7 @@ included in the set of allowed forms for the file.
 <P>
 The value of the expression specified in the ID= specifier shall be the
 identifier of a pending data transfer operation for the specified unit.
-This specifier interacts with the PENDING= specifier (9.10.2.21).
+This specifier interacts with the PENDING= specifier.
 </BLOCKQUOTE>
 <A name=21>
 
@@ -843,7 +850,7 @@ described in subclause 9.6.3. If a derived-type list item appears in the
 output list, the value returned for the IOLENGTH= specifier assumes that
 no defined input/output procedure will be invoked.
 </BLOCKQUOTE>
-<A name=42>
+<A name=43>
 
      <H3>EXAMPLES</H3>
 
@@ -861,6 +868,121 @@ Examples of INQUIRE statements are:
 </BLOCKQUOTE>
 <A name=43>
 
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Sample program:
+<P>
+<PRE>
+    program demo_inquire
+    implicit none
+    integer :: lun=40
+    integer :: iostat
+       write(*,*)&#146;is it open or predefined?&#146;
+       call print_inquire(lun,&#146;&#146;)
+       write(*,*)&#146;what are the defaults?&#146;
+       open(unit=lun)
+       call print_inquire(lun,&#146;&#146;)
+       close(unit=lun,status=&#146;delete&#146;,iostat=iostat)
+    contains
+    subroutine print_inquire(lun_in,filename)
+<P>
+    ! @(#) print_inquire(3f) print INQUIRE of file by name/number
+<P>
+    integer,intent(in),optional           ::  lun_in
+    character(len=*),intent(in),optional  ::  filename
+    integer                               ::  iostat
+    character(len=256)                    ::  message
+    character(len=:),allocatable          ::  filename_
+    integer                               ::  lun
+    ! STATUS=NEW|REPLACE|OLD|SCRATCH|UNKNOWN
+    ! SEQUENTIAL | DIRECT | STREAM | UNDEFINED
+    character(len=20)  ::  access        ;  namelist/inquire/access 
+    character(len=20)  ::  asynchronous  ;  namelist/inquire/asynchronous                                   
+    character(len=20)  ::  blank         ;  namelist/inquire/blank                                          
+    character(len=20)  ::  decimal       ;  namelist/inquire/decimal                                        
+    character(len=20)  ::  delim         ;  namelist/inquire/delim                                          
+    character(len=20)  ::  direct        ;  namelist/inquire/direct                                         
+    character(len=20)  ::  encoding      ;  namelist/inquire/encoding                                       
+    !  FORMATTED   |  UNFORMATTED    
+    character(len=20)  ::  form          ;  namelist/inquire/form        
+    character(len=20)  ::  formatted     ;  namelist/inquire/formatted                                      
+    character(len=20)  ::  unformatted   ;  namelist/inquire/unformatted                                    
+    character(len=20)  ::  name          ;  namelist/inquire/name                                           
+    character(len=20)  ::  pad           ;  namelist/inquire/pad                                            
+    !  ASIS        |  REWIND       |  APPEND
+    character(len=20)  ::  position      ;  namelist/inquire/position
+    !  READ        |  WRITE        |  READWRITE
+    character(len=20)  ::  action        ;  namelist/inquire/action  
+    character(len=20)  ::  read          ;  namelist/inquire/read                                           
+    character(len=20)  ::  readwrite     ;  namelist/inquire/readwrite                                      
+    character(len=20)  ::  write         ;  namelist/inquire/write                                          
+    character(len=20)  ::  round         ;  namelist/inquire/round                                          
+    character(len=20)  ::  sequential    ;  namelist/inquire/sequential                                     
+    character(len=20)  ::  sign          ;  namelist/inquire/sign                                           
+    character(len=20)  ::  stream        ;  namelist/inquire/stream                                         
+    integer            ::  id            ;  namelist/inquire/id                                             
+    integer            ::  nextrec       ;  namelist/inquire/nextrec                                        
+    integer            ::  number        ;  namelist/inquire/number                                         
+    integer            ::  pos           ;  namelist/inquire/pos                                            
+    integer            ::  recl          ;  namelist/inquire/recl                                           
+    integer            ::  size          ;  namelist/inquire/size                                           
+    logical            ::  exist         ;  namelist/inquire/exist                                          
+    logical            ::  named         ;  namelist/inquire/named                                          
+    logical            ::  opened        ;  namelist/inquire/opened                                         
+    logical            ::  pending       ;  namelist/inquire/pending                                        
+<P>
+       if(present(filename))then
+          filename_ =filename
+       else
+          filename_ =&#146;&#146;
+       endif
+       lun=merge(lun_in,-1,present(lun_in))
+       ! exist, opened, and named always become defined
+       ! unless an error condition occurs.
+       if(filename_  == &#146;&#146;.and.lun /= -1)then
+         write(*,*)&#146;*print_inquire* checking unit&#146;,lun
+         inquire(unit=lun,recl=recl,nextrec=nextrec,pos=pos,size=size,      &
+         & position=position,name=name,form=form,formatted=formatted,       &
+         & unformatted=unformatted,access=access,sequential=sequential,     &
+         & direct=direct,stream=stream,action=action,read=read,write=write, &
+         & readwrite=readwrite,sign=sign,round=round,blank=blank,           &
+         & decimal=decimal,delim=delim,encoding=encoding,pad=pad,           &
+         & named=named,opened=opened,exist=exist,number=number,             &
+    !bug & pending=pending,                                                 &
+         & asynchronous=asynchronous,                                       &
+         & iostat=iostat,err=999,iomsg=message)
+       elseif(filename_  /= &#146;&#146;)then
+         write(*,*)&#146;*print_inquire* checking file:&#146;//filename_
+         inquire(file=filename_ ,recl=recl,nextrec=nextrec,pos=pos,         &
+         & size=size,position=position,name=name,                           &
+         & form=form,formatted=formatted,unformatted=unformatted,           &
+         & access=access,sequential=sequential,direct=direct,stream=stream, &
+         & action=action,read=read,write=write,readwrite=readwrite,         &
+         & sign=sign,round=round,blank=blank,decimal=decimal,delim=delim,   &
+         & encoding=encoding,pad=pad,named=named,opened=opened,exist=exist, &
+         & number=number,pending=pending,asynchronous=asynchronous,         &
+         & iostat=iostat,err=999,iomsg=message)
+       else
+          write(*,*)&#146;*print_inquire* must specify either filename or unit number&#146;
+       endif
+       write(*,nml=inquire,delim=&#146;none&#146;)
+       return
+    999   continue
+       write(*,*)&#146;*print_inquire* bad inquire&#146;
+    !  If an error condition occurs during execution of an INQUIRE  statement,
+    !  all of the inquiry identifiers except iostat become undefined.
+       write(*,*) &#146;*print_inquire* inquire call failed,iostat=&#146;,iostat, &
+       & &#146;message=&#146;,message
+    end subroutine print_inquire
+    end program demo_inquire
+<P>
+</PRE>
+</BLOCKQUOTE>
+<A name=44>
+
      <H3>SEE ALSO</H3>
 
 </A>
@@ -870,7 +992,7 @@ BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7),
 PRINT(7), READ(7), REWIND(7), WAIT(7), WRITE(7)
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>inquire (7fortran)</TD> <TD align=right width=33%><I>August 19, 2024</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 75f37843-154b-4232-952d-32205b107097 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>inquire (7fortran)</TD> <TD align=right width=33%><I>September 07, 2024</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 2e208ac3-cb6a-4652-926e-69b021ccd115 using man macros.</FONT>
 <br><br><center><img src="images/inquire.7fortran.gif"></center>
 </div>
 </div>
