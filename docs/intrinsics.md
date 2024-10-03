@@ -10679,10 +10679,10 @@ Note that **get_environment_variable**(3) need not be thread-safe. It
 is the responsibility of the user to ensure that the environment is not
 being updated concurrently.
 
-If running in parallel be aware
-It is processor dependent whether an environment variable that exists
-on an image also exists on another image, and if it does exist on both
-images whether the values are the same or different.
+If running in parallel be aware It is processor dependent whether an
+environment variable that exists on an image also exists on another
+image, and if it does exist on both images whether the values are the
+same or different.
 
 ### **Options**
 
@@ -10713,6 +10713,11 @@ images whether the values are the same or different.
   : If **trim_name** is present with the value _.false._, the trailing
   blanks in **name** are significant; otherwise they are not part of
   the environment variable name.
+
+- **errmsg**
+  : is assigned a processor-dependent explanatory message if the optional
+    argument **status** is, or would be if present, assigned a positive
+    value. Otherwise, it is unchanged.
 
 ### **Examples**
 
@@ -17869,14 +17874,39 @@ character(len=10) :: c(4)
    c = [ character(len=10) :: 'ape', 'bat', 'cat', 'dog']
    write(*, fmt="(*(g0, ' '))") pack(c, c(:)(2:2) == 'a' )
 
+ ! creating a quicksort using PACK(3f)
+   BLOCK
+   INTRINSIC RANDOM_SEED, RANDOM_NUMBER
+   REAL :: x(10)
+      CALL RANDOM_SEED()
+      CALL RANDOM_NUMBER(x)
+      WRITE (*,"(a10,*(1x,f0.3))") "initial",x
+      WRITE (*,"(a10,*(1x,f0.3))") "sorted",qsort(x)
+   ENDBLOCK
+CONTAINS
+! concise quicksort from @arjen and @beliavsky shows recursion,
+! array sections, and vectorized comparisons.
+PURE RECURSIVE FUNCTION qsort(values) RESULT(sorted)
+INTRINSIC PACK, SIZE
+REAL, INTENT(IN) :: values(:)
+REAL             :: sorted(SIZE(values))
+   IF (SIZE(values) > 1) THEN
+      sorted = [qsort(PACK(values(2:),values(2:)<values(1))), values(1), &
+                qsort(PACK(values(2:),values(2:)>=values(1)))]
+   ELSE
+      sorted = values
+   ENDIF
+END FUNCTION qsort
 end program demo_pack
 ```
-Results:
+Result:
 ```text
- > 1 5
- > 1 2 3 4
- > 1 2
- > bat        cat
+    > 1 5
+    > 1 2 3 4
+    > 1 2
+    > bat        cat
+    >    initial .833 .367 .958 .454 .122 .602 .418 .942 .566 .400
+    >     sorted .122 .367 .400 .418 .454 .566 .602 .833 .942 .958
 ```
 ### **Standard**
 
@@ -18796,10 +18826,10 @@ execution of the program.
 If it is **.false.**, the seed is set to a processor-dependent value.
 
 **image_distinct**
-: If is `.true.`, the seed is set to a processor-dependent value that
+: If it is `.true.`, the seed is set to a processor-dependent value that
 is distinct from the seed set by a call to **random_init**in another
-image. If it is **.false.**, the seed is set value that does depend
-which image called **random_init**.
+image. If it is **.false.**, the seed is set to a value that does depend
+on which image called **random_init**.
 
 ### **Examples**
 
@@ -18824,7 +18854,7 @@ Fortran 2018
 ### **See also**
 
 [random_number](#random_number),
-[random_seed](random_seed)
+[random_seed](#random_seed)
 
  _Fortran intrinsic descriptions
 

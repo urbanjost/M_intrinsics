@@ -392,7 +392,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 abs(3fortran)', &
+'                              October 02, 2024                  abs(3fortran)', &
 '']
 
 shortname="abs"
@@ -568,7 +568,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               achar(3fortran)', &
+'                              October 02, 2024                achar(3fortran)', &
 '']
 
 shortname="achar"
@@ -668,7 +668,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                acos(3fortran)', &
+'                              October 02, 2024                 acos(3fortran)', &
 '']
 
 shortname="acos"
@@ -762,7 +762,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               acosd(3fortran)', &
+'                              October 02, 2024                acosd(3fortran)', &
 '']
 
 shortname="acosd"
@@ -843,7 +843,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               acosh(3fortran)', &
+'                              October 02, 2024                acosh(3fortran)', &
 '']
 
 shortname="acosh"
@@ -942,7 +942,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              acospi(3fortran)', &
+'                              October 02, 2024               acospi(3fortran)', &
 '']
 
 shortname="acospi"
@@ -1039,7 +1039,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             adjustl(3fortran)', &
+'                              October 02, 2024              adjustl(3fortran)', &
 '']
 
 shortname="adjustl"
@@ -1132,7 +1132,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             adjustr(3fortran)', &
+'                              October 02, 2024              adjustr(3fortran)', &
 '']
 
 shortname="adjustr"
@@ -1247,7 +1247,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               aimag(3fortran)', &
+'                              October 02, 2024                aimag(3fortran)', &
 '']
 
 shortname="aimag"
@@ -1347,7 +1347,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                aint(3fortran)', &
+'                              October 02, 2024                 aint(3fortran)', &
 '']
 
 shortname="aint"
@@ -1467,7 +1467,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 all(3fortran)', &
+'                              October 02, 2024                  all(3fortran)', &
 '']
 
 shortname="all"
@@ -1574,7 +1574,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024           allocated(3fortran)', &
+'                              October 02, 2024            allocated(3fortran)', &
 '']
 
 shortname="allocated"
@@ -1700,7 +1700,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               anint(3fortran)', &
+'                              October 02, 2024                anint(3fortran)', &
 '']
 
 shortname="anint"
@@ -1866,7 +1866,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 any(3fortran)', &
+'                              October 02, 2024                  any(3fortran)', &
 '']
 
 shortname="any"
@@ -1988,7 +1988,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                asin(3fortran)', &
+'                              October 02, 2024                 asin(3fortran)', &
 '']
 
 shortname="asin"
@@ -2120,7 +2120,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               asind(3fortran)', &
+'                              October 02, 2024                asind(3fortran)', &
 '']
 
 shortname="asind"
@@ -2202,7 +2202,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               asinh(3fortran)', &
+'                              October 02, 2024                asinh(3fortran)', &
 '']
 
 shortname="asinh"
@@ -2340,7 +2340,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              asinpi(3fortran)', &
+'                              October 02, 2024               asinpi(3fortran)', &
 '']
 
 shortname="asinpi"
@@ -2356,159 +2356,88 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  ASSOCIATE(7f) - [EXECUTION CONTROL] aliases selected variable identifiers as', &
-'  well as creates constants within the block from runtime expressions at entry', &
-'  into the block (LICENSE:PD)', &
+'  ASSOCIATE(7f) - [EXECUTION CONTROL] aliases complex variable names and', &
+'  creates parameters from expressions', &
 '', &
 '', &
 'SYNTAX', &
 '  Syntax:', &
 '', &
-'       [ construct-name : ] ASSOCIATE ( associate-name => selector ...)', &
-'         :', &
-'         : the associate-block; a sequence of zero or more statements or constructs', &
-'         :', &
-'       END ASSOCIATE [ construct-name ]', &
+'  [ construct-name : ] ASSOCIATE ( associate-name => selector ...) : : a', &
+'  sequence of zero or more statements or constructs. : END ASSOCIATE [', &
+'  construct-name ]', &
 '', &
-'  For example:', &
+'      ASSOCIATE-NAME', &
 '', &
-'        ! pi is an associate-name, acos(-1.0) is its selector', &
-'        associate (pi => acos(-1.0) )', &
-'           print *, pi', &
-'        end associate', &
-'', &
-'  ASSOCIATE-NAME', &
-'', &
-'       An identifier that becomes associated with the selector within the', &
+'       An identifier that becomes associated with the selector in the', &
 '       ASSOCIATE block. The "associate-name" must be unique within the', &
-'       construct (but the name can be redefined in other nested subblocks', &
-'       such as BLOCK constructs and additional ASSOCIATE blocks).', &
+'       construct.', &
 '', &
 '', &
 '   SELECTOR', &
-'  Is an expression or variable that will be referred to by the associate-name.', &
+'  Is an expression or variable. It becomes the associated entity.', &
 '', &
 '  CONSTRUCT-NAME', &
 '', &
-'       An optional name for the block. It is generally used so the block', &
-'       can be exited by name or to distinguish which end statement', &
-'       is connected with which ASSOCIATE statement when blocks are heavily', &
-'       nested.', &
+'       If a construct-name is specified the sme name must appear at both', &
+'       the beginning of an ASSOCIATE and at its associated END ASSOCIATE', &
+'       statement.', &
 '', &
-'       If a construct-name is specified the same name must appear at both', &
-'       the beginning of the block in the ASSOCIATE statement and at the', &
-'       end in the END ASSOCIATE statement.', &
-'', &
-'       Construct names must be unique in the scoping unit. Once used that', &
-'       same construct-name must not be used for any other named constructs', &
-'       in the same scoping unit.', &
+'       The same construct-name must not be used for different named', &
+'       constructs in the same scoping unit.', &
 '', &
 '       It is permissible to branch to an end-associate-stmt only from', &
 '       within its ASSOCIATE construct.', &
 '', &
-'             MYNAME: associate', &
-'              :', &
-'         if(something_is_true) exit MYNAME', &
-'          :', &
-'             end associate MYNAME', &
-'', &
-'  An example program:', &
-'', &
-'        program show_exiting', &
-'        implicit none', &
-'        integer :: values(8)', &
-'', &
-'        call date_and_time( values=values )', &
-'', &
-'        CALENDAR: associate ( cal=values([1,2,3,5,6,7,4]), &', &
-'           year                        =>  VALUES(1), &', &
-'           month                       =>  VALUES(2), &', &
-'           day                         =>  VALUES(3), &', &
-'           delta_from_UTC_in_minutes   =>  VALUES(4), &', &
-'           hour_of_day                 =>  VALUES(5), &', &
-'           minutes_of_the_hour         =>  VALUES(6), &', &
-'           seconds_of_the_minute       =>  VALUES(7), &', &
-'           milliseconds_of_the_second  =>  VALUES(8) )', &
-'           if(hour_of_day.lt.6)  exit CALENDAR', &
-'           if(hour_of_day.ge.18) exit CALENDAR', &
-'           write(*,''(i4.4,"-",i2.2,"-",i2.2,"T", &', &
-'           & i2.2,":",i2.2,":",i2.2,sp,i0.4)'')cal', &
-'        end associate CALENDAR', &
-'', &
-'        end program show_exiting', &
+'             exit ASSOCIATE', &
 '', &
 '', &
 'DESCRIPTION', &
-'  An ASSOCIATE statement can rename syntactically complex data selectors with', &
-'  simple or more descriptive aliases and also allows for simple names to be', &
-'  used for the value of expressions at the top of the block (this value', &
-'  becomes a constant in the code block). ASSOCIATE is thus used to make', &
-'  complicated expressions more readable and maintainable by developers.', &
+'  An ASSOCIATE statement creates either an', &
 '', &
-'  The ASSOCIATE construct creates a temporary association between a identifier', &
-'  and a variable or the value of an expression. The association lasts for the', &
-'  duration of the block.', &
-'', &
-'  Each ASSOCIATE statement must be followed by a matching END ASSOCIATE', &
-'', &
-'  The variable will have most, but not all of the attributes of the variable.', &
-'', &
-'  More specifically an ASSOCIATE statement either', &
-'', &
-'  1.  creates a name for a constant in the block using the value of an', &
-'      expression defined in the ASSOCIATE statement.', &
+'  1.  abbreviation for the value of an expression that becomes a constant in', &
+'      the ASSOCIATE block.', &
 '', &
 '      or', &
 '', &
-'  2.  creates an alias for a long variable name. When the RHS is a variable', &
-'      changing the alias value changes the associated name outside of the', &
-'      block as well.', &
-'', &
-'      If the selector of an ASSOCIATE is a variable, the associate-name can be', &
-'      changed in an ordinary assignment, which also changes the variable.', &
+'  2.  an alias for a long variable name. If the LHS is a variable it can', &
+'      actually have the value change the associated name outside of the block', &
+'      as well.', &
 '', &
 '  An alias for a variable is useful when you want to simplify multiple', &
-'  accesses to a variable that has a lengthy description. An example would be', &
-'  if the initial variable contains multiple subscripts and component names.', &
+'  accesses to a variable that has a lengthy description; for example, if the', &
+'  variable contains multiple subscripts and component names.', &
 '', &
-'  On the other hand an expression (instead of a variable) on the RHS becomes a', &
-'  named constant in the block.', &
+'  A constant is similiar to a PARAMETER statement where the value can be', &
+'  changed at runtime before entering the ASSOCIATE block.', &
 '', &
-'  The ASSOCIATE statement is NOT equivalent to a function statement or a', &
-'  macro. That would generally be implemented via a contained procedure.', &
+'  It is NOT equivalent to a function macro.', &
 '', &
-'  o  If the selector is an expression or a variable that has a vector', &
-'     subscript, the associate-name shall not appear in a variable definition', &
-'     context but will behave as a constant, much like a parameter of a', &
-'     procedure with INTENT(IN). That is, the associate-name cannot be changed', &
-'     in an ordinary assignment.', &
+'  The ASSOCIATE construct associates named entities with expressions or', &
+'  variables during the execution of its block. These "named construct', &
+'  entities" are "associating entities". The names are "associate names".', &
 '', &
-'      Note: A vector subscript is an integer array expression of rank one,', &
-'           designating a sequence of subscripts that correspond to the', &
-'           values of the elements of the expression.', &
-'', &
-'           The sequence does not have to be in order, and may contain', &
-'           duplicate values:', &
-'', &
-'              INTEGER A(10), B(3)', &
-'              ! B(1) = A(1); B(2) = A(2); B(3) = A(2) also', &
-'              B = A( [1,2,2] )', &
-'', &
+'  o  If selector is not a variable or is a variable that has a vector', &
+'     subscript, associate-name shall not appear in a variable definition', &
+'     context.', &
 '', &
 '  o  An associate-name shall not be the same as another associate-name in the', &
 '     same associate-stmt.', &
 '', &
-'  o  The variable name on the RHS shall not be a coindexed object.', &
+'  o  variable shall not be a coindexed object.', &
 '', &
-'  o  expr shall not be a variable. Note putting a variable in parentheses', &
-'     makes it an expression.', &
+'  o  expr shall not be a variable.', &
+'', &
+'  o  If present, an associate-construct-name must appear on both the ASSOCIATE', &
+'     statement and the ENDASSOCIATE statement.', &
 '', &
 'EXECUTION OF THE ASSOCIATE CONSTRUCT', &
 '  Execution of an ASSOCIATE construct causes evaluation of every expression', &
-'  used as a selector, followed by execution of its block.', &
+'  within every selector that is a variable designator and evaluation of every', &
+'  other selector , followed by execution of its block.', &
 '', &
 '  During execution of the block within the construct, each associate-name', &
-'  identifies an entity associated with the corresponding selector.', &
+'  identifies an entity, which is associated with the corresponding selector.', &
 '', &
 '  The associating entity assumes the declared type and type parameters of the', &
 '  selector.', &
@@ -2525,61 +2454,15 @@ textblock=[character(len=256) :: &
 '  bound of each dimension is one less than the sum of the lower bound and the', &
 '  extent.', &
 '', &
-'  Sample showing affects on custom bounds:', &
-'', &
-'        program show_bounds', &
-'        implicit none', &
-'        character(len=*),parameter :: & ! a format', &
-'        & bounds="(''bounds of '',a,''=>('',i0,'':'',i0,'','',i0,'':'',i0,'')'')"', &
-'        integer :: arr(-5:5,-5:5) ! custom non-normal bounds', &
-'        integer :: b(4)', &
-'          ! first the different between queries of arr versus arr(:,:)', &
-'           b([1,3,2,4])=[lbound(arr),ubound(arr)]', &
-'           print bounds,''arr'', b', &
-'           b([1,3,2,4])=[lbound(arr(:,:)),ubound(arr(:,:))]', &
-'           print bounds,''arr(:,:)'',b', &
-'          !', &
-'          ! and the bounds assigned to the identifiers are what UBOUND(3f)', &
-'          ! and LBOUND(3f) return given the selector as an argument so', &
-'           associate ( &', &
-'              alias=>   arr,       & ! keeps the custom bounds', &
-'              normal=>  arr(:,:)   & ! gets normal bounds', &
-'              )', &
-'              b([1,3,2,4])=[lbound(alias),ubound(alias)]', &
-'              print bounds,''alias'', b', &
-'              b([1,3,2,4])=[lbound(normal),ubound(normal)]', &
-'              print bounds,''normal'',b', &
-'           end associate', &
-'        end program show_bounds', &
-'', &
-'  Results:', &
-'', &
-'           bounds of arr=>(-5:5,-5:5)', &
-'           bounds of arr(:,:)=>(1:11,1:11)', &
-'           bounds of alias=>(-5:5,-5:5)', &
-'           bounds of normal=>(1:11,1:11)', &
-'', &
 '  The cobounds of each codimension of the associating entity are the same as', &
-'  those of the selector.', &
-'', &
-'  The associating entity has the ASYNCHRONOUS or VOLATILE attribute if and', &
-'  only if the selector is a variable and has the attribute.', &
-'', &
-'  The associating entity has the TARGET attribute if and only if the selector', &
-'  is a variable and has either the TARGET or POINTER attribute.', &
-'', &
-'  The selector must be allocated if allocatable. The associate-name is not', &
-'  ALLOCATABLE even if the selector is.', &
-'', &
-'  If a selector has the POINTER attribute, it shall be associated. The', &
-'  associate name is associated with the target of the pointer and does not', &
-'  have the POINTER attribute.', &
+'  those of the selector. The associating entity has the ASYNCHRONOUS or', &
+'  VOLATILE attribute if and only if the selector is a variable and has the', &
+'  attribute. The associating entity has the TARGET attribute if and only if', &
+'  the selector is a variable and has either the TARGET or POINTER attribute.', &
 '', &
 '  If the associating entity is polymorphic, it assumes the dynamic type and', &
-'  type parameter values of the selector.', &
-'', &
-'  If the selector has the OPTIONAL attribute, it shall be present (It cannot', &
-'  be absent). The associating entity does not have the OPTIONAL attribute.', &
+'  type parameter values of the selector. If the selector has the OPTIONAL', &
+'  attribute, it shall be present.', &
 '', &
 '  The associating entity is contiguous if and only if the selector is', &
 '  contiguous.', &
@@ -2587,261 +2470,101 @@ textblock=[character(len=256) :: &
 '  If the selector is not permitted to appear in a variable definition context,', &
 '  the associate name shall not appear in a variable definition context.', &
 '', &
-'  The selector has the TARGET attribute if and only if the selector is a', &
-'  variable and has either the TARGET or POINTER attribute.', &
-'', &
-'  expr shall not be a designator of a procedure pointer or a function', &
-'  reference that returns a procedure pointer.', &
-'', &
-'  Within an ASSOCIATE construct, each associating entity has the same corank', &
-'  as its associated selector. If the selector is a coarray, the cobounds of', &
-'  each codimension of the associating entity are the same as those of the', &
-'  selector.', &
-'', &
-'  The associating entity itself is a variable, but if the selector is not a', &
-'  denable variable, the associating entity is not definable and shall not be', &
-'  defined or become undefined.', &
-'', &
-'  If a selector is not permitted to appear in a variable definition context,', &
-'  neither the associate name nor any subobject thereof shall appear in a', &
-'  variable definition context or pointer association context.', &
-'', &
-'NESTING', &
-'  No other block may be created in an ASSOCIATE block that is not terminated', &
-'  in the block; and the ASSOCIATE block must be terminated in the block it was', &
-'  created in. For example, if an ASSOCIATE block is begun in a DO loop it must', &
-'  be terminated before the end of the loop.  Conversely if a DO loop is', &
-'  created in an ASSOCIATE block it must be terminated before the end of the', &
-'  ASSOCIATE block.', &
-'', &
-'  An associate-name can appear in an ASSOCIATE statement even if it previously', &
-'  appeared in an ASSOCIATE statement that has not been terminated.', &
-'', &
 'EXAMPLES', &
+'  The following shows an expression as a selector:', &
+'', &
+'        ASSOCIATE (O => (A-F)**2 + (B+G)**2)', &
+'          PRINT *, SQRT (O)', &
+'', &
+'   END ASSOCIATE', &
 '  The following shows association with an array section:', &
 '', &
-'        associate (array => ab % d(i, :) % x)', &
-'          array(3) = array(1) + array(2)', &
-'        end associate', &
+'        ASSOCIATE (ARRAY => AB % D (I, :) % X)', &
+'          ARRAY (3) = ARRAY (1) + ARRAY (2)', &
 '', &
-'  instead of the equivalent statement', &
+'   END ASSOCIATE', &
+'  Without the ASSOCIATE construct, this is what you would need to write:', &
 '', &
-'        ab % d(i,3) % x = ab % d(i,1) % x + ab % d(i,2) % x', &
+'        AB % D (I, 3) % X = AB % D (I, 1) % X + AB % D (I, 2) % X', &
 '', &
-'  This example illustrates an association with an expression.', &
+'  The following example illustrates an association with an expression.', &
 '', &
-'          associate ( z => exp(-(x**2+y**2)) * cos(theta) )', &
-'              ! creates the constant "z"', &
+'            associate ( z => exp(-(x**2+y**2)) * cos(theta) )', &
+'            ! creates the constant "z"', &
 '              print *, a+z, a-z', &
-'          end associate', &
+'            end associate', &
 '', &
-'  an association with a derived-type variable:', &
+'  The following example illustrates an association with a derived-type', &
+'  variable.', &
 '', &
 '            associate ( xc => ax%b(i,j)%c )', &
 '              xc%dv = xc%dv + product(xc%ev(1:n))', &
 '            end associate', &
 '', &
-'  association with an array section:', &
+'  The following example illustrates association with an array section.', &
 '', &
-'            associate ( quadrantIII =>  array(1:5,6:10) )', &
-'              quadrantIII = 0', &
+'            associate ( array => ax%b(i,:)%c )', &
+'              array(n)%ev = array(n-1)%ev', &
 '            end associate', &
 '', &
-'  The next example illustrates multiple associations.', &
+'  The following example illustrates multiple associations.', &
 '', &
 '            associate ( w => result(i,j)%w, zx => ax%b(i,j)%d, zy => ay%b(i,j)%d )', &
 '              w = zx*x + zy*y', &
 '            end associate', &
 '', &
-'  An ASSOCIATE block may not span other block boundaries', &
+'  The following example uses the ASSOCIATE construct as a shorthand for a', &
+'  complex expression and renames an existing variable, MYREAL. After the end', &
+'  of the ASSOCIATE construct, any change within the construct to the value of', &
+'  the associating entity that associates with MYREAL is reflected.', &
 '', &
-'      do i=1,3', &
-'        associate (x => real(i)) !since this was started inside the DO loop', &
-'           print*,i,sqrt(x)', &
-'        end associate ! the end must appear before the end of the DO loop', &
-'      enddo', &
+'           program demo_associate', &
+'           real :: myreal, x, y, theta, a', &
+'           x = 0.42', &
+'           y = 0.35', &
+'           myreal = 9.1', &
+'           theta = 1.5', &
+'           a = 0.4', &
+'           associate ( z => exp(-(x**2+y**2)) * cos(theta), v => myreal)', &
+'              print *, a+z, a-z, v', &
+'              v = v * 4.6', &
+'           end associate', &
+'           print *, myreal', &
+'           end program demo_associate', &
 '', &
+'  See if you know what the following produces ...', &
 '', &
+'           program dustycorner', &
+'           implicit none', &
+'           real :: a = 42', &
+'           associate (a => a, b => 2 * a)', &
+'              print *, a, b', &
+'              a = 0', &
+'              print *, a, b', &
+'           end associate', &
+'           print *, a', &
 '', &
-'EXAMPLES', &
-'  program demo_associate implicit none character(len=*),parameter ::', &
-'  g=''(*(g0,1x))''', &
+'           a=42', &
+'           associate (aa => a, b => 2 * a)', &
+'              print *, a, aa, b', &
+'              aa = 0', &
+'              print *, a, aa, b', &
+'              a=-1', &
+'              print *, a, aa, b', &
+'           end associate', &
+'           print *, a', &
+'           end program dustycorner', &
 '', &
-'  character :: array(-5:5,-5:5)', &
-'    ! custom non-normal bounds ! note the different between queries of ARRAY', &
-'    versus ARRAY(:,:)', &
+'  Did you expect the following?', &
 '', &
-'    write(*,g)''array:', &
-'      write(*,g)''array(:,:): '', ''lbound='',lbound(array(:,:)), & ! the bounds', &
-'      assigned to the identifiers are what UBOUND(3f) ! and LBOUND(3f) return', &
-'      given the selector as an argument associate ( &', &
+'           42.0000000       84.0000000', &
+'           0.00000000       84.0000000', &
+'           0.00000000', &
+'           42.0000000       42.0000000       84.0000000', &
+'           0.00000000       0.00000000       84.0000000', &
 '', &
-'      alias=>', &
-'       array,              & ! keeps the custom bounds', &
-'', &
-'      normal=>', &
-'       array(:,:),         & ! gets normal bounds', &
-'', &
-'      quadI=>', &
-'       array(+1:+5,-5:-1), & ! quad* will have normal bounds', &
-'', &
-'      quadII=>', &
-'       array(-5:-1,-5:-1), & !  quadIII=> array(-5:-1,+1:+5), & !', &
-'', &
-'      quadIV=>', &
-'       array(+1:+5,+1:+5), & !  xaxis=>array(:,0), & yaxis=>array(0,:) & )', &
-'       array=''.'' ! selector name is still valid in the block xaxis=''-''', &
-'       yaxis=''|'' alias(0,0)=''+'' ! uses non-normal bounds, equivalent to', &
-'       array(0,0)=''+'' write(*,''(11(g0,1x))'') alias ! the quads have', &
-'       normalized dimension bounds (1:5,1:5):', &
-'', &
-'      quadI', &
-'       =  ''1'';  quadI(1,1)    =  ''a'';      quadI(5,5)    =  ''A''', &
-'', &
-'      quadII', &
-'       =  ''2'';  quadII(1,1)   =  ''b'';      quadII(5,5)   =  ''B''', &
-'', &
-'      quadIII', &
-'       =  ''3'';  quadIII(1,1)  =  ''c'';      quadIII(5,5)  =  ''C''', &
-'', &
-'      quadIV', &
-'       =  ''4'';  quadIV(1,1)   =  ''d'';      quadIV(5,5)   =  ''D''', &
-'       write(*,''(11(g0,1x))'') alias', &
-'', &
-'      write(*,g)''array:', &
-'       lbound='',lbound(array),  ''ubound='',ubound(array)', &
-'', &
-'      write(*,g)''alias:', &
-'       lbound='',lbound(alias),  ''ubound='',ubound(alias)', &
-'', &
-'      write(*,g)''normal:', &
-'       lbound='',lbound(normal), ''ubound='',ubound(normal)', &
-'', &
-'      write(*,g)''quadI:', &
-'       lbound='',lbound(quadI),  ''ubound='',ubound(quadI)', &
-'', &
-'      write(*,g)''quadII:', &
-'       lbound='',lbound(quadII), ''ubound='',ubound(quadII)', &
-'', &
-'      write(*,g)''quadIV:', &
-'       lbound='',lbound(quadIV), ''ubound='',ubound(quadIV) end associate end', &
-'       program demo_associate', &
-'', &
-'  Results:', &
-'', &
-'           array:      lbound= -5 -5 ubound= 5 5', &
-'           array(:,:):  lbound= 1 1 ubound= 11 11', &
-'           . . . . . | . . . . .', &
-'           . . . . . | . . . . .', &
-'           . . . . . | . . . . .', &
-'           . . . . . | . . . . .', &
-'           . . . . . | . . . . .', &
-'           - - - - - + - - - - -', &
-'           . . . . . | . . . . .', &
-'           . . . . . | . . . . .', &
-'           . . . . . | . . . . .', &
-'           . . . . . | . . . . .', &
-'           . . . . . | . . . . .', &
-'           b 2 2 2 2 | a 1 1 1 1', &
-'           2 2 2 2 2 | 1 1 1 1 1', &
-'           2 2 2 2 2 | 1 1 1 1 1', &
-'           2 2 2 2 2 | 1 1 1 1 1', &
-'           2 2 2 2 B | 1 1 1 1 A', &
-'           - - - - - + - - - - -', &
-'           c 3 3 3 3 | d 4 4 4 4', &
-'           3 3 3 3 3 | 4 4 4 4 4', &
-'           3 3 3 3 3 | 4 4 4 4 4', &
-'           3 3 3 3 3 | 4 4 4 4 4', &
-'           3 3 3 3 C | 4 4 4 4 D', &
-'           array:   lbound= -5 -5 ubound= 5 5', &
-'           alias:   lbound= -5 -5 ubound= 5 5', &
-'           normal:  lbound= 1 1 ubound= 11 11', &
-'           quadI:   lbound= 1 1 ubound= 5 5', &
-'           quadII:  lbound= 1 1 ubound= 5 5', &
-'           quadIII: lbound= 1 1 ubound= 5 5', &
-'           quadIV:  lbound= 1 1 ubound= 5 5', &
-'', &
-'  Dusty Corners', &
-'', &
-'    If the expressions have side-effects are they executed only when the block', &
-'    is entered?', &
-'', &
-'    Selected variable names are still accessible in the ASSOCIATE block.  This', &
-'    is confusing and should be avoided, particular if the selectors are', &
-'    allocatable or pointers. This is similiar to variables passed as arguments', &
-'    to contained procedures but referenced via the argument name and the name', &
-'    in the surrounding scope. The behavior is ill-defined. Does a change to', &
-'    the argument take affect immediately or upon return from the procedure? If', &
-'    the argument is not declared allocatable or is a pointer does the argument', &
-'    name value get changed by deallocation or disassociation or changes to the', &
-'    original names?', &
-'', &
-'    are you allowed to allocate v to a different size before the ASSOCIATE is', &
-'    terminated? If so, what happens to c ?', &
-'', &
-'    Does that mean it is invalid to resize v within the ASSOCIATE block? Or is', &
-'    it only invalid to resize v and then refer to c? Or only invalid to resize', &
-'    v and refer to c when c is associated with elements of v that no longer', &
-'    exist?', &
-'', &
-'          implicit none', &
-'          integer, allocatable, target :: v(:)', &
-'          integer, pointer :: p(:)', &
-'             v = [4,7,9]', &
-'             p => v', &
-'             print*,p', &
-'             deallocate(v)', &
-'             print*,p ! invalid, because target has been deallocated', &
-'          end program main', &
-'', &
-'    are you allowed to allocate v to a different size before the ASSOCIATE is', &
-'    terminated? If so, what happens to c? ```fortran program', &
-'    demonstrate_associate implicit none integer, allocatable :: v(:) v = [3,4]', &
-'', &
-'            associate (c => v) ; call disp("1",v,c)', &
-'            c = c*10           ; call disp("2",v,c)', &
-'            v = [2,4,6]        ; call disp("3",v,c)', &
-'            c = c*10           ; call disp("4",v,c)', &
-'            v = [2]            ; call disp("5",v,c)', &
-'            end associate', &
-'', &
-'            contains', &
-'', &
-'            subroutine disp(label,v,c)', &
-'            character (len=*), intent(in) :: label', &
-'            integer, intent(in) :: v(:),c(:)', &
-'               write (*,"(a,'' v = '',*(1x,i0))",advance="no") label,v', &
-'               write (*,"(3x,''c = '',*(1x,i0))") c', &
-'            end subroutine disp', &
-'', &
-'            end program demonstrate_associate', &
-'', &
-'', &
-'COMPARISONS TO OTHER CONSTRUCTS', &
-'  When is it not true that', &
-'', &
-'        associate (a=>AA)', &
-'        end associate', &
-'', &
-'  is equivalent to', &
-'', &
-'        call assoc(AA)', &
-'        contains', &
-'        subroutine assoc(a)', &
-'        type(type(a)),intent(in) :: a(..) ! if a in an expression', &
-'        type(type(a))            :: a(..) ! if a in a variable', &
-'        end subroutine assoc', &
-'', &
-'        ! somewhat like the parameters being class(*) but without all the SELECT statements', &
-'        ! like type(type(a)) worked.', &
-'', &
-'        ! so "a" in the subroutine does not have the allocatable, optional, or pointer', &
-'        ! attributes even if AA did, and it is up to the programmer to make sure AA is allocated', &
-'        ! or assigned a target or present if optional when making the call if it has those', &
-'        ! attributes.', &
-'', &
-'        ! but it can have the target attribute.', &
-'', &
+'    -1.00000000', &
+'      -1.00000000      84.0000000 -1.00000000', &
 '', &
 'SEE ALSO', &
 '  o  DO(3) - construct', &
@@ -2869,7 +2592,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024           associate(7fortran)', &
+'                              October 02, 2024            associate(7fortran)', &
 '']
 
 shortname="associate"
@@ -2987,7 +2710,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024          associated(3fortran)', &
+'                              October 02, 2024           associated(3fortran)', &
 '']
 
 shortname="associated"
@@ -3174,7 +2897,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               atan2(3fortran)', &
+'                              October 02, 2024                atan2(3fortran)', &
 '']
 
 shortname="atan2"
@@ -3354,7 +3077,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              atan2d(3fortran)', &
+'                              October 02, 2024               atan2d(3fortran)', &
 '']
 
 shortname="atan2d"
@@ -3520,7 +3243,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             atan2pi(3fortran)', &
+'                              October 02, 2024              atan2pi(3fortran)', &
 '']
 
 shortname="atan2pi"
@@ -3614,7 +3337,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                atan(3fortran)', &
+'                              October 02, 2024                 atan(3fortran)', &
 '']
 
 shortname="atan"
@@ -3709,7 +3432,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               atand(3fortran)', &
+'                              October 02, 2024                atand(3fortran)', &
 '']
 
 shortname="atand"
@@ -3783,7 +3506,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               atanh(3fortran)', &
+'                              October 02, 2024                atanh(3fortran)', &
 '']
 
 shortname="atanh"
@@ -3878,7 +3601,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              atanpi(3fortran)', &
+'                              October 02, 2024               atanpi(3fortran)', &
 '']
 
 shortname="atanpi"
@@ -3955,7 +3678,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024          atomic_add(3fortran)', &
+'                              October 02, 2024           atomic_add(3fortran)', &
 '']
 
 shortname="atomic_add"
@@ -4033,7 +3756,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024          atomic_and(3fortran)', &
+'                              October 02, 2024           atomic_and(3fortran)', &
 '']
 
 shortname="atomic_and"
@@ -4103,7 +3826,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024          atomic_cas(3fortran)', &
+'                              October 02, 2024           atomic_cas(3fortran)', &
 '']
 
 shortname="atomic_cas"
@@ -4179,7 +3902,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024       atomic_define(3fortran)', &
+'                              October 02, 2024        atomic_define(3fortran)', &
 '']
 
 shortname="atomic_define"
@@ -4250,7 +3973,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024    atomic_fetch_add(3fortran)', &
+'                              October 02, 2024     atomic_fetch_add(3fortran)', &
 '']
 
 shortname="atomic_fetch_add"
@@ -4322,7 +4045,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024    atomic_fetch_and(3fortran)', &
+'                              October 02, 2024     atomic_fetch_and(3fortran)', &
 '']
 
 shortname="atomic_fetch_and"
@@ -4394,7 +4117,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024     atomic_fetch_or(3fortran)', &
+'                              October 02, 2024      atomic_fetch_or(3fortran)', &
 '']
 
 shortname="atomic_fetch_or"
@@ -4466,7 +4189,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024    atomic_fetch_xor(3fortran)', &
+'                              October 02, 2024     atomic_fetch_xor(3fortran)', &
 '']
 
 shortname="atomic_fetch_xor"
@@ -4547,7 +4270,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024           atomic_or(3fortran)', &
+'                              October 02, 2024            atomic_or(3fortran)', &
 '']
 
 shortname="atomic_or"
@@ -4631,7 +4354,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024          atomic_ref(3fortran)', &
+'                              October 02, 2024           atomic_ref(3fortran)', &
 '']
 
 shortname="atomic_ref"
@@ -4710,7 +4433,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024          atomic_xor(3fortran)', &
+'                              October 02, 2024           atomic_xor(3fortran)', &
 '']
 
 shortname="atomic_xor"
@@ -4844,7 +4567,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024           backspace(7fortran)', &
+'                              October 02, 2024            backspace(7fortran)', &
 '']
 
 shortname="backspace"
@@ -4914,7 +4637,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024           bessel_j0(3fortran)', &
+'                              October 02, 2024            bessel_j0(3fortran)', &
 '']
 
 shortname="bessel_j0"
@@ -4983,7 +4706,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024           bessel_j1(3fortran)', &
+'                              October 02, 2024            bessel_j1(3fortran)', &
 '']
 
 shortname="bessel_j1"
@@ -5087,7 +4810,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024           bessel_jn(3fortran)', &
+'                              October 02, 2024            bessel_jn(3fortran)', &
 '']
 
 shortname="bessel_jn"
@@ -5156,7 +4879,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024           bessel_y0(3fortran)', &
+'                              October 02, 2024            bessel_y0(3fortran)', &
 '']
 
 shortname="bessel_y0"
@@ -5224,7 +4947,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024           bessel_y1(3fortran)', &
+'                              October 02, 2024            bessel_y1(3fortran)', &
 '']
 
 shortname="bessel_y1"
@@ -5328,7 +5051,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024           bessel_yn(3fortran)', &
+'                              October 02, 2024            bessel_yn(3fortran)', &
 '']
 
 shortname="bessel_yn"
@@ -5493,7 +5216,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 bge(3fortran)', &
+'                              October 02, 2024                  bge(3fortran)', &
 '']
 
 shortname="bge"
@@ -5605,7 +5328,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 bgt(3fortran)', &
+'                              October 02, 2024                  bgt(3fortran)', &
 '']
 
 shortname="bgt"
@@ -5698,7 +5421,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024            bit_size(3fortran)', &
+'                              October 02, 2024             bit_size(3fortran)', &
 '']
 
 shortname="bit_size"
@@ -5799,7 +5522,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 ble(3fortran)', &
+'                              October 02, 2024                  ble(3fortran)', &
 '']
 
 shortname="ble"
@@ -5930,7 +5653,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               block(7fortran)', &
+'                              October 02, 2024                block(7fortran)', &
 '']
 
 shortname="block"
@@ -6025,7 +5748,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 blt(3fortran)', &
+'                              October 02, 2024                  blt(3fortran)', &
 '']
 
 shortname="blt"
@@ -6163,7 +5886,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               btest(3fortran)', &
+'                              October 02, 2024                btest(3fortran)', &
 '']
 
 shortname="btest"
@@ -6241,7 +5964,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024        c_associated(3fortran)', &
+'                              October 02, 2024         c_associated(3fortran)', &
 '']
 
 shortname="c_associated"
@@ -6485,7 +6208,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             ceiling(3fortran)', &
+'                              October 02, 2024              ceiling(3fortran)', &
 '']
 
 shortname="ceiling"
@@ -6561,7 +6284,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024         c_f_pointer(3fortran)', &
+'                              October 02, 2024          c_f_pointer(3fortran)', &
 '']
 
 shortname="c_f_pointer"
@@ -6636,7 +6359,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024     c_f_procpointer(3fortran)', &
+'                              October 02, 2024      c_f_procpointer(3fortran)', &
 '']
 
 shortname="c_f_procpointer"
@@ -6710,7 +6433,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024            c_funloc(3fortran)', &
+'                              October 02, 2024             c_funloc(3fortran)', &
 '']
 
 shortname="c_funloc"
@@ -6846,7 +6569,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                char(3fortran)', &
+'                              October 02, 2024                 char(3fortran)', &
 '']
 
 shortname="char"
@@ -6907,7 +6630,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               c_loc(3fortran)', &
+'                              October 02, 2024                c_loc(3fortran)', &
 '']
 
 shortname="c_loc"
@@ -7045,7 +6768,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               close(7fortran)', &
+'                              October 02, 2024                close(7fortran)', &
 '']
 
 shortname="close"
@@ -7317,7 +7040,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               cmplx(3fortran)', &
+'                              October 02, 2024                cmplx(3fortran)', &
 '']
 
 shortname="cmplx"
@@ -7385,7 +7108,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024        co_broadcast(3fortran)', &
+'                              October 02, 2024         co_broadcast(3fortran)', &
 '']
 
 shortname="co_broadcast"
@@ -7505,7 +7228,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              co_max(3fortran)', &
+'                              October 02, 2024               co_max(3fortran)', &
 '']
 
 shortname="co_max"
@@ -7574,7 +7297,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              co_min(3fortran)', &
+'                              October 02, 2024               co_min(3fortran)', &
 '']
 
 shortname="co_min"
@@ -7652,7 +7375,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 20command_argument_count(3fortran)', &
+'                              October 02, 202command_argument_count(3fortran)', &
 '']
 
 shortname="command_argument_count"
@@ -7740,7 +7463,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024    compiler_options(3fortran)', &
+'                              October 02, 2024     compiler_options(3fortran)', &
 '']
 
 shortname="compiler_options"
@@ -7812,7 +7535,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024    compiler_version(3fortran)', &
+'                              October 02, 2024     compiler_version(3fortran)', &
 '']
 
 shortname="compiler_version"
@@ -7943,7 +7666,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               conjg(3fortran)', &
+'                              October 02, 2024                conjg(3fortran)', &
 '']
 
 shortname="conjg"
@@ -8025,7 +7748,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024            continue(7fortran)', &
+'                              October 02, 2024             continue(7fortran)', &
 '']
 
 shortname="continue"
@@ -8127,7 +7850,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024           co_reduce(3fortran)', &
+'                              October 02, 2024            co_reduce(3fortran)', &
 '']
 
 shortname="co_reduce"
@@ -8221,7 +7944,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 cos(3fortran)', &
+'                              October 02, 2024                  cos(3fortran)', &
 '']
 
 shortname="cos"
@@ -8311,7 +8034,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                cosd(3fortran)', &
+'                              October 02, 2024                 cosd(3fortran)', &
 '']
 
 shortname="cosd"
@@ -8386,7 +8109,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                cosh(3fortran)', &
+'                              October 02, 2024                 cosh(3fortran)', &
 '']
 
 shortname="cosh"
@@ -8484,7 +8207,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               cospi(3fortran)', &
+'                              October 02, 2024                cospi(3fortran)', &
 '']
 
 shortname="cospi"
@@ -8561,7 +8284,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              co_sum(3fortran)', &
+'                              October 02, 2024               co_sum(3fortran)', &
 '']
 
 shortname="co_sum"
@@ -8852,7 +8575,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               count(3fortran)', &
+'                              October 02, 2024                count(3fortran)', &
 '']
 
 shortname="count"
@@ -8965,7 +8688,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024            cpu_time(3fortran)', &
+'                              October 02, 2024             cpu_time(3fortran)', &
 '']
 
 shortname="cpu_time"
@@ -9103,7 +8826,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              cshift(3fortran)', &
+'                              October 02, 2024               cshift(3fortran)', &
 '']
 
 shortname="cshift"
@@ -9167,7 +8890,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024            c_sizeof(3fortran)', &
+'                              October 02, 2024             c_sizeof(3fortran)', &
 '']
 
 shortname="c_sizeof"
@@ -9356,7 +9079,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024       date_and_time(3fortran)', &
+'                              October 02, 2024        date_and_time(3fortran)', &
 '']
 
 shortname="date_and_time"
@@ -9435,7 +9158,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                dble(3fortran)', &
+'                              October 02, 2024                 dble(3fortran)', &
 '']
 
 shortname="dble"
@@ -9613,7 +9336,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024          deallocate(7fortran)', &
+'                              October 02, 2024           deallocate(7fortran)', &
 '']
 
 shortname="deallocate"
@@ -9688,7 +9411,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              digits(3fortran)', &
+'                              October 02, 2024               digits(3fortran)', &
 '']
 
 shortname="digits"
@@ -9799,7 +9522,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 dim(3fortran)', &
+'                              October 02, 2024                  dim(3fortran)', &
 '']
 
 shortname="dim"
@@ -9902,7 +9625,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024         dot_product(3fortran)', &
+'                              October 02, 2024          dot_product(3fortran)', &
 '']
 
 shortname="dot_product"
@@ -10016,7 +9739,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               dprod(3fortran)', &
+'                              October 02, 2024                dprod(3fortran)', &
 '']
 
 shortname="dprod"
@@ -10168,7 +9891,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             dshiftl(3fortran)', &
+'                              October 02, 2024              dshiftl(3fortran)', &
 '']
 
 shortname="dshiftl"
@@ -10323,7 +10046,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             dshiftr(3fortran)', &
+'                              October 02, 2024              dshiftr(3fortran)', &
 '']
 
 shortname="dshiftr"
@@ -10419,7 +10142,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             endfile(7fortran)', &
+'                              October 02, 2024              endfile(7fortran)', &
 '']
 
 shortname="endfile"
@@ -10552,7 +10275,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             eoshift(3fortran)', &
+'                              October 02, 2024              eoshift(3fortran)', &
 '']
 
 shortname="eoshift"
@@ -10684,7 +10407,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             epsilon(3fortran)', &
+'                              October 02, 2024              epsilon(3fortran)', &
 '']
 
 shortname="epsilon"
@@ -10757,7 +10480,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 erf(3fortran)', &
+'                              October 02, 2024                  erf(3fortran)', &
 '']
 
 shortname="erf"
@@ -10845,7 +10568,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                erfc(3fortran)', &
+'                              October 02, 2024                 erfc(3fortran)', &
 '']
 
 shortname="erfc"
@@ -10927,7 +10650,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024         erfc_scaled(3fortran)', &
+'                              October 02, 2024          erfc_scaled(3fortran)', &
 '']
 
 shortname="erfc_scaled"
@@ -11017,7 +10740,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024         event_query(3fortran)', &
+'                              October 02, 2024          event_query(3fortran)', &
 '']
 
 shortname="event_query"
@@ -11151,14 +10874,329 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024execute_command_line(3fortran)', &
+'                              October 02, 2024 execute_command_line(3fortran)', &
 '']
 
 shortname="execute_command_line"
 call process()
 
 
-case('99','exp')
+case('99','exit')
+
+textblock=[character(len=256) :: &
+'', &
+'exit(7fortran)                                                 exit(7fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  EXIT(7f) - [EXECUTION CONTROL] terminate do-loops and block constructs', &
+'', &
+'', &
+'SYNOPSIS', &
+'  EXIT [construct-name]', &
+'', &
+'DESCRIPTION', &
+'  *exit statements can terminate do-loops but also can exit most named block', &
+'  constructs. First ...', &
+'', &
+'  EXIT STATEMENTS CAN TERMINATE DO-LOOP CONSTRUCTS', &
+'', &
+'  The EXIT statement most commonly terminates a DO or DO WHILE loop.', &
+'', &
+'  The related CYCLE statement immediately begins the next loop cycle versus', &
+'  terminating the loop.', &
+'', &
+'  An unnamed EXIT statement must be within a DO loop and if executed it exits', &
+'  the innermost DO within which it appears, terminating that loop.', &
+'', &
+'  If it is desired to exit nested do-loops the do-loop must be labeled with a', &
+'  name, which the EXIT then refers to.', &
+'', &
+'  The DO CONTROL VARIABLES RETAIN THEIR LAST VALUE. That is if a DO loop is', &
+'  terminated by and EXIT any additional inner DO loops are also terminated,', &
+'  but all DO LOOP control variables retain their last value; assuming they are', &
+'  still in scope.', &
+'', &
+'WITH A CONSTRAINT NAME EXIT CAN TERMINATE MOST BLOCK CONSTRUCTS', &
+'  Named EXIT statements can also complete execution of other (named) block', &
+'  constructs(eg. a BLOCK construct, an ASSOCIATE construct, ...).', &
+'', &
+'  If a construct name appears on an EXIT, the EXIT statement must be within', &
+'  that construct. That is, an EXIT jumps to the end of the associated', &
+'  construct only from within that very same construct.', &
+'', &
+'  If a non-DO construct is terminated, any DO loops inside that construct are', &
+'  of course also terminated.', &
+'', &
+'  That stipulated, an EXIT statement can appear in any of the following', &
+'  constructs:', &
+'', &
+'  o  ASSOCIATE construct', &
+'', &
+'  o  BLOCK construct', &
+'', &
+'  o  IF construct', &
+'', &
+'  o  SELECT CASE construct', &
+'', &
+'  o  SELECT RANK construct', &
+'', &
+'  o  SELECT TYPE construct', &
+'', &
+'  o  DO construct', &
+'', &
+'  o  CHANGETEAM construct', &
+'', &
+'  o  CRITICAL construct', &
+'', &
+'  Note specifically what is missing -- WHERE and FORALL constructs cannot have', &
+'  EXIT statements associated with them.', &
+'', &
+'  A few additional restrictions apply, primarily for potentially parallel', &
+'  regions.', &
+'', &
+'  o  An EXIT statement cannot cannot terminate a DO CONCURRENT construct', &
+'     because the execution order of the iterations is allowed to be', &
+'     indeterminate -- so an exit would result in an unknown state.', &
+'', &
+'  o  For related reasons jumping out of a parallel region to the exit of', &
+'     another block construct could skip steps that would leave a parallel', &
+'     program in an unknown state. Therefore EXIT statements in a DO', &
+'     CONCURRENT, CHANGE TEAM or CRITICAL construct cannot reference an outer', &
+'     construct.', &
+'', &
+'  o  An exit from a CHANGE TEAM construct does not just resume execution after', &
+'     the end of the construct. The effect is the same as transferring control', &
+'     to the END TEAM statement, including that if that statement contains a', &
+'     STAT= or ERRMSG= specifier, the STAT variable or ERRMSG variable becomes', &
+'     defined.', &
+'', &
+'OPTIONS', &
+'  CONSTRUCT-NAME (Optional for DO-LOOP exits) Is the name of the DO-LOOP or', &
+'  block construct. Note the construct names must be unique within the same', &
+'  scope.', &
+'', &
+'                        Unnamed **exit** statements could introduce errors', &
+'                        when loop nesting is modified. Therefore names', &
+'                        are strongly recommended accept perhaps where the', &
+'  loop comprises only a few lines of code.', &
+'', &
+'EXAMPLES', &
+'  Samples:', &
+'', &
+'        program demo_exit', &
+'        implicit none', &
+'        integer,parameter :: arbitrary_size=10', &
+'        integer :: i, j, k, iarr(arbitrary_size)', &
+'        integer :: iostat, lun', &
+'        logical :: ok', &
+'        character(len=80) :: line', &
+'        character(len=*),parameter :: gen=''(*(g0:,1x))''', &
+'        !', &
+'        ! the basics', &
+'        !', &
+'        ! Note we will use the function irand(3f) contained in', &
+'        ! the end of the code below to generate random whole numbers', &
+'        !', &
+'        !----------------------', &
+'        ! EXIT an infinite loop', &
+'        !----------------------', &
+'           i=0', &
+'           do', &
+'             i=i+1', &
+'             ! we will test on a random value to simulate an actual criteria', &
+'             ! to meet that indicates the loop should be terminated', &
+'             if(irand(-100,100).gt.95)exit', &
+'           enddo', &
+'           print gen, ''escaped infinite loop after only '',i,''tries''', &
+'', &
+'          ! a related common use is to read a file of unknown size', &
+'          ! till an error or end-of-file, although READ does have', &
+'          ! the options ERR=numeric-label and EOF=numeric-label.', &
+'          ! INFINITE: do', &
+'          !    read(*,''(a)'',iostat=iostat) line', &
+'          !    if(iostat.ne.0)exit INFINITE', &
+'          ! enddo', &
+'', &
+'        ! Some argue that an infinite loop is never a good idea.', &
+'        ! A common practice is to avoid even the possibility of an', &
+'        ! infinite loop by putting a cap on the number of iterations', &
+'        ! that should "never" occur, and then error processing', &
+'        ! if the unexpected number of loops is inadvertently reached.', &
+'        ! This technique can let your code gracefully handle being used with', &
+'        ! problems bigger than it was intended for, or not loop infinitely', &
+'        ! if some unexpected or incorrect input or condition is encountered.', &
+'        ! It might make it stop unitentionally as well.', &
+'          !', &
+'           ! run a loop but quit as soon as 200 random integers are odd', &
+'           j=0', &
+'           do i=1, 10000 ! fun facts: What are the odds of not getting 200 in 10000?', &
+'              k=irand(0,99)', &
+'              if((k+1)/2 /= k/2)j=j+1 ! cheap integer math trick to tell if odd', &
+'              if(j .ge. 200) exit', &
+'           enddo', &
+'           if(j.lt.200) then', &
+'              print gen,''Oh no! Not enough odd samples. only found'',j', &
+'              print gen,''That is REALLY unlikely.''', &
+'          stop ''<ERROR> unexpectedly low number of odd values''', &
+'           else', &
+'              print gen,''only did I='',i,''passes to get 200 odd samples''', &
+'           endif', &
+'        ! ---------------------------', &
+'        ! how to EXIT nested do-loops', &
+'        ! ---------------------------', &
+'          ! EXIT with no name only exits an innermost loop', &
+'          ! so in the following k will be 3, as all passes of the', &
+'          ! outer loop still occur', &
+'           k=0', &
+'           do i=1,3', &
+'              do j=1,5', &
+'                 exit', &
+'              enddo', &
+'              k=k+1', &
+'           enddo', &
+'           ! at the end of a completed loop the counter is end_limit+step so', &
+'           ! you can tell if you exhausted the do loop or exited early:', &
+'           print gen,''I='',i,''so '',&', &
+'           & merge(''completed'',''exited   '',i.gt.3),'' outer loop''', &
+'           print gen,''J='',j,''so '',&', &
+'           & merge(''completed'',''exited   '',j.gt.5),'' inner loop''', &
+'           print gen,''K='',k', &
+'', &
+'           ! COMMENTARY:', &
+'           ! A labeled exit is less prone to error so generally worth the', &
+'           ! additional verbosity even when just exiting an inner loop.', &
+'           ! Without a label an EXIT is somewhat like saying "EXIT SOMEWHERE".', &
+'', &
+'        ! It is simple to EXIT nested loops from an inner loop.', &
+'        ! Just use a construct name. Lets start with the nested loop above', &
+'        ! that only repeatedly exited the inner loop and label the outer', &
+'        ! loop "OUTER". Now our exit can explicity name what loop it wants', &
+'        ! to exit ...', &
+'', &
+'           k=0', &
+'           OUTER: do i=1,3', &
+'              do j=1,5', &
+'                 exit OUTER', &
+'              enddo', &
+'              k=k+1', &
+'           enddo OUTER', &
+'           if(i==1.and.j==1.and.k==0)then', &
+'              print gen,''exited nested loops successfully as expected''', &
+'           else', &
+'              print gen,''something went wrong, i='',i,''j='',j,''k='',k', &
+'           endif', &
+'', &
+'        ! ---------------------------------------', &
+'        ! exits from non-DO-loop block constructs', &
+'        ! ---------------------------------------', &
+'        ! REMEMBER: non-DO-loop exits are always named', &
+'', &
+'        !----------------------------------------------------------------------', &
+'        ! EXIT a BLOCK statement surrounding a loop to avoid the nefarious GOTO', &
+'        !----------------------------------------------------------------------', &
+'           ! look for a 5 in an array that should always have it', &
+'           iarr=[(i,i=1,size(iarr))] ! fill array with 1 to N', &
+'           LOOKFOR: block', &
+'              do i=1,size(iarr)', &
+'            ! when you find what you are looking for use an EXIT instead', &
+'            ! of a GOTO , which follows much more restricted rules on', &
+'            ! on where you can land, preventing the threat of spaghetti code', &
+'                if(iarr(i).eq.5) exit LOOKFOR', &
+'              enddo', &
+'          write(*,*)''should not get here. iarr='',iarr', &
+'          stop ''<INTERNAL ERROR> should never get here! is array too small?''', &
+'           endblock LOOKFOR', &
+'           print gen,''Good Found 5 at position I='',i,''so exited BLOCK construct''', &
+'', &
+'        !--------------', &
+'        ! Dusty corners', &
+'        !--------------', &
+'', &
+'        ! a block contained completely within a DO CONCURRENT can', &
+'        ! be exited even though the DO CONCURRENT itself or an outer block', &
+'        ! cannot be terminated from within a DO CONCURRENT', &
+'        do concurrent (i = 1:10)', &
+'           INCC:  block', &
+'             real :: t', &
+'            t = 0.0', &
+'            if (t == 0.0) exit INCC', &
+'            t= t+1.0', &
+'            end block INCC', &
+'        end do', &
+'', &
+'        ! The following example shows illegal EXIT statements in DO CONCURRENT', &
+'        ! and CRITICAL:', &
+'', &
+'        ! can   t EXIT DO CONCURRENT or outer construct of a DO CONCURRENT', &
+'        !x!N=4', &
+'        !x!LOOP_1 : DO CONCURRENT (I = 1:N)', &
+'        !x!  N = N + 1', &
+'        !x!  IF (N > I) EXIT LOOP_1', &
+'        !x!END DO LOOP_1', &
+'', &
+'        !x!LOOP_2 : DO I = 1, 15', &
+'        !x!  CRITICAL', &
+'        !x!    N = N + 1', &
+'        !x!    IF (N > I) EXIT LOOP_2 ! cannott EXIT outer construct from inside', &
+'        !x!  END CRITICAL             ! CHANGE TEAM, DO CONCURRENT, or CRITICAL', &
+'        !x!END DO LOOP_2', &
+'', &
+'        ! this would fail', &
+'        ! because the same construct name was used in the same scope:', &
+'        !x! LEVELA block:', &
+'        !x! exit LEVELA', &
+'        !x! endblock LEVELA', &
+'        !x!', &
+'        !x! LEVELA block:', &
+'        !x! exit LEVELA', &
+'        !x! endblock LEVELA', &
+'', &
+'        contains', &
+'        ! choose a value from range of integers inclusive randomly', &
+'        function irand(first,last)', &
+'        integer, allocatable :: seed(:)', &
+'        integer,intent(in)   :: first,last', &
+'        real                 :: rand_val', &
+'        integer              :: irand', &
+'           call random_number(rand_val)', &
+'           irand = first + floor((last+1-first)*rand_val)', &
+'        end function irand', &
+'        end program demo_exit', &
+'', &
+'  Results:', &
+'', &
+'       > escaped infinite loop after only  71 tries', &
+'       > only did I= 426 passes to get 200 odd samples', &
+'       > I= 4 so  completed  outer loop', &
+'       > J= 1 so  exited     inner loop', &
+'       > K= 3', &
+'       > exited nested loops successfully as expected', &
+'       > Good Found 5 at position I= 5 so exited BLOCK construct', &
+'', &
+'', &
+'SEE ALSO', &
+'  o  CYCLE(3)', &
+'', &
+'  o  RETURN(3)', &
+'', &
+'  o  STOP(3)', &
+'', &
+'  o  DO(3)', &
+'', &
+'  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                              October 02, 2024                 exit(7fortran)', &
+'']
+
+shortname="exit"
+call process()
+
+
+case('100','exp')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11268,14 +11306,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 exp(3fortran)', &
+'                              October 02, 2024                  exp(3fortran)', &
 '']
 
 shortname="exp"
 call process()
 
 
-case('100','exponent')
+case('101','exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11350,14 +11388,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024            exponent(3fortran)', &
+'                              October 02, 2024             exponent(3fortran)', &
 '']
 
 shortname="exponent"
 call process()
 
 
-case('101','extends_type_of')
+case('102','extends_type_of')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11531,14 +11569,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024     extends_type_of(3fortran)', &
+'                              October 02, 2024      extends_type_of(3fortran)', &
 '']
 
 shortname="extends_type_of"
 call process()
 
 
-case('102','findloc')
+case('103','findloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11824,14 +11862,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             findloc(3fortran)', &
+'                              October 02, 2024              findloc(3fortran)', &
 '']
 
 shortname="findloc"
 call process()
 
 
-case('103','floor')
+case('104','floor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11938,14 +11976,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               floor(3fortran)', &
+'                              October 02, 2024                floor(3fortran)', &
 '']
 
 shortname="floor"
 call process()
 
 
-case('104','flush')
+case('105','flush')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12035,14 +12073,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               flush(7fortran)', &
+'                              October 02, 2024                flush(7fortran)', &
 '']
 
 shortname="flush"
 call process()
 
 
-case('105','fraction')
+case('106','fraction')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12111,14 +12149,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024            fraction(3fortran)', &
+'                              October 02, 2024             fraction(3fortran)', &
 '']
 
 shortname="fraction"
 call process()
 
 
-case('106','gamma')
+case('107','gamma')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12266,14 +12304,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               gamma(3fortran)', &
+'                              October 02, 2024                gamma(3fortran)', &
 '']
 
 shortname="gamma"
 call process()
 
 
-case('107','get_command')
+case('108','get_command')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12375,14 +12413,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024         get_command(3fortran)', &
+'                              October 02, 2024          get_command(3fortran)', &
 '']
 
 shortname="get_command"
 call process()
 
 
-case('108','get_command_argument')
+case('109','get_command_argument')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12515,14 +12553,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024get_command_argument(3fortran)', &
+'                              October 02, 2024 get_command_argument(3fortran)', &
 '']
 
 shortname="get_command_argument"
 call process()
 
 
-case('109','get_environment_variable')
+case('110','get_environment_variable')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12596,6 +12634,10 @@ textblock=[character(len=256) :: &
 '     blanks in NAME are significant; otherwise they are not part of the', &
 '     environment variable name.', &
 '', &
+'  o  ERRMSG : is assigned a processor-dependent explanatory message if the', &
+'     optional argument STATUS is, or would be if present, assigned a positive', &
+'     value. Otherwise, it is unchanged.', &
+'', &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
@@ -12662,14 +12704,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, get_environment_variable(3fortran)', &
+'                              October 02, 2get_environment_variable(3fortran)', &
 '']
 
 shortname="get_environment_variable"
 call process()
 
 
-case('110','huge')
+case('111','huge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12807,14 +12849,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                huge(3fortran)', &
+'                              October 02, 2024                 huge(3fortran)', &
 '']
 
 shortname="huge"
 call process()
 
 
-case('111','hypot')
+case('112','hypot')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12988,14 +13030,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               hypot(3fortran)', &
+'                              October 02, 2024                hypot(3fortran)', &
 '']
 
 shortname="hypot"
 call process()
 
 
-case('112','iachar')
+case('113','iachar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13110,14 +13152,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              iachar(3fortran)', &
+'                              October 02, 2024               iachar(3fortran)', &
 '']
 
 shortname="iachar"
 call process()
 
 
-case('113','iall')
+case('114','iall')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13201,14 +13243,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                iall(3fortran)', &
+'                              October 02, 2024                 iall(3fortran)', &
 '']
 
 shortname="iall"
 call process()
 
 
-case('114','iand')
+case('115','iand')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13292,14 +13334,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                iand(3fortran)', &
+'                              October 02, 2024                 iand(3fortran)', &
 '']
 
 shortname="iand"
 call process()
 
 
-case('115','iany')
+case('116','iany')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13409,14 +13451,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                iany(3fortran)', &
+'                              October 02, 2024                 iany(3fortran)', &
 '']
 
 shortname="iany"
 call process()
 
 
-case('116','ibclr')
+case('117','ibclr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13515,14 +13557,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               ibclr(3fortran)', &
+'                              October 02, 2024                ibclr(3fortran)', &
 '']
 
 shortname="ibclr"
 call process()
 
 
-case('117','ibits')
+case('118','ibits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13624,14 +13666,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               ibits(3fortran)', &
+'                              October 02, 2024                ibits(3fortran)', &
 '']
 
 shortname="ibits"
 call process()
 
 
-case('118','ibset')
+case('119','ibset')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13729,14 +13771,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               ibset(3fortran)', &
+'                              October 02, 2024                ibset(3fortran)', &
 '']
 
 shortname="ibset"
 call process()
 
 
-case('119','ichar')
+case('120','ichar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13834,14 +13876,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               ichar(3fortran)', &
+'                              October 02, 2024                ichar(3fortran)', &
 '']
 
 shortname="ichar"
 call process()
 
 
-case('120','ieor')
+case('121','ieor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13948,14 +13990,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                ieor(3fortran)', &
+'                              October 02, 2024                 ieor(3fortran)', &
 '']
 
 shortname="ieor"
 call process()
 
 
-case('121','if')
+case('122','if')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14136,14 +14178,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                  if(7fortran)', &
+'                              October 02, 2024                   if(7fortran)', &
 '']
 
 shortname="if"
 call process()
 
 
-case('122','image_index')
+case('123','image_index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14193,14 +14235,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024         image_index(3fortran)', &
+'                              October 02, 2024          image_index(3fortran)', &
 '']
 
 shortname="image_index"
 call process()
 
 
-case('123','implicit')
+case('124','implicit')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14474,14 +14516,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024            implicit(7fortran)', &
+'                              October 02, 2024             implicit(7fortran)', &
 '']
 
 shortname="implicit"
 call process()
 
 
-case('124','include')
+case('125','include')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14658,14 +14700,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             include(7fortran)', &
+'                              October 02, 2024              include(7fortran)', &
 '']
 
 shortname="include"
 call process()
 
 
-case('125','index')
+case('126','index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14765,14 +14807,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               index(3fortran)', &
+'                              October 02, 2024                index(3fortran)', &
 '']
 
 shortname="index"
 call process()
 
 
-case('126','inquire')
+case('127','inquire')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14949,12 +14991,13 @@ textblock=[character(len=256) :: &
 '  POINT', &
 '    use a decimal point as the separator', &
 '', &
+'  UNDEFINED', &
+'    no connection or the connection is not for formatted input/output', &
+'', &
 'DELIM', &
 '  APOSTROPHE,', &
-'    the delimiter mode in effect for a connection for', &
-'', &
-'  QUOTE,', &
-'    formatted input/output.', &
+'    the delimiter mode in effect for a connection for formatted input/output.', &
+'    QUOTE,', &
 '', &
 '   NONE', &
 '  UNDEFINED', &
@@ -14966,11 +15009,8 @@ textblock=[character(len=256) :: &
 '', &
 '  NO', &
 '    if DIRECT is not included in the set of allowed access methods for the', &
-'    file', &
-'', &
-'  UNKNOWN', &
-'    if the processor is unable to determine whether DIRECT is included in the', &
-'    set of allowed access methods for the file.', &
+'    file UNKNOWN if the processor is unable to determine whether DIRECT is', &
+'    included in the set of allowed access methods for the file.', &
 '', &
 'ENCODING', &
 '  UTF-8', &
@@ -15013,7 +15053,7 @@ textblock=[character(len=256) :: &
 'ID', &
 '  The value of the expression specified in the ID= specifier shall be the', &
 '  identifier of a pending data transfer operation for the specified unit.', &
-'  This specifier interacts with the PENDING= specifier.', &
+'  This specifier interacts with the PENDING= specifier (9.10.2.21).', &
 '', &
 'NAME', &
 '  The scalar_default_char_variable in the NAME= specifier is assigned the', &
@@ -15232,111 +15272,194 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'EXAMPLES', &
-'  Sample program:', &
+'  program demo_inquire implicit none', &
 '', &
-'      program demo_inquire', &
-'      implicit none', &
-'      integer :: lun=40', &
-'      integer :: iostat', &
-'        write(*,*)''is it open or predefined?''', &
-'        call print_inquire(lun,'''')', &
-'        write(*,*)''what are the defaults?''', &
-'        open(unit=lun)', &
-'        call print_inquire(lun,'''')', &
-'        close(unit=lun,status=''delete'',iostat=iostat)', &
-'      contains', &
-'      subroutine print_inquire(lun_in,filename)', &
+'  character(len=4096)', &
+'    :: filename', &
 '', &
-'      ! @(#) print_inquire(3f) print INQUIRE of file by name/number', &
+'  character(len=20)', &
+'    :: mode', &
 '', &
-'      integer,intent(in),optional          ::  lun_in', &
-'      character(len=*),intent(in),optional  :: filename', &
-'      integer                              ::  iostat', &
-'      character(len=256)                   ::  message', &
-'      character(len=:),allocatable         ::  filename_', &
-'      integer                              ::  lun', &
-'      ! STATUS=NEW|REPLACE|OLD|SCRATCH|UNKNOWN', &
-'      ! SEQUENTIAL | DIRECT | STREAM | UNDEFINED', &
-'      character(len=20)  ::  access       ;  namelist/inquire/access', &
-'      character(len=20)  ::  asynchronous  ;  namelist/inquire/asynchronous', &
-'      character(len=20)  ::  blank        ;  namelist/inquire/blank', &
-'      character(len=20)  ::  decimal      ;  namelist/inquire/decimal', &
-'      character(len=20)  ::  delim        ;  namelist/inquire/delim', &
-'      character(len=20)  ::  direct       ;  namelist/inquire/direct', &
-'      character(len=20)  ::  encoding     ;  namelist/inquire/encoding', &
-'      !  FORMATTED   | UNFORMATTED', &
-'      character(len=20)  ::  form         ;  namelist/inquire/form', &
-'      character(len=20)  ::  formatted    ;  namelist/inquire/formatted', &
-'      character(len=20)  ::  unformatted   ;  namelist/inquire/unformatted', &
-'      character(len=20)  ::  name         ;  namelist/inquire/name', &
-'      character(len=20)  ::  pad          ;  namelist/inquire/pad', &
-'      !  ASIS       |  REWIND       |  APPEND', &
-'      character(len=20)  ::  position     ;  namelist/inquire/position', &
-'      !  READ       |  WRITE        |  READWRITE', &
-'      character(len=20)  ::  action       ;  namelist/inquire/action', &
-'      character(len=20)  ::  read         ;  namelist/inquire/read', &
-'      character(len=20)  ::  readwrite    ;  namelist/inquire/readwrite', &
-'      character(len=20)  ::  write        ;  namelist/inquire/write', &
-'      character(len=20)  ::  round        ;  namelist/inquire/round', &
-'      character(len=20)  ::  sequential    ;  namelist/inquire/sequential', &
-'      character(len=20)  ::  sign         ;  namelist/inquire/sign', &
-'      character(len=20)  ::  stream       ;  namelist/inquire/stream', &
-'      integer           ::  id            ;  namelist/inquire/id', &
-'      integer           ::  nextrec       ;  namelist/inquire/nextrec', &
-'      integer           ::  number        ;  namelist/inquire/number', &
-'      integer           ::  pos           ;  namelist/inquire/pos', &
-'      integer           ::  recl          ;  namelist/inquire/recl', &
-'      integer           ::  size          ;  namelist/inquire/size', &
-'      logical           ::  exist         ;  namelist/inquire/exist', &
-'      logical           ::  named         ;  namelist/inquire/named', &
-'      logical           ::  opened        ;  namelist/inquire/opened', &
-'      logical           ::  pending       ;  namelist/inquire/pending', &
+'  integer', &
+'    :: ios', &
 '', &
-'        if(present(filename))then', &
-'           filename_ =filename', &
-'        else', &
-'           filename_ =''''', &
-'        endif', &
+'  character(len=256)', &
+'    :: message', &
+'', &
+'  integer', &
+'    :: lun call print_inquire(lun,'''') contains subroutine', &
+'    print_inquire(lun_in,namein_in)', &
+'', &
+'  ! @(#) M_io print_inquire(3f) Do INQUIRE on file by name/number and print', &
+'  results', &
+'', &
+'  integer,intent(in),optional', &
+'    :: lun_in       ! if unit >= 0 then query by unit number, else by name', &
+'', &
+'  character(len=*),intent(in),optional', &
+'    :: namein_in', &
+'', &
+'  integer', &
+'    :: ios', &
+'', &
+'  character(len=256)', &
+'    :: message', &
+'', &
+'  character(len=:),allocatable', &
+'    :: namein', &
+'', &
+'  integer', &
+'    :: lun', &
+'    !==============================================================================================', &
+'    ! STATUS=NEW|REPLACE|OLD|SCRATCH|UNKNOWN', &
+'', &
+'  character(len=20)', &
+'    :: access        ; namelist/inquire/access       ! SEQUENTIAL | DIRECT |', &
+'    STREAM', &
+'', &
+'  character(len=20)', &
+'    :: asynchronous   ; namelist/inquire/asynchronous', &
+'', &
+'  character(len=20)', &
+'    :: blank         ; namelist/inquire/blank', &
+'', &
+'  character(len=20)', &
+'    :: decimal       ; namelist/inquire/decimal', &
+'', &
+'  character(len=20)', &
+'    :: delim         ; namelist/inquire/delim', &
+'', &
+'  character(len=20)', &
+'    :: direct        ; namelist/inquire/direct', &
+'', &
+'  character(len=20)', &
+'    :: encoding       ; namelist/inquire/encoding', &
+'', &
+'  logical', &
+'    :: exist         ; namelist/inquire/exist', &
+'', &
+'  character(len=20)', &
+'    :: form          ; namelist/inquire/form          ! FORMATTED |', &
+'    UNFORMATTED', &
+'', &
+'  character(len=20)', &
+'    :: formatted      ; namelist/inquire/formatted', &
+'', &
+'  character(len=20)', &
+'    :: unformatted    ; namelist/inquire/unformatted', &
+'', &
+'  integer', &
+'    :: id            ; namelist/inquire/id', &
+'', &
+'  character(len=20)', &
+'    :: name          ; namelist/inquire/name', &
+'', &
+'  logical', &
+'    :: named         ; namelist/inquire/named', &
+'', &
+'  integer', &
+'    :: nextrec       ; namelist/inquire/nextrec', &
+'', &
+'  integer', &
+'    :: number        ; namelist/inquire/number', &
+'', &
+'  logical', &
+'    :: opened        ; namelist/inquire/opened', &
+'', &
+'  character(len=20)', &
+'    :: pad           ; namelist/inquire/pad', &
+'', &
+'  logical', &
+'    :: pending       ; namelist/inquire/pending', &
+'', &
+'  integer', &
+'    :: pos           ; namelist/inquire/pos', &
+'', &
+'  character(len=20)', &
+'    :: position       ; namelist/inquire/position      ! ASIS | REWIND |', &
+'    APPEND', &
+'', &
+'  character(len=20)', &
+'    :: action        ; namelist/inquire/action         ! READ | WRITE |', &
+'    READWRITE', &
+'', &
+'  character(len=20)', &
+'    :: read          ; namelist/inquire/read', &
+'', &
+'  character(len=20)', &
+'    :: readwrite      ; namelist/inquire/readwrite', &
+'', &
+'  character(len=20)', &
+'    :: write         ; namelist/inquire/write', &
+'', &
+'  integer', &
+'    :: recl          ; namelist/inquire/recl', &
+'', &
+'  character(len=20)', &
+'    :: round         ; namelist/inquire/round', &
+'', &
+'  character(len=20)', &
+'    :: sequential     ; namelist/inquire/sequential', &
+'', &
+'  character(len=20)', &
+'    :: sign          ; namelist/inquire/sign', &
+'', &
+'  integer', &
+'    :: size          ; namelist/inquire/size', &
+'', &
+'  character(len=20)', &
+'    :: stream        ; namelist/inquire/stream', &
+'', &
+'        namein=merge_str(namein_in,'''',present(namein_in))', &
 '        lun=merge(lun_in,-1,present(lun_in))', &
-'        ! exist, opened, and named always become defined', &
-'        ! unless an error condition occurs.', &
-'        if(filename_  == ''''.and.lun /= -1)then', &
-'          write(*,*)''*print_inquire* checking unit'',lun', &
-'          inquire(unit=lun,recl=recl,nextrec=nextrec,pos=pos,size=size,      &', &
-'          & position=position,name=name,form=form,formatted=formatted,       &', &
-'          & unformatted=unformatted,access=access,sequential=sequential,     &', &
-'          & direct=direct,stream=stream,action=action,read=read,write=write, &', &
-'          & readwrite=readwrite,sign=sign,round=round,blank=blank,           &', &
-'          & decimal=decimal,delim=delim,encoding=encoding,pad=pad,           &', &
-'          & named=named,opened=opened,exist=exist,number=number,             &', &
-'      !bug & pending=pending,                                                &', &
-'          & asynchronous=asynchronous,                                       &', &
-'          & iostat=iostat,err=999,iomsg=message)', &
-'        elseif(filename_  /= '''')then', &
-'          write(*,*)''*print_inquire* checking file:''//filename_', &
-'          inquire(file=filename_ ,recl=recl,nextrec=nextrec,pos=pos,         &', &
-'          & size=size,position=position,name=name,                           &', &
-'          & form=form,formatted=formatted,unformatted=unformatted,           &', &
-'          & access=access,sequential=sequential,direct=direct,stream=stream, &', &
-'          & action=action,read=read,write=write,readwrite=readwrite,         &', &
-'          & sign=sign,round=round,blank=blank,decimal=decimal,delim=delim,   &', &
-'          & encoding=encoding,pad=pad,named=named,opened=opened,exist=exist, &', &
-'          & number=number,pending=pending,asynchronous=asynchronous,         &', &
-'          & iostat=iostat,err=999,iomsg=message)', &
-'        else', &
-'           write(*,*)''*print_inquire* must specify either filename or unit number''', &
-'        endif', &
+'        ! exist, opened, and named always become defined unless an error condition occurs.', &
+'        !!write(*,*)''LUN='',lun,'' FILENAME='',namein', &
+'        name=''''', &
+'        if(namein == ''''.and.lun /= -1)then', &
+'              call journal(''sc'',''*print_inquire* checking unit'',lun)', &
+'              inquire(unit=lun,                                                                               &', &
+'          &   recl=recl,nextrec=nextrec,pos=pos,size=size,                                                    &', &
+'          &   position=position,                                                                              &', &
+'          &   name=name,                                                                                      &', &
+'          &   form=form,formatted=formatted,unformatted=unformatted,                                          &', &
+'          &   access=access,sequential=sequential,direct=direct,stream=stream,                                &', &
+'          &   action=action,read=read,write=write,readwrite=readwrite,                                        &', &
+'          &   sign=sign,                                                                                      &', &
+'          &   round=round,                                                                                    &', &
+'          &   blank=blank,decimal=decimal,delim=delim,encoding=encoding,pad=pad,                              &', &
+'          &   named=named,opened=opened,exist=exist,number=number,pending=pending,asynchronous=asynchronous,  &', &
+'          &   iostat=ios,err=999,iomsg=message)', &
+'         elseif(namein /= '''')then', &
+'              call journal(''sc'',''*print_inquire* checking file:''//namein)', &
+'              inquire(file=namein,                                                                            &', &
+'          &   recl=recl,nextrec=nextrec,pos=pos,size=size,                                                    &', &
+'          &   position=position,                                                                              &', &
+'          &   name=name,                                                                                      &', &
+'          &   form=form,formatted=formatted,unformatted=unformatted,                                          &', &
+'          &   access=access,sequential=sequential,direct=direct,stream=stream,                                &', &
+'          &   action=action,read=read,write=write,readwrite=readwrite,                                        &', &
+'          &   sign=sign,                                                                                      &', &
+'          &   round=round,                                                                                    &', &
+'          &   blank=blank,decimal=decimal,delim=delim,encoding=encoding,pad=pad,                              &', &
+'          &   named=named,opened=opened,exist=exist,number=number,pending=pending,asynchronous=asynchronous,  &', &
+'          &   iostat=ios,err=999,iomsg=message)', &
+'          if(name == '''')name=namein', &
+'         else', &
+'            call journal(''sc'',''*print_inquire* must specify either filename or unit number'')', &
+'         endif', &
+'', &
 '        write(*,nml=inquire,delim=''none'')', &
 '        return', &
-'      999   continue', &
-'        write(*,*)''*print_inquire* bad inquire''', &
-'      !  If an error condition occurs during execution of an INQUIRE  statement,', &
-'      !  all of the inquiry identifiers except iostat become undefined.', &
-'        write(*,*) ''*print_inquire* inquire call failed,iostat='',iostat, &', &
-'        & ''message='',message', &
-'      end subroutine print_inquire', &
-'      end program demo_inquire', &
 '', &
+'', &
+'  999', &
+'    continue write(*,*)''*print_inquire* bad inquire''', &
+'', &
+'  ! If an error condition occurs during execution of an INQUIRE  statement,', &
+'', &
+'  ! all of the inquiry identifiers except ios become undefined.  write(*,*)', &
+'    ''*print_inquire* inquire call failed,iostat='',ios,''message='',message end', &
+'    subroutine print_inquire end program demo_inquire', &
 '', &
 'SEE ALSO', &
 '  BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),', &
@@ -15344,14 +15467,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             inquire(7fortran)', &
+'                              October 02, 2024              inquire(7fortran)', &
 '']
 
 shortname="inquire"
 call process()
 
 
-case('127','int')
+case('128','int')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15480,14 +15603,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 int(3fortran)', &
+'                              October 02, 2024                  int(3fortran)', &
 '']
 
 shortname="int"
 call process()
 
 
-case('128','ior')
+case('129','ior')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15569,14 +15692,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 ior(3fortran)', &
+'                              October 02, 2024                  ior(3fortran)', &
 '']
 
 shortname="ior"
 call process()
 
 
-case('129','iparity')
+case('130','iparity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15665,14 +15788,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             iparity(3fortran)', &
+'                              October 02, 2024              iparity(3fortran)', &
 '']
 
 shortname="iparity"
 call process()
 
 
-case('130','is_contiguous')
+case('131','is_contiguous')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15802,14 +15925,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024       is_contiguous(3fortran)', &
+'                              October 02, 2024        is_contiguous(3fortran)', &
 '']
 
 shortname="is_contiguous"
 call process()
 
 
-case('131','ishft')
+case('132','ishft')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15905,14 +16028,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               ishft(3fortran)', &
+'                              October 02, 2024                ishft(3fortran)', &
 '']
 
 shortname="ishft"
 call process()
 
 
-case('132','ishftc')
+case('133','ishftc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16054,14 +16177,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              ishftc(3fortran)', &
+'                              October 02, 2024               ishftc(3fortran)', &
 '']
 
 shortname="ishftc"
 call process()
 
 
-case('133','is_iostat_end')
+case('134','is_iostat_end')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16145,14 +16268,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024       is_iostat_end(3fortran)', &
+'                              October 02, 2024        is_iostat_end(3fortran)', &
 '']
 
 shortname="is_iostat_end"
 call process()
 
 
-case('134','is_iostat_eor')
+case('135','is_iostat_eor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16251,14 +16374,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024       is_iostat_eor(3fortran)', &
+'                              October 02, 2024        is_iostat_eor(3fortran)', &
 '']
 
 shortname="is_iostat_eor"
 call process()
 
 
-case('135','kind')
+case('136','kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16341,14 +16464,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                kind(3fortran)', &
+'                              October 02, 2024                 kind(3fortran)', &
 '']
 
 shortname="kind"
 call process()
 
 
-case('136','lbound')
+case('137','lbound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16518,14 +16641,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              lbound(3fortran)', &
+'                              October 02, 2024               lbound(3fortran)', &
 '']
 
 shortname="lbound"
 call process()
 
 
-case('137','lcobound')
+case('138','lcobound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16570,14 +16693,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024            lcobound(3fortran)', &
+'                              October 02, 2024             lcobound(3fortran)', &
 '']
 
 shortname="lcobound"
 call process()
 
 
-case('138','leadz')
+case('139','leadz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16663,14 +16786,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               leadz(3fortran)', &
+'                              October 02, 2024                leadz(3fortran)', &
 '']
 
 shortname="leadz"
 call process()
 
 
-case('139','len')
+case('140','len')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16812,14 +16935,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 len(3fortran)', &
+'                              October 02, 2024                  len(3fortran)', &
 '']
 
 shortname="len"
 call process()
 
 
-case('140','len_trim')
+case('141','len_trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16935,14 +17058,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024            len_trim(3fortran)', &
+'                              October 02, 2024             len_trim(3fortran)', &
 '']
 
 shortname="len_trim"
 call process()
 
 
-case('141','lge')
+case('142','lge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17053,14 +17176,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 lge(3fortran)', &
+'                              October 02, 2024                  lge(3fortran)', &
 '']
 
 shortname="lge"
 call process()
 
 
-case('142','lgt')
+case('143','lgt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17172,14 +17295,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 lgt(3fortran)', &
+'                              October 02, 2024                  lgt(3fortran)', &
 '']
 
 shortname="lgt"
 call process()
 
 
-case('143','lle')
+case('144','lle')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17315,14 +17438,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 lle(3fortran)', &
+'                              October 02, 2024                  lle(3fortran)', &
 '']
 
 shortname="lle"
 call process()
 
 
-case('144','llt')
+case('145','llt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17437,14 +17560,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 llt(3fortran)', &
+'                              October 02, 2024                  llt(3fortran)', &
 '']
 
 shortname="llt"
 call process()
 
 
-case('145','log10')
+case('146','log10')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17581,14 +17704,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               log10(3fortran)', &
+'                              October 02, 2024                log10(3fortran)', &
 '']
 
 shortname="log10"
 call process()
 
 
-case('146','log')
+case('147','log')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17726,14 +17849,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 log(3fortran)', &
+'                              October 02, 2024                  log(3fortran)', &
 '']
 
 shortname="log"
 call process()
 
 
-case('147','log_gamma')
+case('148','log_gamma')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17796,14 +17919,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024           log_gamma(3fortran)', &
+'                              October 02, 2024            log_gamma(3fortran)', &
 '']
 
 shortname="log_gamma"
 call process()
 
 
-case('148','logical')
+case('149','logical')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17885,14 +18008,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             logical(3fortran)', &
+'                              October 02, 2024              logical(3fortran)', &
 '']
 
 shortname="logical"
 call process()
 
 
-case('149','maskl')
+case('150','maskl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17984,14 +18107,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               maskl(3fortran)', &
+'                              October 02, 2024                maskl(3fortran)', &
 '']
 
 shortname="maskl"
 call process()
 
 
-case('150','maskr')
+case('151','maskr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18100,14 +18223,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               maskr(3fortran)', &
+'                              October 02, 2024                maskr(3fortran)', &
 '']
 
 shortname="maskr"
 call process()
 
 
-case('151','matmul')
+case('152','matmul')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18347,14 +18470,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              matmul(3fortran)', &
+'                              October 02, 2024               matmul(3fortran)', &
 '']
 
 shortname="matmul"
 call process()
 
 
-case('152','max')
+case('153','max')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18517,14 +18640,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 max(3fortran)', &
+'                              October 02, 2024                  max(3fortran)', &
 '']
 
 shortname="max"
 call process()
 
 
-case('153','maxexponent')
+case('154','maxexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18589,14 +18712,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024         maxexponent(3fortran)', &
+'                              October 02, 2024          maxexponent(3fortran)', &
 '']
 
 shortname="maxexponent"
 call process()
 
 
-case('154','maxloc')
+case('155','maxloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18719,14 +18842,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              maxloc(3fortran)', &
+'                              October 02, 2024               maxloc(3fortran)', &
 '']
 
 shortname="maxloc"
 call process()
 
 
-case('155','maxval')
+case('156','maxval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18858,14 +18981,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              maxval(3fortran)', &
+'                              October 02, 2024               maxval(3fortran)', &
 '']
 
 shortname="maxval"
 call process()
 
 
-case('156','merge')
+case('157','merge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19045,14 +19168,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               merge(3fortran)', &
+'                              October 02, 2024                merge(3fortran)', &
 '']
 
 shortname="merge"
 call process()
 
 
-case('157','merge_bits')
+case('158','merge_bits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19182,14 +19305,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024          merge_bits(3fortran)', &
+'                              October 02, 2024           merge_bits(3fortran)', &
 '']
 
 shortname="merge_bits"
 call process()
 
 
-case('158','min')
+case('159','min')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19255,14 +19378,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 min(3fortran)', &
+'                              October 02, 2024                  min(3fortran)', &
 '']
 
 shortname="min"
 call process()
 
 
-case('159','minexponent')
+case('160','minexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19328,14 +19451,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024         minexponent(3fortran)', &
+'                              October 02, 2024          minexponent(3fortran)', &
 '']
 
 shortname="minexponent"
 call process()
 
 
-case('160','minloc')
+case('161','minloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19446,14 +19569,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              minloc(3fortran)', &
+'                              October 02, 2024               minloc(3fortran)', &
 '']
 
 shortname="minloc"
 call process()
 
 
-case('161','minval')
+case('162','minval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19625,14 +19748,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              minval(3fortran)', &
+'                              October 02, 2024               minval(3fortran)', &
 '']
 
 shortname="minval"
 call process()
 
 
-case('162','mod')
+case('163','mod')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19760,14 +19883,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 mod(3fortran)', &
+'                              October 02, 2024                  mod(3fortran)', &
 '']
 
 shortname="mod"
 call process()
 
 
-case('163','modulo')
+case('164','modulo')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19851,14 +19974,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              modulo(3fortran)', &
+'                              October 02, 2024               modulo(3fortran)', &
 '']
 
 shortname="modulo"
 call process()
 
 
-case('164','move_alloc')
+case('165','move_alloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19966,14 +20089,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024          move_alloc(3fortran)', &
+'                              October 02, 2024           move_alloc(3fortran)', &
 '']
 
 shortname="move_alloc"
 call process()
 
 
-case('165','mvbits')
+case('166','mvbits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20127,14 +20250,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              mvbits(3fortran)', &
+'                              October 02, 2024               mvbits(3fortran)', &
 '']
 
 shortname="mvbits"
 call process()
 
 
-case('166','namelist')
+case('167','namelist')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20735,14 +20858,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024            namelist(7fortran)', &
+'                              October 02, 2024             namelist(7fortran)', &
 '']
 
 shortname="namelist"
 call process()
 
 
-case('167','nearest')
+case('168','nearest')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20834,14 +20957,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             nearest(3fortran)', &
+'                              October 02, 2024              nearest(3fortran)', &
 '']
 
 shortname="nearest"
 call process()
 
 
-case('168','new_line')
+case('169','new_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21010,14 +21133,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024            new_line(3fortran)', &
+'                              October 02, 2024             new_line(3fortran)', &
 '']
 
 shortname="new_line"
 call process()
 
 
-case('169','nint')
+case('170','nint')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21169,14 +21292,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                nint(3fortran)', &
+'                              October 02, 2024                 nint(3fortran)', &
 '']
 
 shortname="nint"
 call process()
 
 
-case('170','norm2')
+case('171','norm2')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21298,14 +21421,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               norm2(3fortran)', &
+'                              October 02, 2024                norm2(3fortran)', &
 '']
 
 shortname="norm2"
 call process()
 
 
-case('171','not')
+case('172','not')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21396,14 +21519,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 not(3fortran)', &
+'                              October 02, 2024                  not(3fortran)', &
 '']
 
 shortname="not"
 call process()
 
 
-case('172','null')
+case('173','null')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21531,14 +21654,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                null(3fortran)', &
+'                              October 02, 2024                 null(3fortran)', &
 '']
 
 shortname="null"
 call process()
 
 
-case('173','num_images')
+case('174','num_images')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21624,14 +21747,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024          num_images(3fortran)', &
+'                              October 02, 2024           num_images(3fortran)', &
 '']
 
 shortname="num_images"
 call process()
 
 
-case('174','open')
+case('175','open')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21953,14 +22076,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                open(7fortran)', &
+'                              October 02, 2024                 open(7fortran)', &
 '']
 
 shortname="open"
 call process()
 
 
-case('175','out_of_range')
+case('176','out_of_range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22114,14 +22237,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024        out_of_range(3fortran)', &
+'                              October 02, 2024         out_of_range(3fortran)', &
 '']
 
 shortname="out_of_range"
 call process()
 
 
-case('176','pack')
+case('177','pack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22204,14 +22327,38 @@ textblock=[character(len=256) :: &
 '        c = [ character(len=10) :: ''ape'', ''bat'', ''cat'', ''dog'']', &
 '        write(*, fmt="(*(g0, '' ''))") pack(c, c(:)(2:2) == ''a'' )', &
 '', &
-'      end program demo_pack', &
+'       ! creating a quicksort using PACK(3f)', &
 '', &
-'  Results:', &
+'   BLOCK', &
+'  INTRINSIC RANDOM_SEED, RANDOM_NUMBER REAL :: x(10) CALL RANDOM_SEED() CALL', &
+'  RANDOM_NUMBER(x) WRITE (*,"(a10,*(1x,f0.3))") "initial",x WRITE', &
+'  (*,"(a10,*(1x,f0.3))") "sorted",qsort(x)', &
 '', &
-'       > 1 5', &
-'       > 1 2 3 4', &
-'       > 1 2', &
-'       > bat       cat', &
+'   ENDBLOCK', &
+'   CONTAINS', &
+'  ! concise quicksort from @arjen and @beliavsky shows recursion, ! array', &
+'  sections, and vectorized comparisons.  PURE RECURSIVE FUNCTION qsort(values)', &
+'  RESULT(sorted) INTRINSIC PACK, SIZE REAL, INTENT(IN) :: values(:)', &
+'', &
+'  REAL', &
+'    :: sorted(SIZE(values)) IF (SIZE(values) > 1) THEN sorted =', &
+'    [qsort(PACK(values(2:),values(2:)<values(1))), values(1), &', &
+'    qsort(PACK(values(2:),values(2:)>=values(1)))]', &
+'', &
+'   ELSE', &
+'  sorted = values', &
+'', &
+'   ENDIF', &
+'  END FUNCTION qsort end program demo_pack', &
+'', &
+'  Result:', &
+'', &
+'         > 1 5', &
+'         > 1 2 3 4', &
+'         > 1 2', &
+'         > bat        cat', &
+'         >    initial .833 .367 .958 .454 .122 .602 .418 .942 .566 .400', &
+'         >     sorted .122 .367 .400 .418 .454 .566 .602 .833 .942 .958', &
 '', &
 '', &
 'STANDARD', &
@@ -22224,14 +22371,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                pack(3fortran)', &
+'                              October 02, 2024                 pack(3fortran)', &
 '']
 
 shortname="pack"
 call process()
 
 
-case('177','parity')
+case('178','parity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22340,14 +22487,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              parity(3fortran)', &
+'                              October 02, 2024               parity(3fortran)', &
 '']
 
 shortname="parity"
 call process()
 
 
-case('178','popcnt')
+case('179','popcnt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22433,14 +22580,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              popcnt(3fortran)', &
+'                              October 02, 2024               popcnt(3fortran)', &
 '']
 
 shortname="popcnt"
 call process()
 
 
-case('179','poppar')
+case('180','poppar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22532,14 +22679,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              poppar(3fortran)', &
+'                              October 02, 2024               poppar(3fortran)', &
 '']
 
 shortname="poppar"
 call process()
 
 
-case('180','precision')
+case('181','precision')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22607,14 +22754,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024           precision(3fortran)', &
+'                              October 02, 2024            precision(3fortran)', &
 '']
 
 shortname="precision"
 call process()
 
 
-case('181','present')
+case('182','present')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22739,14 +22886,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             present(3fortran)', &
+'                              October 02, 2024              present(3fortran)', &
 '']
 
 shortname="present"
 call process()
 
 
-case('182','print')
+case('183','print')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22844,14 +22991,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               print(7fortran)', &
+'                              October 02, 2024                print(7fortran)', &
 '']
 
 shortname="print"
 call process()
 
 
-case('183','product')
+case('184','product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23087,14 +23234,110 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             product(3fortran)', &
+'                              October 02, 2024              product(3fortran)', &
 '']
 
 shortname="product"
 call process()
 
 
-case('184','radix')
+case('185','program')
+
+textblock=[character(len=256) :: &
+'', &
+'program(7fortran)                                           program(7fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  PROGRAM(3) - [PROGRAM UNITS] Absolute value', &
+'', &
+'', &
+'SYNOPSIS', &
+'  Basic Fortran program sections:', &
+'', &
+'         [ PROGRAM [program-name]]', &
+'', &
+'             [ specification-part ]', &
+'             [ execution-part ]', &
+'             [ internal-subprogram-part ]', &
+'', &
+'         end [PROGRAM [program-name]]', &
+'', &
+'  A PROGRAM directive optionally marks the beginning of a main program.', &
+'', &
+'  A main program is the starting point for execution of a program.', &
+'', &
+'  The main program may be defined by means other than Fortran; in that case,', &
+'  the program shall not contain a Fortran main-program program unit at all.', &
+'', &
+'  The optional name of the main program has no explicit use within the Fortran', &
+'  language. It is available for documentation and for possible use by a', &
+'  processor.', &
+'', &
+'  A processor might implement an unnamed program unit by assigning it a global', &
+'  identifier that is not used elsewhere in the program. This could be done by', &
+'  using a default name that does not satisfy the rules for Fortran names, but', &
+'  if the name is specified it must conform to the rules for a Fortran', &
+'  identifier (composed from the ASCII alphanumeric characters and underscore,', &
+'  up to 63 characters, must begin with a letter).', &
+'', &
+'  The PROGRAM statement is optional but is almost always present in modern', &
+'  programs. Since it is optional a Fortran main program block is defined as a', &
+'  program unit that does not contain a SUBROUTINE, FUNCTION, MODULE,', &
+'  SUBMODULE,or BLOCKDATA statement as its first statement.', &
+'', &
+'  Note that the PROGRAM block is not required to be the first program unit in', &
+'  a file. Modules or procedure definitions or other program units may proceed', &
+'  it and most may follow it (A module must be defined before a reference to it', &
+'  is made).', &
+'', &
+'  The program-name shall not be included in the end-program-stmt unless the', &
+'  optional program-stmt is used. If included, it shall be identical to the', &
+'  program-name specified in the program-stmt.', &
+'', &
+'  NOTE1 The program name is global to the program.', &
+'', &
+'  An example of a main program is:', &
+'', &
+'   PROGRAM ANALYZE', &
+'  REAL A, B, C (10,10)', &
+'    !  Specification part', &
+'', &
+'  CALL FIND', &
+'    !  Execution part', &
+'', &
+'   CONTAINS', &
+'  SUBROUTINE FIND', &
+'    !  Internal subprogram . . .', &
+'', &
+'   END SUBROUTINE FIND', &
+'   END PROGRAM ANALYZE', &
+'  A reference to a Fortran main-program shall not appear in any program unit', &
+'  in the program, including itself. That is, you cannot call or jump to a main', &
+'  program from another program unit such as a module or procedure.', &
+'', &
+'GLOSSARY', &
+'  program', &
+'', &
+'  set of Fortran program units and entities defined by means other than', &
+'  Fortran that includes exactly one main program.', &
+'', &
+'  program unit', &
+'', &
+'  A main program, external subprogram, module, submodule, or block data', &
+'  program unit.', &
+'', &
+'', &
+'', &
+'                              October 02, 2024              program(7fortran)', &
+'']
+
+shortname="program"
+call process()
+
+
+case('186','radix')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23166,14 +23409,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               radix(3fortran)', &
+'                              October 02, 2024                radix(3fortran)', &
 '']
 
 shortname="radix"
 call process()
 
 
-case('185','random_init')
+case('187','random_init')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23209,10 +23452,10 @@ textblock=[character(len=256) :: &
 '', &
 '  If it is .FALSE., the seed is set to a processor-dependent value.', &
 '', &
-'  IMAGE_DISTINCT : If is .true., the seed is set to a processor-dependent', &
+'  IMAGE_DISTINCT : If it is .true., the seed is set to a processor-dependent', &
 '  value that is distinct from the seed set by a call to RANDOM_INITin another', &
-'  image. If it is .FALSE., the seed is set value that does depend which image', &
-'  called RANDOM_INIT.', &
+'  image. If it is .FALSE., the seed is set to a value that does depend on', &
+'  which image called RANDOM_INIT.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -23239,14 +23482,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024         random_init(3fortran)', &
+'                              October 02, 2024          random_init(3fortran)', &
 '']
 
 shortname="random_init"
 call process()
 
 
-case('186','random_number')
+case('188','random_number')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23336,14 +23579,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024       random_number(3fortran)', &
+'                              October 02, 2024        random_number(3fortran)', &
 '']
 
 shortname="random_number"
 call process()
 
 
-case('187','random_seed')
+case('189','random_seed')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23423,14 +23666,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024         random_seed(3fortran)', &
+'                              October 02, 2024          random_seed(3fortran)', &
 '']
 
 shortname="random_seed"
 call process()
 
 
-case('188','range')
+case('190','range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23511,14 +23754,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               range(3fortran)', &
+'                              October 02, 2024                range(3fortran)', &
 '']
 
 shortname="range"
 call process()
 
 
-case('189','rank')
+case('191','rank')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23691,14 +23934,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                rank(3fortran)', &
+'                              October 02, 2024                 rank(3fortran)', &
 '']
 
 shortname="rank"
 call process()
 
 
-case('190','read')
+case('192','read')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23761,14 +24004,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                read(7fortran)', &
+'                              October 02, 2024                 read(7fortran)', &
 '']
 
 shortname="read"
 call process()
 
 
-case('191','real')
+case('193','real')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23878,14 +24121,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                real(3fortran)', &
+'                              October 02, 2024                 real(3fortran)', &
 '']
 
 shortname="real"
 call process()
 
 
-case('192','reduce')
+case('194','reduce')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24088,14 +24331,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              reduce(3fortran)', &
+'                              October 02, 2024               reduce(3fortran)', &
 '']
 
 shortname="reduce"
 call process()
 
 
-case('193','repeat')
+case('195','repeat')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24171,14 +24414,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              repeat(3fortran)', &
+'                              October 02, 2024               repeat(3fortran)', &
 '']
 
 shortname="repeat"
 call process()
 
 
-case('194','reshape')
+case('196','reshape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24395,14 +24638,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             reshape(3fortran)', &
+'                              October 02, 2024              reshape(3fortran)', &
 '']
 
 shortname="reshape"
 call process()
 
 
-case('195','return')
+case('197','return')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24527,14 +24770,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              return(7fortran)', &
+'                              October 02, 2024               return(7fortran)', &
 '']
 
 shortname="return"
 call process()
 
 
-case('196','rewind')
+case('198','rewind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24630,14 +24873,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              rewind(7fortran)', &
+'                              October 02, 2024               rewind(7fortran)', &
 '']
 
 shortname="rewind"
 call process()
 
 
-case('197','rrspacing')
+case('199','rrspacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24686,14 +24929,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024           rrspacing(3fortran)', &
+'                              October 02, 2024            rrspacing(3fortran)', &
 '']
 
 shortname="rrspacing"
 call process()
 
 
-case('198','same_type_as')
+case('200','same_type_as')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24828,14 +25071,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024        same_type_as(3fortran)', &
+'                              October 02, 2024         same_type_as(3fortran)', &
 '']
 
 shortname="same_type_as"
 call process()
 
 
-case('199','scale')
+case('201','scale')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24937,14 +25180,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               scale(3fortran)', &
+'                              October 02, 2024                scale(3fortran)', &
 '']
 
 shortname="scale"
 call process()
 
 
-case('200','scan')
+case('202','scan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25043,14 +25286,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                scan(3fortran)', &
+'                              October 02, 2024                 scan(3fortran)', &
 '']
 
 shortname="scan"
 call process()
 
 
-case('201','select_case')
+case('203','select_case')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25211,14 +25454,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024         select_case(7fortran)', &
+'                              October 02, 2024          select_case(7fortran)', &
 '']
 
 shortname="select_case"
 call process()
 
 
-case('202','selected_char_kind')
+case('204','selected_char_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25379,14 +25622,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024  selected_char_kind(3fortran)', &
+'                              October 02, 2024   selected_char_kind(3fortran)', &
 '']
 
 shortname="selected_char_kind"
 call process()
 
 
-case('203','selected_int_kind')
+case('205','selected_int_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25467,14 +25710,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024   selected_int_kind(3fortran)', &
+'                              October 02, 2024    selected_int_kind(3fortran)', &
 '']
 
 shortname="selected_int_kind"
 call process()
 
 
-case('204','selected_real_kind')
+case('206','selected_real_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25595,14 +25838,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024  selected_real_kind(3fortran)', &
+'                              October 02, 2024   selected_real_kind(3fortran)', &
 '']
 
 shortname="selected_real_kind"
 call process()
 
 
-case('205','set_exponent')
+case('207','set_exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25679,14 +25922,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024        set_exponent(3fortran)', &
+'                              October 02, 2024         set_exponent(3fortran)', &
 '']
 
 shortname="set_exponent"
 call process()
 
 
-case('206','shape')
+case('208','shape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25797,14 +26040,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               shape(3fortran)', &
+'                              October 02, 2024                shape(3fortran)', &
 '']
 
 shortname="shape"
 call process()
 
 
-case('207','shifta')
+case('209','shifta')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25931,14 +26174,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              shifta(3fortran)', &
+'                              October 02, 2024               shifta(3fortran)', &
 '']
 
 shortname="shifta"
 call process()
 
 
-case('208','shiftl')
+case('210','shiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26068,14 +26311,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              shiftl(3fortran)', &
+'                              October 02, 2024               shiftl(3fortran)', &
 '']
 
 shortname="shiftl"
 call process()
 
 
-case('209','shiftr')
+case('211','shiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26207,14 +26450,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              shiftr(3fortran)', &
+'                              October 02, 2024               shiftr(3fortran)', &
 '']
 
 shortname="shiftr"
 call process()
 
 
-case('210','sign')
+case('212','sign')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26305,14 +26548,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                sign(3fortran)', &
+'                              October 02, 2024                 sign(3fortran)', &
 '']
 
 shortname="sign"
 call process()
 
 
-case('211','sin')
+case('213','sin')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26447,14 +26690,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 sin(3fortran)', &
+'                              October 02, 2024                  sin(3fortran)', &
 '']
 
 shortname="sin"
 call process()
 
 
-case('212','sind')
+case('214','sind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26586,14 +26829,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                sind(3fortran)', &
+'                              October 02, 2024                 sind(3fortran)', &
 '']
 
 shortname="sind"
 call process()
 
 
-case('213','sinh')
+case('215','sinh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26693,14 +26936,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                sinh(3fortran)', &
+'                              October 02, 2024                 sinh(3fortran)', &
 '']
 
 shortname="sinh"
 call process()
 
 
-case('214','sinpi')
+case('216','sinpi')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26806,14 +27049,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               sinpi(3fortran)', &
+'                              October 02, 2024                sinpi(3fortran)', &
 '']
 
 shortname="sinpi"
 call process()
 
 
-case('215','size')
+case('217','size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26985,14 +27228,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                size(3fortran)', &
+'                              October 02, 2024                 size(3fortran)', &
 '']
 
 shortname="size"
 call process()
 
 
-case('216','spacing')
+case('218','spacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27072,14 +27315,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024             spacing(3fortran)', &
+'                              October 02, 2024              spacing(3fortran)', &
 '']
 
 shortname="spacing"
 call process()
 
 
-case('217','split')
+case('219','split')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27216,14 +27459,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               split(3fortran)', &
+'                              October 02, 2024                split(3fortran)', &
 '']
 
 shortname="split"
 call process()
 
 
-case('218','spread')
+case('220','spread')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27405,14 +27648,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              spread(3fortran)', &
+'                              October 02, 2024               spread(3fortran)', &
 '']
 
 shortname="spread"
 call process()
 
 
-case('219','sqrt')
+case('221','sqrt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27518,14 +27761,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                sqrt(3fortran)', &
+'                              October 02, 2024                 sqrt(3fortran)', &
 '']
 
 shortname="sqrt"
 call process()
 
 
-case('220','stop')
+case('222','stop')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27640,14 +27883,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                stop(7fortran)', &
+'                              October 02, 2024                 stop(7fortran)', &
 '']
 
 shortname="stop"
 call process()
 
 
-case('221','storage_size')
+case('223','storage_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27751,14 +27994,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024        storage_size(3fortran)', &
+'                              October 02, 2024         storage_size(3fortran)', &
 '']
 
 shortname="storage_size"
 call process()
 
 
-case('222','sum')
+case('224','sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27977,14 +28220,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 sum(3fortran)', &
+'                              October 02, 2024                  sum(3fortran)', &
 '']
 
 shortname="sum"
 call process()
 
 
-case('223','system_clock')
+case('225','system_clock')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28142,14 +28385,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024        system_clock(3fortran)', &
+'                              October 02, 2024         system_clock(3fortran)', &
 '']
 
 shortname="system_clock"
 call process()
 
 
-case('224','tan')
+case('226','tan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28210,14 +28453,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 tan(3fortran)', &
+'                              October 02, 2024                  tan(3fortran)', &
 '']
 
 shortname="tan"
 call process()
 
 
-case('225','tand')
+case('227','tand')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28276,14 +28519,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                tand(3fortran)', &
+'                              October 02, 2024                 tand(3fortran)', &
 '']
 
 shortname="tand"
 call process()
 
 
-case('226','tanh')
+case('228','tanh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28355,14 +28598,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                tanh(3fortran)', &
+'                              October 02, 2024                 tanh(3fortran)', &
 '']
 
 shortname="tanh"
 call process()
 
 
-case('227','tanpi')
+case('229','tanpi')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28440,14 +28683,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               tanpi(3fortran)', &
+'                              October 02, 2024                tanpi(3fortran)', &
 '']
 
 shortname="tanpi"
 call process()
 
 
-case('228','this_image')
+case('230','this_image')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28532,14 +28775,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024          this_image(3fortran)', &
+'                              October 02, 2024           this_image(3fortran)', &
 '']
 
 shortname="this_image"
 call process()
 
 
-case('229','tiny')
+case('231','tiny')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28607,14 +28850,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                tiny(3fortran)', &
+'                              October 02, 2024                 tiny(3fortran)', &
 '']
 
 shortname="tiny"
 call process()
 
 
-case('230','tokenize')
+case('232','tokenize')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28803,14 +29046,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024            tokenize(3fortran)', &
+'                              October 02, 2024             tokenize(3fortran)', &
 '']
 
 shortname="tokenize"
 call process()
 
 
-case('231','trailz')
+case('233','trailz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28911,14 +29154,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              trailz(3fortran)', &
+'                              October 02, 2024               trailz(3fortran)', &
 '']
 
 shortname="trailz"
 call process()
 
 
-case('232','transfer')
+case('234','transfer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29044,14 +29287,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024            transfer(3fortran)', &
+'                              October 02, 2024             transfer(3fortran)', &
 '']
 
 shortname="transfer"
 call process()
 
 
-case('233','transpose')
+case('235','transpose')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29160,14 +29403,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024           transpose(3fortran)', &
+'                              October 02, 2024            transpose(3fortran)', &
 '']
 
 shortname="transpose"
 call process()
 
 
-case('234','trim')
+case('236','trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29268,14 +29511,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                trim(3fortran)', &
+'                              October 02, 2024                 trim(3fortran)', &
 '']
 
 shortname="trim"
 call process()
 
 
-case('235','ubound')
+case('237','ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29452,14 +29695,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              ubound(3fortran)', &
+'                              October 02, 2024               ubound(3fortran)', &
 '']
 
 shortname="ubound"
 call process()
 
 
-case('236','ucobound')
+case('238','ucobound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29502,14 +29745,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024            ucobound(3fortran)', &
+'                              October 02, 2024             ucobound(3fortran)', &
 '']
 
 shortname="ucobound"
 call process()
 
 
-case('237','unpack')
+case('239','unpack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29668,14 +29911,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              unpack(3fortran)', &
+'                              October 02, 2024               unpack(3fortran)', &
 '']
 
 shortname="unpack"
 call process()
 
 
-case('238','use')
+case('240','use')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29934,14 +30177,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                 use(7fortran)', &
+'                              October 02, 2024                  use(7fortran)', &
 '']
 
 shortname="use"
 call process()
 
 
-case('239','verify')
+case('241','verify')
 
 textblock=[character(len=256) :: &
 '', &
@@ -30322,14 +30565,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024              verify(3fortran)', &
+'                              October 02, 2024               verify(3fortran)', &
 '']
 
 shortname="verify"
 call process()
 
 
-case('240','wait')
+case('242','wait')
 
 textblock=[character(len=256) :: &
 '', &
@@ -30406,14 +30649,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024                wait(7fortran)', &
+'                              October 02, 2024                 wait(7fortran)', &
 '']
 
 shortname="wait"
 call process()
 
 
-case('241','where')
+case('243','where')
 
 textblock=[character(len=256) :: &
 '', &
@@ -30617,14 +30860,14 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               where(7fortran)', &
+'                              October 02, 2024                where(7fortran)', &
 '']
 
 shortname="where"
 call process()
 
 
-case('242','write')
+case('244','write')
 
 textblock=[character(len=256) :: &
 '', &
@@ -30642,7 +30885,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                             September 07, 2024               write(7fortran)', &
+'                              October 02, 2024                write(7fortran)', &
 '']
 
 shortname="write"

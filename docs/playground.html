@@ -759,7 +759,7 @@
       end program demo_associated
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20program%20demo%5Fassociate%20implicit%20none%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%0D%0A%20%20g%3D%27%28%2A%28g0%2C1x%29%29%27%0D%0A%0D%0A%20%20character%20%3A%3A%20array%28%2D5%3A5%2C%2D5%3A5%29%0D%0A%20%20%20%20%21%20custom%20non%2Dnormal%20bounds%20%21%20note%20the%20different%20between%20queries%20of%20ARRAY%0D%0A%20%20%20%20versus%20ARRAY%28%3A%2C%3A%29%0D%0A%0D%0A%20%20%20%20write%28%2A%2Cg%29%27array%3A%0D%0A%20%20%20%20%20%20write%28%2A%2Cg%29%27array%28%3A%2C%3A%29%3A%20%27%2C%20%27lbound%3D%27%2Clbound%28array%28%3A%2C%3A%29%29%2C%20%26%20%21%20the%20bounds%0D%0A%20%20%20%20%20%20assigned%20to%20the%20identifiers%20are%20what%20UBOUND%283f%29%20%21%20and%20LBOUND%283f%29%20return%0D%0A%20%20%20%20%20%20given%20the%20selector%20as%20an%20argument%20associate%20%28%20%26%0D%0A%0D%0A%20%20%20%20%20%20alias%3D%3E%0D%0A%20%20%20%20%20%20%20%20array%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%20%21%20keeps%20the%20custom%20bounds%0D%0A%0D%0A%20%20%20%20%20%20normal%3D%3E%0D%0A%20%20%20%20%20%20%20%20array%28%3A%2C%3A%29%2C%20%20%20%20%20%20%20%20%20%26%20%21%20gets%20normal%20bounds%0D%0A%0D%0A%20%20%20%20%20%20quadI%3D%3E%0D%0A%20%20%20%20%20%20%20%20array%28%2B1%3A%2B5%2C%2D5%3A%2D1%29%2C%20%26%20%21%20quad%2A%20will%20have%20normal%20bounds%0D%0A%0D%0A%20%20%20%20%20%20quadII%3D%3E%0D%0A%20%20%20%20%20%20%20%20array%28%2D5%3A%2D1%2C%2D5%3A%2D1%29%2C%20%26%20%21%20%20quadIII%3D%3E%20array%28%2D5%3A%2D1%2C%2B1%3A%2B5%29%2C%20%26%20%21%0D%0A%0D%0A%20%20%20%20%20%20quadIV%3D%3E%0D%0A%20%20%20%20%20%20%20%20array%28%2B1%3A%2B5%2C%2B1%3A%2B5%29%2C%20%26%20%21%20%20xaxis%3D%3Earray%28%3A%2C0%29%2C%20%26%20yaxis%3D%3Earray%280%2C%3A%29%20%26%20%29%0D%0A%20%20%20%20%20%20%20%20array%3D%27%2E%27%20%21%20selector%20name%20is%20still%20valid%20in%20the%20block%20xaxis%3D%27%2D%27%0D%0A%20%20%20%20%20%20%20%20yaxis%3D%27%7C%27%20alias%280%2C0%29%3D%27%2B%27%20%21%20uses%20non%2Dnormal%20bounds%2C%20equivalent%20to%0D%0A%20%20%20%20%20%20%20%20array%280%2C0%29%3D%27%2B%27%20write%28%2A%2C%27%2811%28g0%2C1x%29%29%27%29%20alias%20%21%20the%20quads%20have%0D%0A%20%20%20%20%20%20%20%20normalized%20dimension%20bounds%20%281%3A5%2C1%3A5%29%3A%0D%0A%0D%0A%20%20%20%20%20%20quadI%0D%0A%20%20%20%20%20%20%20%20%3D%20%20%271%27%3B%20%20quadI%281%2C1%29%20%20%20%20%3D%20%20%27a%27%3B%20%20quadI%285%2C5%29%20%20%20%20%3D%20%20%27A%27%0D%0A%0D%0A%20%20%20%20%20%20quadII%0D%0A%20%20%20%20%20%20%20%20%3D%20%20%272%27%3B%20%20quadII%281%2C1%29%20%20%20%3D%20%20%27b%27%3B%20%20quadII%285%2C5%29%20%20%20%3D%20%20%27B%27%0D%0A%0D%0A%20%20%20%20%20%20quadIII%0D%0A%20%20%20%20%20%20%20%20%3D%20%20%273%27%3B%20%20quadIII%281%2C1%29%20%20%3D%20%20%27c%27%3B%20%20quadIII%285%2C5%29%20%20%3D%20%20%27C%27%0D%0A%0D%0A%20%20%20%20%20%20quadIV%0D%0A%20%20%20%20%20%20%20%20%3D%20%20%274%27%3B%20%20quadIV%281%2C1%29%20%20%20%3D%20%20%27d%27%3B%20%20quadIV%285%2C5%29%20%20%20%3D%20%20%27D%27%0D%0A%20%20%20%20%20%20%20%20write%28%2A%2C%27%2811%28g0%2C1x%29%29%27%29%20alias%0D%0A%0D%0A%20%20%20%20%20%20write%28%2A%2Cg%29%27array%3A%0D%0A%20%20%20%20%20%20%20%20lbound%3D%27%2Clbound%28array%29%2C%20%20%27ubound%3D%27%2Cubound%28array%29%0D%0A%0D%0A%20%20%20%20%20%20write%28%2A%2Cg%29%27alias%3A%0D%0A%20%20%20%20%20%20%20%20lbound%3D%27%2Clbound%28alias%29%2C%20%20%27ubound%3D%27%2Cubound%28alias%29%0D%0A%0D%0A%20%20%20%20%20%20write%28%2A%2Cg%29%27normal%3A%0D%0A%20%20%20%20%20%20%20%20lbound%3D%27%2Clbound%28normal%29%2C%20%27ubound%3D%27%2Cubound%28normal%29%0D%0A%0D%0A%20%20%20%20%20%20write%28%2A%2Cg%29%27quadI%3A%0D%0A%20%20%20%20%20%20%20%20lbound%3D%27%2Clbound%28quadI%29%2C%20%20%27ubound%3D%27%2Cubound%28quadI%29%0D%0A%0D%0A%20%20%20%20%20%20write%28%2A%2Cg%29%27quadII%3A%0D%0A%20%20%20%20%20%20%20%20lbound%3D%27%2Clbound%28quadII%29%2C%20%27ubound%3D%27%2Cubound%28quadII%29%0D%0A%0D%0A%20%20%20%20%20%20write%28%2A%2Cg%29%27quadIV%3A%0D%0A%20%20%20%20%20%20%20%20lbound%3D%27%2Clbound%28quadIV%29%2C%20%27ubound%3D%27%2Cubound%28quadIV%29%20end%20associate%20end%0D%0A%20%20%20%20%20%20%20%20program%20demo%5Fassociate%0D%0A%0D%0A%20%20Results%3A%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20array%3A%20%20%20%20%20%20lbound%3D%20%2D5%20%2D5%20ubound%3D%205%205%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20array%28%3A%2C%3A%29%3A%20%20lbound%3D%201%201%20ubound%3D%2011%2011%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%2E%20%2E%20%2E%20%2E%20%2E%20%7C%20%2E%20%2E%20%2E%20%2E%20%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%2E%20%2E%20%2E%20%2E%20%2E%20%7C%20%2E%20%2E%20%2E%20%2E%20%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%2E%20%2E%20%2E%20%2E%20%2E%20%7C%20%2E%20%2E%20%2E%20%2E%20%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%2E%20%2E%20%2E%20%2E%20%2E%20%7C%20%2E%20%2E%20%2E%20%2E%20%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%2E%20%2E%20%2E%20%2E%20%2E%20%7C%20%2E%20%2E%20%2E%20%2E%20%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%2D%20%2D%20%2D%20%2D%20%2D%20%2B%20%2D%20%2D%20%2D%20%2D%20%2D%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%2E%20%2E%20%2E%20%2E%20%2E%20%7C%20%2E%20%2E%20%2E%20%2E%20%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%2E%20%2E%20%2E%20%2E%20%2E%20%7C%20%2E%20%2E%20%2E%20%2E%20%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%2E%20%2E%20%2E%20%2E%20%2E%20%7C%20%2E%20%2E%20%2E%20%2E%20%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%2E%20%2E%20%2E%20%2E%20%2E%20%7C%20%2E%20%2E%20%2E%20%2E%20%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%2E%20%2E%20%2E%20%2E%20%2E%20%7C%20%2E%20%2E%20%2E%20%2E%20%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20b%202%202%202%202%20%7C%20a%201%201%201%201%0D%0A%20%20%20%20%20%20%20%20%20%20%20%202%202%202%202%202%20%7C%201%201%201%201%201%0D%0A%20%20%20%20%20%20%20%20%20%20%20%202%202%202%202%202%20%7C%201%201%201%201%201%0D%0A%20%20%20%20%20%20%20%20%20%20%20%202%202%202%202%202%20%7C%201%201%201%201%201%0D%0A%20%20%20%20%20%20%20%20%20%20%20%202%202%202%202%20B%20%7C%201%201%201%201%20A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%2D%20%2D%20%2D%20%2D%20%2D%20%2B%20%2D%20%2D%20%2D%20%2D%20%2D%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20c%203%203%203%203%20%7C%20d%204%204%204%204%0D%0A%20%20%20%20%20%20%20%20%20%20%20%203%203%203%203%203%20%7C%204%204%204%204%204%0D%0A%20%20%20%20%20%20%20%20%20%20%20%203%203%203%203%203%20%7C%204%204%204%204%204%0D%0A%20%20%20%20%20%20%20%20%20%20%20%203%203%203%203%203%20%7C%204%204%204%204%204%0D%0A%20%20%20%20%20%20%20%20%20%20%20%203%203%203%203%20C%20%7C%204%204%204%204%20D%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20array%3A%20%20%20lbound%3D%20%2D5%20%2D5%20ubound%3D%205%205%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20alias%3A%20%20%20lbound%3D%20%2D5%20%2D5%20ubound%3D%205%205%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20normal%3A%20%20lbound%3D%201%201%20ubound%3D%2011%2011%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20quadI%3A%20%20%20lbound%3D%201%201%20ubound%3D%205%205%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20quadII%3A%20%20lbound%3D%201%201%20ubound%3D%205%205%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20quadIII%3A%20lbound%3D%201%201%20ubound%3D%205%205%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20quadIV%3A%20%20lbound%3D%201%201%20ubound%3D%205%205%0D%0A%0D%0A%20%20Dusty%20Corners%0D%0A%0D%0A%20%20%20%20If%20the%20expressions%20have%20side%2Deffects%20are%20they%20executed%20only%20when%20the%20block%0D%0A%20%20%20%20is%20entered%3F%0D%0A%0D%0A%20%20%20%20Selected%20variable%20names%20are%20still%20accessible%20in%20the%20ASSOCIATE%20block%2E%20%20This%0D%0A%20%20%20%20is%20confusing%20and%20should%20be%20avoided%2C%20particular%20if%20the%20selectors%20are%0D%0A%20%20%20%20allocatable%20or%20pointers%2E%20This%20is%20similiar%20to%20variables%20passed%20as%20arguments%0D%0A%20%20%20%20to%20contained%20procedures%20but%20referenced%20via%20the%20argument%20name%20and%20the%20name%0D%0A%20%20%20%20in%20the%20surrounding%20scope%2E%20The%20behavior%20is%20ill%2Ddefined%2E%20Does%20a%20change%20to%0D%0A%20%20%20%20the%20argument%20take%20affect%20immediately%20or%20upon%20return%20from%20the%20procedure%3F%20If%0D%0A%20%20%20%20the%20argument%20is%20not%20declared%20allocatable%20or%20is%20a%20pointer%20does%20the%20argument%0D%0A%20%20%20%20name%20value%20get%20changed%20by%20deallocation%20or%20disassociation%20or%20changes%20to%20the%0D%0A%20%20%20%20original%20names%3F%0D%0A%0D%0A%20%20%20%20are%20you%20allowed%20to%20allocate%20v%20to%20a%20different%20size%20before%20the%20ASSOCIATE%20is%0D%0A%20%20%20%20terminated%3F%20If%20so%2C%20what%20happens%20to%20c%20%3F%0D%0A%0D%0A%20%20%20%20Does%20that%20mean%20it%20is%20invalid%20to%20resize%20v%20within%20the%20ASSOCIATE%20block%3F%20Or%20is%0D%0A%20%20%20%20it%20only%20invalid%20to%20resize%20v%20and%20then%20refer%20to%20c%3F%20Or%20only%20invalid%20to%20resize%0D%0A%20%20%20%20v%20and%20refer%20to%20c%20when%20c%20is%20associated%20with%20elements%20of%20v%20that%20no%20longer%0D%0A%20%20%20%20exist%3F%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20%20%20integer%2C%20allocatable%2C%20target%20%3A%3A%20v%28%3A%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20integer%2C%20pointer%20%3A%3A%20p%28%3A%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20v%20%3D%20%5B4%2C7%2C9%5D%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20p%20%3D%3E%20v%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20print%2A%2Cp%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20deallocate%28v%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20print%2A%2Cp%20%21%20invalid%2C%20because%20target%20has%20been%20deallocated%0D%0A%20%20%20%20%20%20%20%20%20%20%20end%20program%20main%0D%0A%0D%0A%20%20%20%20are%20you%20allowed%20to%20allocate%20v%20to%20a%20different%20size%20before%20the%20ASSOCIATE%20is%0D%0A%20%20%20%20terminated%3F%20If%20so%2C%20what%20happens%20to%20c%3F%20%60%60%60fortran%20program%0D%0A%20%20%20%20demonstrate%5Fassociate%20implicit%20none%20integer%2C%20allocatable%20%3A%3A%20v%28%3A%29%20v%20%3D%20%5B3%2C4%5D%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20associate%20%28c%20%3D%3E%20v%29%20%3B%20call%20disp%28%221%22%2Cv%2Cc%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20c%20%3D%20c%2A10%20%20%20%20%20%20%20%20%20%20%20%3B%20call%20disp%28%222%22%2Cv%2Cc%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20v%20%3D%20%5B2%2C4%2C6%5D%20%20%20%20%20%20%20%20%3B%20call%20disp%28%223%22%2Cv%2Cc%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20c%20%3D%20c%2A10%20%20%20%20%20%20%20%20%20%20%20%3B%20call%20disp%28%224%22%2Cv%2Cc%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20v%20%3D%20%5B2%5D%20%20%20%20%20%20%20%20%20%20%20%20%3B%20call%20disp%28%225%22%2Cv%2Cc%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20end%20associate%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20contains%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20subroutine%20disp%28label%2Cv%2Cc%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20character%20%28len%3D%2A%29%2C%20intent%28in%29%20%3A%3A%20label%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20integer%2C%20intent%28in%29%20%3A%3A%20v%28%3A%29%2Cc%28%3A%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%20%28%2A%2C%22%28a%2C%27%20v%20%3D%20%27%2C%2A%281x%2Ci0%29%29%22%2Cadvance%3D%22no%22%29%20label%2Cv%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%20%28%2A%2C%22%283x%2C%27c%20%3D%20%27%2C%2A%281x%2Ci0%29%29%22%29%20c%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20end%20subroutine%20disp%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20end%20program%20demonstrate%5Fassociate%0D%0A%0D%0ACOMPARISONS%20TO%20OTHER%20CONSTRUCTS%0D%0A%20%20When%20is%20it%20not%20true%20that%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20associate%20%28a%3D%3EAA%29%0D%0A%20%20%20%20%20%20%20%20%20end%20associate%0D%0A%0D%0A%20%20is%20equivalent%20to%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20call%20assoc%28AA%29%0D%0A%20%20%20%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20%20%20%20subroutine%20assoc%28a%29%0D%0A%20%20%20%20%20%20%20%20%20type%28type%28a%29%29%2Cintent%28in%29%20%3A%3A%20a%28%2E%2E%29%20%21%20if%20a%20in%20an%20expression%0D%0A%20%20%20%20%20%20%20%20%20type%28type%28a%29%29%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20a%28%2E%2E%29%20%21%20if%20a%20in%20a%20variable%0D%0A%20%20%20%20%20%20%20%20%20end%20subroutine%20assoc%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20somewhat%20like%20the%20parameters%20being%20class%28%2A%29%20but%20without%20all%20the%20SELECT%20statements%0D%0A%20%20%20%20%20%20%20%20%20%21%20like%20type%28type%28a%29%29%20worked%2E%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20so%20%22a%22%20in%20the%20subroutine%20does%20not%20have%20the%20allocatable%2C%20optional%2C%20or%20pointer%0D%0A%20%20%20%20%20%20%20%20%20%21%20attributes%20even%20if%20AA%20did%2C%20and%20it%20is%20up%20to%20the%20programmer%20to%20make%20sure%20AA%20is%20allocated%0D%0A%20%20%20%20%20%20%20%20%20%21%20or%20assigned%20a%20target%20or%20present%20if%20optional%20when%20making%20the%20call%20if%20it%20has%20those%0D%0A%20%20%20%20%20%20%20%20%20%21%20attributes%2E%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20but%20it%20can%20have%20the%20target%20attribute%2E%0D%0A%0D%0ASEE%20ALSO%0D%0A%20%20•%20%20DO%283%29%20%2D%20construct%0D%0A%0D%0A%20%20•%20%20IF%283%29%20%2D%20selects%20a%20block%20based%20on%20a%20sequence%20of%20logical%20expressions%2E%0D%0A%0D%0A%20%20•%20%20CYCLE%283%29%20%2D%20construct%0D%0A%0D%0A%20%20•%20%20EXIT%283%29%20%2D%20statement%0D%0A%0D%0A%20%20•%20%20ASSOCIATE%283%29%20%2D%20associate%20construct%0D%0A%0D%0A%20%20•%20%20BLOCK%283%29%20%2D%20construct%0D%0A%0D%0A%20%20•%20%20GOTO%283%29%20%2D%20jump%20to%20target%20line%0D%0A%0D%0A%20%20•%20%20SELECT%283%29%20%2D%20select%20a%20block%20based%20on%20the%20value%20of%20an%20expression%20%28a%20case%29%0D%0A%0D%0A%20%20•%20%20CASE%283%29%20%2D%20select%20a%20block%20based%20on%20the%20value%20of%20an%20expression%20%28a%20case%29%0D%0A%0D%0A%20%20•%20%20ENDSELECT%283%29%20%2D%20select%20a%20block%20based%20on%20the%20value%20of%20an%20expression%20%28a%0D%0A%20%20%20%20%20case%29%0D%0A%0D%0A%20%20Fortran%20intrinsic%20descriptions%20%28license%3A%20MIT%29%20%40urbanjost%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20September%2007%2C%202024%20%20%20%20%20%20%20%20%20%20%20associate%287fortran%29%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20%20%20%20program%20demo%5Fassociate%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20real%20%3A%3A%20myreal%2C%20x%2C%20y%2C%20theta%2C%20a%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20x%20%3D%200%2E42%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20y%20%3D%200%2E35%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20myreal%20%3D%209%2E1%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20theta%20%3D%201%2E5%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20a%20%3D%200%2E4%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20associate%20%28%20z%20%3D%3E%20exp%28%2D%28x%2A%2A2%2By%2A%2A2%29%29%20%2A%20cos%28theta%29%2C%20v%20%3D%3E%20myreal%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20a%2Bz%2C%20a%2Dz%2C%20v%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20v%20%3D%20v%20%2A%204%2E6%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20end%20associate%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20myreal%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20end%20program%20demo%5Fassociate%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> associate
@@ -767,208 +767,19 @@
   <details>
     <summary>Source</summary>
   <xmp>
-  program demo_associate implicit none character(len=*),parameter ::
-  g='(*(g0,1x))'
-
-  character :: array(-5:5,-5:5)
-    ! custom non-normal bounds ! note the different between queries of ARRAY
-    versus ARRAY(:,:)
-
-    write(*,g)'array:
-      write(*,g)'array(:,:): ', 'lbound=',lbound(array(:,:)), & ! the bounds
-      assigned to the identifiers are what UBOUND(3f) ! and LBOUND(3f) return
-      given the selector as an argument associate ( &
-
-      alias=>
-        array,              & ! keeps the custom bounds
-
-      normal=>
-        array(:,:),         & ! gets normal bounds
-
-      quadI=>
-        array(+1:+5,-5:-1), & ! quad* will have normal bounds
-
-      quadII=>
-        array(-5:-1,-5:-1), & !  quadIII=> array(-5:-1,+1:+5), & !
-
-      quadIV=>
-        array(+1:+5,+1:+5), & !  xaxis=>array(:,0), & yaxis=>array(0,:) & )
-        array='.' ! selector name is still valid in the block xaxis='-'
-        yaxis='|' alias(0,0)='+' ! uses non-normal bounds, equivalent to
-        array(0,0)='+' write(*,'(11(g0,1x))') alias ! the quads have
-        normalized dimension bounds (1:5,1:5):
-
-      quadI
-        =  '1';  quadI(1,1)    =  'a';  quadI(5,5)    =  'A'
-
-      quadII
-        =  '2';  quadII(1,1)   =  'b';  quadII(5,5)   =  'B'
-
-      quadIII
-        =  '3';  quadIII(1,1)  =  'c';  quadIII(5,5)  =  'C'
-
-      quadIV
-        =  '4';  quadIV(1,1)   =  'd';  quadIV(5,5)   =  'D'
-        write(*,'(11(g0,1x))') alias
-
-      write(*,g)'array:
-        lbound=',lbound(array),  'ubound=',ubound(array)
-
-      write(*,g)'alias:
-        lbound=',lbound(alias),  'ubound=',ubound(alias)
-
-      write(*,g)'normal:
-        lbound=',lbound(normal), 'ubound=',ubound(normal)
-
-      write(*,g)'quadI:
-        lbound=',lbound(quadI),  'ubound=',ubound(quadI)
-
-      write(*,g)'quadII:
-        lbound=',lbound(quadII), 'ubound=',ubound(quadII)
-
-      write(*,g)'quadIV:
-        lbound=',lbound(quadIV), 'ubound=',ubound(quadIV) end associate end
-        program demo_associate
-
-  Results:
-
-            array:      lbound= -5 -5 ubound= 5 5
-            array(:,:):  lbound= 1 1 ubound= 11 11
-            . . . . . | . . . . .
-            . . . . . | . . . . .
-            . . . . . | . . . . .
-            . . . . . | . . . . .
-            . . . . . | . . . . .
-            - - - - - + - - - - -
-            . . . . . | . . . . .
-            . . . . . | . . . . .
-            . . . . . | . . . . .
-            . . . . . | . . . . .
-            . . . . . | . . . . .
-            b 2 2 2 2 | a 1 1 1 1
-            2 2 2 2 2 | 1 1 1 1 1
-            2 2 2 2 2 | 1 1 1 1 1
-            2 2 2 2 2 | 1 1 1 1 1
-            2 2 2 2 B | 1 1 1 1 A
-            - - - - - + - - - - -
-            c 3 3 3 3 | d 4 4 4 4
-            3 3 3 3 3 | 4 4 4 4 4
-            3 3 3 3 3 | 4 4 4 4 4
-            3 3 3 3 3 | 4 4 4 4 4
-            3 3 3 3 C | 4 4 4 4 D
-            array:   lbound= -5 -5 ubound= 5 5
-            alias:   lbound= -5 -5 ubound= 5 5
-            normal:  lbound= 1 1 ubound= 11 11
-            quadI:   lbound= 1 1 ubound= 5 5
-            quadII:  lbound= 1 1 ubound= 5 5
-            quadIII: lbound= 1 1 ubound= 5 5
-            quadIV:  lbound= 1 1 ubound= 5 5
-
-  Dusty Corners
-
-    If the expressions have side-effects are they executed only when the block
-    is entered?
-
-    Selected variable names are still accessible in the ASSOCIATE block.  This
-    is confusing and should be avoided, particular if the selectors are
-    allocatable or pointers. This is similiar to variables passed as arguments
-    to contained procedures but referenced via the argument name and the name
-    in the surrounding scope. The behavior is ill-defined. Does a change to
-    the argument take affect immediately or upon return from the procedure? If
-    the argument is not declared allocatable or is a pointer does the argument
-    name value get changed by deallocation or disassociation or changes to the
-    original names?
-
-    are you allowed to allocate v to a different size before the ASSOCIATE is
-    terminated? If so, what happens to c ?
-
-    Does that mean it is invalid to resize v within the ASSOCIATE block? Or is
-    it only invalid to resize v and then refer to c? Or only invalid to resize
-    v and refer to c when c is associated with elements of v that no longer
-    exist?
-
-           implicit none
-           integer, allocatable, target :: v(:)
-           integer, pointer :: p(:)
-              v = [4,7,9]
-              p => v
-              print*,p
-              deallocate(v)
-              print*,p ! invalid, because target has been deallocated
-           end program main
-
-    are you allowed to allocate v to a different size before the ASSOCIATE is
-    terminated? If so, what happens to c? ```fortran program
-    demonstrate_associate implicit none integer, allocatable :: v(:) v = [3,4]
-
-             associate (c => v) ; call disp("1",v,c)
-             c = c*10           ; call disp("2",v,c)
-             v = [2,4,6]        ; call disp("3",v,c)
-             c = c*10           ; call disp("4",v,c)
-             v = [2]            ; call disp("5",v,c)
-             end associate
-
-             contains
-
-             subroutine disp(label,v,c)
-             character (len=*), intent(in) :: label
-             integer, intent(in) :: v(:),c(:)
-                write (*,"(a,' v = ',*(1x,i0))",advance="no") label,v
-                write (*,"(3x,'c = ',*(1x,i0))") c
-             end subroutine disp
-
-             end program demonstrate_associate
-
-COMPARISONS TO OTHER CONSTRUCTS
-  When is it not true that
-
-         associate (a=>AA)
-         end associate
-
-  is equivalent to
-
-         call assoc(AA)
-         contains
-         subroutine assoc(a)
-         type(type(a)),intent(in) :: a(..) ! if a in an expression
-         type(type(a))            :: a(..) ! if a in a variable
-         end subroutine assoc
-
-         ! somewhat like the parameters being class(*) but without all the SELECT statements
-         ! like type(type(a)) worked.
-
-         ! so "a" in the subroutine does not have the allocatable, optional, or pointer
-         ! attributes even if AA did, and it is up to the programmer to make sure AA is allocated
-         ! or assigned a target or present if optional when making the call if it has those
-         ! attributes.
-
-         ! but it can have the target attribute.
-
-SEE ALSO
-  •  DO(3) - construct
-
-  •  IF(3) - selects a block based on a sequence of logical expressions.
-
-  •  CYCLE(3) - construct
-
-  •  EXIT(3) - statement
-
-  •  ASSOCIATE(3) - associate construct
-
-  •  BLOCK(3) - construct
-
-  •  GOTO(3) - jump to target line
-
-  •  SELECT(3) - select a block based on the value of an expression (a case)
-
-  •  CASE(3) - select a block based on the value of an expression (a case)
-
-  •  ENDSELECT(3) - select a block based on the value of an expression (a
-     case)
-
-  Fortran intrinsic descriptions (license: MIT) @urbanjost
-
-                              September 07, 2024           associate(7fortran)
+            program demo_associate
+            real :: myreal, x, y, theta, a
+            x = 0.42
+            y = 0.35
+            myreal = 9.1
+            theta = 1.5
+            a = 0.4
+            associate ( z => exp(-(x**2+y**2)) * cos(theta), v => myreal)
+               print *, a+z, a-z, v
+               v = v * 4.6
+            end associate
+            print *, myreal
+            end program demo_associate
   </xmp>
   </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fatan2d%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%2Cparameter%20%20%3A%3A%20wp%3Dkind%280%2E0%29%0D%0A%20%20%20%20%20%20real%28wp%29%2Cparameter%20%3A%3A%20d2r%3Dacos%28%2D1%2E0%5Fwp%29%2F180%2E0%5Fwp%0D%0A%20%20%20%20%20%20real%20%3A%3A%20z%0D%0A%20%20%20%20%20%20complex%20%3A%3A%20c%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%21%20basic%20usage%0D%0A%20%20%20%20%20%20%20%20%21%20atan2d%20%281%2E5574077%2C%201%2E0%29%20has%20the%20value%201%2E0%20radian%20%28approximately%29%2E%0D%0A%20%20%20%20%20%20%20%20z%3Datan2d%281%2E5574077%2C%201%2E0%29%0D%0A%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20%27degrees%3D%27%2Cz%2C%27radians%3D%27%2Cd2r%2Az%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%21%20elemental%20arrays%0D%0A%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27elemental%27%2Catan2d%28%20%5B10%2E0%2C%2020%2E0%5D%2C%20%5B30%2E0%2C40%2E0%5D%20%29%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%21%20elemental%20arrays%20and%20scalars%0D%0A%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27elemental%27%2Catan2d%28%20%5B10%2E0%2C%2020%2E0%5D%2C%2050%2E0%20%29%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%21%20multi%2Ddimensional%20returns%20multi%2Ddimensional%0D%0A%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20atan2%28reshape%28%5B1%2E0%2C1%2E0%2C1%2E0%2C1%2E0%5D%2C%5B2%2C2%5D%29%2C%26%0D%0A%20%20%20%20%20%20%20%26%20reshape%28%5B1%2E0%2C1%2E0%2C1%2E0%2C1%2E0%5D%2C%5B2%2C2%5D%29%20%29%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%21%20break%20complex%20values%20into%20real%20and%20imaginary%20components%0D%0A%20%20%20%20%20%20%20%20c%3D%280%2E0%2C1%2E0%29%0D%0A%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27complex%20value%20treated%20as%20components%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%26%20c%2Catan2d%28%20x%3Dc%25re%2C%20y%3Dc%25im%20%29%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%21%20extended%20sample%0D%0A%20%20%20%20%20%20%20%20COMPLEX%5FVALS%3A%20block%0D%0A%20%20%20%20%20%20%20%20real%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20ang%0D%0A%20%20%20%20%20%20%20%20complex%2Callocatable%20%3A%3A%20vals%28%3A%29%0D%0A%20%20%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20vals%3D%5B%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%28%201%2E0%2C%200%2E0%20%29%2C%20%26%20%21%200%0D%0A%20%20%20%20%20%20%20%20%20%20%28%201%2E0%2C%201%2E0%20%29%2C%20%26%20%21%2045%0D%0A%20%20%20%20%20%20%20%20%20%20%28%200%2E0%2C%201%2E0%20%29%2C%20%26%20%21%2090%0D%0A%20%20%20%20%20%20%20%20%20%20%28%2D1%2E0%2C%201%2E0%20%29%2C%20%26%20%21%20135%0D%0A%20%20%20%20%20%20%20%20%20%20%28%2D1%2E0%2C%200%2E0%20%29%2C%20%26%20%21%20180%0D%0A%20%20%20%20%20%20%20%20%20%20%28%2D1%2E0%2C%2D1%2E0%20%29%2C%20%26%20%21%20225%0D%0A%20%20%20%20%20%20%20%20%20%20%28%200%2E0%2C%2D1%2E0%20%29%5D%20%20%20%21%20270%0D%0A%20%20%20%20%20%20%20%20do%20i%3D1%2Csize%28vals%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20ang%3Datan2d%28vals%28i%29%25im%2C%20vals%28i%29%25re%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C101%29vals%28i%29%2Cang%2Cd2r%2Aang%0D%0A%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20101%20format%28%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%26%20%27X%3D%20%27%2Cf5%2E2%2C%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%26%20%27%20Y%3D%20%27%2Cf5%2E2%2C%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%26%20%27%20ANGLE%3D%20%27%2Cg0%2C%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%26%20T38%2C%27RADIANS%3D%20%27%2Cg0%2E4%29%0D%0A%20%20%20%20%20%20%20endblock%20COMPLEX%5FVALS%0D%0A%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fatan2d%0D%0A"
@@ -3249,6 +3060,195 @@ SEE ALSO
       end program demo_exec
   </xmp>
   </details>
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20program%20demo%5Fexit%0D%0A%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20integer%2Cparameter%20%3A%3A%20arbitrary%5Fsize%3D10%0D%0A%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20i%2C%20j%2C%20k%2C%20iarr%28arbitrary%5Fsize%29%0D%0A%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20iostat%2C%20lun%0D%0A%20%20%20%20%20%20%20%20%20logical%20%3A%3A%20ok%0D%0A%20%20%20%20%20%20%20%20%20character%28len%3D80%29%20%3A%3A%20line%0D%0A%20%20%20%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20gen%3D%27%28%2A%28g0%3A%2C1x%29%29%27%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%21%20the%20basics%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%21%20Note%20we%20will%20use%20the%20function%20irand%283f%29%20contained%20in%0D%0A%20%20%20%20%20%20%20%20%20%21%20the%20end%20of%20the%20code%20below%20to%20generate%20random%20whole%20numbers%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%21%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%0D%0A%20%20%20%20%20%20%20%20%20%21%20EXIT%20an%20infinite%20loop%0D%0A%20%20%20%20%20%20%20%20%20%21%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20i%3D0%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20do%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20i%3Di%2B1%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20we%20will%20test%20on%20a%20random%20value%20to%20simulate%20an%20actual%20criteria%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20to%20meet%20that%20indicates%20the%20loop%20should%20be%20terminated%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%28irand%28%2D100%2C100%29%2Egt%2E95%29exit%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20print%20gen%2C%20%27escaped%20infinite%20loop%20after%20only%20%27%2Ci%2C%27tries%27%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%21%20a%20related%20common%20use%20is%20to%20read%20a%20file%20of%20unknown%20size%0D%0A%20%20%20%20%20%20%20%20%20%20%20%21%20till%20an%20error%20or%20end%2Dof%2Dfile%2C%20although%20READ%20does%20have%0D%0A%20%20%20%20%20%20%20%20%20%20%20%21%20the%20options%20ERR%3Dnumeric%2Dlabel%20and%20EOF%3Dnumeric%2Dlabel%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%21%20INFINITE%3A%20do%0D%0A%20%20%20%20%20%20%20%20%20%20%20%21%20%20%20%20read%28%2A%2C%27%28a%29%27%2Ciostat%3Diostat%29%20line%0D%0A%20%20%20%20%20%20%20%20%20%20%20%21%20%20%20%20if%28iostat%2Ene%2E0%29exit%20INFINITE%0D%0A%20%20%20%20%20%20%20%20%20%20%20%21%20enddo%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20Some%20argue%20that%20an%20infinite%20loop%20is%20never%20a%20good%20idea%2E%0D%0A%20%20%20%20%20%20%20%20%20%21%20A%20common%20practice%20is%20to%20avoid%20even%20the%20possibility%20of%20an%0D%0A%20%20%20%20%20%20%20%20%20%21%20infinite%20loop%20by%20putting%20a%20cap%20on%20the%20number%20of%20iterations%0D%0A%20%20%20%20%20%20%20%20%20%21%20that%20should%20%22never%22%20occur%2C%20and%20then%20error%20processing%0D%0A%20%20%20%20%20%20%20%20%20%21%20if%20the%20unexpected%20number%20of%20loops%20is%20inadvertently%20reached%2E%0D%0A%20%20%20%20%20%20%20%20%20%21%20This%20technique%20can%20let%20your%20code%20gracefully%20handle%20being%20used%20with%0D%0A%20%20%20%20%20%20%20%20%20%21%20problems%20bigger%20than%20it%20was%20intended%20for%2C%20or%20not%20loop%20infinitely%0D%0A%20%20%20%20%20%20%20%20%20%21%20if%20some%20unexpected%20or%20incorrect%20input%20or%20condition%20is%20encountered%2E%0D%0A%20%20%20%20%20%20%20%20%20%21%20It%20might%20make%20it%20stop%20unitentionally%20as%20well%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20run%20a%20loop%20but%20quit%20as%20soon%20as%20200%20random%20integers%20are%20odd%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20j%3D0%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20do%20i%3D1%2C%2010000%20%21%20fun%20facts%3A%20What%20are%20the%20odds%20of%20not%20getting%20200%20in%2010000%3F%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20k%3Dirand%280%2C99%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%28%28k%2B1%29%2F2%20%2F%3D%20k%2F2%29j%3Dj%2B1%20%21%20cheap%20integer%20math%20trick%20to%20tell%20if%20odd%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%28j%20%2Ege%2E%20200%29%20exit%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20if%28j%2Elt%2E200%29%20then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20print%20gen%2C%27Oh%20no%21%20Not%20enough%20odd%20samples%2E%20only%20found%27%2Cj%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20print%20gen%2C%27That%20is%20REALLY%20unlikely%2E%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20stop%20%27%3CERROR%3E%20unexpectedly%20low%20number%20of%20odd%20values%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20else%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20print%20gen%2C%27only%20did%20I%3D%27%2Ci%2C%27passes%20to%20get%20200%20odd%20samples%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20%20%20%20%20%20%20%20%21%20%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%0D%0A%20%20%20%20%20%20%20%20%20%21%20how%20to%20EXIT%20nested%20do%2Dloops%0D%0A%20%20%20%20%20%20%20%20%20%21%20%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%0D%0A%20%20%20%20%20%20%20%20%20%20%20%21%20EXIT%20with%20no%20name%20only%20exits%20an%20innermost%20loop%0D%0A%20%20%20%20%20%20%20%20%20%20%20%21%20so%20in%20the%20following%20k%20will%20be%203%2C%20as%20all%20passes%20of%20the%0D%0A%20%20%20%20%20%20%20%20%20%20%20%21%20outer%20loop%20still%20occur%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20k%3D0%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20do%20i%3D1%2C3%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20do%20j%3D1%2C5%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20exit%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20k%3Dk%2B1%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20at%20the%20end%20of%20a%20completed%20loop%20the%20counter%20is%20end%5Flimit%2Bstep%20so%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20you%20can%20tell%20if%20you%20exhausted%20the%20do%20loop%20or%20exited%20early%3A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20print%20gen%2C%27I%3D%27%2Ci%2C%27so%20%27%2C%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%26%20merge%28%27completed%27%2C%27exited%20%20%20%27%2Ci%2Egt%2E3%29%2C%27%20outer%20loop%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20print%20gen%2C%27J%3D%27%2Cj%2C%27so%20%27%2C%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%26%20merge%28%27completed%27%2C%27exited%20%20%20%27%2Cj%2Egt%2E5%29%2C%27%20inner%20loop%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20print%20gen%2C%27K%3D%27%2Ck%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20COMMENTARY%3A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20A%20labeled%20exit%20is%20less%20prone%20to%20error%20so%20generally%20worth%20the%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20additional%20verbosity%20even%20when%20just%20exiting%20an%20inner%20loop%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20Without%20a%20label%20an%20EXIT%20is%20somewhat%20like%20saying%20%22EXIT%20SOMEWHERE%22%2E%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20It%20is%20simple%20to%20EXIT%20nested%20loops%20from%20an%20inner%20loop%2E%0D%0A%20%20%20%20%20%20%20%20%20%21%20Just%20use%20a%20construct%20name%2E%20Lets%20start%20with%20the%20nested%20loop%20above%0D%0A%20%20%20%20%20%20%20%20%20%21%20that%20only%20repeatedly%20exited%20the%20inner%20loop%20and%20label%20the%20outer%0D%0A%20%20%20%20%20%20%20%20%20%21%20loop%20%22OUTER%22%2E%20Now%20our%20exit%20can%20explicity%20name%20what%20loop%20it%20wants%0D%0A%20%20%20%20%20%20%20%20%20%21%20to%20exit%20%2E%2E%2E%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20k%3D0%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20OUTER%3A%20do%20i%3D1%2C3%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20do%20j%3D1%2C5%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20exit%20OUTER%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20k%3Dk%2B1%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20enddo%20OUTER%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20if%28i%3D%3D1%2Eand%2Ej%3D%3D1%2Eand%2Ek%3D%3D0%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20print%20gen%2C%27exited%20nested%20loops%20successfully%20as%20expected%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20else%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20print%20gen%2C%27something%20went%20wrong%2C%20i%3D%27%2Ci%2C%27j%3D%27%2Cj%2C%27k%3D%27%2Ck%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20endif%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%0D%0A%20%20%20%20%20%20%20%20%20%21%20exits%20from%20non%2DDO%2Dloop%20block%20constructs%0D%0A%20%20%20%20%20%20%20%20%20%21%20%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%0D%0A%20%20%20%20%20%20%20%20%20%21%20REMEMBER%3A%20non%2DDO%2Dloop%20exits%20are%20always%20named%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%0D%0A%20%20%20%20%20%20%20%20%20%21%20EXIT%20a%20BLOCK%20statement%20surrounding%20a%20loop%20to%20avoid%20the%20nefarious%20GOTO%0D%0A%20%20%20%20%20%20%20%20%20%21%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20look%20for%20a%205%20in%20an%20array%20that%20should%20always%20have%20it%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20iarr%3D%5B%28i%2Ci%3D1%2Csize%28iarr%29%29%5D%20%21%20fill%20array%20with%201%20to%20N%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20LOOKFOR%3A%20block%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20do%20i%3D1%2Csize%28iarr%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20when%20you%20find%20what%20you%20are%20looking%20for%20use%20an%20EXIT%20instead%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20of%20a%20GOTO%20%2C%20which%20follows%20much%20more%20restricted%20rules%20on%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20on%20where%20you%20can%20land%2C%20preventing%20the%20threat%20of%20spaghetti%20code%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%28iarr%28i%29%2Eeq%2E5%29%20exit%20LOOKFOR%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27should%20not%20get%20here%2E%20iarr%3D%27%2Ciarr%0D%0A%20%20%20%20%20%20%20%20%20%20%20stop%20%27%3CINTERNAL%20ERROR%3E%20should%20never%20get%20here%21%20is%20array%20too%20small%3F%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20endblock%20LOOKFOR%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20print%20gen%2C%27Good%20Found%205%20at%20position%20I%3D%27%2Ci%2C%27so%20exited%20BLOCK%20construct%27%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%0D%0A%20%20%20%20%20%20%20%20%20%21%20Dusty%20corners%0D%0A%20%20%20%20%20%20%20%20%20%21%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20a%20block%20contained%20completely%20within%20a%20DO%20CONCURRENT%20can%0D%0A%20%20%20%20%20%20%20%20%20%21%20be%20exited%20even%20though%20the%20DO%20CONCURRENT%20itself%20or%20an%20outer%20block%0D%0A%20%20%20%20%20%20%20%20%20%21%20cannot%20be%20terminated%20from%20within%20a%20DO%20CONCURRENT%0D%0A%20%20%20%20%20%20%20%20%20do%20concurrent%20%28i%20%3D%201%3A10%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20INCC%3A%20%20block%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20real%20%3A%3A%20t%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20t%20%3D%200%2E0%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20if%20%28t%20%3D%3D%200%2E0%29%20exit%20INCC%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20t%3D%20t%2B1%2E0%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20end%20block%20INCC%0D%0A%20%20%20%20%20%20%20%20%20end%20do%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20The%20following%20example%20shows%20illegal%20EXIT%20statements%20in%20DO%20CONCURRENT%0D%0A%20%20%20%20%20%20%20%20%20%21%20and%20CRITICAL%3A%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20can%20%20%20t%20EXIT%20DO%20CONCURRENT%20or%20outer%20construct%20of%20a%20DO%20CONCURRENT%0D%0A%20%20%20%20%20%20%20%20%20%21x%21N%3D4%0D%0A%20%20%20%20%20%20%20%20%20%21x%21LOOP%5F1%20%3A%20DO%20CONCURRENT%20%28I%20%3D%201%3AN%29%0D%0A%20%20%20%20%20%20%20%20%20%21x%21%20%20N%20%3D%20N%20%2B%201%0D%0A%20%20%20%20%20%20%20%20%20%21x%21%20%20IF%20%28N%20%3E%20I%29%20EXIT%20LOOP%5F1%0D%0A%20%20%20%20%20%20%20%20%20%21x%21END%20DO%20LOOP%5F1%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21x%21LOOP%5F2%20%3A%20DO%20I%20%3D%201%2C%2015%0D%0A%20%20%20%20%20%20%20%20%20%21x%21%20%20CRITICAL%0D%0A%20%20%20%20%20%20%20%20%20%21x%21%20%20%20%20N%20%3D%20N%20%2B%201%0D%0A%20%20%20%20%20%20%20%20%20%21x%21%20%20%20%20IF%20%28N%20%3E%20I%29%20EXIT%20LOOP%5F2%20%21%20cannott%20EXIT%20outer%20construct%20from%20inside%0D%0A%20%20%20%20%20%20%20%20%20%21x%21%20%20END%20CRITICAL%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20CHANGE%20TEAM%2C%20DO%20CONCURRENT%2C%20or%20CRITICAL%0D%0A%20%20%20%20%20%20%20%20%20%21x%21END%20DO%20LOOP%5F2%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20this%20would%20fail%0D%0A%20%20%20%20%20%20%20%20%20%21%20because%20the%20same%20construct%20name%20was%20used%20in%20the%20same%20scope%3A%0D%0A%20%20%20%20%20%20%20%20%20%21x%21%20LEVELA%20block%3A%0D%0A%20%20%20%20%20%20%20%20%20%21x%21%20exit%20LEVELA%0D%0A%20%20%20%20%20%20%20%20%20%21x%21%20endblock%20LEVELA%0D%0A%20%20%20%20%20%20%20%20%20%21x%21%0D%0A%20%20%20%20%20%20%20%20%20%21x%21%20LEVELA%20block%3A%0D%0A%20%20%20%20%20%20%20%20%20%21x%21%20exit%20LEVELA%0D%0A%20%20%20%20%20%20%20%20%20%21x%21%20endblock%20LEVELA%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20%20%20%20%21%20choose%20a%20value%20from%20range%20of%20integers%20inclusive%20randomly%0D%0A%20%20%20%20%20%20%20%20%20function%20irand%28first%2Clast%29%0D%0A%20%20%20%20%20%20%20%20%20integer%2C%20allocatable%20%3A%3A%20seed%28%3A%29%0D%0A%20%20%20%20%20%20%20%20%20integer%2Cintent%28in%29%20%20%20%3A%3A%20first%2Clast%0D%0A%20%20%20%20%20%20%20%20%20real%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20rand%5Fval%0D%0A%20%20%20%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20irand%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20call%20random%5Fnumber%28rand%5Fval%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20irand%20%3D%20first%20%2B%20floor%28%28last%2B1%2Dfirst%29%2Arand%5Fval%29%0D%0A%20%20%20%20%20%20%20%20%20end%20function%20irand%0D%0A%20%20%20%20%20%20%20%20%20end%20program%20demo%5Fexit%0D%0A"
+  target="_blank" title="Open in Fortran Playground">
+  <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
+  alt="Fortran logo" class="align-text-bottom" height="15.5" /> exit
+  </a>
+  <details>
+    <summary>Source</summary>
+  <xmp>
+         program demo_exit
+         implicit none
+         integer,parameter :: arbitrary_size=10
+         integer :: i, j, k, iarr(arbitrary_size)
+         integer :: iostat, lun
+         logical :: ok
+         character(len=80) :: line
+         character(len=*),parameter :: gen='(*(g0:,1x))'
+         !
+         ! the basics
+         !
+         ! Note we will use the function irand(3f) contained in
+         ! the end of the code below to generate random whole numbers
+         !
+         !----------------------
+         ! EXIT an infinite loop
+         !----------------------
+            i=0
+            do
+              i=i+1
+              ! we will test on a random value to simulate an actual criteria
+              ! to meet that indicates the loop should be terminated
+              if(irand(-100,100).gt.95)exit
+            enddo
+            print gen, 'escaped infinite loop after only ',i,'tries'
+
+           ! a related common use is to read a file of unknown size
+           ! till an error or end-of-file, although READ does have
+           ! the options ERR=numeric-label and EOF=numeric-label.
+           ! INFINITE: do
+           !    read(*,'(a)',iostat=iostat) line
+           !    if(iostat.ne.0)exit INFINITE
+           ! enddo
+
+         ! Some argue that an infinite loop is never a good idea.
+         ! A common practice is to avoid even the possibility of an
+         ! infinite loop by putting a cap on the number of iterations
+         ! that should "never" occur, and then error processing
+         ! if the unexpected number of loops is inadvertently reached.
+         ! This technique can let your code gracefully handle being used with
+         ! problems bigger than it was intended for, or not loop infinitely
+         ! if some unexpected or incorrect input or condition is encountered.
+         ! It might make it stop unitentionally as well.
+           !
+            ! run a loop but quit as soon as 200 random integers are odd
+            j=0
+            do i=1, 10000 ! fun facts: What are the odds of not getting 200 in 10000?
+               k=irand(0,99)
+               if((k+1)/2 /= k/2)j=j+1 ! cheap integer math trick to tell if odd
+               if(j .ge. 200) exit
+            enddo
+            if(j.lt.200) then
+               print gen,'Oh no! Not enough odd samples. only found',j
+               print gen,'That is REALLY unlikely.'
+           stop '<ERROR> unexpectedly low number of odd values'
+            else
+               print gen,'only did I=',i,'passes to get 200 odd samples'
+            endif
+         ! ---------------------------
+         ! how to EXIT nested do-loops
+         ! ---------------------------
+           ! EXIT with no name only exits an innermost loop
+           ! so in the following k will be 3, as all passes of the
+           ! outer loop still occur
+            k=0
+            do i=1,3
+               do j=1,5
+                  exit
+               enddo
+               k=k+1
+            enddo
+            ! at the end of a completed loop the counter is end_limit+step so
+            ! you can tell if you exhausted the do loop or exited early:
+            print gen,'I=',i,'so ',&
+            & merge('completed','exited   ',i.gt.3),' outer loop'
+            print gen,'J=',j,'so ',&
+            & merge('completed','exited   ',j.gt.5),' inner loop'
+            print gen,'K=',k
+
+            ! COMMENTARY:
+            ! A labeled exit is less prone to error so generally worth the
+            ! additional verbosity even when just exiting an inner loop.
+            ! Without a label an EXIT is somewhat like saying "EXIT SOMEWHERE".
+
+         ! It is simple to EXIT nested loops from an inner loop.
+         ! Just use a construct name. Lets start with the nested loop above
+         ! that only repeatedly exited the inner loop and label the outer
+         ! loop "OUTER". Now our exit can explicity name what loop it wants
+         ! to exit ...
+
+            k=0
+            OUTER: do i=1,3
+               do j=1,5
+                  exit OUTER
+               enddo
+               k=k+1
+            enddo OUTER
+            if(i==1.and.j==1.and.k==0)then
+               print gen,'exited nested loops successfully as expected'
+            else
+               print gen,'something went wrong, i=',i,'j=',j,'k=',k
+            endif
+
+         ! ---------------------------------------
+         ! exits from non-DO-loop block constructs
+         ! ---------------------------------------
+         ! REMEMBER: non-DO-loop exits are always named
+
+         !----------------------------------------------------------------------
+         ! EXIT a BLOCK statement surrounding a loop to avoid the nefarious GOTO
+         !----------------------------------------------------------------------
+            ! look for a 5 in an array that should always have it
+            iarr=[(i,i=1,size(iarr))] ! fill array with 1 to N
+            LOOKFOR: block
+               do i=1,size(iarr)
+             ! when you find what you are looking for use an EXIT instead
+             ! of a GOTO , which follows much more restricted rules on
+             ! on where you can land, preventing the threat of spaghetti code
+                 if(iarr(i).eq.5) exit LOOKFOR
+               enddo
+           write(*,*)'should not get here. iarr=',iarr
+           stop '<INTERNAL ERROR> should never get here! is array too small?'
+            endblock LOOKFOR
+            print gen,'Good Found 5 at position I=',i,'so exited BLOCK construct'
+
+         !--------------
+         ! Dusty corners
+         !--------------
+
+         ! a block contained completely within a DO CONCURRENT can
+         ! be exited even though the DO CONCURRENT itself or an outer block
+         ! cannot be terminated from within a DO CONCURRENT
+         do concurrent (i = 1:10)
+            INCC:  block
+              real :: t
+             t = 0.0
+             if (t == 0.0) exit INCC
+             t= t+1.0
+             end block INCC
+         end do
+
+         ! The following example shows illegal EXIT statements in DO CONCURRENT
+         ! and CRITICAL:
+
+         ! can   t EXIT DO CONCURRENT or outer construct of a DO CONCURRENT
+         !x!N=4
+         !x!LOOP_1 : DO CONCURRENT (I = 1:N)
+         !x!  N = N + 1
+         !x!  IF (N > I) EXIT LOOP_1
+         !x!END DO LOOP_1
+
+         !x!LOOP_2 : DO I = 1, 15
+         !x!  CRITICAL
+         !x!    N = N + 1
+         !x!    IF (N > I) EXIT LOOP_2 ! cannott EXIT outer construct from inside
+         !x!  END CRITICAL             ! CHANGE TEAM, DO CONCURRENT, or CRITICAL
+         !x!END DO LOOP_2
+
+         ! this would fail
+         ! because the same construct name was used in the same scope:
+         !x! LEVELA block:
+         !x! exit LEVELA
+         !x! endblock LEVELA
+         !x!
+         !x! LEVELA block:
+         !x! exit LEVELA
+         !x! endblock LEVELA
+
+         contains
+         ! choose a value from range of integers inclusive randomly
+         function irand(first,last)
+         integer, allocatable :: seed(:)
+         integer,intent(in)   :: first,last
+         real                 :: rand_val
+         integer              :: irand
+            call random_number(rand_val)
+            irand = first + floor((last+1-first)*rand_val)
+         end function irand
+         end program demo_exit
+  </xmp>
+  </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fexp%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20real%20%3A%3A%20x%2C%20re%2C%20im%0D%0A%20%20%20%20%20%20complex%20%3A%3A%20cx%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20x%20%3D%201%2E0%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%22Euler%27s%20constant%20is%20approximately%22%2Cexp%28x%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%21%20complex%20values%0D%0A%20%20%20%20%20%20%20%20%20%21%20given%0D%0A%20%20%20%20%20%20%20%20%20re%3D3%2E0%0D%0A%20%20%20%20%20%20%20%20%20im%3D4%2E0%0D%0A%20%20%20%20%20%20%20%20%20cx%3Dcmplx%28re%2Cim%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20complex%20results%20from%20complex%20arguments%20are%20Related%20to%20Euler%27s%20formula%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27given%20the%20complex%20value%20%27%2Ccx%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27exp%28x%29%20is%27%2Cexp%28cx%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27is%20the%20same%20as%27%2Cexp%28re%29%2Acmplx%28cos%28im%29%2Csin%28im%29%2Ckind%3Dkind%28cx%29%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20exp%283%29%20is%20the%20inverse%20function%20of%20log%283%29%20so%0D%0A%20%20%20%20%20%20%20%20%20%21%20the%20real%20component%20of%20the%20input%20must%20be%20less%20than%20or%20equal%20to%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27maximum%20real%20component%27%2Clog%28huge%280%2E0%29%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20or%20for%20double%20precision%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27maximum%20doubleprecision%20component%27%2Clog%28huge%280%2E0d0%29%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20but%20since%20the%20imaginary%20component%20is%20passed%20to%20the%20cos%283%29%20and%20sin%283%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20functions%20the%20imaginary%20component%20can%20be%20any%20real%20value%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fexp%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
@@ -4267,7 +4267,7 @@ SEE ALSO
       end program demo_index
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Finquire%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20lun%3D40%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20iostat%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27is%20it%20open%20or%20predefined%3F%27%0D%0A%20%20%20%20%20%20%20%20%20call%20print%5Finquire%28lun%2C%27%27%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27what%20are%20the%20defaults%3F%27%0D%0A%20%20%20%20%20%20%20%20%20open%28unit%3Dlun%29%0D%0A%20%20%20%20%20%20%20%20%20call%20print%5Finquire%28lun%2C%27%27%29%0D%0A%20%20%20%20%20%20%20%20%20close%28unit%3Dlun%2Cstatus%3D%27delete%27%2Ciostat%3Diostat%29%0D%0A%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20subroutine%20print%5Finquire%28lun%5Fin%2Cfilename%29%0D%0A%0D%0A%20%20%20%20%20%20%21%20%40%28%23%29%20print%5Finquire%283f%29%20print%20INQUIRE%20of%20file%20by%20name%2Fnumber%0D%0A%0D%0A%20%20%20%20%20%20integer%2Cintent%28in%29%2Coptional%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20%20lun%5Fin%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cintent%28in%29%2Coptional%20%20%3A%3A%20%20filename%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20%20iostat%0D%0A%20%20%20%20%20%20character%28len%3D256%29%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20%20message%0D%0A%20%20%20%20%20%20character%28len%3D%3A%29%2Callocatable%20%20%20%20%20%20%20%20%20%20%3A%3A%20%20filename%5F%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20%20lun%0D%0A%20%20%20%20%20%20%21%20STATUS%3DNEW%7CREPLACE%7COLD%7CSCRATCH%7CUNKNOWN%0D%0A%20%20%20%20%20%20%21%20SEQUENTIAL%20%7C%20DIRECT%20%7C%20STREAM%20%7C%20UNDEFINED%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20access%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Faccess%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20asynchronous%20%20%3B%20%20namelist%2Finquire%2Fasynchronous%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20blank%20%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fblank%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20decimal%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fdecimal%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20delim%20%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fdelim%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20direct%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fdirect%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20encoding%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fencoding%0D%0A%20%20%20%20%20%20%21%20%20FORMATTED%20%20%20%7C%20%20UNFORMATTED%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20form%20%20%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fform%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20formatted%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fformatted%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20unformatted%20%20%20%3B%20%20namelist%2Finquire%2Funformatted%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20name%20%20%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fname%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20pad%20%20%20%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fpad%0D%0A%20%20%20%20%20%20%21%20%20ASIS%20%20%20%20%20%20%20%20%7C%20%20REWIND%20%20%20%20%20%20%20%7C%20%20APPEND%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20position%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fposition%0D%0A%20%20%20%20%20%20%21%20%20READ%20%20%20%20%20%20%20%20%7C%20%20WRITE%20%20%20%20%20%20%20%20%7C%20%20READWRITE%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20action%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Faction%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20read%20%20%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fread%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20readwrite%20%20%20%20%20%3B%20%20namelist%2Finquire%2Freadwrite%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20write%20%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fwrite%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20round%20%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fround%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20sequential%20%20%20%20%3B%20%20namelist%2Finquire%2Fsequential%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20sign%20%20%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fsign%0D%0A%20%20%20%20%20%20character%28len%3D20%29%20%20%3A%3A%20%20stream%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fstream%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20%20id%20%20%20%20%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fid%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20%20nextrec%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fnextrec%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20%20number%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fnumber%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20%20pos%20%20%20%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fpos%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20%20recl%20%20%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Frecl%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20%20size%20%20%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fsize%0D%0A%20%20%20%20%20%20logical%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20%20exist%20%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fexist%0D%0A%20%20%20%20%20%20logical%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20%20named%20%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fnamed%0D%0A%20%20%20%20%20%20logical%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20%20opened%20%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fopened%0D%0A%20%20%20%20%20%20logical%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20%20pending%20%20%20%20%20%20%20%3B%20%20namelist%2Finquire%2Fpending%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20if%28present%28filename%29%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20filename%5F%20%3Dfilename%0D%0A%20%20%20%20%20%20%20%20%20else%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20filename%5F%20%3D%27%27%0D%0A%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20%20%20%20%20%20%20%20lun%3Dmerge%28lun%5Fin%2C%2D1%2Cpresent%28lun%5Fin%29%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20exist%2C%20opened%2C%20and%20named%20always%20become%20defined%0D%0A%20%20%20%20%20%20%20%20%20%21%20unless%20an%20error%20condition%20occurs%2E%0D%0A%20%20%20%20%20%20%20%20%20if%28filename%5F%20%20%3D%3D%20%27%27%2Eand%2Elun%20%2F%3D%20%2D1%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27%2Aprint%5Finquire%2A%20checking%20unit%27%2Clun%0D%0A%20%20%20%20%20%20%20%20%20%20%20inquire%28unit%3Dlun%2Crecl%3Drecl%2Cnextrec%3Dnextrec%2Cpos%3Dpos%2Csize%3Dsize%2C%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20position%3Dposition%2Cname%3Dname%2Cform%3Dform%2Cformatted%3Dformatted%2C%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20unformatted%3Dunformatted%2Caccess%3Daccess%2Csequential%3Dsequential%2C%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20direct%3Ddirect%2Cstream%3Dstream%2Caction%3Daction%2Cread%3Dread%2Cwrite%3Dwrite%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20readwrite%3Dreadwrite%2Csign%3Dsign%2Cround%3Dround%2Cblank%3Dblank%2C%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20decimal%3Ddecimal%2Cdelim%3Ddelim%2Cencoding%3Dencoding%2Cpad%3Dpad%2C%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20named%3Dnamed%2Copened%3Dopened%2Cexist%3Dexist%2Cnumber%3Dnumber%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%21bug%20%26%20pending%3Dpending%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20asynchronous%3Dasynchronous%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20iostat%3Diostat%2Cerr%3D999%2Ciomsg%3Dmessage%29%0D%0A%20%20%20%20%20%20%20%20%20elseif%28filename%5F%20%20%2F%3D%20%27%27%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27%2Aprint%5Finquire%2A%20checking%20file%3A%27%2F%2Ffilename%5F%0D%0A%20%20%20%20%20%20%20%20%20%20%20inquire%28file%3Dfilename%5F%20%2Crecl%3Drecl%2Cnextrec%3Dnextrec%2Cpos%3Dpos%2C%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20size%3Dsize%2Cposition%3Dposition%2Cname%3Dname%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20form%3Dform%2Cformatted%3Dformatted%2Cunformatted%3Dunformatted%2C%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20access%3Daccess%2Csequential%3Dsequential%2Cdirect%3Ddirect%2Cstream%3Dstream%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20action%3Daction%2Cread%3Dread%2Cwrite%3Dwrite%2Creadwrite%3Dreadwrite%2C%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20sign%3Dsign%2Cround%3Dround%2Cblank%3Dblank%2Cdecimal%3Ddecimal%2Cdelim%3Ddelim%2C%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20encoding%3Dencoding%2Cpad%3Dpad%2Cnamed%3Dnamed%2Copened%3Dopened%2Cexist%3Dexist%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20number%3Dnumber%2Cpending%3Dpending%2Casynchronous%3Dasynchronous%2C%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20iostat%3Diostat%2Cerr%3D999%2Ciomsg%3Dmessage%29%0D%0A%20%20%20%20%20%20%20%20%20else%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27%2Aprint%5Finquire%2A%20must%20specify%20either%20filename%20or%20unit%20number%27%0D%0A%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cnml%3Dinquire%2Cdelim%3D%27none%27%29%0D%0A%20%20%20%20%20%20%20%20%20return%0D%0A%20%20%20%20%20%20999%20%20%20continue%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27%2Aprint%5Finquire%2A%20bad%20inquire%27%0D%0A%20%20%20%20%20%20%21%20%20If%20an%20error%20condition%20occurs%20during%20execution%20of%20an%20INQUIRE%20%20statement%2C%0D%0A%20%20%20%20%20%20%21%20%20all%20of%20the%20inquiry%20identifiers%20except%20iostat%20become%20undefined%2E%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20%27%2Aprint%5Finquire%2A%20inquire%20call%20failed%2Ciostat%3D%27%2Ciostat%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20%27message%3D%27%2Cmessage%0D%0A%20%20%20%20%20%20end%20subroutine%20print%5Finquire%0D%0A%20%20%20%20%20%20end%20program%20demo%5Finquire%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20program%20demo%5Finquire%20implicit%20none%0D%0A%0D%0A%20%20character%28len%3D4096%29%0D%0A%20%20%20%20%3A%3A%20filename%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20mode%0D%0A%0D%0A%20%20integer%0D%0A%20%20%20%20%3A%3A%20ios%0D%0A%0D%0A%20%20character%28len%3D256%29%0D%0A%20%20%20%20%3A%3A%20message%0D%0A%0D%0A%20%20integer%0D%0A%20%20%20%20%3A%3A%20lun%20call%20print%5Finquire%28lun%2C%27%27%29%20contains%20subroutine%0D%0A%20%20%20%20print%5Finquire%28lun%5Fin%2Cnamein%5Fin%29%0D%0A%0D%0A%20%20%21%20%40%28%23%29%20M%5Fio%20print%5Finquire%283f%29%20Do%20INQUIRE%20on%20file%20by%20name%2Fnumber%20and%20print%0D%0A%20%20results%0D%0A%0D%0A%20%20integer%2Cintent%28in%29%2Coptional%0D%0A%20%20%20%20%3A%3A%20lun%5Fin%20%20%20%20%20%20%20%20%21%20if%20unit%20%3E%3D%200%20then%20query%20by%20unit%20number%2C%20else%20by%20name%0D%0A%0D%0A%20%20character%28len%3D%2A%29%2Cintent%28in%29%2Coptional%0D%0A%20%20%20%20%3A%3A%20namein%5Fin%0D%0A%0D%0A%20%20integer%0D%0A%20%20%20%20%3A%3A%20ios%0D%0A%0D%0A%20%20character%28len%3D256%29%0D%0A%20%20%20%20%3A%3A%20message%0D%0A%0D%0A%20%20character%28len%3D%3A%29%2Callocatable%0D%0A%20%20%20%20%3A%3A%20namein%0D%0A%0D%0A%20%20integer%0D%0A%20%20%20%20%3A%3A%20lun%0D%0A%20%20%20%20%21%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0D%0A%20%20%20%20%21%20STATUS%3DNEW%7CREPLACE%7COLD%7CSCRATCH%7CUNKNOWN%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20access%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Faccess%20%20%20%20%20%20%20%21%20SEQUENTIAL%20%7C%20DIRECT%20%7C%0D%0A%20%20%20%20STREAM%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20asynchronous%20%20%20%3B%20namelist%2Finquire%2Fasynchronous%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20blank%20%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fblank%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20decimal%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fdecimal%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20delim%20%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fdelim%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20direct%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fdirect%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20encoding%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fencoding%0D%0A%0D%0A%20%20logical%0D%0A%20%20%20%20%3A%3A%20exist%20%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fexist%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20form%20%20%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fform%20%20%20%20%20%20%20%20%20%20%21%20FORMATTED%20%7C%0D%0A%20%20%20%20UNFORMATTED%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20formatted%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fformatted%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20unformatted%20%20%20%20%3B%20namelist%2Finquire%2Funformatted%0D%0A%0D%0A%20%20integer%0D%0A%20%20%20%20%3A%3A%20id%20%20%20%20%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fid%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20name%20%20%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fname%0D%0A%0D%0A%20%20logical%0D%0A%20%20%20%20%3A%3A%20named%20%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fnamed%0D%0A%0D%0A%20%20integer%0D%0A%20%20%20%20%3A%3A%20nextrec%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fnextrec%0D%0A%0D%0A%20%20integer%0D%0A%20%20%20%20%3A%3A%20number%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fnumber%0D%0A%0D%0A%20%20logical%0D%0A%20%20%20%20%3A%3A%20opened%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fopened%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20pad%20%20%20%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fpad%0D%0A%0D%0A%20%20logical%0D%0A%20%20%20%20%3A%3A%20pending%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fpending%0D%0A%0D%0A%20%20integer%0D%0A%20%20%20%20%3A%3A%20pos%20%20%20%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fpos%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20position%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fposition%20%20%20%20%20%20%20%21%20ASIS%20%7C%20REWIND%20%7C%0D%0A%20%20%20%20APPEND%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20action%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Faction%20%20%20%20%20%20%20%20%20%21%20READ%20%7C%20WRITE%20%7C%0D%0A%20%20%20%20READWRITE%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20read%20%20%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fread%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20readwrite%20%20%20%20%20%20%3B%20namelist%2Finquire%2Freadwrite%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20write%20%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fwrite%0D%0A%0D%0A%20%20integer%0D%0A%20%20%20%20%3A%3A%20recl%20%20%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Frecl%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20round%20%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fround%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20sequential%20%20%20%20%20%3B%20namelist%2Finquire%2Fsequential%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20sign%20%20%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fsign%0D%0A%0D%0A%20%20integer%0D%0A%20%20%20%20%3A%3A%20size%20%20%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fsize%0D%0A%0D%0A%20%20character%28len%3D20%29%0D%0A%20%20%20%20%3A%3A%20stream%20%20%20%20%20%20%20%20%20%3B%20namelist%2Finquire%2Fstream%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20namein%3Dmerge%5Fstr%28namein%5Fin%2C%27%27%2Cpresent%28namein%5Fin%29%29%0D%0A%20%20%20%20%20%20%20%20%20lun%3Dmerge%28lun%5Fin%2C%2D1%2Cpresent%28lun%5Fin%29%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20exist%2C%20opened%2C%20and%20named%20always%20become%20defined%20unless%20an%20error%20condition%20occurs%2E%0D%0A%20%20%20%20%20%20%20%20%20%21%21write%28%2A%2C%2A%29%27LUN%3D%27%2Clun%2C%27%20FILENAME%3D%27%2Cnamein%0D%0A%20%20%20%20%20%20%20%20%20name%3D%27%27%0D%0A%20%20%20%20%20%20%20%20%20if%28namein%20%3D%3D%20%27%27%2Eand%2Elun%20%2F%3D%20%2D1%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20call%20journal%28%27sc%27%2C%27%2Aprint%5Finquire%2A%20checking%20unit%27%2Clun%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20inquire%28unit%3Dlun%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20recl%3Drecl%2Cnextrec%3Dnextrec%2Cpos%3Dpos%2Csize%3Dsize%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20position%3Dposition%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20name%3Dname%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20form%3Dform%2Cformatted%3Dformatted%2Cunformatted%3Dunformatted%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20access%3Daccess%2Csequential%3Dsequential%2Cdirect%3Ddirect%2Cstream%3Dstream%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20action%3Daction%2Cread%3Dread%2Cwrite%3Dwrite%2Creadwrite%3Dreadwrite%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20sign%3Dsign%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20round%3Dround%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20blank%3Dblank%2Cdecimal%3Ddecimal%2Cdelim%3Ddelim%2Cencoding%3Dencoding%2Cpad%3Dpad%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20named%3Dnamed%2Copened%3Dopened%2Cexist%3Dexist%2Cnumber%3Dnumber%2Cpending%3Dpending%2Casynchronous%3Dasynchronous%2C%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20iostat%3Dios%2Cerr%3D999%2Ciomsg%3Dmessage%29%0D%0A%20%20%20%20%20%20%20%20%20%20elseif%28namein%20%2F%3D%20%27%27%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20call%20journal%28%27sc%27%2C%27%2Aprint%5Finquire%2A%20checking%20file%3A%27%2F%2Fnamein%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20inquire%28file%3Dnamein%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20recl%3Drecl%2Cnextrec%3Dnextrec%2Cpos%3Dpos%2Csize%3Dsize%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20position%3Dposition%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20name%3Dname%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20form%3Dform%2Cformatted%3Dformatted%2Cunformatted%3Dunformatted%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20access%3Daccess%2Csequential%3Dsequential%2Cdirect%3Ddirect%2Cstream%3Dstream%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20action%3Daction%2Cread%3Dread%2Cwrite%3Dwrite%2Creadwrite%3Dreadwrite%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20sign%3Dsign%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20round%3Dround%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20blank%3Dblank%2Cdecimal%3Ddecimal%2Cdelim%3Ddelim%2Cencoding%3Dencoding%2Cpad%3Dpad%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20named%3Dnamed%2Copened%3Dopened%2Cexist%3Dexist%2Cnumber%3Dnumber%2Cpending%3Dpending%2Casynchronous%3Dasynchronous%2C%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20%20%20iostat%3Dios%2Cerr%3D999%2Ciomsg%3Dmessage%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20if%28name%20%3D%3D%20%27%27%29name%3Dnamein%0D%0A%20%20%20%20%20%20%20%20%20%20else%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20call%20journal%28%27sc%27%2C%27%2Aprint%5Finquire%2A%20must%20specify%20either%20filename%20or%20unit%20number%27%29%0D%0A%20%20%20%20%20%20%20%20%20%20endif%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cnml%3Dinquire%2Cdelim%3D%27none%27%29%0D%0A%20%20%20%20%20%20%20%20%20return%0D%0A%0D%0A%20%20999%0D%0A%20%20%20%20continue%20write%28%2A%2C%2A%29%27%2Aprint%5Finquire%2A%20bad%20inquire%27%0D%0A%0D%0A%20%20%21%20If%20an%20error%20condition%20occurs%20during%20execution%20of%20an%20INQUIRE%20%20statement%2C%0D%0A%0D%0A%20%20%21%20all%20of%20the%20inquiry%20identifiers%20except%20ios%20become%20undefined%2E%20%20write%28%2A%2C%2A%29%0D%0A%20%20%20%20%27%2Aprint%5Finquire%2A%20inquire%20call%20failed%2Ciostat%3D%27%2Cios%2C%27message%3D%27%2Cmessage%20end%0D%0A%20%20%20%20subroutine%20print%5Finquire%20end%20program%20demo%5Finquire%0D%0A%0D%0ASEE%20ALSO%0D%0A%20%20BACKSPACE%287%29%2C%20CLOSE%287%29%2C%20ENDFILE%287%29%2C%20FLUSH%287%29%2C%20INQUIRE%287%29%2C%20OPEN%287%29%2C%20PRINT%287%29%2C%0D%0A%20%20READ%287%29%2C%20REWIND%287%29%2C%20WAIT%287%29%2C%20WRITE%287%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20October%2002%2C%202024%20%20%20%20%20%20%20%20%20%20%20%20%20%20inquire%287fortran%29%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> inquire
@@ -4275,108 +4275,199 @@ SEE ALSO
   <details>
     <summary>Source</summary>
   <xmp>
-      program demo_inquire
-      implicit none
-      integer :: lun=40
-      integer :: iostat
-         write(*,*)'is it open or predefined?'
-         call print_inquire(lun,'')
-         write(*,*)'what are the defaults?'
-         open(unit=lun)
-         call print_inquire(lun,'')
-         close(unit=lun,status='delete',iostat=iostat)
-      contains
-      subroutine print_inquire(lun_in,filename)
+  program demo_inquire implicit none
 
-      ! @(#) print_inquire(3f) print INQUIRE of file by name/number
+  character(len=4096)
+    :: filename
 
-      integer,intent(in),optional           ::  lun_in
-      character(len=*),intent(in),optional  ::  filename
-      integer                               ::  iostat
-      character(len=256)                    ::  message
-      character(len=:),allocatable          ::  filename_
-      integer                               ::  lun
-      ! STATUS=NEW|REPLACE|OLD|SCRATCH|UNKNOWN
-      ! SEQUENTIAL | DIRECT | STREAM | UNDEFINED
-      character(len=20)  ::  access        ;  namelist/inquire/access
-      character(len=20)  ::  asynchronous  ;  namelist/inquire/asynchronous
-      character(len=20)  ::  blank         ;  namelist/inquire/blank
-      character(len=20)  ::  decimal       ;  namelist/inquire/decimal
-      character(len=20)  ::  delim         ;  namelist/inquire/delim
-      character(len=20)  ::  direct        ;  namelist/inquire/direct
-      character(len=20)  ::  encoding      ;  namelist/inquire/encoding
-      !  FORMATTED   |  UNFORMATTED
-      character(len=20)  ::  form          ;  namelist/inquire/form
-      character(len=20)  ::  formatted     ;  namelist/inquire/formatted
-      character(len=20)  ::  unformatted   ;  namelist/inquire/unformatted
-      character(len=20)  ::  name          ;  namelist/inquire/name
-      character(len=20)  ::  pad           ;  namelist/inquire/pad
-      !  ASIS        |  REWIND       |  APPEND
-      character(len=20)  ::  position      ;  namelist/inquire/position
-      !  READ        |  WRITE        |  READWRITE
-      character(len=20)  ::  action        ;  namelist/inquire/action
-      character(len=20)  ::  read          ;  namelist/inquire/read
-      character(len=20)  ::  readwrite     ;  namelist/inquire/readwrite
-      character(len=20)  ::  write         ;  namelist/inquire/write
-      character(len=20)  ::  round         ;  namelist/inquire/round
-      character(len=20)  ::  sequential    ;  namelist/inquire/sequential
-      character(len=20)  ::  sign          ;  namelist/inquire/sign
-      character(len=20)  ::  stream        ;  namelist/inquire/stream
-      integer            ::  id            ;  namelist/inquire/id
-      integer            ::  nextrec       ;  namelist/inquire/nextrec
-      integer            ::  number        ;  namelist/inquire/number
-      integer            ::  pos           ;  namelist/inquire/pos
-      integer            ::  recl          ;  namelist/inquire/recl
-      integer            ::  size          ;  namelist/inquire/size
-      logical            ::  exist         ;  namelist/inquire/exist
-      logical            ::  named         ;  namelist/inquire/named
-      logical            ::  opened        ;  namelist/inquire/opened
-      logical            ::  pending       ;  namelist/inquire/pending
+  character(len=20)
+    :: mode
 
-         if(present(filename))then
-            filename_ =filename
-         else
-            filename_ =''
-         endif
+  integer
+    :: ios
+
+  character(len=256)
+    :: message
+
+  integer
+    :: lun call print_inquire(lun,'') contains subroutine
+    print_inquire(lun_in,namein_in)
+
+  ! @(#) M_io print_inquire(3f) Do INQUIRE on file by name/number and print
+  results
+
+  integer,intent(in),optional
+    :: lun_in        ! if unit >= 0 then query by unit number, else by name
+
+  character(len=*),intent(in),optional
+    :: namein_in
+
+  integer
+    :: ios
+
+  character(len=256)
+    :: message
+
+  character(len=:),allocatable
+    :: namein
+
+  integer
+    :: lun
+    !==============================================================================================
+    ! STATUS=NEW|REPLACE|OLD|SCRATCH|UNKNOWN
+
+  character(len=20)
+    :: access         ; namelist/inquire/access       ! SEQUENTIAL | DIRECT |
+    STREAM
+
+  character(len=20)
+    :: asynchronous   ; namelist/inquire/asynchronous
+
+  character(len=20)
+    :: blank          ; namelist/inquire/blank
+
+  character(len=20)
+    :: decimal        ; namelist/inquire/decimal
+
+  character(len=20)
+    :: delim          ; namelist/inquire/delim
+
+  character(len=20)
+    :: direct         ; namelist/inquire/direct
+
+  character(len=20)
+    :: encoding       ; namelist/inquire/encoding
+
+  logical
+    :: exist          ; namelist/inquire/exist
+
+  character(len=20)
+    :: form           ; namelist/inquire/form          ! FORMATTED |
+    UNFORMATTED
+
+  character(len=20)
+    :: formatted      ; namelist/inquire/formatted
+
+  character(len=20)
+    :: unformatted    ; namelist/inquire/unformatted
+
+  integer
+    :: id             ; namelist/inquire/id
+
+  character(len=20)
+    :: name           ; namelist/inquire/name
+
+  logical
+    :: named          ; namelist/inquire/named
+
+  integer
+    :: nextrec        ; namelist/inquire/nextrec
+
+  integer
+    :: number         ; namelist/inquire/number
+
+  logical
+    :: opened         ; namelist/inquire/opened
+
+  character(len=20)
+    :: pad            ; namelist/inquire/pad
+
+  logical
+    :: pending        ; namelist/inquire/pending
+
+  integer
+    :: pos            ; namelist/inquire/pos
+
+  character(len=20)
+    :: position       ; namelist/inquire/position       ! ASIS | REWIND |
+    APPEND
+
+  character(len=20)
+    :: action         ; namelist/inquire/action         ! READ | WRITE |
+    READWRITE
+
+  character(len=20)
+    :: read           ; namelist/inquire/read
+
+  character(len=20)
+    :: readwrite      ; namelist/inquire/readwrite
+
+  character(len=20)
+    :: write          ; namelist/inquire/write
+
+  integer
+    :: recl           ; namelist/inquire/recl
+
+  character(len=20)
+    :: round          ; namelist/inquire/round
+
+  character(len=20)
+    :: sequential     ; namelist/inquire/sequential
+
+  character(len=20)
+    :: sign           ; namelist/inquire/sign
+
+  integer
+    :: size           ; namelist/inquire/size
+
+  character(len=20)
+    :: stream         ; namelist/inquire/stream
+
+         namein=merge_str(namein_in,'',present(namein_in))
          lun=merge(lun_in,-1,present(lun_in))
-         ! exist, opened, and named always become defined
-         ! unless an error condition occurs.
-         if(filename_  == ''.and.lun /= -1)then
-           write(*,*)'*print_inquire* checking unit',lun
-           inquire(unit=lun,recl=recl,nextrec=nextrec,pos=pos,size=size,      &
-           & position=position,name=name,form=form,formatted=formatted,       &
-           & unformatted=unformatted,access=access,sequential=sequential,     &
-           & direct=direct,stream=stream,action=action,read=read,write=write, &
-           & readwrite=readwrite,sign=sign,round=round,blank=blank,           &
-           & decimal=decimal,delim=delim,encoding=encoding,pad=pad,           &
-           & named=named,opened=opened,exist=exist,number=number,             &
-      !bug & pending=pending,                                                 &
-           & asynchronous=asynchronous,                                       &
-           & iostat=iostat,err=999,iomsg=message)
-         elseif(filename_  /= '')then
-           write(*,*)'*print_inquire* checking file:'//filename_
-           inquire(file=filename_ ,recl=recl,nextrec=nextrec,pos=pos,         &
-           & size=size,position=position,name=name,                           &
-           & form=form,formatted=formatted,unformatted=unformatted,           &
-           & access=access,sequential=sequential,direct=direct,stream=stream, &
-           & action=action,read=read,write=write,readwrite=readwrite,         &
-           & sign=sign,round=round,blank=blank,decimal=decimal,delim=delim,   &
-           & encoding=encoding,pad=pad,named=named,opened=opened,exist=exist, &
-           & number=number,pending=pending,asynchronous=asynchronous,         &
-           & iostat=iostat,err=999,iomsg=message)
-         else
-            write(*,*)'*print_inquire* must specify either filename or unit number'
-         endif
+         ! exist, opened, and named always become defined unless an error condition occurs.
+         !!write(*,*)'LUN=',lun,' FILENAME=',namein
+         name=''
+         if(namein == ''.and.lun /= -1)then
+               call journal('sc','*print_inquire* checking unit',lun)
+               inquire(unit=lun,                                                                               &
+           &   recl=recl,nextrec=nextrec,pos=pos,size=size,                                                    &
+           &   position=position,                                                                              &
+           &   name=name,                                                                                      &
+           &   form=form,formatted=formatted,unformatted=unformatted,                                          &
+           &   access=access,sequential=sequential,direct=direct,stream=stream,                                &
+           &   action=action,read=read,write=write,readwrite=readwrite,                                        &
+           &   sign=sign,                                                                                      &
+           &   round=round,                                                                                    &
+           &   blank=blank,decimal=decimal,delim=delim,encoding=encoding,pad=pad,                              &
+           &   named=named,opened=opened,exist=exist,number=number,pending=pending,asynchronous=asynchronous,  &
+           &   iostat=ios,err=999,iomsg=message)
+          elseif(namein /= '')then
+               call journal('sc','*print_inquire* checking file:'//namein)
+               inquire(file=namein,                                                                            &
+           &   recl=recl,nextrec=nextrec,pos=pos,size=size,                                                    &
+           &   position=position,                                                                              &
+           &   name=name,                                                                                      &
+           &   form=form,formatted=formatted,unformatted=unformatted,                                          &
+           &   access=access,sequential=sequential,direct=direct,stream=stream,                                &
+           &   action=action,read=read,write=write,readwrite=readwrite,                                        &
+           &   sign=sign,                                                                                      &
+           &   round=round,                                                                                    &
+           &   blank=blank,decimal=decimal,delim=delim,encoding=encoding,pad=pad,                              &
+           &   named=named,opened=opened,exist=exist,number=number,pending=pending,asynchronous=asynchronous,  &
+           &   iostat=ios,err=999,iomsg=message)
+           if(name == '')name=namein
+          else
+             call journal('sc','*print_inquire* must specify either filename or unit number')
+          endif
+
          write(*,nml=inquire,delim='none')
          return
-      999   continue
-         write(*,*)'*print_inquire* bad inquire'
-      !  If an error condition occurs during execution of an INQUIRE  statement,
-      !  all of the inquiry identifiers except iostat become undefined.
-         write(*,*) '*print_inquire* inquire call failed,iostat=',iostat, &
-         & 'message=',message
-      end subroutine print_inquire
-      end program demo_inquire
+
+  999
+    continue write(*,*)'*print_inquire* bad inquire'
+
+  ! If an error condition occurs during execution of an INQUIRE  statement,
+
+  ! all of the inquiry identifiers except ios become undefined.  write(*,*)
+    '*print_inquire* inquire call failed,iostat=',ios,'message=',message end
+    subroutine print_inquire end program demo_inquire
+
+SEE ALSO
+  BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),
+  READ(7), REWIND(7), WAIT(7), WRITE(7)
+
+                               October 02, 2024              inquire(7fortran)
   </xmp>
   </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fint%0D%0A%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20int8%2C%20int16%2C%20int32%2C%20int64%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%20%3D%2042%0D%0A%20%20%20%20%20%20complex%20%3A%3A%20z%20%3D%20%28%2D3%2E7%2C%201%2E0%29%0D%0A%20%20%20%20%20%20real%20%3A%3A%20x%3D%2D10%2E5%2C%20y%3D10%2E5%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20int%28x%29%2C%20int%28y%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20int%28i%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20int%28z%29%2C%20int%28z%2C8%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20elemental%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20int%28%5B%2D10%2E9%2C%2D10%2E5%2C%2D10%2E3%2C10%2E3%2C10%2E5%2C10%2E9%5D%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20note%20int%283%29%20truncates%20towards%20zero%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20CAUTION%3A%0D%0A%20%20%20%20%20%20%20%20%20%21%20a%20number%20bigger%20than%20a%20default%20integer%20can%20represent%0D%0A%20%20%20%20%20%20%20%20%20%21%20produces%20an%20incorrect%20result%20and%20is%20not%20required%20to%0D%0A%20%20%20%20%20%20%20%20%20%21%20be%20detected%20by%20the%20program%2E%0D%0A%20%20%20%20%20%20%20%20%20x%3Dreal%28huge%280%29%29%2B1000%2E0%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20int%28x%29%2Cx%0D%0A%20%20%20%20%20%20%20%20%20%21%20using%20a%20larger%20kind%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20int%28x%2Ckind%3Dint64%29%2Cx%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20int%28%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20B%22111111111111111111111111111111111111111111111111111111111111111%22%2C%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20kind%3Dint64%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20int%28O%22777777777777777777777%22%2Ckind%3Dint64%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20int%28Z%227FFFFFFFFFFFFFFF%22%2Ckind%3Dint64%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20elemental%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2Cint%28%5B%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20%20%2D2%2E7%2C%20%20%2D2%2E5%2C%20%2D2%2E2%2C%20%2D2%2E0%2C%20%2D1%2E5%2C%20%2D1%2E0%2C%20%2D0%2E5%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20%200%2E0%2C%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20%20%2B0%2E5%2C%20%20%2B1%2E0%2C%20%2B1%2E5%2C%20%2B2%2E0%2C%20%2B2%2E2%2C%20%2B2%2E5%2C%20%2B2%2E7%20%20%5D%29%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fint%0D%0A"
@@ -6174,7 +6265,7 @@ SEE ALSO
       end program demo_out_of_range
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fpack%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%2C%20allocatable%20%3A%3A%20m%28%3A%29%0D%0A%20%20%20%20%20%20character%28len%3D10%29%20%3A%3A%20c%284%29%0D%0A%0D%0A%20%20%20%20%20%20%20%21%20gathering%20nonzero%20elements%20from%20an%20array%3A%0D%0A%20%20%20%20%20%20%20%20%20m%20%3D%20%5B%201%2C%200%2C%200%2C%200%2C%205%2C%200%20%5D%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%20fmt%3D%22%28%2A%28i0%2C%20%27%20%27%29%29%22%29%20pack%28m%2C%20m%20%2F%3D%200%29%0D%0A%0D%0A%20%20%20%20%20%20%20%21%20Gathering%20nonzero%20elements%20from%20an%20array%20and%20appending%20elements%0D%0A%20%20%20%20%20%20%20%21%20from%20VECTOR%20till%20the%20size%20of%20the%20mask%20array%20%28or%20array%20size%20if%20the%0D%0A%20%20%20%20%20%20%20%21%20mask%20is%20scalar%29%3A%0D%0A%20%20%20%20%20%20%20%20%20m%20%3D%20%5B%201%2C%200%2C%200%2C%202%20%5D%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%20fmt%3D%22%28%2A%28i0%2C%20%27%20%27%29%29%22%29%20pack%28m%2C%20m%20%2F%3D%200%2C%20%5B%200%2C%200%2C%203%2C%204%20%5D%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%20fmt%3D%22%28%2A%28i0%2C%20%27%20%27%29%29%22%29%20pack%28m%2C%20m%20%2F%3D%200%20%29%0D%0A%0D%0A%20%20%20%20%20%20%20%21%20select%20strings%20whose%20second%20character%20is%20%22a%22%0D%0A%20%20%20%20%20%20%20%20%20c%20%3D%20%5B%20character%28len%3D10%29%20%3A%3A%20%27ape%27%2C%20%27bat%27%2C%20%27cat%27%2C%20%27dog%27%5D%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%20fmt%3D%22%28%2A%28g0%2C%20%27%20%27%29%29%22%29%20pack%28c%2C%20c%28%3A%29%282%3A2%29%20%3D%3D%20%27a%27%20%29%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fpack%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fpack%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%2C%20allocatable%20%3A%3A%20m%28%3A%29%0D%0A%20%20%20%20%20%20character%28len%3D10%29%20%3A%3A%20c%284%29%0D%0A%0D%0A%20%20%20%20%20%20%20%21%20gathering%20nonzero%20elements%20from%20an%20array%3A%0D%0A%20%20%20%20%20%20%20%20%20m%20%3D%20%5B%201%2C%200%2C%200%2C%200%2C%205%2C%200%20%5D%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%20fmt%3D%22%28%2A%28i0%2C%20%27%20%27%29%29%22%29%20pack%28m%2C%20m%20%2F%3D%200%29%0D%0A%0D%0A%20%20%20%20%20%20%20%21%20Gathering%20nonzero%20elements%20from%20an%20array%20and%20appending%20elements%0D%0A%20%20%20%20%20%20%20%21%20from%20VECTOR%20till%20the%20size%20of%20the%20mask%20array%20%28or%20array%20size%20if%20the%0D%0A%20%20%20%20%20%20%20%21%20mask%20is%20scalar%29%3A%0D%0A%20%20%20%20%20%20%20%20%20m%20%3D%20%5B%201%2C%200%2C%200%2C%202%20%5D%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%20fmt%3D%22%28%2A%28i0%2C%20%27%20%27%29%29%22%29%20pack%28m%2C%20m%20%2F%3D%200%2C%20%5B%200%2C%200%2C%203%2C%204%20%5D%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%20fmt%3D%22%28%2A%28i0%2C%20%27%20%27%29%29%22%29%20pack%28m%2C%20m%20%2F%3D%200%20%29%0D%0A%0D%0A%20%20%20%20%20%20%20%21%20select%20strings%20whose%20second%20character%20is%20%22a%22%0D%0A%20%20%20%20%20%20%20%20%20c%20%3D%20%5B%20character%28len%3D10%29%20%3A%3A%20%27ape%27%2C%20%27bat%27%2C%20%27cat%27%2C%20%27dog%27%5D%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%20fmt%3D%22%28%2A%28g0%2C%20%27%20%27%29%29%22%29%20pack%28c%2C%20c%28%3A%29%282%3A2%29%20%3D%3D%20%27a%27%20%29%0D%0A%0D%0A%20%20%20%20%20%20%20%21%20creating%20a%20quicksort%20using%20PACK%283f%29%0D%0A%0D%0A%20%20%20BLOCK%0D%0A%20%20INTRINSIC%20RANDOM%5FSEED%2C%20RANDOM%5FNUMBER%20REAL%20%3A%3A%20x%2810%29%20CALL%20RANDOM%5FSEED%28%29%20CALL%0D%0A%20%20RANDOM%5FNUMBER%28x%29%20WRITE%20%28%2A%2C%22%28a10%2C%2A%281x%2Cf0%2E3%29%29%22%29%20%22initial%22%2Cx%20WRITE%0D%0A%20%20%28%2A%2C%22%28a10%2C%2A%281x%2Cf0%2E3%29%29%22%29%20%22sorted%22%2Cqsort%28x%29%0D%0A%0D%0A%20%20%20ENDBLOCK%0D%0A%20%20%20CONTAINS%0D%0A%20%20%21%20concise%20quicksort%20from%20%40arjen%20and%20%40beliavsky%20shows%20recursion%2C%20%21%20array%0D%0A%20%20sections%2C%20and%20vectorized%20comparisons%2E%20%20PURE%20RECURSIVE%20FUNCTION%20qsort%28values%29%0D%0A%20%20RESULT%28sorted%29%20INTRINSIC%20PACK%2C%20SIZE%20REAL%2C%20INTENT%28IN%29%20%3A%3A%20values%28%3A%29%0D%0A%0D%0A%20%20REAL%0D%0A%20%20%20%20%3A%3A%20sorted%28SIZE%28values%29%29%20IF%20%28SIZE%28values%29%20%3E%201%29%20THEN%20sorted%20%3D%0D%0A%20%20%20%20%5Bqsort%28PACK%28values%282%3A%29%2Cvalues%282%3A%29%3Cvalues%281%29%29%29%2C%20values%281%29%2C%20%26%0D%0A%20%20%20%20qsort%28PACK%28values%282%3A%29%2Cvalues%282%3A%29%3E%3Dvalues%281%29%29%29%5D%0D%0A%0D%0A%20%20%20ELSE%0D%0A%20%20sorted%20%3D%20values%0D%0A%0D%0A%20%20%20ENDIF%0D%0A%20%20END%20FUNCTION%20qsort%20end%20program%20demo%5Fpack%0D%0A%0D%0A%20%20Result%3A%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%3E%201%205%0D%0A%20%20%20%20%20%20%20%20%20%20%3E%201%202%203%204%0D%0A%20%20%20%20%20%20%20%20%20%20%3E%201%202%0D%0A%20%20%20%20%20%20%20%20%20%20%3E%20bat%20%20%20%20%20%20%20%20cat%0D%0A%20%20%20%20%20%20%20%20%20%20%3E%20%20%20%20initial%20%2E833%20%2E367%20%2E958%20%2E454%20%2E122%20%2E602%20%2E418%20%2E942%20%2E566%20%2E400%0D%0A%20%20%20%20%20%20%20%20%20%20%3E%20%20%20%20%20sorted%20%2E122%20%2E367%20%2E400%20%2E418%20%2E454%20%2E566%20%2E602%20%2E833%20%2E942%20%2E958%0D%0A%0D%0ASTANDARD%0D%0A%20%20Fortran%2095%0D%0A%0D%0ASEE%20ALSO%0D%0A%20%20MERGE%283%29%2C%20SPREAD%283%29%2C%20UNPACK%283%29%0D%0A%0D%0A%20%20Fortran%20intrinsic%20descriptions%20%28license%3A%20MIT%29%20%40urbanjost%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20October%2002%2C%202024%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pack%283fortran%29%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> pack
@@ -6202,7 +6293,48 @@ SEE ALSO
          c = [ character(len=10) :: 'ape', 'bat', 'cat', 'dog']
          write(*, fmt="(*(g0, ' '))") pack(c, c(:)(2:2) == 'a' )
 
-      end program demo_pack
+       ! creating a quicksort using PACK(3f)
+
+   BLOCK
+  INTRINSIC RANDOM_SEED, RANDOM_NUMBER REAL :: x(10) CALL RANDOM_SEED() CALL
+  RANDOM_NUMBER(x) WRITE (*,"(a10,*(1x,f0.3))") "initial",x WRITE
+  (*,"(a10,*(1x,f0.3))") "sorted",qsort(x)
+
+   ENDBLOCK
+   CONTAINS
+  ! concise quicksort from @arjen and @beliavsky shows recursion, ! array
+  sections, and vectorized comparisons.  PURE RECURSIVE FUNCTION qsort(values)
+  RESULT(sorted) INTRINSIC PACK, SIZE REAL, INTENT(IN) :: values(:)
+
+  REAL
+    :: sorted(SIZE(values)) IF (SIZE(values) > 1) THEN sorted =
+    [qsort(PACK(values(2:),values(2:)<values(1))), values(1), &
+    qsort(PACK(values(2:),values(2:)>=values(1)))]
+
+   ELSE
+  sorted = values
+
+   ENDIF
+  END FUNCTION qsort end program demo_pack
+
+  Result:
+
+          > 1 5
+          > 1 2 3 4
+          > 1 2
+          > bat        cat
+          >    initial .833 .367 .958 .454 .122 .602 .418 .942 .566 .400
+          >     sorted .122 .367 .400 .418 .454 .566 .602 .833 .942 .958
+
+STANDARD
+  Fortran 95
+
+SEE ALSO
+  MERGE(3), SPREAD(3), UNPACK(3)
+
+  Fortran intrinsic descriptions (license: MIT) @urbanjost
+
+                               October 02, 2024                 pack(3fortran)
   </xmp>
   </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fparity%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20logical%2C%20parameter%20%3A%3A%20T%3D%2Etrue%2E%2C%20F%3D%2Efalse%2E%0D%0A%20%20%20%20%20%20logical%20%3A%3A%20x%283%2C4%29%0D%0A%20%20%20%20%20%20%20%20%21%20basics%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20parity%28%5BT%2CF%5D%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20parity%28%5BT%2CF%2CF%5D%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20parity%28%5BT%2CF%2CF%2CT%5D%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20parity%28%5BT%2CF%2CF%2CT%2CT%5D%29%0D%0A%20%20%20%20%20%20%20%20%20x%281%2C%3A%29%3D%5BT%2CT%2CT%2CT%5D%0D%0A%20%20%20%20%20%20%20%20%20x%282%2C%3A%29%3D%5BT%2CT%2CT%2CT%5D%0D%0A%20%20%20%20%20%20%20%20%20x%283%2C%3A%29%3D%5BT%2CT%2CT%2CT%5D%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20parity%28x%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20parity%28x%2Cdim%3D1%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20parity%28x%2Cdim%3D2%29%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fparity%0D%0A"
@@ -6518,6 +6650,16 @@ SEE ALSO
       end subroutine print_matrix_int
 
       end program demo_product
+  </xmp>
+  </details>
+  <a href="https://play.fortran-lang.org/?code="
+  target="_blank" title="Open in Fortran Playground">
+  <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
+  alt="Fortran logo" class="align-text-bottom" height="15.5" /> program
+  </a>
+  <details>
+    <summary>Source</summary>
+  <xmp>
   </xmp>
   </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fradix%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%22The%20radix%20for%20the%20default%20integer%20kind%20is%22%2C%20radix%280%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%22The%20radix%20for%20the%20default%20real%20kind%20is%22%2C%20radix%280%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%22The%20radix%20for%20the%20doubleprecision%20real%20kind%20is%22%2C%20radix%280%2E0d0%29%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fradix%0D%0A"

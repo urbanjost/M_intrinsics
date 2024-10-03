@@ -39,10 +39,10 @@ Note that **get_environment_variable**(3) need not be thread-safe. It
 is the responsibility of the user to ensure that the environment is not
 being updated concurrently.
 
-If running in parallel be aware
-It is processor dependent whether an environment variable that exists
-on an image also exists on another image, and if it does exist on both
-images whether the values are the same or different.
+If running in parallel be aware It is processor dependent whether an
+environment variable that exists on an image also exists on another
+image, and if it does exist on both images whether the values are the
+same or different.
 
 ### **Options**
 
@@ -73,6 +73,11 @@ images whether the values are the same or different.
   : If **trim_name** is present with the value _.false._, the trailing
   blanks in **name** are significant; otherwise they are not part of
   the environment variable name.
+
+- **errmsg**
+  : is assigned a processor-dependent explanatory message if the optional
+    argument **status** is, or would be if present, assigned a positive
+    value. Otherwise, it is unchanged.
 
 ### **Examples**
 

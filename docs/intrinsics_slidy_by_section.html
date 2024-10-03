@@ -8539,6 +8539,11 @@ $$</span><br /></p>
 <dd>If <strong>trim_name</strong> is present with the value .false., the trailing blanks in <strong>name</strong> are significant; otherwise they are not part of the environment variable name.
 </dd>
 </dl></li>
+<li><dl>
+<dt><strong>errmsg</strong></dt>
+<dd>is assigned a processor-dependent explanatory message if the optional argument <strong>status</strong> is, or would be if present, assigned a positive value. Otherwise, it is unchanged.
+</dd>
+</dl></li>
 </ul>
 </div><div id="examples-98" class="slide section level3">
 <h1><strong>Examples</strong></h1>
@@ -14248,12 +14253,37 @@ likely to be a representable eight-bit integer.</code></pre>
 <a class="sourceLine" id="cb698-18" title="18">   c <span class="kw">=</span> <span class="kw">[</span> <span class="dt">character(len=10)</span> <span class="dt">::</span> <span class="st">&#39;ape&#39;</span>, <span class="st">&#39;bat&#39;</span>, <span class="st">&#39;cat&#39;</span>, <span class="st">&#39;dog&#39;</span><span class="kw">]</span></a>
 <a class="sourceLine" id="cb698-19" title="19">   <span class="fu">write(*</span>, <span class="fu">fmt</span><span class="kw">=</span><span class="st">&quot;(*(g0, &#39; &#39;))&quot;</span><span class="fu">)</span> <span class="fu">pack</span>(c, c(:)(<span class="dv">2</span>:<span class="dv">2</span>) <span class="op">==</span> <span class="st">&#39;a&#39;</span> )</a>
 <a class="sourceLine" id="cb698-20" title="20"></a>
-<a class="sourceLine" id="cb698-21" title="21"><span class="kw">end program</span> demo_pack</a></code></pre></div>
-<p>Results:</p>
-<pre class="text"><code> &gt; 1 5
- &gt; 1 2 3 4
- &gt; 1 2
- &gt; bat        cat</code></pre>
+<a class="sourceLine" id="cb698-21" title="21"> <span class="co">! creating a quicksort using PACK(3f)</span></a>
+<a class="sourceLine" id="cb698-22" title="22">   BLOCK</a>
+<a class="sourceLine" id="cb698-23" title="23">   <span class="kw">INTRINSIC</span> <span class="fu">RANDOM_SEED</span>, <span class="fu">RANDOM_NUMBER</span></a>
+<a class="sourceLine" id="cb698-24" title="24"><span class="dt">   REAL</span> <span class="dt">::</span> x(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb698-25" title="25">      <span class="kw">CALL</span> <span class="fu">RANDOM_SEED</span>()</a>
+<a class="sourceLine" id="cb698-26" title="26">      <span class="kw">CALL</span> <span class="fu">RANDOM_NUMBER</span>(x)</a>
+<a class="sourceLine" id="cb698-27" title="27">      <span class="fu">WRITE (*</span>,<span class="st">&quot;(a10,*(1x,f0.3))&quot;</span><span class="fu">)</span> <span class="st">&quot;initial&quot;</span>,x</a>
+<a class="sourceLine" id="cb698-28" title="28">      <span class="fu">WRITE (*</span>,<span class="st">&quot;(a10,*(1x,f0.3))&quot;</span><span class="fu">)</span> <span class="st">&quot;sorted&quot;</span>,qsort(x)</a>
+<a class="sourceLine" id="cb698-29" title="29">   ENDBLOCK</a>
+<a class="sourceLine" id="cb698-30" title="30"><span class="co">CONTAINS</span></a>
+<a class="sourceLine" id="cb698-31" title="31"><span class="co">! concise quicksort from @arjen and @beliavsky shows recursion,</span></a>
+<a class="sourceLine" id="cb698-32" title="32"><span class="co">! array sections, and vectorized comparisons.</span></a>
+<a class="sourceLine" id="cb698-33" title="33"><span class="kw">PURE</span> <span class="kw">RECURSIVE</span> <span class="kw">FUNCTION</span> qsort(values) <span class="kw">RESULT</span>(sorted)</a>
+<a class="sourceLine" id="cb698-34" title="34"><span class="kw">INTRINSIC</span> <span class="fu">PACK</span>, <span class="fu">SIZE</span></a>
+<a class="sourceLine" id="cb698-35" title="35"><span class="dt">REAL</span>, <span class="dt">INTENT(IN)</span> <span class="dt">::</span> values(:)</a>
+<a class="sourceLine" id="cb698-36" title="36"><span class="dt">REAL</span>             <span class="dt">::</span> sorted(<span class="fu">SIZE</span>(values))</a>
+<a class="sourceLine" id="cb698-37" title="37">   <span class="kw">IF</span> (<span class="fu">SIZE</span>(values) <span class="op">&gt;</span> <span class="dv">1</span>) <span class="kw">THEN</span></a>
+<a class="sourceLine" id="cb698-38" title="38">      sorted <span class="kw">=</span> <span class="kw">[</span>qsort(<span class="fu">PACK</span>(values(<span class="dv">2</span>:),values(<span class="dv">2</span>:)<span class="op">&lt;</span>values(<span class="dv">1</span>))), values(<span class="dv">1</span>), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb698-39" title="39">                qsort(<span class="fu">PACK</span>(values(<span class="dv">2</span>:),values(<span class="dv">2</span>:)<span class="op">&gt;</span><span class="kw">=</span>values(<span class="dv">1</span>)))<span class="kw">]</span></a>
+<a class="sourceLine" id="cb698-40" title="40">   <span class="kw">ELSE</span></a>
+<a class="sourceLine" id="cb698-41" title="41">      sorted <span class="kw">=</span> values</a>
+<a class="sourceLine" id="cb698-42" title="42">   <span class="kw">ENDIF</span></a>
+<a class="sourceLine" id="cb698-43" title="43"><span class="kw">END FUNCTION</span> qsort</a>
+<a class="sourceLine" id="cb698-44" title="44"><span class="kw">end program</span> demo_pack</a></code></pre></div>
+<p>Result:</p>
+<pre class="text"><code>    &gt; 1 5
+    &gt; 1 2 3 4
+    &gt; 1 2
+    &gt; bat        cat
+    &gt;    initial .833 .367 .958 .454 .122 .602 .418 .942 .566 .400
+    &gt;     sorted .122 .367 .400 .418 .454 .566 .602 .833 .942 .958</code></pre>
 </div><div id="standard-159" class="slide section level3">
 <h1><strong>Standard</strong></h1>
 <p>Fortran 95</p>
@@ -14946,7 +14976,7 @@ dim=3 :( 2 3 )
 <p>If it is <strong>.false.</strong>, the seed is set to a processor-dependent value.</p>
 <dl>
 <dt><strong>image_distinct</strong></dt>
-<dd>If is <code>.true.</code>, the seed is set to a processor-dependent value that is distinct from the seed set by a call to <strong>random_init</strong>in another image. If it is <strong>.false.</strong>, the seed is set value that does depend which image called <strong>random_init</strong>.
+<dd>If it is <code>.true.</code>, the seed is set to a processor-dependent value that is distinct from the seed set by a call to <strong>random_init</strong>in another image. If it is <strong>.false.</strong>, the seed is set to a value that does depend on which image called <strong>random_init</strong>.
 </dd>
 </dl>
 </div><div id="examples-163" class="slide section level3">
@@ -14967,7 +14997,7 @@ dim=3 :( 2 3 )
 <p>Fortran 2018</p>
 </div><div id="see-also-166" class="slide section level3">
 <h1><strong>See also</strong></h1>
-<p><a href="#random_number">random_number</a>, <a href="random_seed">random_seed</a></p>
+<p><a href="#random_number">random_number</a>, <a href="#random_seed">random_seed</a></p>
 <p>_Fortran intrinsic descriptions</p>
 </div>
 <div id="random_number" class="title-slide slide section level2"><h1>random_number</h1></div><div id="name-168" class="slide section level3">

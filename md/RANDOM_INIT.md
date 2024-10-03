@@ -33,11 +33,10 @@ execution of the program.
 If it is **.false.**, the seed is set to a processor-dependent value.
 
 **image_distinct**
-: If is `.true.`, the seed is set to a processor-dependent value that
+: If it is `.true.`, the seed is set to a processor-dependent value that
 is distinct from the seed set by a call to **random_init**in another
-image. If it is **.false.**, the seed is set value that does depend
-which image called **random_init**.
-
+image. If it is **.false.**, the seed is set to a value that does depend
+on which image called **random_init**.
 
 ### **Examples**
 
@@ -62,6 +61,6 @@ Fortran 2018
 ### **See also**
 
 [random_number](#random_number),
-[random_seed](random_seed)
+[random_seed](#random_seed)
 
  _Fortran intrinsic descriptions
