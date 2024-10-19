@@ -17498,7 +17498,7 @@ textblock=[character(len=256) :: &
 '  o  STRING_B : string to compare to STRING_A', &
 '', &
 'RESULT', &
-'  Returns .true. if string_a == string_b, and .false. otherwise, based on the', &
+'  Returns .true. if string_a >= string_b, and .false. otherwise, based on the', &
 '  ASCII collating sequence.', &
 '', &
 '  If both input arguments are null strings, .true. is always returned.', &
